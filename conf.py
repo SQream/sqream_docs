@@ -22,7 +22,7 @@ copyright = '2019, Arnon Shimoni, Jake Wheat'
 author = 'Arnon Shimoni, Jake Wheat'
 
 # The full version, including alpha/beta/rc tags
-release = '2019.3'
+release = '2019.3-a1'
 
 
 # -- General configuration ---------------------------------------------------
@@ -32,6 +32,9 @@ release = '2019.3'
 # ones.
 extensions = [
 ]
+
+# Mark 'index' as the main page
+master_doc = 'index'
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
