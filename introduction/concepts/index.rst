@@ -33,6 +33,7 @@ Glossary
 Overview
 ********
 
+
 Layers
 ******
 
@@ -51,5 +52,6 @@ Layers
    * - Storage
      - 
 
-What's next?
-***************
+.. rubric:: What's next?
+
+Read about :ref:`GPU Acceleration <gpu_acceleration>`
