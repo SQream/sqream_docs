@@ -10,7 +10,7 @@ This section provides reference for using SQream DB's SQL commands - DDL, DML an
    :glob:
 
    sql_feature_support
-   data_types
+   sql_data_types
    sql_best_practices
    information_schema
    sql_syntax/*

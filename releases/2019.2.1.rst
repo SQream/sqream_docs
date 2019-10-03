@@ -1,0 +1,93 @@
+.. _2019.2.1:
+
+What's new in 2019.2.1
+=====================================
+
+* 250 bugs fixed. Thanks to all of our customers and an unprecedented number of deployments for helping us find and fix these!
+* Improved Unicode text handling on the GPU
+* Improved logging and monitoring of statements
+* Alibaba DataX connector
+
+*************
+Improvements
+*************
+
+* We’ve updated the ``show_server_status()`` function to more accurately reflect the status of statements across the cluster:
+
+   * Preparing – Initial validation
+   * In queue – Waiting for execution
+   * Initializing – Pre-execution processing
+   * Executing – statement is running
+
+* We’ve improved our log files and have unified them into a single file per instance, per date. Each message type has a unique code which can help identify potential issues. See the documentation for full details on the changes to the log structures.
+
+* ``WITH ADMIN OPTION`` added in ``GRANT``/``REVOKE`` operations, allowing roles to grant their own permissions to others.
+
+* HA cluster fully supports qualified hostnames, and no longer requires explicit IP addresses.
+
+* SQream DB CLI’s history can be disabled, by passing ``./ClientCmd --no-history``
+
+******************
+Behaviour changes
+******************
+
+* SQream DB no longer applies an implicit cast from a long text column to a shorter text column (``VARCHAR``/``NVARCHAR``). This means some ``INSERT``/``COPY`` operations will now error instead of truncating the text. This is intended to prevent accidental truncation of text columns. We recommend customers use the ``SUBSTRING`` operation to shorten the text columns.
+
+******************
+Operations
+******************
+
+* The client-server protocol has been updated to support a wider range of encodings. End users are required to use only the latest ClientCmd, JDBC, and ODBC drivers delivered with this version.
+
+* Clients such as SecureCRT and other shells must have locale set as ``cp874`` or equivalent
+
+* When upgrading from SQream DB v3.2 or lower, you must upgrade the storage version by using the storage upgrade utility: ``./bin/upgrade_storage /path/to/storage/sqreamdb/``
+
+****************************
+Known Issues & Limitations
+****************************
+
+* NVARCHAR columns cannot be used as a ``GROUP BY`` key when there are multiple ``COUNT (DISTINCT …)`` operations in a query
+
+* NVARCHAR columns cannot be used in a statement containing window functions
+
+* NVARCHAR is not supported as a join key
+
+* The following functions are not supported on ``NVARCHAR`` column types: ``chr``, ``min``, ``max``, ``patindex``, ``to_binary``, ``to_hex``, ``rlike``, ``regexp_count``, ``regexp_instr``, ``regexp_substr``
+
+* SQream DB dashboard: Only works with a HA clustered installation
+
+* SQream DB editor: External tables and UDFs don’t appear in the DB Tree but do appear in the relevant sqream_catalog entries.
+
+****************************
+Fixes
+****************************
+
+250 bugs and issues fixed, including:
+
+* Variety of performance improvements:
+
+* Improved performance of ``NVARCHAR`` by up to 315% for a variety of scenarios, including ``COPY FROM``, ``INNER JOIN``, ``LEFT JOIN``.
+
+* Improved load performance from previous versions
+
+* Faster compilation times for very complex queries
+
+* DWLM:
+
+   * Fixed situation where queries were not distributed correctly among all available instances
+   * Fixed ``cannot execute - reconnectDb error`` error
+   * Fixed occasional hanging statement
+   * Fixed occasional ``Connection refused``
+
+* Window functions:
+
+   * Fixed window function edge-case ``error WindowA with no functions``
+   * Fixed situations where the SUM window function is applied on a column, partitioned by a second, and sorted by a third would return wrong results when scanning very large datasets
+
+* Other bugs:
+
+   * Fixed situation where many concurrent statements running would result in ``map::at`` appearing
+   * Fixed situation where SQream DB would restart when force-stopping an ``INSERT`` over the network
+   * Fixed situation where RAM wasn’t released immediately after statement has been executed
+   * Fixed Type doesn’t have a fixed size error that appeared when using an external table joined with a standard SQream DB table
