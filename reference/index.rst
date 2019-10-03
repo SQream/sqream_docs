@@ -1,7 +1,7 @@
 Reference
 =====================================
 
-These topics provide refernce for using SQream DB's SQL features.
+This section provides reference for using SQream DB's interfaces and SQL features.
 
 .. toctree::
    :maxdepth: 2
@@ -9,6 +9,4 @@ These topics provide refernce for using SQream DB's SQL features.
    :glob:
    
    cli/*
-   sql/*
-   sql_functions/*
-   sql_statements/*
+   sql/index
