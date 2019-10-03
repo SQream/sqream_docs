@@ -1,6 +1,13 @@
 Releases
 =====================================
 
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :hidden:
+   
+   *
+
 .. list-table:: Releases
    :widths: 70 30
    :header-rows: 1
