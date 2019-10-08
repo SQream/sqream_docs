@@ -31,7 +31,7 @@ Improvements
 Behaviour changes
 ******************
 
-* SQream DB no longer applies an implicit cast from a long text column to a shorter text column (``VARCHAR``/``NVARCHAR``). This means some ``INSERT``/``COPY`` operations will now error instead of truncating the text. This is intended to prevent accidental truncation of text columns. We recommend customers use the ``SUBSTRING`` operation to shorten the text columns.
+* SQream DB no longer applies an implicit cast from a long text column to a shorter text column (``VARCHAR``/``NVARCHAR``). This means some ``INSERT``/``COPY`` operations will now error instead of truncating the text. This is intended to prevent accidental truncation of text columns. If you want the old truncation behaviour, you can use the ``SUBSTRING`` function to truncate the text.
 
 ******************
 Operations
