@@ -14,7 +14,6 @@ SQream DB is the GPU-accelerated analytics SQL database for massive data.
    tutorials/index
    releases/index
    reference/index
-   reference/glossary
 
 
 Indices and tables
