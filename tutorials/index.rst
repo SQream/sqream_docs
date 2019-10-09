@@ -6,16 +6,16 @@ This section contains several "how to" and best practices for building applicati
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: In this section:
    :glob:
 
-   getting_started/*
-   deploy/*
-   migrate/*
-   maintain/*
-   troubleshoot/*
-   best_practices/*
+   getting_started/index
+   deploy/index
+   migrate/index
+   maintain/index
+   troubleshoot/index
+   best_practices/index
 
 .. rubric:: Need help?
 
