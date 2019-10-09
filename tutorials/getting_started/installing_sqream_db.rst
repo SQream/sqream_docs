@@ -97,7 +97,6 @@ CentOS 7 / RHEL 7 / Amazon Linux (x64)
 #. Verify that docker is running
 
    .. code-block:: bash
-      :linenos:
       :emphasize-lines: 4
       
       $ sudo systemctl status docker
