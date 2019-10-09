@@ -27,7 +27,7 @@ CentOS 7 / RHEL 7 / Amazon Linux / Ubuntu 16.04 / Ubuntu 18.04
 
 #. Obtain the latest NVIDIA Driver release for your operating system from NVIDIA's driver download page titled `Latest Tesla driver for Linux x64`_. 
 
-.. Note:: IBM POWER users should download the driver from `Latest Tesla driver for Linux x64 POWER LE`_.
+   .. Note:: IBM POWER users should download the driver from `Latest Tesla driver for Linux x64 POWER LE`_.
 
 #. The NVIDIA driver is a self-contained installer. The latest version at the time of this document's release is 418.87.01. In order to install the driver, make it an executable and run it.
    
