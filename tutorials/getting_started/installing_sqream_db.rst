@@ -84,6 +84,8 @@ CentOS 7 / RHEL 7 / Amazon Linux / Ubuntu 16.04 / Ubuntu 18.04
       
       *You will need to reboot the system to initialize the above changes.*
 
+#. Continue to installing NVIDIA Docker
+
 Install Docker CE and NVIDIA docker
 ====================================
 
@@ -144,6 +146,8 @@ CentOS 7 / RHEL 7 / Amazon Linux (x64)
       $ sudo docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi -L
       GPU 0: Tesla V100-PCIE-16GB (UUID: GPU-...)
       GPU 1: Tesla V100-PCIE-16GB (UUID: GPU-...)
+      
+#. Continue to :ref:`Installing the SQream DB Docker container <installing_sqream_db_docker>`
 
 CentOS 7 / RHEL 7 (IBM POWER)
 -------------------------------
@@ -218,7 +222,7 @@ CentOS 7 / RHEL 7 (IBM POWER)
       GPU 0: Tesla V100-SXM2-16GB (UUID: GPU-...)
       GPU 1: Tesla V100-SXM2-16GB (UUID: GPU-...)
 
-
+#. Continue to :ref:`Installing the SQream DB Docker container <installing_sqream_db_docker>`
 
 Ubuntu 16.04 / Ubuntu 18.04 (x64)
 -----------------------------------
@@ -277,6 +281,19 @@ Ubuntu 16.04 / Ubuntu 18.04 (x64)
       GPU 0: Tesla V100-PCIE-16GB (UUID: GPU-...)
       GPU 1: Tesla V100-PCIE-16GB (UUID: GPU-...)
 
+#. Continue to :ref:`Installing the SQream DB Docker container <installing_sqream_db_docker>`
+
+Installing the SQream DB Docker container
+=========================================
+.. _installing_sqream_db_docker:
+
+#. Obtain the latest SQream DB installation from your SQream account manager
+
+#. Extract the tarball into your home directory
+
+   .. code-block:: bash
+   
+      $ tar xf sqream_installer-2.0.0-DB2019.3.1-CO1.5.4-ED3.0.0-x86_64.tar.gz
 
 
 .. _`Latest Tesla driver for Linux x64`: https://www.nvidia.com/Download/driverResults.aspx/152242/en-us
