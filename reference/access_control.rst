@@ -146,133 +146,136 @@ Syntax reference
 Roles
 -----
 
-.. code-block:: sql
+.. code-block:: postgresql
 
-  create | alter |drop role
-  grant
-  alter default permissions
+     create | alter | drop role
+     grant
+     
+     -- Alter default permissions
+     
+     CREATE ROLE role_name ;
+     GRANT PASSWORD 'new_password' to role_name ;
+     
+     DROP ROLE role_name ;
+     
+     -- Alter - rename only:
+     
+     ALTER ROLE role_name RENAME TO new_role_name ;
 
-  CREATE ROLE role_name ;
-  GRANT PASSWORD 'new_password' to role_name ;
 
-  DROP ROLE role_name ;
-
-  alter - rename only:
-
-  ALTER ROLE role_name RENAME TO new_role_name ;
-
-granting permissions
+Granting permissions
 --------------------
 
 to create a database installation wide superuser:
 
-.. code-block:: sql
+.. code-block:: postgresql
 
-  GRANT SUPERUSER to <role>
+     GRANT SUPERUSER to <role>
 
-  does a super user have login + connect to all databases?
+
+does a super user have login + connect to all databases?
 
 to allow a user to login, and to connect to a database
 
-.. code-block:: sql
-                
-  GRANT LOGIN to role_name ;
-  GRANT CONNECT ON DATABASE database_name to role_name ;
-  
+.. code-block:: postgresql
+
+     GRANT LOGIN to role_name ;
+     GRANT CONNECT ON DATABASE database_name to role_name ;
+
+
 can a user have one and not the other?
 
 when should a user have a password
 
-.. code-block:: sql
+.. code-block:: postgresql
 
-  GRANT 
+     GRANT 
+      { SUPERUSER
+      | LOGIN 
+      | PASSWORD '<password>' 
+      } 
+     TO <role> [, ...] 
 
-	{ SUPERUSER
-	| LOGIN 
-	| PASSWORD '<password>' 
-	} 
-	TO <role> [, ...] 
-
-  GRANT <role1> [, ...] 
-	TO <role2> 
-	[WITH ADMIN OPTION]
+     GRANT <role1> [, ...] 
+     TO <role2> 
+     [WITH ADMIN OPTION]
 
 
-from the current docs, it's not that clear what all these mean
+From the current docs, it's not that clear what all these mean
 
 granting permissions to objects
 -------------------------------
 
-.. code-block:: sql
+.. code-block:: postgresql
 
-  -- Grant permissions at the database level:
-      GRANT {{CREATE | CONNECT| DDL | SUPERUSER | CREATE FUNCTION} [, ...] | ALL [PERMISSIONS]}
+     -- Grant permissions at the database level:
+     GRANT {{CREATE | CONNECT| DDL | SUPERUSER | CREATE FUNCTION} [, ...] | ALL [PERMISSIONS]}
 
-	ON DATABASE <database> [, ...]
-	TO <role> [, ...] 
+       ON DATABASE <database> [, ...]
+       TO <role> [, ...] 
 
-  -- Grant permissions at the schema level: 
-	GRANT {{ CREATE | DDL | USAGE | SUPERUSER } [, ...] | ALL [ 
-	PERMISSIONS ]} 
-	ON SCHEMA <schema> [, ...] 
-	TO <role> [, ...] 
-					
-  -- Grant permissions at the object level: 
-	GRANT {{SELECT | INSERT | DELETE | DDL } [, ...] | ALL [PERMISSIONS]} 
-	ON { TABLE <table_name> [, ...] | ALL TABLES IN SCHEMA <schema_name> [, ...]} 
-	TO <role> [, ...]
-					
-  -- Grant execute function permission: 
-	GRANT {ALL | EXECUTE | DDL} ON FUNCTION function_name 
-	TO role; 
+     -- Grant permissions at the schema level: 
+     GRANT {{ CREATE | DDL | USAGE | SUPERUSER } [, ...] | ALL [ 
+       PERMISSIONS ]} 
+       ON SCHEMA <schema> [, ...] 
+       TO <role> [, ...] 
+
+     -- Grant permissions at the object level: 
+     GRANT {{SELECT | INSERT | DELETE | DDL } [, ...] | ALL [PERMISSIONS]} 
+       ON { TABLE <table_name> [, ...] | ALL TABLES IN SCHEMA <schema_name> [, ...]} 
+       TO <role> [, ...]
+
+     -- Grant execute function permission: 
+       GRANT {ALL | EXECUTE | DDL} ON FUNCTION function_name 
+       TO role; 
 
 
 alter default permissions
 -------------------------
 
-.. code-block:: sql
-                
-  ALTER DEFAULT PERMISSIONS FOR <role_name>
+.. code-block:: postgresql
+
+     ALTER DEFAULT PERMISSIONS FOR <role_name>
        IN <schema_name> FOR TABLES
        GRANT { SELECT | INSERT | DELETE [,...] } TO <role_name>;
 
 I think you can also do it for schemas?
-       
+
 how do you undo a default permissions - use revoke? something isn't
 quite right about that
 
 revoking permissions
 --------------------
 
-.. code-block:: sql
-                
-  -- Revoke permissions at the cluster level:
-	REVOKE
-	{ SUPERUSER
-	| LOGIN
-	| PASSWORD
-	}
-	FROM <role> [, ...]
-				
-  -- Revoke permissions at the database level:
-	REVOKE {{CREATE | CONNECT | DDL | SUPERUSER | CREATE FUNCTION}[, ...] |ALL [PERMISSIONS]}
-	ON DATABASE <database> [, ...]
-	FROM <role> [, ...]
+.. code-block:: postgresql
 
-  -- Revoke permissions at the schema level:
-	REVOKE { { CREATE | DDL | USAGE | SUPERUSER } [, ...] | ALL [PERMISSIONS]}
-	ON SCHEMA <schema> [, ...]
-	FROM <role> [, ...]
-				
-  -- Revoke permissions at the object level:
-	REVOKE { { SELECT | INSERT | DELETE | DDL } [, ...] | ALL }
-	ON { [ TABLE ] <table_name> [, ...] | ALL TABLES IN SCHEMA
+     -- Revoke permissions at the cluster level:
+     REVOKE
+       { SUPERUSER
+       | LOGIN
+       | PASSWORD
+       }
+     FROM <role> [, ...]
+
+     -- Revoke permissions at the database level:
+     REVOKE {{CREATE | CONNECT | DDL | SUPERUSER | CREATE FUNCTION}[, ...] |ALL [PERMISSIONS]}
+       ON DATABASE <database> [, ...]
+       FROM <role> [, ...]
+
+     -- Revoke permissions at the schema level:
+     REVOKE { { CREATE | DDL | USAGE | SUPERUSER } [, ...] | ALL [PERMISSIONS]}
+       ON SCHEMA <schema> [, ...]
+       FROM <role> [, ...]
+
+     -- Revoke permissions at the object level:
+       REVOKE { { SELECT | INSERT | DELETE | DDL } [, ...] | ALL }
+       ON { [ TABLE ] <table_name> [, ...] | ALL TABLES IN SCHEMA
 
        <schema_name> [, ...] }
-	FROM <role> [, ...]
-				
-  -- Revoke privileges from other roles by granting one role to another:
-	REVOKE <role1> [, ...] FROM <role2> [, ...] WITH ADMIN OPTION
+       FROM <role> [, ...]
+
+     -- Revoke privileges from other roles by granting one role to another:
+       REVOKE <role1> [, ...] FROM <role2> [, ...] WITH ADMIN OPTION
 
 
 Behaviour reference
@@ -336,12 +339,18 @@ variation: roles which cover multiple schemas
 maintain - how to add something missing or modify:
 
 * a new schema
+
 * a new division
+
 * a new user
+
 * remove access
+
 * fix an existing schema to add permissions
-* * maybe a mistake
-* * maybe a division gets new access to an existing schema
+
+   * maybe a mistake
+
+   * maybe a division gets new access to an existing schema
 
 key secure things:
 
