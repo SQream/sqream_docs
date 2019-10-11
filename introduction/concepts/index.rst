@@ -10,7 +10,7 @@ While most users don't need to understand the underlying architecture and concep
 Goals of SQream DB
 *******************
 
-Fill in
+.. TODO Fill in
 
 Glossary
 ********

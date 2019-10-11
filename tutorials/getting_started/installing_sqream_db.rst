@@ -18,34 +18,43 @@ To install NVIDIA Docker, we must first install the NVIDIA driver (the full tool
 
 .. Note:: SQream DB runs best on NVIDIA Tesla series GPUs. The instructions below are written for NVIDIA Tesla GPUs.
 
-CentOS 7 / RHEL 7 / Amazon Linux / Ubuntu 16.04 / Ubuntu 18.04
+CentOS 7 / RHEL 7 / Amazon Linux
 ---------------------------------------------------------------
 
 .. admonition:: Recommended
 
    Follow the installation instructions on `NVIDIA's CUDA Installation Guide`_ for full instructions suitable for your platform. The information listed below is a summary of the necessary steps, and does not cover the full range of options available.
 
-#. Obtain the latest NVIDIA Driver release for your operating system from NVIDIA's driver download page titled `Latest Tesla driver for Linux x64`_. 
+#. Recommended - install EPEL
 
-   .. Note:: IBM POWER users should download the driver from `Latest Tesla driver for Linux x64 POWER LE`_.
+EPEL provides additional open-source and free packages from the RHEL ecosystem.
 
-#. The NVIDIA driver is a self-contained installer. The latest version at the time of this document's release is 418.87.01. In order to install the driver, make it an executable and run it.
-   
-   .. code-block:: bash
+   .. code-block:: console
       
-      $ chmod u+x NVIDIA-Linux-x86_64-418.87.01.run
-      $ sudo ./NVIDIA-Linux-x86_64-418.87.01.run -s
+      $ sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+#. Install the kernel headers and development tools necessary to compile the NVIDIA driver
+
+   .. code-block:: console
       
-      Verifying archive integrity... OK
-      Uncompressing NVIDIA Accelerated Graphics Driver for Linux-x86_64 418.87.01..............
-      .........................................................................................
-      .........................................................................................
-      .........................................................................................
-      .............................
+      $ sudo yum update
+      $ sudo yum install kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc
+
+#. Install the CUDA repository and install the latest display driver
+
+   .. code-block:: console
+      
+      $ sudo rpm -Uvh https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-10.1.243-1.x86_64.rpm
+      $ sudo yum update && sudo yum install -y nvidia-driver-latest
+
+#. Restart your machine
+
+   ``sudo reboot``
+
 
 #. Verify the installation completed correctly, by asking ``nvidia-smi``, NVIDIA's system management interface application, to list the available GPUs.
    
-   .. code-block:: bash
+   .. code-block:: console
       
       $ nvidia-smi -L
       GPU 0: Tesla V100-PCIE-16GB (UUID: GPU-...)
@@ -53,9 +62,9 @@ CentOS 7 / RHEL 7 / Amazon Linux / Ubuntu 16.04 / Ubuntu 18.04
 
 #. Enable NVIDIA's persistence daemon. This is mandatory for IBM POWER, but is recommended for other platforms as well.
       
-      .. code-block:: bash
+      .. code-block:: console
          
-         $ sudo systemctl enable nvidia-persistenced
+         $ sudo systemctl enable nvidia-persistenced && sudo systemctl start nvidia-persistenced
 
      .. Important:: On POWER9 systems only, disable the udev rule for hot-pluggable memory probing.
 
@@ -70,35 +79,88 @@ CentOS 7 / RHEL 7 / Amazon Linux / Ubuntu 16.04 / Ubuntu 18.04
          
          * On RHEL 7.5 or earlier versions:
          
-            .. code-block:: bash
+            .. code-block:: console
                
                $ sudo cp /lib/udev/rules.d/40-redhat.rules /etc/udev/rules.d
                $ sudo sed -i '/SUBSYSTEM=="memory", ACTION=="add"/d' /etc/udev/rules.d/40-redhat.rules
 
          * On RHEL 7.6 and later versions:
             
-            .. code-block:: bash
+            .. code-block:: console
                
                $ sudo cp /lib/udev/rules.d/40-redhat.rules /etc/udev/rules.d 
                $ sudo sed -i 's/SUBSYSTEM!="memory", ACTION!="add", GOTO="memory_hotplug_end"/SUBSYSTEM=="*", GOTO="memory_hotplug_end"/' /etc/udev/rules.d/40-redhat.rules
       
       *You will need to reboot the system to initialize the above changes.*
 
-#. Continue to installing NVIDIA Docker
+#. Continue to :ref:`installing NVIDIA Docker for RHEL <docker_rhel>`
+
+Ubuntu 18.04
+---------------------------------------------------------------
+
+.. admonition:: Recommended
+
+   Follow the installation instructions on `NVIDIA's CUDA Installation Guide`_ for full instructions suitable for your platform. The information listed below is a summary of the necessary steps, and does not cover the full range of options available.
+
+#. Install the kernel headers and development tools necessary
+
+   .. code-block:: console
+      
+      $ sudo apt-get update
+      $ sudo apt-get install linux-headers-$(uname -r) gcc
+
+#. Install the CUDA repository and driver on Ubuntu
+
+   .. code-block:: console
+      
+      $ curl -O https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-repo-ubuntu1804_10.1.243-1_amd64.deb
+      $ sudo dpkg -i cuda-repo-ubuntu1804_10.1.243-1_amd64.deb
+      $ sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
+      $ sudo apt-get update && sudo apt-get install -y nvidia-driver-418
+
+#. Restart your machine
+
+   ``sudo reboot``
+
+#. Verify the installation completed correctly, by asking ``nvidia-smi``, NVIDIA's system management interface application, to list the available GPUs.
+   
+   .. code-block:: console
+      
+      $ nvidia-smi -L
+      GPU 0: Tesla V100-PCIE-16GB (UUID: GPU-...)
+      GPU 1: Tesla V100-PCIE-16GB (UUID: GPU-...)
+
+#. Enable NVIDIA's persistence daemon. This is mandatory for IBM POWER, but is recommended for other platforms as well.
+      
+      .. code-block:: console
+         
+         $ sudo systemctl enable nvidia-persistenced
+
+#. Continue to :ref:`installing NVIDIA Docker for Ubuntu <docker_ubuntu>`
 
 Install Docker CE and NVIDIA docker
 ====================================
 
 Follow the instructions for your OS and architecture.
 
+.. _docker_rhel:
+
 CentOS 7 / RHEL 7 / Amazon Linux (x64)
 --------------------------------------
 
+.. note:: For IBM POWER9, see the next section :ref:`installing NVIDIA Docker for IBM POWER <docker_power>`
+
 #. Follow the instructions for Docker CE for your platform at `Get Docker Engine - Community for CentOS`_
+
+#. Tell Docker to start after a reboot
+
+   .. code-block:: console
+   
+      $ sudo systemctl enable docker && sudo systemctl start docker
 
 #. Verify that docker is running
 
-   .. code-block:: bash
+   .. code-block:: console
       :emphasize-lines: 4
       
       $ sudo systemctl status docker
@@ -112,15 +174,9 @@ CentOS 7 / RHEL 7 / Amazon Linux (x64)
       CGroup: /system.slice/docker.service
               └─65794 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 
-#. Tell Docker to start after a reboot
-
-   .. code-block:: bash
-   
-      $ sudo systemctl enable docker
-
 #. Let your current user manage Docker, without requiring `sudo`
 
-   .. code-block:: bash
+   .. code-block:: console
    
       $ sudo usermod -aG docker $USER
 
@@ -128,7 +184,7 @@ CentOS 7 / RHEL 7 / Amazon Linux (x64)
 
 #. Install nvidia-docker
 
-   .. code-block:: bash
+   .. code-block:: console
    
       $ distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
       $ curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.repo | sudo tee /etc/yum.repos.d/nvidia-docker.repo
@@ -141,7 +197,7 @@ CentOS 7 / RHEL 7 / Amazon Linux (x64)
 
 #. Verify the NVIDIA docker installation
 
-   .. code-block:: bash
+   .. code-block:: console
    
       $ sudo docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi -L
       GPU 0: Tesla V100-PCIE-16GB (UUID: GPU-...)
@@ -149,12 +205,14 @@ CentOS 7 / RHEL 7 / Amazon Linux (x64)
       
 #. Continue to :ref:`Installing the SQream DB Docker container <installing_sqream_db_docker>`
 
+.. _docker_power:
+
 CentOS 7 / RHEL 7 (IBM POWER)
 -------------------------------
 
 #. Install Docker for IBM POWER
 
-   .. code-block:: bash
+   .. code-block:: console
       
       $ wget http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/container-selinux-2.9-4.el7.noarch.rpm
       $ wget http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/docker-ce-18.03.1.ce-1.el7.centos.ppc64le.rpm
@@ -162,14 +220,13 @@ CentOS 7 / RHEL 7 (IBM POWER)
 
 #. Tell Docker to start after a reboot
 
-   .. code-block:: bash
+   .. code-block:: console
    
-      $ sudo systemctl enable docker
-      $ sudo systemctl start docker
+      $ sudo systemctl enable docker && sudo systemctl start docker
 
 #. Verify that docker is running
 
-   .. code-block:: bash
+   .. code-block:: console
       :linenos:
       :emphasize-lines: 4
       
@@ -186,7 +243,7 @@ CentOS 7 / RHEL 7 (IBM POWER)
 
 #. Let your current user manage Docker, without requiring `sudo`
 
-   .. code-block:: bash
+   .. code-block:: console
    
       $ sudo usermod -aG docker $USER
 
@@ -196,27 +253,25 @@ CentOS 7 / RHEL 7 (IBM POWER)
 
    * Install the NVIDIA container and container runtime packages from NVIDIA's repository:
       
-      .. code-block:: bash
+      .. code-block:: console
       
          $ distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
          $ curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.repo | sudo tee /etc/yum.repos.d/nvidia-docker.repo
          
-         $ sudo yum install -y libnvidia-container*
-         $ sudo yum install -y nvidia-container-runtime*
+         $ sudo yum install -y libnvidia-container* nvidia-container-runtime*
 
    * Add the NVIDIA runtime to the Docker daemon and restart docker:
       
-      .. code-block:: bash
+      .. code-block:: console
       
          $ sudo mkdir -p /etc/systemd/system/docker.service.d/
          $ echo -e "[Service]\nExecStart\nExecStart=/usr/bin/dockerd --add-runtime=nvidia=/usr/bin/nvidia-container-runtime" | sudo tee /etc/systemd/system/docker.service.d/override.conf
 
-         $ sudo systemctl daemon-reload
-         $ sudo systemctl restart docker
+         $ sudo systemctl daemon-reload && sudo systemctl restart docker
 
 #. Verify the NVIDIA docker installation succeeded
 
-   .. code-block:: bash
+   .. code-block:: console
    
       $ docker run --runtime=nvidia --rm nvidia/cuda-ppc64le nvidia-smi -L
       GPU 0: Tesla V100-SXM2-16GB (UUID: GPU-...)
@@ -224,14 +279,22 @@ CentOS 7 / RHEL 7 (IBM POWER)
 
 #. Continue to :ref:`Installing the SQream DB Docker container <installing_sqream_db_docker>`
 
-Ubuntu 16.04 / Ubuntu 18.04 (x64)
+.. _docker_ubuntu:
+
+Ubuntu 18.04 (x64)
 -----------------------------------
 
 #. Follow the instructions for Docker CE for your platform at `Get Docker Engine - Community for CentOS`_
 
+#. Tell Docker to start after a reboot
+
+   .. code-block:: console
+   
+      $ sudo systemctl enable docker && sudo systemctl start docker
+
 #. Verify that docker is running
 
-   .. code-block:: bash
+   .. code-block:: console
       :linenos:
       :emphasize-lines: 4
       
@@ -246,15 +309,9 @@ Ubuntu 16.04 / Ubuntu 18.04 (x64)
       CGroup: /system.slice/docker.service
               └─65794 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 
-#. Tell Docker to start after a reboot
-
-   .. code-block:: bash
-   
-      $ sudo systemctl enable docker
-
 #. Let your current user manage Docker, without requiring `sudo`
 
-   .. code-block:: bash
+   .. code-block:: console
    
       $ sudo usermod -aG docker $USER
 
@@ -262,7 +319,7 @@ Ubuntu 16.04 / Ubuntu 18.04 (x64)
 
 #. Install nvidia-docker
 
-   .. code-block:: bash
+   .. code-block:: console
    
       $ distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
       $ curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
@@ -275,7 +332,7 @@ Ubuntu 16.04 / Ubuntu 18.04 (x64)
 
 #. Verify the NVIDIA docker installation
 
-   .. code-block:: bash
+   .. code-block:: console
    
       $ sudo docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi -L
       GPU 0: Tesla V100-PCIE-16GB (UUID: GPU-...)
@@ -283,18 +340,124 @@ Ubuntu 16.04 / Ubuntu 18.04 (x64)
 
 #. Continue to :ref:`Installing the SQream DB Docker container <installing_sqream_db_docker>`
 
-Installing the SQream DB Docker container
+
+.. _preparing_mounts:
+
+Preparing directories and mounts for SQream DB
+===============================================
+
+SQream DB contains several directories that you may be asked to define
+
+.. list-table:: Directories and paths
+   :widths: 40 60
+   :header-rows: 1
+   
+   * - Path name
+     - Definition
+   * - ``storage``
+     - The location where SQream DB stores data, metadata, and logs
+   * - ``exposed path``
+     - A location that SQream DB can read and write to. Used for allowing access to shared raw files like CSVs on local or NFS drives
+   * - ``logs``
+     - Optional location for debug logs
+
+.. note:: By default, SQream DB can't access any OS path. You must explicitly allow it.
+
+
+
+Install the SQream DB Docker container
 =========================================
 .. _installing_sqream_db_docker:
 
-#. Obtain the latest SQream DB installation from your SQream account manager
+#. Download the SQream DB tarball and license package
+
+   In the e-mail from your account manager at SQream, you have received a download link for the SQream DB installer and a license package.
+   Download the SQream DB tarball to the user home directory. For example:
+
+   .. code-block:: console
+   
+      $ cd ~
+      $ curl -O https://get.sqream.com/x86/sqream_installer-2.0.7-DB2019.2.1.4-CO1.7.5-ED3.0.1-x86_64.tar.gz
+
+
 
 #. Extract the tarball into your home directory
 
-   .. code-block:: bash
-   
-      $ tar xf sqream_installer-2.0.0-DB2019.3.1-CO1.5.4-ED3.0.0-x86_64.tar.gz
+   .. code-block:: console
+      
+      $ tar xf sqream_installer-2.0.7-DB2019.2.1.4-CO1.7.5-ED3.0.1-x86_64.tar.gz
 
+#. Copy the license package
+
+   Copy the license package from your home directory to the license subdirectory which is located in the newly created SQream installer directory.
+   
+   For example, if the licence package you received is titled ``license_package.tar.gz``:
+   
+   .. code-block:: console
+      
+      $ cp ~/license_package.tar.gz sqream_installer-2.0.7-DB2019.2.1.4-CO1.7.5-ED3.0.1-x86_64/license
+
+#. Enter the installer directory
+
+   .. code-block:: console
+   
+      $ cd sqream_installer-2.0.7-DB2019.2.1.4-CO1.7.5-ED3.0.1-x86_64
+
+#. Install SQream DB
+   
+   In most cases, the installation command will look like this:
+   
+   .. code-block:: console
+   
+      $ ./sqream-install -i -k -v <path to storage> -d <path to shared folder> -l <path to debug logs directory>
+   
+   For example, if the main storage path for SQream DB is ``/mnt/largedrive`` and the desired shared access path is ``/mnt/nfs/source_files``, the command will look like:
+   
+   .. code-block:: console
+   
+      $ ./sqream-install -i -k -v /mnt/largedrive -d /mnt/nfs/source_files
+   
+   For a full list of options and commands, see the :ref:`Docker installer reference <docker_installer_ref>`
+
+#. Starting your first SQream DB cluster
+   
+   Enter the console, which helps coordinate SQream DB components
+   
+   .. code-block:: console
+   
+      $ ./sqream-console
+
+   To start SQream DB, first start the master components:
+   
+   .. code-block:: console
+   
+      sqream-console>sqream master --start
+        starting master server in single_host mode ...
+        sqream_single_host_master is up and listening on ports:   3105,3108
+
+
+   Then, start workers to join the cluster:
+   
+   .. code-block:: console
+   
+      sqream-console>sqream worker --start 2
+        started sqream_single_host_worker_0 on port 5000, allocated gpu: 0
+        started sqream_single_host_worker_1 on port 5001, allocated gpu: 1
+
+   .. note:: By default, each worker is allocated a full GPU. To launch more workers than available GPUs, see the :ref:`Console reference <console_ref>`
+
+#. SQream DB is now installed and running! You can exit the console by typing ``exit``.
+
+.. rubric:: What's next?
+
+* Create your first table
+
+* Connect an external tool to SQream DB
+
+* Additional system configuration for performance and stability
+
+
+.. Some replacements:
 
 .. _`Latest Tesla driver for Linux x64`: https://www.nvidia.com/Download/driverResults.aspx/152242/en-us
 .. _`Latest Tesla driver for Linux x64 POWER LE`: https://www.nvidia.com/Download/driverResults.aspx/152241/en-us
