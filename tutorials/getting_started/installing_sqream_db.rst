@@ -364,10 +364,10 @@ SQream DB contains several directories that you may be asked to define
 .. note:: By default, SQream DB can't access any OS path. You must explicitly allow it.
 
 
+.. _installing_sqream_db_docker:
 
 Install the SQream DB Docker container
 =========================================
-.. _installing_sqream_db_docker:
 
 #. Download the SQream DB tarball and license package
 
@@ -378,8 +378,6 @@ Install the SQream DB Docker container
    
       $ cd ~
       $ curl -O https://get.sqream.com/x86/sqream_installer-2.0.7-DB2019.2.1.4-CO1.7.5-ED3.0.1-x86_64.tar.gz
-
-
 
 #. Extract the tarball into your home directory
 
@@ -419,15 +417,21 @@ Install the SQream DB Docker container
    
    For a full list of options and commands, see the :ref:`Docker installer reference <docker_installer_ref>`
 
-#. Starting your first SQream DB cluster
-   
-   Enter the console, which helps coordinate SQream DB components
+#. SQream DB is now successfully installed, but not yet running.
+
+
+.. _start_local_cluster:
+
+Starting your first local cluster
+=========================================
+
+#. Enter the console, which helps coordinate SQream DB components
    
    .. code-block:: console
    
       $ ./sqream-console
 
-   To start SQream DB, first start the master components:
+#. Start the master components:
    
    .. code-block:: console
    
@@ -436,7 +440,7 @@ Install the SQream DB Docker container
         sqream_single_host_master is up and listening on ports:   3105,3108
 
 
-   Then, start workers to join the cluster:
+#. Start workers to join the cluster:
    
    .. code-block:: console
    
@@ -446,7 +450,7 @@ Install the SQream DB Docker container
 
    .. note:: By default, each worker is allocated a full GPU. To launch more workers than available GPUs, see the :ref:`Console reference <console_ref>`
 
-#. SQream DB is now installed and running! You can exit the console by typing ``exit``.
+#. SQream DB is now running! You can exit the console by typing ``exit``.
 
 .. rubric:: What's next?
 
