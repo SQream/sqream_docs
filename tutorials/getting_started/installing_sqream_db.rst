@@ -11,12 +11,16 @@ SQream DB is installed on your hosts with NVIDIA Docker. There are several prepa
 .. Note:: Installing SQream DB requires a license key. Contact support@sqream.com or your SQream account manager for your license key.
 
 .. contents:: In this topic:
+   :local:
 
 Preparing your machine for NVIDIA Docker
 =========================================
-To install NVIDIA Docker, we must first install the NVIDIA driver (the full toolkit is not required).
+To install NVIDIA Docker, we must first install the NVIDIA driver.
 
 .. Note:: SQream DB runs best on NVIDIA Tesla series GPUs. The instructions below are written for NVIDIA Tesla GPUs.
+
+.. contents:: Follow the instructions for your OS and architecture:
+   :local:
 
 CentOS 7 / RHEL 7 / Amazon Linux
 ---------------------------------------------------------------
@@ -141,7 +145,8 @@ Ubuntu 18.04
 Install Docker CE and NVIDIA docker
 ====================================
 
-Follow the instructions for your OS and architecture.
+.. contents:: Follow the instructions for your OS and architecture:
+   :local:
 
 .. _docker_rhel:
 
