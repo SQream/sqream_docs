@@ -61,12 +61,32 @@ html_theme = 'sphinx_rtd_theme'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+html_css_files = [
+    'css/custom.css', # Relative to the _static path
+]
+
+html_logo = '_static/images/sqream_logo.png'
+
 # If true, sectionauthor and moduleauthor directives will be shown in the
 # output. They are ignored by default.
 #
 show_authors = False
 
+# Hide "Sphinx" details
+html_show_sphinx = False
+
+
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
 
 html_show_copyright = True
+
+# RTD theme specifics
+
+html_theme_options = {
+   'logo_only': True # Hide "SQream DB" title and only show logo
+   , 'display_version': True # Display version at the top
+   , 'style_external_links': True # Show little icon next to external links
+   , 'style_nav_header_background': '#0f9790' # SQream teal
+
+}
