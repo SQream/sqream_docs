@@ -6,7 +6,7 @@ Maintain
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: In this section:
    :glob:
 

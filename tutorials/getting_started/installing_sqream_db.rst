@@ -4,11 +4,11 @@
 Installing SQream DB
 ***********************
 
-See :ref:`Release Notes <releases>` to learn about what's new in the latest release of SQream DB. To upgrade to this release, see :ref:`Upgrading <upgrading>`.
+See :ref:`Release Notes <releases>` to learn about what's new in the latest release of SQream DB. To upgrade to this release, see :ref:`Upgrading SQream DB <upgrading_sqream_db>`.
 
 SQream DB is installed on your hosts with NVIDIA Docker. There are several preparation steps to ensure before installing SQream DB, so follow these instructions carefully.
 
-.. Note:: Installing SQream DB requires a license key. Contact support@sqream.com or your SQream account manager for your license key.
+.. Note:: Installing SQream DB requires a license key. Go to `SQream Support <http://support.sqream.com/>`_. or contact your SQream account manager for your license key.
 
 .. contents:: In this topic:
    :local:
@@ -29,20 +29,23 @@ CentOS 7 / RHEL 7 / Amazon Linux
 
    Follow the installation instructions on `NVIDIA's CUDA Installation Guide`_ for full instructions suitable for your platform. The information listed below is a summary of the necessary steps, and does not cover the full range of options available.
 
-#. Recommended - install EPEL
+#. Enable EPEL
 
-EPEL provides additional open-source and free packages from the RHEL ecosystem.
+   EPEL provides additional open-source and free packages from the RHEL ecosystem. The NVIDIA driver depends on packages such as DKMS and libvdpau which are only available on third-party repositories, such as EPEL.
 
    .. code-block:: console
       
       $ sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+.. There are other ways of installing EPEL: $ sudo yum -y install epel-release
+.. Do we need DKMS? $ sudo yum -y install dkms
 
 #. Install the kernel headers and development tools necessary to compile the NVIDIA driver
 
    .. code-block:: console
       
       $ sudo yum update
-      $ sudo yum install kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc
+      $ sudo yum -y install kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc
 
 #. Install the CUDA repository and install the latest display driver
 
@@ -51,9 +54,17 @@ EPEL provides additional open-source and free packages from the RHEL ecosystem.
       $ sudo rpm -Uvh https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-10.1.243-1.x86_64.rpm
       $ sudo yum update && sudo yum install -y nvidia-driver-latest
 
+.. note:: If you are running Linux with X, you'll have to switch to text-only mode before installing the display driver
+   
+   .. code-block:: console
+   
+      $ sudo systemctl isolate multi-user.target
+
 #. Restart your machine
 
-   ``sudo reboot``
+   .. code-block:: console
+      
+      ``sudo reboot``
 
 
 #. Verify the installation completed correctly, by asking ``nvidia-smi``, NVIDIA's system management interface application, to list the available GPUs.
@@ -185,7 +196,11 @@ CentOS 7 / RHEL 7 / Amazon Linux (x64)
    
       $ sudo usermod -aG docker $USER
 
-   .. Note:: Log out and log back in again after this action
+   Then, log out and log back in:
+   
+   .. code-block:: console
+   
+      $ exit
 
 #. Install nvidia-docker
 
@@ -459,11 +474,11 @@ Starting your first local cluster
 
 .. rubric:: What's next?
 
-* Create your first table
+* :ref:`Create your first table <create_first_table>`
 
-* Connect an external tool to SQream DB
+* :ref:`Connect an external tool to SQream DB <connect_first_tool>`
 
-* Additional system configuration for performance and stability
+* :ref:`Additional system configuration for performance and stability <recommended_configuration>`
 
 
 .. Some replacements:
