@@ -65,8 +65,8 @@ If any doubt arises, consult the documentation for your server for the correct w
      - **Cluster on Die** or **Home Snoop**
      - This option allows for the configurations of different snoop modes that impact the QPI interconnect. Changing this option may improve performance in certain workloads. Home Snoop provides high memory bandwidth in an average NUMA environment (default setting). Cluster on Die may provide increased memory bandwidth in highly optimized NUMA workloads. Early Snoop may decrease memory latency but may also result in lower overall bandwidth as compared to other modes.
 
-Use a dedicated username for SQream DB
-========================================
+Use a dedicated SQream DB administration account
+===================================================
 
 Create a user for SQream DB, and optionally assign it to the ``wheel`` group for ``sudo`` access.
 
@@ -75,6 +75,8 @@ Create a user for SQream DB, and optionally assign it to the ``wheel`` group for
    $ useradd -m -U sqream
    $ passwd sqream 
    $ usermod -aG wheel sqream 
+
+.. warning:: SQream DB should not run as ``root`` or ``sudo``.
 
 Configure the OS locale and timezone
 =====================================
@@ -101,17 +103,33 @@ SQream DB clusters rely on clock synchronization to function correctly.
 
    .. code-block:: console
    
-      $ sudo yum install -y ntp
+      $ sudo yum install -y ntp ntpdate
       $ sudo systemctl enable ntpd
       $ sudo systemctl start ntpd
 
-If your organization has an NTP server, configure it by adding records to ``/etc/ntpd.conf``, and reloading the service:
+If your organization has an NTP server, configure it by adding records to ``/etc/ntpd.conf``, reloading the service, and checking that synchronization is enabled:
 
    .. code-block:: console
    
-      $ echo -e "\nserver <your NTP server address>\n" | sudo tee /etc/ntpd.conf
-      $ sudo service ntp reload
-      $ sudo ntpq -p
+      $ echo -e "\nserver <your NTP server address>\n" | sudo tee -a /etc/ntp.conf
+      $ sudo systemctl restart ntpd
+      $ sudo timedatectl
+               Local time: Sat 2019-10-12 17:26:13 EDT
+           Universal time: Sat 2019-10-12 21:26:13 UTC
+                 RTC time: Sat 2019-10-12 21:26:13
+                Time zone: America/New_York (EDT, -0400)
+              NTP enabled: yes
+         NTP synchronized: yes
+          RTC in local TZ: no
+               DST active: yes
+          Last DST change: DST began at
+                           Sun 2019-03-10 01:59:59 EST
+                           Sun 2019-03-10 03:00:00 EDT
+          Next DST change: DST ends (the clock jumps one hour backwards) at
+                           Sun 2019-11-03 01:59:59 EDT
+                           Sun 2019-11-03 01:00:00 EST
+
+
 
 Install recommended utilities
 ===============================
@@ -121,12 +139,121 @@ The following packages contain tools that are recommended but not required for u
    .. code-block:: console
    
       $ sudo yum install -y bash-completion.noarch vim-enhanced.x86_64 vim-common.x86_64 net-tools iotop htop psmisc screen xfsprogs wget yum-utils deltarpm dos2unix tuned  pciutils
-      
+
 
 Tuning OS parameters for performance and stability
 ===================================================
 
+SQream DB requires certain OS parameters to be set on all hosts in your cluster.
+
+These settings affect:
+
+* Shared memory - Most OS installations may try to limit high throughput software like SQream DB.
+* Network - On high throughput operations like ingest, optimizing network connection parameters can boost performance
+* User limits - SQream DB may open a large amount of files. The default OS settings may cause some statements to fail if the system runs out of file descriptors.
+
+#. Tell the OS to set the high throughput profile for network and memory access
+
+   #. Use ``tuned-adm`` profiles
+      
+      .. code-block:: console
+         
+            $ sudo tuned-adm profile throughput-performance
+   
+   #. Set ``sysctl`` overrides to tune system performance (for systems with over 64GB of RAM)
+      
+      .. code-block:: console
+         
+            $ sudo tee /etc/sysctl.d/sqreamdb.conf > /dev/null <<EOT
+            kernel.shmmax = 500000000
+            kernel.shmmni = 4096
+            kernel.shmall = 4000000000
+            kernel.sysrq = 1
+            kernel.core_uses_pid = 1
+            kernel.core_pattern = /tmp/core_dumps/%f-core-%e-%s-%u-%g-%p-%t
+            kernel.msgmnb = 65536
+            kernel.msgmax = 65536
+            kernel.msgmni = 2048
+            kernel.pid_max = 524288
+            vm.max_map_count = 2042292
+            vm.dirty_background_ratio = 5
+            vm.dirty_ratio = 3
+            vm.swappiness = 1
+            vm.vfs_cache_pressure = 200
+            vm.zone_reclaim_mode = 0
+            net.ipv4.tcp_syncookies = 1
+            net.ipv4.conf.default.accept_source_route = 0
+            net.ipv4.tcp_tw_recycle = 1
+            net.ipv4.tcp_max_syn_backlog = 4096
+            net.ipv4.conf.all.arp_filter = 1
+            net.core.netdev_max_backlog = 10000
+            net.core.rmem_max = 2097152
+            net.core.wmem_max = 2097152
+            fs.suid_dumpable = 2
+            fs.file-max = 2097152
+            EOT
+
+
+#. Increase the limit of open files and processes 
+
+   .. code-block:: console
+      
+         $ sudo tee -a /etc/security/limits.conf > /dev/null <<EOT
+         * soft nproc 524288
+         * hard nproc 524288
+         * soft nofile 524288
+         * hard nofile 524288
+         * soft core unlimited
+         * hard core unlimited
+         EOT
+
+#. Verify mount options for drives
+
+   SQream recommends XFS for local data storage.
+   The recommended XFS mount options are:
+   
+   ``rw,nodev,noatime,nobarrier,inode64``
+
+.. note:: Reboot your system for the above settings to take effect.
+
+Disable SELinux
+=================
+
+SELinux may interfere with NVIDIA driver installation and some SQream DB operations. Unless absolutely necessary, we recommend disabling it.
+
+#. Check if SELinux is enabled
+
+   .. code-block:: console
+      
+      $ sudo sestatus
+      SELinux status:                 disabled
+
+#. You can disable SELinux by changing the value of ``SELINUX`` parameter to ``disabled`` in ``/etc/selinux/config`` and rebooting.
 
 Secure the server with a firewall
 ===================================
+
+Opening up ports in the firewall
+---------------------------------
+
+The example below shows how to open up all ports required by SQream DB and related management interfaces. The example also takes into account up to 4 instances on the host.
+
+   .. code-block:: console
+      
+      $ sudo systemctl start firewalld
+      $ sudo systemctl enable firewalld
+      $ for p in {2812,3000,3001,3105,3108,5000-5003,5100-5103}; do sudo firewall-cmd --zone=public --permanent --add-port=${p}/tcp; done
+      $ sudo firewalld --reloadi
+
+
+Disabling the built in firewall
+---------------------------------
+
+If not required, you can disable the server's firewall. This will reduce connectivity issues, but should only be done inside your internal network.
+
+   .. code-block:: console
+      
+      $ sudo systemctl disable firewalld
+      $ sudo systemctl stop firewalld
+
 
