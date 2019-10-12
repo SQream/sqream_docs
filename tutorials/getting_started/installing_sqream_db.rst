@@ -474,7 +474,7 @@ Starting your first local cluster
 
 .. rubric:: What's next?
 
-* :ref:`Create your first table <create_first_table>`
+* :ref:`Test your SQream DB installation <create_first_table>`
 
 * :ref:`Connect an external tool to SQream DB <connect_first_tool>`
 

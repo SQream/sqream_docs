@@ -15,7 +15,7 @@ Browse the articles in the sidebar, or use the search to find the information yo
    
    before_you_begin
    installing_sqream_db
-   starting_a_local_cluster
+   recommended_configuration
    connect_to_sqream/overview
    connect_to_sqream/sqream_sql_client
    connect_to_sqream/python

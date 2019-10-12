@@ -16,7 +16,7 @@ Glossary
 ********
 
 .. list-table:: Glossary of terms
-   :widths: 30 70
+   :widths: auto
    :header-rows: 1
    
    * - Term
@@ -38,7 +38,7 @@ Layers
 ******
 
 .. list-table:: Layers
-   :widths: 30 70
+   :widths: auto
    :header-rows: 1
    
    * - Layer

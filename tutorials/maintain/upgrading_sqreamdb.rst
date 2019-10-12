@@ -27,7 +27,7 @@ Prepare to upgrade
 Perform the upgrade on each node
 =================================
 
-.. TODO: Give instructions
+.. TODO: Give instructions. What happens with Docker vs. RPM vs. whatever?
 
 Perform the upgrade on the master node
 ========================================
