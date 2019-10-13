@@ -6,7 +6,7 @@ This section contains several "how to" and best practices for building applicati
 
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: In this section:
    :glob:
 
