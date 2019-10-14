@@ -1,7 +1,8 @@
 .. _sqream_sql_cli_reference:
 
+*****************************
 SQream SQL (CLI) Reference
-=====================================
+*****************************
 
 SQream DB comes with a built-in client for executing SQL statements either interactively or from the command-line.
 
@@ -10,7 +11,7 @@ This page serves as a reference for the options and parameters. Learn more about
 
 
 Command line arguments
-------------------------
+-----------------------
 
 **SQream SQL** supports the following command line arguments:
 
@@ -59,7 +60,7 @@ Command line arguments
 
 
 Meta-commands
----------------
+----------------
 
 * Meta-commands in SQream SQL start with a backslash (``\``)
 
@@ -85,7 +86,7 @@ Meta-commands
      - Changes the current connection to an alternate database
 
 Basic Commands
---------------------
+-----------------------
 
 .. list-table:: 
    :widths: auto
@@ -105,7 +106,7 @@ Basic Commands
 
 
 Moving about the command line
--------------------------------
+---------------------------------
 
 .. list-table:: 
    :widths: auto
@@ -147,7 +148,7 @@ Moving about the command line
      - swap character under cursor with the previous one
 
 Searching
-----------
+------------
 
 .. list-table:: 
    :widths: auto

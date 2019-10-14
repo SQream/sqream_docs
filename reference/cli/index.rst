@@ -1,9 +1,12 @@
 .. _cli_reference:
 
+************************
 CLI reference overview
-=====================================
+************************
 
 SQream contains several command line utilities for starting, managing, and configuring SQream DB clusters.
+
+This topic contains the reference for these commands, as well as flags and configuration settings.
 
 .. list-table:: 
    :widths: auto
@@ -11,17 +14,19 @@ SQream contains several command line utilities for starting, managing, and confi
    
    * - Command
      - Usage
-   * - :ref:`sqreamd <sqreamd>`
+   * - :ref:`SQream SQL <sqream_sql_cli_reference>`
+     - Built-in SQL client
+   * - :ref:`sqreamd <sqreamd_cli_reference>`
      - Start a SQream DB worker
-   * - :ref:`SqreamStorage <sqream_storage>`
-     - Initialize a cluster and manage superusers
-   * - :ref:`metadata_server <metadata_server>`
+   * - :ref:`SqreamStorage <sqream_storage_cli_reference>`
+     - Initialize a cluster and set superusers
+   * - :ref:`metadata_server <metadata_server_cli_reference>`
      - The cluster manager/coordinator that enables scaling SQream DB.
-   * - :ref:`server_picker <server_picker>`
+   * - :ref:`server_picker <server_picker_cli_reference>`
      - Load balancer end-point
-   * - :ref:`sqream_console <sqream_console>`
+   * - :ref:`sqream_console <sqream_console_cli_reference>`
      - Dockerized convenience wrapper for operations
-   * - :ref:`upgrade_storage <upgrade_storage>`
+   * - :ref:`upgrade_storage <upgrade_storage_cli_reference>`
      - Upgrade metadata schemas when upgrading between major versions
 
 .. toctree::
@@ -29,8 +34,9 @@ SQream contains several command line utilities for starting, managing, and confi
    :hidden:
    
    sqream_sql
-   sqream_storage
    sqreamd
+   sqream_storage
    metadata_server
    server_picker
+   sqream_console
    upgrade_storage
