@@ -16,4 +16,5 @@ Browse the articles in the sidebar, or use the search to find the information yo
    before_you_begin
    installing_sqream_db
    recommended_configuration
-   connect_to_sqream/index
+   connect_to_sqream
+   connect_to_sqream/sqream_sql_client

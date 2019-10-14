@@ -20,20 +20,20 @@ In general, the tools listed have been tested and approved for usage with SQream
 .. note:: If you are looking for a tool that is not listed, SQream and our partners can help. Go to `SQream Support <http://support.sqream.com/>`_ or contact your SQream account manager for more information.
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
    :caption: In this section:
    :glob:
    
-   sqream_sql_client
-   python
-   java
-   cpp
-   nodejs
-   jdbc_driver
-   odbc_driver
-   third_party_tools/sql_workbench
-   third_party_tools/tableau
-   third_party_tools/spotfire
-   third_party_tools/sas_viya
-   third_party_tools/talend
-   diagnosing_common_connectivity_issues
+   connect_to_sqream/sqream_sql_client
+   connect_to_sqream/python
+   connect_to_sqream/java
+   connect_to_sqream/cpp
+   connect_to_sqream/nodejs
+   connect_to_sqream/jdbc_driver
+   connect_to_sqream/odbc_driver
+   connect_to_sqream/third_party_tools/sql_workbench
+   connect_to_sqream/third_party_tools/tableau
+   connect_to_sqream/third_party_tools/spotfire
+   connect_to_sqream/third_party_tools/sas_viya
+   connect_to_sqream/third_party_tools/talend
+   connect_to_sqream/diagnosing_common_connectivity_issues
