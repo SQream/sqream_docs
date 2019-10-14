@@ -4,7 +4,7 @@
 SQream SQL Client (CLI)
 *************************
 
-SQream DB's CLI is the command line client for executing SQL statements interactively or as part of a script.
+SQream DB comes with a built-in client for executing SQL statements either interactively or from the command-line.
 
 .. contents:: In this topic:
    :local:
@@ -15,27 +15,19 @@ Running SQream SQL
 **SQream SQL** can be found in the ``bin`` directory of your SQream DB installation, under the name ``ClientCmd``.
 
 .. versionchanged:: 2019.3
-
    Starting from version 2019.3, ``ClientCmd`` has been renamed to ``sqream sql``.
-
-Typical usage syntax for SQream SQL is for running statements interactively.
-
-For example, if I had SQream DB cluster running on ``10.0.0.5`` on port 3108, my first connection to the database would look like:
-
-.. code-block:: console
-
-   $ ClientCmd --host=10.0.0.5 --port=3108 --username=sqream --password=sqream -d master --clustered
-
 
 Using SQream SQL
 =================
 
-By default, SQream SQL runs in interactive mode. You can issue a :ref:`meta-command <meta-commands>` or statements.
+By default, SQream SQL runs in interactive mode. You can issue commands or SQL statements.
 
-Running commands interactively
--------------------------------
+Running commands interactively (SQL shell)
+--------------------------------------------
 
-When starting SQream SQL, after entering your password, you are presented with a prompt containing the database name.
+When starting SQream SQL, after entering your password, you are presented with the SQL shell.
+
+To exit the shell, type ``\q``  or :kbd:`Ctrl-d`. 
 
 .. code-block:: psql
 
@@ -47,7 +39,7 @@ When starting SQream SQL, after entering your password, you are presented with a
    
    master=> _
 
-The database name shown  means you are now ready to run statements and queries.
+The database name shown means you are now ready to run statements and queries.
 
 Statements and queries are standard SQL, followed by a semicolon (``;``). Statement results are usually formatted as a valid CSV, 
 followed by the number of rows and the elapsed time for that statement.
@@ -94,8 +86,6 @@ The prompt for a multi-line statement will change from ``=>`` to ``.``, to alert
    time: 0.009320s
 
 
-
-
 Executing batch scripts (``-f``)
 ---------------------------------
 
@@ -132,175 +122,138 @@ For example,
 Examples
 ===========
 
-Run a series of statements from a file
-----------------------------------------
+Start a regular interactive shell
+-----------------------------------
 
-.. TODO:
+Connect to local server 127.0.0.1 on port 5000, to the default built-in database, `master`:
+
+.. code-block:: psql
+
+   $ ClientCmd --port=5000 --username=mjordan -d master
+   Password:
+   
+   Interactive client mode
+   To quit, use ^D or \q.
+   
+   master=>_
+
+Connect to local server 127.0.0.1 via the built-in load balancer on port 3108, to the default built-in database, `master`:
+
+.. code-block:: psql
+
+   $ ClientCmd --port=3105 --clustered --username=mjordan -d master
+   Password:
+   
+   Interactive client mode
+   To quit, use ^D or \q.
+   
+   master=>_
+
+Execute statements in the interactive shell
+-----------------------------------------------
+
+Note that all SQL commands end with a semicolon.
+
+Creating a new database and switching over to it without reconnecting:
+
+.. code-block:: psql
+
+   $ ClientCmd --port=3105 --clustered --username=oldmcd -d master
+   Password:
+   
+   Interactive client mode
+   To quit, use ^D or \q.
+   
+   master=> create database farm;
+   executed
+   time: 0.003811s
+   master=> \c farm
+   farm=>
+
+.. code-block:: psql
+
+   farm=> create table animals(id int not null, name varchar(30) not null, is_angry bool not null);
+   executed
+   time: 0.011940s
+
+   farm=> insert into animals values(1,'goat',false);
+   executed
+   time: 0.000405s
+
+   farm=> insert into animals values(4,'bull',true) ;
+   executed
+   time: 0.049338s
+
+   farm=> select * from animals;
+   1,goat                          ,0
+   4,bull                          ,1
+   2 rows
+   time: 0.029299s
+
+Execute SQL statements from the command line
+----------------------------------------------
+
+.. code-block:: console
+
+   $ ClientCmd --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals WHERE is_angry = true"
+   4,bull                          ,1
+   1 row
+   time: 0.095941s
+
+Export SQL query result to CSV
+--------------------------------
+
+Using the ``--results-only`` flag removes the row counts and timing.
+
+.. code-block:: console
+
+   $ ClientCmd --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals" --results-only
+   1,goat                          ,0
+   2,sow                           ,0
+   3,chicken                       ,0
+   4,bull                          ,1
+
+
+Execute a series of statements from a file
+--------------------------------------------
+
+Assuming a file containing SQL statements (separated by semicolons):
+
+.. code-block:: console
+
+   $ cat some_queries.sql
+      CREATE TABLE calm_farm_animals 
+     ( id INT IDENTITY(0, 1), name VARCHAR(30) 
+     ); 
+
+   INSERT INTO calm_farm_animals (name) 
+     SELECT name FROM   animals WHERE  is_angry = false; 
+
+.. code-block:: console
+
+   $ ClientCmd --port=3105 --clustered --username=oldmcd -d farm -f some_queries.sql
+   executed
+   time: 0.018289s
+   executed
+   time: 0.090697s
 
 Connect using environment variables
 -------------------------------------
 
-.. TODO:
+You can save connection parameters as environment variables:
 
-Run queries from a shell script
---------------------------------
+.. code-block:: console
 
-.. TODO:
+   $ export SQREAM_USER=sqream;
+   $ export SQREAM_DATABASE=farm;
+   $ ClientCmd --port=3105 --clustered --username=$SQREAM_USER -d $SQREAM_DATABASE
 
 
-Operations reference
-=======================
+Operations and flag reference
+===============================
 
-Command line arguments
-------------------------
+For the full operations reference, see :ref:`the SQream SQL (CLI) Reference <sqream_sql_cli_reference>`.
 
-**SQream SQL** supports a variety of command line arguments
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Argument
-     - Default
-     - Description
-   * - ``-c`` or ``--command``
-     - None
-     - Changes the mode of operation to single-command, non-interactive. Use this argument to run a statement and immediately exit.
-   * - ``-f`` or ``--file``
-     - None
-     - Changes the mode of operation to multi-command, non-interactive. Use this argument to run a sequence of statements from an external file and immediately exit.
-   * - ``--host``
-     - ``127.0.0.1``
-     - Address of the SQream DB instance.
-   * - ``--port``
-     - ``5000``
-     - Sets the connection port.
-   * - ``--databasename`` or ``-d``
-     - None
-     - Specifies the database name for queries and statements in this session.
-   * - ``--username``
-     - None
-     -  Username to connect to the specified database.
-   * - ``--password``
-     - None
-     - Specify the password using the command line argument. If not specified, the client will prompt the user for the password.
-   * - ``--clustered``
-     - False
-     - When used, the client connects to the load balancer, usually on port ``3108``. If not set, the client assumes the connection is to a standalone SQream DB instance.
-   * - ``--service``
-     - ``sqream``
-     - Service name (queue) that statements will file into.
-   * - ``--results-only``
-     - False
-     - Outputs results only, without timing information and row counts
-   * - ``--no-history``
-     - False
-     - When set, prevents command history from being saved in ``~/.sqream/clientcmdhist``
-
-.. tip:: Run ``$  ClientCmd --help`` to see a full list of arguments
-
-.. _meta-commands:
-
-Meta-commands
----------------
-
-* Meta-commands in SQream SQL start with a backslash (``\``)
-
-.. note:: Meta commands do not end with a semicolon
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Command
-     - Example
-     - Description
-   * - ``\q`` or ``\quit``
-     - .. code-block:: psql
-          
-            master=> \q
-     - Quit the client. (Same as :kbd:`Ctrl-d`)
-   * - ``\c <database>`` or ``\connect <database>``
-     - .. code-block:: psql
-          
-            master=> \c fox
-            fox=>
-     - Changes the current connection to an alternate database
-
-Basic Commands
---------------------
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Command
-     - Description
-   * - :kbd:`Ctrl-l`
-     - Clear the screen.
-   * - :kbd:`Ctrl-c`
-     - Terminate the current command.
-   * - :kbd:`Ctrl-z`
-     - Suspend/stop the command.
-   * - :kbd:`Ctrl-d`
-     - Quit SQream SQL
-
-Moving about the command line
--------------------------------
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Command
-     - Description
-   * - :kbd:`Ctrl-a`
-     - go to the start of the command line 
-   * - :kbd:`Ctrl-e`
-     - go to the end of the command line 
-   * - :kbd:`Ctrl-k`
-     - delete from cursor to the end of the command line 
-   * - :kbd:`Ctrl-u`
-     - delete from cursor to the start of the command line 
-   * - :kbd:`Ctrl-w`
-     - delete from cursor to start of word (i.e. delete backwards one word) 
-   * - :kbd:`Ctrl-y`
-     - paste word or text that was cut using one of the deletion shortcuts (such as the one above) after the cursor 
-   * - :kbd:`Alt-b`
-     - move backward one word (or go to start of word the cursor is currently on)
-   * - :kbd:`Alt-f`
-     - move forward one word (or go to end of word the cursor is currently on) 
-   * - :kbd:`Alt-d`
-     - delete to end of word starting at cursor (whole word if cursor is at the beginning of word) 
-   * - :kbd:`Alt-c`
-     - capitalize to end of word starting at cursor (whole word if cursor is at the beginning of word) 
-   * - :kbd:`Alt-u`
-     - make uppercase from cursor to end of word 
-   * - :kbd:`Alt-l`
-     - make lowercase from cursor to end of word 
-   * - :kbd:`Ctrl-f`
-     - move forward one character 
-   * - :kbd:`Ctrl-b`
-     - move backward one character 
-   * - :kbd:`Ctrl-h`
-     - delete character before the cursor 
-   * - :kbd:`Ctrl-t`
-     - swap character under cursor with the previous one
-
-Searching
-----------
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Command
-     - Description
-   * - :kbd:`Ctrl-r`
-     - search the history backwards
-   * - :kbd:`Ctrl-g`
-     - escape from history searching mode
-   * - :kbd:`Ctrl-p`
-     - previous command in history (i.e. walk back through the command history)
-   * - :kbd:`Ctrl-n`
-     - next command in history (i.e. walk forward through the command history)
+.. include:: /reference/cli/sqream_sql.rst
+   :start-line: 11
+   :end-line: 105
