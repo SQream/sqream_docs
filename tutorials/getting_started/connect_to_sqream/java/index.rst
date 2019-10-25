@@ -57,6 +57,12 @@ For example, if the JDBC driver has been unzipped to ``/home/sqream/sqream-jdbc-
    $ export CLASSPATH=/home/sqream/sqream-jdbc-3.0.0.jar:$CLASSPATH
    $ java my_java_app
 
+An alternative method is to pass ``-classpath`` to the Java executable:
+
+.. code-block:: console
+
+   $ java -classpath .:/home/sqream/sqream-jdbc-3.0.0.jar my_java_app
+
 
 Connect to SQream DB with a JDBC application
 ==============================================
