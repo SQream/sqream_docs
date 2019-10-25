@@ -3,7 +3,9 @@
 *************************
 Java (JDBC)
 *************************
+
 The SQream DB JDBC driver allows most Java applications and tools connect to SQream DB.
+This tutorial shows you how to write a Java application using the JDBC interface.
 
 The JDBC driver requires Java 1.8 or newer.
 
@@ -126,19 +128,19 @@ Examples
 
 For a SQream DB cluster with load balancer and no service queues, with SSL
 
-.. code-block:: http
+.. code-block:: json
 
    jdbc:Sqream://sqream.mynetwork.co:3108/master;user=rhendricks;password=Tr0ub4dor&3;ssl=true;cluster=true
 
 Minimal example for a local, standalone SQream DB
 
-.. code-block:: http
+.. code-block:: json
 
    jdbc:Sqream://127.0.0.1:5000/master;user=rhendricks;password=Tr0ub4dor&3
 
 For a SQream DB cluster with load balancer and a specific service queue named ``etl``, to the database named ``raviga``
 
-.. code-block:: http
+.. code-block:: json
 
    jdbc:Sqream://sqream.mynetwork.co:3108/raviga;user=rhendricks;password=Tr0ub4dor&3;cluster=true;service=etl
 

@@ -28,9 +28,8 @@ In general, the tools listed have been tested and approved for usage with SQream
    sqream_sql_client
    python/index
    java/index
-   /cpp
+   cpp/index
    /nodejs
-   /jdbc_driver
    /odbc_driver
    /third_party_tools/sql_workbench
    /third_party_tools/tableau
