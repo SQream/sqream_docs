@@ -33,14 +33,12 @@ Extract the library files from the tarball
 
    $ tar xf libsqream-3.0.tar.gz
 
-You can place the ``libsqream.so*`` files and ``sqream.h`` where you write your application, or copy them to the system ``lib`` and ``includes`` directories.
-
 Examples
 ==============================================
 
 Assuming you have an existing SQream DB instance to connect to, we'll connect to it using the application and run some statements.
 
-Creating a table and inserting some values
+Testing the connection to SQream DB
 --------------------------------------------
 You can download this file by right clicking and saving to your computer :download:`connect_test.cpp <connect_test.cpp>`.
 
@@ -59,3 +57,24 @@ To build the C++ application, run the following command from the directory that 
 
    $ g++ -std=c++11 connect_test.cpp -lsqream -o connect_test
    $ ./connect_test
+
+Creating a table and inserting values
+--------------------------------------------
+You can download this file by right clicking and saving to your computer :download:`data_loading.cpp <data_loading.cpp>`.
+
+.. literalinclude:: data_loading.cpp
+    :language: cpp
+    :caption: Loading data to a SQream DB table
+    :linenos:
+
+
+Compiling and running the application
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+To build the C++ application, run the following command from the directory that contains the code and header file
+
+.. code-block:: console
+
+   $ g++ -std=c++11 data_loading.cpp -lsqream -o data_loading
+   $ ./data_loading
+
