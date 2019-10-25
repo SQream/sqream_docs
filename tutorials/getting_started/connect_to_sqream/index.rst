@@ -15,7 +15,7 @@ SQream DB is designed to work with most common database tools and interfaces, al
 
 .. image:: /_static/images/connectivity_ecosystem.png
 
-In general, the tools listed have been tested and approved for usage with SQream DB. Most 3rd party tools that work through JDBC, ODBC, and Python whould work.
+In general, the tools listed have been tested and approved for usage with SQream DB. Most 3\ :sup:`rd` party tools that work through JDBC, ODBC, and Python whould work.
 
 .. note:: If you are looking for a tool that is not listed, SQream and our partners can help. Go to `SQream Support <http://support.sqream.com/>`_ or contact your SQream account manager for more information.
 
@@ -27,15 +27,14 @@ In general, the tools listed have been tested and approved for usage with SQream
    
    sqream_sql_client
    python/index
-
-   connect_to_sqream/java
-   connect_to_sqream/cpp
-   connect_to_sqream/nodejs
-   connect_to_sqream/jdbc_driver
-   connect_to_sqream/odbc_driver
-   connect_to_sqream/third_party_tools/sql_workbench
-   connect_to_sqream/third_party_tools/tableau
-   connect_to_sqream/third_party_tools/spotfire
-   connect_to_sqream/third_party_tools/sas_viya
-   connect_to_sqream/third_party_tools/talend
-   connect_to_sqream/diagnosing_common_connectivity_issues
+   java/index
+   /cpp
+   /nodejs
+   /jdbc_driver
+   /odbc_driver
+   /third_party_tools/sql_workbench
+   /third_party_tools/tableau
+   /third_party_tools/spotfire
+   /third_party_tools/sas_viya
+   /third_party_tools/talend
+   /diagnosing_common_connectivity_issues
