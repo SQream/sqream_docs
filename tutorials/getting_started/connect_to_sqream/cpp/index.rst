@@ -9,6 +9,8 @@ This tutorial shows you how to write a C++ application using the native driver.
 
 .. contents:: In this topic:
    :local:
+   :depth: 2
+
 
 Installing the C++ driver
 ==================================
