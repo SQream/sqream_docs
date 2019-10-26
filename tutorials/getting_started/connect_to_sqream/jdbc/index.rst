@@ -79,7 +79,7 @@ Connection string
 
 JDBC drivers rely on a connection string. Use the following syntax for SQream DB
 
-.. code-block::
+.. code-block:: text
 
    jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>sqream;[<optional parameters>; ...]
 
@@ -128,19 +128,19 @@ Examples
 
 For a SQream DB cluster with load balancer and no service queues, with SSL
 
-.. code-block::
+.. code-block:: text
 
    jdbc:Sqream://sqream.mynetwork.co:3108/master;user=rhendricks;password=Tr0ub4dor&3;ssl=true;cluster=true
 
 Minimal example for a local, standalone SQream DB
 
-.. code-block::
+.. code-block:: text 
 
    jdbc:Sqream://127.0.0.1:5000/master;user=rhendricks;password=Tr0ub4dor&3
 
 For a SQream DB cluster with load balancer and a specific service queue named ``etl``, to the database named ``raviga``
 
-.. code-block::
+.. code-block:: text
 
    jdbc:Sqream://sqream.mynetwork.co:3108/raviga;user=rhendricks;password=Tr0ub4dor&3;cluster=true;service=etl
 
