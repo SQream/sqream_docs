@@ -27,13 +27,13 @@ In general, the tools listed have been tested and approved for usage with SQream
    
    sqream_sql_client
    python/index
-   java/index
    cpp/index
-   /nodejs
-   /odbc_driver
-   /third_party_tools/sql_workbench
-   /third_party_tools/tableau
-   /third_party_tools/spotfire
-   /third_party_tools/sas_viya
-   /third_party_tools/talend
-   /diagnosing_common_connectivity_issues
+   jdbc/index
+   odbc/index
+   nodejs
+   third_party_tools/sql_workbench
+   third_party_tools/tableau
+   third_party_tools/spotfire
+   third_party_tools/sas_viya
+   third_party_tools/talend
+   diagnosing_common_connectivity_issues
