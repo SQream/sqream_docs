@@ -6,7 +6,6 @@ SQream DB documentation
 SQream DB is the GPU-accelerated analytics SQL database for massive data.
 
 .. toctree::
-   :maxdepth: 5
    :caption: Contents:
    :glob:
    :titlesonly:
