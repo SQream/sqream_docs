@@ -123,8 +123,8 @@ Connection parameters
      - ``false``
      - Connect via load balancer (use only if exists, and check port). For example, ``cluster=true``
 
-Examples
-^^^^^^^^^^^
+Connection string examples
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For a SQream DB cluster with load balancer and no service queues, with SSL
 
