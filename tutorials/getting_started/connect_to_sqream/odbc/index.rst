@@ -41,6 +41,9 @@ The SQream DB ODBC driver is distributed by your SQream account manager. Before 
 The driver is provided as an executable installer for Windows, or a compressed tarball for Linux platforms.
 After downloading the driver, follow the relevant instructions to install and configure the driver for your platform:
 
+Install and configure the ODBC driver
+=======================================
+
 .. toctree::
    :maxdepth: 1
    :titlesonly:

@@ -35,7 +35,7 @@ The SQream DB ODBC driver requires administrator privileges on your computer to 
 
 
 1. Run the Windows installer
---------------------------
+------------------------------
 
 Install the driver by following the on-screen instructions in the easy-to-follow installer.
 
@@ -44,7 +44,7 @@ Install the driver by following the on-screen instructions in the easy-to-follow
 .. note:: The installer will install the driver in ``C:\Program Files\SQream Technologies\ODBC Driver`` by default. You can change this path during the installation.
 
 2. Selecting components
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The installer includes additional components, like JDBC and Tableau customizations.
 
@@ -55,7 +55,7 @@ You can deselect items you don't want to install, but the items named **ODBC Dri
 Once the installer finishes, you will be ready to configure the DSN for connection.
 
 3. Configuring the ODBC Driver DSN
-==================================
+======================================
 
 ODBC driver configurations are done via DSNs. Each DSN represents one SQream DB database.
 
