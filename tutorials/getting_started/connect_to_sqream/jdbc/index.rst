@@ -1,7 +1,7 @@
 .. _java_jdbc:
 
 *************************
-Java (JDBC)
+JDBC
 *************************
 
 The SQream DB JDBC driver allows most Java applications and tools connect to SQream DB.
