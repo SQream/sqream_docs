@@ -57,16 +57,16 @@ To build the C++ application, run the following command from the directory that 
 
 .. code-block:: console
 
-   $ g++ -std=c++11 connect_test.cpp -lsqream -o connect_test
+   $ g++ -Wall -Ilibsqream-3.0 -Llibsqream-3.0 -lsqream connect_test.cpp -o connect_test
    $ ./connect_test
 
 Creating a table and inserting values
 --------------------------------------------
-You can download this file by right clicking and saving to your computer :download:`data_loading.cpp <data_loading.cpp>`.
+You can download this file by right clicking and saving to your computer :download:`insert_test.cpp <insert_test.cpp>`.
 
-.. literalinclude:: data_loading.cpp
+.. literalinclude:: insert_test.cpp
     :language: cpp
-    :caption: Loading data to a SQream DB table
+    :caption: Inserting data to a SQream DB table
     :linenos:
 
 
@@ -77,6 +77,6 @@ To build the C++ application, run the following command from the directory that 
 
 .. code-block:: console
 
-   $ g++ -std=c++11 data_loading.cpp -lsqream -o data_loading
-   $ ./data_loading
+   $ g++ -Wall -Ilibsqream-3.0 -Llibsqream-3.0 -lsqream insert_test.cpp -o insert_test
+   $ ./insert_test
 
