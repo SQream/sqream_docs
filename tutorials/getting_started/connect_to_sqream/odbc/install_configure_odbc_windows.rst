@@ -54,6 +54,8 @@ You can deselect items you don't want to install, but the items named **ODBC Dri
 
 Once the installer finishes, you will be ready to configure the DSN for connection.
 
+.. _create_windows_odbc_dsn:
+
 3. Configuring the ODBC Driver DSN
 ======================================
 
