@@ -52,7 +52,7 @@ Install unixODBC on RHEL 7 / CentOS 7
 Install unixODBC on Ubuntu
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block: console
+.. code-block:: console
 
    $ sudo apt-get install unixodbc unixodbc-dev
 
