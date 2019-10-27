@@ -4,6 +4,12 @@
 Install and configure ODBC on Linux
 ****************************************
 
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+   :hidden:
+
+
 The ODBC driver for Windows is provided as a shared library.
 
 This tutorial shows you how to install and configure ODBC on Linux.
@@ -209,7 +215,7 @@ ODBC DSN Parameters
    * - Port
      - None
      - TCP port of the SQream DB instance. For example, ``Port="5000"`` or ``Port="3108"``
-   * - ``Cluster``
+   * - Cluster
      - ``false``
      - Connect via load balancer (use only if exists, and check port). For example, ``Cluster=true``
    * - Ssl

@@ -20,10 +20,9 @@ In general, the tools listed have been tested and approved for usage with SQream
 .. note:: If you are looking for a tool that is not listed, SQream and our partners can help. Go to `SQream Support <http://support.sqream.com/>`_ or contact your SQream account manager for more information.
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 4
    :caption: In this section:
    :titlesonly:
-   :glob:
    
    sqream_sql_client
    python/index

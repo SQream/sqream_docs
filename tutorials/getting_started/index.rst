@@ -9,7 +9,7 @@ In the topics below, you can find what it takes to prepare and install SQream DB
 Browse the articles in the sidebar, or use the search to find the information you need.
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 4
    :caption: In this section:
    :titlesonly:
    :glob:

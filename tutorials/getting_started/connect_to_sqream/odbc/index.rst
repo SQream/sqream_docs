@@ -1,8 +1,16 @@
-.. _odbc_linux:
+.. _odbc:
 
 *************************
 ODBC
 *************************
+
+.. toctree::
+   :maxdepth: 1
+   :titlesonly:
+   :hidden:
+   
+   install_configure_odbc_windows
+   install_configure_odbc_linux
 
 SQream has an ODBC driver to connect to SQream DB. This tutorial shows you how to install the ODBC driver for Linux or Windows for use with applications like Tableau, PHP, and others that use ODBC.
 
@@ -44,9 +52,7 @@ After downloading the driver, follow the relevant instructions to install and co
 Install and configure the ODBC driver
 =======================================
 
-.. toctree::
-   :maxdepth: 1
-   :titlesonly:
-   
-   install_configure_odbc_windows
-   install_configure_odbc_linux
+Continue based on your platform:
+
+* :ref:`install_odbc_windows`
+* :ref:`install_odbc_linux`

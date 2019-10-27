@@ -6,9 +6,9 @@ This section contains several "how to" and best practices for building applicati
 
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 4
    :caption: In this section:
-   :glob:
+   :titlesonly:
 
    getting_started/index
    deploy/index
