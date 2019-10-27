@@ -15,3 +15,10 @@
       overflow: visible !important;
    }
 }
+
+/* Hack level >4 ToC issues */
+.wy-menu-vertical li.toctree-l3 li.toctree-l4 li.toctree-l5                                                         > a { padding-left:  7em; background: #ddd; }
+.wy-menu-vertical li.toctree-l3 li.toctree-l4 li.toctree-l5 li.toctree-l6                                           > a { padding-left:  8em; background: #ccc; }
+.wy-menu-vertical li.toctree-l3 li.toctree-l4 li.toctree-l5 li.toctree-l6 li.toctree-l7                             > a { padding-left:  9em; background: #bbb; }
+.wy-menu-vertical li.toctree-l3 li.toctree-l4 li.toctree-l5 li.toctree-l6 li.toctree-l7 li.toctree-l8               > a { padding-left: 10em; background: #aaa; }
+.wy-menu-vertical li.toctree-l3 li.toctree-l4 li.toctree-l5 li.toctree-l6 li.toctree-l7 li.toctree-l8 li.toctree-l9 > a { padding-left: 11em; background: #999; }
