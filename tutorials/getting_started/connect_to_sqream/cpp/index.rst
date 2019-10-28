@@ -8,8 +8,8 @@ The SQream DB C++ driver allows C++ applications and tools connect to SQream DB.
 This tutorial shows you how to write a C++ application using the native driver.
 
 .. contents:: In this topic:
-   :local:
    :depth: 2
+   :local:
 
 
 Installing the C++ driver

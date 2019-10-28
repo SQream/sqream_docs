@@ -88,5 +88,8 @@ html_theme_options = {
    , 'display_version': True # Display version at the top
    , 'style_external_links': True # Show little icon next to external links
    , 'style_nav_header_background': '#0f9790' # SQream teal
+   , 'navigation_depth': -1
+   , 'collapse_navigation': False
+   , 'titles_only': True
 
 }
