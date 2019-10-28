@@ -18,4 +18,3 @@ All commands
    dml_commands/*
    query_syntax/*
    query_operators/*
-
