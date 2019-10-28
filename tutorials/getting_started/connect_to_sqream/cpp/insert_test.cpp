@@ -6,32 +6,33 @@
 
 int main () {
 
-   sqream::driver  sqc;
+   sqream::driver sqc;
 
-   // Connection parameters: Hostname, Port, Use SSL, Username, Password, Database name, Service name
-   sqc.connect("127.0.0.1",  5000,  false,  "rhendricks",  "Tr0ub4dor&3",  "raviga", "sqream");
+   // Connection parameters: Hostname, Port, Use SSL, Username, Password,
+   // Database name, Service name
+   sqc.connect("127.0.0.1", 5000, false, "rhendricks", "Tr0ub4dor&3",
+               "raviga", "sqream");
 
-   std::string statement = "CREATE TABLE animals (id INT NOT NULL, name VARCHAR(10) NOT NULL)";
-   run_direct_query(&sqc,  statement);
-   
-   statement = "INSERT INTO animals VALUES (?, ?)";
+   run_direct_query(&sqc,
+       "CREATE TABLE animals (id INT NOT NULL, name VARCHAR(10) NOT NULL)");
 
-   sqc.new_query(statement);
+   // prepare the statement
+   sqc.new_query("INSERT INTO animals VALUES (?, ?)");
    sqc.execute_query();
 
-   // Sample data set
-   int len = 3;
-   int row1[len] = {1,2,3};
-   std::string row2[len] = {"Dog","Cat","Possum"};
+   // Data to insert
+   int row0[] = {1,2,3};
+   std::string row1[] = {"Dog","Cat","Possum"};
+   int len = sizeof(row0)/sizeof(row0[0]);
 
-   for (int idx = 0; idx < len; ++idx) {  
-      sqc.set_int(0, row1[idx]);
-      sqc.set_varchar(1, row2[idx]);
-
+   for (int i = 0; i < len; ++i) {  
+      sqc.set_int(0, row0[i]);
+      sqc.set_varchar(1, row1[i]);
       sqc.next_query_row();
    }  
 
-   sqc.finish_query(); // This commits the data to the table
+   // This commits the insert
+   sqc.finish_query(); 
 
    sqc.disconnect();
 

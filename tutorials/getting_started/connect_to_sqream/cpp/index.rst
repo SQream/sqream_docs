@@ -53,12 +53,14 @@ You can download this file by right clicking and saving to your computer :downlo
 Compiling and running the application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To build the C++ application, run the following command from the directory that contains the code and header file
+To build this code, put the library and header file in ./libsqream-3.0/ and run
 
 .. code-block:: console
 
    $ g++ -Wall -Ilibsqream-3.0 -Llibsqream-3.0 -lsqream connect_test.cpp -o connect_test
    $ ./connect_test
+
+You can modify the -I and -L arguments if you put the library and header file in another directory.
 
 Creating a table and inserting values
 --------------------------------------------
@@ -73,7 +75,7 @@ You can download this file by right clicking and saving to your computer :downlo
 Compiling and running the application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To build the C++ application, run the following command from the directory that contains the code and header file
+To build this code, use
 
 .. code-block:: console
 
