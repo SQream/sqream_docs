@@ -32,6 +32,8 @@ For Linux and BSD, see https://openjdk.java.net/install/
 
 For Windows, SQream recommends Zulu 8 https://www.azul.com/downloads/zulu-community/?&version=java-8-lts&architecture=x86-64-bit&package=jdk
 
+.. _get_jdbc_jar:
+
 Getting the JAR file
 ---------------------
 
@@ -73,6 +75,8 @@ Driver class
 --------------
 
 Use ``com.sqream.jdbc.SQDriver`` as the driver class in the JDBC application.
+
+.. _connection_string::
 
 Connection string
 --------------------
