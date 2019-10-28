@@ -15,7 +15,9 @@ Browse the articles in the sidebar, or use the search to find the information yo
    :glob:
    
    before_you_begin
-   installing_sqream_db
+   local_docker
    recommended_configuration
+   sqream_sql
    connect_to_sqream/index
+
 

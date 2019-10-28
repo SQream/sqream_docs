@@ -1,8 +1,8 @@
-.. _installing_sqream_db:
+.. _installing_sqream_db_docker:
 
-***********************
-Installing SQream DB
-***********************
+*********************************************
+Start a local SQream DB cluster with Docker
+*********************************************
 
 See :ref:`Release Notes <releases>` to learn about what's new in the latest release of SQream DB. To upgrade to this release, see :ref:`Upgrading SQream DB <upgrading_sqream_db>`.
 
@@ -223,7 +223,7 @@ CentOS 7 / RHEL 7 / Amazon Linux (x64)
       GPU 0: Tesla V100-PCIE-16GB (UUID: GPU-...)
       GPU 1: Tesla V100-PCIE-16GB (UUID: GPU-...)
       
-#. Continue to :ref:`Installing the SQream DB Docker container <installing_sqream_db_docker>`
+#. Continue to :ref:`Installing the SQream DB Docker container <installing_sqream_db_container>`
 
 .. _docker_power:
 
@@ -384,7 +384,7 @@ SQream DB contains several directories that you may be asked to define
 .. note:: By default, SQream DB can't access any OS path. You must explicitly allow it.
 
 
-.. _installing_sqream_db_docker:
+.. _installing_sqream_db_container:
 
 Install the SQream DB Docker container
 =========================================

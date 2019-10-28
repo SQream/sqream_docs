@@ -1,10 +1,10 @@
 .. _connect_to_sqream_overview:
 
 ************************************
-Connecting to SQream DB
+Connect and build applications
 ************************************
 
-These topics explain how to install and connect a variety of SQream and 3rd party tools to SQream DB.
+These topics explain how to install and connect a variety of SQream and 3rd party tools, and write applications for SQream DB.
 
 Browse the articles below, in the sidebar, or use the search to find the information you need.
 
@@ -24,7 +24,6 @@ In general, the tools listed have been tested and approved for usage with SQream
    :caption: In this section:
    :titlesonly:
    
-   sqream_sql_client
    python/index
    cpp/index
    jdbc/index
