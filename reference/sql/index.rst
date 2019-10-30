@@ -7,6 +7,7 @@ This section provides reference for using SQream DB's SQL commands - DDL, DML an
 .. toctree::
    :maxdepth: 2
    :caption: In this section:
+   :titlesonly:
    :glob:
 
    sql_feature_support

@@ -9,6 +9,9 @@ Some features have no implementation at all.
 
 To understand which SQL features SQream DB supports, use the tables below.
 
+.. contents:: In this topic:
+   :local:
+   
 ************************
 Data types and values
 ************************

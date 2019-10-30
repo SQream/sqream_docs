@@ -5,10 +5,8 @@
 Access control
 **************
 
-.. toctree::
-   :maxdepth: 2
-   :caption: In this section:
-   :glob:
+.. contents:: In this topic:
+   :local:
 
 The system which provides basic authentication and authorization for
 users in SQream DB.
