@@ -1,8 +1,9 @@
 .. _sql_feature_support:
 
-####################
+*************************
 SQL Feature Support
-####################
+*************************
+
 
 Even though SQL is standardized in various ANSI documents, no DBMS implements the entire standard.
 Some features have no implementation at all.
@@ -12,9 +13,9 @@ To understand which SQL features SQream DB supports, use the tables below.
 .. contents:: In this topic:
    :local:
    
-************************
+
 Data types and values
-************************
+=========================
 
 .. list-table:: Value
    :widths: auto
@@ -23,6 +24,9 @@ Data types and values
    * - Item
      - Supported
      - Further information
+   * - ``BOOL``
+     - ✓
+     - Boolean values
    * - ``TINTINT``
      - ✓
      - Unsigned 1 byte integer (0 - 255)
@@ -66,9 +70,9 @@ Data types and values
      - ✗
      - Can be stored as a text string or as part of a ``DATETIME``
 
-***********
+
 Contraints
-***********
+===============
 
 .. list-table:: Contraints
    :widths: auto
@@ -88,25 +92,24 @@ Contraints
      - ``IDENTITY``
 
 
-*************
 Transactions
-*************
+================
 
 SQream DB treats each statement as an auto-commit transaction. Each transaction is isolated from other transactions with serializable isolation. 
 
 If a statement fails, the entire transaction is cancelled and rolled back. The database is unchanged.
 
-*************
+
 Indexes
-*************
+============
 
 SQream DB has a range-index collected on all columns as part of the metadata collection process.
 
 SQream DB does not support explicit indexing.
 
-***************
+
 Schema changes
-***************
+================
 
 .. list-table:: Schema changes
    :widths: auto
@@ -147,9 +150,8 @@ Schema changes
      - 
 
 
-*************
 Statements
-*************
+==============
 
 .. list-table:: Statements
    :widths: auto
@@ -180,9 +182,8 @@ Statements
      - ✓
      -
 
-*************
 Clauses
-*************
+===========
 
 .. list-table:: Clauses
    :widths: auto
@@ -207,10 +208,8 @@ Clauses
      - ✓
      -
 
-
-******************
 Table expressions
-******************
+====================
 
 .. list-table:: Table expressions
    :widths: auto
@@ -235,9 +234,9 @@ Table expressions
      - ✗
      - 
 
-******************
+
 Scalar expressions
-******************
+====================
 
 .. list-table:: Scalar expressions
    :widths: auto
@@ -278,9 +277,9 @@ Scalar expressions
      - ``&``, ``|``, ``XOR``, ``~``, ``>>``, ``<<``
 
 
-******************
+
 Permissions
-******************
+===============
 
 .. list-table:: Permissions
    :widths: auto
@@ -303,12 +302,12 @@ Permissions
      - 
 
 
-********************
+
 Extra functionality
-********************
+======================
 
 .. list-table:: Extra functionality
-   :widths: 30 5 65
+   :widths: auto
    :header-rows: 1
    
    * - Item

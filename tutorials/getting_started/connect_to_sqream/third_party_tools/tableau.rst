@@ -94,3 +94,31 @@ When data source setup is completed, navigate to a new sheet to start analyzing 
 
 Tableau best practices
 ========================
+
+Cut out what you don't need
+-----------------------------
+
+* Bring only the data sources you need into Tableau. As a best practice, do not bring in tables that you don't intend to explore.
+
+* Add filters before exploring. Every change you make while exploring data will query SQream DB, sometimes several times. Add filters to the datasource before exploring, so that the queries sent to SQream DB run faster.
+
+Let Tableau create the queries
+--------------------------------
+
+You can create pre-optimized views (see :ref:`CREATE VIEW <views>`) and point the datasource at these views.
+
+However, in some cases, using views or custom SQL as a datasoruce can actually degrade performance. Test out performance of custom SQL and views, and compare with Tableau's generated SQL.
+
+Create a separate service for Tableau
+---------------------------------------
+
+SQream recommends that Tableau get a separate service with the DWLM. This will reduce the impact of Tableau on other applications and processes, such as ETL.
+This works in conjunction with the load balancer to ensure good performance.
+
+
+Troubleshoot workbook performance before deploying to Tableau Server
+-----------------------------------------------------------------------
+
+Tableau has a built in `performance recorder <https://help.tableau.com/current/pro/desktop/en-us/perf_record_create_desktop.htm>`_ that shows how time is being spent. If you're seeing slow performance, this could be the result of a misconfiguration such as setting concurrency too low.
+
+Use the Tableau Performance Recorder to view the performance of the queries that Tableau runs. Using this information, you can identify queries that can be optimized with the use of views.
