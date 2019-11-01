@@ -1,7 +1,7 @@
 .. _data_types:
 
 *************************
-Data Types
+SQL Data Types
 *************************
 
 This topic describes the data types that SQream DB supports, and how to convert between them.
@@ -45,7 +45,7 @@ Supported types
      - Floating point (inexact)
      - 4 bytes
      - ``3.141``
-   * - ``DOUBLE``, ``FLOAT``
+   * - ``DOUBLE`` (``FLOAT``)
      - Floating point (inexact)
      - 8 bytes
      - ``0.000003``
@@ -54,14 +54,14 @@ Supported types
      - ``n`` bytes
      - ``'Kiwis have tiny wings, but cannot fly.'``
    * - ``NVARCHAR (n)``
-     - Variable length string - UTF-8 encoded
+     - Variable length string - UTF-8 unicode
      - Up to ``4*n`` bytes
      - ``'キウイは楽しい鳥です'``
    * - ``DATE``
      - Date
      - 4 bytes
      - ``'1955-11-05'``
-   * - ``DATETIME``, ``TIMESTAMP``
+   * - ``DATETIME`` (``TIMESTAMP``)
      - Date and time pairing in UTC
      - 8 bytes
      - ``'1955-11-05 01:24:00.000'``
@@ -92,8 +92,8 @@ Data type reference
 ======================
 
 
-BOOL
------
+Boolean (``BOOL``)
+-------------------
 A ``BOOL`` datatype is designed to store Boolean values of ``true`` or ``false``.
 
 Syntax
@@ -247,16 +247,21 @@ Floating point types
      - Single precision floating point (inexact)
      - 4 bytes
      - ``3.141``
-   * - ``DOUBLE``, ``FLOAT``
+   * - ``DOUBLE``
      - Double precision floating point (inexact)
      - 8 bytes
      - ``0.000003``
+
+Aliases
+^^^^^^^^^^
+
+``DOUBLE`` is also known as ``FLOAT``.
 
 
 Syntax
 ^^^^^^^^
 
-A double precision floating point can be entered as a regular literal, such as ``3.14``, ``2.718``.
+A double precision floating point can be entered as a regular literal, such as ``3.14``, ``2.718``, ``.34``, ``2.71e-45``.
 
 To enter a ``REAL`` floating point number, cast the value. For example, ``(3.14 :: REAL)``. 
 
@@ -300,3 +305,186 @@ Floating point values can be converted to:
      - ``2.0`` → ``2``, ``3.14159265358979`` → ``3``, ``2.718281828459`` → ``2``
    * - ``VARCHAR(n)`` (n > 6 recommended)
      - ``1`` → ``'1.0000'``, ``3.14159265358979`` → ``'3.1416'``
+
+
+String types (``VARCHAR``, ``NVARCHAR``)
+------------------------------------------------
+``VARCHAR`` and ``NVARCHAR`` are types designed for storing text or strings of characters.
+
+In this release, SQream DB separates ASCII (``VARCHAR``) and UTF-8 representations (``NVARCHAR``).
+
+
+String types
+^^^^^^^^^^^^^^^^^^^^^^
+.. list-table:: String types
+   :widths: auto
+   :header-rows: 1
+   
+   * - Name
+     - Details
+     - Data size (not null, uncompressed)
+     - Example
+   * - ``VARCHAR (n)``
+     - Variable length string - ASCII only
+     - ``n`` bytes
+     - ``'Kiwis have tiny wings, but cannot fly.'``
+   * - ``NVARCHAR (n)``
+     - Variable length string - UTF-8 unicode
+     - Up to ``4*n`` bytes
+     - ``'キウイは楽しい鳥です'``
+
+Length
+^^^^^^^^^
+
+Unlike some other types, the string types can be limited in length. To limit the length, use ``VARCHAR(n)`` or ``NVARCHAR(n)``, where n is the number of characters allowed.
+
+* If the data exceeds the column length limit on ``INSERT`` or ``COPY`` operations, SQream DB will return an error.
+
+* When casting or converting, the string has to fit in the target. For example, ``'Kiwis are weird birds' :: VARCHAR(5)`` will return an error. Use ``SUBSTRING`` to truncate the length of the string.
+
+* ``VARCHAR`` strings are padded with spaces.
+
+Syntax
+^^^^^^^^
+
+String types can be written with standard SQL string literals, which are enclosed with single quotes, such as
+``'Kiwi bird'``. To include a single quote in the string, repeat the quote twice: ``'Kiwi bird''s wings are tiny'``.
+
+String literals can also be dollar-quoted with the dollar sign ``$``. For example: ``$$Kiwi bird's wings are tiny$$`` is the same as ``'Kiwi bird''s wings are tiny'``.
+
+Size
+^^^^^^
+
+``VARCHAR(n)`` can occupy up to *n* bytes, whereas ``NVARCHAR(n)`` can occupy up to *4*n* bytes.
+However, the size of strings is variable and is compressed by SQream DB.
+
+Examples
+^^^^^^^^^^
+
+.. code-block:: postgres
+   
+   CREATE TABLE cool_strings (a VARCHAR(25) NOT NULL, b NVARCHAR(40));
+   
+   INSERT INTO cool_strings VALUES ('hello world', 'Hello to kiwi birds specifically');
+   
+   INSERT INTO cool_strings VALUES ('This is ASCII only', 'But this column can contain 中文文字');
+
+   SELECT * FROM cool_strings;
+
+.. code-block:: text
+
+   hello world	,Hello to kiwi birds specifically
+   This is ASCII only,But this column can contain 中文文字
+
+.. note:: Most clients control display precision of floating point numbers, and values may appear differently in some clients.
+
+Casts and conversions
+^^^^^^^^^^^^^^^^^^^^^^^
+
+String values can be converted to:
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Type
+     - Details
+   * - ``BOOL``
+     - ``'true'`` → ``true``, ``'false'`` → ``false``
+   * - ``TINYINT``, ``SMALLINT``, ``INT``, ``BIGINT``
+     - ``'2'`` → ``2``, ``'-128'`` → ``-128``
+   * - ``REAL``, ``DOUBLE``
+     - ``'2.0'`` → ``2.0``, ``'3.141592'`` → ``3.141592``
+   * - ``DATE``, ``DATETIME``
+     - Requires a supported format, such as ``'1955-11-05`` → ``date '1955-11-05'``, ``'1955-11-05 01:24:00.000'`` → ``'1955-11-05 01:24:00.000'``
+
+
+
+Date types (``DATE``, ``DATETIME``)
+------------------------------------------------
+
+``DATE`` is a type designed for storing year, month, and day.
+
+``DATETIME`` is a type designed for storing year, month, day, hour, minute, seconds, and milliseconds in UTC with 1 millisecond precision.
+
+
+Date types
+^^^^^^^^^^^^^^^^^^^^^^
+.. list-table:: Date types
+   :widths: auto
+   :header-rows: 1
+   
+   * - Name
+     - Details
+     - Data size (not null, uncompressed)
+     - Example
+   * - ``DATE``
+     - Date
+     - 4 bytes
+     - ``'1955-11-05'``
+   * - ``DATETIME``
+     - Date and time pairing in UTC
+     - 8 bytes
+     - ``'1955-11-05 01:24:00.000'``
+
+Aliases
+^^^^^^^^^^
+
+``DATETIME`` is also known as ``TIMESTAMP``.
+
+
+Syntax
+^^^^^^^^
+
+``DATE`` values are formatted as string literals. For example, ``'1955-11-05'`` or ``date '1955-11-05'``.
+
+``DATETIME`` values are formatted as string literals conforming to `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_, for example ``'1955-11-05 01:26:00'``.
+
+SQream DB will attempt to guess if the string literal is a date or datetime based on context, for example when used in date-specific functions.
+
+Size
+^^^^^^
+
+A ``DATE`` column is 4 bytes in length, while a ``DATETIME`` column is 8 bytes in length.
+
+However, the size of these values is compressed by SQream DB.
+
+Examples
+^^^^^^^^^^
+
+.. code-block:: postgres
+   
+   CREATE TABLE important_dates (a DATE, b DATETIME);
+
+   INSERT INTO important_dates VALUES ('1997-01-01', '1955-11-05 01:24');
+
+   SELECT * FROM important_dates;
+
+.. code-block:: text
+
+   1997-01-01,1955-11-05 01:24:00.0
+
+.. code-block:: postgres
+   
+   SELECT a :: DATETIME, b :: DATE FROM important_dates;
+
+.. code-block:: text
+
+   1997-01-01 00:00:00.0,1955-11-05
+   
+
+.. warning:: Some client applications may alter the ``DATETIME`` value by modifying the timezone.
+
+Casts and conversions
+^^^^^^^^^^^^^^^^^^^^^^^
+
+``DATE`` and ``DATETIME`` values can be converted to:
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Type
+     - Details
+   * - ``VARCHAR(n)``
+     - ``'1997-01-01'`` → ``'1997-01-01'``, ``'1955-11-05 01:24'`` → ``'1955-11-05 01:24:00.000'``
