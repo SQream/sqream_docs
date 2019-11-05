@@ -4,7 +4,7 @@
 SQream DB best practices
 ***************************
 
-This topic explains some best practices working with SQream DB.
+This topic explains some best practices of working with SQream DB.
 
 Table design
 ==============
@@ -28,8 +28,8 @@ If the size of your column is predictable, by defining an appropriate column len
 
 * Third-party tools that expect a data size are less likely to over-allocate memory
 
-Don't flatten/denormalize data
----------------------------------
+Don't flatten or denormalize data
+-----------------------------------
 
 SQream DB executes JOIN operations very effectively. It is almost always better to JOIN tables at query-time rather than flatten/denormalize your tables.
 
@@ -103,7 +103,8 @@ For example,
 Cast smaller types to avoid overflow in aggregates
 ------------------------------------------------------
 
-When using an ``INT`` or smaller type, the ``SUM`` and ``COUNT`` operations return a value of the same type. To avoid overflow on large results, cast the column up to a larger type.
+When using an ``INT`` or smaller type, the ``SUM`` and ``COUNT`` operations return a value of the same type. 
+To avoid overflow on large results, cast the column up to a larger type.
 
 For example
 
@@ -122,4 +123,7 @@ SQream DB optimizes ``COUNT(*)`` queries very strongly. This also applies to ``C
 Return only required columns
 -------------------------------
 
-Returning only the columns you need to client programs can improve overall query performance. SQream is able to optimise out unneeded columns very strongly due to it's columnar storage.
+Returning only the columns you need to client programs can improve overall query performance.
+This also reduces the overall result set, which can improve performance in third-party tools.
+
+SQream is able to optimize out unneeded columns very strongly due to its columnar storage.
