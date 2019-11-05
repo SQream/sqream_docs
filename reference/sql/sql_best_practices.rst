@@ -11,12 +11,12 @@ Table design
 This section describes best practices and guidelines for designing tables.
 
 Use date and datetime types for columns
-----------------------------------------
+-----------------------------------------
 
 When creating tables with dates or timestamps, using the purpose-built ``DATE`` and ``DATETIME`` types over integer types or ``VARCHAR`` will bring performance and storage footprint improvements, and in many cases huge performance improvements (as well as data integrity benefits). SQream DB stores dates and datetimes very efficiently and can strongly optimize queries using these specific types.
 
 Reduce varchar length to a minimum
-------------------------------
+--------------------------------------
 
 With the ``VARCHAR`` type, the length has a direct effect on query performance.
 
@@ -29,7 +29,7 @@ If the size of your column is predictable, by defining an appropriate column len
 * Third-party tools that expect a data size are less likely to over-allocate memory
 
 Don't flatten/denormalize data
--------------------------------
+---------------------------------
 
 SQream DB executes JOIN operations very effectively. It is almost always better to JOIN tables at query-time rather than flatten/denormalize your tables.
 
@@ -87,7 +87,7 @@ Can be rewritten as
 
   
 Use the high selectivity hint
-----------------------------
+--------------------------------
 
 Use the high selectivity hint when you expect a predicate to filter out most values.
 
@@ -101,7 +101,7 @@ For example,
 
 
 Cast smaller types to avoid overflow in aggregates
-----------------------------------------------
+------------------------------------------------------
 
 When using an ``INT`` or smaller type, the ``SUM`` and ``COUNT`` operations return a value of the same type. To avoid overflow on large results, cast the column up to a larger type.
 
@@ -114,12 +114,12 @@ For example
 
 
 Prefer ``COUNT(*)`` and ``COUNT`` on non-nullable columns
--------------------
+------------------------------------------------------------
 
 SQream DB optimizes ``COUNT(*)`` queries very strongly. This also applies to ``COUNT(column_name)`` on non-nullable columns. Using ``COUNT(column_name)`` on a nullable column will operate quickly, but much slower than the previous variations.
 
 
 Return only required columns
-----------------------------
+-------------------------------
 
 Returning only the columns you need to client programs can improve overall query performance. SQream is able to optimise out unneeded columns very strongly due to it's columnar storage.
