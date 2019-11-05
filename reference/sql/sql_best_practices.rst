@@ -1,10 +1,10 @@
 .. _sql_best_practices:
 
 ***************************
-SQL best practices
+SQream DB best practices
 ***************************
 
-This topic explains the best practices for optimizing SQL performance with SQream DB.
+This topic explains some best practices working with SQream DB.
 
 Table design
 ==============
@@ -13,14 +13,14 @@ This section describes best practices and guidelines for designing tables.
 Use date and datetime types for columns
 ----------------------------------------
 
-When creating tables with dates or timestamps, we recommend the purpose-built ``date`` and ``datetime`` data types over standard integers or a ``VARCHAR``. SQream DB stores dates more efficiently and can optimize queries on specific timeframes.
+When creating tables with dates or timestamps, using the purpose-built ``DATE`` and ``DATETIME`` types over integer types or ``VARCHAR`` will bring performance and storage footprint improvements, and in many cases huge performance improvements (as well as data integrity benefits). SQream DB stores dates and datetimes very efficiently and can strongly optimize queries using these specific types.
 
-Reduce varchars to a minimum
+Reduce varchar length to a minimum
 ------------------------------
 
-While SQream DB compresses all data types, with data types like VARCHAR the length declaration has a direct effect on query performance.
+With the ``VARCHAR`` type, the length has a direct effect on query performance.
 
-If the size of your column is predictable, we recommend you define an appropriate column length:
+If the size of your column is predictable, by defining an appropriate column length (no longer than the maximum actual value) you will get the following benefits:
 
 * Data loading issues can be identified more quickly
 
@@ -28,31 +28,34 @@ If the size of your column is predictable, we recommend you define an appropriat
 
 * Third-party tools that expect a data size are less likely to over-allocate memory
 
-Normalize data when possible
+Don't flatten/denormalize data
 -------------------------------
 
-SQream DB optimizes the JOIN operation. Unlike some databases, it is better to JOIN the dimensions at query-time rather than flatten the table.
+SQream DB executes JOIN operations very effectively. It is almost always better to JOIN tables at query-time rather than flatten/denormalize your tables.
 
-This also reduces storage and can help with referential integrity.
+This will also reduce storage size.
 
 
-Convert an external table to a proper table
----------------------------------------------
+Convert external tables to native tables
+-------------------------------------------
 
-SQream DB's storage is optimized for large analytic workloads. Some tools that generate source data such as Parquet files may not be optimized for your workloads.
+SQream DB's native storage is heavily optimized for analytic workloads. It is always faster for querying than other formats, even columnar ones such as Parquet. It also enables the use of additional metadata to help speed up queries, in some cases by many orders of magnitude.
 
-Consider converting external tables to a proper table, using the ``CREATE TABLE AS`` syntax.
+You can improve the performance of all operations by converting external tables into native tables, e.g. by using the ``CREATE TABLE AS`` syntax.
 
 For example,
 
 .. code-block:: postgres
 
-   CREATE TABLE proper_table AS SELECT * FROM external_table
+   CREATE TABLE native_table AS SELECT * FROM external_table
 
-Query optimizations
+
+One situation when this wouldn't be as useful is when you are only likely to query the data one time.
+
+Query best practices
 =====================
 
-This section describes best practices and guidelines for writing SQL queries.
+This section describes best practices for writing SQL queries.
 
 
 Reduce data sets before joining tables
@@ -83,10 +86,10 @@ Can be rewritten as
    ON dim.store_id=fact.store_id; 
 
   
-Use high selectivity hints
+Use the high selectivity hint
 ----------------------------
 
-Use the high selectivity hint when you expect a query to filter out most values.
+Use the high selectivity hint when you expect a predicate to filter out most values.
 
 For example,
 
@@ -97,10 +100,10 @@ For example,
    GROUP BY 1;
 
 
-Up-cast smaller datatypes to avoid overflow
+Cast smaller types to avoid overflow in aggregates
 ----------------------------------------------
 
-When using an ``int`` or smaller datatype, the ``SUM`` and ``COUNT`` operations return will return a value of the same type. To avoid overflow on large results, cast the column up to a larger type.
+When using an ``INT`` or smaller type, the ``SUM`` and ``COUNT`` operations return a value of the same type. To avoid overflow on large results, cast the column up to a larger type.
 
 For example
 
@@ -110,13 +113,13 @@ For example
    GROUP BY 1;
 
 
-Prefer ``COUNT(*)``
+Prefer ``COUNT(*)`` and ``COUNT`` on non-nullable columns
 -------------------
 
-SQream DB optimizes ``COUNT(*)`` queries. Prefer this syntax to ``COUNT(column_name)``.
+SQream DB optimizes ``COUNT(*)`` queries very strongly. This also applies to ``COUNT(column_name)`` on non-nullable columns. Using ``COUNT(column_name)`` on a nullable column will operate quickly, but much slower than the previous variations.
 
 
-Query only required columns
-------------------------------
+Return only required columns
+----------------------------
 
-Like other columnar databases, SQream DB reads data on a column-by-column basis. If not all columns are required, removing them from the SELECT clause can improve overall query performance.
+Returning only the columns you need to client programs can improve overall query performance. SQream is able to optimise out unneeded columns very strongly due to it's columnar storage.
