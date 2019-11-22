@@ -123,8 +123,7 @@ For ``TABLES`` see :ref:`tables <tables_table>`
    * - ``table_name``
      - Name of the table
    * - ``format``
-     - Identifies the source format.
-        ``0`` for CSV, ``1`` for Parquet
+     - Identifies the source format. ``0`` for CSV, ``1`` for Parquet
    * - ``created``
      - Identifies the clause used to create the table
 

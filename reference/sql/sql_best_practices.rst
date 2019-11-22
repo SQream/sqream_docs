@@ -6,6 +6,13 @@ SQream DB best practices
 
 This topic explains some best practices of working with SQream DB.
 
+
+.. todo:
+.. reorder tables join- much more effective to join first the small tables (or those who have filters on them).
+.. Sorting- if you have a specific column that you are consistent filter by it in your queries then you may consider to sort the table by this
+.. use NOT NULL columns when possible
+.. use save query for long compilation queries / if you like to have the ability to send parameters to a query
+
 Table design
 ==============
 This section describes best practices and guidelines for designing tables.
