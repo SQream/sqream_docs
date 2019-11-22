@@ -31,7 +31,7 @@ Data Definition commands (DDL)
      - Create a new table in the database
    * - ``CREATE TABLE AS``
      - Create a new table in the database using results from a select query
-   * - ``CREATE VIEW``
+   * - :ref:`CREATE VIEW <create_view>`
      - Create a new view in the database
    * - ``DROP COLUMN``
      - Drop a column from a table

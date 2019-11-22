@@ -55,7 +55,7 @@ Parameters
    * - ``schema_name``
      - The name of the schema in which to create the table.
    * - ``table_name``
-     - The name of the table to create, which must be unique inside the schema
+     - The name of the table to create, which must be unique inside the schema.
    * - ``column_def``
      - A comma separated list of column definitions. A minimal column definition includes a name identifier and a datatype. Other column constraints and default values can be added optionally.
 
