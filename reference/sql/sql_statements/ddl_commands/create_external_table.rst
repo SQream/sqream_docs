@@ -8,7 +8,10 @@ CREATE EXTERNAL TABLE
 
 An external table is a logical table structure that points to files such as CSV, Parquet and ORC.
 
-.. tip:: 
+Use an external table to stage data before loading from CSV, Parquet or ORC files. If you intend to use the table multiple times, it is advisable to create a materialized table with :ref:`CREATE TABLE AS <create_table_as>` for later re-use.
+
+.. tip::
+   * Data in an external table can change if the sources change, and frequent access to remote files may harm performance.
    * To create a regular table, see :ref:`CREATE TABLE <create_table>`
 
 Privileges
@@ -38,6 +41,8 @@ Synopsis
       PATH '{ path_spec }' 
       | FIELD DELIMITER '{ field_delimiter }'
       | RECORD DELIMITER '{ record_delimiter }'
+      | AWS_ID '{ AWS ID }'
+      | AWS_SECRET '{ AWS SECRET }'
    }
    
    path_spec ::= { local filepath | S3 URI | HDFS URI }
@@ -83,17 +88,57 @@ Parameters
      - Specifies the field delimiter for CSV files. Defaults to ``,``.
    * - ``RECORD DELIMITER``
      - Specifies the record delimiter for CSV files. Defaults to a newline, ``\n``
+   * - ``AWS_ID``, ``AWS_SECRET``
+     - Credentials for authenticated S3 access
 
 
 Examples
 ===========
 
-A simple table from CSV 
--------------------------
+A simple table from Tab-delimited file (TSV)
+----------------------------------------------
 
 .. code-block:: postgres
 
-   CREATE  OR  REPLACE  EXTERNAL  TABLE  cool_animals
+   CREATE OR REPLACE EXTERNAL TABLE cool_animals
      (id INT NOT NULL, name VARCHAR(30) NOT NULL, weight FLOAT NOT NULL)  
-   USING  FORMAT  csv  
-   WITH  PATH  '/home/rhendricks/cool_animals.csv';
+   USING FORMAT csv 
+   WITH  PATH  '/home/rhendricks/cool_animals.csv'
+         FIELD DELIMITER '\t';
+
+
+A table from a directory of Parquet files on HDFS
+-----------------------------------------------------
+
+.. code-block:: postgres
+
+   CREATE EXTERNAL TABLE users
+     (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
+   USING FORMAT Parquet
+   WITH  PATH  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet';
+
+A table from a bucket of files on S3
+--------------------------------------
+
+.. code-block:: postgres
+
+   CREATE EXTERNAL TABLE users
+     (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
+   USING FORMAT Parquet
+   WITH  PATH  's3://pp-secret-bucket/users/*.parquet'
+         AWS_ID 'our_aws_id'
+         AWS_SECRET 'our_aws_secret';
+
+
+Changing an external table to a regular table
+------------------------------------------------
+
+Materializes an external table into a regular table.
+
+.. tip: Using an external table allows you to perform ETL-like operations in SQream DB by applying SQL functions and operations to raw files
+
+.. code-block:: postgres
+
+   CREATE TABLE real_table
+    AS SELECT * FROM external_table;
+

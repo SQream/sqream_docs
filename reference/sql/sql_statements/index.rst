@@ -19,19 +19,19 @@ Data Definition commands (DDL)
      - Change the default schema for a role
    * - ``ALTER TABLE``
      - Change the schema of a table
-   * - :ref:`CREATE DATABASE <create_database>`
+   * - :ref:`CREATE DATABASE<create_database>`
      - Create a new database
-   * - :ref:`CREATE EXTERNAL TABLE <create_external_table>`
+   * - :ref:`CREATE EXTERNAL TABLE<create_external_table>`
      - Create a new external table in the database
    * - ``CREATE FUNCTION``
      - Create a new user defined function in the database
-   * - :ref:`CREATE SCHEMA <create_schema>`
+   * - :ref:`CREATE SCHEMA<create_schema>`
      - Create a new schema in the database
-   * - :ref:`CREATE TABLE <create_table>`
+   * - :ref:`CREATE TABLE<create_table>`
      - Create a new table in the database
-   * - ``CREATE TABLE AS``
+   * - :ref:`CREATE TABLE AS<create_table_as>`
      - Create a new table in the database using results from a select query
-   * - :ref:`CREATE VIEW <create_view>`
+   * - :ref:`CREATE VIEW<create_view>`
      - Create a new view in the database
    * - ``DROP COLUMN``
      - Drop a column from a table
@@ -53,6 +53,8 @@ Data Definition commands (DDL)
      - View the ``CREATE FUNCTION`` statement for a UDF
    * - ``SELECT GET_VIEW_DDL(<view name>)``
      - View the ``CREATE VIEW`` statement for a view
+   * - ``SELECT RECOMPILE_VIEW(<view name>)``
+     - Recreate a view after schema changes
    * - ``SELECT DUMP_DATABASE_DDL(<database name>)``
      - View the ``CREATE TABLE`` statement for an entire database
 
@@ -87,7 +89,7 @@ Data manipulation commands (DML)
    
    * - Command
      - Usage
-   * - ``CREATE TABLE AS``
+   * - :ref:`CREATE TABLE AS<create_table_as>`
      - Create a new table in the database using results from a select query
    * - ``DELETE``
      - Delete specific rows from a table
