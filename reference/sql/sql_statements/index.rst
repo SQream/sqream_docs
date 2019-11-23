@@ -25,7 +25,7 @@ Data Definition commands (DDL)
      - Create a new external table in the database
    * - ``CREATE FUNCTION``
      - Create a new user defined function in the database
-   * - ``CREATE SCHEMA``
+   * - :ref:`CREATE SCHEMA <create_schema>`
      - Create a new schema in the database
    * - :ref:`CREATE TABLE <create_table>`
      - Create a new table in the database
