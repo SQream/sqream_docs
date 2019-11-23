@@ -15,7 +15,7 @@ Data Definition commands (DDL)
    
    * - Command
      - Usage
-   * - ``ALTER DEFAULT SCHEMA``
+   * - :ref:`ALTER DEFAULT SCHEMA<alter_default_schema>`
      - Change the default schema for a role
    * - ``ALTER TABLE``
      - Change the schema of a table

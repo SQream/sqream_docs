@@ -21,7 +21,7 @@ Synopsis
 .. code-block:: postgres
 
    create_schema_statement ::=
-       CREATE SCHEMA [schema_name]
+       CREATE SCHEMA schema_name
        ;
 
    schema_name ::= identifier  
