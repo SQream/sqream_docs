@@ -18,7 +18,7 @@ Synopsis
 
 .. code-block:: postgres
 
-   create_VIEW_statement ::=
+   create_view_statement ::=
        CREATE [ OR REPLACE ] VIEW [schema_name].view_name [ column_list ]
        AS
        query
