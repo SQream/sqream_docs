@@ -15,9 +15,11 @@ Data Definition commands (DDL)
    
    * - Command
      - Usage
+   * - :ref:`ADD COLUMN<add_column>`
+     - Add a new column to a table
    * - :ref:`ALTER DEFAULT SCHEMA<alter_default_schema>`
      - Change the default schema for a role
-   * - ``ALTER TABLE``
+   * - :ref:`ALTER TABLE<alter_table>`
      - Change the schema of a table
    * - :ref:`CREATE DATABASE<create_database>`
      - Create a new database
@@ -33,6 +35,8 @@ Data Definition commands (DDL)
      - Create a new table in the database using results from a select query
    * - :ref:`CREATE VIEW<create_view>`
      - Create a new view in the database
+   * - :ref:`DROP COLUMN<drop_column>`
+     - Drop a column from a table
    * - ``DROP COLUMN``
      - Drop a column from a table
    * - ``DROP DATABASE``
@@ -43,9 +47,9 @@ Data Definition commands (DDL)
      - Drop a table and its contents from a database
    * - ``DROP VIEW``
      - Drop a view
-   * - ``RENAME COLUMN``
+   * - :ref:`RENAME COLUMN<rename_column>`
      - Rename a column
-   * - ``RENAME TABLE``
+   * - :ref:`RENAME TABLE<rename_table>`
      - Rename a table
    * - ``SELECT GET_DDL(<table name>)``
      - View the ``CREATE TABLE`` statement for a table

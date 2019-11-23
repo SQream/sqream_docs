@@ -8,6 +8,7 @@ CREATE DATABASE
 
 Privileges
 =============
+
 Only a superuser can create a new database
 
 Synopsis

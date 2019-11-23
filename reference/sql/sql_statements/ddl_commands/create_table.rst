@@ -12,6 +12,7 @@ CREATE TABLE
 
 Privileges
 =============
+
 The role must have the ``CREATE`` permission at the database level.
 
 Synopsis
@@ -20,7 +21,7 @@ Synopsis
 .. code-block:: postgres
 
    create_table_statement ::=
-       CREATE [ OR REPLACE ] TABLE [schema_name].table_name (
+       CREATE [ OR REPLACE ] TABLE [schema_name.]table_name (
            { column_def [, ...] }
        )
        ;
