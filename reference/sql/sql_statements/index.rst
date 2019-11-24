@@ -37,15 +37,13 @@ Data Definition commands (DDL)
      - Create a new view in the database
    * - :ref:`DROP COLUMN<drop_column>`
      - Drop a column from a table
-   * - ``DROP COLUMN``
-     - Drop a column from a table
-   * - ``DROP DATABASE``
+   * - :ref:`DROP DATABASE<drop_database>`
      - Drop a database and all of its objects
-   * - ``DROP FUNCTION``
+   * - :ref:`DROP FUNCTION<drop_function>`
      - Drop a function
-   * - ``DROP TABLE``
+   * - :ref:`DROP TABLE<drop_table>`
      - Drop a table and its contents from a database
-   * - ``DROP VIEW``
+   * - :ref:`DROP VIEW<drop_view>`
      - Drop a view
    * - :ref:`RENAME COLUMN<rename_column>`
      - Rename a column
