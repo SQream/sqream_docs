@@ -16,7 +16,7 @@ Synopsis
 
 .. code-block:: postgres
 
-   drop_TABLE_statement ::=
+   drop_table_statement ::=
        DROP TABLE [ IF EXISTS ] [schema_name.]table_name
        ;
 
@@ -37,6 +37,8 @@ Parameters
      - Description
    * - ``IF EXISTS``
      - Drop the table if it exists. Does not error if the table does not exist.
+   * - ``schema_name``
+     - The name of the schema from which to drop the table.
    * - ``table_name``
      - The name of the table to drop.
 
