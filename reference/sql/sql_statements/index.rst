@@ -49,16 +49,16 @@ Data Definition commands (DDL)
      - Rename a column
    * - :ref:`RENAME TABLE<rename_table>`
      - Rename a table
-   * - ``SELECT GET_DDL(<table name>)``
+   * - :ref:`SELECT GET_DDL(\<table name>)<get_ddl>`
      - View the ``CREATE TABLE`` statement for a table
-   * - ``SELECT GET_FUNCTION_DDL(<function name>)``
+   * - :ref:`SELECT GET_FUNCTION_DDL('\<function name>)<get_function_ddl>`
      - View the ``CREATE FUNCTION`` statement for a UDF
-   * - ``SELECT GET_VIEW_DDL(<view name>)``
+   * - :ref:`SELECT GET_VIEW_DDL(\<view name>)<get_view_ddl>`
      - View the ``CREATE VIEW`` statement for a view
-   * - ``SELECT RECOMPILE_VIEW(<view name>)``
+   * - :ref:`SELECT RECOMPILE_VIEW(\<view name>)<recompile_view>`
      - Recreate a view after schema changes
-   * - ``SELECT DUMP_DATABASE_DDL(<database name>)``
-     - View the ``CREATE TABLE`` statement for an entire database
+   * - :ref:`SELECT DUMP_DATABASE_DDL()<dump_database_ddl>`
+     - View the ``CREATE TABLE`` statement for an current database
 
 
 .. list-table:: Access control DDL commands

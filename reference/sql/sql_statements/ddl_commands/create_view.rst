@@ -6,7 +6,9 @@ CREATE VIEW
 
 ``CREATE VIEW`` creates a new view in an existing database. A view is a virtual table.
 
-.. tip:: Use views to simplify complex queries or present only partial data to specific roles.
+.. tip:: 
+   * Use views to simplify complex queries or present only partial data to specific roles.
+   * If an underlying table has changed (new columns, changed names, etc.) - a view may be invalidated. To recompile the view, see :ref:`SELECT RECOMPILE_VIEW(\<view name>)<recompile_view>`
 
 
 Privileges
