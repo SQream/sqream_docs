@@ -61,6 +61,7 @@ Positional command arguments
 This method can be used to temporarily start a SQream DB instance for testing.
 
 .. code-block:: console
+
    $ sqreamd <Storage path> <GPU ordinal> <TCP listen port (unsecured)> <License path>
 
 .. list-table:: 

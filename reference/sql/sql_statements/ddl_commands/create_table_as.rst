@@ -27,18 +27,6 @@ Synopsis
 
    table_name ::= identifier  
 
-..   column_def :: = { column_name type_name [ default ] [ column_constraint ] }
-
-..   column_name ::= identifier
-   
-..   column_constraint ::=
-..       { NOT NULL | NULL }
-   
-..   default ::=
-   
-..       DEFAULT default_value
-..       | IDENTITY [ ( start_with [ , increment_by ] ) ]
-
 
 Parameters
 ============

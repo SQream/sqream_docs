@@ -56,9 +56,8 @@ Parameters
      - A column definition. A minimal column definition includes a name identifier and a datatype. Other column constraints and default values can be added optionally.
 
 .. note::
-* When adding a new column to an existing table, a default (or null constraint) has to be specified, even if the table is empty.
-
-* A new column added to the table can not contain an IDENTITY or be of the NVARCHAR type.
+   * When adding a new column to an existing table, a default (or null constraint) has to be specified, even if the table is empty.
+   * A new column added to the table can not contain an IDENTITY or be of the NVARCHAR type.
 
 Examples
 ===========
