@@ -123,7 +123,7 @@ To insert multiple rows, use sets of parentheses:
 
    master=> INSERT INTO cool_animals VALUES
          (3, 'Cat', 5),
-         (4, 'Elephant', 6500)
+         (4, 'Elephant', 6500),
          (5, 'Rhinoceros', 2100);
    
    executed

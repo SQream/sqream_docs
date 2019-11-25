@@ -8,7 +8,7 @@ CREATE TABLE AS
 
 Privileges
 =============
-The role must have the ``CREATE`` permission at the database level, as well as ``SELECT`` privileges for any tables referenced by the statement.
+The role must have the ``CREATE`` permission at the schema level, as well as ``SELECT`` privileges for any tables referenced by the statement.
 
 Synopsis
 ==========

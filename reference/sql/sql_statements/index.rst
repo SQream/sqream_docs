@@ -93,19 +93,19 @@ Data manipulation commands (DML)
      - Usage
    * - :ref:`CREATE TABLE AS<create_table_as>`
      - Create a new table in the database using results from a select query
-   * - ``DELETE``
+   * - :ref:`DELETE<delete>`
      - Delete specific rows from a table
-   * - ``COPY FROM``
+   * - :ref:`COPY FROM<copy_from>`
      - Bulk load CSV data into an existing table
-   * - ``COPY TO``
+   * - :ref:`COPY TO<copy_to>`
      - Export a select query or entire table to CSV files
-   * - ``INSERT``
+   * - :ref:`INSERT<insert>`
      - Insert rows into a table
-   * - ``SELECT``
+   * - :ref:`SELECT<select>`
      - Select rows and column from a table
-   * - ``TRUNCATE``
+   * - :ref:`TRUNCATE<truncate>`
      - Delete all rows from a table
-   * - ``VALUES``
+   * - :ref:`VALUES<values>`
      - Return rows containing literal values
 
 .. toctree::

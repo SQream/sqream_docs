@@ -13,7 +13,7 @@ CREATE TABLE
 Privileges
 =============
 
-The role must have the ``CREATE`` permission at the database level.
+The role must have the ``CREATE`` permission at the schema level.
 
 Synopsis
 ==========

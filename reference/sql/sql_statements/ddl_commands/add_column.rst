@@ -6,6 +6,7 @@ ADD COLUMN
 
 ``ADD COLUMN`` can be used to add columns to an existing table.
 
+
 Privileges
 =============
 
@@ -17,7 +18,7 @@ Synopsis
 .. code-block:: postgres
 
    alter_table_add_column_statement ::=
-       ALTER TABLE [schema_name.]table_name ADD COLUMN column_def
+       ALTER TABLE [schema_name.]table_name { ADD COLUMN column_def [, ...] }
        ;
 
    table_name ::= identifier
@@ -49,6 +50,8 @@ Parameters
      - The schema name for the table. Defaults to ``public`` if not specified.
    * - ``table_name``
      - The table name to apply the change to.
+   * - ``ADD COLUMN column_def``
+     - A comma separated list of ADD COLUMN commands
    * - ``column_def``
      - A column definition. A minimal column definition includes a name identifier and a datatype. Other column constraints and default values can be added optionally.
 
@@ -69,12 +72,11 @@ Adding a simple column with default value
      ADD COLUMN number_of_eyes INT DEFAULT 2 NOT NULL;
      
 
-Adding a date column
+Adding several columns in one command
 -------------------------------------------
 
 .. code-block:: postgres
 
    ALTER TABLE cool_animals
+     ADD COLUMN number_of_eyes INT DEFAULT 2 NOT NULL,
      ADD COLUMN date_seen DATE DEFAULT '2019-08-01'; 
-   
-   -- (nullable column)
