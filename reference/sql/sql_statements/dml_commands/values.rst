@@ -49,7 +49,7 @@ Tabular data with VALUES
 Using VALUES with a SELECT query
 ----------------------------------
 
-To use VALUES in a select query, assign a :ref:`name<identifier>` to the ``VALUES`` clause with ``AS``
+To use VALUES in a select query, assign a :ref:`name<identifiers>` to the ``VALUES`` clause with ``AS``
 
 .. code-block:: postgres
 
