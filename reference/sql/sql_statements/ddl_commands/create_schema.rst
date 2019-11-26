@@ -11,7 +11,7 @@ The default schema in SQream DB is ``public``.
 .. tip:: Use schemas to separate between use-cases, such as staging and production.
 
 
-Privileges
+Permissions
 =============
 The role must have the ``CREATE`` permission at the database level.
 

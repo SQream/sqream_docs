@@ -6,9 +6,9 @@ CREATE TABLE AS
 
 ``CREATE TABLE AS`` creates a new table from the result of a select query.
 
-Privileges
+Permissions
 =============
-The role must have the ``CREATE`` permission at the schema level, as well as ``SELECT`` privileges for any tables referenced by the statement.
+The role must have the ``CREATE`` permission at the schema level, as well as ``SELECT`` permissions for any tables referenced by the statement.
 
 Synopsis
 ==========

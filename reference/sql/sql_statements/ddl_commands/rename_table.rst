@@ -8,7 +8,7 @@ RENAME TABLE
 
 .. warning:: Renaming a table can void existing views that use this table. See more about :ref:`recompiling views <recompile_view>`.
 
-Privileges
+Permissions
 =============
 
 The role must have the ``DDL`` permission at the database or table level.

@@ -6,7 +6,7 @@ DROP COLUMN
 
 ``DROP COLUMN`` can be used to remove columns from a table.
 
-Privileges
+Permissions
 =============
 
 The role must have the ``DDL`` permission at the database or table level.

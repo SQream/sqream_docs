@@ -11,7 +11,7 @@ CREATE VIEW
    * If an underlying table has changed (new columns, changed names, etc.) - a view may be invalidated. To recompile the view, see :ref:`SELECT RECOMPILE_VIEW(\<view name>)<recompile_view>`
 
 
-Privileges
+Permissions
 =============
 The role must have the ``CREATE`` permission at the database level, as well as ``SELECT`` privileges for any tables referenced by the view.
 

@@ -8,7 +8,7 @@ ALTER DEFAULT SCHEMA
 
 The default schema in SQream DB is ``public``.
 
-Privileges
+Permissions
 =============
 
 No special permissions are required

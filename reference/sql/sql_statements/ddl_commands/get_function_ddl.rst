@@ -11,7 +11,7 @@ GET_FUNCTION_DDL
    * For views, see :ref:`GET_VIEW_DDL<get_view_ddl>`.
    * For the entire database, see :ref:`DUMP_DATABASE_DDL<dump_database_ddl>`.
 
-Privileges
+Permissions
 =============
 
 The role must have the ``CONNECT`` permission at the database level.

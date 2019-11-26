@@ -8,7 +8,7 @@ DROP VIEW
 
 Because a view is logical, this does not affect any data in any of the referenced tables.
 
-Privileges
+Permissions
 =============
 
 The role must have the ``DDL`` permission at the database level.

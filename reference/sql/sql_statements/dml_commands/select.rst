@@ -8,9 +8,12 @@ SELECT
 
 When used alone, the statement is known as a "``SELECT`` statement" or "``SELECT`` query", but it can also be combined to create more elaborate statements like :ref:`CREATE TABLE AS<create_table_as>`.
 
-.. note:: The ``SELECT`` clause is also used to execute utility functions, such as ``SELECT get_ddl();``. These are covered in their respective locations.
+.. note:: The ``SELECT`` keyword is also used to execute utility functions, such as ``SELECT get_ddl();``. These are covered in their respective locations.
 
-Privileges
+.. contents:: In this topic:
+   :local:
+
+Permissions
 =============
 
 The role must have the ``SELECT`` permission on every table or schema that is referenced by the ``SELECT`` query.
@@ -79,7 +82,7 @@ Synopsis
        value_expr [ ASC | DESC ] [, ...]  [NULLS FIRST | LAST ]
 
 
-Parameters
+Elements
 ============
 
 .. list-table:: 
@@ -100,7 +103,7 @@ Parameters
      - Only return values that match the expression. ``HAVING`` is like ``WHERE``, but for results of the aggregate functions.
    * - ``ORDER BY order``
      - A comma separated list of ordering specifications, used to change the order of the results.
-   * - ``LIMIT num_rows`` / ``TOP num_rows``
+   * - ``LIMIT num_rows``
      - Restricts the operation to only retrieve the first ``num_rows`` rows.
    * - ``UNION ALL``
      - Concatenates the results of two queries together. ``UNION ALL`` does not remove duplicates.
@@ -132,7 +135,7 @@ Select lists
 
 The ``select_list`` is a comma separated list of column names and value expressions.
 
-* Use ``TOP num_rows`` to retrieve only the first ``num_rows`` results. Alternatively, ``LIMIT num_rows`` can be used at the end of the query statement.
+* Use ``LIMIT num_rows`` to retrieve only the first ``num_rows`` results. SQream DB also supports the ``TOP num_rows`` syntax from SQL Server.
 * ``DISTINCT`` can be used to remove duplicate rows.
 * Value expressions in select lists support aggregate and window functions as well as normal value expressions.
 
@@ -196,7 +199,7 @@ This query will get the Name, Team name, and Age from the NBA table, but only sh
 Show a count of the rows
 ---------------------------
 
-``COUNT(*)`` is the recommended syntax for finding the number of rows in a result.
+Use ``COUNT(*)`` to retrieve the number of rows in a result.
 
 .. code-block:: psql
    
@@ -455,7 +458,7 @@ Order retrieved rows by multiple columns:
 Combining two or more queries
 ---------------------------------
 
-Use ``UNION ALL`` to combine the results of two or more queries into one.
+``UNION ALL`` can be used to combine the results of two or more queries into one result set.
 
 ``UNION ALL`` does not remove duplicate results.
 

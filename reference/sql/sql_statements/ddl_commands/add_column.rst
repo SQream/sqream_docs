@@ -7,7 +7,7 @@ ADD COLUMN
 ``ADD COLUMN`` can be used to add columns to an existing table.
 
 
-Privileges
+Permissions
 =============
 
 The role must have the ``DDL`` permission at the database or table level.

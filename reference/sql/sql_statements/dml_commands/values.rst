@@ -11,7 +11,7 @@ VALUES
 
 .. note:: The maximum number of values in the ``VALUE`` clause is limited to 500.
 
-Privileges
+Permissions
 =============
 
 This clause requires no special permissions.

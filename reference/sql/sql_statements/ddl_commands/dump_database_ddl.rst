@@ -21,7 +21,7 @@ DUMP_DATABASE_DDL
    * For just views, see :ref:`GET_VIEW_DDL<get_view_ddl>`.
    * For UDFs, see :ref:`GET_FUNCTION_DDL<get_function_ddl>`.
 
-Privileges
+Permissions
 =============
 
 The role must have the ``CONNECT`` permission at the database level.

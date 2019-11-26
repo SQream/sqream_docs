@@ -10,7 +10,7 @@ DELETE
    * To delete all rows from a table, see :ref:`TRUNCATE<truncate>`
    * To delete columns, see :ref:`DROP COLUMN<drop_column>`
 
-Privileges
+Permissions
 =============
 
 The role must have the ``DELETE`` and ``SELECT`` permissions at the table level.

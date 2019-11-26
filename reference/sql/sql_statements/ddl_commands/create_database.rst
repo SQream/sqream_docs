@@ -6,7 +6,7 @@ CREATE DATABASE
 
 ``CREATE DATABASE`` creates a new database in SQream DB
 
-Privileges
+Permissions
 =============
 
 Only a superuser can create a new database

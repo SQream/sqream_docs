@@ -8,7 +8,7 @@ TRUNCATE
 
 It is functionally identical to running a ``DELETE`` statement without a ``WHERE`` clause.
 
-Privileges
+Permissions
 =============
 
 The role must have the ``DELETE`` permission at the table level.

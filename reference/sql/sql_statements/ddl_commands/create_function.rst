@@ -8,7 +8,7 @@ CREATE FUNCTION
 
 UDFs are Python functions that can run on row values.
 
-Privileges
+Permissions
 =============
 
 The role must have the ``CREATE FUNCTION`` permission at the database level.

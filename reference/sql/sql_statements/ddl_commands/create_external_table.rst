@@ -14,7 +14,7 @@ Use an external table to stage data before loading from CSV, Parquet or ORC file
    * Data in an external table can change if the sources change, and frequent access to remote files may harm performance.
    * To create a regular table, see :ref:`CREATE TABLE <create_table>`
 
-Privileges
+Permissions
 =============
 The role must have the ``CREATE`` permission at the database level.
 

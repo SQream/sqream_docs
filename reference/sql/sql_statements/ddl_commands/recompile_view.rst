@@ -6,9 +6,9 @@ RECOMPILE_VIEW
 
 ``RECOMPILE_VIEW(<view name>)`` is a function that can recreate a view that has been invalidated due to a schema change.
 
-Privileges
+Permissions
 =============
-The role must have the ``DDL`` permission at the database level, as well as ``SELECT`` privileges for any tables referenced by the view.
+The role must have the ``DDL`` permission at the database level, as well as ``SELECT`` permissions for any tables referenced by the view.
 
 Synopsis
 ==========

@@ -6,7 +6,7 @@ DROP DATABASE
 
 ``DROP DATABASE`` can be used to remove a database and all of its objects.
 
-Privileges
+Permissions
 =============
 
 The role must have the ``DDL`` permission at the database level.

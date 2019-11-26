@@ -6,7 +6,7 @@ RENAME COLUMN
 
 ``RENAME COLUMN`` can be used to rename columns in a table.
 
-Privileges
+Permissions
 =============
 
 The role must have the ``DDL`` permission at the database or table level.

@@ -6,7 +6,7 @@ DROP FUNCTION
 
 ``DROP FUNCTION`` can be used to remove a user defined function.
 
-Privileges
+Permissions
 =============
 
 The role must have the ``DDL`` permission at the database level.

@@ -10,7 +10,7 @@ CREATE TABLE
    * To create a table based on the result of a select query, see :ref:`CREATE TABLE AS <create_table_as>`.
    * To create a table based on files like Parquet and ORC, see :ref:`CREATE EXTERNAL TABLE <create_external_table>`
 
-Privileges
+Permissions
 =============
 
 The role must have the ``CREATE`` permission at the schema level.
