@@ -333,7 +333,7 @@ Rename columns with aliases
 Searching with ``LIKE``
 -------------------------
 
-``LIKE`` allows the use of matching partial strings in the ``WHERE`` clause.
+``LIKE`` allows pattern matching text in the ``WHERE`` clause.
 
 * ``%`` matches 0 or more characters
 * ``_`` matches exactly 1 character
@@ -351,7 +351,10 @@ Searching with ``LIKE``
 Aggregate functions
 ----------------------
 
-Aggregate functions perform a calculation on a column value for reduction.
+Aggregate functions compute a single result from a column. 
+
+.. tip:: Aggregate functions can return ``NULL`` if no rows are selected or all input values are ``NULL``. The notable exception to this rule is ``COUNT``, which always returns an integer. Use :ref:``COALESCE<coalesce` to substitute zero or another value for ``NULL`` when necessary.
+
 
 .. code-block:: psql
    
@@ -502,6 +505,7 @@ Nested CTEs
 SQream DB also supports any amount of nested CTEs, such as this:
 
 .. code-block:: postgres
+
    WITH w AS
        (SELECT * FROM
            (WITH x AS (SELECT * FROM nba) SELECT * FROM x ORDER BY "Salary" DESC))
