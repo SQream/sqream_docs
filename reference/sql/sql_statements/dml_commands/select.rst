@@ -251,7 +251,7 @@ Filter on conditions
 Filter based on a list
 ------------------------
 
-``WHERE column IN (value_expr in comma separated list)`` performs a search with an ``OR`` condition.
+``WHERE column IN (value_expr in comma separated list)`` matches the column with any value in the list.
 
 .. code-block:: psql
    
@@ -353,7 +353,7 @@ Aggregate functions
 
 Aggregate functions compute a single result from a column. 
 
-.. tip:: Aggregate functions can return ``NULL`` if no rows are selected or all input values are ``NULL``. The notable exception to this rule is ``COUNT``, which always returns an integer. Use :ref:``COALESCE<coalesce` to substitute zero or another value for ``NULL`` when necessary.
+.. tip:: Aggregate functions can return ``NULL`` if no rows are selected or all input values are ``NULL``. The notable exception to this rule is ``COUNT``, which always returns an integer. Use :ref:`COALESCE<coalesce>` to substitute zero or another value for ``NULL`` when necessary.
 
 
 .. code-block:: psql
