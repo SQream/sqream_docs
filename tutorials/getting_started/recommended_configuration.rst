@@ -165,9 +165,6 @@ These settings affect:
       .. code-block:: console
          
             $ sudo tee /etc/sysctl.d/sqreamdb.conf > /dev/null <<EOT
-            kernel.shmmax = 500000000
-            kernel.shmmni = 4096
-            kernel.shmall = 4000000000
             kernel.sysrq = 1
             kernel.core_uses_pid = 1
             kernel.core_pattern = /tmp/core_dumps/%f-core-%e-%s-%u-%g-%p-%t
