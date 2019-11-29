@@ -21,13 +21,15 @@ Synopsis
 .. code-block:: postgres
 
    COPY ( table_ref ) TO 'filepath_spec'
-        [ [ WITH ] copy_opt [...] ]
+        [ [ WITH ] copy_opt [ ...] ]
    ;
 
    table_ref ::= 
       table_reference
       | query
 
+   table_reference ::= identifier
+   
    copy_opt ::= 
       DELIMITER '{ delimiter }'
       | HEADER
@@ -57,6 +59,8 @@ Elements
      - The CSV file will contain a header line with the names of each column in the file. This option is allowed only when using CSV format.
    * - ``DELIMITER``
      - Specifies the character that separates fields (columns) within each row of the file. The default is a comma character (``,``).
+   * - ``AWS_ID``, ``AWS_SECRET``
+     - Specifies the authentication details for secured S3 buckets
 
 
 Examples

@@ -61,13 +61,17 @@ Synopsis
       )
    
    table_ref ::=
-       table_name [ [ AS ] alias [ ( column_alias [, ... ] ) ] ]
+       [schema_name.]table_name [ [ AS ] alias [ ( column_alias [, ... ] ) ] ]
        | ( query ) [ [AS] alias [ ( column_alias [, ... ] ) ] ]
        | table_ref join_type  table_ref
            [ ON value_expr | USING ( join_column [, ... ] ) ]
        | table_alias
 
-   alias ::= identifier  
+   schema_name ::= identifier
+   
+   table_name ::= identifier
+   
+   alias ::= identifier 
 
    join_type ::=
        [ INNER ] [ join_hint ] JOIN
