@@ -20,7 +20,7 @@ Synopsis
 
 .. code-block:: postgres
 
-   COPY ( table_ref ) TO 'filepath_spec'
+   copy_to_stmt ::= COPY ( table_ref ) TO 'filepath_spec'
         [ [ WITH ] copy_opt [ ...] ]
    ;
 

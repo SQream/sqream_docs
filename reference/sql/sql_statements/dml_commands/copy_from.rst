@@ -22,7 +22,7 @@ Synopsis
 
 .. code-block:: postgres
 
-   COPY ( [schema name.]table_name ) FROM 'filepath_spec'
+   copy_from_stmt ::= COPY ( [schema name.]table_name ) FROM 'filepath_spec'
         [ [ WITH ] copy_opt [ ...] ]
    ;
 
