@@ -1,10 +1,8 @@
-.. _sql_syntax:
+.. _keywords_and_identifiers:
 
-*************
-SQL Syntax
-*************
-
-SQream DB supports SQL from the ANSI 92 syntax.
+***************************
+Keywords and Identifiers
+***************************
 
 SQL statements are made up of three components:
 
