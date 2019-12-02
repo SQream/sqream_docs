@@ -9,14 +9,12 @@ SQream DB supports commands from ANSI SQL.
 Summary of functions
 =======================
 
-All functions
-===============
 .. toctree::
    :maxdepth: 2
-   :caption: SQL Functions:
+   :caption: All Functions:
    :glob:
 
-   scalar_functions/*
+   scalar_functions/index
    aggregate_functions/*
    window_functions/*
    table_functions/*
