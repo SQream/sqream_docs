@@ -43,8 +43,7 @@ Synopsis
                [ GROUP BY value_expr [, ... ]
                   [ HAVING value_expr ]
                ]
-       |
-       ( VALUES ( value_expr [, ... ] ) [, ... ] )
+       | ( VALUES ( value_expr [, ... ] ) [, ... ] )
 
    select_list ::=
        value_expr [ [ AS ] column_alias ] [, ... ]

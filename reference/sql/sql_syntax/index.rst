@@ -13,9 +13,8 @@ SQream DB supports SQL from the ANSI 92 syntax.
 
    keywords_and_identifiers
    literals
-   table_expressions
-   common_table_expressions
-   joins
    scalar_expressions
+   joins
+   common_table_expressions
    subqueries
    null_handling
