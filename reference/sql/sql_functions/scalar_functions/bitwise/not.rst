@@ -1,8 +1,8 @@
 .. _bitwise_not:
 
-**********************
+***************************
 ``~`` (bitwise ``NOT``)
-**********************
+***************************
 
 Returns the bitwise ``NOT`` (negation) of two numeric expressions. This is the bitwise complement.
 
@@ -11,7 +11,7 @@ Syntax
 
 .. code-block:: postgres
 
-   ~ expr → integer
+   ~ expr --> integer
 
    expr ::= integer
    

@@ -1,18 +1,19 @@
 .. _bitwise_and:
 
-**********************
+**************************
 ``&`` (bitwise ``AND``)
-**********************
+**************************
 
 Returns the bitwise ``AND`` of two numeric expressions
 
 Syntax
 ==========
 
+
 .. code-block:: postgres
 
-   expr1 & expr2 → integer
-
+   expr1 & expr2 --> integer
+   
    expr1 ::= integer
    
    expr2 ::= integer

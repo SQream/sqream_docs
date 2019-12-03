@@ -1,8 +1,8 @@
 .. _bitwise_xor:
 
-**********************
+*******************************
 ``xor`` (bitwise ``XOR``)
-**********************
+*******************************
 
 Returns the bitwise ``XOR`` of two numeric expressions
 
@@ -11,7 +11,7 @@ Syntax
 
 .. code-block:: postgres
 
-   XOR(expr1, expr2) → integer
+   XOR(expr1, expr2) --> integer
 
    expr1 ::= integer
    

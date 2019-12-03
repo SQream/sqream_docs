@@ -11,7 +11,7 @@ Syntax
 
 .. code-block:: postgres
 
-   expr >> n → integer
+   expr >> n --> integer
 
    expr ::= integer
    
