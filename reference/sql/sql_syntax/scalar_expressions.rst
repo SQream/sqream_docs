@@ -108,8 +108,10 @@ These operators are:
      - Not identical to
 
 .. note::
-   NULL values are handled differently than standard values:
+   NULL values are handled differently than other value expressions:
+   
    * ``NULL`` is always smaller than anything, including another ``NULL``.
+
    * ``NULL`` is never equal to anything, including another ``NULL`` (``=``). To check if a value is null, use ``IS NULL``
 
 Operator precedence

@@ -1,17 +1,17 @@
-.. _bitwise_and:
+.. _bitwise_or:
 
 **********************
-``&`` (bitwise ``AND``)
+``|`` (bitwise ``OR``)
 **********************
 
-Returns the bitwise ``AND`` of two numeric expressions
+Returns the bitwise ``OR`` of two numeric expressions
 
 Syntax
 ==========
 
 .. code-block:: postgres
 
-   expr1 & expr2 → integer
+   expr1 | expr2 → integer
 
    expr1 ::= integer
    
@@ -33,7 +33,7 @@ Arguments
 Returns
 ============
 
-Returns an integer that is the bitwise ``AND`` of the inputs.
+Returns an integer that is the bitwise ``OR`` of the inputs.
 
 Notes
 =======
@@ -45,14 +45,14 @@ Examples
 
 .. code-block:: psql
 
-   master=> SELECT 16 & 24;
-   16
+   master=> SELECT 16 | 24;
+   24
    
-   master=> SELECT 101 & 110;
-   100
+   master=> SELECT 101 | 110;
+   111
    
-   master=> SELECT 32 & 64;
-   0
+   master=> SELECT 32 | 64;
+   96
 
 .. code-block:: psql
 
@@ -62,13 +62,13 @@ Examples
    master=> INSERT INTO bit VALUES (1,2,3), (2, 4, 6), (4, 2, 6), (2, 8, 16), (null, null, 64), (5, 3, 1), (6, 1, 0);
    executed
    
-   SELECT b1, b2, b3, b1 & b2, b2 & b3, b1 & b3 FROM bit;
+   SELECT b1, b2, b3, b1 | b2, b2 | b3, b1 | b3 FROM bit;
    b1 | b2 | b3 | ?column? | ?column?0 | ?column?1
    ---+----+----+----------+-----------+----------
-    1 |  2 |  3 |        0 |         2 |         1
-    2 |  4 |  6 |        0 |         4 |         2
-    4 |  2 |  6 |        0 |         2 |         4
-    2 |  8 | 16 |        0 |         0 |         0
+    1 |  2 |  3 |        3 |         4 |         3
+    2 |  4 |  6 |        6 |         6 |         6
+    4 |  2 |  6 |        6 |         6 |         6
+    2 |  8 | 16 |       10 |        16 |        18
       |    | 64 |          |           |          
-    5 |  3 |  1 |        1 |         1 |         1
-    6 |  1 |  0 |        0 |         0 |         0
+    5 |  3 |  1 |        7 |         3 |         5
+    6 |  1 |  0 |        7 |         1 |         6
