@@ -4,7 +4,7 @@
 Recommended post-installation configuration
 *********************************************
 
-Once you've :ref:`installed SQream DB <installing_sqream_db>`, you can tune your system for better performance and stability.
+Once you've :ref:`installed SQream DB<installing_sqream_db_docker>`, you can and should tune your system for better performance and stability.
 
 This page provides recommendations for production deployments of SQream DB.
 
@@ -14,9 +14,11 @@ This page provides recommendations for production deployments of SQream DB.
 Recommended BIOS settings
 ==========================
 
-The below settings may have a variety of names, or may not exist on your system. It is safe to skip any and all of the configuration steps, but this may impact performance.
+The BIOS settings may have a variety of names, or may not exist on your system. Each system vendor has a different set of settings and variables. 
 
-If any doubt arises, consult the documentation for your server for the correct way to apply the settings.
+It is safe to skip any and all of the configuration steps, but this may impact performance.
+
+If any doubt arises, consult the documentation for your server or your hardware vendor for the correct way to apply the settings.
 
 .. list-table:: 
    :widths: auto
