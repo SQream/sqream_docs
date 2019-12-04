@@ -13,5 +13,6 @@ Scalar functions return one value per call.
    :glob:
    
    bitwise/*
+   conditionals/*
 
 
