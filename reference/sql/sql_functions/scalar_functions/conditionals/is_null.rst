@@ -1,22 +1,18 @@
-.. _bitwise_and:
+.. _is_null:
 
 **************************
-``&`` (bitwise ``AND``)
+IS NULL
 **************************
 
-Returns the bitwise ``AND`` of two numeric expressions
+``IS NULL`` is used to test if an expression is null.
 
 Syntax
 ==========
 
-
 .. code-block:: postgres
 
-   expr1 & expr2 --> integer
+   expr IS [ NOT ] NULL
    
-   expr1 ::= integer
-   
-   expr2 ::= integer
 
 
 Arguments
@@ -28,48 +24,49 @@ Arguments
    
    * - Parameter
      - Description
-   * - ``expr1``, ``expr2``
-     - Integer expressions
+   * - ``expr``
+     - A general value expression or a literal to test.
 
 Returns
 ============
 
-Returns an integer that is the bitwise ``AND`` of the inputs.
+Returns ``TRUE`` when ``expr`` is ``NULL`` or ``FALSE`` otherwise.
 
-Notes
-=======
-
-* If either value is NULL, the result is NULL.
 
 Examples
 ===========
 
+For these examples, consider the following table and contents:
+
+.. code-block:: postgres
+   
+   CREATE TABLE t (id INT NOT NULL, name VARCHAR(30), weight INT);
+   
+   INSERT INTO t VALUES (1, 'Kangaroo', 120), (2, 'Koala', 20), (3, 'Wombat', 60)
+                       ,(4, 'Kappa', NULL),(5, 'Echidna', 8),(6, 'Chupacabra', NULL)
+                       ,(7, 'Kraken', NULL);
+
+IS NULL
+-----------
+
 .. code-block:: psql
 
-   master=> SELECT 16 & 24;
-   16
-   
-   master=> SELECT 101 & 110;
-   100
-   
-   master=> SELECT 32 & 64;
-   0
+   m=> SELECT * FROM t WHERE weight IS NULL;
+   id | name       | weight
+   ---+------------+-------
+    4 | Kappa      |       
+    6 | Chupacabra |       
+    7 | Kraken     |       
+
+
+
+Using IS NOT NULL to filter unwanted results
+-----------------------------------------------
 
 .. code-block:: psql
 
-   master=> CREATE TABLE bit(b1 int, b2 int, b3 int);
-   executed
-   
-   master=> INSERT INTO bit VALUES (1,2,3), (2, 4, 6), (4, 2, 6), (2, 8, 16), (null, null, 64), (5, 3, 1), (6, 1, 0);
-   executed
-   
-   SELECT b1, b2, b3, b1 & b2, b2 & b3, b1 & b3 FROM bit;
-   b1 | b2 | b3 | ?column? | ?column?0 | ?column?1
-   ---+----+----+----------+-----------+----------
-    1 |  2 |  3 |        0 |         2 |         1
-    2 |  4 |  6 |        0 |         4 |         2
-    4 |  2 |  6 |        0 |         2 |         4
-    2 |  8 | 16 |        0 |         0 |         0
-      |    | 64 |          |           |          
-    5 |  3 |  1 |        1 |         1 |         1
-    6 |  1 |  0 |        0 |         0 |         0
+   m=> SELECT AVG(weight) FROM t WHERE weight IS NOT NULL;
+   avg
+   ---
+   52
+

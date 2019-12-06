@@ -31,7 +31,7 @@ Arguments
 Returns
 ============
 
-Returns ``TRUE`` when ``expr`` is within the bounds.
+Returns ``TRUE`` when ``expr`` is within the bounds, or ``FALSE`` otherwise.
 
 Notes
 =======
@@ -43,6 +43,9 @@ Notes
 Examples
 ===========
 
+BETWEEN
+-----------
+
 .. code-block:: psql
 
    farm=> SELECT name, num_eyes FROM cool_animals WHERE num_eyes BETWEEN 5 and 8
@@ -52,3 +55,16 @@ Examples
    Starfish       |        5
    Praying mantis |        5
 
+NOT BETWEEN
+--------------
+
+.. code-block:: psql
+
+   farm=> SELECT name, num_eyes FROM cool_animals WHERE num_eyes NOT BETWEEN 5 and 8
+   name           | num_eyes
+   ---------------+---------
+   Human          |        2
+   Horseshoe crab |       10
+   Box Jellyfish  |       24
+   Fox            |        2
+   Possum         |        2

@@ -1,22 +1,20 @@
-.. _is_null:
+.. _in:
 
 **************************
-``&`` (bitwise ``AND``)
+IN
 **************************
 
-Returns the bitwise ``AND`` of two numeric expressions
+``IN`` is used to test if an expression is contained in a list of values.
+
+This is also known as set membership.
 
 Syntax
 ==========
 
-
 .. code-block:: postgres
 
-   expr1 & expr2 --> integer
+   expr [ NOT ] IN  ( value_expr [, ...] )
    
-   expr1 ::= integer
-   
-   expr2 ::= integer
 
 
 Arguments
@@ -28,48 +26,46 @@ Arguments
    
    * - Parameter
      - Description
-   * - ``expr1``, ``expr2``
-     - Integer expressions
+   * - ``expr``
+     - A general value expression or a literal to test.
+   * - ``value_expr [, ...]``
+     - A comma separated list of literal values of the same data type as ``expr``
 
 Returns
 ============
 
-Returns an integer that is the bitwise ``AND`` of the inputs.
+Returns ``TRUE`` when ``expr`` is contained in the set, or ``FALSE`` otherwise.
+
 
 Notes
 =======
 
-* If either value is NULL, the result is NULL.
+* ``NULL`` is never equal to ``NULL``, so to check if a value is ``NULL`` use :ref:`IS NULL<is_null>` instead.
 
 Examples
 ===========
 
-.. code-block:: psql
-
-   master=> SELECT 16 & 24;
-   16
-   
-   master=> SELECT 101 & 110;
-   100
-   
-   master=> SELECT 32 & 64;
-   0
+IN
+-----------
 
 .. code-block:: psql
 
-   master=> CREATE TABLE bit(b1 int, b2 int, b3 int);
-   executed
-   
-   master=> INSERT INTO bit VALUES (1,2,3), (2, 4, 6), (4, 2, 6), (2, 8, 16), (null, null, 64), (5, 3, 1), (6, 1, 0);
-   executed
-   
-   SELECT b1, b2, b3, b1 & b2, b2 & b3, b1 & b3 FROM bit;
-   b1 | b2 | b3 | ?column? | ?column?0 | ?column?1
-   ---+----+----+----------+-----------+----------
-    1 |  2 |  3 |        0 |         2 |         1
-    2 |  4 |  6 |        0 |         4 |         2
-    4 |  2 |  6 |        0 |         2 |         4
-    2 |  8 | 16 |        0 |         0 |         0
-      |    | 64 |          |           |          
-    5 |  3 |  1 |        1 |         1 |         1
-    6 |  1 |  0 |        0 |         0 |         0
+   farm=> SELECT name, num_eyes FROM cool_animals WHERE num_eyes IN (8, 10)
+   name           | num_eyes
+   ---------------+---------
+   Spider         |        8
+   Horseshoe crab |       10
+
+
+NOT IN
+--------------
+
+.. code-block:: psql
+
+   farm=> SELECT name, num_eyes FROM cool_animals WHERE num_eyes NOT IN (8, 10)
+   name           | num_eyes
+   ---------------+---------
+   Box Jellyfish  |       24
+   Human          |        2
+   Fox            |        2
+   Possum         |        2

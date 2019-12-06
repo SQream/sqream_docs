@@ -70,5 +70,5 @@ In some cases, replacing ``NULL`` values with a default can affect results.
    .>             ) AS cool_animals (name , num_eyes);
    avg | Corrected average
    ----+------------------
-   4 |                 3
+     4 |                 3
 
