@@ -11,7 +11,7 @@ Syntax
 
 .. code-block:: postgres
 
-   IS_ASCII( expr ) --> Boolean
+   IS_ASCII( expr ) --> BOOL
    
 
 

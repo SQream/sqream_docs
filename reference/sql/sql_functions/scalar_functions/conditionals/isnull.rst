@@ -1,17 +1,17 @@
-.. _coalesce:
+.. _isnull:
 
 **************************
-COALESCE
+ISNULL
 **************************
 
-Evaluates and returns the first non-null expression, or ``NULL`` if all expressions are ``NULL``.
+Evaluates an expression and returns a default value if the expression is ``NULL``.
 
 Syntax
 ==========
 
 .. code-block:: postgres
 
-   COALESCE( expr, [, ...] )
+   ISNULL( expr, value_expr )
    
 
 Arguments
@@ -23,29 +23,31 @@ Arguments
    
    * - Parameter
      - Description
-   * - ``expr1``, ``expr2``, ...
-     - Expressions of the same type
+   * - ``expr``
+     - Expressions to evaluate
+   * - ``value_expr``
+     - Default value to return if ``expr`` is null
 
 Returns
 ============
 
-Returns the first non-null argument or ``NULL`` if all expressions are null.
+Returns either ``expr`` or ``value_expr``.
 
 Notes
 =======
 
 * All expressions must have the same type, which is also the type of the result.
 
-* See also :ref:`ISNULL<isnull>`. ``ISNULL(x,y)`` is equivalent to ``COALESCE(x,y)``.
+* See also :ref:`COALESCE<coalesce>`. ``ISNULL(x,y)`` is equivalent to ``COALESCE(x,y)``.
 
 Examples
 ===========
 
-Coalesce
+ISNULL
 ------------
 .. code-block:: psql
 
-   master=> SELECT COALESCE(NULL, NULL, NULL, 5);
+   master=> SELECT ISNULL(NULL, 5);
    5
    
 
@@ -59,7 +61,7 @@ In some cases, replacing ``NULL`` values with a default can affect results.
 
    master=> SELECT 
    .>               AVG(num_eyes),
-   .>               AVG(COALESCE(num_eyes,2)) AS "Corrected average"
+   .>               AVG(ISNULL(num_eyes,2)) AS "Corrected average"
    .>
    .>       FROM (
    .>             VALUES ('Copepod',1),('Spider',8)

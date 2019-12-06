@@ -133,6 +133,8 @@ Queries are processed in a manner equivalent to the following order:
 
 Inside the ``FROM`` clause, the processing occurs in the usual way, from the outside in.
 
+.. _select_lists:
+
 Select lists
 ----------------
 
