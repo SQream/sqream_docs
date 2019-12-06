@@ -36,7 +36,7 @@ Notes
 
 * All expressions must have the same type, which is also the type of the result.
 
-* ``IFNULL`` is equivalent to ``COALESCE``
+* ``ISNULL(x,y)`` is equivalent to ``COALESCE(x,y)``. Some RDBMSs call this function ``IFNULL``.
 
 Examples
 ===========
