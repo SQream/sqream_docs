@@ -14,5 +14,5 @@ Scalar functions return one value per call.
    
    bitwise/*
    conditionals/*
-
+   conversion/*
 
