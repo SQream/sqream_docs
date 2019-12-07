@@ -168,6 +168,7 @@ Check if a year is a leap year
 -----------------------------------
 
 Returns ``TRUE`` if this is a leap year - because adding a day to February 28th is February 29th on a leap year.
+
 .. code-block:: psql
 
    -- Should return true for 2020:
