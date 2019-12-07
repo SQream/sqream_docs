@@ -49,7 +49,7 @@ Get the current system date and time
 Find events that happen before this month
 --------------------------------------------
 
-We will use :ref:`TRUNC<trunc>` to get the date at the beginning of this month, and then filter.
+We will use :ref:`TRUNC<date_trunc>` to get the date at the beginning of this month, and then filter.
 
 .. code-block:: psql
 

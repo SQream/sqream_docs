@@ -96,9 +96,9 @@ Returns
 Notes
 ========
 
-* All dateparts work on a ``DATETIME``.
+* All date parts work on a ``DATETIME``.
 
-* The ``hour``, ``minute``, ``second``, and ``millisecond`` dateparts work only on ``DATETIME``. Using them on ``DATE`` will result in an error.
+* The ``hour``, ``minute``, ``second``, and ``millisecond`` date parts work only on ``DATETIME``. Using them on ``DATE`` will result in an error.
 
 Examples
 ===========
