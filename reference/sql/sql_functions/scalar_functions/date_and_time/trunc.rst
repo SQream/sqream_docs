@@ -18,15 +18,15 @@ Syntax
    TRUNC( date_expr [ , interval ])
    
    interval ::= 
-        year | yyyy | yy
-      | quarter | qq | q
-      | month | mm | m
-      | day | dd | d
-      | week | wk | ww
-      | hour | hh
-      | minute | mi | n
-      | second | ss | s
-      | millisecond | ms
+        YEAR | YYYY | YY
+      | QUARTER | QQ | Q
+      | MONTH | MM | M
+      | DAY | DD | D
+      | WEEK | WK | WW
+      | HOUR | HH
+      | MINUTE | MI | N
+      | SECOND | SS | S
+      | MILLISECOND | MS
 
 Arguments
 ============
@@ -53,32 +53,32 @@ Valid date parts
    * - Date part
      - Shorthand
      - Definition
-   * - ``year``
-     - ``yyyy``, ``yy``
+   * - ``YEAR``
+     - ``YYYY``, ``YY``
      - Year (0 - 9999)
-   * - ``quarter``
-     - ``qq``, ``q``
+   * - ``QUARTER``
+     - ``QQ``, ``Q``
      - Quarter (1-4)
-   * - ``month``
-     - ``mm``, ``m``
+   * - ``MONTH``
+     - ``MM``, ``M``
      - Month (1-12)
-   * - ``day``
-     - ``dd``, ``d``
+   * - ``DAY``
+     - ``DD``, ``D``
      - Day of the month (1-31)
-   * - ``week``
-     - ``wk``, ``ww``
+   * - ``WEEK``
+     - ``WK``, ``WW``
      - Week of the year (1-52)
-   * - ``hour``
-     - ``hh``
+   * - ``HOUR``
+     - ``HH``
      - Hour (0-23)
-   * - ``minute``
-     - ``mi``, ``n``
+   * - ``MINUTE``
+     - ``MI``, ``N``
      - Minute (0-59)
-   * - ``second``
-     - ``ss``, ``s``
+   * - ``SECOND``
+     - ``SS``, ``S``
      - Seconds (0-59)
-   * - ``millisecond``
-     - ``ms``
+   * - ``MILLISECOND``
+     - ``MS``
      - Milliseconds (0-999)
 
 Returns
@@ -91,7 +91,7 @@ Notes
 
 * All date parts work on a ``DATETIME``.
 
-* The ``hour``, ``minute``, ``second``, and ``millisecond`` date parts work only on ``DATETIME``. Using them on ``DATE`` will result in an error.
+* The ``HOUR``, ``MINUTE``, ``SECOND``, and ``MILLISECOND`` date parts work only on ``DATETIME``. Using them on ``DATE`` will result in an error.
 
 * If no date part is specified, the ``DATE`` or ``DATETIME`` value will be set to midnight on the date value. See examples below
 
@@ -118,7 +118,7 @@ Set all ``DATE`` columns to ``DATETIME`` at midnight
 
 .. code-block:: psql
 
-   master=> SELECT name, d as date, trunc(d) FROM cool_dates;
+   master=> SELECT name, d AS date, trunc(d) FROM cool_dates;
    name                               | date       | trunc              
    -----------------------------------+------------+--------------------
    Marty McFly goes back to this time | 1955-11-05 | 1955-11-05 00:00:00
@@ -133,7 +133,7 @@ Find the first day of the month for dates
 
 .. code-block:: psql
 
-   master=> SELECT name, d as date, trunc(d, month) FROM cool_dates;
+   master=> SELECT name, d AS date, trunc(d, MONTH) FROM cool_dates;
    name                               | date       | trunc     
    -----------------------------------+------------+-----------
    Marty McFly goes back to this time | 1955-11-05 | 1955-11-01
@@ -150,8 +150,8 @@ Combine ``TRUNC`` with :ref:`DATEDIFF<datediff>` to calculate the number of hour
 
 .. code-block:: psql
 
-   master=> SELECT name, dt as datetime,
-   .>              , DATEDIFF(hour, trunc(dt, year), dt) as "Hours since New Years" 
+   master=> SELECT name, dt AS datetime,
+   .>              , DATEDIFF(HOUR, trunc(dt, YEAR), dt) AS "Hours since New Years" 
    .>       FROM cool_dates;
    name                               | datetime            | Hours since New Years
    -----------------------------------+---------------------+----------------------

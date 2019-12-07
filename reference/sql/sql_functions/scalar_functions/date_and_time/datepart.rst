@@ -6,6 +6,8 @@ DATEPART
 
 Extracts a date or time part from a ``DATE`` or ``DATETIME`` value.
 
+.. note:: SQream DB also supports the ANSI :ref:`EXTRACT<extract>` syntax.
+
 Syntax
 ==========
 
@@ -14,17 +16,17 @@ Syntax
    DATEPART( interval, date_expr ) --> INT
    
    interval ::= 
-        year | yyyy | yy
-      | quarter | qq | q
-      | month | mm | m
-      | dayofyear | doy | dy | y
-      | day | dd | d
-      | week | wk | ww
-      | weekday | dw
-      | hour | hh
-      | minute | mi | n
-      | second | ss | s
-      | millisecond | ms
+        YEAR | YYYY | YY
+      | QUARTER | QQ | Q
+      | MONTH | MM | M
+      | DAYOFYEAR | DOY | DY | Y
+      | DAY | DD | D
+      | WEEK | WK | WW
+      | WEEKDAY | DW
+      | HOUR | HH
+      | MINUTE | MI | N
+      | SECOND | SS | S
+      | MILLISECOND | MS
 
 Arguments
 ============
@@ -51,42 +53,42 @@ Valid date parts
    * - Date part
      - Shorthand
      - Definition
-   * - ``year``
-     - ``yyyy``, ``yy``
+   * - ``YEAR``
+     - ``YYYY``, ``YY``
      - Year (0 - 9999)
-   * - ``quarter``
-     - ``qq``, ``q``
+   * - ``QUARTER``
+     - ``QQ``, ``Q``
      - Quarter (1-4)
-   * - ``month``
-     - ``mm``, ``m``
+   * - ``MONTH``
+     - ``MM``, ``M``
      - Month (1-12)
-   * - ``dayofyear``
-     - ``doy``, ``dy``, ``y``
+   * - ``DAYOFYEAR``
+     - ``DOY``, ``DY``, ``Y``
      - Day of the year (1-365)
-   * - ``day``
-     - ``dd``, ``d``
+   * - ``DAY``
+     - ``DD``, ``D``
      - Day of the month (1-31)
-   * - ``week``
-     - ``wk``, ``ww``
+   * - ``WEEK``
+     - ``WK``, ``WW``
      - Week of the year (1-52)
-   * - ``weekday``
-     - ``dw``
+   * - ``WEEKDAY``
+     - ``DW``
      - Weekday / Day of week (1-7)
-   * - ``hour``
-     - ``hh``
+   * - ``HOUR``
+     - ``HH``
      - Hour (0-23)
-   * - ``minute``
-     - ``mi``, ``n``
+   * - ``MINUTE``
+     - ``MI``, ``N``
      - Minute (0-59)
-   * - ``second``
-     - ``ss``, ``s``
+   * - ``SECOND``
+     - ``SS``, ``S``
      - Seconds (0-59)
-   * - ``millisecond``
-     - ``ms``
+   * - ``MILLISECOND``
+     - ``MS``
      - Milliseconds (0-999)
 
 .. note::
- * The first day of the week is Sunday, when used with ``weekday``.
+ * The first day of the week is Sunday, when used with ``WEEKDAY``.
 
 Returns
 ============
@@ -98,7 +100,7 @@ Notes
 
 * All date parts work on a ``DATETIME``.
 
-* The ``hour``, ``minute``, ``second``, and ``millisecond`` date parts work only on ``DATETIME``. Using them on ``DATE`` will result in an error.
+* The ``HOUR``, ``MINUTE``, ``SECOND``, and ``MILLISECOND`` date parts work only on ``DATETIME``. Using them on ``DATE`` will result in an error.
 
 Examples
 ===========
@@ -121,8 +123,8 @@ Break up a ``DATE`` into components
 
 .. code-block:: psql
 
-   master=> SELECT DATEPART(year, d) AS  year, DATEPART(month, d) AS month, DATEPART(day,d) AS day, 
-   .>              DATEPART(q,d) AS quarter FROM cool_dates;
+   master=> SELECT DATEPART(YEAR, d) AS  year, DATEPART(MONTH, d) AS month, DATEPART(DAY,d) AS day, 
+   .>              DATEPART(Q,d) AS quarter FROM cool_dates;
    year | month | day | quarter
    -----+-------+-----+--------
    1955 |    11 |   5 |       4
@@ -136,8 +138,8 @@ Break up a ``DATETIME`` into time components
 
 .. code-block:: psql
 
-   master=> SELECT DATEPART(hour, dt) AS hour, DATEPART(minute, dt) AS minute, 
-   .>              DATEPART(second,dt) AS seconds, DATEPART(millisecond,dt) AS milliseconds
+   master=> SELECT DATEPART(HOUR, dt) AS hour, DATEPART(MINUTE, dt) AS minute, 
+   .>              DATEPART(SECOND,dt) AS seconds, DATEPART(MILLISECOND,dt) AS milliseconds
    .>              FROM cool_dates;
    hour | minute | seconds | milliseconds
    -----+--------+---------+-------------
@@ -154,7 +156,7 @@ Count number of rows grouped by quarter
 
 .. code-block:: psql
 
-   master=> SELECT COUNT(*), DATEPART(q, dt) AS quarter FROM cool_dates GROUP BY 2;
+   master=> SELECT COUNT(*), DATEPART(Q, dt) AS quarter FROM cool_dates GROUP BY 2;
    
    count | quarter
    ------+--------

@@ -16,17 +16,16 @@ Syntax
    DATEDIFF( interval, date_expr1, date_expr2 ) --> INT
    
    interval ::= 
-        year | yyyy | yy
-      | quarter | qq | q
-      | month | mm | m
-      | dayofyear | doy | dy | y
-      | day | dd | d
-      | week | wk | ww
-      | weekday | dw
-      | hour | hh
-      | minute | mi | n
-      | second | ss | s
-      | millisecond | ms
+        YEAR | YYYY | YY
+      | QUARTER | QQ | Q
+      | MONTH | MM | M
+      | DAYOFYEAR | DY | Y
+      | DAY | DD | D
+      | WEEK | WK | WW
+      | HOUR | HH
+      | MINUTE | MI | N
+      | SECOND | SS | S
+      | MILLISECOND | MS
 
 Arguments
 ============
@@ -53,42 +52,34 @@ Valid date parts
    * - Date part
      - Shorthand
      - Definition
-   * - ``year``
-     - ``yyyy``, ``yy``
+   * - ``YEAR``
+     - ``YYYY``, ``YY``
      - Year (0 - 9999)
-   * - ``quarter``
-     - ``qq``, ``q``
+   * - ``QUARTER``
+     - ``QQ``, ``Q``
      - Quarter (1-4)
-   * - ``month``
-     - ``mm``, ``m``
+   * - ``MONTH``
+     - ``MM``, ``M``
      - Month (1-12)
-   * - ``dayofyear``
-     - ``doy``, ``dy``, ``y``
-     - Day of the year (1-365)
-   * - ``day``
-     - ``dd``, ``d``
-     - Day of the month (1-31)
-   * - ``week``
-     - ``wk``, ``ww``
+   * - ``DAY``
+     - ``DD``, ``D``, ``DAYOFYEAR``, ``DY``, ``Y``
+     - Days (1-365)
+   * - ``WEEK``
+     - ``WK``, ``WW``
      - Week of the year (1-52)
-   * - ``weekday``
-     - ``dw``
-     - Weekday / Day of week (1-7)
-   * - ``hour``
-     - ``hh``
+   * - ``HOUR``
+     - ``HH``
      - Hour (0-23)
-   * - ``minute``
-     - ``mi``, ``n``
+   * - ``MINUTE``
+     - ``MI``, ``N``
      - Minute (0-59)
-   * - ``second``
-     - ``ss``, ``s``
+   * - ``SECOND``
+     - ``SS``, ``S``
      - Seconds (0-59)
-   * - ``millisecond``
-     - ``ms``
+   * - ``MILLISECOND``
+     - ``MS``
      - Milliseconds (0-999)
 
-.. note::
- * The first day of the week is Sunday, when used with ``weekday``.
 
 Returns
 ============
@@ -126,7 +117,7 @@ In years
 
 .. code-block:: psql
 
-   master=> SELECT d AS original_date, DATEDIFF(year, CURRENT_DATE, d) AS "was ... years ago" FROM cool_dates;
+   master=> SELECT d AS original_date, DATEDIFF(YEAR, CURRENT_DATE, d) AS "was ... years ago" FROM cool_dates;
    original_date | was ... years ago
    --------------+------------------
    1955-11-05    |               -64
@@ -140,7 +131,7 @@ In days
 
 .. code-block:: psql
 
-   master=> SELECT d AS original_date, DATEDIFF(day, CURRENT_DATE, d) AS "was ... days ago" FROM cool_dates;
+   master=> SELECT d AS original_date, DATEDIFF(DAY, CURRENT_DATE, d) AS "was ... days ago" FROM cool_dates;
    original_date | was ... days ago
    --------------+-----------------
    1955-11-05    |           -23408
@@ -159,7 +150,7 @@ In hours
 
 .. code-block:: psql
 
-   master=> SELECT CURRENT_TIMESTAMP as "Now", dt AS "Original datetime", DATEDIFF(hour, CURRENT_TIMESTAMP, dt) AS "was ... hours ago" FROM cool_dates;
+   master=> SELECT CURRENT_TIMESTAMP as "Now", dt AS "Original datetime", DATEDIFF(HOUR, CURRENT_TIMESTAMP, dt) AS "was ... hours ago" FROM cool_dates;
    Now                 | Original datetime   | was ... hours ago
    --------------------+---------------------+------------------
    2019-12-07 22:35:50 | 1955-11-05 01:21:00 |           -561813

@@ -16,17 +16,16 @@ Syntax
    DATEADD( interval, number, date_expr )
    
    interval ::= 
-        year | yyyy | yy
-      | quarter | qq | q
-      | month | mm | m
-      | dayofyear | doy | dy | y
-      | day | dd | d
-      | week | wk | ww
-      | weekday | dw
-      | hour | hh
-      | minute | mi | n
-      | second | ss | s
-      | millisecond | ms
+        YEAR | YYYY | YY
+      | QUARTER | QQ | Q
+      | MONTH | MM | M
+      | DAYOFYEAR | DOY | DY | Y
+      | DAY | DD | D
+      | WEEK | WK | WW
+      | HOUR | HH
+      | MINUTE | MI | N
+      | SECOND | SS | S
+      | MILLISECOND | MS
 
 Arguments
 ============
@@ -55,38 +54,32 @@ Valid date parts
    * - Date part
      - Shorthand
      - Definition
-   * - ``year``
-     - ``yyyy``, ``yy``
+   * - ``YEAR``
+     - ``YYYY``, ``YY``
      - Year (0 - 9999)
-   * - ``quarter``
-     - ``qq``, ``q``
+   * - ``QUARTER``
+     - ``QQ``, ``Q``
      - Quarter (1-4)
-   * - ``month``
-     - ``mm``, ``m``
+   * - ``MONTH``
+     - ``MM``, ``M``
      - Month (1-12)
-   * - ``dayofyear``
-     - ``doy``, ``dy``, ``y``
-     - Day of the year (1-365)
-   * - ``day``
-     - ``dd``, ``d``
-     - Day of the month (1-31)
-   * - ``week``
-     - ``wk``, ``ww``
+   * - ``DAY``
+     - ``DD``, ``D``, ``DOY``, ``DAYOFYEAR``, ``DY``, ``Y``
+     - Days (1-365)
+   * - ``WEEK``
+     - ``WK``, ``WW``
      - Week of the year (1-52)
-   * - ``weekday``
-     - ``dw``
-     - Weekday / Day of week (1-7)
-   * - ``hour``
-     - ``hh``
+   * - ``HOUR``
+     - ``HH``
      - Hour (0-23)
-   * - ``minute``
-     - ``mi``, ``n``
+   * - ``MINUTE``
+     - ``MI``, ``N``
      - Minute (0-59)
-   * - ``second``
-     - ``ss``, ``s``
+   * - ``SECOND``
+     - ``SS``, ``S``
      - Seconds (0-59)
-   * - ``millisecond``
-     - ``ms``
+   * - ``MILLISECOND``
+     - ``MS``
      - Milliseconds (0-999)
 
 .. note::
@@ -95,7 +88,7 @@ Valid date parts
 Returns
 ============
 
-* If ``hour``, ``minute``, ``second``, or ``millisecond`` are added to a ``DATE``, the return type will be ``DATETIME``.
+* If ``HOUR``, ``MINUTE``, ``SECOND``, or ``MILLISECOND`` are added to a ``DATE``, the return type will be ``DATETIME``.
 
 * For all other date parts, the return type is the same as the argument supplied.
 
@@ -127,7 +120,7 @@ Add a quarter to each date
 
 .. code-block:: psql
 
-   master=> SELECT d as original_date, DATEADD(quarter, 1, d) as next_quarter FROM cool_dates;
+   master=> SELECT d as original_date, DATEADD(QUARTER, 1, d) as next_quarter FROM cool_dates;
    original_date | next_quarter
    --------------+-------------
    1955-11-05    | 1956-02-05  
@@ -142,7 +135,7 @@ Getting next month's date
 
 .. code-block:: psql
 
-   master=> SELECT CURRENT_DATE,DATEADD(month, 1, CURRENT_DATE);
+   master=> SELECT CURRENT_DATE,DATEADD(MONTH, 1, CURRENT_DATE);
    date       | dateadd   
    -----------+-----------
    2019-12-07 | 2020-01-07
@@ -154,7 +147,7 @@ Filtering +- 50 years from a specific date
 .. code-block:: psql
 
    master=> SELECT name, dt as datetime FROM cool_dates 
-  .>         WHERE dt BETWEEN DATEADD(year,-50,'1955-06-01') AND DATEADD(year,50,'1955-06-01');
+  .>         WHERE dt BETWEEN DATEADD(YEAR,-50,'1955-06-01') AND DATEADD(YEAR,50,'1955-06-01');
    
    name                               | datetime           
    -----------------------------------+--------------------
@@ -172,13 +165,13 @@ Returns ``TRUE`` if this is a leap year - because adding a day to February 28th 
 .. code-block:: psql
 
    -- Should return true for 2020:
-   master=> SELECT DATEPART(month, DATEADD(day,1,'2020-02-28')) = 2 AS "2020 is a leap year";
+   master=> SELECT DATEPART(MONTH, DATEADD(DAY,1,'2020-02-28')) = 2 AS "2020 is a leap year";
    2020 is a leap year
    -------------------
    true               
 
    -- Should return false for 2021:
-   master=> SELECT DATEPART(month, DATEADD(day,1,'2021-02-28')) = 2 AS "2021 is a leap year";
+   master=> SELECT DATEPART(MONTH, DATEADD(DAY,1,'2021-02-28')) = 2 AS "2021 is a leap year";
    2021 is a leap year
    -------------------
    false               

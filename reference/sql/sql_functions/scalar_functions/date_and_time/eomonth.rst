@@ -6,6 +6,8 @@ EOMONTH
 
 Returns a ``DATE`` or ``DATETIME`` value, reset to midnight on the last day of the month.
 
+.. note:: This function is provided for SQL Server compatability.
+
 Syntax
 ==========
 
