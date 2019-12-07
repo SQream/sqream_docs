@@ -144,9 +144,9 @@ In hours
 ^^^^^^^^^^^
 
 .. note:: 
-   * We use the :ref:`CURRENT_TIMESTAMP<current_timestamp>` instead of :ref:`CURRENT_DATE<current_date>`, to include the current time as well as date.
+   * Use :ref:`CURRENT_TIMESTAMP<current_timestamp>` instead of :ref:`CURRENT_DATE<current_date>`, to include the current time as well as date.
    
-   * In this example, we will use ``dt`` which is a ``DATETIME`` column
+   * In this example, we use ``dt`` which is a ``DATETIME`` column
 
 .. code-block:: psql
 
