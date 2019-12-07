@@ -20,11 +20,11 @@ Syntax
       | dayofyear | doy | dy | y
       | day | dd | d
       | week | wk | ww
-      | dw
-      | hh
-      | n
-      | ss | s
-      | ms
+      | weekday | dw
+      | hour | hh
+      | minute | mi | n
+      | second | ss | s
+      | millisecond | ms
 
 Arguments
 ============
