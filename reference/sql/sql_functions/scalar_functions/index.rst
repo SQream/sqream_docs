@@ -16,4 +16,4 @@ Scalar functions return one value per call.
    conditionals/*
    conversion/*
    date_and_time/*
-
+   numeric/*
