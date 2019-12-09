@@ -36,7 +36,7 @@ Notes
 
 * Valid inputs for an inverse sine are in the range ``[ -1.0 , 1.0]``. Inputs exceeding this range will result in an error.
 
-* The result is given in radians, in the range ``[-pi/2, pi/2]``.
+* The result is given in radians, in the range ``[-π/2, π/2]``.
 
 * If the input value is NULL, the result is NULL.
 

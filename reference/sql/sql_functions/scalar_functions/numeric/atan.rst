@@ -34,7 +34,7 @@ Always returns a floating point result of the inverse tangent, in radians.
 Notes
 =======
 
-* The result is given in radians, in the range ``[-pi/2, pi/2]``.
+* The result is given in radians, in the range ``[-π/2, π/2]``.
 
 * If the input value is NULL, the result is NULL.
 
@@ -70,21 +70,22 @@ Computing inverse tangent for a column
 
    
    numbers=> SELECT f, ASIN(f) FROM trig;
-   f     | atan 
-   ------+------
-   -9999 | -1.57
-      -3 | -1.25
-      -2 | -1.11
-   -1.73 | -1.05
-      -1 | -0.79
-    -0.5 | -0.46
-       0 |     0
-     0.5 |  0.46
-       1 |  0.79
-    1.73 |  1.05
-       2 |  1.11
-       3 |  1.25
-    9999 |  1.57
+   f      | atan       
+   -------+------------
+    -9999 | -1.57069632
+       -3 | -1.24904577
+       -2 | -1.10714872
+   -1.732 | -1.04718485
+       -1 | -0.78539816
+     -0.5 | -0.46364761
+        0 |         0.0
+      0.5 |  0.46364761
+        1 |  0.78539816
+    1.732 |  1.04718485
+        2 |  1.10714872
+        3 |  1.24904577
+     9999 |  1.57069632
+
 
 
 

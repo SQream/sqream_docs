@@ -36,7 +36,7 @@ Notes
 
 * Valid inputs for an inverse cosine are in the range ``[ -1.0 , 1.0]``. Inputs exceeding this range will result in an error.
 
-* The result is given in radians, in the range ``[0, pi]``.
+* The result is given in radians, in the range ``[0, π]``.
 
 * If the input value is NULL, the result is NULL.
 
