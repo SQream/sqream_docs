@@ -56,13 +56,55 @@ Conditionals
    * - :ref:`is_ascii`
      - Test an ``NVARCHAR`` for ASCII-only characters
    * - :ref:`is_null`
-     - Check for ``NULL`` [ or non ``NULL`` ] values
+     - Check for ``NULL`` [ or non-``NULL`` ] values
 
 Conversion
 ^^^^^^^^^^^^
 
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Function
+     - Description
+   * - :ref:`from_unixts`
+     - Converts a UNIX Timestamp to ``DATE`` or ``DATETIME``
+   * - :ref:`to_hex`
+     - Converts a number to a hexadecimal string representation
+   * - :ref:`to_unixts`
+     - Converts a ``DATE`` or ``DATETIME`` to a UNIX Timestamp
+
 Date and time
 ^^^^^^^^^^^^^^^^
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Function
+     - Description
+   * - :ref:`curdate`
+     - Special syntax, equivalent to :ref:`current_date`
+   * - :ref:`current_date`
+     - Returns the current date as ``DATE``
+   * - :ref:`current_timestamp`
+     - Equivalent to :ref:`getdate`
+   * - :ref:`datepart`
+     - Extracts a date or time element from a date expression
+   * - :ref:`dateadd`
+     - Adds an interval to a date expression
+   * - :ref:`datediff`
+     - Calculates the time difference between two date expressions
+   * - :ref:`eomonth`
+     - Calculates the last day of the month of a given date expression
+   * - :ref:`extract`
+     - ANSI syntax for extracting date or time element from a date expression
+   * - :ref:`getdate`
+     - Returns the current timestamp as ``DATETIME``
+   * - :ref:`sysdate`
+     - Equivalent to :ref:`getdate`
+   * - :ref:`date_trunc`
+     - Truncates a date element down to a specified date or time element
 
 Numeric
 ^^^^^^^^^^^
