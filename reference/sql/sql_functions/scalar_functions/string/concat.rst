@@ -1,10 +1,10 @@
-.. _abs:
+.. _concat:
 
 **************************
-ABS
+``||`` Concatenate
 **************************
 
-Returns the absolute (positive) value of a numeric expression
+Concatenate two strings to create a longer string
 
 Syntax
 ==========
@@ -12,7 +12,7 @@ Syntax
 
 .. code-block:: postgres
 
-   ABS( expr )
+   expr1 || expr2
 
 Arguments
 ============
@@ -23,8 +23,8 @@ Arguments
    
    * - Parameter
      - Description
-   * - ``expr``
-     - Numeric expression
+   * - ``expr1``, ``expr2``
+     - String expressions
 
 Returns
 ============
@@ -34,48 +34,94 @@ Returns the same type as the argument supplied.
 Notes
 =======
 
-* If the value is NULL, the result is NULL.
+* Both values must be strings, and can't be ``NULL``. If ``NULLS`` are expected, use :ref:`coalesce`.
+
+* SQream DB removes the trailing spaces from strings by default, which may lead to unexpected results. See the examples for more information.
 
 Examples
 ===========
 
-For these examples, consider the following table and contents:
+
+For these examples, assume a table named ``nba``, with the following structure:
 
 .. code-block:: postgres
-
-   CREATE TABLE cool_numbers(i INT, f DOUBLE);
    
-   INSERT INTO cool_numbers VALUES (1,1.618033), (-12, -34)
-   , (22, 3.141592), (-26538, 2.7182818284)
-   , (NULL, NULL), (NULL,1.4142135623)
-   , (42,NULL), (-42, NULL)
-   , (-474, 365);
+   CREATE TABLE nba
+   (
+      Name varchar(40),
+      Team varchar(40),
+      Number tinyint,
+      Position varchar(2),
+      Age tinyint,
+      Height varchar(4),
+      Weight real,
+      College varchar(40),
+      Salary float
+    );
 
 
-Absolute value on an integer
+Here's a peek at the table contents (:download:`Download nba.csv </_static/samples/nba.csv>`):
+
+.. csv-table:: nba.csv
+   :file: nba-t10.csv
+   :widths: auto
+   :header-rows: 1
+
+
+Concatenate two values
+--------------------------------------
+
+Convert values to string types before concatenation
+
+.. code-block:: psql
+
+   
+   nba=> SELECT ("Age" :: VARCHAR(2)) || "Name" FROM nba ORDER BY 1 DESC LIMIT 5;
+   ?column?        
+   ----------------
+   40Tim Duncan    
+   40Kevin Garnett 
+   40Andre Miller  
+   39Vince Carter  
+   39Pablo Prigioni
+
+
+Concatenate two strings
 -------------------------------
 
 .. code-block:: psql
 
-   numbers=> SELECT ABS(-24);
-   24
+   t=> SELECT 'Hello, this is' || ' nice';
+   ?column?           
+   -------------------
+   Hello, this is nice
 
-Absolute value on integer and floating point
------------------------------------------------
+.. warning::
+   Trailing spaces are trimmed by default. For example,
+   
+   .. code-block:: psql
+
+      t=> SELECT 'Hello, this is ' || 'nice';
+      ?column?           
+      -------------------
+      Hello, this isnice
+      
+   This may sometimes lead to an unexpected result. See the example below for a remedy.
+
+
+Adding spaces
+-----------------
+
+Add a space and concatenate it first to bypass the space trimming issue
 
 .. code-block:: psql
 
-   
-   numbers=> SELECT i, ABS(i), f, ABS(f) FROM cool_numbers;
-   i      | abs   | f    | abs0
-   -------+-------+------+-----
-        1 |     1 | 1.62 | 1.62
-      -12 |    12 |  -34 |   34
-       22 |    22 | 3.14 | 3.14
-   -26538 | 26538 | 2.72 | 2.72
-          |       |      |     
-          |       | 1.41 | 1.41
-       42 |    42 |      |     
-      -42 |    42 |      |     
-     -474 |   474 |  365 |  365
+   nba=> SELECT ("Age" :: VARCHAR(2) || (' ' || "Name")) FROM nba ORDER BY 1 DESC LIMIT 5;
+   ?column?         
+   -----------------
+   40 Tim Duncan    
+   40 Kevin Garnett 
+   40 Andre Miller  
+   39 Vince Carter  
+   39 Pablo Prigioni
 
