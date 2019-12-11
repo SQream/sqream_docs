@@ -7,7 +7,7 @@ REGEXP_SUBSTR
 Returns the occurence of a regex match.
 
 
-See also: :ref:`rexep_instr`, :ref:`regexp_count`.
+See also: :ref:`regexp_instr`, :ref:`regexp_count`.
 
 Syntax
 ==========

@@ -6,7 +6,7 @@ REGEXP_COUNT
 
 Counts the number of occurences that a string matches a given regular expression pattern.
 
-See also: :ref:`rexep_instr`, :ref:`regexp_substr`.
+See also: :ref:`regexp_instr`, :ref:`regexp_substr`.
 
 Syntax
 ==========
