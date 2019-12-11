@@ -7,7 +7,7 @@ REGEXP_INSTR
 Returns the start position of a regex match.
 
 
-See also: :ref:`rexep_instr`, :ref:`regexp_substr`.
+See also: :ref:`rexep_count`, :ref:`regexp_substr`.
 
 Syntax
 ==========
