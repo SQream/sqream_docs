@@ -17,3 +17,4 @@ Scalar functions return one value per call.
    conversion/*
    date_and_time/*
    numeric/*
+   string/*

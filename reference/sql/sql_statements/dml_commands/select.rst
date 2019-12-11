@@ -174,7 +174,7 @@ Assume a table named ``nba``, with the following structure:
     );
 
 
-Here's a peek at the table contents (:download:`Download nba.csv <nba.csv>`):
+Here's a peek at the table contents (:download:`Download nba.csv </_static/samples/nba.csv>`):
 
 .. csv-table:: nba.csv
    :file: nba-t10.csv
@@ -338,7 +338,7 @@ Rename columns with aliases
 Searching with ``LIKE``
 -------------------------
 
-``LIKE`` allows pattern matching text in the ``WHERE`` clause.
+:ref:`like` allows pattern matching text in the ``WHERE`` clause.
 
 * ``%`` matches 0 or more characters
 * ``_`` matches exactly 1 character
