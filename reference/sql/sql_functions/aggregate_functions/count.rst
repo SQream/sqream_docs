@@ -42,7 +42,10 @@ Return type is dependant on the argument.
 Notes
 =======
 
-* ``NULL`` values are not ignored by ``COUNT``
+* ``NULL`` values are *not* ignored by ``COUNT``
+
+* When all rows contain ``NULL`` values, the function returns ``NULL``.
+
 
 * ``COUNT`` can very quickly overflow on large data sets. If the count is over 2\ :sup:`31`, up-cast to a larger type like ``BIGINT``: ``COUNT(expr :: BIGINT)``
 

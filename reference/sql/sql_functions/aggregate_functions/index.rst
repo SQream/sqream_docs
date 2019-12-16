@@ -18,8 +18,14 @@ Aggregate functions are often used with the ``GROUP BY`` clause of the :ref:`sel
    :glob:
    
    avg
+   corr
    count
+   covar_pop
+   covar_samp
    max
    min
-   stddev
+   stddev_pop
+   stddev_samp
    sum
+   var_pop
+   var_samp

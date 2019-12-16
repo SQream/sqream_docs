@@ -1,25 +1,24 @@
-.. _stddev_samp:
+.. _stddev_pop:
 
 **************************
-STDDEV_SAMP
+STDDEV_POP
 **************************
 
-Returns the sample standard deviation of values.
+Returns the population standard deviation of values.
 
-.. note:: Aliases to this function include ``STDDEV`` and ``STDEV`` for compatibility.
+.. note:: Aliases to this function include ``STDEVP`` for compatibility.
 
-See also: :ref:`stddev_pop`
+See also: :ref:`stddev_samp`
 
 Syntax
 ==========
 
 .. code-block:: postgres
 
-   STDDEV_SAMP( expr )
+   STDDEV_POP( expr )
    
-   STDDEV( expr )
-   
-   STDEV( expr )
+   STDEVP( expr )
+
 
 Arguments
 ============
@@ -36,14 +35,12 @@ Arguments
 Returns
 ============
 
-Returns the standard deviation with type ``DOUBLE``.
+Returns the population deviation with type ``DOUBLE``.
 
 Notes
 =======
 
-* When there are no rows without null values, the function returns ``NULL``.
-
-* The function also returns ``NULL`` when only one value is non-``NULL``.
+* When all rows contain ``NULL`` values, the function returns ``NULL``.
 
 Examples
 ===========
@@ -78,18 +75,28 @@ Simple standard deviation
 
 .. code-block:: psql
 
-   t=> SELECT AVG("Age"), STDDEV_SAMP("Age") FROM nba;
-   avg | stddev_samp
-   ----+------------
-    26 |       4.404
+   t=> SELECT "Team", STDDEV_POP("Age") FROM nba GROUP BY 1 LIMIT 10;
+   Team                  | stddev_pop
+   ----------------------+-----------
+   Atlanta Hawks         |     4.0857
+   Boston Celtics        |     2.7439
+   Brooklyn Nets         |     2.9166
+   Charlotte Hornets     |     3.0521
+   Chicago Bulls         |     4.0464
+   Cleveland Cavaliers   |     3.9811
+   Dallas Mavericks      |     3.5864
+   Denver Nuggets        |     4.5821
+   Detroit Pistons       |     4.2926
+   Golden State Warriors |     3.7178
 
 
-Combine ``stddev`` with other aggregates
+
+Combine ``STDEVP`` with other aggregates
 -------------------------------------------
 
 .. code-block:: psql
 
-   t=> SELECT "Age", AVG("Salary"), STDDEV_SAMP("Salary"), STDDEV_POP("Salary") FROM nba GROUP BY 1;
+   t=> SELECT "Age", AVG("Salary"), STDDEV_SAMP("Salary"), STDEVP("Salary") FROM nba GROUP BY 1;
    Age | avg      | stddev_samp  | stddev_pop  
    ----+----------+--------------+-------------
     19 |  1930440 |  279165.7572 |       197400

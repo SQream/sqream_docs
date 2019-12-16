@@ -260,7 +260,7 @@ Aggregate functions
      - ``stdevp``
      - Calculates population standard deviation of values
    * - :ref:`var_samp`
-     - ``var``, ``varianc``
+     - ``var``, ``variance``
      - Calculates sample variance of values
    * - :ref:`var_pop`
      - ``varp``
