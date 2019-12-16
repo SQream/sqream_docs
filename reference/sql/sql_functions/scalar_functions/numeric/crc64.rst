@@ -1,7 +1,7 @@
 .. _crc64:
 
 **************************
-``CRC64``
+CRC64
 **************************
 
 Calculates the CRC-64 hash of a text expression

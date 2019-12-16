@@ -1,7 +1,7 @@
 .. _ceiling:
 
 **************************
-``CEILING`` / ``CEIL``
+CEILING / CEIL
 **************************
 
 Calculates the smallest integer greater than the numeric expression given.

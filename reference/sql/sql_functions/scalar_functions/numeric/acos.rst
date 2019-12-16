@@ -1,7 +1,7 @@
 .. _acos:
 
 **************************
-``ACOS``
+ACOS
 **************************
 
 Returns the inverse cosine value of a numeric expression

@@ -1,7 +1,7 @@
 .. _floor:
 
 **************************
-``FLOOR``
+FLOOR
 **************************
 
 Calculates the largest integer smaller or equal to the numeric expression given.

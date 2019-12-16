@@ -1,7 +1,7 @@
 .. _asin:
 
 **************************
-``ASIN``
+ASIN
 **************************
 
 Returns the inverse sine value of a numeric expression

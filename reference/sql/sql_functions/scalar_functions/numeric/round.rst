@@ -1,7 +1,7 @@
 .. _round:
 
 **************************
-``ROUND``
+ROUND
 **************************
 
 Rounds a numeric expression to the nearest precision.

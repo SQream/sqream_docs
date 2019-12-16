@@ -1,7 +1,7 @@
 .. _cos:
 
 **************************
-``COS``
+COS
 **************************
 
 Returns the cosine value of a numeric expression
