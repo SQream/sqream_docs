@@ -1,7 +1,7 @@
 .. _bitwise_xor:
 
 *******************************
-``xor`` (bitwise ``XOR``)
+XOR (bitwise ``XOR``)
 *******************************
 
 Returns the bitwise ``XOR`` of two numeric expressions
