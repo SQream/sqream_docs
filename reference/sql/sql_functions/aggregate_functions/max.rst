@@ -1,10 +1,10 @@
-.. _abs:
+.. _max:
 
 **************************
-ABS
+MAX
 **************************
 
-Returns the absolute (positive) value of a numeric expression
+Returns the maximum values
 
 Syntax
 ==========
@@ -12,7 +12,7 @@ Syntax
 
 .. code-block:: postgres
 
-   ABS( expr )
+   MAX( expr )
 
 Arguments
 ============
@@ -24,58 +24,78 @@ Arguments
    * - Parameter
      - Description
    * - ``expr``
-     - Numeric expression
+     - Value expression
 
 Returns
 ============
 
-Returns the same type as the argument supplied.
+Return type is dependant on the argument.
 
 Notes
 =======
 
-* If the value is NULL, the result is NULL.
+* ``NULL`` values are ignored
 
 Examples
 ===========
 
-For these examples, consider the following table and contents:
+For these examples, assume a table named ``nba``, with the following structure:
 
 .. code-block:: postgres
-
-   CREATE TABLE cool_numbers(i INT, f DOUBLE);
    
-   INSERT INTO cool_numbers VALUES (1,1.618033), (-12, -34)
-   , (22, 3.141592), (-26538, 2.7182818284)
-   , (NULL, NULL), (NULL,1.4142135623)
-   , (42,NULL), (-42, NULL)
-   , (-474, 365);
+   CREATE TABLE nba
+   (
+      "Name" varchar(40),
+      "Team" varchar(40),
+      "Number" tinyint,
+      "Position" varchar(2),
+      "Age" tinyint,
+      "Height" varchar(4),
+      "Weight" real,
+      "College" varchar(40),
+      "Salary" float
+    );
 
 
-Absolute value on an integer
--------------------------------
+Here's a peek at the table contents (:download:`Download nba.csv </_static/samples/nba.csv>`):
+
+.. csv-table:: nba.csv
+   :file: nba-t10.csv
+   :widths: auto
+   :header-rows: 1
+
+Simple Minimum, Maximum on numeric columns
+--------------------------------------------
 
 .. code-block:: psql
 
-   numbers=> SELECT ABS(-24);
-   24
+   t=> SELECT MIN("Age"), MAX("Age") FROM nba;
+   min | max
+   ----+----
+    19 |  40
 
-Absolute value on integer and floating point
------------------------------------------------
+Minimum and maximum on text columns
+----------------------------------------
 
 .. code-block:: psql
 
-   
-   numbers=> SELECT i, ABS(i), f, ABS(f) FROM cool_numbers;
-   i      | abs   | f    | abs0
-   -------+-------+------+-----
-        1 |     1 | 1.62 | 1.62
-      -12 |    12 |  -34 |   34
-       22 |    22 | 3.14 | 3.14
-   -26538 | 26538 | 2.72 | 2.72
-          |       |      |     
-          |       | 1.41 | 1.41
-       42 |    42 |      |     
-      -42 |    42 |      |     
-     -474 |   474 |  365 |  365
+   t=> SELECT MIN("Name"), MAX("Name") FROM nba;
+   min          | max          
+   -------------+--------------
+   Aaron Brooks | Zaza Pachulia
+
+
+Combine MAX with GROUP BY
+------------------------------
+
+.. code-block:: psql
+
+   t=> SELECT "Team", MAX("Salary") FROM nba GROUP BY 1 ORDER BY 2 DESC LIMIT 5;
+   Team                | max     
+   --------------------+---------
+   Los Angeles Lakers  | 25000000
+   Cleveland Cavaliers | 22970500
+   New York Knicks     | 22875000
+   Houston Rockets     | 22359364
+   Miami Heat          | 22192730
 

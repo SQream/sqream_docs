@@ -1,10 +1,10 @@
-.. _abs:
+.. _sum:
 
 **************************
-ABS
+SUM 
 **************************
 
-Returns the absolute (positive) value of a numeric expression
+Returns the sum of numeric values, or only the distinct values.
 
 Syntax
 ==========
@@ -12,7 +12,7 @@ Syntax
 
 .. code-block:: postgres
 
-   ABS( expr )
+   SUM( [ DISTINCT ] expr )
 
 Arguments
 ============
@@ -25,57 +25,104 @@ Arguments
      - Description
    * - ``expr``
      - Numeric expression
+   * - ``DISTINCT``
+     - Specifies that the operation should operate only on unique values
 
 Returns
 ============
 
-Returns the same type as the argument supplied.
+Return type is dependant on the argument.
+
+* For ``TINYINT``, ``SMALLINT`` and ``INT``, the return type is ``INT``.
+
+* For ``BIGINT``, the return type is ``BIGINT``.
+
+* For ``REAL``, the return type is ``REAL``
+
+* For ``DOUBLE``, rhe return type is ``DOUBLE``
 
 Notes
 =======
 
-* If the value is NULL, the result is NULL.
+* ``NULL`` values are ignored
+
+* Because ``SUM`` returns the same data type, it can very quickly overflow on large data sets. If the SUM is over 2\ :sup:`31` for example, up-cast to a larger type like ``BIGINT``: ``SUM(expr :: BIGINT)``
 
 Examples
 ===========
 
-For these examples, consider the following table and contents:
+For these examples, assume a table named ``nba``, with the following structure:
 
 .. code-block:: postgres
-
-   CREATE TABLE cool_numbers(i INT, f DOUBLE);
    
-   INSERT INTO cool_numbers VALUES (1,1.618033), (-12, -34)
-   , (22, 3.141592), (-26538, 2.7182818284)
-   , (NULL, NULL), (NULL,1.4142135623)
-   , (42,NULL), (-42, NULL)
-   , (-474, 365);
+   CREATE TABLE nba
+   (
+      "Name" varchar(40),
+      "Team" varchar(40),
+      "Number" tinyint,
+      "Position" varchar(2),
+      "Age" tinyint,
+      "Height" varchar(4),
+      "Weight" real,
+      "College" varchar(40),
+      "Salary" float
+    );
 
 
-Absolute value on an integer
--------------------------------
+Here's a peek at the table contents (:download:`Download nba.csv </_static/samples/nba.csv>`):
+
+.. csv-table:: nba.csv
+   :file: nba-t10.csv
+   :widths: auto
+   :header-rows: 1
+
+Simple sum
+-------------
 
 .. code-block:: psql
 
-   numbers=> SELECT ABS(-24);
-   24
+   t=> SELECT SUM("Age") FROM nba;
+   sum  
+   -----
+   12311
 
-Absolute value on integer and floating point
------------------------------------------------
+Sum only distinct values
+----------------------------
 
 .. code-block:: psql
 
-   
-   numbers=> SELECT i, ABS(i), f, ABS(f) FROM cool_numbers;
-   i      | abs   | f    | abs0
-   -------+-------+------+-----
-        1 |     1 | 1.62 | 1.62
-      -12 |    12 |  -34 |   34
-       22 |    22 | 3.14 | 3.14
-   -26538 | 26538 | 2.72 | 2.72
-          |       |      |     
-          |       | 1.41 | 1.41
-       42 |    42 |      |     
-      -42 |    42 |      |     
-     -474 |   474 |  365 |  365
+   t=> SELECT SUM(DISTINCT "Age") FROM nba;
+   sum
+   ---
+   649
 
+Combine sum with GROUP BY
+------------------------------
+
+.. code-block:: psql
+
+   t=> SELECT "Age", SUM("Salary") FROM nba GROUP BY 1;
+   Age | sum      
+   ----+----------
+    19 |   3860880
+    20 |  51790026
+    21 |  39280213
+    22 |  61307050
+    23 |  79355103
+    24 | 170338514
+    25 | 172958166
+    26 | 247196385
+    27 | 267069647
+    28 | 153305658
+    29 | 168052779
+    30 | 211855757
+    31 | 187250724
+    32 | 100320456
+    33 |  55030346
+    34 |  76060300
+    35 |  27693918
+    36 |  22381196
+    37 |  38333334
+    38 |   7360164
+    39 |   5035745
+    40 |  14000750

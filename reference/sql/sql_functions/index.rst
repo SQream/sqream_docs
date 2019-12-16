@@ -164,8 +164,107 @@ Numeric
    * - :ref:`trunc`
      - Rounds a number to its integer representation towards 0
 
+Strings
+^^^^^^^^^^^
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Function
+     - Description
+   * - :ref:`char_length`
+     - Calculates number of characters in an argument
+   * - :ref:`charindex`
+     - Calculates the position where a string starts inside another string
+   * - :ref:`concat`
+     - Concatenates two strings
+   * - :ref:`isprefixof`
+     - Matches if a string is the prefix of another string
+   * - :ref:`left`
+     - Returns the first number of characters from an argument
+   * - :ref:`len`
+     - Calculates the length of a string in characters
+   * - :ref:`like`
+     - Tests if a string argument matches a pattern
+   * - :ref:`lower`
+     - Converts an argument to a lower-case equivalent
+   * - :ref:`ltrim`
+     - Trims whitespaces from the left side of an argument
+   * - :ref:`octet_length`
+     - Calculates the length of a string in bytes
+   * - :ref:`patindex`
+     - Calculates the position where a pattern matches a string
+   * - :ref:`regexp_count`
+     - Calculates the number of matches of a regular expression match in an argument
+   * - :ref:`regexp_instr`
+     - Returns the start position of a regular expression match in an argument
+   * - :ref:`regexp_substr`
+     - Returns a substring of an argument that matches a regular expression
+   * - :ref:`replace`
+     - Replaces characters in a string
+   * - :ref:`reverse`
+     - Reverses a string argument
+   * - :ref:`right`
+     - Returns the last number of characters from an argument
+   * - :ref:`rlike`
+     - Tests if a string argument matches a regular expression pattern
+   * - :ref:`rtrim`
+     - Trims whitespace from the right side of an argument
+   * - :ref:`substring`
+     - Returns a substring of an argument
+   * - :ref:`trim`
+     - Trims whitespaces from an argument
+   * - :ref:`upper`
+     - Converts an argument to an upper-case equivalent
+
+
 Aggregate functions
 ---------------------
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Function
+     - Aliases
+     - Description
+   * - :ref:`avg`
+     -
+     - Calculates the average of all of the values
+   * - :ref:`corr`
+     -
+     - Calculates the Pearson correlation coefficient
+   * - :ref:`count`
+     -
+     - Calculates the count of all of the values or only distinct values
+   * - :ref:`covar_pop`
+     - 
+     - Calculates population covariance of values
+   * - :ref:`covar_samp`
+     - 
+     - Calculates sample covariance of values
+   * - :ref:`max`
+     - 
+     - Returns maximum value of all values
+   * - :ref:`min`
+     -
+     - Returns minimum value of all values
+   * - :ref:`sum`
+     - 
+     - Calculates the sum of all of the values or only distinct values
+   * - :ref:`stddev_samp`
+     - ``stdev``, ``stddev``
+     - Calculates sample standard deviation of values
+   * - :ref:`stddev_pop`
+     - ``stdevp``
+     - Calculates population standard deviation of values
+   * - :ref:`var_samp`
+     - ``var``, ``varianc``
+     - Calculates sample variance of values
+   * - :ref:`var_pop`
+     - ``varp``
+     - Calculates population variance of values
 
 Window functions
 -------------------

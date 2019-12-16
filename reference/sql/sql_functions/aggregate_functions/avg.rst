@@ -1,18 +1,17 @@
-.. _abs:
+.. _avg:
 
 **************************
-ABS
+AVG
 **************************
 
-Returns the absolute (positive) value of a numeric expression
+Returns the average of numeric values.
 
 Syntax
 ==========
 
-
 .. code-block:: postgres
 
-   ABS( expr )
+   AVG( expr )
 
 Arguments
 ============
@@ -29,53 +28,99 @@ Arguments
 Returns
 ============
 
-Returns the same type as the argument supplied.
+Return type is dependant on the argument.
+
+* For ``TINYINT``, ``SMALLINT`` and ``INT``, the return type is ``INT``.
+
+* For ``BIGINT``, the return type is ``BIGINT``.
+
+* For ``REAL``, the return type is ``REAL``
+
+* For ``DOUBLE``, rhe return type is ``DOUBLE``
 
 Notes
 =======
 
-* If the value is NULL, the result is NULL.
+* ``NULL`` values are ignored
+
+* ``AVG`` relies on calculating the sum, which can very quickly overflow on large data sets. If the sum is over 2\ :sup:`31` for example, up-cast to a larger type like ``BIGINT``: ``AVG(expr :: BIGINT)``
 
 Examples
 ===========
 
-For these examples, consider the following table and contents:
+For these examples, assume a table named ``nba``, with the following structure:
 
 .. code-block:: postgres
-
-   CREATE TABLE cool_numbers(i INT, f DOUBLE);
    
-   INSERT INTO cool_numbers VALUES (1,1.618033), (-12, -34)
-   , (22, 3.141592), (-26538, 2.7182818284)
-   , (NULL, NULL), (NULL,1.4142135623)
-   , (42,NULL), (-42, NULL)
-   , (-474, 365);
+   CREATE TABLE nba
+   (
+      "Name" varchar(40),
+      "Team" varchar(40),
+      "Number" tinyint,
+      "Position" varchar(2),
+      "Age" tinyint,
+      "Height" varchar(4),
+      "Weight" real,
+      "College" varchar(40),
+      "Salary" float
+    );
 
 
-Absolute value on an integer
--------------------------------
+Here's a peek at the table contents (:download:`Download nba.csv </_static/samples/nba.csv>`):
+
+.. csv-table:: nba.csv
+   :file: nba-t10.csv
+   :widths: auto
+   :header-rows: 1
+
+Simple average
+----------------
 
 .. code-block:: psql
 
-   numbers=> SELECT ABS(-24);
-   24
+   t=> SELECT AVG("Age") FROM nba;
+   avg
+   ---
+   26
 
-Absolute value on integer and floating point
------------------------------------------------
+.. note:: 
+   The return type is the same as the input type. To get a fractional result, cast the argument:
+   
+   .. code-block:: psql
+
+   t=> SELECT AVG("Age" :: REAL) FROM nba;
+   avg    
+   -------
+   26.9387
+
+Combine AVG with other aggregates
+-------------------------------------
 
 .. code-block:: psql
 
-   
-   numbers=> SELECT i, ABS(i), f, ABS(f) FROM cool_numbers;
-   i      | abs   | f    | abs0
-   -------+-------+------+-----
-        1 |     1 | 1.62 | 1.62
-      -12 |    12 |  -34 |   34
-       22 |    22 | 3.14 | 3.14
-   -26538 | 26538 | 2.72 | 2.72
-          |       |      |     
-          |       | 1.41 | 1.41
-       42 |    42 |      |     
-      -42 |    42 |      |     
-     -474 |   474 |  365 |  365
+   t=> SELECT "Age", AVG("Salary") as "Average salary", COUNT(*) as "Number of players" FROM nba GROUP BY 1;
+   Age | Average salary | Number of players
+   ----+----------------+------------------
+    19 |        1930440 |                 2
+    20 |        2725790 |                19
+    21 |        2067379 |                19
+    22 |        2357963 |                26
+    23 |        2034746 |                41
+    24 |        3785300 |                47
+    25 |        3930867 |                45
+    26 |        6866566 |                36
+    27 |        6676741 |                41
+    28 |        5110188 |                31
+    29 |        6224177 |                28
+    30 |        7061858 |                31
+    31 |        8511396 |                22
+    32 |        7716958 |                13
+    33 |        3930739 |                14
+    34 |        7606030 |                10
+    35 |        3461739 |                 9
+    36 |        2238119 |                10
+    37 |       12777778 |                 4
+    38 |        1840041 |                 4
+    39 |        2517872 |                 2
+    40 |        4666916 |                 3
 
