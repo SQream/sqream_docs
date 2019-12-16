@@ -283,7 +283,7 @@ System functions
    :glob:
 
    scalar_functions/index
-   aggregate_functions/*
+   aggregate_functions/index
    window_functions/*
    table_functions/*
    system_functions/*
