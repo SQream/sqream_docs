@@ -88,10 +88,10 @@ Simple average
    
    .. code-block:: psql
 
-   t=> SELECT AVG("Age" :: REAL) FROM nba;
-   avg    
-   -------
-   26.9387
+      t=> SELECT AVG("Age" :: REAL) FROM nba;
+      avg    
+      -------
+      26.9387
 
 Combine AVG with other aggregates
 -------------------------------------
