@@ -12,6 +12,8 @@ Summary of functions
 Scalar functions
 -------------------
 
+:ref:`scalar_functions`
+
 Bitwise operations
 ^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -222,6 +224,8 @@ Strings
 Aggregate functions
 ---------------------
 
+:ref:`aggregate_functions`
+
 .. list-table:: 
    :widths: auto
    :header-rows: 1
@@ -269,22 +273,49 @@ Aggregate functions
 Window functions
 -------------------
 
-Table functions
------------------
+:ref:`window_functions`
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Function
+     - Description
+   * - :ref:`max`
+     - Calculates the maximum value
+   * - :ref:`min`
+     - Calculates the minimum value
+   * - :ref:`rank`
+     - Calculates the rank of a row
+   * - :ref:`row_number`
+     - Calculates the row number
+   * - :ref:`sum`
+     - Calculates the sum of all of the values
 
 System functions
 ------------------
+
+show_connections()
+show_version
+show_server_status
+show_node_info(statement_id)
+show_locks()
+stop_statement(statement_id)
+
+subscribe_service(‘node_11’,’etl’);
+show_subscribed_instances();
+unsubscribe_service(‘node_11’,’etl’);
 
 
 
 .. toctree::
    :maxdepth: 2
    :caption: All Functions:
+   :hidden:
    :glob:
 
    scalar_functions/index
    aggregate_functions/index
    window_functions/*
-   table_functions/*
    system_functions/*
 

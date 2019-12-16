@@ -4,7 +4,7 @@
 Window functions
 ********************
 
-Window functions are funcitons applied over a subset (known as a window frame) of the rows returned by a :ref:`select` query. 
+Window functions are functions applied over a subset (known as a window) of the rows returned by a :ref:`select` query. 
 
 Syntax
 ========
@@ -20,9 +20,10 @@ Syntax
       
    window_fn ::= 
       AVG
-      | COUNT
       | MAX
       | MIN
+      | RANK
+      | ROW_NUMBER
       | STDDEV
       | SUM
 
@@ -54,25 +55,44 @@ Arguments
 Supported window functions
 ===========================
 
-* :ref:`avg`
-* :ref:`max`
-* :ref:`min`
-* :ref:`rank`
-* :ref:`row_number`
-* :ref:`sum`
+.. list-table:: Window function aggregations
+   :widths: auto
+   :header-rows: 1
+   
+   * - Function
+   * - :ref:`avg`
+   * - :ref:`max`
+   * - :ref:`min`
 
+   * - :ref:`sum`
+
+.. list-table:: Ranking functions
+   :widths: auto
+   :header-rows: 1
+
+   * - Function
+   * - :ref:`rank`
+   * - :ref:`row_number`
 
 How window functions work
 ============================
 
-Things to notice
-===================
+A window function operates on a subset ("window") of rows.
 
-In general, a window frame will include all rows of a partition.
+Each time a window function is called, it gets the current row for processing, as well as the window of rows that contains the current row.
 
-If an ``ORDER BY`` clause is applied, the rows will become ordered which can change the order of the function calls. The function will be applied to the subset between the first row and the current row, instead of the whole frame.
+The window function returns one result row for each input.
 
-Boundaries for the frames may need to be applied to get the correct results.
+The result depends on the individual row and the order of the rows. Some window functions are order-sensitive, such as :ref:`rank`.
+
+.. note::
+   In general, a window frame will include all rows of a partition.
+
+   If an ``ORDER BY`` clause is applied, the rows will become ordered which can change the order of the function calls. The function will be applied to the subset between the first row and the current row, instead of the whole frame.
+
+   Boundaries for the frames may need to be applied to get the correct results.
+
+Window frame functions allow you to perform rolling operations, such as calculate moving averages, longest standing customers, identifying churn, find movers and shakers, etc.
 
 Examples
 ==========
@@ -109,23 +129,23 @@ Window function application
 
    t=> SELECT SUM("Salary") OVER (PARTITION BY "Team" ORDER BY "Age") FROM nba;
    sum      
----------
-  1763400
-  5540289
-  5540289
-  5540289
-  5540289
-  7540289
- 18873622
- 18873622
- 30873622
- 60301531
- 60301531
- 60301531
- 64301531
- 72902950
- 72902950
- [...]
+   ---------
+     1763400
+     5540289
+     5540289
+     5540289
+     5540289
+     7540289
+    18873622
+    18873622
+    30873622
+    60301531
+    60301531
+    60301531
+    64301531
+    72902950
+    72902950
+    [...]
 
 Ranking results
 -----------------
