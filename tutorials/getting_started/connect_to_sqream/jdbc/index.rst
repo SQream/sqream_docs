@@ -76,7 +76,8 @@ Driver class
 
 Use ``com.sqream.jdbc.SQDriver`` as the driver class in the JDBC application.
 
-.. _connection_string::
+
+.. _connection_string:
 
 Connection string
 --------------------

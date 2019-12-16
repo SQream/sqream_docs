@@ -1,7 +1,7 @@
 .. _concat:
 
 **************************
-``||`` Concatenate
+``||`` (Concatenate)
 **************************
 
 Concatenate two strings to create a longer string
