@@ -1,7 +1,7 @@
 .. _atn2:
 
 **************************
-ATN2
+``ATN2``
 **************************
 
 Returns the inverse tangent of the ratio of x and y.

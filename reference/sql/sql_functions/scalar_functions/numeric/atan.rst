@@ -1,7 +1,7 @@
 .. _atan:
 
 **************************
-ATAN
+``ATAN``
 **************************
 
 Returns the inverse tangent value of a numeric expression

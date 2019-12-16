@@ -1,12 +1,12 @@
 .. _exp:
 
 **************************
-EXP
+``EXP``
 **************************
 
 Returns the natural exponent value of a numeric expression (*e*\ :sup:`x`)
 
-See also :ref:`LOG<log>`.
+See also :ref:`log`.
 
 Syntax
 ==========

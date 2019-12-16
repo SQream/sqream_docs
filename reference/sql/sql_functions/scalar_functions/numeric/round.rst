@@ -1,12 +1,12 @@
 .. _round:
 
 **************************
-ROUND
+``ROUND``
 **************************
 
 Rounds a numeric expression to the nearest precision.
 
-See also :ref:`CEILING<round>`, :ref:`FLOOR<floor>`.
+See also :ref:`ceiling`, :ref:`floor`.
 
 Syntax
 ==========
@@ -68,7 +68,7 @@ Rounding to 2 digits after the decimal point
     -2.72
    500.12
    
-:ref:`FLOOR<floor>` vs. :ref:`CEILING<ceiling>` vs. ROUND
+:ref:`floor` vs. :ref:`ceiling` vs. ``ROUND``
 ------------------------------------------------------------
 
 .. code-block:: psql

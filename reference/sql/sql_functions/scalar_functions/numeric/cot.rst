@@ -1,7 +1,7 @@
 .. _cot:
 
 **************************
-COT
+``COT``
 **************************
 
 Returns the cotangent value of a numeric expression

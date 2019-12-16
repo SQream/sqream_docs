@@ -1,12 +1,12 @@
 .. _floor:
 
 **************************
-FLOOR
+``FLOOR``
 **************************
 
 Calculates the largest integer smaller or equal to the numeric expression given.
 
-See also :ref:`ROUND<round>`, :ref:`CEILING<ceiling>`.
+See also :ref:`round`, :ref:`ceiling`.
 
 Syntax
 ==========
@@ -40,7 +40,7 @@ Notes
 Examples
 ===========
 
-FLOOR vs. :ref:`CEILING<ceiling>` vs. :ref:`ROUND<round>`
+``FLOOR`` vs. :ref:`ceiling` vs. :ref:`round`
 ------------------------------------------------------------
 
 .. code-block:: psql

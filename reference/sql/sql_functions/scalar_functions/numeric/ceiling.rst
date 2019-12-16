@@ -1,7 +1,7 @@
 .. _ceiling:
 
 **************************
-CEILING / CEIL
+``CEILING`` / ``CEIL``
 **************************
 
 Calculates the smallest integer greater than the numeric expression given.
@@ -44,7 +44,7 @@ Notes
 Examples
 ===========
 
-:ref:`FLOOR<floor>` vs. CEIL vs. :ref:`ROUND<round>`
+:ref:`floor` vs. ``CEIL`` vs. :ref:`round`
 ------------------------------------------------------------
 
 .. code-block:: psql

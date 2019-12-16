@@ -1,12 +1,12 @@
 .. _degrees:
 
 **************************
-DEGREES
+``DEGREES``
 **************************
 
 Converts a numeric expression from radian values to degree values.
 
-See also :ref:`RADIANS<radians>`.
+See also :ref:`radians`.
 
 Syntax
 ==========

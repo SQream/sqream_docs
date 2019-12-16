@@ -1,7 +1,7 @@
 .. _abs:
 
 **************************
-ABS
+``ABS``
 **************************
 
 Returns the absolute (positive) value of a numeric expression
