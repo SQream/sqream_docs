@@ -1,18 +1,18 @@
-.. _abs:
+.. _reverse:
 
 **************************
-ABS
+REVERSE
 **************************
 
-Returns the absolute (positive) value of a numeric expression
+Returns a reversed order of a character string.
+
 
 Syntax
 ==========
 
-
 .. code-block:: postgres
 
-   ABS( expr )
+   REVERSE( expr )
 
 Arguments
 ============
@@ -24,7 +24,7 @@ Arguments
    * - Parameter
      - Description
    * - ``expr``
-     - Numeric expression
+     - String expression
 
 Returns
 ============
@@ -33,6 +33,8 @@ Returns the same type as the argument supplied.
 
 Notes
 =======
+
+.. * This function works on ``NVARCHAR`` strings only.
 
 * If the value is NULL, the result is NULL.
 
@@ -43,39 +45,28 @@ For these examples, consider the following table and contents:
 
 .. code-block:: postgres
 
-   CREATE TABLE cool_numbers(i INT, f DOUBLE);
-   
-   INSERT INTO cool_numbers VALUES (1,1.618033), (-12, -34)
-   , (22, 3.141592), (-26538, 2.7182818284)
-   , (NULL, NULL), (NULL,1.4142135623)
-   , (42,NULL), (-42, NULL)
-   , (-474, 365);
+   CREATE TABLE jabberwocky(line NVARCHAR(50));
+
+   INSERT INTO jabberwocky VALUES 
+      ('''Twas brillig, and the slithy toves '), ('      Did gyre and gimble in the wabe: ')
+      ,('All mimsy were the borogoves, '), ('      And the mome raths outgrabe. ')
+      ,('"Beware the Jabberwock, my son! '), ('      The jaws that bite, the claws that catch! ')
+      ,('Beware the Jubjub bird, and shun '), ('      The frumious Bandersnatch!" ');
 
 
-Absolute value on an integer
+Using ``REVERSE``
 -------------------------------
 
 .. code-block:: psql
 
-   numbers=> SELECT ABS(-24);
-   24
-
-Absolute value on integer and floating point
------------------------------------------------
-
-.. code-block:: psql
-
-   
-   numbers=> SELECT i, ABS(i), f, ABS(f) FROM cool_numbers;
-   i      | abs   | f    | abs0
-   -------+-------+------+-----
-        1 |     1 | 1.62 | 1.62
-      -12 |    12 |  -34 |   34
-       22 |    22 | 3.14 | 3.14
-   -26538 | 26538 | 2.72 | 2.72
-          |       |      |     
-          |       | 1.41 | 1.41
-       42 |    42 |      |     
-      -42 |    42 |      |     
-     -474 |   474 |  365 |  365
-
+   t=> SELECT line, REVERSE(line) FROM jabberwocky;
+   line                                             | reverse                                         
+   -------------------------------------------------+-------------------------------------------------
+   'Twas brillig, and the slithy toves              |  sevot yhtils eht dna ,gillirb sawT'            
+         Did gyre and gimble in the wabe:           |  :ebaw eht ni elbmig dna eryg diD               
+   All mimsy were the borogoves,                    |  ,sevogorob eht erew ysmim llA                  
+         And the mome raths outgrabe.               |  .ebargtuo shtar emom eht dnA                   
+   "Beware the Jabberwock, my son!                  |  !nos ym ,kcowrebbaJ eht eraweB"                
+         The jaws that bite, the claws that catch!  |  !hctac taht swalc eht ,etib taht swaj ehT      
+   Beware the Jubjub bird, and shun                 |  nuhs dna ,drib bujbuJ eht eraweB               
+         The frumious Bandersnatch!"                |  "!hctansrednaB suoimurf ehT                    

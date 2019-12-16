@@ -1,18 +1,19 @@
-.. _abs:
+.. _left:
 
 **************************
-ABS
+LEFT
 **************************
 
-Returns the absolute (positive) value of a numeric expression
+Returns the left part of a character string with the specified number of characters.
+
+See also :ref:`right`.
 
 Syntax
 ==========
 
-
 .. code-block:: postgres
 
-   ABS( expr )
+   LEFT( expr , character_count )
 
 Arguments
 ============
@@ -24,7 +25,9 @@ Arguments
    * - Parameter
      - Description
    * - ``expr``
-     - Numeric expression
+     - String expression
+   * - ``character_count``
+     - A positive integer that specifies how many characters to return.
 
 Returns
 ============
@@ -33,6 +36,8 @@ Returns the same type as the argument supplied.
 
 Notes
 =======
+
+* This function works on ``NVARCHAR`` strings only.
 
 * If the value is NULL, the result is NULL.
 
@@ -43,39 +48,28 @@ For these examples, consider the following table and contents:
 
 .. code-block:: postgres
 
-   CREATE TABLE cool_numbers(i INT, f DOUBLE);
-   
-   INSERT INTO cool_numbers VALUES (1,1.618033), (-12, -34)
-   , (22, 3.141592), (-26538, 2.7182818284)
-   , (NULL, NULL), (NULL,1.4142135623)
-   , (42,NULL), (-42, NULL)
-   , (-474, 365);
+   CREATE TABLE jabberwocky(line NVARCHAR(50));
+
+   INSERT INTO jabberwocky VALUES 
+      ('''Twas brillig, and the slithy toves '), ('      Did gyre and gimble in the wabe: ')
+      ,('All mimsy were the borogoves, '), ('      And the mome raths outgrabe. ')
+      ,('"Beware the Jabberwock, my son! '), ('      The jaws that bite, the claws that catch! ')
+      ,('Beware the Jubjub bird, and shun '), ('      The frumious Bandersnatch!" ');
 
 
-Absolute value on an integer
+Using ``LEFT``
 -------------------------------
 
 .. code-block:: psql
 
-   numbers=> SELECT ABS(-24);
-   24
-
-Absolute value on integer and floating point
------------------------------------------------
-
-.. code-block:: psql
-
-   
-   numbers=> SELECT i, ABS(i), f, ABS(f) FROM cool_numbers;
-   i      | abs   | f    | abs0
-   -------+-------+------+-----
-        1 |     1 | 1.62 | 1.62
-      -12 |    12 |  -34 |   34
-       22 |    22 | 3.14 | 3.14
-   -26538 | 26538 | 2.72 | 2.72
-          |       |      |     
-          |       | 1.41 | 1.41
-       42 |    42 |      |     
-      -42 |    42 |      |     
-     -474 |   474 |  365 |  365
-
+   t=> SELECT LEFT(line, 10), RIGHT(line, 10) FROM jabberwocky;
+   left       | right     
+   -----------+-----------
+   'Twas bril | thy toves 
+         Did  | the wabe: 
+   All mimsy  | orogoves, 
+         And  | outgrabe. 
+   "Beware th | , my son! 
+         The  | at catch! 
+   Beware the |  and shun 
+         The  | rsnatch!" 

@@ -8,7 +8,7 @@ Tests if a string matches a given pattern.
 
 ``LIKE`` and :ref:`rlike` are similar, but :ref:`rlike` uses POSIX regular expressions instead of the SQL patterns.
 
-See also: :ref:`rlike`, :ref:`regexp_count`, :ref:`rexep_instr`, :ref:`regexp_substr`.
+See also: :ref:`rlike`, :ref:`regexp_count`, :ref:`rexep_instr`, :ref:`regexp_substr`, :ref:`isprefixof`.
 
 Syntax
 ==========
@@ -110,6 +110,9 @@ Match the beginning of a string
    Allen Crabbe    |  24 |  947276 | Portland Trail Blazers
    Ed Davis        |  27 | 6980802 | Portland Trail Blazers
 
+.. tip::
+   :ref:`isprefixof` is a more performant way to match the beginning of a string. 
+   This example can be written as 
 
 Negate with ``NOT``
 ----------------------------------
