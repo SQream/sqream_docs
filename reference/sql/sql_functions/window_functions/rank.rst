@@ -1,81 +1,130 @@
-.. _abs:
+.. _rank:
 
 **************************
-ABS
+RANK
 **************************
 
-Returns the absolute (positive) value of a numeric expression
+Returns the rank of each row within the partition of a result set.
+
+The rank of a row is defined as ``1 + the number of ranks that come before the row``.
+
+While :ref:`row_number` numbers all rows sequentially, ``RANK`` provides the same value for identical consecutive rows (e.g. 1, 2, 2, 4, 4, 6).
 
 Syntax
 ==========
 
-
 .. code-block:: postgres
 
-   ABS( expr )
+   RANK( ) --> BIGINT
 
 Arguments
 ============
 
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Parameter
-     - Description
-   * - ``expr``
-     - Numeric expression
+None
 
 Returns
 ============
 
-Returns the same type as the argument supplied.
+The rank of the row, with data type ``BIGINT``.
 
 Notes
 =======
 
-* If the value is NULL, the result is NULL.
+* The ``ORDER BY`` clause that is used determines the order in which the rows appear in a result set, and thus the rank.
+
+* Rank is non-deterministic. It may return different results each time it is called with a specific set of input values even if there has been no change in the table contents.
+
 
 Examples
 ===========
 
-For these examples, consider the following table and contents:
+For these examples, assume a table named ``nba``, with the following structure:
 
 .. code-block:: postgres
-
-   CREATE TABLE cool_numbers(i INT, f DOUBLE);
    
-   INSERT INTO cool_numbers VALUES (1,1.618033), (-12, -34)
-   , (22, 3.141592), (-26538, 2.7182818284)
-   , (NULL, NULL), (NULL,1.4142135623)
-   , (42,NULL), (-42, NULL)
-   , (-474, 365);
+   CREATE TABLE nba
+   (
+      "Name" varchar(40),
+      "Team" varchar(40),
+      "Number" tinyint,
+      "Position" varchar(2),
+      "Age" tinyint,
+      "Height" varchar(4),
+      "Weight" real,
+      "College" varchar(40),
+      "Salary" float
+    );
 
 
-Absolute value on an integer
--------------------------------
+Here's a peek at the table contents (:download:`Download nba.csv </_static/samples/nba.csv>`):
+
+.. csv-table:: nba.csv
+   :file: nba-t10.csv
+   :widths: auto
+   :header-rows: 1
+
+``RANK`` vs. :ref:`row_number`
+-------------------------------------
 
 .. code-block:: psql
 
-   numbers=> SELECT ABS(-24);
-   24
+   t=> SELECT ROW_NUMBER () OVER (PARTITION BY "Age" ORDER BY "Height") FROM nba;
+   row_number
+   ----------
+            1
+            2
+            1
+            2
+            3
+            4
+            5
+            6
+            7
+            8
+            9
+           10
+           11
+           12
+           13
+           14
+           15
+           16
+           17
+           18
+           19
+            1
+            2
+            3
+            4
+   [...]
 
-Absolute value on integer and floating point
------------------------------------------------
 
-.. code-block:: psql
-
-   
-   numbers=> SELECT i, ABS(i), f, ABS(f) FROM cool_numbers;
-   i      | abs   | f    | abs0
-   -------+-------+------+-----
-        1 |     1 | 1.62 | 1.62
-      -12 |    12 |  -34 |   34
-       22 |    22 | 3.14 | 3.14
-   -26538 | 26538 | 2.72 | 2.72
-          |       |      |     
-          |       | 1.41 | 1.41
-       42 |    42 |      |     
-      -42 |    42 |      |     
-     -474 |   474 |  365 |  365
-
+   t=> SELECT RANK () OVER (PARTITION BY "Age" ORDER BY "Height") FROM nba;
+   rank
+   ----
+      1
+      1
+      1
+      2
+      2
+      2
+      5
+      6
+      6
+      8
+      8
+     10
+     10
+     10
+     13
+     14
+     14
+     14
+     14
+     18
+     19
+      1
+      2
+      2
+      2
+   [...]

@@ -54,10 +54,11 @@ Synopsis
    table_alias ::= identifier
 
    window_expr ::= 
-   OVER (   
-       [ PARTITION BY value_expr [, ...] ]  
-       [ ORDER BY order [, ...]]   
-      )
+      window_fn ( [ value_expr [, ...] ] )
+         OVER (   
+            [ PARTITION BY value_expr [, ...] ]  
+            [ ORDER BY order [ ASC | DESC ] [, ...]]   
+         )
    
    table_ref ::=
        [schema_name.]table_name [ [ AS ] alias [ ( column_alias [, ... ] ) ] ]
