@@ -211,7 +211,24 @@ Loading files formatted for Windows (``\r\n``)
 
 .. code-block:: postgres
 
-   COPY table_name FROM 'filename.psv' WITH DELIMITER '|' RECORD  DELIMITER '\r\n';
+   COPY table_name FROM 'filename.psv' WITH DELIMITER '|' RECORD DELIMITER '\r\n';
+
+Loading a file from a public S3 bucket
+------------------------------------------
+
+.. note:: The bucket must be publicly available and objects can be listed
+
+.. code-block:: postgres
+
+   COPY nba FROM 's3://sqream-demo-data/nba.csv' WITH OFFSET 2 RECORD DELIMITER '\r\n';
+
+Loading files from an authenticated S3 bucket
+---------------------------------------------------
+
+.. code-block:: postgres
+
+   COPY nba FROM 's3://secret-bucket/*.csv' WITH OFFSET 2 RECORD DELIMITER '\r\n' AWS_ID '12345678' AWS_SECRET 'super_secretive_secret';
+
 
 Saving rejected rows to a file
 ----------------------------------
