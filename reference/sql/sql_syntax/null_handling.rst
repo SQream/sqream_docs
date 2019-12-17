@@ -19,7 +19,7 @@ For example, writing ``WHERE a = NULL`` will never match to ``TRUE`` or ``FALSE`
 Conditionals
 ===============
 
-Functions like :ref:`isnull` and :ref:`coalsce` evaluate arguments in their given order, so they may never evaluate some arguments.
+Functions like :ref:`isnull` and :ref:`coalesce` evaluate arguments in their given order, so they may never evaluate some arguments.
 
 For example, ``COALESCE(a,b,c,d,NULL)`` will never evalulate ``b``, ``c``, ``d``, or ``NULL`` if ``a`` is not ``NULL``.
 
@@ -46,7 +46,7 @@ With all scalar functions, a ``NULL`` input to any one of the arguments means th
 Aggregates
 ---------------
 
-With aggregates, ``NULL`` values are ignored, so they do not affect results.
+With aggregates, ``NULL`` values are ignored, so they do not affect the result set.
 
 .. code-block:: psql
    
@@ -62,14 +62,14 @@ With aggregates, ``NULL`` values are ignored, so they do not affect results.
 
 * ``NULL`` values are not included in ``COUNT()`` of a column. ``COUNT(x)`` shows the full row-count because it's a non-nullable column. ``COUNT(y)`` returns 3 - just the non-``NULL`` values.
 
-* With :ref:`min`, :ref:`max`, :ref:`avg`, ``NULL`` values are completely ignored.
+* With :ref:`min`, :ref:`max`, and :ref:`avg` - `NULL`` values are completely ignored.
 
 Distincts
 -----------
 
 ``NULL`` values are considered distinct, but only counted once.
 
-.. code-block: psql
+.. code-block:: psql
 
    t=> SELECT DISTINCT z FROM n;
    z 
@@ -82,7 +82,7 @@ Running :ref:`count` DISTINCT however, ignores the ``NULL`` values:
 
 ``NULL`` values are considered distinct, but only counted once.
 
-.. code-block: psql
+.. code-block:: psql
 
    t=> SELECT COUNT(DISTINCT z) FROM n;
    count
@@ -94,7 +94,7 @@ Sorting
 
 When sorting a column containing ``NULL`` values, SQream DB sorts ``NULL`` values first with ``ASC`` and last with ``DESC``. 
 
-.. code-block: psql
+.. code-block:: psql
 
    t=> SELECT * FROM n ORDER BY z ASC;
    x | y  | z 
