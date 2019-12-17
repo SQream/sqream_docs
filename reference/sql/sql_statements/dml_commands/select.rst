@@ -64,7 +64,7 @@ Synopsis
        [schema_name.]table_name [ [ AS ] alias [ ( column_alias [, ... ] ) ] ]
        | ( query ) [ [AS] alias [ ( column_alias [, ... ] ) ] ]
        | table_ref join_type  table_ref
-           [ ON value_expr | USING ( join_column [, ... ] ) ]
+           [ ON value_expr ]
        | table_alias
 
    schema_name ::= identifier
