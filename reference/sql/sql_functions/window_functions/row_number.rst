@@ -15,7 +15,11 @@ Syntax
 
 .. code-block:: postgres
 
-   ROW_NUMBER( ) --> BIGINT
+   ROW_NUMBER( )
+         OVER (   
+            [ PARTITION BY partition_expr [, ...] ]  
+            [ ORDER BY order [ ASC | DESC ] [, ...]]   
+         )
 
 Arguments
 ============

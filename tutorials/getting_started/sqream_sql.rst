@@ -100,7 +100,7 @@ To see the tables in the current database, we will query the catalog
 Inserting rows
 =================
 
-Inserting rows into a table can be performed with the :ref:`INSERT INTO <insert_into>` statement.
+Inserting rows into a table can be performed with the :ref:`insert_into` statement.
 The statement includes the table name, an optional list of column names, and column values listed in the same order as the column names:
 
 .. code-block:: psql

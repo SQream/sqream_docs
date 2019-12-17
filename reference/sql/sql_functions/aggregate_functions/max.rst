@@ -12,7 +12,16 @@ Syntax
 
 .. code-block:: postgres
 
+   -- As an aggregate
+   
    MAX( expr )
+   
+   -- As a window function
+   
+   MAX ( expr ) OVER (   
+            [ PARTITION BY partition_expr [, ...] ]  
+            [ ORDER BY order [ ASC | DESC ] [, ...]]   
+         )
 
 Arguments
 ============

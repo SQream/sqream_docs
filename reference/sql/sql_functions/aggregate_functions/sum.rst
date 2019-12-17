@@ -12,7 +12,16 @@ Syntax
 
 .. code-block:: postgres
 
+   -- As an aggregate
+   
    SUM( [ DISTINCT ] expr )
+   
+   -- As a window function
+   
+   SUM ( expr ) OVER (   
+            [ PARTITION BY partition_expr [, ...] ]  
+            [ ORDER BY order [ ASC | DESC ] [, ...]]   
+         )
 
 Arguments
 ============

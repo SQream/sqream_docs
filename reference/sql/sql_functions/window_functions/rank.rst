@@ -15,7 +15,11 @@ Syntax
 
 .. code-block:: postgres
 
-   RANK( ) --> BIGINT
+   RANK( )
+      OVER (   
+            [ PARTITION BY partition_expr [, ...] ]  
+            [ ORDER BY order [ ASC | DESC ] [, ...]]   
+         )
 
 Arguments
 ============
