@@ -213,7 +213,7 @@ Specifying multiple comma-separated tables is equivalent to a cross join, that c
    5 |  5
    5 |  6
 
-t=> SELECT * FROM left_side l, right_side r WHERE (r.x=l.x);
+   t=> SELECT * FROM left_side l, right_side r WHERE (r.x=l.x);
    x | x0
    --+---
    2 |  2
