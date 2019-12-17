@@ -6,7 +6,7 @@ Null handling
 
 SQream DB handles ``NULL`` values similar to other RDBMSs, but there are some differences that are worth noting.
 
-.. tip:: When using :ref:`sqream_sql` ``NULL`` values are displayed as ``\N``. Different clients may show other values, including an empty string.
+.. tip:: When using :ref:`sqream sql<sqream_sql_cli_reference>` ``NULL`` values are displayed as ``\N``. Different clients may show other values, including an empty string.
 
 Comparisons
 ==============
