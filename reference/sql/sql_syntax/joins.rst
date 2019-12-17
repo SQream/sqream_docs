@@ -137,7 +137,7 @@ Left join
    2 |  2
    4 |  4
    5 |  5
-   1 |   
+   1 | \N
 
 Right join
 ------------
@@ -148,13 +148,13 @@ Right join
 
    t=> SELECT * FROM left_side AS l LEFT JOIN right_side AS r 
    .>         ON l.x = r.x;
-   x | x0
-   --+---
-   2 |  2
-   4 |  4
-   5 |  5
-     |  3
-     |  6
+   x  | x0
+   ---+---
+   2  |  2
+   4  |  4
+   5  |  5
+   \N |  3
+   \N |  6
 
 Cross join
 -------------
