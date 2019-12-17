@@ -220,4 +220,29 @@ Specifying multiple comma-separated tables is equivalent to a cross join, that c
    4 |  4
    5 |  5
 
+Join hints
+-------------
+
+Join hints can be used to override the query compiler and choose a particular join algorithm.
+
+The available algorithms are ``LOOP`` (corresponding to non-indexed nested loop join algorithm), and ``MERGE`` (corresponding to sort merge join algorithm).
+
+If no algorithm is specified, a loop join is performed by default.
+
+.. code-block:: psql
+   
+   t=> SELECT * FROM left_side AS l INNER MERGE JOIN right_side AS r  ON l.x = r.x;
+   x | x0
+   --+---
+   2 |  2
+   4 |  4
+   5 |  5
+   
+   t=> SELECT * FROM left_side AS l INNER LOOP JOIN right_side AS r  ON l.x = r.x; 
+   x | x0
+   --+---
+   2 |  2
+   4 |  4
+   5 |  5
+
 
