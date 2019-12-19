@@ -86,7 +86,7 @@ Date and time
    * - Function
      - Description
    * - :ref:`curdate`
-     - Special syntax, equivalent to :ref:`current_date`
+     - Special Syntax, equivalent to :ref:`current_date`
    * - :ref:`current_date`
      - Returns the current date as ``DATE``
    * - :ref:`current_timestamp`
@@ -100,7 +100,7 @@ Date and time
    * - :ref:`eomonth`
      - Calculates the last day of the month of a given date expression
    * - :ref:`extract`
-     - ANSI syntax for extracting date or time element from a date expression
+     - ANSI Syntax for extracting date or time element from a date expression
    * - :ref:`getdate`
      - Returns the current timestamp as ``DATETIME``
    * - :ref:`sysdate`
@@ -295,18 +295,44 @@ Window functions
 System functions
 ------------------
 
-show_connections()
-show_version
-show_server_status
-show_node_info(statement_id)
-show_locks()
-stop_statement(statement_id)
+System functions allow you to execute actions in the system, such as aborting a query or get information about system processes.
 
-subscribe_service(‘node_11’,’etl’);
-show_subscribed_instances();
-unsubscribe_service(‘node_11’,’etl’);
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Function
+     - Description
+   * - :ref:`explain`
+     - Returns a static query plan for a statement
+   * - :ref:`show_connections`
+     - Returns a list of jobs and statements on the current worker
+   * - :ref:`show_locks`
+     - Returns any existing locks in the database
+   * - :ref:`show_node_info`
+     - Returns a query plan for an actively running statement with timing information
+   * - :ref:`show_server_status`
+     - Shows running statements across the cluster
+   * - :ref:`show_version`
+     - Returns the version of SQream DB
+   * - :ref:`stop_statement`
+     - Stops a query (or statement) if it is currently running
 
 
+
+Workload management functions
+---------------------------------
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - :ref:`subscribe_service`
+     - Add a SQream DB worker to a service queue 
+   * - :ref:`unsubscribe_service`
+     - Remove a SQream DB worker to a service queue
+   * - :ref:`show_subscribed_instances`
+     - Return a list of service queues and workers
 
 .. toctree::
    :maxdepth: 2

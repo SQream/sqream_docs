@@ -15,7 +15,7 @@ Permissions
 
 The role must have the ``CREATE`` permission at the schema level.
 
-Synopsis
+Syntax
 ==========
 
 .. code-block:: postgres
@@ -38,7 +38,6 @@ Synopsis
        { NOT NULL | NULL }
    
    default ::=
-   
        DEFAULT default_value
        | IDENTITY [ ( start_with [ , increment_by ] ) ]
 
@@ -60,6 +59,56 @@ Parameters
    * - ``column_def``
      - A comma separated list of column definitions. A minimal column definition includes a name identifier and a datatype. Other column constraints and default values can be added optionally.
 
+
+.. _default_values:
+
+Default values
+===============
+
+The ``DEFAULT`` value constraint specifies a value to use if a value isn't defined in an :ref:`insert` or :ref:`copy_from` statement. 
+
+The value may be either a literal or `GETDATE()`, which is s evaluated at the time the row is created.
+
+.. note:: The ``DEFAULT`` constraint only applies if the column does not have a value specified in the :ref:`insert` or :ref:`copy_from` statement. You can still insert a ``NULL`` into an nullable column by explicitly inserting ``NULL``. For example, ``INSERT INTO cool_animals VALUES (1, 'Gnu', NULL)``.
+
+Syntax
+---------
+
+.. code-block:: postgres
+
+   column_def :: = { column_name type_name [ default ] [ column_constraint ] }
+
+   column_constraint ::=
+       { NOT NULL | NULL }
+
+   default ::=
+       DEFAULT default_value
+       | IDENTITY [ ( start_with [ , increment_by ] ) ]
+
+
+.. _identity:
+
+Identity (sequence)
+-----------------------
+
+Identity columns can be used for generating key values. Some databases call this ``AUTOINCREMENT``.
+
+The identity property on a column guarantees that each new row inserted is generated based on the current seed & increment.
+
+.. warning:: 
+   The identity property on a column does not guarantee uniqueness. The identity value can be bypassed by specifying it in an :ref:`insert` command.
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Description
+   * - ``start_with``
+     - A value that is used for the very first row loaded into the table.
+   * - ``increment_by``
+     - Incremental value that is added to the identity value of the previous row that was loaded.
+
 Examples
 ===========
 
@@ -72,8 +121,22 @@ A simple table
       id INT NOT NULL,
       name varchar(30) NOT NULL,
       weight FLOAT,
+      is_agressive BOOL
+   );
+
+A table with default values for some columns
+---------------------------------------------------
+
+.. code-block:: postgres
+
+   CREATE TABLE cool_animals (
+      id INT NOT NULL,
+      name varchar(30) NOT NULL,
+      weight FLOAT,
       is_agressive BOOL DEFAULT false NOT NULL
    );
+
+.. note:: The nullable/non-nullable constraint appears at the end, after the default option
 
 A table with an identity (autoincrement) column
 ---------------------------------------------------
@@ -81,14 +144,15 @@ A table with an identity (autoincrement) column
 .. code-block:: postgres
 
    CREATE TABLE users (
-      id BIGINT NOT NULL IDENTITY(0,1), -- Start with 0, increment by 1
+      id BIGINT IDENTITY(0,1) NOT NULL , -- Start with 0, increment by 1
       name VARCHAR(30) NOT NULL,
-      country VARCHAR(30) NOT NULL,
+      country VARCHAR(30) DEFAULT 'Unknown' NOT NULL
    );
 
 .. note:: 
-   * Identity columns are supported on BIGINT columns.
-   * Identity does not enforce the uniqueness of values. The identity value can be bypassed by specifying it in an INSERT command.
+   * Identity columns are supported on ``BIGINT`` columns.
+   
+   * Identity does not enforce the uniqueness of values. The identity value can be bypassed by specifying it in an :ref:`insert` command.
 
 Creating a table from a SELECT query
 -----------------------------------------

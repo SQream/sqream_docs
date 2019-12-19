@@ -141,7 +141,7 @@ Select lists
 
 The ``select_list`` is a comma separated list of column names and value expressions.
 
-* Use ``LIMIT num_rows`` to retrieve only the first ``num_rows`` results. SQream DB also supports the ``TOP num_rows`` syntax from SQL Server.
+* Use ``LIMIT num_rows`` to retrieve only the first ``num_rows`` results. SQream DB also supports the ``TOP num_rows`` Syntax from SQL Server.
 * ``DISTINCT`` can be used to remove duplicate rows.
 * Value expressions in select lists support aggregate and window functions as well as normal value expressions.
 
@@ -235,8 +235,13 @@ Get all columns
    Terry Rozier             | Boston Celtics         |     12 | PG       |  22 | 6-2    |    190 | Louisville            |  1824360
    Marcus Smart             | Boston Celtics         |     36 | PG       |  22 | 6-4    |    220 | Oklahoma State        |  3431040
 
+.. _where:
+
 Filter on conditions
 -----------------------
+
+Use the ``WHERE`` clause to filter results.
+
 
 .. code-block:: psql
    
@@ -402,6 +407,8 @@ Filtering on aggregates is done with the ``HAVING`` clause, rather than the ``WH
    New York Knicks,4581493
    Sacramento Kings,4778911
    Toronto Raptors,4741174
+
+.. _order_by:
 
 Sorting results
 -------------------

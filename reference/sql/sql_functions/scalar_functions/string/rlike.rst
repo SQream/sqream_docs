@@ -8,7 +8,7 @@ Tests if a string matches a given regular expression pattern.
 
 ``RLIKE`` and :ref:`like` are similar, but ``RLIKE`` uses POSIX regular expressions instead of the SQL patterns.
 
-See also: :ref:`like`, :ref:`regexp_count`, :ref:`rexep_instr`, :ref:`regexp_substr`.
+See also: :ref:`like`, :ref:`regexp_count`, :ref:`regexp_instr`, :ref:`regexp_substr`.
 
 Syntax
 ==========

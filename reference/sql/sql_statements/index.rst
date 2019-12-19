@@ -51,7 +51,7 @@ Data Definition commands (DDL)
      - Rename a table
    * - :ref:`SELECT GET_DDL(\<table name>)<get_ddl>`
      - View the ``CREATE TABLE`` statement for a table
-   * - :ref:`SELECT GET_FUNCTION_DDL('\<function name>)<get_function_ddl>`
+   * - :ref:`SELECT GET_FUNCTION_DDL(\<function name>)<get_function_ddl>`
      - View the ``CREATE FUNCTION`` statement for a UDF
    * - :ref:`SELECT GET_VIEW_DDL(\<view name>)<get_view_ddl>`
      - View the ``CREATE VIEW`` statement for a view
@@ -67,19 +67,19 @@ Data Definition commands (DDL)
    
    * - Command
      - Usage
-   * - ``ALTER DEFAULT PERMISSIONS``
+   * - :ref:`alter_default_permissions`
      - Applies a change to defaults in the current schema
-   * - ``ALTER ROLE``
+   * - :ref:`alter_role`
      - Applies a change to an existing role
-   * - ``CREATE ROLE``
+   * - :ref:`create_role`
      - Creates a roles, which lets you control permissions on tables and databases
-   * - ``DROP ROLE``
+   * - :ref:`drop_role`
      - Removes roles
-   * - ``GRANT``
+   * - :ref:`grant`
      - Grant permissions to a role
-   * - ``REVOKE``
+   * - :ref:`revoke`
      - Revoke permissions from a role
-   * - ``RENAME ROLE``
+   * - :ref:`rename_role`
      - Rename a role
 
 Data manipulation commands (DML)

@@ -127,7 +127,7 @@ When combining multiple options, use ``WITH`` followed by all options, separated
 Use non-printable ASCII characters as delimiter
 -------------------------------------------------------
 
-Any printable ASCII character can be used as the delimiter without special syntax.
+Any printable ASCII character can be used as the delimiter without special Syntax.
 
 Tab and newline can be specified by escaping them, for example ``\t`` or ``\n`` respectively.
 

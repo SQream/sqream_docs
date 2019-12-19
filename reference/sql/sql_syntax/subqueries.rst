@@ -83,7 +83,7 @@ Combining a subquery with a join
 ``WITH`` subqueries
 ---------------------
 
-See :ref:`common_table_expressions` for more about CTEs. 
+See :ref:`common_table_expressions` for more information. 
 
 .. code-block:: psql
    

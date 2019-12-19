@@ -88,9 +88,9 @@ Column objects for standard tables
    * - ``column_size``
      - The maximum length in bytes.
    * - ``has_default``
-     - ``NULL`` if the column has no default value. ``1`` if the default is a fixed value, or ``2`` if the default is a :ref:`SEQUENCE <sequence>`
+     - ``NULL`` if the column has no default value. ``1`` if the default is a fixed value, or ``2`` if the default is an :ref:`identity`
    * - ``default_value``
-     - Default value for the column, or the 
+     - :ref:`Default value<default_values>` for the column
    * - ``compression_strategy``
      - User-overridden compression strategy
    * - ``created``

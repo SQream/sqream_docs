@@ -14,7 +14,7 @@ SQL statements are made up of three components:
 Keywords
 ===========
 
-Keywords are special words that make up SQream's SQL syntax, and have a meaning in a statement.
+Keywords are special words that make up SQream's SQL Syntax, and have a meaning in a statement.
 
 Keywords are not allowed as identifiers. :ref:`A full list of reserved keywords <reserved_keywords>` can be found at the end of this document.
 

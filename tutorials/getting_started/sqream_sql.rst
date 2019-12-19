@@ -36,7 +36,7 @@ When starting SQream SQL, after entering your password, you are presented with t
    
    master=> _
 
-To create a table, we will use the :ref:`CREATE TABLE <create_table>` syntax, with a table name and some :ref:`column specifications <column_specs>`.
+To create a table, we will use the :ref:`create_table` syntax, with a table name and some column specifications.
 
 For example,
 
@@ -61,7 +61,7 @@ If the table already exists and you want to drop the current table and create a 
    );
 
 
-You can ask SQream DB to list the full, verbose ``CREATE TABLE`` statement for any table, by using the :ref:`GET_DDL <get_ddl>` function, with the table name.
+You can ask SQream DB to list the full, verbose ``CREATE TABLE`` statement for any table, by using the :ref:`get_ddl` function, with the table name.
 
 .. code-block:: psql
 
@@ -76,7 +76,7 @@ You can ask SQream DB to list the full, verbose ``CREATE TABLE`` statement for a
    * SQream DB identifier names such as table names and column names are not case sensitive. SQream DB lowercases all identifiers bu default. If you want to maintain case, enclose the identifiers with double-quotes.
    * SQream DB places all tables in the `public` schema, unless another schema is created and specified as part of the table name.
 
-If you are done with this table, you can use :ref:`DROP TABLE <drop_table>` to remove the table and all of its data.
+If you are done with this table, you can use :ref:`drop_table` to remove the table and all of its data.
 
 .. code-block:: psql
 
@@ -100,7 +100,7 @@ To see the tables in the current database, we will query the catalog
 Inserting rows
 =================
 
-Inserting rows into a table can be performed with the :ref:`insert_into` statement.
+Inserting rows into a table can be performed with the :ref:`insert` statement.
 The statement includes the table name, an optional list of column names, and column values listed in the same order as the column names:
 
 .. code-block:: psql
@@ -128,7 +128,7 @@ To insert multiple rows, use sets of parentheses:
    
    executed
 
-When you leave out columns that have a :ref:`default value <default_value>` (including default null value) the default value is used.
+When you leave out columns that have a :ref:`default value<default_values>` (including default ``NULL`` value) the default value is used.
 
 .. code-block:: psql
 
@@ -156,7 +156,7 @@ When you leave out columns that have a :ref:`default value <default_value>` (inc
 Queries
 =========
 
-For querying, use the :ref:`SELECT <select>` keyword, followed by a list of columns and values to be returned, and the table to get the data from.
+For querying, use the :ref:`select` keyword, followed by a list of columns and values to be returned, and the table to get the data from.
 
 .. code-block:: psql
 
@@ -184,7 +184,7 @@ To get all columns without specifying them, use the star operator ``*``:
    
    6 rows
 
-To get the number of values in a table without getting the full result set, use ``COUNT(*)``:
+To get the number of values in a table without getting the full result set, use :ref:`COUNT(*)<count>`:
 
 .. code-block:: psql
 
@@ -194,7 +194,7 @@ To get the number of values in a table without getting the full result set, use 
    1 row
 
 
-Filter results by adding a :ref:`WHERE <where>` clause and specifying the filter condition:
+Filter results by adding a :ref:`WHERE<where>` clause and specifying the filter condition:
 
 .. code-block:: psql
 
@@ -204,7 +204,7 @@ Filter results by adding a :ref:`WHERE <where>` clause and specifying the filter
    
    2 rows
 
-Sort the results by adding an :ref:`ORDER BY <order_by>` clause, and specifying ascending (``ASC``) or descending (``DESC``) order:
+Sort the results by adding an :ref:`ORDER BY<order_by>` clause, and specifying ascending (``ASC``) or descending (``DESC``) order:
 
 .. code-block:: psql
 
@@ -218,7 +218,7 @@ Sort the results by adding an :ref:`ORDER BY <order_by>` clause, and specifying 
 
    6 rows
 
-Filter null rows by adding a filter ``IS NOT NULL``:
+Filter null rows by adding a filter :ref:`IS NOT NULL<is_null>`:
 
 .. code-block:: psql
 
@@ -234,7 +234,7 @@ Filter null rows by adding a filter ``IS NOT NULL``:
 Delete rows
 =============
 
-To delete rows in a table selectively, use the :ref:`DELETE FROM <delete>` command, with a table name and a `WHERE` clause to specify which rows are to be deleted:
+To delete rows in a table selectively, use the :ref:`DELETE<delete>` command, with a table name and a `WHERE` clause to specify which rows are to be deleted:
 
 .. code-block:: psql
 
@@ -250,7 +250,7 @@ To delete rows in a table selectively, use the :ref:`DELETE FROM <delete>` comma
 
    5 rows
 
-To delete all rows in a table, use the :ref:`TRUNCATE <truncate>` command followed by the table name:
+To delete all rows in a table, use the :ref:`TRUNCATE<truncate>` command followed by the table name:
 
 .. code-block:: psql
 

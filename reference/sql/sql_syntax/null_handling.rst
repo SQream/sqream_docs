@@ -4,7 +4,7 @@
 Null handling
 ***************************
 
-SQream DB handles ``NULL`` values similar to other RDBMSs, but there are some differences that are worth noting.
+SQream DB handles ``NULL`` values similar to other RDBMSs, with some minor differences.
 
 .. tip:: When using :ref:`sqream sql<sqream_sql_cli_reference>` ``NULL`` values are displayed as ``\N``. Different clients may show other values, including an empty string.
 
@@ -62,7 +62,7 @@ With aggregates, ``NULL`` values are ignored, so they do not affect the result s
 
 * ``NULL`` values are not included in ``COUNT()`` of a column. ``COUNT(x)`` shows the full row-count because it's a non-nullable column. ``COUNT(y)`` returns 3 - just the non-``NULL`` values.
 
-* With :ref:`min`, :ref:`max`, and :ref:`avg` - `NULL`` values are completely ignored.
+* With :ref:`min`, :ref:`max`, and :ref:`avg` - ``NULL`` values are completely ignored.
 
 Distincts
 -----------
@@ -93,6 +93,8 @@ Sorting
 ========
 
 When sorting a column containing ``NULL`` values, SQream DB sorts ``NULL`` values first with ``ASC`` and last with ``DESC``. 
+
+SQream DB does not implement ``NULLS FIRST`` or ``NULLS LAST``, so where ``NULL`` appears cannot change where NULL values appear in the sort order.
 
 .. code-block:: psql
 

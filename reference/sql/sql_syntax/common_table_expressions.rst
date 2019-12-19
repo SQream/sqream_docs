@@ -4,9 +4,9 @@
 Common table expressions (CTEs)
 *********************************
 
-Common table expressions or CTEs allow a possibly complex subquery to be represented in a short way later on, for improved readability.
+Common table expressions or CTEs allow a complex subquery to be represented in a short way later on for improved readability, and reuse multiple times in a query.
 
-They usually do not affect query performance.
+CTEs do not affect query performance.
 
 Syntax
 ==========

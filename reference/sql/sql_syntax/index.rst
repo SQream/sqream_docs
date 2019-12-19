@@ -4,7 +4,7 @@
 SQL Syntax
 *************
 
-SQream DB supports SQL from the ANSI 92 syntax.
+SQream DB supports SQL from the ANSI 92 Syntax.
 
 .. toctree::
    :maxdepth: 2

@@ -49,7 +49,7 @@ Examples
 Getting the DDL for a table
 -----------------------------
 
-The result of the ``GET_DDL`` function is a verbose version of the CREATE TABLE syntax, which may include additional information that was added by SQream DB. For example, a ``NULL`` constraint may be specified explicitly.
+The result of the ``GET_DDL`` function is a verbose version of the CREATE TABLE Syntax, which may include additional information that was added by SQream DB. For example, a ``NULL`` constraint may be specified explicitly.
 
 .. code-block:: psql
 

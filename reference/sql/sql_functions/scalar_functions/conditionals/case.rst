@@ -57,7 +57,7 @@ Returns an expression consistent with the type of ``result_value_expr``.
 Notes
 =======
 
-* SQream DB does not support the ``IF .. THEN .. ELSE`` syntax. A simple case expression can replace it.
+* SQream DB does not support the ``IF .. THEN .. ELSE`` Syntax. A simple case expression can replace it.
 
 * If no ``ELSE`` is specified, the default result will be ``NULL``.
 
@@ -159,7 +159,7 @@ As SQream DB does not support the ``IF`` function found on some other DBMSs, use
 
 .. code-block:: mysql
    
-   -- MySQL syntax:
+   -- MySQL Syntax:
    IF (age > 65, "Senior", "Other")
 
 is functionally identical to:
