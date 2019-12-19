@@ -4,11 +4,11 @@
 SQL Syntax
 *************
 
-SQream DB supports SQL from the ANSI 92 Syntax.
+SQream DB supports SQL from the ANSI 92 syntax.
 
 .. toctree::
    :maxdepth: 2
-   :caption: SQL Syntax topics
+   :caption: SQL syntax topics
    :glob:
 
    keywords_and_identifiers

@@ -2,7 +2,7 @@
 
 SQL Overview
 =====================================
-This section provides reference for using SQream DB's SQL commands - DDL, DML and query Syntax.
+This section provides reference for using SQream DB's SQL commands - DDL, DML and query syntax.
 
 .. toctree::
    :maxdepth: 2

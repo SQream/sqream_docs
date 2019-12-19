@@ -6,7 +6,7 @@ DATEADD
 
 Adds or subtracts an interval to ``DATE`` or ``DATETIME`` value.
 
-.. note:: SQream DB does not support the ``INTERVAL`` ANSI Syntax. Use ``DATEADD`` to add or subtract date intervals.
+.. note:: SQream DB does not support the ``INTERVAL`` ANSI syntax. Use ``DATEADD`` to add or subtract date intervals.
 
 Syntax
 ==========
@@ -37,7 +37,7 @@ Arguments
    * - Parameter
      - Description
    * - ``interval``
-     - An interval representing a date part. See the table below or the Syntax reference above for valid date parts
+     - An interval representing a date part. See the table below or the syntax reference above for valid date parts
    * - ``number``
      - An integer expression
    * - ``date_expr``

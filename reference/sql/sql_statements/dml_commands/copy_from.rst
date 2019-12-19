@@ -17,7 +17,7 @@ Permissions
 
 The role must have the ``INSERT`` permission to the destination table.
 
-Synopsis
+Syntax
 ==========
 
 .. code-block:: postgres

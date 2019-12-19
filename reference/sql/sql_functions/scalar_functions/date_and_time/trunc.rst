@@ -40,7 +40,7 @@ Arguments
    * - ``date_expr``
      - A ``DATE`` or ``DATETIME`` expression
    * - ``interval``
-     - An interval representing a date part. See the table below or the Syntax reference above for valid date parts. If not specified, sets the value to to midnight and returns a ``DATETIME``.
+     - An interval representing a date part. See the table below or the syntax reference above for valid date parts. If not specified, sets the value to to midnight and returns a ``DATETIME``.
 
 
 Valid date parts

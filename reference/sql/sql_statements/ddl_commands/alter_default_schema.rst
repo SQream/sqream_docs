@@ -13,7 +13,7 @@ Permissions
 
 No special permissions are required
 
-Synopsis
+Syntax
 ==========
 
 .. code-block:: postgres

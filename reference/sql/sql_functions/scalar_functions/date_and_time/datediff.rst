@@ -37,7 +37,7 @@ Arguments
    * - Parameter
      - Description
    * - ``interval``
-     - An interval representing a date part. See the table below or the Syntax reference above for valid date parts
+     - An interval representing a date part. See the table below or the syntax reference above for valid date parts
    * - ``date_expr1``, ``date_expr2``
      - A ``DATE`` or ``DATETIME`` expression. The function calculates ``date_expr1 - date_expr2``.
 

@@ -16,7 +16,7 @@ Permissions
 
 The role must have the ``CONNECT`` permission at the database level.
 
-Synopsis
+Syntax
 ==========
 
 .. code-block:: postgres

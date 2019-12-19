@@ -10,7 +10,7 @@ Permissions
 =============
 The role must have the ``CREATE`` permission at the schema level, as well as ``SELECT`` permissions for any tables referenced by the statement.
 
-Synopsis
+Syntax
 ==========
 
 ..     CREATE [ OR REPLACE ] TABLE [schema_name].table_name (

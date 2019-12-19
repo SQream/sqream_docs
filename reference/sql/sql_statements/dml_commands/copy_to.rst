@@ -15,7 +15,7 @@ Permissions
 
 The role must have the ``SELECT`` permission on every table or schema that is referenced by the statement.
 
-Synopsis
+Syntax
 ==========
 
 .. code-block:: postgres
@@ -127,7 +127,7 @@ When combining multiple options, use ``WITH`` followed by all options, separated
 Use non-printable ASCII characters as delimiter
 -------------------------------------------------------
 
-Any printable ASCII character can be used as the delimiter without special Syntax.
+Any printable ASCII character can be used as the delimiter without special syntax.
 
 Tab and newline can be specified by escaping them, for example ``\t`` or ``\n`` respectively.
 

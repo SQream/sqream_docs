@@ -6,7 +6,7 @@ EXTRACT
 
 Extracts a date or time part from a ``DATE`` or ``DATETIME`` value.
 
-.. note:: SQream DB also supports the SQL Server :ref:`DATEPART<datepart>` Syntax, which contains more date parts for use.
+.. note:: SQream DB also supports the SQL Server :ref:`DATEPART<datepart>` syntax, which contains more date parts for use.
 
 Syntax
 ==========
@@ -36,7 +36,7 @@ Arguments
    * - Parameter
      - Description
    * - ``interval``
-     - An interval representing a date part. See the table below or the Syntax reference above for valid date parts
+     - An interval representing a date part. See the table below or the syntax reference above for valid date parts
    * - ``date_expr``
      - A ``DATE`` or ``DATETIME`` expression
 

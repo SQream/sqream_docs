@@ -12,7 +12,7 @@ Permissions
 
 The role must have the ``DDL`` permission at the database or table level.
 
-Synopsis
+Syntax
 ==========
 
 .. code-block:: postgres

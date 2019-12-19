@@ -48,7 +48,7 @@ Convert external tables to native tables
 
 SQream DB's native storage is heavily optimized for analytic workloads. It is always faster for querying than other formats, even columnar ones such as Parquet. It also enables the use of additional metadata to help speed up queries, in some cases by many orders of magnitude.
 
-You can improve the performance of all operations by converting external tables into native tables, e.g. by using the ``CREATE TABLE AS`` Syntax.
+You can improve the performance of all operations by converting external tables into native tables, e.g. by using the :ref:`create_table_as` syntax.
 
 For example,
 

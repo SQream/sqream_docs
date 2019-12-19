@@ -15,7 +15,7 @@ Permissions
 =============
 The role must have the ``CREATE`` permission at the database level.
 
-Synopsis
+Syntax
 ==========
 
 .. code-block:: postgres

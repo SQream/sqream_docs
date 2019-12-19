@@ -16,7 +16,7 @@ Permissions
 
 This clause requires no special permissions.
 
-Synopsis
+Syntax
 ==========
 
 .. code-block:: postgres

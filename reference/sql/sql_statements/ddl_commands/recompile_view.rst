@@ -10,7 +10,7 @@ Permissions
 =============
 The role must have the ``DDL`` permission at the database level, as well as ``SELECT`` permissions for any tables referenced by the view.
 
-Synopsis
+Syntax
 ==========
 
 .. code-block:: postgres

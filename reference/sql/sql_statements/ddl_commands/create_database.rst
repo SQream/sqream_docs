@@ -11,7 +11,7 @@ Permissions
 
 Only a superuser can create a new database
 
-Synopsis
+Syntax
 ==========
 
 .. code-block:: postgres

@@ -86,7 +86,7 @@ Date and time
    * - Function
      - Description
    * - :ref:`curdate`
-     - Special Syntax, equivalent to :ref:`current_date`
+     - Special syntax, equivalent to :ref:`current_date`
    * - :ref:`current_date`
      - Returns the current date as ``DATE``
    * - :ref:`current_timestamp`
@@ -100,7 +100,7 @@ Date and time
    * - :ref:`eomonth`
      - Calculates the last day of the month of a given date expression
    * - :ref:`extract`
-     - ANSI Syntax for extracting date or time element from a date expression
+     - ANSI syntax for extracting date or time element from a date expression
    * - :ref:`getdate`
      - Returns the current timestamp as ``DATETIME``
    * - :ref:`sysdate`

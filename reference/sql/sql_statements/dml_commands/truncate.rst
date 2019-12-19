@@ -13,7 +13,7 @@ Permissions
 
 The role must have the ``DELETE`` permission at the table level.
 
-Synopsis
+Syntax
 ==========
 
 .. code-block:: postgres

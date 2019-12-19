@@ -91,7 +91,7 @@ For example, ``ON left_side.name = right_side.name`` matches when both name colu
 
 For ``LEFT`` and ``RIGHT`` joins, the ``ON`` clause is optional. However, if it is not specified, the result is a computationally intensive ``CROSS JOIN``.
 
-.. tip:: SQream DB does not support the ``USING`` Syntax. However, queries can be easily rewritten. ``left_side JOIN right_side using (name)`` is equivalent to ``ON left_side.name = right_side.name``
+.. tip:: SQream DB does not support the ``USING`` syntax. However, queries can be easily rewritten. ``left_side JOIN right_side using (name)`` is equivalent to ``ON left_side.name = right_side.name``
 
 
 
