@@ -15,4 +15,5 @@ this is the introduction
 
    what_is_sqream_db
    getting_started
+   hardware_intro
    features_tour

@@ -13,7 +13,10 @@ Features tour
 * sequences
 * udfs
 * external tables
+* copy
 * roles, permissions
 * catalog
 * wlm
 * cluster/concurrency/ha system
+* docker
+

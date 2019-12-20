@@ -5,11 +5,19 @@ Troubleshooting
 ***********************
 
 
+do some example troubleshooting use cases
 
+optimisation is a link
 
+performance problems
 
-.. toctree::
-   :maxdepth: 2
-   :caption: In this section:
-   :glob:
+errors
 
+*  usage errors
+*  bugs in sqream
+
+logs
+
+configuration
+
+running a separate sqream instance

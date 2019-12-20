@@ -4,12 +4,6 @@
 Configuration
 ***********************
 
+list the main configuration options and how they are used
 
-
-
-
-.. toctree::
-   :maxdepth: 2
-   :caption: In this section:
-   :glob:
-
+point to the best practices as well

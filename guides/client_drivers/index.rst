@@ -4,7 +4,8 @@
 Client drivers
 ***********************
 
-
+todo: figure out how to do this/unravel with the "connect and build
+applications" guide
 
 
 .. toctree::
@@ -15,4 +16,3 @@ Client drivers
    jdbc
    odbc
    python
-   

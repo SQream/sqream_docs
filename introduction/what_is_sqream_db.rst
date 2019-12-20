@@ -20,6 +20,7 @@ runs on prem or on the cloud
 
 we see customers able to go from 3 months to 12 years data, and stuff like that
 
+extremely fast data loading speed
 
 * a range of data types
 * tables

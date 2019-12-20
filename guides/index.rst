@@ -20,10 +20,11 @@ write a summary of each guide here
   metadata_system
   access_control
   python_functions
+  copy
   external_tables
   saved_queries
-  delete
   insert
+  delete
   compression
   chunks_and_extents
   lock_system

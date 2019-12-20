@@ -1,7 +1,7 @@
-.. _external_tables:
+.. _copy:
 
 ***********************
-external_tables
+copy
 ***********************
 
 give an example
@@ -14,3 +14,5 @@ hdfs url support also
 error handling
 
 best practices
+
+try to combine sensibly with the external table stuff
