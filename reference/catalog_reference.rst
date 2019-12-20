@@ -1,12 +1,10 @@
-.. _information_schema:
+.. _catalog_reference:
 
 *************************************
-Information Schema (SQream catalog)
+Catalog reference
 *************************************
 
-SQream DB contains a virtual schema called ``sqream_catalog`` that contains information about your database's objects - tables, columns, views, permissions, and more.
-
-Because the catalog is a virtual schema, it is available from any database.
+SQream DB contains a schema called ``sqream_catalog`` that contains information about your database's objects - tables, columns, views, permissions, and more.
 
 Some additional catalog tables are used primarily for internal introspection, which could change across SQream DB versions.
 
@@ -385,7 +383,7 @@ views
 Additional tables 
 ======================
 
-There are additional tables in the information schema that can be used for performance monitoring and inspection.
+There are additional tables in the catalog that can be used for performance monitoring and inspection.
 
 The definition for these tables is provided below could change across SQream DB versions.
 

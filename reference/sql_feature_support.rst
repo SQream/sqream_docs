@@ -5,10 +5,7 @@ SQL Feature Support
 *************************
 
 
-Even though SQL is standardized in various ANSI documents, no DBMS implements the entire standard.
-Some features have no implementation at all.
-
-To understand which SQL features SQream DB supports, use the tables below.
+To understand which ANSI SQL and other SQL features SQream DB supports, use the tables below.
 
 .. contents:: In this topic:
    :local:

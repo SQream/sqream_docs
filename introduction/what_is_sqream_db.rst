@@ -4,7 +4,50 @@
 What is SQream DB
 *****************
 
-sql dbms
-columnar
-5-500tb
-etc.
+columnar SQL DBMS
+
+runs on GPUs
+
+5TB to 500TB+
+
+can support 100TB+ on a single node depending on workload
+
+can support 30+ concurrent users
+
+has high availability
+
+runs on prem or on the cloud
+
+we see customers able to go from 3 months to 12 years data, and stuff like that
+
+
+* a range of data types
+* tables
+* schemas
+* roles and permissions
+* sequences
+* views
+* saved queries
+* external tables
+* python udfs
+* aggregates
+* window functions
+
+no limit to nested queries
+   
+join any amount of tables
+
+catalog
+
+robust serializable transactions and concurrency control
+
+something about the data management/metadata skipping
+
+wide range of client drivers
+
+integrates with a wide range of third party components
+
+performance
+cost/ tco
+
+highly responsive team, including new feature development
