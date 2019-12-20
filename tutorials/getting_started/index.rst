@@ -18,6 +18,5 @@ Browse the articles in the sidebar, or use the search to find the information yo
    local_docker
    recommended_configuration
    sqream_sql
-   connect_to_sqream/index
 
 
