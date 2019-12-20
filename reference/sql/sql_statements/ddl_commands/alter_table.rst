@@ -4,10 +4,11 @@
 ALTER TABLE
 **********************
 
-``ALTER TABLE`` can be used to make schema changes to a table. It works in conjunction with several sucbommands.
+``ALTER TABLE`` can be used to make schema changes to a table. It works in conjunction with several subcommands.
 
 Locks
 =======
+
 Schema changes take an exclusive lock on tables. While these operations are usually short, other statements may have to wait until the schema changes are completed.
 
 Subcommands

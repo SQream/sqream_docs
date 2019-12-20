@@ -127,7 +127,7 @@ Solving "Code 126" ODBC errors
 
 After installing the ODBC driver, you may experience the following error: 
 
-.. code-block::
+.. code-block:: none
 
    The setup routines for the SQreamDriver64 ODBC driver could not be loaded due to system error
    code 126: The specified module could not be found.

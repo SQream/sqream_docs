@@ -140,7 +140,7 @@ Searched case
     END AS "Age Group"
    FROM (VALUES (2), (5), (15), (19), (32), (44), (87)) AS t(age);
 
-.. code-block::
+.. code-block:: none
 
    age | Age group  
    ----+------------
