@@ -1,4 +1,4 @@
-.. _delete:
+.. _delete_guide:
 
 ***********************
 delete

@@ -38,7 +38,7 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
 .. toctree::
    :caption: Contents:
    :glob:
-   :maxdepth: 3
+   :maxdepth: 6
    :titlesonly:
 
    introduction/index

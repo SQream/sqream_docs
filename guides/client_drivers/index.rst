@@ -9,10 +9,7 @@ applications" guide
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 5
    :caption: In this section:
    :glob:
 
-   jdbc
-   odbc
-   python

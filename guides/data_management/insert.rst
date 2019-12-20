@@ -1,4 +1,4 @@
-.. _insert:
+.. _insert_guide:
 
 ***********************
 insert
