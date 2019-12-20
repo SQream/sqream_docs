@@ -4,7 +4,7 @@
 Third party tools
 ************************************
 
-These topics explain how to install and connect a variety of SQream and 3rd party tools, and write applications for SQream DB.
+These topics explain how to install and connect a variety of third party tools.
 
 Browse the articles below, in the sidebar, or use the search to find the information you need.
 
