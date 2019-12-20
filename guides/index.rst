@@ -18,20 +18,24 @@ this is important to help users find the guide they need, since there are so man
    :caption: In this section:
    :glob:
 
-   queries
-   work_load_manager
-   access_control
-   python_functions
-   saved_queries
-   seeing_the_system_objects_as_sql
+   xxqueries
+   xxwork_load_manager
+   xxaccess_control
+   xxpython_functions
+   xxsaved_queries
+   xxseeing_the_system_objects_as_sql
 
-   data_management_and_concurrency/index
+   xxdata_management_and_concurrency/index
+   data_management_and_concurrency/concurrency_and_locks
+
+   xxoperations/index
+   operations/optimization_best_practices
+
 
    client_drivers/index
    third_party_tools/index
 
-   operations/index
 
-   architecture/index
+   xxarchitecture/index
 
    setup/index
