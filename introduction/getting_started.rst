@@ -4,6 +4,14 @@
 Getting started
 ***************
 
+.. TODO: part one of the tutorial is how to connect with clientcmd,
+.. and create some tables, insert data and query it
+.. part 2: expand on this
+.. how to run sqream/check it's running
+.. how to add a database and do roles and permissions (to get started)
+.. options for inserting data - overview of all of them
+.. deleting/managing data overview (including storage reorg)
+
 This tutorial explains the basics of SQream DB SQL.
 
 .. contents:: In this topic:

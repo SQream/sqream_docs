@@ -134,3 +134,9 @@ Returning only the columns you need to client programs can improve overall query
 This also reduces the overall result set, which can improve performance in third-party tools.
 
 SQream is able to optimize out unneeded columns very strongly due to its columnar storage.
+
+.. todo: show an execution plan
+.. what else should be here, and what can we do right now
+.. select report('/tmp',$$select a,b,c from tableA a join tableB b on a.id=b.id and a>4000 and b like '%this is a sample query%' $$);
+
+..  discard_results

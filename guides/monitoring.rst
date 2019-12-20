@@ -51,14 +51,32 @@ Alert if Mem usage > 95%
 
 
 monitoring a running statement
+select show_node_info(statement_id);
+try to explain how to actually use it (if this is even possible)
 
 monitoring the activity of the system
 
-locks
+
+show_cluster_nodes
+
+show_conf
+
+backup_storage?
+
+show_server_status()
+
+stop_statement()
+
+
+show_locks
+
+how do you release locks
+
+sqream_version
 
 what else?
 
-viewing the usage history
+viewing the usage history - link to the logs
 
 
 
