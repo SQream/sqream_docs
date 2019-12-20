@@ -1,5 +1,5 @@
-.. _storage_features:
+.. _python_functions:
 
 ***********************
-Storage features
+python_functions
 ***********************
