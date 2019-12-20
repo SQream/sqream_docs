@@ -1,8 +1,8 @@
-.. _sqream_sql:
+.. _getting_started:
 
-***************************
-Quick guide to SQream SQL
-***************************
+***************
+Getting started
+***************
 
 This tutorial explains the basics of SQream DB SQL.
 
