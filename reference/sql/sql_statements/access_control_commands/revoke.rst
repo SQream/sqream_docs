@@ -1,19 +1,17 @@
-.. _grant:
+.. _revoke:
 
 *****************
-GRANT
+REVOKE
 *****************
 
-The ``GRANT`` statement adds permissions for a role. It allows for setting permissions to databases, schemas, and tables.
+The ``REVOKE`` statement removes permissions from a role. It allows for removing permissions to specific objects.
 
-It also allows adding a role as a memeber to another role.
-
-See also :ref:`revoke`, :ref:`create_role`.
+See also :ref:`grant`, :ref:`drop_role`.
 
 Permissions
 =============
 
-To grant permissions, the current role must have the ``SUPERUSER`` permission, or have the ``ADMIN OPTION``.
+To revoke permissions, the current role must have the ``SUPERUSER`` permission, or have the ``ADMIN OPTION``.
 
 Syntax
 ==========
@@ -22,16 +20,16 @@ Syntax
 
    grant_statement ::=
       { 
-      -- Grant permissions at the cluster level:
-      GRANT 
+      -- revoke permissions at the cluster level:
+      REVOKE 
          { SUPERUSER
          | LOGIN 
          | PASSWORD 'password' 
          } 
-         TO role_name [, ...] 
+         FROM role_name [, ...] 
       
-      -- Grant permissions at the database level:
-      | GRANT
+      -- Revoke permissions at the database level:
+      | REVOKE
          {
             { CREATE
             | CONNECT
@@ -42,10 +40,10 @@ Syntax
          | ALL [PERMISSIONS]
          }  
          ON DATABASE database_name [, ...]
-         TO role_name [, ...] 
+         FROM role_name [, ...] 
       
-      -- Grant permissions at the schema level: 
-      | GRANT 
+      -- Revoke permissions at the schema level: 
+      | REVOKE 
          {
             { CREATE 
             | DDL 
@@ -55,10 +53,10 @@ Syntax
          | ALL [PERMISSIONS ]
          } 
          ON SCHEMA schema_name [, ...] 
-         TO role_name [, ...]
+         FROM role_name [, ...]
       
-      -- Grant permissions at the object level: 
-      | GRANT 
+      -- Revoke permissions at the object level: 
+      | REVOKE 
          {
             { SELECT 
             | INSERT 
@@ -68,22 +66,22 @@ Syntax
          | ALL [PERMISSIONS]
          }
          ON { TABLE table_name [, ...] | ALL TABLES IN SCHEMA schema_name [, ...]} 
-         TO role_name [, ...]
+         FROM role_name [, ...]
       
                   
-      -- Grant execute function permission: 
-      | GRANT 
+      -- Revoke execute function permission: 
+      | REVOKE 
          { ALL 
          | EXECUTE 
          | DDL
          } 
          ON FUNCTION function_name 
-         TO role_name [, ...]
+         FROM role_name [, ...]
        
                   
-      -- Pass privileges between roles by granting one role to another: 
-      | GRANT role_name [, ...] 
-         TO role_name_2
+      -- Remove privileges between roles by revoking role membership: 
+      | REVOKE role_name [, ...] 
+         FROM role_name_2
          [ WITH ADMIN OPTION ]
 
       ;
@@ -108,9 +106,9 @@ Parameters
    * - Parameter
      - Description
    * - ``role_name``
-     - The name of the role to grant permissions to
+     - The name of the role to revoke permissions from
    * - ``table_name``, ``database_name``, ``schema_name``, ``function_name``
-     - Object to grant permissions on.
+     - Object to revoke permissions on.
 
 Supported permissions
 =======================
@@ -165,54 +163,20 @@ Supported permissions
 Examples
 ===========
 
-Creating a user role with login permissions
+Prevent a role from modifying table contents
 ----------------------------------------------
 
-Convert a role to a user by granting a password and login permissions
+If you don't trust user ``shifty``, reokve DDL and INSERT permissions.
 
 .. code-block:: postgres
 
-   CREATE ROLE new_role;
-   GRANT LOGIN to new_role;
-   GRANT PASSWORD 'Tr0ub4dor&3' to new_role;
-   GRANT CONNECT ON DATABASE master to new_role; -- Repeat for other desired databases
+   REVOKE INSERT ON TABLE important_table FROM shifty;
+   REVOKE DDL ON TABLE important_table FROM shifty;
 
-Promoting a user to a superuser
+Demoting a user from superuser
 -------------------------------------
 
 .. code-block:: postgres
    
    -- On the entire cluster
-   GRANT SUPERUSER TO new_role;
-   
-   -- For a specific database
-   GRANT SUPERUSER ON DATABASE my_database TO new_role;
-
-
-Creating a new role for a group of users
---------------------------------------------
-
-.. code-block:: postgres
-   
-   -- Create new users (we will grant htem password/login later)
-   CREATE ROLE dba_user1;
-   CREATE ROLE dba_user2;
-   CREATE ROLE dba_user3;
-
-   -- Add new users to the existing r_database_architect role
-   GRANT r_database_architect TO dba_user1;
-   GRANT r_database_architect TO dba_user2;
-   GRANT r_database_architect TO dba_user3;
-
-Granting with admin option
-------------------------------
-
-The ``WITH ADMIN OPTION`` designates a user as a role admin. Role admins can grant or revoke membership for the specified role.
-
-.. code-block:: postgres
-   
-   -- dba_user1 is our team lead, so he should be able to grant
-   -- permissions to other users.
-   
-   GRANT r_database_architect TO dba_user1 WITH ADMIN OPTION;
-
+   REVOKE SUPERUSER FROM new_role;
