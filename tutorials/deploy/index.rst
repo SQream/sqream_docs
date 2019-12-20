@@ -10,4 +10,4 @@ Deploy
    :caption: In this section:
    :glob:
 
-   *
+   connect_to_sqream/index
