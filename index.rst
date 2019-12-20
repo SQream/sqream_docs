@@ -4,31 +4,45 @@
 SQream DB documentation
 ***********************
 
-SQream DB is the GPU-accelerated analytics SQL database for massive data.
+SQream DB is a GPU-accelerated analytics SQL database for massive data.
 
-What is SQream DB
+..
+  What is SQream DB
 
-This page gives an overview of the SQream DB product.
+  This page gives an overview of the SQream DB product.
 
-Features tour
+  Features tour
 
-This page gives an overview of the major features that SQream DB supports.
+  This page gives an overview of the major features that SQream DB supports.
 
-Getting started
+  Getting started
 
-This page shows you how to get started running SQL statements with SQream DB.
+  This page shows you how to get started running SQL statements with SQream DB.
 
-Guides
+  Guides
 
-The guides section gives more detailed information and context for a
-range of features and aspects of the system.
+  The guides section gives more detailed information and context for a
+  range of features and aspects of the system.
 
-Reference
+  Reference
 
-This contains references for all the SQL statements, command line
-programs, catalog, supported sql feature checklist, and configuration.
+  This contains references for all the SQL statements, command line
+  programs, catalog, supported sql feature checklist, and configuration.
 
-todo: insert complete toc here in nice sections and formating
+  todo: insert complete toc here in nice sections and formating
+
+
+:ref:`First steps<first_steps>`
+
+:ref:`Best practices<sql_best_practices>`
+
+:ref:`SQL reference<sql>`
+
+:ref:`Client drivers<client_drivers>`
+
+:ref:`Third party tools integration<third_party_tools>`
+
+
 
 .. rubric:: Need help?
 

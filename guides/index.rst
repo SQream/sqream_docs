@@ -4,14 +4,16 @@
 Guides
 ***********************
 
+These guides are available:
 
-todo: reorder the toc
+:ref:`Optimization and best practices in SQream DB<sql_best_practices>`
 
-write a summary of each guide here
+:ref:`Client drivers for SQream DB<client_drivers>`
 
-this is important to help users find the guide they need, since there are so many guides and it's challenging to find the right subsection, or to pick it out from a list of the names
+:ref:`Using third party tools<third_party_tools>`
 
 
+.. this is important to help users find the guide they need, since there are so many guides and it's challenging to find the right subsection, or to pick it out from a list of the names
 
 .. toctree::
    :maxdepth: 8
