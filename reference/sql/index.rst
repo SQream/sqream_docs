@@ -1,8 +1,8 @@
 .. _sql:
 
 ***************
-SQL Reference
-***************
+SQL statements
+**************x*
 
 
 This section provides reference for using SQream DB's SQL statements - DDL, DML and query syntax.

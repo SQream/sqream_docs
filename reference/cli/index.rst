@@ -1,12 +1,12 @@
 .. _cli_reference:
 
 ************************
-CLI reference overview
+Command line programs
 ************************
 
-SQream contains several command line utilities for starting, managing, and configuring SQream DB clusters.
+SQream contains several command line programs for starting, managing, and configuring SQream DB clusters.
 
-This topic contains the reference for these commands, as well as flags and configuration settings.
+This topic contains the reference for these programs, as well as flags and configuration settings.
 
 .. list-table:: 
    :widths: auto

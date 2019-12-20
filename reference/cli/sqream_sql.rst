@@ -1,12 +1,12 @@
 .. _sqream_sql_cli_reference:
 
-*****************************
-SQream SQL (CLI) Reference
-*****************************
+*********************************
+SQream SQL command line interface
+*********************************
 
 SQream DB comes with a built-in client for executing SQL statements either interactively or from the command-line.
 
-This page serves as a reference for the options and parameters. Learn more about using SQream DB SQL with the CLI by visiting the :ref:`tutorial page SQream SQL Client <sqream_sql>`.
+This page serves as a reference for the options and parameters. Learn more about using SQream DB SQL with the CLI by visiting the :ref:`tutorial page SQream SQL Client <first_steps>`.
 
 .. contents:: In this topic:
    :local:

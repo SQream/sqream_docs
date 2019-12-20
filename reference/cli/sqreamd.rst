@@ -1,7 +1,7 @@
 .. _sqreamd_cli_reference:
 
 *************************
-sqreamd (CLI) Reference
+sqreamd
 *************************
 
 SQream DB's main worker is called *sqreamd*. 
