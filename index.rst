@@ -27,6 +27,7 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
    guides/index
    architecture/index
    reference/index
+   releases/index
    glossary
 
 .. Indices and tables

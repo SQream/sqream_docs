@@ -16,4 +16,3 @@ this is the introduction
    what_is_sqream_db
    getting_started
    features_tour
-   supported_features_matrix
