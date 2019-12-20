@@ -13,4 +13,3 @@ This section provides reference for using SQream DB's interfaces and SQL feature
    cli/index
    sql/index
    access_control
-   glossary

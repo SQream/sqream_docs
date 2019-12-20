@@ -1,14 +1,19 @@
-Introduction to SQream DB
-=====================================
+.. _introduction:
 
-These topics introduce SQream DB's concepts, architecture, and key features.
+************
+Introduction
+************
+
+
+this is the introduction
+
 
 .. toctree::
    :maxdepth: 2
    :caption: In this section:
    :glob:
 
-   concepts/*
-   architecture/*
-   supported_infrastructure/*
-   key_features/*
+   what_is_sqream_db
+   getting_started
+   features_tour
+   supported_features_matrix
