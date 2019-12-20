@@ -18,7 +18,6 @@ this is important to help users find the guide they need, since there are so man
    :caption: In this section:
    :glob:
 
-   sql_data_types
    queries
    work_load_manager
    access_control

@@ -10,7 +10,8 @@ This section provides reference for using SQream DB's interfaces and SQL feature
    :maxdepth: 2
    :caption: In this section:
    :glob:
-   
+
+   sql_data_types
    sql/index
    catalog_reference
    cli/index

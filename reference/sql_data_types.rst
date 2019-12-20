@@ -1,7 +1,7 @@
 .. _data_types:
 
 *************************
-SQL Data Types
+Data Types
 *************************
 
 This topic describes the data types that SQream DB supports, and how to convert between them.
