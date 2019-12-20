@@ -11,6 +11,7 @@ Features
    :glob:
 
    sql_data_types
+   queries
    work_load_manager
    access_control
    python_functions
