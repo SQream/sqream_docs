@@ -10,6 +10,7 @@ This section provides reference for using SQream DB's interfaces and SQL feature
    :caption: In this section:
    :glob:
    
-   cli/index
    sql/index
-   access_control
+   catalog_reference
+   cli/index
+   sql_feature_support

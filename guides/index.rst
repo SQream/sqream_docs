@@ -13,7 +13,11 @@ Guides
    :caption: In this section:
    :glob:
 
+  sql_data_types
+  time_based_data_management
   access_control
+  
+  
   client_drivers/index
   connect_to_sqream/index
   optimization_best_practices
