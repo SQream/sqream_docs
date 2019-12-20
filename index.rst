@@ -43,7 +43,6 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
 
    introduction/index
    guides/index
-   architecture/index
    reference/index
    releases/index
    glossary

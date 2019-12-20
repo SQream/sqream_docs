@@ -1,8 +1,8 @@
 .. _hardware_intro:
 
-***********************
-Hardware for SQream DB
-***********************
+**********************************
+Overview of hardware for SQream DB
+**********************************
 
 quick overview of what kind of hardware you need to run sqream db
 

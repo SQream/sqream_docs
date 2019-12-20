@@ -14,7 +14,8 @@ this is the introduction
    :glob:
 
    what_is_sqream_db
-   getting_started
-   hardware_intro
-   features_tour
+   Hardware overview <hardware_intro>
+   Features tour <features_tour>
+   First steps <first_steps>
+   
    

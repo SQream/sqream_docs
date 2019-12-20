@@ -1,7 +1,7 @@
-.. _lock_system:
+.. _concurrency_and_locks:
 
 ***********************
-Lock system
+Concurrency and locks
 ***********************
 
 

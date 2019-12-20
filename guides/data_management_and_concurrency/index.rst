@@ -13,8 +13,9 @@ Data management
    time_based_data_management
    metadata_system
    chunks_and_extents
-   copy
    external_tables
-   insert
+   inserting_data
    delete
+   transactions
+   concurrency_and_locks
    compression

@@ -1,15 +1,16 @@
 .. _client_drivers:
 
-***********************
+************************************
 Client drivers
-***********************
-
-todo: figure out how to do this/unravel with the "connect and build
-applications" guide
-
+************************************
 
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 4
    :caption: In this section:
-   :glob:
-
+   :titlesonly:
+   
+   python/index
+   cpp/index
+   jdbc/index
+   odbc/index
+   nodejs

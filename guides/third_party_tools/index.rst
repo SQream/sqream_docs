@@ -1,7 +1,7 @@
-.. _connect_to_sqream_overview:
+.. _third_party_tools:
 
 ************************************
-Connect and build applications
+Third party tools
 ************************************
 
 These topics explain how to install and connect a variety of SQream and 3rd party tools, and write applications for SQream DB.
@@ -23,11 +23,10 @@ In general, the tools listed have been tested and approved for usage with SQream
    :maxdepth: 4
    :caption: In this section:
    :titlesonly:
-   
-   python/index
-   cpp/index
-   jdbc/index
-   odbc/index
-   nodejs
-   third_party_tools/index
+
+   sql_workbench
+   tableau
+   spotfire
+   sas_viya
+   talend
    diagnosing_common_connectivity_issues

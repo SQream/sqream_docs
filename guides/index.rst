@@ -18,15 +18,21 @@ this is important to help users find the guide they need, since there are so man
    :caption: In this section:
    :glob:
 
-   data_management/index
+   sql_data_types
+   queries
+   work_load_manager
+   access_control
+   python_functions
+   saved_queries
+   seeing_the_system_objects_as_sql
 
-   features/index
-
-   concurrency_and_transactions/index
+   data_management_and_concurrency/index
 
    client_drivers/index
-   connect_to_sqream/index
+   third_party_tools/index
 
    operations/index
+
+   architecture/index
 
    setup/index

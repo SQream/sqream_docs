@@ -1,8 +1,8 @@
 .. _features_tour:
 
-***********************
-Features tour
-***********************
+*****************************
+Tour of features in SQream DB
+*****************************
 
 * types
 * tables, table features
