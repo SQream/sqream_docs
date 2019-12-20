@@ -1,5 +1,8 @@
+.. _concepts:
+
+*********************
 Concepts
-=====================================
+*********************
 
 SQream DB is the GPU-accelerated analytics SQL database for massive data. SQream DB provides a data warehouse that is fast, flexible, and extremely scalable when compared to traditional data warehouses.
 
@@ -8,12 +11,12 @@ While similar to some data warehouses, SQream DB has additional functionality an
 While most users don't need to understand the underlying architecture and concepts to use SQream DB, many users have questions about how SQream DB works. This guide details the workings of SQream DB.
 
 Goals of SQream DB
-*******************
+=======================
 
 .. TODO Fill in
 
 Glossary
-********
+============
 
 .. list-table:: Glossary of terms
    :widths: auto
@@ -31,11 +34,10 @@ Glossary
      - SQream DB's internal storage which contains details about database objects.
 
 Overview
-********
-
+===============
 
 Layers
-******
+============
 
 .. list-table:: Layers
    :widths: auto
@@ -51,6 +53,8 @@ Layers
      - 
    * - Storage
      - 
+
+
 
 .. rubric:: What's next?
 

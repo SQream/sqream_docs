@@ -27,10 +27,9 @@ Search the documentation or visit `SQream's support portal <https://support.sqre
    releases/index
    reference/index
 
+.. Indices and tables
+.. ==================
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+.. * :ref:`genindex`
+.. * :ref:`modindex`
+.. * :ref:`search`
