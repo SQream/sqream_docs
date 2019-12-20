@@ -116,5 +116,6 @@ Data manipulation commands (DML)
 
    ddl_commands/*
    dml_commands/*
+   access_control_commands/*
    query_syntax/*
    query_operators/*
