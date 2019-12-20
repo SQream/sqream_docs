@@ -1,7 +1,7 @@
-.. _getting_started:
+.. _setup:
 
 ***********************
-Getting started
+Setting up SQream DB
 ***********************
 
 In the topics below, you can find what it takes to prepare and install SQream DB. 
@@ -17,6 +17,5 @@ Browse the articles in the sidebar, or use the search to find the information yo
    before_you_begin
    local_docker
    recommended_configuration
-   sqream_sql
 
 
