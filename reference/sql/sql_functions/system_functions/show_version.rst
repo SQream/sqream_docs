@@ -25,6 +25,10 @@ Parameters
 
 None
 
+Notes
+==========
+
+To check the SQream DB version from the shell, run ``$ sqreamd --version``
 
 Examples
 ===========

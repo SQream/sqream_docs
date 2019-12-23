@@ -374,5 +374,4 @@ Workload management functions
    scalar_functions/index
    aggregate_functions/index
    window_functions/*
-   system_functions/*
 
