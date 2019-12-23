@@ -22,7 +22,7 @@ Preparing for this tutorial
 
 This tutorial assumes you already have a SQream DB cluster running.
 
-.. tip:: **SQream SQL** can be found in the ``bin`` directory of your SQream DB installation, under the name ``ClientCmd``.
+.. tip:: This tutorial makes use of the built-in command-line client, which can be found in the ``bin`` directory of your SQream DB installation, under the name ``ClientCmd``.
 
 Creating your first table
 ============================
@@ -32,7 +32,6 @@ When starting SQream SQL, after entering your password, you are presented with t
 .. tip::
    * To exit the shell, type ``\q``  or :kbd:`Ctrl-d`. 
    * A new SQream DB cluster contains a database named `master`. We will start with this database.
-
 
 .. code-block:: psql
 
@@ -239,8 +238,8 @@ Filter null rows by adding a filter :ref:`IS NOT NULL<is_null>`:
 
    5 rows
 
-Delete rows
-=============
+Deleting rows
+==============
 
 To delete rows in a table selectively, use the :ref:`DELETE<delete>` command, with a table name and a `WHERE` clause to specify which rows are to be deleted:
 
@@ -265,6 +264,8 @@ To delete all rows in a table, use the :ref:`TRUNCATE<truncate>` command followe
    master=> TRUNCATE TABLE cool_animals;
    
    executed
+
+.. note:: While :ref:`truncate` deletes data from disk immediately, :ref:`delete` does not physically remove the deleted rows. For more information on removing the rows from disk, see :ref:`delete`.
 
 .. rubric:: What's next?
 

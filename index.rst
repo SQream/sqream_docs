@@ -31,16 +31,49 @@ SQream DB is a GPU-accelerated analytics SQL database for massive data.
 
   todo: insert complete toc here in nice sections and formating
 
+.. list-table::
+   :widths: 33 33 33
+   :header-rows: 0
 
-:ref:`First steps<first_steps>`
+   * - **Get started**
+     - **Reference**
+     - **Guides**
+   * -
+         :ref:`First steps`
+         
+         :ref:`features_tour`
+         
+         :ref:`sql_feature_support`
+     - 
+         :ref:`SQL reference<sql>`
+         
+         :ref:`sql_statements`
+         
+         :ref:`sql_functions`
+     - 
+         :ref:`setup`
+         
+         :ref:`Best practices<sql_best_practices>`
+         
+         :ref:`connect_to_tableau`
 
-:ref:`Best practices<sql_best_practices>`
+   * - **Releases**
+     - **Driver and deployment**
+     - **Help & Support**
+   * -
+         :ref:`releases`
 
-:ref:`SQL reference<sql>`
+     - 
+         :ref:`Client drivers<client_drivers>`
 
-:ref:`Client drivers<client_drivers>`
+         :ref:`Third party tools integration<third_party_tools>`
 
-:ref:`Third party tools integration<third_party_tools>`
+         :ref:`connect_to_tableau`
+     - 
+         :ref:`information_for_support`
+         
+         :ref:`troubleshooting`
+
 
 
 
@@ -54,6 +87,7 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
    :glob:
    :maxdepth: 6
    :titlesonly:
+   :hidden:
 
    xxintroduction/index
    introduction/first_steps
@@ -62,9 +96,10 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
    releases/index
    glossary
 
-.. Indices and tables
-.. ==================
+..
+   Indices and tables
+   ==================
 
-.. * :ref:`genindex`
-.. * :ref:`modindex`
-.. * :ref:`search`
+   * :ref:`genindex`
+   * :ref:`modindex`
+   * :ref:`search`

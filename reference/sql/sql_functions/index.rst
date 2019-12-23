@@ -1,10 +1,10 @@
 .. _sql_functions:
 
 ****************
-SQL Functions
+SQL functions
 ****************
 
-SQream DB supports commands from ANSI SQL.
+SQream DB supports functions from ANSI SQL, as well as others for compatibility.
 
 Summary of functions
 =======================
@@ -111,7 +111,38 @@ Date and time
 Numeric
 ^^^^^^^^^^^
 
-.. list-table:: 
+See also :ref:`arithmetic_operators`
+
+.. list-table:: Arithmetic operators
+   :widths: auto
+   :header-rows: 1
+   
+   * - Operator
+     - Syntax
+     - Description
+   * - ``+`` (unary)
+     - ``+a``
+     - Converts a string to a numeric value. Identical to ``a :: double``
+   * - ``+``
+     - ``a + b``
+     - Adds two expressions together
+   * - ``-`` (unary)
+     - ``-a``
+     - Negates a numeric expression
+   * - ``-``
+     - ``a - b``
+     - Subtracts ``b`` from ``a``
+   * - ``*``
+     - ``a * b``
+     - Multiplies ``a`` by ``b``
+   * - ``/``
+     - ``a / b``
+     - Divides ``a`` by ``b``
+   * - ``%``
+     - ``a % b``
+     - Modulu of ``a`` by ``b``. See also :ref:`mod`
+
+.. list-table:: Functions
    :widths: auto
    :header-rows: 1
    
@@ -224,7 +255,7 @@ Strings
 Aggregate functions
 ---------------------
 
-:ref:`aggregate_functions`
+See also :ref:`aggregate_functions`
 
 .. list-table:: 
    :widths: auto
@@ -273,7 +304,7 @@ Aggregate functions
 Window functions
 -------------------
 
-:ref:`window_functions`
+See also :ref:`window_functions`
 
 .. list-table:: 
    :widths: auto
