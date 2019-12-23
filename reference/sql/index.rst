@@ -4,11 +4,10 @@
 SQL statements and syntax
 ***************************
 
-
 This section provides reference for using SQream DB's SQL statements - DDL, DML and query syntax.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 5
    :caption: In this section:
    :titlesonly:
    :glob:
