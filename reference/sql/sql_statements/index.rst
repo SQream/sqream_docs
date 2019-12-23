@@ -83,6 +83,8 @@ Utilities
    :widths: auto
    :header-rows: 1
    
+   * - Command
+     - Usage
    * - :ref:`SELECT GET_DDL(\<table name>)<get_ddl>`
      - View the ``CREATE TABLE`` statement for a table
    * - :ref:`SELECT GET_FUNCTION_DDL(\<function name>)<get_function_ddl>`
@@ -103,8 +105,8 @@ Monitoring statements allow you to execute actions in the system, such as aborti
    :widths: auto
    :header-rows: 1
    
-   * - Function
-     - Description
+   * - Command
+     - Usage
    * - :ref:`explain`
      - Returns a static query plan for a statement
    * - :ref:`show_connections`
@@ -127,6 +129,8 @@ Workload management
    :widths: auto
    :header-rows: 1
    
+   * - Command
+     - Usage
    * - :ref:`subscribe_service`
      - Add a SQream DB worker to a service queue 
    * - :ref:`unsubscribe_service`
