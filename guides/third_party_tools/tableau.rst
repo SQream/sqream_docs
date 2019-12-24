@@ -51,9 +51,10 @@ Before you start, check which version of Tableau is used. The version needs to b
 
 #. Change the highlighted line to match your major Tableau version. For example, if you're on Tableau ``2019.2.1``, writing ``2019.2`` is enough.
 
-#. Save the TDC file into ``C:\Users\<user name>\Documents\My Tableau Repository\Datasources``, where ``<user name>`` is the Windows username Tableau is installed in.
-
-#. (Optional) If Tableau Server is going to be used, it is imperative that, after installing the ODBC driver, the tdc file is copied to the following path with administration rights ``C:\ProgramData\Tableau\Tableau Server\data\tabsvc\vizqlserver\Datasources``. The tdc file version field needs to be adapted to the Tableau server version.
+#. 
+   * For **Tableau Desktop** - save the TDC file into ``C:\Users\<user name>\Documents\My Tableau Repository\Datasources``, where ``<user name>`` is the Windows username Tableau is installed in.
+   
+   * For **Tableau Server** - save the TDC file into ``C:\ProgramData\Tableau\Tableau Server\data\tabsvc\vizqlserver\Datasources``.
 
 Configure the ODBC connection (DSN)
 ======================================
