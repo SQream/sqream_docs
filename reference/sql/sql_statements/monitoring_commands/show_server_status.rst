@@ -6,7 +6,7 @@ SHOW_SERVER_STATUS
 
 ``SHOW_SERVER_STATUS`` returns a list of active sessions across the cluster.
 
-To see sessions on the current worker, see :ref:`show_server_status`.
+To list active statements on the current worker only, see :ref:`show_connections`.
 
 Permissions
 =============

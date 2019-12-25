@@ -75,4 +75,4 @@ Using ``SHOW_CONNECTIONS`` to get statement IDs
    192.168.1.91 |      26 | 2019-12-24 00:01:28 |      -1 | 2019-12-24 00:01:28 |                          
 
 
-The statement ID we're interested in is ``128``. We can see the connection started at 01:27, while the statement started at 00:38.
+The statement ID we're interested in is ``129``. We can see the connection started at 00:01:27, while the statement started at 00:38:18.

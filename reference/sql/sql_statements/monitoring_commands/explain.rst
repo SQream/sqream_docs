@@ -4,7 +4,7 @@
 EXPLAIN
 *****************
 
-``EXPLAIN`` returns a static query plan, which can be used to debug.
+``EXPLAIN`` returns a static query plan, which can be used to debug query plans.
 
 Permissions
 =============
