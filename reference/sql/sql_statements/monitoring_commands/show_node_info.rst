@@ -92,9 +92,9 @@ Getting execution details for a statement
    
    t=> SELECT SHOW_SERVER_STATUS();
    service | instanceid | connection_id | serverip     | serverport | database_name | user_name | clientip     | statementid | statement                                                       | statementstarttime  | statementstatus | statementstatusstart
---------+------------+---------------+--------------+------------+---------------+-----------+--------------+-------------+-----------------------------------------------------------------+---------------------+-----------------+---------------------
-   sqream  |            |           152 | 192.168.1.91 |       5000 | master        | sqream    | 192.168.1.91 |         176 | SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | 25-12-2019 23:53:13 | Executing       | 25-12-2019 23:53:13
-   sqream  |            |           151 | 192.168.1.91 |       5000 | master        | sqream    | 192.168.0.1  |         177 | SELECT show_server_status()                                     | 25-12-2019 23:51:31 | Executing       | 25-12-2019 23:53:13 
+   --------+------------+---------------+--------------+------------+---------------+-----------+--------------+-------------+-----------------------------------------------------------------+---------------------+-----------------+---------------------
+   sqream  |            |           152 | 192.168.1.91 |       5000 | t            | sqream    | 192.168.1.91 |         176 | SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | 25-12-2019 23:53:13 | Executing       | 25-12-2019 23:53:13
+   sqream  |            |           151 | 192.168.1.91 |       5000 | t            | sqream    | 192.168.0.1  |         177 | SELECT show_server_status()                                     | 25-12-2019 23:51:31 | Executing       | 25-12-2019 23:53:13 
 
 
 The statement ID we want to reserach is ``176``, running on worker ``192.168.1.91``.

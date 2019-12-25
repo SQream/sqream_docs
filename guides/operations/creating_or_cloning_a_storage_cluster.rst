@@ -1,7 +1,7 @@
 .. _creating_or_cloning_a_storage_cluster:
 
 ****************************************
-creating_or_cloning_a_storage_cluster
+Creating a new storage cluster
 ****************************************
 
 how to use sqream storage to create a new storage cluster
