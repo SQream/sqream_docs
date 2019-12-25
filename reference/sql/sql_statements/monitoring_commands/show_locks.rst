@@ -49,9 +49,9 @@ This function returns a list of active locks. If no locks are active in the clus
    * - ``lockmode``
      - The locking mode (``inclusive`` or ``exclusive``).
    * - ``statement_start_time``
-     - Statement timestamp 
+     - Timestamp the statement started
    * - ``lock_start_time``
-     - Lock start timestamp
+     - Timestamp the lock was obtained
 
 Locking modes
 ================

@@ -13,7 +13,10 @@ Glossary
 
     Instance
     Daemon
-      A SQream DB server. Several instances can run on a single node to form a cluster.
+    Worker
+      A SQream DB worker. Several instances can run on a single node to form a cluster.
 
     Metadata
       SQream DB's internal storage which contains details about database objects.
+
+   
