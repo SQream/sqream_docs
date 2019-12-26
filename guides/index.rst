@@ -4,16 +4,20 @@
 Guides
 ***********************
 
-These guides are available:
+This topic includes guides which are of interest to a SQream DB user or database administrator.
 
-:ref:`Optimization and best practices in SQream DB<sql_best_practices>`
+Guides include optimization techniques, installation and configuration, management of roles and databases, and maintenance tasks.
 
-:ref:`Client drivers for SQream DB<client_drivers>`
+.. rubric:: Recommended guides
 
-:ref:`Using third party tools<third_party_tools>`
+* :ref:`Optimization and best practices in SQream DB<sql_best_practices>`
 
+* :ref:`Client drivers for SQream DB<client_drivers>`
 
-.. this is important to help users find the guide they need, since there are so many guides and it's challenging to find the right subsection, or to pick it out from a list of the names
+* :ref:`Using third party tools<third_party_tools>`
+
+Full list of guides
+=========================
 
 .. toctree::
    :maxdepth: 8
@@ -28,7 +32,7 @@ These guides are available:
    xxseeing_the_system_objects_as_sql
 
    xxdata_management_and_concurrency/index
-   xxdata_management_and_concurrency/concurrency_and_locks
+   data_management_and_concurrency/concurrency_and_locks
 
    xxoperations/index
    operations/optimization_best_practices
