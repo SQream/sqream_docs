@@ -173,5 +173,5 @@ Access control commands
    dml_commands/*
    utility_commands/*
    monitoring_commands/*
-   wlm_commands/
+   wlm_commands/*
    access_control_commands/*
