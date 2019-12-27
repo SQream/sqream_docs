@@ -8,9 +8,10 @@ This topic includes information about data management, data lifecycle, how data 
 
 
 .. toctree::
-   :maxdepth: 8
+   :maxdepth: 2
    :caption: In this section:
    :glob:
+   :titlesonly:
 
    xxtime_based_data_management
    xxmetadata_system

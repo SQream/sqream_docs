@@ -20,9 +20,9 @@ Full list of guides
 =========================
 
 .. toctree::
-   :maxdepth: 8
-   :caption: In this section:
+   :maxdepth: 3
    :glob:
+   :titlesonly:
 
    xxqueries
    xxwork_load_manager

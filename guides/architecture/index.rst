@@ -11,9 +11,10 @@ While SQream DB has many similarities to other database management systems, it h
 Explore the guides below for information about SQream DB's hardware requirements, concurrency and scaling, and internals.
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 2
    :caption: In this section:
    :glob:
+   :titlesonly:
 
    hardware_guide
    concurrency_and_scaling_in_sqream
