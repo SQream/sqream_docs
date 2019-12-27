@@ -14,10 +14,10 @@ The guides below include information about best practices, monitoring, logging, 
    :glob:
 
    optimization_best_practices
-   monitoring
-   logging
-   configuration
-   troubleshooting
-   information_for_support
-   creating_or_cloning_a_storage_cluster
-   running_and_stopping_the_system
+   xxmonitoring
+   xxlogging
+   xxconfiguration
+   xxtroubleshooting
+   xxinformation_for_support
+   xxcreating_or_cloning_a_storage_cluster
+   xxrunning_and_stopping_the_system

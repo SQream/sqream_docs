@@ -31,12 +31,9 @@ Full list of guides
    xxsaved_queries
    xxseeing_the_system_objects_as_sql
 
-   xxdata_management_and_concurrency/index
-   data_management_and_concurrency/concurrency_and_locks
-
-   xxoperations/index
-   operations/optimization_best_practices
-
+   data_management_and_concurrency/index
+   
+   operations/index
 
    client_drivers/index
    third_party_tools/index

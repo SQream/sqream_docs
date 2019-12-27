@@ -1,8 +1,10 @@
 .. _data_management:
 
 **********************************
-Data management
+Data management and concurrency
 **********************************
+
+This topic includes information about data management, data lifecycle, how data is stored, transactions, concurrent statements, and compression.
 
 
 .. toctree::
@@ -10,12 +12,12 @@ Data management
    :caption: In this section:
    :glob:
 
-   time_based_data_management
-   metadata_system
-   chunks_and_extents
-   external_tables
-   inserting_data
-   delete
-   transactions
+   xxtime_based_data_management
+   xxmetadata_system
+   xxchunks_and_extents
+   xxexternal_tables
+   xxinserting_data
+   xxdelete
+   xxtransactions
    concurrency_and_locks
-   compression
+   xxcompression
