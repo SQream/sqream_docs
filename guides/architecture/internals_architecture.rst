@@ -1,8 +1,11 @@
 .. _internals_architecture:
 
-***********************
-internals_architecture
-***********************
+***************************
+Internals and architecture
+***************************
+
+.. figure:: /_static/images/sqream_db_internals.png
+   :alt: SQream DB internals
 
 start with the architecture from the cmu lecture
 
