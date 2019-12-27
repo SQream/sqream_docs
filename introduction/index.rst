@@ -17,6 +17,5 @@ SQream DB is built to use GPU acceleration to load and analyze large amounts of 
    what_is_sqream_db
    Hardware overview<hardware_intro>
    Features tour<features_tour>
-   First steps<first_steps>
-   
-   
+   First steps with SQream DB<first_steps>
+

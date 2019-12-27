@@ -42,6 +42,6 @@ Full list of guides
    third_party_tools/index
 
 
-   xxarchitecture/index
+   architecture/index
 
    setup/index

@@ -39,7 +39,7 @@ SQream DB is a GPU-accelerated analytics SQL database for massive data.
      - **Reference**
      - **Guides**
    * -
-         :ref:`First steps`
+         :ref:`first_steps`
          
          :ref:`features_tour`
          
@@ -90,7 +90,7 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
    :hidden:
 
    xxintroduction/index
-   introduction/first_steps
+   introduction/index
    guides/index
    reference/index
    releases/index

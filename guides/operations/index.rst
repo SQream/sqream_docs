@@ -4,6 +4,9 @@
 Operations
 **********************************
 
+This topic includes guides that walk an end-user, database administrator, or system architect through managing a SQream DB cluster.
+
+The guides below include information about best practices, monitoring, logging, troubleshooting, and maintaining a SQream DB cluster.
 
 .. toctree::
    :maxdepth: 8
