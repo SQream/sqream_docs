@@ -12,6 +12,7 @@ Data Definition commands (DDL)
 .. list-table:: DDL commands
    :widths: auto
    :header-rows: 1
+   :name: ddl_commands
    
    * - Command
      - Usage
@@ -56,6 +57,8 @@ Data manipulation commands (DML)
 .. list-table:: DML commands
    :widths: auto
    :header-rows: 1
+   :name: dml_commands
+
    
    * - Command
      - Usage

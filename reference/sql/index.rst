@@ -4,13 +4,11 @@
 SQL statements and syntax
 ***************************
 
-This section provides reference for using SQream DB's SQL statements - DDL, DML and query syntax.
+This section provides reference for using SQream DB's SQL statements - :ref:`DDL commands<ddl_commands>`, :ref:`DML commands<dml_commands>` and :ref:`SQL query syntax<sql_syntax>`.
 
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 2
    :caption: In this section:
-   :titlesonly:
-   :glob:
 
    sql_syntax/index
    sql_statements/index

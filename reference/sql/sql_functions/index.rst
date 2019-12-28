@@ -9,10 +9,13 @@ SQream DB supports functions from ANSI SQL, as well as others for compatibility.
 Summary of functions
 =======================
 
+.. contents::
+   :local:
+
 Scalar functions
 -------------------
 
-:ref:`scalar_functions`
+See more about :ref:`scalar_functions`
 
 Bitwise operations
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -111,7 +114,7 @@ Date and time
 Numeric
 ^^^^^^^^^^^
 
-See also :ref:`arithmetic_operators`
+See more about :ref:`arithmetic_operators`
 
 .. list-table:: Arithmetic operators
    :widths: auto
@@ -255,7 +258,7 @@ Strings
 Aggregate functions
 ---------------------
 
-See also :ref:`aggregate_functions`
+See more about  :ref:`aggregate_functions`
 
 .. list-table:: 
    :widths: auto
@@ -304,7 +307,7 @@ See also :ref:`aggregate_functions`
 Window functions
 -------------------
 
-See also :ref:`window_functions`
+See more about  :ref:`window_functions`
 
 .. list-table:: 
    :widths: auto
@@ -364,6 +367,9 @@ Workload management functions
      - Remove a SQream DB worker to a service queue
    * - :ref:`show_subscribed_instances`
      - Return a list of service queues and workers
+
+
+
 
 .. toctree::
    :maxdepth: 2
