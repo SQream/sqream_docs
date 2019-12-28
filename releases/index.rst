@@ -5,7 +5,7 @@ Releases
 **********
 
 .. list-table:: Releases
-   :widths: 70 30
+   :widths: auto
    :header-rows: 1
    
    * - Version
