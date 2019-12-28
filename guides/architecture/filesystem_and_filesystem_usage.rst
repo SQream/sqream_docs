@@ -10,6 +10,8 @@ The SQream DB storage directory, sometimes refered to as a **storage cluster** i
 
 Each SQream DB worker and the metadata server must have access to the storage cluster in order to function properly.
 
+.. _storage_cluster:
+
 Directory organization
 ============================
 
