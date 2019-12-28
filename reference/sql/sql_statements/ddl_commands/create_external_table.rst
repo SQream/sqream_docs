@@ -6,16 +6,17 @@ CREATE EXTERNAL TABLE
 
 ``CREATE TABLE`` creates a new external table in an existing database.
 
-An external table is a logical table structure that points to files such as CSV, Parquet and ORC.
-
-Use an external table to stage data before loading from CSV, Parquet or ORC files. If you intend to use the table multiple times, it is advisable to create a materialized table with :ref:`CREATE TABLE AS <create_table_as>` for later re-use.
+See more in the :ref:`External tables guide<external_tables>`.
 
 .. tip::
+
    * Data in an external table can change if the sources change, and frequent access to remote files may harm performance.
+
    * To create a regular table, see :ref:`CREATE TABLE <create_table>`
 
 Permissions
 =============
+
 The role must have the ``CREATE`` permission at the database level.
 
 Syntax

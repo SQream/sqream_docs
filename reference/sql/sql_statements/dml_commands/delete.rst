@@ -6,6 +6,8 @@ DELETE
 
 ``DELETE`` removes specific rows from a table.
 
+See more information about how SQream DB deletes data in the :ref:`delete_guide` guide.
+
 .. tip:: 
    * To delete all rows from a table, see :ref:`TRUNCATE<truncate>`
    * To delete columns, see :ref:`DROP COLUMN<drop_column>`
@@ -57,36 +59,16 @@ How SQream DB deletes data
 
 Deleting data in SQream DB is a two-step process. First, SQream DB marks rows as deleted, but they remain on-disk until a cleanup process is initiated.
 
-The cleanup process is not automatic, as it can take some time for very large tables which some customers prefer to perform during off-peak hours.
+See more information about how SQream DB deletes data in the :ref:`delete_guide` guide.
 
-Phase 1: Logical Delete
----------------------------
+Notes
+===========
 
-The result set for ``SELECT`` queries will not contain the deleted data. Data is marked for deletion, but not physically deleted from disk.
+* :ref:`ALTER TABLE<alter_table>` and other DDL operations are blocked on tables that require clean-up.
 
-Phase 2: Clean-up
---------------------
+* The value expression for deletion can't be the result of a subquery or a join.
 
-Files marked for deletion during the logical deletion stage are removed from disk. This is achieved by calling both utility function commands: ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS`` sequentially.
-
-.. note::
-   * :ref:`ALTER TABLE<alter_table>` and other DDL operations are blocked on tables that require clean-up.
-   * The value expression for deletion can't be the result of a subquery or a join.
-   * SQream DB may prevent a very long delete process. If the estimated time is beyond the threshold, the error message will explain how to override this limitation and continue the process.
-
-Additional notes
--------------------
-
-Disk space usage after delete
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-With the exception of a full table delete (:ref:`TRUNCATE<truncate>`), deleting data does not free up disk space. To free up disk space, trigger the cleanup process.
-
-Select performance on deleted rows
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Queries on tables that have deleted rows may have to scan data that hasn't been cleaned up.
-In some cases, this can cause queries to take longer than expected. To solve this issue, trigger the cleanup process.
+* SQream DB may prevent a very long delete process. If the estimated time is beyond the threshold, the error message will explain how to override this limitation and continue the process.
 
 
 Examples
