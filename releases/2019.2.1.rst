@@ -1,16 +1,17 @@
 .. _2019.2.1:
 
+******************************
 What's new in 2019.2.1
-=====================================
+******************************
 
 * 250 bugs fixed. Thanks to all of our customers and an unprecedented number of deployments for helping us find and fix these!
 * Improved Unicode text handling on the GPU
 * Improved logging and monitoring of statements
 * Alibaba DataX connector
 
-*************
+
 Improvements
-*************
+=====================
 
 * We’ve updated the ``show_server_status()`` function to more accurately reflect the status of statements across the cluster:
 
@@ -27,15 +28,15 @@ Improvements
 
 * SQream DB CLI’s history can be disabled, by passing ``./ClientCmd --no-history``
 
-******************
+
 Behaviour changes
-******************
+=====================
 
 * SQream DB no longer applies an implicit cast from a long text column to a shorter text column (``VARCHAR``/``NVARCHAR``). This means some ``INSERT``/``COPY`` operations will now error instead of truncating the text. This is intended to prevent accidental truncation of text columns. If you want the old truncation behaviour, you can use the ``SUBSTRING`` function to truncate the text.
 
-******************
+
 Operations
-******************
+=====================
 
 * The client-server protocol has been updated to support a wider range of encodings. End users are required to use only the latest ClientCmd, JDBC, and ODBC drivers delivered with this version.
 
@@ -43,9 +44,9 @@ Operations
 
 * When upgrading from SQream DB v3.2 or lower, you must upgrade the storage version by using the storage upgrade utility: ``./bin/upgrade_storage /path/to/storage/sqreamdb/``
 
-****************************
+
 Known Issues & Limitations
-****************************
+===================================
 
 * NVARCHAR columns cannot be used as a ``GROUP BY`` key when there are multiple ``COUNT (DISTINCT …)`` operations in a query
 
@@ -59,9 +60,9 @@ Known Issues & Limitations
 
 * SQream DB editor: External tables and UDFs don’t appear in the DB Tree but do appear in the relevant sqream_catalog entries.
 
-****************************
+
 Fixes
-****************************
+=====================
 
 250 bugs and issues fixed, including:
 
