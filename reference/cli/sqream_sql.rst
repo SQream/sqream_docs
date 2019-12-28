@@ -16,8 +16,8 @@ Running SQream SQL
 
 **SQream SQL** can be found in the ``bin`` directory of your SQream DB installation, under the name ``ClientCmd``.
 
-.. versionchanged:: 2019.3
-   Starting from version 2019.3, ``ClientCmd`` has been renamed to ``sqream sql``.
+.. versionchanged:: 2020.1
+   Starting from version 2020.1, ``ClientCmd`` has been renamed to ``sqream sql``.
 
 Using SQream SQL
 =================

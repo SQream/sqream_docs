@@ -4,7 +4,7 @@
 sqreamd
 *************************
 
-SQream DB's main worker is called *sqreamd*. 
+SQream DB's main worker is called ``sqreamd``.
 
 In general, you should not need to run ``sqreamd`` manually, but it is sometimes useful for testing. 
 
@@ -34,7 +34,7 @@ To stop the active instance:
 Command line arguments
 ==========================
 
-**sqreamd** supports the following command line arguments:
+``sqreamd`` supports the following command line arguments:
 
 .. list-table:: 
    :widths: auto
@@ -56,7 +56,7 @@ Command line arguments
 Positional command arguments
 ------------------------------
 
-**sqreamd** also supports positional arguments, when not using a configuration file.
+``sqreamd`` also supports positional arguments, when not using a configuration file.
 
 This method can be used to temporarily start a SQream DB instance for testing.
 
