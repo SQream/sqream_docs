@@ -297,7 +297,7 @@ CentOS 7 / RHEL 7 (IBM POWER)
       GPU 0: Tesla V100-SXM2-16GB (UUID: GPU-...)
       GPU 1: Tesla V100-SXM2-16GB (UUID: GPU-...)
 
-#. Continue to :ref:`Installing the SQream DB Docker container <installing_sqream_db_docker>`
+#. Continue to :ref:`Installing the SQream DB Docker container installing_sqream_db_container>`
 
 .. _docker_ubuntu:
 
@@ -358,7 +358,7 @@ Ubuntu 18.04 (x64)
       GPU 0: Tesla V100-PCIE-16GB (UUID: GPU-...)
       GPU 1: Tesla V100-PCIE-16GB (UUID: GPU-...)
 
-#. Continue to :ref:`Installing the SQream DB Docker container <installing_sqream_db_docker>`
+#. Continue to :ref:`Installing the SQream DB Docker container <installing_sqream_db_container>`
 
 
 .. _preparing_mounts:
@@ -474,9 +474,9 @@ Starting your first local cluster
 
 .. rubric:: What's next?
 
-* :ref:`Test your SQream DB installation <create_first_table>`
+* :ref:`Test your SQream DB installation by creating your first table<first_steps>`
 
-* :ref:`Connect an external tool to SQream DB <connect_first_tool>`
+* :ref:`Connect an external tool to SQream DB <third_party_tools>`
 
 * :ref:`Additional system configuration for performance and stability <recommended_configuration>`
 

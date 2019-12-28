@@ -6,11 +6,8 @@ Optimization and best practices
 
 This topic explains some best practices of working with SQream DB.
 
-
 .. todo:
 .. reorder tables join- much more effective to join first the small tables (or those who have filters on them).
-.. Sorting- if you have a specific column that you are consistent filter by it in your queries then you may consider to sort the table by this
-.. use NOT NULL columns when possible
 .. use save query for long compilation queries / if you like to have the ability to send parameters to a query
 
 Table design
@@ -48,7 +45,7 @@ Convert external tables to native tables
 
 SQream DB's native storage is heavily optimized for analytic workloads. It is always faster for querying than other formats, even columnar ones such as Parquet. It also enables the use of additional metadata to help speed up queries, in some cases by many orders of magnitude.
 
-You can improve the performance of all operations by converting external tables into native tables, e.g. by using the :ref:`create_table_as` syntax.
+You can improve the performance of all operations by converting :ref:`external tables<external_tables>` into native tables by using the :ref:`create_table_as` syntax.
 
 For example,
 
@@ -56,8 +53,38 @@ For example,
 
    CREATE TABLE native_table AS SELECT * FROM external_table
 
+The one situation when this wouldn't be as useful is when you are only likely to query the data one time.
 
-One situation when this wouldn't be as useful is when you are only likely to query the data one time.
+Use information about the column data to your advantage
+-------------------------------------------------------------
+
+Knowing the data types and their ranges can help design a better table.
+
+Set ``NULL`` or ``NOT NULL`` when relevant
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+For example, if a value can't be missing (or ``NULL``), specify a ``NOT NULL`` constraint on the columns.
+
+Not only does specifying ``NOT NULL`` save on data storage, it lets the query compiler know that a column cannot have a ``NULL`` value, which can improve query performance.
+
+Keep VARCHAR lengths to a minimum
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+While it won't make a big difference in storage, large strings allocate a lot of memory at query time.
+
+If a column's string length never exceeds 50 characters, specify ``VARCHAR(50)`` rather than an arbitrarily large number.
+
+
+Sorting 
+==============
+
+Data sorting is an important factor in minimizing storage size and improving query performance.
+
+* Minimizing storage saves on physical resources and increases performance by reducing overall disk I/O. Prioritize the sorting of low-cardinality columns. This reduces the number of chunks and extents that SQream DB reads during query execution.
+
+* Where possible, sort columns with the lowest cardinality first. Avoid sorting ``VARCHAR`` and ``NVARCHAR`` columns with lengths exceeding 50 characters.
+
+* For longer-running queries that run on a regular basis, performance can be improved by sorting data based on the ``WHERE`` and ``GROUP BY`` parameters. Data can be sorted during insert by using :ref:`external tables<external_tables>` or by using :ref:`create_table_as`.
 
 Query best practices
 =====================
