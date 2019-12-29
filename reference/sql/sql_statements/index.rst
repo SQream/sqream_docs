@@ -88,16 +88,40 @@ Utilities
    
    * - Command
      - Usage
-   * - :ref:`SELECT GET_DDL(\<table name>)<get_ddl>`
+   * - :ref:`SELECT GET_DDL<get_ddl>`
      - View the ``CREATE TABLE`` statement for a table
-   * - :ref:`SELECT GET_FUNCTION_DDL(\<function name>)<get_function_ddl>`
+   * - :ref:`SELECT GET_FUNCTION_DDL<get_function_ddl>`
      - View the ``CREATE FUNCTION`` statement for a UDF
-   * - :ref:`SELECT GET_VIEW_DDL(\<view name>)<get_view_ddl>`
+   * - :ref:`SELECT GET_VIEW_DDL<get_view_ddl>`
      - View the ``CREATE VIEW`` statement for a view
-   * - :ref:`SELECT RECOMPILE_VIEW(\<view name>)<recompile_view>`
+   * - :ref:`SELECT RECOMPILE_VIEW<recompile_view>`
      - Recreate a view after schema changes
-   * - :ref:`SELECT DUMP_DATABASE_DDL()<dump_database_ddl>`
+   * - :ref:`SELECT DUMP_DATABASE_DDL<dump_database_ddl>`
      - View the ``CREATE TABLE`` statement for an current database
+
+Saved queries
+===================
+
+See more about :ref:`saved_queries`
+
+.. list-table:: Saved queries
+   :widths: auto
+   :header-rows: 1
+   
+   * - Command
+     - Usage
+   * - :ref:`SELECT DROP_SAVED_QUERY<drop_saved_query>`
+     - Drop a saved query
+   * - :ref:`SELECT EXECUTE_SAVED_QUERY<execute_saved_query>`
+     - Executes a saved query
+   * - :ref:`SELECT LIST_SAVED_QUERIES<list_saved_queries>`
+     - Returns a list of saved queries
+   * - :ref:`SELECT RECOMPILE_SAVED_QUERY<recompile_saved_query>`
+     - Recompiles a query that has been invalidated by a schema change
+   * - :ref:`SELECT SAVE_QUERY<save_query>`
+     - Compiles and saves a query for re-use and sharing
+   * - :ref:`SELECT SHOW_SAVED_QUERY<show_saved_query>`
+     - Shows query text for a saved query
 
 Monitoring
 ===============
