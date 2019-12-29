@@ -6,10 +6,6 @@ Optimization and best practices
 
 This topic explains some best practices of working with SQream DB.
 
-.. todo:
-.. reorder tables join- much more effective to join first the small tables (or those who have filters on them).
-.. use save query for long compilation queries / if you like to have the ability to send parameters to a query
-
 Table design
 ==============
 This section describes best practices and guidelines for designing tables.
@@ -164,7 +160,20 @@ This also reduces the overall result set, which can improve performance in third
 
 SQream is able to optimize out unneeded columns very strongly due to its columnar storage.
 
+Use saved queries to reduce recurring compilation time
+-------------------------------------------------------
+
+:ref:`saved_queries` are compiled when they are created. The query plan is saved in SQream DB's metadata for later re-use.
+
+Because the query plan is saved, they can be used to reduce compilation overhead, especially with very complex queries.
+
+When executed, the saved query plan is recalled and executed. on the up-to-date data stored on disk.
+
+See how to use saved queries in the :ref:`saved queries guide<saved_queries>`.
+
 .. todo: show an execution plan
+
+.. reorder tables join- much more effective to join first the small tables (or those who have filters on them).
 .. what else should be here, and what can we do right now
 .. select report('/tmp',$$select a,b,c from tableA a join tableB b on a.id=b.id and a>4000 and b like '%this is a sample query%' $$);
 
