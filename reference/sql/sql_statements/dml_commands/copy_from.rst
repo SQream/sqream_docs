@@ -214,6 +214,16 @@ Loading a TSV (tab separated value) file
    
    COPY table_name FROM 'file.tsv' WITH DELIMITER '\t';
 
+Loading a text file with non-printable separator
+-----------------------------------------------------
+
+In the file below, the separator is ``DC1``, which is represented by ASCII 17 decimal or 021 octal.
+
+.. code-block:: postgres
+   
+   COPY table_name FROM 'file.txt' WITH DELIMITER E'\021';
+
+
 Loading files with a header row
 -----------------------------------
 

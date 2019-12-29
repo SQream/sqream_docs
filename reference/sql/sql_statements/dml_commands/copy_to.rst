@@ -145,11 +145,7 @@ When combining multiple options, use ``WITH`` followed by all options, separated
 Use non-printable ASCII characters as delimiter
 -------------------------------------------------------
 
-Any printable ASCII character can be used as the delimiter without special syntax.
-
-Tab and newline can be specified by escaping them, for example ``\t`` or ``\n`` respectively.
-
-Other non-printable characters can be specified using their octal representations, by using the ``E'\000'`` format, where ``000`` is the octal value of the character.
+Non-printable characters can be specified using their octal representations, by using the ``E'\000'`` format, where ``000`` is the octal value of the character.
 
 For example, ASCII character ``15``, known as "shift in", can be specified using ``E'\017'``.
 
