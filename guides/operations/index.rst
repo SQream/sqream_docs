@@ -19,5 +19,5 @@ The guides below include information about best practices, monitoring, logging, 
    xxconfiguration
    xxtroubleshooting
    xxinformation_for_support
-   xxcreating_or_cloning_a_storage_cluster
+   creating_or_cloning_a_storage_cluster
    xxrunning_and_stopping_the_system

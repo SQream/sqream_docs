@@ -1,4 +1,4 @@
-.. _work_load_manager:
+.. _workload_manager:
 
 ***********************
 Workload manager

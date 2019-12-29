@@ -133,6 +133,8 @@ For example,
    WHERE HIGH_SELECTIVITY(p_date = '2018-07-01')
    GROUP BY 1;
 
+This hint tells the query compiler that the ``WHERE`` condition is expected to filter out more than 50% of values. It does not affect the query results, but when used correctly can improve query performance.
+
 
 Cast smaller types to avoid overflow in aggregates
 ------------------------------------------------------
