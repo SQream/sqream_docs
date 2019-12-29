@@ -68,6 +68,8 @@ Supported types
 
 .. note:: SQream DB compresses all columns and types. The data size noted is the maximum data size allocation for uncompressed data.
 
+.. _cast:
+
 Converting and casting
 =========================
 

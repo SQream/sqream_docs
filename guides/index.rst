@@ -28,7 +28,7 @@ Full list of guides
    xxwork_load_manager
    xxaccess_control
    xxpython_functions
-   xxsaved_queries
+   saved_queries
    xxseeing_the_system_objects_as_sql
 
    data_management_and_concurrency/index

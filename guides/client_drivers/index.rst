@@ -15,4 +15,4 @@ These topics explain how to use the SQream DB client drivers, and write applicat
    cpp/index
    jdbc/index
    odbc/index
-   nodejs
+   nodejs/index
