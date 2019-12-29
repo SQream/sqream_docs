@@ -62,6 +62,19 @@ Elements
    * - ``AWS_ID``, ``AWS_SECRET``
      - Specifies the authentication details for secured S3 buckets
 
+Supported delimiters
+=====================================================
+
+Any printable ASCII character can be used as a delimiter without special syntax. The default CSV field delimiter is a comma (``,``).
+
+The delimiter can be any printable ASCII character (32-127), or a non-printable character when referred to in it's octal representation.
+
+A tab can be specified by escaping it, for example ``\t``.
+
+Other non-printable characters can be specified using their octal representations, by using the ``E'\000'`` format, where ``000`` is the octal value of the character.
+
+For example, ASCII character ``15``, known as "shift in", can be specified using ``E'\017'``.
+
 
 Examples
 ===========

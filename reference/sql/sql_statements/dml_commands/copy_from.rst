@@ -154,6 +154,19 @@ Date part codes
    * - ``SSS``
      - 3 digits fraction representation for milliseconds (000-999)
 
+Supported field delimiters
+=====================================================
+
+Any printable ASCII character can be used as a field delimiter without special syntax. The default CSV field delimiter is a comma (``,``).
+
+The field delimiter can be any printable ASCII character (32-127), or a non-printable character when referred to in it's octal representation.
+
+A tab can be specified by escaping it, for example ``\t``.
+
+Other non-printable characters can be specified using their octal representations, by using the ``E'\000'`` format, where ``000`` is the octal value of the character.
+
+For example, ASCII character ``15``, known as "shift in", can be specified using ``E'\017'``.
+
 Capturing rejected rows
 ==========================
 
