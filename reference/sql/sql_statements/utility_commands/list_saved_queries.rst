@@ -6,6 +6,8 @@ LIST_SAVED_QUERIES
 
 ``LIST_SAVED_QUERIES`` lists the available :ref:`previously saved queries<save_query>`.
 
+This is an alternative way to using the ``savedqueries`` catalog view.
+
 Read more in the :ref:`saved_queries` guide.
 
 See also: ref:`save_query`, :ref:`execute_saved_query`,  ref:`drop_saved_query`,  ref:`show_saved_query`.
@@ -59,3 +61,17 @@ Listing previously saved queries
    -----------------------------------------------
    SELECT * FROM nba WHERE Weight > ? AND Team = ?
 
+
+Listing saved queries with the catalog
+---------------------------------------------
+
+Using the :ref:`catalog<catalog_reference>` is also possible:
+
+.. code-block:: psql
+
+   t=> SELECT * FROM sqream_catalog.savedqueries;
+   name                      | num_parameters
+   --------------------------+---------------
+   select_all                |              0
+   select_by_weight          |              1
+   select_by_weight_and_team |              2

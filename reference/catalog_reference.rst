@@ -237,6 +237,21 @@ roles_memberships
    * - ``inherit``
      - Identifies if permissions are inherited. ``1`` for yes or ``0`` otherwise.
 
+savedqueries
+----------------
+
+``savedqueries`` identifies the :ref:`saved_queries<saved_queries>` in the database.
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Column
+     - Description
+   * - ``name``
+     - Saved query name
+   * - ``num_parameters``
+     - Number of parameters to be replaced at run-time
 
 schemas
 ----------
@@ -490,10 +505,17 @@ List columns and their types for a specific table
 List delete predicates
 ------------------------
 
-
 .. code-block:: postgres
 
    SELECT  t.table_name, d.*  FROM 
    sqream_catalog.delete_predicates AS d  
    INNER JOIN sqream_catalog.tables AS t  
    ON d.table_id=t.table_id;
+
+
+List :ref:`saved_queries`
+-----------------------------
+
+.. code-block:: postgres
+
+   SELECT * FROM sqream_catalog.savedqueries;
