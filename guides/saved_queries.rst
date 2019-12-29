@@ -6,7 +6,13 @@ Saved queries
 
 Saved queries are a way to store a query's execution plan for later re-use.
 
-Use saved queries to share queries between different users, or to eliminate the need to rewrite a query that is run frequently.
+.. tip:: 
+
+   * Use saved queries to share queries between different users, or to eliminate the need to rewrite a query that is run frequently.
+   
+   * Use saved queries to reduce the risk of SQL injection attacks
+
+
 
 How saved queries work
 ==========================
@@ -31,9 +37,10 @@ There are a few limitations however:
 Saving a query
 =================
 
+Saving a query is performed by using the :ref:`save_query` statement.
+
 Saving a simple query
 ---------------------------
-
 
 .. code-block:: psql
 
@@ -51,13 +58,6 @@ Use parameters to replace them later at execution time.
 
    t=> SELECT SAVE_QUERY('select_by_weight_and_team',$$SELECT * FROM nba WHERE Weight > ? AND Team = ?$$);
    executed
-   t=> SELECT EXECUTE_SAVED_QUERY('select_by_weight_and_team', 240, 'Toronto Raptors');
-   Name              | Team            | Number | Position | Age | Height | Weight | College     | Salary 
-   ------------------+-----------------+--------+----------+-----+--------+--------+-------------+--------
-   Bismack Biyombo   | Toronto Raptors |      8 | C        |  23 | 6-9    |    245 |             | 2814000
-   James Johnson     | Toronto Raptors |      3 | PF       |  29 | 6-9    |    250 | Wake Forest | 2500000
-   Jason Thompson    | Toronto Raptors |      1 | PF       |  29 | 6-11   |    250 | Rider       |  245177
-   Jonas Valanciunas | Toronto Raptors |     17 | C        |  24 | 7-0    |    255 |             | 4660482
 
 Listing and executing saved queries
 ======================================
