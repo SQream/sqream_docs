@@ -29,7 +29,7 @@ Full list of guides
    xxaccess_control
    xxpython_functions
    saved_queries
-   xxseeing_the_system_objects_as_sql
+   seeing_system_objects_as_sql
 
    data_management_and_concurrency/index
    
