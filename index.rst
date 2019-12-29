@@ -61,7 +61,11 @@ SQream DB is a GPU-accelerated analytics SQL database for massive data.
      - **Driver and deployment**
      - **Help & Support**
    * -
-         :ref:`releases`
+         :ref:`2020.1<2020.1>`
+         
+         :ref:`2019.2.1<2019.2.1>`
+         
+         :ref:`releases<All recent releases>`
 
      - 
          :ref:`Client drivers<client_drivers>`

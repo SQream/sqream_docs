@@ -157,15 +157,21 @@ Date part codes
 Supported field delimiters
 =====================================================
 
-Any printable ASCII character can be used as a field delimiter without special syntax. The default CSV field delimiter is a comma (``,``).
+Printable characters
+-----------------------
+Any printable ASCII character can be used as a delimiter without special syntax. The default CSV field delimiter is a comma (``,``).
 
-The field delimiter can be any printable ASCII character (32-127), or a non-printable character when referred to in it's octal representation.
+A printable character is any ASCII character in the range 32 - 127.
 
-A tab can be specified by escaping it, for example ``\t``.
+Non-printable characters
+----------------------------
 
-Other non-printable characters can be specified using their octal representations, by using the ``E'\000'`` format, where ``000`` is the octal value of the character.
+A non-printable character (1 - 31) can be used in its octal form. 
+
+A tab can be specified by escaping it, for example ``\t``. Other non-printable characters can be specified using their octal representations, by using the ``E'\000'`` format, where ``000`` is the octal value of the character.
 
 For example, ASCII character ``15``, known as "shift in", can be specified using ``E'\017'``.
+
 
 Capturing rejected rows
 ==========================
