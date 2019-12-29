@@ -86,7 +86,7 @@ Elements
      - ``1``
      - Controls the verbosity of the ``ERROR_LOG``. When set to ``0``, only the rejected rows are saved to the ``ERROR_LOG`` file. When set to ``1`` the error message is logged for every rejected row.
    * - ``STOP AFTER N ERRORS``
-     - ``0``
+     - ``1000000``
      - Specifies the threshold of rejected rows. When used with ``ERROR_LOG``, the ``COPY FROM`` command will roll back the transaction if the threshold ``N`` is reached.
    * - ``PARSERS``
      - ``DEFAULT`` for every column
@@ -123,7 +123,7 @@ Supported date parsers
      - ``MM/DD/YYYY [hh:mm:ss[.SSS]]``
      - ``12/31/2017 11:12:13.456``
 
-Date part codes
+Date pattern description
 
 .. list-table:: 
    :widths: auto
@@ -153,6 +153,8 @@ Date part codes
      - two digit seconds representation (00-59)
    * - ``SSS``
      - 3 digits fraction representation for milliseconds (000-999)
+
+.. note:: These date patterns are not the same as date parts used in the :ref:`datepart` function.
 
 Supported field delimiters
 =====================================================
