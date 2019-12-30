@@ -208,7 +208,7 @@ ODBC DSN Parameters
      - Specifies the database name to connect to. For example, ``Database="master"``
    * - Service
      - ``sqream``
-     - Specifices service queue to use. For example, ``Service="etl"``. Leave blank (``Service=""``) for default service
+     - Specifices :ref:`service queue<workload_manager>` to use. For example, ``Service="etl"``. Leave blank (``Service=""``) for default service ``sqream``.
    * - Server
      - None
      - Hostname of the SQream DB instance. For example, ``Server="127.0.0.1"`` or ``Server="sqream.mynetwork.co"``

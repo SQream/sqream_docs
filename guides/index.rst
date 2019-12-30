@@ -25,7 +25,7 @@ Full list of guides
    :titlesonly:
 
    xxqueries
-   xxworkload_manager
+   workload_manager
    xxaccess_control
    xxpython_functions
    saved_queries

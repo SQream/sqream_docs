@@ -250,6 +250,21 @@ You can save connection parameters as environment variables:
    $ export SQREAM_DATABASE=farm;
    $ ClientCmd --port=3105 --clustered --username=$SQREAM_USER -d $SQREAM_DATABASE
 
+Connecting to a specific queue
+-----------------------------------
+
+When using the :ref:`dynamic workload manager<workload_manager>` - connect to ``etl`` queue instead of using the default ``sqream`` queue
+
+.. code-block:: psql
+
+   $ ClientCmd --port=3105 --clustered --username=mjordan -d master --service=etl
+   Password:
+   
+   Interactive client mode
+   To quit, use ^D or \q.
+   
+   master=>_
+
 
 Operations and flag reference
 ===============================
@@ -292,7 +307,7 @@ Command line arguments
      - When used, the client connects to the load balancer, usually on port ``3108``. If not set, the client assumes the connection is to a standalone SQream DB instance.
    * - ``--service``
      - ``sqream``
-     - Service name (queue) that statements will file into.
+     - :ref:`Service name (queue)<workload_manager>` that statements will file into.
    * - ``--results-only``
      - False
      - Outputs results only, without timing information and row counts

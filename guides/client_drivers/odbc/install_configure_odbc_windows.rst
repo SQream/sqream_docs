@@ -106,7 +106,7 @@ Connection parameters
    * - Database
      - Specifies the database name to connect to. For example, ``master``
    * - Service
-     - Specifices service queue to use. For example, ``etl``. Leave blank for default service
+     - Specifices :ref:`service queue<workload_manager>` to use. For example, ``etl``. Leave blank for default service ``sqream``.
    * - Server
      - Hostname of the SQream DB instance. For example, ``127.0.0.1`` or ``sqream.mynetwork.co``
    * - Port
