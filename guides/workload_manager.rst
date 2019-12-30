@@ -111,6 +111,25 @@ The persistent configuration for this setup is listed in these four configuratio
 
 This configuration can be created temporarily (for the current session only) by using the :ref:`subscribe_service` and :ref:`unsubscribe_service` statements.
 
+Verifying the configuration
+-----------------------------------
+
+Use :ref:`show_subscribed_instances` to view service subscriptions. Use ref:`show_server_status` to see the statement queues.
+
+.. code-block:: psql
+   
+   t=> SELECT SHOW_SUBSCRIBED_INSTANCES();
+   service    | servernode | serverip      | serverport
+   -----------+------------+---------------+-----------
+   management | node_9383  | 192.168.0.111 |       5000
+   etl        | node_9383  | 192.168.0.111 |       5000
+   query      | node_9384  | 192.168.0.111 |       5001
+   management | node_9384  | 192.168.0.111 |       5001
+   query      | node_9385  | 192.168.0.111 |       5002
+   management | node_9385  | 192.168.0.111 |       5002
+   query      | node_9551  | 192.168.1.91  |       5000
+   management | node_9551  | 192.168.1.91  |       5000
+
 Configuring a client to connect to a specific service
 ===========================================================
 
