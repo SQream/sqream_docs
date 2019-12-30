@@ -75,7 +75,7 @@ Elements
      - When specified, tells SQream DB to stop loading after the specified number of rows.
    * - ``DELIMITER``
      - ``','``
-     - Specifies the field terminator - the character that separates fields or columns columns within each row of the file
+     - Specifies the field terminator - the character or characters that separates fields or columns columns within each row of the file
    * - ``RECORD DELIMITER``
      - ``\n`` (UNIX style newline)
      - Specifies the row terminator - the character that separates lines or rows
@@ -159,11 +159,23 @@ Date pattern description
 Supported field delimiters
 =====================================================
 
+Field delimiters can be one or more characters.
+
+Multi-character delimiters
+----------------------------------
+
+SQream DB supports multi-character field delimiters, sometimes found in non-standard files.
+
+A multi-character delimiter can be specified. For example, ``DELIMITER '%%'``, ``DELIMITER '{~}'``, etc.
+
 Printable characters
 -----------------------
-Any printable ASCII character can be used as a delimiter without special syntax. The default CSV field delimiter is a comma (``,``).
+
+Any printable ASCII character (or characters) can be used as a delimiter without special syntax. The default CSV field delimiter is a comma (``,``).
 
 A printable character is any ASCII character in the range 32 - 127.
+
+:ref:`Literal quoting rules<string_literals>` apply with delimiters. For example, to use ``'`` as a field delimiter, use ``DELIMITER ''''``
 
 Non-printable characters
 ----------------------------
@@ -216,7 +228,7 @@ Loading a TSV (tab separated value) file
    
    COPY table_name FROM 'file.tsv' WITH DELIMITER '\t';
 
-Loading a text file with non-printable separator
+Loading a text file with non-printable delimiter
 -----------------------------------------------------
 
 In the file below, the separator is ``DC1``, which is represented by ASCII 17 decimal or 021 octal.
@@ -224,6 +236,15 @@ In the file below, the separator is ``DC1``, which is represented by ASCII 17 de
 .. code-block:: postgres
    
    COPY table_name FROM 'file.txt' WITH DELIMITER E'\021';
+
+Loading a text file with multi-character delimiters
+-----------------------------------------------------
+
+In the file below, the separator is ``'|``.
+
+.. code-block:: postgres
+   
+   COPY table_name FROM 'file.txt' WITH DELIMITER '''|';
 
 
 Loading files with a header row

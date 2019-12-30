@@ -64,7 +64,7 @@ String literals are string (text) values, encoded either in ASCII or UTF-8.
 
 A string literal is quoted with single quotes (``'``) or dollars (``$$``)
 
-.. tip:: To use a single quote in a string, repeat the single quote twice. See example below
+.. tip:: To use a single quote in a string, repeat the single quote twice. See examples below.
 
 
 Examples
