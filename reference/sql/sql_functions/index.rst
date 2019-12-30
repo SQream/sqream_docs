@@ -352,23 +352,21 @@ System functions allow you to execute actions in the system, such as aborting a 
    * - :ref:`stop_statement`
      - Stops a query (or statement) if it is currently running
 
-
-
 Workload management functions
 ---------------------------------
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
-   
+
+   * - Function
+     - Description
    * - :ref:`subscribe_service`
      - Add a SQream DB worker to a service queue 
    * - :ref:`unsubscribe_service`
      - Remove a SQream DB worker to a service queue
    * - :ref:`show_subscribed_instances`
      - Return a list of service queues and workers
-
-
 
 
 .. toctree::
