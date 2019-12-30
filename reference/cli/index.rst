@@ -26,6 +26,8 @@ This topic contains the reference for these programs, as well as flags and confi
      - Load balancer end-point
    * - :ref:`sqream_console <sqream_console_cli_reference>`
      - Dockerized convenience wrapper for operations
+   * - :ref:`sqream_installer <sqream_installer_cli_reference>`
+     - Dockerized installer
    * - :ref:`upgrade_storage <upgrade_storage_cli_reference>`
      - Upgrade metadata schemas when upgrading between major versions
 
