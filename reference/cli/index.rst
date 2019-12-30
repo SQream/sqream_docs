@@ -35,10 +35,11 @@ This topic contains the reference for these programs, as well as flags and confi
    :maxdepth: 1
    :hidden:
    
-   sqream_sql
-   sqreamd
-   sqream_storage
    metadata_server
-   server_picker
+   sqreamd
    sqream_console
+   sqream_installer
+   server_picker
+   sqream_storage
+   sqream_sql
    upgrade_storage

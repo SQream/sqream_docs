@@ -1,7 +1,7 @@
 .. _sqream_console_cli_reference:
 
 *********************************
-sqream console
+sqream-console
 *********************************
 
 ``sqream-console`` is an interactive shell designed to help manage a dockerized SQream DB installation.
@@ -66,7 +66,7 @@ All SQream DB-specific commands start with the keyword ``sqream``.
 Operations and flag reference
 ===============================
 
-Basic Commands
+Commands
 -----------------------
 
 .. list-table:: 
@@ -85,6 +85,8 @@ Basic Commands
      - Access to :ref:`sqream sql<sqream_sql_cli_reference>`
    * - ``sqream editor``
      - Controls the statement editor's operations (web UI)
+
+.. _master_node:
 
 Master
 ------------
@@ -111,7 +113,7 @@ Syntax
 
    * - ``--stop [ --all ]``
      - 
-         Stops the master node and all connected :ref:`workers<Worker>`.
+         Stops the master node and all connected :ref:`workers<workers>`.
          The ``--all`` modifier instructs the ``--stop`` command to stop all running services related to SQream DB
    * - ``--list``
      - Shows a list of all active master nodes and their workers
@@ -162,6 +164,8 @@ Stopping all SQream DB workers and master
     sqream_single_host_worker_1    stopped
     sqream_single_host_worker_0    stopped
     sqream_single_host_master    stopped
+
+.. _workers:
 
 Workers
 ------------
