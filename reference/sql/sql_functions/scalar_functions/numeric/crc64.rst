@@ -12,6 +12,8 @@ Syntax
 .. code-block:: postgres
 
    CRC64( expr ) --> BIGINT
+   
+   CRC64_JOIN( expr ) --> BIGINT
 
 Arguments
 ============
@@ -28,18 +30,20 @@ Arguments
 Returns
 ============
 
-Always returns a 64-bit ``BIGINT`` value
+Returns a CRC-64 hash of the text input, of type ``BIGINT``.
 
 Notes
 =======
 
 * If the input value is NULL, the result is NULL.
 
+* The ``CRC64_JOIN`` variant skips leading whitespace, when used as a ``JOIN`` key
+
 Examples
 ===========
 
-Natural log values
---------------------------
+Calculate a CRC-64 hash of a string
+---------------------------------------
 
 .. code-block:: psql
 
