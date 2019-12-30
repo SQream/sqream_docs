@@ -12,7 +12,7 @@ In SQream DB, external tables are stored with some file-level metadata about the
 
 External tables are read-only. They can be used for any type of :ref:`select` query or :ref:`VIEW<create_view>`, but not with any DDL or DML operation like ``INSERT``.
 
-Querying data through external tables is is likely to be slower than querying standard tables. However, materializing these tables can improve query performance.
+Querying data through external tables is likely to be slower than querying standard tables. However, materializing these tables can improve query performance.
 give an example
 
 What kind of data is supported?
@@ -152,6 +152,7 @@ Error handling and limitations
    External tables are logical and do not contain any data, their structure is not verified or enforced until a query uses the table.
 
    For example, a CSV with the wrong delimiter may cause a query to fail, even though the table has been created successfully:
+   
    .. code-block:: psql
       
       t=> SELECT * FROM nba;
