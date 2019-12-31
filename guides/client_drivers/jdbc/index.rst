@@ -121,7 +121,7 @@ Connection parameters
      - Specifices service queue to use. For example, ``service=etl``
    * - ``<ssl>``
      - ✓
-     - ``ssfalse``
+     - ``false``
      - Specifies SSL for this connection. For example, ``ssl=true``
    * - ``<cluster>``
      - ✓
