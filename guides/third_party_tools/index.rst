@@ -26,7 +26,8 @@ In general, the tools listed have been tested and approved for usage with SQream
 
    sql_workbench
    tableau
-   spotfire
-   sas_viya
-   talend
-   diagnosing_common_connectivity_issues
+   r
+   xxspotfire
+   xxsas_viya
+   xxtalend
+   xxdiagnosing_common_connectivity_issues
