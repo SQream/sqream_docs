@@ -10,7 +10,7 @@ Gathering information for SQream support
 
 .. what about bug reports
 
-When you encounter a problem that you can't solve by yourself,`SQream Support <http://support.sqream.com/>`_ is here to help. 
+When you encounter a problem that you can't solve by yourself, `SQream Support <http://support.sqream.com/>`_ is here to help. 
 
 Getting support and reporting bugs
 =======================================
