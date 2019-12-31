@@ -39,14 +39,14 @@ Unary operator
 
 A prefix or postfix to an expression or literals. For example, ``-``, which is used to negate numbers.
 
-.. code-block: postgres
-
+.. code-block:: postgres
+   
    prefix_unary_operator ::=
       + | - | NOT
 
    postfix_unary_operator ::=
       IS NULL | IS NOT NULL
-      
+
 
 Binary operator
 -----------------
