@@ -4,20 +4,33 @@
 Troubleshooting
 ***********************
 
+Troubleshooting common issues
+======================================
 
-do some example troubleshooting use cases
+Troubleshoot cluster setup and configuration
+-----------------------------------------------------
 
-optimisation is a link
+Troubleshoot connectivity issues
+-----------------------------------
 
-performance problems
+Troubleshoot query performance
+------------------------------------
 
-errors
++ Link to optimization 
+Troubleshoot query behavior
+---------------------------------
 
-*  usage errors
-*  bugs in sqream
+File an issue with SQream support
+------------------------------------
 
-logs
+Examining logs
+========================
 
-configuration
+Example
+---------------
 
-running a separate sqream instance
+Start a temporary SQream DB for testing
+===============================================
+
+Example
+---------------

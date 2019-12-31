@@ -182,6 +182,8 @@ Access control commands
      - Creates a roles, which lets you control permissions on tables and databases
    * - :ref:`drop_role`
      - Removes roles
+   * - :ref:`get_statement_permissions`
+     - Returns a list of permissions required to run a statement or query
    * - :ref:`grant`
      - Grant permissions to a role
    * - :ref:`revoke`
