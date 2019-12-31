@@ -4,6 +4,12 @@
 Gathering information for SQream support
 *******************************************
 
+.. What do we want to look into a performance issue
+
+.. what about other kinds of issues
+
+.. what about bug reports
+
 When you encounter a problem that you can't solve by yourself,`SQream Support <http://support.sqream.com/>`_ is here to help. 
 
 Getting support and reporting bugs
@@ -40,12 +46,17 @@ Reproducing an issue consists of understanding:
 #. What is the query or statement that exposed the problem?
 #. Were there any external factors? (e.g. Network disconnection, hardware failure, etc.)
 
+See the :ref:`reproducible_statement` section ahead for information about collecting a full reproducible example.
+
 Logs
 --------
 
 The logs produced by SQream DB contain a lot of information that may be useful for debugging.
 
 Look for error messages in the log. SQream's support staff are experienced in correlating logs to workloads, and finding possible problems.
+
+See the :ref:`collecting_logs` section ahead for information about collecting a set of logs that can be analyzed by SQream support.
+
 
 Fix
 ---------
@@ -57,9 +68,119 @@ A fix can be issued as a hotfix to an existing version, or as part of a bigger m
 Your SQream account manager will keep you up-to-date about the status of the problem reported.
 
 
-.. What do we want to look into a performance issue
 
-.. what about other kinds of issues
+.. _reproducible_statement:
 
-.. what about bug reports
+Collecting a reproducible example of a problematic statement
+===============================================================
 
+SQream DB contains an SQL utility that can help SQream support reproduce a problem with a query or statement.
+
+This utility compiles and executes a statement, and collects the relevant data in a small database which can be used to recreate and investigate the issue.
+
+SQL Syntax
+---------------
+
+.. code-block:: postgres
+   
+   SELECT EXPORT_REPRODUCIBLE_SAMPLE(output_path, query_stmt [, ... ])
+   ;
+   
+   output_path ::= 
+      filepath
+      
+
+Parameters
+---------------
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Description
+   * - ``output_path``
+     - Path for the output archive. The output file will be a tarball.
+   * - ``query_stmt [, ...]``
+     - Statements to analyze.
+
+Example
+-----------
+
+.. code-block:: postgres
+
+   SELECT EXPORT_REPRODUCIBLE_SAMPLE('/home/rhendricks', 'SELECT * FROM t', $$SELECT "Name", "Team" FROM nba$$);
+
+.. _collecting_logs:
+
+Collecting logs and metadata database
+=============================================
+
+SQream DB comes bundled with a data collection utility and an SQL utility intended for collecting logs and additional information that can help SQream support drill down into possible issues.
+
+SQL Syntax
+----------
+
+.. code-block:: postgres
+   
+   SELECT REPORT_COLLECTION(output_path, mode)
+   ;
+   
+   output_path ::= 
+      filepath
+   
+   mode ::= 
+      log | db | db_and_log
+   
+
+Command line utility
+--------------------------
+
+If SQream DB can't be accessed for any reason, a command line tool can also be used to collect the same information:
+
+.. code-block:: console
+   
+   $ ./bin/report_collection <path to storage> <path for output> <mode>
+
+
+Parameters
+---------------
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Description
+   * - ``output_path``
+     - Path for the output archive. The output file will be named ``report_<date>_<time>.tar``.
+   * - ``mode``
+     - 
+         One of three modes:
+         * ``'log'`` - Collects all log files
+         * ``'db'`` - Collects the metadata database (includes DDL, but no data)
+         * ``'db_and_log'`` - Collect both log files and metadata database
+
+Example
+-----------------
+
+Write an archive to ``/home/rhendricks``, containing log files:
+
+.. code-block:: postgres
+   
+   SELECT REPORT_COLLECTION('/home/rhendricks', 'log')
+   ;
+
+Write an archive to ``/home/rhendricks``, containing log files and metadata database:
+
+.. code-block:: postgres
+   
+   SELECT REPORT_COLLECTION('/home/rhendricks', 'db_and_log')
+   ;
+   
+
+Using the command line utility:
+
+.. code-block:: console
+   
+   $ ./bin/report_collection /home/rhendricks/sqream_storage /home/rhendricks db_and_log

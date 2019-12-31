@@ -33,8 +33,9 @@ Don't flatten or denormalize data
 
 SQream DB executes JOIN operations very effectively. It is almost always better to JOIN tables at query-time rather than flatten/denormalize your tables.
 
-This will also reduce storage size.
+This will also reduce storage size and reduce row-lengths.
 
+We highly suggest using ``INT`` or ``BIGINT`` as join keys, rather than a text/string type.
 
 Convert external tables to native tables
 -------------------------------------------
@@ -170,6 +171,49 @@ Because the query plan is saved, they can be used to reduce compilation overhead
 When executed, the saved query plan is recalled and executed. on the up-to-date data stored on disk.
 
 See how to use saved queries in the :ref:`saved queries guide<saved_queries>`.
+
+Pre-filter to reduce :ref:`JOIN<joins>` complexity
+--------------------------------------------------------
+
+Filter and reduce table sizes prior to joining on them
+
+.. code-block:: postgres
+
+   SELECT store_name,
+          SUM(amount)
+   FROM dimention dim
+     JOIN fact ON dim.store_id = fact.store_id
+   WHERE p_date BETWEEN '2019-07-01' AND '2019-07-31'
+   GROUP BY store_name;
+
+Can be rewritten as:
+
+.. code-block:: postgres
+
+   SELECT store_name,
+          sum_amount
+   FROM dimention AS dim
+     INNER JOIN (SELECT SUM(amount) AS sum_amount,
+                        store_id
+                 FROM fact
+                 WHERE p_date BETWEEN '2019-07-01' AND '2019-07-31'
+                 GROUP BY store_id) AS fact ON dim.store_id = fact.store_id;
+
+
+Data loading considerations
+=================================
+
+Allow and use natural sorting on data
+----------------------------------------
+
+Very often, tabular data is already naturally ordered along a dimension such as a timestamp or area.
+
+This natural order is a major factor for query performance later on, as data that is naturally sorted can be more easily compressed and analyzed with SQream DB's metadata collection.
+
+For example, when data is sorted by timestamp, filtering on this timestamp is more effective than filtering on an unordered column.
+
+Natural ordering can also be used for effective :ref:`delete` operations.
+
 
 .. todo: show an execution plan
 
