@@ -125,19 +125,16 @@ Connection parameters
 Events
 -------------
 
-The connector has event returns with an event emitter
+The connector handles event returns with an event emitter
 
-``getConnectionId``
-^^^^^^^^^^^^^^^^^^^^^^^^^
-The ``getConnectionId`` event returns the executing connection ID.
+getConnectionId
+   The ``getConnectionId`` event returns the executing connection ID.
 
-``getStatementId``
-^^^^^^^^^^^^^^^^^^^^^^
-The ``getStatementId`` event returns the executing statement ID
+getStatementId
+   The ``getStatementId`` event returns the executing statement ID.
 
-``getTypes``
-^^^^^^^^^^^^^^^^^^^^
-The ``getTypes`` event returns the results columns types
+getTypes
+   The ``getTypes`` event returns the results columns types.
 
 Example
 ^^^^^^^^^^^^^^^^^
