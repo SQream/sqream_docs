@@ -12,6 +12,7 @@ Why use a workload manager?
 The workload manager allows a system engineer or database administrator to allocate specific workers and compute resoucres for various tasks.
 
 For example:
+
 #. Creating a service queue named ``ETL`` and allocating two workers exclusively to this service prevents non-``ETL`` statements from utilizing these compute resources.
 
 #. Creating a service for the company's leadership during working hours for dedicated access, and disabling this service at night to allow maintenance operations to use the available compute.
