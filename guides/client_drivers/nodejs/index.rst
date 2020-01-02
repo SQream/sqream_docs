@@ -188,6 +188,7 @@ Preventing ``heap out of memory`` errors
 Some workloads may cause Node.JS to fail with the error:
 
 .. code-block:: none
+
    FATAL ERROR: CALL_AND_RETRY_LAST Allocation failed - JavaScript heap out of memory
 
 To prevent this error, modify the heap size configuration by setting the ``--max-old-space-size`` run flag.
