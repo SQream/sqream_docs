@@ -23,7 +23,7 @@ Start SQream DB temporarily
 
 Using ``nohup`` and ``&`` sends SQream DB to run in the background.
 
-To stop the active instance:
+To stop the active worker:
 
 .. code-block:: console
 
@@ -58,7 +58,7 @@ Positional command arguments
 
 ``sqreamd`` also supports positional arguments, when not using a configuration file.
 
-This method can be used to temporarily start a SQream DB instance for testing.
+This method can be used to temporarily start a SQream DB worker for testing.
 
 .. code-block:: console
 

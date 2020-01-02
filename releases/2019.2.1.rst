@@ -20,7 +20,7 @@ Improvements
    * Initializing – Pre-execution processing
    * Executing – statement is running
 
-* We’ve improved our log files and have unified them into a single file per instance, per date. Each message type has a unique code which can help identify potential issues. See the documentation for full details on the changes to the log structures.
+* We’ve improved our log files and have unified them into a single file per worker, per date. Each message type has a unique code which can help identify potential issues. See the documentation for full details on the changes to the log structures.
 
 * ``WITH ADMIN OPTION`` added in ``GRANT``/``REVOKE`` operations, allowing roles to grant their own permissions to others.
 
@@ -76,7 +76,7 @@ Fixes
 
 * DWLM:
 
-   * Fixed situation where queries were not distributed correctly among all available instances
+   * Fixed situation where queries were not distributed correctly among all available workers
    * Fixed ``cannot execute - reconnectDb error`` error
    * Fixed occasional hanging statement
    * Fixed occasional ``Connection refused``

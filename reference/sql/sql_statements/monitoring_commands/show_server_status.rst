@@ -39,7 +39,7 @@ This function returns a list of active sessions. If no sessions are active acros
    * - ``service``
      - The service name for the statement
    * - ``instance``
-     - Instance ID
+     - The worker ID
    * - ``connection_id``
      - Connection ID
    * - ``serverip``

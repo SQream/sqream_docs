@@ -38,7 +38,7 @@ Extract the library files from the tarball
 Examples
 ==============================================
 
-Assuming you have an existing SQream DB instance to connect to, we'll connect to it using the application and run some statements.
+Assuming there is a SQream DB worker to connect to, we'll connect to it using the application and run some statements.
 
 Testing the connection to SQream DB
 --------------------------------------------

@@ -15,7 +15,7 @@ The guides below include information about best practices, monitoring, logging, 
 
    optimization_best_practices
    xxmonitoring
-   xxlogging
+   logging
    xxconfiguration
    troubleshooting
    information_for_support

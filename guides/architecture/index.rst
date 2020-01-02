@@ -18,6 +18,6 @@ Explore the guides below for information about SQream DB's hardware requirements
 
    hardware_guide
    concurrency_and_scaling_in_sqream
-   processes_and_network_architecture
+   xxprocesses_and_network_architecture
    filesystem_and_filesystem_usage
    internals_architecture

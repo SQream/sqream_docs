@@ -93,9 +93,9 @@ Create a file called ``test.py``, containing the following:
     :caption: pysqream Validation Script
     :linenos:
 
-Make sure to replace the parameters in ``<`` ``>`` with the respective parameters for your SQream DB instance.
+Make sure to replace the parameters in ``<`` ``>`` with the respective parameters for your SQream DB installation.
 
-Run the test file to verify that you can connect to your SQream DB instance:
+Run the test file to verify that you can connect to SQream DB:
 
 .. code-block:: console
    

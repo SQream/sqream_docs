@@ -114,7 +114,7 @@ This configuration can be created temporarily (for the current session only) by 
 Verifying the configuration
 -----------------------------------
 
-Use :ref:`show_subscribed_instances` to view service subscriptions. Use ref:`show_server_status` to see the statement queues.
+Use :ref:`show_subscribed_instances` to view service subscriptions for each worker. Use ref:`show_server_status` to see the statement queues.
 
 .. code-block:: psql
    

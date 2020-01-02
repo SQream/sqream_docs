@@ -289,7 +289,7 @@ Command line arguments
      - Changes the mode of operation to multi-command, non-interactive. Use this argument to run a sequence of statements from an external file and immediately exit.
    * - ``--host``
      - ``127.0.0.1``
-     - Address of the SQream DB instance.
+     - Address of the SQream DB worker.
    * - ``--port``
      - ``5000``
      - Sets the connection port.
@@ -304,7 +304,7 @@ Command line arguments
      - Specify the password using the command line argument. If not specified, the client will prompt the user for the password.
    * - ``--clustered``
      - False
-     - When used, the client connects to the load balancer, usually on port ``3108``. If not set, the client assumes the connection is to a standalone SQream DB instance.
+     - When used, the client connects to the load balancer, usually on port ``3108``. If not set, the client assumes the connection is to a standalone SQream DB worker.
    * - ``--service``
      - ``sqream``
      - :ref:`Service name (queue)<workload_manager>` that statements will file into.

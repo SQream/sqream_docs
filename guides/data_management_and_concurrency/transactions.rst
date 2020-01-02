@@ -10,7 +10,7 @@ commit, rollback and recovery are all extremely fast
 
 not performance for high concurrency oltp workloads
 
-extremely fast injest rate
+extremely fast ingest rate
 
 no reason to break large inserts up into multiple transactions
 

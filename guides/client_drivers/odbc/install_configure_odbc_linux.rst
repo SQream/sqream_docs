@@ -211,10 +211,10 @@ ODBC DSN Parameters
      - Specifices :ref:`service queue<workload_manager>` to use. For example, ``Service="etl"``. Leave blank (``Service=""``) for default service ``sqream``.
    * - Server
      - None
-     - Hostname of the SQream DB instance. For example, ``Server="127.0.0.1"`` or ``Server="sqream.mynetwork.co"``
+     - Hostname of the SQream DB worker. For example, ``Server="127.0.0.1"`` or ``Server="sqream.mynetwork.co"``
    * - Port
      - None
-     - TCP port of the SQream DB instance. For example, ``Port="5000"`` or ``Port="3108"``
+     - TCP port of the SQream DB worker. For example, ``Port="5000"`` or ``Port="3108"`` for the load balancer
    * - Cluster
      - ``false``
      - Connect via load balancer (use only if exists, and check port). For example, ``Cluster=true``

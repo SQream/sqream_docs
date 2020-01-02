@@ -18,17 +18,17 @@ do the action that you are trying to do.
 
 Compared to ANSI SQL and other SQL products:
 
-* we use roles as users and as groups, just like ANSI SQL and other
-  SQL products you're familiar with
+* 
+   SQream DB has roles as users and as groups, like ANSI SQL and other SQL products a user may be familiar with
 
-* we have a default permissions system based on the system in
-  Postgres, but with more power. In most cases, this allows you to set
-  things up so that every object you create gets permissions set
-  automatically.
+* 
+   SQream DB has a default permissions system based on the system in Postgres, but with more power.
+   In most cases, this allows an administrator to set things up so that every object gets permissions set
+   automatically.
 
-* we don't have row based permissions
+* SQream DB does not have row based permissions
 
-* we don't have object ownership
+* SQream DB does not have object ownership
 
 .. http://docs.sqream.com/latest/manual/Content/Guides/Quick_Guides/Quick_guide_to_roles_and_permissions/Quick_guide_to_roles_and_permissions.htm
 

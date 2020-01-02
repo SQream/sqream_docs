@@ -1,7 +1,7 @@
 .. _chunks_and_extents:
 
 ***********************
-chunks_and_extents
+Chunks and extents
 ***********************
 
 what is a chunk, what is an extent

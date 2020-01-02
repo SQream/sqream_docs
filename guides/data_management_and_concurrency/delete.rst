@@ -167,7 +167,6 @@ Triggering a cleanup
    0 rows
 
 
-
 .. soft update concept
 
 .. delete cleanup and it's properties. automatic/manual, in transaction or background
