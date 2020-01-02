@@ -39,7 +39,24 @@ In the example above, the worker will start on port 5000, and will use GPU #0.
 Frequently set parameters
 ============================
 
-.. list-table:: Log fields
+.. list-table:: Compiler flags
+   :widths: auto
+   :header-rows: 1
+   
+   * - Name
+     - Section
+     - Description
+     - Default
+     - Value range
+     - Example
+   * -
+     -
+     -
+     -
+     -
+     -
+
+.. list-table:: Server flags
    :widths: auto
    :header-rows: 1
    
@@ -79,30 +96,23 @@ Frequently set parameters
      - ✗
      - Valid local system path to license file
      - ``"license_path" : "/etc/sqream/license.enc"``
+
+.. list-table:: Runtime global flags
+   :widths: auto
+   :header-rows: 1
+   
+   * - Name
+     - Section
+     - Description
+     - Default
+     - Value range
+     - Example
    * - ``spoolMemoryGb``
      - ``runtimeGlobalFlags``
      - Modifies RAM allocated for the worker for intermediate results. Statements that use more memory will spool to disk. We recommend not to exceed the amount of RAM in the machine.
      - ``128``
      - 1 to maximum available RAM in gigabytes
      - ``"spoolMemoryGb": 250``
-   * - ``insertParsers``
-     - ``runtimeFlags``
-     - Sets the number of CSV parsing threads launched during bulk load
-     - 4
-     - 1 to 32
-     - ``"insertParsers" : 8``
-   * - ``insertCompressors``
-     - ``runtimeFlags``
-     - Sets the number of compressor threads launched during bulk load
-     - 4
-     - 1 to 32
-     - ``"insertCompressors" : 8``
-   * - ``statementLockTimeout``
-     - ``runtimeGlobalFlags``
-     - Sets the delay in seconds before SQream DB will stop waiting for a lock and return an error
-     - 3
-     - >=1
-     - ``"statementLockTimeout" : 10``
    * - ``showFullExceptionInfo``
      - ``runtimeGlobalFlags``
      - Shows complete error message with debug information. Use this for debugging.
@@ -151,6 +161,36 @@ Frequently set parameters
      - ``never``
      - ``daily``, ``weekly``, ``monthly``, ``never``
      - ``"logClientLevel" : 3``
+
+.. list-table:: Runtime flags
+   :widths: auto
+   :header-rows: 1
+   
+   * - Name
+     - Section
+     - Description
+     - Default
+     - Value range
+     - Example
+   * - ``insertParsers``
+     - ``runtimeFlags``
+     - Sets the number of CSV parsing threads launched during bulk load
+     - 4
+     - 1 to 32
+     - ``"insertParsers" : 8``
+   * - ``insertCompressors``
+     - ``runtimeFlags``
+     - Sets the number of compressor threads launched during bulk load
+     - 4
+     - 1 to 32
+     - ``"insertCompressors" : 8``
+   * - ``statementLockTimeout``
+     - ``runtimeGlobalFlags``
+     - Sets the delay in seconds before SQream DB will stop waiting for a lock and return an error
+     - 3
+     - >=1
+     - ``"statementLockTimeout" : 10``
+
 
 .. list the main configuration options and how they are used
 
