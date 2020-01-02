@@ -118,50 +118,9 @@ Collecting logs and metadata database
 
 SQream DB comes bundled with a data collection utility and an SQL utility intended for collecting logs and additional information that can help SQream support drill down into possible issues.
 
-SQL Syntax
-----------
+See more information in the :ref:`Collect logs from your cluster<collecting_logs>` section of the logging guide.
 
-.. code-block:: postgres
-   
-   SELECT REPORT_COLLECTION(output_path, mode)
-   ;
-   
-   output_path ::= 
-      filepath
-   
-   mode ::= 
-      log | db | db_and_log
-   
-
-Command line utility
---------------------------
-
-If SQream DB can't be accessed for any reason, a command line tool can also be used to collect the same information:
-
-.. code-block:: console
-   
-   $ ./bin/report_collection <path to storage> <path for output> <mode>
-
-
-Parameters
----------------
-
-.. list-table::
-   :widths: auto
-   :header-rows: 1
-   
-   * - Parameter
-     - Description
-   * - ``output_path``
-     - Path for the output archive. The output file will be named ``report_<date>_<time>.tar``.
-   * - ``mode``
-     - 
-         One of three modes:
-         * ``'log'`` - Collects all log files
-         * ``'db'`` - Collects the metadata database (includes DDL, but no data)
-         * ``'db_and_log'`` - Collect both log files and metadata database
-
-Example
+Examples
 -----------------
 
 Write an archive to ``/home/rhendricks``, containing log files:
