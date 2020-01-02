@@ -157,7 +157,7 @@ A table with an identity (autoincrement) column
 Creating a table from a SELECT query
 -----------------------------------------
 
-You can use a :ref:`CREATE TABLE AS <create_table_as>` statement to create a new table from the results of a SELECT query.
+Use a :ref:`CREATE TABLE AS <create_table_as>` statement to create a new table from the results of a SELECT query.
 
 .. code-block:: postgres
    

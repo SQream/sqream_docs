@@ -12,7 +12,7 @@ Install and configure ODBC on Linux
 
 The ODBC driver for Windows is provided as a shared library.
 
-This tutorial shows you how to install and configure ODBC on Linux.
+This tutorial shows how to install and configure ODBC on Linux.
 
 .. contents:: In this topic:
    :local:
@@ -69,13 +69,13 @@ Install the ODBC driver with a script
 Use this method if you have never used ODBC on your machine before. If you have existing DSNs, see the manual install process below.
 
 #. Unpack the tarball
-   Copy the file you downloaded to any directory, and untar it:
+   Copy the downloaded file to any directory, and untar it:
    
    .. code-block:: console
 
       $ tar xf sqream_2019.2.1_odbc_3.0.0_x86_64_linux.tar.gz -C sqream_odbc64
 
-#. Run the first-time installer. The installer will create a DSN you can edit.
+#. Run the first-time installer. The installer will create an editable DSN.
    
    .. code-block:: console
       
@@ -98,7 +98,7 @@ Use this method when you have existing ODBC DSNs on your machine.
 
       $ tar xf sqream_2019.2.1_odbc_3.0.0_x86_64_linux.tar.gz -C sqream_odbc64
 
-   Take note of the directory where you unpacked the driver. For example, ``/home/rhendricks/sqream_odbc64``
+   Take note of the directory where the driver was unpacked. For example, ``/home/rhendricks/sqream_odbc64``
 
 #. Locate the ``odbc.ini`` and ``odbcinst.ini`` files, using ``odbcinst -j``.
 
@@ -196,7 +196,7 @@ ODBC DSN Parameters
      - An easily recognizable name that you'll use to reference this DSN.
    * - Description
      - None
-     - A description of this DSN for your convenience. You can leave this blank.
+     - A description of this DSN for your convenience. This field can be left blank
    * - User
      - None
      - Username of a role to use for connection. For example, ``User="rhendricks"``

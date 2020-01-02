@@ -106,4 +106,4 @@ Run the test file to verify that you can connect to SQream DB:
 
 If all went well, you are now ready to build an application using the SQream DB Python connector!
 
-If any connection error appears, verify that you have access to a running SQream DB instance and that the connection parameters are correct.
+If any connection error appears, verify that you have access to a running SQream DB and that the connection parameters are correct.

@@ -5,7 +5,8 @@ C++ Native Driver
 *************************
 
 The SQream DB C++ driver allows C++ applications and tools connect to SQream DB.
-This tutorial shows you how to write a C++ application using the native driver.
+
+This tutorial shows how to write a C++ application using the native driver.
 
 .. contents:: In this topic:
    :depth: 2
@@ -42,7 +43,8 @@ Assuming there is a SQream DB worker to connect to, we'll connect to it using th
 
 Testing the connection to SQream DB
 --------------------------------------------
-You can download this file by right clicking and saving to your computer :download:`connect_test.cpp <connect_test.cpp>`.
+
+Download this file by right clicking and saving to your computer :download:`connect_test.cpp <connect_test.cpp>`.
 
 .. literalinclude:: connect_test.cpp
     :language: cpp
@@ -53,18 +55,19 @@ You can download this file by right clicking and saving to your computer :downlo
 Compiling and running the application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To build this code, put the library and header file in ./libsqream-3.0/ and run
+To build this code, place the library and header file in ./libsqream-3.0/ and run
 
 .. code-block:: console
 
    $ g++ -Wall -Ilibsqream-3.0 -Llibsqream-3.0 -lsqream connect_test.cpp -o connect_test
    $ ./connect_test
 
-You can modify the -I and -L arguments if you put the library and header file in another directory.
+Modify the ``-I`` and ``-L`` arguments to match the ``.so`` library and ``.h`` file if they are in another directory.
 
 Creating a table and inserting values
 --------------------------------------------
-You can download this file by right clicking and saving to your computer :download:`insert_test.cpp <insert_test.cpp>`.
+
+Download this file by right clicking and saving to your computer :download:`insert_test.cpp <insert_test.cpp>`.
 
 .. literalinclude:: insert_test.cpp
     :language: cpp

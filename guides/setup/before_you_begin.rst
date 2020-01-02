@@ -4,7 +4,7 @@
 Before you begin
 ***********************
 
-Before you install or deploy SQream DB, you need to have the following:
+Before you install or deploy SQream DB, please verify you have the following:
 
 * An NVIDIA-capable server, either on-premise or on supported cloud platforms
 
@@ -40,7 +40,7 @@ To install SQream DB, we will go through the following steps:
 
 .. rubric:: What's next?
 
-* When you're ready, start :ref:`installing SQream DB <installing_sqream_db>`
+* When ready, start :ref:`installing SQream DB <installing_sqream_db>`
 
 .. _`sign up for SQream DB`: https://sqream.com/try-sqream-db
 

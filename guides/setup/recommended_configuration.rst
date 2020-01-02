@@ -235,7 +235,7 @@ Secure the server with a firewall
 Opening up ports in the firewall
 ---------------------------------
 
-The example below shows how to open up all ports required by SQream DB and related management interfaces. The example also takes into account up to 4 instances on the host.
+The example below shows how to open up all ports required by SQream DB and related management interfaces. The example also takes into account up to 4 workers on the host.
 
    .. code-block:: console
       

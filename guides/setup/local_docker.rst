@@ -54,7 +54,7 @@ CentOS 7 / RHEL 7 / Amazon Linux
       $ sudo rpm -Uvh https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-10.1.243-1.x86_64.rpm
       $ sudo yum update && sudo yum install -y nvidia-driver-latest
 
-.. note:: If you are running Linux with X, you'll have to switch to text-only mode before installing the display driver
+.. note:: If Linux is running with X, switch to text-only mode before installing the display driver
    
    .. code-block:: console
    
@@ -106,7 +106,7 @@ CentOS 7 / RHEL 7 / Amazon Linux
                $ sudo cp /lib/udev/rules.d/40-redhat.rules /etc/udev/rules.d 
                $ sudo sed -i 's/SUBSYSTEM!="memory", ACTION!="add", GOTO="memory_hotplug_end"/SUBSYSTEM=="*", GOTO="memory_hotplug_end"/' /etc/udev/rules.d/40-redhat.rules
       
-      *You will need to reboot the system to initialize the above changes.*
+      *Reboot the system to initialize the above changes*
 
 #. Continue to :ref:`installing NVIDIA Docker for RHEL <docker_rhel>`
 
@@ -366,7 +366,7 @@ Ubuntu 18.04 (x64)
 Preparing directories and mounts for SQream DB
 ===============================================
 
-SQream DB contains several directories that you may be asked to define
+SQream DB contains several directories that need to be defined
 
 .. list-table:: Directories and paths
    :widths: 40 60
@@ -409,7 +409,7 @@ Install the SQream DB Docker container
 
    Copy the license package from your home directory to the license subdirectory which is located in the newly created SQream installer directory.
    
-   For example, if the licence package you received is titled ``license_package.tar.gz``:
+   For example, if the licence package is titled ``license_package.tar.gz``:
    
    .. code-block:: console
       
@@ -470,7 +470,7 @@ Starting your first local cluster
 
    .. note:: By default, each worker is allocated a full GPU. To launch more workers than available GPUs, see the :ref:`Console reference <console_ref>`
 
-#. SQream DB is now running! You can exit the console by typing ``exit``.
+#. SQream DB is now running! (Exit the console by typing ``exit`` when done.)
 
 .. rubric:: What's next?
 

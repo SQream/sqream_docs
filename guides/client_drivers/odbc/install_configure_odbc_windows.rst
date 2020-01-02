@@ -41,7 +41,7 @@ Install the driver by following the on-screen instructions in the easy-to-follow
 
 .. image:: /_static/images/odbc_windows_installer_screen1.png
 
-.. note:: The installer will install the driver in ``C:\Program Files\SQream Technologies\ODBC Driver`` by default. You can change this path during the installation.
+.. note:: The installer will install the driver in ``C:\Program Files\SQream Technologies\ODBC Driver`` by default. This path is changable during the installation.
 
 2. Selecting components
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -108,9 +108,9 @@ Connection parameters
    * - Service
      - Specifices :ref:`service queue<workload_manager>` to use. For example, ``etl``. Leave blank for default service ``sqream``.
    * - Server
-     - Hostname of the SQream DB instance. For example, ``127.0.0.1`` or ``sqream.mynetwork.co``
+     - Hostname of the SQream DB worker. For example, ``127.0.0.1`` or ``sqream.mynetwork.co``
    * - Port
-     - TCP port of the SQream DB instance. For example, ``5000`` or ``3108``
+     - TCP port of the SQream DB worker. For example, ``5000`` or ``3108``
    * - User server picker
      - Connect via load balancer (use only if exists, and check port)
    * - SSL

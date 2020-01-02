@@ -126,7 +126,7 @@ See more about :ref:`saved_queries`
 Monitoring
 ===============
 
-Monitoring statements allow you to execute actions in the system, such as aborting a query or get information about system processes.
+Monitoring statements allow a database administrator to execute actions in the system, such as aborting a query or get information about system processes.
 
 .. list-table:: 
    :widths: auto
@@ -179,7 +179,7 @@ Access control commands
    * - :ref:`alter_role`
      - Applies a change to an existing role
    * - :ref:`create_role`
-     - Creates a roles, which lets you control permissions on tables and databases
+     - Creates a roles, which lets a database administrator control permissions on tables and databases
    * - :ref:`drop_role`
      - Removes roles
    * - :ref:`get_statement_permissions`

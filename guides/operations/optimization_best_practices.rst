@@ -50,7 +50,7 @@ For example,
 
    CREATE TABLE native_table AS SELECT * FROM external_table
 
-The one situation when this wouldn't be as useful is when you are only likely to query the data one time.
+The one situation when this wouldn't be as useful is when data will be only queried once.
 
 Use information about the column data to your advantage
 -------------------------------------------------------------

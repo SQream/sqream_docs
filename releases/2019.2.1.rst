@@ -42,7 +42,7 @@ Operations
 
 * Clients such as SecureCRT and other shells must have locale set as ``cp874`` or equivalent
 
-* When upgrading from SQream DB v3.2 or lower, you must upgrade the storage version by using the storage upgrade utility: ``./bin/upgrade_storage /path/to/storage/sqreamdb/``
+* When upgrading from SQream DB v3.2 or lower, the storage version must be upgraded using the :ref:`storage_upgrade` utility: ``./bin/upgrade_storage /path/to/storage/sqreamdb/``
 
 
 Known Issues & Limitations

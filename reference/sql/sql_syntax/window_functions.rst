@@ -87,7 +87,7 @@ The result depends on the individual row and the order of the rows. Some window 
 
    Boundaries for the frames may need to be applied to get the correct results.
 
-Window frame functions allow you to perform rolling operations, such as calculate moving averages, longest standing customers, identifying churn, find movers and shakers, etc.
+Window frame functions allows a user to perform rolling operations, such as calculate moving averages, longest standing customers, identifying churn, find movers and shakers, etc.
 
 Examples
 ==========

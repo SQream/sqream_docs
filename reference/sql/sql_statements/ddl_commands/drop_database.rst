@@ -51,7 +51,7 @@ Dropping a database and all of its objects
 Dropping the current database
 --------------------------------
 
-You can not drop the current database in use. Switch to another database first.
+The current database in use can't be dropped. Switch to another database first.
 
 .. code-block:: psql
 

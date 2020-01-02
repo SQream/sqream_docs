@@ -4,7 +4,7 @@
 Setting up SQream DB
 ***********************
 
-In the topics below, you can find what it takes to prepare and install SQream DB. 
+Find what it takes to prepare and install SQream DB in the topics below. 
 
 Browse the articles in the sidebar, or use the search to find the information you need.
 

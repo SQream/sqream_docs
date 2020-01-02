@@ -5,7 +5,7 @@ JDBC
 *************************
 
 The SQream DB JDBC driver allows most Java applications and tools connect to SQream DB.
-This tutorial shows you how to write a Java application using the JDBC interface.
+This tutorial shows how to write a Java application using the JDBC interface.
 
 The JDBC driver requires Java 1.8 or newer.
 
@@ -18,7 +18,7 @@ Installing the JDBC driver
 Prerequisites
 ----------------
 
-The SQream DB JDBC driver requires Java 1.8 or newer. You can install either Oracle Java or OpenJDK.
+The SQream DB JDBC driver requires Java 1.8 or newer. We recommend either Oracle Java or OpenJDK.
 
 **Oracle Java**
 
@@ -102,7 +102,7 @@ Connection parameters
    * - ``<host and port>``
      - ✗
      - None
-     - Hostname and port of the SQream DB instance. For example, ``127.0.0.1:5000``, ``sqream.mynetwork.co:3108``
+     - Hostname and port of the SQream DB worker. For example, ``127.0.0.1:5000``, ``sqream.mynetwork.co:3108``
    * - ``<database name>``
      - ✗
      - None
@@ -153,7 +153,7 @@ For a SQream DB cluster with load balancer and a specific service queue named ``
 Sample Java program
 --------------------
 
-You can download this file by right clicking and saving to your computer :download:`sample.java <sample.java>`.
+Download this file by right clicking and saving to your computer :download:`sample.java <sample.java>`.
 
 .. literalinclude:: sample.java
     :language: java

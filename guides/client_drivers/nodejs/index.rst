@@ -92,11 +92,11 @@ Connection parameters
    * - ``host``
      - ✗
      - None
-     - Hostname for SQream DB instance. For example, ``127.0.0.1``, ``sqream.mynetwork.co``
+     - Hostname for SQream DB worker. For example, ``127.0.0.1``, ``sqream.mynetwork.co``
    * - ``port``
      - ✗
      - None
-     - Port for SQream DB instance. For example, ``3108`` for the load balancer, ``5000`` for a worker.
+     - Port for SQream DB end-point. For example, ``3108`` for the load balancer, ``5000`` for a worker.
    * - ``username``
      - ✗
      - None
