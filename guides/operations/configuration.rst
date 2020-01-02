@@ -14,7 +14,6 @@ By default, configuration files are stored in ``/etc/sqream``.
 A very basic configuration file looks like this:
 
 .. code-block:: json
-   :emphasize-lines: 11
 
    {
        "compileFlags": {
@@ -32,6 +31,9 @@ A very basic configuration file looks like this:
    }
 
 Each SQream DB worker has a dedicated configuration file. 
+
+The configuration file contains four distinct sections, ``compileFlags``, ``runtimeFlags``, ``runtimeGlobalFlags``, and ``server``.
+
 In the example above, the worker will start on port 5000, and will use GPU #0.
 
 Frequently set parameters
