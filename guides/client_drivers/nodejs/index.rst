@@ -34,7 +34,7 @@ Install with NPM
 
 
 Connect to SQream DB with a Node.JS application
-==============================================
+====================================================
 
 Create a simple test
 ------------------------------------------
