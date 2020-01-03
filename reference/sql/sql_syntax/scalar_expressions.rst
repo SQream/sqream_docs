@@ -12,6 +12,27 @@ A scalar expression can be any one of these:
    :local:
    :depth: 1
 
+.. 
+  *_string_literal_*
+    | *_number_literal_*
+    | NULL | TRUE | FALSE
+    | *_typed_literal_*
+    | *_value_expr_* *_binary_operator_* *_value_expr_*
+    | *_unary_operator_* *_value_expr_*
+    | *_value_expr_* *_postfix_unary_operator_*
+    | *_special_operator_*
+    | *_extract_operator_*
+    | *_case_expression_*
+    | *_conditional_expression_*
+    | ( *_value_expr_* )
+    | *_identifier_*
+    | *_star_*
+    | *_function_app_*
+    | *_aggregate_function_app_*
+    | *_window_function_app_*
+    | *_cast_operator_*
+
+           
 
 Literals
 =============
