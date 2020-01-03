@@ -53,6 +53,23 @@ SQream DB's :ref:`COPY FROM<copy_from>` syntax can be used to load text files (e
 
 :ref:`EXTERNAL TABLE<external_tables>` can be used to load test files, Parquet, and ORC files, and can also transform the data prior to materialization as a full table.
 
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   :stub-columns: 1
+   
+   * - Method / File type
+     - Text (CSV)
+     - Parquet
+     - ORC
+   * - :ref:`copy_from`
+     - ✓
+     - ✗
+     - ✗
+   * - :ref:`external_tables`
+     - ✓
+     - ✓
+     - ✓
 
 Unsupported data types
 -----------------------------
@@ -62,7 +79,8 @@ SQream DB doesn't support the entire set of features that some RDBMSs have, such
 Some data types will have to be converted. For example, ``ENUM`` can often be stored as a ``VARCHAR``.
 
 
-  
+..
+
    insert
 
    example
