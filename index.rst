@@ -150,6 +150,8 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
    :titlesonly:
    :hidden:
 
+   guides/first_steps
+   guides/features_tour
    guides/index
    reference/index
    releases/index
