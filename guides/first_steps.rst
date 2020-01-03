@@ -1,8 +1,8 @@
 .. _first_steps:
 
-**************************
+****************************
 First steps with SQream DB
-**************************
+****************************
 
 .. TODO: part one of the tutorial is how to connect with clientcmd,
 .. and create some tables, insert data and query it

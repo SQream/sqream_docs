@@ -1,7 +1,7 @@
 .. _metadata_system:
 
 ***********************
-metadata_system
+Metadata system
 ***********************
 
 show the metadata system in action:
@@ -12,7 +12,6 @@ do this for a bunch of variants
 * where
 * count
 * delete support
-  
 
 collects size, and min and max metadata per chunk and extent, for
 every column

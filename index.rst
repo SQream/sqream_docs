@@ -7,35 +7,12 @@ SQream DB documentation
 What is SQream DB
 ===================
 
-SQream DB is a columnar analytic SQL database management system.
+SQream DB is a columnar analytic SQL database management system. SQream DB uses GPUs to load and analyze large amounts of data.
 
-SQream DB uses GPUs to load and analyze large amounts of data.
-
-Customers with SQream DB deploy it for sizes ranging from 5TB to 1PB. Depending on the workload, 1PB can be supported on a single node, with a fast and large enough storage. 
-
-A common deployment motivation for SQream DB is for expanding historical analytics by orders of magnitude, such as expanding from 3 day windows to 3 months.
+Customers with SQream DB deploy it for sizes ranging from 5TB to 1PB. Depending on the workload, 1PB can be supported on a single node, with a fast and large enough storage. A common deployment motivation for SQream DB is for expanding historical analytics by orders of magnitude, such as expanding from 3 day windows to 3 months.
 
 SQream DB supports regular SQL including :ref:`a substantial amount of ANSI SQL<sql_feature_support>`, uses :ref:`serializable transactions<transactions>`, and :ref:`scales horizontally<concurrency_and_scaling_in_sqream>` for concurrent statements.
 
-Using this documentation
-============================
-
-The documentation contains a few main sections:
-   
-   * :ref:`Getting started<first_steps> guides`
-   * :ref:`Operation guides<operations>` and :ref:`data management guides<data_management>`
-   * :ref:`SQL reference<sql>`
-   * :ref:`CLI reference<cli_reference>`
-   * and more...
-
-.. only:: html   
-   Use the navigation pane to the left to browse topics and guides, or use the search bar.
-
-Each section contains several topics and guides intended to help a database user, administrator, or system engineer find information about using, managing, and deploying SQream DB.
-
-Experience with SQL is not required, but helpful.
-
-Some experience with Linux is recommended for system administrators.
 
 .. list-table::
    :widths: 33 33 33
@@ -84,6 +61,27 @@ Some experience with Linux is recommended for system administrators.
          
          :ref:`troubleshooting`
 
+
+Using this documentation
+============================
+
+The documentation contains a few main sections:
+   
+   * :ref:`Getting started<first_steps>` guides
+   * :ref:`Operation guides<operations>` and :ref:`data management guides<data_management>`
+   * :ref:`SQL reference<sql>`
+   * :ref:`CLI reference<cli_reference>`
+   * and more...
+
+.. only:: html
+   
+   Use the navigation pane to the left to browse topics and guides, or use the search bar.
+
+Each section contains several topics and guides intended to help a database user, administrator, or system engineer find information about using, managing, and deploying SQream DB.
+
+Experience with SQL is not required, but helpful.
+
+Some experience with Linux is recommended for system administrators.
 
 .. rubric:: Need help?
 
