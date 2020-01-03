@@ -62,22 +62,34 @@ SQream DB's :ref:`COPY FROM<copy_from>` syntax can be used to load text files (e
      - Text (CSV)
      - Parquet
      - ORC
+     - Streaming data
    * - :ref:`copy_from`
      - ✓
+     - ✗
      - ✗
      - ✗
    * - :ref:`external_tables`
      - ✓
      - ✓
      - ✓
+     - ✗
+   * - :ref:`insert`
+     - ✗
+     - ✗
+     - ✗
+     - ✓ (Python, JDBC, Node.JS)
 
 Unsupported data types
 -----------------------------
 
-SQream DB doesn't support the entire set of features that some RDBMSs have, such as ``ARRAY``, ``BLOB``, ``ENUM``, ``SET``, etc..
+SQream DB doesn't support the entire set of features that some other database systems may have, such as ``ARRAY``, ``BLOB``, ``ENUM``, ``SET``, etc.
 
-Some data types will have to be converted. For example, ``ENUM`` can often be stored as a ``VARCHAR``.
+These data types will have to be converted before load. For example, ``ENUM`` can often be stored as a ``VARCHAR``.
 
+Extended error handling
+----------------------------
+
+While :ref:`external tables<external_tables>` can be used to load CSVs, the ``COPY FROM`` statement provides more fine-grained error handling options, as well as extended support for non-standard CSVs with multi-character delimiters, alternate timestamp formats, and more.
 
 ..
    insert

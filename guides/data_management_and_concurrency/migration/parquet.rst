@@ -84,7 +84,7 @@ We will make note of the file structure to create a matching ``CREATE EXTERNAL T
 
 .. code-block:: postgres
    
-   CREATE EXTERNAL TABLE nba_pq
+   CREATE EXTERNAL TABLE ext_nba
    (
         Name       VARCHAR(40),
         Team       VARCHAR(40),
@@ -113,7 +113,7 @@ External tables do not verify file integrity or structure, so verify that the ta
 
 .. code-block:: psql
    
-   t=> SELECT * FROM nba_pq LIMIT 10;
+   t=> SELECT * FROM ext_nba LIMIT 10;
    Name          | Team           | Number | Position | Age | Height | Weight | College           | Salary  
    --------------+----------------+--------+----------+-----+--------+--------+-------------------+---------
    Avery Bradley | Boston Celtics |      0 | PG       |  25 | 6-2    |    180 | Texas             |  7730337
@@ -132,34 +132,49 @@ If any errors show up at this stage, verify the structure of the Parquet files a
 5. Copying data into SQream DB
 ===================================
 
-For this example, suppose you only want to load some of the columns - for example, if one of the columns isn't supported.
-
-We will assume that the ``Position`` column isn't supported because of its type.
-
 To load the data into SQream DB, use the :ref:`create_table_as` statement:
 
 .. code-block:: postgres
    
    CREATE TABLE nba AS
-      SELECT Name, Team, Number, Age, Height, Weight, College, Salary;
+      SELECT * FROM ext_nba;
+
+Working around unsupported column types
+---------------------------------------------
+
+Suppose you only want to load some of the columns - for example, if one of the columns isn't supported.
+
+By ommitting unsupported columns from queries that access the ``EXTERNAL TABLE``, they will never be called, and will not cause a "type mismatch" error.
+
+For this example, assume that the ``Position`` column isn't supported because of its type.
+
+.. code-block:: postgres
+   
+   CREATE TABLE nba AS
+      SELECT Name, Team, Number, NULL as Position, Age, Height, Weight, College, Salary FROM ext_nba;
+   
+   -- We ommitted the unsupported column `Position` from this query, and replaced it with a default ``NULL`` value, to maintain the same table structure.
+
 
 Modifying data during the copy process
 ------------------------------------------
 
 One of the main reasons for staging data with ``EXTERNAL TABLE`` is to examine the contents and modify them before loading them.
 
-Assume we are unhappy with weight being in pounds, because we want to use kilograms instead. We can apply the transformation as part of the :ref:`create_table_as` statement
+Assume we are unhappy with weight being in pounds, because we want to use kilograms instead. We can apply the transformation as part of the :ref:`create_table_as` statement.
+
+Similar to the previous example, we will also set the ``Position`` column as a default ``NULL``.
 
 .. code-block:: postgres
    
    CREATE TABLE nba AS 
-      SELECT name, team, number, age, height, (weight / 2.205) as weight, college, salary 
-              FROM nba
+      SELECT name, team, number, NULL as position, age, height, (weight / 2.205) as weight, college, salary 
+              FROM ext_nba
               ORDER BY weight;
 
 
-Configuration options for EXTERNAL TABLE
-===========================================
+Further Parquet loading examples
+=======================================
 
 :ref:`create_external_table` contains several configuration options. See more in :ref:`the CREATE EXTERNAL TABLE parameters section<ctas_parameters>`.
 
@@ -169,19 +184,23 @@ Loading a table from a directory of Parquet files on HDFS
 
 .. code-block:: postgres
 
-   CREATE EXTERNAL TABLE users
+   CREATE EXTERNAL TABLE ext_users
      (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
    USING FORMAT Parquet
    WITH  PATH  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet';
+   
+   CREATE TABLE users AS SELECT * FROM ext_users;
 
 Loading a table from a bucket of files on S3
 -----------------------------------------------
 
 .. code-block:: postgres
 
-   CREATE EXTERNAL TABLE users
+   CREATE EXTERNAL TABLE ext_users
      (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
    USING FORMAT Parquet
    WITH  PATH  's3://pp-secret-bucket/users/*.parquet'
          AWS_ID 'our_aws_id'
          AWS_SECRET 'our_aws_secret';
+   
+   CREATE TABLE users AS SELECT * FROM ext_users;

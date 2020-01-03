@@ -36,7 +36,7 @@ set operators (only union all)
 distinct
 aggregates, having
 what are all the aggregate fns?
-  also show agg distinct
+also show agg distinct
 
 window functions
 what are all the window fns
@@ -148,7 +148,7 @@ maybe some of it should go before the sql features and some after
 
 
 
-   5TB to 500TB+
+5TB to 500TB+
 
 columnar
 external algos

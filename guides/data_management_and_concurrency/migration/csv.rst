@@ -101,10 +101,11 @@ The CSV is a standard CSV, but with two differences from SQream DB defaults:
 Repeat steps 3 and 4 for every CSV file you want to import.
 
 
-Configuration options for COPY FROM
+Loading different types of CSV files
 =======================================
 
 :ref:`copy_from` contains several configuration options. See more in :ref:`the COPY FROM elements section<copy_from_config_options>`.
+
 
 Loading a standard CSV file from a local filesystem
 ---------------------------------------------------------
