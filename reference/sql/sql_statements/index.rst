@@ -79,10 +79,10 @@ Data manipulation commands (DML)
    * - :ref:`VALUES<values>`
      - Return rows containing literal values
 
-Utilities
-=============
+Utility commands
+==================
 
-.. list-table:: Utilities
+.. list-table:: Utility commands
    :widths: auto
    :header-rows: 1
    

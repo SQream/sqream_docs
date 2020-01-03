@@ -28,6 +28,64 @@ A typical SQream DB cluster includes one or more nodes, consisting of
 
 * High density chassis design, offering between 2 and 4 GPUs in a 1U, 2U, or 3U package, for best-in-class performance per cm\ :sup:`2`.
 
+Example for a single-node cluster
+-----------------------------------
+
+Example for multi-node clusters
+-----------------------------------
+
+
+Good value components
+========================
+
+An example of a moderately priced server, providing good price/performance:
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Component
+     - Type
+   * - Processor
+     - 2x Intel Xeon Gold 6240 (18C/36HT) 2.6GHz
+   * - RAM
+     - 384 GB LRDIMM 2666MT/s, ECC registered
+   * - Onboard storage
+     - 4x 1.6TB SSD 2.5in Hot-plug
+   * - Networking
+     - Intel X710 DP 10Gb DA/SFP+
+   * - GPU
+     - 2x NVIDIA Tesla T4 or P100
+
+Best performance components
+==============================
+
+An example of a server providing the best performance:
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Component
+     - Type
+   * - Processor
+     - 2x Intel Platinum 8180M (28C/56HT) 3.8GHz
+   * - RAM
+     - 1024 GB LRDIMM 2666MT/s, ECC registered
+   * - Onboard storage
+     -   
+         2x 1.6TB SSD 2.5in, hardware RAID1
+         
+         2x 2TB NVMe, hardware RAID1
+   * - Networking
+     - 
+         Intel X710 DP 10Gb DA/SFP+ for BI fabric
+      
+         Mellanox ConnectX-4, EDR for storage fabric
+   * - GPU
+     - 4x NVIDIA Tesla V100 32GB
+
+
 Considerations in cluster design
 ====================================
 
@@ -115,56 +173,6 @@ Both situations ensure that blocks of data are replicated between disks, so that
 Because storage reliability is important, SQream recommends enterprise-grade SAS SSD drives. However, as with other components – there is a tradeoff for cost/performance. When performance and reliability are important, SQream recommends SAS SSD or NVMe drives. 
 
 SQream DB functions well with more cost-effective SATA drives and even large spinning-disk arrays.
-
-Good value components
-========================
-
-An example of a moderately priced server, providing good price/performance:
-
-.. list-table::
-   :widths: auto
-   :header-rows: 1
-   
-   * - Component
-     - Type
-   * - Processor
-     - 2x Intel Xeon Gold 6240 (18C/36HT) 2.6GHz
-   * - RAM
-     - 384 GB LRDIMM 2666MT/s, ECC registered
-   * - Onboard storage
-     - 4x 1.6TB SSD 2.5in Hot-plug
-   * - Networking
-     - Intel X710 DP 10Gb DA/SFP+
-   * - GPU
-     - 2x NVIDIA Tesla T4 or P100
-
-Best performance components
-==============================
-
-An example of a server providing the best performance:
-
-.. list-table::
-   :widths: auto
-   :header-rows: 1
-   
-   * - Component
-     - Type
-   * - Processor
-     - 2x Intel Platinum 8180M (28C/56HT) 3.8GHz
-   * - RAM
-     - 1024 GB LRDIMM 2666MT/s, ECC registered
-   * - Onboard storage
-     -   
-         2x 1.6TB SSD 2.5in, hardware RAID1
-         
-         2x 2TB NVMe, hardware RAID1
-   * - Networking
-     - 
-         Intel X710 DP 10Gb DA/SFP+ for BI fabric
-      
-         Mellanox ConnectX-4, EDR for storage fabric
-   * - GPU
-     - 4x NVIDIA Tesla V100 32GB
 
 
 Supporting 32 concurrent active users

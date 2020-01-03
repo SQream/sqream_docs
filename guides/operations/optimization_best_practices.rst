@@ -200,6 +200,8 @@ Can be rewritten as:
                  GROUP BY store_id) AS fact ON dim.store_id = fact.store_id;
 
 
+.. _data_loading_considerations:
+
 Data loading considerations
 =================================
 

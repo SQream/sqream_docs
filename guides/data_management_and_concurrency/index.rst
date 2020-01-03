@@ -17,7 +17,7 @@ This topic includes information about data management, data lifecycle, how data 
    xxmetadata_system
    xxchunks_and_extents
    external_tables
-   xxinserting_data
+   inserting_data
    delete
    xxtransactions
    concurrency_and_locks
