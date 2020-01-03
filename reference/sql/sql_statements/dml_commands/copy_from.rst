@@ -51,6 +51,8 @@ Syntax
    N ::= positive integer
 
 
+.. _copy_from_config_options:
+
 Elements
 ============
 
@@ -94,6 +96,8 @@ Elements
    * - ``AWS_ID``, ``AWS_SECRET``
      - None
      - Specifies the authentication details for secured S3 buckets
+
+.. _copy_date_parsers:
 
 Supported date formats
 =========================
@@ -186,6 +190,7 @@ A tab can be specified by escaping it, for example ``\t``. Other non-printable c
 
 For example, ASCII character ``15``, known as "shift in", can be specified using ``E'\017'``.
 
+.. _capturing_rejected_rows:
 
 Capturing rejected rows
 ==========================

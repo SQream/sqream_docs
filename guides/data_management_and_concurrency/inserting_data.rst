@@ -80,7 +80,6 @@ Some data types will have to be converted. For example, ``ENUM`` can often be st
 
 
 ..
-
    insert
 
    example

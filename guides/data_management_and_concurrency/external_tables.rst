@@ -42,7 +42,7 @@ For the following examples, we will want to interact with a CSV file. Here's a p
 
 The file is stored on S3, at ``s3://sqream-demo-data/nba_players.csv``.
 
-We will make note of the file structure, to create a matching ``CREATE EXTERNAL_TABLE`` statement.
+We will make note of the file structure, to create a matching ``CREATE_EXTERNAL_TABLE`` statement.
 
 Creating the external table
 -----------------------------

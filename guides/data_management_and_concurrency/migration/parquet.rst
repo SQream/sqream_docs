@@ -1,0 +1,187 @@
+.. _parquet:
+
+**********************
+Migrate from Parquet
+**********************
+
+This guide can help has instructions for migrating data from Parquet files into SQream DB using :ref:`EXTERNAL TABLE<external_tables>`.
+
+
+1. Prepare the files
+=====================
+
+Prepare the source Parquet files, with the following requirements:
+
+The Parquet file contains only the following data types:
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parquet data type
+     - SQream DB type
+     - Comments
+   * - ``BOOLEAN``
+     - ``BOOL``
+     -
+   * - ``INT16``
+     - ``SMALLINT``
+     -
+   * - ``INT32``
+     - ``INT``
+     -
+   * - ``INT64``
+     - ``BIGINT``
+     -
+   * - ``FLOAT``
+     - ``REAL``
+     -
+   * - ``DOUBLE``
+     - ``DOUBLE``
+     -
+   * - ``BYTE_ARRAY`` with annotation ``UTF8``
+     - ``VARCHAR`` or ``NVARCHAR``
+     -
+   * - ``DATE``
+     - ``DATE``
+     -
+   * - ``INT 96`` with annotation ``TIMESTAMP_MILLIS``
+     - DATETIME
+     - Any microseconds will be rounded down to milliseconds.
+
+SQream DB can not load any other Parquet data type, but this can be worked around. See more information in the examples.
+
+
+
+2. Place Parquet files where SQream DB workers can access them
+================================================================
+
+Any worker may try to access files (unless explicitly speficied with the :ref:`workload_manager`).
+It is important that every node has the same view of the storage being used - meaning, every SQream DB worker should have access to the files.
+
+* For files hosted on NFS, ensure that the mount is accessible from all servers.
+
+* For HDFS, ensure that SQream DB servers can access the HDFS name node with the correct user-id
+
+* For S3, ensure network access to the S3 endpoint
+
+3. Figure out the table structure
+===============================================
+
+Prior to loading data, you will need to write out the table structure, so that it matches the file structure.
+
+For example, to import the data from ``nba.parquet``, we will first look at the source table:
+
+.. csv-table:: nba.parquet
+   :file: nba-t10.csv
+   :widths: auto
+   :header-rows: 1 
+
+* The file is stored on S3, at ``s3://sqream-demo-data/nba.parquet``.
+
+
+We will make note of the file structure to create a matching ``CREATE EXTERNAL TABLE`` statement.
+
+.. code-block:: postgres
+   
+   CREATE EXTERNAL TABLE nba_pq
+   (
+        Name       VARCHAR(40),
+        Team       VARCHAR(40),
+        Number     BIGINT,
+        Position   VARCHAR(2),
+        Age        BIGINT,
+        Height     VARCHAR(4),
+        Weight     BIGINT,
+        College    VARCHAR(40),
+        Salary     FLOAT
+    )
+    USING FORMAT Parquet
+      WITH  PATH  's3://sqream-demo-data/nba.parquet';
+
+.. tip:: 
+
+   Types in SQream DB must match Parquet types exactly.
+   
+   If the column type isn't supported, a possible workaround is to set it to any arbitrary type and then exclude it from subsequent queries.
+
+
+4. Verify table contents
+====================================
+
+External tables do not verify file integrity or structure, so verify that the table definition matches up and contains the correct data.
+
+.. code-block:: psql
+   
+   t=> SELECT * FROM nba_pq LIMIT 10;
+   Name          | Team           | Number | Position | Age | Height | Weight | College           | Salary  
+   --------------+----------------+--------+----------+-----+--------+--------+-------------------+---------
+   Avery Bradley | Boston Celtics |      0 | PG       |  25 | 6-2    |    180 | Texas             |  7730337
+   Jae Crowder   | Boston Celtics |     99 | SF       |  25 | 6-6    |    235 | Marquette         |  6796117
+   John Holland  | Boston Celtics |     30 | SG       |  27 | 6-5    |    205 | Boston University |         
+   R.J. Hunter   | Boston Celtics |     28 | SG       |  22 | 6-5    |    185 | Georgia State     |  1148640
+   Jonas Jerebko | Boston Celtics |      8 | PF       |  29 | 6-10   |    231 |                   |  5000000
+   Amir Johnson  | Boston Celtics |     90 | PF       |  29 | 6-9    |    240 |                   | 12000000
+   Jordan Mickey | Boston Celtics |     55 | PF       |  21 | 6-8    |    235 | LSU               |  1170960
+   Kelly Olynyk  | Boston Celtics |     41 | C        |  25 | 7-0    |    238 | Gonzaga           |  2165160
+   Terry Rozier  | Boston Celtics |     12 | PG       |  22 | 6-2    |    190 | Louisville        |  1824360
+   Marcus Smart  | Boston Celtics |     36 | PG       |  22 | 6-4    |    220 | Oklahoma State    |  3431040
+
+If any errors show up at this stage, verify the structure of the Parquet files and match them to the external table structure you created.
+
+5. Copying data into SQream DB
+===================================
+
+For this example, suppose you only want to load some of the columns - for example, if one of the columns isn't supported.
+
+We will assume that the ``Position`` column isn't supported because of its type.
+
+To load the data into SQream DB, use the :ref:`create_table_as` statement:
+
+.. code-block:: postgres
+   
+   CREATE TABLE nba AS
+      SELECT Name, Team, Number, Age, Height, Weight, College, Salary;
+
+Modifying data during the copy process
+------------------------------------------
+
+One of the main reasons for staging data with ``EXTERNAL TABLE`` is to examine the contents and modify them before loading them.
+
+Assume we are unhappy with weight being in pounds, because we want to use kilograms instead. We can apply the transformation as part of the :ref:`create_table_as` statement
+
+.. code-block:: postgres
+   
+   CREATE TABLE nba AS 
+      SELECT name, team, number, age, height, (weight / 2.205) as weight, college, salary 
+              FROM nba
+              ORDER BY weight;
+
+
+Configuration options for EXTERNAL TABLE
+===========================================
+
+:ref:`create_external_table` contains several configuration options. See more in :ref:`the CREATE EXTERNAL TABLE parameters section<ctas_parameters>`.
+
+
+Loading a table from a directory of Parquet files on HDFS
+------------------------------------------------------------
+
+.. code-block:: postgres
+
+   CREATE EXTERNAL TABLE users
+     (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
+   USING FORMAT Parquet
+   WITH  PATH  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet';
+
+Loading a table from a bucket of files on S3
+-----------------------------------------------
+
+.. code-block:: postgres
+
+   CREATE EXTERNAL TABLE users
+     (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
+   USING FORMAT Parquet
+   WITH  PATH  's3://pp-secret-bucket/users/*.parquet'
+         AWS_ID 'our_aws_id'
+         AWS_SECRET 'our_aws_secret';

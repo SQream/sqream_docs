@@ -64,6 +64,8 @@ Syntax
        DEFAULT default_value
        | IDENTITY [ ( start_with [ , increment_by ] ) ]
 
+.. _ctas_parameters:
+
 Parameters
 ============
 
