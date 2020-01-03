@@ -51,7 +51,7 @@ Use a supported load method
 
 SQream DB's :ref:`COPY FROM<copy_from>` syntax can be used to load text files (e.g. CSV), but can't be used for Parquet and ORC.
 
-:ref:`EXTERNAL TABLE<external_tables>` can be used to load test files, Parquet, and ORC files, and can also transform the data prior to materialization as a full table.
+:ref:`EXTERNAL TABLE<external_tables>` can be used to load text files, Parquet, and ORC files, and can also transform the data prior to materialization as a full table.
 
 .. list-table:: 
    :widths: auto
