@@ -66,7 +66,7 @@ Each worker is assigned an automatic ID, and is subscribed to the ``'sqream'`` q
    sqream  | node_9551  | 192.168.1.91  |       5000
    etl     | node_9551  | 192.168.1.91  |       5000
 
-We want to modify ``node_9551` to leave the ETL queue:
+We want to modify `node_9551` to leave the ETL queue:
 
 .. code-block:: psql
    

@@ -263,7 +263,7 @@ A few configuration settings alter the log rotation policy
      - ``never``
      - ``daily``, ``weekly``, ``monthly``, ``never``
 
-.. _collecting_logs:
+.. _collecting_logs2:
 
 Collect logs from your cluster
 ====================================

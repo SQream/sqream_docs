@@ -67,7 +67,7 @@ Each worker is assigned an automatic ID, and is subscribed to the ``'sqream'`` q
    sqream  | node_9385  | 192.168.0.111 |       5002
    sqream  | node_9551  | 192.168.1.91  |       5000
 
-We want to modify ``node_9551` to join the ETL queue, which will be created when we subscribe it:
+We want to modify `node_9551` to join the ETL queue, which will be created when we subscribe it:
 
 .. code-block:: psql
    
