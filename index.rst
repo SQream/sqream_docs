@@ -13,6 +13,8 @@ Customers with SQream DB deploy it for sizes ranging from 5TB to 1PB. Depending 
 
 SQream DB supports regular SQL including :ref:`a substantial amount of ANSI SQL<sql_feature_support>`, uses :ref:`serializable transactions<transactions>`, and :ref:`scales horizontally<concurrency_and_scaling_in_sqream>` for concurrent statements.
 
+SQream DB comes with standard SQL client drivers, including JDBC and ODBC.
+
 
 .. list-table::
    :widths: 33 33 33
@@ -86,61 +88,6 @@ Some experience with Linux is recommended for system administrators.
 .. rubric:: Need help?
 
 If you couldn't find what you're looking for, we're always happy to help. Visit `SQream's support portal <https://support.sqream.com>`_ for additional support.
-
-
-.. 
-   Common data sizes for SQream DB
-   
-   columnar SQL DBMS
-
-   runs on GPUs
-
-   5TB to 500TB+
-
-   can support 100TB+ on a single node depending on workload
-
-   can support 30+ concurrent users
-
-   has high availability
-
-   runs on prem or on the cloud
-
-   we see customers able to go from 3 months to 12 years data, and stuff like that
-
-   extremely fast data loading speed
-
-   * a range of data types
-   * tables
-   * schemas
-   * roles and permissions
-   * sequences
-   * views
-   * saved queries
-   * external tables
-   * python udfs
-   * aggregates
-   * window functions
-
-   no limit to nested queries
-      
-   join any amount of tables
-
-   catalog
-
-   robust serializable transactions and concurrency control
-
-   something about the data management/metadata skipping
-
-   wide range of client drivers
-
-   integrates with a wide range of third party components
-
-   performance
-   cost/ tco
-
-   highly responsive team, including new feature development
-
-
 
 
 .. toctree::
