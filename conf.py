@@ -93,3 +93,11 @@ html_theme_options = {
    , 'titles_only': True
 
 }
+
+latex_engine = 'xelatex'
+
+latex_elements = {
+    'preamble': r'''
+\usepackage[utf8x]{inputenc} 
+'''
+}
