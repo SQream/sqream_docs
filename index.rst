@@ -5,7 +5,7 @@ SQream DB documentation
 ***********************
 
 What is SQream DB
-=================
+===================
 
 SQream DB is a columnar analytic SQL database management system.
 
@@ -20,23 +20,22 @@ SQream DB supports regular SQL including :ref:`a substantial amount of ANSI SQL<
 Using this documentation
 ============================
 
-.. only:: html
+The documentation contains a few main sections:
    
-   The documentation contains a few main sections:
-      
-      * :ref:`Getting started<first_steps> guides`
-      * :ref:`Operation guides<operations>` and :ref:`data management guides<data_management>`
-      * :ref:`SQL reference<sql>`
-      * :ref:`CLI reference<cli_reference>`
-      * and more...
-   
+   * :ref:`Getting started<first_steps> guides`
+   * :ref:`Operation guides<operations>` and :ref:`data management guides<data_management>`
+   * :ref:`SQL reference<sql>`
+   * :ref:`CLI reference<cli_reference>`
+   * and more...
+
+.. only:: html   
    Use the navigation pane to the left to browse topics and guides, or use the search bar.
-   
-   Each section contains several topics and guides intended to help a database user, administrator, or system engineer find information about using, managing, and deploying SQream DB.
-   
-   Experience with SQL is not required, but helpful.
-   
-   Some experience with Linux is recommended for system administrators.
+
+Each section contains several topics and guides intended to help a database user, administrator, or system engineer find information about using, managing, and deploying SQream DB.
+
+Experience with SQL is not required, but helpful.
+
+Some experience with Linux is recommended for system administrators.
 
 .. list-table::
    :widths: 33 33 33
@@ -84,8 +83,6 @@ Using this documentation
          :ref:`information_for_support`
          
          :ref:`troubleshooting`
-
-
 
 
 .. rubric:: Need help?
