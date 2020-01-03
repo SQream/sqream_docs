@@ -4,14 +4,7 @@
 SQream DB documentation
 ***********************
 
-SQream DB is a GPU-accelerated analytics SQL database for massive data.
-
-SQream DB is a columnar analytic relational database management system.
-
-SQream DB is built to use GPU acceleration to load and analyze large amounts of data, in excess of the RAM resources for the machine. SQream DB scales horizontally for adding concurrent statements, has serializable transactions, and provides a SQL interface for querying data.
-
-SQream DB is a columnar SQL RDBMS. It is is built to use GPU acceleration to load and analyze large amounts of data, in excess of the RAM resources for the machine. SQream DB scales horizontally for added concurrency, supports isolated serializable transactions, and provides a common SQL interface for querying data.
-
+SQream DB is a columnar analytic SQL database management system.
 
 ..
 
@@ -92,12 +85,15 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
 What is SQream DB
 =================
 
-SQream DB is a columnar SQL RDBMS. It is is built to use GPU acceleration to load and analyze large amounts of data, in excess of the RAM resources for the machine. SQream DB scales horizontally for added concurrency, supports isolated serializable transactions, and provides a common SQL interface for querying data.
+SQream DB is a columnar analytic SQL database management system.
+
+SQream DB uses GPUs to load and analyze large amounts of data.
 
 Customers with SQream DB deploy it for sizes ranging from 5TB to 1PB. Depending on the workload, 1PB can be supported on a single node, with a fast and large enough storage. 
 
 A common deployment motivation for SQream DB is for expanding historical analytics by orders of magnitude, such as expanding from 3 day windows to 3 months.
 
+SQreamDB supports regular SQL including a substantial amount of ANSI SQL, uses serializable transactions, and scales horizontally for concurrent statements.
 
 .. 
    Common data sizes for SQream DB
