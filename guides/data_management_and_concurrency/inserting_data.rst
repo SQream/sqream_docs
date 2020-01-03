@@ -43,7 +43,7 @@ SQream therefore recommends:
 File storage during load
 -------------------------------
 
-During data load, the :ref:`COPY FROM` command can run on any worker (unless explicitly speficied with the :ref:`workload_manager`).
+During data load, the :ref:`copy_from` command can run on any worker (unless explicitly speficied with the :ref:`workload_manager`).
 It is important that every node has the same view of the storage being used - meaning, every SQream DB worker should have access to the files.
 
 Use a supported load method

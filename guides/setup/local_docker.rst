@@ -4,7 +4,7 @@
 Start a local SQream DB cluster with Docker
 *********************************************
 
-See :ref:`Release Notes <releases>` to learn about what's new in the latest release of SQream DB. To upgrade to this release, see :ref:`Upgrading SQream DB <upgrading_sqream_db>`.
+See :ref:`Release Notes <releases>` to learn about what's new in the latest release of SQream DB. To upgrade to this release, see :ref:`Upgrading SQream DB with Docker<upgrade_with_docker>`.
 
 SQream DB is installed on your hosts with NVIDIA Docker. There are several preparation steps to ensure before installing SQream DB, so follow these instructions carefully.
 
@@ -297,7 +297,7 @@ CentOS 7 / RHEL 7 (IBM POWER)
       GPU 0: Tesla V100-SXM2-16GB (UUID: GPU-...)
       GPU 1: Tesla V100-SXM2-16GB (UUID: GPU-...)
 
-#. Continue to :ref:`Installing the SQream DB Docker container installing_sqream_db_container>`
+#. Continue to :ref:`Installing the SQream DB Docker container<installing_sqream_db_container>`
 
 .. _docker_ubuntu:
 
@@ -435,7 +435,7 @@ Install the SQream DB Docker container
    
       $ ./sqream-install -i -k -v /mnt/largedrive -d /mnt/nfs/source_files
    
-   For a full list of options and commands, see the :ref:`Docker installer reference <docker_installer_ref>`
+   For a full list of options and commands, see the :ref:`sqream-installer reference <sqream_installer_cli_reference>`
 
 #. SQream DB is now successfully installed, but not yet running.
 
@@ -445,7 +445,7 @@ Install the SQream DB Docker container
 Starting your first local cluster
 =========================================
 
-#. Enter the console, which helps coordinate SQream DB components
+#. Enter the :ref:`sqream console utility<sqream_console_cli_reference>`, which helps coordinate SQream DB components
    
    .. code-block:: console
    
@@ -468,7 +468,7 @@ Starting your first local cluster
         started sqream_single_host_worker_0 on port 5000, allocated gpu: 0
         started sqream_single_host_worker_1 on port 5001, allocated gpu: 1
 
-   .. note:: By default, each worker is allocated a full GPU. To launch more workers than available GPUs, see the :ref:`Console reference <console_ref>`
+   .. note:: By default, each worker is allocated a full GPU. To launch more workers than available GPUs, see the :ref:`sqream console reference <sqream_console_cli_reference>`
 
 #. SQream DB is now running! (Exit the console by typing ``exit`` when done.)
 

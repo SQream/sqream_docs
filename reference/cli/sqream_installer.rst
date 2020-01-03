@@ -120,6 +120,7 @@ This information may be useful to identify problems accessing directory paths, o
    NVIDIA_DRIVER=418
    SQREAM_MODE=single_host
 
+.. _upgrade_with_docker:
 Upgrading to a new version of SQream DB
 ----------------------------------------------
 
