@@ -24,6 +24,8 @@ Full list of guides
    :glob:
    :titlesonly:
 
+   first_steps
+   features_tour
    xxqueries
    workload_manager
    xxaccess_control
