@@ -22,7 +22,7 @@ Preparing for this tutorial
 
 This tutorial assumes you already have a SQream DB cluster running.
 
-.. tip:: This tutorial makes use of the built-in command-line client, which can be found in the ``bin`` directory of your SQream DB installation, under the name ``ClientCmd``.
+.. tip:: This tutorial makes use of the built-in command-line client, which can be found in the ``bin`` directory of your SQream DB installation, under the name ``sqream sql``.
 
 Creating your first table
 ============================
@@ -35,7 +35,7 @@ When starting SQream SQL, after entering your password, you are presented with t
 
 .. code-block:: psql
 
-   $ ClientCmd --port=5000 --username=rhendricks -d master
+   $ sqream sql --port=5000 --username=rhendricks -d master
    Password:
    
    Interactive client mode

@@ -141,7 +141,7 @@ Add ``--service=<service name>`` to the command line.
 
 .. code-block:: psql
 
-   $ ClientCmd --port=3108 --clustered --username=mjordan -d master --service=etl
+   $ sqream sql --port=3108 --clustered --username=mjordan -d master --service=etl
    Password:
    
    Interactive client mode

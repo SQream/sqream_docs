@@ -1,7 +1,7 @@
 .. _sqream_sql_cli_reference:
 
 *********************************
-SQream SQL command line interface
+sqream sql CLI reference
 *********************************
 
 SQream DB comes with a built-in client for executing SQL statements either interactively or from the command-line.
@@ -11,29 +11,35 @@ This page serves as a reference for the options and parameters. Learn more about
 .. contents:: In this topic:
    :local:
 
-Running SQream SQL
+Running sqream sql
 ======================
 
-**SQream SQL** can be found in the ``bin`` directory of your SQream DB installation, under the name ``ClientCmd``.
+``sqream sql`` can be found in the ``bin`` directory of your SQream DB installation, under the name ``sqream``.
 
 .. versionchanged:: 2020.1
    Starting from version 2020.1, ``ClientCmd`` has been renamed to ``sqream sql``.
+   
+   To maintain compatibility, add an alias in your ``.bashrc``:
+   
+   ::
+   
+      alias ClientCmd='sqream sql'
 
-Using SQream SQL
+Using sqream sql
 =================
 
-By default, SQream SQL runs in interactive mode. You can issue commands or SQL statements.
+By default, sqream sql runs in interactive mode. You can issue commands or SQL statements.
 
 Running commands interactively (SQL shell)
 --------------------------------------------
 
-When starting SQream SQL, after entering your password, you are presented with the SQL shell.
+When starting sqream sql, after entering your password, you are presented with the SQL shell.
 
 To exit the shell, type ``\q``  or :kbd:`Ctrl-d`. 
 
 .. code-block:: psql
 
-   $ ClientCmd --port=5000 --username=jdoe -d master
+   $ sqream sql --port=5000 --username=jdoe -d master
    Password:
    
    Interactive client mode
@@ -66,7 +72,7 @@ The prompt for a multi-line statement will change from ``=>`` to ``.``, to alert
 .. code-block:: psql
    :emphasize-lines: 13
 
-   $ ClientCmd --port=5000 --username=mjordan -d master
+   $ sqream sql --port=5000 --username=mjordan -d master
    Password:
    
    Interactive client mode
@@ -97,7 +103,7 @@ For example,
 
 .. code-block:: console
 
-   $ ClientCmd --port=5000 --username=jdoe -d master -f sql_script.sql --results-only
+   $ sqream sql --port=5000 --username=jdoe -d master -f sql_script.sql --results-only
 
 .. tip:: Output can be saved to a file by using redirection (``>``).
 
@@ -110,7 +116,7 @@ For example,
 
 .. code-block:: console
 
-   $ ClientCmd --port=5000 --username=jdoe -d nba -c "SELECT TOP 5 * FROM nba"
+   $ sqream sql --port=5000 --username=jdoe -d nba -c "SELECT TOP 5 * FROM nba"
    Avery Bradley           ,Boston Celtics        ,0,PG,25,6-2 ,180,Texas                ,7730337
    Jae Crowder             ,Boston Celtics        ,99,SF,25,6-6 ,235,Marquette            ,6796117
    John Holland            ,Boston Celtics        ,30,SG,27,6-5 ,205,Boston University    ,\N
@@ -131,7 +137,7 @@ Connect to local server 127.0.0.1 on port 5000, to the default built-in database
 
 .. code-block:: psql
 
-   $ ClientCmd --port=5000 --username=mjordan -d master
+   $ sqream sql --port=5000 --username=mjordan -d master
    Password:
    
    Interactive client mode
@@ -143,7 +149,7 @@ Connect to local server 127.0.0.1 via the built-in load balancer on port 3108, t
 
 .. code-block:: psql
 
-   $ ClientCmd --port=3105 --clustered --username=mjordan -d master
+   $ sqream sql --port=3105 --clustered --username=mjordan -d master
    Password:
    
    Interactive client mode
@@ -160,7 +166,7 @@ Creating a new database and switching over to it without reconnecting:
 
 .. code-block:: psql
 
-   $ ClientCmd --port=3105 --clustered --username=oldmcd -d master
+   $ sqream sql --port=3105 --clustered --username=oldmcd -d master
    Password:
    
    Interactive client mode
@@ -197,7 +203,7 @@ Execute SQL statements from the command line
 
 .. code-block:: console
 
-   $ ClientCmd --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals WHERE is_angry = true"
+   $ sqream sql --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals WHERE is_angry = true"
    4,bull                          ,1
    1 row
    time: 0.095941s
@@ -209,7 +215,7 @@ Using the ``--results-only`` flag removes the row counts and timing.
 
 .. code-block:: console
 
-   $ ClientCmd --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals" --results-only
+   $ sqream sql --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals" --results-only
    1,goat                          ,0
    2,sow                           ,0
    3,chicken                       ,0
@@ -233,7 +239,7 @@ Assuming a file containing SQL statements (separated by semicolons):
 
 .. code-block:: console
 
-   $ ClientCmd --port=3105 --clustered --username=oldmcd -d farm -f some_queries.sql
+   $ sqream sql --port=3105 --clustered --username=oldmcd -d farm -f some_queries.sql
    executed
    time: 0.018289s
    executed
@@ -248,7 +254,7 @@ You can save connection parameters as environment variables:
 
    $ export SQREAM_USER=sqream;
    $ export SQREAM_DATABASE=farm;
-   $ ClientCmd --port=3105 --clustered --username=$SQREAM_USER -d $SQREAM_DATABASE
+   $ sqream sql --port=3105 --clustered --username=$SQREAM_USER -d $SQREAM_DATABASE
 
 Connecting to a specific queue
 -----------------------------------
@@ -257,7 +263,7 @@ When using the :ref:`dynamic workload manager<workload_manager>` - connect to ``
 
 .. code-block:: psql
 
-   $ ClientCmd --port=3105 --clustered --username=mjordan -d master --service=etl
+   $ sqream sql --port=3105 --clustered --username=mjordan -d master --service=etl
    Password:
    
    Interactive client mode
@@ -315,7 +321,7 @@ Command line arguments
      - False
      - When set, prevents command history from being saved in ``~/.sqream/clientcmdhist``
 
-.. tip:: Run ``$  ClientCmd --help`` to see a full list of arguments
+.. tip:: Run ``$  sqream sql --help`` to see a full list of arguments
 
 
 Meta-commands

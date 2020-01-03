@@ -73,7 +73,7 @@ Test patterns
 
    * - ``[a-dX]``, ``[^a-dX]``
      -
-         Matches any character that is (or is not when negated with ``^``) either ``a``, ``b``, ``c``, ``d`` or ``X``.
+         Matches any character that is (or is not when negated with ``^``) either ``a``, ``b``, ``c``, ``d``, or ``X``.
          The ``-`` character between two other characters forms a range that matches all characters from the first character to the second. For example, [0-9] matches any decimal digit. 
          To include a literal ``]`` character, it must immediately follow the opening bracket [. To include a literal - character, it must be written first or last.
          Any character that does not have a defined special meaning inside a [] pair matches only itself.
