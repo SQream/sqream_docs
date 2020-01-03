@@ -12,9 +12,9 @@ Guides include optimization techniques, installation and configuration, manageme
 
 * :ref:`Optimization and best practices in SQream DB<sql_best_practices>`
 
-* :ref:`Client drivers for SQream DB<client_drivers>`
-
 * :ref:`Using third party tools<third_party_tools>`
+
+* :ref:`Client drivers for SQream DB<client_drivers>`
 
 Full list of guides
 =========================

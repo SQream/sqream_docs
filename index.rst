@@ -4,29 +4,39 @@
 SQream DB documentation
 ***********************
 
+What is SQream DB
+=================
+
 SQream DB is a columnar analytic SQL database management system.
 
-..
+SQream DB uses GPUs to load and analyze large amounts of data.
 
-  Features tour
+Customers with SQream DB deploy it for sizes ranging from 5TB to 1PB. Depending on the workload, 1PB can be supported on a single node, with a fast and large enough storage. 
 
-  This page gives an overview of the major features that SQream DB supports.
+A common deployment motivation for SQream DB is for expanding historical analytics by orders of magnitude, such as expanding from 3 day windows to 3 months.
 
-  Getting started
+SQream DB supports regular SQL including :ref:`a substantial amount of ANSI SQL<sql_feature_support>`, uses :ref:`serializable transactions<transactions>`, and :ref:`scales horizontally<concurrency_and_scaling_in_sqream>` for concurrent statements.
 
-  This page shows you how to get started running SQL statements with SQream DB.
+Using this documentation
+============================
 
-  Guides
-
-  The guides section gives more detailed information and context for a
-  range of features and aspects of the system.
-
-  Reference
-
-  This contains references for all the SQL statements, command line
-  programs, catalog, supported sql feature checklist, and configuration.
-
-  todo: insert complete toc here in nice sections and formating
+.. only:: html
+   
+   The documentation contains a few main sections:
+      
+      * :ref:`Getting started<first_steps> guides`
+      * :ref:`Operation guides<operations>` and :ref:`data management guides<data_management>`
+      * :ref:`SQL reference<sql>`
+      * :ref:`CLI reference<cli_reference>`
+      * and more...
+   
+   Use the navigation pane to the left to browse topics and guides, or use the search bar.
+   
+   Each section contains several topics and guides intended to help a database user, administrator, or system engineer find information about using, managing, and deploying SQream DB.
+   
+   Experience with SQL is not required, but helpful.
+   
+   Some experience with Linux is recommended for system administrators.
 
 .. list-table::
    :widths: 33 33 33
@@ -82,18 +92,6 @@ SQream DB is a columnar analytic SQL database management system.
 
 If you couldn't find what you're looking for, we're always happy to help. Visit `SQream's support portal <https://support.sqream.com>`_ for additional support.
 
-What is SQream DB
-=================
-
-SQream DB is a columnar analytic SQL database management system.
-
-SQream DB uses GPUs to load and analyze large amounts of data.
-
-Customers with SQream DB deploy it for sizes ranging from 5TB to 1PB. Depending on the workload, 1PB can be supported on a single node, with a fast and large enough storage. 
-
-A common deployment motivation for SQream DB is for expanding historical analytics by orders of magnitude, such as expanding from 3 day windows to 3 months.
-
-SQreamDB supports regular SQL including a substantial amount of ANSI SQL, uses serializable transactions, and scales horizontally for concurrent statements.
 
 .. 
    Common data sizes for SQream DB
@@ -116,36 +114,36 @@ SQreamDB supports regular SQL including a substantial amount of ANSI SQL, uses s
 
    extremely fast data loading speed
 
-* a range of data types
-* tables
-* schemas
-* roles and permissions
-* sequences
-* views
-* saved queries
-* external tables
-* python udfs
-* aggregates
-* window functions
+   * a range of data types
+   * tables
+   * schemas
+   * roles and permissions
+   * sequences
+   * views
+   * saved queries
+   * external tables
+   * python udfs
+   * aggregates
+   * window functions
 
-no limit to nested queries
-   
-join any amount of tables
+   no limit to nested queries
+      
+   join any amount of tables
 
-catalog
+   catalog
 
-robust serializable transactions and concurrency control
+   robust serializable transactions and concurrency control
 
-something about the data management/metadata skipping
+   something about the data management/metadata skipping
 
-wide range of client drivers
+   wide range of client drivers
 
-integrates with a wide range of third party components
+   integrates with a wide range of third party components
 
-performance
-cost/ tco
+   performance
+   cost/ tco
 
-highly responsive team, including new feature development
+   highly responsive team, including new feature development
 
 
 

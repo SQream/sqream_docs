@@ -1,46 +1,35 @@
 .. _inserting_data:
 
-***********************
-inserting data
-***********************
+***************************
+Data loading and migration
+***************************
 
-this guide covers inserting data into sqream via the insert statement
-and the copy statementx
+This guide covers inserting data into SQream DB via the :ref:`insert` statement and the :ref:`copy_from` statements.
 
-insert
-
-example
-
-are there some variations to highlight?:
-
-create table as
-
-sequences, default values
-
-insert select
-
-make distinction between an insert command, and a parameterized/bulk
-insert "over the network"
+It contains subguides to help with migration from a variety of sources and data locations.
 
 
-copy
+Further reading and migration guides
+=======================================
+
+.. seealso::
+
+   * :ref:`copy_from`
+   * :ref:`insert`
+   * :ref:`external_tables`
+   * :ref:`data_loading_considerations`
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Migration guides
+   :titlesonly:
+   
+   migration/csv
+   migration/parquet
+   migration/orc
 
 
-best practices for insert
 
-chunks and extents, and storage reorganisation
-
-copy:
-
-give an example
-
-supports csv and parquet
-
-what else do we have right now? any other formats? have the s3 and
-hdfs url support also
-
-error handling
-
-best practices
-
-try to combine sensibly with the external table stuff
+   
+   
+   
