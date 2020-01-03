@@ -31,6 +31,6 @@ Adding additional RAM to nodes, using more GPU memory, and faster CPUs or storag
 
 .. rubric:: Need help?
 
-   Analyzing complex workloads can be challenging. SQream's experienced customer support has the experience to advise on these matters to ensure the best experience.
+Analyzing complex workloads can be challenging. SQream's experienced customer support has the experience to advise on these matters to ensure the best experience.
 
-   Visit `SQream's support portal <https://support.sqream.com>`_ for additional support.
+Visit `SQream's support portal <https://support.sqream.com>`_ for additional support.

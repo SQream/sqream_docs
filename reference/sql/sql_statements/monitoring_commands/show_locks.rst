@@ -6,7 +6,7 @@ SHOW_LOCKS
 
 ``SHOW_LOCKS`` returns a list of locks from across the cluster.
 
-Read more about locks in :ref:`concurrency_and_locks:.
+Read more about locks in :ref:`concurrency_and_locks`.
 
 Permissions
 =============

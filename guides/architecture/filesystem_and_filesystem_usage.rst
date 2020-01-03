@@ -64,7 +64,7 @@ Each column directory will contain extents, which are collections of chunks.
 .. figure:: /_static/images/chunks_and_extents.png
 
 ``metadata`` or ``leveldb``
-----------------
+----------------------------
 
 SQream DB's metadata is an embedded key-value store, based on LevelDB. LevelDB helps SQream DB ensure efficient storage for keys, handle atomic writes, snapshots, durability, and automatic recovery.
 
