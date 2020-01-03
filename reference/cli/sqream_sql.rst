@@ -17,13 +17,7 @@ Running sqream sql
 ``sqream sql`` can be found in the ``bin`` directory of your SQream DB installation, under the name ``sqream``.
 
 .. versionchanged:: 2020.1
-   Starting from version 2020.1, ``ClientCmd`` has been renamed to ``sqream sql``.
-   
-   To maintain compatibility, add an alias in your ``.bashrc``:
-   
-   ::
-   
-      alias ClientCmd='sqream sql'
+   Starting from version 2020.1, ``ClientCmd`` has been renamed to ``sqream sql``. To maintain compatibility, add an alias in your ``.bashrc``: ``alias ClientCmd='sqream sql'``
 
 Using sqream sql
 =================
