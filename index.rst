@@ -13,7 +13,7 @@ Customers with SQream DB deploy it for sizes ranging from 5TB to 1PB. Depending 
 
 SQream DB supports regular SQL including :ref:`a substantial amount of ANSI SQL<sql_feature_support>`, uses :ref:`serializable transactions<transactions>`, and :ref:`scales horizontally<concurrency_and_scaling_in_sqream>` for concurrent statements.
 
-SQream DB comes with standard SQL client drivers, including JDBC and ODBC.
+SQream DB comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc>`, :ref:`ODBC<odbc>`, and :ref:`Python DB-API<pysqream>`.
 
 
 .. list-table::

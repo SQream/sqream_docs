@@ -4,11 +4,13 @@
 Python (pysqream)
 *************************
 
-The SQream Python connector provides an interface for creating and running Python applications that can connect to a SQream DB database.  It provides a lighter-weight alternative to working through native C++ or Java bindings, including JDBC and ODBC drivers.
+The SQream Python connector provides an interface for creating and running Python applications that can connect to a SQream DB database. It provides a lighter-weight alternative to working through native C++ or Java bindings, including JDBC and ODBC drivers.
 
-The connector is native and pure Python, with minimal requirements. It can be installed with ``pip`` on any operating system, including Linux, Windows, and macOS.
+pysqream conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_
 
-The platforms tested are Python >= 2.7.2 and Python >= 3.6, with Python 3.7 strongly recommended.
+``pysqream`` is native and pure Python, with minimal requirements. It can be installed with ``pip`` on any operating system, including Linux, Windows, and macOS.
+
+The connector supports Python 3.7 and newer.
 
 .. contents:: In this topic:
    :local:
@@ -19,9 +21,10 @@ Installing the Python connector
 Prerequisites
 ----------------
 
-**Python**
+1. Python
+^^^^^^^^^^^^
 
-The connector requires Python 2.7.2 or newer, or Python 3.6 or newer. To verify your version of Python:
+The connector requires Python 3.6 or newer. To verify your version of Python:
 
 .. code-block:: console
 
@@ -31,9 +34,9 @@ The connector requires Python 2.7.2 or newer, or Python 3.6 or newer. To verify 
 
 .. note:: If both Python 2.x and 3.x are installed, you can run ``python3`` and ``pip3`` instead of ``python`` and ``pip`` respectively for the rest of this guide
 
-**PIP**
+2. PIP
+^^^^^^^^^^^^
 The Python connector is installed via ``pip``, the Python package manager and installer.
-
 
 We recommend upgrading to the latest version of ``pip`` before installing. To verify that you are on the latest version, run the following command:
 
@@ -53,7 +56,8 @@ We recommend upgrading to the latest version of ``pip`` before installing. To ve
    * On macOS, you may want to use virtualenv to install Python and the connector, to ensure compatibility with the built-in Python environment
    *  If you encounter an error including ``SSLError`` or ``WARNING: pip is configured with locations that require TLS/SSL, however the ssl module in Python is not available.`` - please be sure to reinstall Python with SSL enabled, or use virtualenv or Anaconda.
 
-**OpenSSL for Linux**
+3. OpenSSL for Linux
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Some distributions of Python do not include OpenSSL. The Python connector relies on OpenSSL for secure connections to SQream DB.
 
@@ -69,13 +73,21 @@ Some distributions of Python do not include OpenSSL. The Python connector relies
    
       $ sudo apt-get install libssl-dev libffi-dev -y
 
+4. Cython (optional)
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+Optional but recommended is Cython, which improves performance of Python applications.
+
+   .. code-block:: console
+   
+      $ pip install cython
 
 Install via pip
 -----------------
 
 The Python connector is available via `PyPi <https://pypi.org/project/pysqream/>`_.
 
-Install the connector with pip:
+Install the connector with ``pip``:
 
 .. code-block:: console
    
@@ -93,17 +105,301 @@ Create a file called ``test.py``, containing the following:
     :caption: pysqream Validation Script
     :linenos:
 
-Make sure to replace the parameters in ``<`` ``>`` with the respective parameters for your SQream DB installation.
+Make sure to replace the parameters in the connection with the respective parameters for your SQream DB installation.
 
 Run the test file to verify that you can connect to SQream DB:
 
 .. code-block:: console
    
    $ python test.py
-   PySqream version: 2.1.5
-   SQream DB Protocol version: 7
-   [{'bytesread': 'v2019.1.2'}]
+   Version: v2020.1
 
 If all went well, you are now ready to build an application using the SQream DB Python connector!
 
 If any connection error appears, verify that you have access to a running SQream DB and that the connection parameters are correct.
+
+Examples
+===============
+
+Explaining the connection example
+---------------------------------------
+
+First, import the package and create a connection
+
+.. code-block:: python
+   
+   # Import pysqream package
+   
+   import pysqream
+
+   """
+   Connection parameters include:
+   * IP/Hostname
+   * Port
+   * database name
+   * username
+   * password 
+   * Connect through load balancer, or direct to worker (Default: false - direct to worker)
+   * use SSL connection (default: false)
+   * Optional service queue (default: 'sqream')
+   """
+   
+   # Create a connection object
+   
+   con = pysqream.connect(host='127.0.0.1', port=3108, database='raviga'
+                      , username='rhendricks', password='Tr0ub4dor&3'
+                      , clustered=True)
+
+Then, run a query and fetch the results
+
+.. code-block:: python
+
+   cur = con.cursor()  # Create a new cursor
+   # Prepare and execute a query
+   cur.execute('select show_version()')
+   
+   result = cur.fetchall() # `fetchall` gets the entire data set
+   
+   print (f"Version: {result[0][0]}")
+
+This should print the SQream DB version. For example ``v2020.1``.
+
+Finally, we will close the connection
+
+.. code-block:: python
+   
+   con.close()
+
+Using the cursor
+--------------------------------------------
+
+The DB-API specification includes several methods for fetching results from the cursor.
+
+We will use the ``nba`` example. Here's a peek at the table contents:
+
+.. csv-table:: nba
+   :file: nba-t10.csv
+   :widths: auto
+   :header-rows: 1 
+
+Like before, we will import the library and create a connection, followed by executing a simple ``SELECT *`` query.
+
+.. code-block:: python
+   
+   import pysqream
+   con = pysqream.connect(host='127.0.0.1', port=3108, database='master'
+                      , username='rhendricks', password='Tr0ub4dor&3'
+                      , clustered=True)
+
+   cur = con.cursor() # Create a new cursor
+   # The select statement:
+   statement = 'SELECT * FROM nba'
+   cur.execute(statement)
+
+After executing the statement, we have a cursor object waiting. A cursor is iterable, meaning that everytime we fetch, it advances the cursor to the next row.
+
+Use ``fetchone`` to get one record at a time:
+
+.. code-block:: python
+   
+   first_row = cur.fetchone() # Fetch one row at a time (first row)
+   
+   second_row = cur.fetchone() # Fetch one row at a time (second row)
+
+To get several rows at a time, use ``fetchmany``:
+
+.. code-block:: python
+   
+   # executing `fetchone` twice is equivalent to this form:
+   third_and_fourth_rows = cur.fetchmany(2)
+
+To get all rows at once, use ``fetchall``:
+
+.. code-block:: python
+   
+   # To get all rows at once, use `fetchall`
+   remaining_rows = cur.fetchall()
+
+   # Close the connection when done
+   con.close()
+
+Here are the contents of the row variables we used:
+
+.. code-block:: pycon
+   
+   >>> print(first_row)
+   ('Avery Bradley', 'Boston Celtics', 0, 'PG', 25, '6-2', 180, 'Texas', 7730337)
+   >>> print(second_row)
+   ('Jae Crowder', 'Boston Celtics', 99, 'SF', 25, '6-6', 235, 'Marquette', 6796117)
+   >>> print(third_and_fourth_rows)
+   [('John Holland', 'Boston Celtics', 30, 'SG', 27, '6-5', 205, 'Boston University', None), ('R.J. Hunter', 'Boston Celtics', 28, 'SG', 22, '6-5', 185, 'Georgia State', 1148640)]
+   >>> print(remaining_rows)
+   [('Jonas Jerebko', 'Boston Celtics', 8, 'PF', 29, '6-10', 231, None, 5000000), ('Amir Johnson', 'Boston Celtics', 90, 'PF', 29, '6-9', 240, None, 12000000), ('Jordan Mickey', 'Boston Celtics', 55, 'PF', 21, '6-8', 235, 'LSU', 1170960), ('Kelly Olynyk', 'Boston Celtics', 41, 'C', 25, '7-0', 238, 'Gonzaga', 2165160),
+   [...]
+
+.. note:: Calling a fetch command after all rows have been fetched will return an empty array (``[]``).
+
+Reading result metadata
+----------------------------
+
+When executing a statement, the connection object also contains metadata about the result set (e.g.column names, types, etc).
+
+The ``description`` object is a list of metadata, that contains:
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Value
+     - Description
+   * - ``name``
+     - Column name
+   * - ``type_code``
+     - Internal type code
+   * - ``display_size``
+     - Not used - same as ``internal_size``
+   * - ``internal_size``
+     - Data size in bytes
+   * - ``precision``
+     - Precision of numeric data (not used)
+   * - ``scale``
+     - Scale for numeric data (not used)
+   * - ``null_ok``
+     - Specifies if ``NULL`` values are allowed for this column
+
+.. code-block:: pycon
+   
+   >>> import pysqream
+   >>> con = pysqream.connect(host='127.0.0.1', port=3108, database='master'
+   ...                , username='rhendricks', password='Tr0ub4dor&3'
+   ...                , clustered=True)
+   >>> cur = con.cursor()
+   >>> statement = 'SELECT * FROM nba'
+   >>> cur.execute(statement)
+   <pysqream.dbapi.Connection object at 0x000002EA952139B0>
+   >>> print(cur.description)
+   [('Name', 'STRING', 24, 24, None, None, True), ('Team', 'STRING', 22, 22, None, None, True), ('Number', 'NUMBER', 1, 1, None, None, True), ('Position', 'STRING', 2, 2, None, None, True), ('Age (as of 2018)', 'NUMBER', 1, 1, None, None, True), ('Height', 'STRING', 4, 4, None, None, True), ('Weight', 'NUMBER', 2, 2, None, None, True), ('College', 'STRING', 21, 21, None, None, True), ('Salary', 'NUMBER', 4, 4, None, None, True)]
+
+To get a list of column names, iterate over the ``description`` list:
+   
+.. code-block:: pycon
+   
+   >>> [ i[0] for i in cur.description ]
+   ['Name', 'Team', 'Number', 'Position', 'Age (as of 2018)', 'Height', 'Weight', 'College', 'Salary']
+
+Loading data into a table
+---------------------------
+
+The example below loads one million rows of dummy data to SQream DB.
+
+.. code-block:: python
+   
+   import pysqream
+   con = pysqream.connect(host='127.0.0.1', port=3108, database='master'
+                      , username='rhendricks', password='Tr0ub4dor&3'
+                      , clustered=True)
+   
+   # Create a table for loading
+   create = 'create or replace table perf (b bool, t tinyint, sm smallint, i int, bi bigint, f real, d double, s varchar(10), ss nvarchar(10), dt date, dtt datetime)'
+   con.execute(create)
+
+   # After creating the table, we can load data into it with the INSERT command
+
+   # Create dummy data which matches the table we created
+   data = (False, 2, 12, 145, 84124234, 3.141, -4.3, "Varchar text" , "International text" , date(2019, 12, 17), datetime(1955, 11, 4, 1, 23, 0, 0))
+   row_count = 10**6
+
+   # Get a new cursor
+   cur = con.cursor()
+   insert = 'insert into perf values (?,?,?,?,?,?,?,?,?,?,?)'
+   start = time()
+   cur.executemany(insert, [data] * row_count)
+   print (f"Total insert time for {row_count} rows: {time() - start}")
+
+   # Verify that the data was inserted correctly
+   # Get a new cursor
+   cur = con.cursor()
+   cur.execute('select count(*) from perf')
+   result = cur.fetchall() # `fetchall` collects the entire data set
+   print (f"Count of inserted rows: {result[0][0]}")
+
+   # When done, close the connection
+   con.close()
+
+Reading data from a CSV file for load into a table
+----------------------------------------------------------
+
+We will write a helper function to create an :ref:`insert` statement, by reading an existing table's metadata.
+
+.. code-block:: python
+   
+   import pysqream
+   import datetime
+
+   def insert_from_csv(cur, table_name, csv_filename, field_delimiter = ',', null_markers = []):
+      """
+      We will first ask SQream DB for some table information.
+      This is important for understanding the number of columns, and will help
+      to create a matching INSERT statement
+      """
+
+      column_info = cur.execute(f"SELECT * FROM {table_name} LIMIT 0").description
+
+
+      def parse_datetime(v):
+         try:
+               return datetime.datetime.strptime(row[i], '%Y-%m-%d %H:%M:%S.%f')
+         except ValueError:
+               try:
+                  return datetime.datetime.strptime(row[i], '%Y-%m-%d %H:%M:%S')
+               except ValueError:
+                  return datetime.datetime.strptime(row[i], '%Y-%m-%d')
+
+      # Create enough placeholders (`?`) for the INSERT query string
+      qstring = ','.join(['?'] * len(column_info))
+      insert_statement = f"insert into {table_name} values ({qstring})"
+
+      # Open the CSV file
+      with open(csv_filename, mode='r') as csv_file:
+         csv_reader = csv.reader(csv_file, delimiter=field_delimiter)
+
+      # Execute the INSERT statement with the CSV data
+      cur.executemany(insert_statement, [row for row in csv_reader])
+
+
+   con = pysqream.connect(host='127.0.0.1', port=3108, database='master'
+                      , username='rhendricks', password='Tr0ub4dor&3'
+                      , clustered=True)
+   
+   cur = con.cursor()
+   insert_from_csv(cur, 'nba', 'nba.csv', field_delimiter = ',', null_markers = [])
+   
+   con.close()
+
+
+API reference
+==================
+
+The main module is pysqream, which contains the connection, error, and cursor classes.
+
+.. attribute:: apilevel = '2.0'
+   
+   String constant stating the supported API level. The connector supports API "2.0".
+
+.. attribute:: threadsafety = 1
+      
+   Level of thread safety the interface supports. pysqream currently supports level 1, which states that threads can share the module, but not connections.
+
+.. attribute:: paramstyle = 'qmark'
+   
+   The placeholder marker. Set to ``qmark``, which is a question mark (``?``).
+
+.. class:: Connection
+
+   .. method:: execute(self, query, params=None)
+      
+      Execute a statement
+      
+   .. method:: executemany(self, query, rows_or_cols=None, data_as='rows', amount=None)
+      
+       Execute a statement, including parameterised data insert

@@ -1,22 +1,37 @@
 #!/usr/bin/env python
-import pysqream as sq
 
-# Print version
-print (sq.version_info())
+import pysqream
 
-# Get a connector
-connection = sq.Connector()
-# Connect to your SQream DB instance
-connection.connect('<sqream db hostname>',<sqream db port>,'<database name>','<username>','<password>',False,60)
+"""
+Connection parameters include:
+* IP/Hostname
+* Port
+* database name
+* username
+* password 
+* Connect through load balancer, or direct to worker (Default: false - direct to worker)
+* use SSL connection (default: false)
+* Optional service queue (default: 'sqream')
+"""
 
-try: 
-  # Prepare and execute a statement
-  connection.prepare('SELECT show_version()')
-  connection.execute()
-  print(connection.fetch_all_as_dict())
-finally:
-  # Close statement
-  connection.close()
+# Create a connection object
 
-# Close off the connection
-connection.close_connection()
+con = pysqream.connect(host='127.0.0.1', port=5000, database='master'
+                   , username='sqream', password='sqream'
+                   , clustered=False)
+
+# Create a new cursor
+cur = con.cursor()
+
+# Prepare and execute a query
+cur.execute('select show_version()')
+
+result = cur.fetchall() # `fetchall` gets the entire data set
+
+print (f"Version: {result[0][0]}")
+
+# This should print the SQream DB version. For example ``Version: v2020.1``.
+
+# Finally, close the connection
+
+con.close()
