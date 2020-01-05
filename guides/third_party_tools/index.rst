@@ -27,6 +27,7 @@ In general, the tools listed have been tested and approved for usage with SQream
    sql_workbench
    tableau
    r
+   php
    xxspotfire
    xxsas_viya
    xxtalend
