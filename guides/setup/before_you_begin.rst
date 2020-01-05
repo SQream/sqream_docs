@@ -40,7 +40,7 @@ To install SQream DB, we will go through the following steps:
 
 .. rubric:: What's next?
 
-* When ready, start :ref:`installing SQream DB <installing_sqream_db>`
+* When ready, start :ref:`installing SQream DB <installing_sqream_db_docker>`
 
 .. _`sign up for SQream DB`: https://sqream.com/try-sqream-db
 
