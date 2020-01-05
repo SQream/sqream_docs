@@ -182,7 +182,7 @@ We will use the ``nba`` example. Here's a peek at the table contents:
    :widths: auto
    :header-rows: 1 
 
-Like before, we will import the library and create a connection, followed by executing a simple ``SELECT *`` query.
+Like before, we will import the library and create a :py:meth:`~Connection`, followed by :py:meth:`~Connection.execute` on a simple ``SELECT *`` query.
 
 .. code-block:: python
    
@@ -196,9 +196,9 @@ Like before, we will import the library and create a connection, followed by exe
    statement = 'SELECT * FROM nba'
    cur.execute(statement)
 
-After executing the statement, we have a cursor object waiting. A cursor is iterable, meaning that everytime we fetch, it advances the cursor to the next row.
+After executing the statement, we have a :py:meth:`Connection<cursor>` cursor object waiting. A cursor is iterable, meaning that everytime we fetch, it advances the cursor to the next row.
 
-Use ``fetchone`` to get one record at a time:
+Use :py:meth:`~Connection.fetchone` to get one record at a time:
 
 .. code-block:: python
    
@@ -206,14 +206,14 @@ Use ``fetchone`` to get one record at a time:
    
    second_row = cur.fetchone() # Fetch one row at a time (second row)
 
-To get several rows at a time, use ``fetchmany``:
+To get several rows at a time, use :py:meth:`~Connection.fetchmany`:
 
 .. code-block:: python
    
    # executing `fetchone` twice is equivalent to this form:
    third_and_fourth_rows = cur.fetchmany(2)
 
-To get all rows at once, use ``fetchall``:
+To get all rows at once, use :py:meth:`~Connection.fetchall`:
 
 .. code-block:: python
    
@@ -244,28 +244,7 @@ Reading result metadata
 
 When executing a statement, the connection object also contains metadata about the result set (e.g.column names, types, etc).
 
-The ``description`` object is a list of metadata, that contains:
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Value
-     - Description
-   * - ``name``
-     - Column name
-   * - ``type_code``
-     - Internal type code
-   * - ``display_size``
-     - Not used - same as ``internal_size``
-   * - ``internal_size``
-     - Data size in bytes
-   * - ``precision``
-     - Precision of numeric data (not used)
-   * - ``scale``
-     - Scale for numeric data (not used)
-   * - ``null_ok``
-     - Specifies if ``NULL`` values are allowed for this column
+The metadata is stored in the :py:attr:`Connection.description` object of the cursor.
 
 .. code-block:: pycon
    
@@ -295,6 +274,8 @@ The example below loads one million rows of dummy data to SQream DB.
 .. code-block:: python
    
    import pysqream
+   from datetime import date, datetime
+   
    con = pysqream.connect(host='127.0.0.1', port=3108, database='master'
                       , username='rhendricks', password='Tr0ub4dor&3'
                       , clustered=True)
@@ -380,7 +361,175 @@ We will write a helper function to create an :ref:`insert` statement, by reading
 API reference
 ==================
 
-The main module is pysqream, which contains the connection, error, and cursor classes.
+The main module is pysqream, which contains the :py:meth:`Connection` class.
+
+
+.. method:: connect(host, port, database, username, password, clustered = False, use_ssl = False, service='sqream', reconnect_attempts=3, reconnect_interval=10)
+   
+   Creates a new :py:meth:`Connection` object and connects to SQream DB.
+   
+   host
+      SQream DB hostname or IP
+
+   port
+      SQream DB port 
+
+   database
+      database name
+
+   username
+      Username to use for connection
+
+   password
+      Password for ``username``
+
+   clustered
+      Connect through load balancer, or direct to worker (Default: false - direct to worker)
+
+   use_ssl
+      use SSL connection (default: false)
+
+   service
+      Optional service queue (default: 'sqream')
+
+   reconnect_attempts
+      Number of reconnection attempts to attempt before closing the connection
+
+   reconnect_interval
+      Time in seconds between each reconnection attempt
+
+.. class:: Connection
+   
+   .. attribute:: arraysize
+   
+      Specifies the number of rows to fetch at a time with :py:meth:`~Connection.fetchmany`. Defaults to 1 - one row at a time.
+
+   .. attribute:: rowcount
+   
+      Unused, always returns -1.
+   
+   .. attribute:: description
+      
+      Read-only attribute that contains result set metadata.
+      
+      This attribute is populated after a statement is executed.
+      
+      .. list-table:: 
+         :widths: auto
+         :header-rows: 1
+         
+         * - Value
+           - Description
+         * - ``name``
+           - Column name
+         * - ``type_code``
+           - Internal type code
+         * - ``display_size``
+           - Not used - same as ``internal_size``
+         * - ``internal_size``
+           - Data size in bytes
+         * - ``precision``
+           - Precision of numeric data (not used)
+         * - ``scale``
+           - Scale for numeric data (not used)
+         * - ``null_ok``
+           - Specifies if ``NULL`` values are allowed for this column
+
+   .. method:: execute(self, query, params=None)
+      
+      Execute a statement.
+      
+      Parameters are not supported
+      
+      self
+         :py:meth:`Connection`
+
+      query
+         statement or query text
+      
+      params
+         Unused
+      
+   .. method:: executemany(self, query, rows_or_cols=None, data_as='rows', amount=None)
+      
+      Prepares a statement and executes it against all parameter sequences found in ``rows_or_cols``.
+
+      self
+         :py:meth:`Connection`
+
+      query
+         INSERT statement
+         
+      rows_or_cols
+         Data buffer to insert. This should be a sequence of lists or tuples.
+      
+      data_as
+         (Optional) Read data as rows or columns
+      
+      amount
+         (Optional) count of rows to insert
+   
+   .. method:: close(self)
+      
+      Close a statement and connection.
+      After a statement is closed, it must be reopened by creating a new cursor.
+            
+      self
+         :py:meth:`Connection`
+
+   .. method:: cursor(self)
+      
+      Create a new :py:meth:`Connection` cursor.
+      
+      We recommend creating a new cursor for every statement.
+      
+      self
+         :py:meth:`Connection`
+
+   .. method:: fetchall(self, data_as='rows')
+      
+         Fetch all remaining records from the result set.
+         
+         An empty sequence is returned when no more rows are available.
+      
+      self
+         :py:meth:`Connection`
+
+      data_as
+         (Optional) Read data as rows or columns
+
+   .. method:: fetchone(self, data_as='rows')
+      
+      Fetch one record from the result set.
+      
+      An empty sequence is returned when no more rows are available.
+      
+      self
+         :py:meth:`Connection`
+
+      data_as
+         (Optional) Read data as rows or columns
+
+
+   .. method:: fetchmany(self, size=[Connection.arraysize], data_as='rows')
+      
+         Fetches the next several rows of a query result set.
+
+         An empty sequence is returned when no more rows are available.
+
+      self
+         :py:meth:`Connection`
+
+      size
+         Number of records to fetch. If not set, fetches :py:obj:`Connection.arraysize` (1 by default) records
+
+      data_as
+         (Optional) Read data as rows or columns
+
+   .. method:: __iter__()
+
+         Makes the cursor iterable.
+
 
 .. attribute:: apilevel = '2.0'
    
@@ -393,13 +542,3 @@ The main module is pysqream, which contains the connection, error, and cursor cl
 .. attribute:: paramstyle = 'qmark'
    
    The placeholder marker. Set to ``qmark``, which is a question mark (``?``).
-
-.. class:: Connection
-
-   .. method:: execute(self, query, params=None)
-      
-      Execute a statement
-      
-   .. method:: executemany(self, query, rows_or_cols=None, data_as='rows', amount=None)
-      
-       Execute a statement, including parameterised data insert
