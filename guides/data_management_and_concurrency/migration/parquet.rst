@@ -12,46 +12,124 @@ This guide can help has instructions for migrating data from Parquet files into 
 
 Prepare the source Parquet files, with the following requirements:
 
-The Parquet file contains only the following data types:
-
 .. list-table:: 
    :widths: auto
    :header-rows: 1
+   :stub-columns: 1
    
-   * - Parquet data type
-     - SQream DB type
-     - Comments
-   * - ``BOOLEAN``
+   * -   SQream DB type →
+   
+         Parquet source
      - ``BOOL``
-     -
-   * - ``INT16``
+     - ``TINYINT``
      - ``SMALLINT``
-     -
-   * - ``INT32``
      - ``INT``
-     -
-   * - ``INT64``
      - ``BIGINT``
-     -
-   * - ``FLOAT``
      - ``REAL``
-     -
-   * - ``DOUBLE``
      - ``DOUBLE``
-     -
-   * - ``BYTE_ARRAY`` with annotation ``UTF8``
-     - ``VARCHAR`` or ``NVARCHAR``
-     -
-   * - ``DATE``
+     - Text [#f0]_
      - ``DATE``
-     -
-   * - ``INT 96`` with annotation ``TIMESTAMP_MILLIS``
-     - DATETIME
-     - Any microseconds will be rounded down to milliseconds.
+     - ``DATETIME``
+   * - ``BOOLEAN``
+     - ✓ 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+   * - ``INT16``
+     - 
+     - 
+     - ✓
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+   * - ``INT32``
+     - 
+     - 
+     - 
+     - ✓
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+   * - ``INT64``
+     - 
+     - 
+     - 
+     - 
+     - ✓
+     - 
+     - 
+     - 
+     - 
+     - 
+   * - ``FLOAT``
+     - 
+     - 
+     - 
+     - 
+     - 
+     - ✓
+     - 
+     - 
+     - 
+     - 
+   * - ``DOUBLE``
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - ✓
+     - 
+     - 
+     - 
+   * - ``BYTE_ARRAY`` [#f2]_
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - ✓
+     - 
+     - 
+   * - ``INT96`` [#f3]_
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - ✓ [#f4]_
 
-SQream DB can not load any other Parquet data type, but this can be worked around. See more information in the examples.
+* If a Parquet file has an unsupported type like ``enum``, ``uuid``, ``time``, ``json``, ``bson``, ``lists``, ``maps``, but the data is not referenced in the table (it does not appear in the :ref:`SELECT` query), the statement will succeed. If the column is referenced, an error will be thrown to the user, explaining that the type is not supported, but the column may be ommited. This can be worked around. See more information in the examples.
 
+.. rubric:: Footnotes
 
+.. [#f0] Text values include ``TEXT``, ``VARCHAR``, and ``NVARCHAR``
+
+.. [#f2] With UTF8 annotation
+
+.. [#f3] With ``TIMESTAMP_NANOS `` or ``TIMESTAMP_MILLIS`` annotation
+
+.. [#f4] Any microseconds will be rounded down to milliseconds.
 
 2. Place Parquet files where SQream DB workers can access them
 ================================================================

@@ -160,6 +160,8 @@ Date pattern description
 
 .. note:: These date patterns are not the same as date parts used in the :ref:`datepart` function.
 
+.. _field_delimiters:
+
 Supported field delimiters
 =====================================================
 

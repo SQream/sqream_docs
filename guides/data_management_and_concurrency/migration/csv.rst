@@ -12,7 +12,7 @@ This guide can help has instructions for migrating data from CSVs and other text
 
 Prepare the source CSVs, with the following requirements:
 
-* Files should be a valid CSV. By default, SQream DB's CSV parser can handle `RFC 4180 standard CSVs<https://tools.ietf.org/html/rfc4180>`, but can also be modified to support non-standard CSVs (with multi-character delimiters, unquoted fields, etc).
+* Files should be a valid CSV. By default, SQream DB's CSV parser can handle `RFC 4180 standard CSVs <https://tools.ietf.org/html/rfc4180>`_ , but can also be modified to support non-standard CSVs (with multi-character delimiters, unquoted fields, etc).
 
 * Files are UTF-8 or ASCII encoded
 
@@ -158,6 +158,7 @@ Use ``OFFSET`` to skip rows.
 
    COPY  table_name FROM 'filename.psv' WITH DELIMITER '|' OFFSET  2;
 
+.. _changing_record_delimiter:
 Loading files formatted for Windows (``\r\n``)
 ---------------------------------------------------
 

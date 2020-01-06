@@ -94,6 +94,24 @@ While :ref:`external tables<external_tables>` can be used to load CSVs, the ``CO
 Best practices for CSV
 ------------------------------
 
+Text files like CSV rarely conform to `RFC 4180 <https://tools.ietf.org/html/rfc4180>`_ , so alterations may be required:
+
+* Use ``OFFSET 2`` for files containing header rows
+
+* Failed rows can be captured in a log file for later analysis, or just to skip them. See :ref:`capturing_rejected_rows` for information on skipping rejected rows.
+
+* Record delimiters (new lines) can be modified with the :ref:`RECORD DELIMITER<changing_record_delimiter>` syntax.
+
+* If the date formats differ from ISO8601, refer to the :ref:`copy_date_parsers` section to see how to override default parsing.
+
+* 
+   Fields in a CSV can be optionally quoted with double-quotes (``"``). However, any field containing a newline or another double-quote character must be quoted.
+
+   If a field is quoted, any double quote that appears must be double-quoted (similar to the :ref:`string literals quoting rules<string_literals>`. For example, to encode ``What are "birds"?``, the field should appear as ``"What are ""birds""?"``.
+
+* Field delimiters don't have a to be a displayable ASCII character. See :ref:`field_delimiters` for all options.
+
+
 Best practices for Parquet
 --------------------------------
 
