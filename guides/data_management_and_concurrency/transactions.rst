@@ -4,19 +4,14 @@
 Transactions
 ***********************
 
-serializable
+SQream DB supports serializable transactions. This is also called 'ACID'.
 
-commit, rollback and recovery are all extremely fast
+The implementation of transactions means that commit, rollback and recovery are all extremely fast.
 
-not performance for high concurrency oltp workloads
+SQreamDB extremely fast bulk insert speed, with minimal slowdown when running concurrent inserts. There is no performance reason to break large inserts up into multiple transactions.
 
-extremely fast ingest rate
+Supporting transactions for a database system sometimes means having good performance for OLTP workloads, SQreamDB' transaction system does not have high performance for high concurrency OLTP workloads.
 
-no reason to break large inserts up into multiple transactions
+SQream DB also supports transactional DDL.
 
-"supporting transactions": means oltp performance sometimes
-
-"acid": means serializable more or less, which we support
-
-transactional ddl
 

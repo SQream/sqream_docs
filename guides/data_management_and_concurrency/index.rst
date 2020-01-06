@@ -19,6 +19,6 @@ This topic includes information about data management, data lifecycle, how data 
    external_tables
    inserting_data
    delete
-   xxtransactions
+   transactions
    concurrency_and_locks
    xxcompression
