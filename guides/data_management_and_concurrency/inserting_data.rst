@@ -91,6 +91,277 @@ Extended error handling
 
 While :ref:`external tables<external_tables>` can be used to load CSVs, the ``COPY FROM`` statement provides more fine-grained error handling options, as well as extended support for non-standard CSVs with multi-character delimiters, alternate timestamp formats, and more.
 
+Best practices for CSV
+------------------------------
+
+Best practices for Parquet
+--------------------------------
+
+* Parquet files are loaded through :ref:`external_tables`. The destination table structure has to match in number of columns between the source files.
+
+* Parquet files support predicate pushdown. When a query is issued over Parquet files, SQream DB uses row-group metadata to determine which row-groups in a file need to be read for a particular query and the row indexes can narrow the search to a particular set of rows.
+
+Type support and behavior notes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Unlike ORC, the column types should match the data types exactly (see table below).
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   :stub-columns: 1
+   
+   * -   SQream DB type →
+   
+         Parquet source
+     - ``BOOL``
+     - ``TINYINT``
+     - ``SMALLINT``
+     - ``INT``
+     - ``BIGINT``
+     - ``REAL``
+     - ``DOUBLE``
+     - Text [#f0]_
+     - ``DATE``
+     - ``DATETIME``
+   * - ``BOOLEAN``
+     - ✓ 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+   * - ``INT16``
+     - 
+     - 
+     - ✓
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+   * - ``INT32``
+     - 
+     - 
+     - 
+     - ✓
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+   * - ``INT64``
+     - 
+     - 
+     - 
+     - 
+     - ✓
+     - 
+     - 
+     - 
+     - 
+     - 
+   * - ``FLOAT``
+     - 
+     - 
+     - 
+     - 
+     - 
+     - ✓
+     - 
+     - 
+     - 
+     - 
+   * - ``DOUBLE``
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - ✓
+     - 
+     - 
+     - 
+   * - ``BYTE_ARRAY`` [#f2]_
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - ✓
+     - 
+     - 
+   * - ``INT96`` [#f3]_
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - ✓ [#f4]_
+
+* If a Parquet file has an unsupported type like ``enum``, ``uuid``, ``time``, ``json``, ``bson``, ``lists``, ``maps``, but the data is not referenced in the table (it does not appear in the :ref:`SELECT` query), the statement will succeed. If the column is referenced, an error will be thrown to the user, explaining that the type is not supported, but the column may be ommited.
+
+Best practices for ORC
+--------------------------------
+
+* ORC files are loaded through :ref:`external_tables`. The destination table structure has to match in number of columns between the source files.
+
+* ORC files support predicate pushdown. When a query is issued over ORC files, SQream DB uses ORC metadata to determine which stripes in a file need to be read for a particular query and the row indexes can narrow the search to a particular set of 10,000 rows.
+
+Type support and behavior notes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* ORC files are loaded through :ref:`external_tables`. The destination table structure has to match in number of columns between the source files.
+
+* The types should match to some extent within the same "class" (see table below).
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   :stub-columns: 1
+   
+   * -   SQream DB type →
+   
+         ORC source
+     - ``BOOL``
+     - ``TINYINT``
+     - ``SMALLINT``
+     - ``INT``
+     - ``BIGINT``
+     - ``REAL``
+     - ``DOUBLE``
+     - Text [#f0]_
+     - ``DATE``
+     - ``DATETIME``
+   * - ``boolean``
+     - ✓ 
+     - ✓ [#f5]_
+     - ✓ [#f5]_
+     - ✓ [#f5]_
+     - ✓ [#f5]_
+     - 
+     - 
+     - 
+     - 
+     - 
+   * - ``tinyint``
+     - ○ [#f6]_
+     - ✓
+     - ✓
+     - ✓
+     - ✓
+     - 
+     - 
+     - 
+     - 
+     - 
+   * - ``smallint``
+     - ○ [#f6]_
+     - ○ [#f7]_
+     - ✓
+     - ✓
+     - ✓
+     - 
+     - 
+     - 
+     - 
+     - 
+   * - ``int``
+     - ○ [#f6]_
+     - ○ [#f7]_
+     - ○ [#f7]_
+     - ✓
+     - ✓
+     - 
+     - 
+     - 
+     - 
+     - 
+   * - ``bigint``
+     - ○ [#f6]_
+     - ○ [#f7]_
+     - ○ [#f7]_
+     - ○ [#f7]_
+     - ✓
+     - 
+     - 
+     - 
+     - 
+     - 
+   * - ``float``
+     - 
+     - 
+     - 
+     - 
+     - 
+     - ✓
+     - ✓
+     - 
+     - 
+     - 
+   * - ``double``
+     - 
+     - 
+     - 
+     - 
+     - 
+     - ✓
+     - ✓
+     - 
+     - 
+     - 
+   * - ``string`` / ``char`` / ``varchar``
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - ✓
+     - 
+     - 
+   * - ``date``
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - ✓
+     - ✓
+   * - ``timestamp``, ``timestamp`` with timezone
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - 
+     - ✓
+
+* If an ORC file has an unsupported type like ``binary``, ``list``, ``map``, and ``union``, but the data is not referenced in the table (it does not appear in the :ref:`SELECT` query), the statement will succeed. If the column is referenced, an error will be thrown to the user, explaining that the type is not supported, but the column may be ommited.
+
+
+
 ..
    insert
 
@@ -147,3 +418,19 @@ Further reading and migration guides
    * :ref:`copy_from`
    * :ref:`insert`
    * :ref:`external_tables`
+
+.. rubric:: Footnotes
+
+.. [#f0] Text values include ``TEXT``, ``VARCHAR``, and ``NVARCHAR``
+
+.. [#f2] With UTF8 annotation
+
+.. [#f3] With ``TIMESTAMP_NANOS `` or ``TIMESTAMP_MILLIS`` annotation
+
+.. [#f4] Any microseconds will be rounded down to milliseconds.
+
+.. [#f5] Boolean values are cast to 0, 1
+
+.. [#f6] Will succeed if all values are 0, 1
+
+.. [#f7] Will succeed if all values fit the destination type
