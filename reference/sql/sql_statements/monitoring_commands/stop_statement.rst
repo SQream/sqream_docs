@@ -11,7 +11,7 @@ To find a statement by ID, see :ref:`show_server_status` and :ref:`show_connecti
 Permissions
 =============
 
-The role must have the ``SUPERUSER`` privileges.
+The role must have the ``SUPERUSER`` permissions.
 
 Syntax
 ==========

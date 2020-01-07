@@ -14,7 +14,7 @@ CREATE VIEW
 Permissions
 =============
 
-The role must have the ``CREATE`` permission at the database level, as well as ``SELECT`` privileges for any tables referenced by the view.
+The role must have the ``CREATE`` permission at the database level, as well as ``SELECT`` permissions for any tables referenced by the view.
 
 Syntax
 ==========

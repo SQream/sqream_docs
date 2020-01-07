@@ -11,7 +11,7 @@ Read more about locks in :ref:`concurrency_and_locks`.
 Permissions
 =============
 
-The role must have the ``SUPERUSER`` privileges.
+The role must have the ``SUPERUSER`` permissions.
 
 Syntax
 ==========

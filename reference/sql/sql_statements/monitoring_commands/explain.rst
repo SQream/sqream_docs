@@ -9,7 +9,7 @@ EXPLAIN
 Permissions
 =============
 
-The role must have the ``SELECT`` privileges for any tables referenced by the query.
+The role must have the ``SELECT`` permissions for any tables referenced by the query.
 
 Syntax
 ==========
