@@ -11,14 +11,11 @@ Overview
 =========
 
 
-The system which provides basic authentication and authorization for
-users in SQream DB.
+The system which provides basic authentication and authorization for users in SQream DB.
 
-Authentication: this is how the system checks that you are who you say
-you are. This is done using the familiar usernames and passwords.
+Authentication: this is how the system checks that you are who you say you are. This is done using the familiar usernames and passwords. The role object is used for both users and groups (which can be used to manage permissions for multiple users together).
 
-Authorization: this is how the system checks that you are allowed to
-do the action that you are trying to do.
+Authorization: this is how the system checks that you are allowed to do the action that you are trying to do. This is implemented using grant and revoke (a.k.a. permissions).
 
 Compared to ANSI SQL and other SQL products:
 
