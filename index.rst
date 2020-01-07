@@ -64,28 +64,6 @@ SQream DB comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc
          
          :ref:`troubleshooting`
 
-
-Using this documentation
-============================
-
-The documentation contains a few main sections:
-   
-   * :ref:`Getting started<first_steps>` guides
-   * :ref:`Operation guides<operations>`
-   * :ref:`SQL reference<sql>`
-   * :ref:`CLI reference<cli_reference>`
-   * and more...
-
-.. only:: html
-   
-   Use the navigation pane to the left to browse topics and guides, or use the search bar.
-
-Each section contains several topics and guides intended to help a database user, administrator, or system engineer find information about using, managing, and deploying SQream DB.
-
-Experience with SQL is not required, but helpful.
-
-Some experience with Linux is recommended for system administrators.
-
 .. rubric:: Need help?
 
 If you couldn't find what you're looking for, we're always happy to help. Visit `SQream's support portal <https://support.sqream.com>`_ for additional support.
