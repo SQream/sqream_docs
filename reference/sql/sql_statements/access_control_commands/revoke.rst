@@ -109,6 +109,13 @@ Parameters
      - The name of the role to revoke permissions from
    * - ``table_name``, ``database_name``, ``schema_name``, ``function_name``
      - Object to revoke permissions on.
+   * - ``WITH ADMIN OPTION``
+     - 
+         If ``WITH ADMIN OPTION`` is specified, the role that has the admin option can in turn grant membership in the role to others, and revoke membership in the role as well.
+         
+         Specifying ``WITH ADMIN OPTION`` for revocation will return the role to an ordinary role. An ordinary role cannot grant or revoke membership.
+         
+         
 
 Supported permissions
 =======================
@@ -180,3 +187,17 @@ Demoting a user from superuser
    
    -- On the entire cluster
    REVOKE SUPERUSER FROM new_role;
+
+Revoking admin option
+------------------------------
+
+If ``WITH ADMIN OPTION`` is specified, the role that has the admin option can in turn grant membership in the role to others, and revoke membership in the role as well.
+
+
+.. code-block:: postgres
+   
+   -- dba_user1 has been demoted from team lead, so he should not be able to grant
+   -- permissions to other users.
+   
+   REVOKE r_database_architect FROM dba_user1 WITH ADMIN OPTION;
+
