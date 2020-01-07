@@ -119,6 +119,8 @@ Parameters
          
          Roles with ``SUPERUSER`` can grant or revoke membership in any role to anyone.
 
+.. include from here
+
 Supported permissions
 =======================
 
@@ -148,11 +150,11 @@ Supported permissions
      - Database, Schema, Table
      - For a role to create and manage objects, it needs the ``CREATE`` and ``USAGE`` permissions at the respective level
    * - ``USAGE``
-     - Database, Schema
-     - For a role to create and manage objects, it needs the ``CREATE`` and ``USAGE`` permissions at the respective level
+     - Schema
+     - For a role to see tables in a schema, it needs the ``USAGE`` permissions
    * - ``SELECT``
      - Table
-     - Allows a user to run :ref:`select` queries on table contents 
+     - Allows a user to run :ref:`select` queries on table contents
    * - ``INSERT``
      - Table
      - Allows a user to run :ref:`copy_from` and :ref:`insert` statements to load data into a table
@@ -168,6 +170,10 @@ Supported permissions
    * - ``ALL``
      - Cluster, Database, Schema, Table, Function
      - All of the above permissions at the respective level
+
+
+.. end include
+
 
 Examples
 ===========
