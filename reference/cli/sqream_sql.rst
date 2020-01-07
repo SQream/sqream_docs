@@ -33,7 +33,7 @@ To exit the shell, type ``\q``  or :kbd:`Ctrl-d`.
 
 .. code-block:: psql
 
-   $ sqream sql --port=5000 --username=jdoe -d master
+   $ sqream sql --port=5000 --username=jdoe --databasename=master
    Password:
    
    Interactive client mode
