@@ -371,168 +371,96 @@ This is an example of how to manage permissions in a database shared by multiple
 
 .. todo: what are the activities that only a superuser can do
 
-Here are the roles that can be assigned per department/schema:
-
-* superuser - sets up the system and permissions
-* security officer – change group membership
-* database architect – create/modify table structure DDL
-* updater - modify tables data (DML)
-* reader - read data, execute functions, use views, etc.
-* function author - create functions
-
-The example assumes the following:
-
-    database is my_database
-    schema is my_schema
-
-The superuser connects to any database.
-
-Create the role r_security_officer and give it the ability to login and use database MYDB.
-
-CREATE ROLE r_security_officer;
-
-GRANT LOGIN to r_security_officer;
-
-GRANT PASSWORD 'pass' to r_security_officer;
-
-GRANT CONNECT ON DATABASE mydb to r_security_officer;
-
-    Create the role r_database_architect and give it the needed permissions in schema dwh_schema:
-
-Permissions: USAGE, CREATE and DDL
-
-CREATE ROLE r_database_architect;
-
-GRANT connect ON DATABASE mydb TO r_database_architect;
-
-GRANT usage,create,ddl ON SCHEMA dwh_schema TO r_database_architect;
-
-    Create the role r_updater and give it the needed permissions in schema dwh_schema on tables created by the r_database_architect  role group:
-
-Permissions:SELECT/INSERT/DELETE on ALL tables
-
-Run ALTER DEFAULT PERMISSION so that the permission will be granted for new tables in that schema as well.
-
-CREATE ROLE r_updater;
-
-GRANT connect ON DATABASE mydb TO r_updater;
-
-GRANT usage ON SCHEMA dwh_schema TO r_updater;
-
-GRANT SELECT,INSERT,DELETE ON ALL TABLES IN SCHEMA dwh_schema TO r_updater;
-
-ALTER DEFAULT PERMISSIONS FOR r_database_architect IN dwh_schema FOR TABLES GRANT SELECT,INSERT,DELETE TO r_updater;
-
-    Create the role r_udf_author and give it the needed permissions.
-
-Permissions:
-
-    SELECT on all the tables in schema dwh_schema
-    CREATE FUNCTIONS (UDF)
-
-Run ALTER DEFAULT PERMISSION so that the permission will be granted for new tables in that schema as well. 
-
-CREATE ROLE r_udf_author;
-
-GRANT connect ON DATABASE mydb TO r_udf_author;
-
-GRANT usage ON SCHEMA dwh_schema TO r_udf_author;
-
-GRANT CREATE FUNCTION ON DATABASE mydb TO r_udf_author;
-
-GRANT SELECT ON ALL TABLES IN SCHEMA dwh_schema TO r_udf_author;
-
-ALTER DEFAULT PERMISSIONS FOR r_database_architect IN dwh_schema FOR TABLES GRANT SELECT TO r_udf_author;
-
-    Create the role r_reader and give it the needed permissions in schema dwh_schema on tables created by the r_database_architect  role group:
-
-Permissions:
-
-    SELECT on all the tables in schema dwh_schema
-    EXECUTE ALL FUNCTIONS (UDFs)
-
-Run ALTER DEFAULT PERMISSION so that the permission will be granted for new tables in that schema as well. 
-
-CREATE ROLE r_reader;
-
-GRANT connect ON DATABASE mydb TO r_reader;
-
-GRANT usage ON SCHEMA dwh_schema TO r_reader;
-
-GRANT SELECT ON ALL TABLES IN SCHEMA dwh_schema TO r_reader;
-
-ALTER DEFAULT PERMISSIONS FOR r_database_architect IN dwh_schema FOR TABLES GRANT SELECT TO r_reader;
-
-GRANT EXECUTE ON ALL FUNCTIONS TO r_reader;
-
-GRANT EXECUTE FUCTION affects only existing functions.
-
-    Give the role r_security_officer the ability to grant all the new roles to others:
-
-GRANT r_database_architect TO r_security_officer WITH ADMIN OPTION;
-
-GRANT r_updater TO r_security_officer WITH ADMIN OPTION;
-
-GRANT r_reader TO r_security_officer WITH ADMIN OPTION;
-
-GRANT r_udf_author TO r_security_officer WITH ADMIN OPTION;
-
-At this point, the security officer (who is not a superuser) can grant any of the roles they were defined as admin of to any new users created by the superuser (role with login/password).
-As a superuser:
-
-    Create the roles user1, user2, user3 etc.
-
-CREATE ROLE user1;
-
-GRANT LOGIN to user1;
-
-GRANT PASSWORD 'pass1' to user1;
-
-CREATE ROLE user2;
-
-GRANT LOGIN to user2;
-
-GRANT PASSWORD 'pass2' to user2;
-
-CREATE ROLE user3;
-
-GRANT LOGIN to user3;
-
-GRANT PASSWORD 'pass3' to user3;
-
-CREATE ROLE user4;
-
-GRANT LOGIN to user4;
-
-GRANT PASSWORD 'pass4' to user4;
-As the security officer:
-
-GRANT r_database_architect TO user1;
-
-GRANT r_reader TO user2;
-
-GRANT r_udf_author TO user3;
-
-GRANT r_updater TO user4;
-
-Note that the ‘with admin option’ can be used in hierarchy. For example, if each department wishes to have its own dept_admin role, the superuser can create this role and grant it the required permissions with admin option so they can then assign the roles to users in their department.
-
-Hierarchy example:
-
-    As superuser:
-
-CREATE ROLE dept1_admin;
-
-GRANT LOGIN TO dept1_admin;
-
-GRANT PASSWORD 'password' TO dept1_admin;
-
-GRANT CONNECT ON DATABASE mydb TO dept1_admin;
-
-    As the security officer or superuser:
-
-GRANT r_reader TO dept1_admin WITH ADMIN OPTION;
-
-    As the dept1_admin:
-
-GRANT r_reader TO user2;
+The concept is that you set up roles for each new schema with the correct permissions, then the existing users can use these roles. A superuser must do new setup for each new schema which is a limitation, but superuser permissions are not needed at any other time, and neither are explicit grant statements or object ownership changes.
+
+In the example, the database is called my_database, and the new or existing schema being set up to be managed in this way is called my_schema.
+
+There will be a group for this schema for each of the following:
+
+* security officers, who can add and remove users from a schema
+* database designers, who can create, alter and drop tables
+* updaters, who can insert and delete data
+* readers, who can read data
+
+There are also function authors, who can create functions. These can
+only be restricted per database and not per schema, since functions do
+not have a schema.
+ 
+Setup
+-----
+
+The superuser connects to the system and runs the following:
+
+.. code-block:: postgres
+
+  -- create the groups
+
+  CREATE ROLE my_schema_security_officers;
+  CREATE ROLE my_schema_database_designers;
+  CREATE ROLE my_schema_updaters;
+  CREATE ROLE my_schema_readers;
+  
+  -- grant permissions for each role
+  -- we grant permissions for existing objects here too, so you don't
+  -- have to start with an empty schema
+
+  -- security officers
+
+  GRANT connect ON DATABASE my_database TO my_schema_security_officers;
+  GRANT usage ON SCHEMA my_schema TO my_schema_security_officers;
+  
+  GRANT my_schema_database_designers TO my_schema_security_officers WITH ADMIN OPTION;
+  GRANT my_schema_updaters TO my_schema_security_officers WITH ADMIN OPTION;
+  GRANT my_schema_readers TO my_schema_security_officers WITH ADMIN OPTION;
+  
+  -- database designers
+
+  GRANT connect ON DATABASE my_database TO my_schema_database_designers;
+  GRANT usage ON SCHEMA my_schema TO my_schema_database_designers;
+  
+  GRANT create,ddl ON SCHEMA my_schema TO my_schema_database_designers;
+
+  -- updaters
+  
+  GRANT connect ON DATABASE my_database TO my_schema_updaters;
+  GRANT usage ON SCHEMA my_schema TO my_schema_updaters;
+  
+  GRANT SELECT,INSERT,DELETE ON ALL TABLES IN SCHEMA my_schema TO my_schema_updaters;
+  
+  -- readers
+  
+  GRANT connect ON DATABASE my_database TO my_schema_readers;
+  GRANT usage ON SCHEMA my_schema TO my_schema_readers;
+  
+  GRANT SELECT ON ALL TABLES IN SCHEMA my_schema TO my_schema_readers;
+  GRANT EXECUTE ON ALL FUNCTIONS TO my_schema_readers;
+  
+
+  -- create the default permissions for new objects
+  
+  ALTER DEFAULT PERMISSIONS FOR my_schema_database_designers IN my_schema
+    FOR TABLES GRANT SELECT,INSERT,DELETE TO my_schema_updaters;
+  
+  ALTER DEFAULT PERMISSIONS FOR my_schema_database_designers IN my_schema
+    FOR TABLES GRANT SELECT TO my_schema_readers;
+  
+This process needs to be repeated by a superuser each time a new
+schema is brought into this permissions management approach.
+  
+.. todo:
+   create some example users
+   show that they have the right permission
+   try out the with admin option. we can't really do a security officer because
+   only superusers can create users and logins. see what can be done
+   need 1-2 users in each group, for at least 2 schemas/departments
+   this example will be very big just to show what this setup can do ...
+   
+* the security officers will be able to add and remove users from these groups
+* the database designers will be able to run any ddl on objects in the schema and create new objects, including ones created by other database designers
+* the updaters will be able to insert and delete to existing and new tables
+* the readers will be able to read from existing and new tables
+
+All this will happen without having to run any more grant statements
+(apart from the security officers altering which users are in which
+groups). Creating and dropping login users must be done by a
+superuser.
