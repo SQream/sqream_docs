@@ -111,6 +111,13 @@ Parameters
      - The name of the role to grant permissions to
    * - ``table_name``, ``database_name``, ``schema_name``, ``function_name``
      - Object to grant permissions on.
+   * - ``WITH ADMIN OPTION``
+     - 
+         If ``WITH ADMIN OPTION`` is specified, the role that has the admin option can in turn grant membership in the role to others, and revoke membership in the role as well.
+         
+         Without the admin option, ordinary roles cannot grant or revoke membership.
+         
+         Roles with ``SUPERUSER`` can grant or revoke membership in any role to anyone.
 
 Supported permissions
 =======================
@@ -207,7 +214,7 @@ Creating a new role for a group of users
 Granting with admin option
 ------------------------------
 
-The ``WITH ADMIN OPTION`` designates a user as a role admin. Role admins can grant or revoke membership for the specified role.
+If ``WITH ADMIN OPTION`` is specified, the role that has the admin option can in turn grant membership in the role to others, and revoke membership in the role as well.
 
 .. code-block:: postgres
    
