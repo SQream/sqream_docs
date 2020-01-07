@@ -244,7 +244,6 @@ CURRENT_ROLE refers to the current login role, and can be used as the <role> in 
    -- Allows role2 to use permissions granted to role1
   	GRANT <role1> [, ...] 
   	TO <role2> 
-  	[WITH ADMIN OPTION]
 
     -- Also allows the role2 to grant role1 to other roles:
   	GRANT <role1> [, ...] 
@@ -343,8 +342,7 @@ schema statement is run.
 .. code-block:: postgres
 
 
-  alter_default_permissions_statement ::=
-        ALTER DEFAULT PERMISSIONS FOR target_role_name
+  ALTER DEFAULT PERMISSIONS FOR target_role_name
         [IN schema_name, ...]
         FOR { TABLES | SCHEMAS }
         { grant_clause | DROP grant_clause}
