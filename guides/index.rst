@@ -24,7 +24,7 @@ Full list of guides
 
    xxqueries
    workload_manager
-   xxaccess_control
+   access_control
    xxpython_functions
    saved_queries
    seeing_system_objects_as_sql
