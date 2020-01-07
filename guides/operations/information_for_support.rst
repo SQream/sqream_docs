@@ -25,7 +25,7 @@ If comfortable, attach as many of the following:
 
 * Error messages or result outputs
 * DDL and queries that reproduce the issue
-* Log files
+* :ref:Log files<logging>`
 * Screen captures if relevant
 
 SQream support may have additional questions or requests, based on the information provided.
@@ -53,7 +53,7 @@ Logs
 
 The logs produced by SQream DB contain a lot of information that may be useful for debugging.
 
-Look for error messages in the log. SQream's support staff are experienced in correlating logs to workloads, and finding possible problems.
+Look for :ref:`error messages in the log and the offending statements<tracing_errors>`. SQream's support staff are experienced in correlating logs to workloads, and finding possible problems.
 
 See the :ref:`collecting_logs` section ahead for information about collecting a set of logs that can be analyzed by SQream support.
 

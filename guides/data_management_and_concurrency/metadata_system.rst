@@ -4,6 +4,7 @@
 Metadata system
 ***********************
 
+
 show the metadata system in action:
 describe a scenario
 show a statement which is accelerated via the metadata system

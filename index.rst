@@ -15,6 +15,8 @@ SQream DB supports regular SQL including :ref:`a substantial amount of ANSI SQL<
 
 SQream DB comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc>`, :ref:`ODBC<odbc>`, and :ref:`Python DB-API<pysqream>`.
 
+.. 
+   .. ref`features_tour`
 
 .. list-table::
    :widths: 33 33 33
@@ -26,7 +28,6 @@ SQream DB comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc
    * -
          :ref:`first_steps`
          
-         :ref:`features_tour`
          
          :ref:`sql_feature_support`
      - 

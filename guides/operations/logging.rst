@@ -429,6 +429,35 @@ Count error events within a certain timeframe
               1010 |     3
 
 
+.. _tracing_errors:
+
+Tracing errors to find offending statements
+-------------------------------------------------
+
+If we know an error occured, but don't know which statement caused it, we can find it using the connection ID and statement ID.
+
+.. code-block:: psql
+
+   t=> SELECT connection_id, statement_id, message
+   .>    FROM logs
+   .>    WHERE message_level = 'ERROR'
+   .>    AND timestamp BETWEEN '2020-01-01' AND '2020-01-06';
+   connection_id | statement_id | message                                                                                                                                                          
+   --------------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+              79 |           67 | Column type mismatch, expected UByte, got INT64 on column Number, file name: /home/sqream/nba.parquet                                                            
+
+Use the ``connection_id`` and ``statement_id`` to narrow down the results.
+
+.. code-block:: psql
+   
+   t=>   SELECT database_name, message FROM logs
+   .>      WHERE connection_id=79 AND statement_id=67 AND message_type_id=1;
+   database_name | message                  
+   --------------+--------------------------
+   master        | Query before parsing     
+   master        | SELECT * FROM nba_parquet
+
+
 
 .. how logs are read with csvkit, find a better working solution
 
