@@ -62,5 +62,5 @@ This topic contains the reference for these programs, as well as flags and confi
    sqream_installer
    server_picker
    sqream_storage
-   sqream_sql
+   sqream sql<sqream_sql>
    upgrade_storage

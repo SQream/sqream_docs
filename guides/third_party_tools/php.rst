@@ -1,4 +1,4 @@
-.. _r:php
+.. _php
 
 *****************************
 Connecting with PHP

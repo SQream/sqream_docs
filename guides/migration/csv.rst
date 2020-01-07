@@ -159,6 +159,7 @@ Use ``OFFSET`` to skip rows.
    COPY  table_name FROM 'filename.psv' WITH DELIMITER '|' OFFSET  2;
 
 .. _changing_record_delimiter:
+
 Loading files formatted for Windows (``\r\n``)
 ---------------------------------------------------
 

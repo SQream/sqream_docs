@@ -16,7 +16,6 @@ In SQream DB, deleting data is a two-step process. :ref:`delete` of rows does no
 This approach is necessary to gain the benefits of :ref:`time_based_data_management`. Eventually, when the new insert is completed, the deleted row version is no longer of interest to any transaction. The space it occupies can then be freed up. This is performed in the physical delete operation that follows.
 
 
-
 Phase 1: Logical Delete
 ---------------------------
 
