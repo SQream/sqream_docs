@@ -68,6 +68,9 @@ SQream DB comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc
 
 If you couldn't find what you're looking for, we're always happy to help. Visit `SQream's support portal <https://support.sqream.com>`_ for additional support.
 
+.. rubric:: Looking for the old documentation?
+
+If you're looking for an older version of the documentation, versions 1.10 through 2019.2.1 are available at http://previous.sqream.com .
 
 .. toctree::
    :caption: Contents:
