@@ -8,43 +8,32 @@ Access control
    :local:
 
 Overview
-=========
+========
 
 
 Access control provides authentication and authorization in SQream DB.
 
-Authentication: this is how the system checks that you are who you say you are. This is done using the familiar usernames and passwords. The role object is used for both users and groups (which can be used to manage permissions for multiple users together).
+Authentication: verifying the identity of the user. Usernames (role name) and passwords are used for this in SQream DB.
 
-Authorization: this is how the system checks that you are allowed to do the action that you are trying to do. This is implemented using grant and revoke (a.k.a. permissions).
+Authorization: checking the user has permissions to do a particular thing. Grant is used for this in SQreamDB.
 
-Compared to ANSI SQL and other SQL products:
-
-* SQream DB has roles as users and as groups, like ANSI SQL and other SQL products a user may be familiar with
+* SQream DB uses roles as users and groups, like ANSI SQL and other SQL products
 
 * SQream DB has a default permissions system based on the system in Postgres, but with more power.
   In most cases, this allows an administrator to set things up so that every object gets permissions set automatically.
 
-* SQream DB does not have row based permissions
-
-* SQream DB does not have object ownership
-
-
 Roles
------
+=====
 
-SQream has the standard ROLE object. Roles are used for users and for groups.
+Roles are used for users and for groups.
 
 To use a ROLE a USER, it should have a password, and login and connect permissions to the relevant databases.
 
-CREATE ROLE
-^^^^^^^^^^^
-
-Adds a new user/role to the instance/ storage cluster.
+Creating a user
+---------------
 
 .. code-block:: postgres
                 
-  create_role_statement ::=
-
       CREATE ROLE role_name ;
       GRANT LOGIN to role_name ;
       GRANT PASSWORD 'new_password' to role_name ;
@@ -59,16 +48,12 @@ Examples:
   GRANT  PASSWORD  'my_password'  TO  new_role_name;  
   GRANT  CONNECT  ON  DATABASE  master  TO  new_role_name;
 
-DROP ROLE
-^^^^^^^^^
-
-Deletes a role/user.
+Dropping a user
+---------------
 
 .. code-block:: postgres
 
-  drop_role_statement ::=
-
-      DROP ROLE role_name ;
+  DROP ROLE role_name ;
 
 Examples:
 
@@ -76,16 +61,12 @@ Examples:
 
   DROP  ROLE  admin_role;
 
-ALTER ROLE
-^^^^^^^^^^
-
-Renames an existing role.
+Altering a user
+---------------
 
 .. code-block:: postgres
 
-  alter_role_statement ::=
-
-      ALTER ROLE role_name RENAME TO new_role_name ;
+  ALTER ROLE role_name RENAME TO new_role_name ;
 
 Examples:
 
@@ -93,33 +74,40 @@ Examples:
 
   ALTER  ROLE  admin_role  RENAME  TO  copy_role;
 
-Superusers
-^^^^^^^^^^
-
-There are two kinds of superusers - one for the entire instance/storage cluster, and a superuser for a given database or schema.
-
-PUBLIC Role
-^^^^^^^^^^^
-
-There is a public role which always exists. Each role is granted to the PUBLIC role, and this cannot be revoked. You can alter the permissions granted to the public role.
-
-The PUBLIC role has USAGE and CREATE permissions on PUBLIC schema by default, therefore, new users can create and manage their own objects in the PUBLIC schema.
-
-
-Permissions
+Public Role
 -----------
 
-Each role can be granted permissions.
+There is a public role which always exists. Each role is granted to the PUBLIC role (is a member of the public group), and this cannot be revoked. You can alter the permissions granted to the public role.
 
-Roles are global across all databases in the instance/ storage cluster.
+The PUBLIC role has USAGE and CREATE permissions on PUBLIC schema by default, therefore, new users can create, insert, delete and select from objects in the PUBLIC schema.
 
-For a role to function as a user in a database, it must have USAGE permission on the specific database.
+Groups
+------
 
-Roles are granted permissions and access to specific objects. The specified object can be any defined object such as a database or table.
-    
-Roles can be granted permissions to other roles, thus creating a hierarchy of role with increasingly specific or limited permissions for lower-level users.
+A group can be created, altered and dropped the same way as a user. To use a role purely as a group, omit granting it login and password permissions. The connect permission can be given directly to users, and/or to the groups they are part of.
 
-For a role to create and manage (read/write/alter) objects, it has to have the CREATE and USAGE permissions.
+.. code-block:: postgres
+
+  CREATE ROLE my_group;
+  GRANT  CONNECT  ON  DATABASE  a_database  TO  my_group;
+  -- add my_user to this group
+  GRANT my_group TO my_user;
+
+  -- remove my_other_user from this group
+
+  REVOKE my_group FROM my_other_user;
+
+  
+Permissions
+===========
+
+* permissions are granted to roles
+
+* roles are global across all databases in the instance/ storage cluster
+
+* for a role to function as a user in a database, it should have USAGE permission on that database
+
+* roles can be granted to other roles, serving as groups for managing permissions for multiple roles together
 
 .. list-table:: 
    :widths: auto
@@ -127,19 +115,15 @@ For a role to create and manage (read/write/alter) objects, it has to have the C
 
    * - Object/layer
      - Permission
-     - Description
+     - Permission description
 
    * - all databases
-     - Login
-     - Allows a role to be used to log into the system
+     - login
+     - use role to log into the system (the role also needs connect permission on the database it is connecting to)
 
    * - all databases
      - password
      - the password used for logging into the system
-
-   * - all databases
-     - create function
-     - permission to create and drop functions
 
    * - all databases
      - superuser
@@ -148,43 +132,43 @@ For a role to create and manage (read/write/alter) objects, it has to have the C
        
    * - database
      - superuser
-     -
+     - no permission restrictions on any activity within that database (this doesn't include modifying roles or permissions)
 
    * - database
      - connect
-     -
+     - connect to the database
 
    * - database
      - create
-     -
+     - create schemas in the database
 
    * - database
-     - usage 
-     -
-
+     - create function
+     - create and drop functions
+     
    * - schema
      - usage
-     - has all permissions on existing and new objects in the schema
+     - allows additional permissions within the schema
 
    * - schema
      - create
-     -
+     - create tables in the schema
 
    * - table
      - select
-     -
+     - select from the table
 
    * - table
      - insert
-     - allows inserting into the table
+     - insert into the table
 
    * - table
      - delete
-     - allows delete and truncate on the table
+     - delete and truncate on the table
 
    * - table
      - ddl
-     - allows drop and alter on the table
+     - drop and alter on the table
 
    * - table
      - all
@@ -192,22 +176,20 @@ For a role to create and manage (read/write/alter) objects, it has to have the C
 
    * - function
      - execute
-     - allows using the function
+     - use the function
 
    * - function
      - ddl
-     - allows drop and alter on the function
+     - drop and alter on the function
 
    * - function
      - all
      - all function permissions
 
 GRANT
-^^^^^
+-----
 
-Grant is used to give permissions to roles.
-
-CURRENT_ROLE refers to the current login role, and can be used as the <role> in permissions statements.
+Grant gives permissions to a role.
 
 .. code-block:: postgres
 
@@ -277,9 +259,9 @@ Examples:
   GRANT  admin_role  TO  userB;
  
 REVOKE
-^^^^^^
+------
 
-Removes permissions from one or more roles.
+Revoke removes permissions from a role.
 
 .. code-block:: postgres
 
@@ -332,7 +314,7 @@ Default permissions
 
 The default permissions system can be used to automatically grant
 permissions to newly created objects. See the departmental example
-below for how it can be used.
+below for one way it can be used.
 
 A default permissions rule looks for a schema being created, or a
 table (possibly by schema), and is table to grant any permission to
@@ -369,8 +351,6 @@ Departmental Example
 
 This is an example of how to manage permissions in a database shared by multiple departments, where each department has different roles for the tables by schema. It shows how to set the permissions up for existing objects and how to set up default permissions rules to cover newly created objects.
 
-.. todo: what are the activities that only a superuser can do
-
 The concept is that you set up roles for each new schema with the correct permissions, then the existing users can use these roles. A superuser must do new setup for each new schema which is a limitation, but superuser permissions are not needed at any other time, and neither are explicit grant statements or object ownership changes.
 
 In the example, the database is called my_database, and the new or existing schema being set up to be managed in this way is called my_schema.
@@ -386,9 +366,6 @@ There are also function authors, who can create functions. These can
 only be restricted per database and not per schema, since functions do
 not have a schema.
  
-Setup
------
-
 The superuser connects to the system and runs the following:
 
 .. code-block:: postgres
@@ -454,13 +431,15 @@ schema is brought into this permissions management approach.
    only superusers can create users and logins. see what can be done
    need 1-2 users in each group, for at least 2 schemas/departments
    this example will be very big just to show what this setup can do ...
+
+After this setup:
    
-* the security officers will be able to add and remove users from these groups
 * the database designers will be able to run any ddl on objects in the schema and create new objects, including ones created by other database designers
 * the updaters will be able to insert and delete to existing and new tables
 * the readers will be able to read from existing and new tables
 
-All this will happen without having to run any more grant statements
-(apart from the security officers altering which users are in which
-groups). Creating and dropping login users must be done by a
+All this will happen without having to run any more grant statements.
+
+The security officers will be able to add and remove users from these
+groups. Creating and dropping login users themselves must be done by a
 superuser.
