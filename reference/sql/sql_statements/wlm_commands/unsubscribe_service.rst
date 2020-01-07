@@ -6,6 +6,8 @@ UNSUBSCRIBE_SERVICE
 
 ``UNSUBSCRIBE_SERVICE`` unsubscribes a worker from a service queue for the duration of the connected session.
 
+.. note:: If you haven't already, read the :ref:`Workload manager guide<workload_manager>`.
+
 See also :ref:`subscribe_service`, :ref:`show_subscribed_instances`.
 
 Permissions
@@ -45,7 +47,7 @@ Notes
 
 * If the service name does not currently exist, it will be created
 
-.. warning:: ``UNSUBSCRIBE_SERVICE`` applies the service subscription immediately, but the setting applies for the duration of the session. To apply a persistent setting, use the ``initialSubscribedServices`` configuration setting.
+.. warning:: ``UNSUBSCRIBE_SERVICE`` applies the service subscription immediately, but the setting applies for the duration of the session. To apply a persistent setting, use the ``initialSubscribedServices`` configuration setting. Read the :ref:`Workload manager guide<workload_manager>` for more information.
 
 Examples
 ===========

@@ -6,6 +6,8 @@ SHOW_SUBSCRIBED_INSTANCES
 
 ``SHOW_SUBSCRIBED_INSTANCES`` lists the cluster workers and their service queues.
 
+.. note:: If you haven't already, read the :ref:`Workload manager guide<workload_manager>`.
+
 See also :ref:`subscribe_service`, :ref:`unsubscribe_service`.
 
 Permissions
