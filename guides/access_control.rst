@@ -13,9 +13,9 @@ Overview
 
 Access control provides authentication and authorization in SQream DB.
 
-Authentication: verifying the identity of the user. Usernames (role name) and passwords are used for this in SQream DB.
+Authentication: verifying the identity of the user. Usernames (role names) and passwords are used for this.
 
-Authorization: checking the user has permissions to do a particular thing. Grant is used for this in SQreamDB.
+Authorization: checking the user has permissions to do a particular thing. GRANT is used for this.
 
 * SQream DB uses roles as users and groups, like ANSI SQL and other SQL products
 
@@ -27,7 +27,7 @@ Roles
 
 Roles are used for users and for groups.
 
-To use a ROLE a USER, it should have a password, and login and connect permissions to the relevant databases.
+To use a ROLE as USER, it should have a password, and login and connect permissions to the relevant databases.
 
 Creating a user
 ---------------
