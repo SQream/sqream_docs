@@ -11,7 +11,7 @@ Overview
 =========
 
 
-The system which provides basic authentication and authorization for users in SQream DB.
+Access control provides authentication and authorization in SQream DB.
 
 Authentication: this is how the system checks that you are who you say you are. This is done using the familiar usernames and passwords. The role object is used for both users and groups (which can be used to manage permissions for multiple users together).
 
@@ -21,9 +21,8 @@ Compared to ANSI SQL and other SQL products:
 
 * SQream DB has roles as users and as groups, like ANSI SQL and other SQL products a user may be familiar with
 
-*  SQream DB has a default permissions system based on the system in Postgres, but with more power.
-   In most cases, this allows an administrator to set things up so that every object gets permissions set
-   automatically.
+* SQream DB has a default permissions system based on the system in Postgres, but with more power.
+  In most cases, this allows an administrator to set things up so that every object gets permissions set automatically.
 
 * SQream DB does not have row based permissions
 
@@ -242,10 +241,15 @@ CURRENT_ROLE refers to the current login role, and can be used as the <role> in 
   	GRANT {ALL | EXECUTE | DDL} ON FUNCTION function_name 
   	TO role; 
   					
-  -- Allows the targe role to grant the source role to additional roles:
+   -- Allows role2 to use permissions granted to role1
   	GRANT <role1> [, ...] 
   	TO <role2> 
   	[WITH ADMIN OPTION]
+
+    -- Also allows the role2 to grant role1 to other roles:
+  	GRANT <role1> [, ...] 
+  	TO <role2> 
+  	WITH ADMIN OPTION
   
 Examples:
 
@@ -305,9 +309,13 @@ Removes permissions from one or more roles.
          <schema_name> [, ...] }
   	FROM <role> [, ...]
   				
-  -- Revoke with admin option:
+  -- Removes access to permissions in role1 by role 2
   	REVOKE <role1> [, ...] FROM <role2> [, ...] WITH ADMIN OPTION
-  
+
+  -- Removes permissions to grant role1 to additional roles from role2
+  	REVOKE <role1> [, ...] FROM <role2> [, ...] WITH ADMIN OPTION
+
+        
 Examples:
 
 .. code-block:: postgres
@@ -361,24 +369,27 @@ schema statement is run.
 Departmental Example
 ====================
 
-The following example illustrates how to manage roles and permissions.
+This is an example of how to manage permissions in a database shared by multiple departments, where each department has different roles for the tables by schema. It shows how to set the permissions up for existing objects and how to set up default permissions rules to cover newly created objects.
 
-You are a DBA and the sqream superuser. You wish to create the following sets of groups to which the security officer or the department admins can assign new users (note that the department admins and the security officer are not superusers):
+.. todo: what are the activities that only a superuser can do
 
-    security officer – role for users who can change roles and permissions
-    database architect – role for users  who can create/modify table structure DDL
-    updater - role for users who can modify tables data (DML)
-    reader - role for users who can read data, execute functions, use views, etc.
-    udf author - role for users who can create User Defined Functions
+Here are the roles that can be assigned per department/schema:
+
+* superuser - sets up the system and permissions
+* security officer – change group membership
+* database architect – create/modify table structure DDL
+* updater - modify tables data (DML)
+* reader - read data, execute functions, use views, etc.
+* function author - create functions
 
 The example assumes the following:
 
-    database is MYDB
-    schema is dwh_schema
+    database is my_database
+    schema is my_schema
 
-As the superuser, connect to any database and run the following:
+The superuser connects to any database.
 
-    Create the role r_security_officer and give it the ability to login and use database MYDB.
+Create the role r_security_officer and give it the ability to login and use database MYDB.
 
 CREATE ROLE r_security_officer;
 
