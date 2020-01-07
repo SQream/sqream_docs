@@ -1,4 +1,4 @@
-.. _access_control:
+.. _access_control_notes:
 
 **************
 Access control

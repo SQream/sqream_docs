@@ -423,7 +423,6 @@ Further reading and migration guides
 =======================================
 
 .. toctree::
-   :maxdepth: 1
    :caption: Migration guides
    :titlesonly:
    

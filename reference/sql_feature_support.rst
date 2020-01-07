@@ -1,7 +1,7 @@
 .. _sql_feature_support:
 
 *************************
-SQL Feature Support
+SQL Feature Checklist
 *************************
 
 
