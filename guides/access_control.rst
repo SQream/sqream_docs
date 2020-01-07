@@ -40,7 +40,7 @@ To use a ROLE a USER, it should have a password, and login and connect permissio
 CREATE ROLE
 ^^^^^^^^^^^
 
-Adds a new user/role to the cluster.
+Adds a new user/role to the instance/ storage cluster.
 
 .. code-block:: postgres
                 
@@ -112,7 +112,7 @@ Permissions
 
 Each role can be granted permissions.
 
-Roles are global across all databases in the cluster.
+Roles are global across all databases in the instance/ storage cluster.
 
 For a role to function as a user in a database, it must have USAGE permission on the specific database.
 
@@ -130,19 +130,19 @@ For a role to create and manage (read/write/alter) objects, it has to have the C
      - Permission
      - Description
 
-   * - cluster
+   * - all databases
      - Login
      - Allows a role to be used to log into the system
 
-   * - cluster
+   * - all databases
      - password
      - the password used for logging into the system
 
-   * - cluster
+   * - all databases
      - create function
      - permission to create and drop functions
 
-   * - cluster
+   * - all databases
      - superuser
      - no permission restrictions on any activity
 
@@ -212,7 +212,7 @@ CURRENT_ROLE refers to the current login role, and can be used as the <role> in 
 
 .. code-block:: postgres
 
-  -- Grant permissions at the cluster level:
+  -- Grant permissions at the instance/ storage cluster level:
   	GRANT 
   
   	{ SUPERUSER
@@ -280,7 +280,7 @@ Removes permissions from one or more roles.
 
 .. code-block:: postgres
 
-  -- Revoke permissions at the cluster level:
+  -- Revoke permissions at the instance/ storage cluster level:
   	REVOKE
   	{ SUPERUSER
   	| LOGIN
