@@ -8,6 +8,8 @@ CREATE ROLE
 
 A ``ROLE`` can be used as a ``USER`` if it has been granted a password and login permissions.
 
+Learn more about the permission system in the :ref:`access control guide<access_control>`.
+
 See also :ref:`drop_role`, :ref:`alter_role`, :ref:`grant`.
 
 Permissions

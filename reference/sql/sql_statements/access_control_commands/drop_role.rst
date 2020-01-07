@@ -6,6 +6,8 @@ DROP ROLE
 
 ``DROP ROLE`` remove roles.
 
+Learn more about the permission system in the :ref:`access control guide<access_control>`.
+
 See also :ref:`create_role`.
 
 Permissions

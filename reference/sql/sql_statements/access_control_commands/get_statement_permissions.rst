@@ -8,6 +8,8 @@ GET_STATEMENT_PERMISSIONS
 
 Use this function to understand the permissions required, before :ref:`granting<grant>` them to a specific role.
 
+Learn more about the permission system in the :ref:`access control guide<access_control>`.
+
 See also :ref:`grant`, :ref:`create_role`.
 
 Permissions

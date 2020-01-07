@@ -6,6 +6,8 @@ RENAME ROLE
 
 ``RENAME ROLE`` can be used to rename a role.
 
+Learn more about the permission system in the :ref:`access control guide<access_control>`.
+
 Permissions
 =============
 

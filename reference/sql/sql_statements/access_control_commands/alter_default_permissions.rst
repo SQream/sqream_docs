@@ -6,6 +6,8 @@ ALTER DEFAULT PERMISSIONS
 
 ``ALTER DEFAULT PERMISSIONS`` allows granting automatic permissions to future objects.
 
+Learn more about the permission system in the :ref:`access control guide<access_control>`.
+
 Permissions
 =============
 

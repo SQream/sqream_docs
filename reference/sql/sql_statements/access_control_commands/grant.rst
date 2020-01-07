@@ -8,6 +8,8 @@ The ``GRANT`` statement adds permissions for a role. It allows for setting permi
 
 It also allows adding a role as a memeber to another role.
 
+Learn more about the permission system in the :ref:`access control guide<access_control>`.
+
 See also :ref:`revoke`, :ref:`create_role`.
 
 Permissions

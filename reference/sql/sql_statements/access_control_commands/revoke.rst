@@ -6,6 +6,8 @@ REVOKE
 
 The ``REVOKE`` statement removes permissions from a role. It allows for removing permissions to specific objects.
 
+Learn more about the permission system in the :ref:`access control guide<access_control>`.
+
 See also :ref:`grant`, :ref:`drop_role`.
 
 Permissions
