@@ -7,6 +7,10 @@ Access control
 .. contents:: In this topic:
    :local:
 
+Overview
+=========
+
+
 The system which provides basic authentication and authorization for
 users in SQream DB.
 
@@ -18,11 +22,9 @@ do the action that you are trying to do.
 
 Compared to ANSI SQL and other SQL products:
 
-* 
-   SQream DB has roles as users and as groups, like ANSI SQL and other SQL products a user may be familiar with
+* SQream DB has roles as users and as groups, like ANSI SQL and other SQL products a user may be familiar with
 
-* 
-   SQream DB has a default permissions system based on the system in Postgres, but with more power.
+*  SQream DB has a default permissions system based on the system in Postgres, but with more power.
    In most cases, this allows an administrator to set things up so that every object gets permissions set
    automatically.
 
@@ -30,328 +32,392 @@ Compared to ANSI SQL and other SQL products:
 
 * SQream DB does not have object ownership
 
-.. http://docs.sqream.com/latest/manual/Content/Guides/Quick_Guides/Quick_guide_to_roles_and_permissions/Quick_guide_to_roles_and_permissions.htm
-
-.. http://docs.sqream.com/latest/manual/Content/Concepts/12_1.10_Catalog_(information_schema).htm?tocpath=Concepts%7CCatalog%20(information%20schema)%7C_____0#Catalog_(information_schema)_..198
-
-.. http://docs.sqream.com/latest/manual/Content/SQL_Reference_Guide/16_2.1_Data_Definition_Language.htm?tocpath=SQream%20DB%20%20SQL%20Reference%20Guide%7CData%20Definition%20Language%7C_____0#Database_Roles_and_Permissions_..322
-
-
-
-Introductory examples
-=====================
-
-go through some basic permissions
-
-show a user trying to do something without permission
-
-then add the permission
-
-then show it succeeding
-
-show adding a new login user
-
-show adding a user to another role
-
-show adding a superuser
-
-
-Reference for all permissions
-=============================
-
-attributes for a role: name and optional password
-
-permissions:
-
-* superuser
-* login
-* connect to database <database>
-* create, ddl, superuser, create function <database>
-* create, ddl, usage, superuser <schema>
-* select, insert, delete, ddl <table>
-* *  <all tables for a schema>
-* execute | ddl <specific function>
-
-what happens when e.g. a database doesn't exist
-
-what if you drop it then recreate it
-
-what are the options for default permissions
-
-Permissions catalog
-===================
-
-show the permissions as data structures
-
-make sure all this appears in the catalog
-
-do the catalog reference/guide here for now
-
-establish a better catalog: write create tables statements too
-do full examples of querying the catalog
-
-sqream_catalog.roles                  
-
-sqream_catalog.role_memberships       
-
-sqream_catalog.table_permissions      
-
-sqream_catalog.database_permissions   
-
-sqream_catalog.schema_permissions     
-
-sqream_catalog.permission_types
-
-
-How the permissions work
-========================
-
-
-How to work out if a user has permission to execute a statement?
--> go through all the options
-
-the two parts are
-
-1. work out what permissions are needed from a statement
-
-2. work out what permissions a user has by role membership
-
-how do default permissions work
--------------------------------
-
-when you create an object:
-
-the system looks for default permissions statements which match the
-current role or a group the current role is in, and the object being
-created
-
-each match will behave as if a grant permissions statement was also
-run, on the created object, granted to the target role in the default
-permissions match, with the permissions in the default permissions
-match
-
-utility functions
-=================
-
-what utility functions are relevant for permissions
-
-how do they interact with permissions
-
-Syntax reference
-================
 
 Roles
 -----
 
-.. code-block:: postgresql
+SQream has the standard ROLE object. Roles are used for users and for groups.
 
-     create | alter | drop role
-     grant
-     
-     -- Alter default permissions
-     
-     CREATE ROLE role_name ;
-     GRANT PASSWORD 'new_password' to role_name ;
-     
-     DROP ROLE role_name ;
-     
-     -- Alter - rename only:
-     
-     ALTER ROLE role_name RENAME TO new_role_name ;
+To use a ROLE a USER, it should have a password, and login and connect permissions to the relevant databases.
+
+CREATE ROLE
+
+Adds a new user/role to the cluster.
+
+create_role_statement ::=
+
+    CREATE ROLE role_name ;
+    GRANT LOGIN to role_name ;
+    GRANT PASSWORD 'new_password' to role_name ;
+    GRANT CONNECT ON DATABASE database_name to role_name ;
+
+Examples:
+
+CREATE  ROLE  new_role_name  ;  
+GRANT  LOGIN  TO  new_role_name;  
+GRANT  PASSWORD  'my_password'  TO  new_role_name;  
+GRANT  CONNECT  ON  DATABASE  master  TO  new_role_name;
+
+DROP ROLE
+
+Deletes a role/user.
+
+drop_role_statement ::=
+
+    DROP ROLE role_name ;
+
+Examples:
+
+DROP  ROLE  admin_role;
+
+ALTER ROLE
+
+Renames an existing role.
+
+alter_role_statement ::=
+
+    ALTER ROLE role_name RENAME TO new_role_name ;
+
+Examples:
+
+ALTER  ROLE  admin_role  RENAME  TO  copy_role;
+
+Permissions
+-----------
+
+Each role can be granted permissions.
+
+Roles are global across all databases in the cluster.
+
+For a role to function as a user in a database, it must have USAGE permission on the specific database.
+
+Roles are granted permissions and access to specific objects. The specified object can be any defined object such as a database or table.
+    
+Roles can be granted permissions to other roles, thus creating a hierarchy of role with increasingly specific or limited permissions for lower-level users.
+
+For a role to create and manage (read/write/alter) objects, it has to have the CREATE and USAGE permissions.
+
+Superusers
+----------
+
+There are two kinds of superusers - one for the entire instance/storage cluster, and a superuser for a given database or schema.
+
+PUBLIC Role
+-----------
+
+There is a public role which always exists. Each role is granted to the PUBLIC role, and this cannot be revoked. You can alter the permissions granted to the public role.
+
+The PUBLIC role has USAGE and CREATE permissions on PUBLIC schema by default, therefore, new users can create and manage their own objects in the PUBLIC schema.
+
+GRANT
+-----
+
+Grant is used to give permissions to roles.
+
+The permissions available:
+
+.. todo: put in table, 3 columns: object, permission, description
+   this will combine with permission options also
+
+cluster  LOGIN, PASSWORD, CREATE FUNCTION
+
+database  SUPERUSER, CONNECT, CREATE, USAGE
+
+schema USAGE, CREATE
+
+object SELECT, INSERT, DELETE, DDL, EXECUTE, ALL
+
+Permission Options
+
+INSERT: Allows inserting into the specified table.
+
+DELETE: Allows DELETE and TRUNCATE on the specified table.
+
+DDL: Allows DROP and ALTER.
+
+Global SUPERUSER: No restrictions.
+
+SUPERUSER ON SCHEMA: Has maximum permissions on existing and new objects for a specific schema.
+
+LOGIN: Allows logging in using the role.
+
+PASSWORD: Allows loggin in using the role - a role needs the login permission, and a password to allow this.
 
 
-Granting permissions
---------------------
 
-to create a database installation wide superuser:
+CURRENT_ROLE refers to the current login role, and can be used as the <role> in permissions statements.
 
-.. code-block:: postgresql
+-- Grant permissions at the cluster level:
+	GRANT 
 
-     GRANT SUPERUSER to <role>
+	{ SUPERUSER
+	| LOGIN 
+	| PASSWORD '<password>' 
+	} 
+	TO <role> [, ...] 
 
+-- Grant permissions at the database level:
+      GRANT {{CREATE | CONNECT| DDL | SUPERUSER | CREATE FUNCTION} [, ...] | ALL [PERMISSIONS]}
 
-does a super user have login + connect to all databases?
+	ON DATABASE <database> [, ...]
+	TO <role> [, ...] 
 
-to allow a user to login, and to connect to a database
+-- Grant permissions at the schema level: 
+	GRANT {{ CREATE | DDL | USAGE | SUPERUSER } [, ...] | ALL [ 
+	PERMISSIONS ]} 
+	ON SCHEMA <schema> [, ...] 
+	TO <role> [, ...] 
+					
+-- Grant permissions at the object level: 
+	GRANT {{SELECT | INSERT | DELETE | DDL } [, ...] | ALL [PERMISSIONS]} 
+	ON { TABLE <table_name> [, ...] | ALL TABLES IN SCHEMA <schema_name> [, ...]} 
+	TO <role> [, ...]
+					
+-- Grant execute function permission: 
+	GRANT {ALL | EXECUTE | DDL} ON FUNCTION function_name 
+	TO role; 
+					
+-- Allows the targe role to grant the source role to additional roles:
+	GRANT <role1> [, ...] 
+	TO <role2> 
+	[WITH ADMIN OPTION]
 
-.. code-block:: postgresql
+Examples:
 
-     GRANT LOGIN to role_name ;
-     GRANT CONNECT ON DATABASE database_name to role_name ;
+GRANT  LOGIN,superuser  TO  admin;
 
+GRANT  CREATE  FUNCTION  TO  admin;
 
-can a user have one and not the other?
+GRANT  SELECT  ON  TABLE  admin.table1  TO  userA;
 
-when should a user have a password
+GRANT  EXECUTE  ON  FUNCTION  my_function  TO  userA;
 
-.. code-block:: postgresql
+GRANT  ALL  ON  FUNCTION  my_function  TO  userA;
 
-     GRANT 
-      { SUPERUSER
-      | LOGIN 
-      | PASSWORD '<password>' 
-      } 
-     TO <role> [, ...] 
+GRANT  DDL  ON  admin.main_table  TO  userB;
 
-     GRANT <role1> [, ...] 
-     TO <role2> 
-     [WITH ADMIN OPTION]
+GRANT  ALL  ON  all  tables  IN  schema  public  TO  userB;
 
+GRANT  SELECT  ON  all  views  IN  schema  admin  TO  userA;
 
-From the current docs, it's not that clear what all these mean
+GRANT  admin  TO  userC;
 
-granting permissions to objects
--------------------------------
+GRANT  superuser  ON  schema  demo  TO  userA
 
-.. code-block:: postgresql
+GRANT  admin_role  TO  userB;
 
-     -- Grant permissions at the database level:
-     GRANT {{CREATE | CONNECT| DDL | SUPERUSER | CREATE FUNCTION} [, ...] | ALL [PERMISSIONS]}
+REVOKE Permissions
 
-       ON DATABASE <database> [, ...]
-       TO <role> [, ...] 
+Removes permissions from one or more roles.
 
-     -- Grant permissions at the schema level: 
-     GRANT {{ CREATE | DDL | USAGE | SUPERUSER } [, ...] | ALL [ 
-       PERMISSIONS ]} 
-       ON SCHEMA <schema> [, ...] 
-       TO <role> [, ...] 
+-- Revoke permissions at the cluster level:
+	REVOKE
+	{ SUPERUSER
+	| LOGIN
+	| PASSWORD
+	}
+	FROM <role> [, ...]
+				
+-- Revoke permissions at the database level:
+	REVOKE {{CREATE | CONNECT | DDL | SUPERUSER | CREATE FUNCTION}[, ...] |ALL [PERMISSIONS]}
+	ON DATABASE <database> [, ...]
+	FROM <role> [, ...]
 
-     -- Grant permissions at the object level: 
-     GRANT {{SELECT | INSERT | DELETE | DDL } [, ...] | ALL [PERMISSIONS]} 
-       ON { TABLE <table_name> [, ...] | ALL TABLES IN SCHEMA <schema_name> [, ...]} 
-       TO <role> [, ...]
-
-     -- Grant execute function permission: 
-       GRANT {ALL | EXECUTE | DDL} ON FUNCTION function_name 
-       TO role; 
-
-
-alter default permissions
--------------------------
-
-.. code-block:: postgresql
-
-     ALTER DEFAULT PERMISSIONS FOR <role_name>
-       IN <schema_name> FOR TABLES
-       GRANT { SELECT | INSERT | DELETE [,...] } TO <role_name>;
-
-I think you can also do it for schemas?
-
-how do you undo a default permissions - use revoke? something isn't
-quite right about that
-
-revoking permissions
---------------------
-
-.. code-block:: postgresql
-
-     -- Revoke permissions at the cluster level:
-     REVOKE
-       { SUPERUSER
-       | LOGIN
-       | PASSWORD
-       }
-     FROM <role> [, ...]
-
-     -- Revoke permissions at the database level:
-     REVOKE {{CREATE | CONNECT | DDL | SUPERUSER | CREATE FUNCTION}[, ...] |ALL [PERMISSIONS]}
-       ON DATABASE <database> [, ...]
-       FROM <role> [, ...]
-
-     -- Revoke permissions at the schema level:
-     REVOKE { { CREATE | DDL | USAGE | SUPERUSER } [, ...] | ALL [PERMISSIONS]}
-       ON SCHEMA <schema> [, ...]
-       FROM <role> [, ...]
-
-     -- Revoke permissions at the object level:
-       REVOKE { { SELECT | INSERT | DELETE | DDL } [, ...] | ALL }
-       ON { [ TABLE ] <table_name> [, ...] | ALL TABLES IN SCHEMA
+-- Revoke permissions at the schema level:
+	REVOKE { { CREATE | DDL | USAGE | SUPERUSER } [, ...] | ALL [PERMISSIONS]}
+	ON SCHEMA <schema> [, ...]
+	FROM <role> [, ...]
+				
+-- Revoke permissions at the object level:
+	REVOKE { { SELECT | INSERT | DELETE | DDL } [, ...] | ALL }
+	ON { [ TABLE ] <table_name> [, ...] | ALL TABLES IN SCHEMA
 
        <schema_name> [, ...] }
-       FROM <role> [, ...]
+	FROM <role> [, ...]
+				
+-- Revoke with admin option:
+	REVOKE <role1> [, ...] FROM <role2> [, ...] WITH ADMIN OPTION
 
-     -- Revoke privileges from other roles by granting one role to another:
-       REVOKE <role1> [, ...] FROM <role2> [, ...] WITH ADMIN OPTION
+Examples:
 
+REVOKE  superuser  on  schema  demo  from  userA;
 
-Behaviour reference
-===================
+REVOKE  delete  on  admin.table1  from  userB;
 
-show examples of every permission? Or just a subset
+REVOKE  login  from  role_test;
 
-example will have the permission fail
-
-then the add permission statement
-
-then the permission succeed
-
-can also go through something similar for default permissions
-
-Usage guides
-============
-
-minimal permission system use
------------------------------
-
-Trivial use of permissions system in sqream: use super user
-
-how to add a new superuser role
-
-what this means
-
-adding a guest user
-
-simple user, with limited read only ability
+REVOKE  CREATE  FUNCTION  FROM  admin;
 
 
-Basic use
----------
-
-how to set up a group with permissions database wide for the following:
-
-* security officer
-* database architect
-* updater
-* reader
-* udf author
-
-how to maintain this
 
 
-Advanced use
-------------
 
-permissions/group per schema
+Departmental Example
+====================
 
-show a list of roles for a schema, how you set it up
+The following example illustrates how to manage roles and permissions.
 
-then show how to maintain this system
+You are a DBA and the sqream superuser. You wish to create the following sets of groups to which the security officer or the department admins can assign new users (note that the department admins and the security officer are not superusers):
 
-variation: roles which cover multiple schemas
+    security officer – role for users who can change roles and permissions
+    database architect – role for users  who can create/modify table structure DDL
+    updater - role for users who can modify tables data (DML)
+    reader - role for users who can read data, execute functions, use views, etc.
+    udf author - role for users who can create User Defined Functions
 
-* what does a superuser need to do
-* what can a division 'owner' do
+The example assumes the following:
 
-maintain - how to add something missing or modify:
+    database is MYDB
+    schema is dwh_schema
 
-* a new schema
+As the superuser, connect to any database and run the following:
 
-* a new division
+    Create the role r_security_officer and give it the ability to login and use database MYDB.
 
-* a new user
+CREATE ROLE r_security_officer;
 
-* remove access
+GRANT LOGIN to r_security_officer;
 
-* fix an existing schema to add permissions
+GRANT PASSWORD 'pass' to r_security_officer;
 
-   * maybe a mistake
+GRANT CONNECT ON DATABASE mydb to r_security_officer;
 
-   * maybe a division gets new access to an existing schema
+    Create the role r_database_architect and give it the needed permissions in schema dwh_schema:
 
-key secure things:
+Permissions: USAGE, CREATE and DDL
 
-* what can only superusers do
-* what are normal users restricted from doing
-* who else can do stuff with the permissions system
-* how are divisions protected from other divisions
+CREATE ROLE r_database_architect;
+
+GRANT connect ON DATABASE mydb TO r_database_architect;
+
+GRANT usage,create,ddl ON SCHEMA dwh_schema TO r_database_architect;
+
+    Create the role r_updater and give it the needed permissions in schema dwh_schema on tables created by the r_database_architect  role group:
+
+Permissions:SELECT/INSERT/DELETE on ALL tables
+
+Run ALTER DEFAULT PERMISSION so that the permission will be granted for new tables in that schema as well.
+
+CREATE ROLE r_updater;
+
+GRANT connect ON DATABASE mydb TO r_updater;
+
+GRANT usage ON SCHEMA dwh_schema TO r_updater;
+
+GRANT SELECT,INSERT,DELETE ON ALL TABLES IN SCHEMA dwh_schema TO r_updater;
+
+ALTER DEFAULT PERMISSIONS FOR r_database_architect IN dwh_schema FOR TABLES GRANT SELECT,INSERT,DELETE TO r_updater;
+
+    Create the role r_udf_author and give it the needed permissions.
+
+Permissions:
+
+    SELECT on all the tables in schema dwh_schema
+    CREATE FUNCTIONS (UDF)
+
+Run ALTER DEFAULT PERMISSION so that the permission will be granted for new tables in that schema as well. 
+
+CREATE ROLE r_udf_author;
+
+GRANT connect ON DATABASE mydb TO r_udf_author;
+
+GRANT usage ON SCHEMA dwh_schema TO r_udf_author;
+
+GRANT CREATE FUNCTION ON DATABASE mydb TO r_udf_author;
+
+GRANT SELECT ON ALL TABLES IN SCHEMA dwh_schema TO r_udf_author;
+
+ALTER DEFAULT PERMISSIONS FOR r_database_architect IN dwh_schema FOR TABLES GRANT SELECT TO r_udf_author;
+
+    Create the role r_reader and give it the needed permissions in schema dwh_schema on tables created by the r_database_architect  role group:
+
+Permissions:
+
+    SELECT on all the tables in schema dwh_schema
+    EXECUTE ALL FUNCTIONS (UDFs)
+
+Run ALTER DEFAULT PERMISSION so that the permission will be granted for new tables in that schema as well. 
+
+CREATE ROLE r_reader;
+
+GRANT connect ON DATABASE mydb TO r_reader;
+
+GRANT usage ON SCHEMA dwh_schema TO r_reader;
+
+GRANT SELECT ON ALL TABLES IN SCHEMA dwh_schema TO r_reader;
+
+ALTER DEFAULT PERMISSIONS FOR r_database_architect IN dwh_schema FOR TABLES GRANT SELECT TO r_reader;
+
+GRANT EXECUTE ON ALL FUNCTIONS TO r_reader;
+
+GRANT EXECUTE FUCTION affects only existing functions.
+
+    Give the role r_security_officer the ability to grant all the new roles to others:
+
+GRANT r_database_architect TO r_security_officer WITH ADMIN OPTION;
+
+GRANT r_updater TO r_security_officer WITH ADMIN OPTION;
+
+GRANT r_reader TO r_security_officer WITH ADMIN OPTION;
+
+GRANT r_udf_author TO r_security_officer WITH ADMIN OPTION;
+
+At this point, the security officer (who is not a superuser) can grant any of the roles they were defined as admin of to any new users created by the superuser (role with login/password).
+As a superuser:
+
+    Create the roles user1, user2, user3 etc.
+
+CREATE ROLE user1;
+
+GRANT LOGIN to user1;
+
+GRANT PASSWORD 'pass1' to user1;
+
+CREATE ROLE user2;
+
+GRANT LOGIN to user2;
+
+GRANT PASSWORD 'pass2' to user2;
+
+CREATE ROLE user3;
+
+GRANT LOGIN to user3;
+
+GRANT PASSWORD 'pass3' to user3;
+
+CREATE ROLE user4;
+
+GRANT LOGIN to user4;
+
+GRANT PASSWORD 'pass4' to user4;
+As the security officer:
+
+GRANT r_database_architect TO user1;
+
+GRANT r_reader TO user2;
+
+GRANT r_udf_author TO user3;
+
+GRANT r_updater TO user4;
+
+Note that the ‘with admin option’ can be used in hierarchy. For example, if each department wishes to have its own dept_admin role, the superuser can create this role and grant it the required permissions with admin option so they can then assign the roles to users in their department.
+
+Hierarchy example:
+
+    As superuser:
+
+CREATE ROLE dept1_admin;
+
+GRANT LOGIN TO dept1_admin;
+
+GRANT PASSWORD 'password' TO dept1_admin;
+
+GRANT CONNECT ON DATABASE mydb TO dept1_admin;
+
+    As the security officer or superuser:
+
+GRANT r_reader TO dept1_admin WITH ADMIN OPTION;
+
+    As the dept1_admin:
+
+GRANT r_reader TO user2;
