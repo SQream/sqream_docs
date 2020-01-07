@@ -11,7 +11,7 @@ To see sessions across the cluster, see :ref:`show_server_status`.
 Permissions
 =============
 
-The role must have the ``SUPERUSER`` privileges.
+The role must have the ``SUPERUSER`` permissions.
 
 Syntax
 ==========

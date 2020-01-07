@@ -81,7 +81,7 @@ Syntax
          TO role_name [, ...]
        
                   
-      -- Pass privileges between roles by granting one role to another: 
+      -- Pass permissions between roles by granting one role to another: 
       | GRANT role_name [, ...] 
          TO role_name_2
          [ WITH ADMIN OPTION ]

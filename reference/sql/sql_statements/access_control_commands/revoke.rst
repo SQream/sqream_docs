@@ -79,7 +79,7 @@ Syntax
          FROM role_name [, ...]
        
                   
-      -- Remove privileges between roles by revoking role membership: 
+      -- Remove permissions between roles by revoking role membership: 
       | REVOKE role_name [, ...] 
          FROM role_name_2
          [ WITH ADMIN OPTION ]

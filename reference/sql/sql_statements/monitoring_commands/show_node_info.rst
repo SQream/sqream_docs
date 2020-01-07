@@ -13,7 +13,7 @@ See also :ref:`explain`, :ref:`show_server_status`.
 Permissions
 =============
 
-The role must have the ``SUPERUSER`` privileges.
+The role must have the ``SUPERUSER`` permissions.
 
 Syntax
 ==========

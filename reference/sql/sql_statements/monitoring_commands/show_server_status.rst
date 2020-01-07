@@ -11,7 +11,7 @@ To list active statements on the current worker only, see :ref:`show_connections
 Permissions
 =============
 
-The role must have the ``SUPERUSER`` privileges.
+The role must have the ``SUPERUSER`` permissions.
 
 Syntax
 ==========
