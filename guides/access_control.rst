@@ -38,46 +38,74 @@ SQream has the standard ROLE object. Roles are used for users and for groups.
 To use a ROLE a USER, it should have a password, and login and connect permissions to the relevant databases.
 
 CREATE ROLE
+^^^^^^^^^^^
 
 Adds a new user/role to the cluster.
 
-create_role_statement ::=
+.. code-block:: postgres
+                
+  create_role_statement ::=
 
-    CREATE ROLE role_name ;
-    GRANT LOGIN to role_name ;
-    GRANT PASSWORD 'new_password' to role_name ;
-    GRANT CONNECT ON DATABASE database_name to role_name ;
+      CREATE ROLE role_name ;
+      GRANT LOGIN to role_name ;
+      GRANT PASSWORD 'new_password' to role_name ;
+      GRANT CONNECT ON DATABASE database_name to role_name ;
 
 Examples:
 
-CREATE  ROLE  new_role_name  ;  
-GRANT  LOGIN  TO  new_role_name;  
-GRANT  PASSWORD  'my_password'  TO  new_role_name;  
-GRANT  CONNECT  ON  DATABASE  master  TO  new_role_name;
+.. code-block:: postgres
+
+  CREATE  ROLE  new_role_name  ;  
+  GRANT  LOGIN  TO  new_role_name;  
+  GRANT  PASSWORD  'my_password'  TO  new_role_name;  
+  GRANT  CONNECT  ON  DATABASE  master  TO  new_role_name;
 
 DROP ROLE
+^^^^^^^^^
 
 Deletes a role/user.
 
-drop_role_statement ::=
+.. code-block:: postgres
 
-    DROP ROLE role_name ;
+  drop_role_statement ::=
+
+      DROP ROLE role_name ;
 
 Examples:
 
-DROP  ROLE  admin_role;
+.. code-block:: postgres
+
+  DROP  ROLE  admin_role;
 
 ALTER ROLE
+^^^^^^^^^^
 
 Renames an existing role.
 
-alter_role_statement ::=
+.. code-block:: postgres
 
-    ALTER ROLE role_name RENAME TO new_role_name ;
+  alter_role_statement ::=
+
+      ALTER ROLE role_name RENAME TO new_role_name ;
 
 Examples:
 
-ALTER  ROLE  admin_role  RENAME  TO  copy_role;
+.. code-block:: postgres
+
+  ALTER  ROLE  admin_role  RENAME  TO  copy_role;
+
+Superusers
+^^^^^^^^^^
+
+There are two kinds of superusers - one for the entire instance/storage cluster, and a superuser for a given database or schema.
+
+PUBLIC Role
+^^^^^^^^^^^
+
+There is a public role which always exists. Each role is granted to the PUBLIC role, and this cannot be revoked. You can alter the permissions granted to the public role.
+
+The PUBLIC role has USAGE and CREATE permissions on PUBLIC schema by default, therefore, new users can create and manage their own objects in the PUBLIC schema.
+
 
 Permissions
 -----------
@@ -94,160 +122,241 @@ Roles can be granted permissions to other roles, thus creating a hierarchy of ro
 
 For a role to create and manage (read/write/alter) objects, it has to have the CREATE and USAGE permissions.
 
-Superusers
-----------
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
 
-There are two kinds of superusers - one for the entire instance/storage cluster, and a superuser for a given database or schema.
+   * - Object/layer
+     - Permission
+     - Description
 
-PUBLIC Role
------------
+   * - cluster
+     - Login
+     - Allows a role to be used to log into the system
 
-There is a public role which always exists. Each role is granted to the PUBLIC role, and this cannot be revoked. You can alter the permissions granted to the public role.
+   * - cluster
+     - password
+     - the password used for logging into the system
 
-The PUBLIC role has USAGE and CREATE permissions on PUBLIC schema by default, therefore, new users can create and manage their own objects in the PUBLIC schema.
+   * - cluster
+     - create function
+     - permission to create and drop functions
+
+   * - cluster
+     - superuser
+     - no permission restrictions on any activity
+
+       
+   * - database
+     - superuser
+     -
+
+   * - database
+     - connect
+     -
+
+   * - database
+     - create
+     -
+
+   * - database
+     - usage 
+     -
+
+   * - schema
+     - usage
+     - has all permissions on existing and new objects in the schema
+
+   * - schema
+     - create
+     -
+
+   * - table
+     - select
+     -
+
+   * - table
+     - insert
+     - allows inserting into the table
+
+   * - table
+     - delete
+     - allows delete and truncate on the table
+
+   * - table
+     - ddl
+     - allows drop and alter on the table
+
+   * - table
+     - all
+     - all the table permissions
+
+   * - function
+     - execute
+     - allows using the function
+
+   * - function
+     - ddl
+     - allows drop and alter on the function
+
+   * - function
+     - all
+     - all function permissions
 
 GRANT
------
+^^^^^
 
 Grant is used to give permissions to roles.
 
-The permissions available:
-
-.. todo: put in table, 3 columns: object, permission, description
-   this will combine with permission options also
-
-cluster  LOGIN, PASSWORD, CREATE FUNCTION
-
-database  SUPERUSER, CONNECT, CREATE, USAGE
-
-schema USAGE, CREATE
-
-object SELECT, INSERT, DELETE, DDL, EXECUTE, ALL
-
-Permission Options
-
-INSERT: Allows inserting into the specified table.
-
-DELETE: Allows DELETE and TRUNCATE on the specified table.
-
-DDL: Allows DROP and ALTER.
-
-Global SUPERUSER: No restrictions.
-
-SUPERUSER ON SCHEMA: Has maximum permissions on existing and new objects for a specific schema.
-
-LOGIN: Allows logging in using the role.
-
-PASSWORD: Allows loggin in using the role - a role needs the login permission, and a password to allow this.
-
-
-
 CURRENT_ROLE refers to the current login role, and can be used as the <role> in permissions statements.
 
--- Grant permissions at the cluster level:
-	GRANT 
+.. code-block:: postgres
 
-	{ SUPERUSER
-	| LOGIN 
-	| PASSWORD '<password>' 
-	} 
-	TO <role> [, ...] 
-
--- Grant permissions at the database level:
-      GRANT {{CREATE | CONNECT| DDL | SUPERUSER | CREATE FUNCTION} [, ...] | ALL [PERMISSIONS]}
-
-	ON DATABASE <database> [, ...]
-	TO <role> [, ...] 
-
--- Grant permissions at the schema level: 
-	GRANT {{ CREATE | DDL | USAGE | SUPERUSER } [, ...] | ALL [ 
-	PERMISSIONS ]} 
-	ON SCHEMA <schema> [, ...] 
-	TO <role> [, ...] 
-					
--- Grant permissions at the object level: 
-	GRANT {{SELECT | INSERT | DELETE | DDL } [, ...] | ALL [PERMISSIONS]} 
-	ON { TABLE <table_name> [, ...] | ALL TABLES IN SCHEMA <schema_name> [, ...]} 
-	TO <role> [, ...]
-					
--- Grant execute function permission: 
-	GRANT {ALL | EXECUTE | DDL} ON FUNCTION function_name 
-	TO role; 
-					
--- Allows the targe role to grant the source role to additional roles:
-	GRANT <role1> [, ...] 
-	TO <role2> 
-	[WITH ADMIN OPTION]
-
+  -- Grant permissions at the cluster level:
+  	GRANT 
+  
+  	{ SUPERUSER
+  	| LOGIN 
+  	| PASSWORD '<password>' 
+  	} 
+  	TO <role> [, ...] 
+  
+  -- Grant permissions at the database level:
+        GRANT {{CREATE | CONNECT| DDL | SUPERUSER | CREATE FUNCTION} [, ...] | ALL [PERMISSIONS]}
+  
+  	ON DATABASE <database> [, ...]
+  	TO <role> [, ...] 
+  
+  -- Grant permissions at the schema level: 
+  	GRANT {{ CREATE | DDL | USAGE | SUPERUSER } [, ...] | ALL [ 
+  	PERMISSIONS ]} 
+  	ON SCHEMA <schema> [, ...] 
+  	TO <role> [, ...] 
+  					
+  -- Grant permissions at the object level: 
+  	GRANT {{SELECT | INSERT | DELETE | DDL } [, ...] | ALL [PERMISSIONS]} 
+  	ON { TABLE <table_name> [, ...] | ALL TABLES IN SCHEMA <schema_name> [, ...]} 
+  	TO <role> [, ...]
+  					
+  -- Grant execute function permission: 
+  	GRANT {ALL | EXECUTE | DDL} ON FUNCTION function_name 
+  	TO role; 
+  					
+  -- Allows the targe role to grant the source role to additional roles:
+  	GRANT <role1> [, ...] 
+  	TO <role2> 
+  	[WITH ADMIN OPTION]
+  
 Examples:
 
-GRANT  LOGIN,superuser  TO  admin;
+.. code-block:: postgres
 
-GRANT  CREATE  FUNCTION  TO  admin;
-
-GRANT  SELECT  ON  TABLE  admin.table1  TO  userA;
-
-GRANT  EXECUTE  ON  FUNCTION  my_function  TO  userA;
-
-GRANT  ALL  ON  FUNCTION  my_function  TO  userA;
-
-GRANT  DDL  ON  admin.main_table  TO  userB;
-
-GRANT  ALL  ON  all  tables  IN  schema  public  TO  userB;
-
-GRANT  SELECT  ON  all  views  IN  schema  admin  TO  userA;
-
-GRANT  admin  TO  userC;
-
-GRANT  superuser  ON  schema  demo  TO  userA
-
-GRANT  admin_role  TO  userB;
-
-REVOKE Permissions
+  GRANT  LOGIN,superuser  TO  admin;
+  
+  GRANT  CREATE  FUNCTION  TO  admin;
+  
+  GRANT  SELECT  ON  TABLE  admin.table1  TO  userA;
+  
+  GRANT  EXECUTE  ON  FUNCTION  my_function  TO  userA;
+  
+  GRANT  ALL  ON  FUNCTION  my_function  TO  userA;
+  
+  GRANT  DDL  ON  admin.main_table  TO  userB;
+  
+  GRANT  ALL  ON  all  tables  IN  schema  public  TO  userB;
+  
+  GRANT  SELECT  ON  all  views  IN  schema  admin  TO  userA;
+  
+  GRANT  admin  TO  userC;
+  
+  GRANT  superuser  ON  schema  demo  TO  userA
+  
+  GRANT  admin_role  TO  userB;
+ 
+REVOKE
+^^^^^^
 
 Removes permissions from one or more roles.
 
--- Revoke permissions at the cluster level:
-	REVOKE
-	{ SUPERUSER
-	| LOGIN
-	| PASSWORD
-	}
-	FROM <role> [, ...]
-				
--- Revoke permissions at the database level:
-	REVOKE {{CREATE | CONNECT | DDL | SUPERUSER | CREATE FUNCTION}[, ...] |ALL [PERMISSIONS]}
-	ON DATABASE <database> [, ...]
-	FROM <role> [, ...]
+.. code-block:: postgres
 
--- Revoke permissions at the schema level:
-	REVOKE { { CREATE | DDL | USAGE | SUPERUSER } [, ...] | ALL [PERMISSIONS]}
-	ON SCHEMA <schema> [, ...]
-	FROM <role> [, ...]
-				
--- Revoke permissions at the object level:
-	REVOKE { { SELECT | INSERT | DELETE | DDL } [, ...] | ALL }
-	ON { [ TABLE ] <table_name> [, ...] | ALL TABLES IN SCHEMA
-
-       <schema_name> [, ...] }
-	FROM <role> [, ...]
-				
--- Revoke with admin option:
-	REVOKE <role1> [, ...] FROM <role2> [, ...] WITH ADMIN OPTION
-
+  -- Revoke permissions at the cluster level:
+  	REVOKE
+  	{ SUPERUSER
+  	| LOGIN
+  	| PASSWORD
+  	}
+  	FROM <role> [, ...]
+  				
+  -- Revoke permissions at the database level:
+  	REVOKE {{CREATE | CONNECT | DDL | SUPERUSER | CREATE FUNCTION}[, ...] |ALL [PERMISSIONS]}
+  	ON DATABASE <database> [, ...]
+  	FROM <role> [, ...]
+  
+  -- Revoke permissions at the schema level:
+  	REVOKE { { CREATE | DDL | USAGE | SUPERUSER } [, ...] | ALL [PERMISSIONS]}
+  	ON SCHEMA <schema> [, ...]
+  	FROM <role> [, ...]
+  				
+  -- Revoke permissions at the object level:
+  	REVOKE { { SELECT | INSERT | DELETE | DDL } [, ...] | ALL }
+  	ON { [ TABLE ] <table_name> [, ...] | ALL TABLES IN SCHEMA
+  
+         <schema_name> [, ...] }
+  	FROM <role> [, ...]
+  				
+  -- Revoke with admin option:
+  	REVOKE <role1> [, ...] FROM <role2> [, ...] WITH ADMIN OPTION
+  
 Examples:
 
-REVOKE  superuser  on  schema  demo  from  userA;
+.. code-block:: postgres
 
-REVOKE  delete  on  admin.table1  from  userB;
+  REVOKE  superuser  on  schema  demo  from  userA;
+  
+  REVOKE  delete  on  admin.table1  from  userB;
+  
+  REVOKE  login  from  role_test;
+  
+  REVOKE  CREATE  FUNCTION  FROM  admin;
+  
+Default permissions
+-------------------
 
-REVOKE  login  from  role_test;
+The default permissions system can be used to automatically grant
+permissions to newly created objects. See the departmental example
+below for how it can be used.
 
-REVOKE  CREATE  FUNCTION  FROM  admin;
+A default permissions rule looks for a schema being created, or a
+table (possibly by schema), and is table to grant any permission to
+that object to any role. This happens when the create table or create
+schema statement is run.
+
+.. code-block:: postgres
 
 
-
-
+  alter_default_permissions_statement ::=
+        ALTER DEFAULT PERMISSIONS FOR target_role_name
+        [IN schema_name, ...]
+        FOR { TABLES | SCHEMAS }
+        { grant_clause | DROP grant_clause}
+        TO ROLE { role_name | public };
+  
+  grant_clause ::=
+     GRANT
+        { CREATE FUNCTION
+        | SUPERUSER
+        | CONNECT
+        | CREATE
+        | USAGE
+        | SELECT
+        | INSERT
+        | DELETE
+        | DDL
+        | EXECUTE
+        | ALL
+        }
+  
 
 Departmental Example
 ====================
