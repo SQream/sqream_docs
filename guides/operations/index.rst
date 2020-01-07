@@ -20,4 +20,9 @@ The guides below include information about best practices, monitoring, logging, 
    troubleshooting
    information_for_support
    creating_or_cloning_a_storage_cluster
-   xxrunning_and_stopping_the_system
+   xxstarting_and_stopping_the_system
+   xxprocesses_and_network_architecture
+   xxfilesystem_and_filesystem_usage
+   hardware_guide
+   setup/index
+

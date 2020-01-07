@@ -27,7 +27,9 @@ Roles
 
 Roles are used for users and for groups.
 
-To use a ROLE as USER, it should have a password, and login and connect permissions to the relevant databases.
+Roles are global across all databases in the instance/ storage cluster.
+
+To use a ROLE as USER, it should have a password, the login permission, and connect permissions to the relevant databases.
 
 Creating a user
 ---------------
@@ -77,7 +79,7 @@ Examples:
 Public Role
 -----------
 
-There is a public role which always exists. Each role is granted to the PUBLIC role (is a member of the public group), and this cannot be revoked. You can alter the permissions granted to the public role.
+There is a public role which always exists. Each role is granted to the PUBLIC role (i.e. is a member of the public group), and this cannot be revoked. You can alter the permissions granted to the public role.
 
 The PUBLIC role has USAGE and CREATE permissions on PUBLIC schema by default, therefore, new users can create, insert, delete and select from objects in the PUBLIC schema.
 
@@ -100,14 +102,6 @@ A group can be created, altered and dropped the same way as a user. To use a rol
   
 Permissions
 ===========
-
-* permissions are granted to roles
-
-* roles are global across all databases in the instance/ storage cluster
-
-* for a role to function as a user in a database, it should have USAGE permission on that database
-
-* roles can be granted to other roles, serving as groups for managing permissions for multiple roles together
 
 .. list-table:: 
    :widths: auto
@@ -357,16 +351,27 @@ In the example, the database is called my_database, and the new or existing sche
 
 There will be a group for this schema for each of the following:
 
-* security officers, who can add and remove users from a schema
-* database designers, who can create, alter and drop tables
-* updaters, who can insert and delete data
-* readers, who can read data
 
-There are also function authors, who can create functions. These can
-only be restricted per database and not per schema, since functions do
-not have a schema.
- 
-The superuser connects to the system and runs the following:
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+
+   * - group
+     - activities
+
+   * - database designers
+     - create, alter and drop tables
+
+   * - updaters
+     - insert and delete data
+
+   * - readers
+     - read data
+
+   * - security officers
+     - add and remove users from these groups
+
+A superuser connects to the system and runs the following:
 
 .. code-block:: postgres
 

@@ -23,20 +23,13 @@ Full list of guides
    :titlesonly:
 
    xxqueries
-   workload_manager
-   access_control
-   xxpython_functions
-   saved_queries
-   seeing_system_objects_as_sql
-
-   data_management_and_concurrency/index
-   
-   operations/index
+   inserting_data
 
    client_drivers/index
    third_party_tools/index
+   
+   operations/index
 
+   features/index
 
-   architecture/index
-
-   setup/index
+   internals_architecture

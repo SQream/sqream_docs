@@ -71,7 +71,7 @@ Using this documentation
 The documentation contains a few main sections:
    
    * :ref:`Getting started<first_steps>` guides
-   * :ref:`Operation guides<operations>` and :ref:`data management guides<data_management>`
+   * :ref:`Operation guides<operations>`
    * :ref:`SQL reference<sql>`
    * :ref:`CLI reference<cli_reference>`
    * and more...
@@ -98,8 +98,8 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
    :titlesonly:
    :hidden:
 
-   guides/first_steps
-   guides/features_tour
+   first_steps
+   xxfeatures_tour
    guides/index
    reference/index
    releases/index
