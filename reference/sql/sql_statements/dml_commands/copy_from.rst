@@ -9,6 +9,7 @@ COPY FROM
 In general, ``COPY`` moves data between file-system files and SQream DB tables.
 
 .. note:: 
+   * Learn how to migrate from CSV files in the :ref:`csv` guide
    * To copy data from a table to a file, see :ref:`COPY TO<copy_to>`.
    * To load Parquet or ORC files, see :ref:`CREATE EXTERNAL TABLE<create_external_table>`
 
@@ -247,12 +248,17 @@ In the file below, the separator is ``DC1``, which is represented by ASCII 17 de
 Loading a text file with multi-character delimiters
 -----------------------------------------------------
 
-In the file below, the separator is ``'|``.
+In the file below, the separator is ``^|``.
 
 .. code-block:: postgres
    
-   COPY table_name FROM 'file.txt' WITH DELIMITER '''|';
+   COPY table_name FROM 'file.txt' WITH DELIMITER '^|';
 
+In the file below, the separator is ``'|``. The quote character has to be repeated, as per the :ref:`literal quoting rules<string_literals>`.
+
+.. code-block:: postgres
+   
+   COPY table_name FROM 'file.txt' WITH DELIMITER ''''|';
 
 Loading files with a header row
 -----------------------------------
