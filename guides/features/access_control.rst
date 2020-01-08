@@ -442,6 +442,9 @@ schema is brought into this permissions management approach.
    only superusers can create users and logins. see what can be done
    need 1-2 users in each group, for at least 2 schemas/departments
    this example will be very big just to show what this setup can do ...
+   example: a security officer for a department which will only have
+     read only access to a schema can only get that with admin option
+     access granted to them
 
 After this setup:
 
