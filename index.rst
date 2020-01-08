@@ -4,6 +4,16 @@
 SQream DB documentation
 ***********************
 
+.. only:: html
+
+   .. tip::
+      Want to read this offline?
+      `Download the documentation as a single PDF <https://readthedocs.org/projects/sqream-docs/downloads/pdf/latest/>`_ .
+
+.. only:: pdf
+   
+   .. tip:: This documentation is available online at https://docs.sqream.com/
+
 What is SQream DB
 ===================
 
@@ -14,6 +24,7 @@ Customers with SQream DB deploy it for sizes ranging from 5TB to 1PB. Depending 
 SQream DB supports regular SQL including :ref:`a substantial amount of ANSI SQL<sql_feature_support>`, uses :ref:`serializable transactions<transactions>`, and :ref:`scales horizontally<concurrency_and_scaling_in_sqream>` for concurrent statements.
 
 SQream DB comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc>`, :ref:`ODBC<odbc>`, and :ref:`Python DB-API<pysqream>`.
+
 
 .. 
    .. ref`features_tour`
@@ -67,6 +78,7 @@ SQream DB comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc
 .. rubric:: Need help?
 
 If you couldn't find what you're looking for, we're always happy to help. Visit `SQream's support portal <https://support.sqream.com>`_ for additional support.
+
 
 .. rubric:: Looking for the old documentation?
 
