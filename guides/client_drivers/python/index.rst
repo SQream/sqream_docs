@@ -269,34 +269,40 @@ To get a list of column names, iterate over the ``description`` list:
 Loading data into a table
 ---------------------------
 
-The example below loads one million rows of dummy data to SQream DB.
+This example loads 10,000 rows of dummy data to a SQream DB instance
 
 .. code-block:: python
    
    import pysqream
    from datetime import date, datetime
-   
+   from time import time
+
    con = pysqream.connect(host='127.0.0.1', port=3108, database='master'
                       , username='rhendricks', password='Tr0ub4dor&3'
                       , clustered=True)
    
    # Create a table for loading
-   create = 'create or replace table perf (b bool, t tinyint, sm smallint, i int, bi bigint, f real, d double, s varchar(10), ss nvarchar(10), dt date, dtt datetime)'
+   create = 'create or replace table perf (b bool, t tinyint, sm smallint, i int, bi bigint, f real, d double, s varchar(12), ss nvarchar(20), dt date, dtt datetime)'
    con.execute(create)
 
    # After creating the table, we can load data into it with the INSERT command
 
    # Create dummy data which matches the table we created
-   data = (False, 2, 12, 145, 84124234, 3.141, -4.3, "Varchar text" , "International text" , date(2019, 12, 17), datetime(1955, 11, 4, 1, 23, 0, 0))
-   row_count = 10**6
+   data = (False, 2, 12, 145, 84124234, 3.141, -4.3, "Marty McFly" , u"キウイは楽しい鳥です" , date(2019, 12, 17), datetime(1955, 11, 4, 1, 23, 0, 0))
+   
+   
+   row_count = 10**4
 
    # Get a new cursor
    cur = con.cursor()
    insert = 'insert into perf values (?,?,?,?,?,?,?,?,?,?,?)'
    start = time()
    cur.executemany(insert, [data] * row_count)
-   print (f"Total insert time for {row_count} rows: {time() - start}")
+   print (f"Total insert time for {row_count} rows: {time() - start} seconds")
 
+   # Close this cursor
+   cur.close()
+   
    # Verify that the data was inserted correctly
    # Get a new cursor
    cur = con.cursor()
@@ -304,7 +310,10 @@ The example below loads one million rows of dummy data to SQream DB.
    result = cur.fetchall() # `fetchall` collects the entire data set
    print (f"Count of inserted rows: {result[0][0]}")
 
-   # When done, close the connection
+   # When done, close the cursor
+   cur.close()
+   
+   # Close the connection
    con.close()
 
 Reading data from a CSV file for load into a table
