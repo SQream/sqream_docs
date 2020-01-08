@@ -10,7 +10,7 @@ SQream DB documentation
       Want to read this offline?
       `Download the documentation as a single PDF <https://readthedocs.org/projects/sqream-docs/downloads/pdf/latest/>`_ .
 
-.. only:: pdf
+.. only:: pdf or latex
    
    .. tip:: This documentation is available online at https://docs.sqream.com/
 
