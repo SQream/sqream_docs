@@ -49,11 +49,11 @@ kbd
   text-shadow:0 1px 0 #fff;
 }
 
-/* Hide "On GitHub" section from versions menu */
+/* Hide "GitHub" sections from versions menu */
 div.rst-versions > div.rst-other-versions > div.injected > dl:nth-child(3) {
     display: none;
 }
-
 div.rst-versions > div.rst-other-versions > div.injected > dl:nth-child(4) {
     display: none;
 }
+
