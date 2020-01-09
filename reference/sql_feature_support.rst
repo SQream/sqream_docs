@@ -227,7 +227,7 @@ Table expressions
    * - ``JOIN`` - ``INNER``, ``LEFT [ OUTER ]``, ``RIGHT [ OUTER ]``, ``CROSS``
      - ✓
      -
-   * - Table expressin subqueries
+   * - Table expression subqueries
      - ✓
      -
    * - Scalar subqueries
