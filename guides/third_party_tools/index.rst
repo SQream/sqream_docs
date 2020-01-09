@@ -15,7 +15,7 @@ SQream DB is designed to work with most common database tools and interfaces, al
 
 .. image:: /_static/images/connectivity_ecosystem.png
 
-In general, the tools listed have been tested and approved for usage with SQream DB. Most 3\ :sup:`rd` party tools that work through JDBC, ODBC, and Python whould work.
+In general, the tools listed have been tested and approved for usage with SQream DB. Most 3\ :sup:`rd` party tools that work through JDBC, ODBC, and Python should work.
 
 .. note:: If you are looking for a tool that is not listed, SQream and our partners can help. Go to `SQream Support <http://support.sqream.com/>`_ or contact your SQream account manager for more information.
 

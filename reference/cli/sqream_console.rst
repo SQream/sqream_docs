@@ -372,10 +372,12 @@ Listing active master nodes and worker nodes
    container name: sqream_single_host_worker_0, container id: c919e8fb78c8
    container name: sqream_single_host_master, container id: ea7eef80e038
 
+.. _start_editor:
+
 Editor
 ------------
 
-The editor operation runs the web UI for the SQream DB Statement Editor.
+The editor operation runs the web UI for the :ref:`SQream DB Statement Editor<statement_editor>`.
 
 The editor can be used to run queries from a browser.
 

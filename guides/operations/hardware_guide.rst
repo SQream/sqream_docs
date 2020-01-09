@@ -58,7 +58,7 @@ An average single-node cluster can be a rackmount server or workstation, contain
 
 In this system configuration, SQream DB can store about 200TB of raw data (assuming average compression ratio and ~50TB of usable raw storage).
 
-If a NAS is used, the 14x SSD drives can be omitted.
+If a NAS is used, the 14x SSD drives can be omitted, but SQream recommends 2TB of local spool space on SSD or NVMe drives.
 
 Example for multi-node clusters
 -----------------------------------
@@ -84,7 +84,7 @@ An example of a cluster node providing the best performance:
    * - Onboard storage
      -   
          * 2x 960GB SSD 2.5in, for OS, RAID1
-         * 2x 2TB SSD or NVMe, for swap, RAID1
+         * 2x 2TB SSD or NVMe, for temporary spooling, RAID1
    * - Networking
      - 
          Intel X710 DP 10Gb DA/SFP+ for BI fabric
@@ -103,7 +103,7 @@ Considerations in cluster design
 
 * SQream DB uses all resources in a machine, including CPU, RAM, and GPU to deliver the best performance. 256GB of RAM per physical GPU is recommended, but not required.
 
-* SQream DB relies on local disk space for temporary spooling, when performing intensive larger-than-RAM operations like sorting. SQream recommends an SSD drive, in mirrored RAID 1 configuration, with about 2x the RAM size available for temporary storage. This can be shared with the operating system drive.
+* Local disk space is required for good performance temporary spooling - particularly when performing intensive larger-than-RAM operations like sorting. SQream recommends an SSD or NVMe drive, in mirrored RAID 1 configuration, with about 2x the RAM size available for temporary storage. This can be shared with the operating system drive if necessary.
 
 * When using SAN or NAS devices, SQream recommends around 5GB/s of burst throughput from storage, per GPU.
 
@@ -176,9 +176,7 @@ Storage
 
 For clustered scale-out installations, SQream DB relies on NAS/SAN storage. These devices have extremely high reliability and durability, with five 9s of up-time.
 
-For stand-alone installations, SQream DB relies on redundant disk configurations, like RAID 5/6/10/50. 
-
-Both situations ensure that blocks of data are replicated between disks, so that failure of a number of disks will not result in data loss or availability of the system. 
+For stand-alone installations, SQream DB relies on redundant disk configurations, like RAID 5/6/10/50. These RAID configurations ensure that blocks of data are replicated between disks, so that failure of a number of disks will not result in data loss or availability of the system. 
 
 Because storage reliability is important, SQream recommends enterprise-grade SAS SSD drives. However, as with other components – there is a tradeoff for cost/performance. When performance and reliability are important, SQream recommends SAS SSD or NVMe drives. 
 

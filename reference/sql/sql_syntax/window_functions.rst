@@ -16,17 +16,47 @@ Syntax
    window_expr ::= 
       window_fn ( [ value_expr [, ...] ] )
          OVER (   
-            [ PARTITION BY partition_expr [, ...] ]  
-            [ ORDER BY order [ ASC | DESC ] [, ...]]   
+            [ PARTITION BY value_expression [, ...] ]
+            [ ORDER BY value_expression [ ASC | DESC ] [ NULLS { FIRST | LAST } ] [, ...] ]
+            [ frame_clause ]
          )
       
    window_fn ::= 
       AVG
-      | MAX
-      | MIN
-      | RANK
-      | ROW_NUMBER
-      | SUM
+      | MAX ()
+      | MIN ()
+      | RANK ()
+      | ROW_NUMBER ()
+      | SUM ()
+      | DENSE_RANK ()
+      | PERCENT_RANK ()
+      | CUME_DIST ()
+      | NTILE ( buckets )
+      | LAG( value_expr [, row_offset] )
+      | LEAD( value_expr [, row_offset] )
+      | FIRST_VALUE ( value_expr )
+      | LAST_VALUE (value_expr )
+      | NTH_VALUE ( value, row_offset )
+
+   
+   frame_clause ::= 
+      { RANGE | ROWS } frame_start [ frame_exclusion ]
+      | { RANGE | ROWS } BETWEEN frame_def AND frame_def [ frame_exclusion ]
+
+   frame_def ::= 
+      UNBOUNDED PRECEDING
+      offset PRECEDING
+      CURRENT ROW
+      offset FOLLOWING
+      UNBOUNDED FOLLOWING
+
+   offset ::=
+      EXCLUDE CURRENT ROW
+      | EXCLUDE GROUP
+      | EXCLUDE TIES
+      | EXCLUDE NO OTHERS
+      
+   row_offset ::= numeric literal
 
 Arguments
 ============

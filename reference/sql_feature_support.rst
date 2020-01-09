@@ -133,6 +133,9 @@ Schema changes
    * - Remove column
      - ✓
      - 
+   * - Alter column data type
+     - ✗
+     - 
    * - Add / Remove constraints
      - ✗
      - 
@@ -224,10 +227,10 @@ Table expressions
    * - ``JOIN`` - ``INNER``, ``LEFT [ OUTER ]``, ``RIGHT [ OUTER ]``, ``CROSS``
      - ✓
      -
-   * - Subqueries as table expressions
+   * - Table expression subqueries
      - ✓
      -
-   * - Subqueries (correlated)
+   * - Scalar subqueries
      - ✗
      - 
 

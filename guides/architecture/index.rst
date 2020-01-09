@@ -8,7 +8,7 @@ This topic includes guides that walk an end-user, database administrator, or sys
 
 While SQream DB has many similarities to other database management systems, it has some unique and additional capabilities.
 
-Explore the guides below for information about SQream DB's hardware requirements, concurrency and scaling, and internals.
+Explore the guides below for information about SQream DB's architecture.
 
 .. toctree::
    :maxdepth: 2
@@ -16,8 +16,5 @@ Explore the guides below for information about SQream DB's hardware requirements
    :glob:
    :titlesonly:
 
-   hardware_guide
-   concurrency_and_scaling_in_sqream
    xxprocesses_and_network_architecture
    filesystem_and_filesystem_usage
-   internals_architecture
