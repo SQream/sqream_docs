@@ -11,8 +11,14 @@ Syntax
 
 .. code-block:: postgres
 
+   -- As an aggregate
    CORR( expr1, expr2 )
 
+   -- As a window function
+   CORR ( expr1, expr2 ) OVER (   
+            [ PARTITION BY partition_expr [, ...] ]  
+            [ ORDER BY order [ ASC | DESC ] [, ...]]   
+         )
 
 Arguments
 ============

@@ -11,7 +11,15 @@ Syntax
 
 .. code-block:: postgres
 
+   -- As an aggregate
    AVG( expr )
+
+   -- As a window function
+   AVG ( expr ) OVER (   
+            [ PARTITION BY value_expression [, ...] ]
+            [ ORDER BY value_expression [ ASC | DESC ] [ NULLS { FIRST | LAST } ] [, ...] ]
+            [ frame_clause ]
+         )
 
 Arguments
 ============

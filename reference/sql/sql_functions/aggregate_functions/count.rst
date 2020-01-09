@@ -12,7 +12,15 @@ Syntax
 
 .. code-block:: postgres
 
+   -- As an aggregate
    COUNT( { [ DISTINCT ] expr | * } ) --> INT
+   
+   -- As a window function
+   COUNT ( { [ DISTINCT ] expr | * } ) OVER (   
+            [ PARTITION BY value_expression [, ...] ]
+            [ ORDER BY value_expression [ ASC | DESC ] [ NULLS { FIRST | LAST } ] [, ...] ]
+            [ frame_clause ]
+         )
 
 Arguments
 ============

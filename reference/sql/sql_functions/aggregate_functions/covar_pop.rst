@@ -13,8 +13,15 @@ Syntax
 
 .. code-block:: postgres
 
+   -- As an aggregate
    COVAR_POP( expr1, expr2 )
 
+   -- As a window function
+   COVAR_POP ( expr1, expr2 ) OVER (   
+            [ PARTITION BY value_expression [, ...] ]
+            [ ORDER BY value_expression [ ASC | DESC ] [ NULLS { FIRST | LAST } ] [, ...] ]
+            [ frame_clause ]
+         )
 
 Arguments
 ============
