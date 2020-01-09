@@ -4,7 +4,7 @@
 DUMP_DATABASE_DDL
 *****************
 
-``DUMP_DATABASE_DDL()`` is a function that shows the :ref:``CREATE`` statements for  database objects including views and tables.
+``DUMP_DATABASE_DDL()`` is a function that shows the ``CREATE`` statements for database objects including views and tables.
 
 .. warning:: 
    This function does not currently show UDFs. To list available UDFs, use the catalog:

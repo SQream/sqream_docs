@@ -10,7 +10,7 @@ pysqream conforms to Python DB-API specifications `PEP-249 <https://www.python.o
 
 ``pysqream`` is native and pure Python, with minimal requirements. It can be installed with ``pip`` on any operating system, including Linux, Windows, and macOS.
 
-The connector supports Python 3.7 and newer.
+The connector supports Python 3.6.5 and newer.
 
 .. contents:: In this topic:
    :local:
@@ -24,7 +24,7 @@ Prerequisites
 1. Python
 ^^^^^^^^^^^^
 
-The connector requires Python 3.6 or newer. To verify your version of Python:
+The connector requires Python 3.6.5 or newer. To verify your version of Python:
 
 .. code-block:: console
 
@@ -33,6 +33,8 @@ The connector requires Python 3.6 or newer. To verify your version of Python:
    
 
 .. note:: If both Python 2.x and 3.x are installed, you can run ``python3`` and ``pip3`` instead of ``python`` and ``pip`` respectively for the rest of this guide
+
+.. warning:: If you're running on an older version, ``pip`` will fetch an older version of ``pysqream``, with version <3.0.0. This version is currently not supported.
 
 2. PIP
 ^^^^^^^^^^^^
