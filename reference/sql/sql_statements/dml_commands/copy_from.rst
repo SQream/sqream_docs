@@ -180,14 +180,14 @@ Printable characters
 
 Any printable ASCII character (or characters) can be used as a delimiter without special syntax. The default CSV field delimiter is a comma (``,``).
 
-A printable character is any ASCII character in the range 32 - 127.
+A printable character is any ASCII character in the range 32 - 126.
 
 :ref:`Literal quoting rules<string_literals>` apply with delimiters. For example, to use ``'`` as a field delimiter, use ``DELIMITER ''''``
 
 Non-printable characters
 ----------------------------
 
-A non-printable character (1 - 31) can be used in its octal form. 
+A non-printable character (1 - 31, 127) can be used in its octal form. 
 
 A tab can be specified by escaping it, for example ``\t``. Other non-printable characters can be specified using their octal representations, by using the ``E'\000'`` format, where ``000`` is the octal value of the character.
 
