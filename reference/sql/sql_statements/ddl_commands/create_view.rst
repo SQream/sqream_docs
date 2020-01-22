@@ -22,7 +22,7 @@ Syntax
 .. code-block:: postgres
 
    create_view_statement ::=
-       CREATE [ OR REPLACE ] VIEW [schema_name].view_name [ column_list ]
+       CREATE VIEW [schema_name].view_name [ column_list ]
        AS
        query
        ;
@@ -45,8 +45,6 @@ Parameters
    
    * - Parameter
      - Description
-   * - ``OR REPLACE``
-     - Create a new view, and overwrite any existing views by the same name. Does not return an error if the view already exists.
    * - ``schema_name``
      - The name of the schema in which to create the view.
    * - ``view_name``
@@ -55,6 +53,9 @@ Parameters
      - An optional comma separated list of column names for the view. If specified, these column names will override the column names in the response of the query in the ``AS query`` statement.
    * - ``AS query``
      - The select query to execute when the view is referenced.
+
+.. * - ``OR REPLACE``
+..   - Create a new view, and overwrite any existing views by the same name. Does not return an error if the view already exists.
 
 Examples
 ===========
