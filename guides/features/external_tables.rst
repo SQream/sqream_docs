@@ -102,8 +102,8 @@ Assume we are unhappy with weight being in pounds, because we want to use kilogr
 .. code-block:: psql
    
    t=> SELECT name, team, number, position, age, height, (weight / 2.205) as weight, college, salary 
-   .>         FROM nba
-   .>         ORDER BY weight;
+   .          FROM nba
+   .          ORDER BY weight;
    name                     | team                   | number | position | age | height | weight   | college               | salary  
    -------------------------+------------------------+--------+----------+-----+--------+----------+-----------------------+---------
    Nikola Pekovic           | Minnesota Timberwolves |     14 | C        |  30 | 6-11   |  139.229 |                       | 12100000
@@ -129,9 +129,9 @@ Converting an external table to a standard database table
 .. code-block:: psql
    
    t=> CREATE TABLE real_nba AS 
-   .>   SELECT name, team, number, position, age, height, (weight / 2.205) as weight, college, salary 
-   .>           FROM nba
-   .>           ORDER BY weight;
+   .    SELECT name, team, number, position, age, height, (weight / 2.205) as weight, college, salary 
+   .            FROM nba
+   .            ORDER BY weight;
    executed
    t=> SELECT * FROM real_nba LIMIT 5;
    name             | team                   | number | position | age | height | weight   | college     | salary  

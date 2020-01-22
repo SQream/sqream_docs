@@ -46,8 +46,8 @@ Examples
 .. code-block:: psql
 
    numbers=> SELECT FLOOR(x), CEIL(x), ROUND(x) 
-   .>     FROM (VALUES (0.0001), (-0.0001)
-   .>          , (PI()), (-2.718281), (500.1234)) as t(x);
+   .      FROM (VALUES (0.0001), (-0.0001)
+   .           , (PI()), (-2.718281), (500.1234)) as t(x);
    floor | ceil | round
    ------+------+------
        0 |    1 |    -0

@@ -116,7 +116,7 @@ In inner joins, values that are not matched do not appear in the result set.
 .. code-block:: psql
 
    t=> SELECT * FROM left_side AS l JOIN right_side AS r 
-   .>         ON l.x = r.x;
+   .          ON l.x = r.x;
    x | x0
    --+---
    2 |  2
@@ -131,7 +131,7 @@ Left join
 .. code-block:: psql
 
    t=> SELECT * FROM left_side AS l LEFT JOIN right_side AS r 
-   .>         ON l.x = r.x;
+   .          ON l.x = r.x;
    x | x0
    --+---
    2 |  2
@@ -147,7 +147,7 @@ Right join
 .. code-block:: psql
 
    t=> SELECT * FROM left_side AS l LEFT JOIN right_side AS r 
-   .>         ON l.x = r.x;
+   .          ON l.x = r.x;
    x  | x0
    ---+---
    2  |  2

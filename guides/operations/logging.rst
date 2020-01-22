@@ -418,11 +418,11 @@ Count error events within a certain timeframe
 .. code-block:: psql
 
    t=> SELECT message_type_id,
-   .>         COUNT(*)
-   .>  FROM logs
-   .>  WHERE message_type_id IN (1010,500)
-   .>  AND timestamp BETWEEN '2019-12-20' AND '2020-01-01'
-   .>  GROUP BY 1;
+   .          COUNT(*)
+   .   FROM logs
+   .   WHERE message_type_id IN (1010,500)
+   .   AND timestamp BETWEEN '2019-12-20' AND '2020-01-01'
+   .   GROUP BY 1;
    message_type_id | count
    ----------------+------
                500 |    18
@@ -439,9 +439,9 @@ If we know an error occured, but don't know which statement caused it, we can fi
 .. code-block:: psql
 
    t=> SELECT connection_id, statement_id, message
-   .>    FROM logs
-   .>    WHERE message_level = 'ERROR'
-   .>    AND timestamp BETWEEN '2020-01-01' AND '2020-01-06';
+   .     FROM logs
+   .     WHERE message_level = 'ERROR'
+   .     AND timestamp BETWEEN '2020-01-01' AND '2020-01-06';
    connection_id | statement_id | message                                                                                                                                                          
    --------------+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------
               79 |           67 | Column type mismatch, expected UByte, got INT64 on column Number, file name: /home/sqream/nba.parquet                                                            
@@ -451,7 +451,7 @@ Use the ``connection_id`` and ``statement_id`` to narrow down the results.
 .. code-block:: psql
    
    t=>   SELECT database_name, message FROM logs
-   .>      WHERE connection_id=79 AND statement_id=67 AND message_type_id=1;
+   .       WHERE connection_id=79 AND statement_id=67 AND message_type_id=1;
    database_name | message                  
    --------------+--------------------------
    master        | Query before parsing     

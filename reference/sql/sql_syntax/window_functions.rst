@@ -230,8 +230,8 @@ See :ref:`rank`.
 .. code-block:: psql
 
    t=> SELECT n.Name, n.Age, n.Height ,RANK() OVER 
-   .>      (PARTITION BY n.Age ORDER BY n.Height DESC) AS Rank 
-   .>       FROM nba_2 n;
+   .       (PARTITION BY n.Age ORDER BY n.Height DESC) AS Rank 
+   .        FROM nba_2 n;
    name                     | age | height | rank
    -------------------------+-----+--------+-----
    Devin Booker             |  19 | 6-6    |    1

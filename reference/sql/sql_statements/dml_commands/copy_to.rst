@@ -182,8 +182,8 @@ Saving files to an authenticated S3 bucket
 .. code-block:: psql
    
    nba=> COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) 
-   .>    TO 's3://my_bucket/salaries/nba_salaries.csv'
-   .>    WITH AWS_ID 'my_aws_id' AWS_SECRET 'my_aws_secret';
+   .     TO 's3://my_bucket/salaries/nba_salaries.csv'
+   .     WITH AWS_ID 'my_aws_id' AWS_SECRET 'my_aws_secret';
    executed
 
 Saving files to an HDFS path
@@ -192,7 +192,7 @@ Saving files to an HDFS path
 .. code-block:: psql
    
    nba=> COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) 
-   .>    TO 'hdfs://pp_namenode:8020/salaries/nba_salaries.csv';
+   .     TO 'hdfs://pp_namenode:8020/salaries/nba_salaries.csv';
    executed
 
 

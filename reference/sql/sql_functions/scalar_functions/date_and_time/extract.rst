@@ -101,7 +101,7 @@ Break up a ``DATE`` into components
 .. code-block:: psql
 
    master=> SELECT EXTRACT(YEAR FROM d) AS year, EXTRACT(MONTH FROM d) AS month, EXTRACT(DAY FROM d) AS day 
-   .>              FROM cool_dates;
+   .               FROM cool_dates;
    year   | month | day 
    -------+-------+-----
    1955.0 |  11.0 |  5.0

@@ -147,7 +147,7 @@ Filtering +- 50 years from a specific date
 .. code-block:: psql
 
    master=> SELECT name, dt as datetime FROM cool_dates 
-  .>         WHERE dt BETWEEN DATEADD(YEAR,-50,'1955-06-01') AND DATEADD(YEAR,50,'1955-06-01');
+  .          WHERE dt BETWEEN DATEADD(YEAR,-50,'1955-06-01') AND DATEADD(YEAR,50,'1955-06-01');
    
    name                               | datetime           
    -----------------------------------+--------------------

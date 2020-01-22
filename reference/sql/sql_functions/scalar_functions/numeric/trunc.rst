@@ -62,8 +62,8 @@ TRUNC vs. :ref:`ROUND<round>`
 .. code-block:: psql
 
    numbers=> SELECT TRUNC(x), ROUND(x) 
-   .>     FROM (VALUES (0.0001), (-0.0001)
-   .>          , (PI()), (-2.718281), (500.1234)) as t(x);
+   .      FROM (VALUES (0.0001), (-0.0001)
+   .           , (PI()), (-2.718281), (500.1234)) as t(x);
    trunc | round
    ------+------
      0.0 |  -0.0

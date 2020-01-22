@@ -151,8 +151,8 @@ Combine ``TRUNC`` with :ref:`DATEDIFF<datediff>` to calculate the number of hour
 .. code-block:: psql
 
    master=> SELECT name, dt AS datetime,
-   .>              , DATEDIFF(HOUR, trunc(dt, YEAR), dt) AS "Hours since New Years" 
-   .>       FROM cool_dates;
+   .               , DATEDIFF(HOUR, trunc(dt, YEAR), dt) AS "Hours since New Years" 
+   .        FROM cool_dates;
    name                               | datetime            | Hours since New Years
    -----------------------------------+---------------------+----------------------
    Marty McFly goes back to this time | 1955-11-05 01:21:00 |                  7393

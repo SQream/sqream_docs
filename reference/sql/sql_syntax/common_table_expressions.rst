@@ -10,6 +10,7 @@ CTEs do not affect query performance.
 
 Syntax
 ==========
+
 .. code-block:: postgres
 
    cte ::=
@@ -46,7 +47,7 @@ Simple CTE
 .. code-block:: psql
    
    nba=> WITH s AS (SELECT "Name" FROM nba WHERE "Salary" > 20000000)
-   .>       SELECT * FROM nba AS n, s WHERE n."Name" = s."Name";
+   .        SELECT * FROM nba AS n, s WHERE n."Name" = s."Name";
    Name            | Team                  | Number | Position | Age | Height | Weight | College      | Salary   | name0          
    ----------------+-----------------------+--------+----------+-----+--------+--------+--------------+----------+----------------
    Carmelo Anthony | New York Knicks       |      7 | SF       |  32 | 6-8    |    240 | Syracuse     | 22875000 | Carmelo Anthony
@@ -80,9 +81,9 @@ SQream DB supports reusing CTEs several times in a query:
 .. code-block:: psql
    
    nba=> WITH
-   .>       nba_ct AS (SELECT "Name", "Team" FROM nba WHERE "College"='Connecticut'),
-   .>       nba_az AS (SELECT "Name", "Team" FROM nba WHERE "College"='Arizona')
-   .>       SELECT * FROM nba_az JOIN nba_ct ON nba_ct."Team" = nba_az."Team";
+   .        nba_ct AS (SELECT "Name", "Team" FROM nba WHERE "College"='Connecticut'),
+   .        nba_az AS (SELECT "Name", "Team" FROM nba WHERE "College"='Arizona')
+   .        SELECT * FROM nba_az JOIN nba_ct ON nba_ct."Team" = nba_az."Team";
    Name            | Team            | name0          | team0          
    ----------------+-----------------+----------------+----------------
    Stanley Johnson | Detroit Pistons | Andre Drummond | Detroit Pistons
