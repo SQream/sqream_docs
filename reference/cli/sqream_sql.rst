@@ -17,7 +17,7 @@ Running sqream sql
 ``sqream sql`` can be found in the ``bin`` directory of your SQream DB installation, under the name ``sqream``.
 
 .. versionchanged:: 2020.1
-   Starting from version 2020.1, ``ClientCmd`` has been renamed to ``sqream sql``. To maintain compatibility, add an alias in your ``.bashrc``: ``alias ClientCmd='sqream sql'``
+   Starting from version 2020.1, ``ClientCmd`` has been renamed to ``sqream sql``.
 
 Using sqream sql
 =================
@@ -121,6 +121,7 @@ For example,
 
 .. tip:: Remove the timing and row count by passing the ``--results-only`` parameter
 
+
 Examples
 ===========
 
@@ -202,18 +203,45 @@ Execute SQL statements from the command line
    1 row
    time: 0.095941s
 
+.. _controlling_output:
+
+Controlling the output of the client
+----------------------------------------
+
+Two parameters control the dispay of results from the client:
+
+* ``--results-only`` - removes row counts and timing information
+* ``--delimiter`` - changes the record delimiter
+
 Export SQL query result to CSV
---------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Using the ``--results-only`` flag removes the row counts and timing.
 
 .. code-block:: console
 
-   $ sqream sql --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals" --results-only
+   $ sqream sql --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals" --results-only > file.csv
+   $ cat file.csv
    1,goat                          ,0
    2,sow                           ,0
    3,chicken                       ,0
    4,bull                          ,1
+
+Change a CSV to a TSV
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The ``--delimiter`` parameter accepts any printable character.
+
+.. tip:: To insert a tab, use :kbd:`Ctrl-V` followed by :kbd:`Tab ↹` in Bash.
+
+.. code-block:: console
+
+   $ sqream sql --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals" --delimiter '  ' > file.tsv
+   $ cat file.tsv
+   1  goat                             0
+   2  sow                              0
+   3  chicken                          0
+   4  bull                             1
 
 
 Execute a series of statements from a file
@@ -314,6 +342,9 @@ Command line arguments
    * - ``--no-history``
      - False
      - When set, prevents command history from being saved in ``~/.sqream/clientcmdhist``
+   * - ``--delimiter``
+     - ``,``
+     - Specifies the field separator. By default, ``sqream sql`` outputs valid CSVs. Change the delimiter to modify the output to another delimited format (e.g. TSV, PSV).
 
 .. tip:: Run ``$  sqream sql --help`` to see a full list of arguments
 
