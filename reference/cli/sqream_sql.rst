@@ -6,7 +6,7 @@ sqream sql CLI reference
 
 SQream DB comes with a built-in client for executing SQL statements either interactively or from the command-line.
 
-This page serves as a reference for the options and parameters. Learn more about using SQream DB SQL with the CLI by visiting the :ref:`tutorial page SQream SQL Client <first_steps>`.
+This page serves as a reference for the options and parameters. Learn more about using SQream DB SQL with the CLI by visiting the :ref:`first_steps` tutorial.
 
 .. contents:: In this topic:
    :local:
@@ -344,10 +344,20 @@ Command line arguments
      - When set, prevents command history from being saved in ``~/.sqream/clientcmdhist``
    * - ``--delimiter``
      - ``,``
-     - Specifies the field separator. By default, ``sqream sql`` outputs valid CSVs. Change the delimiter to modify the output to another delimited format (e.g. TSV, PSV).
+     - Specifies the field separator. By default, ``sqream sql`` outputs valid CSVs. Change the delimiter to modify the output to another delimited format (e.g. TSV, PSV). See the section :ref:`supported record delimiters<supported_record_delimiters>` below for more information.
 
 .. tip:: Run ``$  sqream sql --help`` to see a full list of arguments
 
+.. _supported_record_delimiters: 
+
+Supported record delimiters
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The supported record delimiters are printable ASCII values (32-126).
+
+* Recommended delimiters for use are: ``,``, ``|``, tab character.
+
+* The following characters are **not supported**: ``\``, ``N``, ``-``, ``:``, ``"``, ``\n``, ``\r``, lower-case latin letters, digits (0-9)
 
 Meta-commands
 ----------------
