@@ -57,6 +57,8 @@ The metadata layer leverages a lot of features from LevelDB, and is split into a
 
 LevelDB also enables some basic database style features such as snapshots and multiple updates.
 
+The metadata layer, together with the append-only bulk data layer help ensure consistency.
+
 Bulk data layer 
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -67,7 +69,7 @@ The storage is based around extent files which have compressed chunks representi
 Chunks are the smallest entity, representing around 1 to 10 million rows.
 
 SQream DB also has a background storage reorganization process,to ensure good performance after the data has been inserted.
-The reorganization process allows support for small, fast inserts - while still maintaining the data arranged for maximum query performance.
+The reorganization process allows support for small, fast inserts - while still maintaining the data arranged for maximum query performance. During storage reorganization, the "old data" remains consistent and on-disk. Data is never updated in-place, to ensure consistency.
 
 Building blocks
 ----------------------
