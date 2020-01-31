@@ -127,8 +127,8 @@ The ``ORDER BY`` clause determines the order in which the rows of a partition ar
 
 Without ``ORDER BY``, rows are processed in an unspecified order.
 
-Frames
-------------
+Frames 
+-------
 
 .. versionchanged:: 2020.1
    Frames are supported from v2020.1.
@@ -153,9 +153,16 @@ In any case, the distance to the end of the frame is limited by the distance to 
 
 The default framing option is ``RANGE UNBOUNDED PRECEDING``, which is the same as ``RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW``. With ``ORDER BY``, this sets the frame to be all rows from the partition start up through the current row's last ``ORDER BY`` peer. Without ``ORDER BY``, this means all rows of the partition are included in the window frame, since all rows become peers of the current row.
 
-Restrictions are that ``frame_start`` cannot be ``UNBOUNDED FOLLOWING``, ``frame_end`` cannot be ``UNBOUNDED PRECEDING``, and the ``frame_end`` choice cannot appear earlier in the above list of ``frame_start`` and ``frame_end`` options than the frame_start choice does — for example ``RANGE BETWEEN CURRENT ROW AND 7 PRECEDINg`` is not allowed. But, for example, ``ROWS BETWEEN 7 PRECEDING AND 8 PRECEDING`` is allowed, even though it would never select any rows.
+Restrictions
+^^^^^^^^^^^^^^^^^^^^^
 
-Frame exlusion
+* ``frame_start`` cannot be ``UNBOUNDED FOLLOWING``
+* ``frame_end`` cannot be ``UNBOUNDED PRECEDING``
+* ``frame_end`` choice cannot appear earlier in the above list of ``frame_start`` and ``frame_end`` options than the ``frame_start`` choice does.
+
+For example ``RANGE BETWEEN CURRENT ROW AND 7 PRECEDING`` is not allowed. However, while ``ROWS BETWEEN 7 PRECEDING AND 8 PRECEDING`` is allowed, it would never select any rows.
+
+Frame exclusion
 -----------------
 
 The ``frame_exclusion`` option allows rows around the current row to be excluded from the frame, even if they would be included according to the frame start and frame end options. ``EXCLUDE CURRENT ROW`` excludes the current row from the frame. ``EXCLUDE GROUP`` excludes the current row and its ordering peers from the frame. ``EXCLUDE TIES`` excludes any peers of the current row from the frame, but not the current row itself. ``EXCLUDE NO OTHERS`` simply specifies explicitly the default behavior of not excluding the current row or its peers.
