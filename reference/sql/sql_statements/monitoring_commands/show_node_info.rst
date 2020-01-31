@@ -49,10 +49,12 @@ If the statement has finished, or the statment ID does not exist, the utility re
    :widths: auto
    :header-rows: 1
    
+   * - Column name
+     - Description
    * - ``stmt_id``
      - The ID for the statement
    * - ``node_id``
-     - This node's ID
+     - This node's ID in this execution plan
    * - ``node_type``
      - The node type
    * - ``rows``
@@ -73,6 +75,71 @@ If the statement has finished, or the statment ID does not exist, the utility re
      - Additional information (e.g. table name for ``ReadTable``)
    * - ``timesum``
      - Total elapsed time for this execution node's processing
+
+Node type
+=============
+
+This is a partial list of node types.
+
+.. list-table:: Common node types
+   :widths: auto
+   :header-rows: 1
+   
+   * - Column name
+     - Execution location
+     - Description
+   * - ``CpuToGpu``, ``GpuToCpu``
+     - 
+     - An operation that moves data to or from the GPU for processing
+   * - ``DecompressorCpu``
+     - CPU
+     - Decompression operation, common for longer ``VARCHAR`` types
+   * - ``DecompressorGpu``
+     - GPU
+     - Decompression operation
+   * - ``LoopJoin``
+     - GPU
+     - A ``JOIN`` operation
+   * - ``Filter``
+     - GPU
+     - A filtering operation, such as a ``WHERE`` or ``JOIN`` clause
+   * - ``GpuTransform``
+     - GPU
+     - A transformation operation such as a type cast or :ref:`scalar function<scalar_functions>`
+   * - ``PushToNetworkQueue``
+     - 
+     - Sends data to a client connected over the network
+   * - ``Rechunk``
+     - 
+     - Reorganize multiple small chunks into a full chunk. Commonly found after joins and where :ref:`HIGH_SELECTIVITY<high_selectivity>` is used
+   * - ``ReadTable``
+     - CPU
+     - Data read from a standard table
+   * - ``ReadParquet``
+     - CPU
+     - Data read from a Parquet file
+   * - ``ReadOrc``
+     - CPU
+     - Data read from an ORC file
+   * - ``Reduce``
+     - GPU
+     - A reduction operation, such as a ``GROUP BY``
+   * - ``ReorderInput``
+     - 
+     - Change the order of arguments in preparation for the next operation
+   * - ``SeparatedGather``
+     - GPU
+     - Gathers additional columns for the result[#f0]_
+   * - ``Sort``
+     - 
+     - Sort operation [#f1]_
+
+.. rubric:: Footnotes
+
+.. [#f0] Gathers columns which should be returned. This node typically spends most of the time on decompressing additional columns.
+
+.. [#f1] A GPU sort operation can be added by the statement compiler before ``GROUP BY`` or ``JOIN`` operations.
+
 
 Notes
 ===========

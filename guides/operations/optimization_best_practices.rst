@@ -116,7 +116,8 @@ Can be rewritten as
       group by 2) AS fact
    ON dim.store_id=fact.store_id; 
 
-  
+
+.. _high_selectivity:
 Use the high selectivity hint
 --------------------------------
 
