@@ -249,7 +249,7 @@ The DDL optimizer tab analyzes database tables and recommends possible optimizat
 Using the DDL optimizer
 ---------------------------
 
-Navigate to the DDL optimizer module by selecting it from the :kdb:`⋮` ("More") menu.
+Navigate to the DDL optimizer module by selecting it from the :kbd:`⋮` ("More") menu.
 
 .. image:: /_static/images/statement_editor_ddl_optimizer.png
 
