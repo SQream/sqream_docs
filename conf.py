@@ -35,6 +35,7 @@ release = '2020.1-b1'
 # ones.
 extensions = [
     'sphinx_rtd_theme'
+    ,'notfound.extension' # 404 handling
 ]
 
 # Mark 'index' as the main page
