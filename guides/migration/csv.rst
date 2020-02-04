@@ -18,7 +18,7 @@ Prepare the source CSVs, with the following requirements:
 
 * Field delimiter is an ASCII character or characters
 
-* Record delimiter is a Unix-style newline (``\n``), DOS-style newline (``\r\n``), or Mac style newline (``\r``).
+* Record delimiter, also known as a new line separator, is a Unix-style newline (``\n``), DOS-style newline (``\r\n``), or Mac style newline (``\r``).
 
 * Fields are optionally enclosed by double-quotes, or mandatory quoted if they contain one of the following characters:
 

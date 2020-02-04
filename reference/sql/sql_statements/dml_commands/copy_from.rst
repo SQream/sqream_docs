@@ -81,7 +81,7 @@ Elements
      - Specifies the field terminator - the character or characters that separates fields or columns columns within each row of the file
    * - ``RECORD DELIMITER``
      - ``\n`` (UNIX style newline)
-     - Specifies the row terminator - the character that separates lines or rows
+     - Specifies the row terminator - the character that separates lines or rows, also known as a new line separator.
    * - ``ERROR_LOG``
      - Disabled
      - When used, the ``COPY`` process will ignore rows that can't be parsed. Errors will be written to the file specified by the ``ERROR_LOG`` parameter.
