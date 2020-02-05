@@ -63,14 +63,14 @@ Using ``CHARINDEX``
 
 .. code-block:: psql
 
-   t=> SELECT line, PATINDEX('%J_b%', line) FROM jabberwocky;
-   line                                      | patindex
-   ------------------------------------------+---------
-   'Twas brillig, and the slithy toves       |        0
-   Did gyre and gimble in the wabe:          |        0
-   All mimsy were the borogoves,             |        0
-   And the mome raths outgrabe.              |        0
-   "Beware the Jabberwock, my son!           |       13
-   The jaws that bite, the claws that catch! |        0
-   Beware the Jubjub bird, and shun          |       12
-   The frumious Bandersnatch!"               |        0
+   t=> SELECT line, CHARINDEX('the', line) FROM jabberwocky
+   line                                            | charindex
+   ------------------------------------------------+----------
+   'Twas brillig, and the slithy toves             |        20
+         Did gyre and gimble in the wabe:          |        30
+   All mimsy were the borogoves,                   |        16
+         And the mome raths outgrabe.              |        11
+   "Beware the Jabberwock, my son!                 |         9
+         The jaws that bite, the claws that catch! |        27
+   Beware the Jubjub bird, and shun                |         8
+         The frumious Bandersnatch!"               |         0
