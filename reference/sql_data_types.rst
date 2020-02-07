@@ -70,10 +70,10 @@ Supported types
 
 .. _cast:
 
-Converting and casting
-=========================
+Converting and casting types
+==============================
 
-SQream DB supports explicit and implicit casting and type conversion.
+SQream DB supports explicit and implicit castsing and type conversion.
 Implicit casts may be added automatically by the system when mixing different data types in the same expression. In many cases, the details of this are not important. However, these can affect the results of a query. When necessary, an explicit cast can be used to override the automatic cast added by SQream DB.
 
 For example, the ANSI standard defines a ``SUM()`` aggregation over an ``INT`` column as an ``INT``. However, when dealing with large amounts of data this could cause an overflow. 
@@ -87,7 +87,7 @@ To rectify this, cast the value to a larger data type:
 SQream DB supports three types of data conversion:
 
 * ``CAST(<value> TO <data type>)``, to convert a value from one type to another. For example, ``CAST('1997-01-01' TO DATE)``, ``CAST(3.45 TO SMALLINT)``, ``CAST(some_column TO VARCHAR(30))``.
-* ``<value>::<data type>``, a shorthand for the :ref:``CAST`` syntax. For example, ``'1997-01-01' :: DATE``, ``3.45 :: SMALLINT``, ``(3+5) :: BIGINT``.
+* ``<value> :: <data type>``, a shorthand for the ``CAST`` syntax. For example, ``'1997-01-01' :: DATE``, ``3.45 :: SMALLINT``, ``(3+5) :: BIGINT``.
 * See the :ref:`SQL functions reference <sql_functions>` for additional functions that convert from a specific value which is not an SQL type, such as :ref:`from_unixts`, etc.
 
 Data type reference
@@ -286,7 +286,7 @@ Examples
    1.0,2.0
    3.1415927,2.718281828459
 
-.. note:: Most clients control display precision of floating point numbers, and values may appear differently in some clients.
+.. note:: Most SQL clients control display precision of floating point numbers, and values may appear differently in some clients.
 
 Casts and conversions
 ^^^^^^^^^^^^^^^^^^^^^^^
