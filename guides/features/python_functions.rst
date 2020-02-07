@@ -6,6 +6,9 @@ Python UDF (user-defined functions)
 
 User-defined functions (UDFs) are a feature that extends SQream DB's built in SQL functionality. SQream DB's Python UDFs allow developers to create new functionality in SQL by writing the lower-level language implementation in Python.
 
+.. contents:: In this topic:
+   :local:
+
 A simple example
 =====================
 
