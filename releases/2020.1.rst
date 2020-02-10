@@ -90,11 +90,10 @@ Operations
    Because of a change in memory allocation behaviour in this version, a new flag ``limitQueryMemoryGB`` has been added to the ``runtimeGlobalFlag`` section. The recommended value for this is ``total host memory`` / ``sqreamd workers on host``.
    For example, for a machine with 512GB of RAM and 4 workers, the recommended setting is ``512/4 → 128``.
    
-   .. code-block:: json
-   
+   .. code-block:: none
+      
       "runtimeGlobalFlags": {
          "limitQueryMemoryGB" : 128
-      [...]
 
 Known Issues & Limitations
 ================================
