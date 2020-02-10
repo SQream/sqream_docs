@@ -103,10 +103,6 @@ A typed literal allows the creation of any data type using either of the followi
 Syntax reference
 -------------------
 
-   typed_literal ::=
-         CAST(literal AS type_name)
-         | literal :: type_name
-
 .. code-block:: postgres
    
    typed_literal ::=
