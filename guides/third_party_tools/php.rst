@@ -1,4 +1,4 @@
-.. _php
+.. _php:
 
 *****************************
 Connecting with PHP
