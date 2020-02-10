@@ -6,7 +6,11 @@ COPY FROM
 
 ``COPY ... FROM`` is a statement that allows reading data from a file into a table.
 
+This is the recommended method for bulk loading CSV files into SQream DB.
+
 In general, ``COPY`` moves data between file-system files and SQream DB tables.
+
+
 
 .. note:: 
    * Learn how to migrate from CSV files in the :ref:`csv` guide
