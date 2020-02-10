@@ -21,7 +21,7 @@ Saved queries are compiled when they are created. The query plan is saved in SQr
 
 Because the query plan is saved, they can be used to reduce compilation overhead, especially with very complex queries.
 
-When executed, the saved query plan is recalled and executed. on the up-to-date data stored on disk.
+When executed, the saved query plan is recalled and executed on the up-to-date data stored on disk.
 
 Parameters support
 ===========================

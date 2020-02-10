@@ -133,6 +133,8 @@ Frames
 .. versionchanged:: 2020.1
    Frames are supported from v2020.1.
 
+.. note:: Frames and frame exclusions have been tested extensively, but are a complex feature. They are released as a preview in v2020.1 pending longer-term testing.
+
 The ``frame_clause`` specifies the set of rows constituting the window frame, which is a subset of the current partition, for those window functions that act on the frame instead of the whole partition.
 
 The set of rows in the frame can vary depending on which row is the current row. The frame can be specified in ``RANGE`` or ``ROWS`` mode; in each case, it runs from the ``frame_start`` to the ``frame_end``. If ``frame_end`` is omitted, the end defaults to ``CURRENT ROW``.

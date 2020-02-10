@@ -113,6 +113,12 @@ Frequently set parameters
      - ``128``
      - 1 to maximum available RAM in gigabytes
      - ``"spoolMemoryGb": 250``
+   * - ``limitQueryMemoryGB``
+     - ``runtimeGlobalFlags``
+     - Modifies the maximum amount of RAM allocated for a query. The recommended value for this is ``total host memory`` / ``sqreamd workers on host``. For example, for a machine with 512GB of RAM and 4 workers, the recommended setting is ``512/4 → 128``.
+     - ``10000``
+     - ``1`` to ``10000``
+     - ``"limitQueryMemoryGB" : 128``
    * - ``showFullExceptionInfo``
      - ``runtimeGlobalFlags``
      - Shows complete error message with debug information. Use this for debugging.

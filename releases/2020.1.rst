@@ -4,25 +4,113 @@
 What's new in 2020.1
 **************************
 
-* TBD
+SQream DB v2020.1 contains lots of new features, improved performance, and bug fixes.
 
-Improvements
+New features
+================
+
+Integrations
+-----------------
+
+* Load files directly from S3 buckets
+
+* Load files directly from HDFS
+
+* Import :ref:`ORC files<orc>` directly or through :ref:`external_tables`
+
+* :ref:`Python driver (pysqream)<pysqream>` is now DB-API v2.0 compliant 
+
+SQL support
+---------------
+
+* Added frames and frame exclusions to :ref:`window_functions`. This is available for preview, with more features coming in the next version
+
+* New datatype - ``TEXT``, which replaces ``NVARCHAR`` directly with UTF-8 support and improved performance
+
+* ``TEXT`` join keys are now supported
+
+* Added lots of new :ref:`aggregate functions<aggregate_functions>`, including ``VAR_SAMP``, ``VAR_POP``, ``COVAR_POP``, etc.
+
+
+Improvements and fixes
 ========================
 
+* 207 bug fixes, including:
+   
+   - Fixed wrong results on STDDEV (0 instead of ``NULL``)
+   - Fixed wrong results on nested Parquet files
+   - Fixed failing cast from ``VARCHAR`` to ``FLOAT``
+   - Fix ``INSERT`` that would fail on nullable values and non-nullable columns in some scenarios
+   - Improved memory consumption, so ``Out of GPU memory`` errors should not occur anymore
+   - Reduced long compilation times for very complex queries
+   - Improved ODBC reliability
+   - Fixed situation where some logs would clip very long queries
+   - Improved error messages when dropping a schema with many objects
+   - Fixed situation where Spotfire would not show table names
+   - Fixed situation where some queries with UTF-8 literals wouldn't run through Tableau over ODBC
+   - Significantly improved cache freeing and memory allocation
+   - Fixed situation in which a malformed time (``24:00:00``) would get incorrectly inserted from a CSV
+   - Fixed race condition in which loading thousands of small files from HDFScaused a memory leak
+
+* Faster "Deferred gather" algorithm for joins with text keys
+
+* Faster filtering when using :ref:`datepart`
+
+* Faster metadata tagging during load
+
+* Fixed situation where some queries would get compiled twice
+
+* :ref:`saved_queries` now support :ref:`insert` statements
+
+* ``highCardinalityColumns`` can be configured to tell the system about :ref:`high selectivity<high_selectivity>` columns
+
+* :ref:`sqream sql<sqream_sql_cli_reference>` starts up faster and can be deployed standalone
 
 Behaviour changes
 ========================
 
+* ``ClientCmd`` is now known as :ref:`sqream sql<sqream_sql_cli_reference>`
+
+* ``NVARCHAR`` columns are now known as ``TEXT`` internally
+
+* 
+   Deprecated the ability to run ``SELECT`` and ``COPY`` at the same time on the same worker. This change is designed to protect against ``out of GPU memory`` issues.
+   This comes with a configuration change, namely the ``limitQueryMemoryGB`` setting. See the operations section for more information.
+
+* All logs are now unified into one log. See :ref:`logging` for more information
 
 Operations
 ========================
 
+* The client-server protocol has been updated to support faster data flow, and more reliable memory allocations on the client side. End users are required to use only the latest :ref:`sqream sql<sqream_sql_cli_reference>`, :ref:`java_jdbc`, and :ref:`odbc` drivers delivered with this version.
+
+* When upgrading from a previous version of SQream DB or lower, the storage version must be upgraded using the :ref:`upgrade_storage_cli_reference` utility: ``./bin/upgrade_storage /path/to/storage/sqreamdb/``
+
+* 
+   Because of a change in memory allocation behaviour in this version, a new flag ``limitQueryMemoryGB`` has been added to the ``runtimeGlobalFlag`` section. The recommended value for this is ``total host memory`` / ``sqreamd workers on host``.
+   For example, for a machine with 512GB of RAM and 4 workers, the recommended setting is ``512/4 → 128``.
+   
+   .. code-block:: json
+   
+      "runtimeGlobalFlags": {
+         "limitQueryMemoryGB" : 128
+      [...]
 
 Known Issues & Limitations
 ================================
 
+* ``TEXT`` columns cannot be used in a window functions' partition
 
-Fixes
+* Parsing errors are sometimes hard to read - the location points to the wrong part of the statement
+
+* LZ4 compression may not be applied correctly on very large ``VARCHAR`` columns, which decreases performance
+
+* Using ``SUM`` on very large numbers in window functions can error (``overflow``) when not used with an ``ORDER BY`` clause
+
+* Slight performance decrease with :ref:`dateadd` in this version
+
+
+Upgrading to v2020.1
 ========================
 
-
+Contact your account manager to get the latest release of SQream DB.
