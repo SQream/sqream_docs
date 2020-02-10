@@ -430,11 +430,11 @@ Further reading and migration guides
    migration/parquet
    migration/orc
 
-.. seealso::
+.. rubric:: See also:
 
-   * :ref:`copy_from`
-   * :ref:`insert`
-   * :ref:`external_tables`
+* :ref:`copy_from`
+* :ref:`insert`
+* :ref:`external_tables`
 
 .. rubric:: Footnotes
 
