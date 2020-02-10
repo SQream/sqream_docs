@@ -32,4 +32,4 @@ Full list of guides
 
    features/index
 
-   internals_architecture
+   architecture/index
