@@ -82,7 +82,7 @@ Behaviour changes
 Operations
 ========================
 
-* The client-server protocol has been updated to support faster data flow, and more reliable memory allocations on the client side. End users are required to use only the latest :ref:`sqream sql<sqream_sql_cli_reference>`, :ref:`java_jdbc`, and :ref:`odbc` drivers delivered with this version.
+* The client-server protocol has been updated to support faster data flow, and more reliable memory allocations on the client side. End users are required to use only the latest :ref:`sqream sql<sqream_sql_cli_reference>`, :ref:`java_jdbc`, and :ref:`odbc` drivers delivered with this version. See the :ref:`client driver download page<client_drivers>` for the latest drivers and connectors.
 
 * When upgrading from a previous version of SQream DB or lower, the storage version must be upgraded using the :ref:`upgrade_storage_cli_reference` utility: ``./bin/upgrade_storage /path/to/storage/sqreamdb/``
 
