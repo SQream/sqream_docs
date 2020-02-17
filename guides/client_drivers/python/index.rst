@@ -78,7 +78,7 @@ Some distributions of Python do not include OpenSSL. The Python connector relies
 4. Cython (optional)
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Optional but recommended is Cython, which improves performance of Python applications.
+Optional but highly recommended is Cython, which improves performance of Python applications.
 
    .. code-block:: console
    

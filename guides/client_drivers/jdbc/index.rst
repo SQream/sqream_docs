@@ -4,7 +4,7 @@
 JDBC
 *************************
 
-The SQream DB JDBC driver allows most Java applications and tools connect to SQream DB.
+The SQream DB JDBC driver is a Type-4 JDBC driver. It allows most Java applications and tools connect to SQream DB.
 This tutorial shows how to write a Java application using the JDBC interface.
 
 The JDBC driver requires Java 1.8 or newer.
