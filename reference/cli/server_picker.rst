@@ -6,8 +6,6 @@ server_picker
 
 SQream DB's load balancer is called ``server_picker``.
 
-In general, you should not need to run ``server_picker`` manually, but it is sometimes useful for testing. 
-
 This page serves as a reference for the options and parameters.
 
 Positional command line arguments
@@ -42,6 +40,8 @@ Starting server picker
 
 Starting temporarily
 -----------------------------
+
+In general, you should not need to run ``server_picker`` manually, but it is sometimes useful for testing. 
 
 Assuming we have a :ref:`metadata server<metadata_server_cli_reference>` listening on the localhost, on port 3105:
 
