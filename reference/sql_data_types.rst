@@ -49,14 +49,14 @@ Supported types
      - Floating point (inexact)
      - 8 bytes
      - ``0.000003``
+   * - ``TEXT [(n)]``, ``NVARCHAR (n)``
+     - Variable length string - UTF-8 unicode
+     - Up to ``4*n`` bytes
+     - ``'キウイは楽しい鳥です'``
    * - ``VARCHAR (n)``
      - Variable length string - ASCII only
      - ``n`` bytes
      - ``'Kiwis have tiny wings, but cannot fly.'``
-   * - ``NVARCHAR (n)``
-     - Variable length string - UTF-8 unicode
-     - Up to ``4*n`` bytes
-     - ``'キウイは楽しい鳥です'``
    * - ``DATE``
      - Date
      - 4 bytes
@@ -73,7 +73,7 @@ Supported types
 Converting and casting types
 ==============================
 
-SQream DB supports explicit and implicit castsing and type conversion.
+SQream DB supports explicit and implicit casting and type conversion.
 Implicit casts may be added automatically by the system when mixing different data types in the same expression. In many cases, the details of this are not important. However, these can affect the results of a query. When necessary, an explicit cast can be used to override the automatic cast added by SQream DB.
 
 For example, the ANSI standard defines a ``SUM()`` aggregation over an ``INT`` column as an ``INT``. However, when dealing with large amounts of data this could cause an overflow. 
@@ -89,6 +89,8 @@ SQream DB supports three types of data conversion:
 * ``CAST(<value> TO <data type>)``, to convert a value from one type to another. For example, ``CAST('1997-01-01' TO DATE)``, ``CAST(3.45 TO SMALLINT)``, ``CAST(some_column TO VARCHAR(30))``.
 * ``<value> :: <data type>``, a shorthand for the ``CAST`` syntax. For example, ``'1997-01-01' :: DATE``, ``3.45 :: SMALLINT``, ``(3+5) :: BIGINT``.
 * See the :ref:`SQL functions reference <sql_functions>` for additional functions that convert from a specific value which is not an SQL type, such as :ref:`from_unixts`, etc.
+
+More details about the supported casts for each type in the following section.
 
 Data type reference
 ======================
@@ -307,12 +309,13 @@ Floating point values can be converted to:
      - ``1`` → ``'1.0000'``, ``3.14159265358979`` → ``'3.1416'``
 
 
-String types (``VARCHAR``, ``NVARCHAR``)
+String types (``TEXT``, ``VARCHAR``)
 ------------------------------------------------
-``VARCHAR`` and ``NVARCHAR`` are types designed for storing text or strings of characters.
+``TEXT`` and ``VARCHAR`` are types designed for storing text or strings of characters.
 
-In this release, SQream DB separates ASCII (``VARCHAR``) and UTF-8 representations (``NVARCHAR``).
+SQream DB separates ASCII (``VARCHAR``) and UTF-8 representations (``TEXT``).
 
+.. note:: The data type ``NVARCHAR`` has been deprecated by ``TEXT`` as of version 2020.1.
 
 String types
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -324,19 +327,21 @@ String types
      - Details
      - Data size (not null, uncompressed)
      - Example
+   * - ``TEXT [(n)]``, ``NVARCHAR (n)``
+     - Varaiable length string - UTF-8 unicode. ``NVARCHAR`` is synonymous with ``TEXT``.
+     - Up to ``4*n`` bytes
+     - Variable length string - UTF-8 unicode
+     - Up to ``4*n`` bytes
+     - ``'キウイは楽しい鳥です'``
    * - ``VARCHAR (n)``
      - Variable length string - ASCII only
      - ``n`` bytes
      - ``'Kiwis have tiny wings, but cannot fly.'``
-   * - ``NVARCHAR (n)``
-     - Variable length string - UTF-8 unicode
-     - Up to ``4*n`` bytes
-     - ``'キウイは楽しい鳥です'``
 
 Length
 ^^^^^^^^^
 
-Unlike some other types, the string types can be limited in length. To limit the length, use ``VARCHAR(n)`` or ``NVARCHAR(n)``, where n is the number of characters allowed.
+When using ``TEXT``, specifying a size is optional. If not specified, the text field carries no constraints. To limit the size of the input, use ``VARCHAR(n)`` or ``NVARCHAR(n)``, where n is the number of characters allowed.
 
 * If the data exceeds the column length limit on ``INSERT`` or ``COPY`` operations, SQream DB will return an error.
 
@@ -355,7 +360,7 @@ String literals can also be dollar-quoted with the dollar sign ``$``. For exampl
 Size
 ^^^^^^
 
-``VARCHAR(n)`` can occupy up to *n* bytes, whereas ``NVARCHAR(n)`` can occupy up to *4*n* bytes.
+``VARCHAR(n)`` can occupy up to *n* bytes, whereas ``TEXT(n)`` can occupy up to *4*n* bytes.
 However, the size of strings is variable and is compressed by SQream DB.
 
 Examples
@@ -363,7 +368,7 @@ Examples
 
 .. code-block:: postgres
    
-   CREATE TABLE cool_strings (a VARCHAR(25) NOT NULL, b NVARCHAR(40));
+   CREATE TABLE cool_strings (a VARCHAR(25) NOT NULL, b TEXT);
    
    INSERT INTO cool_strings VALUES ('hello world', 'Hello to kiwi birds specifically');
    

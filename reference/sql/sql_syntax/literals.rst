@@ -100,6 +100,8 @@ A typed literal allows the creation of any data type using either of the followi
    -- or
    literal :: type_name
 
+See also :ref:`cast` for more information about supported casts.
+
 Syntax reference
 -------------------
 
@@ -127,7 +129,6 @@ Syntax reference
        | DATETIME
        | VARCHAR ( digits )
        | NVARCHAR ( digits )
-
 
 Examples
 ----------
