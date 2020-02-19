@@ -128,7 +128,7 @@ Queries are processed in a manner equivalent to the following order:
 #. Window functions
 #. ``SELECT`` list row → value functions on the outside of aggregates and window functions
 #. ``DISTINCT``
-#. ```UNION ALL``
+#. ``UNION ALL``
 #. ``ORDER BY``
 #. ``LIMIT`` / ``TOP``
 
