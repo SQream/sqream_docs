@@ -330,8 +330,6 @@ String types
    * - ``TEXT [(n)]``, ``NVARCHAR (n)``
      - Varaiable length string - UTF-8 unicode. ``NVARCHAR`` is synonymous with ``TEXT``.
      - Up to ``4*n`` bytes
-     - Variable length string - UTF-8 unicode
-     - Up to ``4*n`` bytes
      - ``'キウイは楽しい鳥です'``
    * - ``VARCHAR (n)``
      - Variable length string - ASCII only

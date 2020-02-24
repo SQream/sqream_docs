@@ -131,12 +131,6 @@ Frequently set parameters
      - ``"sqream"``
      - Comma separated list of service names, with no spaces. Services that don't exist will be created.
      - ``"initialSubscribedServices": "sqream,etl,management"``
-   * - ``useLogMaxFileSize``
-     - ``runtimeGlobalFlags``
-     - Defines whether SQream logs should be cycled every logMaxFileSizeMB size
-     - ``false``
-     - ``false`` or ``true``
-     - ``"useLogMaxFileSize" : true``
    * - ``logClientLevel``
      - ``runtimeGlobalFlags``
      - Used to control which log level should appear in the logs
@@ -151,7 +145,7 @@ Frequently set parameters
      - ``"nodeInfoLoggingSec" : 5``
    * - ``useLogMaxFileSize``
      - ``runtimeGlobalFlags``
-     - Rotate log files once they reach a certain file size. When ``true``, set the ``logMaxFileSizeMB`` accordingly.
+     - Defines whether SQream logs should be cycled when they reach ``logMaxFileSizeMB`` size. When ``true``, set the ``logMaxFileSizeMB`` accordingly.
      - ``false``
      - ``false`` or ``true``.
      - ``"useLogMaxFileSize" : true``

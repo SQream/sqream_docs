@@ -124,16 +124,18 @@ To change the order of values, specify the column order:
    
    executed
 
-To insert multiple rows, use sets of parentheses:
+You can use ``INSERT`` to insert multiple rows too. Here, you use sets of parentheses separated by commas:
 
 .. code-block:: psql
 
    master=> INSERT INTO cool_animals VALUES
-         (3, 'Cat', 5),
-         (4, 'Elephant', 6500),
+         (3, 'Cat', 5) ,
+         (4, 'Elephant', 6500) ,
          (5, 'Rhinoceros', 2100);
    
    executed
+
+.. note:: To load big data sets, use bulk loading methods instead. See our :ref:`inserting_data` guide for more information.
 
 When you leave out columns that have a :ref:`default value<default_values>` (including default ``NULL`` value) the default value is used.
 
