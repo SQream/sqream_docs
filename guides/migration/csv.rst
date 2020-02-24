@@ -4,7 +4,7 @@
 Migrate from CSVs
 **********************
 
-This guide can help has instructions for migrating data from CSVs and other text files into SQream DB using the :ref:`copy_from` method to bulk load data.
+This guide can help with migrating data from CSVs and other text files into SQream DB using the :ref:`copy_from` method to bulk load data.
 
 
 1. Prepare CSVs
