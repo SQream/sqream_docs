@@ -4,7 +4,7 @@
 Client drivers
 ************************************
 
-These topics explain how to use the SQream DB client drivers, and write applications for SQream DB.
+These guides explain how to use the SQream DB client drivers, and how to use client applications with SQream DB.
 
 .. toctree::
    :maxdepth: 4

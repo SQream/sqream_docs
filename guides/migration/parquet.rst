@@ -1,10 +1,10 @@
 .. _parquet:
 
 **********************
-Migrate from Parquet
+Insert from Parquet
 **********************
 
-This guide can help has instructions for migrating data from Parquet files into SQream DB using :ref:`EXTERNAL TABLE<external_tables>`.
+This guide covers inserting data from Parquet files into SQream DB using :ref:`EXTERNAL TABLE<external_tables>`.
 
 
 1. Prepare the files

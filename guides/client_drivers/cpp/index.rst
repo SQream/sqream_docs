@@ -1,12 +1,12 @@
 .. _cpp_native:
 
 *************************
-C++ Native Driver
+C++ Driver
 *************************
 
-The SQream DB C++ driver allows C++ applications and tools connect to SQream DB.
+The SQream DB C++ driver allows C++ programs tools to connect to SQream DB.
 
-This tutorial shows how to write a C++ application using the native driver.
+This tutorial shows how to write a C++ program that uses this driver.
 
 .. contents:: In this topic:
    :depth: 2

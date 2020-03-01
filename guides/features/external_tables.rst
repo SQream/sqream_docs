@@ -4,16 +4,13 @@
 External Tables
 ***********************
 
-An external table is a logical table structure that points to files such as CSV, Parquet and ORC.
+External tables can be used to run queries directly on data without inserting it into SQream DB first.
 
-In a standard table, data is stored in the database. However, with an external table, data is not stored in the database, but in files outside of the database, such as in S3, HDFS, or a local file system.
+SQream DB supports read only external tables, so you can query from external tables, but you cannot insert to them, or run deletes or updates on them.
 
-In SQream DB, external tables are stored with some file-level metadata about the data files' structure and paths. Querying data stored in files through external table is the same as querying data stored in the database.
+Running queries directly on external data is most effectively used for things like one off querying. If you will be repeatedly querying data, the performance will usually be better if you insert the data into SQream DB first.
 
-External tables are read-only. They can be used for any type of :ref:`select` query or :ref:`VIEW<create_view>`, but not with any DDL or DML operation like ``INSERT``.
-
-Querying data through external tables is likely to be slower than querying standard tables. However, materializing these tables can improve query performance.
-give an example
+Although external tables can be used without inserting data into SQream DB, one of their main use cases is to help with the insertion process. An insert select statement on an external table can be used to insert data into SQream using the full power of the query engine to perform ETL.
 
 What kind of data is supported?
 =====================================

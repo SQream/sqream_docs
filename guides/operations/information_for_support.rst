@@ -10,7 +10,7 @@ Gathering information for SQream support
 
 .. what about bug reports
 
-When you encounter a problem that you can't solve by yourself, `SQream Support <http://support.sqream.com/>`_ is here to help. 
+`SQream Support <http://support.sqream.com/>`_ is ready to answer any questions, and help solve any issues with SQream DB.
 
 Getting support and reporting bugs
 =======================================
@@ -21,14 +21,12 @@ When contacting `SQream Support <http://support.sqream.com/>`_, we recommend rep
 * What was the expected outcome?
 * How can SQream reproduce the issue? 
 
-If comfortable, attach as many of the following:
+When possible, please attach as many of the following:
 
 * Error messages or result outputs
 * DDL and queries that reproduce the issue
-* :ref:Log files<logging>`
+* :ref:`Log files<logging>`
 * Screen captures if relevant
-
-SQream support may have additional questions or requests, based on the information provided.
 
 How SQream debugs issues
 ===================================
@@ -36,7 +34,7 @@ How SQream debugs issues
 Reproduce
 --------------
 
-To debug most issues, we need to reproduce the problem. Some problems are repeatable, and can be repdroduced even without accessing the problematic database.
+If we are able to easily reproduce your issue in our testing lab, this greatly improves the speed at which we can fix it.
 
 Reproducing an issue consists of understanding:
 
@@ -61,13 +59,9 @@ See the :ref:`collecting_logs` section ahead for information about collecting a 
 Fix
 ---------
 
-Once the issue is reproduced, it can be fixed.
+Once we have a fix, this can be issued as a hotfix to an existing version, or as part of a bigger major release.
 
-A fix can be issued as a hotfix to an existing version, or as part of a bigger major release.
-
-Your SQream account manager will keep you up-to-date about the status of the problem reported.
-
-
+Your SQream account manager will keep you up-to-date about the status of the issue.
 
 .. _reproducible_statement:
 

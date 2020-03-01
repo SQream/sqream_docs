@@ -1,22 +1,21 @@
 .. _inserting_data:
 
 ***************************
-Data loading and migration
+Inserting data
 ***************************
 
-This guide covers inserting data into SQream DB via the :ref:`insert` statement and the :ref:`copy_from` statements.
-
-It contains subguides to help with migration from a variety of sources and data locations.
+This guide covers inserting data into SQream DB, with subguides on inserting data from a variety of sources and locations.
 
 Data loading overview
 ================================
 
 SQream DB supports importing data from the following sources:
 
-* Local filesystem and Network filesystems (NFS)
-* S3
-* HDFS
-* Over the network, using :ref:`a client driver<client_drivers>`
+* Using :ref:`insert` with :ref:`a client driver<client_drivers>`
+* Using :ref:`copy_from`:
+* * Local filesystem and locally mounted network filesystems
+* * S3
+* * HDFS
 
 SQream DB supports loading files in the following formats:
 
@@ -40,16 +39,15 @@ SQream therefore recommends:
 * Applications such as :ref:`Tableau<connect_to_tableau>` and others have been tested, and work
 * Data types were not over-provisioned (e.g. don't use VARCHAR(2000) to store a short string)
 
-File storage during load
+File source location for loading
+--------------------------------
+
+During loading using :ref:`copy_from`, the statement can run on any worker. If you are running multiple nodes, make sure that all nodes can see the source the same. If you load from a local file which is only on 1 node and not on shared storage, it will fail some of the time. (If you need to, you can also control which node a statement runs on using the :ref:`workload_manager`).
+
+Supported load methods
 -------------------------------
 
-During data load, the :ref:`copy_from` command can run on any worker (unless explicitly speficied with the :ref:`workload_manager`).
-It is important that every node has the same view of the storage being used - meaning, every SQream DB worker should have access to the files.
-
-Use a supported load method
--------------------------------
-
-SQream DB's :ref:`COPY FROM<copy_from>` syntax can be used to load text files (e.g. CSV), but can't be used for Parquet and ORC.
+SQream DB's :ref:`COPY FROM<copy_from>` syntax can be used to load CSV files, but can't be used for Parquet and ORC.
 
 :ref:`EXTERNAL TABLE<external_tables>` can be used to load text files, Parquet, and ORC files, and can also transform the data prior to materialization as a full table.
 

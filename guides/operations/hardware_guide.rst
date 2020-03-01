@@ -4,9 +4,7 @@
 Hardware Guide
 ***********************
 
-SQream DB runs on most 64 bit Linux environments, with GPU-enabled hardware.
-
-The purpose of this guide is to describe the SQream DB reference architecture, emphasizing the benefits to the technical audience, while providing guidance for end-users on selecting the right configuration for a SQream DB installation.
+This guide describes the SQream DB reference architecture, emphasizing the benefits to the technical audience, and provides guidance for end-users on selecting the right configuration for a SQream DB installation.
 
 
 .. rubric:: Need help?

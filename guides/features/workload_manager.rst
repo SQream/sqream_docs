@@ -4,9 +4,9 @@
 Workload manager
 ***********************
 
-The Dynamic Workload Manager (DWLM) allows SQream DB workers to identify their availability to clients with specific service names. The load balancer will then use that information to route statements to specific workers.
+The workload manager (WLM) allows SQream DB workers to identify their availability to clients with specific service names. The load balancer will then use that information to route statements to specific workers.
 
-Why use a workload manager?
+Why use the workload manager?
 ===============================
 
 The workload manager allows a system engineer or database administrator to allocate specific workers and compute resoucres for various tasks.

@@ -4,8 +4,6 @@
 Troubleshooting
 ***********************
 
-If you experience an issue with SQream DB, there are a few steps to take.
-
 Troubleshooting common issues
 ======================================
 

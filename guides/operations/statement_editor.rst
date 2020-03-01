@@ -4,9 +4,7 @@
 Using the statement editor
 ****************************
 
-The statement editor is a web-based client for use with SQream DB.
-
-Use the statement editor to run ad-hoc statements, queries, and to manage roles and permissions.
+The statement editor is a web-based client for use with SQream DB. It can be used to run statements, and manage roles and permissions.
 
 .. note:: We recommend using Google Chrome or Chrome-based browsers to access the statement editor.
 

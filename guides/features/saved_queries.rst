@@ -4,40 +4,26 @@
 Saved queries
 ***********************
 
-Saved queries are a way to store a query's execution plan for later re-use.
-
-.. tip:: 
-
-   * Use saved queries to share queries between different users, or to eliminate the need to rewrite a query that is run frequently.
-   
-   * Use saved queries to reduce the risk of SQL injection attacks
-
-
+Saved queries can be used to reuse a query plan for a query to eliminate compilation times for repeated queries. They also provide a way to implement 'parameterized views'.
 
 How saved queries work
 ==========================
 
-Saved queries are compiled when they are created. The query plan is saved in SQream DB's metadata for later re-use.
-
-Because the query plan is saved, they can be used to reduce compilation overhead, especially with very complex queries.
-
-When executed, the saved query plan is recalled and executed. on the up-to-date data stored on disk.
+Saved queries are compiled when they are created. When a saved query is run, this query plan is used instead of compiling a query plan at query time.
 
 Parameters support
 ===========================
 
-To enhance their capability, saved queries can contain query parmeters that are replaced upon execution. Query parameters can be used as substitutes for literal expressions.
+Query parameters can be used as substitutes for literal expressions in queries.
 
-There are a few limitations however:
+* Parameters cannot be used to substitute things like column names and table names.
 
-* Parameters cannot be used to substitute identifiers, column names, table names, or other parts of the query.
+* Query parameters of a string datatype (like ``VARCHAR``) must be of a fixed length, and can be used in equality checks, but not patterns (e.g. :ref:`like`, :ref:`rlike`, etc.)
 
-* Query parameters of a string datatype (like ``VARCHAR``) must be of a fixed length, and can be used in equality checks, but not patterns (e.g. :ref:`like`, :ref:`rlike`, etc)
+Creating a saved query
+======================
 
-Saving a query
-=================
-
-Saving a query is performed by using the :ref:`save_query` statement.
+A saved query is created using the :ref:`save_query` utility command.
 
 Saving a simple query
 ---------------------------
@@ -52,12 +38,18 @@ Saving a parametrized query
 
 Use parameters to replace them later at execution time. 
 
-.. tip:: Use dollar quoting (`$$`) to avoid escaping strings.
+
 
 .. code-block:: psql
 
-   t=> SELECT SAVE_QUERY('select_by_weight_and_team',$$SELECT * FROM nba WHERE Weight > ? AND Team = ?$$);
+   t=> SELECT SAVE_QUERY('select_by_weight_and_team','SELECT * FROM nba WHERE Weight > ? AND Team = ?');
    executed
+
+.. TODO tip Use dollar quoting (`$$`) to avoid escaping strings.
+.. this makes no sense unless you have a query which would otherwise need escaping
+..   t=> SELECT SAVE_QUERY('select_by_weight_and_team',$$SELECT * FROM nba WHERE Weight > ? AND Team = ?$$);
+..   executed
+
 
 Listing and executing saved queries
 ======================================

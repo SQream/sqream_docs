@@ -4,9 +4,7 @@
 Creating or cloning a storage cluster
 ****************************************
 
-SQream DB workers always start-up with a single storage cluster.
-
-When first deploying SQream DB, a database administrator may wish to create a new storage cluster.
+When SQream DB is installed, it comes with a default storage cluster. This guide will help if you need a fresh storage cluster or a separate copy of an existing storage cluster.
 
 Creating a new storage cluster
 =====================================

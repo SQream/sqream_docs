@@ -4,7 +4,7 @@
 Configuration
 ***********************
 
-SQream DB has configuration files to modify the system's default behaviour.
+This guide covers the configuration files and the ``SET`` statement.
 
 Configuration files
 ==========================

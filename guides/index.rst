@@ -4,7 +4,7 @@
 Guides
 ***********************
 
-This topic includes guides which are of interest to a SQream DB user or database administrator.
+This section has concept and features guides, and task focused guides.
 
 .. rubric:: Recommended guides
 

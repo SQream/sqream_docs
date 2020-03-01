@@ -4,31 +4,28 @@
 Concurrency and locks
 ***********************
 
-Statements in SQream DB can lock resources that are written or modified. 
+Locks are used in SQream DB to provide consistency when there are multiple concurrent transactions updating the database.
 
-The locking system is the method of concurrency control within SQream DB. It stops transactions from overwriting each other and creating inconsistencies.
-
-When a pending change from one statement conflicts with another, the later statement must wait for the earlier transaction to complete.
+Read only transactions are never blocked, and never block anything. Even if you drop a database while concurrently running a query on it, both will succeed correctly (as long as the query starts running before the drop database commits).
 
 .. _locking_modes:
 
 Locking modes
 ================
 
-SQream DB has two locking modes:
+SQream DB has two kinds of locks:
 
 * 
-   ``exclusive`` - this lock mode prevents the resource from being read or modified by other statements (it excludes the object). It is usually obtained to modify the data or structure. 
+   ``exclusive`` - this lock mode prevents the resource from being modified by other statements
    
-   This lock tells other statements that they'll have to wait in order to read or write to the object.
+   This lock tells other statements that they'll have to wait in order to change an object.
    
-   DDL operations are always exclusive.
-   
+   DDL operations are always exclusive. They block other DDL operations, and update DML operations (insert and delete).
 
 * 
-   ``inclusive`` - For some read operations, an inclusive lock is obtained on a specific object. This prevents other statements from obtaining an exclusive lock on the object.
+   ``inclusive`` - For insert operations, an inclusive lock is obtained on a specific object. This prevents other statements from obtaining an exclusive lock on the object.
    
-   This lock allows other statements to read data from the object, but they'll have to wait in order to modify it.
+   This lock allows other statements to insert or delete data from a table, but they'll have to wait in order to run DDL.
 
 When are locks obtained?
 ============================
@@ -40,35 +37,32 @@ When are locks obtained?
 
    * - Operation
      - :ref:`select`
-     - DML (:ref:`insert`)
-     - DML (:ref:`delete`, :ref:`truncate`)
+     - :ref:`insert`
+     - :ref:`delete`, :ref:`truncate`
      - DDL
    * - :ref:`select`
      - Concurrent
      - Concurrent
      - Concurrent
      - Concurrent
-   * - DML (:ref:`insert`)
+   * - :ref:`insert`
      - Concurrent
-     - Concurrent
-     - Concurrent
-     - Block
-   * - DML (:ref:`delete`, :ref:`truncate`)
      - Concurrent
      - Concurrent
      - Wait
-     - Block
+   * - :ref:`delete`, :ref:`truncate`
+     - Concurrent
+     - Concurrent
+     - Wait
+     - Wait
    * - DDL
      - Concurrent
-     - Block
-     - Block
-     - Block
+     - Wait
+     - Wait
+     - Wait
 
-.. note::
-   
-   * A DDL operation will block all other statements from requesting a lock, and the statement will fail with an error.
-   
-   * DML operations will cause other statements to wait, rather than block. Because most locks are short-lived, SQream DB will wait for a period of 3 seconds before giving up and returning an error. This parameter is called ``statementLockTimeout`` and is modifiable.
+
+Statements that wait will exit with an error if they hit the lock timeout. The default timeout is 3 seconds, see ``statementLockTimeout``.
 
 Global locks
 ----------------

@@ -4,10 +4,6 @@
 Seeing system objects as DDL
 ********************************
 
-Periodically it may be useful to dump all database objects to files for backup purposes.
-
-.. note:: Exporting DDLs does not export data. To export or unload data associated with tables, see :ref:`copy_to`.
-
 Dump specific objects
 ===========================
 
@@ -169,3 +165,7 @@ Exporting database DDL to a file
 .. code-block:: postgres
 
    COPY (SELECT DUMP_DATABASE_DDL()) TO '/home/rhendricks/database.ddl';
+
+
+
+.. note:: To export data in tables, see :ref:`copy_to`.

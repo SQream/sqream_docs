@@ -12,7 +12,7 @@ First steps with SQream DB
 .. options for inserting data - overview of all of them
 .. deleting/managing data overview (including storage reorg)
 
-This tutorial explains the basics of SQream DB SQL.
+This tutorial takes you through a few basic operations in SQream DB.
 
 .. contents:: In this topic:
    :local:
@@ -20,18 +20,9 @@ This tutorial explains the basics of SQream DB SQL.
 Preparing for this tutorial
 ===============================
 
-This tutorial assumes you already have a SQream DB cluster running.
+This tutorial assumes you already have a SQream DB cluster running and the SQream command line client installed on the machine you are on.
 
-.. tip:: This tutorial makes use of the built-in command-line client, which can be found in the ``bin`` directory of your SQream DB installation, under the name ``sqream sql``.
-
-Creating your first table
-============================
-
-When starting SQream SQL, after entering your password, you are presented with the SQL shell.
-
-.. tip::
-   * To exit the shell, type ``\q``  or :kbd:`Ctrl-d`. 
-   * A new SQream DB cluster contains a database named `master`. We will start with this database.
+Run the client like this. It will interactively ask for the password.
 
 .. code-block:: psql
 
@@ -42,6 +33,18 @@ When starting SQream SQL, after entering your password, you are presented with t
    To quit, use ^D or \q.
    
    master=> _
+
+You should use a username and password that you have set up or your DBA has given you.
+  
+.. tip::
+   * To exit the shell, type ``\q``  or :kbd:`Ctrl-d`. 
+   * A new SQream DB cluster contains a database named `master`. We will start with this database.
+
+.. TODO: the tutorial should absolutely not start creating tables in the master database ...
+
+Creating your first table
+============================
+
 
 To create a table, we will use the :ref:`create_table` syntax, with a table name and some column specifications.
 
@@ -55,8 +58,6 @@ For example,
       weight INT
    );
 
-.. tip:: Statements and queries are standard SQL, followed by a semicolon (``;``).
-
 If the table already exists and you want to drop the current table and create a new one, you can add ``OR REPLACE`` after the ``CREATE`` keyword.
 
 .. code-block:: postgres
@@ -67,6 +68,8 @@ If the table already exists and you want to drop the current table and create a 
       weight INT
    );
 
+.. TODO: cool_animals? I think we need to decide if the customer for this documenation is 12 years old, or an IT professional.
+   
 
 You can ask SQream DB to list the full, verbose ``CREATE TABLE`` statement for any table, by using the :ref:`get_ddl` function, with the table name.
 

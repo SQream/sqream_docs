@@ -4,7 +4,7 @@
 pysqream API reference
 *************************
 
-The SQream Python connector provides an interface for creating and running Python applications that can connect to a SQream DB database. It provides a lighter-weight alternative to working through native C++ or Java bindings, including JDBC and ODBC drivers.
+The SQream Python connector allows Python programs to connect to SQream DB.
 
 pysqream conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_
 

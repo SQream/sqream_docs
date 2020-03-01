@@ -4,35 +4,35 @@
 Deleting data
 ***********************
 
-SQream DB allows users to delete data. However, the process is actually two-step.
-
-Read this guide to understand how SQream DB deletes data.
 
 How does deleting in SQream DB work?
 ========================================
 
-In SQream DB, deleting data is a two-step process. :ref:`delete` of rows does not immediately remove the underlying data.
+In SQream DB, when you run a delete statement, after the transaction completes, any rows that match the delete predicate will no longer be returned when running queries. A separate process can be used to reclaim the space occupied by these rows, and to remove the small overhead that queries will have until this is done. Some benefits to this design are:
 
-This approach is necessary to gain the benefits of :ref:`time_based_data_management`. Eventually, when the new insert is completed, the deleted row version is no longer of interest to any transaction. The space it occupies can then be freed up. This is performed in the physical delete operation that follows.
+1. delete transactions complete quickly
+2. the total disk footprint overhead at any time for a delete transaction or cleanup process is small and bounded (while the system still supports low overhead commit, rollback and recovery for delete transactions).
 
 
-Phase 1: Logical Delete
+Phase 1: Delete
 ---------------------------
 
-When a :ref:`delete` statement is run, SQream DB marks rows as deleted, but they remain on-disk until a cleanup process is initiated.
+.. TODO: isn't the delete cleanup able to complete a certain amount of work transactionally, so that you can do a massive cleanup in stages?
 
-The result set for :ref:`select` queries will not contain the deleted data. Data is marked for deletion, but not physically deleted from disk.
+.. TODO: our current best practices is to use a cron job with sqream sql to run the delete cleanup. we should document how to do this, we have customers with very different delete schedules so we can give a few extreme examples and when/why you'd use them
+   
+When a :ref:`delete` statement is run, SQream DB records the predicate used. This predicate will be used to filter future statements on this table until all this delete predicate's matching rows have been physically cleaned up. This filtering process takes full advantage of SQream's zone map feature.
 
 Phase 2: Clean-up
 --------------------
 
-The cleanup process is not automatic, as it can take some time for very large tables which some administrators prefer to perform during off-peak hours.
+The cleanup process is not automatic. This gives control to the user or DBA, and gives flexibility on when to run the clean up.
 
 Files marked for deletion during the logical deletion stage are removed from disk. This is achieved by calling both utility function commands: ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS`` sequentially.
 
 .. note::
    * :ref:`alter_table` and other DDL operations are blocked on tables that require clean-up. See more in the :ref:`concurrency_and_locks` guide.
-   * SQream DB may prevent a very long delete process. If the estimated time is beyond the threshold, the error message will explain how to override this limitation and continue the process.
+   * If the estimated time for a cleanup processs is beyond a threshold, you will get an error message about it. The message will explain how to override this limitation and run the process anywhere.
 
 Notes on data deletion
 =========================================

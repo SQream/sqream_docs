@@ -1,10 +1,10 @@
 .. _orc:
 
 **********************
-Migrate from ORC
+Insert from ORC
 **********************
 
-This guide can help has instructions for migrating data from ORC files into SQream DB using :ref:`EXTERNAL TABLE<external_tables>`.
+This guide covers inserting data from ORC files into SQream DB using :ref:`EXTERNAL TABLE<external_tables>`.
 
 
 1. Prepare the files

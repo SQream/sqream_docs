@@ -4,13 +4,13 @@
 Python (pysqream)
 *************************
 
-The SQream Python connector provides an interface for creating and running Python applications that can connect to a SQream DB database. It provides a lighter-weight alternative to working through native C++ or Java bindings, including JDBC and ODBC drivers.
+The SQream Python connector allows Python programs to connect to SQream DB.
 
-pysqream conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_
-
-``pysqream`` is native and pure Python, with minimal requirements. It can be installed with ``pip`` on any operating system, including Linux, Windows, and macOS.
+``pysqream`` is a pure Python connector. It can be installed with ``pip`` on any operating system, including Linux, Windows, and macOS.
 
 The connector supports Python 3.7 and newer.
+
+pysqream conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_
 
 .. contents:: In this topic:
    :local:
@@ -367,7 +367,7 @@ We will write a helper function to create an :ref:`insert` statement, by reading
    con.close()
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 8
    :caption: Further information
    
    api-reference

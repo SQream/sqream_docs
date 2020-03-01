@@ -7,32 +7,25 @@ Internals and architecture
 SQream DB internals
 ==============================
 
+Here is a high level architecture diagram of SQream DB's internals.
+
 .. figure:: /_static/images/sqream_db_internals.png
    :alt: SQream DB internals
-
-SQream DB is built up of several components, which should look familiar when compared to other RDBMSs.
 
 Statement compiler
 ------------------------
 
-The statement compiler is written in Haskell, in a modern style with lots of micropasses and stages.
+The statement compiler is written in Haskell. This takes SQL text and produces an optimised statement plan.
 
 Concurrency and concurrency control
 ----------------------------------------
 
-SQream DB has a lot of concurrency built-in, which is centered around message passing and queues.
-
-SQream DB has worker pools and other techniques to tune the level of concurrency, as well as a :ref:`lock-based concurrency control system<concurrency_and_locks>`.
-
-This mode of concurrency control doesn't affect :ref:`SELECT queries<select>`.
-Inserts only interact with the locks when there are things like :ref:`delete` or a :ref:`DDL operation<ddl_commands>` running.
-
-Bulk data is not passed around in messages. Rather, the memory is shared between threads.
+The execution engine in SQream DB is built around thread workers with message passing. It uses threads to overlap different kinds of operations (including IO and GPU operations with CPU operations), and to accelerate CPU intensive operations.
 
 Transactions
 --------------------
 
-SQream DB has serializable transactions, with some limitations:
+SQream DB has serializable transactions, with these features:
 
 * Serializable, with any kind of statement
 
@@ -40,34 +33,26 @@ SQream DB has serializable transactions, with some limitations:
 
 * Run multiple inserts to the same table at the same time
 
-* Can't run multiple statements in a single transaction
+* Cannot run multiple statements in a single transaction
 
 * Other operations such as :ref:`delete`, :ref:`truncate`, and DDL use :ref:`coarse-grained exclusive locking<concurrency_and_locks>`.
-
 
 Storage
 ----------
 
-The storage is split into the :ref:`metadata layer<metadata_system>` and a light-weight but powerful append-only bulk data layer.
+The storage is split into the :ref:`metadata layer<metadata_system>` and an append-only/ garbage collected bulk data layer.
 
 Metadata layer
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The metadata layer leverages a lot of features from LevelDB, and is split into a metadata database (snapshots, multiple updates, catalog information).
-
-LevelDB also enables some basic database style features such as snapshots and multiple updates.
+The metadata layer uses LevelDB, and uses LevelDB's snapshot and write atomic features as part of the transaction system.
 
 Bulk data layer 
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-The bulk data layer is a light-weight but powerful append-only bulk data layer, which is heavily focused on raw tablescan performance.
+The bulk data layer is comprised of extents, which are optimised for IO performance as much as possible. Inside the extents, are chunks, which are optimised for processing in the CPU and GPU. Compression is used in the extents and chunks.
 
-The storage is based around extent files which have compressed chunks representing a single column. 
-
-Chunks are the smallest entity, representing around 1 to 10 million rows.
-
-SQream DB also has a background storage reorganization process,to ensure good performance after the data has been inserted.
-The reorganization process allows support for small, fast inserts - while still maintaining the data arranged for maximum query performance.
+When you run small inserts, you will get less optimised chunks and extents, but the system is designed to both be able to still run efficiently on this, and to be able to reorganise them transactionally in the background, without blocking DML operations. By writing small chunks in small inserts, then reorganising later, it supports both fast medium sized insert transactions and fast querying.
 
 Building blocks
 ----------------------

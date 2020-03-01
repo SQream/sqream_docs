@@ -1,10 +1,10 @@
 .. _csv:
 
 **********************
-Migrate from CSVs
+Insert from CSV
 **********************
 
-This guide can help has instructions for migrating data from CSVs and other text files into SQream DB using the :ref:`copy_from` method.
+This guide covers inserting data from CSV files into SQream DB using the :ref:`copy_from` method.
 
 
 1. Prepare CSVs

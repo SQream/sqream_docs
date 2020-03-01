@@ -4,9 +4,7 @@
 Setting up SQream DB
 ***********************
 
-Find what it takes to prepare and install SQream DB in the topics below. 
-
-Browse the articles in the sidebar, or use the search to find the information you need.
+The guides below cover installing SQream DB.
 
 .. toctree::
    :maxdepth: 4
