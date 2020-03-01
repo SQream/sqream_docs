@@ -41,7 +41,7 @@ Troubleshoot query performance
 
 #. If a problem occurs through a 3\ :sup:`rd` party client, try reproducing it directly with :ref:`the built in SQL client<sqream_sql_cli_reference>`. If the performance is better in the local client, it could point to a problem in the application or network connection.
 
-#. Consult the:ref:`sql_best_practices` guide to learn how to optimize queries and table structures.
+#. Consult the :ref:`sql_best_practices` guide to learn how to optimize queries and table structures.
 
 
 Troubleshoot query behavior

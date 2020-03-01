@@ -4,7 +4,7 @@
 C++ Driver
 *************************
 
-The SQream DB C++ driver allows C++ programs tools to connect to SQream DB.
+The SQream DB C++ driver allows C++ programs and tools to connect to SQream DB.
 
 This tutorial shows how to write a C++ program that uses this driver.
 
