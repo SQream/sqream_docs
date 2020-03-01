@@ -19,7 +19,8 @@ Syntax
 .. code-block:: postgres
 
    truncate_table_statement ::=
-       TRUNCATE [ TABLE ] [schema_name.]table_name
+       TRUNCATE [ TABLE ] [schema_name.]table_name 
+           [ RESTART IDENTITY | CONTINUE IDENTITY ]
        ;
 
    table_name ::= identifier
@@ -39,6 +40,10 @@ Parameters
      - The name of the schema for the table.
    * - ``table_name``
      - The name of the table to truncate.
+   * - ``RESTART IDENTITY``
+     - Automatically restart sequences owned by columns of the truncated table.
+   * - ``CONTINUE IDENTITY``
+     - Do not change the values of sequences. This is the default.
 
 Examples
 ===========

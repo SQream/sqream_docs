@@ -39,7 +39,7 @@ Arguments
    * - ``interval``
      - An interval representing a date part. See the table below or the syntax reference above for valid date parts
    * - ``date_expr1``, ``date_expr2``
-     - A ``DATE`` or ``DATETIME`` expression. The function calculates ``date_expr1 - date_expr2``.
+     - A ``DATE`` or ``DATETIME`` expression. The function calculates ``date_expr2 - date_expr1``.
 
 
 Valid date parts
@@ -84,7 +84,7 @@ Valid date parts
 Returns
 ============
 
-An integer representing the number of date part units (e.g. years, days, months, hours, etc.) between ``date_expr1`` and ``date_expr2``.
+An integer representing the number of date part units (e.g. years, days, months, hours, etc.) between ``date_expr2`` and ``date_expr1``.
 
 Notes
 ========

@@ -106,14 +106,14 @@ Simple case
 .. code-block:: psql
 
    master=> SELECT name, CASE num_eyes
-   .>          WHEN 1 THEN 'Cyclops'
-   .>          WHEN 2 THEN 'Binocular'
-   .>          WHEN 5 THEN 'Pentocular'
-   .>          WHEN 8 then 'Octocular'
-   .>          ELSE 'Other'
-   .>       END
-   .>       FROM (VALUES ('Copepod',1), ('Spider',8), ('Starfish', 5), ('Praying mantis', 5), ('Human (average)', 2), ('Eagle', 2), ('Horseshoe crab', 10)) 
-   .>          AS cool_animals(name, num_eyes);
+   .           WHEN 1 THEN 'Cyclops'
+   .           WHEN 2 THEN 'Binocular'
+   .           WHEN 5 THEN 'Pentocular'
+   .           WHEN 8 then 'Octocular'
+   .           ELSE 'Other'
+   .        END
+   .        FROM (VALUES ('Copepod',1), ('Spider',8), ('Starfish', 5), ('Praying mantis', 5), ('Human (average)', 2), ('Eagle', 2), ('Horseshoe crab', 10)) 
+   .           AS cool_animals(name, num_eyes);
 
    name            | ?column?  
    ----------------+-----------

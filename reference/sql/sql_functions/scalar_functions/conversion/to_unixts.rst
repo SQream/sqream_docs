@@ -60,7 +60,7 @@ Get the amount of users that signed up during 2019
 .. code-block:: psql
 
    master=> SELECT COUNT(*) FROM users 
-   .>          WHERE signup_ts BETWEEN TO_UNIXTS('2019-01-01') AND TO_UNIXTS('2019-12-31');
+   .           WHERE signup_ts BETWEEN TO_UNIXTS('2019-01-01') AND TO_UNIXTS('2019-12-31');
    
    count 
    ------

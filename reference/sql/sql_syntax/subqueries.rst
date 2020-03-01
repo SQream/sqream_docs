@@ -49,8 +49,8 @@ Simple subquery
 .. code-block:: psql
    
    t=> SELECT AVG("Age") FROM 
-  .>       (SELECT "Name","Team","Age" FROM nba WHERE "Height" > '7-0');
-  avg
+   .        (SELECT "Name","Team","Age" FROM nba WHERE "Height" > '7-0');
+   avg
    ---
    26
 
@@ -60,9 +60,9 @@ Combining a subquery with a join
 .. code-block:: psql
 
    t=> SELECT * FROM
-   .>    (SELECT "Name" FROM nba WHERE "Height" > '7-0') AS t(name,team,age)
-   .>    , nba AS n
-   .>      WHERE n."Name"=t.name;
+   .     (SELECT "Name" FROM nba WHERE "Height" > '7-0') AS t(name,team,age)
+   .     , nba AS n
+   .       WHERE n."Name"=t.name;
    name               | Name               | Team                   | Number | Position | Age | Height | Weight | College    | Salary  
    -------------------+--------------------+------------------------+--------+----------+-----+--------+--------+------------+---------
    Alex Len           | Alex Len           | Phoenix Suns           |     21 | C        |  22 | 7-1    |    260 | Maryland   |  3807120
@@ -88,9 +88,9 @@ See :ref:`common_table_expressions` for more information.
 .. code-block:: psql
    
    nba=> WITH
-   .>       nba_ct AS (SELECT "Name", "Team" FROM nba WHERE "College"='Connecticut'),
-   .>       nba_az AS (SELECT "Name", "Team" FROM nba WHERE "College"='Arizona')
-   .>       SELECT * FROM nba_az JOIN nba_ct ON nba_ct."Team" = nba_az."Team";
+   .        nba_ct AS (SELECT "Name", "Team" FROM nba WHERE "College"='Connecticut'),
+   .        nba_az AS (SELECT "Name", "Team" FROM nba WHERE "College"='Arizona')
+   .        SELECT * FROM nba_az JOIN nba_ct ON nba_ct."Team" = nba_az."Team";
    Name            | Team            | name0          | team0          
    ----------------+-----------------+----------------+----------------
    Stanley Johnson | Detroit Pistons | Andre Drummond | Detroit Pistons

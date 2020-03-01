@@ -95,7 +95,7 @@ For example,
 .. code-block:: psql
    
    farm=> SELECT name, weight FROM all_animals
-   .>     WHERE region = 'Australia';
+   .      WHERE region = 'Australia';
    
    name     | weight
    ---------+-------

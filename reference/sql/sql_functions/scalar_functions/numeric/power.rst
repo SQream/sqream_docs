@@ -6,14 +6,18 @@ POWER
 
 Returns the value of x to the power of y (x\ :sup:`y`).
 
-``POWER(x,2)`` is equivalent to ``SQUARE(x)``. See :ref:`SQUARE<square>`.
+``POWER(x,2)`` is equivalent to ``SQUARE(x)``.
+
+Some DBMSs call this feature ``POW``.
+
+See also: :ref:`SQUARE<square>`.
 
 Syntax
 ==========
 
 .. code-block:: postgres
 
-   POWER( expr )
+   POWER( base, exponent )
 
 Arguments
 ============
@@ -24,13 +28,15 @@ Arguments
    
    * - Parameter
      - Description
-   * - ``expr``
-     - Numeric expression
+   * - ``base``
+     - Numeric expression (``x``)
+   * - ``exponent``
+     - Numeric expression (``y``)
 
 Returns
 ============
 
-returns the same type as the argument supplied.
+Returns the same type as the argument supplied.
 
 Notes
 =======
@@ -53,7 +59,6 @@ On integers
       27
       81
      243
-
 
 
 On floating point

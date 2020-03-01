@@ -32,4 +32,8 @@ Glossary
    Storage cluster
       The storage cluster is the directory in which SQream DB stores data, including database objects, metadata database, and logs.
    
+   UDF
+   User-defined function
+      A feature that extends SQream DB's built in SQL functionality with user-written Python code.
+   
    

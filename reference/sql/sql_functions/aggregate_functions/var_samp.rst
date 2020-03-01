@@ -15,11 +15,19 @@ Syntax
 
 .. code-block:: postgres
 
+   -- As an aggregate
    VAR_SAMP( expr )
    
    VAR( expr )
    
    VARIANCE( expr )
+   
+   -- As a window function
+   VAR_SAMP ( expr ) OVER (   
+            [ PARTITION BY value_expression [, ...] ]
+            [ ORDER BY value_expression [ ASC | DESC ] [ NULLS { FIRST | LAST } ] [, ...] ]
+            [ frame_clause ]
+         )
 
 
 Arguments

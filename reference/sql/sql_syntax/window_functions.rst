@@ -7,7 +7,6 @@ Window functions
 Window functions are functions applied over a subset (known as a window) of the rows returned by a :ref:`select` query. 
 
 
-
 Syntax
 ========
 
@@ -22,23 +21,15 @@ Syntax
          )
       
    window_fn ::= 
-      AVG
-      | MAX ()
-      | MIN ()
-      | RANK ()
-      | ROW_NUMBER ()
-      | SUM ()
-      | DENSE_RANK ()
-      | PERCENT_RANK ()
-      | CUME_DIST ()
-      | NTILE ( buckets )
-      | LAG( value_expr [, row_offset] )
-      | LEAD( value_expr [, row_offset] )
-      | FIRST_VALUE ( value_expr )
-      | LAST_VALUE (value_expr )
-      | NTH_VALUE ( value, row_offset )
+      | AVG
+      | COUNT
+      | MAX
+      | MIN
+      | RANK
+      | ROW_NUMBER
+      | SUM
 
-   
+
    frame_clause ::= 
       { RANGE | ROWS } frame_start [ frame_exclusion ]
       | { RANGE | ROWS } BETWEEN frame_def AND frame_def [ frame_exclusion ]
@@ -79,24 +70,26 @@ Supported window functions
 ===========================
 
 .. list-table:: Window function aggregations
-   :widths: 100
+   :widths: auto
    :header-rows: 1
    
    * - Function
    * - :ref:`avg`
+   * - :ref:`count`
    * - :ref:`max`
    * - :ref:`min`
    * - :ref:`sum`
 
+.. versionchanged:: 2020.1
+   :ref:`count` and :ref:`avg` are supported in window functions from v2020.1.
+   
 .. list-table:: Ranking functions
-   :widths: 100
+   :widths: auto
    :header-rows: 1
 
    * - Function
    * - :ref:`rank`
    * - :ref:`row_number`
-
-
 
 
 How window functions work
@@ -118,6 +111,72 @@ The result depends on the individual row and the order of the rows. Some window 
    Boundaries for the frames may need to be applied to get the correct results.
 
 Window frame functions allows a user to perform rolling operations, such as calculate moving averages, longest standing customers, identifying churn, find movers and shakers, etc.
+
+``PARTITION BY``
+------------------
+The ``PARTITION BY`` clause groups the rows of the query into partitions, which are processed separately by the window function. 
+
+``PARTITION BY`` works similarly to a query-level ``GROUP BY`` clause, but expressions are always just expressions and cannot be output-column names or numbers. 
+
+Without ``PARTITION BY``, all rows produced by the query are treated as a single partition.
+
+``ORDER BY``
+----------------------
+
+The ``ORDER BY`` clause determines the order in which the rows of a partition are processed by the window function. It works similarly to a query-level ``ORDER BY`` clause, but cannot use output-column names or numbers.
+
+Without ``ORDER BY``, rows are processed in an unspecified order.
+
+Frames 
+-------
+
+.. versionchanged:: 2020.1
+   Frames are supported from v2020.1.
+
+.. note:: Frames and frame exclusions have been tested extensively, but are a complex feature. They are released as a preview in v2020.1 pending longer-term testing.
+
+The ``frame_clause`` specifies the set of rows constituting the window frame, which is a subset of the current partition, for those window functions that act on the frame instead of the whole partition.
+
+The set of rows in the frame can vary depending on which row is the current row. The frame can be specified in ``RANGE`` or ``ROWS`` mode; in each case, it runs from the ``frame_start`` to the ``frame_end``. If ``frame_end`` is omitted, the end defaults to ``CURRENT ROW``.
+
+A ``frame_start`` of ``UNBOUNDED PRECEDING`` means that the frame starts with the first row of the partition, and similarly a ``frame_end`` of ``UNBOUNDED FOLLOWING`` means that the frame ends with the last row of the partition.
+
+In ``RANGE`` mode, a frame_start of ``CURRENT ROW`` means the frame starts with the current row's first peer row (a row that the window's ``ORDER BY`` clause sorts as equivalent to the current row), while a ``frame_end`` of ``CURRENT ROW`` means the frame ends with the current row's last peer row. In ``ROWS`` mode, ``CURRENT ROW`` simply means the current row.
+
+In the ``offset PRECEDING`` and ``offset FOLLOWING`` frame options, the offset must be an expression not containing any variables, aggregate functions, or window functions. The meaning of the ``offset`` depends on the frame mode:
+
+* In ``ROWS`` mode, the offset must yield a non-null, non-negative integer, and the option means that the frame starts or ends the specified number of rows before or after the current row.
+
+* In ``RANGE`` mode, these options require that the ``ORDER BY`` clause specify exactly one column. The offset specifies the maximum difference between the value of that column in the current row and its value in preceding or following rows of the frame. This option is restricted to integer types, date and datetime. The offset is required to be a non-null non-negative integer value.
+
+* With a ``DATE`` or ``DATETIME`` column, the offset indicates a number of days.
+
+In any case, the distance to the end of the frame is limited by the distance to the end of the partition, so that for rows near the partition ends the frame might contain fewer rows than elsewhere.
+
+The default framing option is ``RANGE UNBOUNDED PRECEDING``, which is the same as ``RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW``. With ``ORDER BY``, this sets the frame to be all rows from the partition start up through the current row's last ``ORDER BY`` peer. Without ``ORDER BY``, this means all rows of the partition are included in the window frame, since all rows become peers of the current row.
+
+Restrictions
+^^^^^^^^^^^^^^^^^^^^^
+
+* ``frame_start`` cannot be ``UNBOUNDED FOLLOWING``
+* ``frame_end`` cannot be ``UNBOUNDED PRECEDING``
+* ``frame_end`` choice cannot appear earlier in the above list of ``frame_start`` and ``frame_end`` options than the ``frame_start`` choice does.
+
+For example ``RANGE BETWEEN CURRENT ROW AND 7 PRECEDING`` is not allowed. However, while ``ROWS BETWEEN 7 PRECEDING AND 8 PRECEDING`` is allowed, it would never select any rows.
+
+Frame exclusion
+-----------------
+
+The ``frame_exclusion`` option allows rows around the current row to be excluded from the frame, even if they would be included according to the frame start and frame end options. ``EXCLUDE CURRENT ROW`` excludes the current row from the frame. ``EXCLUDE GROUP`` excludes the current row and its ordering peers from the frame. ``EXCLUDE TIES`` excludes any peers of the current row from the frame, but not the current row itself. ``EXCLUDE NO OTHERS`` simply specifies explicitly the default behavior of not excluding the current row or its peers.
+
+Limitations
+==================
+
+* At this phase, text columns are not supported in window function expressions.
+
+* Window function calls are permitted only in the :ref:`select` list.
+
+
 
 Examples
 ==========
@@ -180,8 +239,8 @@ See :ref:`rank`.
 .. code-block:: psql
 
    t=> SELECT n.Name, n.Age, n.Height ,RANK() OVER 
-   .>      (PARTITION BY n.Age ORDER BY n.Height DESC) AS Rank 
-   .>       FROM nba_2 n;
+   .       (PARTITION BY n.Age ORDER BY n.Height DESC) AS Rank 
+   .        FROM nba_2 n;
    name                     | age | height | rank
    -------------------------+-----+--------+-----
    Devin Booker             |  19 | 6-6    |    1

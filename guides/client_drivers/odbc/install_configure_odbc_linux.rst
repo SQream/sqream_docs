@@ -69,10 +69,11 @@ Install the ODBC driver with a script
 Use this method if you have never used ODBC on your machine before. If you have existing DSNs, see the manual install process below.
 
 #. Unpack the tarball
-   Copy the downloaded file to any directory, and untar it:
+   Copy the downloaded file to any directory, and untar it to a new directory:
    
    .. code-block:: console
-
+      
+      $ mkdir -p sqream_odbc64
       $ tar xf sqream_2019.2.1_odbc_3.0.0_x86_64_linux.tar.gz -C sqream_odbc64
 
 #. Run the first-time installer. The installer will create an editable DSN.
@@ -110,7 +111,7 @@ Use this method when you have existing ODBC DSNs on your machine.
          [ODBC Drivers]
          SqreamODBCDriver=Installed
          
-         [SqreamODBCDriverDriver]
+         [SqreamODBCDriver]
          Description=Driver DSII SqreamODBC 64bit
          Driver=/home/rhendricks/sqream_odbc64/sqream_odbc64.so
          Setup=/home/rhendricks/sqream_odbc64/sqream_odbc64.so

@@ -124,7 +124,7 @@ Break up a ``DATE`` into components
 .. code-block:: psql
 
    master=> SELECT DATEPART(YEAR, d) AS  year, DATEPART(MONTH, d) AS month, DATEPART(DAY,d) AS day, 
-   .>              DATEPART(Q,d) AS quarter FROM cool_dates;
+   .               DATEPART(Q,d) AS quarter FROM cool_dates;
    year | month | day | quarter
    -----+-------+-----+--------
    1955 |    11 |   5 |       4
@@ -139,8 +139,8 @@ Break up a ``DATETIME`` into time components
 .. code-block:: psql
 
    master=> SELECT DATEPART(HOUR, dt) AS hour, DATEPART(MINUTE, dt) AS minute, 
-   .>              DATEPART(SECOND,dt) AS seconds, DATEPART(MILLISECOND,dt) AS milliseconds
-   .>              FROM cool_dates;
+   .               DATEPART(SECOND,dt) AS seconds, DATEPART(MILLISECOND,dt) AS milliseconds
+   .               FROM cool_dates;
    hour | minute | seconds | milliseconds
    -----+--------+---------+-------------
       1 |     21 |       0 |            0

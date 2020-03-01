@@ -6,7 +6,7 @@ CREATE FUNCTION
 
 ``CREATE FUNCTION`` creates a new user-defined function (UDF) in an existing database.
 
-UDFs are Python functions that can run on row values.
+See more in our :ref:`Python UDF (user-defined functions)<python_functions>` guide.
 
 Permissions
 =============

@@ -68,7 +68,9 @@ Queries from management will use any available worker.
 Creating this configuration
 -----------------------------------
 
-The persistent configuration for this setup is listed in these four configuration files:
+The persistent configuration for this setup is listed in these four configuration files.
+
+Each worker gets a comma-separated list of service queues that it subscribes to. These services are specified in the ``initialSubscribedServices`` attribute.
 
 .. code-block:: json
    :caption: Worker #1
@@ -110,7 +112,7 @@ The persistent configuration for this setup is listed in these four configuratio
        }
    }
 
-This configuration can be created temporarily (for the current session only) by using the :ref:`subscribe_service` and :ref:`unsubscribe_service` statements.
+.. tip:: This configuration can be created temporarily (for the current session only) by using the :ref:`subscribe_service` and :ref:`unsubscribe_service` statements.
 
 Verifying the configuration
 -----------------------------------

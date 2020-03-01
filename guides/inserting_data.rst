@@ -100,7 +100,7 @@ Text files like CSV rarely conform to `RFC 4180 <https://tools.ietf.org/html/rfc
 
 * Record delimiters (new lines) can be modified with the :ref:`RECORD DELIMITER<changing_record_delimiter>` syntax.
 
-* If the date formats differ from ISO8601, refer to the :ref:`copy_date_parsers` section to see how to override default parsing.
+* If the date formats differ from ISO 8601, refer to the :ref:`copy_date_parsers` section to see how to override default parsing.
 
 * 
    Fields in a CSV can be optionally quoted with double-quotes (``"``). However, any field containing a newline or another double-quote character must be quoted.
@@ -428,11 +428,11 @@ Further reading and migration guides
    migration/parquet
    migration/orc
 
-.. seealso::
+.. rubric:: See also:
 
-   * :ref:`copy_from`
-   * :ref:`insert`
-   * :ref:`external_tables`
+* :ref:`copy_from`
+* :ref:`insert`
+* :ref:`external_tables`
 
 .. rubric:: Footnotes
 

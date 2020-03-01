@@ -6,7 +6,11 @@ COPY FROM
 
 ``COPY ... FROM`` is a statement that allows reading data from a file into a table.
 
+This is the recommended method for bulk loading CSV files into SQream DB.
+
 In general, ``COPY`` moves data between file-system files and SQream DB tables.
+
+
 
 .. note:: 
    * Learn how to migrate from CSV files in the :ref:`csv` guide
@@ -81,7 +85,7 @@ Elements
      - Specifies the field terminator - the character or characters that separates fields or columns columns within each row of the file
    * - ``RECORD DELIMITER``
      - ``\n`` (UNIX style newline)
-     - Specifies the row terminator - the character that separates lines or rows
+     - Specifies the row terminator - the character that separates lines or rows, also known as a new line separator.
    * - ``ERROR_LOG``
      - Disabled
      - When used, the ``COPY`` process will ignore rows that can't be parsed. Errors will be written to the file specified by the ``ERROR_LOG`` parameter.
@@ -180,14 +184,14 @@ Printable characters
 
 Any printable ASCII character (or characters) can be used as a delimiter without special syntax. The default CSV field delimiter is a comma (``,``).
 
-A printable character is any ASCII character in the range 32 - 127.
+A printable character is any ASCII character in the range 32 - 126.
 
 :ref:`Literal quoting rules<string_literals>` apply with delimiters. For example, to use ``'`` as a field delimiter, use ``DELIMITER ''''``
 
 Non-printable characters
 ----------------------------
 
-A non-printable character (1 - 31) can be used in its octal form. 
+A non-printable character (1 - 31, 127) can be used in its octal form. 
 
 A tab can be specified by escaping it, for example ``\t``. Other non-printable characters can be specified using their octal representations, by using the ``E'\000'`` format, where ``000`` is the octal value of the character.
 

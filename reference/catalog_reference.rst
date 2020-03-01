@@ -486,12 +486,27 @@ Examples
 List all tables in the database
 ----------------------------------
 
-.. code-block:: postgres
+.. code-block:: psql
 
-   SELECT * FROM sqream_catalog.tables;
+   master=> SELECT * FROM sqream_catalog.tables;
+   database_name | table_id | schema_name | table_name     | row_count_valid | row_count | rechunker_ignore
+   --------------+----------+-------------+----------------+-----------------+-----------+-----------------
+   master        |        1 | public      | nba            | true            |       457 |                0
+   master        |       12 | public      | cool_dates     | true            |         5 |                0
+   master        |       13 | public      | cool_numbers   | true            |         9 |                0
+   master        |       27 | public      | jabberwocky    | true            |         8 |                0
 
+List all schemas in the database
+------------------------------------
 
-.. todo: plug in result from this
+.. code-block:: psql
+   
+   master=> SELECT * FROM sqream_catalog.schemas;
+   schema_id | schema_name   | schema_owner | rechunker_ignore
+   ----------+---------------+--------------+-----------------
+           0 | public        | sqream       | false           
+           1 | secret_schema | mjordan      | false           
+
 
 List columns and their types for a specific table
 ---------------------------------------------------

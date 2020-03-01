@@ -127,16 +127,18 @@ To change the order of values, specify the column order:
    
    executed
 
-To insert multiple rows, use sets of parentheses:
+You can use ``INSERT`` to insert multiple rows too. Here, you use sets of parentheses separated by commas:
 
 .. code-block:: psql
 
    master=> INSERT INTO cool_animals VALUES
-         (3, 'Cat', 5),
-         (4, 'Elephant', 6500),
+         (3, 'Cat', 5) ,
+         (4, 'Elephant', 6500) ,
          (5, 'Rhinoceros', 2100);
    
    executed
+
+.. note:: To load big data sets, use bulk loading methods instead. See our :ref:`inserting_data` guide for more information.
 
 When you leave out columns that have a :ref:`default value<default_values>` (including default ``NULL`` value) the default value is used.
 
@@ -269,6 +271,24 @@ To delete all rows in a table, use the :ref:`TRUNCATE<truncate>` command followe
    executed
 
 .. note:: While :ref:`truncate` deletes data from disk immediately, :ref:`delete` does not physically remove the deleted rows. For more information on removing the rows from disk, see :ref:`delete`.
+
+Saving query results to a CSV or PSV file
+==============================================
+
+The command line client :ref:`sqream sql<sqream_sql_cli_reference>` can be used to save query results to a CSV or other delimited file format.
+
+.. code-block:: console
+
+   $ sqream sql --username=mjordan --database=nba --host=localhost --port=5000 -c "SELECT * FROM nba LIMIT 5" --results-only --delimiter='|' > nba.psv
+   $ cat nba.psv
+   Avery Bradley           |Boston Celtics        |0|PG|25|6-2 |180|Texas                |7730337
+   Jae Crowder             |Boston Celtics        |99|SF|25|6-6 |235|Marquette            |6796117
+   John Holland            |Boston Celtics        |30|SG|27|6-5 |205|Boston University    |\N
+   R.J. Hunter             |Boston Celtics        |28|SG|22|6-5 |185|Georgia State        |1148640
+   Jonas Jerebko           |Boston Celtics        |8|PF|29|6-10|231|\N|5000000
+
+
+See the :ref:`Controlling the output of the client<controlling_output>` section of the reference for more options.
 
 .. rubric:: What's next?
 

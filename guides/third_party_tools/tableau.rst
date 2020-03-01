@@ -110,7 +110,7 @@ Let Tableau create the queries
 
 Create pre-optimized views (see :ref:`create_view`) and point the datasource at these views.
 
-some cases, using views or custom SQL as a datasoruce can actually degrade performance. 
+In some cases, using views or custom SQL as a datasource can actually degrade performance. 
 
 We recommend testing performance of custom SQL and views, and compare with Tableau's generated SQL.
 

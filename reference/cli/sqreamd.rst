@@ -6,8 +6,6 @@ sqreamd
 
 SQream DB's main worker is called ``sqreamd``.
 
-In general, you should not need to run ``sqreamd`` manually, but it is sometimes useful for testing. 
-
 This page serves as a reference for the options and parameters.
 
 Starting SQream DB
@@ -15,6 +13,8 @@ Starting SQream DB
 
 Start SQream DB temporarily
 -----------------------------
+
+In general, you should not need to run ``sqreamd`` manually, but it is sometimes useful for testing. 
 
 .. code-block:: console
 

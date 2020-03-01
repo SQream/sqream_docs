@@ -11,7 +11,7 @@ Features guides
 
    saved_queries
    external_tables
-   xxpython_functions
+   python_functions
 
    delete
    xxtime_based_data_management

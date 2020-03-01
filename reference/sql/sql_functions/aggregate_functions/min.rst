@@ -13,14 +13,13 @@ Syntax
 .. code-block:: postgres
 
    -- As an aggregate
-   
    MIN( expr )
    
    -- As a window function
-   
    MIN ( expr ) OVER (   
-            [ PARTITION BY partition_expr [, ...] ]  
-            [ ORDER BY order [ ASC | DESC ] [, ...]]   
+            [ PARTITION BY value_expression [, ...] ]
+            [ ORDER BY value_expression [ ASC | DESC ] [ NULLS { FIRST | LAST } ] [, ...] ]
+            [ frame_clause ]
          )
 
 Arguments

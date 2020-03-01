@@ -44,7 +44,6 @@ CentOS 7 / RHEL 7 / Amazon Linux
 
    .. code-block:: console
       
-      $ sudo yum update
       $ sudo yum -y install kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc
 
 #. Install the CUDA repository and install the latest display driver
@@ -52,14 +51,16 @@ CentOS 7 / RHEL 7 / Amazon Linux
    .. code-block:: console
       
       $ sudo rpm -Uvh https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-repo-rhel7-10.1.243-1.x86_64.rpm
-      $ sudo yum update && sudo yum install -y nvidia-driver-latest
+      $ sudo yum install -y nvidia-driver-latest
 
-.. note:: If Linux is running with X, switch to text-only mode before installing the display driver
+.. note:: If Linux is running with X, switch to text-only mode before installing the display driver.
    
    .. code-block:: console
    
-      $ sudo systemctl isolate multi-user.target
+      $ sudo systemctl set-default multi-user.target
 
+   This change permanently disables X. If you need X, change ``set-default`` to ``isolate``. This will re-enable X on the next reboot.
+   
 #. Restart your machine
 
    .. code-block:: console

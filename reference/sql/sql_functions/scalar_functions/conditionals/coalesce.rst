@@ -58,16 +58,16 @@ In some cases, replacing ``NULL`` values with a default can affect results.
 .. code-block:: psql
 
    master=> SELECT 
-   .>               AVG(num_eyes),
-   .>               AVG(COALESCE(num_eyes,2)) AS "Corrected average"
-   .>
-   .>       FROM (
-   .>             VALUES ('Copepod',1),('Spider',8)
-   .>                   ,('Starfish',5),('Praying mantis',5)
-   .>                   ,('Human (average)',2),('Eagle',2)
-   .>                   ,('Horseshoe crab',10),('Kiwi',NULL)
-   .>                   ,('Fox',NULL),('Badger',NULL)
-   .>             ) AS cool_animals (name , num_eyes);
+   .                AVG(num_eyes),
+   .                AVG(COALESCE(num_eyes,2)) AS "Corrected average"
+   . 
+   .        FROM (
+   .              VALUES ('Copepod',1),('Spider',8)
+   .                    ,('Starfish',5),('Praying mantis',5)
+   .                    ,('Human (average)',2),('Eagle',2)
+   .                    ,('Horseshoe crab',10),('Kiwi',NULL)
+   .                    ,('Fox',NULL),('Badger',NULL)
+   .              ) AS cool_animals (name , num_eyes);
    avg | Corrected average
    ----+------------------
      4 |                 3

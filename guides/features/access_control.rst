@@ -100,7 +100,8 @@ To use a role purely as a group, omit granting it ``LOGIN`` and ``PASSWORD`` per
 
    REVOKE my_group FROM my_other_user;
 
-  
+.. _permissions_table:
+
 Permissions
 ===========
 
@@ -233,7 +234,7 @@ Examples:
 
    GRANT  LOGIN,superuser  TO  admin;
 
-   GRANT  CREATE  FUNCTION  TO  admin;
+   GRANT  CREATE  FUNCTION  ON  database  master  TO  admin;
 
    GRANT  SELECT  ON  TABLE  admin.table1  TO  userA;
 

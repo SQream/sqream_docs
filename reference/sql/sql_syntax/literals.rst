@@ -100,12 +100,10 @@ A typed literal allows the creation of any data type using either of the followi
    -- or
    literal :: type_name
 
+See also :ref:`cast` for more information about supported casts.
+
 Syntax reference
 -------------------
-
-   typed_literal ::=
-         CAST(literal AS type_name)
-         | literal :: type_name
 
 .. code-block:: postgres
    
@@ -131,7 +129,6 @@ Syntax reference
        | DATETIME
        | VARCHAR ( digits )
        | NVARCHAR ( digits )
-
 
 Examples
 ----------

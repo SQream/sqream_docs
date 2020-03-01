@@ -74,11 +74,12 @@ Create a user for SQream DB, and optionally assign it to the ``wheel`` group for
 
 .. code-block:: console
 
-   $ useradd -m -U sqream
+   $ useradd -m -u 1132 -U sqream
    $ passwd sqream 
    $ usermod -aG wheel sqream 
 
-.. warning:: SQream DB should not run as ``root`` or ``sudo``.
+.. note::
+   * The UID (1132 in the example above) is set to ensure all shared files are accessible by all workers.
 
 Configure the OS locale and timezone
 =====================================
@@ -153,44 +154,50 @@ These settings affect:
 * Shared memory - Most OS installations may try to limit high throughput software like SQream DB.
 * Network - On high throughput operations like ingest, optimizing network connection parameters can boost performance
 * User limits - SQream DB may open a large amount of files. The default OS settings may cause some statements to fail if the system runs out of file descriptors.
+* Core dump creation rules
 
-#. Tell the OS to set the high throughput profile for network and memory access
+#. Create a directory for core dumps
 
-   #. Use ``tuned-adm`` profiles
-      
-      .. code-block:: console
-         
-            $ sudo tuned-adm profile throughput-performance
+   In this step, you will create a directory for writing core dumps - which you will configure in the next step.
    
-   #. Set ``sysctl`` overrides to tune system performance (for systems with over 64GB of RAM)
+   .. code-block:: console
       
-      .. code-block:: console
-         
-            $ sudo tee /etc/sysctl.d/sqreamdb.conf > /dev/null <<EOT
-            kernel.sysrq = 1
-            kernel.core_uses_pid = 1
-            kernel.core_pattern = /tmp/core_dumps/%f-core-%e-%s-%u-%g-%p-%t
-            kernel.msgmnb = 65536
-            kernel.msgmax = 65536
-            kernel.msgmni = 2048
-            kernel.pid_max = 524288
-            vm.max_map_count = 2042292
-            vm.dirty_background_ratio = 5
-            vm.dirty_ratio = 3
-            vm.swappiness = 1
-            vm.vfs_cache_pressure = 200
-            vm.zone_reclaim_mode = 0
-            net.ipv4.tcp_syncookies = 1
-            net.ipv4.conf.default.accept_source_route = 0
-            net.ipv4.tcp_tw_recycle = 1
-            net.ipv4.tcp_max_syn_backlog = 4096
-            net.ipv4.conf.all.arp_filter = 1
-            net.core.netdev_max_backlog = 10000
-            net.core.rmem_max = 2097152
-            net.core.wmem_max = 2097152
-            fs.suid_dumpable = 2
-            fs.file-max = 2097152
-            EOT
+      $ sudo mkdir /tmp/core_dumps
+
+   .. note::
+      Core dumps can be large - up to the size of the system memory (i.e. for a machine with 512GB of RAM, the size of the core dump will be 512GB).
+
+      Make sure the directory has enough space for writing a core dump.
+
+
+#. Set ``sysctl`` overrides to tune system performance
+   
+   .. code-block:: console
+      :linenos:
+      
+      $ sudo tee /etc/sysctl.d/sqreamdb.conf > /dev/null <<EOT
+      kernel.sysrq = 1
+      kernel.core_uses_pid = 1
+      kernel.core_pattern = /tmp/core_dumps/%f-core-%e-%s-%u-%g-%p-%t
+      kernel.pid_max = 524288
+      vm.max_map_count = 2042292
+      vm.dirty_background_ratio = 5
+      vm.dirty_ratio = 3
+      vm.swappiness = 1
+      vm.vfs_cache_pressure = 200
+      vm.zone_reclaim_mode = 0
+      fs.suid_dumpable = 2
+      fs.file-max = 2097152
+      EOT
+
+   .. note:: 
+      The settings above include provisioning for core dumps. Core dumps can be a valuable source of information in some scenarios, where stack traces and error logs are not enough.
+      
+      By default, the kernel writes core dump files in the current working directory of the process. SQream recommends overriding this setting and write the core dump files to a fixed directory.
+      
+      The setting on line 4 uses the directory you created in the previous step (``/tmp/core_dumps``).
+
+
 
 
 #. Increase the limit of open files and processes 

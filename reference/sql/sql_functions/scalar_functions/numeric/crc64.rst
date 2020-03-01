@@ -48,8 +48,8 @@ Calculate a CRC-64 hash of a string
 .. code-block:: psql
 
    numbers=> SELECT CRC64(x) FROM 
-   .>   (VALUES ('This is a relatively long text string, that can be converted to a shorter hash' :: varchar(80)))
-   .>   as t(x);
+   .    (VALUES ('This is a relatively long text string, that can be converted to a shorter hash' :: varchar(80)))
+   .    as t(x);
    crc64               
    --------------------
    -9085161068710498500

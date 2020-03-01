@@ -74,6 +74,7 @@ ODBC driver configurations are done via DSNs. Each DSN represents one SQream DB 
    .. image:: /_static/images/odbc_windows_dsns.png
 
 #. Enter your connection parameters. See the reference below for a description of the parameters.
+   
    .. image:: /_static/images/odbc_windows_dsn_config.png
 
 #. When completed, save the DSN by selecting :menuselection:`OK`
