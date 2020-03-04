@@ -39,22 +39,23 @@ In the example above, the worker will start on port 5000, and will use GPU #0.
 Frequently set parameters
 ============================
 
-.. list-table:: Compiler flags
-   :widths: auto
-   :header-rows: 1
-   
-   * - Name
-     - Section
-     - Description
-     - Default
-     - Value range
-     - Example
-   * -
-     -
-     -
-     -
-     -
-     -
+.. todo
+    list-table:: Compiler flags
+      :widths: auto
+      :header-rows: 1
+      
+      * - Name
+        - Section
+        - Description
+        - Default
+        - Value range
+        - Example
+      * -
+        -
+        -
+        -
+        -
+        -
 
 .. list-table:: Server flags
    :widths: auto
@@ -119,6 +120,12 @@ Frequently set parameters
      - ``10000``
      - ``1`` to ``10000``
      - ``"limitQueryMemoryGB" : 128``
+   * - ``cudaMemQuota``
+     - ``runtimeGlobalFlags``
+     - Modifies the maximum amount of GPU RAM allocated for a worker. The recommended value is 99% for a GPU with a single worker, or 49% for a GPU with two workers.
+     - ``90`` %
+     - ``1`` to ``99``
+     - ``"cudaMemQuota" : 99``
    * - ``showFullExceptionInfo``
      - ``runtimeGlobalFlags``
      - Shows complete error message with debug information. Use this for debugging.
@@ -147,7 +154,7 @@ Frequently set parameters
      - ``runtimeGlobalFlags``
      - Defines whether SQream logs should be cycled when they reach ``logMaxFileSizeMB`` size. When ``true``, set the ``logMaxFileSizeMB`` accordingly.
      - ``false``
-     - ``false`` or ``true``.
+     - ``false`` or ``true``
      - ``"useLogMaxFileSize" : true``
    * - ``logMaxFileSizeMB``
      - ``runtimeGlobalFlags``
@@ -161,6 +168,30 @@ Frequently set parameters
      - ``never``
      - ``daily``, ``weekly``, ``monthly``, ``never``
      - ``"logClientLevel" : 3``
+   * - ``useMetadataServer``
+     - ``runtimeGlobalFlags``
+     - Specifies if this worker connects to a cluster (``true``) or is standalone (``false``). If set to ``true``, also set ``metadataServerIp``
+     - ``true``
+     - ``false`` or ``true``
+     - ``"useMetadataServer" : true``
+   * - ``metadataServerIp``
+     - ``runtimeGlobalFlags``
+     - Specifies the hostname or IP of the metadata server, when ``useMetadataServer`` is set to ``true``.
+     - ``127.0.0.1``
+     - A valid IP or hostname
+     - ``"metadataServerIp": "127.0.0.1"``
+   * - ``useConfigIP``
+     - ``runtimeGlobalFlags``
+     - Specifies if the metadata should use a pre-determined hostname or IP to refer to this worker. If set to ``true``, set the ``machineIp`` configuration accordingly.
+     - ``false`` - automatically derived by the TCP socket
+     - ``false`` or ``true``
+     - ``"useConfigIP" : true``
+   * - ``machineIp``
+     - ``runtimeGlobalFlags``
+     - Specifies the worker's external IP or hostname, when used from a remote network.
+     - No default
+     - A valid IP or hostname
+     - ``"machineIp": "10.0.1.4"``
 
 .. list-table:: Runtime flags
    :widths: auto
@@ -207,12 +238,18 @@ Recommended configuration file
       "compileFlags":{ 
       },
       "runtimeFlags":{ 
-         "insertParsers": 16, 
-         "insertCompressors": 16 
+         "insertParsers": 16,
+         "insertCompressors": 8 
       },
       "runtimeGlobalFlags":{ 
          "spoolMemoryGB": 250, 
-         "initialSubscribedServices" : "sqream"
+         "cudaMemQuota": 90,
+         "initialSubscribedServices" : "sqream",
+         "useMetadataServer": true,
+         "metadataServerIp": "127.0.0.1",
+         "useConfigIP": true,
+         "machineIp": "127.0.0.1"
+         
       },
       "server":{ 
          "gpu":0,
