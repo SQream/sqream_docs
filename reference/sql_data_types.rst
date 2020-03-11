@@ -22,7 +22,7 @@ Supported types
      - Data size (not null, uncompressed)
      - Example
    * - ``BOOL``
-     - Boolean values (``true``,``false``)
+     - Boolean values (``true``, ``false``)
      - 1 byte
      - ``true``
    * - ``TINYINT``

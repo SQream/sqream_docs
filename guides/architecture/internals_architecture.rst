@@ -54,12 +54,7 @@ Bulk data layer
 
 The bulk data layer is comprised of extents, which are optimised for IO performance as much as possible. Inside the extents, are chunks, which are optimised for processing in the CPU and GPU. Compression is used in the extents and chunks.
 
-<<<<<<< HEAD:guides/internals_architecture.rst
 When you run small inserts, you will get less optimised chunks and extents, but the system is designed to both be able to still run efficiently on this, and to be able to reorganise them transactionally in the background, without blocking DML operations. By writing small chunks in small inserts, then reorganising later, it supports both fast medium sized insert transactions and fast querying.
-=======
-SQream DB also has a background storage reorganization process,to ensure good performance after the data has been inserted.
-The reorganization process allows support for small, fast inserts - while still maintaining the data arranged for maximum query performance. During storage reorganization, the "old data" remains consistent and on-disk. Data is never updated in-place, to ensure consistency.
->>>>>>> origin/master:guides/architecture/internals_architecture.rst
 
 Building blocks
 ----------------------
