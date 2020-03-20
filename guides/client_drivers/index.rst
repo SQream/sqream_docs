@@ -13,7 +13,7 @@ All operating systems
 ---------------------------
 
 * 
-   **JDBC** - `sqream-jdbc v3.0.0 (.zip) <http://downloads.sqream.com/drivers/2019.2/sqream-jdbc-3.0.0.zip>`_
+   **JDBC** - `sqream-jdbc v3.0.0 (.zip) <http://downloads.sqream.com/drivers/2020.1/sqream-jdbc-4.0.0.zip>`_
    
    :ref:`java_jdbc` Driver for all systems
    
@@ -24,20 +24,25 @@ All operating systems
    :ref:`pysqream` - Python driver
 
 * 
-   **Node.JS** - `sqream-v3.0.0 (.tar.gz) <http://downloads.sqream.com/drivers/2019.2/sqreamdb-3.0.0.tgz>`_
+   **Node.JS** - `sqream-v4.0.0 (.tar.gz) <http://downloads.sqream.com/drivers/2020.1/sqreamdb-4.0.0.tgz>`_
    
    :ref:`nodejs` - Node.JS driver
+
+* 
+   **Tableau Connector** - `SQreamDB (.taco) <http://downloads.sqream.com/drivers/2020.1/SQreamDB.taco>`_
+   
+   :ref:`Tableau connector<tableau_manual_installation>` - Tableau connector for manual installation
 
 Windows
 --------------
 
 * 
-   **JDBC installer** - `SQream JDBC Driver v2019.2.1.exe <http://downloads.sqream.com/drivers/2019.2/SQream%20JDBC%20Driver%20v2019.2.1.exe>`_ 
+   **JDBC installer** - `SQream JDBC Driver v2020.1.exe <http://downloads.sqream.com/drivers/2020.1/SQream%20JDBC%20Driver%20v2020.1.0.exe>`_ 
    
-   Windows installer for JDBC driver
+   Windows installer for JDBC driver, with Tableau connector.
 
 * 
-   **ODBC installer** - ``SQream Drivers v2019.2.1``
+   **ODBC installer** - ``SQream Drivers v2020.1``
    
    :ref:`Windows installer for ODBC and JDBC<install_odbc_windows>`, with Tableau customizations. Please contact your SQream representative to get this installer.
 
@@ -45,12 +50,12 @@ Linux
 --------------
 
 * 
-   **ODBC installer** - ``sqream_2019.2.1_odbc_3.0.0_x86_64_linux.tar.gz``
+   **ODBC installer** - ``sqream_odbc_4.0.0_x86_64_linux.tar.gz``
    
    :ref:`Linux installer for ODBC<install_odbc_linux>`. Please contact your SQream representative to get this installer.
 
 * 
-   **C++ connector** - `libsqream-3.0 <http://downloads.sqream.com/drivers/2019.2/libsqream-3.0.tar.gz>`_ 
+   **C++ connector** - `libsqream-4.0 <http://downloads.sqream.com/drivers/2020.1/libsqream-4.0.tar.gz>`_ 
    
    :ref:`C++ shared object<cpp_native>` library
 
