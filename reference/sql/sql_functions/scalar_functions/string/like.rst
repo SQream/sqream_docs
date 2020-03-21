@@ -113,6 +113,10 @@ Match the beginning of a string
 .. tip::
    :ref:`isprefixof` is a more performant way to match the beginning of a string. 
    This example can be written as 
+   
+   .. code-block:: postgres
+   
+      SELECT "Name","Age","Salary","Team" FROM nba WHERE ISPREFIXOF('Portland',"Team") LIMIT 5;
 
 Negate with ``NOT``
 ----------------------------------
