@@ -6,7 +6,7 @@ LIKE
 
 Tests if a string matches a given pattern.
 
-``LIKE`` and :ref:`rlike` are similar, but :ref:`rlike` uses POSIX regular expressions instead of the SQL patterns.
+``LIKE`` and :ref:`rlike` are similar. ``LIKE`` uses SQL patterns, whereas :ref:`rlike` uses POSIX regular expressions.
 
 See also: :ref:`rlike`, :ref:`regexp_count`, :ref:`regexp_instr`, :ref:`regexp_substr`, :ref:`isprefixof`.
 
@@ -64,7 +64,7 @@ Returns
 Notes
 =======
 
-* The test pattern must be literal string. Column references or complex expressions are currently unsupported.
+* The test pattern must be literal string. Column references or complex expressions are currently unsupported. If matching just the beginning of the string, use :ref:`isprefixof` which supports column references.
 
 * If the value is NULL, the result is NULL.
 
@@ -111,7 +111,7 @@ Match the beginning of a string
    Ed Davis        |  27 | 6980802 | Portland Trail Blazers
 
 .. tip::
-   :ref:`isprefixof` is a more performant way to match the beginning of a string. 
+   :ref:`isprefixof` is a more performant way to match the beginning of a string, especially
    This example can be written as 
    
    .. code-block:: postgres

@@ -167,7 +167,7 @@ Use saved queries to reduce recurring compilation time
 
 :ref:`saved_queries` are compiled when they are created. The query plan is saved in SQream DB's metadata for later re-use.
 
-Because the query plan is saved, they can be used to reduce compilation overhead, especially with very complex queries.
+Because the query plan is saved, they can be used to reduce compilation overhead, especially with very complex queries, such as queries with lots of values in an :ref:`IN` predicate.
 
 When executed, the saved query plan is recalled and executed on the up-to-date data stored on disk.
 

@@ -42,6 +42,8 @@ Notes
 
 * ``NULL`` is never equal to ``NULL``, so to check if a value is ``NULL`` use :ref:`IS NULL<is_null>` instead.
 
+* Using ``IN`` with more than 100 literal values can slow down query compilation. If your query relies on more than 100 values, consider using a lookup table and an inner join.
+
 Examples
 ===========
 
