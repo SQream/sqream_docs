@@ -8,7 +8,7 @@ SAVE_QUERY
 
 Read more in the :ref:`saved_queries` guide.
 
-See also: ref:`execute_saved_query`, :ref:`drop_saved_query`,  ref:`show_saved_query`,  ref:`list_saved_queries`.
+See also: :ref:`execute_saved_query`, :ref:`drop_saved_query`, :ref:`show_saved_query`, :ref:`list_saved_queries`.
 
 Permissions
 =============
