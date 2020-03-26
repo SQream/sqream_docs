@@ -102,3 +102,21 @@ Executing a saved query with parameters requires specifying the parameters in th
    James Johnson     | Toronto Raptors |      3 | PF       |  29 | 6-9    |    250 | Wake Forest | 2500000
    Jason Thompson    | Toronto Raptors |      1 | PF       |  29 | 6-11   |    250 | Rider       |  245177
    Jonas Valanciunas | Toronto Raptors |     17 | C        |  24 | 7-0    |    255 |             | 4660482
+
+
+Dropping a saved query
+=============================
+
+When you're done with a saved query, or would like to replace it with another, you can drop it with :ref:`drop_saved_query`:
+
+.. code-block:: psql
+
+   t=> SELECT DROP_SAVED_QUERY('select_all');
+   executed
+   t=> SELECT DROP_SAVED_QUERY('select_by_weight_and_team');
+   executed
+   
+   t=> SELECT LIST_SAVED_QUERIES();
+   saved_query              
+   -------------------------
+   select_by_weight         
