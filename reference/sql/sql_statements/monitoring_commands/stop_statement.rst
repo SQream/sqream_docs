@@ -8,6 +8,8 @@ STOP_STATEMENT
 
 To find a statement by ID, see :ref:`show_server_status` and :ref:`show_connections`.
 
+.. tip:: Some DBMSs call this killing a session or terminating a job
+
 Permissions
 =============
 
