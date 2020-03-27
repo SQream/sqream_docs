@@ -6,6 +6,11 @@ EXPLAIN
 
 ``EXPLAIN`` returns a static query plan, which can be used to debug query plans.
 
+To see an actively running query or statement, use :ref:`show_node_info` instead.
+
+See also :ref:`show_node_info`, :ref:`show_server_status`.
+
+
 Permissions
 =============
 
