@@ -25,7 +25,7 @@ copyright = '2020 SQream'
 author = 'Arnon Shimoni, Jake Wheat'
 
 # The full version, including alpha/beta/rc tags
-release = '2020.1-b1'
+release = '2020.1'
 
 
 # -- General configuration ---------------------------------------------------
