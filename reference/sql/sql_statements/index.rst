@@ -42,6 +42,8 @@ Data Definition commands (DDL)
      - Drop a database and all of its objects
    * - :ref:`DROP FUNCTION<drop_function>`
      - Drop a function
+   * - :ref:`DROP SCHEMA<drop_schema>`
+     - Drop a schema
    * - :ref:`DROP TABLE<drop_table>`
      - Drop a table and its contents from a database
    * - :ref:`DROP VIEW<drop_view>`

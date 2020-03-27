@@ -8,6 +8,8 @@ ALTER DEFAULT SCHEMA
 
 The default schema in SQream DB is ``public``.
 
+See also: :ref:`create_schema`, :ref:`drop_schema`.
+
 Permissions
 =============
 
