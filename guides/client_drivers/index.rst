@@ -50,6 +50,16 @@ Linux
 --------------
 
 * 
+   **SQream SQL** (x86) - `sqream-sql-v2020.1.1_stable.x86_64.tar.gz <http://downloads.sqream.com/drivers/2020.1/sqream-sql-v2020.1.1_stable.x86_64.tar.gz>`_ 
+   
+   :ref:`sqream sql<sqream_sql_cli_reference>` - Interactive command-line SQL client for Intel-based machines
+   
+* 
+   **SQream SQL** (IBM POWER9) - `sqream-sql-v2020.1.1_stable.ppc64le.tar.gz <http://downloads.sqream.com/drivers/2020.1/sqream-sql-v2020.1.1_stable.ppc64le.tar.gz>`_ 
+   
+   :ref:`sqream sql<sqream_sql_cli_reference>` - Interactive command-line SQL client for IBM POWER9-based machines
+   
+* 
    **ODBC installer** - ``sqream_odbc_4.0.0_x86_64_linux.tar.gz``
    
    :ref:`Linux installer for ODBC<install_odbc_linux>`. Please contact your SQream representative to get this installer.
