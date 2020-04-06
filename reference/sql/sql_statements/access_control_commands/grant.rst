@@ -8,6 +8,9 @@ The ``GRANT`` statement adds permissions for a role. It allows for setting permi
 
 It also allows adding a role as a memeber to another role.
 
+When granting permissions to a role, the permission is added for existing objects only.
+To automatically add permissions to newly created objects, see :ref:`alter_default_permissions`.
+
 Learn more about the permission system in the :ref:`access control guide<access_control>`.
 
 See also :ref:`revoke`, :ref:`create_role`.
@@ -209,7 +212,7 @@ Creating a new role for a group of users
 
 .. code-block:: postgres
    
-   -- Create new users (we will grant htem password/login later)
+   -- Create new users (we will grant them passwords and logins later)
    CREATE ROLE dba_user1;
    CREATE ROLE dba_user2;
    CREATE ROLE dba_user3;

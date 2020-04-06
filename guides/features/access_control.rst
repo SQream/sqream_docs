@@ -185,7 +185,7 @@ Permissions
 GRANT
 -----
 
-Grant gives permissions to a role.
+:ref:`grant` gives permissions to a role.
 
 .. code-block:: postgres
 
@@ -257,7 +257,7 @@ Examples:
 REVOKE
 ------
 
-Revoke removes permissions from a role.
+:ref:`revoke` removes permissions from a role.
 
 .. code-block:: postgres
 
@@ -308,14 +308,15 @@ Examples:
 Default permissions
 -------------------
 
-The default permissions system can be used to automatically grant
-permissions to newly created objects. See the departmental example
-below for one way it can be used.
+The default permissions system (See :ref:`alter_default_permissions`) 
+can be used to automatically grant permissions to newly 
+created objects (See the departmental example below for one way it can be used).
 
 A default permissions rule looks for a schema being created, or a
 table (possibly by schema), and is table to grant any permission to
 that object to any role. This happens when the create table or create
 schema statement is run.
+
 
 .. code-block:: postgres
 
@@ -429,12 +430,20 @@ As a superuser, you connect to the system and run the following:
    ALTER DEFAULT PERMISSIONS FOR my_schema_database_designers IN my_schema
     FOR TABLES GRANT SELECT,INSERT,DELETE TO my_schema_updaters;
 
+   -- For every table created by my_schema_database_designers, give access to my_schema_readers:
+   
    ALTER DEFAULT PERMISSIONS FOR my_schema_database_designers IN my_schema
     FOR TABLES GRANT SELECT TO my_schema_readers;
 
 
 This process needs to be repeated by a superuser each time a new
 schema is brought into this permissions management approach.
+
+.. note::
+   By default, any new object created will not be accessible by our new ``my_schema_readers`` group.
+   Running a ``GRANT SELECT ...`` only affects objects that already exist in the schema or database.
+   If you're getting a ``Missing the following permissions: SELECT on table 'database.public.tablename'`` error, make sure that
+   you've altered the default permissions with the ``ALTER DEFAULT PERMISSIONS`` statement.
 
 .. todo:
    create some example users
