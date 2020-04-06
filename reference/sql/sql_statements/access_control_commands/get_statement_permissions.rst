@@ -59,8 +59,8 @@ If the statement requires no special permissions, the utility returns an empty r
      - The object name
 
 .. include:: grant.rst
-   :start-line: 123
-   :end-line: 174
+   :start-line: 127
+   :end-line: 180
 
 Examples
 ===========
