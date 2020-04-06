@@ -12,13 +12,15 @@ New features
 Integrations
 -----------------
 
-* Load files directly from S3 buckets
+* Load files directly from :ref:`S3 buckets<inserting_data>`
 
-* Load files directly from HDFS
+* Load files directly from :ref:`HDFS<inserting_data>`
 
-* Import :ref:`ORC files<orc>` directly or through :ref:`external_tables`
+* Import :ref:`ORC files<orc>`, through :ref:`external_tables`
 
 * :ref:`Python driver (pysqream)<pysqream>` is now DB-API v2.0 compliant 
+
+* Certified :ref:`Tableau JDBC connector (taco)<connect_to_tableau>`, now also :ref:`supported on MacOS<tableau_manual_installation>`
 
 SQL support
 ---------------
@@ -37,6 +39,7 @@ Improvements and fixes
 
 * 207 bug fixes, including:
    
+   - Improved performance of both inner and outer joins
    - Fixed wrong results on STDDEV (0 instead of ``NULL``)
    - Fixed wrong results on nested Parquet files
    - Fixed failing cast from ``VARCHAR`` to ``FLOAT``
@@ -52,6 +55,8 @@ Improvements and fixes
    - Fixed situation in which a malformed time (``24:00:00``) would get incorrectly inserted from a CSV
    - Fixed race condition in which loading thousands of small files from HDFScaused a memory leak
 
+* The :ref:`saved query<saved_queries>` feature can now be used with :ref:`insert` statements
+
 * Faster "Deferred gather" algorithm for joins with text keys
 
 * Faster filtering when using :ref:`datepart`
@@ -64,7 +69,9 @@ Improvements and fixes
 
 * ``highCardinalityColumns`` can be configured to tell the system about :ref:`high selectivity<high_selectivity>` columns
 
-* :ref:`sqream sql<sqream_sql_cli_reference>` starts up faster and can be deployed standalone
+* :ref:`sqream sql<sqream_sql_cli_reference>` starts up faster, can run on any Linux machine
+
+* Additional CSV date formats (date parsers) added for compatibility
 
 Behaviour changes
 ========================
@@ -79,6 +86,26 @@ Behaviour changes
 
 * All logs are now unified into one log. See :ref:`logging` for more information
 
+* Compression changes:
+   
+   - The latest version of SQream DB could select a different compression scheme if data is reloaded, compared to previous versions of SQream DB. This internal change improves performance.
+   
+   - With ``LZ4`` compression, the maximum chunk size is limited to 2.1GB. If the chunk size is bigger, another compression may be selected - primarily ``SNAPPY``.
+
+* The following configuration flags have been deprecated:
+
+   - ``addStatementRechunkerAfterGpuToHost``
+   - ``increasedChunkSizeFactor``
+   - ``gpuReduceMergeOutputFactor``
+   - ``fullSortInputMemFactor``
+   - ``reduceInputMemFactor``
+   - ``distinctInputMemFactor``
+   - ``useAutoMemFactors``
+   - ``autoMemFactorsVramFactor``
+   - ``catchNotEnoughVram``
+   - ``useNetworkRechunker``
+   - useMemFactorInJoinOutput
+
 Operations
 ========================
 
@@ -87,16 +114,27 @@ Operations
 * When upgrading from a previous version of SQream DB or lower, the storage version must be upgraded using the :ref:`upgrade_storage_cli_reference` utility: ``./bin/upgrade_storage /path/to/storage/sqreamdb/``
 
 * 
-   Because of a change in memory allocation behaviour in this version, a new flag ``limitQueryMemoryGB`` has been added to the ``runtimeGlobalFlag`` section. The recommended value for this is ``total host memory`` / ``sqreamd workers on host``.
-   For example, for a machine with 512GB of RAM and 4 workers, the recommended setting is ``512/4 → 128``.
+   Because of a change in memory allocation behaviour in this version, a new setting ``limitQueryMemoryGB`` has been added to the ``runtimeGlobalFlag`` section. The recommended value for this is ``total host memory`` * 90% / ``sqreamd workers on host``.
+   For example, for a machine with 512GB of RAM and 4 workers, the recommended setting is ``⌊(512 * 0.95 / 4)⌋ → ~ 486 / 4 → 121``.
    
+   The 95% is to allow for some overhead for other system processes. This number can be modified to allow SQream DB to take more or memory, as required.
+
+* 
+   The ``spoolMemoryGB`` setting dictates how much memory is set aside for spooling. This flag should be set at 90% of the ``limitQueryMemoryGB``.
+   As per the example above, ``⌊( 0.9 * limitQueryMemoryGB )⌋ → ⌊( 0.9 * 121 )⌋ → 108``
+
    .. code-block:: none
       
       "runtimeGlobalFlags": {
-         "limitQueryMemoryGB" : 128
+         "limitQueryMemoryGB" : 121,
+         "spoolMemoryGB" : 108
 
+
+ 
 Known Issues & Limitations
 ================================
+
+* An invalid formatted CSV can cause an ``insufficient memory`` error on a :ref:`copy_from` statement if a quote isn't closed and the file is much larger than system memory.
 
 * ``TEXT`` columns cannot be used in a window functions' partition
 
@@ -106,10 +144,14 @@ Known Issues & Limitations
 
 * Using ``SUM`` on very large numbers in window functions can error (``overflow``) when not used with an ``ORDER BY`` clause
 
-* Slight performance decrease with :ref:`dateadd` in this version
+* Slight performance decrease with :ref:`dateadd` in this version (<4%)
+
+* Operations on Snappy-compressed ORC files are slower than their Parquet equivalents.
 
 
 Upgrading to v2020.1
 ========================
+
+Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and other OSs via Docker.
 
 Contact your account manager to get the latest release of SQream DB.

@@ -13,9 +13,17 @@ SQream DB supports importing data from the following sources:
 
 * Using :ref:`insert` with :ref:`a client driver<client_drivers>`
 * Using :ref:`copy_from`:
-* * Local filesystem and locally mounted network filesystems
-* * S3
-* * HDFS
+
+   - Local filesystem and locally mounted network filesystems
+   - S3
+   - HDFS
+
+* Using :ref:`external_tables`:
+
+   - Local filesystem and locally mounted network filesystems
+   - S3
+   - HDFS
+
 
 SQream DB supports loading files in the following formats:
 

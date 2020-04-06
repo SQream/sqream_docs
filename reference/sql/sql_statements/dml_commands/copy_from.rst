@@ -107,9 +107,7 @@ Elements
 Supported date formats
 =========================
 
-Supported date parsers
-
-.. list-table:: 
+.. list-table:: Supported date parsers
    :widths: auto
    :header-rows: 1
    
@@ -131,8 +129,21 @@ Supported date parsers
    * - ``MDY``
      - ``MM/DD/YYYY [hh:mm:ss[.SSS]]``
      - ``12/31/2017 11:12:13.456``
-
-Date pattern description
+   * - ``YYYYMMDD``
+     - ``YYYYMMDD[hh[mm[ss[SSS]]]]``
+     - ``20171231111213456``
+   * - ``YYYY-M-D``
+     - ``YYYY-M-D[ h:m[:s[.S]]]``
+     - ``2017-9-10 10:7:21.1`` (optional leading zeroes)
+   * - ``YYYY/M/D``
+     - ``YYYY/M/D[ h:m[:s[.S]]]``
+     - ``2017/9/10 10:7:21.1`` (optional leading zeroes)
+   * - ``DD-mon-YYYY``
+     - ``DD-mon-YYYY[ hh:mm[:ss[.SSS]]]``
+     - ``31-Dec-2017 11:12:13.456``
+   * - ``YYYY-mon-DD` 
+     - ``YYYY-mon-DD[ hh:mm[:ss[.SSS]]]``
+     - ``2017-Dec-31 11:12:13.456``
 
 .. list-table:: 
    :widths: auto
@@ -340,6 +351,8 @@ Loading non-standard dates
 ----------------------------------
 
 If files contain dates not formatted as ``ISO8601``, tell ``COPY`` how to parse the column. After parsing, the date will appear as ``ISO8601`` inside SQream DB.
+
+These are called date parsers. You can find the supported dates in the :ref:`'Supported date parsers' table<copy_date_parsers>` above
 
 In this example, ``date_col1`` and ``date_col2`` in the table are non-standard. ``date_col3`` is mentioned explicitly, but can be left out. Any column that is not specified is assumed to be ``ISO8601``.
 
