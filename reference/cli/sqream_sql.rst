@@ -11,13 +11,31 @@ This page serves as a reference for the options and parameters. Learn more about
 .. contents:: In this topic:
    :local:
 
-Running sqream sql
-======================
+Installing sqream sql
+=========================
 
-``sqream sql`` can be found in the ``bin`` directory of your SQream DB installation, under the name ``sqream``.
+If you have a SQream DB installation on your server, ``sqream sql`` can be found in the ``bin`` directory of your SQream DB installation, under the name ``sqream``.
 
 .. versionchanged:: 2020.1
-   Starting from version 2020.1, ``ClientCmd`` has been renamed to ``sqream sql``.
+   As of version 2020.1, ``ClientCmd`` has been renamed to ``sqream sql``.
+
+To run ``sqream sql`` on any other Linux host:
+
+#. Download the ``sqream sql`` tarball package from the :ref:`client_drivers` page.
+#. Untar the package: ``tar xf sqream-sql-v2020.1.1_stable.x86_64.tar.gz``
+#. Start the client:
+   
+   .. code-block:: psql
+      
+      $ cd sqream-sql-v2020.1.1_stable.x86_64
+      $ ./sqream sql --port=5000 --username=jdoe --databasename=master
+      Password:
+     
+      Interactive client mode
+      To quit, use ^D or \q.
+      
+      master=> _
+
 
 Using sqream sql
 =================
