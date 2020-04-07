@@ -111,24 +111,32 @@ Operations
 
 * The client-server protocol has been updated to support faster data flow, and more reliable memory allocations on the client side. End users are required to use only the latest :ref:`sqream sql<sqream_sql_cli_reference>`, :ref:`java_jdbc`, and :ref:`odbc` drivers delivered with this version. See the :ref:`client driver download page<client_drivers>` for the latest drivers and connectors.
 
-* When upgrading from a previous version of SQream DB or lower, the storage version must be upgraded using the :ref:`upgrade_storage_cli_reference` utility: ``./bin/upgrade_storage /path/to/storage/sqreamdb/``
+* When upgrading from a previous version of SQream DB (for example, v2019.2), the storage version must be upgraded using the :ref:`upgrade_storage_cli_reference` utility: ``./bin/upgrade_storage /path/to/storage/sqreamdb/``
 
 * 
-   Because of a change in memory allocation behaviour in this version, a new setting ``limitQueryMemoryGB`` has been added to the ``runtimeGlobalFlag`` section. The recommended value for this is ``total host memory`` * 90% / ``sqreamd workers on host``.
-   For example, for a machine with 512GB of RAM and 4 workers, the recommended setting is ``⌊(512 * 0.95 / 4)⌋ → ~ 486 / 4 → 121``.
+   A change in memory allocation behaviour in this version sees the introduction of a new setting, ``limitQueryMemoryGB``. This is an addition to the previous ``spoolMemoryGB`` setting.
+ 
+   A good rule-of-thumb is to allow 5% system memory for other processes. The spool memory allocation should be around 90% of the total memory allocated.
    
-   The 95% is to allow for some overhead for other system processes. This number can be modified to allow SQream DB to take more or memory, as required.
+   - ``limitQueryMemoryGB`` defines how much total system memory is used by the worker. The recommended setting is (``total host memory`` - 5%) / ``sqreamd workers on host``.
 
-* 
-   The ``spoolMemoryGB`` setting dictates how much memory is set aside for spooling. This flag should be set at 90% of the ``limitQueryMemoryGB``.
-   As per the example above, ``⌊( 0.9 * limitQueryMemoryGB )⌋ → ⌊( 0.9 * 121 )⌋ → 108``
+   - ``spoolMemoryGB`` defines how much memory is set aside for spooling, out of the total system memory allocated in ``limitQueryMemoryGB``. The recommended setting is 90% of the ``limitQueryMemoryGB``.
+   
+   For example, for a machine with 512GB of RAM and 4 workers, the recommended settings are:
+   
+   - ``limitQueryMemoryGB`` - ``⌊(512 * 0.95 / 4)⌋ → ~ 486 / 4 → 121``.
+   
+   - ``spoolMemoryGB`` - ``⌊( 0.9 * limitQueryMemoryGB )⌋ → ⌊( 0.9 * 121 )⌋ → 108``
 
+   Example settings per-worker, for 512GB of RAM and 4 workers:
+   
    .. code-block:: none
       
       "runtimeGlobalFlags": {
          "limitQueryMemoryGB" : 121,
          "spoolMemoryGB" : 108
 
+   
 
  
 Known Issues & Limitations
