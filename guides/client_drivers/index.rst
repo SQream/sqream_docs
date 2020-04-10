@@ -13,13 +13,13 @@ All operating systems
 ---------------------------
 
 * 
-   **JDBC** - `sqream-jdbc v3.0.0 (.zip) <http://downloads.sqream.com/drivers/2020.1/sqream-jdbc-4.0.0.zip>`_
+   **JDBC** - `sqream-jdbc v4.0.0 (.zip) <http://downloads.sqream.com/drivers/2020.1/sqream-jdbc-4.0.0.zip>`_
    
-   :ref:`java_jdbc` Driver for all systems
+   :ref:`java_jdbc` Driver
    
 
 * 
-   **Python** - `pysqream v3.0.1 (.tar.gz) <https://github.com/SQream/pysqream/releases/tag/v3.0.1>`_
+   **Python** - `pysqream v3.0.2 (.tar.gz) <https://github.com/SQream/pysqream/releases/tag/v3.0.2>`_
    
    :ref:`pysqream` - Python driver
 
