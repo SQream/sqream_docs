@@ -6,28 +6,47 @@ What's new in 2020.1
 
 SQream DB v2020.1 contains lots of new features, improved performance, and bug fixes.
 
+This is the first release of 2020, with a strong focus on integration into existing environments. The release includes connectivity to Hadoop and other legacy data warehouse ecosystems. We’re also bringing lots of new capabilities to our analytics engine, to empower data users to analyze more data with less friction.
+
+The latest release vastly improves reliability and performance, and makes getting more data into SQream DB easier than ever.
+
+The core of SQream DB v2020.1 contains new integration features, more analytics capabilities, and better drivers and connectors.
+
+
 New features
 ================
 
 Integrations
 -----------------
 
-* Load files directly from :ref:`S3 buckets<inserting_data>`
+* Load files directly from :ref:`S3 buckets<inserting_data>`. Customers with columnar data in S3 data lakes can now access the data directly. All that is needed is to simply point an external table to an S3 bucket with Parquet, ORC, or CSV objects. This feature is available on all deployments of SQream DB – in the cloud and on-prem.
 
-* Load files directly from :ref:`HDFS<inserting_data>`
+* Load files directly from :ref:`HDFS<inserting_data>`. SQream DB now comes with built-in, native HDFS support for directly loading data from Hadoop-based data lakes. Our focus on helping Hadoop customers do more with their data led us to develop this feature, which works out of the box. As a result, SQream DB can now not only read but also write data, and intermediate results back to HDFS for HIVE and other data consumers. SQream DB now fits seamlessly into a Hadoop data pipeline.
 
-* Import :ref:`ORC files<orc>`, through :ref:`external_tables`
 
-* :ref:`Python driver (pysqream)<pysqream>` is now DB-API v2.0 compliant 
+* Import :ref:`ORC files<orc>`, through :ref:`external_tables`. ORC files join Parquet as files that can be natively accessed and inserted into SQream DB tables.
 
-* Certified :ref:`Tableau JDBC connector (taco)<connect_to_tableau>`, now also :ref:`supported on MacOS<tableau_manual_installation>`
+* :ref:`Python driver (pysqream)<pysqream>` is now DB-API v2.0 compliant. Customers can write high-performance Python applications that make full use of SQream DB - connect, query, delete, and insert data. Data scientists can use pysqream with Pandas, Numpy, and AI/ML frameworks like TensorFlow for direct queries of huge datasets.
+
+* Certified :ref:`Tableau JDBC connector (taco)<connect_to_tableau>`, now also :ref:`supported on MacOS<tableau_manual_installation>`. Users are encouraged to install the new JDBC connector.
+
+* 
+   All logs are now unified into one log, which can be analyzed with SQream DB directly.
+   See :ref:`logging` for more information.
+
 
 SQL support
 ---------------
 
-* Added frames and frame exclusions to :ref:`window_functions`. This is available for preview, with more features coming in the next version
+* 
+   Added frames and frame exclusions to :ref:`window_functions`. This is available for preview, with more features coming in the next version.
+   
+   The new frames and frame exclusionsfeature adds complex analytics capabilities to the already powerful window functions.
 
-* New datatype - ``TEXT``, which replaces ``NVARCHAR`` directly with UTF-8 support and improved performance
+* 
+   New datatype - ``TEXT``, which replaces ``NVARCHAR`` directly with UTF-8 support and improved performance.
+   
+   Unlike ``VARCHAR``, the new ``TEXT`` data type has no restrictions on size, and carries no performance overhead as the text sizes grow.
 
 * ``TEXT`` join keys are now supported
 
@@ -36,6 +55,8 @@ SQL support
 
 Improvements and fixes
 ========================
+
+SQream DB v2020.1 includes hundreds of small new features and tunable parameters that improve performance, reliability, and stability. Existing SQream DB users can expect to see a general speedup of around 10% on most statements and queries!
 
 * 207 bug fixes, including:
    
