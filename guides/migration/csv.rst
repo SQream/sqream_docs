@@ -28,7 +28,18 @@ Prepare the source CSVs, with the following requirements:
 
    * A newline
 
-* If a field is quoted, any double quote that appears must be double-quoted (similar to the :ref:`string literals quoting rules<string_literals>`. For example, to encode ``What are "birds"?``, the field should appear as ``"What are ""birds""?"``.
+* 
+   If a field is quoted, any double quote that appears must be double-quoted (similar to the :ref:`string literals quoting rules<string_literals>`. For example, to encode ``What are "birds"?``, the field should appear as ``"What are ""birds""?"``.
+   
+   Other modes of escaping are not supported (e.g. ``1,"What are \"birds\"?"`` is not a valid way of escaping CSV values).
+
+* ``NULL`` values can be marked in two ways in the CSV:
+   
+   - An explicit null marker. For example, ``col1,\N,col3``
+   - An empty field delimited by the field delimiter. For example, ``col1,,col3``
+   
+   .. note:: If a text field is quoted but contains no content (``""``) it is considered an empty text field. It is not considered ``NULL``.
+
 
 2. Place CSVs where SQream DB workers can access
 =======================================================

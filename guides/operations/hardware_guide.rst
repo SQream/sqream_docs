@@ -48,7 +48,7 @@ An average single-node cluster can be a rackmount server or workstation, contain
    * - Onboard storage
      - 
          * 2x 960GB SSD 2.5in Hot-plug for OS, RAID1
-         * 14x 3.84TB SSD 2.5in Hot-plug for storage, RAID5
+         * 14x 3.84TB SSD 2.5in Hot-plug for storage, RAID10
    * - Networking
      - Intel X710 DP 10Gb DA/SFP+
    * - GPU
@@ -174,7 +174,7 @@ Storage
 
 For clustered scale-out installations, SQream DB relies on NAS/SAN storage. These devices have extremely high reliability and durability, with five 9s of up-time.
 
-For stand-alone installations, SQream DB relies on redundant disk configurations, like RAID 5/6/10/50. These RAID configurations ensure that blocks of data are replicated between disks, so that failure of a number of disks will not result in data loss or availability of the system. 
+For stand-alone installations, SQream DB relies on redundant disk configurations, like RAID 10/50. These RAID configurations ensure that blocks of data are replicated between disks, so that failure of a number of disks will not result in data loss or availability of the system. 
 
 Because storage reliability is important, SQream recommends enterprise-grade SAS SSD drives. However, as with other components – there is a tradeoff for cost/performance. When performance and reliability are important, SQream recommends SAS SSD or NVMe drives. 
 
