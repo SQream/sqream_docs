@@ -59,7 +59,7 @@ To create a database, we will use the :ref:`create_database` syntax.
 
 Now, reconnect to the newly created database.
 
-First, exit the client by typing :kdb:`\q` and hitting enter.
+First, exit the client by typing ``\q`` and hitting enter.
 
 From the Linux shell, restart the client with the new database name:
 
