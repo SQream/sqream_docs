@@ -225,6 +225,41 @@ Whenever the data canâ€™t be parsed because it is improperly formatted or doesnâ
 
 #. When ``ERROR_LOG`` is set and ``ERROR_VERBOSITY`` is set to ``0``, rejected rows are saved to the file path specified, but errors are not logged. This is useful for replaying the file later.
 
+CSV support
+================
+
+By default, SQream DB's CSV parser can handle `RFC 4180 standard CSVs <https://tools.ietf.org/html/rfc4180>`_ , but can also be modified to support non-standard CSVs (with multi-character delimiters, unquoted fields, etc).
+
+All CSV files shoudl be prepared according to these recommendations:
+
+* Files are UTF-8 or ASCII encoded
+
+* Field delimiter is an ASCII character or characters
+
+* Record delimiter, also known as a new line separator, is a Unix-style newline (``\n``), DOS-style newline (``\r\n``), or Mac style newline (``\r``).
+
+* Fields are optionally enclosed by double-quotes, or mandatory quoted if they contain one of the following characters:
+
+   * The record delimiter or field delimiter
+
+   * A double quote character
+
+   * A newline
+
+* 
+   If a field is quoted, any double quote that appears must be double-quoted (similar to the :ref:`string literals quoting rules<string_literals>`. For example, to encode ``What are "birds"?``, the field should appear as ``"What are ""birds""?"``.
+   
+   Other modes of escaping are not supported (e.g. ``1,"What are \"birds\"?"`` is not a valid way of escaping CSV values).
+
+Null markers
+---------------
+
+``NULL`` values can be marked in two ways in the CSV:
+
+* An explicit null marker. For example, ``col1,\N,col3``
+* An empty field delimited by the field delimiter. For example, ``col1,,col3``
+
+.. note:: If a text field is quoted but contains no content (``""``) it is considered an empty text field. It is not considered ``NULL``.
 
 Examples
 ===========

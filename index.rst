@@ -38,7 +38,7 @@ SQream DB comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc
          
          :ref:`sql_feature_support`
          
-         :ref:`Migrate from CSVs<csv>`
+         :ref:`Bulk load CSVs<csv>`
      - 
          :ref:`SQL reference<sql>`
          
