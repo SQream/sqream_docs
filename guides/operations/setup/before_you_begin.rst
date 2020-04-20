@@ -9,16 +9,16 @@ Before you install or deploy SQream DB, please verify you have the following:
 * An NVIDIA-capable server, either on-premise or on supported cloud platforms. 
 
    * Supported operating systems: Red Hat Enterprise Linux v7.x / CentOS v7.x / Ubuntu 18.04 / Amazon Linux
-   * NVIDIA GPU. A Tesla GPU is highly recommended
+   * NVIDIA GPU. A Tesla GPU is highly recommended. See more information in our :ref:`hardware_guide`.
    * A privileged SSH connection to the server (sudo)
-
-.. tip:: Refer to our :ref:`hardware_guide` for more information about supported and recommended configurations.
 
 * A SQream DB license (contact support@sqream.com or your SQream account manager for your license key)
 
 * A 3rd party tool that can connect to SQream DB via JDBC, ODBC, or Python
 
 If you do not have a SQream DB license, visit our website and `sign up for SQream DB`_ today!
+
+Refer to our :ref:`hardware_guide` for more information about supported and recommended configurations.
 
 What does the installation process look like?
 ----------------------------------------------
