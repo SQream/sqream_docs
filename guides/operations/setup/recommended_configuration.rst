@@ -263,3 +263,9 @@ If not required, you can disable the server's firewall. This will reduce connect
       $ sudo systemctl stop firewalld
 
 
+.. rubric:: What's next?
+
+* :ref:`Test your SQream DB installation by creating your first table<first_steps>`
+
+* :ref:`Connect an external tool to SQream DB <third_party_tools>`
+

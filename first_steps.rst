@@ -22,7 +22,14 @@ Preparing for this tutorial
 
 This tutorial assumes you already have a SQream DB cluster running and the SQream command line client installed on the machine you are on.
 
-Run the client like this. It will interactively ask for the password.
+.. rubric:: If you haven't already:
+
+* :ref:`Set up a SQream DB cluster<setup>`
+
+* :ref:`Install SQream SQL CLI<sqream_sql_cli_reference>`
+
+
+Run the SQream SQL client like this. It will interactively ask for the password.
 
 .. code-block:: psql
 
@@ -40,11 +47,36 @@ You should use a username and password that you have set up or your DBA has give
    * To exit the shell, type ``\q``  or :kbd:`Ctrl-d`. 
    * A new SQream DB cluster contains a database named `master`. We will start with this database.
 
-.. TODO: the tutorial should absolutely not start creating tables in the master database ...
+Create a new database for playing around in
+=======================================================
+
+To create a database, we will use the :ref:`create_database` syntax.
+
+.. code-block:: psql
+
+   master=> CREATE DATABASE test;
+   executed
+
+Now, reconnect to the newly created database.
+
+First, exit the client by typing :kdb:`\q` and hitting enter.
+
+From the Linux shell, restart the client with the new database name:
+
+.. code-block:: psql
+
+   $ sqream sql --port=5000 --username=rhendricks -d test
+   Password:
+   
+   Interactive client mode
+   To quit, use ^D or \q.
+   
+   test=> _
+
+The new database name appears in the prompt. This lets you know which database you're connected to.
 
 Creating your first table
 ============================
-
 
 To create a table, we will use the :ref:`create_table` syntax, with a table name and some column specifications.
 
@@ -75,7 +107,7 @@ You can ask SQream DB to list the full, verbose ``CREATE TABLE`` statement for a
 
 .. code-block:: psql
 
-   master=> SELECT GET_DDL('cool_animals');
+   test=> SELECT GET_DDL('cool_animals');
    create table "public"."cool_animals" (
    "id" int not null,
    "name" varchar(20),
@@ -90,7 +122,7 @@ If you are done with this table, you can use :ref:`drop_table` to remove the tab
 
 .. code-block:: psql
 
-   master=> DROP TABLE cool_animals;
+   test=> DROP TABLE cool_animals;
    
    executed
 
@@ -101,7 +133,7 @@ To see the tables in the current database, we will query the catalog
 
 .. code-block:: psql
 
-   master=> SELECT table_name FROM sqream_catalog.tables;
+   test=> SELECT table_name FROM sqream_catalog.tables;
    cool_animals
    
    1 rows
@@ -115,7 +147,7 @@ The statement includes the table name, an optional list of column names, and col
 
 .. code-block:: psql
 
-   master=> INSERT INTO cool_animals VALUES (1, 'Dog', 7);
+   test=> INSERT INTO cool_animals VALUES (1, 'Dog', 7);
    
    executed
 
@@ -123,7 +155,7 @@ To change the order of values, specify the column order:
 
 .. code-block:: psql
 
-   master=> INSERT INTO cool_animals(weight, id, name) VALUES (3, 2, 'Possum');
+   test=> INSERT INTO cool_animals(weight, id, name) VALUES (3, 2, 'Possum');
    
    executed
 
@@ -131,7 +163,7 @@ You can use ``INSERT`` to insert multiple rows too. Here, you use sets of parent
 
 .. code-block:: psql
 
-   master=> INSERT INTO cool_animals VALUES
+   test=> INSERT INTO cool_animals VALUES
          (3, 'Cat', 5) ,
          (4, 'Elephant', 6500) ,
          (5, 'Rhinoceros', 2100);
@@ -144,16 +176,16 @@ When you leave out columns that have a :ref:`default value<default_values>` (inc
 
 .. code-block:: psql
 
-   master=> INSERT INTO cool_animals (id) VALUES (6);
+   test=> INSERT INTO cool_animals (id) VALUES (6);
    
    executed
 
 .. code-block:: psql
 
-   master=> INSERT INTO cool_animals (id) VALUES (6);
+   test=> INSERT INTO cool_animals (id) VALUES (6);
    
    executed
-   master=> SELECT * FROM cool_animals;
+   test=> SELECT * FROM cool_animals;
    1,Dog                 ,7
    2,Possum              ,3
    3,Cat                 ,5
@@ -172,7 +204,7 @@ For querying, use the :ref:`select` keyword, followed by a list of columns and v
 
 .. code-block:: psql
 
-   master=> SELECT id, name, weight FROM cool_animals;
+   test=> SELECT id, name, weight FROM cool_animals;
    1,Dog                 ,7
    2,Possum              ,3
    3,Cat                 ,5
@@ -186,7 +218,7 @@ To get all columns without specifying them, use the star operator ``*``:
 
 .. code-block:: psql
 
-   master=> SELECT * FROM cool_animals;
+   test=> SELECT * FROM cool_animals;
    1,Dog                 ,7
    2,Possum              ,3
    3,Cat                 ,5
@@ -200,7 +232,7 @@ To get the number of values in a table without getting the full result set, use 
 
 .. code-block:: psql
 
-   master=> SELECT COUNT(*) FROM cool_animals;
+   test=> SELECT COUNT(*) FROM cool_animals;
    6
    
    1 row
@@ -210,7 +242,7 @@ Filter results by adding a :ref:`WHERE<where>` clause and specifying the filter 
 
 .. code-block:: psql
 
-   master=> SELECT id, name, weight FROM cool_animals WHERE weight > 1000;
+   test=> SELECT id, name, weight FROM cool_animals WHERE weight > 1000;
    4,Elephant            ,6500
    5,Rhinoceros          ,2100
    
@@ -220,7 +252,7 @@ Sort the results by adding an :ref:`ORDER BY<order_by>` clause, and specifying a
 
 .. code-block:: psql
 
-   master=> SELECT * FROM cool_animals ORDER BY weight DESC;
+   test=> SELECT * FROM cool_animals ORDER BY weight DESC;
    4,Elephant            ,6500
    5,Rhinoceros          ,2100
    1,Dog                 ,7
@@ -234,7 +266,7 @@ Filter null rows by adding a filter :ref:`IS NOT NULL<is_null>`:
 
 .. code-block:: psql
 
-   master=> SELECT * FROM cool_animals WHERE weight IS NOT NULL ORDER BY weight DESC;
+   test=> SELECT * FROM cool_animals WHERE weight IS NOT NULL ORDER BY weight DESC;
    4,Elephant            ,6500
    5,Rhinoceros          ,2100
    1,Dog                 ,7
@@ -250,7 +282,7 @@ To delete rows in a table selectively, use the :ref:`DELETE<delete>` command, wi
 
 .. code-block:: psql
 
-   master=> DELETE FROM cool_animals WHERE weight is null;
+   test=> DELETE FROM cool_animals WHERE weight is null;
    
    executed
    master=> SELECT  * FROM cool_animals;
@@ -266,7 +298,7 @@ To delete all rows in a table, use the :ref:`TRUNCATE<truncate>` command followe
 
 .. code-block:: psql
 
-   master=> TRUNCATE TABLE cool_animals;
+   test=> TRUNCATE TABLE cool_animals;
    
    executed
 
