@@ -143,6 +143,8 @@ Operations
 
    - ``spoolMemoryGB`` defines how much memory is set aside for spooling, out of the total system memory allocated in ``limitQueryMemoryGB``. The recommended setting is 90% of the ``limitQueryMemoryGB``.
    
+   This setting must be set lower than the ``limitQueryMemoryGB`` setting.
+   
    For example, for a machine with 512GB of RAM and 4 workers, the recommended settings are:
    
    - ``limitQueryMemoryGB`` - ``⌊(512 * 0.95 / 4)⌋ → ~ 486 / 4 → 121``.
