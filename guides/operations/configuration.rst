@@ -110,9 +110,9 @@ Frequently set parameters
      - Example
    * - ``spoolMemoryGb``
      - ``runtimeGlobalFlags``
-     - Modifies RAM allocated for the worker for intermediate results. Statements that use more memory will spool to disk. We recommend not to exceed the amount of RAM in the machine.
+     - Modifies RAM allocated for the worker for intermediate results. Statements that use more memory than this setting will spool to disk, which could degrade performance. We recommend not to exceed the amount of RAM in the machine. This setting must be set lower than the ``limitQueryMemoryGB`` setting.
      - ``128``
-     - 1 to maximum available RAM in gigabytes
+     - 1 to maximum available RAM in gigabytes. 
      - ``"spoolMemoryGb": 250``
    * - ``limitQueryMemoryGB``
      - ``runtimeGlobalFlags``
@@ -186,12 +186,12 @@ Frequently set parameters
      - ``false`` - automatically derived by the TCP socket
      - ``false`` or ``true``
      - ``"useConfigIP" : true``
-   * - ``machineIp``
+   * - ``machineIP``
      - ``runtimeGlobalFlags``
      - Specifies the worker's external IP or hostname, when used from a remote network.
      - No default
      - A valid IP or hostname
-     - ``"machineIp": "10.0.1.4"``
+     - ``"machineIP": "10.0.1.4"``
 
 .. list-table:: Runtime flags
    :widths: auto
@@ -242,13 +242,14 @@ Recommended configuration file
          "insertCompressors": 8 
       },
       "runtimeGlobalFlags":{ 
-         "spoolMemoryGB": 250, 
+         "limitQueryMemoryGB" : 121,
+         "spoolMemoryGB" : 108,
          "cudaMemQuota": 90,
          "initialSubscribedServices" : "sqream",
          "useMetadataServer": true,
          "metadataServerIp": "127.0.0.1",
          "useConfigIP": true,
-         "machineIp": "127.0.0.1"
+         "machineIP": "127.0.0.1"
          
       },
       "server":{ 
