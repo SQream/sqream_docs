@@ -127,6 +127,7 @@ This section assumes you already have Java and Hadoop installed on your SQream D
 * Install the Kerberos clients
    
    CentOS / RHEL: ``$ sudo yum install krb5-libs krb5-workstation``
+   
    Ubuntu: ``$ sudo apt-get install krb5-user``
 
 * Configure Hadoop as per your distribution.
@@ -139,7 +140,9 @@ Creating keytabs
 #. 
    Create a new principal for the SQream DB OS users (e.g. ``sqream`` by default):
    
-   ``# kadmin.local -q "addprinc -randkey sqream@KRLM.PIEDPIPER.COM"``
+   .. code-block:: console
+
+      # kadmin.local -q "addprinc -randkey sqream@KRLM.PIEDPIPER.COM"
    
    Make sure to replace the realm (``KRLM.PIEDPIPER.COM``) with your actual Kerberos realm.
 
