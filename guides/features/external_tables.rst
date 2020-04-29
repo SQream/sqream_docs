@@ -12,6 +12,10 @@ Running queries directly on external data is most effectively used for things li
 
 Although external tables can be used without inserting data into SQream DB, one of their main use cases is to help with the insertion process. An insert select statement on an external table can be used to insert data into SQream using the full power of the query engine to perform ETL.
 
+
+.. contents:: In this topic:
+   :local:
+   
 What kind of data is supported?
 =====================================
 

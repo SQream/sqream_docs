@@ -4,6 +4,9 @@
 Troubleshooting
 ***********************
 
+.. contents:: In this topic:
+   :local:
+
 Follow this checklist if you find that the performance is slower than you expect.
 
 .. list-table:: Troubleshooting checklist
