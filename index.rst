@@ -18,10 +18,9 @@ SQream DB is a columnar analytic SQL database management system.
 
 SQream DB supports regular SQL including :ref:`a substantial amount of ANSI SQL<sql_feature_support>`, uses :ref:`serializable transactions<transactions>`, and :ref:`scales horizontally<concurrency_and_scaling_in_sqream>` for concurrent statements.
 
-.. TODO: something about a single node of sqream being able to support 10 or even 100TB of data as long as it has enough storage.
+Even a :ref:basic SQream DB machine<hardware_guide>` can support tens to hundreds of terabytes of data.
 
-SQream DB comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc>`, :ref:`ODBC<odbc>`, and :ref:`Python DB-API<pysqream>`.
-
+SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tableau>` comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc>`, :ref:`ODBC<odbc>`, and :ref:`Python DB-API<pysqream>`.
 
 .. 
    .. ref`features_tour`
@@ -69,16 +68,18 @@ SQream DB comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc
 
          :ref:`connect_to_tableau`
      - 
-         :ref:`information_for_support`
+         :ref:`troubleshooting` guide
          
-         :ref:`troubleshooting`
+         :ref:`information_for_support`
+
+
 
 .. rubric:: Need help?
 
-If you couldn't find what you're looking for, we're always happy to help. Visit `SQream's support portal <https://support.sqream.com>`_ for additional support.
+If you couldn't find what you're looking for, we're always happy to help. Visit `SQream's support portal <https://sqream.atlassian.net/servicedesk/>`_ for additional support.
 
 
-.. rubric:: Looking for the old documentation?
+.. rubric:: Looking for older versions?
 
 If you're looking for an older version of the documentation, versions 1.10 through 2019.2.1 are available at http://previous.sqream.com .
 

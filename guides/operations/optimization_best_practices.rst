@@ -6,6 +6,8 @@ Optimization and best practices
 
 This topic explains some best practices of working with SQream DB.
 
+.. _table_design_best_practices:
+
 Table design
 ==============
 This section describes best practices and guidelines for designing tables.
@@ -83,6 +85,8 @@ Data sorting is an important factor in minimizing storage size and improving que
 
 * For longer-running queries that run on a regular basis, performance can be improved by sorting data based on the ``WHERE`` and ``GROUP BY`` parameters. Data can be sorted during insert by using :ref:`external tables<external_tables>` or by using :ref:`create_table_as`.
 
+.. _query_best_practices:
+
 Query best practices
 =====================
 
@@ -118,6 +122,7 @@ Can be rewritten as
 
 
 .. _high_selectivity:
+
 Use the high selectivity hint
 --------------------------------
 

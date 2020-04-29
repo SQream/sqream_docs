@@ -15,13 +15,13 @@ The :ref:`storage cluster<storage_cluster>` contains a ``logs`` directory. Each 
 
 The worker logs contain information messages, warnings, and errors pertaining to SQream DB's operation, including:
 
-* server start-up and shutdown
-* configuration changes
-* exceptions and errors
-* user login events
-* session events
-* statement execution success / failure 
-* statement execution statistics
+* Server start-up and shutdown
+* Configuration changes
+* Exceptions and errors
+* User login events
+* Session events
+* Statement execution success / failure 
+* Statement execution statistics
 
 Log structure and contents
 ---------------------------------
@@ -35,7 +35,7 @@ The log is a CSV, with several fields.
    * - Field
      - Description
    * - ``#SQ#``
-     - Start delimiter. When used with the end of line delimiter can be used to combine multi-line statements into one row
+     - Start delimiter. When used with the end of line delimiter can be used to parse multi-line statements correctly
    * - Row Id
      - Unique identifier for the row
    * - Timestamp
@@ -357,22 +357,22 @@ Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a databas
      start_marker      VARCHAR(4),
      row_id            BIGINT,
      timestamp         DATETIME,
-     message_level     NVARCHAR(6),
-     thread_id         NVARCHAR(40),
-     worker_hostname   NVARCHAR(30),
+     message_level     TEXT,
+     thread_id         TEXT,
+     worker_hostname   TEXT,
      worker_port       INT,
      connection_id     INT,
-     database_name     NVARCHAR(128),
-     user_name         NVARCHAR(128),
+     database_name     TEXT,
+     user_name         TEXT,
      statement_id      INT,
-     service_name      NVARCHAR(128),
+     service_name      TEXT,
      message_type_id   INT,
-     message           NVARCHAR(10000),
+     message           TEXT,
      end_message       VARCHAR(5)
    )
    USING FORMAT CSV
    WITH 
-     PATH '//home/rhendricks/sqream_storage/logs/**/sqream*.log' 
+     PATH '/home/rhendricks/sqream_storage/logs/**/sqream*.log' 
      FIELD DELIMITER '|'
    ;
 
