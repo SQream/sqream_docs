@@ -88,8 +88,6 @@ Troubleshoot cluster setup and configuration
 
 #. Note any errors - Make a note of any error you see, or check the :ref:`logs<logging>` for errors you might have missed.
 
-.. note:: Logs are generated per-worker, so you will need to identify the worker on which the error occured, or collect logs from all nodes.
-
 #. If SQream DB can't start, start SQream DB on a new storage cluster, with default settings. If it still can't start, there could be a driver or hardware issue. :ref:`Contact SQream support<information_for_support>`.
 
 #. Reproduce the issue with a standalone SQream DB - starting up a temporary, standalone SQream DB can isolate the issue to a configuration issue, network issue, or similar.

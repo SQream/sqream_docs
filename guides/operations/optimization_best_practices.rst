@@ -81,7 +81,7 @@ Data sorting is an important factor in minimizing storage size and improving que
 
 * Minimizing storage saves on physical resources and increases performance by reducing overall disk I/O. Prioritize the sorting of low-cardinality columns. This reduces the number of chunks and extents that SQream DB reads during query execution.
 
-* Where possible, sort columns with the lowest cardinality first. Avoid sorting ``VARCHAR`` and ``NVARCHAR`` columns with lengths exceeding 50 characters.
+* Where possible, sort columns with the lowest cardinality first. Avoid sorting ``VARCHAR`` and ``TEXT/NVARCHAR`` columns with lengths exceeding 50 characters.
 
 * For longer-running queries that run on a regular basis, performance can be improved by sorting data based on the ``WHERE`` and ``GROUP BY`` parameters. Data can be sorted during insert by using :ref:`external tables<external_tables>` or by using :ref:`create_table_as`.
 
