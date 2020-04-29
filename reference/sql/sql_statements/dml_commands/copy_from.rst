@@ -141,7 +141,7 @@ Supported date formats
    * - ``DD-mon-YYYY``
      - ``DD-mon-YYYY[ hh:mm[:ss[.SSS]]]``
      - ``31-Dec-2017 11:12:13.456``
-   * - ``YYYY-mon-DD` 
+   * - ``YYYY-mon-DD``
      - ``YYYY-mon-DD[ hh:mm[:ss[.SSS]]]``
      - ``2017-Dec-31 11:12:13.456``
 

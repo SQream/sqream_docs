@@ -11,7 +11,7 @@ Configuration files
 
 By default, configuration files are stored in ``/etc/sqream``.
 
-A very basic configuration file looks like this:
+A very minimal configuration file looks like this:
 
 .. code-block:: json
 
@@ -30,9 +30,9 @@ A very basic configuration file looks like this:
        }
    }
 
-Each SQream DB worker has a dedicated configuration file. 
+* Each SQream DB worker (``sqreamd``) has a dedicated configuration file. 
 
-The configuration file contains four distinct sections, ``compileFlags``, ``runtimeFlags``, ``runtimeGlobalFlags``, and ``server``.
+* The configuration file contains four distinct sections, ``compileFlags``, ``runtimeFlags``, ``runtimeGlobalFlags``, and ``server``.
 
 In the example above, the worker will start on port 5000, and will use GPU #0.
 
@@ -192,6 +192,14 @@ Frequently set parameters
      - No default
      - A valid IP or hostname
      - ``"machineIP": "10.0.1.4"``
+   * - ``tempPath``
+     - ``runtimeGlobalFlags``
+     - Specifies an override for the temporary file path on the local machine. Set this to a local path to improve performance for spooling.
+     - Defaults to the central storage's built-in temporary folder
+     - A valid path to a folder on the local machine
+     - ``"tempPath": "/mnt/nvme0/temp"``
+
+
 
 .. list-table:: Runtime flags
    :widths: auto
@@ -250,7 +258,6 @@ Recommended configuration file
          "metadataServerIp": "127.0.0.1",
          "useConfigIP": true,
          "machineIP": "127.0.0.1"
-         
       },
       "server":{ 
          "gpu":0,
@@ -266,7 +273,7 @@ Changing settings temporarily
 
 The ``SET`` statement can modify one of the configuration settings for the session or connection.
 
-For example:
+For example, to set the query plan's logging interval to "every 3 seconds" for subsequent statements:
 
 .. code-block:: psql
    

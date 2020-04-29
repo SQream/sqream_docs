@@ -112,7 +112,7 @@ Collecting logs and metadata database
 
 SQream DB comes bundled with a data collection utility and an SQL utility intended for collecting logs and additional information that can help SQream support drill down into possible issues.
 
-See more information in the :ref:`Collect logs from your cluster<collecting_logs>` section of the logging guide.
+See more information in the :ref:`Collect logs from your cluster<collecting_logs2>` section of the :ref:`logging` guide.
 
 Examples
 -----------------
