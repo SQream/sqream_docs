@@ -13,6 +13,8 @@ Features guides
    external_tables
    python_functions
 
+   external_data/index
+   
    delete
    xxtime_based_data_management
    xxmetadata_system

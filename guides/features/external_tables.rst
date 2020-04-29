@@ -15,12 +15,20 @@ Although external tables can be used without inserting data into SQream DB, one 
 What kind of data is supported?
 =====================================
 
-SQream DB supports external tables over text files (e.g. CSV, PSV, TSV) as well as columnar formats like ORC and Parquet.
+SQream DB supports external tables over:
+
+* text files (e.g. CSV, PSV, TSV)
+* ORC
+* Parquet
 
 What kind of data staging is supported?
 ============================================
 
-SQream DB can stage data from a local filesystem, S3, and HDFS.
+SQream DB can stage data from:
+
+* a local filesystem (e.g. ``/mnt/storage/....``)
+* :ref:`s3` buckets (e.g. ``s3://pp-secret-bucket/users/*.parquet``)
+* :ref:`hdfs` (e.g. ``hdfs://hadoop-nn.piedpiper.com/rhendricks/*.csv``)
 
 Using external tables - a practical example
 ==============================================
@@ -37,7 +45,7 @@ For the following examples, we will want to interact with a CSV file. Here's a p
    :widths: auto
    :header-rows: 1 
 
-The file is stored on S3, at ``s3://sqream-demo-data/nba_players.csv``.
+The file is stored on :ref:`s3`, at ``s3://sqream-demo-data/nba_players.csv``.
 
 We will make note of the file structure, to create a matching ``CREATE_EXTERNAL_TABLE`` statement.
 
@@ -64,7 +72,7 @@ Based on the source file structure, we we :ref:`create an external table<create_
       WITH  PATH  's3://sqream-demo-data/nba_players.csv' 
       RECORD DELIMITER '\r\n'; -- DOS delimited file
 
-The file format in this case is CSV, and it is stored as an S3 object.
+The file format in this case is CSV, and it is stored as an :ref:`s3` object (if the path is on :ref:`hdfs`, change the URI accordingly).
 
 We also took note that the record delimiter was a DOS newline (``\r\n``).
 
