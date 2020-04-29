@@ -9,6 +9,9 @@ SQream DB has a native HDFS connector for inserting data. The ``hdfs://`` URI sp
 File names may contain wildcard characters and the files can be a CSV or columnar format like Parquet and ORC.
 
 
+.. contents:: In this topic:
+   :local:
+
 Verifying HDFS configuration
 ==============================
 

@@ -8,6 +8,10 @@ SQream DB has a native S3 connector for inserting data. The ``s3://`` URI specif
 
 File names may contain wildcard characters and the files can be a CSV or columnar format like Parquet and ORC.
 
+
+.. contents:: In this topic:
+   :local:
+   
 S3 configuration
 ==============================
 

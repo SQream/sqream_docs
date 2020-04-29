@@ -7,6 +7,9 @@ Insert from CSV
 This guide covers inserting data from CSV files into SQream DB using the :ref:`copy_from` method.
 
 
+.. contents:: In this topic:
+   :local:
+
 1. Prepare CSVs
 =====================
 
