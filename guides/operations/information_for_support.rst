@@ -10,12 +10,12 @@ Gathering information for SQream support
 
 .. what about bug reports
 
-`SQream Support <http://support.sqream.com/>`_ is ready to answer any questions, and help solve any issues with SQream DB.
+`SQream Support <https://sqream.atlassian.net/servicedesk/>`_ is ready to answer any questions, and help solve any issues with SQream DB.
 
 Getting support and reporting bugs
 =======================================
 
-When contacting `SQream Support <http://support.sqream.com/>`_, we recommend reporting the following information:
+When contacting `SQream Support <https://sqream.atlassian.net/servicedesk/>`_, we recommend reporting the following information:
 
 * What is the problem encountered?
 * What was the expected outcome?
