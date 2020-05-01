@@ -6,6 +6,9 @@ Optimization and best practices
 
 This topic explains some best practices of working with SQream DB.
 
+.. contents:: In this topic:
+   :local:
+
 .. _table_design_best_practices:
 
 Table design
