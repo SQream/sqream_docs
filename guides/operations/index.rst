@@ -21,5 +21,6 @@ The guides in this section include information about best practices, monitoring,
    xxstarting_and_stopping_the_system
    statement_editor
    hardware_guide
+   security
    setup/index
 
