@@ -6,6 +6,10 @@ Inserting data
 
 This guide covers inserting data into SQream DB, with subguides on inserting data from a variety of sources and locations.
 
+.. contents:: In this topic:
+   :local:
+
+
 Data loading overview
 ================================
 
@@ -42,9 +46,13 @@ Like other RDBMSs, SQream DB has its own set of best practcies for table design 
 SQream therefore recommends:
 
 * Verify that the data is as you expect it (e.g. row counts, data types, formatting, content)
+
 * The performance of your queries is adequate
+
 * :ref:`Best practices<sql_best_practices>` were followed for table design
+
 * Applications such as :ref:`Tableau<connect_to_tableau>` and others have been tested, and work
+
 * Data types were not over-provisioned (e.g. don't use VARCHAR(2000) to store a short string)
 
 File source location for loading
