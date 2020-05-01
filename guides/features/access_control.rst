@@ -136,7 +136,7 @@ Once the group role exists, you can add user roles (members) using the ``GRANT``
    GRANT my_group TO my_user;
 
 
-To manage object permissions like databases and tables, you would then grant permissions to the group-level role (see :ref:`the permissions table<permissions_table> below`.
+To manage object permissions like databases and tables, you would then grant permissions to the group-level role (see :ref:`the permissions table<permissions_table>` below.
 
 All member roles then inherit the permissions from the group. For example:
 
