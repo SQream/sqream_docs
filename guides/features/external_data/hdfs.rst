@@ -158,8 +158,11 @@ Creating keytabs
       # kadmin.local -q "addprinc -randkey sqream/sqreamdb-03.piedpiper.com@KRLM.PIEDPIPER.COM"
    
    The format for each principal is ``user/host@realm``, where:
+   
    * ``user`` is the OS username
+   
    * ``host`` is the hostname (typically the output of ``hostname -f``)
+   
    * ``realm`` is the Kerberos realm
 
 #. Generate a keytab for each principal.
