@@ -8,30 +8,60 @@ Access control
    :local:
 
 Overview
-========
+==========
 
 Access control provides authentication and authorization in SQream DB.
 
-:term:`Authentication` : verifying the identity of the user. Users have usernames (:term:`role names<role>`) and passwords.
+SQream DB manages authentication and authorization using a role-based access control system (RBAC), like ANSI SQL and other SQL products.
 
-:term:`Authorization` : checking the user has permissions to do a particular thing. The :ref:`grant` command is used for this.
+SQream DB has a default permissions system which is inspired by Postgres, but with more power. In most cases, this allows an administrator to set things up so that every object gets permissions set automatically.
 
-* SQream DB uses roles as users and groups, like ANSI SQL and other SQL products
+In SQream DB, users log in from any worker which verifies their roles and permissions from the metadata server. Each statement issues commands as the currently logged in role.
 
-* SQream DB has a default permissions system based on the system in Postgres, but with more power.
-  In most cases, this allows an administrator to set things up so that every object gets permissions set automatically.
+Roles are defined at the cluster level, meaning they are valid for all databases in the cluster.
+
+To bootstrap SQream DB, a new install will always have one ``SUPERUSER`` role, typically named ``sqream``. To create more roles, you should first connect as this role.
+
+
+Terminology
+================
+
+Roles
+----------
+
+:term:`Role` : a role can be a user, a group, or both.
+
+Roles can own database objects (e.g. tables), and can assign permissions on those objects to other roles.
+
+Roles can be members of other roles, meaning a user role can inherit permissions from its parent role.
+
+Authentication
+--------------------
+
+:term:`Authentication` : verifying the identity of the role. User roles have usernames (:term:`role names<role>`) and passwords.
+
+
+Authorization
+----------------
+
+:term:`Authorization` : checking the role has permissions to do a particular thing. The :ref:`grant` command is used for this.
+
 
 Roles
 =====
 
-Roles are used for users and for groups.
+Roles are used for both users and groups.
 
-Roles are global across all databases in the instance / storage cluster.
+Roles are global across all databases in the SQream DB cluster.
 
-To use a ``ROLE`` as USER, it should have a password, the login permission, and connect permissions to the relevant databases.
+To use a ``ROLE`` as a user, it should have a password, the login permission, and connect permissions to the relevant databases.
 
-Creating a user
----------------
+Creating new roles (users)
+------------------------------
+
+A user role can log in to the database, so it should have ``LOGIN`` permissions, as well as a password.
+
+For example:
 
 .. code-block:: postgres
                 
@@ -49,6 +79,8 @@ Examples:
    GRANT  PASSWORD  'my_password'  TO  new_role_name;  
    GRANT  CONNECT  ON  DATABASE  master  TO  new_role_name;
 
+A database role may have a number of permissions that define what tasks it can perform. These are assigned using the :ref:`grant` command.
+
 Dropping a user
 ---------------
 
@@ -60,7 +92,7 @@ Examples:
 
 .. code-block:: postgres
 
-   DROP  ROLE  admin_role ;
+   DROP ROLE  admin_role ;
 
 Altering a user
 ---------------
@@ -73,7 +105,7 @@ Examples:
 
 .. code-block:: postgres
 
-   ALTER  ROLE  admin_role  RENAME  TO  copy_role ;
+   ALTER ROLE  admin_role  RENAME  TO  copy_role ;
 
 Public Role
 -----------
@@ -82,22 +114,45 @@ There is a public role which always exists. Each role is granted to the ``PUBLIC
 
 The ``PUBLIC`` role has ``USAGE`` and ``CREATE`` permissions on ``PUBLIC`` schema by default, therefore, new users can create, :ref:`insert`, :ref:`delete`, and :ref:`select` from objects in the ``PUBLIC`` schema.
 
-Groups
-------
 
-A group can be created, altered, and dropped the same way as a user.
+Role membership (groups)
+-------------------------
 
-To use a role purely as a group, omit granting it ``LOGIN`` and ``PASSWORD`` permissions. The ``CONNECT`` permission can be given directly to users, and/or to the groups they are part of.
+Many database administrators find it useful to group user roles together. By grouping users, permissions can be granted to, or revoked from a group with one command. In SQream DB, this is done by creating a group role, granting permissions to it, and then assigning users to that group role.
+
+To use a role purely as a group, omit granting it ``LOGIN`` and ``PASSWORD`` permissions.
+
+The ``CONNECT`` permission can be given directly to user roles, and/or to the groups they are part of.
 
 .. code-block:: postgres
 
    CREATE ROLE my_group;
-   GRANT  CONNECT  ON  DATABASE  a_database  TO  my_group;
-   -- add my_user to this group
+
+Once the group role exists, you can add user roles (members) using the ``GRANT`` command. For example:
+
+.. code-block:: postgres
+
+   -- Add my_user to this group
    GRANT my_group TO my_user;
 
-   -- remove my_other_user from this group
 
+To manage object permissions like databases and tables, you would then grant permissions to the group-level role (see :ref:`the permissions table<permissions_table> below`.
+
+All member roles then inherit the permissions from the group. For example:
+
+.. code-block:: postgres
+
+   -- Grant all group users connect permissions
+   GRANT  CONNECT  ON  DATABASE  a_database  TO  my_group;
+   
+   -- Grant all permissions on tables in public schema
+   GRANT  ALL  ON  all  tables  IN  schema  public  TO  my_group;
+
+Removing users and permissions can be done with the ``REVOKE`` command:
+
+.. code-block:: postgres
+
+   -- remove my_other_user from this group
    REVOKE my_group FROM my_other_user;
 
 .. _permissions_table:
@@ -341,10 +396,10 @@ schema statement is run.
         | EXECUTE
         | ALL
         }
-  
+
 
 Departmental Example
-====================
+=======================
 
 You work in a company with several departments.
 
