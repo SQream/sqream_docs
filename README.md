@@ -2,7 +2,7 @@
 
 This is the source files for SQream DB documentation.
 
-The public documentation is available at http://sqream-docs.rtfd.io 
+The public documentation is available at https://docs.sqream.com
 
 ## Make changes
 
