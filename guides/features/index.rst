@@ -16,7 +16,7 @@ Features guides
    external_data/index
    
    delete
-   xxtime_based_data_management
+   time_based_data_management
    xxmetadata_system
    xxchunks_and_extents
 
