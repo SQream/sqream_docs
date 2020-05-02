@@ -84,6 +84,12 @@ Syntax
    default ::=
        DEFAULT default_value
        | IDENTITY [ ( start_with [ , increment_by ] ) ]
+   
+   check_specification ::= 
+      CHECK( 'CS compression_spec' )
+   
+   compression_spec ::=
+       { "default" | "p4d" | "dict" | "rle" | "sequence" | "flat" }
 
 
 .. _identity:

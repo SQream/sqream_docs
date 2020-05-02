@@ -19,6 +19,7 @@ Features guides
    time_based_data_management
    xxmetadata_system
    xxchunks_and_extents
+   compression
 
    transactions
    workload_manager

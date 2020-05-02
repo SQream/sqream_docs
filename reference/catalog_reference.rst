@@ -424,12 +424,51 @@ Each storage extents can contain several chunks.
    * - ``column_id``
      - ID of the column containing the extent
    * - ``extent_id``
-     - ``???``-wide ID for the extent
+     - ID for the extent
    * - ``size``
      - Extent size in megabytes
    * - ``path``
      - Full path to the extent on the file system
 
+chunk_columns
+-------------------
+
+``chunk_columns`` lists chunk information by column.
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Column
+     - Description
+   * - ``database_name``
+     - Name of the databse containing the extent
+   * - ``table_id``
+     - ID of the table containing the extent
+   * - ``column_id``
+     - ID of the column containing the extent
+   * - ``chunk_id``
+     - ID for the chunk
+   * - ``extent_id``
+     - ID for the extent
+   * - ``compressed_size``
+     - Actual chunk size in bytes
+   * - ``uncompressed_size``
+     - Uncompressed chunk size in bytes
+   * - ``compression_type``
+     - Actual compression scheme for this chunk
+   * - ``long_min``
+     - Minimum numeric value in this chunk (if exists)
+   * - ``long_max``
+     - Maximum numeric value in this chunk (if exists)
+   * - ``string_min``
+     - Minimum text value in this chunk (if exists)
+   * - ``string_max``
+     - Maximum text value in this chunk (if exists)
+   * - ``offset_in_file``
+     - Internal use
+
+.. note:: This is an internal table designed for low-level performance troubleshooting.
 
 chunks
 -------
