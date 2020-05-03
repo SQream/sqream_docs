@@ -33,8 +33,7 @@ Automatic compression
 
 By default, SQream DB automatically compresses every column (see :ref:`Specifying compressions<specifying_compressions>` below for overriding default compressions). This feature is called **automatic adaptive compression** strategy.
 
-When loading data, SQream DB automatically decides on the compression schemes for specific chunks of data by trying several compression schemes and selecting the one that performs best.
-
+When loading data, SQream DB automatically decides on the compression schemes for specific chunks of data by trying several compression schemes and selecting the one that performs best. SQream DB tries to balance more agressive compressions with the time and CPU/GPU time required to compress and decompress the data.
 
 Compression strategies
 ------------------------

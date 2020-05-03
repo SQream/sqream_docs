@@ -4,14 +4,21 @@
 Deleting data
 ***********************
 
+SQream DB supports deleting data, but it's important to understand how this works and how to maintain deleted data.
 
 How does deleting in SQream DB work?
 ========================================
 
-In SQream DB, when you run a delete statement, after the transaction completes, any rows that match the delete predicate will no longer be returned when running queries. A separate process can be used to reclaim the space occupied by these rows, and to remove the small overhead that queries will have until this is done. Some benefits to this design are:
+In SQream DB, when you run a delete statement, any rows that match the delete predicate will no longer be returned when running subsequent queries.
+Deleted rows are tracked in a separate location, in *delete predicates*.
 
-1. delete transactions complete quickly
-2. the total disk footprint overhead at any time for a delete transaction or cleanup process is small and bounded (while the system still supports low overhead commit, rollback and recovery for delete transactions).
+After the delete statement, a separate process can be used to reclaim the space occupied by these rows, and to remove the small overhead that queries will have until this is done. 
+
+Some benefits to this design are:
+
+#. Delete transactions complete quickly
+
+#. The total disk footprint overhead at any time for a delete transaction or cleanup process is small and bounded (while the system still supports low overhead commit, rollback and recovery for delete transactions).
 
 
 Phase 1: Delete
@@ -21,7 +28,9 @@ Phase 1: Delete
 
 .. TODO: our current best practices is to use a cron job with sqream sql to run the delete cleanup. we should document how to do this, we have customers with very different delete schedules so we can give a few extreme examples and when/why you'd use them
    
-When a :ref:`delete` statement is run, SQream DB records the predicate used. This predicate will be used to filter future statements on this table until all this delete predicate's matching rows have been physically cleaned up. This filtering process takes full advantage of SQream's zone map feature.
+When a :ref:`delete` statement is run, SQream DB records the delete predicates used. These predicates will be used to filter future statements on this table until all this delete predicate's matching rows have been physically cleaned up.
+
+This filtering process takes full advantage of SQream's zone map feature.
 
 Phase 2: Clean-up
 --------------------
@@ -42,7 +51,7 @@ Deleting data does not free up space
 
 With the exception of a full table delete (:ref:`TRUNCATE<truncate>`), deleting data does not free up disk space. To free up disk space, trigger the cleanup process.
 
-Select performance on deleted rows
+``SELECT`` performance on deleted rows
 ----------------------------------------
 
 Queries on tables that have deleted rows may have to scan data that hasn't been cleaned up.
@@ -58,6 +67,8 @@ Cleanup is I/O intensive
 The cleanup process actively compacts tables by writing a complete new version of column chunks with no dead space. This minimizes the size of the table, but can take a long time. It also requires extra disk space for the new copy of the table, until the operation completes.
 
 Cleanup operations can create significant I/O load on the database. Consider this when planning the best time for the cleanup process.
+
+If this is an issue with your environment, consider using ``CREATE TABLE AS`` to create a new table and then rename and drop the old table.
 
 
 Example
@@ -149,11 +160,11 @@ Triggering a cleanup
 
 .. code-block:: psql
 
-   -- Chunk reorganization (SWEEP)
+   -- Chunk reorganization (aka SWEEP)
    farm=> SELECT CLEANUP_CHUNKS('public','cool_animals');
    executed
 
-   -- Delete leftover files (VACUUM)
+   -- Delete leftover files (aka VACUUM)
    farm=> SELECT CLEANUP_EXTENTS('public','cool_animals');
    executed
    
@@ -166,14 +177,24 @@ Triggering a cleanup
    0 rows
 
 
+
+Best practices for data deletion
+=====================================
+
+* Run ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS`` after large ``DELETE`` operations.
+
+* When deleting large proportions of data from very large tables, consider running a ``CREATE TABLE AS`` operation instead, then rename and drop the original table.
+
+* Never kill VACUUM on catalog tables.
+
+* SQream DB is optimised for time-based data. When data is naturally ordered by a date or timestamp, deleting based on those columns will perform best. For more information, see our :ref:`time based data management guide<time_based_data_management>`.
+
 .. soft update concept
 
 .. delete cleanup and it's properties. automatic/manual, in transaction or background
 
 .. automatic background gives fast delete, minimal transaction overhead,
 .. small cost to queries until background reorganised
-
-.. pointer to the time based management idea - delete is optimised for this
 
 .. when does delete use the metadata effectively
 
