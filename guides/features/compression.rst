@@ -83,7 +83,7 @@ Compression strategies
      - CPU
    * - ``RLE``
      - Integer types, dates and timestamps
-     - Run-length encoding + Delta. This replaces sequences of values with a single pair. It is best for low cardinality columns that are used to sort data (``ORDER BY``).
+     - Run-length encoding. This replaces sequences of values with a single pair. It is best for low cardinality columns that are used to sort data (``ORDER BY``).
      - GPU
    * - ``SEQUENCE``
      - Integer types

@@ -95,7 +95,7 @@ Searched case expression
 
 A searched case expression evaluates every ``conditional_value_expr`` listed. At the first ``conditional_value_expr`` that evaluates to ``TRUE``, the result of the ``THEN`` will be returned.
 
-If no matches are found, ``NULL`` is returned..
+If no matches are found, ``NULL`` is returned.
 
 Examples
 ===========

@@ -33,8 +33,8 @@ For example, if SQream DB was installed to ``/opt/sqream``, here's how to set-up
 .. code-block:: console
 
    $ export JAVA_HOME=/opt/sqream/hdfs/jdk
-   $ export CLASSPATH=`/opt/sqream/hdfs/hadoop/hadoop classpath --glob`
-   $ export HADOOP_HOME=/opt/sqream/hdfs/hadoop/
+   $ export CLASSPATH=`/opt/sqream/hdfs/hadoop/bin/hadoop classpath --glob`
+   $ export HADOOP_HOME=/opt/sqream/hdfs/hadoop
    $ export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native"
    $ export ARROW_LIBHDFS_DIR=/opt/sqream/hdfs/hadoop/lib/native/
 
@@ -55,7 +55,7 @@ For example,
 
    $ export JAVA_HOME=/usr/local/java-1.8.0/
    $ export CLASSPATH=`/usr/local/hadoop-3.2.1/hadoop classpath --glob`:$CLASSPATH
-   $ export HADOOP_HOME=/usr/local/hadoop-3.2.1/
+   $ export HADOOP_HOME=/usr/local/hadoop-3.2.1
    $ export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native"
    $ export ARROW_LIBHDFS_DIR=/usr/local/hadoop-3.2.1/lib/native/
 
