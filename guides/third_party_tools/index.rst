@@ -27,7 +27,7 @@ If you are looking for a tool that is not listed, SQream and our partners can he
    r
    php
    xxspotfire
-   xxsas_viya
+   sas_viya
    xxtalend
    xxdiagnosing_common_connectivity_issues
 
