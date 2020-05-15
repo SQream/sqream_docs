@@ -35,40 +35,19 @@ Configuring the JDBC driver in SAS Viya
 #. 
    Create a new SAS program
    
-   .. image:: /_static/images/sas_viya_new_program.png
+   .. figure:: /_static/images/sas_viya_new_program.png
+      :scale: 80 %
+      
    
 #. Create a sample program to explore data
 
-   .. code-block:: sas
+
+   .. literalinclude:: connect.sas
+      :language: sas
+      :caption: Sample SAS program
       :linenos:
       :emphasize-lines: 11,12,13
 
-      options sastrace='d,d,d,d' 
-      sastraceloc=saslog 
-      nostsuffix 
-      msglevel=i 
-      sql_ip_trace=(note,source) 
-      DEBUG=DBMS_SELECT;
-
-      options validvarname=any;
-
-      libname sqlib jdbc driver="com.sqream.jdbc.SQDriver"
-      classpath="/opt/sqream/sqream-jdbc-4.0.0.jar" 
-      URL="jdbc:Sqream://sqream-cluster.piedpiper.com:3108/raviga;cluster=true" 
-      user="rhendricks" password="Tr0ub4dor&3" SCHEMA = "public" 
-      PRESERVE_TAB_NAMES=YES PRESERVE_COL_NAMES=YES; 
-
-      proc sql;
-         title 'Customers table';
-         select *
-         from sqlib.customers;
-      quit;
-
-      data sqlib.customers;
-         set sqlib.customers;
-      run;
-
-   
    This sample program does several things:
       
       * Line 10: Start a JDBC session named ``sqlib``, associated with the SQream DB driver
@@ -76,25 +55,33 @@ Configuring the JDBC driver in SAS Viya
       * Line 11: Instruct SAS Viya where to find the SQream DB JDBC driver
       
       * 
-         Lines 12-13: Associate the libref to be able to use it in the program as ``sqlib.tablename``. The libref will be ``sqlib`` and it will use the JDBC engine and connect to the ``sqream-cluster.piedpiper.com`` SQream DB cluster. 
+         Lines 12-15: Associate the libref to be able to use it in the program as ``sqlib.tablename``. The libref will be ``sqlib`` and it will use the JDBC engine and connect to the ``sqream-cluster.piedpiper.com`` SQream DB cluster. 
          
          The database name is ``raviga`` and the schema is ``public``.
          
          See our JDBC guide for `connection string documentation <connection_string>`.
          
-      * Lines 16-20: Data preparation step. We load data from the customers table into the in-memory space in SAS Viya.
+      * Lines 19-23: Data preparation step. We load data from the customers table into the in-memory space in SAS Viya.
       
-      * Lines 22-24: DATA step. This step should be familiar to SAS v9 users. We use standard SAS naming conventions to reference the data, with ``sqlib`` as the libref and ``customers`` as the table.
+      * Lines 25-27: DATA step. This step should be familiar to SAS v9 users. We use standard SAS naming conventions to reference the data, with ``sqlib`` as the libref and ``customers`` as the table.
+
 
 #. Run the program by clicking the Run button
    
-   .. image:: /_static/images/sas_viya_run_program.png
-   
+   .. figure:: /_static/images/sas_viya_run_program.png
+      :scale: 80 %
+      
+      The Run button runs the current SAS program
+
    If the sample ran correctly, three new tabs will appear: **Log**, **Results**, and **Output Data**.
    
 #. The query results can be seen in the **Results** tab.
 
-   .. image:: /_static/images/sas_viya_results_tab.png
+   .. figure:: /_static/images/sas_viya_results_tab.png
+      :scale: 80 %
+      
+      The results tab contains query results
+   
    
 
 Browsing data and workbooks
