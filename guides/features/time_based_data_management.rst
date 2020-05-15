@@ -44,7 +44,7 @@ Unlike node-partitioning (or sharding), chunking carries several benefits:
 
 * Chunks carry metadata, which narrows down their contents for the optimizer
 
-* CHunks are ideal for data retension as they can be deleted en-masse
+* Chunks are ideal for data retension as they can be deleted en-masse
 
 * Chunks are optimized for reading into RAM and the GPU
 

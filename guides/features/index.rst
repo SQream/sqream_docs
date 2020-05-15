@@ -17,8 +17,8 @@ Features guides
    
    delete
    time_based_data_management
-   xxmetadata_system
-   xxchunks_and_extents
+   metadata_system
+   chunks_and_extents
    compression
 
    transactions
