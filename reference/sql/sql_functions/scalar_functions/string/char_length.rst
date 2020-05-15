@@ -8,7 +8,7 @@ Calculates the number of characters in a string.
 
 .. note::
    
-   * This function is supported on ``NVARCHAR`` only.
+   * This function is supported on ``TEXT`` only.
    
    * To get the length in bytes, see :ref:`octet_length`.
    
@@ -19,7 +19,7 @@ Syntax
 
 .. code-block:: postgres
 
-   CHAR_LEN( nvarchar_expr ) --> INT
+   CHAR_LEN( text_expr ) --> INT
 
 Arguments
 ============
@@ -30,8 +30,8 @@ Arguments
    
    * - Parameter
      - Description
-   * - ``nvarchar_expr``
-     - ``NVARCHAR`` expression
+   * - ``text_expr``
+     - ``TEXT`` expression
 
 Returns
 ============
@@ -52,7 +52,7 @@ For these examples, consider the following table and contents:
 
 .. code-block:: postgres
    
-   CREATE TABLE alphabets(line NVARCHAR(50));
+   CREATE TABLE alphabets(line TEXT(50));
    
    INSERT INTO alphabets VALUES 
       ('abcdefghijklmnopqrstuvwxyz'), ('กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯ')

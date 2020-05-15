@@ -10,7 +10,7 @@ Calculates the number of characters in a string.
    
    * This function is provided for SQL Server compatability.
    
-   * For UTF-8 encoded ``NVARCHAR`` strings, multi-byte characters are counted as a single character. To get the length in bytes, see :ref:`octet_length`. To get the length in characters, see :ref:`char_length`.
+   * For UTF-8 encoded ``TEXT`` strings, multi-byte characters are counted as a single character. To get the length in bytes, see :ref:`octet_length`. To get the length in characters, see :ref:`char_length`.
 
 Syntax
 ==========
@@ -57,7 +57,7 @@ For these examples, consider the following table and contents:
       ,('"Beware the Jabberwock, my son!'), ('      The jaws that bite, the claws that catch!')
       ,('Beware the Jubjub bird, and shun'), ('      The frumious Bandersnatch!"');
 
-   CREATE TABLE alphabets(line NVARCHAR(50));
+   CREATE TABLE alphabets(line TEXT(50));
    
    INSERT INTO alphabets VALUES 
       ('abcdefghijklmnopqrstuvwxyz'), ('กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯ')

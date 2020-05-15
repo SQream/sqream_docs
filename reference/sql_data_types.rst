@@ -339,7 +339,9 @@ String types
 Length
 ^^^^^^^^^
 
-When using ``TEXT``, specifying a size is optional. If not specified, the text field carries no constraints. To limit the size of the input, use ``VARCHAR(n)`` or ``NVARCHAR(n)``, where n is the number of characters allowed.
+When using ``TEXT``, specifying a size is optional. If not specified, the text field carries no constraints. 
+
+To limit the size of the input, use ``VARCHAR(n)`` or ``TEXT(n)``, where n is the number of characters allowed.
 
 * If the data exceeds the column length limit on ``INSERT`` or ``COPY`` operations, SQream DB will return an error.
 

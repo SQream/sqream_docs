@@ -8,7 +8,7 @@ Calculates the number of bytes in a string.
 
 .. note::
    
-   * This function is supported on ``NVARCHAR`` strings only.
+   * This function is supported on ``TEXT`` strings only.
    
    * To get the length in characters, see :ref:`char_length`.
    
@@ -20,7 +20,7 @@ Syntax
 
 .. code-block:: postgres
 
-   OCTET_LEN( nvarchar_expr ) --> INT
+   OCTET_LEN( text_expr ) --> INT
 
 Arguments
 ============
@@ -31,8 +31,8 @@ Arguments
    
    * - Parameter
      - Description
-   * - ``nvarchar_expr``
-     - ``NVARCHAR`` expression
+   * - ``text_expr``
+     - ``TEXT`` expression
 
 Returns
 ============

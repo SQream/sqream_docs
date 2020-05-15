@@ -57,7 +57,7 @@ Parameters
 
 .. note::
    * When adding a new column to an existing table, a default (or null constraint) has to be specified, even if the table is empty.
-   * A new column added to the table can not contain an IDENTITY or be of the NVARCHAR type.
+   * A new column added to the table can not contain an IDENTITY or be of the TEXT type.
 
 Examples
 ===========

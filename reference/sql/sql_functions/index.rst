@@ -59,7 +59,7 @@ Conditionals
    * - :ref:`isnull`
      - Alias for :ref:`coalesce` with two expressions
    * - :ref:`is_ascii`
-     - Test an ``NVARCHAR`` for ASCII-only characters
+     - Test a ``TEXT`` for ASCII-only characters
    * - :ref:`is_null`
      - Check for ``NULL`` [ or non-``NULL`` ] values
 

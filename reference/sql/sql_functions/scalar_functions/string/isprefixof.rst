@@ -39,7 +39,7 @@ Returns
 Notes
 =======
 
-* This function is supported on ``NVARCHAR`` strings only.
+* This function is supported on ``TEXT`` strings only.
 
 * If the value is NULL, the result is NULL.
 

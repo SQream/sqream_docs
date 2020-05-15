@@ -48,12 +48,9 @@ Data types and values
    * - ``VARCHAR``
      - ✓
      - Variable length string - ASCII only
-   * - ``NVARCHAR``
+   * - ``TEXT``, ``NVARCHAR``
      - ✓
      - Variable length string - UTF-8 encoded
-   * - ``TEXT``
-     - Planned
-     - Use ``VARCHAR``, ``NVARCHAR``
    * - ``DATE``
      - ✓
      - Date

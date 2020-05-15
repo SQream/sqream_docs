@@ -34,7 +34,7 @@ Returns the same type as the argument supplied.
 Notes
 =======
 
-.. * This function works on ``NVARCHAR`` strings only.
+.. * This function works on ``TEXT`` strings only.
 
 * If the value is NULL, the result is NULL.
 
@@ -45,7 +45,7 @@ For these examples, consider the following table and contents:
 
 .. code-block:: postgres
 
-   CREATE TABLE jabberwocky(line NVARCHAR(50));
+   CREATE TABLE jabberwocky(line TEXT(50));
 
    INSERT INTO jabberwocky VALUES 
       ('''Twas brillig, and the slithy toves '), ('      Did gyre and gimble in the wabe: ')
