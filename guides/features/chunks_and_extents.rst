@@ -21,6 +21,7 @@ All data in a table is automatically partitioned into columns, and each column i
 A **chunk** is a contiguous number of rows from a specific column. It can be thought of as an automatic partition that spans several millions of records of one column.
 
 .. figure:: /_static/images/chunking.png
+   :scale: 80 %
    
    Chunks are collections of rows from a column
 
@@ -43,6 +44,7 @@ Extents are designed to optimize disk access patterns, at around 20MB compressed
 An extent will therefore include between 1 and 25 chunks, based on the actual compressed chunk size.
 
 .. figure:: /_static/images/extents.png
+   :scale: 80 %
    
    Extents are a collection of several contiguous chunks
 

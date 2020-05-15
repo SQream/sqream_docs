@@ -22,11 +22,13 @@ Several parameters are collected and stored for later use, including:
 Data is collected automatically and transparently on every column type.
 
 .. figure:: /_static/images/chunking.png
+   :scale: 80 %
    
    Chunks are collections of rows from a column
 
 .. figure:: /_static/images/chunking_metadata.png
-
+   :scale: 80 %
+   
    Metadata is automatically added to each chunk
 
 
