@@ -46,13 +46,13 @@ Configuring the JDBC driver in SAS Viya
       :language: sas
       :caption: Sample SAS program
       :linenos:
-      :emphasize-lines: 11,12,13
+      :emphasize-lines: 11
 
    This sample program does several things:
       
-      * Line 10: Start a JDBC session named ``sqlib``, associated with the SQream DB driver
+      * Line 10: Start a JDBC session named ``sqlib``, associated with the SQream DB driver. This statement extends the SAS global LIBNAME statement so that you can assign a libref to your data source. This feature lets you reference a table in SQream DB directly in a DATA Step or SAS procedure. 
       
-      * Line 11: Instruct SAS Viya where to find the SQream DB JDBC driver
+      * Line 11: Instruct SAS Viya where to find the SQream DB JDBC driver. This step is required because SAS Viya will not honor the SAS_ACCESS_CLASSPATH environment variable for this connection.
       
       * 
          Lines 12-15: Associate the libref to be able to use it in the program as ``sqlib.tablename``. The libref will be ``sqlib`` and it will use the JDBC engine and connect to the ``sqream-cluster.piedpiper.com`` SQream DB cluster. 
