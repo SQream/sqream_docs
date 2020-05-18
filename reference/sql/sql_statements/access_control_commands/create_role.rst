@@ -76,6 +76,7 @@ Creating a user role
 
 A user role has permissions to login, and has a password.
 
+.. tip:: Some DBMSs call this *CREATE USER* or *ADD USER*
 
 .. code-block:: postgres
 
