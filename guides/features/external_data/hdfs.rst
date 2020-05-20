@@ -26,21 +26,32 @@ SQream DB comes with Hadoop libraries built-in. In a typical SQream DB installat
 
 If you are using the built-in libraries, it's important to note where they are.
 
-For example, if SQream DB was installed to ``/opt/sqream``, here's how to set-up the environment variables:
+For example, if SQream DB was installed to ``/opt/sqream``, here's how to set-up the environment variables from the shell:
 
 .. _set_hadoop_classpath:
 
 .. code-block:: console
 
    $ export JAVA_HOME=/opt/sqream/hdfs/jdk
-   $ export CLASSPATH=`/opt/sqream/hdfs/hadoop/bin/hadoop classpath --glob`
-   $ export HADOOP_HOME=/opt/sqream/hdfs/hadoop
+   $ export HADOOP_INSTALL=/opt/sqream/hdfs/hadoop
+   
+   $ export PATH=$PATH:${HADOOP_INSTALL}/bin:${HADOOP_INSTALL}/sbin
+   $ export HADOOP_MAPRED_HOME=$HADOOP_INSTALL
+   $ export HADOOP_COMMON_HOME=$HADOOP_INSTALL
+   $ export HADOOP_HDFS_HOME=$HADOOP_INSTALL
+   $ export YARN_HOME=$HADOOP_INSTALL
+   $ export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_INSTALL}/lib/native
+   $ export HADOOP_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
+   $ export YARN_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
+   $ export CLASSPATH=`${HADOOP_INSTALL}/bin/hadoop classpath --glob`
+   $ export HADOOP_HOME=$HADOOP_INSTALL
    $ export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native"
-   $ export ARROW_LIBHDFS_DIR=/opt/sqream/hdfs/hadoop/lib/native/
+   $ export ARROW_LIBHDFS_DIR=${HADOOP_COMMON_LIB_NATIVE_DIR}
+
 
 You'll find ``core-site.xml`` and other configuration files in ``/opt/sqream/hdfs/hadoop/etc/hadoop``
 
-If they don't already exist, place these variable settings in a 'run commands' file like ``.bashrc``. Test this by examining the output of ``$ echo $ARROW_LIBHDFS_DIR``.
+To persist these settings, place these variable settings in a 'run commands' file like ``.bashrc``. Test this by examining the output of ``$ echo $ARROW_LIBHDFS_DIR``.
 
 .. note:: This process needs to be repeated for every host in the SQream DB cluster.
 
@@ -54,12 +65,22 @@ For example,
 .. code-block:: console
 
    $ export JAVA_HOME=/usr/local/java-1.8.0/
-   $ export CLASSPATH=`/usr/local/hadoop-3.2.1/hadoop classpath --glob`:$CLASSPATH
-   $ export HADOOP_HOME=/usr/local/hadoop-3.2.1
+   $ export HADOOP_INSTALL=/usr/local/hadoop-3.2.1
+   
+   $ export PATH=$PATH:${HADOOP_INSTALL}/bin:${HADOOP_INSTALL}/sbin
+   $ export HADOOP_MAPRED_HOME=$HADOOP_INSTALL
+   $ export HADOOP_COMMON_HOME=$HADOOP_INSTALL
+   $ export HADOOP_HDFS_HOME=$HADOOP_INSTALL
+   $ export YARN_HOME=$HADOOP_INSTALL
+   $ export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_INSTALL}/lib/native
+   $ export HADOOP_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
+   $ export YARN_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
+   $ export CLASSPATH=`${HADOOP_INSTALL}/bin/hadoop classpath --glob`
+   $ export HADOOP_HOME=$HADOOP_INSTALL
    $ export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native"
-   $ export ARROW_LIBHDFS_DIR=/usr/local/hadoop-3.2.1/lib/native/
+   $ export ARROW_LIBHDFS_DIR=${HADOOP_COMMON_LIB_NATIVE_DIR}
 
-Place these variable settings in a 'run commands' file like ``.bashrc``. Test this by examining the output of ``$ echo $ARROW_LIBHDFS_DIR``.
+To persist these settings, place these variable settings in a 'run commands' file like ``.bashrc``. Test this by examining the output of ``$ echo $ARROW_LIBHDFS_DIR``.
 
 .. note:: This process needs to be repeated for every host in the SQream DB cluster.
 
