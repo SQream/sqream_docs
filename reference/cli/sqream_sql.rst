@@ -378,7 +378,7 @@ The supported record delimiters are printable ASCII values (32-126).
 
 * Recommended delimiters for use are: ``,``, ``|``, tab character.
 
-* The following characters are **not supported**: ``\``, ``N``, ``-``, ``:``, ``"``, ``\n``, ``\r``, lower-case latin letters, digits (0-9)
+* The following characters are **not supported**: ``\``, ``N``, ``-``, ``:``, ``"``, ``\n``, ``\r``, ``.``, lower-case latin letters, digits (0-9)
 
 Meta-commands
 ----------------
