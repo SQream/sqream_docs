@@ -43,7 +43,7 @@ For example, if SQream DB was installed to ``/opt/sqream``, here's how to set-up
    $ export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_INSTALL}/lib/native
    $ export HADOOP_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
    $ export YARN_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
-   $ export CLASSPATH=`${HADOOP_INSTALL}/bin/hadoop classpath --glob`
+   $ export CLASSPATH=$CLASSPATH:`${HADOOP_INSTALL}/bin/hadoop classpath --glob`
    $ export HADOOP_HOME=$HADOOP_INSTALL
    $ export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native"
    $ export ARROW_LIBHDFS_DIR=${HADOOP_COMMON_LIB_NATIVE_DIR}
@@ -53,7 +53,11 @@ You'll find ``core-site.xml`` and other configuration files in ``/opt/sqream/hdf
 
 To persist these settings, place these variable settings in a 'run commands' file like ``.bashrc``. Test this by examining the output of ``$ echo $ARROW_LIBHDFS_DIR``.
 
-.. note:: This process needs to be repeated for every host in the SQream DB cluster.
+.. note:: 
+   
+   * This process needs to be repeated for every host in the SQream DB cluster, and from SQream DB's host username (often ``sqream``)
+   
+   * Restart SQream DB workers on the host after setting these parameters for them to take effect.
 
 (Optional) Overriding the Hadoop environment
 ------------------------------------------------------
@@ -75,14 +79,18 @@ For example,
    $ export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_INSTALL}/lib/native
    $ export HADOOP_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
    $ export YARN_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
-   $ export CLASSPATH=`${HADOOP_INSTALL}/bin/hadoop classpath --glob`
+   $ export CLASSPATH=$CLASSPATH:`${HADOOP_INSTALL}/bin/hadoop classpath --glob`
    $ export HADOOP_HOME=$HADOOP_INSTALL
    $ export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native"
    $ export ARROW_LIBHDFS_DIR=${HADOOP_COMMON_LIB_NATIVE_DIR}
 
 To persist these settings, place these variable settings in a 'run commands' file like ``.bashrc``. Test this by examining the output of ``$ echo $ARROW_LIBHDFS_DIR``.
 
-.. note:: This process needs to be repeated for every host in the SQream DB cluster.
+.. note:: 
+   
+   * This process needs to be repeated for every host in the SQream DB cluster, and from SQream DB's host username (often ``sqream``)
+   
+   * Restart SQream DB workers on the host after setting these parameters for them to take effect.
 
 Configuring the node
 ======================
