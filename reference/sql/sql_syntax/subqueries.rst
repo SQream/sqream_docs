@@ -60,7 +60,7 @@ Combining a subquery with a join
 .. code-block:: psql
 
    t=> SELECT * FROM
-   .     (SELECT "Name" FROM nba WHERE "Height" > '7-0') AS t(name,team,age)
+   .     (SELECT "Name" FROM nba WHERE "Height" > '7-0') AS t(name)
    .     , nba AS n
    .       WHERE n."Name"=t.name;
    name               | Name               | Team                   | Number | Position | Age | Height | Weight | College    | Salary  
