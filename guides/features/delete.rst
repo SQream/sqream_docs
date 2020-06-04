@@ -185,9 +185,11 @@ Best practices for data deletion
 
 * When deleting large proportions of data from very large tables, consider running a ``CREATE TABLE AS`` operation instead, then rename and drop the original table.
 
-* Never kill VACUUM on catalog tables.
+* Avoid killing ``CLEANUP_EXTENTS`` operations after they've started.
 
 * SQream DB is optimised for time-based data. When data is naturally ordered by a date or timestamp, deleting based on those columns will perform best. For more information, see our :ref:`time based data management guide<time_based_data_management>`.
+
+
 
 .. soft update concept
 
