@@ -14,6 +14,8 @@ To understand which ANSI SQL and other SQL features SQream DB supports, use the 
 Data types and values
 =========================
 
+Read more about :ref:`supported data types<data_types>`.
+
 .. list-table:: Value
    :widths: auto
    :header-rows: 1
@@ -93,6 +95,8 @@ SQream DB treats each statement as an auto-commit transaction. Each transaction 
 
 If a statement fails, the entire transaction is cancelled and rolled back. The database is unchanged.
 
+Read more about :ref:`transactions in SQream DB<transactions>`.
+
 
 Indexes
 ============
@@ -101,6 +105,7 @@ SQream DB has a range-index collected on all columns as part of the metadata col
 
 SQream DB does not support explicit indexing.
 
+Read more about :ref:`the method of indexing in SQream DB<metadata_system>`.
 
 Schema changes
 ================
@@ -114,7 +119,7 @@ Schema changes
      - Further information
    * - ``ALTER TABLE``
      - ✓
-     - Add column, alter column, drop column, rename column, rename table
+     - :ref:`alter_table` - Add column, alter column, drop column, rename column, rename table
    * - Rename database
      - ✗
      - 
@@ -159,25 +164,28 @@ Statements
      - Further information
    * - SELECT
      - ✓
-     -
+     - :ref:`select`
    * - CREATE TABLE
      - ✓
-     -
+     - :ref:`create_table`
+   * - CREATE EXTERNAL / FOREIGN TABLE
+     - ✓
+     - :ref:`create_external_table`
    * - DELETE
      - ✓
-     -
+     - :ref:`delete_guide`
    * - INSERT
      - ✓
-     -
+     - :ref:`insert`, :ref:`copy_from`
    * - TRUNCATE
      - ✓
-     -
+     - :ref:`truncate`
    * - UPDATE
      - ✗
      -
    * - VALUES
      - ✓
-     -
+     - :ref:`values`
 
 Clauses
 ===========
@@ -235,6 +243,8 @@ Table expressions
 Scalar expressions
 ====================
 
+Read more about :ref:`scalar_expressions`.
+
 .. list-table:: Scalar expressions
    :widths: auto
    :header-rows: 1
@@ -278,6 +288,8 @@ Scalar expressions
 Permissions
 ===============
 
+Read more about :ref:`access_control` in SQream DB.
+
 .. list-table:: Permissions
    :widths: auto
    :header-rows: 1
@@ -312,19 +324,19 @@ Extra functionality
      - Further information
    * - Information schema
      - ✓
-     - ``SQream Catalog``
+     - :ref:`catalog_reference`
    * - Views
      - ✓
-     - 
+     - :ref:`create_view`
    * - Window functions
      - ✓
-     -
+     - :ref:`window_functions`
    * - CTEs
      - ✓
-     -
+     - :ref:`common_table_expressions`
    * - Saved queries, Saved queries with parameters
      - ✓
-     -
+     - :ref:`saved_queries`
    * - Sequences
      - ✓
-     -
+     - :ref:`identity`

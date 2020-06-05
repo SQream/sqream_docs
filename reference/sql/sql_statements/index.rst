@@ -6,6 +6,8 @@ SQL statements
 
 SQream DB supports commands from ANSI SQL.
 
+.. _ddl_commands_list:
+
 Data Definition commands (DDL)
 ================================
 
