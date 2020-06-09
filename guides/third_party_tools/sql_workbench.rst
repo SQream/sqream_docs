@@ -103,7 +103,7 @@ Setting up the SQream DB JDBC driver profile
 Create a new connection profile for your cluster
 =====================================================
 
-   .. image:: /_static/images/sql_workbench_create_driver.png
+   .. image:: /_static/images/sql_workbench_connection_profile.png
 
 #. Create new connection by clicking the New icon (top left)
 
