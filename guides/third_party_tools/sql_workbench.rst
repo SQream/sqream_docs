@@ -109,7 +109,7 @@ Create a new connection profile for your cluster
 
 #. Select the SQream Driver that was created in the previous screen
 
-#. Type in your connection string. To find out more about your connection string (URL), see the `Connection string documentation <connection_string>`.
+#. Type in your connection string. To find out more about your connection string (URL), see the :ref:`Connection string documentation <connection_string>`.
 
 #. Text the connection details
 
