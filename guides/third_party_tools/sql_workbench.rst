@@ -70,11 +70,11 @@ Install SQL Workbench
 Setting up the SQream DB JDBC driver profile
 ---------------------------------------------
 
-#. Define a connection profile :menuselection:`&File --> &Connect window (Alt+C)`
+#. Define a connection profile - :menuselection:`&File --> &Connect window (Alt+C)`
    
    .. image:: /_static/images/sql_workbench_connect_window1.png
 
-#. Open the drivers management window :menuselection:`&Manage Drivers`
+#. Open the drivers management window - :menuselection:`&Manage Drivers`
    
    .. image:: /_static/images/sql_workbench_manage_drivers.png
    
