@@ -43,9 +43,7 @@ Both SQL Workbench and the SQream DB JDBC driver require Java 1.8 or newer. You 
 
 **Oracle Java**
 
-Download and install Java 8 from Oracle for your platform
-
-https://www.java.com/en/download/manual.jsp
+Download and install Java 8 from Oracle for your platform - https://www.java.com/en/download/manual.jsp
 
 **OpenJDK**
 
@@ -79,7 +77,9 @@ Setting up the SQream DB JDBC driver profile
 #. Open the drivers management window :menuselection:`&Manage Drivers`
    
    .. image:: /_static/images/sql_workbench_manage_drivers.png
-
+   
+   
+   
 #. Create the SQream DB driver profile
    
    .. image:: /_static/images/sql_workbench_create_driver.png
@@ -88,8 +88,10 @@ Setting up the SQream DB JDBC driver profile
    
    #. Name the driver as you see fit. We recommend calling it SQream DB <version>, where <version> is the version you have installed.
    
-   #. Add the JDBC drivers from the location where you extracted the SQream DB JDBC JAR. If you used the SQream installer, the file will be in ``C:\Program Files\SQream Technologies\JDBC 
-   Driver\``
+   #. 
+      Add the JDBC drivers from the location where you extracted the SQream DB JDBC JAR.
+      
+      If you used the SQream installer, the file will be in ``C:\Program Files\SQream Technologies\JDBC Driver\``
    
    #. Click the magnifying glass button to detect the classname automatically. Other details are purely optional
    
