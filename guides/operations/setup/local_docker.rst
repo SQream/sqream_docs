@@ -8,7 +8,7 @@ See :ref:`Release Notes <releases>` to learn about what's new in the latest rele
 
 SQream DB is installed on your hosts with NVIDIA Docker. There are several preparation steps to ensure before installing SQream DB, so follow these instructions carefully.
 
-.. Note:: Installing SQream DB requires a license key. Go to `SQream Support <http://support.sqream.com/>`_ or contact your SQream account manager for your license key.
+.. note:: Installing SQream DB requires a license key. Go to `SQream Support <http://support.sqream.com/>`_ or contact your SQream account manager for your license key.
 
 .. contents:: In this topic:
    :local:
@@ -17,7 +17,7 @@ Preparing your machine for NVIDIA Docker
 =========================================
 To install NVIDIA Docker, we must first install the NVIDIA driver.
 
-.. Note:: SQream DB works best on NVIDIA Tesla series GPUs, which provide better reliability, performance, and stability. The instructions below are written for NVIDIA Tesla GPUs, but other NVIDIA GPUs may work.
+.. note:: SQream DB works best on NVIDIA Tesla series GPUs, which provide better reliability, performance, and stability. The instructions below are written for NVIDIA Tesla GPUs, but other NVIDIA GPUs may work.
 
 .. contents:: Follow the instructions for your OS and architecture:
    :local:
@@ -209,12 +209,29 @@ CentOS 7 / RHEL 7 / Amazon Linux (x64)
    
       $ distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
       $ curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.repo | sudo tee /etc/yum.repos.d/nvidia-docker.repo
-      
       $ sudo yum install -y nvidia-container-toolkit
-      $ sudo systemctl restart docker
       $ sudo yum install nvidia-docker2
       $ sudo pkill -SIGHUP dockerd
       $ sudo systemctl restart docker
+
+   .. note::
+      
+      Occasionally, there may be a signature verification error while obtaining ``nvidia-docker``.
+      The error looks something like this:
+      ``[Errno -1] repomd.xml signature could not be verified for nvidia-docker``
+      
+      Run the following commands to update the repository keys:
+      
+      .. code-block:: console
+         
+         $ DIST=$(sed -n 's/releasever=//p' /etc/yum.conf)
+         $ DIST=${DIST:-$(. /etc/os-release; echo $VERSION_ID)}
+         $ sudo rpm -e gpg-pubkey-f796ecb0
+         $ sudo gpg --homedir /var/lib/yum/repos/$(uname -m)/$DIST/*/gpgdir --delete-key f796ecb0
+         $ sudo gpg --homedir /var/lib/yum/repos/$(uname -m)/latest/nvidia-docker/gpgdir --delete-key f796ecb0
+         $ sudo gpg --homedir /var/lib/yum/repos/$(uname -m)/latest/nvidia-container-runtime/gpgdir --delete-key f796ecb0
+         $ sudo gpg --homedir /var/lib/yum/repos/$(uname -m)/latest/libnvidia-container/gpgdir --delete-key f796ecb0
+         $ sudo yum update
 
 #. Verify the NVIDIA docker installation
 
@@ -290,6 +307,25 @@ CentOS 7 / RHEL 7 (IBM POWER)
 
          $ sudo systemctl daemon-reload && sudo systemctl restart docker
 
+   .. note::
+      
+      Occasionally, there may be a signature verification error while obtaining ``nvidia-docker``.
+      The error looks something like this:
+      ``[Errno -1] repomd.xml signature could not be verified for nvidia-docker``
+      
+      Run the following commands to update the repository keys:
+      
+      .. code-block:: console
+         
+         $ DIST=$(sed -n 's/releasever=//p' /etc/yum.conf)
+         $ DIST=${DIST:-$(. /etc/os-release; echo $VERSION_ID)}
+         $ sudo rpm -e gpg-pubkey-f796ecb0
+         $ sudo gpg --homedir /var/lib/yum/repos/$(uname -m)/$DIST/*/gpgdir --delete-key f796ecb0
+         $ sudo gpg --homedir /var/lib/yum/repos/$(uname -m)/latest/nvidia-docker/gpgdir --delete-key f796ecb0
+         $ sudo gpg --homedir /var/lib/yum/repos/$(uname -m)/latest/nvidia-container-runtime/gpgdir --delete-key f796ecb0
+         $ sudo gpg --homedir /var/lib/yum/repos/$(uname -m)/latest/libnvidia-container/gpgdir --delete-key f796ecb0
+         $ sudo yum update
+
 #. Verify the NVIDIA docker installation succeeded
 
    .. code-block:: console
@@ -345,6 +381,8 @@ Ubuntu 18.04 (x64)
       $ distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
       $ curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
       $ curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+
+      $ sudo apt-get update
       
       $ sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit nvidia-docker2
       $ sudo pkill -SIGHUP dockerd
