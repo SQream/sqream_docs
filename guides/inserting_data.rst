@@ -437,12 +437,19 @@ Further reading and migration guides
 =======================================
 
 .. toctree::
-   :caption: Migration guides
+   :caption: Data loading guides
    :titlesonly:
    
    migration/csv
    migration/parquet
    migration/orc
+
+.. toctree::
+   :caption: Migration guides
+   :titlesonly:
+   
+   migration/oracle
+
 
 .. rubric:: See also:
 
@@ -456,7 +463,7 @@ Further reading and migration guides
 
 .. [#f2] With UTF8 annotation
 
-.. [#f3] With ``TIMESTAMP_NANOS `` or ``TIMESTAMP_MILLIS`` annotation
+.. [#f3] With ``TIMESTAMP_NANOS`` or ``TIMESTAMP_MILLIS`` annotation
 
 .. [#f4] Any microseconds will be rounded down to milliseconds.
 

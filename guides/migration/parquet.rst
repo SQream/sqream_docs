@@ -129,7 +129,7 @@ Prepare the source Parquet files, with the following requirements:
 
 .. [#f2] With UTF8 annotation
 
-.. [#f3] With ``TIMESTAMP_NANOS `` or ``TIMESTAMP_MILLIS`` annotation
+.. [#f3] With ``TIMESTAMP_NANOS`` or ``TIMESTAMP_MILLIS`` annotation
 
 .. [#f4] Any microseconds will be rounded down to milliseconds.
 
