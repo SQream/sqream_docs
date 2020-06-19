@@ -102,3 +102,10 @@ latex_elements = {
 \usepackage[utf8x]{inputenc} 
 '''
 }
+
+# For version replaces in some pages (like client drivers page)
+
+base_version = release.split('-')[0]
+rst_epilog = """
+.. |latest_version| replace:: v{}
+""".format(base_version)
