@@ -78,14 +78,19 @@ Place the ``SQreamDB.taco`` file in the Tableau connectors directory. Based on y
 
 * Tableau Server:
    
-   1. Create a directory for Tableau connectors. For example: ``C:\tableau_connectors``
+   1. 
+      Create a directory for Tableau connectors. For example: ``C:\tableau_connectors``
+      
+      This directory needs to exist on all Tableau servers
    
-   2. Copy the ``SQreamDB.taco`` file into the directory you created
+   2. Copy the ``SQreamDB.taco`` file into the directory you created on all servers
    
    3. Set the ``native_api.connect_plugins_path`` option with ``tsm``. For example:
       
       ``tsm configuration set -k native_api.connect_plugins_path -v C:/tableau_connectors``
       
+      If you get a configuration error during this step, add the ``--force-keys`` option to the end of the command.
+
       Then, apply the pending configuration changes with ``tsm pending-changes apply``
       
       .. warning:: This restarts the server.
