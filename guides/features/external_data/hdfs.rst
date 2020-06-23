@@ -36,14 +36,17 @@ For example, if SQream DB was installed to ``/opt/sqream``, here's how to set-up
    $ export HADOOP_INSTALL=/opt/sqream/hdfs/hadoop
    
    $ export PATH=$PATH:${HADOOP_INSTALL}/bin:${HADOOP_INSTALL}/sbin
+   $ export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_INSTALL}/lib/native
+   $ export CLASSPATH=$CLASSPATH:`${HADOOP_INSTALL}/bin/hadoop classpath --glob`
+   $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HADOOP_COMMON_LIB_NATIVE_DIR
+
    $ export HADOOP_MAPRED_HOME=$HADOOP_INSTALL
    $ export HADOOP_COMMON_HOME=$HADOOP_INSTALL
    $ export HADOOP_HDFS_HOME=$HADOOP_INSTALL
    $ export YARN_HOME=$HADOOP_INSTALL
-   $ export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_INSTALL}/lib/native
+   
    $ export HADOOP_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
    $ export YARN_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
-   $ export CLASSPATH=$CLASSPATH:`${HADOOP_INSTALL}/bin/hadoop classpath --glob`
    $ export HADOOP_HOME=$HADOOP_INSTALL
    $ export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=${HADOOP_COMMON_LIB_NATIVE_DIR}"
    $ export ARROW_LIBHDFS_DIR=${HADOOP_COMMON_LIB_NATIVE_DIR}
@@ -72,17 +75,21 @@ For example,
    $ export HADOOP_INSTALL=/usr/local/hadoop-3.2.1
    
    $ export PATH=$PATH:${HADOOP_INSTALL}/bin:${HADOOP_INSTALL}/sbin
+   $ export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_INSTALL}/lib/native
+   $ export CLASSPATH=$CLASSPATH:`${HADOOP_INSTALL}/bin/hadoop classpath --glob`
+   $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HADOOP_COMMON_LIB_NATIVE_DIR
+
    $ export HADOOP_MAPRED_HOME=$HADOOP_INSTALL
    $ export HADOOP_COMMON_HOME=$HADOOP_INSTALL
    $ export HADOOP_HDFS_HOME=$HADOOP_INSTALL
    $ export YARN_HOME=$HADOOP_INSTALL
-   $ export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_INSTALL}/lib/native
+   
    $ export HADOOP_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
    $ export YARN_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
-   $ export CLASSPATH=$CLASSPATH:`${HADOOP_INSTALL}/bin/hadoop classpath --glob`
    $ export HADOOP_HOME=$HADOOP_INSTALL
    $ export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=${HADOOP_COMMON_LIB_NATIVE_DIR}"
    $ export ARROW_LIBHDFS_DIR=${HADOOP_COMMON_LIB_NATIVE_DIR}
+
 
 To persist these settings, place these variable settings in a 'run commands' file like ``.bashrc``. Test this by examining the output of ``$ echo $ARROW_LIBHDFS_DIR``.
 
