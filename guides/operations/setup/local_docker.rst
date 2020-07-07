@@ -237,7 +237,7 @@ CentOS 7 / RHEL 7 / Amazon Linux (x64)
 
    .. code-block:: console
    
-      $ sudo docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi -L
+      $ sudo docker run --runtime=nvidia --rm nvidia/cuda:10.1-base nvidia-smi -L
       GPU 0: Tesla V100-PCIE-16GB (UUID: GPU-...)
       GPU 1: Tesla V100-PCIE-16GB (UUID: GPU-...)
       
@@ -330,7 +330,7 @@ CentOS 7 / RHEL 7 (IBM POWER)
 
    .. code-block:: console
    
-      $ docker run --runtime=nvidia --rm nvidia/cuda-ppc64le nvidia-smi -L
+      $ docker run --runtime=nvidia --rm nvidia/cuda-ppc64le:10.1-base nvidia-smi -L
       GPU 0: Tesla V100-SXM2-16GB (UUID: GPU-...)
       GPU 1: Tesla V100-SXM2-16GB (UUID: GPU-...)
 
@@ -393,7 +393,7 @@ Ubuntu 18.04 (x64)
 
    .. code-block:: console
    
-      $ sudo docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi -L
+      $ sudo docker run --runtime=nvidia --rm nvidia/cuda:10.1-base nvidia-smi -L
       GPU 0: Tesla V100-PCIE-16GB (UUID: GPU-...)
       GPU 1: Tesla V100-PCIE-16GB (UUID: GPU-...)
 
@@ -436,12 +436,12 @@ Install the SQream DB Docker container
    .. code-block:: console
    
       $ cd ~
-      $ curl -O https://get.sqream.com/x86/sqream_installer-2.0.7-DB2019.2.1.4-CO1.7.5-ED3.0.1-x86_64.tar.gz
+      $ curl -O {download URL}
 
 #. Extract the tarball into your home directory
 
    .. code-block:: console
-      
+   
       $ tar xf sqream_installer-2.0.7-DB2019.2.1.4-CO1.7.5-ED3.0.1-x86_64.tar.gz
 
 #. Copy the license package
