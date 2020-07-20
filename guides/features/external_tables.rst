@@ -54,9 +54,17 @@ The file is stored on :ref:`s3`, at ``s3://sqream-demo-data/nba_players.csv``.
 We will make note of the file structure, to create a matching ``CREATE_EXTERNAL_TABLE`` statement.
 
 Creating the external table
------------------------------
+------------------------------------
 
 Based on the source file structure, we we :ref:`create an external table<create_external_table>` with the appropriate structure, and point it to the file.
+
+The file format in this case is CSV, with a DOS newline (``\r\n``).
+
+Here's how the table would be created from S3 and HDFS:
+
+From S3
+^^^^^^^^^^
+
 
 .. code-block:: postgres
    
@@ -76,9 +84,31 @@ Based on the source file structure, we we :ref:`create an external table<create_
       WITH  PATH  's3://sqream-demo-data/nba_players.csv' 
       RECORD DELIMITER '\r\n'; -- DOS delimited file
 
-The file format in this case is CSV, and it is stored as an :ref:`s3` object (if the path is on :ref:`hdfs`, change the URI accordingly).
+.. _hdfs_external_table_demo:
 
-We also took note that the record delimiter was a DOS newline (``\r\n``).
+From HDFS
+^^^^^^^^^^^^^^
+
+
+.. code-block:: postgres
+   
+   CREATE EXTERNAL TABLE nba
+   (
+      Name varchar(40),
+      Team varchar(40),
+      Number tinyint,
+      Position varchar(2),
+      Age tinyint,
+      Height varchar(4),
+      Weight real,
+      College varchar(40),
+      Salary float
+    )
+      USING FORMAT CSV -- Text file
+      WITH  PATH  'hdfs://hadoop-nn.piedpiper.com:8020/demo-data/nba_players.csv' 
+      RECORD DELIMITER '\r\n'; -- DOS delimited file
+
+
 
 Querying external tables
 ------------------------------

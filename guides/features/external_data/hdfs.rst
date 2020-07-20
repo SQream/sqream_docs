@@ -295,6 +295,15 @@ If the command succeeds and you see a directory listing, Kerberized HDFS has bee
 
 If an error occured, check your configuration or contact SQream support.
 
+Testing HDFS access in SQream DB
+=====================================
+
+HDFS access from SQream DB is from :ref:`copy_from` and :ref:`external_tables`.
+
+* :ref:`Example for an HDFS-stored external table<hdfs_external_table_demo>`
+
+* :ref:`Example for inserting data from a CSV on HDFS<hdfs_copy_from_example>`
+
 Troubelshooting HDFS access
 ==================================
 

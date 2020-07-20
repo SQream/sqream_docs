@@ -197,6 +197,8 @@ Loading files from an authenticated S3 bucket
 
    COPY nba FROM 's3://secret-bucket/*.csv' WITH OFFSET 2 RECORD DELIMITER '\r\n' AWS_ID '12345678' AWS_SECRET 'super_secretive_secret';
 
+.. _hdfs_copy_from_example:
+
 Loading files from an HDFS storage
 ---------------------------------------------------
 
