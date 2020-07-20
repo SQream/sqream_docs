@@ -161,9 +161,9 @@ It is important that every node has the same view of the storage being used - me
 
 * For files hosted on NFS, ensure that the mount is accessible from all servers.
 
-* For HDFS, ensure that SQream DB servers can access the HDFS name node with the correct user-id
+* For HDFS, ensure that SQream DB servers can access the HDFS name node with the correct user-id. See our :ref:`hdfs` guide for more information.
 
-* For S3, ensure network access to the S3 endpoint
+* For S3, ensure network access to the S3 endpoint. See our :ref:`s3` guide for more information.
 
 3. Figure out the table structure
 ===============================================
