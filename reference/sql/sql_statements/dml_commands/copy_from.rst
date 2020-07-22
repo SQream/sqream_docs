@@ -78,8 +78,10 @@ Elements
      - ``1``
      - The row number to start with. The first row is ``1``.
    * - ``LIMIT``
-     - Unlimited
-     - When specified, tells SQream DB to stop loading after the specified number of rows.
+     - unlimited
+     - 
+         When specified, tells SQream DB to stop loading after the specified number of rows.
+         Values represent rows, from 1 to 2147483647.
    * - ``DELIMITER``
      - ``','``
      - Specifies the field terminator - the character or characters that separates fields or columns columns within each row of the file
