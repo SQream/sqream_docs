@@ -67,41 +67,52 @@ Elements
    
    * - Parameter
      - Default value
+     - Value range
      - Description
    * - ``[schema_name.]table_name``
      - None
+     - 
      - Table to copy data into
    * - ``filepath_spec``
      - None
+     -
      - A path on the local filesystem, S3, or HDFS URI. For example, ``/tmp/foo.csv``, ``s3://my-bucket/foo.csv``, or ``hdfs://my-namenode:8020/foo.csv``. The local path must be an absolute path that SQream DB can access. Wildcards are premitted in this field
    * - ``OFFSET``
      - ``1``
+     - >1, but no more than the number of lines in the first file
      - The row number to start with. The first row is ``1``.
    * - ``LIMIT``
      - unlimited
      - 
+     - 1 to 2147483647.
          When specified, tells SQream DB to stop loading after the specified number of rows.
-         Values represent rows, from 1 to 2147483647.
    * - ``DELIMITER``
      - ``','``
+     - Any printable ASCII character
      - Specifies the field terminator - the character or characters that separates fields or columns columns within each row of the file
    * - ``RECORD DELIMITER``
      - ``\n`` (UNIX style newline)
+     - ``\n``, ``\r\n``, ``\r``
      - Specifies the row terminator - the character that separates lines or rows, also known as a new line separator.
    * - ``ERROR_LOG``
      - Disabled
+     - 
      - When used, the ``COPY`` process will ignore rows that can't be parsed. Errors will be written to the file specified by the ``ERROR_LOG`` parameter.
    * - ``ERROR_VERBOSITY``
      - ``1``
+     - 0, 1
      - Controls the verbosity of the ``ERROR_LOG``. When set to ``0``, only the rejected rows are saved to the ``ERROR_LOG`` file. When set to ``1`` the error message is logged for every rejected row.
    * - ``STOP AFTER N ERRORS``
      - ``1000000``
+     - 1 to 2147483647
      - Specifies the threshold of rejected rows. When used with ``ERROR_LOG``, the ``COPY FROM`` command will roll back the transaction if the threshold ``N`` is reached.
    * - ``PARSERS``
      - ``DEFAULT`` for every column
+     - See table below
      - Allows specifying a non-default date formats for specific columns
    * - ``AWS_ID``, ``AWS_SECRET``
      - None
+     - 
      - Specifies the authentication details for secured S3 buckets
 
 .. _copy_date_parsers:
