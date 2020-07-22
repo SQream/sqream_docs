@@ -83,12 +83,11 @@ Elements
      - The row number to start with. The first row is ``1``.
    * - ``LIMIT``
      - unlimited
-     - 
      - 1 to 2147483647.
-         When specified, tells SQream DB to stop loading after the specified number of rows.
+     - When specified, tells SQream DB to stop loading after the specified number of rows. Unlimited if unset.
    * - ``DELIMITER``
      - ``','``
-     - Any printable ASCII character
+     - Almost any ASCII character, :ref:`See field delimiters section below<field_delimiters>`
      - Specifies the field terminator - the character or characters that separates fields or columns columns within each row of the file
    * - ``RECORD DELIMITER``
      - ``\n`` (UNIX style newline)
@@ -108,7 +107,7 @@ Elements
      - Specifies the threshold of rejected rows. When used with ``ERROR_LOG``, the ``COPY FROM`` command will roll back the transaction if the threshold ``N`` is reached.
    * - ``PARSERS``
      - ``DEFAULT`` for every column
-     - See table below
+     - :ref:`See table below<copy_date_parsers>`
      - Allows specifying a non-default date formats for specific columns
    * - ``AWS_ID``, ``AWS_SECRET``
      - None
