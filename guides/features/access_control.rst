@@ -109,6 +109,8 @@ Examples:
 
    ALTER ROLE  admin_role  RENAME  TO  copy_role ;
 
+.. _change_password:
+
 Changing user passwords
 --------------------------
 

@@ -1,18 +1,20 @@
 .. _statement_editor:
 
-****************************
-Using the statement editor
-****************************
+*****************************************
+Using the statement editor (deprecated)
+*****************************************
 
 The statement editor is a web-based client for use with SQream DB. It can be used to run statements, and manage roles and permissions.
 
-.. note:: We recommend using Google Chrome or Chrome-based browsers to access the statement editor.
+.. note:: The statement editor is deprecated from SQream DB v2020.2. It is replaced by :ref:`SQream Studio<sqream_studio>`
 
 .. contents:: In this topic:
    :local:
 
 Setting up and starting the statement editor
 ====================================================
+
+.. note:: We recommend using Google Chrome or Chrome-based browsers to access the statement editor.
 
 The statement editor is included with all :ref:`dockerized installations of SQream DB<installing_sqream_db_docker>`.
 
