@@ -21,6 +21,8 @@ Types of data exposed by ``sqream_catalog``
    
    * - Object
      - Table
+   * - Clustering keys
+     - ``clustering_keys``
    * - Columns
      - ``columns``, ``external_table_columns``
    * - Databases
@@ -57,6 +59,31 @@ The catalog contains a few more tables which contain storage details for interna
 
 Tables in the catalog
 ========================
+
+clustering_keys
+-----------------------
+
+Explicit clustering keys for tables.
+
+When more than one clustering key is defined, each key is listed in a separate row.
+
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Column
+     - Description
+   * - ``database_name``
+     - Name of the database containing the table
+   * - ``table_id``
+     - ID of the table containing the column
+   * - ``schema_name``
+     - Name of the schema containing the table
+   * - ``table_name``
+     - Name of the table containing the column
+   * - ``clustering_key``
+     - Name of the column that is a clustering key for this table
 
 columns
 --------
