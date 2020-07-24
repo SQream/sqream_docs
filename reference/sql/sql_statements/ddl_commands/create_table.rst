@@ -24,6 +24,7 @@ Syntax
        CREATE [ OR REPLACE ] TABLE [schema_name.]table_name (
            { column_def [, ...] }
        )
+       [ CLUSTER BY { column_name [, ...] } ]
        ;
 
    schema_name ::= identifier  
@@ -58,7 +59,8 @@ Parameters
      - The name of the table to create, which must be unique inside the schema.
    * - ``column_def``
      - A comma separated list of column definitions. A minimal column definition includes a name identifier and a datatype. Other column constraints and default values can be added optionally.
-
+   * - ``CLUSTER BY column_name1 ...``
+     - A commma separated list of clustering column keys.
 
 .. _default_values:
 
@@ -168,3 +170,22 @@ Use a :ref:`CREATE TABLE AS <create_table_as>` statement to create a new table f
 .. code-block:: postgres
    
    CREATE TABLE users_uk AS SELECT * FROM users WHERE country = 'United Kingdom';
+
+Creating a table with a clustering key
+----------------------------------------------
+
+When data in a table is stored in a sorted order, the sorted columns are considered clustered. Good clustering can have a significant positive impact on performance.
+
+In the following example, we expect the ``start_date`` column to be naturally clustered, as new users sign up and get a newer start date.
+
+When the clustering key is set, if the incoming data isn’t naturally clustered, it will be clustered by SQream DB during insert or bulk load.
+
+
+.. code-block:: postgres
+
+   CREATE TABLE users (
+      name VARCHAR(30) NOT NULL,
+      start_date datetime not null,
+      country VARCHAR(30) DEFAULT 'Unknown' NOT NULL
+   ) CLUSTER BY start_date;
+

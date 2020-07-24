@@ -28,3 +28,7 @@ Subcommands
      - Rename a column
    * - :ref:`RENAME TABLE<rename_table>`
      - Rename a table
+   * - :ref:`CLUSTER BY<cluster_by>`
+     - Modify (add or reorder) the clustering keys in a table
+   * - :ref:`DROP CLUSTERING KEY<drop_clustering_key`
+     - Drop all clustering keys

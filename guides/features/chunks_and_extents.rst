@@ -88,3 +88,6 @@ The chunk metadata that SQream DB collects enables effective skipping of chunks 
 Queries that filter on fine-grained date and time ranges will be the most effective, particularly when :ref:`data is timestamped<time_based_data_management>`, and when tables contain a large amount of historical data.
 
 See more in our :ref:`time_based_data_management` guide and our :ref:`metadata_system` guide.
+
+
+

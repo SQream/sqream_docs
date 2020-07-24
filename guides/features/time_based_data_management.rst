@@ -50,6 +50,7 @@ Unlike node-partitioning (or sharding), chunking carries several benefits:
 
 * Chunks are compressed individually, which improves compression and data locality
 
+
 Use cases
 ============
 
@@ -83,6 +84,9 @@ Ordering
 Data ordering is an important factor in minimizing storage size and improving query performance.
 
 Prioritize inserting data based on timestamps. This will likely reduces the number of chunks that SQream DB reads during query execution.
+
+See our :ref:`data_clustering` guide to see how clustering keys can be defined for optimizing data order.
+
 
 Limit workload by timestamp
 ------------------------------

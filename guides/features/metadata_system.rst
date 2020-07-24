@@ -53,6 +53,8 @@ For a 10TB dataset, the metadata storage overhead is estimated at 0.5GB.
 Because SQream DB's metadata collection is so light-weight and often results in effective data skipping, it is always-on.
 
 
+
+
 .. show the metadata system in action:
 .. describe a scenario
 .. show a statement which is accelerated via the metadata system
@@ -62,13 +64,8 @@ Because SQream DB's metadata collection is so light-weight and often results in 
 .. * count
 .. * delete support
 
-.. collects size, and min and max metadata per chunk and extent, for
-.. every column
-
 .. can easily skip reading chunks and extents when running statements
 .. with the right shape
-
-.. this is cheap to do, and cheap to store, and it is always on
 
 .. best practice notes
 
