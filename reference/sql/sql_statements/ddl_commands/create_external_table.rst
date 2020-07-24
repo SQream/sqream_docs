@@ -6,9 +6,9 @@ CREATE EXTERNAL TABLE
 
 .. warning:: 
    
-   The external table syntax is deprecated, and will be removed in future versions.
+   The ``CREATE EXTERNAL TABLE`` syntax is deprecated, and will be removed in future versions.
    
-   Starting with SQream DB v2020.2, external tables have been renamed to foreign tables, and use a more flexible foreign data wrapper concept.
+   Starting with SQream DB v2020.2, external tables have been renamed to :ref:`foreign tables<create_foreign_table>`, and use a more flexible foreign data wrapper concept. See :ref:`create_foreign_table` instead.
    
    Upgrading to a new version of SQream DB converts existing tables automatically. When creating a new external tables, use the new foreign table syntax.
 
