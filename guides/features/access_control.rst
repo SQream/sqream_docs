@@ -94,8 +94,10 @@ Examples:
 
    DROP ROLE  admin_role ;
 
-Altering a user
----------------
+Altering a user name
+------------------------
+
+Renaming a user's role:
 
 .. code-block:: postgres
 
@@ -106,6 +108,17 @@ Examples:
 .. code-block:: postgres
 
    ALTER ROLE  admin_role  RENAME  TO  copy_role ;
+
+Changing user passwords
+--------------------------
+
+To change a user role's password, grant the user a new password.
+
+.. code-block:: postgres
+
+   GRANT  PASSWORD  'new_password'  TO  rhendricks;  
+
+.. note:: Granting a new password overrides any previous password. Changing the password while the role has an active running statement does not affect that statement, but will affect subsequent statements.
 
 Public Role
 -----------
@@ -180,7 +193,6 @@ Permissions
      - ``SUPERUSER``
      - no permission restrictions on any activity
 
-       
    * - database
      - ``SUPERUSER``
      - no permission restrictions on any activity within that database (this does not include modifying roles or permissions)
@@ -283,7 +295,7 @@ GRANT
    TO <role2> 
    WITH ADMIN OPTION
   
-Examples:
+``GRANT`` examples:
 
 .. code-block:: postgres
 
