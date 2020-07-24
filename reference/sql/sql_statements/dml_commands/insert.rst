@@ -8,7 +8,7 @@ INSERT
 
 .. tip:: 
    * To bulk load data into existing tables, the :ref:`COPY FROM<copy_from>` command performs better than ``INSERT``.
-   * To load Parquet or ORC files, see :ref:`CREATE EXTERNAL TABLE<create_external_table>`
+   * To load Parquet or ORC files, see :ref:`CREATE FOREIGN TABLE<create_foreign_table>`
 
 Permissions
 =============
@@ -88,7 +88,7 @@ Inserting multiple rows
 Import data from other tables
 --------------------------------
 
-``INSERT`` can be used to insert data obtained from queries on other tables, including :ref:`external tables<create_external_table>`.
+``INSERT`` can be used to insert data obtained from queries on other tables, including :ref:`foreign tables<create_foreign_table>`.
 
 For example,
 

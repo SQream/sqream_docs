@@ -28,6 +28,8 @@ Syntax
    table_name ::= identifier  
 
 
+.. _ctas_params:
+
 Parameters
 ============
 
@@ -52,7 +54,7 @@ Parameters
 Examples
 ===========
 
-Create a copy of an :ref:`external table <create_external_table>` or view
+Create a copy of an :ref:`foreign table <create_foreign_table>` or view
 ---------------------------------------------------------------------------
 
 .. code-block:: postgres

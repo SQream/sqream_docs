@@ -51,16 +51,16 @@ For the following examples, we will want to interact with a CSV file. Here's a p
 The file is stored on :ref:`s3`, at ``s3://sqream-demo-data/nba_players.csv``.
 This bucket is public and listable.
 
-We will make note of the file structure, to create a matching ``CREATE_EXTERNAL_TABLE`` statement.
+We will make note of the file structure, to create a matching ``CREATE FOREIGN TABLE`` statement.
 
 Creating the external table
 -----------------------------
 
-Based on the source file structure, we we :ref:`create an external table<create_external_table>` with the appropriate structure, and point it to the file.
+Based on the source file structure, we we :ref:`create a foreign table<create_foreign_table>` with the appropriate structure, and point it to the file.
 
 .. code-block:: postgres
    
-   CREATE EXTERNAL TABLE nba
+   CREATE FOREIGN TABLE nba
    (
       Name varchar(40),
       Team varchar(40),
@@ -72,9 +72,13 @@ Based on the source file structure, we we :ref:`create an external table<create_
       College varchar(40),
       Salary float
     )
-      USING FORMAT CSV -- Text file
-      WITH  PATH  's3://sqream-demo-data/nba_players.csv' 
-      RECORD DELIMITER '\r\n'; -- DOS delimited file
+    WRAPPER csv_fdw
+    OPTIONS
+      (
+         LOCATION = 's3://sqream-demo-data/nba_players.csv',
+         RECORD_DELIMITER '\r\n' -- DOS delimited file
+      )
+    ;
 
 The file format in this case is CSV, and it is stored as an S3 object (if the path is on :ref:`hdfs`, change the URI accordingly).
 

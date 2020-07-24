@@ -4,7 +4,7 @@
 Insert from Parquet
 **********************
 
-This guide covers inserting data from Parquet files into SQream DB using :ref:`EXTERNAL TABLE<external_tables>`.
+This guide covers inserting data from Parquet files into SQream DB using :ref:`FOREIGN TABLE<external_tables>`.
 
 .. contents:: In this topic:
    :local:
@@ -165,7 +165,7 @@ We will make note of the file structure to create a matching ``CREATE EXTERNAL T
 
 .. code-block:: postgres
    
-   CREATE EXTERNAL TABLE ext_nba
+   CREATE FOREIGN TABLE ext_nba
    (
         Name       VARCHAR(40),
         Team       VARCHAR(40),
@@ -177,8 +177,11 @@ We will make note of the file structure to create a matching ``CREATE EXTERNAL T
         College    VARCHAR(40),
         Salary     FLOAT
     )
-    USING FORMAT Parquet
-      WITH  PATH  's3://sqream-demo-data/nba.parquet';
+    WRAPPER parquet_fdw
+    OPTIONS
+    (
+      LOCATION =  's3://sqream-demo-data/nba.parquet'
+    );
 
 .. tip:: 
 
@@ -257,7 +260,7 @@ Similar to the previous example, we will also set the ``Position`` column as a d
 Further Parquet loading examples
 =======================================
 
-:ref:`create_external_table` contains several configuration options. See more in :ref:`the CREATE EXTERNAL TABLE parameters section<ctas_parameters>`.
+:ref:`create_foreign_table` contains several configuration options. See more in :ref:`the CREATE FOREIGN TABLE parameters section<cft_parameters>`.
 
 
 Loading a table from a directory of Parquet files on HDFS
@@ -265,10 +268,13 @@ Loading a table from a directory of Parquet files on HDFS
 
 .. code-block:: postgres
 
-   CREATE EXTERNAL TABLE ext_users
+   CREATE FOREIGN TABLE ext_users
      (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
-   USING FORMAT Parquet
-   WITH  PATH  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet';
+   WRAPPER parquet_fdw
+   OPTIONS
+     (
+        LOCATION =  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet'
+     );
    
    CREATE TABLE users AS SELECT * FROM ext_users;
 
@@ -277,11 +283,13 @@ Loading a table from a bucket of files on S3
 
 .. code-block:: postgres
 
-   CREATE EXTERNAL TABLE ext_users
+   CREATE FOREIGN TABLE ext_users
      (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
-   USING FORMAT Parquet
-   WITH  PATH  's3://pp-secret-bucket/users/*.parquet'
-         AWS_ID 'our_aws_id'
-         AWS_SECRET 'our_aws_secret';
+   WRAPPER parquet_fdw
+   OPTIONS
+     ( LOCATION = 's3://pp-secret-bucket/users/*.parquet',
+       AWS_ID = 'our_aws_id',
+       AWS_SECRET = 'our_aws_secret'
+      );
    
    CREATE TABLE users AS SELECT * FROM ext_users;

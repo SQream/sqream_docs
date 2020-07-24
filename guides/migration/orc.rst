@@ -4,7 +4,7 @@
 Insert from ORC
 **********************
 
-This guide covers inserting data from ORC files into SQream DB using :ref:`EXTERNAL TABLE<external_tables>`.
+This guide covers inserting data from ORC files into SQream DB using :ref:`FOREIGN TABLE<external_tables>`.
 
 
 1. Prepare the files
@@ -180,11 +180,11 @@ For example, to import the data from ``nba.orc``, we will first look at the sour
 * The file is stored on S3, at ``s3://sqream-demo-data/nba.orc``.
 
 
-We will make note of the file structure to create a matching ``CREATE EXTERNAL TABLE`` statement.
+We will make note of the file structure to create a matching ``CREATE FOREIGN TABLE`` statement.
 
 .. code-block:: postgres
    
-   CREATE EXTERNAL TABLE ext_nba
+   CREATE FOREIGN TABLE ext_nba
    (
         Name       VARCHAR(40),
         Team       VARCHAR(40),
@@ -196,8 +196,11 @@ We will make note of the file structure to create a matching ``CREATE EXTERNAL T
         College    VARCHAR(40),
         Salary     FLOAT
     )
-    USING FORMAT ORC
-      WITH  PATH  's3://sqream-demo-data/nba.orc';
+      WRAPPER orc_fdw
+      OPTIONS
+        (
+           LOCATION = 's3://sqream-demo-data/nba.orc'
+        );
 
 .. tip:: 
 
@@ -276,7 +279,7 @@ Similar to the previous example, we will also set the ``Position`` column as a d
 Further ORC loading examples
 =======================================
 
-:ref:`create_external_table` contains several configuration options. See more in :ref:`the CREATE EXTERNAL TABLE parameters section<ctas_parameters>`.
+:ref:`create_foreign_table` contains several configuration options. See more in :ref:`the CREATE FOREIGN TABLE parameters section<cft_parameters>`.
 
 
 Loading a table from a directory of ORC files on HDFS
@@ -284,10 +287,13 @@ Loading a table from a directory of ORC files on HDFS
 
 .. code-block:: postgres
 
-   CREATE EXTERNAL TABLE ext_users
+   CREATE FOREIGN TABLE ext_users
      (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
-   USING FORMAT ORC
-   WITH  PATH  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.ORC';
+   WRAPPER orc_fdw
+     OPTIONS
+       ( 
+         LOCATION = 'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.ORC'
+       );
    
    CREATE TABLE users AS SELECT * FROM ext_users;
 
@@ -296,11 +302,14 @@ Loading a table from a bucket of files on S3
 
 .. code-block:: postgres
 
-   CREATE EXTERNAL TABLE ext_users
+   CREATE FOREIGN TABLE ext_users
      (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
-   USING FORMAT ORC
-   WITH  PATH  's3://pp-secret-bucket/users/*.ORC'
-         AWS_ID 'our_aws_id'
-         AWS_SECRET 'our_aws_secret';
+   WRAPPER orc_fdw
+   OPTIONS
+     (  LOCATION = 's3://pp-secret-bucket/users/*.ORC',
+        AWS_ID = 'our_aws_id',
+        AWS_SECRET = 'our_aws_secret'
+      )
+   ;
    
    CREATE TABLE users AS SELECT * FROM ext_users;

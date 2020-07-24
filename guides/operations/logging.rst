@@ -345,14 +345,14 @@ Using the command line utility:
 Troubleshooting with logs
 ===============================
 
-Loading logs with external tables
+Loading logs with foreign tables
 ---------------------------------------
 
 Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a database administrator can access the logs using the :ref:`external_tables` concept through SQream DB.
 
 .. code-block:: postgres
 
-   CREATE EXTERNAL TABLE logs 
+   CREATE FOREIGN TABLE logs 
    (
      start_marker      VARCHAR(4),
      row_id            BIGINT,
@@ -370,10 +370,12 @@ Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a databas
      message           TEXT,
      end_message       VARCHAR(5)
    )
-   USING FORMAT CSV
-   WITH 
-     PATH '/home/rhendricks/sqream_storage/logs/**/sqream*.log' 
-     FIELD DELIMITER '|'
+   WRAPPER cdv_fdw
+   OPTIONS
+     (
+        LOCATION = '/home/rhendricks/sqream_storage/logs/**/sqream*.log',
+        DELIMITER = '|'
+     )
    ;
 
 Count message types

@@ -1,25 +1,23 @@
-.. _create_external_table:
+.. _create_foreign_table:
 
 ***********************
-CREATE EXTERNAL TABLE
+CREATE FOREIGN TABLE
 ***********************
 
-.. warning:: 
-   
-   The external table syntax is deprecated, and will be removed in future versions.
+.. note:: 
    
    Starting with SQream DB v2020.2, external tables have been renamed to foreign tables, and use a more flexible foreign data wrapper concept.
    
-   Upgrading to a new version of SQream DB converts existing tables automatically. When creating a new external tables, use the new foreign table syntax.
+   Upgrading to a new version of SQream DB converts existing external tables automatically. 
 
 
-``CREATE TABLE`` creates a new external table in an existing database.
+``CREATE FOREIGN TABLE`` creates a new foreign table in an existing database.
 
-See more in the :ref:`External tables guide<external_tables>`.
+See more in the :ref:`Foreign tables guide<external_tables>`.
 
 .. tip::
 
-   * Data in an external table can change if the sources change, and frequent access to remote files may harm performance.
+   * Data in a foreign table can change if the sources change, and frequent access to remote files may harm performance.
 
    * To create a regular table, see :ref:`CREATE TABLE <create_table>`
 
@@ -34,23 +32,25 @@ Syntax
 .. code-block:: postgres
 
    create_table_statement ::=
-       CREATE [ OR REPLACE ] EXTERNAL TABLE [schema_name].table_name (
+       CREATE [ OR REPLACE ] FOREIGN TABLE [schema_name].table_name (
            { column_def [, ...] }
        )
-       USING FORMAT format_def
-       WITH { external_table_option [ ...] }
+       [ FOREIGN DATA ] WRAPPER fdw_name
+       [ OPTIONS ( option_def [, ...  ] ) ]
        ;
 
    schema_name ::= identifier  
 
    table_name ::= identifier  
 
-   format_def ::= { PARQUET | ORC | CSV }
+   fdw_name ::= 
+       { csv_fdw | orc_fdw | parquet_fdw }
    
-   external_table_option ::= {
-      PATH '{ path_spec }' 
-      | FIELD DELIMITER '{ field_delimiter }'
-      | RECORD DELIMITER '{ record_delimiter }'
+   option_def ::= 
+   {
+      LOCATION = '{ path_spec }'
+      | DELIMITER = '{ field_delimiter }' -- for CSV only
+      | RECORD_DELIMITER = '{ record_delimiter }' -- for CSV only
       | AWS_ID '{ AWS ID }'
       | AWS_SECRET '{ AWS SECRET }'
    }
@@ -61,7 +61,8 @@ Syntax
    
    record_delimiter ::= delimiter_character
       
-   column_def ::= { column_name type_name [ default ] [ column_constraint ] }
+   column_def ::= 
+       { column_name type_name [ default ] [ column_constraint ] }
 
    column_name ::= identifier
    
@@ -69,11 +70,10 @@ Syntax
        { NOT NULL | NULL }
    
    default ::=
-   
        DEFAULT default_value
        | IDENTITY [ ( start_with [ , increment_by ] ) ]
 
-.. _cet_parameters:
+.. _cft_parameters:
 
 Parameters
 ============
@@ -92,13 +92,13 @@ Parameters
      - The name of the table to create, which must be unique inside the schema.
    * - ``column_def``
      - A comma separated list of column definitions. A minimal column definition includes a name identifier and a datatype. Other column constraints and default values can be added optionally.
-   * - ``USING FORMAT ...``
-     - Specifies the format of the source files, such as ``PARQUET``, ``ORC``, or ``CSV``.
-   * - ``WITH PATH ...``
+   * - ``WRAPPER ...``
+     - Specifies the format of the source files, such as ``parquet_fdw``, ``orc_fdw``, or ``csv_fdw``.
+   * - ``LOCATION = ...``
      - Specifies a path or URI of the source files, such as ``/path/to/*.parquet``.
-   * - ``FIELD DELIMITER``
+   * - ``DELIMITER = ...``
      - Specifies the field delimiter for CSV files. Defaults to ``,``.
-   * - ``RECORD DELIMITER``
+   * - ``RECORD_DELIMITER = ...``
      - Specifies the record delimiter for CSV files. Defaults to a newline, ``\n``
    * - ``AWS_ID``, ``AWS_SECRET``
      - Credentials for authenticated S3 access
@@ -112,11 +112,14 @@ A simple table from Tab-delimited file (TSV)
 
 .. code-block:: postgres
 
-   CREATE OR REPLACE EXTERNAL TABLE cool_animals
+   CREATE OR REPLACE FOREIGN TABLE cool_animals
      (id INT NOT NULL, name VARCHAR(30) NOT NULL, weight FLOAT NOT NULL)  
-   USING FORMAT csv 
-   WITH  PATH  '/home/rhendricks/cool_animals.csv'
-         FIELD DELIMITER '\t';
+   WRAPPER csv_fdw
+   OPTIONS
+     ( LOCATION = '/home/rhendricks/cool_animals.csv',
+       DELIMITER '\t'
+     )
+    ;
 
 
 A table from a directory of Parquet files on HDFS
@@ -124,33 +127,39 @@ A table from a directory of Parquet files on HDFS
 
 .. code-block:: postgres
 
-   CREATE EXTERNAL TABLE users
+   CREATE FOREIGN TABLE users
      (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
-   USING FORMAT Parquet
-   WITH  PATH  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet';
+   WRAPPER parquet_fdw
+   OPTIONS
+     (
+       LOCATION =  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet'
+     );
 
-A table from a bucket of files on S3
---------------------------------------
+A table from a bucket of ORC files on S3
+------------------------------------------
 
 .. code-block:: postgres
 
-   CREATE EXTERNAL TABLE users
+   CREATE FOREIGN TABLE users
      (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
-   USING FORMAT Parquet
-   WITH  PATH  's3://pp-secret-bucket/users/*.parquet'
-         AWS_ID 'our_aws_id'
-         AWS_SECRET 'our_aws_secret';
+   WRAPPER orc_fdw
+   OPTIONS
+     (
+         LOCATION = 's3://pp-secret-bucket/users/*.orc',
+         AWS_ID = 'our_aws_id',
+         AWS_SECRET = 'our_aws_secret'
+      );
 
 
-Changing an external table to a regular table
+Changing a foreign table to a regular table
 ------------------------------------------------
 
-Materializes an external table into a regular table.
+Materializes a foreign table into a regular table.
 
-.. tip: Using an external table allows you to perform ETL-like operations in SQream DB by applying SQL functions and operations to raw files
+.. tip: Using a foreign table allows you to perform ETL-like operations in SQream DB by applying SQL functions and operations to raw files
 
 .. code-block:: postgres
 
    CREATE TABLE real_table
-    AS SELECT * FROM external_table;
+    AS SELECT * FROM some_foreign_table;
 

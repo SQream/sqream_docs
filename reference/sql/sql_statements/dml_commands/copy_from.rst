@@ -15,7 +15,7 @@ In general, ``COPY`` moves data between file-system files and SQream DB tables.
 .. note:: 
    * Learn how to migrate from CSV files in the :ref:`csv` guide
    * To copy data from a table to a file, see :ref:`COPY TO<copy_to>`.
-   * To load Parquet or ORC files, see :ref:`CREATE EXTERNAL TABLE<create_external_table>`
+   * To load Parquet or ORC files, see :ref:`CREATE FOREIGN TABLE<create_foreign_table>`
 
 Permissions
 =============

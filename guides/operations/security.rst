@@ -47,6 +47,8 @@ After creating a second ``SUPERUSER`` role, remove or change the default credent
 
 No database user should ever use the default ``SUPERUSER`` role in a production environment.
 
+If you don't change the user role itself, change the password of the default ``SUPERUSER``. See the :ref:`change password<change_password>` section of our :ref:`access control<access_control>` guide.
+
 Create distinct user roles
 --------------------------------
 
@@ -77,6 +79,11 @@ Follow these recommendations to strengthen passwords:
 * Mix upper and lower case letters
 * Mix letters and numbers
 * Include non-alphanumeric characters (except ``"`` and ``'``)
+
+
+
+
+
 
 Use TLS/SSL when possible
 ----------------------------

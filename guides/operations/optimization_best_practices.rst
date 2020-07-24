@@ -42,12 +42,12 @@ This will also reduce storage size and reduce row-lengths.
 
 We highly suggest using ``INT`` or ``BIGINT`` as join keys, rather than a text/string type.
 
-Convert external tables to native tables
+Convert foreign tables to native tables
 -------------------------------------------
 
 SQream DB's native storage is heavily optimized for analytic workloads. It is always faster for querying than other formats, even columnar ones such as Parquet. It also enables the use of additional metadata to help speed up queries, in some cases by many orders of magnitude.
 
-You can improve the performance of all operations by converting :ref:`external tables<external_tables>` into native tables by using the :ref:`create_table_as` syntax.
+You can improve the performance of all operations by converting :ref:`foreign tables<external_tables>` into native tables by using the :ref:`create_table_as` syntax.
 
 For example,
 
@@ -86,7 +86,7 @@ Data sorting is an important factor in minimizing storage size and improving que
 
 * Where possible, sort columns with the lowest cardinality first. Avoid sorting ``VARCHAR`` and ``TEXT/NVARCHAR`` columns with lengths exceeding 50 characters.
 
-* For longer-running queries that run on a regular basis, performance can be improved by sorting data based on the ``WHERE`` and ``GROUP BY`` parameters. Data can be sorted during insert by using :ref:`external tables<external_tables>` or by using :ref:`create_table_as`.
+* For longer-running queries that run on a regular basis, performance can be improved by sorting data based on the ``WHERE`` and ``GROUP BY`` parameters. Data can be sorted during insert by using :ref:`external_tables` or by using :ref:`create_table_as`.
 
 .. _query_best_practices:
 
