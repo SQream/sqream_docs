@@ -1,14 +1,16 @@
 .. _index:
 
-***********************
+*************************
 SQream DB documentation
-***********************
+*************************
+
+For SQream DB |latest_version|.
 
 .. only:: html
 
    .. tip::
       Want to read this offline?
-      `Download the documentation as a single PDF <https://readthedocs.org/projects/sqream-docs/downloads/pdf/latest/>`_ .
+      `Download the documentation as a single PDF <https://docs.sqream.com/_/downloads/en/latest/pdf/>`_ .
 
 .. only:: pdf or latex
    
@@ -80,6 +82,8 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
 
 
 .. rubric:: Looking for older versions?
+
+This version of the documentation is for SQream DB |latest_version|.
 
 If you're looking for an older version of the documentation, versions 1.10 through 2019.2.1 are available at http://previous.sqream.com .
 
