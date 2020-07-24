@@ -19,6 +19,7 @@ The guides in this section include information about best practices, monitoring,
    information_for_support
    creating_or_cloning_a_storage_cluster
    xxstarting_and_stopping_the_system
+   sqream_studio
    statement_editor
    hardware_guide
    security
