@@ -6,11 +6,11 @@ CLUSTER BY
 
 ``CLUSTER BY`` can be used to change clustering keys in a table.
 
-.. note:: 
-   
-   Changing clustering keys does not affect existing data.
-   
-   To force data to re-cluster, the table has to be recreated (i.e. with :ref:`create_table_as`).
+
+Read our :ref:`data_clustering` guide for more information.
+
+See also: :ref:`drop_clustering_key`, :ref:`create_table`.
+
 
 Permissions
 =============
@@ -46,7 +46,16 @@ Parameters
      - The table name to apply the change to.
    * - ``column_name [, ... ]``
      - Comma separated list of columns to create clustering keys for
-     
+
+
+Usage notes
+=================
+
+Removing clustering keys does not affect existing data.
+
+To force data to re-cluster, the table has to be recreated (i.e. with :ref:`create_table_as`).
+
+
 Examples
 ===========
 

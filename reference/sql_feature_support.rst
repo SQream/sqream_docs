@@ -103,9 +103,9 @@ Indexes
 
 SQream DB has a range-index collected on all columns as part of the metadata collection process.
 
-SQream DB does not support explicit indexing.
+SQream DB does not support explicit indexing, but does support clustering keys.
 
-Read more about :ref:`the method of indexing in SQream DB<metadata_system>`.
+Read more about :ref:`clustering keys<data_clustering>` and our :ref:`metadata system<metadata_system>`.
 
 Schema changes
 ================
@@ -119,25 +119,31 @@ Schema changes
      - Further information
    * - ``ALTER TABLE``
      - ✓
-     - :ref:`alter_table` - Add column, alter column, drop column, rename column, rename table
+     - :ref:`alter_table` - Add column, alter column, drop column, rename column, rename table, modify clustering keys
    * - Rename database
      - ✗
      - 
    * - Rename table
      - ✓
-     - 
+     - :ref:`rename_table`
    * - Rename column
      - ✓ 
-     - 
+     - :ref:`rename_column`
    * - Add column
      - ✓
-     - 
+     - :ref:`add_column`
    * - Remove column
      - ✓
-     - 
+     - :ref:`drop_column`
    * - Alter column data type
      - ✗
      - 
+   * - Add / modify clustering keys
+     - ✓
+     - :ref:`cluster_by`
+   * - Drop clustering keys
+     - ✓
+     - :ref:`drop_clustering_key`
    * - Add / Remove constraints
      - ✗
      - 
@@ -146,10 +152,10 @@ Schema changes
      - 
    * - Drop schema
      - ✓
-     - 
+     - :ref:`drop_schema`
    * - Alter default schema per user
      - ✓
-     - 
+     - :ref:`alter_default_schema`
 
 
 Statements

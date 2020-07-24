@@ -6,11 +6,10 @@ DROP CLUSTERING KEY
 
 ``DROP CLUSTERING KEY`` drops all clustering keys in a table.
 
-.. note:: 
-   
-   Removing clustering keys does not affect existing data.
-   
-   To force data to re-cluster, the table has to be recreated (i.e. with :ref:`create_table_as`).
+Read our :ref:`data_clustering` guide for more information.
+
+See also: :ref:`cluster_by`, :ref:`create_table`.
+
 
 Permissions
 =============
@@ -28,7 +27,6 @@ Syntax
 
    table_name ::= identifier
 
-
 Parameters
 ============
 
@@ -42,6 +40,15 @@ Parameters
      - The schema name for the table. Defaults to ``public`` if not specified.
    * - ``table_name``
      - The table name to apply the change to.
+
+Usage notes
+=================
+
+Removing clustering keys does not affect existing data.
+
+To force data to re-cluster, the table has to be recreated (i.e. with :ref:`create_table_as`).
+
+
 
 
 Examples

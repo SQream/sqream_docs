@@ -60,7 +60,10 @@ Parameters
    * - ``column_def``
      - A comma separated list of column definitions. A minimal column definition includes a name identifier and a datatype. Other column constraints and default values can be added optionally.
    * - ``CLUSTER BY column_name1 ...``
-     - A commma separated list of clustering column keys.
+     - 
+         A commma separated list of clustering column keys.
+         
+         See :ref:`data_clustering` for more information.
 
 .. _default_values:
 
@@ -180,6 +183,7 @@ In the following example, we expect the ``start_date`` column to be naturally cl
 
 When the clustering key is set, if the incoming data isn’t naturally clustered, it will be clustered by SQream DB during insert or bulk load.
 
+See :ref:`data_clustering` for more information.
 
 .. code-block:: postgres
 
