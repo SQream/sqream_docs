@@ -42,11 +42,6 @@ Your user level in SQream DB changes what you see.
 
 * All users have access to the :ref:`Editor<studio_editor>`, and can only see databases they have permissions for.
 
-You can sign out of the current user at any point, by selecting :kbd:`Logout` in the user menu.
-
-The user menu is located on the bottom left portion of the screen |icon-user|.
-
-
 .. _studio_editor:
 
 Statement editor
@@ -57,7 +52,7 @@ Familiarizing yourself with the editor
 
 The editor is built up of main panes.
 
-.. image:: /_static/images/studio_editor_main.png
+.. image:: /_static/images/studio_editor_familiarize.png
 
 * :ref:`Toolbar<studio_editor_toolbar>` - used to select the active database you want to work on, limit the number of rows, save query, etc.
 
@@ -69,12 +64,27 @@ The editor is built up of main panes.
 
 See more about each pane below:
 
+Navigation and user information
+-------------------------------------
+
+The user information menu is located on the bottom left portion of the screen |icon-user|.
+
+.. image:: /_static/images/studio_user_info.png
+
+
+The menu contains information about the currently signed-in user, as well as version information.
+
+You can sign out of the current user at any point, by selecting :kbd:`Logout` in the user menu.
+
+
 .. _studio_editor_toolbar:
 
 Toolbar
 -------------
 
 In the toolbar, you can perform the folllowing operations (from left to right):
+
+.. image:: /_static/images/studio_editor_toolbar.png
 
 * Database dropdown - Select the database you want to the statements to run on.
 
@@ -96,6 +106,9 @@ Statement area
 ----------------
 
 The multi-tabbed statement area is where you write queries and statements.
+
+.. image:: /_static/images/studio_editor_statement.png
+
 
 Select the database you wish to use in the toolbar, and then write and execute statements.
 
@@ -159,6 +172,8 @@ Results
 -------------
 
 The results pane shows query results and execution information. By default, only the first 10000 results are returned (modify via the :ref:`studio_editor_toolbar`).
+
+.. image:: /_static/images/studio_editor_results.png
 
 By default, executing several statements together will open a separate results tab for each statement.
 
@@ -321,8 +336,37 @@ Enter the administration dashboard by clicking the |icon-dashboard| icon in the 
 
 .. image:: /_static/images/studio_dashboard_main.png
 
+The main dashboard screen contains two panes:
 
+* :ref:`Data storage pane<administration_storage_pane>` - used to monitor the cluster's storage, and drill down into different databases.
 
+* :ref:`Worker pane<administation_worker_pane>` - used to monitor workers and :ref:`service queues<workload_manager>` in the cluster.
+
+.. _administration_storage_pane:
+
+Data storage pane
+-----------------------
+
+The left section of the Admin Dashboard shows you the status of your system's storage as a donut.
+
+.. image:: /_static/images/studio_dashboard_storage.png
+
+Storage is displayed broken up into four components:
+
+* Data – Storage occupied by databases in SQream DB
+
+* Free – Free storage space
+
+* 
+   Deleted – Storage that is temporarily occupied but hasn't been reclaimed (see our :ref:`delete guide<delete_guide>` to understand how data deletion works). 
+   
+   (This value is estimated and may not be accurate)
+   
+* Other – Storage used by other applications. On a dedicated SQream DB cluster, this should be close to zero.
+
+Expanding the storage pane (|icon-expand|) will show a breakdown of how much storage is used by each database in the cluster.
+
+.. image:: /_static/images/studio_dashboard_storage_breakdown.png
 
 
 .. |icon-user| image:: /_static/images/studio_icon_user.png
