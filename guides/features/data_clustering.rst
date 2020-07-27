@@ -17,7 +17,7 @@ A table is considered "clustered" by one or more clustering keys if rows contain
 
 For example, a table containing a date column whose values cover a whole month but each chunk on disk covers less than a specific day is considered clustered by this column. 
 
-Good clustering has a significant positive impact on performance.
+Good clustering has a significant positive impact on query performance.
 
 When does clustering help?
 ===================================
@@ -40,14 +40,25 @@ Here are some common scenarios in which data clustering is beneficial:
 Controlling data clustering
 =================================
 
-Some tables are naturally clustered.
+Some tables are naturally clustered. For example - a call log table containing CDRs can be naturally clustered by call date if data is inserted as it is generated, or bulk loaded in batches. Data can also be clustered by a region ID, per city, or customer type, depending on the source.
 
-For example - a call log table containing CDRs can be naturally clustered by call date if data is inserted as it is generated, or bulk loaded in batches. Data can also be clustered by a region ID, per city, or customer type.
 
 If the incoming data is not well-clustered (by the desired key), it is possible to tell SQream DB which keys it should cluster by.
+
 This can be done upon table creation (:ref:`create_table`), or retroactively (:ref:`cluster_by`). New data will be clustered upon insert.
 
-.. note:: Some queries significantly benefit from the decision to use clustering. However, clustering can slow down data insertion. If you are not sure whether or not a specific scenario will benefit from clustering, we recommended testing end-to-end (both insert and query performance) on a small subset of the data before commiting to clustering keys.
+When data is loaded to an explicitly clustered table, SQream DB partially sorts it. While this slows down the insert time, it is often beneficial for subsequent queries.
+
+.. note:: 
+
+   Some queries significantly benefit from the decision to use clustering. 
+   For example, queries that filter or join extensively on clustered columns will benefit.  
+   
+   
+   However, clustering can slow down data insertion. Some insert workloads can be up to 75% slower.
+   
+   If you are not sure whether or not a specific scenario will benefit from clustering, we recommended testing end-to-end (both insert and query performance) on a small subset of the data before commiting to permanent clustering keys.
+
 
 Examples
 ==========
