@@ -13,9 +13,11 @@ Read more about :ref:`window_functions` in the :ref:`sql_syntax` section.
    :glob:
    :hidden:
    
+   lag
+   lead
    row_number
    rank
 
 .. include:: /reference/sql/sql_syntax/window_functions.rst
    :start-line: 9
-   :end-line: 70
+   :end-line: 100
