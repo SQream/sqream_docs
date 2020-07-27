@@ -23,6 +23,8 @@ Syntax
    window_fn ::= 
       | AVG
       | COUNT
+      | LAG
+      | LEAD
       | MAX
       | MIN
       | RANK
@@ -88,8 +90,13 @@ Supported window functions
    :header-rows: 1
 
    * - Function
+   * - :ref:`lag`
+   * - :ref:`lead`
    * - :ref:`rank`
    * - :ref:`row_number`
+
+.. versionchanged:: 2020.2
+   :ref:`lag` and :ref:`lead` are supported from v2020.2.
 
 
 How window functions work
@@ -265,3 +272,40 @@ See :ref:`rank`.
    Myles Turner             |  20 | 6-11   |   16
    Trey Lyles               |  20 | 6-10   |   19
    [...]
+   
+
+Using ``LEAD`` to access following rows without a join
+-----------------------------------------------------------
+
+.. versionchanged:: 2020.2
+   :ref:`lag` and :ref:`lead` are supported from v2020.2.
+
+The :ref:`lead` function is used to return data from rows further down the result set. 
+The :ref:`lag` function returns data from rows further up the result set.
+
+This example calculates the salary between two players, starting from the highest salary.
+
+
+.. code-block:: psql
+   
+   t=> SELECT "Name",
+   .          "Salary",
+   .          LEAD("Salary", 1) OVER (ORDER BY "Salary" DESC) AS "Salary - next",
+   .          ABS(LEAD("Salary", 1) OVER (ORDER BY "Salary" DESC) - "Salary") AS "Salary - diff"
+   .          FROM nba
+   .          LIMIT 11 ;
+   Name            | Salary   | Salary - next | Salary - diff
+   ----------------+----------+---------------+--------------
+   Kobe Bryant     | 25000000 |      22970500 |       2029500
+   LeBron James    | 22970500 |      22875000 |         95500
+   Carmelo Anthony | 22875000 |      22359364 |        515636
+   Dwight Howard   | 22359364 |      22192730 |        166634
+   Chris Bosh      | 22192730 |      21468695 |        724035
+   Chris Paul      | 21468695 |      20158622 |       1310073
+   Kevin Durant    | 20158622 |      20093064 |         65558
+   Derrick Rose    | 20093064 |      20000000 |         93064
+   Dwyane Wade     | 20000000 |      19689000 |        311000
+   Brook Lopez     | 19689000 |      19689000 |             0
+   DeAndre Jordan  | 19689000 |      19689000 |             0
+
+

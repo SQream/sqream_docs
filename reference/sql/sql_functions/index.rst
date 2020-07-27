@@ -315,6 +315,10 @@ See more about  :ref:`window_functions`
    
    * - Function
      - Description
+   * - :ref:`lag`
+     - Calculates the value evaluated at the row that is before the current row within the partition
+   * - :ref:`lead`
+     - Calculates the value evaluated at the row that is after the current row within the partition
    * - :ref:`max`
      - Calculates the maximum value
    * - :ref:`min`
