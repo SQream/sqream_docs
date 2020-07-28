@@ -4,13 +4,15 @@
 Python (pysqream)
 *************************
 
-The SQream Python connector allows Python programs to connect to SQream DB.
+The SQream Python connector is a set of packages that allows Python programs to connect to SQream DB.
 
-``pysqream`` is a pure Python connector. It can be installed with ``pip`` on any operating system, including Linux, Windows, and macOS.
+* ``pysqream`` is a pure Python connector. It can be installed with ``pip`` on any operating system, including Linux, Windows, and macOS.
+
+* ``pysqream-sqlalchemy`` is a SQLAlchemy dialect for ``pysqream``
 
 The connector supports Python 3.6.5 and newer.
 
-pysqream conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_
+The base ``pysqream`` package conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_.
 
 .. contents:: In this topic:
    :local:
@@ -93,9 +95,20 @@ Install the connector with ``pip``:
 
 .. code-block:: console
    
-   $ pip install pysqream
+   $ pip install pysqream pysqream-sqlalchemy
 
-``pip`` will automatically installs all necessary libraries and modules.
+``pip`` will automatically install all necessary libraries and modules.
+
+Upgrading an existing installation
+--------------------------------------
+
+The Python drivers are updated periodically.
+To upgrade an existing pysqream installation, use pip's ``-U`` flag.
+
+.. code-block:: console
+   
+   $ pip install pysqream pysqream-sqlalchemy -U
+
 
 Validate the installation
 -----------------------------
@@ -120,7 +133,53 @@ If all went well, you are now ready to build an application using the SQream DB 
 
 If any connection error appears, verify that you have access to a running SQream DB and that the connection parameters are correct.
 
-Examples
+SQLAlchemy examples
+========================
+
+SQLAlchemy is an ORM for Python.
+
+When you install the SQream DB dialect (``pysqream-sqlalchemy``) you can use frameworks like Pandas, TensorFlow, and Alembic to query SQream DB directly.
+
+A simple connection example
+---------------------------------
+
+.. code-block:: python
+
+   import sqlalchemy as sa
+
+   conn_str = "sqream://rhendricks:secret_password@localhost:5100/raviga?use_ssl=True"
+   engine = create_engine(conn_str)
+
+   metadata = MetaData()
+   metadata.bind = engine
+
+   res = engine.execute('create table test (ints int)')
+   res = engine.execute('insert into test values (5), (6)')
+   res = engine.execute('select * from test')
+
+Pulling a table into Pandas
+---------------------------------
+
+In this example, we use the URL method to create the connection string.
+
+.. code-block:: python
+
+   import sqlalchemy as sa
+   import pandas as pd
+   from sqlalchemy.engine.url import URL
+
+
+   engine_url = URL('pysqream+dialect', username='rhendricks', password='secret_password', 
+                     host='localhost', port=5100, database='raviga',
+                     query={'use_ssl': True}) # If not using SSL, replace True with False
+
+   engine = create_engine(engine_url)
+
+   table_df = pd.read_sql_table("demo_table", con=engine)
+
+
+
+API Examples
 ===============
 
 Explaining the connection example
