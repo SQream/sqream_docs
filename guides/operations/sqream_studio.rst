@@ -334,13 +334,24 @@ If you signed in with a ``SUPERUSER`` role, you can enter the administration das
 
 Enter the administration dashboard by clicking the |icon-dashboard| icon in the navigation bar.
 
-.. image:: /_static/images/studio_dashboard_main.png
 
-The main dashboard screen contains two panes:
 
-* :ref:`Data storage pane<administration_storage_pane>` - used to monitor the cluster's storage, and drill down into different databases.
+Familiarizing yourself with the dashboard
+---------------------------------------------
 
-* :ref:`Worker pane<administation_worker_pane>` - used to monitor workers and :ref:`service queues<workload_manager>` in the cluster.
+.. image:: /_static/images/studio_dashboard_familiarize.png
+
+The main dashboard screen contains two main panes:
+
+* 
+   :ref:`Data storage pane<administration_storage_pane>` - monitor the SQream DB cluster's storage
+
+   - can be expanded to :ref:`drill down into database storage<administration_storage_database>`
+
+* 
+   :ref:`Worker pane<administration_worker_pane>` - monitor system health
+   
+   - the worker pane used to monitor workers and :ref:`service queues<workload_manager>` in the cluster.
 
 .. _administration_storage_pane:
 
@@ -364,9 +375,131 @@ Storage is displayed broken up into four components:
    
 * Other – Storage used by other applications. On a dedicated SQream DB cluster, this should be close to zero.
 
+.. _administration_storage_database:
+
+Database storage
+^^^^^^^^^^^^^^^^^^^^^^^^
+
 Expanding the storage pane (|icon-expand|) will show a breakdown of how much storage is used by each database in the cluster.
 
 .. image:: /_static/images/studio_dashboard_storage_breakdown.png
+
+This can be used to drill down into each database's storage footprint.
+
+Databases are displayed in a table, containing the following information:
+* Database name
+* Raw storage size – the estimated size of raw data (uncompressed) in the database
+* Storage size – the physical size of the compressed data
+* Ratio – effective compression ratio
+* Deleted data – storage that is temporarily occupied but hasn't been reclaimed (see our :ref:`delete guide<delete_guide>` to understand how data deletion works). (This value is estimated and may not be accurate)
+
+Below the table, a graph shows the database storage trends.
+
+By default, the graph shows the total storage for all databases. Clicking a database in the table will filter to show just that database.
+
+The scale of the presented information can be controlled by changing the timeframe in the scale dropdown (|icon-scale|).
+
+.. _administration_worker_pane:
+
+Service and workers pane
+--------------------------
+
+This pane shows the cluster status in workers and their :ref:`service queues<workload_manager>`.
+
+.. _administration_services:
+
+Services
+^^^^^^^^^^^
+
+The services bar shows the defined :ref:`service queues<workload_manager>`.
+
+Services are used to divide workers and associate (subscribe) workers to services.
+
+Each service queue contains the following details:
+* Service name
+* A graph of load over time (statements in that queue)
+* Currently processed queries of the Service / total queries for that service in the system (including queued queries)
+
+Creating new service queues
+********************************
+
+Click the |icon-add| button above the service list. Type the service queue name and associate new workers to the service queue.
+
+.. note:: if you choose not to associate a worker with the new service, it will not be created.
+
+Associating a worker with an existing service
+**********************************************
+
+Clicking on the |icon-add-worker| icon on a service name is used to attach workers to a service.
+
+Clicking on a service queue in the services bar will display the list of workers in the main pane.
+
+.. image:: /_static/images/studio_dashboard_services.png
+
+In this mode, the :kbd:`⋮` icon (more menu) can be used to detach a worker from a service.
+
+You can select a Worker from the list that is available to process queries of the relevant Service and by clicking on the  button of that Worker that Worker will be associated with the Service. After that the page will go back to its normal layout and you will be able to click the Service and see the Worker associated with the Service.
+Other Services associated with that Worker will remain associated to it.
+
+
+.. _administration_workers:
+
+Workers
+^^^^^^^^^^^^^
+
+The worker pane shows each worker (``sqreamd``) running in the cluster. 
+
+Each worker has a status bar that represents the status over time. The scale of the presented information can be controlled by changing the timeframe in the scale dropdown (|icon-scale|).
+
+The status bar is divided into 20 equal sections, showing the most dominant activity in that slice. Hover over the status bar sections to see the activity:
+
+* Idle – worker is idle and available for statements
+* Compiling – Compiling a statement, in preparation for execution
+* Executing – executing a statement after compilation
+* Stopped – worker was stopped (either deliberately or due to a fault)
+* Waiting – worker was waiting on an object locked by another worker
+
+Show host resources
+*****************************
+
+Clicking the |icon-expand-down| button below each host will expand to show the host resource utilization.
+
+.. image:: /_static/images/studio_worker_activity.png
+
+The host resource utilization includes information about:
+
+* CPU utilization
+* Memory utilization
+* GPU utilization
+
+Graphs show resource utilization over time. Current values are shown on the right.
+
+Hover over the graph line to see the activity at a given time.
+
+
+Active queries
+******************
+
+Clicking the |icon-expand-down| button on a worker will expand to show the active statements running.
+
+Each statement has a statement ID, status, service queue, elapsed time, execution time, and estimated completion status.
+
+Each statement can be stopped or expanded to show its execution plan and progress (:ref:`show_node_info`).
+
+.. include:: /reference/sql/sql_statements/monitoring_commands/show_server_status.rst
+   :start-line: 67
+   :end-line: 84
+
+Control worker status (start, stop, restart)
+****************************************************
+
+In some cases, it may be useful to stop or restart workers for maintenance.
+
+Each Worker line has a :kbd:`⋮` menu (more menu). This menu allows stopping, starting, or restarting workers.
+
+When a worker is stopped, it has a gray background and its status is "Stopped". 
+
+
 
 
 .. |icon-user| image:: /_static/images/studio_icon_user.png

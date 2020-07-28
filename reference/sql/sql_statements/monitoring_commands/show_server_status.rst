@@ -63,6 +63,8 @@ This function returns a list of active sessions. If no sessions are active acros
    * - ``statementstatusstart``
      - Last updated timestamp
 
+.. include from here: 66
+
 
 .. list-table:: Statement status values
    :widths: auto
@@ -78,6 +80,9 @@ This function returns a list of active sessions. If no sessions are active acros
      - Statement has entered execution checks
    * - ``Executing``
      - Statement is executing
+
+
+.. include until here 86
 
 Notes
 ===========

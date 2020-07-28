@@ -140,7 +140,13 @@ This is a partial list of node types.
 
 .. [#f1] A GPU sort operation can be added by the statement compiler before ``GROUP BY`` or ``JOIN`` operations.
 
+Statement statuses
+=======================
 
+.. include:: /reference/sql/sql_statements/monitoring_commands/show_server_status.rst
+   :start-line: 67
+   :end-line: 84
+   
 Notes
 ===========
 
