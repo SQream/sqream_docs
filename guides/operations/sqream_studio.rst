@@ -541,7 +541,7 @@ When a worker is stopped, it has a gray background and its status is "Stopped".
 .. |icon-right| image:: /_static/images/studio_icon_right.png
    :align: middle
 
-.. |icon-format-sql| image:: /_static/images/studio_icon_format_sql.png
+.. |icon-format-sql| image:: /_static/images/studio_icon_format.png
    :align: middle
 
 .. |icon-download-query| image:: /_static/images/studio_icon_download_query.png
