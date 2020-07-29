@@ -148,9 +148,9 @@ A simple connection example
    import sqlalchemy as sa
 
    conn_str = "sqream://rhendricks:secret_password@localhost:5100/raviga?use_ssl=True"
-   engine = create_engine(conn_str)
+   engine = sa.create_engine(conn_str)
 
-   metadata = MetaData()
+   metadata = sa.MetaData()
    metadata.bind = engine
 
    res = engine.execute('create table test (ints int)')
@@ -173,7 +173,7 @@ In this example, we use the URL method to create the connection string.
                      host='localhost', port=5100, database='raviga',
                      query={'use_ssl': True}) # If not using SSL, replace True with False
 
-   engine = create_engine(engine_url)
+   engine = sa.create_engine(engine_url)
 
    table_df = pd.read_sql_table("demo_table", con=engine)
 
