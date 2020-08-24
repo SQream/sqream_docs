@@ -18,7 +18,7 @@ Prerequisites
 
 #. 
    Install the `uODBC <https://www.php.net/manual/en/intro.uodbc.php>`_ extension for your PHP installation.
-   To configure PHP to enable uODBC, configure it with ``./configure --with-pdo-odbc=unixODBC,/usr/local``.
+   To configure PHP to enable uODBC, configure it with ``./configure --with-pdo-odbc=unixODBC,/usr/local`` when compiling php or install ``php-odbc`` and ``php-pdo`` along with php (version 7.1 minimum for best results) using your distribution package manager.
 
 Testing the connection
 ===========================
