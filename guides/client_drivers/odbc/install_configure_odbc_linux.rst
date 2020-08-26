@@ -42,7 +42,7 @@ Verify unixODBC is installed by running:
    SQLLEN Size........: 8
    SQLSETPOSIROW Size.: 8
 
-Take note of the location of ``odbc.ini`` and ``odbcinst.ini``. In this case, ``/etc``. If ``odbcinst`` is not installed, follow the instructions for your platform below:
+Take note of the location of ``.odbc.ini`` and ``.odbcinst.ini``. In this case, ``/etc``. If ``odbcinst`` is not installed, follow the instructions for your platform below:
 
 .. contents:: Install unixODBC on:
    :local:
@@ -84,7 +84,7 @@ Use this method if you have never used ODBC on your machine before. If you have 
       ./odbc_install.sh --install
       
 
-#. Edit the DSN created by editing ``/etc/odbc.ini``. See the parameter explanation in the section :ref:`ODBC DSN Parameters <dsn_params>`. 
+#. Edit the DSN created by editing ``/etc/.odbc.ini``. See the parameter explanation in the section :ref:`ODBC DSN Parameters <dsn_params>`. 
 
 
 Install the ODBC driver manually
@@ -101,9 +101,9 @@ Use this method when you have existing ODBC DSNs on your machine.
 
    Take note of the directory where the driver was unpacked. For example, ``/home/rhendricks/sqream_odbc64``
 
-#. Locate the ``odbc.ini`` and ``odbcinst.ini`` files, using ``odbcinst -j``.
+#. Locate the ``.odbc.ini`` and ``.odbcinst.ini`` files, using ``odbcinst -j``.
 
-   #. In ``odbcinst.ini``, add the following lines to register the driver (change the highlighted paths to match your specific driver):
+   #. In ``.odbcinst.ini``, add the following lines to register the driver (change the highlighted paths to match your specific driver):
       
       .. code-block:: ini
          :emphasize-lines: 6,7
@@ -121,7 +121,7 @@ Use this method when you have existing ODBC DSNs on your machine.
          SQLLevel=1
          IconvEncoding=UCS-4LE
 
-   #. In ``odbc.ini``, add the following lines to configure the DSN (change the highlighted parameters to match your installation):
+   #. In ``.odbc.ini``, add the following lines to configure the DSN (change the highlighted parameters to match your installation):
       
       .. code-block:: ini
          :emphasize-lines: 6,7,8,9,10,11,12,13,14
@@ -144,7 +144,7 @@ Use this method when you have existing ODBC DSNs on your machine.
       Parameters are in the form of ``parameter = value``. For details about the parameters that can be set for each DSN, see the section :ref:`ODBC DSN Parameters <dsn_params>`.
 
 
-   #. Create a file called ``sqream_odbc.ini`` for managing the driver settings and logging.
+   #. Create a file called ``.sqream_odbc.ini`` for managing the driver settings and logging.
       This file should be created alongside the other files, and add the following lines (change the highlighted parameters to match your installation):
       
          .. code-block:: ini
@@ -162,11 +162,17 @@ Use this method when you have existing ODBC DSNs on your machine.
             LogPath=/tmp/
             ODBCInstLib=libodbcinst.so
 
-#. Finally, Add a new path to LB_LIBRARY_PATH to include prerequisite libraries (change the path to match your installation):
+
+Install the driver dependencies
+==============================
+
+Add a new path to LB_LIBRARY_PATH to include prerequisite libraries (change the path to match your installation):
    
-   .. code-block:: console
+.. code-block:: console
    
-      $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/rhendricks/sqream_odbc64/lib
+   $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/rhendricks/sqream_odbc64/lib
+
+You can also add this previous command line to your ``/home/rhendricks/.bashrc`` file in order to keep this installation working between reboots without re-entering the command manually
 
 Testing the connection
 ========================
