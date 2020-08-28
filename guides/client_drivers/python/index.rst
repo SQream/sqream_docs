@@ -146,12 +146,17 @@ A simple connection example
 .. code-block:: python
 
    import sqlalchemy as sa
+   from sqlalchemy.engine.url import URL
 
-   conn_str = "sqream://rhendricks:secret_password@localhost:5100/raviga?use_ssl=True"
-   engine = sa.create_engine(conn_str)
+   engine_url = URL('sqream'
+                 , username='rhendricks'
+                 , password='secret_passwor"
+                 , host='localhost'
+                 , port=5000
+                 , database='raviga'
+                 , query={'use_ssl': False})
 
-   metadata = sa.MetaData()
-   metadata.bind = engine
+   engine = sa.create_engine(engine_url)
 
    res = engine.execute('create table test (ints int)')
    res = engine.execute('insert into test values (5), (6)')
@@ -169,14 +174,17 @@ In this example, we use the URL method to create the connection string.
    from sqlalchemy.engine.url import URL
 
 
-   engine_url = URL('pysqream+dialect', username='rhendricks', password='secret_password', 
-                     host='localhost', port=5100, database='raviga',
-                     query={'use_ssl': True}) # If not using SSL, replace True with False
+   engine_url = URL('sqream'
+                 , username='rhendricks'
+                 , password='secret_passwor"
+                 , host='localhost'
+                 , port=5000
+                 , database='raviga'
+                 , query={'use_ssl': False})
 
    engine = sa.create_engine(engine_url)
-
-   table_df = pd.read_sql_table("demo_table", con=engine)
-
+   
+   table_df = pd.read_sql("select * from nba", con=engine)
 
 
 API Examples
@@ -426,6 +434,66 @@ We will write a helper function to create an :ref:`insert` statement, by reading
    insert_from_csv(cur, 'nba', 'nba.csv', field_delimiter = ',', null_markers = [])
    
    con.close()
+
+
+Using SQLAlchemy ORM to create tables and fill them with data
+-----------------------------------------------------------------------
+
+You can also use the ORM to create tables and insert data to them from Python objects.
+
+For example:
+
+.. code-block:: python
+   
+   import sqlalchemy as sa
+   import pandas as pd
+   from sqlalchemy.engine.url import URL
+
+
+   engine_url = URL('sqream'
+                 , username='rhendricks'
+                 , password='secret_passwor"
+                 , host='localhost'
+                 , port=5000
+                 , database='raviga'
+                 , query={'use_ssl': False})
+
+   engine = sa.create_engine(engine_url)
+   
+   # Build a metadata object and bind it
+   
+   metadata = sa.MetaData()
+   metadata.bind = engine
+   
+   # Create a table in the local metadata
+   
+   employees = sa.Table(
+   'employees'
+   , metadata 
+   , sa.Column('id', sa.Integer)
+   , sa.Column('name', sa.VARCHAR(32))
+   , sa.Column('lastname', sa.VARCHAR(32))
+   , sa.Column('salary', sa.Float)
+   )
+
+   # The create_all() function uses the SQream DB engine object
+   # to create all the defined table objects.
+
+   metadata.create_all(engine)
+   
+   # Now that the table exists, we can insert data into it.
+   
+   # Build the data rows
+   insert_data = [ {'id': 1, 'name': 'Richard','lastname': 'Hendricks',   'salary': 12000.75}
+                  ,{'id': 3,  'name': 'Bertram', 'lastname': 'Gilfoyle', 'salary': 8400.0}
+                  ,{'id': 8,  'name': 'Donald', 'lastname': 'Dunn', 'salary': 6500.40}
+                 ]
+
+   # Build the insert command
+   ins = employees.insert(insert_data)
+   
+   # Execute the command
+   result = engine.execute(ins)
 
 .. toctree::
    :maxdepth: 8
