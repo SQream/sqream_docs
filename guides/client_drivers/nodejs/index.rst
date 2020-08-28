@@ -20,17 +20,26 @@ Prerequisites
 
 * Node.JS 10 or newer. Follow instructions at `nodejs.org <https://nodejs.org/en/download/package-manager/>`_ .
 
-Getting the tarball
----------------------
+Install with NPM
+-------------------
+
+Installing with npm is the easiest and most reliable method.
+If you need to install the driver in an offline system, see the offline method below.
+
+.. code-block:: console
+   
+   $ npm install @sqream/sqreamdb
+
+Install from an offline package
+-------------------------------------
 
 The Node driver is provided as a tarball for download from the `SQream Drivers page <http://sqream.com/product/client-drivers>`_ .
 
-Install with NPM
--------------------------
+After downloading the tarball, use ``npm`` to install the offline package.
 
 .. code-block:: console
 
-   $ sudo npm install sqreamdb-3.0.0.tgz
+   $ sudo npm install sqreamdb-4.0.0.tgz
 
 
 Connect to SQream DB with a Node.JS application
@@ -44,23 +53,26 @@ Replace the connection parameters with real parameters for a SQream DB installat
 .. code-block:: javascript
    :caption: sqreamdb-test.js
 
-   const Connection  = require('sqreamdb');
+   const Connection = require('@sqream/sqreamdb');
+
    const config  =  {
-     host: '<host>',
-     port: <port>,
-     username: '<username>',
-     password: '<password>',
-     connectDatabase: '<database>',
-     cluster: '<true | false>',
-     ssl: '<true | false>',
-     service: '<workload manager service>'  
+     host: 'localhost',
+     port: 3109,
+     username: 'rhendricks',
+     password: 'super_secret_password',
+     connectDatabase: 'raviga',
+     cluster: true,
+     is_ssl: true,
+     service: 'sqream'  
      };
      
    const query1  =  'SELECT 1 AS test, 2*6 AS "dozen"';
    
-   const myConnection  = new Connection(config);
-   myConnection.runQuery(query1, function  (err, data){
-      console.log(err, data);  
+   const sqream = new Connection(config);
+   sqream.execute(query1).then((data) => {
+      console.log(data);
+   }, (err) => {
+      console.error(err);
    });
 
 
@@ -72,7 +84,7 @@ A successful run should look like this:
 .. code-block:: console
 
    $ node sqreamdb-test.js
-   null [  { test: 1, dozen: 12  }  ]
+   [  { test: 1, dozen: 12  }  ]
 
 
 API reference
@@ -113,7 +125,7 @@ Connection parameters
      - ✓
      - ``sqream``
      - Specifices service queue to use. For example, ``etl``
-   * - ``ssl``
+   * - ``is_ssl``
      - ✓
      - ``false``
      - Specifies SSL for this connection. For example, ``true``
@@ -157,8 +169,37 @@ Example
      });  
    });
 
-Setting flags
----------------------
+Input placeholders
+-------------------------
+
+The Node.JS driver can replace parameters in a statement.
+
+Input placeholders allow values like user input to be passed as parameters into queries, with proper escaping.
+
+The valid placeholder formats are provided in the table below.
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Placeholder
+     - Type
+   * - ``%i``
+     - Identifier (e.g. table name, column name)
+   * - ``%s``
+     - A text string
+   * - ``%d``
+     - A number value
+   * - ``%b``
+     - A boolean value
+
+See the :ref:`input placeholders example<input_placeholders_example>` below.
+
+Examples
+===============
+
+Setting configuration flags
+-----------------------------------
 
 SQream DB configuration flags can be set per statement, as a parameter to ``runQuery``.
 
@@ -176,8 +217,125 @@ For example:
    }, setFlag);
 
 
-Recommended Node configuration
-======================================
+Lazyloading
+-----------------------------------
+
+To process rows without keeping them in memory, you can lazyload the rows with an async:
+
+.. code-block:: javascript
+   
+   
+   const Connection = require('@sqream/sqreamdb');
+
+   const config  =  {
+     host: 'localhost',
+     port: 3109,
+     username: 'rhendricks',
+     password: 'super_secret_password',
+     connectDatabase: 'raviga',
+     cluster: true,
+     is_ssl: true,
+     service: 'sqream'  
+     };
+     
+   const sqream = new Connection(config);
+
+   const query = "SELECT * FROM public.a_very_large_table";
+
+   (async () => {
+     const cursor = await sqream.executeCursor(query);
+     let count = 0;
+     for await (let rows of cursor.fetchIterator(100)) { 
+       // fetch rows in chunks of 100
+       count += rows.length;
+     }
+     await cursor.close();
+     return count;
+   })().then((total) => {
+     console.log('Total rows', total);
+   }, (err) => {
+     console.error(err);
+   });
+   
+
+Reusing a connection
+-----------------------------------
+
+It is possible to execeute multiple queries with the same connection (although only one query can be executed at a time).
+
+.. code-block:: javascript
+   
+   const Connection = require('@sqream/sqreamdb');
+
+   const config  =  {
+     host: 'localhost',
+     port: 3109,
+     username: 'rhendricks',
+     password: 'super_secret_password',
+     connectDatabase: 'raviga',
+     cluster: true,
+     is_ssl: true,
+     service: 'sqream'  
+     };
+     
+   const sqream = new Connection(config);
+
+   (async () => {
+
+     const conn = await sqream.connect();
+     try {
+       const res1 = await conn.execute("SELECT 1");
+       const res2 = await conn.execute("SELECT 2");
+       const res3 = await conn.execute("SELECT 3");
+       conn.disconnect();
+       return {res1, res2, res3};
+     } catch (err) {
+       conn.disconnect();
+       throw err;
+     }
+
+   })().then((res) => {
+     console.log('Results', res)
+   }, (err) => {
+     console.error(err);
+   });
+
+
+.. _input_placeholders_example:
+
+Using placeholders in queries
+-----------------------------------
+
+Input placeholders allow values like user input to be passed as parameters into queries, with proper escaping.
+
+.. code-block:: javascript
+   
+   const Connection = require('@sqream/sqreamdb');
+
+   const config  =  {
+     host: 'localhost',
+     port: 3109,
+     username: 'rhendricks',
+     password: 'super_secret_password',
+     connectDatabase: 'raviga',
+     cluster: true,
+     is_ssl: true,
+     service: 'sqream'
+     };
+     
+   const sqream = new Connection(config);
+
+   const sql = "SELECT %i FROM public.%i WHERE name = %s AND num > %d AND active = %b";
+   
+   sqream.execute(sql, "col1", "table2", "john's", 50, true);
+
+
+The query that will run is ``SELECT col1 FROM public.table2 WHERE name = 'john''s' AND num > 50 AND active = true``
+
+
+Troubleshooting and recommended configuration
+================================================
+
 
 Preventing ``heap out of memory`` errors
 --------------------------------------------
@@ -195,4 +353,30 @@ For example, set the space size to 2GB:
 .. code-block:: console
    
    $ node --max-old-space-size=2048 my-application.js
+
+BIGINT support
+------------------------
+
+The Node.JS connector supports fetching ``BIGINT`` values from SQream DB. However, some applications may encounter an error when trying to serialize those values.
+
+The error that appears is:
+.. code-block:: none
+   
+   TypeError: Do not know how to serialize a BigInt
+
+This is because JSON specification do not support BIGINT values, even when supported by Javascript engines.
+
+To resolve this issue, objects with BIGINT values should be converted to string before serializing, and converted back after deserializing.
+
+For example:
+
+.. code-block:: javascript
+
+   const rows = [{test: 1n}]
+   const json = JSON.stringify(rows, , (key, value) =>
+     typeof value === 'bigint'
+         ? value.toString()
+         : value // return everything else unchanged
+   ));
+   console.log(json); // [{"test": "1"}]
 

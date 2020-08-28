@@ -164,15 +164,15 @@ Use this method when you have existing ODBC DSNs on your machine.
 
 
 Install the driver dependencies
-==============================
+==================================
 
-Add a new path to LB_LIBRARY_PATH to include prerequisite libraries (change the path to match your installation):
+Add the ODBC driver path to ``LD_LIBRARY_PATH``:
    
 .. code-block:: console
    
    $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/home/rhendricks/sqream_odbc64/lib
 
-You can also add this previous command line to your ``/home/rhendricks/.bashrc`` file in order to keep this installation working between reboots without re-entering the command manually
+You can also add this previous command line to your ``~/.bashrc`` file in order to keep this installation working between reboots without re-entering the command manually
 
 Testing the connection
 ========================
