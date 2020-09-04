@@ -222,7 +222,7 @@ This is a full list of node types:
      - A merge operation of a sort operation, helps operate on larger-than-RAM data
    * - ``SortMergeJoin``
      - GPU
-      - A sort-merge oin, performed on the GPU
+     - A sort-merge join, performed on the GPU
    * - ``TakeRowsFromChunk``
      - 
      - Take the first N rows from each chunk, to optimize ``LIMIT`` when used alongside ``ORDER BY``
