@@ -13,6 +13,7 @@ The guides in this section include information about best practices, monitoring,
 
    optimization_best_practices
    xxmonitoring
+   monitoring_query_performance
    logging
    configuration
    troubleshooting
