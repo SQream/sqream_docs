@@ -117,7 +117,7 @@ This is recommended over looking at the raw logs.
 The ``SHOW_NODE_INFO`` command
 =====================================
 
-:ref:`show_node_info` returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases.
+The :ref:`show_node_info` command returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases.
 
 The :ref:`show_node_info` result, just like the periodically-logged execution plans described above, are an at-the-moment view of the compiler's execution plan and runtime statistics for the specified statement.
 
@@ -152,6 +152,114 @@ Each row represents a single logical database operation.
 .. include:: /reference/sql/sql_statements/monitoring_commands/show_node_info.rst
    :start-line: 47
    :end-line: 78
+
+
+Commonly seen nodes
+----------------------
+
+.. list-table:: Node types
+   :widths: auto
+   :header-rows: 1
+   
+   * - Column name
+     - Execution location
+     - Description
+   * - ``CpuDecompress``
+     - CPU
+     - Decompression operation, common for longer ``VARCHAR`` types
+   * - ``CpuLoopJoin``
+     - CPU
+     - A non-indexed nested loop join, performed on the CPU
+   * - ``CpuReduce``
+     - CPU
+     - A reduce process performed on the CPU, primarily with ``DISTINCT`` aggregates (e.g. ``COUNT(DISTINCT ...)``)
+   * - ``CpuToGpu``, ``GpuToCpu``
+     - 
+     - An operation that moves data to or from the GPU for processing
+   * - ``CpuTransform``
+     - CPU
+     - A transform operation performed on the CPU, usually a :ref:`scalar function<scalar_functions>`
+   * - ``DeferredGather``
+     - CPU
+     - Merges the results of GPU operations with a result set
+   * - ``Distinct``
+     - GPU
+     - Removes duplicate rows (usually as part of the ``DISTINCT`` operation)
+   * - ``Distinct_Merge``
+     - CPU
+     - The merge operation of the ``Distinct`` operation
+   * - ``Filter``
+     - GPU
+     - A filtering operation, such as a ``WHERE`` or ``JOIN`` clause
+   * - ``GpuDecompress``
+     - GPU
+     - Decompression operation
+   * - ``GpuReduceMerge``
+     - GPU
+     - An operation to optimize part of the merger phases in the GPU
+   * - ``GpuTransform``
+     - GPU
+     - A transformation operation such as a type cast or :ref:`scalar function<scalar_functions>`
+   * - ``LocateFiles``
+     - CPU
+     - Validates external file paths for foreign data wrappers, expanding directories and GLOB patterns
+   * - ``LoopJoin``
+     - GPU
+     - A non-indexed nested loop join, performed on the GPU
+   * - ``ParseCsv``
+     - CPU
+     - A CSV parser, used after ``ReadFiles`` to convert the CSV into columnar data
+   * - ``PushToNetworkQueue``
+     - CPU
+     - Sends result sets to a client connected over the network
+   * - ``ReadFiles``
+     - CPU
+     - Reads external flat-files
+   * - ``ReadTable``
+     - CPU
+     - Reads data from a standard table stored on disk
+   * - ``Rechunk``
+     - 
+     - Reorganize multiple small :ref:`chunks<chunks_and_extents>` into a full chunk. Commonly found after joins and when :ref:`HIGH_SELECTIVITY<high_selectivity>` is used
+   * - ``Reduce``
+     - GPU
+     - A reduction operation, such as a ``GROUP BY``
+   * - ``ReduceMerge``
+     - GPU
+     - A merge operation of a reduction operation, helps operate on larger-than-RAM data
+   * - ``ReorderInput``
+     - 
+     - Change the order of arguments in preparation for the next operation
+   * - ``SeparatedGather``
+     - GPU
+     - Gathers additional columns for the result
+   * - ``Sort``
+     - GPU
+     - Sort operation
+   * - ``TakeRowsFromChunk``
+     - 
+     - Take the first N rows from each chunk, to optimize ``LIMIT`` when used alongside ``ORDER BY``
+   * - ``Top``
+     - 
+     - Limits the input size, when used with ``LIMIT`` (or its alias ``TOP``)
+   * - ``UdfTransform``
+     - CPU
+     - Executes a :ref:`user defined function<python_functions>`
+   * - ``UnionAll``
+     -
+     - Combines two sources of data when ``UNION ALL`` is used
+   * - ``Window``
+     - GPU
+     - Executes a non-ranking :ref:`window function<window_functions>`
+   * - ``WindowRanking``
+     - GPU
+     - Executes a ranking :ref:`window function<window_functions>`
+   * - ``WriteTable``
+     - CPU 
+     - Writes the result set to a standard table stored on disk
+
+.. note:: The full list of nodes appears in the :ref:`Node types table<node_types>`, as part of the :ref:`show_node_info` reference.
+
 
 Examples
 ==================
