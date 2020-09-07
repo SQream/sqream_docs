@@ -468,10 +468,152 @@ Common solutions for reducing gather time
 * Reduce the effect of the preparation time. Avoid selecting unnecessary columns (``SELECT * FROM...``), or reduce the result set size by using more filters.
 
 
-.. 
-   3. Inefficient filtering
-   --------------------------------
+3. Inefficient filtering
+--------------------------------
 
+When running statements, SQream DB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
+
+If statements do not include efficient filtering, SQream DB will read a lot of data off disk.
+In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line, it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
+
+Identifying the situation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+We consider the filtering to be inefficient when the ``Filter`` node shows that the number of rows processed is less than a third of the rows passed into it by the ``ReadTable`` node.
+
+For example:
+
+#. 
+   Run a query.
+     
+   In this example, we execute a modified query from the TPC-H benchmark.
+   Our ``lineitem`` table contains 600,037,902 rows.
+
+
+   .. code-block:: postgres
+      
+      SELECT o_year,
+             SUM(CASE WHEN nation = 'BRAZIL' THEN volume ELSE 0 END) / SUM(volume) AS mkt_share
+      FROM (SELECT datepart(YEAR,o_orderdate) AS o_year,
+                   l_extendedprice*(1 - l_discount / 100.0) AS volume,
+                   n2.n_name AS nation
+            FROM lineitem
+              JOIN part ON p_partkey = CAST (l_partkey AS INT)
+              JOIN orders ON l_orderkey = o_orderkey
+              JOIN customer ON o_custkey = c_custkey
+              JOIN nation n1 ON c_nationkey = n1.n_nationkey
+              JOIN region ON n1.n_regionkey = r_regionkey
+              JOIN supplier ON s_suppkey = l_suppkey
+              JOIN nation n2 ON s_nationkey = n2.n_nationkey
+            WHERE r_name = 'AMERICA'
+            AND   lineitem.l_quantity = 3
+            AND   o_orderdate BETWEEN '1995-01-01' AND '1996-12-31'
+            AND   high_selectivity(p_type = 'ECONOMY BURNISHED NICKEL')) AS all_nations
+      GROUP BY o_year
+      ORDER BY o_year;
+
+#. 
+   
+   Observe the execution information by using the foreign table, or use ``show_node_info``
+   
+   The execution below has been shortened, but note the highlighted rows for ``ReadTable`` and ``Filter``:
+   
+   .. code-block:: psql
+      :linenos:
+      :emphasize-lines: 9,17,19,27
+   
+      t=> SELECT show_node_info(559);
+      stmt_id | node_id | node_type            | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read   | write | comment         | timeSum
+      --------+---------+----------------------+-----------+--------+-------------------+---------------------+----------------+--------+-------+-----------------+--------
+          559 |       1 | PushToNetworkQueue   |         2 |      1 |                 2 | 2020-09-07 11:12:01 |             -1 |        |       |                 |    0.28
+          559 |       2 | Rechunk              |         2 |      1 |                 2 | 2020-09-07 11:12:01 |              1 |        |       |                 |       0
+          559 |       3 | SortMerge            |         2 |      1 |                 2 | 2020-09-07 11:12:01 |              2 |        |       |                 |       0
+          559 |       4 | GpuToCpu             |         2 |      1 |                 2 | 2020-09-07 11:12:01 |              3 |        |       |                 |       0
+      [...]
+          559 |     189 | Filter               |  12007447 |     12 |           1000620 | 2020-09-07 11:12:00 |            188 |        |       |                 |     0.3
+          559 |     190 | GpuTransform         | 600037902 |     12 |          50003158 | 2020-09-07 11:12:00 |            189 |        |       |                 |    0.02
+          559 |     191 | GpuDecompress        | 600037902 |     12 |          50003158 | 2020-09-07 11:12:00 |            190 |        |       |                 |    0.16
+          559 |     192 | GpuTransform         | 600037902 |     12 |          50003158 | 2020-09-07 11:12:00 |            191 |        |       |                 |    0.02
+          559 |     193 | CpuToGpu             | 600037902 |     12 |          50003158 | 2020-09-07 11:12:00 |            192 |        |       |                 |    1.47
+          559 |     194 | ReorderInput         | 600037902 |     12 |          50003158 | 2020-09-07 11:12:00 |            193 |        |       |                 |       0
+          559 |     195 | Rechunk              | 600037902 |     12 |          50003158 | 2020-09-07 11:12:00 |            194 |        |       |                 |       0
+          559 |     196 | CpuDecompress        | 600037902 |     12 |          50003158 | 2020-09-07 11:12:00 |            195 |        |       |                 |       0
+          559 |     197 | ReadTable            | 600037902 |     12 |          50003158 | 2020-09-07 11:12:00 |            196 | 7587MB |       | public.lineitem |     0.1
+      [...]
+          559 |     208 | Filter               |    133241 |     20 |              6662 | 2020-09-07 11:11:57 |            207 |        |       |                 |    0.01
+          559 |     209 | GpuTransform         |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            208 |        |       |                 |    0.02
+          559 |     210 | GpuDecompress        |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            209 |        |       |                 |    0.03
+          559 |     211 | GpuTransform         |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            210 |        |       |                 |       0
+          559 |     212 | CpuToGpu             |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            211 |        |       |                 |    0.01
+          559 |     213 | ReorderInput         |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            212 |        |       |                 |       0
+          559 |     214 | Rechunk              |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            213 |        |       |                 |       0
+          559 |     215 | CpuDecompress        |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            214 |        |       |                 |       0
+          559 |     216 | ReadTable            |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            215 | 20MB   |       | public.part     |       0
+
+      
+   * The ``Filter`` on line 9 has processed 12,007,447 rows, but the output of ``ReadTable`` on ``public.lineitem`` on line 17 was 600,037,902 rows. This means that it has filtered out 98% (:math:`1 - \dfrac{600037902}{12007447} = 98\%`) of the data, but the entire table was read.
+   * The ``Filter`` on line 19 has processed 133,000 rows, but the output of ``ReadTable`` on ``public.part`` on line 27 was 20,000,000 rows.  This means that it has filtered out >99% (:math:`1 - \dfrac{133241}{20000000} = 99.4\%`) of the data, but the entire table was read. However, this table is small enough that we can ignore it.
+   
+#. Modify the statement to see the difference
+
+   Altering the statement to have a ``WHERE`` condition on the clustered ``l_orderkey`` column of the ``lineitem`` table will help SQream DB skip reading the data.
+   
+   .. code-block:: postgres
+      :emphasize-lines: 15
+      
+      SELECT o_year,
+             SUM(CASE WHEN nation = 'BRAZIL' THEN volume ELSE 0 END) / SUM(volume) AS mkt_share
+      FROM (SELECT datepart(YEAR,o_orderdate) AS o_year,
+                   l_extendedprice*(1 - l_discount / 100.0) AS volume,
+                   n2.n_name AS nation
+            FROM lineitem
+              JOIN part ON p_partkey = CAST (l_partkey AS INT)
+              JOIN orders ON l_orderkey = o_orderkey
+              JOIN customer ON o_custkey = c_custkey
+              JOIN nation n1 ON c_nationkey = n1.n_nationkey
+              JOIN region ON n1.n_regionkey = r_regionkey
+              JOIN supplier ON s_suppkey = l_suppkey
+              JOIN nation n2 ON s_nationkey = n2.n_nationkey
+            WHERE r_name = 'AMERICA'
+            AND   lineitem.l_orderkey > 4500000
+            AND   o_orderdate BETWEEN '1995-01-01' AND '1996-12-31'
+            AND   high_selectivity(p_type = 'ECONOMY BURNISHED NICKEL')) AS all_nations
+      GROUP BY o_year
+      ORDER BY o_year;
+
+   .. code-block:: psql
+      :linenos:
+      :emphasize-lines: 5,13
+      
+      t=> SELECT show_node_info(586);
+      stmt_id | node_id | node_type            | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read   | write | comment         | timeSum
+      --------+---------+----------------------+-----------+--------+-------------------+---------------------+----------------+--------+-------+-----------------+--------
+      [...]
+          586 |     190 | Filter               | 494621593 |      8 |          61827699 | 2020-09-07 13:20:45 |            189 |        |       |                 |    0.39
+          586 |     191 | GpuTransform         | 494927872 |      8 |          61865984 | 2020-09-07 13:20:44 |            190 |        |       |                 |    0.03
+          586 |     192 | GpuDecompress        | 494927872 |      8 |          61865984 | 2020-09-07 13:20:44 |            191 |        |       |                 |    0.26
+          586 |     193 | GpuTransform         | 494927872 |      8 |          61865984 | 2020-09-07 13:20:44 |            192 |        |       |                 |    0.01
+          586 |     194 | CpuToGpu             | 494927872 |      8 |          61865984 | 2020-09-07 13:20:44 |            193 |        |       |                 |    1.86
+          586 |     195 | ReorderInput         | 494927872 |      8 |          61865984 | 2020-09-07 13:20:44 |            194 |        |       |                 |       0
+          586 |     196 | Rechunk              | 494927872 |      8 |          61865984 | 2020-09-07 13:20:44 |            195 |        |       |                 |       0
+          586 |     197 | CpuDecompress        | 494927872 |      8 |          61865984 | 2020-09-07 13:20:44 |            196 |        |       |                 |       0
+          586 |     198 | ReadTable            | 494927872 |      8 |          61865984 | 2020-09-07 13:20:44 |            197 | 6595MB |       | public.lineitem |    0.09
+      [...]
+
+
+   In this example, the filter processed 494,621,593 rows, while the output of ``ReadTable`` on ``public.lineitem`` was 494,927,872 rows. This means that it has filtered out less than 0.01% (:math:`1 - \dfrac{494621593}{494927872} = 0.01\%`) of the data that was read.
+   
+   The metadata skipping has performed very well, and has pre-filtered the data for us by pruning unnecessary chunks.
+      
+Common solutions for improving filtering
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* Use :ref:`clustering keys and naturally ordered data<data_clustering>` in your filters.
+
+* Avoid full table scans when possible
+
+
+.. 
    4. Join on text / varchar keys
    -----------------------------------
    
