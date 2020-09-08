@@ -463,9 +463,11 @@ Identifying the offending nodes
       FROM ...
 
 Common solutions for reducing gather time
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Reduce the effect of the preparation time. Avoid selecting unnecessary columns (``SELECT * FROM...``), or reduce the result set size by using more filters.
+
+.. ``
 
 
 3. Inefficient filtering
@@ -613,27 +615,249 @@ Common solutions for improving filtering
 * Avoid full table scans when possible
 
 
-.. 
-   4. Join on text / varchar keys
-   -----------------------------------
+4. Joins with ``varchar`` keys
+-----------------------------------
+
+Joins on long text keys, such as ``varchar(100)`` do not perform as well as numeric data types or very short text keys.
+
+
+Identifying the situation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When a join is inefficient, you may note that a query spends a lot of time on the ``Join`` node.
+
+For example, consider these two table structures:
    
+.. code-block:: postgres
+
+   CREATE TABLE t_a 
+   (
+     amt            FLOAT NOT NULL,
+     i              INT NOT NULL,
+     ts             DATETIME NOT NULL,
+     country_code   VARCHAR(3) NOT NULL,
+     flag           VARCHAR(10) NOT NULL,
+     fk             VARCHAR(50) NOT NULL
+   );
+
+   CREATE TABLE t_b 
+   (
+     id          VARCHAR(50) NOT NULL
+     prob        FLOAT NOT NULL,
+     j           INT NOT NULL,
+   );
+
+#. 
+   Run a query.
+     
+   In this example, we will join ``t_a.fk`` with ``t_b.id``, both of which are ``VARCHAR(50)``.
+   
+   .. code-block:: postgres
+      
+      SELECT AVG(t_b.j :: BIGINT),
+             t_a.country_code
+      FROM t_a
+        JOIN t_b ON (t_a.fk = t_b.id)
+      GROUP BY t_a.country_code
+
+#. 
+   
+   Observe the execution information by using the foreign table, or use ``show_node_info``
+   
+   The execution below has been shortened, but note the highlighted rows for ``Join``.
+   The ``Join`` node is by far the most time-consuming part of this statement - clocking in at 69.7 seconds joining 1.5 billion records.
+   
+   .. code-block:: psql
+      :linenos:
+      :emphasize-lines: 8
+      
+      t=> SELECT show_node_info(5);
+      stmt_id | node_id | node_type            | rows       | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment    | timeSum
+      --------+---------+----------------------+------------+--------+-------------------+---------------------+----------------+-------+-------+------------+--------
+      [...]
+            5 |      19 | GpuTransform         | 1497366528 |    204 |           7340032 | 2020-09-08 18:29:03 |             18 |       |       |            |    1.46
+            5 |      20 | ReorderInput         | 1497366528 |    204 |           7340032 | 2020-09-08 18:29:03 |             19 |       |       |            |       0
+            5 |      21 | ReorderInput         | 1497366528 |    204 |           7340032 | 2020-09-08 18:29:03 |             20 |       |       |            |       0
+            5 |      22 | Join                 | 1497366528 |    204 |           7340032 | 2020-09-08 18:29:03 |             21 |       |       | inner      |    69.7
+            5 |      24 | AddSortedMinMaxMet.. |    6291456 |      1 |           6291456 | 2020-09-08 18:26:05 |             22 |       |       |            |       0
+            5 |      25 | Sort                 |    6291456 |      1 |           6291456 | 2020-09-08 18:26:05 |             24 |       |       |            |    2.06
+      [...]
+            5 |      31 | ReadTable            |    6291456 |      1 |           6291456 | 2020-09-08 18:26:03 |             30 | 235MB |       | public.t_b |    0.02
+      [...]
+            5 |      41 | CpuDecompress        |   10000000 |      2 |           5000000 | 2020-09-08 18:26:09 |             40 |       |       |            |       0
+            5 |      42 | ReadTable            |   10000000 |      2 |           5000000 | 2020-09-08 18:26:09 |             41 | 14MB  |       | public.t_a |       0
+   
+
+Improving query performance
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+* In general, try to avoid ``VARCHAR`` as a join key. As a rule of thumb, ``BIGINT`` works best as a join key.
+
+* 
+   Convert text values on-the-fly before running the query. For example, the :ref:`crc64` function takes a text input and returns a ``BIGINT`` hash.
+   
+   For example:
+   
+   .. code-block:: postgres
+      
+         SELECT AVG(t_b.j :: BIGINT),
+               t_a.country_code
+         FROM t_a
+         JOIN t_b ON (crc64_join(t_a.fk) = crc64_join(t_b.id))
+         GROUP BY t_a.country_code
+
+   The execution below has been shortened, but note the highlighted rows for ``Join``.
+   The ``Join`` node went from taking nearly 70 seconds, to just 6.67 seconds for joining 1.5 billion records.
+
+   .. code-block:: psql
+      :linenos:
+      :emphasize-lines: 8
+      
+      t=> SELECT show_node_info(6);
+         stmt_id | node_id | node_type            | rows       | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment    | timeSum
+         --------+---------+----------------------+------------+--------+-------------------+---------------------+----------------+-------+-------+------------+--------
+         [...]
+               6 |      19 | GpuTransform         | 1497366528 |     85 |          17825792 | 2020-09-08 18:57:04 |             18 |       |       |            |    1.48
+               6 |      20 | ReorderInput         | 1497366528 |     85 |          17825792 | 2020-09-08 18:57:04 |             19 |       |       |            |       0
+               6 |      21 | ReorderInput         | 1497366528 |     85 |          17825792 | 2020-09-08 18:57:04 |             20 |       |       |            |       0
+               6 |      22 | Join                 | 1497366528 |     85 |          17825792 | 2020-09-08 18:57:04 |             21 |       |       | inner      |    6.67
+               6 |      24 | AddSortedMinMaxMet.. |    6291456 |      1 |           6291456 | 2020-09-08 18:55:12 |             22 |       |       |            |       0
+         [...]
+               6 |      32 | ReadTable            |    6291456 |      1 |           6291456 | 2020-09-08 18:55:12 |             31 | 235MB |       | public.t_b |    0.02
+         [...]
+               6 |      43 | CpuDecompress        |   10000000 |      2 |           5000000 | 2020-09-08 18:55:13 |             42 |       |       |            |       0
+               6 |      44 | ReadTable            |   10000000 |      2 |           5000000 | 2020-09-08 18:55:13 |             43 | 14MB  |       | public.t_a |       0
+   
+* You can map some text values to numeric types by using a dimension table. Then, reconcile the values when you need them by joining the dimension table.
+
+
+.. 
    5. Sort on text fields
    --------------------------
+
+   When running statements, SQream DB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
+
+   If statements do not include efficient filtering, SQream DB will read a lot of data off disk.
+   In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line, it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
+
+   Identifying the situation
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   We consider the filtering to be inefficient when the ``Filter`` node shows that the number of rows processed is less than a third of the rows passed into it by the ``ReadTable`` node.
+
+   For example:
+
+   #. 
+      Run a query.
+        
+      In this example, we execute a modified query from the TPC-H benchmark.
+      Our ``lineitem`` table contains 600,037,902 rows.
+
+   Improving join performance on text keys
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
    6. Non-ANSI join performance
    ----------------------------------
 
+   When running statements, SQream DB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
+
+   If statements do not include efficient filtering, SQream DB will read a lot of data off disk.
+   In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line, it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
+
+   Identifying the situation
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   We consider the filtering to be inefficient when the ``Filter`` node shows that the number of rows processed is less than a third of the rows passed into it by the ``ReadTable`` node.
+
+   For example:
+
+   #. 
+      Run a query.
+        
+      In this example, we execute a modified query from the TPC-H benchmark.
+      Our ``lineitem`` table contains 600,037,902 rows.
+
+   Improving join performance on text keys
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
    7. Performance of unsorted data in joins
    ------------------------------------------
+
+
+   When running statements, SQream DB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
+
+   If statements do not include efficient filtering, SQream DB will read a lot of data off disk.
+   In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line, it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
+
+   Identifying the situation
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   We consider the filtering to be inefficient when the ``Filter`` node shows that the number of rows processed is less than a third of the rows passed into it by the ``ReadTable`` node.
+
+   For example:
+
+   #. 
+      Run a query.
+        
+      In this example, we execute a modified query from the TPC-H benchmark.
+      Our ``lineitem`` table contains 600,037,902 rows.
+
+   Improving join performance on text keys
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
    8. High selectivity data
    --------------------------
 
+
    Selectivity is the ratio of cardinality to the number of records of an Indexed column.
    Selectivity = (Distinct Values/Total number of records)
+
+
+   When running statements, SQream DB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
+
+   If statements do not include efficient filtering, SQream DB will read a lot of data off disk.
+   In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line, it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
+
+   Identifying the situation
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   We consider the filtering to be inefficient when the ``Filter`` node shows that the number of rows processed is less than a third of the rows passed into it by the ``ReadTable`` node.
+
+   For example:
+
+   #. 
+      Run a query.
+        
+      In this example, we execute a modified query from the TPC-H benchmark.
+      Our ``lineitem`` table contains 600,037,902 rows.
+
+   Improving join performance on text keys
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
    
    9. Manual join reordering
    --------------------------------
 
+
+   When running statements, SQream DB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
+
+   If statements do not include efficient filtering, SQream DB will read a lot of data off disk.
+   In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line, it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
+
+   Identifying the situation
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+   We consider the filtering to be inefficient when the ``Filter`` node shows that the number of rows processed is less than a third of the rows passed into it by the ``ReadTable`` node.
+
+   For example:
+
+   #. 
+      Run a query.
+        
+      In this example, we execute a modified query from the TPC-H benchmark.
+      Our ``lineitem`` table contains 600,037,902 rows.
+
+   Improving join performance on text keys
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 
