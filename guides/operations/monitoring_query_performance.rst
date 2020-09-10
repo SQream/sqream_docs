@@ -373,7 +373,7 @@ Identifying the offending nodes
 
    Because of the relatively low amount of RAM in the machine and because the data set is rather large at around 10TB, SQream DB needs to spool.  
    
-   The total spool used by this query is around 20GB.
+   The total spool used by this query is around 20GB (1915MB + 2191MB + 3064MB + 12860MB).
 
 Common solutions for reducing spool
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -731,31 +731,129 @@ Improving query performance
 * You can map some text values to numeric types by using a dimension table. Then, reconcile the values when you need them by joining the dimension table.
 
 
-.. 
-   5. Sort on text fields
-   --------------------------
+5. Sorting on big ``VARCHAR`` fields
+---------------------------------------
 
-   When running statements, SQream DB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
+In general, SQream DB automatically inserts a ``Sort`` node which arranges the data prior to reductions and aggregations.
 
-   If statements do not include efficient filtering, SQream DB will read a lot of data off disk.
-   In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line, it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
+When running a ``GROUP BY`` on large ``VARCHAR`` fields, you may see nodes for ``Sort`` and ``Reduce`` taking a long time.
 
-   Identifying the situation
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   We consider the filtering to be inefficient when the ``Filter`` node shows that the number of rows processed is less than a third of the rows passed into it by the ``ReadTable`` node.
+Identifying the situation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   For example:
+When running a statement, inspect it with :ref:`show_node_info`. If you see ``Sort`` and ``Reduce`` among your top five longest running nodes, there is a potential issue.
 
-   #. 
-      Run a query.
-        
-      In this example, we execute a modified query from the TPC-H benchmark.
-      Our ``lineitem`` table contains 600,037,902 rows.
+For example:
 
-   Improving join performance on text keys
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+#. 
+   Run a query to test it out.
+     
+   
+   Our ``t_inefficient`` table contains 60,000,000 rows, and the structure is simple, but with an oversized ``country_code`` column:
+   
+   .. code-block:: postgres
+      :emphasize-lines: 5
+   
+      CREATE TABLE t_inefficient (
+         i INT NOT NULL,
+         amt DOUBLE NOT NULL,
+         ts DATETIME NOT NULL,
+         country_code VARCHAR(100) NOT NULL,
+         flag VARCHAR(10) NOT NULL,
+         string_fk VARCHAR(50) NOT NULL
+      );
+   
+   We will run a query, and inspect it's execution details:
+   
+   .. code-block:: psql
+      
+      t=> SELECT country_code,
+      .          SUM(amt)
+      .   FROM t_inefficient
+      .   GROUP BY country_code;
+      executed
+      time: 47.55s
+      
+      country_code | sum       
+      -------------+-----------
+      VUT          | 1195416012
+      GIB          | 1195710372
+      TUR          | 1195946178
+      [...]
+      
+   
+   .. code-block:: psql
+      :emphasize-lines: 8
+      
+      t=> select show_node_info(30);
+      stmt_id | node_id | node_type          | rows     | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment              | timeSum
+      --------+---------+--------------------+----------+--------+-------------------+---------------------+----------------+-------+-------+----------------------+--------
+           30 |       1 | PushToNetworkQueue |      249 |      1 |               249 | 2020-09-10 16:17:10 |             -1 |       |       |                      |    0.25
+           30 |       2 | Rechunk            |      249 |      1 |               249 | 2020-09-10 16:17:10 |              1 |       |       |                      |       0
+           30 |       3 | ReduceMerge        |      249 |      1 |               249 | 2020-09-10 16:17:10 |              2 |       |       |                      |    0.01
+           30 |       4 | GpuToCpu           |     1508 |     15 |               100 | 2020-09-10 16:17:10 |              3 |       |       |                      |       0
+           30 |       5 | Reduce             |     1508 |     15 |               100 | 2020-09-10 16:17:10 |              4 |       |       |                      |    7.23
+           30 |       6 | Sort               | 60000000 |     15 |           4000000 | 2020-09-10 16:17:10 |              5 |       |       |                      |    36.8
+           30 |       7 | GpuTransform       | 60000000 |     15 |           4000000 | 2020-09-10 16:17:10 |              6 |       |       |                      |    0.08
+           30 |       8 | GpuDecompress      | 60000000 |     15 |           4000000 | 2020-09-10 16:17:10 |              7 |       |       |                      |    2.01
+           30 |       9 | CpuToGpu           | 60000000 |     15 |           4000000 | 2020-09-10 16:17:10 |              8 |       |       |                      |    0.16
+           30 |      10 | Rechunk            | 60000000 |     15 |           4000000 | 2020-09-10 16:17:10 |              9 |       |       |                      |       0
+           30 |      11 | CpuDecompress      | 60000000 |     15 |           4000000 | 2020-09-10 16:17:10 |             10 |       |       |                      |       0
+           30 |      12 | ReadTable          | 60000000 |     15 |           4000000 | 2020-09-10 16:17:10 |             11 | 520MB |       | public.t_inefficient |    0.05
 
+#. We can look to see if there's any shrinking we can do on the ``GROUP BY`` key
+   
+   .. code-block:: psql
+      
+      t=> SELECT MAX(LEN(country_code)) FROM t_inefficient;
+      max
+      ---
+      3
+
+   With a maximum string length of just 3 characters, our ``VARCHAR(100)`` is way oversized.
+
+#. 
+   We can recreate the table with a more restrictive ``VARCHAR(3)``, and can examine the difference in performance:
+   
+   .. code-block:: psql
+
+      t=> CREATE TABLE t_efficient 
+      .     AS SELECT i,
+      .              amt,
+      .              ts,
+      .              country_code::VARCHAR(3) AS country_code,
+      .              flag
+      .         FROM t_inefficient;
+      executed
+      time: 16.03s
+      
+      t=> SELECT country_code,
+      .      SUM(amt::bigint)
+      .   FROM t_efficient
+      .   GROUP BY country_code;
+      executed
+      time: 4.75s
+      country_code | sum       
+      -------------+-----------
+      VUT          | 1195416012
+      GIB          | 1195710372
+      TUR          | 1195946178
+      [...]
+   
+   This time, the entire query took just 4.75 seconds, or just about 91% faster.
+
+Improving sort performance on text keys
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When using VARCHAR, ensure that the maximum length defined in the table structure is as small as necessary.
+For example, if you're storing phone numbers, don't define the field as ``VARCHAR(255)``, as that affects sort performance.
+   
+You can run a query to get the maximum column length (e.g. ``MAX(LEN(a_column))``), and potentially modify the table structure.
+   
+
+
+..
    6. Non-ANSI join performance
    ----------------------------------
 
