@@ -231,7 +231,6 @@ CentOS 7 / RHEL 7 / Amazon Linux (x64)
          $ sudo gpg --homedir /var/lib/yum/repos/$(uname -m)/latest/nvidia-docker/gpgdir --delete-key f796ecb0
          $ sudo gpg --homedir /var/lib/yum/repos/$(uname -m)/latest/nvidia-container-runtime/gpgdir --delete-key f796ecb0
          $ sudo gpg --homedir /var/lib/yum/repos/$(uname -m)/latest/libnvidia-container/gpgdir --delete-key f796ecb0
-         $ sudo yum update
 
 #. Verify the NVIDIA docker installation
 
@@ -245,8 +244,10 @@ CentOS 7 / RHEL 7 / Amazon Linux (x64)
 
 .. _docker_power:
 
-CentOS 7 / RHEL 7 (IBM POWER)
+CentOS 7.6 / RHEL 7.6 (IBM POWER)
 -------------------------------
+
+On POWER9, SQream DB is supported only on RHEL 7.6.
 
 #. Install Docker for IBM POWER
 
@@ -324,7 +325,6 @@ CentOS 7 / RHEL 7 (IBM POWER)
          $ sudo gpg --homedir /var/lib/yum/repos/$(uname -m)/latest/nvidia-docker/gpgdir --delete-key f796ecb0
          $ sudo gpg --homedir /var/lib/yum/repos/$(uname -m)/latest/nvidia-container-runtime/gpgdir --delete-key f796ecb0
          $ sudo gpg --homedir /var/lib/yum/repos/$(uname -m)/latest/libnvidia-container/gpgdir --delete-key f796ecb0
-         $ sudo yum update
 
 #. Verify the NVIDIA docker installation succeeded
 
