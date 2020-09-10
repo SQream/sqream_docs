@@ -784,7 +784,7 @@ For example:
       
    
    .. code-block:: psql
-      :emphasize-lines: 8
+      :emphasize-lines: 8,9
       
       t=> select show_node_info(30);
       stmt_id | node_id | node_type          | rows     | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment              | timeSum
