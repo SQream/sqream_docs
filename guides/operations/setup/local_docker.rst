@@ -245,7 +245,7 @@ CentOS 7 / RHEL 7 / Amazon Linux (x64)
 .. _docker_power:
 
 CentOS 7.6 / RHEL 7.6 (IBM POWER)
--------------------------------
+------------------------------------
 
 On POWER9, SQream DB is supported only on RHEL 7.6.
 
