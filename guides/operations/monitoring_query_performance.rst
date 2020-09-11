@@ -14,6 +14,8 @@ This guide focuses specifically on identifying bottlenecks and possible optimiza
 
 Performance tuning options for each query are different. You should adapt the recommendations and tips for your own workloads.
 
+See also our :ref:`sql_best_practices` guide for more information about data loading considerations and other best practices.
+
 .. contents:: In this section:
    :local:
 
@@ -27,7 +29,8 @@ If you want to see the execution details for a currently running statement, see 
 Adjusting the logging frequency
 ---------------------------------------
 
-To adjust the frequency of logging for statements, you may want to reduce the interval from 60 seconds down to, say, 5 or 10 seconds. Modify the configuration files and set the ``nodeInfoLoggingSec`` parameter as you see fit:
+To adjust the frequency of logging for statements, you may want to reduce the interval from 60 seconds down to, 
+say, 5 or 10 seconds. Modify the configuration files and set the ``nodeInfoLoggingSec`` parameter as you see fit:
 
 .. code-block::  json
    :emphasize-lines: 7
@@ -119,9 +122,11 @@ The ``SHOW_NODE_INFO`` command
 
 The :ref:`show_node_info` command returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases.
 
-The :ref:`show_node_info` result, just like the periodically-logged execution plans described above, are an at-the-moment view of the compiler's execution plan and runtime statistics for the specified statement.
+The :ref:`show_node_info` result, just like the periodically-logged execution plans described above, are an at-the-moment 
+view of the compiler's execution plan and runtime statistics for the specified statement.
 
-To inspect a currently running statement, execute the ``show_node_info`` utility function in a SQL client like :ref:`sqream sql<sqream_sql_cli_reference>`, the :ref:`SQream Studio Editor<studio_editor>`, or any other :ref:`third party SQL terminal<third_party_tools>`.
+To inspect a currently running statement, execute the ``show_node_info`` utility function in a SQL client like
+ :ref:`sqream sql<sqream_sql_cli_reference>`, the :ref:`SQream Studio Editor<studio_editor>`, or any other :ref:`third party SQL terminal<third_party_tools>`.
 
 In this example, we inspect a statement with statement ID of 176. The command looks like this:
 
@@ -149,6 +154,60 @@ Both :ref:`show_node_info`  and the logged execution plans represents the query 
 
 Each row represents a single logical database operation, which is also called a **node** or **chunk producer**. A node reports 
 several metrics during query execution, such as how much data it has read and written, how many chunks and rows, and how much time has elapsed.
+
+Consider the example show_node_info presented above. The source node with ID #11 (``ReadTable``), has a parent node ID #10 
+(``CpuDecompress``). If we were to draw this out in a graph, it'd look like this:
+
+.. figure:: /_static/images/show_node_info_graph.png
+   :height: 70em
+   :align: center
+   
+   This graph explains how the query execution details are arranged in a logical order, from the bottom up.
+   
+   
+The last node, also called the sink, has a parent node ID of -1, meaning it has no parent. This is typically a node that sends data over the network or into a table.
+   
+   
+.. 
+   source for the graph above, in graphviz
+   
+   digraph G {
+   rankdir=tb;
+   ranksep=0.95;
+   node[shape=box3d, width=3.0, height=0.6, fontname="Consolas", fillcolor=SteelBlue2, style=filled];
+
+
+     PushToNetworkQueue [shape=house, fillcolor=SeaGreen1, style=filled];
+     
+   ReadTable->CpuDecompress;
+   CpuDecompress->Rechunk;
+   Rechunk->ReorderInput;
+   ReorderInput->CpuToGpu;
+   CpuToGpu->GpuTransform;
+   GpuTransform->GpuDecompress;
+   GpuDecompress->GpuTransform2;
+   GpuTransform2->Filter;
+   Filter->ReorderInput2;
+   ReorderInput2->GpuTransform3;
+   GpuTransform3->GpuToCpu;
+   GpuToCpu->ReorderInput3;
+   ReorderInput3->DeferredGather;
+   DeferredGather->ReorderInput4;
+   ReorderInput4->Rechunk2;
+   Rechunk2->PushToNetworkQueue;
+
+       Rechunk2[label="Rechunk"];
+       ReorderInput4[label="ReorderInput"];
+       ReorderInput3[label="ReorderInput"];
+       ReorderInput2[label="ReorderInput"];
+       GpuTransform2[label="GpuTransform"];
+       GpuTransform3[label="GpuTransform"];
+     
+     ReadTable [shape=house, style=filled, fillcolor=SeaGreen4];
+
+         
+   }
+
 
 When using :ref:`show_node_info`, a tabular representation of the currently running statement execution is presented.
 
@@ -384,7 +443,9 @@ Common solutions for reducing spool
    
    This setting is called ``spoolMemoryGB``. Refer to the :ref:`configuration` guide.
 
-* Reduce the amount of **workers** per host, and increase the amount of spool available to the (now reduced amount of) active workers. This may reduce the amount of concurrent statements, but will improve performance for heavy statements.
+* 
+   Reduce the amount of **workers** per host, and increase the amount of spool available to the (now reduced amount of) active workers.
+   This may reduce the amount of concurrent statements, but will improve performance for heavy statements.
 
 2. Queries with large result sets
 ------------------------------------
@@ -476,12 +537,14 @@ Common solutions for reducing gather time
 When running statements, SQream DB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
 
 If statements do not include efficient filtering, SQream DB will read a lot of data off disk.
-In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line, it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
+In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line,
+it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
 
 Identifying the situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We consider the filtering to be inefficient when the ``Filter`` node shows that the number of rows processed is less than a third of the rows passed into it by the ``ReadTable`` node.
+We consider the filtering to be inefficient when the ``Filter`` node shows that the number of rows processed is less
+than a third of the rows passed into it by the ``ReadTable`` node.
 
 For example:
 
@@ -553,8 +616,15 @@ For example:
           559 |     216 | ReadTable            |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            215 | 20MB   |       | public.part     |       0
 
       
-   * The ``Filter`` on line 9 has processed 12,007,447 rows, but the output of ``ReadTable`` on ``public.lineitem`` on line 17 was 600,037,902 rows. This means that it has filtered out 98% (:math:`1 - \dfrac{600037902}{12007447} = 98\%`) of the data, but the entire table was read.
-   * The ``Filter`` on line 19 has processed 133,000 rows, but the output of ``ReadTable`` on ``public.part`` on line 27 was 20,000,000 rows.  This means that it has filtered out >99% (:math:`1 - \dfrac{133241}{20000000} = 99.4\%`) of the data, but the entire table was read. However, this table is small enough that we can ignore it.
+   * 
+      The ``Filter`` on line 9 has processed 12,007,447 rows, but the output of ``ReadTable`` on ``public.lineitem`` 
+      on line 17 was 600,037,902 rows. This means that it has filtered out 98% (:math:`1 - \dfrac{600037902}{12007447} = 98\%`)
+      of the data, but the entire table was read.
+      
+   * 
+      The ``Filter`` on line 19 has processed 133,000 rows, but the output of ``ReadTable`` on ``public.part`` 
+      on line 27 was 20,000,000 rows.  This means that it has filtered out >99% (:math:`1 - \dfrac{133241}{20000000} = 99.4\%`)
+      of the data, but the entire table was read. However, this table is small enough that we can ignore it.
    
 #. Modify the statement to see the difference
 
@@ -603,7 +673,9 @@ For example:
       [...]
 
 
-   In this example, the filter processed 494,621,593 rows, while the output of ``ReadTable`` on ``public.lineitem`` was 494,927,872 rows. This means that it has filtered out less than 0.01% (:math:`1 - \dfrac{494621593}{494927872} = 0.01\%`) of the data that was read.
+   In this example, the filter processed 494,621,593 rows, while the output of ``ReadTable`` on ``public.lineitem`` 
+   was 494,927,872 rows. This means that it has filtered out less than 0.01% (:math:`1 - \dfrac{494621593}{494927872} = 0.01\%`)
+   of the data that was read.
    
    The metadata skipping has performed very well, and has pre-filtered the data for us by pruning unnecessary chunks.
       
@@ -665,7 +737,8 @@ For example, consider these two table structures:
    Observe the execution information by using the foreign table, or use ``show_node_info``
    
    The execution below has been shortened, but note the highlighted rows for ``Join``.
-   The ``Join`` node is by far the most time-consuming part of this statement - clocking in at 69.7 seconds joining 1.5 billion records.
+   The ``Join`` node is by far the most time-consuming part of this statement - clocking in at 69.7 seconds
+   joining 1.5 billion records.
    
    .. code-block:: psql
       :linenos:
@@ -694,7 +767,8 @@ Improving query performance
 * In general, try to avoid ``VARCHAR`` as a join key. As a rule of thumb, ``BIGINT`` works best as a join key.
 
 * 
-   Convert text values on-the-fly before running the query. For example, the :ref:`crc64` function takes a text input and returns a ``BIGINT`` hash.
+   Convert text values on-the-fly before running the query. For example, the :ref:`crc64` function takes a text
+   input and returns a ``BIGINT`` hash.
    
    For example:
    
@@ -742,7 +816,8 @@ When running a ``GROUP BY`` on large ``VARCHAR`` fields, you may see nodes for `
 Identifying the situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When running a statement, inspect it with :ref:`show_node_info`. If you see ``Sort`` and ``Reduce`` among your top five longest running nodes, there is a potential issue.
+When running a statement, inspect it with :ref:`show_node_info`. If you see ``Sort`` and ``Reduce`` among 
+your top five longest running nodes, there is a potential issue.
 
 For example:
 
@@ -850,112 +925,194 @@ When using VARCHAR, ensure that the maximum length defined in the table structur
 For example, if you're storing phone numbers, don't define the field as ``VARCHAR(255)``, as that affects sort performance.
    
 You can run a query to get the maximum column length (e.g. ``MAX(LEN(a_column))``), and potentially modify the table structure.
+
+
+.. _high_selectivity_data_opt:
+
+6. High selectivity data
+--------------------------
+
+Selectivity is the ratio of cardinality to the number of records of a chunk. We define selectivity as :math:`\frac{\text{Distinct values}}{\text{Total number of records in a chunk}}`
+
+SQream DB has a hint called ``HIGH_SELECTIVITY``, which is a function you can wrap a condition in.
+
+The hint signals to SQream DB that the result of the condition will be very sparse, and that it should attempt to rechunk
+the results into fewer, fuller chunks.
+
+.. note::
+   SQream DB doesn't do this automatically because it adds a significant overhead on naturally ordered and
+   well-clustered data, which is the more common scenario.
+
+Identifying the situation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This is easily identifiable - when the amount of average of rows in a chunk is small, following a ``Filter`` operation.
+
+Consider this execution plan:
+
+.. code-block:: psql
    
+   t=> select show_node_info(30);
+   stmt_id | node_id | node_type         | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment    | timeSum
+   --------+---------+-------------------+-----------+--------+-------------------+---------------------+----------------+-------+-------+------------+--------
+   [...]
+        30 |      38 | Filter            |     18160 |     74 |               245 | 2020-09-10 12:17:09 |             37 |       |       |            |   0.012
+   [...]
+        30 |      44 | ReadTable         |  77000000 |     74 |           1040540 | 2020-09-10 12:17:09 |             43 | 277MB |       | public.dim |   0.058
 
 
-..
-   6. Non-ANSI join performance
-   ----------------------------------
+The table was read entirely - 77 million rows into 74 chunks.
 
-   When running statements, SQream DB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
+The filter node reduced the output to just 18,160 relevant rows, but they're distributed across the original 74 chunks.
+All of these rows could fit in one single chunk, instead of spanning 74 rather sparse chunks.
 
-   If statements do not include efficient filtering, SQream DB will read a lot of data off disk.
-   In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line, it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
+Improving performance with high selectivity hints
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   Identifying the situation
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* 
+   Use when there's a ``WHERE`` condition on an :ref:`unclustered column<data_clustering>`, and when you expect the filter
+   to cut out more than 60% of the result set.
 
-   We consider the filtering to be inefficient when the ``Filter`` node shows that the number of rows processed is less than a third of the rows passed into it by the ``ReadTable`` node.
-
-   For example:
-
-   #. 
-      Run a query.
-        
-      In this example, we execute a modified query from the TPC-H benchmark.
-      Our ``lineitem`` table contains 600,037,902 rows.
-
-   Improving join performance on text keys
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-   7. Performance of unsorted data in joins
-   ------------------------------------------
+* Use when the data is uniformly distributed or random
 
 
-   When running statements, SQream DB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
+7. Performance of unsorted data in joins
+------------------------------------------
 
-   If statements do not include efficient filtering, SQream DB will read a lot of data off disk.
-   In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line, it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
+When data is not well-clustered or naturally ordered, a join operation can take a long time. 
 
-   Identifying the situation
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Identifying the situation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   We consider the filtering to be inefficient when the ``Filter`` node shows that the number of rows processed is less than a third of the rows passed into it by the ``ReadTable`` node.
+When running a statement, inspect it with :ref:`show_node_info`. If you see ``Join`` and ``DeferredGather`` among your 
+top five longest running nodes, there is a potential issue.
 
-   For example:
+In this case, we're also interested in the number of chunks produced by these nodes.
 
-   #. 
-      Run a query.
-        
-      In this example, we execute a modified query from the TPC-H benchmark.
-      Our ``lineitem`` table contains 600,037,902 rows.
+Consider this execution plan:
 
-   Improving join performance on text keys
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-
-   8. High selectivity data
-   --------------------------
-
-
-   Selectivity is the ratio of cardinality to the number of records of an Indexed column.
-   Selectivity = (Distinct Values/Total number of records)
-
-
-   When running statements, SQream DB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
-
-   If statements do not include efficient filtering, SQream DB will read a lot of data off disk.
-   In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line, it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
-
-   Identifying the situation
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-   We consider the filtering to be inefficient when the ``Filter`` node shows that the number of rows processed is less than a third of the rows passed into it by the ``ReadTable`` node.
-
-   For example:
-
-   #. 
-      Run a query.
-        
-      In this example, we execute a modified query from the TPC-H benchmark.
-      Our ``lineitem`` table contains 600,037,902 rows.
-
-   Improving join performance on text keys
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. code-block:: psql
+   :emphasize-lines: 6,11
    
-   9. Manual join reordering
-   --------------------------------
+   t=> select show_node_info(30);
+   stmt_id | node_id | node_type         | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment    | timeSum
+   --------+---------+-------------------+-----------+--------+-------------------+---------------------+----------------+-------+-------+------------+--------
+   [...]
+        30 |      13 | ReorderInput      | 181582598 |  70596 |              2572 | 2020-09-10 12:17:10 |             12 |       |       |            |   4.681
+        30 |      14 | DeferredGather    | 181582598 |  70596 |              2572 | 2020-09-10 12:17:10 |             13 |       |       |            |  29.901
+        30 |      15 | ReorderInput      | 181582598 |  70596 |              2572 | 2020-09-10 12:17:10 |             14 |       |       |            |   3.053
+        30 |      16 | GpuToCpu          | 181582598 |  70596 |              2572 | 2020-09-10 12:17:10 |             15 |       |       |            |   5.798
+        30 |      17 | ReorderInput      | 181582598 |  70596 |              2572 | 2020-09-10 12:17:10 |             16 |       |       |            |   2.899
+        30 |      18 | ReorderInput      | 181582598 |  70596 |              2572 | 2020-09-10 12:17:10 |             17 |       |       |            |   3.695
+        30 |      19 | Join              | 181582598 |  70596 |              2572 | 2020-09-10 12:17:10 |             18 |       |       | inner      |  22.745
+   [...]
+        30 |      38 | Filter            |     18160 |     74 |               245 | 2020-09-10 12:17:09 |             37 |       |       |            |   0.012
+   [...]
+        30 |      44 | ReadTable         |  77000000 |     74 |           1040540 | 2020-09-10 12:17:09 |             43 | 277MB |       | public.dim |   0.058
+
+* ``Join`` is the node that matches rows from both table relations.
+* ``DeferredGather`` gathers the required column chunks to decompress
+
+Pay special attention to the volume of data removed by the ``Filter`` node.
+The table was read entirely - 77 million rows into 74 chunks.
+
+The filter node reduced the output to just 18,160 relevant rows, but they're distributed across the original 74 chunks.
+All of these rows could fit in one single chunk, instead of spanning 74 rather sparse chunks.
+
+Improving join performance when data is sparse
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can tell SQream DB to reduce the amount of chunks involved, if you know that the filter is going to be quite
+agressive by using the :ref:`HIGH_SELECTIVITY<high_selectivity>` hint described :ref:`above<high_selectivity_data_opt>`.
+This forces the compiler to rechunk the data into fewer chunks.
+
+To tell SQream DB to rechunk the data, wrap a condition (or several) in the ``HIGH_SELECTIVITY`` hint:
+
+.. code-block:: postgres
+   :emphasize-lines: 13
+   
+   -- Without the hint
+   SELECT *
+   FROM cdrs
+   WHERE 
+         RequestReceiveTime BETWEEN '2018-01-01 00:00:00.000' AND '2018-08-31 23:59:59.999' 
+         AND EnterpriseID=1150 
+         AND MSISDN='9724871140341';
+   
+   -- With the hint
+   SELECT *
+   FROM cdrs
+   WHERE 
+         HIGH_SELECTIVITY(RequestReceiveTime BETWEEN '2018-01-01 00:00:00.000' AND '2018-08-31 23:59:59.999')
+         AND EnterpriseID=1150 
+         AND MSISDN='9724871140341';
 
 
-   When running statements, SQream DB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
+8. Manual join reordering
+--------------------------------
 
-   If statements do not include efficient filtering, SQream DB will read a lot of data off disk.
-   In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line, it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
+When joining multiple tables, you may wish to change the join order to join the smallest tables first.
 
-   Identifying the situation
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Identifying the situation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   We consider the filtering to be inefficient when the ``Filter`` node shows that the number of rows processed is less than a third of the rows passed into it by the ``ReadTable`` node.
+When joining more than two tables, the ``Join`` nodes will be the most time-consuming nodes.
 
-   For example:
+Changing the join order
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   #. 
-      Run a query.
-        
-      In this example, we execute a modified query from the TPC-H benchmark.
-      Our ``lineitem`` table contains 600,037,902 rows.
+Always prefer to join the smallest tables first.
 
-   Improving join performance on text keys
-   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. note:: 
+   We consider small tables to be tables that only retain a small amount of rows after conditions
+   are applied. This bears no direct relation to the amount of total rows in the table.
+
+Changing the join order can reduce the query runtime significantly. In the examples below, we reduce the time
+from 27.3 seconds to just 6.4 seconds.
+
+.. code-block:: postgres
+   :caption: Original query
+   
+   -- This variant runs in 27.3 seconds
+   SELECT SUM(l_extendedprice / 100.0*(1 - l_discount / 100.0)) AS revenue,
+          c_nationkey
+   FROM lineitem --6B Rows, ~183GB
+
+     JOIN orders --1.5B Rows, ~55GB 
+     ON   l_orderkey = o_orderkey
+     JOIN customer --150M Rows, ~12GB
+     ON   c_custkey = o_custkey
+     
+   WHERE c_nationkey = 1
+         AND   o_orderdate >= DATE '1993-01-01'
+         AND   o_orderdate < '1994-01-01'
+         AND   l_shipdate >= '1993-01-01'
+         AND   l_shipdate <= dateadd(DAY,122,'1994-01-01')
+   GROUP BY c_nationkey
+
+.. code-block:: postgres
+   :caption: Modified query with improved join order
+   
+   -- This variant runs in 6.4 seconds
+   SELECT SUM(l_extendedprice / 100.0*(1 - l_discount / 100.0)) AS revenue,
+          c_nationkey
+   FROM orders --1.5B Rows, ~55GB 
+
+     JOIN customer --150M Rows, ~12GB
+     ON   c_custkey = o_custkey
+     JOIN lineitem --6B Rows, ~183GB
+     ON   l_orderkey = o_orderkey
+     
+   WHERE c_nationkey = 1
+         AND   o_orderdate >= DATE '1993-01-01'
+         AND   o_orderdate < '1994-01-01'
+         AND   l_shipdate >= '1993-01-01'
+         AND   l_shipdate <= dateadd(DAY,122,'1994-01-01')
+   GROUP BY c_nationkey
 
 
+
+Further reading
+==================
+
+See our :ref:`sql_best_practices` guide for more information about query optimization and data loading considerations.

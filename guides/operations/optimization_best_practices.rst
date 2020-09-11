@@ -6,6 +6,8 @@ Optimization and best practices
 
 This topic explains some best practices of working with SQream DB.
 
+See also our :ref:`monitoring_query_performance` guide for more information.
+
 .. contents:: In this topic:
    :local:
 
@@ -169,7 +171,7 @@ For example,
    WHERE HIGH_SELECTIVITY(p_date = '2018-07-01')
    GROUP BY 1;
 
-This hint tells the query compiler that the ``WHERE`` condition is expected to filter out more than 50% of values. It does not affect the query results, but when used correctly can improve query performance.
+This hint tells the query compiler that the ``WHERE`` condition is expected to filter out more than 60% of values. It does not affect the query results, but when used correctly can improve query performance.
 
 
 Cast smaller types to avoid overflow in aggregates
@@ -256,10 +258,8 @@ For example, when data is sorted by timestamp, filtering on this timestamp is mo
 Natural ordering can also be used for effective :ref:`delete` operations.
 
 
-.. todo: show an execution plan
+Further reading and monitoring query performance
+=======================================================
 
-.. reorder tables join- much more effective to join first the small tables (or those who have filters on them).
-.. what else should be here, and what can we do right now
-.. select report('/tmp',$$select a,b,c from tableA a join tableB b on a.id=b.id and a>4000 and b like '%this is a sample query%' $$);
-
-..  discard_results
+Read our :ref:`monitoring_query_performance` guide to learn how to use the built in monitoring utilities. 
+The guide also gives concerete examples for improving query performance.
