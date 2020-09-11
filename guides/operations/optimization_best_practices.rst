@@ -123,6 +123,36 @@ Can be rewritten as
       group by 2) AS fact
    ON dim.store_id=fact.store_id; 
 
+Prefer the ANSI JOIN
+----------------------------
+
+SQream DB prefers the ANSI JOIN syntax.
+In some cases, the ANSI JOIN performs better than the non-ANSI variety.
+
+For example, this ANSI JOIN example will perform better:
+
+.. code-block:: postgres
+   :caption: ANSI JOIN will perform better
+
+   SELECT p.name, s.name, c.name
+   FROM  "Products" AS p
+   JOIN  "Sales" AS s
+     ON  p.product_id = s.sale_id
+   JOIN  "Customers" as c
+     ON  s.c_id = c.id AND c.id = 20301125;
+
+This non-ANSI JOIN is supported, but not recommended:
+
+.. code-block:: postgres
+   :caption: Non-ANSI JOIN may not perform well
+
+   SELECT p.name, s.name, c.name
+   FROM "Products" AS p, "Sales" AS s, "Customers" as c
+   WHERE p.product_id = s.sale_id
+     AND s.c_id = c.id
+     AND c.id = 20301125;
+
+
 
 .. _high_selectivity:
 
