@@ -272,12 +272,15 @@ Configuring HDFS for Kerberos
           <name>dfs.namenode.https.principal</name>
           <value>sqream/sqreamdb-01.piedpiper.com@KRLM.PIEDPIPER.COM</value>
       </property>
+      
+
+.. 
       <property>
-          <name>com.emc.greenplum.gpdb.hdfsconnector.security.user.keytab.file</name>
+          <name>security.keytab.file</name>
           <value>/home/sqream/sqreamdb-01.service.keytab</value>
       </property>
       <property>
-          <name>com.emc.greenplum.gpdb.hdfsconnector.security.user.name</name>
+          <name>security.username</name>
           <value>sqream/sqreamdb-01.piedpiper.com@KRLM.PIEDPIPER.CO</value>
       </property>
 
