@@ -674,7 +674,7 @@ For example:
 
 
    In this example, the filter processed 494,621,593 rows, while the output of ``ReadTable`` on ``public.lineitem`` 
-   was 494,927,872 rows. This means that it has filtered out less than 0.01% (:math:`1 - \dfrac{494621593}{494927872} = 0.01\%`)
+   was 494,927,872 rows. This means that it has filtered out all but 0.01% (:math:`1 - \dfrac{494621593}{494927872} = 0.01\%`)
    of the data that was read.
    
    The metadata skipping has performed very well, and has pre-filtered the data for us by pruning unnecessary chunks.
