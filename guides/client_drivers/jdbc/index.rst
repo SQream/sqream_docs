@@ -47,25 +47,25 @@ Extract the JAR file from the zip archive
 
 .. code-block:: console
 
-   $ unzip sqream-jdbc-3.0.0.zip
+   $ unzip sqream-jdbc-4.3.0.zip
 
 Setting up the Class Path
 ----------------------------
 
-To use the driver, the JAR named ``sqream-jdbc-<version>.jar`` (for example, ``sqream-jdbc-3.0.0.jar``) needs to be included in the class path, either by putting it in the ``CLASSPATH`` environment variable, or by using flags on the relevant Java command line.
+To use the driver, the JAR named ``sqream-jdbc-<version>.jar`` (for example, ``sqream-jdbc-4.3.0.jar``) needs to be included in the class path, either by putting it in the ``CLASSPATH`` environment variable, or by using flags on the relevant Java command line.
 
-For example, if the JDBC driver has been unzipped to ``/home/sqream/sqream-jdbc-3.0.0.jar``, the application should be run as follows:
+For example, if the JDBC driver has been unzipped to ``/home/sqream/sqream-jdbc-4.3.0.jar``, the application should be run as follows:
 
 .. code-block:: console
 
-   $ export CLASSPATH=/home/sqream/sqream-jdbc-3.0.0.jar:$CLASSPATH
+   $ export CLASSPATH=/home/sqream/sqream-jdbc-4.3.0.jar:$CLASSPATH
    $ java my_java_app
 
 An alternative method is to pass ``-classpath`` to the Java executable:
 
 .. code-block:: console
 
-   $ java -classpath .:/home/sqream/sqream-jdbc-3.0.0.jar my_java_app
+   $ java -classpath .:/home/sqream/sqream-jdbc-4.3.0.jar my_java_app
 
 
 Connect to SQream DB with a JDBC application

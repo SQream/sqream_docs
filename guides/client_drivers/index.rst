@@ -13,7 +13,7 @@ All operating systems
 ---------------------------
 
 * 
-   **JDBC** - `sqream-jdbc v4.2.1 (.zip) <http://downloads.sqream.com/drivers/2020.2/sqream-jdbc-4.2.1.zip>`_
+   **JDBC** - `sqream-jdbc v4.3.0 (.zip) <http://downloads.sqream.com/drivers/2020.2/sqream-jdbc-4.3.0.zip>`_
    
    :ref:`java_jdbc` Driver
    
