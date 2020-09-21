@@ -161,7 +161,14 @@ This non-ANSI JOIN is supported, but not recommended:
 Use the high selectivity hint
 --------------------------------
 
-Use the high selectivity hint when you expect a predicate to filter out most values.
+Selectivity is the ratio of cardinality to the number of records of a chunk. We define selectivity as :math:`\frac{\text{Distinct values}}{\text{Total number of records in a chunk}}`
+
+SQream DB has a hint function called ``HIGH_SELECTIVITY``, which is a function you can wrap a condition in.
+
+The hint signals to SQream DB that the result of the condition will be very sparse, and that it should attempt to rechunk
+the results into fewer, fuller chunks.
+
+Use the high selectivity hint when you expect a predicate to filter out most values. For example, when the data is dispersed over lots of chunks (meaning that the data is :ref:`not well-clustered<data_clustering>`).
 
 For example,
 
@@ -171,8 +178,11 @@ For example,
    WHERE HIGH_SELECTIVITY(p_date = '2018-07-01')
    GROUP BY 1;
 
-This hint tells the query compiler that the ``WHERE`` condition is expected to filter out more than 60% of values. It does not affect the query results, but when used correctly can improve query performance.
+This hint tells the query compiler that the ``WHERE`` condition is expected to filter out more than 60% of values. It never affects the query results, but when used correctly can improve query performance.
 
+.. tip:: The ``HIGH_SELECTIVITY()`` hint function can only be used as part of the ``WHERE`` clause. It can't be used in equijoin conditions, cases, or in the select list.
+
+Read more about identifying the scenarios for the high selectivity hint in our :ref:`Monitoring query performance guide<high_selectivity_data_opt>`.
 
 Cast smaller types to avoid overflow in aggregates
 ------------------------------------------------------
