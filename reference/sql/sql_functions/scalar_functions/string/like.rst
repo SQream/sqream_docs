@@ -43,7 +43,7 @@ Test patterns
      - Description
    * - ``%``
      - match zero or more characters
-   * - ``_``
+   * - ``_`` (underscore)
      - match exactly one character
    * - ``[A-Z]``
      - match any character between ``A`` and ``Z`` inclusive. The ``-`` character between two other characters forms a range that matches all characters from the first character to the second. For example, [A-Z] matches all ASCII capital letters.
@@ -56,6 +56,11 @@ Test patterns
    * - ``[abcC-F]``
      - match ``a`` ``b`` ``c`` or any character between ``C`` and ``F``
 
+* 
+   ``\`` (backslash) - escape character
+   
+   Using a backslash (``\``) indicates that the wildcard is interpreted as a regular character and not as a wildcard. 
+   
 Returns
 ============
 
@@ -117,6 +122,19 @@ Match the beginning of a string
    .. code-block:: postgres
    
       SELECT "Name","Age","Salary","Team" FROM nba WHERE ISPREFIXOF('Portland',"Team") LIMIT 5;
+
+Match a wildcard character by escaping
+--------------------------------------------
+
+To match a wildcard, escape it with a backslash escape character:
+
+.. code-block:: psql
+   
+   nba=> SELECT "Name" FROM nba WHERE "Name" LIKE '%\_%';
+   Name            | Age | Salary  | Team                  
+   ----------------+-----+---------+-----------------------
+   R.J._Hunter     |  22 | 1148640 | Boston Celtics
+
 
 Negate with ``NOT``
 ----------------------------------
