@@ -24,6 +24,7 @@ New features
 
 - Export to S3 and HDFS storage
 - Export to Parquet and ORC with enhanced error tolerance
+- Import with enhanced error tolerance
 - Scalar functions for Text data type:
     - Substring, lower, ltrim, charindex, replace, etc.
     - Binary operators - ||, [not] like, [not] like, etc.
@@ -66,6 +67,17 @@ Bug fixes
 - Can't monitor long network insert loads with SQream
 - Upper & like performance on Nvarchar
 - Insert into from 4 instances get stuck (hanging)
+- An invalid formatted CSV can cause an insufficient memory error on a COPY FROM statement if a quote isn’t closed and the file is much larger than system memory.
+- TEXT columns can’t be used with an outer join together with an inequality check (!= , <>)
+
+Known issues
+============
+- Cast from TEXT to date/datetime returns an error when the TEXT column contains NULL
+- Cast empty TEXT to int returns 0 instead of returning error
+- Performance degradation - ReadParquet Rechunk (~13%)
+- Performance degradation - ReadORC (~4%)
+- The option to run multiple count distinct operation (runTimeGlobal/distinctAggregatesOnHost) is allowed only in developer mode
+- Multiple count distinct operation is not supported on TEXT data types
 
 
 Upgrading to v2020.3
