@@ -13,28 +13,28 @@ All operating systems
 ---------------------------
 
 * 
-   **JDBC** - `sqream-jdbc v4.3.0 (.zip) <http://downloads.sqream.com/drivers/2020.2/sqream-jdbc-4.3.0.zip>`_
+   **JDBC** - `sqream-jdbc v4.3.0 (.zip) <http://downloads.sqream.com/drivers/2020.3/sqream-jdbc-4.3.0.zip>`_
    
    :ref:`java_jdbc` Driver
    
    (SQream recommends installing via ``mvn``)
 
 * 
-   **Python** - `pysqream v3.0.3 (.tar.gz) <https://github.com/SQream/pysqream/releases/tag/v3.0.3>`_
+   **Python** - `pysqream v3.1.0 (.tar.gz) <https://github.com/SQream/pysqream/releases/tag/v3.1.0>`_
    
    :ref:`pysqream` - Python driver
    
    (SQream recommends installing via ``pip``)
 
 * 
-   **Node.JS** - `sqream-v4.1.2 (.tar.gz) <http://downloads.sqream.com/drivers/2020.2/sqream-sqreamdb-4.1.2.tgz>`_
+   **Node.JS** - `sqream-v4.2.0 (.tar.gz) <http://downloads.sqream.com/drivers/2020.3/sqream-sqreamdb-4.2.0.tgz>`_
    
    :ref:`nodejs` - Node.JS driver
    
    (SQream recommends installing via ``npm``)
 
 * 
-   **Tableau Connector** - `SQreamDB (.taco) <http://downloads.sqream.com/drivers/2020.2/SQreamDB.taco>`_
+   **Tableau Connector** - `SQreamDB (.taco) <http://downloads.sqream.com/drivers/2020.3/SQreamDB.taco>`_
    
    :ref:`Tableau connector<tableau_manual_installation>` - Tableau connector for manual installation
 
@@ -42,7 +42,7 @@ Windows
 --------------
 
 * 
-   **JDBC installer** - `SQream_JDBC_Driver_v2020.2.0.exe <http://downloads.sqream.com/drivers/2020.2/SQream_JDBC_Driver_v2020.2.0.exe>`_ 
+   **JDBC installer** - `SQream_JDBC_Driver_v2020.2.0.exe <http://downloads.sqream.com/drivers/2020.3/SQream_JDBC_Driver_v2020.2.0.exe>`_ 
    
    Windows installer for JDBC driver, with Tableau connector.
 
