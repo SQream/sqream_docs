@@ -4,12 +4,12 @@
 Releases
 **********
 
-.. list-table:: Releases
+.. list-table::
    :widths: auto
    :header-rows: 1
    
    * - Version
-     - Date
+     - Release Date
    * - :ref:`2020.3`
      - October 8, 2020
    * - :ref:`2020.2`
