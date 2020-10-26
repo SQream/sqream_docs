@@ -89,7 +89,7 @@ This function returns a list of active sessions. If no sessions are active acros
 Notes
 ===========
 
-* This utility shows the active sessions. Some sessions may be actively connected, but not currently running a statement.
+* This utility shows the active sessions. Some sessions may be actively connected, but not running any statements.
 
 Examples
 ===========
