@@ -78,6 +78,8 @@ This function returns a list of active sessions. If no sessions are active acros
      - Statement has entered execution checks
    * - ``Executing``
      - Statement is executing
+   * - ``Stopping``
+     - Statement is in the process of stopping
 
 Notes
 ===========
