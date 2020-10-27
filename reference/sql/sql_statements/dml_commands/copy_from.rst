@@ -36,9 +36,9 @@ Syntax
    table_name ::= identifier
 
    copy_opt ::= 
-      | OFFSET N
-      | LIMIT N
-      | DELIMITER '{ delimiter }'
+      | OFFSET = N
+      | LIMIT = N
+      | DELIMITER = '{ delimiter }'
       | RECORD DELIMITER '{ record delimiter }'
       | ERROR_LOG 'local filepath'
       | ERROR_VERBOSITY { 0 | 1 }
@@ -315,14 +315,14 @@ Loading a PSV (pipe separated value) file
 
 .. code-block:: postgres
    
-   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.psv', DELIMITER '|');
+   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.psv', DELIMITER = '|');
 
 Loading a TSV (tab separated value) file
 -------------------------------------------
 
 .. code-block:: postgres
    
-   COPY table_name FROM WRAPPER tsv_fdw OPTIONS (location = '/tmp/file.tsv', DELIMITER '\t');
+   COPY table_name FROM WRAPPER tsv_fdw OPTIONS (location = '/tmp/file.tsv', DELIMITER = '\t');
    
 
 Loading a ORC file
@@ -348,7 +348,7 @@ In the file below, the separator is ``DC1``, which is represented by ASCII 17 de
 
 .. code-block:: postgres
    
-   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', DELIMITER E'\021');   
+   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', DELIMITER = E'\021');   
 
 Loading a text file with multi-character delimiters
 -----------------------------------------------------
@@ -357,13 +357,13 @@ In the file below, the separator is ``^|``.
 
 .. code-block:: postgres
    
-   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', DELIMITER '^|');   
+   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', DELIMITER = '^|');   
 
 In the file below, the separator is ``'|``. The quote character has to be repeated, as per the :ref:`literal quoting rules<string_literals>`.
 
 .. code-block:: postgres
    
-   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', DELIMITER ''''|');
+   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', DELIMITER = ''''|');
    
 
 Loading files with a header row
@@ -375,14 +375,14 @@ Use ``OFFSET`` to skip rows.
 
 .. code-block:: postgres
 
-   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.psv', DELIMITER '|', OFFSET 2);      
+   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.psv', DELIMITER = '|', OFFSET = 2);      
 
 Loading files formatted for Windows (``\r\n``)
 ---------------------------------------------------
 
 .. code-block:: postgres
 
-   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.psv', DELIMITER '\r\n');         
+   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.psv', DELIMITER = '\r\n');         
 
 Loading a file from a public S3 bucket
 ------------------------------------------
@@ -391,14 +391,14 @@ Loading a file from a public S3 bucket
 
 .. code-block:: postgres
 
-   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = 's3://sqream-demo-data/nba.csv', DELIMITER '\r\n', , OFFSET 2);         
+   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = 's3://sqream-demo-data/nba.csv', DELIMITER = '\r\n', , OFFSET = 2);         
 
 Loading files from an authenticated S3 bucket
 ---------------------------------------------------
 
 .. code-block:: postgres
 
-   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = 's3://secret-bucket/*.csv', DELIMITER '\r\n', OFFSET 2, AWS_ID '12345678' AWS_SECRET 'super_secretive_secret');
+   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = 's3://secret-bucket/*.csv', DELIMITER = '\r\n', OFFSET = 2, AWS_ID = '12345678', AWS_SECRET = 'super_secretive_secret');
    
 Saving rejected rows to a file
 ----------------------------------
@@ -408,16 +408,16 @@ Saving rejected rows to a file
 .. code-block:: postgres
 
    COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.psv', DELIMITER '|'
-                                                 ,ERROR_LOG  '/temp/load_error.log' -- Save error log
-                                                 ,ERROR_VERBOSITY 0 -- Only save rejected rows
+                                                 ,ERROR_LOG  = '/temp/load_error.log' -- Save error log
+                                                 ,ERROR_VERBOSITY = 0 -- Only save rejected rows
                                                  );         
 
 .. code-block:: postgres
 
     COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.psv', DELIMITER '|'
-                                                 ,ERROR_LOG  '/temp/load_error.log' -- Save error log
-                                                 ,ERROR_VERBOSITY 0 -- Only save rejected rows
-                                                 ,LIMIT  100 -- Only load 100 rows
+                                                 ,ERROR_LOG = '/temp/load_error.log' -- Save error log
+                                                 ,ERROR_VERBOSITY = 0 -- Only save rejected rows
+                                                 ,LIMIT = 100 -- Only load 100 rows
                                                  ,STOP AFTER 5 ERRORS -- Stop the load if 5 errors reached
                                                  );         
 
