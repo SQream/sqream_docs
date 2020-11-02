@@ -47,13 +47,15 @@ Rounding to the nearest integer
 
 .. code-block:: psql
 
-   numbers=> SELECT ROUND(x) FROM (VALUES (0.0001), (PI()), (-2.718281), (500.1234)) as t(x);
+   numbers=> SELECT ROUND(x) FROM (VALUES (0.0001), (PI()), (-2.718281), (500.1234), (0.5), (1.5)) as t(x);
    round
    -----
-    -0.0
-     3.0
-    -3.0
-   500.0
+     0
+     3
+    -3
+   500
+     1
+     2
 
 Rounding to 2 digits after the decimal point
 --------------------------------------------------
@@ -63,10 +65,10 @@ Rounding to 2 digits after the decimal point
    numbers=> SELECT ROUND(x,2) FROM (VALUES (0.0001), (PI()), (-2.718281), (500.1234)) as t(x);
    round 
    ------
-     -0.0
-     3.14
-    -2.72
-   500.12
+     0
+  3.14
+ -2.72
+500.12
    
 :ref:`floor` vs. :ref:`ceiling` vs. ``ROUND``
 ------------------------------------------------------------
@@ -78,7 +80,8 @@ Rounding to 2 digits after the decimal point
    .           , (PI()), (-2.718281), (500.1234)) as t(x);
    floor | ceil | round
    ------+------+------
-       0 |    1 |    -0
-       3 |    4 |     3
+       0 |    1 |    0
+      -1 |    0 |    0
+       3 |    4 |    3
       -3 |   -2 |    -3
      500 |  501 |   500
