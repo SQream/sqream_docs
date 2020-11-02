@@ -304,10 +304,11 @@ Floating point values can be converted to:
    * - ``BOOL``
      - ``1.0`` → ``true``, ``0.0`` → ``false``
    * - ``TINYINT``, ``SMALLINT``, ``INT``, ``BIGINT``
-     - ``2.0`` → ``2``, ``3.14159265358979`` → ``3``, ``2.718281828459`` → ``2``
+     - ``2.0`` → ``2``, ``3.14159265358979`` → ``3``, ``2.718281828459`` → ``2``, ``0.5`` → ``0``, ``1.5`` → ``1``
    * - ``VARCHAR(n)`` (n > 6 recommended)
      - ``1`` → ``'1.0000'``, ``3.14159265358979`` → ``'3.1416'``
 
+.. note:: As shown in the above examples, when casting ``real`` to ``int``, we round down.
 
 String types (``TEXT``, ``VARCHAR``)
 ------------------------------------------------
