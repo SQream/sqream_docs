@@ -30,5 +30,5 @@ Subcommands
      - Rename a table
    * - :ref:`CLUSTER BY<cluster_by>`
      - Modify (add or reorder) the clustering keys in a table
-   * - :ref:`DROP CLUSTERING KEY<drop_clustering_key`
+   * - :ref:`DROP CLUSTERING KEY<drop_clustering_key>`
      - Drop all clustering keys

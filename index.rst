@@ -57,14 +57,10 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
      - **Driver and deployment**
      - **Help & Support**
    * -
-		 :ref:`2020.3<2020.3>`
-		 
-		 :ref:`2020.2<2020.2>`
-		 
+         :ref:`2020.3<2020.3>`
+
          :ref:`2020.2<2020.2>`
-         
-         :ref:`2020.1<2020.1>`
-         
+                  
          :ref:`All recent releases<releases>`
 
      - 
