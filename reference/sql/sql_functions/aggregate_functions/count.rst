@@ -13,7 +13,7 @@ Syntax
 .. code-block:: postgres
 
    -- As an aggregate
-   COUNT( { [ DISTINCT ] expr | * } ) --> INT
+   COUNT( { [ DISTINCT ] expr | * } ) --> BIGINT
    
    -- As a window function
    COUNT ( { [ DISTINCT ] expr | * } ) OVER (   
@@ -41,11 +41,8 @@ Arguments
 Returns
 ============
 
-Return type is dependant on the argument.
+* Count returns ``BIGINT``.
 
-* Count returns ``INT`` for all types except ``BIGINT``.
-
-* For ``BIGINT``, the return type is ``BIGINT``.
 
 Notes
 =======
@@ -54,8 +51,6 @@ Notes
 
 * When all rows contain ``NULL`` values, the function returns ``NULL``.
 
-
-* ``COUNT`` can very quickly overflow on large data sets. If the count is over 2\ :sup:`31`, up-cast to a larger type like ``BIGINT``: ``COUNT(expr :: BIGINT)``
 
 Examples
 ===========
