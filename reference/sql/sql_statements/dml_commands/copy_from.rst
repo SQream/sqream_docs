@@ -26,7 +26,7 @@ Syntax
 .. code-block:: postgres
 
    COPY [schema name.]table_name
-     FROM WRAPPER name_fdw
+     FROM WRAPPER fdw_name
      OPTIONS 
      (
        [ copy_from_option [, ...] ]
@@ -39,17 +39,28 @@ Syntax
 
    copy_from_option ::= 
 
-      LOCATION = { filename | S3 URI | HDFS URI }    
+      LOCATION = { filename | S3 URI | HDFS URI }   
+      
       | OFFSET = { offset }
+      
       | LIMIT = { limit }
+      
       | DELIMITER = '{ delimiter }'
+      
       | RECORD_DELIMITER = '{ record delimiter }'
+      
       | ERROR_LOG = '{ local filepath }'
+      
       | REJECTED_DATA = '{ local filepath }'
+      
       | CONTINUE_ON_ERROR = { true | false }
+      
       | ERROR_COUNT = '{ error count }'
+      
       | DATETIME_FORMAT = '{ parser format }'
+      
       | AWS_ID = '{ AWS ID }'
+      
       | AWS_SECRET = '{ AWS Secret }'
 
   offset ::= positive integer
@@ -334,7 +345,7 @@ Loading a standard CSV file
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.csv');
 
 
-Loading a standard CSV file while skipping faulty rows
+Skipping faulty rows
 ------------------------------
 
 .. code-block:: postgres
@@ -342,8 +353,8 @@ Loading a standard CSV file while skipping faulty rows
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.csv', continue_on_error = true);
 
 
-Loading a standard CSV file while skipping at most 100 faulty rows
-------------------------------------------------------------------
+Skipping at most 100 faulty rows
+-----------------------------------
 
 .. code-block:: postgres
    

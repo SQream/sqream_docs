@@ -19,34 +19,34 @@ Syntax
 ==========
 
 .. code-block:: postgres
-   COPY { [schema_name].table_name [ ( column_name [, ... ] ) ] | query }
-     TO   [FOREIGN DATA] WRAPPER fdw_name
-       
+
+   COPY { [schema_name].table_name [ ( column_name [, ... ] ) ] | query } 
+     TO [FOREIGN DATA] WRAPPER fdw_name
+      
        OPTIONS
        (
           [ copy_to_option [, ...] ]
        )
-    ;
+       ;
        
-        LOCATION = filename | S3 URI | HDFS URI,
-				DELIMITER = 'string_literal',
-				RECORD_DELIMITER = 'string_literal’,
-				HEADER = {true | false}
-				AWS_ID = 'string_literal',
-				AWS_SECRET = 'string_literal’
-				);
-
+   fdw_name ::= csw_fdw | parquet_fdw | orc_fdw
+   
    schema_name ::= identifer
   
    table_name ::= identifier
 
    copy_to_option ::= 
 
-      LOCATION = { filename | S3 URI | HDFS URI }    
+      LOCATION = { filename | S3 URI | HDFS URI }   
+      
       | DELIMITER = '{ delimiter }'
+      
       | RECORD_DELIMITER = '{ record delimiter }'
+      
       | HEADER = { true | false }
+      
       | AWS_ID = '{ AWS ID }'
+      
       | AWS_SECRET = '{ AWS Secret }'
 
   delimiter ::= string
@@ -70,6 +70,8 @@ Elements
      - Name of the table to be exported
    * - ``query``
      - An SQL query that returns a table result, or a table name
+   * - ``fdw_name``
+     - The name of the Foreign Data Wrapper to use. Supported FDWs are ``csv_fdw``, ``orc_fdw``, or ``parquet_fdw``.
    * - ``LOCATION``
      - A path on the local filesystem, S3, or HDFS URI. For example, ``/tmp/foo.csv``, ``s3://my-bucket/foo.csv``, or ``hdfs://my-namenode:8020/foo.csv``. The local path must be an absolute path that SQream DB can access.
    * - ``HEADER``

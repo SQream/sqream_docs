@@ -21,6 +21,7 @@ If you have a SQream DB installation on your server, ``sqream sql`` can be found
 
 .. versionchanged:: 2020.1
    As of version 2020.1, ``ClientCmd`` has been renamed to ``sqream sql``.
+   
 
 To run ``sqream sql`` on any other Linux host:
 
