@@ -37,8 +37,9 @@ Notes
 
 * If the input value is NULL, the result is NULL.
 
-* The ``CRC64_JOIN`` can be used ONLY with ``VARCHAR`` (and not with ``TEXT``)
-* ``CRC64_JOIN`` variant skips leading whitespaces, when used as a ``JOIN`` key
+* The ``CRC64_JOIN`` can be used with ``VARCHAR`` only. It can not be used with ``TEXT``.
+
+* The ``CRC64_JOIN`` variant ignores leading whitespace when used as a ``JOIN`` key.
 
 Examples
 ===========

@@ -4,7 +4,9 @@
 COPY TO
 **********************
 
-``COPY ... TO`` is a statement that can be used to export data from a SQream database table or query to a file on the file-system.
+``COPY ... TO`` is a statement that can be used to export data from a SQream database table or query to a file on the filesystem.
+
+In general, ``COPY`` moves data between filesystem files and SQream DB tables.
 
 .. note:: To copy data from a file to a table, see :ref:`COPY FROM<copy_from>`.
 
@@ -17,9 +19,16 @@ Syntax
 ==========
 
 .. code-block:: postgres
-COPY { [schema_name].table_name [ ( column_name [, ... ] ) ] | query }
-  TO   [FOREIGN DATA] WRAPPER fdw_name
-       OPTIONS (LOCATION = filename | S3 URI | HDFS URI,
+   COPY { [schema_name].table_name [ ( column_name [, ... ] ) ] | query }
+     TO   [FOREIGN DATA] WRAPPER fdw_name
+       
+       OPTIONS
+       (
+          [ copy_to_option [, ...] ]
+       )
+    ;
+       
+        LOCATION = filename | S3 URI | HDFS URI,
 				DELIMITER = 'string_literal',
 				RECORD_DELIMITER = 'string_literal’,
 				HEADER = {true | false}
@@ -27,6 +36,26 @@ COPY { [schema_name].table_name [ ( column_name [, ... ] ) ] | query }
 				AWS_SECRET = 'string_literal’
 				);
 
+   schema_name ::= identifer
+  
+   table_name ::= identifier
+
+   copy_to_option ::= 
+
+      LOCATION = { filename | S3 URI | HDFS URI }    
+      | DELIMITER = '{ delimiter }'
+      | RECORD_DELIMITER = '{ record delimiter }'
+      | HEADER = { true | false }
+      | AWS_ID = '{ AWS ID }'
+      | AWS_SECRET = '{ AWS Secret }'
+
+  delimiter ::= string
+
+  record delimiter ::= string
+
+  AWS ID ::= string
+
+  AWS Secret ::= string
 
 Elements
 ============
@@ -40,9 +69,9 @@ Elements
    * - ``[schema_name].table_name``
      - Name of the table to be exported
    * - ``query``
-     - An SQL query that returns a result set to be exported
+     - An SQL query that returns a table result, or a table name
    * - ``LOCATION``
-     - A path on the local file-system, S3, or HDFS URI. For example, ``/tmp/foo.csv``, ``s3://my-bucket/foo.csv``, or ``hdfs://my-namenode:8020/foo.csv``. The local path must be an absolute path that SQream DB can access.
+     - A path on the local filesystem, S3, or HDFS URI. For example, ``/tmp/foo.csv``, ``s3://my-bucket/foo.csv``, or ``hdfs://my-namenode:8020/foo.csv``. The local path must be an absolute path that SQream DB can access.
    * - ``HEADER``
      - The CSV file will contain a header line with the names of each column in the file. This option is allowed only when using CSV format.
    * - ``DELIMITER``

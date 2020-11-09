@@ -4,7 +4,11 @@
 COPY FROM
 **********************
 
-``COPY ... FROM`` is a statement that allows loading data from files on the file-system and importing them into SQream tables.
+``COPY ... FROM`` is a statement that allows loading data from files on the filesystem and importing them into SQream tables.
+
+This is the recommended way for bulk loading CSV files into SQream DB.
+
+In general, ``COPY`` moves data between filesystem files and SQream DB tables.
 
 .. note:: 
    * Learn how to migrate from CSV files in the :ref:`csv` guide
@@ -22,28 +26,57 @@ Syntax
 .. code-block:: postgres
 
    COPY [schema name.]table_name
-   FROM WRAPPER name_fdw
-   OPTIONS 
-   (
-   LOCATION = {filename | S3 URI | HDFS URI},
-   **OFFSET = {Integer},
-   **LIMIT = {Integer},
-   **DELIMITER = {String},
-   **RECORD_DELIMITER = {String},
-   ERROR_LOG = {String},
-   **REJECTED_DATA = {String},
-   CONTINUE_ON_ERROR = {Bool},
-   ERROR_COUNT = {Integer},
-   **DATETIME_FORMAT = {String},
-   AWS_ID = {String},
-   AWS_SECRET = {String}
-   );
+     FROM WRAPPER name_fdw
+     OPTIONS 
+     (
+       [ copy_from_option [, ...] ]
+     )
+   ;
+  
+   schema_name ::= identifer
+  
+   table_name ::= identifier
 
-Note:
-==========
-** Applicable only to CSV
+   copy_from_option ::= 
 
-   
+      LOCATION = { filename | S3 URI | HDFS URI }    
+      | OFFSET = { offset }
+      | LIMIT = { limit }
+      | DELIMITER = '{ delimiter }'
+      | RECORD_DELIMITER = '{ record delimiter }'
+      | ERROR_LOG = '{ local filepath }'
+      | REJECTED_DATA = '{ local filepath }'
+      | CONTINUE_ON_ERROR = { true | false }
+      | ERROR_COUNT = '{ error count }'
+      | DATETIME_FORMAT = '{ parser format }'
+      | AWS_ID = '{ AWS ID }'
+      | AWS_SECRET = '{ AWS Secret }'
+
+  offset ::= positive integer
+
+  limit ::= positive integer
+
+  delimiter ::= string
+
+  record delimiter ::= string
+
+  error count ::= integer
+
+  parser_format ::= see supported parser table below
+
+  AWS ID ::= string
+
+  AWS Secret ::= string
+
+.. note:: 
+
+   Some options are applicable to CSVs only.
+
+   These include:
+   ``OFFSET``, ``LIMIT``, ``DELIMITER``, ``RECORD_DELIMITER``, ``REJECTED_DATA``, ``DATETIME_FORMAT``
+
+.. _copy_from_config_options:
+
 Elements
 ============
 
@@ -61,8 +94,8 @@ Elements
      - Table to copy data into
    * - ``name_fdw``
      - 
-     - csv_fdw, orc_fdw, parquet_fdw
-     - The name of the Foreign Data Wrapper.
+     - ``csv_fdw``, ``orc_fdw``, or ``parquet_fdw``
+     - The name of the Foreign Data Wrapper to use
    * - ``LOCATION``
      - None
      -
@@ -84,21 +117,44 @@ Elements
      - ``\n``, ``\r\n``, ``\r``
      - Specifies the row terminator - the character that separates lines or rows, also known as a new line separator.
    * - ``ERROR_LOG``
-     - Disabled
+     - No error log
      - 
-     - When used, the ``COPY`` process will write the error information for the skipped records to this file.  NOTE: When ``ERROR_LOG`` is used, it will be overwrite the specified file.  ``ERROR_LOG`` and ``REJECTED_DATA`` mechanism trigger every time the FDW is used. AS a result, using these options when defining a foreign table will re-create them every time the table is queried. Specifying the same file for ``ERROR_LOG`` and ``REJECTED_DATA`` is not allowed and will result in error.
+     -  
+         When used, the ``COPY`` process will write error information from unparsable rows to the file specified by this parameter. 
+         
+         * If an existing file path is specified, it will be overwritten.
+         
+         * Specifying the same file for ``ERROR_LOG`` and ``REJECTED_DATA`` is not allowed and will result in error.
+         
+         * Specifing an error log when creating a foreign table will write a new error log for every query on the foreign table.
+
    * - ``REJECTED_DATA``
-     - Disabled
+     - Inactive
      - 
-     - When used, the ``COPY`` process will write the faulty records to this file.  NOTE: When ``REJECTED_DATA`` is used, it will be overwrite the specified file.  ``ERROR_LOG`` and ``REJECTED_DATA`` mechanism trigger every time the FDW is used. AS a result, using these options when defining a foreign table will re-create them every time the table is queried. Specifying the same file for ``ERROR_LOG`` and ``REJECTED_DATA`` is not allowed and will result in error.
+     - 
+         When used, the ``COPY`` process will write the rejected record lines to this file.
+         
+         * If an existing file path is specified, it will be overwritten.
+         
+         * Specifying the same file for ``ERROR_LOG`` and ``REJECTED_DATA`` is not allowed and will result in error.
+         
+         * Specifing an error log when creating a foreign table will write a new error log for every query on the foreign table.
+
    * - ``CONTINUE_ON_ERROR``
      - ``false``
      - true, false
-     - When set to ``true``, skips faulty records otherwise, aboarts the operation when an error is encountered. When importing files (wildcard), only files that cannot be opened will be skipped.
+     - 
+         Specifies if errors should be ignored or skipped. When set to ``true``, the transaction will continue despite rejected data.
+         
+         This parameter should be set together with ``ERROR_COUNT``
+         When reading multiple files, if an entire file can't be opened it will be skipped.
    * - ``ERROR_COUNT``
      - ``unlimited``
      - 1 to 2147483647
-     - Specifies the maximum number of faulty rows that will be ignored before the operation is aboarted with an error.  NOTE: This parameter is ignored when ``CONTINUE_ON_ERROR`` is disabled.
+     - 
+         Specifies the threshold for the maximum number of faulty records that will be ignored.
+     
+         This setting must be used in conjunction with ``CONTINUE_ON_ERROR``.
    * - ``DATETIME_FORMAT``
      - ISO8601 for all columns
      - :ref:`See table below<copy_date_parsers>`
