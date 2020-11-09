@@ -4,9 +4,9 @@
 COPY TO
 **********************
 
-``COPY ... TO`` is a statement that allows writing data from a table or query to a file.
+``COPY ... TO`` is a statement that can be used to export data from a SQream database table or query to a file on the filesystem.
 
-In general, ``COPY`` moves data between SQream DB tables and file-system files.
+In general, ``COPY`` moves data between filesystem files and SQream DB tables.
 
 .. note:: To copy data from a file to a table, see :ref:`COPY FROM<copy_from>`.
 
@@ -20,27 +20,42 @@ Syntax
 
 .. code-block:: postgres
 
-   copy_to_stmt ::= COPY ( table_ref ) TO 'filepath_spec'
-        [ [ WITH ] copy_opt [ ...] ]
-   ;
-
-   table_ref ::= 
-      table_reference
-      | query
-
-   table_reference ::= identifier
+   COPY { [schema_name].table_name [ ( column_name [, ... ] ) ] | query } 
+     TO [FOREIGN DATA] WRAPPER fdw_name
+      
+       OPTIONS
+       (
+          [ copy_to_option [, ...] ]
+       )
+       ;
+       
+   fdw_name ::= csw_fdw | parquet_fdw | orc_fdw
    
-   copy_opt ::= 
-      DELIMITER '{ delimiter }'
-      | HEADER
-      | AWS_ID '{ AWS ID }'
-      | AWS_SECRET '{ AWS secret }'
-   
-   filepath_spec ::=
-      filename
-      | S3 URI
-      | HDFS URI
+   schema_name ::= identifer
+  
+   table_name ::= identifier
 
+   copy_to_option ::= 
+
+      LOCATION = { filename | S3 URI | HDFS URI }   
+      
+      | DELIMITER = '{ delimiter }'
+      
+      | RECORD_DELIMITER = '{ record delimiter }'
+      
+      | HEADER = { true | false }
+      
+      | AWS_ID = '{ AWS ID }'
+      
+      | AWS_SECRET = '{ AWS Secret }'
+
+  delimiter ::= string
+
+  record delimiter ::= string
+
+  AWS ID ::= string
+
+  AWS Secret ::= string
 
 Elements
 ============
@@ -51,9 +66,13 @@ Elements
    
    * - Parameter
      - Description
+   * - ``[schema_name].table_name``
+     - Name of the table to be exported
    * - ``query``
-     - An SQL query that returns a table or a table name
-   * - ``filepath_spec``
+     - An SQL query that returns a table result, or a table name
+   * - ``fdw_name``
+     - The name of the Foreign Data Wrapper to use. Supported FDWs are ``csv_fdw``, ``orc_fdw``, or ``parquet_fdw``.
+   * - ``LOCATION``
      - A path on the local filesystem, S3, or HDFS URI. For example, ``/tmp/foo.csv``, ``s3://my-bucket/foo.csv``, or ``hdfs://my-namenode:8020/foo.csv``. The local path must be an absolute path that SQream DB can access.
    * - ``HEADER``
      - The CSV file will contain a header line with the names of each column in the file. This option is allowed only when using CSV format.
@@ -94,13 +113,12 @@ The date format in the output CSV is formatted as ISO 8601 (``2019-12-31 20:30:5
 Examples
 ===========
 
-Export table to a CSV
--------------------------
+Export table to a CSV without HEADER
+------------------------------------
 
 .. code-block:: psql
    
-   nba=> COPY nba TO '/home/rhendricks/nba.csv';  -- Standard CSV
-   executed
+   COPY nba TO WRAPPER csv_fdw OPTIONS (LOCATION = '/tmp/nba_export.csv', DELIMITER = ',', HEADER = false);
 
 .. code-block:: console
    
@@ -112,15 +130,12 @@ Export table to a CSV
    Jonas Jerebko,Boston Celtics,8,PF,29,6-10,231,\N,5000000
    Amir Johnson,Boston Celtics,90,PF,29,6-9,240,\N,12000000
 
-Export table to a CSV with a header row
+Export table to a CSV with a HEADER row
 -----------------------------------------
-
-Use ``WITH ...`` to control output options
 
 .. code-block:: psql
    
-   nba=> COPY nba TO '/home/rhendricks/nba_h.csv' WITH HEADER;  -- CSV with header
-   executed
+	COPY nba TO WRAPPER csv_fdw OPTIONS (LOCATION = '/tmp/nba_export.csv', DELIMITER = ',', HEADER = true);
 
 .. code-block:: console
    
@@ -135,12 +150,9 @@ Use ``WITH ...`` to control output options
 Export table to a TSV with a header row
 -----------------------------------------
 
-When combining multiple options, use ``WITH`` followed by all options, separated by a space.
-
 .. code-block:: psql
    
-   nba=> COPY nba TO '/home/rhendricks/nba_h.tsv' WITH HEADER DELIMITER '|';  -- TSV with header
-   executed
+	COPY nba TO WRAPPER csv_fdw OPTIONS (LOCATION = '/tmp/nba_export.csv', DELIMITER = '|', HEADER = true);
 
 .. code-block:: console
    
@@ -161,21 +173,18 @@ For example, ASCII character ``15``, known as "shift in", can be specified using
 
 .. code-block:: psql
    
-   nba=> COPY nba TO '/home/rhendricks/nba_shiftin.txt' WITH HEADER DELIMITER E'\017';
-   executed
+	COPY nba TO WRAPPER csv_fdw OPTIONS (LOCATION = '/tmp/nba_export.csv', DELIMITER = E'\017');   
 
 .. code-block:: psql
    
-   nba=> COPY nba TO '/home/rhendricks/nba.tsv' WITH HEADER DELIMITER E'\011'; -- 011 is a tab character
-   executed
+	COPY nba TO WRAPPER csv_fdw OPTIONS (LOCATION = '/tmp/nba_export.csv', DELIMITER = E'\011'); -- 011 is a tab character
 
 Exporting the result of a query to a CSV
 --------------------------------------------
 
 .. code-block:: psql
    
-   nba=> COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) TO '/home/rhendricks/nba_salaries.csv';
-   executed
+	COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) TO WRAPPER csv_fdw OPTIONS (LOCATION = '/tmp/nba_export.csv');
 
 .. code-block:: console
    
@@ -191,18 +200,36 @@ Saving files to an authenticated S3 bucket
 
 .. code-block:: psql
    
-   nba=> COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) 
-   .     TO 's3://my_bucket/salaries/nba_salaries.csv'
-   .     WITH AWS_ID 'my_aws_id' AWS_SECRET 'my_aws_secret';
-   executed
+	COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) TO WRAPPER csv_fdw OPTIONS (LOCATION = 's3://my_bucket/salaries/nba_export.csv', AWS_ID = 'my_aws_id', AWS_SECRET = 'my_aws_secret');
 
 Saving files to an HDFS path
 --------------------------------------------
 
 .. code-block:: psql
    
-   nba=> COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) 
-   .     TO 'hdfs://pp_namenode:8020/salaries/nba_salaries.csv';
-   executed
+   	COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) TO WRAPPER csv_fdw OPTIONS (LOCATION = 'hdfs://pp_namenode:8020/nba_export.csv');
 
+
+Export table to a parquet file
+------------------------------
+
+.. code-block:: psql
+   
+	COPY nba TO WRAPPER parquet_fdw OPTIONS (LOCATION = '/tmp/nba_export.parquet');
+
+
+Export a query to a parquet file
+--------------------------------
+
+.. code-block:: psql
+
+	COPY (select x,y from t where z=0) TO WRAPPER parquet_fdw OPTIONS (LOCATION = '/tmp/file.parquet');
+
+
+Export table to a ORC file
+------------------------------
+
+.. code-block:: psql
+   
+	COPY nba TO WRAPPER orc_fdw OPTIONS (LOCATION = '/tmp/nba_export.orc');
 

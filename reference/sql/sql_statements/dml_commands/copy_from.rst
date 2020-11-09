@@ -4,13 +4,11 @@
 COPY FROM
 **********************
 
-``COPY ... FROM`` is a statement that allows reading data from a file into a table.
+``COPY ... FROM`` is a statement that allows loading data from files on the filesystem and importing them into SQream tables.
 
-This is the recommended method for bulk loading CSV files into SQream DB.
+This is the recommended way for bulk loading CSV files into SQream DB.
 
-In general, ``COPY`` moves data between file-system files and SQream DB tables.
-
-
+In general, ``COPY`` moves data between filesystem files and SQream DB tables.
 
 .. note:: 
    * Learn how to migrate from CSV files in the :ref:`csv` guide
@@ -27,34 +25,66 @@ Syntax
 
 .. code-block:: postgres
 
-   copy_from_stmt ::= COPY ( [schema name.]table_name ) FROM 'filepath_spec'
-        [ [ WITH ] copy_opt [ ...] ]
+   COPY [schema name.]table_name
+     FROM WRAPPER fdw_name
+     OPTIONS 
+     (
+       [ copy_from_option [, ...] ]
+     )
    ;
-
-   schema_name ::= identifier
-   
+  
+   schema_name ::= identifer
+  
    table_name ::= identifier
 
-   copy_opt ::= 
-      | OFFSET N
-      | LIMIT N
-      | DELIMITER '{ delimiter }'
-      | RECORD DELIMITER '{ record delimiter }'
-      | ERROR_LOG 'local filepath'
-      | ERROR_VERBOSITY { 0 | 1 }
-      | STOP AFTER N ERRORS
-      | PARSERS { '[column_name=parser_format, ...]' }
-      | AWS_ID '{ AWS ID }'
-      | AWS_SECRET '{ AWS secret }'
-   
-   filepath_spec ::=
-      filename
-      | directory path
-      | S3 URI
-      | HDFS URI
-   
-   N ::= positive integer
+   copy_from_option ::= 
 
+      LOCATION = { filename | S3 URI | HDFS URI }   
+      
+      | OFFSET = { offset }
+      
+      | LIMIT = { limit }
+      
+      | DELIMITER = '{ delimiter }'
+      
+      | RECORD_DELIMITER = '{ record delimiter }'
+      
+      | ERROR_LOG = '{ local filepath }'
+      
+      | REJECTED_DATA = '{ local filepath }'
+      
+      | CONTINUE_ON_ERROR = { true | false }
+      
+      | ERROR_COUNT = '{ error count }'
+      
+      | DATETIME_FORMAT = '{ parser format }'
+      
+      | AWS_ID = '{ AWS ID }'
+      
+      | AWS_SECRET = '{ AWS Secret }'
+
+  offset ::= positive integer
+
+  limit ::= positive integer
+
+  delimiter ::= string
+
+  record delimiter ::= string
+
+  error count ::= integer
+
+  parser_format ::= see supported parser table below
+
+  AWS ID ::= string
+
+  AWS Secret ::= string
+
+.. note:: 
+
+   Some options are applicable to CSVs only.
+
+   These include:
+   ``OFFSET``, ``LIMIT``, ``DELIMITER``, ``RECORD_DELIMITER``, ``REJECTED_DATA``, ``DATETIME_FORMAT``
 
 .. _copy_from_config_options:
 
@@ -73,10 +103,14 @@ Elements
      - None
      - 
      - Table to copy data into
-   * - ``filepath_spec``
+   * - ``name_fdw``
+     - 
+     - ``csv_fdw``, ``orc_fdw``, or ``parquet_fdw``
+     - The name of the Foreign Data Wrapper to use
+   * - ``LOCATION``
      - None
      -
-     - A path on the local filesystem, S3, or HDFS URI. For example, ``/tmp/foo.csv``, ``s3://my-bucket/foo.csv``, or ``hdfs://my-namenode:8020/foo.csv``. The local path must be an absolute path that SQream DB can access. Wildcards are premitted in this field
+     - A path on the local filesystem, S3, or HDFS URI. For example, ``/tmp/foo.csv``, ``s3://my-bucket/foo.csv``, or ``hdfs://my-namenode:8020/foo.csv``. The local path must be an absolute path that SQream DB can access. Wildcards are premitted in this field.
    * - ``OFFSET``
      - ``1``
      - >1, but no more than the number of lines in the first file
@@ -88,25 +122,52 @@ Elements
    * - ``DELIMITER``
      - ``','``
      - Almost any ASCII character, :ref:`See field delimiters section below<field_delimiters>`
-     - Specifies the field terminator - the character or characters that separates fields or columns columns within each row of the file
-   * - ``RECORD DELIMITER``
+     - Specifies the field terminator - the character (or characters) that separates fields or columns within each row of the file.
+   * - ``RECORD_DELIMITER``
      - ``\n`` (UNIX style newline)
      - ``\n``, ``\r\n``, ``\r``
      - Specifies the row terminator - the character that separates lines or rows, also known as a new line separator.
    * - ``ERROR_LOG``
-     - Disabled
+     - No error log
      - 
-     - When used, the ``COPY`` process will ignore rows that can't be parsed. Errors will be written to the file specified by the ``ERROR_LOG`` parameter.
-   * - ``ERROR_VERBOSITY``
-     - ``1``
-     - 0, 1
-     - Controls the verbosity of the ``ERROR_LOG``. When set to ``0``, only the rejected rows are saved to the ``ERROR_LOG`` file. When set to ``1`` the error message is logged for every rejected row.
-   * - ``STOP AFTER N ERRORS``
-     - ``1000000``
+     -  
+         When used, the ``COPY`` process will write error information from unparsable rows to the file specified by this parameter. 
+         
+         * If an existing file path is specified, it will be overwritten.
+         
+         * Specifying the same file for ``ERROR_LOG`` and ``REJECTED_DATA`` is not allowed and will result in error.
+         
+         * Specifing an error log when creating a foreign table will write a new error log for every query on the foreign table.
+
+   * - ``REJECTED_DATA``
+     - Inactive
+     - 
+     - 
+         When used, the ``COPY`` process will write the rejected record lines to this file.
+         
+         * If an existing file path is specified, it will be overwritten.
+         
+         * Specifying the same file for ``ERROR_LOG`` and ``REJECTED_DATA`` is not allowed and will result in error.
+         
+         * Specifing an error log when creating a foreign table will write a new error log for every query on the foreign table.
+
+   * - ``CONTINUE_ON_ERROR``
+     - ``false``
+     - true, false
+     - 
+         Specifies if errors should be ignored or skipped. When set to ``true``, the transaction will continue despite rejected data.
+         
+         This parameter should be set together with ``ERROR_COUNT``
+         When reading multiple files, if an entire file can't be opened it will be skipped.
+   * - ``ERROR_COUNT``
+     - ``unlimited``
      - 1 to 2147483647
-     - Specifies the threshold of rejected rows. When used with ``ERROR_LOG``, the ``COPY FROM`` command will roll back the transaction if the threshold ``N`` is reached.
-   * - ``PARSERS``
-     - ``DEFAULT`` for every column
+     - 
+         Specifies the threshold for the maximum number of faulty records that will be ignored.
+     
+         This setting must be used in conjunction with ``CONTINUE_ON_ERROR``.
+   * - ``DATETIME_FORMAT``
+     - ISO8601 for all columns
      - :ref:`See table below<copy_date_parsers>`
      - Allows specifying a non-default date formats for specific columns
    * - ``AWS_ID``, ``AWS_SECRET``
@@ -281,7 +342,23 @@ Loading a standard CSV file
 
 .. code-block:: postgres
    
-   COPY table_name FROM 'file.csv';
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.csv');
+
+
+Skipping faulty rows
+------------------------------
+
+.. code-block:: postgres
+   
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.csv', continue_on_error = true);
+
+
+Skipping at most 100 faulty rows
+-----------------------------------
+
+.. code-block:: postgres
+   
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.csv', continue_on_error = true, error_count = 100);
 
 
 Loading a PSV (pipe separated value) file
@@ -289,14 +366,31 @@ Loading a PSV (pipe separated value) file
 
 .. code-block:: postgres
    
-   COPY table_name FROM 'file.psv' WITH DELIMITER '|';
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.psv', delimiter = '|');
 
 Loading a TSV (tab separated value) file
 -------------------------------------------
 
 .. code-block:: postgres
    
-   COPY table_name FROM 'file.tsv' WITH DELIMITER '\t';
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.tsv', delimiter = '\t');
+   
+
+Loading a ORC file
+-------------------------------------------
+
+.. code-block:: postgres
+   
+   COPY table_name FROM WRAPPER orc_fdw OPTIONS (location = '/tmp/file.orc');
+
+
+Loading a Parquet file
+-------------------------------------------
+
+.. code-block:: postgres
+   
+   COPY table_name FROM WRAPPER parquet_fdw OPTIONS (location = '/tmp/file.parquet');
+
 
 Loading a text file with non-printable delimiter
 -----------------------------------------------------
@@ -305,7 +399,7 @@ In the file below, the separator is ``DC1``, which is represented by ASCII 17 de
 
 .. code-block:: postgres
    
-   COPY table_name FROM 'file.txt' WITH DELIMITER E'\021';
+   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', delimiter = E'\021');   
 
 Loading a text file with multi-character delimiters
 -----------------------------------------------------
@@ -314,13 +408,14 @@ In the file below, the separator is ``^|``.
 
 .. code-block:: postgres
    
-   COPY table_name FROM 'file.txt' WITH DELIMITER '^|';
+   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', delimiter = '^|');   
 
 In the file below, the separator is ``'|``. The quote character has to be repeated, as per the :ref:`literal quoting rules<string_literals>`.
 
 .. code-block:: postgres
    
-   COPY table_name FROM 'file.txt' WITH DELIMITER ''''|';
+   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', delimiter = ''''|');
+   
 
 Loading files with a header row
 -----------------------------------
@@ -331,14 +426,14 @@ Use ``OFFSET`` to skip rows.
 
 .. code-block:: postgres
 
-   COPY  table_name FROM 'filename.psv' WITH DELIMITER '|' OFFSET  2;
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.psv', delimiter = '|', offset = 2);      
 
 Loading files formatted for Windows (``\r\n``)
 ---------------------------------------------------
 
 .. code-block:: postgres
 
-   COPY table_name FROM 'filename.psv' WITH DELIMITER '|' RECORD DELIMITER '\r\n';
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.psv', delimiter = '\r\n');         
 
 Loading a file from a public S3 bucket
 ------------------------------------------
@@ -347,16 +442,15 @@ Loading a file from a public S3 bucket
 
 .. code-block:: postgres
 
-   COPY nba FROM 's3://sqream-demo-data/nba.csv' WITH OFFSET 2 RECORD DELIMITER '\r\n';
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = 's3://sqream-demo-data/file.csv', delimiter = '\r\n', offset = 2);         
 
 Loading files from an authenticated S3 bucket
 ---------------------------------------------------
 
 .. code-block:: postgres
 
-   COPY nba FROM 's3://secret-bucket/*.csv' WITH OFFSET 2 RECORD DELIMITER '\r\n' AWS_ID '12345678' AWS_SECRET 'super_secretive_secret';
-
-
+   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = 's3://secret-bucket/*.csv', DELIMITER = '\r\n', OFFSET = 2, AWS_ID = '12345678', AWS_SECRET = 'super_secretive_secret');
+   
 Saving rejected rows to a file
 ----------------------------------
 
@@ -364,24 +458,28 @@ Saving rejected rows to a file
 
 .. code-block:: postgres
 
-   COPY table_name FROM 'filename.psv' WITH DELIMITER '|'
-                                         ERROR_LOG  '/temp/load_error.log' -- Save error log
-                                         ERROR_VERBOSITY 0; -- Only save rejected rows
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.csv', 
+												                        ,continue_on_error  = true 
+                                                ,error_log  = '/temp/load_error.log'
+                                                );         
 
 .. code-block:: postgres
 
-   COPY  table_name  FROM  'filename.csv'  WITH  delimiter  '|'  
-                                            ERROR_LOG  '/temp/load_err.log' -- Save error log
-                                            OFFSET 2 -- skip header row
-                                            LIMIT  100 -- Only load 100 rows
-                                            STOP AFTER 5 ERRORS; -- Stop the load if 5 errors reached
+    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.psv'
+												                         ,delimiter '|'
+                                                 ,error_log = '/temp/load_error.log' -- Save error log
+                                                 ,rejected_data = '/temp/load_rejected.log' -- Only save rejected rows
+                                                 ,limit = 100 -- Only load 100 rows
+                                                 ,error_count = 5 -- Stop the load if 5 errors reached
+                                                 );         
+
 
 Load CSV files from a set of directories
 ------------------------------------------
 
 .. code-block:: postgres
 
-   COPY  table_name  from  '/path/to/files/2019_08_*/*.csv';
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/2019_08_*/*.csv');
 
 Rearrange destination columns
 ---------------------------------
@@ -390,7 +488,7 @@ When the source of the files does not match the table structure, tell the ``COPY
 
 .. code-block:: postgres
 
-   COPY table_name (fifth, first, third) FROM '/path/to/files/*.csv';
+   COPY table_name (fifth, first, third) FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/*.csv');
 
 .. note:: Any column not specified will revert to its default value or ``NULL`` value if nullable
 
@@ -405,5 +503,6 @@ In this example, ``date_col1`` and ``date_col2`` in the table are non-standard. 
 
 .. code-block:: postgres
 
-   COPY table_name FROM '/path/to/files/*.csv' WITH PARSERS 'date_col1=YMD,date_col2=MDY,date_col3=default';
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/*.csv', datetime_format = 'DMY');
+      
 

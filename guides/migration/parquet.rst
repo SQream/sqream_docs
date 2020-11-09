@@ -98,7 +98,7 @@ Prepare the source Parquet files, with the following requirements:
      - 
      - 
      - 
-   * - ``BYTE_ARRAY`` [#f2]_
+   * - ``BYTE_ARRAY`` / ``FIXED_LEN_BYTE_ARRAY`` [#f2]_
      - 
      - 
      - 

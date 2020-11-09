@@ -11,7 +11,7 @@ This guide describes the SQream DB reference architecture, emphasizing the benef
 
 This page is intended as a "reference" to suggested hardware. However, different workloads require different solution sizes. SQream's experienced customer support has the experience to advise on these matters to ensure the best experience.
 
-Visit `SQream's support portal <https://support.sqream.com>`_ for additional support.
+Visit `SQream's support portal <https://sqream.atlassian.net/servicedesk/customer/portals>`_ for additional support.
 
 A SQream DB cluster
 ============================

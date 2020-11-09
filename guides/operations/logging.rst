@@ -370,7 +370,7 @@ Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a databas
      message           TEXT,
      end_message       VARCHAR(5)
    )
-   WRAPPER cdv_fdw
+   WRAPPER csv_fdw
    OPTIONS
      (
         LOCATION = '/home/rhendricks/sqream_storage/logs/**/sqream*.log',
