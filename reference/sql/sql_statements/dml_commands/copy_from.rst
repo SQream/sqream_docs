@@ -29,7 +29,7 @@ Syntax
    **OFFSET = {Integer},
    **LIMIT = {Integer},
    **DELIMITER = {String},
-   **RECORD DELIMITER = {String},
+   **RECORD_DELIMITER = {String},
    ERROR_LOG = {String},
    **REJECTED_DATA = {String},
    CONTINUE_ON_ERROR = {Bool},
@@ -79,7 +79,7 @@ Elements
      - ``','``
      - Almost any ASCII character, :ref:`See field delimiters section below<field_delimiters>`
      - Specifies the field terminator - the character (or characters) that separates fields or columns within each row of the file.
-   * - ``RECORD DELIMITER``
+   * - ``RECORD_DELIMITER``
      - ``\n`` (UNIX style newline)
      - ``\n``, ``\r\n``, ``\r``
      - Specifies the row terminator - the character that separates lines or rows, also known as a new line separator.
