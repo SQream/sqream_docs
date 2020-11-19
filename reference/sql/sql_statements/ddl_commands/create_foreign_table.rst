@@ -117,7 +117,7 @@ A simple table from Tab-delimited file (TSV)
    WRAPPER csv_fdw
    OPTIONS
      ( LOCATION = '/home/rhendricks/cool_animals.csv',
-       DELIMITER '\t'
+       DELIMITER = '\t'
      )
     ;
 
