@@ -1,0 +1,59 @@
+.. _2020.3.1:
+
+**************************
+What's new in 2020.3.1
+**************************
+
+SQream DB v2020.3.1 contains minor features, many performance improvements and bug fixes.
+
+
+New or expanded features
+=========================
+
+* TEXT data type:
+   * Full support for MIN and MAX aggregate functions on TEXT columns in GROUP BY queries
+   * Support Text-type as window partition keys (e.g., select distinct name, max(id) over (partition by name) from textTable;)
+   * Support Text-type fields in windows order by keys
+   * Support join on Text columns (e.g., t1.x = t2.y where x and y are columns of type Text)
+   * Complete the implementation of LIKE on TEXT columns (previously limited to prefix & suffix)
+   * Support for cast fromm TEXT to REAL/FLOAT
+   * New string function - REPEAT which repeats a string value for a specified number of times   
+   
+* Allow mapping DECIMAL ORC columns to SQream's floating-point types
+   
+* Support LIKE  on non-literal patterns (i.e., columns and complex expressions)
+
+* Catch OS signals and save the signal along with the stack trace in the SQream debug log
+
+* Support equijoins conditions on columns with different types (i.e., tinyint, smallint, int & bigint)
+
+* `DUMP_DATABASE_DDL` now includes foreign tables in the  output
+
+* New utility function - TRUNCATE_IF_EXISTS
+
+
+Performance Enhancements
+=========================
+* Introduced the "MetaData on Demand" feature which results in signicant proformance improvements
+
+* Implement regex functions (RLIKE, REGEXP_COUNT, REGEXP_INSTR, REGEXP_SUBSTR, PATINDEX) for TEXT columns on GPU
+
+
+Bug fixes
+============
+* Multiple distinct aggregates no longer need to be used with developerMode flag
+* In some scenrios, the statement_id and connection_id values are incorrectly recorded as -1 in the log
+* NOT RLIKE is not supported for TEXT in the compiler
+* Cast from TEXT to date/datetime returns an error when the TEXT column contains NULL
+
+
+Known Issues & Limitations
+================================
+
+
+Upgrading to v2020.3.1
+========================
+
+Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and other OSs via Docker.
+
+Contact your account manager to get the latest release of SQream DB.

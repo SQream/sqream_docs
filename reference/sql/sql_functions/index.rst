@@ -237,6 +237,8 @@ Strings
      - Returns the start position of a regular expression match in an argument
    * - :ref:`regexp_substr`
      - Returns a substring of an argument that matches a regular expression
+   * - :ref:`repeat`
+     - Repeats a string as many times as specified
    * - :ref:`replace`
      - Replaces characters in a string
    * - :ref:`reverse`
