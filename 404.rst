@@ -15,3 +15,4 @@ If you're looking for an older version of the documentation, versions 1.10 throu
 .. rubric:: Need help?
 
 If you couldn't find what you're looking for, we're always happy to help. Visit `SQream's support portal <https://support.sqream.com>`_ for additional support.
+
