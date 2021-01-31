@@ -13,7 +13,7 @@ Syntax
 
 .. code-block:: postgres
 
-   CHARINDEX ( needle_string_expr , haystack_string_expr ) --> INT
+   CHARINDEX ( needle_string_expr , haystack_string_expr [ , start_location ] )
 
 Arguments
 ============
@@ -28,6 +28,8 @@ Arguments
      - String to find
    * - ``haystack_string_expr``
      - String to search within
+   * - ``start_location``
+     - An integer at which the search starts. This value is optinoal and when not supplied, the search starts at the beggining of ``needle_string_expr``
 
 Returns
 ============
@@ -36,8 +38,6 @@ Integer start position of a match, or 0 if no match was found.
 
 Notes
 =======
-
-   * This function is supported on ``VARCHAR`` strings only.
 
 * If the value is NULL, the result is NULL.
 
