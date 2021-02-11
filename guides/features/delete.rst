@@ -46,6 +46,16 @@ Files marked for deletion during the logical deletion stage are removed from dis
 Notes on data deletion
 =========================================
 
+.. note::
+   * If the number of deleted records crosses the threshold defined by the ``mixedColumnChunksThreshold`` parameter, the delete operation will be aborted.
+   * This is intended to alert the user that the large number of deleted records may result in a large number of mixed chuncks.
+   * To circumvent this alert, replace XXX with the desired number of records before running the delete operation:
+
+.. code-block:: postgres
+
+   set mixedColumnChunksThreshold=XXX;
+   
+
 Deleting data does not free up space
 -----------------------------------------
 
