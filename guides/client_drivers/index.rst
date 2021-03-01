@@ -20,14 +20,14 @@ All operating systems
    (SQream recommends installing via ``mvn``)
 
 * 
-   **Python** - `pysqream v3.1.0 (.tar.gz) <https://github.com/SQream/pysqream/releases/tag/v3.1.0>`_
+   **Python** - `pysqream v3.1.3 (.tar.gz) <https://github.com/SQream/pysqream/releases/tag/v3.1.3>`_
    
    :ref:`pysqream` - Python driver
    
    (SQream recommends installing via ``pip``)
 
 * 
-   **Node.JS** - `sqream-v4.2.0 (.tar.gz) <http://downloads.sqream.com/drivers/2020.3/sqream-sqreamdb-4.2.0.tgz>`_
+   **Node.JS** - `sqream-v4.2.4 (.tar.gz) <http://downloads.sqream.com/drivers/2020.3/sqream-sqreamdb-4.2.4.tgz>`_
    
    :ref:`nodejs` - Node.JS driver
    
