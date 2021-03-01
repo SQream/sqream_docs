@@ -9,7 +9,7 @@ These guides explain how to use the SQream DB client drivers, and how to use cli
 Client driver downloads
 =============================
 
-All operating systems
+All operating systems 
 ---------------------------
 
 * 
