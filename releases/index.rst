@@ -10,6 +10,8 @@ Releases
    
    * - Version
      - Release Date
+   * - :ref:`2020.3.2.1`
+     - February 24, 2021  
    * - :ref:`2020.3.2`
      - January 28, 2021  
    * - :ref:`2020.3.1`
@@ -29,6 +31,7 @@ Releases
    :glob:
    :hidden:
 
+   2020.3.2.1
    2020.3.2
    2020.3.1
    2020.3
