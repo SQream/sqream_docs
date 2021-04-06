@@ -1,7 +1,7 @@
 .. _2021.2:
 
 **************************
-What's new in 2020.3.2.1
+What's new in 2021.2
 **************************
 
 SQream DB v2020.3.2.1 contains major performance improvements and some bug fixes.
