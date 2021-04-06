@@ -4,7 +4,7 @@
 What's new in 2021.2
 **************************
 
-SQream DB v2020.3.2.1 contains major performance improvements and some bug fixes.
+SQream DB v2021.2 contains major performance improvements and some bug fixes.
 
 Performance Enhancements
 =========================
@@ -15,7 +15,7 @@ Known Issues & Limitations
 ================================
 * Multiple count distinct operations - is blocked for Text data type
 
-Upgrading to v2020.3.2.1
+Upgrading to v2021.2
 ========================
 
 Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and other OSs via Docker.
