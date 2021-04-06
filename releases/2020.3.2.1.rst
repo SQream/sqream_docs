@@ -8,12 +8,16 @@ SQream DB v2021.2 contains major performance improvements and some bug fixes.
 
 Performance Enhancements
 =========================
-* Metadata on Demand optimization resulting in reduced latency and improved overall performance
+* Major feature release targeted for all on-premises customers.
+* Contains basic Cloud functionality.
 
 
-Known Issues & Limitations
+Known Issues and Limitations
 ================================
-* Multiple count distinct operations - is blocked for Text data type
+* Production core dump from stability test
+* Performance degradation - joins - outer_join1.sql
+* Performance degradation - south_africa-sa4.sql
+* Performance degradation - groupby - groupby_int_func_nvarchar40.sql
 
 Upgrading to v2021.2
 ========================
