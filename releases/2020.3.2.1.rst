@@ -4,12 +4,50 @@
 What's new in 2021.2
 **************************
 
-SQream DB v2021.2 contains major performance improvements and some bug fixes.
+* 24 bugs fixed.
+* Major performance enhancements.
 
 Performance Enhancements
 =========================
 * Major feature release targeted for all on-premises customers.
-* Contains basic Cloud functionality.
+
+* Includes basic Cloud functionality.
+
+* Supports ``numeric(p, s)`` numeric data types where ``p`` is the total number of digits, (``38`` maximum), and ``s`` is the total number of decimal digits.
+
+Example:
+   
+   .. code-block:: none
+      
+      create or replace table t(x numeric(20, 10), y numeric(38, 38));
+      insert into t values(1234567890.1234567890, 0.123245678901234567890123456789012345678);
+      select x + y from t;
+
+* **Question: Should this bullet be included in Known Issues and Limitations below?** Does not support Numeric Literal operations and known issues.
+
+* Supports the following types:
+
+   * All join types
+   * All aggregation types
+   * Scalar functions **(waiting for the list of limitations)**
+
+* Text data type major bug fixes and functionality enhancement:
+
+   * Support text columns in queries with multiple distinct aggregates.
+   * Text literal support for all functions
+   * Use LoopJoin rather than CrossJoin for join on Text keys
+
+
+Example:
+   
+   .. code-block:: none
+      
+      create or replace table t(x numeric(20, 10), y numeric(38, 38));
+      insert into t values(1234567890.1234567890, 0.123245678901234567890123456789012345678);
+      select x + y from t;
+
+
+
 
 
 Known Issues and Limitations
