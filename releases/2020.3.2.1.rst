@@ -89,8 +89,7 @@ For best results, set ``copyToMaxMBPerFile`` to 10/20 MB files, and set ``WriteT
 
 Main Implemented Stories
 ================================
-**Do the following all belong in Performance Enhancements? I will edit the text based on the answer.**
-* SQream should always be able to parse its own logs as CSVs
+* SQream can always parse its own logs as CSVs.
 * Support conversion from Text to Numeric
 * Support conversion from Numeric to Text
 * Support a limited form of NOT EXISTS subqueries in the WHERE clause
