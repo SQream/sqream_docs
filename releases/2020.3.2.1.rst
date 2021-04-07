@@ -68,17 +68,12 @@ See `supported syntax and usage <https://sqream.atlassian.net/wiki/spaces/RF/pag
   * When **(time?)** it **(the compilation?)** started executing.
 
 
-* Optimized foreign data wrapper export:
+Optimized foreign data wrapper export:
+-------------------------
 
   * WriteToFile chuck producer code paralleled to enhance performance. Transferring **(is "transferring" the right word here? Consider using "formatting.")** WriteToFile as a threaded chunk producer results in multi-thread export for orc, parquet, and csv, with better performance.
-  
-  We paralleled the WriteToFile chunk producer code to gain better performance.
 
-Transferring WriteToFile to be a threaded chunk producer results in multi-thread export for orc, parquet, and csv and presents better performance.
-
-
-
-Usage example:
+**Usage example:**
 
 The following ``runTimeGlobal`` flags control exporting foreign data wrappers:
 
@@ -90,7 +85,42 @@ If ``copyToMaxMBPerFile = 0`` - no parallelism. The feature is disabled. **Comme
 
 If ``copyToMaxMBPerFile = N`` - multi-thread is enabled, withN as the maximum file size (MB).
 
-For best results, set ``copyToMaxMBPerFile to 10/20 MB files, and set ``WriteToFileThreads`` to 16.
+For best results, set ``copyToMaxMBPerFile`` to 10/20 MB files, and set ``WriteToFileThreads`` to 16.
+
+Main Implemented Stories
+================================
+**Do the following all belong in Performance Enhancements? I will edit the text based on the answer.**
+* SQream should always be able to parse its own logs as CSVs
+* Support conversion from Text to Numeric
+* Support conversion from Numeric to Text
+* Support a limited form of NOT EXISTS subqueries in the WHERE clause
+* Literal variants support for charindex  
+* MD on demand - Optimize frequent compiler UF's
+* MD on demand - Optimize (table level) commands that aren't related to tables
+* MD on demand - Optimize all table level commands
+* Support auto compression lz4 and snappy for the Numeric type
+* Support flat compression for the Numeric type
+* Support a limited form of EXISTS subqueries in the WHERE clause
+* Find a way to deal with SKT's `ORDER BY (select 0)`
+* log locks in system - sqreamd
+* Statement level and concurrency troubleshooting debug logging and testing for SKT
+* Implement division operator for Numeric
+* Verify that constant expressions on Numeric work (SQ-319)
+* Support aggregation functions for Numeric type
+* Explicit cast down from Numeric to Numeric
+* Add min max metadata for Decimal columns
+* Support Numeric columns as group by keys
+* Support sort operations on Decimal
+* Allow truncation of Numeric values on ingestion from ORC, CSV
+* Additional catalog UF that accept SQL valid patterns and escape characters
+* Create a basic random data FDW for non-text types
+* Improve the internal errors message
+* Simple Scalar SQL UDFs
+* Support stdin as a file input for sqream sql
+* TEXT - implement literal handling for all supported functions
+* Support text columns in queries with multiple distinct aggregates
+* Use LoopJoin and not CrossJoin for join on Text keys
+
 
 
 
@@ -100,6 +130,34 @@ Known Issues and Limitations
 * Performance degradation - joins - outer_join1.sql
 * Performance degradation - south_africa-sa4.sql
 * Performance degradation - groupby - groupby_int_func_nvarchar40.sql
+
+Bug Fixes
+================================
+* Copying from csv to TEXT column without closing quotes risk of crashing **sqreamd**.
+* Unsupported insert error when using unsupported function call
+* Incorrect error when inserting from a non-existing table.
+* error-select column list '*'
+* same query-different results
+* internal runtime error -encodekey
+* decimal data type issue-compile error
+* rank() in window function sometimes returns garbage
+* Memory smear causes wrong results on a decimal data column
+* Bug with STDDEV_SAMP,STDDEV_POP and STDEV functions
+* SQream fail on: select table_name,row_count from sqream_catalog.tables order by row_count limit 5
+* wildcards like *.x.y is not working- parquet (csv is working)
+* Round(x,y) in the where clause on numeric fails with compiler error  
+* "star not supported"
+* window function query which returns wrong results
+* window function on null value could have bad result
+* charindex return different results for columns and literals
+* Bad error message when executing log(x, y)
+* UDF + text type produce different memory errors
+* internal runtime error Type doesn't have a fixed size when doing max on text on develop (cisco poc)
+* avg(len(xnvarchar70)) sum overflow
+* min & max on TEXT can be x15 slower than varchar
+* regexp_instr empty regex
+* It is possible to  drop a schema although it has an external table
+
 
 Upgrading to v2021.2
 ========================
