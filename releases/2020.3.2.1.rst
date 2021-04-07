@@ -76,21 +76,7 @@ See `supported syntax and usage <https://sqream.atlassian.net/wiki/spaces/RF/pag
 
 Transferring WriteToFile to be a threaded chunk producer results in multi-thread export for orc, parquet, and csv and presents better performance.
 
-Usage:
 
-Two runTimeGlobal flags control the feature:
-
-copyToMaxMBPerFile (default: 0)
-
-WriteToFileThreads (default: 16)
-
-If copyToMaxMBPerFile=0 - no parallelism, the feature is off
-
-If copyToMaxMBPerFile = N - multi-thread is ON and N is the maximum file size in MB
-
-We witnessed the best results for 10/20 MB files and 16 writing threads, i.e.
-
-copyToMaxMBPerFile = from 10 to 20 and WriteToFileThreads =16
 
 Usage example:
 
