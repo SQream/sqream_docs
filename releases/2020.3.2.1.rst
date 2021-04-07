@@ -10,9 +10,10 @@ What's new in 2021.2
 Performance Enhancements
 =========================
 * Major feature release targeted for all on-premises customers.
-
 * Includes basic Cloud functionality.
 
+New Features
+=========================
 * Supports ``numeric(p, s)`` numeric data types where ``p`` is the total number of digits, (``38`` maximum), and ``s`` is the total number of decimal digits.
 
 Example:
@@ -45,6 +46,28 @@ Example:
       create or replace table t(x numeric(20, 10), y numeric(38, 38));
       insert into t values(1234567890.1234567890, 0.123245678901234567890123456789012345678);
       select x + y from t;
+
+
+
+* Text data type **major bug fixes** and **functionality enhancements:**
+**(Which of the following are bug fixes and which are functionality enhancements?)**
+
+   * Supports text columns in queries with multiple distinct aggregates.
+   * Supports text literal for all functions.
+   * Uses LoopJoin instead of CrossJoin for join on Text keys.
+
+* Supports Partial Sub-Queries.
+
+See `currently supported functionality <https://sqream.atlassian.net/wiki/spaces/RF/pages/1433894919/Sub-Queries+support+and+limitations+in+SQream+DB+v2021.1>`_.
+**Question: if this is a new feature, why is there existing documentation? Is this actually an enhancement, or really a new feature?**
+
+* Literal arguments are now supported in all cases where column arguments are supported for a certain function. Literal arguments are only supported if the Literal value is  the same TYPE as the column.
+
+* Supports Simple Scalar SQL UDFs.
+See `supported syntax and usage <https://sqream.atlassian.net/wiki/spaces/RF/pages/1433731135/Simple+Scalar+SQL+UDF+s>`_.
+
+* 
+
 
 
 
