@@ -110,9 +110,9 @@ Running ``get_license_info()`` returns the license information output in the fol
 
 The following is an example of license information output:
 
-.. code-block:: none
-      
-   $ 10,100,compressed,20,2045-03-18,0,0,10
+```
+$ 10,100,compressed,20,2045-03-18,0,0,10
+```
 
 
 Optimized Foreign Data Wrapper Export
@@ -122,10 +122,10 @@ SQream now parallels the **WriteToFile** chunk producer code to enhance performa
 
 The following is an example of the correct syntax when exporting foreign data wrappers:
 
-.. code-block:: none
-      
-   $ COPY table_name TO fdw_name OPTIONS(max_file_size=size_in_bytes,enforce_single_file={TRUE|FALSE});
-   
+```
+$ COPY table_name TO fdw_name OPTIONS(max_file_size=size_in_bytes,enforce_single_file={TRUE|FALSE});
+```
+
 The following apply to the above syntax example:
 
 * Both parameters are optional.
@@ -137,8 +137,7 @@ The following apply to the above syntax example:
 
 Main Implemented Stories
 ================================
-The following main stories have been implemented:
-
+Release Notes version 2021.1 includes the following main implemented stories:
 * Productize SKT inspection items and port them to the main product line
 * SQreamDB on AWS
 * SQreamDB on GCP
@@ -167,6 +166,7 @@ The following main stories have been implemented:
 
 Known Issues and Limitations
 ================================
+Release Notes version 2021.1 includes the following known issues and limitations:
 * Production core dump from stability test
 * Performance degradation - joins - outer_join1.sql
 * Performance degradation - south_africa-sa4.sql
@@ -178,6 +178,7 @@ Known Issues and Limitations
 
 Bug Fixes
 ================================
+Release Notes version 2021.1 includes the following bug fixes:
 * Copying content from a CSV to a TEXT column without closing quotations crashes sqreamd.
 * Running the insert into command on SKT inspection queries generates an incorrect error. The correct error is Function call not supported. The incorrect error is Unsupported insert. The incorrect error is generated only on tables with more than one column.
 * Running the insert into command from table_does_not_exist generates an incorrect error.
@@ -215,7 +216,7 @@ No features were depecrated.
 
 Version Acceptance Criteria
 ================================
-See `Test Plan <https://docs.google.com/spreadsheets/d/1yZFf1R4ncCe3_fJii9mhrVCOahH2d3Nv_H_J5yKosFo/edit#gid=0>`_.
+See [Test Plan](https://docs.google.com/spreadsheets/d/1yZFf1R4ncCe3_fJii9mhrVCOahH2d3Nv_H_J5yKosFo/edit#gid=0).
 Functional Regression - pass
 Stability Test - pass
 
