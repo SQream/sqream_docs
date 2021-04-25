@@ -4,6 +4,7 @@
 Recommended post-installation configuration
 *********************************************
 
+### Irina's comments.
 
 Once you've :ref:`installed SQream DB<installing_sqream_db_docker>`, you can and should tune your system for better performance and stability.
 
