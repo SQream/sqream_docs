@@ -5,6 +5,7 @@ What's new in 2021.2
 **************************
 
 * 24 bugs fixed.
+Yaniv's edit.
 * Major performance enhancements.
 
 Performance Enhancements
