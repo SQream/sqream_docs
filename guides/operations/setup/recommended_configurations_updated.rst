@@ -1,4 +1,4 @@
-.. _recommended_configuration:
+.. _recommended_configurations_updated:
 
 *********************************************
 Recommended Post-Installation Configuration
@@ -9,11 +9,10 @@ Once you've :ref:`installed SQream DB<installing_sqream_db_docker>`, you can and
 This page provides recommendations for production deployments of SQream DB.
 
 .. contents:: In this topic:
-   :local:
+   :local:   
 
-# Recommended BIOS Settings
-
-
+Recommended BIOS Settings
+==========================
 The BIOS settings may have a variety of names, or may not exist on your system. Each system vendor has a different set of settings and variables. 
 
 It is safe to skip any and all of the configuration steps, but this may impact performance.
@@ -47,7 +46,7 @@ If any doubt arises, consult the documentation for your server or your hardware 
      - The Performance profile provides potentially increased performance by maximizing processor frequency, and the disabling certain power saving features such as C-states. Use this setting for environments that are not sensitive to power consumption.
    * - **Power Cap Policy** or **Dynamic power capping**
      - **Disabled**
-     - Other power profiles (like "balanced") throttle the CPU and may diminish performance or cause GPU failure. This setting may appear together with the above (Power profile or Power regulator). **(In BIOS?)** This setting allows disabling system ROM power calibration during the boot process. **Note:** Power regulator settings are named differently in BIOS and iLO/iDRAC. **Comment: is it necessary to show the different power regulator setting names in this document?**	 
+     - Other power profiles (like "balanced") throttle the CPU and may diminish performance or cause GPU failure. This setting may appear together with the above (Power profile or Power regulator). **(In BIOS?)** This setting allows disabling system ROM power calibration during the boot process. Power regulator settings are named differently in BIOS and iLO/iDRAC. **Comment: is it necessary to show the different power regulator setting names in this document?**	 
    * - **Intel Turbo Boost**
      - **Enabled**
      - Intel Turbo Boost enables overclocking the processor to boost CPU-bound operation performance. Overclocking may risk computational jitter due to changes in the processor's turbo frequency. This causes brief pauses in processor operation, introducing uncertainty into application processing time. Turbo operation is a function of power consumption, processor temperature, and the number of active cores.
@@ -83,7 +82,7 @@ If any doubt arises, consult the documentation for your server or your hardware 
      - ACPI SLIT sets the relative access times between processors and memory and I/O sub-systems. ACPI SLIT enables operating systems to use this data to improve performance by more efficiently allocating resources and workloads.	 
    * - **QPI Snoop** **Comment: should we write that it is HPe or Intel? HPe: QPI Snoop**
      - **Cluster on Die** or **Home Snoop**
-     - QPI (QuickPath Interconnect) Snoop lets you configure different Snoop modes that impact the QPI interconnect. Changing this setting may improve the performance of certain workloads. The default setting of **Home Snoop** provides high memory bandwidth in an average NUMA environment. **Cluster on Die** may provide increased memory bandwidth in highly optimized NUMA workloads. **Early Snoop** may decrease memory latency, but may result in lower overall bandwidth compared to other modes. **Comment: Early Snoop is not defined as a Setting. Should it therefore be described here as a note, i.e., Note: Early Snoop may decrease memory...?**	
+     - QPI (QuickPath Interconnect) Snoop lets you configure different Snoop modes that impact the QPI interconnect. Changing this setting may improve the performance of certain workloads. The default setting of **Home Snoop** provides high memory bandwidth in an average NUMA environment. **Cluster on Die** may provide increased memory bandwidth in highly optimized NUMA workloads. **Early Snoop** may decrease memory latency, but may result in lower overall bandwidth compared to other modes.	
 	 
 
 	 
@@ -104,8 +103,7 @@ Either the CentOS (versions 7.6-7.9) or RHEL (versions 7.6-7.9) must be installe
 #. Continue the installation. **Comment: why don't we document the entire procedure? I.e., why do we stop here and say "Continue the installation" and "Set up the necessary drives..."?**
 #. Set up the necessary drives and users as per the installation process.
 
-.. note::
-   * Using (**Comment: enabling? I need to see the GUI.**) Debugging Tools is recommended for future problem-solving if necessary.
+   Using Debugging Tools is recommended for future problem-solving if necessary.
 
 Selecting the **Development Tools** group installs the following tools:
 
@@ -144,9 +142,9 @@ Automatically Creating a SQream User
 
 #. If a SQream user was created during installation, verify that the same ID is used on every server:
 
-.. code-block:: console
+   .. code-block:: console
 
-   $ sudo id sqream
+      $ sudo id sqream
   
 The ID **1000** is used on each server in the following example:
     
@@ -171,10 +169,7 @@ Manually Creating a SQream User
 
 **To manually create a SQream user:**
 
-SQream enables you to manually create users. This section shows you how to manually create a user with the UID **1111**.
-
-.. note::
-   * You cannot manually create during the operating system installation procedure.
+SQream enables you to manually create users. This section shows you how to manually create a user with the UID **1111**. You cannot manually create during the operating system installation procedure.
    
 1. Add a user with an identical UID on all cluster nodes:
 
@@ -223,8 +218,7 @@ SQream enables you to set up a locale. In this example, the locale used is your 
 
    $ sudo timedatectl set-timezone Asia/Jerusalem
 
-.. note::
-   * If needed, you can run the **timedatectl list-timezones** command to see your current time-zone.
+If needed, you can run the **timedatectl list-timezones** command to see your current time-zone.
   
    
 Installing the Required Packages
@@ -337,8 +331,7 @@ Configuring the Network Time Protocol (NTP)
 -------------------------------- 
 This section describes how to configure your NTP.
 
-.. note::
-   * If you don't have internet access, see `Configure NTP Client to Synchronize with NTP Server <https://www.thegeekstuff.com/2014/06/linux-ntp-server-client/>`__.
+If you don't have internet access, see `Configure NTP Client to Synchronize with NTP Server <https://www.thegeekstuff.com/2014/06/linux-ntp-server-client/>`__.
 
 *Comment - Is this the correct procedure on the linked URL: Configure NTP Client to Synchronize with NTP Server?*
 
@@ -464,10 +457,7 @@ Configuring the Kernel Parameters
 
 Configuring the Firewall
 --------------------------------
-The example in this section shows the open ports for four sqreamd sessions. If more than four are required, open the required ports as needed.
-
-.. note::
-   * In the example below, Port 8080 is a new UI port.
+The example in this section shows the open ports for four sqreamd sessions. If more than four are required, open the required ports as needed. Port 8080 in the example below is a new UI port.
 
 **To configure the firewall:
 
@@ -705,8 +695,7 @@ Installing the CUDA driver from the Repository is the recommended installation m
 
   $ sudo yum install dkms libvdpau
 
-.. note::
-   * Installing the CUDA depedendencies from the **epel** repository is only required for installing **runfile**.
+Installing the CUDA depedendencies from the **epel** repository is only required for installing **runfile**.
 
 3. Download the required local repository:
 
@@ -744,8 +733,7 @@ For example, RHEL7 for cuda 10.1. **Comment: Confirm.**
    
 **Comment - what is the output?**
  
-.. note::
-   * If you do not have an internet connection, you can set up the local repository as shown in the following example:
+If you do not have an internet connection, you can set up the local repository as shown in the following example:
  
 **Comment: I suggest making the following example its own section, i.e., how to prepare the CUDA driver offline.** 
 
@@ -820,10 +808,7 @@ The following is an example of generated output:
 	  
 Tuning Up NVIDIA Performance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This section describes how to tune up NVIDIA performance.
-
-.. note::
-   * The procedures in this section are relevant to Intel only.
+This section describes how to tune up NVIDIA performance. The procedures in this section are relevant to Intel only.
 	
 **To tune up NVIDIA performance:**
 
@@ -853,8 +838,7 @@ This section describes how to tune up NVIDIA performance.
 
          $ sudo systemctl enable nvidia-persistenced
 		 
-   .. note::
-      * Setting up the NVIDIA POWER9 CUDA driver includes additional set-up requirements. The NVIDIA POWER9 CUDA driver will not function properly if the additional set-up requirements are not followed. See `POWER9 Setup <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`__ for the additional set-up requirements.
+**Notice**: Setting up the NVIDIA POWER9 CUDA driver includes additional set-up requirements. The NVIDIA POWER9 CUDA driver will not function properly if the additional set-up requirements are not followed. See `POWER9 Setup <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`__ for the additional set-up requirements.
 
    
    b. **For K80**:
@@ -1083,12 +1067,10 @@ Verifying that the Core Dumps Work
 
       $ select abort_server();
 
-.. note::
-   * You can verify that the core dumps work only after installing and running SQream.
+You can verify that the core dumps work only after installing and running SQream.
    
 This causes the server to crash and a new core.xxx file to be included in the folder that is written in **/etc/sysctl.conf**
 
-**Question: what does "the folder that is written..." mean.**
 **Question: what did the author mean by "Stage 3"?**
    
 Troubleshooting Core Dumping 
@@ -1162,8 +1144,7 @@ Create a user for SQream DB, and optionally assign it to the ``wheel`` group for
    $ passwd sqream 
    $ usermod -aG wheel sqream 
 
-.. note::
-   * The UID (1132 in the example above) is set to ensure all shared files are accessible by all workers.
+The UID (1132 in the example above) is set to ensure all shared files are accessible by all workers.
 
 Configure the OS locale and timezone
 =====================================
