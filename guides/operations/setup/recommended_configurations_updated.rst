@@ -714,11 +714,11 @@ For example, RHEL7 for cuda 10.1. **Comment: Confirm.**
 
 5. Install the CUDA drivers:
 
-   a. Clear the YUM cache:
+a. Clear the YUM cache:
   
-      .. code-block:: console
+   .. code-block:: console
 
-         $ sudo yum clean all
+      $ sudo yum clean all
 	  
    b. Install the most current DKMS (Dynamic Kernel Module Support) NVIDIA driver:
   
