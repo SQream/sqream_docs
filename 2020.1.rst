@@ -22,11 +22,13 @@ SQream now supports ``numeric(p, s)`` numeric data types where ``p`` is the tota
 The following example shows how to use numeric data types:
 
 The following example shows how to use numeric data types:
-   ```
+
+.. code-block:: postgres
+   
    $ create or replace table t(x numeric(20, 10), y numeric(38, 38));
    $ insert into t values(1234567890.1234567890, 0.123245678901234567890123456789012345678);
    $ select x + y from t;
-   ```
+   
 
 
 The numeric data type feature supports the following operations:
@@ -67,12 +69,13 @@ Literal Arguments
 ---------------------------
 SQream now supports literal arguments in all cases where column arguments are supported for a certain function. Literal arguments are only supported if the literal value is the same TYPE as the column, as shown in the following example:
 
-```     
-$ power(num1,num2)
-$ exp(num)
-$ isprefixof(string1,string2)
-$ left(text, num)
-```
+.. code-block:: postgres
+   
+   $ power(num1,num2)
+   $ exp(num)
+   $ isprefixof(string1,string2)
+   $ left(text, num)
+
 
 Simple Scalar SQL UDFs
 ---------------------------
@@ -109,9 +112,10 @@ Running ``get_license_info()`` returns the license information output in the fol
 
 The following is an example of license information output:
 
-```
-$ 10,100,compressed,20,2045-03-18,0,0,10
-```
+.. code-block:: postgres
+   
+   $ 10,100,compressed,20,2045-03-18,0,0,10
+
 
 
 Optimized Foreign Data Wrapper Export
@@ -121,9 +125,10 @@ SQream now parallels the **WriteToFile** chunk producer code to enhance performa
 
 The following is an example of the correct syntax when exporting foreign data wrappers:
 
-```
-$ COPY table_name TO fdw_name OPTIONS(max_file_size=size_in_bytes,enforce_single_file={TRUE|FALSE});
-```
+.. code-block:: postgres
+   
+   $ COPY table_name TO fdw_name OPTIONS(max_file_size=size_in_bytes,enforce_single_file={TRUE|FALSE});
+
 
 The following apply to the above syntax example:
 
@@ -137,6 +142,7 @@ The following apply to the above syntax example:
 Main Implemented Stories
 ================================
 Release Notes version 2021.1 includes the following main implemented stories:
+
 * Productize SKT inspection items and port them to the main product line
 * SQreamDB on AWS
 * SQreamDB on GCP
@@ -166,6 +172,7 @@ Release Notes version 2021.1 includes the following main implemented stories:
 Known Issues and Limitations
 ================================
 Release Notes version 2021.1 includes the following known issues and limitations:
+
 * Production core dump from stability test
 * Performance degradation - joins - outer_join1.sql
 * Performance degradation - south_africa-sa4.sql
@@ -178,6 +185,7 @@ Release Notes version 2021.1 includes the following known issues and limitations
 Bug Fixes
 ================================
 Release Notes version 2021.1 includes the following bug fixes:
+
 * Copying content from a CSV to a TEXT column without closing quotations crashes sqreamd.
 * Running the insert into command on SKT inspection queries generates an incorrect error. The correct error is Function call not supported. The incorrect error is Unsupported insert. The incorrect error is generated only on tables with more than one column.
 * Running the insert into command from table_does_not_exist generates an incorrect error.
