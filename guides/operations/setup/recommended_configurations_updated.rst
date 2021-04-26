@@ -4,7 +4,7 @@
 Recommended Post-Installation Configuration
 *********************************************
 
-Once you've :ref:`installed SQream DB<installing_sqream_db_docker>`, you can and should tune your system for better performance and stability!
+Once you've :ref:`installed SQream DB<installing_sqream_db_docker>`, you can and should tune your system for better performance and stability.
 
 This page provides recommendations for production deployments of SQream DB.
 
@@ -179,9 +179,9 @@ SQream enables you to manually create users. This section shows you how to manua
    
 2. Add the user **sqream** to the **wheel** group.
 
-.. code-block:: console
+   .. code-block:: console
 
-   $ sudo usermod -aG wheel sqream
+      $ sudo usermod -aG wheel sqream
    
 You can remove the SQream user from the **wheel** group when the installation and configuration are complete:
 
