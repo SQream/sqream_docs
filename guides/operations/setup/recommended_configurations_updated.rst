@@ -148,7 +148,7 @@ Automatically Creating a SQream User
   
 The ID **1000** is used on each server in the following example:
     
-.. code-block:: console
+   .. code-block:: console
 
    $ uid=1000(sqream) gid=1000(sqream) groups=1000(sqream)
    
