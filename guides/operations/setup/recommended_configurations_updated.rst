@@ -150,19 +150,19 @@ The ID **1000** is used on each server in the following example:
     
    .. code-block:: console
 
-   $ uid=1000(sqream) gid=1000(sqream) groups=1000(sqream)
+      $ uid=1000(sqream) gid=1000(sqream) groups=1000(sqream)
    
 2. If the ID's are different, delete the SQream user and SQream group from both servers:
 
-.. code-block:: console
+   .. code-block:: console
 
-   $ sudo userdel sqream
+      $ sudo userdel sqream
    
 3. Recreate it using the same ID:
    
-.. code-block:: console
+   .. code-block:: console
 
-   $ sudo rm /var/spool/mail/sqream
+      $ sudo rm /var/spool/mail/sqream
 
 Manually Creating a SQream User
 --------------------------------
@@ -173,9 +173,9 @@ SQream enables you to manually create users. This section shows you how to manua
    
 1. Add a user with an identical UID on all cluster nodes:
 
-.. code-block:: console
+   .. code-block:: console
 
-   $ useradd -u 1111 sqream
+      $ useradd -u 1111 sqream
    
 2. Add the user **sqream** to the **wheel** group.
 
