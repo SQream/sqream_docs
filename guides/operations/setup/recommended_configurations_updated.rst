@@ -185,19 +185,19 @@ SQream enables you to manually create users. This section shows you how to manua
    
 You can remove the SQream user from the **wheel** group when the installation and configuration are complete:
 
-.. code-block:: console
+   .. code-block:: console
 
-   $ passwd sqream
+      $ passwd sqream
    
 3. Log out and log back in as **sqream**.
 
-.. warning:: If you deleted the **sqream** user and recreated it with different ID, to avoid permission errors, you must change its ownership to /home/sqream.
+**Note:** If you deleted the **sqream** user and recreated it with different ID, to avoid permission errors, you must change its ownership to /home/sqream.
 
 4. Change the **sqream** user's ownership to /home/sqream:
 
-.. code-block:: console
+   .. code-block:: console
 
-   $ sudo chown -R sqream:sqream /home/sqream
+      $ sudo chown -R sqream:sqream /home/sqream
    
 Setting Up A Locale
 --------------------------------
@@ -208,15 +208,15 @@ SQream enables you to set up a locale. In this example, the locale used is your 
 
 1. Set the language of the locale:
 
-.. code-block:: console
+   .. code-block:: console
 
-   $ sudo localectl set-locale LANG=en_US.UTF-8
+      $ sudo localectl set-locale LANG=en_US.UTF-8
 
 2. Set the time stamp (time and date) of the locale:
 
-.. code-block:: console
+   .. code-block:: console
 
-   $ sudo timedatectl set-timezone Asia/Jerusalem
+      $ sudo timedatectl set-timezone Asia/Jerusalem
 
 If needed, you can run the **timedatectl list-timezones** command to see your current time-zone.
   
@@ -243,45 +243,45 @@ Installing Python 3.6.7
 --------------------------------
 1. Download the Python 3.6.7 source code tarball file from the following URL into the **/home/sqream** directory:
 
-.. code-block:: console
+   .. code-block:: console
 
-   $ wget https://www.python.org/ftp/python/3.6.7/Python-3.6.7.tar.xz
+      $ wget https://www.python.org/ftp/python/3.6.7/Python-3.6.7.tar.xz
    
 2. Extract the Python 3.6.7 source code into your current directory:
 
-.. code-block:: console
+   .. code-block:: console
 
-   $ tar -xf Python-3.6.7.tar.xz
+      $ tar -xf Python-3.6.7.tar.xz
    
 3. Navigate to the Python 3.6.7 directory:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ cd Python-3.6.7/Python-3
+      $ cd Python-3.6.7/Python-3
   
 4. Run the **./configure** script:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ ./configure
+      $ ./configure
    
 5. Build the software:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ make -j30
+      $ make -j30
   
 6. Install the software:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ sudo make install
+      $ sudo make install
   
 7. Verify that Python 3.6.7 has been installed:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ python3.6.7
+      $ python3.6.7
   
 Installing NodeJS on CentOS 
 --------------------------------
@@ -289,21 +289,21 @@ Installing NodeJS on CentOS
 
 1. Download the `setup_12.x file <https://rpm.nodesource.com/setup_12.x>`__ as a root user logged in shell:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
+      $ curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
   
 2. Clear the YUM cache and update the local metadata:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ sudo yum clean all && sudo yum makecache fast
+      $ sudo yum clean all && sudo yum makecache fast
   
 3. Install the **node.js**) file:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ sudo yum install -y nodejs
+      $ sudo yum install -y nodejs
 
 Installing NodeJS on Ubuntu
 --------------------------------
@@ -311,21 +311,21 @@ Installing NodeJS on Ubuntu
   
 1. Download the `setup_12.x file <https://deb.nodesource.com/setup_12.x>`__ as a root user logged in shell:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
+      $ curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
   
 2. Install the node.js file:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ sudo apt-get install -y nodejs  
+      $ sudo apt-get install -y nodejs  
   
 3. Verify the node version: **Comment - is this step relevant only for installing on Ubuntu, or on CentOS as well?**
   
-.. code-block:: console
+   .. code-block:: console
 
-  $ node -v 
+      $ node -v 
   
 Configuring the Network Time Protocol (NTP)
 -------------------------------- 
@@ -339,27 +339,27 @@ If you don't have internet access, see `Configure NTP Client to Synchronize with
   
 1. Install the NTP file.
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ sudo yum install ntp
+      $ sudo yum install ntp
   
 2. Enable the **ntpd** program.
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ sudo systemctl enable ntpd
+      $ sudo systemctl enable ntpd
   
 3. Start the **ntdp** program.
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ sudo systemctl start ntpd
+      $ sudo systemctl start ntpd
   
 4. Print a list of peers known to the server and a summary of their states.   
   
-.. code-block:: console
+   .. code-block:: console
 
-  $ sudo ntpq -p
+      $ sudo ntpq -p
   
 Configuring the Network Time Protocol Server
 --------------------------------
@@ -369,27 +369,27 @@ If your organization has an NTP server, you can configure it.
 
 1. Output your NTP server address and append ``/etc/ntpd.conf`` to the outuput.
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ echo -e "\nserver <your NTP server address>\n" | sudo tee -a /etc/ntp.conf
+      $ echo -e "\nserver <your NTP server address>\n" | sudo tee -a /etc/ntp.conf
 
 2. Restart the service.
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ sudo systemctl restart ntpd
+      $ sudo systemctl restart ntpd
 
 3. Check that synchronization is enabled:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ sudo timedatectl
+      $ sudo timedatectl
   
 Checking that synchronization is enabled generates the following output:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ Local time: Sat 2019-10-12 17:26:13 EDT
+      $ Local time: Sat 2019-10-12 17:26:13 EDT
      Universal time: Sat 2019-10-12 21:26:13 UTC
            RTC time: Sat 2019-10-12 21:26:13
           Time zone: America/New_York (EDT, -0400)
@@ -435,25 +435,25 @@ Configuring the Kernel Parameters
 
 1. Insert a new line after each kernel parameter:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ echo -e "vm.dirty_background_ratio = 5 \n vm.dirty_ratio = 10 \n vm.swappiness = 10 \n vm.vfs_cache_pressure = 200 \n vm.zone_reclaim_mode = 0 \n" >> /etc/sysctl.conf
+      $ echo -e "vm.dirty_background_ratio = 5 \n vm.dirty_ratio = 10 \n vm.swappiness = 10 \n vm.vfs_cache_pressure = 200 \n vm.zone_reclaim_mode = 0 \n" >> /etc/sysctl.conf
   
-.. warning:: In the past, the **vm.zone_reclaim_mode** parameter was set to **7.** In the latest Sqream version, the vm.zone_reclaim_mode parameter must be set to **0**. If it is not set to **0**, when a numa node runs out of memory, the system will get stuck and will be unable to pull memory from other numa nodes.
+**Notice:** In the past, the **vm.zone_reclaim_mode** parameter was set to **7.** In the latest Sqream version, the vm.zone_reclaim_mode parameter must be set to **0**. If it is not set to **0**, when a numa node runs out of memory, the system will get stuck and will be unable to pull memory from other numa nodes.
   
 2. Check the maximum value of the **fs.file**. 
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ sysctl -n fs.file-max
+      $ sysctl -n fs.file-max
 
 3. *Optional* - If the maximum value of the **fs.file** is smaller than **2097152**, run the following command:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ echo "fs.file-max=2097152" >> /etc/sysctl.conf
+      $ echo "fs.file-max=2097152" >> /etc/sysctl.conf
 
-.. warning:: **IP4 forward** must be enabled for Docker and K8s installation only.
+**IP4 forward** must be enabled for Docker and K8s installation only.
 
 Configuring the Firewall
 --------------------------------
@@ -463,40 +463,40 @@ The example in this section shows the open ports for four sqreamd sessions. If m
 
 1. Start the service and enable FirewallID on boot:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ systemctl start firewalld
+      $ systemctl start firewalld
   
 2. Add the following ports to the permanent firewall:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ firewall-cmd --zone=public --permanent --add-port=8080/tcp
-  $ firewallfirewall-cmd --zone=public --permanent --add-port=3105/tcp
-  $ firewall-cmd --zone=public --permanent --add-port=3108/tcp
-  $ firewall-cmd --zone=public --permanent --add-port=5000-5003/tcp
-  $ firewall-cmd --zone=public --permanent --add-port=5100-5103/tcp
-  $ firewall-cmd --permanent --list-all
+      $ firewall-cmd --zone=public --permanent --add-port=8080/tcp
+      $ firewallfirewall-cmd --zone=public --permanent --add-port=3105/tcp
+      $ firewall-cmd --zone=public --permanent --add-port=3108/tcp
+      $ firewall-cmd --zone=public --permanent --add-port=5000-5003/tcp
+      $ firewall-cmd --zone=public --permanent --add-port=5100-5103/tcp
+      $ firewall-cmd --permanent --list-all
 
 **Comment: does *--list-all* add the entire list of ports to the permanent firewall?**
 
 3. Reload the firewall:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ firewall-cmd --reload
+      $ firewall-cmd --reload
 
 4. Start the service and enable FirewallID on boot:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ systemctl start firewalld  
+      $ systemctl start firewalld  
 
 If you do not need the firewall, you can disable it:
   
-.. code-block:: console
+   .. code-block:: console
 
-  $ sudo systemctl disable firewalld
+      $ sudo systemctl disable firewalld
   
   
 Disabling selinux
@@ -505,15 +505,15 @@ Disabling selinux
 
 1. Show the status of **selinux**:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ sudo sestatus
+      $ sudo sestatus
 
 2. If the output is not **disabled**, edit the **/etc/selinux/config** file: 
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ sudo vim /etc/selinux/config
+      $ sudo vim /etc/selinux/config
   
 3. Change **SELINUX=enforcing** to **SELINUX=disabled**.
   
@@ -531,16 +531,16 @@ Configuring the /etc/hosts File
 
 1. Edit the **/etc/hosts** file:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ sudo vim /etc/hosts
+      $ sudo vim /etc/hosts
 
 2. Call your local host:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ 127.0.0.1	localhost
-  $ <server ip>	<server_name>
+      $ 127.0.0.1	localhost
+      $ <server ip>	<server_name>
   
 **Comment - Is the above an output or a step?**
   
@@ -550,16 +550,16 @@ Configuring the DNS
 
 1. Run the **ifconfig** commasnd to check your NIC name. In the following example, **eth0** is the NIC name:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ sudo vim /etc/sysconfig/network-scripts/ifcfg-eth0 
+      $ sudo vim /etc/sysconfig/network-scripts/ifcfg-eth0 
 
 2. Replace the DNS lines from the example above with your own DNS addresses :
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ sudo vim /etc/sysconfig/network-scripts/ifcfg-4.4.4.4
-  $ sudo vim /etc/sysconfig/network-scripts/ifcfg-8.8.8.8
+      $ sudo vim /etc/sysconfig/network-scripts/ifcfg-4.4.4.4
+      $ sudo vim /etc/sysconfig/network-scripts/ifcfg-8.8.8.8
 
 **Comment: Is the above input correct?**
 
@@ -567,35 +567,35 @@ Installing the Nvidia CUDA Driver
 ===================================================
 
 
-.. warning:: If your UI runs on the server, the server must be stopped before installing the CUDA drivers.
+**Warning:** If your UI runs on the server, the server must be stopped before installing the CUDA drivers.
 
 CUDA Driver Prerequisites  
 --------------------------------
 1. Verify that the NVIDIA card has been installed and is detected by the system:
 
- .. code-block:: console
+   .. code-block:: console
 
-  $ lspci | grep -i nvidia
+      $ lspci | grep -i nvidia
   
 2. Check which version of gcc has been installed:
 
- .. code-block:: console
+   .. code-block:: console
 
-  $ gcc --version
+      $ gcc --version
   
 3. If gcc has not been installed, install it for one of the following operating systems:
 
    * On RHEL/CentOS: 
 
-    .. code-block:: console
+     .. code-block:: console
 
-          $ sudo yum install -y gcc
+        $ sudo yum install -y gcc
 
    * On Ubuntu: 
 
-    .. code-block:: console
+     .. code-block:: console
 
-         $ sudo apt-get install gcc
+        $ sudo apt-get install gcc
 
 
 Updating the Kernel Headers  
@@ -604,29 +604,29 @@ Updating the Kernel Headers
 
    * On RHEL/CentOS:
 
-    .. code-block:: console
+     .. code-block:: console
 
-          $ sudo yum install kernel-devel-$(uname -r) kernel-headers-$(uname -r)
+        $ sudo yum install kernel-devel-$(uname -r) kernel-headers-$(uname -r)
 		  
    * On Ubuntu:
    
-    .. code-block:: console
+     .. code-block:: console
 
-          $ sudo apt-get install linux-headers-$(uname -r)
+        $ sudo apt-get install linux-headers-$(uname -r)
 		  
 2. Install **wget** one of the following operating systems:
 
    * On RHEL/CentOS:
    
-    .. code-block:: console
+     .. code-block:: console
 
-          $ sudo yum install wget
+        $ sudo yum install wget
 		  
    * On Ubuntu:   
 		  
-    .. code-block:: console
+     .. code-block:: console
 
-          $ sudo apt-get install wget
+        $ sudo apt-get install wget
 		  		  
 Disabling Nouveau  
 --------------------------------
@@ -636,38 +636,38 @@ You can disable Nouveau, which is the default driver.
 
 1. Check if the Nouveau driver has been loaded:
 
- .. code-block:: console
+   .. code-block:: console
 
-  $ lsmod | grep nouveau
+      $ lsmod | grep nouveau
 
 If the Nouveau driver has been loaded, the command above generates output.
 
 2. Blacklist the Nouveau drivers to disable them:
 
- .. code-block:: console
+   .. code-block:: console
 
-  $ cat <<EOF | sudo tee /etc/modprobe.d/blacklist-nouveau.conf blacklist nouveau options nouveau modeset=0 EOF
+      $ cat <<EOF | sudo tee /etc/modprobe.d/blacklist-nouveau.conf blacklist nouveau options nouveau modeset=0 EOF
   
  
 3. Regenerate the kernel **initramfs** directory set:
 
   1. Modify the **initramfs** directory set:
   
-   .. code-block:: console
+     .. code-block:: console
 
-    $ sudo dracut --force
+        $ sudo dracut --force
 	
   2. Reboot the server:
 
-   .. code-block:: console
+     .. code-block:: console
 
-    $ sudo reboot
+        $ sudo reboot
 
 Installing the CUDA Driver
 --------------------------------
 This section describes how to install the CUDA driver.  
   
-.. warning:: The version of the driver installed on the customer's server must be equal or higher than the driver included in the Sqream release package. Contact a Sqream customer service representative to identify the correct version to install.
+**Notice:** The version of the driver installed on the customer's server must be equal or higher than the driver included in the Sqream release package. Contact a Sqream customer service representative to identify the correct version to install.
 
 Installing the CUDA Driver from the Repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -681,55 +681,55 @@ Installing the CUDA driver from the Repository is the recommended installation m
 
      .. code-block:: console
 
-      $ sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+        $ sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
    * For CentOS:
 
      .. code-block:: console
 
-      $ sudo yum install epel-release
+        $ sudo yum install epel-release
 	
 2. Install the CUDA dependencies from the **epel** repository:
 
- .. code-block:: console
+   .. code-block:: console
 
-  $ sudo yum install dkms libvdpau
+      $ sudo yum install dkms libvdpau
 
 Installing the CUDA depedendencies from the **epel** repository is only required for installing **runfile**.
 
 3. Download the required local repository:
 
- .. code-block:: console
+   .. code-block:: console
 
-  $ wget http://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
+      $ wget http://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
   
 4. Install the required local repository: 
    
- .. code-block:: console
+   .. code-block:: console
 
-  $ sudo yum localinstall cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
+      $ sudo yum localinstall cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
 
 For example, RHEL7 for cuda 10.1. **Comment: Confirm.**
 
 5. Install the CUDA drivers:
 
-  a. Clear the YUM cache:
+   a. Clear the YUM cache:
   
-   .. code-block:: console
+      .. code-block:: console
 
-      $ sudo yum clean all
+         $ sudo yum clean all
 	  
-  b. Install the most current DKMS (Dynamic Kernel Module Support) NVIDIA driver:
+   b. Install the most current DKMS (Dynamic Kernel Module Support) NVIDIA driver:
   
-   .. code-block:: console
+      .. code-block:: console
 
-      $ sudo yum -y install nvidia-driver-latest-dkms
+         $ sudo yum -y install nvidia-driver-latest-dkms
 
 6. Verify that the installation was successful:
 
-.. code-block:: console
+   .. code-block:: console
 
-   $ nvidia-smi
+      $ nvidia-smi
    
 **Comment - what is the output?**
  
@@ -743,31 +743,31 @@ You can prepare the CUDA driver offline from a server connected to the CUDA repo
 
    .. code-block:: console
 
-    $ rpm -qa |grep cuda-repo
+      $ rpm -qa |grep cuda-repo
 
 2. Navigate to the correct repository:
 
    .. code-block:: console
 
-    $ cd /etc/yum.repos.d/
+      $ cd /etc/yum.repos.d/
 
 3. List in long format and print lines matching a pattern for the cuda file:
 
    .. code-block:: console
 
-    $ ls -l |grep cuda
+      $ ls -l |grep cuda
 
 The following is an example of generated output:
 
 .. code-block:: console
 
-    $ cuda-10-1-local.repo
+   $ cuda-10-1-local.repo
 
 4. Edit the **/etc/yum.repos.d/cuda-10-1-local.repo** file:
 
    .. code-block:: console
 
-    $ vim /etc/yum.repos.d/cuda-10-1-local.repo
+      $ vim /etc/yum.repos.d/cuda-10-1-local.repo
 
 Check the **name** of the file. **Comment:; for what?**
 
@@ -775,36 +775,36 @@ The following is an example of generated output:
 
 .. code-block:: console
 
-    $ name=cuda-10-1-local
+   $ name=cuda-10-1-local
    
 5. Clone the repository to a location where it can be copied from:
 
    .. code-block:: console
 
-    $ reposync -g -l -m --repoid=cuda-10-1-local --download_path=/var/cuda-repo-10.1-local
+      $ reposync -g -l -m --repoid=cuda-10-1-local --download_path=/var/cuda-repo-10.1-local
 
 6. Copy the repository to the installation server and create the repository:
 
    .. code-block:: console
 
-    $ createrepo -g comps.xml /var/cuda-repo-10.1-local
+      $ createrepo -g comps.xml /var/cuda-repo-10.1-local
 
 7. Add a repo configuration file in **/etc/yum.repos.d/** by editing the **/etc/yum.repos.d/cuda-10.1-local.repo** repository:
  
    .. code-block:: console
 
-    $ [cuda-10.1-local]
-    $ name=cuda-10.1-local
-    $ baseurl=file:///var/cuda-repo-10.1-local
-    $ enabled=1
-    $ gpgcheck=1
-    $ gpgkey=file:///var/cuda-repo-10-1-local/7fa2af80.pub   
+      $ [cuda-10.1-local]
+      $ name=cuda-10.1-local
+      $ baseurl=file:///var/cuda-repo-10.1-local
+      $ enabled=1
+      $ gpgcheck=1
+      $ gpgkey=file:///var/cuda-repo-10-1-local/7fa2af80.pub   
    
 8. Install the CUDA drivers by installing the most current DKMS (Dynamic Kernel Module Support) NVIDIA driver as a root user logged in shell:
   
    .. code-block:: console
 
-    $ sudo yum -y install nvidia-driver-latest-dkms
+      $ sudo yum -y install nvidia-driver-latest-dkms
 	  
 Tuning Up NVIDIA Performance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -841,7 +841,7 @@ This section describes how to tune up NVIDIA performance. The procedures in this
 **Notice**: Setting up the NVIDIA POWER9 CUDA driver includes additional set-up requirements. The NVIDIA POWER9 CUDA driver will not function properly if the additional set-up requirements are not followed. See `POWER9 Setup <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`__ for the additional set-up requirements.
 
    
-   b. **For K80**:
+   c. **For K80**:
 	  
       .. code-block:: console
 
@@ -853,9 +853,9 @@ This section describes how to tune up NVIDIA performance. The procedures in this
 
 4. Reboot the server and run the **NVIDIA System Management Interface (NVIDIA SMI)**:
 
-      .. code-block:: console
+   .. code-block:: console
 
-         $ nvidia-smi
+      $ nvidia-smi
 
 
 Disabling Automatic Bug Reporting Tools
@@ -918,9 +918,9 @@ The following shows the desired output when **<fill in>**:
 
 .. code-block:: console
 
-         $ core file size (blocks, -c) unlimited
-         $ max user processes (-u) 1000000
-         $ open files (-n) 1000000
+   $ core file size (blocks, -c) unlimited
+   $ max user processes (-u) 1000000
+   $ open files (-n) 1000000
 
 3. Configure the security limits by running the **echo -e** command as a root user logged in shell:
 
@@ -1034,13 +1034,13 @@ Setting the Output Directory of the /etc/sysctl.conf File
 	  
   .. code-block:: console
 
-      $ sudo sysctl -p
+     $ sudo sysctl -p
 
 4. Check that the core output directory points to the following:
 
   .. code-block:: console
 
-      $ sudo cat /proc/sys/kernel/core_pattern
+     $ sudo cat /proc/sys/kernel/core_pattern
 	  
 The following shows the correct generated output:
 	  
@@ -1052,7 +1052,7 @@ The following shows the correct generated output:
 	  
   .. code-block:: console
 
-      $ select abort_server();
+     $ select abort_server();
 
 	  
 Verifying that the Core Dumps Work 
@@ -1065,7 +1065,7 @@ Verifying that the Core Dumps Work
 
   .. code-block:: console
 
-      $ select abort_server();
+     $ select abort_server();
 
 You can verify that the core dumps work only after installing and running SQream.
    
@@ -1097,7 +1097,7 @@ If all parameters have been configured correctly, the correct output is:
 
 .. code-block:: console
 
-      $ unlimited	
+   $ unlimited	
 
 4. If all parameters have been configured correctly, but running **ulimit -c** outputs **0**, run the following:
 
