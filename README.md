@@ -202,9 +202,9 @@ Release Notes version 2021.1 includes the following bug fixes:
 * Running OGG encryption functions loaded as UDF to a column returns memory errors.
 * **internal runtime error** type has no fixed size when running maximum on Text on develop (cisco poc). **(need clarification)**
 * avg(len(xnvarchar70)) sum overflow.  **(need clarification)**
-* The minimum and maximum on TEXT can be 15 times slower than **varchar**.
-* **regexp_instr** returns an empty regular expression.
-* Schemas with external tables can be dropped.
+* Performing the minimum and maximum query on **TEXT** was 15 times slower than on **varchar**.
+* Performing the **regexp_instr** query returned an empty regular expression.
+* Running the **create schema test_role** command were dropping schemas that had external tables.
 
 Naming Changes
 ================================
@@ -221,7 +221,7 @@ Functional Regression - pass
 Stability Test - pass
 
 
-Upgrading to v2021.2
+Upgrading to v2021.1
 ========================
 
 Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and other OSs via Docker.
