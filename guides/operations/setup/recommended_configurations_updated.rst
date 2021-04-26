@@ -136,7 +136,7 @@ Logging In to the Server
 You can log in to the server using the server's IP address and password for the **root** user. The server's IP address and **root** user were created while installing the operating system above.
 
 Automatically Creating a SQream User
---------------------------------
+------------------------------------
 
 **To automatically create a SQream user:**
 
@@ -328,7 +328,7 @@ Installing NodeJS on Ubuntu
       $ node -v 
   
 Configuring the Network Time Protocol (NTP)
--------------------------------- 
+------------------------------------------- 
 This section describes how to configure your NTP.
 
 If you don't have internet access, see `Configure NTP Client to Synchronize with NTP Server <https://www.thegeekstuff.com/2014/06/linux-ntp-server-client/>`__.
@@ -362,7 +362,7 @@ If you don't have internet access, see `Configure NTP Client to Synchronize with
       $ sudo ntpq -p
   
 Configuring the Network Time Protocol Server
---------------------------------
+--------------------------------------------
 If your organization has an NTP server, you can configure it.
 
 **To configure your NTP server:**
@@ -407,7 +407,7 @@ Checking that synchronization is enabled generates the following output:
  
 					 
 Configuring the Server to Boot Without the UI
---------------------------------
+---------------------------------------------
 You can configure your server to boot without a UI in cases when it is not required (recommended) by running the following command:					 
 
 .. code-block:: console
@@ -431,7 +431,7 @@ You can configure the security limits by running the **echo -e** command as a ro
   $ echo -e "sqream soft nproc 1000000\nsqream hard nproc 1000000\nsqream soft nofile 1000000\nsqream hard nofile 1000000\nsqream soft core unlimited\nsqream hard core unlimited" >> /etc/security/limits.conf
   
 Configuring the Kernel Parameters
---------------------------------
+---------------------------------
 **To configure the kernel parameters:
 
 1. Insert a new line after each kernel parameter:
@@ -671,7 +671,7 @@ This section describes how to install the CUDA driver.
 **Notice:** The version of the driver installed on the customer's server must be equal or higher than the driver included in the Sqream release package. Contact a Sqream customer service representative to identify the correct version to install.
 
 Installing the CUDA Driver from the Repository
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Installing the CUDA driver from the Repository is the recommended installation method.
 
 **To install the CUDA driver from the Repository:**
@@ -860,7 +860,7 @@ This section describes how to tune up NVIDIA performance. The procedures in this
 
 
 Disabling Automatic Bug Reporting Tools
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 **To disable automatic bug reporting tools:**
 
 1. Run the following **abort** commands:
@@ -1011,7 +1011,7 @@ Creating the Core Dumps Directory
       $ sudo chmod -R 777 /tmp/core_dumps	
 
 Setting the Output Directory of the /etc/sysctl.conf File 
----------------------------------------------------	
+-----------------------------------------------------------------	
 
 **To set the output directory of the /etc/sysctl.conf file:** 
 
