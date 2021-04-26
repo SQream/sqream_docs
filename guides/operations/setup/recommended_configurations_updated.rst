@@ -394,7 +394,7 @@ Checking that synchronization is enabled generates the following output:
            RTC time: Sat 2019-10-12 21:26:13
           Time zone: America/New_York (EDT, -0400)
         NTP enabled: yes
-   NTP synchronized: yes
+    NTP synchronized: yes
     RTC in local TZ: no
          DST active: yes
     Last DST change: DST began at
