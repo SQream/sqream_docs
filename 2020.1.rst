@@ -63,7 +63,7 @@ SQream now supports the following:
 
 Supports Partial Sub-Queries
 ---------------------------
-See [currently supported functionality](https://sqream.atlassian.net/wiki/spaces/RF/pages/1433894919/Sub-Queries+support+and+limitations+in+SQream+DB+v2021.1).
+See [currently supported functionality](https://sqream.atlassian.net/wiki/spaces/RF/pages/1433894919/Sub-Queries+support+and+limitations+in+SQream+DB+v2021.1)
 
 Literal Arguments
 ---------------------------
