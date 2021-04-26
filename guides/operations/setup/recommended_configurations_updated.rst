@@ -403,7 +403,8 @@ Checking that synchronization is enabled generates the following output:
     Next DST change: DST ends (the clock jumps one hour backwards) at
                      Sun 2019-11-03 01:59:59 EDT
                      Sun 2019-11-03 01:00:00 EST
-					 
+ 
+ 
 					 
 Configuring the Server to Boot Without the UI
 --------------------------------
