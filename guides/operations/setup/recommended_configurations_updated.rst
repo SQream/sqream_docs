@@ -714,7 +714,7 @@ For example, RHEL7 for cuda 10.1. **Comment: Confirm.**
 
 5. Install the CUDA drivers:
 
-   a. Clear the YUM cache:
+   #. Clear the YUM cache:
   
       .. code-block:: console
 
