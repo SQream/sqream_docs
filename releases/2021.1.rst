@@ -1,10 +1,10 @@
 .. _2021.1:
 
 **************************
-What's new in 2021.1  **please make sure we changed v2021.2 to v2021.1 in all places**
+What's new in 2021.1
 **************************
 
-Performance Enhancements   **why this title is about Performance Enhancements? Performance usually means some measure of the system's speed and stability**
+New or Expanded Features
 =========================
 * Major feature release targeted for all on-premises customers.
 * Includes basic Cloud functionality.
@@ -28,8 +28,6 @@ The following example shows how to use numeric data types:
    $ create or replace table t(x numeric(20, 10), y numeric(38, 38));
    $ insert into t values(1234567890.1234567890, 0.123245678901234567890123456789012345678);
    $ select x + y from t;
-   
-
 
 The numeric data type feature supports the following operations:
 
@@ -41,12 +39,6 @@ The numeric data type feature supports the following operations:
 
 * Does not support Numeric Literal operations.
 * Does not support Numeric type in Window Function
-
-* Supports the following types:   **remove this, it's a duplication of the above**
-
-   * All join types
-   * All aggregation types
-   * Scalar functions 
    
 Text Data Types
 ---------------------------
@@ -55,12 +47,11 @@ SQream now supports the following:
 
 * TEXT data types for all operations.
 * All VARCHAR functionality is supported for TEXT.
-* VARCHAR should not be used in new projects except for concrete reasons **(for axample, if we must support existing customer's scripts that can't be changed)**
+* VARCHAR should not be used in new projects except for specific use cases, such as support for an existing customer's scripts that cannot be changed.
 * The following TEXT data type enhancements (introduced in Release Notes version 2020.3.1):
 * Support text columns in queries with multiple distinct aggregates.
 * Text literal support for all functions.
-* Use LoopJoin instead of CrossJoin for join on Text keys.
-    
+* Using LoopJoin instead of CrossJoin for join on Text keys.
 
 Supports Partial Sub-Queries
 ---------------------------
@@ -77,7 +68,6 @@ SQream now supports literal arguments in all cases where column arguments are su
    $ isprefixof(string1,string2)
    $ left(text, num)
 
-
 Simple Scalar SQL UDFs
 ---------------------------
 See [supported syntax and usage](https://sqream.atlassian.net/wiki/spaces/RF/pages/1433731135/Simple+Scalar+SQL+UDF+s).
@@ -89,8 +79,7 @@ SQream now supports log information for the following events:
   * Compilation start time.
   * The first metadata callback in the compiler (if relevant).
   * The last metadata callback in the compiler (if relevant).
-  * A query started attempting to get locks
-  * When queries prevent each other from running simultaneously.
+  * When a lock is placed on a table.
   * When a statement enters the queue.
   * When a statement exits the queue.
   * When a client has connected to this a current instance of SQreamd (if it reconnects).
@@ -98,7 +87,8 @@ SQream now supports log information for the following events:
   
 Presented License Information Improvements
 ---------------------------
-SQream has improved information related to data size limitations, expiration dates, and license types to be shown by the new Utility Function. 
+SQream has improved information related to data size limitations, expiration dates, and license types to be shown by the new Utility Function.
+
 Running ``get_license_info()`` returns the license information output in the following order:
 
 * Compressed data size (GB)
@@ -116,8 +106,6 @@ The following is an example of license information output:
    
    $ 10,100,compressed,20,2045-03-18,0,0,10
 
-
-
 Optimized Foreign Data Wrapper Export
 -------------------------
 
@@ -129,15 +117,11 @@ The following is an example of the correct syntax when exporting foreign data wr
    
    $ COPY table_name TO fdw_name OPTIONS(max_file_size=size_in_bytes,enforce_single_file={TRUE|FALSE});
 
-
 The following apply to the above syntax example:
 
 * Both parameters are optional.
 * The ``max_file_size`` parameter is specified in bytes and can be any positive value. The default value is ``16*2^20`` (16MB).
 * Setting the ``enforce_single_file`` value to **TRUE** creates only one file. The file size is not limited by the ``max_file_size`` parameter, and its default value is **FALSE**.
-
-
-
 
 Main Implemented Stories
 ================================
@@ -165,10 +149,6 @@ Release Notes version 2021.1 includes the following main implemented stories:
 * SQream can always parse its own logs as CSVs.
 * Log locks in system - sqreamd
 
-
-
-
-
 Known Issues and Limitations
 ================================
 Release Notes version 2021.1 includes the following known issues and limitations:
@@ -177,10 +157,6 @@ Release Notes version 2021.1 includes the following known issues and limitations
 * Performance degradation - joins - outer_join1.sql
 * Performance degradation - south_africa-sa4.sql
 * Performance degradation - groupby - groupby_int_func_nvarchar40.sql
-
-
-
-
 
 Bug Fixes
 ================================
@@ -207,7 +183,7 @@ Release Notes version 2021.1 includes the following bug fixes:
 * Running **log(x, y)** on more than one argument returns an incorrect error message.
 * Running OGG encryption functions loaded as UDF to a column returns memory errors.
 * **internal runtime error** type has no fixed size when running maximum on Text on develop (cisco poc). **There are additional clarification needed. However, I'm not sure it should be listed in public Release Notes. Consult with Sean.**
-* avg(len(xnvarchar70)) sum overflow.  **No clarifications needed**
+* When an average is calculated (**sum** divided by **count**), and the sum type is identical to the original and is an integer, it might overflow even when the result of the expression is not an overflow.
 * Performing the minimum and maximum query on **TEXT** was 15 times slower than on **varchar**.
 * Performing the **regexp_instr** query returned an empty regular expression.
 * Running the **create schema test_role** command were dropping schemas that had external tables.
