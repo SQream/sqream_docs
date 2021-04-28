@@ -3,22 +3,51 @@
 *********************************************
 Installing SQream with Kubernetes
 *********************************************
-The purpose of this document is to describe how to prepare the environment and install SQream software via a Kubernetes also known as k8s  package.
 
-Kubernetes, or k8s, is an open source platform that automates Linux container operations.
+Overview
+========
+The **Installing SQream with Kubernetes** guide describes the following:
 
-Kubernetes is a portable, extensible, open-source platform for managing containerized workloads and services, that facilitates both declarative configuration and automation.
+* How to prepare the SQream environment for installing SQream using Kubernetes.
+* Install the SQream software using a Kubernetes package.
 
-Kubernetes is an open-source container orchestration platform that enables the operation of an elastic web server framework for cloud applications. Kubernetes can support data center outsourcing to public cloud service providers or can be used for web hosting at scale.
+**Kubernetes**, also known as **k8s**, is a portable open source platform that automates Linux container operations. Kubernetes supports outsourcing data centers to public cloud service providers or can be scaled for web hosting. SQream uses Kubernetes as an orchestration and recovery solution.
 
-K8s (Kubernetes) is used in SQream as an orchestration and recovery solution.
+Getting Started
+===============
+A minimum of three servers is required when installing SQream using Kubernetes.
 
-The minimal installation when using k8s is 3 servers
+Kubernetes uses clusters, which are sets of nodes running containterized applications. A cluster consists of at least 2 GPU nodes and 1 slim server to act as Quorum manager. All three servers are set as **master.**
 
-A system is considered a cluster when it consists of at least 2 GPU nodes and 1 slim server to act as 
+**Comment - what does this mean? 2 servers with GPU and 1 without.**   
 
-Quorum manager.
+Each server must have the following IP addresses:
 
- 2 servers with GPU and 1 without, From the K8s point of view all 3 servers are set as master.   
+* An IP address located in the management network.
+* An additional IP address from the same subnet to function as a floating IP.
 
-Each server should have ip in the management network, in addition, we require another ip from the same subnet to act as floating ip
+All servers must be mounted in the same shared storage folder.
+
+The following list shows the server host name format requirements:
+
+* A maximum of 253 characters.
+* Only lowercase alphanumeric characters, such as **-** or **.**.
+* Starts and ends with alphanumeric characters.
+
+Operating System Requirements
+------------------------------
+Installing SQream with Kubernetes includes the following operating system requirements:
+
+* SQream tested and verified on x86 CentOS version higher than 7.6.
+* SWAP disabled on all nodes.
+
+Compute Server Specifications
+------------------------------
+Installing SQream with Kubernetes includes the following compute server specifications:
+
+* **CPU:** 4 cores
+* **RAM:** 16GB
+* **HD:** 500GB
+
+Setting Up Hosts
+===============================
