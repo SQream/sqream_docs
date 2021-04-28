@@ -354,12 +354,12 @@ For servers that don't run the **metadataserver** and **serverpicker** commands,
  
  6. **Optional** - Navigate to the **/etc/sqream** directory and create a symbolic link to the **monitrc** file:
  
-    **Comment - Should this step be moved to after the example configuration file below?**
- 
-      .. code-block:: console
+    .. code-block:: console
      
       $ cd /etc/sqream
       $ sudo ln -s /etc/monit.d/monitrc monitrc
+      
+**Comment - Should this step be moved to after the example configuration file below?**
    
 The following is an example of a working monitrc file configured to monitor the ***metadataserver** and **serverpicker** commands, and **four sqreamd services**. Note that the monitrc in the example is configured for eight sqreamd services, but that only the first four are enabled:
 
