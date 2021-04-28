@@ -137,13 +137,13 @@ It **(comment** - what is *it*?) would be same on server running metadataserver 
 
        .. code-block:: console
    
-       $ vim /etc/sqream/server_picker.conf
+          $ vim /etc/sqream/server_picker.conf
     
     2. Change the IP **192.168.5.82** to the value of the **metadataserver IP**:
     
        .. code-block:: console
    
-       $ IP=192.168.5.82 to IP=<metadataserver IP value>
+          $ IP=192.168.5.82 to IP=<metadataserver IP value>
        
     3. Change the **CLUSTER** to the value of the cluster path.
      
