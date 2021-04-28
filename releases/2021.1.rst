@@ -107,7 +107,7 @@ The following is an example of license information output:
    $ 10,100,compressed,20,2045-03-18,0,0,10
 
 Optimized Foreign Data Wrapper Export
--------------------------
+-------------------------------------
 
 SQream now parallels the **WriteToFile** chunk producer code to enhance performance.
 
@@ -122,6 +122,12 @@ The following apply to the above syntax example:
 * Both parameters are optional.
 * The ``max_file_size`` parameter is specified in bytes and can be any positive value. The default value is ``16*2^20`` (16MB).
 * Setting the ``enforce_single_file`` value to **TRUE** creates only one file. The file size is not limited by the ``max_file_size`` parameter, and its default value is **FALSE**.
+
+Hadoop Integration
+---------------------------
+See Connecting the SQream Server to Cloudera Hadoop with Kerberos for the Hadoop integration procedure.
+
+**Comment - To Shay: the linked document only exists in Confluence and must be converted into our website. Here is the provided link: https://sqream.atlassian.net/wiki/spaces/DOC/pages/822902789/How+to+connect+sqream+server+to+Cloudera+Hadoop+with+kerberos**
 
 Main Implemented Stories
 ================================
@@ -157,6 +163,39 @@ Release Notes version 2021.1 includes the following known issues and limitations
 * Performance degradation - joins - outer_join1.sql
 * Performance degradation - south_africa-sa4.sql
 * Performance degradation - groupby - groupby_int_func_nvarchar40.sql
+
+Operation and Configuration Modifications
+=========================================
+
+Cloud Configuration
+-------------------------------------
+The following example shows the recommended SQream cloud configuration:
+
+.. code-block:: postgres
+   
+   $ "runtimeFlags": {
+   $  "waitForClientSeconds":3600,
+   $ 	"spoolMemoryGB": 80,
+   $ 	"limitQueryMemoryGB": 100,
+
+   $ 	"orcReadersThread": 8
+
+   $ },
+   $ "runtimeGlobalFlags": {
+   $ 	"skewStorageFileSizeMB":50,
+   $ 	"tablespaceURL": "s3://xxx/yyy",
+   $ 	"tempPath": "s3://xxx/yyy/temp"
+   $ },
+   $ "ioFlags" : {
+   $ 	"ioPayloadsThreadPoolSize": 300
+   $ }
+   
+New Compiler Flag for Partial Hive Support
+---------------------------------------------  
+The compiler flag is only available in Developer Mode.
+
+The compiler flag ``hiveStyleImplicitStringCasts`` activates implicit casting to strings. SQream currently supports **case/when** cases, but future releases may support additional cases. The default value is ``FALSE``.
+
 
 Bug Fixes
 ================================
