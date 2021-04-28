@@ -135,13 +135,13 @@ It **(comment** - what is *it*?) would be same on server running metadataserver 
 
     1. Do the following:
 
-    .. code-block:: console
+       .. code-block:: console
    
        $ vim /etc/sqream/server_picker.conf
     
     2. Change the IP **192.168.5.82** to the value of the **metadataserver IP**:
     
-    .. code-block:: console
+       .. code-block:: console
    
        $ IP=192.168.5.82 to IP=<metadataserver IP value>
        
@@ -157,13 +157,13 @@ It **(comment** - what is *it*?) would be same on server running metadataserver 
        
 16. Increment each **EnvironmentFile=/etc/sqream/sqream2-service.conf** configuration file for each SQream service file, as shown below:
 
-     .. code-block:: console
+    .. code-block:: console
      
        $ EnvironmentFile=/etc/sqream/sqream3-service.conf
        
 17. Copy and register your service files into systemd:       
        
-     .. code-block:: console
+    .. code-block:: console
      
        $ sudo cp metadataserver.service /usr/lib/systemd/system/
        $ sudo cp serverpicker.service /usr/lib/systemd/system/
@@ -171,7 +171,7 @@ It **(comment** - what is *it*?) would be same on server running metadataserver 
        
 18. Verify that your service files have been copied into systemd:
 
-     .. code-block:: console
+    .. code-block:: console
      
        $ ls -l /usr/lib/systemd/system/sqream*
        $ ls -l /usr/lib/systemd/system/metadataserver.service
@@ -180,7 +180,7 @@ It **(comment** - what is *it*?) would be same on server running metadataserver 
        
 19. Copy the license into the **/etc/license** directory:
 
-     .. code-block:: console
+    .. code-block:: console
      
        $ cp license.enc /etc/sqream/
 
@@ -192,48 +192,48 @@ Configuring an HDFS Environment Under a SQream User
 
 1. Open your **bash_profile** configuration file for editing:
 
-     .. code-block:: console
+   .. code-block:: console
      
        $ vim /home/sqream/.bash_profile
        
 2. Make the following edits:
 
-     .. code-block:: console
+   .. code-block:: console
      
-       $ #PATH=$PATH:$HOME/.local/bin:$HOME/bin
+      $ #PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
-       $ #export PATH
+      $ #export PATH
 
-       $ # PS1
-       $ #MYIP=$(curl -s -XGET "http://ip-api.com/json" | python -c 'import json,sys; jstr=json.load(sys.stdin); print jstr["query"]')
-       $ #PS1="\[\e[01;32m\]\D{%F %T} \[\e[01;33m\]\u@\[\e[01;36m\]$MYIP \[\e[01;31m\]\w\[\e[37;36m\]\$ \[\e[1;37m\]"
+      $ # PS1
+      $ #MYIP=$(curl -s -XGET "http://ip-api.com/json" | python -c 'import json,sys; jstr=json.load(sys.stdin); print jstr["query"]')
+      $ #PS1="\[\e[01;32m\]\D{%F %T} \[\e[01;33m\]\u@\[\e[01;36m\]$MYIP \[\e[01;31m\]\w\[\e[37;36m\]\$ \[\e[1;37m\]"
 
-       $ SQREAM_HOME=/usr/local/sqream
-       $ export SQREAM_HOME
+      $ SQREAM_HOME=/usr/local/sqream
+      $ export SQREAM_HOME
 
-       $ export JAVA_HOME=${SQREAM_HOME}/hdfs/jdk
-       $ export HADOOP_INSTALL=${SQREAM_HOME}/hdfs/hadoop
-       $ export CLASSPATH=`${HADOOP_INSTALL}/bin/hadoop classpath --glob`
-       $ export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_INSTALL}/lib/native
-       $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${SQREAM_HOME}/lib:$HADOOP_COMMON_LIB_NATIVE_DIR
+      $ export JAVA_HOME=${SQREAM_HOME}/hdfs/jdk
+      $ export HADOOP_INSTALL=${SQREAM_HOME}/hdfs/hadoop
+      $ export CLASSPATH=`${HADOOP_INSTALL}/bin/hadoop classpath --glob`
+      $ export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_INSTALL}/lib/native
+      $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${SQREAM_HOME}/lib:$HADOOP_COMMON_LIB_NATIVE_DIR
 
 
-       $ PATH=$PATH:$HOME/.local/bin:$HOME/bin:${SQREAM_HOME}/bin/:${JAVA_HOME}/bin:$HADOOP_INSTALL/bin
-       $ export PATH
+      $ PATH=$PATH:$HOME/.local/bin:$HOME/bin:${SQREAM_HOME}/bin/:${JAVA_HOME}/bin:$HADOOP_INSTALL/bin
+      $ export PATH
 
 3. Verify that the edits have been made:
 
-     .. code-block:: console
+   .. code-block:: console
      
-       $ source /home/sqream/.bash_profile
+      $ source /home/sqream/.bash_profile
        
 4. Check if you can access Hadoop from your machine:       
        
-   .. code-block:: console
+  .. code-block:: console
      
-      $ hadoop fs -ls hdfs://<hadoop server name or ip>:8020/
+     $ hadoop fs -ls hdfs://<hadoop server name or ip>:8020/
       
-   **NOTICE:** If you cannot access Hadoop from your machine because it uses Kerberos, see [Connecting a SQream Server to Cloudera Hadoop with Kerberos].(https://sqream.atlassian.net/l/c/31tQvsrB)
+**NOTICE:** If you cannot access Hadoop from your machine because it uses Kerberos, see [Connecting a SQream Server to Cloudera Hadoop with Kerberos].(https://sqream.atlassian.net/l/c/31tQvsrB)
    
 5. Verify that an HDFS environment exists for SQream services:
 
