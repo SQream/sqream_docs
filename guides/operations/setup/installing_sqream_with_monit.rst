@@ -83,7 +83,7 @@ Installing SQream with Monit
       $ cd /usr/local/sqream/etc/
       $ cp * /etc/sqream
       
-      The configuration files are **service configuration files**, and the JSON files are **SQream configuration files**, for a total of four files. The number of SQream configuration files and JSON files must be identical.
+The configuration files are **service configuration files**, and the JSON files are **SQream configuration files**, for a total of four files. The number of SQream configuration files and JSON files must be identical.
       
 **NOTICE** - Verify that the JSON files have been configured correctly and that all required flags have been set to the correct values.
 
