@@ -1,10 +1,10 @@
 .. _2021.1:
 
 **************************
-What's new in 2021.2
+What's new in 2021.1  **please make sure we changed v2021.2 to v2021.1 in all places**
 **************************
 
-Performance Enhancements
+Performance Enhancements   **why this title is about Performance Enhancements? Performance usually means some measure of the system's speed and stability**
 =========================
 * Major feature release targeted for all on-premises customers.
 * Includes basic Cloud functionality.
@@ -37,15 +37,16 @@ The numeric data type feature supports the following operations:
 * All aggregation types.
 * Scalar functions (except for certain trigonometric and logarithmic functions).
 
-***Question: Should this bullet be included in Known Issues and Limitations below?***
+***Question: Should this bullet be included in Known Issues and Limitations below?*** - **Not sure we need this to be mentioned in several places, let's ask Sean**
 
-* Does not support Numeric Literal operations and known issues.
+* Does not support Numeric Literal operations.
+* Does not support Numeric type in Window Function
 
-* Supports the following types:
+* Supports the following types:   **remove this, it's a duplication of the above**
 
    * All join types
    * All aggregation types
-   * Scalar functions **(waiting for the list of limitations)**
+   * Scalar functions 
    
 Text Data Types
 ---------------------------
@@ -54,11 +55,11 @@ SQream now supports the following:
 
 * TEXT data types for all operations.
 * All VARCHAR functionality is supported for TEXT.
-**Note:** VARCHAR should not be used in new projects except for concrete reasons. ***Comment: can you give me an example of a concrete reason?***
+* VARCHAR should not be used in new projects except for concrete reasons **(for axample, if we must support existing customer's scripts that can't be changed)**
 * The following TEXT data type enhancements (introduced in Release Notes version 2020.3.1):
- * Support text columns in queries with multiple distinct aggregates.
- * Text literal support for all functions.
- * Use LoopJoin instead of CrossJoin for join on Text keys.
+* Support text columns in queries with multiple distinct aggregates.
+* Text literal support for all functions.
+* Use LoopJoin instead of CrossJoin for join on Text keys.
     
 
 Supports Partial Sub-Queries
@@ -88,7 +89,7 @@ SQream now supports log information for the following events:
   * Compilation start time.
   * The first metadata callback in the compiler (if relevant).
   * The last metadata callback in the compiler (if relevant).
-  * When it **(the compilation?)** started attempting to get locks
+  * A query started attempting to get locks
   * When queries prevent each other from running simultaneously.
   * When a statement enters the queue.
   * When a statement exits the queue.
@@ -97,8 +98,7 @@ SQream now supports log information for the following events:
   
 Presented License Information Improvements
 ---------------------------
-SQream has improved information related to data size limitations, expiration dates, and license types to be shown by the new UF. **Comment: what does UF stand for?**
-
+SQream has improved information related to data size limitations, expiration dates, and license types to be shown by the new Utility Function. 
 Running ``get_license_info()`` returns the license information output in the following order:
 
 * Compressed data size (GB)
@@ -200,15 +200,14 @@ Release Notes version 2021.1 includes the following bug fixes:
 * Running the select table_name,row_count from sqream_catalog.tables order by row_count limit 5 query generates an internal runtime error.
 * Using wildcards, such as *.x.y, produces no search results.
 * Using the round (x,y) function in the where clause returns in a compiler error.
-* Star not supported. ***Need clarification.***
 * Window function query returns incorrect results.
 * Running the window function **minimum/maximum/count** returns incorrect results.
 * Running the window function **minimum/maximum/count** on a **null** value returns incorrect results.
 * Running **charindex** returns different results for columns and literals.
 * Running **log(x, y)** on more than one argument returns an incorrect error message.
 * Running OGG encryption functions loaded as UDF to a column returns memory errors.
-* **internal runtime error** type has no fixed size when running maximum on Text on develop (cisco poc). **(need clarification)**
-* avg(len(xnvarchar70)) sum overflow.  **(need clarification)**
+* **internal runtime error** type has no fixed size when running maximum on Text on develop (cisco poc). **There are additional clarification needed. However, I'm not sure it should be listed in public Release Notes. Consult with Sean.**
+* avg(len(xnvarchar70)) sum overflow.  **No clarifications needed**
 * Performing the minimum and maximum query on **TEXT** was 15 times slower than on **varchar**.
 * Performing the **regexp_instr** query returned an empty regular expression.
 * Running the **create schema test_role** command were dropping schemas that had external tables.
