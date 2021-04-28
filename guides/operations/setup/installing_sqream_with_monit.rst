@@ -176,7 +176,9 @@ It **(comment** - what is *it*?) would be same on server running metadataserver 
        $ ls -l /usr/lib/systemd/system/sqream*
        $ ls -l /usr/lib/systemd/system/metadataserver.service
        $ ls -l /usr/lib/systemd/system/serverpicker.service
-       $ sudo systemctl daemon-reload **Comment - Is this a separate step, i.e., to reload the system?**     
+       $ sudo systemctl daemon-reload
+       
+**Comment - Is this a separate step, i.e., to reload the system?**     
        
 19. Copy the license into the **/etc/license** directory:
 
