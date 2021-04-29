@@ -23,10 +23,6 @@ Installing SQream with Monit
 
 2. Append the version number to the name of the SQream folder. The version number in the following example is **v2020.2**:
 
-   **Comment - Jake Wheat: can we have the release (and code drop) tarballs built with these paths instead of just ‘sqream/’?**
- 
-   **Comment - Slavi: I believe we can, but it will require Makefile change.I’ll check.**
-
    .. code-block:: console
    
       $ mv sqream sqream-db-v2020.2
@@ -103,9 +99,9 @@ Note the following:
 * The value of the **metadataServerIp** parameter must point to the IP that the metadata is running on.
 * The value of the **machineIP** parameter must point to the IP of your local machine.
 
-It **(comment** - what is *it*?) would be same on server running metadataserver and different on other server nodes.
+It would be same on server running metadataserver and different on other server nodes.
 
-11. **Optional** - To run additional SQream services, copy the required configuration files and create additional JSON files: **Comment: verify step**
+11. **Optional** - To run additional SQream services, copy the required configuration files and create additional JSON files:
 
    .. code-block:: console
    
@@ -113,10 +109,6 @@ It **(comment** - what is *it*?) would be same on server running metadataserver 
       $ vim sqream3_config.json
       
 **NOTICE:** A unique **instanceID** must be used in each JSON file. IN the example above, the instanceID **sqream_02** is changed to **sqream_03**.
-
-**Comment: The note says sqream_02, but the example says sqream_2, i.e., without the 0. Which is the correct one?**
-
-**Comment: Also, what happens if a non-unique instance ID is used? Depending on the answer, the NOTICE above may have to be a WARNING instead.**
 
 12. **Optional** - If you created additional services in **Step 11**, verify that you have also created their additional configuration files:
 
@@ -127,9 +119,9 @@ It **(comment** - what is *it*?) would be same on server running metadataserver 
       
 13. For each SQream service configuration file, do the following:
 
-    1. Change the **SERVICE_NAME=sqream2** value to **SERVICE_NAME=sqream3**. **Comment - I think we should show the command line for this step.**
+    1. Change the **SERVICE_NAME=sqream2** value to **SERVICE_NAME=sqream3**.
     
-    2. Change LOGFILE=/var/log/sqream/sqream2.log to LOGFILE=/var/log/sqream/sqream3.log **Comment - I think we should show the command line for this step.**
+    2. Change LOGFILE=/var/log/sqream/sqream2.log to LOGFILE=/var/log/sqream/sqream3.log
     
 14. Set up **servicepicker**:
 
@@ -177,9 +169,7 @@ It **(comment** - what is *it*?) would be same on server running metadataserver 
        $ ls -l /usr/lib/systemd/system/metadataserver.service
        $ ls -l /usr/lib/systemd/system/serverpicker.service
        $ sudo systemctl daemon-reload
-       
-**Comment - Is this a separate step, i.e., to reload the system?**     
-       
+  
 19. Copy the license into the **/etc/license** directory:
 
     .. code-block:: console
@@ -189,8 +179,6 @@ It **(comment** - what is *it*?) would be same on server running metadataserver 
 Configuring an HDFS Environment Under a SQream User
 ===================================================
 **To configure an HDFS environment under a SQream user:**
-
-**Comment - Is it correct to say "under" a SQream user instead of "for" or "in"?**
 
 1. Open your **bash_profile** configuration file for editing:
 
@@ -243,7 +231,7 @@ Configuring an HDFS Environment Under a SQream User
      
       $ ls -l /etc/sqream/sqream_env.sh
       
-6. If an HDFS environment does not exist for SQream services, create one (sqream_env.sh): **Comment - Is sqream_env.sh the file name?**
+6. If an HDFS environment does not exist for SQream services, create one (sqream_env.sh):
 
    .. code-block:: console
      
@@ -293,9 +281,7 @@ Installing Monit
  
     .. code-block:: console
      
-       $ sudo yum install monit  
-       
-**Comment - This was the only step in the Confluence page. Does the user have to do anything else to install Monit? Is there a procedure in some other place that is already written?**
+       $ sudo yum install monit         
        
 Configuring Monit
 ====================================
@@ -360,14 +346,8 @@ For servers that don't run the **metadataserver** and **serverpicker** commands,
      
       $ cd /etc/sqream
       $ sudo ln -s /etc/monit.d/monitrc monitrc
-      
-**Comment - Should this step be moved to after the example configuration file below?**
-   
+         
 The following is an example of a working monitrc file configured to monitor the ***metadataserver** and **serverpicker** commands, and **four sqreamd services**. Note that the monitrc in the example is configured for eight sqreamd services, but that only the first four are enabled:
-
-**Comment - I wonder if this file should be created on a separate page and linked here because it is a very large example. From a structural perspective, this may not be the best idea because it would be a "floating" page created only for the sake of the example.**
-
-**Comment - Is "set daemon 5" what enables only the first four services?**
 
       .. code-block:: console
      
@@ -529,7 +509,7 @@ Starting Monit
      
       $ sudo systemctl status monit
 
-5. If all good, enable the Monit service to start on boot: **Comment - What status result(s) are we looking for?**       
+5. If all good, enable the Monit service to start on boot: 
        
    .. code-block:: console
      
