@@ -1,15 +1,15 @@
-.. _installing_sqream_with_monit:
+.. _launching_sqream_with_monit:
 
 *********************************************
 Launching SQream with Monit
 *********************************************
 Monit is a free open source supervision utility for managing and monitoring Unix and Linux. Monit lets you view system status directly from the command line or from a native HTTP web server. Monit can be used to conduct automatic maintenance and repair, such as executing meaningful causal actions in error situations
 
-This procedure describes how to manually install SQream and to launch instances using Monit (optional).
+This procedure describes how to manually install SQream and to launch it using Monit (optional).
 
 Before Installing SQream with Monit
 ====================================
-Before installing SQream with Monit verify that you have already followed the required Recommended Configuration procedures. **Note to self - make xref here.**
+Before installing SQream with Monit verify that you have already followed the required Recommended Configuration procedures.
 
 Installing SQream with Monit
 ====================================
@@ -691,13 +691,10 @@ The symbolic SQream link pointing should be pointing to the real folder:
     
       $ SELECT SHOW_VERSION();
       
-   The correct
+   The correct version is output.
 
 5. Restart the UI:
 
    .. code-block:: console
     
       $ pm2 start all
-
-
-
