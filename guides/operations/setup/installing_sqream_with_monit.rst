@@ -1,11 +1,11 @@
 .. _installing_sqream_with_monit:
 
 *********************************************
-Installing SQream with Monit
+Launching SQream with Monit
 *********************************************
-Monit is an Open Source utility for managing and monitoring Unix systems and conducting automatic maintenance and repair. For example, it can be used for executing meaningful causal actions in error situations, such as starting processes that are not running.
+Monit is a free open source supervision utility for managing and monitoring Unix and Linux. Monit lets you view system status directly from the command line or from a native HTTP web server. Monit can be used to conduct automatic maintenance and repair, such as executing meaningful causal actions in error situations
 
-This procedure describes how to manually install SQream with Monit using the **systemd** initialization system.
+This procedure describes how to manually install SQream and to launch instances using Monit (optional).
 
 Before Installing SQream with Monit
 ====================================
@@ -108,7 +108,7 @@ It would be same on server running metadataserver and different on other server 
       $ cp sqream2_config.json sqream3_config.json
       $ vim sqream3_config.json
       
-**NOTICE:** A unique **instanceID** must be used in each JSON file. IN the example above, the instanceID **sqream_02** is changed to **sqream_03**.
+**NOTICE:** A unique **instanceID** must be used in each JSON file. IN the example above, the instanceID **sqream_2** is changed to **sqream_3**.
 
 12. **Optional** - If you created additional services in **Step 11**, verify that you have also created their additional configuration files:
 
@@ -168,8 +168,8 @@ It would be same on server running metadataserver and different on other server 
        $ ls -l /usr/lib/systemd/system/sqream*
        $ ls -l /usr/lib/systemd/system/metadataserver.service
        $ ls -l /usr/lib/systemd/system/serverpicker.service
-       $ sudo systemctl daemon-reload
-  
+       $ sudo systemctl daemon-reload       
+       
 19. Copy the license into the **/etc/license** directory:
 
     .. code-block:: console
@@ -178,6 +178,8 @@ It would be same on server running metadataserver and different on other server 
 
 Configuring an HDFS Environment Under a SQream User
 ===================================================
+This section describes how to configure an HDFS environment under a SQream user. This section is not relevant for users without an HDFS environment.
+
 **To configure an HDFS environment under a SQream user:**
 
 1. Open your **bash_profile** configuration file for editing:
@@ -232,7 +234,6 @@ Configuring an HDFS Environment Under a SQream User
       $ ls -l /etc/sqream/sqream_env.sh
       
 6. If an HDFS environment does not exist for SQream services, create one (sqream_env.sh):
-
    .. code-block:: console
      
       $ #!/bin/bash
@@ -275,13 +276,59 @@ Configuring an HDFS Environment Under a SQream User
 Installing Monit
 ====================================
 
-**To install Monit:**   
+Installing Monit Using CentOS:
+------------------------------------
+
+**To install Monit using CentOS:**   
    
-1. Install Monit as a superuser:
+1. Install Monit as a superuser using CentOS:
  
     .. code-block:: console
      
-       $ sudo yum install monit         
+       $ sudo yum install monit  
+       
+Installing Monit Using Ubuntu:
+------------------------------------
+
+**To install Monit using Ubuntu:**   
+   
+1. Install Monit as a superuser using Ubuntu:
+
+    .. code-block:: console
+     
+       $ sudo apt-get install monit
+
+Installing Monit Using Ubuntu Offline:
+-------------------------------------
+You can install Monit using Ubuntu when you do not have an internet connection.
+
+**To install Monit using Ubuntu offline:**   
+   
+1. Compress the required file:
+
+   .. code-block:: console
+     
+      $ tar zxvf monit-<x.y.z>-linux-x64.tar.gz
+      
+      **NOTICE:** *<x.y.z>* denotes version numbers.
+
+2. Navigate to the directory where you want to save the file:
+   
+   .. code-block:: console
+     
+      $ cd monit-x.y.z
+       
+3. Copy the **bin/monit** directory into the **/usr/local/bin/** directory:
+
+   .. code-block:: console
+     
+      $ cp bin/monit /usr/local/bin/
+       
+4. Copy the **conf/monitrc** directory into the **/etc/** directory:
+       
+   .. code-block:: console
+     
+      $ cp conf/monitrc /etc/
        
 Configuring Monit
 ====================================
@@ -308,7 +355,7 @@ For example, if you have 16 services, you can configure this block by copying th
        $ stop program = "/usr/bin/systemctl stop sqream2"
        $ #SQREAM2-END
        
-For servers that don't run the **metadataserver** and **serverpicker** commands, you can use the block example above, but hash the related commands, as shown below:
+For servers that don't run the **metadataserver** and **serverpicker** commands, you can use the block example above, but comment out the related commands, as shown below:
 
     .. code-block:: console
      
@@ -345,8 +392,8 @@ For servers that don't run the **metadataserver** and **serverpicker** commands,
     .. code-block:: console
      
       $ cd /etc/sqream
-      $ sudo ln -s /etc/monit.d/monitrc monitrc
-         
+      $ sudo ln -s /etc/monit.d/monitrc monitrc      
+
 The following is an example of a working monitrc file configured to monitor the ***metadataserver** and **serverpicker** commands, and **four sqreamd services**. Note that the monitrc in the example is configured for eight sqreamd services, but that only the first four are enabled:
 
       .. code-block:: console
@@ -509,7 +556,7 @@ Starting Monit
      
       $ sudo systemctl status monit
 
-5. If all good, enable the Monit service to start on boot: 
+5. If all good, enable the Monit service to start on boot:  
        
    .. code-block:: console
      
@@ -586,12 +633,12 @@ This section describes some of the most commonly used Monit command options:
    $ validate              - Check all services and start if not running
    $ procmatch <pattern>   - Test process matching pattern
 
-Using Monit to Upgrade your Version of SQream
-=============================================
+Using Monit While Upgrading Your Version of SQream
+==================================================
 
-You can use Monit to upgrade your version of SQream.
+While upgrade your version of SQream, you can use Monit to avoid conflicts (such as service start). This is done by pausing or stopping all running services while you manually upgrade SQream. When you finish successfully upgrading SQream, you can use Monit to restart all SQream services
 
-**To use Monit to upgrade your version of SQream:**
+**To use Monit while upgrading your version of SQream:**
 
 1. Stop all actively running SQream services:
 
@@ -637,9 +684,20 @@ The symbolic SQream link pointing should be pointing to the real folder:
    .. code-block:: console
     
       $ sudo monit start all
+      
+5. Verify that the latest version has been installed:
+
+   .. code-block:: console
+    
+      $ SELECT SHOW_VERSION();
+      
+   The correct
 
 5. Restart the UI:
 
    .. code-block:: console
     
       $ pm2 start all
+
+
+
