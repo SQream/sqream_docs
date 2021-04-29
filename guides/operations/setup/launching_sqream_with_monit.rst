@@ -234,6 +234,7 @@ This section describes how to configure an HDFS environment under a SQream user.
       $ ls -l /etc/sqream/sqream_env.sh
       
 6. If an HDFS environment does not exist for SQream services, create one (sqream_env.sh):
+   
    .. code-block:: console
      
       $ #!/bin/bash
