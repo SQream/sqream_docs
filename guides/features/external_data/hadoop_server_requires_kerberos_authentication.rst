@@ -51,8 +51,8 @@ If your Hadoop server requires Kerberos authentication, do the following:
 
 7. Copy the following files to the **sqream sqream@server:<sqream folder>/hdfs/hadoop/etc/hadoop:** directory:
 
-   1. core-site.xml
-   2. hdfs-site.xml
+   * core-site.xml
+   * hdfs-site.xml
 
 8. Connect to the sqream server and verify that the .keytab file's owner is a user sqream and is granted the correct permissions:
 
