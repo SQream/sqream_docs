@@ -128,8 +128,8 @@ If your Hadoop server requires Kerberos authentication, do the following:
 
 15. Do one of the following:
 
-    1. If the list is generated, continue with Step 17.
-    2. If the list is not generated, verify that your environment has been set up correctly. If any of the following are empty verify that you followed **<Step #>** correctly:
+    * If the list is generated, continue with Step 16.
+    * If the list is not generated, verify that your environment has been set up correctly. If any of the following are empty verify that you followed **<Step #>** correctly:
     
 **Comment - which step does this correspond to within this document?**
 
