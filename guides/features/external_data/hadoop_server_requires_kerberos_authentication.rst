@@ -1,102 +1,147 @@
 .. _hadoop_server_requires_kerberos_authentication:
 
 *********************************************
-Launching SQream with Monit
+Hadoop Servers that Require Kerberos Authentication
 *********************************************
 
 If your Hadoop server requires Kerberos authentication
 
-Run kadmin -p root/admin@SQ.COM and create a pricipal for sqream user:If you don’t know kerberos root credentials, connect to kerberos server as root with ssh and run kadmin.local - it will not ask you for a password.
+1. Create a principal for the user **sqream**.
 
-addprinc sqream@SQ.COM
-###IF it didn't ask for password run
-change_password sqream@SQ.COM
+   .. code-block:: console
+   
+      $ kadmin -p root/admin@SQ.COM
+      $ addprinc sqream@SQ.COM
+      
+2. If you do not know yor Kerberos root credentials, connect to the Kerberos server as a root user with ssh and run **kadmin.local**:
 
-Connect to hadoop name node with ssh
+   .. code-block:: console
+   
+      $ kadmin.local
+      
+   Running **kadmin.local** does not require a password.
 
-cd /var/run/cloudera-scm-agent/process
+3. If a password is not required, change your password to **sqream@SQ.COM**.
 
-Check the latest one 
+   .. code-block:: console
+   
+      $ change_password sqream@SQ.COM
 
-ls -lrt
+4. Connect to the hadoop name node using ssh:
 
-Check out the name of the recently updated folder that looks like <number>-hdfs-<something>
+   .. code-block:: console
+   
+      $ cd /var/run/cloudera-scm-agent/process
 
-cd <number>-hdfs-<something>
+5. Check the most recently modified content of the directory above:
 
-In this folder you should be able to see hdfs.keytab file or some other .keytab file
+   .. code-block:: console
+   
+      $ ls -lrt
 
-Copy the keytab to home directory of a sqream user on remote machines that you are planning to work with Hadoop from.
+5. Look for a recently updated folder containing the text **hdfs**:
 
-Copy core-site.xml and hdfs-site.xml to sqream sqream@server:<sqream folder>/hdfs/hadoop/etc/hadoop
+   .. code-block:: console
+   
+      $ cd <number>-hdfs-<something>
 
-Connect to sqream server and make sure that keytab file is owned by sqream user and has correct permissions:
+   This folder should contain a file named **hdfs.keytab** or another similar .keytab file.
 
-sudo chown sqream:sqream /home/sqream/hdfs.keytab
-sudo chmod 600 /home/sqream/hdfs.keytab
+6. Copy the .keytab file to user **sqream's** Home directory on the remote machines that you are planning to use Hadoop on.
 
-On sqream server, under sqream user, in home directory check the name of a kerberos principal that this keytab represents:
+7. Copy the following files to the **sqream sqream@server:<sqream folder>/hdfs/hadoop/etc/hadoop:** directory:
 
-klist -kt hdfs.keytab
+   1. core-site.xml
+   2. hdfs-site.xml
 
-      You suppose to get something similar to this:
+8. Connect to the sqream server and verify that the .keytab file's owner is a user sqream and is granted the correct permissions:
 
-sqream@Host-121 ~ $ klist -kt hdfs.keytab
-Keytab name: FILE:hdfs.keytab
-KVNO Timestamp           Principal
----- ------------------- ------------------------------------------------------
-   5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
-   5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
-   5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
-   5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
-   5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
-   5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
-   5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
-   5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
-   5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
-   5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
-   5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
-   5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
-   5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
-   5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
-   5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
-   5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
+   .. code-block:: console
+   
+      $ sudo chown sqream:sqream /home/sqream/hdfs.keytab
+      $ sudo chmod 600 /home/sqream/hdfs.keytab
 
+9. Log into the sqream server.
 
-12.   See that the hdfs service we have named ”hdfs/nn1@SQ.COM” Now run the following:
+10. Log in as the user **sqream**.
 
-kinit -kt hdfs.keytab hdfs/nn1@SQ.COM
+11. Navigate to the Home directory and check the name of a Kerberos principal represented by the following .keytab file:
 
- 13. Run klist command to check the result. You should see something like this:
+   .. code-block:: console
+   
+      $ klist -kt hdfs.keytab
 
-Ticket cache: FILE:/tmp/krb5cc_1000
-Default principal: sqream@SQ.COM
+   The following is an example of the correct output:
 
-Valid starting       Expires              Service principal
-09/16/2020 13:44:18  09/17/2020 13:44:18  krbtgt/SQ.COM@SQ.COM
+   .. code-block:: console
+   
+      $ sqream@Host-121 ~ $ klist -kt hdfs.keytab
+      $ Keytab name: FILE:hdfs.keytab
+      $ KVNO Timestamp           Principal
+      $ ---- ------------------- ------------------------------------------------------
+      $    5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
 
+12. Verify that the hdfs service named **hdfs/nn1@SQ.COM** is shown in the generated output above.
 
-14. Run:
+13. Run the following:
 
-hadoop fs -ls hdfs://<hadoop server name or ip>:8020/
+   .. code-block:: console
+   
+      $ kinit -kt hdfs.keytab hdfs/nn1@SQ.COM
 
-If you get the list ,continue to the next step.
+ 13. Check the output:
+  
+   .. code-block:: console
+   
+      $ klist
+      
+   The following is an example of the correct output:
 
-If not 
+   .. code-block:: console
+   
+      $ Ticket cache: FILE:/tmp/krb5cc_1000
+      $ Default principal: sqream@SQ.COM
+      $ 
+      $ Valid starting       Expires              Service principal
+      $ 09/16/2020 13:44:18  09/17/2020 13:44:18  krbtgt/SQ.COM@SQ.COM
 
-15. Troubleshooting
+14. List the files located at the defined server name or IP address:
 
-Make sure your environment is set correctly. If any of these are empty - you missed step #2
+   .. code-block:: console
+   
+      $ hadoop fs -ls hdfs://<hadoop server name or ip>:8020/
 
-echo $JAVA_HOME
-echo $SQREAM_HOME
-echo $CLASSPATH
-echo $HADOOP_COMMON_LIB_NATIVE_DIR
-echo $LD_LIBRARY_PATH
-echo $PATH
+15. Do one of the following:
 
-Make sure you copied correct keytab file
+    1. If the list is generated, continue with Step 17.
+    2. If the list is not generated, verify that your environment has been set up correctly. If any of the following are empty verify that you followed **<Step #>** correctly:
+    
+**Comment - which step does this correspond to within this document?**
 
-Go through this guide again, see if you missed any steps
+  .. code-block:: console
+   
+      $ echo $JAVA_HOME
+      $ echo $SQREAM_HOME
+      $ echo $CLASSPATH
+      $ echo $HADOOP_COMMON_LIB_NATIVE_DIR
+      $ echo $LD_LIBRARY_PATH
+      $ echo $PATH
 
-Cry for help
+16. Verify that you copied the correct keytab file.
+
+17. Review this procedure to verify that you have followed each step.
