@@ -3,7 +3,9 @@
 *********************************************
 Launching SQream with Monit
 *********************************************
-Monit is a free open source supervision utility for managing and monitoring Unix and Linux. Monit lets you view system status directly from the command line or from a native HTTP web server. Monit can be used to conduct automatic maintenance and repair, such as executing meaningful causal actions in error situations
+Monit is a free open source supervision utility for managing and monitoring Unix and Linux. Monit lets you view system status directly from the command line or from a native HTTP web server. Monit can be used to conduct automatic maintenance and repair, such as executing meaningful causal actions in error situations.
+
+**Reword: SQream uses the Monit utlity as a watchdog utility, but you can use any other utility that does the same thing.**
 
 This procedure describes how to manually install SQream and to launch it using Monit (optional).
 
@@ -15,36 +17,36 @@ Installing SQream with Monit
 ====================================
 **To install SQream with Monit:**
 
-1. Copy the SQream package to the **/home/sqream** directory:
+1. Copy the SQream package to the **/home/sqream** directory for the current version:
 
    .. code-block:: console
    
-      $ tar -xf sqream-db-v2020.2.tar.gz
+      $ tar -xf sqream-db-v<2020.2>.tar.gz
 
 2. Append the version number to the name of the SQream folder. The version number in the following example is **v2020.2**:
 
    .. code-block:: console
    
-      $ mv sqream sqream-db-v2020.2
+      $ mv sqream sqream-db-v<2020.2>
 
 3. Move the new version of the SQream folder to the **/usr/local/** directory:
 
    .. code-block:: console
    
-      $ sudo mv sqream-db-v2020.2 /usr/local/
+      $ sudo mv sqream-db-v<2020.2> /usr/local/
       
 4. Change the ownership of the folder to **sqream folder**:
 
    .. code-block:: console
    
-      $ sudo chown -R sqream:sqream  /usr/local/sqream-db-v2020.2
+      $ sudo chown -R sqream:sqream  /usr/local/sqream-db-v<2020.2>
 
 5. Navigate to the **/usr/local/** directory and create a symbolic link to SQream:
 
    .. code-block:: console
    
       $ cd /usr/local
-      $ sudo ln -s sqream-db-v2020.2 sqream
+      $ sudo ln -s sqream-db-v<2020.2> sqream
       
 6. Verify that the symbolic link that you created points to the folder that you created:
 
@@ -56,7 +58,7 @@ Installing SQream with Monit
 
    .. code-block:: console
    
-      $ sqream -> sqream-db-v2020.2
+      $ sqream -> sqream-db-v<2020.2>
       
 8. Create the SQream configuration file destination folders and set their ownership to **sqream**:
 
@@ -131,12 +133,10 @@ It would be same on server running metadataserver and different on other server 
    
           $ vim /etc/sqream/server_picker.conf
     
-    2. Change the IP **192.168.5.82** to the value of the **metadataserver IP**:
+    2. Change the IP <**192.168.5.82**> to the IP of the server that the **metadataserver** service is running on.
     
-       .. code-block:: console
-   
-          $ IP=192.168.5.82 to IP=<metadataserver IP value>
-       
+    **Comment: can the host name be used instead of the IP address? See Step 4 in Configuring an HDFS Environment for the user sqream.**
+    
     3. Change the **CLUSTER** to the value of the cluster path.
      
 15. Set up your service files:      
@@ -151,7 +151,7 @@ It would be same on server running metadataserver and different on other server 
 
     .. code-block:: console
      
-       $ EnvironmentFile=/etc/sqream/sqream3-service.conf
+       $ EnvironmentFile=/etc/sqream/sqream<3>-service.conf
        
 17. Copy and register your service files into systemd:       
        
@@ -176,11 +176,15 @@ It would be same on server running metadataserver and different on other server 
      
        $ cp license.enc /etc/sqream/
 
-Configuring an HDFS Environment Under a SQream User
-===================================================
-This section describes how to configure an HDFS environment under a SQream user. This section is not relevant for users without an HDFS environment.
+Configuring an HDFS Environment for the User **sqream**
+======================================================
+**NOTICE:** This section is only relevant for users with an HDFS environment.
 
-**To configure an HDFS environment under a SQream user:**
+**Note to self: merge this section into the Confluence page, and convert all content into our format: https://sqream.atlassian.net/wiki/spaces/DOC/pages/724467716/Sqream+manual+installation+as+systemd+services+with+Monit**
+
+This section describes how to configure an HDFS environment for the user **sqream**.
+
+**To configure an HDFS environment for the user sqream:**
 
 1. Open your **bash_profile** configuration file for editing:
 
@@ -225,7 +229,9 @@ This section describes how to configure an HDFS environment under a SQream user.
      
      $ hadoop fs -ls hdfs://<hadoop server name or ip>:8020/
       
-**NOTICE:** If you cannot access Hadoop from your machine because it uses Kerberos, see [Connecting a SQream Server to Cloudera Hadoop with Kerberos].(https://sqream.atlassian.net/l/c/31tQvsrB)
+**NOTICE:** If you cannot access Hadoop from your machine because it uses Kerberos, see [Connecting a SQream Server to Cloudera Hadoop with Kerberos].(https://sqream.atlassian.net/wiki/spaces/DOC/pages/822902789/How+to+connect+sqream+server+to+Cloudera+Hadoop+with+kerberos)
+
+**Comment; note to self - convert the link into rst. Check about utility that converts Word files into .rst files.**
    
 5. Verify that an HDFS environment exists for SQream services:
 
@@ -261,7 +267,9 @@ This section describes how to configure an HDFS environment under a SQream user.
        $ sudo systemctl start sqream1
        $ sudo systemctl start sqream2
        $ sudo systemctl start sqream3
-       $ sudo systemctl start sqream4  
+       $ sudo systemctl start sqream4
+       
+   **NOTICE - note to self: see Starting Monit, make note there**
       
  8. Verify that the following SQream processes are running and listening:
  
@@ -269,8 +277,10 @@ This section describes how to configure an HDFS environment under a SQream user.
      
        $ sudo systemctl status metadataserver
        $ sudo systemctl status serverpicker
-       $ sudo systemctl status sqream1  #... etc
-       $ sudo netstat -nltp   #to see that sqream is listening on ports
+       $ sudo systemctl status sqream1
+       $ sudo netstat -nltp
+       
+       #to see that sqream is listening on ports
       
    **NOTICE:** - Depending on the GPU package build optimization, it may take sqreamd 3 - 5 minutes to begin listening on its ports. To verify that sqreamd has begun listening, view the service logs located in the **/var/log/sqream** directory.   
       
@@ -528,11 +538,11 @@ Starting Monit
 
 **To start Monit:**
 
-1. Stop all actively running SQream services:
+1. If the following SQream services are running, stop them:
 
    .. code-block:: console
      
-      $ sudo systemctl stop sqream[1-4]  #This command stops sqream1, sqream2,..,sqream4
+      $ sudo systemctl stop sqream[1-4]
       $ sudo systemctl stop serverpicker
       $ sudo systemctl stop metadataserver
 
@@ -548,8 +558,12 @@ Starting Monit
      
       $ sudo systemctl status metadataserver
       $ sudo systemctl status serverpicker
-      $ sudo systemctl status sqream1  #... etc
-      $ sudo netstat -nltp   #to see that sqream is listening on ports  
+      $ sudo systemctl status sqream1
+      $ sudo netstat -nltp
+     
+    The **sudo netstate -nltp** command is used for verifying that SQream is listening on the ports.
+      
+   **NOTICE:** - The above SQream processes are only applicable on the main server.
  
 4. View Monit's service status:
 
@@ -563,17 +577,13 @@ Starting Monit
      
       $ sudo systemctl enable monit
       
-Using Monit
+Usage Examples
 ====================================
 
-Using Monit is simple and intuitive, and is used for starting processes that are not running and executing other actions in error situations. In addition, Monit has its own command syntax.
-
-For example, you can stop the **sqream3** service (being monitored by Monit) in one of the following ways:
+This section shows examples of two methods for stopping the **sqream3** service use Monit's command syntax:
 
 * Stopping Monit and SQream separately.
 * Stopping SQream using a Monit command.
-
-Both examples above are described in more detail below.
 
 Stopping Monit and SQream Separately
 -------------------------------------
