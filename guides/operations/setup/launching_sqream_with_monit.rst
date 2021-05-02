@@ -3,9 +3,11 @@
 *********************************************
 Launching SQream with Monit
 *********************************************
+This procedure describes how to launch SQream with Monit.
+
 Monit is a free open source supervision utility for managing and monitoring Unix and Linux. Monit lets you view system status directly from the command line or from a native HTTP web server. Monit can be used to conduct automatic maintenance and repair, such as executing meaningful causal actions in error situations.
 
-**Reword: SQream uses the Monit utlity as a watchdog utility, but you can use any other utility that does the same thing.**
+SQream uses Monit as a watchdog utility, but you can use any other utility that provides the same or similar functionality.
 
 This procedure describes how to manually install SQream and to launch it using Monit (optional).
 
@@ -133,7 +135,7 @@ It would be same on server running metadataserver and different on other server 
    
           $ vim /etc/sqream/server_picker.conf
     
-    2. Change the IP <**192.168.5.82**> to the IP of the server that the **metadataserver** service is running on.
+    2. Change the IP **127.0.0.1** to the IP of the server that the **metadataserver** service is running on.
     
     **Comment: can the host name be used instead of the IP address? See Step 4 in Configuring an HDFS Environment for the user sqream.**
     
@@ -231,8 +233,6 @@ This section describes how to configure an HDFS environment for the user **sqrea
       
 **NOTICE:** If you cannot access Hadoop from your machine because it uses Kerberos, see [Connecting a SQream Server to Cloudera Hadoop with Kerberos].(https://sqream.atlassian.net/wiki/spaces/DOC/pages/822902789/How+to+connect+sqream+server+to+Cloudera+Hadoop+with+kerberos)
 
-**Comment; note to self - convert the link into rst. Check about utility that converts Word files into .rst files.**
-   
 5. Verify that an HDFS environment exists for SQream services:
 
    .. code-block:: console
@@ -321,7 +321,7 @@ You can install Monit using Ubuntu when you do not have an internet connection.
      
       $ tar zxvf monit-<x.y.z>-linux-x64.tar.gz
       
-      **NOTICE:** *<x.y.z>* denotes version numbers.
+   **NOTICE:** *<x.y.z>* denotes version numbers.
 
 2. Navigate to the directory where you want to save the file:
    
@@ -561,7 +561,7 @@ Starting Monit
       $ sudo systemctl status sqream1
       $ sudo netstat -nltp
      
-    The **sudo netstate -nltp** command is used for verifying that SQream is listening on the ports.
+  The **sudo netstate -nltp** command is used for verifying that SQream is listening on the ports.
       
    **NOTICE:** - The above SQream processes are only applicable on the main server.
  
