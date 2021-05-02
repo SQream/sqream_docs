@@ -258,6 +258,8 @@ This section describes how to configure an HDFS environment for the user **sqrea
       $ PATH=$PATH:$HOME/.local/bin:$HOME/bin:${SQREAM_HOME}/bin/:${JAVA_HOME}/bin:$HADOOP_INSTALL/bin
       $ export PATH
       
+**Comment - New doc - **
+      
  7. Start the following SQream services manually and verify that they are functioning correctly:     
       
     .. code-block:: console
@@ -532,7 +534,7 @@ The following is an example of a working monitrc file configured to monitor the 
          $ #                            subject:  sqream2 $EVENT - $ACTION
          $ #                            message:  This is an automate mail, sent from monit.
          $ #                    }
-
+         
 Starting Monit
 ====================================  
 
@@ -576,6 +578,9 @@ Starting Monit
    .. code-block:: console
      
       $ sudo systemctl enable monit
+      
+**Comment - New doc about usage**
+**Install Monit without regards to SQream**
       
 Usage Examples
 ====================================
