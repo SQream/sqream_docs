@@ -4,7 +4,7 @@
 Hadoop Servers that Require Kerberos Authentication
 *********************************************
 
-If your Hadoop server requires Kerberos authentication
+If your Hadoop server requires Kerberos authentication, do the following:
 
 1. Create a principal for the user **sqream**.
 
