@@ -4,7 +4,12 @@
 Installing Monit
 *********************************************
 
-The **Installing Monit** procedures describes how to install Monit in one of the following three ways:
+Overview
+==============================
+
+The **Installing Monit** procedures describes how to install, configure, and start Monit.
+
+You can install Monit in one of the following three ways:
 
  * :ref:`Installing Monit using CentOS <installing-monit-using-centos>`
  * :ref:`Installing Monit using Ubuntu <installing-monit-using-ubuntu>`
@@ -51,7 +56,7 @@ You can install Monit using Ubuntu when you do not have an internet connection.
      
       $ tar zxvf monit-<x.y.z>-linux-x64.tar.gz
       
-   **NOTICE:** *<x.y.z>* denotes version numbers.
+   **NOTICE:** *<x.y.z>* denotes the version number.
 
 2. Navigate to the directory where you want to save the file:
    
@@ -74,7 +79,7 @@ You can install Monit using Ubuntu when you do not have an internet connection.
 Configuring Monit
 ====================================
 
-Monit can be configured by modifying the Monit configuration file, called **monitrc**. This file contains blocks for each service that you want to monitor.
+When the installation is complete, you can configure Monit. You configure Monit by modifying the Monit configuration file, called **monitrc**. This file contains blocks for each service that you want to monitor.
 
 The following is an example of a service block:
 
@@ -266,6 +271,8 @@ The following is an example of a working monitrc file configured to monitor the 
 Starting Monit
 ====================================  
 
+After configuring Monit, you can start it.
+
 **To start Monit:**
 
 1. If the following SQream services are running, stop them:
@@ -301,7 +308,9 @@ Starting Monit
      
       $ sudo systemctl status monit
 
-5. If all good, enable the Monit service to start on boot:  
+5. If all good, enable the Monit service to start on boot:
+
+**Comment - if what is good?**
        
    .. code-block:: console
      
