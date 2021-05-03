@@ -302,7 +302,7 @@ After configuring Monit, you can start it.
      
   The **sudo netstate -nltp** command is used for verifying that SQream is listening on the ports.
       
-  **NOTICE:** - The above SQream processes are only applicable on the main server.
+  **NOTICE:** The above SQream processes are only applicable on the main server.
  
 4. View Monit's service status:
 
