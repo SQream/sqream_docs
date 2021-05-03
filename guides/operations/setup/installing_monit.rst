@@ -7,13 +7,13 @@ Installing Monit
 The **Installing Monit** procedures describes how to install Monit in one of the following three ways:
 
  * :ref:`Installing Monit using CentOS <installing-monit-using-centos>`
- * :ref:`Installing Monit using Ubuntu`
- * Installing Monit using Ubuntu offline.
+ * :ref:`Installing Monit using Ubuntu <installing-monit-using-ubuntu>`
+ * :ref:`Installing Monit using Ubuntu offline <installing-monit-using-ubuntu-offline>`
 
 Installing Monit Using CentOS:
 ------------------------------------
 
-.. _installing-monit-using-centOS:
+.. _installing-monit-using-centos:
 
 **To install Monit using CentOS:**   
    
@@ -26,6 +26,8 @@ Installing Monit Using CentOS:
 Installing Monit Using Ubuntu:
 ------------------------------------
 
+.. _installing-monit-using-ubuntu:
+
 **To install Monit using Ubuntu:**   
    
 1. Install Monit as a superuser using Ubuntu:
@@ -36,6 +38,9 @@ Installing Monit Using Ubuntu:
 
 Installing Monit Using Ubuntu Offline:
 -------------------------------------
+
+.. _installing-monit-using-ubuntu-offline:
+
 You can install Monit using Ubuntu when you do not have an internet connection.
 
 **To install Monit using Ubuntu offline:**   
