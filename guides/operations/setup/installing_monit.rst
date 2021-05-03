@@ -6,16 +6,14 @@ Installing Monit
 
 The **Installing Monit** procedures describes how to install Monit in one of the following three ways:
 
- * :ref:`Installing Monit using CentOS`
+ * :ref:`Installing Monit using CentOS <installing-monit-using-centos>`
  * :ref:`Installing Monit using Ubuntu`
-
- * Installing Monit using Ubuntu.
  * Installing Monit using Ubuntu offline.
 
 Installing Monit Using CentOS:
 ------------------------------------
 
-.. _Installing_Monit_using_CentOS:
+.. _installing-monit-using-centOS:
 
 **To install Monit using CentOS:**   
    
