@@ -1,0 +1,134 @@
+.. _monit_usage_examples:
+
+Monit Usage Examples
+====================================
+
+This section shows examples of two methods for stopping the **sqream3** service use Monit's command syntax:
+
+* Stopping Monit and SQream separately.
+* Stopping SQream using a Monit command.
+
+Stopping Monit and SQream Separately
+-------------------------------------
+
+You can stop the Monit service and SQream separately as follows:
+
+.. code-block:: console
+     
+   $ sudo systemctl stop monit
+   $ sudo systemctl stop sqream3
+
+You can restart Monit as follows:
+
+.. code-block:: console
+
+   $ sudo systemctl start monit
+      
+Restarting Monit automatically restarts the SQream services.      
+
+Stopping SQream Using a Monit Command
+-------------------------------------
+
+You can stop SQream using a Monit command as follows:
+
+.. code-block:: console
+     
+   $ sudo monit stop sqream3
+
+This command spots SQream only (and not Monit).
+
+You can restart SQream as follows:
+
+.. code-block:: console
+     
+   $ sudo monit start sqream3
+       
+Monit Command Line Options
+-------------------------------------
+This section describes some of the most commonly used Monit command options:
+
+.. code-block:: console
+     
+   $ start all             - Start all services
+   $ start <name>          - Only start the named service
+   $ stop all              - Stop all services
+   $ stop <name>           - Stop the named service
+   $ restart all           - Stop and start all services
+   $ restart <name>        - Only restart the named service
+   $ monitor all           - Enable monitoring of all services
+   $ monitor <name>        - Only enable monitoring of the named service
+   $ unmonitor all         - Disable monitoring of all services
+   $ unmonitor <name>      - Only disable monitoring of the named service
+   $ reload                - Reinitialize monit
+   $ status [name]         - Print full status information for service(s)
+   $ summary [name]        - Print short status information for service(s)
+   $ report [up|down|..]   - Report state of services. See manual for options
+   $ quit                  - Kill the monit daemon process
+   $ validate              - Check all services and start if not running
+   $ procmatch <pattern>   - Test process matching pattern
+
+Using Monit While Upgrading Your Version of SQream
+==================================================
+
+While upgrade your version of SQream, you can use Monit to avoid conflicts (such as service start). This is done by pausing or stopping all running services while you manually upgrade SQream. When you finish successfully upgrading SQream, you can use Monit to restart all SQream services
+
+**To use Monit while upgrading your version of SQream:**
+
+1. Stop all actively running SQream services:
+
+   .. code-block:: console
+     
+      $ sudo monit stop all
+      
+2. Verify that SQream has stopped listening on ports **500X**, **510X**, and **310X**:
+
+   .. code-block:: console
+
+      $ sudo netstat -nltp    #to make sure sqream stopped listening on 500X, 510X and 310X ports.
+
+3. Stop the UI (not as a super user, but as a SQream user):
+
+   .. code-block:: console
+    
+      $ pm2 stop all
+
+The example below shows the old version ``sqream-db-v2020.2`` being replaced with the new version ``sqream-db-v2025.200``.
+
+.. code-block:: console
+    
+   $ cd /home/sqream
+   $ mkdir tempfolder
+   $ mv sqream-db-v2025.200.tar.gz tempfolder/
+   $ tar -xf sqream-db-v2025.200.tar.gz
+   $ sudo mv sqream /usr/local/sqream-db-v2025.200
+   $ cd /usr/local
+   $ sudo chown -R sqream:sqream sqream-db-v2025.200
+   $ sudo rm sqream   #This only should remove symlink
+   $ sudo ln -s sqream-db-v2025.200 sqream   #this will create new symlink named "sqream" pointing to new version
+   $ ls -l
+
+The symbolic SQream link pointing should be pointing to the real folder:
+
+.. code-block:: console
+    
+   $ sqream -> sqream-db-v2025.200
+
+4. Restart the SQream services:
+
+   .. code-block:: console
+    
+      $ sudo monit start all
+      
+5. Verify that the latest version has been installed:
+
+   .. code-block:: console
+    
+      $ SELECT SHOW_VERSION();
+      
+   The correct version is output.
+
+5. Restart the UI:
+
+   .. code-block:: console
+    
+      $ pm2 start all
