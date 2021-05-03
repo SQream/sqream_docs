@@ -282,6 +282,8 @@ After configuring Monit, you can start it.
       $ sudo systemctl stop sqream[1-4]
       $ sudo systemctl stop serverpicker
       $ sudo systemctl stop metadataserver
+      
+  The services may be running because the **Launching SQream with Monit** procedure required starting them to verify that they were functioning correctly.
 
 2. Start Monit as a super user:
 
