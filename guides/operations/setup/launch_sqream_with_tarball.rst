@@ -1,15 +1,13 @@
-.. _installing_sqream_with_tarball:
+.. _launch_sqream_with_tarball:
 
 *********************************************
-Installing SQream with Tarball
+Launch SQream with Tarball
 *********************************************
 This procedure describes how to launch SQream using Tarball.
 
 **Comment - speak with Ori about the proper name for this**
 
-Launching SQream with Monit
-====================================
-**To launch SQream with Monit:**
+**To launch SQream with Tarball:**
 
 1. Copy the SQream package to the **/home/sqream** directory for the current version:
 
