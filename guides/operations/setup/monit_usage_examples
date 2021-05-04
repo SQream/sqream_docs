@@ -45,7 +45,13 @@ You can restart SQream as follows:
        
 Monit Command Line Options
 -------------------------------------
-This section describes some of the most commonly used Monit command options:
+This section describes some of the most commonly used Monit command options.
+
+You can show the command line options by running:
+
+.. code-block:: console
+     
+   $ monit --help
 
 .. code-block:: console
      
@@ -85,12 +91,6 @@ While upgrade your version of SQream, you can use Monit to avoid conflicts (such
    .. code-block:: console
 
       $ sudo netstat -nltp    #to make sure sqream stopped listening on 500X, 510X and 310X ports.
-
-3. Stop the UI (not as a super user, but as a SQream user):
-
-   .. code-block:: console
-    
-      $ pm2 stop all
 
 The example below shows the old version ``sqream-db-v2020.2`` being replaced with the new version ``sqream-db-v2025.200``.
 
