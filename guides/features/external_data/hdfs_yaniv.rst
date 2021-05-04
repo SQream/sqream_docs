@@ -1,3 +1,5 @@
+.. _hdfs_yaniv.rst:
+
 Configuring an HDFS Environment for the User **sqream**
 ======================================================
 **NOTICE:** This section is only relevant for users with an HDFS environment.
