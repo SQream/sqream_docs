@@ -166,4 +166,6 @@ It would be same on server running metadataserver and different on other server 
 
     .. code-block:: console
      
-       $ cp license.enc /etc/sqream/
+       $ cp license.enc /etc/sqream/       
+       
+If you have an HDFS environment, see Configuring an HDFS Environment for the User sqream :ref:`.. _recommended_configurations_updated:`.
