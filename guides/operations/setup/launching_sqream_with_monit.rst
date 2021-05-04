@@ -10,11 +10,9 @@ Launching SQream
 
 After configuring Monit and verifying that SQream is running, you can launch it by doing the following:
 
-**Comment - cross reference to Install Monit procedure**
+1. Installing Monit :ref:`installing_monit`
 
-* Installing Monit :ref:`installing_monit`
-
-* Installing SQream with Tarbell :ref:`installing_sqream_with_tarball`
+2. Installing SQream with Tarbell :ref:`installing_sqream_with_tarball`
 
 
 
