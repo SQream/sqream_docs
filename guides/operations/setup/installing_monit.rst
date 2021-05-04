@@ -14,6 +14,11 @@ Before launching SQream with Monit verify that you have followed the required Re
 Overview
 ==============================
 
+
+Monit is a free open source supervision utility for managing and monitoring Unix and Linux. Monit lets you view system status directly from the command line or from a native HTTP web server. Monit can be used to conduct automatic maintenance and repair, such as executing meaningful causal actions in error situations.
+
+SQream uses Monit as a watchdog utility, but you can use any other utility that provides the same or similar functionality.
+
 The **Installing Monit** procedures describes how to install, configure, and start Monit.
 
 You can install Monit in one of the following ways:
