@@ -1,9 +1,9 @@
-.. _launch_sqream_with_tarball:
+.. _installing_sqream_with_tarball:
 
 *********************************************
-Launch SQream with Tarball
+Installing SQream with Tarball
 *********************************************
-This procedure describes how to launch SQream using Tarball.
+This procedure describes how to install SQream using Tarball.
 
 **Comment - speak with Ori about the proper name for this**
 
