@@ -12,7 +12,11 @@ After configuring Monit and verifying that SQream is running, you can launch it 
 
 **Comment - cross reference to Install Monit procedure**
 
-**Comment - cross reference to Tarball procedure.**
+* Installing Monit :ref:`installing_monit`
+
+* Installing SQream with Tarbell :ref:`installing_sqream_with_tarball`
+
+
 
 The following is an example of a working monitrc file configured to monitor the ***metadataserver** and **serverpicker** commands, and **four sqreamd services**. The **monitrc** configuration file is located in the **conf/monitrc** directory.
 
