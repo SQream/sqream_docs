@@ -15,40 +15,40 @@ You can install Monit in one of the following three ways:
  * :ref:`Installing Monit using Ubuntu <installing-monit-using-ubuntu>`
  * :ref:`Installing Monit using Ubuntu offline <installing-monit-using-ubuntu-offline>`
 
-Installing Monit Using CentOS:
+Installing Monit on CentOS:
 ------------------------------------
 
-.. _installing-monit-using-centos:
+.. _installing-monit-on-centos:
 
-**To install Monit using CentOS:**   
+**To install Monit on CentOS:**   
    
-1. Install Monit as a superuser using CentOS:
+1. Install Monit as a superuser on CentOS:
  
     .. code-block:: console
      
        $ sudo yum install monit  
        
-Installing Monit Using Ubuntu:
+Installing Monit on Ubuntu:
 ------------------------------------
 
-.. _installing-monit-using-ubuntu:
+.. _installing-monit-on-ubuntu:
 
-**To install Monit using Ubuntu:**   
+**To install Monit on Ubuntu:**   
    
-1. Install Monit as a superuser using Ubuntu:
+1. Install Monit as a superuser on Ubuntu:
 
     .. code-block:: console
      
        $ sudo apt-get install monit
 
-Installing Monit Using Ubuntu Offline:
+Installing Monit on Ubuntu Offline:
 -------------------------------------
 
-.. _installing-monit-using-ubuntu-offline:
+.. _installing-monit-on-ubuntu-offline:
 
-You can install Monit using Ubuntu when you do not have an internet connection.
+You can install Monit on Ubuntu when you do not have an internet connection.
 
-**To install Monit using Ubuntu offline:**   
+**To install Monit on Ubuntu offline:**   
    
 1. Compress the required file:
 
@@ -138,135 +138,7 @@ For servers that don't run the **metadataserver** and **serverpicker** commands,
     .. code-block:: console
      
       $ cd /etc/sqream
-      $ sudo ln -s /etc/monit.d/monitrc monitrc      
-
-The following is an example of a working monitrc file configured to monitor the ***metadataserver** and **serverpicker** commands, and **four sqreamd services**. Note that the monitrc in the example is configured for eight sqreamd services, but that only the first four are enabled:
-
-      .. code-block:: console
-     
-         $ set daemon  5              # check services at 30 seconds intervals
-         $ set logfile syslog
-         $ 
-         $ set httpd port 2812 and
-         $     use address localhost  # only accept connection from localhost
-         $     allow localhost        # allow localhost to connect to the server and
-         $     allow admin:monit      # require user 'admin' with password 'monit'
-         $ 
-         $ ##set mailserver smtp.gmail.com port 587
-         $ ##        using tlsv12
-         $ #METADATASERVER-START
-         $ check process metadataserver with pidfile /var/run/metadataserver.pid
-         $ start program = "/usr/bin/systemctl start metadataserver"
-         $ stop program = "/usr/bin/systemctl stop metadataserver"
-         $ #METADATASERVER-END
-         $ #      alert user@domain.com on {nonexist, timeout}
-         $ #                      with mail-format {
-         $ #                            from:     Monit@$HOST
-         $ #                            subject:  metadataserver $EVENT - $ACTION
-         $ #                            message:  This is an automate mail, sent from monit.
-         $ #                    }
-         $ #SERVERPICKER-START
-         $ check process serverpicker with pidfile /var/run/serverpicker.pid
-         $ start program = "/usr/bin/systemctl start serverpicker"
-         $ stop program = "/usr/bin/systemctl stop serverpicker"
-         $ #SERVERPICKER-END
-         $ #       alert user@domain.com on {nonexist, timeout}
-         $ #                                    with mail-format {
-         $ #                                          from:     Monit@$HOST
-         $ #                                          subject:  serverpicker $EVENT - $ACTION
-         $ #                                         message:  This is an automate mail, sent from monit.
-         $ #
-         $ #
-         $ #SQREAM1-START
-         $ check process sqream1 with pidfile /var/run/sqream1.pid
-         $ start program = "/usr/bin/systemctl start sqream1"
-         $ stop program = "/usr/bin/systemctl stop sqream1"
-         $ #SQREAM1-END
-         $ #        alert user@domain.com on {nonexist, timeout}
-         $ #               with mail-format {
-         $ #                     from:     Monit@$HOST
-         $ #                     subject:  sqream1 $EVENT - $ACTION
-         $ #                     message:  This is an automate mail, sent from monit.
-         $ #             }
-         $ #SQREAM2-START
-         $ check process sqream2 with pidfile /var/run/sqream2.pid
-         $ start program = "/usr/bin/systemctl start sqream2"
-         $ #SQREAM2-END
-         $ #       alert user@domain.com on {nonexist, timeout}
-         $ #               with mail-format {
-         $ #                     from:     Monit@$HOST
-         $ #                     subject:  sqream1 $EVENT - $ACTION
-         $ #                     message:  This is an automate mail, sent from monit.
-         $ #             }
-         $ #SQREAM3-START
-         $ check process sqream3 with pidfile /var/run/sqream3.pid
-         $ start program = "/usr/bin/systemctl start sqream3"
-         $ stop program = "/usr/bin/systemctl stop sqream3"
-         $ #SQREAM3-END
-         $ #       alert user@domain.com on {nonexist, timeout}
-         $ #               with mail-format {
-         $ #                     from:     Monit@$HOST
-         $ #                     subject:  sqream2 $EVENT - $ACTION
-         $ #                     message:  This is an automate mail, sent from monit.
-         $ #             }
-         $ #SQREAM4-START
-         $ check process sqream4 with pidfile /var/run/sqream4.pid
-         $ start program = "/usr/bin/systemctl start sqream4"
-         $ stop program = "/usr/bin/systemctl stop sqream4"
-         $ #SQREAM4-END
-         $ #       alert user@domain.com on {nonexist, timeout}
-         $ #                      with mail-format {
-         $ #                            from:     Monit@$HOST
-         $ #                            subject:  sqream2 $EVENT - $ACTION
-         $ #                            message:  This is an automate mail, sent from monit.
-         $ #                    }
-         $ #
-         $ #SQREAM5-START
-         $ #check process sqream5 with pidfile /var/run/sqream5.pid
-         $ #start program = "/usr/bin/systemctl start sqream5"
-         $ #stop program = "/usr/bin/systemctl stop sqream5"
-         $ #SQREAM5-END
-         $ #       alert user@domain.com on {nonexist, timeout}
-         $ #                      with mail-format {
-         $ #                            from:     Monit@$HOST
-         $ #                            subject:  sqream2 $EVENT - $ACTION
-         $ #                            message:  This is an automate mail, sent from monit.
-         $ #                    }
-         $ #
-         $ #SQREAM6-START
-         $ #check process sqream6 with pidfile /var/run/sqream6.pid
-         $ #start program = "/usr/bin/systemctl start sqream6"
-         $ #stop program = "/usr/bin/systemctl stop sqream6"
-         $ #SQREAM6-END
-         $ #       alert user@domain.com on {nonexist, timeout}
-         $ #                      with mail-format {
-         $ #                            from:     Monit@$HOST
-         $ #                            subject:  sqream2 $EVENT - $ACTION
-         $ #                            message:  This is an automate mail, sent from monit.
-         $ #                    }
-         $ #
-         $ #SQREAM7-START
-         $ #check process sqream7 with pidfile /var/run/sqream7.pid
-         $ #start program = "/usr/bin/systemctl start sqream7"
-         $ #stop program = "/usr/bin/systemctl stop sqream7"
-         $ #SQREAM7-END
-         $ #                      with mail-format {
-         $ #                            from:     Monit@$HOST
-         $ #                            subject:  sqream2 $EVENT - $ACTION
-         $ #                            message:  This is an automate mail, sent from monit.
-         $ #                    }
-         $ #
-         $ #SQREAM8-START
-         $ #check process sqream8 with pidfile /var/run/sqream8.pid
-         $ #start program = "/usr/bin/systemctl start sqream8"
-         $ #stop program = "/usr/bin/systemctl stop sqream8"
-         $ #SQREAM8-END
-         $ #       alert user@domain.com on {nonexist, timeout}
-         $ #                      with mail-format {
-         $ #                            from:     Monit@$HOST
-         $ #                            subject:  sqream2 $EVENT - $ACTION
-         $ #                            message:  This is an automate mail, sent from monit.
-         $ #                    }
+      $ sudo ln -s /etc/monit.d/monitrc monitrc    
          
 Starting Monit
 ====================================  
@@ -275,45 +147,20 @@ After configuring Monit, you can start it.
 
 **To start Monit:**
 
-1. If the following SQream services are running, stop them:
+1. Start Monit as a super user:
 
    .. code-block:: console
      
-      $ sudo systemctl stop sqream[1-4]
-      $ sudo systemctl stop serverpicker
-      $ sudo systemctl stop metadataserver
-      
-  The services may be running because the **Launching SQream with Monit** procedure required starting them to verify that they were functioning correctly.
-
-2. Start Monit as a super user:
-
-   .. code-block:: console
-     
-      $ sudo systemctl start monit
-   
-3. Verify that the following SQream processes are running and listening:
-  
-   .. code-block:: console
-     
-      $ sudo systemctl status metadataserver
-      $ sudo systemctl status serverpicker
-      $ sudo systemctl status sqream1
-      $ sudo netstat -nltp
-     
-  The **sudo netstate -nltp** command is used for verifying that SQream is listening on the ports.
-      
-  **NOTICE:** The above SQream processes are only applicable on the main server.
+      $ sudo systemctl start monit   
  
-4. View Monit's service status:
+2. View Monit's service status:
 
    .. code-block:: console
      
       $ sudo systemctl status monit
 
-5. If all good, enable the Monit service to start on boot:
-
-**Comment - if what is good?**
-       
+3. If Monit is functioning correctly, enable the Monit service to start on boot:
+    
    .. code-block:: console
      
       $ sudo systemctl enable monit
