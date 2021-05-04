@@ -4,16 +4,24 @@
 Installing Monit
 *********************************************
 
+Getting Started
+==============================
+
+Before launching SQream with Monit verify that you have followed the required Recommended Configuration procedures.
+
+**Comment - cross reference to page**
+
 Overview
 ==============================
 
 The **Installing Monit** procedures describes how to install, configure, and start Monit.
 
-You can install Monit in one of the following three ways:
+You can install Monit in one of the following ways:
 
- * :ref:`Installing Monit using CentOS <installing-monit-using-centos>`
- * :ref:`Installing Monit using Ubuntu <installing-monit-using-ubuntu>`
- * :ref:`Installing Monit using Ubuntu offline <installing-monit-using-ubuntu-offline>`
+ * :ref:`Installing Monit on CentOS <installing-monit-on-centos>`
+ * Check the external source for installing monit on centOS offline.
+ * :ref:`Installing Monit on Ubuntu <installing-monit-on-ubuntu>`
+ * :ref:`Installing Monit on Ubuntu offline <installing-monit-on-ubuntu-offline>`
 
 Installing Monit on CentOS:
 ------------------------------------
