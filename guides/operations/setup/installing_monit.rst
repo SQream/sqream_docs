@@ -7,7 +7,7 @@ Installing Monit
 Getting Started
 ==============================
 
-Before launching SQream with Monit verify that you have followed the required recommended post-installation configurations :ref:`.. _recommended_configurations_updated:`.
+Before launching SQream with Monit verify that you have followed the required recommended post-installation configurations :ref:`recommended_configurations_updated`
 
 
 
