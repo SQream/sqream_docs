@@ -1,4 +1,4 @@
-.. _recommended_configurations_for_installation.rst:
+.. _recommended_post_installation_configurations:
 
 *********************************************
 Recommended Post-Installation Configuration
