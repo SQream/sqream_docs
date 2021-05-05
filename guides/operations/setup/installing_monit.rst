@@ -7,10 +7,13 @@ Installing Monit
 Getting Started
 ==============================
 
-Before launching SQream with Monit verify that you have followed the required recommended post-installation configurations :ref:`recommended_configurations_updated`
+Before launching SQream with Monit, verify that you have followed the required `recommended post-installation configurations <file:///C:/Users/Yaniv/sqream_docs/_build/html/guides/operations/setup/recommended_post_installation_configurations.html>`_.
 
 
 
+
+
+.. _back_to_top:
 
 Overview
 ==============================
@@ -24,15 +27,23 @@ The **Installing Monit** procedures describes how to install, configure, and sta
 
 You can install Monit in one of the following ways:
 
- * :ref:`Installing Monit on CentOS <installing-monit-on-centos>`
- * :ref:`Installing Monit on CentOS offline <installing-monit-on-centos-offline:>`
- * :ref:`Installing Monit on Ubuntu <installing-monit-on-ubuntu>`
- * :ref:`Installing Monit on Ubuntu offline <installing-monit-on-ubuntu-offline>`
+* :ref:`Installing Monit on CentOS <installing-monit-on-centos>`
+* :ref:`Installing Monit on CentOS offline <installing-monit-on-centos-offline>`
+* :ref:`Installing Monit on Ubuntu <installing-monit-on-ubuntu>`
+* :ref:`Installing Monit on Ubuntu offline <installing-monit-on-ubuntu-offline>`
+ 
+ 
+ 
+
+
+
+
+.. _installing-monit-on-centos:
 
 Installing Monit on CentOS:
 ------------------------------------
 
-.. _installing-monit-on-centos:
+
 
 **To install Monit on CentOS:**   
    
@@ -43,18 +54,28 @@ Installing Monit on CentOS:
        $ sudo yum install monit  
        
        
+.. _installing-monit-on-centos-offline:
+
+
+	   
 Installing Monit on CentOS Offline:
 ------------------------------------
 
-.. _installing-monit-on-centos-offline:
 
 Installing Monit on CentOS offline can be done in either of the following ways:
 
-* Building Monit from Source Code
-* Building Monit from Pre-Built Binaries
+* :ref:`Building Monit from Source Code <building_monit_from_source_code>`
+* :ref:`Building Monit from Pre-Built Binaries <building_monit_from_pre_built_binaries>`
+
+ 
+ 
+ 
+.. _building_monit_from_source_code:
 
 Building Monit from Source Code
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
 
 **To build Monit from source code:**
 
@@ -99,7 +120,12 @@ The following are the default storage directories:
      
       $ rpmbuild -tb monit-x.y.z.tar.gz
       
-**Comment - Is this an optional or mandatory step?**      
+**Comment - Is this an optional or mandatory step?**
+
+ 
+
+
+.. _building_monit_from_pre_built_binaries:   
 
 Building Monit from Pre-Built Binaries
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -134,11 +160,17 @@ Building Monit from Pre-Built Binaries
 
 For examples of pre-built Monit binarties, see :ref:`Download Precompiled Binaries<https://mmonit.com/monit/#download>`.
 
+:ref:`Back to top <back_to_top>`
+
+
+
+.. _installing-monit-on-ubuntu:
+
+
       
 Installing Monit on Ubuntu:
 ------------------------------------
 
-.. _installing-monit-on-ubuntu:
 
 **To install Monit on Ubuntu:**   
    
@@ -147,11 +179,17 @@ Installing Monit on Ubuntu:
     .. code-block:: console
      
        $ sudo apt-get install monit
+	   
+:ref:`Back to top <back_to_top>`
+
+
+	   
+.. _installing-monit-on-ubuntu-offline:
+
 
 Installing Monit on Ubuntu Offline:
 -------------------------------------
 
-.. _installing-monit-on-ubuntu-offline:
 
 You can install Monit on Ubuntu when you do not have an internet connection.
 
@@ -182,6 +220,9 @@ You can install Monit on Ubuntu when you do not have an internet connection.
    .. code-block:: console
      
       $ cp conf/monitrc /etc/
+	  
+:ref:`Back to top <back_to_top>`
+
        
 Configuring Monit
 ====================================

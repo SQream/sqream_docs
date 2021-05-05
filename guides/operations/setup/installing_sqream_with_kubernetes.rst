@@ -318,19 +318,19 @@ Running this command downloads and runs a test image in a container. The running
    
       $ sudo usermod -aG docker $USER
 
- 6. Do one of the following:
+6. Do one of the following:
  
-    * Log out and back in for your group membership to be re-evaluated.
+   * Log out and back in for your group membership to be re-evaluated.
     
-      If you are testing on a virtual machine, you may need to restart your virtual machine for the changes to take effect.
+   * If you are testing on a virtual machine, you may need to restart your virtual machine for the changes to take effect.
       
-    * If you are testing on a desktop Linux environment, such as X Windows, log out of your session completely and log back in.
+   * If you are testing on a desktop Linux environment, such as X Windows, log out of your session completely and log back in.
     
-    * On Linux, you can run the following command for the changes made to the groups to take effect:
+   * On Linux, you can run the following command for the changes made to the groups to take effect:
  
-      .. code-block:: postgres
+     .. code-block:: postgres
    
-         $ newgrp docker
+        $ newgrp docker
          
 For more information on installing Docker Runtime with CentOS, see `Install Docker Engine on CentOS <https://docs.docker.com/install/linux/docker-ce/centos/>`_
 
@@ -502,7 +502,7 @@ Installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on Ubuntu
       $ sudo apt-get install nvidia-docker2
       $ sudo pkill -SIGHUP dockerd
      
- 3. Verify that the nvidia-docker2 package has been installed correctly:
+3. Verify that the nvidia-docker2 package has been installed correctly:
 
    .. code-block:: postgres
    
@@ -524,7 +524,7 @@ Modifying the Docker Daemon JSON File for GPU Nodes
 
 **Comment - should we leave contact information here?**
 
-2. Replace the <VIP address> with your assigned VIP address.
+2. Replace the ``VIP address`` with your assigned VIP address.
 
 3. Connect as a root user:
 
@@ -563,17 +563,19 @@ Modifying the Docker Daemon JSON File for GPU Nodes
       
 7. Exit the root:
  
-**Exit the root user?**
- 
   .. code-block:: postgres
    
      $ exit
+	 
+**Comment - exit the root user?**
       
 Modifying the Docker Daemon JSON File for Compute Nodes
 ------------------------------------
 **To modify the Docker daemon JSON file for Compute nodes:**
 
-1. Set HTTP access to the local Kubernetes Docker registry.
+1. Set HTTP access to the local Kubernetes Docker registry:
+
+**Comment - do we want to include the input here?**
 
 2. Switch to a root user:
 
@@ -587,7 +589,7 @@ Modifying the Docker Daemon JSON File for Compute Nodes
 
 **Comment - should we leave contact information here?**
 
-4. Replace the <VIP address> with your assigned VIP address.
+4. Replace the ``VIP address`` with your assigned VIP address.
 
    .. code-block:: postgres
    
@@ -639,9 +641,9 @@ An SSH keypair can be generated and shared across all existing nodes. Sharing SS
 
   .. code-block:: postgres
    
-     $ $ sudo -i
+     $ sudo -i
 
-2. Generate an rsa key pair:
+2. Generate an RSA key pair:
 
   .. code-block:: postgres
    
@@ -680,20 +682,21 @@ The following is an example of the correct output:
    
      $ ssh-copy-id -i ~/.ssh/id_rsa.pub root@remote-host
 
-   The public key is located in the **/root/.ssh/id_rsa.pub** directory.
+The public key is located in the **/root/.ssh/id_rsa.pub** directory.
    
-   The **authorized_keys** file is located in the **/root/.ssh/authorized_keys** directory:
+The **authorized_keys** file is located in the **/root/.ssh/authorized_keys** directory.
    
 4. Replace the following:
 
-   * The <user name> with your local user name.
-   * The <remote host> with your host IP address.
+   * The ``user name`` with your local user name.
+   * The ``remote host`` with your host IP address.
       
-**Comment - do we want to show sample output here?**      
+**Comment - do we want to show sample output here?**     
       
 Installing and Deploying a Kubernetes Cluster with Kubespray
 =============================================================
 SQream uses the Kubespray software pack to install and deploy Kubernetes clusters.
+
 
 Copying Files into the Correct Directory
 -----------------------------------------
@@ -731,7 +734,7 @@ The Kubernetes files to be installed with Kubespray are located in the **/usr/lo
    
      $ && sudo -i
 
-**Confirm Step 4.**
+**Comment - confirm Step 4.**
 
 Downloading and Configuring Kubespray
 -------------------------------------
@@ -764,33 +767,371 @@ Downloading and Configuring Kubespray
 
    1. Clone the **kubespray.git** file:
 
-  .. code-block:: postgres
+      .. code-block:: postgres
    
-     $ git clone https://github.com/kubernetes-incubator/kubespray.git
+         $ git clone https://github.com/kubernetes-incubator/kubespray.git
      
    2. Nagivate to the **kubespray** directory:
      
        .. code-block:: postgres
    
-     $ cd kubespray
+          $ cd kubespray
      
-   3. **Comment - what does command do?**
+   3. Install the **requirements.txt** configuration file:
    
+      .. code-block:: postgres
+   
+         $ pip3 install -r requirements.txt
+		 
+		 
+
+5. Create your SQream inventory directory:
+
+   1. Run the following command:
+   
+      .. code-block:: postgres
+   
+         $ cp -rp inventory/sample inventory/sqream
+   
+**Comment - what does the "-rp" part of the command do?"**
+
+   2. Replace the **<cluster node IP>** with the defined cluster node IP address(es).
+   
+      .. code-block:: postgres
+   
+         $ declare -a IPS=(<host>, <cluster node IP address>) 
+   
+   For example, the following replaces ``192.168.0.93`` with ``192.168.0.92``:
+
+   .. code-block:: postgres
+   
+      $ declare -a IPS=(host-93,192.168.0.93 host-92,192.168.0.92)
+
+Note the following:
+ * Running a declare requires defining a pair (host name and cluster node IP address), as shown in the above example.
+ * You can define more than one pair.
+
+3. In the **kubespray hosts.yml** file, set the node IP's: 
+
+   .. code-block:: postgres
+   
+      $ CONFIG_FILE=inventory/sqream/hosts.yml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
+	  
+4. Verify that the following have been done:
+ 
+   * That the **hosts.yml** file is configured correctly.
+   * That all children are included with their relevant nodes.
+
+You can save your current server hostname by replacing ``nodeX`` with your server hostname.
+
+5. Generate the content output of the **hosts.yml** file. Make sure to include the file's directory:
+
+   .. code-block:: postgres
+   
+      $ cat  inventory/sqream/hosts.yml
+	  
+The hostname can be lowercase and contain ``-`` or ``.`` only, and must be aligned with the server's hostname.
+
+The following is an example of the correct output. Each host and IP address that you provided in Step 2 should be displayed once:
+
+   .. code-block:: postgres
+   
+      $ all:
+      $   hosts:
+      $     node1:
+      $       ansible_host: 192.168.5.81
+      $       ip: 192.168.5.81
+      $       access_ip: 192.168.5.81
+      $     node2:
+      $       ansible_host: 192.168.5.82
+      $       ip: 192.168.5.82
+      $       access_ip: 192.168.5.82
+      $     node3:
+      $       ansible_host: 192.168.5.83
+      $       ip: 192.168.5.83
+      $       access_ip: 192.168.5.83
+      $   children:
+      $     kube-master:
+      $       hosts:
+      $         node1:
+      $         node2:
+      $         node3:
+      $     kube-node:
+      $       hosts:
+      $         node1:
+      $         node2:
+      $         node3:
+      $     etcd:
+      $       hosts:
+      $         node1:
+      $         node2:
+      $         node3:
+      $     k8s-cluster:
+      $       children:
+      $         kube-master:
+      $         kube-node:
+      $     calico-rr:
+      $       hosts: {}
+      
+Adjusting Kubespray Deployment Values
+-------------------------------------    
+A script is used to modify the **(why how)** Kubernetes cluster will be deployed. The cluster name variable must be set before running this script.
+
+**To adjust Kubespray deployment values:**
+
+1. Replace the existing Kubernetes name with your unique **<Kubernetes name>** value, as shown in the following example:
+
+   .. code-block:: postgres
+   
+      $ export cluster_name=<k8s.cluster.1>
+	 
+**Comment (Ricardo Borenstein) - On my k8s package the folder k8s-cluster was spelled as k8s_cluster, please check the right name.**
+
+The unique k8s cluster name can only contain lowercase alphanumeric characters, ``-``, or ``.``.
+
+3. Make the following replacements to the **kubespray.settings.sh** file:
+
+   .. code-block:: postgres
+   
+      $ cat <<EOF > kubespray_settings.sh
+      $ sed -i "/cluster_name: cluster.local/c   \cluster_name: cluster.local.$cluster_name" inventory/sqream/group_vars/k8s-cluster/k8s-cluster.yml
+      $ sed -i "/dashboard_enabled/c   \dashboard_enabled\: "false"" inventory/sqream/group_vars/k8s-cluster/addons.yml
+      $ sed -i "/kube_version/c   \kube_version\: "v1.18.3"" inventory/sqream/group_vars/k8s-cluster/k8s-cluster.yml
+      $ sed -i "/metrics_server_enabled/c   \metrics_server_enabled\: "true"" inventory/sample/group_vars/k8s-cluster/addons.yml
+      $ echo 'kube_apiserver_node_port_range: "3000-6000"' >> inventory/sqream/group_vars/k8s-cluster/k8s-cluster.yml
+      $ echo 'kube_controller_node_monitor_grace_period: 20s' >> inventory/sqream/group_vars/k8s-cluster/k8s-cluster.yml
+      $ echo 'kube_controller_node_monitor_period: 2s' >> inventory/sqream/group_vars/k8s-cluster/k8s-cluster.yml
+      $ echo 'kube_controller_pod_eviction_timeout: 30s' >> inventory/sqream/group_vars/k8s-cluster/k8s-cluster.yml
+      $ echo 'kubelet_status_update_frequency: 4s' >> inventory/sqream/group_vars/k8s-cluster/k8s-cluster.yml
+      $ echo 'ansible ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+      $ EOF
+
+5. Make the **kubespray_settings.sh** file executable for your user:
+
+   .. code-block:: postgres
+   
+      $ chmod u+x kubespray_settings.sh && ./kubespray_settings.sh
+
+**Comment - is the above command making both a file and folder executable?**
+
+6. Run a playbook on the **inventory/sqream/hosts.yml cluster.yml** file:
+
+   .. code-block:: postgres
+   
+      $ ansible-playbook -i inventory/sqream/hosts.yml cluster.yml -v
+
+**Comment - what is "-v"?
+
+The Kubespray installation takes approximately 10 - 15 minutes.
+
+The following is an example of the correct output:
+
+   .. code-block:: postgres
+   
+      $ PLAY RECAP
+      $ *********************************************************************************************
+      $ node-1             : ok=680  changed=133  unreachable=0    failed=0
+      $ node-2             : ok=583  changed=113  unreachable=0    failed=0
+      $ node-3             : ok=586  changed=115  unreachable=0    failed=0
+      $ localhost          : ok=1    changed=0    unreachable=0    failed=0
+
+In the event that the output is incorrect, or a failure occurred during the installation, please contact a SQream customer support representative.
+
+**Comment - do we want to include customer support contact information here?**
+      
+Checking Your Kubernetes Status
+-------------------------------
+**To check your Kuberetes status:**
+
+1. Check the status of the node:
+
+   .. code-block:: postgres
+   
+      $ kubectl get nodes
+	  
+The following is an example of the correct output:
+
+   .. code-block:: postgres
+   
+      $ NAME             STATUS   ROLES    AGE    VERSION
+      $ node-1           Ready    master   162m   v1.16.3
+      $ node-2           Ready    master   161m   v1.16.3
+      $ node-3           Ready    master   161m   v1.16.3
+
+3. **Optional** - To show more details, run the following command:
+  
+   .. code-block:: postgres
+   
+      $ kubectl get nodes -o wide
+	  
+**Comment - in this an optional step?**
+	  
+2. Check the status of the pod:
+
+   .. code-block:: postgres
+   
+      $ kubectl get pods --all-namespaces 
+
+The following is an example of the correct output:
+
+   .. code-block:: postgres
+   
+      $ NAMESPACE                NAME                                         READY   STATUS    RESTARTS   AGE
+      $ kube-system              calico-kube-controllers-68dc8bf4d5-n9pbp     1/1     Running   0          160m
+      $ kube-system              calico-node-26cn9                            1/1     Running   1          160m
+      $ kube-system              calico-node-kjsgw                            1/1     Running   1          160m
+      $ kube-system              calico-node-vqvc5                            1/1     Running   1          160m
+      $ kube-system              coredns-58687784f9-54xsp                     1/1     Running   0          160m
+      $ kube-system              coredns-58687784f9-g94xb                     1/1     Running   0          159m
+      $ kube-system              dns-autoscaler-79599df498-hlw8k              1/1     Running   0          159m
+      $ kube-system              kube-apiserver-k8s-host-1-134                1/1     Running   0          162m
+      $ kube-system              kube-apiserver-k8s-host-194                  1/1     Running   0          161m
+      $ kube-system              kube-apiserver-k8s-host-68                   1/1     Running   0          161m
+      $ kube-system              kube-controller-manager-k8s-host-1-134       1/1     Running   0          162m
+      $ kube-system              kube-controller-manager-k8s-host-194         1/1     Running   0          161m
+      $ kube-system              kube-controller-manager-k8s-host-68          1/1     Running   0          161m
+      $ kube-system              kube-proxy-5f42q                             1/1     Running   0          161m
+      $ kube-system              kube-proxy-bbwvk                             1/1     Running   0          161m
+      $ kube-system              kube-proxy-fgcfb                             1/1     Running   0          161m
+      $ kube-system              kube-scheduler-k8s-host-1-134                1/1     Running   0          161m
+      $ kube-system              kube-scheduler-k8s-host-194                  1/1     Running   0          161m
+
+Adding a SQream Label on Kubernetes Cluster Nodes
+-------------------------------------------------
+**To add a SQream label on Kubernetes cluster nodes:**
+
+1. Get the cluster node list:
+
+   .. code-block:: postgres
+   
+      $ kubectl get nodes
+	  
+   The following is an example of the correct output:
+   
+   .. code-block:: postgres
+   
+      $ NAME             STATUS   ROLES    AGE    VERSION
+      $ node-1           Ready    master   162m   v1.16.3
+      $ node-2           Ready    master   161m   v1.16.3
+      $ node-3           Ready    master   161m   v1.16.3
+	  
+2. Set the node label, change the ``node-name`` to the node NAME(s) in the above example:
+
+   .. code-block:: postgres
+
+      $ kubectl label nodes <node-name> cluster=sqream
+   
+   The following is an example of the correct output:
+
+   .. code-block:: postgres
+   
+      $ kubectl label nodes node-1 cluster=sqream
+      $ node/node-1 labeled
+   
+Copy the Kubernetes Configuration API File to Master Cluster Nodes
+-------------------------------------------------  
+When the Kubernetes cluster installation is complete, an API configuration file is automatically created in the **.kube** folder of the root user. This file enables the **kubectl** command access Kubernetes' internal API service.
+
+Following this step lets you run **kubectl** commands from any node in the cluster.
+
+**NOTICE:** You must perform this on the management server only!**
+
+**Comment - "this" = this step, or these commands?**
+
+**To copy the Kubernetes configuration API file to Master cluster nodes:**
+
+1. Replace the ``local user`` and ``node name``.
+
+**Comment - do we want to show an example?**
+
+2. Create the **.kube** folder in the **local user** directory:
+
+   .. code-block:: postgres
+   
+      $ mkdir /home/<local user>/.kube
+
+3. Copy the configuration file from the root user directory to the **local user** directory:
+
+   .. code-block:: postgres
+   
+      $ sudo cp /root/.kube/config /home/<local user>/.kube
+
+4. Change the file owner from **root user** to the local user:
+
+   .. code-block:: postgres
+   
+      $  sudo chown <local user>.<local user> /home/<local user>/.kube/config
+
+5. Create the **.kube** folder in the other nodes located in the **local user** directory:
+
+   .. code-block:: postgres
+   
+      $ ssh <local user>@<node name> mkdir .kube
+
+6. Copy the configuration file from the management node to the other nodes:
+
+   .. code-block:: postgres
+   
+      $ scp /home/<local user>/.kube/config <local user>@<node name>:/home/<local user>/.kube/
+
+Creating an env_file in the User's Home Directory
+-------------------------------------------------
+An **env_file** must be created in the user's home directory, and the VIP address must be set as a variable.
+
+**NOTICE:** You must perform this on the management server only!
+
+**To create an env_file** in the user's home directory:
+
+1. Set a variable that includes the VIP IP address:
+
+   .. code-block:: postgres
+   
+      $ export VIP_IP=<VIP IP>
+   
+2. Do one of the following:
+
+   * For local users:
+
      .. code-block:: postgres
    
-     $ pip3 install -r requirements.txt
+        $ mkdir /home/$USER/.sqream
 
+   * For root users:   
 
+     .. code-block:: postgres
+   
+        $ mkdir /root/.sqream  
+   
+3. Make the following replacements to the **kubespray.settings.sh** file:
 
+   .. code-block:: postgres  
+   
+        $ cat <<EOF > /home/$USER/.sqream/env_file
+        $ SQREAM_K8S_VIP=$VIP_IP
+        $ SQREAM_ADMIN_UI_PORT=8080
+        $ SQREAM_DASHBOARD_DATA_COLLECTOR_PORT=8100
+        $ SQREAM_DATABASE_NAME=master
+        $ SQREAM_K8S_ADMIN_UI=sqream-admin-ui
+        $ SQREAM_K8S_DASHBOARD_DATA_COLLECTOR=dashboard-data-collector
+        $ SQREAM_K8S_METADATA=sqream-metadata
+        $ SQREAM_K8S_NAMESPACE=sqream
+        $ SQREAM_K8S_PICKER=sqream-picker
+        $ SQREAM_K8S_PROMETHEUS=prometheus
+        $ SQREAM_K8S_REGISTRY_PORT=6000
+        $ SQREAM_METADATA_PORT=3105
+        $ SQREAM_PICKER_PORT=3108
+        $ SQREAM_PROMETHEUS_PORT=9090
+        $ SQREAM_SPOOL_MEMORY_RATIO=0.25
+        $ SQREAM_WORKER_0_PORT=5000
+        $ KRB5CCNAME=FILE:/tmp/tgt
+        $ KRB5_SERVER=kdc.sq.com:192.168.1.111
+        $ KRB5_CONFIG_DIR=${        $ SQREAM_MOUNT_DIR}/krb5
+        $ KRB5_CONFIG_FILE=${KRB5_CONFIG_DIR}/krb5.conf
+        $ HADOOP_CONFIG_DIR=${        $ SQREAM_MOUNT_DIR}/hadoop
+        $ HADOOP_CORE_XML=${HADOOP_CONFIG_DIR}/core-site.xml
+        $ HADOOP_HDFS_XML=${HADOOP_CONFIG_DIR}/hdfs-site.xml
+        $ EOF  
+   
+   
 
-
-
-
-
-
-
-
-      
-      
-      
-      
+  
