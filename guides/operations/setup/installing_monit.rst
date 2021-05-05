@@ -25,7 +25,7 @@ The **Installing Monit** procedures describes how to install, configure, and sta
 You can install Monit in one of the following ways:
 
  * :ref:`Installing Monit on CentOS <installing-monit-on-centos>`
- * Check the external source for installing monit on centOS offline. Trying to locate source.
+ * :ref:`Installing Monit on CentOS offline <installing-monit-on-centos-offline:>`
  * :ref:`Installing Monit on Ubuntu <installing-monit-on-ubuntu>`
  * :ref:`Installing Monit on Ubuntu offline <installing-monit-on-ubuntu-offline>`
 
@@ -42,6 +42,99 @@ Installing Monit on CentOS:
      
        $ sudo yum install monit  
        
+       
+Installing Monit on CentOS Offline:
+------------------------------------
+
+.. _installing-monit-on-centos-offline:
+
+Installing Monit on CentOS offline can be done in either of the following ways:
+
+* Building Monit from Source Code
+* Building Monit from Pre-Built Binaries
+
+Building Monit from Source Code
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**To build Monit from source code:**
+
+1. Copy the Monit package for the current version:
+       
+   .. code-block:: console
+     
+      $ tar zxvf monit-<x.y.z>.tar.gz
+       
+ The value ``x.y.z`` denotes the version numbers.
+       
+2. Navigate to the directory where you want to store the package:
+
+   .. code-block:: console
+     
+      $ cd monit-x.y.z
+ 
+3. Configure the files in the package:
+
+   .. code-block:: console
+     
+      $ ./configure (use ./configure --help to view available options)
+ 
+4. Build and install the package:
+
+   .. code-block:: console
+     
+      $ make && make install
+      
+The following are the default storage directories:
+
+* The Monit package: **/usr/local/bin/**
+* The **monit.1 man-file**: **/usr/local/man/man1/**
+
+5. **Optional** - To change the above default location(s), use the **--prefix** option to ./configure.
+
+**Comment - I took this line directly from the external online documentation. Is the "prefix option" referrin gto the "--help" in Step 3? URL: https://mmonit.com/wiki/Monit/Installation**
+
+6. **Optional** - Create an RPM package for CentOS directly from the source code:
+
+   .. code-block:: console
+     
+      $ rpmbuild -tb monit-x.y.z.tar.gz
+      
+**Comment - Is this an optional or mandatory step?**      
+
+Building Monit from Pre-Built Binaries
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**To build Monit from pre-built binaries:**
+
+1. Copy the Monit package for the current version:
+       
+   .. code-block:: console
+
+      $ tar zxvf monit-x.y.z-linux-x64.tar.gz
+      
+   The value ``x.y.z`` denotes the version numbers.
+
+2. Navigate to the directory where you want to store the package:
+
+   .. code-block:: console$ cd monit-x.y.z
+   
+3. Copy the **bin/monit** and **/usr/local/bin/** directories:
+ 
+    .. code-block:: console
+
+      $ cp bin/monit /usr/local/bin/
+ 
+4. Copy the **conf/monitrc** and **/etc/** directories:
+ 
+    .. code-block:: console
+
+      $ cp conf/monitrc /etc/
+       
+**Comment - please review this procedure.**
+
+For examples of pre-built Monit binarties, see :ref:`Download Precompiled Binaries<https://mmonit.com/monit/#download>`.
+
+      
 Installing Monit on Ubuntu:
 ------------------------------------
 
@@ -135,19 +228,19 @@ For servers that don't run the **metadataserver** and **serverpicker** commands,
      
       $ cp monitrc /etc/monit.d/
        
- 4. Set file permissions to **600** (full read and write access):
+4. Set file permissions to **600** (full read and write access):
  
     .. code-block:: console
 
        $ sudo chmod 600 /etc/monit.d/monitrc
        
- 5. Reload the system to activate the current configurations:
+5. Reload the system to activate the current configurations:
  
     .. code-block:: console
      
        $ sudo systemctl daemon-reload
  
- 6. **Optional** - Navigate to the **/etc/sqream** directory and create a symbolic link to the **monitrc** file:
+6. **Optional** - Navigate to the **/etc/sqream** directory and create a symbolic link to the **monitrc** file:
  
     .. code-block:: console
      
