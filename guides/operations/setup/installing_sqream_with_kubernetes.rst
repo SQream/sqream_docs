@@ -8,8 +8,10 @@ Overview
 ========
 The **Installing SQream with Kubernetes** guide describes the following:
 
-* How to prepare the SQream environment for installing SQream using Kubernetes.
+* How to prepare the SQream environment for launching SQream using Kubernetes.
 * Install the SQream software using a Kubernetes package.
+
+**Comment - As with Monit, we are not using Kubernetes to INSTALL SQream, but to LAUNCH SQream, correct?**
 
 **Kubernetes**, also known as **k8s**, is a portable open source platform that automates Linux container operations. Kubernetes supports outsourcing data centers to public cloud service providers or can be scaled for web hosting. SQream uses Kubernetes as an orchestration and recovery solution.
 
@@ -19,7 +21,7 @@ A minimum of three servers is required when installing SQream using Kubernetes.
 
 Kubernetes uses clusters, which are sets of nodes running containterized applications. A cluster consists of at least 2 GPU nodes and 1 slim server to act as Quorum manager. All three servers are set as **master.**
 
-**Comment - what does this mean? 2 servers with GPU and 1 without.**   
+**Comment - what does this mean? 2 servers with GPU and 1 without. One without GPU?**   
 
 Each server must have the following IP addresses:
 
@@ -1132,6 +1134,138 @@ An **env_file** must be created in the user's home directory, and the VIP addres
         $ HADOOP_HDFS_XML=${HADOOP_CONFIG_DIR}/hdfs-site.xml
         $ EOF  
    
+Creating a Base Kubernetes Namespace
+--------------------------------------
+You can create a base Kubernetes namespace by running the following command:
+
+.. code-block:: postgres
    
+   $ kubectl create namespace sqream-init    
+   
+The following is an example of the correct output:
+
+.. code-block:: postgres
+   
+   $ namespace/sqream-init created   
+   
+   
+Pushing the **env_file** File to the Kubernetes configmap
+--------------------------------------   
+The **env_file** file must be pushed to the Kubernetes **configmap** in the **sqream-init** namespace.
+
+This is done by running the following command for local users:
+
+.. code-block:: postgres
+   
+   $ kubectl create configmap sqream-init -n sqream-init --from-env-file=/home/$USER/.sqream/env_file
+   
+This is done by running the following command for root users:
+
+.. code-block:: postgres
+   
+   $ $ kubectl create configmap sqream-init -n sqream-init --from-env-file=/root/.sqream/env_file
+
+The following is an example of the correct output (for both local and root users):
+
+.. code-block:: postgres
+   
+   $ configmap/sqream-init created
+
+Installing the Nvidia-device-plugin Daemonset
+----------------------------------------------
+Installing the Nvidia-device-plugin daemonset is only relevant to GPU nodes.
+
+**To install the Nvidia-device-plugin daemonset:**
+
+1. Set ``nvidia.com/gpu`` to ``true`` on all GPU nodes:
+
+.. code-block:: postgres
+   
+   $ kubectl label nodes <GPU node name> nvidia.com/gpu=true
+      
+2. Replace the *<GPU node name>* with your GPU node name:
+   
+For a complete list of GPU node names, run the ``kubectl get nodes`` command.
+
+The following is an example of the correct output:
+   
+.. code-block:: postgres
+   
+   $ kubectl label nodes node-2 nvidia.com/gpu=true
+   $ node/node-2 labeled   
+   
+Creating an Nvidia-device-plugin
+----------------------------------------------   
+  
+You can create an Nvidia-device-plugin by running the following command: 
+
+.. code-block:: postgres
+   
+   $  kubectl create -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/1.0.0-beta6/nvidia-device-plugin.yml
+   
+If needed, you can check the status of the Nvidia-device-plugin-daemonset pod status:
+
+.. code-block:: postgres
+   
+   $ kubectl get pods -n kube-system -o wide | grep nvidia-device-plugin
+
+The following is an example of the correct output:   
+
+.. code-block:: postgres
+   
+   $ NAME                                       READY   STATUS    RESTARTS   AGE
+   $ nvidia-device-plugin-daemonset-fxfct       1/1     Running   0          6h1m
+   $ nvidia-device-plugin-daemonset-jdvxs       1/1     Running   0          6h1m
+   $ nvidia-device-plugin-daemonset-xpmsv       1/1     Running   0          6h1m
+
+Checking GPU Resources Allocatable to GPU Nodes
+-------------------------------------
+Each GPU node has records, such as ``nvidia.com/gpu:     <#>``. The ``#`` indicates the number of allocatable, or available, GPUs in each node.
+
+You can output a description of allocatable resources by running the following command:
+
+.. code-block:: postgres
+   
+   $ kubectl describe node 
+
+The following is an example of the correct output:
+
+.. code-block:: postgres
+   
+   $ Allocatable:
+   $  cpu:                3800m
+   $  ephemeral-storage:  94999346224
+   $  hugepages-1Gi:      0
+   $  hugepages-2Mi:      0
+   $  memory:             15605496Ki
+   $  nvidia.com/gpu:     1
+   $  pods:               110 
+
+Preparing the WatchDog Monitor
+------------------------------
+SQream's deployment includes installing two watchdog services. These services monitor Kuberenetes management and the server's storage network.
+
+You can enable the storage watchdogs by running the following commands (on each node):
+
+.. code-block:: postgres
+   
+   $ 10.0.0.1 k8s-node1.storage
+   $ 10.0.0.2 k8s-node2.storage
+   $ 10.0.0.3 k8s-node3.storage
+
+**Comment - what about the commands for enabling the Kubernetes management watchdog?**
+
+Launching SQream
+
+
+
+
+
+
+
+
+
+
+  
 
   
