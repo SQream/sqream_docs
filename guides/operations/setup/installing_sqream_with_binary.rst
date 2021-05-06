@@ -1,7 +1,7 @@
-.. _installing_sqream_with_tarball:
+.. _installing_sqream_with_binary:
 
 *********************************************
-Installing SQream with Tarball
+Installing SQream with Binary
 *********************************************
 This procedure describes how to install SQream using Tarball.
 
