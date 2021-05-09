@@ -5,9 +5,7 @@ Installing SQream with Binary
 *********************************************
 This procedure describes how to install SQream using Binary.
 
-**Comment - speak with Ori about the proper name for this**
-
-**To launch SQream with Tarball:**
+**To launch SQream with Binary:**
 
 1. Copy the SQream package to the **/home/sqream** directory for the current version:
 
@@ -125,9 +123,7 @@ It would be same on server running metadataserver and different on other server 
    
           $ vim /etc/sqream/server_picker.conf
     
-    2. Change the IP **127.0.0.1** to the IP of the server that the **metadataserver** service is running on.
-    
-    **Comment: can the host name be used instead of the IP address? See Step 4 in Configuring an HDFS Environment for the user sqream.**
+    2. Change the IP **127.0.0.1** to the IP of the server that the **metadataserver** service is running on.    
     
     3. Change the **CLUSTER** to the value of the cluster path.
      
@@ -166,6 +162,103 @@ It would be same on server running metadataserver and different on other server 
 
     .. code-block:: console
      
-       $ cp license.enc /etc/sqream/       
+       $ cp license.enc /etc/sqream/   
+
        
 If you have an HDFS environment, see Configuring an HDFS Environment for the User sqream :ref:`.. _hdfs_yaniv.rst:`.
+
+Upgrading SQream Version
+-------------------------
+Upgrading your SQream version requires stopping all running services while you manually upgrade SQream.
+
+**To upgrade your version of SQream:**
+
+1. Stop all actively running SQream services.
+      
+2. Verify that SQream has stopped listening on ports **500X**, **510X**, and **310X**:
+
+   .. code-block:: console
+
+      $ sudo netstat -nltp    #to make sure sqream stopped listening on 500X, 510X and 310X ports.
+
+3. Replace the old version ``sqream-db-v2020.2``, with the new version ``sqream-db-v2021.1``:
+
+   .. code-block:: console
+    
+      $ cd /home/sqream
+      $ mkdir tempfolder
+      $ mv sqream-db-v2021.1.tar.gz tempfolder/
+      $ tar -xf sqream-db-v2021.1.tar.gz
+      $ sudo mv sqream /usr/local/sqream-db-v2021.1
+      $ cd /usr/local
+      $ sudo chown -R sqream:sqream sqream-db-v2021.1
+   
+4. Remove the symbolic link:
+
+   .. code-block:: console
+   
+      $ sudo rm sqream
+   
+5. Create a new symbolic link named "sqream" pointing to the new version:
+
+   .. code-block:: console  
+
+      $ sudo ln -s sqream-db-v2021.1 sqream
+
+6. Verify that the symbolic SQream link points to the real folder:
+
+   .. code-block:: console  
+
+      $ ls -l
+	 
+   The following is an example of the correct output:
+
+   .. code-block:: console
+    
+      $ sqream -> sqream-db-v2021.1
+
+5. **Optional-** (For major versions) Upgrade your version of SQream storage cluster, as shown in the following example:
+
+   .. code-block:: console  
+
+      $ ./upgrade_storage </home/rhendricks/raviga_database>
+	  
+   The following is an example of the correct output:
+	  
+   .. code-block:: console  
+
+	  get_leveldb_version path{/home/rhendricks/raviga_database}
+	  current storage version 23
+      upgrade_v24
+      upgrade_storage to 24
+	  upgrade_storage to 24 - Done
+	  upgrade_v25
+	  upgrade_storage to 25
+	  upgrade_storage to 25 - Done
+	  upgrade_v26
+	  upgrade_storage to 26
+	  upgrade_storage to 26 - Done
+	  validate_leveldb
+	  ...
+      upgrade_v37
+	  upgrade_storage to 37
+	  upgrade_storage to 37 - Done
+	  validate_leveldb
+      storage has been upgraded successfully to version 37
+ 
+6. Verify that the latest version has been installed:
+
+   .. code-block:: console
+    
+      $ ./sqream sql --username sqream --password sqream --host localhost --databasename master -c "SELECT SHOW_VERSION();"
+      
+   The following is an example of the correct output:
+ 
+   .. code-block:: console
+    
+      v2021.1
+      1 row
+      time: 0.050603s 
+ 
+For more information, see the `upgrade_storage <https://docs.sqream.com/en/latest/reference/cli/upgrade_storage.html>`_ command line program.
+
