@@ -1,4 +1,4 @@
-.. _recommended_configurations_updated:
+.. _recommended_configurations:
 
 *********************************************
 Recommended Post-Installation Configuration
