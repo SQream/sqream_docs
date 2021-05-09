@@ -1,9 +1,9 @@
-.. _installing_sqream_with_tarball:
+.. _installing_sqream_with_binary:
 
 *********************************************
-Installing SQream with Tarball
+Installing SQream with Binary
 *********************************************
-This procedure describes how to install SQream using Tarball.
+This procedure describes how to install SQream using Binary.
 
 **Comment - speak with Ori about the proper name for this**
 
@@ -115,7 +115,7 @@ It would be same on server running metadataserver and different on other server 
 
     1. Change the **SERVICE_NAME=sqream2** value to **SERVICE_NAME=sqream3**.
     
-    2. Change LOGFILE=/var/log/sqream/sqream2.log to LOGFILE=/var/log/sqream/sqream3.log
+    2. Change **LOGFILE=/var/log/sqream/sqream2.log** to **LOGFILE=/var/log/sqream/sqream3.log**.
     
 14. Set up **servicepicker**:
 
