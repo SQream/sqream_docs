@@ -5,7 +5,7 @@ Installing SQream with Binary
 *********************************************
 This procedure describes how to install SQream using Binary.
 
-**To launch SQream with Binary:**
+**To install SQream with Binary:**
 
 1. Copy the SQream package to the **/home/sqream** directory for the current version:
 
