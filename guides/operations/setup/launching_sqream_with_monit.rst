@@ -8,7 +8,8 @@ This procedure describes how to launch SQream using Monit.
 Launching SQream
 ====================================  
 
-After configuring Monit and verifying that SQream is running, you can launch it by doing the following:
+After doing the following, you can launch SQream according to the instructions on this page.
+
 
 
 1. :ref:`Installing Monit <installing_monit>`
