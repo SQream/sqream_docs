@@ -12,5 +12,5 @@ SQream DB supports external data sources for use with :ref:`external_tables`, :r
    :glob:
 
    s3
-   hdfs_yaniv
+   hdfs
    
