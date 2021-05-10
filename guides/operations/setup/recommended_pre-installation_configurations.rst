@@ -26,7 +26,7 @@ If any doubt arises, consult the documentation for your server or your hardware 
    * - Item
      - Setting
      - Rationale
-   * - **Management console access - ensure the physical connection?**
+   * - **Management console access**
      - **Connected**
      - Connection to OOB required to preserve continuous network uptime.
    * - **All drives.**
