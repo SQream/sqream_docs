@@ -1,6 +1,6 @@
 .. _hdfs.rst:
 
-.. _back_to_top:
+.. _back_to_top_hdfs:
 
 Using SQream in an HDFS Environment
 =======================================
@@ -99,7 +99,7 @@ This section describes how to configure an HDFS environment for the user **sqrea
       $ PATH=$PATH:$HOME/.local/bin:$HOME/bin:${SQREAM_HOME}/bin/:${JAVA_HOME}/bin:$HADOOP_INSTALL/bin
       $ export PATH
 	  
-:ref:`Back to top <back_to_top>`
+:ref:`Back to top <back_to_top_hdfs>`
 
 	  
 .. _authenticate_hadoop_servers_that_require_kerberos:
@@ -257,4 +257,4 @@ If any of the following are empty, verify that you followed :ref:`Step 6 <step_6
 
 17. Review this procedure to verify that you have followed each step.
 
-:ref:`Back to top <back_to_top>`
+:ref:`Back to top <back_to_top_hdfs>`
