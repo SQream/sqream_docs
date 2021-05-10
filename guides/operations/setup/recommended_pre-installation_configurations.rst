@@ -46,7 +46,10 @@ If any doubt arises, consult the documentation for your server or your hardware 
      - The Performance profile provides potentially increased performance by maximizing processor frequency, and the disabling certain power saving features such as C-states. Use this setting for environments that are not sensitive to power consumption.
    * - **Power Cap Policy** or **Dynamic power capping**
      - **Disabled**
-     - Other power profiles (like "balanced") throttle the CPU and may diminish performance or cause GPU failure. This setting may appear together with the above (Power profile or Power regulator). **(In BIOS?)** This setting allows disabling system ROM power calibration during the boot process. Power regulator settings are named differently in BIOS and iLO/iDRAC. **Comment: is it necessary to show the different power regulator setting names in this document?**	 
+     - Other power profiles (like "balanced") throttle the CPU and may diminish performance or cause GPU failure. This setting may appear together with the above (Power profile or Power regulator). **(In BIOS?)** This setting allows disabling system ROM power calibration during the boot process. Power regulator settings are named differently in BIOS and iLO/iDRAC.
+	 
+..
+	 **Comment: is it necessary to show the different power regulator setting names in this document?**	 
    * - **Intel Turbo Boost**
      - **Enabled**
      - Intel Turbo Boost enables overclocking the processor to boost CPU-bound operation performance. Overclocking may risk computational jitter due to changes in the processor's turbo frequency. This causes brief pauses in processor operation, introducing uncertainty into application processing time. Turbo operation is a function of power consumption, processor temperature, and the number of active cores.
@@ -93,17 +96,21 @@ Installing the Operating System
 ===================================================	 
 Either the CentOS (versions 7.6-7.9) or RHEL (versions 7.6-7.9) must be installed before installing the SQream database. Either the customer or a SQream representative can perform the installation.
 
-**Comment: I recommend leaving contact information here - Please call xxx-xxx-xxxx to contact a SQream representative.**
+..
+	 **Comment: I recommend leaving contact information here - Please call xxx-xxx-xxxx to contact a SQream representative.**
 
 **To install the operating system:**
 
 #. Select a language (English recommended).
 #. From **Software Selection**, select **Minimal**.
 #. Select the **Development Tools** group checkbox.
-#. Continue the installation. **Comment: why don't we document the entire procedure? I.e., why do we stop here and say "Continue the installation" and "Set up the necessary drives..."?**
+#. Continue the installation.
 #. Set up the necessary drives and users as per the installation process.
 
    Using Debugging Tools is recommended for future problem-solving if necessary.
+   
+   ..
+	 **Comment: In Step 4, why don't we document the entire procedure? I.e., why do we stop here and say "Continue the installation" and "Set up the necessary drives..."?**
 
 Selecting the **Development Tools** group installs the following tools:
 
@@ -321,7 +328,10 @@ Installing NodeJS on Ubuntu
 
       $ sudo apt-get install -y nodejs  
   
-3. Verify the node version: **Comment - is this step relevant only for installing on Ubuntu, or on CentOS as well?**
+3. Verify the node version:
+
+..
+	 **Comment: - is this step relevant only for installing on Ubuntu, or on CentOS as well?**
   
    .. code-block:: console
 
@@ -333,7 +343,8 @@ This section describes how to configure your NTP.
 
 If you don't have internet access, see `Configure NTP Client to Synchronize with NTP Server <https://www.thegeekstuff.com/2014/06/linux-ntp-server-client/>`__.
 
-*Comment - Is this the correct procedure on the linked URL: Configure NTP Client to Synchronize with NTP Server?*
+..
+	 **Comment: - Is this the correct procedure on the linked URL: Configure NTP Client to Synchronize with NTP Server?*
 
 **To configure your NTP:**
   
@@ -460,7 +471,7 @@ Configuring the Firewall
 --------------------------------
 The example in this section shows the open ports for four sqreamd sessions. If more than four are required, open the required ports as needed. Port 8080 in the example below is a new UI port.
 
-**To configure the firewall:
+**To configure the firewall:**
 
 1. Start the service and enable FirewallID on boot:
 
@@ -479,7 +490,9 @@ The example in this section shows the open ports for four sqreamd sessions. If m
       $ firewall-cmd --zone=public --permanent --add-port=5100-5103/tcp
       $ firewall-cmd --permanent --list-all
 
-**Comment: does *--list-all* add the entire list of ports to the permanent firewall?**
+
+..
+	 **Comment: - does *--list-all* add the entire list of ports to the permanent firewall?**
 
 3. Reload the firewall:
 
@@ -493,7 +506,7 @@ The example in this section shows the open ports for four sqreamd sessions. If m
 
       $ systemctl start firewalld  
 
-If you do not need the firewall, you can disable it:
+   If you do not need the firewall, you can disable it:
   
    .. code-block:: console
 
@@ -543,7 +556,8 @@ Configuring the /etc/hosts File
       $ 127.0.0.1	localhost
       $ <server ip>	<server_name>
   
-**Comment - Is the above an output or a step?**
+..
+	 **Comment: - Is the above an output or a step?**
   
 Configuring the DNS
 --------------------------------
@@ -562,7 +576,9 @@ Configuring the DNS
       $ sudo vim /etc/sysconfig/network-scripts/ifcfg-4.4.4.4
       $ sudo vim /etc/sysconfig/network-scripts/ifcfg-8.8.8.8
 
-**Comment: Is the above input correct?**
+
+..
+	 **Comment: - is the above input correct?**
 
 Installing the Nvidia CUDA Driver
 ===================================================
@@ -710,7 +726,10 @@ Installing the CUDA depedendencies from the **epel** repository is only required
 
       $ sudo yum localinstall cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
 
-For example, RHEL7 for cuda 10.1. **Comment: Confirm.**
+For example, RHEL7 for cuda 10.1.
+
+..
+	 **Comment: - Confirm.**
 
 5. Install the CUDA drivers:
 
@@ -732,11 +751,14 @@ For example, RHEL7 for cuda 10.1. **Comment: Confirm.**
 
       $ nvidia-smi
    
-**Comment - what is the output?**
+
+..
+	 **Comment: - what is the output?**
  
 If you do not have an internet connection, you can set up the local repository as shown in the following example:
  
-**Comment: I suggest making the following example its own section, i.e., how to prepare the CUDA driver offline.** 
+..
+	 **Comment: - I suggest making the following example its own section, i.e., how to prepare the CUDA driver offline.** 
 
 You can prepare the CUDA driver offline from a server connected to the CUDA repo by running the following commands as a *root* user:
 	  
@@ -770,13 +792,11 @@ The following is an example of generated output:
 
       $ vim /etc/yum.repos.d/cuda-10-1-local.repo
 
-Check the **name** of the file. **Comment:; for what?**
+   The following is an example of the correct output:
 
-The following is an example of generated output:
+   .. code-block:: console
 
-.. code-block:: console
-
-   $ name=cuda-10-1-local
+      $ name=cuda-10-1-local
    
 5. Clone the repository to a location where it can be copied from:
 
@@ -905,23 +925,27 @@ The server is ready for the SQream software installation.
 
          $ sysctl -n fs.file-max
 		 
-The desired output when checking the maximum value of the **fs.file** is greater or equal to **2097152**.
+    The desired output when checking the maximum value of the **fs.file** is greater or equal to **2097152**.
 
-   f. Run the following command as a SQream user: **Question - what do the following command parameter do? -c?**		 
+   f. Run the following command as a SQream user:
+   
+..
+	 **Comment: - **Question - what do the following command parameter do? -c?**		 
 		 
       .. code-block:: console
 
          $ ulimit -c -u -n	
 
-**Comment: See https://ss64.com/bash/ulimit.html**		 
+..
+	 **Comment: - See https://ss64.com/bash/ulimit.html**		 
 		 
-The following shows the desired output when **<fill in>**:
+    The following shows the desired output when **<fill in>**:
 
-.. code-block:: console
+    .. code-block:: console
 
-   $ core file size (blocks, -c) unlimited
-   $ max user processes (-u) 1000000
-   $ open files (-n) 1000000
+    $ core file size (blocks, -c) unlimited
+    $ max user processes (-u) 1000000
+    $ open files (-n) 1000000
 
 3. Configure the security limits by running the **echo -e** command as a root user logged in shell:
 
@@ -937,7 +961,7 @@ Enabling core dumps is recommended, but optional.
 
 **To enable core dumps:**
 
-1. Check the abrtd Status
+1. Check the *8abrtd** Status
 
 2. Set the limits
 
@@ -1029,7 +1053,8 @@ Setting the Output Directory of the /etc/sysctl.conf File
       $ kernel.core_pattern = /<tmp/core_dumps>/core-%e-%s-%u-%g-%p-%t
       $ fs.suid_dumpable = 2
 
-**Comment - leave a note that the user can choose his correct location of the folder.**
+..
+	 **Comment: - leave a note that the user can choose his correct location of the folder.**
 
 3. To apply the changes without rebooting the server, run:
 	  
@@ -1043,11 +1068,11 @@ Setting the Output Directory of the /etc/sysctl.conf File
 
      $ sudo cat /proc/sys/kernel/core_pattern
 	  
-The following shows the correct generated output:
+  The following shows the correct generated output:
 	  
-.. code-block:: console
+  .. code-block:: console
 
-   $ /tmp/core_dumps/core-%e-%s-%u-%g-%p-%t	  
+     $ /tmp/core_dumps/core-%e-%s-%u-%g-%p-%t	  
 	  
 5. Verify that the core dumping works:	  
 	  
@@ -1058,6 +1083,8 @@ The following shows the correct generated output:
 	  
 Verifying that the Core Dumps Work 
 ---------------------------------------------------	
+You can verify that the core dumps work only after installing and running SQream. This causes the server to crash and a new core.xxx file to be included in the folder that is written in **/etc/sysctl.conf**
+
 **To verify that the core dumps work:**
 
 1. Stop and restart all SQream services.
@@ -1068,11 +1095,9 @@ Verifying that the Core Dumps Work
 
      $ select abort_server();
 
-You can verify that the core dumps work only after installing and running SQream.
-   
-This causes the server to crash and a new core.xxx file to be included in the folder that is written in **/etc/sysctl.conf**
 
-**Question: what did the author mean by "Stage 3"?**
+..
+	 **Comment: - what did the author mean by "Stage 3"?**
    
 Troubleshooting Core Dumping 
 ---------------------------------------------------	
@@ -1094,11 +1119,11 @@ This section describes the troubleshooting procedure to be followed if all param
 
       $ ulimit -c
 
-If all parameters have been configured correctly, the correct output is:
+   If all parameters have been configured correctly, the correct output is:
 
-.. code-block:: console
+   .. code-block:: console
 
-   $ unlimited	
+      $ unlimited	
 
 4. If all parameters have been configured correctly, but running **ulimit -c** outputs **0**, run the following:
 
@@ -1128,210 +1153,3 @@ If all parameters have been configured correctly, the correct output is:
          $ ulimit -S -c ${DAEMON_COREFILE_LIMIT:-0} >/dev/null 2>&1
 
    c. If the line is found, tag it with the **hash** symbol and reboot the server.
-
-**Comment: The rest of the document is the old content. Can it all be removed?**   
-	  
-	  
-	  
-	 
-Use a dedicated SQream DB administration account
-===================================================
-
-Create a user for SQream DB, and optionally assign it to the ``wheel`` group for ``sudo`` access.
-
-.. code-block:: console
-
-   $ useradd -m -u 1132 -U sqream
-   $ passwd sqream 
-   $ usermod -aG wheel sqream 
-
-The UID (1132 in the example above) is set to ensure all shared files are accessible by all workers.
-
-Configure the OS locale and timezone
-=====================================
-
-#. Set your OS to use UTF-8, which SQream DB uses for non-English language support.
-   
-   .. code-block:: console
-   
-      $ sudo localectl set-locale LANG=en_US.UTF-8
-
-#. Set the correct timezone for your server.
-   Refer to `the list of available timezones <https://en.wikipedia.org/wiki/List_of_tz_database_time_zones>`_ to find a timezone that matches your location.
-   
-   .. code-block:: console
-   
-      $ sudo timedatectl set-timezone America/New_York
-
-
-Configure NTP for clock synchronization
-=========================================
-
-SQream DB clusters rely on clock synchronization to function correctly.
-
-
-   .. code-block:: console
-   
-      $ sudo yum install -y ntp ntpdate
-      $ sudo systemctl enable ntpd
-      $ sudo systemctl start ntpd
-
-If your organization has an NTP server, configure it by adding records to ``/etc/ntpd.conf``, reloading the service, and checking that synchronization is enabled:
-
-   .. code-block:: console
-   
-      $ echo -e "\nserver <your NTP server address>\n" | sudo tee -a /etc/ntp.conf
-      $ sudo systemctl restart ntpd
-      $ sudo timedatectl
-               Local time: Sat 2019-10-12 17:26:13 EDT
-           Universal time: Sat 2019-10-12 21:26:13 UTC
-                 RTC time: Sat 2019-10-12 21:26:13
-                Time zone: America/New_York (EDT, -0400)
-              NTP enabled: yes
-         NTP synchronized: yes
-          RTC in local TZ: no
-               DST active: yes
-          Last DST change: DST began at
-                           Sun 2019-03-10 01:59:59 EST
-                           Sun 2019-03-10 03:00:00 EDT
-          Next DST change: DST ends (the clock jumps one hour backwards) at
-                           Sun 2019-11-03 01:59:59 EDT
-                           Sun 2019-11-03 01:00:00 EST
-
-
-
-Install recommended utilities
-===============================
-
-The following packages contain tools that are recommended but not required for using SQream DB.
-
-   .. code-block:: console
-   
-      $ sudo yum install -y bash-completion.noarch vim-enhanced.x86_64 vim-common.x86_64 net-tools iotop htop psmisc screen xfsprogs wget yum-utils deltarpm dos2unix tuned  pciutils
-
-
-Tuning OS parameters for performance and stability
-===================================================
-
-SQream DB requires certain OS parameters to be set on all hosts in your cluster.
-
-These settings affect:
-
-* Shared memory - Most OS installations may try to limit high throughput software like SQream DB.
-* Network - On high throughput operations like ingest, optimizing network connection parameters can boost performance
-* User limits - SQream DB may open a large amount of files. The default OS settings may cause some statements to fail if the system runs out of file descriptors.
-* Core dump creation rules
-
-#. Create a directory for core dumps
-
-   In this step, you will create a directory for writing core dumps - which you will configure in the next step.
-   
-   .. code-block:: console
-      
-      $ sudo mkdir /tmp/core_dumps
-
-   .. note::
-      Core dumps can be large - up to the size of the system memory (i.e. for a machine with 512GB of RAM, the size of the core dump will be 512GB).
-
-      Make sure the directory has enough space for writing a core dump.
-
-
-#. Set ``sysctl`` overrides to tune system performance
-   
-   .. code-block:: console
-      :linenos:
-      
-      $ sudo tee /etc/sysctl.d/sqreamdb.conf > /dev/null <<EOT
-      kernel.sysrq = 1
-      kernel.core_uses_pid = 1
-      kernel.core_pattern = /tmp/core_dumps/%f-core-%e-%s-%u-%g-%p-%t
-      kernel.pid_max = 524288
-      vm.max_map_count = 2042292
-      vm.dirty_background_ratio = 5
-      vm.dirty_ratio = 3
-      vm.swappiness = 1
-      vm.vfs_cache_pressure = 200
-      vm.zone_reclaim_mode = 0
-      fs.suid_dumpable = 2
-      fs.file-max = 2097152
-      EOT
-
-   .. note:: 
-      The settings above include provisioning for core dumps. Core dumps can be a valuable source of information in some scenarios, where stack traces and error logs are not enough.
-      
-      By default, the kernel writes core dump files in the current working directory of the process. SQream recommends overriding this setting and write the core dump files to a fixed directory.
-      
-      The setting on line 4 uses the directory you created in the previous step (``/tmp/core_dumps``).
-
-
-
-
-#. Increase the limit of open files and processes 
-
-   .. code-block:: console
-      
-         $ sudo tee -a /etc/security/limits.conf > /dev/null <<EOT
-         * soft nproc 524288
-         * hard nproc 524288
-         * soft nofile 524288
-         * hard nofile 524288
-         * soft core unlimited
-         * hard core unlimited
-         EOT
-
-#. Verify mount options for drives
-
-   SQream recommends XFS for local data storage.
-   The recommended XFS mount options are:
-   
-   ``rw,nodev,noatime,nobarrier,inode64``
-
-.. note:: Reboot your system for the above settings to take effect.
-
-Disable SELinux
-=================
-
-SELinux may interfere with NVIDIA driver installation and some SQream DB operations. Unless absolutely necessary, we recommend disabling it.
-
-#. Check if SELinux is enabled
-
-   .. code-block:: console
-      
-      $ sudo sestatus
-      SELinux status:                 disabled
-
-#. You can disable SELinux by changing the value of ``SELINUX`` parameter to ``disabled`` in ``/etc/selinux/config`` and rebooting.
-
-Secure the server with a firewall
-===================================
-
-Opening up ports in the firewall
----------------------------------
-
-The example below shows how to open up all ports required by SQream DB and related management interfaces. The example also takes into account up to 4 workers on the host.
-
-   .. code-block:: console
-      
-      $ sudo systemctl start firewalld
-      $ sudo systemctl enable firewalld
-      $ for p in {2812,3000,3001,3105,3108,5000-5003,5100-5103}; do sudo firewall-cmd --zone=public --permanent --add-port=${p}/tcp; done
-      $ sudo firewalld --reloadi
-
-
-Disabling the built in firewall
----------------------------------
-
-If not required, you can disable the server's firewall. This will reduce connectivity issues, but should only be done inside your internal network.
-
-   .. code-block:: console
-      
-      $ sudo systemctl disable firewalld
-      $ sudo systemctl stop firewalld
-
-
-.. rubric:: What's next?
-
-* :ref:`Test your SQream DB installation by creating your first table<first_steps>`
-
-* :ref:`Connect an external tool to SQream DB <third_party_tools>`
-
