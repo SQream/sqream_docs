@@ -781,11 +781,11 @@ You can prepare the CUDA driver offline from a server connected to the CUDA repo
 
       $ ls -l |grep cuda
 
-The following is an example of generated output:
+   The following is an example of the correct output:
 
-.. code-block:: console
+   .. code-block:: console
 
-   $ cuda-10-1-local.repo
+      $ cuda-10-1-local.repo
 
 10. Edit the **/etc/yum.repos.d/cuda-10-1-local.repo** file:
 
