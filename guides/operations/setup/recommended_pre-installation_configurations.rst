@@ -757,10 +757,9 @@ For example, RHEL7 for cuda 10.1.
 ..
 	 **Comment: - what is the output?**
  
-If you do not have an internet connection, you can set up the local repository as shown in the following example:
  
 ..
-	 **Comment: - I suggest making the following example its own section, i.e., how to prepare the CUDA driver offline.** 
+	 **Comment: - I suggest making the following example its own section, i.e., how to prepare the CUDA driver offline. If you do not have an internet connection, you can set up the local repository as shown in the following example:** 
 
 You can prepare the CUDA driver offline from a server connected to the CUDA repo by running the following commands as a *root* user:
 	  
