@@ -1,8 +1,8 @@
-.. _hdfs_yaniv.rst:
+.. _hdfs.rst:
 
 .. _back_to_top:
 
-Launching SQream in an HDFS Environment
+Using SQream in an HDFS Environment
 =======================================
 This page describes how to:
 
