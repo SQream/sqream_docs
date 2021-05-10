@@ -7,7 +7,9 @@ Installing Monit
 Getting Started
 ==============================
 
-Before installing SQream with Monit, verify that you have followed the required `recommended post-installation configurations <file:///C:/Users/Yaniv/sqream_docs/_build/html/guides/operations/setup/recommended_post_installation_configurations.html>`_.
+Before installing SQream with Monit, verify that you have followed the required `recommended post-installation configurations <file:///C:/Users/Yaniv/sqream_docs/_build/html/guides/operations/setup/recommended_pre-installation_configurations.html>`_.
+
+
 
 
 
