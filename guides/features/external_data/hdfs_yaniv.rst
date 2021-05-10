@@ -1,7 +1,21 @@
 .. _hdfs_yaniv.rst:
 
+.. _back_to_top:
+
+Launching SQream in an HDFS Environment
+=======================================
+This page describes how to:
+
+
+
+* :ref:`Configure an HDFS environment for the user sqream <configuring_an_hdfs_environment_for_the_user_sqream>`
+* :ref:`Authenticate Hadoop servers that require Kerberos <authenticate_hadoop_servers_that_require_kerberos>`
+
+.. _configuring_an_hdfs_environment_for_the_user_sqream:
+
 Configuring an HDFS Environment for the User **sqream**
-======================================================
+----------------------------------------------------------
+
 This section describes how to configure an HDFS environment for the user **sqream** and is only relevant for users with an HDFS environment.
 
 **To configure an HDFS environment for the user sqream:**
@@ -52,7 +66,9 @@ This section describes how to configure an HDFS environment for the user **sqrea
      
      $ hadoop fs -ls hdfs://<hadoop server name or ip>:8020/
       
-**NOTICE:** If you cannot access Hadoop from your machine because it uses Kerberos, see `Connecting a SQream Server to Cloudera Hadoop with Kerberos <https://sqream.atlassian.net/wiki/spaces/DOC/pages/822902789/How+to+connect+sqream+server+to+Cloudera+Hadoop+with+kerberos>`_
+..
+   Comment: - 
+   **NOTICE:** If you cannot access Hadoop from your machine because it uses Kerberos, see `Connecting a SQream Server to Cloudera Hadoop with Kerberos <https://sqream.atlassian.net/wiki/spaces/DOC/pages/822902789/How+to+connect+sqream+server+to+Cloudera+Hadoop+with+kerberos>`_
 
 
 5. Verify that an HDFS environment exists for SQream services:
@@ -60,6 +76,9 @@ This section describes how to configure an HDFS environment for the user **sqrea
    .. code-block:: console
      
       $ ls -l /etc/sqream/sqream_env.sh
+	  
+.. _step_6:
+
       
 6. If an HDFS environment does not exist for SQream services, create one (sqream_env.sh):
    
@@ -79,8 +98,13 @@ This section describes how to configure an HDFS environment for the user **sqrea
 
       $ PATH=$PATH:$HOME/.local/bin:$HOME/bin:${SQREAM_HOME}/bin/:${JAVA_HOME}/bin:$HADOOP_INSTALL/bin
       $ export PATH
+	  
+:ref:`Back to top <back_to_top>`
 
-Hadoop Servers that Require Kerberos Authentication
+	  
+.. _authenticate_hadoop_servers_that_require_kerberos:
+
+Authenticate Hadoop Servers that Require Kerberos
 ---------------------------------------------------
 
 If your Hadoop server requires Kerberos authentication, do the following:
@@ -215,13 +239,10 @@ The following is an example of the correct folder name:
 
 15. Do one of the following:
 
-    * If the list is generated, continue with Step 16.
-    * If the list is not generated, verify that your environment has been set up correctly. If any of the following are empty verify that you followed **<Step #>** correctly:
-    
-
-
-..
-   Comment: - which step does this correspond to within this document?
+    * If the list below is output, continue with Step 16.
+    * If the list is not output, verify that your environment has been set up correctly.
+	
+If any of the following are empty, verify that you followed :ref:`Step 6 <step_6>` in the **Configuring an HDFS Environment for the User sqream** section above correctly:
 
   .. code-block:: console
    
@@ -235,3 +256,5 @@ The following is an example of the correct folder name:
 16. Verify that you copied the correct keytab file.
 
 17. Review this procedure to verify that you have followed each step.
+
+:ref:`Back to top <back_to_top>`
