@@ -11,6 +11,7 @@ The guides in this section include information about best practices, monitoring,
    :caption: In this section:
    :glob:
 
+   installing_monit
    optimization_best_practices
    xxmonitoring
    monitoring_query_performance
