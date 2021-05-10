@@ -443,7 +443,7 @@ You can configure the security limits by running the **echo -e** command as a ro
   
 Configuring the Kernel Parameters
 ---------------------------------
-**To configure the kernel parameters:
+**To configure the kernel parameters:**
 
 1. Insert a new line after each kernel parameter:
 
@@ -617,7 +617,9 @@ CUDA Driver Prerequisites
 
 Updating the Kernel Headers  
 --------------------------------
-1. Update the kernel headers one of the following operating systems:
+**To update the kernel headers:**
+
+1. Update the kernel headers on one of the following operating systems:
 
    * On RHEL/CentOS:
 
@@ -762,19 +764,19 @@ If you do not have an internet connection, you can set up the local repository a
 
 You can prepare the CUDA driver offline from a server connected to the CUDA repo by running the following commands as a *root* user:
 	  
-1. Query all the packages installed in your system, and verify that cuda-repo has been installed:
+7. Query all the packages installed in your system, and verify that cuda-repo has been installed:
 
    .. code-block:: console
 
       $ rpm -qa |grep cuda-repo
 
-2. Navigate to the correct repository:
+8. Navigate to the correct repository:
 
    .. code-block:: console
 
       $ cd /etc/yum.repos.d/
 
-3. List in long format and print lines matching a pattern for the cuda file:
+9. List in long format and print lines matching a pattern for the cuda file:
 
    .. code-block:: console
 
@@ -786,7 +788,7 @@ The following is an example of generated output:
 
    $ cuda-10-1-local.repo
 
-4. Edit the **/etc/yum.repos.d/cuda-10-1-local.repo** file:
+10. Edit the **/etc/yum.repos.d/cuda-10-1-local.repo** file:
 
    .. code-block:: console
 
@@ -798,19 +800,19 @@ The following is an example of generated output:
 
       $ name=cuda-10-1-local
    
-5. Clone the repository to a location where it can be copied from:
+11. Clone the repository to a location where it can be copied from:
 
    .. code-block:: console
 
       $ reposync -g -l -m --repoid=cuda-10-1-local --download_path=/var/cuda-repo-10.1-local
 
-6. Copy the repository to the installation server and create the repository:
+12. Copy the repository to the installation server and create the repository:
 
    .. code-block:: console
 
       $ createrepo -g comps.xml /var/cuda-repo-10.1-local
 
-7. Add a repo configuration file in **/etc/yum.repos.d/** by editing the **/etc/yum.repos.d/cuda-10.1-local.repo** repository:
+13. Add a repo configuration file in **/etc/yum.repos.d/** by editing the **/etc/yum.repos.d/cuda-10.1-local.repo** repository:
  
    .. code-block:: console
 
@@ -821,7 +823,7 @@ The following is an example of generated output:
       $ gpgcheck=1
       $ gpgkey=file:///var/cuda-repo-10-1-local/7fa2af80.pub   
    
-8. Install the CUDA drivers by installing the most current DKMS (Dynamic Kernel Module Support) NVIDIA driver as a root user logged in shell:
+14. Install the CUDA drivers by installing the most current DKMS (Dynamic Kernel Module Support) NVIDIA driver as a root user logged in shell:
   
    .. code-block:: console
 
@@ -961,7 +963,7 @@ Enabling core dumps is recommended, but optional.
 
 **To enable core dumps:**
 
-1. Check the *8abrtd** Status
+1. Check the **abrtd** Status
 
 2. Set the limits
 
