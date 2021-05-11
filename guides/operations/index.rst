@@ -11,8 +11,8 @@ The guides in this section include information about installing Monit, best prac
    :caption: In this section:
    :glob:
 
-   installing_monit
    optimization_best_practices
+   installing_monit
    xxmonitoring
    monitoring_query_performance
    logging
