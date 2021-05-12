@@ -114,7 +114,8 @@ The following are the default storage directories:
 
 5. **Optional** - To change the above default location(s), use the **--prefix** option to ./configure.
 
-**Comment - I took this line directly from the external online documentation. Is the "prefix option" referrin gto the "--help" in Step 3? URL: https://mmonit.com/wiki/Monit/Installation**
+..
+  _**Comment - I took this line directly from the external online documentation. Is the "prefix option" referrin gto the "--help" in Step 3? URL: https://mmonit.com/wiki/Monit/Installation**
 
 6. **Optional** - Create an RPM package for CentOS directly from the source code:
 
@@ -122,7 +123,8 @@ The following are the default storage directories:
      
       $ rpmbuild -tb monit-x.y.z.tar.gz
       
-**Comment - Is this an optional or mandatory step?**
+..
+  _**Comment - Is this an optional or mandatory step?**
 
  
 
@@ -158,7 +160,8 @@ Building Monit from Pre-Built Binaries
 
       $ cp conf/monitrc /etc/
        
-**Comment - please review this procedure.**
+..
+  _**Comment - please review this procedure.**
 
 For examples of pre-built Monit binarties, see :ref:`Download Precompiled Binaries<https://mmonit.com/monit/#download>`.
 
