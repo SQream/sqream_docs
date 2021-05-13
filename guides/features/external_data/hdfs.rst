@@ -1,4 +1,4 @@
-.. _hdfs.rst:
+.. _hdfs:
 
 .. _back_to_top_hdfs:
 

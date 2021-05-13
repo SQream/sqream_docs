@@ -165,7 +165,12 @@ It would be same on server running metadataserver and different on other server 
        $ cp license.enc /etc/sqream/   
 
        
-If you have an HDFS environment, see Configuring an HDFS Environment for the User sqream :ref:`.. _hdfs_yaniv.rst:`.
+If you have an HDFS environment, see :ref:`Configuring an HDFS Environment for the User sqream <hdfs>`.
+
+
+
+
+
 
 Upgrading SQream Version
 -------------------------
@@ -174,6 +179,12 @@ Upgrading your SQream version requires stopping all running services while you m
 **To upgrade your version of SQream:**
 
 1. Stop all actively running SQream services.
+
+**Notice-** All SQream services must remain stopped while the upgrade is in process. Ensuring that SQream services remain stopped depends on the tool being used.
+
+For an example of stopping actively running SQream services, see :ref:`Launching SQream with Monit <launching_sqream_with_monit>`.
+
+
       
 2. Verify that SQream has stopped listening on ports **500X**, **510X**, and **310X**:
 
