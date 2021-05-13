@@ -485,31 +485,40 @@ The following is the correct output:
 
 Installing the Docker Engine (Community Edition)
 =======================
-This section describes how to install the Docker engine on the following processors:
+This section describes how to install the Docker engine using the following processors:
 
-* :ref:`x86_64 <dockerx8664>`
-* :ref:`IBM Power9 (PPC64le) <docker_ibmpower9>`
+* :ref:`Using x86_64 processor on CentOS <dockerx8664centos>`
+* :ref:`Using x86_64 processor on Ubuntu <dockerx8664ubuntu>`
+* :ref:`Using IBM Power9 (PPC64le) processor <docker_ibmpower9>`
 
-.. _dockerx8664:
+
+.. _dockerx8664centos:
 
 Installing the Docker Engine Using an x86_64 Processor on CentOS
+---------------------------------
 The x86_64 processor supports installing the **Docker Community Edition (CE)** versions 18.03 and higher.
 
-For more information on installing the Docker Engine CE on an x86_64 processor, see ref:`Install Docker Engine on CentOS
- <https://docs.docker.com/engine/install/centos/>`.
+For more information on installing the Docker Engine CE on an x86_64 processor, see `Install Docker Engine on CentOS <https://docs.docker.com/engine/install/centos/>`_
+
+
+
+.. _dockerx8664ubuntu:
+
+Installing the Docker Engine Using an x86_64 Processor on Ubuntu
+-----------------------------------------------------
+
+
+The x86_64 processor supports installing the **Docker Community Edition (CE)** versions 18.03 and higher.
+
+For more information on installing the Docker Engine CE on an x86_64 processor, see `Install Docker Engine on Ubuntu <https://docs.docker.com/install/linux/docker-ce/ubuntu/>`_
+
+
+
 
 .. _docker_ibmpower9:
 
-Installing the Docker Engine Using an x86_64 Processor on Ubuntu
-The x86_64 processor supports installing the **Docker Community Edition (CE)** versions 18.03 and higher.
-
-For more information on installing the Docker Engine CE on an x86_64 processor, see ref:`Install Docker Engine on Ubuntu
- <https://docs.docker.com/install/linux/docker-ce/ubuntu/>`.
-
-
-
-
 Installing the Docker Engine on an IBM Power9 Processor
+------------------------------------
 The x86_64 processor only supports installing the **Docker Community Edition (CE)** version 18.03.
 
 
