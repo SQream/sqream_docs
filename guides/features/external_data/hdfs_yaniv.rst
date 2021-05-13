@@ -1,4 +1,4 @@
-.. _hdfs_yaniv.rst:
+.. _hdfs_yaniv:
 
 .. _back_to_top:
 
