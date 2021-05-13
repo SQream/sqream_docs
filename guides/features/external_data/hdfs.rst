@@ -20,8 +20,6 @@ This section describes how to configure an HDFS environment for the user **sqrea
      
        $ vim /home/sqream/.bash_profile
        
-2. Make the following edits:
-
 ..
    Comment: - see below; do we want to be a bit more specific on what changes we're talking about?
 
