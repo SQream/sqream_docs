@@ -4,12 +4,6 @@
 
 Using SQream in an HDFS Environment
 =======================================
-This page describes how to:
-
-
-
-* :ref:`Configure an HDFS environment for the user sqream <configuring_an_hdfs_environment_for_the_user_sqream>`
-* :ref:`Authenticate Hadoop servers that require Kerberos <authenticate_hadoop_servers_that_require_kerberos>`
 
 .. _configuring_an_hdfs_environment_for_the_user_sqream:
 
