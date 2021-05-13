@@ -1,4 +1,4 @@
-.. _hdfs:
+.. _hdfs_deprecated:
 
 ***********************
 HDFS
