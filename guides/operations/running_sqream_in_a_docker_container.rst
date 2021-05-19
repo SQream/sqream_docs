@@ -58,7 +58,7 @@ Setting Up a Local Language
 
 2. Set the time stamp (time and date) of the locale:
 
-**Comment:** Is "location" better than "locale?"
+**Comment: Is "location" better than "locale?"**
 
    .. code-block:: console
 
@@ -77,7 +77,7 @@ Adding the EPEL Repository
 
       $ sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
-**Comment:** Is it being added or upgraded?
+**Comment: Is it being added or upgraded?**
 
 Installing the Required Packages
 ----------------
@@ -93,7 +93,7 @@ Installing the Recommended Tools
 
 SQream recommends installing the following recommended tools:
 
-**Comment:** What value does installing these tools offer to the user?
+**Comment: What value does installing these tools offer to the user?**
 
 .. code-block:: console
 
@@ -104,7 +104,7 @@ Updating to the Current Version of the Operating System
 
 SQream recommends updating to the current version of the operating system. This is not recommended if the nvidia driver has **not been installed.**
 
-**Comment:** What happens if the user does not update to the current version? What happens if the user updates to the current version without installing the nvidia driver?
+**Comment: What happens if the user does not update to the current version? What happens if the user updates to the current version without installing the nvidia driver?**
 
 You can verify if the nvidia driver has been installed by running the following command if the command result in GPU information doesn't run the update:
 
@@ -112,7 +112,7 @@ You can verify if the nvidia driver has been installed by running the following 
 
    $ sudo yum update
 
-**Comment:** Clarification required: ...if the command result in GPU information doesn't run the update.
+**Comment: Clarification required: ...if the command result in GPU information doesn't run the update.**
 
 Configuring the NTP Package
 ----------------
@@ -121,11 +121,11 @@ Configuring the NTP Package
 
 1. Add your local servers to the NTP configuration.
 
-**Comment:** If you have local servers? See Confluence doc. 
+**Comment: If you have local servers? See Confluence doc.**
 
-**Comment:** NTP configuration file?
+**Comment: NTP configuration file?**
 
-**Comment:** What does this mean? "[adding how to configure local NTP servers]"
+**Comment: What does this mean? "[adding how to configure local NTP servers]"**
 
 2. Configure the **ntpd** service to begin running when your machine is started:
 
@@ -134,7 +134,7 @@ Configuring the NTP Package
       $ sudo systemctl enable ntpd
       $ sudo systemctl start ntpd
 
-**Comment:** What does the following command do?
+**Comment: What does the following command do?**
     
    .. code-block:: console
 
@@ -147,7 +147,7 @@ Configuring the Performance Profile
 
 1. Switch the active profile:
 
-**Comment:** Switch it to which one? The source file didn't specify which one.
+**Comment: Switch it to which one? The source file didn't specify which one.**
 
    .. code-block:: console
 
@@ -155,7 +155,7 @@ Configuring the Performance Profile
 
 2. Change the multi-user's default run level:
 
-**Comment:** Switch it to what?
+**Comment: Switch it to what?**
 
    .. code-block:: console
 
@@ -166,7 +166,7 @@ Configuring Your Security Limits
 
 Configuring your security limits refers to configuring the number of open files, processes, etc.
 
-**Comment:** Does open = active/running?
+**Comment: Does open = active/running?**
 
 1. Run the **bash** shell as a super-user: 
 
@@ -180,7 +180,7 @@ Configuring your security limits refers to configuring the number of open files,
 
       $ echo -e "sqream soft nproc 500000\nsqream hard nproc 500000\nsqream soft nofile 500000\nsqream hard nofile 500000\nsqream soft core unlimited\nsqream hard core unlimited" >> /etc/security/limits.conf
 
-**Comment:** Verify function of the above command.
+**Comment: Verify function of the above command.**
 
 3. Run the following command:
 
@@ -188,7 +188,7 @@ Configuring your security limits refers to configuring the number of open files,
 
       $ echo -e "vm.dirty_background_ratio = 5 \n vm.dirty_ratio = 10 \n vm.swappiness = 10 \n vm.zone_reclaim_mode = 0 \n vm.vfs_cache_pressure = 200 \n"  >> /etc/sysctl.conf
 
-**Comment:** Verify function of the above command. Notice the ">> /etc/sysctl.conf."
+**Comment: Verify function of the above command. Notice the ">> /etc/sysctl.conf."**
 
 Disabling Automatic Bug Reporting Tools
 ----------------
@@ -198,7 +198,7 @@ The following automatic bug reporting tools must be disabled by running the foll
 
    $ for i in abrt-ccpp.service abrtd.service abrt-oops.service abrt-pstoreoops.service abrt-vmcore.service abrt-xorg.service ; do sudo systemctl disable $i; sudo systemctl stop $i; done
 
-**Comment:** The command text starts with "for i." Should this be part of the command text?
+**Comment: The command text starts with "for i." Should this be part of the command text?**
 
 Preparing the Nvidia CUDA Drive for Installation
 ----------------
@@ -213,7 +213,7 @@ Preparing the Nvidia CUDA Drive for Installation
 
 The correct output is a list of Nvidia graphic cards. If you do not receive this output, verify that an NVIDIA GPU card has been installed.
 
-**Comment:** Try to get this output.
+**Comment: Try to get this output.**
 
 3. Verify that the open-source upstream Nvidia driver is running:
 
@@ -235,7 +235,7 @@ No output should be generated.
          $ dracut --force
          $ modprobe --showconfig | grep nouveau
     
-      **Comment:** The source content said to disable "it," which I assume refers to the Nvidia driver. Confirm.
+      **Comment: The source content said to disable "it," which I assume refers to the Nvidia driver. Confirm.**
 
    2. Reboot the server and verify that the Nouveau model has not been loaded:
 
@@ -285,7 +285,7 @@ The following is an example of the correct output:
 
 2. Verify that the installed CUDA version shown in the output above is ``10.1``
 
-3. Do one of the following: **Comment:** Create cross-reference in GitHub in Step 1 below.
+3. Do one of the following: **Comment: Create cross-reference in GitHub in Step 1 below.**
    
    1. If CUDA version 10.1 has already been installed, skip to Docktime Runtime (Community Edition).
 
@@ -311,17 +311,17 @@ Installing the CUDA Driver Version 10.1 for x86_64
    * **Version**: 7
    * **Installer type**: the relevant installer type
 
-**Comment:** Is Step 4 actually to install CUDA version 10.1, or is one of the steps required for installing it?
+**Comment: Is Step 4 actually to install CUDA version 10.1, or is one of the steps required for installing it?**
 
-**Comment:** The source document included a link to the page from where I got these steps. Is downloading installer for Linux CentOS 7 86_64 one of the required steps?
+**Comment: The source document included a link to the page from where I got these steps. Is downloading installer for Linux CentOS 7 86_64 one of the required steps?**
 
 For installer type, SQream recommends selecting **runfile (local)**. The available selections shows only the supported platforms.
 
-**Comment:** Do the users need to make exactly the selections above, or do they need to make the selections relevant to them?
+**Comment: Do the users need to make exactly the selections above, or do they need to make the selections relevant to them?**
 
-**Comment:** Do the users need to follow all of the instructions on the linked page, or just **Select Target Platform**? I documented the entire page, and will delete it if needed.
+**Comment: Do the users need to follow all of the instructions on the linked page, or just "Select Target Platform?" I documented the entire page, and will delete it if needed.**
 
-**Comment:** Note to self: do I need to include the image?
+**Comment: Note to self: do I need to include the image?**
 
 2. Download the base installer for Linux CentOS 7 x86_64.
 3. Install the base installer for Linux CentOS 7 x86_64:
@@ -340,16 +340,16 @@ For installer type, SQream recommends selecting **runfile (local)**. The availab
 
       $ sudo systemctl enable nvidia-persistenced.service && sudo systemctl start nvidia-persistenced.service
 
-**Comment:** Confirm the above.
+**Comment: Confirm the above.**
 
 5. Create a symbolic link from the **/etc/systemd/system/multi-user.target.wants/nvidia-persistenced.service** file to the **/usr/lib/systemd/system/nvidia-persistenced.service** file.
 
-**Comment:** The source document said "created symlink" instead of "create symlink." Does this mean that it was a result of Step 7, or that it is actually Step 8 as I documented above?
+**Comment: The source document said "created symlink" instead of "create symlink." Does this mean that it was a result of Step 7, or that it is actually Step 8 as I documented above?**
 
 6. Reboot the server.
 7. Verify that the Nvidia driver has been installed and shows all available GPU's:
 
-**Comment:** NVidia driver 10.1?
+**Comment: NVidia driver 10.1?**
 
    .. code-block:: console
 
@@ -394,7 +394,6 @@ Installing the CUDA Driver Version 10.1 for IBM Power9
    * **Version**: 7
    * **Installer type**: the relevant installer type
 
-**Comment:** See all comments left in x86_64
 
 For installer type, SQream recommends selecting **runfile (local)**. The available selections shows only the supported platforms.
 
@@ -520,32 +519,31 @@ Installing the Docker Engine on an IBM Power9 Processor
 ----------------------------------------
 The x86_64 processor only supports installing the **Docker Community Edition (CE)** version 18.03.
 
-**Comment:** Work From Home. Compare this section with the Remote Repo.
 
 **To install the Docker Engine on an IBM Power9 processor:**
 You can install the Docker Engine on an IBM Power9 processor by running the following command:
 
-**Comment:** Work From Home from here down. Start reviewing here.
+.. code-block:: console
 
-  .. code-block:: console
+   $ wget
+   $ http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/container-selinux-2.9-4.el7.noarch.rpm
+   $ wget
+   $ http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/docker-ce-18.03.1.ce-1.el7.centos.ppc64le.rpm
+   $ yum install -y container-selinux-2.9-4.el7.noarch.rpm
+   $ docker-ce-18.03.1.ce-1.el7.centos.ppc64le.rpm
 
-     $ wget
-     $ http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/container-selinux-2.9-4.el7.noarch.rpm
-     $ wget
-     $ http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/docker-ce-18.03.1.ce-1.el7.centos.ppc64le.rpm
-     $ yum install -y container-selinux-2.9-4.el7.noarch.rpm
-     $ docker-ce-18.03.1.ce-1.el7.centos.ppc64le.rpm
 
-For more information on installing the Docker Engine CE on an IBM Power9 processor, see ref:`Install Docker Engine on Ubuntu
- <https://developer.ibm.com/components/ibm-power/tutorials/install-docker-on-linux-on-power/>`.
+ 
+For more information on installing the Docker Engine CE on an IBM Power9 processor, see `Install Docker Engine on Ubuntu <https://developer.ibm.com/components/ibm-power/tutorials/install-docker-on-linux-on-power/>`_.
 
 Docker Post-Installation
 =================================
-**Comment:** Is the procedure here to configure Docker on your local machine?
+**Comment: Is the procedure here to configure Docker on your local machine?**
 
 Once you've installed the Docker Engine, you must configure Docker on your local machine.
 
 **To configure Docker on your local machine:**
+
 1. Enable Docker to start on boot:
 
    .. code-block:: console
@@ -571,12 +569,12 @@ If you can run the above Docker command as a non-root user, the following occur:
 * Docker downloads a test image and runs it in a container.
 * When the container runs **Comment:** Does the user have to run the container, or does the container run automatically as the result of running the above command? , it prints an informational message and exits.
 
-**Comment:** What does the user have to do if he cannot run the Docker command in Step 4 as a non-root user? Consider including a Troubleshooting section at the end of this document.
+**Comment: What does the user have to do if he cannot run the Docker command in Step 4 as a non-root user? Consider including a Troubleshooting section at the end of this document.**
 
-For more information on Docker Post Installation, see ref:` Docker Post Installation
- <https://docs.docker.com/install/linux/linux-postinstall/>`.
 
- **Comment:** Change the clickable part of this link when you determine what the procedure in this section actually is...
+For more information on installing the Docker Post-Installation, see `Docker Post-Installation <https://docs.docker.com/install/linux/linux-postinstall/>`_.
+
+ **Comment: Change the clickable part of this link when you determine what the procedure in this section actually is...**
 
 Installing the Nvidia Docker2 ToolKit
 ==========================================
@@ -622,6 +620,7 @@ Installing the NVIDIA Docker2 Toolkit on a CentOS Operating System
       $ sudo pkill -SIGHUP dockerd
 
 3. Do one of the following:
+
    * If you received an error when installing the ``nvidia-docker2`` package, skip to :ref:`Step 4 <step_4_centos>`.
    * If you successfully installed the ``nvidia-docker2`` package, skip to :ref:`Step 5 <step_5_centos>`.
 
@@ -691,7 +690,7 @@ Installing the NVIDIA Docker2 Toolkit on an Ubuntu Operating System
 
     2. Change ``repo_gpgcheck=1`` to ``repo_gpgcheck=0``.
 
- **Comment:** The error example above says **centos7** and not Ubuntu. Is this a mistake?
+**Comment: The error example above says **centos7** and not Ubuntu. Is this a mistake?**
 
 .. _step_5_ubuntu:
 
@@ -744,7 +743,7 @@ This section describes how to install the NVIDIA Docker2 Toolkit on an IBM RHEL 
 
           $ sudo yum install -y libnvidia-container*
          
- **Comment:** The error example above says **centos7** and not **IBM RHEL**. Is this a mistake?
+**Comment: The error example above says "centos7" and not "IBM RHEL". Is this a mistake?**
  
  .. _step_4_installing_nvidia_docker2_toolkit_ppc64le_processor:
 
@@ -765,9 +764,9 @@ This section describes how to install the NVIDIA Docker2 Toolkit on an IBM RHEL 
       $ ExecStart=
       $ ExecStart=/usr/bin/dockerd
 
- **Comment:** Source document said: --add-runtime=nvidia=/usr/bin/nvidia-container-runtime. Unclear: is this supposed to be added to the command above?
+**Comment: Source document said: --add-runtime=nvidia=/usr/bin/nvidia-container-runtime. Unclear: is this supposed to be added to the command above?**
 
- **Comment:** What is the exact line that's supposed to be added to the command? nvidia-container-runtime?
+**Comment: What is the exact line that's supposed to be added to the command? nvidia-container-runtime?**
 
 6. Restart Docker:
 
@@ -805,7 +804,7 @@ Downloading the SQream Software
 
 1. Contact the SQream Support team for access to the **sqream_installer-nnn-DBnnn-COnnn-EDnnn-<arch>.tar.gz** file.
 
- **Comment:** What is the contact information for SQream Support team?
+**Comment: What is the contact information for SQream Support team?**
 
 The **sqream_installer-nnn-DBnnn-COnnn-EDnnn-<arch>.tar.gz** file includes the following parameter values:
 
@@ -830,7 +829,7 @@ When the tarball file has been extracted, a new folder will be created. The new 
 
 The following is an example of the files included in the new folder:
 
- **Comment:** Are these files?
+**Comment: Are these files?**
 
 .. code-block:: console
 
@@ -840,7 +839,7 @@ The following is an example of the files included in the new folder:
    -rwxrwxr-x 1 sqream sqream 1651 Aug 6 13:05 sqream-console
    -rwxrwxr-x 1 sqream sqream 24029 Aug 6 13:05 sqream-install
 
- **Comment:** It may be better to show a screenshot, or a list, of the files, rather than show them as CLI output.
+**Comment: It may be better to show a screenshot, or a list, of the files, rather than show them as CLI output.**
 
 Configuring the SQream Software
 -------------------------------
@@ -852,7 +851,7 @@ Configuring the SQream software requires you to do the following:
 * Validate your SQream icense
 * Change your data ingest folder
 
- **Comment:** I changed this from "Installing SQream" to "Configuring SQream," because the main section is called "Installing SQream," and this section describes configuration.
+**Comment: I changed this from "Installing SQream" to "Configuring SQream," because the main section is called "Installing SQream," and this section describes configuration.**
 
 Configuring Your Local Environment
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -860,12 +859,12 @@ Once you've downloaded the SQream software, you can begin configuring your local
 
 For example, you may have saved your packages in **/home/sqream/sqream-console-package/**.
 
-**Comment:** The source file included only: -i -k -f -c -v -l -d -s -r. It excluded -h and -K. Are those flags supported?
+**Comment: The source file included only: -i -k -f -c -v -l -d -s -r. It excluded -h and -K. Are those flags supported?**
 
 The following table shows the flags that you can use to configure your local directory:
 
 .. list-table::
-   :widths: 50 50 50
+   :widths: 10 50 40
    :header-rows: 1
    
    * - Flag
@@ -873,33 +872,40 @@ The following table shows the flags that you can use to configure your local dir
      - Note
    * - **-i**
      - Loads all software from the hidden folder **.docker**.
-     - Mandatory   
+     - Mandatory	 
    * - **-k**
      - Loads all license packages from the **/license** directory.
-     - Mandatory
+     - Mandatory	 
    * - **-f**
      - Overwrites existing folders. **NOTICE:** Using ``-f`` overwrites **all files** located in mounted directories.
-     - Mandatory
+     - Mandatory	 
    * - **-c**
      - Defines the origin path for writing/reading SQream configuration files. The default location is ``/etc/sqream/``.
-     - If you are installing the Docker version on a server that already works with SQream, do not use the default path.
+     - If you are installing the Docker version on a server that already works with SQream, do not use the default path.	 
    * - **-v**
      - The SQream cluster location. If a cluster does not exist yet, ``-v`` creates one. If a cluster already exists, ``-v`` mounts it.  **Comment:** Confirm functionality when a cluster already exists.
-     - Mandatory.
+     - Mandatory	 
    * - **-l**
      - SQream system startup logs location, including startup logs and docker logs. The default location is ``/var/log/sqream/``.
+     - 	 
    * - **-d**
      - The directory containing customer data to be imported and/or copied to SQream.
+     - 	 
    * - **-s**
-     - Shows system settings.     
+     - Shows system settings. 
+     - 	 
    * - **-r**
-     - Resets the system configuration. This value is run without any other variables.    
+     - Resets the system configuration. This value is run without any other variables.
+     - Mandatory	 
    * - **-h**
-     - Help. Shows the available flags.     
+     - Help. Shows the available flags. 
+     - Mandatory	 
    * - **-K**
-     - Runs license validation.
-
-**Comment:** See the "Using a Custom Configuration File" section. Are these flags used elsewhere?
+     - Runs license validation
+     - 
+	 
+	 
+**Comment: See the "Using a Custom Configuration File" section. Are these flags used elsewhere?**
 
 Installing Your License
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -909,9 +915,11 @@ Once you've configured your local environment, you must install your license by 
 
    $ sudo ./sqream-install -k
 
-You do not need to untar this folder after uploading into the **{}/license** **Comment:** What does {} signify? folder, because the installer script automatically does it.
+You do not need to untar this folder after uploading into the **{}/license**.
 
-**Comment:** Note to self - consider alternative verb for "untar." 
+**Comment: What does {} signify? folder, because the installer script automatically does it.**
+
+**Comment: Note to self - consider alternative verb for "untar. "Extract."**
 
 Validating Your License
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -956,14 +964,14 @@ Once you've modified your data ingest folder (if needed), you must validate that
 
 2. Do one of the following:
 
-  * If running the above command output no results, continue the installation.
+  * If running the above command output no results, continue the installation process.
   * If running the above command output results, run the following command:
 
     .. code-block:: console
 
        $ ifconfig | grep 192.168.
 
-**Comment:** The flow of this section in the source document is confusing. Review it with somebody before documenting the rest of this section.
+**Comment: The flow of this section in the source document is confusing. Review it with somebody before documenting the rest of this section.**
 
 Checking and Verifying Your System Settings
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1008,6 +1016,20 @@ Using the SQream Console
 -------------------------
 Once you've checked and verified your system settings, you can use the SQream console.
 
+SQream Console - Basic Commands
+---------------------------------
+The SQream console offers the following basic commands:
+
+* :ref:`Starting your SQream console <starting_sqream_console>`
+* :ref:`Starting Metadata and Picker <starting_metadata_and_picker>`
+* :ref:`Starting the running services <starting_running_services>`
+* :ref:`Listing the running services <listing_running_services>`
+* :ref:`Stopping the running services <stopping_running_services>`
+* :ref:`Using the SQream editor <using_sqream_editor>`
+* :ref:`Using the SQream Client <using_sqream_client>`
+
+.. _starting_sqream_console:
+
 Starting Your SQream Console
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -1017,33 +1039,20 @@ You can start your SQream console by running the following command:
 
    $ ./sqream-console
 
-.. _top_basic_commands:
+.. _starting_metadata_and_picker:
 
-SQream Console - Basic Commands
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-The SQream console offers the following basic commands:
-
-**Comment:** Make the cross-refs to the following sections. Try avoiding using Heading 4; try making them bold titles if possible. See how it looks on the front end.
-
-* :ref:`Metadata and Picker <metadata_and_picker>`
-* :ref:`Starting the running services <start_running_services>`
-* :ref:`Listing the running services <list_running_services>`
-* :ref:`Stopping the running services <stop_running_services>`
-* :ref:`Using the SQream editor <using_sqream_editor>`
-* :ref:`Using the SQream Client <using_sqream_client>`
-
-.. _metadata_and_picker:
-
-**Metadata and Picker**
+Starting Metadata and Picker
+~~~~~~~~~~~~~~~~~
 
 **To listen to metadata and picker:**
+
 1. You can start metadata listening on Port 3105 and picker listening on Port 3108 by running the following command:
 
 .. code-block:: console
 
    $ sqream master --start
       
-**Comment:** Is this the command, and is the following the output, or is the following the command?
+**Comment: Is this the command, and is the following the output, or is the following the command?**
 
 .. code-block:: console
 
@@ -1051,7 +1060,7 @@ The SQream console offers the following basic commands:
    $ starting master server in single_host mode ...
    $ sqream_single_host_master is up and listening on ports: 3105,3108
        
-**Comment:** (Source document said: "start metadata listening on port 3105 and picker listening on port 3108)". The source document was a bit confusing. Review.
+**Comment: (Source document said: "start metadata listening on port 3105 and picker listening on port 3108)". The source document was a bit confusing. Review.**
 
 2. *Optional* - Change the metadata and server picker ports by adding ``-p <port number>`` and ``-m <port number>``:
 
@@ -1061,17 +1070,18 @@ The SQream console offers the following basic commands:
    $ starting master server in single_host mode ...
    $ sqream_single_host_master is up and listening on ports: 4105,4108
 
-:ref:`Back to SQream Console - Basic Commands <_top_basic_commands>`
 
-.. _start_running_services:
 
-**SQreamd**
+.. _starting_running_services:
 
-**Comment:** What should be the title of this section? Is this section "Binding SQreamd to GPU's"?, or is it "Start Running Services?" Check the source document.
+SQreamd
+~~~~~~~~~~~~~~~~~
+
+**Comment: What should be the title of this section? Is this section "Binding SQreamd to GPU's"?, or is it "Start Running Services?" Check the source document.**
 
 When binding **sqreamd** to GPU's, setting the ``X`` value sets how many GPUs to bind the SQream console with. Leaving the ``X`` value blank binds the SQream console to all available GPU’s:
 
-**Comment:** Does "X" appear in the CLI, or is the convention used here to indicate that the user must insert a value?
+**Comment: Does "X" appear in the CLI, or is the convention used here to indicate that the user must insert a value?**
 
 .. code-block:: console
 
@@ -1085,11 +1095,11 @@ The following is an example of expected output when setting the ``X`` value to `
    started sqream_single_host_worker_0 on port 5000, allocated gpu: 0
    started sqream_single_host_worker_1 on port 5001, allocated gpu: 1
 
-:ref:`Back to SQream Console - Basic Commands <_top_basic_commands>`
 
-.. _list_running_services:
+.. _listing_running_services:
 
-** *Listing Running SQream Services* **
+Listing the Running Services
+~~~~~~~~~~~~~~~~~
 
 You can list running SQream services to look for container names and ID's by running the following command:
 
@@ -1105,11 +1115,12 @@ The following is an example of the expected output:
    container name: sqream_single_host_worker_0, container id: c919e8fb78c8
    container name: sqream_single_host_master, container id: ea7eef80e038--
 
-:ref:`Back to SQream Console - Basic Commands <_top_basic_commands>`
 
-.. _stop_running_services:
+.. _stopping_running_services:
 
-** *Stopping Running Services* **
+Stopping the Running Services
+~~~~~~~~~~~~~~~~~
+
 You can stop running services either for a single SQream worker, or all SQream services for both master and worker.
 
 The following is the command for stopping a running service for a single SQream worker:
@@ -1125,7 +1136,7 @@ The following is an example of expected output when stopping a running service f
    sqream worker --stop <full worker name>
    stopped container sqream_single_host_worker_0, id: 892a8f1a58c5
 
-**Comment:** Verify the above "mock-up". This example was not in the source file. Is this the correct output?
+**Comment: Verify the above "mock-up". This example was not in the source file. Is this the correct output?**
 
 You can stop all running SQream services (both master and worker) by running the following command:
 
@@ -1141,11 +1152,11 @@ The following is an example of expected output when stopping all running service
    stopped container sqream_single_host_worker_0, id: 892a8f1a58c5
    stopped container sqream_single_host_master, id: 55cb7e38eb22
 
-:ref:`Back to SQream Console - Basic Commands <_top_basic_commands>`
 
 .. _using_sqream_editor:
 
-** *Using the SQream Editor* **
+Using the SQream Editor
+~~~~~~~~~~~~~~~~~
 The SQream editor is an SQL statement editor.
 
 **To start your SQream editor:**
@@ -1165,7 +1176,7 @@ The following is an example of the expected output:
 
 2. Click the ``http://192.168.0.220:3000`` link shown in the CLI.
 
-**Comment:** I wrote this step above even though it was not in the source document. Does the user need to do anything else, or does the editor start automatically?
+**Comment: I wrote this step above even though it was not in the source document. Does the user need to do anything else, or does the editor start automatically?**
 
 **To stop your SQream editor:**
 
@@ -1182,20 +1193,20 @@ The following is an example of the expected output:
    sqream-console>sqream editor --stop
    stopped sqream_editor
 
-:ref:`Back to SQream Console - Basic Commands <_top_basic_commands>`
 
 .. _using_sqream_client:
 
-** *Using the SQream Client* **
+Using the SQream Client
+~~~~~~~~~~~~~~~~~
 
-**Comment:** What is the SQream client?
+**Comment: What is the SQream client?**
 
 You can use the embedded SQream Client on the following nodes:
 
 * Master node
 * Worker node
 
-**Comment:** What's the difference between Master and Worker node? What is each used for and by who?
+**Comment: What's the difference between Master and Worker node? What is each used for and by who?**
 
 When using the SQream Client on the Master node, the following default settings are used:
 
@@ -1208,7 +1219,7 @@ The following is an example:
 
    $ sqream client --master -u sqream -w sqream
 
-**Comment:** The "p" or "d" variables are not used in the example above. What are "u" and "w" in this context?
+**Comment: The "p" or "d" variables are not used in the example above. What are "u" and "w" in this context?**
 
 When using the SQream Client on a Worker node (or nodes), you should use the ``-p`` variable for Worker ports. The default database is ``master``, but you can use the ``-d`` variable to change databases.
 
@@ -1218,16 +1229,15 @@ The following is an example:
 
    $ sqream client --worker -p 5000 -u sqream -w sqream
 
-**Comment:** What are "u" and "w" in this context?
+**Comment: What are "u" and "w" in this context?**
 
-:ref:`Back to SQream Console - Basic Commands <_top_basic_commands>`
-
-**Moving from Docker Installation to Standard On-Premises Installation**
+Moving from Docker Installation to Standard On-Premises Installation
+-----------------------------------------------
 
 Because Docker creates all files and directories on the host at the **root** level, you must grant ownership of the SQream storage folder to the working directory user.
 
 SQream Console - Advanced Commands
--------------------------
+-----------------------------
 
 The SQream console offers the following advanced commands:
 
@@ -1239,14 +1249,14 @@ The SQream console offers the following advanced commands:
 * :ref:`Clustering your Docker environment <clustering_docker_environment>`
 
 
-**Comment:** Why is this section not directly after "Console Commands?" I.e., why were "SQream Editor" and "SQream Client" placed between them? Is it because the console commands are only introduced as they become relevant?
+**Comment: Why is this section not directly after "Console Commands?" I.e., why were "SQream Editor" and "SQream Client" placed between them? Is it because the console commands are only introduced as they become relevant?**
 
-**Comment:** Also, why is "Basic Commands" Level 3, and Advanced Commands Level 2? Maybe there was a logical reason to set it up this way.
+**Comment: Also, why is "Basic Commands" Level 3, and Advanced Commands Level 2? Maybe there was a logical reason to set it up this way.**
 
 .. _controlling_spool_size:
 
 Controlling the Spool Size
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 
 From the console you can define a spool size value.
 
@@ -1256,18 +1266,18 @@ The following example shows the spool size being set to ``50``:
 
    $ sqream-console>sqream worker --start 2 -m 50
 
-**Comment:** Is there an output?
+**Comment: Is there an output?**
 
 If you don't define the SQream spool size, the SQream console automatically distributes the available RAM between all running workers.
 
 .. _splitting_gpu:
 
 Splitting a GPU
-~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 
 You can start more than one sqreamd on a single GPU by splitting it.
 
-**Comment:** What is "sqreamd" in all lower case? It is an instance of a SQream database?
+**Comment: What is "sqreamd" in all lower case? It is an instance of a SQream database?**
 
 The following example shows the GPU being split into **two** sqreamd's on the GPU in **slot 0**:
 
@@ -1278,7 +1288,7 @@ The following example shows the GPU being split into **two** sqreamd's on the GP
 .. _splitting_gpu_setting_spool_size:
 
 Splitting GPU and Setting the Spool Size
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 
 You can simultaneously split a GPU and set the spool size by appending the ``-m`` flag:
 
@@ -1291,9 +1301,9 @@ You can simultaneously split a GPU and set the spool size by appending the ``-m`
 .. _using_custom_configuration_file:
 
 Using a Custom Configuration File
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 
-SQream lets you use your own external custom configuration json files. You must place these json files in the path mounted in **Comment:** "in" or "during"? the installation. SQream recommends placing the json file in the Configuration folder.
+SQream lets you use your own external custom configuration json files. You must place these json files in the path mounted in **Comment: "in" or "during"?** the installation. SQream recommends placing the json file in the Configuration folder.
 
 The SQream console does not validate the integrity of your external configuration files.
 
@@ -1318,7 +1328,7 @@ When using your custom configuration file, you can use the ``-j`` flag to define
 .. _clustering_docker_environment:
 
 Clustering Your Docker Environment
-~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
 
 SQream lets you connect to a remote Master node to start Docker in Distributed mode. If you have already connected to a Slave node server in Distributed mode, the **sqream Master** and **Client** commands are only available on the Master node.
    
@@ -1328,15 +1338,18 @@ SQream lets you connect to a remote Master node to start Docker in Distributed m
    $ sqream-console>sqream worker --start 1 --master-host 192.168.0.1020
 
 Checking the Status of SQream Services
--------------------------
+---------------------------
 SQream lets you check the status of SQream services from the following locations:
 
-* :ref:`From the Sqream console <_inside_sqream_console>`.
-* :ref:`From outside the Sqream console <_outside_sqream_console>`.
+* :ref:`From the Sqream console <inside_sqream_console>`
+* :ref:`From outside the Sqream console <outside_sqream_console>`
 
 .. _inside_sqream_console:
 
-From the SQream console, you can check the status of SQream services by running the following commands:
+Checking the Status of SQream Services from the SQream Console
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+From the SQream console, you can check the status of SQream services by running the following command:
    
 .. code-block:: console
 
@@ -1354,6 +1367,9 @@ The following is an example of the expected output:
 
 .. _outside_sqream_console:
 
+Checking the Status of SQream Services from Outside the SQream Console
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 From outside the Sqream Console, you can check the status of SQream services by running the following commands:
  
 .. code-block:: console
@@ -1366,15 +1382,17 @@ From outside the Sqream Console, you can check the status of SQream services by 
    $ sqream_editor_3.0.0 Up 3 hours (healthy) 0.0.0.0:3000->3000/tcp
 
 Upgrading Your SQream System
--------------------------
+----------------------------
 **To upgrade your SQream system:**
 
 1. Contact the SQream Support team for access to the new SQream package tarball file.
 
-**Comment:** Should we show the file name as was done in "Downloading the SQream Software"?
+**Comment: Should we show the file name as was done in "Downloading the SQream Software"?**
 
 2. Set **Comment: Open?** a maintenance window to enable stopping the system while upgrading it.
-3. Extract the following tarball file received from the SQream Support team, under it with the same user **Comment:** "under it with the same  user" is unclear. and in the same folder that you used while :ref:`Downloading the SQream Software <_download_sqream_software>`.
+3. Extract the following tarball file received from the SQream Support team, under it with the same user and in the same folder that you used while :ref:`Downloading the SQream Software <_download_sqream_software>`.
+
+**Comment: "under it with the same  user" is unclear**
  
 .. code-block:: console
      
@@ -1403,10 +1421,10 @@ SQream periodically upgrades the metadata structure. If an upgrade version inclu
 
 Because SQream supports only certain metadata versions, all SQream services must be upgraded at the same time. 
 
- **Comment:** Do we want to mention which metadata versions we support? 
+**Comment: Do we want to mention which metadata versions we support?**
  
 7. When the upgrade is complete, load the SQream console and restart your services.
 
 For assisstance, please contact SQream Support.
 
- **Comment:** What is the contact info? 
+**Comment: What is the contact info?** 
