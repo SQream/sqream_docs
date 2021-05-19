@@ -4,7 +4,7 @@
 SQream Acceleration Studio
 ****************************
 
-The studio is a web-based client for use with SQream DB. 
+The SQream Studio is a web-based client for use with SQream DB. 
 
 It can be used to run statements, manage roles and permissions, and manage a SQream DB cluster.
 
@@ -12,7 +12,7 @@ It can be used to run statements, manage roles and permissions, and manage a SQr
    :local:
 
 
-Setting up and starting the studio
+Setting Up and Starting the Studio
 ====================================================
 
 The studio is included with all :ref:`dockerized installations of SQream DB<installing_sqream_db_docker>`.
@@ -27,14 +27,15 @@ The studio is included with all :ref:`dockerized installations of SQream DB<inst
 
 When starting the studio, it listens on the local machine, on port 8080.
 
-Logging in
+Logging In to SQream Studio
 ===================
+**To log in to SQream Studio:**
 
-Open a browser to the host, on port 8080. (e.g. If the machine is ``196.168.0.100``, navigate to http://192.168.0.100:8080) .
+1. Open a browser to the host on **port 8080**. For example, if your machine IP address is ``196.168.0.100``, insert ``http://192.168.0.100:8080`` into the browser.
 
-Fill in your login details for SQream DB. These are the same credentials you might use when using :ref:`sqream sql<sqream_sql_cli_reference>` or JDBC.
+2. Fill in your SQream DB login credentials. These are the same credentials used for :ref:`sqream sql<sqream_sql_cli_reference>` or JDBC.
 
-.. image:: /_static/images/studio_login.png
+.. image:: /_static/images/studio_login_v5.3.0.png
 
 Your user level in SQream DB changes what you see.
 
@@ -44,15 +45,19 @@ Your user level in SQream DB changes what you see.
 
 .. _studio_editor:
 
-Statement editor
+Statement Editor
 =================
 
-Familiarizing yourself with the editor
+Getting to Know the Main Screen
 -----------------------------------------
 
-The editor is built up of main panes.
+The editor's main screen includes the four panes shown below:
 
 .. image:: /_static/images/studio_editor_familiarize.png
+
+The following is a brief description of each pane:
+
+* :ref:`Navigation and user information<navigation>` - used to see the Dashboard, access the Editor, view the logs, and show user information.
 
 * :ref:`Toolbar<studio_editor_toolbar>` - used to select the active database you want to work on, limit the number of rows, save query, etc.
 
@@ -62,19 +67,29 @@ The editor is built up of main panes.
 
 * :ref:`Database tree<studio_editor_db_tree>` - contains a heirarchy tree of databases, views, tables, and columns. Can be used to navigate and perform some table operations.
 
-See more about each pane below:
 
-Navigation and user information
+.. _navigation:
+
+
+Navigation and User Information
 -------------------------------------
 
-The user information menu is located on the bottom left portion of the screen |icon-user|.
+The **navigation and user information** pane is used for navigating between the main areas of the Studio:
 
-.. image:: /_static/images/studio_user_info.png
+* Dashboard
+* Editor
+* Logs
 
+By clicking the user icon |icon-user|, you can also use it for logging out and viewing the following:
 
-The menu contains information about the currently signed-in user, as well as version information.
+* User information
+* Connection type
+* SQream version
+* SQream Studio version
+* Log out
 
-You can sign out of the current user at any point, by selecting :kbd:`Logout` in the user menu.
+.. image:: /_static/images/studio_user_info_5053.png
+
 
 
 .. _studio_editor_toolbar:
@@ -82,27 +97,41 @@ You can sign out of the current user at any point, by selecting :kbd:`Logout` in
 Toolbar
 -------------
 
-In the toolbar, you can perform the folllowing operations (from left to right):
+The following figure shows the **Toolbar** pane:
 
-.. image:: /_static/images/studio_editor_toolbar.png
+.. image:: /_static/images/studio_editor_toolbar_5053.png
 
-* Database dropdown - Select the database you want to the statements to run on.
+You can access the following from the Toolbar pane:
 
-* Queue - specify which service queue the statement should run in
+* **Database dropdown list** - select a database that you want to run statements on.
 
-* :kbd:`⯈ Execute` / :kbd:`STOP` - Use the :kbd:`⯈ EXECUTE` button to execute the statement in the Editor pane. When a statement is running, the button changes to :kbd:`STOP`, and can be used to :ref:`stop the active statement<stop_statement>`.
+* **Service dropdown list** - select a service that you want to run statements on:
 
-* :kbd:`Format SQL` - Reformats and reindents the statement
+  * Statements
+  * Selected
+  * All
+  
+**Comment: If so, why are the options Statements, Selected, and All?**
 
-* :kbd:`Download query` - save query text to your computer
+* **Execute** - lets you set which service queue the statement should run in. The **Execute** button toggles between **Execute** and **Stop**, and can be used to stop an active statement before it completes.
 
-* :kbd:`Open query` - load query text from your computer
+**Comment: Is this the correct functionality?**
+   
+  For more information on stopping active statements, see the :ref:`STOP_STATEMENT<stop_statement>` command.
 
-* Max. Rows - By default, the editor will only fetch the first 1000 rows. Click the number to edit. Click outside the number area to save. Setting a higher limit can slow down your browser if the result set is very large. This number is limited to 100000 results (To see more results, consider saving the results to a file or a table with :ref:`create_table_as`).
+* **Format SQL** - Lets you reformat and reindent statements.
+
+* **Download query** - Lets you download query text to your computer.
+
+* **Open query** - Lets you upload query text from your computer.
+
+* **Max Rows** - By default, the Editor fetches only the first 1,000 rows. You can modify this number by selecting an option from the **Max Rows** dropdown list. Note that setting a higher number may slow down your browser if the result is very large. This number is limited to 100,000 results. To see a higher number, you can save the results in a file or a table using the :ref:`create_table_as` command.
+
+*Comment - is the default still 1,000, or is it now 100?**
 
 .. _studio_editor_statement_area:
 
-Statement area
+Statement Pane
 ----------------
 
 The multi-tabbed statement area is where you write queries and statements.
