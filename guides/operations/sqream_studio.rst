@@ -110,12 +110,13 @@ You can access the following from the Toolbar pane:
   * Statements
   * Selected
   * All
-  
-**Comment: If so, why are the options Statements, Selected, and All?**
+..
+   _ **Comment: If so, why are the options Statements, Selected, and All?**
 
 * **Execute** - lets you set which service queue the statement should run in. The **Execute** button toggles between **Execute** and **Stop**, and can be used to stop an active statement before it completes.
 
-**Comment: Is this the correct functionality?**
+..
+   _ **Comment: Is this the correct functionality?**
    
   For more information on stopping active statements, see the :ref:`STOP_STATEMENT<stop_statement>` command.
 
@@ -127,7 +128,10 @@ You can access the following from the Toolbar pane:
 
 * **Max Rows** - By default, the Editor fetches only the first 1,000 rows. You can modify this number by selecting an option from the **Max Rows** dropdown list. Note that setting a higher number may slow down your browser if the result is very large. This number is limited to 100,000 results. To see a higher number, you can save the results in a file or a table using the :ref:`create_table_as` command.
 
-*Comment - is the default still 1,000, or is it now 100?**
+
+
+..
+   _ **Comment - is the default still 1,000, or is it now 100?**
 
 .. _studio_editor_statement_area:
 
