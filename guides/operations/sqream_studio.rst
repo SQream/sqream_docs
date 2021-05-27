@@ -54,6 +54,7 @@ The editor is built up of main panes.
 
 .. image:: /_static/images/studio_editor_familiarize.png
 
+<<<<<<< Updated upstream
 * :ref:`Toolbar<studio_editor_toolbar>` - used to select the active database you want to work on, limit the number of rows, save query, etc.
 
 * :ref:`Statement area<studio_editor_statement_area>` - The statement area is a multi-tab text editor where you write SQL statements. Each tab can connect to a different database.
@@ -65,6 +66,38 @@ The editor is built up of main panes.
 See more about each pane below:
 
 Navigation and user information
+=======
+The following is a brief description of each pane:
+
+.. list-table::
+   :widths: 1 23 76
+   :header-rows: 1
+   
+   * - No.
+     - Element
+     - Function
+   * - 1
+     - :ref:`Navigation pane<navigation>`
+     - Lets you access the Dashboard, Editor, Logs, and shows user information.
+   * - 2
+     - :ref:`Toolbar pane<studio_editor_toolbar>`
+     - Lets you select the active database and service to manage queries.
+   * - 3
+     - :ref:`Statement pane<studio_editor_statement_area>`
+     - Lets you write SQL statements.
+   * - 4
+     - :ref:`Results pane<studio_editor_results>`
+     - Lets you see the results generated from queries.
+   * - 5
+     - :ref:`Database tree pane<studio_editor_db_tree>`
+     - Lets you see a heirarchical tree of databases, views, tables, and columns, and can be used to navigate and perform table operations.
+
+.. _navigation:
+
+
+
+Navigation Pane
+>>>>>>> Stashed changes
 -------------------------------------
 
 The user information menu is located on the bottom left portion of the screen |icon-user|.
@@ -72,14 +105,24 @@ The user information menu is located on the bottom left portion of the screen |i
 .. image:: /_static/images/studio_user_info.png
 
 
+<<<<<<< Updated upstream
 The menu contains information about the currently signed-in user, as well as version information.
+=======
+* User information
+* Connection type
+* SQream version
+* SQream Studio version
+* Logging out
+
+.. image:: /_static/images/studio_user_info_5053.png
+>>>>>>> Stashed changes
 
 You can sign out of the current user at any point, by selecting :kbd:`Logout` in the user menu.
 
 
 .. _studio_editor_toolbar:
 
-Toolbar
+Toolbar Pane
 -------------
 
 In the toolbar, you can perform the folllowing operations (from left to right):
@@ -90,127 +133,203 @@ In the toolbar, you can perform the folllowing operations (from left to right):
 
 * Queue - specify which service queue the statement should run in
 
+<<<<<<< Updated upstream
 * :kbd:`⯈ Execute` / :kbd:`STOP` - Use the :kbd:`⯈ EXECUTE` button to execute the statement in the Editor pane. When a statement is running, the button changes to :kbd:`STOP`, and can be used to :ref:`stop the active statement<stop_statement>`.
 
 * :kbd:`Format SQL` - Reformats and reindents the statement
 
 * :kbd:`Download query` - save query text to your computer
+=======
+* **Execute**:
+
+  * **Statements** - executes the statement at the location of the cursor.
+  * **Selected** - executes only the highlighted text. This mode should be used when executing subqueries or sections of large queries (as long as they are valid SQLs).
+  * **All** - executes all statements in a selected tab.
+
+  The **Execute** button toggles between **Execute** and **Stop**, and can be used to stop an active statement before it completes.   
+>>>>>>> Stashed changes
 
 * :kbd:`Open query` - load query text from your computer
 
+<<<<<<< Updated upstream
 * Max. Rows - By default, the editor will only fetch the first 1000 rows. Click the number to edit. Click outside the number area to save. Setting a higher limit can slow down your browser if the result set is very large. This number is limited to 100000 results (To see more results, consider saving the results to a file or a table with :ref:`create_table_as`).
+=======
+* **Download query** - Lets you download query text to your computer into a new editor tab.
+
+* **Open query** - Lets you upload query text from your computer.
+
+* **Max Rows** - By default, the Editor fetches only the first 1,000 rows. You can modify this number by selecting an option from the **Max Rows** dropdown list. Note that setting a higher number may slow down your browser if the result is very large. This number is limited to 100,000 results.
+
+..
+   _ **Comment - is the default still 1,000, or is it now 100?**
+>>>>>>> Stashed changes
+
+Keyboard Shortcuts for Executing Queries
+~~~~~~~~~~~~~~~~~~
+You can use the following keyboard shortcuts when executing queries:
+
+:kbd:`Ctrl` + :kbd:`Enter` - Executes all queries in the statement pane, or only the highlighted part of a query.
+
+:kbd:`Ctrl` + :kbd:`Space` - Auto-completes the keyword that you are typing.
+
+:kbd:`Ctrl` + :kbd:`↑` - Switches to next tab.
+
+:kbd:`Ctrl` + :kbd:`↓` - Switches to previous tab.
+   
+Related Information
+~~~~~~~~~~~~~~~~~~~~
+The following table shows commands related to running statements:
+
+.. list-table::
+   :widths: 50 50
+   :header-rows: 1
+   
+   * - Command
+     - Function
+   * - Stop active statements
+     - :ref:`STOP_STATEMENT<stop_statement>`
+   * - Save row results in a file or table
+     - :ref:`create_table_as`
+
 
 .. _studio_editor_statement_area:
 
 Statement area
 ----------------
 
-The multi-tabbed statement area is where you write queries and statements.
-
-.. image:: /_static/images/studio_editor_statement.png
+The multi-tabbed statement pane is used for writing queries and statements. You can write multiple statements in tandem in the same tab by separating them with semicolons (``;``):
 
 
-Select the database you wish to use in the toolbar, and then write and execute statements.
+.. image:: /_static/images/studio_editor_statement_multiple_statements_5053.png
 
-A new tab can be opened for each statement. Tabs can be used to separate statements to different databases. Clicking the |icon-plus| will open a new tab with a default name of SQL + a running number.
 
-Multiple statements can be written in the same tab, separated by semicolons (``;``).
+You can add tabs for separate statements to different databases by clicking |icon-plus|. This opens a new tab to the right with the default name **SQL <increasing number>**.
 
-If too many tabs are open, pagination controls will appear. Click |icon-left| or |icon-right| to scroll through the tab listings.
-Rename a tab by double clicking it's name.
+.. image:: /_static/images/studio_editor_statement_5053.png
 
-Close a tab by clicking |icon-close|
+You can rename tabs to help you keep track of your statements by double-clicking their default name and typing a new one:
 
-To close all tabs, click :kbd:`Close all`, to the right of the tabs.
+.. image:: /_static/images/studio_editor_statement_rename_5053.png
+
+
+If too many tabs to fit into the Statement Pane are open at the same time, the tab arrows are displayed. You can scroll through the tabs by clicking |icon-left| or |icon-right|, and close tabs by clicking |icon-close|. You can also close all tabs at once by clicking **Close all** located to the right of the tabs.
 
 
 .. tip:: If this is your first time with SQream DB, see our :ref:`first steps guide<first_steps>`.
 
-.. Keyboard shortcuts
-.. ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. :kbd:`Ctrl` +: kbd:`Enter` - Execute all queries in the statement area, or just the highlighted part of the query.
-
-.. :kbd:`Ctrl` + :kbd:`Space` - Auto-complete the current keyword
-
-.. :kbd:`Ctrl` + :kbd:`↑` - Switch to next tab.
-
-.. :kbd:`Ctrl` + :kbd:`↓` - Switch to previous tab
 
 .. _studio_editor_results:
 
 
-Formatting your SQL
-^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The |icon-format-sql| button can be used to automatically indent and reformat your SQL statements.
+.. _top:
 
-Saving statements
-^^^^^^^^^^^^^^^^^^^^^
-
-The |icon-download-query| saves the tab contents to your computer.
-
-Loading SQL to a tab
-^^^^^^^^^^^^^^^^^^^^^^^
-
-The |icon-open-query| button loads a local file from your computer into a new editor tab.
-
-Executing SQL statements
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Clicking |icon-execute| will execute statements from the active tab.
-
-The button has three modes, which can be selected with the dropdown arrow :kbd:`ᐯ`
-
-* Execute statements – executes the statements where the cursor is located.
-* Execute selected – executes the exact highlighted text. This mode is good for executing a subquery or other part of a large query (as long as it is a valid SQL).
-* Execute all – executes all statements in the active tab, regardless of any selection
-
-When a statement is running, the button changes to :kbd:`STOP`, and can be used to :ref:`stop the active statement<stop_statement>`.
-
-Results
+Results Pane
 -------------
 
-The results pane shows query results and execution information. By default, only the first 10000 results are returned (modify via the :ref:`studio_editor_toolbar`).
+This section describes the following:
+
+* :ref:`Using the Results pane<using_results_pane>`
+* :ref:`The Results view<results_view>`
+* :ref:`The Scripts Log view<scripts_log_view>`
+* :ref:`The SQL view<sql_view>`
+* :ref:`Saving results to a file or clipboard<saving_results_to_file>`
+
+.. _using_results_pane:
+
+Using the Results Pane
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The **Results Pane** shows query results and execution information. By default, only the first 10,000 results are returned, which you can modify from the :ref:`studio_editor_toolbar`.
 
 .. image:: /_static/images/studio_editor_results.png
 
-By default, executing several statements together will open a separate results tab for each statement.
+By default, executing several statements in tandem opens a separate results tab for each statement.
 
-Statements will be executed serially. Any failed statement will cancel subsequent statements.
+..
+   _ **Comment - "together" = "separated by a semicolon"?**
 
-If the |keep-tabs| switch is on, new statements will create new tabs. When off, existing result will be cleared.
+Statements are executed serially, and if a statement fails, all subsequent statements are cancelled.
 
-If too many result tabs are open, pagination controls will appear. Click |icon-left| or |icon-right| to scroll through the tab listings.
+The |keep-tabs| switch lets you do the following when executing new statements:
 
-Close a tab by clicking |icon-close|
+* **When enabled** - creates a new tab for each statement.
+* **When disabled** - clears existing results.
 
-To close all tabs, click :kbd:`Close all`, to the right of the tabs.
+You can rename tabs to help you keep track of your results by double-clicking their default name and typing a new one. The default name for each result is the statement value and the time that the result was generated:
+
+.. image:: /_static/images/studio_editor_results_rename_5053.png
+
+..
+   _ **Comment - Need picture with better data. "Statement value" doesn't seem like the correct term.**
+   
+An incorrectly built statement generates a results error:  
+  
+.. image:: /_static/images/studio_editor_results_error_5053.png
+
+If too many tabs to fit into the Results Pane are open at the same time, the tab arrows are displayed. You can scroll through the tabs by clicking |icon-left| or |icon-right|, and close tabs by clicking |icon-close|. You can also close all results tabs at once by clicking **Close all** located to the right of the tabs.
+
+Clicking **Close all** displays the following message:
+
+.. image:: /_static/images/studio_editor_results_close_all_5053.png
+
+:ref:`Back to top<top>`
 
 .. contents:: In this topic:
    :local:
 
+.. _results_view:
 
-Sorting results
-^^^^^^^^^^^^^^^^^^^^^^
+The Results View
+-------------------------
 
 After the results have appeared, sort them by clicking the column name.
 
-Viewing execution information
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+:ref:`Back to top<top>`
 
-During query execution the time elapsed is tracked in seconds.
+
+.. _scripts_log_view:
+
+The Scripts Log View
+-----------------------------------
+
+While a query is being execute, the elapsed time is tracked in seconds.
 
 The :kbd:`Show Execution Details` button opens the query's :ref:`execution plan<show_node_info>`, for monitoring purposes.
 
-Saving results to a file or clipboard
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+:ref:`Back to top<top>`
+
+
+..
+   _ **Comment - I need help running a better query in order to get the results need to document this.**
+   
+
+
+.. _sql_view:
+   
+The SQL View
+--------------------------------
+**Comment** - Need to populate.
+
+:ref:`Back to top<top>`
+
+   
+.. _saving_results_to_file:
+
+Saving Results to a File or the Clipboard
+--------------------------------
 
 Query results can be saved to a clipboard (for pasting into another text editor) or a local file.
 
+..
+   _ **Comment - I wasn't able to use the last two functions. Ask Slavi.**
+
 .. _studio_editor_db_tree:
 
-Database tree
+:ref:`Back to top<top>`
+
+The Database Tree
 ---------------
 
 The database tree shows the database objects (e.g. tables, columns, views), as well as some metadata like row counts.

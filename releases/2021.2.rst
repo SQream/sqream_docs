@@ -1,7 +1,7 @@
-.. _2021.2:
+.. _2021.1:
 
 **************************
-What's New in 2021.2
+What's New in 2021.1
 **************************
 
 Performance Enhancements
@@ -11,14 +11,11 @@ Performance Enhancements
 
 Version Content
 ====================
-The 2021.2 Release Notes describes the following:
+The 2021.1 Release Notes describes the following:
 
 * Major feature release targeted for all on-premises customers.
 * Basic Cloud functionality.
 
-`Jira Release Board <https://sqream.atlassian.net/secure/RapidBoard.jspa?rapidView=81&projectKey=SQ>`_.
-
-**Comment** - Should the above link be included in the RN? I don't think so.
 
 New Features
 =========================
@@ -156,26 +153,56 @@ The following list describes the main implemented stories:
 * SQream now logs the lock process to identify cause of global permissions timeout for SKT.
 
 
-Known Issues and Limitations
+Resolved Issues
 ================================
-The list below describes the known issues and limitations:
+The following list describes the resolved issues:
 
-* Production core dump from stability test
-* Performance degradation - joins - outer_join1.sql
-* Performance degradation - south_africa-sa4.sql
-* Performance degradation - groupby - groupby_int_func_nvarchar40.sql
+* Copying text from a CSV file to the TEXT column without closing quotes caused SQream to crash. This was fixed.
+* Using an unsupported function call generated an incorrect insert error. This was fixed. 
+* Using the ``insert into`` function from ``table_does_not_exist`` generated an incorrect error.
+* SQream treated inserting ``*`` in ``select_distinct`` as one column. This was fixed.
+* Running ``select * from tbl`` query produced different results than running ``create new_tbl`` followed by ``insert into new_tble select * from tbl``. This was fixed.
+* Using certain encodeKey functions generated errors. This was fixed.
+* Compile errors occurred while running decimal datatype sets. This was fixed.
+* Using the ``rank() in window`` function generated incorrect data. This was fixed.
+* Using a memory smear generated incorrect results in the Decimal Data column. This was fixed.
+* The ``STDDEV_SAMP``, ``STDDEV_POP``, and ``STDEV`` functions were working incorrectly. This was fixed.
+* Running the ``select table_name,row_count from sqream_catalog.tables order by row_count limit 5`` query generated an internal runtime error.
+* Using wildcards (such as ``*.x.y``) did not work in parquet files. This was fixed.
+* Running the ``round(x,y)`` query in the ``where`` clause on ``numeric` generated a compiler error.  
+* Running the ``test window_functions_part1.py`` query generated incorrect results. This was fixed.
+* Running a query written as ``select min(xnvarchar40) over (partition by xint) from t_a`` generated an incorrect result. This was fixed.
+* Running the ``charindex`` query on columns and literals generated different results. This was fixed.
+* Executing ``log*(x,y)`` generated an incorrect error message. This was fixed.
+* As part of an OGG flow, executing certain functions on a column generated memory errors. This was fixed.
+* internal runtime error Type doesn't have a fixed size when doing max on text on develop (cisco poc)
+* avg(len(xnvarchar70)) sum overflow
+* The ``min`` and ``max`` on ``TEXT`` were significantly slower than ``varchar``. This was fixed.
+* Running ``regexp_instr`` generated an empty regular expression. This was fixed.
+* Schemas with external tables could be dropped. This was fixed.
 
-Bug Fixes
+
+
+
+
+Known Issues and Limitations
 ================================
 The the list below describes the following bug fixes:
 
-* SQream would crash during select top 1 * from external table using format parquet with hdfs path. This was fixed in develop. **Comment**: a) what is **top 1 * **? b) What is **fixed in develop?** Does that mean **fixed in Development?**
+* SQream would crash during ``select top 1 from external table using format parquet with hdfs path``.
+
 * Internal Runtime Error occurred when SQream was unable to find column in reorder columns. This is an unresolved production issue in ACL and LG.
+
 * Casting datetime to text truncates the time. Fixed in develop.
-* The compiler generates an error when a count is used as an alias in the **select** list.	
-* Performance degradation occurred on ``pubmatic10_nn``	when joins made on small tables. Performance improvement on joins made on larger tables for identical queries.
-* SQreamd was corrupting logs.	
+
+* The compiler generates an error when a count is used as an alias in the **select** list.
+	
+* Performance degradation occurred when joins made on small tables. Performance improvement on joins made on larger tables for identical queries.
+
+* SQream was corrupting logs.	
+
 * The ``random_delete`` stability test failed in some cases.	
+
 * The ``server_picker`` was dependent on cuda libraries, and failed running on machines that cuda drivers had not been installed.	
 
 
@@ -227,22 +254,6 @@ For more information on integrating with Hadoop, see `Using SQream in an HDFS En
 
 
 
-Additional Information
-==============================
-The list below shows the SQream DB installation packages stored in Artifactory:
-
-* `IBM package <http://artifactory.host-98.sq.l/artifactory/sqream/release_official/tarball/ppc/sqream-db-v2021.1.cpu-generic.volta.cuda-10.1.el7.ppc64le.tar.gz>`_.
-
-* `CentOS package <http://artifactory.host-98.sq.l/artifactory/sqream/release_official/tarball/x86/sqream-db-v2021.1.cpu-generic.pascal.cuda-9.1.el7.centos.x86_64.tar.gz>`_.
-
-* `Ubuntu package <http://artifactory.host-98.sq.l/artifactory/sqream/release_official/tarball/x86/sqream-db-v2021.1.cpu-generic.turing.cuda-10.0.el7.ubuntu.x86_64.tar.gz>`_.
-
-* `Docker IBM package <http://artifactory.host-98.sq.l/artifactory/package/release_official/sqream_installer-2.1.6-DB2021.1-CO1.8.0-SD5.3.0-ppc64le.tar.gz>`_.
-
-* `Docker CentOS package <http://artifactory.host-98.sq.l/artifactory/package/release_official/sqream_installer-2.1.6-DB2021.1-CO1.8.3-SD5.3.0-x86_64.tar.gz>`_.
-
-**Comment** - should we say that remote users must be connected to VPN to access the above files?
-
 
 Naming Changes
 ================================
@@ -252,38 +263,14 @@ Deprecated Features
 ================================
 No features were depecrated.
 
-Version Acceptance Criteria
-=============================== 
-This sections describes the release tests:
 
-* Still running On-Premises: package certifications (Ubuntu and IBM).
-* Still running Cloud:
-  
-  * K8S - testing is incomplete and has an open bug (SQ-6847). **Comment** - I think the SQ should be removed from the doc.
-  * Performance tests - AWS is complete, and GCS and Azure are in progress.
-  
-The list below shows the test plans for the following:
 
-* `On-Prem Test Plan <https://drive.google.com/file/d/1TdrzbMs5ABMv_UbAXv-ZQXZ0k8RS5euK/view?usp=sharing>`_.
-* `Cloud Test Plan <https://drive.google.com/file/d/13qA7KCSGEEdaPzwC0fUaILgNa1mj0PEf/view?usp=sharing>`_.
-* `Performance Report <https://docs.google.com/spreadsheets/d/1iVMPCp02Rq9A8lGprxlGYZ_j40Yrw1OP/edit#gid=1069521973>`_.
-
-**Comment** - Will external users have access to the above Google docs?
-
-AWS is, and GCS and Azure are in progress.
-
-**Comment** - The above was already mentioned above. Is it necessary to say it here, too?
-
-For more information on all Cloud monitored performance tests, and to see which suites are operational, see the `Benchmark Migration report <https://docs.google.com/spreadsheets/d/1o-J9IxaVRuLoI81Med3Br7MxCciswvqV-96ztEL3pQc/edit?usp=sharing>`_.
-
-**Comment** - Consider renaming this Excel sheet file.
-
-Upgrading to v2021.2
+Upgrading to v2021.1
 ========================
 
 Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and other OSs via Docker.
 
 Contact your account manager to get the latest release of SQream DB.
 
-**Comment** - This was in the original 2021.2 RN's, but not in the updated content. Do we want to therefore remove it?
+**Comment** - This was in the original 2021.1 RN's, but not in the updated content. Do we want to therefore remove it?
 
