@@ -1,0 +1,264 @@
+.. _2021.1:
+
+**************************
+What's New in 2021.1
+**************************
+
+Performance Enhancements
+=========================
+* Major feature release targeted for all on-premises customers.
+* Includes basic Cloud functionality.
+
+Version Content
+====================
+The 2021.1 Release Notes describes the following:
+
+* Major feature release targeted for all on-premises customers.
+* Basic Cloud functionality.
+
+
+New Features
+=========================
+
+SQream DB on Cloud
+----------------------------
+SQream DB can now be run on AWS, GCP, and Azure.
+
+Numeric Data Types
+---------------------
+SQream now supports ``numeric(p, s)`` numeric data types where ``p`` is the total number of digits, (``38`` maximum), and ``s`` is the total number of decimal digits.
+
+Example:
+   
+   .. code-block:: none
+      
+      create or replace table t(x numeric(20, 10), y numeric(38, 38));
+      insert into t values(1234567890.1234567890, 0.123245678901234567890123456789012345678);
+      select x + y from t;
+
+Supports the following types:
+
+   * All join types.
+   * All aggregation types (not including Window functions).
+   * Scalar functions (not including some trigonometric and logarithmic functions).
+
+Text Data Type
+---------------
+SQream now supports TEXT data types in all operations.
+
+ * All VARCHAR functionality is now supported for TEXT data types. Release Notes version 2021.1 supported both VARCHAR and TEXT, but the VARCHAR type is not used in new projects unless needed.
+
+ * TEXT data enhancements introduced in Release Notes version 2020.3.1:
+ 
+   * Support text columns in queries with multiple distinct aggregates.
+   * Text literal support for all functions.
+   * Use LoopJoin instead of CrossJoin for join on Text keys.
+
+Supports Partial Sub-Queries
+----------------------------
+SQream now supports running partial sub-queries.
+
+For more information, see `Sub-Queries <https://docs.sqream.com/en/latest/reference/sql/sql_syntax/subqueries.html>`_.
+
+Literal Arguments
+----------------------
+SQream now supports using literal arguments in all cases supporting column arguments for a certain function. Literal arguments are only supported if the **literal** value is the same TYPE as the column.
+
+Simple Scalar SQL UDFs
+------------------------
+SQream now supports simple scalar SQL UDF's.
+
+For more information, see `Simple Scalar SQL UDF’s <https://docs.sqream.com/en/latest/reference/sql/sql_functions/index.html>`_.
+
+Logging Enhancements
+-------------------
+The following log information has been added for the following events:
+
+  * Compilation start time.
+  * When the first metadata callback in the compiler (if relevant).
+  * When the last metadata callback in the compiler (if relevant).
+  * When the log started attempting to apply locks.
+  * When a statement entered the queue.
+  * When a statement exited the queue.
+  * When a client has connected to an instance of **sqreamd** (if it reconnects).
+  * When the log started executing.
+  
+Improvemed Presented License Information
+----------------------------
+SQream now displays information related to data size limitations, expiration date, type of license shown by the new UF. The UF name is ``get_license_info()``.
+
+SQream returns the license information in the following order:
+
+1. Compressed data size (GB)
+2. Uncompressed data size (GB)
+3. Compression type
+4. Data size limit (GB)
+5. Expiration date
+6. ``is date expired(0/1)`` - ``0`` is **no**, and ``1`` is **yes**
+7. ``is size exceeded(0/1)`` - ``0`` is **no**, and ``1`` is **yes**
+8. ``data_size_left`` (GB)
+
+The following is an example of the above licensing information:
+  
+.. code-block:: none
+     
+   10,100,compressed,20,2045-03-18,0,0,10
+  
+
+Optimized Foreign Data Wrapper Export
+-------------------------
+
+The **WriteToFile** chuck producer code has been paralleled to enhance performance. Transferring **(is "transferring" the right word here? Consider using "formatting.")
+
+**Usage example:**
+
+The following is an example of the correct syntax:
+
+.. code-block:: none
+
+   COPY table_name TO fdw_name OPTIONS(max_file_size=size_in_bytes,enforce_single_file={TRUE|FALSE});
+
+The following apply:
+
+* Both of the parameters in the above example are optional.
+
+* The ``max_file_size`` value is specified in bytes and can be any positive value. The default value is ``16*2^20`` (16MB).
+
+* When the ``enforce_single_file`` value is set to ``TRUE``, only one file is created, and its size is not limited by the ``max_file_size`` value. Its default value is ``FALSE``.
+
+Main Implemented Stories
+================================
+The following list describes the main implemented stories:
+
+* SKT inspection items are now productized and ported to the main product line.
+* SQreamDB available on AWS.
+* SQreamDB available on GCP.
+* SQreamDB available on Azure.
+* Works effectively on top of object store on all clouds. **Comment** - what works effectively?
+* SQream now supports Microstrategy.
+* Supports all subquery inspection-related tasks for SKT.
+* Supports MVP licensing system.
+* Text is default string data type for new projects.
+* Production-grade Numeric MVP now supports all functionality required for SKT’s initial production needs.
+* The ``maxResultsChunkMB`` parameter has been set to 200MB.
+* A new kind of string literal supports backslash-style escaping method.
+* Supports optimizing exporting foreign data wrappers.
+* Supports truncating Numeric values when ingested from ORC and CSV files.
+* SQream supports catalog UF that accepts valid SQL patterns and escape characters.
+* Supports creating a basic random data foreign data wrapper for non-text types.
+* Internal error message improved.
+* Supports simple scalar SQL UDF's.
+* Supports ``stdin`` as a file input for SQream SQL.
+* SQream parses its own logs as CSV's.
+* SQream now logs the lock process to identify cause of global permissions timeout for SKT.
+
+
+Resolved Issues
+================================
+The following list describes the resolved issues:
+
+* Copying text from a CSV file to the TEXT column without closing quotes caused SQream to crash. This was fixed.
+* Using an unsupported function call generated an incorrect insert error. This was fixed. 
+* Using the ``insert into`` function from ``table_does_not_exist`` generated an incorrect error.
+* SQream treated inserting ``*`` in ``select_distinct`` as one column. This was fixed.
+* Running ``select * from tbl`` query produced different results than running ``create new_tbl`` followed by ``insert into new_tble select * from tbl``. This was fixed.
+* Using certain encodeKey functions generated errors. This was fixed.
+* Compile errors occurred while running decimal datatype sets. This was fixed.
+* Using the ``rank() in window`` function generated incorrect data. This was fixed.
+* Using a memory smear generated incorrect results in the Decimal Data column. This was fixed.
+* The ``STDDEV_SAMP``, ``STDDEV_POP``, and ``STDEV`` functions were working incorrectly. This was fixed.
+* Running the ``select table_name,row_count from sqream_catalog.tables order by row_count limit 5`` query generated an internal runtime error.
+* Using wildcards (such as ``*.x.y``) did not work in parquet files. This was fixed.
+* Running the ``round(x,y)`` query in the ``where`` clause on ``numeric` generated a compiler error.  
+* Running the ``test window_functions_part1.py`` query generated incorrect results. This was fixed.
+* Running a query written as ``select min(xnvarchar40) over (partition by xint) from t_a`` generated an incorrect result. This was fixed.
+* Running the ``charindex`` query on columns and literals generated different results. This was fixed.
+* Executing ``log*(x,y)`` generated an incorrect error message. This was fixed.
+* As part of an OGG flow, executing certain functions on a column generated memory errors. This was fixed.
+* An internal runtime error occurred when a chunk producer received an unexpected TEXT value.
+* avg(len(xnvarchar70)) sum overflow
+* Calculating the average caused an overflow when the result of the expression was not an overflow.
+* The ``min`` and ``max`` on ``TEXT`` were significantly slower than ``varchar``. This was fixed.
+* Running ``regexp_instr`` generated an empty regular expression. This was fixed.
+* Schemas with external tables could be dropped. This was fixed.
+
+
+
+
+
+Known Issues and Limitations
+================================
+The the list below describes the following bug fixes:
+
+* Casting the **DATETIME** values to **TEXT** truncates the time segment, as shown below. This known issue will be resolved in a future release.
+
+
+
+
+Operations and Configuration Changes
+=====================================
+Recommended SQream Configuration on Cloud
+-------------------------------------
+The following example shows the recommended SQream configuration on Cloud:
+
+.. code-block:: none
+
+   "runtimeFlags": {
+	   "waitForClientSeconds":3600,
+	   "spoolMemoryGB": 80,
+	   "limitQueryMemoryGB": 100,
+
+	   "orcReadersThread": 8
+
+   },
+   "runtimeGlobalFlags": {
+	   "skewStorageFileSizeMB":50,
+	   "tablespaceURL": "s3://xxx/yyy",
+	   "tempPath": "s3://xxx/yyy/temp"
+   },
+   "ioFlags" : {
+	   "ioPayloadsThreadPoolSize": 300
+   }
+
+New Compiler Flag for Partial Hive Support
+---------------------------------------
+SQream now has the following new compiler flag for partial hive support:
+
+``hiveStyleImplicitStringCasts``
+
+The following apply:
+
+* The new flag is applicable in Developer mode only.
+* The new flag activates the implicit cast to strings in some cases. Currently the only supported scenario is case/when, but more cases may be supported in a later version.
+* The default value is ``FALSE``.
+
+Optimized Foreign Data Wrapper Export Configuration Flag
+----------------------------
+SQream now has the following new ``runtimeGlobalFlags`` flag: ``WriteToFileThreads``. This flag configures the number of threads in the **WriteToFile** function. The default value is ``16``.
+
+Integration with Hadoop
+----------------------------
+For more information on integrating with Hadoop, see `Using SQream in an HDFS Environment <https://docs.sqream.com/en/latest/guides/features/external_data/hdfs.html>`_. 
+
+
+
+
+Naming Changes
+================================
+No relevant naming changes were made.
+
+Deprecated Features
+================================
+No features were depecrated.
+
+
+
+Upgrading to v2021.1
+========================
+
+Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and other OSs via Docker.
+
+Contact your account manager to get the latest release of SQream DB.
+
+**Comment** - This was in the original 2021.1 RN's, but not in the updated content. Do we want to therefore remove it?
+
