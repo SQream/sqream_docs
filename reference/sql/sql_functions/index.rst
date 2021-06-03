@@ -12,12 +12,7 @@ Summary of Functions
 .. contents::
    :local:
 
-<<<<<<< Updated upstream
-Built-in Scalar Functions
-=======
-Scalar Functions
->>>>>>> Stashed changes
--------------------
+
 
 See more about :ref:`scalar_functions`
 
