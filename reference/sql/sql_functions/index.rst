@@ -1,17 +1,18 @@
 .. _sql_functions:
 
 ****************
-SQL functions
+SQL Functions
 ****************
 
 SQream DB supports functions from ANSI SQL, as well as others for compatibility.
 
-Summary of functions
+Summary of Functions
 =======================
 
 .. contents::
    :local:
 
+<<<<<<< Updated upstream
 Built-in Scalar Functions
 -------------------
 
@@ -377,6 +378,8 @@ Workload Management Functions
      - Remove a SQream DB worker to a service queue
    * - :ref:`show_subscribed_instances`
      - Return a list of service queues and workers
+	 
+
 
 
 .. toctree::
