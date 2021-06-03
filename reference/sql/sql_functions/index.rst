@@ -12,7 +12,7 @@ Summary of Functions
 .. contents::
    :local:
 
-Built-In Functions
+Built-In Scalar Functions
 ===========================
 
 See more about :ref:`scalar_functions`
