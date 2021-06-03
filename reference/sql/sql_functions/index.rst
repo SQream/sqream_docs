@@ -382,6 +382,7 @@ Workload management functions
    :glob:
 
    scalar_functions/index
+   user_defined_functions/index
    aggregate_functions/index
    window_functions/*
    system_functions/*
