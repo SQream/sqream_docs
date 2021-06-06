@@ -4,7 +4,14 @@
 Connecting to Tableau
 *************************
 
-You can use Tableau to connect to a SQream DB cluster. This tutorial is a guide that will show you how to connect to Tableau, as well as provide some guidelines and best practices for exploring data with Tableau and SQream DB.
+Overview
+=====================
+
+This page is a Tableau viability report as a tool for visualizing Big Data and its compatibility with SQreamDB, and provides documentation for stakeholders using SQreamDB. A quick start guide is provided, as well as a report on feature support, known issues, and a BI use-case performance comparison between Postgres and SQream.
+
+It includes the following:
+
+
 
 SQream DB supports both Tableau Desktop and Tableau Server on Windows, MacOS, and Linux distributions.
 
@@ -14,8 +21,9 @@ SQream DB supports both Tableau Desktop and Tableau Server on Windows, MacOS, an
 Installing Tableau Desktop
 ============================
 
-SQream DB has been tested with versions 9.2 and newer.
-If you do not already have Tableau Desktop installed, download and install Tabelau Desktop. https://www.tableau.com/products/trial
+SQream DB has been tested with versions 9.2 and newer. If you have not installed Tableau Desktop, download a free 14-day trial.
+
+`see <https://www.tableau.com/products/trial`_
 
 Tableau offers a time-limited trial version.
 

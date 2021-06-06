@@ -12,6 +12,20 @@ Overview
 
 This page describes how to use Microstrategy to interact with a SQream DB cluster. The Microstrategy connector is used for reading data from a SQream DB cluster and loading data into SQream DB.
 
+In addition, this page provides a viability report on Talend's comptability with SQream DB for stakeholders.
+
+It includes the following:
+
+* :ref:`System requirements <system_requirements>`
+* :ref:`A Quick Start guide <quickstart_guide>`
+* :ref:`Information about supported SQream drivers <supported_sqream_drivers>`
+* :ref:`A description of known issues <known_issues>`
+* :ref:`Related links <related_links>`
+* :ref:`Download links <download_links>`
+
+
+
+
 About MicroStrategy
 ================
 MicroStrategy is a Business Intelligence software offering a wide variety of data analytics capabilities. As an application suite, it provides the following:
@@ -32,6 +46,11 @@ MicroStrategy is a Business Intelligence software offering a wide variety of dat
 
 For more information about Microstrategy, see `MicroStrategy <https://www.microstrategy.com/>`_.
 
+.. _system_requirements:
+
+:ref:`Back to Overview <top>`
+
+
 System Requirements
 ==================
 The **System Requirements** section lists the minimal system requirements to support the MicroStrategy Secure Enterprise. The system requirements depend on certain factors, such as the complexity of your MicroStrategy environment, the deployment strategy of MicroStrategy features, user community requirements, expected peak usage requirements, and response time expectations.
@@ -42,6 +61,11 @@ The following list shows more detailed system requirements:
 
 * `Evaluation deployment <https://doc-archives.microstrategy.com/producthelp/10.11/Readme/content/requirements_evaluation.htm>`_
 * `Production deployment <https://doc-archives.microstrategy.com/producthelp/10.11/Readme/content/requirements_production.htm>`_
+
+.. _quickstart_guide:
+
+:ref:`Back to Overview <top>`
+
 
 Quick Start Guide
 =======================
@@ -203,6 +227,10 @@ Now Microstrategy is set and ready for you to make whatever Dashboard you desire
 
 **Comment - Verify on front end.**
 
+.. _supported_sqream_drivers:
+
+:ref:`Back to Overview <top>`
+
 Supported SQream Drivers
 ================
 
@@ -212,7 +240,11 @@ The following list shows the supported SQream drivers and versions:
 * **ODBC** - Version 4.0.0.
 * **Drivers and Connectors** - For the official MicroStrategy drivers and donnectors, see `MicroStrategy Drivers and Connectors <https://www.microstrategy.com/en/support/drivers-and-connectors>`_.
 
-Supported Tool and Operating System Versions
+.. _supported_tools_and_operating_systems:
+
+:ref:`Back to Overview <top>`
+
+Supported Tools and Operating System Versions
 ======================
 MicroStrategy was tested using the following:
 
@@ -220,6 +252,10 @@ MicroStrategy was tested using the following:
 * Windows 10 Professional
 * Framework Build 11.2.2 (Windows or MAC)
 * SQream version 2021.1
+
+.. _known_issues:
+
+:ref:`Back to Overview <top>`
 
 Known Issues
 ===========================  
@@ -234,6 +270,10 @@ The the list below describes the following known issues as of 6/1/2021:
 * Different databases were using the same schema name and table name.
 * Define data from different data sources external tables
 
+.. _related_links:
+
+:ref:`Back to Overview <top>`
+
 Related Links
 ===============
 The following is a list of links relevant to the MicroStrategy connector:
@@ -242,6 +282,10 @@ The following is a list of links relevant to the MicroStrategy connector:
 * `MicroStrategy Community page <https://community.microstrategy.com/s/?language=en_US>`_
 * `MicroStrategy <https://doc-archives.microstrategy.com/producthelp/10.11/Readme/content/tools.htm>`_
 
+.. _download_links:
+
+:ref:`Back to Overview <top>`
+
 Download Links
 ==================
 The following is a list of download links relevant to the MicroStrategy connector:
@@ -249,22 +293,4 @@ The following is a list of download links relevant to the MicroStrategy connecto
 * `MicroStrategy <https://www.microstrategy.com/en/get-started/workstation>`_
 * `Latest version of SQream JDBC <https://docs.sqream.com/en/latest/guides/client_drivers/index.html#client-drivers>`_
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+:ref:`Back to Overview <top>`
