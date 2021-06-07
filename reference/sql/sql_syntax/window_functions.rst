@@ -82,8 +82,7 @@ Supported window functions
    * - :ref:`min`
    * - :ref:`sum`
 
-.. versionchanged:: 2020.1
-   :ref:`count` and :ref:`avg` are supported in window functions from v2020.1.
+
    
 .. list-table:: Ranking functions
    :widths: auto
@@ -95,8 +94,7 @@ Supported window functions
    * - :ref:`rank`
    * - :ref:`row_number`
 
-.. versionchanged:: 2020.2
-   :ref:`lag` and :ref:`lead` are supported from v2020.2.
+
 
 
 How window functions work
@@ -137,8 +135,7 @@ Without ``ORDER BY``, rows are processed in an unspecified order.
 Frames 
 -------
 
-.. versionchanged:: 2020.1
-   Frames are supported from v2020.1.
+
 
 .. note:: Frames and frame exclusions have been tested extensively, but are a complex feature. They are released as a preview in v2020.1 pending longer-term testing.
 
@@ -277,8 +274,6 @@ See :ref:`rank`.
 Using ``LEAD`` to access following rows without a join
 -----------------------------------------------------------
 
-.. versionchanged:: 2020.2
-   :ref:`lag` and :ref:`lead` are supported from v2020.2.
 
 The :ref:`lead` function is used to return data from rows further down the result set. 
 The :ref:`lag` function returns data from rows further up the result set.

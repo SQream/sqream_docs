@@ -117,7 +117,7 @@ Examples
 
 .. code-block:: postgres
    
-   CREATE TABLE animals (name VARCHAR(15), is_angry BOOL);
+   CREATE TABLE animals (name TEXT, is_angry BOOL);
    
    INSERT INTO animals VALUES ('fox',true), ('cat',true), ('kiwi',false);
    
@@ -227,6 +227,18 @@ Integer values can be converted to:
      - ``1`` → ``1.0``, ``-32`` → ``-32.0``
    * - ``VARCHAR(n)`` (All numberic values must fit in the string length)
      - ``1`` → ``'1'``, ``2451`` → ``'2451'``
+	 
+Numeric Data Types
+------------------------
+Sqream supports ``numeric(p, s)`` numeric data types where ``p`` is the total number of digits, (38 maximum), and ``s`` is the total number of decimal digits.
+
+The following is an example of the correct syntax:
+
+   .. code-block:: console
+
+      $ create or replace table t(x numeric(20, 10), y numeric(38, 38));
+      $ insert into t values(1234567890.1234567890, 0.123245678901234567890123456789012345678);
+      $ select x + y from t;
 
 
 Floating point (``REAL``, ``DOUBLE``)
@@ -318,7 +330,7 @@ SQream DB separates ASCII (``VARCHAR``) and UTF-8 representations (``TEXT``).
 
 .. note:: The data type ``NVARCHAR`` has been deprecated by ``TEXT`` as of version 2020.1.
 
-String types
+String Types
 ^^^^^^^^^^^^^^^^^^^^^^
 .. list-table:: String types
    :widths: auto
@@ -369,7 +381,7 @@ Examples
 
 .. code-block:: postgres
    
-   CREATE TABLE cool_strings (a VARCHAR(25) NOT NULL, b TEXT);
+   CREATE TABLE cool_strings (a TEXT NOT NULL, b TEXT);
    
    INSERT INTO cool_strings VALUES ('hello world', 'Hello to kiwi birds specifically');
    

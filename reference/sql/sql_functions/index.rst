@@ -1,7 +1,7 @@
 .. _sql_functions:
 
 ****************
-SQL functions
+SQL Functions
 ****************
 
 SQream DB supports functions from ANSI SQL, as well as others for compatibility.
@@ -12,12 +12,12 @@ Summary of functions
 .. contents::
    :local:
 
-Scalar functions
+Built-In Scalar Functions
 -------------------
 
 See more about :ref:`scalar_functions`
 
-Bitwise operations
+Bitwise Operations
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table:: 
@@ -79,7 +79,7 @@ Conversion
    * - :ref:`to_unixts`
      - Converts a ``DATE`` or ``DATETIME`` to a UNIX Timestamp
 
-Date and time
+Date and Time
 ^^^^^^^^^^^^^^^^
 
 .. list-table:: 
@@ -256,8 +256,13 @@ Strings
    * - :ref:`upper`
      - Converts an argument to an upper-case equivalent
 
+User-Defined Scalar Functions
+---------------------
 
-Aggregate functions
+For more information about user-defined scalar functions, see :ref:`scalar_sql_udf`
+
+
+Aggregate Functions
 ---------------------
 
 See more about  :ref:`aggregate_functions`
@@ -306,7 +311,7 @@ See more about  :ref:`aggregate_functions`
      - ``varp``
      - Calculates population variance of values
 
-Window functions
+Window Functions
 -------------------
 
 See more about  :ref:`window_functions`
@@ -332,7 +337,7 @@ See more about  :ref:`window_functions`
    * - :ref:`sum`
      - Calculates the sum of all of the values
 
-System functions
+System Functions
 ------------------
 
 System functions allow you to execute actions in the system, such as aborting a query or get information about system processes.
@@ -358,7 +363,7 @@ System functions allow you to execute actions in the system, such as aborting a 
    * - :ref:`stop_statement`
      - Stops a query (or statement) if it is currently running
 
-Workload management functions
+Workload Management Functions
 ---------------------------------
 
 .. list-table:: 
@@ -382,6 +387,9 @@ Workload management functions
    :glob:
 
    scalar_functions/index
+   user_defined_functions/index
    aggregate_functions/index
-   window_functions/*
-   system_functions/*
+   window_functions/index
+   system_functions/index
+
+
