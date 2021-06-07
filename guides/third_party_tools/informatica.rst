@@ -42,7 +42,7 @@ This Quick Start Guide describes how to establish a connection between Sqream an
 4. Fill out the profile information and click **START YOUR FREE TRIAL**.
 5. If the company confirmation panel is displayed, confirm the company. Informatica administration sends an automatic email to your email address.
 6. Follow the instructions in the automatically generated email. Click **Confirm Account link**. 
-7. Define your credentials. 
+7. Define your credentials and click **Log In**.
 
 .. image:: /_static/images/third_party_connectors/informatica/quickstartguide_2.png
 
@@ -62,7 +62,7 @@ This Quick Start Guide describes how to establish a connection between Sqream an
 
 .. image:: /_static/images/third_party_connectors/informatica/quickstartguide_6.png
 
-12. From the **Services** window, select **Administrator** or click **See all services** to see all services.
+12. From the **Services** window, select **Administrator** or click **Show all services** to show all services.
 
 .. image:: /_static/images/third_party_connectors/informatica/quickstartguide_7.png
 
@@ -70,7 +70,7 @@ The Sqream dashboard is displayed.
    
 .. image:: /_static/images/third_party_connectors/informatica/quickstartguide_8.png
 
-13. In the menu item on the left, click **Runtime Environments**.
+13. In the menu on the left, click **Runtime Environments**.
 
 .. image:: /_static/images/third_party_connectors/informatica/quickstartguide_9.png
 
@@ -78,61 +78,75 @@ The **Runtime Environments** panel is displayed.
 
 .. image:: /_static/images/third_party_connectors/informatica/quickstartguide_10.png
 
+14. Click **Download Secure Agent**.
+
+.. image:: /_static/images/third_party_connectors/informatica/quickstartguide_11.5.png
+
+15. When the **Download the Secure Agent** panel is displayed, do the following:
+
+    1. Select a platform (Windows 64 or Linux 64).
+	
+    2. Click **Copy** and save the token locally. The token is used in combination with your user name to authorize the agent to access your account.
+	
+.. image:: /_static/images/third_party_connectors/informatica/quickstartguide_12.5.png
+
+16. Click **Download**. The installation begins.
+
+.. image:: /_static/images/third_party_connectors/informatica/quickstartguide_12.6.png
+
+17. When the Informatica Cloud Secure Agent Setup panel is displayed, click **Next**.
+
+.. image:: /_static/images/third_party_connectors/informatica/quickstartguide_12.7.png
+
+18. Provide your **User Name** and **Install Token** and click **Register**.
+
+.. image:: /_static/images/third_party_connectors/informatica/quickstartguide_12.8.png
+
+
+
 14. From the Runtime Environments panel, click **New Runtime Environment**.
 
 .. image:: /_static/images/third_party_connectors/informatica/quickstartguide_11.png
 
-15. Click **Download Secure Agent**.
+**Comment - This step was located here in the Confluence doc, but I think this is the wrong place. See Step 19.**
 
-    The **New Secure Agent Group** window is displayed.
+The **New Secure Agent Group** window is displayed.
 
 .. image:: /_static/images/third_party_connectors/informatica/quickstartguide_12.png
 
-16. Copy the token and store it. The token is required for installing Informatica.
-
-17. Install the Secure Agent on one of the following operating systems:
-
-A Secure Agent is a lightweight program that runs all tasks that you configure in Informatica Intelligent Cloud Services and processes your company's data locally and securely. A Secure Agent must be running to run tasks.
-
-Verify that you have the following prerequisites before installing the Secure Agent on your machine:
-
-   * Windows
-   * Linux
-
-Verify the following requirements before you install the Secure Agent on Windows:
-Verify that the machine on which you install the Secure Agent uses a supported operating system. For the list of supported operating systems for the Secure Agent, see the Product Availability Matrix (PAM) for Informatica Intelligent Cloud Services on the Product Availability Matrices page on Informatica Network.
-Verify that the machine where you install the Secure Agent has at least 5 GB of free disk space.
-Verify that the account you use to install the Secure Agent has access to all remote directories that contain flat source or target files.
-Verify that no other Secure Agent is installed on the machine. If another Secure Agent is installed on the machine, you must uninstall it first.
- 
 
 
-A Secure Agent is a lightweight program that runs all tasks that you configure in Informatica Intelligent Cloud Services and processes your company's data locally and securely. A Secure Agent must be running to run tasks. The following link will guide you through the prerequisites before you install a Secure Agent on your machines, such as the operating system that will support the Secure Agent, access to all remote directories, and more. 
 
-Windows installation process
-
-Linux installation process
-
-Agent Installation and Ports Needed
-
-Using the following links, understand how to download and install a Secure Agent, configure the proxy settings, configure login, and also uninstall the Secure Agent in Linux and Windows.
-
-Windows
-
-Linux
-
- 
-
-Install the Agent and start the service.
-
-Create “New Runtime environment” 
-
- 
+16. Download Agent.
 
 
- 
+The **Secure Agent** is a lightweight software that runs all tasks that you configure in Informatica Intelligent Cloud Services and processes your company's data locally and securely. The Secure Agent must be running to run tasks.
 
-Connect Runtime Environment with the running agent 
+17. Verify the pre-installation requirements for your operating system before installing the Secure Agent on your machine:
+
+* `Windows <https://docs.informatica.com/integration-cloud/cloud-platform/current-version/runtime-environments/secure-agent-installation/secure-agent-installation-on-windows/secure-agent-requirements-on-windows.html>`_
+
+* `Linux <https://docs.informatica.com/integration-cloud/cloud-platform/current-version/runtime-environments/secure-agent-installation/secure-agent-installation-on-linux/secure-agent-requirements-on-linux.html>`_
+
+18. Install the Secure Agent on your machine using your operating system:
+
+* `Windows <https://docs.informatica.com/integration-cloud/cloud-platform/current-version/runtime-environments/secure-agent-installation/secure-agent-installation-on-windows.html>`_
+
+* `Linux <https://docs.informatica.com/integration-cloud/cloud-platform/current-version/runtime-environments/secure-agent-installation/secure-agent-installation-on-linux.html>`_
+
+In addition to installing the Secure Agent on your machine, the links above include information for configuring proxy settings, configuring a login, and uninstalling the Secure Agent.
+
+.. image:: /_static/images/third_party_connectors/informatica/quickstartguide_13.png
+
+19. From the Runtime Environments panel, click **New Runtime Environment**.
+
+The **New Secure Agent Group** window is displayed.
+
+.. image:: /_static/images/third_party_connectors/informatica/quickstartguide_12.png 
+
+20. On the New Secure Agent Group window, click **OK** to connect your Runtime Environment with the running agent.
+
+**NOTE:** If you do not download Secure Agent, you will not be able to connect your Runtime Environment with the running agent and continue establishing a connection between Sqream and the Informatica data integration Cloud.
 
 Create database connection - Press New Connection
 
