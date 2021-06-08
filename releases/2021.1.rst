@@ -104,12 +104,9 @@ The following is an example of the above licensing information:
 
 Optimized Foreign Data Wrapper Export
 -------------------------
+Sqream now supports exporting to multiple files concurrently. This is useful when you need to reduce file size to more easily export multiple files.
 
-The **WriteToFile** chuck producer code has been paralleled to enhance performance. Transferring **(is "transferring" the right word here? Consider using "formatting.")
-
-**Usage example:**
-
-The following is an example of the correct syntax:
+The following is an example of the correct syntax for exporting multiple files concurrently:
 
 .. code-block:: none
 
@@ -121,7 +118,7 @@ The following apply:
 
 * The ``max_file_size`` value is specified in bytes and can be any positive value. The default value is ``16*2^20`` (16MB).
 
-* When the ``enforce_single_file`` value is set to ``TRUE``, only one file is created, and its size is not limited by the ``max_file_size`` value. Its default value is ``FALSE``.
+* When the ``enforce_single_file`` value is set to ``TRUE``, only one file is created, and its size is not limited by the ``max_file_size`` value. Its default value is ``TRUE``.
 
 Main Implemented Stories
 ================================
@@ -208,46 +205,17 @@ Operations and Configuration Changes
 =====================================
 Recommended SQream Configuration on Cloud
 -------------------------------------
-The following example shows the recommended SQream configuration on Cloud:
 
-.. code-block:: none
+For more information about AWS, see `Amazon S3 <https://docs.sqream.com/en/latest/guides/features/external_data/s3.html>`_
 
-   "runtimeFlags": {
-	   "waitForClientSeconds":3600,
-	   "spoolMemoryGB": 80,
-	   "limitQueryMemoryGB": 100,
 
-	   "orcReadersThread": 8
 
-   },
-   "runtimeGlobalFlags": {
-	   "skewStorageFileSizeMB":50,
-	   "tablespaceURL": "s3://xxx/yyy",
-	   "tempPath": "s3://xxx/yyy/temp"
-   },
-   "ioFlags" : {
-	   "ioPayloadsThreadPoolSize": 300
-   }
-
-New Compiler Flag for Partial Hive Support
----------------------------------------
-SQream now has the following new compiler flag for partial hive support:
-
-``hiveStyleImplicitStringCasts``
-
-The following apply:
-
-* The new flag is applicable in Developer mode only.
-* The new flag activates the implicit cast to strings in some cases. Currently the only supported scenario is case/when, but more cases may be supported in a later version.
-* The default value is ``FALSE``.
 
 Optimized Foreign Data Wrapper Export Configuration Flag
 ----------------------------
 SQream now has the following new ``runtimeGlobalFlags`` flag: ``WriteToFileThreads``. This flag configures the number of threads in the **WriteToFile** function. The default value is ``16``.
 
-Integration with Hadoop
-----------------------------
-For more information on integrating with Hadoop, see `Using SQream in an HDFS Environment <https://docs.sqream.com/en/latest/guides/features/external_data/hdfs.html>`_. 
+
 
 
 
