@@ -28,7 +28,7 @@ Numeric Data Types
 ---------------------
 SQream now supports ``numeric(p, s)`` numeric data types where ``p`` is the total number of digits, (``38`` maximum), and ``s`` is the total number of decimal digits.
 
-This feature supports the following types:
+This feature supports the following operations:
 
    * All join types.
    * All aggregation types (not including Window functions).
@@ -38,15 +38,15 @@ For more information, see `Numeric Data Types <https://docs.sqream.com/en/latest
 
 Text Data Type
 ---------------
-SQream now supports TEXT data types in all operations.
+SQream now supports TEXT data types in all operations, which is default string data type for new projects.
 
- * All VARCHAR functionality is now supported for TEXT data types. Release Notes version 2021.1 supported both VARCHAR and TEXT, but the VARCHAR type is not used in new projects unless needed.
+
+ * Sqream supports VARCHAR functionalty, but recommends using TEXT.
 
  * TEXT data enhancements introduced in Release Notes version 2020.3.1:
  
    * Support text columns in queries with multiple distinct aggregates.
    * Text literal support for all functions.
-   * Use LoopJoin instead of CrossJoin for join on Text keys.
    
 For more information, see `String Types <https://docs.sqream.com/en/latest/reference/sql_data_types.html#string-types-text-varchar>`_.
 
@@ -59,7 +59,8 @@ For more information, see `Subqueries <https://docs.sqream.com/en/latest/referen
 
 Literal Arguments
 ----------------------
-SQream now supports using literal arguments in all cases supporting column arguments for a certain function. Literal arguments are only supported if the **literal** value is the same TYPE as the column.
+
+SQream now supports literal (or constant) arguments for functions in call cases where column/scalar arguments are supported.
 
 Simple Scalar SQL UDFs
 ------------------------
@@ -82,9 +83,9 @@ The following log information has been added for the following events:
   
 Improved Presented License Information
 ----------------------------
-SQream now displays information related to data size limitations, expiration date, type of license shown by the new UF. The UF name is ``get_license_info()``.
+SQream now displays information related to data size limitations, expiration date, type of license shown by the new UF. The **Utility Function (UF)** name is ``get_license_info()``.
 
-SQream returns the license information in the following order:
+When invoked, ``get_license_info()`` returns the license information in the following order:
 
 1. Compressed data size (GB)
 2. Uncompressed data size (GB)
@@ -120,31 +121,26 @@ The following apply:
 
 * When the ``enforce_single_file`` value is set to ``TRUE``, only one file is created, and its size is not limited by the ``max_file_size`` value. Its default value is ``TRUE``.
 
-Main Implemented Stories
+Main Features
 ================================
-The following list describes the main implemented stories:
+The following list describes the main features:
 
-* SKT inspection items are now productized and ported to the main product line.
 * SQreamDB available on AWS.
 * SQreamDB available on GCP.
 * SQreamDB available on Azure.
-* Works effectively on top of object store on all clouds. **Comment** - what works effectively?
+* SQream usages storage located on Object Store (as opposed to local disks) for the above three cloud providers.
 * SQream now supports Microstrategy.
-* Supports all subquery inspection-related tasks for SKT.
 * Supports MVP licensing system.
-* Text is default string data type for new projects.
-* Production-grade Numeric MVP now supports all functionality required for SKT’s initial production needs.
 * The ``maxResultsChunkMB`` parameter has been set to 200MB.
-* A new kind of string literal supports backslash-style escaping method.
+* A new literal syntax containing character escape semantics for string literals has been added.
 * Supports optimizing exporting foreign data wrappers.
 * Supports truncating Numeric values when ingested from ORC and CSV files.
-* SQream supports catalog UF that accepts valid SQL patterns and escape characters.
+* Supports catalog Utility Function that accepts valid SQL patterns and escape characters.
 * Supports creating a basic random data foreign data wrapper for non-text types.
-* Internal error message improved.
+* The new foreign data wrapper ``random_fdw`` has been introduced for non-text types.
 * Supports simple scalar SQL UDF's.
 * Supports ``stdin`` as a file input for SQream SQL.
 * SQream parses its own logs as CSV's.
-* SQream now logs the lock process to identify cause of global permissions timeout for SKT.
 
 
 Resolved Issues
@@ -155,22 +151,14 @@ The following list describes the resolved issues:
 * Using an unsupported function call generated an incorrect insert error. This was fixed. 
 * Using the ``insert into`` function from ``table_does_not_exist`` generated an incorrect error.
 * SQream treated inserting ``*`` in ``select_distinct`` as one column. This was fixed.
-* Running ``select * from tbl`` query produced different results than running ``create new_tbl`` followed by ``insert into new_tble select * from tbl``. This was fixed.
 * Using certain encodeKey functions generated errors. This was fixed.
 * Compile errors occurred while running decimal datatype sets. This was fixed.
-* Using the ``rank() in window`` function generated incorrect data. This was fixed.
-* Using a memory smear generated incorrect results in the Decimal Data column. This was fixed.
-* The ``STDDEV_SAMP``, ``STDDEV_POP``, and ``STDEV`` functions were working incorrectly. This was fixed.
 * Running the ``select table_name,row_count from sqream_catalog.tables order by row_count limit 5`` query generated an internal runtime error.
 * Using wildcards (such as ``*.x.y``) did not work in parquet files. This was fixed.
 * Running the ``round(x,y)`` query in the ``where`` clause on ``numeric` generated a compiler error.  
-* Running the ``test window_functions_part1.py`` query generated incorrect results. This was fixed.
-* Running a query written as ``select min(xnvarchar40) over (partition by xint) from t_a`` generated an incorrect result. This was fixed.
 * Running the ``charindex`` query on columns and literals generated different results. This was fixed.
 * Executing ``log*(x,y)`` generated an incorrect error message. This was fixed.
-* As part of an OGG flow, executing certain functions on a column generated memory errors. This was fixed.
 * internal runtime error Type doesn't have a fixed size when doing max on text on develop (cisco poc)
-* avg(len(xnvarchar70)) sum overflow
 * The ``min`` and ``max`` on ``TEXT`` were significantly slower than ``varchar``. This was fixed.
 * Running ``regexp_instr`` generated an empty regular expression. This was fixed.
 * Schemas with external tables could be dropped. This was fixed.
@@ -178,6 +166,40 @@ The following list describes the resolved issues:
 
 
 
+
+	
+
+
+
+Operations and Configuration Changes
+=====================================
+Recommended SQream Configuration on Cloud
+-------------------------------------
+
+For more information about AWS, see `Amazon S3 <https://docs.sqream.com/en/latest/guides/features/external_data/s3.html>`_.
+
+
+
+
+Optimized Foreign Data Wrapper Export Configuration Flag
+----------------------------
+
+SQream now has a new ``runtimeGlobalFlags`` flag called ``WriteToFileThreads``.
+
+This flag configures the number of threads in the **WriteToFile** function. The default value is ``16``.
+
+For more information about the ``runtimeGlobalFlags`` flag, see the **Runtime Global Flags** table in `Configuration <https://docs.sqream.com/en/latest/guides/operations/configuration.html>`_.
+
+
+
+
+Naming Changes
+================================
+No relevant naming changes were made.
+
+Deprecated Features
+================================
+No features were depecrated.
 
 Known Issues and Limitations
 ================================
@@ -197,38 +219,7 @@ The the list below describes the following bug fixes:
 
 * The ``random_delete`` stability test failed in some cases.	
 
-* The ``server_picker`` was dependent on cuda libraries, and failed running on machines that cuda drivers had not been installed.	
-
-
-
-Operations and Configuration Changes
-=====================================
-Recommended SQream Configuration on Cloud
--------------------------------------
-
-For more information about AWS, see `Amazon S3 <https://docs.sqream.com/en/latest/guides/features/external_data/s3.html>`_
-
-
-
-
-Optimized Foreign Data Wrapper Export Configuration Flag
-----------------------------
-SQream now has the following new ``runtimeGlobalFlags`` flag: ``WriteToFileThreads``. This flag configures the number of threads in the **WriteToFile** function. The default value is ``16``.
-
-
-
-
-
-
-Naming Changes
-================================
-No relevant naming changes were made.
-
-Deprecated Features
-================================
-No features were depecrated.
-
-
+* The ``server_picker`` was dependent on cuda libraries, and failed running on machines that cuda drivers had not been installed.
 
 Upgrading to v2021.1
 ========================
@@ -238,4 +229,3 @@ Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and othe
 Contact your account manager to get the latest release of SQream DB.
 
 **Comment** - This was in the original 2021.1 RN's, but not in the updated content. Do we want to therefore remove it?
-
