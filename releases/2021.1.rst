@@ -80,7 +80,7 @@ The following log information has been added for the following events:
   * When a client has connected to an instance of **sqreamd** (if it reconnects).
   * When the log started executing.
   
-Improvemed Presented License Information
+Improved Presented License Information
 ----------------------------
 SQream now displays information related to data size limitations, expiration date, type of license shown by the new UF. The UF name is ``get_license_info()``.
 
