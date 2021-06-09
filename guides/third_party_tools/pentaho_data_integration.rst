@@ -29,4 +29,57 @@ In this tutorial, we cover the steps to install Pentaho Data Integration, part o
 
 1. Download PDI according to `Pentaho Community Edition (CE) Installation Guide <https://www.hitachivantara.com/en-us/pdf/white-paper/pentaho-community-edition-installation-guide-for-windows-whitepaper.pdf>`_.
 
+2. Open the PDI client for your operating system:
+
+   * Windows:
+   
+   .. code-block:: console
+     
+      $ spoon.bat
+   
+   * Linux:
+   
+   .. code-block:: console
+     
+      $ ./spoon.sh &>/dev/null &
+
+3. In the **View** tab, right-click **Transformations** and click **New**.
+
+.. image:: /_static/images/third_party_connectors/pentaho/pentaho_1.png
+
+A new transformation tab is created.
+
+.. image:: /_static/images/third_party_connectors/pentaho/pentaho_2.png
+
+3. In the **Design** tab, click **Input** to show its file contents.
+
+.. image:: /_static/images/third_party_connectors/pentaho/pentaho_3.png
+
+4. Drag and drop **CSV file input** file to the new transformation tab that you created.
+
+.. image:: /_static/images/third_party_connectors/pentaho/pentaho_4.png
+
+5. Double-click **CSV file input**. The **CSV file input** panel is displayed.
+
+.. image:: /_static/images/third_party_connectors/pentaho/pentaho_5.png
+
+6. In the **Step name** field, type a name.
+
+.. image:: /_static/images/third_party_connectors/pentaho/pentaho_6.png
+
+7. To the right of the **Filename** field, click **Browse** and select the file that you want to read from and click **OK**.
+
+.. image:: /_static/images/third_party_connectors/pentaho/pentaho_7.png
+
+
+
+
+
+
+
+
+
+
+
+
 
