@@ -11,55 +11,65 @@ Client Driver Downloads
 
 All Operating Systems 
 ---------------------------
-The following drivers are applicable to all operating systems:
+The following are applicable to all operating systems:
 
-* **JDBC** - `sqream-jdbc v4.3.3 (.jar) <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.4.0.jar>`_
-   
-   :ref:`java_jdbc` Driver
-   
-   (SQream recommends installing via ``mvn``)
+.. _jdbc:
 
-* 
-   **Python** - `pysqream v3.1.3 (.tar.gz) <https://github.com/SQream/pysqream/releases/tag/v3.1.3>`_
-   
-   :ref:`pysqream` - Python driver
-   
-   (SQream recommends installing via ``pip``)
+* **JDBC** - recommended installation via ``mvn``:
 
-* 
-   **Node.JS** - `sqream-v4.2.4 (.tar.gz) <https://sq-ftp-public.s3.amazonaws.com/sqream-sqreamdb-4.2.4.tgz>`_
-   
-   :ref:`nodejs` - Node.JS driver
-   
-   (SQream recommends installing via ``npm``)
+  * `JDBC .jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.4.0.jar>`_ - sqream-jdbc-4.4.0 (.jar)
+  * `JDBC driver <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html#java-jdbc>`_
 
-* 
-   **Tableau Connector** - `SQreamDB (.taco) <http://downloads.sqream.com/drivers/2020.3/SQreamDB.taco>`_
-   
-   :ref:`Tableau connector<tableau_manual_installation>` - Tableau connector for manual installation
+
+.. _python:
+
+* **Python** - Recommended installation via ``pip``:
+
+  * `Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.1.3>`_ - pysqream v3.1.3 (.tar.gz)
+  * `Python driver <https://docs.sqream.com/en/latest/guides/client_drivers/python/index.html#pysqream>`_
+
+
+.. _nodejs:
+
+* **Node.JS** - Recommended installation via ``npm``:
+
+  * `Node.JS <https://sq-ftp-public.s3.amazonaws.com/sqream-sqreamdb-4.2.4.tgz>`_ - sqream-v4.2.4 (.tar.gz)
+  * `Node.JS driver <https://docs.sqream.com/en/latest/guides/client_drivers/nodejs/index.html#nodejs>`_
+
+
+.. _tableau_connector:   
+
+* **Tableau**:
+
+  * `Tableau connector <http://downloads.sqream.com/drivers/2020.3/SQreamDB.taco>`_ - SQreamDB (.taco)
+  * `Tableau manual installation <https://docs.sqream.com/en/latest/guides/third_party_tools/tableau.html#tableau-manual-installation>`_
+
+
+
 
 Windows
 --------------
+The following are applicable to Windows:
 
-* 
-   **JDBC installer** - `SQream_JDBC_Driver_v2020.2.0.exe <http://downloads.sqream.com/drivers/2020.3/SQream_JDBC_Driver_v2020.2.0.exe>`_ 
-   
-   Windows installer for JDBC driver, with Tableau connector.
 
-* 
-   **ODBC installer** - ``SQream Drivers v2020.2.0``
-   
-   :ref:`Windows installer for ODBC and JDBC<install_odbc_windows>`, with Tableau customizations. Please contact your SQream representative to get this installer.
+* **JDBC installer** - `SQream_JDBC_Driver_v2020.2.0.exe <http://downloads.sqream.com/drivers/2020.3/SQream_JDBC_Driver_v2020.2.0.exe>`_ - Windows installer for JDBC driver, with Tableau connector.
 
-* **.Net driver** - `SQream .Net driver v2.0.0 <http://downloads.sqream.com/drivers/2020.2/SqreamNet_net48_3.0.2.dll>`_
+* **ODBC installer** - SQream Drivers v2020.2.0 - with Tableau customizations. Please contact your `Sqream represenative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_ for this installer.
+
+  For more information on installing and configuring ODBC on Windows, see :ref:`Install and configure ODBC on Windows <install_odbc_windows>`.
+
+**Comment - I made the link to the Support Center on the Sqream website, but it says that I don't have permissions to view that portal. If I don't have permissions, then a front-end user probably doesn't either.**
+
+* **Net driver** - `SQream .Net driver v3.0.2 <http://downloads.sqream.com/drivers/2020.2/SqreamNet_net48_3.0.2.dll>`_
    
    
 
 Linux
 --------------
+The following are applicable to Linux:
 
 * 
-   **SQream SQL** (x86) - `sqream-sql-v2020.1.1_stable.x86_64.tar.gz <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.x86_64.tar.gz>`_ 
+   **SQream SQL** (x86_64) - `sqream-sql-v2020.1.1_stable.x86_64.tar.gz <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.x86_64.tar.gz>`_ 
    
    :ref:`sqream sql<sqream_sql_cli_reference>` - Interactive command-line SQL client for Intel-based machines
    
@@ -74,7 +84,7 @@ Linux
    :ref:`Linux installer for ODBC<install_odbc_linux>`. Please contact your SQream representative to get this installer.
 
 * 
-   **C++ connector** - `libsqream-4.0 <https://sq-ftp-public.s3.amazonaws.com/libsqream-4.1.tar.gz>`_ 
+   **C++ connector** - `libsqream-4.1 <https://sq-ftp-public.s3.amazonaws.com/libsqream-4.1.tar.gz>`_ 
    
    :ref:`C++ shared object<cpp_native>` library
 
@@ -84,11 +94,11 @@ Linux
    :caption: Client Driver Documentation:
    :titlesonly:
    
-   python/index
-   cpp/index
    jdbc/index
-   odbc/index
+   python/index
    nodejs/index
+   odbc/index
+   cpp/index
 
 
 

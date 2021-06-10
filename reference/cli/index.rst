@@ -1,10 +1,10 @@
 .. _cli_reference:
 
 ************************
-Command line programs
+Command Line Programs
 ************************
 
-SQream contains several command line programs for using, starting, managing, and configuring SQream DB clusters.
+Sqream contains several command line programs for using, starting, managing, and configuring SQream DB clusters.
 
 This topic contains the reference for these programs, as well as flags and configuration settings.
 
@@ -17,7 +17,7 @@ This topic contains the reference for these programs, as well as flags and confi
    * - :ref:`sqream sql<sqream_sql_cli_reference>`
      - Built-in SQL client
 
-.. list-table:: SQream DB cluster components
+.. list-table:: SQream DB Cluster Components
    :widths: auto
    :header-rows: 1
    
@@ -30,7 +30,7 @@ This topic contains the reference for these programs, as well as flags and confi
    * - :ref:`server_picker <server_picker_cli_reference>`
      - Load balancer end-point
 
-.. list-table:: SQream DB utilities
+.. list-table:: Sqream DB Utilities
    :widths: auto
    :header-rows: 1
    
@@ -41,7 +41,7 @@ This topic contains the reference for these programs, as well as flags and confi
    * - :ref:`upgrade_storage <upgrade_storage_cli_reference>`
      - Upgrade metadata schemas when upgrading between major versions
 
-.. list-table:: Docker utilities
+.. list-table:: Docker Utilities
    :widths: auto
    :header-rows: 1
    
