@@ -1,19 +1,19 @@
 .. _client_drivers:
 
 ************************************
-Client drivers for |latest_version|
+Client Drivers for |latest_version|
 ************************************
 
-These guides explain how to use the SQream DB client drivers, and how to use client applications with SQream DB.
+The guides on this page describe how to use the Sqream DB client drivers and client applications with Sqream DB.
 
-Client driver downloads
+Client Driver Downloads
 =============================
 
-All operating systems 
+All Operating Systems 
 ---------------------------
+The following drivers are applicable to all operating systems:
 
-* 
-   **JDBC** - `sqream-jdbc v4.3.3 (.jar) <http://downloads.sqream.com/drivers/2020.3/sqream-jdbc-4.3.3.jar>`_
+* **JDBC** - `sqream-jdbc v4.3.3 (.jar) <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.4.0.jar>`_
    
    :ref:`java_jdbc` Driver
    
@@ -27,7 +27,7 @@ All operating systems
    (SQream recommends installing via ``pip``)
 
 * 
-   **Node.JS** - `sqream-v4.2.4 (.tar.gz) <http://downloads.sqream.com/drivers/2020.3/sqream-sqreamdb-4.2.4.tgz>`_
+   **Node.JS** - `sqream-v4.2.4 (.tar.gz) <https://sq-ftp-public.s3.amazonaws.com/sqream-sqreamdb-4.2.4.tgz>`_
    
    :ref:`nodejs` - Node.JS driver
    
@@ -51,7 +51,7 @@ Windows
    
    :ref:`Windows installer for ODBC and JDBC<install_odbc_windows>`, with Tableau customizations. Please contact your SQream representative to get this installer.
 
-* **.Net driver** - `SQream .Net driver v2.0.0 <http://downloads.sqream.com/drivers/2020.2/sqream_dotnet-2.0.0.zip>`_
+* **.Net driver** - `SQream .Net driver v2.0.0 <http://downloads.sqream.com/drivers/2020.2/SqreamNet_net48_3.0.2.dll>`_
    
    
 
@@ -59,12 +59,12 @@ Linux
 --------------
 
 * 
-   **SQream SQL** (x86) - `sqream-sql-v2020.1.1_stable.x86_64.tar.gz <http://downloads.sqream.com/drivers/2020.2/sqream-sql-v2020.1.1_stable.x86_64.tar.gz>`_ 
+   **SQream SQL** (x86) - `sqream-sql-v2020.1.1_stable.x86_64.tar.gz <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.x86_64.tar.gz>`_ 
    
    :ref:`sqream sql<sqream_sql_cli_reference>` - Interactive command-line SQL client for Intel-based machines
    
 * 
-   **SQream SQL** (IBM POWER9) - `sqream-sql-v2020.1.1_stable.ppc64le.tar.gz <http://downloads.sqream.com/drivers/2020.2/sqream-sql-v2020.1.1_stable.ppc64le.tar.gz>`_ 
+   **SQream SQL** (IBM POWER9) - `sqream-sql-v2020.1.1_stable.ppc64le.tar.gz <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.ppc64le.tar.gz>`_ 
    
    :ref:`sqream sql<sqream_sql_cli_reference>` - Interactive command-line SQL client for IBM POWER9-based machines
    
@@ -74,14 +74,14 @@ Linux
    :ref:`Linux installer for ODBC<install_odbc_linux>`. Please contact your SQream representative to get this installer.
 
 * 
-   **C++ connector** - `libsqream-4.0 <http://downloads.sqream.com/drivers/2020.2/libsqream-4.0.tar.gz>`_ 
+   **C++ connector** - `libsqream-4.0 <https://sq-ftp-public.s3.amazonaws.com/libsqream-4.1.tar.gz>`_ 
    
    :ref:`C++ shared object<cpp_native>` library
 
 
 .. toctree::
    :maxdepth: 4
-   :caption: Client driver documentation:
+   :caption: Client Driver Documentation:
    :titlesonly:
    
    python/index
