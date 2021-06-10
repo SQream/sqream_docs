@@ -1,7 +1,7 @@
 .. _sql_syntax:
 
 **********************
-SQL syntax features
+SQL Syntax Features
 **********************
 
 SQream DB supports SQL from the ANSI 92 syntax.
