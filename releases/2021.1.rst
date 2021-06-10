@@ -60,7 +60,7 @@ For more information, see `Subqueries <https://docs.sqream.com/en/latest/referen
 Literal Arguments
 ----------------------
 
-SQream now supports literal (or constant) arguments for functions in call cases where column/scalar arguments are supported.
+SQream now supports literal arguments for functions in call cases where column/scalar arguments are supported.
 
 Simple Scalar SQL UDFs
 ------------------------
@@ -126,7 +126,7 @@ The following list describes the main features:
 * Supports creating a basic random data foreign data wrapper for non-text types.
 * The new foreign data wrapper ``random_fdw`` has been introduced for non-text types.
 * Supports simple scalar SQL UDF's.
-* Supports ``stdin`` as a file input for SQream SQL.
+* Supports the ``stdin`` file input for Sqream SQL. File mode can be used to read SQL statements directly from the standard file input.
 * SQream parses its own logs as CSV's.
 
 
