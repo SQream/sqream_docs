@@ -1,7 +1,7 @@
 .. _window_functions:
 
 ********************
-Window functions
+Window Functions
 ********************
 
 Window functions are functions applied over a subset (known as a window) of the rows returned by a :ref:`select` query. 
@@ -68,7 +68,7 @@ Arguments
      - An expression or column reference to order by
 
 
-Supported window functions
+Supported Window Functions
 ===========================
 
 .. list-table:: Window function aggregations
@@ -97,7 +97,7 @@ Supported window functions
 
 
 
-How window functions work
+How Window Functions Work
 ============================
 
 A window function operates on a subset ("window") of rows.
@@ -168,7 +168,7 @@ Restrictions
 
 For example ``RANGE BETWEEN CURRENT ROW AND 7 PRECEDING`` is not allowed. However, while ``ROWS BETWEEN 7 PRECEDING AND 8 PRECEDING`` is allowed, it would never select any rows.
 
-Frame exclusion
+Frame Exclusion
 -----------------
 
 The ``frame_exclusion`` option allows rows around the current row to be excluded from the frame, even if they would be included according to the frame start and frame end options. ``EXCLUDE CURRENT ROW`` excludes the current row from the frame. ``EXCLUDE GROUP`` excludes the current row and its ordering peers from the frame. ``EXCLUDE TIES`` excludes any peers of the current row from the frame, but not the current row itself. ``EXCLUDE NO OTHERS`` simply specifies explicitly the default behavior of not excluding the current row or its peers.
@@ -210,7 +210,7 @@ Here's a peek at the table contents (:download:`Download nba.csv </_static/sampl
    :widths: auto
    :header-rows: 1 
 
-Window function application
+Window Function Application
 -----------------------------------
 
 .. code-block:: psql
@@ -235,7 +235,7 @@ Window function application
     72902950
     [...]
 
-Ranking results
+Ranking Results
 -----------------
 
 See :ref:`rank`.
@@ -271,7 +271,7 @@ See :ref:`rank`.
    [...]
    
 
-Using ``LEAD`` to access following rows without a join
+Using ``LEAD`` to Access Following Rows Without a Join
 -----------------------------------------------------------
 
 
