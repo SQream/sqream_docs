@@ -439,7 +439,7 @@ Basic Commands
 -----------------------
 
 .. list-table:: 
-   :widths: auto
+   :widths: 20 30 50
    :header-rows: 1
    
    * - Command
@@ -459,7 +459,7 @@ Moving Around the Command Line
 ---------------------------------
 
 .. list-table:: 
-   :widths: auto
+   :widths: 17 83
    :header-rows: 1
    
    * - Command
@@ -501,7 +501,7 @@ Searching
 ------------
 
 .. list-table:: 
-   :widths: auto
+   :widths: 17 83
    :header-rows: 1
    
    * - Command
