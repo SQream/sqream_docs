@@ -190,7 +190,7 @@ The the list below describes the following bug fixes:
 
 * SQream would crash during ``select top 1 from external table using format parquet with hdfs path``.
 
-* Internal Runtime Error occurred when SQream was unable to find column in reorder columns. This is an unresolved production issue in ACL and LG.
+* Internal Runtime Error occurred when SQream was unable to find column in reorder columns.
 
 * Casting datetime to text truncates the time. Fixed in develop.
 
