@@ -54,7 +54,9 @@ The following are applicable to Windows:
 
 * **JDBC installer** - `SQream_JDBC_Driver_v2020.2.0.exe <http://downloads.sqream.com/drivers/2020.3/SQream_JDBC_Driver_v2020.2.0.exe>`_ - Windows installer for JDBC driver, with Tableau connector.
 
-* **ODBC installer** - SQream Drivers v2020.2.0 - with Tableau customizations. Please contact your `Sqream represenative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_ for this installer.
+   ::
+
+* **ODBC installer** - SQream Drivers v2020.2.0, with Tableau customizations. Please contact your `Sqream represenative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_ for this installer.
 
   For more information on installing and configuring ODBC on Windows, see :ref:`Install and configure ODBC on Windows <install_odbc_windows>`.
 
@@ -68,25 +70,24 @@ Linux
 --------------
 The following are applicable to Linux:
 
-* 
-   **SQream SQL** (x86_64) - `sqream-sql-v2020.1.1_stable.x86_64.tar.gz <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.x86_64.tar.gz>`_ 
-   
-   :ref:`sqream sql<sqream_sql_cli_reference>` - Interactive command-line SQL client for Intel-based machines
-   
-* 
-   **SQream SQL** (IBM POWER9) - `sqream-sql-v2020.1.1_stable.ppc64le.tar.gz <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.ppc64le.tar.gz>`_ 
-   
-   :ref:`sqream sql<sqream_sql_cli_reference>` - Interactive command-line SQL client for IBM POWER9-based machines
-   
-* 
-   **ODBC installer** - ``sqream_odbc_4.0.0_x86_64_linux.tar.gz``
-   
-   :ref:`Linux installer for ODBC<install_odbc_linux>`. Please contact your SQream representative to get this installer.
+* `SQream SQL (x86_64) <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.x86_64.tar.gz>`_ - sqream-sql-v2020.1.1_stable.x86_64.tar.gz
+* `Sqream SQL CLI Reference <https://docs.sqream.com/en/latest/reference/cli/sqream_sql.html#sqream-sql-cli-reference>`_ - Interactive command-line SQL client for Intel-based machines
 
-* 
-   **C++ connector** - `libsqream-4.1 <https://sq-ftp-public.s3.amazonaws.com/libsqream-4.1.tar.gz>`_ 
+   ::
+
+* `SQream SQL*(IBM POWER9) <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.ppc64le.tar.gz>`_ - sqream-sql-v2020.1.1_stable.ppc64le.tar.gz
+* `Sqream SQL CLI Reference <https://docs.sqream.com/en/latest/reference/cli/sqream_sql.html#sqream-sql-cli-reference>`_ - Interactive command-line SQL client for IBM POWER9-based machines
    
-   :ref:`C++ shared object<cpp_native>` library
+   ::
+
+* `ODBC Installer <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.ppc64le.tar.gz>`_ - sqream_odbc_4.0.0_x86_64_linux.tar.gz
+* :ref:`Linux installer for ODBC<install_odbc_linux>`. Please contact your SQream representative for this installer.
+
+   ::
+
+
+* C++ connector - `libsqream-4.0 <https://sq-ftp-public.s3.amazonaws.com/libsqream-4.0.tar.gz>`_   
+* `C++ shared object library <https://docs.sqream.com/en/latest/guides/client_drivers/cpp/index.html#getting-the-library>`_
 
 
 .. toctree::

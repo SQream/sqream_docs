@@ -1,7 +1,7 @@
 .. _install_odbc_linux:
 
 ****************************************
-Install and configure ODBC on Linux
+Installing and Configuring ODBC on Linux
 ****************************************
 
 .. toctree::
@@ -48,14 +48,14 @@ Take note of the location of ``.odbc.ini`` and ``.odbcinst.ini``. In this case, 
    :local:
    :depth: 1
 
-Install unixODBC on RHEL 7 / CentOS 7
+Installing unixODBC on RHEL 7 / CentOS 7
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: console
 
    $ yum install -y unixODBC unixODBC-devel
 
-Install unixODBC on Ubuntu
+Installing unixODBC on Ubuntu
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: console
@@ -63,7 +63,7 @@ Install unixODBC on Ubuntu
    $ sudo apt-get install unixodbc unixodbc-dev
 
 
-Install the ODBC driver with a script
+Installing the ODBC driver with a Script
 =======================================
 
 Use this method if you have never used ODBC on your machine before. If you have existing DSNs, see the manual install process below.
@@ -87,7 +87,7 @@ Use this method if you have never used ODBC on your machine before. If you have 
 #. Edit the DSN created by editing ``/etc/.odbc.ini``. See the parameter explanation in the section :ref:`ODBC DSN Parameters <dsn_params>`. 
 
 
-Install the ODBC driver manually
+Installing the ODBC Driver Manually
 =======================================
 
 Use this method when you have existing ODBC DSNs on your machine.
@@ -163,7 +163,7 @@ Use this method when you have existing ODBC DSNs on your machine.
             ODBCInstLib=libodbcinst.so
 
 
-Install the driver dependencies
+Installing the Driver Dependencies
 ==================================
 
 Add the ODBC driver path to ``LD_LIBRARY_PATH``:
@@ -174,7 +174,7 @@ Add the ODBC driver path to ``LD_LIBRARY_PATH``:
 
 You can also add this previous command line to your ``~/.bashrc`` file in order to keep this installation working between reboots without re-entering the command manually
 
-Testing the connection
+Testing the Connection
 ========================
 
 Test the driver using ``isql``.
