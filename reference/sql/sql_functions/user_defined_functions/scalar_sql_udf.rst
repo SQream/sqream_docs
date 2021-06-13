@@ -4,10 +4,11 @@ Scalar SQL UDF
 -----------------------
 Syntax
 ~~~~~~~~~~~~
-The following example shows the correct syntax for simple scalar SQL UDF's:
+A scalar UDF is a user-defined function that returns a single value such as the sum of a group of values. Scalar UDFs are different than table-valued functions, which return a result set in the form of a table.
 
+The following example shows the correct syntax for simple scalar SQL UDF's returning the type name:
 
-   .. code-block:: console
+.. code-block:: console
 
       $ create_function_statement ::=
       $     CREATE [ OR REPLACE ] FUNCTION function_name (argument_list)
