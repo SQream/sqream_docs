@@ -1,7 +1,7 @@
 .. _s3:
 
 ***********************
-S3
+Amazon S3
 ***********************
 
 SQream DB has a native S3 connector for inserting data. The ``s3://`` URI specifies an external file path on an S3 bucket.

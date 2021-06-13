@@ -6,7 +6,7 @@ Configuration
 
 This guide covers the configuration files and the ``SET`` statement.
 
-Configuration files
+Configuration Files
 ==========================
 
 By default, configuration files are stored in ``/etc/sqream``.
@@ -36,7 +36,7 @@ A very minimal configuration file looks like this:
 
 In the example above, the worker will start on port 5000, and will use GPU #0.
 
-Frequently set parameters
+Frequently Set Parameters
 ============================
 
 .. todo
@@ -98,8 +98,8 @@ Frequently set parameters
      - Valid local system path to license file
      - ``"license_path" : "/etc/sqream/license.enc"``
 
-.. list-table:: Runtime global flags
-   :widths: auto
+.. list-table:: Runtime Global Flags
+   :widths: 10 22 16 10 22 16
    :header-rows: 1
    
    * - Name
@@ -114,6 +114,12 @@ Frequently set parameters
      - ``128``
      - 1 to maximum available RAM in gigabytes. 
      - ``"spoolMemoryGb": 250``
+   * - ``WriteToFileThreads``
+     - ``runtimeGlobalFlags``
+     - Configures the number of threads in the **WriteToFile** function
+     - ``16``
+     -  
+     - 
    * - ``limitQueryMemoryGB``
      - ``runtimeGlobalFlags``
      - Modifies the maximum amount of RAM allocated for a query. The recommended value for this is ``total host memory`` / ``sqreamd workers on host``. For example, for a machine with 512GB of RAM and 4 workers, the recommended setting is ``512/4 → 128``.
@@ -201,7 +207,7 @@ Frequently set parameters
 
 
 
-.. list-table:: Runtime flags
+.. list-table:: Runtime Flags
    :widths: auto
    :header-rows: 1
    
@@ -237,7 +243,7 @@ Frequently set parameters
 
 .. warning:: JSON files can't contain any comments
 
-Recommended configuration file
+Recommended Configuration File
 =====================================
 
 .. code-block::  json
@@ -268,7 +274,7 @@ Recommended configuration file
       }
    }
    
-Changing settings temporarily
+Changing Settings Temporarily
 ===================================
 
 The ``SET`` statement can modify one of the configuration settings for the session or connection.

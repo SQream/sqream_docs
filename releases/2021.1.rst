@@ -1,0 +1,205 @@
+.. _2021.1:
+
+**************************
+What's New in 2021.1
+**************************
+
+Performance Enhancements
+=========================
+* Major feature release targeted for all on-premises customers.
+* Includes basic Cloud functionality.
+
+Version Content
+====================
+The 2021.1 Release Notes describes the following:
+
+* Major feature release targeted for all on-premises customers.
+* Basic Cloud functionality.
+
+
+New Features
+=========================
+
+SQream DB on Cloud
+----------------------------
+SQream DB can now be run on AWS, GCP, and Azure.
+
+Numeric Data Types
+---------------------
+SQream now supports Numeric Data types for the following operations:
+
+   * All join types.
+   * All aggregation types (not including Window functions).
+   * Scalar functions (not including some trigonometric and logarithmic functions).
+   
+For more information, see `Numeric Data Types <https://docs.sqream.com/en/latest/reference/sql_data_types.html#numeric-data-types.html>`_.
+
+Text Data Type
+---------------
+SQream now supports TEXT data types in all operations, which is default string data type for new projects.
+
+
+ * Sqream supports VARCHAR functionalty, but recommends using TEXT.
+
+ * TEXT data enhancements introduced in Release Notes version 2020.3.1:
+ 
+   * Support text columns in queries with multiple distinct aggregates.
+   * Text literal support for all functions.
+   
+For more information, see `String Types <https://docs.sqream.com/en/latest/reference/sql_data_types.html#string-types-text-varchar>`_.
+
+
+Supports Scalar Subqueries
+----------------------------
+SQream now supports running initial scalar subqueries.
+
+For more information, see `Subqueries <https://docs.sqream.com/en/latest/reference/sql/sql_syntax/subqueries.html>`_.
+
+Literal Arguments
+----------------------
+
+SQream now supports literal arguments for functions in call cases where column/scalar arguments are supported.
+
+Simple Scalar SQL UDFs
+------------------------
+SQream now supports simple scalar SQL UDF's.
+
+For more information, see `Simple Scalar SQL UDF’s <https://docs.sqream.com/en/latest/reference/sql/sql_functions/user_defined_functions/index.html>`_.
+
+Logging Enhancements
+-------------------
+The following log information has been added for the following events:
+
+  * Compilation start time.
+  * When the first metadata callback in the compiler (if relevant).
+  * When the last metadata callback in the compiler (if relevant).
+  * When the log started attempting to apply locks.
+  * When a statement entered the queue.
+  * When a statement exited the queue.
+  * When a client has connected to an instance of **sqreamd** (if it reconnects).
+  * When the log started executing.
+  
+Improved Presented License Information
+----------------------------
+SQream now displays information related to data size limitations, expiration date, type of license shown by the new UF. The **Utility Function (UF)** name is ``get_license_info()``.
+
+For more information, see `GET_LICENSE_INFO <html.xxx>`_.
+
+
+  
+
+Optimized Foreign Data Wrapper Export
+-------------------------
+Sqream now supports exporting to multiple files concurrently. This is useful when you need to reduce file size to more easily export multiple files.
+
+The following is an example of the correct syntax for exporting multiple files concurrently:
+
+.. code-block:: none
+
+   COPY table_name TO fdw_name OPTIONS(max_file_size=size_in_bytes,enforce_single_file={TRUE|FALSE});
+
+The following apply:
+
+* Both of the parameters in the above example are optional.
+
+* The ``max_file_size`` value is specified in bytes and can be any positive value. The default value is ``16*2^20`` (16MB).
+
+* When the ``enforce_single_file`` value is set to ``TRUE``, only one file is created, and its size is not limited by the ``max_file_size`` value. Its default value is ``TRUE``.
+
+Main Features
+================================
+The following list describes the main features:
+
+* SQreamDB available on AWS.
+* SQreamDB available on GCP.
+* SQreamDB available on Azure.
+* SQream usages storage located on Object Store (as opposed to local disks) for the above three cloud providers.
+* SQream now supports Microstrategy.
+* Supports MVP licensing system.
+* A new literal syntax containing character escape semantics for string literals has been added.
+* Supports optimizing exporting foreign data wrappers.
+* Supports truncating Numeric values when ingested from ORC and CSV files.
+* Supports catalog Utility Function that accepts valid SQL patterns and escape characters.
+* Supports creating a basic random data foreign data wrapper for non-text types.
+* The new foreign data wrapper ``random_fdw`` has been introduced for non-text types.
+* Supports simple scalar SQL UDF's.
+* SQream parses its own logs as CSV's.
+
+
+Resolved Issues
+================================
+The following list describes the resolved issues:
+
+* Copying text from a CSV file to the TEXT column without closing quotes caused SQream to crash. This was fixed.
+* Using an unsupported function call generated an incorrect insert error. This was fixed. 
+* Using the ``insert into`` function from ``table_does_not_exist`` generated an incorrect error.
+* SQream treated inserting ``*`` in ``select_distinct`` as one column. This was fixed.
+* Using certain encodeKey functions generated errors. This was fixed.
+* Compile errors occurred while running decimal datatype sets. This was fixed.
+* Running the ``select table_name,row_count from sqream_catalog.tables order by row_count limit 5`` query generated an internal runtime error.
+* Using wildcards (such as ``*.x.y``) did not work in parquet files. This was fixed.
+* Running the ``round(x,y)`` query in the ``where`` clause on ``numeric` generated a compiler error.  
+* Running the ``charindex`` query on columns and literals generated different results. This was fixed.
+* Executing ``log*(x,y)`` generated an incorrect error message. This was fixed.
+* internal runtime error Type doesn't have a fixed size when doing max on text on develop (cisco poc)
+* The ``min`` and ``max`` on ``TEXT`` were significantly slower than ``varchar``. This was fixed.
+* Running ``regexp_instr`` generated an empty regular expression. This was fixed.
+* Schemas with external tables could be dropped. This was fixed.
+
+
+
+
+
+	
+
+
+
+Operations and Configuration Changes
+=====================================
+Recommended SQream Configuration on Cloud
+-------------------------------------
+
+For more information about AWS, see `Amazon S3 <https://docs.sqream.com/en/latest/guides/features/external_data/s3.html>`_.
+
+
+
+
+Optimized Foreign Data Wrapper Export Configuration Flag
+----------------------------
+
+SQream now has a new ``runtimeGlobalFlags`` flag called ``WriteToFileThreads``.
+
+This flag configures the number of threads in the **WriteToFile** function. The default value is ``16``.
+
+For more information about the ``runtimeGlobalFlags`` flag, see the **Runtime Global Flags** table in `Configuration <https://docs.sqream.com/en/latest/guides/operations/configuration.html>`_.
+
+
+
+
+Naming Changes
+================================
+No relevant naming changes were made.
+
+Deprecated Features
+================================
+No features were depecrated.
+
+Known Issues and Limitations
+================================
+The the list below describes the following bug fixes:
+
+* SQream would crash during ``select top 1 from external table using format parquet with hdfs path``.
+
+* Internal Runtime Error occurred when SQream was unable to find column in reorder columns. This is an unresolved production issue in ACL and LG.
+
+* Casting datetime to text truncates the time. Fixed in develop.
+
+* The compiler generates an error when a count is used as an alias in the **select** list.
+	
+* Performance degradation occurred when joins made on small tables. Performance improvement on joins made on larger tables for identical queries.
+
+* SQream was corrupting logs.	
+
+* The ``random_delete`` stability test failed in some cases.	
+
+* The ``server_picker`` was dependent on cuda libraries, and failed running on machines that cuda drivers had not been installed.

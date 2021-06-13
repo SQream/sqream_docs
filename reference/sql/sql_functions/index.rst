@@ -6,14 +6,14 @@ SQL Functions
 
 SQream DB supports functions from ANSI SQL, as well as others for compatibility.
 
-Summary of Functions
+Summary of functions
 =======================
 
 .. contents::
    :local:
 
 Built-In Scalar Functions
-===========================
+-------------------
 
 See more about :ref:`scalar_functions`
 
@@ -256,10 +256,11 @@ Strings
    * - :ref:`upper`
      - Converts an argument to an upper-case equivalent
 
-User-Defined Functions
+User-Defined Scalar Functions
 ---------------------
 
-For more information about user-defined functions, see :ref:`simple_scalar_sql_udf`
+For more information about user-defined scalar functions, see :ref:`scalar_sql_udf`
+
 
 Aggregate Functions
 ---------------------
@@ -377,8 +378,6 @@ Workload Management Functions
      - Remove a SQream DB worker to a service queue
    * - :ref:`show_subscribed_instances`
      - Return a list of service queues and workers
-	 
-
 
 
 .. toctree::
@@ -390,5 +389,7 @@ Workload Management Functions
    scalar_functions/index
    user_defined_functions/index
    aggregate_functions/index
-   window_functions/*
-   system_functions/*
+   window_functions/index
+   system_functions/index
+
+
