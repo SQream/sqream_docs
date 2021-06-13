@@ -329,7 +329,7 @@ String Types (``TEXT``, ``VARCHAR``)
 
 SQream DB separates ASCII (``VARCHAR``) and UTF-8 representations (``TEXT``).
 
-.. note:: The data type ``NVARCHAR`` has been deprecated by ``TEXT`` as of version 2020.1.
+.. note:: The data type ``NVARCHAR`` has been deprecated and replaced by ``TEXT`` as of version 2020.1.
 
 String Types
 ^^^^^^^^^^^^^^^^^^^^^^
