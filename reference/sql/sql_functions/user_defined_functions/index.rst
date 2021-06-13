@@ -9,7 +9,7 @@ The following user-defined functions are functions that can be defined and confi
 
 
 * `Python user-defined functions <https://docs.sqream.com/en/latest/guides/features/python_functions.html>`_.
-* `Scalar SQL user-defined functions <file:///C:/Users/Yaniv/sqream_docs/_build/html/reference/sql/sql_functions/user_defined_functions/scalar_sql_udf.html>`_.
+* `Scalar SQL user-defined functions <https://docs.sqream.com/en/latest/reference/sql/sql_functions/user_defined_functions/scalar_sql_udf.html>`_.
 
 
 
