@@ -11,7 +11,7 @@ Releases
    
    * - Version
      - Release Date
-   * - :ref:`2020.1`
+   * - :ref:`2021.1`
      - June 13, 2021  
    * - :ref:`2020.3.2.1`
      - February 24, 2021  
