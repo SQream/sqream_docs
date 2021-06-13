@@ -94,7 +94,7 @@ Utility Commands
    
    * - Command
      - Usage
-   * - :ref:`GET_LICENSE_INFO<get_license_info>`
+   * - :ref:`SELECT GET_LICENSE_INFO<get_license_info>`
      - View a user's license information
    * - :ref:`SELECT GET_DDL<get_ddl>`
      - View the ``CREATE TABLE`` statement for a table
