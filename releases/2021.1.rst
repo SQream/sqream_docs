@@ -83,7 +83,7 @@ Improved Presented License Information
 ----------------------------
 SQream now displays information related to data size limitations, expiration date, type of license shown by the new UF. The **Utility Function (UF)** name is ``get_license_info()``.
 
-For more information, see `GET_LICENSE_INFO <html.xxx>`_.
+For more information, see `GET_LICENSE_INFO <https://docs.sqream.com/en/latest/reference/sql/sql_statements/utility_commands/get_license_info.html>`_.
 
 
   
