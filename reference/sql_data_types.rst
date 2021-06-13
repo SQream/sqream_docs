@@ -10,11 +10,11 @@ This topic describes the data types that SQream DB supports, and how to convert 
    :local:
    :depth: 2
 
-Supported types
+Supported Types
 =================
 
-.. list-table:: Data types
-   :widths: auto
+.. list-table:: Data Types
+   :widths: 20 15 20 55
    :header-rows: 1
    
    * - Name
@@ -53,6 +53,10 @@ Supported types
      - Variable length string - UTF-8 unicode
      - Up to ``4*n`` bytes
      - ``'キウイは楽しい鳥です'``
+   * - ``DECIMAL``, ``NUMERIC``
+     -  38 digits
+     - 16 bytes
+     - ``insert into t values(1234567890.1234567890, 0.123245678901234567890123456789012345678);``
    * - ``VARCHAR (n)``
      - Variable length string - ASCII only
      - ``n`` bytes
@@ -70,7 +74,7 @@ Supported types
 
 .. _cast:
 
-Converting and casting types
+Converting and Casting Types
 ==============================
 
 SQream DB supports explicit and implicit casting and type conversion.
@@ -92,9 +96,17 @@ SQream DB supports three types of data conversion:
 
 More details about the supported casts for each type in the following section.
 
-Data type reference
+Data Type Reference
 ======================
+Numeric
+-----------------------
+SQream now supports ``numeric(p, s)`` numeric data types where ``p`` is the total number of digits, (``38`` maximum), and ``s`` is the total number of decimal digits.
 
+This feature supports the following operations:
+
+   * All join types.
+   * All aggregation types (not including Window functions).
+   * Scalar functions (not including some trigonometric and logarithmic functions).
 
 Boolean (``BOOL``)
 -------------------
@@ -129,7 +141,7 @@ Examples
    "cat","Is really angry!"
    "kiwi","Is not angry"
 
-Casts and conversions
+Casts and Conversions
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 A ``BOOL`` value can be converted to:
@@ -159,7 +171,7 @@ Integer datatypes are designed to store whole numbers.
 
 For information about identity sequences (sometimes called auto-increment or auto-numbers), see :ref:`identity`.
 
-Integer types
+Integer Types
 ^^^^^^^^^^^^^^^^^^^
 .. list-table:: Integer types
    :widths: auto
@@ -212,7 +224,7 @@ Examples
    1,2,3,4
    -5,127,32000,45000000000
 
-Casts and conversions
+Casts and Conversions
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 Integer values can be converted to:
@@ -228,26 +240,15 @@ Integer values can be converted to:
    * - ``VARCHAR(n)`` (All numberic values must fit in the string length)
      - ``1`` → ``'1'``, ``2451`` → ``'2451'``
 	 
-Numeric Data Types
-------------------------
-Sqream supports ``numeric(p, s)`` numeric data types where ``p`` is the total number of digits, (38 maximum), and ``s`` is the total number of decimal digits.
-
-The following is an example of the correct syntax:
-
-   .. code-block:: console
-
-      $ create or replace table t(x numeric(20, 10), y numeric(38, 38));
-      $ insert into t values(1234567890.1234567890, 0.123245678901234567890123456789012345678);
-      $ select x + y from t;
 
 
-Floating point (``REAL``, ``DOUBLE``)
+Floating Point (``REAL``, ``DOUBLE``)
 ------------------------------------------------
 ``REAL`` and ``DOUBLE`` are inexact floating point data types, designed to store up to 9 or 17 digits of precision respectively.
 
 The floating point representation is based on `IEEE 754 <https://en.wikipedia.org/wiki/IEEE_754>`_.
 
-Floating point types
+Floating Point Types
 ^^^^^^^^^^^^^^^^^^^^^^
 .. list-table:: Floating point types
    :widths: auto
@@ -302,7 +303,7 @@ Examples
 
 .. note:: Most SQL clients control display precision of floating point numbers, and values may appear differently in some clients.
 
-Casts and conversions
+Casts and Conversions
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 Floating point values can be converted to:
@@ -322,7 +323,7 @@ Floating point values can be converted to:
 
 .. note:: As shown in the above examples, when casting ``real`` to ``int``, we round down.
 
-String types (``TEXT``, ``VARCHAR``)
+String Types (``TEXT``, ``VARCHAR``)
 ------------------------------------------------
 ``TEXT`` and ``VARCHAR`` are types designed for storing text or strings of characters.
 
@@ -396,7 +397,7 @@ Examples
 
 .. note:: Most clients control display precision of floating point numbers, and values may appear differently in some clients.
 
-Casts and conversions
+Casts and Conversions
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 String values can be converted to:
@@ -418,7 +419,7 @@ String values can be converted to:
 
 
 
-Date types (``DATE``, ``DATETIME``)
+Date Types (``DATE``, ``DATETIME``)
 ------------------------------------------------
 
 ``DATE`` is a type designed for storing year, month, and day.
@@ -426,7 +427,7 @@ Date types (``DATE``, ``DATETIME``)
 ``DATETIME`` is a type designed for storing year, month, day, hour, minute, seconds, and milliseconds in UTC with 1 millisecond precision.
 
 
-Date types
+Date Types
 ^^^^^^^^^^^^^^^^^^^^^^
 .. list-table:: Date types
    :widths: auto
@@ -493,7 +494,7 @@ Examples
 
 .. warning:: Some client applications may alter the ``DATETIME`` value by modifying the timezone.
 
-Casts and conversions
+Casts and Conversions
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 ``DATE`` and ``DATETIME`` values can be converted to:

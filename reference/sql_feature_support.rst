@@ -45,7 +45,7 @@ Read more about :ref:`supported data types<data_types>`.
      - ✓
      - 8 byte floating point
    * - ``DECIMAL``, ``NUMERIC``
-     - Planned
+     - ✓
      - Fixed-point numbers. Use ``DOUBLE`` instead
    * - ``VARCHAR``
      - ✓
