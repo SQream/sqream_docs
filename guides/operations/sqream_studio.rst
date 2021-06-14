@@ -105,7 +105,7 @@ The user information menu is located on the bottom left portion of the screen |i
 
 
 The menu contains information about the currently signed-in user, as well as version information.
-=======
+
 * User information
 * Connection type
 * SQream version
