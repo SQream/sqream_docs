@@ -4,7 +4,7 @@
 Operations
 **********************************
 
-The guides in this section include information about best practices, monitoring, logging, troubleshooting, and maintaining a SQream DB cluster.
+The guides in this section include information about installing Monit, best practices, monitoring, logging, troubleshooting, and maintaining a SQream DB cluster.
 
 .. toctree::
    :maxdepth: 8
@@ -12,6 +12,9 @@ The guides in this section include information about best practices, monitoring,
    :glob:
 
    optimization_best_practices
+   installing_monit
+   launching_sqream_with_monit
+   installing_sqream_with_binary
    xxmonitoring
    monitoring_query_performance
    logging

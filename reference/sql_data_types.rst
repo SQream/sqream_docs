@@ -100,7 +100,7 @@ Data Type Reference
 ======================
 Numeric
 -----------------------
-SQream now supports ``numeric(p, s)`` numeric data types where ``p`` is the total number of digits, (``38`` maximum), and ``s`` is the total number of decimal digits.
+SQream supports ``numeric(p, s)`` numeric data types where ``p`` is the total number of digits, (``38`` maximum), and ``s`` is the total number of decimal digits.
 
 This feature supports the following operations:
 
@@ -329,7 +329,7 @@ String Types (``TEXT``, ``VARCHAR``)
 
 SQream DB separates ASCII (``VARCHAR``) and UTF-8 representations (``TEXT``).
 
-.. note:: The data type ``NVARCHAR`` has been deprecated by ``TEXT`` as of version 2020.1.
+.. note:: The data type ``NVARCHAR`` has been deprecated and replaced by ``TEXT`` as of version 2020.1.
 
 String Types
 ^^^^^^^^^^^^^^^^^^^^^^

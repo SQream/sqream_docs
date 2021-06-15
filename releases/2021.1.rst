@@ -58,13 +58,13 @@ For more information, see `Subqueries <https://docs.sqream.com/en/latest/referen
 Literal Arguments
 ----------------------
 
-SQream now supports literal arguments for functions in call cases where column/scalar arguments are supported.
+SQream now supports literal arguments for functions in all cases where column/scalar arguments are supported.
 
 Simple Scalar SQL UDFs
 ------------------------
 SQream now supports simple scalar SQL UDF's.
 
-For more information, see `Simple Scalar SQL UDF’s <https://docs.sqream.com/en/latest/reference/sql/sql_functions/user_defined_functions/index.html>`_.
+For more information, see `Simple Scalar SQL UDF’s <https://docs.sqream.com/en/latest/reference/sql/sql_functions/user_defined_functions/scalar_sql_udf.html>`_.
 
 Logging Enhancements
 -------------------
@@ -83,7 +83,7 @@ Improved Presented License Information
 ----------------------------
 SQream now displays information related to data size limitations, expiration date, type of license shown by the new UF. The **Utility Function (UF)** name is ``get_license_info()``.
 
-For more information, see `GET_LICENSE_INFO <html.xxx>`_.
+For more information, see `GET_LICENSE_INFO <https://docs.sqream.com/en/latest/reference/sql/sql_statements/utility_commands/get_license_info.html>`_.
 
 
   
@@ -139,7 +139,7 @@ The following list describes the resolved issues:
 * Running the ``select table_name,row_count from sqream_catalog.tables order by row_count limit 5`` query generated an internal runtime error.
 * Using wildcards (such as ``*.x.y``) did not work in parquet files. This was fixed.
 * Executing ``log*(x,y)`` generated an incorrect error message. This was fixed.
-* internal runtime error Type doesn't have a fixed size when doing max on text on develop (cisco poc)
+* The ``internal runtime error`` type doesn't have a fixed size when doing max on text on develop.
 * The ``min`` and ``max`` on ``TEXT`` were significantly slower than ``varchar``. This was fixed.
 * Running ``regexp_instr`` generated an empty regular expression. This was fixed.
 * Schemas with external tables could be dropped. This was fixed.
@@ -188,12 +188,12 @@ The the list below describes the following bug fixes:
 
 * SQream would crash during ``select top 1 from external table using format parquet with hdfs path``.
 
-* Internal Runtime Error occurred when SQream was unable to find column in reorder columns. This is an unresolved production issue in ACL and LG.
+* Internal Runtime Error occurred when SQream was unable to find column in reorder columns.
 
-* Casting datetime to text truncates the time. Fixed in develop.
+* Casting datetime to text truncates the time.
 
 * The compiler generates an error when a count is used as an alias in the **select** list.
 	
 * Performance degradation occurred when joins made on small tables. Performance improvement on joins made on larger tables for identical queries.
 
-* SQream was corrupting logs.
+* SQream causes a logging error when using copy from logs.

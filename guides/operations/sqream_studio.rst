@@ -97,7 +97,6 @@ The following is a brief description of each pane:
 
 
 Navigation Pane
->>>>>>> Stashed changes
 -------------------------------------
 
 The user information menu is located on the bottom left portion of the screen |icon-user|.
@@ -105,9 +104,8 @@ The user information menu is located on the bottom left portion of the screen |i
 .. image:: /_static/images/studio_user_info.png
 
 
-<<<<<<< Updated upstream
 The menu contains information about the currently signed-in user, as well as version information.
-=======
+
 * User information
 * Connection type
 * SQream version
@@ -115,7 +113,6 @@ The menu contains information about the currently signed-in user, as well as ver
 * Logging out
 
 .. image:: /_static/images/studio_user_info_5053.png
->>>>>>> Stashed changes
 
 You can sign out of the current user at any point, by selecting :kbd:`Logout` in the user menu.
 
@@ -133,7 +130,6 @@ In the toolbar, you can perform the folllowing operations (from left to right):
 
 * Queue - specify which service queue the statement should run in
 
-<<<<<<< Updated upstream
 * :kbd:`⯈ Execute` / :kbd:`STOP` - Use the :kbd:`⯈ EXECUTE` button to execute the statement in the Editor pane. When a statement is running, the button changes to :kbd:`STOP`, and can be used to :ref:`stop the active statement<stop_statement>`.
 
 * :kbd:`Format SQL` - Reformats and reindents the statement
@@ -147,11 +143,9 @@ In the toolbar, you can perform the folllowing operations (from left to right):
   * **All** - executes all statements in a selected tab.
 
   The **Execute** button toggles between **Execute** and **Stop**, and can be used to stop an active statement before it completes.   
->>>>>>> Stashed changes
 
 * :kbd:`Open query` - load query text from your computer
 
-<<<<<<< Updated upstream
 * Max. Rows - By default, the editor will only fetch the first 1000 rows. Click the number to edit. Click outside the number area to save. Setting a higher limit can slow down your browser if the result set is very large. This number is limited to 100000 results (To see more results, consider saving the results to a file or a table with :ref:`create_table_as`).
 =======
 * **Download query** - Lets you download query text to your computer into a new editor tab.
@@ -160,9 +154,7 @@ In the toolbar, you can perform the folllowing operations (from left to right):
 
 * **Max Rows** - By default, the Editor fetches only the first 1,000 rows. You can modify this number by selecting an option from the **Max Rows** dropdown list. Note that setting a higher number may slow down your browser if the result is very large. This number is limited to 100,000 results.
 
-..
-   _ **Comment - is the default still 1,000, or is it now 100?**
->>>>>>> Stashed changes
+
 
 Keyboard Shortcuts for Executing Queries
 ~~~~~~~~~~~~~~~~~~
@@ -247,8 +239,7 @@ The **Results Pane** shows query results and execution information. By default, 
 
 By default, executing several statements in tandem opens a separate results tab for each statement.
 
-..
-   _ **Comment - "together" = "separated by a semicolon"?**
+
 
 Statements are executed serially, and if a statement fails, all subsequent statements are cancelled.
 
@@ -261,8 +252,7 @@ You can rename tabs to help you keep track of your results by double-clicking th
 
 .. image:: /_static/images/studio_editor_results_rename_5053.png
 
-..
-   _ **Comment - Need picture with better data. "Statement value" doesn't seem like the correct term.**
+
    
 An incorrectly built statement generates a results error:  
   
@@ -301,8 +291,7 @@ The :kbd:`Show Execution Details` button opens the query's :ref:`execution plan<
 :ref:`Back to top<top>`
 
 
-..
-   _ **Comment - I need help running a better query in order to get the results need to document this.**
+
    
 
 
@@ -310,7 +299,7 @@ The :kbd:`Show Execution Details` button opens the query's :ref:`execution plan<
    
 The SQL View
 --------------------------------
-**Comment** - Need to populate.
+
 
 :ref:`Back to top<top>`
 
@@ -322,8 +311,7 @@ Saving Results to a File or the Clipboard
 
 Query results can be saved to a clipboard (for pasting into another text editor) or a local file.
 
-..
-   _ **Comment - I wasn't able to use the last two functions. Ask Slavi.**
+
 
 .. _studio_editor_db_tree:
 

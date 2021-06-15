@@ -8,12 +8,13 @@ Releases
    :widths: auto
    :header-rows: 1
    
+   
    * - Version
      - Release Date
+   * - :ref:`2021.1`
+     - June 13, 2021  
    * - :ref:`2020.3.2.1`
      - February 24, 2021  
-   * - :ref:`2020.3.2`
-     - January 28, 2021  
    * - :ref:`2020.3.1`
      - January 11, 2021
    * - :ref:`2020.3`
@@ -22,8 +23,7 @@ Releases
      - July 22, 2020
    * - :ref:`2020.1`
      - January 15, 2020
-   * - :ref:`2019.2.1`
-     - July 25, 2019
+
 
 
 .. toctree::
@@ -31,10 +31,9 @@ Releases
    :glob:
    :hidden:
 
+   2021.1
    2020.3.2.1
-   2020.3.2
    2020.3.1
    2020.3
    2020.2
    2020.1
-   2019.2.1

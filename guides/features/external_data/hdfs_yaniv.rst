@@ -1,9 +1,15 @@
-.. _hdfs:
+.. _hdfs_yaniv:
 
-.. _back_to_top_hdfs:
+.. _back_to_top:
 
-Using SQream in an HDFS Environment
+Launching SQream in an HDFS Environment
 =======================================
+This page describes how to:
+
+
+
+* :ref:`Configure an HDFS environment for the user sqream <configuring_an_hdfs_environment_for_the_user_sqream>`
+* :ref:`Authenticate Hadoop servers that require Kerberos <authenticate_hadoop_servers_that_require_kerberos>`
 
 .. _configuring_an_hdfs_environment_for_the_user_sqream:
 
@@ -20,6 +26,8 @@ This section describes how to configure an HDFS environment for the user **sqrea
      
        $ vim /home/sqream/.bash_profile
        
+2. Make the following edits:
+
 ..
    Comment: - see below; do we want to be a bit more specific on what changes we're talking about?
 
@@ -91,7 +99,7 @@ This section describes how to configure an HDFS environment for the user **sqrea
       $ PATH=$PATH:$HOME/.local/bin:$HOME/bin:${SQREAM_HOME}/bin/:${JAVA_HOME}/bin:$HADOOP_INSTALL/bin
       $ export PATH
 	  
-:ref:`Back to top <back_to_top_hdfs>`
+:ref:`Back to top <back_to_top>`
 
 	  
 .. _authenticate_hadoop_servers_that_require_kerberos:
@@ -249,4 +257,4 @@ If any of the following are empty, verify that you followed :ref:`Step 6 <step_6
 
 17. Review this procedure to verify that you have followed each step.
 
-:ref:`Back to top <back_to_top_hdfs>`
+:ref:`Back to top <back_to_top>`

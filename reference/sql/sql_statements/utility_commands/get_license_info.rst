@@ -4,7 +4,7 @@
 GET_LICENSE_INFO
 ********************
 
-SQream now displays information related to data size limitations, expiration date, type of license shown by the new UF.
+SQream displays information related to data size limitations, expiration date, type of license shown by the new UF.
 
 When invoked, ``get_license_info()`` returns the license information in the following order:
 

@@ -14,6 +14,6 @@ The guides below cover installing SQream DB.
    
    before_you_begin
    local_docker
-   recommended_configuration
+   recommended_pre-installation_configurations
 
 
