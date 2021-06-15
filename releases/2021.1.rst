@@ -138,8 +138,6 @@ The following list describes the resolved issues:
 * Compile errors occurred while running decimal datatype sets. This was fixed.
 * Running the ``select table_name,row_count from sqream_catalog.tables order by row_count limit 5`` query generated an internal runtime error.
 * Using wildcards (such as ``*.x.y``) did not work in parquet files. This was fixed.
-* Running the ``round(x,y)`` query in the ``where`` clause on ``numeric` generated a compiler error.  
-* Running the ``charindex`` query on columns and literals generated different results. This was fixed.
 * Executing ``log*(x,y)`` generated an incorrect error message. This was fixed.
 * internal runtime error Type doesn't have a fixed size when doing max on text on develop (cisco poc)
 * The ``min`` and ``max`` on ``TEXT`` were significantly slower than ``varchar``. This was fixed.
@@ -198,8 +196,4 @@ The the list below describes the following bug fixes:
 	
 * Performance degradation occurred when joins made on small tables. Performance improvement on joins made on larger tables for identical queries.
 
-* SQream was corrupting logs.	
-
-* The ``random_delete`` stability test failed in some cases.	
-
-* The ``server_picker`` was dependent on cuda libraries, and failed running on machines that cuda drivers had not been installed.
+* SQream was corrupting logs.
