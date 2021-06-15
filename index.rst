@@ -41,7 +41,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
          
          :ref:`Bulk load CSVs<csv>`
      - 
-         :ref:`SQL reference<sql>`
+         :ref:`SQL Reference<sql>`
          
          :ref:`sql_statements`
          
