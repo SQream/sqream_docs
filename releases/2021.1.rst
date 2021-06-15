@@ -197,3 +197,4 @@ The the list below describes the following bug fixes:
 * Performance degradation occurred when joins made on small tables. Performance improvement on joins made on larger tables for identical queries.
 
 * SQream causes a logging error when using copy from logs.
+
