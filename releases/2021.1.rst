@@ -184,16 +184,16 @@ No features were depecrated.
 
 Known Issues and Limitations
 ================================
-The the list below describes the following bug fixes:
+The the list below describes the following known issues and limitations:
 
-* SQream would crash during ``select top 1 from external table using format parquet with hdfs path``.
-
+* In all cases except when selecting top 1 from external table using format parquet with hdfs path, SQream experienced an error.
 * Internal Runtime Error occurred when SQream was unable to find column in reorder columns.
-
-* Casting datetime to text truncates the time.
-
-* The compiler generates an error when a count is used as an alias in the **select** list.
-	
-* Performance degradation occurred when joins made on small tables. Performance improvement on joins made on larger tables for identical queries.
-
+* Casting datetime to text truncates the time segment.
+* In the **select** list, the compiler generates an error when a count is used as an alias.	
+* Performance degradation occurred when joins made on small tables.
 * SQream causes a logging error when using copy from logs.
+* Deploying S3 requires setting the ``ObjectStoreClients`` parameter to ``40``.
+
+Upgrading to v2021.1
+===================
+Due to the known issue of a limitation on the amount of access requests that can be simultaneously sent to AWS, deploying S3 requires setting the ``ObjectStoreClients`` parameter to ``40``.
