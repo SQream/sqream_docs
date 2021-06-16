@@ -190,7 +190,7 @@ The the list below describes the following known issues and limitations:
 * Internal Runtime Error occurred when SQream was unable to find column in reorder columns.
 * Casting datetime to text truncates the time segment.
 * In the **select** list, the compiler generates an error when a count is used as an alias.	
-* Performance degradation occurred when joins made on small tables. Performance improvement on joins made on larger tables for identical queries.
+* Performance degradation occurred when joins made on small tables.
 * SQream causes a logging error when using copy from logs.
 * Deploying S3 requires setting the ``ObjectStoreClients`` parameter to ``40``.
 
