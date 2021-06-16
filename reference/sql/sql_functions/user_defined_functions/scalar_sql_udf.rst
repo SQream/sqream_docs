@@ -2,7 +2,7 @@
 
 Scalar SQL UDF
 -----------------------
-A **scalar SQL UDF** is a user-defined function that returns a single value such as the sum of a group of values. Scalar UDFs are different than table-valued functions, which return a result set in the form of a table.
+A **scalar SQL UDF** is a user-defined function that returns a single value, such as the sum of a group of values. Scalar UDFs are different than table-value functions, which return a result set in the form of a table.
 
 This page describes the correct syntax when building simple scalar UDFs and provides three examples.
 
@@ -95,7 +95,7 @@ Because SQL UDF's are one type of supported UDFs, the following Python UDF chara
 
 Restrictions
 ~~~~~~~~~~~~~~~~
-The following restrictions apply to simple scalar SQL UDF's:
+The following restrictions apply to simple scalar SQL UDFs:
 
-* Simple scalar SQL UDF's cannot currently reference other UDF's.
+* Simple scalar SQL UDF's cannot currently reference other UDFs.
 * Like Python UDF's, Sqream does not support overloading.
