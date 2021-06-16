@@ -28,9 +28,9 @@ The following example shows the correct syntax for simple scalar SQL UDF's retur
       $ function_body ::= A valid SQL statement
 	  
 Examples
-------------
+~~~~~~~~~~
 Example 1 – Support for Different Syntax
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+############
 Scalar SQL UDF supports standard functionality even when different syntax is used.
 
 In the example below, the syntax ``dateadd`` is used instead of ``add_months``, although the function of each is identical. In addition, the operation works correctly even though the order of the expressions in ``add_months`` (``dt``, ``datetime``, and ``n int``) is different than ``MONTH``, ``n``, and ``dt`` in ``dateadd``.
@@ -44,7 +44,7 @@ In the example below, the syntax ``dateadd`` is used instead of ``add_months``, 
       $ $$ LANGUAGE SQL;
 
 Example 2 – Manipulating Strings
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+############
 The Scalar SQL UDF can be used to manipulate strings.
 
 The following example shows the correct syntax for converting a TEXT date to the DATE type:
@@ -58,7 +58,7 @@ The following example shows the correct syntax for converting a TEXT date to the
       $ $$ LANGUAGE SQL;
 	  
 Example 3 – Manually Building Functionality
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+############
 You can use the Scalar SQL UDF to manually build functionality for otherwise unsupported operations.
 
 .. code-block:: console
