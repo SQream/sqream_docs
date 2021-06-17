@@ -104,7 +104,7 @@ Numeric (``NUMERIC``, ``DECIMAL``)
 -----------------------
 The **Numeric** data type (also known as **Decimal**) is recommended for values that tend to occur as exact decimals, such as in Finance. While Numeric has a fixed precision of ``38``, higher than ``REAL`` (``9``) or ``DOUBLE`` (``17``), it runs calculations more slowly. 
 
-The correct syntax for Numeric is ``numeric(p, s)``), where ``p`` is the total number of digits (``38`` maximum), and ``s`` is the total number of decimal digits.
+The correct syntax for Numeric is ``numeric(p, s)``, where ``p`` is the total number of digits (``38`` maximum), and ``s`` is the total number of decimal digits.
 
 Numeric Examples
 ^^^^^^^^^^
@@ -136,6 +136,7 @@ Numeric supports the following operations:
    * All aggregation types (not including Window functions).
    * Scalar functions (not including some trigonometric and logarithmic functions).
    
+.. note:: All functionality will be supported in future releases.
 
 
 Boolean (``BOOL``)
