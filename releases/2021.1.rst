@@ -92,11 +92,17 @@ Optimized Foreign Data Wrapper Export
 -------------------------
 Sqream now supports exporting to multiple files concurrently. This is useful when you need to reduce file size to more easily export multiple files.
 
-The following is an example of the correct syntax for exporting multiple files concurrently:
+The following is the correct syntax for exporting multiple files concurrently:
 
 .. code-block:: none
 
    COPY table_name TO fdw_name OPTIONS(max_file_size=size_in_bytes,enforce_single_file={TRUE|FALSE});
+   
+The following is an example of the correct syntax for exporting multile files concurrently:
+
+.. code-block:: none
+
+   COPY my_table1 TO my_ext_table OPTIONS(max_file_size=500000,enforce_single_file=TRUE);
 
 The following apply:
 
