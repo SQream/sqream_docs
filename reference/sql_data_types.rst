@@ -100,9 +100,12 @@ The **Data Type Reference** section below provides more details about the suppor
 
 Data Type Reference
 ======================
+
+.. _numeric:
+
 Numeric (``NUMERIC``, ``DECIMAL``)
 -----------------------
-The **Numeric** data type (also known as **Decimal**) is recommended for values that tend to occur as exact decimals, such as in Finance. While Numeric has a fixed precision of ``38``, higher than ``REAL`` (``9``) or ``DOUBLE`` (``17``), it runs calculations more slowly. 
+The **Numeric** data type (also known as **Decimal**) is recommended for values that tend to occur as exact decimals, such as in Finance. While Numeric has a fixed precision of ``38``, higher than ``REAL`` (``9``) or ``DOUBLE`` (``17``), it runs calculations more slowly. For operations that require faster performance, using :ref:`Floating Point <floating_point>` is recommended.
 
 The correct syntax for Numeric is ``numeric(p, s)``, where ``p`` is the total number of digits (``38`` maximum), and ``s`` is the total number of decimal digits.
 
@@ -280,11 +283,11 @@ The following table shows the possible Integer value conversions:
    * - ``VARCHAR(n)`` (All numberic values must fit in the string length)
      - ``1`` → ``'1'``, ``2451`` → ``'2451'``
 	 
-
+.. _floating_point:
 
 Floating Point (``REAL``, ``DOUBLE``)
 ------------------------------------------------   
-The **Floating Point** data types (``REAL`` and ``DOUBLE``) store extremely close value approximations, and are therefore recommended for values that tend to be inexact, such as Scientific Notation. While Decimal generally runs faster than Numeric, it has a lower precision of ``9`` (``REAL``) or ``17`` (``DOUBLE``) compared to Numeric's ``38``.
+The **Floating Point** data types (``REAL`` and ``DOUBLE``) store extremely close value approximations, and are therefore recommended for values that tend to be inexact, such as Scientific Notation. While Flosting Point generally runs faster than Numeric, it has a lower precision of ``9`` (``REAL``) or ``17`` (``DOUBLE``) compared to Numeric's ``38``. For operations that require a higher level of precision, using :ref:`Numeric <numeric>` is recommended.
 
 The floating point representation is based on `IEEE 754 <https://en.wikipedia.org/wiki/IEEE_754>`_.
 
