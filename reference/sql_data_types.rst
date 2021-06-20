@@ -98,11 +98,37 @@ More details about the supported casts for each type in the following section.
 
 Data Type Reference
 ======================
-Numeric
+Numeric (``NUMERIC``, ``DECIMAL``)
 -----------------------
-SQream supports ``numeric(p, s)`` numeric data types where ``p`` is the total number of digits, (``38`` maximum), and ``s`` is the total number of decimal digits.
+The **Numeric** data type (also known as **Decimal**) is recommended for values that tend to occur as exact decimals, such as in Finance. While Numeric has a fixed precision of ``38``, higher than ``REAL`` (``9``) or ``DOUBLE`` (``17``), it runs calculations more slowly. For operations that require faster performance, using :ref:`Floating Point <floating_point>` is recommended.
 
-This feature supports the following operations:
+The correct syntax for Numeric is ``numeric(p, s)``, where ``p`` is the total number of digits (``38`` maximum), and ``s`` is the total number of decimal digits.
+
+Numeric Examples
+^^^^^^^^^^
+
+The following is an example of the Numeric syntax:
+
+.. code-block:: postgres
+
+   $ create or replace table t(x numeric(20, 10), y numeric(38, 38));
+   $ insert into t values(1234567890.1234567890, 0.123245678901234567890123456789012345678);
+   $ select x + y from t;
+   
+The following table shows information relevant to the Numeric data type:
+
+.. list-table::
+   :widths: 30 30 30
+   :header-rows: 1
+   
+   * - Description
+     - Data Size (Not Null, Uncompressed)
+     - Example	 
+   * - 38 digits
+     - 16 bytes
+     - ``0.123245678901234567890123456789012345678``
+
+Numeric supports the following operations:
 
    * All join types.
    * All aggregation types (not including Window functions).
@@ -244,8 +270,7 @@ Integer values can be converted to:
 
 Floating Point (``REAL``, ``DOUBLE``)
 ------------------------------------------------
-``REAL`` and ``DOUBLE`` are inexact floating point data types, designed to store up to 9 or 17 digits of precision respectively.
-
+The **Floating Point** data types (``REAL`` and ``DOUBLE``) store extremely close value approximations, and are therefore recommended for values that tend to be inexact, such as Scientific Notation. While Flosting Point generally runs faster than Numeric, it has a lower precision of ``9`` (``REAL``) or ``17`` (``DOUBLE``) compared to Numeric's ``38``. For operations that require a higher level of precision, using :ref:`Numeric <numeric>` is recommended.
 The floating point representation is based on `IEEE 754 <https://en.wikipedia.org/wiki/IEEE_754>`_.
 
 Floating Point Types
