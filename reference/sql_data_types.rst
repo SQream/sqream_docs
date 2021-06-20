@@ -98,6 +98,9 @@ More details about the supported casts for each type in the following section.
 
 Data Type Reference
 ======================
+
+.. _numeric:
+
 Numeric (``NUMERIC``, ``DECIMAL``)
 -----------------------
 The **Numeric** data type (also known as **Decimal**) is recommended for values that tend to occur as exact decimals, such as in Finance. While Numeric has a fixed precision of ``38``, higher than ``REAL`` (``9``) or ``DOUBLE`` (``17``), it runs calculations more slowly. For operations that require faster performance, using :ref:`Floating Point <floating_point>` is recommended.
@@ -266,7 +269,7 @@ Integer values can be converted to:
    * - ``VARCHAR(n)`` (All numberic values must fit in the string length)
      - ``1`` → ``'1'``, ``2451`` → ``'2451'``
 	 
-
+.. _floating_point:
 
 Floating Point (``REAL``, ``DOUBLE``)
 ------------------------------------------------
