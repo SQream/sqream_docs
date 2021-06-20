@@ -271,6 +271,7 @@ Integer values can be converted to:
 Floating Point (``REAL``, ``DOUBLE``)
 ------------------------------------------------
 The **Floating Point** data types (``REAL`` and ``DOUBLE``) store extremely close value approximations, and are therefore recommended for values that tend to be inexact, such as Scientific Notation. While Flosting Point generally runs faster than Numeric, it has a lower precision of ``9`` (``REAL``) or ``17`` (``DOUBLE``) compared to Numeric's ``38``. For operations that require a higher level of precision, using :ref:`Numeric <numeric>` is recommended.
+
 The floating point representation is based on `IEEE 754 <https://en.wikipedia.org/wiki/IEEE_754>`_.
 
 Floating Point Types
