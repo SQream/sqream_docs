@@ -54,7 +54,6 @@ The editor is built up of main panes.
 
 .. image:: /_static/images/studio_editor_familiarize.png
 
-<<<<<<< Updated upstream
 * :ref:`Toolbar<studio_editor_toolbar>` - used to select the active database you want to work on, limit the number of rows, save query, etc.
 
 * :ref:`Statement area<studio_editor_statement_area>` - The statement area is a multi-tab text editor where you write SQL statements. Each tab can connect to a different database.
@@ -192,7 +191,6 @@ Statement area
 The multi-tabbed statement pane is used for writing queries and statements. You can write multiple statements in tandem in the same tab by separating them with semicolons (``;``):
 
 
-.. image:: /_static/images/studio_editor_statement_multiple_statements_5053.png
 
 
 You can add tabs for separate statements to different databases by clicking |icon-plus|. This opens a new tab to the right with the default name **SQL <increasing number>**.
