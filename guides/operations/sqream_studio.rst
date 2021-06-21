@@ -195,8 +195,7 @@ The multi-tabbed statement pane is used for writing queries and statements. You 
 
 You can add tabs for separate statements to different databases by clicking |icon-plus|. This opens a new tab to the right with the default name **SQL <increasing number>**.
 
-.. image:: /_static/images/statement_pane_adding_statement_5.3.0.png
-
+.. image:: /_sqream_docs/_static/images/statement_pane_adding_statement_5.3.0.png
 
 
 
