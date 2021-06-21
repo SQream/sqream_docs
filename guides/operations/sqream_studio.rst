@@ -195,7 +195,10 @@ The multi-tabbed statement pane is used for writing queries and statements. You 
 
 You can add tabs for separate statements to different databases by clicking |icon-plus|. This opens a new tab to the right with the default name **SQL <increasing number>**.
 
-.. image:: /_static/images/studio_editor_statement_5053.png
+.. image:: /_static/images/statement_pane_adding_statement_5.3.0.png
+
+
+
 
 You can rename tabs to help you keep track of your statements by double-clicking their default name and typing a new one:
 
