@@ -1,7 +1,7 @@
 .. _workload_manager:
 
 ***********************
-Workload manager
+Workload Manager
 ***********************
 
 The workload manager (WLM) allows SQream DB workers to identify their availability to clients with specific service names. The load balancer will then use that information to route statements to specific workers.
