@@ -25,7 +25,7 @@ copyright = '2021 SQream'
 author = 'Sean Tomarian'
 
 # The full version, including alpha/beta/rc tags
-release = '2020.3.2.1'
+release = '2021.1'
 
 
 # -- General configuration ---------------------------------------------------
