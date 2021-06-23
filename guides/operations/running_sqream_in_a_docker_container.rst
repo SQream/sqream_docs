@@ -347,7 +347,7 @@ Installing the CUDA Driver Version 10.1 for IBM Power9
 
 For installer type, SQream recommends selecting **runfile (local)**. The available selections shows only the supported platforms.
 
-**To disable the ``udev`` rule:**
+**To disable the udev rule:**
 
 1. Copy the file to the **/etc/udev/rules.d** directory.
 2. Comment out, remove, or change the hot-pluggable memory rule located in file copied to the **/etc/udev/rules.d** directory. This prevents it from affecting the Power9 Nvidia systems.
