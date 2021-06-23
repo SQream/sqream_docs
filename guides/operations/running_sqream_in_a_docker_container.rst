@@ -361,15 +361,15 @@ The ``udev`` rule must be disabled.
 
       .. code-block:: console
 
-      $ sudo cp /lib/udev/rules.d/40-redhat.rules /etc/udev/rules.d
-      $ sudo sed -i '/SUBSYSTEM=="memory", ACTION=="add"/d' /etc/udev/rules.d/40-redhat.rules 
+         $ sudo cp /lib/udev/rules.d/40-redhat.rules /etc/udev/rules.d
+         $ sudo sed -i '/SUBSYSTEM=="memory", ACTION=="add"/d' /etc/udev/rules.d/40-redhat.rules 
 
    2. Run the following on RHEL version 7.6 or later:  
 
       .. code-block:: console
 
-      $ sudo cp /lib/udev/rules.d/40-redhat.rules /etc/udev/rules.d 
-      $ sudo sed -i 's/SUBSYSTEM!="memory", ACTION!="add", GOTO="memory_hotplug_end"/SUBSYSTEM=="*", GOTO="memory_hotplug_end"/' /etc/udev/rules.d/40-redhat.rules
+         $ sudo cp /lib/udev/rules.d/40-redhat.rules /etc/udev/rules.d 
+         $ sudo sed -i 's/SUBSYSTEM!="memory", ACTION!="add", GOTO="memory_hotplug_end"/SUBSYSTEM=="*", GOTO="memory_hotplug_end"/' /etc/udev/rules.d/40-redhat.rules
 
 4. Enable the **nvidia-persisted.service** file:
 
