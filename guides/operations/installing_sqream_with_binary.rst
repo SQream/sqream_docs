@@ -228,17 +228,18 @@ For an example of stopping actively running SQream services, see :ref:`Launching
     
       $ sqream -> sqream-db-v2021.1
 
-7. **Optional-** (For major versions) Upgrade your version of SQream storage cluster, as shown in the following example:
+7. **Optional-** (for major versions) Upgrade your version of SQream storage cluster, as shown in the following example:
 
    .. code-block:: console  
 
-      $ ./upgrade_storage </home/rhendricks/raviga_database>
+      $ cat /etc/sqream/sqream1_config.json |grep cluster
+      $ ./upgrade_storage <cluster path>
 	  
    The following is an example of the correct output:
 	  
    .. code-block:: console  
 
-	  get_leveldb_version path{/home/rhendricks/raviga_database}
+	  get_leveldb_version path{<cluster path>}
 	  current storage version 23
       upgrade_v24
       upgrade_storage to 24
