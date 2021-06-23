@@ -1,7 +1,7 @@
 .. _delete_guide:
 
 ***********************
-Deleting data
+Deleting Data
 ***********************
 
 SQream DB supports deleting data, but it's important to understand how this works and how to maintain deleted data.
