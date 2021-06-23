@@ -228,7 +228,7 @@ For an example of stopping actively running SQream services, see :ref:`Launching
     
       $ sqream -> sqream-db-v2021.1
 
-5. **Optional-** (For major versions) Upgrade your version of SQream storage cluster, as shown in the following example:
+7. **Optional-** (For major versions) Upgrade your version of SQream storage cluster, as shown in the following example:
 
    .. code-block:: console  
 
@@ -257,7 +257,7 @@ For an example of stopping actively running SQream services, see :ref:`Launching
 	  validate_leveldb
       storage has been upgraded successfully to version 37
  
-6. Verify that the latest version has been installed:
+8. Verify that the latest version has been installed:
 
    .. code-block:: console
     
