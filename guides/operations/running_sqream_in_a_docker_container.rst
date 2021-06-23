@@ -401,7 +401,7 @@ Disabling the udev Rule
 
 The ``udev`` rule must be disabled.
 
-**To disable the ``udev`` rule:**
+**To disable the udev rule:**
 
 1. Copy the file to the **/etc/udev/rules.d** directory.
 2. Comment out, remove, or change the hot-pluggable memory rule located in file copied to the **/etc/udev/rules.d** directory. This prevents it from affecting the Power9 Nvidia systems.
