@@ -683,5 +683,3 @@ When a worker is stopped, it has a gray background and its status is "Stopped".
 
 .. |keep-tabs| image:: /_static/images/studio_keep_tabs.png
    :align: middle
-
-You can start the studio using :ref:`sqream-console<start_editor>`:
