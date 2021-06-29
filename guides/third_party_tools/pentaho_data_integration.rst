@@ -29,19 +29,27 @@ In this tutorial, we cover the steps to install Pentaho Data Integration, part o
 
 1. Download PDI according to `Pentaho Community Edition (CE) Installation Guide <https://www.hitachivantara.com/en-us/pdf/white-paper/pentaho-community-edition-installation-guide-for-windows-whitepaper.pdf>`_.
 
-2. Open the PDI client for your operating system:
+.. image:: /_static/images/third_party_connectors/pentaho/pentaho_01.png
 
-   * Windows:
+2. Do one of the following:
+
+   * Use the CLI to open the PDI client for your operating system:
+
+     * Windows:
    
-   .. code-block:: console
+       .. code-block:: console
      
-      $ spoon.bat
+          $ spoon.bat
    
-   * Linux:
+     * Linux:
    
-   .. code-block:: console
+       .. code-block:: console
      
-      $ ./spoon.sh &>/dev/null &
+          $ ./spoon.sh &>/dev/null &
+    
+   * Open the spoon.bat file from its folder location.
+		  
+.. image:: /_static/images/third_party_connectors/pentaho/spoon_bat_file.png
 
 3. In the **View** tab, right-click **Transformations** and click **New**.
 
