@@ -27,7 +27,7 @@ All operating systems
    (SQream recommends installing via ``pip``)
 
 * 
-   **Node.JS** - `sqream-v4.2.4 (.tar.gz) <http://downloads.sqream.com/drivers/2020.3/sqream-sqreamdb-4.2.4.tgz>`_
+   **Node.JS** - `sqream-v4.2.4 (.tar.gz) <https://sq-ftp-public.s3.amazonaws.com/sqream-sqreamdb-4.2.4.tgz>`_
    
    :ref:`nodejs` - Node.JS driver
    
@@ -74,7 +74,7 @@ Linux
    :ref:`Linux installer for ODBC<install_odbc_linux>`. Please contact your SQream representative to get this installer.
 
 * 
-   **C++ connector** - `libsqream-4.0 <https://sq-ftp-public.s3.amazonaws.com/libsqream-4.0.tar.gz>`_ 
+   **C++ connector** - `libsqream-4.1 <https://sq-ftp-public.s3.amazonaws.com/libsqream-4.1.tar.gz>`_ 
    
    :ref:`C++ shared object<cpp_native>` library
 
