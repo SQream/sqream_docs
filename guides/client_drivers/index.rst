@@ -33,10 +33,6 @@ All operating systems
    
    (SQream recommends installing via ``npm``)
 
-* 
-   **Tableau Connector** - `SQreamDB (.taco) <http://downloads.sqream.com/drivers/2020.3/SQreamDB.taco>`_
-   
-   :ref:`Tableau connector<tableau_manual_installation>` - Tableau connector for manual installation
 
 Windows
 --------------
@@ -46,10 +42,7 @@ Windows
    
    Windows installer for JDBC driver, with Tableau connector.
 
-* 
-   **ODBC installer** - ``SQream Drivers v2020.2.0``
-   
-   :ref:`Windows installer for ODBC and JDBC<install_odbc_windows>`, with Tableau customizations. Please contact your SQream representative to get this installer.
+
 
 * **.Net driver** - `SQream .Net driver v3.0.2 <http://downloads.sqream.com/drivers/2020.2/SqreamNet_net48_3.0.2.dll>`_
    
@@ -68,10 +61,7 @@ Linux
    
    :ref:`sqream sql<sqream_sql_cli_reference>` - Interactive command-line SQL client for IBM POWER9-based machines
    
-* 
-   **ODBC installer** - ``sqream_odbc_4.0.0_x86_64_linux.tar.gz``
-   
-   :ref:`Linux installer for ODBC<install_odbc_linux>`. Please contact your SQream representative to get this installer.
+
 
 * 
    **C++ connector** - `libsqream-4.1 <https://sq-ftp-public.s3.amazonaws.com/libsqream-4.1.tar.gz>`_ 
