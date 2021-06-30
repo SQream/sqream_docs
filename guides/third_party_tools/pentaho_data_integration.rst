@@ -77,14 +77,25 @@ A new transformation tab is created.
 
 7. To the right of the **Filename** field, click **Browse** and select the file that you want to read from and click **OK**.
 
-.. image:: /_static/images/third_party_connectors/pentaho/pentaho_7.png
+.. image:: /_static/images/third_party_connectors/pentaho/add_csv_file.png
 
+8. In the CSV file input window, click **Get Fields**.
 
+.. image:: /_static/images/third_party_connectors/pentaho/get_fields.png
 
+9. In the **Sample data** window, enter the number of lines you want to sample and click **OK**. The default setting is **100**.
 
+.. image:: /_static/images/third_party_connectors/pentaho/number_of_lines_to_sample.png
 
+The tool reads the file and suggests the field name and type. **Comment - is this reflected on the GUI?**
 
+10. In the CSV file input window, click **Preview**.
 
+.. image:: /_static/images/third_party_connectors/pentaho/preview.png
+
+10. In the **Preview size** window, enter the number of rows you want to preview and click **OK**. The default setting is **1000**.
+
+.. image:: /_static/images/third_party_connectors/pentaho/number_of_rows_to_preview.png
 
 
 
