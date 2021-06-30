@@ -13,7 +13,7 @@ SQream DB contains several types of literals:
 * :ref:`String literals<string_literals>` - define text values like ``'Foxes are cool'``, ``'1997-01-01'``
 * :ref:`Typed literals<typed_literals>` - define values with explicit types like ``(3.0 :: float)``
 * :ref:`Boolean literals<boolean_literals>` - define values that include ``true`` and ``false``
-* :ref:`Other constants<constants>` - predfined values like ``NULL`` or ``TRUE``
+* :ref:`Other constants<constants>` - predefined values like ``NULL`` or ``TRUE``
 
 .. _numeric_literals:
 
