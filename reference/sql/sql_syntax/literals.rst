@@ -7,7 +7,7 @@ Literals
 
 Literals represent constant values.
 
-SQream DB contains several types of literals:
+SQream DB contains the following types of literals:
 
 * :ref:`Numeric literals<numeric_literals>` - define numbers such as ``1.3``, ``-5``
 * :ref:`String literals<string_literals>` - define text values like ``'Foxes are cool'``, ``'1997-01-01'``
@@ -20,7 +20,7 @@ SQream DB contains several types of literals:
 Numeric Literals
 ===================
 
-A number literal can be expressed in the following way:
+**Numeric literals** can be expressed as follows:
 
 .. code-block:: postgres
 
@@ -65,11 +65,11 @@ Examples
 String Literals
 ==================
 
-String literals are string (text) values, encoded either in ASCII or UTF-8.
+**String literals** are string (text) values, encoded either in ASCII or UTF-8.
 
-A string literal is quoted with single quotes (``'``) or dollars (``$$``)
+String literals are surrounded by single quotes (``'``) or dollars (``$$``)
 
-.. tip:: To use a single quote in a string, repeat the single quote twice. See examples below.
+.. tip:: To use a single quote in a string, use a repeated single quote.
 
 
 Examples
@@ -120,7 +120,7 @@ Note that two adjacent single quotes is not the same as a double-quote character
 Examples
 ------------
 
-The following are all examples of regular string literals:
+The following are some examples of regular string literals:
 
 .. code-block:: postgres
 
@@ -195,8 +195,6 @@ The character sequence inside the single quotes can contain escaped characters i
      - Inserts a 16 or 32-bit hexadecimal unicode character value (x = 0 - 9, A - F).
 	 
 Excluding the characters in the table above, escaped string literals take all other characters following a backslash literally. To include a backslash character, use two consecutive backslashes (``\\``). You can use a single quote in an escape string by writing ``\'``, in addition to the normal method (``''``).
-
-
 
 .. _typed_literals:
 
