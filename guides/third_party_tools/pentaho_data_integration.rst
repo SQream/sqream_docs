@@ -63,7 +63,7 @@ A new transformation tab is created.
 
 .. image:: /_static/images/third_party_connectors/pentaho/pentaho_3.png
 
-4. Drag and drop **CSV file input** file to the new transformation tab that you created.
+4. Drag and drop the **CSV file input** item to the new transformation tab that you created.
 
 .. image:: /_static/images/third_party_connectors/pentaho/pentaho_4.png
 
@@ -87,7 +87,9 @@ A new transformation tab is created.
 
 .. image:: /_static/images/third_party_connectors/pentaho/number_of_lines_to_sample.png
 
-The tool reads the file and suggests the field name and type. **Comment - is this reflected on the GUI?**
+The tool reads the file and suggests the field name and type.
+
+.. image:: /_static/images/third_party_connectors/pentaho/suggested_field_name_and_type.png
 
 10. In the CSV file input window, click **Preview**.
 
@@ -97,8 +99,37 @@ The tool reads the file and suggests the field name and type. **Comment - is thi
 
 .. image:: /_static/images/third_party_connectors/pentaho/number_of_rows_to_preview.png
 
+11. Verify that the preview data is correct and click **Close**.
+
+.. image:: /_static/images/third_party_connectors/pentaho/examine.png
+
+Defining Your Output
+-----------------
+
+**To define your output:**
+
+1. In the **Design** tab, click **Output**.
+
+.. image:: /_static/images/third_party_connectors/pentaho/design_output.png
+
+   The Output folder is opened.
+   
+2. Drag and drop **Table output** item to the Transformation window.
+
+.. image:: /_static/images/third_party_connectors/pentaho/table_output.png
+
+3. Double-click **Table output**.
+
+4. From the **Table output** panel, type a **Step name**. Your **steps** are the building blocks of a transformation, such as file input or a table output.
+
+.. image:: /_static/images/third_party_connectors/pentaho/rename_table_output.png.
+
+5. Click **New** to create a new connection. The **Database Connection** window is displayed.
+
+.. image:: /_static/images/third_party_connectors/pentaho/database_connection_window.png.
 
 
+Enter or select the following information in the Database Connection dialog: 
 
 
 
