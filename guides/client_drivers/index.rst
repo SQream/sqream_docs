@@ -13,7 +13,7 @@ All operating systems
 ---------------------------
 
 * 
-   **JDBC** - `sqream-jdbc v4.3.3 (.jar) <http://downloads.sqream.com/drivers/2020.3/sqream-jdbc-4.3.3.jar>`_
+   **JDBC** - `sqream-jdbc-4.4.0 (.jar) <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.4.0.jar>`_
    
    :ref:`java_jdbc` Driver
    
@@ -51,7 +51,7 @@ Windows
    
    :ref:`Windows installer for ODBC and JDBC<install_odbc_windows>`, with Tableau customizations. Please contact your SQream representative to get this installer.
 
-* **.Net driver** - `SQream .Net driver v2.0.0 <http://downloads.sqream.com/drivers/2020.2/sqream_dotnet-2.0.0.zip>`_
+* **.Net driver** - `SQream .Net driver v3.0.2 <http://downloads.sqream.com/drivers/2020.2/SqreamNet_net48_3.0.2.dll>`_
    
    
 
@@ -59,12 +59,12 @@ Linux
 --------------
 
 * 
-   **SQream SQL** (x86) - `sqream-sql-v2020.1.1_stable.x86_64.tar.gz <http://downloads.sqream.com/drivers/2020.2/sqream-sql-v2020.1.1_stable.x86_64.tar.gz>`_ 
+   **SQream SQL** (x86) - `sqream-sql-v2020.1.1_stable.x86_64.tar.gz <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.x86_64.tar.gz>`_ 
    
    :ref:`sqream sql<sqream_sql_cli_reference>` - Interactive command-line SQL client for Intel-based machines
    
 * 
-   **SQream SQL** (IBM POWER9) - `sqream-sql-v2020.1.1_stable.ppc64le.tar.gz <http://downloads.sqream.com/drivers/2020.2/sqream-sql-v2020.1.1_stable.ppc64le.tar.gz>`_ 
+   **SQream SQL** (IBM POWER9) - `sqream-sql-v2020.1.1_stable.ppc64le.tar.gz <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.ppc64le.tar.gz>`_ 
    
    :ref:`sqream sql<sqream_sql_cli_reference>` - Interactive command-line SQL client for IBM POWER9-based machines
    
@@ -74,7 +74,7 @@ Linux
    :ref:`Linux installer for ODBC<install_odbc_linux>`. Please contact your SQream representative to get this installer.
 
 * 
-   **C++ connector** - `libsqream-4.0 <http://downloads.sqream.com/drivers/2020.2/libsqream-4.0.tar.gz>`_ 
+   **C++ connector** - `libsqream-4.0 <https://sq-ftp-public.s3.amazonaws.com/libsqream-4.0.tar.gz>`_ 
    
    :ref:`C++ shared object<cpp_native>` library
 
