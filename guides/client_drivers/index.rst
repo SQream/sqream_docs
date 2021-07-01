@@ -37,10 +37,7 @@ All operating systems
 Windows
 --------------
 
-* 
-   **JDBC installer** - `SQream_JDBC_Driver_v2020.2.0.exe <http://downloads.sqream.com/drivers/2020.3/SQream_JDBC_Driver_v2020.2.0.exe>`_ 
-   
-   Windows installer for JDBC driver, with Tableau connector.
+
 
 
 
