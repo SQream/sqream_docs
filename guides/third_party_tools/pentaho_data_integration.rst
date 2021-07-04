@@ -75,15 +75,19 @@ A new transformation tab is created.
 
 .. image:: /_static/images/third_party_connectors/pentaho/pentaho_6.png
 
-7. To the right of the **Filename** field, click **Browse** and select the file that you want to read from and click **OK**.
+7. To the right of the **Filename** field, click **Browse**.
+
+.. image:: /_static/images/third_party_connectors/pentaho/pentaho_select_file.png
+
+8. Select the file that you want to read from and click **OK**.
 
 .. image:: /_static/images/third_party_connectors/pentaho/add_csv_file.png
 
-8. In the CSV file input window, click **Get Fields**.
+9. In the CSV file input window, click **Get Fields**.
 
 .. image:: /_static/images/third_party_connectors/pentaho/get_fields.png
 
-9. In the **Sample data** window, enter the number of lines you want to sample and click **OK**. The default setting is **100**.
+10. In the **Sample data** window, enter the number of lines you want to sample and click **OK**. The default setting is **100**.
 
 .. image:: /_static/images/third_party_connectors/pentaho/number_of_lines_to_sample.png
 
@@ -91,15 +95,15 @@ The tool reads the file and suggests the field name and type.
 
 .. image:: /_static/images/third_party_connectors/pentaho/suggested_field_name_and_type.png
 
-10. In the CSV file input window, click **Preview**.
+11. In the CSV file input window, click **Preview**.
 
 .. image:: /_static/images/third_party_connectors/pentaho/preview.png
 
-10. In the **Preview size** window, enter the number of rows you want to preview and click **OK**. The default setting is **1000**.
+12. In the **Preview size** window, enter the number of rows you want to preview and click **OK**. The default setting is **1000**.
 
 .. image:: /_static/images/third_party_connectors/pentaho/number_of_rows_to_preview.png
 
-11. Verify that the preview data is correct and click **Close**.
+13. Verify that the preview data is correct and click **Close**.
 
 .. image:: /_static/images/third_party_connectors/pentaho/examine.png
 
@@ -120,16 +124,51 @@ Defining Your Output
 
 3. Double-click **Table output**.
 
-4. From the **Table output** panel, type a **Step name**. Your **steps** are the building blocks of a transformation, such as file input or a table output.
+4. From the **Table output** panel, type a **Step name** and click **New** to create a new connection. Your **steps** are the building blocks of a transformation, such as file input or a table output.
 
 .. image:: /_static/images/third_party_connectors/pentaho/rename_table_output.png.
 
-5. Click **New** to create a new connection. The **Database Connection** window is displayed.
+The **Database Connection** window is displayed with the **General** tab selected by default.
 
 .. image:: /_static/images/third_party_connectors/pentaho/database_connection_window.png.
 
+5. Enter or select the following information in the Database Connection window and click **Test**:
 
-Enter or select the following information in the Database Connection dialog: 
+.. image:: /_static/images/third_party_connectors/pentaho/pentaho_fillout_database_connection_window.png
 
+The following table shows and describes the information that you need to fill out in the Database Connection window:
 
+.. list-table:: 
+   :widths: 6 31 73
+   :header-rows: 1
+   
+   * - No.
+     - Element Name
+     - Description
+   * - 1
+     - Connection name
+     - Enter a name that uniquely describes your connection, such as **sampledata**.
+   * - 2
+     - Connection type
+     - Select **Generic database**.
+   * - 3
+     - Access
+     - Select **Native (JDBC)**.
+   * - 4
+     - Custom connection URL
+     - Insert **jdbc:Sqream://<host:port>/<database name>;user=<username>;password=<password>;[<optional parameters>; ...];**. The IP is a node in your SQream cluster and is the name or schema of the database you want to connect to. Verify that you have not used any leading or trailing spaces.
+   * - 5
+     - Custom driver class name
+     - Insert **com.sqream.jdbc.SQDriver**. Verify that you have not used any leading or trailing spaces.
+   * - 6
+     - Username
+     - Your SQreamdb username. If you leave this blank, you will be prompted to provide it when you connect.	 
+   * - 7
+     - Password
+     - Your password. If you leave this blank, you will be prompted to provide it when you connect.
+
+	 
+	 
+	 
+	 
 
