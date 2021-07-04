@@ -75,7 +75,7 @@ Based on the source file structure, we :ref:`create a foreign table<create_forei
     OPTIONS
       (
          LOCATION = 's3://sqream-demo-data/nba_players.csv',
-         RECORD_DELIMITER =  '\r\n' -- DOS delimited file
+         RECORD_DELIMITER = '\r\n' -- DOS delimited file
       )
     ;
 
