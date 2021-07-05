@@ -126,7 +126,7 @@ Connection parameters
    * - ``<cluster>``
      - ✓
      - ``true``
-     - Connect via load balancer (use only if exists, and check port). For example, ``cluster=true``
+     - Connect via load balancer (use only if exists, and check port).
 
 Connection string examples
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
