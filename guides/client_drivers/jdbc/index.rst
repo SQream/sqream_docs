@@ -125,7 +125,7 @@ Connection parameters
      - Specifies SSL for this connection. For example, ``ssl=true``
    * - ``<cluster>``
      - ✓
-     - ``false``
+     - ``true``
      - Connect via load balancer (use only if exists, and check port). For example, ``cluster=true``
 
 Connection string examples
