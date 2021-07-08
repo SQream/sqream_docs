@@ -27,6 +27,21 @@ This Quick Start Guide describes how to start using PDI.
 
 In this tutorial, we cover the steps to install Pentaho Data Integration, part of Hitachi’s Lumada portfolio, on your Microsoft Windows computer  and to start the app
 
+Install the Driver
+~~~~~~~~~~~~~~~~~
+This section explains how to set up the JDBC driver using Pentaho. These instructions use Spoon, the graphical transformation and job designer associated with the PDI suite. It is also known as the Kettle project.
+
+**To install the driver:**
+
+1. Copy and paste the SQream JDBC .jar file into the **<directory>/design-tools/data-integration/lib** directory. 
+
+**Comment - is the JDBC .jar file downloaded while downloading PDI? If so, these procedures need to be reorganized to reflect that flow. Downloading PDI is Step 1 in the next procedure.**
+
+Creating a Transformation
+~~~~~~~~~~~~~~~~~~
+
+**To create a transformation:**
+
 1. Download PDI according to `Pentaho Community Edition (CE) Installation Guide <https://www.hitachivantara.com/en-us/pdf/white-paper/pentaho-community-edition-installation-guide-for-windows-whitepaper.pdf>`_.
 
 .. image:: /_static/images/third_party_connectors/pentaho/pentaho_01.png
@@ -107,6 +122,8 @@ The tool reads the file and suggests the field name and type.
 
 .. image:: /_static/images/third_party_connectors/pentaho/examine.png
 
+14. Click **OK** in the **CSV file input** window.
+
 Defining Your Output
 -----------------
 
@@ -132,7 +149,7 @@ The **Database Connection** window is displayed with the **General** tab selecte
 
 .. image:: /_static/images/third_party_connectors/pentaho/database_connection_window.png.
 
-5. Enter or select the following information in the Database Connection window and click **Test**:
+5. Enter or select the following information in the Database Connection window and click **Test**.
 
 .. image:: /_static/images/third_party_connectors/pentaho/pentaho_fillout_database_connection_window.png
 
@@ -167,8 +184,38 @@ The following table shows and describes the information that you need to fill ou
      - Password
      - Your password. If you leave this blank, you will be prompted to provide it when you connect.
 
+The following message is displayed:	 
 	 
+.. image:: /_static/images/third_party_connectors/pentaho/connection_tested_successfully.png	 
 	 
-	 
-	 
+6. Click **OK** in the window above.
+
+Importing Data
+-----------------
+This section describes how to import PDI content from a repository. You can import data when you need to back up or restore content in your solution repository. Note that backing up content does not include users, permissions, or any schedules that you've created.
+
+For more information about backing up users, permissions, or schedules, see `Backup and Restore Pentaho Repositories <https://help.pentaho.com/Documentation/7.0/0P0/Managing_the_Pentaho_Repository/Backup_and_Restore_Pentaho_Repositories>`_
+
+**To import data:**
+
+In the Table output dialog, select the connection you just created.
+
+Click Browse next to the Target schema field and select your Target schema.
+
+Click OK when you are done.
+
+Connect the Input CSV icon to the Table output icon by clicking and dragging an arrow.
+
+When prompted, choose Main output of step.
+
+Double click the Table output icon to reopen the Table output dialog.
+
+Enter a Target table name.
+
+Click SQL.
+
+
+
+
+
 
