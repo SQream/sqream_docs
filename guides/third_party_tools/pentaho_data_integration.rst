@@ -25,28 +25,33 @@ Quick Start Guide
 -----------------
 This Quick Start Guide describes how to start using PDI.
 
-In this tutorial, we cover the steps to install Pentaho Data Integration, part of Hitachi’s Lumada portfolio, on your Microsoft Windows computer  and to start the app
+This tutorial describes how to install Pentaho Data Integration, part of Hitachi’s Lumada portfolio, on your Microsoft Windows computer and to start the app.
 
-Install the Driver
+Installing Pentaho
 ~~~~~~~~~~~~~~~~~
+To install PDI, see the `Pentaho Community Edition (CE) Installation Guide <https://www.hitachivantara.com/en-us/pdf/white-paper/pentaho-community-edition-installation-guide-for-windows-whitepaper.pdf>`_.
+
+The Pentaho Community Edition (CE) Installation Guide includes instructions for the following:
+
+* Downloading the PDI software.
+* Installing the **JRE (Java Runtime Environment)** and **JDK (Java Development Kit)**.
+* Setting up the JRE and JDK environment variables for PDI.
+
+Installing and Setting Up the JDBC Driver
+~~~~~~~~~~~~~~~~~
+After installing Pentaho you must install and set up the JDBC driver.
+
 This section explains how to set up the JDBC driver using Pentaho. These instructions use Spoon, the graphical transformation and job designer associated with the PDI suite. It is also known as the Kettle project.
 
-**To install the driver:**
+You can install the driver by copying and pasting the SQream JDBC .jar file into your **<directory>/design-tools/data-integration/lib** directory. 
 
-1. Copy and paste the SQream JDBC .jar file into the **<directory>/design-tools/data-integration/lib** directory. 
-
-**Comment - is the JDBC .jar file downloaded while downloading PDI? If so, these procedures need to be reorganized to reflect that flow. Downloading PDI is Step 1 in the next procedure.**
+**NOTE:** Contact your SQream license account manager for the JDBC .jar file.
 
 Creating a Transformation
 ~~~~~~~~~~~~~~~~~~
-
 **To create a transformation:**
 
-1. Download PDI according to `Pentaho Community Edition (CE) Installation Guide <https://www.hitachivantara.com/en-us/pdf/white-paper/pentaho-community-edition-installation-guide-for-windows-whitepaper.pdf>`_.
-
-.. image:: /_static/images/third_party_connectors/pentaho/pentaho_01.png
-
-2. Do one of the following:
+1. When the installation is complete, do one of the following:
 
    * Use the CLI to open the PDI client for your operating system:
 
@@ -61,8 +66,10 @@ Creating a Transformation
        .. code-block:: console
      
           $ ./spoon.sh &>/dev/null &
+		  
+::
     
-   * Open the spoon.bat file from its folder location.
+2. Open the spoon.bat file from its folder location.
 		  
 .. image:: /_static/images/third_party_connectors/pentaho/spoon_bat_file.png
 
@@ -188,23 +195,41 @@ The following message is displayed:
 	 
 .. image:: /_static/images/third_party_connectors/pentaho/connection_tested_successfully.png	 
 	 
-6. Click **OK** in the window above.
+6. Click **OK** in the window above, in the Database Connection window, and Table Output window.
 
 Importing Data
 -----------------
-This section describes how to import PDI content from a repository. You can import data when you need to back up or restore content in your solution repository. Note that backing up content does not include users, permissions, or any schedules that you've created.
+**Comment - Importing PDI content from a repository?**
+
+After defining your input you can begin importing data. You can import data when you need to back up or restore content in your solution repository. Note that backing up content does not include users, permissions, or any schedules that you've created.
 
 For more information about backing up users, permissions, or schedules, see `Backup and Restore Pentaho Repositories <https://help.pentaho.com/Documentation/7.0/0P0/Managing_the_Pentaho_Repository/Backup_and_Restore_Pentaho_Repositories>`_
 
 **To import data:**
 
-In the Table output dialog, select the connection you just created.
+1. Select the **Table output** connection that you just created.
 
-Click Browse next to the Target schema field and select your Target schema.
+.. image:: /_static/images/third_party_connectors/pentaho/table_output.png
 
-Click OK when you are done.
+2. To the right of the **Target schema** field, click **Browse** and select a schema name.
 
-Connect the Input CSV icon to the Table output icon by clicking and dragging an arrow.
+.. image:: /_static/images/third_party_connectors/pentaho/select_schema_name.png
+
+3. Click **OK**. The selected schema name is displayed in the **Target schema** field.
+
+.. image:: /_static/images/third_party_connectors/pentaho/selected_target_schema.png
+
+4. Create a new hop connection between the **CSV file input** and **Table output** steps:
+
+   1. On the CSV file input step item, click the **new hop connection** icon.
+   
+   .. image:: /_static/images/third_party_connectors/pentaho/csv_file_input_options.png
+   
+   ::
+   
+   2. Drag an arrow from the **CSV file input** step item to the **Table output** step item.
+   
+   .. image:: /_static/images/third_party_connectors/pentaho/csv_file_input_options_2.png
 
 When prompted, choose Main output of step.
 
