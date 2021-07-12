@@ -16,7 +16,7 @@ This guide describes how to do the following:
 * :ref:`Start Studio manually<start_studio_manually>`
 * :ref:`Start Studio as a service<start_studio_service>`
 * :ref:`Access Studio<access_studio>`
-* :ref:`Maintaining Studio with the **Process Manager (PM2)** service<check_studio_pm2>`
+* :ref:`Maintaining Studio with the Process Manager (PM2) service<check_studio_pm2>`
 * :ref:`Upgrade to the new Studio version<upgrade_studio>`
 
 
