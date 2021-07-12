@@ -112,7 +112,7 @@ Before installing Studio, you must install NodeJS version 12 on the server.
 
 .. _install_studio:
 
-:ref:`Back to Installing Studio<install_studio_top>`
+:ref:`Back to Installing Studio on a Stand-Alone Server<install_studio_top>`
 	 
 Installing Studio
 ^^^^^^^^^^^^^^^
@@ -152,7 +152,7 @@ Installing Studio
 
 .. _start_studio_manually:
 
-:ref:`Back to Installing Studio<install_studio_top>`
+:ref:`Back to Installing Studio on a Stand-Alone Server<install_studio_top>`
 
 Starting Studio Manually
 ^^^^^^^^^^^^^^^
@@ -250,7 +250,7 @@ The following is the output:
      
       $ pm2 save
 
-:ref:`Back to Installing Studio<install_studio_top>`
+:ref:`Back to Installing Studio on a Stand-Alone Server<install_studio_top>`
 
 .. _access_studio:
 
@@ -287,7 +287,7 @@ You can use PM2 to do one of the following:
 
 * To see the PM2 service logs: ``pm2 logs sqream-studio``
 
-:ref:`Back to Installing Studio<install_studio_top>`
+:ref:`Back to Installing Studio on a Stand-Alone Server<install_studio_top>`
 
 .. _upgrade_studio:
 
@@ -353,8 +353,9 @@ To upgrade Studio you need to stop the version that you currently have.
 
       $ pm2 start all
 
-:ref:`Back to Installing Studio<install_studio_top>`
+:ref:`Back to Installing Studio on a Stand-Alone Server<install_studio_top>`
 
+.. _install_studio_docker_container_top:
 
 Installing Studio in a Docker Container
 --------------------
@@ -406,6 +407,9 @@ Installing SQream Studio in a Docker Container
 
 .. _access_studio_docker_container:
 
+:ref:`Back to Installing Studio in a Docker Container<install_studio_docker_container>`
+
+
 Accessing Studio
 ^^^^^^^^^
 
@@ -442,6 +446,9 @@ You can configure the above parameters using the following syntax:
   
 .. _using_docker_container_commands:
 
+:ref:`Back to Installing Studio in a Docker Container<install_studio_docker_container>`
+
+
 Docker Container Commands
 ^^^^^^^^^^^^^^^^^^^
 When installing Studio in Docker, you can run the following commands:
@@ -463,3 +470,5 @@ When installing Studio in Docker, you can run the following commands:
    .. code-block:: console
 
       $ docker rm -f sqream-admin-ui
+      
+:ref:`Back to Installing Studio in a Docker Container<install_studio_docker_container>`
