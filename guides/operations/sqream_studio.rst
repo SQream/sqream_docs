@@ -35,7 +35,7 @@ Studio is included with all `dockerized installations of SQream DB <https://docs
 
 
 
-You can start the studio using :ref:`sqream-console<start_editor>`:
+You can start Studio using :ref:`sqream-console<start_editor>`.
 
 Logging In to Studio
 ---------------
