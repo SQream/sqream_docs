@@ -101,7 +101,7 @@ Dashboard
 
 If you signed in with a ``SUPERUSER`` role, you can access the Dashboard.
 
-The Dashboard includes the four panes shown below:
+The Dashboard includes the panes shown below:
 
 .. image:: /_static/images/studio_dashboard_main_5.3.0.png
 
