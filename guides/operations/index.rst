@@ -23,6 +23,7 @@ The guides in this section include information about installing Monit, best prac
    information_for_support
    creating_or_cloning_a_storage_cluster
    xxstarting_and_stopping_the_system
+   installing_studio_on_stand_alone_server
    sqream_studio
    statement_editor
    hardware_guide
