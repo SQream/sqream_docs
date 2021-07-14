@@ -630,15 +630,7 @@ System Queries
 The Editor includes the following system query types:
 
 * **Catalog queries** - used for analyzing table compression rates, users and permissions, etc.
-* **Admin queries** - queries related to available  (describe the functionality in a general way). Queries useful for SQream database management:
-
-verage chunk size and rows per table
-Table size and compression ratio
-Users and permissions
-Physical storage tables files size
-Show server status
-
-
+* **Admin queries** - queries related to available queries useful for SQream database management.
 
 Clicking an item pastes the query into the Statement pane.
 
