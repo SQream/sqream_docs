@@ -146,9 +146,11 @@ Defining Your Output
 
 .. image:: /_static/images/third_party_connectors/pentaho/table_output.png
 
-3. Double-click **Table output**.
+3. Double-click **Table output** to open the **Table output** dialog box.
 
-4. From the **Table output** panel, type a **Step name** and click **New** to create a new connection. Your **steps** are the building blocks of a transformation, such as file input or a table output.
+::
+
+4. From the **Table output** dialog box, type a **Step name** and click **New** to create a new connection. Your **steps** are the building blocks of a transformation, such as file input or a table output.
 
 .. image:: /_static/images/third_party_connectors/pentaho/rename_table_output.png.
 
@@ -207,7 +209,7 @@ For more information about backing up users, permissions, or schedules, see `Bac
 
 **To import data:**
 
-1. Select the **Table output** connection that you just created.
+1. Double-click the **Table output** connection that you just created.
 
 .. image:: /_static/images/third_party_connectors/pentaho/table_output.png
 
@@ -230,14 +232,47 @@ For more information about backing up users, permissions, or schedules, see `Bac
    2. Drag an arrow from the **CSV file input** step item to the **Table output** step item.
    
    .. image:: /_static/images/third_party_connectors/pentaho/csv_file_input_options_2.png
+   
+   3. Release the mouse button. The following options are displayed.
+   
+   4. Select **Main output of step**.
+   
+   .. image:: /_static/images/third_party_connectors/pentaho/main_output_of_step.png
 
-When prompted, choose Main output of step.
+5. Double-click **Table output** to open the **Table output** dialog box.
+   
+6. In the **Target table** field, define a target table name.
 
-Double click the Table output icon to reopen the Table output dialog.
+   .. image:: /_static/images/third_party_connectors/pentaho/target_table_name.png
 
-Enter a Target table name.
+7. Click **SQL** to open the **Simple SQL editor.**
 
-Click SQL.
+   .. image:: /_static/images/third_party_connectors/pentaho/sql_editor.png
+   
+8. In the **Simple SQL editor**, click **Execute**.
+
+   .. image:: /_static/images/third_party_connectors/pentaho/execute_sql_statements.png
+   
+   The system processes and then displays the results of the SQL statements.
+
+   .. image:: /_static/images/third_party_connectors/pentaho/sql_statement_results.png
+
+9. Close all open dialog boxes.
+
+10. Click the play button to execute the transformation.
+
+   .. image:: /_static/images/third_party_connectors/pentaho/execute_transformation.png
+   
+11. Click **Run**. The **Run Options** dialog box is displayed.
+
+   .. image:: /_static/images/third_party_connectors/pentaho/run_options_dialog_box.png
+
+
+
+
+
+
+
 
 
 
