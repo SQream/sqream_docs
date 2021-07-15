@@ -1,7 +1,7 @@
 .. _sqream_studio:
 
 ****************************
-SQream Acceleration Studio 5.3.1
+SQream Acceleration Studio 5.3.2
 ****************************
 
 The SQream Studio is a web-based client for use with SQream DB. The Studio provides users with all functionality available from the command line in an intuitive and easy-to-use format. This includes running statements, managing roles and permissions, and managing SQream DB clusters.
