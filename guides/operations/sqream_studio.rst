@@ -51,7 +51,7 @@ Logging In to Studio
 
 2. Fill in your SQream DB login credentials. These are the same credentials used for :ref:`sqream sql<sqream_sql_cli_reference>` or JDBC.
 
-.. image:: /_static/images/login_5.3.1.png
+.. image:: /_static/images/studio_login_5.3.2.png
 
 When you sign in, the License Warning is displayed.
 
