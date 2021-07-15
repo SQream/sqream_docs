@@ -259,22 +259,37 @@ For more information about backing up users, permissions, or schedules, see `Bac
 
 9. Close all open dialog boxes.
 
+::
+
 10. Click the play button to execute the transformation.
 
    .. image:: /_static/images/third_party_connectors/pentaho/execute_transformation.png
+
+::
    
-11. Click **Run**. The **Run Options** dialog box is displayed.
+The **Run Options** dialog box is displayed.
 
    .. image:: /_static/images/third_party_connectors/pentaho/run_options_dialog_box.png
+   
+11. Click **Run**.
+   
+13. Save your transformation.
+
+   .. image:: /_static/images/third_party_connectors/pentaho/save_transformation.png
+   
+11. Click **Yes**.
+
+The **Execution Results** are also displayed.
+
+   .. image:: /_static/images/third_party_connectors/pentaho/execution_results.png
 
 
 
 
 
-
-
-
-
+   The **File has changed** message is displayed.
+   
+   .. image:: /_static/images/third_party_connectors/pentaho/save_transformation_confirmation.png
 
 
 
