@@ -764,7 +764,7 @@ Results View
 ^^^^^^^^^^^^
 The following figure shows the Results view:
 
-.. image:: /_static/images/studio_results_pane_5053.png
+.. image:: /_static/images/studio_results_pane_5053_1.png
 
 The following is a brief description of the Results view:
 
