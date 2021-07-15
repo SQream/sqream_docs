@@ -764,7 +764,7 @@ Results View
 ^^^^^^^^^^^^
 The following figure shows the Results view:
 
-.. image:: /_static/images/studio_results_pane_5053.png
+.. image:: /_static/images/studio_results_pane_5053_1.png
 
 The following is a brief description of the Results view:
 
@@ -831,7 +831,7 @@ The SQL View panel allows you to more easily view certain queries, such as a lon
 
 The following figure shows the SQL view:
 
-.. image:: /_static/images/sql_view_5.0.3.png
+.. image:: /_static/images/sql_view_5.3.1.png
 
 .. _save_results_to_clipboard:
 
@@ -839,7 +839,7 @@ Saving Results to the Clipboard
 ^^^^^^^^^^^^
 The **Save results to clipboard** function lets you save your results to the clipboard to paste into another text editor or into Excel for further analysis.
 
-.. image:: /_static/images/studio_editor_save_result_to_clipboard_5.3.0.png
+.. image:: /_static/images/save_results_to_clipboard_5.3.1.png
 
 .. _save_results_to_local_file:
 
@@ -849,7 +849,7 @@ The **Save results to local file** functions lets you save your search query res
 
 Clicking **Save results to local file** downloads the contents of the Results panel to an Excel sheet. You can then use copy and paste this content into other editors as needed.
 
-.. image:: /_static/images/studio_editor_save_results_to_local_file_5.3.0.png
+.. image:: /_static/images/save_results_to_a_local_file_5.3.1.png
 
 The following figure shows the contents of the Results panel downloaded to an Excel sheet:
 
