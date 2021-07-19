@@ -5,50 +5,54 @@
 Connecting to SQream Using Pentaho Data Integration
 *************************
 
+.. _top:
+
 Overview
 =========
-This document is a viability report on **Pentaho Data Integration (PDI)** as an ETL tool for Big Data and its compatibility with SQreamDB. It provides documentation for stakeholders using SQreamDB. PDI is part of Hitachi's Lumada portfolio.
+This document is a Quick Start Guide that describes how to install Pentaho, create a transformation, and define your output.
 
 It includes the following:
 
-* :ref:`A Quick Start guide <quickstart_guide>`
-* :ref:`Information about supported SQream drivers <supported_sqream_drivers>`
-* :ref:`Information about supported data sources <supported_data_sources>`
-* :ref:`Information about supported tools and operating system versions <supported_tool_os_versions>`
-* :ref:`A description of known issues <known_issues>`
-* :ref:`Related links <related_links>`
-* :ref:`Download links <download_links>`
+* :ref:`Installing Pentaho <install_pentaho>`
+* :ref:`Installing and setting up the JDBC driver <install_set_up_jdbc_driver>`
+* :ref:`Creating a transformation <create_transformation>`
+* :ref:`Defining your output <define_output>`
+* :ref:`Importing your data <import_data>`
 
-.. _quickstart_guide:
 
-Quick Start Guide
------------------
-This Quick Start Guide describes how to start using PDI.
-
-This tutorial describes how to install Pentaho Data Integration, part of Hitachi’s Lumada portfolio, on your Microsoft Windows computer and to start the app.
+.. _install_pentaho:
 
 Installing Pentaho
 ~~~~~~~~~~~~~~~~~
 To install PDI, see the `Pentaho Community Edition (CE) Installation Guide <https://www.hitachivantara.com/en-us/pdf/white-paper/pentaho-community-edition-installation-guide-for-windows-whitepaper.pdf>`_.
 
-The Pentaho Community Edition (CE) Installation Guide includes instructions for the following:
+The **Pentaho Community Edition (CE) Installation Guide** describes how to do the following:
 
 * Downloading the PDI software.
 * Installing the **JRE (Java Runtime Environment)** and **JDK (Java Development Kit)**.
 * Setting up the JRE and JDK environment variables for PDI.
 
+:ref:`Back to Overview <top>`
+
+.. _install_set_up_jdbc_driver:
+
 Installing and Setting Up the JDBC Driver
 ~~~~~~~~~~~~~~~~~
-After installing Pentaho you must install and set up the JDBC driver.
-
-This section explains how to set up the JDBC driver using Pentaho. These instructions use Spoon, the graphical transformation and job designer associated with the PDI suite. It is also known as the Kettle project.
+After installing Pentaho you must install and set up the JDBC driver. This section explains how to set up the JDBC driver using Pentaho. These instructions use Spoon, the graphical transformation and job designer associated with the PDI suite.
 
 You can install the driver by copying and pasting the SQream JDBC .jar file into your **<directory>/design-tools/data-integration/lib** directory. 
 
 **NOTE:** Contact your SQream license account manager for the JDBC .jar file.
 
+:ref:`Back to Overview <top>`
+
+.. _create_transformation:
+
 Creating a Transformation
 ~~~~~~~~~~~~~~~~~~
+
+After installing Pentaho you can create a transformation.
+
 **To create a transformation:**
 
 1. When the installation is complete, do one of the following:
@@ -81,35 +85,35 @@ A new transformation tab is created.
 
 .. image:: /_static/images/third_party_connectors/pentaho/pentaho_2.png
 
-3. In the **Design** tab, click **Input** to show its file contents.
+4. In the **Design** tab, click **Input** to show its file contents.
 
 .. image:: /_static/images/third_party_connectors/pentaho/pentaho_3.png
 
-4. Drag and drop the **CSV file input** item to the new transformation tab that you created.
+5. Drag and drop the **CSV file input** item to the new transformation tab that you created.
 
 .. image:: /_static/images/third_party_connectors/pentaho/pentaho_4.png
 
-5. Double-click **CSV file input**. The **CSV file input** panel is displayed.
+6. Double-click **CSV file input**. The **CSV file input** panel is displayed.
 
 .. image:: /_static/images/third_party_connectors/pentaho/pentaho_5.png
 
-6. In the **Step name** field, type a name.
+7. In the **Step name** field, type a name.
 
 .. image:: /_static/images/third_party_connectors/pentaho/pentaho_6.png
 
-7. To the right of the **Filename** field, click **Browse**.
+8. To the right of the **Filename** field, click **Browse**.
 
 .. image:: /_static/images/third_party_connectors/pentaho/pentaho_select_file.png
 
-8. Select the file that you want to read from and click **OK**.
+9. Select the file that you want to read from and click **OK**.
 
 .. image:: /_static/images/third_party_connectors/pentaho/add_csv_file.png
 
-9. In the CSV file input window, click **Get Fields**.
+10. In the CSV file input window, click **Get Fields**.
 
 .. image:: /_static/images/third_party_connectors/pentaho/get_fields.png
 
-10. In the **Sample data** window, enter the number of lines you want to sample and click **OK**. The default setting is **100**.
+11. In the **Sample data** window, enter the number of lines you want to sample and click **OK**. The default setting is **100**.
 
 .. image:: /_static/images/third_party_connectors/pentaho/number_of_lines_to_sample.png
 
@@ -117,22 +121,27 @@ The tool reads the file and suggests the field name and type.
 
 .. image:: /_static/images/third_party_connectors/pentaho/suggested_field_name_and_type.png
 
-11. In the CSV file input window, click **Preview**.
+12. In the CSV file input window, click **Preview**.
 
 .. image:: /_static/images/third_party_connectors/pentaho/preview.png
 
-12. In the **Preview size** window, enter the number of rows you want to preview and click **OK**. The default setting is **1000**.
+13. In the **Preview size** window, enter the number of rows you want to preview and click **OK**. The default setting is **1000**.
 
 .. image:: /_static/images/third_party_connectors/pentaho/number_of_rows_to_preview.png
 
-13. Verify that the preview data is correct and click **Close**.
+14. Verify that the preview data is correct and click **Close**.
 
 .. image:: /_static/images/third_party_connectors/pentaho/examine.png
 
-14. Click **OK** in the **CSV file input** window.
+15. Click **OK** in the **CSV file input** window.
+
+:ref:`Back to Overview <top>`
+
+.. _define_output:
 
 Defining Your Output
 -----------------
+After creating your transformation you must define your output.
 
 **To define your output:**
 
@@ -199,11 +208,13 @@ The following message is displayed:
 	 
 6. Click **OK** in the window above, in the Database Connection window, and Table Output window.
 
+:ref:`Back to Overview <top>`
+
+.. _import_data:
+
 Importing Data
 -----------------
-**Comment - Importing PDI content from a repository?**
-
-After defining your input you can begin importing data. You can import data when you need to back up or restore content in your solution repository. Note that backing up content does not include users, permissions, or any schedules that you've created.
+After defining your output you can begin importing your data.
 
 For more information about backing up users, permissions, or schedules, see `Backup and Restore Pentaho Repositories <https://help.pentaho.com/Documentation/7.0/0P0/Managing_the_Pentaho_Repository/Backup_and_Restore_Pentaho_Repositories>`_
 
@@ -235,27 +246,39 @@ For more information about backing up users, permissions, or schedules, see `Bac
    
    3. Release the mouse button. The following options are displayed.
    
+::
+   
    4. Select **Main output of step**.
    
    .. image:: /_static/images/third_party_connectors/pentaho/main_output_of_step.png
+   
+::
 
 5. Double-click **Table output** to open the **Table output** dialog box.
-   
+
+::
+
 6. In the **Target table** field, define a target table name.
 
    .. image:: /_static/images/third_party_connectors/pentaho/target_table_name.png
+
+::
 
 7. Click **SQL** to open the **Simple SQL editor.**
 
    .. image:: /_static/images/third_party_connectors/pentaho/sql_editor.png
    
+::
+   
 8. In the **Simple SQL editor**, click **Execute**.
 
    .. image:: /_static/images/third_party_connectors/pentaho/execute_sql_statements.png
    
-   The system processes and then displays the results of the SQL statements.
+   The system processes and displays the results of the SQL statements.
 
    .. image:: /_static/images/third_party_connectors/pentaho/sql_statement_results.png
+      
+::
 
 9. Close all open dialog boxes.
 
@@ -271,26 +294,8 @@ The **Run Options** dialog box is displayed.
 
    .. image:: /_static/images/third_party_connectors/pentaho/run_options_dialog_box.png
    
-11. Click **Run**.
+11. Click **Run**. The **Execution Results** are displayed.
+
+   .. image:: /_static/images/third_party_connectors/pentaho/execution_results_2.png
    
-13. Save your transformation.
-
-   .. image:: /_static/images/third_party_connectors/pentaho/save_transformation.png
-   
-11. Click **Yes**.
-
-The **Execution Results** are also displayed.
-
-   .. image:: /_static/images/third_party_connectors/pentaho/execution_results.png
-
-
-
-
-
-   The **File has changed** message is displayed.
-   
-   .. image:: /_static/images/third_party_connectors/pentaho/save_transformation_confirmation.png
-
-
-
-
+:ref:`Back to Overview <top>`
