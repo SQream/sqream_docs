@@ -9,7 +9,6 @@ VALUES
 .. tip:: 
    * Use VALUES in conjunction with :ref:`INSERT<insert>` statements to insert a set of one or more rows.
 
-.. note:: The maximum number of values in the ``VALUE`` clause is limited to 500.
 
 Permissions
 =============
