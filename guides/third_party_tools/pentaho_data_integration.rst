@@ -64,15 +64,7 @@ After installing Pentaho you can create a transformation.
        .. code-block:: console
      
           $ spoon.bat
-   
-     * Linux:
-   
-       .. code-block:: console
-     
-          $ ./spoon.sh &>/dev/null &
-		  
-::
-    
+
 2. Open the spoon.bat file from its folder location.
 		  
 .. image:: /_static/images/third_party_connectors/pentaho/spoon_bat_file.png
