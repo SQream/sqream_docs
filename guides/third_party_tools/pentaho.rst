@@ -153,11 +153,11 @@ After creating your transformation you must define your output.
 
 4. From the **Table output** dialog box, type a **Step name** and click **New** to create a new connection. Your **steps** are the building blocks of a transformation, such as file input or a table output.
 
-.. image:: /_static/images/third_party_connectors/pentaho/rename_table_output.png.
+.. image:: /_static/images/third_party_connectors/pentaho/rename_table_output.png
 
 The **Database Connection** window is displayed with the **General** tab selected by default.
 
-.. image:: /_static/images/third_party_connectors/pentaho/database_connection_window.png.
+.. image:: /_static/images/third_party_connectors/pentaho/database_connection_window.png
 
 5. Enter or select the following information in the Database Connection window and click **Test**.
 
