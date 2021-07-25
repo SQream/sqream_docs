@@ -235,8 +235,6 @@ For more information about backing up users, permissions, or schedules, see `Bac
 
    3. Release the mouse button. The following options are displayed.
    
-::
-   
    4. Select **Main output of step**.
    
 .. image:: /_static/images/third_party_connectors/pentaho/main_output_of_step.png
