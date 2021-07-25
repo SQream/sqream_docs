@@ -263,7 +263,7 @@ For more information about backing up users, permissions, or schedules, see `Bac
    
    The system processes and displays the results of the SQL statements.
 
-   .. image:: /_static/images/third_party_connectors/pentaho/sql_statement_results.png
+   .. image:: /_static/images/third_party_connectors/pentaho/sql_statement_results_2.png
       
 ::
 
