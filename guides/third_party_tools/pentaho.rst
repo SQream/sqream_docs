@@ -192,7 +192,7 @@ The following table shows and describes the information that you need to fill ou
 
 The following message is displayed:	 
 	 
-.. image:: /_static/images/third_party_connectors/pentaho/connection_tested_successfully.png	 
+.. image:: /_static/images/third_party_connectors/pentaho/connection_tested_successfully_2.png	 
 	 
 6. Click **OK** in the window above, in the Database Connection window, and Table Output window.
 
