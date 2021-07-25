@@ -228,13 +228,15 @@ For more information about backing up users, permissions, or schedules, see `Bac
 
    1. On the CSV file input step item, click the **new hop connection** icon.
    
-   .. image:: /_static/images/third_party_connectors/pentaho/csv_file_input_options.png
+.. image:: /_static/images/third_party_connectors/pentaho/csv_file_input_options.png
    
-   ::
+::
    
    2. Drag an arrow from the **CSV file input** step item to the **Table output** step item.
    
-   .. image:: /_static/images/third_party_connectors/pentaho/csv_file_input_options_2.png
+.. image:: /_static/images/third_party_connectors/pentaho/csv_file_input_options_2.png
+   
+::
    
    3. Release the mouse button. The following options are displayed.
    
@@ -242,7 +244,7 @@ For more information about backing up users, permissions, or schedules, see `Bac
    
    4. Select **Main output of step**.
    
-   .. image:: /_static/images/third_party_connectors/pentaho/main_output_of_step.png
+.. image:: /_static/images/third_party_connectors/pentaho/main_output_of_step.png
    
 ::
 
