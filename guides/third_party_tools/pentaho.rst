@@ -55,9 +55,7 @@ After installing Pentaho you can create a transformation.
 
 **To create a transformation:**
 
-1. When the installation is complete, do one of the following:
-
-   * Use the CLI to open the PDI client for your operating system (Windows):
+1. When the installation is complete, use the CLI to open the PDI client for your operating system (Windows):
    
      .. code-block:: console
      
