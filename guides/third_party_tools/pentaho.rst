@@ -5,7 +5,7 @@
 Connecting to SQream Using Pentaho Data Integration
 *************************
 
-.. _top:
+.. __pentaho_top:
 
 Overview
 =========
@@ -32,7 +32,7 @@ The **Pentaho Community Edition (CE) Installation Guide** describes how to do th
 * Installing the **JRE (Java Runtime Environment)** and **JDK (Java Development Kit)**.
 * Setting up the JRE and JDK environment variables for PDI.
 
-:ref:`Back to Overview <top>`
+:ref:`Back to Overview <pentaho_top>`
 
 .. _install_set_up_jdbc_driver:
 
@@ -44,7 +44,7 @@ You can install the driver by copying and pasting the SQream JDBC .jar file into
 
 **NOTE:** Contact your SQream license account manager for the JDBC .jar file.
 
-:ref:`Back to Overview <top>`
+:ref:`Back to Overview <pentaho_top>`
 
 .. _create_transformation:
 
@@ -127,7 +127,7 @@ The tool reads the file and suggests the field name and type.
 
 15. Click **OK** in the **CSV file input** window.
 
-:ref:`Back to Overview <top>`
+:ref:`Back to Overview <pentaho_top>`
 
 .. _define_output:
 
@@ -200,7 +200,7 @@ The following message is displayed:
 	 
 6. Click **OK** in the window above, in the Database Connection window, and Table Output window.
 
-:ref:`Back to Overview <top>`
+:ref:`Back to Overview <pentaho_top>`
 
 .. _import_data:
 
@@ -292,4 +292,4 @@ The **Run Options** dialog box is displayed.
 
    .. image:: /_static/images/third_party_connectors/pentaho/execution_results_2.png
    
-:ref:`Back to Overview <top>`
+:ref:`Back to Overview <pentaho_top>`
