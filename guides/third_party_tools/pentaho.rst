@@ -57,13 +57,11 @@ After installing Pentaho you can create a transformation.
 
 1. When the installation is complete, do one of the following:
 
-   * Use the CLI to open the PDI client for your operating system:
-
-     * Windows:
+   * Use the CLI to open the PDI client for your operating system (Windows):
    
-       .. code-block:: console
+     .. code-block:: console
      
-          $ spoon.bat
+        $ spoon.bat
 
 2. Open the spoon.bat file from its folder location.
 		  
@@ -239,7 +237,7 @@ For more information about backing up users, permissions, or schedules, see `Bac
 
    3. Release the mouse button. The following options are displayed.
    
-
+::
    
    4. Select **Main output of step**.
    
