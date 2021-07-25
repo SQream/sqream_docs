@@ -230,17 +230,16 @@ For more information about backing up users, permissions, or schedules, see `Bac
    
 .. image:: /_static/images/third_party_connectors/pentaho/csv_file_input_options.png
    
-    ::
+
    
    2. Drag an arrow from the **CSV file input** step item to the **Table output** step item.
    
 .. image:: /_static/images/third_party_connectors/pentaho/csv_file_input_options_2.png
    
-    ::
-   
+
    3. Release the mouse button. The following options are displayed.
    
-    ::
+
    
    4. Select **Main output of step**.
    
