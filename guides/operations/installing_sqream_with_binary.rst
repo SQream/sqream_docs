@@ -3,7 +3,7 @@
 *********************************************
 Installing SQream Using Binary Packages
 *********************************************
-This procedure describes how to install SQream using Binary packages.
+This procedure describes how to install SQream using Binary packages and must be done on all servers.
 
 **To install SQream using Binary packages:**
 
@@ -114,6 +114,8 @@ It would be same on server running metadataserver and different on other server 
     1. Change the **SERVICE_NAME=sqream2** value to **SERVICE_NAME=sqream3**.
     
     2. Change **LOGFILE=/var/log/sqream/sqream2.log** to **LOGFILE=/var/log/sqream/sqream3.log**.
+    
+**NOTE:** If you are running SQream on more than one server, you must configure the ``serverpicker`` and ``metadatserver`` services to start on only one of the servers. If **metadataserver** is running on the first server, the ``metadataServerIP`` value in the second server's /etc/sqream/sqream1_config.json file must point to the IP of the server on which the ``metadataserver`` service is running.
     
 14. Set up **servicepicker**:
 
