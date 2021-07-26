@@ -71,28 +71,54 @@ Arguments
 Supported Window Functions
 ===========================
 
-.. list-table:: Window function aggregations
-   :widths: auto
+.. list-table:: Window Aggregation Functions
+   :widths: 16 200
    :header-rows: 1
    
    * - Function
+     - Description
    * - :ref:`avg`
+     - Returns the average of numeric values.
    * - :ref:`count`
+     - Returns the count of numeric values, or only the distinct values.
    * - :ref:`max`
+     - Returns the maximum values.
    * - :ref:`min`
+     - Returns the minimum values.
    * - :ref:`sum`
+     - Returns the sum of numeric values, or only the distinct values.
+
 
 
    
-.. list-table:: Ranking functions
-   :widths: auto
+.. list-table:: Ranking Functions
+   :widths: 15 200
    :header-rows: 1
-
+   
    * - Function
+     - Description
    * - :ref:`lag`
+     - Returns a value from a previous row within the partition of a result set.
    * - :ref:`lead`
-   * - :ref:`rank`
+     - Returns a value from a subsequent row within the partition of a result set.
    * - :ref:`row_number`
+     - Returns the row number of each row within the partition of a result set.
+   * - :ref:`rank`
+     - Returns the rank of each row within the partition of a result set.
+   * - :ref:`first_value`
+     - Returns the value in the first row of a window.
+   * - :ref:`last_value`
+     - Returns the value in the last row of a window.	 
+   * - :ref:`nth_value`
+     - Returns the value in a specified (``n``) row of a window.	 
+   * - :ref:`dense_rank`
+     - Returns the rank of the current row with no gaps.	 
+   * - :ref:`percent_rank`
+     - Returns the relative rank of the current row.
+   * - :ref:`cume_dist`
+     - Returns the cumulative distribution of rows.
+   * - :ref:`ntile`
+     - Returns an integer ranging between ``1`` and the argument value, dividing the partitions as equally as possible.
 
 
 
