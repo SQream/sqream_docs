@@ -35,10 +35,13 @@ Before installing Studio, you must install NodeJS version 12 on the server.
    .. code-block:: console
      
       $ node -v
+      
+The following is the output if a version of NodeJS has already been installed on the target server:
 
-bash: /usr/bin/node: No such file or directory
-
-	  
+   .. code-block:: console
+     
+      bash: /usr/bin/node: No such file or directory
+  
 2. If a version of NodeJS older than *12.<x.x>* has been installed, remove it as follows:
 
    * On CentOS:
