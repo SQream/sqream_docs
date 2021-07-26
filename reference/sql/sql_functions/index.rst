@@ -330,12 +330,25 @@ See more about  :ref:`window_functions`
      - Calculates the maximum value
    * - :ref:`min`
      - Calculates the minimum value
-   * - :ref:`rank`
-     - Calculates the rank of a row
-   * - :ref:`row_number`
-     - Calculates the row number
    * - :ref:`sum`
-     - Calculates the sum of all of the values
+     - Calculates the sum of all of the values  
+   * - :ref:`rank`
+     - Calculates the rank of a row	 
+   * - :ref:`first_value`
+     - Returns the value in the first row of a window
+   * - :ref:`last_value`
+     - Returns the value in the last row of a window
+   * - :ref:`nth_value`
+     - Returns the value in a specified ``(n)`` row of a window
+   * - :ref:`dense_rank`
+     - Returns the rank of the current row with no gaps
+   * - :ref:`percent_rank`
+     - Returns the relative rank of the current row
+   * - :ref:`cume_dist`
+     - Returns the cumulative distribution of rows
+   * - :ref:`ntile`
+     - Returns an integer ranging between ``1`` and the argument value, dividing the partitions as equally as possible
+
 
 System Functions
 ------------------
