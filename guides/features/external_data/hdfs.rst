@@ -234,7 +234,7 @@ The following is an example of the correct folder name:
     * If the list below is output, continue with Step 16.
     * If the list is not output, verify that your environment has been set up correctly.
 	
-If any of the following are empty, verify that you followed :ref:`Step 6 <step_6>` in the **Configuring an HDFS Environment for the User sqream** section above correctly:
+If any of the following are empty, verify that you followed **Step 6** in the **Configuring an HDFS Environment for the User sqream** section above correctly:
 
   .. code-block:: console
    
