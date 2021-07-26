@@ -18,6 +18,8 @@ This guide describes how to do the following:
 * :ref:`Access Studio<access_studio>`
 * :ref:`Maintain Studio using the Process Manager (PM2) service<check_studio_pm2>`
 * :ref:`Upgrade to the new Studio version<upgrade_studio>`
+* :ref:`Use the configuration setup arguments<setup_arguments>`
+
 
 
 Installing NodeJS Version 12 on the Server
@@ -337,7 +339,7 @@ You can use PM2 to do one of the following:
 
 .. _upgrade_studio:
 
-Upgrading Studio:
+Upgrading Studio
 ^^^^^^^^^^^^^^^
 To upgrade Studio you need to stop the version that you currently have.
 
@@ -534,7 +536,7 @@ When installing Studio in Docker, you can run the following commands:
 
 .. _setup_arguments:
 
-Setup Arguments
+Setup Argument Configurations
 ^^^^^^^^^^^^^^^
 When creating the **sqream-admin-config.json** configuration file, you can add ``-y`` to create the configuration file in non-interactive mode. Configuration files created in non-interactive mode use all the parameter defaults not provided in the command.
 
