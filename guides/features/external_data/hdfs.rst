@@ -249,4 +249,34 @@ If any of the following are empty, verify that you followed :ref:`Step 6 <step_6
 
 17. Review this procedure to verify that you have followed each step.
 
+**NOTE:** If you are using more than one server, you must start the ``metadataserver`` and ``serverpicker`` services on one node only.
+
+18. Start the following SQream services manually and verify that they are running correctly:
+
+    .. code-block:: console
+   
+        $ sudo systemctl start metadataserver
+        $ sudo systemctl start serverpicker
+        $ sudo systemctl start sqream1
+        $ sudo systemctl start sqream2
+        $ sudo systemctl start sqream3
+        $ sudo systemctl start sqream4
+
+19. Verify that all SQream processes are running and listening:
+
+    .. code-block:: console
+   
+        $ sudo systemctl status metadataserver
+        $ sudo systemctl status serverpicker
+        $ sudo systemctl status sqream1 <sqream2, sqream3...>
+	
+**NOTE:** Run ``sudo systemctl status`` on all servers.
+
+20. Verify that SQream is listening on all ports:
+
+    .. code-block:: console
+   
+       $ sudo netstat -nltp
+**NOTE:** Depending on the package build GPU optimization, SQream takes several minutes to start listening on its ports. You can check your service logs in **/var/log/sqream** to check if SQream has started listening on its ports.
+
 :ref:`Back to top <back_to_top_hdfs>`
