@@ -52,7 +52,8 @@ SQream now supports the following new ranking functions:
      - integer
      - Returns an integer ranging between ``1`` and the argument value, dividing the partitions as equally as possible.
 
-For more information, see `Window Functions <https://docs.sqream.com/en/latest/reference/sql/sql_syntax/window_functions.html#window-functions>`_ and scroll to the **Ranking Functions** table.
+For more information, navigate to Windows Functions and scroll to the`Ranking Functions table <https://docs.sqream.com/en/latest/reference/sql/sql_syntax/window_functions.html#id3>`_.
+
 
 SQream DB on Cloud
 ----------------------------
