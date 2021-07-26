@@ -16,7 +16,7 @@ This guide describes how to do the following:
 * :ref:`Start Studio manually<start_studio_manually>`
 * :ref:`Start Studio as a service<start_studio_service>`
 * :ref:`Access Studio<access_studio>`
-* :ref:`Maintaining Studio with the Process Manager (PM2) service<check_studio_pm2>`
+* :ref:`Maintain Studio using the Process Manager (PM2) service<check_studio_pm2>`
 * :ref:`Upgrade to the new Studio version<upgrade_studio>`
 
 
@@ -33,6 +33,9 @@ Before installing Studio, you must install NodeJS version 12 on the server.
    .. code-block:: console
      
       $ node -v
+
+bash: /usr/bin/node: No such file or directory
+
 	  
 2. If a version of NodeJS older than *12.<x.x>* has been installed, remove it as follows:
 
@@ -48,7 +51,7 @@ Before installing Studio, you must install NodeJS version 12 on the server.
      
         $ sudo apt remove -y nodejs
 
-3. Install NodeJS version 12 as follows:
+3. If you have not installed NodeJS version 12, run the following commands:
 
    * On CentOS:
 
@@ -128,23 +131,33 @@ Installing Studio
      
       $ tar -xvf sqream-acceleration-studio-<version number>.x86_64.tar.gz
 
+::
+	
 3. Navigate to the new package folder. 
  
    .. code-block:: console
      
       $ cd sqream-admin
 
-4. Build the configuration file to set up Sqream Studio. 
+::
+	
+4. Build the configuration file to set up Sqream Studio. You can use IP address **127.0.0.1** on a single server.
  
    .. code-block:: console
      
       $ npm run setup -- -y --host=<SQreamD IP> --port=3108
 
-   You can use IP address **127.0.0.1** on a single server.
+   The above command creates the **sqream-admin-config.json** configuration file in the **sqream-admin** folder and shows the following output:
    
-   The above command creates the **sqream-admin-config.json** configuration file in the **sqream-admin** folder.
+   .. code-block:: console
+   
+      Config generated successfully. Run `npm start` to start the app.
 
-5. If you have installed Studio on a server where Sqream is already installed, move the **sqream-admin-config.json** file to **/etc/sqream/**:
+   For more information about the available set-up arguments, see :ref:`Set-Up Arguments<setup_arguments>`.
+
+  ::
+   
+5. If you have installed Studio on a server where SQream is already installed, move the **sqream-admin-config.json** file to **/etc/sqream/**:
 
    .. code-block:: console
      
@@ -161,7 +174,21 @@ You can start Studio manually by running the following command:
 .. code-block:: console
      
    $ cd /home/sqream/sqream-admin
-   $ NODE_ENV=production pm2 start ./server/build/main.js --name=sqream-studio -- start 
+   $ NODE_ENV=production pm2 start ./server/build/main.js --name=sqream-studio -- start
+ 
+The following output is displayed:
+
+.. code-block:: console
+     
+   [PM2] Starting /home/sqream/sqream-admin/server/build/main.js in fork_mode (1 instance)
+   [PM2] Done.
+   ┌─────┬──────────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+   │ id  │ name             │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+   ├─────┼──────────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+   │ 0   │ sqream-studio    │ default     │ 0.1.0   │ fork    │ 11540    │ 0s     │ 0    │ online    │ 0%       │ 15.6mb   │ sqream   │ disabled │
+   └─────┴──────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+
+  
 
 .. _start_studio_service:
 
@@ -173,25 +200,30 @@ Sqream uses the **Process Manager (PM2)** to maintain Studio.
 
 1. Run the following command:
  
-.. code-block:: console
+   .. code-block:: console
      
-   $ sudo npm install -g pm2
+      $ sudo npm install -g pm2
 
+::
+	   
 2. Verify that the PM2 has been installed successfully.
  
-.. code-block:: console
+   .. code-block:: console
      
-   $ pm2 list
+      $ pm2 list
 
-The following is the output:
+   The following is the output:
 
-.. code-block:: console     
+   .. code-block:: console     
 
-   [PM2] Spawning PM2 daemon with pm2_home=/home/sqream/.pm2
-   [PM2] PM2 Successfully daemonized
-   ┌─────┬───────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬────────   ──┬──────────┐
-   │ id  │ name      │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
-   └─────┴───────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+     ┌─────┬──────────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+     │ id  │ name             │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+     ├─────┼──────────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
+     │ 0   │ sqream-studio    │ default     │ 0.1.0   │ fork    │ 11540    │ 2m     │ 0    │ online    │ 0%       │ 31.5mb   │ sqream   │ disabled │
+     └─────┴──────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+
+::
+
 2. Start the service with PM2:
 
    * If the **sqream-admin-config.json** file is located in **/etc/sqream/**, run the following command:
@@ -206,27 +238,41 @@ The following is the output:
      .. code-block:: console
      
         $ cd /home/sqream/sqream-admin
-        $ NODE_ENV=production pm2 start ./server/build/main.js --name=sqream-studio -- start		
-   
+        $ NODE_ENV=production pm2 start ./server/build/main.js --name=sqream-studio -- start
+
+:: 
+		
 3. Verify that Studio is running.
  
    .. code-block:: console
      
       $ netstat -nltp
 
-4. Verify that SQream_studio is listening on port 8080 as shown below:
+4. Verify that SQream_studio is listening on port 8080, as shown below:
 
    .. code-block:: console
-     
-      tcp6       0      0 :::8080         :::*    LISTEN      8836/sqream-studio
+
+     (Not all processes could be identified, non-owned process info
+      will not be shown, you would have to be root to see it all.)
+     Active Internet connections (only servers)
+     Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+     tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -
+     tcp        0      0 127.0.0.1:25            0.0.0.0:*               LISTEN      -
+     tcp6       0      0 :::8080                 :::*                    LISTEN      11540/sqream-studio
+     tcp6       0      0 :::22                   :::*                    LISTEN      -
+     tcp6       0      0 ::1:25                  :::*                    LISTEN      -
+
 	  
+
+::
+	
 5. Verify the following:
 
    1. That you can access Studio from your browser (``http://<IP_Address>:8080``).
    
    ::  
 
-   2. That you can log in to Sqream.
+   2. That you can log in to SQream.
 
 6. Save the configuration to run on boot.
  
@@ -308,41 +354,51 @@ To upgrade Studio you need to stop the version that you currently have.
    .. code-block:: console
    
       <process name>
-     
+
+::
+	  
 2. Run the following command with the process name:
 
    .. code-block:: console
 
       $ pm2 stop <process name>
-	  
+
+::
+		  
 3. If only one process is running, run the following command:
 
    .. code-block:: console
 
       $ pm2 stop all
 
+::
+	
 4. Change the name of the current **sqream-admin** folder to the old version.
 
    .. code-block:: console
 
       $ mv sqream-admin sqream-admin-<old_version>
 
+::
+	
 5. Extract the new Studio version.
 
    .. code-block:: console
 
       $ tar -xf sqream-acceleration-studio-<version>tar.gz
 
-6. Rebuild the configuration file.
+::
+	
+6. Rebuild the configuration file. You can use IP address **127.0.0.1** on a single server.
 
    .. code-block:: console
 
-      $ npm run setup -- -y --host=<enter here SQreamD IP> --port=3108
+      $ npm run setup -- -y --host=<SQreamD IP> --port=3108
 
-   You can use IP address **127.0.0.1** on a single server.
+  The above command creates the **sqream-admin-config.json** configuration file in the **sqream_admin** folder.
 
-   The above command creates the **sqream-admin-config.json** configuration file in the **sqream_admin** folder.
-
+::
+	
 7. Copy the **sqream-admin-config.json** configuration file to **/etc/sqream/** to overwrite the old configuration file.
   
 ::  
@@ -367,13 +423,12 @@ This guide describes how to do the following:
 * :ref:`Access Studio<access_studio_docker_container>`
 * :ref:`Using Docker Container Commands<using_docker_container_commands>`
 
-
-
-
 .. _install_studio_docker_container:
 
 Installing SQream Studio in a Docker Container
 ^^^^^^^^^^^^^^^^^^^^^^^
+If you have already installed Docker, you can install SQream Studio in a Docker container.
+
 **To install Sqream Studio in a Docker container:**
 
 1. Copy the downloaded image onto the target server.
@@ -386,12 +441,16 @@ Installing SQream Studio in a Docker Container
 
       $ docker load -i <docker_image_file>
 
+::
+	
 3. If the downloaded image is called **sqream-acceleration-studio-5.1.3.x86_64.docker18.0.3.tar,** run the following command:
 
    .. code-block:: console
 
       $ docker load -i sqream-acceleration-studio-5.1.3.x86_64.docker18.0.3.tar
 
+::
+	
 4. Start the Docker container.
 
    .. code-block:: console
@@ -472,3 +531,70 @@ When installing Studio in Docker, you can run the following commands:
       $ docker rm -f sqream-admin-ui
       
 :ref:`Back to Installing Studio in a Docker Container<install_studio_docker_container>`
+
+.. _setup_arguments:
+
+Setup Arguments
+^^^^^^^^^^^^^^^
+When creating the **sqream-admin-config.json** configuration file, you can add ``-y`` to create the configuration file in non-interactive mode. Configuration files created in non-interactive mode use all the parameter defaults not provided in the command.
+
+The following table shows the available arguments:
+
+.. list-table::
+   :widths: 10 25 65
+   :header-rows: 1  
+   
+   * - Parameter
+     - Default Value
+     - Description
+   * - ``--web--host``
+     - 8443
+     - 
+   * - ``--web-port``
+     - 8080
+     - 
+   * - ``--web-ssl-port``
+     - 8443
+     - 
+   * - ``--web-ssl-key-path``
+     - None
+     - The path of the SSL Key PEM file for enabling https. Leave empty to disable.
+   * - ``--web-ssl-cert-path``
+     - None
+     - The path of the SSL Certificate PEM file for enabling https. Leave empty to disable.
+   * - ``--debug-sqream (flag)``
+     - false
+     - 
+   * - ``--host``
+     - 127.0.0.1
+     - 
+   * - ``--port``
+     - 3108
+     - 
+   * - ``is-cluster (flag)``
+     - true
+     - 
+   * - ``--service``
+     - sqream
+     - 
+   * - ``--ssl (flag)``
+     - false
+     - Enables the SQream SSL connection.
+   * - ``--name``
+     - default
+     - 
+   * - ``--data-collector-url``
+     - localhost:8100/api/dashboard/data
+     - Enables the Dashboard. Leaving this blank disables the Dashboard. Using a mock URL uses mock data.
+   * - ``--cluster-type``
+     - standalone (``standalone`` or ``k8s``)
+     - 
+   * - ``--config-location``
+     - ./sqream-admin-config.json
+     - 
+   * - ``--network-timeout``
+     - 60000 (60 seconds)
+     - 
+   * - ``--access-key``
+     - None
+     - If defined, UI access is blocked unless ``?ui-access=<access key>`` is included in the URL.
