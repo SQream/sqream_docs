@@ -19,6 +19,40 @@ The 2021.1 Release Notes describes the following:
 
 New Features
 =========================
+Complete Ranking Function Support
+-----------------------------------
+SQream now supports the following new ranking functions:
+
+.. list-table::
+   :widths: 1 23 76
+   :header-rows: 1
+   
+   * - Function
+     - Return Type
+     - Description
+   * - first_value
+     - Same type as value
+     - Returns the value in the first row of a window.
+   * - last_value
+     - Same type as value
+     - Returns the value in the last row of a window.
+   * - nth_value
+     - Same type as value
+     - Returns the value in a specified (``n``) row of a window. if the specified row does not exist, this function returns ``NULL``.
+   * - dense_rank
+     - bigint
+     - Returns the rank of the current row with no gaps.
+   * - percent_rank
+     - double
+     - Returns the relative rank of the current row.
+   * - cume_dist
+     - double
+     - Returns the cumulative distribution of rows.
+   * - ntile(buckets)
+     - integer
+     - Returns an integer ranging between ``1`` and the argument value, dividing the partitions as equally as possible.
+
+For more information, see `Window Functions <https://docs.sqream.com/en/latest/reference/sql/sql_syntax/window_functions.html#window-functions>`_ and scroll to the **Ranking Functions** table.
 
 SQream DB on Cloud
 ----------------------------
@@ -136,6 +170,11 @@ Resolved Issues
 ================================
 The following list describes the resolved issues:
 
+* SQream did not support exporting and reading **Int64** columns as **bigint** in Parquet. This was fixed.
+* The Decimal column was not supported when inserting data from Parquet files. This was fixed.
+* Values in Parquet Numeric columns were not being converted correctly. This was fixed.
+* Converting ``string`` data type to ``datetime`` was not working correctly. This was fixed.
+* Casting ``datetime`` to ``text`` truncated the time. This was fixed.
 * Copying text from a CSV file to the TEXT column without closing quotes caused SQream to crash. This was fixed.
 * Using an unsupported function call generated an incorrect insert error. This was fixed. 
 * Using the ``insert into`` function from ``table_does_not_exist`` generated an incorrect error.
