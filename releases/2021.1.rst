@@ -1,24 +1,16 @@
-.. _2021.1:
+.. _2021.1.1:
 
 **************************
-What's New in 2021.1
+What's New in 2021.1.1
 **************************
 
-Performance Enhancements
-=========================
-* Major feature release targeted for all on-premises customers.
-* Includes basic Cloud functionality.
 
-Version Content
-====================
-The 2021.1 Release Notes describes the following:
-
-* Major feature release targeted for all on-premises customers.
-* Basic Cloud functionality.
-
-
+   
+   
 New Features
 =========================
+The 2021.1.1 release notes were released on 7/27/2021.
+
 Complete Ranking Function Support
 -----------------------------------
 SQream now supports the following new ranking functions:
@@ -53,6 +45,40 @@ SQream now supports the following new ranking functions:
      - Returns an integer ranging between ``1`` and the argument value, dividing the partitions as equally as possible.
 
 For more information, navigate to Windows Functions and scroll to the `Ranking Functions table <https://docs.sqream.com/en/latest/reference/sql/sql_syntax/window_functions.html#id3>`_.
+
+
+Resolved Issues
+================================
+The following list describes the resolved issues:
+
+* SQream did not support exporting and reading **Int64** columns as **bigint** in Parquet. This was fixed.
+* The Decimal column was not supported when inserting data from Parquet files. This was fixed.
+* Values in Parquet Numeric columns were not being converted correctly. This was fixed.
+* Converting ``string`` data type to ``datetime`` was not working correctly. This was fixed.
+* Casting ``datetime`` to ``text`` truncated the time. This was fixed.
+
+
+
+**************************
+What's New in 2021.1
+**************************
+
+Performance Enhancements
+=========================
+* Major feature release targeted for all on-premises customers.
+* Includes basic Cloud functionality.
+
+Version Content
+====================
+The 2021.1 Release Notes describes the following:
+
+* Major feature release targeted for all on-premises customers.
+* Basic Cloud functionality.
+
+
+New Features
+=========================
+The 2021.1 release notes were released on 6/13/2021.
 
 
 SQream DB on Cloud
@@ -171,11 +197,6 @@ Resolved Issues
 ================================
 The following list describes the resolved issues:
 
-* SQream did not support exporting and reading **Int64** columns as **bigint** in Parquet. This was fixed.
-* The Decimal column was not supported when inserting data from Parquet files. This was fixed.
-* Values in Parquet Numeric columns were not being converted correctly. This was fixed.
-* Converting ``string`` data type to ``datetime`` was not working correctly. This was fixed.
-* Casting ``datetime`` to ``text`` truncated the time. This was fixed.
 * Copying text from a CSV file to the TEXT column without closing quotes caused SQream to crash. This was fixed.
 * Using an unsupported function call generated an incorrect insert error. This was fixed. 
 * Using the ``insert into`` function from ``table_does_not_exist`` generated an incorrect error.
