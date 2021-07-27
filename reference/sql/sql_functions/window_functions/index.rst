@@ -18,5 +18,12 @@ Read more about :ref:`window_functions` in the :ref:`sql_syntax` section.
    lead
    row_number
    rank
+   first_value
+   last_value
+   nth_value
+   dense_rank
+   percent_rank
+   cume_dist
+   ntile
 
 
