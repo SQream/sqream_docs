@@ -11,6 +11,8 @@ The 2020.3 Release Notes describe the following:
 
 SQream DB v2020.3 contains new features, improved performance, and bug fixes.
 
+::::
+
 Release Notes Version 2020.3.2.1
 ==============
 SQream DB v2020.3.2.1 contains major performance improvements and some bug fixes.
@@ -33,7 +35,7 @@ Contact your account manager to get the latest release of SQream DB.
 
 
 
-
+::::
 
 
 
@@ -100,7 +102,7 @@ Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and othe
 Contact your account manager to get the latest release of SQream DB.
 
 
-
+::::
 
 Release Notes Version 2020.3
 =================
