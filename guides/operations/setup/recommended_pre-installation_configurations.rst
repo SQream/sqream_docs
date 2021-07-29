@@ -46,7 +46,7 @@ If any doubt arises, consult the documentation for your server or your hardware 
      - The Performance profile provides potentially increased performance by maximizing processor frequency, and the disabling certain power saving features such as C-states. Use this setting for environments that are not sensitive to power consumption.
    * - **Power Cap Policy** or **Dynamic power capping**
      - **Disabled**
-     - Other power profiles (like "balanced") throttle the CPU and may diminish performance or cause GPU failure. This setting may appear together with the above (Power profile or Power regulator). **(In BIOS?)** This setting allows disabling system ROM power calibration during the boot process. Power regulator settings are named differently in BIOS and iLO/iDRAC.
+     - Other power profiles (like "balanced") throttle the CPU and may diminish performance or cause GPU failure. This setting may appear together with the above (Power profile or Power regulator). This setting allows disabling system ROM power calibration during the boot process. Power regulator settings are named differently in BIOS and iLO/iDRAC.
 	 
 ..
 	 **Comment: is it necessary to show the different power regulator setting names in this document?**	 
@@ -1132,7 +1132,7 @@ This section describes the troubleshooting procedure to be followed if all param
 
       $ sudo vim /etc/profile
 
-5. Search for line and tag it with the **hash** symbol: **Search for which line?**
+5. Search for line and tag it with the **hash** symbol:
 
    .. code-block:: console
 
