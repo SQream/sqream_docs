@@ -8,6 +8,7 @@ What's New in 2021.1
    :local:
    :depth: 1
    
+::::
 
 Release Notes Version 2021.1.1
 =================
@@ -50,7 +51,7 @@ SQream now supports the following new ranking functions:
      - integer
      - Returns an integer ranging between ``1`` and the argument value, dividing the partitions as equally as possible.
 
-For more information, navigate to Windows Functions and scroll to the `Ranking Functions table <https://docs.sqream.com/en/v2021.1/reference/sql/sql_syntax/window_functions.html#id3>`_.
+For more information, navigate to Windows Functions and scroll to the `Ranking Functions table <https://docs.sqream.com/en/latest/reference/sql/sql_syntax/window_functions.html#id3>`_.
 
 
 Resolved Issues
@@ -63,7 +64,7 @@ The following list describes the resolved issues:
 * Converting ``string`` data type to ``datetime`` was not working correctly. This was fixed.
 * Casting ``datetime`` to ``text`` truncated the time. This was fixed.
 
-
+::::
 
 
 Release Notes Version 2021.1
