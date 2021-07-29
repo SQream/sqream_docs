@@ -8,6 +8,7 @@ What's New in 2021.1
    :local:
    :depth: 1
    
+::::
 
 Release Notes Version 2021.1.1
 =================
@@ -63,7 +64,7 @@ The following list describes the resolved issues:
 * Converting ``string`` data type to ``datetime`` was not working correctly. This was fixed.
 * Casting ``datetime`` to ``text`` truncated the time. This was fixed.
 
-
+::::
 
 
 Release Notes Version 2021.1
