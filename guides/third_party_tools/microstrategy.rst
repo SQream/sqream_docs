@@ -72,11 +72,21 @@ Quick Start Guide
 
 **Comment - There were significant differences between the original Quick Start Guide procedure, and the one written below. This is probably due to changes in the GUI, but either way, it needs to be verified. I've left the original procedure based on the Confluence doc below this procedure.**
 
-1. Install MicroStrategy.
-2. Do the following:
+1. Download the `MicroStrategy Workstation <https://www.microstrategy.com/en/get-started/workstation>`_.
 
-   1. Click **Dossiers**. The Dossiers panel is displayed to the right.
-   2. Click ``+``.
+.. image:: /_static/images/third_party_connectors/microstrategy/download_workstation.png
+
+2. Download the most current version of the `SQream JDBC driver <https://docs.sqream.com/en/latest/guides/client_drivers/index.html#client-drivers>`_.
+
+::
+
+3. Activate the MicroStrategy Workstation app.
+
+.. image:: /_static/images/third_party_connectors/microstrategy/activate_app.png
+
+   The app displays the Dossiers panel to the right.
+
+4. Click ``+`` to create a new dossier.
 
 .. image:: /_static/images/third_party_connectors/microstrategy/MS_Creating_a_New_JDBC_DB_Connection_3.png
 
@@ -104,13 +114,15 @@ The **Untitled Dossier** panel is displayed.
 
 7. In the Connections panel, do the following:
 
-   a. In the **Connection Name** field, type a connection name.
+   1. In the **Connection Name** field, type a connection name.
 
-   b. From the **Database** dropdown menu, select **Generic**. When you select Generic, the **Host Name**, **Port Number**, and **Database Name** fields are removed from the panel.
+   2. From the **Database** dropdown menu, select **Generic**. When you select Generic, the **Host Name**, **Port Number**, and **Database Name** fields are removed from the panel.
 
-   c. In the **Version** dropdown menu, verify that **Generic DBMS** is selected.
+   3. In the **Version** dropdown menu, verify that **Generic DBMS** is selected.
 
-   d. Click the **Show connection string** toggle item. **Comment - I don't see this toggle item in the GUI.**
+   4. Click **Advanced Settings**.
+   
+   5. Select the **Edit connection string** checkbox.
 
    e. In the **User** and **Password** fields, provide your credentials.
 
