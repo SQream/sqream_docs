@@ -3,6 +3,7 @@
 **************************
 What's New in 2021.1
 **************************
+The 2020.1 Release Notes describe the following:
 
 .. contents:: 
    :local:
