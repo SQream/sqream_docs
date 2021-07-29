@@ -3,13 +3,14 @@
 **************************
 What's New in 2020.3
 **************************
+SQream DB v2020.3 contains new features, performance enhancements, and resolved issues.
+
 The 2020.3 Release Notes describe the following:
 
 .. contents:: 
    :local:
    :depth: 1
 
-SQream DB v2020.3 contains new features, improved performance, and bug fixes.
 
 ::::
 
