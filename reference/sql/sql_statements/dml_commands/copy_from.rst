@@ -22,6 +22,7 @@ The role must have the ``INSERT`` permission to the destination table.
 
 Syntax
 ==========
+The following is an example of the correct ``COPY FROM`` syntax:
 
 .. code-block:: postgres
 
@@ -96,8 +97,8 @@ Elements
    :header-rows: 1
    
    * - Parameter
-     - Default value
-     - Value range
+     - Default Value
+     - Value Range
      - Description
    * - ``[schema_name.]table_name``
      - None
@@ -177,10 +178,10 @@ Elements
 
 .. _copy_date_parsers:
 
-Supported date formats
+Supported Date Formats
 =========================
 
-.. list-table:: Supported date parsers
+.. list-table:: Supported Date Parsers
    :widths: auto
    :header-rows: 1
    
@@ -251,19 +252,19 @@ Supported date formats
 
 .. _field_delimiters:
 
-Supported field delimiters
+Supported Field Delimiters
 =====================================================
 
 Field delimiters can be one or more characters.
 
-Multi-character delimiters
+Multi-Character Delimiters
 ----------------------------------
 
 SQream DB supports multi-character field delimiters, sometimes found in non-standard files.
 
 A multi-character delimiter can be specified. For example, ``DELIMITER '%%'``, ``DELIMITER '{~}'``, etc.
 
-Printable characters
+Printable Characters
 -----------------------
 
 Any printable ASCII character (or characters) can be used as a delimiter without special syntax. The default CSV field delimiter is a comma (``,``).
@@ -272,7 +273,7 @@ A printable character is any ASCII character in the range 32 - 126.
 
 :ref:`Literal quoting rules<string_literals>` apply with delimiters. For example, to use ``'`` as a field delimiter, use ``DELIMITER ''''``
 
-Non-printable characters
+Non-Printable Characters
 ----------------------------
 
 A non-printable character (1 - 31, 127) can be used in its octal form. 
@@ -283,7 +284,7 @@ For example, ASCII character ``15``, known as "shift in", can be specified using
 
 .. _capturing_rejected_rows:
 
-Capturing rejected rows
+Capturing Rejected Rows
 ==========================
 
 Prior to the column process and storage, the ``COPY`` command parses the data.
@@ -298,7 +299,7 @@ Whenever the data canâ€™t be parsed because it is improperly formatted or doesnâ
 
 #. When ``ERROR_LOG`` is set and ``ERROR_VERBOSITY`` is set to ``0``, rejected rows are saved to the file path specified, but errors are not logged. This is useful for replaying the file later.
 
-CSV support
+CSV Support
 ================
 
 By default, SQream DB's CSV parser can handle `RFC 4180 standard CSVs <https://tools.ietf.org/html/rfc4180>`_ , but can also be modified to support non-standard CSVs (with multi-character delimiters, unquoted fields, etc).
@@ -324,7 +325,7 @@ All CSV files shoudl be prepared according to these recommendations:
    
    Other modes of escaping are not supported (e.g. ``1,"What are \"birds\"?"`` is not a valid way of escaping CSV values).
 
-Null markers
+Null Markers
 ---------------
 
 ``NULL`` values can be marked in two ways in the CSV:
@@ -337,7 +338,7 @@ Null markers
 Examples
 ===========
 
-Loading a standard CSV file
+Loading a Standard CSV File
 ------------------------------
 
 .. code-block:: postgres
@@ -345,7 +346,7 @@ Loading a standard CSV file
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.csv');
 
 
-Skipping faulty rows
+Skipping Faulty Rows
 ------------------------------
 
 .. code-block:: postgres
@@ -353,7 +354,7 @@ Skipping faulty rows
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.csv', continue_on_error = true);
 
 
-Skipping at most 100 faulty rows
+Skipping a Maximum of 100 Faulty Rows
 -----------------------------------
 
 .. code-block:: postgres
@@ -361,14 +362,14 @@ Skipping at most 100 faulty rows
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.csv', continue_on_error = true, error_count = 100);
 
 
-Loading a PSV (pipe separated value) file
+Loading a PSV (Pipe-Separated Value) File
 -------------------------------------------
 
 .. code-block:: postgres
    
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.psv', delimiter = '|');
 
-Loading a TSV (tab separated value) file
+Loading a TSV (Tab-Separated Value) File
 -------------------------------------------
 
 .. code-block:: postgres
@@ -376,7 +377,7 @@ Loading a TSV (tab separated value) file
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.tsv', delimiter = '\t');
    
 
-Loading a ORC file
+Loading an ORC (Optimized Row Columnar) File
 -------------------------------------------
 
 .. code-block:: postgres
@@ -384,7 +385,7 @@ Loading a ORC file
    COPY table_name FROM WRAPPER orc_fdw OPTIONS (location = '/tmp/file.orc');
 
 
-Loading a Parquet file
+Loading a Parquet File
 -------------------------------------------
 
 .. code-block:: postgres
@@ -392,7 +393,7 @@ Loading a Parquet file
    COPY table_name FROM WRAPPER parquet_fdw OPTIONS (location = '/tmp/file.parquet');
 
 
-Loading a text file with non-printable delimiter
+Loading a Text File With a Non-Printable Delimiter
 -----------------------------------------------------
 
 In the file below, the separator is ``DC1``, which is represented by ASCII 17 decimal or 021 octal.
@@ -401,7 +402,7 @@ In the file below, the separator is ``DC1``, which is represented by ASCII 17 de
    
    COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', delimiter = E'\021');   
 
-Loading a text file with multi-character delimiters
+Loading a Text File With Multi-Character Delimiters
 -----------------------------------------------------
 
 In the file below, the separator is ``^|``.
@@ -417,7 +418,7 @@ In the file below, the separator is ``'|``. The quote character has to be repeat
    COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', delimiter = ''''|');
    
 
-Loading files with a header row
+Loading Files With a Header Row
 -----------------------------------
 
 Use ``OFFSET`` to skip rows.
@@ -428,14 +429,14 @@ Use ``OFFSET`` to skip rows.
 
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.psv', delimiter = '|', offset = 2);      
 
-Loading files formatted for Windows (``\r\n``)
+Loading Files Formatted for Windows (``\r\n``)
 ---------------------------------------------------
 
 .. code-block:: postgres
 
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.psv', delimiter = '\r\n');         
 
-Loading a file from a public S3 bucket
+Loading a File from a Public S3 Bucket
 ------------------------------------------
 
 .. note:: The bucket must be publicly available and objects can be listed
@@ -444,14 +445,14 @@ Loading a file from a public S3 bucket
 
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = 's3://sqream-demo-data/file.csv', delimiter = '\r\n', offset = 2);         
 
-Loading files from an authenticated S3 bucket
+Loading Files from an Authenticated S3 Bucket
 ---------------------------------------------------
 
 .. code-block:: postgres
 
    COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = 's3://secret-bucket/*.csv', DELIMITER = '\r\n', OFFSET = 2, AWS_ID = '12345678', AWS_SECRET = 'super_secretive_secret');
    
-Saving rejected rows to a file
+Saving Rejected Rows to a File
 ----------------------------------
 
 .. note:: When loading multiple files (e.g. with wildcards), this error threshold is for the entire transaction.
@@ -474,14 +475,14 @@ Saving rejected rows to a file
                                                  );         
 
 
-Load CSV files from a set of directories
+Load CSV Files from a Set of Directories
 ------------------------------------------
 
 .. code-block:: postgres
 
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/2019_08_*/*.csv');
 
-Rearrange destination columns
+Rearrange Destination Columns
 ---------------------------------
 
 When the source of the files does not match the table structure, tell the ``COPY`` command what the order of columns should be
@@ -492,7 +493,7 @@ When the source of the files does not match the table structure, tell the ``COPY
 
 .. note:: Any column not specified will revert to its default value or ``NULL`` value if nullable
 
-Loading non-standard dates
+Loading Non-Standard Dates
 ----------------------------------
 
 If files contain dates not formatted as ``ISO8601``, tell ``COPY`` how to parse the column. After parsing, the date will appear as ``ISO8601`` inside SQream DB.
@@ -504,5 +505,3 @@ In this example, ``date_col1`` and ``date_col2`` in the table are non-standard. 
 .. code-block:: postgres
 
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/*.csv', datetime_format = 'DMY');
-      
-
