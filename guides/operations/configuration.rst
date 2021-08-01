@@ -40,7 +40,7 @@ Frequently Set Parameters
 ============================
 
 .. todo
-    list-table:: Compiler flags
+    list-table:: Compiler Flags
       :widths: auto
       :header-rows: 1
       
@@ -57,7 +57,7 @@ Frequently Set Parameters
         -
         -
 
-.. list-table:: Server flags
+.. list-table:: Server Flags
    :widths: auto
    :header-rows: 1
    
@@ -243,8 +243,41 @@ Frequently Set Parameters
 
 .. warning:: JSON files can't contain any comments
 
-Recommended Configuration File
+Recommended On-Premises Configuration File
 =====================================
+The following is the recommended on-premises configuration file:
+
+.. code-block::  json
+
+   { 
+      "compileFlags":{ 
+      },
+      "runtimeFlags":{ 
+         "insertParsers": 16,
+         "insertCompressors": 8 
+      },
+      "runtimeGlobalFlags":{ 
+         "limitQueryMemoryGB" : 121,
+         "spoolMemoryGB" : 108,
+         "cudaMemQuota": 90,
+         "initialSubscribedServices" : "sqream",
+         "useMetadataServer": true,
+         "metadataServerIp": "127.0.0.1",
+         "useConfigIP": false,
+         "machineIP": "127.0.0.1"
+      },
+      "server":{ 
+         "gpu":0,
+         "port":5000,
+         "ssl_port": 5100,
+         "cluster":"/home/sqream/sqream_storage",
+         "licensePath":"/etc/sqream/license.enc"
+      }
+   }
+   
+Recommended Cloud Configuration File
+=====================================
+The following is the recommended Cloud configuration file:
 
 .. code-block::  json
 
@@ -273,7 +306,11 @@ Recommended Configuration File
          "licensePath":"/etc/sqream/license.enc"
       }
    }
-   
+
+
+.. note:: When setting your Cloud configuration, you must provide your public IP for the ``machineIP`` parameter.
+
+
 Changing Settings Temporarily
 ===================================
 
