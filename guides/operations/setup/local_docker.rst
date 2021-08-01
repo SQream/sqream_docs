@@ -76,7 +76,7 @@ CentOS 7 / RHEL 7 / Amazon Linux
       GPU 0: Tesla V100-PCIE-16GB (UUID: GPU-...)
       GPU 1: Tesla V100-PCIE-16GB (UUID: GPU-...)
 
-#. Enable NVIDIA's persistence daemon. This is mandatory for IBM POWER, but is recommended for other platforms as well.
+#. Enable NVIDIA's persistence daemon. This is mandatory for IBM POWER9, but is recommended for other platforms as well.
       
       .. code-block:: console
          
@@ -146,7 +146,7 @@ Ubuntu 18.04
       GPU 0: Tesla V100-PCIE-16GB (UUID: GPU-...)
       GPU 1: Tesla V100-PCIE-16GB (UUID: GPU-...)
 
-#. Enable NVIDIA's persistence daemon. This is mandatory for IBM POWER, but is recommended for other platforms as well.
+#. Enable NVIDIA's persistence daemon. This is mandatory for IBM POWER9, but is recommended for other platforms as well.
       
       .. code-block:: console
          
@@ -165,7 +165,7 @@ Install Docker CE and NVIDIA docker
 CentOS 7 / RHEL 7 / Amazon Linux (x64)
 --------------------------------------
 
-.. note:: For IBM POWER9, see the next section :ref:`installing NVIDIA Docker for IBM POWER <docker_power>`
+.. note:: For IBM POWER9, see the next section :ref:`installing NVIDIA Docker for IBM POWER9 <docker_power>`
 
 #. Follow the instructions for Docker CE for your platform at `Get Docker Engine - Community for CentOS`_
 
@@ -244,12 +244,12 @@ CentOS 7 / RHEL 7 / Amazon Linux (x64)
 
 .. _docker_power:
 
-CentOS 7.6 / RHEL 7.6 (IBM POWER)
+CentOS 7.6 / RHEL 7.6 (IBM POWER9)
 ------------------------------------
 
 On POWER9, SQream DB is supported only on RHEL 7.6.
 
-#. Install Docker for IBM POWER
+#. Install Docker for IBM POWER9:
 
    .. code-block:: console
       
@@ -257,13 +257,13 @@ On POWER9, SQream DB is supported only on RHEL 7.6.
       $ wget http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/docker-ce-18.03.1.ce-1.el7.centos.ppc64le.rpm
       $ yum install -y container-selinux-2.9-4.el7.noarch.rpm docker-ce-18.03.1.ce-1.el7.centos.ppc64le.rpm
 
-#. Tell Docker to start after a reboot
+#. Tell Docker to start after a reboot:
 
    .. code-block:: console
    
       $ sudo systemctl enable docker && sudo systemctl start docker
 
-#. Verify that docker is running
+#. Verify that docker is running:
 
    .. code-block:: console
       :linenos:
