@@ -275,40 +275,16 @@ The following is the recommended on-premises configuration file:
       }
    }
    
-Recommended Cloud Configuration File
+Recommended Cloud and Pacemaker Configuration File
 =====================================
-The following is the recommended Cloud configuration file:
+When setting the Cloud and Pacemaker configuration file, the following settings must be used:
 
-.. code-block::  json
-
-   { 
-      "compileFlags":{ 
-      },
-      "runtimeFlags":{ 
-         "insertParsers": 16,
-         "insertCompressors": 8 
-      },
-      "runtimeGlobalFlags":{ 
-         "limitQueryMemoryGB" : 121,
-         "spoolMemoryGB" : 108,
-         "cudaMemQuota": 90,
-         "initialSubscribedServices" : "sqream",
-         "useMetadataServer": true,
-         "metadataServerIp": "127.0.0.1",
-         "useConfigIP": true,
-         "machineIP": "127.0.0.1"
-      },
-      "server":{ 
-         "gpu":0,
-         "port":5000,
-         "ssl_port": 5100,
-         "cluster":"/home/sqream/sqream_storage",
-         "licensePath":"/etc/sqream/license.enc"
-      }
-   }
+* **useConfigIP** - ``true``
+* **machineIP** - ``<public IP>``
 
 
-.. note:: When setting your Cloud configuration, you must provide your public IP for the ``machineIP`` parameter.
+
+.. warning:: When setting your Cloud configuration, you must provide your **public IP** for the ``machineIP`` parameter.
 
 
 Changing Settings Temporarily
