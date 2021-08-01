@@ -48,7 +48,7 @@ Frequently Set Parameters
         - Section
         - Description
         - Default
-        - Value range
+        - Value Range
         - Example
       * -
         -
@@ -65,7 +65,7 @@ Frequently Set Parameters
      - Section
      - Description
      - Default
-     - Value range
+     - Value Range
      - Example
    * - ``gpu``
      - ``server``
@@ -106,7 +106,7 @@ Frequently Set Parameters
      - Section
      - Description
      - Default
-     - Value range
+     - Value Range
      - Example
    * - ``spoolMemoryGb``
      - ``runtimeGlobalFlags``
@@ -215,7 +215,7 @@ Frequently Set Parameters
      - Section
      - Description
      - Default
-     - Value range
+     - Value Range
      - Example
    * - ``insertParsers``
      - ``runtimeFlags``
