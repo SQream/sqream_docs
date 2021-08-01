@@ -277,14 +277,14 @@ The following is the recommended on-premises configuration file:
    
 Recommended Cloud and Pacemaker Configuration File
 =====================================
-When setting the Cloud and Pacemaker configuration file, the following settings must be used:
+When setting the Cloud and Pacemaker configuration files, the following settings must be used:
 
 * **useConfigIP** - ``true``
 * **machineIP** - ``<public IP>``
 
 
 
-.. warning:: When setting your Cloud configuration, you must provide your **public IP** for the ``machineIP`` parameter.
+.. warning:: When setting your Cloud and Pacemaker configuration files, you must provide your **public IP** for the ``machineIP`` parameter.
 
 
 Changing Settings Temporarily
