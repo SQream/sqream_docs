@@ -70,71 +70,38 @@ The following list shows more detailed system requirements:
 Quick Start Guide
 =======================
 
-**Comment - There were significant differences between the original Quick Start Guide procedure, and the one written below. This is probably due to changes in the GUI, but either way, it needs to be verified. I've left the original procedure based on the Confluence doc below this procedure.**
+1. Install `MicroStrategy Desktop <https://www2.microstrategy.com/producthelp/2020/Readme/en-us/Content/desktopclient.htm>`_.
 
-1. Download the `MicroStrategy Workstation <https://www.microstrategy.com/en/get-started/workstation>`_.
+2. Download the most current version of the `SQream JDBC driver <https://docs.sqream.com/en/latest/guides/client_drivers/index.html#client-drivers>`_. **Comment - See "drivers and connectors" in the ETA.**
 
-.. image:: /_static/images/third_party_connectors/microstrategy/download_workstation.png
+3. Activate the **MicroStrategy Desktop** app. The app displays the Dossiers panel to the right.
 
-2. Download the most current version of the `SQream JDBC driver <https://docs.sqream.com/en/latest/guides/client_drivers/index.html#client-drivers>`_.
+4. Click **Dossiers** and **New Dossier**. The **Untitled Dossier** panel is displayed.
 
-::
+5. Click **New Data**.
 
-3. Activate the MicroStrategy Workstation app.
+6. From the **Data Sources** panel, select **Databases** to access data from tables. The **Select Import Options** panel is displayed.
 
-.. image:: /_static/images/third_party_connectors/microstrategy/activate_app.png
+7. Click **Select Tables** and click **Next**:
 
-   The app displays the Dossiers panel to the right.
+8. In the Data Source panel, do the following:
 
-4. Click ``+`` to create a new dossier.
+   1. From the **Database** dropdown menu, select **Generic**. The **Host Name**, **Port Number**, and **Database Name** fields are removed from the panel.
 
-.. image:: /_static/images/third_party_connectors/microstrategy/MS_Creating_a_New_JDBC_DB_Connection_3.png
-
-The **Untitled Dossier** panel is displayed.
-
-.. image:: /_static/images/third_party_connectors/microstrategy/MS_Creating_a_New_JDBC_DB_Connection_4.png
-
-3. Click **New Data**.
-
-.. image:: /_static/images/third_party_connectors/microstrategy/MS_Creating_a_New_JDBC_DB_Connection_5.png
-
-4. When the **Data Sources** panel is displayed, select **Databases**.
-
-.. image:: /_static/images/third_party_connectors/microstrategy/MS_Creating_a_New_JDBC_DB_Connection_7.png
-
-5. Click **Select Tables** and click **Next**:
-
-.. image:: /_static/images/third_party_connectors/microstrategy/MS_Creating_a_New_JDBC_DB_Connection_8.png
-
-6. In the **DATA SOURCES** panel, click ``+``.
-
-   The **Connections** panel is displayed.
-
-.. image:: /_static/images/third_party_connectors/microstrategy/MS_Creating_a_New_JDBC_DB_Connection_9.png
-
-7. In the Connections panel, do the following:
-
-   1. In the **Connection Name** field, type a connection name.
-
-   2. From the **Database** dropdown menu, select **Generic**. When you select Generic, the **Host Name**, **Port Number**, and **Database Name** fields are removed from the panel.
-
-   3. In the **Version** dropdown menu, verify that **Generic DBMS** is selected.
-
-   4. Click **Advanced Settings**.
+   2. In the **Version** dropdown menu, verify that **Generic DBMS** is selected.
    
-   5. Select the **Edit connection string** checkbox.
+   3. Click **Show Connection String**.
 
-   e. In the **User** and **Password** fields, provide your credentials.
+   4. Select the **Edit connection string** checkbox.
 
-   f. Click **Advanced Settings** and select the **Edit connection string** checkbox.
+   5. From the **Driver** dropdown menu, select a driver for one of the following connectors:
 
-   g. From the **Driver** dropdown menu, select a driver for one of the following connectors:
-
-      1. **JDBC** - Any driver, such **Amazon Redshift (x64)(Certified)**. 
+      1. **JDBC** - Any driver, such as **Amazon Redshift (x64)(Certified)**
       2. **ODBC** - SQreamDB ODBC
-      3. **Comment - I don't see the options above (SQream, obviously) in the dropdown menu. What am I missing?**
 
-   h. In the **Connection String** text box, type the relevant connection string and path to the JDBC jar file using the following syntax:
+       ::
+
+   6. In the **Connection String** text box, type the relevant connection string and path to the JDBC jar file using the following syntax:
 
    .. code-block:: console
 
@@ -154,90 +121,23 @@ The **Untitled Dossier** panel is displayed.
 
    To see the available **connection parameters** and other examples, see `Connection Parameters <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html#connection-string>`_.
 
-   i. In the **Data Source Name** field, type **SQreamDB** and click **Save**.
-
-**Comment - I don't see the "Data Source Name" field in the GUI.**
-
-The SQreamDB that you picked in the Data Source panel is displayed. Now you can select your relevant schemas and tables by dragging and dropping the way you would like to connect to those tables.
-	
-**Comment - Verify on front end.**
-	
-Prepare data its recommended to customize the data to be relevant and ready for your investigation.
-	
-**Comment - Verify on front end.**
-
-Now Microstrategy is set and ready for you to make whatever Dashboard you desire.
-
-**Comment - Verify on front end.**
+   7. In the **User** and **Password** fields, fill out your user name and password.
+   
+   8. In the **Data Source Name** field, type **SQreamDB**.
+   
+   9. Click **Save**. The SQreamDB that you picked in the Data Source panel is displayed.
+   
+.. image:: /_static/images/third_party_connectors/microstrategy/new_data_source.png
 
 
-Creating a New JDBC DB Connection
--------------
+   
+Now you can select your relevant schemas and tables by dragging and dropping the way you would like to connect to those tables.
 
-**Comment - This is the original procedure based on the Confluence doc.**
+**Comment - I keep getting the same error here. Demonstrate.**
 
-**To create a new JDBC DB connection:**
 
-1. In the left panel, click **New Doissir**.
-2. Give it a name and click **New Data**.
 
-   A window is displayed showing the list of data sources.
 
-3. Click **Databases**.
-4. Select an import option.
-5. Click ``+`` **New Doissir**. 
-6. Click **DATA SOURCES**.
-7. From the **Namespace** dropdown menu, select a namespace.
-8. In the **Table** field, search for a table by typing its name. You can search for as many tables as you need.
-9. Drag the tables into the panel on the right.
-10. Click **Prepare Data**.
-11. Click **Finish**.
-
-    The **Data Source** panel is displayed.
-	
-12. From the **Database** dropdown menu, select **Generic**.
-13. From the **Version** dropdown menu, select **Generic DBMS**.
-14. Click the **Show connection string** toggle item.
-15. Select the **Edit connection string** checkbox.
-16. From the **Driver** dropdown menu, select a driver for one of the following connectors:
-
-    1. **JDBC** - Any driver, such **Amazon Redshift (x64)(Certified)**. 
-    2. **ODBC** - SQreamDB ODBC
-	
-17. In the **Connection String** text box, type the relevant connection string and path to the JDBC jar file using the following syntax:
-
- .. code-block:: console
-
-    $ jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>sqream;[<optional parameters>; ...]
-
- The following example shows the correct sytax for the JDBC connector:
- 
- .. code-block:: console
-
-    jdbc;MSTR_JDBC_JAR_FOLDER=C:\path\to\jdbc\folder;URL={jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>;[<optional parameters>; ...];}
-	   
- The following example shows the correct sytax for the ODBC connector:
-
- .. code-block:: console
-
-    odbc:Driver={SqreamODBCDriver};DSN={SQreamDB ODBC};Server=<Host>;Port=<Port>;Database=<database name>;User=<username>;Password=<password>;Cluster=<boolean>;
-
-To see the available **connection parameters** and other examples, see `Connection Parameters <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html#connection-string>`_.
-
-18. In the **User** and **Password** fields, provide your credentials.
-19. In the **Data Source Name** field, type **SQreamDB** and click **Save**.
-
-The SQreamDB that you picked in the Data Source panel is displayed. Now you can select your relevant schemas and tables by dragging and dropping the way you would like to connect to those tables.
-	
-**Comment - Verify on front end.**
-	
-Prepare data its recommended to customize the data to be relevant and ready for your investigation.
-	
-**Comment - Verify on front end.**
-
-Now Microstrategy is set and ready for you to make whatever Dashboard you desire.
-
-**Comment - Verify on front end.**
 
 .. _supported_sqream_drivers:
 
