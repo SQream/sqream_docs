@@ -301,8 +301,6 @@ Examples:
 
    GRANT  ALL  ON  all  tables  IN  schema  public  TO  userB;
 
-   GRANT  SELECT  ON  all  views  IN  schema  admin  TO  userA;
-
    GRANT  admin  TO  userC;
 
    GRANT  superuser  ON  schema  demo  TO  userA
