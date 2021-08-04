@@ -30,7 +30,13 @@ Syntax
       | RANK
       | ROW_NUMBER
       | SUM
-
+      | FIRST_VALUE
+      | LAST_VALUE
+      | NTH_VALUE
+      | DENSE_RANK
+      | PERCENT_RANK
+      | CUME_DIST
+      | NTILE
 
    frame_clause ::= 
       { RANGE | ROWS } frame_start [ frame_exclusion ]
