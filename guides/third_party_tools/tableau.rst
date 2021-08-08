@@ -1,7 +1,7 @@
 .. _connect_to_tableau:
 
 *************************
-Connecting to SQream Using Tableau
+Connect to SQream Using Tableau
 *************************
 
 You can use Tableau to connect to a SQream DB cluster. This tutorial is a guide that will show you how to connect to Tableau, as well as provide some guidelines and best practices for exploring data with Tableau and SQream DB.
