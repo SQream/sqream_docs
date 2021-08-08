@@ -2,7 +2,7 @@
 
 
 *************************
-Connecting to SQream Using Pentaho Data Integration
+Connect to SQream Using Pentaho Data Integration
 *************************
 
 .. _pentaho_top:
