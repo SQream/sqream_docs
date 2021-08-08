@@ -1,7 +1,7 @@
 .. _connect_to_sas_viya:
 
 *************************
-Connecting to SQream using SAS Viya
+Connect to SQream Using SAS Viya
 *************************
 
 You can use SAS Viya to connect to a SQream DB cluster. This tutorial is a guide that will show you how to connect to SAS Viya.
