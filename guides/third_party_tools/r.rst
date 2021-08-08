@@ -1,7 +1,7 @@
 .. _r:
 
 *****************************
-Connecting to SQream using R
+Connect to SQream Using R
 *****************************
 
 You can use R to interact with a SQream DB cluster.
