@@ -11,7 +11,7 @@ Overview
 =========
 This document is a Quick Start Guide that describes how to install Pentaho, create a transformation, and define your output.
 
-It includes the following:
+The Connecting to SQream Using Pentaho page describes the following:
 
 * :ref:`Installing Pentaho <install_pentaho>`
 * :ref:`Installing and setting up the JDBC driver <install_set_up_jdbc_driver>`
