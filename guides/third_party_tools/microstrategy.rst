@@ -2,19 +2,33 @@
 
 
 *************************
-Connecting to SQream Using Microstrategy
+Connecting to SQream Using MicroStrategy
 *************************
 
-.. _top:
+.. _ms_top:
 
 Overview
-=================
+---------------
+This document is a Quick Start Guide that describes how to install MicroStrategy and connect a datasource to the MicroStrategy dasbhoard for analysis.
 
-This page describes how to use Microstrategy to interact with a SQream DB cluster. The Microstrategy connector is used for reading data from a SQream DB cluster and loading data into SQream DB.
 
-About MicroStrategy
+
+The **Connecting to SQream Using MicroStrategy** page describes the following:
+
+
+.. contents::
+   :local:
+   
+
+
+
+
+
+What is MicroStrategy?
 ================
-MicroStrategy is a Business Intelligence software offering a wide variety of data analytics capabilities. As an application suite, it provides the following:
+MicroStrategy is a Business Intelligence software offering a wide variety of data analytics capabilities. SQream uses the MicroStrategy connector for reading and loading data into SQream.
+
+MicroStrategy provides the following:
 
 * Data discovery
 * Advanced analytics
@@ -22,186 +36,141 @@ MicroStrategy is a Business Intelligence software offering a wide variety of dat
 * Embedded BI
 * Banded reports and statements
 
-**Comment - I found the below content when I downloaded the MicroStrategy Workstation. I changed the wording a little, and I think it's good to include it in this doc, perhaps to even replace/merge with the content above. Thoughts?** 
-
-* Create and manage users
-* Assign roles, content permissions, and security
-* Publish datasets and schedule updates
-* Create, certify, and share dossiers
-* Deploy, monitor, and manage services and applications
 
 For more information about Microstrategy, see `MicroStrategy <https://www.microstrategy.com/>`_.
 
-System Requirements
-==================
-The **System Requirements** section lists the minimal system requirements to support the MicroStrategy Secure Enterprise. The system requirements depend on certain factors, such as the complexity of your MicroStrategy environment, the deployment strategy of MicroStrategy features, user community requirements, expected peak usage requirements, and response time expectations.
 
-**Comment - Is this section external or internal?**
 
-The following list shows more detailed system requirements:
+:ref:`Back to Overview <ms_top>`
 
-* `Evaluation deployment <https://doc-archives.microstrategy.com/producthelp/10.11/Readme/content/requirements_evaluation.htm>`_
-* `Production deployment <https://doc-archives.microstrategy.com/producthelp/10.11/Readme/content/requirements_production.htm>`_
 
-Quick Start Guide
+
+
+
+Connecting a Data Source
 =======================
 
-**Comment - There were significant differences between the original Quick Start Guide procedure, and the one written below. This is probably due to changes in the GUI, but either way, it needs to be verified. I've left the original procedure based on the Confluence doc below this procedure.**
+1. Activate the **MicroStrategy Desktop** app. The app displays the Dossiers panel to the right.
 
-1. Install MicroStrategy.
-2. Do the following:
+    ::
+	
+2. Download the most current version of the `SQream JDBC driver <https://docs.sqream.com/en/latest/guides/client_drivers/index.html#client-drivers>`_.
 
-   1. Click **Dossiers**. The Dossiers panel is displayed to the right.
-   2. Click ``+``.
+    ::
 
-.. image:: /_static/images/third_party_connectors/microstrategy/MS_Creating_a_New_JDBC_DB_Connection_3.png
+3. Click **Dossiers** and **New Dossier**. The **Untitled Dossier** panel is displayed.
 
-The **Untitled Dossier** panel is displayed.
+    ::
+	
+4. Click **New Data**.
 
-.. image:: /_static/images/third_party_connectors/microstrategy/MS_Creating_a_New_JDBC_DB_Connection_4.png
+    ::
+	
+5. From the **Data Sources** panel, select **Databases** to access data from tables. The **Select Import Options** panel is displayed.
 
-3. Click **New Data**.
+    ::
+	
+6. Select one of the following:
 
-.. image:: /_static/images/third_party_connectors/microstrategy/MS_Creating_a_New_JDBC_DB_Connection_5.png
+   * Build a Query
+   * Type a Query
+   * Select Tables
+   
+    ::
+	
+7. Click **Next**.
 
-4. When the **Data Sources** panel is displayed, select **Databases**.
+    ::
+	
+8. In the Data Source panel, do the following:
 
-.. image:: /_static/images/third_party_connectors/microstrategy/MS_Creating_a_New_JDBC_DB_Connection_7.png
+   1. From the **Database** dropdown menu, select **Generic**. The **Host Name**, **Port Number**, and **Database Name** fields are removed from the panel.
 
-5. Click **Select Tables** and click **Next**:
+    ::
+	
+   2. In the **Version** dropdown menu, verify that **Generic DBMS** is selected.
 
-.. image:: /_static/images/third_party_connectors/microstrategy/MS_Creating_a_New_JDBC_DB_Connection_8.png
-
-6. In the **DATA SOURCES** panel, click ``+``.
-
-   The **Connections** panel is displayed.
-
-.. image:: /_static/images/third_party_connectors/microstrategy/MS_Creating_a_New_JDBC_DB_Connection_9.png
-
-7. In the Connections panel, do the following:
-
-   a. In the **Connection Name** field, type a connection name.
-
-   b. From the **Database** dropdown menu, select **Generic**. When you select Generic, the **Host Name**, **Port Number**, and **Database Name** fields are removed from the panel.
-
-   c. In the **Version** dropdown menu, verify that **Generic DBMS** is selected.
-
-   d. Click the **Show connection string** toggle item. **Comment - I don't see this toggle item in the GUI.**
-
-   e. In the **User** and **Password** fields, provide your credentials.
-
-   f. Click **Advanced Settings** and select the **Edit connection string** checkbox.
-
-   g. From the **Driver** dropdown menu, select a driver for one of the following connectors:
-
-      1. **JDBC** - Any driver, such **Amazon Redshift (x64)(Certified)**. 
-      2. **ODBC** - SQreamDB ODBC
-      3. **Comment - I don't see the options above (SQream, obviously) in the dropdown menu. What am I missing?**
-
-   h. In the **Connection String** text box, type the relevant connection string and path to the JDBC jar file using the following syntax:
-
-   .. code-block:: console
-
-      $ jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>sqream;[<optional parameters>; ...]
-
-   The following example shows the correct sytax for the JDBC connector:
- 
-   .. code-block:: console
-
-      jdbc;MSTR_JDBC_JAR_FOLDER=C:\path\to\jdbc\folder;URL={jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>;[<optional parameters>; ...];}
+    ::
 	   
-   The following example shows the correct sytax for the ODBC connector:
+   3. Click **Show Connection String**.
 
-   .. code-block:: console
-
-      odbc:Driver={SqreamODBCDriver};DSN={SQreamDB ODBC};Server=<Host>;Port=<Port>;Database=<database name>;User=<username>;Password=<password>;Cluster=<boolean>;
-
-   To see the available **connection parameters** and other examples, see `Connection Parameters <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html#connection-string>`_.
-
-   i. In the **Data Source Name** field, type **SQreamDB** and click **Save**.
-
-**Comment - I don't see the "Data Source Name" field in the GUI.**
-
-The SQreamDB that you picked in the Data Source panel is displayed. Now you can select your relevant schemas and tables by dragging and dropping the way you would like to connect to those tables.
+    ::
 	
-**Comment - Verify on front end.**
+   4. Select the **Edit connection string** checkbox.
+
+    ::
 	
-Prepare data its recommended to customize the data to be relevant and ready for your investigation.
-	
-**Comment - Verify on front end.**
+   5. From the **Driver** dropdown menu, select a driver for one of the following connectors:
 
-Now Microstrategy is set and ready for you to make whatever Dashboard you desire.
+      * **JDBC** - The SQream driver is not integrated with MicroStrategy and does not appear in the dropdown menu. However, to proceed, you must select an item, and in the next step you must specify the path to the SQream driver that you installed on your machine.
+      * **ODBC** - SQreamDB ODBC
 
-**Comment - Verify on front end.**
+       ::
 
+   6. In the **Connection String** text box, type the relevant connection string and path to the JDBC jar file using the following syntax:
 
-Creating a New JDBC DB Connection
--------------
+      .. code-block:: console
 
-**Comment - This is the original procedure based on the Confluence doc.**
+         $ jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>sqream;[<optional parameters>; ...]
 
-**To create a new JDBC DB connection:**
-
-1. In the left panel, click **New Doissir**.
-2. Give it a name and click **New Data**.
-
-   A window is displayed showing the list of data sources.
-
-3. Click **Databases**.
-4. Select an import option.
-5. Click ``+`` **New Doissir**. 
-6. Click **DATA SOURCES**.
-7. From the **Namespace** dropdown menu, select a namespace.
-8. In the **Table** field, search for a table by typing its name. You can search for as many tables as you need.
-9. Drag the tables into the panel on the right.
-10. Click **Prepare Data**.
-11. Click **Finish**.
-
-    The **Data Source** panel is displayed.
-	
-12. From the **Database** dropdown menu, select **Generic**.
-13. From the **Version** dropdown menu, select **Generic DBMS**.
-14. Click the **Show connection string** toggle item.
-15. Select the **Edit connection string** checkbox.
-16. From the **Driver** dropdown menu, select a driver for one of the following connectors:
-
-    1. **JDBC** - Any driver, such **Amazon Redshift (x64)(Certified)**. 
-    2. **ODBC** - SQreamDB ODBC
-	
-17. In the **Connection String** text box, type the relevant connection string and path to the JDBC jar file using the following syntax:
-
- .. code-block:: console
-
-    $ jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>sqream;[<optional parameters>; ...]
-
- The following example shows the correct sytax for the JDBC connector:
+      The following example shows the correct syntax for the JDBC connector:
  
- .. code-block:: console
+      .. code-block:: console
 
-    jdbc;MSTR_JDBC_JAR_FOLDER=C:\path\to\jdbc\folder;URL={jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>;[<optional parameters>; ...];}
+         jdbc;MSTR_JDBC_JAR_FOLDER=C:\path\to\jdbc\folder;DRIVER=<driver>;URL={jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>;[<optional parameters>; ...];}
+   
+      The following example shows the correct syntax for the ODBC connector:
+  
+      .. code-block:: console
+
+         odbc:Driver={SqreamODBCDriver};DSN={SQreamDB ODBC};Server=<Host>;Port=<Port>;Database=<database name>;User=<username>;Password=<password>;Cluster=<boolean>;
+
+      For more information about the available **connection parameters** and other examples, see `Connection Parameters <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html#connection-parameters>`_.
+
+   7. In the **User** and **Password** fields, fill out your user name and password.
+
+    ::
 	   
- The following example shows the correct sytax for the ODBC connector:
+   8. In the **Data Source Name** field, type **SQreamDB**.
 
- .. code-block:: console
+    ::
+	    
+   9. Click **Save**. The SQreamDB that you picked in the Data Source panel is displayed.
+   
+      .. image:: /_static/images/third_party_connectors/microstrategy/new_data_source.png	  
 
-    odbc:Driver={SqreamODBCDriver};DSN={SQreamDB ODBC};Server=<Host>;Port=<Port>;Database=<database name>;User=<username>;Password=<password>;Cluster=<boolean>;
+9. In the **Namespace** menu, select a namespace. The tables files are displayed.
 
-To see the available **connection parameters** and other examples, see `Connection Parameters <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html#connection-string>`_.
+    ::
 
-18. In the **User** and **Password** fields, provide your credentials.
-19. In the **Data Source Name** field, type **SQreamDB** and click **Save**.
+10. Drag and drop the tables into the panel on the right in your required order.
 
-The SQreamDB that you picked in the Data Source panel is displayed. Now you can select your relevant schemas and tables by dragging and dropping the way you would like to connect to those tables.
+     ::
+
+11. **Recommended** - Click **Prepare Data** to customize your data for analysis.
+
+     ::
+
+12. Click **Finish**.
+
+     ::
+
+13. From the **Data Access Mode** dialog box, select one of the following:
+
+
+	* Connect Live
+	* Import as an In-memory Dataset
 	
-**Comment - Verify on front end.**
-	
-Prepare data its recommended to customize the data to be relevant and ready for your investigation.
-	
-**Comment - Verify on front end.**
+Your populated dashboard is displayed and is ready for data discovery and analytics.
+   
 
-Now Microstrategy is set and ready for you to make whatever Dashboard you desire.
 
-**Comment - Verify on front end.**
+
+
+
+.. _supported_sqream_drivers:
+
+:ref:`Back to Overview <ms_top>`
 
 Supported SQream Drivers
 ================
@@ -210,61 +179,8 @@ The following list shows the supported SQream drivers and versions:
 
 * **JDBC** - Version 4.3.3 and higher.
 * **ODBC** - Version 4.0.0.
-* **Drivers and Connectors** - For the official MicroStrategy drivers and donnectors, see `MicroStrategy Drivers and Connectors <https://www.microstrategy.com/en/support/drivers-and-connectors>`_.
-
-Supported Tool and Operating System Versions
-======================
-MicroStrategy was tested using the following:
-
-* Microstrategy Desktop version 11.2.200.10138
-* Windows 10 Professional
-* Framework Build 11.2.2 (Windows or MAC)
-* SQream version 2021.1
-
-Known Issues
-===========================  
-The the list below describes the following known issues as of 6/1/2021:
-
-* Connecting to a worker Port 5000 when the ``no explicit`` cluster is set to ``false``, the process would fail.
-* Joining a large table from SQream with a table from a different database caused a crash due to low memory.
-* Different SQream databases of the same cluster
-
-**Comment - is the above known issue SQ-5499?**
-
-* Different databases were using the same schema name and table name.
-* Define data from different data sources external tables
-
-Related Links
-===============
-The following is a list of links relevant to the MicroStrategy connector:
-
-* `MicroStrategy Home page <https://www.microstrategy.com/en>`_
-* `MicroStrategy Community page <https://community.microstrategy.com/s/?language=en_US>`_
-* `MicroStrategy <https://doc-archives.microstrategy.com/producthelp/10.11/Readme/content/tools.htm>`_
-
-Download Links
-==================
-The following is a list of download links relevant to the MicroStrategy connector:
-
-* `MicroStrategy <https://www.microstrategy.com/en/get-started/workstation>`_
-* `Latest version of SQream JDBC <https://docs.sqream.com/en/latest/guides/client_drivers/index.html#client-drivers>`_
 
 
+.. _supported_tools_and_operating_systems:
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+:ref:`Back to Overview <ms_top>`
