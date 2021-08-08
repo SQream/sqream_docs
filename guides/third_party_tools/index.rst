@@ -1,7 +1,7 @@
 .. _third_party_tools:
 
 ************************************
-Third party tools
+Third Party Tools
 ************************************
 
 These topics explain how to install and connect a variety of third party tools.
