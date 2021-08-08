@@ -25,6 +25,7 @@ If you are looking for a tool that is not listed, SQream and our partners can he
    sql_workbench
    tableau
    pentaho
+   microstrategy
    r
    php
    xxspotfire
