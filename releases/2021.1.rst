@@ -3,7 +3,7 @@
 **************************
 What's New in 2021.1
 **************************
-The 2021.1 Release Notes describe the following:
+The 2021.1 Release Notes describe the following releases:
 
 
 .. contents:: 
@@ -12,9 +12,48 @@ The 2021.1 Release Notes describe the following:
    
 ::::
 
+Release Notes Version 2021.1.2
+=================
+New Features
+-------------
+The 2021.1.2 release notes were released on 8/9/2021.
+
+Aliases Added to SUBSTRING Function and Length Argument
+************
+The following aliases have been added:
+
+* length - ``len``
+* substring - ``substr``
+
+
+
+String Literals Containing ASCII Characters Interepreted as TEXT
+************
+SQream now interprets all string literals, including those containing ASCII characters, as ``text``.
+
+For more information, see `String Types <https://docs.sqream.com/en/latest/reference/sql_data_types.html#string-types>`_.
+
+
+
+
+Decimal Literals Interpreted as Numeric Columns
+************
+SQream now interprets literals containing decimal points as ``numeric`` instead of as ``double``.
+
+For more information, see `Data Types <https://docs.sqream.com/en/latest/reference/sql_data_types.html>`_.
+
+Resolved Issues
+-------------
+The following list describes the resolved issues:
+
+* In Parquet files, ``float`` columns could not be mapped to SQream ``double`` columns. This was fixed.
+* The ``REPLACE`` function only supported constant values as arguments. This was fixed.
+* The ``LIKE`` function did not check for incorrect patterns or handle escape characters. This was fixed.
+
 Release Notes Version 2021.1.1
 =================
-   
+The 2021.1.1 release notes were released on 7/27/2021.
+
    
 New Features
 -------------
@@ -57,7 +96,7 @@ For more information, navigate to Windows Functions and scroll to the `Ranking F
 
 
 Resolved Issues
-************
+-------------
 The following list describes the resolved issues:
 
 * SQream did not support exporting and reading **Int64** columns as **bigint** in Parquet. This was fixed.
