@@ -3,14 +3,129 @@
 **************************
 What's New in 2021.1
 **************************
+The 2021.1 Release Notes describe the following releases:
 
-Performance Enhancements
-=========================
-* Major feature release targeted for all on-premises customers.
-* Includes basic Cloud functionality.
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
+::::
+
+Release Notes Version 2021.1.2
+=================
+The 2021.1.2 release notes were released on 8/9/2021.
+
+New Features
+-------------
+The 2021.1.2 Release Notes include the following new features:
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
+
+Aliases Added to SUBSTRING Function and Length Argument
+************
+The following aliases have been added:
+
+* length - ``len``
+* substring - ``substr``
+
+
+
+String Literals Containing ASCII Characters Interepreted as TEXT
+************
+SQream now interprets all string literals, including those containing ASCII characters, as ``text``.
+
+For more information, see `String Types <https://docs.sqream.com/en/v2021.1/reference/sql_data_types.html>`_.
+
+
+
+
+Decimal Literals Interpreted as Numeric Columns
+************
+SQream now interprets literals containing decimal points as ``numeric`` instead of as ``double``.
+
+For more information, see `Data Types <https://docs.sqream.com/en/v2021.1/reference/sql_data_types.html>`_.
+
+Resolved Issues
+-------------
+The following list describes the resolved issues:
+
+* In Parquet files, ``float`` columns could not be mapped to SQream ``double`` columns. This was fixed.
+* The ``REPLACE`` function only supported constant values as arguments. This was fixed.
+* The ``LIKE`` function did not check for incorrect patterns or handle escape characters. This was fixed.
+
+Release Notes Version 2021.1.1
+=================
+The 2021.1.1 release notes were released on 7/27/2021.
+
+   
+New Features
+-------------
+The 2021.1.1 Release Notes include the following new features:
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
+
+Complete Ranking Function Support
+************
+SQream now supports the following new ranking functions:
+
+.. list-table::
+   :widths: 1 23 76
+   :header-rows: 1
+   
+   * - Function
+     - Return Type
+     - Description
+   * - first_value
+     - Same type as value
+     - Returns the value in the first row of a window.
+   * - last_value
+     - Same type as value
+     - Returns the value in the last row of a window.
+   * - nth_value
+     - Same type as value
+     - Returns the value in a specified (``n``) row of a window. if the specified row does not exist, this function returns ``NULL``.
+   * - dense_rank
+     - bigint
+     - Returns the rank of the current row with no gaps.
+   * - percent_rank
+     - double
+     - Returns the relative rank of the current row.
+   * - cume_dist
+     - double
+     - Returns the cumulative distribution of rows.
+   * - ntile(buckets)
+     - integer
+     - Returns an integer ranging between ``1`` and the argument value, dividing the partitions as equally as possible.
+
+For more information, navigate to Windows Functions and scroll to the `Ranking Functions table <https://docs.sqream.com/en/latest/reference/sql/sql_syntax/window_functions.html#id3>`_.
+
+
+Resolved Issues
+-------------
+The following list describes the resolved issues:
+
+* SQream did not support exporting and reading **Int64** columns as **bigint** in Parquet. This was fixed.
+* The Decimal column was not supported when inserting data from Parquet files. This was fixed.
+* Values in Parquet Numeric columns were not being converted correctly. This was fixed.
+* Converting ``string`` data type to ``datetime`` was not working correctly. This was fixed.
+* Casting ``datetime`` to ``text`` truncated the time. This was fixed.
+
+::::
+
+
+Release Notes Version 2021.1
+=================
+The 2021.1 release notes were released on 6/13/2021.
 
 Version Content
-====================
+----------
 The 2021.1 Release Notes describes the following:
 
 * Major feature release targeted for all on-premises customers.
@@ -18,14 +133,21 @@ The 2021.1 Release Notes describes the following:
 
 
 New Features
-=========================
+----------
+The 2021.1 Release Notes include the following new features:
 
+
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
 SQream DB on Cloud
-----------------------------
+************
 SQream DB can now be run on AWS, GCP, and Azure.
 
 Numeric Data Types
----------------------
+************
 SQream now supports Numeric Data types for the following operations:
 
    * All join types.
@@ -35,7 +157,7 @@ SQream now supports Numeric Data types for the following operations:
 For more information, see `Numeric Data Types <https://docs.sqream.com/en/latest/reference/sql_data_types.html#numeric-data-types.html>`_.
 
 Text Data Type
----------------
+************
 SQream now supports TEXT data types in all operations, which is default string data type for new projects.
 
 
@@ -50,24 +172,24 @@ For more information, see `String Types <https://docs.sqream.com/en/latest/refer
 
 
 Supports Scalar Subqueries
-----------------------------
+************
 SQream now supports running initial scalar subqueries.
 
 For more information, see `Subqueries <https://docs.sqream.com/en/latest/reference/sql/sql_syntax/subqueries.html>`_.
 
 Literal Arguments
-----------------------
+************
 
-SQream now supports literal arguments for functions in call cases where column/scalar arguments are supported.
+SQream now supports literal arguments for functions in all cases where column/scalar arguments are supported.
 
 Simple Scalar SQL UDFs
-------------------------
+************
 SQream now supports simple scalar SQL UDF's.
 
-For more information, see `Simple Scalar SQL UDF’s <https://docs.sqream.com/en/latest/reference/sql/sql_functions/user_defined_functions/index.html>`_.
+For more information, see `Simple Scalar SQL UDF’s <https://docs.sqream.com/en/latest/reference/sql/sql_functions/user_defined_functions/scalar_sql_udf.html>`_.
 
 Logging Enhancements
--------------------
+************
 The following log information has been added for the following events:
 
   * Compilation start time.
@@ -80,16 +202,16 @@ The following log information has been added for the following events:
   * When the log started executing.
   
 Improved Presented License Information
-----------------------------
+************
 SQream now displays information related to data size limitations, expiration date, type of license shown by the new UF. The **Utility Function (UF)** name is ``get_license_info()``.
 
-For more information, see `GET_LICENSE_INFO <html.xxx>`_.
+For more information, see `GET_LICENSE_INFO <https://docs.sqream.com/en/latest/reference/sql/sql_statements/utility_commands/get_license_info.html>`_.
 
 
   
 
 Optimized Foreign Data Wrapper Export
--------------------------
+************
 Sqream now supports exporting to multiple files concurrently. This is useful when you need to reduce file size to more easily export multiple files.
 
 The following is the correct syntax for exporting multiple files concurrently:
@@ -98,7 +220,7 @@ The following is the correct syntax for exporting multiple files concurrently:
 
    COPY table_name TO fdw_name OPTIONS(max_file_size=size_in_bytes,enforce_single_file={TRUE|FALSE});
    
-The following is an example of the correct syntax for exporting multile files concurrently:
+The following is an example of the correct syntax for exporting multiple files concurrently:
 
 .. code-block:: none
 
@@ -113,7 +235,7 @@ The following apply:
 * When the ``enforce_single_file`` value is set to ``TRUE``, only one file is created, and its size is not limited by the ``max_file_size`` value. Its default value is ``TRUE``.
 
 Main Features
-================================
+--------
 The following list describes the main features:
 
 * SQreamDB available on AWS.
@@ -133,7 +255,7 @@ The following list describes the main features:
 
 
 Resolved Issues
-================================
+---------
 The following list describes the resolved issues:
 
 * Copying text from a CSV file to the TEXT column without closing quotes caused SQream to crash. This was fixed.
@@ -145,7 +267,7 @@ The following list describes the resolved issues:
 * Running the ``select table_name,row_count from sqream_catalog.tables order by row_count limit 5`` query generated an internal runtime error.
 * Using wildcards (such as ``*.x.y``) did not work in parquet files. This was fixed.
 * Executing ``log*(x,y)`` generated an incorrect error message. This was fixed.
-* internal runtime error Type doesn't have a fixed size when doing max on text on develop (cisco poc)
+* The ``internal runtime error`` type doesn't have a fixed size when doing max on text on develop.
 * The ``min`` and ``max`` on ``TEXT`` were significantly slower than ``varchar``. This was fixed.
 * Running ``regexp_instr`` generated an empty regular expression. This was fixed.
 * Schemas with external tables could be dropped. This was fixed.
@@ -159,9 +281,9 @@ The following list describes the resolved issues:
 
 
 Operations and Configuration Changes
-=====================================
+--------
 Recommended SQream Configuration on Cloud
--------------------------------------
+************
 
 For more information about AWS, see `Amazon S3 <https://docs.sqream.com/en/latest/guides/features/external_data/s3.html>`_.
 
@@ -169,7 +291,7 @@ For more information about AWS, see `Amazon S3 <https://docs.sqream.com/en/lates
 
 
 Optimized Foreign Data Wrapper Export Configuration Flag
-----------------------------
+************
 
 SQream now has a new ``runtimeGlobalFlags`` flag called ``WriteToFileThreads``.
 
@@ -181,25 +303,25 @@ For more information about the ``runtimeGlobalFlags`` flag, see the **Runtime Gl
 
 
 Naming Changes
-================================
+-------
 No relevant naming changes were made.
 
 Deprecated Features
-================================
+-------
 No features were depecrated.
 
 Known Issues and Limitations
-================================
-The the list below describes the following bug fixes:
+--------
+The the list below describes the following known issues and limitations:
 
-* SQream would crash during ``select top 1 from external table using format parquet with hdfs path``.
+* In cases when selecting top 1 from external table using the Parquet format with an hdfs path, SQream experienced an error.
+* Internal Runtime Error occurred when SQream was unable to find column in reorder columns.
+* Casting datetime to text truncates the time segment.
+* In the **select** list, the compiler generates an error when a count is used as an alias.	
+* Performance degradation occurred when joins made on small tables.
+* SQream causes a logging error when using copy from logs.
+* Deploying S3 requires setting the ``ObjectStoreClients`` parameter to ``40``.
 
-* Internal Runtime Error occurred when SQream was unable to find column in reorder columns. This is an unresolved production issue in ACL and LG.
-
-* Casting datetime to text truncates the time. Fixed in develop.
-
-* The compiler generates an error when a count is used as an alias in the **select** list.
-	
-* Performance degradation occurred when joins made on small tables. Performance improvement on joins made on larger tables for identical queries.
-
-* SQream was corrupting logs.
+Upgrading to v2021.1
+-------
+Due to the known issue of a limitation on the amount of access requests that can be simultaneously sent to AWS, deploying S3 requires setting the ``ObjectStoreClients`` parameter to ``40``.
