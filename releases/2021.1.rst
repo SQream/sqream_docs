@@ -38,7 +38,7 @@ String Literals Containing ASCII Characters Interepreted as TEXT
 ************
 SQream now interprets all string literals, including those containing ASCII characters, as ``text``.
 
-For more information, see `String Types <https://docs.sqream.com/en/v2021.1/reference/sql_data_types.html#string-types>`_.
+For more information, see `String Types <https://docs.sqream.com/en/latest/reference/sql_data_types.html#string-types>`_.
 
 
 
@@ -47,7 +47,7 @@ Decimal Literals Interpreted as Numeric Columns
 ************
 SQream now interprets literals containing decimal points as ``numeric`` instead of as ``double``.
 
-For more information, see `Data Types <https://docs.sqream.com/en/v2021.1/reference/sql_data_types.html>`_.
+For more information, see `Data Types <https://docs.sqream.com/en/latest/reference/sql_data_types.html>`_.
 
 Resolved Issues
 -------------
