@@ -18,44 +18,87 @@ SQream supports both Tableau Desktop and Tableau Server on Windows, MacOS, and L
 .. contents:: In this topic:
    :local:
 
-Connecting Tableau with the SQream Installer
+Connecting to SQream Using Tableau with the SQream Installer
 ============================
+SQream has been tested with Tableau versions 9.2 and newer.
+
+**To connect to SQream using Tableau:**
    
-   
-Installing Tableau Desktop
-----------------------
-SQream DB has been tested with versions 9.2 and newer.
-If you do not already have Tableau Desktop installed, download and install Tabelau Desktop. https://www.tableau.com/products/trial
+#. Install the Tableau Desktop application.
 
-Tableau offers a time-limited trial version.
+   For more information about installing the Tableau Desktop application, see the `Tableau products page <https://www.tableau.com/products/trial>`_ and click **Download Free Trial**. Note that Tableau offers a 14-day trial version.
 
-Installing the JDBC driver and connector
-----------------------
 
-Starting from Tableau v2019.4, SQream DB recommends using the JDBC driver instead of the previously recommended ODBC driver.
+#. Do one of the following:
 
-If you have Tableau Desktop on Windows, we recommend using the :ref:`JDBC installer method<tableau_jdbc_installer>`. 
+   * Windows - Skip to :ref:`Installing Tableau Using the Windows Installer <tableau_windows_installer>`.   
+   * MacOS or Linux - Skip to :ref:`Installing the JDBC Driver Manually <tableau_manual_installation>`.
 
-If you have Tableau Server or Tableau on MacOS and Linux follow the instructions for a :ref:`manual installation<tableau_manual_installation>`.
+.. note:: For Tableau **2019.4 versions and later**, SQream recommends installing the JDBC driver instead of the previously recommended ODBC driver.
+
+
+
 
 .. _tableau_jdbc_installer:
 
-Installing with the Windows installer
+.. _tableau_windows_installer:
+
+
+Installing Tableau Using the Windows Installer
 ~~~~~~~~~~~~~~~~~~
+After installing the Tableau Desktop application, you can install Tableau using the Windows installer. The Windows installer is an installation wizard that guides you through the Tableau installation steps. When Tableau is installed, you can connect to SQream.
 
-1. Close Tableau Desktop.
+**To install Tableau using the Windows installer**:
 
-2. Download the JDBC installer :ref:`from the client drivers page<client_drivers>`.
+#. Close Tableau Desktop.
 
-3. Start the installer, and ensure that the "**Tableau Desktop Connector**" item is selected, as in the image below.
-   
-   .. image:: /_static/images/jdbc_windows_installer_screen.png
+    ::
 
-4. Restart Tableau Desktop, continue to :ref:`connecting to SQream DB<tableau_connect_to_sqream_db>`.
+#. Download the most current version of the `SQream JDBC driver <https://docs.sqream.com/en/latest/guides/client_drivers/index.html#client-drivers>`_.
+
+    ::
+	
+#. Do the following:
+
+   #. Start the installer.
+   #. Verify that the **Tableau Desktop connector** item is selected.
+   #. Follow the installation steps.
+
+    ::
+
+#. Restart Tableau Desktop.
+
+    ::
+	
+#. In the **Connect** menu, in the **To a Server** sub-menu, click **More...**.
+
+   More connection options are displayed.
+
+    ::
+	
+#. Select **SQream DB by SQream Technologies**.
+
+   The **New Connection** dialog box is displayed.
+
+    ::
+	
+#. In the New Connection dialog box, fill in the fields and click **Sign In**.
+
+    ::
+	
+#. 
+    ::
+	
+#. 
+    ::
+	
+#. 
+
+ 
 
 .. _tableau_manual_installation:
 
-Installing the JDBC driver manually (MacOS, Linux, Tableau Server)
+Installing the JDBC Driver Manually (MacOS, Linux, Tableau Server)
 ~~~~~~~~~~~~~
 
 Download the JDBC and Tableau Connector (taco)
