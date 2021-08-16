@@ -66,7 +66,7 @@ After installing the Tableau Desktop application, you can install Tableau using 
 
     ::
 
-#. Restart Tableau Desktop.
+#. Start Tableau Desktop.
 
     ::
 	
@@ -84,17 +84,55 @@ After installing the Tableau Desktop application, you can install Tableau using 
 	
 #. In the New Connection dialog box, fill in the fields and click **Sign In**.
 
-    ::
-	
-#. 
-    ::
-	
-#. 
-    ::
-	
-#. 
+  The following table describes the fields:
+   
+.. list-table:: 
+   :widths: 15 38 38
+   :header-rows: 1
+   
+   * - Item
+     - Description
+     - Example
+   * - Server
+     - Defines the server of the SQream worker.
+     - ``127.0.0.1`` or ``sqream.mynetwork.co``
+   * - Port
+     - Defines the TCP port of the SQream worker.
+     - ``3108`` when using a load balancer, or ``5100`` when connecting directly to a worker with SSL.
+   * - Database
+     - Defines the database to establish a connection with.
+     - ``master``
+   * - Cluster
+     - Enables (``true``) or disables (``false``) the load balancer. After enabling or disabling the load balance, verify the connection.
+     - 
+   * - Username
+     - Specifies the username of a role to use when connecting.
+     - ``rhendricks``	 
+   * - Password
+     - Specifies the password of the selected role.
+     - ``Tr0ub4dor&3``
+   * - Require SSL (recommended)
+     - Sets SSL as a requirement for establishing this connection.
+     - 
 
- 
+The connection is established and the data source page is displayed.
+	
+8. From the **Table** menu, select the desired database and schema.
+
+   SQream's default schema is **public**.
+   
+    ::
+	
+#. Drag the desired tables into the main area (labeled **Drag tables here**).
+
+   This area is also used for specifiying joins and data source filters.
+   
+    ::
+	
+#. Open a new sheet to analyze data. 
+
+.. tip:: 
+   * For more information about configuring data sources, joining, filtering, see `Tableau's Set Up Data Sources <https://help.tableau.com/current/pro/desktop/en-us/datasource_prepare.htm>`_ tutorials.
 
 .. _tableau_manual_installation:
 
