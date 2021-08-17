@@ -39,12 +39,12 @@ Data Type Aliases Added
 The following data type aliases have been added:
 
 * INTEGER - ``int``
-* DECIMAL - ``numeric
-* DOUBLE PRECISION - ``double
-* CHARACTER/CHAR - ``text (with and without length definition)
-* NATIONAL CHARACTER/NATIONAL CHAR/NCHAR - ``text (with and without length definition)
-* CHARACTER VARYING/CHAR VARYING - ``text (with and without length definition)
-* NATIONAL CHARACTER VARYING/NATIONAL CHAR VARYING/NCHAR VARYING - ``text (with and without length definition)
+* DECIMAL - ``numeric``
+* DOUBLE PRECISION - ``double``
+* CHARACTER/CHAR - ``text``
+* NATIONAL CHARACTER/NATIONAL CHAR/NCHAR - ``text``
+* CHARACTER VARYING/CHAR VARYING - ``text``
+* NATIONAL CHARACTER VARYING/NATIONAL CHAR VARYING/NCHAR VARYING - ``text``
 
 
 String Literals Containing ASCII Characters Interepreted as TEXT
