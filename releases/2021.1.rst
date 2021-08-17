@@ -64,7 +64,7 @@ For more information, see `Data Types <https://docs.sqream.com/en/latest/referen
 
 Studio Version 5.3.3
 ****************
-SQream recommends using `Studio version 5.3.3 <https://docs.sqream.com/en/latest/guides/operations/sqream_studio.html>`_ with Release Notes 2021.1.2.
+SQream recommends using `Studio version 5.3.3 <https://docs.sqream.com/en/v2021.1/guides/operations/sqream_studio.html>`_ with Release Notes 2021.1.2.
 
 
 Resolved Issues
