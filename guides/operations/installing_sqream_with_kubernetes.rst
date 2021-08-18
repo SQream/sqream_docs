@@ -1263,12 +1263,8 @@ After starting a local Docker image registry, you must install the Kubernetes da
 ::
    
 7. Select the **Token** radio button, paste the token from the previous command output, and click **Sign in**.
-
-.. image:: /_static/images/Kubernetes/kubernetes_token.png
-   
-The Kubernetes dashboard is displayed.
-
-.. image:: /_static/images/Kubernetes/kubernetes_dashboard.png
+  
+   The Kubernetes dashboard is displayed.
 
 Go back to :ref:`Installing Your SQream Software<installing_sqream_software>`
 
