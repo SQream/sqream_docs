@@ -237,7 +237,7 @@ Generating and Sharing SSH Keypairs Across All Existing Nodes
 ------------------------------------
 You can generate and share SSH keypairs across all existing nodes. Sharing SSH keypairs across all nodes enables passwordless access from the management server to all nodes in the cluster. All nodes in the cluster require passwordless access.
 
-*.. note::  You must generate and share an SSH keypair across all nodes even if you are installing the Kubernetes cluster on a single host.
+.. note::  You must generate and share an SSH keypair across all nodes even if you are installing the Kubernetes cluster on a single host.
 
 **To generate and share an SSH keypair:**
 
