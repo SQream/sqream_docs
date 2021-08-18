@@ -11,6 +11,8 @@ The **Installing SQream with Kubernetes** guide describes the following:
    :local:
    :depth: 1
    
+.. _preparing_sqream_environment:
+   
 Preparing the SQream Environment to Launch SQream Using Kubernetes
 ===============
 
@@ -40,9 +42,15 @@ The following list shows the server host name format requirements:
 * Only lowercase alphanumeric characters, such as ``-`` or ``.``.
 * Starts and ends with alphanumeric characters.
 
+Go back to :ref:`Preparing the SQream Environment to Launch SQream Using Kubernetes<preparing_sqream_environment>`
+
+
 Operating System Requirements
 ------------------------------
 The required operating system is a version of x86 CentOS/RHEL between 7.6 and 7.9. Regarding PPC64le, the required version is RHEL 7.6.
+
+Go back to :ref:`Preparing the SQream Environment to Launch SQream Using Kubernetes<preparing_sqream_environment>`
+
 
 Compute Server Specifications
 ------------------------------
@@ -51,6 +59,8 @@ Installing SQream with Kubernetes includes the following compute server specific
 * **CPU:** 4 cores
 * **RAM:** 16GB
 * **HD:** 500GB
+
+Go back to :ref:`Preparing the SQream Environment to Launch SQream Using Kubernetes<preparing_sqream_environment>`
 
 .. _set_up_your_hosts:
 
@@ -227,7 +237,7 @@ Generating and Sharing SSH Keypairs Across All Existing Nodes
 ------------------------------------
 You can generate and share SSH keypairs across all existing nodes. Sharing SSH keypairs across all nodes enables passwordless access from the management server to all nodes in the cluster. All nodes in the cluster require passwordless access.
 
-**NOTICE:** You must generate and share an SSH keypair across all nodes even if you are installing the Kubernetes cluster on a single host.
+*.. note::  You must generate and share an SSH keypair across all nodes even if you are installing the Kubernetes cluster on a single host.
 
 **To generate and share an SSH keypair:**
 
@@ -370,6 +380,8 @@ Note the following:
       $ declare -a IPS=(eks-rhl-1,192.168.5.81 eks-rhl-2,192.168.5.82 eks-rhl-3,192.168.5.83)
 
    Note that the declare must contain pairs (hostname,ip).
+   
+::
 	  
 8. Verify that the following have been done:
  
@@ -559,6 +571,7 @@ The following is an example of the correct output:
          $ kube-system              kube-proxy-fgcfb                             1/1     Running   0          161m
          $ kube-system              kube-scheduler-k8s-host-1-134                1/1     Running   0          161m
          $ kube-system              kube-scheduler-k8s-host-194                  1/1     Running   0          161m
+
 Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
         
 Adding a SQream Label to Your Kubernetes Cluster Nodes
@@ -598,6 +611,7 @@ After checking your Kubernetes status, you must add a SQream label on your Kuber
       $ node/eks-rhl-2 labeled
       $ [root@edk-rhl-1 kubespray]# kubectl label nodes eks-rhl-3 cluster=sqream
       $ node/eks-rhl-3 labeled
+
 Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
    
 Copying Your Kubernetes Configuration API File to the Master Cluster Nodes
@@ -655,7 +669,7 @@ Creating an env_file in Your Home Directory
 -------------------------------------------------
 After copying your Kubernetes configuration API file to your Master cluster nodes, you must create an **env_file** in your home directory, and must set the VIP address as a variable.
 
-**NOTICE:** You must perform this on the management server only!
+.. warning:: You must perform this on the management server only!
 
 
 
@@ -667,7 +681,7 @@ After copying your Kubernetes configuration API file to your Master cluster node
    
       $ export VIP_IP=<VIP IP>
 	  
-**NOTICE:** If you use Kerberos, replace the ``KRB5_SERVER`` value with the IP address of your Kerberos server.
+.. note:: If you use Kerberos, replace the ``KRB5_SERVER`` value with the IP address of your Kerberos server.
    
 2. Do one of the following:
 
@@ -728,7 +742,10 @@ The following is an example of the correct output:
 
 .. code-block:: postgres
    
-   $ namespace/sqream-init created   
+   $ namespace/sqream-init created
+   
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
+
    
 Pushing the **env_file** File to the Kubernetes Configmap
 --------------------------------------   
@@ -747,6 +764,7 @@ The following is an example of the correct output:
    $ configmap/sqream-init created
 
 
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
 
 
 Installing the NVIDIA Docker2 Toolkit
@@ -844,7 +862,7 @@ Installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on Ubuntu
      
 For more information on installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on Ubuntu, see `NVIDIA Docker Installation - Ubuntu distributions <https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-2.0)#ubuntu-distributions-1>`_
 
-Go back to :ref:`Running Docker Runtime (Community Edition)<running_docker_runtime>`     
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
     
 Modifying the Docker Daemon JSON File for GPU and Compute Nodes
 -------------------------------------
@@ -852,13 +870,15 @@ After installing the NVIDIA Docker2 toolkit, you must modify the Docker daemon J
 
 Modifying the Docker Daemon JSON File for GPU Nodes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-**NOTICE:** The Docker daemon JSON file must be modified on all GPU nodes.
+
 
 **To modify the Docker daemon JSON file for GPU nodes:**     
      
 1. Enable GPU and set HTTP access to the local Kubernetes Docker registry.
 
-**NOTICE:** Contact your IT department for a virtual IP.
+.. note:: The Docker daemon JSON file must be modified on all GPU nodes.
+
+.. note:: Contact your IT department for a virtual IP.
 
 2. Replace the ``VIP address`` with your assigned VIP address.
 
@@ -901,7 +921,10 @@ Modifying the Docker Daemon JSON File for GPU Nodes
  
   .. code-block:: postgres
    
-     $ exit	 
+     $ exit
+	 
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
+
       
 Modifying the Docker Daemon JSON File for Compute Nodes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -909,17 +932,17 @@ You must follow this procedure only if you have a Compute node.
 
 **To modify the Docker daemon JSON file for Compute nodes:**
 
-1. Switch to a root user:
+2. Switch to a root user:
 
    .. code-block:: postgres
    
       $  sudo -i
 
-2. Set a variable that includes a VIP address.
+3. Set a variable that includes a VIP address.
 
-**NOTICE:** Contact your IT department for a virtual IP.
+.. note:: Contact your IT department for a virtual IP.
 
-3. Replace the ``VIP address`` with your assigned VIP address.
+4. Replace the ``VIP address`` with your assigned VIP address.
 
    .. code-block:: postgres
    
@@ -929,20 +952,20 @@ You must follow this procedure only if you have a Compute node.
       $ }
       $ EOF 
 
-4. Restart the services:
+5. Restart the services:
 
    .. code-block:: postgres
    
       $ systemctl daemon-reload && systemctl restart docker
 
-5. Exit the root user:
+7. Exit the root user:
  
  
   .. code-block:: postgres
    
      $ exit
 
-Go back to :ref:`Running Docker Runtime (Community Edition)<running_docker_runtime>`     
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
    
 Installing the Nvidia-device-plugin Daemonset
 ----------------------------------------------
@@ -971,7 +994,7 @@ The following is an example of the correct output:
    $ [root@eks-rhl-1 ~]# kubectl label nodes eks-rhl-3 nvidia.com/gpu=true
    $ node/eks-rhl-3 labeled  
 
-Go back to :ref:`Running Docker Runtime (Community Edition)<running_docker_runtime>`     
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
    
 Creating an Nvidia Device Plugin
 ----------------------------------------------   
@@ -996,7 +1019,7 @@ The following is an example of the correct output:
    $ nvidia-device-plugin-daemonset-jdvxs       1/1     Running   0          6h1m
    $ nvidia-device-plugin-daemonset-xpmsv       1/1     Running   0          6h1m
 
-Go back to :ref:`Running Docker Runtime (Community Edition)<running_docker_runtime>`     
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
 
 Checking GPU Resources Allocatable to GPU Nodes
 -------------------------------------
@@ -1021,7 +1044,7 @@ The following is an example of the correct output:
    $  nvidia.com/gpu:     1
    $  pods:               110 
 
-Go back to :ref:`Running Docker Runtime (Community Edition)<running_docker_runtime>`     
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
 
 Preparing the WatchDog Monitor
 ------------------------------
@@ -1043,7 +1066,7 @@ The following is an example of the correct syntax:
    $ 10.0.0.2 k8s-node2.storage
    $ 10.0.0.3 k8s-node3.storage
 
-Go back to :ref:`Running Docker Runtime (Community Edition)<running_docker_runtime>`
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
 
 .. _installing_sqream_software:   
 
@@ -1263,8 +1286,12 @@ After starting a local Docker image registry, you must install the Kubernetes da
 ::
    
 7. Select the **Token** radio button, paste the token from the previous command output, and click **Sign in**.
-  
-   The Kubernetes dashboard is displayed.
+
+.. image:: /_static/images/Kubernetes/kubernetes_token.png
+   
+The Kubernetes dashboard is displayed.
+
+.. image:: /_static/images/Kubernetes/kubernetes_dashboard.png
 
 Go back to :ref:`Installing Your SQream Software<installing_sqream_software>`
 
@@ -1283,10 +1310,10 @@ This section describes how to install the following:
 To install the **sqream-prometheus** package, you must do the following:
 
 1. :ref:`Install the exporter service <install_exporter_service>`
-
-::
-
 2. :ref:`Check the exporter service <check_exporter_status>`
+
+Go back to :ref:`Installing Your SQream Software<installing_sqream_software>`
+
 
 .. _install_exporter_service:
 
@@ -1352,6 +1379,8 @@ Installing the Exporter Service
 
         $ sudo systemctl start nvidia_exporter && sudo systemctl enable nvidia_exporter
 		
+
+		
 .. _check_exporter_status:
 
 Checking the Exporter Status
@@ -1365,6 +1394,7 @@ You can check the exporter status by running the following command:
    $ sudo systemctl status node_exporter && sudo systemctl status nvidia_exporter
 
 Go back to :ref:`Installing Your SQream Software<installing_sqream_software>`
+
 
 .. _running_sqream_install_service:
    
@@ -1384,7 +1414,7 @@ After install the SQream Prometheus package, you must install your license.
 
 1. Copy your license package to the sqream **/license** folder.
 
-.. note:: You do not need to untar the license package after copying it to the **/license** folder because the installer script does it automatically.
+**NOTE:** You do not need to untar the license package after copying it to the **/license** folder because the installer script does it automatically.
 
 The following flags are **mandatory** during your first run: 
 
@@ -1392,7 +1422,7 @@ The following flags are **mandatory** during your first run:
 
    $ sudo ./sqream-install -i -k -m <path to sqream cluster> 
 
-.. note:: If you cannot run the script with **sudo**, verify that you have the right permission (**rwx** for the user) on the relevant directories (config, log, volume, and data-in directories).
+**Note:** If you cannot run the script with **sudo**, verify that you have the right permission (**rwx** for the user) on the relevant directories (config, log, volume, and data-in directories).
 
 Go back to :ref:`Running the SQream_install Service<running_sqream_install_service>`.
 
@@ -1570,6 +1600,7 @@ The following is an example of the correct output:
    All SQream workers are up and running, SQream-DB is available at 192.168.5.100:3108	 
    All SQream workers are up and running, SQream-DB is available at 192.168.5.100:3108	 
 
+
 Go back to :ref:`Using the SQream-start Commands<using_sqream_start_commands>`.
 	 
 Starting Your SQream Services in Split Mode
@@ -1727,9 +1758,6 @@ Before Upgrading Your System
 Before upgrading your system you must do the following:
 
 1. Contact SQream support for a new SQream package tarball file.
-
-::
-
 2. Set a maintenance window.
 
 
