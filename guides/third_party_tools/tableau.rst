@@ -9,17 +9,15 @@ Overview
 
 This page is a Tableau viability report as a tool for visualizing Big Data and its compatibility with SQream, and provides documentation for stakeholders using SQreamDB. A quick start guide is provided, as well as a report on feature support, known issues, and a BI use-case performance comparison between Postgres and SQream.
 
-It includes the following:
-
-
-
 SQream supports both Tableau Desktop and Tableau Server on Windows, MacOS, and Linux distributions.
+
+The Connecting to SQream Using Tableau guide describes the following:
 
 .. contents:: In this topic:
    :local:
 
-Connecting to SQream Using Tableau with the SQream Installer
-============================
+Connecting to SQream Using the SQream Installer
+-------------------
 SQream has been tested with Tableau versions 9.2 and newer.
 
 **To connect to SQream using Tableau:**
@@ -32,17 +30,11 @@ SQream has been tested with Tableau versions 9.2 and newer.
 #. Do one of the following:
 
    * Windows - Skip to :ref:`Installing Tableau Using the Windows Installer <tableau_windows_installer>`.   
-   * MacOS or Linux - Skip to :ref:`Installing the JDBC Driver Manually <tableau_manual_installation>`.
+   * MacOS or Linux - Skip to :ref:`Installing the JDBC Driver Manually <tableau_jdbc_installer>`.
 
 .. note:: For Tableau **2019.4 versions and later**, SQream recommends installing the JDBC driver instead of the previously recommended ODBC driver.
 
-
-
-
-.. _tableau_jdbc_installer:
-
 .. _tableau_windows_installer:
-
 
 Installing Tableau Using the Windows Installer
 ~~~~~~~~~~~~~~~~~~
@@ -65,6 +57,81 @@ After installing the Tableau Desktop application, you can install Tableau using 
    #. Follow the installation steps.
 
     ::
+
+.. _tableau_jdbc_installer:
+
+Installing the JDBC Driver Manually (MacOS, Linux, Tableau Server)
+~~~~~~~~~~~~~
+This section describes how to install the JDBC driver manually and is relevant for MacOS, Linus, and the Tableau server.
+
+**To install the JDBC driver manually:**
+
+1. Download the JDBC and Tableau Connector (taco):
+
+   ::
+
+   1. Download the JDBC installer :ref:`from the client drivers page<client_drivers>`.
+
+   2. Download the SQream DB Tableau connector (.taco) :ref:`from the client drivers page<client_drivers>`.
+
+#. Install the JDBC driver by unzipping the JDBC driver into a Tableau driver directory.
+   
+      Based on the installation method that you used, your Tableau driver directory is one of the following places:
+
+      * **Tableau Desktop on Windows:** *C:\Program Files\Tableau\Drivers*
+      * **Tableau Desktop on MacOS:** *~/Library/Tableau/Drivers*
+      * **Tableau on Linux**: */opt/tableau/tableau_driver/jdbc*
+
+#. Install the **SQreamDB.taco** file:
+
+   1. Move the SQreamDB.taco file into the Tableau connectors directory.
+   
+      Based on the installation method that you used, your Tableau driver directory is one of the following places:
+
+      * **Tableau Desktop on Windows:** *C:\Users\<your user>\My Tableau Repository\Connectors*
+      * **Tableau Desktop on Windows:** *~/My Tableau Repository/Connectors*
+      * **Comment - what about Tableau on Linux?**
+	  
+**Comment - verify below.**
+	  
+#. *Optional* - If you are using the Tableau Server, do the following:
+   
+   1. Create a directory for Tableau connectors and give it a descriptive name, such as *C:\tableau_connectors*.
+      
+      This directory needs to exist on all Tableau servers.
+   
+   2. Copy the SQreamDB.taco file into the new directory.
+   
+       ::
+   
+   3. Set the **native_api.connect_plugins_path** option to ``tsm`` as shown in the following example:
+
+      .. code-block:: console
+   
+         $ tsm configuration set -k native_api.connect_plugins_path -v C:/tableau_connectors
+      
+      If a configuration error is displayed, add ``--force-keys`` to the end of the command as shown in the following example:
+
+      .. code-block:: console
+   
+         $ tsm configuration set -k native_api.connect_plugins_path -v C:/tableau_connectors--force-keys
+		 
+   4. To apply the pending configuration changes, run the following command:
+
+      .. code-block:: console
+    
+         $ tsm pending-changes apply
+      
+      .. warning:: This restarts the server.
+
+You can now restart Tableau Desktop or Server to begin using the SQream driver by :ref:`connecting to SQream <tableau_connect_to_sqream>` as described in the section below.
+
+.. _tableau_connect_to_sqream:
+	
+Connecting to SQream
+---------------------
+
+**To connect to SQream:**
 
 #. Start Tableau Desktop.
 
@@ -116,8 +183,14 @@ After installing the Tableau Desktop application, you can install Tableau using 
      - 
 
 The connection is established and the data source page is displayed.
+
+.. tip:: 
+   Tableau automatically assigns your connection a default name based on the DSN and table. SQream recommends giving the connection a more descriptive name.
+
+Setting Up SQream Tables as Data Sources
+----------------
 	
-8. From the **Table** menu, select the desired database and schema.
+1. From the **Table** menu, select the desired database and schema.
 
    SQream's default schema is **public**.
    
@@ -132,79 +205,31 @@ The connection is established and the data source page is displayed.
 #. Open a new sheet to analyze data. 
 
 .. tip:: 
-   * For more information about configuring data sources, joining, filtering, see `Tableau's Set Up Data Sources <https://help.tableau.com/current/pro/desktop/en-us/datasource_prepare.htm>`_ tutorials.
+   For more information about configuring data sources, joining, filtering, see Tableau's `Set Up Data Sources <https://help.tableau.com/current/pro/desktop/en-us/datasource_prepare.htm>`_ tutorials.   
 
-.. _tableau_manual_installation:
-
-Installing the JDBC Driver Manually (MacOS, Linux, Tableau Server)
-~~~~~~~~~~~~~
-
-Download the JDBC and Tableau Connector (taco)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-1. Download the JDBC installer :ref:`from the client drivers page<client_drivers>`.
-
-2. Download the SQream DB Tableau connector (.taco) :ref:`from the client drivers page<client_drivers>`.
-
-Install JDBC driver 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Unzip the JDBC driver into a Tableau drivers directory. Based on your installation of Tableau, this may be at:
-
-* Tableau Desktop on Windows: ``c:\Program Files\Tableau\Drivers``
-
-* Tableau Desktop on MacOS: ``~/Library/Tableau/Drivers``
-
-* Tableau on Linux: ``/opt/tableau/tableau_driver/jdbc``
-
-Install taco
-^^^^^^^^^^^^^^^^^^
-
-Place the ``SQreamDB.taco`` file in the Tableau connectors directory. Based on your installation of Tableau, this may be at:
-
-* Tableau Desktop on Windows: ``C:\Users\<your user>\My Tableau Repository\Connectors``
-
-* Tableau Desktop on MacOS: ``~/My Tableau Repository/Connectors``
-
-* Tableau Server:
-   
-   1. Create a directory for Tableau connectors. For example: ``C:\tableau_connectors``
-      
-      This directory needs to exist on all Tableau servers
-   
-   2. Copy the ``SQreamDB.taco`` file into the directory you created on all servers
-   
-   3. Set the ``native_api.connect_plugins_path`` option with ``tsm``. For example:
-      
-      ``tsm configuration set -k native_api.connect_plugins_path -v C:/tableau_connectors``
-      
-      If you get a configuration error during this step, add the ``--force-keys`` option to the end of the command.
-
-      Then, apply the pending configuration changes with ``tsm pending-changes apply``
-      
-      .. warning:: This restarts the server.
-
- 
-
-You can now restart Tableau Desktop or Server to begin using the SQream DB driver. Continue to :ref:`connecting to SQream DB<tableau_connect_to_sqream_db>`.
-
-Legacy method - ODBC for Tableau versions before v2019.3
+Installing Tableau Versions 2019.3 and Earlier
 --------------
+This section describes the installation method for Tableau version 2019.3 or earlier and describes the following:
 
-Installing the ODBC driver and customizations
+.. contents::
+   :local:
+ 
+Automatically Reconfiguring the ODBC Driver After Initial Installation
 ~~~~~~~~~~~~~~~~~~
-
-If you've already installed the SQream DB ODBC driver, we recommend that you :ref:`re-run the ODBC driver installer <install_odbc_windows>` after installing Tableau, and select the Tableau customizations checkbox, as in the image below:
+If you've already installed the SQream ODBC driver and installed Tableau, SQream recommends reinstalling the ODBC driver with the **.TDC Tableau Settings for SQream DB** shown in the image below:
 
 .. image:: /_static/images/odbc_windows_installer_tableau.png
 
-This is necessary because by default, Tableau has a tendency to create temporary tables and run lots of discovery queries which could impact performance.
-The ODBC driver installer installs customizations for Tableau automatically.
+SQream recommends this configuration because Tableau creates temporary tables and runs several discovery queries that may impact performance. The ODBC driver installer avoids this by automatically reconfiguring Tableau.
 
-If you want to perform this step manually, follow the instructions in the next section.
+For more information about reinstalling the ODBC driver installer, see :ref:`Install and Configure ODBC on Windows <install_odbc_windows>`.
 
-The TDC file
-^^^^^^^^^^^^^^^^^^^
+If you want to manually reconfigure the ODBC driver, see :ref:`Manually Reconfiguring the ODBC Driver After Initial Installation <manually_reconfigure_odbc_driver>` below.
+
+.. _manually_reconfigure_odbc_driver:
+
+Manually Reconfiguring the ODBC Driver After Initial Installation
+~~~~~~~~~~~~~~~~~~
 
 The TDC file (Tableau Datasource Customization) helps Tableau make full use of SQream DB's features and capabilities.
 
@@ -250,61 +275,7 @@ Connecting Tableau to SQream DB
 
 .. _tableau_connect_to_sqream_db:
 
-Connecting to SQream DB
----------------------
 
-#. Start Tableau Desktop.
-
-#. Select "More", by navigating :menuselection:`Connect --> To a server --> More`
-   
-   .. image:: /_static/images/tableau_more_servers_2.png
-
-#. Select "SQream DB by SQream Technologies"
-   
-   .. image:: /_static/images/tableau_more_servers_3.png
-
-#. Fill in the details for your SQream DB installation and click :menuselection:`Sign In`.
-   
-   .. image:: /_static/images/tableau_new_connection.png
-   
-
-.. list-table:: Connection parameters reference
-   :widths: auto
-   :header-rows: 1
-   
-   * - Item
-     - Description
-   * - Server
-     - Hostname of the SQream DB worker. For example, ``127.0.0.1`` or ``sqream.mynetwork.co``
-   * - Port
-     - TCP port of the SQream DB worker. For example, ``3108`` when using a load balancer or ``5100`` when connecting directly to a worker with SSL
-   * - Database
-     - Specifies the database name to connect to. For example, ``master``
-   * - Cluster
-     - Connect via load balancer. Accepts ``true`` and ``false``. Double check the connection port when setting this.
-   * - Username
-     - Username of a role to use for connection. For example, ``rhendricks``
-   * - Password
-     - Specifies the password of the selected role. For example, ``Tr0ub4dor&3``
-   * - Require SSL
-     - Specifies SSL for this connection
-
-
-Setting up SQream DB tables as data sources
--------------------
-Once connected, you are taken to the data source page.
-
-The left side of the screen contains a database and schema drop-down. Select the database name and schema name you wish to use (``public`` is the default schema in SQream DB).
-
-   .. image:: /_static/images/tableau_data_sources.png
-
-Drag tables you wish to use to the main area, marked as **Drag tables here**. This is also where you specify joins and data source filters.
-
-When data source setup is completed, navigate to a new sheet to start analyzing data.
-
-.. tip:: 
-   * Read more about configuring data sources, joining, filtering, and more on `Tableau's Set Up Data Sources <https://help.tableau.com/current/pro/desktop/en-us/datasource_prepare.htm>`_ tutorials.
-   * Rename the connection with a descriptive name for other users to understand. Alternatively, Tableau will generate a default name based on the DSN and tables.
 
 Tableau best practices and troubleshooting
 ---------------
