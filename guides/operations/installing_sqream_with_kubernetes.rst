@@ -478,7 +478,7 @@ After downloading and configuring Kubespray, you can adjust your Kubespray deplo
       $ echo 'ansible ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
       $ EOF
 	  
-.. warning:: In most cases, the Docker data resides on the system disk. Because Docker requires a high volume of data (images, containers, volumes, etc.), you can change the default Docker data location to prevent the system disk from running out of space.
+.. note:: In most cases, the Docker data resides on the system disk. Because Docker requires a high volume of data (images, containers, volumes, etc.), you can change the default Docker data location to prevent the system disk from running out of space.
 
 4. *Optional* - Change the default Docker data location:
 
@@ -621,7 +621,7 @@ After adding a SQream label on your Kubernetes cluster nodes, you must copy your
 When the Kubernetes cluster installation is complete, an API configuration file is automatically created in the **.kube** folder of the root user. This file enables the **kubectl** command access Kubernetes' internal API service. Following this step lets you run **kubectl** commands from any node in the cluster.
 
 
-.. note:: You must perform this on the management server only!
+.. warning:: You must perform this on the management server only!
 
 **To copy your Kubernetes configuration API file to your Master cluster nodes:**
 
@@ -691,7 +691,7 @@ After copying your Kubernetes configuration API file to your Master cluster node
    
         $ mkdir /home/$USER/.sqream
    
-3. Make the following replacements to the **kubespray.settings.sh** file:
+3. Make the following replacements to the **kubespray.settings.sh** file, verifying that the ``KRB5_SERVER`` parameter is set to your server IP:
 
 
    .. code-block:: postgres  
@@ -882,6 +882,8 @@ Modifying the Docker Daemon JSON File for GPU Nodes
 
 2. Replace the ``VIP address`` with your assigned VIP address.
 
+::
+
 3. Connect as a root user:
 
    .. code-block:: postgres
@@ -932,17 +934,17 @@ You must follow this procedure only if you have a Compute node.
 
 **To modify the Docker daemon JSON file for Compute nodes:**
 
-2. Switch to a root user:
+1. Switch to a root user:
 
    .. code-block:: postgres
    
       $  sudo -i
 
-3. Set a variable that includes a VIP address.
+2. Set a variable that includes a VIP address.
 
 .. note:: Contact your IT department for a virtual IP.
 
-4. Replace the ``VIP address`` with your assigned VIP address.
+3. Replace the ``VIP address`` with your assigned VIP address.
 
    .. code-block:: postgres
    
@@ -952,13 +954,13 @@ You must follow this procedure only if you have a Compute node.
       $ }
       $ EOF 
 
-5. Restart the services:
+4. Restart the services:
 
    .. code-block:: postgres
    
       $ systemctl daemon-reload && systemctl restart docker
 
-7. Exit the root user:
+5. Exit the root user:
  
  
   .. code-block:: postgres
@@ -981,18 +983,18 @@ After modifying the Docker daemon JSON file for GPU or Compute Nodes, you must i
       
 2. Replace the *<GPU node name>* with your GPU node name:
    
-For a complete list of GPU node names, run the ``kubectl get nodes`` command.
+   For a complete list of GPU node names, run the ``kubectl get nodes`` command.
 
-The following is an example of the correct output:
+   The following is an example of the correct output:
    
-.. code-block:: postgres
+   .. code-block:: postgres
    
-   $ [root@eks-rhl-1 ~]# kubectl label nodes eks-rhl-1 nvidia.com/gpu=true
-   $ node/eks-rhl-1 labeled
-   $ [root@eks-rhl-1 ~]# kubectl label nodes eks-rhl-2 nvidia.com/gpu=true
-   $ node/eks-rhl-2 labeled
-   $ [root@eks-rhl-1 ~]# kubectl label nodes eks-rhl-3 nvidia.com/gpu=true
-   $ node/eks-rhl-3 labeled  
+      $ [root@eks-rhl-1 ~]# kubectl label nodes eks-rhl-1 nvidia.com/gpu=true
+      $ node/eks-rhl-1 labeled
+      $ [root@eks-rhl-1 ~]# kubectl label nodes eks-rhl-2 nvidia.com/gpu=true
+      $ node/eks-rhl-2 labeled
+      $ [root@eks-rhl-1 ~]# kubectl label nodes eks-rhl-3 nvidia.com/gpu=true
+      $ node/eks-rhl-3 labeled  
 
 Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
    
@@ -1125,7 +1127,7 @@ After getting the SQream package, you can set up and configure Hadoop by configu
 
 **To set up and configure Hadoop:**
 
-1. Contact ID for the **keytab** and **krb5.conf** files.
+1. Contact IT for the **keytab** and **krb5.conf** files.
 
 ::
 
@@ -1148,43 +1150,43 @@ After getting the SQream package, or (optionally) setting up and configuring Had
 
 1. Create a Docker registry folder:
 
-.. code-block:: postgres
+   .. code-block:: postgres
    
-   $ mkdir <shared path>/docker-registry/
+      $ mkdir <shared path>/docker-registry/
    
 2. Set the ``docker_path`` for the Docker registry folder:
 
-.. code-block:: postgres
+   .. code-block:: postgres
    
-   $ export docker_path=<path>
+      $ export docker_path=<path>
    
 3. Apply the **docker-registry** service to the cluster:
 
-.. code-block:: postgres
+   .. code-block:: postgres
    
-   $ cat .k8s/admin/docker_registry.yaml | envsubst | kubectl create -f -
+      $ cat .k8s/admin/docker_registry.yaml | envsubst | kubectl create -f -
    
-The following is an example of the correct output:
+   The following is an example of the correct output:
 
-.. code-block:: postgres
+   .. code-block:: postgres
    
-   namespace/sqream-docker-registry created
-   configmap/sqream-docker-registry-config created
-   deployment.apps/sqream-docker-registry created
-   service/sqream-docker-registry created
+      namespace/sqream-docker-registry created
+      configmap/sqream-docker-registry-config created
+      deployment.apps/sqream-docker-registry created
+      service/sqream-docker-registry created
 
 4. Check the pod status of the **docker-registry** service:
 
-.. code-block:: postgres
+   .. code-block:: postgres
    
-   $ kubectl get pods -n sqream-docker-registry
+      $ kubectl get pods -n sqream-docker-registry
    
 The following is an example of the correct output:
 
-.. code-block:: postgres
+   .. code-block:: postgres
    
-   NAME                                      READY   STATUS    RESTARTS   AGE
-   sqream-docker-registry-655889fc57-hmg7h   1/1     Running   0          6h40m
+       NAME                                      READY   STATUS    RESTARTS   AGE
+      sqream-docker-registry-655889fc57-hmg7h   1/1     Running   0          6h40m
 
 Go back to :ref:`Installing Your SQream Software<installing_sqream_software>`
 
@@ -1286,12 +1288,8 @@ After starting a local Docker image registry, you must install the Kubernetes da
 ::
    
 7. Select the **Token** radio button, paste the token from the previous command output, and click **Sign in**.
-
-.. image:: /_static/images/Kubernetes/kubernetes_token.png
-   
+  
 The Kubernetes dashboard is displayed.
-
-.. image:: /_static/images/Kubernetes/kubernetes_dashboard.png
 
 Go back to :ref:`Installing Your SQream Software<installing_sqream_software>`
 
@@ -1310,6 +1308,9 @@ This section describes how to install the following:
 To install the **sqream-prometheus** package, you must do the following:
 
 1. :ref:`Install the exporter service <install_exporter_service>`
+
+::
+
 2. :ref:`Check the exporter service <check_exporter_status>`
 
 Go back to :ref:`Installing Your SQream Software<installing_sqream_software>`
@@ -1414,7 +1415,7 @@ After install the SQream Prometheus package, you must install your license.
 
 1. Copy your license package to the sqream **/license** folder.
 
-**NOTE:** You do not need to untar the license package after copying it to the **/license** folder because the installer script does it automatically.
+.. note:: You do not need to untar the license package after copying it to the **/license** folder because the installer script does it automatically.
 
 The following flags are **mandatory** during your first run: 
 
@@ -1422,7 +1423,7 @@ The following flags are **mandatory** during your first run:
 
    $ sudo ./sqream-install -i -k -m <path to sqream cluster> 
 
-**Note:** If you cannot run the script with **sudo**, verify that you have the right permission (**rwx** for the user) on the relevant directories (config, log, volume, and data-in directories).
+.. note:: If you cannot run the script with **sudo**, verify that you have the right permission (**rwx** for the user) on the relevant directories (config, log, volume, and data-in directories).
 
 Go back to :ref:`Running the SQream_install Service<running_sqream_install_service>`.
 
@@ -1758,6 +1759,9 @@ Before Upgrading Your System
 Before upgrading your system you must do the following:
 
 1. Contact SQream support for a new SQream package tarball file.
+
+::
+
 2. Set a maintenance window.
 
 
@@ -1772,16 +1776,16 @@ After completing the steps in **Before Upgrading Your System** above, you can up
 
 1. Extract the contents of the tarball file that you received from SQream support. Make sure to extract the contents to the same directory as in :ref:`getting_sqream_package` and for the same user:
 
-.. code-block:: console
+  .. code-block:: console
 
-   $ tar -xvf sqream_installer-2.0.5-DB2019.2.1-CO1.6.3-ED3.0.0-x86_64/
-   $ cd sqream_installer-2.0.5-DB2019.2.1-CO1.6.3-ED3.0.0-x86_64/ 
+     $ tar -xvf sqream_installer-2.0.5-DB2019.2.1-CO1.6.3-ED3.0.0-x86_64/
+     $ cd sqream_installer-2.0.5-DB2019.2.1-CO1.6.3-ED3.0.0-x86_64/ 
  
 2. Start the upgrade process run the following command: 
 
-.. code-block:: console
+  .. code-block:: console
 
-   $ ./sqream-install -i
+     $ ./sqream-install -i
    
 The upgrade process checks if the SQream services are running and will prompt you to stop them.
 
