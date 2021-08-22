@@ -13,7 +13,7 @@ SQream supports both Tableau Desktop and Tableau Server on Windows, MacOS, and L
 
 The Connecting to SQream Using Tableau guide describes the following:
 
-.. contents:: In this topic:
+.. contents::
    :local:
 
 Connecting to SQream Using the SQream Installer
@@ -29,16 +29,16 @@ SQream has been tested with Tableau versions 9.2 and newer.
 
 #. Do one of the following:
 
-   * Windows - Skip to :ref:`Installing Tableau Using the Windows Installer <tableau_windows_installer>`.   
-   * MacOS or Linux - Skip to :ref:`Installing the JDBC Driver Manually <tableau_jdbc_installer>`.
+   * **For Windows** - Skip to :ref:`Installing Tableau Using the Windows Installer <tableau_windows_installer>`.   
+   * **For MacOS or Linux** - Skip to :ref:`Installing the JDBC Driver Manually <tableau_jdbc_installer>`.
 
 .. note:: For Tableau **2019.4 versions and later**, SQream recommends installing the JDBC driver instead of the previously recommended ODBC driver.
 
 .. _tableau_windows_installer:
 
-Installing Tableau Using the Windows Installer
+Installing the JDBC Driver Using the Windows Installer
 ~~~~~~~~~~~~~~~~~~
-After installing the Tableau Desktop application, you can install Tableau using the Windows installer. The Windows installer is an installation wizard that guides you through the Tableau installation steps. When Tableau is installed, you can connect to SQream.
+If you are using Windows, after installing the Tableau Desktop application you can install the JDBC driver using the Windows installer. The Windows installer is an installation wizard that guides you through the JDBC driver installation steps. When the driver is installed, you can connect to SQream.
 
 **To install Tableau using the Windows installer**:
 
@@ -58,21 +58,19 @@ After installing the Tableau Desktop application, you can install Tableau using 
 
     ::
 
+You can now restart Tableau Desktop or Server to begin using the SQream driver by :ref:`connecting to SQream <tableau_connect_to_sqream>`.
+
 .. _tableau_jdbc_installer:
 
 Installing the JDBC Driver Manually (MacOS, Linux, Tableau Server)
 ~~~~~~~~~~~~~
-This section describes how to install the JDBC driver manually and is relevant for MacOS, Linus, and the Tableau server.
+If you are using MacOS, Linux, or the Tableau server, after installing the Tableau Desktop application you can install the JDBC driver manually. When the driver is installed, you can connect to SQream.
 
 **To install the JDBC driver manually:**
 
-1. Download the JDBC and Tableau Connector (taco):
+1. Download the JDBC installer and SQream Tableau connector (.taco) from the :ref:`from the client drivers page<client_drivers>`.
 
-   ::
-
-   1. Download the JDBC installer :ref:`from the client drivers page<client_drivers>`.
-
-   2. Download the SQream DB Tableau connector (.taco) :ref:`from the client drivers page<client_drivers>`.
+    ::
 
 #. Install the JDBC driver by unzipping the JDBC driver into a Tableau driver directory.
    
@@ -130,6 +128,7 @@ You can now restart Tableau Desktop or Server to begin using the SQream driver b
 	
 Connecting to SQream
 ---------------------
+After installing the JDBC driver you can connect to SQream.
 
 **To connect to SQream:**
 
@@ -153,42 +152,47 @@ Connecting to SQream
 
   The following table describes the fields:
    
-.. list-table:: 
-   :widths: 15 38 38
-   :header-rows: 1
+  .. list-table:: 
+     :widths: 15 38 38
+     :header-rows: 1
    
-   * - Item
-     - Description
-     - Example
-   * - Server
-     - Defines the server of the SQream worker.
-     - ``127.0.0.1`` or ``sqream.mynetwork.co``
-   * - Port
-     - Defines the TCP port of the SQream worker.
-     - ``3108`` when using a load balancer, or ``5100`` when connecting directly to a worker with SSL.
-   * - Database
-     - Defines the database to establish a connection with.
-     - ``master``
-   * - Cluster
-     - Enables (``true``) or disables (``false``) the load balancer. After enabling or disabling the load balance, verify the connection.
-     - 
-   * - Username
-     - Specifies the username of a role to use when connecting.
-     - ``rhendricks``	 
-   * - Password
-     - Specifies the password of the selected role.
-     - ``Tr0ub4dor&3``
-   * - Require SSL (recommended)
-     - Sets SSL as a requirement for establishing this connection.
-     - 
+     * - Item
+       - Description
+       - Example
+     * - Server
+       - Defines the server of the SQream worker.
+       - ``127.0.0.1`` or ``sqream.mynetwork.co``
+     * - Port
+       - Defines the TCP port of the SQream worker.
+       - ``3108`` when using a load balancer, or ``5100`` when connecting directly to a worker with SSL.
+     * - Database
+       - Defines the database to establish a connection with.
+       - ``master``
+     * - Cluster
+       - Enables (``true``) or disables (``false``) the load balancer. After enabling or disabling the load balance, verify the connection.
+       - 
+     * - Username
+       - Specifies the username of a role to use when connecting.
+       - ``rhendricks``	 
+     * - Password
+       - Specifies the password of the selected role.
+       - ``Tr0ub4dor&3``
+     * - Require SSL (recommended)
+       - Sets SSL as a requirement for establishing this connection.
+       - 
 
 The connection is established and the data source page is displayed.
 
 .. tip:: 
    Tableau automatically assigns your connection a default name based on the DSN and table. SQream recommends giving the connection a more descriptive name.
+   
+.. _set_up_sqream_tables_as_data_sources:
 
 Setting Up SQream Tables as Data Sources
 ----------------
+After connecting to SQream you must set up the SQream tables as data sources.
+
+**To set up SQream tables as data sources:**
 	
 1. From the **Table** menu, select the desired database and schema.
 
@@ -216,7 +220,7 @@ This section describes the installation method for Tableau version 2019.3 or ear
  
 Automatically Reconfiguring the ODBC Driver After Initial Installation
 ~~~~~~~~~~~~~~~~~~
-If you've already installed the SQream ODBC driver and installed Tableau, SQream recommends reinstalling the ODBC driver with the **.TDC Tableau Settings for SQream DB** shown in the image below:
+If you've already installed the SQream ODBC driver and installed Tableau, SQream recommends reinstalling the ODBC driver with the **.TDC Tableau Settings for SQream DB** configuration shown in the image below:
 
 .. image:: /_static/images/odbc_windows_installer_tableau.png
 
@@ -230,55 +234,153 @@ If you want to manually reconfigure the ODBC driver, see :ref:`Manually Reconfig
 
 Manually Reconfiguring the ODBC Driver After Initial Installation
 ~~~~~~~~~~~~~~~~~~
+The file **Tableau Datasource Customization (TDC)** file lets you use Tableau make full use of SQream DB's features and capabilities.
 
-The TDC file (Tableau Datasource Customization) helps Tableau make full use of SQream DB's features and capabilities.
+**To manually reconfigure the ODBC driver after initial installation:**
 
-Before you start, check which version of Tableau is used. The version needs to be placed in the TDC file.
+1. Do one of the following:
 
-#. Download the TDC file to your computer :download:`odbc-sqream.tdc <odbc-sqream.tdc>`.
+   1. Download the :download:`odbc-sqream.tdc <odbc-sqream.tdc>` file to your machine.
    
-   Alternatively, copy the text below to a text editor.
+       ::
+   
+   2. Copy the text below into a text editor:
    
    .. literalinclude:: odbc-sqream.tdc
       :language: xml
-      :caption: SQream DB ODBC TDC
+      :caption: SQream ODBC TDC File
       :emphasize-lines: 2
 
+#. Check which version of Tableau you are using.
 
-#. Change the highlighted line to match your major Tableau version. For example, if you're on Tableau ``2019.2.1``, writing ``2019.2`` is enough.
+    ::
 
-#. 
-   * For **Tableau Desktop** - save the TDC file to ``C:\Users\<user name>\Documents\My Tableau Repository\Datasources``, where ``<user name>`` is the Windows username Tableau is installed in.
-   
-   * For **Tableau Server** - save the TDC file to ``C:\ProgramData\Tableau\Tableau Server\data\tabsvc\vizqlserver\Datasources``.
+#. In the text of the file shown above, in the highlighted line, replace the version number with the **major** version of Tableau that you are using. For example, if you are using Tableau vesion **2019.2.1**, replace it with **2019.2**.
 
-Configure the ODBC connection (DSN)
+    ::
+
+#. Do one of the following:
+
+   * If you are using **Tableau Desktop** - save the TDC file to *C:\Users\<user name>\Documents\My Tableau Repository\Datasources*, where ``<user name>`` is the Windows username that you have installed Tableau under.
+ 
+    ::
+	
+   * If you are using the **Tableau Server** - save the TDC file to *C:\ProgramData\Tableau\Tableau Server\data\tabsvc\vizqlserver\Datasources*.
+
+Configuring the ODBC Connection
 ~~~~~~~~~~~~
+The ODBC connection uses a DSN when connecting to ODBC data sources, and each DSN represents one SQream database.
 
-Create an ODBC DSN before connecting Tableau with SQream DB. See the section titled :ref:`create_windows_odbc_dsn` for information about creating an ODBC DSN in Windows.
+**To configure the ODBC connection:**
 
-Remember to test the connectivity before saving the DSN.
+1. Create an ODBC DSN.
 
-Connecting Tableau to SQream DB
+    ::
+
+#. Open the Windows menu by pressing the Windows button (:kbd:`⊞ Win`) or clicking the **Windows** menu button.
+
+    ::
+	
+#. Type **ODBC** and select **ODBC Data Sources (64-bit)**. 
+
+   During installation, the installer created a sample user DSN named **SQreamDB**.
+   
+#. *Optional* - Do one or more of the following:
+
+   * Modify the DSN name.
+   
+      ::
+	 
+   * Create a new DSN name by clicking **Add** and selecting **SQream ODBC Driver**.
+   
+   .. image:: /_static/images/odbc_windows_dsns.png
+   
+      ::
+   
+#. Click **Finish**. **Comment - the original document said "click Next," but I tried it and there is a "Finish" button instead. Verify on a computer where Tableau has been installed.**
+
+      ::
+
+#. Enter your connection parameters.
+
+   The following table describes the connection parameters:
+	 
+   .. list-table:: 
+      :widths: 15 38 38
+      :header-rows: 1
+   
+      * - Item
+        - Description
+        - Example
+      * - Data Source Name
+        - The Data Source Name. SQream recommends using a descriptive and easily recognizable name for referencing your DSN. Once set, the Data Source Name cannot be changed.
+        - 
+      * - Description
+        - The description of your DSN. This field is optional.
+        - 
+      * - User
+        - The username of a role to use for establishing the connection.
+        - ``rhendricks``
+      * - Password
+        - The password of the selected role.
+        - ``Tr0ub4dor``
+      * - Database
+        - The database name to connect to. For example, ``master``
+        - ``master``	 
+      * - Service
+        - The :ref:`service queue<workload_manager>` to use.
+        - For example, ``etl``. For the default service ``sqream``, leave blank.
+      * - Server
+        - The hostname of the SQream worker.
+        - ``127.0.0.1`` or ``sqream.mynetwork.co``
+      * - Port
+        - The TCP port of the SQream worker.
+        - ``5000`` or ``3108``
+      * - User Server Picker
+        - Uses the load balancer when establishing a connection. Use only if exists, and check port. **Comment - what does the previous line mean? Also, the server picker and load balancer are not exactly the same thing, correct?**
+        - 
+      * - SSL
+        - Uses SSL when establishing a connection.
+        - 
+      * - Logging Options
+        - Lets you modify your logging options when tracking the ODBC connection for connection issues.
+        - 
+
+.. tip:: Test the connection by clicking **Test** before saving your DSN.
+
+7. Save the DSN by clicking **OK.**
+
+Connecting Tableau to SQream
 ~~~~~~~~~~~~
+**To connect Tableau to SQream:**
 
-#. Start Tableau Desktop and select "Other Database (ODBC)", by navigating :menuselection:`Connect --> To a server --> More --> Other Database (ODBC)`
-   
-   .. image:: /_static/images/tableau_more_servers.png
-   
-#. In the DSN selection window, select the DSN that you created earlier and select :menuselection:`Connect --> OK`. 
-   
-   If prompted by Tableau, you may need to specify the user name and password again after clicking Connect.
-   
-   .. image:: /_static/images/tableau_choose_dsn_and_connect.png
-   
+1. Start Tableau Desktop.
 
+    ::
+	
+#. In the **Connect** menu, in the **To a server** sub-menu, click **More Servers** and select **Other Databases (ODBC)**.
+
+   The **Other Databases (ODBC)** window is displayed.
+   
+    ::
+	
+#. In the Other Databases (ODBC) window, select the DSN that you created in :ref:`Setting Up SQream Tables as Data Sources <set_up_sqream_tables_as_data_sources>`.
+
+
+   Tableau may display the **Sqream ODBC Driver Connection Dialog** window and prompt you to provide your username and password.
+
+#. Provide your username and password and click **OK**.   
+  
 .. _tableau_connect_to_sqream_db:
 
 
 
-Tableau best practices and troubleshooting
+Tableau Best Practices and Troubleshooting
 ---------------
+This section describes the following best practices and troubleshooting procedures when connecting to SQream using Tableau:
+
+.. contents::
+   :local:
 
 Cut out what you don't need
 ~~~~~~~~~~~~~~~~~~
