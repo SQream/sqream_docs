@@ -1,7 +1,7 @@
-.. _sqream_studio:
+.. _acceleration_studio_version_5.3.0:
 
 ****************************
-SQream Acceleration Studio 5.3.2
+SQream Acceleration Studio 5.3.0
 ****************************
 
 The SQream Studio is a web-based client for use with SQream DB. The Studio provides users with all functionality available from the command line in an intuitive and easy-to-use format. This includes running statements, managing roles and permissions, and managing SQream DB clusters.
@@ -12,15 +12,6 @@ The SQream Studio is a web-based client for use with SQream DB. The Studio provi
 
 Getting Started
 ==================
-
-
-
-
-
-
-
-
-
 
 .. _setting_up_and_starting_studio:
 
@@ -35,7 +26,6 @@ Studio is included with all `dockerized installations of SQream DB <https://docs
 
 
 
-You can start Studio using :ref:`sqream-console<start_editor>`.
 
 Logging In to Studio
 ---------------
@@ -51,19 +41,13 @@ Logging In to Studio
 
 2. Fill in your SQream DB login credentials. These are the same credentials used for :ref:`sqream sql<sqream_sql_cli_reference>` or JDBC.
 
-.. image:: /_static/images/studio_login_5.3.2.png
+   When you sign in, the License Warning is displayed.
 
-When you sign in, the License Warning is displayed.
 
-.. image:: /_static/images/license_warning_5.3.1.png
-
-Using Studio
+Navigating Studio's Main Features
 -------------
-When you log in, you are automatically taken to the **Editor** screen.
+When you log in, you are automatically taken to the **Editor** screen. The Studio's main functions are displayed in the **Navigation** pane on the left side of the screen.
 
-The Studio's main functions are displayed in the **Navigation** pane on the left side of the screen.
-
-.. image:: /_static/images/studio_main_functions_5.3.0.png
 
 From here you can navigate between the main areas of the Studio:
 
@@ -79,8 +63,10 @@ From here you can navigate between the main areas of the Studio:
      - All users have access to the Editor and to databases that they have permissions for.   
    * - :ref:`Logs<logs>`
      - Only users with the **superuser** permissions have access to the logs.
+   * - :ref:`Roles<roles>`
+     - Lets you create users and manage user permissions.
 
-By clicking the user icon |icon-user|, you can also use it for logging out and viewing the following:
+By clicking the user icon, you can also use it for logging out and viewing the following:
 
 * User information
 * Connection type
@@ -89,23 +75,23 @@ By clicking the user icon |icon-user|, you can also use it for logging out and v
 * Data size limitations
 * Log out
 
-.. image:: /_static/images/studio_user_info_5.3.1.png
 
 
 .. _back_to_dashboard:
 
 .. _studio_dashboard:
 
-Dashboard
+Monitoring Workers and Services from the Dashboard
 ==============================
+The **Dashboard** is used for the following:
 
-If you signed in with a ``SUPERUSER`` role, you can access the Dashboard.
+* Monitoring cluster storage and system health.
+* Viewing, monitoring, and adding defined service queues.
+* Viewing and managing worker status and add workers.
 
-The Dashboard includes the panes shown below:
+You can only access the Dashboard if you signed in with a ``SUPERUSER`` role.
 
-.. image:: /_static/images/studio_dashboard_main_5.3.0.png
-
-The following is a brief description of each pane:
+The following is a brief description of the Dashboard panels:
 
 .. list-table::
    :widths: 10 25 65
@@ -130,11 +116,9 @@ The following is a brief description of each pane:
 
 .. _data_storage_panel:
 
-Data Storage Panel
+Displaying System Disk Usage from the Data Storage Panel
 -----------------------
 The **Data Storage** area displays your system's total disk usage (percentage) and data storage (donut graph).
-
-.. image:: /_static/images/studio_dashboard_data_storage_5.3.0.png
 
 Your data storage is shows as the following four components:
 
@@ -145,15 +129,11 @@ Your data storage is shows as the following four components:
 
 .. _administration_storage_database:
 
-Clicking the expand arrow on the Data Storage panel expands it to show more information.
+You can show more information by clicking the expand arrow on the Data Storage panel.
 
 .. image:: /_static/images/studio_dashboard_expand_data_storage_5.3.0.png
 
 The expanded Data Storage panel can be used to drill down into each database's storage footprint, and displays a breakdown of how much storage each database in the cluster uses.
-
-.. image:: /_static/images/studio_dashboard_expand_data_storage_2_5.3.0.png
-
-
 
 The database information is displayed in a table and shows the following:
 
@@ -163,9 +143,7 @@ The database information is displayed in a table and shows the following:
 * **Ratio** – the effective compression ratio
 * **Deleted Data** – Storage that is temporarily occupied, but has not been reclaimed.
 
-Below the table, an interactive line graph displays the database storage trends. By default, the line graph displays the total storage for all databases. You can show a particular database's graph by clicking it in the table.
-
-You can also change the line graph's timespan by selecting one from the timespan dropdown menu.
+Below the table, an interactive line graph displays the database storage trends. By default, the line graph displays the total storage for all databases. You can show a particular database's graph by clicking it in the table. You can also change the line graph's timespan by selecting one from the timespan dropdown menu.
 
 .. image:: /_static/images/studio_dashboard_expand_data_storage_3_5.3.0.png
 
@@ -173,21 +151,13 @@ You can also change the line graph's timespan by selecting one from the timespan
 
 .. _services_panel:
 
-Services Panel
+Subscribing to Workers from the Services Panel
 --------------------------
 Services are used to categorize and associate (also known as **subscribing**) workers to particular services. The **Service** panel is used for viewing, monitoring, and adding defined `service queues <https://docs.sqream.com/en/latest/guides/features/workload_manager.html#workload-manager>`_.
 
 .. image:: /_static/images/studio_dashboard_services_panel_5.3.0.png
 
-
-
-
-
-
-
 The Dashboard includes the four panes shown below:
-
-
 
 .. image:: /_static/images/studio_dashboard_service_queue_5.3.0.png
 
@@ -208,14 +178,11 @@ The following is a brief description of each pane:
    * - 4
      - Adds a service.
    * - 5
-     - Shows the currently processed queries belonging to the service/total queries for that service in the system (including queued queries).
-	 
+     - Shows the currently processed queries belonging to the service/total queries for that service in the system (including queued queries).	 
 
 Adding A Service
 ^^^^^^^^^^^^^^^^^^^^^	 
-You can add a service by clicking **Add** and defining the service name.
-
-.. image:: /_static/images/studio_dashboard_defining_new_service_5.3.0.png
+You can add a service by clicking **+ Add** and defining the service name.
 
 .. note:: If you do not associate a worker with the new service, it will not be created.
 
@@ -225,27 +192,22 @@ You can manage workers from the **Workers** panel. For more information on manag
 
 .. _workers_panel:
 
-Workers
+Managing Workers from the Workers Panel
 ------------
-The **Workers** panel section describes the following:
+From the **Workers** panel you can do the following:
 
-* :ref:`Using the Workers panel <overview>`
-* :ref:`Adding a worker to a service<add_worker_to_service>`
-* :ref:`Viewing a worker's active query information<view_worker_query_information>`
-* :ref:`Viewing a worker's execution plan<view_worker_execution_plan>`
+* :ref:`View workers <view_workers>`
+* :ref:`Add a worker to a service<add_worker_to_service>`
+* :ref:`View a worker's active query information<view_worker_query_information>`
+* :ref:`View a worker's execution plan<view_worker_execution_plan>`
 
-.. _overview:
+.. _view_workers:
 
-Using the Worker's Panel
+Viewing Workers
 ^^^^^^^^
 The **Worker** panel shows each worker (``sqreamd``) running in the cluster. Each worker has a status bar that represents the status over time. The status bar is divided into 20 equal segments, showing the most dominant activity in that segment.
-
-.. image:: /_static/images/studio_dashboard_worker_area_description_5.3.0.png
 	 
-You can set the time scale of the displayed information by selecting a timeframe in the time scale dropdown menu.
-
-.. image:: /_static/images/studio_dashboard_worker_set_scale_5.3.0.png
-
+From the **Scale** dropdown menu you can set the time scale of the displayed information
 You can hover over segments in the status bar to see the date and time corresponding to each activity type:
 
 * **Idle** – the worker is idle and available for statements.
@@ -264,7 +226,6 @@ You can add a worker to a service by clicking the **add** button.
 
 Clicking the **add** button shows the selected service's workers. You can add the selected worker to the service by clicking **Add Worker**. Adding a worker to a service does not break associations already made between that worker and other services.
 
-.. image:: /_static/images/studio_dashboard_add_worker_to_service_2_5.3.0.png
 
 .. _view_worker_query_information:
 
@@ -272,7 +233,6 @@ Viewing A Worker's Active Query Information
 ^^^^^^^^^^^^^^^^^^^^^	 
 You can view a worker's active query information by clicking **Queries**, which displays them in the selected service.
 
-.. image:: /_static/images/studio_dashboard_worker_status_5.3.0.png
 
 Each statement shows the **query ID**, **status**, **service queue**, **elapsed time**, **execution time**, and **estimated completion status**. In addition, each statement can be stopped or expanded to show its execution plan and progress. For more information on viewing a statement's execution plan and progress, see :ref:`Viewing a Worker's Execution Plan <view_worker_execution_plan>` below.
 
@@ -283,11 +243,7 @@ While viewing a worker's query information, clicking the **down arrow** expands 
 
 .. image:: /_static/images/studio_dashboard_show_cpu_gpu_graph_5.3.0.png
 
-The graphs show the resource utilization trends over time, and the CPU memory and utilization and the GPU utilization values on the right.
-
-.. image:: /_static/images/studio_dashboard_show_cpu_gpu_graph_open_5.3.0.png
-
-You can hover over the graph to see more information about the activity at any point on the graph.
+The graphs show the resource utilization trends over time, and the **CPU memory** and **utilization** and the **GPU utilization** values on the right. You can hover over the graph to see more information about the activity at any point on the graph.
 
 Error notifications related to statements are displayed as shown in the figure below, and you can hover over them for more information about the error. 
 
@@ -300,15 +256,10 @@ Viewing a Worker's Execution Plan
 	 
 Clicking the ellipsis in a service shows the following additional options:
 
-.. image:: /_static/images/studio_dashboard_worker_additional_options_5.3.0.png
+* **Stop Query** - stops the query.
+* **Show Execution Plan** - shows the execution plan as a table. The columns in the **Show Execution Plan** table can be sorted.
 
-Clicking **Stop Query** stops the query. Clicking **Show Execution Plan** shows the execution plan in a table. The columns in the Show Execution Plan table can be sorted.
-
-.. image:: /_static/images/studio_dashboard_show_execution_plan_5.3.0.png
-
-For more information on the current query plan, see `SHOW_NODE_INFO <https://docs.sqream.com/en/latest/reference/sql/sql_statements/monitoring_commands/show_node_info.html#show-node-info>`_.
-
-For more information on checking active sessions across the cluster, see `SHOW_SERVER_STATUS <https://docs.sqream.com/en/latest/reference/sql/sql_statements/monitoring_commands/show_server_status.html>`_.
+For more information on the current query plan, see `SHOW_NODE_INFO <https://docs.sqream.com/en/latest/reference/sql/sql_statements/monitoring_commands/show_node_info.html#show-node-info>`_. For more information on checking active sessions across the cluster, see `SHOW_SERVER_STATUS <https://docs.sqream.com/en/latest/reference/sql/sql_statements/monitoring_commands/show_server_status.html>`_.
 
 .. include:: /reference/sql/sql_statements/monitoring_commands/show_server_status.rst
    :start-line: 67
@@ -321,13 +272,8 @@ In some cases you may want to stop or restart workers for maintenance purposes. 
 
 .. image:: /_static/images/stop_restart_worker.png
 
-Starting or restarting workers terminates all queries related to that worker.
+Starting or restarting workers terminates all queries related to that worker. When you stop a worker, its background turns gray.
 
-.. image:: /_static/images/stop_restart_worker_2.png
-
-When you stop a worker, its background turns gray.
-
-.. image:: /_static/images/worker_stopped.png
 
 
 
@@ -426,16 +372,17 @@ The license information is a counter showing the amount of time in days remainin
 
 .. _editor_top:
 
-Editor
+Executing Statements and Running Queries from the Editor
 =================
+The **Editor** is used for the following:
 
-The Editor's main screen includes the four panes shown below:
-
-.. image:: /_static/images/studio_editor_main_screen_5.3.0.png
-
-
+* Selecting an active database and executing queries.
+* Performing statement-related operations and showing metadata.
+* Executing pre-defined queries.
+* Writing queries and statements and viewing query results.
 	 
-The following is a brief description of each pane:
+The following is a brief description of the Editor panels:
+
 
 .. list-table::
    :widths: 10 34 56
@@ -464,7 +411,7 @@ The following is a brief description of each pane:
 
 .. _studio_editor_toolbar:
 
-Toolbar
+Executing Statements from the Toolbar
 -------------
 
 The following figure shows the **Toolbar** pane:
@@ -495,63 +442,28 @@ For more information on stopping active statements, see the :ref:`STOP_STATEMENT
 
 :ref:`Back to Editor<editor_top>`
 
-Database Tree and System Queries Panel
+Performing Statement-Related Operations from the Database Tree
 ---------------
+From the Database Tree you can perform statement-related operations and show metadata (such as a number indicating the amount of rows in the table).
+
 The following figure shows the **Database Tree** and **System Queries** panel, with the Database Tree tab selected.
 
 .. image:: /_static/images/studio_database_tree_system_queries_panel_5053.png
 
-The database tree contains two tabs showing the following information:
-
-* :ref:`Database Tree tab<database_tree_tab>` - shows the database object hierarchy (such as tables, views, functions, and columns), lets you perform statement-related operations, and shows metadata (such as a number indicating the amount of rows in the table).
-* :ref:`System Queries tab<system_queries_tab>` - contains predefined catalog queries for execution.
-
-
-
-.. _database_tree_tab:
-
-Database Tree
-^^^^^^^^^^^^^^^^^^^^^^^
-The following figure shows the **TABLES** object data opened, and the database object functions in the **calcs** table object:
+The following figure shows the database object functions in the **calcs** table object.
 
 .. image:: /_static/images/studio_database_object_operations_5030.png
-
-
 
 The database object functions are used to perform the following:
 
 
-  * To generate a SELECT statement in the Statement panel |icon-select|.
-  * To copy table names into the Statement panel |icon-copy|.  
-  * To perform additional operations |icon-dots|.
+  * The **SELECT** statement - copies the selected table's **columns** into the Statement panel as ``SELECT`` parameters.
+  * The **copy** feature |icon-copy| - copies the selected table's **name** into the Statement panel. 
+  * The **additional operations** |icon-dots| - displays the following additional options:
   
-  
-Generating a SELECT Statement in Statement Panel
-***************************
-
-Clicking |icon-select| copies the selected table's **columns** into the Statement panel as ``SELECT`` parameters:
-  
-.. image:: /_static/images/studio_generate_select_statement_5030.png
-
-Copying Tables into Statement Panel
-****************************
-
-Clicking |icon-copy| copies the selected table's **name** into the Statement panel:
-
-.. image:: /_static/images/studio_public_calcs_5053.png
 
 
 
-   
-
-Using Additional Object Options
-****************************
-
-Clicking |icon-dots| displays the following additional options:
-
-.. image:: /_static/images/studio_additional_options_5053.png
-
-The following table describes the additional options:
 
 .. list-table::
    :widths: 30 70
@@ -576,87 +488,58 @@ The following table describes the additional options:
    * - Table DDL
      - Generates a DDL statement for the selected object in the editing area. To get the entire database DDL, click the |icon-ddl-edit| icon next to the database name in the tree root. See also  `Seeing System Objects as DDL <https://docs.sqream.com/en/latest/guides/features/viewing_system_objects_as_ddl.html#seeing-system-objects-as-sql>`_.
    * - DDL Optimizer
-     - The DDL Optimizer lets you analyze database tables and recommends possible optimizations. For more information, see the `Optimization and Best Practices <https://docs.sqream.com/en/latest/guides/operations/optimization_best_practices.html#sql-best-practices>`_ guide.
+     - The `DDL Optimizer <https://docs.sqream.com/en/latest/guides/operations/sqream_studio.html#using-the-ddl-optimizer DDL>`_  lets you analyze database tables and recommends possible optimizations.
 	 
 	 
 	 
 
 
-Using the DDL Optimizer
-************
+Optimizing Database Tables Using the DDL Optimizer
+^^^^^^^^^^^^^^^^^^^^^
+The **DDL Optimizer** tab analyzes database tables and recommends possible optimizations according to SQream's best practices.
+
 As described in the previous table, you can access the DDL Optimizer by clicking the **additional options icon** and selecting **DDL Optimizer**.
-
-The following image shows the DDL Optimizer screen:
-
-.. image:: /_static/images/studio_editor_ddl_optimizer.5.3.0.png
 
 The following table describes the DDL Optimizer screen:
 
 .. list-table::
-   :widths: 10 20 70
-   :header-rows: 1  
+   :widths: 15 75
+   :header-rows: 1   
    
-   * - No.
-     - Element
+   * - Element
      - Description
-   * - 1
-     - Column area
+   * - Column area
      - Shows the column **names** and **column types** from the selected table. You can scroll down or to the right/left for long column lists.
-   * - 2
-     - Optimization area
-     - Shows the following:
-	   
-	   * The number of rows to sample as the basis for running an optimization.
-	   * The default setting when running an optimization (1,000,000). This is also the overhead threshold used when analyzing ``VARCHAR`` fields.
-	   * The default percent buffer to add to ``VARCHAR`` lengths (10%). Attempts to determine field nullability.
-   * - 3
-     - Run Optimizer
+   * - Optimization area
+     - Shows the number of rows to sample as the basis for running an optimization, the default setting (1,000,000) when running an optimization (this is also the overhead threshold used when analyzing ``VARCHAR`` fields),  and the default percent buffer to add to ``VARCHAR`` lengths (10%). Attempts to determine field nullability.
+   * - Run Optimizer
      - Starts the optimization process.
 
 Clicking **Run Optimizer** adds a tab to the Statement panel showing the optimized results of the selected object. The figure below shows the **calcs Optimized** tab for the optimized **calcs** table.
 
-.. image:: /_static/images/studio_optimized_5.3.0.png
-
-
-
+For more information, see `Optimization and Best Practices <https://docs.sqream.com/en/latest/guides/operations/optimization_best_practices.html>`_.
 
 :ref:`Back to top<top>`
 
-.. _system_queries_tab:
-
-
-System Queries
-^^^^^^^^^^^^^^^^^^^^^^^
-The Editor includes the following system query types:
+Executing Pre-Defined Queries from the System Queries Panel
+---------------
+The **System Queries** panel lets you execute pre-defined queries and includes the following system query types:
 
 * **Catalog queries** - used for analyzing table compression rates, users and permissions, etc.
-* **Admin queries** - queries related to available queries useful for SQream database management.
+* **Admin queries** - queries related to available  (describe the functionality in a general way). Queries useful for SQream database management:
 
-Clicking an item pastes the query into the Statement pane.
 
-.. image:: /_static/images/studio_editor_catalog_query_databases_5.3.0.png
 
-You can undo your previous operation by pressing **Ctrl + Z**.
 
-:ref:`Back to Editor<editor_top>`
+
+Clicking an item pastes the query into the Statement pane, and you can undo a previous operation by pressing **Ctrl + Z**.
+
 
 .. _studio_editor_statement_area:
 
-Statement Pane
+Writing Statements and Queries from the Statement Panel
 ----------------
-
-The multi-tabbed statement area is used for writing queries and statements, and is used in tandem with the toolbar.
-
-
-.. image:: /_static/images/studio_editor_statement_5.3.0.png
-
-When writing and executing statements, you must first select a database from the **Database** dropdown menu in the toolbar.
-
-.. image:: /_static/images/select_database_from_toolbar_5.3.0.png
-
-When you execute a statement, it passes through a series of statuses until completing. Knowing the status helps you with statement maintenance. The statuses are shown in the **Results panel**.
-
-.. image:: /_static/images/statement_status.png
+The multi-tabbed statement area is used for writing queries and statements, and is used in tandem with the toolbar. When writing and executing statements, you must first select a database from the **Database** dropdown menu in the toolbar. When you execute a statement, it passes through a series of statuses until completing. Knowing the status helps you with statement maintenance, and the statuses are shown in the **Results panel**.
 
 The following table shows the statement statuses:
 	 
@@ -677,27 +560,13 @@ The following table shows the statement statuses:
    * - Statement stopped
      - The statement has been stopped.
 	 
-You can add and name new tabs for each statement that you need to execute, and Studio preserves your created tabs when you switch between databases.
-
-.. image:: /_static/images/switching_between_databases_5.3.0.png
-
-You can add new tabs by clicking |icon-plus| , which creates a new tab to the right with a default name of SQL and an increasing number. This helps you keep track of your statements.
+You can add and name new tabs for each statement that you need to execute, and Studio preserves your created tabs when you switch between databases. You can add new tabs by clicking |icon-plus| , which creates a new tab to the right with a default name of SQL and an increasing number. This helps you keep track of your statements.
 
 .. image:: /_static/images/statement_pane_adding_statement_5.3.0.png
 
-You can also rename the default tab name by double-clicking it and typing a new name.
+You can also rename the default tab name by double-clicking it and typing a new name and write multiple statements in tandem in the same tab by separating them with semicolons (``;``).If too many tabs to fit into the Statement Pane are open at the same time, the tab arrows are displayed. You can scroll through the tabs by clicking |icon-left| or |icon-right|, and close tabs by clicking |icon-close|. You can also close all tabs at once by clicking **Close all** located to the right of the tabs.
 
-.. image:: /_static/images/statement_pane_renaming_statement_tab_5.3.0.png
-
-
-
-You can write multiple statements in tandem in the same tab by separating them with semicolons (``;``):
-
-
-
-If too many tabs to fit into the Statement Pane are open at the same time, the tab arrows are displayed. You can scroll through the tabs by clicking |icon-left| or |icon-right|, and close tabs by clicking |icon-close|. You can also close all tabs at once by clicking **Close all** located to the right of the tabs.
-
-.. tip:: If this is your first time with SQream DB, see `First steps with SQream DB <https://docs.sqream.com/en/latest/first_steps.html#first-steps>`_.
+.. tip:: If this is your first time using SQream, see `First steps with SQream DB <https://docs.sqream.com/en/latest/first_steps.html#first-steps>`_.
 
 
 .. Keyboard shortcuts
@@ -716,77 +585,50 @@ If too many tabs to fit into the Statement Pane are open at the same time, the t
 :ref:`Back to Editor<editor_top>`
 
 
-Results Panel
+Viewing Statement and Query Results from the Results Panel
 ------------------------------------
-The results pane shows query results and execution information. By default, only the first 10,000 results are returned, although you can modify this from the :ref:`studio_editor_toolbar`, as described above.
+The results pane shows statment and query results. By default, only the first 10,000 results are returned, although you can modify this from the :ref:`studio_editor_toolbar`, as described above.
 
 .. image:: /_static/images/studio_editor_results_5053.png
 
 By default, executing several statements together opens a separate results tab for each statement. Executing statements together executes them serially, and any failed statement cancels all subsequent executions.
 
-The following figure shows the main functions available from the Results panel:
-
-.. image:: /_static/images/studio_results_view_pane_5053.png
-
 The following is a brief description of the elements on the Results panel views:
 
 .. list-table::
-   :widths: 10 34 56
-   :header-rows: 1   
+   :widths: 45 160
+   :header-rows: 1  
    
-   * - No.
-     - Element
+   * - Element
      - Description
-   * - 1
-     - :ref:`Results view<results_view>`
-     - Lets you view search query results. For more information on running parallel statements, see :ref:`Running Parallel Statements<running_parallel_statements>`
-   * - 2
-     - :ref:`Execution Details view<execution_details_view>`
-     - Lets you view execution details, such as statement ID, number of rows, and averge number of rows in chunk. 
-   * - 3
-     - :ref:`SQL view<sql_view>`
+   * - :ref:`Results view<results_view>`
+     - Lets you view search query results.
+   * - :ref:`Execution Details view<execution_details_view>`
+     - Lets you view execution details, such as statement ID, number of rows, and averge number of rows in chunk.
+   * - :ref:`SQL view<sql_view>`
      - Lets you see the SQL view.
-   * - 4
-     - :ref:`Save results to clipboard<save_results_to_clipboard>`
+   * - :ref:`Save results to clipboard<save_results_to_clipboard>`
      - Lets you save your search results to the clipboard to paste into another text editor.
-   * - 5
-     - :ref:`Save results to local file<save_results_to_local_file>`
+   * - :ref:`Save results to local file<save_results_to_local_file>`
      - Lets you save your search query results to a local file.
-
-
-	 
 
 .. _results_view:
 
 
 	 
-Results View
+Searching Query Results in the Results View
 ^^^^^^^^^^^^
-The following figure shows the Results view:
+The **Results view** lets you view search query results.
 
-.. image:: /_static/images/studio_results_pane_5053_1.png
+From this view you can also do the following:
 
-The following is a brief description of the Results view:
+* View the amount of time (in seconds) taken for a query to finish executing.
+* Switch and scroll between tabs.
+* Close all tabs at once.
+* Enable keeping tabs by selecting **Keep tabs**.
+* Sort column results.
 
-.. list-table::
-   :widths: 10 90
-   :header-rows: 1   
-   
-   * - No.
-     - Element
-   * - 1
-     - Lets you switch between tabs. 
-   * - 2
-     - Lets you close all tabs.  You can also close tabs by clicking |icon-close|.
-   * - 3
-     - Lets you scroll between tabs if too many result tabs are open to fit in the panel. Click |icon-left| or |icon-right| to scroll through the tab listings. 
-   * - 4
-     - Lets you keep each new statement that you execute in a separate tab. When **Keep tabs** is disabled, each new statement you execute clears all existing results.
-   * - 5
-     - Lets you sort column results.
-   * - 6
-     - Lets you view the amount of time (in seconds) taken for a query to finish executing.
-	 
+In the Results view you can also run parallel statements, as described in **Running Parallel Statements** below.
 
 .. _running_parallel_statements:
 
@@ -813,7 +655,9 @@ The following figure shows the parallel statement syntax in the Editor:
 
 Execution Details View
 ^^^^^^^^^^^^
-The **Execution Details** view lets you view a query’s execution plan for monitoring purposes. Most importantly, the Execution Details view highlights rows based on how long they ran relative to the entire query. This can be seen in the **timeSum** column as follows:
+The **Execution Details** view lets you view a query’s execution plan for monitoring purposes. Most importantly, the Execution Details view highlights rows based on how long they ran relative to the entire query.
+
+This can be seen in the **timeSum** column as follows:
 
 * **Rows highlighted red** - longest runtime
 * **Rows highlighted orange** - medium runtime
@@ -825,13 +669,13 @@ The **Execution Details** view lets you view a query’s execution plan for moni
 
 .. _sql_view:
 
-SQL View
+Viewing Wrapped Strings in the SQL View
 ^^^^^^^^^^^^
 The SQL View panel allows you to more easily view certain queries, such as a long string that appears on one line. The SQL View makes it easier to see by wrapping it so that you can see the entire string at once. It also reformats and organizes query syntax entered in the Statement panel for more easily locating particular segments of your queries. The SQL View is identical to the **Format SQL** feature in the Toolbar, allowing you to retain your originally constructed query while viewing a more intuititively structured snapshot of it.
 
 The following figure shows the SQL view:
 
-.. image:: /_static/images/sql_view_5.3.1.png
+.. image:: /_static/images/sql_view_5.0.3.png
 
 .. _save_results_to_clipboard:
 
@@ -839,29 +683,17 @@ Saving Results to the Clipboard
 ^^^^^^^^^^^^
 The **Save results to clipboard** function lets you save your results to the clipboard to paste into another text editor or into Excel for further analysis.
 
-.. image:: /_static/images/save_results_to_clipboard_5.3.1.png
 
 .. _save_results_to_local_file:
 
 Saving Results to a Local File
 ^^^^^^^^^^^^
-The **Save results to local file** functions lets you save your search query results to a local file.
+The **Save results to local file** functions lets you save your search query results to a local file. Clicking **Save results to local file** downloads the contents of the Results panel to an Excel sheet. You can then use copy and paste this content into other editors as needed.
 
-Clicking **Save results to local file** downloads the contents of the Results panel to an Excel sheet. You can then use copy and paste this content into other editors as needed.
-
-.. image:: /_static/images/save_results_to_a_local_file_5.3.1.png
-
-The following figure shows the contents of the Results panel downloaded to an Excel sheet:
-
-.. image:: /_static/images/studio_editor_save_result_to_clipboard_excel_5.3.0.png
-
-
-
-Analyzing the Results
+Analyzing Results
 ----------------------------
 
-When results are produced, a :kbd:`Generate CREATE statement` button will appear.
-Clicking the button creates a new tab with an optimized :ref:`create_table` statement, and an :ref:`insert` statement to copy the data to the new table.
+When results are produced, a **Generate CREATE statement** button is displayed. Clicking this button creates a new tab with an optimized :ref:`create_table` statement, and an :ref:`insert` statement to copy the data to the new table.
 
 .. _logs:
 
@@ -869,71 +701,59 @@ Clicking the button creates a new tab with an optimized :ref:`create_table` stat
 
 :ref:`Back to Editor<editor_top>`
 
-Logs
+Viewing Logs
 ============
-The following figure shows the **Logs** screen.
-
-.. image:: /_static/images/studio_logs_main_screen_5.3.0.png
-
-The following is a brief description of the elements on the Results panel views:
+The **Logs** screen is used for viewing logs and includes the following elements:
 
 .. list-table::
-   :widths: 10 15 75
+   :widths: 15 75
    :header-rows: 1   
    
-   * - No.
-     - Element
+   * - Element
      - Description
-   * - 1
-     - :ref:`Filter<filter>`
+   * - :ref:`Filter area<filter>`
      - Lets you filter the data shown in the table. 
-   * - 2
-     - :ref:`Queries<queries>`
-     - Shows basic query information, such as query number and the time the query was run. 
-   * - 3
-     - :ref:`Sessions<sessions>`
-     - Shows basic session information, such as session ID and user name.
-   * - 4
-     - :ref:`System<system>`
+   * - :ref:`Query tab<queries>`
+     - Shows basic query information logs, such as query number and the time the query was run. 
+   * - :ref:`Session tab<sessions>`
+     - Shows basic session information logs, such as session ID and user name.
+   * - :ref:`System tab<system>`
      - Shows all system logs.
-   * - 5
-     -  :ref:`Log lines<log_lines>`
+   * - :ref:`Log lines tab<log_lines>`
      - Shows the total amount of log lines.
 
 
 .. _filter:
 
-Filter Area
+Filtering Table Data
 -------------
-
 From the Logs tab, from the **FILTERS** area you can also apply the **TIMESPAN**, **ONLY ERRORS**, and additional filters (**Add**). The **Timespan** filter lets you select a timespan. The **Only Errors** toggle button lets you show all queries, or only queries that generated errors. The **Add** button lets you add additional filters to the data shown in the table. The **Filter** button applies the selected filter(s).
 	 
-.. image:: /_static/images/logs_queries_filters_5.3.0.png
 
 Some filters require you to type text to define the filter.
 
 .. image:: /_static/images/logs_filters_5.3.0.png
 
-Other filters require you to select an item from a dropdown menu.
+Other filters require you to select an item from a dropdown menu:
 
-.. image:: /_static/images/logs_filters_2_5.3.0.png
+* INFO
+* WARNING
+* ERROR
+* FATAL
+* SYSTEM
 
-You can also export a record of all of your currently filtered logs in Excel format by clicking **Download**.
-
-.. image:: /_static/images/logs_download_5.3.0.png
+You can also export a record of all of your currently filtered logs in Excel format by clicking **Download** located above the Filter area.
 
 .. _queries:
 
-:ref:`Back to Logs<logs_top>`
+:ref:`Back to Viewing Logs<logs_top>`
 
 
-Queries
+Viewing Query Logs
 ----------
-Clicking **Queries** displays the query data table and is used for viewing and keeping track of queries that you have run. The number at the top indicates the amount of queries that have been run.
+The **QUERIES** log area shows basic query information, such as query number and the time the query was run. The number next to the title indicates the amount of queries that have been run.
 
-.. image:: /_static/images/logs_queries_5.3.0.png
-
-From here you can see and sort by the following:
+From the Queries area you can see and sort by the following:
 
 * Query ID
 * Start time
@@ -943,26 +763,15 @@ From here you can see and sort by the following:
 * Total duration
 * Details (execution details, error details, successful query details)
 
-In the Query table, you can click on the **Statement ID** and **Query** items to set them as your filters.
+In the Queries table, you can click on the **Statement ID** and **Query** items to set them as your filters. In the **Details** column you can also access additional details by clicking one of the **Details** options for a more detailed explanation of the query.
 
-The following figure shows the **Details** options:
-
-.. image:: /_static/images/logs_queries_details_5.3.0.png
-
-Clicking one of the details options shows a more detailed explanation of the query, such as the error example below:
-
-.. image:: /_static/images/logs_queries_error_explanation_5.3.0.png
-
-:ref:`Back to Logs<logs_top>`
+:ref:`Back to Viewing Logs<logs_top>`
 
 .. _sessions:
 
-Sessions
+Viewing Session Logs
 ----------
-
-Clicking **Sessions** displays the sessions table and is used for viewing activity that has occurred during your sessions. The number at the top indicates the amount of sessions that have occurred.
-
-.. image:: /_static/images/logs_sessions_5.3.0.png
+The **SESSIONS** tab shows the sessions log table and is used for viewing activity that has occurred during your sessions. The number at the top indicates the amount of sessions that have occurred.
 
 From here you can see and sort by the following:
 
@@ -976,16 +785,13 @@ From here you can see and sort by the following:
 
 In the Sessions table, you can click on the **Timestamp**, **Connection ID**, and **Username** items to set them as your filters.
 
-:ref:`Back to Logs<logs_top>`
-
+:ref:`Back to Viewing Logs<logs_top>`
 
 .. _system:
 
-System
+Viewing System Logs
 ----------
-Clicking **System** displays the system table and is used for viewing all system logs. The number at the top indicates the amount of sessions that have occurred. Because system logs occur less frequently than queries and sessions, you may need to increase the filter timespan for the table to display any system logs.
-
-.. image:: /_static/images/logs_system_5.3.0.png
+The **SYSTEM** tab shows the system log table and is used for viewing all system logs. The number at the top indicates the amount of sessions that have occurred. Because system logs occur less frequently than queries and sessions, you may need to increase the filter timespan for the table to display any system logs.
 
 From here you can see and sort by the following:
 
@@ -993,20 +799,15 @@ From here you can see and sort by the following:
 * Log type
 * Message
 
-In the **SYSTEMS** table, you can click on the **Timestamp** and **Log type** items to set them as your filters. You can also click on an item in the **Message** column to show more information about the message.
+In the Systems table, you can click on the **Timestamp** and **Log type** items to set them as your filters. In the **Message** column, you can also click on an item to show more information about the message.
 
-.. image:: /_static/images/logs_system_error_message_5.3.0.png
-
-:ref:`Back to Logs<logs_top>`
-
+:ref:`Back to Viewing Logs<logs_top>`
 
 .. _log_lines:
 
-Log Lines
+Viewing All Log Lines
 ----------
-Clicking **LOG LINES** used for viewing the total amount of log lines in a table. From here users can view a more granular breakdown of log information collected by Studio. The other tabs (QUERIES, SESSIONS, and SYSTEM) show a filtered form of the raw log lines. For example, the QUERIES tab shows an aggregation of several log lines.
-
-.. image:: /_static/images/logs_log_lines_5.3.0.png
+The **LOG LINES** tab is used for viewing the total amount of log lines in a table. From here users can view a more granular breakdown of log information collected by Studio. The other tabs (QUERIES, SESSIONS, and SYSTEM) show a filtered form of the raw log lines. For example, the QUERIES tab shows an aggregation of several log lines.
 
 From here you can see and sort by the following:
 
@@ -1021,6 +822,79 @@ From here you can see and sort by the following:
 
 In the **LOG LINES** table, you can click on any of the items to set them as your filters.
 
-:ref:`Back to Logs<logs_top>`
+:ref:`Back to Viewing Logs<logs_top>`
 
 :ref:`Back to Editor<editor_top>`
+
+.. _roles:
+
+Creating, Assigning, and Managing Roles and Permissions
+============
+Overview
+---------------
+In the **Roles** area you can create and assign roles and manage user permissions. 
+
+The **Type** column displays one of the following assigned role types:
+
+.. list-table::
+   :widths: 15 75
+   :header-rows: 1   
+   
+   * - Role Type
+     - Description
+   * - Groups
+     - Roles with no users.
+   * - Enabled users
+     - Users with log-in permissions and a password.
+   * - Disabled users
+     - Users with log-in permissions and with a disabled password. An admin may disable a user's password permissions to temporary disable access to the system.
+
+.. note:: If you disable a password, when you enable it you have to create a new one.
+
+
+Viewing Information About a Role
+--------------------
+Clicking a role in the roles table displays the following information:
+
+ * **Parent Roles** - displays the parent roles of the selected role. Roles inherit all roles assigned to the parent.
+ * **Members** - displays all members that the role has been assigned to. The arrow indicates the roles that the role has inherited. Hovering over a member displays the roles that the role is inherited from.
+ * **Permissions** - displays the role's permissions. The arrow indicates the permissions that the role has inherited. Hovering over a permission displays the roles that the permission is inherited from.
+
+Creating a New Role
+--------------------
+You can create a new role by clicking **New Role**.
+
+.. image:: /_static/images/role_button.png
+   
+An admin creates a **user** by granting login permissions and a password to a role. Each role is defined by a set of permissions. An admin can also group several roles together to form a **group** to manage them simultaneously. For example, permissions can be granted to or revoked on a group level.
+
+Clicking **New Role** lets you do the following:
+
+ * Add and assign a role name (required)
+ * Enable or disable log-in permissions for the role.
+ * Set a password.
+ * Assign or delete parent roles.
+ * Add or delete permissions.
+ * Grant the selected user with superuser permissions.
+ 
+From the New Role panel you view directly and indirectly (or inherited) granted permissions. Disabled permissions have no connect permissions for the referenced database and are displayed in gray text. You can add or remove permissions from the **Add permissions** field. From the New Role panel you can also search and scroll through the permissions. In the **Search** field you can use the **and** operator to search for strings that fulfill multiple criteria.
+
+When adding a new role, you must select the **Enable login for this role** and **Has password** check boxes.
+
+Editing a Role
+--------------------
+Once you've created a role, clicking the **Edit Role** button lets you do the following:
+
+ * Edit the role name.
+ * Enable or disable log-in permissions.
+ * Set a password.
+ * Assign or delete parent roles.
+ * Assign a role **administrator** permissions.
+ * Add or delete permissions.
+ * Grant the selected user with superuser permissions.
+
+From the Edit Role panel you view directly and indirectly (or inherited) granted permissions. Disabled permissions have no connect permissions for the referenced database and are displayed in gray text. You can add or remove permissions from the **Add permissions** field. From the Edit Role panel you can also search and scroll through the permissions. In the **Search** field you can use the **and** operator to search for strings that fulfill multiple criteria.
+
+Deleting a Role
+-----------------
+Clicking the **delete** icon displays a confirmation message with the amount of users and groups that will be impacted by deleting the role.
