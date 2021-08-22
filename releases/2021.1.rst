@@ -62,7 +62,7 @@ SQream now interprets literals containing decimal points as ``numeric`` instead 
 
 For more information, see `Data Types <https://docs.sqream.com/en/latest/reference/sql_data_types.html>`_.
 
-Studio Version 5.3.3
+Roles Area Added to Studio Version 5.3.3
 ****************
 The **Roles** area has been added to `Studio version 5.3.3 <https://docs.sqream.com/en/latest/guides/operations/sqream_studio.html>`_. From the Roles area users can create and assign roles and manage user permissions.
 
