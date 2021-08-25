@@ -28,6 +28,7 @@ This tutorial assumes you already have a SQream DB cluster running and the SQrea
 
 * :ref:`Install SQream SQL CLI<sqream_sql_cli_reference>`
 
+* See our :ref:`Hardware guide <hardware_guide>`.
 
 Run the SQream SQL client like this. It will interactively ask for the password.
 
