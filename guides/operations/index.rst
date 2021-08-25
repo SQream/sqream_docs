@@ -11,7 +11,7 @@ The guides in this section include information about installing Monit, best prac
    :caption: In this section:
    :glob:
 
-   optimization_best_practices
+  optimization_best_practices
    installing_monit
    launching_sqream_with_monit
    installing_sqream_with_binary
@@ -24,6 +24,7 @@ The guides in this section include information about installing Monit, best prac
    information_for_support
    creating_or_cloning_a_storage_cluster
    xxstarting_and_stopping_the_system
+   installing_studio_on_stand_alone_server
    sqream_studio
    statement_editor
    hardware_guide
