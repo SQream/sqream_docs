@@ -11,7 +11,7 @@ The guides in this section include information about installing Monit, best prac
    :caption: In this section:
    :glob:
 
-  optimization_best_practices
+   optimization_best_practices
    installing_monit
    launching_sqream_with_monit
    installing_sqream_with_binary
