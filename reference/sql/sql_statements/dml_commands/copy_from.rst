@@ -4,11 +4,7 @@
 COPY FROM
 **********************
 
-``COPY ... FROM`` is a statement that allows loading data from files on the filesystem and importing them into SQream tables.
-
-This is the recommended way for bulk loading CSV files into SQream DB.
-
-In general, ``COPY`` moves data between filesystem files and SQream DB tables.
+``COPY ... FROM`` is a statement that allows loading data from files on the filesystem and importing them into SQream tables. This is the recommended way for bulk loading CSV files into SQream DB. In general, ``COPY`` moves data between filesystem files and SQream DB tables.
 
 .. note:: 
    * Learn how to migrate from CSV files in the :ref:`csv` guide
@@ -22,7 +18,6 @@ The role must have the ``INSERT`` permission to the destination table.
 
 Syntax
 ==========
-The following is an example of the correct ``COPY FROM`` syntax:
 
 .. code-block:: postgres
 
@@ -97,8 +92,8 @@ Elements
    :header-rows: 1
    
    * - Parameter
-     - Default Value
-     - Value Range
+     - Default value
+     - Value range
      - Description
    * - ``[schema_name.]table_name``
      - None
@@ -181,7 +176,7 @@ Elements
 Supported Date Formats
 =========================
 
-.. list-table:: Supported Date Parsers
+.. list-table:: Supported date parsers
    :widths: auto
    :header-rows: 1
    
@@ -284,6 +279,46 @@ For example, ASCII character ``15``, known as "shift in", can be specified using
 
 .. _capturing_rejected_rows:
 
+Unsupported Field Delimiters
+==========================
+The following ASCII field delimiters (octal range 001 - 176) are not supported:
+
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| **Character** | **Decimal** | **Symbol** | **Character** | **Decimal** | **Symbol** | **Character** | **Decimal** | **Symbol** |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| **"**         | 34          | 42         | **a**         | 97          | 141        | **p**         | 112         | 160        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| **-**         | 45          | 55         | **b**         | 98          | 142        | **q**         | 113         | 161        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| **.**         | 46          | 56         | **c**         | 99          | 143        | **r**         | 114         | 162        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| **:**         | 58          | 72         | **d**         | 100         | 144        | **s**         | 115         | 163        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| **\\**        | 92          | 134        | **e**         | 101         | 145        | **t**         | 116         | 164        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| **0**         | 48          | 60         | **f**         | 102         | 146        | **u**         | 117         | 165        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| **1**         | 49          | 61         | **g**         | 103         | 147        | **v**         | 118         | 166        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| **2**         | 50          | 62         | **h**         | 104         | 150        | **w**         | 119         | 167        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| **3**         | 51          | 63         | **i**         | 105         | 151        | **x**         | 120         | 170        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| **4**         | 52          | 64         | **j**         | 106         | 152        | **y**         | 121         | 171        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| **5**         | 53          | 65         | **k**         | 107         | 153        | **z**         | 122         | 172        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| **6**         | 54          | 66         | **l**         | 108         | 154        | **N**         | 78          | 116        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| **7**         | 55          | 67         | **m**         | 109         | 155        | **10**        | 49          | 12         |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| **8**         | 56          | 70         | **n**         | 110         | 156        | **13**        | 49          | 13         |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| **9**         | 57          | 71         | **o**         | 111         | 157        |               |             |            |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+
+
+
 Capturing Rejected Rows
 ==========================
 
@@ -325,7 +360,7 @@ All CSV files shoudl be prepared according to these recommendations:
    
    Other modes of escaping are not supported (e.g. ``1,"What are \"birds\"?"`` is not a valid way of escaping CSV values).
 
-Null Markers
+Marking Null Markers
 ---------------
 
 ``NULL`` values can be marked in two ways in the CSV:
@@ -362,14 +397,14 @@ Skipping a Maximum of 100 Faulty Rows
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.csv', continue_on_error = true, error_count = 100);
 
 
-Loading a PSV (Pipe-Separated Value) File
+Loading a Pipe Separated Value (PSV) File
 -------------------------------------------
 
 .. code-block:: postgres
    
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.psv', delimiter = '|');
 
-Loading a TSV (Tab-Separated Value) File
+Loading a Tab Separated Value (TSV) File
 -------------------------------------------
 
 .. code-block:: postgres
@@ -377,7 +412,7 @@ Loading a TSV (Tab-Separated Value) File
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.tsv', delimiter = '\t');
    
 
-Loading an ORC (Optimized Row Columnar) File
+Loading an ORC File
 -------------------------------------------
 
 .. code-block:: postgres
@@ -393,7 +428,7 @@ Loading a Parquet File
    COPY table_name FROM WRAPPER parquet_fdw OPTIONS (location = '/tmp/file.parquet');
 
 
-Loading a Text File With a Non-Printable Delimiter
+Loading a Text File with Non-Printable Delimiters
 -----------------------------------------------------
 
 In the file below, the separator is ``DC1``, which is represented by ASCII 17 decimal or 021 octal.
@@ -402,7 +437,7 @@ In the file below, the separator is ``DC1``, which is represented by ASCII 17 de
    
    COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', delimiter = E'\021');   
 
-Loading a Text File With Multi-Character Delimiters
+Loading a Text File with Multi-Character Delimiters
 -----------------------------------------------------
 
 In the file below, the separator is ``^|``.
@@ -418,7 +453,7 @@ In the file below, the separator is ``'|``. The quote character has to be repeat
    COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', delimiter = ''''|');
    
 
-Loading Files With a Header Row
+Loading Files with a Header Row
 -----------------------------------
 
 Use ``OFFSET`` to skip rows.
@@ -475,14 +510,14 @@ Saving Rejected Rows to a File
                                                  );         
 
 
-Load CSV Files from a Set of Directories
+Loading CSV Files from a Set of Directories
 ------------------------------------------
 
 .. code-block:: postgres
 
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/2019_08_*/*.csv');
 
-Rearrange Destination Columns
+Rearranging Destination Columns
 ---------------------------------
 
 When the source of the files does not match the table structure, tell the ``COPY`` command what the order of columns should be
