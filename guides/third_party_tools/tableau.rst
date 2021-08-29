@@ -26,6 +26,8 @@ This section describes how to install the JDBC driver using the fully-integrated
 #. Install the Tableau Desktop application.
 
    For more information about installing the Tableau Desktop application, see the `Tableau products page <https://www.tableau.com/products/trial>`_ and click **Download Free Trial**. Note that Tableau offers a 14-day trial version.
+   
+   ::
 
 #. Do one of the following:
 
@@ -95,12 +97,16 @@ Note the following when installing the JDBC driver:
 
    * **Tableau Desktop on Windows:** *C:\\Users\\<your user>\\My Tableau Repository\\Connectors*
    * **Tableau Desktop on Windows:** *~/My Tableau Repository/Connectors*
+   
+      ::
 	  
 4. *Optional* - If you are using the Tableau Server, do the following:
    
    1. Create a directory for Tableau connectors and give it a descriptive name, such as *C:\\tableau_connectors*.
       
       This directory needs to exist on all Tableau servers.
+      
+       ::
    
    2. Copy the SQreamDB.taco file into the new directory.
    
@@ -187,11 +193,11 @@ The file **Tableau Datasource Customization (TDC)** file lets you use Tableau ma
 
 #. Do one of the following:
 
-   * If you are using **Tableau Desktop** - save the TDC file to *C:\Users\<user name>\Documents\My Tableau Repository\Datasources*, where ``<user name>`` is the Windows username that you have installed Tableau under.
+   * If you are using **Tableau Desktop** - save the TDC file to *C:\\Users\\<user name>\\Documents\\My Tableau Repository\\Datasources*, where ``<user name>`` is the Windows username that you have installed Tableau under.
  
     ::
 	
-   * If you are using the **Tableau Server** - save the TDC file to *C:\ProgramData\Tableau\Tableau Server\data\tabsvc\vizqlserver\Datasources*.
+   * If you are using the **Tableau Server** - save the TDC file to *C:\\ProgramData\\Tableau\\Tableau Server\\data\\tabsvc\\vizqlserver\\Datasources*.
 
 Configuring the ODBC Connection
 ~~~~~~~~~~~~
@@ -211,7 +217,9 @@ The ODBC connection uses a DSN when connecting to ODBC data sources, and each DS
 
    During installation, the installer created a sample user DSN named **SQreamDB**.
    
-#. *Optional* - Do one or more of the following:
+    ::
+   
+#. *Optional* - Do one or both of the following:
 
    * Modify the DSN name.
    
@@ -219,15 +227,14 @@ The ODBC connection uses a DSN when connecting to ODBC data sources, and each DS
 	 
    * Create a new DSN name by clicking **Add** and selecting **SQream ODBC Driver**.
    
-   .. image:: /_static/images/odbc_windows_dsns.png
+.. image:: /_static/images/odbc_windows_dsns.png
    
-      ::
 	  
-#. Click **Finish**.
+5. Click **Finish**.
 
     ::
 
-#. Enter your connection parameters.
+6. Enter your connection parameters.
 
    The following table describes the connection parameters:
 	 
