@@ -6,18 +6,20 @@ Connecting to SQream Using Tableau
 
 Overview
 =====================
-
+SQream's Tableau connector plugin, based on standard JDBC, enables storing and fast querying large volumes of data.
 
 The **Connecting to SQream Using Tableau** page is a Quick Start Guide that describes how install Tableau and the JDBC and ODBC drivers and connect to SQream using the JDBC and ODBC drivers for data analysis. It also describes using best practices and troubleshoot issues that may occur while installing Tableau. SQream supports both Tableau Desktop and Tableau Server on Windows, MacOS, and Linux distributions.
+
+For more information on SQream's integration with Tableau, see `Tableau's Extension Gallery <https://extensiongallery.tableau.com/connectors?version=2019.4>`_.
 
 The Connecting to SQream Using Tableau page describes the following:
 
 .. contents::
    :local:
 
-Installing the JDBC Driver and Tableau Connector
+Installing the JDBC Driver and Tableau Connector Plugin
 -------------------
-This section describes how to install the JDBC driver using the **Tableau Connector (taco)** file. SQream has been tested with Tableau versions 9.2 and newer.
+This section describes how to install the JDBC driver using the fully-integrated Tableau connector plugin (Tableau Connector, or **.taco** file). SQream has been tested with Tableau versions 9.2 and newer.
 
 **To connect to SQream using Tableau:**
    
@@ -25,11 +27,10 @@ This section describes how to install the JDBC driver using the **Tableau Connec
 
    For more information about installing the Tableau Desktop application, see the `Tableau products page <https://www.tableau.com/products/trial>`_ and click **Download Free Trial**. Note that Tableau offers a 14-day trial version.
 
-
 #. Do one of the following:
 
-   * **For Windows** - Skip to :ref:`Installing Tableau Using the Windows Installer <tableau_windows_installer>`.   
-   * **For MacOS or Linux** - Skip to :ref:`Installing the JDBC Driver Manually <tableau_jdbc_installer>`.
+   * **For Windows** - See :ref:`Installing Tableau Using the Windows Installer <tableau_windows_installer>`. 
+   * **For MacOS or Linux** - See :ref:`Installing the JDBC Driver Manually <tableau_jdbc_installer>`.
 
 .. note:: For Tableau **2019.4 versions and later**, SQream recommends installing the JDBC driver instead of the previously recommended ODBC driver.
 
@@ -94,9 +95,6 @@ Note the following when installing the JDBC driver:
 
    * **Tableau Desktop on Windows:** *C:\\Users\\<your user>\\My Tableau Repository\\Connectors*
    * **Tableau Desktop on Windows:** *~/My Tableau Repository/Connectors*
-   * **Comment - what about Tableau on Linux?**
-	  
-**Comment - verify below.**
 	  
 4. *Optional* - If you are using the Tableau Server, do the following:
    
@@ -135,11 +133,15 @@ You can now restart Tableau Desktop or Server to begin using the SQream driver b
 
 Installing the ODBC Driver for Tableau Versions 2019.3 and Earlier
 --------------
+
+
 This section describes the installation method for Tableau version 2019.3 or earlier and describes the following:
 
 .. contents::
    :local:
- 
+
+.. note:: SQream recommends installing the JDBC driver to provide improved connectivity.
+
 Automatically Reconfiguring the ODBC Driver After Initial Installation
 ~~~~~~~~~~~~~~~~~~
 If you've already installed the SQream ODBC driver and installed Tableau, SQream recommends reinstalling the ODBC driver with the **.TDC Tableau Settings for SQream DB** configuration shown in the image below:
@@ -220,10 +222,10 @@ The ODBC connection uses a DSN when connecting to ODBC data sources, and each DS
    .. image:: /_static/images/odbc_windows_dsns.png
    
       ::
-   
-#. Click **Finish**. **Comment - the original document said "click Next," but I tried it and there is a "Finish" button instead. Verify on a computer where Tableau has been installed.**
+	  
+#. Click **Finish**.
 
-      ::
+    ::
 
 #. Enter your connection parameters.
 
@@ -261,7 +263,7 @@ The ODBC connection uses a DSN when connecting to ODBC data sources, and each DS
         - The TCP port of the SQream worker.
         - ``5000`` or ``3108``
       * - User Server Picker
-        - Uses the load balancer when establishing a connection. Use only if exists, and check port. **Comment - what does the previous line mean? Also, the server picker and load balancer are not exactly the same thing, correct?**
+        - Uses the load balancer when establishing a connection. Use only if exists, and check port.
         - 
       * - SSL
         - Uses SSL when establishing a connection.
@@ -373,7 +375,7 @@ After connecting to SQream you must set up the SQream tables as data sources.
 	
 #. Drag the desired tables into the main area (labeled **Drag tables here**).
 
-   This area is also used for specifiying joins and data source filters.
+   This area is also used for specifying joins and data source filters.
    
     ::
 	
@@ -407,7 +409,7 @@ Creating a Separate Service for Tableau
 ~~~~~~~~~~~~~~~~~~~
 SQream recommends creating a separate service for Tableau with the DWLM. This reduces the impact that Tableau has on other applications and processes, such as ETL. In addition, this works in conjunction with the load balancer to ensure good performance.
 
-Troubleshooting Workbook Performance before Deploying to the Tableau Server
+Troubleshooting Workbook Performance Before Deploying to the Tableau Server
 ~~~~~~~~~~~~~~~~~~~
 Tableau has a built-in `performance recorder <https://help.tableau.com/current/pro/desktop/en-us/perf_record_create_desktop.htm>`_ that shows how time is being spent. If you're seeing slow performance, this could be the result of a misconfiguration such as setting concurrency too low.
 
@@ -415,11 +417,13 @@ Use the Tableau Performance Recorder for viewing the performance of queries run 
 
 Troubleshooting Error Codes
 ~~~~~~~~~~~~~~~~~~~
-Tableau may be unable to locate the SQream JDBC driver. The following message **Comment - the following messages (plural)?** is displayed when Tableau cannot locate the driver:
+Tableau may be unable to locate the SQream JDBC driver. The following message is displayed when Tableau cannot locate the driver:
 
- .. code-block:: console
-
-    ``Error Code: 37CE01A3``, ``No suitable driver installed or the URL is incorrect``
+.. code-block:: console
+     
+   Error Code: 37CE01A3, No suitable driver installed or the URL is incorrect
+   
+**To troubleshoot error codes:**
 
 If Tableau cannot locate the SQream JDBC driver, do the following:
 
@@ -431,9 +435,12 @@ If Tableau cannot locate the SQream JDBC driver, do the following:
    
  2. Find the file path for the JDBC driver and add it to the Java classpath:
    
-   * **For Linux** - ``export CLASSPATH=<absolute path of SQream DB JDBC driver>;$CLASSPATH``   
+   * **For Linux** - ``export CLASSPATH=<absolute path of SQream DB JDBC driver>;$CLASSPATH``
+
+        ::
+		
    * **For Windows** - add an environment variable for the classpath:
  
 	.. image:: /_static/images/third_party_connectors/tableau/envrionment_variable_for_classpath.png
 
-If you are experiencing issues after restarting Tableau, see the `SQream support portal <https://support.sqream.com>`_.
+If you experience issues after restarting Tableau, see the `SQream support portal <https://support.sqream.com>`_.
