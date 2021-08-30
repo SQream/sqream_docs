@@ -16,6 +16,7 @@ The guides in this section include information about installing Monit, best prac
    launching_sqream_with_monit
    installing_sqream_with_binary
    installing_sqream_with_kubernetes
+   running_sqream_in_a_docker_container
    xxmonitoring
    monitoring_query_performance
    logging
