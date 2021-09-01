@@ -3,15 +3,111 @@
 **************************
 What's New in 2021.2
 **************************
-The 2021.2 Release Notes describe the following releases:
+The 2021.2 Release Notes were released on <date>.
+
+
+
+New Features
+=========================
+
+
+The 2021.2 Release Notes include the following new features:
 
 
 .. contents:: 
    :local:
    :depth: 1
-   
-::::
 
-Release Notes Version 2021.2
-=================
-The 2021.2 release notes were released on <date>.
+Qualifying Schemas Without Providing an Alias (SQ-8006)
+----------------------------
+When running queries, SQream now supports qualifying schemas without providing an alias.
+
+For more information, see `CREATE SCHEMA <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/create_schema.html>`_.
+
+
+
+
+
+Double-Quotations Supported When Importing and Exporting CSVs (SQ-7938, 7397, 3140, 2367)
+---------------------
+When importing and exporting CSVs, SQream now supports using quotation characters other than double quotation marks (``"``).
+
+For more information, see the following: **Comment - Correct destinations?**
+
+* `String literals <file:///C:/Users/Yaniv/sqream_docs/_build/html/reference/sql/sql_syntax/literals.html#string-literals>`_
+* `Data loading overview <file:///C:/Users/Yaniv/sqream_docs/_build/html/guides/inserting_data.html?highlight=csv#data-loading-overview>`_
+
+* `Syntax <file:///C:/Users/Yaniv/sqream_docs/_build/html/reference/sql_data_types.html#syntax>`_
+
+
+**Comment - The content below would be documented on the relevant pages above:**
+
+The following is the correct syntax for customizing alternative quotation characters:
+
+.. code-block:: postgres
+
+   QUOTE = {'C' | E'\ooo')
+   
+Example 1 - Customizing Double-Quotations Using a Character
+************
+   
+The following are two examples of customizing alternative quotation characters:
+
+.. code-block:: postgres
+
+   copy t to wrapper csv_fdw options (location = '/tmp/file.csv', quote='"');
+   
+Example 2 - Customizing Double-Quotations Using an ASCII Character Code
+************
+
+.. code-block:: postgres
+   
+   copy t to wrapper csv_fdw options (location = '/tmp/file.csv', quote=E'\017');
+   
+**Comment - I looked it up, and double quotations are "034" in Decimal notation, "42" in Octal, and "22" in Hex. If so, why is "017" used in Example 2?**
+
+https://web.cs.dal.ca/~zyu/ascii.html
+
+Note the following when customzing double-quotation characters:
+
+**Comment - x =** ``quote=E'\017'`` **?**
+
+* Leaving *<x>* unspecified uses the default value of standard double quotations ``”``.
+
+   ::
+
+* The quotation character must be a single, 1-byte printable ASCII character. The same octal syntax of the copy command can be used. **Comment - Meaning that the octal notation can be used instead of decimal?**
+
+   ::
+
+* The quote character cannot be contained in the field delimiter, record delimiter, or null marker.
+
+   ::
+   
+* Double-quotations can be customized when the ``csv_fdw`` value is used with the ``COPY FROM`` and ``CREATE FOREIGN TABLE`` statements.
+
+   ::
+
+* The default escape character always matches the quote character, and can be overridden by using the ``ESCAPE = {'\\' | E'\XXX')`` syntax as shown in the following examples:
+
+  .. code-block:: postgres
+
+     copy t from wrapper csv_fdw options (location = '/tmp/file.csv', escape='\\');
+
+  .. code-block:: postgres
+
+     copy t from wrapper csv_fdw options (location = '/tmp/file.csv', escape=E'\017');
+
+  .. code-block:: postgres
+
+     copy t to wrapper csv_fdw options (location = '/tmp/file.csv', escape='\\');
+	 
+**Comment - I'm assuming that the development in the last bullet above has been implemented. The ticket for SQ-7937 said that users can set a custom escape character in CSV FDWREADY ticket (SQ-3140) "once we implement it".**
+	 
+For more information, see the following statements:
+
+* `COPY FROM <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/copy_from.html>`_ - Loading data from files on the filesystem and importing it into SQream tables.
+
+   ::
+
+* `CREATE FOREIGN TABLE <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/create_foreign_table.html>`_ - Creating a new foreign table in an existing database.
