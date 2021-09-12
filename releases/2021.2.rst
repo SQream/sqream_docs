@@ -3,7 +3,7 @@
 **************************
 What's New in 2021.2
 **************************
-The 2021.1 Release Notes describe the following releases:
+The 2021.2 Release Notes describe the following releases:
 
 .. contents:: 
    :local:
@@ -55,9 +55,12 @@ For more information, see `Aggregate Functions <https://docs.sqream.com/en/lates
 
 
    
-Implement CREATE TABLE LIKE (SQ-1632)
+Creating a Table Based on the Column Structure of Another Table
 ************
-   
+When creating tables, SQream now supports duplicating the column structure of an existing table using the ``LIKE`` clause.
+
+For more information, see `Duplicating the Column Structure of an Existing Table <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/create_table.html#duplicating-the-column-structure-of-an-existing-table>`_.
+
 
 
 Release Notes Version 2021.2

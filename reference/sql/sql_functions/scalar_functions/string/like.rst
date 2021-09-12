@@ -4,11 +4,15 @@
 LIKE
 **************************
 
-Tests if a string matches a given pattern.
+The **LIKE** function tests if a string matches a given pattern. **LIKE** is similar to :ref:`rlike` are similar in that **LIKE** uses SQL patterns, whereas :ref:`rlike` uses **POSIX** regular expressions.
 
-``LIKE`` and :ref:`rlike` are similar. ``LIKE`` uses SQL patterns, whereas :ref:`rlike` uses POSIX regular expressions.
+For related functions, see the following:
 
-See also: :ref:`rlike`, :ref:`regexp_count`, :ref:`regexp_instr`, :ref:`regexp_substr`, :ref:`isprefixof`.
+* :ref:`rlike`
+* :ref:`regexp_count`
+* :ref:`regexp_instr`
+* :ref:`regexp_substr`
+* :ref:`isprefixof`
 
 Syntax
 ==========
