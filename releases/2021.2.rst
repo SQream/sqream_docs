@@ -22,13 +22,37 @@ The 2021.2.1 Release Notes include the following new features:
 
 .. contents:: 
    :local:
-   :depth: 1
+   :depth: 2
    
-Feature 1
-----------------------------
+New Percentile and Mode Aggregate Functions
+************
+SQream now supports the following aggregate functions:
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
    
-Feature 2
-----------------------------  
+   * - Function
+     - Description
+     - Output
+   * - **PERCENTILE_CONT**
+     - Returns the value in the selected percentile of a specified column. The required input is a number between **0** and **1** that represents the wanted percentile. If the selected percentile does not have an exact value, this function extrapolates a value estimated from the existing values.
+     - Double
+   * - **PERCENTILE_DISC**
+     - Returns the value in the selected percentile of a specified column. The required input is a number between **0** and **1** that represents the wanted percentile. If the selected percentile does not have an exact value, this function returns the closest value beneath the requested percentile.
+     - Value of the same type as the selected column.
+   * - **MODE**
+     - Returns the most common value in the selected column. If there are no repeating values, or if there is the same frequency of multiple values, this function returns the top value based on the ``ORDER BY`` clause.
+     - Value of the same type as the selected column.
+
+For more information, see `Aggregate Functions <https://docs.sqream.com/en/latest/reference/sql/sql_functions/aggregate_functions/index.html>`_.
+
+
+
+
+   
+Implement CREATE TABLE LIKE (SQ-1632)
+************
    
 
 
@@ -45,7 +69,7 @@ The 2021.2 Release Notes include the following new features:
    :depth: 1
    
 Qualifying Schemas Without Providing an Alias (SQ-8006)
-----------------------------
+************
 When running queries, SQream now supports qualifying schemas without providing an alias.
 
 For more information, see `CREATE SCHEMA <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/create_schema.html>`_.
@@ -55,7 +79,7 @@ For more information, see `CREATE SCHEMA <https://docs.sqream.com/en/latest/refe
 
 
 Double-Quotations Supported When Importing and Exporting CSVs (SQ-7938, 7397, 3140, 2367)
----------------------
+************
 When importing and exporting CSVs, SQream now supports using quotation characters other than double quotation marks (``"``).
 
 For more information, see the following: **Comment - Correct destinations?**
