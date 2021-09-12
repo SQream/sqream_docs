@@ -29,7 +29,7 @@ New Percentile and Mode Aggregate Functions
 SQream now supports the following aggregate functions:
 
 .. list-table::
-   :widths: 15 49 18 18
+   :widths: 10 49 23 23
    :header-rows: 1
    
    * - Function
@@ -91,10 +91,9 @@ When importing and exporting CSVs, SQream now supports using quotation character
 
 For more information, see the following: **Comment - Correct destinations?**
 
-* `String literals <file:///C:/Users/Yaniv/sqream_docs/_build/html/reference/sql/sql_syntax/literals.html#string-literals>`_
-* `Data loading overview <file:///C:/Users/Yaniv/sqream_docs/_build/html/guides/inserting_data.html?highlight=csv#data-loading-overview>`_
-
-* `Syntax <file:///C:/Users/Yaniv/sqream_docs/_build/html/reference/sql_data_types.html#syntax>`_
+* `String literals <https://docs.sqream.com/en/latest/reference/sql/sql_syntax/literals.html#string-literals>`_
+* `Data loading overview <https://docs.sqream.com/en/latest/guides/inserting_data.html?#data-loading-overview>`_
+* `Syntax <https://docs.sqream.com/en/latest/reference/sql_data_types.html#syntax>`_
 
 
 **Comment - The content below would be documented on the relevant pages above:**
