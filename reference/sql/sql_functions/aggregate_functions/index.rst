@@ -24,6 +24,9 @@ Aggregate functions are often used with the ``GROUP BY`` clause of the :ref:`sel
    covar_samp
    max
    min
+   mode
+   percentile_cont
+   percentile_disc
    stddev_pop
    stddev_samp
    sum
