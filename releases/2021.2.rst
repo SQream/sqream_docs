@@ -29,21 +29,25 @@ New Percentile and Mode Aggregate Functions
 SQream now supports the following aggregate functions:
 
 .. list-table::
-   :widths: auto
+   :widths: 15 49 18 18
    :header-rows: 1
    
    * - Function
      - Description
+     - Input
      - Output
    * - **PERCENTILE_CONT**
-     - Returns the value in the selected percentile of a specified column. The required input is a number between **0** and **1** that represents the wanted percentile. If the selected percentile does not have an exact value, this function extrapolates a value estimated from the existing values.
+     - Returns the value located in the selected percentile of a specified column. If the selected percentile does not have an exact value, this function extrapolates a value estimated from the existing values.
+     - A number between **0** and **1** that represents the wanted percentile. 
      - Double
    * - **PERCENTILE_DISC**
-     - Returns the value in the selected percentile of a specified column. The required input is a number between **0** and **1** that represents the wanted percentile. If the selected percentile does not have an exact value, this function returns the closest value beneath the requested percentile.
-     - Value of the same type as the selected column.
+     - Returns the value in the selected percentile of a specified column. If the selected percentile does not have an exact value, this function returns the closest value beneath the requested percentile.
+     - A number between **0** and **1** that represents the wanted percentile. 
+     - The value of the same type as the selected column.
    * - **MODE**
      - Returns the most common value in the selected column. If there are no repeating values, or if there is the same frequency of multiple values, this function returns the top value based on the ``ORDER BY`` clause.
-     - Value of the same type as the selected column.
+     - NA
+     - The value of the same type as the selected column.
 
 For more information, see `Aggregate Functions <https://docs.sqream.com/en/latest/reference/sql/sql_functions/aggregate_functions/index.html>`_.
 
