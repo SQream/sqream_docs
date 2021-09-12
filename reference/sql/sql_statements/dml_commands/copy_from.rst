@@ -339,7 +339,7 @@ CSV Support
 
 By default, SQream DB's CSV parser can handle `RFC 4180 standard CSVs <https://tools.ietf.org/html/rfc4180>`_ , but can also be modified to support non-standard CSVs (with multi-character delimiters, unquoted fields, etc).
 
-All CSV files shoudl be prepared according to these recommendations:
+All CSV files should be prepared according to these recommendations:
 
 * Files are UTF-8 or ASCII encoded
 
