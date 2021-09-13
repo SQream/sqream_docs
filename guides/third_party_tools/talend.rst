@@ -40,79 +40,66 @@ Creating a New Metadata JDBC DB Connection
 
 1. In the **Repository** panel, nagivate to **Metadata** and right-click **Db connections**.
 
-.. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_1.png
-
+::
+   
 2. Select **Create connection**.
 
-.. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_2.png
-
+::
+  
 3. In the **Name** field, type a name.
 
-.. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_3.png
-
-The name cannot contain spaces.
+   The name cannot contain spaces.
 
 4. In the **Purpose** field, type a purpose and click **Next**. You cannot go to the next step until you define both a Name and a Purpose.
 
-.. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_4.png
-
+::
+  
 5. In the **DB Type** field, select **JDBC**.
 
-.. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_5.png
-
+::
+  
 6. In the **JDBC URL** field, type the relevant connection string.
 
    For connection string examples, see `Connection Strings <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html#connection-string>`_.
    
-.. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_6.png
 
 7. In the **Drivers** field, click the **Add** button.
 
-   The **"newLine** entry is added.
+   The **"newLine"** entry is added.
 
-.. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_7.png
-
-8. One the **"newLine** entry, click the ellipsis.
+8. One the **"newLine"** entry, click the ellipsis.
 
 .. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_8.png
 
-The **Module** window is displayed.
+   The **Module** window is displayed.
 
 9. From the Module window, select **Artifact repository(local m2/nexus)** and select **Install a new module**.
 
-.. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_9.png
-
+::
+  
 10. Click the ellipsis.
 
 .. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_9.5.png
 
-Your hard drive is displayed.	
+   Your hard drive is displayed.	
 
 11. Navigate to a **JDBC jar file** (such as **sqream-jdbc-4.4.0.jar**)and click **Open**.
 
-.. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_10.png
+::
+  
+12. Click **Detect the module install status** and click **OK**.
 
-12. Click **Detect the module install status**.
+    The JDBC that you selected is displayed in the **Drivers** field.
 
-.. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_11.5.png
+13. Click **Select class name**.
 
-13. Click **OK**.
+::
+  
+14. Click **Test connection**.
 
-The JDBC that you selected is displayed in the **Driver** field.
+    If a driver class is not found (for example, you didn't select a JDBC jar file), the following error message is displayed:
 
-.. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_12.png
-
-14. Click **Select class name**.
-
-.. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_13.png
-
-15. Click **Test connection**.
-
-.. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_14.png
-
-If a driver class is not found (for example, you didn't select a JDBC jar file), the following error message is displayed:
-
-.. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_15.png
+    .. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_15.png
 
 After creating a new metadata JDBC DB connection, you can do the following:
 
