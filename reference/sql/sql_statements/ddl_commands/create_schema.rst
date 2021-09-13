@@ -3,12 +3,27 @@
 *****************
 CREATE SCHEMA
 *****************
+The **CREATE SCHEMA** page describes the following:
+
+
+.. contents:: 
+   :local:
+   :depth: 2
+   
+Overview
+============
 
 ``CREATE SCHEMA`` creates a new schema in an existing database. A schema is a virtual space for storing tables.
 
 The default schema in SQream DB is ``public``.
 
 .. tip:: Use schemas to separate between use-cases, such as staging and production.
+
+The **CREATE SCHEMA** statement can be used to query tables from different schemas without providing an alias, as in the following example:
+
+.. code-block:: postgres
+
+   select schema1.table1.column from schema1.table1 join schema2.table1 on schema1.table1.column1=schema2.table1.column1
 
 See also: :ref:`drop_schema`, :ref:`alter_default_schema`.
 
@@ -19,6 +34,7 @@ The role must have the ``CREATE`` permission at the database level.
 
 Syntax
 ==========
+The following example shows the correct syntax for creating a schema:
 
 .. code-block:: postgres
 
@@ -31,6 +47,7 @@ Syntax
 
 Parameters
 ============
+The following table shows the ``schema_name`` parameters:
 
 .. list-table:: 
    :widths: auto
@@ -43,9 +60,16 @@ Parameters
 
 Examples
 ===========
+This section includes the following examples:
 
-Creating a schema
+.. contents:: 
+   :local:
+   :depth: 1
+
+
+Creating a Schema
 --------------------
+The following example shows an example of the syntax for creating a schema:
 
 .. code-block:: postgres
 
@@ -55,8 +79,9 @@ Creating a schema
    
    SELECT * FROM staging.users;
 
-Altering the default schema for a role
+Altering the Default Schema for a Role
 -----------------------------------------
+The following example shows an example of the syntax for altering the default schema for a role:
 
 .. code-block:: postgres
 
