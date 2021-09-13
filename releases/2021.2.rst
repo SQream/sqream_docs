@@ -49,7 +49,7 @@ SQream now supports the following aggregate functions:
      - NA
      - The value of the same type as the selected column.
 
-For more information, see `Aggregate Functions <https://docs.sqream.com/en/v2021.2/reference/sql/sql_functions/aggregate_functions/index.html>`_.
+For more information, see `Aggregate Functions <https://docs.sqream.com/en/latest/reference/sql/sql_functions/aggregate_functions/index.html>`_.
 
 
 
@@ -59,7 +59,7 @@ Creating a Table Based on the Column Structure of Another Table
 ************
 When creating tables, SQream now supports duplicating the column structure of an existing table using the ``LIKE`` clause.
 
-For more information, see `Duplicating the Column Structure of an Existing Table <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/ddl_commands/create_table.html#duplicating-the-column-structure-of-an-existing-table>`_.
+For more information, see `Duplicating the Column Structure of an Existing Table <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/create_table.html#duplicating-the-column-structure-of-an-existing-table>`_.
 
 
 
@@ -81,7 +81,7 @@ Qualifying Schemas Without Providing an Alias
 ************
 When running queries, SQream now supports qualifying schemas without providing an alias.
 
-For more information, see `CREATE SCHEMA <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/ddl_commands/create_schema.html>`_.
+For more information, see `CREATE SCHEMA <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/create_schema.html>`_.
 
 
 
