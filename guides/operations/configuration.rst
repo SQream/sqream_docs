@@ -30,6 +30,7 @@ Configuring SQream Using the SQream Configuration File
 -----
 
 You can configure your instance of SQream using the **SQream configuration file (config.json)**. This file displays all the parameters required for configuring your instance of SQream and are read-only. The parameter settings in this file are stored at the metadata level and are applied globally to all workers connected to it.
+
 The following is an example of a worker configuration file:
 
 .. code-block:: postgres
@@ -74,20 +75,22 @@ The **SET flag_name** command is used to modify flag attributes. Any modificatio
 
 For more information, see the following:
 
-* `Using SQream SQL <https://docs.sqream.com/en/latest/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
-* `SQream Acceleration Studio <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
+* `Using SQream SQL <https://docs.sqream.com/en/v2021.2/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
+* `SQream Acceleration Studio <https://docs.sqream.com/en/v2021.2/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
 
 
 
 Cluster-Based Configuration
 ==============
-SQream uses cluster-based configuration, enabling you to centralize configurations for all workers on the cluster. Only flags set to the regular or cluster **flag_type** have access to cluster-based configuration. Configurations made on the cluster level are persistent.
+SQream uses cluster-based configuration, enabling you to centralize configurations for all workers on the cluster. Only flags set to the regular or cluster flag type have access to cluster-based configuration. Configurations made on the cluster level are persistent.
+
+For more information, see the following:
+
+* `Using SQream SQL <https://docs.sqream.com/en/v2021.2/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
+* `SQream Acceleration Studio <https://docs.sqream.com/en/v2021.2/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
 
 For more information on flag-based access to cluster-based configuration, see **Configuration Flag Types** below.
 
-For more information about modifying flag attributes from the CLI, see Using SQream SQL.
-
-For more information about modifying flag attributes from Studio, see SQream Acceleration Studio.
 
 
 Configuration Flag Types
