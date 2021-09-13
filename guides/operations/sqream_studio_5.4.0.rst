@@ -943,8 +943,6 @@ Configuring Your Instance of SQream
 ==============================
 The **Configuration** section lets you edit parameters from one centralized location. While you can edit these parameters from the **worker configuration file (config.json)** or from your CLI, you can also modify them in Studio in an easy-to-use format.
 
-Configuring your instance of SQream in Studio is session-based, which enables you to edit parameters per session on your own device. 
-Because session-based configurations are not persistent and are deleted when your session ends, you can edit your required parameters while avoiding conflicts between parameters edited on different devices at different points in time.
 
 
 
