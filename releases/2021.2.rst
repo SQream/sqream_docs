@@ -137,4 +137,4 @@ For more information, see the following statements:
 
    ::
 
-* `CREATE FOREIGN TABLE <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/create_foreign_table.html>`_ - Creating a new foreign table in an existing database.
+* `CREATE FOREIGN TABLE <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/ddl_commands/create_foreign_table.html>`_ - Creating a new foreign table in an existing database.
