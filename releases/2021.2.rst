@@ -93,10 +93,10 @@ When importing and exporting CSVs, SQream now supports using quotation character
 
 For more information, see the following:
 
-* `COPY FROM <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/copy_from.html>`_
+* `COPY FROM <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/copy_from.html>`_
 
    
-* `COPY TO <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/copy_to.html>`_
+* `COPY TO <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/copy_to.html>`_
 
 
 Note the following:
@@ -133,7 +133,7 @@ Note the following:
 	 
 For more information, see the following statements:
 
-* `COPY FROM <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/copy_from.html>`_ - Loading data from files on the filesystem and importing it into SQream tables.
+* `COPY FROM <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/copy_from.html>`_ - Loading data from files on the filesystem and importing it into SQream tables.
 
    ::
 
