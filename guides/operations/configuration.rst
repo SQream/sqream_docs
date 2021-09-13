@@ -46,13 +46,13 @@ The following is an example of a worker configuration file:
        “legacyConfigFilePath”: “home/eilon/SQream_develop/SqrmRT/utils/json/legacy_congif.json”
    }
 
-You can access the SQream configuration file from the SQream configuration file.
+You can access the SQream configuration file from the **legacyConfigFilePath** parameter shown above.
 
 
 Configuring SQream Using a Legacy Configuration File
 ----------------------------
 
-The legacy configuration file provides access to the read/write flags used in SQream’s previous configuration method. A link to this file is provided in the legacyConfigFilePath parameter in the worker configuration file.
+The legacy configuration file provides access to the read/write flags used in SQream’s previous configuration method. A link to this file is provided in the **legacyConfigFilePath** parameter in the worker configuration file.
 
 The following is an example of the legacy configuration file:
 
@@ -68,7 +68,7 @@ The following is an example of the legacy configuration file:
 
 Session-Based Configuration
 =================
-Session-based configurations are not persistent and are deleted when your session ends. This method enables you all required configurations while avoiding conflicts between flag attributes modified on different devices at different points in time.
+Session-based configurations are not persistent and are deleted when your session ends. This method enables you to modify all required configurations while avoiding conflicts between flag attributes modified on different devices at different points in time.
 
 The **SET flag_name** command is used to modify flag attributes. Any modifications you make with the **SET flag_name** command apply only to the open session, and are not saved when the session ends.
 
