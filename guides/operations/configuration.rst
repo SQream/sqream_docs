@@ -75,8 +75,8 @@ The **SET flag_name** command is used to modify flag attributes. Any modificatio
 
 For more information, see the following:
 
-* `Using SQream SQL <https://docs.sqream.com/en/v2021.2/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
-* `SQream Acceleration Studio <https://docs.sqream.com/en/v2021.2/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
+* `Using SQream SQL <https://docs.sqream.com/en/latest/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
+* `SQream Acceleration Studio <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
 
 
 
@@ -86,8 +86,8 @@ SQream uses cluster-based configuration, enabling you to centralize configuratio
 
 For more information, see the following:
 
-* `Using SQream SQL <https://docs.sqream.com/en/v2021.2/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
-* `SQream Acceleration Studio <https://docs.sqream.com/en/v2021.2/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
+* `Using SQream SQL <https://docs.sqream.com/en/latest/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
+* `SQream Acceleration Studio <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
 
 For more information on flag-based access to cluster-based configuration, see **Configuration Flag Types** below.
 
