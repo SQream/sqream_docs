@@ -6,8 +6,8 @@ Keywords and Identifiers
 
 SQL statements are made up of three components:
 
-* Keywords: Keywords have specific meaning in SQL, like ``SELECT``, ``CREATE``, ``WHERE``, etc.
-* Identifiers: Names for things like tables, columns, databases, etc.
+* **Keywords:** Keywords have specific meaning in SQL, like ``SELECT``, ``CREATE``, ``WHERE``, etc.
+* **Identifiers:** Names for things like tables, columns, databases, etc.
 
 .. _keywords:
 
@@ -27,7 +27,7 @@ Identifiers are typically used as database objects names, such as databases, tab
 
 Identifiers can also be used to change a column name in the result (column alias) in a  ``SELECT`` statement.
 
-Identifier rules
+Identifier Rules
 ------------------
 
 An identifier can be either quoted or unquoted, and are maximum 128 characters long.
@@ -49,110 +49,51 @@ Quoted identifiers follow these rules:
 
 .. _reserved_keywords:
 
-Reserved keywords
+Reserved Keywords
 ==================
 
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Keyword
-   * - ``ALL``
-   * - ``ANALYSE``
-   * - ``ANALYZE``
-   * - ``AND``
-   * - ``ANY``
-   * - ``ARRAY``
-   * - ``AS``
-   * - ``ASC``
-   * - ``AUTHORIZATION``
-   * - ``BINARY``
-   * - ``BOTH``
-   * - ``CASE``
-   * - ``CAST``
-   * - ``CHECK``
-   * - ``COLLATE``
-   * - ``COLUMN``
-   * - ``CONCURRENTLY``
-   * - ``CONSTRAINT``
-   * - ``CREATE``
-   * - ``CROSS``
-   * - ``CURRENT_CATALOG``
-   * - ``CURRENT_ROLE``
-   * - ``CURRENT_TIME``
-   * - ``CURRENT_USER``
-   * - ``DEFAULT``
-   * - ``DEFERRABLE``
-   * - ``DESC``
-   * - ``DISTINCT``
-   * - ``DO``
-   * - ``ELSE``
-   * - ``END``
-   * - ``EXCEPT``
-   * - ``FALSE``
-   * - ``FETCH``
-   * - ``FOR``
-   * - ``FREEZE``
-   * - ``FROM``
-   * - ``FULL``
-   * - ``GRANT``
-   * - ``GROUP``
-   * - ``HASH``
-   * - ``HAVING``
-   * - ``ILIKE``
-   * - ``IN``
-   * - ``INITIALLY``
-   * - ``INNER``
-   * - ``INTERSECT``
-   * - ``INTO``
-   * - ``IS``
-   * - ``ISNULL``
-   * - ``JOIN``
-   * - ``LEADING``
-   * - ``LEFT``
-   * - ``LIKE``
-   * - ``LIMIT``
-   * - ``LOCALTIME``
-   * - ``LOCALTIMESTAMP``
-   * - ``LOOP``
-   * - ``MERGE``
-   * - ``NATURAL``
-   * - ``NOT``
-   * - ``NOTNULL``
-   * - ``NULL``
-   * - ``OFFSET``
-   * - ``ON``
-   * - ``ONLY``
-   * - ``OPTION``
-   * - ``OR``
-   * - ``ORDER``
-   * - ``OUTER``
-   * - ``OVER``
-   * - ``OVERLAPS``
-   * - ``PLACING``
-   * - ``PRIMARY``
-   * - ``REFERENCES``
-   * - ``RETURNING``
-   * - ``RIGHT``
-   * - ``RLIKE``
-   * - ``SELECT``
-   * - ``SESSION_USER``
-   * - ``SIMILAR``
-   * - ``SOME``
-   * - ``SYMMETRIC``
-   * - ``SYMMETRIC``
-   * - ``TABLE``
-   * - ``THEN``
-   * - ``TO``
-   * - ``TRAILING``
-   * - ``TRUE``
-   * - ``UNION``
-   * - ``UNIQUE``
-   * - ``USER``
-   * - ``USING``
-   * - ``VARIADIC``
-   * - ``VERBOSE``
-   * - ``WHEN``
-   * - ``WHERE``
-   * - ``WINDOW``
-   * - ``WITH``
+The following table shows the reserved keywords:
+
++-------------------+---------------------+--------------------+------------------+---------------+
+|                  **Reserved Keywords**                                                          |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``ALL``           | ``CURRENT_CATALOG`` | ``HASH``           | ``NOT``          | ``SIMILAR``   |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``ANALYSE``       | ``CURRENT_ROLE``    | ``HAVING``         | ``NOTNULL``      | ``SOME``      |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``ANALYZE``       | ``CURRENT_TIME``    | ``ILIKE``          | ``NULL``         | ``SYMMETRIC`` |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``AND``           | ``CURRENT_USER``    | ``IN``             | ``OFFSET``       | ``SYMMETRIC`` |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``ANY``           | ``DEFAULT``         | ``INITIALLY``      | ``ON``           | ``TABLE``     |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``ARRAY``         | ``DEFERRABLE``      | ``INNER``          | ``ONLY``         | ``THEN``      |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``AS``            | ``DESC``            | ``INTERSECT``      | ``OPTION``       | ``TO``        |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``ASC``           | ``DISTINCT``        | ``INTO``           | ``OR``           | ``TRAILING``  |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``AUTHORIZATION`` | ``DO``              | ``IS``             | ``ORDER``        | ``TRUE``      |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``BINARY``        | ``ELSE``            | ``ISNULL``         | ``OUTER``        | ``UNION``     |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``BOTH``          | ``END``             | ``JOIN``           | ``OVER``         | ``UNIQUE``    |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``CASE``          | ``EXCEPT``          | ``LEADING``        | ``OVERLAPS``     | ``USER``      |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``CAST``          | ``FALSE``           | ``LEFT``           | ``PLACING``      | ``USING``     |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``CHECK``         | ``FETCH``           | ``LIKE``           | ``PRIMARY``      | ``VARIADIC``  |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``COLLATE``       | ``FOR``             | ``LIMIT``          | ``REFERENCES``   | ``VERBOSE``   |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``COLUMN``        | ``FREEZE``          | ``LOCALTIME``      | ``RETURNING``    | ``WHEN``      |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``CONCURRENTLY``  | ``FROM``            | ``LOCALTIMESTAMP`` | ``RIGHT``        | ``WHERE``     |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``CONSTRAINT``    | ``FULL``            | ``LOOP``           | ``RLIKE``        | ``WINDOW``    |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``CREATE``        | ``GRANT``           | ``MERGE``          | ``SELECT``       | ``WITH``      |
++-------------------+---------------------+--------------------+------------------+               +
+| ``CROSS``         | ``GROUP``           | ``NATURAL``        | ``SESSION_USER`` |               |
++-------------------+---------------------+--------------------+------------------+---------------+
