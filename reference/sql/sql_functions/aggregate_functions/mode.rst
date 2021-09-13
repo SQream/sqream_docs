@@ -7,8 +7,8 @@ The **MODE** function returns the most common value in the selected column. If t
 
 The **MODE** function is commonly used with the following functions:
 
-* `PERCENTILE_CONT <https://docs.sqream.com/en/latest/reference/sql/sql_functions/aggregate_functions/percentile_cont.html>`_ function
-* `PERCENTILE_DISC <https://docs.sqream.com/en/latest/reference/sql/sql_functions/aggregate_functions/percentile_disc.html>`_ function
+* `PERCENTILE_CONT <https://docs.sqream.com/en/v2021.2/reference/sql/sql_functions/aggregate_functions/percentile_cont.html>`_ function
+* `PERCENTILE_DISC <https://docs.sqream.com/en/v2021.2/reference/sql/sql_functions/aggregate_functions/percentile_disc.html>`_ function
 
 Syntax
 ========

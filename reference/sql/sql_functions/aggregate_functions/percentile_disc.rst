@@ -5,7 +5,7 @@ PERCENTILE_DISC
 **************************
 The **PERCENTILE_DISC** function returns the value located in the selected percentile of a specified column. The required input is a number between **0** and **1** that represents the wanted percentile. If the selected percentile does not have an exact value, this function returns the closest value beneath the requested percentile.
 
-The **PERCENTILE_DISC** function is commonly used with the `MODE <https://docs.sqream.com/en/latest/reference/sql/sql_functions/aggregate_functions/mode.html>`_ function.
+The **PERCENTILE_DISC** function is commonly used with the `MODE <https://docs.sqream.com/en/v2021.2/reference/sql/sql_functions/aggregate_functions/mode.html>`_ function.
 
 Syntax
 ========
