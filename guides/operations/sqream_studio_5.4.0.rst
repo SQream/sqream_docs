@@ -43,6 +43,13 @@ Logging In to Studio
 
    When you sign in, the License Warning is displayed.
 
+   
+.. _top1:
+   
+   
+   
+   
+   
 
 Navigating Studio's Main Features
 -------------
@@ -58,13 +65,15 @@ From here you can navigate between the main areas of the Studio:
    * - Element
      - Description
    * - :ref:`Dashboard<studio_dashboard>`
-     - Only users with **superuser** permissions have access to the Dashboard.
+     - Lets you monitor cluster storage and system health and manage queues and workers.
    * - :ref:`Editor<studio_editor>`
-     - All users have access to the Editor and to databases that they have permissions for.   
+     - Lets you select databases, perform statement operations, and write and execute queries.   
    * - :ref:`Logs<logs>`
-     - Only users with the **superuser** permissions have access to the logs.
+     - Lets you view usage logs.
    * - :ref:`Roles<roles>`
      - Lets you create users and manage user permissions.
+   * - :ref:`Configuration<configuration>`
+     - Lets you configure your instance of SQream.
 
 By clicking the user icon, you can also use it for logging out and viewing the following:
 
@@ -147,7 +156,7 @@ Below the table, an interactive line graph displays the database storage trends.
 
 .. image:: /_static/images/studio_dashboard_expand_data_storage_3_5.3.0.png
 
-:ref:`Back to Dashboard<back_to_dashboard>`
+:ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard>`
 
 .. _services_panel:
 
@@ -188,7 +197,7 @@ You can add a service by clicking **+ Add** and defining the service name.
 
 You can manage workers from the **Workers** panel. For more information on managing workers, see :ref:`Workers<workers_panel>`.
 
-:ref:`Back to Dashboard<back_to_dashboard>`
+:ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard>`
 
 .. _workers_panel:
 
@@ -355,7 +364,7 @@ Starting or restarting workers terminates all queries related to that worker. Wh
 .. |keep-tabs| image:: /_static/images/studio_keep_tabs.png
    :align: middle
    
-:ref:`Back to Dashboard<back_to_dashboard>`
+:ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard>`
 
 
 
@@ -365,8 +374,9 @@ License Information
 ----------------------
 The license information is a counter showing the amount of time in days remaining on the license.
 
-:ref:`Back to Dashboard<back_to_dashboard>`
+:ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard>`
 
+:ref:`Back to Navigating Studio’s Main Features<top1>`
 
 .. _studio_editor:
 
@@ -440,7 +450,13 @@ For more information on stopping active statements, see the :ref:`STOP_STATEMENT
 
 * **Max Rows** - By default, the Editor fetches only the first 10,000 rows. You can modify this number by selecting an option from the **Max Rows** dropdown list. Note that setting a higher number may slow down your browser if the result is very large. This number is limited to 100,000 results. To see a higher number, you can save the results in a file or a table using the :ref:`create_table_as` command.
 
-:ref:`Back to Editor<editor_top>`
+
+
+:ref:`Back to Executing Statements and Running Queries from the Editor<editor_top>`
+
+
+
+
 
 Performing Statement-Related Operations from the Database Tree
 ---------------
@@ -519,7 +535,6 @@ Clicking **Run Optimizer** adds a tab to the Statement panel showing the optimiz
 
 For more information, see `Optimization and Best Practices <https://docs.sqream.com/en/latest/guides/operations/optimization_best_practices.html>`_.
 
-:ref:`Back to top<top>`
 
 Executing Pre-Defined Queries from the System Queries Panel
 ---------------
@@ -582,7 +597,7 @@ You can also rename the default tab name by double-clicking it and typing a new 
 
 .. _studio_editor_results:
 
-:ref:`Back to Editor<editor_top>`
+:ref:`Back to Executing Statements and Running Queries from the Editor<editor_top>`
 
 
 Viewing Statement and Query Results from the Results Panel
@@ -614,6 +629,7 @@ The following is a brief description of the elements on the Results panel views:
 
 .. _results_view:
 
+:ref:`Back to Executing Statements and Running Queries from the Editor<editor_top>`
 
 	 
 Searching Query Results in the Results View
@@ -690,6 +706,9 @@ Saving Results to a Local File
 ^^^^^^^^^^^^
 The **Save results to local file** functions lets you save your search query results to a local file. Clicking **Save results to local file** downloads the contents of the Results panel to an Excel sheet. You can then use copy and paste this content into other editors as needed.
 
+:ref:`Back to Executing Statements and Running Queries from the Editor<editor_top>`
+
+
 Analyzing Results
 ----------------------------
 
@@ -699,7 +718,9 @@ When results are produced, a **Generate CREATE statement** button is displayed. 
 
 .. _logs_top:
 
-:ref:`Back to Editor<editor_top>`
+:ref:`Back to Executing Statements and Running Queries from the Editor<editor_top>`
+
+:ref:`Back to Navigating Studio’s Main Features<top1>`
 
 Viewing Logs
 ============
@@ -824,9 +845,10 @@ In the **LOG LINES** table, you can click on any of the items to set them as you
 
 :ref:`Back to Viewing Logs<logs_top>`
 
-:ref:`Back to Editor<editor_top>`
+:ref:`Back to Navigating Studio’s Main Features<top1>`
 
 .. _roles:
+
 
 Creating, Assigning, and Managing Roles and Permissions
 ============
@@ -851,6 +873,8 @@ The **Type** column displays one of the following assigned role types:
 
 .. note:: If you disable a password, when you enable it you have to create a new one.
 
+:ref:`Back to Creating, Assigning, and Managing Roles and Permissions<roles>`
+
 
 Viewing Information About a Role
 --------------------
@@ -859,6 +883,9 @@ Clicking a role in the roles table displays the following information:
  * **Parent Roles** - displays the parent roles of the selected role. Roles inherit all roles assigned to the parent.
  * **Members** - displays all members that the role has been assigned to. The arrow indicates the roles that the role has inherited. Hovering over a member displays the roles that the role is inherited from.
  * **Permissions** - displays the role's permissions. The arrow indicates the permissions that the role has inherited. Hovering over a permission displays the roles that the permission is inherited from.
+ 
+:ref:`Back to Creating, Assigning, and Managing Roles and Permissions<roles>`
+
 
 Creating a New Role
 --------------------
@@ -881,6 +908,9 @@ From the New Role panel you view directly and indirectly (or inherited) granted 
 
 When adding a new role, you must select the **Enable login for this role** and **Has password** check boxes.
 
+:ref:`Back to Creating, Assigning, and Managing Roles and Permissions<roles>`
+
+
 Editing a Role
 --------------------
 Once you've created a role, clicking the **Edit Role** button lets you do the following:
@@ -895,6 +925,47 @@ Once you've created a role, clicking the **Edit Role** button lets you do the fo
 
 From the Edit Role panel you view directly and indirectly (or inherited) granted permissions. Disabled permissions have no connect permissions for the referenced database and are displayed in gray text. You can add or remove permissions from the **Add permissions** field. From the Edit Role panel you can also search and scroll through the permissions. In the **Search** field you can use the **and** operator to search for strings that fulfill multiple criteria.
 
+:ref:`Back to Creating, Assigning, and Managing Roles and Permissions<roles>`
+
+
 Deleting a Role
 -----------------
 Clicking the **delete** icon displays a confirmation message with the amount of users and groups that will be impacted by deleting the role.
+
+:ref:`Back to Creating, Assigning, and Managing Roles and Permissions<roles>`
+
+:ref:`Back to Navigating Studio’s Main Features<top1>`
+
+
+.. _configuration1:
+
+Configuring Your Instance of SQream
+==============================
+The **Configuration** section lets you edit parameters from one centralized location. While you can edit these parameters from the **worker configuration file (config.json)** or from your CLI, you can also modify them in Studio in an easy-to-use format.
+
+Configuring your instance of SQream in Studio is session-based, which enables you to edit parameters per session on your own device. 
+Because session-based configurations are not persistent and are deleted when your session ends, you can edit your required parameters while avoiding conflicts between parameters edited on different devices at different points in time.
+
+
+
+Editing Your Parameters
+-------------------------------
+When configuring your instance of SQream in Studio you can edit parameters for the **Generic** and **Admin** parameters only.
+
+Studio includes two types of parameters: toggle switches, such as **flipJoinOrder**, and text fields, such as **logSysLevel**. After editing a parameter, you can reset each one to its previous value or to its default value individually, or revert all parameters to their default setting simultaneously. Note that you must click **Save** to save your configurations.
+
+You can hover over the **information** icon located on each parameter to read a short description of its behavior.
+
+:ref:`Back to Configuring Your Instance of SQream<configuration1>`
+
+
+Exporting and Importing Configuration Files
+-------------------------
+You can also export and import your configuration settings into a .json file. This allows you to easily edit your parameters and to share this file with other users if required.
+
+For more information about configuring your instance of SQream, see `Configuration <https://docs.sqream.com/en/latest/guides/operations/configuration.html>`_.
+
+
+:ref:`Back to Configuring Your Instance of SQream<configuration1>`
+
+:ref:`Back to Navigating Studio’s Main Features<top1>`
