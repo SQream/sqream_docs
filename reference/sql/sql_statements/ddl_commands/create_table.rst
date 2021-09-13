@@ -237,7 +237,7 @@ The following is an example of creating a second table based on the structure of
 
    CREATE TABLE t1 LIKE t2;
 
-The previous command should be 100% equivalent to exeucting this: **Comment - I'm not exactly sure what this sentence means.**
+The previous command should be 100% equivalent to exeucting this:
 
 .. code-block:: postgres
 
@@ -254,7 +254,6 @@ The following is example of creating a table based on external tables and views:
    CREATE TABLE t3 LIKE v;
 
 
-**Comment - I'm not sure that we need the following table:**
 
 When duplicating the column structure of an existing table, the target table of the ``LIKE`` clause can be a regular or an external table, or a view.
    
