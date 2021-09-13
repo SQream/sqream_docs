@@ -232,4 +232,3 @@ Export table to a ORC file
 .. code-block:: psql
    
 	COPY nba TO WRAPPER orc_fdw OPTIONS (LOCATION = '/tmp/nba_export.orc');
-
