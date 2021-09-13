@@ -81,30 +81,54 @@ Elements
    * - ``AWS_ID``, ``AWS_SECRET``
      - Specifies the authentication details for secured S3 buckets
 
-Usage notes
+
+
+
+Supported Field Delimiters
 ===============
 
-Supported field delimiters
-------------------------------
+Double-Quotations When Importing and Exporting CSVs
+----------------------------------
+The following is the correct syntax for customizing alternative quotation characters:
 
-Printable characters
+.. code-block:: postgres
+
+   QUOTE = {'C' | E'\ooo')
+   
+Below are two examples of customizing alternative quotation characters.
+   
+Example 1 - Customizing Double-Quotations Using a Character
+************   
+
+.. code-block:: postgres
+
+   copy t to wrapper csv_fdw options (location = '/tmp/file.csv', quote='"');
+   
+Example 2 - Customizing Double-Quotations Using an ASCII Character Code
+************
+
+.. code-block:: postgres
+   
+   copy t to wrapper csv_fdw options (location = '/tmp/file.csv', quote=E'\047');
+
+Printable Characters
 ^^^^^^^^^^^^^^^^^^^^^
 
 Any printable ASCII character can be used as a delimiter without special syntax. The default CSV field delimiter is a comma (``,``).
 
 A printable character is any ASCII character in the range 32 - 126.
 
-Non-printable characters
+Non-Printable Characters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A non-printable character (1 - 31, 127) can be used in its octal form. 
 
 A tab can be specified by escaping it, for example ``\t``. Other non-printable characters can be specified using their octal representations, by using the ``E'\000'`` format, where ``000`` is the octal value of the character.
 
-For example, ASCII character ``15``, known as "shift in", can be specified using ``E'\017'``.
+For example, ASCII character ``15``, known as "shift in", can be specified using ``E'\07'``.
 
 
-Date format
+Date Format
 ---------------
 
 The date format in the output CSV is formatted as ISO 8601 (``2019-12-31 20:30:55.123``), regardless of how it was parsed initially with :ref:`COPY FROM date parsers<copy_date_parsers>`.
@@ -113,7 +137,7 @@ The date format in the output CSV is formatted as ISO 8601 (``2019-12-31 20:30:5
 Examples
 ===========
 
-Export table to a CSV without HEADER
+Export Table to a CSV without HEADER
 ------------------------------------
 
 .. code-block:: psql
@@ -130,7 +154,7 @@ Export table to a CSV without HEADER
    Jonas Jerebko,Boston Celtics,8,PF,29,6-10,231,\N,5000000
    Amir Johnson,Boston Celtics,90,PF,29,6-9,240,\N,12000000
 
-Export table to a CSV with a HEADER row
+Export Table to a CSV with a HEADER Row
 -----------------------------------------
 
 .. code-block:: psql
@@ -147,7 +171,7 @@ Export table to a CSV with a HEADER row
    R.J. Hunter,Boston Celtics,28,SG,22,6-5,185,Georgia State,1148640
    Jonas Jerebko,Boston Celtics,8,PF,29,6-10,231,\N,5000000
 
-Export table to a TSV with a header row
+Export Table to a TSV with a Header Row
 -----------------------------------------
 
 .. code-block:: psql
@@ -164,7 +188,7 @@ Export table to a TSV with a header row
    R.J. Hunter     Boston Celtics  28      SG      22      6-5     185     Georgia State   1148640
    Jonas Jerebko   Boston Celtics  8       PF      29      6-10    231     \N     5000000
 
-Use non-printable ASCII characters as delimiter
+Using Non-Printable ASCII Characters as Delimiter
 -------------------------------------------------------
 
 Non-printable characters can be specified using their octal representations, by using the ``E'\000'`` format, where ``000`` is the octal value of the character.
@@ -179,7 +203,7 @@ For example, ASCII character ``15``, known as "shift in", can be specified using
    
 	COPY nba TO WRAPPER csv_fdw OPTIONS (LOCATION = '/tmp/nba_export.csv', DELIMITER = E'\011'); -- 011 is a tab character
 
-Exporting the result of a query to a CSV
+Exporting the Result of a Query to a CSV
 --------------------------------------------
 
 .. code-block:: psql
@@ -195,14 +219,14 @@ Exporting the result of a query to a CSV
    Charlotte Hornets,5222728
    Chicago Bulls,5785558
 
-Saving files to an authenticated S3 bucket
+Saving Files to an Authenticated S3 Bucket
 --------------------------------------------
 
 .. code-block:: psql
    
 	COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) TO WRAPPER csv_fdw OPTIONS (LOCATION = 's3://my_bucket/salaries/nba_export.csv', AWS_ID = 'my_aws_id', AWS_SECRET = 'my_aws_secret');
 
-Saving files to an HDFS path
+Saving Files to an HDFS Path
 --------------------------------------------
 
 .. code-block:: psql
@@ -210,7 +234,7 @@ Saving files to an HDFS path
    	COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) TO WRAPPER csv_fdw OPTIONS (LOCATION = 'hdfs://pp_namenode:8020/nba_export.csv');
 
 
-Export table to a parquet file
+Export Table to a Parquet File
 ------------------------------
 
 .. code-block:: psql
@@ -218,7 +242,7 @@ Export table to a parquet file
 	COPY nba TO WRAPPER parquet_fdw OPTIONS (LOCATION = '/tmp/nba_export.parquet');
 
 
-Export a query to a parquet file
+Export a Query to a Parquet File
 --------------------------------
 
 .. code-block:: psql
@@ -226,10 +250,9 @@ Export a query to a parquet file
 	COPY (select x,y from t where z=0) TO WRAPPER parquet_fdw OPTIONS (LOCATION = '/tmp/file.parquet');
 
 
-Export table to a ORC file
+Export Table to an ORC File
 ------------------------------
 
 .. code-block:: psql
    
 	COPY nba TO WRAPPER orc_fdw OPTIONS (LOCATION = '/tmp/nba_export.orc');
-

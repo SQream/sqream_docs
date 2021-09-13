@@ -14,7 +14,7 @@ The 2021.2 Release Notes describe the following releases:
    
 Release Notes Version 2021.2.1
 ============================
-The 2021.2.1 release notes were released on x/x/2021.
+The 2021.2.1 release notes were released on 13/9/2021.
 
 New Features
 -------------
@@ -65,7 +65,7 @@ For more information, see `Duplicating the Column Structure of an Existing Table
 
 Release Notes Version 2021.2
 ============================
-The 2021.2 release notes were released on x/x/2021.
+The 2021.2 release notes were released on 13/9/2021.
 
 New Features
 ----------
@@ -75,7 +75,7 @@ The 2021.2 Release Notes include the following new features:
    :local:
    :depth: 1
    
-Qualifying Schemas Without Providing an Alias (SQ-8006)
+Qualifying Schemas Without Providing an Alias
 ************
 When running queries, SQream now supports qualifying schemas without providing an alias.
 
@@ -85,54 +85,25 @@ For more information, see `CREATE SCHEMA <https://docs.sqream.com/en/latest/refe
 
 
 
-Double-Quotations Supported When Importing and Exporting CSVs (SQ-7938, 7397, 3140, 2367)
+Double-Quotations Supported When Importing and Exporting CSVs
 ************
 When importing and exporting CSVs, SQream now supports using quotation characters other than double quotation marks (``"``).
 
-For more information, see the following: **Comment - Correct destinations?**
+For more information, see the following:
 
-* `String literals <https://docs.sqream.com/en/latest/reference/sql/sql_syntax/literals.html#string-literals>`_
-* `Data loading overview <https://docs.sqream.com/en/latest/guides/inserting_data.html?#data-loading-overview>`_
-* `Syntax <https://docs.sqream.com/en/latest/reference/sql_data_types.html#syntax>`_
+* `COPY FROM <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/copy_from.html>`_
 
-
-**Comment - The content below would be documented on the relevant pages above:**
-
-The following is the correct syntax for customizing alternative quotation characters:
-
-.. code-block:: postgres
-
-   QUOTE = {'C' | E'\ooo')
    
-Example 1 - Customizing Double-Quotations Using a Character
-************
-   
-The following are two examples of customizing alternative quotation characters:
+* `COPY TO <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/copy_to.html>`_
 
-.. code-block:: postgres
 
-   copy t to wrapper csv_fdw options (location = '/tmp/file.csv', quote='"');
-   
-Example 2 - Customizing Double-Quotations Using an ASCII Character Code
-************
-
-.. code-block:: postgres
-   
-   copy t to wrapper csv_fdw options (location = '/tmp/file.csv', quote=E'\017');
-   
-**Comment - I looked it up, and double quotations are "034" in Decimal notation, "42" in Octal, and "22" in Hex. If so, why is "017" used in Example 2?**
-
-https://web.cs.dal.ca/~zyu/ascii.html
-
-Note the following when customzing double-quotation characters:
-
-**Comment - x =** ``quote=E'\017'`` **?**
+Note the following:
 
 * Leaving *<x>* unspecified uses the default value of standard double quotations ``”``.
 
    ::
 
-* The quotation character must be a single, 1-byte printable ASCII character. The same octal syntax of the copy command can be used. **Comment - Meaning that the octal notation can be used instead of decimal?**
+* The quotation character must be a single, 1-byte printable ASCII character. The same octal syntax of the copy command can be used.
 
    ::
 
@@ -157,8 +128,6 @@ Note the following when customzing double-quotation characters:
   .. code-block:: postgres
 
      copy t to wrapper csv_fdw options (location = '/tmp/file.csv', escape='\\');
-	 
-**Comment - I'm assuming that the development in the last bullet above has been implemented. The ticket for SQ-7937 said that users can set a custom escape character in CSV FDWREADY ticket (SQ-3140) "once we implement it".**
 	 
 For more information, see the following statements:
 
