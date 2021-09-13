@@ -252,6 +252,32 @@ Supported Field Delimiters
 
 Field delimiters can be one or more characters.
 
+Double-Quotations When Importing and Exporting CSVs
+----------------------------------
+The following is the correct syntax for customizing alternative quotation characters:
+
+.. code-block:: postgres
+
+   QUOTE = {'C' | E'\ooo')
+   
+Below are two examples of customizing alternative quotation characters.
+   
+Example 1 - Customizing Double-Quotations Using a Character
+************   
+
+.. code-block:: postgres
+
+   copy t to wrapper csv_fdw options (location = '/tmp/file.csv', quote='"');
+   
+Example 2 - Customizing Double-Quotations Using an ASCII Character Code
+************
+
+.. code-block:: postgres
+   
+   copy t to wrapper csv_fdw options (location = '/tmp/file.csv', quote=E'\017');
+
+
+
 Multi-Character Delimiters
 ----------------------------------
 
