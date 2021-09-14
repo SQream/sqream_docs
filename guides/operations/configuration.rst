@@ -1,267 +1,299 @@
 .. _configuration:
 
-**************************
+***********************
 Configuration
-**************************
+***********************
 
-The **Configuration** page describes SQream’s method for configuring your instance of SQream and includes the following topics:
+This guide covers the configuration files and the ``SET`` statement.
 
-.. contents:: 
-   :local:
-   :depth: 1
+Configuration Files
+==========================
 
-Overview
-============
+By default, configuration files are stored in ``/etc/sqream``.
 
+A very minimal configuration file looks like this:
 
+.. code-block:: json
 
-Modifications that you make to your configurations are persistent based on whether they are made at the session or cluster level. Persistent configurations are modifications made to attributes that are retained after shutting down your system.
-
-
-Configuring Your Instance of SQream
-============
-The **Configuring Your Instance of SQream** section describes the following:
-
-.. contents:: 
-   :local:
-   :depth: 1
-
-Configuring SQream Using the SQream Configuration File
------
-
-You can configure your instance of SQream using the **SQream configuration file (config.json)**. This file displays all the parameters required for configuring your instance of SQream and are read-only. The parameter settings in this file are stored at the metadata level and are applied globally to all workers connected to it.
-
-The following is an example of a worker configuration file:
-
-.. code-block:: postgres
-   
    {
-       “cluster”: “/home/test_user/sqream_testing_temp/sqreamdb”,
-       “gpu”:  0,
-       “licensePath”: “home/test_user/SQream/tests/license.enc”,
-       “machineIP”: “127.0.0.1”,
-       “metadataServerIp”: “127.0.0.1”,
-       “metadataServerPort”: “3105,
-       “port”: 5000,
-       “useConfigIP”” true,
-       “legacyConfigFilePath”: “home/eilon/SQream_develop/SqrmRT/utils/json/legacy_congif.json”
+       "compileFlags": {
+       },
+       "runtimeFlags": {
+       },
+       "runtimeGlobalFlags": {
+       },
+       "server": {
+           "gpu": 0,
+           "port": 5000,
+           "cluster": "/home/sqream/sqream_storage",
+           "licensePath": "/etc/sqream/license.enc"
+       }
    }
 
-You can access the SQream configuration file from the **legacyConfigFilePath** parameter shown above.
+* Each SQream DB worker (``sqreamd``) has a dedicated configuration file. 
 
+* The configuration file contains four distinct sections, ``compileFlags``, ``runtimeFlags``, ``runtimeGlobalFlags``, and ``server``.
 
-Configuring SQream Using a Legacy Configuration File
-----------------------------
+In the example above, the worker will start on port 5000, and will use GPU #0.
 
-The legacy configuration file provides access to the read/write flags used in SQream’s previous configuration method. A link to this file is provided in the **legacyConfigFilePath** parameter in the worker configuration file.
+Frequently Set Parameters
+============================
 
-The following is an example of the legacy configuration file:
+.. todo
+    list-table:: Compiler Flags
+      :widths: auto
+      :header-rows: 1
+      
+      * - Name
+        - Section
+        - Description
+        - Default
+        - Value Range
+        - Example
+      * -
+        -
+        -
+        -
+        -
+        -
 
-
-.. code-block:: postgres
+.. list-table:: Server Flags
+   :widths: auto
+   :header-rows: 1
    
-   {
-      “developerMode”: true,
-      “reextentUse”: false,
-      “useClientLog”: true,
-      “useMetadataServer”” false
-   }   
+   * - Name
+     - Section
+     - Description
+     - Default
+     - Value Range
+     - Example
+   * - ``gpu``
+     - ``server``
+     - Controls the GPU ordinal to use
+     - ✗
+     - 0 to (number of GPUs in the machine -1). Check with ``nvidia-smi -L``
+     - ``"gpu": 0``
+   * - ``port``
+     - ``server``
+     - Controls the TCP port to listen on
+     - ✗
+     - 1024 to 65535
+     - ``"port" : 5000``
+   * - ``ssl_port``
+     - ``server``
+     - Controls the SSL TCP port to listen on. Must be different from ``port``
+     - ✗
+     - 1024 to 65535
+     - ``"ssl_port" : 5100``
+   * - ``cluster``
+     - ``server``
+     - Specifies the cluster path root
+     - ✗
+     - Valid local system path
+     - ``"cluster" : "/home/sqream/sqream_storage"``
+   * - ``license_path``
+     - ``server``
+     - Specifies the license file for this worker
+     - ✗
+     - Valid local system path to license file
+     - ``"license_path" : "/etc/sqream/license.enc"``
 
-Session-Based Configuration
-=================
-Session-based configurations are not persistent and are deleted when your session ends. This method enables you to modify all required configurations while avoiding conflicts between flag attributes modified on different devices at different points in time.
-
-The **SET flag_name** command is used to modify flag attributes. Any modifications you make with the **SET flag_name** command apply only to the open session, and are not saved when the session ends.
-
-For more information, see the following:
-
-* `Using SQream SQL <https://docs.sqream.com/en/v2021.2/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
-* `SQream Acceleration Studio <https://docs.sqream.com/en/v2021.2/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
-
-
-
-Cluster-Based Configuration
-==============
-SQream uses cluster-based configuration, enabling you to centralize configurations for all workers on the cluster. Only flags set to the regular or cluster flag type have access to cluster-based configuration. Configurations made on the cluster level are persistent.
-
-For more information, see the following:
-
-* `Using SQream SQL <https://docs.sqream.com/en/v2021.2/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
-* `SQream Acceleration Studio <https://docs.sqream.com/en/v2021.2/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
-
-For more information on flag-based access to cluster-based configuration, see **Configuration Flag Types** below.
-
-
-
-Configuration Flag Types
-=====================
-The flag type attribute can be set for each flag and determines its write access as follows:
-
-
-
-* **Regular:** session-based read/write flags that can be stored in the metadata file
-* **Cluster:** global cluster-based read/write flags that can be stored in the metadata file
-* **Worker:** single worker-based read-only flags that can be stored in the worker configuration file
-
-The flag type determines which files can be accessed and which commands or commands sets users can run.
-
-The following table describes the file or command modification rights for each flag type:
-
-+---------------+-------------------------------+----------------------+------------------------+
-| **Flag Type** | **Legacy Configuration File** | **ALTER SYSTEM SET** | **Worker Config File** |
-+---------------+-------------------------------+----------------------+------------------------+
-| Regular       | Can modify                    | Can modify           | Cannot modify          |
-+---------------+-------------------------------+----------------------+------------------------+
-| Cluster       | Cannot modify                 | Can modify           | Cannot modify          |
-+---------------+-------------------------------+----------------------+------------------------+
-| Worker        | Cannot modify                 | Cannot modify        | Can modify             |
-+---------------+-------------------------------+----------------------+------------------------+
-
-
-
-Configuration Commands
-===================
-The configuration commands are associated with particular flag types based on permissions.
-
-The following table describes the commands or command sets that can be run based on their flag type:
-
-+--------------------------+--------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| **Flag Type**            | **Command**                          | **Description**                                                                                                                          | **Example**                                                                                                                                                                                                                                                                                                                       |
-+--------------------------+--------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Regular                  | SET <flag_name>                      | Used for modifying flag attributes.                                                                                                      | SET developerMode=true                                                                                                                                                                                                                                                                                                            |
-+--------------------------+--------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Cluster                  | ALTER SYSTEM SET <flag-name>         | Used to storing or modifying flag attributes in the metadata file.                                                                       | ALTER SYSTEM SET <heartbeatInterval=12;>                                                                                                                                                                                                                                                                                          |
-+--------------------------+--------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Cluster                  | ALTER SYSTEM RESET <flag-name | ALL> | Used to remove a flag or all flag attributes from the metadata file.                                                                     | ALTER SYSTEM RESET <heartbeatInterval ALTER SYSTEM RESET ALL>                                                                                                                                                                                                                                                                     |
-+--------------------------+--------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Regular, Cluster, Worker | SHOW <flag-name> | ALL               | Used to print the value of a specified value or all flag values.                                                                         | SHOW <heartbeatInterval>                                                                                                                                                                                                                                                                                                          |
-+--------------------------+--------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Regular, Cluster, Worker | SHOW ALL LIKE                        | Used as a wildcard character for flag names.                                                                                             | SHOW <heartbeat*>                                                                                                                                                                                                                                                                                                                 |
-+--------------------------+--------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Regular, Cluster, Worker | show_conf UF                         | Used to print all flags with the following attributes:                                                                                   | rechunkThreshold,90,true,RND,regular                                                                                                                                                                                                                                                                                              |
-|                          |                                      |                                                                                                                                          |                                                                                                                                                                                                                                                                                                                                   |
-|                          |                                      | * Flag name                                                                                                                              |                                                                                                                                                                                                                                                                                                                                   |
-|                          |                                      | * Default value                                                                                                                          |                                                                                                                                                                                                                                                                                                                                   |
-|                          |                                      | * Is developer mode (Boolean)                                                                                                            |                                                                                                                                                                                                                                                                                                                                   |
-|                          |                                      | * Flag category                                                                                                                          |                                                                                                                                                                                                                                                                                                                                   |
-|                          |                                      | * Flag type                                                                                                                              |                                                                                                                                                                                                                                                                                                                                   |
-|                          |                                      |                                                                                                                                          |                                                                                                                                                                                                                                                                                                                                   |
-+--------------------------+--------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Regular, Cluster, Worker | show_conf_extended UF                | Used to print all information output by the show_conf UF command, in addition to description, usage, data type, default value and range. | spoolMemoryGB,15,false,generic,regular,Amount of memory (GB) the server can use for spooling,"Statement that perform ""group by"", ""order by"" or ""join"" operation(s) on large set of data will run much faster if given enough spool memory, otherwise disk spooling will be used resulting in performance hit.",uint,,0-5000 |
-+--------------------------+--------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Regular, Cluster, Worker | show_md_flag UF                      | Used to show a specific flag/all flags stored in the metadata file.                                                                      |* Example 1: * master=> ALTER SYSTEM SET   heartbeatTimeout=111;                                                                                                                                                                                                                                                                   |
-|                          |                                      |                                                                                                                                          |* Example 2: * master=> select show_md_flag('all'); heartbeatTimeout,111                                                                                                                                                                                                                                                           | 
-|                          |                                      |                                                                                                                                          |* Example 3: * master=> select show_md_flag('heartbeatTimeout'); heartbeatTimeout,111                                                                                                                                                                                                                                              |
-+--------------------------+--------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-
-
-
-
-Configuration Roles
-========================
-SQream divides flags into the following roles, each with their own set of permissions:
-
-* **Generic** – Flags that can be modified by standard users on a session basis.
-* **Admin** – Flags that can be modified by administrators on a session and cluster basis using the ALTER SYSTEM SET command.
-
-
-
-The following table describes the Generic and Admin configuration flags:
-
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| **Flag Name**                 | **Access Control** | **Modification Type** | **Description**                                                                                                                                                                                                                             | **Data Type** | **Default Value**                                                                                                                                                                                                                                                                      | **Allowed Values** |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| binSizes                      | Admin              | Regular               | Sets the custom bin size in the cache to enable high granularity bin control.                                                                                                                                                               | string        | 16,32,64,128,256,512,1024,2048,4096,8192,16384,32768,65536,131072,262144,524288,1048576,2097152,4194304,8388608,16777216,33554432,67108864,134217728,268435456,536870912,786432000,107374,1824,1342177280,1610612736,1879048192,2147483648,2415919104,2684354560,2952790016,3221225472 |                    |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| checkCudaMemory               | Admin              | Regular               | Sets the pad device memory allocations with safety buffers to catch out-of-bounds writes.                                                                                                                                                   | boolean       | FALSE                                                                                                                                                                                                                                                                                  | true,false         |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| compilerGetsOnlyUFs           | Admin              | Regular               | Sets the runtime to pass only utility functions names to the compiler.                                                                                                                                                                      | boolean       | FALSE                                                                                                                                                                                                                                                                                  | true,false         |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| copyToRestrictUtf8            | Admin              | Regular               | Sets the custom bin size in the cache to enable high granularity bin control.                                                                                                                                                               | boolean       | FALSE                                                                                                                                                                                                                                                                                  | true,false         |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| cpuReduceHashtableSize        | Admin              | Regular               | Sets the hash table size of the CpuReduce.                                                                                                                                                                                                  | uint          | 10000                                                                                                                                                                                                                                                                                  |                    |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| csvLimitRowLength             | Admin              | Cluster               | Sets the maximum supported CSV row length.                                                                                                                                                                                                  | uint          | 100000                                                                                                                                                                                                                                                                                 | 1-4000000000       |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| cudaMemcpyMaxSizeBytes        | Admin              | Regular               | Sets the chunk size for copying from CPU to GPU. If set to 0, do not divide.                                                                                                                                                                | uint          | 0                                                                                                                                                                                                                                                                                      | 0-4000000000       |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| CudaMemcpySynchronous         | Admin              | Regular               | Indicates if copying from/to GPU is synchronous                                                                                                                                                                                             | boolean       | FALSE                                                                                                                                                                                                                                                                                  | true,false         |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| cudaMemQuota                  | Admin              | Worker                | Sets the percentage of total device memory to be used by the instance.                                                                                                                                                                      | uint          | 90                                                                                                                                                                                                                                                                                     | 0-100              |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| developerMode                 | Admin              | Regular               | Enables modifying R&D flags.                                                                                                                                                                                                                | boolean       | FALSE                                                                                                                                                                                                                                                                                  | true,false         |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| enableDeviceDebugMessages     | Admin              | Regular               | Checks for CUDA error after each chunk is produced.                                                                                                                                                                                         | boolean       | FALSE                                                                                                                                                                                                                                                                                  | true,false         |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| enableLogDebug                | Admin              | Regular               | Enables creating and logging in the **clientLogger_debug** file                                                                                                                                                                             | boolean       | TRUE                                                                                                                                                                                                                                                                                   | true,false         |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| enableNvprofMarkers           | Admin              | Regular               | Activates the Nvidia profiler (nvprof) markers.                                                                                                                                                                                             | boolean       | FALSE                                                                                                                                                                                                                                                                                  | true,false         |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| endLogMessage                 | Admin              | Regular               | Appends a string at the end of every log line.                                                                                                                                                                                              | string        | EOM                                                                                                                                                                                                                                                                                    |                    |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| extentStorageFileSizeMB       | Admin              | Cluster               | Sets the minimum size in mebibytes of extents for table bulk data.                                                                                                                                                                          | uint          | 20                                                                                                                                                                                                                                                                                     |                    |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| gatherMemStat                 | Admin              | Regular               | Monitors all pinned allocations and all memcopies to/from device, and prints a report of pinned allocations that were not **memcopied** to/from the device using the **dump_pinned_misses utility function**.                               | boolean       | FALSE                                                                                                                                                                                                                                                                                  | true,false         |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| increaseChunkSizeBeforeReduce | Admin              | Regular               | Increases the chunk size to reduce query speed.                                                                                                                                                                                             | boolean       | FALSE                                                                                                                                                                                                                                                                                  | true,false         |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| increaseMemFactors            | Admin              | Regular               | Adds rechunker before expensive chunk producer (R and D? See Oferís message in Slack).                                                                                                                                                      | boolean       | TRUE                                                                                                                                                                                                                                                                                   | true,false         |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| leveldbWriteBufferSize        | Admin              | Regular               | Sets the buffer size.                                                                                                                                                                                                                       | uint          | 524288                                                                                                                                                                                                                                                                                 |                    |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| machineIP                     | Admin              | Worker                | Manual setting of reported IP.                                                                                                                                                                                                              | string        | 127.0.0.1                                                                                                                                                                                                                                                                              | char(16)           |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| memMergeBlobOffsetsCount      | Admin              | Regular               | Needs description                                                                                                                                                                                                                           | uint          | 70                                                                                                                                                                                                                                                                                     | 0-100              |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| memoryResetTriggerMB          | Admin              | Regular               | Sets the size of memory used during a query to trigger aborting the server.                                                                                                                                                                 |               | 131072                                                                                                                                                                                                                                                                                 |                    |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| memoryResetTriggerMB          | Admin              | Regular               | Sets the size of memory used during a query to trigger aborting the server.                                                                                                                                                                 | uint          | 0                                                                                                                                                                                                                                                                                      | 0-4000000000       |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| metadataServerPort            | Admin              | Worker                | Sets the port used to connect to the metadata server. SQream recommends using port ranges above 1024† because ports below 1024 are usually reserved, although there are no strict limitations. Any positive number (1 - 65535) can be used. | uint          | 3105                                                                                                                                                                                                                                                                                   | 1-65535            |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| mtRead                        | Admin              | Regular               | Splits large reads to multiple smaller ones and executes them concurrently.                                                                                                                                                                 | boolean       | FALSE                                                                                                                                                                                                                                                                                  | true,false         |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| mtReadWorkers                 | Admin              | Regular               | Sets the number of workers to handle smaller concurrent reads.                                                                                                                                                                              | uint          | 30                                                                                                                                                                                                                                                                                     |                    |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| orcImplicitCasts              | Admin              | Regular               | Sets the implicit cast in orc files, such as **int** to **tinyint** and vice versa.                                                                                                                                                         | boolean       | TRUE                                                                                                                                                                                                                                                                                   | true,false         |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| statementLockTimeout          | Admin              | Regular               | Sets the timeout (seconds) for acquiring object locks before executing statements.                                                                                                                                                          | uint          | 3                                                                                                                                                                                                                                                                                      | 0-4000000000       |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| useConfigIP                   | Admin              | Worker                | Activates the machineIP (true). Setting to false ignores the machineIP and automatically assigns a local network IP. This cannot be activated in a cloud scenario (on-premises only).                                                       | boolean       | FALSE                                                                                                                                                                                                                                                                                  | true,false         |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| useLegacyDecimalLiterals      | Admin              | Regular               | Interprets decimal literals as **Double** instead of **Numeric**. Used to preserve legacy behavior in existing customers.                                                                                                                   | boolean       | FALSE                                                                                                                                                                                                                                                                                  | true,false         |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| useLegacyStringLiterals       | Admin              | Regular               | Interprets ASCII-only strings as **Varchar** instead of **Text**. Used to preserve legacy behavior in existing customers.                                                                                                                   | boolean       | FALSE                                                                                                                                                                                                                                                                                  | true,false         |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| flipJoinOrder                 | Generic            | Regular               | Reorders join to force equijoins and/or equijoins sorted by table size.                                                                                                                                                                     | boolean       | FALSE                                                                                                                                                                                                                                                                                  | true,false         |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| limitQueryMemoryGB            | Generic            | Worker                | Prevents a query from processing more memory than the flag's value.                                                                                                                                                                         | uint          | 100000                                                                                                                                                                                                                                                                                 | 1-4000000000       |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| logSysLevel                   | Generic            | Regular               | Determines the client log level: 0 - L_SYSTEM,1 - L_FATAL,2 - L_ERROR,3 - L_WARN,4 - L_INFO,5 - L_DEBUG,6 - L_TRACE                                                                                                                         | uint          | 1                                                                                                                                                                                                                                                                                      | 0-6                |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| maxAvgBlobSizeToCompressOnGpu | Generic            | Regular               | Sets the CPU to compress columns with size above (flag's value) * (row count).                                                                                                                                                              | uint          | 120                                                                                                                                                                                                                                                                                    | 1-4000000000       |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-| spoolMemoryGB                 | Generic            | Regular               | Sets the amount of memory (GB) to be used by the server for spooling.                                                                                                                                                                       | uint          | 8                                                                                                                                                                                                                                                                                      | 0-5000             |
-+-------------------------------+--------------------+-----------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+--------------------+
-
-Showing All Flags in the Catalog Table
-===========================
-SQream uses the sqream_catalog.parameters catalog table for showing all flags, providing the scope (default, cluster and session), description, default value and actual value.
-
-The following is the correct syntax for a catalog table query:
-
-
-.. code-block:: console
+.. list-table:: Runtime Global Flags
+   :widths: 10 22 16 10 22 16
+   :header-rows: 1
    
-   SELECT * FROM sqream_catalog.settings
+   * - Name
+     - Section
+     - Description
+     - Default
+     - Value Range
+     - Example
+   * - ``spoolMemoryGb``
+     - ``runtimeGlobalFlags``
+     - Modifies RAM allocated for the worker for intermediate results. Statements that use more memory than this setting will spool to disk, which could degrade performance. We recommend not to exceed the amount of RAM in the machine. This setting must be set lower than the ``limitQueryMemoryGB`` setting.
+     - ``128``
+     - 1 to maximum available RAM in gigabytes. 
+     - ``"spoolMemoryGb": 250``
+   * - ``WriteToFileThreads``
+     - ``runtimeGlobalFlags``
+     - Configures the number of threads in the **WriteToFile** function
+     - ``16``
+     -  
+     - 
+   * - ``limitQueryMemoryGB``
+     - ``runtimeGlobalFlags``
+     - Modifies the maximum amount of RAM allocated for a query. The recommended value for this is ``total host memory`` / ``sqreamd workers on host``. For example, for a machine with 512GB of RAM and 4 workers, the recommended setting is ``512/4 → 128``.
+     - ``10000``
+     - ``1`` to ``10000``
+     - ``"limitQueryMemoryGB" : 128``
+   * - ``cudaMemQuota``
+     - ``runtimeGlobalFlags``
+     - Modifies the maximum amount of GPU RAM allocated for a worker. The recommended value is 99% for a GPU with a single worker, or 49% for a GPU with two workers.
+     - ``90`` %
+     - ``1`` to ``99``
+     - ``"cudaMemQuota" : 99``
+   * - ``showFullExceptionInfo``
+     - ``runtimeGlobalFlags``
+     - Shows complete error message with debug information. Use this for debugging.
+     - ``false``
+     - ``true`` or ``false``
+     - ``"showFullExceptionInfo" : true``
+   * - ``initialSubscribedServices``
+     - ``runtimeGlobalFlags``
+     - Comma separated list of :ref:`service queues<workload_manager>` that the worker is subscribed to
+     - ``"sqream"``
+     - Comma separated list of service names, with no spaces. Services that don't exist will be created.
+     - ``"initialSubscribedServices": "sqream,etl,management"``
+   * - ``logClientLevel``
+     - ``runtimeGlobalFlags``
+     - Used to control which log level should appear in the logs
+     - ``4`` (``INFO``)
+     - ``0`` SYSTEM (lowest) - ``4`` INFO (highest). See :ref:`information level table<information_level>` for explanation about these log levels.
+     - ``"logClientLevel" : 3``
+   * - ``nodeInfoLoggingSec``
+     - ``runtimeGlobalFlags``
+     - Sets an interval for automatically logging long-running statements' :ref:`show_node_info` output. Output is written as a message type ``200``.
+     - ``60`` (every minute)  
+     - Positive whole number >=1.
+     - ``"nodeInfoLoggingSec" : 5``
+   * - ``useLogMaxFileSize``
+     - ``runtimeGlobalFlags``
+     - Defines whether SQream logs should be cycled when they reach ``logMaxFileSizeMB`` size. When ``true``, set the ``logMaxFileSizeMB`` accordingly.
+     - ``false``
+     - ``false`` or ``true``
+     - ``"useLogMaxFileSize" : true``
+   * - ``logMaxFileSizeMB``
+     - ``runtimeGlobalFlags``
+     - Sets the size threshold in megabytes after which a new log file will be opened.
+     - ``20``
+     - ``1`` to ``1024`` (1MB to 1GB)
+     - ``"logMaxFileSizeMB" : 250``
+   * - ``logFileRotateTimeFrequency``
+     - ``runtimeGlobalFlags``
+     - Control frequency of log rotation
+     - ``never``
+     - ``daily``, ``weekly``, ``monthly``, ``never``
+     - ``"logClientLevel" : 3``
+   * - ``useMetadataServer``
+     - ``runtimeGlobalFlags``
+     - Specifies if this worker connects to a cluster (``true``) or is standalone (``false``). If set to ``true``, also set ``metadataServerIp``
+     - ``true``
+     - ``false`` or ``true``
+     - ``"useMetadataServer" : true``
+   * - ``metadataServerIp``
+     - ``runtimeGlobalFlags``
+     - Specifies the hostname or IP of the metadata server, when ``useMetadataServer`` is set to ``true``.
+     - ``127.0.0.1``
+     - A valid IP or hostname
+     - ``"metadataServerIp": "127.0.0.1"``
+   * - ``useConfigIP``
+     - ``runtimeGlobalFlags``
+     - Specifies if the metadata should use a pre-determined hostname or IP to refer to this worker. If set to ``true``, set the ``machineIp`` configuration accordingly.
+     - ``false`` - automatically derived by the TCP socket
+     - ``false`` or ``true``
+     - ``"useConfigIP" : true``
+   * - ``machineIP``
+     - ``runtimeGlobalFlags``
+     - Specifies the worker's external IP or hostname, when used from a remote network.
+     - No default
+     - A valid IP or hostname
+     - ``"machineIP": "10.0.1.4"``
+   * - ``tempPath``
+     - ``runtimeGlobalFlags``
+     - Specifies an override for the temporary file path on the local machine. Set this to a local path to improve performance for spooling.
+     - Defaults to the central storage's built-in temporary folder
+     - A valid path to a folder on the local machine
+     - ``"tempPath": "/mnt/nvme0/temp"``
 
-The following is an example of a catalog table query:
 
 
-.. code-block:: console
+.. list-table:: Runtime Flags
+   :widths: auto
+   :header-rows: 1
    
-   externalTableBlobEstimate, 100, 100, default,
-   varcharEncoding, ascii, ascii, default, Changes the expected encoding for Varchar columns
-   useCrcForTextJoinKeys, true, true, default,
-   hiveStyleImplicitStringCasts, false, false, default,
+   * - Name
+     - Section
+     - Description
+     - Default
+     - Value Range
+     - Example
+   * - ``insertParsers``
+     - ``runtimeFlags``
+     - Sets the number of CSV parsing threads launched during bulk load
+     - 4
+     - 1 to 32
+     - ``"insertParsers" : 8``
+   * - ``insertCompressors``
+     - ``runtimeFlags``
+     - Sets the number of compressor threads launched during bulk load
+     - 4
+     - 1 to 32
+     - ``"insertCompressors" : 8``
+   * - ``statementLockTimeout``
+     - ``runtimeGlobalFlags``
+     - Sets the delay in seconds before SQream DB will stop waiting for a lock and return an error
+     - 3
+     - >=1
+     - ``"statementLockTimeout" : 10``
+
+
+.. list the main configuration options and how they are used
+
+.. point to the best practices as well
+
+.. warning:: JSON files can't contain any comments
+
+Recommended On-Premises Configuration File
+=====================================
+The following is the recommended on-premises configuration file:
+
+.. code-block::  json
+
+   { 
+      "compileFlags":{ 
+      },
+      "runtimeFlags":{ 
+         "insertParsers": 16,
+         "insertCompressors": 8 
+      },
+      "runtimeGlobalFlags":{ 
+         "limitQueryMemoryGB" : 121,
+         "spoolMemoryGB" : 108,
+         "cudaMemQuota": 90,
+         "initialSubscribedServices" : "sqream",
+         "useMetadataServer": true,
+         "metadataServerIp": "127.0.0.1",
+         "useConfigIP": false,
+         "machineIP": "127.0.0.1"
+      },
+      "server":{ 
+         "gpu":0,
+         "port":5000,
+         "ssl_port": 5100,
+         "cluster":"/home/sqream/sqream_storage",
+         "licensePath":"/etc/sqream/license.enc"
+      }
+   }
+   
+Recommended Cloud and Pacemaker Configuration File
+=====================================
+When setting the Cloud and Pacemaker configuration files, the following settings must be used:
+
+* **useConfigIP** - ``true``
+* **machineIP** - ``<public IP>``
+
+
+
+.. warning:: When setting your Cloud and Pacemaker configuration files, you must provide your **public IP** for the ``machineIP`` parameter.
+
+
+Changing Settings Temporarily
+===================================
+
+The ``SET`` statement can modify one of the configuration settings for the session or connection.
+
+For example, to set the query plan's logging interval to "every 3 seconds" for subsequent statements:
+
+.. code-block:: psql
+   
+   t=> SET nodeInfoLoggingSec=3; SELECT * FROM nba;
