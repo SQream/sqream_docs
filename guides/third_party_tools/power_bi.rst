@@ -22,7 +22,7 @@ It includes the following:
    
 
 
-Configuring your ODBC Driver
+Configuring Your ODBC Driver
 =================
 
 Getting started using Power BI requires you to configure your ODBC drivers. ODBC drivers are configured using DSNs, and each DSN represents one SQream database.
@@ -34,48 +34,71 @@ Getting started using Power BI requires you to configure your ODBC drivers. ODBC
     ::
 
 
-#. Run the Windows installer
+#. Run the Windows installer.
 
-Install the driver by following the on-screen instructions in the easy-to-follow installer.
+   .. image:: /_static/images/odbc_windows_installer_screen1.png
 
-.. image:: /_static/images/odbc_windows_installer_screen1.png
+   .. note:: The default installation location is ``C:\Program Files\SQream Technologies\ODBC Driver``, but you can modify this path during installation.
 
-.. note:: The installer will install the driver in ``C:\Program Files\SQream Technologies\ODBC Driver`` by default. This path is changable during the installation.
+3. From the **SQream Drivers Setup** dialog box, select your components.
 
-2. Selecting Components
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+   .. image:: /_static/images/odbc_windows_installer_screen2.png
 
-The installer includes additional components, like JDBC and Tableau customizations.
-
-.. image:: /_static/images/odbc_windows_installer_screen2.png
-
-You can deselect items you don't want to install, but the items named **ODBC Driver DLL** and **ODBC Driver Registry Keys** must remain selected for a complete installation of the ODBC driver.
-
-Once the installer finishes, you will be ready to configure the DSN for connection.
+   You can clear items you don't need, but you must install the **ODBC Driver DLL** and **ODBC Driver Registry Keys** items to correctly install the ODBC driver.
 
 .. _create_windows_odbc_dsn:
 
-3. Configuring the ODBC Driver DSN
+Configuring the ODBC Driver DSN
 ======================================
+You can configure your ODBC driver via DSNs. Each DSN represents one SQream DB database.
 
-ODBC driver configurations are done via DSNs. Each DSN represents one SQream DB database.
+**To configure your ODBC Driver DSN:**
 
-#. Open up the Windows menu by clicking the Windows button on your keyboard (:kbd:`⊞ Win`) or pressing the Windows button with your mouse.
+#. Open the Windows menu.
 
-#. Type **ODBC** and select **ODBC Data Sources (64-bit)**. Click the item to open up the setup window.
+    ::
+
+#. Type **ODBC** and select **ODBC Data Sources (64-bit)**.
    
-   .. image:: /_static/images/odbc_windows_startmenu.png
-
-#. The installer has created a sample User DSN named **SQreamDB**
+   During the installation, a sample User DSN named **SQreamDB** was created.
    
-   You can modify this DSN, or create a new one (:menuselection:`Add --> SQream ODBC Driver --> Next`)
+#. *Optional* - Modify the DSN or create a new one by clicking **Add**, **SQream ODBC Driver**, and **Next**.
    
    .. image:: /_static/images/odbc_windows_dsns.png
-
-#. Enter your connection parameters. See the reference below for a description of the parameters.
    
-   .. image:: /_static/images/odbc_windows_dsn_config.png
+ ::
 
+4. Enter your connection parameters as shown below:
+
+   .. list-table:: 
+      :widths: auto
+      :header-rows: 1
+   
+      * - Item
+        - Description
+      * - Data Source Name
+        - Lets you define a name for referencing your DSN. Once set, the name cannot be modified.
+      * - Description
+        - Describes your DSN connection (optional).
+      * - User
+        - Sets the username of the role used for connecting.
+      * - Password
+        - Sets the password of the selected role.
+      * - Database
+        - Specifies the database name to connect to.
+      * - Service
+        - Specifices the :ref:`service queue<workload_manager>`. Leaving this field blank uses the default service ``sqream``.
+      * - Server
+        - Sets the hostname of the SQream worker.
+      * - Port
+        - Sets the TCP port of the SQream DB.
+      * - User Server Picker
+        - Connects via the load balancer (use only if exists, and check port) **Comment - what condition would cause this to not exist?**
+      * - SSL
+        - Specifies SSL for this connection
+      * - Logging options
+        - Use this screen to alter logging options when tracing the ODBC connection for possible connection issues.
+   
 #. When completed, save the DSN by selecting :menuselection:`OK`
 
 .. tip:: Test the connection by clicking :menuselection:`Test` before saving. A successful test looks like this:

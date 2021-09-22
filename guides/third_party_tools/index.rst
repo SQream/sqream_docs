@@ -1,7 +1,7 @@
 .. _third_party_tools:
 
 ************************************
-Third party tools
+Third Party Tools
 ************************************
 
 These topics explain how to install and connect a variety of third party tools.
@@ -24,10 +24,13 @@ If you are looking for a tool that is not listed, SQream and our partners can he
 
    sql_workbench
    tableau
+   pentaho_data_integration
+   microstrategy
    r
    php
    xxspotfire
    sas_viya
+   connect_to_power_bi
    xxtalend
    xxdiagnosing_common_connectivity_issues
 
