@@ -26,7 +26,7 @@ The guides in this section include information about installing Monit, best prac
    creating_or_cloning_a_storage_cluster
    xxstarting_and_stopping_the_system
    installing_studio_on_stand_alone_server
-   sqream_studio
+   sqream_studio_5.4.0
    statement_editor
    hardware_guide
    security
