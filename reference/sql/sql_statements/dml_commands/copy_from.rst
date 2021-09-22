@@ -252,29 +252,47 @@ Supported Field Delimiters
 
 Field delimiters can be one or more characters.
 
-Double-Quotations When Importing and Exporting CSVs
-----------------------------------
-The following is the correct syntax for customizing alternative quotation characters:
+Customizing Quotations Using Alternative Characters
+----------------------------
 
-.. code-block:: postgres
-
-   QUOTE = {'C' | E'\ooo')
-   
-Below are two examples of customizing alternative quotation characters.
-   
-Example 1 - Customizing Double-Quotations Using a Character
-************   
-
-.. code-block:: postgres
-
-   copy t to wrapper csv_fdw options (location = '/tmp/file.csv', quote='"');
-   
-Example 2 - Customizing Double-Quotations Using an ASCII Character Code
+Syntax Example 1 - Customizing Quotations Using Alternative Characters
 ************
 
+The following is the correct syntax for customizing quotations using alternative characters:
+
 .. code-block:: postgres
-   
-   copy t to wrapper csv_fdw options (location = '/tmp/file.csv', quote=E'\047');
+
+   copy t from wrapper csv_fdw options (location = '/tmp/source_file.csv', quote='@');
+   copy t to wrapper csv_fdw options (location = '/tmp/destination_file.csv', quote='@');
+
+Usage Example 1 - Customizing Quotations Using Alternative Characters
+************
+
+The following is an example of line taken from a CSV when customizing quotations using a character:
+
+.. code-block:: postgres
+
+   Pepsi-"Cola",@Coca-"Cola"@,Sprite,Fanta
+
+
+Syntax Example 2 - Customizing Quotations Using ASCII Character Codes
+************
+
+The following is the correct syntax for customizing quotations using ASCII character codes:
+
+.. code-block:: postgres
+
+   copy t from wrapper csv_fdw options (location = '/tmp/source_file.csv', quote=E'\064');
+   copy t to wrapper csv_fdw options (location = '/tmp/destination_file.csv', quote=E'\064');
+
+Usage Example 2 - Customizing Quotations Using ASCII Character Codes
+************
+
+The following is an example of line taken from a CSV when customizing quotations using an ASCII character code:
+
+.. code-block:: postgres
+
+   Pepsi-"Cola",@Coca-"Cola"@,Sprite,Fanta
 
 
 
