@@ -96,10 +96,7 @@ For more information, see the following statements:
 
    ::
 
-<<<<<<< HEAD
-* `CREATE FOREIGN TABLE <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/create_foreign_table.html>`_ - Creating a new foreign table in an existing database.
+
+* `CREATE FOREIGN TABLE <https://docs.sqream.com/en/v.2021.2/reference/sql/sql_statements/ddl_commands/create_foreign_table.html>`_ - Creating a new foreign table in an existing database.
 
 
-=======
-* `CREATE FOREIGN TABLE <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/ddl_commands/create_foreign_table.html>`_ - Creating a new foreign table in an existing database.
->>>>>>> 4dec38cfd751159f648f47c0ad00d89c34cbdbde
