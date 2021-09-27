@@ -15,6 +15,16 @@ The 2021.2 Release Notes include the following new features:
    :local:
    :depth: 1
    
+New Driver Compatibility
+************
+The 2021.2 release supports the following drivers:
+
+* **JDBC** - new driver version (JDBC 4.5) with important bug fixes.
+* **ODBC** - ODBC 4.1.1. available on request.
+* **NodeJS** - all versions starting with NodeJS 4.0. SQream recommends the latest version (NodeJS 4.2.4). 
+* **Dot Net** - SQream recommends version version 3.02 (compatible with DotNet version 48). 
+* **Pysqream** - pysqream 3.1.2
+
 Centralized Configuration System
 ************
 SQream now uses a new configuration system based on centralized configuration accessible from SQream Studio.
@@ -88,12 +98,4 @@ For more information, see the following statements:
 
 * `CREATE FOREIGN TABLE <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/create_foreign_table.html>`_ - Creating a new foreign table in an existing database.
 
-New Driver Compatibility
-************
-The 2021.2 release supports the following drivers:
 
-* **JDBC** - new driver version (JDBC 4.5) with important bug fixes.
-* **ODBC** - ODBC 4.1.1. available on request.
-* **NodeJS** - all versions starting with NodeJS 4.0. SQream recommends the latest version (NodeJS 4.2.4). 
-* **Dot Net** - SQream recommends version version 3.02 (compatible with DotNet version 48). 
-* **Pysqream** - pysqream 3.1.2
