@@ -94,8 +94,6 @@ For more information, see the following statements:
 
 * `COPY FROM <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/copy_from.html>`_ - Loading data from files on the filesystem and importing it into SQream tables.
 
-   ::
-
 
 * `CREATE FOREIGN TABLE <https://docs.sqream.com/en/v.2021.2/reference/sql/sql_statements/ddl_commands/create_foreign_table.html>`_ - Creating a new foreign table in an existing database.
 
