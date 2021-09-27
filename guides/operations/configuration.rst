@@ -44,7 +44,7 @@ The following is an example of a worker configuration file:
        “metadataServerPort”: “3105,
        “port”: 5000,
        “useConfigIP”” true,
-       “legacyConfigFilePath”: “home/eilon/SQream_develop/SqrmRT/utils/json/legacy_congif.json”
+       “legacyConfigFilePath”: “home/SQream_develop/SqrmRT/utils/json/legacy_congif.json”
    }
 
 You can access the SQream configuration file from the **legacyConfigFilePath** parameter shown above.
