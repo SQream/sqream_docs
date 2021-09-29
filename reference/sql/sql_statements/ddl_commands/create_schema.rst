@@ -23,7 +23,7 @@ The **CREATE SCHEMA** statement can be used to query tables from different schem
 
 .. code-block:: postgres
 
-   select schema1.table1.column from schema1.table1 join schema2.table1 on schema1.table1.column1=schema2.table1.column1
+      select <schema_name>.table_name.column_name from <schema_name>.table_name
 
 See also: :ref:`drop_schema`, :ref:`alter_default_schema`.
 
