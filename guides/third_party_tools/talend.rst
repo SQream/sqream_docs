@@ -13,7 +13,7 @@ This page describes how to use Talend to interact with a SQream DB cluster. Tale
 
 For more information about Talend, see `Talend <http://www.talend.com/>`_.
 
-It includes the following:
+This page describes the following:
 
 * :ref:`A Quick Start guide <quickstart_guide>`
 * :ref:`Information about supported SQream drivers <supported_sqream_drivers>`
@@ -27,7 +27,7 @@ Creating a New Metadata JDBC DB Connection
 -------------
 **To create a new metadata JDBC DB connection:**
 
-1. In the **Repository** panel, nagivate to **Metadata** and right-click **Db connections**.
+1. In the **Repository** panel, navigate to **Metadata** and right-click **Db connections**.
 
 ::
    
@@ -38,7 +38,7 @@ Creating a New Metadata JDBC DB Connection
 3. In the **Name** field, type a name.
 
    The name cannot contain spaces.
-
+   
 4. In the **Purpose** field, type a purpose and click **Next**. You cannot go to the next step until you define both a Name and a Purpose.
 
 ::
@@ -50,7 +50,6 @@ Creating a New Metadata JDBC DB Connection
 6. In the **JDBC URL** field, type the relevant connection string.
 
    For connection string examples, see `Connection Strings <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html#connection-string>`_.
-   
 
 7. In the **Drivers** field, click the **Add** button.
 
@@ -58,20 +57,16 @@ Creating a New Metadata JDBC DB Connection
 
 8. One the **"newLine"** entry, click the ellipsis.
 
-.. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_8.png
-
    The **Module** window is displayed.
-
+   
 9. From the Module window, select **Artifact repository(local m2/nexus)** and select **Install a new module**.
 
 ::
   
 10. Click the ellipsis.
 
-.. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_9.5.png
-
-   Your hard drive is displayed.	
-
+    Your hard drive is displayed.
+	
 11. Navigate to a **JDBC jar file** (such as **sqream-jdbc-4.4.0.jar**)and click **Open**.
 
 ::
@@ -79,7 +74,7 @@ Creating a New Metadata JDBC DB Connection
 12. Click **Detect the module install status** and click **OK**.
 
     The JDBC that you selected is displayed in the **Drivers** field.
-
+	
 13. Click **Select class name**.
 
 ::
@@ -89,7 +84,7 @@ Creating a New Metadata JDBC DB Connection
     If a driver class is not found (for example, you didn't select a JDBC jar file), the following error message is displayed:
 
     .. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_15.png
-
+	
 After creating a new metadata JDBC DB connection, you can do the following:
 
  * Use your new metadata connection.
