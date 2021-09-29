@@ -39,6 +39,8 @@ Creating a New Metadata JDBC DB Connection
 
    The name cannot contain spaces.
    
+::
+   
 4. In the **Purpose** field, type a purpose and click **Next**. You cannot go to the next step until you define both a Name and a Purpose.
 
 ::
@@ -51,6 +53,8 @@ Creating a New Metadata JDBC DB Connection
 
    For connection string examples, see `Connection Strings <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html#connection-string>`_.
    
+::
+
 7. In the **Drivers** field, click the **Add** button.
 
    The **"newLine"** entry is added.
@@ -58,15 +62,19 @@ Creating a New Metadata JDBC DB Connection
 8. One the **"newLine"** entry, click the ellipsis.
 
    The **Module** window is displayed.
-
+   
+::
+   
 9. From the Module window, select **Artifact repository(local m2/nexus)** and select **Install a new module**.
 
 ::
   
 10. Click the ellipsis.
 
-    Your hard drive is displayed.	
-
+    Your hard drive is displayed.
+	
+::
+	
 11. Navigate to a **JDBC jar file** (such as **sqream-jdbc-4.4.0.jar**)and click **Open**.
 
 ::
@@ -74,7 +82,9 @@ Creating a New Metadata JDBC DB Connection
 12. Click **Detect the module install status** and click **OK**.
 
     The JDBC that you selected is displayed in the **Drivers** field.
-
+	
+::
+	
 13. Click **Select class name**.
 
 ::
