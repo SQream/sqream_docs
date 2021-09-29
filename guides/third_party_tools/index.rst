@@ -30,7 +30,7 @@ If you are looking for a tool that is not listed, SQream and our partners can he
    php
    xxspotfire
    sas_viya
-   xxtalend
+   talend
    xxdiagnosing_common_connectivity_issues
 
 .. image:: /_static/images/connectivity_ecosystem.png
