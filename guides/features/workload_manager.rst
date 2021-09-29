@@ -148,7 +148,9 @@ Using SQream Studio
 --------------------------------------------
 When using **SQream Studio**, you can configure a client connection to a specific service from the SQream Studio, as shown below:
 
-.. image:: /_static/images/workload_manager/TPD_33.png
+.. image:: /_static/images/TPD_33.png
+
+
 
 For more information, in Studio, see `Executing Statements from the Toolbar <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.0.html#executing-statements-from-the-toolbar>`_.
 
