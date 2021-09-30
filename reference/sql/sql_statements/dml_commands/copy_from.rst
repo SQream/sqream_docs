@@ -37,6 +37,8 @@ Syntax
 
       LOCATION = { filename | S3 URI | HDFS URI }   
       
+      | QUOTE = {'C' | E'\ooo')
+      
       | OFFSET = { offset }
       
       | LIMIT = { limit }
