@@ -9,9 +9,9 @@ Identifiers are sometimes referred to as "names".
 
 Regular identifiers must follow these rules:
 
-*. Must not contain any special characters except for underscores (``_``).
-*. Must be case-insensitive. SQream converts all identifiers to lowercase unless quoted.
-*. Does not equal any keywords, such as ``SELECT``, ``OR``, or ``AND``, etc.
+* Must not contain any special characters except for underscores (``_``).
+* Must be case-insensitive. SQream converts all identifiers to lowercase unless quoted.
+* Does not equal any keywords, such as ``SELECT``, ``OR``, or ``AND``, etc.
 
 To bypass the rules above you can surround an identifier with double quotes (``"``).
 
