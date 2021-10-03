@@ -11,28 +11,32 @@ This document is a viability report on Informatica as an ETL tool for Big Data a
 
 It includes the following:
 
-* :ref:`A Quick Start guide <quickstart_guide>`
-* :ref:`Information about supported SQream drivers <supported_sqream_drivers>`
-* :ref:`Information about supported data sources <supported_data_sources>`
-* :ref:`Information about supported tools and operating system versions <supported_tool_os_versions>`
-* :ref:`A description of known issues <known_issues>`
-* :ref:`Related links <related_links>`
-* :ref:`Download links <download_links>`
+.. contents:: In this topic:
+   :local:
+
 
 .. _quickstart_guide:
 
 Quick Start Guide
 -----------------
-This Quick Start Guide describes how to establish a connection between Sqream and the Informatica data integration Cloud.
+This Quick Start Guide describes how to establish a connection between SQream and the Informatica data integration Cloud.
 
 **To get establish a connection between Sqream and the Informatica data integration Cloud:**
 
 1. Go to the `Informatica Cloud homepage <https://emw1.dm-em.informaticacloud.com/diUI/products/integrationDesign/main/home>`_.
 
+    ::
+
 2. Do one of the following:
 
    1. Log in using your credentials.
+   
+    ::
+
    2. Log in using your SAML Identity Provider.
+   
+    ::
+
    3. If you are a new user, click **Don't have an account?**
    
 3. From the **Select a trial** menu, select **Cloud Data Integration** and click **Select Trial**.
@@ -40,8 +44,17 @@ This Quick Start Guide describes how to establish a connection between Sqream an
 .. image:: /_static/images/third_party_connectors/informatica/quickstartguide_1.png
 
 4. Fill out the profile information and click **START YOUR FREE TRIAL**.
+
+    ::
+
 5. If the company confirmation panel is displayed, confirm the company. Informatica administration sends an automatic email to your email address.
-6. Follow the instructions in the automatically generated email. Click **Confirm Account link**. 
+
+    ::
+
+6. Follow the instructions in the automatically generated email. Click **Confirm Account link**.
+
+    ::
+
 7. Define your credentials and click **Log In**.
 
 .. image:: /_static/images/third_party_connectors/informatica/quickstartguide_2.png
@@ -86,6 +99,9 @@ The **Runtime Environments** panel is displayed.
 
     1. Select a platform (Windows 64 or Linux 64).
 	
+     ::
+
+	
     2. Click **Copy** and save the token locally. The token is used in combination with your user name to authorize the agent to access your account.
 	
 .. image:: /_static/images/third_party_connectors/informatica/quickstartguide_12.5.png
@@ -102,9 +118,7 @@ The **Runtime Environments** panel is displayed.
 
 .. image:: /_static/images/third_party_connectors/informatica/quickstartguide_12.8.png
 
-
-
-14. From the Runtime Environments panel, click **New Runtime Environment**.
+19. From the Runtime Environments panel, click **New Runtime Environment**.
 
 .. image:: /_static/images/third_party_connectors/informatica/quickstartguide_11.png
 
@@ -114,98 +128,117 @@ The **New Secure Agent Group** window is displayed.
 
 .. image:: /_static/images/third_party_connectors/informatica/quickstartguide_12.png
 
-
-
-
-16. Download Agent.
-
-
-The **Secure Agent** is a lightweight software that runs all tasks that you configure in Informatica Intelligent Cloud Services and processes your company's data locally and securely. The Secure Agent must be running to run tasks.
-
-17. Verify the pre-installation requirements for your operating system before installing the Secure Agent on your machine:
-
-* `Windows <https://docs.informatica.com/integration-cloud/cloud-platform/current-version/runtime-environments/secure-agent-installation/secure-agent-installation-on-windows/secure-agent-requirements-on-windows.html>`_
-
-* `Linux <https://docs.informatica.com/integration-cloud/cloud-platform/current-version/runtime-environments/secure-agent-installation/secure-agent-installation-on-linux/secure-agent-requirements-on-linux.html>`_
-
-18. Install the Secure Agent on your machine using your operating system:
-
-* `Windows <https://docs.informatica.com/integration-cloud/cloud-platform/current-version/runtime-environments/secure-agent-installation/secure-agent-installation-on-windows.html>`_
-
-* `Linux <https://docs.informatica.com/integration-cloud/cloud-platform/current-version/runtime-environments/secure-agent-installation/secure-agent-installation-on-linux.html>`_
-
-In addition to installing the Secure Agent on your machine, the links above include information for configuring proxy settings, configuring a login, and uninstalling the Secure Agent.
-
-.. image:: /_static/images/third_party_connectors/informatica/quickstartguide_13.png
-
-19. From the Runtime Environments panel, click **New Runtime Environment**.
-
-The **New Secure Agent Group** window is displayed.
-
-.. image:: /_static/images/third_party_connectors/informatica/quickstartguide_12.png 
-
 20. On the New Secure Agent Group window, click **OK** to connect your Runtime Environment with the running agent.
 
 **NOTE:** If you do not download Secure Agent, you will not be able to connect your Runtime Environment with the running agent and continue establishing a connection between Sqream and the Informatica data integration Cloud.
 
-Create database connection - Press New Connection
+21. Establish ODBC DSN in your environment by doing the following:
 
-Establish ODBC DSN in your environment
+    1. Click **Add**.
+	   
+    ::
+	
+    2. Click **Configure**.
+	
+**NOTE:** Verify that **Use Server Picker** is selected.
 
+22. To create a new DB connection, click **Connections** and click **New Connection**.
 
-** Only if Server Picker is listening 
+    The JDBC window is displayed.
+	
+  **Comment - I need to see this window to identify its name.**
 
-Create new DB Connection: Press “New Connection”
+23. In the **JDBC_IC Connection Properties** Establish a JDBC connection by providing the correct connection string.
 
+    For connection string examples, see `Connection Strings <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html#connection-string>`_.
 
-Establish JDBC 
+Establishing a Connection between the Secure Agent and Runtime Environment
+-----------------
+After configuring the JDBC you must establish a connection between the secure agent and the runtime environment.
 
+If you have not configured a login for a Windows secure agent service, see `Configure a login for a Windows Secure Agent Service <https://docs.informatica.com/integration-cloud/cloud-data-integration/current-version/getting-started/installing-secure-agents/secure-agent-installation-on-windows/configure-a-login-for-a-windows-secure-agent-service.html>`_.
 
-In JDBC URL attach the relevant connection string. (examples can be found here) 
+**To establish a connection between the secure agent and runtime environment:**
 
-After completing the setting for the JDBC we need to connect the secure agent with the runtime environment 
+1. Click **Data Integration** to create a new data integration project.
 
-Click here to see how to configure a login for a Windows Secure Agent Service.
+    ::
 
-Create New “Data Integration” Project
+2. Click **Mappings.**
 
+   **Comment - in this case we have table as data source and a table for target**
+   
+3. Click **Mapping**.
 
+    ::
+
+4. Click **Create**.
+
+    ::
+
+5. Set the data source as follows:
+
+   1. Click **Source**.
+      
+    ::
+
+   2. In the **Design** dialog box, select the connection and the source table.
+   
+   **Comment - Can you provide me with a screenshot of this? See #4 in the screenshot in the source doc.**
+
+6. Set the target as follows:
+
+   1. Click **Target**.
+   
+    ::
+
+   2. In the **Design** dialog box, select the connection and the source table.
+   
+   **Comment - Is this screenshot relevant to both steps 5 and 6?**
+
+7. Click **Field Mapping**.
+
+    ::
+
+8. In the **Properties** tab, from the **Field map options** dropdown menu, select **Automatic**.
+
+    ::
+
+9. Click **Save**.
+
+    ::
+
+10. Click **Run**.
+
+    **Comment - What is the result?**
+
+11. From the **Definition** window, from the **Runtime Environment** dropdown menu, select the correct runtime environment and click **Run**.
  
 
-New Mapping (in this case we have table as data source and a table for target)
-
- 
 
 
-Set the data source: Stand on the “source” → Go to the dialog box below → select the connection → select the source table
-
-Set the Target: Stand on the “Target”→ Go to the dialog box below → select the connection → select the source table
-
-On “Filed Mapping” set to “Automatic”
 
 
- 
-
-Save → Run
-
-Select the relevant “Runtime environment” → And Run
-
-
-.. _supported_sqream_drivers:
  
 
 Supported SQream Drivers (Versions)
-==============================
-JDBC - Version 4.3.4 and above
+-----------------
+**Comment - do we need this section?**
 
-ODBC - Version 4.0.0 and above. 
+SQream supports the following SQream driver versions: 
 
-Click here for more information.
+* **JDBC** - Version 4.3.4 and above.
 
-.. _supported_data_sources:
+* **ODBC** - Version 4.0.0 and above. 
+
+For more information on configuring an ODBC connection on Windows, see `Configure ODBC Connections on Windows <https://docs.informatica.com/data-integration/data-services/10-2/sql-data-service-guide/installing-and-configuring-drivers-for-powercenter/configure-odbc-connections-on-windows.html>`_.
+
+
  
 Supported Data Sources
-============
+-----------------
+**Comment - This section can probably be deleted.**
+
 Informatica Cloud allows you to create reusable connections to a wide variety of systems and environments and thus access and read records of extremely diverse data.
 
 Add-On Connectors: Add-on connectors provide connectivity for connection types that are not installed by default in Informatica Intelligent Cloud Services. Click here for more information.
@@ -214,48 +247,27 @@ Dataset: Database tables, file names, etc.
 
 Click here to view, the full list of cloud connectors and datasets supported by Informatica.
 
-.. _supported_tool_os_versions:
-
-Supported Tool or Operating System Versions
-=============
-Tested on Informatica Cloud Integration (Chrome) 
-
-.. _known_issues:
-
-Known Issues
-========= 
-Unable to Log On to the secure agent
 
 
 
 
-JDBC sends an error when trying to select a table as a Single Object in Sorce/Target type 
 
-
-Multiple object function isn't working 
-
-
-Create a target table at runtime
-
-
-
-HOW TO: Increase Java heap size on IICS to allocate more memory to the JVM for large data processing with certain connectors
-
-.. _related_links:
 
 Related Links
-============================
-Home page - https://www.informatica.com/
+-----------------
+**Comment - do we need this section?**
 
-Documentation page - https://docs.informatica.com/
+* **Home page** - https://www.informatica.com/
+
+* **Documentation page** - https://docs.informatica.com/
 
 
-.. _download_links:
+
 
 Download Links
-==================
+-----------------
+**Comment - do we need this section?**
 
-Download links
-Informatica free trail link  (here)
+* **Informatica free trail link**  (here)
 
-Latest SQream JDBC version. (Download here)
+* **Latest SQream JDBC version** (Download here)
