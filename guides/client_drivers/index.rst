@@ -1,37 +1,34 @@
 .. _client_drivers:
 
 ************************************
-Client drivers for |latest_version|
+Client Drivers for 2021.2
 ************************************
 
 These guides explain how to use the SQream DB client drivers, and how to use client applications with SQream DB.
 
-Client driver downloads
+Client Driver Downloads
 =============================
 
-All operating systems 
+All Operating Systems 
 ---------------------------
 
-* 
-   **JDBC** - `sqream-jdbc-4.4.0 (.jar) <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.4.0.jar>`_
-   
-   :ref:`java_jdbc` Driver
-   
-   (SQream recommends installing via ``mvn``)
+The following drivers are relevant to all operating systems:
 
-* 
-   **Python** - `pysqream v3.1.3 (.tar.gz) <https://github.com/SQream/pysqream/releases/tag/v3.1.3>`_
+* **JDBC** - `sqream-jdbc-4.5.0 (.jar) <http://artifactory.host-98.sq.l/artifactory/connectors/jdbc/release/sqream-jdbc-4.5.0.jar>`_
    
-   :ref:`pysqream` - Python driver
+   :ref:`java_jdbc` Driver (SQream recommends installing via ``mvn``)
    
-   (SQream recommends installing via ``pip``)
+* **ODBC** - `ODBC 4.1.1 (linux) <http://artifactory.host-98.sq.l/artifactory/connectors/odbc/release/sqream_odbc_4.1.1_x86_64_linux.tar.gz>`_
 
-* 
-   **Node.JS** - `sqream-v4.2.4 (.tar.gz) <https://sq-ftp-public.s3.amazonaws.com/sqream-sqreamdb-4.2.4.tgz>`_
+     ::
    
-   :ref:`nodejs` - Node.JS driver
+* **Python** - `pysqream v3.1.3 (.tar.gz) <https://github.com/SQream/pysqream/releases/tag/v3.1.3>`_
    
-   (SQream recommends installing via ``npm``)
+   :ref:`pysqream` - Python driver (SQream recommends installing via ``pip``)
+
+* **Node.JS** - `sqream-v4.2.4 (.tar.gz) <https://sq-ftp-public.s3.amazonaws.com/sqream-sqreamdb-4.2.4.tgz>`_
+   
+   :ref:`nodejs` - Node.JS driver (SQream recommends installing via ``npm``)
 
 
 Windows
@@ -68,7 +65,7 @@ Linux
 
 .. toctree::
    :maxdepth: 4
-   :caption: Client driver documentation:
+   :caption: Client Driver Documentation
    :titlesonly:
    
    python/index
