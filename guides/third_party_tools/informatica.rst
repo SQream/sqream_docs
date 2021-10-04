@@ -145,6 +145,8 @@ After establishing a connection between SQream and Informatica you can establish
 
    For connection string examples, see `Connection Strings <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html#connection-string>`_.
 	
+	 ::
+	
 3. Click **Test**.
 
     ::
