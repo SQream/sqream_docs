@@ -143,7 +143,7 @@ After establishing a connection between SQream and Informatica you can establish
 	
 2. In the **JDBC_IC Connection Properties** section, in the **JDBC Connection URL** field, establish a JDBC connection by providing the correct connection string.
 
-   For connection string examples, see `Connection Strings <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html#connection-string>`_.
+   For connection string examples, see `Connection Strings <https://docs.sqream.com/en/v2021.2/guides/client_drivers/jdbc/index.html#connection-string>`_.
 	
 	 ::
 	
