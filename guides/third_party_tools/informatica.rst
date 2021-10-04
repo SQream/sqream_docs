@@ -36,12 +36,16 @@ The **Establishing a Connection between SQream and Informatica** page describes 
 
    The SQream dashboard is displayed.
    
+     
+    ::
+   
 
 4. In the menu on the left, click **Runtime Environments**.
 
 
    The **Runtime Environments** panel is displayed.
 
+     ::
 
 5. Click **Download Secure Agent**.
 
@@ -62,6 +66,8 @@ The **Establishing a Connection between SQream and Informatica** page describes 
 7. Click **Download**.
 
    The installation begins.
+   
+     ::
 
 8. When the **Informatica Cloud Secure Agent Setup** panel is displayed, click **Next**.
 
@@ -79,7 +85,8 @@ The **Establishing a Connection between SQream and Informatica** page describes 
 
 
     The **New Secure Agent Group** window is displayed.
-
+	
+     ::
 
 11. On the New Secure Agent Group window, click **OK** to connect your Runtime Environment with the running agent.
 
@@ -105,7 +112,7 @@ After establishing a connection between SQream and Informatica you can establish
 	
 2. Click **Configure**.
 	
-    .. note:: Verify that **Use Server Picker** is selected.
+   .. note:: Verify that **Use Server Picker** is selected.
 	
 3. Click **Test**.
 
@@ -130,6 +137,9 @@ After establishing a connection between SQream and Informatica you can establish
 1. Create a new DB connection by clicking **Connections** > **New Connection**.
 
    The **New Connection** window is displayed.
+   
+     ::
+
 	
 2. In the **JDBC_IC Connection Properties** section, in the **JDBC Connection URL** field, establish a JDBC connection by providing the correct connection string.
 
