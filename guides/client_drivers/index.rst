@@ -14,7 +14,7 @@ All Operating Systems
 
 The following drivers are relevant to all operating systems:
 
-* **JDBC** - `sqream-jdbc-4.5.0 (.jar) <http://artifactory.host-98.sq.l/artifactory/connectors/jdbc/release/sqream-jdbc-4.5.0.jar>`_
+* **JDBC** - `sqream-jdbc-4.5.1 (.jar) <http://artifactory.host-98.sq.l/artifactory/connectors/jdbc/release/sqream-jdbc-4.5.1.jar>`_
    
    :ref:`java_jdbc` Driver (SQream recommends installing via ``mvn``)
    
