@@ -146,7 +146,7 @@ Right join
 
 .. code-block:: psql
 
-   t=> SELECT * FROM left_side AS l LEFT JOIN right_side AS r 
+   t=> SELECT * FROM left_side AS l RIGHT JOIN right_side AS r 
    .          ON l.x = r.x;
    x  | x0
    ---+---
