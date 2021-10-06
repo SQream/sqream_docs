@@ -52,7 +52,7 @@ Linux
    
    :ref:`sqream sql<sqream_sql_cli_reference>` - Interactive command-line SQL client for Intel-based machines
    
-   * 
+* 
    **ODBC installer** - ``sqream_odbc_4.0.0_x86_64_linux.tar.gz``
    
    :ref:`Linux installer for ODBC<install_odbc_linux>`. Please contact your SQream representative to get this installer.
