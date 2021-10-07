@@ -4,8 +4,7 @@
 REGEXP_INSTR
 **************************
 
-Returns the start position of a regex match.
-searches a string for a POSIX-style regular expression. This function returns the position within the string where the match was located
+The ``REGEXP_INSTR`` function returns the start position of a regex match and searches a string for a POSIX-style regular expression. This function returns the position within the string where the match was located.
 
 See also: :ref:`regexp_count`, :ref:`regexp_substr`.
 
