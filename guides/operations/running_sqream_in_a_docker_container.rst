@@ -464,7 +464,7 @@ For installer type, SQream recommends selecting **runfile (local)**. The availab
 
    .. code-block:: console
 
-      $ ystemctl status nvidia-persistenced
+      $ systemctl status nvidia-persistenced
 
    The following is the correct output:
 
@@ -709,9 +709,8 @@ This section describes how to install the NVIDIA Docker2 Toolkit on an IBM RHEL 
    .. code-block:: console
 
       $ distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
-      $ curl -s -L
-      $ https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.repo | \
-      $ sudo tee /etc/yum.repos.d/nvidia-docker.repo
+      $ curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.repo | \
+        sudo tee /etc/yum.repos.d/nvidia-docker.repo
       $ sudo yum install -y libnvidia-container*
 
 2. Do one of the following:
