@@ -280,6 +280,8 @@ While upgrading your version of SQream, you can use Monit to avoid conflicts (su
       $ SELECT SHOW_VERSION();
       
    The correct version is output.
+   
+    ::
 
 6. Restart the UI:
 
