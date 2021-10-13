@@ -20,133 +20,133 @@ After doing the following, you can launch SQream according to the instructions o
 
 The following is an example of a working monitrc file configured to monitor the ***metadataserver** and **serverpicker** commands, and **four sqreamd services**. The **monitrc** configuration file is located in the **conf/monitrc** directory.
 
-Note that the monitrc in the example is configured for eight sqreamd services, but that only the first four are enabled:
+Note that the **monitrc** in the following example is configured for eight ``sqreamd`` services, but that only the first four are enabled:
 
-      .. code-block:: console
+.. code-block:: console
      
-         $ set daemon  5              # check services at 30 seconds intervals
-         $ set logfile syslog
-         $ 
-         $ set httpd port 2812 and
-         $     use address localhost  # only accept connection from localhost
-         $     allow localhost        # allow localhost to connect to the server and
-         $     allow admin:monit      # require user 'admin' with password 'monit'
-         $ 
-         $ ##set mailserver smtp.gmail.com port 587
-         $ ##        using tlsv12
-         $ #METADATASERVER-START
-         $ check process metadataserver with pidfile /var/run/metadataserver.pid
-         $ start program = "/usr/bin/systemctl start metadataserver"
-         $ stop program = "/usr/bin/systemctl stop metadataserver"
-         $ #METADATASERVER-END
-         $ #      alert user@domain.com on {nonexist, timeout}
-         $ #                      with mail-format {
-         $ #                            from:     Monit@$HOST
-         $ #                            subject:  metadataserver $EVENT - $ACTION
-         $ #                            message:  This is an automate mail, sent from monit.
-         $ #                    }
-         $ #SERVERPICKER-START
-         $ check process serverpicker with pidfile /var/run/serverpicker.pid
-         $ start program = "/usr/bin/systemctl start serverpicker"
-         $ stop program = "/usr/bin/systemctl stop serverpicker"
-         $ #SERVERPICKER-END
-         $ #       alert user@domain.com on {nonexist, timeout}
-         $ #                                    with mail-format {
-         $ #                                          from:     Monit@$HOST
-         $ #                                          subject:  serverpicker $EVENT - $ACTION
-         $ #                                         message:  This is an automate mail, sent from monit.
-         $ #
-         $ #
-         $ #SQREAM1-START
-         $ check process sqream1 with pidfile /var/run/sqream1.pid
-         $ start program = "/usr/bin/systemctl start sqream1"
-         $ stop program = "/usr/bin/systemctl stop sqream1"
-         $ #SQREAM1-END
-         $ #        alert user@domain.com on {nonexist, timeout}
-         $ #               with mail-format {
-         $ #                     from:     Monit@$HOST
-         $ #                     subject:  sqream1 $EVENT - $ACTION
-         $ #                     message:  This is an automate mail, sent from monit.
-         $ #             }
-         $ #SQREAM2-START
-         $ check process sqream2 with pidfile /var/run/sqream2.pid
-         $ start program = "/usr/bin/systemctl start sqream2"
-         $ #SQREAM2-END
-         $ #       alert user@domain.com on {nonexist, timeout}
-         $ #               with mail-format {
-         $ #                     from:     Monit@$HOST
-         $ #                     subject:  sqream1 $EVENT - $ACTION
-         $ #                     message:  This is an automate mail, sent from monit.
-         $ #             }
-         $ #SQREAM3-START
-         $ check process sqream3 with pidfile /var/run/sqream3.pid
-         $ start program = "/usr/bin/systemctl start sqream3"
-         $ stop program = "/usr/bin/systemctl stop sqream3"
-         $ #SQREAM3-END
-         $ #       alert user@domain.com on {nonexist, timeout}
-         $ #               with mail-format {
-         $ #                     from:     Monit@$HOST
-         $ #                     subject:  sqream2 $EVENT - $ACTION
-         $ #                     message:  This is an automate mail, sent from monit.
-         $ #             }
-         $ #SQREAM4-START
-         $ check process sqream4 with pidfile /var/run/sqream4.pid
-         $ start program = "/usr/bin/systemctl start sqream4"
-         $ stop program = "/usr/bin/systemctl stop sqream4"
-         $ #SQREAM4-END
-         $ #       alert user@domain.com on {nonexist, timeout}
-         $ #                      with mail-format {
-         $ #                            from:     Monit@$HOST
-         $ #                            subject:  sqream2 $EVENT - $ACTION
-         $ #                            message:  This is an automate mail, sent from monit.
-         $ #                    }
-         $ #
-         $ #SQREAM5-START
-         $ #check process sqream5 with pidfile /var/run/sqream5.pid
-         $ #start program = "/usr/bin/systemctl start sqream5"
-         $ #stop program = "/usr/bin/systemctl stop sqream5"
-         $ #SQREAM5-END
-         $ #       alert user@domain.com on {nonexist, timeout}
-         $ #                      with mail-format {
-         $ #                            from:     Monit@$HOST
-         $ #                            subject:  sqream2 $EVENT - $ACTION
-         $ #                            message:  This is an automate mail, sent from monit.
-         $ #                    }
-         $ #
-         $ #SQREAM6-START
-         $ #check process sqream6 with pidfile /var/run/sqream6.pid
-         $ #start program = "/usr/bin/systemctl start sqream6"
-         $ #stop program = "/usr/bin/systemctl stop sqream6"
-         $ #SQREAM6-END
-         $ #       alert user@domain.com on {nonexist, timeout}
-         $ #                      with mail-format {
-         $ #                            from:     Monit@$HOST
-         $ #                            subject:  sqream2 $EVENT - $ACTION
-         $ #                            message:  This is an automate mail, sent from monit.
-         $ #                    }
-         $ #
-         $ #SQREAM7-START
-         $ #check process sqream7 with pidfile /var/run/sqream7.pid
-         $ #start program = "/usr/bin/systemctl start sqream7"
-         $ #stop program = "/usr/bin/systemctl stop sqream7"
-         $ #SQREAM7-END
-         $ #                      with mail-format {
-         $ #                            from:     Monit@$HOST
-         $ #                            subject:  sqream2 $EVENT - $ACTION
-         $ #                            message:  This is an automate mail, sent from monit.
-         $ #                    }
-         $ #
-         $ #SQREAM8-START
-         $ #check process sqream8 with pidfile /var/run/sqream8.pid
-         $ #start program = "/usr/bin/systemctl start sqream8"
-         $ #stop program = "/usr/bin/systemctl stop sqream8"
-         $ #SQREAM8-END
-         $ #       alert user@domain.com on {nonexist, timeout}
-         $ #                      with mail-format {
-         $ #                            from:     Monit@$HOST
-         $ #                            subject:  sqream2 $EVENT - $ACTION
-         $ #                            message:  This is an automate mail, sent from monit.
-         $ #                    }
+   $ set daemon  5              # check services at 30 seconds intervals
+   $ set logfile syslog
+   $ 
+   $ set httpd port 2812 and
+   $      use address localhost  # only accept connection from localhost
+   $      allow localhost        # allow localhost to connect to the server and
+   $      allow admin:monit      # require user 'admin' with password 'monit'
+   $  
+   $  ##set mailserver smtp.gmail.com port 587
+   $  ##        using tlsv12
+   $  #METADATASERVER-START
+   $  check process metadataserver with pidfile /var/run/metadataserver.pid
+   $  start program = "/usr/bin/systemctl start metadataserver"
+   $  stop program = "/usr/bin/systemctl stop metadataserver"
+   $  #METADATASERVER-END
+   $  #      alert user@domain.com on {nonexist, timeout}
+   $  #                      with mail-format {
+   $  #                            from:     Monit@$HOST
+   $  #                            subject:  metadataserver $EVENT - $ACTION
+   $  #                            message:  This is an automate mail, sent from monit.
+   $  #                    }
+   $  #SERVERPICKER-START
+   $  check process serverpicker with pidfile /var/run/serverpicker.pid
+   $  start program = "/usr/bin/systemctl start serverpicker"
+   $  stop program = "/usr/bin/systemctl stop serverpicker"
+   $  #SERVERPICKER-END
+   $  #       alert user@domain.com on {nonexist, timeout}
+   $  #                                    with mail-format {
+   $  #                                          from:     Monit@$HOST
+   $  #                                          subject:  serverpicker $EVENT - $ACTION
+   $  #                                         message:  This is an automate mail, sent from monit.
+   $  #
+   $  #
+   $  #SQREAM1-START
+   $  check process sqream1 with pidfile /var/run/sqream1.pid
+   $  start program = "/usr/bin/systemctl start sqream1"
+   $  stop program = "/usr/bin/systemctl stop sqream1"
+   $  #SQREAM1-END
+   $  #        alert user@domain.com on {nonexist, timeout}
+   $  #               with mail-format {
+   $  #                     from:     Monit@$HOST
+   $  #                     subject:  sqream1 $EVENT - $ACTION
+   $  #                     message:  This is an automate mail, sent from monit.
+   $  #             }
+   $  #SQREAM2-START
+   $  check process sqream2 with pidfile /var/run/sqream2.pid
+   $  start program = "/usr/bin/systemctl start sqream2"
+   $  #SQREAM2-END
+   $  #       alert user@domain.com on {nonexist, timeout}
+   $  #               with mail-format {
+   $  #                     from:     Monit@$HOST
+   $  #                     subject:  sqream1 $EVENT - $ACTION
+   $  #                     message:  This is an automate mail, sent from monit.
+   $  #             }
+   $  #SQREAM3-START
+   $  check process sqream3 with pidfile /var/run/sqream3.pid
+   $  start program = "/usr/bin/systemctl start sqream3"
+   $  stop program = "/usr/bin/systemctl stop sqream3"
+   $  #SQREAM3-END
+   $  #       alert user@domain.com on {nonexist, timeout}
+   $  #               with mail-format {
+   $  #                     from:     Monit@$HOST
+   $  #                     subject:  sqream2 $EVENT - $ACTION
+   $  #                     message:  This is an automate mail, sent from monit.
+   $  #             }
+   $  #SQREAM4-START
+   $  check process sqream4 with pidfile /var/run/sqream4.pid
+   $  start program = "/usr/bin/systemctl start sqream4"
+   $  stop program = "/usr/bin/systemctl stop sqream4"
+   $  #SQREAM4-END
+   $  #       alert user@domain.com on {nonexist, timeout}
+   $  #                      with mail-format {
+   $  #                            from:     Monit@$HOST
+   $  #                            subject:  sqream2 $EVENT - $ACTION
+   $  #                            message:  This is an automate mail, sent from monit.
+   $  #                    }
+   $  #
+   $  #SQREAM5-START
+   $  #check process sqream5 with pidfile /var/run/sqream5.pid
+   $  #start program = "/usr/bin/systemctl start sqream5"
+   $  #stop program = "/usr/bin/systemctl stop sqream5"
+   $  #SQREAM5-END
+   $  #       alert user@domain.com on {nonexist, timeout}
+   $  #                      with mail-format {
+   $  #                            from:     Monit@$HOST
+   $  #                            subject:  sqream2 $EVENT - $ACTION
+   $  #                            message:  This is an automate mail, sent from monit.
+   $  #                    }
+   $  #
+   $  #SQREAM6-START
+   $  #check process sqream6 with pidfile /var/run/sqream6.pid
+   $  #start program = "/usr/bin/systemctl start sqream6"
+   $  #stop program = "/usr/bin/systemctl stop sqream6"
+   $  #SQREAM6-END
+   $  #       alert user@domain.com on {nonexist, timeout}
+   $  #                      with mail-format {
+   $  #                            from:     Monit@$HOST
+   $  #                            subject:  sqream2 $EVENT - $ACTION
+   $  #                            message:  This is an automate mail, sent from monit.
+   $  #                    }
+   $  #
+   $  #SQREAM7-START
+   $  #check process sqream7 with pidfile /var/run/sqream7.pid
+   $  #start program = "/usr/bin/systemctl start sqream7"
+   $  #stop program = "/usr/bin/systemctl stop sqream7"
+   $  #SQREAM7-END
+   $  #                      with mail-format {
+   $  #                            from:     Monit@$HOST
+   $  #                            subject:  sqream2 $EVENT - $ACTION
+   $  #                            message:  This is an automate mail, sent from monit.
+   $  #                    }
+   $  #
+   $  #SQREAM8-START
+   $  #check process sqream8 with pidfile /var/run/sqream8.pid
+   $  #start program = "/usr/bin/systemctl start sqream8"
+   $  #stop program = "/usr/bin/systemctl stop sqream8"
+   $  #SQREAM8-END
+   $  #       alert user@domain.com on {nonexist, timeout}
+   $  #                      with mail-format {
+   $  #                            from:     Monit@$HOST
+   $  #                            subject:  sqream2 $EVENT - $ACTION
+   $  #                            message:  This is an automate mail, sent from monit.
+   $  #                    }
      
 Monit Usage Examples
 ====================================
@@ -189,7 +189,7 @@ You can stop SQream using a Monit command as follows:
      
    $ sudo monit stop sqream3
 
-This command spots SQream only (and not Monit).
+This command stops SQream only (and not Monit).
 
 You can restart SQream as follows:
 
@@ -199,7 +199,7 @@ You can restart SQream as follows:
        
 Monit Command Line Options
 -------------------------------------
-This section describes some of the most commonly used Monit command options.
+The **Monit Command Line Options** section describes some of the most commonly used Monit command options.
 
 You can show the command line options by running:
 
@@ -230,7 +230,7 @@ You can show the command line options by running:
 Using Monit While Upgrading Your Version of SQream
 ==================================================
 
-While upgrade your version of SQream, you can use Monit to avoid conflicts (such as service start). This is done by pausing or stopping all running services while you manually upgrade SQream. When you finish successfully upgrading SQream, you can use Monit to restart all SQream services
+While upgrading your version of SQream, you can use Monit to avoid conflicts (such as service start). This is done by pausing or stopping all running services while you manually upgrade SQream. When you finish successfully upgrading SQream, you can use Monit to restart all SQream services
 
 **To use Monit while upgrading your version of SQream:**
 
@@ -246,26 +246,26 @@ While upgrade your version of SQream, you can use Monit to avoid conflicts (such
 
       $ sudo netstat -nltp    #to make sure sqream stopped listening on 500X, 510X and 310X ports.
 
-The example below shows the old version ``sqream-db-v2020.2`` being replaced with the new version ``sqream-db-v2025.200``.
+   The example below shows the old version ``sqream-db-v2020.2`` being replaced with the new version ``sqream-db-v2025.200``.
 
-.. code-block:: console
+   .. code-block:: console
     
-   $ cd /home/sqream
-   $ mkdir tempfolder
-   $ mv sqream-db-v2025.200.tar.gz tempfolder/
-   $ tar -xf sqream-db-v2025.200.tar.gz
-   $ sudo mv sqream /usr/local/sqream-db-v2025.200
-   $ cd /usr/local
-   $ sudo chown -R sqream:sqream sqream-db-v2025.200
-   $ sudo rm sqream   #This only should remove symlink
-   $ sudo ln -s sqream-db-v2025.200 sqream   #this will create new symlink named "sqream" pointing to new version
-   $ ls -l
+      $ cd /home/sqream
+      $ mkdir tempfolder
+      $ mv sqream-db-v2025.200.tar.gz tempfolder/
+      $ tar -xf sqream-db-v2025.200.tar.gz
+      $ sudo mv sqream /usr/local/sqream-db-v2025.200
+      $ cd /usr/local
+      $ sudo chown -R sqream:sqream sqream-db-v2025.200
+      $ sudo rm sqream   #This only should remove symlink
+      $ sudo ln -s sqream-db-v2025.200 sqream   #this will create new symlink named "sqream" pointing to new version
+      $ ls -l
 
-The symbolic SQream link pointing should be pointing to the real folder:
+   The symbolic SQream link should point to the real folder:
 
-.. code-block:: console
+   .. code-block:: console
     
-   $ sqream -> sqream-db-v2025.200
+      $ sqream -> sqream-db-v2025.200
 
 4. Restart the SQream services:
 
@@ -281,7 +281,7 @@ The symbolic SQream link pointing should be pointing to the real folder:
       
    The correct version is output.
 
-5. Restart the UI:
+6. Restart the UI:
 
    .. code-block:: console
     
