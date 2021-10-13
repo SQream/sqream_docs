@@ -23,7 +23,9 @@ The 2021.1.2 Release Notes include the following new features:
 .. contents:: 
    :local:
    :depth: 1
-   
+ 
+
+
 
 Aliases Added to SUBSTRING Function and Length Argument
 ************
@@ -32,6 +34,17 @@ The following aliases have been added:
 * length - ``len``
 * substring - ``substr``
 
+Data Type Aliases Added
+************
+The following data type aliases have been added:
+
+* INTEGER - ``int``
+* DECIMAL - ``numeric``
+* DOUBLE PRECISION - ``double``
+* CHARACTER/CHAR - ``text``
+* NATIONAL CHARACTER/NATIONAL CHAR/NCHAR - ``text``
+* CHARACTER VARYING/CHAR VARYING - ``text``
+* NATIONAL CHARACTER VARYING/NATIONAL CHAR VARYING/NCHAR VARYING - ``text``
 
 
 String Literals Containing ASCII Characters Interepreted as TEXT
@@ -47,7 +60,11 @@ Decimal Literals Interpreted as Numeric Columns
 ************
 SQream now interprets literals containing decimal points as ``numeric`` instead of as ``double``.
 
-For more information, see `Data Types <https://docs.sqream.com/en/v2021.1/reference/sql_data_types.html>`_.
+For more information, see `Data Types <https://docs.sqream.com/en/latest/reference/sql_data_types.html>`_.
+
+Roles Area Added to Studio Version 5.3.3
+****************
+The **Roles** area has been added to `Studio version 5.3.3 <https://docs.sqream.com/en/latest/guides/operations/sqream_studio.html>`_. From the Roles area users can create and assign roles and manage user permissions.
 
 Resolved Issues
 -------------

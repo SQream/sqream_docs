@@ -1,15 +1,15 @@
 .. _workload_manager:
 
 ***********************
-Workload manager
+Workload Manager
 ***********************
 
-The workload manager (WLM) allows SQream DB workers to identify their availability to clients with specific service names. The load balancer will then use that information to route statements to specific workers.
+The **Workload Manager** allows SQream DB workers to identify their availability to clients with specific service names. The load balancer uses that information to route statements to specific workers.
 
-Why use the workload manager?
+Overview
 ===============================
 
-The workload manager allows a system engineer or database administrator to allocate specific workers and compute resoucres for various tasks.
+The Workload Manager allows a system engineer or database administrator to allocate specific workers and compute resoucres for various tasks.
 
 For example:
 
@@ -17,19 +17,18 @@ For example:
 
 #. Creating a service for the company's leadership during working hours for dedicated access, and disabling this service at night to allow maintenance operations to use the available compute.
 
-Setting up service queues
+Setting Up Service Queues
 ==========================
 
 By default, every worker subscribes to the ``sqream`` service queue.
 
 Additional service names are configured in the configuration file for every worker, but can also be :ref:`set on a per-session basis<subscribe_service>`.
 
-Example - Allocating resources for ETL
+Example - Allocating ETL Resources
 ========================================
+Allocating ETL resources ensures high quality service without requiring management users to wait.
 
-We want to allocate resources for ETL to ensure a good quality of service, but we also have management users who don't like waiting.
-
-The configuration in this example allocates resources as follows:
+The configuration in this example allocates resources as shown below:
 
 * 1 worker for ETL work
 * 3 workers for general queries
@@ -61,14 +60,14 @@ The configuration in this example allocates resources as follows:
      - ✓
      - ✓
 
-This configuration gives the ETL queue dedicated access to two workers, one of which can't be used by regular queries.
+This configuration gives the ETL queue dedicated access to two workers, one of which cannot be used by regular queries.
 
-Queries from management will use any available worker.
+Queries from management uses any available worker.
 
-Creating this configuration
+Creating the Configuration
 -----------------------------------
 
-The persistent configuration for this setup is listed in these four configuration files.
+The persistent configuration for this set-up is listed in the four configuration files shown below.
 
 Each worker gets a comma-separated list of service queues that it subscribes to. These services are specified in the ``initialSubscribedServices`` attribute.
 
@@ -112,12 +111,17 @@ Each worker gets a comma-separated list of service queues that it subscribes to.
        }
    }
 
-.. tip:: This configuration can be created temporarily (for the current session only) by using the :ref:`subscribe_service` and :ref:`unsubscribe_service` statements.
+.. tip:: You can create this configuration temporarily (for the current session only) by using the :ref:`subscribe_service` and :ref:`unsubscribe_service` statements.
 
-Verifying the configuration
+Verifying the Configuration
 -----------------------------------
 
-Use :ref:`show_subscribed_instances` to view service subscriptions for each worker. Use ref:`show_server_status` to see the statement queues.
+Use :ref:`show_subscribed_instances` to view service subscriptions for each worker. Use `SHOW_SERVER_STATUS <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/monitoring_commands/show_server_status.html>`_ to see the statement queues.
+
+
+
+
+
 
 .. code-block:: psql
    
@@ -133,13 +137,30 @@ Use :ref:`show_subscribed_instances` to view service subscriptions for each work
    query      | node_9551  | 192.168.1.91  |       5000
    management | node_9551  | 192.168.1.91  |       5000
 
-Configuring a client to connect to a specific service
+Configuring a Client Connection to a Specific Service
 ===========================================================
+You can configure a client connection to a specific service in one of the following ways:
 
-Using :ref:`sqream_sql_cli_reference`
+.. contents::
+   :local:
+
+Using SQream Studio
 --------------------------------------------
+When using **SQream Studio**, you can configure a client connection to a specific service from the SQream Studio, as shown below:
 
-Add ``--service=<service name>`` to the command line.
+.. image:: /_static/images/TPD_33.png
+
+
+
+For more information, in Studio, see `Executing Statements from the Toolbar <https://docs.sqream.com/en/v2021.2/guides/operations/sqream_studio_5.4.0.html#executing-statements-from-the-toolbar>`_.
+
+
+
+
+
+Using the SQream SQL CLI Reference
+--------------------------------------------
+When using the **SQream SQL CLI Reference**, you can configure a client connection to a specific service by adding ``--service=<service name>`` to the command line, as shown below:
 
 .. code-block:: psql
 
@@ -150,21 +171,27 @@ Add ``--service=<service name>`` to the command line.
    To quit, use ^D or \q.
    
    master=>_
+   
+For more information, see the :ref:`sqream_sql_cli_reference`.
 
-Using :ref:`JDBC<java_jdbc>`
+
+
+Using a JDBC Client Driver
 --------------------------------------------
-
-Add ``--service=<service name>`` to the command line.
+When using a **JDBC client driver**, you can configure a client connection to a specific service by adding ``--service=<service name>`` to the command line, as shown below:
 
 .. code-block:: none
-   :caption: JDBC connection string
+   :caption: JDBC Connection String
    
    jdbc:Sqream://127.0.0.1:3108/raviga;user=rhendricks;password=Tr0ub4dor&3;service=etl;cluster=true;ssl=false;
+   
 
-Using :ref:`odbc`
+For more information, see the `JDBC Client Driver <https://docs.sqream.com/en/v2021.2/guides/client_drivers/jdbc/index.html>`_.
+
+
+Using an ODBC Client Driver
 --------------------------------------------
-
-On Linux, modify the :ref:`DSN parameters<dsn_params>` in ``odbc.ini``.
+When using an **ODBC client driver**, you can configure a client connection to a specific service on Linux by modifying the :ref:`DSN parameters<dsn_params>` in ``odbc.ini``.
 
 For example, ``Service="etl"``:
 
@@ -186,10 +213,12 @@ For example, ``Service="etl"``:
 
 On Windows, change the parameter in the :ref:`DSN editing window<create_windows_odbc_dsn>`.
 
-Using :ref:`pysqream`
---------------------------------------------
+For more information, see the `ODBC Client Driver <https://docs.sqream.com/en/v2021.2/guides/client_drivers/odbc/index.html#odbc>`_.
 
-In Python, set the ``service`` parameter in the connection command:
+
+Using a Python Client Driver
+--------------------------------------------
+When using a **Python client driver**, you can configure a client connection to a specific service by setting the ``service`` parameter in the connection command, as shown below:
 
 .. code-block:: python
    :caption: Python
@@ -198,14 +227,16 @@ In Python, set the ``service`` parameter in the connection command:
    con = pysqream.connect(host='127.0.0.1', port=3108, database='raviga'
                           , username='rhendricks', password='Tr0ub4dor&3'
                           , clustered=True, use_ssl = False, service='etl')
+						  
+For more information, see the `Python (pysqream) connector <https://docs.sqream.com/en/v2021.2/guides/client_drivers/python/index.html#pysqream>`_.
 
-Using :ref:`nodejs`
+
+Using a Node.js Client Driver
 --------------------------------------------
-
-Add the service to the connection settings:
+When using a **Node.js client driver**, you can configure a client connection to a specific service by adding the service to the connection settings, as shown below:
 
 .. code-block:: javascript
-   :caption: Node.JS
+   :caption: Node.js
    :emphasize-lines: 5
    
    const Connection = require('sqreamdb');
@@ -218,3 +249,5 @@ Add the service to the connection settings:
       cluster: 'true',
       service: 'etl'
    };
+
+For more information, see the `Node.js Client Driver <https://docs.sqream.com/en/v2021.2/guides/client_drivers/nodejs/index.html#nodejs>`_.

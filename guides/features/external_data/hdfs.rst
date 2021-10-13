@@ -1,323 +1,282 @@
 .. _hdfs:
 
-***********************
-HDFS
-***********************
+.. _back_to_top_hdfs:
 
-SQream DB has a native HDFS connector for inserting data. The ``hdfs://`` URI specifies an external file path on a Hadoop Distributed File System.
+Using SQream in an HDFS Environment
+=======================================
 
-File names may contain wildcard characters and the files can be a CSV or columnar format like Parquet and ORC.
+.. _configuring_an_hdfs_environment_for_the_user_sqream:
 
+Configuring an HDFS Environment for the User **sqream**
+----------------------------------------------------------
 
-.. contents:: In this topic:
-   :local:
+This section describes how to configure an HDFS environment for the user **sqream** and is only relevant for users with an HDFS environment.
 
-Verifying HDFS configuration
-==============================
+**To configure an HDFS environment for the user sqream:**
 
-SQream DB's built-in HDFS relies on the host's Hadoop HDFS configuration. 
+1. Open your **bash_profile** configuration file for editing:
 
-Before you can use HDFS, you should verify that all SQream DB hosts are configured correctly.
-
-Use built-in Hadoop libraries
--------------------------------
-
-SQream DB comes with Hadoop libraries built-in. In a typical SQream DB installation, you'll find Hadoop and JDK libraries in the ``hdfs`` subdirectory of the package.
-
-If you are using the built-in libraries, it's important to note where they are.
-
-For example, if SQream DB was installed to ``/opt/sqream``, here's how to set-up the environment variables from the shell:
-
-.. _set_hadoop_classpath:
-
-.. code-block:: console
-
-   $ export JAVA_HOME=/opt/sqream/hdfs/jdk
-   $ export HADOOP_INSTALL=/opt/sqream/hdfs/hadoop
-   
-   $ export PATH=$PATH:${HADOOP_INSTALL}/bin:${HADOOP_INSTALL}/sbin
-   $ export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_INSTALL}/lib/native
-   $ export CLASSPATH=$CLASSPATH:`${HADOOP_INSTALL}/bin/hadoop classpath --glob`
-   $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HADOOP_COMMON_LIB_NATIVE_DIR
-
-   $ export HADOOP_MAPRED_HOME=$HADOOP_INSTALL
-   $ export HADOOP_COMMON_HOME=$HADOOP_INSTALL
-   $ export HADOOP_HDFS_HOME=$HADOOP_INSTALL
-   $ export YARN_HOME=$HADOOP_INSTALL
-   
-   $ export HADOOP_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
-   $ export YARN_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
-   $ export HADOOP_HOME=$HADOOP_INSTALL
-   $ export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=${HADOOP_COMMON_LIB_NATIVE_DIR}"
-   $ export ARROW_LIBHDFS_DIR=${HADOOP_COMMON_LIB_NATIVE_DIR}
-
-
-You'll find ``core-site.xml`` and other configuration files in ``/opt/sqream/hdfs/hadoop/etc/hadoop``
-
-To persist these settings, place these variable settings in a 'run commands' file like ``.bashrc``. Test this by examining the output of ``$ echo $ARROW_LIBHDFS_DIR``.
-
-.. note:: 
-   
-   * This process needs to be repeated for every host in the SQream DB cluster, and from SQream DB's host username (often ``sqream``)
-   
-   * Restart SQream DB workers on the host after setting these parameters for them to take effect.
-
-(Optional) Overriding the Hadoop environment
-------------------------------------------------------
-
-If you have an existing Hadoop environment set-up on the host, you can override SQream DB's built-in Hadoop by setting the environment variables accordingly.
-
-For example,
-
-.. code-block:: console
-
-   $ export JAVA_HOME=/usr/local/java-1.8.0/
-   $ export HADOOP_INSTALL=/usr/local/hadoop-3.2.1
-   
-   $ export PATH=$PATH:${HADOOP_INSTALL}/bin:${HADOOP_INSTALL}/sbin
-   $ export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_INSTALL}/lib/native
-   $ export CLASSPATH=$CLASSPATH:`${HADOOP_INSTALL}/bin/hadoop classpath --glob`
-   $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HADOOP_COMMON_LIB_NATIVE_DIR
-
-   $ export HADOOP_MAPRED_HOME=$HADOOP_INSTALL
-   $ export HADOOP_COMMON_HOME=$HADOOP_INSTALL
-   $ export HADOOP_HDFS_HOME=$HADOOP_INSTALL
-   $ export YARN_HOME=$HADOOP_INSTALL
-   
-   $ export HADOOP_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
-   $ export YARN_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
-   $ export HADOOP_HOME=$HADOOP_INSTALL
-   $ export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=${HADOOP_COMMON_LIB_NATIVE_DIR}"
-   $ export ARROW_LIBHDFS_DIR=${HADOOP_COMMON_LIB_NATIVE_DIR}
-
-
-To persist these settings, place these variable settings in a 'run commands' file like ``.bashrc``. Test this by examining the output of ``$ echo $ARROW_LIBHDFS_DIR``.
-
-.. note:: 
-   
-   * This process needs to be repeated for every host in the SQream DB cluster, and from SQream DB's host username (often ``sqream``)
-   
-   * Restart SQream DB workers on the host after setting these parameters for them to take effect.
-
-Configuring the node
-======================
-
-A Hadoop administrator will want to edit the configuration XMLs to allow access to your Hadoop cluster.
-
-If using the SQream DB Hadoop libraries, modify the following files to match your cluster settings:
-
-* ``/opt/sqream/hdfs/hadoop/etc/hadoop/core-site.xml``
-* ``/opt/sqream/hdfs/hadoop/etc/hadoop/yarn-site.xml``
-* ``/opt/sqream/hdfs/hadoop/etc/hadoop/hdfs-site.xml``
-
-If using the system Hadoop libraries, be sure to override ``JAVA_HOME``, ``CLASSPATH``, ``HADOOP_HOME``, and ``ARROW_LIBHDFS_DIR`` as described above.
-
-Verifying Hadoop configuration
-==================================
-
-To test HDFS access, try accessing files using the HDFS shell:
-
-.. code-block:: console
-
-   $ hdfs dfs -ls
-   Found 2 items
-   -rw-r--r--   3 hdfs supergroup      63446 2020-02-29 16:37 MD1.csv
-   -rw-r--r--   3 hdfs supergroup      63906 2020-02-29 16:37 MD2.csv
-   $ hdfs dfs -tail MD1.csv
-   985,Obediah,Reith,oreithrc@time.com,Male,Colombia,859.28
-   986,Lennard,Hairesnape,lhairesnaperd@merriam-webster.com,Male,North Korea,687.60
-   987,Valaree,Pieper,vpieperre@tinyurl.com,Female,Kazakhstan,1116.23
-   988,Rosemaria,Legan,rleganrf@slideshare.net,Female,Indonesia,62.19
-   989,Rafaellle,Hartill,rhartillrg@marketwatch.com,Male,Albania,1308.17
-   990,Symon,Edmett,sedmettrh@tinyurl.com,Male,China,1216.97
-   991,Hiram,Slayton,hslaytonri@amazon.de,Male,China,510.55
-   992,Sylvan,Dalgliesh,sdalglieshrj@booking.com,Male,China,1503.60
-   993,Alys,Sedgebeer,asedgebeerrk@va.gov,Female,Moldova,1947.58
-   994,Ninette,Hearl,nhearlrl@sakura.ne.jp,Female,Palau,917.66
-   995,Tommy,Atterley,tatterleyrm@homestead.com,Female,Philippines,1660.22
-   996,Sean,Mully,smullyrn@rakuten.co.jp,Female,Brunei,938.04
-   997,Gabe,Lytell,glytellro@cnn.com,Male,China,491.12
-   998,Clementius,Battison,cbattisonrp@dedecms.com,Male,Norway,1781.92
-   999,Kyle,Vala,kvalarq@paginegialle.it,Male,France,11.26
-   1000,Korrie,Odd,koddrr@bigcartel.com,Female,China,471.96
-
-If the command succeeded and the file was read correctly, you HDFS has been configured correctly and can now be used in SQream DB.
-
-If an access error occured, check your Hadoop configuration or contact SQream support.
-
-
-Configuring HDFS for Kerberos access
-========================================
-
-This section describes how to configure SQream DB to access HDFS secured with Kerberos.
-
-When a Hadoop cluster is Kerberized, SQream DB's user must be configured to to authenticate through Kerberos.
-
-Prerequisites
-----------------
-
-This section assumes you already have Java and Hadoop installed on your SQream DB hosts.
-
-* SQream DB hosts and Kerberos servers should have the same JCE (Java Cryptography Extension). You can copy the JCE files from the Kerberos server to the SQream DB hosts if needed, to the ``$JAVA_HOME/jre/lib/security`` path.
-
-* Install the Kerberos clients
-   
-   CentOS / RHEL: ``$ sudo yum install krb5-libs krb5-workstation``
-   
-   Ubuntu: ``$ sudo apt-get install krb5-user``
-
-* Configure Hadoop as per your distribution.
-
-Creating keytabs
-----------------------
-
-#. Sign into your Kerberos Key Distribution Center (KDC) as a root user
-
-#. 
-   Create a new principal for the SQream DB OS users (e.g. ``sqream`` by default):
-   
    .. code-block:: console
+     
+       $ vim /home/sqream/.bash_profile
+       
+..
+   Comment: - see below; do we want to be a bit more specific on what changes we're talking about?
 
-      # kadmin.local -q "addprinc -randkey sqream@KRLM.PIEDPIPER.COM"
-   
-   Make sure to replace the realm (``KRLM.PIEDPIPER.COM``) with your actual Kerberos realm.
-
-#. 
-   Create a Kerberos service principal for each SQream DB host in the cluster.
-   
-   In this example, three cluster hosts:
-   
    .. code-block:: console
-   
-      # kadmin.local -q "addprinc -randkey sqream/sqreamdb-01.piedpiper.com@KRLM.PIEDPIPER.COM"
-      # kadmin.local -q "addprinc -randkey sqream/sqreamdb-02.piedpiper.com@KRLM.PIEDPIPER.COM"
-      # kadmin.local -q "addprinc -randkey sqream/sqreamdb-03.piedpiper.com@KRLM.PIEDPIPER.COM"
-   
-   The format for each principal is ``user/host@realm``, where:
-   
-   * ``user`` is the OS username
-   
-   * ``host`` is the hostname (typically the output of ``hostname -f``)
-   
-   * ``realm`` is the Kerberos realm
+     
+      $ #PATH=$PATH:$HOME/.local/bin:$HOME/bin
 
-#. Generate a keytab for each principal.
-   
+      $ #export PATH
+
+      $ # PS1
+      $ #MYIP=$(curl -s -XGET "http://ip-api.com/json" | python -c 'import json,sys; jstr=json.load(sys.stdin); print jstr["query"]')
+      $ #PS1="\[\e[01;32m\]\D{%F %T} \[\e[01;33m\]\u@\[\e[01;36m\]$MYIP \[\e[01;31m\]\w\[\e[37;36m\]\$ \[\e[1;37m\]"
+
+      $ SQREAM_HOME=/usr/local/sqream
+      $ export SQREAM_HOME
+
+      $ export JAVA_HOME=${SQREAM_HOME}/hdfs/jdk
+      $ export HADOOP_INSTALL=${SQREAM_HOME}/hdfs/hadoop
+      $ export CLASSPATH=`${HADOOP_INSTALL}/bin/hadoop classpath --glob`
+      $ export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_INSTALL}/lib/native
+      $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${SQREAM_HOME}/lib:$HADOOP_COMMON_LIB_NATIVE_DIR
+
+
+      $ PATH=$PATH:$HOME/.local/bin:$HOME/bin:${SQREAM_HOME}/bin/:${JAVA_HOME}/bin:$HADOOP_INSTALL/bin
+      $ export PATH
+
+3. Verify that the edits have been made:
+
    .. code-block:: console
+     
+      source /home/sqream/.bash_profile
+       
+4. Check if you can access Hadoop from your machine:       
+       
+  .. code-block:: console
+     
+     $ hadoop fs -ls hdfs://<hadoop server name or ip>:8020/
       
-      # kadmin.local -q "xst -k /etc/security/keytabs/sqreamdb-01.service.keytab sqream/sqreamdb-01 sqream/sqreamdb-01.piedpiper.com@KRLM.PIEDPIPER.COM"
-      # kadmin.local -q "xst -k /etc/security/keytabs/sqreamdb-02.service.keytab sqream/sqreamdb-02 sqream/sqreamdb-02.piedpiper.com@KRLM.PIEDPIPER.COM"
-      # kadmin.local -q "xst -k /etc/security/keytabs/sqreamdb-03.service.keytab sqream/sqreamdb-03 sqream/sqreamdb-03.piedpiper.com@KRLM.PIEDPIPER.COM"
+..
+   Comment: - 
+   **NOTICE:** If you cannot access Hadoop from your machine because it uses Kerberos, see `Connecting a SQream Server to Cloudera Hadoop with Kerberos <https://sqream.atlassian.net/wiki/spaces/DOC/pages/822902789/How+to+connect+sqream+server+to+Cloudera+Hadoop+with+kerberos>`_
 
-   You can now exit ``kadmin``.
-   
-#. Change permissions and ownership on each keytab:
+
+5. Verify that an HDFS environment exists for SQream services:
+
+   .. code-block:: console
+     
+      $ ls -l /etc/sqream/sqream_env.sh
+	  
+.. _step_6:
+
+      
+6. If an HDFS environment does not exist for SQream services, create one (sqream_env.sh):
    
    .. code-block:: console
-      
-      # chown sqream:sqream /etc/security/keytabs/sqreamdb*
-      # chmod 440 /etc/security/keytabs/sqreamdb*
+     
+      $ #!/bin/bash
 
-#. Copy the keytab files for each service principal to its respective SQream DB host:
-   
+      $ SQREAM_HOME=/usr/local/sqream
+      $ export SQREAM_HOME
+
+      $ export JAVA_HOME=${SQREAM_HOME}/hdfs/jdk
+      $ export HADOOP_INSTALL=${SQREAM_HOME}/hdfs/hadoop
+      $ export CLASSPATH=`${HADOOP_INSTALL}/bin/hadoop classpath --glob`
+      $ export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_INSTALL}/lib/native
+      $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${SQREAM_HOME}/lib:$HADOOP_COMMON_LIB_NATIVE_DIR
+
+
+      $ PATH=$PATH:$HOME/.local/bin:$HOME/bin:${SQREAM_HOME}/bin/:${JAVA_HOME}/bin:$HADOOP_INSTALL/bin
+      $ export PATH
+	  
+:ref:`Back to top <back_to_top_hdfs>`
+
+	  
+.. _authenticate_hadoop_servers_that_require_kerberos:
+
+Authenticate Hadoop Servers that Require Kerberos
+---------------------------------------------------
+
+If your Hadoop server requires Kerberos authentication, do the following:
+
+1. Create a principal for the user **sqream**.
+
    .. code-block:: console
    
-      # scp /etc/security/keytabs/sqreamdb-01.service.keytab sqreamdb-01.piedpiper.com:/home/sqream/sqreamdb-01.service.keytab
-      # scp /etc/security/keytabs/sqreamdb-02.service.keytab sqreamdb-02.piedpiper.com:/home/sqream/sqreamdb-02.service.keytab
-      # scp /etc/security/keytabs/sqreamdb-03.service.keytab sqreamdb-03.piedpiper.com:/home/sqream/sqreamdb-03.service.keytab
-
-Configuring HDFS for Kerberos
----------------------------------
-
-#. 
-   Edit the ``core-site.xml`` configuration file on each SQream DB host to enable authorization.
-
-   For example, editing ``/opt/sqream/hdfs/hadoop/etc/hadoop/core-site.xml``:
-   
-   .. code-block:: xml
-
-      <property>
-          <name>hadoop.security.authorization</name>
-          <value>true</value>
-      </property>
-
-#. Edit the ``yarn-site.xml`` configuration file on each SQream DB host to set the Yarn Kerberos principal
-
-   For example, editing ``/opt/sqream/hdfs/hadoop/etc/hadoop/yarn-site.xml``:
-   
-   .. code-block:: xml
-
-      <property>
-          <name>yarn.resourcemanager.address</name>
-          <value>hadoop-nn.piedpiper.com:8032</value>
-      </property>
-      <property>
-          <name>yarn.resourcemanager.principal</name>
-          <value>yarn/_hostname@KRLM.PIEDPIPER.COM</value>
-      </property>
-
-#. 
-   
-   Edit the ``hdfs-site.xml`` configuration file on each SQream DB host to set the NameNode Kerberos principals, the location of the Kerberos keytab file, and the principal:
-
-   For example, editing ``/opt/sqream/hdfs/hadoop/etc/hadoop/hdfs-site.xml`` on the first host (``sqreamdb-01``):
-   
-   .. code-block:: xml
-
-      <property>
-          <name>dfs.namenode.kerberos.principal</name>
-          <value>sqream/sqreamdb-01.piedpiper.com@KRLM.PIEDPIPER.COM</value>
-      </property>
-      <property>
-          <name>dfs.namenode.https.principal</name>
-          <value>sqream/sqreamdb-01.piedpiper.com@KRLM.PIEDPIPER.COM</value>
-      </property>
+      $ kadmin -p root/admin@SQ.COM
+      $ addprinc sqream@SQ.COM
       
+2. If you do not know yor Kerberos root credentials, connect to the Kerberos server as a root user with ssh and run **kadmin.local**:
 
-.. 
-      <property>
-          <name>security.keytab.file</name>
-          <value>/home/sqream/sqreamdb-01.service.keytab</value>
-      </property>
-      <property>
-          <name>security.username</name>
-          <value>sqream/sqreamdb-01.piedpiper.com@KRLM.PIEDPIPER.CO</value>
-      </property>
+   .. code-block:: console
+   
+      $ kadmin.local
+      
+   Running **kadmin.local** does not require a password.
 
-Test the access
---------------------
+3. If a password is not required, change your password to **sqream@SQ.COM**.
 
-To confirm that Kerberized HDFS is accessible on all SQream DB hosts, run the following command to list a directory:
+   .. code-block:: console
+   
+      $ change_password sqream@SQ.COM
 
-.. code-block:: console
+4. Connect to the hadoop name node using ssh:
 
-   $ hdfs dfs -ls hdfs://hadoop-nn.piedpiper.com:8020
+   .. code-block:: console
+   
+      $ cd /var/run/cloudera-scm-agent/process
 
-Repeat the command on all hosts.
-If the command succeeds and you see a directory listing, Kerberized HDFS has been configured correctly and can now be used in SQream DB.
+5. Check the most recently modified content of the directory above:
 
-If an error occured, check your configuration or contact SQream support.
+   .. code-block:: console
+   
+      $ ls -lrt
 
-Testing HDFS access in SQream DB
-=====================================
+5. Look for a recently updated folder containing the text **hdfs**.
 
-HDFS access from SQream DB is from :ref:`copy_from` and :ref:`external_tables`.
+The following is an example of the correct folder name:
 
-* :ref:`Example for an HDFS-stored external table<hdfs_external_table_demo>`
+   .. code-block:: console
+   
+      cd <number>-hdfs-<something>
+	  
+   This folder should contain a file named **hdfs.keytab** or another similar .keytab file.
+   
 
-* :ref:`Example for inserting data from a CSV on HDFS<hdfs_copy_from_example>`
+ 
+..
+   Comment: - Does "something" need to be replaced with "file name"
+   
 
-Troubelshooting HDFS access
-==================================
+6. Copy the .keytab file to user **sqream's** Home directory on the remote machines that you are planning to use Hadoop on.
 
-``class not found`` error
----------------------------------
+7. Copy the following files to the **sqream sqream@server:<sqream folder>/hdfs/hadoop/etc/hadoop:** directory:
 
-If you get a ``class not found`` error that looks like this:
+   * core-site.xml
+   * hdfs-site.xml
 
-   java.lang.ClassNotFoundException: Class org.apache.hadoop.hdfs.DistributedFileSystem not found
+8. Connect to the sqream server and verify that the .keytab file's owner is a user sqream and is granted the correct permissions:
 
-#. Verify that the CLASSPATH and ARROW_LIBHDFS_DIR are set correctly. Read more about :ref:`setting the environment variables<set_hadoop_classpath>` above.
+   .. code-block:: console
+   
+      $ sudo chown sqream:sqream /home/sqream/hdfs.keytab
+      $ sudo chmod 600 /home/sqream/hdfs.keytab
 
-#. Try restarting SQream DB after setting the environment variables.
+9. Log into the sqream server.
 
+10. Log in as the user **sqream**.
+
+11. Navigate to the Home directory and check the name of a Kerberos principal represented by the following .keytab file:
+
+   .. code-block:: console
+   
+      $ klist -kt hdfs.keytab
+
+   The following is an example of the correct output:
+
+   .. code-block:: console
+   
+      $ sqream@Host-121 ~ $ klist -kt hdfs.keytab
+      $ Keytab name: FILE:hdfs.keytab
+      $ KVNO Timestamp           Principal
+      $ ---- ------------------- ------------------------------------------------------
+      $    5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 HTTP/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
+      $    5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
+
+12. Verify that the hdfs service named **hdfs/nn1@SQ.COM** is shown in the generated output above.
+
+13. Run the following:
+
+   .. code-block:: console
+   
+      $ kinit -kt hdfs.keytab hdfs/nn1@SQ.COM
+
+ 13. Check the output:
+  
+   .. code-block:: console
+   
+      $ klist
+      
+   The following is an example of the correct output:
+
+   .. code-block:: console
+   
+      $ Ticket cache: FILE:/tmp/krb5cc_1000
+      $ Default principal: sqream@SQ.COM
+      $ 
+      $ Valid starting       Expires              Service principal
+      $ 09/16/2020 13:44:18  09/17/2020 13:44:18  krbtgt/SQ.COM@SQ.COM
+
+14. List the files located at the defined server name or IP address:
+
+   .. code-block:: console
+   
+      $ hadoop fs -ls hdfs://<hadoop server name or ip>:8020/
+
+15. Do one of the following:
+
+    * If the list below is output, continue with Step 16.
+    * If the list is not output, verify that your environment has been set up correctly.
+	
+If any of the following are empty, verify that you followed **Step 6** in the **Configuring an HDFS Environment for the User sqream** section above correctly:
+
+  .. code-block:: console
+   
+      $ echo $JAVA_HOME
+      $ echo $SQREAM_HOME
+      $ echo $CLASSPATH
+      $ echo $HADOOP_COMMON_LIB_NATIVE_DIR
+      $ echo $LD_LIBRARY_PATH
+      $ echo $PATH
+
+16. Verify that you copied the correct keytab file.
+
+17. Review this procedure to verify that you have followed each step.
+
+**NOTE:** If you are using more than one server, you must start the ``metadataserver`` and ``serverpicker`` services on one node only.
+
+18. Start the following SQream services manually and verify that they are running correctly:
+
+    .. code-block:: console
+   
+        $ sudo systemctl start metadataserver
+        $ sudo systemctl start serverpicker
+        $ sudo systemctl start sqream1
+        $ sudo systemctl start sqream2
+        $ sudo systemctl start sqream3
+        $ sudo systemctl start sqream4
+
+19. Verify that all SQream processes are running and listening:
+
+    .. code-block:: console
+   
+        $ sudo systemctl status metadataserver
+        $ sudo systemctl status serverpicker
+        $ sudo systemctl status sqream1 <sqream2, sqream3...>
+	
+**NOTE:** Run ``sudo systemctl status`` on all servers.
+
+20. Verify that SQream is listening on all ports:
+
+    .. code-block:: console
+   
+       $ sudo netstat -nltp
+**NOTE:** Depending on the package build GPU optimization, SQream takes several minutes to start listening on its ports. You can check your service logs in **/var/log/sqream** to check if SQream has started listening on its ports.
+
+:ref:`Back to top <back_to_top_hdfs>`

@@ -1,22 +1,24 @@
 .. _aggregate_functions:
 
 ********************
-Aggregate functions
+Aggregate Functions
 ********************
 
-Aggregate functions performs calculation on a set of values, and return a single value.
+Overview
+===========
 
-Most aggregate functions ignore null values. 
+Aggregate functions perform calculations based on a set of values and return a single value. Most aggregate functions ignore null values. Aggregate functions are often used with the ``GROUP BY`` clause of the :ref:`select` statement.
 
-Aggregate functions are often used with the ``GROUP BY`` clause of the :ref:`select` statement.
-
+Available Aggregate Functions
+===============
+The following list shows the available aggregate functions:
 
 
 .. toctree::
    :maxdepth: 1
-   :caption: Aggregate functions
    :glob:
    
+
    avg
    corr
    count

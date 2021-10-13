@@ -1,7 +1,7 @@
 .. _index:
 
 *************************
-SQream DB documentation
+SQream DB Documentation
 *************************
 
 For SQream DB |latest_version|.
@@ -31,7 +31,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
    :widths: 33 33 33
    :header-rows: 0
 
-   * - **Get started**
+   * - **Get Started**
      - **Reference**
      - **Guides**
    * -
@@ -41,7 +41,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
          
          :ref:`Bulk load CSVs<csv>`
      - 
-         :ref:`SQL reference<sql>`
+         :ref:`SQL Reference<sql>`
          
          :ref:`sql_statements`
          
@@ -54,15 +54,13 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
          :ref:`connect_to_tableau`
 
    * - **Releases**
-     - **Driver and deployment**
-     - **Help & Support**
+     - **Driver and Deployment**
+     - **Help and Support**
    * -
-         :ref:`2020.3.2.1<2020.3.2.1>`
+         :ref:`2021.2<2021.2>`
 
-         :ref:`2020.3.2<2020.3.2>`
-         
-         :ref:`2020.3.1<2020.3.1>`
-
+         :ref:`2021.1<2021.1>`
+        
          :ref:`2020.3<2020.3>`
 
          :ref:`2020.2<2020.2>`

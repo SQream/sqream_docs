@@ -3,10 +3,98 @@
 **************************
 What's New in 2021.2
 **************************
-The 2021.2 Release Notes describe the following releases:
 
+
+The 2021.2 release notes were released on 13/9/2021.
+
+New Features
+----------
+The 2021.2 Release Notes include the following new features:
 
 .. contents:: 
    :local:
    :depth: 1
    
+New Driver Compatibility
+************
+The 2021.2 release supports the following drivers:
+
+* **JDBC** - new driver version (JDBC 4.5) with important bug fixes.
+* **ODBC** - ODBC 4.1.1. available on request.
+* **NodeJS** - all versions starting with NodeJS 4.0. SQream recommends the latest version (NodeJS 4.2.4). 
+* **Dot Net** - SQream recommends version version 3.02 (compatible with DotNet version 48). 
+* **Pysqream** - pysqream 3.1.2
+
+Centralized Configuration System
+************
+SQream now uses a new configuration system based on centralized configuration accessible from SQream Studio.
+
+For more information, see the following:
+
+* `Configuration <https://docs.sqream.com/en/v2021.2/guides/operations/configuration.html>`_ - describes how to configure your instance of SQream from a centralized location.
+* `SQream Studio 5.4.0 <https://docs.sqream.com/en/v2021.2/guides/operations/sqream_studio_5.4.0.html#configuring-your-instance-of-sqream>`_ - configure your instance of SQream from Studio.
+
+
+   
+Qualifying Schemas Without Providing an Alias
+************
+When running queries, SQream now supports qualifying schemas without providing an alias.
+
+For more information, see `CREATE SCHEMA <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/ddl_commands/create_schema.html>`_.
+
+
+
+
+
+Double-Quotations Supported When Importing and Exporting CSVs
+************
+When importing and exporting CSVs, SQream now supports using quotation characters other than double quotation marks (``"``).
+
+For more information, see the following:
+
+* `COPY FROM <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/copy_from.html>`_
+
+   
+* `COPY TO <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/copy_to.html>`_
+
+
+Note the following:
+
+* Leaving *<x>* unspecified uses the default value of standard double quotations ``”``.
+
+   ::
+
+* The quotation character must be a single, 1-byte printable ASCII character. The same octal syntax of the copy command can be used.
+
+   ::
+
+* The quote character cannot be contained in the field delimiter, record delimiter, or null marker.
+
+   ::
+   
+* Double-quotations can be customized when the ``csv_fdw`` value is used with the ``COPY FROM`` and ``CREATE FOREIGN TABLE`` statements.
+
+   ::
+
+* The default escape character always matches the quote character, and can be overridden by using the ``ESCAPE = {'\\' | E'\XXX')`` syntax as shown in the following examples:
+
+  .. code-block:: postgres
+
+     copy t from wrapper csv_fdw options (location = '/tmp/file.csv', escape='\\');
+
+  .. code-block:: postgres
+
+     copy t from wrapper csv_fdw options (location = '/tmp/file.csv', escape=E'\017');
+
+  .. code-block:: postgres
+
+     copy t to wrapper csv_fdw options (location = '/tmp/file.csv', escape='\\');
+	 
+For more information, see the following statements:
+
+* `COPY FROM <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/copy_from.html>`_ - Loading data from files on the filesystem and importing it into SQream tables.
+
+
+* `CREATE FOREIGN TABLE <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/ddl_commands/create_foreign_table.html>`_ - Creating a new foreign table in an existing database.
+
+

@@ -13,7 +13,7 @@ This page is intended as a "reference" to suggested hardware. However, different
 
 Visit `SQream's support portal <https://sqream.atlassian.net/servicedesk/customer/portals>`_ for additional support.
 
-A SQream DB cluster
+A SQream DB Cluster
 ============================
 
 SQream recommends rackmount servers by server manufacturers Dell, Lenovo, HP, Cisco, Supermicro, IBM, and others.
@@ -26,7 +26,7 @@ A typical SQream DB cluster includes one or more nodes, consisting of
 
 * High density chassis design, offering between 2 and 4 GPUs in a 1U, 2U, or 3U package, for best-in-class performance per cm\ :sup:`2`.
 
-Example for a single-node cluster
+Single-Node Cluster Example
 -----------------------------------
 
 A single-node SQream DB cluster can handle between 1 and 8 concurrent users, with up to 1PB of data storage (when connected via NAS).
@@ -40,25 +40,23 @@ An average single-node cluster can be a rackmount server or workstation, contain
    * - Component
      - Type
    * - Server
-     - Rackmount or workstation, like the Dell T640, Dell R740, Dell R940xa, HP ProLiant DL380 Gen10
+     - Dell T640, Dell R740, Dell R940xa, HP ProLiant DL380 Gen10 or similar
    * - Processor
      - 2x Intel Xeon Gold 6240 (18C/36HT) 2.6GHz
    * - RAM
-     - 384 GB LRDIMM 2666MT/s, ECC registered
+     - 512 GB
    * - Onboard storage
      - 
          * 2x 960GB SSD 2.5in Hot-plug for OS, RAID1
-         * 14x 3.84TB SSD 2.5in Hot-plug for storage, RAID10
-   * - Networking
-     - Intel X710 DP 10Gb DA/SFP+
+         * 14x 3.84TB SSD 2.5in Hot-plug for storage, RAID6
    * - GPU
-     - 2x or 4x NVIDIA Tesla T4 or P100
+     - 2x or 4x NVIDIA Tesla T4, V100 or A100
 
 In this system configuration, SQream DB can store about 200TB of raw data (assuming average compression ratio and ~50TB of usable raw storage).
 
 If a NAS is used, the 14x SSD drives can be omitted, but SQream recommends 2TB of local spool space on SSD or NVMe drives.
 
-Example for multi-node clusters
+Multi-Node Cluster Example
 -----------------------------------
 
 Multi-node clusters can handle any number of concurrent users.
@@ -76,25 +74,25 @@ An example of a cluster node providing the best performance:
    * - Server
      - High-density GPU-capable rackmount server, like Dell C4140, IBM AC922, Lenovo SR650.
    * - Processor
-     - 2x Intel Platinum 8180M (28C/56HT) 3.8GHz or 2x IBM POWER9
+     - 2x Intel Xeon Gold 6240 (18C/36HT) 2.6GHz or 2x IBM POWER9
    * - RAM
-     - 1024 GB RDIMM 2933T/s, ECC registered
+     - 1024 GB
    * - Onboard storage
      -   
          * 2x 960GB SSD 2.5in, for OS, RAID1
          * 2x 2TB SSD or NVMe, for temporary spooling, RAID1
    * - Networking
      - 
-         Intel X710 DP 10Gb DA/SFP+ for BI fabric
+          
       
-         Mellanox ConnectX-4, EDR for storage fabric
+         Mellanox Connectx 5 100 Gbps for storage fabric.
    * - GPU
-     - 4x NVIDIA Tesla V100 32GB
+     - 4x NVIDIA Tesla V100 32GB or A100
 
 .. note:: With a NAS connected over GPFS, Lustre, or NFS - each SQream DB worker can read data at up to 5GB/s.
 
 
-Considerations in cluster design
+Cluster Design Considerations
 ====================================
 
 * In a SQream DB installation, the storage and compute are logically separated. While they may reside on the same machine in a standalone installation, they may also reside on different hosts, providing additional flexibility and scalability.
@@ -105,7 +103,7 @@ Considerations in cluster design
 
 * When using SAN or NAS devices, SQream recommends around 5GB/s of burst throughput from storage, per GPU.
 
-Balancing cost and performance
+Balancing Cost and Performance
 --------------------------------
 
 Prior to designing and deploying a SQream DB cluster, there are a number of important factors to consider. 
@@ -133,7 +131,7 @@ This section provides a breakdown of deployment details intended to help ensure 
    * - Network
      - Balance price and performance
 
-CPU compute
+CPU Compute
 -------------
 
 SQream DB relies on multi-core Intel® Xeon® processors or IBM® POWER9 processors.
@@ -142,7 +140,7 @@ SQream recommends a dual-socket machine populated with CPUs with 18C/36HT or bet
 
 While a higher core count may not necessarily affect query performance, more cores will enable higher concurrency and better load performance.
 
-GPU compute and RAM
+GPU Compute and RAM
 -------------------------
 
 The NVIDIA Tesla range of high-throughput GPU accelerators provides the best performance for enterprise environments. Most cards have ECC memory, which is crucial for delivering correct results every time.
@@ -158,7 +156,7 @@ Use of error-correcting code memory (ECC) is a practical requirement for SQream 
 
 Although SQream DB can function with less, we recommend a key of 256GB of RAM per GPU in the machine. 
 
-Operating system
+Operating System
 ---------------------
 
 SQream DB can run on 64-bit Linux operating systems:
@@ -181,7 +179,7 @@ Because storage reliability is important, SQream recommends enterprise-grade SAS
 SQream DB functions well with more cost-effective SATA drives and even large spinning-disk arrays.
 
 
-Example cluster supporting 32 concurrent active users
+Cluster Supporting 32 Concurrent Active User Example
 ==========================================================
 
 For a 32-user configuration, the number of GPUs should roughly match the number of users. SQream DB recommends 1 Tesla V100 GPU per 2 users, for full, uninterrupted dedicated access.

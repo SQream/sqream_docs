@@ -18,6 +18,8 @@ The role must have the ``CREATE`` permission at the schema level.
 Syntax
 ==========
 
+The following is the correct syntax when creating a table:
+
 .. code-block:: postgres
 
    create_table_statement ::=
@@ -44,6 +46,7 @@ Syntax
 
 Parameters
 ============
+The following parameters can be used when creating a table:
 
 .. list-table:: 
    :widths: auto
@@ -52,7 +55,7 @@ Parameters
    * - Parameter
      - Description
    * - ``OR REPLACE``
-     - Create a new table, and overwrite any existing table by the same name. Does not return an error if the table already exists. ``CREATE OR REPLACE`` does not check the table contents or structure, only the table name.
+     - Creates a new tables and overwrites any existing table by the same name. Does not return an error if the table already exists. ``CREATE OR REPLACE`` does not check the table contents or structure, only the table name.
    * - ``schema_name``
      - The name of the schema in which to create the table.
    * - ``table_name``
@@ -64,10 +67,13 @@ Parameters
          A commma separated list of clustering column keys.
          
          See :ref:`data_clustering` for more information.
-
+   * - ``LIKE``
+     - Duplicates the column structure of an existing table.
+	 
+	 
 .. _default_values:
 
-Default values
+Default Value Constraints
 ===============
 
 The ``DEFAULT`` value constraint specifies a value to use if a value isn't defined in an :ref:`insert` or :ref:`copy_from` statement. 
@@ -78,6 +84,8 @@ The value may be either a literal or `GETDATE()`, which is s evaluated at the ti
 
 Syntax
 ---------
+The following is the correct syntax when using the **DEFAULT** value constraints:
+
 
 .. code-block:: postgres
 
@@ -99,15 +107,17 @@ Syntax
 
 .. _identity:
 
-Identity (sequence)
+Identity
 -----------------------
 
-Identity columns can be used for generating key values. Some databases call this ``AUTOINCREMENT``.
+Identity (or sequence) columns can be used for generating key values. Some databases call this ``AUTOINCREMENT``.
 
-The identity property on a column guarantees that each new row inserted is generated based on the current seed & increment.
+The **identity** property on a column guarantees that each new row inserted is generated based on the current seed & increment.
 
 .. warning:: 
    The identity property on a column does not guarantee uniqueness. The identity value can be bypassed by specifying it in an :ref:`insert` command.
+   
+The following table describes the identity parameters:
 
 .. list-table:: 
    :widths: auto
@@ -123,8 +133,9 @@ The identity property on a column guarantees that each new row inserted is gener
 Examples
 ===========
 
-A simple table
+Standard Table
 -----------------
+The following is an example of the syntax used to create a standard table:
 
 .. code-block:: postgres
 
@@ -135,8 +146,10 @@ A simple table
       is_agressive BOOL
    );
 
-A table with default values for some columns
+Table with Default Value Constraints for Some Columns
 ---------------------------------------------------
+The following is an example of the syntax used to create a table with default value constraints for some columns:
+
 
 .. code-block:: postgres
 
@@ -149,8 +162,10 @@ A table with default values for some columns
 
 .. note:: The nullable/non-nullable constraint appears at the end, after the default option
 
-A table with an identity (autoincrement) column
+Table with an Identity Column
 ---------------------------------------------------
+The following is an example of the syntax used to create a table with an identity (auto-increment) column:
+
 
 .. code-block:: postgres
 
@@ -165,8 +180,10 @@ A table with an identity (autoincrement) column
    
    * Identity does not enforce the uniqueness of values. The identity value can be bypassed by specifying it in an :ref:`insert` command.
 
-Creating a table from a SELECT query
+Creating a Table from a SELECT Query
 -----------------------------------------
+The following is an example of the syntax used to create a table from a SELECT query:
+
 
 Use a :ref:`CREATE TABLE AS <create_table_as>` statement to create a new table from the results of a SELECT query.
 
@@ -174,8 +191,10 @@ Use a :ref:`CREATE TABLE AS <create_table_as>` statement to create a new table f
    
    CREATE TABLE users_uk AS SELECT * FROM users WHERE country = 'United Kingdom';
 
-Creating a table with a clustering key
+Creating a Table with a Clustering Key
 ----------------------------------------------
+The following is an example of the syntax used to create a table with a clustering key:
+
 
 When data in a table is stored in a sorted order, the sorted columns are considered clustered. Good clustering can have a significant positive impact on performance.
 
@@ -192,4 +211,3 @@ See :ref:`data_clustering` for more information.
       start_date datetime not null,
       country VARCHAR(30) DEFAULT 'Unknown' NOT NULL
    ) CLUSTER BY start_date;
-

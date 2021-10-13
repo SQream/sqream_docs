@@ -12,14 +12,14 @@ File names may contain wildcard characters and the files can be a CSV or columna
 .. contents:: In this topic:
    :local:
    
-S3 configuration
+S3 Configuration
 ==============================
 
 Any SQream DB host that has access to S3 endpoints can access S3 without any configuration.
 
 To read files from an S3 bucket, it must have listable files.
 
-S3 URI format
+S3 URI Format
 ===============
 
 With S3, specify a location for a file (or files) when using :ref:`copy_from` or :ref:`external_tables`.
@@ -38,7 +38,7 @@ Examples
 
 Use an external table to stage data from S3 before loading from CSV, Parquet or ORC files.
 
-Planning for data staging
+Planning for Data Staging
 --------------------------------
 
 For the following examples, we will want to interact with a CSV file. Here's a peek at the table contents:
@@ -48,15 +48,14 @@ For the following examples, we will want to interact with a CSV file. Here's a p
    :widths: auto
    :header-rows: 1 
 
-The file is stored on :ref:`s3`, at ``s3://sqream-demo-data/nba_players.csv``.
-This bucket is public and listable.
+The file is stored on Amazon S3, and this bucket is public and listable.
 
 We will make note of the file structure, to create a matching ``CREATE FOREIGN TABLE`` statement.
 
-Creating the external table
+Creating the External Table
 -----------------------------
 
-Based on the source file structure, we we :ref:`create a foreign table<create_foreign_table>` with the appropriate structure, and point it to the file.
+Based on the source file structure, we :ref:`create a foreign table<create_foreign_table>` with the appropriate structure, and point it to the file.
 
 .. code-block:: postgres
    
@@ -76,7 +75,7 @@ Based on the source file structure, we we :ref:`create a foreign table<create_fo
     OPTIONS
       (
          LOCATION = 's3://sqream-demo-data/nba_players.csv',
-         RECORD_DELIMITER '\r\n' -- DOS delimited file
+         RECORD_DELIMITER = '\r\n' -- DOS delimited file
       )
     ;
 
@@ -84,7 +83,7 @@ The file format in this case is CSV, and it is stored as an S3 object (if the pa
 
 We also took note that the record delimiter was a DOS newline (``\r\n``).
 
-Querying external tables
+Querying External Tables
 ------------------------------
 
 Let's peek at the data from the external table:
@@ -105,7 +104,7 @@ Let's peek at the data from the external table:
    Terry Rozier  | Boston Celtics |     12 | PG       |  22 | 6-2    |    190 | Louisville        |  1824360
    Marcus Smart  | Boston Celtics |     36 | PG       |  22 | 6-4    |    220 | Oklahoma State    |  3431040
    
-Bulk loading a file from a public S3 bucket
+Bulk Loading a File from a Public S3 Bucket
 ----------------------------------------------
 
 The :ref:`copy_from` command can also be used to load data without staging it first.
@@ -116,7 +115,7 @@ The :ref:`copy_from` command can also be used to load data without staging it fi
 
    COPY nba FROM 's3://sqream-demo-data/nba.csv' WITH OFFSET 2 RECORD DELIMITER '\r\n';
 
-Loading files from an authenticated S3 bucket
+Loading Files from an Authenticated S3 Bucket
 ---------------------------------------------------
 
 .. code-block:: postgres

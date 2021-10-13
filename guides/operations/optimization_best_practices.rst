@@ -1,7 +1,7 @@
 .. _sql_best_practices:
 
 **********************************
-Optimization and best practices
+Optimization and Best Practices
 **********************************
 
 This topic explains some best practices of working with SQream DB.
