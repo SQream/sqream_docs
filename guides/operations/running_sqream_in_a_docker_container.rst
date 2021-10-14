@@ -83,9 +83,17 @@ After setting a local language you must add the EPEL repository.
 
 1. As a root user, upgrade the **epel-release-latest-7.noarch.rpm** repository:
 
+   1. RedHat (RHEL 7):
+
    .. code-block:: console
 
       $ sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+      
+    2. CentOS 7
+    
+   .. code-block:: console
+
+      $ sudo yum install epel-release
 
 Installing the Required NTP Packages
 ----------------
@@ -193,26 +201,19 @@ You can abort the above but-reporting tools by running the following command:
 .. code-block:: console
 
    $ for i in abrt-ccpp.service abrtd.service abrt-oops.service abrt-pstoreoops.service abrt-vmcore.service abrt-xorg.service ; do sudo systemctl disable $i; sudo systemctl stop $i; done
+   
+Installing the Nvidia CUDA Driver
+-------------------------------------
 
-Preparing the Nvidia CUDA Drive for Installation
-----------------
-After disabling the automatic bug-reporting tools you must prepare the Nvidia CUDA driver for installation.
-
-**To prepare the Nvidia CUDA drive for installation:**
-
-1. Reboot all servers.
-
-    ::
-	
-2. Verify that the Tesla NVIDIA card has been installed and is detected by the system:
+1. Verify that the Tesla NVIDIA card has been installed and is detected by the system:
 
    .. code-block:: console
 
       $ lspci | grep -i nvidia
 
-The correct output is a list of Nvidia graphic cards. If you do not receive this output, verify that an NVIDIA GPU card has been installed.
+   The correct output is a list of Nvidia graphic cards. If you do not receive this output, verify that an NVIDIA GPU card has been installed.
 
-3. Verify that the open-source upstream Nvidia driver is running:
+#. Verify that the open-source upstream Nvidia driver is running:
 
    .. code-block:: console
 
@@ -220,7 +221,7 @@ The correct output is a list of Nvidia graphic cards. If you do not receive this
 
    No output should be generated.
 
-4. If you receive any output, do the following:
+#. If you receive any output, do the following:
 
    1. Disable the open-source upstream Nvidia driver:
 
@@ -237,17 +238,8 @@ The correct output is a list of Nvidia graphic cards. If you do not receive this
       .. code-block:: console
 
          $ lsmod | grep nouveau
-   
-
-
-
-Installing the Nvidia CUDA Driver
--------------------------------------
-After preparing the Nvidia CUDA driver for installation you must install it.
-
-**To install the Nvidia CUDA driver:**
-
-1. Check if the Nvidia CUDA driver has already been installed:
+	 
+#. Check if the Nvidia CUDA driver has already been installed:
 
    .. code-block:: console
 
@@ -279,21 +271,21 @@ After preparing the Nvidia CUDA driver for installation you must install it.
       |  No running processes found                                                 |
       +-----------------------------------------------------------------------------+
 
-2. Verify that the installed CUDA version shown in the output above is ``10.1``.
+#. Verify that the installed CUDA version shown in the output above is ``10.1``.
     
 	::
 
 
-3. Do one of the following:
+#. Do one of the following:
 
     ::
    
    1. If CUDA version 10.1 has already been installed, skip to Docktime Runtime (Community Edition).
     ::
 
-   2. If CUDA version 10.1 has not been installed yet, continue with Step 4 below.
+   2. If CUDA version 10.1 has not been installed yet, continue with Step 7 below.
 
-4. Do one of the following:
+#. Do one of the following:
 
    * Install :ref:`CUDA Driver version 10.1 for x86_64 <CUDA_10.1_x8664>`.
    
@@ -320,38 +312,45 @@ Installing the CUDA Driver Version 10.1 for x86_64
 
 For installer type, SQream recommends selecting **runfile (local)**. The available selections shows only the supported platforms.
 
-2. Download the base installer for Linux CentOS 7 x86_64.
+2. Download the base installer for Linux CentOS 7 x86_64:
 
-    ::
+   .. code-block:: console
 
-3. Install the base installer for Linux CentOS 7 x86_64:
+      wget http://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
 
-   1. Run the following command:
 
-      .. code-block:: console
+3. Install the base installer for Linux CentOS 7 x86_64 by running the following commands:
 
-         $ sudo sh cuda_10.1.105_418.39_linux.run
+   .. code-block:: console
 
-   2. Follow the command line prompts.
+      $ sudo yum localinstall cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
+      $ sudo yum clean all
+      $ sudo yum install nvidia-driver-latest-dkms
 
-4. Enable the Nvidia service to start at boot and start it:
+.. warning:: Verify that the output indicates that driver **418.87** will be installed.
+
+4. Follow the command line prompts.
+
+5. Enable the Nvidia service to start at boot and start it:
 
    .. code-block:: console
 
       $ sudo systemctl enable nvidia-persistenced.service && sudo systemctl start nvidia-persistenced.service
 
-5. Create a symbolic link from the **/etc/systemd/system/multi-user.target.wants/nvidia-persistenced.service** file to the **/usr/lib/systemd/system/nvidia-persistenced.service** file.
+6. Create a symbolic link from the **/etc/systemd/system/multi-user.target.wants/nvidia-persistenced.service** file to the **/usr/lib/systemd/system/nvidia-persistenced.service** file.
 
     ::
 
-6. Reboot the server.
+7. Reboot the server.
 
     ::
-7. Verify that the Nvidia driver has been installed and shows all available GPU's:
+8. Verify that the Nvidia driver has been installed and shows all available GPU's:
 
    .. code-block:: console
 
       $ nvidia-smi
+	  
+   The following is the correct output:
 
    .. code-block:: console
       
@@ -384,51 +383,51 @@ Installing the CUDA Driver Version 10.1 for IBM Power9
 
 **To install the CUDA driver version 10.1 for IBM Power9:**
 
-1. Make the following target platform selections:
+1. Download the base installer for Linux CentOS 7 PPC64le:
 
-    ::
+   .. code-block:: console
 
-   * **Operating system**: Linux
-   * **Architecture**: ppc64le
-   * **Distribution**: RHEL
-   * **Version**: 7
-   * **Installer type**: the relevant installer type
+      wget http://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
 
 
-For installer type, SQream recommends selecting **runfile (local)**. The available selections shows only the supported platforms.
+#. Install the base installer for Linux CentOS 7 x86_64 by running the following commands:
 
-**To disable the udev rule:**
+   .. code-block:: console
 
-1. Copy the file to the **/etc/udev/rules.d** directory.
+      $ sudo rpm -i cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
+      $ sudo yum clean all
+      $ sudo yum  install nvidia-driver-latest-dkms
+		 
+.. warning:: Verify that the output indicates that driver **418.87** will be installed.
+
+		 
+
+3. Copy the file to the **/etc/udev/rules.d** directory.
 
     ::
    
-2. Comment out, remove, or change the hot-pluggable memory rule located in file copied to the **/etc/udev/rules.d** directory.
+4. If you are using RHEL 7 version (7.6 or later), comment out, remove, or change the hot-pluggable memory rule located in file copied to the **/etc/udev/rules.d** directory by running the following command:
 
-   This prevents it from affecting the Power9 Nvidia systems:
+   .. code-block:: console
 
-   * Run the following on RHEL version 7.6 or later:  
+      $ sudo cp /lib/udev/rules.d/40-redhat.rules /etc/udev/rules.d 
+      $ sudo sed -i 's/SUBSYSTEM!="memory",.*GOTO="memory_hotplug_end"/SUBSYSTEM=="*", GOTO="memory_hotplug_end"/' /etc/udev/rules.d/40-redhat.rules
 
-     .. code-block:: console
-
-        $ sudo cp /lib/udev/rules.d/40-redhat.rules /etc/udev/rules.d 
-        $ sudo sed -i 's/SUBSYSTEM!="memory",.*GOTO="memory_hotplug_end"/SUBSYSTEM=="*", GOTO="memory_hotplug_end"/' /etc/udev/rules.d/40-redhat.rules
-
-4. Enable the **nvidia-persisted.service** file:
+#. Enable the **nvidia-persisted.service** file:
 
    .. code-block:: console
 
       $ sudo systemctl enable nvidia-persistenced.service 
 
-5. Create a symbolic link from the **/etc/systemd/system/multi-user.target.wants/nvidia-persistenced.service** file to the **/usr/lib/systemd/system/nvidia-persistenced.service** file.
+#. Create a symbolic link from the **/etc/systemd/system/multi-user.target.wants/nvidia-persistenced.service** file to the **/usr/lib/systemd/system/nvidia-persistenced.service** file.
 
     ::
    
-6. Reboot your system to initialize the above modifications.
+#. Reboot your system to initialize the above modifications.
 
     ::
    
-7. Verify that the Nvidia driver and the **nvidia-persistenced.service** files are running:
+#. Verify that the Nvidia driver and the **nvidia-persistenced.service** files are running:
 
    .. code-block:: console
 
@@ -460,7 +459,7 @@ For installer type, SQream recommends selecting **runfile (local)**. The availab
       |  No running processes found                                                 |
       +-----------------------------------------------------------------------------+
 
-8. Verify that the **nvidia-persistenced** service is running:
+#. Verify that the **nvidia-persistenced** service is running:
 
    .. code-block:: console
 
@@ -468,18 +467,18 @@ For installer type, SQream recommends selecting **runfile (local)**. The availab
 
    The following is the correct output:
 
-      .. code-block:: console
+    .. code-block:: console
 
-         root@gpudb ~]systemctl status nvidia-persistenced
-         ● nvidia-persistenced.service - NVIDIA Persistence Daemon
-            Loaded: loaded (/usr/lib/systemd/system/nvidia-persistenced.service; enabled; vendor preset: disabled)
-            Active: active (running) since Tue 2019-10-15 21:43:19 KST; 11min ago
-           Process: 8257 ExecStart=/usr/bin/nvidia-persistenced --verbose (code=exited, status=0/SUCCESS)
-          Main PID: 8265 (nvidia-persiste)
-             Tasks: 1
-            Memory: 21.0M
-            CGroup: /system.slice/nvidia-persistenced.service
-             └─8265 /usr/bin/nvidia-persistenced --verbose
+       root@gpudb ~]systemctl status nvidia-persistenced
+         nvidia-persistenced.service - NVIDIA Persistence Daemon
+          Loaded: loaded (/usr/lib/systemd/system/nvidia-persistenced.service; enabled; vendor preset: disabled)
+          Active: active (running) since Tue 2019-10-15 21:43:19 KST; 11min ago
+         Process: 8257 ExecStart=/usr/bin/nvidia-persistenced --verbose (code=exited, status=0/SUCCESS)
+        Main PID: 8265 (nvidia-persiste)
+           Tasks: 1
+          Memory: 21.0M
+          CGroup: /system.slice/nvidia-persistenced.service
+           └─8265 /usr/bin/nvidia-persistenced --verbose
 
 Installing the Docker Engine (Community Edition)
 =======================
