@@ -89,7 +89,7 @@ After setting a local language you must add the EPEL repository.
 
       $ sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
       
-    2. CentOS 7
+   2. CentOS 7
     
    .. code-block:: console
 
@@ -139,9 +139,6 @@ After updating to the current version of the operating system you must configure
 
       $ sudo systemctl enable ntpd
       $ sudo systemctl start ntpd
-   
-   .. code-block:: console
-
       $ sudo ntpq -p
 
 Configuring the Performance Profile
@@ -331,6 +328,10 @@ For installer type, SQream recommends selecting **runfile (local)**. The availab
 
 4. Follow the command line prompts.
 
+
+    ::
+
+
 5. Enable the Nvidia service to start at boot and start it:
 
    .. code-block:: console
@@ -467,18 +468,18 @@ Installing the CUDA Driver Version 10.1 for IBM Power9
 
    The following is the correct output:
 
-    .. code-block:: console
+   .. code-block:: console
 
-       root@gpudb ~]systemctl status nvidia-persistenced
-         nvidia-persistenced.service - NVIDIA Persistence Daemon
-          Loaded: loaded (/usr/lib/systemd/system/nvidia-persistenced.service; enabled; vendor preset: disabled)
-          Active: active (running) since Tue 2019-10-15 21:43:19 KST; 11min ago
-         Process: 8257 ExecStart=/usr/bin/nvidia-persistenced --verbose (code=exited, status=0/SUCCESS)
-        Main PID: 8265 (nvidia-persiste)
-           Tasks: 1
-          Memory: 21.0M
-          CGroup: /system.slice/nvidia-persistenced.service
-           └─8265 /usr/bin/nvidia-persistenced --verbose
+      root@gpudb ~]systemctl status nvidia-persistenced
+        nvidia-persistenced.service - NVIDIA Persistence Daemon
+         Loaded: loaded (/usr/lib/systemd/system/nvidia-persistenced.service; enabled; vendor preset: disabled)
+         Active: active (running) since Tue 2019-10-15 21:43:19 KST; 11min ago
+        Process: 8257 ExecStart=/usr/bin/nvidia-persistenced --verbose (code=exited, status=0/SUCCESS)
+       Main PID: 8265 (nvidia-persiste)
+          Tasks: 1
+         Memory: 21.0M
+         CGroup: /system.slice/nvidia-persistenced.service
+          └─8265 /usr/bin/nvidia-persistenced --verbose
 
 Installing the Docker Engine (Community Edition)
 =======================
@@ -649,6 +650,7 @@ Installing the NVIDIA Docker2 Toolkit on an Ubuntu Operating System
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **To install the NVIDIA Docker2 Toolkit on an Ubuntu operating system:**
+
 1. Install the repository for your distribution:
 
    .. code-block:: console
@@ -728,15 +730,15 @@ This section describes how to install the NVIDIA Docker2 Toolkit on an IBM RHEL 
          https://nvidia.github.io/nvidia-docker/centos7/ppc64le/repodata/repomd.xml:
          [Errno -1] repomd.xml signature could not be verified for nvidia-docker
 
-    2. Change ``repo_gpgcheck=1`` to ``repo_gpgcheck=0``.
+   2. Change ``repo_gpgcheck=1`` to ``repo_gpgcheck=0``.
 	
 	    ::
 		
-    3. Install the ``libnvidia-container`` container.
+   3. Install the ``libnvidia-container`` container.
     
-       .. code-block:: console
+      .. code-block:: console
 
-          $ sudo yum install -y libnvidia-container*         
+         $ sudo yum install -y libnvidia-container*         
 
  .. _step_4_installing_nvidia_docker2_toolkit_ppc64le_processor:
 
