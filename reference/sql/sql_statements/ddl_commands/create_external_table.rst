@@ -3,25 +3,25 @@
 ***********************
 CREATE EXTERNAL TABLE
 ***********************
+The ``CREATE TABLE`` command creates a new external table in an existing database.
 
-.. warning:: 
-   
-   The ``CREATE EXTERNAL TABLE`` syntax is deprecated, and will be removed in future versions.
-   
-   Starting with SQream DB v2020.2, external tables have been renamed to :ref:`foreign tables<create_foreign_table>`, and use a more flexible foreign data wrapper concept. See :ref:`create_foreign_table` instead.
-   
-   Upgrading to a new version of SQream DB converts existing tables automatically. When creating a new external tables, use the new foreign table syntax.
+In Release `2020.2 <https://docs.sqream.com/en/latest/releases/2020.2.html>`_ external tables were renamed **foreign tables** and use a more flexible foreign data wrapper. When creating a new external tables, use the new foreign table syntax.
 
-
-``CREATE TABLE`` creates a new external table in an existing database.
-
-See more in the :ref:`External tables guide<external_tables>`.
+Note that upgrading to a new version of SQream DB converts existing tables automatically. 
 
 .. tip::
 
-   * Data in an external table can change if the sources change, and frequent access to remote files may harm performance.
+   Data in an external table can change if the sources change, and frequent access to remote files may harm performance. Creating a regular table may avoid issues related to external tables that change. For more information, see :ref:`CREATE TABLE <create_table>`.
+   
+For related information, see the following:
 
-   * To create a regular table, see :ref:`CREATE TABLE <create_table>`
+* Foreign data wrappers - :ref:`foreign_data_wrapper`
+
+* Creating foreign tables - :ref:`create_foreign_table`
+  
+* Creating foreign tables - :ref:`Foreign Tables<external_tables>`
+
+**Comment - The content on the Foreign Tables page has to be reviewed in light of Foreign Data Wrappers. There may be duplicate content.**
 
 Permissions
 =============
@@ -30,6 +30,9 @@ The role must have the ``CREATE`` permission at the database level.
 
 Syntax
 ==========
+The following is the correct syntax for creating a new table:
+
+**Comment - See comment in syntax code below:**
 
 .. code-block:: postgres
 
@@ -47,12 +50,19 @@ Syntax
 
    format_def ::= { PARQUET | ORC | CSV }
    
+   -------------------------------------------
+   
+   -- Comment - should this section be removed?
+   
    external_table_option ::= {
       PATH '{ path_spec }' 
       | FIELD DELIMITER '{ field_delimiter }'
       | RECORD DELIMITER '{ record_delimiter }'
       | AWS_ID '{ AWS ID }'
       | AWS_SECRET '{ AWS SECRET }'
+	  
+   -------------------------------------------
+
    }
    
    path_spec ::= { local filepath | S3 URI | HDFS URI }
@@ -77,6 +87,9 @@ Syntax
 
 Parameters
 ============
+**Comment - This section should be removed because we want to document the three format types on the CREATE FOREIGN TABLES page, but not this page. Confirm.**
+
+The following parameters apply to creating a new table:
 
 .. list-table:: 
    :widths: auto
@@ -106,9 +119,23 @@ Parameters
 
 Examples
 ===========
+This section includes the following examples:
 
-A simple table from Tab-delimited file (TSV)
+
+   
+* :ref:`Creating a simple table from a tab-delimited file <create_simple_table_from_tab_delimited_file>`
+* :ref:`Creating a table from a directory of Parquet files on HDFS <create_table_from_directory_of_parquet_files>`
+* :ref:`Creating a table from a bucket of files on S3 <create_table_from_bucket_of_files_on_s3>`
+* :ref:`Creating an external table to a regular table <create_external_table_to_regular_table>`
+
+
+
+
+.. _create_simple_table_from_tab_delimited_file:
+
+Creating a Simple Table from a Tab-Delimited File
 ----------------------------------------------
+The following is an example of creating a simple table from a tab-delimited file (TSV):
 
 .. code-block:: postgres
 
@@ -118,9 +145,11 @@ A simple table from Tab-delimited file (TSV)
    WITH  PATH  '/home/rhendricks/cool_animals.csv'
          FIELD DELIMITER '\t';
 
+.. _create_table_from_directory_of_parquet_files:
 
-A table from a directory of Parquet files on HDFS
+Creating a Table from a Directory of Parquet Files on HDFS
 -----------------------------------------------------
+The following is an example of creating a table from a directory of Parquet files on HDFS:
 
 .. code-block:: postgres
 
@@ -129,8 +158,11 @@ A table from a directory of Parquet files on HDFS
    USING FORMAT Parquet
    WITH  PATH  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet';
 
-A table from a bucket of files on S3
+.. _create_table_from_bucket_of_files_on_s3:
+
+Creating a Table from a Bucket of Files on S3
 --------------------------------------
+The following is an example of creating a table from a bucket of files on S3:
 
 .. code-block:: postgres
 
@@ -141,11 +173,15 @@ A table from a bucket of files on S3
          AWS_ID 'our_aws_id'
          AWS_SECRET 'our_aws_secret';
 
+.. _create_external_table_to_regular_table:
 
-Changing an external table to a regular table
+Changing an External Table to a Regular Table
 ------------------------------------------------
+**Comment: "Changing" = "Converting"?**
 
 Materializes an external table into a regular table.
+
+**Comment - This is very strange wording. What is the exact meaning here?**
 
 .. tip: Using an external table allows you to perform ETL-like operations in SQream DB by applying SQL functions and operations to raw files
 
@@ -153,4 +189,3 @@ Materializes an external table into a regular table.
 
    CREATE TABLE real_table
     AS SELECT * FROM external_table;
-

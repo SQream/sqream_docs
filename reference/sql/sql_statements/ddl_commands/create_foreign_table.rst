@@ -4,6 +4,9 @@
 CREATE FOREIGN TABLE
 ***********************
 
+Overview
+==============
+
 .. note:: 
    
    Starting with SQream DB v2020.2, external tables have been renamed to foreign tables, and use a more flexible foreign data wrapper concept.
@@ -28,6 +31,9 @@ The role must have the ``CREATE`` permission at the database level.
 
 Syntax
 ==========
+The following shows the correct syntax for creating a foreign table:
+
+**Comment - See comment in syntax below:**
 
 .. code-block:: postgres
 
@@ -45,15 +51,23 @@ Syntax
 
    fdw_name ::= 
        { csv_fdw | orc_fdw | parquet_fdw }
+	   
+   -----------------------------------------
    
-   option_def ::= 
-   {
-      LOCATION = '{ path_spec }'
-      | DELIMITER = '{ field_delimiter }' -- for CSV only
-      | RECORD_DELIMITER = '{ record_delimiter }' -- for CSV only
-      | AWS_ID '{ AWS ID }'
-      | AWS_SECRET '{ AWS SECRET }'
-   }
+   -- I replaced what was here with this. Confirm.
+   
+       [ OPTIONS ( option_name = option_value [, ...  ] ) ]
+       ;
+
+   schema_name ::= identifier
+
+   table_name ::= identifier
+
+   option_name ::= identifier
+   
+   option_value ::= {identifier | literal}
+   
+   -----------------------------------------
    
    path_spec ::= { local filepath | S3 URI | HDFS URI }
    
@@ -74,6 +88,55 @@ Syntax
        | IDENTITY [ ( start_with [ , increment_by ] ) ]
 
 .. _cft_parameters:
+
+Creating a Parquet Foreign Table
+=================================
+Syntax
+---------
+The following shows the correct syntax for creating a Parquet foreign table:
+
+Example
+---------
+The following example shows how to create a Parquet foreign table:
+
+Parameters
+---------
+The following table shows the available parameters for creating a Parquet table:
+
+
+Creating a CSV Foreign Table
+=================================
+Syntax
+---------
+The following shows the correct syntax for creating a CSV foreign table:
+
+Example
+---------
+The following example shows how to create a CSV foreign table:
+
+Parameters
+---------
+The following table shows the available parameters for creating a CSV table:
+
+
+
+Creating an ORC Foreign Table
+=================================
+Syntax
+---------
+The following shows the correct syntax for creating a ORC foreign table:
+
+Example
+---------
+The following example shows how to create a ORC foreign table:
+
+Parameters
+---------
+The following table shows the available parameters for creating a ORC table:
+
+
+
+
 
 Parameters
 ============
