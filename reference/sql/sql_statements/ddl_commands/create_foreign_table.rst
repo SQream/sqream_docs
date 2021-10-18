@@ -7,6 +7,9 @@ CREATE FOREIGN TABLE
 Overview
 ==============
 
+The ``CREATE FOREIGN TABLE`` statement creates a new foreign table in an existing database.
+
+
 .. note:: 
    
    Starting with SQream DB v2020.2, external tables have been renamed to foreign tables, and use a more flexible foreign data wrapper concept.
@@ -14,15 +17,16 @@ Overview
    Upgrading to a new version of SQream DB converts existing external tables automatically. 
 
 
-``CREATE FOREIGN TABLE`` creates a new foreign table in an existing database.
 
-See more in the :ref:`Foreign tables guide<external_tables>`.
 
 .. tip::
 
    * Data in a foreign table can change if the sources change, and frequent access to remote files may harm performance.
 
    * To create a regular table, see :ref:`CREATE TABLE <create_table>`
+   
+For more information on foreign tables, see :ref:`Foreign tables<external_tables>`.
+
 
 Permissions
 =============
@@ -97,26 +101,36 @@ The following shows the correct syntax for creating a Parquet foreign table:
 
 Example
 ---------
-The following example shows how to create a Parquet foreign table:
+The following is an example of creating a Parquet foreign table:
 
 Parameters
 ---------
-The following table shows the available parameters for creating a Parquet table:
+The following table shows the available options for creating a Parquet table:
 
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| **Option**              | **Mandatory** | **Read** | **Write** | **Notes**                                  |
++=========================+===============+==========+===========+============================================+
+| ``location``            | Yes           | Yes      | Yes       | File paths from all supported filesystems. |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``offset``              | No            | Yes      | No        | Any positive integer.                      |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``limit``               | No``          | Yes      | No        | Any positive integer.                      |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``error_log``           | No            | Yes      | No        | File paths from all supported filesystems. |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``continue_on_error``   | No            | Yes      | No        |                                            |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``error_count``         | No            | Yes      | No        | Any positive integer.                      |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``enforce_single_file`` | No            | No       | Yes       |                                            |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``max_file_size``       | No            | No       | Yes       | Any positive integer.                      |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``aws_id``              | No            | Yes      | Yes       |                                            |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``aws_secret``          | No            | Yes      | Yes       |                                            |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
 
-Creating a CSV Foreign Table
-=================================
-Syntax
----------
-The following shows the correct syntax for creating a CSV foreign table:
-
-Example
----------
-The following example shows how to create a CSV foreign table:
-
-Parameters
----------
-The following table shows the available parameters for creating a CSV table:
 
 
 
@@ -128,101 +142,167 @@ The following shows the correct syntax for creating a ORC foreign table:
 
 Example
 ---------
-The following example shows how to create a ORC foreign table:
+The following is an example of creating a ORC foreign table:
 
 Parameters
 ---------
-The following table shows the available parameters for creating a ORC table:
+The following table shows the available options for creating a ORC table:
 
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| **Option**              | **Mandatory** | **Read** | **Write** | **Notes**                                  |
++=========================+===============+==========+===========+============================================+
+| ``location``            | Yes           | Yes      | Yes       | File paths from all supported filesystems. |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``offset``              | No            | Yes      | No        | Any positive integer.                      |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``limit``               | No``          | Yes      | No        | Any positive integer.                      |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``error_log``           | No            | Yes      | No        | File paths from all supported filesystems. |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``continue_on_error``   | No            | Yes      | No        |                                            |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``error_count``         | No            | Yes      | No        | Any positive integer.                      |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``enforce_single_file`` | No            | No       | Yes       |                                            |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``max_file_size``       | No            | No       | Yes       | Any positive integer.                      |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``aws_id``              | No            | Yes      | Yes       |                                            |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``aws_secret``          | No            | Yes      | Yes       |                                            |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
 
+Creating a CSV Foreign Table
+=================================
+Syntax
+---------
+The following shows the correct syntax for creating a CSV foreign table:
 
-
+Example
+---------
+The following is an example of creating a CSV foreign table:
 
 Parameters
-============
+---------
+The following table shows the available options for creating a CSV table:
 
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Parameter
-     - Description
-   * - ``OR REPLACE``
-     - Create a new table, and overwrite any existing table by the same name. Does not return an error if the table already exists. ``CREATE OR REPLACE`` does not check the table contents or structure, only the table name.
-   * - ``schema_name``
-     - The name of the schema in which to create the table.
-   * - ``table_name``
-     - The name of the table to create, which must be unique inside the schema.
-   * - ``column_def``
-     - A comma separated list of column definitions. A minimal column definition includes a name identifier and a datatype. Other column constraints and default values can be added optionally.
-   * - ``WRAPPER ...``
-     - Specifies the format of the source files, such as ``parquet_fdw``, ``orc_fdw``, or ``csv_fdw``.
-   * - ``LOCATION = ...``
-     - Specifies a path or URI of the source files, such as ``/path/to/*.parquet``.
-   * - ``DELIMITER = ...``
-     - Specifies the field delimiter for CSV files. Defaults to ``,``.
-   * - ``RECORD_DELIMITER = ...``
-     - Specifies the record delimiter for CSV files. Defaults to a newline, ``\n``
-   * - ``AWS_ID``, ``AWS_SECRET``
-     - Credentials for authenticated S3 access
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| **Option**              | **Mandatory** | **Read** | **Write** | **Notes**                                  |
++=========================+===============+==========+===========+============================================+
+| ``location``            | Yes           | Yes      | Yes       | File paths from all supported filesystems. |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``offset``              | No            | Yes      | No        | Any positive integer.                      |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``limit``               | No``          | Yes      | No        | Any positive integer.                      |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``error_log``           | No            | Yes      | No        | File paths from all supported filesystems. |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``continue_on_error``   | No            | Yes      | No        |                                            |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``error_count``         | No            | Yes      | No        | Any positive integer.                      |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``enforce_single_file`` | No            | No       | Yes       |                                            |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``max_file_size``       | No            | No       | Yes       | Any positive integer.                      |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``aws_id``              | No            | Yes      | Yes       |                                            |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``aws_secret``          | No            | Yes      | Yes       |                                            |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``delimiter``           | No            | Yes      | Yes       |                                            |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``record_delimiter``    | No            | Yes      | Yes       | ``\r``, ``\n`` or ``\r\n``.                |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``rejected_data``       | No            | Yes      | No        | File paths from all supported filesystems. |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+| ``datetime_format``     | No            | Yes      | No        | See supported formats below.               |
++-------------------------+---------------+----------+-----------+--------------------------------------------+
+
+The following list shows the supported ``datetime`` formats:
+
+* DEFAULT
+* ISO8601
+* ISO8601C
+* DMY
+* YMD
+* MDY
+* YYYYMMDD
+* YYYY-M-D
+* YYYY/M/D
+* DD-mon-YYYY
+* YYYY-mon-DD
+
 
 
 Examples
 ===========
+This section includes the following examples:
 
-A simple table from Tab-delimited file (TSV)
+
+   
+* :ref:`Creating a simple table from a tab-delimited file <create_simple_table_from_tab_delimited_file>`
+* :ref:`Creating a table from a directory of Parquet files on HDFS <create_table_from_directory_of_parquet_files>`
+* :ref:`Creating a table from a bucket of files on S3 <create_table_from_bucket_of_files_on_s3>`
+* :ref:`Creating an external table to a regular table <create_external_table_to_regular_table>`
+
+
+
+
+.. _create_simple_table_from_tab_delimited_file:
+
+Creating a Simple Table from a Tab-Delimited File
 ----------------------------------------------
+The following is an example of creating a simple table from a tab-delimited file (TSV):
 
 .. code-block:: postgres
 
-   CREATE OR REPLACE FOREIGN TABLE cool_animals
+   CREATE OR REPLACE EXTERNAL TABLE cool_animals
      (id INT NOT NULL, name VARCHAR(30) NOT NULL, weight FLOAT NOT NULL)  
-   WRAPPER csv_fdw
-   OPTIONS
-     ( LOCATION = '/home/rhendricks/cool_animals.csv',
-       DELIMITER = '\t'
-     )
-    ;
+   USING FORMAT csv 
+   WITH  PATH  '/home/rhendricks/cool_animals.csv'
+         FIELD DELIMITER '\t';
 
+.. _create_table_from_directory_of_parquet_files:
 
-A table from a directory of Parquet files on HDFS
+Creating a Table from a Directory of Parquet Files on HDFS
 -----------------------------------------------------
+The following is an example of creating a table from a directory of Parquet files on HDFS:
 
 .. code-block:: postgres
 
-   CREATE FOREIGN TABLE users
+   CREATE EXTERNAL TABLE users
      (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
-   WRAPPER parquet_fdw
-   OPTIONS
-     (
-       LOCATION =  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet'
-     );
+   USING FORMAT Parquet
+   WITH  PATH  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet';
 
-A table from a bucket of ORC files on S3
-------------------------------------------
+.. _create_table_from_bucket_of_files_on_s3:
+
+Creating a Table from a Bucket of Files on S3
+--------------------------------------
+The following is an example of creating a table from a bucket of files on S3:
 
 .. code-block:: postgres
 
-   CREATE FOREIGN TABLE users
+   CREATE EXTERNAL TABLE users
      (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
-   WRAPPER orc_fdw
-   OPTIONS
-     (
-         LOCATION = 's3://pp-secret-bucket/users/*.orc',
-         AWS_ID = 'our_aws_id',
-         AWS_SECRET = 'our_aws_secret'
-      );
+   USING FORMAT Parquet
+   WITH  PATH  's3://pp-secret-bucket/users/*.parquet'
+         AWS_ID 'our_aws_id'
+         AWS_SECRET 'our_aws_secret';
 
+.. _create_external_table_to_regular_table:
 
-Changing a foreign table to a regular table
+Changing an External Table to a Regular Table
 ------------------------------------------------
+**Comment: "Changing" = "Converting"?**
 
-Materializes a foreign table into a regular table.
+Materializes an external table into a regular table.
 
-.. tip: Using a foreign table allows you to perform ETL-like operations in SQream DB by applying SQL functions and operations to raw files
+**Comment - This is very strange wording. What is the exact meaning here?**
+
+.. tip: Using an external table allows you to perform ETL-like operations in SQream DB by applying SQL functions and operations to raw files
 
 .. code-block:: postgres
 
    CREATE TABLE real_table
-    AS SELECT * FROM some_foreign_table;
-
+    AS SELECT * FROM external_table;
