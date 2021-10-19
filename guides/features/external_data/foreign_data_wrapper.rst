@@ -98,7 +98,7 @@ The following table shows the available parameters for **CSV** foreign data wrap
 .. _supported_datetime_formats:
 
 
-CSV supports the following datetime formats:
+CSV supports the following ``datetime`` formats:
 
 * DEFAULT
 * ISO8601
