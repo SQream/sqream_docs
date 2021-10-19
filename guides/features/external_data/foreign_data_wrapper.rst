@@ -1,5 +1,7 @@
 .. _foreign_data_wrapper:
 
+:download:`Download this page <C:/Users/Yaniv/Desktop/Yaniv/Local Work/New_Documentation/Q4/V2_Documentation/Foreign_Data_Wrapper/PDFs/Foreign Data Wrapper_A4.pdf>`
+
 Foreign Data Wrapper
 =======================================
 The **Foreign Data Wrapper** page includes the following sections:
@@ -10,6 +12,7 @@ The **Foreign Data Wrapper** page includes the following sections:
    
 Overview
 ----------
+
 Foreign data is accessed using a **foreign data wrapper**. A foreign data wrapper is a library that lets you access a table or schema in one database from another. It does this by converting data from an external source, such as a CSV file, to a format readable by SQream.
 
 SQream currently supports foreign data wrappers for the following file formats:
