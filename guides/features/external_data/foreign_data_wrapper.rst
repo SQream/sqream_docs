@@ -145,7 +145,7 @@ Parameters
 -----------
 This section describes the available parameters for Parquet, CSV, and ORC files.
 
-The following table shows the available options for **Parquet** files:
+The following table shows the available options for **Parquet** foreign data wrappers:
 
 +-------------------------+---------------+----------+-----------+--------------------------------------------+
 | **Option**              | **Mandatory** | **Read** | **Write** | **Notes**                                  |
@@ -172,7 +172,7 @@ The following table shows the available options for **Parquet** files:
 +-------------------------+---------------+----------+-----------+--------------------------------------------+
 
 	 
-The following table shows the available options for **CSV** files:
+The following table shows the available options for **CSV** foreign data wrappers:
 
 +-------------------------+---------------+----------+-----------+--------------------------------------------+
 | **Option**              | **Mandatory** | **Read** | **Write** | **Notes**                                  |
@@ -232,7 +232,7 @@ The following table shows the available options for **CSV** files:
 | ``AWS_ID, AWS_SECRET``     | Credentials for authenticated S3 access                                                                                                                                                                             |
 +----------------------------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-The following table shows the available options for **ORC** files:
+The following table shows the available options for **ORC** foreign data wrappers:
 
 +-------------------------+---------------+----------+-----------+--------------------------------------------+
 | **Option**              | **Mandatory** | **Read** | **Write** | **Notes**                                  |
