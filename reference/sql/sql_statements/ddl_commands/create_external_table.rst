@@ -1,8 +1,18 @@
 .. _create_external_table:
 
+:download:`Download a PDF of this page <C:/Users/Yaniv/Desktop/Yaniv/Local Work/New_Documentation/Q4/V2_Documentation/Foreign_Data_Wrapper/PDFs/CREATE EXTERNAL TABLE.pdf>`
+
 ***********************
 CREATE EXTERNAL TABLE
 ***********************
+The **CREATE EXTERNAL TABLE** page includes the following sections:
+
+.. contents:: 
+   :local:
+   :depth: 1
+
+Overview
+==============
 The ``CREATE TABLE`` command creates a new external table in an existing database.
 
 In Release `2020.2 <https://docs.sqream.com/en/latest/releases/2020.2.html>`_ external tables were renamed **foreign tables** and use a more flexible foreign data wrapper. When creating a new external tables, use the new foreign table syntax.
@@ -15,24 +25,17 @@ Note that upgrading to a new version of SQream DB converts existing tables autom
    
 For related information, see the following:
 
-* Foreign data wrappers - :ref:`foreign_data_wrapper`
+* `Creating foreign data wrappers <https://docs.sqream.com/en/latest/guides/features/external_data/foreign_data_wrapper.html>`_
+* `Creating foreign tables <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/create_foreign_table.html>`_
+* `More information about foreign tables <https://docs.sqream.com/en/latest/guides/features/external_tables.html#external-tables>`_
 
-* Creating foreign tables - :ref:`create_foreign_table`
-  
-* Creating foreign tables - :ref:`Foreign Tables<external_tables>`
 
-**Comment - The content on the Foreign Tables page has to be reviewed in light of Foreign Data Wrappers. There may be duplicate content.**
+**Comment - The content on the Foreign Tables page has to be reviewed in light of Foreign Data Wrappers.**
 
-Permissions
-=============
 
-The role must have the ``CREATE`` permission at the database level.
 
 Syntax
 ==========
-The following is the correct syntax for creating a new table:
-
-**Comment - See comment in syntax code below:**
 
 .. code-block:: postgres
 
@@ -50,19 +53,12 @@ The following is the correct syntax for creating a new table:
 
    format_def ::= { PARQUET | ORC | CSV }
    
-   -------------------------------------------
-   
-   -- Comment - should this section be removed?
-   
    external_table_option ::= {
       PATH '{ path_spec }' 
       | FIELD DELIMITER '{ field_delimiter }'
       | RECORD DELIMITER '{ record_delimiter }'
       | AWS_ID '{ AWS ID }'
       | AWS_SECRET '{ AWS SECRET }'
-	  
-   -------------------------------------------
-
    }
    
    path_spec ::= { local filepath | S3 URI | HDFS URI }
@@ -85,11 +81,94 @@ The following is the correct syntax for creating a new table:
 
 .. _cet_parameters:
 
-Parameters
-============
-**Comment - This section should be removed because we want to document the three format types on the CREATE FOREIGN TABLES page, but not this page. Confirm.**
 
-The following parameters apply to creating a new table:
+
+
+
+
+Parameters
+================	 
+The following table shows the available parameters for **CSV** foreign data wrappers:
+
+**Comment - We need the missing descriptions in all three of the following tables.**
+
+**Comment - Do we want the parameters in alphabetical order?**
+
+.. csv-table::
+   :widths: 3 15 2 2 2
+   :file: C:\Users\Yaniv\Desktop\Yaniv\Local Work\New_Documentation\Q4\V2_Documentation\Foreign_Data_Wrapper\PDFs\csv_foreign_data_wrappers.csv
+   
+.. _supported_datetime_formats:
+
+CSV supports the following ``datetime`` formats:
+
+* DEFAULT
+* ISO8601
+* ISO8601C
+* DMY
+* YMD
+* MDY
+* YYYYMMDD
+* YYYY-M-D
+* YYYY/M/D
+* DD-mon-YYYY
+* YYYY-mon-DD
+
+**Comment - I think we should use this table instead of the list above. I took this table from the COPY FROM page.**
+
+.. list-table:: Supported Date Parsers
+   :widths: auto
+   :header-rows: 1
+   
+   * - Name
+     - Pattern
+     - Examples
+   * - ``ISO8601``, ``DEFAULT``
+     - ``YYYY-MM-DD [hh:mm:ss[.SSS]]``
+     - ``2017-12-31 11:12:13.456``, ``2018-11-02 11:05:00``, ``2019-04-04``
+   * - ``ISO8601C``
+     - ``YYYY-MM-DD [hh:mm:ss[:SSS]]``
+     - ``2017-12-31 11:12:13:456``
+   * - ``DMY``
+     - ``DD/MM/YYYY [hh:mm:ss[.SSS]]``
+     - ``31/12/2017 11:12:13.123``
+   * - ``YMD``
+     - ``YYYY/MM/DD [hh:mm:ss[.SSS]]``
+     - ``2017/12/31 11:12:13.678``
+   * - ``MDY``
+     - ``MM/DD/YYYY [hh:mm:ss[.SSS]]``
+     - ``12/31/2017 11:12:13.456``
+   * - ``YYYYMMDD``
+     - ``YYYYMMDD[hh[mm[ss[SSS]]]]``
+     - ``20171231111213456``
+   * - ``YYYY-M-D``
+     - ``YYYY-M-D[ h:m[:s[.S]]]``
+     - ``2017-9-10 10:7:21.1`` (optional leading zeroes)
+   * - ``YYYY/M/D``
+     - ``YYYY/M/D[ h:m[:s[.S]]]``
+     - ``2017/9/10 10:7:21.1`` (optional leading zeroes)
+   * - ``DD-mon-YYYY``
+     - ``DD-mon-YYYY[ hh:mm[:ss[.SSS]]]``
+     - ``31-Dec-2017 11:12:13.456``
+   * - ``YYYY-mon-DD``
+     - ``YYYY-mon-DD[ hh:mm[:ss[.SSS]]]``
+     - ``2017-Dec-31 11:12:13.456``
+
+The following table shows the available parameters for **Parquet** foreign data wrappers:
+
+.. csv-table::
+   :widths: 3 15 2 2 2
+   :file: C:\Users\Yaniv\Desktop\Yaniv\Local Work\New_Documentation\Q4\V2_Documentation\Foreign_Data_Wrapper\PDFs\parquet_foreign_data_wrappers.csv
+
+The following table shows the available parameters for **ORC** foreign data wrappers:
+
+.. csv-table::
+   :widths: 3 15 2 2 2
+   :file: C:\Users\Yaniv\Desktop\Yaniv\Local Work\New_Documentation\Q4\V2_Documentation\Foreign_Data_Wrapper\PDFs\orc_foreign_data_wrappers.csv   
+
+
+
+**Comment - I want to remove this table, but it includes some parameters, such as OR REPLACE, that are not included in the other tables. I want to determine whether they are needed before removing them.**
 
 .. list-table:: 
    :widths: auto
@@ -115,77 +194,14 @@ The following parameters apply to creating a new table:
      - Specifies the record delimiter for CSV files. Defaults to a newline, ``\n``
    * - ``AWS_ID``, ``AWS_SECRET``
      - Credentials for authenticated S3 access
-
-
+	 
 Examples
 ===========
-This section includes the following examples:
+For examples of creating foreign data wrappers, see the Examples section of `Foreign Data Wrappers <https://docs.sqream.com/en/latest/guides/features/external_data/foreign_data_wrapper.html#id4>`_.
 
+**Comment - The Foreign Data Wrappers page isn't public yet, so the link above will be dead until it's published.**
+	 
+Permissions
+=============
 
-   
-* :ref:`Creating a simple table from a tab-delimited file <create_simple_table_from_tab_delimited_file>`
-* :ref:`Creating a table from a directory of Parquet files on HDFS <create_table_from_directory_of_parquet_files>`
-* :ref:`Creating a table from a bucket of files on S3 <create_table_from_bucket_of_files_on_s3>`
-* :ref:`Creating an external table to a regular table <create_external_table_to_regular_table>`
-
-
-
-
-.. _create_simple_table_from_tab_delimited_file:
-
-Creating a Simple Table from a Tab-Delimited File
-----------------------------------------------
-The following is an example of creating a simple table from a tab-delimited file (TSV):
-
-.. code-block:: postgres
-
-   CREATE OR REPLACE EXTERNAL TABLE cool_animals
-     (id INT NOT NULL, name VARCHAR(30) NOT NULL, weight FLOAT NOT NULL)  
-   USING FORMAT csv 
-   WITH  PATH  '/home/rhendricks/cool_animals.csv'
-         FIELD DELIMITER '\t';
-
-.. _create_table_from_directory_of_parquet_files:
-
-Creating a Table from a Directory of Parquet Files on HDFS
------------------------------------------------------
-The following is an example of creating a table from a directory of Parquet files on HDFS:
-
-.. code-block:: postgres
-
-   CREATE EXTERNAL TABLE users
-     (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
-   USING FORMAT Parquet
-   WITH  PATH  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet';
-
-.. _create_table_from_bucket_of_files_on_s3:
-
-Creating a Table from a Bucket of Files on S3
---------------------------------------
-The following is an example of creating a table from a bucket of files on S3:
-
-.. code-block:: postgres
-
-   CREATE EXTERNAL TABLE users
-     (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
-   USING FORMAT Parquet
-   WITH  PATH  's3://pp-secret-bucket/users/*.parquet'
-         AWS_ID 'our_aws_id'
-         AWS_SECRET 'our_aws_secret';
-
-.. _create_external_table_to_regular_table:
-
-Changing an External Table to a Regular Table
-------------------------------------------------
-**Comment: "Changing" = "Converting"?**
-
-Materializes an external table into a regular table.
-
-**Comment - This is very strange wording. What is the exact meaning here?**
-
-.. tip: Using an external table allows you to perform ETL-like operations in SQream DB by applying SQL functions and operations to raw files
-
-.. code-block:: postgres
-
-   CREATE TABLE real_table
-    AS SELECT * FROM external_table;
+The role must have the ``CREATE`` permission at the database level.

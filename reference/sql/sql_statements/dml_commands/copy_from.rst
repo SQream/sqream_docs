@@ -3,21 +3,24 @@
 **********************
 COPY FROM
 **********************
+The **COPY FROM** page includes the following sections:
 
-``COPY ... FROM`` is a statement that allows loading data from files on the filesystem and importing them into SQream tables. This is the recommended way for bulk loading CSV files into SQream DB. In general, ``COPY`` moves data between filesystem files and SQream DB tables.
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Overview
+===============
+The ``COPY ... FROM`` statement allows you to load data and import files from the filesystem into SQream tables, and is the recommended way to load files in bulk loading into SQream. In general, the ``COPY`` statement moves data between filesystem files and SQream tables.
 
 .. note:: 
-   * Learn how to migrate from CSV files in the :ref:`csv` guide
-   * To copy data from a table to a file, see :ref:`COPY TO<copy_to>`.
-   * To load Parquet or ORC files, see :ref:`CREATE FOREIGN TABLE<create_foreign_table>`
-
-Permissions
-=============
-
-The role must have the ``INSERT`` permission to the destination table.
+   * For more information on migrating from external files, see `Inserting Data <https://docs.sqream.com/en/latest/guides/inserting_data.html>`_.  
+   * For more information on copying data from a table to a file, see :ref:`COPY TO<copy_to>`.
+   * For more information on loading files, see :ref:`CREATE FOREIGN TABLE<create_foreign_table>`.
 
 Syntax
 ==========
+The following is the correct syntax when copying from one database to a SQream table:
 
 .. code-block:: postgres
 
@@ -34,6 +37,20 @@ Syntax
    table_name ::= identifier
 
    copy_from_option ::= 
+   
+   ---------------------------------
+
+   Confirm that this should replace the options below (which belong to CSV):
+
+   schema_name ::= identifier
+
+   table_name ::= identifier
+
+   option_name ::= identifier
+   
+   option_value ::= {identifier | literal}
+
+   ---------------------------------
 
       LOCATION = { filename | S3 URI | HDFS URI }   
       
@@ -60,6 +77,10 @@ Syntax
       | AWS_ID = '{ AWS ID }'
       
       | AWS_SECRET = '{ AWS Secret }'
+	  
+   All of the above should be removed. Confirm.
+	  
+   ---------------------------------
 
   offset ::= positive integer
 
@@ -89,8 +110,10 @@ Syntax
 Elements
 ============
 
+**Comment - In our meeting we said to remove this table from this page because it exists on the CREATE FOREIGN TABLE page. Do we want to include (in those tables) the "Default Value" and "Value Range" columns that exist in this table?**
+
 .. list-table:: 
-   :widths: auto
+   :widths: 1 1 1 10
    :header-rows: 1
    
    * - Parameter
@@ -104,7 +127,14 @@ Elements
    * - ``QUOTE``
      - "
      - 
-     - Specifies an alternative quote character. The quote character must be a single, 1-byte printable ASCII character, and the equivalent octal syntax of the copy command can be used. The quote character cannot be contained in the field delimiter, the record delimiter, or the null marker. ``QUOTE`` can be used with ``csv_fdw`` in **COPY FROM** and foreign tables.
+     - 
+	   Specifies an alternative quote character.
+	   
+	   The quote character must be a single, 1-byte printable ASCII character, and the equivalent octal syntax of the copy command can be used.
+	   
+	   The quote character cannot be contained in the field delimiter, the record delimiter, or the null marker.
+	   
+	   ``QUOTE`` can be used with ``csv_fdw`` in **COPY FROM** and foreign tables.
    * - ``name_fdw``
      - 
      - ``csv_fdw``, ``orc_fdw``, or ``parquet_fdw``
@@ -112,7 +142,10 @@ Elements
    * - ``LOCATION``
      - None
      -
-     - A path on the local filesystem, S3, or HDFS URI. For example, ``/tmp/foo.csv``, ``s3://my-bucket/foo.csv``, or ``hdfs://my-namenode:8020/foo.csv``. The local path must be an absolute path that SQream DB can access. Wildcards are premitted in this field.
+     - 
+	   A path on the local filesystem, S3, or HDFS URI. For example, ``/tmp/foo.csv``, ``s3://my-bucket/foo.csv``, or ``hdfs://my-namenode:8020/foo.csv``.
+	   
+	   The local path must be an absolute path that SQream DB can access. Wildcards are premitted in this field.
    * - ``OFFSET``
      - ``1``
      - >1, but no more than the number of lines in the first file
@@ -179,77 +212,9 @@ Elements
 
 .. _copy_date_parsers:
 
-Supported Date Formats
-=========================
 
-.. list-table:: Supported date parsers
-   :widths: auto
-   :header-rows: 1
-   
-   * - Name
-     - Pattern
-     - Examples
-   * - ``ISO8601``, ``DEFAULT``
-     - ``YYYY-MM-DD [hh:mm:ss[.SSS]]``
-     - ``2017-12-31 11:12:13.456``, ``2018-11-02 11:05:00``, ``2019-04-04``
-   * - ``ISO8601C``
-     - ``YYYY-MM-DD [hh:mm:ss[:SSS]]``
-     - ``2017-12-31 11:12:13:456``
-   * - ``DMY``
-     - ``DD/MM/YYYY [hh:mm:ss[.SSS]]``
-     - ``31/12/2017 11:12:13.123``
-   * - ``YMD``
-     - ``YYYY/MM/DD [hh:mm:ss[.SSS]]``
-     - ``2017/12/31 11:12:13.678``
-   * - ``MDY``
-     - ``MM/DD/YYYY [hh:mm:ss[.SSS]]``
-     - ``12/31/2017 11:12:13.456``
-   * - ``YYYYMMDD``
-     - ``YYYYMMDD[hh[mm[ss[SSS]]]]``
-     - ``20171231111213456``
-   * - ``YYYY-M-D``
-     - ``YYYY-M-D[ h:m[:s[.S]]]``
-     - ``2017-9-10 10:7:21.1`` (optional leading zeroes)
-   * - ``YYYY/M/D``
-     - ``YYYY/M/D[ h:m[:s[.S]]]``
-     - ``2017/9/10 10:7:21.1`` (optional leading zeroes)
-   * - ``DD-mon-YYYY``
-     - ``DD-mon-YYYY[ hh:mm[:ss[.SSS]]]``
-     - ``31-Dec-2017 11:12:13.456``
-   * - ``YYYY-mon-DD``
-     - ``YYYY-mon-DD[ hh:mm[:ss[.SSS]]]``
-     - ``2017-Dec-31 11:12:13.456``
 
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Pattern
-     - Description
-   * - ``YYYY``
-     - four digit year representation (0000-9999)
-   * - ``MM``
-     - two digit month representation (01-12)
-   * - ``DD``
-     - two digit day of month representation (01-31)
-   * - ``m``
-     - short month representation (Jan-Dec)
-   * - ``a``
-     - short day of week representation (Sun-Sat).
-   * - ``hh``
-     - two digit 24 hour representation (00-23)
-   * - ``h``
-     - two digit 12 hour representation (00-12)
-   * - ``P``
-     - uppercase AM/PM representation
-   * - ``mm``
-     - two digit minute representation (00-59)
-   * - ``ss``
-     - two digit seconds representation (00-59)
-   * - ``SSS``
-     - 3 digits fraction representation for milliseconds (000-999)
 
-.. note:: These date patterns are not the same as date parts used in the :ref:`datepart` function.
 
 .. _field_delimiters:
 
@@ -258,11 +223,17 @@ Supported Field Delimiters
 
 Field delimiters can be one or more characters.
 
+The **Supported Field Delimiters** section includes the following field delimiter examples:
+
+.. contents:: 
+   :local:
+   :depth: 1
+
 Customizing Quotations Using Alternative Characters
 ----------------------------
 
 Syntax Example 1 - Customizing Quotations Using Alternative Characters
-************
+~~~~~~~~~~~~
 
 The following is the correct syntax for customizing quotations using alternative characters:
 
@@ -304,28 +275,17 @@ The following is an example of line taken from a CSV when customizing quotations
 
 Multi-Character Delimiters
 ----------------------------------
-
-SQream DB supports multi-character field delimiters, sometimes found in non-standard files.
-
-A multi-character delimiter can be specified. For example, ``DELIMITER '%%'``, ``DELIMITER '{~}'``, etc.
+SQream supports multi-character field delimiters, sometimes found in non-standard files. A multi-character delimiter can be specified. For example, ``DELIMITER '%%'``, ``DELIMITER '{~}'``, etc.
 
 Printable Characters
 -----------------------
+Any **printable ASCII character** (or characters) can be used as a delimiter without special syntax. The default CSV field delimiter is a comma (``,``). A printable character is any ASCII character in the range 32 - 126. Literal quoting rules apply when using delimiters. For example, you must use  ``DELIMITER ''''`` to use ``'`` as a field delimiter.
 
-Any printable ASCII character (or characters) can be used as a delimiter without special syntax. The default CSV field delimiter is a comma (``,``).
-
-A printable character is any ASCII character in the range 32 - 126.
-
-:ref:`Literal quoting rules<string_literals>` apply with delimiters. For example, to use ``'`` as a field delimiter, use ``DELIMITER ''''``
+For more information about literal quoting rules, see :ref:`Literal quoting rules<string_literals>`. 
 
 Non-Printable Characters
 ----------------------------
-
-A non-printable character (1 - 31, 127) can be used in its octal form. 
-
-A tab can be specified by escaping it, for example ``\t``. Other non-printable characters can be specified using their octal representations, by using the ``E'\000'`` format, where ``000`` is the octal value of the character.
-
-For example, ASCII character ``15``, known as "shift in", can be specified using ``E'\017'``.
+A non-printable character (1 - 31, 127) can be used in its octal form. A tab can be specified by escaping it, for example ``\t``. Other non-printable characters can be specified using their octal representations, by using the ``E'\000'`` format, where ``000`` is the octal value of the character. For example, ASCII character ``15``, known as "shift in", can be specified using ``E'\017'``.
 
 .. _capturing_rejected_rows:
 
@@ -369,20 +329,7 @@ The following ASCII field delimiters (octal range 001 - 176) are not supported:
 
 
 
-Capturing Rejected Rows
-==========================
 
-Prior to the column process and storage, the ``COPY`` command parses the data.
-Whenever the data can’t be parsed because it is improperly formatted or doesn’t match the data structure, the entire record (or row) will be rejected. 
-
-.. image:: /_static/images/copy_from_rejected_rows.png
-
-
-#. When ``ERROR_LOG`` is not used, the ``COPY`` command will stop and roll back the transaction upon the first error.
-
-#. When ``ERROR_LOG`` is set and ``ERROR_VERBOSITY`` is set to ``1`` (default), all errors and rejected rows are saved to the file path specified.
-
-#. When ``ERROR_LOG`` is set and ``ERROR_VERBOSITY`` is set to ``0``, rejected rows are saved to the file path specified, but errors are not logged. This is useful for replaying the file later.
 
 CSV Support
 ================
@@ -590,3 +537,7 @@ In this example, ``date_col1`` and ``date_col2`` in the table are non-standard. 
 .. code-block:: postgres
 
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/*.csv', datetime_format = 'DMY');
+
+Permissions
+=============
+The role must have the ``INSERT`` permission to the destination table.

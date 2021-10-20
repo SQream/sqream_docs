@@ -1,9 +1,5 @@
 .. _foreign_data_wrapper:
 
-:download:`Download a PDF of this page <C:/Users/Yaniv/Desktop/Yaniv/Local Work/New_Documentation/Q4/V2_Documentation/Foreign_Data_Wrapper/PDFs/Foreign Data Wrapper.pdf>`
-
-
-
 Foreign Data Wrapper
 =======================================
 The **Foreign Data Wrapper** page includes the following sections:
@@ -52,9 +48,7 @@ The following is the correct syntax for creating a foreign data wrapper:
 
 Examples
 -----------
-
-.. _fdw_page_csv:
-
+   
 The following is an example of creating a **CSV** foreign data wrapper:
 
 .. code-block:: postgres
@@ -65,8 +59,7 @@ The following is an example of creating a **CSV** foreign data wrapper:
    WITH  PATH  '/home/rhendricks/cool_animals.csv'
          FIELD DELIMITER '\t';
 		 
-.. _fdw_page_parquet:
- 
+		 
 The following is an example of creating a **Parquet** foreign data wrapper:
 
 .. code-block:: postgres
@@ -78,9 +71,7 @@ The following is an example of creating a **Parquet** foreign data wrapper:
      (
         LOCATION =  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet'
      );
-
-.. _fdw_page_orc:
-	 
+   
 The following is an example of creating an **ORC** foreign data wrapper:
 
 .. code-block:: postgres
@@ -93,4 +84,43 @@ The following is an example of creating an **ORC** foreign data wrapper:
         LOCATION =  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet'
      );
 
+Parameters
+-----------
+The following table shows the available parameters for **CSV** foreign data wrappers:
 
+**Comment - We need the missing descriptions in all three of the following tables.**
+
+**Comment - Do we want the parameters in alphabetical order?**
+
+.. csv-table::
+   :widths: 3 15 2 2 2
+   :file: C:\Users\Yaniv\Desktop\Yaniv\Local Work\New_Documentation\Q4\V2_Documentation\Foreign_Data_Wrapper\PDFs\csv_foreign_data_wrappers.csv
+   
+.. _supported_datetime_formats:
+
+
+CSV supports the following ``datetime`` formats:
+
+* DEFAULT
+* ISO8601
+* ISO8601C
+* DMY
+* YMD
+* MDY
+* YYYYMMDD
+* YYYY-M-D
+* YYYY/M/D
+* DD-mon-YYYY
+* YYYY-mon-DD
+   
+The following table shows the available parameters for **Parquet** foreign data wrappers:
+
+.. csv-table::
+   :widths: 3 15 2 2 2
+   :file: C:\Users\Yaniv\Desktop\Yaniv\Local Work\New_Documentation\Q4\V2_Documentation\Foreign_Data_Wrapper\PDFs\parquet_foreign_data_wrappers.csv
+
+The following table shows the available parameters for **ORC** foreign data wrappers:
+
+.. csv-table::
+   :widths: 3 15 2 2 2
+   :file: C:\Users\Yaniv\Desktop\Yaniv\Local Work\New_Documentation\Q4\V2_Documentation\Foreign_Data_Wrapper\PDFs\orc_foreign_data_wrappers.csv
