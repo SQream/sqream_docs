@@ -272,7 +272,7 @@ Scalar expressions
    * - ``IN``, ``NOT IN``
      - Partial
      - Literal values only
-   * - Bitwise arithemtic
+   * - Bitwise arithmetic
      - ✓
      - ``&``, ``|``, ``XOR``, ``~``, ``>>``, ``<<``
 
