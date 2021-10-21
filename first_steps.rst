@@ -442,8 +442,6 @@ For more information, see the following:
 Saving Query Results to a CSV or PSV File
 ----------
 
-**Comment - Do we want to refer to only these two formats? I have a feeling that things have changed since this page was written.**
-
 You can save query results to a CSV or PSV file using the ``sqream sql`` command from a CLI client. This saves your query results to the selected delimited file format, as shown in the following example:
 
 .. code-block:: console
