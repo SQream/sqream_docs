@@ -22,6 +22,8 @@ Syntax
 ==========
 The following is the correct syntax when copying from one database to a SQream table:
 
+**Comment - See I'm going to replace the following syntax example with the one below it:**
+
 .. code-block:: postgres
 
    COPY [schema name.]table_name
@@ -36,11 +38,7 @@ The following is the correct syntax when copying from one database to a SQream t
   
    table_name ::= identifier
 
-   copy_from_option ::= 
-   
-   ---------------------------------
-
-   Confirm that this should replace the options below (which belong to CSV):
+   copy_from_option ::=   
 
    schema_name ::= identifier
 
@@ -49,8 +47,6 @@ The following is the correct syntax when copying from one database to a SQream t
    option_name ::= identifier
    
    option_value ::= {identifier | literal}
-
-   ---------------------------------
 
       LOCATION = { filename | S3 URI | HDFS URI }   
       
@@ -77,10 +73,6 @@ The following is the correct syntax when copying from one database to a SQream t
       | AWS_ID = '{ AWS ID }'
       
       | AWS_SECRET = '{ AWS Secret }'
-	  
-   All of the above should be removed. Confirm.
-	  
-   ---------------------------------
 
   offset ::= positive integer
 
@@ -98,6 +90,27 @@ The following is the correct syntax when copying from one database to a SQream t
 
   AWS Secret ::= string
 
+
+   
+
+.. code-block:: postgres
+
+   create_table_statement ::=
+       CREATE [ OR REPLACE ] FOREIGN TABLE [schema_name].table_name (
+           { column_def [, ...] }
+       )
+       [ FOREIGN DATA ] WRAPPER fdw_name
+       [ OPTIONS ( option_name = option_value [, ...  ] ) ]
+       ;
+
+   schema_name ::= identifier
+
+   table_name ::= identifier
+
+   option_name ::= identifier
+   
+   option_value ::= {identifier | literal}
+   
 .. note:: 
 
    Some options are applicable to CSVs only.
