@@ -11,6 +11,7 @@ SQream DB supports SQL from the ANSI 92 syntax.
    :caption: SQL Syntax Topics
    :glob:
 
+   foreign_data_wrapper
    keywords_and_identifiers
    literals
    scalar_expressions
@@ -19,3 +20,5 @@ SQream DB supports SQL from the ANSI 92 syntax.
    window_functions
    subqueries
    null_handling
+
+
