@@ -1,6 +1,6 @@
 .. _create_foreign_table:
 
-:download:`Download a PDF of this page <C:/Users/Yaniv/Desktop/Yaniv/Local Work/New_Documentation/Q4/V2_Documentation/Foreign_Data_Wrapper/PDFs/CREATE_TABLE.pdf>`
+:download:`Download a PDF of this page <C:/Users/Yaniv/Desktop/Yaniv/Local Work/New_Documentation/Q4/V2_Documentation/Foreign_Data_Wrapper/PDFs/CREATE FOREIGN TABLE.pdf>`
 
 ***********************
 CREATE FOREIGN TABLE
@@ -31,7 +31,17 @@ For more information on foreign tables, see :ref:`Foreign tables<external_tables
 
 
 Parameters
-================	 
+================	
+The Parameters section describes the parameters for the following foreign data wrappers:
+
+* :ref:`CSV foreign data wrappers<csv_params>`
+* :ref:`Parquet foreign data wrappers<parquet_params>`
+* :ref:`ORC foreign data wrappers<orc_params>`
+
+.. _csv_params:
+   
+CSV Foreign Data Wrappers
+------------------------- 
 The following table shows the available parameters for **CSV** foreign data wrappers:
 
 **Comment - We need the missing descriptions in all three of the following tables.**
@@ -44,6 +54,8 @@ The following table shows the available parameters for **CSV** foreign data wrap
    
 .. _supported_datetime_formats:
 
+Loading Standard Dates
+----------------------------------
 CSV supports the following ``datetime`` formats:
 
 .. list-table:: Supported Date Parsers
@@ -119,12 +131,40 @@ The following table describes the name values:
 
 .. note:: The date patterns in the table above are different than the date parts used in the :ref:`datepart` function.
 
+Loading Non-Standard Dates
+----------------------------------
+**Comment - I moved this section here from the COPY FROM page.**
+
+If files contain dates not formatted as ``ISO8601``, use the ``COPY`` statement to parse the column. Parsing the column displays the date as ``ISO8601`` in SQream.
+
+**Comment - It will appear "as" ISO8601, or "in" the ISO8601 format?**
+
+``ISO8601`` is a date parser.
+
+The following is an example of loading non-standard dates:
+
+.. code-block:: postgres
+
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/*.csv', datetime_format = 'DMY');
+   
+In the above example, ``date_col1`` and ``date_col2`` in the table are non-standard. ``date_col3`` is mentioned explicitly, but can be left out. Any column that is not specified is assumed to be ``ISO8601``.
+   
+For the supported date parsers, see the table called :ref:`Supported Date Parsers<supported_datetime_formats>` above.
+
+.. _parquet_params:
+
+Parquet Foreign Data Wrappers
+------------------------- 
 The following table shows the available parameters for **Parquet** foreign data wrappers:
 
 .. csv-table::
    :widths: 3 15 2 2 2
    :file: C:\Users\Yaniv\Desktop\Yaniv\Local Work\New_Documentation\Q4\V2_Documentation\Foreign_Data_Wrapper\PDFs\parquet_foreign_data_wrappers.csv
 
+.. _orc_params:
+
+ORC Foreign Data Wrappers
+------------------------- 
 The following table shows the available parameters for **ORC** foreign data wrappers:
 
 .. csv-table::

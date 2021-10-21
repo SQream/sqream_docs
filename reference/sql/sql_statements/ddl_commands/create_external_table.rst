@@ -193,7 +193,7 @@ The following table shows the available parameters for **ORC** foreign data wrap
    * - ``RECORD DELIMITER``
      - Specifies the record delimiter for CSV files. Defaults to a newline, ``\n``
    * - ``AWS_ID``, ``AWS_SECRET``
-     - Credentials for authenticated S3 access
+     - Specifies the authentication details for secured S3 buckets.
 	 
 Examples
 ===========

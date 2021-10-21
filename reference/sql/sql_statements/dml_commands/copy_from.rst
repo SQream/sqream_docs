@@ -11,18 +11,19 @@ The **COPY FROM** page includes the following sections:
    
 Overview
 ===============
-The ``COPY ... FROM`` statement allows you to load data and import files from the filesystem into SQream tables, and is the recommended way to load files in bulk loading into SQream. In general, the ``COPY`` statement moves data between filesystem files and SQream tables.
+The ``COPY ... FROM`` statement lets you to load data and import files from the filesystem into SQream tables, and is the recommended way to load files in bulk loading into SQream. In general, the ``COPY`` statement moves data between filesystem files and SQream tables.
 
-.. note:: 
-   * For more information on migrating from external files, see `Inserting Data <https://docs.sqream.com/en/latest/guides/inserting_data.html>`_.  
-   * For more information on copying data from a table to a file, see :ref:`COPY TO<copy_to>`.
-   * For more information on loading files, see :ref:`CREATE FOREIGN TABLE<create_foreign_table>`.
+For related information, see the following:
+
+* Migrating from external files, see `Inserting Data <https://docs.sqream.com/en/latest/guides/inserting_data.html>`_.  
+* Copying data from a table to a file, see :ref:`COPY TO<copy_to>`.
+* Loading files, see :ref:`CREATE FOREIGN TABLE<create_foreign_table>`.
 
 Syntax
 ==========
 The following is the correct syntax when copying from one database to a SQream table:
 
-**Comment - See I'm going to replace the following syntax example with the one below it:**
+**Comment - I'm going to replace the following syntax example with the one below it:**
 
 .. code-block:: postgres
 
@@ -221,7 +222,7 @@ Elements
    * - ``AWS_ID``, ``AWS_SECRET``
      - None
      - 
-     - Specifies the authentication details for secured S3 buckets
+     - Specifies the authentication details for secured S3 buckets.
 
 .. _copy_date_parsers:
 
@@ -300,7 +301,6 @@ Non-Printable Characters
 ----------------------------
 A non-printable character (1 - 31, 127) can be used in its octal form. A tab can be specified by escaping it, for example ``\t``. Other non-printable characters can be specified using their octal representations, by using the ``E'\000'`` format, where ``000`` is the octal value of the character. For example, ASCII character ``15``, known as "shift in", can be specified using ``E'\017'``.
 
-.. _capturing_rejected_rows:
 
 Unsupported Field Delimiters
 ==========================
@@ -346,6 +346,10 @@ The following ASCII field delimiters (octal range 001 - 176) are not supported:
 
 CSV Support
 ================
+**Comment - Does the CSV Support section belong on this page?**
+
+Overview
+-------------
 
 By default, SQream DB's CSV parser can handle `RFC 4180 standard CSVs <https://tools.ietf.org/html/rfc4180>`_ , but can also be modified to support non-standard CSVs (with multi-character delimiters, unquoted fields, etc).
 
@@ -371,7 +375,7 @@ All CSV files should be prepared according to these recommendations:
    Other modes of escaping are not supported (e.g. ``1,"What are \"birds\"?"`` is not a valid way of escaping CSV values).
 
 Marking Null Markers
----------------
+-------------
 
 ``NULL`` values can be marked in two ways in the CSV:
 
@@ -379,6 +383,7 @@ Marking Null Markers
 * An empty field delimited by the field delimiter. For example, ``col1,,col3``
 
 .. note:: If a text field is quoted but contains no content (``""``) it is considered an empty text field. It is not considered ``NULL``.
+
 
 Examples
 ===========
@@ -538,18 +543,7 @@ When the source of the files does not match the table structure, tell the ``COPY
 
 .. note:: Any column not specified will revert to its default value or ``NULL`` value if nullable
 
-Loading Non-Standard Dates
-----------------------------------
 
-If files contain dates not formatted as ``ISO8601``, tell ``COPY`` how to parse the column. After parsing, the date will appear as ``ISO8601`` inside SQream DB.
-
-These are called date parsers. You can find the supported dates in the :ref:`'Supported date parsers' table<copy_date_parsers>` above
-
-In this example, ``date_col1`` and ``date_col2`` in the table are non-standard. ``date_col3`` is mentioned explicitly, but can be left out. Any column that is not specified is assumed to be ``ISO8601``.
-
-.. code-block:: postgres
-
-   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/*.csv', datetime_format = 'DMY');
 
 Permissions
 =============

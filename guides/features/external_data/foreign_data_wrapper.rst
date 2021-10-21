@@ -93,4 +93,3 @@ The following is an example of creating an **ORC** foreign data wrapper:
         LOCATION =  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet'
      );
 
-
