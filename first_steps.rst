@@ -39,7 +39,7 @@ For more information, see `SQream SQL CLI Reference <https://docs.sqream.com/en/
 
 Performing Basic SQream Operations
 =============================
-The **Performing Basic SQream Operations** section describes the following:
+After installing SQream you can perform the operations described in the **Performing Basic SQream Operations** section:
 
 .. contents::
    :local:
