@@ -39,7 +39,7 @@ For more information, see `SQream SQL CLI Reference <https://docs.sqream.com/en/
 
 Performing Basic SQream Operations
 =============================
-The **Performing Basic SQream Operations** section describes the following:
+After installing SQream you can perform the operations described in the **Performing Basic SQream Operations** section:
 
 .. contents::
    :local:
@@ -441,6 +441,7 @@ For more information, see the following:
 
 Saving Query Results to a CSV or PSV File
 ----------
+
 
 You can save query results to a CSV or PSV file using the ``sqream sql`` command from a CLI client. This saves your query results to the selected delimited file format, as shown in the following example:
 
