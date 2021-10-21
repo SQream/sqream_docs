@@ -16,8 +16,8 @@ Before installing SQream, you must set up your local machine according to SQream
 
 For more information, see the following:
 
-* `Recommended Pre-Installation Configuration <https://docs.sqream.com/en/latest/guides/operations/setup/recommended_pre-installation_configurations.html>`_.
 * `Hardware Guide <https://docs.sqream.com/en/v2021.2/guides/operations/hardware_guide.html>`_.
+* `Recommended Pre-Installation Configuration <https://docs.sqream.com/en/latest/guides/operations/setup/recommended_pre-installation_configurations.html>`_.
 
 
 
