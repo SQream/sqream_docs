@@ -45,7 +45,6 @@ After installing SQream you can perform the operations described in the **Perfor
    :local:
    :depth: 1
 
-This tutorial assumes you already have a SQream DB cluster running and the SQream command line client installed on the machine you are using.
 
 Running the SQream SQL Client
 ----------
