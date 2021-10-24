@@ -1,12 +1,12 @@
 .. _informatica:
 
 *************************
-Connecting to SQream Using Informatica
+Connecting to SQream Using Informatica Cloud Services
 *************************
 
 Overview
 =========
-The **Connecting to SQream Using Informatica** page is quick start guide for connecting to SQream using Informatica.
+The **Connecting to SQream Using Informatica Cloud Services** page is quick start guide for connecting to SQream using Informatica cloud services.
 
 It describes the following:
 
@@ -15,7 +15,7 @@ It describes the following:
 
 Establishing a Connection between SQream and Informatica
 -----------------
-The **Establishing a Connection between SQream and Informatica** page describes how to establish a connection between SQream and the Informatica data integration Cloud.
+The **Establishing a Connection between SQream and Informatica** section describes how to establish a connection between SQream and the Informatica data integration Cloud.
 
 **To establish a connection between SQream and the Informatica data integration Cloud:**
 
