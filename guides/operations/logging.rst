@@ -4,7 +4,7 @@
 Logging
 ***********************
 
-Locating the log files
+Locating the Log Files
 ==========================
 
 The :ref:`storage cluster<storage_cluster>` contains a ``logs`` directory. Each worker produces a log file in its own directory, which can be identified by the worker's hostname and port.
@@ -23,7 +23,7 @@ The worker logs contain information messages, warnings, and errors pertaining to
 * Statement execution success / failure 
 * Statement execution statistics
 
-Log structure and contents
+Log Structure and Contents
 ---------------------------------
 
 The log is a CSV, with several fields.
@@ -68,7 +68,7 @@ The log is a CSV, with several fields.
 
 .. _information_level:
 
-.. list-table:: Information level
+.. list-table:: Information Level
    :widths: auto
    :header-rows: 1
    
@@ -87,7 +87,7 @@ The log is a CSV, with several fields.
 
 .. _message_type:
 
-.. list-table:: Message type
+.. list-table:: Message Type
    :widths: auto
    :header-rows: 1
    
@@ -191,7 +191,7 @@ The log is a CSV, with several fields.
      - Worker shutdown
      - ``"Server shutdown"``
 
-Log naming
+Log-Naming
 ---------------------------
 
 Log file name syntax
@@ -210,13 +210,13 @@ For example, ``/home/rhendricks/sqream_storage/192.168.1.91_5000``.
 See the :ref:`log_rotation` below for information about controlling this setting.
 
 
-Logging control and maintenance
+Log Control and Maintenance
 ======================================
 
-Change log verbosity
+Changing Log Verbosity
 --------------------------
 
-A few configuration settings alter the verbosity of the logs
+A few configuration settings alter the verbosity of the logs:
 
 .. list-table:: Log verbosity configuration
    :widths: auto
@@ -239,10 +239,10 @@ A few configuration settings alter the verbosity of the logs
 
 .. _log_rotation:
 
-Change log rotation
+Changing Log Rotation
 -----------------------
 
-A few configuration settings alter the log rotation policy
+A few configuration settings alter the log rotation policy:
 
 .. list-table:: Log rotation configuration
    :widths: auto
@@ -267,10 +267,10 @@ A few configuration settings alter the log rotation policy
 
 .. _collecting_logs2:
 
-Collect logs from your cluster
+Collecting Logs from Your Cluster
 ====================================
 
-Collecting logs from your cluster can be as simple as creating an archive from the ``logs`` subdirectory: ``tar -czvf logs.tgz *.log``
+Collecting logs from your cluster can be as simple as creating an archive from the ``logs`` subdirectory: ``tar -czvf logs.tgz *.log``.
 
 However, SQream DB comes bundled with a data collection utility and an SQL utility intended for collecting logs and additional information that can help SQream support drill down into possible issues.
 
@@ -289,10 +289,10 @@ SQL Syntax
       log | db | db_and_log
    
 
-Command line utility
+Command Line Utility
 --------------------------
 
-If SQream DB can't be accessed for any reason, a command line tool can also be used to collect the same information:
+If you cannot access SQream DB for any reason, you can also use a command line toolto collect the same information:
 
 .. code-block:: console
    
@@ -342,10 +342,10 @@ Using the command line utility:
    $ ./bin/report_collection /home/rhendricks/sqream_storage /home/rhendricks db_and_log
 
 
-Troubleshooting with logs
+Troubleshooting with Logs
 ===============================
 
-Loading logs with foreign tables
+Loading Logs with Foreign Tables
 ---------------------------------------
 
 Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a database administrator can access the logs using the :ref:`external_tables` concept through SQream DB.
@@ -370,15 +370,21 @@ Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a databas
      message           TEXT,
      end_message       VARCHAR(5)
    )
-   WRAPPER cdv_fdw
+   WRAPPER csv_fdw
    OPTIONS
      (
         LOCATION = '/home/rhendricks/sqream_storage/logs/**/sqream*.log',
-        DELIMITER = '|'
+        DELIMITER = '|',
+        CONTINUE_ON_ERROR = true
      )
    ;
+   
+For more information, see `Loading Logs with Foreign Tables <https://docs.sqream.com/en/v2021.1/reference/sql/sql_statements/dml_commands/copy_from.html>`_.
 
-Count message types
+
+
+
+Counting Message Types
 ------------------------------
 
 .. code-block:: psql
@@ -404,7 +410,7 @@ Count message types
               1004 |        19
               1010 |         5
 
-Find fatal errors
+Finding Fatal Errors
 ----------------------
 
 .. code-block:: psql
@@ -416,7 +422,7 @@ Find fatal errors
    Mismatch in storage version, upgrade is needed,Storage version: 25, Server version is: 26
    Internal Runtime Error,open cluster metadata database:IO error: lock /home/rhendricks/sqream_storage/LOCK: Resource temporarily unavailable
 
-Count error events within a certain timeframe
+Countng Error Events Within a Certain Timeframe
 ---------------------------------------------------
 
 .. code-block:: psql
@@ -435,7 +441,7 @@ Count error events within a certain timeframe
 
 .. _tracing_errors:
 
-Tracing errors to find offending statements
+Tracing Errors to Find Offending Statements
 -------------------------------------------------
 
 If we know an error occured, but don't know which statement caused it, we can find it using the connection ID and statement ID.
@@ -464,6 +470,3 @@ Use the ``connection_id`` and ``statement_id`` to narrow down the results.
 
 
 .. how logs are read with csvkit, find a better working solution
-
-
-
