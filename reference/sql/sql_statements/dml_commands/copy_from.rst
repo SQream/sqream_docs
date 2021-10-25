@@ -4,11 +4,7 @@
 COPY FROM
 **********************
 
-``COPY ... FROM`` is a statement that allows loading data from files on the filesystem and importing them into SQream tables.
-
-This is the recommended way for bulk loading CSV files into SQream DB.
-
-In general, ``COPY`` moves data between filesystem files and SQream DB tables.
+``COPY ... FROM`` is a statement that allows loading data from files on the filesystem and importing them into SQream tables. This is the recommended way for bulk loading CSV files into SQream DB. In general, ``COPY`` moves data between filesystem files and SQream DB tables.
 
 .. note:: 
    * Learn how to migrate from CSV files in the :ref:`csv` guide
@@ -40,6 +36,8 @@ Syntax
    copy_from_option ::= 
 
       LOCATION = { filename | S3 URI | HDFS URI }   
+      
+      | QUOTE = {'C' | E'\ooo')
       
       | OFFSET = { offset }
       
@@ -103,6 +101,10 @@ Elements
      - None
      - 
      - Table to copy data into
+   * - ``QUOTE``
+     - "
+     - 
+     - Specifies an alternative quote character. The quote character must be a single, 1-byte printable ASCII character, and the equivalent octal syntax of the copy command can be used. The quote character cannot be contained in the field delimiter, the record delimiter, or the null marker. ``QUOTE`` can be used with ``csv_fdw`` in **COPY FROM** and foreign tables.
    * - ``name_fdw``
      - 
      - ``csv_fdw``, ``orc_fdw``, or ``parquet_fdw``
@@ -177,7 +179,7 @@ Elements
 
 .. _copy_date_parsers:
 
-Supported date formats
+Supported Date Formats
 =========================
 
 .. list-table:: Supported date parsers
@@ -251,19 +253,63 @@ Supported date formats
 
 .. _field_delimiters:
 
-Supported field delimiters
+Supported Field Delimiters
 =====================================================
 
 Field delimiters can be one or more characters.
 
-Multi-character delimiters
+Customizing Quotations Using Alternative Characters
+----------------------------
+
+Syntax Example 1 - Customizing Quotations Using Alternative Characters
+************
+
+The following is the correct syntax for customizing quotations using alternative characters:
+
+.. code-block:: postgres
+
+   copy t from wrapper csv_fdw options (location = '/tmp/source_file.csv', quote='@');
+   copy t to wrapper csv_fdw options (location = '/tmp/destination_file.csv', quote='@');
+
+Usage Example 1 - Customizing Quotations Using Alternative Characters
+************
+
+The following is an example of line taken from a CSV when customizing quotations using a character:
+
+.. code-block:: postgres
+
+   Pepsi-"Cola",@Coca-"Cola"@,Sprite,Fanta
+
+
+Syntax Example 2 - Customizing Quotations Using ASCII Character Codes
+************
+
+The following is the correct syntax for customizing quotations using ASCII character codes:
+
+.. code-block:: postgres
+
+   copy t from wrapper csv_fdw options (location = '/tmp/source_file.csv', quote=E'\064');
+   copy t to wrapper csv_fdw options (location = '/tmp/destination_file.csv', quote=E'\064');
+
+Usage Example 2 - Customizing Quotations Using ASCII Character Codes
+************
+
+The following is an example of line taken from a CSV when customizing quotations using an ASCII character code:
+
+.. code-block:: postgres
+
+   Pepsi-"Cola",@Coca-"Cola"@,Sprite,Fanta
+
+
+
+Multi-Character Delimiters
 ----------------------------------
 
 SQream DB supports multi-character field delimiters, sometimes found in non-standard files.
 
 A multi-character delimiter can be specified. For example, ``DELIMITER '%%'``, ``DELIMITER '{~}'``, etc.
 
-Printable characters
+Printable Characters
 -----------------------
 
 Any printable ASCII character (or characters) can be used as a delimiter without special syntax. The default CSV field delimiter is a comma (``,``).
@@ -272,7 +318,7 @@ A printable character is any ASCII character in the range 32 - 126.
 
 :ref:`Literal quoting rules<string_literals>` apply with delimiters. For example, to use ``'`` as a field delimiter, use ``DELIMITER ''''``
 
-Non-printable characters
+Non-Printable Characters
 ----------------------------
 
 A non-printable character (1 - 31, 127) can be used in its octal form. 
@@ -283,7 +329,47 @@ For example, ASCII character ``15``, known as "shift in", can be specified using
 
 .. _capturing_rejected_rows:
 
-Capturing rejected rows
+Unsupported Field Delimiters
+==========================
+The following ASCII field delimiters (octal range 001 - 176) are not supported:
+
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| **Character** | **Decimal** | **Symbol** | **Character** | **Decimal** | **Symbol** | **Character** | **Decimal** | **Symbol** |
++===============+=============+============+===============+=============+============+===============+=============+============+
+| -             | 45          | 55         | b             | 98          | 142        | q             | 113         | 161        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| .             | 46          | 56         | c             | 99          | 143        | r             | 114         | 162        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| :             | 58          | 72         | d             | 100         | 144        | s             | 115         | 163        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| \             | 92          | 134        | e             | 101         | 145        | t             | 116         | 164        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| 0             | 48          | 60         | f             | 102         | 146        | u             | 117         | 165        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| 1             | 49          | 61         | g             | 103         | 147        | v             | 118         | 166        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| 2             | 50          | 62         | h             | 104         | 150        | w             | 119         | 167        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| 3             | 51          | 63         | i             | 105         | 151        | x             | 120         | 170        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| 4             | 52          | 64         | j             | 106         | 152        | y             | 121         | 171        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| 5             | 53          | 65         | k             | 107         | 153        | z             | 122         | 172        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| 6             | 54          | 66         | l             | 108         | 154        | N             | 78          | 116        |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| 7             | 55          | 67         | m             | 109         | 155        | 10            | 49          | 12         |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+| 8             | 56          | 70         | n             | 110         | 156        | 13            | 49          | 13         |
++---------------+-------------+------------+---------------+-------------+------------+               |             |            |
+| 9             | 57          | 71         | o             | 111         | 157        |               |             |            |
++---------------+-------------+------------+---------------+-------------+------------+               |             |            |
+| a             | 97          | 141        | p             | 112         | 160        |               |             |            |
++---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
+
+
+
+Capturing Rejected Rows
 ==========================
 
 Prior to the column process and storage, the ``COPY`` command parses the data.
@@ -298,12 +384,12 @@ Whenever the data canâ€™t be parsed because it is improperly formatted or doesnâ
 
 #. When ``ERROR_LOG`` is set and ``ERROR_VERBOSITY`` is set to ``0``, rejected rows are saved to the file path specified, but errors are not logged. This is useful for replaying the file later.
 
-CSV support
+CSV Support
 ================
 
 By default, SQream DB's CSV parser can handle `RFC 4180 standard CSVs <https://tools.ietf.org/html/rfc4180>`_ , but can also be modified to support non-standard CSVs (with multi-character delimiters, unquoted fields, etc).
 
-All CSV files shoudl be prepared according to these recommendations:
+All CSV files should be prepared according to these recommendations:
 
 * Files are UTF-8 or ASCII encoded
 
@@ -324,7 +410,7 @@ All CSV files shoudl be prepared according to these recommendations:
    
    Other modes of escaping are not supported (e.g. ``1,"What are \"birds\"?"`` is not a valid way of escaping CSV values).
 
-Null markers
+Marking Null Markers
 ---------------
 
 ``NULL`` values can be marked in two ways in the CSV:
@@ -337,7 +423,7 @@ Null markers
 Examples
 ===========
 
-Loading a standard CSV file
+Loading a Standard CSV File
 ------------------------------
 
 .. code-block:: postgres
@@ -345,7 +431,7 @@ Loading a standard CSV file
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.csv');
 
 
-Skipping faulty rows
+Skipping Faulty Rows
 ------------------------------
 
 .. code-block:: postgres
@@ -353,7 +439,7 @@ Skipping faulty rows
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.csv', continue_on_error = true);
 
 
-Skipping at most 100 faulty rows
+Skipping a Maximum of 100 Faulty Rows
 -----------------------------------
 
 .. code-block:: postgres
@@ -361,14 +447,14 @@ Skipping at most 100 faulty rows
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.csv', continue_on_error = true, error_count = 100);
 
 
-Loading a PSV (pipe separated value) file
+Loading a Pipe Separated Value (PSV) File
 -------------------------------------------
 
 .. code-block:: postgres
    
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.psv', delimiter = '|');
 
-Loading a TSV (tab separated value) file
+Loading a Tab Separated Value (TSV) File
 -------------------------------------------
 
 .. code-block:: postgres
@@ -376,7 +462,7 @@ Loading a TSV (tab separated value) file
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.tsv', delimiter = '\t');
    
 
-Loading a ORC file
+Loading an ORC File
 -------------------------------------------
 
 .. code-block:: postgres
@@ -384,7 +470,7 @@ Loading a ORC file
    COPY table_name FROM WRAPPER orc_fdw OPTIONS (location = '/tmp/file.orc');
 
 
-Loading a Parquet file
+Loading a Parquet File
 -------------------------------------------
 
 .. code-block:: postgres
@@ -392,7 +478,7 @@ Loading a Parquet file
    COPY table_name FROM WRAPPER parquet_fdw OPTIONS (location = '/tmp/file.parquet');
 
 
-Loading a text file with non-printable delimiter
+Loading a Text File with Non-Printable Delimiters
 -----------------------------------------------------
 
 In the file below, the separator is ``DC1``, which is represented by ASCII 17 decimal or 021 octal.
@@ -401,7 +487,7 @@ In the file below, the separator is ``DC1``, which is represented by ASCII 17 de
    
    COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', delimiter = E'\021');   
 
-Loading a text file with multi-character delimiters
+Loading a Text File with Multi-Character Delimiters
 -----------------------------------------------------
 
 In the file below, the separator is ``^|``.
@@ -417,7 +503,7 @@ In the file below, the separator is ``'|``. The quote character has to be repeat
    COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', delimiter = ''''|');
    
 
-Loading files with a header row
+Loading Files with a Header Row
 -----------------------------------
 
 Use ``OFFSET`` to skip rows.
@@ -428,14 +514,14 @@ Use ``OFFSET`` to skip rows.
 
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.psv', delimiter = '|', offset = 2);      
 
-Loading files formatted for Windows (``\r\n``)
+Loading Files Formatted for Windows (``\r\n``)
 ---------------------------------------------------
 
 .. code-block:: postgres
 
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.psv', delimiter = '\r\n');         
 
-Loading a file from a public S3 bucket
+Loading a File from a Public S3 Bucket
 ------------------------------------------
 
 .. note:: The bucket must be publicly available and objects can be listed
@@ -444,14 +530,14 @@ Loading a file from a public S3 bucket
 
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = 's3://sqream-demo-data/file.csv', delimiter = '\r\n', offset = 2);         
 
-Loading files from an authenticated S3 bucket
+Loading Files from an Authenticated S3 Bucket
 ---------------------------------------------------
 
 .. code-block:: postgres
 
    COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = 's3://secret-bucket/*.csv', DELIMITER = '\r\n', OFFSET = 2, AWS_ID = '12345678', AWS_SECRET = 'super_secretive_secret');
    
-Saving rejected rows to a file
+Saving Rejected Rows to a File
 ----------------------------------
 
 .. note:: When loading multiple files (e.g. with wildcards), this error threshold is for the entire transaction.
@@ -474,14 +560,14 @@ Saving rejected rows to a file
                                                  );         
 
 
-Load CSV files from a set of directories
+Loading CSV Files from a Set of Directories
 ------------------------------------------
 
 .. code-block:: postgres
 
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/2019_08_*/*.csv');
 
-Rearrange destination columns
+Rearranging Destination Columns
 ---------------------------------
 
 When the source of the files does not match the table structure, tell the ``COPY`` command what the order of columns should be
@@ -492,7 +578,7 @@ When the source of the files does not match the table structure, tell the ``COPY
 
 .. note:: Any column not specified will revert to its default value or ``NULL`` value if nullable
 
-Loading non-standard dates
+Loading Non-Standard Dates
 ----------------------------------
 
 If files contain dates not formatted as ``ISO8601``, tell ``COPY`` how to parse the column. After parsing, the date will appear as ``ISO8601`` inside SQream DB.
@@ -504,5 +590,3 @@ In this example, ``date_col1`` and ``date_col2`` in the table are non-standard. 
 .. code-block:: postgres
 
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/*.csv', datetime_format = 'DMY');
-      
-
