@@ -44,12 +44,10 @@ CSV Foreign Data Wrappers
 ------------------------- 
 The following table shows the available parameters for **CSV** foreign data wrappers:
 
-**Comment - We need the missing descriptions in all three of the following tables.**
-
 **Comment - Do we want the parameters in alphabetical order?**
 
 .. csv-table::
-   :widths: 3 15 2 2 2
+   :widths: 3 10 2 2 2
    :file: C:\Users\Yaniv\Desktop\Yaniv\Local Work\New_Documentation\Q4\V2_Documentation\Foreign_Data_Wrapper\PDFs\csv_foreign_data_wrappers.csv
    
 .. _supported_datetime_formats:
