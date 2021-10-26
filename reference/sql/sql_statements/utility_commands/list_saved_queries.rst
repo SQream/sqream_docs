@@ -3,7 +3,6 @@
 ********************
 LIST_SAVED_QUERIES
 ********************
-
 ``LIST_SAVED_QUERIES`` lists the available :ref:`previously saved queries<save_query>`.
 
 This is an alternative way to using the ``savedqueries`` catalog view.
