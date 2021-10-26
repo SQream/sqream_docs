@@ -4,7 +4,7 @@
 Data Types
 *************************
 
-This topic describes the data types that SQream DB supports, and how to convert between them.
+This topic describes the data types that SQream DB supports, and how to convert between them. 
 
 .. contents:: In this topic:
    :local:
