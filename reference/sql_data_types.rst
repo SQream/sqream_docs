@@ -92,7 +92,7 @@ You can rectify this by casting the value to a larger data type:
 
 SQream DB supports the following three data conversion types:
 
-* ``CAST(<value> TO <data type>)``, to convert a value from one type to another. For example, ``CAST('1997-01-01' TO DATE)``, ``CAST(3.45 TO SMALLINT)``, ``CAST(some_column TO VARCHAR(30))``.
+* ``CAST(<value> AS <data type>)``, to convert a value from one type to another. For example, ``CAST('1997-01-01' AS DATE)``, ``CAST(3.45 AS SMALLINT)``, ``CAST(some_column AS VARCHAR(30))``.
 * ``<value> :: <data type>``, a shorthand for the ``CAST`` syntax. For example, ``'1997-01-01' :: DATE``, ``3.45 :: SMALLINT``, ``(3+5) :: BIGINT``.
 * See the :ref:`SQL functions reference <sql_functions>` for additional functions that convert from a specific value which is not an SQL type, such as :ref:`from_unixts`, etc.
 
