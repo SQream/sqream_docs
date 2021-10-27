@@ -104,13 +104,13 @@ Data Type Reference
 .. _numeric:
 
 Numeric (``NUMERIC``, ``DECIMAL``)
------------------------
+-----------------------------------
 The **Numeric** data type (also known as **Decimal**) is recommended for values that tend to occur as exact decimals, such as in Finance. While Numeric has a fixed precision of ``38``, higher than ``REAL`` (``9``) or ``DOUBLE`` (``17``), it runs calculations more slowly. For operations that require faster performance, using :ref:`Floating Point <floating_point>` is recommended.
 
 The correct syntax for Numeric is ``numeric(p, s)``), where ``p`` is the total number of digits (``38`` maximum), and ``s`` is the total number of decimal digits.
 
 Numeric Examples
-^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 The following is an example of the Numeric syntax:
 
@@ -157,7 +157,7 @@ The following table describes the Boolean data type.
      - 1 byte, but resulting average data sizes may be lower after compression.
 	 
 Boolean Examples
-^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 The following is an example of the Boolean syntax:
 
@@ -178,7 +178,7 @@ The following is an example of the correct output:
    "kiwi","Is not angry"
 
 Boolean Casts and Conversions
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following table shows the possible Boolean value conversions:
 
@@ -248,7 +248,7 @@ The following table describes the Integer data type.
      - Integer types range between 1, 2, 4, and 8 bytes - but resulting average data sizes could be lower after compression.
 
 Integer Examples
-^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 The following is an example of the Integer syntax:
 
 .. code-block:: postgres
@@ -267,7 +267,7 @@ The following is an example of the correct output:
    -5,127,32000,45000000000
 
 Integer Casts and Conversions
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following table shows the possible Integer value conversions:
 
@@ -325,7 +325,7 @@ The following table shows information relevant to the Floating Point data types.
      - Floating point types are either 4 or 8 bytes, but size could be lower after compression.
 
 Floating Point Examples
-^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: postgres
    
@@ -343,7 +343,7 @@ Floating Point Examples
 .. note:: Most SQL clients control display precision of floating point numbers, and values may appear differently in some clients.
 
 Floating Point Casts and Conversions
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The following table shows the possible Floating Point value conversions:
 
 .. list-table:: 
@@ -418,7 +418,7 @@ Size
 However, the size of strings is variable and is compressed by SQream DB.
 
 String Examples
-^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 The following is an example of the String syntax: 
 
 .. code-block:: postgres
@@ -441,7 +441,7 @@ The following is an example of the correct output:
 .. note:: Most clients control the display precision of floating point numbers, and values may appear differently in some clients.
 
 String Casts and Conversions
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The following table shows the possible String value conversions:
 
 .. list-table:: 
@@ -512,7 +512,7 @@ A ``DATE`` column is 4 bytes in length, while a ``DATETIME`` column is 8 bytes i
 However, the size of these values is compressed by SQream DB.
 
 Date Examples
-^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 The following is an example of the Date syntax:
 
 .. code-block:: postgres
@@ -545,7 +545,7 @@ The following is an example of the correct output:
 .. warning:: Some client applications may alter the ``DATETIME`` value by modifying the timezone.
 
 Date Casts and Conversions
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following table shows the possible ``DATE`` and ``DATETIME`` value conversions:
 
