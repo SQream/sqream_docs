@@ -435,6 +435,7 @@ For more information, see the following:
 
 * Deleting selected rows - :ref:`DELETE<delete>`
 * Deleting all rows - :ref:`TRUNCATE<truncate>`
+
 Saving Query Results to a CSV or PSV File
 --------------------------------------------
 
