@@ -4,7 +4,7 @@
 Data Types
 *************************
 
-This topic describes the data types that SQream DB supports, and how to convert between them.
+This topic describes the data types that SQream DB supports, and how to convert between them.  
 
 .. contents:: In this topic:
    :local:
@@ -459,7 +459,7 @@ The following table shows the possible String value conversions:
    * - ``DATE``, ``DATETIME``
      - Requires a supported format, such as ``'1955-11-05`` → ``date '1955-11-05'``, ``'1955-11-05 01:24:00.000'`` → ``'1955-11-05 01:24:00.000'``
 
- 
+
 
 Date (``DATE``, ``DATETIME``)
 ------------------------------------------------
