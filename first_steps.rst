@@ -267,8 +267,6 @@ Omitting columns that have a default values (including default ``NULL`` values) 
 
 For more information on inserting rows, see :ref:`insert`.
 
-::
-
 For more information on default values, see :ref:`default value<default_values>`.
 
 
@@ -391,7 +389,7 @@ For more information, see the following:
 * Sorting results - :ref:`ORDER BY<order_by>`
 * Filtering rows - :ref:`IS NOT NULL<is_null>`
 
-.. _filtering_null_rows:
+
 
 Deleting Rows
 -----------------
@@ -437,7 +435,6 @@ For more information, see the following:
 
 * Deleting selected rows - :ref:`DELETE<delete>`
 * Deleting all rows - :ref:`TRUNCATE<truncate>`
-
 Saving Query Results to a CSV or PSV File
 --------------------------------------------
 
