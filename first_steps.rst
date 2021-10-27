@@ -431,6 +431,7 @@ You can delete all rows in a table using the ``TRUNCATE`` command followed by th
    executed
 
 .. note:: While :ref:`truncate` deletes data from disk immediately, :ref:`delete` does not physically remove the deleted rows.
+
 For more information, see the following:
 
 * Deleting selected rows - :ref:`DELETE<delete>`
