@@ -10,7 +10,7 @@ The **Getting Started** page describes the following:
    :local:
    :depth: 1
 
-Before Installing SQream
+Before Installing SQream 
 ============================
 Before installing SQream, you must set up your local machine according to SQream's recommended pre-installation configurations.
 
