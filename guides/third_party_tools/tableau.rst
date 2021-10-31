@@ -416,6 +416,16 @@ Creating a Separate Service for Tableau
 ~~~~~~~~~~~~~~~~~~~
 SQream recommends creating a separate service for Tableau with the DWLM. This reduces the impact that Tableau has on other applications and processes, such as ETL. In addition, this works in conjunction with the load balancer to ensure good performance.
 
+Error Saving Large Quantities of Data as Files
+~~~~~~~~~~~~~~~~~~~
+An **FAB9A2C5** error can when saving large quantities of data as files. If you receive this error when writing a connection string, add the ``fetchSize`` parameter to ``1``, as shown below:
+
+.. code-block:: text
+
+   jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>sqream;[<optional parameters>; fetchSize=1...]
+   
+For more information on troubleshooting error **FAB9A2C5**, see the `Tableau Knowledge Base <https://community.tableau.com/s/global-search/%40uri#q=FAB9A2C5&t=All&f:content-type-facet=[Knowledge%20Base]>`_.
+
 Troubleshooting Workbook Performance Before Deploying to the Tableau Server
 ~~~~~~~~~~~~~~~~~~~
 Tableau has a built-in `performance recorder <https://help.tableau.com/current/pro/desktop/en-us/perf_record_create_desktop.htm>`_ that shows how time is being spent. If you're seeing slow performance, this could be the result of a misconfiguration such as setting concurrency too low.
