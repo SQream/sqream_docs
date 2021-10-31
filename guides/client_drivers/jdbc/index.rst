@@ -18,19 +18,19 @@ Installing the JDBC Driver
 Prerequisites
 ----------------
 
-The SQream DB JDBC driver requires Java 1.8 or newer. We recommend either Oracle Java or OpenJDK.
+The SQream JDBC driver requires Java 1.8 or newer. We recommend either Oracle Java or OpenJDK.
 
 **Oracle Java**
 
-Download and install Java 8 from Oracle for your platform
+To download and install Java 8 from Oracle for your platform, see `Java Downloads for All Operating Systems <https://www.java.com/en/download/manual.jsp>`_.
 
-https://www.java.com/en/download/manual.jsp
+
 
 **OpenJDK**
 
-For Linux and BSD, see https://openjdk.java.net/install/
+For Linux and BSD, see `How to download and install prebuilt OpenJDK packages <https://openjdk.java.net/install/>`_.
 
-For Windows, SQream recommends Zulu 8 https://www.azul.com/downloads/zulu-community/?&version=java-8-lts&architecture=x86-64-bit&package=jdk
+For Windows, SQream recommends `Zulu 8 <https://www.azul.com/downloads/zulu-community/?&version=java-8-lts&architecture=x86-64-bit&package=jdk>`_.
 
 .. _get_jdbc_jar:
 
@@ -49,7 +49,7 @@ Extract the JAR file from the zip archive
 
    $ unzip sqream-jdbc-4.3.0.zip
 
-Setting up the Class Path
+Setting Up the Class Path
 ----------------------------
 
 To use the driver, the JAR named ``sqream-jdbc-<version>.jar`` (for example, ``sqream-jdbc-4.3.0.jar``) needs to be included in the class path, either by putting it in the ``CLASSPATH`` environment variable, or by using flags on the relevant Java command line.
@@ -81,12 +81,15 @@ Use ``com.sqream.jdbc.SQDriver`` as the driver class in the JDBC application.
 
 Connection String
 --------------------
+JDBC drivers rely on a connection string.
 
-JDBC drivers rely on a connection string. Use the following syntax for SQream DB
+The following is the correct syntax for writing a connection string:
 
 .. code-block:: text
 
    jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>sqream;[<optional parameters>; ...]
+   
+If you receive an error when saving large quantities of data as files, see `Troubleshooting - Error Saving Large Quantities of Data as Files <https://docs.sqream.com/en/v2021.1/guides/third_party_tools/tableau.html#error-saving-large-quantities-of-data-as-files>`_.
 
 Connection Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^
