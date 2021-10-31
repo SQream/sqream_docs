@@ -89,7 +89,7 @@ The following is the correct syntax for writing a connection string:
 
    jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>sqream;[<optional parameters>; ...]
    
-An **FAB9A2C5** error can occur when saving large quantities of data as files. If you receive this error, see `Troubleshooting - Error Saving Large Quantities of Data as Files <https://docs.sqream.com/en/latest/guides/third_party_tools/tableau.html#error-saving-large-quantities-of-data-as-files>`_.
+If you receive an error when saving large quantities of data as files, see `Troubleshooting - Error Saving Large Quantities of Data as Files <https://docs.sqream.com/en/latest/guides/third_party_tools/tableau.html#error-saving-large-quantities-of-data-as-files>`_.
 
 Connection Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^
