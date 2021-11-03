@@ -14,6 +14,7 @@ The guides in this section include information about best practices, monitoring,
    optimization_best_practices
    xxmonitoring
    monitoring_query_performance
+   running_sqream_in_a_docker_container
    logging
    configuration
    troubleshooting
