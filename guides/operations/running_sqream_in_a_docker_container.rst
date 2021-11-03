@@ -37,19 +37,19 @@ To run SQream in a Docker container you must create a local user.
 
    .. code-block:: console
      
-      $ useradd -m -U <local user name>
+      $ useradd -m -U sqream
 
 2. Set the local user's password:
 
    .. code-block:: console
      
-      $ passwd <local user name>
+      $ passwd sqream
 
 3. Add the local user to the ``wheel`` group:
 
    .. code-block:: console
      
-      $ usermod -aG wheel <local user name>
+      $ usermod -aG wheel sqream
 
    You can remove the local user from the ``wheel`` group when you have completed the installation.
 
