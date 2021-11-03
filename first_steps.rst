@@ -1,35 +1,54 @@
 .. _first_steps:
 
 ****************************
-First steps with SQream DB
+Getting Started
 ****************************
 
-.. TODO: part one of the tutorial is how to connect with clientcmd,
-.. and create some tables, insert data and query it
-.. part 2: expand on this
-.. how to run sqream/check it's running
-.. how to add a database and do roles and permissions (to get started)
-.. options for inserting data - overview of all of them
-.. deleting/managing data overview (including storage reorg)
+The **Getting Started** page describes the following:
 
-This tutorial takes you through a few basic operations in SQream DB.
-
-.. contents:: In this topic:
+.. contents::
    :local:
+   :depth: 1
 
-Preparing for this tutorial
-===============================
+Before Installing SQream
+============================
+Before installing SQream, you must set up your local machine according to SQream's recommended pre-installation configurations.
 
-This tutorial assumes you already have a SQream DB cluster running and the SQream command line client installed on the machine you are on.
+For more information, see the following:
 
-.. rubric:: If you haven't already:
-
-* :ref:`Set up a SQream DB cluster<setup>`
-
-* :ref:`Install SQream SQL CLI<sqream_sql_cli_reference>`
+* `Hardware Guide <https://docs.sqream.com/en/v2020-2/guides/operations/hardware_guide.html>`_.
+* `Recommended Pre-Installation Configuration <https://docs.sqream.com/en/v2020-2/guides/operations/setup/recommended_pre-installation_configurations.html>`_.
 
 
-Run the SQream SQL client like this. It will interactively ask for the password.
+
+
+
+Installing SQream
+============================
+The **Installing SQream** section includes the following SQream installation methods:
+
+* `Installing SQream natively <https://docs.sqream.com/en/v2020-2/guides/operations/installing_sqream_with_binary.html>`_ - Describes installing SQream using binary packages provided by SQream.
+* `Installing SQream with Kubernetes <https://docs.sqream.com/en/v2020-2/guides/operations/installing_sqream_with_kubernetes.html>`_ - Describes installing SQream using the Kubernetes open source platform.
+* `Installing and running SQream in a Docker container <https://docs.sqream.com/en/v2020-2/guides/operations/running_sqream_in_a_docker_container.html>`_ - Describes how to run SQream in a Docker container.
+
+Using the SQream SQL Command Line Interface
+============================================
+SQream includes a built-in client for executing SQL statements either interactively or using the Command Line Interface (CLI). The **SQream SQL CLI Reference** page provides a reference for the options and parameters.
+
+For more information, see `SQream SQL CLI Reference <https://docs.sqream.com/en/v2020-2/reference/cli/sqream_sql.html>`_.
+
+Performing Basic SQream Operations
+====================================
+After installing SQream you can perform the operations described in the **Performing Basic SQream Operations** section:
+
+.. contents::
+   :local:
+   :depth: 1
+
+
+Running the SQream SQL Client
+---------------------------------
+The following example shows how to run the SQream SQL client:
 
 .. code-block:: psql
 
@@ -41,46 +60,57 @@ Run the SQream SQL client like this. It will interactively ask for the password.
    
    master=> _
 
-You should use a username and password that you have set up or your DBA has given you.
+Running the SQream SQL client prompts you to provide your password. Use the username and password that you have set up, or your DBA has provided.
   
 .. tip::
-   * To exit the shell, type ``\q``  or :kbd:`Ctrl-d`. 
-   * A new SQream DB cluster contains a database named `master`. We will start with this database.
+   * You can exit the shell by typing ``\q``  or :kbd:`Ctrl-d`. 
+   * A new SQream cluster contains a database named `master,` which is the database used in the examples on this page.
 
-Create a new database for playing around in
-=======================================================
+Creating a New Database
+--------------------------
+**To create a new database:**
 
-To create a database, we will use the :ref:`create_database` syntax.
+1. Write a :ref:`create_database` statement.
 
-.. code-block:: psql
+   The following is an example of creating a new database:
 
-   master=> CREATE DATABASE test;
-   executed
+   .. code-block:: psql
 
-Now, reconnect to the newly created database.
+      master=> CREATE DATABASE test;
+      executed
 
-First, exit the client by typing ``\q`` and hitting enter.
+2. Reconnect to the newly created database.
 
-From the Linux shell, restart the client with the new database name:
+   1. Exit the client by typing ``\q`` and pressing **Enter**.
+   2. From the Linux shell, restart the client with the new database name:
 
-.. code-block:: psql
+      .. code-block:: psql
 
-   $ sqream sql --port=5000 --username=rhendricks -d test
-   Password:
+         $ sqream sql --port=5000 --username=rhendricks -d test
+         Password:
    
-   Interactive client mode
-   To quit, use ^D or \q.
+         Interactive client mode
+         To quit, use ^D or \q.
    
-   test=> _
+         test=> _
 
-The new database name appears in the prompt. This lets you know which database you're connected to.
+    The name of the new database that you are connected to is displayed in the prompt.
 
-Creating your first table
-============================
+Creating Your First Table
+------------------------------
+The **Creating Your First Table** section describes the following:
 
-To create a table, we will use the :ref:`create_table` syntax, with a table name and some column specifications.
+* :ref:`Creating a table<creating_a_table>`
+* :ref:`Replacing a table<replacing_a_table>`
+* :ref:`Listing a CREATE TABLE statement<listing_a_create_table_statement>`
+* :ref:`Dropping a table<dropping_a_table>`
 
-For example,
+
+.. _creating_a_table:
+
+**Creating a Table**
+
+The ``CREATE TABLE`` syntax is used to create your first table. This table includes a table name and column specifications, as shown in the following example:
 
 .. code-block:: postgres
 
@@ -90,7 +120,13 @@ For example,
       weight INT
    );
 
-If the table already exists and you want to drop the current table and create a new one, you can add ``OR REPLACE`` after the ``CREATE`` keyword.
+For more information on creating a table, see :ref:`create_table`.
+
+.. _replacing_a_table:
+
+**Replacing a Table**
+
+You can drop an existing table and create a new one by adding the ``OR REPLACE`` parameter after the ``CREATE`` keyword, as shown in the following example:
 
 .. code-block:: postgres
 
@@ -101,9 +137,12 @@ If the table already exists and you want to drop the current table and create a 
    );
 
 .. TODO: cool_animals? I think we need to decide if the customer for this documenation is 12 years old, or an IT professional.
-   
 
-You can ask SQream DB to list the full, verbose ``CREATE TABLE`` statement for any table, by using the :ref:`get_ddl` function, with the table name.
+.. _listing_a_create_table_statement:
+
+**Listing a CREATE TABLE Statement**
+   
+You can list the full, verbose ``CREATE TABLE`` statement for a table by using the **GET DDL** function with the table name as shown in the following example:
 
 .. code-block:: psql
 
@@ -114,22 +153,30 @@ You can ask SQream DB to list the full, verbose ``CREATE TABLE`` statement for a
    "weight" int
    );
 
-.. note:
+.. note:: 
+
    * SQream DB identifier names such as table names and column names are not case sensitive. SQream DB lowercases all identifiers bu default. If you want to maintain case, enclose the identifiers with double-quotes.
    * SQream DB places all tables in the `public` schema, unless another schema is created and specified as part of the table name.
+   
+For information on listing a ``CREATE TABLE`` statement, see :ref:`get_ddl`.
 
-If you are done with this table, you can use :ref:`drop_table` to remove the table and all of its data.
+.. _dropping_a_table:
+
+**Dropping a Table**
+
+When you have finished working with your table, you can drop the table to remove it table and its content, as shown in the following example:
 
 .. code-block:: psql
 
    test=> DROP TABLE cool_animals;
    
    executed
+   
+For more information on dropping tables, see :ref:`drop_table`.
 
-Listing tables
-=================
-
-To see the tables in the current database, we will query the catalog
+Listing Tables
+------------------
+To see the tables in the current database you can query the catalog, as shown in the following example:
 
 .. code-block:: psql
 
@@ -138,12 +185,21 @@ To see the tables in the current database, we will query the catalog
    
    1 rows
 
+Inserting Rows
+-------------------
+The **Inserting Rows** section describes the following:
 
-Inserting rows
-=================
+* :ref:`Inserting basic rows<inserting_basic_rows>`
+* :ref:`Changing value order<changing_value_order>`
+* :ref:`Inserting multiple rows<inserting_multiple_rows>`
+* :ref:`Omitting columns<omitting_columns>`
 
-Inserting rows into a table can be performed with the :ref:`insert` statement.
-The statement includes the table name, an optional list of column names, and column values listed in the same order as the column names:
+
+.. _inserting_basic_rows:
+
+**Inserting Basic Rows**
+
+You can insert basic rows into a table using the ``INSERT`` statement. The inserted statement includes the table name, an optional list of column names, and column values listed in the same order as the column names, as shown in the following example:
 
 .. code-block:: psql
 
@@ -151,7 +207,11 @@ The statement includes the table name, an optional list of column names, and col
    
    executed
 
-To change the order of values, specify the column order:
+.. _changing_value_order:
+
+**Changing Value Order**
+
+You can change the order of values by specifying the column order, as shown in the following example:
 
 .. code-block:: psql
 
@@ -159,7 +219,11 @@ To change the order of values, specify the column order:
    
    executed
 
-You can use ``INSERT`` to insert multiple rows too. Here, you use sets of parentheses separated by commas:
+.. _inserting_multiple_rows:
+
+**Inserting Multiple Rows**
+
+You can insert multiple rows using the ``INSERT`` statement by using sets of parentheses separated by commas, as shown in the following example:
 
 .. code-block:: psql
 
@@ -170,9 +234,13 @@ You can use ``INSERT`` to insert multiple rows too. Here, you use sets of parent
    
    executed
 
-.. note:: To load big data sets, use bulk loading methods instead. See our :ref:`inserting_data` guide for more information.
+.. note:: You can load large data sets using bulk loading methods instead. For more information, see :ref:`inserting_data`.
 
-When you leave out columns that have a :ref:`default value<default_values>` (including default ``NULL`` value) the default value is used.
+.. _omitting_columns:
+
+**Omitting Columns**
+
+Omitting columns that have a default values (including default ``NULL`` values) uses the default value, as shown in the following example:
 
 .. code-block:: psql
 
@@ -197,10 +265,28 @@ When you leave out columns that have a :ref:`default value<default_values>` (inc
 
 .. note:: Null row values are represented as ``\N``
 
-Queries
-=========
+For more information on inserting rows, see :ref:`insert`.
 
-For querying, use the :ref:`select` keyword, followed by a list of columns and values to be returned, and the table to get the data from.
+For more information on default values, see :ref:`default value<default_values>`.
+
+
+Running Queries
+------------------
+The **Running Queries** section describes the following:
+
+* :ref:`Running basic queries<running_basic_queries>`
+* :ref:`Outputting all columns<outputting_all_columns>`
+* :ref:`Outputting shorthand table values<outputting_shorthand_table_values>`
+* :ref:`Filtering results<filtering_results>`
+* :ref:`Sorting results<sorting_results>`
+* :ref:`Filtering null rows<filtering_null_rows>`
+
+
+.. _running_basic_queries:
+
+**Running Basic Queries**
+
+You can run a basic query using the ``SELECT`` keyword, followed by a list of columns and values to be returned, and the table to get the data from, as shown in the following example:
 
 .. code-block:: psql
 
@@ -213,8 +299,14 @@ For querying, use the :ref:`select` keyword, followed by a list of columns and v
    6,\N,\N
    
    6 rows
+   
+For more information on the ``SELECT`` keyword, see :ref:`select`.
 
-To get all columns without specifying them, use the star operator ``*``:
+.. _outputting_all_columns:
+
+**To Output All Columns**
+
+You can output all columns without specifying them using the star operator ``*``, as shown in the following example:
 
 .. code-block:: psql
 
@@ -228,7 +320,11 @@ To get all columns without specifying them, use the star operator ``*``:
    
    6 rows
 
-To get the number of values in a table without getting the full result set, use :ref:`COUNT(*)<count>`:
+.. _outputting_shorthand_table_values:
+
+**Outputting Shorthand Table Values**
+
+You can output the number of values in a table without getting the full result set by using the ``COUNT`` statement:
 
 .. code-block:: psql
 
@@ -237,8 +333,11 @@ To get the number of values in a table without getting the full result set, use 
    
    1 row
 
+.. _filtering_results:
 
-Filter results by adding a :ref:`WHERE<where>` clause and specifying the filter condition:
+**Filtering Results**
+
+You can filter results by adding a ``WHERE`` clause and specifying the filter condition, as shown in the following example:
 
 .. code-block:: psql
 
@@ -248,7 +347,11 @@ Filter results by adding a :ref:`WHERE<where>` clause and specifying the filter 
    
    2 rows
 
-Sort the results by adding an :ref:`ORDER BY<order_by>` clause, and specifying ascending (``ASC``) or descending (``DESC``) order:
+.. _sorting_results:
+
+**Sorting Results**
+
+You can sort results by adding an ``ORDER BY`` clause and specifying ascending (``ASC``) or descending (``DESC``) order, as shown in the following example:
 
 .. code-block:: psql
 
@@ -262,7 +365,11 @@ Sort the results by adding an :ref:`ORDER BY<order_by>` clause, and specifying a
 
    6 rows
 
-Filter null rows by adding a filter :ref:`IS NOT NULL<is_null>`:
+.. _filtering_null_rows:
+
+**Filtering Null Rows**
+
+You can filter null rows by adding an ``IS NOT NULL`` filter, as shown in the following example:
 
 .. code-block:: psql
 
@@ -274,11 +381,28 @@ Filter null rows by adding a filter :ref:`IS NOT NULL<is_null>`:
    2,Possum              ,3
 
    5 rows
+   
+For more information, see the following:
 
-Deleting rows
-==============
+* Outputting the number of values in a table without getting the full result set - :ref:`COUNT(*)<count>`.
+* Filtering results - :ref:`WHERE<where>`
+* Sorting results - :ref:`ORDER BY<order_by>`
+* Filtering rows - :ref:`IS NOT NULL<is_null>`
 
-To delete rows in a table selectively, use the :ref:`DELETE<delete>` command, with a table name and a `WHERE` clause to specify which rows are to be deleted:
+
+
+Deleting Rows
+-----------------
+The **Deleting Rows** section describes the following:
+
+* :ref:`Deleting selected rows<deleting_selected_rows>`
+* :ref:`Deleting all rows<deleting_all_rows>`
+
+.. _deleting_selected_rows:
+
+**Deleting Selected Rows**
+
+You can delete rows in a table selectively using the ``DELETE`` command. You must include a table name and `WHERE` clause to specify the rows to delete, as shown in the following example:
 
 .. code-block:: psql
 
@@ -294,7 +418,11 @@ To delete rows in a table selectively, use the :ref:`DELETE<delete>` command, wi
 
    5 rows
 
-To delete all rows in a table, use the :ref:`TRUNCATE<truncate>` command followed by the table name:
+.. _deleting_all_rows:
+
+**Deleting All Rows**
+
+You can delete all rows in a table using the ``TRUNCATE`` command followed by the table name, as shown in the following example:
 
 .. code-block:: psql
 
@@ -302,12 +430,18 @@ To delete all rows in a table, use the :ref:`TRUNCATE<truncate>` command followe
    
    executed
 
-.. note:: While :ref:`truncate` deletes data from disk immediately, :ref:`delete` does not physically remove the deleted rows. For more information on removing the rows from disk, see :ref:`delete`.
+.. note:: While :ref:`truncate` deletes data from disk immediately, :ref:`delete` does not physically remove the deleted rows.
 
-Saving query results to a CSV or PSV file
-==============================================
+For more information, see the following:
 
-The command line client :ref:`sqream sql<sqream_sql_cli_reference>` can be used to save query results to a CSV or other delimited file format.
+* Deleting selected rows - :ref:`DELETE<delete>`
+* Deleting all rows - :ref:`TRUNCATE<truncate>`
+
+Saving Query Results to a CSV or PSV File
+--------------------------------------------
+
+
+You can save query results to a CSV or PSV file using the ``sqream sql`` command from a CLI client. This saves your query results to the selected delimited file format, as shown in the following example:
 
 .. code-block:: console
 
@@ -319,11 +453,10 @@ The command line client :ref:`sqream sql<sqream_sql_cli_reference>` can be used 
    R.J. Hunter             |Boston Celtics        |28|SG|22|6-5 |185|Georgia State        |1148640
    Jonas Jerebko           |Boston Celtics        |8|PF|29|6-10|231|\N|5000000
 
-
-See the :ref:`Controlling the output of the client<controlling_output>` section of the reference for more options.
+For more output options, see :ref:`Controlling the Client Output<controlling_output>`.
 
 .. rubric:: What's next?
 
-* Explore all of SQream DB's :ref:`SQL Syntax <sql_syntax>`
-* See the full :ref:`SQream SQL CLI reference <sqream_sql_cli_reference>`
-* Connect a :ref:`third party tool to SQream DB <third_party_tools>` and start analyzing data
+* Explore all of SQream DB's :ref:`SQL Syntax <sql_syntax>`.
+* See the full :ref:`SQream SQL CLI reference <sqream_sql_cli_reference>`.
+* Connect a :ref:`third party tool <third_party_tools>` to start analyzing data.
