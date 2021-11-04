@@ -49,7 +49,7 @@ Notes
 
 * ``NULL`` values are *not* ignored by ``COUNT``
 
-* When all rows contain ``NULL`` values, the function returns ``NULL``.
+* When all rows contain ``NULL`` values, the function returns the amount of rows in the table.
 
 
 Examples
