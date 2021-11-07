@@ -13,5 +13,4 @@ The guides below cover installing SQream:.
    :glob:
    
    before_you_begin
-   local_docker
    running_sqream_in_a_docker_container
