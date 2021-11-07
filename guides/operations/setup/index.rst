@@ -1,10 +1,10 @@
 .. _setup:
 
 ***********************
-Setting up SQream DB
+Setting Up SQream DB
 ***********************
 
-The guides below cover installing SQream DB.
+The guides below cover installing SQream:.
 
 .. toctree::
    :maxdepth: 4
@@ -13,6 +13,4 @@ The guides below cover installing SQream DB.
    :glob:
    
    before_you_begin
-   local_docker
-
-
+   running_sqream_in_a_docker_container
