@@ -12,12 +12,43 @@ The **Getting Started** page describes the following:
 
 Before Installing SQream
 ============================
-Before installing SQream, you must set up your local machine according to SQream's recommended pre-installation configurations.
+Before installing SQream, do the following:
 
+ * Set up your local machine according to SQream's recommended pre-installation configurations.
+ 
+    ::
+   
+ * Verify you have an NVIDIA-capable server, either on-premise or on supported cloud platforms: 
+
+   * Red Hat Enterprise Linux v7.x
+   
+ 
+   * CentOS v7.x
+   
+
+   * Ubuntu 18.04
+   
+ 
+   * Amazon Linux
+	 
+ * Verify that you have the following:
+ 
+   * An NVIDIA GPU - SQream recommends using a Tesla GPU.
+ 
+
+   * An SSH connection to your server.
+ 
+
+   * SUDO permissions for installation and configuration purposes.
+ 
+ 
+   * A SQream license - Contact support@sqream.com or your SQream account manager for your license key.
 For more information, see the following:
 
-* `Hardware Guide <https://docs.sqream.com/en/v2020-1/guides/operations/hardware_guide.html>`_.
-* `Recommended Pre-Installation Configuration <https://docs.sqream.com/en/v2020-1/guides/operations/setup/recommended_pre-installation_configurations.html>`_.
+* `Hardware Guide <https://docs.sqream.com/en/v2020-1/guides/operations/hardware_guide.html>`_
+* `Recommended Pre-Installation Configuration <https://docs.sqream.com/en/v2020-1/guides/operations/recommended_pre-installation_configurations.html>`_
+
+
 
 
 
