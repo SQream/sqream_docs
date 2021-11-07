@@ -37,19 +37,19 @@ To run SQream in a Docker container you must create a local user.
 
    .. code-block:: console
      
-      $ useradd -m -U sqream
+      $ useradd -m -U <local user name>
 
 2. Set the local user's password:
 
    .. code-block:: console
      
-      $ passwd sqream
+      $ passwd <local user name>
 
 3. Add the local user to the ``wheel`` group:
 
    .. code-block:: console
      
-      $ usermod -aG wheel sqream
+      $ usermod -aG wheel <local user name>
 
    You can remove the local user from the ``wheel`` group when you have completed the installation.
 
@@ -807,6 +807,8 @@ Installing the SQream Software
 Preparing Your Local Environment
 -------------------------
 After installing the Nvidia Docker2 toolKit you must prepare your local environment.
+
+.. note:: You must install the SQream software under a *sqream* and not a *root* user.
 
 The Linux user preparing the local environment must have **read/write** access to the following directories for the SQream software to correctly read and write the required resources:
 
