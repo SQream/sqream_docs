@@ -13,9 +13,10 @@ The guides in this section include information about best practices, monitoring,
 
    optimization_best_practices
    recommended_pre-installation_configurations
+   installing_monit
+   launching_sqream_with_monit
    xxmonitoring
    monitoring_query_performance
-   launching_sqream_with_monit
    running_sqream_in_a_docker_container
    logging
    configuration
