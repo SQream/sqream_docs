@@ -31,5 +31,3 @@ The guides in this section include information about installing Monit, best prac
    statement_editor
    hardware_guide
    security
-   setup/index
-
