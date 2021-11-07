@@ -4,7 +4,7 @@
 Data Types
 *************************
 
-This topic describes the data types that SQream DB supports, and how to convert between them.
+This topic describes the data types that SQream DB supports, and how to convert between them.  
 
 .. contents:: In this topic:
    :local:
@@ -92,7 +92,7 @@ You can rectify this by casting the value to a larger data type:
 
 SQream DB supports the following three data conversion types:
 
-* ``CAST(<value> TO <data type>)``, to convert a value from one type to another. For example, ``CAST('1997-01-01' TO DATE)``, ``CAST(3.45 TO SMALLINT)``, ``CAST(some_column TO VARCHAR(30))``.
+* ``CAST(<value> AS <data type>)``, to convert a value from one type to another. For example, ``CAST('1997-01-01' AS DATE)``, ``CAST(3.45 AS SMALLINT)``, ``CAST(some_column AS VARCHAR(30))``.
 * ``<value> :: <data type>``, a shorthand for the ``CAST`` syntax. For example, ``'1997-01-01' :: DATE``, ``3.45 :: SMALLINT``, ``(3+5) :: BIGINT``.
 * See the :ref:`SQL functions reference <sql_functions>` for additional functions that convert from a specific value which is not an SQL type, such as :ref:`from_unixts`, etc.
 
@@ -107,7 +107,7 @@ Numeric (``NUMERIC``, ``DECIMAL``)
 -----------------------
 The **Numeric** data type (also known as **Decimal**) is recommended for values that tend to occur as exact decimals, such as in Finance. While Numeric has a fixed precision of ``38``, higher than ``REAL`` (``9``) or ``DOUBLE`` (``17``), it runs calculations more slowly. For operations that require faster performance, using :ref:`Floating Point <floating_point>` is recommended.
 
-The correct syntax for Numeric is ``numeric(p, s)``, where ``p`` is the total number of digits (``38`` maximum), and ``s`` is the total number of decimal digits.
+The correct syntax for Numeric is ``numeric(p, s)``), where ``p`` is the total number of digits (``38`` maximum), and ``s`` is the total number of decimal digits.
 
 Numeric Examples
 ^^^^^^^^^^
@@ -139,7 +139,6 @@ Numeric supports the following operations:
    * All aggregation types (not including Window functions).
    * Scalar functions (not including some trigonometric and logarithmic functions).
    
-.. note:: All functionality will be supported in future releases.
 
 
 Boolean (``BOOL``)
@@ -287,7 +286,7 @@ The following table shows the possible Integer value conversions:
 
 Floating Point (``REAL``, ``DOUBLE``)
 ------------------------------------------------   
-The **Floating Point** data types (``REAL`` and ``DOUBLE``) store extremely close value approximations, and are therefore recommended for values that tend to be inexact, such as Scientific Notation. While Flosting Point generally runs faster than Numeric, it has a lower precision of ``9`` (``REAL``) or ``17`` (``DOUBLE``) compared to Numeric's ``38``. For operations that require a higher level of precision, using :ref:`Numeric <numeric>` is recommended.
+The **Floating Point** data types (``REAL`` and ``DOUBLE``) store extremely close value approximations, and are therefore recommended for values that tend to be inexact, such as Scientific Notation. While Floating Point generally runs faster than Numeric, it has a lower precision of ``9`` (``REAL``) or ``17`` (``DOUBLE``) compared to Numeric's ``38``. For operations that require a higher level of precision, using :ref:`Numeric <numeric>` is recommended.
 
 The floating point representation is based on `IEEE 754 <https://en.wikipedia.org/wiki/IEEE_754>`_.
 
