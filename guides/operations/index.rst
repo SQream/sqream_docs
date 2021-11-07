@@ -12,6 +12,7 @@ The guides in this section include information about best practices, monitoring,
    :glob:
 
    optimization_best_practices
+   recommended_pre-installation_configurations
    xxmonitoring
    monitoring_query_performance
    launching_sqream_with_monit
@@ -26,5 +27,3 @@ The guides in this section include information about best practices, monitoring,
    statement_editor
    hardware_guide
    security
-   setup/index
-
