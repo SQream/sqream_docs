@@ -10,14 +10,45 @@ The **Getting Started** page describes the following:
    :local:
    :depth: 1
 
-Before Installing SQream 
+Before Installing SQream
 ============================
-Before installing SQream, you must set up your local machine according to SQream's recommended pre-installation configurations.
+Before installing SQream, do the following:
 
+ * Set up your local machine according to SQream's recommended pre-installation configurations.
+ 
+    ::
+   
+ * Verify you have an NVIDIA-capable server, either on-premise or on supported cloud platforms: 
+
+   * Red Hat Enterprise Linux v7.x
+   
+ 
+   * CentOS v7.x
+   
+
+   * Ubuntu 18.04
+   
+ 
+   * Amazon Linux
+	 
+ * Verify that you have the following:
+ 
+   * An NVIDIA GPU - SQream recommends using a Tesla GPU.
+ 
+
+   * An SSH connection to your server.
+ 
+
+   * SUDO permissions for installation and configuration purposes.
+ 
+ 
+   * A SQream license - Contact support@sqream.com or your SQream account manager for your license key.
 For more information, see the following:
 
-* `Hardware Guide <https://docs.sqream.com/en/v2021.2/guides/operations/hardware_guide.html>`_.
-* `Recommended Pre-Installation Configuration <https://docs.sqream.com/en/v2021.2/guides/operations/recommended_pre-installation_configurations.html>`_.
+* `Hardware Guide <https://docs.sqream.com/en/v2021.2/guides/operations/hardware_guide.html>`_
+* `Recommended Pre-Installation Configuration <https://docs.sqream.com/en/v2021.2/guides/operations/recommended_pre-installation_configurations.html>`_
+
+
 
 
 
@@ -32,13 +63,13 @@ The **Installing SQream** section includes the following SQream installation met
 * `Installing and running SQream in a Docker container <https://docs.sqream.com/en/v2021.2/guides/operations/running_sqream_in_a_docker_container.html>`_ - Describes how to run SQream in a Docker container.
 
 Using the SQream SQL Command Line Interface
-=============================
+============================================
 SQream includes a built-in client for executing SQL statements either interactively or using the Command Line Interface (CLI). The **SQream SQL CLI Reference** page provides a reference for the options and parameters.
 
 For more information, see `SQream SQL CLI Reference <https://docs.sqream.com/en/v2021.2/reference/cli/sqream_sql.html>`_.
 
 Performing Basic SQream Operations
-=============================
+====================================
 After installing SQream you can perform the operations described in the **Performing Basic SQream Operations** section:
 
 .. contents::
@@ -47,7 +78,7 @@ After installing SQream you can perform the operations described in the **Perfor
 
 
 Running the SQream SQL Client
-----------
+---------------------------------
 The following example shows how to run the SQream SQL client:
 
 .. code-block:: psql
@@ -67,7 +98,7 @@ Running the SQream SQL client prompts you to provide your password. Use the user
    * A new SQream cluster contains a database named `master,` which is the database used in the examples on this page.
 
 Creating a New Database
-----------
+--------------------------
 **To create a new database:**
 
 1. Write a :ref:`create_database` statement.
@@ -97,7 +128,7 @@ Creating a New Database
     The name of the new database that you are connected to is displayed in the prompt.
 
 Creating Your First Table
-----------
+------------------------------
 The **Creating Your First Table** section describes the following:
 
 * :ref:`Creating a table<creating_a_table>`
@@ -175,7 +206,7 @@ When you have finished working with your table, you can drop the table to remove
 For more information on dropping tables, see :ref:`drop_table`.
 
 Listing Tables
-----------
+------------------
 To see the tables in the current database you can query the catalog, as shown in the following example:
 
 .. code-block:: psql
@@ -186,7 +217,7 @@ To see the tables in the current database you can query the catalog, as shown in
    1 rows
 
 Inserting Rows
-----------
+-------------------
 The **Inserting Rows** section describes the following:
 
 * :ref:`Inserting basic rows<inserting_basic_rows>`
@@ -267,13 +298,11 @@ Omitting columns that have a default values (including default ``NULL`` values) 
 
 For more information on inserting rows, see :ref:`insert`.
 
-::
-
 For more information on default values, see :ref:`default value<default_values>`.
 
 
 Running Queries
-----------
+------------------
 The **Running Queries** section describes the following:
 
 * :ref:`Running basic queries<running_basic_queries>`
@@ -391,10 +420,10 @@ For more information, see the following:
 * Sorting results - :ref:`ORDER BY<order_by>`
 * Filtering rows - :ref:`IS NOT NULL<is_null>`
 
-.. _filtering_null_rows:
+
 
 Deleting Rows
-----------
+-----------------
 The **Deleting Rows** section describes the following:
 
 * :ref:`Deleting selected rows<deleting_selected_rows>`
@@ -433,13 +462,14 @@ You can delete all rows in a table using the ``TRUNCATE`` command followed by th
    executed
 
 .. note:: While :ref:`truncate` deletes data from disk immediately, :ref:`delete` does not physically remove the deleted rows.
+
 For more information, see the following:
 
 * Deleting selected rows - :ref:`DELETE<delete>`
 * Deleting all rows - :ref:`TRUNCATE<truncate>`
 
 Saving Query Results to a CSV or PSV File
-----------
+--------------------------------------------
 
 
 You can save query results to a CSV or PSV file using the ``sqream sql`` command from a CLI client. This saves your query results to the selected delimited file format, as shown in the following example:
