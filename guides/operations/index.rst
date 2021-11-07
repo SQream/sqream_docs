@@ -12,6 +12,7 @@ The guides in this section include information about best practices, monitoring,
    :glob:
 
    optimization_best_practices
+   recommended_pre-installation_configurations
    xxmonitoring
    running_sqream_in_a_docker_container
    logging
@@ -24,5 +25,3 @@ The guides in this section include information about best practices, monitoring,
    statement_editor
    hardware_guide
    security
-   setup/index
-
