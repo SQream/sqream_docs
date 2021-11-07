@@ -12,6 +12,7 @@ The guides in this section include information about installing Monit, best prac
    :glob:
 
    optimization_best_practices
+   recommended_pre-installation_configurations
    installing_monit
    launching_sqream_with_monit
    installing_sqream_with_binary
@@ -30,5 +31,3 @@ The guides in this section include information about installing Monit, best prac
    statement_editor
    hardware_guide
    security
-   setup/index
-
