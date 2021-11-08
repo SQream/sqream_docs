@@ -992,8 +992,7 @@ The following is an example of the correct command syntax:
    
 .. code-block:: console
 
-   $ sudo ./sqream-install -i -k -c /etc/sqream -v /home/sqream/sqreamdb -l
-   $ /var/log/sqream -d /home/sqream/data_ingest
+   $ sudo ./sqream-install -i -k -c /etc/sqream -v /home/sqream/sqreamdb -l /var/log/sqream -d /home/sqream/data_ingest
    
 .. _setting_hadoop_kubernetes_connectivity_parameters:
 
