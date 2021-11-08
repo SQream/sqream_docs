@@ -25,7 +25,7 @@ Performance Enhancements
 
 Known Issues and Limitations
 -------------
-* Multiple count distinct operations - is blocked for Text data type.
+* Multiple count distinct operations is enabled for all data types.
 
 Upgrading to v2020.3.2.1
 -------------
