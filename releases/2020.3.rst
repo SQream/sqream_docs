@@ -7,12 +7,14 @@ What's New in 2020.3
 SQream DB v2020.3 contains new features, improved performance, and bug fixes.
 
 
-New features
-============
+New Features
+----------
+The following list describes the new features:
+
 
 * Parquet and ORC files can now be exported to local storage, S3, and HDFS with :ref:`copy_to` and foreign data wrappers.
 
-* We've introduced new error tolerance features when loading data with foreign data wrappers
+* New error tolerance features when loading data with foreign data wrappers.
 
 * ``TEXT`` is ramping up with new features (previously only available with VARCHARs):
 
@@ -24,50 +26,56 @@ New features
 
 * :ref:`sqream_studio` v5.1
      
-     * New log viewer helps you track and debug what's going on in SQream DB
+     * New log viewer helps you track and debug what's going on in SQream DB.
      
-     * Dashboard now also available for non-k8s deployments
+     * Dashboard now also available for non-k8s deployments.
      
-     * The editor contains a new query concurrency tool for date and numeric ranges
+     * The editor contains a new query concurrency tool for date and numeric ranges.
      
 
 
-Enhancements
-============
+Performance Enhancements
+----------
+The following list describes the performance enhancements:
 
-* Error handling for CSV FDW
-* Enable logging errors - ORC, Parquet, CSV
-* Add limit and offset options to csv_fdw import
-* Enable logging errors to an external file when skipping CSV, Parquet, and ORC errors
-* Option to specify date format to the CSV FDW
-* Support all existing Varchar functions with Text on GPU
-* Support INSERT INTO + ORDER BY optimization for non-clustered tables
-* Performance improvements with I/O
 
-Bug fixes
-============
+* Error handling for CSV FDW.
+* Enable logging errors - ORC, Parquet, CSV.
+* Add limit and offset options to ``csv_fdw`` import.
+* Enable logging errors to an external file when skipping CSV, Parquet, and ORC errors.
+* Option to specify date format to the CSV FDW.
+* Support all existing ``VARCHAR`` functions with ``TEXT`` on GPU.
+* Support ``INSERT INTO`` + ``ORDER BY`` optimization for non-clustered tables.
+* Performance improvements with I/O.
 
-* Better error message when passing the max errors limit
-* showFullExceptionInfo is no longer restricted to developer mode
-* StreamAggregateA reduction error when performing aggregation on a null column
-* Insert into query fails with ""Error at Sql phase during Stages ""rewriteSqlQuery""
-* Cast from varchar to nvarchar doesn't remove the spaces
-* Internal Runtime Error t1.size() == t2.size() when querying sqream_catalog.delete_predicates
-* spoolMemoryGB and limitQueryMemoryGB show incorrectly in the runtime global section of show_conf
-* Casting empty text to int causes illegal memory access
-* Copy from TEXT field is 1.5x slower than the VARCHAR equivalent
-* TPCDS 10TB - Internal runtime error (std::bad_alloc: out of memory) on 2020.1.0.2
-* Not equal join on not existing TEXT crashes the system
-* Internal runtime time error when using TEXT (tpcds)
-* Copying CSV with a quote in the middle of a field to TEXT field does not produce an error
-* Can't monitor long network insert loads with SQream
-* Upper & like performance on Nvarchar
-* Insert into from 4 instances get stuck (hanging)
-* An invalid formatted CSV can cause an insufficient memory error on a COPY FROM statement if a quote isn’t closed and the file is much larger than system memory.
-* TEXT columns can’t be used with an outer join together with an inequality check (!= , <>)
+Resolved Issues
+---------------
+The following list describes the resolved issues:
 
-Known Issues & Limitations
-================================
+
+* Better error message when passing the max errors limit. This was fixed.
+* ``showFullExceptionInfo`` is no longer restricted to Developer Mode. This was fixed.
+* An ``StreamAggregateA`` reduction error occured when performing aggregation on a ``NULL`` column.  This was fixed.
+* Insert into query fails with ""Error at Sql phase during Stages ""rewriteSqlQuery"". This was fixed.
+* Casting from ``VARCHAR`` to ``NVARCHAR` does not remove the spaces. This was fixed.
+* An ``Internal Runtime Error t1.size() == t2.size()`` occurs when querying the ``sqream_catalog.delete_predicates``.  This was fixed.
+* ``spoolMemoryGB`` and ``limitQueryMemoryGB`` show incorrectly in the **runtime global** section of ``show_conf.``  This was fixed.
+* Casting empty text to ``int`` causes illegal memory access. This was fixed.
+* Copying from the ``TEXT`` field is 1.5x slower than the ``VARCHAR`` equivalent. This was fixed.
+* ``TPCDS 10TB - Internal runtime error (std::bad_alloc: out of memory)`` occurs on 2020.1.0.2. This was fixed.
+* An unequal join on non-existing ``TEXT`` caused a system crash.  This was fixed.
+* An ``Internal runtime time error`` occured when using ``TEXT (tpcds)``.  This was fixed.
+* Copying CSV with a quote in the middle of a field to a ``TEXT`` field does not produce the required error.  This was fixed.
+* Cannot monitor long network insert loads with SQream. This was fixed.
+* Upper and like performance on ``NVARCHAR``. This was fixed.
+* Insert into from 4 instances would get stuck (hanging).  This was fixed.
+* An invalid formatted CSV would cause an insufficient memory error on a ``COPY FROM`` statement if a quote was not closed and the file was much larger than system memory. This was fixed.
+* ``TEXT`` columns cannot be used with an outer join together with an inequality check (!= , <>). This was fixed.
+
+Known Issues and Limitations
+----------
+The following list describes the known issues and limitations:
+
 
 * Cast from ``TEXT`` to a ``DATE`` or ``DATETIME`` errors when the ``TEXT`` column contains ``NULL``
 
@@ -79,7 +87,7 @@ Known Issues & Limitations
 
 
 Upgrading to v2020.3
-========================
+----------
 
 Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and other OSs via Docker.
 
