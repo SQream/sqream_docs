@@ -4,16 +4,13 @@
 ADD COLUMN
 **********************
 
-``ADD COLUMN`` can be used to add columns to an existing table.
+The ``ADD COLUMN`` command is used to add columns to an existing table.
 
 
-Permissions
-=============
-
-The role must have the ``DDL`` permission at the database or table level.
 
 Syntax
 ==========
+The following is the correct syntax for adding a table:
 
 .. code-block:: postgres
 
@@ -39,6 +36,7 @@ Syntax
 
 Parameters
 ============
+The following parameters can be used for adding a table:
 
 .. list-table:: 
    :widths: auto
@@ -58,12 +56,23 @@ Parameters
 .. note::
    * When adding a new column to an existing table, a default (or null constraint) has to be specified, even if the table is empty.
    * A new column added to the table can not contain an IDENTITY or be of the TEXT type.
+   
+
+Permissions
+=============
+The role must have the ``DDL`` permission at the database or table level.
 
 Examples
 ===========
+This section includes the following examples:
 
-Adding a simple column with default value
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Adding a Simple Column with a Default Value
 -----------------------------------------
+This example shows how to add a simple column with a default value:
 
 .. code-block:: postgres
 
@@ -71,8 +80,9 @@ Adding a simple column with default value
      ADD COLUMN number_of_eyes INT DEFAULT 2 NOT NULL;
      
 
-Adding several columns in one command
+Adding Several Columns in One Command
 -------------------------------------------
+This example shows how to add several columns in one command:
 
 .. code-block:: postgres
 
