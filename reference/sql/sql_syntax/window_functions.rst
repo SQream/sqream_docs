@@ -1,7 +1,7 @@
 .. _window_functions:
 
 ********************
-Window functions
+Window Functions
 ********************
 
 Window functions are functions applied over a subset (known as a window) of the rows returned by a :ref:`select` query. 
@@ -23,11 +23,20 @@ Syntax
    window_fn ::= 
       | AVG
       | COUNT
+      | LAG
+      | LEAD
       | MAX
       | MIN
       | RANK
       | ROW_NUMBER
       | SUM
+      | FIRST_VALUE
+      | LAST_VALUE
+      | NTH_VALUE
+      | DENSE_RANK
+      | PERCENT_RANK
+      | CUME_DIST
+      | NTILE
 
 
    frame_clause ::= 
@@ -66,33 +75,62 @@ Arguments
      - An expression or column reference to order by
 
 
-Supported window functions
+Supported Window Functions
 ===========================
 
-.. list-table:: Window function aggregations
-   :widths: auto
+.. list-table:: Window Aggregation Functions
+   :widths: 16 200
    :header-rows: 1
    
    * - Function
+     - Description
    * - :ref:`avg`
+     - Returns the average of numeric values.
    * - :ref:`count`
+     - Returns the count of numeric values, or only the distinct values.
    * - :ref:`max`
+     - Returns the maximum values.
    * - :ref:`min`
+     - Returns the minimum values.
    * - :ref:`sum`
+     - Returns the sum of numeric values, or only the distinct values.
 
-.. versionchanged:: 2020.1
-   :ref:`count` and :ref:`avg` are supported in window functions from v2020.1.
+
+
    
-.. list-table:: Ranking functions
-   :widths: auto
+.. list-table:: Ranking Functions
+   :widths: 15 200
    :header-rows: 1
-
+   
    * - Function
-   * - :ref:`rank`
+     - Description
+   * - :ref:`lag`
+     - Returns a value from a previous row within the partition of a result set.
+   * - :ref:`lead`
+     - Returns a value from a subsequent row within the partition of a result set.
    * - :ref:`row_number`
+     - Returns the row number of each row within the partition of a result set.
+   * - :ref:`rank`
+     - Returns the rank of each row within the partition of a result set.
+   * - :ref:`first_value`
+     - Returns the value in the first row of a window.
+   * - :ref:`last_value`
+     - Returns the value in the last row of a window.	 
+   * - :ref:`nth_value`
+     - Returns the value in a specified (``n``) row of a window.	 
+   * - :ref:`dense_rank`
+     - Returns the rank of the current row with no gaps.	 
+   * - :ref:`percent_rank`
+     - Returns the relative rank of the current row.
+   * - :ref:`cume_dist`
+     - Returns the cumulative distribution of rows.
+   * - :ref:`ntile`
+     - Returns an integer ranging between ``1`` and the argument value, dividing the partitions as equally as possible.
 
 
-How window functions work
+
+
+How Window Functions Work
 ============================
 
 A window function operates on a subset ("window") of rows.
@@ -130,8 +168,7 @@ Without ``ORDER BY``, rows are processed in an unspecified order.
 Frames 
 -------
 
-.. versionchanged:: 2020.1
-   Frames are supported from v2020.1.
+
 
 .. note:: Frames and frame exclusions have been tested extensively, but are a complex feature. They are released as a preview in v2020.1 pending longer-term testing.
 
@@ -164,17 +201,14 @@ Restrictions
 
 For example ``RANGE BETWEEN CURRENT ROW AND 7 PRECEDING`` is not allowed. However, while ``ROWS BETWEEN 7 PRECEDING AND 8 PRECEDING`` is allowed, it would never select any rows.
 
-Frame exclusion
+Frame Exclusion
 -----------------
 
 The ``frame_exclusion`` option allows rows around the current row to be excluded from the frame, even if they would be included according to the frame start and frame end options. ``EXCLUDE CURRENT ROW`` excludes the current row from the frame. ``EXCLUDE GROUP`` excludes the current row and its ordering peers from the frame. ``EXCLUDE TIES`` excludes any peers of the current row from the frame, but not the current row itself. ``EXCLUDE NO OTHERS`` simply specifies explicitly the default behavior of not excluding the current row or its peers.
 
 Limitations
 ==================
-
-* At this phase, text columns are not supported in window function expressions.
-
-* Window function calls are permitted only in the :ref:`select` list.
+Window functions do not support the Numeric data type.
 
 
 
@@ -206,7 +240,7 @@ Here's a peek at the table contents (:download:`Download nba.csv </_static/sampl
    :widths: auto
    :header-rows: 1 
 
-Window function application
+Window Function Application
 -----------------------------------
 
 .. code-block:: psql
@@ -231,7 +265,7 @@ Window function application
     72902950
     [...]
 
-Ranking results
+Ranking Results
 -----------------
 
 See :ref:`rank`.
@@ -265,3 +299,36 @@ See :ref:`rank`.
    Myles Turner             |  20 | 6-11   |   16
    Trey Lyles               |  20 | 6-10   |   19
    [...]
+   
+
+Using ``LEAD`` to Access Following Rows Without a Join
+-----------------------------------------------------------
+
+
+The :ref:`lead` function is used to return data from rows further down the result set. 
+The :ref:`lag` function returns data from rows further up the result set.
+
+This example calculates the salary between two players, starting from the highest salary.
+
+
+.. code-block:: psql
+   
+   t=> SELECT "Name",
+   .          "Salary",
+   .          LEAD("Salary", 1) OVER (ORDER BY "Salary" DESC) AS "Salary - next",
+   .          ABS(LEAD("Salary", 1) OVER (ORDER BY "Salary" DESC) - "Salary") AS "Salary - diff"
+   .          FROM nba
+   .          LIMIT 11 ;
+   Name            | Salary   | Salary - next | Salary - diff
+   ----------------+----------+---------------+--------------
+   Kobe Bryant     | 25000000 |      22970500 |       2029500
+   LeBron James    | 22970500 |      22875000 |         95500
+   Carmelo Anthony | 22875000 |      22359364 |        515636
+   Dwight Howard   | 22359364 |      22192730 |        166634
+   Chris Bosh      | 22192730 |      21468695 |        724035
+   Chris Paul      | 21468695 |      20158622 |       1310073
+   Kevin Durant    | 20158622 |      20093064 |         65558
+   Derrick Rose    | 20093064 |      20000000 |         93064
+   Dwyane Wade     | 20000000 |      19689000 |        311000
+   Brook Lopez     | 19689000 |      19689000 |             0
+   DeAndre Jordan  | 19689000 |      19689000 |             0
