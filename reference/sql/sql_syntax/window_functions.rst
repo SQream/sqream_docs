@@ -208,10 +208,7 @@ The ``frame_exclusion`` option allows rows around the current row to be excluded
 
 Limitations
 ==================
-
-* At this phase, text columns are not supported in window function expressions.
-
-* Window function calls are permitted only in the :ref:`select` list.
+Window functions do not support the Numeric data type.
 
 
 
@@ -335,5 +332,3 @@ This example calculates the salary between two players, starting from the highes
    Dwyane Wade     | 20000000 |      19689000 |        311000
    Brook Lopez     | 19689000 |      19689000 |             0
    DeAndre Jordan  | 19689000 |      19689000 |             0
-
-
