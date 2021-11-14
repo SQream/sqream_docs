@@ -6,7 +6,7 @@ Joins
 
 Joins combine results from two or more table expressions (tables, external tables, views) to form a new result set.
 
-The combination of these table expressions ca nbe based on a set of conditions, such as equality of columns.
+The combination of these table expressions can be based on a set of conditions, such as equality of columns.
 
 Joins are useful when data in tables are related. For example, when two tables contain one or more columns in common, so that rows can be matched or correlated with rows from the other table.
 
@@ -29,7 +29,7 @@ Syntax
    join_hint ::=
        MERGE | LOOP
 
-Join types
+Join Types
 -------------
 
 Inner join
@@ -47,7 +47,7 @@ Rows from the ``left_side`` and ``right_side`` that match the condition are retu
 An inner join can also be specified by listing several tables in the ``FROM`` clause.
 Omitting the ``ON`` or ``WHERE`` will result in a ``CROSS JOIN``, where every row of ``left_side`` is matched with every row on ``right_side``.
 
-Left outer join
+Left Outer Join
 ^^^^^^^^^^^^^^^^^^
 
 .. code-block:: postgres
@@ -58,7 +58,7 @@ Left outer join
 Similar to the inner join - but for every row of ``left_side`` that does not match, ``NULL`` values are returned for columns on ``right_side``
 
 
-Right outer join
+Right Outer Join
 ^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: postgres
@@ -68,7 +68,7 @@ Right outer join
 
 Similar to the inner join - but for every row of ``right_side`` that does not match, ``NULL`` values are returned for columns on ``left_side``
 
-Cross join
+Cross Join
 ^^^^^^^^^^^^^
 
 .. code-block:: postgres
@@ -108,7 +108,7 @@ Assume a pair of tables with the following structure and content:
    CREATE TABLE right_side (x INT);
    INSERT INTO right_side VALUES (2), (3), (4), (5), (6);
 
-Inner join
+Inner Join
 ------------
 
 In inner joins, values that are not matched do not appear in the result set.
@@ -123,7 +123,7 @@ In inner joins, values that are not matched do not appear in the result set.
    4 |  4
    5 |  5
 
-Left join
+Left Join
 ------------
 
 .. note:: Note the null values for ``1`` which were not matched. SQream DB outputs nulls last.
@@ -156,7 +156,7 @@ Right join
    \N |  3
    \N |  6
 
-Cross join
+Cross Join
 -------------
 
 .. code-block:: psql
@@ -220,7 +220,7 @@ Specifying multiple comma-separated tables is equivalent to a cross join, that c
    4 |  4
    5 |  5
 
-Join hints
+Join Hints
 -------------
 
 Join hints can be used to override the query compiler and choose a particular join algorithm.
