@@ -4,14 +4,14 @@
 Joins
 ***************************
 
-Joins combine results from two or more table expressions (tables, external tables, views) to form a new result set.
+The ``JOIN`` clause combines results from two or more table expressions (tables, external tables, views) based on a related column or other condition. Performing a join outputs a new result set. For example, two tables containing one or more columns in common can be joined to match or correlate with rows from another table.
 
-The combination of these table expressions ca nbe based on a set of conditions, such as equality of columns.
+ 
 
-Joins are useful when data in tables are related. For example, when two tables contain one or more columns in common, so that rows can be matched or correlated with rows from the other table.
 
 Syntax
 ==========
+The following shows the correct syntax for creating a **join**:
 
 .. code-block:: postgres
 
@@ -29,11 +29,20 @@ Syntax
    join_hint ::=
        MERGE | LOOP
 
-Join types
+Join Types
 -------------
+The **Join Types** section describes the following join types:
+   
+* :ref:`Inner joins<inner_joins>`
+* :ref:`Left outer joins<left_outer_joins>`
+* :ref:`Right outer joins<right_outer_joins>`
+* :ref:`Cross joins<cross_joins>`
 
-Inner join
+.. _inner_joins:
+
+Inner Joins
 ^^^^^^^^^^^^
+The following shows the correct syntax for creating an **inner join**:
 
 .. code-block:: postgres
 
@@ -41,64 +50,125 @@ Inner join
    left_side [ INNER ] JOIN right_side USING ( join_column [, ... ] )
 
 
-This is the default join type.
-Rows from the ``left_side`` and ``right_side`` that match the condition are returned.
+Inner joins are the default join type and return rows from the ``left_side`` and ``right_side`` based on a matching condition.
 
-An inner join can also be specified by listing several tables in the ``FROM`` clause.
-Omitting the ``ON`` or ``WHERE`` will result in a ``CROSS JOIN``, where every row of ``left_side`` is matched with every row on ``right_side``.
+An inner join can also be specified by listing several tables in the ``FROM`` clause, as shown below:
 
-Left outer join
+.. code-block:: postgres
+
+   FROM table1, table2
+   [ { INNER JOIN
+     | LEFT [OUTER] JOIN
+     | RIGHT [OUTER] JOIN
+     | FULL [OUTER] JOIN } table2
+   ON table1.column1 = table2.column1 ]
+
+Omitting the ``ON`` or ``WHERE`` clause creates a ``CROSS JOIN``, where every ``left_side`` row is matched with every ``right_side`` row.
+
+For more information about cross joins, see :ref:`cross joins<cross_joins>` below.
+
+For an inner join example, see :ref:`Inner Join Example<inner_join_example>`.
+
+.. _left_outer_joins:
+
+Left Outer Joins
 ^^^^^^^^^^^^^^^^^^
+The following shows the correct syntax for creating an **left outer join**:
 
 .. code-block:: postgres
 
    left_side LEFT [ OUTER ] JOIN right_side ON value_expr
    left_side LEFT [ OUTER ] JOIN right_side USING ( join_column [, ... ] )
 
-Similar to the inner join - but for every row of ``left_side`` that does not match, ``NULL`` values are returned for columns on ``right_side``
+Left outer joins are similar to inner joins, except that for every ``left_side`` row without a matching condition, a ``NULL`` value is returned for the corresponding ``right_side`` column.
+
+For a left inner join example, see :ref:`Left Join Example<left_join_example>`.
 
 
-Right outer join
+.. _right_outer_joins:
+
+Right Outer Joins
 ^^^^^^^^^^^^^^^^^^^
+The following shows the correct syntax for creating an **right outer join**:
 
 .. code-block:: postgres
 
    left_side RIGHT [ OUTER ] JOIN right_side ON value_expr
    left_side RIGHT [ OUTER ] JOIN right_side USING ( join_column [, ... ] )
 
-Similar to the inner join - but for every row of ``right_side`` that does not match, ``NULL`` values are returned for columns on ``left_side``
+Right outer joins are similar to inner joins, except that for every ``right_side`` row without a matching condition, a ``NULL`` value is returned for the corresponding ``left_side`` column.
 
-Cross join
+For a right outer join example, see :ref:`Right Join Example<right_join_example>`.
+
+
+.. _cross_joins:
+
+Cross Joins
 ^^^^^^^^^^^^^
+The following shows the correct syntax for creating an **cross join**:
 
 .. code-block:: postgres
 
    left_side CROSS JOIN right_side
 
-A cartesian product - all rows match on all sides. For every row from ``left_side`` and ``right_side``, the result set will contain a row with all columns from ``left_side`` and all columns from ``right_side``. 
+Cross joins return all rows in all tables listed in a query, pairing each row in the first table with each row in the second table. A cross join is also known as a **Cartesian product**, and occurs when no relationship is defined between the two tables.
 
-The ``CROSS JOIN`` can't have an ``ON`` clause, but ``WHERE`` can be used to limit the result set.
+The ``CROSS JOIN`` clause cannot have an ``ON`` clause, but the ``WHERE`` clause can be used to limit the result set.
 
-Join conditions
---------------------------------------------------------
+The following is an example of two tables that will be used as the basis for a cross join:
 
-``ON value_expr``
-^^^^^^^^^^^^^^^^^^^^^^
+.. image:: /_static/images/joins/color_table.png
 
-The ``ON`` condition is an expression that evaluates to a boolean to identify whether the rows match.
+The following is the output result of the cross join:
 
-For example, ``ON left_side.name = right_side.name`` matches when both name columns match.
++-----------+-------------+
+| **Color** | **Size**    |
++===========+=============+
+| Red       | Small       |
++-----------+-------------+
+| Blue      | Small       |
++-----------+-------------+
+| Red       | Medium      |
++-----------+-------------+
+| Blue      | Medium      |
++-----------+-------------+
+| Red       | Large       |
++-----------+-------------+
+| Blue      | Large       |
++-----------+-------------+
+| Red       | Extra Large |
++-----------+-------------+
+| Blue      | Extra Large |
++-----------+-------------+
 
-For ``LEFT`` and ``RIGHT`` joins, the ``ON`` clause is optional. However, if it is not specified, the result is a computationally intensive ``CROSS JOIN``.
+
+For a cross join example, see :ref:`Cross Join Example<cross_join_example>`.
+
+
+
+
+
+The ON Condition
+-------------
+
+The ``ON`` condition is a value expression that generates a Boolean output to identify whether rows match.
+
+For example, the following is displayed when two name columns match:
+
+
+.. code-block:: postgres
+
+   ON left_side.name = right_side.name
+
+The ``ON`` clause is optional for ``LEFT`` and ``RIGHT`` joins. However, excluding it results in a computationally intensive cross join.
 
 .. tip:: SQream DB does not support the ``USING`` syntax. However, queries can be easily rewritten. ``left_side JOIN right_side using (name)`` is equivalent to ``ON left_side.name = right_side.name``
 
 
 
-Examples
+Join Type Examples
 =============
-
-Assume a pair of tables with the following structure and content:
+The examples in this section are based on a pair of tables with the following structure and content:
 
 .. code-block:: postgres
    
@@ -108,10 +178,11 @@ Assume a pair of tables with the following structure and content:
    CREATE TABLE right_side (x INT);
    INSERT INTO right_side VALUES (2), (3), (4), (5), (6);
 
-Inner join
-------------
+.. _inner_join_example:
 
-In inner joins, values that are not matched do not appear in the result set.
+Inner Join Example
+------------
+The following is an example of an inner join.
 
 .. code-block:: psql
 
@@ -123,10 +194,13 @@ In inner joins, values that are not matched do not appear in the result set.
    4 |  4
    5 |  5
 
-Left join
-------------
+Notice in the example above that values with no matching conditions do not appear in the result output.
 
-.. note:: Note the null values for ``1`` which were not matched. SQream DB outputs nulls last.
+.. _left_join_example:
+
+Left Join Example
+------------
+The following is an example of a left join:
 
 .. code-block:: psql
 
@@ -139,14 +213,17 @@ Left join
    5 |  5
    1 | \N
 
-Right join
-------------
+.. note:: Note the unmatched``NULL`` (``\N``) values for ``1``. SQream outputs ``NULL`` values last.
 
-.. note:: Note the null values for ``3``, ``6`` which were not matched. SQream DB outputs nulls last. 
+.. _right_join_example:
+
+Right Join Example
+------------
+The following is an example of a right join:
 
 .. code-block:: psql
 
-   t=> SELECT * FROM left_side AS l LEFT JOIN right_side AS r 
+   t=> SELECT * FROM left_side AS l RIGHT JOIN right_side AS r 
    .          ON l.x = r.x;
    x  | x0
    ---+---
@@ -156,8 +233,13 @@ Right join
    \N |  3
    \N |  6
 
-Cross join
+.. note:: Note the unmatched ``NULL`` values for ``3`` and ``6``. SQream outputs ``NULL`` values last. 
+
+.. _cross_join_example:
+
+Cross Join Example
 -------------
+The following is an example of a cross join:
 
 .. code-block:: psql
 
@@ -185,7 +267,7 @@ Cross join
    5 |  5
    5 |  6
 
-Specifying multiple comma-separated tables is equivalent to a cross join, that can then be filtered with a ``WHERE`` clause..
+Specifying multiple comma-separated tables is equivalent to a cross join, which can be filtered with a ``WHERE`` clause as shown in the following example:
 
 .. code-block:: psql
 
@@ -220,14 +302,12 @@ Specifying multiple comma-separated tables is equivalent to a cross join, that c
    4 |  4
    5 |  5
 
-Join hints
+Join Hints
 -------------
 
-Join hints can be used to override the query compiler and choose a particular join algorithm.
+**Join hints** can be used to override the query compiler and choose a particular join algorithm. The available algorithms are ``LOOP`` (corresponding to non-indexed nested loop join algorithm), and ``MERGE`` (corresponding to sort merge join algorithm). If no algorithm is specified, a loop join is performed by default.
 
-The available algorithms are ``LOOP`` (corresponding to non-indexed nested loop join algorithm), and ``MERGE`` (corresponding to sort merge join algorithm).
-
-If no algorithm is specified, a loop join is performed by default.
+The following is an example of using a join hint:
 
 .. code-block:: psql
    
@@ -244,5 +324,3 @@ If no algorithm is specified, a loop join is performed by default.
    2 |  2
    4 |  4
    5 |  5
-
-
