@@ -208,10 +208,7 @@ The ``frame_exclusion`` option allows rows around the current row to be excluded
 
 Limitations
 ==================
-
-* At this phase, text columns are not supported in window function expressions.
-
-* Window function calls are permitted only in the :ref:`select` list.
+Window functions do not support the Numeric data type.
 
 
 
