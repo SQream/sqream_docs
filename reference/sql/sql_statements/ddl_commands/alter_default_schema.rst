@@ -4,19 +4,15 @@
 ALTER DEFAULT SCHEMA
 **********************
 
-``ALTER DEFAULT SCHEMA`` can be used to change a role's default schema.
+The ``ALTER DEFAULT SCHEMA`` command can be used to change a role's default schema. The default schema in SQream is ``public``.
 
-The default schema in SQream DB is ``public``.
+For more information, see :ref:`create_schema` and :ref:`drop_schema`.
 
-See also: :ref:`create_schema`, :ref:`drop_schema`.
 
-Permissions
-=============
-
-No special permissions are required
 
 Syntax
 ==========
+The following is the correct syntax for altering a default schema:
 
 .. code-block:: postgres
 
@@ -32,6 +28,7 @@ Syntax
 
 Parameters
 ============
+The following parameters can be used when altering a default schema:
 
 .. list-table:: 
    :widths: auto
@@ -43,12 +40,14 @@ Parameters
      - The name of the role the change will apply to.
    * - ``schema_name``
      - The new default schema name.
+	 
+Permissions
+=============
+No special permissions are required.
 
 Examples
 ===========
-
-Altering the default schema for a role
------------------------------------------
+This section includes an example of **altering the default schema for a role**:
 
 .. code-block:: postgres
 
