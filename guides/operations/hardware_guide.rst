@@ -44,7 +44,7 @@ An average single-node cluster can be a rackmount server or workstation, contain
    * - Processor
      - 2x Intel Xeon Gold 6240 (18C/36HT) 2.6GHz
    * - RAM
-     - 512 GB
+     - 512 GB - 1 TB
    * - Onboard storage
      - 
          * 2x 960GB SSD 2.5in Hot-plug for OS, RAID1
