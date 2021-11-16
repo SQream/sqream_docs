@@ -12,10 +12,10 @@ It can be used to run statements, manage roles and permissions, and manage a SQr
    :local:
 
 
-Setting up and starting the studio
+Setting up and Starting Studio
 ====================================================
 
-The studio is included with all :ref:`dockerized installations of SQream DB<installing_sqream_db_docker>`.
+Studio is included with all :ref:`dockerized installations of SQream DB<installing_sqream_db_docker>`.
 
 .. todo: How to start it?
 .. You can start the studio using :ref:`sqream-console<start_editor>`:
@@ -27,7 +27,7 @@ The studio is included with all :ref:`dockerized installations of SQream DB<inst
 
 When starting the studio, it listens on the local machine, on port 8080.
 
-Logging in
+Logging In
 ===================
 
 Open a browser to the host, on port 8080. (e.g. If the machine is ``196.168.0.100``, navigate to http://192.168.0.100:8080) .
@@ -38,16 +38,16 @@ Fill in your login details for SQream DB. These are the same credentials you mig
 
 Your user level in SQream DB changes what you see.
 
-* ``SUPERUSER`` levels have full access to the studio, including the :ref:`Dashboard<studio_dashboard>`.
+* ``SUPERUSER`` levels have full access to the studio.
 
 * All users have access to the :ref:`Editor<studio_editor>`, and can only see databases they have permissions for.
 
 .. _studio_editor:
 
-Statement editor
+Statement Editor
 =================
 
-Familiarizing yourself with the editor
+Familiarizing Yourself with the Editor
 -----------------------------------------
 
 The editor is built up of main panes.
@@ -64,7 +64,7 @@ The editor is built up of main panes.
 
 See more about each pane below:
 
-Navigation and user information
+Navigation and User Information
 -------------------------------------
 
 The user information menu is located on the bottom left portion of the screen |icon-user|.
@@ -102,7 +102,7 @@ In the toolbar, you can perform the folllowing operations (from left to right):
 
 .. _studio_editor_statement_area:
 
-Statement area
+Statement Area
 ----------------
 
 The multi-tabbed statement area is where you write queries and statements.
@@ -140,22 +140,22 @@ To close all tabs, click :kbd:`Close all`, to the right of the tabs.
 .. _studio_editor_results:
 
 
-Formatting your SQL
+Formatting Your SQL
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The |icon-format-sql| button can be used to automatically indent and reformat your SQL statements.
 
-Saving statements
+Saving Statements
 ^^^^^^^^^^^^^^^^^^^^^
 
 The |icon-download-query| saves the tab contents to your computer.
 
-Loading SQL to a tab
+Loading SQL to a Tab
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 The |icon-open-query| button loads a local file from your computer into a new editor tab.
 
-Executing SQL statements
+Executing SQL Statements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Clicking |icon-execute| will execute statements from the active tab.
@@ -191,12 +191,12 @@ To close all tabs, click :kbd:`Close all`, to the right of the tabs.
    :local:
 
 
-Sorting results
+Sorting Results
 ^^^^^^^^^^^^^^^^^^^^^^
 
 After the results have appeared, sort them by clicking the column name.
 
-Viewing execution information
+Viewing Execution Information
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 During query execution the time elapsed is tracked in seconds.
@@ -210,7 +210,7 @@ Query results can be saved to a clipboard (for pasting into another text editor)
 
 .. _studio_editor_db_tree:
 
-Database tree
+Database Tree
 ---------------
 
 The database tree shows the database objects (e.g. tables, columns, views), as well as some metadata like row counts.
@@ -234,63 +234,63 @@ Clicking on the :kbd:`System queries` tab in the Tree section will show a list o
 Clicking on an item will paste the query into the editing area.
 
 
-Filtering (searching) for objects
+Filtering (Searching) for Objects
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Clicking the |icon-filter| filter icon by columns or tables opens an editable field that can be used for searching.
 
 To remove the filter, click the icon again or select ❌.
 
-Copying object names
+Copying Object Names
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Clicking the |icon-copy| icon will copy the object name
 
-Generating SELECT statements
+Generating SELECT Statements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Clicking the |icon-select| icon will generate a :ref:`select` query for the selected table in the editing area.
 
-Generating an INSERT statement
+Generating an INSERT Statement
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Clicking the :kbd:`Insert statement` option under the :kbd:`⋮` menu generates an :ref:`insert` statement for the selected table in the editing area.
 
-Generating a DELETE statement
+Generating a DELETE Statement
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Clicking the :kbd:`Delete statement` option under the :kbd:`⋮` menu generates a :ref:`delete` statement for the selected table in the editing area.
 
-Generating a CREATE TABLE AS statement
+Generating a CREATE TABLE AS Statement
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Clicking the :kbd:`Create table as` option under the :kbd:`⋮` menu generates a :ref:`create_table_as` statement for the selected table in the editing area.
 
-Renaming a table
+Renaming a Table
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Clicking the :kbd:`Rename table` option under the :kbd:`⋮` menu generates an :ref:`alter_table` statement for renaming the selected table in the editing area.
 
 
-Adding columns to table
+Adding Columns to a Table
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Clicking the :kbd:`Add column` option under the :kbd:`⋮` menu generates an :ref:`alter_table` statement for adding columns to the selected table in the editing area.
 
-Truncate a table
+Truncate a Table
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Clicking the :kbd:`Truncate table` option under the :kbd:`⋮` menu generates a :ref:`truncate` statement for the selected table in the 
 editing area.
 
 
-Dropping an object
+Dropping an Object
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Clicking the :kbd:`Drop table`, :kbd:`Drop view`, or :kbd:`Drop function` option under the :kbd:`⋮` menu generates a ``DROP`` statement for the selected object in the editing area.
 
 
-Generating DDL statements
+Generating DDL Statements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Clicking the :kbd:`Table DDL`, :kbd:`View DDL`, or :kbd:`Function function` option under the :kbd:`⋮` menu generates a DDL  statement for the selected object in the editing area.
@@ -298,12 +298,12 @@ Clicking the :kbd:`Table DDL`, :kbd:`View DDL`, or :kbd:`Function function` opti
 To get the entire database DDL, click the |icon-ddl-edit| icon next to the database name in the tree root.
 See also :ref:`seeing_system_objects_as_sql`.
 
-The DDL optimizer
+The DDL Optimizer
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The DDL optimizer tab analyzes database tables and recommends possible optimizations, per the :ref:`sql_best_practices` guide.
 
-Using the DDL optimizer
+Using the DDL Optimizer
 ---------------------------
 
 Navigate to the DDL optimizer module by selecting :kbd:`DDL Optimizer` from the :kbd:`⋮` ("More") menu.
@@ -318,7 +318,7 @@ Navigate to the DDL optimizer module by selecting :kbd:`DDL Optimizer` from the 
 
 Click :kbd:`Run Optimizer` to start the optimization process.
 
-Analyzing the results
+Analyzing the Results
 ----------------------------
 
 When results are produced, a :kbd:`Generate CREATE statement` button will appear.
@@ -326,178 +326,6 @@ Clicking the button creates a new tab with an optimized :ref:`create_table` stat
 
 
 .. _studio_dashboard:
-
-Administration Dashboard
-==============================
-
-If you signed in with a ``SUPERUSER`` role, you can enter the administration dashboard.
-
-Enter the administration dashboard by clicking the |icon-dashboard| icon in the navigation bar.
-
-
-
-Familiarizing yourself with the dashboard
----------------------------------------------
-
-.. image:: /_static/images/studio_dashboard_familiarize.png
-
-The main dashboard screen contains two main panes:
-
-* 
-   :ref:`Data storage pane<administration_storage_pane>` - monitor the SQream DB cluster's storage
-
-   - can be expanded to :ref:`drill down into database storage<administration_storage_database>`
-
-* 
-   :ref:`Worker pane<administration_worker_pane>` - monitor system health
-   
-   - the worker pane used to monitor workers and :ref:`service queues<workload_manager>` in the cluster.
-
-.. _administration_storage_pane:
-
-Data storage pane
------------------------
-
-The left section of the Admin Dashboard shows you the status of your system's storage as a donut.
-
-.. image:: /_static/images/studio_dashboard_storage.png
-
-Storage is displayed broken up into four components:
-
-* Data – Storage occupied by databases in SQream DB
-
-* Free – Free storage space
-
-* 
-   Deleted – Storage that is temporarily occupied but hasn't been reclaimed (see our :ref:`delete guide<delete_guide>` to understand how data deletion works). 
-   
-   (This value is estimated and may not be accurate)
-   
-* Other – Storage used by other applications. On a dedicated SQream DB cluster, this should be close to zero.
-
-.. _administration_storage_database:
-
-Database storage
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Expanding the storage pane (|icon-expand|) will show a breakdown of how much storage is used by each database in the cluster.
-
-.. image:: /_static/images/studio_dashboard_storage_breakdown.png
-
-This can be used to drill down into each database's storage footprint.
-
-Databases are displayed in a table, containing the following information:
-* Database name
-* Raw storage size – the estimated size of raw data (uncompressed) in the database
-* Storage size – the physical size of the compressed data
-* Ratio – effective compression ratio
-* Deleted data – storage that is temporarily occupied but hasn't been reclaimed (see our :ref:`delete guide<delete_guide>` to understand how data deletion works). (This value is estimated and may not be accurate)
-
-Below the table, a graph shows the database storage trends.
-
-By default, the graph shows the total storage for all databases. Clicking a database in the table will filter to show just that database.
-
-The scale of the presented information can be controlled by changing the timeframe in the scale dropdown (|icon-scale|).
-
-.. _administration_worker_pane:
-
-Service and workers pane
---------------------------
-
-This pane shows the cluster status in workers and their :ref:`service queues<workload_manager>`.
-
-.. _administration_services:
-
-Services
-^^^^^^^^^^^
-
-The services bar shows the defined :ref:`service queues<workload_manager>`.
-
-Services are used to divide workers and associate (subscribe) workers to services.
-
-Each service queue contains the following details:
-* Service name
-* A graph of load over time (statements in that queue)
-* Currently processed queries of the Service / total queries for that service in the system (including queued queries)
-
-Creating new service queues
-********************************
-
-Click the |icon-add| button above the service list. Type the service queue name and associate new workers to the service queue.
-
-.. note:: if you choose not to associate a worker with the new service, it will not be created.
-
-Associating a worker with an existing service
-**********************************************
-
-Clicking on the |icon-add-worker| icon on a service name is used to attach workers to a service.
-
-Clicking on a service queue in the services bar will display the list of workers in the main pane.
-
-.. image:: /_static/images/studio_dashboard_services.png
-
-In this mode, the :kbd:`⋮` icon (more menu) can be used to detach a worker from a service.
-
-You can select a Worker from the list that is available to process queries of the relevant Service and by clicking on the  button of that Worker that Worker will be associated with the Service. After that the page will go back to its normal layout and you will be able to click the Service and see the Worker associated with the Service.
-Other Services associated with that Worker will remain associated to it.
-
-
-.. _administration_workers:
-
-Workers
-^^^^^^^^^^^^^
-
-The worker pane shows each worker (``sqreamd``) running in the cluster. 
-
-Each worker has a status bar that represents the status over time. The scale of the presented information can be controlled by changing the timeframe in the scale dropdown (|icon-scale|).
-
-The status bar is divided into 20 equal sections, showing the most dominant activity in that slice. Hover over the status bar sections to see the activity:
-
-* Idle – worker is idle and available for statements
-* Compiling – Compiling a statement, in preparation for execution
-* Executing – executing a statement after compilation
-* Stopped – worker was stopped (either deliberately or due to a fault)
-* Waiting – worker was waiting on an object locked by another worker
-
-Show host resources
-*****************************
-
-Clicking the |icon-expand-down| button below each host will expand to show the host resource utilization.
-
-.. image:: /_static/images/studio_worker_activity.png
-
-The host resource utilization includes information about:
-
-* CPU utilization
-* Memory utilization
-* GPU utilization
-
-Graphs show resource utilization over time. Current values are shown on the right.
-
-Hover over the graph line to see the activity at a given time.
-
-
-Active queries
-******************
-
-Clicking the |icon-expand-down| button on a worker will expand to show the active statements running.
-
-Each statement has a statement ID, status, service queue, elapsed time, execution time, and estimated completion status.
-
-Each statement can be stopped or expanded to show its execution plan and progress (:ref:`show_node_info`).
-
-.. include:: /reference/sql/sql_statements/monitoring_commands/show_server_status.rst
-   :start-line: 67
-   :end-line: 84
-
-Control worker status (start, stop, restart)
-****************************************************
-
-In some cases, it may be useful to stop or restart workers for maintenance.
-
-Each Worker line has a :kbd:`⋮` menu (more menu). This menu allows stopping, starting, or restarting workers.
-
-When a worker is stopped, it has a gray background and its status is "Stopped". 
 
 
 
