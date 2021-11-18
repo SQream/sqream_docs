@@ -341,8 +341,6 @@ The license information section shows the following:
  * The amount of time in days remaining on the license.
  * The license storage capacity.
  
-.. image:: /_static/images/license_storage_capacity.png
-
 :ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_5.4.2>`
 
 :ref:`Back to Navigating Studio’s Main Features<top1_5.4.2>`
