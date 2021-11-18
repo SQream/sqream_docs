@@ -254,7 +254,7 @@ The following is the correct syntax for a catalog table query:
 
 .. code-block:: console
    
-   SELECT * FROM sqream_catalog.settings
+   SELECT * FROM sqream_catalog.parameters
 
 The following is an example of a catalog table query:
 
