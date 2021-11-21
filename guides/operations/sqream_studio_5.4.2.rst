@@ -99,6 +99,9 @@ The **Dashboard** is used for the following:
 * Viewing, monitoring, and adding defined service queues.
 * Viewing and managing worker status and add workers.
 
+The following is an image of the Dashboard:
+
+.. image:: /_static/images/dashboard.png
 
 You can only access the Dashboard if you signed in with a ``SUPERUSER`` role.
 
@@ -340,6 +343,9 @@ The license information section shows the following:
 
  * The amount of time in days remaining on the license.
  * The license storage capacity.
+ 
+.. image:: /_static/images/license_storage_capacity.png
+
  
 :ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_5.4.2>`
 
