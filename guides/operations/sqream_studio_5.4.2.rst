@@ -223,7 +223,7 @@ While viewing a worker's query information, clicking the **down arrow** expands 
 
 The graphs show the resource utilization trends over time, and the **CPU memory** and **utilization** and the **GPU utilization** values on the right. You can hover over the graph to see more information about the activity at any point on the graph.
 
-Error notifications related to statements are displayed as shown in the figure below, and you can hover over them for more information about the error. 
+Error notifications related to statements are displayed, and you can hover over them for more information about the error. 
 
 
 .. _view_worker_execution_plan_5.4.2:
@@ -507,7 +507,7 @@ The following table describes the DDL Optimizer screen:
    * - Run Optimizer
      - Starts the optimization process.
 
-Clicking **Run Optimizer** adds a tab to the Statement panel showing the optimized results of the selected object. The figure below shows the **calcs Optimized** tab for the optimized **calcs** table.
+Clicking **Run Optimizer** adds a tab to the Statement panel showing the optimized results of the selected object.
 
 For more information, see `Optimization and Best Practices <https://docs.sqream.com/en/latest/guides/operations/optimization_best_practices.html>`_.
 
