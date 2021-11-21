@@ -507,7 +507,7 @@ The following table describes the DDL Optimizer screen:
    * - Run Optimizer
      - Starts the optimization process.
 
-Clicking **Run Optimizer** adds a tab to the Statement panel showing the optimized results of the selected object. The figure below shows the **calcs Optimized** tab for the optimized **calcs** table.
+Clicking **Run Optimizer** adds a tab to the Statement panel showing the optimized results of the selected object.
 
 For more information, see `Optimization and Best Practices <https://docs.sqream.com/en/latest/guides/operations/optimization_best_practices.html>`_.
 
