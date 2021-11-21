@@ -50,7 +50,7 @@ Read more about :ref:`supported data types<data_types>`.
    * - ``VARCHAR``
      - ✓
      - Variable length string - ASCII only
-   * - ``TEXT``, ``NVARCHAR``
+   * - ``TEXT``
      - ✓
      - Variable length string - UTF-8 encoded
    * - ``DATE``
