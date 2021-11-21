@@ -29,10 +29,10 @@ Improvements
 * SQream DB CLI’s history can be disabled, by passing ``./ClientCmd --no-history``
 
 
-Behaviour changes
+Behaviour Changes
 =====================
 
-* SQream DB no longer applies an implicit cast from a long text column to a shorter text column (``VARCHAR``/``NVARCHAR``). This means some ``INSERT``/``COPY`` operations will now error instead of truncating the text. This is intended to prevent accidental truncation of text columns. If you want the old truncation behaviour, you can use the ``SUBSTRING`` function to truncate the text.
+* SQream DB no longer applies an implicit cast from a long text column to a shorter text column (``VARCHAR``/``TEXT``). This means some ``INSERT``/``COPY`` operations will now error instead of truncating the text. This is intended to prevent accidental truncation of text columns. If you want the old truncation behaviour, you can use the ``SUBSTRING`` function to truncate the text.
 
 
 Operations
@@ -45,20 +45,20 @@ Operations
 * When upgrading from SQream DB v3.2 or lower, the storage version must be upgraded using the :ref:`upgrade_storage_cli_reference` utility: ``./bin/upgrade_storage /path/to/storage/sqreamdb/``
 
 
-Known Issues & Limitations
+Known Issues and Limitations
 ===================================
 
-* NVARCHAR columns cannot be used as a ``GROUP BY`` key when there are multiple ``COUNT (DISTINCT …)`` operations in a query
+* TEXT columns cannot be used as a ``GROUP BY`` key when there are multiple ``COUNT (DISTINCT …)`` operations in a query
 
-* NVARCHAR columns cannot be used in a statement containing window functions
+* TEXT columns cannot be used in a statement containing window functions
 
-* NVARCHAR is not supported as a join key
+* TEXT is not supported as a join key
 
-* The following functions are not supported on ``NVARCHAR`` column types: ``chr``, ``min``, ``max``, ``patindex``, ``to_binary``, ``to_hex``, ``rlike``, ``regexp_count``, ``regexp_instr``, ``regexp_substr``
+* The following functions are not supported on ``TEXT`` column types: ``chr``, ``min``, ``max``, ``patindex``, ``to_binary``, ``to_hex``, ``rlike``, ``regexp_count``, ``regexp_instr``, ``regexp_substr``
 
-* SQream DB dashboard: Only works with a HA clustered installation
+* SQream Dashboard: Only works with a HA clustered installation
 
-* SQream DB editor: External tables and UDFs don’t appear in the DB Tree but do appear in the relevant sqream_catalog entries.
+* SQream Editor: External tables and UDFs don’t appear in the DB Tree but do appear in the relevant sqream_catalog entries.
 
 
 Fixes
@@ -68,7 +68,7 @@ Fixes
 
 * Variety of performance improvements:
 
-* Improved performance of ``NVARCHAR`` by up to 315% for a variety of scenarios, including ``COPY FROM``, ``INNER JOIN``, ``LEFT JOIN``.
+* Improved performance of ``TEXT`` by up to 315% for a variety of scenarios, including ``COPY FROM``, ``INNER JOIN``, ``LEFT JOIN``.
 
 * Improved load performance from previous versions
 

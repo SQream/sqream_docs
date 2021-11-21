@@ -125,7 +125,7 @@ Prepare the source Parquet files, with the following requirements:
 
 .. rubric:: Footnotes
 
-.. [#f0] Text values include ``TEXT``, ``VARCHAR``, and ``NVARCHAR``
+.. [#f0] Text values include ``TEXT`` and ``VARCHAR``.
 
 .. [#f2] With UTF8 annotation
 

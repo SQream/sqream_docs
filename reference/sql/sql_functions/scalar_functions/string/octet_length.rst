@@ -16,7 +16,7 @@ Calculates the number of bytes in a string.
 
 Syntax
 ==========
-
+The following is the correct syntax for the ``OCTET_LENGTH`` function:
 
 .. code-block:: postgres
 
@@ -24,6 +24,7 @@ Syntax
 
 Arguments
 ============
+The following table describes the ``OCTET_LENGTH`` arguments:
 
 .. list-table:: 
    :widths: auto
@@ -36,33 +37,29 @@ Arguments
 
 Returns
 ============
-
-Returns an integer containing the number of bytes in the string.
+The ``OCTET_LENGTH`` function returns an integer containing the number of bytes in the string.
 
 Notes
 =======
+The following notes are applicable to the ``OCTET_LENGTH`` function:
 
 * To get the length in characters, see :ref:`char_length`
 
 * If the value is NULL, the result is NULL.
 
-Examples
+Length in Characters and Bytes of Strings
 ===========
-
-For these examples, consider the following table and contents:
+The **Length in characters and bytes of strings** example is based on the following table and contents:
 
 .. code-block:: postgres
    
-   CREATE TABLE alphabets(line NVARCHAR(50));
+   CREATE TABLE alphabets(line TEXT(50));
    
    INSERT INTO alphabets VALUES 
       ('abcdefghijklmnopqrstuvwxyz'), ('กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯ')
       , ('אבגדהוזחטיכלמנסעפצקרשת');
 
-Length in characters and bytes of strings
---------------------------------------------------
-
-ASCII characters take up 1 byte per character, while Thai takes up 3 bytes and Hebrew takes up 2 bytes.
+ASCII characters take up 1 byte per character, while Thai takes up 3 bytes and Hebrew takes up 2 bytes, as shown below:
 
 .. code-block:: psql
 
@@ -72,6 +69,3 @@ ASCII characters take up 1 byte per character, while Thai takes up 3 bytes and H
     26 |          26 |           26
     47 |          47 |          141
     22 |          22 |           44
-
-
-

@@ -145,7 +145,7 @@ Prepare the source ORC files, with the following requirements:
 
 .. rubric:: Footnotes
 
-.. [#f0] Text values include ``TEXT``, ``VARCHAR``, and ``NVARCHAR``
+.. [#f0] Text values include ``TEXT`` and ``VARCHAR``.
 
 .. [#f5] Boolean values are cast to 0, 1
 

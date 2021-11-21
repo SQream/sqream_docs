@@ -10,7 +10,7 @@ This guide covers actions required for migrating from Oracle to SQream DB with C
    :local:
 
 
-1. Preparing the tools and login information
+1. Preparing Your Tools and Login Information
 ====================================================
 
 * Migrating data from Oracle requires a username and password for your Oracle system.
@@ -18,7 +18,7 @@ This guide covers actions required for migrating from Oracle to SQream DB with C
 * In this guide, we'll use the `Oracle Data Pump <https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-data-pump.html>`_ , specifically the `Data Pump Export utility <https://docs.oracle.com/en/database/oracle/oracle-database/19/sutil/oracle-data-pump-export-utility.html>`_ .
 
 
-2. Export the desired schema
+2. Exporting Your Schema
 ===================================
 
 Use the Data Pump Export utility to export the database schema.
@@ -33,16 +33,18 @@ The resulting Oracle-only schema is stored in a dump file.
 Examples
 ------------
 
-Dump all tables
+Dump All Tables
 ^^^^^^^^^^^^^^^^^^^^^^
+The following shows the correct syntax for dumping all tables:
 
 .. code-block:: console
 
    $ expdp rhendricks/secretpassword DIRECTORY=dpumpdir DUMPFILE=tables.dmp CONTENT=metadata_only NOLOGFILE
 
 
-Dump only specific tables
+Dumping Specific Tables
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The following shows the correct syntax for dumping specific tables:
 
 In this example, we specify two tables for dumping.
 
@@ -50,12 +52,12 @@ In this example, we specify two tables for dumping.
 
    $ expdp rhendricks/secretpassword DIRECTORY=dpumpdir DUMPFILE=tables.dmp CONTENT=metadata_only TABLES=employees,jobs NOLOGFILE
 
-3. Convert the Oracle dump to standard SQL
+3. Converting the Oracle Dump to Standard SQL
 =======================================================
 
-Oracle's Data Pump Import utility will help us convert the dump from the previous step to standard SQL.
+Oracle's Data Pump Import utility helps convert the dump from the previous step to standard SQL.
 
-The format for using the Import utility is
+The following is the correct Import utility format:
 
    ``impdp <user>/<password> DIRECTORY=<directory> DUMPFILE=<dump file> SQLFILE=<sql file> TRANSFORM=SEGMENT_ATTRIBUTES:N:table PARTITION_OPTIONS=MERGE``
 
@@ -65,33 +67,34 @@ The format for using the Import utility is
 
 Example
 ----------
+The following shows the correct syntax for converting the Oracle dump to standard SQL:
 
 .. code-block:: console
    
    $ impdp rhendricks/secretpassword DIRECTORY=dpumpdir DUMPFILE=tables.dmp SQLFILE=sql_export.sql TRANSFORM=SEGMENT_ATTRIBUTES:N:table PARTITION_OPTIONS=MERGE
 
-4. Figure out the database structures
+4. Identify Database Structures
 ===============================================
 
-Using the SQL file created in the previous step, write CREATE TABLE statements to match the schemas of the tables.
+Using the SQL file created in the previous step, write ``CREATE TABLE`` statements to match the schemas of the tables.
 
-Remove unsupported attributes
+Removing Unsupported Attributes
 -----------------------------------
 
 Trim unsupported primary keys, indexes, constraints, and other unsupported Oracle attributes.
 
-Match data types
+Matching Data Types
 ---------------------
 
-Refer to the table below to match the Oracle source data type to a new SQream DB type:
+Refer to the table below to match the Oracle source data type to a new SQream type:
 
-.. list-table:: Data types
+.. list-table:: Data Types
    :widths: auto
    :header-rows: 1
    
-   * - Oracle Data type
+   * - Oracle Data Type
      - Precision
-     - SQream DB data type
+     - SQream Data Type
    * - ``CHAR(n)``, ``CHARACTER(n)``
      - Any ``n``
      - ``VARCHAR(n)``
@@ -141,8 +144,9 @@ Refer to the table below to match the Oracle source data type to a new SQream DB
 
 Read more about :ref:`supported data types in SQream DB<data_types>`.
 
-Additional considerations
+Additional Considerations
 -----------------------------
+Note the following when migrating from Oracle to SQream using CSV files:
 
 * Understand how :ref:`tables are created in SQream DB<create_table>`
 
@@ -150,16 +154,13 @@ Additional considerations
 
 * Oracle roles and user management commands need to be rewritten to SQream DB's format. SQream DB supports :ref:`full role-based access control (RBAC)<access_control>` similar to Oracle.
 
-5. Create the tables in SQream DB
+5. Creating the Tables in SQream
 ======================================
-
-After rewriting the table strucutres, create them in SQream DB.
+After rewriting the table strucutres, you can create them in SQream.
 
 Example
 ---------
-
-
-Consider Oracle's ``HR.EMPLOYEES`` sample table:
+The following example of creating a table in SQream is based on Oracle's ``HR.EMPLOYEES`` sample table:
 
 .. code-block:: sql
 
@@ -201,7 +202,7 @@ Consider Oracle's ``HR.EMPLOYEES`` sample table:
          REFERENCES employees
          ) ;
 
-This table rewritten for SQream DB would be created like this:
+This table is rewritten for SQream as follows:
 
 .. code-block:: postgres
    
@@ -221,20 +222,18 @@ This table rewritten for SQream DB would be created like this:
    );
 
 
-6. Export tables to CSVs
+6. Exporting Tables to CSV Files
 ===============================
 
-Exporting CSVs from Oracle servers is not a trivial task.
+The following options can be used for exporting tables to CSV files:
 
-.. contents:: Options for exporting to CSVs
+.. contents:: 
    :local:
 
-Using SQL*Plus to export data lists
+Using SQL*Plus to Export Data Lists
 ------------------------------------------
 
-Here's a sample SQL*Plus script that will export PSVs in a format that SQream DB can read:
-
-:download:`Download to_csv.sql <to_csv.sql>`
+The following is a :download:`sample SQL*Plus script <to_csv.sql>` for exporting PSVs in a SQream readable format:
 
 .. literalinclude:: to_csv.sql
     :language: sql
@@ -254,14 +253,14 @@ Enter SQL*Plus and export tables one-by-one interactively:
 
 Each table is exported as a data list file (``.lst``).
 
-Creating CSVs using stored procedures
+Creating CSVs Using Stored Procedures
 -------------------------------------------
 
-You can use stored procedures if you have them set-up.
+You can use stored procedures if they have been set-up.
 
 Examples of `stored procedures for generating CSVs <https://asktom.oracle.com/pls/apex/asktom.search?tag=automate-the-generation-of-sql-query-output-to-csv>`_` can be found in the Ask The Oracle Mentors forums.
 
-CSV generation considerations
+CSV Generation Considerations
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Files should be a valid CSV. By default, SQream DB's CSV parser can handle `RFC 4180 standard CSVs <https://tools.ietf.org/html/rfc4180>`_ , but can also be modified to support non-standard CSVs (with multi-character delimiters, unquoted fields, etc).
@@ -293,7 +292,7 @@ CSV generation considerations
    .. note:: If a text field is quoted but contains no content (``""``) it is considered an empty text field. It is not considered ``NULL``.
 
 
-7. Place CSVs where SQream DB workers can access
+7. Storing CSV Files in a SQream Worker Accessible Location
 =======================================================
 
 During data load, the :ref:`copy_from` command can run on any worker (unless explicitly speficied with the :ref:`workload_manager`).
@@ -305,7 +304,7 @@ It is important that every node has the same view of the storage being used - me
 
 * For S3, ensure network access to the S3 endpoint
 
-8. Bulk load the CSVs
+8. Bulk Load CSV Files
 =================================
 
 Issue the :ref:`copy_from` commands to SQream DB to insert a table from the CSVs created.
@@ -314,21 +313,18 @@ Repeat the ``COPY FROM`` command for each table exported from Oracle.
 
 Example
 -------------
-
-For the ``employees`` table, run the following command:
+The following shows the correct syntax of bulk loading CSV files based on the ``employees`` table:
 
 .. code-block:: postgres
    
    COPY employees FROM 'employees.lst' WITH DELIMITER '|';
 
-9. Rewrite Oracle queries
+9. Rewriting Oracle Queries
 =====================================
 
-SQream DB supports a large subset of ANSI SQL.
+SQream supports a large subset of ANSI SQL. You must refactor much of Oracle's SQL and functions that often are not ANSI SQL. 
 
-You will have to refactor much of Oracle's SQL and functions that often are not ANSI SQL. 
-
-We recommend the following resources:
+SQream recommends the following resources:
 
 * :ref:`sql_feature_support` - to understand SQream DB's SQL feature support.
 
