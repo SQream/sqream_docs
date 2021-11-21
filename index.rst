@@ -1,7 +1,7 @@
 .. _index:
 
 ***********************
-SQream DB documentation
+SQream Documentation
 ***********************
 
 .. only:: html

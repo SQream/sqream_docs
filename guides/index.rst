@@ -14,7 +14,7 @@ This section has concept and features guides, and task focused guides.
 
 * :ref:`Client drivers for SQream DB<client_drivers>`
 
-Full list of guides
+Full List of Guides
 =========================
 
 .. toctree::
