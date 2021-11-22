@@ -51,7 +51,7 @@ String Literals Containing ASCII Characters Interepreted as TEXT
 ************
 SQream now interprets all string literals, including those containing ASCII characters, as ``text``.
 
-For more information, see `String Types <https://docs.sqream.com/en/v2021.1/reference/sql_data_types.html>`_.
+For more information, see `String Types <https://docs.sqream.com/en/latest/reference/sql_data_types.html#string-types>`_.
 
 
 
@@ -287,7 +287,7 @@ The following list describes the resolved issues:
 * The ``internal runtime error`` type doesn't have a fixed size when doing max on text on develop.
 * The ``min`` and ``max`` on ``TEXT`` were significantly slower than ``varchar``. This was fixed.
 * Running ``regexp_instr`` generated an empty regular expression. This was fixed.
-* Schemas with external tables could be dropped. This was fixed.
+* Schemas with foreign tables could be dropped. This was fixed.
 
 
 
@@ -331,7 +331,7 @@ Known Issues and Limitations
 --------
 The the list below describes the following known issues and limitations:
 
-* In cases when selecting top 1 from external table using the Parquet format with an hdfs path, SQream experienced an error.
+* In cases when selecting top 1 from foreign table using the Parquet format with an hdfs path, SQream experienced an error.
 * Internal Runtime Error occurred when SQream was unable to find column in reorder columns.
 * Casting datetime to text truncates the time segment.
 * In the **select** list, the compiler generates an error when a count is used as an alias.	
