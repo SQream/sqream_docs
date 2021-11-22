@@ -7,7 +7,7 @@ Insert from ORC
 This guide covers inserting data from ORC files into SQream DB using :ref:`FOREIGN TABLE<external_tables>`.
 
 
-1. Prepare the files
+1. Preparing Your Files
 =====================
 
 Prepare the source ORC files, with the following requirements:
@@ -145,7 +145,7 @@ Prepare the source ORC files, with the following requirements:
 
 .. rubric:: Footnotes
 
-.. [#f0] Text values include ``TEXT``, ``VARCHAR``, and ``NVARCHAR``
+.. [#f0] Text values include ``TEXT`` and ``VARCHAR``.
 
 .. [#f5] Boolean values are cast to 0, 1
 
@@ -153,7 +153,7 @@ Prepare the source ORC files, with the following requirements:
 
 .. [#f7] Will succeed if all values fit the destination type
 
-2. Place ORC files where SQream DB workers can access them
+2. Storing CSV Files in a SQream Worker Accessible Location
 ================================================================
 
 Any worker may try to access files (unless explicitly speficied with the :ref:`workload_manager`).
@@ -165,7 +165,7 @@ It is important that every node has the same view of the storage being used - me
 
 * For S3, ensure network access to the S3 endpoint. See our :ref:`s3` guide for more information.
 
-3. Figure out the table structure
+3. Determining Your Table Structure
 ===============================================
 
 Prior to loading data, you will need to write out the table structure, so that it matches the file structure.
@@ -209,7 +209,7 @@ We will make note of the file structure to create a matching ``CREATE FOREIGN TA
    If the column type isn't supported, a possible workaround is to set it to any arbitrary type and then exclude it from subsequent queries.
 
 
-4. Verify table contents
+4. Verify Your Table of Contents
 ====================================
 
 External tables do not verify file integrity or structure, so verify that the table definition matches up and contains the correct data.
@@ -232,7 +232,7 @@ External tables do not verify file integrity or structure, so verify that the ta
 
 If any errors show up at this stage, verify the structure of the ORC files and match them to the external table structure you created.
 
-5. Copying data into SQream DB
+5. Copying Your Data into SQream
 ===================================
 
 To load the data into SQream DB, use the :ref:`create_table_as` statement:
@@ -242,7 +242,7 @@ To load the data into SQream DB, use the :ref:`create_table_as` statement:
    CREATE TABLE nba AS
       SELECT * FROM ext_nba;
 
-Working around unsupported column types
+Working Around Unsupported Column Types
 ---------------------------------------------
 
 Suppose you only want to load some of the columns - for example, if one of the columns isn't supported.
@@ -259,7 +259,7 @@ For this example, assume that the ``Position`` column isn't supported because of
    -- We ommitted the unsupported column `Position` from this query, and replaced it with a default ``NULL`` value, to maintain the same table structure.
 
 
-Modifying data during the copy process
+Modifying Data During the Copy Process
 ------------------------------------------
 
 One of the main reasons for staging data with ``EXTERNAL TABLE`` is to examine the contents and modify them before loading them.
@@ -276,13 +276,13 @@ Similar to the previous example, we will also set the ``Position`` column as a d
               ORDER BY weight;
 
 
-Further ORC loading examples
+Additional ORC Loading Examples
 =======================================
 
 :ref:`create_foreign_table` contains several configuration options. See more in :ref:`the CREATE FOREIGN TABLE parameters section<cft_parameters>`.
 
 
-Loading a table from a directory of ORC files on HDFS
+Loading a Table from a Directory of ORC Files on HDFS
 ------------------------------------------------------------
 
 .. code-block:: postgres
@@ -297,7 +297,7 @@ Loading a table from a directory of ORC files on HDFS
    
    CREATE TABLE users AS SELECT * FROM ext_users;
 
-Loading a table from a bucket of files on S3
+Loading a Table from a Bucket of Files on S3
 -----------------------------------------------
 
 .. code-block:: postgres
