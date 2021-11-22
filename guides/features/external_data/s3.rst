@@ -4,58 +4,63 @@
 Amazon S3
 ***********************
 
-SQream DB has a native S3 connector for inserting data. The ``s3://`` URI specifies an external file path on an S3 bucket.
+SQream uses a native S3 connector for inserting data. The ``s3://`` URI specifies an external file path on an S3 bucket. File names may contain wildcard characters, and the files can be in CSV or columnar format, such as Parquet and ORC.
 
-File names may contain wildcard characters and the files can be a CSV or columnar format like Parquet and ORC.
+The **Amazon S3** describes the following topics:
 
-
-.. contents:: In this topic:
+.. contents::
    :local:
    
 S3 Configuration
 ==============================
 
-Any SQream DB host that has access to S3 endpoints can access S3 without any configuration.
-
-To read files from an S3 bucket, it must have listable files.
+Any database host with access to S3 endpoints can access S3 without any configuration. To read files from an S3 bucket, the database must have listable files.
 
 S3 URI Format
 ===============
 
 With S3, specify a location for a file (or files) when using :ref:`copy_from` or :ref:`external_tables`.
 
-The general S3 syntax is:
-``s3://bucket_name/path``
+The following is an example of the general S3 syntax:
+
+.. code-block:: console
+ 
+   s3://bucket_name/path
 
 Authentication
 =================
 
-SQream DB supports ``AWS ID`` and ``AWS SECRET`` authentication.
-These should be specified when executing a statement.
+SQream supports ``AWS ID`` and ``AWS SECRET`` authentication. These should be specified when executing a statement.
 
 Examples
 ==========
 
-Use an external table to stage data from S3 before loading from CSV, Parquet or ORC files.
+Use a foreign table to stage data from S3 before loading from CSV, Parquet, or ORC files.
+
+The **Examples** section includes the following examples:
+
+.. contents::
+   :local:
+   :depth: 1
+
+
 
 Planning for Data Staging
 --------------------------------
 
-For the following examples, we will want to interact with a CSV file. Here's a peek at the table contents:
+The examples in this section are based on a CSV file, as shown in the following table:
 
 .. csv-table:: nba.csv
    :file: ../nba-t10.csv
    :widths: auto
    :header-rows: 1 
 
-The file is stored on Amazon S3, and this bucket is public and listable.
+The file is stored on Amazon S3, and this bucket is public and listable. To create a matching ``CREATE FOREIGN TABLE`` statement you can make note of the file structure.
 
-We will make note of the file structure, to create a matching ``CREATE FOREIGN TABLE`` statement.
-
-Creating the External Table
+Creating a Foreign Table
 -----------------------------
 
-Based on the source file structure, we :ref:`create a foreign table<create_foreign_table>` with the appropriate structure, and point it to the file.
+Based on the source file's structure, you can create a foreign table with the appropriate structure, and point it to your file as shown in the following example:
 
 .. code-block:: postgres
    
@@ -79,14 +84,17 @@ Based on the source file structure, we :ref:`create a foreign table<create_forei
       )
     ;
 
-The file format in this case is CSV, and it is stored as an S3 object (if the path is on :ref:`hdfs`, change the URI accordingly).
+In the example above the file format is CSV, and it is stored as an S3 object. If the path is on HDFS, you must change the URI accordingly. Note that the record delimiter is a DOS newline (``\r\n``).
 
-We also took note that the record delimiter was a DOS newline (``\r\n``).
+For more information, see the following:
 
-Querying External Tables
+* **Creating a foreign table** - see :ref:`create a foreign table<create_foreign_table>`.
+* **Using SQream in an HDFS environment** - see :ref:`hdfs`.
+
+Querying Foreign Tables
 ------------------------------
 
-Let's peek at the data from the external table:
+The following shows the data in the foreign table:
 
 .. code-block:: psql
    
@@ -107,16 +115,21 @@ Let's peek at the data from the external table:
 Bulk Loading a File from a Public S3 Bucket
 ----------------------------------------------
 
-The :ref:`copy_from` command can also be used to load data without staging it first.
+The ``COPY FROM`` command can also be used to load data without staging it first.
 
-.. note:: The bucket must be publicly available and objects can be listed
+.. note:: The bucket must be publicly available and objects can be listed.
+
+The following is an example of bulk loading a file from a public S3 bucket:
 
 .. code-block:: postgres
 
    COPY nba FROM 's3://sqream-demo-data/nba.csv' WITH OFFSET 2 RECORD DELIMITER '\r\n';
+   
+For more information on the ``COPY FROM`` command, see :ref:`copy_from`.
 
 Loading Files from an Authenticated S3 Bucket
 ---------------------------------------------------
+The following is an example of loading fles from an authenticated S3 bucket:
 
 .. code-block:: postgres
 
