@@ -25,7 +25,7 @@ Arguments
    * - Parameter
      - Description
    * - ``expr``
-     - Text expression (``VARCHAR``, ``NVARCHAR``)
+     - Text expression (``VARCHAR``, ``TEXT``)
 
 Returns
 ============
