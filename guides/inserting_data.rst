@@ -65,7 +65,7 @@ Supported Load Methods
 
 SQream DB's :ref:`COPY FROM<copy_from>` syntax can be used to load CSV files, but can't be used for Parquet and ORC.
 
-:ref:`FOREIGN TABLE<external_tables>` can be used to load text files, Parquet, and ORC files, and can also transform the data prior to materialization as a full table.
+The :ref:`FOREIGN TABLE<external_tables>` statement can be used to load text files, Parquet, and ORC files, and can also transform the data prior to materialization as a full table.
 
 .. list-table:: 
    :widths: auto
@@ -78,20 +78,20 @@ SQream DB's :ref:`COPY FROM<copy_from>` syntax can be used to load CSV files, bu
      - ORC
      - Streaming data
    * - :ref:`copy_from`
-     - ✓
-     - ✗
-     - ✗
-     - ✗
+     - Can be used
+     - Cannot be used
+     - Cannot be used
+     - Cannot be used
    * - :ref:`external_tables`
-     - ✓
-     - ✓
-     - ✓
-     - ✗
+     - Can be used
+     - Can be used
+     - Can be used
+     - Cannot be used
    * - :ref:`insert`
-     - ✗
-     - ✗
-     - ✗
-     - ✓ (Python, JDBC, Node.JS)
+     - Cannot be used
+     - Cannot be used
+     - Cannot be used
+     - Can be used (Python, JDBC, Node.JS)
 
 Unsupported Data Types
 -----------------------------
@@ -103,7 +103,7 @@ These data types will have to be converted before load. For example, ``ENUM`` ca
 Extended Error Handling
 ----------------------------
 
-While :ref:`external tables<external_tables>` can be used to load CSVs, the ``COPY FROM`` statement provides more fine-grained error handling options, as well as extended support for non-standard CSVs with multi-character delimiters, alternate timestamp formats, and more.
+While :ref:`foreign tables<external_tables>` can be used to load CSVs, the ``COPY FROM`` statement provides more fine-grained error handling options, as well as extended support for non-standard CSVs with multi-character delimiters, alternate timestamp formats, and more.
 
 Best Practices for CSV
 ------------------------------
@@ -136,16 +136,16 @@ Best Practices for Parquet
 Type Support and Behavior Notes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Unlike ORC, the column types should match the data types exactly (see table below).
+* Unlike ORC, the column types should match the data types exactly, as show in the following table:
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    :stub-columns: 1
    
-   * -   SQream DB type →
+   * -   SQream Type →
    
-         Parquet source
+         Parquet Source
      - ``BOOL``
      - ``TINYINT``
      - ``SMALLINT``
