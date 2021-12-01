@@ -16,10 +16,10 @@ This document is a Quick Start Guide that describes the following:
    
 Establishing a Connection between TIBCO Spotfire and SQream
 -----------------
-TIBCO Spotfire supports the following drivers:
+TIBCO Spotfire supports the following versions:
 
-* **JDBC** - Version 4.5.2 
-* **ODBC** - Version 4.1.1
+* **JDBC driver** - Version 4.5.2 
+* **ODBC driver** - Version 4.1.1
 
 SQream supports TIBCO Spotfire version 7.12.0.
 
@@ -33,7 +33,7 @@ Creating a JDBC Connection
 ~~~~~~~~~~~
 For TIBCO Spotfire to recognize SQream, you must add the correct JDBC jar file to Spotfire's loaded binary folder. The following is an example of a path to the Spotfire loaded binaries folder: ``C:\tibco\tss\7.12.0\tomcat\bin``.
 
-For the full TIBCO Spotfire documentation, see `TIBCO Spotfire® JDBC Data Access Connectivity Details <https://community.tibco.com/wiki/tibco-spotfire-jdbc-data-access-connectivity-details>`_. 
+For the complete TIBCO Spotfire documentation, see `TIBCO Spotfire® JDBC Data Access Connectivity Details <https://community.tibco.com/wiki/tibco-spotfire-jdbc-data-access-connectivity-details>`_. 
 
 Creating an ODBC Connection
 ~~~~~~~~~~~
@@ -43,32 +43,47 @@ Creating an ODBC Connection
 
    For more information, see :ref:`Install and Configure ODBC on Windows<install_odbc_windows>`.
    
-#. Launch TIBCO Spotfire.
+#. Launch the TIBCO Spotfire application.
+
+    ::
 
 #. From the **File** menu click **Add Data Tables**.
 
-   The Add Database Tables window is displayed.
+   The **Add Database Tables** window is displayed.
 
 #. Click **Add** and select **Database**.
 
    The **Open Database** window is displayed.
 
-#. In the **Data source type** area, select **ODBC SQream** and click **Configure**.
+#. In the **Data source type** area, select **ODBC SQream** (Odbc Data Provider) and click **Configure**.
 
+   The **Configure Data Source and Connection** window is displayed.
+   
+#. Select **System or user data source** and from the drop-down menu select the DSN of your data source (SQreamDB).
 
-In the Open Database dialog, select the data source type ODBC SQream, and click Configure.
+    ::
 
-In the Configure Data Source Connection dialog, click System or user data source and, in the drop-down menu, select the DSN of your data source.
+#. Provide your database username and password and click **OK**.
 
-Enter your database username and password and click OK. In the Open Database dialog, click OK again.
+    ::
 
-In the Specify Tables and Columns dialog, specify what data you want to include by selecting the checkboxes of the tables and columns in the list. Give your data source a name and click OK. 
+#. In the **Open Database** window, click **OK**.
 
-In the Add Data Tables dialog, click OK to load the data from your ODBC data source into your Spotfire.
+   The **Specify Tables and Columns** window is displayed.
 
-Dont forget to check the SQL statement. 
+#. In the **Specify Tables and Columns** window, select the checkboxes corresponding to the tables and columns that you want to include in your SQL statement.
 
+    ::
 
+#. In the **Data source name** field, set your data source name and click **OK**.
+
+   Your data source is displayed in the **Data tables** area.
+
+#. In the **Add Data Tables** dialog, click **OK** to load the data from your ODBC data source into Spotfire.
+
+**Comment** - *I didn't do the above step. Do I need to document the result?*
+
+.. note:: Verify that you have checked the SQL statement. 
 
 Creating the SQream Data Source Template
 ~~~~~~~~~~~
@@ -181,13 +196,13 @@ After creating the SQream data source template, you can create a data source.
 
 #. From the **Tools** menu, select **Information Designer**.
 
-   The Information Designer window is displayed.
+   The **Information Designer** window is displayed.
 
     ::
 	
 #. From the **New** menu, click **Data Source**.
 
-   The Data Source tab is displayed.
+   The **Data Source** tab is displayed.
 
     ::
 	
@@ -219,7 +234,7 @@ After creating a data source, you can create an information link.
 
 1. From the **Tools** menu, select **Information Designer**.
 
-   The Information Designer window is displayed.
+   The **Information Designer** window is displayed.
 
     ::
 
@@ -247,7 +262,7 @@ After creating a data source, you can create an information link.
 
     ::
 
-#. *Optional* - To filter your data, expand the Filters section and do the following:
+#. *Optional* - To filter your data, expand the **Filters** section and do the following:
 
     1. From the **Information Link** region, select the element you added in Step 3 above.
 	
@@ -293,9 +308,9 @@ After creating a data source, you can create an information link.
 		
     #. Do the following for each column:
 	
-	   * Make a selection from the **Prompt Type** drop-down list.
-	   * Select or clear **Mandatory**.
-	   * *Optional* - Set your **Max Selections**.
+       * Make a selection from the **Prompt Type** drop-down list.
+       * Select or clear **Mandatory**.
+       * *Optional* - Set your **Max Selections**.
 	
    For more information on adding prompts, see `Adding Prompts <https://docs.tibco.com/pub/spotfire/7.0.1/doc/html/id/id_adding_prompts.htm>`_.
 
@@ -342,7 +357,7 @@ For more information on the Information Link attributes, see `Information Link T
 
 Troubleshooting
 -------------
-The **Troubleshooting** section describes the following:
+The **Troubleshooting** section describes the following scenarios:
 
 .. contents::
    :local: 
@@ -350,7 +365,7 @@ The **Troubleshooting** section describes the following:
 
 The JDBC Driver does not Support Boolean, Decimal, or Numeric Types
 ~~~~~~~~~~~
-Attempting to establish a connection between SQream and TIBCO Spotfire using a JDBC driver is not supported, and Boolean, Decimal, or Numeric columns generates the following error:
+Attempting to establish a connection between SQream and TIBCO Spotfire using a JDBC driver is not supported, and Boolean, Decimal, or Numeric columns generate the following error:
 
 .. code-block:: console
 
@@ -367,9 +382,8 @@ For more information, see the following:
 
 * **Supported data types** - :ref:`Data Types<data_types>`.
 
-
 Information Services do not Support Live Queries
 ~~~~~~~~~~~
-TIBCO Spotfire data connectors support live queries, but no APIs currently exist for creating custom data connectors. A solution for creating custom data connectors is to create a customized SQream adapater using TIBCO's **Data Virtualization (TDV)** or the **Spotfire Advanced Services (ADS)**. These can be used from the built-in TDV connector to enable live queries.
+TIBCO Spotfire data connectors support live queries, but no APIs currently exist for creating custom data connectors. This is resolved by creating a customized SQream adapater using TIBCO's **Data Virtualization (TDV)** or the **Spotfire Advanced Services (ADS)**. These can be used from the built-in TDV connector to enable live queries.
 
-This solution is relevant to JDBC and ODBC drivers.
+This resolution applies to JDBC and ODBC drivers.
