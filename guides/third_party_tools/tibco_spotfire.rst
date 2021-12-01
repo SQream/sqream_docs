@@ -42,8 +42,19 @@ Creating an ODBC Connection
 1. Install and configure ODBC on Windows.
 
    For more information, see :ref:`Install and Configure ODBC on Windows<install_odbc_windows>`.
+   
+#. Launch TIBCO Spotfire.
 
-#. In Spotfire, select File > Add Data Tables, and then click Add > Database. 
+#. From the **File** menu click **Add Data Tables**.
+
+   The Add Database Tables window is displayed.
+
+#. Click **Add** and select **Database**.
+
+   The **Open Database** window is displayed.
+
+#. In the **Data source type** area, select **ODBC SQream** and click **Configure**.
+
 
 In the Open Database dialog, select the data source type ODBC SQream, and click Configure.
 
