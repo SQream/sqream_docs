@@ -4,7 +4,7 @@
 Recommended Pre-Installation Configuration
 *********************************************
 
-Before :ref:`installing SQream DB<installing_sqream_db_docker>`, SQream recommends you to tune your system for better performance and stability.
+Before :ref:`installing SQream DB<running_sqream_in_a_docker_container>`, SQream recommends you to tune your system for better performance and stability.
 
 This page provides recommendations for production deployments of SQream and describes the following:
 
