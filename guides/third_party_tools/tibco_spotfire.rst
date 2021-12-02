@@ -81,8 +81,6 @@ Creating an ODBC Connection
 
 #. In the **Add Data Tables** dialog, click **OK** to load the data from your ODBC data source into Spotfire.
 
-**Comment** - *I didn't do the above step. Do I need to document the result?*
-
 .. note:: Verify that you have checked the SQL statement. 
 
 Creating the SQream Data Source Template
@@ -220,7 +218,7 @@ After creating the SQream data source template, you can create a data source.
    
       ::
 	  
-   * **No of connections** - define a number between **1** and **100**. SQream recommends setting your number of connections to **100**.
+   * **No. of connections** - define a number between **1** and **100**. SQream recommends setting your number of connections to **100**.
    
       ::
 	  
@@ -242,9 +240,9 @@ After creating a data source, you can create an information link.
 
    The **Information link** tab is displayed.
    
-#. From the **Elements** tab, select an element and click **Add**. **Comment** - *The original doc specifically mentioned "column or filter elements". Do these need to be specifically mentioned?*
+#. From the **Elements** tab, select a column type and click **Add**.
 
-   The element you selected is displayed in the **Elements** region.
+   The column type is added to the **Elements** region as a filter.
    
    Note the following:
    
@@ -365,7 +363,7 @@ The **Troubleshooting** section describes the following scenarios:
 
 The JDBC Driver does not Support Boolean, Decimal, or Numeric Types
 ~~~~~~~~~~~
-Attempting to establish a connection between SQream and TIBCO Spotfire using a JDBC driver is not supported, and Boolean, Decimal, or Numeric columns generate the following error:
+When attempting to load data, the the Boolean, Decimal, or Numeric column types are not supported and generate the following error:
 
 .. code-block:: console
 
@@ -384,6 +382,6 @@ For more information, see the following:
 
 Information Services do not Support Live Queries
 ~~~~~~~~~~~
-TIBCO Spotfire data connectors support live queries, but no APIs currently exist for creating custom data connectors. This is resolved by creating a customized SQream adapater using TIBCO's **Data Virtualization (TDV)** or the **Spotfire Advanced Services (ADS)**. These can be used from the built-in TDV connector to enable live queries.
+TIBCO Spotfire data connectors support live queries, but no APIs currently exist for creating custom data connectors. This is resolved by creating a customized SQream adapter using TIBCO's **Data Virtualization (TDV)** or the **Spotfire Advanced Services (ADS)**. These can be used from the built-in TDV connector to enable live queries.
 
 This resolution applies to JDBC and ODBC drivers.
