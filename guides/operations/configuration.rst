@@ -391,11 +391,6 @@ Configuration Roles
 ===========
 SQream divides flags into the following roles, each with their own set of permissions:
 
-     - 	 	 
-	   * Example 1: ``* master=> ALTER SYSTEM SET heartbeatTimeout=111;``
-	   * Example 2: ``* master=> select show_md_flag(‘all’); heartbeatTimeout,111``
-	   * Example 3: ``* master=> select show_md_flag(‘heartbeatTimeout’); heartbeatTimeout,111``
-
 * **Generic** – Flags that can be modified by standard users on a session basis.
 * **Admin** – Flags that can be modified by administrators on a session and cluster basis using the ALTER SYSTEM SET command.
 
