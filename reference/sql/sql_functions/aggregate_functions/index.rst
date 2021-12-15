@@ -26,6 +26,9 @@ The following list shows the available aggregate functions:
    covar_samp
    max
    min
+   mode
+   percentile_cont
+   percentile_disc
    stddev_pop
    stddev_samp
    sum
