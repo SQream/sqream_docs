@@ -4,9 +4,9 @@
 SQL Functions
 ****************
 
-SQream DB supports functions from ANSI SQL, as well as others for compatibility.
+SQream supports functions from ANSI SQL, as well as others for compatibility.
 
-Summary of functions
+Summary of Functions
 =======================
 
 .. contents::
@@ -14,11 +14,12 @@ Summary of functions
 
 Built-In Scalar Functions
 -------------------
-
-See more about :ref:`scalar_functions`
+For more information about built-in scalar functions, see :ref:`scalar_functions`.
 
 Bitwise Operations
 ^^^^^^^^^^^^^^^^^^^^^^^
+
+The following table shows the **bitwise operations** functions:
 
 .. list-table:: 
    :widths: auto
@@ -41,6 +42,7 @@ Bitwise Operations
 
 Conditionals
 ^^^^^^^^^^^^^^
+The following table shows the **conditionals** functions:
 
 .. list-table:: 
    :widths: auto
@@ -65,6 +67,7 @@ Conditionals
 
 Conversion
 ^^^^^^^^^^^^
+The following table shows the **conversion** functions:
 
 .. list-table:: 
    :widths: auto
@@ -81,6 +84,7 @@ Conversion
 
 Date and Time
 ^^^^^^^^^^^^^^^^
+The following table shows the **date and time** functions:
 
 .. list-table:: 
    :widths: auto
@@ -113,10 +117,11 @@ Date and Time
 
 Numeric
 ^^^^^^^^^^^
+The following table shows the **arithmetic operators**
 
-See more about :ref:`arithmetic_operators`
+For more information about arithmetic operator, see :ref:`arithmetic_operators`.
 
-.. list-table:: Arithmetic operators
+.. list-table:: Arithmetic Operators
    :widths: auto
    :header-rows: 1
    
@@ -145,7 +150,9 @@ See more about :ref:`arithmetic_operators`
      - ``a % b``
      - Modulu of ``a`` by ``b``. See also :ref:`mod`
 
-.. list-table:: Functions
+The following table shows the **arithmetic operator** functions:
+
+.. list-table:: Arithemtic Operator Functions
    :widths: auto
    :header-rows: 1
    
@@ -202,6 +209,7 @@ See more about :ref:`arithmetic_operators`
 
 Strings
 ^^^^^^^^^^^
+The following table shows the **string* functions:
 
 .. list-table:: 
    :widths: auto
@@ -235,6 +243,8 @@ Strings
      - Calculates the number of matches of a regular expression match in an argument
    * - :ref:`regexp_instr`
      - Returns the start position of a regular expression match in an argument
+   * - :ref:`regexp_replace`
+     - Replaces and returns the text column substrings of a regular expression match in an argument
    * - :ref:`regexp_substr`
      - Returns a substring of an argument that matches a regular expression
    * - :ref:`repeat`
@@ -258,14 +268,14 @@ Strings
 
 User-Defined Scalar Functions
 ---------------------
-
 For more information about user-defined scalar functions, see :ref:`scalar_sql_udf`
 
 
 Aggregate Functions
 ---------------------
+The following table shows the **aggregate** functions:
 
-See more about  :ref:`aggregate_functions`
+For more information about aggregate functions, see :ref:`aggregate_functions`.
 
 .. list-table:: 
    :widths: auto
@@ -313,8 +323,9 @@ See more about  :ref:`aggregate_functions`
 
 Window Functions
 -------------------
+The following table shows the **window** functions:
 
-See more about  :ref:`window_functions`
+For more information about window functions, see :ref:`window_functions`.
 
 .. list-table:: 
    :widths: auto
@@ -352,8 +363,9 @@ See more about  :ref:`window_functions`
 
 System Functions
 ------------------
-
 System functions allow you to execute actions in the system, such as aborting a query or get information about system processes.
+
+The following table shows the **system** functions:
 
 .. list-table:: 
    :widths: auto
@@ -378,6 +390,7 @@ System functions allow you to execute actions in the system, such as aborting a 
 
 Workload Management Functions
 ---------------------------------
+The following table shows the **workload management** functions:
 
 .. list-table:: 
    :widths: auto
