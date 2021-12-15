@@ -32,7 +32,7 @@ CREATE TABLE
 ************
 SQream now supports duplicating the column structure of an existing table using the ``LIKE`` clause.
 
-For more information, see `Duplicating the Column Structure of an Existing Table <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/ddl_commands/create_table.html#duplicating-the-column-structure-of-an-existing-table>`_.
+For more information, see `Duplicating the Column Structure of an Existing Table <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/create_table.html#duplicating-the-column-structure-of-an-existing-table>`_.
 
 PERCENTILE FUNCTIONS
 ************
@@ -52,7 +52,7 @@ Delete Optimization
 ************
 The ``DELETE`` statement can now delete values that contain multi-table conditions.
 
-For more information, see `Deleting Values that Contain Multi-Table Conditions <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/delete.html#deleting-values-that-contain-multi-table-conditions>`_.
+For more information, see `Deleting Values that Contain Multi-Table Conditions <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/delete.html#deleting-values-that-contain-multi-table-conditions>`_.
 
 For more information, see :ref:`regexp_replace`.
 
@@ -127,8 +127,8 @@ SQream now uses a new configuration system based on centralized configuration ac
 
 For more information, see the following:
 
-* `Configuration <https://docs.sqream.com/en/v2021.2/guides/operations/configuration.html>`_ - describes how to configure your instance of SQream from a centralized location.
-* `SQream Studio 5.4.2 <https://docs.sqream.com/en/v2021.2/guides/operations/sqream_studio_5.4.2.html#>`_ - configure your instance of SQream from Studio.
+* `Configuration <https://docs.sqream.com/en/latest/guides/operations/configuration.html>`_ - describes how to configure your instance of SQream from a centralized location.
+* `SQream Studio 5.4.2 <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.2.html#>`_ - configure your instance of SQream from Studio.
    
 Qualifying Schemas Without Providing an Alias
 ************
@@ -226,7 +226,7 @@ NVARCHAR Data Type Renamed TEXT
 The ``NVARCHAR`` data type has been renamed ``TEXT``.
 
 
-For more information on the ``TEXT`` data type, see `String (TEXT) <https://docs.sqream.com/en/v2021.2/reference/sql_data_types.html#string-text-varchar>`_
+For more information on the ``TEXT`` data type, see `String (TEXT) <https://docs.sqream.com/en/latest/reference/sql_data_types.html#string-text-varchar>`_
 
 End of Support
 ------
@@ -253,11 +253,11 @@ When upgrading from a SQream version earlier than 2021.2 you must upgrade your s
       $ cat /etc/sqream/sqream1_config.json |grep cluster
       $ ./upgrade_storage <cluster path>
 	  
-For more information on upgrading your SQream version, see `Upgrading SQream Version <https://docs.sqream.com/en/v2021.2/guides/operations/installing_sqream_with_binary.html#upgrading-sqream-version>`_.
+For more information on upgrading your SQream version, see `Upgrading SQream Version <https://docs.sqream.com/en/latest/guides/operations/installing_sqream_with_binary.html#upgrading-sqream-version>`_.
 
 Upgrading Your Client Drivers
 ************
-For more information on the client drivers for version 2021.2, see `Client Drivers for 2021.2 <https://docs.sqream.com/en/v2021.2/guides/client_drivers/index.html>`_.
+For more information on the client drivers for version 2021.2, see `Client Drivers for 2021.2 <https://docs.sqream.com/en/latest/guides/client_drivers/index.html>`_.
 
 Configuring Your Instance of SQream
 ************
