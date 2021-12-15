@@ -34,12 +34,6 @@ For more information about SQream's delete methodology, see the :ref:`delete_gui
    * To delete all rows from a table, see :ref:`TRUNCATE<truncate>`
    * To delete columns, see :ref:`DROP COLUMN<drop_column>`.
 
-Permissions
-=============
-
-To execute the ``DELETE`` statement, the ``DELETE`` and ``SELECT`` permissions must be assigned to the role at the table level.
-
-For more information about assigning permissions to roles, see `Creating, Assigning, and Managing Roles and Permissions <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.0.html#creating-assigning-and-managing-roles-and-permissions>`_.
 
 
 Syntax
@@ -245,3 +239,10 @@ The following shows an example of triggering a clean-up:
       WHERE t.table_name = 'cool_animals';
    
    0 rows
+
+Permissions
+=============
+
+To execute the ``DELETE`` statement, the ``DELETE`` and ``SELECT`` permissions must be assigned to the role at the table level.
+
+For more information about assigning permissions to roles, see `Creating, Assigning, and Managing Roles and Permissions <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.0.html#creating-assigning-and-managing-roles-and-permissions>`_.
