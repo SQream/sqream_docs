@@ -69,7 +69,7 @@ The following table lists the issues that were resolved in Version 2021.2.1:
    :widths: 17 200
    :header-rows: 1  
    
-   * - SQS No.
+   * - SQ No.
      - Description
    * - SQ-8267
      - A method has been provided for including the ``GROUP BY`` and ``DISTINCT COUNT`` statements.     
@@ -127,7 +127,7 @@ SQream now uses a new configuration system based on centralized configuration ac
 
 For more information, see the following:
 
-* `Configuration <https://docs.sqream.com/en/v2021.2/guides/operations/configuration.html>`_ - describes how to configure your instance of SQream from a centralized location.
+* `Configuration <https://docs.sqream.com/en/latest/guides/operations/configuration.html>`_ - describes how to configure your instance of SQream from a centralized location.
 * `SQream Studio 5.4.2 <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.2.html#>`_ - configure your instance of SQream from Studio.
    
 Qualifying Schemas Without Providing an Alias
@@ -202,7 +202,7 @@ The following table lists the issues that were resolved in Version 2021.2:
    :widths: 17 200
    :header-rows: 1  
    
-   * - SQS No.
+   * - SQ No.
      - Description
    * - SQ-8294
      - Quote qualifiers were not present in exported file, preventing it from being reloaded.   
