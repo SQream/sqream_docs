@@ -157,7 +157,7 @@ Deleting Values that Contain Multi-Table Conditions
 -----------------
 The following shows an example of deleting values that contain multi-table conditions. The example is based on the following tables:
 
-.. image:: /_static/images/delete_optimization/delete_optimization.png
+.. image:: /_static/images/delete_optimization.png
 
 
 
