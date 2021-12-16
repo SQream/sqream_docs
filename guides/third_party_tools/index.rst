@@ -22,7 +22,6 @@ If you are looking for a tool that is not listed, SQream and our partners can he
    :caption: In this section:
    :titlesonly:
 
-   xxtibco_spotfire
    sql_workbench
    tableau
    informatica
