@@ -1,7 +1,7 @@
 .. _saved_queries:
 
 ***********************
-Saved queries
+Saved Queries
 ***********************
 
 Saved queries can be used to reuse a query plan for a query to eliminate compilation times for repeated queries. They also provide a way to implement 'parameterized views'.
