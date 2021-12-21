@@ -1,7 +1,7 @@
 .. _features_guides:
 
 **********************************
-Features guides
+Feature Guides
 **********************************
 
 .. toctree::
