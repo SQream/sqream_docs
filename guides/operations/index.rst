@@ -27,6 +27,6 @@ The **Operational Guides** page describes the following user operations:
    xxstarting_and_stopping_the_system
    installing_studio_on_stand_alone_server
    sqream_studio_5.4.2.rst
-   statement_editor
+   xxstatement_editor
    hardware_guide
    security
