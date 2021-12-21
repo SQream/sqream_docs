@@ -1,7 +1,7 @@
 .. _data_clustering:
 
 ***********************
-Data clustering
+Data Clustering
 ***********************
 
 Together with the :ref:`chunking<chunks_and_extents>` and :ref:`metadata_system`, SQream DB uses information to execute queries efficiently.
