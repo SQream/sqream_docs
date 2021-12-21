@@ -1,7 +1,7 @@
 .. _chunks_and_extents:
 
 ***********************
-Chunks and extents
+Chunks and Extents
 ***********************
 
 All data in SQream DB is stored in logical tables. Each table is made up of rows, spanning one or more columns.
