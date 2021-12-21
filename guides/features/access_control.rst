@@ -1,7 +1,7 @@
 .. _access_control:
 
 **************
-Access control
+Access Control
 **************
 
 .. contents:: In this topic:
