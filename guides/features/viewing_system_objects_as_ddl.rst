@@ -1,7 +1,7 @@
 .. _seeing_system_objects_as_sql:
 
 ********************************
-Seeing system objects as DDL
+Seeing System Objects as DDL
 ********************************
 
 Dump specific objects
