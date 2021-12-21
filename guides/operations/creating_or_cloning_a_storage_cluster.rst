@@ -1,7 +1,7 @@
 .. _creating_or_cloning_a_storage_cluster:
 
 ****************************************
-Creating or cloning a storage cluster
+Creating or Cloning a Storage Cluster
 ****************************************
 
 When SQream DB is installed, it comes with a default storage cluster. This guide will help if you need a fresh storage cluster or a separate copy of an existing storage cluster.
