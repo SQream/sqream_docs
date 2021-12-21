@@ -1,14 +1,13 @@
 .. _operations:
 
 **********************************
-Operations
+Operational Guides
 **********************************
 
-The guides in this section include information about installing Monit, best practices, monitoring, logging, troubleshooting, and maintaining a SQream DB cluster.
+The **Operational Guides** page describes the following user operations:
 
 .. toctree::
-   :maxdepth: 8
-   :caption: In this section:
+   :maxdepth: 1
    :glob:
 
    optimization_best_practices
