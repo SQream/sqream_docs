@@ -1,7 +1,7 @@
 .. _time_based_data_management:
 
 ***************************
-Time based data management
+Time-Based Data Management
 ***************************
 
 SQream DB's columnar-storage system is well adapted to timestamped data.
