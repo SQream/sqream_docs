@@ -1,7 +1,7 @@
 .. _scalar_expressions:
 
 ***************************
-Scalar expressions
+Scalar Expressions
 ***************************
 
 Scalar expressions are functions that calculate a single (scalar) value, even if executed on an entire column. They can be stored as a row value, as opposed to a table value which is a result set consisting of more than one column and/or row.

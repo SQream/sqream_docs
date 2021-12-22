@@ -1,7 +1,7 @@
 .. _null_handling:
 
 ***************************
-Null handling
+Null Handling
 ***************************
 
 SQream DB handles ``NULL`` values similar to other RDBMSs, with some minor differences.

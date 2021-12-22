@@ -1,7 +1,7 @@
 .. _common_table_expressions:
 
 *********************************
-Common table expressions (CTEs)
+Common Table Expressions (CTEs)
 *********************************
 
 Common table expressions or CTEs allow a complex subquery to be represented in a short way later on for improved readability, and reuse multiple times in a query.
