@@ -1,7 +1,7 @@
 .. _sql_functions:
 
 ****************
-SQL functions
+SQL Functions
 ****************
 
 SQream DB supports functions from ANSI SQL, as well as others for compatibility.
