@@ -1,17 +1,18 @@
 .. _sql_statements:
 
 ***************
-SQL statements
+SQL Statements
 ***************
 
-SQream DB supports commands from ANSI SQL.
+SQream supports commands from ANSI SQL.
 
 .. _ddl_commands_list:
 
-Data Definition commands (DDL)
+Data Definition Commands (DDL)
 ================================
+The following table shows the DDL commands:
 
-.. list-table:: DDL commands
+.. list-table:: DDL Commands
    :widths: auto
    :header-rows: 1
    :name: ddl_commands
@@ -57,10 +58,11 @@ Data Definition commands (DDL)
    * - :ref:`RENAME TABLE<rename_table>`
      - Rename a table
 
-Data manipulation commands (DML)
+Data Manipulation Commands (DML)
 ================================
+The following table shows the DML commands:
 
-.. list-table:: DML commands
+.. list-table:: DML Commands
    :widths: auto
    :header-rows: 1
    :name: dml_commands
@@ -85,10 +87,12 @@ Data manipulation commands (DML)
    * - :ref:`VALUES<values>`
      - Return rows containing literal values
 
-Utility commands
+Utility Commands
 ==================
+The following table shows the Utility commands:
 
-.. list-table:: Utility commands
+
+.. list-table:: Utility Commands
    :widths: auto
    :header-rows: 1
    
@@ -103,14 +107,13 @@ Utility commands
    * - :ref:`SELECT RECOMPILE_VIEW<recompile_view>`
      - Recreate a view after schema changes
    * - :ref:`SELECT DUMP_DATABASE_DDL<dump_database_ddl>`
-     - View the ``CREATE TABLE`` statement for an current database
+     - View the ``CREATE TABLE`` statement for a current database
 
-Saved queries
+Saved Queries
 ===================
+The following table shows the saved query commands:
 
-See more about :ref:`saved_queries`
-
-.. list-table:: Saved queries
+.. list-table:: Saved Query Commands
    :widths: auto
    :header-rows: 1
    
@@ -129,12 +132,15 @@ See more about :ref:`saved_queries`
    * - :ref:`SELECT SHOW_SAVED_QUERY<show_saved_query>`
      - Shows query text for a saved query
 
+For more information, see See more about :ref:`saved_queries`.
+
 Monitoring
 ===============
-
 Monitoring statements allow a database administrator to execute actions in the system, such as aborting a query or get information about system processes.
 
-.. list-table:: 
+The following table shows the monitoring commands:
+
+.. list-table:: Monitoring
    :widths: auto
    :header-rows: 1
    
@@ -155,10 +161,11 @@ Monitoring statements allow a database administrator to execute actions in the s
    * - :ref:`stop_statement`
      - Stops a query (or statement) if it is currently running
 
-Workload management
+Workload Management
 ======================
+The following table shows the monitoring commands:
 
-.. list-table:: 
+.. list-table:: Workload Management Commands
    :widths: auto
    :header-rows: 1
    
@@ -171,10 +178,11 @@ Workload management
    * - :ref:`show_subscribed_instances`
      - Return a list of service queues and workers
 
-Access control commands
+Access Control Commands
 ================================
+The following table shows the access control commands:
 
-.. list-table:: Access control commands
+.. list-table:: Access Control Commands
    :widths: auto
    :header-rows: 1
    
@@ -196,7 +204,8 @@ Access control commands
      - Revoke permissions from a role
    * - :ref:`rename_role`
      - Rename a role
-
+	 
+For more information about Access Control, see :ref:`access_control`.
 
 .. toctree::
    :maxdepth: 1
