@@ -1,15 +1,23 @@
 .. _common_table_expressions:
 
 *********************************
-Common Table Expressions (CTEs)
+Common Table Expressions
 *********************************
+**Common Table Expressions**, or **CTEs**, allow a complex subquery to be represented in a short way later on for improved readability, and reuse multiple times in a query.
 
-Common table expressions or CTEs allow a complex subquery to be represented in a short way later on for improved readability, and reuse multiple times in a query.
+Note that CTEs do not affect query performance.
 
-CTEs do not affect query performance.
+Overview
+---------
+The **Common Table Expressions** page describes the following:
+
+.. contents:: 
+   :local:
+   :depth: 1
 
 Syntax
 ==========
+The following is the correct syntax when using CTEs:
 
 .. code-block:: postgres
 
@@ -40,9 +48,15 @@ Syntax
 
 Examples
 ==========
+This section includes the following examples:
 
-Simple CTE
+.. contents:: 
+   :local:
+   :depth: 1
+
+Using a Simple CTE
 --------------
+The following is an example of using a simple CTE:
 
 .. code-block:: psql
    
@@ -61,10 +75,9 @@ Simple CTE
 
 In this example, the ``WITH`` clause defines the temporary name ``r`` for the subquery which finds salaries over $20 million. The result set becomes a valid table reference in any table expression of the subsequent SELECT clause.
 
-Nested CTEs
+Using Nested CTEs
 ---------------
-
-SQream DB also supports any amount of nested CTEs, such as this:
+The following is an example of using a simple CTE:
 
 .. code-block:: postgres
 
@@ -72,13 +85,12 @@ SQream DB also supports any amount of nested CTEs, such as this:
        (SELECT * FROM
            (WITH x AS (SELECT * FROM nba) SELECT * FROM x ORDER BY "Salary" DESC))
      SELECT * FROM w ORDER BY "Weight" DESC;
+	 
+Note that SQream supports any amount of nested CTEs.
 
 Reusing CTEs
 ----------------
-
-SQream DB supports reusing CTEs several times in a query.
-
-CTEs are separated with commas.
+The following is an example of reusing CTEs, separated by commas:
 
 .. code-block:: psql
    
@@ -91,12 +103,13 @@ CTEs are separated with commas.
    Stanley Johnson | Detroit Pistons | Andre Drummond | Detroit Pistons
    Aaron Gordon    | Orlando Magic   | Shabazz Napier | Orlando Magic  
    
-   
+SQream supports reusing CTEs multiple times per query.  
 
-Using CTEs with :ref:`create_table_as`
+Using CTEs with the CREATE TABLE AS Statement
 ----------------------------------------
+The following is an example of using CTEs with the ``CREATE TABLE AS`` statement:
 
-When used with :ref:`create_table_as`, the ``CREATE TABLE`` statement should appear before ``WITH``.
+When used with ``CREATE_TABLE_AS`` statement, the ``CREATE TABLE`` statement should appear before the ``WITH`` argument:
 
 .. code-block:: postgres
 
@@ -106,3 +119,5 @@ When used with :ref:`create_table_as`, the ``CREATE TABLE`` statement should app
        (SELECT * FROM
            (WITH x AS (SELECT * FROM nba) SELECT * FROM x ORDER BY "Salary" DESC))
      SELECT * FROM w ORDER BY "Weight" DESC;
+	 
+For more information about the ``CREATE_TABLE_AS`` statement, see :ref:`create_table_as`.

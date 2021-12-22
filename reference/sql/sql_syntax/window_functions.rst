@@ -3,12 +3,19 @@
 ********************
 Window Functions
 ********************
+**Window functions** are functions applied over a subset (known as a window) of the rows returned by a :ref:`select` query.
 
-Window functions are functions applied over a subset (known as a window) of the rows returned by a :ref:`select` query. 
+Overview
+---------
+The **Window Functions** page describes the following:
 
+.. contents:: 
+   :local:
+   :depth: 1
 
 Syntax
 ========
+The following is the correct syntax when using window functions:
 
 .. code-block:: postgres
 
@@ -60,6 +67,7 @@ Syntax
 
 Arguments
 ============
+The following table shows the arguments that can be used with window functions:
 
 .. list-table:: 
    :widths: auto
@@ -77,6 +85,7 @@ Arguments
 
 Supported Window Functions
 ===========================
+The following table shows the supported window aggregation functions:
 
 .. list-table:: Window Aggregation Functions
    :widths: 16 200
@@ -95,11 +104,10 @@ Supported Window Functions
    * - :ref:`sum`
      - Returns the sum of numeric values, or only the distinct values.
 
-
-
+The following table shows the supported ranking functions:
    
 .. list-table:: Ranking Functions
-   :widths: 15 200
+   :widths: 16 200
    :header-rows: 1
    
    * - Function
@@ -110,73 +118,32 @@ Supported Window Functions
      - Returns a value from a subsequent row within the partition of a result set.
    * - :ref:`row_number`
      - Returns the row number of each row within the partition of a result set.
-   * - :ref:`rank`
-     - Returns the rank of each row within the partition of a result set.
-   * - :ref:`first_value`
-     - Returns the value in the first row of a window.
-   * - :ref:`last_value`
-     - Returns the value in the last row of a window.	 
-   * - :ref:`nth_value`
-     - Returns the value in a specified (``n``) row of a window.	 
-   * - :ref:`dense_rank`
-     - Returns the rank of the current row with no gaps.	 
-   * - :ref:`percent_rank`
-     - Returns the relative rank of the current row.
-   * - :ref:`cume_dist`
-     - Returns the cumulative distribution of rows.
-   * - :ref:`ntile`
-     - Returns an integer ranging between ``1`` and the argument value, dividing the partitions as equally as possible.
 
 
-
-
-How Window Functions Work
+Using Window Functions
 ============================
-
-A window function operates on a subset ("window") of rows.
-
-Each time a window function is called, it gets the current row for processing, as well as the window of rows that contains the current row.
-
-The window function returns one result row for each input.
-
-The result depends on the individual row and the order of the rows. Some window functions are order-sensitive, such as :ref:`rank`.
+A window function operates on a subset ("window") of rows. Each time a window function is called, it gets the current row for processing, as well as the window of rows that contains the current row. The window function returns one result row for each input. The result depends on the individual row and the order of the rows. Some window functions are order-sensitive, such as :ref:`rank`.
 
 .. note::
-   In general, a window frame will include all rows of a partition.
+   In general, a window frame will include all rows of a partition. If an ``ORDER BY`` clause is applied, the rows will become ordered which can change the order of the function calls. The function will be applied to the subset between the first row and the current row, instead of the whole frame. Boundaries for the frames may need to be applied to get the correct results.
 
-   If an ``ORDER BY`` clause is applied, the rows will become ordered which can change the order of the function calls. The function will be applied to the subset between the first row and the current row, instead of the whole frame.
+Window frame functions allow users to perform rolling operations, such as calculate moving averages, longest standing customers, identifying churn, find movers and shakers, etc.
 
-   Boundaries for the frames may need to be applied to get the correct results.
-
-Window frame functions allows a user to perform rolling operations, such as calculate moving averages, longest standing customers, identifying churn, find movers and shakers, etc.
-
-``PARTITION BY``
+PARTITION BY
 ------------------
-The ``PARTITION BY`` clause groups the rows of the query into partitions, which are processed separately by the window function. 
+The ``PARTITION BY`` clause groups the rows of the query into partitions, which are processed separately by the window function. ``PARTITION BY`` works similarly to a query-level ``GROUP BY`` clause, but expressions are always just expressions and cannot be output-column names or numbers. Without ``PARTITION BY``, all rows produced by the query are treated as a single partition.
 
-``PARTITION BY`` works similarly to a query-level ``GROUP BY`` clause, but expressions are always just expressions and cannot be output-column names or numbers. 
-
-Without ``PARTITION BY``, all rows produced by the query are treated as a single partition.
-
-``ORDER BY``
+ORDER BY
 ----------------------
-
-The ``ORDER BY`` clause determines the order in which the rows of a partition are processed by the window function. It works similarly to a query-level ``ORDER BY`` clause, but cannot use output-column names or numbers.
-
-Without ``ORDER BY``, rows are processed in an unspecified order.
+The ``ORDER BY`` clause determines the order in which the rows of a partition are processed by the window function. It works similarly to a query-level ``ORDER BY`` clause, but cannot use output-column names or numbers. Without ``ORDER BY``, rows are processed in an unspecified order.
 
 Frames 
 -------
-
-
+The ``frame_clause`` specifies the set of rows constituting the window frame, which is a subset of the current partition, for those window functions that act on the frame instead of the whole partition.
 
 .. note:: Frames and frame exclusions have been tested extensively, but are a complex feature. They are released as a preview in v2020.1 pending longer-term testing.
 
-The ``frame_clause`` specifies the set of rows constituting the window frame, which is a subset of the current partition, for those window functions that act on the frame instead of the whole partition.
-
-The set of rows in the frame can vary depending on which row is the current row. The frame can be specified in ``RANGE`` or ``ROWS`` mode; in each case, it runs from the ``frame_start`` to the ``frame_end``. If ``frame_end`` is omitted, the end defaults to ``CURRENT ROW``.
-
-A ``frame_start`` of ``UNBOUNDED PRECEDING`` means that the frame starts with the first row of the partition, and similarly a ``frame_end`` of ``UNBOUNDED FOLLOWING`` means that the frame ends with the last row of the partition.
+The set of rows in the frame can vary depending on which row is the current row. The frame can be specified in ``RANGE`` or ``ROWS`` mode; in each case, it runs from the ``frame_start`` to the ``frame_end``. If ``frame_end`` is omitted, the end defaults to ``CURRENT ROW``. A ``frame_start`` of ``UNBOUNDED PRECEDING`` means that the frame starts with the first row of the partition, and similarly a ``frame_end`` of ``UNBOUNDED FOLLOWING`` means that the frame ends with the last row of the partition.
 
 In ``RANGE`` mode, a frame_start of ``CURRENT ROW`` means the frame starts with the current row's first peer row (a row that the window's ``ORDER BY`` clause sorts as equivalent to the current row), while a ``frame_end`` of ``CURRENT ROW`` means the frame ends with the current row's last peer row. In ``ROWS`` mode, ``CURRENT ROW`` simply means the current row.
 
@@ -184,16 +151,21 @@ In the ``offset PRECEDING`` and ``offset FOLLOWING`` frame options, the offset m
 
 * In ``ROWS`` mode, the offset must yield a non-null, non-negative integer, and the option means that the frame starts or ends the specified number of rows before or after the current row.
 
+ ::
+
 * In ``RANGE`` mode, these options require that the ``ORDER BY`` clause specify exactly one column. The offset specifies the maximum difference between the value of that column in the current row and its value in preceding or following rows of the frame. This option is restricted to integer types, date and datetime. The offset is required to be a non-null non-negative integer value.
 
+ ::
+  
 * With a ``DATE`` or ``DATETIME`` column, the offset indicates a number of days.
 
 In any case, the distance to the end of the frame is limited by the distance to the end of the partition, so that for rows near the partition ends the frame might contain fewer rows than elsewhere.
 
 The default framing option is ``RANGE UNBOUNDED PRECEDING``, which is the same as ``RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW``. With ``ORDER BY``, this sets the frame to be all rows from the partition start up through the current row's last ``ORDER BY`` peer. Without ``ORDER BY``, this means all rows of the partition are included in the window frame, since all rows become peers of the current row.
 
-Restrictions
-^^^^^^^^^^^^^^^^^^^^^
+Frame Usage Restrictions
+---------------
+The following restrictions apply when using frames:
 
 * ``frame_start`` cannot be ``UNBOUNDED FOLLOWING``
 * ``frame_end`` cannot be ``UNBOUNDED PRECEDING``
@@ -203,19 +175,21 @@ For example ``RANGE BETWEEN CURRENT ROW AND 7 PRECEDING`` is not allowed. Howeve
 
 Frame Exclusion
 -----------------
-
 The ``frame_exclusion`` option allows rows around the current row to be excluded from the frame, even if they would be included according to the frame start and frame end options. ``EXCLUDE CURRENT ROW`` excludes the current row from the frame. ``EXCLUDE GROUP`` excludes the current row and its ordering peers from the frame. ``EXCLUDE TIES`` excludes any peers of the current row from the frame, but not the current row itself. ``EXCLUDE NO OTHERS`` simply specifies explicitly the default behavior of not excluding the current row or its peers.
 
 Limitations
 ==================
 Window functions do not support the Numeric data type.
 
-
-
-Examples
+Example
 ==========
+This section includes the following examples:
 
-For these examples, assume a table named ``nba``, with the following structure:
+.. contents:: 
+   :local:
+   :depth: 1
+   
+The following example is based on the ``nba`` table, structured as follows:
 
 .. code-block:: postgres
    
@@ -232,8 +206,7 @@ For these examples, assume a table named ``nba``, with the following structure:
       "Salary" float
     );
 
-
-Here's a peek at the table contents (:download:`Download nba.csv </_static/samples/nba.csv>`):
+The following table is a preview of the source (:download:`Download nba.csv </_static/samples/nba.csv>`) table shown below:
 
 .. csv-table:: nba.csv
    :file: nba-t10.csv
@@ -242,6 +215,7 @@ Here's a peek at the table contents (:download:`Download nba.csv </_static/sampl
 
 Window Function Application
 -----------------------------------
+The following is the correct syntax when using window function applications:
 
 .. code-block:: psql
 
@@ -267,8 +241,7 @@ Window Function Application
 
 Ranking Results
 -----------------
-
-See :ref:`rank`.
+The following is the output of **RANK** function:
 
 .. code-block:: psql
 
@@ -300,16 +273,13 @@ See :ref:`rank`.
    Trey Lyles               |  20 | 6-10   |   19
    [...]
    
+For more information, see See :ref:`rank`.
 
-Using ``LEAD`` to Access Following Rows Without a Join
+Access Following Rows Without a Join Using the LEAD Function
 -----------------------------------------------------------
+You can use the **LEAD** function to return data from rows further down the result set. The **LAG** function returns data from rows further up the result set.
 
-
-The :ref:`lead` function is used to return data from rows further down the result set. 
-The :ref:`lag` function returns data from rows further up the result set.
-
-This example calculates the salary between two players, starting from the highest salary.
-
+The following example calculates the salary between two players, starting from the highest salary:
 
 .. code-block:: psql
    
@@ -332,3 +302,8 @@ This example calculates the salary between two players, starting from the highes
    Dwyane Wade     | 20000000 |      19689000 |        311000
    Brook Lopez     | 19689000 |      19689000 |             0
    DeAndre Jordan  | 19689000 |      19689000 |             0
+
+For more information, see the following functions:
+
+* :ref:`lead`
+* :ref:`lag`

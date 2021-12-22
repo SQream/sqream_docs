@@ -3,12 +3,18 @@
 ***************************
 Subqueries
 ***************************
+Using **subqueries** lets you reuse results from other queries.
 
-Subqueries allows the reuse of results from another query.
+Overview
+---------
+The **Window Functions** page describes the following:
 
-SQream DB supports relational (also called *derived table*) subqueries, which appear as :ref:`select` queries as part of a table expression.
+.. contents:: 
+   :local:
+   :depth: 1
+   
 
-SQream DB also supports :ref:`common_table_expressions`, which are a form of subquery. With CTEs, a subquery can be named for reuse in a query.
+SQream supports relational (also called *derived table*) subqueries, which appear as :ref:`select` queries as part of a table expression. SQream DB also supports **common table expressions** (CTEs), a form of subquery. Using CTEs, you can name a subquery to be reuseed in another query.
 
 .. note::
    * SQream DB does not currently support correlated subqueries or scalar subqueries.
@@ -17,8 +23,13 @@ SQream DB also supports :ref:`common_table_expressions`, which are a form of sub
 
 Examples
 ===========
+This section includes the following examples:
 
-For these examples, assume a table named ``nba``, with the following structure:
+.. contents:: 
+   :local:
+   :depth: 1
+   
+The following example is based on the ``nba`` table, structured as follows:
 
 .. code-block:: postgres
    
@@ -35,16 +46,16 @@ For these examples, assume a table named ``nba``, with the following structure:
       "Salary" float
     );
 
-
-Here's a peek at the table contents (:download:`Download nba.csv </_static/samples/nba.csv>`):
+The following table is a preview of the source (:download:`Download nba.csv </_static/samples/nba.csv>`) table shown below:
 
 .. csv-table:: nba.csv
    :file: nba-t10.csv
    :widths: auto
    :header-rows: 1
 
-Simple subquery
+Running Simple Subqueries
 ------------------
+The following example shows how to run a simple subquery:
 
 .. code-block:: psql
    
@@ -54,8 +65,9 @@ Simple subquery
    ---
    26
 
-Combining a subquery with a join
+Combining a Subquery with a Join
 ----------------------------------
+The following example shows how to run a subquery with a join:
 
 .. code-block:: psql
 
@@ -80,10 +92,9 @@ Combining a subquery with a join
    Tyson Chandler     | Tyson Chandler     | Phoenix Suns           |      4 | C        |  33 | 7-1    |    240 | \N         | 13000000
    Walter Tavares     | Walter Tavares     | Atlanta Hawks          |     22 | C        |  24 | 7-3    |    260 | \N         |  1000000
 
-``WITH`` subqueries
+Using WITH Subqueries
 ---------------------
-
-See :ref:`common_table_expressions` for more information. 
+The following example shows how to use ``WITH`` subqueries:
 
 .. code-block:: psql
    
@@ -95,3 +106,5 @@ See :ref:`common_table_expressions` for more information.
    ----------------+-----------------+----------------+----------------
    Stanley Johnson | Detroit Pistons | Andre Drummond | Detroit Pistons
    Aaron Gordon    | Orlando Magic   | Shabazz Napier | Orlando Magic  
+   
+For more information, see :ref:`common_table_expressions`.

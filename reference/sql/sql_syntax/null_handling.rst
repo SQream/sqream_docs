@@ -3,33 +3,44 @@
 ***************************
 Null Handling
 ***************************
-
-SQream DB handles ``NULL`` values similar to other RDBMSs, with some minor differences.
+SQream handles ``NULL`` values similar to other RDBMSs, with some minor differences.
 
 .. tip:: When using :ref:`sqream sql<sqream_sql_cli_reference>` ``NULL`` values are displayed as ``\N``. Different clients may show other values, including an empty string.
 
+The **Null Handling
+** page describes the following:
+
+.. contents:: 
+   :local:
+   :depth: 1
+
 Comparisons
 ==============
-
-Any comparison between a ``NULL`` and a value will result in ``NULL``.
-
-For example, writing ``WHERE a = NULL`` will never match to ``TRUE`` or ``FALSE``, because the comparison results in ``NULL``. Use :ref:`is_null` to check for ``NULL`` values in result sets.
+Any comparison between a ``NULL`` and a value will result in ``NULL``. For example, writing ``WHERE a = NULL`` will never match to ``TRUE`` or ``FALSE``, because the comparison results in ``NULL``. Use :ref:`is_null` to check for ``NULL`` values in result sets.
 
 
 Conditionals
 ===============
-
-Functions like :ref:`isnull` and :ref:`coalesce` evaluate arguments in their given order, so they may never evaluate some arguments.
+Functions such as **ISNULL** and **COALESCE** evaluate arguments in their given order, so they may never evaluate some arguments.
 
 For example, ``COALESCE(a,b,c,d,NULL)`` will never evalulate ``b``, ``c``, ``d``, or ``NULL`` if ``a`` is not ``NULL``.
 
+For more information, see the following:
+
+* :ref:`isnull`
+* :ref:`coalesce`
+
 Operations
 ============
+The **Operations** section describes the following:
 
-Scalar functions
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Scalar Functions
 ---------------------
-
-With all scalar functions, a ``NULL`` input to any one of the arguments means the result is ``NULL``.
+With all scalar functions, a ``NULL`` input to any one of the arguments means the result is ``NULL``:
 
 .. code-block:: psql
    
@@ -45,8 +56,7 @@ With all scalar functions, a ``NULL`` input to any one of the arguments means th
 
 Aggregates
 ---------------
-
-With aggregates, ``NULL`` values are ignored, so they do not affect the result set.
+With aggregates, ``NULL`` values are ignored, so they do not affect the result set:
 
 .. code-block:: psql
    
@@ -60,14 +70,17 @@ With aggregates, ``NULL`` values are ignored, so they do not affect the result s
    ---------+----------+---------
           5 |        3 |        3
 
+The following applies when using aggregates:
+
 * ``NULL`` values are not included in ``COUNT()`` of a column. ``COUNT(x)`` shows the full row-count because it's a non-nullable column. ``COUNT(y)`` returns 3 - just the non-``NULL`` values.
 
-* With :ref:`min`, :ref:`max`, and :ref:`avg` - ``NULL`` values are completely ignored.
+ ::
+
+* ``NULL`` values are completely ignored when using the :ref:`min`, :ref:`max`, and :ref:`avg` functions.
 
 Distincts
 -----------
-
-``NULL`` values are considered distinct, but only counted once.
+``NULL`` values are considered distinct, but only counted once:
 
 .. code-block:: psql
 
@@ -91,10 +104,9 @@ Running :ref:`count` DISTINCT however, ignores the ``NULL`` values:
 
 Sorting
 ========
-
 When sorting a column containing ``NULL`` values, SQream DB sorts ``NULL`` values first with ``ASC`` and last with ``DESC``. 
 
-SQream DB does not implement ``NULLS FIRST`` or ``NULLS LAST``, so where ``NULL`` appears cannot change where NULL values appear in the sort order.
+SQream does not implement ``NULLS FIRST`` or ``NULLS LAST``, so where ``NULL`` appears cannot change where NULL values appear in the sort order:
 
 .. code-block:: psql
 
@@ -115,4 +127,3 @@ SQream DB does not implement ``NULLS FIRST`` or ``NULLS LAST``, so where ``NULL`
    2 |  1 |  1
    4 | \N | \N
    5 |  6 | \N
-
