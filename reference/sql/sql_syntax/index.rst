@@ -7,7 +7,6 @@ The **SQL Syntax Features** page describes the following SQL syntax features:
 
 .. toctree::
    :maxdepth: 1
-   :caption: SQL syntax topics
    :glob:
 
    keywords_and_identifiers

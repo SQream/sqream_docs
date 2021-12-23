@@ -20,39 +20,39 @@ The following table shows the DDL commands:
    * - Command
      - Usage
    * - :ref:`ADD COLUMN<add_column>`
-     - Add a new column to a table
+     - Adds a new column to a table
    * - :ref:`ALTER DEFAULT SCHEMA<alter_default_schema>`
-     - Change the default schema for a role
+     - Changes the default schema for a role
    * - :ref:`ALTER TABLE<alter_table>`
-     - Change the schema of a table
+     - Changes the schema of a table
    * - :ref:`CREATE DATABASE<create_database>`
-     - Create a new database
+     - Creates a new database
    * - :ref:`CREATE EXTERNAL TABLE<create_external_table>`
-     - Create a new external table in the database (deprecated)
+     - Creates a new external table in the database (deprecated)
    * - :ref:`CREATE FOREIGN TABLE<create_foreign_table>`
-     - Create a new foreign table in the database
+     - Creates a new foreign table in the database
    * - :ref:`CREATE FUNCTION <create_function>`
-     - Create a new user defined function in the database
+     - Creates a new user defined function in the database
    * - :ref:`CREATE SCHEMA<create_schema>`
-     - Create a new schema in the database
+     - Creates a new schema in the database
    * - :ref:`CREATE TABLE<create_table>`
-     - Create a new table in the database
+     - Creates a new table in the database
    * - :ref:`CREATE TABLE AS<create_table_as>`
-     - Create a new table in the database using results from a select query
+     - Creates a new table in the database using results from a select query
    * - :ref:`CREATE VIEW<create_view>`
-     - Create a new view in the database
+     - Creates a new view in the database
    * - :ref:`DROP COLUMN<drop_column>`
-     - Drop a column from a table
+     - Drops a column from a table
    * - :ref:`DROP DATABASE<drop_database>`
-     - Drop a database and all of its objects
+     - Drops a database and all of its objects
    * - :ref:`DROP FUNCTION<drop_function>`
-     - Drop a function
+     - Drops a function
    * - :ref:`DROP SCHEMA<drop_schema>`
-     - Drop a schema
+     - Drops a schema
    * - :ref:`DROP TABLE<drop_table>`
-     - Drop a table and its contents from a database
+     - Drops a table and its contents from a database
    * - :ref:`DROP VIEW<drop_view>`
-     - Drop a view
+     - Drops a view
    * - :ref:`RENAME COLUMN<rename_column>`
      - Rename a column
    * - :ref:`RENAME TABLE<rename_table>`
@@ -71,26 +71,25 @@ The following table shows the DML commands:
    * - Command
      - Usage
    * - :ref:`CREATE TABLE AS<create_table_as>`
-     - Create a new table in the database using results from a select query
+     - Creates a new table in the database using results from a select query
    * - :ref:`DELETE<delete>`
-     - Delete specific rows from a table
+     - Deletes specific rows from a table
    * - :ref:`COPY FROM<copy_from>`
-     - Bulk load CSV data into an existing table
+     - Bulk loads CSV data into an existing table
    * - :ref:`COPY TO<copy_to>`
-     - Export a select query or entire table to CSV files
+     - Exports a select query or entire table to CSV files
    * - :ref:`INSERT<insert>`
-     - Insert rows into a table
+     - Inserts rows into a table
    * - :ref:`SELECT<select>`
-     - Select rows and column from a table
+     - Selects rows and column from a table
    * - :ref:`TRUNCATE<truncate>`
-     - Delete all rows from a table
+     - Deletes all rows from a table
    * - :ref:`VALUES<values>`
-     - Return rows containing literal values
+     - Returns rows containing literal values
 
 Utility Commands
 ==================
 The following table shows the Utility commands:
-
 
 .. list-table:: Utility Commands
    :widths: auto
@@ -99,15 +98,15 @@ The following table shows the Utility commands:
    * - Command
      - Usage
    * - :ref:`SELECT GET_DDL<get_ddl>`
-     - View the ``CREATE TABLE`` statement for a table
+     - Views the ``CREATE TABLE`` statement for a table
    * - :ref:`SELECT GET_FUNCTION_DDL<get_function_ddl>`
-     - View the ``CREATE FUNCTION`` statement for a UDF
+     - Views the ``CREATE FUNCTION`` statement for a UDF
    * - :ref:`SELECT GET_VIEW_DDL<get_view_ddl>`
-     - View the ``CREATE VIEW`` statement for a view
+     - Views the ``CREATE VIEW`` statement for a view
    * - :ref:`SELECT RECOMPILE_VIEW<recompile_view>`
      - Recreate a view after schema changes
    * - :ref:`SELECT DUMP_DATABASE_DDL<dump_database_ddl>`
-     - View the ``CREATE TABLE`` statement for a current database
+     - Views the ``CREATE TABLE`` statement for a current database
 
 Saved Queries
 ===================
@@ -120,7 +119,7 @@ The following table shows the saved query commands:
    * - Command
      - Usage
    * - :ref:`SELECT DROP_SAVED_QUERY<drop_saved_query>`
-     - Drop a saved query
+     - Drops a saved query
    * - :ref:`SELECT EXECUTE_SAVED_QUERY<execute_saved_query>`
      - Executes a saved query
    * - :ref:`SELECT LIST_SAVED_QUERIES<list_saved_queries>`
@@ -163,7 +162,7 @@ The following table shows the monitoring commands:
 
 Workload Management
 ======================
-The following table shows the monitoring commands:
+The following table shows the workload management commands:
 
 .. list-table:: Workload Management Commands
    :widths: auto
@@ -172,11 +171,11 @@ The following table shows the monitoring commands:
    * - Command
      - Usage
    * - :ref:`subscribe_service`
-     - Add a SQream DB worker to a service queue 
+     - Adds a SQream DB worker to a service queue 
    * - :ref:`unsubscribe_service`
-     - Remove a SQream DB worker to a service queue
+     - Removes a SQream DB worker to a service queue
    * - :ref:`show_subscribed_instances`
-     - Return a list of service queues and workers
+     - Returns a list of service queues and workers
 
 Access Control Commands
 ================================
@@ -199,11 +198,11 @@ The following table shows the access control commands:
    * - :ref:`get_statement_permissions`
      - Returns a list of permissions required to run a statement or query
    * - :ref:`grant`
-     - Grant permissions to a role
+     - Grants permissions to a role
    * - :ref:`revoke`
      - Revoke permissions from a role
    * - :ref:`rename_role`
-     - Rename a role
+     - Renames a role
 	 
 For more information about Access Control, see :ref:`access_control`.
 

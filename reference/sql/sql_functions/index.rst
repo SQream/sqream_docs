@@ -3,22 +3,33 @@
 ****************
 SQL Functions
 ****************
-
 SQream supports functions from ANSI SQL, as well as others for compatibility.
 
 Summary of Functions
 =======================
+The **SQL Functions** page describes the following functions:
 
 .. contents::
    :local:
+   :depth: 1
+
+   
 
 Scalar Functions
 -------------------
+Scalar functions return one value per call, shown below:
 
-See more about :ref:`scalar_functions`
+.. contents::
+   :local:
+   :depth: 1
+
+For more information, see :ref:`scalar_functions`.
+
+**Comment** - *This link points to a page that shows the entire list of scalar functions. That page doesn't hold much value for the user (because that entire list is on this page, too), and should be deprecated. This is true for other links on this page (but not all).*
 
 Bitwise Operations
 ^^^^^^^^^^^^^^^^^^^^^^^
+The following table describes the available bitwise operations:
 
 .. list-table:: 
    :widths: auto
@@ -41,6 +52,7 @@ Bitwise Operations
 
 Conditionals
 ^^^^^^^^^^^^^^
+The following table describes the available conditional operations:
 
 .. list-table:: 
    :widths: auto
@@ -65,6 +77,7 @@ Conditionals
 
 Conversion
 ^^^^^^^^^^^^
+The following table describes the available conversion operations:
 
 .. list-table:: 
    :widths: auto
@@ -81,6 +94,7 @@ Conversion
 
 Date and Time
 ^^^^^^^^^^^^^^^^
+The following table describes the available date and time operations:
 
 .. list-table:: 
    :widths: auto
@@ -111,12 +125,21 @@ Date and Time
    * - :ref:`date_trunc`
      - Truncates a date element down to a specified date or time element
 
-Numeric
+Numeric Operations and Functions
 ^^^^^^^^^^^
+This section describes the following:
 
-See more about :ref:`arithmetic_operators`
+.. contents::
+   :local:
+   
+Arithmetic Operations
+############
 
-.. list-table:: Arithmetic operators
+The following table describes the available arithmetic operations:
+
+For more information, see :ref:`arithmetic_operators`.
+
+.. list-table:: Arithmetic Operators
    :widths: auto
    :header-rows: 1
    
@@ -144,8 +167,13 @@ See more about :ref:`arithmetic_operators`
    * - ``%``
      - ``a % b``
      - Modulu of ``a`` by ``b``. See also :ref:`mod`
+	 
+Numeric Functions
+############
 
-.. list-table:: Functions
+The following table describes the available numeric functions:
+
+.. list-table:: Numeric Functions
    :widths: auto
    :header-rows: 1
    
@@ -202,8 +230,9 @@ See more about :ref:`arithmetic_operators`
 
 Strings
 ^^^^^^^^^^^
+The following table describes the available string operations:
 
-.. list-table:: 
+.. list-table:: String Operations
    :widths: auto
    :header-rows: 1
    
@@ -257,8 +286,13 @@ Strings
 
 Aggregate Functions
 ---------------------
+Aggregate functions performs calculation on a set of values, and return a single value. Most aggregate functions ignore null values. Aggregate functions are often used with the ``GROUP BY`` clause of the :ref:`select` statement.
 
-See more about  :ref:`aggregate_functions`
+The following table describes the available aggregate functions:
+
+For more information, see :ref:`aggregate_functions`.
+
+**Comment** - *Link to unnecessary page* I moved all content from that page to the introduction directly above.*
 
 .. list-table:: 
    :widths: auto
@@ -306,8 +340,9 @@ See more about  :ref:`aggregate_functions`
 
 Window Functions
 -------------------
+The following table describes the available window functions:
 
-See more about  :ref:`window_functions`
+For more information, see :ref:`window_functions`.
 
 .. list-table:: 
    :widths: auto
@@ -332,8 +367,9 @@ See more about  :ref:`window_functions`
 
 System Functions
 ------------------
-
 System functions allow you to execute actions in the system, such as aborting a query or get information about system processes.
+
+The following table describes the available system functions:
 
 .. list-table:: 
    :widths: auto
@@ -358,6 +394,7 @@ System functions allow you to execute actions in the system, such as aborting a 
 
 Workload Management Functions
 ---------------------------------
+The following table describes the available workload management functions:
 
 .. list-table:: 
    :widths: auto
