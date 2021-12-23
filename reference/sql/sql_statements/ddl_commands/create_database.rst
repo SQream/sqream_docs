@@ -3,16 +3,19 @@
 *****************
 CREATE DATABASE
 *****************
+The ``CREATE DATABASE`` command creates a new database in SQream.
 
-``CREATE DATABASE`` creates a new database in SQream DB
+Overview
+---------
+The **CREATE DATABASE** page describes the following:
 
-Permissions
-=============
-
-Only a superuser can create a new database
+.. contents:: 
+   :local:
+   :depth: 1
 
 Syntax
 ==========
+The following is the correct syntax for the CREATE DATABASE command:
 
 .. code-block:: postgres
 
@@ -24,6 +27,7 @@ Syntax
 
 Parameters
 ============
+The following table shows the CREATE DATABASE parameters:
 
 .. list-table:: 
    :widths: auto
@@ -34,8 +38,9 @@ Parameters
    * - ``database_name``
      - The name of the database name. The database name must be unique, and follows :ref:`Identifier rules <identifiers>`
      
-Examples
+Example
 ===========
+The following example shows how to use CREATE DATABASE:
 
 .. code-block:: postgres
 
@@ -45,11 +50,15 @@ Examples
 
    CREATE DATABASE my_db;
 
-If the database already exists, an error will appear:
+If the database already exists, an error will be displayed:
 
 .. code-block:: psql
   
   master=> CREATE DATABASE MY_DB;
   Database 'my_db' already exists
 
-.. note:: SQream DB :ref:`identifiers <identifiers>` are always converted to lowercase, so ``my_db`` is the same as ``MY_DB``, unless explicitly quoted as ``"MY_DB"``.
+.. note:: SQream :ref:`identifiers <identifiers>` are always converted to lowercase, so ``my_db`` is the same as ``MY_DB``, unless explicitly quoted as ``"MY_DB"``.
+
+Permissions
+=============
+Only roles with superuser permissions can create a new database.

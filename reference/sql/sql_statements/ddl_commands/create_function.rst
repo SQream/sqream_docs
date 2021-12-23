@@ -3,18 +3,14 @@
 *****************
 CREATE FUNCTION
 *****************
+The ``CREATE FUNCTION`` command creates a new user-defined function (UDF) in an existing database.
 
-``CREATE FUNCTION`` creates a new user-defined function (UDF) in an existing database.
+For more information, see the :ref:`Python UDF (user-defined functions) guide<python_functions>`.
 
-See more in our :ref:`Python UDF (user-defined functions)<python_functions>` guide.
-
-Permissions
-=============
-
-The role must have the ``CREATE FUNCTION`` permission at the database level.
 
 Syntax
 ==========
+The following is the correct syntax for the CREATE_FUNCTION command:
 
 .. code-block:: postgres
 
@@ -38,6 +34,7 @@ Syntax
 
 Parameters
 ============
+The following table shows the CREATE_FUNCTION parameters:
 
 .. list-table:: 
    :widths: auto
@@ -58,9 +55,15 @@ Parameters
 
 Examples
 ===========
+This section includes the following examples:
 
-Calculate distance between two points
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Calculating the Distance Between Two Points
 --------------------------------------
+The following example shows how to calculate the distance between two points:
 
 .. code-block:: postgres
 
@@ -78,8 +81,9 @@ Calculate distance between two points
    SELECT  city, my_location, my_distance(x1,y1,x2,y2)  from  cities;
 
 
-Calling files from other locations
+Calling Files from Other Locations
 ---------------------------------------
+The following example shows how to call files from other locations:
 
 .. code-block:: postgres
 
@@ -101,3 +105,7 @@ Calling files from other locations
 
    -- Usage:  
    SELECT write_log();
+
+Permissions
+=============
+The role must have the ``CREATE FUNCTION`` permission at the database level.

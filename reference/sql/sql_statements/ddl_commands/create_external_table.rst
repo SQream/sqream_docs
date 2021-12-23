@@ -13,23 +13,21 @@ CREATE EXTERNAL TABLE
    Upgrading to a new version of SQream DB converts existing tables automatically. When creating a new external tables, use the new foreign table syntax.
 
 
-``CREATE TABLE`` creates a new external table in an existing database.
-
-See more in the :ref:`External tables guide<external_tables>`.
+The ``CREATE TABLE`` command creates a new external table in an existing database.
 
 .. tip::
 
    * Data in an external table can change if the sources change, and frequent access to remote files may harm performance.
 
    * To create a regular table, see :ref:`CREATE TABLE <create_table>`
+   
+For more information, see :ref:`External tables guide<external_tables>`.
 
-Permissions
-=============
-
-The role must have the ``CREATE`` permission at the database level.
+The **CREATE EXTERNAL TABLE** page describes the following:
 
 Syntax
 ==========
+The following is the correct syntax for CREATE_EXTERNAL_TABLE:
 
 .. code-block:: postgres
 
@@ -77,6 +75,7 @@ Syntax
 
 Parameters
 ============
+The following table shows the CREATE_EXTERNAL_TABLE parameters:
 
 .. list-table:: 
    :widths: auto
@@ -106,9 +105,15 @@ Parameters
 
 Examples
 ===========
+This section includes the following examples:
 
-A simple table from Tab-delimited file (TSV)
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Creating a Simple Table from a Tab-Delimited File
 ----------------------------------------------
+The following example shows how to create a simple table from a **tab-delimited file (TSV)**:
 
 .. code-block:: postgres
 
@@ -119,8 +124,9 @@ A simple table from Tab-delimited file (TSV)
          FIELD DELIMITER '\t';
 
 
-A table from a directory of Parquet files on HDFS
+Creating a Table from a Directory of Parquet Files on HDFS
 -----------------------------------------------------
+The following example shows how to create a table from a directory of Parquet files on HDFS:
 
 .. code-block:: postgres
 
@@ -129,8 +135,9 @@ A table from a directory of Parquet files on HDFS
    USING FORMAT Parquet
    WITH  PATH  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet';
 
-A table from a bucket of files on S3
+Creating a Table from a Bucket of Files on S3
 --------------------------------------
+The following example shows how to create a table from a bucket of files on S3:
 
 .. code-block:: postgres
 
@@ -141,16 +148,17 @@ A table from a bucket of files on S3
          AWS_ID 'our_aws_id'
          AWS_SECRET 'our_aws_secret';
 
-
-Changing an external table to a regular table
+Changing an External Table into a Regular Table
 ------------------------------------------------
-
-Materializes an external table into a regular table.
-
-.. tip: Using an external table allows you to perform ETL-like operations in SQream DB by applying SQL functions and operations to raw files
+The following example shows how to change an external table into a regular table:
 
 .. code-block:: postgres
 
    CREATE TABLE real_table
     AS SELECT * FROM external_table;
 
+.. tip: Using an external table allows you to perform ETL-like operations in SQream DB by applying SQL functions and operations to raw files.
+
+Permissions
+=============
+The role must have the ``CREATE`` permission at the database level.

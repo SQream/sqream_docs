@@ -3,22 +3,26 @@
 *****************
 CREATE SCHEMA
 *****************
+The ``CREATE SCHEMA`` command creates a new schema in an existing database. A schema is a virtual space for storing tables. The default schema in SQream is ``public``.
 
-``CREATE SCHEMA`` creates a new schema in an existing database. A schema is a virtual space for storing tables.
+.. tip:: You can use schemas to separate between use-cases, such as staging and production.
 
-The default schema in SQream DB is ``public``.
+For more information, see the following:
 
-.. tip:: Use schemas to separate between use-cases, such as staging and production.
+* :ref:`drop_schema`
+* :ref:`alter_default_schema`.
 
-See also: :ref:`drop_schema`, :ref:`alter_default_schema`.
+Overview
+---------
+The **CREATE SCHEMA** page describes the following:
 
-Permissions
-=============
-
-The role must have the ``CREATE`` permission at the database level.
+.. contents:: 
+   :local:
+   :depth: 1
 
 Syntax
 ==========
+The following is the correct syntax for CREATE_SCHEMA:
 
 .. code-block:: postgres
 
@@ -31,6 +35,7 @@ Syntax
 
 Parameters
 ============
+The following table shows the CREATE_SCHEMA parameters:
 
 .. list-table:: 
    :widths: auto
@@ -43,9 +48,15 @@ Parameters
 
 Examples
 ===========
+This section includes the following examples:
 
-Creating a schema
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Creating a Schema
 --------------------
+The following example shows how to create a schema:
 
 .. code-block:: postgres
 
@@ -55,8 +66,9 @@ Creating a schema
    
    SELECT * FROM staging.users;
 
-Altering the default schema for a role
+Altering the Default Schema for a Role
 -----------------------------------------
+The following example shows how to alter the default schema for a role:
 
 .. code-block:: postgres
 
@@ -65,3 +77,7 @@ Altering the default schema for a role
    ALTER DEFAULT SCHEMA FOR bgilfoyle TO staging;
    
    SELECT * FROM users; -- Now refers to staging.users, rather than public.users
+
+Permissions
+=============
+The role must have the ``CREATE`` permission at the database level.

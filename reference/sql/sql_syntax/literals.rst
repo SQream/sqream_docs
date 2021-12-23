@@ -3,10 +3,9 @@
 ***************************
 Literals
 ***************************
+**Literals** represent constant values.
 
-Literals represent constant values.
-
-SQream DB contains several types of literals:
+The **Literals** page describes the following functions:
 
 * :ref:`Number literals<number_literals>` - define numbers such as ``1.3``, ``-5``
 * :ref:`String literals<string_literals>` - define text values like ``'Foxes are cool'``, ``'1997-01-01'``
@@ -15,10 +14,10 @@ SQream DB contains several types of literals:
 
 .. _number_literals:
 
-Number literals
+Number Literals
 ===================
+The following is the correct syntax for a number literal:
 
-A number literal can be expressed in the following way:
 
 .. code-block:: postgres
 
@@ -28,9 +27,7 @@ A number literal can be expressed in the following way:
       | [ digits ] . digits [ e [+-] digits ]
       | digits e[+-]digits
 
-
-Examples
-------------
+The following is an example of a number literal:
 
 .. code-block:: postgres
 
@@ -57,18 +54,13 @@ Examples
 
 .. _string_literals:
 
-String literals
+String Literals
 ==================
-
-String literals are string (text) values, encoded either in ASCII or UTF-8.
-
-A string literal is quoted with single quotes (``'``) or dollars (``$$``)
+String literals are string (text) values, encoded either in ASCII or UTF-8. A string literal is quoted with single quotes (``'``) or dollars (``$$``).
 
 .. tip:: To use a single quote in a string, repeat the single quote twice. See examples below.
 
-
-Examples
-------------
+The following is the correct syntax for a string literal:
 
 .. code-block:: postgres
    
@@ -80,7 +72,6 @@ Examples
    
    '1997-01-01' -- This is a string
 
-
 The actual data type of the value changes based on context, the format used, and the value itself. In the example below, the first value is interpreted as a ``DATE``, while the second is interpreted as a ``VARCHAR``.
 
 .. code-block:: postgres
@@ -89,21 +80,23 @@ The actual data type of the value changes based on context, the format used, and
 
 .. _typed_literals:
 
-Typed literals
+Typed Literals
 ================
-
-A typed literal allows the creation of any data type using either of the following syntaxes:
+The following are two examples of the correct syntax for a typed literal:
 
 .. code-block:: postgres
    
    CAST(literal AS type_name)
-   -- or
+
+.. code-block:: postgres
+
    literal :: type_name
 
-See also :ref:`cast` for more information about supported casts.
+For more information about supported casts, see :ref:`cast`.
 
-Syntax reference
+Syntax Reference
 -------------------
+The following is the correct syntax for a syntax reference:
 
 .. code-block:: postgres
    
@@ -130,8 +123,7 @@ Syntax reference
        | VARCHAR ( digits )
        | TEXT ( digits )
 
-Examples
-----------
+The following is an example of a syntax reference:
 
 .. code-block:: postgres
    
@@ -145,10 +137,10 @@ Examples
 
 .. _constants:
 
-Other constants
+Other Constants
 ================
+The following other constants are available:
 
 * ``TRUE`` and ``FALSE`` are interpreted as values of type ``BOOL``.
 
 * ``NULL`` - which has no type by itself. The type is inferred from context during query compilation.
-

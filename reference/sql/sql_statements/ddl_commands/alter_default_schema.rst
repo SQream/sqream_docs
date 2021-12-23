@@ -41,9 +41,7 @@ The following parameters can be used when altering a default schema:
    * - ``schema_name``
      - The new default schema name.
 	 
-Permissions
-=============
-No special permissions are required.
+
 
 Examples
 ===========
@@ -56,3 +54,7 @@ This section includes an example of **altering the default schema for a role**:
    ALTER DEFAULT SCHEMA FOR bgilfoyle TO staging;
    
    SELECT * FROM users; -- Now refers to staging.users, rather than public.users
+
+Permissions
+=============
+No special permissions are required.
