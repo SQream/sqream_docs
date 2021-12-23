@@ -13,6 +13,7 @@ The **Window Functions** page describes the following:
    :local:
    :depth: 1
 
+
 Syntax
 ========
 The following is the correct syntax when using window functions:

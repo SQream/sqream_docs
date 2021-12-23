@@ -36,7 +36,7 @@ The following is the correct syntax for adding a table:
 
 Parameters
 ============
-The following parameters can be used for adding a table:
+The following table shows the ADD COLUMN parameters:
 
 .. list-table:: 
    :widths: auto
@@ -58,9 +58,7 @@ The following parameters can be used for adding a table:
    * A new column added to the table can not contain an IDENTITY or be of the TEXT type.
    
 
-Permissions
-=============
-The role must have the ``DDL`` permission at the database or table level.
+
 
 Examples
 ===========
@@ -88,4 +86,8 @@ This example shows how to add several columns in one command:
 
    ALTER TABLE cool_animals
      ADD COLUMN number_of_eyes INT DEFAULT 2 NOT NULL,
-     ADD COLUMN date_seen DATE DEFAULT '2019-08-01'; 
+     ADD COLUMN date_seen DATE DEFAULT '2019-08-01';
+	 
+Permissions
+=============
+The role must have the ``DDL`` permission at the database or table level.

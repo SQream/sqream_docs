@@ -6,8 +6,8 @@ Subqueries
 Using **subqueries** lets you reuse results from other queries.
 
 Overview
----------
-The **Window Functions** page describes the following:
+------
+The **Subqueries** page describes the following:
 
 .. contents:: 
    :local:
@@ -53,8 +53,8 @@ The following table is a preview of the source (:download:`Download nba.csv </_s
    :widths: auto
    :header-rows: 1
 
-Running Simple Subqueries
-------------------
+Running a Simple Subquery
+~~~~~~~~~~~~~~
 The following example shows how to run a simple subquery:
 
 .. code-block:: psql
@@ -66,7 +66,7 @@ The following example shows how to run a simple subquery:
    26
 
 Combining a Subquery with a Join
-----------------------------------
+~~~~~~~~~~~~~~
 The following example shows how to run a subquery with a join:
 
 .. code-block:: psql
@@ -92,8 +92,8 @@ The following example shows how to run a subquery with a join:
    Tyson Chandler     | Tyson Chandler     | Phoenix Suns           |      4 | C        |  33 | 7-1    |    240 | \N         | 13000000
    Walter Tavares     | Walter Tavares     | Atlanta Hawks          |     22 | C        |  24 | 7-3    |    260 | \N         |  1000000
 
-Using WITH Subqueries
----------------------
+Using a WITH Subquery
+~~~~~~~~~~~~~~
 The following example shows how to use ``WITH`` subqueries:
 
 .. code-block:: psql

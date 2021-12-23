@@ -3,10 +3,9 @@
 ***************************
 Scalar Expressions
 ***************************
+**Scalar expressions** are functions that calculate a single (scalar) value, even if executed on an entire column. They can be stored as a row value, as opposed to a table value which is a result set consisting of more than one column and/or row.
 
-Scalar expressions are functions that calculate a single (scalar) value, even if executed on an entire column. They can be stored as a row value, as opposed to a table value which is a result set consisting of more than one column and/or row.
-
-A scalar expression can be any one of these:
+A scalar expression can be one of the following:
 
 .. contents::
    :local:
@@ -36,15 +35,13 @@ A scalar expression can be any one of these:
 
 Literals
 =============
+Literals are constant values.
 
-:ref:`Literals<literals>` are constant values.
+For more information about literals, see :ref:`Literals<literals>`.
 
-Column references
+Column References
 =====================
-
-A column reference is a column name, alias, or ordinal.
-
-For example, in ``SELECT name FROM users``, the column reference refers to the column titled ``name``.
+A column reference is a column name, alias, or ordinal. For example, in ``SELECT name FROM users``, the column reference refers to the column titled ``name``.
 
 Column names may be aliased. For example in ``SELECT name as "First name" from users``, the column reference is the alias ``"First name"``, which is quoted to maintain the case and use of space.
 
@@ -52,13 +49,17 @@ A column may also be referneced using an ordinal, for example in a ``GROUP BY`` 
 
 Operators
 =================
+Operators are frequently used for comparison and usually come in one of the following forms:
 
-Operators, frequently used for comparison, usually come in three forms:
+.. contents:: 
+   :local:
+   :depth: 1
 
-Unary operator
+Unary Operator
 ----------------
+A unary operator is a prefix or postfix to an expression or literal, such as ``-``, which is used to negate numbers.
 
-A prefix or postfix to an expression or literals. For example, ``-``, which is used to negate numbers.
+The following is the correct syntax for using a unary operator:
 
 .. code-block:: postgres
    
@@ -69,10 +70,11 @@ A prefix or postfix to an expression or literals. For example, ``-``, which is u
       IS NULL | IS NOT NULL
 
 
-Binary operator
+Binary Operator
 -----------------
+A binary operator is two expressions or literals separated by an operator, such as ``+``, which is used to add two numbers.
 
-Two expressions or literals separated by an operator. For example, ``+`` which is used to add two numbers.
+The following is the correct syntax for using a binary operator:
 
 .. code-block:: postgres
 
@@ -80,9 +82,9 @@ Two expressions or literals separated by an operator. For example, ``+`` which i
       . | + | ^ | * | / | % | + | - | >= | <= | != | <> | ||
       | LIKE | NOT LIKE | RLIKE | NOT RLIKE | < | > | = | OR | AND
 
-
-Special operators for set membership
+Special Operators for Set Membership
 ----------------------------------------
+The following is the correct syntax for special operators to set membership:
 
 .. code-block:: postgres
 
@@ -92,18 +94,15 @@ Special operators for set membership
        | value_expr BETWEEN value_expr AND value_expr
        | value_expr NOT BETWEEN value_expr AND value_expr
 
-These operators return TRUE if the ``value_expr``  on the left matches the expression on the right for set membership or if the value is in-range.
+These operators return ``TRUE`` if the ``value_expr``  on the left matches the expression on the right for set membership or if the value is in-range.
 
 .. note:: The data type of the left ``value_expr`` must match the type of the right side ``value_expr``.
 
-Comparisons
+Comparing Values
 -------------
-
 Binary operators are frequently used to compare values.
 
-Comparison operators (``<`` ``>`` ``=`` ``<=`` ``>=`` ``<>`` ``!=``, ``IS NULL``, ``IS NOT NULL`` always returns ``BOOL``
-
-These operators are:
+The comparison operators in the following table always return ``BOOL``:
 
 .. list-table:: 
    :widths: auto
@@ -112,33 +111,32 @@ These operators are:
    * - Operator
      - Name
    * - ``<``
-     - Smaller than
+     - Smaller than.
    * - ``<=``
-     - Smaller than or equal to
+     - Smaller than or equal to.
    * - ``>``
-     - Greater than
+     - Greater than.
    * - ``>=``
-     - Greater than or equal to
+     - Greater than or equal to.
    * - ``=``
-     - Equals
+     - Equals.
    * - ``<>`` or ``!=``
-     - Not equal to
+     - Not equal to.
    * - ``IS``
-     - Identical to 
+     - Identical to .
    * - ``IS NOT``
-     - Not identical to
+     - Not identical to.
 
 .. note::
-   NULL values are handled differently than other value expressions:
+   ``NULL`` values are handled differently than other value expressions:
    
    * ``NULL`` is always smaller than anything, including another ``NULL``.
 
    * ``NULL`` is never equal to anything, including another ``NULL`` (``=``). To check if a value is null, use ``IS NULL``
 
-Operator precedence
+Operator Precedence
 ---------------------
-
-The table below lists the operators in decreasing order of precedence.
+The following table lists the operators in decreasing order of precedence:
 
 .. list-table:: 
    :widths: auto
@@ -186,5 +184,4 @@ The table below lists the operators in decreasing order of precedence.
 
 .. tip:: Use parentheses to avoid ambiguous situations when using binary operators.
 
-.. note:: The NOT variations, such as ``NOT BETWEEN``, ``NOT IN``, ``NOT LIKE``, ``NOT RLIKE`` have the same precedence as their non-``NOT`` variations.
-
+.. note:: The ``NOT`` variations, such as ``NOT BETWEEN``, ``NOT IN``, ``NOT LIKE``, ``NOT RLIKE`` have the same precedence as their non-``NOT`` variations.

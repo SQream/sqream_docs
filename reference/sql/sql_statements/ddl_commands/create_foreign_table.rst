@@ -11,23 +11,24 @@ CREATE FOREIGN TABLE
    Upgrading to a new version of SQream DB converts existing external tables automatically. 
 
 
-``CREATE FOREIGN TABLE`` creates a new foreign table in an existing database.
+The ``CREATE FOREIGN TABLE`` command creates a new foreign table in an existing database.
 
-See more in the :ref:`Foreign tables guide<external_tables>`.
+
 
 .. tip::
 
    * Data in a foreign table can change if the sources change, and frequent access to remote files may harm performance.
 
    * To create a regular table, see :ref:`CREATE TABLE <create_table>`
+   
+For more information, see the :ref:`Foreign tables guide<external_tables>`.
 
-Permissions
-=============
+The **CREATE FOREIGN TABLE** page describes the following:
 
-The role must have the ``CREATE`` permission at the database level.
 
 Syntax
 ==========
+The following is the correct syntax for CREATE_FOREIGN_TABLE:
 
 .. code-block:: postgres
 
@@ -77,6 +78,7 @@ Syntax
 
 Parameters
 ============
+The following table shows the CREATE_FOREIGN_TABLE parameters:
 
 .. list-table:: 
    :widths: auto
@@ -106,60 +108,60 @@ Parameters
 
 Examples
 ===========
+This section includes the following examples:
 
-A simple table from Tab-delimited file (TSV)
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Creating a Simple Table from a Tab-Delimited File
 ----------------------------------------------
+The following example shows how to create a simple table from a **tab-delimited file (TSV)**:
 
 .. code-block:: postgres
 
-   CREATE OR REPLACE FOREIGN TABLE cool_animals
+   CREATE OR REPLACE EXTERNAL TABLE cool_animals
      (id INT NOT NULL, name VARCHAR(30) NOT NULL, weight FLOAT NOT NULL)  
-   WRAPPER csv_fdw
-   OPTIONS
-     ( LOCATION = '/home/rhendricks/cool_animals.csv',
-       DELIMITER = '\t'
-     )
-    ;
+   USING FORMAT csv 
+   WITH  PATH  '/home/rhendricks/cool_animals.csv'
+         FIELD DELIMITER '\t';
 
 
-A table from a directory of Parquet files on HDFS
+Creating a Table from a Directory of Parquet Files on HDFS
 -----------------------------------------------------
+The following example shows how to create a table from a directory of Parquet files on HDFS:
 
 .. code-block:: postgres
 
-   CREATE FOREIGN TABLE users
+   CREATE EXTERNAL TABLE users
      (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
-   WRAPPER parquet_fdw
-   OPTIONS
-     (
-       LOCATION =  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet'
-     );
+   USING FORMAT Parquet
+   WITH  PATH  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet';
 
-A table from a bucket of ORC files on S3
-------------------------------------------
+Creating a Table from a Bucket of Files on S3
+--------------------------------------
+The following example shows how to create a table from a bucket of files on S3:
 
 .. code-block:: postgres
 
-   CREATE FOREIGN TABLE users
+   CREATE EXTERNAL TABLE users
      (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
-   WRAPPER orc_fdw
-   OPTIONS
-     (
-         LOCATION = 's3://pp-secret-bucket/users/*.orc',
-         AWS_ID = 'our_aws_id',
-         AWS_SECRET = 'our_aws_secret'
-      );
+   USING FORMAT Parquet
+   WITH  PATH  's3://pp-secret-bucket/users/*.parquet'
+         AWS_ID 'our_aws_id'
+         AWS_SECRET 'our_aws_secret';
 
-
-Changing a foreign table to a regular table
+Changing an External Table into a Regular Table
 ------------------------------------------------
-
-Materializes a foreign table into a regular table.
-
-.. tip: Using a foreign table allows you to perform ETL-like operations in SQream DB by applying SQL functions and operations to raw files
+The following example shows how to change an external table into a regular table:
 
 .. code-block:: postgres
 
    CREATE TABLE real_table
-    AS SELECT * FROM some_foreign_table;
+    AS SELECT * FROM external_table;
 
+.. tip: Using an external table allows you to perform ETL-like operations in SQream DB by applying SQL functions and operations to raw files.
+
+Permissions
+=============
+The role must have the ``CREATE`` permission at the database level.
