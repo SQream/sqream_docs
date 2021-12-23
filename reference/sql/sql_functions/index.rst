@@ -3,6 +3,10 @@
 ****************
 SQL Functions
 ****************
+**Global comment** - *We don't need all elements to be listed in two places, i.e., on a page AND in the navigation menu. See how I formatted the* `Operational Guides <file:///C:/Users/Yaniv/sqream_docs/_build/html/guides/operations/index.html>`_ *page. I removed all navigation items from that section and described them on the page with a link to their own dedicated pages. I think that's the better way to go across the board.*
+
+*Compare this with* `Feature Guides <file:///C:/Users/Yaniv/sqream_docs/_build/html/guides/features/index.html>`_ *, which I've left as is temporarily to show you the comparison.*
+
 SQream supports functions from ANSI SQL, as well as others for compatibility.
 
 Summary of Functions
@@ -11,9 +15,7 @@ The **SQL Functions** page describes the following functions:
 
 .. contents::
    :local:
-   :depth: 1
-
-   
+   :depth: 1   
 
 Scalar Functions
 -------------------
@@ -290,10 +292,6 @@ Aggregate functions performs calculation on a set of values, and return a single
 
 The following table describes the available aggregate functions:
 
-For more information, see :ref:`aggregate_functions`.
-
-**Comment** - *Link to unnecessary page* I moved all content from that page to the introduction directly above.*
-
 .. list-table:: 
    :widths: auto
    :header-rows: 1
@@ -337,12 +335,18 @@ For more information, see :ref:`aggregate_functions`.
    * - :ref:`var_pop`
      - ``varp``
      - Calculates population variance of values
+	 
+For more information, see :ref:`aggregate_functions`.
+
+**Comment** - *The page linked above doesn't really say anything about aggregate functions. It should be formatted like the* :ref:`window_functions` *page to be valuable, i.e., describing the syntax, etc...*
+
+**Comment** *In addition, the Windows Functions page is located in the SQL Syntax Features section (which it should not be). It would be better to move the content of that page to here and to remove Window Functions from the SQL Syntax Features section. I've already done that here, but you can see how the Windows Function page is currently formatted in the live documentation:*
+
+*Live documentation:* `Windows Functions page <https://docs.sqream.com/en/latest/reference/sql/sql_functions/window_functions/index.html>`_.
 
 Window Functions
 -------------------
 The following table describes the available window functions:
-
-For more information, see :ref:`window_functions`.
 
 .. list-table:: 
    :widths: auto
@@ -364,6 +368,8 @@ For more information, see :ref:`window_functions`.
      - Calculates the row number
    * - :ref:`sum`
      - Calculates the sum of all of the values
+	 
+For more information, see :ref:`window_functions`.
 
 System Functions
 ------------------
