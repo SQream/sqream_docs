@@ -1,7 +1,7 @@
 .. _scalar_functions:
 
 ****************
-Scalar functions
+Scalar Functions
 ****************
 
 Scalar functions return one value per call.

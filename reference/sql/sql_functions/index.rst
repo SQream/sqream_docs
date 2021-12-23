@@ -424,5 +424,5 @@ The following table describes the available workload management functions:
 
    scalar_functions/index
    aggregate_functions/index
-   window_functions/*
-   system_functions/*
+   window_functions/index
+   system_functions/index
