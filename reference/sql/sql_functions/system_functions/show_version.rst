@@ -3,16 +3,17 @@
 *****************
 SHOW_VERSION
 *****************
+The ``SHOW_VERSION()`` function returns the SQream system version.
 
-``SHOW_VERSION()`` is a function that returns the system version for SQream DB.
+The **SHOW_VERSION** page describes the following:
 
-Permissions
-=============
-
-No special permissions are required.
+.. contents:: 
+   :local:
+   :depth: 1
 
 Syntax
 ==========
+The following is the correct syntax for the **SHOW_VERSION** function:
 
 .. code-block:: postgres
 
@@ -22,20 +23,15 @@ Syntax
 
 Parameters
 ============
-
-None
+The **SHOW_VERSION** function has no parameters.
 
 Notes
 ==========
+To check the SQream version from the shell, run ``$ sqreamd --version``.
 
-To check the SQream DB version from the shell, run ``$ sqreamd --version``
-
-Examples
+Example
 ===========
-
-Getting the current SQream DB version
----------------------------------------
-
+The Examples section shows how to get the current SQream version:
 
 .. code-block:: psql
 
@@ -44,3 +40,6 @@ Getting the current SQream DB version
    ---------
    v2019.3
 
+Permissions
+=============
+The **SHOW_VERSION** function requires no special permissions.

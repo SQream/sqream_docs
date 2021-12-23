@@ -1,24 +1,33 @@
 .. _sql_functions:
 
 ****************
-SQL functions
+SQL Functions
 ****************
+SQream supports functions from ANSI SQL, as well as others for compatibility.
 
-SQream DB supports functions from ANSI SQL, as well as others for compatibility.
-
-Summary of functions
+Summary of Functions
 =======================
+The **SQL Functions** page describes the following functions:
 
 .. contents::
    :local:
+   :depth: 1   
 
-Scalar functions
+Scalar Functions
 -------------------
+Scalar functions return one value per call, shown below:
 
-See more about :ref:`scalar_functions`
+.. contents::
+   :local:
+   :depth: 1
 
-Bitwise operations
+For more information, see :ref:`scalar_functions`.
+
+**Comment** - *This link points to a page that shows the entire list of scalar functions. That page doesn't hold much value for the user (because that entire list is on this page, too), and should be deprecated. This is true for other links on this page (but not all).*
+
+Bitwise Operations
 ^^^^^^^^^^^^^^^^^^^^^^^
+The following table describes the available bitwise operations:
 
 .. list-table:: 
    :widths: auto
@@ -41,6 +50,7 @@ Bitwise operations
 
 Conditionals
 ^^^^^^^^^^^^^^
+The following table describes the available conditional operations:
 
 .. list-table:: 
    :widths: auto
@@ -65,6 +75,7 @@ Conditionals
 
 Conversion
 ^^^^^^^^^^^^
+The following table describes the available conversion operations:
 
 .. list-table:: 
    :widths: auto
@@ -79,8 +90,9 @@ Conversion
    * - :ref:`to_unixts`
      - Converts a ``DATE`` or ``DATETIME`` to a UNIX Timestamp
 
-Date and time
+Date and Time
 ^^^^^^^^^^^^^^^^
+The following table describes the available date and time operations:
 
 .. list-table:: 
    :widths: auto
@@ -111,12 +123,21 @@ Date and time
    * - :ref:`date_trunc`
      - Truncates a date element down to a specified date or time element
 
-Numeric
+Numeric Operations and Functions
 ^^^^^^^^^^^
+This section describes the following:
 
-See more about :ref:`arithmetic_operators`
+.. contents::
+   :local:
+   
+Arithmetic Operations
+############
 
-.. list-table:: Arithmetic operators
+The following table describes the available arithmetic operations:
+
+For more information, see :ref:`arithmetic_operators`.
+
+.. list-table:: Arithmetic Operators
    :widths: auto
    :header-rows: 1
    
@@ -144,8 +165,13 @@ See more about :ref:`arithmetic_operators`
    * - ``%``
      - ``a % b``
      - Modulu of ``a`` by ``b``. See also :ref:`mod`
+	 
+Numeric Functions
+############
 
-.. list-table:: Functions
+The following table describes the available numeric functions:
+
+.. list-table:: Numeric Functions
    :widths: auto
    :header-rows: 1
    
@@ -202,8 +228,9 @@ See more about :ref:`arithmetic_operators`
 
 Strings
 ^^^^^^^^^^^
+The following table describes the available string operations:
 
-.. list-table:: 
+.. list-table:: String Operations
    :widths: auto
    :header-rows: 1
    
@@ -255,10 +282,11 @@ Strings
      - Converts an argument to an upper-case equivalent
 
 
-Aggregate functions
+Aggregate Functions
 ---------------------
+Aggregate functions performs calculation on a set of values, and return a single value. Most aggregate functions ignore null values. Aggregate functions are often used with the ``GROUP BY`` clause of the :ref:`select` statement.
 
-See more about  :ref:`aggregate_functions`
+The following table describes the available aggregate functions:
 
 .. list-table:: 
    :widths: auto
@@ -303,11 +331,18 @@ See more about  :ref:`aggregate_functions`
    * - :ref:`var_pop`
      - ``varp``
      - Calculates population variance of values
+	 
+For more information, see :ref:`aggregate_functions`.
 
-Window functions
+**Comment** - *The page linked above doesn't really say anything about aggregate functions. It should be formatted like the* :ref:`window_functions` *page to be valuable, i.e., describing the syntax, etc...*
+
+**Comment** *In addition, the Windows Functions page is located in the SQL Syntax Features section (which it should not be). It would be better to move the content of that page to here and to remove Window Functions from the SQL Syntax Features section. I've already done that here, but you can see how the Windows Function page is currently formatted in the live documentation:*
+
+*Live documentation:* `Windows Functions page <https://docs.sqream.com/en/latest/reference/sql/sql_functions/window_functions/index.html>`_.
+
+Window Functions
 -------------------
-
-See more about  :ref:`window_functions`
+The following table describes the available window functions:
 
 .. list-table:: 
    :widths: auto
@@ -329,11 +364,14 @@ See more about  :ref:`window_functions`
      - Calculates the row number
    * - :ref:`sum`
      - Calculates the sum of all of the values
+	 
+For more information, see :ref:`window_functions`.
 
-System functions
+System Functions
 ------------------
-
 System functions allow you to execute actions in the system, such as aborting a query or get information about system processes.
+
+The following table describes the available system functions:
 
 .. list-table:: 
    :widths: auto
@@ -356,8 +394,9 @@ System functions allow you to execute actions in the system, such as aborting a 
    * - :ref:`stop_statement`
      - Stops a query (or statement) if it is currently running
 
-Workload management functions
+Workload Management Functions
 ---------------------------------
+The following table describes the available workload management functions:
 
 .. list-table:: 
    :widths: auto

@@ -3,12 +3,10 @@
 *************************
 Reference
 *************************
-
-This section provides reference for using SQream DB's interfaces and SQL features.
+The Reference page is a reference for the following SQream interfaces and SQL features:
 
 .. toctree::
-   :maxdepth: 5
-   :caption: In this section:
+   :maxdepth: 2
    :glob:
 
    sql_data_types
