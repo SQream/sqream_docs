@@ -307,17 +307,3 @@ For more information, see the following functions:
 
 * :ref:`lead`
 * :ref:`lag`
-
-.. toctree::
-   :maxdepth: 1
-   :glob:
-   :hidden:
-   
-   lag
-   lead
-   row_number
-   rank
-
-.. include:: /reference/sql/sql_syntax/window_functions.rst
-   :start-line: 9
-   :end-line: 100
