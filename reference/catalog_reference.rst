@@ -1,7 +1,7 @@
 .. _catalog_reference:
 
 *************************************
-Catalog reference
+Catalog Reference
 *************************************
 
 SQream DB contains a schema called ``sqream_catalog`` that contains information about your database's objects - tables, columns, views, permissions, and more.
