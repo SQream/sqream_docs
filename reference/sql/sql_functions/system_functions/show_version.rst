@@ -3,8 +3,6 @@
 *****************
 SHOW_VERSION
 *****************
-**Comment** - *This is the only function in the System Functions section. For that reason perhaps it should be moved to one of the other function categories (i.e, the best fit, until more functions are added to System Functions).*
-
 The ``SHOW_VERSION()`` function returns the SQream system version.
 
 The **SHOW_VERSION** page describes the following:
