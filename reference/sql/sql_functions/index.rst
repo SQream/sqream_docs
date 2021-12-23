@@ -3,9 +3,7 @@
 ****************
 SQL Functions
 ****************
-**Global comment** - *We don't need all elements to be listed in two places, i.e., on a page AND in the navigation menu. See how I formatted the* `Operational Guides <file:///C:/Users/Yaniv/sqream_docs/_build/html/guides/operations/index.html>`_ *page. I removed all navigation items from that section and described them on the page with a link to their own dedicated pages. I think that's the better way to go across the board.*
 
-*Compare this with* `Feature Guides <file:///C:/Users/Yaniv/sqream_docs/_build/html/guides/features/index.html>`_ *, which I've left as is temporarily to show you the comparison.*
 
 SQream supports functions from ANSI SQL, as well as others for compatibility.
 
@@ -27,7 +25,6 @@ Scalar functions return one value per call, shown below:
 
 For more information, see :ref:`scalar_functions`.
 
-**Comment** - *This link points to a page that shows the entire list of scalar functions. That page doesn't hold much value for the user (because that entire list is on this page, too), and should be deprecated. This is true for other links on this page (but not all).*
 
 Bitwise Operations
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -338,11 +335,7 @@ The following table describes the available aggregate functions:
 	 
 For more information, see :ref:`aggregate_functions`.
 
-**Comment** - *The page linked above doesn't really say anything about aggregate functions. It should be formatted like the* :ref:`window_functions` *page to be valuable, i.e., describing the syntax, etc...*
 
-**Comment** *In addition, the Windows Functions page is located in the SQL Syntax Features section (which it should not be). It would be better to move the content of that page to here and to remove Window Functions from the SQL Syntax Features section. I've already done that here, but you can see how the Windows Function page is currently formatted in the live documentation:*
-
-*Live documentation:* `Windows Functions page <https://docs.sqream.com/en/latest/reference/sql/sql_functions/window_functions/index.html>`_.
 
 Window Functions
 -------------------
