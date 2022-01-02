@@ -4,7 +4,7 @@
 SQL Functions
 ****************
 
-SQream DB supports functions from ANSI SQL, as well as others for compatibility.
+SQream supports functions from ANSI SQL, as well as others for compatibility.
 
 Summary of Functions
 =======================
@@ -12,8 +12,8 @@ Summary of Functions
 .. contents::
    :local:
 
-Built-In Scalar Functions
-===========================
+Scalar Functions
+-------------------
 
 See more about :ref:`scalar_functions`
 
@@ -237,8 +237,6 @@ Strings
      - Returns the start position of a regular expression match in an argument
    * - :ref:`regexp_substr`
      - Returns a substring of an argument that matches a regular expression
-   * - :ref:`repeat`
-     - Repeats a string as many times as specified
    * - :ref:`replace`
      - Replaces characters in a string
    * - :ref:`reverse`
@@ -256,10 +254,6 @@ Strings
    * - :ref:`upper`
      - Converts an argument to an upper-case equivalent
 
-User-Defined Functions
----------------------
-
-For more information about user-defined functions, see :ref:`simple_scalar_sql_udf`
 
 Aggregate Functions
 ---------------------
@@ -377,8 +371,6 @@ Workload Management Functions
      - Remove a SQream DB worker to a service queue
    * - :ref:`show_subscribed_instances`
      - Return a list of service queues and workers
-	 
-
 
 
 .. toctree::
@@ -388,7 +380,6 @@ Workload Management Functions
    :glob:
 
    scalar_functions/index
-   user_defined_functions/index
    aggregate_functions/index
    window_functions/*
    system_functions/*
