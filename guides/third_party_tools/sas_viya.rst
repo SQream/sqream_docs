@@ -64,17 +64,17 @@ After installing the JDBC driver, you must configure the JDBC driver from the SA
 	
      ::
 	 
-    * **Line 10**: Provides SAS Viya with the location of the SQream JDBC driver. This step is required because SAS Viya does not honor the SAS_ACCESS_CLASSPATH environment variable for this connection. **Comment** - *Using the word "honor" is strange in this context. Let's discuss this.*
+    * **Line 10**: Provides SAS Viya with the location of the SQream JDBC driver. This step is required because SAS Viya does not support the SAS_ACCESS_CLASSPATH environment variable for this connection. **Comment** - *Using the word "honor" is strange in this context. Let's discuss this.*
 	
      ::
 
-    * **Lines 8-15**: Associates the libref **Comment** - *with what?* to be used as ``sqlib.tablename``. The libref is ``sqlib`` **Comment** - *only in the example above, or in general?* and uses the JDBC engine to connect to the ``sqream-cluster.piedpiper.com`` SQream cluster.
+    * **Lines 8-15**: Associates the libref **Comment** - *with what?* to be used as ``sqlib.tablename``. The libref is ``sqlib`` and uses the JDBC engine to connect to the ``sqream-cluster.piedpiper.com`` SQream cluster.
 	
      ::
 
-    * The database name is ``raviga`` and the schema is ``public``. 
+    * The database name is ``master`` and the schema is ``public``. 
 	
-      For more information about writing a connection string, see **Connect to SQream DB with a JDBC Application** and nagivate to `Connection String <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html#connection-string>`_.
+      For more information about writing a connection string, see **Connect to SQream DB with a JDBC Application** and navigate to `Connection String <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html#connection-string>`_.
 
      ::
 	 
@@ -84,7 +84,7 @@ After installing the JDBC driver, you must configure the JDBC driver from the SA
 	 
 
      
-    * **Lines 21-23**: DATA step. **Comment** - *What was meant by "data step?"* In this step, standard SAS naming conventions are used to reference the data, with ``sqlib`` as the libref and ``customers`` as the table **Comment** - *...as the table name?*.
+    * **Lines 21-23**: DATA step. **Comment** - *What was meant by "data step?"* In this step, standard SAS naming conventions are used to reference the data, with ``sqlib`` as the libref and ``nba`` as the table name.
 
 4. Run the program by clicking **Run**.
 
@@ -106,13 +106,13 @@ After configuring the JDBC driver from the SAS Studio, you can browse your data 
 
 **To browse your data and workbooks:**
 
-#. From the panel on the left, navigate to (**Comment** - *Click on?*) **Libraries** to open the navigation tree.
+#. From the panel on the left, **Libraries**.
 
    The library that you created (``SQLIB``) is populated, and the ``customers`` table is displayed. You can double-click the table name to expand the table and show the columns.
 
     ::
 
-#. Locate the workbook you created in the :ref:`data step <data_step>`. It should appear under ``WORK``. **Comment** - *Please demonstrate. Is "WORK" a folder?*
+#. Locate the workbook you created in the :ref:`data step <data_step>` in the **WORK** tree item.
 
    The workbook is named ``sqlib.customers``. You can double-click the table name to expand the table tree.
    
@@ -169,7 +169,7 @@ This section describes how to use SAS visual analytics.
    * - classPath
      - /opt/sqream/sqream-jdbc-4.5.0.jar   
    * - url
-     - jdbc:Sqream://192.168.1.176:3108/master;cluster=true
+     - \jdbc:Sqream://192.168.1.176:3108/master;cluster=true
    * - username
      - sqream
    * - password
