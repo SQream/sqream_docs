@@ -39,7 +39,7 @@ This section describes how to install the JDBC driver using the fully-integrated
 .. _tableau_windows_installer:
 
 Installing the JDBC Driver Using the Windows Installer
-~~~~~~~~~~~~~~~~~~
+-------------------
 If you are using Windows, after installing the Tableau Desktop application you can install the JDBC driver using the Windows installer. The Windows installer is an installation wizard that guides you through the JDBC driver installation steps. When the driver is installed, you can connect to SQream.
 
 **To install Tableau using the Windows installer**:
