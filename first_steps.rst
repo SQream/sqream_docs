@@ -48,12 +48,6 @@ For more information, see the following:
 * :ref:`recommended_pre-installation_configurations`
 * :ref:`Hardware Guide<hardware_guide>`
 
-
-
-
-
-
-
 Installing SQream
 ============================
 The **Installing SQream** section includes the following SQream installation methods:
