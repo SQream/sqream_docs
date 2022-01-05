@@ -31,7 +31,6 @@ After installing SAS Viya, you must install the JDBC driver.
 
     ::
 
-
 #. Unzip the JDBC driver into a location on the SAS Viya server.
    
    SQream recommends creating the directory ``/opt/sqream`` on the SAS Viya server.
@@ -64,11 +63,11 @@ After installing the JDBC driver, you must configure the JDBC driver from the SA
 	
      ::
 	 
-    * **Line 10**: Provides SAS Viya with the location of the SQream JDBC driver. This step is required because SAS Viya does not support the SAS_ACCESS_CLASSPATH environment variable for this connection. **Comment** - *Using the word "honor" is strange in this context. Let's discuss this.*
+    * **Line 10**: Provides SAS Viya with the location of the SQream JDBC driver. This step is required because SAS Viya does not support the SAS_ACCESS_CLASSPATH environment variable for this connection.
 	
      ::
 
-    * **Lines 8-15**: Associates the libref **Comment** - *with what?* to be used as ``sqlib.tablename``. The libref is ``sqlib`` and uses the JDBC engine to connect to the ``sqream-cluster.piedpiper.com`` SQream cluster.
+    * **Lines 8-15**: Associates the libref with the SQream driver to be used as ``sqlib.tablename``. The libref is ``sqlib`` and uses the JDBC engine to connect to the ``sqream-cluster.piedpiper.com`` SQream cluster.
 	
      ::
 
@@ -84,7 +83,7 @@ After installing the JDBC driver, you must configure the JDBC driver from the SA
 	 
 
      
-    * **Lines 21-23**: DATA step. **Comment** - *What was meant by "data step?"* In this step, standard SAS naming conventions are used to reference the data, with ``sqlib`` as the libref and ``nba`` as the table name.
+    * **Lines 21-23**: DATA step. In this step, standard SAS naming conventions are used to reference the data, with ``sqlib`` as the libref and ``nba`` as the table name.
 
 4. Run the program by clicking **Run**.
 
@@ -108,13 +107,13 @@ After configuring the JDBC driver from the SAS Studio, you can browse your data 
 
 #. From the panel on the left, **Libraries**.
 
-   The library that you created (``SQLIB``) is populated, and the ``customers`` table is displayed. You can double-click the table name to expand the table and show the columns.
+   The library that you created (``SQLIB``) is populated, and the ``nba`` table is displayed. You can double-click the table name to expand the table and show the columns.
 
     ::
 
 #. Locate the workbook you created in the :ref:`data step <data_step>` in the **WORK** tree item.
 
-   The workbook is named ``sqlib.customers``. You can double-click the table name to expand the table tree.
+   The workbook is named ``sqlib.nba``. You can double-click the table name to expand the table tree.
    
 Using SAS Visual Analytics
 -------------------
@@ -122,11 +121,9 @@ This section describes how to use SAS visual analytics.
 
 **To use SAS visual analytics:**
 
-#. Log in to `SAS Visual Analytics <http://192.168.4.63/SASLogon/login>`_ using the following credentials:
+#. Log in to `SAS Visual Analytics <http://192.168.4.63/SASLogon/login>`_ using your credentials:
 
-   * **ID**: saswin
-
-   * **Password**: Sqream123$
+    ::
 
 2. Click **New Report**.
 
@@ -169,7 +166,7 @@ This section describes how to use SAS visual analytics.
    * - classPath
      - /opt/sqream/sqream-jdbc-4.5.0.jar   
    * - url
-     - \jdbc:Sqream://192.168.1.176:3108/master;cluster=true
+     - \jdbc:Sqream://<IP>:<port>/<database>;cluster=true
    * - username
      - sqream
    * - password
@@ -181,7 +178,9 @@ This section describes how to use SAS visual analytics.
 
 11. If the connection is successful, click **Save**.
 
-**Comment** - *Do we want to tell them what to do if the connection is not successful?*
+If your connection is not successful, see :ref:`best_practices_and_troubleshooting` below.
+
+.. _best_practices_and_troubleshooting:
 
 Best Practices and Troubleshooting
 -------------------
@@ -201,7 +200,6 @@ When using Tableau, SQream recommends using only data that you need, as describe
 
 * To increase query performance, add filters before analyzing. Every modification you make while analyzing data queries the SQream database, sometimes several times. Adding filters to the datasource before exploring limits the amount of data analyze and increases query performance.
 
-**Comment** - *I took this from Tableau, which was virtually identical.*
 
 Creating a Separate Service for SAS Viya
 ~~~~~~~~~~~~~
@@ -229,9 +227,8 @@ In some cases, SAS Viya cannot locate the SQream JDBC driver, generating the fol
 
 3. Restart SAS Viya.
 
-For more troubleshooting assistance, see the `SQream support portal <https://support.sqream.com>`_.
+For more troubleshooting assistance, see the `SQream Support Portal <https://sqream.atlassian.net/servicedesk/customer/portals>`_.
 
-**Comment** - *This link isn't working. Please confirm on your end.*
 
 Supporting TEXT
 ~~~~~~~~~~~~~
