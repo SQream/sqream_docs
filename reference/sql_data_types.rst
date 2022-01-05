@@ -4,9 +4,11 @@
 Data Types
 *************************
 
-This topic describes the data types that SQream DB supports, and how to convert between them.  
+This topic describes the data types that SQream supports, and how to convert between them.
 
-.. contents:: In this topic:
+This page describes the following:
+
+.. contents::
    :local:
    :depth: 2
 
@@ -16,84 +18,101 @@ Supported Types
 The following table shows the supported data types.
 
 .. list-table::
-   :widths: 20 15 20 55
+   :widths: 20 15 20 30 20
    :header-rows: 1
    
    * - Name
      - Description
      - Data Size (Not Null, Uncompressed)
      - Example
+     - Alias
    * - ``BOOL``
      - Boolean values (``true``, ``false``)
      - 1 byte
      - ``true``
+     - ``BIT``
    * - ``TINYINT``
      - Unsigned integer (0 - 255)
      - 1 byte
      - ``5``
+     - NA
    * - ``SMALLINT``
      - Integer (-32,768 - 32,767)
      - 2 bytes
      - ``-155``
+     - NA
    * - ``INT``
      - Integer (-2,147,483,648 - 2,147,483,647)
      - 4 bytes
      - ``1648813``
+     - ``INTEGER``
    * - ``BIGINT``
      - Integer (-9,223,372,036,854,775,808 - 9,223,372,036,854,775,807)
      - 8 bytes
      - ``36124441255243``
+     - ``NUMBER``
    * - ``REAL``
      - Floating point (inexact)
      - 4 bytes
      - ``3.141``
-   * - ``DOUBLE`` (``FLOAT``)
+     - NA
+   * - ``DOUBLE``
      - Floating point (inexact)
      - 8 bytes
      - ``0.000003``
+     - ``FLOAT``/``DOUBLE PRECISION``
    * - ``TEXT [(n)]``, ``NVARCHAR (n)``
      - Variable length string - UTF-8 unicode
      - Up to ``4*n`` bytes
      - ``'キウイは楽しい鳥です'``
-   * - ``NUMERIC``, ``DECIMAL``
+     - ``CHAR VARYING``, ``CHAR``, ``CHARACTER VARYING``, ``CHARACTER``, ``NATIONAL CHARACTER VARYING``, ``NATIONAL CHARACTER``, ``NCHAR VARYING``, ``NCHAR``, ``NVARCHAR``
+   * - ``NUMERIC``
      -  38 digits
      - 16 bytes
      - ``0.123245678901234567890123456789012345678``
+     - ``DECIMAL``
    * - ``VARCHAR (n)``
      - Variable length string - ASCII only
      - ``n`` bytes
      - ``'Kiwis have tiny wings, but cannot fly.'``
+     - ``SQL VARIANT``
    * - ``DATE``
      - Date
      - 4 bytes
      - ``'1955-11-05'``
-   * - ``DATETIME`` (``TIMESTAMP``)
+     - NA
+   * - ``DATETIME``
      - Date and time pairing in UTC
      - 8 bytes
      - ``'1955-11-05 01:24:00.000'``
+     -  ``TIMESTAMP``, ``DATETIME2``
 
-.. note:: SQream DB compresses all columns and types. The data size noted is the maximum data size allocation for uncompressed data.
+.. note:: SQream compresses all columns and types. The data size noted is the maximum data size allocation for uncompressed data.
 
 .. _cast:
 
 Converting and Casting Types
 ==============================
-
-SQream DB supports explicit and implicit casting and type conversion.
-The system may automatically add implicit casts when combining different data types in the same expression. In many cases, while the details related to this are not important, they can affect the query results of a query. When necessary, an explicit cast can be used to override the automatic cast added by SQream DB.
+SQream supports explicit and implicit casting and type conversion. The system may automatically add implicit casts when combining different data types in the same expression. In many cases, while the details related to this are not important, they can affect the query results of a query. When necessary, an explicit cast can be used to override the automatic cast added by SQream DB.
 
 For example, the ANSI standard defines a ``SUM()`` aggregation over an ``INT`` column as an ``INT``. However, when dealing with large amounts of data this could cause an overflow. 
 
-You can rectify this by casting the value to a larger data type:
+You can rectify this by casting the value to a larger data type, as shown below:
 
 .. code-block:: postgres
 
    SUM(some_int_column :: BIGINT)
 
-SQream DB supports the following three data conversion types:
+SQream supports the following three data conversion types:
 
-* ``CAST(<value> AS <data type>)``, to convert a value from one type to another. For example, ``CAST('1997-01-01' AS DATE)``, ``CAST(3.45 AS SMALLINT)``, ``CAST(some_column AS VARCHAR(30))``.
+* ``CAST(<value> TO <data type>)``, to convert a value from one type to another. For example, ``CAST('1997-01-01' TO DATE)``, ``CAST(3.45 TO SMALLINT)``, ``CAST(some_column TO VARCHAR(30))``.
+
+   ::
+  
 * ``<value> :: <data type>``, a shorthand for the ``CAST`` syntax. For example, ``'1997-01-01' :: DATE``, ``3.45 :: SMALLINT``, ``(3+5) :: BIGINT``.
+
+   ::
+  
 * See the :ref:`SQL functions reference <sql_functions>` for additional functions that convert from a specific value which is not an SQL type, such as :ref:`from_unixts`, etc.
 
 The **Data Type Reference** section below provides more details about the supported casts for each type.
@@ -103,7 +122,7 @@ Data Type Reference
 
 .. _numeric:
 
-Numeric (``NUMERIC``, ``DECIMAL``)
+Numeric
 -----------------------
 The **Numeric** data type (also known as **Decimal**) is recommended for values that tend to occur as exact decimals, such as in Finance. While Numeric has a fixed precision of ``38``, higher than ``REAL`` (``9``) or ``DOUBLE`` (``17``), it runs calculations more slowly. For operations that require faster performance, using :ref:`Floating Point <floating_point>` is recommended.
 
@@ -141,7 +160,7 @@ Numeric supports the following operations:
    
 
 
-Boolean (``BOOL``)
+Boolean
 -------------------
 The following table describes the Boolean data type.
 
@@ -158,7 +177,6 @@ The following table describes the Boolean data type.
 	 
 Boolean Examples
 ^^^^^^^^^^
-
 The following is an example of the Boolean syntax:
 
 .. code-block:: postgres
@@ -193,15 +211,7 @@ The following table shows the possible Boolean value conversions:
    * - ``REAL``, ``DOUBLE``
      - ``true`` → ``1.0``, ``false`` → ``0.0``
 
-
-
-
-
-
-
-
-
-Integers (``TINYINT``, ``SMALLINT``, ``INT``, ``BIGINT``)
+Integers
 ------------------------------------------------------------
 Integer data types are designed to store whole numbers.
 
@@ -284,7 +294,7 @@ The following table shows the possible Integer value conversions:
 	 
 .. _floating_point:
 
-Floating Point (``REAL``, ``DOUBLE``)
+Floating Point
 ------------------------------------------------   
 The **Floating Point** data types (``REAL`` and ``DOUBLE``) store extremely close value approximations, and are therefore recommended for values that tend to be inexact, such as Scientific Notation. While Floating Point generally runs faster than Numeric, it has a lower precision of ``9`` (``REAL``) or ``17`` (``DOUBLE``) compared to Numeric's ``38``. For operations that require a higher level of precision, using :ref:`Numeric <numeric>` is recommended.
 
@@ -326,6 +336,7 @@ The following table shows information relevant to the Floating Point data types.
 
 Floating Point Examples
 ^^^^^^^^^^
+The following are examples of the Floating Point syntax:
 
 .. code-block:: postgres
    
@@ -359,19 +370,19 @@ The following table shows the possible Floating Point value conversions:
    * - ``VARCHAR(n)`` (n > 6 recommended)
      - ``1`` → ``'1.0000'``, ``3.14159265358979`` → ``'3.1416'``
 
-.. note:: As shown in the above examples, when casting ``real`` to ``int``, we round down.
+.. note:: As shown in the above examples, casting ``real`` to ``int`` rounds down.
 
-String (``TEXT``, ``VARCHAR``)
+String
 ------------------------------------------------
 ``TEXT`` and ``VARCHAR`` are types designed for storing text or strings of characters.
 
-SQream DB separates ASCII (``VARCHAR``) and UTF-8 representations (``TEXT``).
+SQream separates ASCII (``VARCHAR``) and UTF-8 representations (``TEXT``).
 
 .. note:: The data type ``NVARCHAR`` has been deprecated by ``TEXT`` as of version 2020.1.
 
 String Types
 ^^^^^^^^^^^^^^^^^^^^^^
-The following table describes the String types.
+The following table describes the String types:
 
 .. list-table:: 
    :widths: auto
@@ -392,7 +403,6 @@ The following table describes the String types.
 
 Length
 ^^^^^^^^^
-
 When using ``TEXT``, specifying a size is optional. If not specified, the text field carries no constraints. To limit the size of the input, use ``VARCHAR(n)`` or ``TEXT(n)``, where ``n`` is the permitted number of characters.
 
 The following apply to setting the String type length:
@@ -403,19 +413,12 @@ The following apply to setting the String type length:
 
 Syntax
 ^^^^^^^^
-
 String types can be written with standard SQL string literals, which are enclosed with single quotes, such as
-``'Kiwi bird'``.
-
-To include a single quote in the string, use double quotations, such as ``'Kiwi bird''s wings are tiny'``.
-
-String literals can also be dollar-quoted with the dollar sign ``$``, such as ``$$Kiwi bird's wings are tiny$$`` is the same as ``'Kiwi bird''s wings are tiny'``.
+``'Kiwi bird'``. To include a single quote in the string, use double quotations, such as ``'Kiwi bird''s wings are tiny'``. String literals can also be dollar-quoted with the dollar sign ``$``, such as ``$$Kiwi bird's wings are tiny$$`` is the same as ``'Kiwi bird''s wings are tiny'``.
 
 Size
 ^^^^^^
-
-``VARCHAR(n)`` can occupy up to *n* bytes, whereas ``TEXT(n)`` can occupy up to *4*n* bytes.
-However, the size of strings is variable and is compressed by SQream DB.
+``VARCHAR(n)`` can occupy up to *n* bytes, whereas ``TEXT(n)`` can occupy up to *4*n* bytes. However, the size of strings is variable and is compressed by SQream.
 
 String Examples
 ^^^^^^^^^^
@@ -461,18 +464,16 @@ The following table shows the possible String value conversions:
 
 
 
-Date (``DATE``, ``DATETIME``)
+Date
 ------------------------------------------------
-``DATE`` is a type designed for storing year, month, and day.
-
-``DATETIME`` is a type designed for storing year, month, day, hour, minute, seconds, and milliseconds in UTC with 1 millisecond precision.
+``DATE`` is a type designed for storing year, month, and day. ``DATETIME`` is a type designed for storing year, month, day, hour, minute, seconds, and milliseconds in UTC with 1 millisecond precision.
 
 
 Date Types
 ^^^^^^^^^^^^^^^^^^^^^^
-The following table describes the Date types.
+The following table describes the Date types:
 
-.. list-table:: Date types
+.. list-table:: Date Types
    :widths: auto
    :header-rows: 1
    
@@ -492,21 +493,36 @@ The following table describes the Date types.
 Aliases
 ^^^^^^^^^^
 
-``DATETIME`` is also known as ``TIMESTAMP``.
+``DATETIME`` is also known as ``TIMESTAMP`` or ``DATETIME2``.
 
 
 Syntax
 ^^^^^^^^
+``DATE`` values are formatted as string literals. 
 
-``DATE`` values are formatted as string literals. For example, ``'1955-11-05'`` or ``date '1955-11-05'``.
+The following is an example of the DATETIME syntax:
 
-``DATETIME`` values are formatted as string literals conforming to `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_, for example ``'1955-11-05 01:26:00'``.
+.. code-block:: console
+     
+   '1955-11-05'
 
-SQream DB attempts to guess if the string literal is a date or datetime based on context, for example when used in date-specific functions.
+.. code-block:: console
+     
+   date '1955-11-05'
+
+``DATETIME`` values are formatted as string literals conforming to `ISO 8601 <https://en.wikipedia.org/wiki/ISO_8601>`_.
+
+The following is an example of the DATETIME syntax:
+
+
+.. code-block:: console
+     
+   '1955-11-05 01:26:00'
+
+SQream attempts to guess if the string literal is a date or datetime based on context, for example when used in date-specific functions.
 
 Size
 ^^^^^^
-
 A ``DATE`` column is 4 bytes in length, while a ``DATETIME`` column is 8 bytes in length.
 
 However, the size of these values is compressed by SQream DB.
