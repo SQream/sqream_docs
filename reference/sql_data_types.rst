@@ -372,7 +372,7 @@ The following table shows the possible Floating Point value conversions:
 
 .. note:: As shown in the above examples, casting ``real`` to ``int`` rounds down.
 
-String (``TEXT``, ``VARCHAR``)
+String
 ------------------------------------------------
 ``TEXT`` and ``VARCHAR`` are types designed for storing text or strings of characters.
 
