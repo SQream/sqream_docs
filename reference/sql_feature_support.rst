@@ -11,12 +11,12 @@ To understand which ANSI SQL and other SQL features SQream DB supports, use the 
    :local:
    
 
-Data types and values
+Data Types and Values
 =========================
 
 Read more about :ref:`supported data types<data_types>`.
 
-.. list-table:: Value
+.. list-table:: Data Types and Values
    :widths: auto
    :header-rows: 1
    
@@ -107,10 +107,10 @@ SQream DB does not support explicit indexing, but does support clustering keys.
 
 Read more about :ref:`clustering keys<data_clustering>` and our :ref:`metadata system<metadata_system>`.
 
-Schema changes
+Schema Changes
 ================
 
-.. list-table:: Schema changes
+.. list-table:: Schema Changes
    :widths: auto
    :header-rows: 1
    
@@ -219,10 +219,10 @@ Clauses
      - ✓
      -
 
-Table expressions
+Table Expressions
 ====================
 
-.. list-table:: Table expressions
+.. list-table:: Table Expressions
    :widths: auto
    :header-rows: 1
    
@@ -246,12 +246,12 @@ Table expressions
      - 
 
 
-Scalar expressions
+Scalar Expressions
 ====================
 
 Read more about :ref:`scalar_expressions`.
 
-.. list-table:: Scalar expressions
+.. list-table:: Scalar Expressions
    :widths: auto
    :header-rows: 1
    
@@ -318,10 +318,10 @@ Read more about :ref:`access_control` in SQream DB.
 
 
 
-Extra functionality
+Extra Functionality
 ======================
 
-.. list-table:: Extra functionality
+.. list-table:: Extra Functionality
    :widths: auto
    :header-rows: 1
    

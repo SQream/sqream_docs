@@ -9,25 +9,22 @@ Features guides
    :caption: In this section:
    :glob:
 
-   access_control
+   saved_queries
+   external_tables
+   python_functions
 
-   concurrency_and_locks
-   concurrency_and_scaling_in_sqream
-
-   metadata_system
-   chunks_and_extents
-   compression
-   data_clustering
+   external_data/index
+   
    delete
    time_based_data_management
-
-   external_tables
-   external_data/index
+   xxmetadata_system
+   xxchunks_and_extents
 
    transactions
    workload_manager
+   concurrency_and_locks
+   concurrency_and_scaling_in_sqream
 
-   python_functions
-   saved_queries
+   access_control
 
    viewing_system_objects_as_ddl

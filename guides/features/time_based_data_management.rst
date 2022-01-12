@@ -1,7 +1,7 @@
 .. _time_based_data_management:
 
 ***************************
-Time based data management
+Time-Based Data Management
 ***************************
 
 SQream DB's columnar-storage system is well adapted to timestamped data.
@@ -13,7 +13,7 @@ Natural ordering allows for fast retrieval when performing range queries.
    :local:
 
 
-Timestamped data
+Timestamped Data
 ===========================
 
 Timestamped data usually has some interesting attributes:
@@ -44,14 +44,13 @@ Unlike node-partitioning (or sharding), chunking carries several benefits:
 
 * Chunks carry metadata, which narrows down their contents for the optimizer
 
-* Chunks are ideal for data retension as they can be deleted en-masse
+* CHunks are ideal for data retension as they can be deleted en-masse
 
 * Chunks are optimized for reading into RAM and the GPU
 
 * Chunks are compressed individually, which improves compression and data locality
 
-
-Use cases
+Use Cases
 ============
 
 Consider a set of data with a timestamp column.
@@ -70,10 +69,10 @@ This is particularly useful in many scenarios:
 
 * Regulations instruct you to keep several years' worth of data, but you're not interested in querying this data all the time
 
-Best practices for time-based data
+Best Practices for Time-Based Data
 =========================================
 
-Use date and datetime types for columns
+Use Date and Datetime Types for Columns
 -----------------------------------------
 
 When creating tables with dates or timestamps, using the purpose-built ``DATE`` and ``DATETIME`` types over integer types or ``VARCHAR`` will bring performance and storage footprint improvements, and in many cases huge performance improvements (as well as data integrity benefits). SQream DB stores dates and datetimes very efficiently and can strongly optimize queries using these specific types.
@@ -85,10 +84,7 @@ Data ordering is an important factor in minimizing storage size and improving qu
 
 Prioritize inserting data based on timestamps. This will likely reduces the number of chunks that SQream DB reads during query execution.
 
-See our :ref:`data_clustering` guide to see how clustering keys can be defined for optimizing data order.
-
-
-Limit workload by timestamp
+Limit Workload by Timestamp
 ------------------------------
 
 Grouping by and filtering data based on timestamps will improve performance.

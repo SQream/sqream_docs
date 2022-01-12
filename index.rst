@@ -1,16 +1,14 @@
 .. _index:
 
-*************************
-SQream DB Documentation
-*************************
-
-For SQream DB |latest_version|.
+***********************
+SQream Documentation
+***********************
 
 .. only:: html
 
    .. tip::
       Want to read this offline?
-      `Download the documentation as a single PDF <https://docs.sqream.com/_/downloads/en/latest/pdf/>`_ .
+      `Download the documentation as a single PDF <https://readthedocs.org/projects/sqream-docs/downloads/pdf/latest/>`_ .
 
 .. only:: pdf or latex
    
@@ -20,7 +18,7 @@ SQream DB is a columnar analytic SQL database management system.
 
 SQream DB supports regular SQL including :ref:`a substantial amount of ANSI SQL<sql_feature_support>`, uses :ref:`serializable transactions<transactions>`, and :ref:`scales horizontally<concurrency_and_scaling_in_sqream>` for concurrent statements.
 
-Even a :ref:`basic SQream DB machine<hardware_guide>` can support tens to hundreds of terabytes of data.
+Even a :ref:basic SQream DB machine<hardware_guide>` can support tens to hundreds of terabytes of data.
 
 SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tableau>` comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc>`, :ref:`ODBC<odbc>`, and :ref:`Python DB-API<pysqream>`.
 
@@ -31,7 +29,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
    :widths: 33 33 33
    :header-rows: 0
 
-   * - **Get Started**
+   * - **Get started**
      - **Reference**
      - **Guides**
    * -
@@ -41,7 +39,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
          
          :ref:`Bulk load CSVs<csv>`
      - 
-         :ref:`SQL Reference<sql>`
+         :ref:`SQL reference<sql>`
          
          :ref:`sql_statements`
          
@@ -54,19 +52,13 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
          :ref:`connect_to_tableau`
 
    * - **Releases**
-     - **Driver and Deployment**
-     - **Help and Support**
+     - **Driver and deployment**
+     - **Help & Support**
    * -
-         :ref:`2021.2<2021.2>`
-
-         :ref:`2021.1<2021.1>`
-        
-         :ref:`2020.3<2020.3>`
-
-         :ref:`2020.2<2020.2>`
-         
          :ref:`2020.1<2020.1>`
-                  
+         
+         :ref:`2019.2.1<2019.2.1>`
+         
          :ref:`All recent releases<releases>`
 
      - 
@@ -89,8 +81,6 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
 
 .. rubric:: Looking for older versions?
 
-This version of the documentation is for SQream DB |latest_version|.
-
 If you're looking for an older version of the documentation, versions 1.10 through 2019.2.1 are available at http://previous.sqream.com .
 
 .. toctree::
@@ -100,9 +90,10 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    :titlesonly:
    :hidden:
 
-   first_steps
    xxfeatures_tour
+   first_steps
    guides/index
+   installation_guides/index
    reference/index
    releases/index
    glossary

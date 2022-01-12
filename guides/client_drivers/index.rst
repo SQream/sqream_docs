@@ -12,6 +12,7 @@ Client Driver Downloads
 All Operating Systems 
 ---------------------------
 
+
 The following drivers are relevant to all operating systems:
 
 * **JDBC** - `sqream-jdbc-4.5.1 (.jar) <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.1.jar>`_
@@ -19,6 +20,12 @@ The following drivers are relevant to all operating systems:
    :ref:`java_jdbc` Driver (SQream recommends installing via ``mvn``)
    
 * **Python** - `pysqream v3.1.3 (.tar.gz) <https://github.com/SQream/pysqream/releases/tag/v3.1.3>`_
+
+   
+   :ref:`java_jdbc` Driver
+   
+
+
    
    :ref:`pysqream` - Python driver (SQream recommends installing via ``pip``)
 
@@ -48,9 +55,17 @@ Linux
 --------------
 
 * 
+
    **SQream SQL** (x86) - `sqream-sql-v2020.1.1_stable.x86_64.tar.gz <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.x86_64.tar.gz>`_ 
+
    
    :ref:`sqream sql<sqream_sql_cli_reference>` - Interactive command-line SQL client for Intel-based machines
+   
+* 
+
+   **SQream SQL** (IBM POWER9) - `sqream-sql-v2020.1.1_stable.ppc64le.tar.gz <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.ppc64le.tar.gz>`_ 
+   
+   :ref:`sqream sql<sqream_sql_cli_reference>` - Interactive command-line SQL client for IBM POWER9-based machines
    
 * 
    **ODBC installer** - ``sqream_odbc_4.0.0_x86_64_linux.tar.gz``

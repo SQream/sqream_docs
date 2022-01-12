@@ -11,17 +11,13 @@ This page serves as a reference for the options and parameters. Learn more about
 .. contents:: In this topic:
    :local:
 
-Installing Sqream SQL
+Installing sqream sql
 =========================
-
 If you have a SQream DB installation on your server, ``sqream sql`` can be found in the ``bin`` directory of your SQream DB installation, under the name ``sqream``.
-
-.. note:: If you installed SQream DB via Docker, the command is named ``sqream-client sql``, and can be found in the same location as the console.
-
 
 .. versionchanged:: 2020.1
    As of version 2020.1, ``ClientCmd`` has been renamed to ``sqream sql``.
-   
+
 
 To run ``sqream sql`` on any other Linux host:
 
@@ -40,7 +36,7 @@ To run ``sqream sql`` on any other Linux host:
       
       master=> _
 
-Troubleshooting Sqream SQL Installation
+Troubleshooting SQream SQl Installation
 -------------------------------------------
 
 Upon running sqream sql for the first time, you may get an error ``error while loading shared libraries: libtinfo.so.5: cannot open shared object file: No such file or directory``.
@@ -69,12 +65,13 @@ Solving this error requires installing the ncruses or libtinfo libraries, depend
       
       ``$ sudo ln -s /usr/lib64/libtinfo.so.6 /usr/lib64/libtinfo.so.5``
 
-Using Sqream SQL
+
+Using SQream SQL
 =================
 
 By default, sqream sql runs in interactive mode. You can issue commands or SQL statements.
 
-Running Commands Interactively (SQL shell)
+Running Commands Interactively in an SQL Shell
 --------------------------------------------
 
 When starting sqream sql, after entering your password, you are presented with the SQL shell.
@@ -138,7 +135,7 @@ The prompt for a multi-line statement will change from ``=>`` to ``.``, to alert
    time: 0.009320s
 
 
-Executing Batch Scripts (``-f``)
+Executing Batch Scripts
 ---------------------------------
 
 To run an SQL script, use the ``-f <filename>`` argument.
@@ -151,7 +148,7 @@ For example,
 
 .. tip:: Output can be saved to a file by using redirection (``>``).
 
-Executing Commands Immediately (``-c``)
+Executing Commands Immediately
 -------------------------------------------
 
 To run a statement from the console, use the ``-c <statement>`` argument.
@@ -202,7 +199,7 @@ Connect to local server 127.0.0.1 via the built-in load balancer on port 3108, t
    
    master=>_
 
-Executing Statements in an Interactive Shell
+Executing Statements in the Interactive Shell
 -----------------------------------------------
 
 Note that all SQL commands end with a semicolon.
@@ -255,7 +252,7 @@ Executing SQL Statements from the Command Line
 
 .. _controlling_output:
 
-Controlling the Client Output
+Controlling the Output of the Client
 ----------------------------------------
 
 Two parameters control the dispay of results from the client:
@@ -263,7 +260,7 @@ Two parameters control the dispay of results from the client:
 * ``--results-only`` - removes row counts and timing information
 * ``--delimiter`` - changes the record delimiter
 
-Exporting SQL Query Results to CSV
+Exportin an SQL Query Result to CSV
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Using the ``--results-only`` flag removes the row counts and timing.
@@ -294,7 +291,7 @@ The ``--delimiter`` parameter accepts any printable character.
    4  bull                             1
 
 
-Executing a Series of Statements From a File
+Executing a Series of Statements from a File
 --------------------------------------------
 
 Assuming a file containing SQL statements (separated by semicolons):
@@ -331,7 +328,7 @@ You can save connection parameters as environment variables:
 Connecting to a Specific Queue
 -----------------------------------
 
-When using the :ref:`dynamic workload manager<workload_manager>` - connect to ``etl`` queue instead of using the default ``sqream`` queue.
+When using the :ref:`dynamic workload manager<workload_manager>` - connect to ``etl`` queue instead of using the default ``sqream`` queue
 
 .. code-block:: psql
 
@@ -344,13 +341,13 @@ When using the :ref:`dynamic workload manager<workload_manager>` - connect to ``
    master=>_
 
 
-Operations and Flag References
+Operations and Flag Reference
 ===============================
 
 Command Line Arguments
 -----------------------
 
-**Sqream SQL** supports the following command line arguments:
+**SQream SQL** supports the following command line arguments:
 
 .. list-table:: 
    :widths: auto
@@ -409,10 +406,10 @@ The supported record delimiters are printable ASCII values (32-126).
 
 * The following characters are **not supported**: ``\``, ``N``, ``-``, ``:``, ``"``, ``\n``, ``\r``, ``.``, lower-case latin letters, digits (0-9)
 
-Meta-Commands
+Meta-commands
 ----------------
 
-* Meta-commands in Sqream SQL start with a backslash (``\``)
+* Meta-commands in SQream SQL start with a backslash (``\``)
 
 .. note:: Meta commands do not end with a semicolon
 
@@ -439,7 +436,7 @@ Basic Commands
 -----------------------
 
 .. list-table:: 
-   :widths: 20 30 50
+   :widths: auto
    :header-rows: 1
    
    * - Command
@@ -455,62 +452,62 @@ Basic Commands
 
 
 
-Moving Around the Command Line
+Navigating the Command Line
 ---------------------------------
 
 .. list-table:: 
-   :widths: 17 83
+   :widths: auto
    :header-rows: 1
    
    * - Command
      - Description
    * - :kbd:`Ctrl-a`
-     - Goes to the beginning of the command line. 
+     - go to the start of the command line 
    * - :kbd:`Ctrl-e`
-     - Goes to the end of the command line. 
-   * - :kbd:`Ctrl-u`
-     - Deletes from cursor to the beginning of the command line. 
+     - go to the end of the command line 
    * - :kbd:`Ctrl-k`
-     - Deletes from the cursor to the end of the command line.
+     - delete from cursor to the end of the command line 
+   * - :kbd:`Ctrl-u`
+     - delete from cursor to the start of the command line 
    * - :kbd:`Ctrl-w`
-     - Delete from cursor to beginning of a word. 
+     - delete from cursor to start of word (i.e. delete backwards one word) 
    * - :kbd:`Ctrl-y`
-     - Pastes a word or text that was cut using one of the deletion shortcuts (such as the one above) after the cursor. 
+     - paste word or text that was cut using one of the deletion shortcuts (such as the one above) after the cursor 
    * - :kbd:`Alt-b`
-     - Moves back one word (or goes to the beginning of the word where the cursor is).
+     - move backward one word (or go to start of word the cursor is currently on)
    * - :kbd:`Alt-f`
-     - Moves forward one word (or goes to the end of word the cursor is). 
+     - move forward one word (or go to end of word the cursor is currently on) 
    * - :kbd:`Alt-d`
-     - Deletes to the end of a word starting at the cursor. Deletes the whole word if the cursor is at the beginning of that word. 
+     - delete to end of word starting at cursor (whole word if cursor is at the beginning of word) 
    * - :kbd:`Alt-c`
-     - Capitalizes letters in a word starting at the cursor. Capitalizes the whole word if the cursor is at the beginning of that word. 
+     - capitalize to end of word starting at cursor (whole word if cursor is at the beginning of word) 
    * - :kbd:`Alt-u`
-     - Capitalizes from the cursor to the end of the word. 
+     - make uppercase from cursor to end of word 
    * - :kbd:`Alt-l`
-     - Makes lowercase from the cursor to the end of the word. 
+     - make lowercase from cursor to end of word 
    * - :kbd:`Ctrl-f`
-     - Moves forward one character. 
+     - move forward one character 
    * - :kbd:`Ctrl-b`
-     - Moves backward one character. 
+     - move backward one character 
    * - :kbd:`Ctrl-h`
-     - Deletes characters located before the cursor. 
+     - delete character before the cursor 
    * - :kbd:`Ctrl-t`
-     - Swaps a character at the cursor with the previous character.
+     - swap character under cursor with the previous one
 
 Searching
 ------------
 
 .. list-table:: 
-   :widths: 17 83
+   :widths: auto
    :header-rows: 1
    
    * - Command
      - Description
    * - :kbd:`Ctrl-r`
-     - Searches the history backward.
+     - search the history backwards
    * - :kbd:`Ctrl-g`
-     - Escapes from history-searching mode.
+     - escape from history searching mode
    * - :kbd:`Ctrl-p`
-     - Searches the previous command in history.
+     - previous command in history (i.e. walk back through the command history)
    * - :kbd:`Ctrl-n`
-     - Searches the next command in history.
+     - next command in history (i.e. walk forward through the command history)

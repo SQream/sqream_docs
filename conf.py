@@ -25,6 +25,7 @@ copyright = '2021 SQream'
 author = 'Sean Tomarian'
 
 # The full version, including alpha/beta/rc tags
+
 release = '2021.1'
 
 
