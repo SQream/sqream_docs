@@ -128,7 +128,7 @@ Syntax reference
        | DATE
        | DATETIME
        | VARCHAR ( digits )
-       | NVARCHAR ( digits )
+       | TEXT ( digits )
 
 Examples
 ----------

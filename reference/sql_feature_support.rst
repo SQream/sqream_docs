@@ -11,10 +11,12 @@ To understand which ANSI SQL and other SQL features SQream DB supports, use the 
    :local:
    
 
-Data types and values
+Data Types and Values
 =========================
 
-.. list-table:: Value
+Read more about :ref:`supported data types<data_types>`.
+
+.. list-table:: Data Types and Values
    :widths: auto
    :header-rows: 1
    
@@ -43,17 +45,14 @@ Data types and values
      - ✓
      - 8 byte floating point
    * - ``DECIMAL``, ``NUMERIC``
-     - Planned
-     - Fixed-point numbers. Use ``DOUBLE`` instead
+     - ✓
+     - Fixed-point numbers.
    * - ``VARCHAR``
      - ✓
      - Variable length string - ASCII only
-   * - ``NVARCHAR``
+   * - ``TEXT``
      - ✓
      - Variable length string - UTF-8 encoded
-   * - ``TEXT``
-     - Planned
-     - Use ``VARCHAR``, ``NVARCHAR``
    * - ``DATE``
      - ✓
      - Date
@@ -96,19 +95,22 @@ SQream DB treats each statement as an auto-commit transaction. Each transaction 
 
 If a statement fails, the entire transaction is cancelled and rolled back. The database is unchanged.
 
+Read more about :ref:`transactions in SQream DB<transactions>`.
+
 
 Indexes
 ============
 
 SQream DB has a range-index collected on all columns as part of the metadata collection process.
 
-SQream DB does not support explicit indexing.
+SQream DB does not support explicit indexing, but does support clustering keys.
 
+Read more about :ref:`clustering keys<data_clustering>` and our :ref:`metadata system<metadata_system>`.
 
-Schema changes
+Schema Changes
 ================
 
-.. list-table:: Schema changes
+.. list-table:: Schema Changes
    :widths: auto
    :header-rows: 1
    
@@ -117,25 +119,31 @@ Schema changes
      - Further information
    * - ``ALTER TABLE``
      - ✓
-     - Add column, alter column, drop column, rename column, rename table
+     - :ref:`alter_table` - Add column, alter column, drop column, rename column, rename table, modify clustering keys
    * - Rename database
      - ✗
      - 
    * - Rename table
      - ✓
-     - 
+     - :ref:`rename_table`
    * - Rename column
      - ✓ 
-     - 
+     - :ref:`rename_column`
    * - Add column
      - ✓
-     - 
+     - :ref:`add_column`
    * - Remove column
      - ✓
-     - 
+     - :ref:`drop_column`
    * - Alter column data type
      - ✗
      - 
+   * - Add / modify clustering keys
+     - ✓
+     - :ref:`cluster_by`
+   * - Drop clustering keys
+     - ✓
+     - :ref:`drop_clustering_key`
    * - Add / Remove constraints
      - ✗
      - 
@@ -144,10 +152,10 @@ Schema changes
      - 
    * - Drop schema
      - ✓
-     - 
+     - :ref:`drop_schema`
    * - Alter default schema per user
      - ✓
-     - 
+     - :ref:`alter_default_schema`
 
 
 Statements
@@ -162,25 +170,28 @@ Statements
      - Further information
    * - SELECT
      - ✓
-     -
+     - :ref:`select`
    * - CREATE TABLE
      - ✓
-     -
+     - :ref:`create_table`
+   * - CREATE FOREIGN / EXTERNAL TABLE
+     - ✓
+     - :ref:`create_foreign_table`
    * - DELETE
      - ✓
-     -
+     - :ref:`delete_guide`
    * - INSERT
      - ✓
-     -
+     - :ref:`insert`, :ref:`copy_from`
    * - TRUNCATE
      - ✓
-     -
+     - :ref:`truncate`
    * - UPDATE
      - ✗
      -
    * - VALUES
      - ✓
-     -
+     - :ref:`values`
 
 Clauses
 ===========
@@ -208,10 +219,10 @@ Clauses
      - ✓
      -
 
-Table expressions
+Table Expressions
 ====================
 
-.. list-table:: Table expressions
+.. list-table:: Table Expressions
    :widths: auto
    :header-rows: 1
    
@@ -235,10 +246,12 @@ Table expressions
      - 
 
 
-Scalar expressions
+Scalar Expressions
 ====================
 
-.. list-table:: Scalar expressions
+Read more about :ref:`scalar_expressions`.
+
+.. list-table:: Scalar Expressions
    :widths: auto
    :header-rows: 1
    
@@ -281,6 +294,8 @@ Scalar expressions
 Permissions
 ===============
 
+Read more about :ref:`access_control` in SQream DB.
+
 .. list-table:: Permissions
    :widths: auto
    :header-rows: 1
@@ -303,10 +318,10 @@ Permissions
 
 
 
-Extra functionality
+Extra Functionality
 ======================
 
-.. list-table:: Extra functionality
+.. list-table:: Extra Functionality
    :widths: auto
    :header-rows: 1
    
@@ -315,19 +330,19 @@ Extra functionality
      - Further information
    * - Information schema
      - ✓
-     - ``SQream Catalog``
+     - :ref:`catalog_reference`
    * - Views
      - ✓
-     - 
+     - :ref:`create_view`
    * - Window functions
      - ✓
-     -
+     - :ref:`window_functions`
    * - CTEs
      - ✓
-     -
+     - :ref:`common_table_expressions`
    * - Saved queries, Saved queries with parameters
      - ✓
-     -
+     - :ref:`saved_queries`
    * - Sequences
      - ✓
-     -
+     - :ref:`identity`

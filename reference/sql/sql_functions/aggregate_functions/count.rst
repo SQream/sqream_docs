@@ -4,18 +4,20 @@
 COUNT
 **************************
 
-Returns the count of numeric values, or only the distinct values.
+The ``COUNT`` function returns the count of numeric values, or only the distinct values.
 
 Syntax
 ==========
-
+The following is the correct syntax for using the ``COUNT`` function as an **aggregate**:
 
 .. code-block:: postgres
 
-   -- As an aggregate
-   COUNT( { [ DISTINCT ] expr | * } ) --> INT
+   COUNT( { [ DISTINCT ] expr | * } ) --> BIGINT
    
-   -- As a window function
+The following is the correct syntax for using the ``COUNT`` function as a **window function**:
+
+.. code-block:: postgres
+   
    COUNT ( { [ DISTINCT ] expr | * } ) OVER (   
             [ PARTITION BY value_expression [, ...] ]
             [ ORDER BY value_expression [ ASC | DESC ] [ NULLS { FIRST | LAST } ] [, ...] ]
@@ -24,6 +26,7 @@ Syntax
 
 Arguments
 ============
+The following table describes the ``COUNT`` arguments:
 
 .. list-table:: 
    :widths: auto
@@ -40,27 +43,25 @@ Arguments
 
 Returns
 ============
+* The ``COUNT`` function returns ``BIGINT``.
 
-Return type is dependant on the argument.
-
-* Count returns ``INT`` for all types except ``BIGINT``.
-
-* For ``BIGINT``, the return type is ``BIGINT``.
 
 Notes
 =======
-
-* ``NULL`` values are *not* ignored by ``COUNT``
+The following notes apply to the ``COUNT`` function:
 
 * When all rows contain ``NULL`` values, the function returns ``NULL``.
 
+* ``COUNT(*)`` returns the number of items in a group, including duplicates and ``NULL`` values.
 
-* ``COUNT`` can very quickly overflow on large data sets. If the count is over 2\ :sup:`31`, up-cast to a larger type like ``BIGINT``: ``COUNT(expr :: BIGINT)``
+* ``COUNT(ALL expression)`` evaluates expressions for each row in a group, returning the number of non-null values.
+
+* ``COUNT(DISTINCT expression)`` evaluates expressions for each row in a group, returning the number of unique, non-null values.
+
 
 Examples
 ===========
-
-For these examples, assume a table named ``nba``, with the following structure:
+The examples in this section are based on a table named ``nba``, structured as follows:
 
 .. code-block:: postgres
    
@@ -77,16 +78,22 @@ For these examples, assume a table named ``nba``, with the following structure:
       "Salary" float
     );
 
-
-Here's a peek at the table contents (:download:`Download nba.csv </_static/samples/nba.csv>`):
+The following table is a preview of the source :download:`nba.csv </_static/samples/nba.csv>` table shown below:
 
 .. csv-table:: nba.csv
    :file: nba-t10.csv
    :widths: auto
    :header-rows: 1
+   
+This section includes the following examples:
 
-Count rows in a table
+.. contents::
+   :local:
+   :depth: 1
+
+Counting Rows in a Table
 ---------------------------
+This example shows how to count rows in a table:
 
 .. code-block:: psql
 
@@ -95,10 +102,11 @@ Count rows in a table
    -----
    457
 
-Count distinct values in a table
+Counting Distinct Values in a Table
 ----------------------------------
+This example shows how to count distinct values in a table:
 
-These two forms are equivalent:
+The following structures generate the same result:
 
 .. code-block:: psql
 
@@ -107,14 +115,17 @@ These two forms are equivalent:
    -----
    22
    
+.. code-block:: psql
+   
    t=> SELECT COUNT(*) FROM (SELECT "Age" FROM nba GROUP BY 1);
    count
    -----
    22
 
 
-Combine COUNT with other aggregates
+Combining COUNT with Other Aggregates
 -------------------------------------
+This example shows how to combine the ``COUNT`` function with other aggregates:
 
 .. code-block:: psql
 
@@ -143,4 +154,3 @@ Combine COUNT with other aggregates
     38 |        1840041 |                 4
     39 |        2517872 |                 2
     40 |        4666916 |                 3
-

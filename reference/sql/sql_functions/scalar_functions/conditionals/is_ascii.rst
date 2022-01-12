@@ -45,7 +45,7 @@ For these examples, consider the following table and contents:
 
 .. code-block:: postgres
    
-   CREATE TABLE dictionary (id INT NOT NULL, fw NVARCHAR(30), en VARCHAR(30));
+   CREATE TABLE dictionary (id INT NOT NULL, fw TEXT(30), en VARCHAR(30));
    
    INSERT INTO dictionary VALUES (1, '行こう', 'Let''s go'), (2, '乾杯', 'Cheers'), (3, 'L''chaim', 'Cheers');
 

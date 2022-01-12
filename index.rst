@@ -1,7 +1,7 @@
 .. _index:
 
 ***********************
-SQream DB documentation
+SQream Documentation
 ***********************
 
 .. only:: html
@@ -90,9 +90,10 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    :titlesonly:
    :hidden:
 
-   first_steps
    xxfeatures_tour
+   first_steps
    guides/index
+   installation_guides/index
    reference/index
    releases/index
    glossary
