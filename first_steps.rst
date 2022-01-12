@@ -45,12 +45,8 @@ Before installing SQream, do the following:
    * A SQream license - Contact support@sqream.com or your SQream account manager for your license key.
 For more information, see the following:
 
-* :ref:`recommended_pre-installation_configurations`
+* `Recommended Pre-Installation Configuration <https://docs.sqream.com/en/v2020.3.2/installation_guides/recommended_pre-installation_configurations.html#>`_
 * :ref:`Hardware Guide<hardware_guide>`
-
-
-
-
 
 
 
