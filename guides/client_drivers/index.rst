@@ -13,15 +13,18 @@ All operating systems
 ---------------------------
 
 * 
-   **JDBC** - `sqream-jdbc v4.2.1 (.zip) <http://downloads.sqream.com/drivers/2020.2/sqream-jdbc-4.2.1.zip>`_
+
+   **JDBC** - `sqream-jdbc v4.2.1 (.zip) <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.1.jar>`_
+
    
    :ref:`java_jdbc` Driver
    
    (SQream recommends installing via ``mvn``)
 
 * 
-   **Python** - `pysqream v3.0.3 (.tar.gz) <https://github.com/SQream/pysqream/releases/tag/v3.0.3>`_
-   
+
+   **Python** - `pysqream v3.0.3 (.tar.gz) <https://github.com/SQream/pysqream/releases/tag/v3.1.3>`_
+
    :ref:`pysqream` - Python driver
    
    (SQream recommends installing via ``pip``)
@@ -59,12 +62,16 @@ Linux
 --------------
 
 * 
-   **SQream SQL** (x86) - `sqream-sql-v2020.1.1_stable.x86_64.tar.gz <http://downloads.sqream.com/drivers/2020.2/sqream-sql-v2020.1.1_stable.x86_64.tar.gz>`_ 
+
+   **SQream SQL** (x86) - `sqream-sql-v2020.1.1_stable.x86_64.tar.gz <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.x86_64.tar.gz>`_ 
+
    
    :ref:`sqream sql<sqream_sql_cli_reference>` - Interactive command-line SQL client for Intel-based machines
    
 * 
-   **SQream SQL** (IBM POWER9) - `sqream-sql-v2020.1.1_stable.ppc64le.tar.gz <http://downloads.sqream.com/drivers/2020.2/sqream-sql-v2020.1.1_stable.ppc64le.tar.gz>`_ 
+
+   **SQream SQL** (IBM POWER9) - `sqream-sql-v2020.1.1_stable.ppc64le.tar.gz <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.ppc64le.tar.gz>`_ 
+
    
    :ref:`sqream sql<sqream_sql_cli_reference>` - Interactive command-line SQL client for IBM POWER9-based machines
    

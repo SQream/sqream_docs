@@ -14,9 +14,11 @@ This page serves as a reference for the options and parameters. Learn more about
 Installing sqream sql
 =========================
 
+
 If you have a SQream DB installation on your server, ``sqream sql`` can be found in the ``bin`` directory of your SQream DB installation, under the name ``sqream``.
 
 .. note:: If you installed SQream DB via Docker, the command is named ``sqream-client sql``, and can be found in the same location as the console.
+
 
 
 .. versionchanged:: 2020.1

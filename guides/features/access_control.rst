@@ -109,6 +109,7 @@ Examples:
 
    ALTER ROLE  admin_role  RENAME  TO  copy_role ;
 
+
 .. _change_password:
 
 Changing user passwords
@@ -121,6 +122,7 @@ To change a user role's password, grant the user a new password.
    GRANT  PASSWORD  'new_password'  TO  rhendricks;  
 
 .. note:: Granting a new password overrides any previous password. Changing the password while the role has an active running statement does not affect that statement, but will affect subsequent statements.
+
 
 Public Role
 -----------
@@ -151,7 +153,9 @@ Once the group role exists, you can add user roles (members) using the ``GRANT``
    GRANT my_group TO my_user;
 
 
+
 To manage object permissions like databases and tables, you would then grant permissions to the group-level role (see :ref:`the permissions table<permissions_table>` below.
+
 
 All member roles then inherit the permissions from the group. For example:
 
@@ -572,6 +576,12 @@ After the group roles have been created, you can now create user roles for each 
    GRANT  CONNECT  ON  DATABASE  my_database  TO  hoover;
    GRANT my_schema_security_officers TO hoover;
 
+
+.. note::
+   By default, any new object created will not be accessible by our new ``my_schema_readers`` group.
+   Running a ``GRANT SELECT ...`` only affects objects that already exist in the schema or database.
+   If you're getting a ``Missing the following permissions: SELECT on table 'database.public.tablename'`` error, make sure that
+   you've altered the default permissions with the ``ALTER DEFAULT PERMISSIONS`` statement.
 
 .. todo:
    create some example users

@@ -83,6 +83,7 @@ This function returns a list of active sessions. If no sessions are active acros
    * - ``Stopping``
      - Statement is in the process of stopping
 
+
 .. include until here 86
 
 Notes

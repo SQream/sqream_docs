@@ -26,13 +26,16 @@ SQream DB comes with Hadoop libraries built-in. In a typical SQream DB installat
 
 If you are using the built-in libraries, it's important to note where they are.
 
+
 For example, if SQream DB was installed to ``/opt/sqream``, here's how to set-up the environment variables from the shell:
+
 
 .. _set_hadoop_classpath:
 
 .. code-block:: console
 
    $ export JAVA_HOME=/opt/sqream/hdfs/jdk
+
    $ export HADOOP_INSTALL=/opt/sqream/hdfs/hadoop
    
    $ export PATH=$PATH:${HADOOP_INSTALL}/bin:${HADOOP_INSTALL}/sbin
@@ -62,6 +65,12 @@ To persist these settings, place these variable settings in a 'run commands' fil
    
    * Restart SQream DB workers on the host after setting these parameters for them to take effect.
 
+
+If they don't already exist, place these variable settings in a 'run commands' file like ``.bashrc``. Test this by examining the output of ``$ echo $ARROW_LIBHDFS_DIR``.
+
+.. note:: This process needs to be repeated for every host in the SQream DB cluster.
+
+
 (Optional) Overriding the Hadoop environment
 ------------------------------------------------------
 
@@ -72,6 +81,7 @@ For example,
 .. code-block:: console
 
    $ export JAVA_HOME=/usr/local/java-1.8.0/
+
    $ export HADOOP_INSTALL=/usr/local/hadoop-3.2.1
    
    $ export PATH=$PATH:${HADOOP_INSTALL}/bin:${HADOOP_INSTALL}/sbin
@@ -98,6 +108,12 @@ To persist these settings, place these variable settings in a 'run commands' fil
    * This process needs to be repeated for every host in the SQream DB cluster, and from SQream DB's host username (often ``sqream``)
    
    * Restart SQream DB workers on the host after setting these parameters for them to take effect.
+
+
+Place these variable settings in a 'run commands' file like ``.bashrc``. Test this by examining the output of ``$ echo $ARROW_LIBHDFS_DIR``.
+
+.. note:: This process needs to be repeated for every host in the SQream DB cluster.
+
 
 Configuring the node
 ======================
@@ -295,6 +311,7 @@ If the command succeeds and you see a directory listing, Kerberized HDFS has bee
 
 If an error occured, check your configuration or contact SQream support.
 
+
 Testing HDFS access in SQream DB
 =====================================
 
@@ -303,6 +320,7 @@ HDFS access from SQream DB is from :ref:`copy_from` and :ref:`external_tables`.
 * :ref:`Example for an HDFS-stored external table<hdfs_external_table_demo>`
 
 * :ref:`Example for inserting data from a CSV on HDFS<hdfs_copy_from_example>`
+
 
 Troubelshooting HDFS access
 ==================================

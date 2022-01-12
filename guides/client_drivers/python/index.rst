@@ -343,7 +343,9 @@ This example loads 10,000 rows of dummy data to a SQream DB instance
                       , clustered=True)
    
    # Create a table for loading
+
    create = 'create or replace table perf (b bool, t tinyint, sm smallint, i int, bi bigint, f real, d double, s varchar(12), ss text, dt date, dtt datetime)'
+
    con.execute(create)
 
    # After creating the table, we can load data into it with the INSERT command

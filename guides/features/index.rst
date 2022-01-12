@@ -14,6 +14,7 @@ Features guides
    concurrency_and_locks
    concurrency_and_scaling_in_sqream
 
+
    metadata_system
    chunks_and_extents
    compression
