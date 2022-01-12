@@ -9,7 +9,6 @@ The **Installing SQream Studio** page incudes the following installation guides:
    :maxdepth: 1
    :glob:
 
-   running_sqream_in_a_docker_container
    installing_studio_on_stand_alone_server
    installing_prometheus_exporters
    installing_prometheus_using_binary_packages
