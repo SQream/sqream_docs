@@ -28,11 +28,13 @@ If you are using the built-in libraries, it's important to note where they are.
 
 For example, if SQream DB was installed to ``/opt/sqream``, here's how to set-up the environment variables from the shell:
 
+
 .. _set_hadoop_classpath:
 
 .. code-block:: console
 
    $ export JAVA_HOME=/opt/sqream/hdfs/jdk
+
    $ export HADOOP_INSTALL=/opt/sqream/hdfs/hadoop
    
    $ export PATH=$PATH:${HADOOP_INSTALL}/bin:${HADOOP_INSTALL}/sbin
@@ -61,6 +63,7 @@ To persist these settings, place these variable settings in a 'run commands' fil
    * This process needs to be repeated for every host in the SQream DB cluster, and from SQream DB's host username (often ``sqream``)
    
    * Restart SQream DB workers on the host after setting these parameters for them to take effect.
+
 
 (Optional) Overriding the Hadoop environment
 ------------------------------------------------------
@@ -98,6 +101,7 @@ To persist these settings, place these variable settings in a 'run commands' fil
    * This process needs to be repeated for every host in the SQream DB cluster, and from SQream DB's host username (often ``sqream``)
    
    * Restart SQream DB workers on the host after setting these parameters for them to take effect.
+
 
 Configuring the node
 ======================
@@ -272,15 +276,7 @@ Configuring HDFS for Kerberos
           <name>dfs.namenode.https.principal</name>
           <value>sqream/sqreamdb-01.piedpiper.com@KRLM.PIEDPIPER.COM</value>
       </property>
-      
 
-.. 
-      <property>
-          <name>security.keytab.file</name>
-          <value>/home/sqream/sqreamdb-01.service.keytab</value>
-      </property>
-      <property>
-          <name>security.username</name>
           <value>sqream/sqreamdb-01.piedpiper.com@KRLM.PIEDPIPER.CO</value>
       </property>
 
@@ -306,6 +302,7 @@ HDFS access from SQream DB is from :ref:`copy_from` and :ref:`external_tables`.
 * :ref:`Example for an HDFS-stored external table<hdfs_external_table_demo>`
 
 * :ref:`Example for inserting data from a CSV on HDFS<hdfs_copy_from_example>`
+
 
 Troubelshooting HDFS access
 ==================================
