@@ -275,3 +275,4 @@ For an example of stopping actively running SQream services, see :ref:`Launching
       time: 0.050603s 
  
 For more information, see the `upgrade_storage <https://docs.sqream.com/en/v2020.3.2.1/reference/cli/upgrade_storage.html>`_ command line program.
+

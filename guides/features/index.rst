@@ -24,6 +24,7 @@ Features guides
    external_tables
    external_data/index
 
+
    transactions
    workload_manager
 

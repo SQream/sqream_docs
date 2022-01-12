@@ -163,7 +163,7 @@ Operations
 
  
 Known Issues and Limitations
-================================
+
 
 * An invalid formatted CSV can cause an ``insufficient memory`` error on a :ref:`copy_from` statement if a quote isn't closed and the file is much larger than system memory.
 

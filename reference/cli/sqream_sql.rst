@@ -1,7 +1,7 @@
 .. _sqream_sql_cli_reference:
 
 *********************************
-sqream sql CLI reference
+Sqream SQL CLI Reference
 *********************************
 
 SQream DB comes with a built-in client for executing SQL statements either interactively or from the command-line.
@@ -13,15 +13,11 @@ This page serves as a reference for the options and parameters. Learn more about
 
 Installing sqream sql
 =========================
-
 If you have a SQream DB installation on your server, ``sqream sql`` can be found in the ``bin`` directory of your SQream DB installation, under the name ``sqream``.
-
-.. note:: If you installed SQream DB via Docker, the command is named ``sqream-client sql``, and can be found in the same location as the console.
-
 
 .. versionchanged:: 2020.1
    As of version 2020.1, ``ClientCmd`` has been renamed to ``sqream sql``.
-   
+
 
 To run ``sqream sql`` on any other Linux host:
 
@@ -40,7 +36,7 @@ To run ``sqream sql`` on any other Linux host:
       
       master=> _
 
-Troubleshooting sqream sql installation
+Troubleshooting SQream SQl Installation
 -------------------------------------------
 
 Upon running sqream sql for the first time, you may get an error ``error while loading shared libraries: libtinfo.so.5: cannot open shared object file: No such file or directory``.
@@ -69,12 +65,13 @@ Solving this error requires installing the ncruses or libtinfo libraries, depend
       
       ``$ sudo ln -s /usr/lib64/libtinfo.so.6 /usr/lib64/libtinfo.so.5``
 
-Using sqream sql
+
+Using SQream SQL
 =================
 
 By default, sqream sql runs in interactive mode. You can issue commands or SQL statements.
 
-Running commands interactively (SQL shell)
+Running Commands Interactively in an SQL Shell
 --------------------------------------------
 
 When starting sqream sql, after entering your password, you are presented with the SQL shell.
@@ -138,7 +135,7 @@ The prompt for a multi-line statement will change from ``=>`` to ``.``, to alert
    time: 0.009320s
 
 
-Executing batch scripts (``-f``)
+Executing Batch Scripts
 ---------------------------------
 
 To run an SQL script, use the ``-f <filename>`` argument.
@@ -151,7 +148,7 @@ For example,
 
 .. tip:: Output can be saved to a file by using redirection (``>``).
 
-Executing commands immediately (``-c``)
+Executing Commands Immediately
 -------------------------------------------
 
 To run a statement from the console, use the ``-c <statement>`` argument.
@@ -175,7 +172,7 @@ For example,
 Examples
 ===========
 
-Start a regular interactive shell
+Starting a Regular Interactive Shell
 -----------------------------------
 
 Connect to local server 127.0.0.1 on port 5000, to the default built-in database, `master`:
@@ -202,7 +199,7 @@ Connect to local server 127.0.0.1 via the built-in load balancer on port 3108, t
    
    master=>_
 
-Execute statements in the interactive shell
+Executing Statements in the Interactive Shell
 -----------------------------------------------
 
 Note that all SQL commands end with a semicolon.
@@ -243,7 +240,7 @@ Creating a new database and switching over to it without reconnecting:
    2 rows
    time: 0.029299s
 
-Execute SQL statements from the command line
+Executing SQL Statements from the Command Line
 ----------------------------------------------
 
 .. code-block:: console
@@ -255,7 +252,7 @@ Execute SQL statements from the command line
 
 .. _controlling_output:
 
-Controlling the output of the client
+Controlling the Output of the Client
 ----------------------------------------
 
 Two parameters control the dispay of results from the client:
@@ -263,7 +260,7 @@ Two parameters control the dispay of results from the client:
 * ``--results-only`` - removes row counts and timing information
 * ``--delimiter`` - changes the record delimiter
 
-Export SQL query result to CSV
+Exportin an SQL Query Result to CSV
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Using the ``--results-only`` flag removes the row counts and timing.
@@ -277,7 +274,7 @@ Using the ``--results-only`` flag removes the row counts and timing.
    3,chicken                       ,0
    4,bull                          ,1
 
-Change a CSV to a TSV
+Changing a CSV to a TSV
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``--delimiter`` parameter accepts any printable character.
@@ -294,7 +291,7 @@ The ``--delimiter`` parameter accepts any printable character.
    4  bull                             1
 
 
-Execute a series of statements from a file
+Executing a Series of Statements from a File
 --------------------------------------------
 
 Assuming a file containing SQL statements (separated by semicolons):
@@ -317,7 +314,7 @@ Assuming a file containing SQL statements (separated by semicolons):
    executed
    time: 0.090697s
 
-Connect using environment variables
+Connecting Using Environment Variables
 -------------------------------------
 
 You can save connection parameters as environment variables:
@@ -328,7 +325,7 @@ You can save connection parameters as environment variables:
    $ export SQREAM_DATABASE=farm;
    $ sqream sql --port=3105 --clustered --username=$SQREAM_USER -d $SQREAM_DATABASE
 
-Connecting to a specific queue
+Connecting to a Specific Queue
 -----------------------------------
 
 When using the :ref:`dynamic workload manager<workload_manager>` - connect to ``etl`` queue instead of using the default ``sqream`` queue
@@ -344,10 +341,10 @@ When using the :ref:`dynamic workload manager<workload_manager>` - connect to ``
    master=>_
 
 
-Operations and flag reference
+Operations and Flag Reference
 ===============================
 
-Command line arguments
+Command Line Arguments
 -----------------------
 
 **SQream SQL** supports the following command line arguments:
@@ -400,7 +397,7 @@ Command line arguments
 
 .. _supported_record_delimiters: 
 
-Supported record delimiters
+Supported Record Delimiters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The supported record delimiters are printable ASCII values (32-126).
@@ -455,7 +452,7 @@ Basic Commands
 
 
 
-Moving about the command line
+Navigating the Command Line
 ---------------------------------
 
 .. list-table:: 
