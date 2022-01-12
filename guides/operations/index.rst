@@ -12,7 +12,7 @@ The guides in this section include information about best practices, monitoring,
    :glob:
 
    optimization_best_practices
-   recommended_pre-installation_configurations
+   xxrecommended_pre-installation_configurations
    xxinstalling_monit
    xxlaunching_sqream_with_monit
    xxinstalling_sqream_with_binary
