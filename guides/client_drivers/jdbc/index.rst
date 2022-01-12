@@ -18,19 +18,19 @@ Installing the JDBC Driver
 Prerequisites
 ----------------
 
-The SQream JDBC driver requires Java 1.8 or newer. We recommend either Oracle Java or OpenJDK.
+The SQream DB JDBC driver requires Java 1.8 or newer. We recommend either Oracle Java or OpenJDK.
 
 **Oracle Java**
 
-To download and install Java 8 from Oracle for your platform, see `Java Downloads for All Operating Systems <https://www.java.com/en/download/manual.jsp>`_.
+Download and install Java 8 from Oracle for your platform
 
-
+https://www.java.com/en/download/manual.jsp
 
 **OpenJDK**
 
-For Linux and BSD, see `How to download and install prebuilt OpenJDK packages <https://openjdk.java.net/install/>`_.
+For Linux and BSD, see https://openjdk.java.net/install/
 
-For Windows, SQream recommends `Zulu 8 <https://www.azul.com/downloads/zulu-community/?&version=java-8-lts&architecture=x86-64-bit&package=jdk>`_.
+For Windows, SQream recommends Zulu 8 https://www.azul.com/downloads/zulu-community/?&version=java-8-lts&architecture=x86-64-bit&package=jdk
 
 .. _get_jdbc_jar:
 
@@ -89,7 +89,7 @@ The following is the correct syntax for writing a connection string:
 
    jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>sqream;[<optional parameters>; ...]
    
-If you receive an error when saving large quantities of data as files, see `Troubleshooting - Error Saving Large Quantities of Data as Files <https://docs.sqream.com/en/v2020.3.2/guides/third_party_tools/tableau.html#error-saving-large-quantities-of-data-as-files>`_.
+If you receive an error when saving large quantities of data as files, see `Troubleshooting - Error Saving Large Quantities of Data as Files <https://docs.sqream.com/en/v2020-1/guides/third_party_tools/tableau.html#error-saving-large-quantities-of-data-as-files>`_.
 
 Connection Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^

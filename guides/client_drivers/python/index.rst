@@ -4,15 +4,13 @@
 Python (pysqream)
 *************************
 
-The SQream Python connector is a set of packages that allows Python programs to connect to SQream DB.
+The SQream Python connector allows Python programs to connect to SQream DB.
 
-* ``pysqream`` is a pure Python connector. It can be installed with ``pip`` on any operating system, including Linux, Windows, and macOS.
-
-* ``pysqream-sqlalchemy`` is a SQLAlchemy dialect for ``pysqream``
+``pysqream`` is a pure Python connector. It can be installed with ``pip`` on any operating system, including Linux, Windows, and macOS.
 
 The connector supports Python 3.6.5 and newer.
 
-The base ``pysqream`` package conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_.
+pysqream conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_
 
 .. contents:: In this topic:
    :local:
@@ -95,20 +93,9 @@ Install the connector with ``pip``:
 
 .. code-block:: console
    
-   $ pip install pysqream pysqream-sqlalchemy
+   $ pip install pysqream
 
-``pip`` will automatically install all necessary libraries and modules.
-
-Upgrading an existing installation
---------------------------------------
-
-The Python drivers are updated periodically.
-To upgrade an existing pysqream installation, use pip's ``-U`` flag.
-
-.. code-block:: console
-   
-   $ pip install pysqream pysqream-sqlalchemy -U
-
+``pip`` will automatically installs all necessary libraries and modules.
 
 Validate the installation
 -----------------------------
@@ -133,61 +120,7 @@ If all went well, you are now ready to build an application using the SQream DB 
 
 If any connection error appears, verify that you have access to a running SQream DB and that the connection parameters are correct.
 
-SQLAlchemy examples
-========================
-
-SQLAlchemy is an ORM for Python.
-
-When you install the SQream DB dialect (``pysqream-sqlalchemy``) you can use frameworks like Pandas, TensorFlow, and Alembic to query SQream DB directly.
-
-A simple connection example
----------------------------------
-
-.. code-block:: python
-
-   import sqlalchemy as sa
-   from sqlalchemy.engine.url import URL
-
-   engine_url = URL('sqream'
-                 , username='rhendricks'
-                 , password='secret_passwor"
-                 , host='localhost'
-                 , port=5000
-                 , database='raviga'
-                 , query={'use_ssl': False})
-
-   engine = sa.create_engine(engine_url)
-
-   res = engine.execute('create table test (ints int)')
-   res = engine.execute('insert into test values (5), (6)')
-   res = engine.execute('select * from test')
-
-Pulling a table into Pandas
----------------------------------
-
-In this example, we use the URL method to create the connection string.
-
-.. code-block:: python
-
-   import sqlalchemy as sa
-   import pandas as pd
-   from sqlalchemy.engine.url import URL
-
-
-   engine_url = URL('sqream'
-                 , username='rhendricks'
-                 , password='secret_passwor"
-                 , host='localhost'
-                 , port=5000
-                 , database='raviga'
-                 , query={'use_ssl': False})
-
-   engine = sa.create_engine(engine_url)
-   
-   table_df = pd.read_sql("select * from nba", con=engine)
-
-
-API Examples
+Examples
 ===============
 
 Explaining the connection example
@@ -351,7 +284,7 @@ This example loads 10,000 rows of dummy data to a SQream DB instance
                       , clustered=True)
    
    # Create a table for loading
-   create = 'create or replace table perf (b bool, t tinyint, sm smallint, i int, bi bigint, f real, d double, s varchar(12), ss text, dt date, dtt datetime)'
+   create = 'create or replace table perf (b bool, t tinyint, sm smallint, i int, bi bigint, f real, d double, s varchar(12), ss text(20), dt date, dtt datetime)'
    con.execute(create)
 
    # After creating the table, we can load data into it with the INSERT command
@@ -434,66 +367,6 @@ We will write a helper function to create an :ref:`insert` statement, by reading
    insert_from_csv(cur, 'nba', 'nba.csv', field_delimiter = ',', null_markers = [])
    
    con.close()
-
-
-Using SQLAlchemy ORM to create tables and fill them with data
------------------------------------------------------------------------
-
-You can also use the ORM to create tables and insert data to them from Python objects.
-
-For example:
-
-.. code-block:: python
-   
-   import sqlalchemy as sa
-   import pandas as pd
-   from sqlalchemy.engine.url import URL
-
-
-   engine_url = URL('sqream'
-                 , username='rhendricks'
-                 , password='secret_passwor"
-                 , host='localhost'
-                 , port=5000
-                 , database='raviga'
-                 , query={'use_ssl': False})
-
-   engine = sa.create_engine(engine_url)
-   
-   # Build a metadata object and bind it
-   
-   metadata = sa.MetaData()
-   metadata.bind = engine
-   
-   # Create a table in the local metadata
-   
-   employees = sa.Table(
-   'employees'
-   , metadata 
-   , sa.Column('id', sa.Integer)
-   , sa.Column('name', sa.VARCHAR(32))
-   , sa.Column('lastname', sa.VARCHAR(32))
-   , sa.Column('salary', sa.Float)
-   )
-
-   # The create_all() function uses the SQream DB engine object
-   # to create all the defined table objects.
-
-   metadata.create_all(engine)
-   
-   # Now that the table exists, we can insert data into it.
-   
-   # Build the data rows
-   insert_data = [ {'id': 1, 'name': 'Richard','lastname': 'Hendricks',   'salary': 12000.75}
-                  ,{'id': 3,  'name': 'Bertram', 'lastname': 'Gilfoyle', 'salary': 8400.0}
-                  ,{'id': 8,  'name': 'Donald', 'lastname': 'Dunn', 'salary': 6500.40}
-                 ]
-
-   # Build the insert command
-   ins = employees.insert(insert_data)
-   
-   # Execute the command
-   result = engine.execute(ins)
 
 .. toctree::
    :maxdepth: 8

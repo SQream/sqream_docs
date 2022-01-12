@@ -26,41 +26,23 @@ SQream DB comes with Hadoop libraries built-in. In a typical SQream DB installat
 
 If you are using the built-in libraries, it's important to note where they are.
 
-For example, if SQream DB was installed to ``/opt/sqream``, here's how to set-up the environment variables from the shell:
+For example, if SQream DB was installed to ``/opt/sqream``, here's how to set-up the environment variables:
 
 .. _set_hadoop_classpath:
 
 .. code-block:: console
 
    $ export JAVA_HOME=/opt/sqream/hdfs/jdk
-   $ export HADOOP_INSTALL=/opt/sqream/hdfs/hadoop
-   
-   $ export PATH=$PATH:${HADOOP_INSTALL}/bin:${HADOOP_INSTALL}/sbin
-   $ export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_INSTALL}/lib/native
-   $ export CLASSPATH=$CLASSPATH:`${HADOOP_INSTALL}/bin/hadoop classpath --glob`
-   $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HADOOP_COMMON_LIB_NATIVE_DIR
-
-   $ export HADOOP_MAPRED_HOME=$HADOOP_INSTALL
-   $ export HADOOP_COMMON_HOME=$HADOOP_INSTALL
-   $ export HADOOP_HDFS_HOME=$HADOOP_INSTALL
-   $ export YARN_HOME=$HADOOP_INSTALL
-   
-   $ export HADOOP_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
-   $ export YARN_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
-   $ export HADOOP_HOME=$HADOOP_INSTALL
-   $ export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=${HADOOP_COMMON_LIB_NATIVE_DIR}"
-   $ export ARROW_LIBHDFS_DIR=${HADOOP_COMMON_LIB_NATIVE_DIR}
-
+   $ export CLASSPATH=`/opt/sqream/hdfs/hadoop/hadoop classpath --glob`
+   $ export HADOOP_HOME=/opt/sqream/hdfs/hadoop/
+   $ export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native"
+   $ export ARROW_LIBHDFS_DIR=/opt/sqream/hdfs/hadoop/lib/native/
 
 You'll find ``core-site.xml`` and other configuration files in ``/opt/sqream/hdfs/hadoop/etc/hadoop``
 
-To persist these settings, place these variable settings in a 'run commands' file like ``.bashrc``. Test this by examining the output of ``$ echo $ARROW_LIBHDFS_DIR``.
+If they don't already exist, place these variable settings in a 'run commands' file like ``.bashrc``. Test this by examining the output of ``$ echo $ARROW_LIBHDFS_DIR``.
 
-.. note:: 
-   
-   * This process needs to be repeated for every host in the SQream DB cluster, and from SQream DB's host username (often ``sqream``)
-   
-   * Restart SQream DB workers on the host after setting these parameters for them to take effect.
+.. note:: This process needs to be repeated for every host in the SQream DB cluster.
 
 (Optional) Overriding the Hadoop environment
 ------------------------------------------------------
@@ -72,32 +54,14 @@ For example,
 .. code-block:: console
 
    $ export JAVA_HOME=/usr/local/java-1.8.0/
-   $ export HADOOP_INSTALL=/usr/local/hadoop-3.2.1
-   
-   $ export PATH=$PATH:${HADOOP_INSTALL}/bin:${HADOOP_INSTALL}/sbin
-   $ export HADOOP_COMMON_LIB_NATIVE_DIR=${HADOOP_INSTALL}/lib/native
-   $ export CLASSPATH=$CLASSPATH:`${HADOOP_INSTALL}/bin/hadoop classpath --glob`
-   $ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HADOOP_COMMON_LIB_NATIVE_DIR
+   $ export CLASSPATH=`/usr/local/hadoop-3.2.1/hadoop classpath --glob`:$CLASSPATH
+   $ export HADOOP_HOME=/usr/local/hadoop-3.2.1/
+   $ export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=$HADOOP_HOME/lib/native"
+   $ export ARROW_LIBHDFS_DIR=/usr/local/hadoop-3.2.1/lib/native/
 
-   $ export HADOOP_MAPRED_HOME=$HADOOP_INSTALL
-   $ export HADOOP_COMMON_HOME=$HADOOP_INSTALL
-   $ export HADOOP_HDFS_HOME=$HADOOP_INSTALL
-   $ export YARN_HOME=$HADOOP_INSTALL
-   
-   $ export HADOOP_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
-   $ export YARN_CONF_DIR=$HADOOP_INSTALL/etc/hadoop
-   $ export HADOOP_HOME=$HADOOP_INSTALL
-   $ export HADOOP_OPTS="$HADOOP_OPTS -Djava.library.path=${HADOOP_COMMON_LIB_NATIVE_DIR}"
-   $ export ARROW_LIBHDFS_DIR=${HADOOP_COMMON_LIB_NATIVE_DIR}
+Place these variable settings in a 'run commands' file like ``.bashrc``. Test this by examining the output of ``$ echo $ARROW_LIBHDFS_DIR``.
 
-
-To persist these settings, place these variable settings in a 'run commands' file like ``.bashrc``. Test this by examining the output of ``$ echo $ARROW_LIBHDFS_DIR``.
-
-.. note:: 
-   
-   * This process needs to be repeated for every host in the SQream DB cluster, and from SQream DB's host username (often ``sqream``)
-   
-   * Restart SQream DB workers on the host after setting these parameters for them to take effect.
+.. note:: This process needs to be repeated for every host in the SQream DB cluster.
 
 Configuring the node
 ======================
@@ -272,15 +236,12 @@ Configuring HDFS for Kerberos
           <name>dfs.namenode.https.principal</name>
           <value>sqream/sqreamdb-01.piedpiper.com@KRLM.PIEDPIPER.COM</value>
       </property>
-      
-
-.. 
       <property>
-          <name>security.keytab.file</name>
+          <name>com.emc.greenplum.gpdb.hdfsconnector.security.user.keytab.file</name>
           <value>/home/sqream/sqreamdb-01.service.keytab</value>
       </property>
       <property>
-          <name>security.username</name>
+          <name>com.emc.greenplum.gpdb.hdfsconnector.security.user.name</name>
           <value>sqream/sqreamdb-01.piedpiper.com@KRLM.PIEDPIPER.CO</value>
       </property>
 
@@ -297,15 +258,6 @@ Repeat the command on all hosts.
 If the command succeeds and you see a directory listing, Kerberized HDFS has been configured correctly and can now be used in SQream DB.
 
 If an error occured, check your configuration or contact SQream support.
-
-Testing HDFS access in SQream DB
-=====================================
-
-HDFS access from SQream DB is from :ref:`copy_from` and :ref:`external_tables`.
-
-* :ref:`Example for an HDFS-stored external table<hdfs_external_table_demo>`
-
-* :ref:`Example for inserting data from a CSV on HDFS<hdfs_copy_from_example>`
 
 Troubelshooting HDFS access
 ==================================

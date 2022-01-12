@@ -45,8 +45,8 @@ Before installing SQream, do the following:
    * A SQream license - Contact support@sqream.com or your SQream account manager for your license key.
 For more information, see the following:
 
-* `Hardware Guide <https://docs.sqream.com/en/v2020.3.2/guides/operations/hardware_guide.html>`_
-* `Recommended Pre-Installation Configuration <https://docs.sqream.com/en/v2020.3.2/guides/operations/recommended_pre-installation_configurations.html>`_
+* :ref:`recommended_pre-installation_configurations`
+* :ref:`Hardware Guide<hardware_guide>`
 
 
 
@@ -58,15 +58,15 @@ Installing SQream
 ============================
 The **Installing SQream** section includes the following SQream installation methods:
 
-* `Installing SQream natively <https://docs.sqream.com/en/v2020.3.2/guides/operations/installing_sqream_with_binary.html>`_ - Describes installing SQream using binary packages provided by SQream.
-* `Installing SQream with Kubernetes <https://docs.sqream.com/en/v2020.3.2/guides/operations/installing_sqream_with_kubernetes.html>`_ - Describes installing SQream using the Kubernetes open source platform.
-* `Installing and running SQream in a Docker container <https://docs.sqream.com/en/v2020.3.2/guides/operations/running_sqream_in_a_docker_container.html>`_ - Describes how to run SQream in a Docker container.
+* `Installing SQream natively <https://docs.sqream.com/en/latest/guides/operations/installing_sqream_with_binary.html>`_ - Describes installing SQream using binary packages provided by SQream.
+* `Installing SQream with Kubernetes <https://docs.sqream.com/en/latest/guides/operations/installing_sqream_with_kubernetes.html>`_ - Describes installing SQream using the Kubernetes open source platform.
+* `Installing and running SQream in a Docker container <https://docs.sqream.com/en/v2021.2/guides/operations/running_sqream_in_a_docker_container.html>`_ - Describes how to run SQream in a Docker container.
 
 Using the SQream SQL Command Line Interface
 ============================================
 SQream includes a built-in client for executing SQL statements either interactively or using the Command Line Interface (CLI). The **SQream SQL CLI Reference** page provides a reference for the options and parameters.
 
-For more information, see `SQream SQL CLI Reference <https://docs.sqream.com/en/v2020.3.2/reference/cli/sqream_sql.html>`_.
+For more information, see `SQream SQL CLI Reference <https://docs.sqream.com/en/latest/reference/cli/sqream_sql.html>`_.
 
 Performing Basic SQream Operations
 ====================================

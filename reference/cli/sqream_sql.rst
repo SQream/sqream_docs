@@ -1,7 +1,7 @@
 .. _sqream_sql_cli_reference:
 
 *********************************
-sqream sql CLI reference
+SQream SQL CLI reference
 *********************************
 
 SQream DB comes with a built-in client for executing SQL statements either interactively or from the command-line.
@@ -16,12 +16,8 @@ Installing sqream sql
 
 If you have a SQream DB installation on your server, ``sqream sql`` can be found in the ``bin`` directory of your SQream DB installation, under the name ``sqream``.
 
-.. note:: If you installed SQream DB via Docker, the command is named ``sqream-client sql``, and can be found in the same location as the console.
-
-
 .. versionchanged:: 2020.1
    As of version 2020.1, ``ClientCmd`` has been renamed to ``sqream sql``.
-   
 
 To run ``sqream sql`` on any other Linux host:
 
@@ -40,34 +36,6 @@ To run ``sqream sql`` on any other Linux host:
       
       master=> _
 
-Troubleshooting sqream sql installation
--------------------------------------------
-
-Upon running sqream sql for the first time, you may get an error ``error while loading shared libraries: libtinfo.so.5: cannot open shared object file: No such file or directory``.
-
-Solving this error requires installing the ncruses or libtinfo libraries, depending on your operating system.
-
-* Ubuntu:
-
-   #. Install ``libtinfo``:
-      
-      ``$ sudo apt-get install -y libtinfo``
-   #. Depending on your Ubuntu version, you may need to create a symbolic link to the newer libtinfo that was installed.
-   
-      For example, if ``libtinfo`` was installed as ``/lib/x86_64-linux-gnu/libtinfo.so.6.2``:
-      
-      ``$ sudo ln -s /lib/x86_64-linux-gnu/libtinfo.so.6.2 /lib/x86_64-linux-gnu/libtinfo.so.5``
-      
-* CentOS / RHEL:
-
-   #. Install ``ncurses``:
-   
-      ``$ sudo yum install -y ncurses-libs``
-   #. Depending on your RHEL version, you may need to create a symbolic link to the newer libtinfo that was installed.
-   
-      For example, if ``libtinfo`` was installed as ``/usr/lib64/libtinfo.so.6``:
-      
-      ``$ sudo ln -s /usr/lib64/libtinfo.so.6 /usr/lib64/libtinfo.so.5``
 
 Using sqream sql
 =================
@@ -407,7 +375,7 @@ The supported record delimiters are printable ASCII values (32-126).
 
 * Recommended delimiters for use are: ``,``, ``|``, tab character.
 
-* The following characters are **not supported**: ``\``, ``N``, ``-``, ``:``, ``"``, ``\n``, ``\r``, ``.``, lower-case latin letters, digits (0-9)
+* The following characters are **not supported**: ``\``, ``N``, ``-``, ``:``, ``"``, ``\n``, ``\r``, lower-case latin letters, digits (0-9)
 
 Meta-commands
 ----------------
