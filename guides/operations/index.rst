@@ -12,13 +12,13 @@ The guides in this section include information about best practices, monitoring,
    :glob:
 
    optimization_best_practices
-   recommended_pre-installation_configurations
+   xxrecommended_pre-installation_configurations
    xxmonitoring
-   installing_monit
-   launching_sqream_with_monit
-   installing_sqream_with_binary
-   installing_sqream_with_kubernetes
-   running_sqream_in_a_docker_container
+   xxinstalling_monit
+   xxlaunching_sqream_with_monit
+   xxinstalling_sqream_with_binary
+   xxinstalling_sqream_with_kubernetes
+   xxrunning_sqream_in_a_docker_container
    logging
    configuration
    troubleshooting
