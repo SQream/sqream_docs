@@ -1,7 +1,7 @@
 .. _sqream_sql_cli_reference:
 
 *********************************
-sqream sql CLI reference
+SQream SQL CLI reference
 *********************************
 
 SQream DB comes with a built-in client for executing SQL statements either interactively or from the command-line.
