@@ -46,9 +46,8 @@ Before installing SQream, do the following:
 For more information, see the following:
 
 
-* `Hardware Guide <https://docs.sqream.com/en/v2020-1/guides/operations/hardware_guide.html>`_
-* `Recommended Pre-Installation Configuration <https://docs.sqream.com/en/v2021.2/installation_guides/recommended_pre-installation_configurations.html>`_
-
+* `Hardware Guide <https://docs.sqream.com/en/v2021.1/guides/operations/hardware_guide.html>`_
+* `Recommended Pre-Installation Configuration <https://docs.sqream.com/en/v2021.1/guides/operations/recommended_pre-installation_configurations.html>`_
 
 
 
@@ -61,16 +60,15 @@ Installing SQream
 The **Installing SQream** section includes the following SQream installation methods:
 
 
-* `Installing SQream natively <https://docs.sqream.com/en/v2020-1/guides/operations/installing_sqream_with_binary.html>`_ - Describes installing SQream using binary packages provided by SQream.
-* `Installing SQream with Kubernetes <https://docs.sqream.com/en/v2020-1/guides/operations/installing_sqream_with_kubernetes.html>`_ - Describes installing SQream using the Kubernetes open source platform.
-* `Installing and running SQream in a Docker container <https://docs.sqream.com/en/v2020-1/guides/operations/running_sqream_in_a_docker_container.html>`_ - Describes how to run SQream in a Docker container.
+* `Installing SQream natively <https://docs.sqream.com/en/v2021.1/guides/operations/installing_sqream_with_binary.html>`_ - Describes installing SQream using binary packages provided by SQream.
+* `Installing SQream with Kubernetes <https://docs.sqream.com/en/v2021.1/guides/operations/installing_sqream_with_kubernetes.html>`_ - Describes installing SQream using the Kubernetes open source platform.
+* `Installing and running SQream in a Docker container <https://docs.sqream.com/en/v2021.1/guides/operations/running_sqream_in_a_docker_container.html>`_ - Describes how to run SQream in a Docker container.
 
 Using the SQream SQL Command Line Interface
 ============================================
 SQream includes a built-in client for executing SQL statements either interactively or using the Command Line Interface (CLI). The **SQream SQL CLI Reference** page provides a reference for the options and parameters.
 
-
-For more information, see `SQream SQL CLI Reference <https://docs.sqream.com/en/v2020-1/reference/cli/sqream_sql.html>`_.
+For more information, see `SQream SQL CLI Reference <https://docs.sqream.com/en/v2021.1/reference/cli/sqream_sql.html>`_.
 
 Performing Basic SQream Operations
 ====================================
@@ -143,7 +141,6 @@ The **Creating Your First Table** section describes the following:
 
 .. _creating_a_table:
 
-**Creating a Table**
 
 The ``CREATE TABLE`` syntax is used to create your first table. This table includes a table name and column specifications, as shown in the following example:
 
@@ -232,6 +229,7 @@ The **Inserting Rows** section describes the following:
 
 .. _inserting_basic_rows:
 
+
 **Inserting Basic Rows**
 
 You can insert basic rows into a table using the ``INSERT`` statement. The inserted statement includes the table name, an optional list of column names, and column values listed in the same order as the column names, as shown in the following example:
@@ -275,6 +273,7 @@ You can insert multiple rows using the ``INSERT`` statement by using sets of par
 
 **Omitting Columns**
 
+
 Omitting columns that have a default values (including default ``NULL`` values) uses the default value, as shown in the following example:
 
 .. code-block:: psql
@@ -317,6 +316,7 @@ The **Running Queries** section describes the following:
 * :ref:`Filtering null rows<filtering_null_rows>`
 
 
+
 .. _running_basic_queries:
 
 **Running Basic Queries**
@@ -340,6 +340,7 @@ For more information on the ``SELECT`` keyword, see :ref:`select`.
 .. _outputting_all_columns:
 
 **To Output All Columns**
+
 
 You can output all columns without specifying them using the star operator ``*``, as shown in the following example:
 
@@ -369,6 +370,9 @@ You can output the number of values in a table without getting the full result s
    1 row
 
 .. _filtering_results:
+
+
+
 
 **Filtering Results**
 

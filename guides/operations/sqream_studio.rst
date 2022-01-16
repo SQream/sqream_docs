@@ -73,7 +73,6 @@ By clicking the user icon, you can also use it for logging out and viewing the f
 * Data size limitations
 * Log out
 
-.. image:: /_static/images/studio_dashboard_expand_data_storage_2_5.3.0.png
 
 
 .. _back_to_dashboard:
@@ -163,7 +162,6 @@ By clicking the user icon, you can also use it for logging out and viewing the f
    :align: middle
 
 
-.. image:: /_static/images/studio_dashboard_worker_set_scale_5.3.0.png
 
 .. _studio_editor:
 
@@ -180,7 +178,6 @@ The **Editor** is used for the following:
 	 
 The following is a brief description of the Editor panels:
 
-.. image:: /_static/images/studio_dashboard_add_worker_to_service_5.3.0.png
 
 .. list-table::
    :widths: 10 34 56
@@ -202,13 +199,10 @@ The following is a brief description of the Editor panels:
      - :ref:`Results panel<studio_editor_results>`
      - Shows query results and execution information.
 
-.. image:: /_static/images/studio_dashboard_add_worker_to_service_2_5.3.0.png
 
 .. _studio_editor_db_tree:
 
-Viewing A Worker's Active Query Information
-^^^^^^^^^^^^^^^^^^^^^	 
-You can view a worker's active query information by clicking **Queries**, which displays them in the selected service.
+.. _top:
 
 .. _studio_editor_toolbar:
 
@@ -263,12 +257,8 @@ The database object functions are used to perform the following:
   * The **additional operations** |icon-dots| - displays the following additional options:
   
 
-.. |icon-dashboard| image:: /_static/images/studio_icon_dashboard.png
-   :align: middle
 
 
-.. |icon-scale| image:: /_static/images/studio_icon_scale.png
-   :align: middle
 
 .. list-table::
    :widths: 30 70
@@ -324,40 +314,7 @@ Clicking **Run Optimizer** adds a tab to the Statement panel showing the optimiz
 
 For more information, see `Optimization and Best Practices <https://docs.sqream.com/en/latest/guides/operations/optimization_best_practices.html>`_.
 
-.. _top:
-
-.. _studio_editor_toolbar:
-
-Toolbar
--------------
-
-The following figure shows the **Toolbar** pane:
-
-.. image:: /_static/images/studio_editor_toolbar_5.3.0.png
-
-You can access the following from the Toolbar pane:
-
-* **Database dropdown list** - select a database that you want to run statements on.
-
-* **Service dropdown list** - select a service that you want to run statements on. The options in the service dropdown menu depend on the database you select from the **Database** dropdown list.
-
-* **Execute** - lets you set which statements to execute. The **Execute** button toggles between **Execute** and **Stop**, and can be used to stop an active statement before it completes:
-
-  * **Statements** - executes the statement at the location of the cursor.
-  * **Selected** - executes only the highlighted text. This mode should be used when executing subqueries or sections of large queries (as long as they are valid SQLs).
-  * **All** - executes all statements in a selected tab.
-   
-For more information on stopping active statements, see the :ref:`STOP_STATEMENT<stop_statement>` command.
-
-* **Format SQL** - Lets you reformat and reindent statements.
-
-* **Download query** - Lets you download query text to your computer.
-
-* **Open query** - Lets you upload query text from your computer.
-
-* **Max Rows** - By default, the Editor fetches only the first 10,000 rows. You can modify this number by selecting an option from the **Max Rows** dropdown list. Note that setting a higher number may slow down your browser if the result is very large. This number is limited to 100,000 results. To see a higher number, you can save the results in a file or a table using the :ref:`create_table_as` command.
-
-:ref:`Back to Editor<editor_top>`
+:ref:`Back to top<top>`
 
 Executing Pre-Defined Queries from the System Queries Panel
 ---------------
@@ -406,7 +363,6 @@ You can also rename the default tab name by double-clicking it and typing a new 
 
 .. tip:: If this is your first time using SQream, see `First steps with SQream DB <https://docs.sqream.com/en/latest/first_steps.html#first-steps>`_.
 
-.. tip:: If this is your first time with SQream DB, see `First steps with SQream DB <https://docs.sqream.com/en/latest/first_steps.html#first-steps>`_.
 
 .. Keyboard shortcuts
 .. ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -522,7 +478,6 @@ Saving Results to the Clipboard
 ^^^^^^^^^^^^
 The **Save results to clipboard** function lets you save your results to the clipboard to paste into another text editor or into Excel for further analysis.
 
-:ref:`Back to Editor<editor_top>`
 
 .. _save_results_to_local_file:
 
