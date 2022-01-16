@@ -94,10 +94,8 @@ Examples:
 
    DROP ROLE  admin_role ;
 
-Altering a user name
-------------------------
-
-Renaming a user's role:
+Altering a user
+---------------
 
 .. code-block:: postgres
 
@@ -108,19 +106,6 @@ Examples:
 .. code-block:: postgres
 
    ALTER ROLE  admin_role  RENAME  TO  copy_role ;
-
-.. _change_password:
-
-Changing user passwords
---------------------------
-
-To change a user role's password, grant the user a new password.
-
-.. code-block:: postgres
-
-   GRANT  PASSWORD  'new_password'  TO  rhendricks;  
-
-.. note:: Granting a new password overrides any previous password. Changing the password while the role has an active running statement does not affect that statement, but will affect subsequent statements.
 
 Public Role
 -----------
@@ -151,7 +136,7 @@ Once the group role exists, you can add user roles (members) using the ``GRANT``
    GRANT my_group TO my_user;
 
 
-To manage object permissions like databases and tables, you would then grant permissions to the group-level role (see :ref:`the permissions table<permissions_table>` below.
+To manage object permissions like databases and tables, you would then grant permissions to the group-level role (see :ref:`the permissions table<permissions_table> below`.
 
 All member roles then inherit the permissions from the group. For example:
 
@@ -195,6 +180,7 @@ Permissions
      - ``SUPERUSER``
      - no permission restrictions on any activity
 
+       
    * - database
      - ``SUPERUSER``
      - no permission restrictions on any activity within that database (this does not include modifying roles or permissions)
@@ -297,7 +283,7 @@ GRANT
    TO <role2> 
    WITH ADMIN OPTION
   
-``GRANT`` examples:
+Examples:
 
 .. code-block:: postgres
 
@@ -423,12 +409,8 @@ A superuser must do new setup for each new schema which is a limitation, but sup
 
 In the example, the database is called ``my_database``, and the new or existing schema being set up to be managed in this way is called ``my_schema``.
 
-.. figure:: /_static/images/access_control_department_example.png
-   :scale: 60 %
-   
-   Our departmental example has four user group roles and seven users roles
-
 There will be a group for this schema for each of the following:
+
 
 .. list-table:: 
    :widths: auto
@@ -448,9 +430,6 @@ There will be a group for this schema for each of the following:
 
    * - security officers
      - add and remove users from these groups
-
-Setting up the department permissions
-------------------------------------------
 
 As a superuser, you connect to the system and run the following:
 
@@ -509,69 +488,15 @@ As a superuser, you connect to the system and run the following:
    ALTER DEFAULT PERMISSIONS FOR my_schema_database_designers IN my_schema
     FOR TABLES GRANT SELECT TO my_schema_readers;
 
+
+This process needs to be repeated by a superuser each time a new
+schema is brought into this permissions management approach.
+
 .. note::
-   * This process needs to be repeated by a user with ``SUPERUSER`` permissions each time a new schema is brought into this permissions management approach.
-   
-   * 
-      By default, any new object created will not be accessible by our new ``my_schema_readers`` group.
-      Running a ``GRANT SELECT ...`` only affects objects that already exist in the schema or database.
-   
-      If you're getting a ``Missing the following permissions: SELECT on table 'database.public.tablename'`` error, make sure that
-      you've altered the default permissions with the ``ALTER DEFAULT PERMISSIONS`` statement.
-
-Creating new users in the departments
------------------------------------------
-
-After the group roles have been created, you can now create user roles for each of your users.
-
-.. code-block:: postgres
-
-   -- create the new database designer users
-   
-   CREATE  ROLE  ecodd;
-   GRANT  LOGIN  TO  ecodd;
-   GRANT  PASSWORD  'ecodds_secret_password'  TO ecodd;
-   GRANT  CONNECT  ON  DATABASE  my_database  TO  ecodd;
-   GRANT my_schema_database_designers TO ecodd;
-
-   CREATE  ROLE  ebachmann;
-   GRANT  LOGIN  TO  ebachmann;
-   GRANT  PASSWORD  'another_secret_password'  TO ebachmann;
-   GRANT  CONNECT  ON  DATABASE  my_database  TO  ebachmann;
-   GRANT my_database_designers TO ebachmann;
-
-   -- If a user already exists, we can assign that user directly to the group
-   
-   GRANT my_schema_updaters TO rhendricks;
-   
-   -- Create users in the readers group
-   
-   CREATE  ROLE  jbarker;
-   GRANT  LOGIN  TO  jbarker;
-   GRANT  PASSWORD  'action_jack'  TO jbarker;
-   GRANT  CONNECT  ON  DATABASE  my_database  TO  jbarker;
-   GRANT my_schema_readers TO jbarker;
-   
-   CREATE  ROLE  lbream;
-   GRANT  LOGIN  TO  lbream;
-   GRANT  PASSWORD  'artichoke123'  TO lbream;
-   GRANT  CONNECT  ON  DATABASE  my_database  TO  lbream;
-   GRANT my_schema_readers TO lbream;
-   
-   CREATE  ROLE  pgregory;
-   GRANT  LOGIN  TO  pgregory;
-   GRANT  PASSWORD  'c1ca6a'  TO pgregory;
-   GRANT  CONNECT  ON  DATABASE  my_database  TO  pgregory;
-   GRANT my_schema_readers TO pgregory;
-
-   -- Create users in the security officers group
-
-   CREATE  ROLE  hoover;
-   GRANT  LOGIN  TO  hoover;
-   GRANT  PASSWORD  'mintchip'  TO hoover;
-   GRANT  CONNECT  ON  DATABASE  my_database  TO  hoover;
-   GRANT my_schema_security_officers TO hoover;
-
+   By default, any new object created will not be accessible by our new ``my_schema_readers`` group.
+   Running a ``GRANT SELECT ...`` only affects objects that already exist in the schema or database.
+   If you're getting a ``Missing the following permissions: SELECT on table 'database.public.tablename'`` error, make sure that
+   you've altered the default permissions with the ``ALTER DEFAULT PERMISSIONS`` statement.
 
 .. todo:
    create some example users
@@ -590,7 +515,7 @@ After this setup:
 * Updaters will be able to insert and delete to existing and new tables
 * Readers will be able to read from existing and new tables
 
-All this will happen without having to run any more ``GRANT`` statements.
+All this will happen without having to run any more grant statements.
 
 Any security officer will be able to add and remove users from these
 groups. Creating and dropping login users themselves must be done by a

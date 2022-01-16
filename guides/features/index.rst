@@ -3,10 +3,10 @@
 **********************************
 Feature Guides
 **********************************
-The **Feature Guides** page describes the following features:
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 8
+   :caption: In this section:
    :glob:
 
    access_control

@@ -384,6 +384,7 @@ For more information, see `Loading Logs with Foreign Tables <https://docs.sqream
 
 
 
+
 Counting Message Types
 ------------------------------
 

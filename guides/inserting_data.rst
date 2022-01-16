@@ -4,7 +4,7 @@
 Inserting Data
 ***************************
 
-This guide covers inserting data into SQream DB, with subguides on inserting data from a variety of sources and locations.
+This guide covers inserting data into SQream, with subguides on inserting data from a variety of sources and locations.
 
 .. contents:: In this topic:
    :local:
@@ -13,7 +13,7 @@ This guide covers inserting data into SQream DB, with subguides on inserting dat
 Data Loading Overview
 ================================
 
-SQream DB supports importing data from the following sources:
+SQream supports importing data from the following sources:
 
 * Using :ref:`insert` with :ref:`a client driver<client_drivers>`
 * Using :ref:`copy_from`:
@@ -29,7 +29,7 @@ SQream DB supports importing data from the following sources:
    - :ref:`hdfs`
 
 
-SQream DB supports loading files in the following formats:
+SQream supports loading files in the following formats:
 
 * Text - CSV, TSV, PSV
 * Parquet
@@ -41,7 +41,7 @@ Data Loading Considerations
 Verifying Data and Performance When Load is Completed
 -----------------------------------------
 
-Like other RDBMSs, SQream DB has its own set of best practcies for table design and query optimization.
+Like other RDBMSs, SQream has its own set of best practcies for table design and query optimization.
 
 SQream therefore recommends:
 
@@ -63,7 +63,7 @@ During loading using :ref:`copy_from`, the statement can run on any worker. If y
 Supported Load Methods
 -------------------------------
 
-SQream DB's :ref:`COPY FROM<copy_from>` syntax can be used to load CSV files, but can't be used for Parquet and ORC.
+SQream's :ref:`COPY FROM<copy_from>` syntax can be used to load CSV files, but can't be used for Parquet and ORC.
 
 The :ref:`FOREIGN TABLE<external_tables>` statement can be used to load text files, Parquet, and ORC files, and can also transform the data prior to materialization as a full table.
 
@@ -96,7 +96,7 @@ The :ref:`FOREIGN TABLE<external_tables>` statement can be used to load text fil
 Unsupported Data Types
 -----------------------------
 
-SQream DB doesn't support the entire set of features that some other database systems may have, such as ``ARRAY``, ``BLOB``, ``ENUM``, ``SET``, etc.
+SQream doesn't support the entire set of features that some other database systems may have, such as ``ARRAY``, ``BLOB``, ``ENUM``, ``SET``, etc.
 
 These data types will have to be converted before load. For example, ``ENUM`` can often be stored as a ``VARCHAR``.
 
@@ -131,7 +131,7 @@ Best Practices for Parquet
 
 * Parquet files are loaded through :ref:`external_tables`. The destination table structure has to match in number of columns between the source files.
 
-* Parquet files support predicate pushdown. When a query is issued over Parquet files, SQream DB uses row-group metadata to determine which row-groups in a file need to be read for a particular query and the row indexes can narrow the search to a particular set of rows.
+* Parquet files support predicate pushdown. When a query is issued over Parquet files, SQream uses row-group metadata to determine which row-groups in a file need to be read for a particular query and the row indexes can narrow the search to a particular set of rows.
 
 Type Support and Behavior Notes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -252,7 +252,7 @@ Best Practices for ORC
 
 * ORC files are loaded through :ref:`external_tables`. The destination table structure has to match in number of columns between the source files.
 
-* ORC files support predicate pushdown. When a query is issued over ORC files, SQream DB uses ORC metadata to determine which stripes in a file need to be read for a particular query and the row indexes can narrow the search to a particular set of 10,000 rows.
+* ORC files support predicate pushdown. When a query is issued over ORC files, SQream uses ORC metadata to determine which stripes in a file need to be read for a particular query and the row indexes can narrow the search to a particular set of 10,000 rows.
 
 Type Support and Behavior Notes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -266,7 +266,7 @@ Type Support and Behavior Notes
    :header-rows: 1
    :stub-columns: 1
    
-   * -   SQream DB type →
+   * -   SQream type →
    
          ORC source
      - ``BOOL``

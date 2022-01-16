@@ -19,9 +19,7 @@ Although foreign tables can be used without inserting data into SQream DB, one o
 What kind of data is supported?
 =====================================
 
-SQream DB uses foreign data wrappers (FDW) to abstract external sources.
-
-SQream DB supports these FDWs:
+SQream DB uses the following foreign data wrappers (FDW) to abstract external sources.
 
 * text files (e.g. CSV, PSV, TSV) via the ``csv_fdw``
 * ORC via the ``orc_fdw``
