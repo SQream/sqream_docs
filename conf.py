@@ -26,7 +26,7 @@ author = 'Sean Tomarian'
 
 # The full version, including alpha/beta/rc tags
 
-release = '2021.1'
+release = '2021.2'
 
 
 # -- General configuration ---------------------------------------------------
