@@ -28,3 +28,4 @@ The guides in this section include information about best practices, monitoring,
    statement_editor
    hardware_guide
    security
+   sqream_studio_5.4.2
