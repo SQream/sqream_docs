@@ -565,7 +565,7 @@ Configuring the DNS
 --------------------------------
 **To configure the DNS:**
 
-1. Run the **ifconfig** commasnd to check your NIC name. In the following example, **eth0** is the NIC name:
+1. Run the **ifconfig** command to check your NIC name. In the following example, **eth0** is the NIC name:
 
    .. code-block:: console
 
