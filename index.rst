@@ -47,7 +47,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
          
          :ref:`sql_functions`
      - 
-         :ref:`setup`
+         `Setting up SQream <https://docs.sqream.com/en/latest/installation_guides/index.html>`_
          
          :ref:`Best practices<sql_best_practices>`
          
@@ -103,6 +103,7 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    first_steps
    xxfeatures_tour
    guides/index
+   installation_guides/index
    reference/index
    releases/index
    glossary
