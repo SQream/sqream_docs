@@ -20,7 +20,7 @@ SQream DB is a columnar analytic SQL database management system.
 
 SQream DB supports regular SQL including :ref:`a substantial amount of ANSI SQL<sql_feature_support>`, uses :ref:`serializable transactions<transactions>`, and :ref:`scales horizontally<concurrency_and_scaling_in_sqream>` for concurrent statements.
 
-Even a `basic SQream DB machine <https://docs.sqream.com/en/v2020.3.2.1/guides/operations/hardware_guide.html>`_ can support tens to hundreds of terabytes of data.
+Even a `basic SQream DB machine <https://docs.sqream.com/en/v2020.3/guides/operations/hardware_guide.html>`_ can support tens to hundreds of terabytes of data.
 
 SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tableau>` comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc>`, :ref:`ODBC<odbc>`, and :ref:`Python DB-API<pysqream>`.
 
@@ -47,7 +47,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
          
          :ref:`sql_functions`
      - 
-         `Setting up SQream <https://docs.sqream.com/en/v2020.3.2.1/installation_guides/index.html>`_
+         `Setting up SQream <https://docs.sqream.com/en/v2020.3/installation_guides/index.html>`_
          
          :ref:`Best practices<sql_best_practices>`
          
