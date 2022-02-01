@@ -166,8 +166,7 @@ SQream can run on the following 64-bit Linux operating systems:
    * Red Hat Enterprise Linux (RHEL) v7
    * CentOS v7
    * Amazon Linux 2018.03
-   * Ubuntu v16.04 LTS, v18.04 LTS
-   * Other Linux distributions may be supported via nvidia-docker
+   * Other Linux distributions may be supported via nvidia-docker (single-node cluster only)
 
 Storage
 -----------
