@@ -40,19 +40,21 @@ An average single-node cluster can be a rackmount server or workstation, contain
    * - Component
      - Type
    * - Server
-     - Dell T640, Dell R750, Dell R940xa, HP ProLiant DL380 Gen10 or similar
+     - Dell R750, Dell R940xa, HP ProLiant DL380 Gen10 or similar (Intel only)
    * - Processor
-     - 2x Intel Xeon Gold 6240 (18C/36HT) 2.6GHz
+     - 2x Intel Xeon Gold 6240 (18C/36HT) 2.6GHz or similar
    * - RAM
-     - 512 GB - 1 TB
+     - 1.5 TB
    * - Onboard storage
      - 
-         * 2x 960GB SSD 2.5in Hot-plug for OS, RAID1
-         * 14x 3.84TB SSD 2.5in Hot-plug for storage, RAID6
+         * 2x 960GB SSD 2.5in hot plug for OS, RAID1
          * 2x 2TB SSD or NVMe, for temporary spooling, RAID1
+         * 10x 3.84TB SSD 2.5in Hot plug for storage, RAID6
 
    * - GPU
-     - 2x or 4x NVIDIA Tesla T4, V100, or A100
+     - 2x A100 NVIDIA
+   * - Operating System
+     - Red Hat Enterprise Linux v7.x or CentOS v7.x or Amazon Linux
 
 .. note:: If you are using internal storage, your volumes must be formatted as xfs.
 
@@ -74,24 +76,46 @@ The following table shows SQream's recommended hardware specifications:
    * - Component
      - Type
    * - Server
-     - High-density GPU-capable rackmount server, like Dell C4140, Dell R940xa, Dell R750, Lenovo SR650 or similar.
+     - Dell R750, Dell R940xa, HP ProLiant DL380 Gen10 or similar (Intel only)
    * - Processor
-     - 2x Intel Xeon Gold 6240 (18C/36HT) 2.6GHz or 2x IBM POWER9
+     - 2x Intel Xeon Gold 6240 (18C/36HT) 2.6GHz or similar
    * - RAM
-     - 1 - 2TB
+     - 2 TB
    * - Onboard storage
      -   
-         * 2x 960GB SSD 2.5in, for OS, RAID1
+         * 2x 960GB SSD 2.5in hot plug for OS, RAID1
          * 2x 2TB SSD or NVMe, for temporary spooling, RAID1
-   * - Networking
-     - 
-          
-      
-         Mellanox Connectx 5 100 Gbps for storage fabric or similar.
+   * - External Storage
+     -   
+         * Mellanox Connectx5/6 100G NVIDIA Network Card (if applicable) or other high speed network card minimum 40G compatible to customer’s infrastructure
+         * 50 TB (NAS connected over GPFS, Lustre, or NFS) GPFS recommended
    * - GPU
-     - 4x NVIDIA Tesla V100 32GB or A100
+     - 2x A100 NVIDIA
+   * - Operating System
+     - Red Hat Enterprise Linux v7.x or CentOS v7.x or Amazon Linux
 
 .. note:: With a NAS connected over GPFS, Lustre, or NFS, each SQream worker can read data at up to 5GB/s.
+
+SQream Studio Server Example
+-----------------------------------
+The following table shows SQream's recommended Studio server specifications:
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Component
+     - Type
+   * - Server
+     - Physical or virtual machine
+   * - Processor
+     - 1x Intel Core i7
+   * - RAM
+     - 16 GB
+   * - Onboard storage
+     - 50 GB SSD 2.5in Hot plug for OS, RAID1
+   * - Operating System
+     - Red Hat Enterprise Linux v7.x or CentOS v7.x
 
 
 
@@ -166,7 +190,8 @@ SQream can run on the following 64-bit Linux operating systems:
    * Red Hat Enterprise Linux (RHEL) v7
    * CentOS v7
    * Amazon Linux 2018.03
-   * Other Linux distributions may be supported via nvidia-docker (single-node cluster only)
+   * Ubuntu v16.04 LTS, v18.04 LTS
+   * Other Linux distributions may be supported via nvidia-docker
 
 Storage
 -----------
