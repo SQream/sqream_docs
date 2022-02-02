@@ -96,6 +96,7 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    xxfeatures_tour
    guides/index
    installation_guides/index
+   configuration_guides/index
    reference/index
    releases/index
    glossary
