@@ -1,31 +1,127 @@
-.. _feature_guides:
+.. _index:
 
-***********************
-Feature Guides
-***********************
-The **Feature Guides** section describes background processes that SQream uses to manage several areas of operation, such as data ingestion, load balancing, and access control. 
+*************************
+SQream DB Documentation
+*************************
 
-This section describes the following features: 
+For SQream DB |latest_version|.
+
+.. only:: html
+
+   .. tip::
+      Want to read this offline?
+      `Download the documentation as a single PDF <https://docs.sqream.com/_/downloads/en/latest/pdf/>`_ .
+
+.. only:: pdf or latex
+   
+   .. tip:: This documentation is available online at https://docs.sqream.com/
+
+SQream DB is a columnar analytic SQL database management system. 
+
+SQream DB supports regular SQL including :ref:`a substantial amount of ANSI SQL<sql_feature_support>`, uses :ref:`serializable transactions<transactions>`, and :ref:`scales horizontally<concurrency_and_scaling_in_sqream>` for concurrent statements.
+
+Even a :ref:`basic SQream DB machine<hardware_guide>` can support tens to hundreds of terabytes of data.
+
+SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tableau>` comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc>`, :ref:`ODBC<odbc>`, and :ref:`Python DB-API<pysqream>`.
+
+.. 
+   .. ref`features_tour`
+
+.. list-table::
+   :widths: 33 33 33
+   :header-rows: 0
+
+   * - **Get Started**
+     - **Reference**
+     - **Guides**
+   * -
+         :ref:`first_steps`
+         
+         :ref:`sql_feature_support`
+         
+         :ref:`Bulk load CSVs<csv>`
+     - 
+         :ref:`SQL Reference<sql>`
+         
+         :ref:`sql_statements`
+         
+         :ref:`sql_functions`
+     - 
+         :ref:`setup`
+         
+         :ref:`Best practices<sql_best_practices>`
+         
+         :ref:`connect_to_tableau`
+
+   * - **Releases**
+     - **Driver and Deployment**
+     - **Help and Support**
+   * -
+         :ref:`2021.2<2021.2>`
+
+         :ref:`2021.1<2021.1>`
+        
+         :ref:`2020.3<2020.3>`
+
+         :ref:`2020.2<2020.2>`
+         
+         :ref:`2020.1<2020.1>`
+                  
+         :ref:`All recent releases<releases>`
+
+     - 
+         :ref:`Client drivers<client_drivers>`
+
+         :ref:`Third party tools integration<third_party_tools>`
+
+         :ref:`connect_to_tableau`
+     - 
+         :ref:`troubleshooting` guide
+         
+         :ref:`information_for_support`
+
+
+
+.. rubric:: Need help?
+
+If you couldn't find what you're looking for, we're always happy to help. Visit `SQream's support portal <https://sqream.atlassian.net/servicedesk/>`_ for additional support.
+
+
+.. rubric:: Looking for older versions?
+
+This version of the documentation is for SQream DB |latest_version|.
+
+If you're looking for an older version of the documentation, versions 1.10 through 2019.2.1 are available at http://previous.sqream.com .
 
 .. toctree::
-   :maxdepth: 1
+   :caption: Contents:
+   :glob:
+   :maxdepth: 6
    :titlesonly:
-   
+   :hidden:
 
-   configuring_your_database
-   optimization_best_practices
-   xxrunning_sqream_in_a_docker_container
-   access_control
-   xxchunks_and_extents
-   compression
-   flexible_data_clustering
-   python_functions
-   saved_queries
-   viewing_system_objects_as_ddl
-   workload_manager
-   transactions
-   concurrency_and_locks
-   concurrency_and_scaling_in_sqream
-   xxacceleration_studio_version_5.4.2
-   xxhardware_guide
-   international_languages_and_character_sets
+   getting_started/index
+   xxsupported_platforms/index
+   installation_guides/index
+   setting_up_a_database/index
+   data_ingestion/index
+   third_party_tools/index
+   feature_guides/index
+   operational_guides/index
+   sqream_studio_5.4.3/index
+   configuration_guides/index
+   reference/index
+   sqream_on_the_cloud/index
+   xxfeatures_tour
+   releases/index
+   troubleshooting/index
+   error_codes_guide
+   glossary
+
+..
+   Indices and tables
+   ==================
+
+   * :ref:`genindex`
+   * :ref:`modindex`
+   * :ref:`search`
