@@ -10,7 +10,6 @@ The **Data Ingestion Guides** provides information about the following:
    :titlesonly:
    
    data_ingestion_overview
-   data_ingestion_methods
    data_ingestion_sources
 
 For information about database tools and interfaces that SQream supports, see `Third Party Tools <https://docs.sqream.com/en/v2020-1/guides/third_party_tools/index.html>`_.
