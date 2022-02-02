@@ -9,12 +9,9 @@ The **Data Ingestion Methods** page describes the following data ingestion metho
    :local:
    :depth: 1 
 
-Ingesting Data Using SQream Acceleration Studio
-------------
-The SQream Studio is a web-based client that provides users with all functionality available from the command line in an intuitive and easy-to-use format. You can ingest data from the SQream Acceleration Studio by **Comment - how?**.
-
 Ingesting Data Using the CLI
 ------------
+For more information about using the CLI, see `SQream SQL CLI reference <https://docs.sqream.com/en/v2020-1/reference/cli/sqream_sql.html>`_.
 
 Ingesting Data Using Third Party Tools
 ------------
