@@ -109,7 +109,7 @@ The following table shows the supported **Logical** data types:
 	 
 Mapping Objects to Rows
 ===============
-When mapping objects to rows, each Avro object or message must contain one ``record`` type object corresponding to a single row in SQream. The ``record`` fields are **Comment - Must be associated?** associated by name to their target table columns. 
+When mapping objects to rows, each Avro object or message must contain one ``record`` type object corresponding to a single row in SQream. The ``record`` fields are associated by name to their target table columns. 
 
 Additional unmapped fields will be ignored. Note that using the JSONPath option overrides this.
 
@@ -284,8 +284,6 @@ Omitting Unsupported Column Types
 **********************
 When loading data, you can omit columns using the ``NULL as`` argument. You can use this argument to omit unsupported columns from queries that access external tables. By omitting them, these columns will not be called and will avoid generating a "type mismatch" error.
 
-**Comment - Is "type mismatch" the official name of this error, do the words "type mismatch" appear anywhere, or is this just a description of the error?**
-
 In the example below, the ``Position`` column is not supported due its type.
 
 .. code-block:: postgres
@@ -298,7 +296,7 @@ Modifying Data Before Loading
 **********************
 One of the main reasons for staging data using the ``EXTERNAL TABLE`` argument is to examine and modify table contents before loading it into SQream.
 
-For example, we can replace **Comment - Convert?** pounds with kilograms using the :ref:`create_table_as` statement
+For example, we can replace pounds with kilograms using the :ref:`create_table_as` statement
 
 In the example below, the ``Position`` column is set to the default ``NULL``.
 
