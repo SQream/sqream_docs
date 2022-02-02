@@ -94,6 +94,7 @@ If you're looking for an older version of the documentation, versions 1.10 throu
 
    first_steps
    data_ingestion/index
+   third_party_tools/index
    xxfeatures_tour
    guides/index
    installation_guides/index
