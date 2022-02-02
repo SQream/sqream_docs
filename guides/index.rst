@@ -23,7 +23,6 @@ Full List of Guides
    :titlesonly:
 
    xxqueries
-   inserting_data
 
    client_drivers/index
    third_party_tools/index
