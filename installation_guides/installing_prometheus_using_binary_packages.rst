@@ -28,7 +28,7 @@ You must install Prometheus before installing the Dashboard Data Collector.
 
    1. That you have **sudo** access to your Linux server.
    2. That your server has access to the internet (for downloading the Prometheus binary package).
-   3. That your firewall rules are opened (**Comment** *- does "open" mean "disabled"?*) for accessing Prometheus Port 9090.
+   3. That your firewall rules are opened for accessing Prometheus Port 9090.
    
 2. Navigate to the Prometheus `Download <https://prometheus.io/download/>`_ page and download the **prometheus-2.32.0-rc.1.linux-amd64.tar.gz** package.
 
@@ -60,7 +60,7 @@ You must install Prometheus before installing the Dashboard Data Collector.
      
       $ sudo useradd --no-create-home --shell /bin/false prometheus
 
-5. Create your required directories: (**Comment** - *Does the user have to make these exact directories, or can they be whatever he wants?*)
+5. Create your required directories:
 
    .. code-block:: console
      
