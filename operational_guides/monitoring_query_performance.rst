@@ -1,7 +1,7 @@
 .. _monitoring_query_performance:
 
 *********************************
-Monitoring Query Performance
+Monitoring query performance
 *********************************
 
 When analyzing options for query tuning, the first step is to analyze the query plan and execution.
@@ -19,14 +19,14 @@ See also our :ref:`sql_best_practices` guide for more information about data loa
 .. contents:: In this section:
    :local:
 
-Setting Up the System for Monitoring
+Setting up the system for monitoring
 =================================================
 
 By default, SQream DB logs execution details for every statement that runs for more than 60 seconds.
 If you want to see the execution details for a currently running statement, see :ref:`using_show_node_info` below.
 
 
-Adjusting the Logging Frequency
+Adjusting the logging frequency
 ---------------------------------------
 
 To adjust the frequency of logging for statements, you may want to reduce the interval from 60 seconds down to, 
@@ -51,7 +51,7 @@ After restarting the SQream DB cluster, the execution plan details will be logge
 
 You can see these messages with a text viewer or with queries on the log :ref:`external_tables`.
 
-Reading Execution Plans with a Foreign Table
+Reading execution plans with a foreign table
 -----------------------------------------------------
 
 First, create a foreign table for the logs
@@ -117,7 +117,7 @@ This is recommended over looking at the raw logs.
 
 .. _using_show_node_info:
 
-The ``SHOW_NODE_INFO`` Command
+The ``SHOW_NODE_INFO`` command
 =====================================
 
 The :ref:`show_node_info` command returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases.
@@ -147,7 +147,7 @@ In this example, we inspect a statement with statement ID of 176. The command lo
        176 |      10 | CpuDecompress      |  457 |      1 |               457 | 2019-12-25 23:53:13 |              9 |      |       |            |       0
        176 |      11 | ReadTable          |  457 |      1 |               457 | 2019-12-25 23:53:13 |             10 | 4MB  |       | public.nba |  0.0004
 
-Understanding the Query Execution Plan Output
+Understanding the query execution plan output
 ==================================================
 
 Both :ref:`show_node_info`  and the logged execution plans represents the query plan as a graph hierarchy, with data separated into different columns.
@@ -165,61 +165,21 @@ Consider the example show_node_info presented above. The source node with ID #11
    This graph explains how the query execution details are arranged in a logical order, from the bottom up.
    
    
-The last node, also called the sink, has a parent node ID of -1, meaning it has no parent. This is typically a node that sends data over the network or into a table.
+The last node, also called the sink, has a parent node ID of -1, meaning it has no parent. This is typically a node that sends data over the network or into a table. ffff
    
    
-.. 
-   source for the graph above, in graphviz
-   
-   digraph G {
-   rankdir=tb;
-   ranksep=0.95;
-   node[shape=box3d, width=3.0, height=0.6, fontname="Consolas", fillcolor=SteelBlue2, style=filled];
 
-
-     PushToNetworkQueue [shape=house, fillcolor=SeaGreen1, style=filled];
-     
-   ReadTable->CpuDecompress;
-   CpuDecompress->Rechunk;
-   Rechunk->ReorderInput;
-   ReorderInput->CpuToGpu;
-   CpuToGpu->GpuTransform;
-   GpuTransform->GpuDecompress;
-   GpuDecompress->GpuTransform2;
-   GpuTransform2->Filter;
-   Filter->ReorderInput2;
-   ReorderInput2->GpuTransform3;
-   GpuTransform3->GpuToCpu;
-   GpuToCpu->ReorderInput3;
-   ReorderInput3->DeferredGather;
-   DeferredGather->ReorderInput4;
-   ReorderInput4->Rechunk2;
-   Rechunk2->PushToNetworkQueue;
-
-       Rechunk2[label="Rechunk"];
-       ReorderInput4[label="ReorderInput"];
-       ReorderInput3[label="ReorderInput"];
-       ReorderInput2[label="ReorderInput"];
-       GpuTransform2[label="GpuTransform"];
-       GpuTransform3[label="GpuTransform"];
-     
-     ReadTable [shape=house, style=filled, fillcolor=SeaGreen4];
-
-         
-   }
 
 
 When using :ref:`show_node_info`, a tabular representation of the currently running statement execution is presented.
 
 See the examples below to understand how the query execution plan is instrumental in identifying bottlenecks and optimizing long-running statements.
 
-Information Presented in the Execution Plan
+Information presented in the execution plan
 ----------------------------------------------------
-.. include:: /reference/sql/sql_statements/monitoring_commands/show_node_info.rst
-   :start-line: 47
-   :end-line: 78
 
-Commonly Seen Nodes
+
+Commonly seen nodes
 ----------------------
 
 .. list-table:: Node types
@@ -336,7 +296,7 @@ In the following examples you will learn how to identify and solve some common i
 .. contents:: In this section:
    :local:
 
-1. Spooling to Disk
+1. Spooling to disk
 -----------------------
 
 When there is not enough RAM to process a statement, SQream DB will spill over data to the ``temp`` folder in the storage disk.
@@ -350,7 +310,7 @@ A node that spools will have a value, shown in megabytes in the ``write`` column
 
 Common nodes that write spools include ``Join`` or ``LoopJoin``.
 
-Identifying the Offending Nodes
+Identifying the offending nodes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. 
@@ -434,7 +394,7 @@ Identifying the Offending Nodes
    
    The total spool used by this query is around 20GB (1915MB + 2191MB + 3064MB + 12860MB).
 
-Common Solutions for Reducing Spool
+Common solutions for reducing spool
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * 
@@ -447,14 +407,14 @@ Common Solutions for Reducing Spool
    Reduce the amount of **workers** per host, and increase the amount of spool available to the (now reduced amount of) active workers.
    This may reduce the amount of concurrent statements, but will improve performance for heavy statements.
 
-2. Queries with Large Result Sets
+2. Queries with large result sets
 ------------------------------------
 
 When queries have large result sets, you may see a node called ``DeferredGather``.
 
 This gathering occurs when the result set is assembled, in preparation for sending it to the client.
 
-Identifying the Offending Nodes
+Identifying the offending nodes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. 
@@ -523,7 +483,7 @@ Identifying the Offending Nodes
              n2.n_name as nation
       FROM ...
 
-Common Solutions for Reducing Gather Time
+Common solutions for reducing gather time
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Reduce the effect of the preparation time. Avoid selecting unnecessary columns (``SELECT * FROM...``), or reduce the result set size by using more filters.
@@ -531,16 +491,15 @@ Common Solutions for Reducing Gather Time
 .. ``
 
 
-3. Inefficient Filtering
+3. Inefficient filtering
 --------------------------------
 
 When running statements, SQream DB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
 
 If statements do not include efficient filtering, SQream DB will read a lot of data off disk.
-In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line,
-it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
+In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line, it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
 
-Identifying the Situation
+Identifying the situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We consider the filtering to be inefficient when the ``Filter`` node shows that the number of rows processed is less
@@ -679,7 +638,7 @@ For example:
    
    The metadata skipping has performed very well, and has pre-filtered the data for us by pruning unnecessary chunks.
       
-Common Solutions for Improving Filtering
+Common solutions for improving filtering
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Use :ref:`clustering keys and naturally ordered data<data_clustering>` in your filters.
@@ -687,13 +646,13 @@ Common Solutions for Improving Filtering
 * Avoid full table scans when possible
 
 
-4. Joins with ``varchar`` Keys
+4. Joins with ``varchar`` keys
 -----------------------------------
 
 Joins on long text keys, such as ``varchar(100)`` do not perform as well as numeric data types or very short text keys.
 
 
-Identifying the Situation
+Identifying the situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When a join is inefficient, you may note that a query spends a lot of time on the ``Join`` node.
@@ -761,7 +720,7 @@ For example, consider these two table structures:
             5 |      42 | ReadTable            |   10000000 |      2 |           5000000 | 2020-09-08 18:26:09 |             41 | 14MB  |       | public.t_a |       0
    
 
-Improving Query Performance
+Improving query performance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * In general, try to avoid ``VARCHAR`` as a join key. As a rule of thumb, ``BIGINT`` works best as a join key.
@@ -813,7 +772,7 @@ In general, SQream DB automatically inserts a ``Sort`` node which arranges the d
 When running a ``GROUP BY`` on large ``VARCHAR`` fields, you may see nodes for ``Sort`` and ``Reduce`` taking a long time.
 
 
-Identifying the Situation
+Identifying the situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When running a statement, inspect it with :ref:`show_node_info`. If you see ``Sort`` and ``Reduce`` among 
@@ -918,7 +877,7 @@ For example:
    
    This time, the entire query took just 4.75 seconds, or just about 91% faster.
 
-Improving Sort Performance on Text Keys
+Improving sort performance on text keys
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When using VARCHAR, ensure that the maximum length defined in the table structure is as small as necessary.
@@ -929,7 +888,7 @@ You can run a query to get the maximum column length (e.g. ``MAX(LEN(a_column))`
 
 .. _high_selectivity_data_opt:
 
-6. High Selectivity Data
+6. High selectivity data
 --------------------------
 
 Selectivity is the ratio of cardinality to the number of records of a chunk. We define selectivity as :math:`\frac{\text{Distinct values}}{\text{Total number of records in a chunk}}`
@@ -943,7 +902,7 @@ the results into fewer, fuller chunks.
    SQream DB doesn't do this automatically because it adds a significant overhead on naturally ordered and
    well-clustered data, which is the more common scenario.
 
-Identifying the Situation
+Identifying the situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This is easily identifiable - when the amount of average of rows in a chunk is small, following a ``Filter`` operation.
@@ -966,7 +925,7 @@ The table was read entirely - 77 million rows into 74 chunks.
 The filter node reduced the output to just 18,160 relevant rows, but they're distributed across the original 74 chunks.
 All of these rows could fit in one single chunk, instead of spanning 74 rather sparse chunks.
 
-Improving Performance with High Selectivity Hints
+Improving performance with high selectivity hints
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * 
@@ -976,12 +935,12 @@ Improving Performance with High Selectivity Hints
 * Use when the data is uniformly distributed or random
 
 
-7. Performance of Unsorted Data in Joins
+7. Performance of unsorted data in joins
 ------------------------------------------
 
 When data is not well-clustered or naturally ordered, a join operation can take a long time. 
 
-Identifying the Situation
+Identifying the situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When running a statement, inspect it with :ref:`show_node_info`. If you see ``Join`` and ``DeferredGather`` among your 
@@ -1019,7 +978,7 @@ The table was read entirely - 77 million rows into 74 chunks.
 The filter node reduced the output to just 18,160 relevant rows, but they're distributed across the original 74 chunks.
 All of these rows could fit in one single chunk, instead of spanning 74 rather sparse chunks.
 
-Improving Join Performance when Data is Sparse
+Improving join performance when data is sparse
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 You can tell SQream DB to reduce the amount of chunks involved, if you know that the filter is going to be quite
@@ -1048,17 +1007,17 @@ To tell SQream DB to rechunk the data, wrap a condition (or several) in the ``HI
          AND MSISDN='9724871140341';
 
 
-8. Manual Join Reordering
+8. Manual join reordering
 --------------------------------
 
 When joining multiple tables, you may wish to change the join order to join the smallest tables first.
 
-Identifying the Situation
+Identifying the situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When joining more than two tables, the ``Join`` nodes will be the most time-consuming nodes.
 
-Changing the Join Order
+Changing the join order
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Always prefer to join the smallest tables first.
@@ -1112,7 +1071,7 @@ from 27.3 seconds to just 6.4 seconds.
 
 
 
-Further Reading
+Further reading
 ==================
 
 See our :ref:`sql_best_practices` guide for more information about query optimization and data loading considerations.
