@@ -4,7 +4,7 @@
 Monitoring Query Performance
 *********************************
 
-When analyzing options for query tuning, the first step is to analyze the query plan and execution. 
+When analyzing options for query tuning, the first step is to analyze the query plan and execution.
 
 The query plan and execution details explains how SQream DB processes a query and where time is spent.
 
@@ -117,7 +117,7 @@ This is recommended over looking at the raw logs.
 
 .. _using_show_node_info:
 
-Using the ``SHOW_NODE_INFO`` Command
+The ``SHOW_NODE_INFO`` Command
 =====================================
 
 The :ref:`show_node_info` command returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases.
@@ -976,7 +976,7 @@ Improving Performance with High Selectivity Hints
 * Use when the data is uniformly distributed or random
 
 
-7. Performance of unsorted data in joins
+7. Performance of Unsorted Data in Joins
 ------------------------------------------
 
 When data is not well-clustered or naturally ordered, a join operation can take a long time. 
@@ -1053,7 +1053,7 @@ To tell SQream DB to rechunk the data, wrap a condition (or several) in the ``HI
 
 When joining multiple tables, you may wish to change the join order to join the smallest tables first.
 
-Identifying the situation
+Identifying the Situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 When joining more than two tables, the ``Join`` nodes will be the most time-consuming nodes.
