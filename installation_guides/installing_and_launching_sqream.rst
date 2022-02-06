@@ -14,6 +14,7 @@ The **Installing SQream Studio** page incudes the following installation guides:
    running_sqream_in_a_docker_container
    installing_sqream_with_kubernetes
    installing_monit
+   launching_sqream_with_monit
 
 
 
