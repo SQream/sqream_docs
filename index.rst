@@ -47,7 +47,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
          
          :ref:`sql_functions`
      - 
-          `Setting up SQream <https://docs.sqream.com/en/v2020-1/installation_guides/index.html>`_
+         `Setting up SQream <https://docs.sqream.com/en/v2020-1/installation_guides/index.html>`_
          
          :ref:`Best practices<sql_best_practices>`
          
