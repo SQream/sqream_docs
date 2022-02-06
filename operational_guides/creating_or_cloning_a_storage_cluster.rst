@@ -3,22 +3,9 @@
 ****************************************
 Creating or Cloning Storage Clusters
 ****************************************
-
-
-1. *Install and configure MC (Management Console)* 
-#. *Prepare the Hosts*
-#. *Create the private key file and copy it to your local machine*
-#. *Run the Cluster Installation Wizard* - **It may be worthwhile to develop this.**
-#. *Validate the hosts and create the cluster*
-#. *Create a new database on the cluster*
-
-*Note that Vertica's "Management Console" corresponds to our SQream Console - confirm.*
-
-*Note also that each item in the list above links to a different area of their documentation and is unorganized. Verify whether the above steps are located in order on a page in our documentation.*
-
 When SQream DB is installed, it comes with a default storage cluster. This guide will help if you need a fresh storage cluster or a separate copy of an existing storage cluster.
 
-Creating a new storage cluster
+Creating a New Storage Cluster
 =====================================
 
 SQream DB comes with a CLI tool, :ref:`sqream_storage_cli_reference`. This tool can be used to create a new empty storage cluster.
@@ -34,10 +21,10 @@ This can also be written shorthand as ``SqreamStorage -C -r /home/rhendricks/rav
 
 This ``Setting cluster version...`` message confirms the creation of the cluster successfully.
 
-Tell SQream DB to use this storage cluster
+Telling SQream DB to Use a Storage Cluster
 ===============================================
 
-Permanently setting the storage cluster setting
+Permanently Setting the Storage Cluster Setting
 -------------------------------------------------------
 
 To permanently set the new cluster location, change the ``"cluster"`` path listed in the configuration file.
@@ -84,12 +71,12 @@ should be changed to
 
 Now, the cluster should be restarted for the changes to take effect.
 
-Start a temporary SQream DB worker with a storage cluster
+Starting a Temporary SQream DB worker with a Storage Cluster
 -------------------------------------------------------------
 
 Starting a SQream DB worker with a custom cluster path can be done in two ways:
 
-Using a configuration file (recommended)
+Using a Configuration File
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Similar to the technique above, create a configuration file with the correct cluster path. Then, start ``sqreamd`` using the ``-config`` flag:
@@ -97,8 +84,10 @@ Similar to the technique above, create a configuration file with the correct clu
 .. code-block:: console
 
    $ sqreamd -config config_file.json
+   
+Note that using a configuration file is the recommended method.
 
-Using the command line parameters
+Using the Command Line Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use sqreamd's command line parameters to override the default storage cluster path:
@@ -109,7 +98,7 @@ Use sqreamd's command line parameters to override the default storage cluster pa
 
 .. note:: sqreamd's command line parameters' order is ``sqreamd <cluster path> <GPU ordinal> <TCP listen port (unsecured)> <License path>``
 
-Copying an existing storage cluster
+Copying an Existing Storage Cluster
 =====================================
 
 Copying an existing storage cluster to another path may be useful for testing or troubleshooting purposes.
