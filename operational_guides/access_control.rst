@@ -56,7 +56,7 @@ Roles are global across all databases in the SQream DB cluster.
 
 To use a ``ROLE`` as a user, it should have a password, the login permission, and connect permissions to the relevant databases.
 
-Creating new roles (users)
+Creating New Roles (Users)
 ------------------------------
 
 A user role can log in to the database, so it should have ``LOGIN`` permissions, as well as a password.
