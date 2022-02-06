@@ -4,7 +4,7 @@
 SQream DB Documentation
 *************************
 
-For SQream DB |latest_version|.
+For SQream DB 2021.2.
 
 .. only:: html
 
@@ -89,7 +89,7 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
 
 .. rubric:: Looking for older versions?
 
-This version of the documentation is for SQream DB |latest_version|.
+This version of the documentation is for SQream DB Version 2021.2.
 
 If you're looking for an older version of the documentation, versions 1.10 through 2019.2.1 are available at http://previous.sqream.com .
 
