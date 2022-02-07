@@ -1,7 +1,7 @@
 .. _architecture:
 
 ***********************
-Architecture
+System Architecture
 ***********************
 
 This topic includes guides that walk an end-user, database administrator, or system architect through the main ideas behind SQream DB.
