@@ -3,23 +3,18 @@
 *****************
 CREATE TABLE
 *****************
-The ``CREATE TABLE`` command creates a new table in an existing database.
+
+The ``CREATE TABLE`` statement is used to create a new table in an existing database.
 
 .. tip:: 
    * To create a table based on the result of a select query, see :ref:`CREATE TABLE AS <create_table_as>`.
    * To create a table based on files like Parquet and ORC, see :ref:`CREATE FOREIGN TABLE <create_foreign_table>`
 
-Overview
----------
-The **CREATE TABLE** page describes the following:
 
-.. contents:: 
-   :local:
-   :depth: 1
 
-CREATE_TABLE Syntax
+Syntax
 ==========
-The following is the corrext syntax for CREATE_TABLE:
+The following is the correct syntax for creating a table:
 
 .. code-block:: postgres
 
@@ -47,7 +42,7 @@ The following is the corrext syntax for CREATE_TABLE:
 
 Parameters
 ============
-The following table shows the CREATE_TABLE parameters:
+The following parameters can be used when creating a table:
 
 .. list-table:: 
    :widths: auto
@@ -56,7 +51,7 @@ The following table shows the CREATE_TABLE parameters:
    * - Parameter
      - Description
    * - ``OR REPLACE``
-     - Create a new table, and overwrite any existing table by the same name. Does not return an error if the table already exists. ``CREATE OR REPLACE`` does not check the table contents or structure, only the table name.
+     - Creates a new tables and overwrites any existing table by the same name. Does not return an error if the table already exists. ``CREATE OR REPLACE`` does not check the table contents or structure, only the table name.
    * - ``schema_name``
      - The name of the schema in which to create the table.
    * - ``table_name``
@@ -68,19 +63,25 @@ The following table shows the CREATE_TABLE parameters:
          A commma separated list of clustering column keys.
          
          See :ref:`data_clustering` for more information.
-
+   * - ``LIKE``
+     - Duplicates the column structure of an existing table.
+	 
+	 
 .. _default_values:
 
-Default Values
+Default Value Constraints
 ===============
-This section describes the CREATE_TABLE default values.
-The ``DEFAULT`` value constraint specifies a value to use if a value isn't defined in an :ref:`insert` or :ref:`copy_from` statement. The value may be either a literal or `GETDATE()`, which is s evaluated at the time the row is created.
+
+The ``DEFAULT`` value constraint specifies a value to use if one is not defined in an :ref:`insert` or :ref:`copy_from` statement. 
+
+The value may be either a literal or **GETDATE()**, which is evaluated at the time the row is created.
 
 .. note:: The ``DEFAULT`` constraint only applies if the column does not have a value specified in the :ref:`insert` or :ref:`copy_from` statement. You can still insert a ``NULL`` into an nullable column by explicitly inserting ``NULL``. For example, ``INSERT INTO cool_animals VALUES (1, 'Gnu', NULL)``.
 
-CREATE_DEFAULT_VALUES Syntax
-~~~~~~~~~~~~~
-The following is the correct syntax for DEFAULT_VALUES:
+Syntax
+---------
+The following is the correct syntax for using the **DEFAULT** value constraints:
+
 
 .. code-block:: postgres
 
@@ -102,18 +103,16 @@ The following is the correct syntax for DEFAULT_VALUES:
 
 .. _identity:
 
-Generating Key Values with Identity Columns
-~~~~~~~~~~~~~
-You can use **identity columns** for generating key values. Some databases call this ``AUTOINCREMENT``.
+Identity
+-----------------------
+The ``Identity`` (or sequence) columns can be used for generating key values. Some databases call this ``AUTOINCREMENT``.
 
-The identity property on a column guarantees that each new row inserted is generated based on the current seed and increment.
+The **identity** property on a column guarantees that each new row inserted is generated based on the current seed & increment.
 
 .. warning:: 
    The identity property on a column does not guarantee uniqueness. The identity value can be bypassed by specifying it in an :ref:`insert` command.
-
-Parameters
-============
-The following table shows the CREATE_TABLE parameters:
+   
+The following table describes the identity parameters:
 
 .. list-table:: 
    :widths: auto
@@ -133,10 +132,10 @@ This section includes the following examples:
 .. contents:: 
    :local:
    :depth: 1
-   
-Creating a Simple Table
+
+Creating a Standard Table
 -----------------
-The following example shows how to create a simple table:
+The following is an example of the syntax used to create a standard table:
 
 .. code-block:: postgres
 
@@ -147,9 +146,10 @@ The following example shows how to create a simple table:
       is_agressive BOOL
    );
 
-Creating a Table with Default Values for Some Columns
+Creating a Table with Default Value Constraints for Some Columns
 ---------------------------------------------------
-The following example shows how to create a table with default values for some columns:
+The following is an example of the syntax used to create a table with default value constraints for some columns:
+
 
 .. code-block:: postgres
 
@@ -162,9 +162,10 @@ The following example shows how to create a table with default values for some c
 
 .. note:: The nullable/non-nullable constraint appears at the end, after the default option
 
-Creting a Table with an Identity (Autoincrement) Column
+Creating a Table with an Identity Column
 ---------------------------------------------------
-The following table shows how to create a table with an identity (autoincrement) column:
+The following is an example of the syntax used to create a table with an identity (auto-increment) column:
+
 
 .. code-block:: postgres
 
@@ -181,13 +182,13 @@ The following table shows how to create a table with an identity (autoincrement)
 
 Creating a Table from a SELECT Query
 -----------------------------------------
-The following example shows how to create a table from a SELECT query:
+The following is an example of the syntax used to create a table from a SELECT query:
 
 .. code-block:: postgres
    
    CREATE TABLE users_uk AS SELECT * FROM users WHERE country = 'United Kingdom';
    
-You can use a :ref:`CREATE TABLE AS <create_table_as>` statement to create a new table from the results of a SELECT query.
+For more information on creating a new table from the results of a SELECT query, see :ref:`CREATE TABLE AS <create_table_as>`.
 
 Creating a Table with a Clustering Key
 ----------------------------------------------
@@ -197,7 +198,7 @@ In the following example, we expect the ``start_date`` column to be naturally cl
 
 When the clustering key is set, if the incoming data isn’t naturally clustered, it will be clustered by SQream DB during insert or bulk load.
 
-The following example shows how to create a table with a clustering key:
+The following is an example of the syntax used to create a table with a clustering key:
 
 .. code-block:: postgres
 
@@ -206,8 +207,71 @@ The following example shows how to create a table with a clustering key:
       start_date datetime not null,
       country VARCHAR(30) DEFAULT 'Unknown' NOT NULL
    ) CLUSTER BY start_date;
+   
+For more information on data clustering, see :ref:`data_clustering`.
+   
+Duplicating the Column Structure of an Existing Table
+-----------------
 
-For more information, see :ref:`data_clustering`.
+Syntax
+************
+The following is the correct syntax for duplicating the column structure of an existing table:
+
+.. code-block:: postgres
+
+   CREATE [OR REPLACE] TABLE table_name
+   {
+     (column_name column_type [{NULL | NOT NULL}] [,...])
+     | LIKE source_table_name
+   }
+   [CLUSTER BY ...]
+   ;
+
+Examples
+**************
+This section includes the following examples of duplicating the column structure of an existing table using the ``LIKE`` clause:
+
+.. contents:: 
+   :local:
+   :depth: 3
+
+Creating a Table Using an Explicit Column List
+~~~~~~~~~~~~
+The following is an example of creating a table using an explict column list:
+
+.. code-block:: postgres
+
+   CREATE TABLE t1(x int default 0 not null, y text(10) null);
+   
+Creating a Second Table Based on the Structure of Another Table
+~~~~~~~~~~~~
+Either of the following examples can be used to create a second table based on the structure of another table.
+
+**Example 1**
+
+.. code-block:: postgres
+
+   CREATE TABLE t2 LIKE t1;
+
+**Example 2**
+
+.. code-block:: postgres
+
+   CREATE TABLE t2(x int default 0 not null, y text(10) null);
+   
+The generated output of both of the statements above is identical.
+   
+Creating a Table based on External Tables and Views
+~~~~~~~~~~~~
+The following is example of creating a table based on external tables and views:
+
+
+.. code-block:: postgres
+
+   CREATE VIEW v as SELECT x+1,y,y || 'abc' from t1;
+   CREATE TABLE t3 LIKE v;
+
+When duplicating the column structure of an existing table, the target table of the ``LIKE`` clause can be a regular or an external table, or a view.
 
 Permissions
 =============
