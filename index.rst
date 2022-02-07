@@ -4,7 +4,7 @@
 SQream DB Documentation
 *************************
 
-For SQream DB |latest_version|.
+For SQream DB Version 2020.2.
 
 .. only:: html
 
@@ -20,7 +20,7 @@ SQream DB is a columnar analytic SQL database management system.
 
 SQream DB supports regular SQL including :ref:`a substantial amount of ANSI SQL<sql_feature_support>`, uses :ref:`serializable transactions<transactions>`, and :ref:`scales horizontally<concurrency_and_scaling_in_sqream>` for concurrent statements.
 
-Even a `basic SQream DB machine <https://docs.sqream.com/en/v2020-2/guides/operations/hardware_guide.html>`_ can support tens to hundreds of terabytes of data.
+Even a :ref:`basic SQream DB machine<hardware_guide>` can support tens to hundreds of terabytes of data.
 
 SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tableau>` comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc>`, :ref:`ODBC<odbc>`, and :ref:`Python DB-API<pysqream>`.
 
@@ -47,7 +47,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
          
          :ref:`sql_functions`
      - 
-         `Setting up SQream <https://docs.sqream.com/en/v2020-2/installation_guides/index.html>`_
+         :ref:`setup`
          
          :ref:`Best practices<sql_best_practices>`
          
@@ -57,8 +57,6 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
      - **Driver and Deployment**
      - **Help and Support**
    * -
-         :ref:`2020.3<2020.3>`
-
          :ref:`2020.2<2020.2>`
          
          :ref:`2020.1<2020.1>`
@@ -72,7 +70,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
 
          :ref:`connect_to_tableau`
      - 
-         :ref:`troubleshooting` guide
+         :ref:`troubleshooting guide`
          
          :ref:`information_for_support`
 
@@ -96,12 +94,23 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    :titlesonly:
    :hidden:
 
-   first_steps
-   xxfeatures_tour
-   guides/index
+   getting_started/index
+   xxsupported_platforms/index
    installation_guides/index
+   setting_up_a_database/index
+   data_ingestion/index
+   third_party_tools/index
+   feature_guides/index
+   architecture/index
+   operational_guides/index
+   sqream_studio_5.4.3/index
+   configuration_guides/index
    reference/index
+   sqream_on_the_cloud/index
+   xxfeatures_tour
    releases/index
+   troubleshooting/index
+   error_codes_guide
    glossary
 
 ..
