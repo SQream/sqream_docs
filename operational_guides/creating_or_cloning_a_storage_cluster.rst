@@ -1,8 +1,20 @@
 .. _creating_or_cloning_a_storage_cluster:
 
 ****************************************
-Creating or cloning a storage cluster
+Creating or Cloning Storage Clusters
 ****************************************
+
+
+1. *Install and configure MC (Management Console)* 
+#. *Prepare the Hosts*
+#. *Create the private key file and copy it to your local machine*
+#. *Run the Cluster Installation Wizard* - **It may be worthwhile to develop this.**
+#. *Validate the hosts and create the cluster*
+#. *Create a new database on the cluster*
+
+*Note that Vertica's "Management Console" corresponds to our SQream Console - confirm.*
+
+*Note also that each item in the list above links to a different area of their documentation and is unorganized. Verify whether the above steps are located in order on a page in our documentation.*
 
 When SQream DB is installed, it comes with a default storage cluster. This guide will help if you need a fresh storage cluster or a separate copy of an existing storage cluster.
 

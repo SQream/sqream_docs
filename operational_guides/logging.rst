@@ -158,7 +158,7 @@ The log is a CSV, with several fields.
    * - ``1000``
      - ``SYSTEM``
      - Worker startup message
-     - ``"Server Start Time - 2019-12-30 21:18:31, SQream ver{v2020.1}"``
+     - ``"Server Start Time - 2019-12-30 21:18:31, SQream ver{v2020.2}"``
    * - ``1002``
      - ``SYSTEM``
      - ``Metadata``
@@ -374,12 +374,12 @@ Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a databas
    OPTIONS
      (
         LOCATION = '/home/rhendricks/sqream_storage/logs/**/sqream*.log',
-        DELIMITER = '|',
+        DELIMITER = '|'
         CONTINUE_ON_ERROR = true
      )
    ;
    
-For more information, see `Loading Logs with Foreign Tables <https://docs.sqream.com/en/v2021.1/reference/sql/sql_statements/dml_commands/copy_from.html>`_.
+For more information, see `Loading Logs with Foreign Tables <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/copy_from.html>`_.
 
 
 
