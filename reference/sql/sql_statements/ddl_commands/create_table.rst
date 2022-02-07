@@ -272,24 +272,6 @@ The following is example of creating a table based on external tables and views:
    CREATE TABLE t3 LIKE v;
 
 When duplicating the column structure of an existing table, the target table of the ``LIKE`` clause can be a regular or an external table, or a view.
-   
-The following table describes the properties that must be copied from the target table:
-
-+-----------------------------+------------------+---------------------------------+---------------------------------+
-| **Property**                | **Native Table** | **External Table**              | **View**                        |
-+-----------------------------+------------------+---------------------------------+---------------------------------+
-| Column names                | Must be copied   | Must be copied                  | Must be copied                  |
-+-----------------------------+------------------+---------------------------------+---------------------------------+
-| Column types                | Must be copied   | Must be copied                  | Must be copied                  |
-+-----------------------------+------------------+---------------------------------+---------------------------------+
-| ``NULL``/``NOT NULL``       | Must be copied   | Must be copied                  | Must be copied                  |
-+-----------------------------+------------------+---------------------------------+---------------------------------+
-| ``text`` length constraints | Must be copied   | Must be copied                  | Does not exist in source object |
-+-----------------------------+------------------+---------------------------------+---------------------------------+
-| Compression specification   | Must be copied   | Does not exist in source object | Does not exist in source object |
-+-----------------------------+------------------+---------------------------------+---------------------------------+
-| Default/identity            | Must be copied   | Does not exist in source object | Does not exist in source object |
-+-----------------------------+------------------+---------------------------------+---------------------------------+
 
 Permissions
 =============
