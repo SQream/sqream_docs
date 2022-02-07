@@ -9,7 +9,7 @@ The **Data Ingestion Sources** page refers to the following data ingestion sourc
    :maxdepth: 1
    :glob:
    
-   avro
+   xxavro
    csv
    parquet
    orc
