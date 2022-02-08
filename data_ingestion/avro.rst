@@ -298,7 +298,7 @@ Modifying Data Before Loading
 **********************
 One of the main reasons for staging data using the ``EXTERNAL TABLE`` argument is to examine and modify table contents before loading it into SQream.
 
-For example, we can replace **Comment - Convert?** pounds with kilograms using the :ref:`create_table_as` statement
+For example, we can replace pounds with kilograms using the :ref:`create_table_as` statement
 
 In the example below, the ``Position`` column is set to the default ``NULL``.
 
