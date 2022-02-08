@@ -24,6 +24,6 @@ Releases
    :glob:
    :hidden:
 
-   2020.3
+   2020.3_index
    2020.2
    2020.1
