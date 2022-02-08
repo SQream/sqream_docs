@@ -1,4 +1,4 @@
-.. _seeing_system_objects_as_sql:
+.. _seeing_system_objects_as_ddl:
 
 ********************************
 Seeing System Objects as DDL
