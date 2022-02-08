@@ -47,8 +47,8 @@ Each worker is assigned an automatic ID, and is subscribed to the ``'sqream'`` q
    service | servernode | serverip      | serverport
    --------+------------+---------------+-----------
    sqream  | node_9383  | 192.168.0.111 |       5000
-   sqream  | node_9384  | 192.168.0.111 |       5001
-   sqream  | node_9385  | 192.168.0.111 |       5002
-   sqream  | node_9551  | 192.168.1.91  |       5000
+   report  | node_9384  | 192.168.0.111 |       5001
+   ingest  | node_9385  | 192.168.0.111 |       5002
+   bi      | node_9551  | 192.168.1.91  |       5000
 
 This list shows all cluster nodes, their service names, IPs, and ports.
