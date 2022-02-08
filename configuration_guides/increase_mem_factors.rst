@@ -9,5 +9,3 @@ The following describes the ``increaseMemFactors`` flag:
 
 * **Data type** - boolean
 * **Default value** - ``TRUE``
-
-**Comment** - *Description unclear.*
