@@ -3,7 +3,7 @@
 *************************
 Installing SQream Studio
 *************************
-The **Installing SQream Studio** page incudes the following installation guides:
+The **Installing SQream Studio** page incudes the following installation guides: 
 
 .. toctree::
    :maxdepth: 1
