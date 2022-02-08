@@ -24,7 +24,7 @@ This section summarizes the following operational guides:
    monitoring_query_performance
    security
    saved_queries
-   seeing_system_objects_as_ddl
+   viewing_system_objects_as_ddl
    configuration
    hardware_guide
    optimization_best_practices
