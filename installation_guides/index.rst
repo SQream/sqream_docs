@@ -10,8 +10,9 @@ The **Installation Guides** page incudes the following installation guides:
    :maxdepth: 1
    :glob:
 
-   sqream_studio_installation
    installing_and_launching_sqream
+   sqream_studio_installation
+   xxrunning_sqream_in_a_docker_container
    xxrecommended_pre-installation_configurations
    xxrunning_sqream_in_a_docker_container
    xxinstalling_sqream_with_binary

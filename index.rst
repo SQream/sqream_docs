@@ -4,7 +4,7 @@
 SQream DB Documentation
 *************************
 
-For SQream DB |latest_version|.
+For SQream DB 2020.3.2.
 
 .. only:: html
 
@@ -47,7 +47,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
          
          :ref:`sql_functions`
      - 
-         `Setting up SQream <https://docs.sqream.com/en/v2020.3.2.1/installation_guides/index.html>`_
+         `Setting up SQream <https://docs.sqream.com/en/v2020.3.2/installation_guides/index.html>`_
          
          :ref:`Best practices<sql_best_practices>`
          
@@ -72,9 +72,9 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
 
          :ref:`connect_to_tableau`
      - 
-         :ref:`troubleshooting` guide
+         `Troubleshooting Page <https://docs.sqream.com/en/v2020.3.2/troubleshooting/information_for_support.html#information-for-support>`_
          
-         :ref:`information_for_support`
+         `Gathering Information for SQream Support <https://docs.sqream.com/en/v2020.3.2/troubleshooting/information_for_support.html#information-for-support>`_
 
 
 
@@ -96,12 +96,18 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    :titlesonly:
    :hidden:
 
-   first_steps
-   xxfeatures_tour
-   guides/index
+   getting_started/index
    installation_guides/index
+   data_ingestion_sources/index
+   third_party_tools/index
+   feature_guides/index
+   operational_guides/index
+   sqream_studio_5.4.3/index
+   architecture/index
+   configuration_guides/index
    reference/index
    releases/index
+   troubleshooting/index
    glossary
 
 ..
