@@ -93,9 +93,7 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    :hidden:
 
    getting_started/index
-   xxsupported_platforms/index
    installation_guides/index
-   setting_up_a_database/index
    data_ingestion/index
    third_party_tools/index
    feature_guides/index
@@ -104,11 +102,8 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    architecture/index
    configuration_guides/index
    reference/index
-   sqream_on_the_cloud/index
-   xxfeatures_tour
    releases/index
    troubleshooting/index
-   error_codes_guide
    glossary
 
 ..
