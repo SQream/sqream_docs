@@ -70,9 +70,9 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
 
          :ref:`connect_to_tableau`
      - 
-         :ref:`troubleshooting guide`
+         `Troubleshooting guide <https://docs.sqream.com/en/v2020-2/troubleshooting/index.html#troubleshooting>`_
          
-         :ref:`information_for_support`
+         `Gathering Information for SQream Support <https://docs.sqream.com/en/v2020-2/troubleshooting/information_for_support.html#information-for-support>`_
 
 
 
