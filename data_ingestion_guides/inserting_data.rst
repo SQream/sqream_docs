@@ -1,7 +1,7 @@
 .. _inserting_data:
 
 ***************************
-Inserting Data
+Inserting data
 ***************************
 
 This guide covers inserting data into SQream DB, with subguides on inserting data from a variety of sources and locations. 

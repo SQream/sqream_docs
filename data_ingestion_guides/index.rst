@@ -1,4 +1,4 @@
-.. _data_ingestion_guides:
+.. _data_ingestion:
 
 *************************
 Data Ingestion Sources
