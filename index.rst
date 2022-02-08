@@ -76,9 +76,9 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
 
          :ref:`connect_to_tableau`
      - 
-         `Troubleshooting Page <https://docs.sqream.com/en/v2021.2/troubleshooting/information_for_support.html#information-for-support>`_
+         `Troubleshooting Page <https://docs.sqream.com/en/v2021.2/troubleshooting/index.html>`_
          
-         `Gathering Information for SQream Support <https://docs.sqream.com/en/v2021.2/troubleshooting/information_for_support.html#information-for-support>`_
+         `Gathering Information for SQream Support <https://docs.sqream.com/en/v2021.2/troubleshooting/information_for_support.html>`_
 
 
 
