@@ -204,17 +204,17 @@ For more information about backing up users, permissions, or schedules, see `Bac
 
    1. On the CSV file input step item, click the **new hop connection** icon.
    
-   .. image:: /_static/images/third_party_connectors/pentaho/csv_file_input_options.png
+      .. image:: /_static/images/third_party_connectors/pentaho/csv_file_input_options.png
    
    2. Drag an arrow from the **CSV file input** step item to the **Table output** step item.
    
-   .. image:: /_static/images/third_party_connectors/pentaho/csv_file_input_options_2.png   
+      .. image:: /_static/images/third_party_connectors/pentaho/csv_file_input_options_2.png   
 
    3. Release the mouse button. The following options are displayed.
    
    4. Select **Main output of step**.
    
-.. image:: /_static/images/third_party_connectors/pentaho/main_output_of_step.png
+      .. image:: /_static/images/third_party_connectors/pentaho/main_output_of_step.png
    
 ::
 
@@ -234,8 +234,6 @@ For more information about backing up users, permissions, or schedules, see `Bac
 
    The system processes and displays the results of the SQL statements.
    
-::
-
 9. Close all open dialog boxes.
 
 ::
@@ -244,8 +242,6 @@ For more information about backing up users, permissions, or schedules, see `Bac
 
    .. image:: /_static/images/third_party_connectors/pentaho/execute_transformation.png
 
-::
-   
     The **Run Options** dialog box is displayed.
 
 11. Click **Run**. The **Execution Results** are displayed.
