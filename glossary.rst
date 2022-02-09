@@ -27,3 +27,4 @@ The following table shows the **Glossary** descriptions:
 | Worker          | A SQream application that responds to statements. Several workers running on one or more nodes form a cluster.                                                                                     |
 +-----------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
+ 
