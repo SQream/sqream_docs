@@ -8,7 +8,7 @@ Overview
 =====================
 SAS Viya is used to connect to a SQream cluster. The **Connecting to SQream Using SAS Viya** page describes how to connect to SAS Viya.
 
-The Connecting to SQream Using Tableau page describes the following:
+The Connecting to SQream Using SAS Viya page describes the following:
 
 .. contents::
    :local: 
@@ -27,7 +27,7 @@ After installing SAS Viya, you must install the JDBC driver.
 
 **To install the JDBC driver:**
 
-#. Download the `JDBC driver <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html>`_.
+#. Download the `JDBC driver <https://docs.sqream.com/en/v2021.1/guides/client_drivers/jdbc/index.html>`_.
 
     ::
 
@@ -73,7 +73,7 @@ After installing the JDBC driver, you must configure the JDBC driver from the SA
 
     * The database name is ``master`` and the schema is ``public``. 
 	
-      For more information about writing a connection string, see **Connect to SQream DB with a JDBC Application** and navigate to `Connection String <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html#connection-string>`_.
+      For more information about writing a connection string, see **Connect to SQream DB with a JDBC Application** and navigate to `Connection String <https://docs.sqream.com/en/v2021.1/guides/client_drivers/jdbc/index.html#connection-string>`_.
 
      ::
 	 
@@ -115,13 +115,13 @@ After configuring the JDBC driver from the SAS Studio, you can browse your data 
 
    The workbook is named ``sqlib.nba``. You can double-click the table name to expand the table tree.
    
-Using SAS Visual Analytics
+Using SAS Viya Visual Analytics
 -------------------
-This section describes how to use SAS visual analytics.
+This section describes how to use SAS Viya visual analytics.
 
-**To use SAS visual analytics:**
+**To use SAS Viya visual analytics:**
 
-#. Log in to `SAS Visual Analytics <http://192.168.4.63/SASLogon/login>`_ using your credentials:
+#. Log in to `SAS Viya Visual Analytics <http://192.168.4.63/SASLogon/login>`_ using your credentials:
 
     ::
 
