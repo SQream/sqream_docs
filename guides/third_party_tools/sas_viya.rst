@@ -8,7 +8,7 @@ Overview
 =====================
 SAS Viya is used to connect to a SQream cluster. The **Connecting to SQream Using SAS Viya** page describes how to connect to SAS Viya.
 
-The Connecting to SQream Using Tableau page describes the following:
+The Connecting to SQream Using SAS Viya page describes the following:
 
 .. contents::
    :local: 
@@ -115,7 +115,7 @@ After configuring the JDBC driver from the SAS Studio, you can browse your data 
 
    The workbook is named ``sqlib.nba``. You can double-click the table name to expand the table tree.
    
-Using SAS Visual Analytics
+Using SAS Viya Visual Analytics
 -------------------
 This section describes how to use SAS visual analytics.
 
