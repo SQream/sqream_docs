@@ -48,7 +48,7 @@ If you are using Windows, after installing the Tableau Desktop application you c
 
     ::
 
-#. Download the most current version of the `SQream JDBC driver <https://docs.sqream.com/en/latest/guides/client_drivers/index.html#client-drivers>`_.
+#. Download the most current version of the `SQream JDBC driver <https://docs.sqream.com/en/v2020-1/third_party_tools/client_drivers/index.html>`_.
 
     ::
 	

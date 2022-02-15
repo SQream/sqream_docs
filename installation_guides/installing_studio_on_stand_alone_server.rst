@@ -141,7 +141,7 @@ After installing the Dashboard Data Collector, you can install Studio.
      
       $ cd sqream-admin  
 	  
-.. _add_parameter:
+.. _add_parameter_20201:
 	
 4. Build the configuration file to set up Sqream Studio. You can use IP address **127.0.0.1** on a single server.
  

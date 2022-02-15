@@ -10,7 +10,7 @@ For SQream DB 2020.1.
 
    .. tip::
       Want to read this offline?
-      `Download the documentation as a single PDF <https://docs.sqream.com/_/downloads/en/latest/pdf/>`_ .
+      `Download the documentation as a single PDF <https://docs.sqream.com/_/downloads/en/v2020-1/pdf/>`_ .
 
 .. only:: pdf or latex
    
