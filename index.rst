@@ -10,7 +10,9 @@ For SQream DB Version 2021.1.
 
    .. tip::
       Want to read this offline?
-      `Download the documentation as a single PDF <https://docs.sqream.com/_/downloads/en/v2021.2/pdf/>`_ .
+
+      `Download the documentation as a single PDF <https://docs.sqream.com/_/downloads/en/v2021.1/pdf/>`_ .
+
 
 .. only:: pdf or latex
    
@@ -20,7 +22,7 @@ SQream DB is a columnar analytic SQL database management system.
 
 SQream DB supports regular SQL including :ref:`a substantial amount of ANSI SQL<sql_feature_support>`, uses :ref:`serializable transactions<transactions>`, and :ref:`scales horizontally<concurrency_and_scaling_in_sqream>` for concurrent statements.
 
-Even a :ref:`basic SQream DB machine<hardware_guide>` can support tens to hundreds of terabytes of data.
+Even a `basic SQream DB machine <https://docs.sqream.com/en/v2021.1/guides/operations/hardware_guide.html>`_ can support tens to hundreds of terabytes of data.
 
 SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tableau>` comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc>`, :ref:`ODBC<odbc>`, and :ref:`Python DB-API<pysqream>`.
 
@@ -47,8 +49,9 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
          
          :ref:`sql_functions`
      - 
-         `Setting up SQream <https://docs.sqream.com/en/v2021.2/installation_guides/index.html>`_
-         
+
+         `Setting up SQream <https://docs.sqream.com/en/v2021.1/installation_guides/index.html>`_
+
          :ref:`Best practices<sql_best_practices>`
          
          :ref:`connect_to_tableau`
@@ -98,6 +101,7 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    :maxdepth: 6
    :titlesonly:
    :hidden:
+
 
    getting_started/index
    installation_guides/index

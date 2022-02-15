@@ -15,5 +15,3 @@ The **Installing SQream Studio** page incudes the following installation guides:
    installing_sqream_with_kubernetes
    installing_monit
 
-
-

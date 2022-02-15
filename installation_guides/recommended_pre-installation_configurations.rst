@@ -12,6 +12,16 @@ This page provides recommendations for production deployments of SQream and desc
    :local:
    :depth: 1
 
+The **Recommended Pre-Installation Configuration** page describes SQream's recommended configuration settings for production deployments.
+
+After :ref:`installing SQream<running_sqream_in_a_docker_container>`, we recommend you to configure your system for improved performance and stability.
+
+The Recommended Pre-Installation Configuration page describes the following:
+
+.. contents::
+   :local:
+   :depth: 1 
+
 
 Recommended BIOS Settings
 ==========================
@@ -565,7 +575,7 @@ Configuring the DNS
 --------------------------------
 **To configure the DNS:**
 
-1. Run the **ifconfig** commasnd to check your NIC name. In the following example, **eth0** is the NIC name:
+1. Run the **ifconfig** command to check your NIC name. In the following example, **eth0** is the NIC name:
 
    .. code-block:: console
 
@@ -580,8 +590,8 @@ Configuring the DNS
 
 
 
-..
-	 **Comment: - is the above input correct?**
+
+
 
 Installing the Nvidia CUDA Driver
 ===================================================
@@ -686,15 +696,12 @@ If the Nouveau driver has been loaded, the command above generates output.
         $ sudo reboot
 
 Installing the CUDA Driver
---------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 This section describes how to install the CUDA driver.
 
 .. note::  The version of the driver installed on the customer's server must be equal or higher than the driver included in the Sqream release package. Contact a Sqream customer service representative to identify the correct version to install.
 
-  
 
-Installing the CUDA from the Repository
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Installing the CUDA driver from the Repository is the recommended installation method.
 
 **To install the CUDA driver from the Repository:**
@@ -719,7 +726,9 @@ Installing the CUDA driver from the Repository is the recommended installation m
 
       $ sudo yum install dkms libvdpau	  
 
-.. warning::  For Power9 and Intel servers using V100 GPUs, CUDA driver version **10.1 update 2** must be installed. For A series GPU, CUDA driver version 11.4.3 must be installed.
+.. warning::  For Power9 and Intel servers using V100 GPUs, CUDA driver version **10.1 update 2** must be installed.
+
+For A series GPU, CUDA driver version 11.4.3 must be installed.
 
 Installing the CUDA depedendencies from the **epel** repository is only required for installing **runfile**.
 
@@ -747,6 +756,7 @@ Installing the CUDA depedendencies from the **epel** repository is only required
 
         $ wget https://developer.download.nvidia.com/compute/cuda/11.4.3/local_installers/cuda-repo-rhel7-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
         $ sudo yum localinstall cuda-repo-rhel7-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
+
   
 4. Install the required local repository: 
    

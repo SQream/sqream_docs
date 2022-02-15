@@ -4,7 +4,8 @@
 Installation Guides
 *************************
 
-The **Installation Guides** page incudes the following installation guides: 
+
+The **Installation Guides** page includes the following installation guides:
 
 .. toctree::
    :maxdepth: 1
