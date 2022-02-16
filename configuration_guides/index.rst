@@ -16,5 +16,5 @@ The SQream Acceleration Studio divides flags into the following roles, each with
 
 For more information, see the following:
 
-* :ref:`SQream Acceleration Studio 5.4.2<acceleration_studio_version_5.4.3>`
-* :ref:`Configuring Your Instance of SQream<configuration>`
+* `SQream Acceleration Studio 5.4.3 <https://docs.sqream.com/en/v2020-1/sqream_studio_5.4.3/index.html>`_
+* `Configuration Guides <https://docs.sqream.com/en/v2020-1/configuration_guides/index.html#>`_

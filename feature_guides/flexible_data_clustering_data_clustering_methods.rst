@@ -87,9 +87,8 @@ The ``CLUSTER BY`` statement splits ingested data based on the range of data cor
 
 For more information, see the following:
 
-* `The CLUSTER_BY statement <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/cluster_by.html>`_
-* `The DELETE statement <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/delete.html>`_   
-* `The Deleting Data guide <https://docs.sqream.com/en/latest/guides/features/delete.html>`_
+* `The CLUSTER_BY statement <https://docs.sqream.com/en/v2020-1/reference/sql/sql_statements/index.html#data-manipulation-commands-dml>`_
+* `The DELETE statement <https://docs.sqream.com/en/v2020-1/reference/sql/sql_statements/dml_commands/delete.html>`_   
 
 Inspecting Clustered Table Health
 ~~~~~~~~~~

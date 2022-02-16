@@ -19,7 +19,7 @@ The following are applicable to all operating systems:
 
 * **JDBC** - recommended installation via ``mvn``:
 
-  * `JDBC .jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.4.0.jar>`_ - sqream-jdbc-4.4.0 (.jar)
+  * `JDBC .jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.3.jar>`_ - sqream-jdbc-4.5.3 (.jar)
   * `JDBC driver <https://docs.sqream.com/en/v2020-1/guides/client_drivers/jdbc/index.html#java-jdbc>`_
 
 
@@ -58,7 +58,7 @@ The following are applicable to Windows:
 
    ::
 
-* **ODBC installer** - SQream Drivers v2020.2.0, with Tableau customizations. Please contact your `Sqream represenative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_ for this installer.
+* **ODBC installer** - SQream Drivers v2020.2.0, with Tableau customizations. Please contact your `SQream represenative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_ for this installer.
 
   For more information on installing and configuring ODBC on Windows, see :ref:`Install and configure ODBC on Windows <install_odbc_windows>`.
 

@@ -47,7 +47,7 @@ The following is a brief description of the Dashboard panels:
 
 Subscribing to Workers from the Services Panel
 --------------------------
-Services are used to categorize and associate (also known as **subscribing**) workers to particular services. The **Service** panel is used for viewing, monitoring, and adding defined `service queues <https://docs.sqream.com/en/latest/guides/features/workload_manager.html#workload-manager>`_.
+Services are used to categorize and associate (also known as **subscribing**) workers to particular services. The **Service** panel is used for viewing, monitoring, and adding defined `service queues <https://docs.sqream.com/en/v2020-1/feature_guides/workload_manager.html>`_.
 
 
 
