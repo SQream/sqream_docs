@@ -17,6 +17,7 @@ Setting Up the System for Monitoring
 =================================================
 By default, SQream DB logs execution details for every statement that runs for more than 60 seconds.
 If you want to see the execution details for a currently running statement, see :ref:`using_show_node_info` below.
+
 Adjusting the Logging Frequency
 ---------------------------------------
 To adjust the frequency of logging for statements, you may want to reduce the interval from 60 seconds down to, 
@@ -132,14 +133,15 @@ Understanding the Query Execution Plan Output
 Both :ref:`show_node_info`  and the logged execution plans represents the query plan as a graph hierarchy, with data separated into different columns.
 Each row represents a single logical database operation, which is also called a **node** or **chunk producer**. A node reports 
 several metrics during query execution, such as how much data it has read and written, how many chunks and rows, and how much time has elapsed.
-Consider the example show_node_info presented above. The source node with ID #11 (``ReadTable``), has a parent node ID #10 
-(``CpuDecompress``). If we were to draw this out in a graph, it'd look like this:
+Consider the example show_node_info presented above. The source node with ID #11 (``ReadTable``), has a parent node ID #10 (``CpuDecompress``).
+
+If we were to draw this out in a graph, it would look like this:
+
 .. figure:: /_static/images/show_node_info_graph.png
    :height: 70em
    :align: center
    
-   This graph explains how the query execution details are arranged in a logical order, from the bottom up.
-   
+   This graph explains how the query execution details are arranged in a logical order, from the bottom up.   
    
 The last node, also called the sink, has a parent node ID of -1, meaning it has no parent. This is typically a node that sends data over the network or into a table.
    

@@ -423,10 +423,7 @@ A superuser must do new setup for each new schema which is a limitation, but sup
 
 In the example, the database is called ``my_database``, and the new or existing schema being set up to be managed in this way is called ``my_schema``.
 
-.. figure:: /_static/images/access_control_department_example.png
-   :scale: 60 %
-   
-   Our departmental example has four user group roles and seven users roles
+Our departmental example has four user group roles and seven users roles
 
 There will be a group for this schema for each of the following:
 
