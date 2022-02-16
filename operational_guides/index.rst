@@ -17,6 +17,7 @@ This section summarizes the following operational guides:
 
    access_control
    creating_or_cloning_a_storage_cluster
+   delete
    external_data
    external_tables
    exporting_data
