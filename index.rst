@@ -101,12 +101,13 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    :hidden:
 
    getting_started/index
+   installation_guides/index
    data_ingestion/index
    feature_guides/index
    operational_guides/index
    xxfeatures_tour
    guides/index
-   installation_guides/index
+   architecture/index
    reference/index
    releases/index
    glossary
