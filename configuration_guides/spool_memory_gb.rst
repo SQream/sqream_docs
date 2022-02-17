@@ -1,7 +1,7 @@
 .. _spool_memory_gb:
 
 *************************
-Spool Memory GB
+Setting the Spool Memory
 *************************
 The ``spoolMemoryGB`` flag sets the amount of memory (GB) available to the server for spooling.
 
