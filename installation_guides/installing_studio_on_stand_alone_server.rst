@@ -1,23 +1,32 @@
 .. _installing_studio_on_stand_alone_server:
 
-.. _install_studio_top:
+
 
 ***********************
 Installing Studio on a Stand-Alone Server
 ***********************
+.. _install_studio_top:
+
+This guide explains how to install SQream Studio on a stand-alone server. A stand-alone server is a server that does not run SQreamd based on binary, Docker, or Kubernetes. 
+
+This guide describes how to do the following:
+
+* :ref:`Install NodeJS version 12 on the server<install_nodejs_version_12>`
+* :ref:`Install Studio<install_studio>`
+* :ref:`Start Studio manually<start_studio_manually>`
+* :ref:`Start Studio as a service<start_studio_service>`
+* :ref:`Access Studio<access_studio>`
+* :ref:`Maintain Studio using the Process Manager (PM2) service<check_studio_pm2>`
+* :ref:`Upgrade to the new Studio version<upgrade_studio>`
+* :ref:`Use the configuration setup arguments<setup_arguments>`
 
 
-The **Installing Studio on a Stand-Alone Server** guide describes how to install SQream Studio on a stand-alone server. A stand-alone server is a server that does not run SQream based on binary files, Docker, or Kubernetes.
 
-The Installing Studio on a Stand-Alone Server guide includes the following sections:
-
-.. contents::
-   :local:
-   :depth: 1
-
-Installing NodeJS Version 12 on the Server
+Installing NodeJS Version 12 on the Server 
 ^^^^^^^^^^^^^^^
-Before installing Studio you must install NodeJS version 12 on the server.
+Before installing Studio, you must install NodeJS version 12 on the server.
+
+.. _install_nodejs_version_12:
 
 **To install NodeJS version 12 on the server:**
 
@@ -27,7 +36,7 @@ Before installing Studio you must install NodeJS version 12 on the server.
      
       $ node -v
       
-   The following is the output if a version of NodeJS has already been installed on the target server:
+The following is the output if a version of NodeJS has already been installed on the target server:
 
    .. code-block:: console
      
@@ -97,11 +106,11 @@ Before installing Studio you must install NodeJS version 12 on the server.
 
      Complete!
 
-4. Confirm the Node version.
+3. Confirm the Node version.
 
    .. code-block:: console
      
-      $ node -v	  
+      $ node -v
 
   The following is an example of the correct output:
    
@@ -109,21 +118,15 @@ Before installing Studio you must install NodeJS version 12 on the server.
      
      v12.22.1
 
-5. Install Prometheus using binary packages.
+.. _install_studio:
 
-   For more information on installing Prometheus using binary packages, see :ref:`installing_prometheus_using_binary_packages`.
-
-Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
-
-
+:ref:`Back to Installing Studio on a Stand-Alone Server<install_studio_top>`
 	 
 Installing Studio
 ^^^^^^^^^^^^^^^
-After installing the Dashboard Data Collector, you can install Studio.
- 
 **To install Studio:**
 
-1. Copy the SQream Studio package from SQream Artifactory into the target server. For access to the Sqream Studio package, contact SQream Support.
+1. Copy the SQream Studio package from SQream Artifactory into the target server. For access to the Sqream Studio package, contact Sqream Support.
 
 ::
 
@@ -139,9 +142,9 @@ After installing the Dashboard Data Collector, you can install Studio.
  
    .. code-block:: console
      
-      $ cd sqream-admin  
-	  
-.. _add_parameter:
+      $ cd sqream-admin
+
+::
 	
 4. Build the configuration file to set up Sqream Studio. You can use IP address **127.0.0.1** on a single server.
  
@@ -165,7 +168,9 @@ After installing the Dashboard Data Collector, you can install Studio.
      
       $ mv sqream-admin-config.json /etc/sqream
 
-Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
+.. _start_studio_manually:
+
+:ref:`Back to Installing Studio on a Stand-Alone Server<install_studio_top>`
 
 Starting Studio Manually
 ^^^^^^^^^^^^^^^
@@ -187,6 +192,10 @@ The following output is displayed:
    ├─────┼──────────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
    │ 0   │ sqream-studio    │ default     │ 0.1.0   │ fork    │ 11540    │ 0s     │ 0    │ online    │ 0%       │ 15.6mb   │ sqream   │ disabled │
    └─────┴──────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
+
+  
+
+.. _start_studio_service:
 
 Starting Studio as a Service
 ^^^^^^^^^^^^^^^
@@ -292,7 +301,9 @@ Sqream uses the **Process Manager (PM2)** to maintain Studio.
      
       $ pm2 save
 
-Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
+:ref:`Back to Installing Studio on a Stand-Alone Server<install_studio_top>`
+
+.. _access_studio:
 
 Accessing Studio
 ^^^^^^^^^^^^^^^
@@ -305,7 +316,11 @@ If port 8080 is blocked by the server firewall, you can unblock it by running th
       $ firewall-cmd --zone=public --add-port=8080/tcp --permanent
       $ firewall-cmd --reload
  
-Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
+:ref:`Back to Installing Studio<install_studio_top>`
+
+
+ 
+.. _check_studio_pm2:
 
 Maintaining Studio with the Process Manager (PM2)
 ^^^^^^^^^^^^^^^
@@ -323,7 +338,9 @@ You can use PM2 to do one of the following:
 
 * To see the PM2 service logs: ``pm2 logs sqream-studio``
 
-Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
+:ref:`Back to Installing Studio on a Stand-Alone Server<install_studio_top>`
+
+.. _upgrade_studio:
 
 Upgrading Studio
 ^^^^^^^^^^^^^^^
@@ -397,23 +414,27 @@ To upgrade Studio you need to stop the version that you currently have.
 
       $ pm2 start all
 
-Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
+:ref:`Back to Installing Studio on a Stand-Alone Server<install_studio_top>`
+
+.. _install_studio_docker_container_top:
+
+Installing Studio in a Docker Container
+--------------------
+This guide explains how to install SQream Studio in a Docker container.
+
+This guide describes how to do the following:
+
+* :ref:`Install SQream Studio in a Docker container<install_studio_docker_container>`
+* :ref:`Access Studio<access_studio_docker_container>`
+* :ref:`Using Docker Container Commands<using_docker_container_commands>`
 
 .. _install_studio_docker_container:
 
-Installing Studio in a Docker Container
+Installing SQream Studio in a Docker Container
 ^^^^^^^^^^^^^^^^^^^^^^^
-This guide explains how to install SQream Studio in a Docker container and includes the following sections:
+If you have already installed Docker, you can install SQream Studio in a Docker container.
 
-.. contents::
-   :local:
-   :depth: 1
-
-Installing Studio
---------------
-If you have already installed Docker, you can install Studio in a Docker container.
-
-**To install Studio:**
+**To install Sqream Studio in a Docker container:**
 
 1. Copy the downloaded image onto the target server.
   
@@ -446,11 +467,16 @@ If you have already installed Docker, you can install Studio in a Docker contain
    .. code-block:: console
 
       $ docker run -d --name sqream-studio  -p 8080:8080 -e runtime=docker -e SQREAM_K8S_PICKER=192.168.0.183 -e SQREAM_PICKER_PORT=3108 -e SQREAM_DATABASE_NAME=master -e SQREAM_ADMIN_UI_PORT=8080 sqream-acceleration-studio:5.1.3
+	  
 
-Back to :ref:`Installing Studio in a Docker Container<install_studio_docker_container>`
+.. _access_studio_docker_container:
+
+:ref:`Back to Installing Studio in a Docker Container<install_studio_docker_container>`
+
 
 Accessing Studio
------------------
+^^^^^^^^^
+
 You can access Studio from Port 8080: ``http://<server ip>:8080``.
 
 If you want to use Studio over a secure connection (https), you must use the parameter values shown in the following table:
@@ -470,7 +496,11 @@ If you want to use Studio over a secure connection (https), you must use the par
      - The path of SSL key PEM file for enabling https. Leave empty to disable.
    * - ``--web-ssl-cert-path``
      - None
-     - The path of SSL certificate PEM file for enabling https. Leave empty to disable.	 
+     - The path of SSL certificate PEM file for enabling https. Leave empty to disable.
+
+	 
+	 
+	 
 
 You can configure the above parameters using the following syntax:
 
@@ -480,34 +510,37 @@ You can configure the above parameters using the following syntax:
   
 .. _using_docker_container_commands:
 
-Back to :ref:`Installing Studio in a Docker Container<install_studio_docker_container>`
+:ref:`Back to Installing Studio in a Docker Container<install_studio_docker_container>`
 
-Using Docker Container Commands
----------------
+
+Docker Container Commands
+^^^^^^^^^^^^^^^^^^^
 When installing Studio in Docker, you can run the following commands:
 
 * View Docker container logs:
 
-  .. code-block:: console
+   .. code-block:: console
 
-     $ docker logs -f sqream-admin-ui
+      $ docker logs -f sqream-admin-ui
 	  
 * Restart the Docker container: 
 
-  .. code-block:: console
+   .. code-block:: console
 
-     $ docker restart sqream-admin-ui
+      $ docker restart sqream-admin-ui
 	  
 * Kill the Docker container:
 
-  .. code-block:: console
+   .. code-block:: console
 
-     $ docker rm -f sqream-admin-ui
+      $ docker rm -f sqream-admin-ui
       
-Back to :ref:`Installing Studio in a Docker Container<install_studio_docker_container>`
+:ref:`Back to Installing Studio in a Docker Container<install_studio_docker_container>`
 
-Setting Up Argument Configurations
-----------------
+.. _setup_arguments:
+
+Setup Argument Configurations
+^^^^^^^^^^^^^^^
 When creating the **sqream-admin-config.json** configuration file, you can add ``-y`` to create the configuration file in non-interactive mode. Configuration files created in non-interactive mode use all the parameter defaults not provided in the command.
 
 The following table shows the available arguments:
@@ -570,9 +603,3 @@ The following table shows the available arguments:
    * - ``--access-key``
      - None
      - If defined, UI access is blocked unless ``?ui-access=<access key>`` is included in the URL.
-	 
-Back to :ref:`Installing Studio in a Docker Container<install_studio_docker_container>`
-
-  ::	 
-
-Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`

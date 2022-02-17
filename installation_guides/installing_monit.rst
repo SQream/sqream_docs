@@ -7,13 +7,9 @@ Installing Monit
 Getting Started
 ==============================
 
-Before installing SQream with Monit, verify that you have followed the required :ref:`recommended pre-installation configurations <recommended_pre-installation_configurations>`.
+Before installing SQream with Monit, verify that you have followed the required :ref:`recommended pre-installation configurations <recommended_pre-installation_configurations>`. 
 
 The procedures in the **Installing Monit** guide must be performed on each SQream cluster node.
-
-
-
-
 
 .. _back_to_top:
 

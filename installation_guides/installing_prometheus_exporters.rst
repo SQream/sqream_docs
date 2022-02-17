@@ -4,7 +4,7 @@
 Installing Prometheus Exporter
 *********************************************
 
-The **Installing Prometheus Exporters** guide includes the following sections:
+The **Installing Prometheus Exporters** guide includes the following sections: 
 
 .. contents::
    :local:
@@ -20,7 +20,7 @@ The Installing Prometheus Exporters guide describes how to installing the follow
 
 * The **Nvidia_exporter** - shows Nvidia GPU metrics.
 
-* The **process_exporter** - shows data belonging to the server's running processes.
+* The **process_exporter** - shows data belonging to the server's running processes. 
 
 For information about more exporters, see `Exporters and Integration <https://prometheus.io/docs/instrumenting/exporters/>`_
 

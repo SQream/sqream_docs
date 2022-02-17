@@ -12,8 +12,6 @@ After accessing the Prometheus user interface, you can install the **Dashboard D
 
 .. note:: Before installing the Dashboard Data collector, verify that Prometheus has been installed and configured for the cluster.
 
-How to install Prometheus from tarball - **Comment - this needs to be its own page.**
-
 **To install the Dashboard Data Collector:**
 
 1. Store the Data Collector Package obtained from `SQream Artifactory <http://artifactory.host-98.sq.l/artifactory/dashboard/data_collector/tarball>`_.
@@ -47,7 +45,7 @@ How to install Prometheus from tarball - **Comment - this needs to be its own pa
       $ 	--dashboard-password=sqream \
       $ 	--prometheus-url=http://127.0.0.1:9090/api/v1/query
 
-5. Debug the Data Collector: (**Comment** - *using the npm project manager*).
+5. Debug the Data Collector:
 
    .. code-block:: console
    
@@ -143,7 +141,7 @@ How to install Prometheus from tarball - **Comment - this needs to be its own pa
 .. note:: Verify that all machines and workers are correctly registered.
 
 
-6. Press **CTRL + C** to stop ``npm start`` (**Comment** - *It may be better to refer to it as the npm project manager*).
+6. Press **CTRL + C** to stop ``npm start`.
 
   ::
 

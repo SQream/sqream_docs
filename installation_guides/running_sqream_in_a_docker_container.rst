@@ -3,15 +3,14 @@
 
 
 ***********************
-Installing and Running SQream in a Docker Container
+Running SQream in a Docker Container
 ***********************
-The **Running SQream in a Docker Container** page describes how to prepare your machine's environment for installing and running SQream in a Docker container.
 
-This page describes the following:
 
-.. contents::
-   :local:
-   :depth: 1 
+This document describes how to prepare your machine's environment for installing and running SQream in a Docker container. 
+
+.. contents:: This page describes the following:
+   :depth: 2
 
 Setting Up a Host
 ====================================
@@ -804,6 +803,7 @@ For related information, see the following sections:
 
 Installing the SQream Software
 ==============================
+**Comment** - *Is this the SQream Console? If it is, it should also be documented in the Installation Guides section separately. Discuss. It should also link to the SQream Console page. We also have to describe how to uninstall it.*
 
 Preparing Your Local Environment
 -------------------------
