@@ -9,8 +9,9 @@ The **Configuring the Spooling Feature** page includes the following topics:
    :local:
    :depth: 1
 
+
 Overview
---------
+----------
 From the SQream Acceleration Studio you can allocate the amount of memory (GB) available to the server for spooling using the ``spoolMemoryGB`` flag. SQream recommends setting the ``spoolMemoryGB`` flag to 90% of the ``limitQueryMemoryGB`` flag. The ``limitQueryMemoryGB`` flag is the total memory you’ve allocated for processing queries.
 
 In addition, the ``limitQueryMemoryGB`` defines how much total system memory is used by each worker. SQream recommends setting ``limitQueryMemoryGB`` to 5% less than the total host memory divided by the amount of ``sqreamd`` workers on host.
@@ -64,5 +65,5 @@ The following is an example of setting ``spoolMemoryGB`` value in the previous c
 
 For more information about configuring the ``spoolMemoryGB`` flag, see the following:
 
-* **Current configuration method**: Configuration flags
-* **Previous configuration method**: Runtime global flags
+* `Current configuration method <https://docs.sqream.com/en/latest/configuration_guides/spool_memory_gb.html>`_
+* `Previous configuration method <https://docs.sqream.com/en/latest/configuration_guides/previous_configuration_method.html#id2>`_
