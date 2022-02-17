@@ -1,7 +1,7 @@
 .. _releases:
 
 **********
-Release Notes
+Releases
 **********
 
    
@@ -30,8 +30,8 @@ Release Notes
    :glob:
    :hidden:
 
-   2021.2_index
-   2021.1_index
+   2021.2
+   2021.1
    2020.3
    2020.2
    2020.1

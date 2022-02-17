@@ -3,9 +3,8 @@
 *************************
 Installation Guides
 *************************
-Before you get started using SQream, consider your business needs and available resources. SQream was designed to run in a number of environments, and to be installed using different methods depending on your requirements. This determines which installation method to use.
 
-The **Installation Guides** section describes the following installation guide sets:
+The **Installation Guides** page incudes the following installation guides:
 
 .. toctree::
    :maxdepth: 1
@@ -13,5 +12,12 @@ The **Installation Guides** section describes the following installation guide s
 
    sqream_studio_installation
    installing_and_launching_sqream
+   xxrecommended_pre-installation_configurations
+   xxrunning_sqream_in_a_docker_container
+   xxinstalling_sqream_with_binary
+   xxinstalling_monit
+   xxinstalling_sqream_with_kubernetes
+   xxinstalling_prometheus_exporters
+   xxinstalling_studio_on_stand_alone_server
 
 

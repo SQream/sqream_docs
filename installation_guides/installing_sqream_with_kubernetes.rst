@@ -13,7 +13,7 @@ The **Installing SQream with Kubernetes** guide describes the following:
    
 .. _preparing_sqream_environment:
    
-Preparing the SQream Environment to Launch SQream Using Kubernetes 
+Preparing the SQream Environment to Launch SQream Using Kubernetes
 ===============
 
 The **Preparing the SQream environment to Launch SQream Using Kubernetes** section describes the following:

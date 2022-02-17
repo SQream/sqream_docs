@@ -92,6 +92,7 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
 This version of the documentation is for SQream DB Version 2021.2.
 
 If you're looking for an older version of the documentation, versions 1.10 through 2019.2.1 are available at http://previous.sqream.com .
+
 .. toctree::
    :caption: Contents:
    :glob:
@@ -99,20 +100,13 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    :titlesonly:
    :hidden:
 
-   getting_started/index
+   first_steps
+   xxfeatures_tour
+   guides/index
    installation_guides/index
-   data_ingestion_guides/index
-   third_party_tools/index
-   feature_guides/index
-   operational_guides/index
-   sqream_studio_5.4.3/index
-   architecture/index
-   configuration_guides/index
    reference/index
    releases/index
-   troubleshooting/index
    glossary
-
 
 ..
    Indices and tables
