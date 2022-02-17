@@ -12,11 +12,7 @@ This section describes the following features:
    :titlesonly:
    
 
-   configuring_your_database
-   optimization_best_practices
-   xxrunning_sqream_in_a_docker_container
    access_control
-   xxchunks_and_extents
    compression
    flexible_data_clustering
    python_functions
@@ -26,6 +22,3 @@ This section describes the following features:
    transactions
    concurrency_and_locks
    concurrency_and_scaling_in_sqream
-   xxacceleration_studio_version_5.4.2
-   xxhardware_guide
-   international_languages_and_character_sets
