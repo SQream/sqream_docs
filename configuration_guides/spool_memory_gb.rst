@@ -8,4 +8,4 @@ The ``spoolMemoryGB`` flag sets the amount of memory (GB) available to the serve
 The following describes the ``spoolMemoryGB`` flag:
 
 * **Data type** - uint
-* **Data type** - ``8``
+* **Default value** - ``8``
