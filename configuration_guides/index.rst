@@ -14,7 +14,4 @@ The SQream Acceleration Studio divides flags into the following roles, each with
    admin_flags
    generic_flags
 
-For more information, see the following:
-
-* `SQream Acceleration Studio 5.4.3 <https://docs.sqream.com/en/v2020-1/sqream_studio_5.4.3/index.html>`_
-* `Configuration Guides <https://docs.sqream.com/en/v2020-1/configuration_guides/index.html#>`_
+For more information, see `SQream Acceleration Studio 5.4.3 <https://docs.sqream.com/en/v2020-1/sqream_studio_5.4.3/index.html>`_.
