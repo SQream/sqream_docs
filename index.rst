@@ -102,6 +102,7 @@ If you're looking for an older version of the documentation, versions 1.10 throu
 
    getting_started/index
    data_ingestion/index
+   feature_guides/index
    xxfeatures_tour
    guides/index
    installation_guides/index
