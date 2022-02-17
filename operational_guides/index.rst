@@ -14,7 +14,6 @@ This section summarizes the following operational guides:
    :glob:
    :titlesonly:
 
-
    access_control
    creating_or_cloning_a_storage_cluster
    delete
@@ -26,6 +25,6 @@ This section summarizes the following operational guides:
    security
    saved_queries
    seeing_system_objects_as_ddl
-   configuration
+   spooling
    hardware_guide
    optimization_best_practices

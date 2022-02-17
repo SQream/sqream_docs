@@ -11,6 +11,8 @@ The SQream Acceleration Studio divides flags into the following roles, each with
    :maxdepth: 2
    :glob:
 
+   current_configuration_method
+   previous_configuration_method
    admin_flags
    generic_flags
 
