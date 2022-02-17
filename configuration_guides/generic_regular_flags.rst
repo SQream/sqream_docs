@@ -13,3 +13,5 @@ The **Regular Generic Flags** page describes **Regular** modification type flags
    flip_join_order
    log_sys_level
    max_avg_blob_size_to_compress_on_gpu
+   limit_query_memory_gb
+   spool_memory_gb
