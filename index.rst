@@ -106,6 +106,7 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    third_party_tools/index
    feature_guides/index
    operational_guides/index
+   sqream_studio_5.4.3/index
    xxfeatures_tour
    guides/index
    architecture/index
