@@ -54,7 +54,7 @@ For Windows, SQream recommends Zulu 8 https://www.azul.com/downloads/zulu-commun
 Get the SQream DB JDBC driver
 -------------------------------
 
-SQream DB's JDBC driver is provided as a zipped JAR file, available for download from the `SQream Drivers page <http://sqream.com/product/client-drivers>`_. 
+SQream DB's JDBC driver is provided as a zipped JAR file, available for download from the `SQream Drivers page <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/index.html>`_. 
 
 Download and extract the JAR file from the zip archive.
 

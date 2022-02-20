@@ -27,7 +27,7 @@ After installing SAS Viya, you must install the JDBC driver.
 
 **To install the JDBC driver:**
 
-#. Download the `JDBC driver <https://docs.sqream.com/en/v2021.2/third_party_tools/client_drivers/jdbc/index.html>`_.
+#. Download the `JDBC driver <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/jdbc/index.html>`_.
 
     ::
 
@@ -73,7 +73,7 @@ After installing the JDBC driver, you must configure the JDBC driver from the SA
 
     * The database name is ``master`` and the schema is ``public``. 
 	
-      For more information about writing a connection string, see **Connect to SQream DB with a JDBC Application** and navigate to `Connection String <https://docs.sqream.com/en/v2021.2/guides/client_drivers/jdbc/index.html#connection-string>`_.
+      For more information about writing a connection string, see **Connect to SQream DB with a JDBC Application** and navigate to `Connection String <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/jdbc/index.html#connection-string>`_.
 
      ::
 	 
