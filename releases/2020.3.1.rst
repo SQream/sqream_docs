@@ -1,20 +1,17 @@
 .. _2020.3.1:
 
 **************************
-2020.3.1 Release Notes
+Release Notes 2020.3.1
 **************************
-The 2020.3.1 release notes were released on October 8, 2020 and describes the following:
+The 2020.3.1 release notes were released on October 8, 2020 and describe the following:
 
 .. contents:: 
    :local:
    :depth: 1
 
-
-
 New Features
 -------------
 The following list describes the new features:
-
 
 * TEXT data type:
    * Full support for ``MIN`` and ``MAX`` aggregate functions on ``TEXT`` columns in ``GROUP BY`` queries.
@@ -42,31 +39,25 @@ Performance Enhancements
 -------------
 The following list describes the performance enhancements:
 
-
 * Introduced the "MetaData on Demand" feature which results in signicant proformance improvements.
 
 * Implemented regex functions (``RLIKE``, ``REGEXP_COUNT``, ``REGEXP_INSTR``, ``REGEXP_SUBSTR``, ``PATINDEX``) for ``TEXT`` columns on GPU.
 
-
 Resolved Issues
 -------------
 The following list describes the resolved issues:
-
 
 * Multiple distinct aggregates no longer need to be used with developerMode flag.
 * In some scenarios, the ``statement_id`` and ``connection_id values`` are incorrectly recorded as ``-1`` in the log.
 * ``NOT RLIKE`` is not supported for ``TEXT`` in the compiler.
 * Casting from ``TEXT`` to ``date/datetime`` returns an error when the ``TEXT`` column contains ``NULL``.
 
-
 Known Issues and Limitations
 -------------
 No known issues and limitations.
 
-
 Upgrading to v2020.3.1
 ----------------
-
 Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and other OSs via Docker.
 
 Contact your account manager to get the latest release of SQream DB.

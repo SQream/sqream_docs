@@ -1,16 +1,13 @@
 .. _2020.3.2.1:
 
 **************************
-2020.3.2.1 Release Notes
+Release Notes 2020.3.2.1
 **************************
-The 2020.3.2.1 release notes were released on October 8, 2020 and describes the following:
-
-
+The 2020.3.2.1 release notes were released on October 8, 2020 and describe the following:
 
 .. contents:: 
    :local:
    :depth: 1
-
 
 Overview
 -----------------
@@ -20,14 +17,12 @@ Performance Enhancements
 -------------
 * Metadata on Demand optimization resulting in reduced latency and improved overall performance.
 
-
 Known Issues and Limitations
 -------------
 * Multiple count distinct operations is enabled for all data types.
 
 Upgrading to v2020.3.2.1
 -------------
-
 Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and other OSs via Docker.
 
 Contact your account manager to get the latest release of SQream DB.

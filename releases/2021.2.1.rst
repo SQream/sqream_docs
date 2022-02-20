@@ -1,9 +1,9 @@
 .. _2021.2.1:
 
 **************************
-What's New in 2021.2.1
+Release Notes 2021.2.1
 **************************
-The 2021.2.1 release notes were released on 15/12/2021.
+The 2021.2.1 release notes were released on 15/12/2021 and describes the following:
 
 .. contents:: 
    :local:
