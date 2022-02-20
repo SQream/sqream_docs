@@ -4,7 +4,7 @@
 SQream DB Documentation
 *************************
 
-For SQream DB Version 2021.1.
+For SQream Version 2021.2.
 
 .. only:: html
 
@@ -57,6 +57,8 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
      - **Driver and Deployment**
      - **Help and Support**
    * -         
+         :ref:`2021.2<2021.2>`
+
          :ref:`2021.1<2021.1>`
         
          :ref:`2020.3<2020.3>`

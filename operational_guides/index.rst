@@ -12,8 +12,6 @@ This section summarizes the following operational guides:
    :glob:
    :titlesonly:
 
-
-   access_control
    creating_or_cloning_a_storage_cluster
    external_data
    exporting_data

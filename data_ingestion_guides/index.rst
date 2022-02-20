@@ -14,4 +14,4 @@ The **Data Ingestion Sources** page provides information about the following dat
    orc
    oracle
 
-For information about database tools and interfaces that SQream supports, see `Third Party Tools <https://docs.sqream.com/en/v2021.1/third_party_tools/index.html>`_.
+For information about database tools and interfaces that SQream supports, see `Third Party Tools <https://docs.sqream.com/en/v2021.2/third_party_tools/index.html>`_.
