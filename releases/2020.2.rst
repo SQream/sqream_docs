@@ -1,7 +1,7 @@
 .. _2020.2:
 
 **************************
-2020.2 Release Notes
+Release Notes 2020.2
 **************************
 
 SQream v2020.2 contains some new features, improved performance, and bug fixes.

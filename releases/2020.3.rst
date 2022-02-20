@@ -1,7 +1,7 @@
 .. _2020.3:
 
 **************************
-2020.3 Release Notes
+Release Notes 2020.3
 **************************
 The 2020.3 release notes were released on October 8, 2020 and describes the following:
 
