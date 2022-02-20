@@ -4,7 +4,7 @@
 SQream DB Documentation
 *************************
 
-For SQream DB 2021.2.
+For SQream version 2021.2.
 
 .. only:: html
 
@@ -107,7 +107,6 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    feature_guides/index
    operational_guides/index
    sqream_studio_5.4.3/index
-   guides/index
    architecture/index
    configuration_guides/index
    reference/index
