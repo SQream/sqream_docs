@@ -33,7 +33,7 @@ If you need to install the driver in an offline system, see the offline method b
 Install from an offline package
 -------------------------------------
 
-The Node driver is provided as a tarball for download from the `SQream Drivers page <http://sqream.com/product/client-drivers>`_ .
+The Node driver is provided as a tarball for download from the `SQream Drivers page <https://docs.sqream.com/en/v2020.3.2.1/third_party_tools/client_drivers/index.html>`_ .
 
 After downloading the tarball, use ``npm`` to install the offline package.
 
@@ -360,6 +360,7 @@ BIGINT support
 The Node.JS connector supports fetching ``BIGINT`` values from SQream DB. However, some applications may encounter an error when trying to serialize those values.
 
 The error that appears is:
+
 .. code-block:: none
    
    TypeError: Do not know how to serialize a BigInt
@@ -379,4 +380,3 @@ For example:
          : value // return everything else unchanged
    ));
    console.log(json); // [{"test": "1"}]
-

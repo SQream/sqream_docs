@@ -16,7 +16,7 @@ Installing SQL Workbench with the SQream DB installer (Windows only)
 
 SQream DB's driver installer for Windows can install the Java prerequisites and SQL Workbench for you.
 
-#. Get the JDBC driver installer available for download from the `SQream Drivers page <http://sqream.com/product/client-drivers>`_. The Windows installer takes care of the Java prerequisites and subsequent configuration.
+#. Get the JDBC driver installer available for download from the `SQream Drivers page <https://docs.sqream.com/en/v2020.3.2.1/third_party_tools/client_drivers/index.html>`_. The Windows installer takes care of the Java prerequisites and subsequent configuration.
 
 #. Install the driver by following the on-screen instructions in the easy-to-follow installer.
    By default, the installer does not install SQL Workbench. Make sure to select the item!
@@ -54,7 +54,7 @@ For Windows, SQream recommends Zulu 8 https://www.azul.com/downloads/zulu-commun
 Get the SQream DB JDBC driver
 -------------------------------
 
-SQream DB's JDBC driver is provided as a zipped JAR file, available for download from the `SQream Drivers page <http://sqream.com/product/client-drivers>`_. 
+SQream DB's JDBC driver is provided as a zipped JAR file, available for download from the `SQream Drivers page <https://docs.sqream.com/en/v2020.3.2.1/third_party_tools/client_drivers/index.html>`_. 
 
 Download and extract the JAR file from the zip archive.
 

@@ -14,6 +14,7 @@ This section summarizes the following operational guides:
 
 
    access_control
+   optimization_best_practices
    creating_or_cloning_a_storage_cluster
    external_data
    exporting_data

@@ -1,7 +1,7 @@
 .. _configuring_your_instance_of_sqream:
 
 ****************************
-Configuring Your Instance of SQreams
+Configuring Your Instance of SQream
 ****************************
 The **Configuration** section lets you edit parameters from one centralized location. While you can edit these parameters from the **worker configuration file (config.json)** or from your CLI, you can also modify them in Studio in an easy-to-use format.
 

@@ -1,7 +1,7 @@
-.. _viewing_system_objects_as_ddl:
+.. _seeing_system_objects_as_ddl:
 
 ********************************
-Seeing System Objects as DDL
+Seeing system objects as DDL
 ********************************
 
 Dump specific objects
@@ -10,7 +10,7 @@ Dump specific objects
 Tables
 ----------
 
-See :ref:`get_ddl` for more information. 
+See :ref:`get_ddl` for more information.
 
 .. rubric:: Examples
 
