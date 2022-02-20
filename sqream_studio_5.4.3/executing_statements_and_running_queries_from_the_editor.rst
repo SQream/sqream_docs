@@ -102,7 +102,83 @@ The database object functions are used to perform the following:
 * The **additional operations** |icon-dots| - displays the following additional options:
   
 
+.. |icon-user| image:: /_static/images/studio_icon_user.png
+   :align: middle
+   
+.. |icon-dots| image:: /_static/images/studio_icon_dots.png
+   :align: middle   
+   
+.. |icon-editor| image:: /_static/images/studio_icon_editor.png
+   :align: middle
 
+.. |icon-copy| image:: /_static/images/studio_icon_copy.png
+   :align: middle
+
+.. |icon-select| image:: /_static/images/studio_icon_select.png
+   :align: middle
+
+.. |icon-dots| image:: /_static/images/studio_icon_dots.png
+   :align: middle
+
+.. |icon-filter| image:: /_static/images/studio_icon_filter.png
+   :align: middle
+
+.. |icon-ddl-edit| image:: /_static/images/studio_icon_ddl_edit.png
+   :align: middle
+
+.. |icon-run-optimizer| image:: /_static/images/studio_icon_run_optimizer.png
+   :align: middle
+
+.. |icon-generate-create-statement| image:: /_static/images/studio_icon_generate_create_statement.png
+   :align: middle
+
+.. |icon-plus| image:: /_static/images/studio_icon_plus.png
+   :align: middle
+
+.. |icon-close| image:: /_static/images/studio_icon_close.png
+   :align: middle
+
+.. |icon-left| image:: /_static/images/studio_icon_left.png
+   :align: middle
+
+.. |icon-right| image:: /_static/images/studio_icon_right.png
+   :align: middle
+
+.. |icon-format-sql| image:: /_static/images/studio_icon_format.png
+   :align: middle
+
+.. |icon-download-query| image:: /_static/images/studio_icon_download_query.png
+   :align: middle
+
+.. |icon-open-query| image:: /_static/images/studio_icon_open_query.png
+   :align: middle
+
+.. |icon-execute| image:: /_static/images/studio_icon_execute.png
+   :align: middle
+
+.. |icon-stop| image:: /_static/images/studio_icon_stop.png
+   :align: middle
+
+.. |icon-dashboard| image:: /_static/images/studio_icon_dashboard.png
+   :align: middle
+
+.. |icon-expand| image:: /_static/images/studio_icon_expand.png
+   :align: middle
+
+.. |icon-scale| image:: /_static/images/studio_icon_scale.png
+   :align: middle
+
+.. |icon-expand-down| image:: /_static/images/studio_icon_expand_down.png
+   :align: middle
+
+.. |icon-add| image:: /_static/images/studio_icon_add.png
+   :align: middle
+
+.. |icon-add-worker| image:: /_static/images/studio_icon_add_worker.png
+   :align: middle
+
+.. |keep-tabs| image:: /_static/images/studio_keep_tabs.png
+   :align: middle
 
 
 .. list-table::
