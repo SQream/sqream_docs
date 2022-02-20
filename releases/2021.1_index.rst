@@ -1,7 +1,7 @@
 .. _2021.1_index:
 
 **************************
-2021.1 Release Notes
+Release Notes 2021.1
 **************************
 The 2021.1 Release Notes describe the following releases:
 
