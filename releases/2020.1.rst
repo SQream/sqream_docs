@@ -1,7 +1,7 @@
 .. _2020.1:
 
 **************************
-What's New in 2020.1
+Release Notes 2020.1
 **************************
 
 SQream DB v2020.1 contains lots of new features, improved performance, and bug fixes.
@@ -13,7 +13,7 @@ The latest release vastly improves reliability and performance, and makes gettin
 The core of SQream DB v2020.1 contains new integration features, more analytics capabilities, and better drivers and connectors.
 
 
-New Features
+New features
 ================
 
 Integrations
@@ -35,7 +35,7 @@ Integrations
    See :ref:`logging` for more information.
 
 
-SQL Support
+SQL support
 ---------------
 
 * 
@@ -53,7 +53,7 @@ SQL Support
 * Added lots of new :ref:`aggregate functions<aggregate_functions>`, including ``VAR_SAMP``, ``VAR_POP``, ``COVAR_POP``, etc.
 
 
-Improvements and Fixes
+Improvements and fixes
 ========================
 
 SQream DB v2020.1 includes hundreds of small new features and tunable parameters that improve performance, reliability, and stability. Existing SQream DB users can expect to see a general speedup of around 10% on most statements and queries!
@@ -94,7 +94,7 @@ SQream DB v2020.1 includes hundreds of small new features and tunable parameters
 
 * Additional CSV date formats (date parsers) added for compatibility
 
-Behaviour Changes
+Behaviour changes
 ========================
 
 * ``ClientCmd`` is now known as :ref:`sqream sql<sqream_sql_cli_reference>`
@@ -162,8 +162,8 @@ Operations
    
 
  
-Known Issues and Limitations
-
+Known Issues & Limitations
+================================
 
 * An invalid formatted CSV can cause an ``insufficient memory`` error on a :ref:`copy_from` statement if a quote isn't closed and the file is much larger than system memory.
 

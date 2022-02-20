@@ -1,15 +1,18 @@
 .. _releases:
 
 **********
-Releases
+Release Notes
 **********
 
+   
 .. list-table::
    :widths: auto
    :header-rows: 1
    
+   
    * - Version
      - Release Date
+     - June 13, 2021  
    * - :ref:`2020.3`
      - October 8, 2020
    * - :ref:`2020.2`
@@ -24,6 +27,6 @@ Releases
    :glob:
    :hidden:
 
-   2020.3
+   2020.3_index
    2020.2
    2020.1
