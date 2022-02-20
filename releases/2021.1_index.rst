@@ -1,0 +1,18 @@
+.. _2021.1_index:
+
+**************************
+2021.1 Release Notes
+**************************
+The 2021.1 Release Notes describe the following releases:
+
+.. contents:: 
+   :local:
+   :depth: 1
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   2021.1.2
+   2021.1.1
+   2021.1

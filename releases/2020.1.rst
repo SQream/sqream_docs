@@ -1,15 +1,8 @@
 .. _2020.1:
 
 **************************
-What's New in 2020.1
+2020.1 Release Notes
 **************************
-The 2021.2.1 release notes were released on 15/1/2021.
-
-.. contents:: 
-   :local:
-   :depth: 1   
-   
-The 2021.2 Release Notes describe the following releases:
 
 SQream DB v2020.1 contains lots of new features, improved performance, and bug fixes.
 
@@ -20,92 +13,26 @@ The latest release vastly improves reliability and performance, and makes gettin
 The core of SQream DB v2020.1 contains new integration features, more analytics capabilities, and better drivers and connectors.
 
 
-New Features
--------------
-The 2021.2.1 Release Notes include the following new features:
+New features
+================
 
-.. contents:: 
-   :local:
-   :depth: 1
-   
-Performance Enhancements
-------
-The following **Performance Enhancements** apply to Version 2020.1:
+Integrations
+-----------------
 
-* Loading files directly from :ref:`S3 buckets<inserting_data>`. Customers with columnar data in S3 data lakes can now access the data directly. All that is needed is to simply point an external table to an S3 bucket with Parquet, ORC, or CSV objects. This feature is available on all deployments of SQream DB – in the cloud and on-prem.
-
-   ::
+* Load files directly from :ref:`S3 buckets<inserting_data>`. Customers with columnar data in S3 data lakes can now access the data directly. All that is needed is to simply point an external table to an S3 bucket with Parquet, ORC, or CSV objects. This feature is available on all deployments of SQream DB – in the cloud and on-prem.
 
 * Load files directly from :ref:`HDFS<inserting_data>`. SQream DB now comes with built-in, native HDFS support for directly loading data from Hadoop-based data lakes. Our focus on helping Hadoop customers do more with their data led us to develop this feature, which works out of the box. As a result, SQream DB can now not only read but also write data, and intermediate results back to HDFS for HIVE and other data consumers. SQream DB now fits seamlessly into a Hadoop data pipeline.
 
 
-   ::
-
 * Import :ref:`ORC files<orc>`, through :ref:`external_tables`. ORC files join Parquet as files that can be natively accessed and inserted into SQream DB tables.
-
-   ::
 
 * :ref:`Python driver (pysqream)<pysqream>` is now DB-API v2.0 compliant. Customers can write high-performance Python applications that make full use of SQream DB - connect, query, delete, and insert data. Data scientists can use pysqream with Pandas, Numpy, and AI/ML frameworks like TensorFlow for direct queries of huge datasets.
 
-   ::
-
 * Certified :ref:`Tableau JDBC connector (taco)<connect_to_tableau>`, now also :ref:`supported on MacOS<tableau_manual_installation>`. Users are encouraged to install the new JDBC connector.
 
-   ::
-
-* All logs are now unified into one log, which can be analyzed with SQream DB directly.
-
-   ::
-
-
-For more information, see :ref:`logging` for more information.
-
-Resolved Issues
--------------
-The following table lists the issues that were resolved in Version 2020.1:
-
-.. list-table::
-   :widths: 17 200
-   :header-rows: 1  
-   
-   * - SQ Number
-     - Description
-   * - SQ-8267
-     - A method has been provided for including the ``GROUP BY`` and ``DISTINCT COUNT`` statements.  
-
-Known Issues
-------
-The following table shows the known issues relevant to Version 2020.1:
-
-.. list-table::
-   :widths: 17 200
-   :header-rows: 1  
-   
-   * - SQ Number
-     - Description
-   * - SQ-2216
-     - Multiple count distinct performance issue (2020.1 regression)
-   * - SQ-2620
-     - Operations on Snappy-compressed ORC files are slower than their Parquet equivalents
-   * - SQ-2628
-     - Copy from: insufficient memory error when there is unclosed quote in csv and the csv file is very big
-   * - SQ-2637
-     - Performance degradation - tpch10t query22.sql
-
-
-
-
-Naming Convention Modifications
-------
-The **Naming Convention Modifications** section is not relevant to Version 2020.1.
-
-End of Support
-------
-The **End of Support** section is not relevant to Version 2020.1.
-
-Deprecated Features
-------
-The **Deprecated Components** section is not relevant to Version 2020.1.
+* 
+   All logs are now unified into one log, which can be analyzed with SQream DB directly.
+   See :ref:`logging` for more information.
 
 
 SQL support

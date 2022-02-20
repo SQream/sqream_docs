@@ -40,5 +40,3 @@ The **Administration Flags** page describes the following flags, which can be mo
    use_Config_IP
    use_Legacy_Decimal_Literals
    use_Legacy_String_Literals
-
-
