@@ -1,7 +1,7 @@
 .. _2019.2.1:
 
 ******************************
-2019.2.1 Release Notes
+Release Notes 2019.2.1
 ******************************
 
 * 250 bugs fixed. Thanks to all of our customers and an unprecedented number of deployments for helping us find and fix these!
