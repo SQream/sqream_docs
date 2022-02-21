@@ -48,7 +48,7 @@ If you are using Windows, after installing the Tableau Desktop application you c
 
     ::
 
-#. Download the most current version of the `SQream JDBC driver <https://docs.sqream.com/en/latest/guides/client_drivers/index.html#client-drivers>`_.
+#. Download the most current version of the `SQream JDBC driver <https://docs.sqream.com/en/v2020.3.2/third_party_tools/client_drivers/jdbc/index.html>`_.
 
     ::
 	
@@ -446,8 +446,6 @@ If Tableau cannot locate the SQream JDBC driver, do the following:
 
         ::
 		
-   * **For Windows** - add an environment variable for the classpath:
- 
-	.. image:: /_static/images/third_party_connectors/tableau/envrionment_variable_for_classpath.png
+   * **For Windows** - add an environment variable for the classpath.
 
 If you experience issues after restarting Tableau, see the `SQream support portal <https://support.sqream.com>`_.

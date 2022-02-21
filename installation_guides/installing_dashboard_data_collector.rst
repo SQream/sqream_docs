@@ -158,4 +158,4 @@ After accessing the Prometheus user interface, you can install the **Dashboard D
    
       --data-collector-url=http://127.0.0.1:8100/api/dashboard/data
 
-Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
+Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`.

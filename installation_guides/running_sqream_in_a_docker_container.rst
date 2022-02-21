@@ -499,7 +499,7 @@ Installing the Docker Engine Using an x86_64 Processor on CentOS
 ---------------------------------
 The x86_64 processor supports installing the **Docker Community Edition (CE)** versions 18.03 and higher.
 
-For more information on installing the Docker Engine CE on an x86_64 processor, see `Install Docker Engine on CentOS <https://docs.docker.com/engine/install/centos/>`_
+For more information on installing the Docker Engine CE on an x86_64 processor, see `Install Docker Engine on CentOS <https://docs.docker.com/engine/install/centos/>`_.
 
 
 
@@ -511,7 +511,7 @@ Installing the Docker Engine Using an x86_64 Processor on Ubuntu
 
 The x86_64 processor supports installing the **Docker Community Edition (CE)** versions 18.03 and higher.
 
-For more information on installing the Docker Engine CE on an x86_64 processor, see `Install Docker Engine on Ubuntu <https://docs.docker.com/install/linux/docker-ce/ubuntu/>`_
+For more information on installing the Docker Engine CE on an x86_64 processor, see `Install Docker Engine on Ubuntu <https://docs.docker.com/install/linux/docker-ce/ubuntu/>`_.
 
 .. _docker_ibmpower9:
 
@@ -670,7 +670,9 @@ Installing the NVIDIA Docker2 Toolkit on an Ubuntu Operating System
 
       $ sudo apt-get install nvidia-docker2
       $ sudo pkill -SIGHUP dockerd
+
 3. Do one of the following:
+
    * If you received an error when installing the ``nvidia-docker2`` package, skip to :ref:`Step 4 <step_4_ubuntu>`.
    * If you successfully installed the ``nvidia-docker2`` package, skip to :ref:`Step 5 <step_5_ubuntu>`.
 

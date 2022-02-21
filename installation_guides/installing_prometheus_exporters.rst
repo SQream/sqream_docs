@@ -22,7 +22,7 @@ The Installing Prometheus Exporters guide describes how to installing the follow
 
 * The **process_exporter** - shows data belonging to the server's running processes.
 
-For information about more exporters, see `Exporters and Integration <https://prometheus.io/docs/instrumenting/exporters/>`_
+For information about more exporters, see `Exporters and Integration <https://prometheus.io/docs/instrumenting/exporters/>`_.
 
 Adding a User and Group
 =====================

@@ -41,7 +41,7 @@ For more information about Microstrategy, see `MicroStrategy <https://www.micros
 
 
 
-:ref:`Back to Overview <ms_top>`
+:ref:`Back to Overview <ms_top>`.
 
 
 
@@ -54,7 +54,7 @@ Connecting a Data Source
 
     ::
 	
-2. Download the most current version of the `SQream JDBC driver <https://docs.sqream.com/en/latest/guides/client_drivers/index.html#client-drivers>`_.
+2. Download the most current version of the `SQream JDBC driver <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/jdbc/index.html>`_.
 
     ::
 
@@ -125,7 +125,7 @@ Connecting a Data Source
 
          odbc:Driver={SqreamODBCDriver};DSN={SQreamDB ODBC};Server=<Host>;Port=<Port>;Database=<database name>;User=<username>;Password=<password>;Cluster=<boolean>;
 
-      For more information about the available **connection parameters** and other examples, see `Connection Parameters <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html#connection-parameters>`_.
+      For more information about the available **connection parameters** and other examples, see `Connection Parameters <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/jdbc/index.html#connection-parameters>`_.
 
    7. In the **User** and **Password** fields, fill out your user name and password.
 
@@ -169,7 +169,7 @@ Your populated dashboard is displayed and is ready for data discovery and analyt
 
 .. _supported_sqream_drivers:
 
-:ref:`Back to Overview <ms_top>`
+:ref:`Back to Overview <ms_top>`.
 
 Supported SQream Drivers
 ================
@@ -182,4 +182,4 @@ The following list shows the supported SQream drivers and versions:
 
 .. _supported_tools_and_operating_systems:
 
-:ref:`Back to Overview <ms_top>`
+:ref:`Back to Overview <ms_top>`.

@@ -42,14 +42,14 @@ The following list shows the server host name format requirements:
 * Only lowercase alphanumeric characters, such as ``-`` or ``.``.
 * Starts and ends with alphanumeric characters.
 
-Go back to :ref:`Preparing the SQream Environment to Launch SQream Using Kubernetes<preparing_sqream_environment>`
+Go back to :ref:`Preparing the SQream Environment to Launch SQream Using Kubernetes<preparing_sqream_environment>`.
 
 
 Operating System Requirements
 ------------------------------
 The required operating system is a version of x86 CentOS/RHEL between 7.6 and 7.9. Regarding PPC64le, the required version is RHEL 7.6.
 
-Go back to :ref:`Preparing the SQream Environment to Launch SQream Using Kubernetes<preparing_sqream_environment>`
+Go back to :ref:`Preparing the SQream Environment to Launch SQream Using Kubernetes<preparing_sqream_environment>`.
 
 
 Compute Server Specifications
@@ -60,7 +60,7 @@ Installing SQream with Kubernetes includes the following compute server specific
 * **RAM:** 16GB
 * **HD:** 500GB
 
-Go back to :ref:`Preparing the SQream Environment to Launch SQream Using Kubernetes<preparing_sqream_environment>`
+Go back to :ref:`Preparing the SQream Environment to Launch SQream Using Kubernetes<preparing_sqream_environment>`.
 
 .. _set_up_your_hosts:
 
@@ -132,7 +132,7 @@ The first step in setting up your hosts is to install the required packages.
        $ sudo systemctl status ntpd
        $ sudo ntpq -p
 	   
-Go back to :ref:`Setting Up Your Hosts<set_up_your_hosts>`
+Go back to :ref:`Setting Up Your Hosts<set_up_your_hosts>`.
 
      
 Disabling the Linux UI
@@ -145,7 +145,7 @@ You can disable Linux by running the following command:
    
       $ sudo systemctl set-default multi-user.target
 
-Go back to :ref:`Setting Up Your Hosts<set_up_your_hosts>`
+Go back to :ref:`Setting Up Your Hosts<set_up_your_hosts>`.
 
 
 Disabling SELinux
@@ -167,7 +167,7 @@ After disabling the Linux UI you must disable SELinux.
    
        $ sudo reboot      
 
-Go back to :ref:`Setting Up Your Hosts<set_up_your_hosts>`
+Go back to :ref:`Setting Up Your Hosts<set_up_your_hosts>`.
 
 Disabling Your Firewall
 ----------------------------------
@@ -178,7 +178,7 @@ After disabling SELinux, you must disable your firewall by running the following
          $ sudo systemctl stop firewalld
          $ sudo systemctl disable firewalld
 
-Go back to :ref:`Setting Up Your Hosts<set_up_your_hosts>`
+Go back to :ref:`Setting Up Your Hosts<set_up_your_hosts>`.
 
   
 Checking the CUDA Version
@@ -216,10 +216,10 @@ After completing all of the steps above, you must check the CUDA version.
 
 In the above output, the CUDA version is **10.1**.
 
-If the above output is not generated, CUDA has not been installed. To install CUDA, see `Installing the CUDA driver <https://docs.sqream.com/en/latest/guides/operations/setup/recommended_pre-installation_configurations.html?highlight=install%20CUDA#installing-the-cuda-driver>`_.
+If the above output is not generated, CUDA has not been installed. To install CUDA, see `Installing the Nvidia CUDA driver <https://docs.sqream.com/en/v2020.3.2/installation_guides/recommended_pre-installation_configurations.html#installing-the-nvidia-cuda-driver>`_.
 
 
-Go back to :ref:`Setting Up Your Hosts<set_up_your_hosts>`
+Go back to :ref:`Setting Up Your Hosts<set_up_your_hosts>`.
 
 .. _install_kubernetes_cluster:
 
@@ -290,7 +290,7 @@ The generated file is ``/root/.ssh/id_rsa.pub``.
    
 4. Replace the ``remote host`` with your host IP address.
       
-Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`.     
 
 Installing and Deploying a Kubernetes Cluster Using Kubespray
 ------------------------------------
@@ -439,7 +439,7 @@ The following is an example of the correct output. Each host and IP address that
       $     calico-rr:
       $       hosts: {}
 	  
-Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`.     
      
 Adjusting Kubespray Deployment Values
 -------------------------------------    
@@ -519,7 +519,7 @@ The following is an example of the correct output:
 
 In the event that the output is incorrect, or a failure occurred during the installation, please contact a SQream customer support representative.
 
-Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`.   
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`..   
       
 Checking Your Kubernetes Status
 -------------------------------
@@ -572,7 +572,7 @@ The following is an example of the correct output:
          $ kube-system              kube-scheduler-k8s-host-1-134                1/1     Running   0          161m
          $ kube-system              kube-scheduler-k8s-host-194                  1/1     Running   0          161m
 
-Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`.     
         
 Adding a SQream Label to Your Kubernetes Cluster Nodes
 -------------------------------------------------
@@ -612,7 +612,7 @@ After checking your Kubernetes status, you must add a SQream label on your Kuber
       $ [root@edk-rhl-1 kubespray]# kubectl label nodes eks-rhl-3 cluster=sqream
       $ node/eks-rhl-3 labeled
 
-Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`.     
    
 Copying Your Kubernetes Configuration API File to the Master Cluster Nodes
 -------------------------------------------------  
@@ -663,7 +663,7 @@ When the Kubernetes cluster installation is complete, an API configuration file 
 
 This grants the local user the necessary permissions to run Docker commands.
 
-Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`.     
 
 Creating an env_file in Your Home Directory
 -------------------------------------------------
@@ -722,7 +722,7 @@ After copying your Kubernetes configuration API file to your Master cluster node
         HADOOP_HDFS_XML=${HADOOP_CONFIG_DIR}/hdfs-site.xml
         EOF  
 
-Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`.     
 		
 
 
@@ -744,7 +744,7 @@ The following is an example of the correct output:
    
    $ namespace/sqream-init created
    
-Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`.     
 
    
 Pushing the **env_file** File to the Kubernetes Configmap
@@ -764,7 +764,7 @@ The following is an example of the correct output:
    $ configmap/sqream-init created
 
 
-Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`.     
 
 
 Installing the NVIDIA Docker2 Toolkit
@@ -830,7 +830,7 @@ Installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on CentOS
       $ |  No running processes found                                                 |
       $ +-----------------------------------------------------------------------------+
 
-For more information on installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on CentOS, see `NVIDIA Docker Installation - CentOS distributions <https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-2.0)#centos-distributions-1>`_
+For more information on installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on CentOS, see `NVIDIA Docker Installation - CentOS distributions <https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-2.0)#centos-distributions-1>`_.
      
 Installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on Ubuntu
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -862,7 +862,7 @@ Installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on Ubuntu
      
 For more information on installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on Ubuntu, see `NVIDIA Docker Installation - Ubuntu distributions <https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-2.0)#ubuntu-distributions-1>`_
 
-Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`.     
     
 Modifying the Docker Daemon JSON File for GPU and Compute Nodes
 -------------------------------------
@@ -925,7 +925,7 @@ Modifying the Docker Daemon JSON File for GPU Nodes
    
      $ exit
 	 
-Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`.     
 
       
 Modifying the Docker Daemon JSON File for Compute Nodes
@@ -967,7 +967,7 @@ You must follow this procedure only if you have a Compute node.
    
      $ exit
 
-Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`.     
    
 Installing the Nvidia-device-plugin Daemonset
 ----------------------------------------------
@@ -996,7 +996,7 @@ After modifying the Docker daemon JSON file for GPU or Compute Nodes, you must i
       $ [root@eks-rhl-1 ~]# kubectl label nodes eks-rhl-3 nvidia.com/gpu=true
       $ node/eks-rhl-3 labeled  
 
-Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`.     
    
 Creating an Nvidia Device Plugin
 ----------------------------------------------   
@@ -1021,7 +1021,7 @@ The following is an example of the correct output:
    $ nvidia-device-plugin-daemonset-jdvxs       1/1     Running   0          6h1m
    $ nvidia-device-plugin-daemonset-xpmsv       1/1     Running   0          6h1m
 
-Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`.     
 
 Checking GPU Resources Allocatable to GPU Nodes
 -------------------------------------
@@ -1046,7 +1046,7 @@ The following is an example of the correct output:
    $  nvidia.com/gpu:     1
    $  pods:               110 
 
-Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`.     
 
 Preparing the WatchDog Monitor
 ------------------------------
@@ -1068,7 +1068,7 @@ The following is an example of the correct syntax:
    $ 10.0.0.2 k8s-node2.storage
    $ 10.0.0.3 k8s-node3.storage
 
-Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
+Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`.     
 
 .. _installing_sqream_software:   
 
@@ -1116,7 +1116,7 @@ The following shows the output of the extracted file:
    -rwxrwxr-x. 1 sqream sqream  9465 Jan 27 11:39 sqream-install
    -rwxrwxr-x. 1 sqream sqream 12444 Jan 27 11:39 sqream-start
 
-Go back to :ref:`Installing Your SQream Software<installing_sqream_software>`
+Go back to :ref:`Installing Your SQream Software<installing_sqream_software>`.
 
 Setting Up and Configuring Hadoop
 --------------------------------
@@ -1140,7 +1140,7 @@ After getting the SQream package, you can set up and configure Hadoop by configu
 
 The SQream installer automatically copies the above files during the installation process.
 
-Go back to :ref:`Installing Your SQream Software<installing_sqream_software>`
+Go back to :ref:`Installing Your SQream Software<installing_sqream_software>`.
 
 Starting a Local Docker Image Registry
 --------------------------------
@@ -1188,7 +1188,7 @@ The following is an example of the correct output:
        NAME                                      READY   STATUS    RESTARTS   AGE
       sqream-docker-registry-655889fc57-hmg7h   1/1     Running   0          6h40m
 
-Go back to :ref:`Installing Your SQream Software<installing_sqream_software>`
+Go back to :ref:`Installing Your SQream Software<installing_sqream_software>`.
 
 Installing the Kubernetes Dashboard
 --------------------------------
@@ -1291,7 +1291,7 @@ After starting a local Docker image registry, you must install the Kubernetes da
   
 The Kubernetes dashboard is displayed.
 
-Go back to :ref:`Installing Your SQream Software<installing_sqream_software>`
+Go back to :ref:`Installing Your SQream Software<installing_sqream_software>`.
 
 Installing the SQream Prometheus Package
 --------------------------------
@@ -1313,7 +1313,7 @@ To install the **sqream-prometheus** package, you must do the following:
 
 2. :ref:`Check the exporter service <check_exporter_status>`
 
-Go back to :ref:`Installing Your SQream Software<installing_sqream_software>`
+Go back to :ref:`Installing Your SQream Software<installing_sqream_software>`.
 
 
 .. _install_exporter_service:
@@ -1394,7 +1394,7 @@ You can check the exporter status by running the following command:
 
    $ sudo systemctl status node_exporter && sudo systemctl status nvidia_exporter
 
-Go back to :ref:`Installing Your SQream Software<installing_sqream_software>`
+Go back to :ref:`Installing Your SQream Software<installing_sqream_software>`.
 
 
 .. _running_sqream_install_service:

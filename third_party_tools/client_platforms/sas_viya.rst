@@ -1,130 +1,235 @@
 .. _connect_to_sas_viya:
 
 *************************
-Connect to SQream Using SAS Viya
+Connecting to SQream Using SAS Viya
 *************************
 
-You can use SAS Viya to connect to a SQream DB cluster. This tutorial is a guide that will show you how to connect to SAS Viya. 
+Overview
+=====================
+SAS Viya is used to connect to a SQream cluster. The **Connecting to SQream Using SAS Viya** page describes how to connect to SAS Viya.
 
-.. contents:: In this topic:
-   :local:
+The Connecting to SQream Using SAS Viya page describes the following:
+
+.. contents::
+   :local: 
+   :depth: 1
+   
 
 Installing SAS Viya
-============================
+-------------------
+Integrating with SQream has been tested with SAS Viya v.03.05 and newer.
 
-SQream DB has been tested with SAS Viya v.03.05 and newer.
+To install SAS Viya, see `SAS Viya <https://www.sas.com/en_us/software/viya.html>`_.
 
-If you do not already have SAS Viya installed, refer to SAS's website https://www.sas.com/en_us/software/viya.html .
+Installing the JDBC Driver
+-------------------
+After installing SAS Viya, you must install the JDBC driver.
 
+**To install the JDBC driver:**
 
-Installing the JDBC driver
-=================================================
+#. Download the `JDBC driver <https://docs.sqream.com/en/v2020.3.2/third_party_tools/client_drivers/jdbc/index.html>`_.
 
-#. Download the JDBC driver :ref:`from the client drivers page<client_drivers>`.
+    ::
 
 #. Unzip the JDBC driver into a location on the SAS Viya server.
    
    SQream recommends creating the directory ``/opt/sqream`` on the SAS Viya server.
-
-
-Configuring the JDBC driver in SAS Viya
-====================================================
-
-#. Sign into SAS Studio
-
-#. 
-   Create a new SAS program
    
-   .. figure:: /_static/images/sas_viya_new_program.png
-      :scale: 80 %
-      
+Configuring the JDBC Driver from the SAS Studio
+-------------------
+After installing the JDBC driver, you must configure the JDBC driver from the SAS Studio.
+
+**To configure the JDBC driver from the SAS Studio:**
+
+#. Sign in to the SAS Studio.
+
+    ::
+
+#. From the **New** menu, click **SAS Program**.
    
-#. Create a sample program to explore data
+    ::  
+   
+#. Create a sample program to explore the data, as shown below:
 
-
-   .. literalinclude:: connect.sas
+   .. literalinclude:: connect_2.sas
       :language: sas
-      :caption: Sample SAS program
+      :caption: Sample SAS Program
       :linenos:
-      :emphasize-lines: 11
+      :emphasize-lines: 9
 
-   This sample program does several things:
+   The sample program above does the following:
       
-      * Line 10: Start a JDBC session named ``sqlib``, associated with the SQream DB driver. This statement extends the SAS global LIBNAME statement so that you can assign a libref to your data source. This feature lets you reference a table in SQream DB directly in a DATA Step or SAS procedure. 
-      
-      * Line 11: Instruct SAS Viya where to find the SQream DB JDBC driver. This step is required because SAS Viya will not honor the SAS_ACCESS_CLASSPATH environment variable for this connection.
-      
-      * 
-         Lines 12-15: Associate the libref to be able to use it in the program as ``sqlib.tablename``. The libref will be ``sqlib`` and it will use the JDBC engine and connect to the ``sqream-cluster.piedpiper.com`` SQream DB cluster. 
-         
-         The database name is ``raviga`` and the schema is ``public``.
-         
-         See our JDBC guide for `connection string documentation <connection_string>`.
-         
-      * Lines 19-23: Data preparation step. We load data from the customers table into the in-memory space in SAS Viya.
-      
-      * Lines 25-27: DATA step. This step should be familiar to SAS v9 users. We use standard SAS naming conventions to reference the data, with ``sqlib`` as the libref and ``customers`` as the table.
+    * **Line 8**: Starts a JDBC session named ``sqlib`` associated with the SQream driver. This statement extends the SAS global ``libname`` statement so you can assign a **libref** to your data source. The libref feature lets you reference a table in SQream directly from a DATA step or SAS procedure.
+	
+     ::
+	 
+    * **Line 10**: Provides SAS Viya with the location of the SQream JDBC driver. This step is required because SAS Viya does not support the SAS_ACCESS_CLASSPATH environment variable for this connection.
+	
+     ::
 
+    * **Lines 8-15**: Associates the libref with the SQream driver to be used as ``sqlib.tablename``. The libref is ``sqlib`` and uses the JDBC engine to connect to the ``sqream-cluster.piedpiper.com`` SQream cluster.
+	
+     ::
 
-#. Run the program by clicking the Run button
+    * The database name is ``master`` and the schema is ``public``. 
+	
+      For more information about writing a connection string, see **Connect to SQream DB with a JDBC Application** and navigate to `Connection String <https://docs.sqream.com/en/v2020.3.2/guides/client_drivers/jdbc/index.html#connection-string>`_.
+
+     ::
+	 
+    * **Lines 17-20**: Prepares data by loading it from the customer's table into the in-memory space in SAS Viya.
+	
+     ::
+	 
+
+     
+    * **Lines 21-23**: DATA step. In this step, standard SAS naming conventions are used to reference the data, with ``sqlib`` as the libref and ``nba`` as the table name.
+
+4. Run the program by clicking **Run**.
+
+   The current SAS program is run.
+
+   If the sample runs correctly, the following new tabs appear:
    
-   .. figure:: /_static/images/sas_viya_run_program.png
-      :scale: 80 %
-      
-      The Run button runs the current SAS program
-
-   If the sample ran correctly, three new tabs will appear: **Log**, **Results**, and **Output Data**.
+   * Log
    
-#. The query results can be seen in the **Results** tab.
-
-   .. figure:: /_static/images/sas_viya_results_tab.png
-      :scale: 80 %
-      
-      The results tab contains query results
+   * Results
    
+   * Output Data
    
+   The query results are displayed in the **Results** tab, which shows your query results.   
 
-Browsing data and workbooks
-========================================
+Browsing Your Data and Workbooks
+-------------------
+After configuring the JDBC driver from the SAS Studio, you can browse your data and workbooks.
 
-#. From the panel on the left, navigate to **Libraries** to open the navigation tree.
+**To browse your data and workbooks:**
 
-#. Our previously created library named ``SQLIB`` will populate, and show the table ``customers``. Double clicking on the table name will expand it and show the columns.
+#. From the panel on the left, **Libraries**.
 
-#. Find the workbook you created in the DATA step. It should appear under ``WORK``.
+   The library that you created (``SQLIB``) is populated, and the ``nba`` table is displayed. You can double-click the table name to expand the table and show the columns.
 
-   The workbook will be named ``sqlib.customers``. Double click it to expand the table tree.
+    ::
+
+#. Locate the workbook you created in the :ref:`data step <data_step>` in the **WORK** tree item.
+
+   The workbook is named ``sqlib.nba``. You can double-click the table name to expand the table tree.
+   
+Using SAS Viya Visual Analytics
+-------------------
+This section describes how to use SAS visual analytics.
+
+**To use SAS visual analytics:**
+
+#. Log in to `SAS Visual Analytics <http://192.168.4.63/SASLogon/login>`_ using your credentials:
+
+    ::
+
+2. Click **New Report**.
+
+    ::
+
+3. Click **Data**.
+
+    ::
+
+4. Click **Data Sources**.
+
+    ::
+
+5. Click the **Connect** icon.
+
+    ::
+
+6. From the **Type** menu, select **Database**.
+
+    ::
+
+7. Provide the required information and select **Persist this connection beyond the current session**.
+
+    ::
+
+8. Click **Advanced** and provide the required information.
+
+    ::
+
+9. Add the following additional parameters by clicking **Add Parameters**:
+
+.. list-table::
+   :widths: 10 90
+   :header-rows: 1   
+   
+   * - Name
+     - Value
+   * - class
+     - com.sqream.jdbc.SQDriver
+   * - classPath
+     - /opt/sqream/sqream-jdbc-4.5.0.jar   
+   * - url
+     - \jdbc:Sqream://<IP>:<port>/<database>;cluster=true
+   * - username
+     - sqream
+   * - password
+     - sqream
+   
+10. Click **Test Connection**.
+
+     ::
+
+11. If the connection is successful, click **Save**.
+
+If your connection is not successful, see :ref:`best_practices_and_troubleshooting` below.
+
+.. _best_practices_and_troubleshooting:
+
+Best Practices and Troubleshooting
+-------------------
+This section describes the following best practices and troubleshooting procedures when connecting to SQream using SAS Viya:
+
+.. contents::
+   :local:
+
+Inserting Only Required Data
+~~~~~~~~~~~~~
+When using Tableau, SQream recommends using only data that you need, as described below:
+
+* Insert only the data sources you need into SAS Viya, excluding tables that don’t require analysis.
+
+    ::
 
 
-
-SAS Viya best practices and troubleshooting
-=================================================
-
-Cut out what you don't need
------------------------------
-
-* Bring only the data sources you need into SAS Viya. As a best practice, do not bring in tables that you don't intend to explore.
-
-* Add filters before the DATA step to reduce in-memory size. Add filters to the datasource before exploring, so that the queries sent to SQream DB run faster.
+* To increase query performance, add filters before analyzing. Every modification you make while analyzing data queries the SQream database, sometimes several times. Adding filters to the datasource before exploring limits the amount of data analyze and increases query performance.
 
 
-Create a separate service for SAS Viya
----------------------------------------
+Creating a Separate Service for SAS Viya
+~~~~~~~~~~~~~
+SQream recommends creating a separate service for SAS Viya with the DWLM. This reduces the impact that Tableau has on other applications and processes, such as ETL. In addition, this works in conjunction with the load balancer to ensure good performance.
 
-SQream recommends that SAS Viya get a separate service with the DWLM. This will reduce the impact of SAS Viya on other applications and processes, such as ETL.
+Locating the SQream JDBC Driver
+~~~~~~~~~~~~~
+In some cases, SAS Viya cannot locate the SQream JDBC driver, generating the following error message:
 
-This works in conjunction with the load balancer to ensure good performance.
+.. code-block:: text
+
+   java.lang.ClassNotFoundException: com.sqream.jdbc.SQDriver
+
+**To locate the SQream JDBC driver:**
+
+1. Verify that you have placed the JDBC driver in a directory that SAS Viya can access.
+
+    ::
 
 
-Troubleshooting ``java.lang.ClassNotFoundException: com.sqream.jdbc.SQDriver`` exceptions
---------------------------------------------------------------------------------------------------------
+2. Verify that the classpath in your SAS program is correct, and that SAS Viya can access the file that it references.
 
-In some cases, SAS Viya may have trouble finding the SQream DB JDBC driver. This message explains that the driver can't be found.
+    ::
 
-To solve this issue, try two things:
 
-1. Verify that the JDBC driver was placed in a directory that SAS Viya can access
+3. Restart SAS Viya.
 
-2. Verify the classpath in your SAS program. Make sure that the classpath is correct, and the file it references can be accessed by SAS Viya.
+For more troubleshooting assistance, see the `SQream Support Portal <https://sqream.atlassian.net/servicedesk/customer/portals>`_.
 
-If you're still experiencing issues after restarting SAS Viya, we're always happy to help. Visit `SQream's support portal <https://support.sqream.com>`_ for additional support.
+
+Supporting TEXT
+~~~~~~~~~~~~~
+In SAS Viya versions lower than 4.0, casting ``TEXT`` to ``CHAR`` changes the size to 1,024, such as when creating a table including a ``TEXT`` column. This is resolved by casting ``TEXT`` into ``CHAR`` when using the JDBC driver.

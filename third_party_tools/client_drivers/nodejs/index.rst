@@ -33,7 +33,7 @@ If you need to install the driver in an offline system, see the offline method b
 Install from an offline package
 -------------------------------------
 
-The Node driver is provided as a tarball for download from the `SQream Drivers page <http://sqream.com/product/client-drivers>`_ .
+The Node driver is provided as a tarball for download from `Client Drivers for v2020.3.2 <https://docs.sqream.com/en/v2020.3.2/third_party_tools/client_drivers/index.html#>`_ .
 
 After downloading the tarball, use ``npm`` to install the offline package.
 
