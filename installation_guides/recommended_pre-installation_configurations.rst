@@ -3,8 +3,7 @@
 *********************************************
 Recommended Pre-Installation Configuration
 *********************************************
-
-Before :ref:`installing SQream DB<running_sqream_in_a_docker_container>`, SQream recommends you to tune your system for better performance and stability.
+Before :ref:`installing SQream DB<installing_sqream_db_docker>`, SQream recommends you to tune your system for better performance and stability.
 
 This page provides recommendations for production deployments of SQream and describes the following:
 
@@ -15,9 +14,9 @@ This page provides recommendations for production deployments of SQream and desc
 
 Recommended BIOS Settings
 ==========================
-The BIOS settings may have a variety of names, or may not exist on your system. Each system vendor has a different set of settings and variables. 
+The first step when setting your pre-installation configurations is to use the recommended BIOS settings.
 
-It is safe to skip any and all of the configuration steps, but this may impact performance.
+The BIOS settings may have a variety of names, or may not exist on your system. Each system vendor has a different set of settings and variables. It is safe to skip any and all of the configuration steps, but this may impact performance.
 
 If any doubt arises, consult the documentation for your server or your hardware vendor for the correct way to apply the settings.
 
@@ -31,7 +30,7 @@ If any doubt arises, consult the documentation for your server or your hardware 
    * - **Management console access**
      - **Connected**
      - Connection to OOB required to preserve continuous network uptime.
-   * - **All drives.**
+   * - **All drives**
      - **Connected and displayed on RAID interface**
      - Prerequisite for cluster or OS installation.
    * - **RAID volumes.**
@@ -40,7 +39,7 @@ If any doubt arises, consult the documentation for your server or your hardware 
    * - **Fan speed Thermal Configuration.**
      - Dell fan speed: **High Maximum**. Specified minimum setting: **60**. HPe thermal configuration: **Increased cooling**.
      - NVIDIA Tesla GPUs are passively cooled and require high airflow to operate at full performance.
-   * - Power regulator or iDRAC power unit policy   
+   * - **Power regulator or iDRAC power unit policy**   
      - HPe: **HP static high performance** mode enabled. Dell: **iDRAC power unit policy** (power cap policy) disabled.
      - Other power profiles (such as "balanced") throttle the CPU and diminishes performance. Throttling may also cause GPU failure.   
    * - **System Profile**, **Power Profile**, or **Performance Profile**
@@ -49,9 +48,6 @@ If any doubt arises, consult the documentation for your server or your hardware 
    * - **Power Cap Policy** or **Dynamic power capping**
      - **Disabled**
      - Other power profiles (like "balanced") throttle the CPU and may diminish performance or cause GPU failure. This setting may appear together with the above (Power profile or Power regulator). This setting allows disabling system ROM power calibration during the boot process. Power regulator settings are named differently in BIOS and iLO/iDRAC.
-	 
-..
-	 **Comment: is it necessary to show the different power regulator setting names in this document?**	 
    * - **Intel Turbo Boost**
      - **Enabled**
      - Intel Turbo Boost enables overclocking the processor to boost CPU-bound operation performance. Overclocking may risk computational jitter due to changes in the processor's turbo frequency. This causes brief pauses in processor operation, introducing uncertainty into application processing time. Turbo operation is a function of power consumption, processor temperature, and the number of active cores.
@@ -69,7 +65,7 @@ If any doubt arises, consult the documentation for your server or your hardware 
      - VT-d is optimal for running VMs. However, when running Linux natively, disabling VT-d boosts performance by up to 10%.	  
    * - **Processor C-States** (Minimum processor idle power core state)
      - **Disable** 
-     - Processor C-States reduce server power when the system is in an idle state. This causes slower cold-starts when the system transitions from an idle to a load state, and may reduce query performance by up to 15%. **Comment: a hyperlinked footnote to an internal source was inserted into the Confluence doc here. Do we want to include this in the final version? Linked URL: https://www.dell.com/support/kbdoc/en-il/000060621/what-is-the-c-state**	 	 
+     - Processor C-States reduce server power when the system is in an idle state. This causes slower cold-starts when the system transitions from an idle to a load state, and may reduce query performance by up to 15%.	 	 
    * - **HPe**: **Energy/Performance bias**
      - **Maximum performance**
      - Configures processor sub-systems for high-performance and low-latency. Other power profiles (like "balanced") throttle the CPU and may diminish performance. Use this setting for environments that are not sensitive to power consumption.		 
@@ -82,24 +78,16 @@ If any doubt arises, consult the documentation for your server or your hardware 
    * - **HPe**: **Memory power savings mode**
      - **Maximum performance**
      - This setting configures several memory parameters to optimize the performance of memory sub-systems. The default setting is **Balanced**.	 
-   * - HPe **ACPI SLIT**
+   * - **HPe ACPI SLIT**
      - **Enabled**
      - ACPI SLIT sets the relative access times between processors and memory and I/O sub-systems. ACPI SLIT enables operating systems to use this data to improve performance by more efficiently allocating resources and workloads.	 
-   * - **QPI Snoop** **Comment: should we write that it is HPe or Intel? HPe: QPI Snoop**
+   * - **QPI Snoop**
      - **Cluster on Die** or **Home Snoop**
-     - QPI (QuickPath Interconnect) Snoop lets you configure different Snoop modes that impact the QPI interconnect. Changing this setting may improve the performance of certain workloads. The default setting of **Home Snoop** provides high memory bandwidth in an average NUMA environment. **Cluster on Die** may provide increased memory bandwidth in highly optimized NUMA workloads. **Early Snoop** may decrease memory latency, but may result in lower overall bandwidth compared to other modes.	
-	 
-
-	 
-
-
+     - QPI (QuickPath Interconnect) Snoop lets you configure different Snoop modes that impact the QPI interconnect. Changing this setting may improve the performance of certain workloads. The default setting of **Home Snoop** provides high memory bandwidth in an average NUMA environment. **Cluster on Die** may provide increased memory bandwidth in highly optimized NUMA workloads. **Early Snoop** may decrease memory latency, but may result in lower overall bandwidth compared to other modes.
 	 
 Installing the Operating System
 ===================================================	 
-Either the CentOS (versions 7.6-7.9) or RHEL (versions 7.6-7.9) must be installed before installing the SQream database. Either the customer or a SQream representative can perform the installation.
-
-..
-	 **Comment: I recommend leaving contact information here - Please call xxx-xxx-xxxx to contact a SQream representative.**
+Once the BIOS settings have been set, you must install the operating system. Either the CentOS (versions 7.6-7.9) or RHEL (versions 7.6-7.9) must be installed before installing the SQream database, by either the customer or a SQream representative.
 
 **To install the operating system:**
 
@@ -110,9 +98,6 @@ Either the CentOS (versions 7.6-7.9) or RHEL (versions 7.6-7.9) must be installe
 #. Set up the necessary drives and users as per the installation process.
 
    Using Debugging Tools is recommended for future problem-solving if necessary.
-   
-   ..
-	 **Comment: In Step 4, why don't we document the entire procedure? I.e., why do we stop here and say "Continue the installation" and "Set up the necessary drives..."?**
 
 Selecting the **Development Tools** group installs the following tools:
 
@@ -132,13 +117,11 @@ Selecting the **Development Tools** group installs the following tools:
   * rpm-build
   * rpm-sign
 
-
-
 The root user is created and the OS shell is booted up.  
 
 Configuring the Operating System
 ===================================================
-When configuring the operating system, several basic settings related to creating a new server are required. Configuring these as part of your basic set-up increases your server's security and usability. 
+Once you've installted your operation system, you can configure it. When configuring the operating system, several basic settings related to creating a new server are required. Configuring these as part of your basic set-up increases your server's security and usability. 
 
 Logging In to the Server
 --------------------------------
@@ -155,11 +138,11 @@ Automatically Creating a SQream User
 
       $ sudo id sqream
   
-The ID **1000** is used on each server in the following example:
+  The ID **1000** is used on each server in the following example:
     
-   .. code-block:: console
+  .. code-block:: console
 
-      $ uid=1000(sqream) gid=1000(sqream) groups=1000(sqream)
+     $ uid=1000(sqream) gid=1000(sqream) groups=1000(sqream)
    
 2. If the ID's are different, delete the SQream user and SQream group from both servers:
 
@@ -192,7 +175,7 @@ SQream enables you to manually create users. This section shows you how to manua
 
       $ sudo usermod -aG wheel sqream
    
-You can remove the SQream user from the **wheel** group when the installation and configuration are complete:
+   You can remove the SQream user from the **wheel** group when the installation and configuration are complete:
 
    .. code-block:: console
 
@@ -200,7 +183,7 @@ You can remove the SQream user from the **wheel** group when the installation an
    
 3. Log out and log back in as **sqream**.
 
-**Note:** If you deleted the **sqream** user and recreated it with different ID, to avoid permission errors, you must change its ownership to /home/sqream.
+  .. note:: If you deleted the **sqream** user and recreated it with different ID, to avoid permission errors, you must change its ownership to /home/sqream.
 
 4. Change the **sqream** user's ownership to /home/sqream:
 
@@ -266,7 +249,7 @@ Installing Python 3.6.7
 
    .. code-block:: console
 
-      $ cd Python-3.6.7/Python-3
+      $ cd Python-3.6.7
   
 4. Run the **./configure** script:
 
@@ -290,7 +273,7 @@ Installing Python 3.6.7
 
    .. code-block:: console
 
-      $ python3.6.7
+      $ python3
   
 Installing NodeJS on CentOS 
 --------------------------------
@@ -308,11 +291,17 @@ Installing NodeJS on CentOS
 
       $ sudo yum clean all && sudo yum makecache fast
   
-3. Install the **node.js**) file:
+3. Install the **node.js** file:
 
    .. code-block:: console
 
       $ sudo yum install -y nodejs
+	  
+4. Install npm and make it available for all users:
+
+   .. code-block:: console
+
+      $ sudo npm install pm2 -g
 
 Installing NodeJS on Ubuntu
 --------------------------------
@@ -330,23 +319,116 @@ Installing NodeJS on Ubuntu
 
       $ sudo apt-get install -y nodejs  
   
-3. Verify the node version:
+3. Install npm and make it available for all users:
 
-..
-	 **Comment: - is this step relevant only for installing on Ubuntu, or on CentOS as well?**
-  
    .. code-block:: console
 
-      $ node -v 
+      $ sudo npm install pm2 -g
+	  
+Installing NodeJS Offline
+-------------------------------------------
+**To install NodeJS Offline**
+
+1. Download the NodeJS source code tarball file from the following URL into the **/home/sqream** directory:
+
+   .. code-block:: console
+
+      $ wget https://nodejs.org/dist/v12.13.0/node-v12.13.0-linux-x64.tar.xz
+	  
+2. Move the node-v12.13.0-linux-x64 file to the */usr/local* directory.
+
+   .. code-block:: console
+
+      $ sudo mv node-v12.13.0-linux-x64  /usr/local
+
+3. Navigate to the */usr/bin/* directory:
+
+   .. code-block:: console
+
+      $ cd /usr/bin
+	  
+4. Create a symbolic link to the */local/node-v12.13.0-linux-x64/bin/node node* directory:
+
+   .. code-block:: console
+
+      $ sudo ln -s ../local/node-v12.13.0-linux-x64/bin/node node
+	  
+5. Create a symbolic link to the */local/node-v12.13.0-linux-x64/bin/npm npm* directory:
+
+   .. code-block:: console
+
+      $ sudo ln -s ../local/node-v12.13.0-linux-x64/bin/npm npm
+	  
+6. Create a symbolic link to the */local/node-v12.13.0-linux-x64/bin/npx npx* directory:
+
+   .. code-block:: console
+
+      $ sudo ln -s ../local/node-v12.13.0-linux-x64/bin/npx npx
+
+7. Verify that the node versions for the above are correct:
+
+   .. code-block:: console
+
+      $ node --version
+	  
+Installing the pm2 Service Offline
+-------------------------------------------
+**To install the pm2 Service Offline**
+
+1. On a machine with internet access, install the following:
+
+   * nodejs
+   * npm
+   * pm2
+
+2. Extract the pm2 module to the correct directory:   
+
+   .. code-block:: console
+
+      $ cd /usr/local/node-v12.13.0-linux-x64/lib/node_modules
+      $ tar -czvf pm2_x86.tar.gz pm2
+
+3. Copy the **pm2_x86.tar.gz** file to a server without access to the internet and extract it.
+
+    ::
+
+4. Move the **pm2** folder to the */usr/local/node-v12.13.0-linux-x64/lib/node_modules* directory:
+
+   .. code-block:: console
+
+      $ sudo mv pm2 /usr/local/node-v12.13.0-linux-x64/lib/node_modules
+	  
+5. Navigate back to the */usr/bin* directory:
+
+   .. code-block:: console
+
+      $ cd /usr/bin again
+
+6.  Create a symbolink to the **pm2** service:
+
+   .. code-block:: console
+
+      $ sudo ln -s /usr/local/node-v12.22.3-linux-x64/lib/node_modules/pm2/bin/pm2 pm2
+
+7. Verify that installation was successful:
+
+   .. code-block:: console
+
+      $ pm2 list
+
+  .. note:: This must be done as a **sqream** user, and not as a **sudo** user.
+
+8.  Verify that the node version is correct:
+
+   .. code-block:: console
+
+      $ node -v
   
-Configuring the Network Time Protocol (NTP)
+Configuring the Network Time Protocol
 ------------------------------------------- 
-This section describes how to configure your NTP.
+This section describes how to configure your **Network Time Protocol (NTP)**.
 
 If you don't have internet access, see `Configure NTP Client to Synchronize with NTP Server <https://www.thegeekstuff.com/2014/06/linux-ntp-server-client/>`__.
-
-..
-	 **Comment: - Is this the correct procedure on the linked URL: Configure NTP Client to Synchronize with NTP Server?*
 
 **To configure your NTP:**
   
@@ -415,9 +497,7 @@ Checking that synchronization is enabled generates the following output:
                      Sun 2019-03-10 03:00:00 EDT
     Next DST change: DST ends (the clock jumps one hour backwards) at
                      Sun 2019-11-03 01:59:59 EDT
-                     Sun 2019-11-03 01:00:00 EST
- 
- 
+                     Sun 2019-11-03 01:00:00 EST 
 					 
 Configuring the Server to Boot Without the UI
 ---------------------------------------------
@@ -453,7 +533,7 @@ Configuring the Kernel Parameters
 
       $ echo -e "vm.dirty_background_ratio = 5 \n vm.dirty_ratio = 10 \n vm.swappiness = 10 \n vm.vfs_cache_pressure = 200 \n vm.zone_reclaim_mode = 0 \n" >> /etc/sysctl.conf
   
-**Notice:** In the past, the **vm.zone_reclaim_mode** parameter was set to **7.** In the latest Sqream version, the vm.zone_reclaim_mode parameter must be set to **0**. If it is not set to **0**, when a numa node runs out of memory, the system will get stuck and will be unable to pull memory from other numa nodes.
+  .. note:: In the past, the **vm.zone_reclaim_mode** parameter was set to **7.** In the latest Sqream version, the vm.zone_reclaim_mode parameter must be set to **0**. If it is not set to **0**, when a numa node runs out of memory, the system will get stuck and will be unable to pull memory from other numa nodes.
   
 2. Check the maximum value of the **fs.file**. 
 
@@ -467,7 +547,7 @@ Configuring the Kernel Parameters
 
       $ echo "fs.file-max=2097152" >> /etc/sysctl.conf
 
-**IP4 forward** must be enabled for Docker and K8s installation only.
+   **IP4 forward** must be enabled for Docker and K8s installation only.
 
 Configuring the Firewall
 --------------------------------
@@ -486,15 +566,11 @@ The example in this section shows the open ports for four sqreamd sessions. If m
    .. code-block:: console
 
       $ firewall-cmd --zone=public --permanent --add-port=8080/tcp
-      $ firewallfirewall-cmd --zone=public --permanent --add-port=3105/tcp
+      $ firewall-cmd --zone=public --permanent --add-port=3105/tcp
       $ firewall-cmd --zone=public --permanent --add-port=3108/tcp
       $ firewall-cmd --zone=public --permanent --add-port=5000-5003/tcp
       $ firewall-cmd --zone=public --permanent --add-port=5100-5103/tcp
       $ firewall-cmd --permanent --list-all
-
-
-..
-	 **Comment: - does *--list-all* add the entire list of ports to the permanent firewall?**
 
 3. Reload the firewall:
 
@@ -502,18 +578,17 @@ The example in this section shows the open ports for four sqreamd sessions. If m
 
       $ firewall-cmd --reload
 
-4. Start the service and enable FirewallID on boot:
+4. Enable FirewallID on boot:
 
    .. code-block:: console
 
-      $ systemctl start firewalld  
+      $ systemctl enable firewalld 
 
    If you do not need the firewall, you can disable it:
   
    .. code-block:: console
 
-      $ sudo systemctl disable firewalld
-  
+      $ sudo systemctl disable firewalld  
   
 Disabling selinux
 --------------------------------
@@ -533,13 +608,13 @@ Disabling selinux
   
 3. Change **SELINUX=enforcing** to **SELINUX=disabled**.
   
-The above changes will only take effect after rebooting the server.
+   The above changes will only take effect after rebooting the server.
 
-You can disable selinux immediately after rebooting the server by running the following command:
+   You can disable selinux immediately after rebooting the server by running the following command:
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ sudo setenforce 0
+     $ sudo setenforce 0
 
 Configuring the /etc/hosts File
 --------------------------------
@@ -556,16 +631,14 @@ Configuring the /etc/hosts File
    .. code-block:: console
 
       $ 127.0.0.1	localhost
-      $ <server ip>	<server_name>
-  
-..
-	 **Comment: - Is the above an output or a step?**
-  
+      $ <server1 ip>	<server_name>
+      $ <server2 ip>	<server_name>
+    
 Configuring the DNS
 --------------------------------
 **To configure the DNS:**
 
-1. Run the **ifconfig** command to check your NIC name. In the following example, **eth0** is the NIC name:
+1. Run the **ifconfig** commasnd to check your NIC name. In the following example, **eth0** is the NIC name:
 
    .. code-block:: console
 
@@ -575,19 +648,14 @@ Configuring the DNS
 
    .. code-block:: console
 
-      DNS1="4.4.4.4"
-      DNS2="8.8.8.8"
-
-
-
-..
-	 **Comment: - is the above input correct?**
+      $ DNS1="4.4.4.4"
+      $ DNS2="8.8.8.8"
 
 Installing the Nvidia CUDA Driver
 ===================================================
+After configuring your operating system, you must install the Nvidia CUDA driver.
 
-
-**Warning:** If your UI runs on the server, the server must be stopped before installing the CUDA drivers.
+  .. warning:: If your UI runs on the server, the server must be stopped before installing the CUDA drivers.
 
 CUDA Driver Prerequisites  
 --------------------------------
@@ -616,7 +684,6 @@ CUDA Driver Prerequisites
      .. code-block:: console
 
         $ sudo apt-get install gcc
-
 
 Updating the Kernel Headers  
 --------------------------------
@@ -662,14 +729,16 @@ You can disable Nouveau, which is the default driver.
 
       $ lsmod | grep nouveau
 
-If the Nouveau driver has been loaded, the command above generates output.
+   If the Nouveau driver has been loaded, the command above generates output.
 
 2. Blacklist the Nouveau drivers to disable them:
 
    .. code-block:: console
 
-      $ cat <<EOF | sudo tee /etc/modprobe.d/blacklist-nouveau.conf blacklist nouveau options nouveau modeset=0 EOF
-  
+      $ cat <<EOF | sudo tee /etc/modprobe.d/blacklist-nouveau.conf
+        blacklist nouveau
+        options nouveau modeset=0
+        EOF 
  
 3. Regenerate the kernel **initramfs** directory set:
 
@@ -687,15 +756,23 @@ If the Nouveau driver has been loaded, the command above generates output.
 
 Installing the CUDA Driver
 --------------------------------
-This section describes how to install the CUDA driver.
-
-.. note::  The version of the driver installed on the customer's server must be equal or higher than the driver included in the Sqream release package. Contact a Sqream customer service representative to identify the correct version to install.
-
+This section describes how to install the CUDA driver.  
   
+.. note:: The version of the driver installed on the customer's server must be equal or higher than the driver included in the Sqream release package. Contact a Sqream customer service representative to identify the correct version to install.
 
-Installing the CUDA from the Repository
+The **Installing the CUDA Driver** section describes the following:
+
+.. contents:: 
+   :local:
+   :depth: 1
+
+Installing the CUDA Driver from the Repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Installing the CUDA driver from the Repository is the recommended installation method.
+
+.. warning:: For A100 GPU and other A series GPUs, you must install the **cuda 11.4.3 driver**. The version of the driver installed on the customer server must be equal to or higher than the one used to build the SQream package. For questions related to which driver to install, contact SQream Customer Support.
+
+
 
 **To install the CUDA driver from the Repository:**
 
@@ -717,47 +794,40 @@ Installing the CUDA driver from the Repository is the recommended installation m
 
    .. code-block:: console
 
-      $ sudo yum install dkms libvdpau	  
+      $ sudo yum install dkms libvdpau
 
-.. warning::  For Power9 and Intel servers using V100 GPUs, CUDA driver version **10.1 update 2** must be installed. For A series GPU, CUDA driver version 11.4.3 must be installed.
+   Installing the CUDA depedendencies from the **epel** repository is only required for installing **runfile**.
 
-Installing the CUDA depedendencies from the **epel** repository is only required for installing **runfile**.
+3. Download the required local repository:
 
-3. Do one of the following:
-
-   * For CUDA driver version 10.1, download the required local repository:
-
-     **For Intel** (x86_64):
-
-     .. code-block:: console
-
-        $ wget http://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
-        $ sudo yum localinstall cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
-	  
-     **For IBM Power9**:
-   
-     .. code-block:: console
-
-        $ wget https://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
-        $ sudo yum localinstall cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
-	  
-   * For CUDA driver version 11.4.3:
-
-     .. code-block:: console
-
-        $ wget https://developer.download.nvidia.com/compute/cuda/11.4.3/local_installers/cuda-repo-rhel7-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
-        $ sudo yum localinstall cuda-repo-rhel7-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
-  
-4. Install the required local repository: 
-   
    .. code-block:: console
 
-      $ sudo yum localinstall cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
+      $ wget http://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
+  
+4. Install the required local repository:
 
-For example, RHEL7 for cuda 10.1.
+   * **Intel - CUDA 10.1 for RHEL7**:
 
-..
-	 **Comment: - Confirm.**
+      .. code-block:: console
+
+         $ wget http://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
+         $ sudo yum localinstall cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
+		 
+   * **Intel - 11.4.3 repository**:
+
+      .. code-block:: console
+
+         $ wget https://developer.download.nvidia.com/compute/cuda/11.4.3/local_installers/cuda-repo-rhel7-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
+         $ sudo yum localinstall cuda-repo-rhel7-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
+
+   * **IBM Power9 - CUDA 10.1 for RHEL7**:
+
+      .. code-block:: console
+
+         $ wget https://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
+         $ sudo yum localinstall cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
+		 
+.. warning:: For Power9 with V100 GPUs, you must install the **CUDA 10.1** driver.
 
 5. Install the CUDA drivers:
 
@@ -778,14 +848,8 @@ For example, RHEL7 for cuda 10.1.
    .. code-block:: console
 
       $ nvidia-smi
-   
-
-..
-	 **Comment: - what is the output?**
- 
- 
-..
-	 **Comment: - I suggest making the following example its own section, i.e., how to prepare the CUDA driver offline. If you do not have an internet connection, you can set up the local repository as shown in the following example:** 
+	  
+.. note:: If you do not have access to internet, you can set up a local repository offline. 
 
 You can prepare the CUDA driver offline from a server connected to the CUDA repo by running the following commands as a *root* user:
 	  
@@ -856,40 +920,107 @@ You can prepare the CUDA driver offline from a server connected to the CUDA repo
 	  
 Tuning Up NVIDIA Performance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This section describes how to tune up NVIDIA performance. The procedures in this section are relevant to Intel only.
+This section describes how to tune up NVIDIA performance. The procedures in this section are relevant to Intel only.	
 	
-**To tune up NVIDIA performance:**
+.. contents:: 
+   :local:
+   :depth: 1
 
-1. Change the permissions on the **rc.local** file to **executable**:
+To Tune Up NVIDIA Performance from the Repository
+~~~~~~~~~~~~~~~~~~~~   
+**To tune up NVIDIA performance from the repository:**
+
+1. Check the service status:
 
    .. code-block:: console
 
-      $ sudo chmod +x /etc/rc.local	  
+      $ sudo systemctl status nvidia-persistenced
+		 
+   If the service exists, it will be stopped be default.
+
+2. Start the service:
+
+   .. code-block:: console
+
+      $ sudo systemctl start nvidia-persistenced
+		 
+3. Verify that no errors have occurred:
+
+   .. code-block:: console
+
+      $ sudo systemctl status nvidia-persistenced
+		 
+4. Enable the service to start up on boot:   
+
+   .. code-block:: console
+
+      $ sudo systemctl enable nvidia-persistenced
 	  
-2. Edit the **/etc/yum.repos.d/cuda-10-1-local.repo** file:
+5. Add the following lines:
 
-   .. code-block:: console
-
-      $ sudo vim /etc/rc.local 
-
-3. Add the following lines:
-
-   a. **For V100**:
+   * **For V100/A100**:
 
       .. code-block:: console
 
          $ nvidia-persistenced
 
-   b. **For IBM (mandatory)**:
+   * **For IBM (mandatory)**:
 	  
       .. code-block:: console
 
+         $ sudo systemctl start nvidia-persistenced
          $ sudo systemctl enable nvidia-persistenced
 		 
-**Notice**: Setting up the NVIDIA POWER9 CUDA driver includes additional set-up requirements. The NVIDIA POWER9 CUDA driver will not function properly if the additional set-up requirements are not followed. See `POWER9 Setup <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`__ for the additional set-up requirements.
+   * **For K80**:
+	  
+      .. code-block:: console
 
-   
-   c. **For K80**:
+         $ nvidia-persistenced
+         $ nvidia-smi -pm 1
+         $ nvidia-smi -acp 0
+         $ nvidia-smi --auto-boost-permission=0
+         $ nvidia-smi --auto-boost-default=0
+
+6. Reboot the server and run the **NVIDIA System Management Interface (NVIDIA SMI)**:
+
+   .. code-block:: console
+
+      $ nvidia-smi
+	  
+.. note::  Setting up the NVIDIA POWER9 CUDA driver includes additional set-up requirements. The NVIDIA POWER9 CUDA driver will not function properly if the additional set-up requirements are not followed. See `POWER9 Setup <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`__ for the additional set-up requirements.
+		
+To Tune Up NVIDIA Performance from the Runfile
+~~~~~~~~~~~~~~~~~~~~
+**To tune up NVIDIA performance from the runfile:**		
+
+1. Change the permissions on the **rc.local** file to **executable**:
+
+     .. code-block:: console
+
+        $ sudo chmod +x /etc/rc.local	  
+	  
+2. Edit the **/etc/yum.repos.d/cuda-10-1-local.repo** file:
+
+     .. code-block:: console
+
+        $ sudo vim /etc/rc.local		 
+		 
+3. Add the following lines:
+
+   * **For V100/A100**:
+
+      .. code-block:: console
+
+         $ nvidia-persistenced
+
+   * **For IBM (mandatory)**:
+	  
+      .. code-block:: console
+
+         $ sudo systemctl start nvidia-persistenced
+         $ sudo systemctl enable nvidia-persistenced
+		   
+   * **For K80**:
 	  
       .. code-block:: console
 
@@ -904,7 +1035,8 @@ This section describes how to tune up NVIDIA performance. The procedures in this
    .. code-block:: console
 
       $ nvidia-smi
-
+	  
+.. note::  Setting up the NVIDIA POWER9 CUDA driver includes additional set-up requirements. The NVIDIA POWER9 CUDA driver will not function properly if the additional set-up requirements are not followed. See `POWER9 Setup <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`__ for the additional set-up requirements.
 
 Disabling Automatic Bug Reporting Tools
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -916,9 +1048,7 @@ Disabling Automatic Bug Reporting Tools
 
       $ for i in abrt-ccpp.service abrtd.service abrt-oops.service abrt-pstoreoops.service abrt-vmcore.service abrt-xorg.service ; do sudo systemctl disable $i; sudo systemctl stop $i; done
 
-
 The server is ready for the SQream software installation.
-
 
 2. Run the following checks:
 
@@ -955,24 +1085,18 @@ The server is ready for the SQream software installation.
     The desired output when checking the maximum value of the **fs.file** is greater or equal to **2097152**.
 
    f. Run the following command as a SQream user:
-   
-..
-	 **Comment: - **Question - what do the following command parameter do? -c?**		 
 		 
       .. code-block:: console
 
          $ ulimit -c -u -n	
-
-..
-	 **Comment: - See https://ss64.com/bash/ulimit.html**		 
 		 
-    The following shows the desired output when **<fill in>**:
+    The following shows the desired output:
 
     .. code-block:: console
 
-    $ core file size (blocks, -c) unlimited
-    $ max user processes (-u) 1000000
-    $ open files (-n) 1000000
+       $ core file size (blocks, -c) unlimited
+       $ max user processes (-u) 1000000
+       $ open files (-n) 1000000
 
 3. Configure the security limits by running the **echo -e** command as a root user logged in shell:
 
@@ -983,21 +1107,16 @@ The server is ready for the SQream software installation.
 	  
 Enabling Core Dumps
 ===================================================
+After installing the Nvidia CUDA driver, you can enable your core dumps. While SQream recommends enabling your core dumps, it is optional.
 
-Enabling core dumps is recommended, but optional.
+The **Enabling Core Dumps** section describes the following:
 
-**To enable core dumps:**
-
-1. Check the **abrtd** Status
-
-2. Set the limits
-
-3. Create the core dumps directory.
-
+.. contents:: 
+   :local:
+   :depth: 1
 
 Checking the abrtd Status
 ---------------------------------------------------
-
 **To check the abrtd status:**
 
 1. Check if **abrtd** is running:
@@ -1017,10 +1136,8 @@ Checking the abrtd Status
       $ sudo chkconfig abrt-xorg off
       $ sudo chkconfig abrtd off
 
-
 Setting the Limits
----------------------------------------------------	
-
+---------------------------------------------------
 **To set the limits:**  
 	  
 1. Set the limits:
@@ -1039,8 +1156,7 @@ Setting the Limits
 3. Log out and log in to apply the limit changes.	
 
 Creating the Core Dumps Directory
----------------------------------------------------	
-
+---------------------------------------------------
 **To set the core dumps directory:** 
 
 1. Make the **/tmp/core_dumps** directory:
@@ -1059,11 +1175,12 @@ Creating the Core Dumps Directory
 
    .. code-block:: console
 
-      $ sudo chmod -R 777 /tmp/core_dumps	
+      $ sudo chmod -R 777 /tmp/core_dumps
+	  
+.. warning:: Because the core dump file may be the size of total RAM on the server, verify that you have sufficient disk space. In the example above, the core dump is configured to the */tmp/core_dumps* directory. You must replace path according to your own environment and disk space.	  
 
 Setting the Output Directory of the /etc/sysctl.conf File 
------------------------------------------------------------------	
-
+-----------------------------------------------------------------
 **To set the output directory of the /etc/sysctl.conf file:** 
 
 1. Edit the **/etc/sysctl.conf** file:
@@ -1080,10 +1197,7 @@ Setting the Output Directory of the /etc/sysctl.conf File
       $ kernel.core_pattern = /<tmp/core_dumps>/core-%e-%s-%u-%g-%p-%t
       $ fs.suid_dumpable = 2
 
-..
-	 **Comment: - leave a note that the user can choose his correct location of the folder.**
-
-3. To apply the changes without rebooting the server, run:
+3. To apply the changes without rebooting the server, run the following:
 	  
   .. code-block:: console
 
@@ -1106,7 +1220,6 @@ Setting the Output Directory of the /etc/sysctl.conf File
   .. code-block:: console
 
      $ select abort_server();
-
 	  
 Verifying that the Core Dumps Work 
 ---------------------------------------------------	
@@ -1116,15 +1229,13 @@ You can verify that the core dumps work only after installing and running SQream
 
 1. Stop and restart all SQream services.
 
+    ::
+
 2. Connect to SQream with ClientCmd and run the following command:
 
   .. code-block:: console
 
      $ select abort_server();
-
-
-..
-	 **Comment: - what did the author mean by "Stage 3"?**
    
 Troubleshooting Core Dumping 
 ---------------------------------------------------	
@@ -1133,6 +1244,8 @@ This section describes the troubleshooting procedure to be followed if all param
 **To troubleshoot core dumping:**
 
 1. Reboot the server.
+
+    ::
 
 2. Verify that you have folder permissions:
 
@@ -1150,7 +1263,8 @@ This section describes the troubleshooting procedure to be followed if all param
 
    .. code-block:: console
 
-      $ unlimited	
+      $ core file size          (blocks, -c) unlimited
+      $ open files                      (-n) 1000000	  
 
 4. If all parameters have been configured correctly, but running **ulimit -c** outputs **0**, run the following:
 
@@ -1162,10 +1276,19 @@ This section describes the troubleshooting procedure to be followed if all param
 
    .. code-block:: console
 
-      $ ulimit -S -c 0 > /dev/null 2>&1	 
-	  
+      $ ulimit -S -c 0 > /dev/null 2>&1
 
-6. If the line is not found in **/etc/profile** directory, do the following:	  
+6. Log out and log in.
+
+    ::
+
+7. Run the ulimit -c command:
+
+   .. code-block:: console
+
+      $ ulimit -c command	  
+
+8. If the line is not found in **/etc/profile** directory, do the following:	  
 	  
    a. Run the following command:
 
@@ -1179,4 +1302,4 @@ This section describes the troubleshooting procedure to be followed if all param
 
          $ ulimit -S -c ${DAEMON_COREFILE_LIMIT:-0} >/dev/null 2>&1
 
-   c. If the line is found, tag it with the **hash** symbol and reboot the server.	
+   c. If the line is found, tag it with the **hash** symbol and reboot the server.
