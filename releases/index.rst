@@ -1,12 +1,14 @@
 .. _releases:
 
 **********
-Releases
+Release Notes
 **********
 
+   
 .. list-table::
    :widths: auto
    :header-rows: 1
+   
    
    * - Version
      - Release Date
