@@ -11,16 +11,11 @@ To prepare your machine to install SQream, do the following:
    
  * Verify you have an NVIDIA-capable server, either on-premise or on supported cloud platforms: 
 
-   * Red Hat Enterprise Linux v7.x
-   
+   * Red Hat Enterprise Linux v7.x   
  
    * CentOS v7.x
-   
-
-   * Ubuntu 18.04
-   
  
-   * Amazon Linux
+   * Amazon Linux 7
 	 
  * Verify that you have the following:
  
@@ -37,4 +32,4 @@ To prepare your machine to install SQream, do the following:
 For more information, see the following:
 
 * :ref:`recommended_pre-installation_configurations`
-* `Hardware Guide <https://docs.sqream.com/en/v2020-1/installation_guides/recommended_pre-installation_configurations.html>`_
+* `Hardware Guide <https://docs.sqream.com/en/v2020.3/operational_guides/hardware_guide.html>`_
