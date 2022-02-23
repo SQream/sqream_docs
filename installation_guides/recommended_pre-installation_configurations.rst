@@ -11,7 +11,6 @@ This page provides recommendations for production deployments of SQream and desc
    :local:
    :depth: 1
 
-
 Recommended BIOS Settings
 ==========================
 The first step when setting your pre-installation configurations is to use the recommended BIOS settings.
@@ -129,7 +128,6 @@ You can log in to the server using the server's IP address and password for the 
 
 Automatically Creating a SQream User
 ------------------------------------
-
 **To automatically create a SQream user:**
 
 #. If a SQream user was created during installation, verify that the same ID is used on every server:
@@ -480,7 +478,7 @@ If your organization has an NTP server, you can configure it.
 
       $ sudo timedatectl
   
-Checking that synchronization is enabled generates the following output:
+   Checking that synchronization is enabled generates the following output:
 
    .. code-block:: console
 
@@ -541,13 +539,25 @@ Configuring the Kernel Parameters
 
       $ sysctl -n fs.file-max
 
-3. *Optional* - If the maximum value of the **fs.file** is smaller than **2097152**, run the following command:
+3. If the maximum value of the **fs.file** is smaller than **2097152**, run the following command:
 
    .. code-block:: console
 
       $ echo "fs.file-max=2097152" >> /etc/sysctl.conf
 
    **IP4 forward** must be enabled for Docker and K8s installation only.
+   
+4. Run the following command:
+
+   .. code-block:: console
+
+      $ sudo echo “net.ipv4.ip_forward = 1” >> /etc/sysctl.conf
+
+5. Reboot your system:
+
+   .. code-block:: console
+
+      $ sudo reboot
 
 Configuring the Firewall
 --------------------------------
@@ -772,8 +782,6 @@ Installing the CUDA driver from the Repository is the recommended installation m
 
 .. warning:: For A100 GPU and other A series GPUs, you must install the **cuda 11.4.3 driver**. The version of the driver installed on the customer server must be equal to or higher than the one used to build the SQream package. For questions related to which driver to install, contact SQream Customer Support.
 
-
-
 **To install the CUDA driver from the Repository:**
 
 1. Install the CUDA dependencies for one of the following operating systems:
@@ -798,13 +806,7 @@ Installing the CUDA driver from the Repository is the recommended installation m
 
    Installing the CUDA depedendencies from the **epel** repository is only required for installing **runfile**.
 
-3. Download the required local repository:
-
-   .. code-block:: console
-
-      $ wget http://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
-  
-4. Install the required local repository:
+3. Download and install the required local repository:
 
    * **Intel - CUDA 10.1 for RHEL7**:
 
@@ -829,7 +831,7 @@ Installing the CUDA driver from the Repository is the recommended installation m
 		 
 .. warning:: For Power9 with V100 GPUs, you must install the **CUDA 10.1** driver.
 
-5. Install the CUDA drivers:
+4. Install the CUDA drivers:
 
    a. Clear the YUM cache:
   
@@ -843,7 +845,7 @@ Installing the CUDA driver from the Repository is the recommended installation m
 
          $ sudo yum -y install nvidia-driver-latest-dkms
 
-6. Verify that the installation was successful:
+5. Verify that the installation was successful:
 
    .. code-block:: console
 
@@ -853,19 +855,19 @@ Installing the CUDA driver from the Repository is the recommended installation m
 
 You can prepare the CUDA driver offline from a server connected to the CUDA repo by running the following commands as a *root* user:
 	  
-7. Query all the packages installed in your system, and verify that cuda-repo has been installed:
+6. Query all the packages installed in your system, and verify that cuda-repo has been installed:
 
    .. code-block:: console
 
       $ rpm -qa |grep cuda-repo
 
-8. Navigate to the correct repository:
+7. Navigate to the correct repository:
 
    .. code-block:: console
 
       $ cd /etc/yum.repos.d/
 
-9. List in long format and print lines matching a pattern for the cuda file:
+8. List in long format and print lines matching a pattern for the cuda file:
 
    .. code-block:: console
 
@@ -877,7 +879,7 @@ You can prepare the CUDA driver offline from a server connected to the CUDA repo
 
       $ cuda-10-1-local.repo
 
-10. Edit the **/etc/yum.repos.d/cuda-10-1-local.repo** file:
+9. Edit the **/etc/yum.repos.d/cuda-10-1-local.repo** file:
 
    .. code-block:: console
 
@@ -889,19 +891,19 @@ You can prepare the CUDA driver offline from a server connected to the CUDA repo
 
       $ name=cuda-10-1-local
    
-11. Clone the repository to a location where it can be copied from:
+10. Clone the repository to a location where it can be copied from:
 
    .. code-block:: console
 
       $ reposync -g -l -m --repoid=cuda-10-1-local --download_path=/var/cuda-repo-10.1-local
 
-12. Copy the repository to the installation server and create the repository:
+11. Copy the repository to the installation server and create the repository:
 
    .. code-block:: console
 
       $ createrepo -g comps.xml /var/cuda-repo-10.1-local
 
-13. Add a repo configuration file in **/etc/yum.repos.d/** by editing the **/etc/yum.repos.d/cuda-10.1-local.repo** repository:
+12. Add a repo configuration file in **/etc/yum.repos.d/** by editing the **/etc/yum.repos.d/cuda-10.1-local.repo** repository:
  
    .. code-block:: console
 
@@ -912,7 +914,7 @@ You can prepare the CUDA driver offline from a server connected to the CUDA repo
       $ gpgcheck=1
       $ gpgkey=file:///var/cuda-repo-10-1-local/7fa2af80.pub   
    
-14. Install the CUDA drivers by installing the most current DKMS (Dynamic Kernel Module Support) NVIDIA driver as a root user logged in shell:
+13. Install the CUDA drivers by installing the most current DKMS (Dynamic Kernel Module Support) NVIDIA driver as a root user logged in shell:
   
    .. code-block:: console
 
@@ -920,15 +922,17 @@ You can prepare the CUDA driver offline from a server connected to the CUDA repo
 	  
 Tuning Up NVIDIA Performance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-This section describes how to tune up NVIDIA performance. The procedures in this section are relevant to Intel only.	
+This section describes how to tune up NVIDIA performance.
+
+.. note::  The procedures in this section are relevant to Intel only.	
 	
 .. contents:: 
    :local:
    :depth: 1
 
-To Tune Up NVIDIA Performance from the Repository
+To Tune Up NVIDIA Performance when Driver Installed from the Repository
 ~~~~~~~~~~~~~~~~~~~~   
-**To tune up NVIDIA performance from the repository:**
+**To tune up NVIDIA performance when the driver was installed from the repository:**
 
 1. Check the service status:
 
@@ -956,31 +960,19 @@ To Tune Up NVIDIA Performance from the Repository
 
       $ sudo systemctl enable nvidia-persistenced
 	  
-5. Add the following lines:
+5. For **V100/A100**, add the following lines:
 
-   * **For V100/A100**:
+   .. code-block:: console
 
-      .. code-block:: console
-
-         $ nvidia-persistenced
-
-   * **For IBM (mandatory)**:
-	  
-      .. code-block:: console
-
-         $ sudo systemctl start nvidia-persistenced
-         $ sudo systemctl enable nvidia-persistenced
+      $ nvidia-persistenced
 		 
-   * **For K80**:
+   .. note::  The following are mandatory for IBM:
 	  
-      .. code-block:: console
+              .. code-block:: console
 
-         $ nvidia-persistenced
-         $ nvidia-smi -pm 1
-         $ nvidia-smi -acp 0
-         $ nvidia-smi --auto-boost-permission=0
-         $ nvidia-smi --auto-boost-default=0
-
+                 $ sudo systemctl start nvidia-persistenced
+                 $ sudo systemctl enable nvidia-persistenced
+		 
 6. Reboot the server and run the **NVIDIA System Management Interface (NVIDIA SMI)**:
 
    .. code-block:: console
@@ -989,9 +981,9 @@ To Tune Up NVIDIA Performance from the Repository
 	  
 .. note::  Setting up the NVIDIA POWER9 CUDA driver includes additional set-up requirements. The NVIDIA POWER9 CUDA driver will not function properly if the additional set-up requirements are not followed. See `POWER9 Setup <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`__ for the additional set-up requirements.
 		
-To Tune Up NVIDIA Performance from the Runfile
+To Tune Up NVIDIA Performance when Driver Installed from the Runfile
 ~~~~~~~~~~~~~~~~~~~~
-**To tune up NVIDIA performance from the runfile:**		
+**To tune up NVIDIA performance when the driver was installed from the runfile:**		
 
 1. Change the permissions on the **rc.local** file to **executable**:
 
@@ -1081,9 +1073,7 @@ The server is ready for the SQream software installation.
       .. code-block:: console
 
          $ sysctl -n fs.file-max
-		 
-    The desired output when checking the maximum value of the **fs.file** is greater or equal to **2097152**.
-
+		 	 
    f. Run the following command as a SQream user:
 		 
       .. code-block:: console
@@ -1097,13 +1087,6 @@ The server is ready for the SQream software installation.
        $ core file size (blocks, -c) unlimited
        $ max user processes (-u) 1000000
        $ open files (-n) 1000000
-
-3. Configure the security limits by running the **echo -e** command as a root user logged in shell:
-
-   .. code-block:: console
-
-      $ sudo bash
-      $ echo -e "sqream soft nproc 1000000\nsqream hard nproc 1000000\nsqream soft nofile 1000000\nsqream hard nofile 1000000\nsqream soft core unlimited\nsqream hard core unlimited" >> /etc/security/limits.conf
 	  
 Enabling Core Dumps
 ===================================================
