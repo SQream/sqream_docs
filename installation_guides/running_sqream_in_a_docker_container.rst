@@ -27,7 +27,6 @@ SQream recommends installing a clean OS on the host to avoid any installation is
   
 .. warning:: Docker-based installation supports only single host deployment and cannot be used on a multi-node cluster. Installing Docker on a single host you will not be able to scale it to a multi-node cluster.
 
-
 Creating a Local User
 ----------------
 To run SQream in a Docker container you must create a local user.
@@ -122,8 +121,6 @@ After installing the recommended tools you must update to the current version of
 
 SQream recommends updating to the current version of the operating system. This is not recommended if the nvidia driver has **not been installed.**
 
-
-
 Configuring the NTP Package
 ----------------
 After updating to the current version of the operating system you must configure the NTP package.
@@ -202,6 +199,7 @@ You can abort the above but-reporting tools by running the following command:
    
 Installing the Nvidia CUDA Driver
 -------------------------------------
+**To install the Nvidia CUDA driver:**
 
 1. Verify that the Tesla NVIDIA card has been installed and is detected by the system:
 
@@ -526,14 +524,10 @@ You can install the Docker Engine on an IBM Power9 processor by running the foll
 
 .. code-block:: console
 
-   $ wget
-   $ http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/container-selinux-2.9-4.el7.noarch.rpm
-   $ wget
-   $ http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/docker-ce-18.03.1.ce-1.el7.centos.ppc64le.rpm
+   $ wget http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/container-selinux-2.9-4.el7.noarch.rpm
+   $ wget http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/docker-ce-18.03.1.ce-1.el7.centos.ppc64le.rpm
    $ yum install -y container-selinux-2.9-4.el7.noarch.rpm
    $ docker-ce-18.03.1.ce-1.el7.centos.ppc64le.rpm
-
-
  
 For more information on installing the Docker Engine CE on an IBM Power9 processor, see `Install Docker Engine on Ubuntu <https://developer.ibm.com/components/ibm-power/tutorials/install-docker-on-linux-on-power/>`_.
 
@@ -671,7 +665,6 @@ Installing the NVIDIA Docker2 Toolkit on an Ubuntu Operating System
       $ sudo apt-get install nvidia-docker2
       $ sudo pkill -SIGHUP dockerd
 3. Do one of the following:
-
    * If you received an error when installing the ``nvidia-docker2`` package, skip to :ref:`Step 4 <step_4_ubuntu>`.
    * If you successfully installed the ``nvidia-docker2`` package, skip to :ref:`Step 5 <step_5_ubuntu>`.
 
