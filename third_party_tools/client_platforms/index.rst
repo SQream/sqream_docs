@@ -26,6 +26,7 @@ If you are looking for a tool that is not listed, SQream and our partners can he
    tableau
    pentaho
    microstrategy
+   informatica
    r
    php
    xxspotfire
@@ -34,5 +35,3 @@ If you are looking for a tool that is not listed, SQream and our partners can he
    xxdiagnosing_common_connectivity_issues
 
 .. image:: /_static/images/connectivity_ecosystem.png
-
-
