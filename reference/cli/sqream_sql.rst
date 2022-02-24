@@ -1,7 +1,7 @@
 .. _sqream_sql_cli_reference:
 
 *********************************
-sqream sql CLI reference
+Sqream SQL CLI Reference
 *********************************
 
 SQream DB comes with a built-in client for executing SQL statements either interactively or from the command-line.
@@ -11,7 +11,7 @@ This page serves as a reference for the options and parameters. Learn more about
 .. contents:: In this topic:
    :local:
 
-Installing sqream sql
+Installing Sqream SQL
 =========================
 
 If you have a SQream DB installation on your server, ``sqream sql`` can be found in the ``bin`` directory of your SQream DB installation, under the name ``sqream``.
@@ -40,7 +40,7 @@ To run ``sqream sql`` on any other Linux host:
       
       master=> _
 
-Troubleshooting sqream sql installation
+Troubleshooting Sqream SQL Installation
 -------------------------------------------
 
 Upon running sqream sql for the first time, you may get an error ``error while loading shared libraries: libtinfo.so.5: cannot open shared object file: No such file or directory``.
@@ -69,12 +69,12 @@ Solving this error requires installing the ncruses or libtinfo libraries, depend
       
       ``$ sudo ln -s /usr/lib64/libtinfo.so.6 /usr/lib64/libtinfo.so.5``
 
-Using sqream sql
+Using Sqream SQL
 =================
 
 By default, sqream sql runs in interactive mode. You can issue commands or SQL statements.
 
-Running commands interactively (SQL shell)
+Running Commands Interactively (SQL shell)
 --------------------------------------------
 
 When starting sqream sql, after entering your password, you are presented with the SQL shell.
@@ -138,7 +138,7 @@ The prompt for a multi-line statement will change from ``=>`` to ``.``, to alert
    time: 0.009320s
 
 
-Executing batch scripts (``-f``)
+Executing Batch Scripts (``-f``)
 ---------------------------------
 
 To run an SQL script, use the ``-f <filename>`` argument.
@@ -151,7 +151,7 @@ For example,
 
 .. tip:: Output can be saved to a file by using redirection (``>``).
 
-Executing commands immediately (``-c``)
+Executing Commands Immediately (``-c``)
 -------------------------------------------
 
 To run a statement from the console, use the ``-c <statement>`` argument.
@@ -175,7 +175,7 @@ For example,
 Examples
 ===========
 
-Start a regular interactive shell
+Starting a Regular Interactive Shell
 -----------------------------------
 
 Connect to local server 127.0.0.1 on port 5000, to the default built-in database, `master`:
@@ -202,7 +202,7 @@ Connect to local server 127.0.0.1 via the built-in load balancer on port 3108, t
    
    master=>_
 
-Execute statements in the interactive shell
+Executing Statements in an Interactive Shell
 -----------------------------------------------
 
 Note that all SQL commands end with a semicolon.
@@ -243,7 +243,7 @@ Creating a new database and switching over to it without reconnecting:
    2 rows
    time: 0.029299s
 
-Execute SQL statements from the command line
+Executing SQL Statements from the Command Line
 ----------------------------------------------
 
 .. code-block:: console
@@ -255,7 +255,7 @@ Execute SQL statements from the command line
 
 .. _controlling_output:
 
-Controlling the output of the client
+Controlling the Client Output
 ----------------------------------------
 
 Two parameters control the dispay of results from the client:
@@ -263,7 +263,7 @@ Two parameters control the dispay of results from the client:
 * ``--results-only`` - removes row counts and timing information
 * ``--delimiter`` - changes the record delimiter
 
-Export SQL query result to CSV
+Exporting SQL Query Results to CSV
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Using the ``--results-only`` flag removes the row counts and timing.
@@ -277,7 +277,7 @@ Using the ``--results-only`` flag removes the row counts and timing.
    3,chicken                       ,0
    4,bull                          ,1
 
-Change a CSV to a TSV
+Changing a CSV to a TSV
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``--delimiter`` parameter accepts any printable character.
@@ -294,7 +294,7 @@ The ``--delimiter`` parameter accepts any printable character.
    4  bull                             1
 
 
-Execute a series of statements from a file
+Executing a Series of Statements From a File
 --------------------------------------------
 
 Assuming a file containing SQL statements (separated by semicolons):
@@ -317,7 +317,7 @@ Assuming a file containing SQL statements (separated by semicolons):
    executed
    time: 0.090697s
 
-Connect using environment variables
+Connecting Using Environment Variables
 -------------------------------------
 
 You can save connection parameters as environment variables:
@@ -328,10 +328,10 @@ You can save connection parameters as environment variables:
    $ export SQREAM_DATABASE=farm;
    $ sqream sql --port=3105 --clustered --username=$SQREAM_USER -d $SQREAM_DATABASE
 
-Connecting to a specific queue
+Connecting to a Specific Queue
 -----------------------------------
 
-When using the :ref:`dynamic workload manager<workload_manager>` - connect to ``etl`` queue instead of using the default ``sqream`` queue
+When using the :ref:`dynamic workload manager<workload_manager>` - connect to ``etl`` queue instead of using the default ``sqream`` queue.
 
 .. code-block:: psql
 
@@ -344,13 +344,13 @@ When using the :ref:`dynamic workload manager<workload_manager>` - connect to ``
    master=>_
 
 
-Operations and flag reference
+Operations and Flag References
 ===============================
 
-Command line arguments
+Command Line Arguments
 -----------------------
 
-**SQream SQL** supports the following command line arguments:
+**Sqream SQL** supports the following command line arguments:
 
 .. list-table:: 
    :widths: auto
@@ -400,7 +400,7 @@ Command line arguments
 
 .. _supported_record_delimiters: 
 
-Supported record delimiters
+Supported Record Delimiters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The supported record delimiters are printable ASCII values (32-126).
@@ -409,10 +409,10 @@ The supported record delimiters are printable ASCII values (32-126).
 
 * The following characters are **not supported**: ``\``, ``N``, ``-``, ``:``, ``"``, ``\n``, ``\r``, ``.``, lower-case latin letters, digits (0-9)
 
-Meta-commands
+Meta-Commands
 ----------------
 
-* Meta-commands in SQream SQL start with a backslash (``\``)
+* Meta-commands in Sqream SQL start with a backslash (``\``)
 
 .. note:: Meta commands do not end with a semicolon
 
@@ -439,7 +439,7 @@ Basic Commands
 -----------------------
 
 .. list-table:: 
-   :widths: auto
+   :widths: 20 30 50
    :header-rows: 1
    
    * - Command
@@ -455,62 +455,62 @@ Basic Commands
 
 
 
-Moving about the command line
+Moving Around the Command Line
 ---------------------------------
 
 .. list-table:: 
-   :widths: auto
+   :widths: 17 83
    :header-rows: 1
    
    * - Command
      - Description
    * - :kbd:`Ctrl-a`
-     - go to the start of the command line 
+     - Goes to the beginning of the command line. 
    * - :kbd:`Ctrl-e`
-     - go to the end of the command line 
-   * - :kbd:`Ctrl-k`
-     - delete from cursor to the end of the command line 
+     - Goes to the end of the command line. 
    * - :kbd:`Ctrl-u`
-     - delete from cursor to the start of the command line 
+     - Deletes from cursor to the beginning of the command line. 
+   * - :kbd:`Ctrl-k`
+     - Deletes from the cursor to the end of the command line.
    * - :kbd:`Ctrl-w`
-     - delete from cursor to start of word (i.e. delete backwards one word) 
+     - Delete from cursor to beginning of a word. 
    * - :kbd:`Ctrl-y`
-     - paste word or text that was cut using one of the deletion shortcuts (such as the one above) after the cursor 
+     - Pastes a word or text that was cut using one of the deletion shortcuts (such as the one above) after the cursor. 
    * - :kbd:`Alt-b`
-     - move backward one word (or go to start of word the cursor is currently on)
+     - Moves back one word (or goes to the beginning of the word where the cursor is).
    * - :kbd:`Alt-f`
-     - move forward one word (or go to end of word the cursor is currently on) 
+     - Moves forward one word (or goes to the end of word the cursor is). 
    * - :kbd:`Alt-d`
-     - delete to end of word starting at cursor (whole word if cursor is at the beginning of word) 
+     - Deletes to the end of a word starting at the cursor. Deletes the whole word if the cursor is at the beginning of that word. 
    * - :kbd:`Alt-c`
-     - capitalize to end of word starting at cursor (whole word if cursor is at the beginning of word) 
+     - Capitalizes letters in a word starting at the cursor. Capitalizes the whole word if the cursor is at the beginning of that word. 
    * - :kbd:`Alt-u`
-     - make uppercase from cursor to end of word 
+     - Capitalizes from the cursor to the end of the word. 
    * - :kbd:`Alt-l`
-     - make lowercase from cursor to end of word 
+     - Makes lowercase from the cursor to the end of the word. 
    * - :kbd:`Ctrl-f`
-     - move forward one character 
+     - Moves forward one character. 
    * - :kbd:`Ctrl-b`
-     - move backward one character 
+     - Moves backward one character. 
    * - :kbd:`Ctrl-h`
-     - delete character before the cursor 
+     - Deletes characters located before the cursor. 
    * - :kbd:`Ctrl-t`
-     - swap character under cursor with the previous one
+     - Swaps a character at the cursor with the previous character.
 
 Searching
 ------------
 
 .. list-table:: 
-   :widths: auto
+   :widths: 17 83
    :header-rows: 1
    
    * - Command
      - Description
    * - :kbd:`Ctrl-r`
-     - search the history backwards
+     - Searches the history backward.
    * - :kbd:`Ctrl-g`
-     - escape from history searching mode
+     - Escapes from history-searching mode.
    * - :kbd:`Ctrl-p`
-     - previous command in history (i.e. walk back through the command history)
+     - Searches the previous command in history.
    * - :kbd:`Ctrl-n`
-     - next command in history (i.e. walk forward through the command history)
+     - Searches the next command in history.

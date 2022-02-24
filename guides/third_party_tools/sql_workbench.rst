@@ -1,7 +1,7 @@
 .. _connect_to_sql_workbench:
 
 *****************************
-Connecting SQream Using SQL Workbench
+Connect to SQream Using SQL Workbench
 *****************************
 
 You can use SQL Workbench to interact with a SQream DB cluster. SQL Workbench/J is a free SQL query tool, and is designed to run on any JRE-enabled environment.

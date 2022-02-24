@@ -6,7 +6,7 @@ Connecting to SQream Using Tableau
 
 Overview
 =====================
-SQream's Tableau connector plugin, based on standard JDBC, enables storing and fast querying large volumes of data.
+SQream's Tableau connector plugin, based on standard JDBC, enables storing and fast querying large volumes of data. 
 
 The **Connecting to SQream Using Tableau** page is a Quick Start Guide that describes how install Tableau and the JDBC and ODBC drivers and connect to SQream using the JDBC and ODBC drivers for data analysis. It also describes using best practices and troubleshoot issues that may occur while installing Tableau. SQream supports both Tableau Desktop and Tableau Server on Windows, MacOS, and Linux distributions.
 
@@ -39,7 +39,7 @@ This section describes how to install the JDBC driver using the fully-integrated
 .. _tableau_windows_installer:
 
 Installing the JDBC Driver Using the Windows Installer
--------------------
+~~~~~~~~~~~~~~~~~~
 If you are using Windows, after installing the Tableau Desktop application you can install the JDBC driver using the Windows installer. The Windows installer is an installation wizard that guides you through the JDBC driver installation steps. When the driver is installed, you can connect to SQream.
 
 **To install Tableau using the Windows installer**:
@@ -415,16 +415,6 @@ Dragging your desired tables into the main area in Tableau builds queries based 
 Creating a Separate Service for Tableau
 ~~~~~~~~~~~~~~~~~~~
 SQream recommends creating a separate service for Tableau with the DWLM. This reduces the impact that Tableau has on other applications and processes, such as ETL. In addition, this works in conjunction with the load balancer to ensure good performance.
-
-Error Saving Large Quantities of Data as Files
-~~~~~~~~~~~~~~~~~~~
-An **FAB9A2C5** error can when saving large quantities of data as files. If you receive this error when writing a connection string, add the ``fetchSize`` parameter to ``1``, as shown below:
-
-.. code-block:: text
-
-   jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>sqream;[<optional parameters>; fetchSize=1...]
-   
-For more information on troubleshooting error **FAB9A2C5**, see the `Tableau Knowledge Base <https://community.tableau.com/s/global-search/%40uri#q=FAB9A2C5&t=All&f:content-type-facet=[Knowledge%20Base]>`_.
 
 Troubleshooting Workbook Performance Before Deploying to the Tableau Server
 ~~~~~~~~~~~~~~~~~~~

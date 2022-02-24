@@ -1,7 +1,7 @@
 .. _concurrency_and_scaling_in_sqream:
 
 ***************************************
-Concurrency and scaling in SQream DB
+Concurrency and Scaling in SQream DB
 ***************************************
 
 A SQream DB cluster can concurrently run one regular statement per worker process. A number of small statements will execute alongside these statements without waiting or blocking anything. 

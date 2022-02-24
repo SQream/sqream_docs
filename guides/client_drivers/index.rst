@@ -1,42 +1,32 @@
 .. _client_drivers:
 
 ************************************
-Client drivers for |latest_version|
+Client Drivers for 2021.2
 ************************************
 
 These guides explain how to use the SQream DB client drivers, and how to use client applications with SQream DB.
 
-Client driver downloads
+Client Driver Downloads
 =============================
 
-All operating systems 
+All Operating Systems 
 ---------------------------
 
-* 
-   **JDBC** - `sqream-jdbc v4.3.3 (.jar) <http://downloads.sqream.com/drivers/2020.3/sqream-jdbc-4.3.3.jar>`_
-   
-   :ref:`java_jdbc` Driver
-   
-   (SQream recommends installing via ``mvn``)
+The following drivers are relevant to all operating systems:
 
-* 
-   **Python** - `pysqream v3.1.3 (.tar.gz) <https://github.com/SQream/pysqream/releases/tag/v3.1.3>`_
+* **JDBC** - `sqream-jdbc-4.5.1 (.jar) <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.1.jar>`_
    
-   :ref:`pysqream` - Python driver
+   :ref:`java_jdbc` Driver (SQream recommends installing via ``mvn``)
    
-   (SQream recommends installing via ``pip``)
+* **Python** - `pysqream v3.1.3 (.tar.gz) <https://github.com/SQream/pysqream/releases/tag/v3.1.3>`_
 
-* 
-   **Node.JS** - `sqream-v4.2.4 (.tar.gz) <http://downloads.sqream.com/drivers/2020.3/sqream-sqreamdb-4.2.4.tgz>`_
    
-   :ref:`nodejs` - Node.JS driver
-   
-   (SQream recommends installing via ``npm``)
+   :ref:`pysqream` - Python driver (SQream recommends installing via ``pip``)
 
-* 
-   **Tableau Connector** - `SQreamDB (.taco) <http://downloads.sqream.com/drivers/2020.3/SQreamDB.taco>`_
+* **Node.JS** - `sqream-v4.2.4 (.tar.gz) <https://sq-ftp-public.s3.amazonaws.com/sqream-sqreamdb-4.2.4.tgz>`_
    
-   :ref:`Tableau connector<tableau_manual_installation>` - Tableau connector for manual installation
+   :ref:`nodejs` - Node.JS driver (SQream recommends installing via ``npm``)
+
 
 Windows
 --------------
@@ -51,7 +41,7 @@ Windows
    
    :ref:`Windows installer for ODBC and JDBC<install_odbc_windows>`, with Tableau customizations. Please contact your SQream representative to get this installer.
 
-* **.Net driver** - `SQream .Net driver v2.0.0 <http://downloads.sqream.com/drivers/2020.2/sqream_dotnet-2.0.0.zip>`_
+* **.Net driver** - `SQream .Net driver v3.0.2 <https://sq-ftp-public.s3.amazonaws.com/SqreamNet_net48_3.0.2.zip>`_
    
    
 
@@ -59,12 +49,14 @@ Linux
 --------------
 
 * 
-   **SQream SQL** (x86) - `sqream-sql-v2020.1.1_stable.x86_64.tar.gz <http://downloads.sqream.com/drivers/2020.2/sqream-sql-v2020.1.1_stable.x86_64.tar.gz>`_ 
+   **SQream SQL** (x86) - `sqream-sql-v2020.1.1_stable.x86_64.tar.gz <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.x86_64.tar.gz>`_ 
+
    
    :ref:`sqream sql<sqream_sql_cli_reference>` - Interactive command-line SQL client for Intel-based machines
    
 * 
-   **SQream SQL** (IBM POWER9) - `sqream-sql-v2020.1.1_stable.ppc64le.tar.gz <http://downloads.sqream.com/drivers/2020.2/sqream-sql-v2020.1.1_stable.ppc64le.tar.gz>`_ 
+
+   **SQream SQL** (IBM POWER9) - `sqream-sql-v2020.1.1_stable.ppc64le.tar.gz <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.ppc64le.tar.gz>`_ 
    
    :ref:`sqream sql<sqream_sql_cli_reference>` - Interactive command-line SQL client for IBM POWER9-based machines
    
@@ -72,16 +64,23 @@ Linux
    **ODBC installer** - ``sqream_odbc_4.0.0_x86_64_linux.tar.gz``
    
    :ref:`Linux installer for ODBC<install_odbc_linux>`. Please contact your SQream representative to get this installer.
+   
+* 
+   **SQream SQL** (IBM POWER9) - `sqream-sql-v2020.1.1_stable.ppc64le.tar.gz <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.ppc64le.tar.gz>`_ 
+   
+   :ref:`sqream sql<sqream_sql_cli_reference>` - Interactive command-line SQL client for IBM POWER9-based machines
+   
+
 
 * 
-   **C++ connector** - `libsqream-4.0 <http://downloads.sqream.com/drivers/2020.2/libsqream-4.0.tar.gz>`_ 
+   **C++ connector** - `libsqream-4.1 <https://sq-ftp-public.s3.amazonaws.com/libsqream-4.1.tar.gz>`_ 
    
    :ref:`C++ shared object<cpp_native>` library
 
 
 .. toctree::
    :maxdepth: 4
-   :caption: Client driver documentation:
+   :caption: Client Driver Documentation
    :titlesonly:
    
    python/index

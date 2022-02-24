@@ -1,7 +1,7 @@
 .. _install_odbc_windows:
 
 ****************************************
-Install and configure ODBC on Windows
+Install and Configure ODBC on Windows
 ****************************************
 
 The ODBC driver for Windows is provided as a self-contained installer.
@@ -12,7 +12,7 @@ This tutorial shows you how to install and configure ODBC on Windows.
    :local:
    :depth: 2
 
-Installing the ODBC driver
+Installing the ODBC Driver
 ==================================
 
 Prerequisites
@@ -23,12 +23,9 @@ Prerequisites
 Visual Studio 2015 Redistributables
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ODBC driver requires Microsoft's Visual Studio 2015 Redistributable packages installed.
+To install the ODBC driver you must first install Microsoft's **Visual C++ Redistributable for Visual Studio 2015**. To install Visual C++ Redistributable for Visual Studio 2015, see the `Install Instructions <https://www.microsoft.com/en-us/download/details.aspx?id=48145>`_.
 
-Follow the instructions for download and installation on Microsoft's website https://www.microsoft.com/en-us/download/details.aspx?id=48145
-
-
-Administrator privileges
+Administrator Privileges
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The SQream DB ODBC driver requires administrator privileges on your computer to add the DSNs (data source names).
@@ -43,7 +40,7 @@ Install the driver by following the on-screen instructions in the easy-to-follow
 
 .. note:: The installer will install the driver in ``C:\Program Files\SQream Technologies\ODBC Driver`` by default. This path is changable during the installation.
 
-2. Selecting components
+2. Selecting Components
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The installer includes additional components, like JDBC and Tableau customizations.
@@ -87,7 +84,7 @@ ODBC driver configurations are done via DSNs. Each DSN represents one SQream DB 
 
 
 
-Connection parameters
+Connection Parameters
 -----------------------
 
 .. list-table:: 

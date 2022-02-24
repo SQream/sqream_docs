@@ -12,25 +12,25 @@ The JDBC driver requires Java 1.8 or newer.
 .. contents:: In this topic:
    :local:
 
-Installing the JDBC Driver
+Installing the JDBC driver
 ==================================
 
 Prerequisites
 ----------------
 
-The SQream JDBC driver requires Java 1.8 or newer. We recommend either Oracle Java or OpenJDK.
+The SQream DB JDBC driver requires Java 1.8 or newer. We recommend either Oracle Java or OpenJDK.
 
 **Oracle Java**
 
-To download and install Java 8 from Oracle for your platform, see `Java Downloads for All Operating Systems <https://www.java.com/en/download/manual.jsp>`_.
+Download and install Java 8 from Oracle for your platform
 
-
+https://www.java.com/en/download/manual.jsp
 
 **OpenJDK**
 
-For Linux and BSD, see `How to download and install prebuilt OpenJDK packages <https://openjdk.java.net/install/>`_.
+For Linux and BSD, see https://openjdk.java.net/install/
 
-For Windows, SQream recommends `Zulu 8 <https://www.azul.com/downloads/zulu-community/?&version=java-8-lts&architecture=x86-64-bit&package=jdk>`_.
+For Windows, SQream recommends Zulu 8 https://www.azul.com/downloads/zulu-community/?&version=java-8-lts&architecture=x86-64-bit&package=jdk
 
 .. _get_jdbc_jar:
 
@@ -40,7 +40,7 @@ Getting the JAR file
 The JDBC driver is provided as a zipped JAR file, available for download from the :ref:`client drivers download page<client_drivers>`. This JAR file can integrate into your Java-based applications or projects.
 
 
-Extract the ZIP Archive
+Extract the zip archive
 -------------------------
 
 Extract the JAR file from the zip archive
@@ -68,10 +68,10 @@ An alternative method is to pass ``-classpath`` to the Java executable:
    $ java -classpath .:/home/sqream/sqream-jdbc-4.3.0.jar my_java_app
 
 
-Connect to SQream DB with a JDBC Application
+Connect to SQream DB with a JDBC application
 ==============================================
 
-Driver Class
+Driver class
 --------------
 
 Use ``com.sqream.jdbc.SQDriver`` as the driver class in the JDBC application.
@@ -79,19 +79,16 @@ Use ``com.sqream.jdbc.SQDriver`` as the driver class in the JDBC application.
 
 .. _connection_string:
 
-Connection String
+Connection string
 --------------------
-JDBC drivers rely on a connection string.
 
-The following is the correct syntax for writing a connection string:
+JDBC drivers rely on a connection string. Use the following syntax for SQream DB
 
 .. code-block:: text
 
    jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>sqream;[<optional parameters>; ...]
-   
-If you receive an error when saving large quantities of data as files, see `Troubleshooting - Error Saving Large Quantities of Data as Files <https://docs.sqream.com/en/latest/guides/third_party_tools/tableau.html#error-saving-large-quantities-of-data-as-files>`_.
 
-Connection Parameters
+Connection parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table:: 
@@ -131,7 +128,7 @@ Connection Parameters
      - ``true``
      - Connect via load balancer (use only if exists, and check port).
 
-Connection String Examples
+Connection string examples
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For a SQream DB cluster with load balancer and no service queues, with SSL
@@ -153,7 +150,7 @@ For a SQream DB cluster with load balancer and a specific service queue named ``
    jdbc:Sqream://sqream.mynetwork.co:3108/raviga;user=rhendricks;password=Tr0ub4dor&3;cluster=true;service=etl
 
 
-Sample Java Program
+Sample Java program
 --------------------
 
 Download this file by right clicking and saving to your computer :download:`sample.java <sample.java>`.

@@ -1,7 +1,7 @@
 .. _concurrency_and_locks:
 
 ***********************
-Concurrency and locks
+Concurrency and Locks
 ***********************
 
 Locks are used in SQream DB to provide consistency when there are multiple concurrent transactions updating the database.

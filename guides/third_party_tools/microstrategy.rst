@@ -2,12 +2,12 @@
 
 
 *************************
-Connecting to SQream Using MicroStrategy
+Connect to SQream Using MicroStrategy
 *************************
 
 .. _ms_top:
 
-Overview
+Overview 
 ---------------
 This document is a Quick Start Guide that describes how to install MicroStrategy and connect a datasource to the MicroStrategy dasbhoard for analysis.
 
@@ -137,7 +137,6 @@ Connecting a Data Source
 	    
    9. Click **Save**. The SQreamDB that you picked in the Data Source panel is displayed.
    
-      .. image:: /_static/images/third_party_connectors/microstrategy/new_data_source.png	  
 
 9. In the **Namespace** menu, select a namespace. The tables files are displayed.
 

@@ -96,7 +96,7 @@ This section describes how to configure an HDFS environment for the user **sqrea
 	  
 .. _authenticate_hadoop_servers_that_require_kerberos:
 
-Authenticate Hadoop Servers that Require Kerberos
+Authenticating Hadoop Servers that Require Kerberos
 ---------------------------------------------------
 
 If your Hadoop server requires Kerberos authentication, do the following:

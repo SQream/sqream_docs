@@ -1,7 +1,7 @@
 .. _metadata_system:
 
 ***********************
-Metadata system
+Metadata System
 ***********************
 
 SQream DB contains a transparent and automatic system that collects metadata describing each :ref:`chunk<chunks_and_extents>`.

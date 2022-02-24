@@ -1,39 +1,18 @@
 .. _third_party_tools:
 
-************************************
+*************************
 Third Party Tools
-************************************
+*************************
+SQream supports the most common database tools and interfaces, giving you direct access through a variety of drivers, connectors, and visualiztion tools and utilities. The tools described on this page have been tested and approved for use with SQream. Most third party tools that work through JDBC, ODBC, and Python should work.
 
-These topics explain how to install and connect a variety of third party tools.
-
-Browse the articles below, in the sidebar, or use the search to find the information you need.
-
-Overview
-==========
-
-SQream DB is designed to work with most common database tools and interfaces, allowing you direct access through a variety of drivers, connectors, tools, vizualisers, and utilities.
-
-The tools listed have been tested and approved for use with SQream DB. Most 3\ :sup:`rd` party tools that work through JDBC, ODBC, and Python should work.
-
-If you are looking for a tool that is not listed, SQream and our partners can help. Go to `SQream Support <http://support.sqream.com/>`_ or contact your SQream account manager for more information.
+This section provides information about the following third party tools:
 
 .. toctree::
-   :maxdepth: 4
-   :caption: In this section:
+   :maxdepth: 2
+   :glob:
    :titlesonly:
+   
+   client_platforms/index
+   client_drivers/index
 
-   sql_workbench
-   tableau
-   pentaho_data_integration
-   microstrategy
-   r
-   php
-   xxspotfire
-   sas_viya
-   connect_to_power_bi
-   xxtalend
-   xxdiagnosing_common_connectivity_issues
-
-.. image:: /_static/images/connectivity_ecosystem.png
-
-
+If you need a tool that SQream does not support, contact SQream Support or your SQream account manager for more information.

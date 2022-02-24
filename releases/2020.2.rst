@@ -1,30 +1,30 @@
 .. _2020.2:
 
 **************************
-What's new in 2020.2
+Release Notes 2020.2
 **************************
 
-SQream DB v2020.2 contains some new features, improved performance, and bug fixes.
+SQream v2020.2 contains some new features, improved performance, and bug fixes.
 
 This version has new window ranking function and a new editor UI to empower data users to analyze more data with less friction.
 
-As always, the latest release improves reliability and performance, and makes getting more data into SQream DB easier than ever.
+As always, the latest release improves reliability and performance, and makes getting more data into SQream easier than ever.
 
 
-New features
+New Features
 ================
 
 UI
 ----------
 
-* New :ref:`sqream_studio` replaces the previous Statement Editor. Try it out today!
+* New :ref:`sqream_studio` replaces the previous Statement Editor.
 
 Integrations
 -----------------
 
-* Our :ref:`Python driver (pysqream)<pysqream>` now has an SQLAlchemy dialect. Customers can write high-performance Python applications that make full use of SQream DB - connect, query, delete, and insert data. Data scientists can use pysqream with Pandas, Numpy, and AI/ML frameworks like TensorFlow for direct queries of huge datasets.
+* Our :ref:`Python driver (pysqream)<pysqream>` now has an SQLAlchemy dialect. Customers can write high-performance Python applications that make full use of SQream - connect, query, delete, and insert data. Data scientists can use pysqream with Pandas, Numpy, and AI/ML frameworks like TensorFlow for direct queries of huge datasets.
 
-SQL support
+SQL Support
 ---------------
 
 * Added :ref:`lag`/:ref:`lead` ranking functions to our :ref:`window_functions` support. We will have more features coming in the next version.
@@ -32,7 +32,7 @@ SQL support
 * 
    New syntax preview for :ref:`external_tables`. Foreign tables replace external tables, with improved functionality. 
 
-   You can keep using the existing external table syntax for now, but it may be deprecated in the future.
+   You can keep using the existing foreign table syntax for now, but it may be deprecated in the future.
    
    .. code-block:: postgres
    
@@ -47,10 +47,10 @@ SQL support
       ( LOCATION = 'hdfs://hadoop-nn.piedpiper.com:8020/demo-data/example.orc' );
 
 
-Improvements and fixes
+Improvements and Fixes
 ========================
 
-SQream DB v2020.2 includes hundreds of small new features and tunable parameters that improve performance, reliability, and stability.
+SQream v2020.2 includes hundreds of small new features and tunable parameters that improve performance, reliability, and stability.
 
 * ~100 bug fixes, including:
    
@@ -67,7 +67,7 @@ SQream DB v2020.2 includes hundreds of small new features and tunable parameters
 Operations
 ========================
 
-* When upgrading from a previous version of SQream DB (for example, v2019.2), the storage version must be upgraded using the :ref:`upgrade_storage_cli_reference` utility: ``./bin/upgrade_storage /path/to/storage/sqreamdb/``
+* When upgrading from a previous version of SQream (for example, v2019.2), the storage version must be upgraded using the :ref:`upgrade_storage_cli_reference` utility: ``./bin/upgrade_storage /path/to/storage/sqreamdb/``
 
 * 
    A change in memory allocation behaviour in this version sees the introduction of a new setting, ``limitQueryMemoryGB``. This is an addition to the previous ``spoolMemoryGB`` setting.
@@ -97,7 +97,7 @@ Operations
    
 
  
-Known Issues & Limitations
+Known Issues and Limitations
 ================================
 
 * An invalid formatted CSV can cause an ``insufficient memory`` error on a :ref:`copy_from` statement if a quote isn't closed and the file is much larger than system memory.
@@ -107,9 +107,9 @@ Known Issues & Limitations
 * ``TEXT`` columns can't be used with an outer join together with an inequality check (``!= , <>``)
 
 
-Upgrading to v2020.2
+Upgrading to  Version 2020.2
 ========================
 
 Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and other OSs via Docker.
 
-Contact your account manager to get the latest release of SQream DB.
+Contact your account manager to get the latest release of SQream.

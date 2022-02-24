@@ -1,58 +1,71 @@
 .. _2020.3.1:
 
 **************************
-What's new in 2020.3.1
+Release Notes 2020.3.1
 **************************
+The 2020.3.1 release notes were released on October 8, 2020 and describe the following:
 
-SQream DB v2020.3.1 contains minor features, many performance improvements and bug fixes.
+.. contents:: 
+   :local:
+   :depth: 1
 
 
-New or expanded features
-=========================
+
+New Features
+-------------
+The following list describes the new features:
+
 
 * TEXT data type:
-   * Full support for MIN and MAX aggregate functions on TEXT columns in GROUP BY queries
-   * Support Text-type as window partition keys (e.g., select distinct name, max(id) over (partition by name) from textTable;)
-   * Support Text-type fields in windows order by keys
-   * Support join on Text columns (e.g., t1.x = t2.y where x and y are columns of type Text)
-   * Complete the implementation of LIKE on TEXT columns (previously limited to prefix & suffix)
-   * Support for cast fromm TEXT to REAL/FLOAT
-   * New string function - REPEAT which repeats a string value for a specified number of times   
+   * Full support for ``MIN`` and ``MAX`` aggregate functions on ``TEXT`` columns in ``GROUP BY`` queries.
+   * Support Text-type as window partition keys (e.g., select distinct name, max(id) over (partition by name) from ``textTable;``).
+   * Support Text-type fields in windows order by keys.
+   * Support join on ``TEXT`` columns (such as ``t1.x = t2.y`` where ``x`` and ``y`` are columns of type ``TEXT``).
+   * Complete the implementation of ``LIKE`` on ``TEXT`` columns (previously limited to prefix and suffix).
+   * Support for cast fromm ``TEXT`` to ``REAL/FLOAT``.
+   * New string function - ``REPEAT`` for repeating a string value for a specified number of times.
    
-* Allow mapping DECIMAL ORC columns to SQream's floating-point types
+* Support mapping ``DECIMAL ORC`` columns to SQream's floating-point types.
    
-* Support LIKE  on non-literal patterns (i.e., columns and complex expressions)
+* Support ``LIKE`` on non-literal patterns (such as columns and complex expressions).
 
-* Catch OS signals and save the signal along with the stack trace in the SQream debug log
+* Catch OS signals and save the signal along with the stack trace in the SQream debug log.
 
-* Support equijoins conditions on columns with different types (i.e., tinyint, smallint, int & bigint)
+* Support equijoin conditions on columns with different types (such as ``tinyint``, ``smallint``, ``int`` and ``bigint``).
 
-* `DUMP_DATABASE_DDL` now includes foreign tables in the  output
+* ``DUMP_DATABASE_DDL`` now includes foreign tables in the  output.
 
-* New utility function - TRUNCATE_IF_EXISTS
+* New utility function - ``TRUNCATE_IF_EXISTS``.
 
 
 Performance Enhancements
-=========================
-* Introduced the "MetaData on Demand" feature which results in signicant proformance improvements
-
-* Implement regex functions (RLIKE, REGEXP_COUNT, REGEXP_INSTR, REGEXP_SUBSTR, PATINDEX) for TEXT columns on GPU
+-------------
+The following list describes the performance enhancements:
 
 
-Bug fixes
-============
-* Multiple distinct aggregates no longer need to be used with developerMode flag
-* In some scenrios, the statement_id and connection_id values are incorrectly recorded as -1 in the log
-* NOT RLIKE is not supported for TEXT in the compiler
-* Cast from TEXT to date/datetime returns an error when the TEXT column contains NULL
+* Introduced the "MetaData on Demand" feature which results in signicant proformance improvements.
+
+* Implemented regex functions (``RLIKE``, ``REGEXP_COUNT``, ``REGEXP_INSTR``, ``REGEXP_SUBSTR``, ``PATINDEX``) for ``TEXT`` columns on GPU.
 
 
-Known Issues & Limitations
-================================
+Resolved Issues
+-------------
+The following list describes the resolved issues:
+
+
+* Multiple distinct aggregates no longer need to be used with developerMode flag.
+* In some scenarios, the ``statement_id`` and ``connection_id values`` are incorrectly recorded as ``-1`` in the log.
+* ``NOT RLIKE`` is not supported for ``TEXT`` in the compiler.
+* Casting from ``TEXT`` to ``date/datetime`` returns an error when the ``TEXT`` column contains ``NULL``.
+
+
+Known Issues and Limitations
+-------------
+No known issues and limitations.
 
 
 Upgrading to v2020.3.1
-========================
+----------------
 
 Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and other OSs via Docker.
 

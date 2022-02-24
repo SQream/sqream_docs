@@ -1,7 +1,7 @@
 .. _filesystem_and_filesystem_usage:
 
 *******************************
-Filesystem and usage
+Filesystem and Usage
 *******************************
 
 SQream DB writes and reads data from disk.

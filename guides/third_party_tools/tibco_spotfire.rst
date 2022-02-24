@@ -268,7 +268,7 @@ After creating a data source, you can create an information link.
 		
     2. Click **Add**.
 	
-       The **Add Column** window is displayed. **Comment** - *Please demonstrate.*
+       The **Add Column** window is displayed.
 	   
     3. From the drop-down list, select a column to add a hard filter to and click **OK**.
 	

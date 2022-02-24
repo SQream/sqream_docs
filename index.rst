@@ -1,10 +1,10 @@
 .. _index:
 
 *************************
-SQream DB documentation
+SQream DB Documentation
 *************************
 
-For SQream DB |latest_version|.
+For SQream version 2021.2.
 
 .. only:: html
 
@@ -31,7 +31,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
    :widths: 33 33 33
    :header-rows: 0
 
-   * - **Get started**
+   * - **Get Started**
      - **Reference**
      - **Guides**
    * -
@@ -41,28 +41,26 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
          
          :ref:`Bulk load CSVs<csv>`
      - 
-         :ref:`SQL reference<sql>`
+         :ref:`SQL Reference<sql>`
          
          :ref:`sql_statements`
          
          :ref:`sql_functions`
      - 
-         :ref:`setup`
+         `Setting up SQream <https://docs.sqream.com/en/latest/installation_guides/index.html>`_
          
          :ref:`Best practices<sql_best_practices>`
          
          :ref:`connect_to_tableau`
 
    * - **Releases**
-     - **Driver and deployment**
-     - **Help & Support**
+     - **Driver and Deployment**
+     - **Help and Support**
    * -
-         :ref:`2020.3.2.1<2020.3.2.1>`
+         :ref:`2021.2<2021.2>`
 
-         :ref:`2020.3.2<2020.3.2>`
-         
-         :ref:`2020.3.1<2020.3.1>`
-
+         :ref:`2021.1<2021.1>`
+        
          :ref:`2020.3<2020.3>`
 
          :ref:`2020.2<2020.2>`
@@ -91,7 +89,7 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
 
 .. rubric:: Looking for older versions?
 
-This version of the documentation is for SQream DB |latest_version|.
+This version of the documentation is for SQream DB Version 2021.2.
 
 If you're looking for an older version of the documentation, versions 1.10 through 2019.2.1 are available at http://previous.sqream.com .
 
@@ -102,11 +100,18 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    :titlesonly:
    :hidden:
 
-   first_steps
-   xxfeatures_tour
-   guides/index
+   getting_started/index
+   installation_guides/index
+   data_ingestion/index
+   third_party_tools/index
+   feature_guides/index
+   operational_guides/index
+   sqream_studio_5.4.3/index
+   architecture/index
+   configuration_guides/index
    reference/index
    releases/index
+   troubleshooting/index
    glossary
 
 ..

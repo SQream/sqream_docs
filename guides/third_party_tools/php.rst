@@ -1,7 +1,7 @@
 .. _php:
 
 *****************************
-Connecting with PHP
+Connect to SQream Using PHP
 *****************************
 
 You can use PHP to interact with a SQream DB cluster.

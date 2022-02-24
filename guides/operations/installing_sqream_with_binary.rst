@@ -3,7 +3,7 @@
 *********************************************
 Installing SQream Using Binary Packages
 *********************************************
-This procedure describes how to install SQream using Binary packages.
+This procedure describes how to install SQream using Binary packages and must be done on all servers.
 
 **To install SQream using Binary packages:**
 
@@ -114,6 +114,8 @@ It would be same on server running metadataserver and different on other server 
     1. Change the **SERVICE_NAME=sqream2** value to **SERVICE_NAME=sqream3**.
     
     2. Change **LOGFILE=/var/log/sqream/sqream2.log** to **LOGFILE=/var/log/sqream/sqream3.log**.
+    
+**NOTE:** If you are running SQream on more than one server, you must configure the ``serverpicker`` and ``metadatserver`` services to start on only one of the servers. If **metadataserver** is running on the first server, the ``metadataServerIP`` value in the second server's /etc/sqream/sqream1_config.json file must point to the IP of the server on which the ``metadataserver`` service is running.
     
 14. Set up **servicepicker**:
 
@@ -228,17 +230,18 @@ For an example of stopping actively running SQream services, see :ref:`Launching
     
       $ sqream -> sqream-db-v2021.1
 
-5. **Optional-** (For major versions) Upgrade your version of SQream storage cluster, as shown in the following example:
+7. **Optional-** (for major versions) Upgrade your version of SQream storage cluster, as shown in the following example:
 
    .. code-block:: console  
 
-      $ ./upgrade_storage </home/rhendricks/raviga_database>
+      $ cat /etc/sqream/sqream1_config.json |grep cluster
+      $ ./upgrade_storage <cluster path>
 	  
    The following is an example of the correct output:
 	  
    .. code-block:: console  
 
-	  get_leveldb_version path{/home/rhendricks/raviga_database}
+	  get_leveldb_version path{<cluster path>}
 	  current storage version 23
       upgrade_v24
       upgrade_storage to 24
@@ -257,7 +260,7 @@ For an example of stopping actively running SQream services, see :ref:`Launching
 	  validate_leveldb
       storage has been upgraded successfully to version 37
  
-6. Verify that the latest version has been installed:
+8. Verify that the latest version has been installed:
 
    .. code-block:: console
     
