@@ -526,10 +526,8 @@ You can install the Docker Engine on an IBM Power9 processor by running the foll
 
 .. code-block:: console
 
-   $ wget
-   $ http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/container-selinux-2.9-4.el7.noarch.rpm
-   $ wget
-   $ http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/docker-ce-18.03.1.ce-1.el7.centos.ppc64le.rpm
+   $ wget http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/container-selinux-2.9-4.el7.noarch.rpm
+   $ wget http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/docker-ce-18.03.1.ce-1.el7.centos.ppc64le.rpm
    $ yum install -y container-selinux-2.9-4.el7.noarch.rpm
    $ docker-ce-18.03.1.ce-1.el7.centos.ppc64le.rpm
 
