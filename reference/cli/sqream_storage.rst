@@ -3,20 +3,17 @@
 *************************
 SqreamStorage
 *************************
+You can use the **SqreamStorage** program to create a new :ref:`storage cluster<storage_cluster>`.
 
-``SqreamStorage`` allows the creation of a new :ref:`storage cluster<storage_cluster>`.
-
-This page serves as a reference for the options and parameters.
+The **SqreamStorage** page serves as a reference for the options and parameters.
 
 Running SqreamStorage
 =======================
+The **SqreamStorage** program is located in the **bin** directory of your SQream installation..
 
-``SqreamStorage`` can be found in the ``bin`` directory of your SQream DB installation..
-
-Command line arguments
+Command Line Arguments
 ==========================
-
-``SqreamStorage`` supports the following command line arguments:
+The **SqreamStorage** program supports the following command line arguments:
 
 .. list-table:: 
    :widths: auto
@@ -32,20 +29,13 @@ Command line arguments
      - ``-r``
      - Specifies the cluster path. The path must **not** already exist.
 
-
-Examples
+Example
 =============
-
-Create a new storage cluster
-----------------------------------
-
-Create a new cluster at ``/home/rhendricks/raviga_database``:
+The **Examples** section describes how to create a new storage cluster at ``/home/rhendricks/raviga_database``:
 
 .. code-block:: console
 
    $ SqreamStorage --create-cluster --cluster-root /home/rhendricks/raviga_database
    Setting cluster version to: 26
 
-This can also be written shorthand as ``SqreamStorage -C -r /home/rhendricks/raviga_database``.
-
-This message confirms the creation of the cluster successfully.
+Alternatively, you can write this in shorthand as ``SqreamStorage -C -r /home/rhendricks/raviga_database``. A message is displayed confirming that your cluster has been created.
