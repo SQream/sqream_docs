@@ -3,84 +3,121 @@
 *****************************
 Connect to SQream Using SQL Workbench
 *****************************
+SQL Workbench/J is a free SQL query tool designed to run on any JRE-enabled environment. You can use SQL Workbench to interact with a SQream cluster.
 
-You can use SQL Workbench to interact with a SQream DB cluster. SQL Workbench/J is a free SQL query tool, and is designed to run on any JRE-enabled environment. 
+The **Connect to SQream Using SQL Workbench** page describes how to connect to SQream using SQL Workbench.
 
-This tutorial is a guide that will show you how to connect SQL Workbench to SQream DB.
-
-.. contents:: In this topic:
+.. contents:: 
    :local:
+   :depth: 1
 
-Installing SQL Workbench with the SQream DB installer (Windows only)
+Installing SQL Workbench
 =====================================================================
+The **Installing SQL Workbench** section describes the following installation methods:
 
-SQream DB's driver installer for Windows can install the Java prerequisites and SQL Workbench for you.
+.. contents:: 
+   :local:
+   :depth: 1
 
-#. Get the JDBC driver installer available for download from the `SQream Drivers page <http://sqream.com/product/client-drivers>`_. The Windows installer takes care of the Java prerequisites and subsequent configuration.
+Installing SQL Workbench Using the SQream Installer
+-------------------
+Installing SQL Workbench using the SQream installer automates the installation process and configures all of the needed Java and SQL Workbench prerequisites. Installing SQL Worbench using the installer is relevant for Windows only.
 
-#. Install the driver by following the on-screen instructions in the easy-to-follow installer.
-   By default, the installer does not install SQL Workbench. Make sure to select the item!
+**To install the SQL Workbench using the SQream installer:**
+
+1. Download the JDBC driver installer from the `SQream Drivers page <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/jdbc/index.html>`_.
+
+   The Windows installer selects the required Java prerequisites and configuration settings.   
+
+#. Install the JDBC driver by following the on-screen instructions.
    
-   .. image:: /_static/images/jdbc_windows_installer_screen.png
-
-.. note:: The installer will install SQL Workbench in ``C:\Program Files\SQream Technologies\SQLWorkbench`` by default. You can change this path during the installation.
-
-#. Once finished, SQL Workbench is installed and contains the necessary configuration for connecting to SQream DB clusters.
-
-#. Start SQL Workbench from the Windows start menu. Be sure to select **SQL Workbench (64)** if you're on 64-bit Windows.
+   .. note:: The installer does not automatically select **Install SQL Workbench**.
    
-   .. image:: /_static/images/sql_workbench_launch.png
+    ::
+	   
+   The SQL Workbench is installed with the required configuration for connecting to SQream clusters.
+      
+   .. note:: The default location for SQL Workbench is **C:\Program Files\SQream Technologies\SQLWorkbench**. You can modify this path during the installation.
 
-You are now ready to create a profile for your cluster. Continue to :ref:`Creating a new connection profile <new_connection_profile>`.
+Installing SQL Workbench Manually
+--------------------
+Installing the SQL Workbench manually is relevant for Linux and MacOS, and can be done using one of the following methods:
 
-Installing SQL Workbench manually (Linux, MacOS)
-===================================================
+.. contents:: 
+   :local:
+   :depth: 1
 
-Install Java Runtime 
-------------------------
+Installing Java Runtime 
+~~~~~~~~~~~~~
+Both SQL Workbench and the SQream JDBC driver require Java 1.8 or newer.
 
-Both SQL Workbench and the SQream DB JDBC driver require Java 1.8 or newer. You can install either Oracle Java or OpenJDK.
+You can install Java Runtime depending on the following platforms:
 
-**Oracle Java**
+* **For Java 8** - `Oracle Java <https://www.java.com/en/download/manual.jsp>`_
 
-Download and install Java 8 from Oracle for your platform - https://www.java.com/en/download/manual.jsp
+* **For Linux and BSD** - `OpenJDK <https://openjdk.java.net/install/>`_
 
-**OpenJDK**
+* **For Windows** - `Zulu 8 <https://www.azul.com/downloads/zulu-community/?&version=java-8-lts&architecture=x86-64-bit&package=jdk>`_ - for Linux and BSD
 
-For Linux and BSD, see https://openjdk.java.net/install/
+Downloading the SQream JDBC Driver
+~~~~~~~~~~~~~
+You can download the SQream JDBC driver as a zipped JAR file from the Client Drivers page.
 
-For Windows, SQream recommends Zulu 8 https://www.azul.com/downloads/zulu-community/?&version=java-8-lts&architecture=x86-64-bit&package=jdk
+**To download the SQream JDBC driver:**
 
-Get the SQream DB JDBC driver
--------------------------------
+#. See `JDBC <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/jdbc/index.html>`_.
 
-SQream DB's JDBC driver is provided as a zipped JAR file, available for download from the `SQream Drivers page <http://sqream.com/product/client-drivers>`_. 
+    :: 
 
-Download and extract the JAR file from the zip archive.
+#. Download and extract the JAR file from the zipped archive.
 
-Install SQL Workbench
------------------------
+Installing SQL Workbench
+~~~~~~~~~~~~~
 
-#. Download the latest stable release from https://www.sql-workbench.eu/downloads.html . The **Generic package for all systems** is recommended.
+#. Download the latest stable release from the `SQL Workbench downloads page <https://www.sql-workbench.eu/downloads.html>`_.
 
-#. Extract the downloaded ZIP archive into a directory of your choice.
+   SQream recommends using the `Generic package for all systems <https://www.sql-workbench.eu/Workbench-Build128.zip>`_. option.   
 
-#. Start SQL workbench. If you are using 64 bit windows, run ``SQLWorkbench64.exe`` instead of ``SQLWOrkbench.exe``.
+#. Extract the downloaded ZIP archive into a directory on your local machine.
 
-Setting up the SQream DB JDBC driver profile
+    ::
+
+#. Launch SQL Workbench.
+
+   If you are using 64-bit Windows, you must run **SQLWorkbench64.exe** instead of **SQLWOrkbench.exe**.
+   
+   For more information, see :ref:`launching_sql_workbench`.
+
+Configuring SQL Workbench
+============
+The **Setting Up Your SQream JDBC Driver Profile** describes the following:
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Setting Up Your SQream JDBC Driver Profile
 ---------------------------------------------
 
-#. Define a connection profile - :menuselection:`&File --> &Connect window (Alt+C)`
+
+   
+**To set up your SQream JDBC driver profile:**
+
+#. From the File menu, select **Connect window** to define a connection profile.
    
    .. image:: /_static/images/sql_workbench_connect_window1.png
 
-#. Open the drivers management window - :menuselection:`&Manage Drivers`
+#. From the **Select Connection Profile** screen, click **Manage Drivers**.
+
+   The drivers management screen is displayed:
    
-   .. image:: /_static/images/sql_workbench_manage_drivers.png
+   .. image:: /_static/images/sql_workbench_manage_drivers.png   
    
-   
-   
-#. Create the SQream DB driver profile
+#. Create the SQream DB driver profile |icon_sql_wb_create_sqream_driver_profile|.
+
+
+
+
    
    .. image:: /_static/images/sql_workbench_create_driver.png
    
@@ -100,25 +137,13 @@ Setting up the SQream DB JDBC driver profile
 
 .. _new_connection_profile:
 
-Create a new connection profile for your cluster
-=====================================================
 
-   .. image:: /_static/images/sql_workbench_connection_profile.png
+.. |icon-icon_sql_wb_create_sqream_driver_profile| image:: /_static/images/icon_sql_wb_create_sqream_driver_profile.png
+   :align: middle
 
-#. Create new connection by clicking the New icon (top left)
-
-#. Give your connection a descriptive name
-
-#. Select the SQream Driver that was created in the previous screen
-
-#. Type in your connection string. To find out more about your connection string (URL), see the :ref:`Connection string documentation <connection_string>`.
-
-#. Text the connection details
-
-#. Click OK to save the connection profile and connect to SQream DB
 
 Suggested optional configuration
-==================================
+----------
 
 If you installed SQL Workbench manually, you can set a customization to help SQL Workbench show information correctly in the DB Explorer panel.
 
@@ -133,3 +158,56 @@ If you installed SQL Workbench manually, you can set a customization to help SQL
       workbench.db.sqreamdb.schema.retrieve.change.catalog=true
 
 #. Save the file and restart SQL Workbench
+
+.. _launching_sql_workbench:
+
+Launching SQL Workbench
+=====================================================================
+The **Launching SQL Workbench** section describes the following:
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Selecting Your SQL Workbench Desktop Application
+------------------------------------------------ 
+After installing the SQL Workbench, you can launch it by selecting one of the following desktop applications from the Windows Start menu:
+
+* SQL Workbench
+
+   ::
+   
+* SQL Workbench (64) - for 64-bit Windows
+
+
+   
+   .. image:: /_static/images/launch_sql_workbench.png
+      :align: center
+
+Creating a New Connection Profile for Your Cluster	  
+------------------------------------------------
+
+
+   .. image:: /_static/images/sql_workbench_connection_profile.png
+	  
+#. From the **Select Connection Profile** screen, create a new connection by clicking |icon-sql_workbench_launch_icon|.
+
+   The **Default group** screen is displayed.
+
+#. In the name field, give your connection a descriptive name.
+
+#. Select the SQream Driver that was created in the previous screen
+
+#. Type in your connection string. To find out more about your connection string (URL), see the :ref:`Connection string documentation <connection_string>`.
+
+#. Text the connection details
+
+#. Click OK to save the connection profile and connect to SQream DB
+   
+You are now ready to create a profile for your cluster. Continue to :ref:`Creating a new connection profile <new_connection_profile>`.
+
+
+
+.. |icon-sql_workbench_launch_icon| image:: /_static/images/sql_workbench_launch_icon.png
+   :align: middle
+   
