@@ -73,6 +73,7 @@ You can download the SQream JDBC driver as a zipped JAR file from the Client Dri
 
 Installing SQL Workbench
 ~~~~~~~~~~~~~
+**To install SQL Workbench:**
 
 #. Download the latest stable release from the `SQL Workbench downloads page <https://www.sql-workbench.eu/downloads.html>`_.
 
@@ -97,10 +98,7 @@ The **Setting Up Your SQream JDBC Driver Profile** describes the following:
    :depth: 1
    
 Setting Up Your SQream JDBC Driver Profile
----------------------------------------------
-
-
-   
+---------------------------------------------   
 **To set up your SQream JDBC driver profile:**
 
 #. From the File menu, select **Connect window** to define a connection profile.
@@ -113,39 +111,43 @@ Setting Up Your SQream JDBC Driver Profile
    
    .. image:: /_static/images/sql_workbench_manage_drivers.png   
    
-#. Create the SQream DB driver profile |icon_sql_wb_create_sqream_driver_profile|.
-
-
-
-
+#. Create the SQream DB driver profile:
    
    .. image:: /_static/images/sql_workbench_create_driver.png
    
-   #. Click on the Add new driver button ("New" icon)
+   #. Click add new driver |icon-icon_sql_wb_create_sqream_driver_profile|.
    
-   #. Name the driver as you see fit. We recommend calling it SQream DB <version>, where <version> is the version you have installed.
+       ::
    
-   #. 
-      Add the JDBC drivers from the location where you extracted the SQream DB JDBC JAR.
-      
-      If you used the SQream installer, the file will be in ``C:\Program Files\SQream Technologies\JDBC Driver\``
+   #. In the name field, give your connection a descriptive name.
    
-   #. Click the magnifying glass button to detect the classname automatically. Other details are purely optional
-   
-   #. Click OK to save and return to "new connection screen"
+      SQream recommends calling it SQream DB <version>, where <version> is the version you have installed.   
 
+   #. Add the JDBC drivers from the location to where you extracted the SQream JDBC .jar file.
+      
+      If you used the SQream installer, the file JDBC driver is located in *C:\Program Files\SQream Technologies\JDBC Driver\*.
+   
+   #. Click |icon-sql_workbench_detect_classname| to detect the classname automatically.
+   
+      The remaining information is optional.
+   
+   #. Click **OK**.
+
+      Your information is saved and you are returned to the new connection screen.
 
 .. _new_connection_profile:
-
-
+  
 .. |icon-icon_sql_wb_create_sqream_driver_profile| image:: /_static/images/icon_sql_wb_create_sqream_driver_profile.png
    :align: middle
+   
+.. |icon-sql_workbench_detect_classname| image:: /_static/images/sql_workbench_detect_classname.png
+   :align: middle
 
-
-Suggested optional configuration
+Recommended Optional Configuration Settings
 ----------
+If you installed SQL Workbench manually, you can set a customization to help SQL Workbench display information correctly in the DB Explorer panel.
 
-If you installed SQL Workbench manually, you can set a customization to help SQL Workbench show information correctly in the DB Explorer panel.
+**To defined recommended optional configuration settings:**
 
 #. Locate your workbench.settings file
    On Windows, typically: ``C:\Users\<user name>\.sqlworkbench\workbench.settings``
