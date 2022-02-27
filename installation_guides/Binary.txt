@@ -1,0 +1,16 @@
+{
+    "cluster": "/home/sqream/sqream_cluster/sqreamdb",
+    "cudaMemQuota": 96,
+    "gpu": 0,
+    "legacyConfigFilePath": "sqream1_config_legacy.json",
+    "licensePath": "/home/sqream/etc/license.enc",
+    "limitQueryMemoryGB": 15,
+    "machineIP": "192.168.4.58",
+    "metadataServerIp": "192.168.4.58",
+    "initialSubscribedServices": "sqream",
+    "instanceId": "sqream_01",
+    "metadataServerPort": 3105,
+    "port": 5000,
+    "ssl_port": 5100,
+    "useConfigIP": true
+}

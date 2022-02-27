@@ -3,6 +3,19 @@
 *********************************************
 Installing SQream Using Binary Packages
 *********************************************
+
+Overview
+============
+The binary package SQream installation method is based on a file package provided by SQream. The files in this package must be installed on your machine and modified as required.
+
+The **Installing SQream Using Binary Packages** page provides recommendations for production deployments of SQream and describes the following:
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Installing SQream
+-----------
 This procedure describes how to install SQream using Binary packages and must be done on all servers.
 
 **To install SQream using Binary packages:**
@@ -77,34 +90,32 @@ The configuration files are **service configuration files**, and the JSON files 
 
 11. Create a cluster.
 
-    A cluster can be created either on your machine or in storage.
-	
-    For more information on creating clusters, see `SqreamStorage <https://docs.sqream.com/en/latest/reference/cli/sqream_storage.html>`_.
-	
-12. Copy path to the directory where you cluster is contained, and paste it in the sqream.json file, as shown below:
+    You can create a cluster either on your machine or in storage.
 
-  .. note:: A separate sqream.json file exists for each worker on your system. The name of each current configuration file includes the number of the worker. For example, the current configuration file for Worker 8 is **sqream8_config.json**.
-
-13. Update all parameters in the current configuration files for each worker, as in the following example:
+    The following is an example of the message displayed when the cluster is created:
 
    .. code-block:: console
    
-      {
-          "cluster": "/home/sqream/sqream_cluster/sqreamdb",
-          "cudaMemQuota": 96,
-          "gpu": 0,
-          "legacyConfigFilePath": "sqream1_config_legacy.json",
-          "licensePath": "/home/sqream/etc/license.enc",
-          "limitQueryMemoryGB": 15,
-          "machineIP": "192.168.4.58",
-          "metadataServerIp": "192.168.4.58",
-          "initialSubscribedServices": "sqream",
-          "instanceId": "sqream_01",
-          "metadataServerPort": 3105,
-          "port": 5000,
-          "ssl_port": 5100,
-          "useConfigIP": true
-      }
+      /home/sqream/v2021.2.1.10/sqream/bin/SqreamStorage -C -r /home/sqream/cluster_guide
+      log4cxx: No appender could be found for logger (file_utils).
+      log4cxx: Please initialize the log4cxx system properly.
+      Setting cluster version to: 38	
+	
+   For more information on creating clusters, see `SqreamStorage <https://docs.sqream.com/en/latest/reference/cli/sqream_storage.html>`_.
+	
+12. As in the example below, update your **sqream.json** file:
+
+    1. Copy and paste the path to the directory where you cluster is contained.
+	
+	    ::
+
+    2. Update all parameters in the current configuration files.
+	
+   .. literalinclude:: Binary.txt
+      :language: txt
+      :emphasize-lines: 2
+	  
+  .. note:: A separate sqream.json file exists for each worker on your system. The json file corresponding **to each worker** must be updated. The name of each current configuration file includes the number of the worker. For example, the current configuration file for **Worker 8** is **sqream8_config.json**.
 
 Note the following:
 
@@ -113,14 +124,14 @@ Note the following:
 
 The values are the same on servers running metadataserver, and different on other server nodes.
 
-14. Insert your license file path into the ``licensePath`` parameter in your current configuration file (see above).
+13. Insert your license file path into the ``licensePath`` parameter in your current configuration file (see above).
 
     The following is an example of a license file path:
 
 .. code-block:: console   
    6C5B5CEF705FD72C21CA991E6A00A7410589DED028366FF9441AC6FA8C5FB8FDF2BD22BF328261FCD84455941634EC38FDB361DC0B2DE81A5A4120C1AE58D0B4EECCE2AD9D97C047C54838413F50ACC78F74603407AC864B81D23745F84135CFFF60561886546CF3A8F9A4E0049BB099210CB43FB332DDB3B91E9EB9774B39065E7DBB6E1982E8DACCD732AC6B8532A15BD2C8049A1975C470C3A091DFFE382E4F52A0C5E24C8F16490DC2D192EB9AED2CE7F2B76F513FCEA6C5B648E370DDABA9FC29AEB77AC620FDFBC71663FAE18CCE64A2DB7E69750F74288AD474930CDF3F38023766AE371DC3B6393A6547620F   
 	
-15. Update all parameters in the previous configuration files for each worker, as follows:
+14. Update all parameters in the previous configuration files for each worker, as follows:
 
    .. code-block:: console
    
@@ -139,7 +150,7 @@ The values are the same on servers running metadataserver, and different on othe
           "waitForClientSeconds": 18000
       }
 
-16. **Optional** - To run additional SQream services, copy the required configuration files and create additional JSON files:
+15. **Optional** - To run additional SQream services, copy the required configuration files and create additional JSON files:
 
     .. code-block:: console
    
@@ -148,14 +159,14 @@ The values are the same on servers running metadataserver, and different on othe
       
   .. note:: A unique **instanceID** must be used in each JSON file. IN the example above, the instanceID **sqream_2** is changed to **sqream_3**.
 
-17. **Optional** - If you created additional services in **Step 11**, verify that you have also created their additional configuration files:
+16. **Optional** - If you created additional services in the previous step, verify that you have also created their additional configuration files:
 
     .. code-block:: console
    
        $ cp sqream2-service.conf sqream3-service.conf
        $ vim sqream3-service.conf
       
-18. For each SQream service configuration file, do the following:
+17. For each SQream service configuration file, do the following:
 
     1. Change the **SERVICE_NAME=sqream2** value to **SERVICE_NAME=sqream3**.
 	
@@ -163,9 +174,9 @@ The values are the same on servers running metadataserver, and different on othe
     
     2. Change **LOGFILE=/var/log/sqream/sqream2.log** to **LOGFILE=/var/log/sqream/sqream3.log**.
     
-**NOTE:** If you are running SQream on more than one server, you must configure the ``serverpicker`` and ``metadatserver`` services to start on only one of the servers. If **metadataserver** is running on the first server, the ``metadataServerIP`` value in the second server's /etc/sqream/sqream1_config.json file must point to the IP of the server on which the ``metadataserver`` service is running.
+  .. note:: If you are running SQream on more than one server, you must configure the ``serverpicker`` and ``metadatserver`` services to start on only one of the servers. If **metadataserver** is running on the first server, the ``metadataServerIP`` value in the second server's /etc/sqream/sqream1_config.json file must point to the IP of the server on which the ``metadataserver`` service is running.
     
-19. Set up **servicepicker**:
+18. Set up **servicepicker**:
 
     1. Do the following:
 
@@ -179,7 +190,7 @@ The values are the same on servers running metadataserver, and different on othe
     
     3. Change the **CLUSTER** to the value of the cluster path.
      
-20. Set up your service files:      
+19. Set up your service files:      
       
     .. code-block:: console
    
@@ -187,13 +198,13 @@ The values are the same on servers running metadataserver, and different on othe
        $ cp sqream2.service sqream3.service
        $ vim sqream3.service      
        
-21. Increment each **EnvironmentFile=/etc/sqream/sqream2-service.conf** configuration file for each SQream service file, as shown below:
+20. Increment each **EnvironmentFile=/etc/sqream/sqream2-service.conf** configuration file for each SQream service file, as shown below:
 
     .. code-block:: console
      
        $ EnvironmentFile=/etc/sqream/sqream<3>-service.conf
        
-22. Copy and register your service files into systemd:       
+21. Copy and register your service files into systemd:       
        
     .. code-block:: console
      
@@ -209,7 +220,7 @@ The values are the same on servers running metadataserver, and different on othe
        $ ls -l /usr/lib/systemd/system/serverpicker.service
        $ sudo systemctl daemon-reload       
        
-24. Copy the license into the **/etc/license** directory:
+22. Copy the license into the **/etc/license** directory:
 
     .. code-block:: console
      
@@ -217,8 +228,8 @@ The values are the same on servers running metadataserver, and different on othe
        
 If you have an HDFS environment, see :ref:`Configuring an HDFS Environment for the User sqream <hdfs>`.
 
-Upgrading SQream Version
--------------------------
+Upgrading Your SQream Version
+-----------
 Upgrading your SQream version requires stopping all running services while you manually upgrade SQream.
 
 **To upgrade your version of SQream:**
@@ -233,9 +244,9 @@ Upgrading your SQream version requires stopping all running services while you m
 
    .. code-block:: console
 
-      $ sudo netstat -nltp    #to make sure sqream stopped listening on 500X, 510X and 310X ports.
+      $ sudo netstat -nltp
 
-3. Replace the old version ``sqream-db-v2020.2``, with the new version ``sqream-db-v2021.1``:
+3. Replace the old version, such as ``sqream-db-v2020.2``, with the new version, such as ``sqream-db-v2021.1``:
 
    .. code-block:: console
     
@@ -271,7 +282,7 @@ Upgrading your SQream version requires stopping all running services while you m
     
       $ sqream -> sqream-db-v2021.1
 
-7. **Optional-** (for major versions) Upgrade your version of SQream storage cluster, as shown in the following example:
+7. **Optional -** (for major versions) Upgrade your version of SQream storage cluster, as shown in the following example:
 
    .. code-block:: console  
 
@@ -315,6 +326,6 @@ Upgrading your SQream version requires stopping all running services while you m
       1 row
       time: 0.050603s 
  
-For more information, see the `upgrade_storage <https://docs.sqream.com/en/latest/reference/cli/upgrade_storage.html>`_ command line program.
+  For more information, see the `upgrade_storage <https://docs.sqream.com/en/latest/reference/cli/upgrade_storage.html>`_ command line program.
 
-For more information about installing Studio on a stand-alone server, see `Installing Studio on a Stand-Alone Server <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.2.html>`_.
+  For more information about installing Studio on a stand-alone server, see `Installing Studio on a Stand-Alone Server <https://docs.sqream.com/en/latest/installation_guides/installing_studio_on_stand_alone_server.html>`_.
