@@ -96,18 +96,19 @@ The configuration files are **service configuration files**, and the JSON files 
 
    .. code-block:: console
    
-      /home/sqream/v2021.2.1.10/sqream/bin/SqreamStorage -C -r /home/sqream/cluster_guide
+      /home/sqream/bin/SqreamStorage -C -r /home/sqream/sqream_cluster
       log4cxx: No appender could be found for logger (file_utils).
       log4cxx: Please initialize the log4cxx system properly.
       Setting cluster version to: 38	
 	
    For more information on creating clusters, see `SqreamStorage <https://docs.sqream.com/en/latest/reference/cli/sqream_storage.html>`_.
 	
-12. As in the example below, update your **sqream.json** file:
+12. As in the example below, update your **sqream<#>_config.json** file:
 
     1. Copy and paste the path to the directory where you cluster is contained.
 	
 	    ::
+		
 
     2. Update all parameters in the current configuration files.
 	
@@ -115,23 +116,38 @@ The configuration files are **service configuration files**, and the JSON files 
       :language: txt
       :emphasize-lines: 2
 	  
-  .. note:: A separate sqream.json file exists for each worker on your system. The json file corresponding **to each worker** must be updated. The name of each current configuration file includes the number of the worker. For example, the current configuration file for **Worker 8** is **sqream8_config.json**.
+   .. tip:: For more information about setting the ``limitQueryMemoryGB`` flag, see the `recommended spool settings <https://docs.sqream.com/en/latest/configuration_guides/spooling.html#example-1-recommended-settings>`_.
+	  
+   .. note:: A unique **instanceID** must be used in each JSON file. In the example above, the instanceID **sqream_2** is changed to **sqream_3**.
+	  
+   .. note:: A separate **sqream<#>_config.json** file exists for each worker on your system. The json file corresponding **to each worker** must be updated. The name of each current configuration file includes the number of the worker. For example, the current configuration file for **Worker 8** is **sqream8_config.json**.
 
-Note the following:
+   Note the following:
 
-* The value of the **metadataServerIp** parameter must point to the IP that the metadata is running on.
-* The value of the **machineIP** parameter must point to the IP of your local machine.
+   * The value of the **metadataServerIp** parameter must point to the IP that the metadata is running on.
+   * The value of the **machineIP** parameter must point to the IP of your local machine.
 
-The values are the same on servers running metadataserver, and different on other server nodes.
+   The values are the same on servers running metadataserver, and different on other server nodes.
 
 13. Insert your license file path into the ``licensePath`` parameter in your current configuration file (see above).
 
-    The following is an example of a license file path:
+The following is an example of a license file path:
 
-.. code-block:: console   
-   6C5B5CEF705FD72C21CA991E6A00A7410589DED028366FF9441AC6FA8C5FB8FDF2BD22BF328261FCD84455941634EC38FDB361DC0B2DE81A5A4120C1AE58D0B4EECCE2AD9D97C047C54838413F50ACC78F74603407AC864B81D23745F84135CFFF60561886546CF3A8F9A4E0049BB099210CB43FB332DDB3B91E9EB9774B39065E7DBB6E1982E8DACCD732AC6B8532A15BD2C8049A1975C470C3A091DFFE382E4F52A0C5E24C8F16490DC2D192EB9AED2CE7F2B76F513FCEA6C5B648E370DDABA9FC29AEB77AC620FDFBC71663FAE18CCE64A2DB7E69750F74288AD474930CDF3F38023766AE371DC3B6393A6547620F   
+    .. code-block::   
+    
+       6C5B5CEF705FD72C21CA991E6A00A7410589DED028366FF
+       9441AC6FA8C5FB8FDF2BD22BF328261FCD84455941634EC
+       38FDB361DC0B2DE81A5A4120C1AE58D0B4EECCE2AD9D97C
+       047C54838413F50ACC78F74603407AC864B81D23745F841
+       35CFFF60561886546CF3A8F9A4E0049BB099210CB43FB33
+       2DDB3B91E9EB9774B39065E7DBB6E1982E8DACCD732AC6B
+       8532A15BD2C8049A1975C470C3A091DFFE382E4F52A0C5E
+       24C8F16490DC2D192EB9AED2CE7F2B76F513FCEA6C5B648
+       E370DDABA9FC29AEB77AC620FDFBC71663FAE18CCE64A2D
+       B7E69750F74288AD474930CDF3F38023766AE371DC3B639
+       3A6547620F 
 	
-14. Update all parameters in the previous configuration files for each worker, as follows:
+14. Update all parameters in the previous **sqream<#>_config_legacy.json** configuration files for each worker, as shown in the following example:
 
    .. code-block:: console
    
@@ -149,22 +165,21 @@ The values are the same on servers running metadataserver, and different on othe
           "spoolMemoryGB": 5,
           "waitForClientSeconds": 18000
       }
+	  
+.. tip:: For more information about setting the ``limitQueryMemoryGB`` flag, see the `recommended spool settings <https://docs.sqream.com/en/latest/configuration_guides/spooling.html#example-1-recommended-settings>`_.
 
-15. **Optional** - To run additional SQream services, copy the required configuration files and create additional JSON files:
+15. **Optional** - To run additional SQream services, copy the required **sqream<#>_config_legacy.json** configuration files and create additional JSON files:
 
     .. code-block:: console
    
        $ cp sqream2_config.json sqream3_config.json
        $ vim sqream3_config.json
       
-  .. note:: A unique **instanceID** must be used in each JSON file. IN the example above, the instanceID **sqream_2** is changed to **sqream_3**.
+  .. note:: A unique **instanceID** must be used in each JSON file. In the example above, the instanceID **sqream_2** is changed to **sqream_3**.
 
 16. **Optional** - If you created additional services in the previous step, verify that you have also created their additional configuration files:
 
-    .. code-block:: console
-   
-       $ cp sqream2-service.conf sqream3-service.conf
-       $ vim sqream3-service.conf
+    For example, each **sqream<#>_config.json** configuration file must have a corresponding the path to its corresponding legacy configuration file is **sqream<#>_config_legacy.json**.
       
 17. For each SQream service configuration file, do the following:
 
@@ -212,6 +227,7 @@ The values are the same on servers running metadataserver, and different on othe
        $ sudo cp serverpicker.service /usr/lib/systemd/system/
        $ sudo cp sqream*.service /usr/lib/systemd/system/
        
+22. Verify that the above have been copied successfully:
  
     .. code-block:: console
      
@@ -220,7 +236,7 @@ The values are the same on servers running metadataserver, and different on othe
        $ ls -l /usr/lib/systemd/system/serverpicker.service
        $ sudo systemctl daemon-reload       
        
-22. Copy the license into the **/etc/license** directory:
+23. Copy the license into the **/etc/license** directory:
 
     .. code-block:: console
      
