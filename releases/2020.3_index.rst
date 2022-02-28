@@ -13,6 +13,5 @@ The 2020.3 release notes describe the following releases:
    :maxdepth: 1
    :glob:
 
-   2020.3.2.1
    2020.3.1
    2020.3
