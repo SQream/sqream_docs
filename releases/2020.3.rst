@@ -1,112 +1,18 @@
 .. _2020.3:
 
 **************************
-2020.3 Release Notes
+Release Notes 2020.3
 **************************
-SQream DB v2020.3 contains new features, performance enhancements, and resolved issues.
-
-The 2020.3 Release Notes describe the following:
+The 2020.3 release notes were released on October 8, 2020 and describe the following:
 
 .. contents:: 
    :local:
    :depth: 1
 
 
-::::
-
-Release Notes Version 2020.3.2.1
-==============
-SQream DB v2020.3.2.1 contains major performance improvements and some bug fixes.
-
-Performance Enhancements
--------------
-* Metadata on Demand optimization resulting in reduced latency and improved overall performance.
-
-
-Known Issues and Limitations
--------------
-* Multiple count distinct operations is enabled for all data types.
-
-Upgrading to v2020.3.2.1
--------------
-
-Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and other OSs via Docker.
-
-Contact your account manager to get the latest release of SQream DB.
-
-
-
-::::
-
-
-
-Release Notes Version 2020.3.1
-=================
-New Features
--------------
-The following list describes the new features:
-
-
-* TEXT data type:
-   * Full support for ``MIN`` and ``MAX`` aggregate functions on ``TEXT`` columns in ``GROUP BY`` queries.
-   * Support Text-type as window partition keys (e.g., select distinct name, max(id) over (partition by name) from ``textTable;``).
-   * Support Text-type fields in windows order by keys.
-   * Support join on ``TEXT`` columns (such as ``t1.x = t2.y`` where ``x`` and ``y`` are columns of type ``TEXT``).
-   * Complete the implementation of ``LIKE`` on ``TEXT`` columns (previously limited to prefix and suffix).
-   * Support for cast fromm ``TEXT`` to ``REAL/FLOAT``.
-   * New string function - ``REPEAT`` for repeating a string value for a specified number of times.
-   
-* Support mapping ``DECIMAL ORC`` columns to SQream's floating-point types.
-   
-* Support ``LIKE`` on non-literal patterns (such as columns and complex expressions).
-
-* Catch OS signals and save the signal along with the stack trace in the SQream debug log.
-
-* Support equijoin conditions on columns with different types (such as ``tinyint``, ``smallint``, ``int`` and ``bigint``).
-
-* ``DUMP_DATABASE_DDL`` now includes foreign tables in the  output.
-
-* New utility function - ``TRUNCATE_IF_EXISTS``.
-
-
-Performance Enhancements
--------------
-The following list describes the performance enhancements:
-
-
-* Introduced the "MetaData on Demand" feature which results in signicant proformance improvements.
-
-* Implemented regex functions (``RLIKE``, ``REGEXP_COUNT``, ``REGEXP_INSTR``, ``REGEXP_SUBSTR``, ``PATINDEX``) for ``TEXT`` columns on GPU.
-
-
-Resolved Issues
--------------
-The following list describes the resolved issues:
-
-
-* Multiple distinct aggregates no longer need to be used with developerMode flag.
-* In some scenarios, the ``statement_id`` and ``connection_id values`` are incorrectly recorded as ``-1`` in the log.
-* ``NOT RLIKE`` is not supported for ``TEXT`` in the compiler.
-* Casting from ``TEXT`` to ``date/datetime`` returns an error when the ``TEXT`` column contains ``NULL``.
-
-
-Known Issues and Limitations
--------------
-No known issues and limitations.
-
-
-Upgrading to v2020.3.1
-----------------
-
-Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and other OSs via Docker.
-
-Contact your account manager to get the latest release of SQream DB.
-
-
-::::
-
-Release Notes Version 2020.3
-=================
+Overview
+------------
+SQream DB v2020.3 contains new features, performance enhancements, and resolved issues.
 
 
 New Features
