@@ -1,7 +1,7 @@
 .. _talend:
 
 *************************
-Connecting to SQream Using Talend
+Connect to SQream Using Talend
 *************************
 
 .. _top:
@@ -62,7 +62,7 @@ The name cannot contain spaces.
 
 6. In the **JDBC URL** field, type the relevant connection string.
 
-   For connection string examples, see `Connection Strings <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html#connection-string>`_.
+   For connection string examples, see `Connection Strings <https://docs.sqream.com/en/v2020.3/third_party_tools/client_drivers/jdbc/index.html#connection-string>`_.
    
 .. image:: /_static/images/Third_Party_Connectors/Creating_a_New_Metadata_JDBC_DB_Connection_6.png
 

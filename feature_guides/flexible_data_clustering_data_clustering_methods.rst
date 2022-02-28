@@ -87,9 +87,9 @@ The ``CLUSTER BY`` statement splits ingested data based on the range of data cor
 
 For more information, see the following:
 
-* `The CLUSTER_BY statement <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/cluster_by.html>`_
-* `The DELETE statement <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/delete.html>`_   
-* `The Deleting Data guide <https://docs.sqream.com/en/latest/guides/features/delete.html>`_
+* `The CLUSTER_BY statement <https://docs.sqream.com/en/v2020.3/reference/sql/sql_statements/ddl_commands/cluster_by.html>`_
+* `The DELETE statement <https://docs.sqream.com/en/v2020.3/reference/sql/sql_statements/dml_commands/delete.html>`_
+* `The DELETE statement <https://docs.sqream.com/en/v2020.3/feature_guides/delete_guide.html>`_
 
 Inspecting Clustered Table Health
 ~~~~~~~~~~
@@ -111,7 +111,7 @@ SQream partially sorts data that you load into a clustered table. Note that whil
 
 For more information, see the following:
 
-* **Data Manipulation commands (DML)** - see `Data Manipulation Commands (DML) <https://docs.sqream.com/en/latest/reference/sql/sql_statements/index.html#data-manipulation-commands-dml>`_.
+* **Data Manipulation commands (DML)** - see `Data Manipulation Commands (DML) <https://docs.sqream.com/en/v2020.3/reference/sql/sql_statements/index.html#data-manipulation-commands-dml>`_.
 
 * **Creating tables** - see :ref:`create_table`. When you create a table, all new data is clustered upon insert.
    

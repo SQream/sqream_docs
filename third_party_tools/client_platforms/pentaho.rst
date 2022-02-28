@@ -57,19 +57,17 @@ After installing Pentaho you can create a transformation.
 
 1. Use the CLI to open the PDI client for your operating system (Windows):
    
-     .. code-block:: console
+  .. code-block:: console
      
-        $ spoon.bat
+     $ spoon.bat
 
 2. Open the spoon.bat file from its folder location.
 		  
     ::
 
 3. In the **View** tab, right-click **Transformations** and click **New**.
-		  
-    ::
-
-A new transformation tab is created.
+	
+   A new transformation tab is created.
 	
 4. In the **Design** tab, click **Input** to show its file contents.
 		  
@@ -97,27 +95,23 @@ A new transformation tab is created.
 
 10. In the CSV file input window, click **Get Fields**.
 		  
-    ::
+     ::
 
 11. In the **Sample data** window, enter the number of lines you want to sample and click **OK**. The default setting is **100**.
-		  
-    ::
-
-The tool reads the file and suggests the field name and type.
-
-.. image:: /_static/images/third_party_connectors/pentaho/suggested_field_name_and_type.png
-
+	
+    The tool reads the file and suggests the field name and type.
+	
 12. In the CSV file input window, click **Preview**.
-
-.. image:: /_static/images/third_party_connectors/pentaho/preview.png
+	  
+     ::
 
 13. In the **Preview size** window, enter the number of rows you want to preview and click **OK**. The default setting is **1000**.
 
-.. image:: /_static/images/third_party_connectors/pentaho/number_of_rows_to_preview.png
+     ::
 
 14. Verify that the preview data is correct and click **Close**.
 
-.. image:: /_static/images/third_party_connectors/pentaho/examine.png
+     ::
 
 15. Click **OK** in the **CSV file input** window.
 
@@ -147,11 +141,7 @@ After creating your transformation you must define your output.
 
 4. From the **Table output** dialog box, type a **Step name** and click **New** to create a new connection. Your **steps** are the building blocks of a transformation, such as file input or a table output.
 
-.. image:: /_static/images/third_party_connectors/pentaho/rename_table_output.png
-
-The **Database Connection** window is displayed with the **General** tab selected by default.
-
-.. image:: /_static/images/third_party_connectors/pentaho/database_connection_window.png
+   The **Database Connection** window is displayed with the **General** tab selected by default.
 
 5. Enter or select the following information in the Database Connection window and click **Test**.
 
@@ -188,10 +178,8 @@ The following table shows and describes the information that you need to fill ou
      - Password
      - Your password. If you leave this blank, you will be prompted to provide it when you connect.
 
-The following message is displayed:	 
-	 
-.. image:: /_static/images/third_party_connectors/pentaho/connection_tested_successfully_2.png	 
-	 
+The **Connection tested sucessfully** message is displayed.
+ 
 6. Click **OK** in the window above, in the Database Connection window, and Table Output window.
 
 :ref:`Back to Overview <pentaho_top>`
@@ -208,7 +196,7 @@ For more information about backing up users, permissions, or schedules, see `Bac
 
 1. Double-click the **Table output** connection that you just created.
 
-.. image:: /_static/images/third_party_connectors/pentaho/table_output.png
+     ::
 
 2. To the right of the **Target schema** field, click **Browse** and select a schema name.
 
@@ -216,7 +204,7 @@ For more information about backing up users, permissions, or schedules, see `Bac
 
 3. Click **OK**. The selected schema name is displayed in the **Target schema** field.
 
-.. image:: /_static/images/third_party_connectors/pentaho/selected_target_schema.png
+     ::
 
 4. Create a new hop connection between the **CSV file input** and **Table output** steps:
 
@@ -224,12 +212,9 @@ For more information about backing up users, permissions, or schedules, see `Bac
    
    .. image:: /_static/images/third_party_connectors/pentaho/csv_file_input_options.png
    
-
-   
    2. Drag an arrow from the **CSV file input** step item to the **Table output** step item.
    
-   .. image:: /_static/images/third_party_connectors/pentaho/csv_file_input_options_2.png
-   
+   .. image:: /_static/images/third_party_connectors/pentaho/csv_file_input_options_2.png   
 
    3. Release the mouse button. The following options are displayed.
    
@@ -245,26 +230,20 @@ For more information about backing up users, permissions, or schedules, see `Bac
 
 6. In the **Target table** field, define a target table name.
 
-   .. image:: /_static/images/third_party_connectors/pentaho/target_table_name.png
+     ::
 
-::
 
 7. Click **SQL** to open the **Simple SQL editor.**
 
-   .. image:: /_static/images/third_party_connectors/pentaho/sql_editor.png
-   
-::
+     ::
+
    
 8. In the **Simple SQL editor**, click **Execute**.
 
-   .. image:: /_static/images/third_party_connectors/pentaho/execute_sql_statements.png
-   
    The system processes and displays the results of the SQL statements.
 
    .. image:: /_static/images/third_party_connectors/pentaho/sql_statement_results_2.png
-      
-::
-
+ 
 9. Close all open dialog boxes.
 
 ::
@@ -277,10 +256,8 @@ For more information about backing up users, permissions, or schedules, see `Bac
    
 The **Run Options** dialog box is displayed.
 
-   .. image:: /_static/images/third_party_connectors/pentaho/run_options_dialog_box.png
-   
+     ::
+
 11. Click **Run**. The **Execution Results** are displayed.
 
-   .. image:: /_static/images/third_party_connectors/pentaho/execution_results_2.png
-   
 :ref:`Back to Overview <pentaho_top>`
