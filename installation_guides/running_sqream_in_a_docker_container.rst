@@ -664,7 +664,9 @@ Installing the NVIDIA Docker2 Toolkit on an Ubuntu Operating System
 
       $ sudo apt-get install nvidia-docker2
       $ sudo pkill -SIGHUP dockerd
+
 3. Do one of the following:
+
    * If you received an error when installing the ``nvidia-docker2`` package, skip to :ref:`Step 4 <step_4_ubuntu>`.
    * If you successfully installed the ``nvidia-docker2`` package, skip to :ref:`Step 5 <step_5_ubuntu>`.
 

@@ -152,7 +152,7 @@ After accessing the Prometheus user interface, you can install the **Dashboard D
    
       $ pm2 start ./index.js --name=dashboard-data-collector
 	  
-8. Add the following parameter to the SQream Studio setup defined in :ref:`Step 4<add_parameter>` in **Installing Studio** below.
+8. Add the following parameter to the SQream Studio setup defined in :ref:`Step 4<add_parameter>` in **Installing Studio on a Stand-Alone Server**.
 
    .. code-block:: console
    

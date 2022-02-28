@@ -63,47 +63,45 @@ After installing Pentaho you can create a transformation.
 
 2. Open the spoon.bat file from its folder location.
 		  
-.. image:: /_static/images/third_party_connectors/pentaho/spoon_bat_file.png
+    ::
 
 3. In the **View** tab, right-click **Transformations** and click **New**.
-
-.. image:: /_static/images/third_party_connectors/pentaho/pentaho_1.png
+		  
+    ::
 
 A new transformation tab is created.
-
-.. image:: /_static/images/third_party_connectors/pentaho/pentaho_2.png
-
+	
 4. In the **Design** tab, click **Input** to show its file contents.
-
-.. image:: /_static/images/third_party_connectors/pentaho/pentaho_3.png
+		  
+    ::
 
 5. Drag and drop the **CSV file input** item to the new transformation tab that you created.
-
-.. image:: /_static/images/third_party_connectors/pentaho/pentaho_4.png
+		  
+    ::
 
 6. Double-click **CSV file input**. The **CSV file input** panel is displayed.
-
-.. image:: /_static/images/third_party_connectors/pentaho/pentaho_5.png
+		  
+    ::
 
 7. In the **Step name** field, type a name.
-
-.. image:: /_static/images/third_party_connectors/pentaho/pentaho_6.png
+		  
+    ::
 
 8. To the right of the **Filename** field, click **Browse**.
-
-.. image:: /_static/images/third_party_connectors/pentaho/pentaho_select_file.png
+		  
+    ::
 
 9. Select the file that you want to read from and click **OK**.
-
-.. image:: /_static/images/third_party_connectors/pentaho/add_csv_file.png
+		  
+    ::
 
 10. In the CSV file input window, click **Get Fields**.
-
-.. image:: /_static/images/third_party_connectors/pentaho/get_fields.png
+		  
+    ::
 
 11. In the **Sample data** window, enter the number of lines you want to sample and click **OK**. The default setting is **100**.
-
-.. image:: /_static/images/third_party_connectors/pentaho/number_of_lines_to_sample.png
+		  
+    ::
 
 The tool reads the file and suggests the field name and type.
 

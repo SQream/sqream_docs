@@ -173,29 +173,22 @@ For examples of pre-built Monit binarties, see :ref:`Download Precompiled Binari
 
 
       
-Installing Monit on Ubuntu:
+Installing Monit on Ubuntu
 ------------------------------------
-
-
 **To install Monit on Ubuntu:**   
    
 1. Install Monit as a superuser on Ubuntu:
 
-    .. code-block:: console
+   .. code-block:: console
      
-       $ sudo apt-get install monit
+      $ sudo apt-get install monit
 	   
 :ref:`Back to top <back_to_top>`
-
-
 	   
 .. _installing-monit-on-ubuntu-offline:
 
-
 Installing Monit on Ubuntu Offline:
 -------------------------------------
-
-
 You can install Monit on Ubuntu when you do not have an internet connection.
 
 **To install Monit on Ubuntu offline:**   
@@ -206,7 +199,7 @@ You can install Monit on Ubuntu when you do not have an internet connection.
      
       $ tar zxvf monit-<x.y.z>-linux-x64.tar.gz
       
-   **NOTICE:** *<x.y.z>* denotes the version number.
+   .. note:: *<x.y.z>* denotes the version number.
 
 2. Navigate to the directory where you want to save the file:
    
@@ -236,62 +229,68 @@ When the installation is complete, you can configure Monit. You configure Monit 
 
 The following is an example of a service block:
 
-    .. code-block:: console
+.. code-block:: console
      
-       $ #SQREAM1-START
-       $ check process sqream1 with pidfile /var/run/sqream1.pid
-       $ start program = "/usr/bin/systemctl start sqream1"
-       $ stop program = "/usr/bin/systemctl stop sqream1"
-       $ #SQREAM1-END
+   $ #SQREAM1-START
+   $ check process sqream1 with pidfile /var/run/sqream1.pid
+   $ start program = "/usr/bin/systemctl start sqream1"
+   $ stop program = "/usr/bin/systemctl stop sqream1"
+   $ #SQREAM1-END
 
 For example, if you have 16 services, you can configure this block by copying the entire block 15 times and modifying all service names as required, as shown below:
 
-    .. code-block:: console
+.. code-block:: console
      
-       $ #SQREAM2-START
-       $ check process sqream2 with pidfile /var/run/sqream2.pid
-       $ start program = "/usr/bin/systemctl start sqream2"
-       $ stop program = "/usr/bin/systemctl stop sqream2"
-       $ #SQREAM2-END
+   $ #SQREAM2-START
+   $ check process sqream2 with pidfile /var/run/sqream2.pid
+   $ start program = "/usr/bin/systemctl start sqream2"
+   $ stop program = "/usr/bin/systemctl stop sqream2"
+   $ #SQREAM2-END
        
 For servers that don't run the **metadataserver** and **serverpicker** commands, you can use the block example above, but comment out the related commands, as shown below:
 
-    .. code-block:: console
+.. code-block:: console
      
-       $ #METADATASERVER-START
-       $ #check process metadataserver with pidfile /var/run/metadataserver.pid
-       $ #start program = "/usr/bin/systemctl start metadataserver"
-       $ #stop program = "/usr/bin/systemctl stop metadataserver"
-       $ #METADATASERVER-END
+   $ #METADATASERVER-START
+   $ #check process metadataserver with pidfile /var/run/metadataserver.pid
+   $ #start program = "/usr/bin/systemctl start metadataserver"
+   $ #stop program = "/usr/bin/systemctl stop metadataserver"
+   $ #METADATASERVER-END
 
 **To configure Monit:**   
    
 1. Copy the required block for each required service.
+
+    ::
+
 2. Modify all service names in the block.
+
+    ::
+
 3. Copy the configured **monitrc** file to the **/etc/monit.d/** directory:
 
-   .. code-block:: console
+.. code-block:: console
      
-      $ cp monitrc /etc/monit.d/
+   $ cp monitrc /etc/monit.d/
        
 4. Set file permissions to **600** (full read and write access):
  
-    .. code-block:: console
+.. code-block:: console
 
-       $ sudo chmod 600 /etc/monit.d/monitrc
+   $ sudo chmod 600 /etc/monit.d/monitrc
        
 5. Reload the system to activate the current configurations:
  
-    .. code-block:: console
+.. code-block:: console
      
-       $ sudo systemctl daemon-reload
+   $ sudo systemctl daemon-reload
  
 6. **Optional** - Navigate to the **/etc/sqream** directory and create a symbolic link to the **monitrc** file:
  
-    .. code-block:: console
+.. code-block:: console
      
-      $ cd /etc/sqream
-      $ sudo ln -s /etc/monit.d/monitrc monitrc    
+   $ cd /etc/sqream
+   $ sudo ln -s /etc/monit.d/monitrc monitrc    
          
 Starting Monit
 ====================================  
