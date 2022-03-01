@@ -6,7 +6,7 @@ Connect to SQream Using SAS Viya
 
 Overview
 ==========
-SAS Viya is a cloud-enabled analytics engine used for procuding useful insights. The **Connecting to SQream Using SAS Viya** page describes how to connect to SAS Viya:
+SAS Viya is a cloud-enabled analytics engine used for producing useful insights. The **Connecting to SQream Using SAS Viya** page describes how to connect to SAS Viya:
 
 .. contents:: 
    :local:
@@ -54,14 +54,12 @@ After installing the JDBC driver, you must configure the JDBC driver from the SA
    
     ::  
    
-#. Create a sample program to explore the data, as shown below: tt
+#. Create a sample program to explore the data, as shown below:
 
-   .. literalinclude:: connect_2.sas
+   .. literalinclude:: connect2.sas
       :language: php
-      :emphasize-lines: 4
+      :emphasize-lines: 8-15, 17-20, 21-23
       :linenos:
-
-
 
    The sample program above does the following:
       
@@ -213,7 +211,7 @@ When using Tableau, SQream recommends using only data that you need, as describe
     ::
 
 
-* To increase query performance, add filters before analyzing. Every modification you make while analyzing data queries the SQream database, sometimes several times. Adding filters to the datasource before exploring limits the amount of data analyze and increases query performance.
+* To increase query performance, add filters before analyzing. Every modification you make while analyzing data queries the SQream database, sometimes several times. Adding filters to the datasource before exploring limits the amount of data analyzed and increases query performance.
 
 Creating a Separate Service for SAS Viya
 ~~~~~~~~~~~~~~~~~~
