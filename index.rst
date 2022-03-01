@@ -35,7 +35,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
      - **Reference**
      - **Guides**
    * -
-         :ref:`first_steps`
+         :ref:`getting_started`
          
          :ref:`sql_feature_support`
          
