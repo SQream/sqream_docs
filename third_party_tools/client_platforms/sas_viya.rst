@@ -54,13 +54,14 @@ After installing the JDBC driver, you must configure the JDBC driver from the SA
    
     ::  
    
-#. Create a sample program to explore the data, as shown below:
+#. Create a sample program to explore the data, as shown below: tt
 
    .. literalinclude:: connect_2.sas
-      :language: sas
-      :caption: Sample SAS Program
+      :language: php
+      :emphasize-lines: 4
       :linenos:
-      :emphasize-lines: 9
+
+
 
    The sample program above does the following:
       
