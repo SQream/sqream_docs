@@ -244,6 +244,8 @@ The following is an example of a license file path:
        
 If you have an HDFS environment, see :ref:`Configuring an HDFS Environment for the User sqream <hdfs>`.
 
+For more information about installing Studio on a stand-alone server, see :ref:`installing_studio_on_stand_alone_server`.
+
 Upgrading Your SQream Version
 -----------
 Upgrading your SQream version requires stopping all running services while you manually upgrade SQream.

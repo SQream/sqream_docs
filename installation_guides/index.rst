@@ -13,5 +13,3 @@ The **Installation Guides** section describes the following installation guide s
 
    sqream_studio_installation
    installing_and_launching_sqream
-
-

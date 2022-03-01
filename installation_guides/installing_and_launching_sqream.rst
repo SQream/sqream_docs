@@ -16,5 +16,4 @@ The **Installing SQream Studio** page incudes the following installation guides:
    installing_monit
    launching_sqream_with_monit
 
-
-
+To install Studio on a stand-alone server, see :ref:`installing_studio_on_stand_alone_server`.
