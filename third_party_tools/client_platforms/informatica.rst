@@ -6,18 +6,41 @@ Connect to SQream Using Informatica Cloud Services
 
 Overview
 =========
-The **Connecting to SQream Using Informatica Cloud Services** page is quick start guide for connecting to SQream using Informatica cloud services.
+Informatica Cloud Services offers cloud data management solutions. The **Connect to SQream Using Informatica Cloud Services** page describes how to connect to SQream using Informatica cloud services, and describes the following:
 
-It describes the following:
-
-.. contents::
+.. contents:: 
    :local:
+   :depth: 1
+   
+Prerequisites
+-------------------
+**Comment** - The source doc doesn't include content related to this section. If so, this section will be removed.
 
-Establishing a Connection between SQream and Informatica
------------------
-The **Establishing a Connection between SQream and Informatica** page describes how to establish a connection between SQream and the Informatica data integration Cloud.
+Installing Informatica Cloud Services
+-------------------
+**Comment** - The source doc doesn't include content related to this section. If so, this section will be removed.
 
-**To establish a connection between SQream and the Informatica data integration Cloud:**
+Configuring Informatica Cloud Services
+-------------------
+**Comment** - The source doc doesn't include content related to this section. If so, this section will be removed.
+
+Launching Informatica Cloud Services
+-------------------
+**Comment** - The source doc doesn't include content related to this section. If so, this section will be removed.
+
+Operating Informatica Cloud Services
+-------------------
+The **Operating Informaticea Cloud Services** section describes the following:
+
+.. contents:: 
+   :local:
+   :depth: 1
+
+Establishing a Connection between SQream and Informatica Cloud Services
+~~~~~~~~~~~~~~~~   
+The **Establishing a Connection between SQream and Informatica** section describes how to establish a connection between SQream and the Informatica data integration Cloud.
+
+**To establish a connection between SQream and Informatica Cloud Services:**
 
 1. Go to the `Informatica Cloud homepage <https://emw1.dm-em.informaticacloud.com/diUI/products/integrationDesign/main/home>`_.
 
@@ -33,15 +56,11 @@ The **Establishing a Connection between SQream and Informatica** page describes 
    
 3. From the **Services** window, select **Administrator** or click **Show all services** to show all services.
 
-
-   The SQream dashboard is displayed.
-   
+   The SQream dashboard is displayed.   
      
-    ::
-   
+    ::   
 
 4. In the menu on the left, click **Runtime Environments**.
-
 
    The **Runtime Environments** panel is displayed.
 
@@ -56,12 +75,10 @@ The **Establishing a Connection between SQream and Informatica** page describes 
     1. Select a platform (Windows 64 or Linux 64).
 	
      ::
-
 	
     2. Click **Copy** and save the token on your local hard drive.
 	
-       The token is used in combination with your user name to authorize the agent to access your account.
-	
+       The token is used in combination with your user name to authorize the agent to access your account.	
 
 7. Click **Download**.
 
@@ -79,10 +96,7 @@ The **Establishing a Connection between SQream and Informatica** page describes 
 
     ::
 
-
-
 10. From the Runtime Environments panel, click **New Runtime Environment**.
-
 
     The **New Secure Agent Group** window is displayed.
 	
@@ -93,15 +107,14 @@ The **Establishing a Connection between SQream and Informatica** page describes 
     .. note:: If you do not download Secure Agent, you will not be able to connect your Runtime Environment with the running agent and continue establishing a connection between SQream and the Informatica data integration Cloud.
 	
 Establishing a Connection In Your Environment
------------------
-
+~~~~~~~~~~~~~
 The **Establishing a Connection In Your Environment** describes the following:
 
 .. contents::
    :local:
 
 Establishing an ODBC DSN Connection In Your Environment
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^
 After establishing a connection between SQream and Informatica you can establish an ODBC DSN connection in your environment.
 
 **To establish an ODBC connection in your environment:**
@@ -129,7 +142,7 @@ After establishing a connection between SQream and Informatica you can establish
 6. Click **Actions** > **Publish**.
 	
 Establishing a JDBC Connection In Your Environment
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^^
 After establishing a connection between SQream and Informatica you can establish a JDBC connection in your environment.
 
 **To establish a JDBC connection in your environment:**
@@ -139,11 +152,10 @@ After establishing a connection between SQream and Informatica you can establish
    The **New Connection** window is displayed.
    
      ::
-
 	
 2. In the **JDBC_IC Connection Properties** section, in the **JDBC Connection URL** field, establish a JDBC connection by providing the correct connection string.
 
-   For connection string examples, see `Connection Strings <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html#connection-string>`_.
+   For connection string examples, see `Connection Strings <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/jdbc/index.html#connection-string-examples.
 	
 	 ::
 	
@@ -161,8 +173,13 @@ After establishing a connection between SQream and Informatica you can establish
 	
 6. Click **Actions** > **Publish**.
 
+Troubleshooting Informatica Cloud Services
+-------------------------
+**Comment** - The source doc doesn't include content related to this section. If so, this section will be removed.
+
 Supported SQream Driver Versions
 ---------------
+**Comment**- Do we need this section? If so, it belongs in **Overview**.
 
 SQream supports the following SQream driver versions: 
 

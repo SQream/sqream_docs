@@ -3,9 +3,10 @@
 *************************
 Connect to SQream Using Pentaho Data Integration
 *************************
-The **Pentaho Data Integration** tool is used for reporting, interactive analysis, and data integration, providing various data retrieval tools from multiple data sources.
 
-The **Connect to SQream Using Pentaho Data Integration** page describes how to install Pentaho, create a transformation, and define your output and describes the following:
+Overview
+=====================
+The **Pentaho Data Integration** tool is used for reporting, interactive analysis, and data integration, providing various data retrieval tools from multiple data sources. The **Connect to SQream Using Pentaho Data Integration** page describes how to install Pentaho, create a transformation, and define your output, and describes the following:
 
 .. contents:: 
    :local:

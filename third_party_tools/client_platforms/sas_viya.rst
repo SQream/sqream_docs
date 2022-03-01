@@ -6,11 +6,15 @@ Connect to SQream Using SAS Viya
 
 Overview
 ==========
-SAS Viya is a cloud-enabled analytics engine used for producing useful insights. The **Connecting to SQream Using SAS Viya** page describes how to connect to SAS Viya:
+SAS Viya is a cloud-enabled analytics engine used for producing useful insights. The **Connect to SQream Using SAS Viya** page describes how to connect to SAS Viya, and describes the following:
 
 .. contents:: 
    :local:
    :depth: 1
+
+Prerequisites
+-------------------
+**Comment** - The source doc doesn't include content related to this section. If so, this section will be removed.
 
 Installing SAS Viya
 -------------------
@@ -40,9 +44,9 @@ After installing SAS Viya, you must install the JDBC driver.
    
    SQream recommends creating the directory ``/opt/sqream`` on the SAS Viya server.
    
-Configuring SAS Viya from the SAS Studio
----------------------
-After installing the JDBC driver, you must configure the JDBC driver from the SAS Studio.
+Configuring SAS Viya
+-------------------
+After installing the JDBC driver, you must configure the JDBC driver from the SAS Studio. The **Configuring SAS Viya** section describes how to configure SAS Viya from the SAS Studio.
 
 **To configure the JDBC driver from the SAS Studio:**
 
@@ -102,6 +106,10 @@ After installing the JDBC driver, you must configure the JDBC driver from the SA
    * Output Data
    
    The query results are displayed in the **Results** tab, which shows your query results.
+   
+Launching SAS Viya
+-------------------
+**Comment** - The source doc doesn't include content related to this section. If so, this section will be removed.
 
 Operating SAS Viya
 --------------------  
@@ -192,10 +200,8 @@ This section describes how to use SAS visual analytics.
 
 If your connection is not successful, see :ref:`best_practices_and_troubleshooting` below.
 
-.. _best_practices_and_troubleshooting:
-
-Best Practices and Troubleshooting
---------------------
+Troubleshooting SAS Viya
+-------------------------
 The **Best Practices and Troubleshooting** section describes the following best practices and troubleshooting procedures when connecting to SQream using SAS Viya:
 
 .. contents:: 
@@ -209,7 +215,6 @@ When using Tableau, SQream recommends using only data that you need, as describe
 * Insert only the data sources you need into SAS Viya, excluding tables that don’t require analysis.
 
     ::
-
 
 * To increase query performance, add filters before analyzing. Every modification you make while analyzing data queries the SQream database, sometimes several times. Adding filters to the datasource before exploring limits the amount of data analyzed and increases query performance.
 
@@ -231,11 +236,9 @@ In some cases, SAS Viya cannot locate the SQream JDBC driver, generating the fol
 
     ::
 
-
 2. Verify that the classpath in your SAS program is correct, and that SAS Viya can access the file that it references.
 
     ::
-
 
 3. Restart SAS Viya.
 

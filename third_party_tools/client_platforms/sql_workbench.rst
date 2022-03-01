@@ -3,16 +3,21 @@
 *****************************
 Connect to SQream Using SQL Workbench/J
 *****************************
-**SQL Workbench/J** is a free SQL query tool designed to run on any JRE-enabled environment. You can use SQL Workbench/J to interact with a SQream cluster.
 
-The **Connect to SQream Using SQL Workbench/J** page describes the following:
+Overview
+==========
+SQL Workbench/J is a free SQL query tool designed to run on any JRE-enabled environment, which you can use SQL Workbench/J to interact with a SQream cluster. The **Connect to SQream Using SQL Workbench/J** page describes how to connect to SAS Viya, and describes the following:
 
 .. contents:: 
    :local:
    :depth: 1
 
+Prerequisites
+-------------------
+**Comment** - The source doc doesn't include content related to this section. If so, this section will be removed.
+
 Installing SQL Workbench/J
-=====================================================================
+-------------------
 The **Installing SQL Workbench/J** section describes the following installation methods:
 
 .. contents:: 
@@ -20,7 +25,7 @@ The **Installing SQL Workbench/J** section describes the following installation 
    :depth: 1
 
 Installing SQL Workbench/J Using the SQream Installer
--------------------
+~~~~~~~~~~~~~~~~~~
 Installing SQL Workbench/J using the SQream installer automates the installation process and configures all of the needed Java and SQL Workbench/J prerequisites. Installing SQL Worbench using the installer is relevant for Windows only.
 
 **To install the SQL Workbench/J using the SQream installer:**
@@ -40,7 +45,7 @@ Installing SQL Workbench/J using the SQream installer automates the installation
    .. note:: The default location for SQL Workbench/J is **C:\Program Files\SQream Technologies\SQLWorkbench**. You can modify this path during the installation.
 
 Installing SQL Workbench/J Manually
---------------------
+~~~~~~~~~~~~~~~~~~
 Installing the SQL Workbench/J manually is relevant for Linux and MacOS, and can be done using one of the following methods:
 
 .. contents:: 
@@ -48,7 +53,7 @@ Installing the SQL Workbench/J manually is relevant for Linux and MacOS, and can
    :depth: 1
 
 Installing Java Runtime 
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^
 Both SQL Workbench/J and the SQream JDBC driver require Java 1.8 or newer.
 
 You can install Java Runtime depending on the following platforms:
@@ -60,7 +65,7 @@ You can install Java Runtime depending on the following platforms:
 * **For Windows** - `Zulu 8 <https://www.azul.com/downloads/zulu-community/?&version=java-8-lts&architecture=x86-64-bit&package=jdk>`_ - for Linux and BSD
 
 Downloading the SQream JDBC Driver
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^
 You can download the SQream JDBC driver as a zipped JAR file from the Client Drivers page.
 
 **To download the SQream JDBC driver:**
@@ -72,7 +77,7 @@ You can download the SQream JDBC driver as a zipped JAR file from the Client Dri
 #. Download and extract the JAR file from the zipped archive.
 
 Installing SQL Workbench/J
-~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^^^
 **To install SQL Workbench/J:**
 
 #. Download the latest stable release from the `SQL Workbench/J downloads page <https://www.sql-workbench.eu/downloads.html>`_.
@@ -88,7 +93,7 @@ Installing SQL Workbench/J
    If you are using 64-bit Windows, you must run **SQLWorkbench64.exe** instead of **SQLWOrkbench.exe**.
    
 Configuring SQL Workbench/J
-============
+------------------------
 The **Setting Up Your SQream JDBC Driver Profile** describes the following:
 
 .. contents:: 
@@ -98,7 +103,7 @@ The **Setting Up Your SQream JDBC Driver Profile** describes the following:
 .. _setting_up_sqream_jdbc_driver_profile:
    
 Setting Up Your SQream JDBC Driver Profile
----------------------------------------------   
+~~~~~~~~~~~~~~~~~~~~~   
 **To set up your SQream JDBC driver profile:**
 
 #. From the File menu, select **Connect window** to define a connection profile.
@@ -142,7 +147,7 @@ Setting Up Your SQream JDBC Driver Profile
    :align: middle
 
 Recommended Optional Configuration Settings
-----------
+~~~~~~~~~~~~~~~~~~~~~~
 If you installed SQL Workbench/J manually, you can set a customization to help SQL Workbench/J display information correctly in the DB Explorer panel.
 
 **To define recommended optional configuration settings:**
@@ -166,7 +171,7 @@ If you installed SQL Workbench/J manually, you can set a customization to help S
 .. _launching_sql_workbench:
 
 Launching SQL Workbench/J
-=====================================================================
+----------------------------
 The **Launching SQL Workbench/J** section describes the following:
 
 .. contents:: 
@@ -174,7 +179,7 @@ The **Launching SQL Workbench/J** section describes the following:
    :depth: 1
    
 Selecting Your SQL Workbench/J Desktop Application
------------------------------------------------- 
+~~~~~~~~~~~~~~~~~~ 
 After installing the SQL Workbench/J, you can launch it by selecting one of the following desktop applications from the Windows Start menu:
 
 * SQL Workbench/J
@@ -187,7 +192,7 @@ After installing the SQL Workbench/J, you can launch it by selecting one of the 
       :align: center
 
 Creating a New Connection Profile for Your Cluster	  
-------------------------------------------------
+~~~~~~~~~~~~~~~~~~
 **To create a new connection profile for your cluster:**
 
 #. From the **Select Connection Profile** screen, create a new connection by clicking |icon-sql_workbench_launch_icon|.
@@ -215,4 +220,12 @@ Creating a New Connection Profile for Your Cluster
    Your connection profile is saved and you are connected to SQream.
    
 .. |icon-sql_workbench_launch_icon| image:: /_static/images/sql_workbench_launch_icon.png
-   :align: middle 
+   :align: middle
+   
+Operating Informatica Cloud Services
+-------------------
+**Comment** - The source doc doesn't include content related to this section. If so, this section will be removed.
+
+Troubleshooting Informatica Cloud Services
+-------------------
+**Comment** - The source doc doesn't include content related to this section. If so, this section will be removed.

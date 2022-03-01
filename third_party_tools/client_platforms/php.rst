@@ -4,43 +4,71 @@
 Connect to SQream Using PHP
 *****************************
 
-You can use PHP to interact with a SQream DB cluster.
+Overview
+==========
+PHP is an open source scripting language that executes scripts on servers. The **Connect to PHP** page explains how to connect to a SQream cluster, and describes the following:
 
-This tutorial is a guide that will show you how to connect a PHP application to SQream DB. 
-
-.. contents:: In this topic:
+.. contents:: 
    :local:
-
+   :depth: 1
+   
 Prerequisites
-===============
+-------------------
+**Comment** - The source doc doesn't include content related to this section. If so, this section will be removed.
 
-#. Install the :ref:`SQream DB ODBC driver for Linux<install_odbc_linux>` and create a DSN.
+Installing PHP
+-------------------
+**To install PHP:**
 
-#. 
-   Install the `uODBC <https://www.php.net/manual/en/intro.uodbc.php>`_ extension for your PHP installation.
-   To configure PHP to enable uODBC, configure it with ``./configure --with-pdo-odbc=unixODBC,/usr/local`` when compiling php or install ``php-odbc`` and ``php-pdo`` along with php (version 7.1 minimum for best results) using your distribution package manager.
+1. Download the JDBC driver installer from the `SQream Drivers page <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/jdbc/index.html>`_.
 
-Testing the connection
-===========================
+    ::
 
-#. 
-   Create a test connection file. Be sure to use the correct parameters for your SQream DB installation.
+2. Create a DSN.
 
-   Download this :download:`PHP example connection file <test.php>` .
+    ::
+	
+3. Install the `uODBC <https://www.php.net/manual/en/intro.uodbc.php>`_ extension for your PHP installation.
+
+Configuring PHP
+-------------------
+You can configure PHP in one of the following ways:
+   
+* When compiling, configure PHP to enable uODBC using ``./configure --with-pdo-odbc=unixODBC,/usr/local``.
+
+   ::
+   
+* Install ``php-odbc`` and ``php-pdo`` along with PHP using your distribution package manager. SQream recommends a minimum of version 7.1 for the best results.
+   
+Launching PHP
+-------------------
+**Comment** - The source doc doesn't include content related to this section. If so, this section will be removed.
+
+Operating PHP
+-------------------
+After configuring PHP, you can test your connection.
+
+**To test your connection:**
+
+#. Create a test connection file using the correct parameters for your SQream installation, as shown below:
 
    .. literalinclude:: test.php
       :language: php
       :emphasize-lines: 4
       :linenos:
+	  
+   For more information, download the sample :download:`PHP example connection file <test.php>` shown above.
 
-   .. tip::
-      An example of a valid DSN line is:
+   The following is an example of a valid DSN line:
       
-      .. code:: php
+   .. code:: php
          
-         $dsn = "odbc:Driver={SqreamODBCDriver};Server=192.168.0.5;Port=5000;Database=master;User=rhendricks;Password=super_secret;Service=sqream";
+      $dsn = "odbc:Driver={SqreamODBCDriver};Server=192.168.0.5;Port=5000;Database=master;User=rhendricks;Password=super_secret;Service=sqream";
       
-      For more information about supported DSN parameters, see :ref:`dsn_params`.
-
 #. Run the PHP file either directly with PHP (``php test.php``) or through a browser.
 
+   For more information about supported DSN parameters, see :ref:`dsn_params`.
+
+Troubleshooting PHP
+-------------------------
+**Comment** - The source doc doesn't include content related to this section. If so, this section will be removed.
