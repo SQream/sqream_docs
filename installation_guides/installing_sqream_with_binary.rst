@@ -105,7 +105,7 @@ The configuration files are **service configuration files**, and the JSON files 
 	
 12. As in the example below, update your **sqream<#>_config.json** file:
 
-    1. Copy and paste the path to the directory where you cluster is contained.
+    1. Copy and paste the path to the directory where yous cluster is located.
 	
 	    ::
 		
@@ -131,7 +131,7 @@ The configuration files are **service configuration files**, and the JSON files 
 
 13. Insert your license file path into the ``licensePath`` parameter in your current configuration file (see above).
 
-The following is an example of a license file path:
+    The following is an example of a license file path:
 
     .. code-block::   
     
@@ -166,7 +166,9 @@ The following is an example of a license file path:
           "waitForClientSeconds": 18000
       }
 	  
-.. tip:: For more information about setting the ``limitQueryMemoryGB`` flag, see the `recommended spool settings <https://docs.sqream.com/en/latest/configuration_guides/spooling.html#example-1-recommended-settings>`_.
+
+	  
+   .. tip:: For more information about setting the ``limitQueryMemoryGB`` flag, see the `recommended spool settings <https://docs.sqream.com/en/latest/configuration_guides/spooling.html#example-1-recommended-settings>`_.
 
 15. **Optional** - To run additional SQream services, copy the required **sqream<#>_config_legacy.json** configuration files and create additional JSON files:
 
