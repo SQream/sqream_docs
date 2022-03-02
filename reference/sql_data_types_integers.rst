@@ -1,7 +1,7 @@
 .. _sql_data_types_integers:
 
 *************************
-Integers
+Integer
 *************************
 Integer data types are designed to store whole numbers.
 
