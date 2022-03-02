@@ -1,9 +1,9 @@
-.. _data_types:
+.. _casting_data_types:
 
 *************************
-Data Types
+Casting Data Types
 *************************
-The **Data Types** section provides more details about supported casts for the following types:
+The **Casting Data Types** section provides more details about supported casts for the following types:
 
 .. toctree::
    :maxdepth: 1
