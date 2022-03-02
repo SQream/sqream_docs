@@ -1,4 +1,4 @@
-.. _data_types_guides:
+.. _data_type_guides:
 
 *************************
 Data Type Guides

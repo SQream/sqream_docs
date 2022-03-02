@@ -11,7 +11,6 @@ The **Reference Guide* *section provides reference for using SQream's interfaces
    :caption: In this section:
    :glob:
 
-   data_type_guides
    sql/index
    catalog_reference
    cli/index
