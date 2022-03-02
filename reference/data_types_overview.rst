@@ -1,7 +1,7 @@
 .. _data_types_overview:
 
 *************************
-Overview
+Data Types
 *************************
 This page describes the following:
 
@@ -117,3 +117,8 @@ The **Data Type Reference** section below provides more details about the suppor
    :glob:
 
    sql_data_types_numeric
+   sql_data_types_boolean
+   sql_data_types_integers
+   sql_data_types_floating_point
+   sql_data_types_string
+   sql_data_types_date
