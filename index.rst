@@ -110,7 +110,7 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    architecture/index
    configuration_guides/index
    reference/index
-   data_type_guides/index
+   data_type_guides
    releases/index
    troubleshooting/index
    glossary
