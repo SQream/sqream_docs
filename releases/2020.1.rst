@@ -1,7 +1,7 @@
 .. _2020.1:
 
 **************************
-What's New in 2020.1
+Release Notes 2020.1
 **************************
 
 SQream DB v2020.1 contains lots of new features, improved performance, and bug fixes.

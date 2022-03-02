@@ -90,6 +90,3 @@ All SQream DB connectors and drivers support transport encryption. Ensure that e
 * A SQream DB worker is often started with the secure port enabled at an offset of 100 from the original port (e.g. port 5000 for the unsecured connection and port 5100 for the secured connection).
 
 Refer to each :ref:`client driver<client_drivers>` for instructions on enabling TLS/SSL.
-
-
-

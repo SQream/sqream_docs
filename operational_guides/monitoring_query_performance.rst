@@ -106,9 +106,7 @@ Using the ``SHOW_NODE_INFO`` Command
 The :ref:`show_node_info` command returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases.
 The :ref:`show_node_info` result, just like the periodically-logged execution plans described above, are an at-the-moment 
 view of the compiler's execution plan and runtime statistics for the specified statement.
-To inspect a currently running statement, execute the ``show_node_info`` utility function in a SQL client like
- :ref:`sqream sql<sqream_sql_cli_reference>`, the :ref:`SQream Studio Editor<studio_editor>`, or any other :ref:`third party SQL terminal<third_party_tools>`.
-In this example, we inspect a statement with statement ID of 176. The command looks like this:
+To inspect a currently running statement, execute the ``show_node_info`` utility function in a SQL client like :ref:`sqream sql<sqream_sql_cli_reference>`, the :ref:`SQream Studio Editor<studio_editor>`, or any other :ref:`third party SQL terminal<third_party_tools>`.
 
 .. code-block:: psql
    
@@ -130,16 +128,20 @@ In this example, we inspect a statement with statement ID of 176. The command lo
 Understanding the Query Execution Plan Output
 ==================================================
 Both :ref:`show_node_info`  and the logged execution plans represents the query plan as a graph hierarchy, with data separated into different columns.
-Each row represents a single logical database operation, which is also called a **node** or **chunk producer**. A node reports 
-several metrics during query execution, such as how much data it has read and written, how many chunks and rows, and how much time has elapsed.
+
+Each row represents a single logical database operation, which is also called a **node** or **chunk producer**. A node reports several metrics during query execution, such as how much data it has read and written, how many chunks and rows, and how much time has elapsed.
+
 Consider the example show_node_info presented above. The source node with ID #11 (``ReadTable``), has a parent node ID #10 
-(``CpuDecompress``). If we were to draw this out in a graph, it'd look like this:
+(``CpuDecompress``).
+
+If we were to draw this out in a graph, it'd look like this:
+
 .. figure:: /_static/images/show_node_info_graph.png
    :height: 70em
    :align: center
    
-   This graph explains how the query execution details are arranged in a logical order, from the bottom up.
-   
+This graph explains how the query execution details are arranged in a logical order, from the bottom up.
+
    
 The last node, also called the sink, has a parent node ID of -1, meaning it has no parent. This is typically a node that sends data over the network or into a table.
    
@@ -842,8 +844,8 @@ Selectivity is the ratio of cardinality to the number of records of a chunk. We 
 SQream DB has a hint called ``HIGH_SELECTIVITY``, which is a function you can wrap a condition in.
 The hint signals to SQream DB that the result of the condition will be very sparse, and that it should attempt to rechunk
 the results into fewer, fuller chunks.
-.. note::
-   SQream DB doesn't do this automatically because it adds a significant overhead on naturally ordered and
+
+.. note:: SQream DB doesn't do this automatically because it adds a significant overhead on naturally ordered and
    well-clustered data, which is the more common scenario.
 
 Identifying the Situation
@@ -945,9 +947,10 @@ When joining more than two tables, the ``Join`` nodes will be the most time-cons
 Changing the Join Order
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Always prefer to join the smallest tables first.
-.. note:: 
-   We consider small tables to be tables that only retain a small amount of rows after conditions
+
+.. note:: We consider small tables to be tables that only retain a small amount of rows after conditions
    are applied. This bears no direct relation to the amount of total rows in the table.
+   
 Changing the join order can reduce the query runtime significantly. In the examples below, we reduce the time
 from 27.3 seconds to just 6.4 seconds.
 

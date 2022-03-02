@@ -153,7 +153,7 @@ The following table describes the DDL Optimizer screen:
 
 Clicking **Run Optimizer** adds a tab to the Statement panel showing the optimized results of the selected object.
 
-For more information, see `Optimization and Best Practices <https://docs.sqream.com/en/v2020.3/guides/operations/optimization_best_practices.html>`_.
+For more information, see `Optimization and Best Practices <https://docs.sqream.com/en/v2020.3/operational_guides/optimization_best_practices.html>`_.
 
 Executing Pre-Defined Queries from the System Queries Panel
 ---------------

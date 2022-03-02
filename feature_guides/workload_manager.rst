@@ -116,7 +116,7 @@ Each worker gets a comma-separated list of service queues that it subscribes to.
 Verifying the Configuration
 -----------------------------------
 
-Use :ref:`show_subscribed_instances` to view service subscriptions for each worker. Use `SHOW_SERVER_STATUS <https://docs.sqream.com/en/latest/reference/sql/sql_statements/monitoring_commands/show_server_status.html>`_ to see the statement queues.
+Use :ref:`show_subscribed_instances` to view service subscriptions for each worker. Use `SHOW_SERVER_STATUS <https://docs.sqream.com/en/v2020.3/reference/sql/sql_statements/monitoring_commands/show_server_status.html>`_ to see the statement queues.
 
 
 
