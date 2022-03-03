@@ -3,7 +3,7 @@
 *************************
 Data Type Guides
 *************************
-This page describes the following:
+This section describes the following:
 
 .. toctree::
    :maxdepth: 1
@@ -11,4 +11,4 @@ This page describes the following:
 
    converting_and_casting_types
    supported_data_types
-   data_types
+   supported_casts

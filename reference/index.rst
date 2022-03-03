@@ -16,3 +16,4 @@ The **Reference Guide* *section provides reference for using SQream's interfaces
    cli/index
    sql_feature_support
    xxconfiguration
+   data_type_guides/index

@@ -1,4 +1,4 @@
-.. _sql_data_types_integers:
+.. _sql_data_types_integer:
 
 *************************
 Integer
