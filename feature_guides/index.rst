@@ -12,6 +12,7 @@ This section describes the following features:
    :titlesonly:
 
    access_control
+   delete_guide
    compression
    flexible_data_clustering
    python_functions

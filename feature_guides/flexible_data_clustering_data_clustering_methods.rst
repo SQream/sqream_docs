@@ -88,8 +88,8 @@ The ``CLUSTER BY`` statement splits ingested data based on the range of data cor
 For more information, see the following:
 
 * `The CLUSTER_BY statement <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/cluster_by.html>`_
-* `The DELETE statement <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/delete.html>`_   
-* `The Deleting Data guide <https://docs.sqream.com/en/latest/guides/features/delete.html>`_
+* `The DELETE statement <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/delete.html>`_
+* `The Deleting Data Guide <https://docs.sqream.com/en/latest/feature_guides/delete_guide.html>`_
 
 Inspecting Clustered Table Health
 ~~~~~~~~~~
@@ -178,6 +178,3 @@ Unlike node-partitioning (or sharding), chunks are:
    ::
  
 * Compressed individually to improve compression and data locality.
-
-
-

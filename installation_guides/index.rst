@@ -11,7 +11,5 @@ The **Installation Guides** section describes the following installation guide s
    :maxdepth: 1
    :glob:
 
-   sqream_studio_installation
    installing_and_launching_sqream
-
-
+   sqream_studio_installation
