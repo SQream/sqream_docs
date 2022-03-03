@@ -107,6 +107,7 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    troubleshooting/index
    glossary
 
+
 ..
    Indices and tables
    ==================
