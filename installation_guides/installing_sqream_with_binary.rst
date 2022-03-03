@@ -73,7 +73,7 @@ This procedure describes how to install SQream using Binary packages and must be
       
 The configuration files are **service configuration files**, and the JSON files are **SQream configuration files**, for a total of four files. The number of SQream configuration files and JSON files must be identical.
       
-**NOTICE** - Verify that the JSON files have been configured correctly and that all required flags have been set to the correct values.
+.. note:: Verify that the JSON files have been configured correctly and that all required flags have been set to the correct values.
 
 In each JSON file, the following parameters **must be updated**:
 
@@ -100,7 +100,7 @@ It would be same on server running metadataserver and different on other server 
       $ cp sqream2_config.json sqream3_config.json
       $ vim sqream3_config.json
       
-**NOTICE:** A unique **instanceID** must be used in each JSON file. IN the example above, the instanceID **sqream_2** is changed to **sqream_3**.
+.. note:: A unique **instanceID** must be used in each JSON file. IN the example above, the instanceID **sqream_2** is changed to **sqream_3**.
 
 12. **Optional** - If you created additional services in **Step 11**, verify that you have also created their additional configuration files:
 
@@ -168,11 +168,6 @@ It would be same on server running metadataserver and different on other server 
 
        
 If you have an HDFS environment, see :ref:`Configuring an HDFS Environment for the User sqream <hdfs>`.
-
-
-
-
-
 
 Upgrading SQream Version
 -------------------------
