@@ -115,7 +115,7 @@ It would be same on server running metadataserver and different on other server 
     
     2. Change **LOGFILE=/var/log/sqream/sqream2.log** to **LOGFILE=/var/log/sqream/sqream3.log**.
     
-**NOTE:** If you are running SQream on more than one server, you must configure the ``serverpicker`` and ``metadatserver`` services to start on only one of the servers. If **metadataserver** is running on the first server, the ``metadataServerIP`` value in the second server's /etc/sqream/sqream1_config.json file must point to the IP of the server on which the ``metadataserver`` service is running.
+.. note:: If you are running SQream on more than one server, you must configure the ``serverpicker`` and ``metadatserver`` services to start on only one of the servers. If **metadataserver** is running on the first server, the ``metadataServerIP`` value in the second server's /etc/sqream/sqream1_config.json file must point to the IP of the server on which the ``metadataserver`` service is running.
     
 14. Set up **servicepicker**:
 
@@ -182,12 +182,10 @@ Upgrading your SQream version requires stopping all running services while you m
 
 1. Stop all actively running SQream services.
 
-**Notice-** All SQream services must remain stopped while the upgrade is in process. Ensuring that SQream services remain stopped depends on the tool being used.
+.. note:: All SQream services must remain stopped while the upgrade is in process. Ensuring that SQream services remain stopped depends on the tool being used.
 
 For an example of stopping actively running SQream services, see :ref:`Launching SQream with Monit <launching_sqream_with_monit>`.
-
-
-      
+   
 2. Verify that SQream has stopped listening on ports **500X**, **510X**, and **310X**:
 
    .. code-block:: console

@@ -79,7 +79,7 @@ You can add a service by clicking **+ Add** and defining the service name.
 You can manage workers from the **Workers** panel. For more information about managing workers, see the following:
 
 * :ref:`Managing Workers from the Workers Panel<workers_panel_5.4.3>`
-* `Workers <https://docs.sqream.com/en/latest/reference/cli/sqream_console.html?highlight=workers#workers>`_
+* `Workers <https://docs.sqream.com/en/latest/reference/cli/sqream_console.html#workers>`_
 
 :ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_5.4.3>`
 
@@ -151,11 +151,26 @@ Clicking the ellipsis in a service shows the following additional options:
 * **Stop Query** - stops the query.
 * **Show Execution Plan** - shows the execution plan as a table. The columns in the **Show Execution Plan** table can be sorted.
 
-For more information on the current query plan, see `SHOW_NODE_INFO <https://docs.sqream.com/en/v2020-1/reference/sql/sql_statements/monitoring_commands/show_node_info.html#show-node-info>`_. For more information on checking active sessions across the cluster, see `SHOW_SERVER_STATUS <https://docs.sqream.com/en/v2020-1/reference/sql/sql_statements/monitoring_commands/show_server_status.html>`_.
+For more information on the current query plan, see `SHOW_NODE_INFO <https://docs.sqream.com/en/v2020-1/reference/sql/sql_statements/monitoring_commands/show_node_info.html#show-node-info>`_.
 
-.. include:: /reference/sql/sql_statements/monitoring_commands/show_server_status.rst
-   :start-line: 67
-   :end-line: 84
+For more information on checking active sessions across the cluster, see `SHOW_SERVER_STATUS <https://docs.sqream.com/en/v2020-1/reference/sql/sql_statements/monitoring_commands/show_server_status.html>`_.
+
+.. list-table:: Statement status values
+   :widths: auto
+   :header-rows: 1
+   
+   * - Status
+     - Description
+   * - ``Preparing``
+     - Statement is being prepared
+   * - ``In queue``
+     - Statement is waiting for execution
+   * - ``Initializing``
+     - Statement has entered execution checks
+   * - ``Executing``
+     - Statement is executing
+   * - ``Stopping``
+     - Statement is in the process of stopping
 
 Managing Worker Status
 ^^^^^^^^^^^^^^^^^^^^^

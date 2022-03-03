@@ -20,7 +20,7 @@ The following are applicable to all operating systems:
 * **JDBC** - recommended installation via ``mvn``:
 
   * `JDBC .jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.3.jar>`_ - sqream-jdbc-4.5.3 (.jar)
-  * `JDBC driver <https://docs.sqream.com/en/v2020-1/guides/client_drivers/jdbc/index.html#java-jdbc>`_
+  * `JDBC driver <https://docs.sqream.com/en/v2020-1/third_party_tools/client_drivers/jdbc/index.html>`_
 
 
 .. _python:
@@ -28,7 +28,7 @@ The following are applicable to all operating systems:
 * **Python** - Recommended installation via ``pip``:
 
   * `Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.1.3>`_ - pysqream v3.1.3 (.tar.gz)
-  * `Python driver <https://docs.sqream.com/en/v2020-1/guides/client_drivers/python/index.html#pysqream>`_
+  * `Python driver <https://docs.sqream.com/en/v2020-1/third_party_tools/client_drivers/python/index.html>`_
 
 
 .. _nodejs:
@@ -36,7 +36,7 @@ The following are applicable to all operating systems:
 * **Node.JS** - Recommended installation via ``npm``:
 
   * `Node.JS <https://sq-ftp-public.s3.amazonaws.com/sqream-sqreamdb-4.2.4.tgz>`_ - sqream-v4.2.4 (.tar.gz)
-  * `Node.JS driver <https://docs.sqream.com/en/v2020-1/guides/client_drivers/nodejs/index.html#nodejs>`_
+  * `Node.JS driver <https://docs.sqream.com/en/v2020-1/third_party_tools/client_drivers/nodejs/index.html>`_
 
 
 .. _tableau_connector:   
@@ -44,7 +44,7 @@ The following are applicable to all operating systems:
 * **Tableau**:
 
   * `Tableau connector <http://downloads.sqream.com/drivers/2020.3/SQreamDB.taco>`_ - SQreamDB (.taco)
-  * `Tableau manual installation <https://docs.sqream.com/en/v2020-1/guides/third_party_tools/tableau.html#tableau-manual-installation>`_
+  * `Tableau manual installation <https://docs.sqream.com/en/v2020-1/third_party_tools/client_platforms/tableau.html>`_
 
 
 
@@ -88,7 +88,7 @@ The following are applicable to Linux:
 
 
 * C++ connector - `libsqream-4.0 <https://sq-ftp-public.s3.amazonaws.com/libsqream-4.0.tar.gz>`_   
-* `C++ shared object library <https://docs.sqream.com/en/v2020-1/guides/client_drivers/cpp/index.html#getting-the-library>`_
+* `C++ shared object library <https://docs.sqream.com/en/v2020-1/third_party_tools/client_drivers/cpp/index.html#getting-the-library>`_
 
 
 .. toctree::

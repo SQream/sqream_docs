@@ -1,4 +1,4 @@
-.. _sql_best_practices:
+.. _optimization_best_practices:
 
 **********************************
 Optimization and Best Practices
