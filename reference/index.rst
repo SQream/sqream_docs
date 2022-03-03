@@ -1,9 +1,9 @@
 .. _reference:
 
 *************************
-Reference
+Reference Guides
 *************************
-The Reference page is a reference for the following SQream interfaces and SQL features:
+The **Reference Guides** page is a reference for the following SQream interfaces and SQL features:
 
 .. toctree::
    :maxdepth: 2
