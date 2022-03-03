@@ -102,10 +102,9 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    :titlesonly:
    :hidden:
 
-
    getting_started/index
    installation_guides/index
-   data_ingestion_guides/index
+   data_ingestion/index
    third_party_tools/index
    feature_guides/index
    operational_guides/index
@@ -113,6 +112,7 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    architecture/index
    configuration_guides/index
    reference/index
+   data_type_guides/index
    releases/index
    troubleshooting/index
    glossary
