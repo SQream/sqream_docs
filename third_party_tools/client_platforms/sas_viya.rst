@@ -32,7 +32,7 @@ To download SAS Viya, see `SAS Viya <https://www.sas.com/en_us/software/viya.htm
 
 Installing the JDBC Driver
 ~~~~~~~~~~~~~~~~~~
-After installing SAS Viya, you must install the JDBC driver. The SQream JDBC driver is required for establishing a connection between SAS Viya and SQream.
+The SQream JDBC driver is required for establishing a connection between SAS Viya and SQream.
 
 **To install the JDBC driver:**
 
@@ -60,46 +60,10 @@ After installing the JDBC driver, you must configure the JDBC driver from the SA
 	
 #. Configure the SQream JDBC connector by adding the following rows:
 
-   .. code-block:: text
-  
-      options sastrace='d,d,d,d' 
-      sastraceloc=saslog 
-      nostsuffix 
-      msglevel=i 
-      sql_ip_trace=(note,source) 
-      DEBUG=DBMS_SELECT;
-
-      options validvarname=any;
-
-      libname sqlib jdbc driver="com.sqream.jdbc.SQDriver"
-         classpath="/opt/sqream/sqream-jdbc-4.0.0.jar" 
-         URL="jdbc:Sqream://sqream-cluster.piedpiper.com:3108/raviga;cluster=true" 
-         user="rhendricks"
-         password="Tr0ub4dor3"
-         schema="public" 
-         PRESERVE_TAB_NAMES=YES
-         PRESERVE_COL_NAMES=YES;
-   
    .. literalinclude:: connect3.sas
       :language: php
       :linenos:
 
-   The sample program above does the following:
-      
-    * **Line 10 comment end**: Starts a JDBC session named **sqlib** associated with the SQream driver. This statement extends the SAS global libname statement so you can assign a libref.
-	
-     ::
-	 
-    * **Line 10**: Provides SAS Viya with the location of the SQream JDBC driver. This step is required because SAS Viya does not support the SAS_ACCESS_CLASSPATH environment variable for this connection.
-	
-     ::
-
-    * **Lines 8-15**: Associates the libref with the SQream driver to be used as ``sqlib.tablename``. The libref is ``sqlib`` and uses the JDBC engine to connect to the ``jdbc:Sqream://*<IP>*:<port>*/*<database>*;cluster=true`` SQream cluster.
-	
-     ::
-
-    * The database name is ``master`` and the schema is ``public``. 
-	
       For more information about writing a connection string, see **Connect to SQream DB with a JDBC Application** and navigate to `Connection String <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/jdbc/index.html#connection-string-examples>`_.
 
 Launching SAS Viya
@@ -116,11 +80,11 @@ The **Operating SAS Viya** section describes the following:
    
 Using SAS Viya Visual Analytics
 ~~~~~~~~~~~~~~~~~~
-This section describes how to use SAS visual analytics.
+This section describes how to use SAS Viya Visual Analytics.
 
-**To use SAS visual analytics:**
+**To use SAS Viya Visual Analytics:**
 
-#. Log in to `SAS Visual Analytics <http://192.168.4.63/SASLogon/login>`_ using your credentials:
+#. Log in to `SAS Viya Visual Analytics <http://192.168.4.63/SASLogon/login>`_ using your credentials:
 
     ::
 
@@ -167,9 +131,9 @@ This section describes how to use SAS visual analytics.
    * - url
      - \jdbc:Sqream://*<IP>*:*<port>*/*<database>*;cluster=true
    * - username
-     - sqream
+     - <username>
    * - password
-     - sqream
+     - <password>
    
 10. Click **Test Connection**.
 
@@ -191,9 +155,19 @@ The **Best Practices for SAS Viya** section describes the following:
    
 Using SQream for Data Processing
 ~~~~~~~~~~~~~~~~~~
+SQream 
+
+
 1. Yotam's method - data processing
 
 Benchmark measures performance. Create a link to it.
+
+
+
+
+
+
+
 
 
 Using SQream for Data Storage
