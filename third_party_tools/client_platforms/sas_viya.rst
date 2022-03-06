@@ -62,9 +62,8 @@ After installing the JDBC driver, you must configure the JDBC driver from the SA
 
    .. literalinclude:: connect3.sas
       :language: php
-      :linenos:
 
-      For more information about writing a connection string, see **Connect to SQream DB with a JDBC Application** and navigate to `Connection String <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/jdbc/index.html#connection-string-examples>`_.
+For more information about writing a connection string, see **Connect to SQream DB with a JDBC Application** and navigate to `Connection String <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/jdbc/index.html#connection-string-examples>`_.
 
 Launching SAS Viya
 -------------------
@@ -141,40 +140,9 @@ This section describes how to use SAS Viya Visual Analytics.
 
 11. If the connection is successful, click **Save**.
 
-If your connection is not successful, see :ref:`best_practices_and_troubleshooting` below.
+If your connection is not successful, see :ref:`troubleshooting_sas_viya` below.
 
-Best Practices for SAS Viya
----------------------------
- - discuss with Yotam writing queries in SQream (when getting rid of SAS Studio In-Memory).
- 
-The **Best Practices for SAS Viya** section describes the following:
-
-.. contents:: 
-   :local:
-   :depth: 1
-   
-Using SQream for Data Processing
-~~~~~~~~~~~~~~~~~~
-SQream 
-
-
-1. Yotam's method - data processing
-
-Benchmark measures performance. Create a link to it.
-
-
-
-
-
-
-
-
-
-Using SQream for Data Storage
-~~~~~~~~~~~~~~~~~~
-SQream can be used to increase your data preparation.
-
-2. Bring filtered data to SAS Storage - SQream as data storage
+.. _troubleshooting_sas_viya:
 
 Troubleshooting SAS Viya
 -------------------------
