@@ -6,9 +6,9 @@ Regular Administration Flags
 
 The **Regular Administration Flags** page describes **Regular** modification type flags, which can be modified by administrators on a session and cluster basis using the ``ALTER SYSTEM SET`` command:
 
-.. toctree::
-   :maxdepth: 1
-   :glob:
+.. contents::
+   :local:
+   :depth: 1 
 
    bin_sizes
    check_cuda_memory
