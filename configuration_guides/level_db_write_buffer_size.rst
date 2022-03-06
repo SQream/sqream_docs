@@ -9,3 +9,4 @@ The following describes the ``leveldbWriteBufferSize`` flag:
 
 * **Data type** - uint
 * **Default value** - ``524288``
+* **Allowed values** - 

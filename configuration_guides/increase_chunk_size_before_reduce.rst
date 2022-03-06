@@ -8,4 +8,5 @@ The ``increaseChunkSizeBeforeReduce`` flag increases the chunk size to reduce qu
 The following describes the ``increaseChunkSizeBeforeReduce`` flag:
 
 * **Data type** - boolean
-* **Default value** - ``FALSE``
+* **Default value** - ``false``
+* **Allowed values** - ``true``, ``false``

@@ -9,3 +9,4 @@ The following describes the ``useLegacyStringLiterals`` flag:
 
 * **Data type** - boolean
 * **Default value** - ``FALSE``
+* **Allowed values** - ``true``, ``false``

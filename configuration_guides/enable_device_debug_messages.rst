@@ -8,5 +8,5 @@ The ``enableDeviceDebugMessages`` flag checks for CUDA errors after producing ea
 The following describes the ``enableDeviceDebugMessages`` flag:
 
 * **Data type** - boolean
-* **Default value** - ``false``
+* **Default value** - ``true``
 * **Allowed values** - ``true``, ``false``

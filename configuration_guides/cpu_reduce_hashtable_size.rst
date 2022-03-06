@@ -1,12 +1,12 @@
-.. _copyToRestrictUtf8:
+.. _cpu_reduce_hashtable_size:
 
 *************************
-Enabling High Bin Control Granularity
+Reducing CPU Hashtable Sizes
 *************************
-The ``copyToRestrictUtf8`` flag sets the custom bin size in the cache to enable high bin control granularity.
+The ``cpuReduceHashtableSize`` flag sets 
 
-The following describes the ``copyToRestrictUtf8`` flag:
+The following describes the ``cpuReduceHashtableSize`` flag:
 
-* **Data type** - boolean
-* **Default value** - ``false``
-* **Allowed values** - ``true``, ``false``
+* **Data type** - uint
+* **Default value** - ``10000``
+* **Allowed values** -

@@ -9,3 +9,4 @@ The following describes the ``endLogMessage`` flag:
 
 * **Data type** - string
 * **Default value** - ``EOM``
+* **Allowed values**  - 

@@ -9,3 +9,4 @@ The following describes the ``statementLockTimeout`` flag:
 
 * **Data type** - uint
 * **Default value** - ``3``
+* **Allowed values** - ``0``-``4000000000``
