@@ -9,3 +9,4 @@ The following describes the ``cudaMemcpyMaxSizeBytes`` flag:
 
 * **Data type** - uint
 * **Default value** - ``0``
+* **Allowed values** - ``0``-``4000000000``

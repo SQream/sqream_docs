@@ -25,7 +25,9 @@ The **Regular Administration Flags** page describes **Regular** modification typ
    gather_mem_stat
    increase_chunk_size_before_reduce
    increase_mem_factors
-   level_db_write_buffer_size
+   level_db_write_buffer_size   
+   max_pinned_percentage_of_total_ram   
+   mem_merge_blob_offset_count
    memory_reset_trigger_mb
    mt_read
    mt_read_workers
@@ -33,3 +35,4 @@ The **Regular Administration Flags** page describes **Regular** modification typ
    statement_lock_timeout
    use_legacy_decimal_literals
    use_legacy_string_literals
+   varchar_identifiers
