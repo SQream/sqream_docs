@@ -22,7 +22,7 @@ import sphinx_rtd_theme
 
 project = 'SQream DB'
 copyright = '2022 SQream'
-author = 'Sean Tomarian'
+
 
 # The full version, including alpha/beta/rc tags
 release = '2021.2'
