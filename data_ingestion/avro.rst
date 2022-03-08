@@ -7,7 +7,7 @@ The **Inserting Data from Avro** page describes inserting data from Avro into SQ
 
 .. contents:: 
    :local:
-   :depth: 2
+   :depth: 1
    
 Overview
 ===========
