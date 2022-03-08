@@ -12,10 +12,6 @@ SAS Viya is a cloud-enabled analytics engine used for producing useful insights.
    :local:
    :depth: 1
 
-Prerequisites
--------------------
-**Comment** - The source doc doesn't include content related to this section. If so, this section will be removed.
-
 Installing SAS Viya
 -------------------
 The **Installing SAS Viya** section describes the following:
@@ -64,10 +60,6 @@ After installing the JDBC driver, you must configure the JDBC driver from the SA
       :language: php
 
 For more information about writing a connection string, see **Connect to SQream DB with a JDBC Application** and navigate to `Connection String <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/jdbc/index.html#connection-string-examples>`_.
-
-Launching SAS Viya
--------------------
-**Comment** - The source doc doesn't include content related to this section. If so, this section will be removed.
 
 Operating SAS Viya
 --------------------  
