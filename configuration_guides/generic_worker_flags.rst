@@ -5,8 +5,4 @@ Worker Generic Flags
 *************************
 The Worker Generic Flags** page describes **Worker** modification type flags, which can be modified by standard users on a session basis:
 
-.. toctree::
-   :maxdepth: 1
-   :glob:
-
-   limit_query_memory_gb
+   * `Persisting Your Cache Directory <https://docs.sqream.com/en/v2021.1/configuration_guides/limit_query_memory_gb.html>`_
