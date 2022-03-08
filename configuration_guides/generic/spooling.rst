@@ -65,5 +65,5 @@ The following is an example of setting ``spoolMemoryGB`` value in the previous c
 
 For more information about configuring the ``spoolMemoryGB`` flag, see the following:
 
-* `Current configuration method <https://docs.sqream.com/en/v2020.3.2/configuration_guides/spool_memory_gb.html>`_
-* `Previous configuration method <https://docs.sqream.com/en/v2020.3.2/configuration_guides/previous_configuration_method.html#id2>`_
+* **Current configuration method**: Configuration flags
+* **Previous configuration method**: Runtime global flags
