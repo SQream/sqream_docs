@@ -1,4 +1,4 @@
-.. _avro_foreign_data_format:
+.. _avro:
 
 **************************
 Inserting Data from Avro
