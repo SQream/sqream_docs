@@ -1,0 +1,18 @@
+.. _configuration_guides:
+
+*************************
+Configuration Guides
+*************************
+
+The **Configuration Guides** page describes the following configuration information:
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   spooling
+   configuration_methods
+   configuration_flags
+
+
+
