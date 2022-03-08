@@ -1,15 +1,15 @@
 .. _data_ingestion:
 
 *************************
-Data Ingestion Guides
+Data Ingestion Sources
 *************************
-The **Data Ingestion Guides** provides information about the following data ingestion sources:
+The **Data Ingestion Sources** provides information about the following data ingestion sources:
 
 .. toctree::
    :maxdepth: 1
    :glob:
    
-   xxavro
+   avro
    csv
    parquet
    orc
