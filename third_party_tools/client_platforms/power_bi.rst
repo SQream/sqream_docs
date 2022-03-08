@@ -8,6 +8,8 @@ Overview
 =========
 **Comment** - After seeing Inon's PowerBI Specs doc, I added the **Best Practices** section. This should be added to the template. I also added the **Related Information** section and created a link to the updated `Glossary <https://docs.sqream.com/en/v2020-1/glossary.html>`_.
 
+**Power BI** is a software that turns your unrelated datasets, such as Excel sheets or data warehouses, into coherent and interactive visual data models. Power BI lets you easily connect to and share your data sources.
+
 SQream integrates with **Power BI** do the following:
 
 * Extract and transform your datasets into usable visual models in approximately one minute.
@@ -103,7 +105,7 @@ Installing Power BI
       * - Password
         - Provide a password for your user.
 
-11. Under **Data Connectivity mode**, select **DierctQuery mode**.
+11. Under **Data Connectivity mode**, select **DirectQuery mode**.
 
      ::
 
