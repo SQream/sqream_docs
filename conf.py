@@ -21,8 +21,9 @@ import sphinx_rtd_theme
 # -- Project information -----------------------------------------------------
 
 project = 'SQream DB'
-copyright = '2020 SQream'
-author = 'Arnon Shimoni, Jake Wheat'
+copyright = '2022 SQream'
+author = 'SQream Documentation'
+
 
 # The full version, including alpha/beta/rc tags
 
