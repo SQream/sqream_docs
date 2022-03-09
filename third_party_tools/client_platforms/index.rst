@@ -3,7 +3,6 @@
 ************************************
 Client Platforms
 ************************************
-
 These topics explain how to install and connect a variety of third party tools. 
 
 Browse the articles below, in the sidebar, or use the search to find the information you need.
@@ -22,6 +21,8 @@ If you are looking for a tool that is not listed, SQream and our partners can he
    :caption: In this section:
    :titlesonly:
 
+   power_bi
+   sas_viya
    sql_workbench
    tableau
    pentaho
@@ -30,7 +31,6 @@ If you are looking for a tool that is not listed, SQream and our partners can he
    r
    php
    xxspotfire
-   sas_viya
    xxtalend
    xxdiagnosing_common_connectivity_issues
 
