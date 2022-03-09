@@ -3,7 +3,7 @@
 *************************
 Connect to SQream Using Power BI Desktop
 *************************
-
+   
 Overview
 =========
 **Power BI Desktop** lets you connect to SQream and use underlying data as with other data sources in Power BI Desktop.
