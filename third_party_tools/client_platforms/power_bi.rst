@@ -4,7 +4,7 @@
 Connect to SQream Using Power BI Desktop
 *************************
 
-O/v2020.3.1/er/v2020.3.1/iew
+Overview
 =========
 **Power BI Desktop** lets you connect to SQream and use underlying data as with other data sources in Power BI Desktop.
 
