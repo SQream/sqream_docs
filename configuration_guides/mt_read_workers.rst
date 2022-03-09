@@ -9,3 +9,4 @@ The following describes the ``mtReadWorkers`` flag:
 
 * **Data type** - uint
 * **Default value** - ``30``
+* **Allowed values** - 1-4000000000

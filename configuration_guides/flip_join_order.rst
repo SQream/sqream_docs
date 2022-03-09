@@ -8,4 +8,5 @@ The ``flipJoinOrder`` flag reorders join to force equijoins and/or equijoins sor
 The following describes the ``flipJoinOrder`` flag:
 
 * **Data type** - boolean
-* **Default value** - ``FALSE``
+* **Default value** - ``false``
+* **Allowed values** - ``true``, ``false``

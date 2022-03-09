@@ -8,4 +8,5 @@ The ``increaseMemFactors`` flag adds a rechunker before expensive chunk producer
 The following describes the ``increaseMemFactors`` flag:
 
 * **Data type** - boolean
-* **Default value** - ``TRUE``
+* **Default value** - ``true``
+* **Allowed values** - ``true``, ``false``

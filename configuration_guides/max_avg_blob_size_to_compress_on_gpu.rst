@@ -9,3 +9,4 @@ The following describes the ``maxAvgBlobSizeToCompressOnGpu`` flag:
 
 * **Data type** - uint
 * **Default value** - ``120``
+* **Allowed values** - 1-4000000000

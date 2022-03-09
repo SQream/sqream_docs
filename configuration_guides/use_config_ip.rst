@@ -8,4 +8,5 @@ The ``useConfigIP`` flag activates the machineIP (``true``). Setting this flag t
 The following describes the ``useConfigIP`` flag:
 
 * **Data type** - boolean
-* **Default value** - ``FALSE``
+* **Default value** - ``false``
+* **Allowed values** - ``true``, ``false``
