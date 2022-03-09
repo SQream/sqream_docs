@@ -1,235 +1,143 @@
-.. _connect_to_sas_viya:
+.. _power_bi:
 
 *************************
-Connecting to SQream Using SAS Viya
+Connect to SQream Using Power BI Desktop
 *************************
 
 Overview
-=====================
-SAS Viya is used to connect to a SQream cluster. The **Connecting to SQream Using SAS Viya** page describes how to connect to SAS Viya.
+=========
+**Power BI Desktop** lets you connect to SQream and use underlying data as with other data sources in Power BI Desktop.
 
-The Connecting to SQream Using SAS Viya page describes the following:
+SQream integrates with Power BI Desktop to do the following:
 
-.. contents::
-   :local: 
+* Extract and transform your datasets into usable visual models in approximately one minute.
+
+   ::
+
+* Use **DAX** functions **(Data Analysis Expressions)** to analyze your datasets.
+
+   ::
+
+* Refresh datasets as needed or by using scheduled jobs.
+
+SQream uses Power BI for extracting data sets using the following methods:
+
+* **Direct query** - Direct queries lets you connect easily with no errors, and refreshes Power BI artifacts, such as graphs and reports, in a considerable amount of time in relation to the time taken for queries to run using the `SQream SQL CLI Reference guide <https://docs.sqream.com/en/v2020.3.2/reference/cli/sqream_sql.html>`_.
+
+   ::
+
+* **Import** - Lets you extract datasets from remote databases.
+
+The **Connect to SQream Using Power BI** page describes the following:
+
+.. contents:: 
+   :local:
    :depth: 1
    
-
-Installing SAS Viya
+Prerequisites
 -------------------
-Integrating with SQream has been tested with SAS Viya v.03.05 and newer.
+To connect to SQream, the following must be installed:
 
-To install SAS Viya, see `SAS Viya <https://www.sas.com/en_us/software/viya.html>`_.
+* **ODBC data source administrator** - 32 or 64, depending on your operating system. For Windows users, the ODBC data source administrator is embedded within the operating system.
 
-Installing the JDBC Driver
+* **SQream driver** - The SQream application required for interacting with the ODBC according to the configuration specified in the ODBC administrator tool.
+
+Installing Power BI Desktop
 -------------------
-After installing SAS Viya, you must install the JDBC driver.
+**To install Power BI Desktop:**
 
-**To install the JDBC driver:**
-
-#. Download the `JDBC driver <https://docs.sqream.com/en/v2020.3.2/third_party_tools/client_drivers/jdbc/index.html>`_.
+1. Download `Power BI Desktop 64x <https://powerbi.microsoft.com/en-us/downloads/>`_.
 
     ::
 
-#. Unzip the JDBC driver into a location on the SAS Viya server.
-   
-   SQream recommends creating the directory ``/opt/sqream`` on the SAS Viya server.
-   
-Configuring the JDBC Driver from the SAS Studio
--------------------
-After installing the JDBC driver, you must configure the JDBC driver from the SAS Studio.
+2. Download and configure your ODBC driver.
 
-**To configure the JDBC driver from the SAS Studio:**
-
-#. Sign in to the SAS Studio.
+   For more information about configuring your ODBC driver, see `ODBC <https://docs.sqream.com/en/v2020.3.2/third_party_tools/client_drivers/odbc/index.html>`_.
+   
+3. Navigate to **Windows** > **Documents** and create a folder called **Power BI Desktop Custom Connectors**.
 
     ::
-
-#. From the **New** menu, click **SAS Program**.
-   
-    ::  
-   
-#. Create a sample program to explore the data, as shown below:
-
-   .. literalinclude:: connect_2.sas
-      :language: sas
-      :caption: Sample SAS Program
-      :linenos:
-      :emphasize-lines: 9
-
-   The sample program above does the following:
-      
-    * **Line 8**: Starts a JDBC session named ``sqlib`` associated with the SQream driver. This statement extends the SAS global ``libname`` statement so you can assign a **libref** to your data source. The libref feature lets you reference a table in SQream directly from a DATA step or SAS procedure.
 	
-     ::
-	 
-    * **Line 10**: Provides SAS Viya with the location of the SQream JDBC driver. This step is required because SAS Viya does not support the SAS_ACCESS_CLASSPATH environment variable for this connection.
-	
-     ::
+4. In the **Power BI Desktop** folder, create a folder called **Custom Connectors**.
 
-    * **Lines 8-15**: Associates the libref with the SQream driver to be used as ``sqlib.tablename``. The libref is ``sqlib`` and uses the JDBC engine to connect to the ``sqream-cluster.piedpiper.com`` SQream cluster.
-	
-     ::
 
-    * The database name is ``master`` and the schema is ``public``. 
-	
-      For more information about writing a connection string, see **Connect to SQream DB with a JDBC Application** and navigate to `Connection String <https://docs.sqream.com/en/v2020.3.2/guides/client_drivers/jdbc/index.html#connection-string>`_.
+5. From the Client Drivers page, download the **PowerQuery.mez** file.
 
-     ::
-	 
-    * **Lines 17-20**: Prepares data by loading it from the customer's table into the in-memory space in SAS Viya.
-	
-     ::
-	 
+    ::
 
-     
-    * **Lines 21-23**: DATA step. In this step, standard SAS naming conventions are used to reference the data, with ``sqlib`` as the libref and ``nba`` as the table name.
+5. Save the PowerQuery.mez file in the **Custom Connectors** folder you created in Step 3.
 
-4. Run the program by clicking **Run**.
+    ::
 
-   The current SAS program is run.
+6. Open the Power BI application.
 
-   If the sample runs correctly, the following new tabs appear:
+    ::
+
+7. Navigate to **File** > **Options and Settings** > **Option** > **Security** > **Data Extensions**, and select **(Not Recommended) Allow any extension to load without validation or warning**.
+
+    ::
+
+8. Restart the Power BI Desktop application.
+
+    ::
+
+9. From the **Get Data** menu, select **SQream**.
+
+    ::
+
+10. Click **Connect** and provide the information shown in the following table:
+    
+   .. list-table:: 
+      :widths: 6 31
+      :header-rows: 1
    
-   * Log
-   
-   * Results
-   
-   * Output Data
-   
-   The query results are displayed in the **Results** tab, which shows your query results.   
+      * - Element Name
+        - Description
+      * - Server
+        - Provide the network address to your database server. You can use a hostname or an IP address. 
+      * - Port
+        - Provide the port that the database is responding to at the network address.
+      * - Database
+        - Provide the name of your database or the schema on your database server.
+      * - User
+        - Provide a SQreamdb username.
+      * - Passwords
+        - Provide a password for your user.
 
-Browsing Your Data and Workbooks
+11. Under **Data Connectivity mode**, select **DirectQuery mode**.
+
+     ::
+
+12. Click **Connect**.
+
+     ::
+
+13. Provide your user name and password and click **Connect**.
+
+Best Practices for Power BI
+---------------
+SQream recommends using Power BI in the following ways for acquiring the best performance metrics:
+
+* Creating bar, pie, line, or plot charts when illustrating one or more columns.
+
+   ::
+   
+* Displaying trends and statuses using visual models.
+
+   ::
+   
+* Creating a unified view using **PowerQuery** to connect different data sources into a single dashboard.	   
+
+Supported SQream Driver Versions
+---------------
+SQream supports the following SQream driver versions: 
+
+* The **PowerQuery Connector** is an additional layer on top of the ODBC. 
+
+    ::
+
+* SQream Driver Installation (ODBC v4.1.1) - Contact your administrator for the link to download ODBC v4.1.1.
+
+Related Information
 -------------------
-After configuring the JDBC driver from the SAS Studio, you can browse your data and workbooks.
-
-**To browse your data and workbooks:**
-
-#. From the panel on the left, **Libraries**.
-
-   The library that you created (``SQLIB``) is populated, and the ``nba`` table is displayed. You can double-click the table name to expand the table and show the columns.
-
-    ::
-
-#. Locate the workbook you created in the :ref:`data step <data_step>` in the **WORK** tree item.
-
-   The workbook is named ``sqlib.nba``. You can double-click the table name to expand the table tree.
-   
-Using SAS Viya Visual Analytics
--------------------
-This section describes how to use SAS visual analytics.
-
-**To use SAS visual analytics:**
-
-#. Log in to `SAS Visual Analytics <http://192.168.4.63/SASLogon/login>`_ using your credentials:
-
-    ::
-
-2. Click **New Report**.
-
-    ::
-
-3. Click **Data**.
-
-    ::
-
-4. Click **Data Sources**.
-
-    ::
-
-5. Click the **Connect** icon.
-
-    ::
-
-6. From the **Type** menu, select **Database**.
-
-    ::
-
-7. Provide the required information and select **Persist this connection beyond the current session**.
-
-    ::
-
-8. Click **Advanced** and provide the required information.
-
-    ::
-
-9. Add the following additional parameters by clicking **Add Parameters**:
-
-.. list-table::
-   :widths: 10 90
-   :header-rows: 1   
-   
-   * - Name
-     - Value
-   * - class
-     - com.sqream.jdbc.SQDriver
-   * - classPath
-     - /opt/sqream/sqream-jdbc-4.5.0.jar   
-   * - url
-     - \jdbc:Sqream://<IP>:<port>/<database>;cluster=true
-   * - username
-     - sqream
-   * - password
-     - sqream
-   
-10. Click **Test Connection**.
-
-     ::
-
-11. If the connection is successful, click **Save**.
-
-If your connection is not successful, see :ref:`best_practices_and_troubleshooting` below.
-
-.. _best_practices_and_troubleshooting:
-
-Best Practices and Troubleshooting
--------------------
-This section describes the following best practices and troubleshooting procedures when connecting to SQream using SAS Viya:
-
-.. contents::
-   :local:
-
-Inserting Only Required Data
-~~~~~~~~~~~~~
-When using Tableau, SQream recommends using only data that you need, as described below:
-
-* Insert only the data sources you need into SAS Viya, excluding tables that don’t require analysis.
-
-    ::
-
-
-* To increase query performance, add filters before analyzing. Every modification you make while analyzing data queries the SQream database, sometimes several times. Adding filters to the datasource before exploring limits the amount of data analyze and increases query performance.
-
-
-Creating a Separate Service for SAS Viya
-~~~~~~~~~~~~~
-SQream recommends creating a separate service for SAS Viya with the DWLM. This reduces the impact that Tableau has on other applications and processes, such as ETL. In addition, this works in conjunction with the load balancer to ensure good performance.
-
-Locating the SQream JDBC Driver
-~~~~~~~~~~~~~
-In some cases, SAS Viya cannot locate the SQream JDBC driver, generating the following error message:
-
-.. code-block:: text
-
-   java.lang.ClassNotFoundException: com.sqream.jdbc.SQDriver
-
-**To locate the SQream JDBC driver:**
-
-1. Verify that you have placed the JDBC driver in a directory that SAS Viya can access.
-
-    ::
-
-
-2. Verify that the classpath in your SAS program is correct, and that SAS Viya can access the file that it references.
-
-    ::
-
-
-3. Restart SAS Viya.
-
-For more troubleshooting assistance, see the `SQream Support Portal <https://sqream.atlassian.net/servicedesk/customer/portals>`_.
-
-
-Supporting TEXT
-~~~~~~~~~~~~~
-In SAS Viya versions lower than 4.0, casting ``TEXT`` to ``CHAR`` changes the size to 1,024, such as when creating a table including a ``TEXT`` column. This is resolved by casting ``TEXT`` into ``CHAR`` when using the JDBC driver.
+For more information, see the `Glossary <https://docs.sqream.com/en/v2020.3.2/glossary.html>`_.
