@@ -21,6 +21,8 @@ If you are looking for a tool that is not listed, SQream and our partners can he
    :caption: In this section:
    :titlesonly:
 
+   power_bi
+   sas_viya
    sql_workbench
    tableau
    pentaho
@@ -29,7 +31,6 @@ If you are looking for a tool that is not listed, SQream and our partners can he
    r
    php
    xxspotfire
-   sas_viya
    xxtalend
    xxdiagnosing_common_connectivity_issues
 
