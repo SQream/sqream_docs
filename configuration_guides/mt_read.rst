@@ -8,4 +8,5 @@ The ``mtRead`` flag splits large reads into multiple smaller ones and executes t
 The following describes the ``mtRead`` flag:
 
 * **Data type** - boolean
-* **Default value** - ``FALSE``
+* **Default value** - ``false``
+* **Allowed values** - ``true``, ``false``

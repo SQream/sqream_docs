@@ -8,4 +8,5 @@ The ``CudaMemcpySynchronous`` flag indicates if copying from/to GPU is synchrono
 The following describes the ``CudaMemcpySynchronous`` flag:
 
 * **Data type** - boolean
-* **Default value** - ``FALSE``
+* **Default value** - ``false``
+* **Allowed values** - ``true``, ``false``
