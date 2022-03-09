@@ -3,10 +3,7 @@
 ************************************
 Client Drivers for |latest_version|
 ************************************
-
-
-
-The guides on this page describe how to use the Sqream DB client drivers and client applications with Sqream DB.
+The guides on this page describe how to use the Sqream DB client drivers and client applications with SQream.
 
 Client Driver Downloads
 =============================
@@ -19,8 +16,8 @@ The following are applicable to all operating systems:
 
 * **JDBC** - recommended installation via ``mvn``:
 
-  * `JDBC .jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.4.0.jar>`_ - sqream-jdbc-4.4.0 (.jar)
-  * `JDBC driver <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html#java-jdbc>`_
+  * `JDBC .jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.3.jar>`_ - sqream-jdbc-4.5.3 (.jar)
+  * `JDBC driver <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/jdbc/index.html#>`_
 
 
 .. _python:
@@ -28,7 +25,7 @@ The following are applicable to all operating systems:
 * **Python** - Recommended installation via ``pip``:
 
   * `Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.1.3>`_ - pysqream v3.1.3 (.tar.gz)
-  * `Python driver <https://docs.sqream.com/en/latest/guides/client_drivers/python/index.html#pysqream>`_
+  * `Python driver <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/python/index.html>`_
 
 
 .. _nodejs:
@@ -36,27 +33,28 @@ The following are applicable to all operating systems:
 * **Node.JS** - Recommended installation via ``npm``:
 
   * `Node.JS <https://sq-ftp-public.s3.amazonaws.com/sqream-sqreamdb-4.2.4.tgz>`_ - sqream-v4.2.4 (.tar.gz)
-  * `Node.JS driver <https://docs.sqream.com/en/latest/guides/client_drivers/nodejs/index.html#nodejs>`_
+  * `Node.JS driver <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/nodejs/index.html>`_
 
 
 .. _tableau_connector:   
 
 * **Tableau**:
 
-  * `Tableau connector <http://downloads.sqream.com/drivers/2020.3/SQreamDB.taco>`_ - SQreamDB (.taco)
-  * `Tableau manual installation <https://docs.sqream.com/en/latest/guides/third_party_tools/tableau.html#tableau-manual-installation>`_
+  * `Tableau connector <http://downloads.sqream.com/drivers/2020.3/SQreamDB.taco>`_ - SQream (.taco)
+  * `Tableau manual installation <https://docs.sqream.com/en/latest/third_party_tools/client_platforms/tableau.html#>`_
 
+  
+.. _powerbi_connector:   
 
+* **Power BI**:
+
+  * `Power BI PowerQuery connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_ - SQream (.mez)
+  * `Power BI manual installation <https://docs.sqream.com/en/latest/third_party_tools/client_platforms/power_bi.html>`_
 
 
 Windows
 --------------
 The following are applicable to Windows:
-
-
-* **JDBC installer** - `SQream_JDBC_Driver_v2020.2.0.exe <http://downloads.sqream.com/drivers/2020.3/SQream_JDBC_Driver_v2020.2.0.exe>`_ - Windows installer for JDBC driver, with Tableau connector.
-
-   ::
 
 * **ODBC installer** - SQream Drivers v2020.2.0, with Tableau customizations. Please contact your `Sqream represenative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_ for this installer.
 
@@ -81,14 +79,12 @@ The following are applicable to Linux:
    
    ::
 
-* `ODBC Installer <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.ppc64le.tar.gz>`_ - sqream_odbc_4.0.0_x86_64_linux.tar.gz
-* :ref:`Linux installer for ODBC<install_odbc_linux>`. Please contact your SQream representative for this installer.
+* ODBC Installer  - Please contact your SQream representative for this installer.
 
    ::
 
-
 * C++ connector - `libsqream-4.0 <https://sq-ftp-public.s3.amazonaws.com/libsqream-4.0.tar.gz>`_   
-* `C++ shared object library <https://docs.sqream.com/en/latest/guides/client_drivers/cpp/index.html#getting-the-library>`_
+* `C++ shared object library <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/cpp/index.html#getting-the-library>`_
 
 
 .. toctree::
@@ -109,5 +105,7 @@ The following are applicable to Linux:
 If you couldn't find what you're looking for, we're always happy to help. Visit `SQream's support portal <https://support.sqream.com>`_ for additional support.
 
 .. rubric:: Looking for older drivers?
+
+If you're looking for an older version of SQream DB drivers, versions 1.10 through 2019.2.1 are available at https://sqream.com/product/client-drivers/.
 
 If you're looking for an older version of SQream DB drivers, versions 1.10 through 2019.2.1 are available at https://sqream.com/product/client-drivers/ .
