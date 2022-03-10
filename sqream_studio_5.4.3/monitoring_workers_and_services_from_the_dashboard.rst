@@ -79,7 +79,7 @@ You can add a service by clicking **+ Add** and defining the service name.
 You can manage workers from the **Workers** panel. For more information about managing workers, see the following:
 
 * :ref:`Managing Workers from the Workers Panel<workers_panel_5.4.3>`
-* `Workers <https://docs.sqream.com/en/latest/reference/cli/sqream_console.html#workers>`_
+* `Workers <https://docs.sqream.com/en/v2020-1/reference/cli/sqream_console.html#workers>`_
 
 :ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_5.4.3>`
 
