@@ -5,4 +5,4 @@ Ingesting Data
 ****************************
 After creating a database you can begin ingesting data into SQream.
 
-For more information about ingesting data, see `Data Ingestion Guides <https://docs.sqream.com/en/v2020-1/data_ingestion/index.html>`_.
+For more information about ingesting data, see `Data Ingestion Guides <https://docs.sqream.com/en/v2020-2/data_ingestion/index.html>`_.
