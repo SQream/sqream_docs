@@ -11,7 +11,6 @@ This section describes the following features:
    :maxdepth: 1
    :titlesonly:
 
-   access_control
    delete_guide
    compression
    flexible_data_clustering
