@@ -10,7 +10,7 @@ Dump specific objects
 Tables
 ----------
 
-See :ref:`get_ddl` for more information. 
+See :ref:`get_ddl` for more information.
 
 .. rubric:: Examples
 

@@ -22,7 +22,6 @@ The **Regular Administration Flags** page describes **Regular** modification typ
 * `Adding Rechunker before Expensing Chunk Producer <https://docs.sqream.com/en/v2021.1/configuration_guides/increase_mem_factors.html>`_
 * `Setting the Buffer Size <https://docs.sqream.com/en/v2021.1/configuration_guides/level_db_write_buffer_size.html>`_
 * `Maximum Pinned Percentage of Total RAM <https://docs.sqream.com/en/v2021.1/configuration_guides/max_pinned_percentage_of_total_ram.html>`_
-* `Memory Merge Blob Offset Count <https://docs.sqream.com/en/v2021.1/configuration_guides/mem_merge_blob_offset_count.html>`_
 * `Setting Memory Used to Abort Server <https://docs.sqream.com/en/v2021.1/configuration_guides/memory_reset_trigger_mb.html>`_
 * `Splitting Large Reads for Concurrent Execution <https://docs.sqream.com/en/v2021.1/configuration_guides/mt_read.html>`_
 * `Setting Worker Amount to Handle Concurrent Reads <https://docs.sqream.com/en/v2021.1/configuration_guides/mt_read_workers.html>`_

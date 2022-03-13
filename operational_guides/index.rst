@@ -12,8 +12,8 @@ This section summarizes the following operational guides:
    :glob:
    :titlesonly:
 
+   access_control
    creating_or_cloning_a_storage_cluster
-   optimization_best_practices
    external_data
    exporting_data
    logging
@@ -22,4 +22,5 @@ This section summarizes the following operational guides:
    saved_queries
    seeing_system_objects_as_ddl
    configuration
+   optimization_best_practices
    hardware_guide
