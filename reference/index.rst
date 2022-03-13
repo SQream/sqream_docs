@@ -1,13 +1,13 @@
 .. _reference:
 
 *************************
-Reference Guides
+Reference
 *************************
 
-The **Reference Guides** section provides reference for using SQream DB's interfaces and SQL features.
+This section provides reference for using SQream DB's interfaces and SQL features.
 
 .. toctree::
-   :maxdepth: 5
+   :maxdepth: 1
    :caption: In this section:
    :glob:
 
@@ -15,4 +15,3 @@ The **Reference Guides** section provides reference for using SQream DB's interf
    catalog_reference
    cli/index
    sql_feature_support
-   xxconfiguration
