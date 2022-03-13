@@ -9,16 +9,14 @@ This section describes the following features:
 
 .. toctree::
    :maxdepth: 1
-   :titlesonly:
-   
+   :titlesonly:  
 
-   xxconfiguring_your_database
-   access_control
+   delete_guide
    compression
-   xxflexible_data_clustering
+   flexible_data_clustering
    python_functions
+   saved_queries
    workload_manager
    transactions
    concurrency_and_locks
    concurrency_and_scaling_in_sqream
-   xxinternational_languages_and_character_sets

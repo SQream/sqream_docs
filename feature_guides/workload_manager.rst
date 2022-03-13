@@ -152,7 +152,7 @@ When using **SQream Studio**, you can configure a client connection to a specifi
 
 
 
-For more information, in Studio, see `Executing Statements from the Toolbar <https://docs.sqream.com/en/v2020.3.2/sqream_studio_5.4.3/executing_statements_and_running_queries_from_the_editor.html#studio-5-4-3-editor-toolbar>`_.
+For more information, in Studio, see `Executing Statements from the Toolbar <https://docs.sqream.com/en/v2020.3.2/sqream_studio_5.4.3/executing_statements_and_running_queries_from_the_editor.html#executing-statements-from-the-toolbar>`_.
 
 
 
