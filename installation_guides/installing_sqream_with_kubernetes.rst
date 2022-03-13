@@ -216,7 +216,8 @@ After completing all of the steps above, you must check the CUDA version.
 
 In the above output, the CUDA version is **10.1**.
 
-If the above output is not generated, CUDA has not been installed. To install CUDA, see `Installing the Nvidia CUDA driver <https://docs.sqream.com/en/v2020.3/installation_guides/recommended_pre-installation_configurations.html#installing-the-nvidia-cuda-driver>`_.
+If the above output is not generated, CUDA has not been installed. To install CUDA, see `Installing the CUDA driver <https://docs.sqream.com/en/v2020.3/installation_guides/recommended_pre-installation_configurations.html>`_.
+
 
 Go back to :ref:`Setting Up Your Hosts<set_up_your_hosts>`
 
