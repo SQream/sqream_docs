@@ -1,7 +1,7 @@
-.. _window_functions_functions:
+.. _window_functions:
 
 ********************
-Window functions
+Window Functions
 ********************
 
 Window functions are functions applied over a subset (known as a window) of the rows returned by a :ref:`select` query. 
@@ -10,6 +10,7 @@ Read more about :ref:`window_functions` in the :ref:`sql_syntax` section.
 
 .. toctree::
    :maxdepth: 1
+   :caption: Window Functions:
    :glob:
    :hidden:
    
@@ -17,7 +18,12 @@ Read more about :ref:`window_functions` in the :ref:`sql_syntax` section.
    lead
    row_number
    rank
+   first_value
+   last_value
+   nth_value
+   dense_rank
+   percent_rank
+   cume_dist
+   ntile
 
-.. include:: /reference/sql/sql_syntax/window_functions.rst
-   :start-line: 9
-   :end-line: 100
+
