@@ -16,4 +16,5 @@ The ``logSysLevel`` flag determines the client log level, as follows:
 The following describes the ``logSysLevel`` flag:
 
 * **Data type** - uint
-* **Default value** - ``100000``
+* **Default value** - ``1``
+* **Allowed values** - 0-6
