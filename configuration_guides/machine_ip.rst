@@ -9,3 +9,4 @@ The following describes the ``machineIP`` flag:
 
 * **Data type** - string
 * **Default value** - ``127.0.0.1``
+* **Allowed values** - char(16)
