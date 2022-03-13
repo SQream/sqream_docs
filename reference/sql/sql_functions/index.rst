@@ -416,6 +416,7 @@ The following table describes the available workload management functions:
    :glob:
 
    scalar_functions/index
+   user_defined_functions/index
    aggregate_functions/index
    window_functions/index
    system_functions/index
