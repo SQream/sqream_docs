@@ -3,13 +3,13 @@
 *************************
 Data Ingestion Sources
 *************************
-The **Data Ingestion Sources** provides information about the following data ingestion sources:
+The **Data Ingestion Sources** provides information about the following:
 
 .. toctree::
    :maxdepth: 1
    :glob:
    
-   xxavro
+   inserting_data
    csv
    parquet
    orc
