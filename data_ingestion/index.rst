@@ -9,7 +9,7 @@ The **Data Ingestion Sources** provides information about the following data ing
    :maxdepth: 1
    :glob:
    
-   xxavro
+   inserting_data
    csv
    parquet
    orc
