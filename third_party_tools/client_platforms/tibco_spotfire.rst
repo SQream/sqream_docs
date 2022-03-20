@@ -18,7 +18,7 @@ Establishing a Connection between TIBCO Spotfire and SQream
 -----------------
 TIBCO Spotfire supports the following versions:
 
-* **JDBC driver** - Version 4.5.2 
+* **JDBC driver** - Version 4.5.3
 * **ODBC driver** - Version 4.1.1
 
 SQream supports TIBCO Spotfire version 7.12.0.
