@@ -378,7 +378,7 @@ For more information, see the following:
 
 * **Resolving this error** - `Details on Change Data Types <https://docs.tibco.com/pub/sfire-analyst/10.3.2/doc/html/en-US/TIB_sfire-analyst_UsersGuide/data/data_details_on_change_data_type.htm>`_.
 
-* **Supported data types** - :ref:`Data Types<data_types>`.
+* **Supported data types** - :ref:`Data Types<supported_data_types>`.
 
 Information Services do not Support Live Queries
 ~~~~~~~~~~~
