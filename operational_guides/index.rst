@@ -15,6 +15,7 @@ This section summarizes the following operational guides:
    access_control
    creating_or_cloning_a_storage_cluster
    external_data
+   external_tables
    exporting_data
    logging
    monitoring_query_performance
