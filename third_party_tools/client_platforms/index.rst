@@ -22,6 +22,7 @@ If you are looking for a tool that is not listed, SQream and our partners can he
    :titlesonly:
 
    power_bi
+   tibco_spotfire
    sas_viya
    sql_workbench
    tableau
@@ -30,7 +31,6 @@ If you are looking for a tool that is not listed, SQream and our partners can he
    informatica
    r
    php
-   xxspotfire
    xxtalend
    xxdiagnosing_common_connectivity_issues
 
