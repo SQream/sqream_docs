@@ -4,7 +4,7 @@
 SQream DB Documentation
 *************************
 
-For SQream version 2021.2.
+The **2022.3 Preview** branch is a private branch designed for internal use only.
 
 .. only:: html
 
