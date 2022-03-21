@@ -12,10 +12,6 @@ PHP is an open source scripting language that executes scripts on servers. The *
    :local:
    :depth: 1
    
-Prerequisites
--------------------
-**Comment** - The source doc doesn't include content related to this section. If so, this section will be removed.
-
 Installing PHP
 -------------------
 **To install PHP:**
@@ -28,7 +24,9 @@ Installing PHP
 
     ::
 	
-3. Install the `uODBC <https://www.php.net/manual/en/intro.uodbc.php>`_ extension for your PHP installation.
+3. Install the **uODBC** extension for your PHP installation.
+
+   For more information, navigate to `PHP Documentation <https://www.php.net/manual/en/intro.uodbc.php>`_ and see the topic menu on the right side of the page.
 
 Configuring PHP
 -------------------
@@ -39,10 +37,18 @@ You can configure PHP in one of the following ways:
    ::
    
 * Install ``php-odbc`` and ``php-pdo`` along with PHP using your distribution package manager. SQream recommends a minimum of version 7.1 for the best results.
-   
-Launching PHP
--------------------
-**Comment** - The source doc doesn't include content related to this section. If so, this section will be removed.
+
+.. note:: PHP's string size limitations truncates fetched text, which you can override by doing one of the following:
+
+          * Increasing the **php.ini** default setting, such as the *odbc.defaultlrl* to **10000**.
+
+		     ::
+			 
+          * Setting the size limitation in your code before making your connection using **ini_set("odbc.defaultlrl", "10000");**.
+
+		     ::
+			 
+          * Setting the size limitation in your code before fetchng your result using **odbc_longreadlen($result, "10000");**.
 
 Operating PHP
 -------------------
@@ -68,7 +74,3 @@ After configuring PHP, you can test your connection.
 #. Run the PHP file either directly with PHP (``php test.php``) or through a browser.
 
    For more information about supported DSN parameters, see :ref:`dsn_params`.
-
-Troubleshooting PHP
--------------------------
-**Comment** - The source doc doesn't include content related to this section. If so, this section will be removed.
