@@ -63,7 +63,7 @@ After configuring PHP, you can test your connection.
       :emphasize-lines: 4
       :linenos:
 	  
-   For more information, download the sample :download:`PHP example connection file <test.php>`_ shown above.
+   For more information, download the sample :download:`PHP example connection file <test.php>` shown above.
    
    The following is an example of a valid DSN line:
       
