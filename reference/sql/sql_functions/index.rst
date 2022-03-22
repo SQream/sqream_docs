@@ -1,24 +1,25 @@
 .. _sql_functions:
 
 ****************
-SQL functions
+SQL Functions
 ****************
 
-SQream DB supports functions from ANSI SQL, as well as others for compatibility.
+SQream supports functions from ANSI SQL, as well as others for compatibility.
 
-Summary of functions
+Summary of Functions
 =======================
 
 .. contents::
    :local:
 
-Scalar functions
+Built-In Scalar Functions
 -------------------
+For more information about built-in scalar functions, see :ref:`scalar_functions`.
 
-See more about :ref:`scalar_functions`
-
-Bitwise operations
+Bitwise Operations
 ^^^^^^^^^^^^^^^^^^^^^^^
+
+The following table shows the **bitwise operations** functions:
 
 .. list-table:: 
    :widths: auto
@@ -41,6 +42,7 @@ Bitwise operations
 
 Conditionals
 ^^^^^^^^^^^^^^
+The following table shows the **conditionals** functions:
 
 .. list-table:: 
    :widths: auto
@@ -59,12 +61,13 @@ Conditionals
    * - :ref:`isnull`
      - Alias for :ref:`coalesce` with two expressions
    * - :ref:`is_ascii`
-     - Test an ``NVARCHAR`` for ASCII-only characters
+     - Test a ``TEXT`` for ASCII-only characters
    * - :ref:`is_null`
      - Check for ``NULL`` [ or non-``NULL`` ] values
 
 Conversion
 ^^^^^^^^^^^^
+The following table shows the **conversion** functions:
 
 .. list-table:: 
    :widths: auto
@@ -79,8 +82,9 @@ Conversion
    * - :ref:`to_unixts`
      - Converts a ``DATE`` or ``DATETIME`` to a UNIX Timestamp
 
-Date and time
+Date and Time
 ^^^^^^^^^^^^^^^^
+The following table shows the **date and time** functions:
 
 .. list-table:: 
    :widths: auto
@@ -113,10 +117,11 @@ Date and time
 
 Numeric
 ^^^^^^^^^^^
+The following table shows the **arithmetic operators**
 
-See more about :ref:`arithmetic_operators`
+For more information about arithmetic operator, see :ref:`arithmetic_operators`.
 
-.. list-table:: Arithmetic operators
+.. list-table:: Arithmetic Operators
    :widths: auto
    :header-rows: 1
    
@@ -145,7 +150,9 @@ See more about :ref:`arithmetic_operators`
      - ``a % b``
      - Modulu of ``a`` by ``b``. See also :ref:`mod`
 
-.. list-table:: Functions
+The following table shows the **arithmetic operator** functions:
+
+.. list-table:: Arithemtic Operator Functions
    :widths: auto
    :header-rows: 1
    
@@ -202,6 +209,7 @@ See more about :ref:`arithmetic_operators`
 
 Strings
 ^^^^^^^^^^^
+The following table shows the **string* functions:
 
 .. list-table:: 
    :widths: auto
@@ -235,8 +243,12 @@ Strings
      - Calculates the number of matches of a regular expression match in an argument
    * - :ref:`regexp_instr`
      - Returns the start position of a regular expression match in an argument
+   * - :ref:`regexp_replace`
+     - Replaces and returns the text column substrings of a regular expression match in an argument
    * - :ref:`regexp_substr`
      - Returns a substring of an argument that matches a regular expression
+   * - :ref:`repeat`
+     - Repeats a string as many times as specified
    * - :ref:`replace`
      - Replaces characters in a string
    * - :ref:`reverse`
@@ -254,11 +266,16 @@ Strings
    * - :ref:`upper`
      - Converts an argument to an upper-case equivalent
 
-
-Aggregate functions
+User-Defined Scalar Functions
 ---------------------
+For more information about user-defined scalar functions, see :ref:`scalar_sql_udf`
 
-See more about  :ref:`aggregate_functions`
+
+Aggregate Functions
+---------------------
+The following table shows the **aggregate** functions:
+
+For more information about aggregate functions, see :ref:`aggregate_functions`.
 
 .. list-table:: 
    :widths: auto
@@ -304,10 +321,11 @@ See more about  :ref:`aggregate_functions`
      - ``varp``
      - Calculates population variance of values
 
-Window functions
+Window Functions
 -------------------
+The following table shows the **window** functions:
 
-See more about  :ref:`window_functions`
+For more information about window functions, see :ref:`window_functions`.
 
 .. list-table:: 
    :widths: auto
@@ -315,21 +333,39 @@ See more about  :ref:`window_functions`
    
    * - Function
      - Description
+   * - :ref:`lag`
+     - Calculates the value evaluated at the row that is before the current row within the partition
+   * - :ref:`lead`
+     - Calculates the value evaluated at the row that is after the current row within the partition
    * - :ref:`max`
      - Calculates the maximum value
    * - :ref:`min`
      - Calculates the minimum value
-   * - :ref:`rank`
-     - Calculates the rank of a row
-   * - :ref:`row_number`
-     - Calculates the row number
    * - :ref:`sum`
-     - Calculates the sum of all of the values
+     - Calculates the sum of all of the values  
+   * - :ref:`rank`
+     - Calculates the rank of a row	 
+   * - :ref:`first_value`
+     - Returns the value in the first row of a window
+   * - :ref:`last_value`
+     - Returns the value in the last row of a window
+   * - :ref:`nth_value`
+     - Returns the value in a specified ``(n)`` row of a window
+   * - :ref:`dense_rank`
+     - Returns the rank of the current row with no gaps
+   * - :ref:`percent_rank`
+     - Returns the relative rank of the current row
+   * - :ref:`cume_dist`
+     - Returns the cumulative distribution of rows
+   * - :ref:`ntile`
+     - Returns an integer ranging between ``1`` and the argument value, dividing the partitions as equally as possible
 
-System functions
+
+System Functions
 ------------------
-
 System functions allow you to execute actions in the system, such as aborting a query or get information about system processes.
+
+The following table shows the **system** functions:
 
 .. list-table:: 
    :widths: auto
@@ -352,8 +388,9 @@ System functions allow you to execute actions in the system, such as aborting a 
    * - :ref:`stop_statement`
      - Stops a query (or statement) if it is currently running
 
-Workload management functions
+Workload Management Functions
 ---------------------------------
+The following table shows the **workload management** functions:
 
 .. list-table:: 
    :widths: auto
@@ -376,6 +413,7 @@ Workload management functions
    :glob:
 
    scalar_functions/index
+   user_defined_functions/index
    aggregate_functions/index
-   window_functions/*
-   system_functions/*
+   window_functions/index
+   system_functions/index
