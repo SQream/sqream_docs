@@ -5,9 +5,6 @@
 ***********************
 Installing Prometheus Using Binary Packages
 ***********************
-
-
-
 The **Installing Prometheus Using Binary Packages** guide includes the following sections:
 
 .. contents::
@@ -230,12 +227,6 @@ You can access the Prometheus user interface by running the following command:
 
 The Prometheus user interface is displayed.
 
-From the **Query** tab you can query metrics, as shown below:
-
-.. list-table::
-   :widths: auto
-   :header-rows: 0
-   
-   * - .. image:: /_static/images/3c9c4e8b-49bd-44a8-9829-81d1772ed962.gif   
+From the **Query** tab you can query metrics.
 
 Back to :ref:`Installing Prometheus Using Binary Packages<install_prometheus_binary_top>`
