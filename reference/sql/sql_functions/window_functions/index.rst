@@ -25,5 +25,3 @@ Read more about :ref:`window_functions` in the :ref:`sql_syntax` section.
    percent_rank
    cume_dist
    ntile
-
-
