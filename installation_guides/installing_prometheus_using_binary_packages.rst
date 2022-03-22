@@ -5,9 +5,6 @@
 ***********************
 Installing Prometheus Using Binary Packages
 ***********************
-
-
-
 The **Installing Prometheus Using Binary Packages** guide includes the following sections:
 
 .. contents::
@@ -101,6 +98,8 @@ You must install Prometheus before installing the Dashboard Data Collector.
      
        $ sudo chown -R prometheus:prometheus /etc/prometheus/consoles
        $ sudo chown -R prometheus:prometheus /etc/prometheus/console_libraries
+
+For more information on installing the Dashboard Data Collector, see `Installing the Dashboard Data Collector <https://docs.sqream.com/en/v2020-1/installation_guides/installing_studio_on_stand_alone_server.html>`_.
 
 Back to :ref:`Installing Prometheus Using Binary Packages<install_prometheus_binary_top>`
 
@@ -228,6 +227,6 @@ You can access the Prometheus user interface by running the following command:
 
 The Prometheus user interface is displayed.
 
-From the **Query** tab you can query metrics. 
+From the **Query** tab you can query metrics.
 
 Back to :ref:`Installing Prometheus Using Binary Packages<install_prometheus_binary_top>`
