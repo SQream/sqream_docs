@@ -102,7 +102,7 @@ You must install Prometheus before installing the Dashboard Data Collector.
        $ sudo chown -R prometheus:prometheus /etc/prometheus/consoles
        $ sudo chown -R prometheus:prometheus /etc/prometheus/console_libraries
 
-For more information on installing the Dashboard Data Collector, see `Installing the Dashboard Data Collector <file:///C:/Users/Yaniv/sqream_docs/_build/html/installation_guides/installing_studio_on_stand_alone_server.html#installing-the-dashboard-data-collector>`_.
+For more information on installing the Dashboard Data Collector, see :ref:`installing_dashboard_data_collector`.
 
 Back to :ref:`Installing Prometheus Using Binary Packages<install_prometheus_binary_top>`
 
