@@ -74,14 +74,13 @@ Default Value Constraints
 
 The ``DEFAULT`` value constraint specifies a value to use if one is not defined in an :ref:`insert` or :ref:`copy_from` statement. 
 
-The value may be either a literal or **GETDATE()**, which is evaluated at the time the row is created.
+The value may be either a literal, which is evaluated at the time the row is created.
 
 .. note:: The ``DEFAULT`` constraint only applies if the column does not have a value specified in the :ref:`insert` or :ref:`copy_from` statement. You can still insert a ``NULL`` into an nullable column by explicitly inserting ``NULL``. For example, ``INSERT INTO cool_animals VALUES (1, 'Gnu', NULL)``.
 
 Syntax
 ---------
 The following is the correct syntax for using the **DEFAULT** value constraints:
-
 
 .. code-block:: postgres
 
