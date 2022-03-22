@@ -12,5 +12,10 @@ System functions are used for working with database objects, settings, and value
    :glob:
    :hidden:
    
+   explain
    show_version
-
+   show_connections
+   show_locks
+   show_node_info
+   show_server_status
+   stop_statement
