@@ -1,15 +1,15 @@
 .. _scalar_functions:
 
 ****************
-Scalar functions
+Built-In Scalar Functions
 ****************
 
-Scalar functions return one value per call.
+Built-in scalar functions return one value per call. 
 
 
 .. toctree::
    :maxdepth: 1
-   :caption: Scalar functions
+   :caption: Built-in scalar functions
    :glob:
    
    bitwise/*
