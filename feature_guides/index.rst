@@ -5,7 +5,7 @@ Feature Guides
 ***********************
 The **Feature Guides** section describes background processes that SQream uses to manage several areas of operation, such as data ingestion, load balancing, and access control. 
 
-This section describes the following features: 
+This section describes the following features:
 
 .. toctree::
    :maxdepth: 1

@@ -16,7 +16,7 @@ Encrypting Data in Transit
 For more information, see the following:
 
 * :ref:`copy_from`
-* :ref:`jdbc`
+* `JDBC <https://docs.sqream.com/en/v2022.1/third_party_tools/client_drivers/jdbc/index.html>`_
 * :ref:`odbc`
 
 Encrypting Data at Rest

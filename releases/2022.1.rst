@@ -1,0 +1,104 @@
+.. _2022.1:
+
+**************************
+Release Notes 2022.1
+**************************
+The 2022.1 release notes were released on x/xx/2022 and describe the following:
+
+.. contents:: 
+   :local:
+   :depth: 1   
+   
+
+Version Content
+----------
+The 2022.1 Release Notes describes the following:
+
+* Example - Major feature release targeted for all on-premises customers.
+* Example - Basic Cloud functionality.
+
+
+New Features
+----------
+The 2022.1 Release Notes include the following new features:
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Data Encryption
+************
+
+
+Update Feature
+************
+
+
+Avro Ingestion
+************
+
+
+
+
+Main Features
+--------
+The following list describes the main features:
+
+* xxx
+* xx
+
+
+Resolved Issues
+---------
+The following list describes the resolved issues:
+
+The following table lists the issues that were resolved in Version 2021.2:
+
+.. list-table::
+   :widths: 17 200
+   :header-rows: 1  
+   
+   * - SQ No.
+     - Description
+   * - SQ-xxxx
+     - Text   
+   * - SQ-xxxx
+     - Text        
+   * - SQ-xxxx
+     - Text  
+
+Operations and Configuration Changes
+--------
+
+Subject
+************
+Text
+
+
+
+
+Subject
+************
+Text
+
+
+
+Naming Changes
+-------
+No relevant naming changes were made.
+
+Deprecated Features
+-------
+No features were depecrated.
+
+Known Issues and Limitations
+--------
+The the list below describes the following known issues and limitations:
+
+* xxx
+* xxx
+
+
+Upgrading to v2022.1
+-------
+

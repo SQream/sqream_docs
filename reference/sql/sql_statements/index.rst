@@ -11,8 +11,6 @@ SQream DB supports commands from ANSI SQL.
 Data Definition Commands (DDL)
 ================================
 
-   update
-
 .. list-table:: DDL Commands
    :widths: auto
    :header-rows: 1
@@ -22,8 +20,6 @@ Data Definition Commands (DDL)
      - Usage
    * - :ref:`ADD COLUMN<add_column>`
      - Add a new column to a table
-   * - :ref:`UPDATE<update>`
-     - Modify the value of certain columns in existing rows without creating a table
    * - :ref:`ALTER DEFAULT SCHEMA<alter_default_schema>`
      - Change the default schema for a role
    * - :ref:`ALTER TABLE<alter_table>`
@@ -86,6 +82,8 @@ Data Manipulation Commands (DML)
      - Select rows and column from a table
    * - :ref:`TRUNCATE<truncate>`
      - Delete all rows from a table
+   * - :ref:`UPDATE<update>`
+     - Modify the value of certain columns in existing rows without creating a table
    * - :ref:`VALUES<values>`
      - Return rows containing literal values
 
