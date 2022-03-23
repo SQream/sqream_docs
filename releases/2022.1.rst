@@ -7,8 +7,7 @@ The 2022.1 release notes were released on x/xx/2022 and describe the following:
 
 .. contents:: 
    :local:
-   :depth: 1   
-   
+   :depth: 1      
 
 Version Content
 ----------
@@ -17,6 +16,7 @@ The 2022.1 Release Notes describes the following:
 * Example - Major feature release targeted for all on-premises customers.
 * Example - Basic Cloud functionality.
 
+**Comment** - *This will be done at the end.*
 
 New Features
 ----------
@@ -28,30 +28,33 @@ The 2022.1 Release Notes include the following new features:
    
 Data Encryption
 ************
+SQream now supports data encryption mechanisms in accordance with **General Data Protection Regulation (GDPR)** standards.
 
+For more information, see `Data Encryption <https://docs.sqream.com/en/v2022.1/feature_guides/data_encryption.html>`_.
 
 Update Feature
 ************
+SQream now supports the DML **Update** feature, which is used for modifying the value of certain columns in existing rows without creating a table.
 
+For more information, see `UPDATE <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/dml_commands/update.html#update>`_.
 
 Avro Ingestion
 ************
+SQream now supports ingesting data from Avro files.
 
-
-
+For more information, see `Inserting Data from Avro <https://docs.sqream.com/en/v2022.1/data_ingestion/avro.html>`_.
 
 Main Features
 --------
 The following list describes the main features:
 
-* xxx
-* xx
+* Main feature
+* Main feature
 
+**Comment** - *This will be done at the end.*
 
 Resolved Issues
 ---------
-The following list describes the resolved issues:
-
 The following table lists the issues that were resolved in Version 2021.2:
 
 .. list-table::
@@ -65,10 +68,14 @@ The following table lists the issues that were resolved in Version 2021.2:
    * - SQ-xxxx
      - Text        
    * - SQ-xxxx
-     - Text  
+     - Text
+
+**Comment** - *I will be updated regarding which resolved issues to include.*	 
 
 Operations and Configuration Changes
 --------
+**Comment** - *TBD*	 
+
 
 Subject
 ************
@@ -85,20 +92,30 @@ Text
 
 Naming Changes
 -------
+**Comment** - *TBD*	 
+
 No relevant naming changes were made.
 
 Deprecated Features
 -------
+**Comment** - *TBD*	 
+
 No features were depecrated.
 
 Known Issues and Limitations
 --------
+**Comment** - *TBD*	 
+
 The the list below describes the following known issues and limitations:
 
-* xxx
-* xxx
+* Text
+* Text
+
+End of Support
+-------
+**Comment** - *TBD*
 
 
 Upgrading to v2022.1
 -------
-
+**Comment** - *TBD*
