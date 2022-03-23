@@ -14,7 +14,7 @@ Release Notes
      - Release Date
    * - :ref:`2022.1`
      - April 17, 2022
-   * - :ref:`2022.1`
+   * - :ref:`2021.2`
      - September 13, 2021
    * - :ref:`2021.1`
      - June 13, 2021  
