@@ -61,28 +61,28 @@ The following describes the encryption process:
 	
 #. The user can view the data derived from a table holding the encrypted data by decrypting the data by providing the location of the master key and selecting the required fields.
 
-    :
+    ::
 	
-   **Comment** - the source doc said, "this section will not be applied in the MVP scope." Should it stay in this doc?*
+   **Comment** - *the source doc said, "this section will not be applied in the MVP scope." Should it stay in this doc?*
 
-Once the specific statement ends- the user will be able to see the data in a human readable convention (plain text)
+#. When the statement has ended, the user can view the data in a human readable format as plain text.
 
-For more information, see the following:
-
-* More information on triggering the decryption, see :ref:`data_encryption_syntax`.
-
-
-
+For more information on triggering the decryption, see :ref:`data_encryption_syntax`.
 
 Encrypted Columns
 ----------------
-Column/Table-level encryption - More granular approach, encrypt only what you really need to
+**Comment** - *This section and "Constraints" don't really seem like phases in a flow, at least the way they are currently described. If they really are part of a flow, we should discuss how to reword them.*
 
-
+Tables with encrypted columns are tagged with the ``encrypted`` label, allowing you to select what data to encrypt.
 
 .. _constraints:
 
 Constraints
 ----------------
-Describe these in one of the existing sections.
+The encryption will be done in the database server- data at rest as the data will be encrypted in transit based on the TLS protocol.
 
+**Comment** - *I need some clarification on the sentence above.*
+
+Users without permissions to view tables with one or more encrypted table cannot view the entire table.
+
+**Comment** - *Please confirm that the above sentence is correct. Below is the original sentence:"*

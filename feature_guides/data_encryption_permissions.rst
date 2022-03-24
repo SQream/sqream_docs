@@ -3,10 +3,11 @@
 ***********************
 Permissions
 ***********************
-Any user who granted with the appropriated permission privilege's for encryption
+Users with the appropriate encryption permission privilege's can encrypt and decrypt data.
+
+**Comment** - *The rest of this content seems internal, correct?*
 
 Implementation notes
-Date format is out of the scope of this feature as well as Varchar (due to upcoming deprecation)
 
 one method to encrypt the data with is the TDE: Transparent data encryption  which employed by Microsoft/IBM/Oracle etc.
 
