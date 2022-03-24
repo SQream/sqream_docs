@@ -3,14 +3,12 @@
 ***********************
 Data Types
 ***********************
+SQream's data encryption supports the following data types:
 
+* INT
+* BIGINT
+* TEXT
 
-Per the research done and per customer requirement the data types that should be supported are the following:
+Typically speaking, this data pertains to **PII (Personally Identifiable Information)**, which is sensitive information such as credit card numbers and other information related to an identifiable person.
 
-Int
-
-BigInt
-
-String
-
-On most cases this data type, if encrypted, will be populated by PII value (Personal Identifiable Information) such as credit card number and other personal and sensitive information
+For more information on the above data types, see :ref:`supported_data_types`.
