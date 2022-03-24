@@ -13,6 +13,6 @@ The **Data Encryption** page describes the following:
    data_encryption_overview
    data_encryption_methods
    data_encryption_types
+   data_encryption_process
    data_encryption_permissions
    data_encryption_syntax
-   data_encryption_process
