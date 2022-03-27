@@ -417,5 +417,3 @@ The following table shows the **workload management** functions:
    aggregate_functions/index
    window_functions/index
    system_functions/index
-
-
