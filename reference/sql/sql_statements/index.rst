@@ -205,17 +205,3 @@ Access Control Commands
      - Revoke permissions from a role
    * - :ref:`rename_role`
      - Rename a role
-
-
-.. toctree::
-   :maxdepth: 1
-   :titlesonly:
-   :hidden:
-   :glob:
-
-   ddl_commands/*
-   dml_commands/*
-   utility_commands/*
-   monitoring_commands/*
-   wlm_commands/*
-   access_control_commands/*

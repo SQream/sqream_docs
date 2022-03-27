@@ -3,13 +3,10 @@
 ****************
 Built-In Scalar Functions
 ****************
-FF
-
 The **Built-In Scalar Functions** page describes functions that return one value per call:
 
 .. hlist::
    :columns: 5
-
 		
    * `AND <https://docs.sqream.com/en/v2022.1/reference/sql/sql_functions/scalar_functions/bitwise/and.html>`_
    * `NOT <https://docs.sqream.com/en/v2022.1/reference/sql/sql_functions/scalar_functions/bitwise/not.html>`_
