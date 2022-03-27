@@ -4,13 +4,12 @@
 SQL Statements
 ***************
 
-SQream supports commands from ANSI SQL.
+SQream DB supports commands from ANSI SQL.
 
 .. _ddl_commands_list:
 
 Data Definition Commands (DDL)
 ================================
-The following table shows the DDL commands:
 
 .. list-table:: DDL Commands
    :widths: auto
@@ -19,48 +18,51 @@ The following table shows the DDL commands:
    
    * - Command
      - Usage
-   * - :ref:`ADD COLUMN<add_column>`
-     - Adds a new column to a table
-   * - :ref:`ALTER DEFAULT SCHEMA<alter_default_schema>`
-     - Changes the default schema for a role
-   * - :ref:`ALTER TABLE<alter_table>`
-     - Changes the schema of a table
-   * - :ref:`CREATE DATABASE<create_database>`
-     - Creates a new database
-   * - :ref:`CREATE EXTERNAL TABLE<create_external_table>`
-     - Creates a new external table in the database (deprecated)
-   * - :ref:`CREATE FOREIGN TABLE<create_foreign_table>`
-     - Creates a new foreign table in the database
-   * - :ref:`CREATE FUNCTION <create_function>`
-     - Creates a new user defined function in the database
-   * - :ref:`CREATE SCHEMA<create_schema>`
-     - Creates a new schema in the database
-   * - :ref:`CREATE TABLE<create_table>`
-     - Creates a new table in the database
-   * - :ref:`CREATE TABLE AS<create_table_as>`
-     - Creates a new table in the database using results from a select query
-   * - :ref:`CREATE VIEW<create_view>`
-     - Creates a new view in the database
-   * - :ref:`DROP COLUMN<drop_column>`
-     - Drops a column from a table
-   * - :ref:`DROP DATABASE<drop_database>`
-     - Drops a database and all of its objects
-   * - :ref:`DROP FUNCTION<drop_function>`
-     - Drops a function
-   * - :ref:`DROP SCHEMA<drop_schema>`
-     - Drops a schema
-   * - :ref:`DROP TABLE<drop_table>`
-     - Drops a table and its contents from a database
-   * - :ref:`DROP VIEW<drop_view>`
-     - Drops a view
-   * - :ref:`RENAME COLUMN<rename_column>`
+   * - :ref:`add_column`
+     - Add a new column to a table
+   * - :ref:`alter_default_schema`
+     - Change the default schema for a role
+   * - :ref:`alter_table`
+     - Change the schema of a table
+   * - :ref:`cluster_by`
+     - Change clustering keys in a table
+   * - :ref:`create_database`
+     - Create a new database
+   * - :ref:`create_external_table`
+     - Create a new external table in the database (deprecated)
+   * - :ref:`create_foreign_table`
+     - Create a new foreign table in the database
+   * - :ref:`create_function`
+     - Create a new user defined function in the database
+   * - :ref:`create_schema`
+     - Create a new schema in the database
+   * - :ref:`create_table`
+     - Create a new table in the database
+   * - :ref:`create_table_as`
+     - Create a new table in the database using results from a select query
+   * - :ref:`create_view`
+     - Create a new view in the database
+   * - :ref:`drop_clustering_key`
+     - Drops all clustering keys in a table
+   * - :ref:`drop_column`
+     - Drop a column from a table
+   * - :ref:`drop_database`
+     - Drop a database and all of its objects
+   * - :ref:`drop_function`
+     - Drop a function
+   * - :ref:`drop_schema`
+     - Drop a schema
+   * - :ref:`drop_table`
+     - Drop a table and its contents from a database
+   * - :ref:`drop_view`
+     - Drop a view
+   * - :ref:`rename_column`
      - Rename a column
-   * - :ref:`RENAME TABLE<rename_table>`
+   * - :ref:`rename_table`
      - Rename a table
 
 Data Manipulation Commands (DML)
 ================================
-The following table shows the DML commands:
 
 .. list-table:: DML Commands
    :widths: auto
@@ -71,25 +73,26 @@ The following table shows the DML commands:
    * - Command
      - Usage
    * - :ref:`CREATE TABLE AS<create_table_as>`
-     - Creates a new table in the database using results from a select query
+     - Create a new table in the database using results from a select query
    * - :ref:`DELETE<delete>`
-     - Deletes specific rows from a table
+     - Delete specific rows from a table
    * - :ref:`COPY FROM<copy_from>`
-     - Bulk loads CSV data into an existing table
+     - Bulk load CSV data into an existing table
    * - :ref:`COPY TO<copy_to>`
-     - Exports a select query or entire table to CSV files
+     - Export a select query or entire table to CSV files
    * - :ref:`INSERT<insert>`
-     - Inserts rows into a table
+     - Insert rows into a table
    * - :ref:`SELECT<select>`
-     - Selects rows and column from a table
+     - Select rows and column from a table
    * - :ref:`TRUNCATE<truncate>`
-     - Deletes all rows from a table
+     - Delete all rows from a table
+   * - :ref:`UPDATE<update>`
+     - Modify the value of certain columns in existing rows without creating a table
    * - :ref:`VALUES<values>`
-     - Returns rows containing literal values
+     - Return rows containing literal values
 
 Utility Commands
 ==================
-The following table shows the Utility commands:
 
 .. list-table:: Utility Commands
    :widths: auto
@@ -97,29 +100,30 @@ The following table shows the Utility commands:
    
    * - Command
      - Usage
+   * - :ref:`SELECT GET_LICENSE_INFO<get_license_info>`
+     - View a user's license information
    * - :ref:`SELECT GET_DDL<get_ddl>`
-     - Views the ``CREATE TABLE`` statement for a table
+     - View the ``CREATE TABLE`` statement for a table
    * - :ref:`SELECT GET_FUNCTION_DDL<get_function_ddl>`
-     - Views the ``CREATE FUNCTION`` statement for a UDF
+     - View the ``CREATE FUNCTION`` statement for a UDF
    * - :ref:`SELECT GET_VIEW_DDL<get_view_ddl>`
-     - Views the ``CREATE VIEW`` statement for a view
+     - View the ``CREATE VIEW`` statement for a view
    * - :ref:`SELECT RECOMPILE_VIEW<recompile_view>`
      - Recreate a view after schema changes
    * - :ref:`SELECT DUMP_DATABASE_DDL<dump_database_ddl>`
-     - Views the ``CREATE TABLE`` statement for a current database
+     - View the ``CREATE TABLE`` statement for an current database
 
 Saved Queries
 ===================
-The following table shows the saved query commands:
 
-.. list-table:: Saved Query Commands
+.. list-table:: Saved Queries
    :widths: auto
    :header-rows: 1
    
    * - Command
      - Usage
    * - :ref:`SELECT DROP_SAVED_QUERY<drop_saved_query>`
-     - Drops a saved query
+     - Drop a saved query
    * - :ref:`SELECT EXECUTE_SAVED_QUERY<execute_saved_query>`
      - Executes a saved query
    * - :ref:`SELECT LIST_SAVED_QUERIES<list_saved_queries>`
@@ -130,14 +134,14 @@ The following table shows the saved query commands:
      - Compiles and saves a query for re-use and sharing
    * - :ref:`SELECT SHOW_SAVED_QUERY<show_saved_query>`
      - Shows query text for a saved query
+	 
+For more information, see :ref:`saved_queries`
 
-For more information, see See more about :ref:`saved_queries`.
 
 Monitoring
 ===============
-Monitoring statements allow a database administrator to execute actions in the system, such as aborting a query or get information about system processes.
 
-The following table shows the monitoring commands:
+Monitoring statements allow a database administrator to execute actions in the system, such as aborting a query or get information about system processes.
 
 .. list-table:: Monitoring
    :widths: auto
@@ -162,24 +166,22 @@ The following table shows the monitoring commands:
 
 Workload Management
 ======================
-The following table shows the workload management commands:
 
-.. list-table:: Workload Management Commands
+.. list-table:: Workload Management
    :widths: auto
    :header-rows: 1
    
    * - Command
      - Usage
    * - :ref:`subscribe_service`
-     - Adds a SQream DB worker to a service queue 
+     - Add a SQream DB worker to a service queue 
    * - :ref:`unsubscribe_service`
-     - Removes a SQream DB worker to a service queue
+     - Remove a SQream DB worker to a service queue
    * - :ref:`show_subscribed_instances`
-     - Returns a list of service queues and workers
+     - Return a list of service queues and workers
 
 Access Control Commands
 ================================
-The following table shows the access control commands:
 
 .. list-table:: Access Control Commands
    :widths: auto
@@ -198,23 +200,8 @@ The following table shows the access control commands:
    * - :ref:`get_statement_permissions`
      - Returns a list of permissions required to run a statement or query
    * - :ref:`grant`
-     - Grants permissions to a role
+     - Grant permissions to a role
    * - :ref:`revoke`
      - Revoke permissions from a role
    * - :ref:`rename_role`
-     - Renames a role
-	 
-For more information about Access Control, see :ref:`access_control`.
-
-.. toctree::
-   :maxdepth: 1
-   :titlesonly:
-   :hidden:
-   :glob:
-
-   ddl_commands/*
-   dml_commands/*
-   utility_commands/*
-   monitoring_commands/*
-   wlm_commands/*
-   access_control_commands/*
+     - Rename a role

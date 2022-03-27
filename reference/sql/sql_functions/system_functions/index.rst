@@ -7,14 +7,13 @@ System Functions
 
 The System Functions page describes the following:
 
-.. toctree::
-   :maxdepth: 1
-   :glob:
+.. hlist::
+   :columns: 1
    
-   explain
-   show_version
-   show_connections
-   show_locks
-   show_node_info
-   show_server_status
-   stop_statement
+   * :ref:`explain`
+   * :ref:`show_version`
+   * :ref:`show_connections`
+   * :ref:`show_locks`
+   * :ref:`show_node_info`
+   * :ref:`show_server_status`
+   * :ref:`stop_statement`

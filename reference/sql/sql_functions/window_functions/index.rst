@@ -4,24 +4,21 @@
 Window Functions
 ********************
 
-Window functions are functions applied over a subset (known as a window) of the rows returned by a :ref:`select` query. 
+Window functions are functions applied over a subset (known as a window) of the rows returned by a :ref:`select` query and describes the following:
 
-Read more about :ref:`window_functions` in the :ref:`sql_syntax` section.
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Window Functions:
-   :glob:
-   :hidden:
+.. hlist::
+   :columns: 1
    
-   lag
-   lead
-   row_number
-   rank
-   first_value
-   last_value
-   nth_value
-   dense_rank
-   percent_rank
-   cume_dist
-   ntile
+   * :ref:`lag`
+   * :ref:`lead`
+   * :ref:`row_number`
+   * :ref:`rank`
+   * :ref:`first_value`
+   * :ref:`last_value`
+   * :ref:`nth_value`
+   * :ref:`dense_rank`
+   * :ref:`percent_rank`
+   * :ref:`cume_dist`
+   * :ref:`ntile`
+
+For more information, see :ref:`window_functions` in the :ref:`sql_syntax` section.

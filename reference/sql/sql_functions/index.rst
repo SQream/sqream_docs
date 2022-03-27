@@ -4,31 +4,22 @@
 SQL Functions
 ****************
 
-
 SQream supports functions from ANSI SQL, as well as others for compatibility.
 
 Summary of Functions
 =======================
-The **SQL Functions** page describes the following functions:
 
 .. contents::
    :local:
-   :depth: 1   
 
-Scalar Functions
+Built-In Scalar Functions
 -------------------
-Scalar functions return one value per call, shown below:
-
-.. contents::
-   :local:
-   :depth: 1
-
-For more information, see :ref:`scalar_functions`.
-
+For more information about built-in scalar functions, see :ref:`scalar_functions`.
 
 Bitwise Operations
 ^^^^^^^^^^^^^^^^^^^^^^^
-The following table describes the available bitwise operations:
+
+The following table shows the **bitwise operations** functions:
 
 .. list-table:: 
    :widths: auto
@@ -51,7 +42,7 @@ The following table describes the available bitwise operations:
 
 Conditionals
 ^^^^^^^^^^^^^^
-The following table describes the available conditional operations:
+The following table shows the **conditionals** functions:
 
 .. list-table:: 
    :widths: auto
@@ -76,7 +67,7 @@ The following table describes the available conditional operations:
 
 Conversion
 ^^^^^^^^^^^^
-The following table describes the available conversion operations:
+The following table shows the **conversion** functions:
 
 .. list-table:: 
    :widths: auto
@@ -93,7 +84,7 @@ The following table describes the available conversion operations:
 
 Date and Time
 ^^^^^^^^^^^^^^^^
-The following table describes the available date and time operations:
+The following table shows the **date and time** functions:
 
 .. list-table:: 
    :widths: auto
@@ -124,19 +115,11 @@ The following table describes the available date and time operations:
    * - :ref:`date_trunc`
      - Truncates a date element down to a specified date or time element
 
-Numeric Operations and Functions
+Numeric
 ^^^^^^^^^^^
-This section describes the following:
+The following table shows the **arithmetic operators**
 
-.. contents::
-   :local:
-   
-Arithmetic Operations
-############
-
-The following table describes the available arithmetic operations:
-
-For more information, see :ref:`arithmetic_operators`.
+For more information about arithmetic operator, see :ref:`arithmetic_operators`.
 
 .. list-table:: Arithmetic Operators
    :widths: auto
@@ -166,13 +149,10 @@ For more information, see :ref:`arithmetic_operators`.
    * - ``%``
      - ``a % b``
      - Modulu of ``a`` by ``b``. See also :ref:`mod`
-	 
-Numeric Functions
-############
 
-The following table describes the available numeric functions:
+The following table shows the **arithmetic operator** functions:
 
-.. list-table:: Numeric Functions
+.. list-table:: Arithemtic Operator Functions
    :widths: auto
    :header-rows: 1
    
@@ -229,9 +209,9 @@ The following table describes the available numeric functions:
 
 Strings
 ^^^^^^^^^^^
-The following table describes the available string operations:
+The following table shows the **string* functions:
 
-.. list-table:: String Operations
+.. list-table:: 
    :widths: auto
    :header-rows: 1
    
@@ -263,8 +243,12 @@ The following table describes the available string operations:
      - Calculates the number of matches of a regular expression match in an argument
    * - :ref:`regexp_instr`
      - Returns the start position of a regular expression match in an argument
+   * - :ref:`regexp_replace`
+     - Replaces and returns the text column substrings of a regular expression match in an argument
    * - :ref:`regexp_substr`
      - Returns a substring of an argument that matches a regular expression
+   * - :ref:`repeat`
+     - Repeats a string as many times as specified
    * - :ref:`replace`
      - Replaces characters in a string
    * - :ref:`reverse`
@@ -282,12 +266,16 @@ The following table describes the available string operations:
    * - :ref:`upper`
      - Converts an argument to an upper-case equivalent
 
+User-Defined Scalar Functions
+---------------------
+For more information about user-defined scalar functions, see :ref:`scalar_sql_udf`
+
 
 Aggregate Functions
 ---------------------
-Aggregate functions performs calculation on a set of values, and return a single value. Most aggregate functions ignore null values. Aggregate functions are often used with the ``GROUP BY`` clause of the :ref:`select` statement.
+The following table shows the **aggregate** functions:
 
-The following table describes the available aggregate functions:
+For more information about aggregate functions, see :ref:`aggregate_functions`.
 
 .. list-table:: 
    :widths: auto
@@ -332,14 +320,12 @@ The following table describes the available aggregate functions:
    * - :ref:`var_pop`
      - ``varp``
      - Calculates population variance of values
-	 
-For more information, see :ref:`aggregate_functions`.
-
-
 
 Window Functions
 -------------------
-The following table describes the available window functions:
+The following table shows the **window** functions:
+
+For more information about window functions, see :ref:`window_functions`.
 
 .. list-table:: 
    :widths: auto
@@ -355,20 +341,31 @@ The following table describes the available window functions:
      - Calculates the maximum value
    * - :ref:`min`
      - Calculates the minimum value
-   * - :ref:`rank`
-     - Calculates the rank of a row
-   * - :ref:`row_number`
-     - Calculates the row number
    * - :ref:`sum`
-     - Calculates the sum of all of the values
-	 
-For more information, see :ref:`window_functions`.
+     - Calculates the sum of all of the values  
+   * - :ref:`rank`
+     - Calculates the rank of a row	 
+   * - :ref:`first_value`
+     - Returns the value in the first row of a window
+   * - :ref:`last_value`
+     - Returns the value in the last row of a window
+   * - :ref:`nth_value`
+     - Returns the value in a specified ``(n)`` row of a window
+   * - :ref:`dense_rank`
+     - Returns the rank of the current row with no gaps
+   * - :ref:`percent_rank`
+     - Returns the relative rank of the current row
+   * - :ref:`cume_dist`
+     - Returns the cumulative distribution of rows
+   * - :ref:`ntile`
+     - Returns an integer ranging between ``1`` and the argument value, dividing the partitions as equally as possible
+
 
 System Functions
 ------------------
 System functions allow you to execute actions in the system, such as aborting a query or get information about system processes.
 
-The following table describes the available system functions:
+The following table shows the **system** functions:
 
 .. list-table:: 
    :widths: auto
@@ -393,7 +390,7 @@ The following table describes the available system functions:
 
 Workload Management Functions
 ---------------------------------
-The following table describes the available workload management functions:
+The following table shows the **workload management** functions:
 
 .. list-table:: 
    :widths: auto
