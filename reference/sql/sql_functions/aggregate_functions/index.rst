@@ -1,31 +1,32 @@
 .. _aggregate_functions:
 
 ********************
-Aggregate functions
+Aggregate Functions
 ********************
 
-Aggregate functions performs calculation on a set of values, and return a single value.
+Overview
+===========
+Aggregate functions perform calculations based on a set of values and return a single value. Most aggregate functions ignore null values. Aggregate functions are often used with the ``GROUP BY`` clause of the :ref:`select` statement.
 
-Most aggregate functions ignore null values. 
+Available Aggregate Functions
+===============
+The following list shows the available aggregate functions:
 
-Aggregate functions are often used with the ``GROUP BY`` clause of the :ref:`select` statement.
-
-
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Aggregate functions
-   :glob:
+.. hlist::
+   :columns: 2
    
-   avg
-   corr
-   count
-   covar_pop
-   covar_samp
-   max
-   min
-   stddev_pop
-   stddev_samp
-   sum
-   var_pop
-   var_samp
+   * :ref:`AVG`
+   * :ref:`CORR`
+   * :ref:`COUNT`
+   * :ref:`COVAR_POP`
+   * :ref:`COVAR_SAMP`
+   * :ref:`MAX`
+   * :ref:`MIN`
+   * :ref:`MODE`
+   * :ref:`PERCENTILE_CONT`
+   * :ref:`PERCENTILE_DISC`
+   * :ref:`STDDEV_POP`
+   * :ref:`STDDEV_SAMP`
+   * :ref:`SUM`
+   * :ref:`VAR_POP`
+   * :ref:`VAR_SAMP`
