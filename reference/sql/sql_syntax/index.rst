@@ -1,21 +1,19 @@
 .. _sql_syntax:
 
 **********************
-SQL syntax features
+SQL Syntax Features
 **********************
 
-SQream DB supports SQL from the ANSI 92 syntax.
+SQream DB supports SQL from the ANSI 92 syntax and describes the following:
 
-.. toctree::
-   :maxdepth: 2
-   :caption: SQL Syntax Topics
-   :glob:
+.. hlist::
+   :columns: 1
 
-   keywords_and_identifiers
-   literals
-   scalar_expressions
-   joins
-   common_table_expressions
-   window_functions
-   subqueries
-   null_handling
+   * :ref:`keywords_and_identifiers`
+   * :ref:`literals`
+   * :ref:`scalar_expressions`
+   * :ref:`joins`
+   * :ref:`common_table_expressions`
+   * :ref:`window_functions`
+   * :ref:`subqueries`
+   * :ref:`null_handling`
