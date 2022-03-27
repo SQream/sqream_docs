@@ -24,6 +24,8 @@ Data Definition Commands (DDL)
      - Change the default schema for a role
    * - :ref:`ALTER TABLE<alter_table>`
      - Change the schema of a table
+   * - :ref:`CLUSTER BY<cluster_by>`
+     - Change clustering keys in a table
    * - :ref:`CREATE DATABASE<create_database>`
      - Create a new database
    * - :ref:`CREATE EXTERNAL TABLE<create_external_table>`
@@ -40,6 +42,8 @@ Data Definition Commands (DDL)
      - Create a new table in the database using results from a select query
    * - :ref:`CREATE VIEW<create_view>`
      - Create a new view in the database
+   * - :ref:`DROP CLUSTERING KEY<drop_clustering_key>`
+     - Drops all clustering keys in a table
    * - :ref:`DROP COLUMN<drop_column>`
      - Drop a column from a table
    * - :ref:`DROP DATABASE<drop_database>`
