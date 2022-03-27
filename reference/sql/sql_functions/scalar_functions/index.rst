@@ -3,6 +3,7 @@
 ****************
 Built-In Scalar Functions
 ****************
+FF
 
 The **Built-In Scalar Functions** page describes functions that return one value per call:
 
