@@ -18,48 +18,48 @@ Data Definition Commands (DDL)
    
    * - Command
      - Usage
-   * - :ref:`ADD COLUMN<add_column>`
-     - Add a new column to a table
-   * - :ref:`ALTER DEFAULT SCHEMA<alter_default_schema>`
-     - Change the default schema for a role
-   * - :ref:`ALTER TABLE<alter_table>`
-     - Change the schema of a table
-   * - :ref:`CLUSTER BY<cluster_by>`
-     - Change clustering keys in a table
-   * - :ref:`CREATE DATABASE<create_database>`
-     - Create a new database
-   * - :ref:`CREATE EXTERNAL TABLE<create_external_table>`
-     - Create a new external table in the database (deprecated)
-   * - :ref:`CREATE FOREIGN TABLE<create_foreign_table>`
-     - Create a new foreign table in the database
-   * - :ref:`CREATE FUNCTION <create_function>`
-     - Create a new user defined function in the database
-   * - :ref:`CREATE SCHEMA<create_schema>`
-     - Create a new schema in the database
-   * - :ref:`CREATE TABLE<create_table>`
-     - Create a new table in the database
-   * - :ref:`CREATE TABLE AS<create_table_as>`
-     - Create a new table in the database using results from a select query
-   * - :ref:`CREATE VIEW<create_view>`
-     - Create a new view in the database
-   * - :ref:`DROP CLUSTERING KEY<drop_clustering_key>`
-     - Drops all clustering keys in a table
-   * - :ref:`DROP COLUMN<drop_column>`
-     - Drop a column from a table
-   * - :ref:`DROP DATABASE<drop_database>`
-     - Drop a database and all of its objects
-   * - :ref:`DROP FUNCTION<drop_function>`
-     - Drop a function
-   * - :ref:`DROP SCHEMA<drop_schema>`
-     - Drop a schema
-   * - :ref:`DROP TABLE<drop_table>`
-     - Drop a table and its contents from a database
-   * - :ref:`DROP VIEW<drop_view>`
-     - Drop a view
-   * - :ref:`RENAME COLUMN<rename_column>`
-     - Rename a column
-   * - :ref:`RENAME TABLE<rename_table>`
-     - Rename a table
+   * - `ADD COLUMN <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/add_column.html>`_
+     -   Add a new column to a table
+   * - `ALTER DEFAULT SCHEMA <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/alter_default_schema.html>`_
+     -   Change the default schema for a role
+   * - `ALTER TABLE <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/alter_table.html>`_
+     -   Change the schema of a table
+   * - `CLUSTER BY <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/cluster_by.html>`_
+     -   Change clustering keys in a table
+   * - `CREATE DATABASE <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/create_database.html>`_
+     -   Create a new database
+   * - `CREATE EXTERNAL TABLE <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/create_external_table.html>`_
+     -   Create a new external table in the database (deprecated)
+   * - `CREATE FOREIGN TABLE <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/create_foreign_table.html>`_
+     -   Create a new foreign table in the database
+   * - `CREATE FUNCTION <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/create_function.html>`_
+     -   Create a new user defined function in the database
+   * - `CREATE SCHEMA <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/create_schema.html>`_
+     -   Create a new schema in the database
+   * - `CREATE TABLE <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/create_table.html>`_
+     -   Create a new table in the database
+   * - `CREATE TABLE AS <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/create_table_as.html>`_
+     -   Create a new table in the database using results from a select query
+   * - `CREATE VIEW <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/create_view.html>`_
+     -   Create a new view in the database
+   * - `DROP CLUSTERING KEY <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/drop_clustering_key.html>`_
+     -   Drops all clustering keys in a table
+   * - `DROP COLUMN <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/drop_column.html>`_
+     -   Drop a column from a table
+   * - `DROP DATABASE <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/drop_database.html>`_
+     -   Drop a database and all of its objects
+   * - `DROP FUNCTION <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/drop_function.html>`_
+     -   Drop a function
+   * - `DROP SCHEMA <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/drop_schema.html>`_
+     -   Drop a schema
+   * - `DROP TABLE <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/drop_table.html>`_
+     -   Drop a table and its contents from a database
+   * - `DROP VIEW <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/drop_view.html>`_
+     -   Drop a view
+   * - `RENAME COLUMN <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/rename_column.html>`_
+     -   Rename a column
+   * - `RENAME TABLE <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/rename_table.html>`_
+     -   Rename a table
 
 Data Manipulation Commands (DML)
 ================================
