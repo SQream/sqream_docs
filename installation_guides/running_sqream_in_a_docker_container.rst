@@ -3,7 +3,7 @@
 ***********************
 Installing and Running SQream in a Docker Container
 ***********************
-The **Running SQream in a Docker Container** page describes how to prepare your machine's environment for installing and running SQream in a Docker container.
+The **Installing and Running SQream in a Docker Container** page describes how to prepare your machine's environment for installing and running SQream in a Docker container.
 
 This page describes the following:
 
@@ -102,7 +102,7 @@ You can install the required NTP packages by running the following command:
 
 .. code-block:: console
 
-   $ sudo yum install ntp  pciutils python36 kernel-devel-$(uname -r) kernel-headers-$(uname -r) 	gcc
+   $ sudo yum install ntp  pciutils python36 kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc
 
 Installing the Recommended Tools
 ----------------
