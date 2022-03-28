@@ -3,7 +3,7 @@
 ***********************
 Installing and Running SQream in a Docker Container
 ***********************
-The **Running SQream in a Docker Container** page describes how to prepare your machine's environment for installing and running SQream in a Docker container.
+The **Installing and Running SQream in a Docker Container** page describes how to prepare your machine's environment for installing and running SQream in a Docker container.
 
 This page describes the following:
 
@@ -34,19 +34,19 @@ To run SQream in a Docker container you must create a local user.
 
 1. Add a local user:
 
-   .. code-block:: console
+   .. code-block::
      
       $ useradd -m -U <local user name>
 
 2. Set the local user's password:
 
-   .. code-block:: console
+   .. code-block::
      
       $ passwd <local user name>
 
 3. Add the local user to the ``wheel`` group:
 
-   .. code-block:: console
+   .. code-block::
      
       $ usermod -aG wheel <local user name>
 
@@ -62,13 +62,13 @@ After creating a local user you must set a local language.
 
 1. Set the local language:
 
-   .. code-block:: console
+   .. code-block::
      
       $ sudo localectl set-locale LANG=en_US.UTF-8
 
 2. Set the time stamp (time and date) of the locale:
 
-   .. code-block:: console
+   .. code-block::
 
       $ sudo timedatectl set-timezone Asia/Jerusalem
 
@@ -84,13 +84,13 @@ After setting a local language you must add the EPEL repository.
 
    1. RedHat (RHEL 7):
 
-   .. code-block:: console
+   .. code-block::
 
       $ sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
       
    2. CentOS 7
     
-   .. code-block:: console
+   .. code-block::
 
       $ sudo yum install epel-release
 
@@ -100,9 +100,9 @@ After adding the EPEL repository, you must install the required NTP packages.
 
 You can install the required NTP packages by running the following command:
 
-.. code-block:: console
+.. code-block::
 
-   $ sudo yum install ntp  pciutils python36 kernel-devel-$(uname -r) kernel-headers-$(uname -r) 	gcc
+   $ sudo yum install ntp  pciutils python36 kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc
 
 Installing the Recommended Tools
 ----------------
@@ -110,7 +110,7 @@ After installin gthe required NTP packages you must install the recommended tool
 
 SQream recommends installing the following recommended tools:
 
-.. code-block:: console
+.. code-block::
 
    $ sudo yum install bash-completion.noarch  vim-enhanced.x86_64 vim-common.x86_64 net-tools iotop htop psmisc screen xfsprogs wget yum-utils deltarpm dos2unix
 
@@ -134,7 +134,7 @@ After updating to the current version of the operating system you must configure
 
 2. Configure the **ntpd** service to begin running when your machine is started:
 
-   .. code-block:: console
+   .. code-block::
 
       $ sudo systemctl enable ntpd
       $ sudo systemctl start ntpd
@@ -146,15 +146,15 @@ After configuring the NTP package you must configure the performance profile.
 
 **To configure the performance profile:**
 
-1. Switch the active profile:
+1. *Optional* - Switch the active profile:
 
-   .. code-block:: console
+   .. code-block::
 
       $ sudo tuned-adm profile throughput-performance 
 
 2. Change the multi-user's default run level:
 
-   .. code-block:: console
+   .. code-block::
 
       $ sudo systemctl set-default multi-user.target
 
@@ -166,19 +166,19 @@ After configuring the performance profile you must configure your security limit
 
 1. Run the **bash** shell as a super-user: 
 
-   .. code-block:: console
+   .. code-block::
 
       $ sudo bash
 
 2. Run the following command:
 
-   .. code-block:: console
+   .. code-block::
 
       $ echo -e "sqream soft nproc 500000\nsqream hard nproc 500000\nsqream soft nofile 500000\nsqream hard nofile 500000\nsqream soft core unlimited\nsqream hard core unlimited" >> /etc/security/limits.conf
 
 3. Run the following command:
 
-   .. code-block:: console
+   .. code-block::
 
       $ echo -e "vm.dirty_background_ratio = 5 \n vm.dirty_ratio = 10 \n vm.swappiness = 10 \n vm.zone_reclaim_mode = 0 \n vm.vfs_cache_pressure = 200 \n"  >> /etc/sysctl.conf
 
@@ -194,7 +194,7 @@ After configuring your security limits you must disable the following automatic 
 
 You can abort the above but-reporting tools by running the following command:
 
-.. code-block:: console
+.. code-block::
 
    $ for i in abrt-ccpp.service abrtd.service abrt-oops.service abrt-pstoreoops.service abrt-vmcore.service abrt-xorg.service ; do sudo systemctl disable $i; sudo systemctl stop $i; done
    
@@ -203,7 +203,7 @@ Installing the Nvidia CUDA Driver
 
 1. Verify that the Tesla NVIDIA card has been installed and is detected by the system:
 
-   .. code-block:: console
+   .. code-block::
 
       $ lspci | grep -i nvidia
 
@@ -211,7 +211,7 @@ Installing the Nvidia CUDA Driver
 
 #. Verify that the open-source upstream Nvidia driver is running:
 
-   .. code-block:: console
+   .. code-block::
 
       $ lsmod | grep nouveau
 
@@ -221,7 +221,7 @@ Installing the Nvidia CUDA Driver
 
    1. Disable the open-source upstream Nvidia driver:
 
-      .. code-block:: console
+      .. code-block::
 
          $ sudo bash
          $ echo "blacklist nouveau" > /etc/modprobe.d/blacklist-nouveau.conf
@@ -231,19 +231,19 @@ Installing the Nvidia CUDA Driver
     
    2. Reboot the server and verify that the Nouveau model has not been loaded:
 
-      .. code-block:: console
+      .. code-block::
 
          $ lsmod | grep nouveau
 	 
 #. Check if the Nvidia CUDA driver has already been installed:
 
-   .. code-block:: console
+   .. code-block::
 
       $ nvidia-smi
 
    The following is an example of the correct output:
 
-   .. code-block:: console
+   .. code-block::
 
       nvidia-smi
       Wed Oct 30 14:05:42 2019
@@ -310,14 +310,14 @@ For installer type, SQream recommends selecting **runfile (local)**. The availab
 
 2. Download the base installer for Linux CentOS 7 x86_64:
 
-   .. code-block:: console
+   .. code-block::
 
       wget http://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
 
 
 3. Install the base installer for Linux CentOS 7 x86_64 by running the following commands:
 
-   .. code-block:: console
+   .. code-block::
 
       $ sudo yum localinstall cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
       $ sudo yum clean all
@@ -333,26 +333,22 @@ For installer type, SQream recommends selecting **runfile (local)**. The availab
 
 5. Enable the Nvidia service to start at boot and start it:
 
-   .. code-block:: console
+   .. code-block::
 
       $ sudo systemctl enable nvidia-persistenced.service && sudo systemctl start nvidia-persistenced.service
-
-6. Create a symbolic link from the **/etc/systemd/system/multi-user.target.wants/nvidia-persistenced.service** file to the **/usr/lib/systemd/system/nvidia-persistenced.service** file.
-
-    ::
 
 7. Reboot the server.
 
     ::
 8. Verify that the Nvidia driver has been installed and shows all available GPU's:
 
-   .. code-block:: console
+   .. code-block::
 
       $ nvidia-smi
 	  
    The following is the correct output:
 
-   .. code-block:: console
+   .. code-block::
       
       nvidia-smi
       Wed Oct 30 14:05:42 2019
@@ -385,14 +381,14 @@ Installing the CUDA Driver Version 10.1 for IBM Power9
 
 1. Download the base installer for Linux CentOS 7 PPC64le:
 
-   .. code-block:: console
+   .. code-block::
 
       wget http://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
 
 
 #. Install the base installer for Linux CentOS 7 x86_64 by running the following commands:
 
-   .. code-block:: console
+   .. code-block::
 
       $ sudo rpm -i cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
       $ sudo yum clean all
@@ -408,20 +404,16 @@ Installing the CUDA Driver Version 10.1 for IBM Power9
    
 4. If you are using RHEL 7 version (7.6 or later), comment out, remove, or change the hot-pluggable memory rule located in file copied to the **/etc/udev/rules.d** directory by running the following command:
 
-   .. code-block:: console
+   .. code-block::
 
       $ sudo cp /lib/udev/rules.d/40-redhat.rules /etc/udev/rules.d 
       $ sudo sed -i 's/SUBSYSTEM!="memory",.*GOTO="memory_hotplug_end"/SUBSYSTEM=="*", GOTO="memory_hotplug_end"/' /etc/udev/rules.d/40-redhat.rules
 
 #. Enable the **nvidia-persisted.service** file:
 
-   .. code-block:: console
+   .. code-block::
 
       $ sudo systemctl enable nvidia-persistenced.service 
-
-#. Create a symbolic link from the **/etc/systemd/system/multi-user.target.wants/nvidia-persistenced.service** file to the **/usr/lib/systemd/system/nvidia-persistenced.service** file.
-
-    ::
    
 #. Reboot your system to initialize the above modifications.
 
@@ -429,13 +421,13 @@ Installing the CUDA Driver Version 10.1 for IBM Power9
    
 #. Verify that the Nvidia driver and the **nvidia-persistenced.service** files are running:
 
-   .. code-block:: console
+   .. code-block::
 
       $ nvidia smi
 
    The following is the correct output:
 
-   .. code-block:: console       
+   .. code-block::       
 
       nvidia-smi
       Wed Oct 30 14:05:42 2019
@@ -461,13 +453,13 @@ Installing the CUDA Driver Version 10.1 for IBM Power9
 
 #. Verify that the **nvidia-persistenced** service is running:
 
-   .. code-block:: console
+   .. code-block::
 
       $ systemctl status nvidia-persistenced
 
    The following is the correct output:
 
-   .. code-block:: console
+   .. code-block::
 
       root@gpudb ~]systemctl status nvidia-persistenced
         nvidia-persistenced.service - NVIDIA Persistence Daemon
@@ -521,7 +513,7 @@ The x86_64 processor only supports installing the **Docker Community Edition (CE
 
 You can install the Docker Engine on an IBM Power9 processor by running the following command:
 
-.. code-block:: console
+.. code-block::
 
    wget http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/container-selinux-2.9-4.el7.noarch.rpm
    wget http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/docker-ce-18.03.1.ce-1.el7.centos.ppc64le.rpm
@@ -537,13 +529,13 @@ After installing the Docker engine you must configure Docker on your local machi
 
 1. Enable Docker to start on boot:
 
-   .. code-block:: console
+   .. code-block::
 
       $ sudo systemctl enable docker && sudo systemctl start docker
 	  
 2. Enable managing Docker as a non-root user:
 
-   .. code-block:: console
+   .. code-block::
 
       $ sudo usermod -aG docker $USER
 
@@ -553,7 +545,7 @@ After installing the Docker engine you must configure Docker on your local machi
 
 4. Verify that you can run the following Docker command as a non-root user (without ``sudo``):
 
-   .. code-block:: console
+   .. code-block::
 
       $ docker run hello-world
 
@@ -593,7 +585,7 @@ Installing the NVIDIA Docker2 Toolkit on a CentOS Operating System
 
 1. Install the repository for your distribution:
 
-   .. code-block:: console
+   .. code-block::
 
       distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
       curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.repo | \
@@ -601,7 +593,7 @@ Installing the NVIDIA Docker2 Toolkit on a CentOS Operating System
 
 2. Install the ``nvidia-docker2`` package and reload the Docker daemon configuration:
 
-   .. code-block:: console
+   .. code-block::
 
       $ sudo yum install nvidia-docker2
       $ sudo pkill -SIGHUP dockerd
@@ -618,7 +610,7 @@ Installing the NVIDIA Docker2 Toolkit on a CentOS Operating System
     1. Run the ``sudo vi /etc/yum.repos.d/nvidia-docker.repo`` command if the following error is displayed when installing the ``nvidia-docker2`` package:
     
 
-       .. code-block:: console
+       .. code-block::
 
           https://nvidia.github.io/nvidia-docker/centos7/ppc64le/repodata/repomd.xml:
           [Errno -1] repomd.xml signature could not be verified for nvidia-docker
@@ -629,7 +621,7 @@ Installing the NVIDIA Docker2 Toolkit on a CentOS Operating System
 
 5. Verify that the NVIDIA-Docker run has been installed correctly:
 
-   .. code-block:: console
+   .. code-block::
 
       $ docker run --runtime=nvidia --rm nvidia/cuda:10.1-base nvidia-smi
 
@@ -645,7 +637,7 @@ Installing the NVIDIA Docker2 Toolkit on an Ubuntu Operating System
 
 1. Install the repository for your distribution:
 
-   .. code-block:: console
+   .. code-block::
 
       curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
       distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
@@ -654,7 +646,7 @@ Installing the NVIDIA Docker2 Toolkit on an Ubuntu Operating System
 
 2. Install the ``nvidia-docker2`` package and reload the Docker daemon configuration:
 
-   .. code-block:: console
+   .. code-block::
 
       $ sudo apt-get install nvidia-docker2
       $ sudo pkill -SIGHUP dockerd
@@ -670,7 +662,7 @@ Installing the NVIDIA Docker2 Toolkit on an Ubuntu Operating System
 
     1. Run the ``sudo vi /etc/yum.repos.d/nvidia-docker.repo`` command if the following error is displayed when installing the ``nvidia-docker2`` package:
 
-       .. code-block:: console
+       .. code-block::
 
           https://nvidia.github.io/nvidia-docker/centos7/ppc64le/repodata/repomd.xml:
           [Errno -1] repomd.xml signature could not be verified for nvidia-docker
@@ -681,7 +673,7 @@ Installing the NVIDIA Docker2 Toolkit on an Ubuntu Operating System
 
 5. Verify that the NVIDIA-Docker run has been installed correctly:
 
-   .. code-block:: console
+   .. code-block::
 
       $ docker run --runtime=nvidia --rm nvidia/cuda:10.1-base nvidia-smi
 
@@ -698,7 +690,7 @@ This section describes how to install the NVIDIA Docker2 Toolkit on an IBM RHEL 
 
 1. Import the repository and install the ``libnvidia-container`` and the ``nvidia-container-runtime`` containers.
 
-   .. code-block:: console
+   .. code-block::
 
       $ distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
       $ curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.repo | \
@@ -716,7 +708,7 @@ This section describes how to install the NVIDIA Docker2 Toolkit on an IBM RHEL 
 
    1. Run the ``sudo vi /etc/yum.repos.d/nvidia-docker.repo`` command if the following error is displayed when installing the containers:
     
-      .. code-block:: console
+      .. code-block::
 
          https://nvidia.github.io/nvidia-docker/centos7/ppc64le/repodata/repomd.xml:
          [Errno -1] repomd.xml signature could not be verified for nvidia-docker
@@ -727,7 +719,7 @@ This section describes how to install the NVIDIA Docker2 Toolkit on an IBM RHEL 
 		
    3. Install the ``libnvidia-container`` container.
     
-      .. code-block:: console
+      .. code-block::
 
          $ sudo yum install -y libnvidia-container*         
 
@@ -735,13 +727,13 @@ This section describes how to install the NVIDIA Docker2 Toolkit on an IBM RHEL 
 
 4. Install the ``nvidia-container-runtime`` container:
 
-   .. code-block:: console
+   .. code-block::
        
       $ sudo yum install -y nvidia-container-runtime*
 
 5. Add ``nvidia runtime`` to the Docker daemon:
 
-   .. code-block:: console
+   .. code-block::
 
       $ sudo mkdir -p /etc/systemd/system/docker.service.d/
       $ sudo vi /etc/systemd/system/docker.service.d/override.conf
@@ -752,14 +744,14 @@ This section describes how to install the NVIDIA Docker2 Toolkit on an IBM RHEL 
 
 6. Restart Docker:
 
-   .. code-block:: console
+   .. code-block::
 
       $ sudo systemctl daemon-reload
       $ sudo systemctl restart docker
 
 7. Verify that the NVIDIA-Docker run has been installed correctly:
 
-   .. code-block:: console
+   .. code-block::
       
       $ docker run --runtime=nvidia --rm nvidia/cuda-ppc64le nvidia-smi
 	  
@@ -828,13 +820,13 @@ The **sqream_installer-nnn-DBnnn-COnnn-EDnnn-<arch>.tar.gz** file includes the f
 
 2. Extract the tarball file:
 
-   .. code-block:: console
+   .. code-block::
 
       $ tar -xvf sqream_installer-1.1.5-DB2019.2.1-CO1.5.4-ED3.0.0-x86_64.tar.gz
 
-When the tarball file has been extracted, a new folder will be created. The new folder is automatically given the name of the tarball file:
+   When the tarball file has been extracted, a new folder will be created. The new folder is automatically given the name of the tarball file:
 
-   .. code-block:: console
+   .. code-block::
 
       drwxrwxr-x 9 sqream sqream 4096 Aug 11 11:51 sqream_istaller-1.1.5-DB2019.2.1-CO1.5.4-ED3.0.0-x86_64/
       -rw-rw-r-- 1 sqream sqream 3130398797 Aug 11 11:20 sqream_installer-1.1.5-DB2019.2.1-CO1.5.4-ED3.0.0-x86_64.tar.gz
@@ -845,13 +837,13 @@ When the tarball file has been extracted, a new folder will be created. The new 
 
 4. Verify that the folder you just created contains all of the required files.
 
-   .. code-block:: console
+   .. code-block::
 
       $ ls -la
 
    The following is an example of the files included in the new folder:
 
-   .. code-block:: console
+   .. code-block::
 
       drwxrwxr-x. 10 sqream sqream   198 Jun  3 17:57 .
       drwx------. 25 sqream sqream  4096 Jun  7 18:11 ..
@@ -958,7 +950,7 @@ Installing Your License
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Once you've configured your local environment, you must install your license by copying it into the SQream installation package folder located in the **./license** folder:
 
-.. code-block:: console
+.. code-block::
 
    $ sudo ./sqream-install -k
 
@@ -969,19 +961,19 @@ Validating Your License
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 You can copy your license package into the SQream console folder located in the **/license** folder by running the following command:
    
-.. code-block:: console
+.. code-block::
 
    $ sudo ./sqream-install -K
 
 The following mandatory flags must be used in the first run:
    
-.. code-block:: console
+.. code-block::
 
    $ sudo ./sqream-install -i -k -v <volume path>
 
 The following is an example of the correct command syntax:
    
-.. code-block:: console
+.. code-block::
 
    $ sudo ./sqream-install -i -k -c /etc/sqream -v /home/sqream/sqreamdb -l /var/log/sqream -d /home/sqream/data_ingest
    
@@ -993,13 +985,13 @@ The information in this section is optional, and is only relevant for Hadoop use
 
 The following is the correct syntax when setting the Hadoop and Kubernetes connectivity parameters:
 
-.. code-block:: console
+.. code-block::
 
    $ sudo ./sqream-install -p <Kerberos user name> -e  <Kerberos server DNS name>:<Kerberos server IP>
 
 The following is an example of setting the Hadoop and Kubernetes connectivity parameters:
 
-.. code-block:: console
+.. code-block::
 
    $ sudo ./sqream-install -p <nn1@SQ.COM> -e  kdc.sq.com:<192.168.1.111>
    
@@ -1012,7 +1004,7 @@ Modifying Your Data Ingest Folder
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Once you've validated your license, you can modify your data ingest folder after the first run by running the following command:
    
-.. code-block:: console
+.. code-block::
 
    $ sudo ./sqream-install -d /home/sqream/data_in
 
@@ -1024,7 +1016,7 @@ Once you've modified your data ingest folder (if needed), you must validate that
 
 1. To verify that your server network and Docker network do not overlap, run the following command:
 
-.. code-block:: console
+.. code-block::
 
    $ ifconfig | grep 172.
 
@@ -1033,7 +1025,7 @@ Once you've modified your data ingest folder (if needed), you must validate that
   * If running the above command output no results, continue the installation process.
   * If running the above command output results, run the following command:
 
-    .. code-block:: console
+    .. code-block::
 
        $ ifconfig | grep 192.168.
 
@@ -1044,13 +1036,13 @@ Once you've configured your network for Docker, you can check and verify your sy
 
 Running the following command shows you all the variables used by your SQream system:
 
-.. code-block:: console
+.. code-block::
 
    $ ./sqream-install -s
 
 The following is an example of the correct output:
 
-.. code-block:: console
+.. code-block::
 
    SQREAM_CONSOLE_TAG=1.5.4
    SQREAM_TAG=2019.2.1
@@ -1100,7 +1092,7 @@ Starting Your SQream Console
 
 You can start your SQream console by running the following command:
 
-.. code-block:: console
+.. code-block::
 
    $ ./sqream-console
 
@@ -1113,13 +1105,13 @@ Starting the SQream Master
 
 1. Start the metadata server (default port 3105) and picker (default port 3108) by running the following command:
 
-   .. code-block:: console
+   .. code-block::
 
       $ sqream master --start
       
    The following is the correct output:
 
-   .. code-block:: console
+   .. code-block::
 
       sqream-console> sqream master --start
       starting master server in single_host mode ...
@@ -1128,7 +1120,7 @@ Starting the SQream Master
 
 2. *Optional* - Change the metadata and server picker ports by adding ``-p <port number>`` and ``-m <port number>``:
 
-   .. code-block:: console
+   .. code-block::
 
       $ sqream-console>sqream master --start -p 4105 -m 43108
       $ starting master server in single_host mode ...
@@ -1145,13 +1137,13 @@ Starting SQream Workers
 When starting SQream workers, setting the ``<number of workers>`` value sets how many workers to start. Leaving the ``<number of workers>`` value unspecified runs all of the available resources.
 
 
-.. code-block:: console
+.. code-block::
 
    $ sqream worker --start <number of workers> 
 
    The following is an example of expected output when setting the ``<number of workers>`` value to ``2``:
 
-   .. code-block:: console
+   .. code-block::
 
       sqream-console>sqream worker --start 2
       started sqream_single_host_worker_0 on port 5000, allocated gpu: 0
@@ -1165,13 +1157,13 @@ Listing the Running Services
 
 You can list running SQream services to look for container names and ID's by running the following command:
 
-.. code-block:: console
+.. code-block::
 
    $ sqream master --list
 
 The following is an example of the expected output:
 
-.. code-block:: console
+.. code-block::
 
    sqream-console>sqream master --list
    container name: sqream_single_host_worker_0, container id: c919e8fb78c8
@@ -1187,13 +1179,13 @@ You can stop running services either for a single SQream worker, or all SQream s
 
 The following is the command for stopping a running service for a single SQream worker:
 
-.. code-block:: console
+.. code-block::
      
    $ sqream worker --stop <full worker name>
 
 The following is an example of expected output when stopping a running service for a single SQream worker:
 
-.. code-block:: console
+.. code-block::
 
    sqream worker stop <full worker name>
    stopped container sqream_single_host_worker_0, id: 892a8f1a58c5
@@ -1201,13 +1193,13 @@ The following is an example of expected output when stopping a running service f
 
 You can stop all running SQream services (both master and worker) by running the following command:
 
-.. code-block:: console
+.. code-block::
 
    $ sqream-console>sqream master --stop --all
 
 The following is an example of expected output when stopping all running services:
 
-.. code-block:: console
+.. code-block::
 
    sqream-console>sqream master --stop --all
    stopped container sqream_single_host_worker_0, id: 892a8f1a58c5
@@ -1224,13 +1216,13 @@ SQream Studio is an SQL statement editor.
 
 1. Run the following command:
 
-   .. code-block:: console
+   .. code-block::
 
       $ sqream studio --start
 
 The following is an example of the expected output:
 
-   .. code-block:: console
+   .. code-block::
 
       SQream Acceleration Studio is available at http://192.168.1.62:8080
 
@@ -1241,13 +1233,13 @@ The following is an example of the expected output:
 
 You can stop your SQream Studio by running the following command:
 
-.. code-block:: console
+.. code-block::
 
    $ sqream studio --stop
 
 The following is an example of the expected output:
 
-.. code-block:: console
+.. code-block::
 
    sqream_admin    stopped
 
@@ -1256,8 +1248,6 @@ The following is an example of the expected output:
 
 Using the SQream Client
 ~~~~~~~~~~~~~~~~~
-
-
 You can use the embedded SQream Client on the following nodes:
 
 * Master node
@@ -1271,7 +1261,7 @@ When using the SQream Client on the Master node, the following default settings 
 
 The following is an example:
 
-.. code-block:: console
+.. code-block::
 
    $ sqream client --master -u sqream -w sqream
 
@@ -1280,7 +1270,7 @@ When using the SQream Client on a Worker node (or nodes), you should use the ``-
 
 The following is an example:
 
-.. code-block:: console
+.. code-block::
 
    $ sqream client --worker -p 5000 -u sqream -w sqream
 
@@ -1314,7 +1304,7 @@ From the console you can define a spool size value.
 
 The following example shows the spool size being set to ``50``:
 
-.. code-block:: console
+.. code-block::
 
    $ sqream-console>sqream worker --start 2 -m 50
 
@@ -1331,7 +1321,7 @@ You can start more than one sqreamd on a single GPU by splitting it.
 
 The following example shows the GPU being split into **two** sqreamd's on the GPU in **slot 0**:
 
-.. code-block:: console
+.. code-block::
 
    $ sqream-console>sqream worker --start 2 -g 0
 
@@ -1342,7 +1332,7 @@ Splitting GPU and Setting the Spool Size
 
 You can simultaneously split a GPU and set the spool size by appending the ``-m`` flag:
 
-.. code-block:: console
+.. code-block::
 
    $ sqream-console>sqream worker --start 2 -g 0 -m 50
 
@@ -1359,19 +1349,19 @@ The SQream console does not validate the integrity of your external configuratio
 
 When using your custom configuration file, you can use the ``-j`` flag to define the full path to the Configuration file, as in the example below: 
 
-.. code-block:: console
+.. code-block::
 
    $ sqream-console>sqream worker --start 1 -j /etc/sqream/configfile.json
 
 .. note:: To start more than one sqream daemon, you must provide files for each daemon, as in the example below:
 
-.. code-block:: console
+.. code-block::
 
    $ sqream worker --start 2 -j /etc/sqream/configfile.json /etc/sqream/configfile2.json
 
 .. note:: To split a specific GPU, you must also list the GPU flag, as in the example below:
    
-.. code-block:: console
+.. code-block::
 
    $ sqream worker --start 2 -g 0 -j /etc/sqream/configfile.json /etc/sqream/configfile2.json
 
@@ -1382,7 +1372,7 @@ Clustering Your Docker Environment
 
 SQream lets you connect to a remote Master node to start Docker in Distributed mode. If you have already connected to a Slave node server in Distributed mode, the **sqream Master** and **Client** commands are only available on the Master node.
    
-.. code-block:: console
+.. code-block::
 
    $ --master-host
    $ sqream-console>sqream worker --start 1 --master-host 192.168.0.1020
@@ -1401,13 +1391,13 @@ Checking the Status of SQream Services from the SQream Console
 
 From the SQream console, you can check the status of SQream services by running the following command:
    
-.. code-block:: console
+.. code-block::
 
    $ sqream-console>sqream master --list
 
 The following is an example of the expected output:
    
-.. code-block:: console
+.. code-block::
 
    $ sqream-console>sqream master --list
    $ checking 3 sqream services:
@@ -1422,7 +1412,7 @@ Checking the Status of SQream Services from Outside the SQream Console
 
 From outside the Sqream Console, you can check the status of SQream services by running the following commands:
  
-.. code-block:: console
+.. code-block::
      
    $ sqream-status
    $ NAMES STATUS PORTS
@@ -1448,19 +1438,19 @@ This section describes how to upgrade your SQream system.
 3. Extract the following tarball file received from the SQream Support team, under it with the same user and in the same folder that you used while :ref:`Downloading the SQream Software <_download_sqream_software>`.
 
  
-   .. code-block:: console
+   .. code-block::
      
       $ tar -xvf sqream_installer-2.0.5-DB2019.2.1-CO1.6.3-ED3.0.0-x86_64/
 
 4. Navigate to the new folder created as a result of extracting the tarball file:
 
-   .. code-block:: console
+   .. code-block::
      
       $ cd sqream_installer-2.0.5-DB2019.2.1-CO1.6.3-ED3.0.0-x86_64/
 
 5. Initiate the upgrade process:
 
-   .. code-block:: console
+   .. code-block::
    
       $ ./sqream-install -i
 
