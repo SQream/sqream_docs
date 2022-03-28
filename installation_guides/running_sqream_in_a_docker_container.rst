@@ -146,7 +146,7 @@ After configuring the NTP package you must configure the performance profile.
 
 **To configure the performance profile:**
 
-1. Switch the active profile:
+1. *Optional* - Switch the active profile:
 
    .. code-block:: console
 
@@ -337,10 +337,6 @@ For installer type, SQream recommends selecting **runfile (local)**. The availab
 
       $ sudo systemctl enable nvidia-persistenced.service && sudo systemctl start nvidia-persistenced.service
 
-6. Create a symbolic link from the **/etc/systemd/system/multi-user.target.wants/nvidia-persistenced.service** file to the **/usr/lib/systemd/system/nvidia-persistenced.service** file.
-
-    ::
-
 7. Reboot the server.
 
     ::
@@ -418,10 +414,6 @@ Installing the CUDA Driver Version 10.1 for IBM Power9
    .. code-block:: console
 
       $ sudo systemctl enable nvidia-persistenced.service 
-
-#. Create a symbolic link from the **/etc/systemd/system/multi-user.target.wants/nvidia-persistenced.service** file to the **/usr/lib/systemd/system/nvidia-persistenced.service** file.
-
-    ::
    
 #. Reboot your system to initialize the above modifications.
 
@@ -832,7 +824,7 @@ The **sqream_installer-nnn-DBnnn-COnnn-EDnnn-<arch>.tar.gz** file includes the f
 
       $ tar -xvf sqream_installer-1.1.5-DB2019.2.1-CO1.5.4-ED3.0.0-x86_64.tar.gz
 
-When the tarball file has been extracted, a new folder will be created. The new folder is automatically given the name of the tarball file:
+   When the tarball file has been extracted, a new folder will be created. The new folder is automatically given the name of the tarball file:
 
    .. code-block:: console
 
@@ -1247,7 +1239,7 @@ You can stop your SQream Studio by running the following command:
 
 The following is an example of the expected output:
 
-.. code-block:: console
+.. code-block::
 
    sqream_admin    stopped
 
@@ -1256,8 +1248,6 @@ The following is an example of the expected output:
 
 Using the SQream Client
 ~~~~~~~~~~~~~~~~~
-
-
 You can use the embedded SQream Client on the following nodes:
 
 * Master node
