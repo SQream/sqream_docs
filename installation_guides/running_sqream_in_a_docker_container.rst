@@ -519,19 +519,15 @@ Installing the Docker Engine on an IBM Power9 Processor
 ----------------------------------------
 The x86_64 processor only supports installing the **Docker Community Edition (CE)** version 18.03.
 
-
 **To install the Docker Engine on an IBM Power9 processor:**
 
 You can install the Docker Engine on an IBM Power9 processor by running the following command:
 
 .. code-block:: console
 
-   $ wget http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/container-selinux-2.9-4.el7.noarch.rpm
-   $ wget http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/docker-ce-18.03.1.ce-1.el7.centos.ppc64le.rpm
-   $ yum install -y container-selinux-2.9-4.el7.noarch.rpm
-   $ docker-ce-18.03.1.ce-1.el7.centos.ppc64le.rpm
-
-
+   wget http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/container-selinux-2.9-4.el7.noarch.rpm
+   wget http://ftp.unicamp.br/pub/ppc64el/rhel/7_1/docker-ppc64el/docker-ce-18.03.1.ce-1.el7.centos.ppc64le.rpm
+   yum install -y container-selinux-2.9-4.el7.noarch.rpm docker-ce-18.03.1.ce-1.el7.centos.ppc64le.rpm
  
 For more information on installing the Docker Engine CE on an IBM Power9 processor, see `Install Docker Engine on Ubuntu <https://developer.ibm.com/components/ibm-power/tutorials/install-docker-on-linux-on-power/>`_.
 
@@ -576,8 +572,8 @@ After configuring Docker on your local machine you must install the Nvidia Docke
 
 This section describes the following:
 
-* :ref:`Installing the NVIDIA Docker2 Toolkit on an x86_64 processor. <install_nvidia_docker2_toolkit_x8664_processor>`
-* :ref:`Installing the NVIDIA Docker2 Toolkit on a PPC64le processor. <install_nvidia_docker2_toolkit_ppc64le_processor>`
+* :ref:`Installing the NVIDIA Docker2 Toolkit on an x86_64 processor <install_nvidia_docker2_toolkit_x8664_processor>`
+* :ref:`Installing the NVIDIA Docker2 Toolkit on a PPC64le processor <install_nvidia_docker2_toolkit_ppc64le_processor>`
 
 .. _install_nvidia_docker2_toolkit_x8664_processor:
 
@@ -668,7 +664,9 @@ Installing the NVIDIA Docker2 Toolkit on an Ubuntu Operating System
 
       $ sudo apt-get install nvidia-docker2
       $ sudo pkill -SIGHUP dockerd
+      
 3. Do one of the following:
+
    * If you received an error when installing the ``nvidia-docker2`` package, skip to :ref:`Step 4 <step_4_ubuntu>`.
    * If you successfully installed the ``nvidia-docker2`` package, skip to :ref:`Step 5 <step_5_ubuntu>`.
 
@@ -795,8 +793,8 @@ For more information about the correct directory to copy the above files into, s
 
 For related information, see the following sections:
 
-* :ref:`Configuring the Hadoop and Kubernetes Configuration Files <configure_hadoop_kubernetes_configuration_files>`.
-* :ref:`Setting the Hadoop and Kubernetes Configuration Parameters <setting_hadoop_kubernetes_connectivity_parameters>`.
+* :ref:`Configuring the Hadoop and Kubernetes Configuration Files <configure_hadoop_kubernetes_configuration_files>`
+* :ref:`Setting the Hadoop and Kubernetes Configuration Parameters <setting_hadoop_kubernetes_connectivity_parameters>`
 
 .. _installing_sqream_software:
 
