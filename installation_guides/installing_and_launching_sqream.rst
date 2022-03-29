@@ -3,7 +3,7 @@
 *************************
 Installing and Launching SQream
 *************************
-The **Installing SQream Studio** page incudes the following installation guides:
+The **Installing and Launching SQream** page includes the following installation guides:
 
 .. toctree::
    :maxdepth: 1
@@ -14,7 +14,3 @@ The **Installing SQream Studio** page incudes the following installation guides:
    running_sqream_in_a_docker_container
    installing_sqream_with_kubernetes
    installing_monit
-   launching_sqream_with_monit
-
-
-

@@ -16,7 +16,6 @@ This section describes the following features:
    compression
    flexible_data_clustering
    python_functions
-   saved_queries
    viewing_system_objects_as_ddl
    workload_manager
    transactions

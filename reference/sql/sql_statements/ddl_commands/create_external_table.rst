@@ -113,7 +113,7 @@ A simple table from Tab-delimited file (TSV)
 .. code-block:: postgres
 
    CREATE OR REPLACE EXTERNAL TABLE cool_animals
-     (id INT NOT NULL, name VARCHAR(30) NOT NULL, weight FLOAT NOT NULL)  
+     (id INT NOT NULL, name text(30) NOT NULL, weight FLOAT NOT NULL)  
    USING FORMAT csv 
    WITH  PATH  '/home/rhendricks/cool_animals.csv'
          FIELD DELIMITER '\t';
@@ -125,7 +125,7 @@ A table from a directory of Parquet files on HDFS
 .. code-block:: postgres
 
    CREATE EXTERNAL TABLE users
-     (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
+     (id INT NOT NULL, name text(30) NOT NULL, email text(50) NOT NULL)  
    USING FORMAT Parquet
    WITH  PATH  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet';
 
@@ -135,7 +135,7 @@ A table from a bucket of files on S3
 .. code-block:: postgres
 
    CREATE EXTERNAL TABLE users
-     (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
+     (id INT NOT NULL, name text(30) NOT NULL, email text(50) NOT NULL)  
    USING FORMAT Parquet
    WITH  PATH  's3://pp-secret-bucket/users/*.parquet'
          AWS_ID 'our_aws_id'

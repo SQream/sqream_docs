@@ -72,8 +72,6 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
      - 
          :ref:`Client drivers<client_drivers>`
 
-         :ref:`Third party tools integration<third_party_tools>`
-
          :ref:`connect_to_tableau`
      - 
          :ref:`troubleshooting` guide

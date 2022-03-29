@@ -55,7 +55,7 @@ The result of the ``GET_DDL`` function is a verbose version of the :ref:`create_
 
    farm=> CREATE TABLE cool_animals (
       id INT NOT NULL,
-      name varchar(30) NOT NULL,
+      name text(30) NOT NULL,
       weight FLOAT,
       is_agressive BOOL DEFAULT false NOT NULL
    );
@@ -64,7 +64,7 @@ The result of the ``GET_DDL`` function is a verbose version of the :ref:`create_
    farm=> SELECT GET_DDL('cool_animals');
    create table "public"."cool_animals" (
      "id" int not null,
-     "name" varchar(30) not null,
+     "name" text(30) not null,
      "weight" double null,
      "is_agressive" bool default false not null )
      ;
