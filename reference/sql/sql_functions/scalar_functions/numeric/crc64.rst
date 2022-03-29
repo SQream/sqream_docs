@@ -25,7 +25,7 @@ Arguments
    * - Parameter
      - Description
    * - ``expr``
-     - Text expression (``VARCHAR``, ``TEXT``)
+     - Text expression (``TEXT``)
 
 Returns
 ============
@@ -55,4 +55,3 @@ Calculate a CRC-64 hash of a string
    crc64               
    --------------------
    -9085161068710498500
-

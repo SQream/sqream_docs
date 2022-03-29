@@ -66,14 +66,14 @@ Assume a table named ``nba``, with the following structure:
    
    CREATE TABLE nba
    (
-      Name varchar(40),
-      Team varchar(40),
+      Name text(40),
+      Team text(40),
       Number tinyint,
-      Position varchar(2),
+      Position text(2),
       Age tinyint,
-      Height varchar(4),
+      Height text(4),
       Weight real,
-      College varchar(40),
+      College text(40),
       Salary float
     );
 
@@ -109,7 +109,7 @@ Use parameters to replace them later at execution time.
 
 .. tip:: Use dollar quoting (`$$`) to avoid escaping strings.
 
-   .. code-block:: psql
+.. code-block:: psql
 
    t=> SELECT SAVE_QUERY('select_by_weight_and_team',$$SELECT * FROM nba WHERE Weight > ? AND Team = ?$$);
    executed
@@ -120,4 +120,3 @@ Use parameters to replace them later at execution time.
    James Johnson     | Toronto Raptors |      3 | PF       |  29 | 6-9    |    250 | Wake Forest | 2500000
    Jason Thompson    | Toronto Raptors |      1 | PF       |  29 | 6-11   |    250 | Rider       |  245177
    Jonas Valanciunas | Toronto Raptors |     17 | C        |  24 | 7-0    |    255 |             | 4660482
-

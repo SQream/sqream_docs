@@ -16,7 +16,7 @@ The following is an example of syntax for creating a clustered table on a table 
 .. code-block:: postgres
 
    CREATE TABLE users (
-      name VARCHAR(30) NOT NULL,
+      name text(30) NOT NULL,
       start_date datetime not null,
-      country VARCHAR(30) DEFAULT 'Unknown' NOT NULL
+      country text(30) DEFAULT 'Unknown' NOT NULL
    ) CLUSTER BY country;
