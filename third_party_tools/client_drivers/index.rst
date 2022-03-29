@@ -20,23 +20,6 @@ The following are applicable to all operating systems:
   * `JDBC .jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.3.jar>`_ - sqream-jdbc-4.5.3 (.jar)
   * `JDBC driver <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/jdbc/index.html#>`_
 
-
-.. _python:
-
-* **Python** - Recommended installation via ``pip``:
-
-  * `Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.1.3>`_ - pysqream v3.1.3 (.tar.gz)
-  * `Python driver <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/python/index.html>`_
-
-
-.. _nodejs:
-
-* **Node.JS** - Recommended installation via ``npm``:
-
-  * `Node.JS <https://sq-ftp-public.s3.amazonaws.com/sqream-sqreamdb-4.2.4.tgz>`_ - sqream-v4.2.4 (.tar.gz)
-  * `Node.JS driver <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/nodejs/index.html>`_
-
-
 .. _tableau_connector:   
 
 * **Tableau**:
@@ -57,7 +40,7 @@ Windows
 --------------
 The following are applicable to Windows:
 
-* **ODBC installer** - SQream Drivers v2020.2.0, with Tableau customizations. Please contact your `Sqream represenative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_ for this installer.
+* **ODBC installer** - SQream Drivers v2020.2.0, with Tableau customizations. Please contact your `SSream represenative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_ for this installer.
 
   For more information on installing and configuring ODBC on Windows, see :ref:`Install and configure ODBC on Windows <install_odbc_windows>`.
 
@@ -82,11 +65,6 @@ The following are applicable to Linux:
 
 * ODBC Installer  - Please contact your SQream representative for this installer.
 
-   ::
-
-* C++ connector - `libsqream-4.0 <https://sq-ftp-public.s3.amazonaws.com/libsqream-4.0.tar.gz>`_   
-* `C++ shared object library <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/cpp/index.html#getting-the-library>`_
-
 
 .. toctree::
    :maxdepth: 4
@@ -94,10 +72,7 @@ The following are applicable to Linux:
    :titlesonly:
    
    jdbc/index
-   python/index
-   nodejs/index
    odbc/index
-   cpp/index
 
 
 

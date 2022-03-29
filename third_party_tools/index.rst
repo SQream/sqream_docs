@@ -12,7 +12,6 @@ This section provides information about the following third party tools:
    :glob:
    :titlesonly:
    
-   client_platforms/index
    client_drivers/index
 
 If you need a tool that SQream does not support, contact SQream Support or your SQream account manager for more information.
