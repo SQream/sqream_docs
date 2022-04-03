@@ -13,9 +13,9 @@ This guide covers inserting data from ORC files into SQream DB using :ref:`FOREI
 Prepare the source ORC files, with the following requirements:
 
 .. list-table:: 
-   :widths: auto
+   :widths: 5 5 70 70 70 70 5 5 5 5 5
    :header-rows: 1
-   :stub-columns: 1
+
    
    * -   SQream DB type →
    
@@ -27,15 +27,15 @@ Prepare the source ORC files, with the following requirements:
      - ``BIGINT``
      - ``REAL``
      - ``DOUBLE``
-     - Text [#f0]_
+     - ``TEXT`` [#f0]_
      - ``DATE``
      - ``DATETIME``
    * - ``boolean``
-     - ✓ 
-     - ✓ [#f5]_
-     - ✓ [#f5]_
-     - ✓ [#f5]_
-     - ✓ [#f5]_
+     - Supported 
+     - Supported [#f5]_
+     - Supported [#f5]_
+     - Supported [#f5]_
+     - Supported [#f5]_
      - 
      - 
      - 
@@ -43,10 +43,10 @@ Prepare the source ORC files, with the following requirements:
      - 
    * - ``tinyint``
      - ○ [#f6]_
-     - ✓
-     - ✓
-     - ✓
-     - ✓
+     - Supported
+     - Supported
+     - Supported
+     - Supported
      - 
      - 
      - 
@@ -55,9 +55,9 @@ Prepare the source ORC files, with the following requirements:
    * - ``smallint``
      - ○ [#f6]_
      - ○ [#f7]_
-     - ✓
-     - ✓
-     - ✓
+     - Supported
+     - Supported
+     - Supported
      - 
      - 
      - 
@@ -67,8 +67,8 @@ Prepare the source ORC files, with the following requirements:
      - ○ [#f6]_
      - ○ [#f7]_
      - ○ [#f7]_
-     - ✓
-     - ✓
+     - Supported
+     - Supported
      - 
      - 
      - 
@@ -79,7 +79,7 @@ Prepare the source ORC files, with the following requirements:
      - ○ [#f7]_
      - ○ [#f7]_
      - ○ [#f7]_
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -91,8 +91,8 @@ Prepare the source ORC files, with the following requirements:
      - 
      - 
      - 
-     - ✓
-     - ✓
+     - Supported
+     - Supported
      - 
      - 
      - 
@@ -102,12 +102,12 @@ Prepare the source ORC files, with the following requirements:
      - 
      - 
      - 
-     - ✓
-     - ✓
+     - Supported
+     - Supported
      - 
      - 
      - 
-   * - ``string`` / ``char`` / ``varchar``
+   * - ``string`` / ``char`` / ``text``
      - 
      - 
      - 
@@ -115,7 +115,7 @@ Prepare the source ORC files, with the following requirements:
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
    * - ``date``
@@ -127,8 +127,8 @@ Prepare the source ORC files, with the following requirements:
      - 
      - 
      - 
-     - ✓
-     - ✓
+     - Supported
+     - Supported
    * - ``timestamp``, ``timestamp`` with timezone
      - 
      - 
@@ -139,13 +139,13 @@ Prepare the source ORC files, with the following requirements:
      - 
      - 
      - 
-     - ✓
+     - Supported
 
 * If an ORC file has an unsupported type like ``binary``, ``list``, ``map``, and ``union``, but the data is not referenced in the table (it does not appear in the :ref:`SELECT` query), the statement will succeed. If the column is referenced, an error will be thrown to the user, explaining that the type is not supported, but the column may be ommited. This can be worked around. See more information in the examples.
 
 .. rubric:: Footnotes
 
-.. [#f0] Text values include ``TEXT``, ``VARCHAR``, and ``NVARCHAR``
+.. [#f0] Text values include ``TEXT``
 
 .. [#f5] Boolean values are cast to 0, 1
 

@@ -53,8 +53,6 @@ SQream therefore recommends:
 
 * Applications such as :ref:`Tableau<connect_to_tableau>` and others have been tested, and work
 
-* Data types were not over-provisioned (e.g. don't use VARCHAR(2000) to store a short string)
-
 File Soure Location when Loading
 --------------------------------
 
@@ -78,20 +76,20 @@ SQream DB's :ref:`COPY FROM<copy_from>` syntax can be used to load CSV files, bu
      - ORC
      - Streaming data
    * - :ref:`copy_from`
-     - ✓
-     - ✗
-     - ✗
-     - ✗
+     - Supported
+     - Not supported
+     - Not supported
+     - Not supported
    * - :ref:`external_tables`
-     - ✓
-     - ✓
-     - ✓
-     - ✗
+     - Supported
+     - Supported
+     - Supported
+     - Not supported
    * - :ref:`insert`
-     - ✗
-     - ✗
-     - ✗
-     - ✓ (Python, JDBC, Node.JS)
+     - Not supported
+     - Not supported
+     - Not supported
+     - Supported (Python, JDBC, Node.JS)
 
 Unsupported Data Types
 -----------------------------
@@ -262,9 +260,8 @@ Type Support and Behavior Notes
 * The types should match to some extent within the same "class" (see table below).
 
 .. list-table:: 
-   :widths: auto
+   :widths: 5 5 70 70 70 70 5 5 5 5 5
    :header-rows: 1
-   :stub-columns: 1
    
    * -   SQream DB type →
    
@@ -276,15 +273,15 @@ Type Support and Behavior Notes
      - ``BIGINT``
      - ``REAL``
      - ``DOUBLE``
-     - Text [#f0]_
+     - ``Text`` [#f0]_
      - ``DATE``
      - ``DATETIME``
    * - ``boolean``
-     - ✓ 
-     - ✓ [#f5]_
-     - ✓ [#f5]_
-     - ✓ [#f5]_
-     - ✓ [#f5]_
+     - Supported 
+     - Supported [#f5]_
+     - Supported [#f5]_
+     - Supported [#f5]_
+     - Supported [#f5]_
      - 
      - 
      - 
@@ -292,10 +289,10 @@ Type Support and Behavior Notes
      - 
    * - ``tinyint``
      - ○ [#f6]_
-     - ✓
-     - ✓
-     - ✓
-     - ✓
+     - Supported
+     - Supported
+     - Supported
+     - Supported
      - 
      - 
      - 
@@ -304,9 +301,9 @@ Type Support and Behavior Notes
    * - ``smallint``
      - ○ [#f6]_
      - ○ [#f7]_
-     - ✓
-     - ✓
-     - ✓
+     - Supported
+     - Supported
+     - Supported
      - 
      - 
      - 
@@ -316,8 +313,8 @@ Type Support and Behavior Notes
      - ○ [#f6]_
      - ○ [#f7]_
      - ○ [#f7]_
-     - ✓
-     - ✓
+     - Supported
+     - Supported
      - 
      - 
      - 
@@ -328,7 +325,7 @@ Type Support and Behavior Notes
      - ○ [#f7]_
      - ○ [#f7]_
      - ○ [#f7]_
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -340,8 +337,8 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓
-     - ✓
+     - Supported
+     - Supported
      - 
      - 
      - 
@@ -351,12 +348,12 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓
-     - ✓
+     - Supported
+     - Supported
      - 
      - 
      - 
-   * - ``string`` / ``char`` / ``varchar``
+   * - ``string`` / ``char`` / ``text``
      - 
      - 
      - 
@@ -364,7 +361,7 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
    * - ``date``
@@ -376,8 +373,8 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓
-     - ✓
+     - Supported
+     - Supported
    * - ``timestamp``, ``timestamp`` with timezone
      - 
      - 
@@ -388,7 +385,7 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓
+     - Supported
 
 * If an ORC file has an unsupported type like ``binary``, ``list``, ``map``, and ``union``, but the data is not referenced in the table (it does not appear in the :ref:`SELECT` query), the statement will succeed. If the column is referenced, an error will be thrown to the user, explaining that the type is not supported, but the column may be ommited.
 
@@ -459,7 +456,7 @@ Further Reading and Migration Guides
 
 .. rubric:: Footnotes
 
-.. [#f0] Text values include ``TEXT``, ``VARCHAR``, and ``NVARCHAR``
+.. [#f0] Text values include ``TEXT``
 
 .. [#f2] With UTF8 annotation
 

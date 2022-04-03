@@ -11,8 +11,6 @@ SQream DB supports commands from ANSI SQL.
 Data Definition Commands (DDL)
 ================================
 
-   update
-
 .. list-table:: DDL Commands
    :widths: auto
    :header-rows: 1
@@ -20,45 +18,47 @@ Data Definition Commands (DDL)
    
    * - Command
      - Usage
-   * - :ref:`ADD COLUMN<add_column>`
+   * - :ref:`add_column`
      - Add a new column to a table
-   * - :ref:`UPDATE<update>`
-     - Modify the value of certain columns in existing rows without creating a table
-   * - :ref:`ALTER DEFAULT SCHEMA<alter_default_schema>`
+   * - :ref:`alter_default_schema`
      - Change the default schema for a role
-   * - :ref:`ALTER TABLE<alter_table>`
+   * - :ref:`alter_table`
      - Change the schema of a table
-   * - :ref:`CREATE DATABASE<create_database>`
+   * - :ref:`cluster_by`
+     - Change clustering keys in a table
+   * - :ref:`create_database`
      - Create a new database
-   * - :ref:`CREATE EXTERNAL TABLE<create_external_table>`
+   * - :ref:`create_external_table`
      - Create a new external table in the database (deprecated)
-   * - :ref:`CREATE FOREIGN TABLE<create_foreign_table>`
+   * - :ref:`create_foreign_table`
      - Create a new foreign table in the database
-   * - :ref:`CREATE FUNCTION <create_function>`
+   * - :ref:`create_function`
      - Create a new user defined function in the database
-   * - :ref:`CREATE SCHEMA<create_schema>`
+   * - :ref:`create_schema`
      - Create a new schema in the database
-   * - :ref:`CREATE TABLE<create_table>`
+   * - :ref:`create_table`
      - Create a new table in the database
-   * - :ref:`CREATE TABLE AS<create_table_as>`
+   * - :ref:`create_table_as`
      - Create a new table in the database using results from a select query
-   * - :ref:`CREATE VIEW<create_view>`
+   * - :ref:`create_view`
      - Create a new view in the database
-   * - :ref:`DROP COLUMN<drop_column>`
+   * - :ref:`drop_clustering_key`
+     - Drops all clustering keys in a table
+   * - :ref:`drop_column`
      - Drop a column from a table
-   * - :ref:`DROP DATABASE<drop_database>`
+   * - :ref:`drop_database`
      - Drop a database and all of its objects
-   * - :ref:`DROP FUNCTION<drop_function>`
+   * - :ref:`drop_function`
      - Drop a function
-   * - :ref:`DROP SCHEMA<drop_schema>`
+   * - :ref:`drop_schema`
      - Drop a schema
-   * - :ref:`DROP TABLE<drop_table>`
+   * - :ref:`drop_table`
      - Drop a table and its contents from a database
-   * - :ref:`DROP VIEW<drop_view>`
+   * - :ref:`drop_view`
      - Drop a view
-   * - :ref:`RENAME COLUMN<rename_column>`
+   * - :ref:`rename_column`
      - Rename a column
-   * - :ref:`RENAME TABLE<rename_table>`
+   * - :ref:`rename_table`
      - Rename a table
 
 Data Manipulation Commands (DML)
@@ -86,6 +86,8 @@ Data Manipulation Commands (DML)
      - Select rows and column from a table
    * - :ref:`TRUNCATE<truncate>`
      - Delete all rows from a table
+   * - :ref:`UPDATE<update>`
+     - Modify the value of certain columns in existing rows without creating a table
    * - :ref:`VALUES<values>`
      - Return rows containing literal values
 
@@ -111,29 +113,6 @@ Utility Commands
    * - :ref:`SELECT DUMP_DATABASE_DDL<dump_database_ddl>`
      - View the ``CREATE TABLE`` statement for an current database
 
-Saved Queries
-===================
-
-.. list-table:: Saved Queries
-   :widths: auto
-   :header-rows: 1
-   
-   * - Command
-     - Usage
-   * - :ref:`SELECT DROP_SAVED_QUERY<drop_saved_query>`
-     - Drop a saved query
-   * - :ref:`SELECT EXECUTE_SAVED_QUERY<execute_saved_query>`
-     - Executes a saved query
-   * - :ref:`SELECT LIST_SAVED_QUERIES<list_saved_queries>`
-     - Returns a list of saved queries
-   * - :ref:`SELECT RECOMPILE_SAVED_QUERY<recompile_saved_query>`
-     - Recompiles a query that has been invalidated by a schema change
-   * - :ref:`SELECT SAVE_QUERY<save_query>`
-     - Compiles and saves a query for re-use and sharing
-   * - :ref:`SELECT SHOW_SAVED_QUERY<show_saved_query>`
-     - Shows query text for a saved query
-	 
-For more information, see :ref:`saved_queries`
 
 
 Monitoring
@@ -203,17 +182,3 @@ Access Control Commands
      - Revoke permissions from a role
    * - :ref:`rename_role`
      - Rename a role
-
-
-.. toctree::
-   :maxdepth: 1
-   :titlesonly:
-   :hidden:
-   :glob:
-
-   ddl_commands/*
-   dml_commands/*
-   utility_commands/*
-   monitoring_commands/*
-   wlm_commands/*
-   access_control_commands/*
