@@ -280,7 +280,6 @@ The following table describes the Worker flag types:
 	   * Example 1: ``* master=> ALTER SYSTEM SET heartbeatTimeout=111;``
 	   * Example 2: ``* master=> select show_md_flag(‘all’); heartbeatTimeout,111``
 	   * Example 3: ``* master=> select show_md_flag(‘heartbeatTimeout’); heartbeatTimeout,111``
-	   
 
 
 All Configurations
@@ -727,3 +726,5 @@ The following is an example of a catalog table query:
    varcharEncoding, ascii, ascii, default, Changes the expected encoding for Varchar columns
    useCrcForTextJoinKeys, true, true, default,
    hiveStyleImplicitStringCasts, false, false, default,
+
+This guide covers the configuration files and the ``SET`` statement.

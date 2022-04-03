@@ -158,7 +158,7 @@ The log is a CSV, with several fields.
    * - ``1000``
      - ``SYSTEM``
      - Worker startup message
-     - ``"Server Start Time - 2019-12-30 21:18:31, SQream ver{v2020.1}"``
+     - ``"Server Start Time - 2019-12-30 21:18:31, SQream ver{v2020.2}"``
    * - ``1002``
      - ``SYSTEM``
      - ``Metadata``
@@ -354,7 +354,7 @@ Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a databas
 
    CREATE FOREIGN TABLE logs 
    (
-     start_marker      VARCHAR(4),
+     start_marker      TEXT(4),
      row_id            BIGINT,
      timestamp         DATETIME,
      message_level     TEXT,
@@ -368,7 +368,7 @@ Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a databas
      service_name      TEXT,
      message_type_id   INT,
      message           TEXT,
-     end_message       VARCHAR(5)
+     end_message       TEXT(5)
    )
    WRAPPER csv_fdw
    OPTIONS
@@ -380,6 +380,7 @@ Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a databas
    ;
    
 For more information, see `Loading Logs with Foreign Tables <https://docs.sqream.com/en/v2020-1/reference/sql/sql_statements/dml_commands/copy_from.html>`_.
+
 
 
 

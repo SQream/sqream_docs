@@ -177,6 +177,3 @@ Unlike node-partitioning (or sharding), chunks are:
    ::
  
 * Compressed individually to improve compression and data locality.
-
-
-

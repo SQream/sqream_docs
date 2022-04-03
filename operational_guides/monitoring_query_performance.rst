@@ -461,6 +461,7 @@ Identifying the Offending Nodes
           494 |     194 | DeferredGather       |    133241 |     20 |              6662 | 2020-09-04 19:07:03 |            193 |         |       |                 |    0.41
           [...]
           494 |     221 | ReadTable            |  20000000 |     20 |           1000000 | 2020-09-04 19:07:01 |            220 | 20MB    |       | public.part     |     0.1
+
    When you see ``DeferredGather`` operations taking more than a few seconds, that's a sign that you're selecting too much data.
    In this case, the DeferredGather with node ID 166 took over 21 seconds.
    
@@ -791,6 +792,7 @@ For example:
            30 |      10 | Rechunk            | 60000000 |     15 |           4000000 | 2020-09-10 16:17:10 |              9 |       |       |                      |       0
            30 |      11 | CpuDecompress      | 60000000 |     15 |           4000000 | 2020-09-10 16:17:10 |             10 |       |       |                      |       0
            30 |      12 | ReadTable          | 60000000 |     15 |           4000000 | 2020-09-10 16:17:10 |             11 | 520MB |       | public.t_inefficient |    0.05
+
 #. We can look to see if there's any shrinking we can do on the ``GROUP BY`` key
    
    .. code-block:: psql

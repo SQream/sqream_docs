@@ -3,9 +3,7 @@
 **********************
 CLUSTER BY
 **********************
-
 ``CLUSTER BY`` can be used to change clustering keys in a table. 
-
 
 Read our :ref:`data_clustering` guide for more information.
 
@@ -65,5 +63,3 @@ Reclustering a table
 .. code-block:: postgres
 
    ALTER TABLE public.users CLUSTER BY start_date;
-
-

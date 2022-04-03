@@ -82,5 +82,4 @@ Omitting columns that have a default values (including default ``NULL`` values) 
 .. note:: Null row values are represented as ``\N``
 
 For more information on inserting rows, see :ref:`insert`.
-
 For more information on default values, see :ref:`default value<default_values>`.

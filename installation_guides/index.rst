@@ -3,8 +3,9 @@
 *************************
 Installation Guides
 *************************
+Before you get started using SQream, consider your business needs and available resources. SQream was designed to run in a number of environments, and to be installed using different methods depending on your requirements. This determines which installation method to use.
 
-The **Installation Guides** page incudes the following installation guides:
+The **Installation Guides** section describes the following installation guide sets:
 
 .. toctree::
    :maxdepth: 1

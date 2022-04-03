@@ -12,8 +12,6 @@ For related information, see the following:
 * `REGEXP_SUBSTR <https://docs.sqream.com/en/v2020-1/reference/sql/sql_functions/scalar_functions/string/regexp_substr.html>`_
 
 
-
-
 Syntax
 --------------
 The following is a syntactic example of the ``REGEXP_REPLACE`` function:

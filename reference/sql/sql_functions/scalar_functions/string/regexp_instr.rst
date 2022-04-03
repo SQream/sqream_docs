@@ -4,8 +4,7 @@
 REGEXP_INSTR
 **************************
 
-Returns the start position of a regex match.
-
+The ``REGEXP_INSTR`` function returns the start position of a regex match and searches a string for a POSIX-style regular expression. This function returns the position within the string where the match was located.
 
 See also: :ref:`regexp_count`, :ref:`regexp_substr`.
 
@@ -34,7 +33,8 @@ Arguments
    * - ``occurence``
      - Which occurence to search for. Defaults to 1
    * - ``return_position``
-     - Setes the position within the string to return. Using 0, the function returns the string position of the first character of the substring that matches the pattern. Defaults to 0
+     - Specifies the location within the string to return. Using 0, the function returns the string position of the first character of the substring that matches the pattern. 
+       A value greater than 0 returns will return the position of the first character following the end of the pattern. Defaults to 0
 
 Test patterns
 ==============
@@ -104,14 +104,14 @@ For these examples, assume a table named ``nba``, with the following structure:
    
    CREATE TABLE nba
    (
-      "Name" varchar(40),
-      "Team" varchar(40),
+      "Name" text(40),
+      "Team" text(40),
       "Number" tinyint,
-      "Position" varchar(2),
+      "Position" text(2),
       "Age" tinyint,
-      "Height" varchar(4),
+      "Height" text(4),
       "Weight" real,
-      "College" varchar(40),
+      "College" text(40),
       "Salary" float
     );
 

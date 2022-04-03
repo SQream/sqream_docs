@@ -8,6 +8,8 @@ Returns the starting position of a pattern inside a string.
 
 See also :ref:`charindex`, :ref:`regexp_instr`.
 
+``PATINDEX`` works like :ref:`like`, so the standard wildcards are supported. You do not have to enclose the pattern between percents. 
+
 .. note:: This function is provided for SQL Server compatability.
 
 Syntax
@@ -15,7 +17,7 @@ Syntax
 
 .. code-block:: postgres
 
-   PATINDEX ( string_test_expr , string_expr [ , start_index ] ) --> INT
+   PATINDEX ( string_test_expr , string_expr ) --> INT
 
 Arguments
 ============
@@ -30,8 +32,7 @@ Arguments
      - Pattern to find
    * - ``string_expr``
      - String to search within
-   * - ``start_index``
-     - The character index offset to start counting from. Defaults to 1
+
 
 Test patterns
 ==============
@@ -68,12 +69,21 @@ Notes
 
 * If the value is NULL, the result is NULL.
 
+* PATINDEX works on ``VARCHAR`` text types only.
+
+* PATINDEX does not work on all literal values - only on column values.
+   
+   (i.e. ``PATINDEX('%mimsy%', 'All mimsy were the borogoves')`` will not work, but ``PATINDEX('%mimsy%', line)`` will)
+
+
+
 Examples
 ===========
 
 For these examples, consider the following table and contents:
 
 .. code-block:: postgres
+
 
    CREATE TABLE jabberwocky(line TEXT(50));
 
@@ -84,12 +94,12 @@ For these examples, consider the following table and contents:
       ,('Beware the Jubjub bird, and shun '), ('      The frumious Bandersnatch!" ');
 
 
-Finding capital letters
+Simple patterns
 -----------------------------------------
 
 .. code-block:: psql
 
-   t=> SELECT line, CHARINDEX('mimsy', line) as "Position of mimsy" FROM jabberwocky;
+   t=> SELECT line, PATINDEX('%mimsy%', line) as "Position of mimsy" FROM jabberwocky;
    line                                             | Position of mimsy
    -------------------------------------------------+------------------
    'Twas brillig, and the slithy toves              |                 0
@@ -102,25 +112,22 @@ Finding capital letters
          The frumious Bandersnatch!"                |                 0
 
 
-Using the ``start_index`` parameter
---------------------------------------
+Complex wildcards expressions
+--------------------------------
 
-Using ``start_index`` to peek past the first match location
+The following example uses the ``^`` negation operator to find the position of a character that is neither a number, a letter, or a space.
 
 .. code-block:: psql
 
+   t=> SELECT PATINDEX('%[^ 0-9A-z]%', line), line FROM jabberwocky;
    
-   t=> SELECT line, CHARINDEX('and', line), CHARINDEX('and', line, 20) FROM jabberwocky;
-   line                                             | charindex | charindex0
-   -------------------------------------------------+-----------+-----------
-   'Twas brillig, and the slithy toves              |        16 |          0
-         Did gyre and gimble in the wabe:           |        16 |          0
-   All mimsy were the borogoves,                    |         0 |          0
-         And the mome raths outgrabe.               |         0 |          0
-   "Beware the Jabberwock, my son!                  |         0 |          0
-         The jaws that bite, the claws that catch!  |         0 |          0
-   Beware the Jubjub bird, and shun                 |        25 |         25
-         The frumious Bandersnatch!"                |        21 |         21
-
-
-
+   patindex | line                                           
+   ---------+------------------------------------------------
+          1 | 'Twas brillig, and the slithy toves            
+         38 |       Did gyre and gimble in the wabe:         
+         29 | All mimsy were the borogoves,                  
+         34 |       And the mome raths outgrabe.             
+          1 | "Beware the Jabberwock, my son!                
+         25 |       The jaws that bite, the claws that catch!
+         23 | Beware the Jubjub bird, and shun               
+         32 |       The frumious Bandersnatch!"              

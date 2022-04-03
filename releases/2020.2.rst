@@ -1,0 +1,115 @@
+.. _2020.2:
+
+**************************
+Release Notes 2020.2
+**************************
+
+SQream v2020.2 contains some new features, improved performance, and bug fixes.
+
+This version has new window ranking function and a new editor UI to empower data users to analyze more data with less friction.
+
+As always, the latest release improves reliability and performance, and makes getting more data into SQream easier than ever.
+
+
+New Features
+================
+
+UI
+----------
+
+* New :ref:`sqream_studio` replaces the previous Statement Editor.
+
+Integrations
+-----------------
+
+* Our :ref:`Python driver (pysqream)<pysqream>` now has an SQLAlchemy dialect. Customers can write high-performance Python applications that make full use of SQream - connect, query, delete, and insert data. Data scientists can use pysqream with Pandas, Numpy, and AI/ML frameworks like TensorFlow for direct queries of huge datasets.
+
+SQL Support
+---------------
+
+* Added :ref:`lag`/:ref:`lead` ranking functions to our :ref:`window_functions` support. We will have more features coming in the next version.
+
+* 
+   New syntax preview for :ref:`external_tables`. Foreign tables replace external tables, with improved functionality. 
+
+   You can keep using the existing foreign table syntax for now, but it may be deprecated in the future.
+   
+   .. code-block:: postgres
+   
+      CREATE FOREIGN TABLE orc_example
+      (
+         name varchar(40),
+         Age tinyint,
+         Salary float
+       )
+      WRAPPER orc_fdw
+      OPTIONS 
+      ( LOCATION = 'hdfs://hadoop-nn.piedpiper.com:8020/demo-data/example.orc' );
+
+
+Improvements and Fixes
+========================
+
+SQream v2020.2 includes hundreds of small new features and tunable parameters that improve performance, reliability, and stability.
+
+* ~100 bug fixes, including:
+   
+   - Fixed CSV handling for DOS newlines
+   - Fixed "out of bounds"  message when several layers of nested ``substring``, ``cast``, and ``to_hex`` were used to produce one value. 
+   - Fixed "Illegal memory access" that would occur in extremely rare situations on all-text tables
+   - Window functions can now be used with all aggregations
+   - Fixed situation where a single worker may use more than one GPU that isn't allocated to it
+   - Text columns can now be added to existing tables with :ref:`alter_table`
+
+* New :ref:`data_clustering` syntax that can improve query performance for unsorted data
+
+
+Operations
+========================
+
+* When upgrading from a previous version of SQream (for example, v2019.2), the storage version must be upgraded using the :ref:`upgrade_storage_cli_reference` utility: ``./bin/upgrade_storage /path/to/storage/sqreamdb/``
+
+* 
+   A change in memory allocation behaviour in this version sees the introduction of a new setting, ``limitQueryMemoryGB``. This is an addition to the previous ``spoolMemoryGB`` setting.
+ 
+   A good rule-of-thumb is to allow 5% system memory for other processes. The spool memory allocation should be around 90% of the total memory allocated.
+   
+   - ``limitQueryMemoryGB`` defines how much total system memory is used by the worker. The recommended setting is (``total host memory`` - 5%) / ``sqreamd workers on host``.
+
+   - ``spoolMemoryGB`` defines how much memory is set aside for spooling, out of the total system memory allocated in ``limitQueryMemoryGB``. The recommended setting is 90% of the ``limitQueryMemoryGB``.
+   
+   This setting must be set lower than the ``limitQueryMemoryGB`` setting.
+   
+   For example, for a machine with 512GB of RAM and 4 workers, the recommended settings are:
+   
+   - ``limitQueryMemoryGB`` - ``⌊(512 * 0.95 / 4)⌋ → ~ 486 / 4 → 121``.
+   
+   - ``spoolMemoryGB`` - ``⌊( 0.9 * limitQueryMemoryGB )⌋ → ⌊( 0.9 * 121 )⌋ → 108``
+
+   Example settings per-worker, for 512GB of RAM and 4 workers:
+   
+   .. code-block:: none
+      
+      "runtimeFlags": {
+         "limitQueryMemoryGB" : 121,
+         "spoolMemoryGB" : 108
+
+   
+
+ 
+Known Issues and Limitations
+================================
+
+* An invalid formatted CSV can cause an ``insufficient memory`` error on a :ref:`copy_from` statement if a quote isn't closed and the file is much larger than system memory.
+
+* Multiple ``COUNT( distinct ... )`` operations within the same query are limited to "developer mode" due to an instability that was identified. If you rely on this feature, contact your SQream account manager to enable this feature.
+
+* ``TEXT`` columns can't be used with an outer join together with an inequality check (``!= , <>``)
+
+
+Upgrading to  Version 2020.2
+========================
+
+Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and other OSs via Docker.
+
+Contact your account manager to get the latest release of SQream.

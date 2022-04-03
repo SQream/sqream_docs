@@ -4,7 +4,7 @@
 Subqueries
 ***************************
 
-Subqueries allows the reuse of results from another query.
+Subqueries allows you to reuse of results from another query.
 
 SQream DB supports relational (also called *derived table*) subqueries, which appear as :ref:`select` queries as part of a table expression.
 
@@ -15,35 +15,43 @@ SQream DB also supports :ref:`common_table_expressions`, which are a form of sub
    
    * There is no limit to the number of subqueries or nesting limits in a statement
 
-Examples
-===========
 
-For these examples, assume a table named ``nba``, with the following structure:
+
+   
+   
+Table Subqueries
+===========================   
+
+The following is an example of table named ``nba`` with the following structure:
 
 .. code-block:: postgres
    
    CREATE TABLE nba
    (
-      "Name" varchar(40),
-      "Team" varchar(40),
+      "Name" text(40),
+      "Team" text(40),
       "Number" tinyint,
-      "Position" varchar(2),
+      "Position" text(2),
       "Age" tinyint,
-      "Height" varchar(4),
+      "Height" text(4),
       "Weight" real,
-      "College" varchar(40),
+      "College" text(40),
       "Salary" float
     );
 
 
-Here's a peek at the table contents (:download:`Download nba.csv </_static/samples/nba.csv>`):
+To see the table contents, click :download:`Download nba.csv </_static/samples/nba.csv>`:
 
 .. csv-table:: nba.csv
    :file: nba-t10.csv
    :widths: auto
    :header-rows: 1
+   
+Scalar Subqueries
+===================
+The following are examples of scalar subqueries.
 
-Simple subquery
+Simple Subquery
 ------------------
 
 .. code-block:: psql
@@ -54,13 +62,13 @@ Simple subquery
    ---
    26
 
-Combining a subquery with a join
+Combining a Subquery with a Join
 ----------------------------------
 
 .. code-block:: psql
 
    t=> SELECT * FROM
-   .     (SELECT "Name" FROM nba WHERE "Height" > '7-0') AS t(name,team,age)
+   .     (SELECT "Name" FROM nba WHERE "Height" > '7-0') AS t(name)
    .     , nba AS n
    .       WHERE n."Name"=t.name;
    name               | Name               | Team                   | Number | Position | Age | Height | Weight | College    | Salary  

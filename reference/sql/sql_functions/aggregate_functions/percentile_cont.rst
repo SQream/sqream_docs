@@ -61,4 +61,5 @@ The following is an example of the ``PERCENTILE_CONT`` function:
    ---------------+
    12.8
    
+
 .. note:: The output value is an extrapolation of the halfway point between the values. 

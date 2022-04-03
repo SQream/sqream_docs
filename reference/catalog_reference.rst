@@ -21,6 +21,8 @@ Types of data exposed by ``sqream_catalog``
    
    * - Object
      - Table
+   * - Clustering keys
+     - ``clustering_keys``
    * - Columns
      - ``columns``, ``external_table_columns``
    * - Databases
@@ -57,6 +59,31 @@ The catalog contains a few more tables which contain storage details for interna
 
 Tables in the catalog
 ========================
+
+clustering_keys
+-----------------------
+
+Explicit clustering keys for tables.
+
+When more than one clustering key is defined, each key is listed in a separate row.
+
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Column
+     - Description
+   * - ``database_name``
+     - Name of the database containing the table
+   * - ``table_id``
+     - ID of the table containing the column
+   * - ``schema_name``
+     - Name of the schema containing the table
+   * - ``table_name``
+     - Name of the table containing the column
+   * - ``clustering_key``
+     - Name of the column that is a clustering key for this table
 
 columns
 --------
@@ -121,7 +148,11 @@ For ``TABLES`` see :ref:`tables <tables_table>`
    * - ``table_name``
      - Name of the table
    * - ``format``
-     - Identifies the source format. ``0`` for CSV, ``1`` for Parquet
+     - 
+         Identifies the foreign data wrapper used.
+      
+         ``0`` for csv_fdw, ``1`` for parquet_fdw, ``2`` for orc_fdw.
+         
    * - ``created``
      - Identifies the clause used to create the table
 
@@ -424,12 +455,51 @@ Each storage extents can contain several chunks.
    * - ``column_id``
      - ID of the column containing the extent
    * - ``extent_id``
-     - ``???``-wide ID for the extent
+     - ID for the extent
    * - ``size``
      - Extent size in megabytes
    * - ``path``
      - Full path to the extent on the file system
 
+chunk_columns
+-------------------
+
+``chunk_columns`` lists chunk information by column.
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Column
+     - Description
+   * - ``database_name``
+     - Name of the databse containing the extent
+   * - ``table_id``
+     - ID of the table containing the extent
+   * - ``column_id``
+     - ID of the column containing the extent
+   * - ``chunk_id``
+     - ID for the chunk
+   * - ``extent_id``
+     - ID for the extent
+   * - ``compressed_size``
+     - Actual chunk size in bytes
+   * - ``uncompressed_size``
+     - Uncompressed chunk size in bytes
+   * - ``compression_type``
+     - Actual compression scheme for this chunk
+   * - ``long_min``
+     - Minimum numeric value in this chunk (if exists)
+   * - ``long_max``
+     - Maximum numeric value in this chunk (if exists)
+   * - ``string_min``
+     - Minimum text value in this chunk (if exists)
+   * - ``string_max``
+     - Maximum text value in this chunk (if exists)
+   * - ``offset_in_file``
+     - Internal use
+
+.. note:: This is an internal table designed for low-level performance troubleshooting.
 
 chunks
 -------

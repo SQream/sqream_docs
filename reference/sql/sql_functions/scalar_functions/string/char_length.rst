@@ -19,7 +19,7 @@ Syntax
 
 .. code-block:: postgres
 
-   CHAR_LEN( nvarchar_expr ) --> INT
+   CHAR_LEN( text_expr ) --> INT
 
 Arguments
 ============

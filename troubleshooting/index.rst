@@ -22,4 +22,6 @@ The **Troubleshooting** page describes solutions to the following issues:
    node_js_related_issues
    core_dumping_related_issues
    sqream_sql_installation_related_issues
+   log_related_issues
+   core_dumping_related_issues
    information_for_support

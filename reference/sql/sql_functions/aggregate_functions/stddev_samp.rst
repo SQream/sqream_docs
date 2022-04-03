@@ -62,14 +62,14 @@ For these examples, assume a table named ``nba``, with the following structure:
    
    CREATE TABLE nba
    (
-      "Name" varchar(40),
-      "Team" varchar(40),
+      "Name" text(40),
+      "Team" text(40),
       "Number" tinyint,
-      "Position" varchar(2),
+      "Position" text(2),
       "Age" tinyint,
-      "Height" varchar(4),
+      "Height" text(4),
       "Weight" real,
-      "College" varchar(40),
+      "College" text(40),
       "Salary" float
     );
 

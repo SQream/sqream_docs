@@ -10,7 +10,7 @@ Access Control
 Overview
 ==========
 
-Access control provides authentication and authorization in SQream DB.
+Access control provides authentication and authorization in SQream DB. 
 
 SQream DB manages authentication and authorization using a role-based access control system (RBAC), like ANSI SQL and other SQL products.
 
@@ -425,6 +425,11 @@ In the example, the database is called ``my_database``, and the new or existing 
 
 Our departmental example has four user group roles and seven users roles
 
+.. figure:: /_static/images/access_control_department_example.png
+   :scale: 60 %
+   
+
+
 There will be a group for this schema for each of the following:
 
 .. list-table:: 
@@ -515,10 +520,11 @@ As a superuser, you connect to the system and run the following:
    
       If you're getting a ``Missing the following permissions: SELECT on table 'database.public.tablename'`` error, make sure that
       you've altered the default permissions with the ``ALTER DEFAULT PERMISSIONS`` statement.
+	  
+	  
 
 Creating new users in the departments
 -----------------------------------------
-
 After the group roles have been created, you can now create user roles for each of your users.
 
 .. code-block:: postgres

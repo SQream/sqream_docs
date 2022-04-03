@@ -1,5 +1,3 @@
-.. _installing_and_launching_sqream:
-
 *************************
 Installing and Launching SQream
 *************************
@@ -15,6 +13,3 @@ The **Installing SQream Studio** page incudes the following installation guides:
    installing_sqream_with_kubernetes
    installing_monit
    launching_sqream_with_monit
-
-
-

@@ -321,7 +321,7 @@ Installing NodeJS on Ubuntu
 
    .. code-block:: console
 
-      $ sudo npm install pm2 -g
+      $ sudo npm install pm2 -g	  
 	  
 Installing NodeJS Offline
 -------------------------------------------
@@ -400,6 +400,7 @@ Installing the pm2 Service Offline
 
    .. code-block:: console
 
+      $ sudo npm install pm2 -g  
       $ cd /usr/bin again
 
 6.  Create a symbolink to the **pm2** service:

@@ -234,3 +234,13 @@ If ``WITH ADMIN OPTION`` is specified, the role that has the admin option can in
    
    GRANT r_database_architect TO dba_user1 WITH ADMIN OPTION;
 
+Change password for user role
+--------------------------------------
+
+To change a user role's password, grant the user a new password.
+
+.. code-block:: postgres
+
+   GRANT  PASSWORD  'new_password'  TO  rhendricks;  
+
+.. note:: Granting a new password overrides any previous password. Changing the password while the role has an active running statement does not affect that statement, but will affect subsequent statements.

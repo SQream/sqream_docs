@@ -76,5 +76,3 @@ When you have finished working with your table, you can drop the table to remove
    test=> DROP TABLE cool_animals;
    
    executed
-   
-For more information on dropping tables, see :ref:`drop_table`.

@@ -3,7 +3,6 @@
 ********************
 Window Functions
 ********************
-
 Window functions are functions applied over a subset (known as a window) of the rows returned by a :ref:`select` query and describes the following:
 
 .. hlist::

@@ -100,8 +100,3 @@ In this example, we create a table based on results (:ref:`create_table_as`), bu
    287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | schema$t$public                 | Inclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
    287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | table$t$public$nba2$Insert      | Exclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
    287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | table$t$public$nba2$Update      | Exclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
-
-For more information on troubleshooting lock related issues, see 
-
-
-

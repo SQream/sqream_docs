@@ -76,7 +76,9 @@ SQream DB also supports any amount of nested CTEs, such as this:
 Reusing CTEs
 ----------------
 
-SQream DB supports reusing CTEs several times in a query:
+SQream DB supports reusing CTEs several times in a query.
+
+CTEs are separated with commas.
 
 .. code-block:: psql
    
@@ -88,3 +90,19 @@ SQream DB supports reusing CTEs several times in a query:
    ----------------+-----------------+----------------+----------------
    Stanley Johnson | Detroit Pistons | Andre Drummond | Detroit Pistons
    Aaron Gordon    | Orlando Magic   | Shabazz Napier | Orlando Magic  
+   
+   
+
+Using CTEs with :ref:`create_table_as`
+----------------------------------------
+
+When used with :ref:`create_table_as`, the ``CREATE TABLE`` statement should appear before ``WITH``.
+
+.. code-block:: postgres
+
+   CREATE TABLE weights AS
+   
+   WITH w AS
+       (SELECT * FROM
+           (WITH x AS (SELECT * FROM nba) SELECT * FROM x ORDER BY "Salary" DESC))
+     SELECT * FROM w ORDER BY "Weight" DESC;

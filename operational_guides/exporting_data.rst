@@ -5,7 +5,6 @@ Exporting Data
 ***********************  
 You can export data from SQream, which you may want to do for the following reasons:
 
-
 * To use data in external tables. See `Working with External Data <https://docs.sqream.com/en/v2020-1/installation_guides/external_data.html>`_.
 * To share data with other clients or consumers with different systems.
 * To copy data into another SQream cluster.

@@ -2,7 +2,7 @@
 
 This is the source files for SQream DB documentation.
 
-The public documentation is available at http://sqream-docs.rtfd.io 
+The public documentation is available at https://docs.sqream.com
 
 ## Make changes
 
@@ -32,6 +32,7 @@ you should see `(sphinx)` in your prompt (or the dir you used for the venv)
 install sphinx + theme:
 ```
 (sphinx) > pip install sphinx
+(sphinx) > pip install sphinx-notfound-page
 (sphinx) > pip install sphinx-rtd-theme
 ```
 

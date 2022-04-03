@@ -4,6 +4,15 @@
 CREATE EXTERNAL TABLE
 ***********************
 
+.. warning:: 
+   
+   The ``CREATE EXTERNAL TABLE`` syntax is deprecated, and will be removed in future versions.
+   
+   Starting with SQream DB v2020.2, external tables have been renamed to :ref:`foreign tables<create_foreign_table>`, and use a more flexible foreign data wrapper concept. See :ref:`create_foreign_table` instead.
+   
+   Upgrading to a new version of SQream DB converts existing tables automatically. When creating a new external tables, use the new foreign table syntax.
+
+
 ``CREATE TABLE`` creates a new external table in an existing database.
 
 See more in the :ref:`External tables guide<external_tables>`.
@@ -64,7 +73,7 @@ Syntax
        DEFAULT default_value
        | IDENTITY [ ( start_with [ , increment_by ] ) ]
 
-.. _ctas_parameters:
+.. _cet_parameters:
 
 Parameters
 ============
@@ -104,7 +113,7 @@ A simple table from Tab-delimited file (TSV)
 .. code-block:: postgres
 
    CREATE OR REPLACE EXTERNAL TABLE cool_animals
-     (id INT NOT NULL, name VARCHAR(30) NOT NULL, weight FLOAT NOT NULL)  
+     (id INT NOT NULL, name text(30) NOT NULL, weight FLOAT NOT NULL)  
    USING FORMAT csv 
    WITH  PATH  '/home/rhendricks/cool_animals.csv'
          FIELD DELIMITER '\t';
@@ -116,7 +125,7 @@ A table from a directory of Parquet files on HDFS
 .. code-block:: postgres
 
    CREATE EXTERNAL TABLE users
-     (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
+     (id INT NOT NULL, name text(30) NOT NULL, email text(50) NOT NULL)  
    USING FORMAT Parquet
    WITH  PATH  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet';
 
@@ -126,7 +135,7 @@ A table from a bucket of files on S3
 .. code-block:: postgres
 
    CREATE EXTERNAL TABLE users
-     (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
+     (id INT NOT NULL, name text(30) NOT NULL, email text(50) NOT NULL)  
    USING FORMAT Parquet
    WITH  PATH  's3://pp-secret-bucket/users/*.parquet'
          AWS_ID 'our_aws_id'

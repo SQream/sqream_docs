@@ -3,7 +3,6 @@
 **********************
 DROP CLUSTERING KEY
 **********************
- 
 ``DROP CLUSTERING KEY`` drops all clustering keys in a table.
 
 Read our :ref:`data_clustering` guide for more information.
@@ -60,5 +59,3 @@ Dropping clustering keys in a table
 .. code-block:: postgres
 
    ALTER TABLE public.users DROP CLUSTERING KEY
-
-

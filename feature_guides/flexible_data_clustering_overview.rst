@@ -12,5 +12,3 @@ The following are some scenarios ideal for data clustering:
   In such a case SQream reads the portion of data that contain values matching these predicates only.
 
 * Two clustered tables joined by their respective clustering keys.
-
-  In such a case SQream uses metadata to more easily identify matching chunks.

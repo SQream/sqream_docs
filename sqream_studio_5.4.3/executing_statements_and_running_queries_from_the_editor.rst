@@ -103,6 +103,83 @@ The database object functions are used to perform the following:
   
 
 
+.. |icon-user| image:: /_static/images/studio_icon_user.png
+   :align: middle
+   
+.. |icon-dots| image:: /_static/images/studio_icon_dots.png
+   :align: middle   
+   
+.. |icon-editor| image:: /_static/images/studio_icon_editor.png
+   :align: middle
+
+.. |icon-copy| image:: /_static/images/studio_icon_copy.png
+   :align: middle
+
+.. |icon-select| image:: /_static/images/studio_icon_select.png
+   :align: middle
+
+.. |icon-dots| image:: /_static/images/studio_icon_dots.png
+   :align: middle
+
+.. |icon-filter| image:: /_static/images/studio_icon_filter.png
+   :align: middle
+
+.. |icon-ddl-edit| image:: /_static/images/studio_icon_ddl_edit.png
+   :align: middle
+
+.. |icon-run-optimizer| image:: /_static/images/studio_icon_run_optimizer.png
+   :align: middle
+
+.. |icon-generate-create-statement| image:: /_static/images/studio_icon_generate_create_statement.png
+   :align: middle
+
+.. |icon-plus| image:: /_static/images/studio_icon_plus.png
+   :align: middle
+
+.. |icon-close| image:: /_static/images/studio_icon_close.png
+   :align: middle
+
+.. |icon-left| image:: /_static/images/studio_icon_left.png
+   :align: middle
+
+.. |icon-right| image:: /_static/images/studio_icon_right.png
+   :align: middle
+
+.. |icon-format-sql| image:: /_static/images/studio_icon_format.png
+   :align: middle
+
+.. |icon-download-query| image:: /_static/images/studio_icon_download_query.png
+   :align: middle
+
+.. |icon-open-query| image:: /_static/images/studio_icon_open_query.png
+   :align: middle
+
+.. |icon-execute| image:: /_static/images/studio_icon_execute.png
+   :align: middle
+
+.. |icon-stop| image:: /_static/images/studio_icon_stop.png
+   :align: middle
+
+.. |icon-dashboard| image:: /_static/images/studio_icon_dashboard.png
+   :align: middle
+
+.. |icon-expand| image:: /_static/images/studio_icon_expand.png
+   :align: middle
+
+.. |icon-scale| image:: /_static/images/studio_icon_scale.png
+   :align: middle
+
+.. |icon-expand-down| image:: /_static/images/studio_icon_expand_down.png
+   :align: middle
+
+.. |icon-add| image:: /_static/images/studio_icon_add.png
+   :align: middle
+
+.. |icon-add-worker| image:: /_static/images/studio_icon_add_worker.png
+   :align: middle
+
+.. |keep-tabs| image:: /_static/images/studio_keep_tabs.png
+   :align: middle
 
 
 .. list-table::
@@ -130,6 +207,7 @@ The database object functions are used to perform the following:
    * - DDL Optimizer
      - The `DDL Optimizer <https://docs.sqream.com/en/v2020-1/sqream_studio_5.4.3/executing_statements_and_running_queries_from_the_editor.html#optimizing-database-tables-using-the-ddl-optimizer>`_  lets you analyze database tables and recommends possible optimizations.
 
+
 Optimizing Database Tables Using the DDL Optimizer
 -----------------------
 The **DDL Optimizer** tab analyzes database tables and recommends possible optimizations according to SQream's best practices.
@@ -154,6 +232,7 @@ The following table describes the DDL Optimizer screen:
 Clicking **Run Optimizer** adds a tab to the Statement panel showing the optimized results of the selected object.
 
 For more information, see `Optimization and Best Practices <https://docs.sqream.com/en/v2020-1/operational_guides/optimization_best_practices.html>`_.
+
 
 Executing Pre-Defined Queries from the System Queries Panel
 ---------------
@@ -199,6 +278,7 @@ You can add and name new tabs for each statement that you need to execute, and S
 You can also rename the default tab name by double-clicking it and typing a new name and write multiple statements in tandem in the same tab by separating them with semicolons (``;``).If too many tabs to fit into the Statement Pane are open at the same time, the tab arrows are displayed. You can scroll through the tabs by clicking |icon-left| or |icon-right|, and close tabs by clicking |icon-close|. You can also close all tabs at once by clicking **Close all** located to the right of the tabs.
 
 .. tip:: If this is your first time using SQream, see `Getting Started <https://docs.sqream.com/en/v2020-1/getting_started/getting_started.html#first-steps>`_.
+
 
 
 .. Keyboard shortcuts

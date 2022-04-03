@@ -14,5 +14,3 @@ The **Administration Flags** page describes the following flag types, which can 
    admin_regular_flags
    admin_cluster_flags
    admin_worker_flags
-
-

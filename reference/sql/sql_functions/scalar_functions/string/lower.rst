@@ -6,6 +6,8 @@ LOWER
 
 Converts characters in a string to lower case
 
+See also: :ref:`upper`
+
 Syntax
 ==========
 

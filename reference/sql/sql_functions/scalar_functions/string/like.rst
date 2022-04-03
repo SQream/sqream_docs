@@ -43,7 +43,7 @@ Test patterns
      - Description
    * - ``%``
      - match zero or more characters
-   * - ``_``
+   * - ``_`` (underscore)
      - match exactly one character
    * - ``[A-Z]``
      - match any character between ``A`` and ``Z`` inclusive. The ``-`` character between two other characters forms a range that matches all characters from the first character to the second. For example, [A-Z] matches all ASCII capital letters.
@@ -56,6 +56,11 @@ Test patterns
    * - ``[abcC-F]``
      - match ``a`` ``b`` ``c`` or any character between ``C`` and ``F``
 
+* 
+   ``\`` (backslash) - escape character
+   
+   Using a backslash (``\``) indicates that the wildcard is interpreted as a regular character and not as a wildcard. 
+   
 Returns
 ============
 
@@ -64,7 +69,8 @@ Returns
 Notes
 =======
 
-* The test pattern must be literal string. Column references or complex expressions are currently unsupported. If matching just the beginning of the string, use :ref:`isprefixof` which supports column references.
+* The test pattern must be literal string. If matching just the beginning of the string, use :ref:`isprefixof` which supports column references.
+* Starting with version 2020.3.1, Column references or complex expressions are also supported.
 
 * If the value is NULL, the result is NULL.
 
@@ -77,14 +83,14 @@ For these examples, assume a table named ``nba``, with the following structure:
    
    CREATE TABLE nba
    (
-      Name varchar(40),
-      Team varchar(40),
+      Name text(40),
+      Team text(40),
       Number tinyint,
-      Position varchar(2),
+      Position text(2),
       Age tinyint,
-      Height varchar(4),
+      Height text(4),
       Weight real,
-      College varchar(40),
+      College text(40),
       Salary float
     );
 
@@ -117,6 +123,19 @@ Match the beginning of a string
    .. code-block:: postgres
    
       SELECT "Name","Age","Salary","Team" FROM nba WHERE ISPREFIXOF('Portland',"Team") LIMIT 5;
+
+Match a wildcard character by escaping
+--------------------------------------------
+
+To match a wildcard, escape it with a backslash escape character:
+
+.. code-block:: psql
+   
+   nba=> SELECT "Name" FROM nba WHERE "Name" LIKE '%\_%';
+   Name            | Age | Salary  | Team                  
+   ----------------+-----+---------+-----------------------
+   R.J._Hunter     |  22 | 1148640 | Boston Celtics
+
 
 Negate with ``NOT``
 ----------------------------------
@@ -165,3 +184,49 @@ Find players with a middle name or suffix
    Frank Kaminsky III       |  23 | 2612520 | Charlotte Hornets    
    Kelly Oubre Jr.          |  20 | 1920240 | Washington Wizards   
    Otto Porter Jr.          |  23 | 4662960 | Washington Wizards   
+   
+   
+Find NON-LITERAL patterns 
+---------------------------------------------
+
+.. code-block:: psql   
+   
+   nba=> CREATE TABLE t(x int not null, y text not null, z text not null);
+   nba=> INSERT INTO t VALUES (1,'abc','a'),(2,'abcd','bc');
+
+Select rows in which z is a prefix of y:
+-------------------------------------------------
+.. code-block:: psql   
+   
+   nba=> SELECT * FROM t WHERE y LIKE z || '%';
+   
+   x |  y  | z
+   -------------
+   1 | abc | a
+
+Select rows in which y contains z as a substring:
+--------------------------------------------------
+.. code-block:: psql   
+   
+   nba=> SELECT * FROM t WHERE y LIKE z || '%';
+
+   x |  y   | z
+   --------------
+   1 | abc  | a
+   2 | abcd | bc
+   
+
+Values that contain wildcards as well:
+---------------------------------------
+.. code-block:: psql   
+
+   nba=> CREATE TABLE patterns(x text not null);
+   nba=> INSERT INTO patterns values ('%'),('a%'),('%a');
+   nba=> SELECT x, 'abc' LIKE x FROM patterns; 
+   
+   x  |  ?column?
+   --------------
+   %  | 1
+   a% | 1
+   %a | 0
+   

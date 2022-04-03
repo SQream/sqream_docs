@@ -25,7 +25,7 @@ Arguments
    * - Parameter
      - Description
    * - ``expr``
-     - Text expression (``VARCHAR``, ``TEXT``)
+     - Text expression (``TEXT``)
 
 Returns
 ============
@@ -37,7 +37,9 @@ Notes
 
 * If the input value is NULL, the result is NULL.
 
-* The ``CRC64_JOIN`` variant skips leading whitespace, when used as a ``JOIN`` key
+* The ``CRC64_JOIN`` can be used with ``VARCHAR`` only. It can not be used with ``TEXT``.
+
+* The ``CRC64_JOIN`` variant ignores leading whitespace when used as a ``JOIN`` key.
 
 Examples
 ===========
@@ -53,4 +55,3 @@ Calculate a CRC-64 hash of a string
    crc64               
    --------------------
    -9085161068710498500
-

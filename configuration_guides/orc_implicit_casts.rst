@@ -8,5 +8,5 @@ The ``orcImplicitCasts`` flag sets the implicit cast in orc files, such as **int
 The following describes the ``orcImplicitCasts`` flag:
 
 * **Data type** - boolean
-* **Default value** - ``false``
+* **Default value** - ``true``
 * **Allowed values** - ``true``, ``false``

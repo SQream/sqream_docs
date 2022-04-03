@@ -1,0 +1,172 @@
+.. _2021.2:
+
+**************************
+Release Notes 2021.2
+**************************
+The 2021.2 release notes were released on 13/9/2021.
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
+New Features
+----------
+The 2021.2 Release Notes include the following new features:
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
+New Driver Compatibility
+************
+The 2021.2 release supports the following drivers:
+
+* **JDBC** - new driver version (JDBC 4.5) with important bug fixes.
+* **ODBC** - ODBC 4.1.1. available on request.
+* **NodeJS** - all versions starting with NodeJS 4.0. SQream recommends the latest version (NodeJS 4.2.4). 
+* **Dot Net** - SQream recommends version version 3.02 (compatible with DotNet version 48). 
+* **Pysqream** - pysqream 3.1.2
+
+Centralized Configuration System
+************
+SQream now uses a new configuration system based on centralized configuration accessible from SQream Studio.
+
+For more information, see the following:
+
+* `Configuration <https://docs.sqream.com/en/latest/guides/operations/configuration.html>`_ - describes how to configure your instance of SQream from a centralized location.
+* `SQream Studio 5.4.2 <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.2.html#>`_ - configure your instance of SQream from Studio.
+   
+Qualifying Schemas Without Providing an Alias
+************
+When running queries, SQream now supports qualifying schemas without providing an alias.
+
+For more information, see :ref:`create_schema`.
+
+
+
+
+
+Double-Quotations Supported When Importing and Exporting CSVs
+************
+When importing and exporting CSVs, SQream now supports using quotation characters other than double quotation marks (``"``).
+
+For more information, see the following:
+
+* :ref:`copy_from`
+
+* :ref:`copy_to`
+
+
+Note the following:
+
+* Leaving *<x>* unspecified uses the default value of standard double quotations ``”``.
+
+   ::
+
+* The quotation character must be a single, 1-byte printable ASCII character. The same octal syntax of the copy command can be used.
+
+   ::
+
+* The quote character cannot be contained in the field delimiter, record delimiter, or null marker.
+
+   ::
+   
+* Double-quotations can be customized when the ``csv_fdw`` value is used with the ``COPY FROM`` and ``CREATE FOREIGN TABLE`` statements.
+
+   ::
+
+* The default escape character always matches the quote character, and can be overridden by using the ``ESCAPE = {'\\' | E'\XXX')`` syntax as shown in the following examples:
+
+  .. code-block:: postgres
+
+     copy t from wrapper csv_fdw options (location = '/tmp/file.csv', escape='\\');
+
+  .. code-block:: postgres
+
+     copy t from wrapper csv_fdw options (location = '/tmp/file.csv', escape=E'\017');
+
+  .. code-block:: postgres
+
+     copy t to wrapper csv_fdw options (location = '/tmp/file.csv', escape='\\');
+	 
+For more information, see the following statements:
+
+
+* :ref:`copy_from`
+
+* :ref:`create_foreign_table`
+
+Performance Enhancements
+------
+In Version 2021.2, an advanced smart spooling mechanism splits spool memory based on required CP usage.
+
+Resolved Issues
+------
+The following table lists the issues that were resolved in Version 2021.2:
+
+.. list-table::
+   :widths: 17 200
+   :header-rows: 1  
+   
+   * - SQ No.
+     - Description
+   * - SQ-8294
+     - Quote qualifiers were not present in exported file, preventing it from being reloaded.   
+   * - SQ-8288
+     - Saved ``TEXT`` query parameters were not supported.        
+   * - SQ-8266
+     - A data loading issue occurred related to column order.      
+
+	 
+Known Issues
+------
+The **Known Issues** section is not relevant to Version 2021.2.
+
+
+Naming Convention Modifications
+------
+The **Naming Convention Modifications** describes SQream features, such as data types or statements, that have been renamed.
+
+NVARCHAR Data Type Renamed TEXT
+************
+The ``NVARCHAR`` data type has been renamed ``TEXT``.
+
+
+For more information on the ``TEXT`` data type, see `String (TEXT) <https://docs.sqream.com/en/latest/reference/sql_data_types.html#string-text-varchar>`_
+
+End of Support
+------
+The **End of Support** section is not relevant to Version 2021.2.
+
+Deprecated Features
+------
+The **Deprecated Components** section is not relevant to Version 2021.2.
+
+Upgrading Your SQream Version
+------
+The **Upgrading Your SQream Version** section describes the following:
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Upgrading Your Storage Version
+************
+When upgrading from a SQream version earlier than 2021.2 you must upgrade your storage version, as shown in the following example:
+
+   .. code-block:: console  
+
+      $ cat /etc/sqream/sqream1_config.json |grep cluster
+      $ ./upgrade_storage <cluster path>
+	  
+For more information on upgrading your SQream version, see `Upgrading SQream Version <https://docs.sqream.com/en/latest/guides/operations/installing_sqream_with_binary.html#upgrading-sqream-version>`_.
+
+Upgrading Your Client Drivers
+************
+For more information on the client drivers for version 2021.2, see `Client Drivers for 2021.2 <https://docs.sqream.com/en/latest/guides/client_drivers/index.html>`_.
+
+Configuring Your Instance of SQream
+************
+A new configuration method is used starting with Version 2021.2.
+
+For more information about configuring your instance of SQream, see :ref:`configuration`.

@@ -3,7 +3,6 @@
 ***********************
 Workload Manager
 ***********************
-
 The **Workload Manager** allows SQream DB workers to identify their availability to clients with specific service names. The load balancer uses that information to route statements to specific workers. 
 
 Overview
@@ -117,11 +116,6 @@ Verifying the Configuration
 -----------------------------------
 
 Use :ref:`show_subscribed_instances` to view service subscriptions for each worker. Use `SHOW_SERVER_STATUS <https://docs.sqream.com/en/v2020-1/reference/sql/sql_statements/monitoring_commands/show_server_status.html>`_ to see the statement queues.
-
-
-
-
-
 
 .. code-block:: psql
    

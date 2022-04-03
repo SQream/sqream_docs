@@ -1,10 +1,12 @@
 .. _upper:
 
 **************************
-LOWER
+UPPER
 **************************
 
 Converts characters in a string to upper case
+
+See also: :ref:`lower`
 
 Syntax
 ==========
@@ -57,7 +59,7 @@ Upper-casing a literal value
 
 .. code-block:: psql
 
-   t=> SELECT LOWER('SQream DB');
+   t=> SELECT UPPER('SQream DB');
    SQREAM DB
 
 Upper-casing a column of values

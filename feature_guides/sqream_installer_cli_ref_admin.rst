@@ -137,6 +137,4 @@ The upgrade process replaces the existing docker images with new ones.
    
       # ./sqream-install -i
 
-#. The upgrade process will check for running SQream DB processes. If any are found running, the installer will ask to stop them in order to continue the upgrade process. Once all services are stopped, the new version will be loaded. 
-
-#. After the upgrade, open :ref:`sqream_console_cli_reference` and restart the desired services.
+#. The upgrade process will check for running SQream DB processes. If any are found running, the installer will ask to stop them in order to continue the upgrade process. Once all services are stopped, the new version will be loaded.
