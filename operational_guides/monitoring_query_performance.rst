@@ -623,7 +623,7 @@ Common Solutions for Improving Filtering
 
 4. Joins with ``text`` Keys
 -----------------------------------
-Joins on long text keys, such as ``varchar(100)`` do not perform as well as numeric data types or very short text keys.
+Joins on long text keys do not perform as well as numeric data types or very short text keys.
 
 Identifying the Situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
