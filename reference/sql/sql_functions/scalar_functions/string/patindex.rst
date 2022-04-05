@@ -3,7 +3,7 @@
 **************************
 PATINDEX
 **************************
-
+ 
 Returns the starting position of a pattern inside a string.
 
 See also :ref:`charindex`, :ref:`regexp_instr`.
@@ -84,8 +84,7 @@ For these examples, consider the following table and contents:
 
 .. code-block:: postgres
 
-
-   CREATE TABLE jabberwocky(line TEXT(50));
+   CREATE TABLE jabberwocky(line VARCHAR(50));
 
    INSERT INTO jabberwocky VALUES 
       ('''Twas brillig, and the slithy toves '), ('      Did gyre and gimble in the wabe: ')

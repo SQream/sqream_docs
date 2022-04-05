@@ -3,7 +3,7 @@
 **************************
 CHAR_LENGTH
 **************************
-
+ 
 Calculates the number of characters in a string.
 
 .. note::

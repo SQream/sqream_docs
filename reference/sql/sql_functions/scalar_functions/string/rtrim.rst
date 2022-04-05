@@ -3,7 +3,7 @@
 **************************
 RTRIM
 **************************
-
+ 
 Trims trailing whitespace from a string.
 
 See also :ref:`trim`, :ref:`ltrim`.

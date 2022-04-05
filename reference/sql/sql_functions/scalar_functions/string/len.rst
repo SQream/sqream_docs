@@ -3,7 +3,7 @@
 **************************
 LEN
 **************************
-
+ 
 Calculates the number of characters in a string.
 
 .. note::
@@ -49,7 +49,7 @@ For these examples, consider the following table and contents:
 
 .. code-block:: postgres
    
-   CREATE TABLE jabberwocky(line TEXT(50));
+   CREATE TABLE jabberwocky(line VARCHAR(50));
    
    INSERT INTO jabberwocky VALUES 
       ($$'Twas brillig, and the slithy toves$$), ('      Did gyre and gimble in the wabe:')

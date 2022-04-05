@@ -4,7 +4,7 @@
 Window Functions
 ********************
 
-Window functions are functions applied over a subset (known as a window) of the rows returned by a :ref:`select` query. 
+Window functions are functions applied over a subset (known as a window) of the rows returned by a :ref:`select` query.  
 
 
 Syntax
@@ -221,14 +221,14 @@ For these examples, assume a table named ``nba``, with the following structure:
    
    CREATE TABLE nba
    (
-      "Name" text(40),
-      "Team" text(40),
+      "Name" varchar(40),
+      "Team" varchar(40),
       "Number" tinyint,
-      "Position" text(2),
+      "Position" varchar(2),
       "Age" tinyint,
-      "Height" text(4),
+      "Height" varchar(4),
       "Weight" real,
-      "College" text(40),
+      "College" varchar(40),
       "Salary" float
     );
 
@@ -332,3 +332,5 @@ This example calculates the salary between two players, starting from the highes
    Dwyane Wade     | 20000000 |      19689000 |        311000
    Brook Lopez     | 19689000 |      19689000 |             0
    DeAndre Jordan  | 19689000 |      19689000 |             0
+
+

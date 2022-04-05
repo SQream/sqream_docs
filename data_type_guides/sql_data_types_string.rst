@@ -3,7 +3,7 @@
 *************************
 String
 *************************
-``TEXT`` is designed for storing text or strings of characters.
+``TEXT`` and ``VARCHAR`` are types designed for storing text or strings of characters.
 
 SQream separates ASCII (``VARCHAR``) and UTF-8 representations (``TEXT``).
 

@@ -3,7 +3,7 @@
 **************************
 REGEXP_INSTR
 **************************
-
+ 
 The ``REGEXP_INSTR`` function returns the start position of a regex match and searches a string for a POSIX-style regular expression. This function returns the position within the string where the match was located.
 
 See also: :ref:`regexp_count`, :ref:`regexp_substr`.
@@ -104,14 +104,14 @@ For these examples, assume a table named ``nba``, with the following structure:
    
    CREATE TABLE nba
    (
-      "Name" text(40),
-      "Team" text(40),
+      "Name" varchar(40),
+      "Team" varchar(40),
       "Number" tinyint,
-      "Position" text(2),
+      "Position" varchar(2),
       "Age" tinyint,
-      "Height" text(4),
+      "Height" varchar(4),
       "Weight" real,
-      "College" text(40),
+      "College" varchar(40),
       "Salary" float
     );
 

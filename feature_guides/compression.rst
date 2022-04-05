@@ -306,3 +306,5 @@ Adapting to the narrowest data type will improve query performance and also redu
 However, smaller data types may compress better than larger types.
 
 For example, use the smallest numeric data type that will accommodate your data. Using ``BIGINT`` for data that fits in ``INT`` or ``SMALLINT`` can use more disk space and memory for query execution.
+
+Using ``FLOAT`` to store integers will reduce compression's effectiveness significantly.

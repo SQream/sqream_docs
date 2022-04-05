@@ -19,7 +19,21 @@ This section describes best practices and guidelines for designing tables.
 
 Use date and datetime types for columns
 -----------------------------------------
-When creating tables with dates or timestamps, using the purpose-built ``DATE`` and ``DATETIME`` types over integer types or ``TEXT`` will bring performance and storage footprint improvements, and in many cases huge performance improvements (as well as data integrity benefits). SQream DB stores dates and datetimes very efficiently and can strongly optimize queries using these specific types.
+
+When creating tables with dates or timestamps, using the purpose-built ``DATE`` and ``DATETIME`` types over integer types or ``VARCHAR`` will bring performance and storage footprint improvements, and in many cases huge performance improvements (as well as data integrity benefits). SQream DB stores dates and datetimes very efficiently and can strongly optimize queries using these specific types.
+
+Reduce varchar length to a minimum
+--------------------------------------
+
+With the ``VARCHAR`` type, the length has a direct effect on query performance.
+
+If the size of your column is predictable, by defining an appropriate column length (no longer than the maximum actual value) you will get the following benefits:
+
+* Data loading issues can be identified more quickly
+
+* SQream DB can reserve less memory for decompression operations
+
+* Third-party tools that expect a data size are less likely to over-allocate memory
 
 Don't flatten or denormalize data
 -----------------------------------
@@ -47,21 +61,32 @@ The one situation when this wouldn't be as useful is when data will be only quer
 
 Use information about the column data to your advantage
 -------------------------------------------------------------
+
 Knowing the data types and their ranges can help design a better table.
 
 Set ``NULL`` or ``NOT NULL`` when relevant
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 For example, if a value can't be missing (or ``NULL``), specify a ``NOT NULL`` constraint on the columns.
 
 Not only does specifying ``NOT NULL`` save on data storage, it lets the query compiler know that a column cannot have a ``NULL`` value, which can improve query performance.
 
+Keep VARCHAR lengths to a minimum
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+While it won't make a big difference in storage, large strings allocate a lot of memory at query time.
+
+If a column's string length never exceeds 50 characters, specify ``VARCHAR(50)`` rather than an arbitrarily large number.
+
+
 Sorting 
 ==============
+
 Data sorting is an important factor in minimizing storage size and improving query performance.
 
 * Minimizing storage saves on physical resources and increases performance by reducing overall disk I/O. Prioritize the sorting of low-cardinality columns. This reduces the number of chunks and extents that SQream DB reads during query execution.
 
-* Where possible, sort columns with the lowest cardinality first. Avoid sorting ``TEXT`` columns with lengths exceeding 50 characters.
+* Where possible, sort columns with the lowest cardinality first. Avoid sorting ``VARCHAR`` and ``TEXT/NVARCHAR`` columns with lengths exceeding 50 characters.
 
 * For longer-running queries that run on a regular basis, performance can be improved by sorting data based on the ``WHERE`` and ``GROUP BY`` parameters. Data can be sorted during insert by using :ref:`external_tables` or by using :ref:`create_table_as`.
 
@@ -233,6 +258,7 @@ Data loading considerations
 
 Allow and use natural sorting on data
 ----------------------------------------
+
 Very often, tabular data is already naturally ordered along a dimension such as a timestamp or area.
 
 This natural order is a major factor for query performance later on, as data that is naturally sorted can be more easily compressed and analyzed with SQream DB's metadata collection.
@@ -241,7 +267,9 @@ For example, when data is sorted by timestamp, filtering on this timestamp is mo
 
 Natural ordering can also be used for effective :ref:`delete` operations.
 
+
 Further reading and monitoring query performance
 =======================================================
+
 Read our :ref:`monitoring_query_performance` guide to learn how to use the built in monitoring utilities. 
 The guide also gives concerete examples for improving query performance.

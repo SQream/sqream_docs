@@ -3,7 +3,7 @@
 *****************
 CREATE TABLE
 *****************
-
+ 
 The ``CREATE TABLE`` statement is used to create a new table in an existing database.
 
 .. tip:: 
@@ -76,12 +76,12 @@ The ``DEFAULT`` value constraint specifies a value to use if one is not defined 
 
 The value may be a literal, which is evaluated at the time the row is created.
 
-
 .. note:: The ``DEFAULT`` constraint only applies if the column does not have a value specified in the :ref:`insert` or :ref:`copy_from` statement. You can still insert a ``NULL`` into an nullable column by explicitly inserting ``NULL``. For example, ``INSERT INTO cool_animals VALUES (1, 'Gnu', NULL)``.
 
 Syntax
 ---------
 The following is the correct syntax for using the **DEFAULT** value constraints:
+
 
 .. code-block:: postgres
 
@@ -141,7 +141,7 @@ The following is an example of the syntax used to create a standard table:
 
    CREATE TABLE cool_animals (
       id INT NOT NULL,
-      name texy(30) NOT NULL,
+      name varchar(30) NOT NULL,
       weight FLOAT,
       is_agressive BOOL
    );
@@ -155,7 +155,7 @@ The following is an example of the syntax used to create a table with default va
 
    CREATE TABLE cool_animals (
       id INT NOT NULL,
-      name text(30) NOT NULL,
+      name varchar(30) NOT NULL,
       weight FLOAT,
       is_agressive BOOL DEFAULT false NOT NULL
    );
@@ -171,8 +171,8 @@ The following is an example of the syntax used to create a table with an identit
 
    CREATE TABLE users (
       id BIGINT IDENTITY(0,1) NOT NULL , -- Start with 0, increment by 1
-      name TEXT(30) NOT NULL,
-      country TEXT(30) DEFAULT 'Unknown' NOT NULL
+      name VARCHAR(30) NOT NULL,
+      country VARCHAR(30) DEFAULT 'Unknown' NOT NULL
    );
 
 .. note:: 
@@ -203,65 +203,9 @@ The following is an example of the syntax used to create a table with a clusteri
 .. code-block:: postgres
 
    CREATE TABLE users (
-      name TEXT(30) NOT NULL,
+      name VARCHAR(30) NOT NULL,
       start_date datetime not null,
-      country TEXT(30) DEFAULT 'Unknown' NOT NULL
-   ) CLUSTER BY start_date;
-   
-For more information on data clustering, see :ref:`data_clustering`.
-   
-Duplicating the Column Structure of an Existing Table
------------------
-
-Syntax
-************
-The following is the correct syntax for duplicating the column structure of an existing table:
-
-.. code-block:: postgres
-
-   CREATE [OR REPLACE] TABLE table_name
-   {
-     (column_name column_type [{NULL | NOT NULL}] [,...])
-     | LIKE source_table_name
-   }
-   [CLUSTER BY ...]
-   ;
-
-Examples
-**************
-This section includes the following examples of duplicating the column structure of an existing table using the ``LIKE`` clause:
-
-.. contents:: 
-   :local:
-   :depth: 3
-
-Creating a Table Using an Explicit Column List
-~~~~~~~~~~~~
-The following is an example of creating a table using an explict column list:
-
-.. code-block:: postgres
-
-   CREATE TABLE t1(x int default 0 not null, y text(10) null);
- 
-   
-For more information on creating a new table from the results of a SELECT query, see :ref:`CREATE TABLE AS <create_table_as>`.
-
-Creating a Table with a Clustering Key
-----------------------------------------------
-When data in a table is stored in a sorted order, the sorted columns are considered clustered. Good clustering can have a significant positive impact on performance.
-
-In the following example, we expect the ``start_date`` column to be naturally clustered, as new users sign up and get a newer start date.
-
-When the clustering key is set, if the incoming data isn’t naturally clustered, it will be clustered by SQream DB during insert or bulk load.
-
-The following is an example of the syntax used to create a table with a clustering key:
-
-.. code-block:: postgres
-
-   CREATE TABLE users (
-      name TEXT(30) NOT NULL,
-      start_date datetime not null,
-      country TEXT(30) DEFAULT 'Unknown' NOT NULL
+      country VARCHAR(30) DEFAULT 'Unknown' NOT NULL
    ) CLUSTER BY start_date;
    
 For more information on data clustering, see :ref:`data_clustering`.
@@ -299,8 +243,6 @@ The following is an example of creating a table using an explict column list:
 
    CREATE TABLE t1(x int default 0 not null, y text(10) null);
    
-
-
 Creating a Second Table Based on the Structure of Another Table
 ~~~~~~~~~~~~
 Either of the following examples can be used to create a second table based on the structure of another table.
@@ -330,6 +272,24 @@ The following is example of creating a table based on external tables and views:
    CREATE TABLE t3 LIKE v;
 
 When duplicating the column structure of an existing table, the target table of the ``LIKE`` clause can be a regular or an external table, or a view.
+   
+The following table describes the properties that must be copied from the target table:
+
++-----------------------------+------------------+---------------------------------+---------------------------------+
+| **Property**                | **Native Table** | **External Table**              | **View**                        |
++-----------------------------+------------------+---------------------------------+---------------------------------+
+| Column names                | Must be copied   | Must be copied                  | Must be copied                  |
++-----------------------------+------------------+---------------------------------+---------------------------------+
+| Column types                | Must be copied   | Must be copied                  | Must be copied                  |
++-----------------------------+------------------+---------------------------------+---------------------------------+
+| ``NULL``/``NOT NULL``       | Must be copied   | Must be copied                  | Must be copied                  |
++-----------------------------+------------------+---------------------------------+---------------------------------+
+| ``text`` length constraints | Must be copied   | Must be copied                  | Does not exist in source object |
++-----------------------------+------------------+---------------------------------+---------------------------------+
+| Compression specification   | Must be copied   | Does not exist in source object | Does not exist in source object |
++-----------------------------+------------------+---------------------------------+---------------------------------+
+| Default/identity            | Must be copied   | Does not exist in source object | Does not exist in source object |
++-----------------------------+------------------+---------------------------------+---------------------------------+
 
 Permissions
 =============

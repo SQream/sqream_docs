@@ -5,7 +5,7 @@ Literals
 ***************************
 
 
-Literals represent constant values.
+Literals represent constant values. 
 
 SQream DB contains the following types of literals:
 
@@ -239,6 +239,7 @@ The following is a syntax reference for typed literals:
        | REAL
        | DATE
        | DATETIME
+       | VARCHAR ( digits )
        | TEXT ( digits )
 
 Examples

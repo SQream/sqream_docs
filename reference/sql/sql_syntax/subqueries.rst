@@ -4,7 +4,7 @@
 Subqueries
 ***************************
 
-Subqueries allows you to reuse of results from another query.
+Subqueries allows you to reuse of results from another query. 
 
 SQream DB supports relational (also called *derived table*) subqueries, which appear as :ref:`select` queries as part of a table expression.
 
@@ -28,14 +28,14 @@ The following is an example of table named ``nba`` with the following structure:
    
    CREATE TABLE nba
    (
-      "Name" text(40),
-      "Team" text(40),
+      "Name" varchar(40),
+      "Team" varchar(40),
       "Number" tinyint,
-      "Position" text(2),
+      "Position" varchar(2),
       "Age" tinyint,
-      "Height" text(4),
+      "Height" varchar(4),
       "Weight" real,
-      "College" text(40),
+      "College" varchar(40),
       "Salary" float
     );
 
