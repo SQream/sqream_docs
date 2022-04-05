@@ -200,7 +200,7 @@ Commonly Seen Nodes
      - Description
    * - ``CpuDecompress``
      - CPU
-     - Decompression operation, common for longer ``VARCHAR`` types
+     - Decompression operation, common for longer ``TEXT`` types
    * - ``CpuLoopJoin``
      - CPU
      - A non-indexed nested loop join, performed on the CPU
@@ -621,9 +621,9 @@ Common Solutions for Improving Filtering
 * Use :ref:`clustering keys and naturally ordered data<data_clustering>` in your filters.
 * Avoid full table scans when possible
 
-4. Joins with ``varchar`` Keys
+4. Joins with ``text`` Keys
 -----------------------------------
-Joins on long text keys, such as ``varchar(100)`` do not perform as well as numeric data types or very short text keys.
+Joins on long text keys do not perform as well as numeric data types or very short text keys.
 
 Identifying the Situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

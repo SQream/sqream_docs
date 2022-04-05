@@ -5,30 +5,7 @@ String
 *************************
 ``TEXT`` is designed for storing text or strings of characters.
 
-SQream separates ASCII (``VARCHAR``) and UTF-8 representations (``TEXT``).
-
-.. note:: The data type ``NVARCHAR`` has been deprecated by ``TEXT`` as of version 2020.1.
-
-String Types
-^^^^^^^^^^^^^^^^^^^^^^
-The following table describes the String types:
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Name
-     - Details
-     - Data Size (Not Null, Uncompressed)
-     - Example
-   * - ``TEXT [(n)]``, ``NVARCHAR (n)``
-     - Varaiable length string - UTF-8 unicode. ``NVARCHAR`` is synonymous with ``TEXT``.
-     - Up to ``4*n`` bytes
-     - ``'キウイは楽しい鳥です'``
-   * - ``VARCHAR (n)``
-     - Variable length string - ASCII only
-     - ``n`` bytes
-     - ``'Kiwis have tiny wings, but cannot fly.'``
+SQream UTF-8 representations (``TEXT``).
 
 Length
 ^^^^^^^^^
@@ -37,8 +14,7 @@ When using ``TEXT``, specifying a size is optional. If not specified, the text f
 The following apply to setting the String type length:
 
 * If the data exceeds the column length limit on ``INSERT`` or ``COPY`` operations, SQream DB will return an error.
-* When casting or converting, the string has to fit in the target. For example, ``'Kiwis are weird birds' :: VARCHAR(5)`` will return an error. Use ``SUBSTRING`` to truncate the length of the string.
-* ``VARCHAR`` strings are padded with spaces.
+* When casting or converting, the string has to fit in the target. For example, ``'Kiwis are weird birds' :: TEXT(5)`` will return an error. Use ``SUBSTRING`` to truncate the length of the string.
 
 Syntax
 ^^^^^^^^
@@ -47,7 +23,7 @@ String types can be written with standard SQL string literals, which are enclose
 
 Size
 ^^^^^^
-``VARCHAR(n)`` can occupy up to *n* bytes, whereas ``TEXT(n)`` can occupy up to *4*n* bytes. However, the size of strings is variable and is compressed by SQream.
+``TEXT(n)`` can occupy up to *4*n* bytes. However, the size of strings is variable and is compressed by SQream.
 
 String Examples
 ^^^^^^^^^^

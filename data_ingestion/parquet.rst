@@ -15,9 +15,8 @@ This guide covers inserting data from Parquet files into SQream DB using :ref:`F
 Prepare the source Parquet files, with the following requirements:
 
 .. list-table:: 
-   :widths: auto
+   :widths: 40 5 20 20 20 20 5 5 5 5 10
    :header-rows: 1
-   :stub-columns: 1
    
    * -   SQream DB type →
    
@@ -29,11 +28,11 @@ Prepare the source Parquet files, with the following requirements:
      - ``BIGINT``
      - ``REAL``
      - ``DOUBLE``
-     - Text [#f0]_
+     - ``TEXT`` [#f0]_
      - ``DATE``
      - ``DATETIME``
    * - ``BOOLEAN``
-     - ✓ 
+     - Supported 
      - 
      - 
      - 
@@ -46,7 +45,7 @@ Prepare the source Parquet files, with the following requirements:
    * - ``INT16``
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -58,7 +57,7 @@ Prepare the source Parquet files, with the following requirements:
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -70,7 +69,7 @@ Prepare the source Parquet files, with the following requirements:
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -82,7 +81,7 @@ Prepare the source Parquet files, with the following requirements:
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -94,7 +93,7 @@ Prepare the source Parquet files, with the following requirements:
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -106,7 +105,7 @@ Prepare the source Parquet files, with the following requirements:
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
    * - ``INT96`` [#f3]_
@@ -119,13 +118,13 @@ Prepare the source Parquet files, with the following requirements:
      - 
      - 
      - 
-     - ✓ [#f4]_
+     - Supported [#f4]_
 
-* If a Parquet file has an unsupported type like ``enum``, ``uuid``, ``time``, ``json``, ``bson``, ``lists``, ``maps``, but the data is not referenced in the table (it does not appear in the :ref:`SELECT` query), the statement will succeed. If the column is referenced, an error will be thrown to the user, explaining that the type is not supported, but the column may be ommited. This can be worked around. See more information in the examples.
+* If a Parquet file has an unsupported type, such as ``enum``, ``uuid``, ``time``, ``json``, ``bson``, ``lists``, ``maps``, but the data is not referenced in the table (it does not appear in the :ref:`SELECT` query), the statement will succeed. If the column is referenced, an error will be thrown to the user, explaining that the type is not Supported, but the column may be ommited. This can be worked around. See more information in the examples.
 
 .. rubric:: Footnotes
 
-.. [#f0] Text values include ``TEXT``, ``VARCHAR``, and ``NVARCHAR``
+.. [#f0] Text values include ``TEXT``
 
 .. [#f2] With UTF8 annotation
 
@@ -187,7 +186,7 @@ We will make note of the file structure to create a matching ``CREATE EXTERNAL T
 
    Types in SQream DB must match Parquet types exactly.
    
-   If the column type isn't supported, a possible workaround is to set it to any arbitrary type and then exclude it from subsequent queries.
+   If the column type isn't Supported, a possible workaround is to set it to any arbitrary type and then exclude it from subsequent queries.
 
 
 4. Verify table contents
@@ -223,21 +222,21 @@ To load the data into SQream DB, use the :ref:`create_table_as` statement:
    CREATE TABLE nba AS
       SELECT * FROM ext_nba;
 
-Working around unsupported column types
+Working around unSupported column types
 ---------------------------------------------
 
-Suppose you only want to load some of the columns - for example, if one of the columns isn't supported.
+Suppose you only want to load some of the columns - for example, if one of the columns isn't Supported.
 
-By ommitting unsupported columns from queries that access the ``EXTERNAL TABLE``, they will never be called, and will not cause a "type mismatch" error.
+By ommitting unSupported columns from queries that access the ``EXTERNAL TABLE``, they will never be called, and will not cause a "type mismatch" error.
 
-For this example, assume that the ``Position`` column isn't supported because of its type.
+For this example, assume that the ``Position`` column isn't Supported because of its type.
 
 .. code-block:: postgres
    
    CREATE TABLE nba AS
       SELECT Name, Team, Number, NULL as Position, Age, Height, Weight, College, Salary FROM ext_nba;
    
-   -- We ommitted the unsupported column `Position` from this query, and replaced it with a default ``NULL`` value, to maintain the same table structure.
+   -- We ommitted the unSupported column `Position` from this query, and replaced it with a default ``NULL`` value, to maintain the same table structure.
 
 
 Modifying data during the copy process

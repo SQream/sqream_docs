@@ -45,20 +45,19 @@ For these examples, consider the following table and contents:
 
 .. code-block:: postgres
    
-   CREATE TABLE dictionary (id INT NOT NULL, fw TEXT(30), en VARCHAR(30));
-   
-   INSERT INTO dictionary VALUES (1, '行こう', 'Let''s go'), (2, '乾杯', 'Cheers'), (3, 'L''chaim', 'Cheers');
+   CREATE TABLE dictionary (id INT NOT NULL, text TEXT);
+   INSERT INTO dictionary VALUES (1, '行こう'), (2, '乾杯'), (3, 'L''chaim');
+   SELECT id, text, IS_ASCII(text) FROM dictionary;
 
 IS NULL
 -----------
 
 .. code-block:: psql
 
-   m=> SELECT id, en, fw, IS_ASCII(fw) FROM dictionary;
-   id | en       | fw       | is_ascii
+   id | text     | is_ascii
    ---+----------+----------+---------
-    1 | Let's go | 行こう     | false   
-    2 | Cheers   | 乾杯      | false   
-    3 | Cheers   | L'chaim  | true    
+    1 | 行こう    | false
+    2 | 乾杯      | false
+    3 | L'chaim   | true	
 
 
