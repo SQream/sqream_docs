@@ -288,7 +288,7 @@ Loading a table from a directory of ORC files on HDFS
 .. code-block:: postgres
 
    CREATE FOREIGN TABLE ext_users
-     (id INT NOT NULL, name TEXT(30) NOT NULL, email VARCHAR(50) NOT NULL)  
+     (id INT NOT NULL, name TEXT(30) NOT NULL, email TEXT(50) NOT NULL)  
    WRAPPER orc_fdw
      OPTIONS
        ( 
@@ -303,7 +303,7 @@ Loading a table from a bucket of files on S3
 .. code-block:: postgres
 
    CREATE FOREIGN TABLE ext_users
-     (id INT NOT NULL, name TEXT(30) NOT NULL, email VARCHAR(50) NOT NULL)  
+     (id INT NOT NULL, name TEXT(30) NOT NULL, email TEXT(50) NOT NULL)  
    WRAPPER orc_fdw
    OPTIONS
      (  LOCATION = 's3://pp-secret-bucket/users/*.ORC',

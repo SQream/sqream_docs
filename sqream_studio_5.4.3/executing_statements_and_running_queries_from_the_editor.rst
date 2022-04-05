@@ -223,7 +223,7 @@ The following table describes the DDL Optimizer screen:
    * - Column area
      - Shows the column **names** and **column types** from the selected table. You can scroll down or to the right/left for long column lists.
    * - Optimization area
-     - Shows the number of rows to sample as the basis for running an optimization, the default setting (1,000,000) when running an optimization (this is also the overhead threshold used when analyzing ``VARCHAR`` fields),  and the default percent buffer to add to ``VARCHAR`` lengths (10%). Attempts to determine field nullability.
+     - Shows the number of rows to sample as the basis for running an optimization, the default setting (1,000,000) when running an optimization (this is also the overhead threshold used when analyzing ``TEXT`` fields),  and the default percent buffer to add to ``TEXT`` lengths (10%). Attempts to determine field nullability.
    * - Run Optimizer
      - Starts the optimization process.
 
