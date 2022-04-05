@@ -47,7 +47,7 @@ First, create a foreign table for the logs
 .. code-block:: postgres
    CREATE FOREIGN TABLE logs 
    (
-     start_marker      VARCHAR(4),
+     start_marker      TEXT(4),
      row_id            BIGINT,
      timestamp         DATETIME,
      message_level     TEXT,
@@ -61,7 +61,7 @@ First, create a foreign table for the logs
      service_name      TEXT,
      message_type_id   INT,
      message           TEXT,
-     end_message       VARCHAR(5)
+     end_message       TEXT(5)
    )
    WRAPPER cdv_fdw
    OPTIONS
@@ -636,20 +636,20 @@ For example, consider these two table structures:
      amt            FLOAT NOT NULL,
      i              INT NOT NULL,
      ts             DATETIME NOT NULL,
-     country_code   VARCHAR(3) NOT NULL,
-     flag           VARCHAR(10) NOT NULL,
-     fk             VARCHAR(50) NOT NULL
+     country_code   TEXT(3) NOT NULL,
+     flag           TEXT(10) NOT NULL,
+     fk             TEXT(50) NOT NULL
    );
    CREATE TABLE t_b 
    (
-     id          VARCHAR(50) NOT NULL
+     id          TEXT(50) NOT NULL
      prob        FLOAT NOT NULL,
      j           INT NOT NULL,
    );
 #. 
    Run a query.
      
-   In this example, we will join ``t_a.fk`` with ``t_b.id``, both of which are ``VARCHAR(50)``.
+   In this example, we will join ``t_a.fk`` with ``t_b.id``, both of which are ``TEXT(50)``.
    
    .. code-block:: postgres
       
@@ -688,7 +688,7 @@ For example, consider these two table structures:
    
 Improving Query Performance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-* In general, try to avoid ``VARCHAR`` as a join key. As a rule of thumb, ``BIGINT`` works best as a join key.
+* In general, try to avoid ``TEXT`` as a join key. As a rule of thumb, ``BIGINT`` works best as a join key.
 * 
    Convert text values on-the-fly before running the query. For example, the :ref:`crc64` function takes a text
    input and returns a ``BIGINT`` hash.
@@ -726,10 +726,10 @@ Improving Query Performance
    
 * You can map some text values to numeric types by using a dimension table. Then, reconcile the values when you need them by joining the dimension table.
 
-5. Sorting on big ``VARCHAR`` fields
+5. Sorting on big ``TEXT`` fields
 ---------------------------------------
 In general, SQream DB automatically inserts a ``Sort`` node which arranges the data prior to reductions and aggregations.
-When running a ``GROUP BY`` on large ``VARCHAR`` fields, you may see nodes for ``Sort`` and ``Reduce`` taking a long time.
+When running a ``GROUP BY`` on large ``TEXT`` fields, you may see nodes for ``Sort`` and ``Reduce`` taking a long time.
 
 Identifying the Situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -749,9 +749,9 @@ For example:
          i INT NOT NULL,
          amt DOUBLE NOT NULL,
          ts DATETIME NOT NULL,
-         country_code VARCHAR(100) NOT NULL,
-         flag VARCHAR(10) NOT NULL,
-         string_fk VARCHAR(50) NOT NULL
+         country_code TEXT(100) NOT NULL,
+         flag TEXT(10) NOT NULL,
+         string_fk TEXT(50) NOT NULL
       );
    
    We will run a query, and inspect it's execution details:
@@ -800,16 +800,16 @@ For example:
       max
       ---
       3
-   With a maximum string length of just 3 characters, our ``VARCHAR(100)`` is way oversized.
+   With a maximum string length of just 3 characters, our ``TEXT(100)`` is way oversized.
 #. 
-   We can recreate the table with a more restrictive ``VARCHAR(3)``, and can examine the difference in performance:
+   We can recreate the table with a more restrictive ``TEXT(3)``, and can examine the difference in performance:
    
    .. code-block:: psql
       t=> CREATE TABLE t_efficient 
       .     AS SELECT i,
       .              amt,
       .              ts,
-      .              country_code::VARCHAR(3) AS country_code,
+      .              country_code::TEXT(3) AS country_code,
       .              flag
       .         FROM t_inefficient;
       executed
@@ -832,8 +832,8 @@ For example:
 
 Improving Sort Performance on Text Keys
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-When using VARCHAR, ensure that the maximum length defined in the table structure is as small as necessary.
-For example, if you're storing phone numbers, don't define the field as ``VARCHAR(255)``, as that affects sort performance.
+When using TEXT, ensure that the maximum length defined in the table structure is as small as necessary.
+For example, if you're storing phone numbers, don't define the field as ``TEXT(255)``, as that affects sort performance.
    
 You can run a query to get the maximum column length (e.g. ``MAX(LEN(a_column))``), and potentially modify the table structure.
 

@@ -9,7 +9,7 @@ SQream UTF-8 representations (``TEXT``).
 
 Length
 ^^^^^^^^^
-When using ``TEXT``, specifying a size is optional. If not specified, the text field carries no constraints. To limit the size of the input, use ``VARCHAR(n)`` or ``TEXT(n)``, where ``n`` is the permitted number of characters.
+When using ``TEXT``, specifying a size is optional. If not specified, the text field carries no constraints. To limit the size of the input, use ``TEXT(n)``, where ``n`` is the permitted number of characters.
 
 The following apply to setting the String type length:
 
