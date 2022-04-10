@@ -9,7 +9,7 @@ An indication that this conflict has occurred is SQream's inability to retrieve 
 
 .. code-block:: console
    
-   $ Internal Runtime Error *** Error opening [errno 2 No such file or directory] file name /mnt/disk1/sqream_cluster/databases/******/tables/289/17/17-391270
+   Internal Runtime Error *** Error opening [errno 2 No such file or directory] file name /mnt/disk1/sqream_cluster/databases/******/tables/289/17/17-391270
    
 In addition, key evaluation prevents the database from creating phantom keys, which are duplicate chunk keys generated when data is ingested. Under normal circumstances ingesting data creates incrementing chunk keys.
 
