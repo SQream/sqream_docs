@@ -1,158 +1,72 @@
 .. _keywords_and_identifiers:
 
 ***************************
-Keywords and Identifiers
-***************************
-
-SQL statements are made up of three components:
-
-* Keywords: Keywords have specific meaning in SQL, like ``SELECT``, ``CREATE``, ``WHERE``, etc.
-* Identifiers: Names for things like tables, columns, databases, etc.
-
-.. _keywords:
-
-Keywords
-===========
-
-Keywords are special words that make up SQream DB's SQL syntax, and have a meaning in a statement.
-
-Keywords are not allowed as identifiers. :ref:`A full list of reserved keywords <reserved_keywords>` can be found at the end of this document.
-
-.. _identifiers:
-
 Identifiers
-=============
+***************************
+**Identifiers** are names given to SQL entities, such as tables, columns, databases, and variables. Identifiers must be unique so that entities can be correctly identified during the execution of a program. Identifiers can also be used to change a column name in the result (column alias) in a  ``SELECT`` statement. Identifiers can be either quoted or unquoted and a maximum 128 characters long.
 
-Identifiers are typically used as database objects names, such as databases, tables, views or columns. Because of their use, these are also often also called "names".
+Identifiers are sometimes referred to as "names".
 
-Identifiers can also be used to change a column name in the result (column alias) in a  ``SELECT`` statement.
+Regular identifiers must follow these rules:
 
-Identifier rules
-------------------
+* Must not contain any special characters except for underscores (``_``).
+* Must be case-insensitive. SQream converts all identifiers to lowercase unless quoted.
+* Does not equal any keywords, such as ``SELECT``, ``OR``, or ``AND``, etc.
 
-An identifier can be either quoted or unquoted, and are maximum 128 characters long.
+To bypass the rules above you can surround an identifier with double quotes (``"``) or square brackets (``[]``).
 
-Regular identifiers follow these rules:
+Quoted identifiers must follow these rules:
 
-#. Does not contain any special characters, apart for an underscore (``_``)
-#. Case insensitive. SQream DB converts all identifiers to lowercase unless quoted.
-#. Does not equal any :ref:`keyword <keywords>`, like ``SELECT``, ``OR``, ``AND``, etc.
+* Must be surrounded with double quotes (``"``) or square brackets (``[]``).
+* May contain any ASCII character except ``@``, ``$`` or ``"``.
+* Must be case-sensitive and referenced with double quotes or square brackets (``[]``).
 
+Identifiers are different than **keywords**, which are predefined words reserved with specific meanings in a statement. Some examples of keywords are ``SELECT``, ``CREATE``, and ``WHERE``. Note that keywords **cannot** be used as identifiers.
 
-To bypass these limitations, use a quoted identifier by surrounding the identifier with double quotes (``"``).
+The following table shows a full list of the reserved keywords:
 
-Quoted identifiers follow these rules:
-
-* Surrounded with double quotes (").
-* May contain any ASCII character, except ``@``, ``$`` or ``"``.
-* Quoted identifiers are stored case-sensitive and must be referenced with double quotes.
-
-.. _reserved_keywords:
-
-Reserved keywords
-==================
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Keyword
-   * - ``ALL``
-   * - ``ANALYSE``
-   * - ``ANALYZE``
-   * - ``AND``
-   * - ``ANY``
-   * - ``ARRAY``
-   * - ``AS``
-   * - ``ASC``
-   * - ``AUTHORIZATION``
-   * - ``BINARY``
-   * - ``BOTH``
-   * - ``CASE``
-   * - ``CAST``
-   * - ``CHECK``
-   * - ``COLLATE``
-   * - ``COLUMN``
-   * - ``CONCURRENTLY``
-   * - ``CONSTRAINT``
-   * - ``CREATE``
-   * - ``CROSS``
-   * - ``CURRENT_CATALOG``
-   * - ``CURRENT_ROLE``
-   * - ``CURRENT_TIME``
-   * - ``CURRENT_USER``
-   * - ``DEFAULT``
-   * - ``DEFERRABLE``
-   * - ``DESC``
-   * - ``DISTINCT``
-   * - ``DO``
-   * - ``ELSE``
-   * - ``END``
-   * - ``EXCEPT``
-   * - ``FALSE``
-   * - ``FETCH``
-   * - ``FOR``
-   * - ``FREEZE``
-   * - ``FROM``
-   * - ``FULL``
-   * - ``GRANT``
-   * - ``GROUP``
-   * - ``HASH``
-   * - ``HAVING``
-   * - ``ILIKE``
-   * - ``IN``
-   * - ``INITIALLY``
-   * - ``INNER``
-   * - ``INTERSECT``
-   * - ``INTO``
-   * - ``IS``
-   * - ``ISNULL``
-   * - ``JOIN``
-   * - ``LEADING``
-   * - ``LEFT``
-   * - ``LIKE``
-   * - ``LIMIT``
-   * - ``LOCALTIME``
-   * - ``LOCALTIMESTAMP``
-   * - ``LOOP``
-   * - ``MERGE``
-   * - ``NATURAL``
-   * - ``NOT``
-   * - ``NOTNULL``
-   * - ``NULL``
-   * - ``OFFSET``
-   * - ``ON``
-   * - ``ONLY``
-   * - ``OPTION``
-   * - ``OR``
-   * - ``ORDER``
-   * - ``OUTER``
-   * - ``OVER``
-   * - ``OVERLAPS``
-   * - ``PLACING``
-   * - ``PRIMARY``
-   * - ``REFERENCES``
-   * - ``RETURNING``
-   * - ``RIGHT``
-   * - ``RLIKE``
-   * - ``SELECT``
-   * - ``SESSION_USER``
-   * - ``SIMILAR``
-   * - ``SOME``
-   * - ``SYMMETRIC``
-   * - ``SYMMETRIC``
-   * - ``TABLE``
-   * - ``THEN``
-   * - ``TO``
-   * - ``TRAILING``
-   * - ``TRUE``
-   * - ``UNION``
-   * - ``UNIQUE``
-   * - ``USER``
-   * - ``USING``
-   * - ``VARIADIC``
-   * - ``VERBOSE``
-   * - ``WHEN``
-   * - ``WHERE``
-   * - ``WINDOW``
-   * - ``WITH``
++-------------------------------------------------------------------------------------------------+
+| **Keywords**                                                                                    |
++-------------------+---------------------+--------------------+------------------+---------------+
+| **A - C**         | **C - G**           | **H - N**          | **N - S**        | **S - W**     |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``ALL``           | ``CURRENT_CATALOG`` | ``HASH``           | ``NOT``          | ``SIMILAR``   |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``ANALYSE``       | ``CURRENT_ROLE``    | ``HAVING``         | ``NOTNULL``      | ``SOME``      |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``ANALYZE``       | ``CURRENT_TIME``    | ``ILIKE``          | ``NULL``         | ``SYMMETRIC`` |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``AND``           | ``CURRENT_USER``    | ``IN``             | ``OFFSET``       | ``TABLE``     |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``ANY``           | ``DEFAULT``         | ``INITIALLY``      | ``ON``           | ``THEN``      |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``ARRAY``         | ``DEFERRABLE``      | ``INNER``          | ``ONLY``         | ``TO``        |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``AS``            | ``DESC``            | ``INTERSECT``      | ``OPTION``       | ``TRAILING``  |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``ASC``           | ``DISTINCT``        | ``INTO``           | ``OR``           | ``TRUE``      |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``AUTHORIZATION`` | ``DO``              | ``IS``             | ``ORDER``        | ``UNION``     |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``BINARY``        | ``ELSE``            | ``ISNULL``         | ``OUTER``        | ``UNIQUE``    |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``BOTH``          | ``END``             | ``JOIN``           | ``OVER``         | ``USER``      |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``CASE``          | ``EXCEPT``          | ``LEADING``        | ``OVERLAPS``     | ``USING``     |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``CAST``          | ``FALSE``           | ``LEFT``           | ``PLACING``      | ``VARIADIC``  |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``CHECK``         | ``FETCH``           | ``LIKE``           | ``PRIMARY``      | ``VERBOSE``   |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``COLLATE``       | ``FOR``             | ``LIMIT``          | ``REFERENCES``   | ``WHEN``      |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``COLUMN``        | ``FREEZE``          | ``LOCALTIME``      | ``RETURNING``    | ``WHERE``     |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``CONCURRENTLY``  | ``FROM``            | ``LOCALTIMESTAMP`` | ``RIGHT``        | ``WINDOW``    |
++-------------------+---------------------+--------------------+------------------+---------------+
+| ``CONSTRAINT``    | ``FULL``            | ``LOOP``           | ``RLIKE``        | ``WITH``      |
++-------------------+---------------------+--------------------+------------------+               | 
+| ``CREATE``        | ``GRANT``           | ``MERGE``          | ``SELECT``       |               |
++-------------------+---------------------+--------------------+------------------+               |  
+| ``CROSS``         | ``GROUP``           | ``NATURAL``        | ``SESSION_USER`` |               |  
++-------------------+---------------------+--------------------+------------------+---------------+
