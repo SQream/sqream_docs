@@ -8,8 +8,7 @@ SQream supports the most common database tools and interfaces, giving you direct
 This section provides information about the following third party tools:
 
 .. toctree::
-   :maxdepth: 2
-   :glob:
+   :maxdepth: 4
    :titlesonly:
    
    client_drivers/index

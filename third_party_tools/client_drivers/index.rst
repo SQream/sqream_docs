@@ -40,11 +40,6 @@ Windows
 --------------
 The following are applicable to Windows:
 
-* **ODBC installer** - SQream Drivers v2020.2.0, with Tableau customizations. Please contact your `SSream represenative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_ for this installer.
-
-  For more information on installing and configuring ODBC on Windows, see :ref:`Install and configure ODBC on Windows <install_odbc_windows>`.
-
-
 * **Net driver** - `SQream .Net driver v3.0.2 <http://downloads.sqream.com/drivers/2020.2/SqreamNet_net48_3.0.2.dll>`_
    
    
@@ -61,9 +56,7 @@ The following are applicable to Linux:
 * `SQream SQL*(IBM POWER9) <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.ppc64le.tar.gz>`_ - sqream-sql-v2020.1.1_stable.ppc64le.tar.gz
 * `Sqream SQL CLI Reference <https://docs.sqream.com/en/latest/reference/cli/sqream_sql.html#sqream-sql-cli-reference>`_ - Interactive command-line SQL client for IBM POWER9-based machines
    
-   ::
 
-* ODBC Installer  - Please contact your SQream representative for this installer.
 
 
 .. toctree::
@@ -72,7 +65,7 @@ The following are applicable to Linux:
    :titlesonly:
    
    jdbc/index
-   odbc/index
+
 
 
 
