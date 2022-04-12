@@ -374,7 +374,7 @@ Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a databas
    OPTIONS
      (
         LOCATION = '/home/rhendricks/sqream_storage/logs/**/sqream*.log',
-        DELIMITER = '|'
+        DELIMITER = '|',
         CONTINUE_ON_ERROR = true
      )
    ;
