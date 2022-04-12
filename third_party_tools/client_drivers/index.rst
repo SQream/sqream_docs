@@ -1,7 +1,7 @@
 .. _client_drivers:
 
 ************************************
-Client Drivers for |latest_version|
+Client Drivers for 2022.3
 ************************************
 
 The guides on this page describe how to use the Sqream DB client drivers and client applications with SQream.
@@ -24,7 +24,7 @@ The following are applicable to all operating systems:
 
 * **Tableau**:
 
-  * `Tableau connector <http://downloads.sqream.com/drivers/2020.3/SQreamDB.taco>`_ - SQream (.taco)
+  * `Tableau connector <https://sq-ftp-public.s3.amazonaws.com/SQreamTaco.rar>`_ - SQream (.taco)
   * `Tableau manual installation <https://docs.sqream.com/en/latest/third_party_tools/client_platforms/tableau.html#>`_
 
   

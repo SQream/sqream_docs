@@ -63,12 +63,6 @@ Omitting columns that have a default values (including default ``NULL`` values) 
    test=> INSERT INTO cool_animals (id) VALUES (6);
    
    executed
-
-.. code-block:: psql
-
-   test=> INSERT INTO cool_animals (id) VALUES (6);
-   
-   executed
    test=> SELECT * FROM cool_animals;
    1,Dog                 ,7
    2,Possum              ,3

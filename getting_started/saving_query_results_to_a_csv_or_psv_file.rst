@@ -7,7 +7,7 @@ You can save query results to a CSV or PSV file using the ``sqream sql`` command
 
 .. code-block:: console
 
-   $ sqream sql --username=mjordan --database=nba --host=localhost --port=5000 -c "SELECT * FROM nba LIMIT 5" --results-only --delimiter='|' > nba.psv
+   $ sudo java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address] -c "SELECT * FROM nba LIMIT 5" --results-only --delimiter='|' > nba.psv
    $ cat nba.psv
    Avery Bradley           |Boston Celtics        |0|PG|25|6-2 |180|Texas                |7730337
    Jae Crowder             |Boston Celtics        |99|SF|25|6-6 |235|Marquette            |6796117

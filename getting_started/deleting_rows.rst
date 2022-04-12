@@ -32,13 +32,7 @@ You can delete rows in a table selectively using the ``DELETE`` command. You mus
 
 **Deleting All Rows**
 
-You can delete all rows in a table using the ``TRUNCATE`` command followed by the table name, as shown in the following example:
-
-.. code-block:: psql
-
-   test=> TRUNCATE TABLE cool_animals;
-   
-   executed
+You can delete all rows in a table using the ``TRUNCATE`` command followed by the table name.
 
 .. note:: While :ref:`truncate` deletes data from disk immediately, :ref:`delete` does not physically remove the deleted rows.
 

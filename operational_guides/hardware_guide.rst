@@ -16,11 +16,11 @@ Visit `SQream's support portal <https://sqream.atlassian.net/servicedesk/custome
 A SQream Cluster
 ============================
 
-SQream recommends rackmount servers by server manufacturers Dell, Lenovo, HP, Cisco, Supermicro, IBM, and others.
+SQream recommends rackmount servers by server manufacturers Dell, Lenovo, HP, Cisco, Supermicro, and others.
 
-A typical SQream cluster includes one or more nodes, consisting of
+A typical SQream cluster includes one or more nodes, consisting of the following:
 
-* Two-socket enterprise processors, like the Intel® Xeon® Gold processor family or an IBM® POWER9 processors, providing the high performance required for compute-bound database workloads. 
+* Two-socket enterprise processors, like the Intel® Xeon® Gold processor family, providing the high performance required for compute-bound database workloads. 
 
 * NVIDIA Tesla GPU accelerators, with up to 5,120 CUDA and Tensor cores, running on PCIe or fast NVLINK busses, delivering high core count, and high-throughput performance on massive datasets
 
@@ -88,13 +88,13 @@ The following table shows SQream's recommended hardware specifications:
    * - External Storage
      -   
          * Mellanox Connectx5/6 100G NVIDIA Network Card (if applicable) or other high speed network card minimum 40G compatible to customer’s infrastructure
-         * 50 TB (NAS connected over GPFS, Lustre, or NFS) GPFS recommended
+         * 50 TB (NAS connected over Lustre, or NFS)
    * - GPU
      - 2x A100 NVIDIA
    * - Operating System
      - Red Hat Enterprise Linux v7.x or CentOS v7.x or Amazon Linux
 
-.. note:: With a NAS connected over GPFS, Lustre, or NFS, each SQream worker can read data at up to 5GB/s.
+.. note:: With a NAS connected over Lustre, or NFS, each SQream worker can read data at up to 5GB/s.
 
 SQream Studio Server Example
 -----------------------------------
@@ -167,7 +167,7 @@ The **Balancing Cost and Performance** section provides a breakdown of deploymen
 CPU Compute
 -------------
 
-SQream relies on multi-core Intel Gold Xeon processors or IBM POWER9 processors, and recommends a dual-socket machine populated with CPUs with 18C/36HT or better. While a higher core count may not necessarily affect query performance, more cores will enable higher concurrency and better load performance.
+SQream relies on multi-core Intel Gold Xeon processors, and recommends a dual-socket machine populated with CPUs with 18C/36HT or better. While a higher core count may not necessarily affect query performance, more cores will enable higher concurrency and better load performance.
 
 GPU Compute and RAM
 -------------------------

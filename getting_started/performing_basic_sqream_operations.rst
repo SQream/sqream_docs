@@ -12,6 +12,7 @@ After installing SQream you can perform the operations described on this page:
    running_the_sqream_sql_client
    creating_your_first_table
    creating_a_database
+   querying_data
    listing_tables
    inserting_rows
    running_queries

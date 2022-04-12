@@ -19,11 +19,14 @@ Once you've installed SQream you can create a database.
 2. Reconnect to the newly created database.
 
    1. Exit the client by typing ``\q`` and pressing **Enter**.
+   
+       ::
+	   
    2. From the Linux shell, restart the client with the new database name:
 
       .. code-block:: psql
 
-         $ sqream sql --port=5000 --username=rhendricks -d test
+         $ sudo java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]- --username=<username> -d test
          Password:
    
          Interactive client mode
