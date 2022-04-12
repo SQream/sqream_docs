@@ -374,12 +374,12 @@ Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a databas
    OPTIONS
      (
         LOCATION = '/home/rhendricks/sqream_storage/logs/**/sqream*.log',
-        DELIMITER = '|'
+        DELIMITER = '|',
         CONTINUE_ON_ERROR = true
      )
    ;
    
-For more information, see `Loading Logs with Foreign Tables <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/copy_from.html>`_.
+For more information, see `Loading Logs with Foreign Tables <https://docs.sqream.com/en/v2020-1/reference/sql/sql_statements/dml_commands/copy_from.html>`_.
 
 
 
