@@ -10,4 +10,5 @@ The **Installing SQream Studio** page incudes the following installation guides:
    :glob:
 
    recommended_pre-installation_configurations
+   installing_sqream_on_the_cloud
    installing_sqream_with_kubernetes
