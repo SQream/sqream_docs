@@ -101,14 +101,12 @@ Though NGINX is not available in the default CentOS repositories, it is availabl
         $ sudo firewall-cmd --add-service=https
         $ sudo firewall-cmd --runtime-to-permanent 
 
-8. If have a running **iptables firewall**, for a basic rule set, add HTTP and HTTPS access:
+8. If you have a running **iptables firewall**, for a basic rule set, add HTTP and HTTPS access:
 
    .. code-block:: console
 
       $ sudo iptables -I INPUT -p tcp -m tcp --dport 80 -j ACCEPT
       $ sudo iptables -I INPUT -p tcp -m tcp --dport 443 -j ACCEPT
-
-**Comment** - *Is Step 8 above optional?*
 
    .. note:: The commands in Step 8 above are highly dependent on your current rule set.
 
@@ -120,9 +118,9 @@ Creating Your SSL Certificate
 ==============
 After installing NGINX and adjusting your firewall, you must create your SSL certificate.
 
-TLS/SSL **Comment** - *Why mention "TLS" if we are only speaking about SSL?)* combines public certificates with private keys. The SSL key, kept private on your server, is used to encrypt content sent to clients, while the SSL certificate is publicly shared with anyone requesting content. In addition, the SSL certificate can be used to decrypt the content signed by the associated SSL key. Your public certificate is located in the **/etc/ssl/certs** directory on your server.
+TLS/SSL combines public certificates with private keys. The SSL key, kept private on your server, is used to encrypt content sent to clients, while the SSL certificate is publicly shared with anyone requesting content. In addition, the SSL certificate can be used to decrypt the content signed by the associated SSL key. Your public certificate is located in the **/etc/ssl/certs** directory on your server.
 
-This section describes how to create your **/etc/ssl/private directory**, used for storing your private key file. Because the privacy of this key is essential for security, the permissions must be locked down **(Comment** - *Disabled?*) to prevent unauthorized access:
+This section describes how to create your **/etc/ssl/private directory**, used for storing your private key file. Because the privacy of this key is essential for security, the permissions must be locked down to prevent unauthorized access:
 
 **To create your SSL certificate:**
 
@@ -133,7 +131,7 @@ This section describes how to create your **/etc/ssl/private directory**, used f
       $ sudo mkdir /etc/ssl/private
       $ sudo chmod 700 /etc/ssl/private
  
-2. Create a self-signed key and certificate pair with OpenSSL in a single command:
+2. Create a self-signed key and certificate pair with OpenSSL with the following command:
 
    .. code-block:: console
 
@@ -161,7 +159,7 @@ This section describes how to create your **/etc/ssl/private directory**, used f
 
     ::
 
-   * **-newkey rsa:2048** - Simultaneously generates a new certificate and new key. Because the key required to sign the certificate was not created in the previous step **(Comment** - *Step 1?*), it must be created along with the certificate. The **rsa:2048** generates an RSA 2048 bits long.
+   * **-newkey rsa:2048** - Simultaneously generates a new certificate and new key. Because the key required to sign the certificate was not created in the previous step, it must be created along with the certificate. The **rsa:2048** generates an RSA 2048 bits long.
 
     ::
 
@@ -171,9 +169,7 @@ This section describes how to create your **/etc/ssl/private directory**, used f
 
    * **-out** - Determines the location of the certificate.
 
-  After creating a self-signed key and certificate pair with OpenSSL, a series of prompts about your server is presented (**Comment** - *By SSL?*) to correctly embed the information you provided in the certificate.
-
-**Comment** - *Dor, please confirm that the sentence above is correct.* 
+  After creating a self-signed key and certificate pair with OpenSSL, a series of prompts about your server is presented to correctly embed the information you provided in the certificate.
 
 3. Provide the information requested by the prompts.
 
@@ -193,9 +189,7 @@ This section describes how to create your **/etc/ssl/private directory**, used f
 
    Both files you create are stored in their own subdirectories of the **/etc/ssl** directory.
 
-   While (**Comment** - *"Although" instead of "while"?*) SQream uses OpenSSL, in addition we recommend creating a strong **Diffie-Hellman** group, used for negotiating **Perfect Forward Secrecy** with clients.
-
-   **Comment** - *Please explain what you meant by "negotiating".*
+   Although SQream uses OpenSSL, in addition we recommend creating a strong **Diffie-Hellman** group, used for negotiating **Perfect Forward Secrecy** with clients.
    
 4. Create a strong Diffie-Hellman group:
 
@@ -205,13 +199,11 @@ This section describes how to create your **/etc/ssl/private directory**, used f
  
    Creating a Diffie-Hellman group takes a few minutes, which is stored as the **dhparam.pem** file in the **/etc/ssl/certs** directory. This file can use in the configuration.
    
-   **Comment** - *Please explain what you meant by that it can be used in the configuration.*
-
 Configuring NGINX to use SSL
 ==============
 After creating your SSL certificate, you must configure NGINX to use SSL.
 
-The default CentOS NGINX configuration is fairly unstructured, (**Comment** - *What is the intent of "unstructured"?) with the default HTTP server block located in the main configuration file. NGINX checks for files ending in **.conf** in the **/etc/nginx/conf.d** directory for additional configuration. (**Comment** - *What did you mean by "additional configuration"? How does this work?*)
+The default CentOS NGINX configuration is fairly unstructured, with the default HTTP server block located in the main configuration file. NGINX checks for files ending in **.conf** in the **/etc/nginx/conf.d** directory for additional configuration.
 
 SQream creates a new file in the **/etc/nginx/conf.d** directory to configure a server block. This block serves content using the certificate files we generated. In addition, the default server block can be optionally configured to redirect HTTP requests to HTTPS.
 
@@ -225,7 +217,7 @@ SQream creates a new file in the **/etc/nginx/conf.d** directory to configure a 
 
       $ sudo vi /etc/nginx/conf.d/ssl.conf
 
-2. Inside, (**Comment** - *In the directory?*) open a server block:
+2. In the file you created in Step 1 above, open a server block:
 
    1. Listen to **port 443**, which is the TLS/SSL default port.
    
@@ -237,8 +229,6 @@ SQream creates a new file in the **/etc/nginx/conf.d** directory to configure a 
 	   
    3. Use the ``ssl_certificate``, ``ssl_certificate_key``, and ``ssl_dhparam`` directives to set the location of the SSL files you generated, as shown in the **/etc/nginx/conf.d/ssl.conf** file below:
    
-   **Comment** - *Please confirm Step 3 above.*
-
    .. code-block:: console
 
           upstream ui {
@@ -304,11 +294,7 @@ SQream creates a new file in the **/etc/nginx/conf.d** directory to configure a 
    .. code-block:: console
 
       $ sudo vi /etc/nginx/conf.d/nginx.conf
-	  
-**Comment** - *Why is this here (below)?*
-
-**/etc/nginx/nginx.conf**
-
+	 
    .. code-block:: console      
 
        server {
@@ -335,9 +321,7 @@ After configuring NGINX to use SSL, you must redirect Studio access from HTTP to
 
 According to your current configuration, NGINX responds with encrypted content for requests on port 443, but with **unencrypted** content for requests on **port 80**. This means that our site offers encryption, but does not enforce its usage. This may be fine for some use cases, but it is usually better to require encryption. This is especially important when confidential data like passwords may be transferred between the browser and the server.
 
-Thankfully, the default Nginx configuration file allows us to easily add directives to the default port 80 server block by adding files in the /etc/nginx/default.d directory.
-
-**Comment** - *We need to discuss the paragraphs above together.*
+The default NGINX configuration file allows us to easily add directives to the default port 80 server block by adding files in the /etc/nginx/default.d directory.
 
 **To create a redirect from HTTP to HTTPS:**
 
@@ -351,16 +335,10 @@ Thankfully, the default Nginx configuration file allows us to easily add directi
 
    .. code-block:: console
 
-      $ /etc/nginx/default.d/ssl-redirect.conf
-
       $ return 301 https://$host$request_uri:8080/;
 	  
-   **Comment** - *Confirm the above.*
-
-Enabling the Changes in NGINX
+Activating Your NGINX Configuration
 ==============
-**Comment** - *I suggest using "Activating" instead of "Enabling".*
-
 After redirecting from HTTP to HTTPs, you must restart NGINX to activate your new configuration.
 
 **To activate your NGINX configuration:**
@@ -379,8 +357,6 @@ After redirecting from HTTP to HTTPs, you must restart NGINX to activate your ne
       nginx: configuration file /etc/nginx/nginx.conf test is successful
 
 2. Restart NGINX to activate your configuration:
-
-   **Comment** - *We need to tell them what to do if they do have syntax errors, i.e., to correct their syntax errors. If it is not obvious how to do this, we should tell them how.*
 
    .. code-block:: console
 
