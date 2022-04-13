@@ -5,8 +5,6 @@
 ***********************
 Installing Studio on a Stand-Alone Server
 ***********************
-
-
 The **Installing Studio on a Stand-Alone Server** guide describes how to install SQream Studio on a stand-alone server. A stand-alone server is a server that does not run SQream based on binary files, Docker, or Kubernetes.
 
 The Installing Studio on a Stand-Alone Server guide includes the following sections:
@@ -147,7 +145,7 @@ After installing the Dashboard Data Collector, you can install Studio.
  
    .. code-block:: console
      
-      $ npm run setup -- -y --host=<SQreamD IP> --port=3108
+      $ npm run setup -- -y --host=<SQreamD IP> --port=3108 --data-collector-url=http://<data collector IP address>:8100/api/dashboard/data
 
    The above command creates the **sqream-admin-config.json** configuration file in the **sqream-admin** folder and shows the following output:
    
@@ -158,6 +156,40 @@ After installing the Dashboard Data Collector, you can install Studio.
    For more information about the available set-up arguments, see :ref:`Set-Up Arguments<setup_arguments>`.
 
   ::
+  
+5. To access Studio over a secure connection, in your configuration file do the following:
+
+   #. Change your ``port`` value to **3109**.
+   
+       ::
+	   
+   #. Change your ``ssl`` flag value to **true**.
+   
+      The following is an example of the correctly modified configuration file:
+	  
+      .. code-block:: console
+     
+         {
+           "debugSqream": false,
+           "webHost": "localhost",
+           "webPort": 8080,
+           "webSslPort": 8443,
+           "logsDirectory": "",
+           "clusterType": "standalone",
+           "dataCollectorUrl": "",
+           "connections": [
+             {
+               "host": "127.0.0.1",
+               "port":3109,
+               "isCluster": true,
+               "name": "default",
+               "service": "sqream",
+               "ssl":true,
+               "networkTimeout": 60000,
+               "connectionTimeout": 3000
+             }
+           ]
+         }
    
 5. If you have installed Studio on a server where SQream is already installed, move the **sqream-admin-config.json** file to **/etc/sqream/**:
 
