@@ -100,6 +100,8 @@ Utility Commands
    
    * - Command
      - Usage
+   * - :ref:`EXPLAIN<explain>`
+     - Returns a static query plan, which can be used to debug query plans
    * - :ref:`SELECT GET_LICENSE_INFO<get_license_info>`
      - View a user's license information
    * - :ref:`SELECT GET_DDL<get_ddl>`
@@ -112,7 +114,18 @@ Utility Commands
      - Recreate a view after schema changes
    * - :ref:`SELECT DUMP_DATABASE_DDL<dump_database_ddl>`
      - View the ``CREATE TABLE`` statement for an current database
-
+   * - :ref:`SHOW CONNECTIONS<show_connections>`
+     - Returns a list of active sessions on the current worker
+   * - :ref:`SHOW LOCKS<show_locks>`
+     - Returns a list of locks from across the cluster
+   * - :ref:`SHOW NODE INFO<show_node_info>`
+     - Returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases
+   * - :ref:`SHOW SERVER STATUS<show_server_status>`
+     - Returns a list of active sessions across the cluster
+   * - :ref:`SHOW VERSION<show_version>`
+     - Returns the system version for SQream DB
+   * - :ref:`STOP STATEMENT<stop_statement>`
+     - Stops or aborts an active statement
 
 
 Monitoring
