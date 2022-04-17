@@ -223,6 +223,8 @@ The following table shows the **string* functions:
      - Calculates the position where a string starts inside another string
    * - :ref:`concat`
      - Concatenates two strings
+   * - :ref:`decode`
+     - Decodes or extracts binary data from a textual input string
    * - :ref:`isprefixof`
      - Matches if a string is the prefix of another string
    * - :ref:`left`
