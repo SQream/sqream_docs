@@ -3,18 +3,14 @@
 ***********************
 Permissions
 ***********************
-Users with the appropriate encryption permission privilege's can encrypt and decrypt data.
+The **Permissions** tells you how to create a table with encrypted columns as a superuser.
 
-**Comment** - *The rest of this content seems internal, correct?*
+Users with the appropriate encryption permission privilege's can encrypt and decrypt data. In addition, only superusers granted permission can view encrypted tables in the **sqream_catalog**.
 
-Implementation notes
+You can create a table with encrypted columns as a superuser as follows:
 
-one method to encrypt the data with is the TDE: Transparent data encryption  which employed by Microsoft/IBM/Oracle etc.
-
-management. The requirement is that this will be programmatic via API.  
-
-The centralized key management store should be one of the following (R&D to choose which one in accordance to easiness of deployment):
-
-KMS (AWS)- https://aws.amazon.com/kms/
-
-IBM- IBM Security Guardium Key Lifecycle Manager - Overview 
+.. code-block:: console
+     
+   $ create or replace table t_enc(c1 int encrypt);
+   
+For more information about the SQream catalog, see the :ref:`catalog_reference`.
