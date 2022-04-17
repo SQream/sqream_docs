@@ -3,7 +3,7 @@
 ***********************
 Permissions
 ***********************
-The **Permissions** tells you how to create a table with encrypted columns as a superuser.
+The **Permissions** page tells you how to create a table with encrypted columns as a superuser.
 
 Users with the appropriate encryption permission privilege's can encrypt and decrypt data. In addition, only superusers granted permission can view encrypted tables in the **sqream_catalog**.
 
