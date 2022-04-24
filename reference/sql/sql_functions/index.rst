@@ -364,6 +364,7 @@ For more information about window functions, see :ref:`window_functions`.
 
 
 
+
 Workload Management Functions
 ---------------------------------
 The following table shows the **workload management** functions:
