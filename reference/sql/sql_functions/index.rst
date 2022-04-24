@@ -363,32 +363,6 @@ For more information about window functions, see :ref:`window_functions`.
      - Returns an integer ranging between ``1`` and the argument value, dividing the partitions as equally as possible
 
 
-System Functions
-------------------
-System functions allow you to execute actions in the system, such as aborting a query or get information about system processes.
-
-The following table shows the **system** functions:
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Function
-     - Description
-   * - :ref:`explain`
-     - Returns a static query plan for a statement
-   * - :ref:`show_connections`
-     - Returns a list of jobs and statements on the current worker
-   * - :ref:`show_locks`
-     - Returns any existing locks in the database
-   * - :ref:`show_node_info`
-     - Returns a query plan for an actively running statement with timing information
-   * - :ref:`show_server_status`
-     - Shows running statements across the cluster
-   * - :ref:`show_version`
-     - Returns the version of SQream DB
-   * - :ref:`stop_statement`
-     - Stops a query (or statement) if it is currently running
 
 Workload Management Functions
 ---------------------------------
@@ -418,4 +392,3 @@ The following table shows the **workload management** functions:
    user_defined_functions/index
    aggregate_functions/index
    window_functions/index
-   system_functions/index
