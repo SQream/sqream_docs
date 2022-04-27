@@ -8,15 +8,16 @@ The **Built-In Scalar Functions** page describes functions that return one value
 .. hlist::
    :columns: 5
 		
-   * `AND <https://docs.sqream.com/en/v2020-1/reference/sql/sql_functions/scalar_functions/bitwise/and.html>`_
-   * `NOT <https://docs.sqream.com/en/v2020-1/reference/sql/sql_functions/scalar_functions/bitwise/not.html>`_
-   * `OR <https://docs.sqream.com/en/v2020-1/reference/sql/sql_functions/scalar_functions/bitwise/or.html>`_
-   * `SHIFT_LEFT <https://docs.sqream.com/en/v2020-1/reference/sql/sql_functions/scalar_functions/bitwise/shift_left.html>`_
-   * `SHIFT_RIGHT <https://docs.sqream.com/en/v2020-1/reference/sql/sql_functions/scalar_functions/bitwise/shift_right.html>`_
-   * `XOR <https://docs.sqream.com/en/v2020-1/reference/sql/sql_functions/scalar_functions/bitwise/xor.html>`_
+   * `AND <https://docs.sqream.com/en/v2022.1/reference/sql/sql_functions/scalar_functions/bitwise/and.html>`_
+   * `NOT <https://docs.sqream.com/en/v2022.1/reference/sql/sql_functions/scalar_functions/bitwise/not.html>`_
+   * `OR <https://docs.sqream.com/en/v2022.1/reference/sql/sql_functions/scalar_functions/bitwise/or.html>`_
+   * `SHIFT_LEFT <https://docs.sqream.com/en/v2022.1/reference/sql/sql_functions/scalar_functions/bitwise/shift_left.html>`_
+   * `SHIFT_RIGHT <https://docs.sqream.com/en/v2022.1/reference/sql/sql_functions/scalar_functions/bitwise/shift_right.html>`_
+   * `XOR <https://docs.sqream.com/en/v2022.1/reference/sql/sql_functions/scalar_functions/bitwise/xor.html>`_
    * :ref:`between`
    * :ref:`case`
    * :ref:`coalesce`
+   * :ref:`decode`
    * :ref:`in`
    * :ref:`is_ascii`
    * :ref:`is_null`
