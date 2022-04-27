@@ -7,7 +7,7 @@ CLUSTER BY
 ``CLUSTER BY`` can be used to change clustering keys in a table.
 
 
-Read our :ref:`data_clustering` guide for more information.
+Read our :ref:`flexible_data_clustering` guide for more information.
 
 See also: :ref:`drop_clustering_key`, :ref:`create_table`.
 

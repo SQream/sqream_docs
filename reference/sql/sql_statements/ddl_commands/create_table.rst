@@ -62,7 +62,7 @@ The following parameters can be used when creating a table:
      - 
          A commma separated list of clustering column keys.
          
-         See :ref:`data_clustering` for more information.
+         See :ref:`flexible_data_clustering` for more information.
    * - ``LIKE``
      - Duplicates the column structure of an existing table.
 	 
