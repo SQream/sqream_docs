@@ -117,9 +117,7 @@ The following table shows the **date and time** functions:
 
 Numeric
 ^^^^^^^^^^^
-The following table shows the **arithmetic operators**
-
-For more information about arithmetic operator, see :ref:`arithmetic_operators`.
+The following table shows the **arithmetic operators**:
 
 .. list-table:: Arithmetic Operators
    :widths: auto
@@ -149,6 +147,8 @@ For more information about arithmetic operator, see :ref:`arithmetic_operators`.
    * - ``%``
      - ``a % b``
      - Modulu of ``a`` by ``b``. See also :ref:`mod`
+
+For more information about arithmetic operators, see :ref:`arithmetic_operators`.
 
 The following table shows the **arithmetic operator** functions:
 
@@ -209,7 +209,7 @@ The following table shows the **arithmetic operator** functions:
 
 Strings
 ^^^^^^^^^^^
-The following table shows the **string* functions:
+The following table shows the **string** functions:
 
 .. list-table:: 
    :widths: auto
@@ -270,14 +270,12 @@ The following table shows the **string* functions:
 
 User-Defined Scalar Functions
 ---------------------
-For more information about user-defined scalar functions, see :ref:`scalar_sql_udf`
+For more information about user-defined scalar functions, see :ref:`scalar_sql_udf`.
 
 
 Aggregate Functions
 ---------------------
 The following table shows the **aggregate** functions:
-
-For more information about aggregate functions, see :ref:`aggregate_functions`.
 
 .. list-table:: 
    :widths: auto
@@ -323,11 +321,11 @@ For more information about aggregate functions, see :ref:`aggregate_functions`.
      - ``varp``
      - Calculates population variance of values
 
+For more information about aggregate functions, see :ref:`aggregate_functions`.
+
 Window Functions
 -------------------
 The following table shows the **window** functions:
-
-For more information about window functions, see :ref:`window_functions`.
 
 .. list-table:: 
    :widths: auto
@@ -362,8 +360,7 @@ For more information about window functions, see :ref:`window_functions`.
    * - :ref:`ntile`
      - Returns an integer ranging between ``1`` and the argument value, dividing the partitions as equally as possible
 
-
-
+For more information about window functions, see :ref:`window_functions`.
 
 Workload Management Functions
 ---------------------------------
