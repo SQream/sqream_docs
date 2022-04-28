@@ -1,24 +1,25 @@
 .. _sql_functions:
 
 ****************
-SQL functions
+SQL Functions
 ****************
 
-SQream DB supports functions from ANSI SQL, as well as others for compatibility.
+SQream supports functions from ANSI SQL, as well as others for compatibility.
 
-Summary of functions
+Summary of Functions
 =======================
 
 .. contents::
    :local:
 
-Scalar functions
+Built-In Scalar Functions
 -------------------
+For more information about built-in scalar functions, see :ref:`scalar_functions`.
 
-See more about :ref:`scalar_functions`
-
-Bitwise operations
+Bitwise Operations
 ^^^^^^^^^^^^^^^^^^^^^^^
+
+The following table shows the **bitwise operations** functions:
 
 .. list-table:: 
    :widths: auto
@@ -41,6 +42,7 @@ Bitwise operations
 
 Conditionals
 ^^^^^^^^^^^^^^
+The following table shows the **conditionals** functions:
 
 .. list-table:: 
    :widths: auto
@@ -65,6 +67,7 @@ Conditionals
 
 Conversion
 ^^^^^^^^^^^^
+The following table shows the **conversion** functions:
 
 .. list-table:: 
    :widths: auto
@@ -79,8 +82,9 @@ Conversion
    * - :ref:`to_unixts`
      - Converts a ``DATE`` or ``DATETIME`` to a UNIX Timestamp
 
-Date and time
+Date and Time
 ^^^^^^^^^^^^^^^^
+The following table shows the **date and time** functions:
 
 .. list-table:: 
    :widths: auto
@@ -113,10 +117,9 @@ Date and time
 
 Numeric
 ^^^^^^^^^^^
+The following table shows the **arithmetic operators**:
 
-See more about :ref:`arithmetic_operators`
-
-.. list-table:: Arithmetic operators
+.. list-table:: Arithmetic Operators
    :widths: auto
    :header-rows: 1
    
@@ -145,7 +148,11 @@ See more about :ref:`arithmetic_operators`
      - ``a % b``
      - Modulu of ``a`` by ``b``. See also :ref:`mod`
 
-.. list-table:: Functions
+For more information about arithmetic operators, see :ref:`arithmetic_operators`.
+
+The following table shows the **arithmetic operator** functions:
+
+.. list-table:: Arithemtic Operator Functions
    :widths: auto
    :header-rows: 1
    
@@ -202,6 +209,7 @@ See more about :ref:`arithmetic_operators`
 
 Strings
 ^^^^^^^^^^^
+The following table shows the **string** functions:
 
 .. list-table:: 
    :widths: auto
@@ -215,6 +223,8 @@ Strings
      - Calculates the position where a string starts inside another string
    * - :ref:`concat`
      - Concatenates two strings
+   * - :ref:`decode`
+     - Decodes or extracts binary data from a textual input string
    * - :ref:`isprefixof`
      - Matches if a string is the prefix of another string
    * - :ref:`left`
@@ -235,6 +245,8 @@ Strings
      - Calculates the number of matches of a regular expression match in an argument
    * - :ref:`regexp_instr`
      - Returns the start position of a regular expression match in an argument
+   * - :ref:`regexp_replace`
+     - Replaces and returns the text column substrings of a regular expression match in an argument
    * - :ref:`regexp_substr`
      - Returns a substring of an argument that matches a regular expression
    * - :ref:`repeat`
@@ -256,11 +268,14 @@ Strings
    * - :ref:`upper`
      - Converts an argument to an upper-case equivalent
 
-
-Aggregate functions
+User-Defined Scalar Functions
 ---------------------
+For more information about user-defined scalar functions, see :ref:`scalar_sql_udf`.
 
-See more about  :ref:`aggregate_functions`
+
+Aggregate Functions
+---------------------
+The following table shows the **aggregate** functions:
 
 .. list-table:: 
    :widths: auto
@@ -306,10 +321,11 @@ See more about  :ref:`aggregate_functions`
      - ``varp``
      - Calculates population variance of values
 
-Window functions
--------------------
+For more information about aggregate functions, see :ref:`aggregate_functions`.
 
-See more about  :ref:`window_functions`
+Window Functions
+-------------------
+The following table shows the **window** functions:
 
 .. list-table:: 
    :widths: auto
@@ -325,41 +341,30 @@ See more about  :ref:`window_functions`
      - Calculates the maximum value
    * - :ref:`min`
      - Calculates the minimum value
-   * - :ref:`rank`
-     - Calculates the rank of a row
-   * - :ref:`row_number`
-     - Calculates the row number
    * - :ref:`sum`
-     - Calculates the sum of all of the values
+     - Calculates the sum of all of the values  
+   * - :ref:`rank`
+     - Calculates the rank of a row	 
+   * - :ref:`first_value`
+     - Returns the value in the first row of a window
+   * - :ref:`last_value`
+     - Returns the value in the last row of a window
+   * - :ref:`nth_value`
+     - Returns the value in a specified ``(n)`` row of a window
+   * - :ref:`dense_rank`
+     - Returns the rank of the current row with no gaps
+   * - :ref:`percent_rank`
+     - Returns the relative rank of the current row
+   * - :ref:`cume_dist`
+     - Returns the cumulative distribution of rows
+   * - :ref:`ntile`
+     - Returns an integer ranging between ``1`` and the argument value, dividing the partitions as equally as possible
 
-System functions
-------------------
+For more information about window functions, see :ref:`window_functions`.
 
-System functions allow you to execute actions in the system, such as aborting a query or get information about system processes.
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Function
-     - Description
-   * - :ref:`explain`
-     - Returns a static query plan for a statement
-   * - :ref:`show_connections`
-     - Returns a list of jobs and statements on the current worker
-   * - :ref:`show_locks`
-     - Returns any existing locks in the database
-   * - :ref:`show_node_info`
-     - Returns a query plan for an actively running statement with timing information
-   * - :ref:`show_server_status`
-     - Shows running statements across the cluster
-   * - :ref:`show_version`
-     - Returns the version of SQream DB
-   * - :ref:`stop_statement`
-     - Stops a query (or statement) if it is currently running
-
-Workload management functions
+Workload Management Functions
 ---------------------------------
+The following table shows the **workload management** functions:
 
 .. list-table:: 
    :widths: auto
@@ -385,4 +390,3 @@ Workload management functions
    user_defined_functions/index
    aggregate_functions/index
    window_functions/index
-   system_functions/index
