@@ -3,6 +3,11 @@
 ***************
 SQL Statements
 ***************
+The **SQL Statements** page describes the following commands:
+
+.. contents::
+   :local:
+   :depth: 1
 
 SQream DB supports commands from ANSI SQL.
 
