@@ -3,6 +3,11 @@
 ***************
 SQL Statements
 ***************
+The **SQL Statements** page describes the following commands:
+
+.. contents::
+   :local:
+   :depth: 1
 
 SQream DB supports commands from ANSI SQL.
 
@@ -20,8 +25,6 @@ Data Definition Commands (DDL)
      - Usage
    * - :ref:`ADD COLUMN<add_column>`
      - Add a new column to a table
-   * - :ref:`ALTER DEFAULT SCHEMA<alter_default_schema>`
-     - Change the default schema for a role
    * - :ref:`ALTER TABLE<alter_table>`
      - Change the schema of a table
    * - :ref:`CREATE DATABASE<create_database>`
@@ -40,6 +43,26 @@ Data Definition Commands (DDL)
      - Create a new table in the database using results from a select query
    * - :ref:`CREATE VIEW<create_view>`
      - Create a new view in the database
+   * - :ref:`DESCRIBE COLUMNS<describe_columns>`
+     - List all columns in your internal or external table
+   * - :ref:`DESCRIBE CLUSTER STATUS<describe_cluster_status>`
+     - Displays the currently running cluster resources, state, and total line
+   * - :ref:`DESCRIBE DATABASES<describe_databases>`
+     - Show all databases in your cluster
+   * - :ref:`DESCRIBE LOCKS<describe_locks>`
+     - Returns a list of locks from across the cluster.
+   * - :ref:`DESCRIBE QUERY<describe_query>`
+     - Display information about query execution for monitoring and troubleshooting purposes
+   * - :ref:`DESCRIBE SCHEMAS<describe_schemas>`
+     - Show all schemas in your cluster
+   * - :ref:`DESCRIBE SESSIONS<describe_sessions>`
+     - Show a list of sessions
+   * - :ref:`DESCRIBE TABLES<describe_tables>`
+     - List all tables in your database
+   * - :ref:`DESCRIBE TABLES EXTENDED<describe_tables_extended>`
+     - List all tables in your database, including information about storage and deleted data.
+   * - :ref:`DESCRIBE USER FUNCTIONS<describe_user_functions>`
+     - List all user-defined functions
    * - :ref:`DROP COLUMN<drop_column>`
      - Drop a column from a table
    * - :ref:`DROP DATABASE<drop_database>`
@@ -56,6 +79,10 @@ Data Definition Commands (DDL)
      - Rename a column
    * - :ref:`RENAME TABLE<rename_table>`
      - Rename a table
+   * - :ref:`USE DATABASE<use_database>`
+     - Switch between databases on an existing connection and session
+   * - :ref:`USE SCHEMA<use_schema>`
+     - Switch between schemas	 
 
 Data Manipulation Commands (DML)
 ================================
@@ -112,12 +139,6 @@ Utility Commands
      - View the ``CREATE TABLE`` statement for an current database
    * - :ref:`SHOW CONNECTIONS<show_connections>`
      - Returns a list of active sessions on the current worker
-   * - :ref:`SHOW LOCKS<show_locks>`
-     - Returns a list of locks from across the cluster
-   * - :ref:`SHOW NODE INFO<show_node_info>`
-     - Returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases
-   * - :ref:`SHOW SERVER STATUS<show_server_status>`
-     - Returns a list of active sessions across the cluster
    * - :ref:`SHOW VERSION<show_version>`
      - Returns the system version for SQream DB
    * - :ref:`STOP STATEMENT<stop_statement>`
@@ -144,9 +165,6 @@ Saved Queries
      - Compiles and saves a query for re-use and sharing
    * - :ref:`SELECT SHOW_SAVED_QUERY<show_saved_query>`
      - Shows query text for a saved query
-	 
-For more information, see :ref:`saved_queries`
-
 
 Monitoring
 ===============
@@ -163,12 +181,12 @@ Monitoring statements allow a database administrator to execute actions in the s
      - Returns a static query plan for a statement
    * - :ref:`show_connections`
      - Returns a list of jobs and statements on the current worker
-   * - :ref:`show_locks`
-     - Returns any existing locks in the database
-   * - :ref:`show_node_info`
-     - Returns a query plan for an actively running statement with timing information
-   * - :ref:`show_server_status`
-     - Shows running statements across the cluster
+   * - :ref:`DESCRIBE LOCKS<describe_locks>`
+     - Returns a list of locks from across the cluster.
+   * - :ref:`DESCRIBE QUERY<describe_query>`
+     - Display information about query execution for monitoring and troubleshooting purposes
+   * - :ref:`DESCRIBE SESSIONS<describe_sessions>`
+     - Show a list of sessions
    * - :ref:`show_version`
      - Returns the version of SQream DB
    * - :ref:`stop_statement`
