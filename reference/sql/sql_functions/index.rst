@@ -117,9 +117,7 @@ The following table shows the **date and time** functions:
 
 Numeric
 ^^^^^^^^^^^
-The following table shows the **arithmetic operators**
-
-For more information about arithmetic operator, see :ref:`arithmetic_operators`.
+The following table shows the **arithmetic operators**:
 
 .. list-table:: Arithmetic Operators
    :widths: auto
@@ -149,6 +147,8 @@ For more information about arithmetic operator, see :ref:`arithmetic_operators`.
    * - ``%``
      - ``a % b``
      - Modulu of ``a`` by ``b``. See also :ref:`mod`
+
+For more information about arithmetic operators, see :ref:`arithmetic_operators`.
 
 The following table shows the **arithmetic operator** functions:
 
@@ -209,7 +209,7 @@ The following table shows the **arithmetic operator** functions:
 
 Strings
 ^^^^^^^^^^^
-The following table shows the **string* functions:
+The following table shows the **string** functions:
 
 .. list-table:: 
    :widths: auto
@@ -223,6 +223,8 @@ The following table shows the **string* functions:
      - Calculates the position where a string starts inside another string
    * - :ref:`concat`
      - Concatenates two strings
+   * - :ref:`decode`
+     - Decodes or extracts binary data from a textual input string
    * - :ref:`isprefixof`
      - Matches if a string is the prefix of another string
    * - :ref:`left`
@@ -268,14 +270,12 @@ The following table shows the **string* functions:
 
 User-Defined Scalar Functions
 ---------------------
-For more information about user-defined scalar functions, see :ref:`scalar_sql_udf`
+For more information about user-defined scalar functions, see :ref:`scalar_sql_udf`.
 
 
 Aggregate Functions
 ---------------------
 The following table shows the **aggregate** functions:
-
-For more information about aggregate functions, see :ref:`aggregate_functions`.
 
 .. list-table:: 
    :widths: auto
@@ -321,11 +321,11 @@ For more information about aggregate functions, see :ref:`aggregate_functions`.
      - ``varp``
      - Calculates population variance of values
 
+For more information about aggregate functions, see :ref:`aggregate_functions`.
+
 Window Functions
 -------------------
 The following table shows the **window** functions:
-
-For more information about window functions, see :ref:`window_functions`.
 
 .. list-table:: 
    :widths: auto
@@ -360,33 +360,7 @@ For more information about window functions, see :ref:`window_functions`.
    * - :ref:`ntile`
      - Returns an integer ranging between ``1`` and the argument value, dividing the partitions as equally as possible
 
-
-System Functions
-------------------
-System functions allow you to execute actions in the system, such as aborting a query or get information about system processes.
-
-The following table shows the **system** functions:
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Function
-     - Description
-   * - :ref:`explain`
-     - Returns a static query plan for a statement
-   * - :ref:`show_connections`
-     - Returns a list of jobs and statements on the current worker
-   * - :ref:`show_locks`
-     - Returns any existing locks in the database
-   * - :ref:`show_node_info`
-     - Returns a query plan for an actively running statement with timing information
-   * - :ref:`show_server_status`
-     - Shows running statements across the cluster
-   * - :ref:`show_version`
-     - Returns the version of SQream DB
-   * - :ref:`stop_statement`
-     - Stops a query (or statement) if it is currently running
+For more information about window functions, see :ref:`window_functions`.
 
 Workload Management Functions
 ---------------------------------
@@ -416,4 +390,3 @@ The following table shows the **workload management** functions:
    user_defined_functions/index
    aggregate_functions/index
    window_functions/index
-   system_functions/index
