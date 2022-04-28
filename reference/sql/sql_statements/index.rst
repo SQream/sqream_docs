@@ -23,66 +23,48 @@ Data Definition Commands (DDL)
    
    * - Command
      - Usage
-   * - :ref:`ADD COLUMN<add_column>`
+   * - :ref:`add_column`
      - Add a new column to a table
-   * - :ref:`ALTER TABLE<alter_table>`
+   * - :ref:`alter_default_schema`
+     - Change the default schema for a role
+   * - :ref:`alter_table`
      - Change the schema of a table
-   * - :ref:`CREATE DATABASE<create_database>`
+   * - :ref:`cluster_by`
+     - Change clustering keys in a table
+   * - :ref:`create_database`
      - Create a new database
-   * - :ref:`CREATE EXTERNAL TABLE<create_external_table>`
+   * - :ref:`create_external_table`
      - Create a new external table in the database (deprecated)
-   * - :ref:`CREATE FOREIGN TABLE<create_foreign_table>`
+   * - :ref:`create_foreign_table`
      - Create a new foreign table in the database
-   * - :ref:`CREATE FUNCTION <create_function>`
+   * - :ref:`create_function`
      - Create a new user defined function in the database
-   * - :ref:`CREATE SCHEMA<create_schema>`
+   * - :ref:`create_schema`
      - Create a new schema in the database
-   * - :ref:`CREATE TABLE<create_table>`
+   * - :ref:`create_table`
      - Create a new table in the database
-   * - :ref:`CREATE TABLE AS<create_table_as>`
+   * - :ref:`create_table_as`
      - Create a new table in the database using results from a select query
-   * - :ref:`CREATE VIEW<create_view>`
+   * - :ref:`create_view`
      - Create a new view in the database
-   * - :ref:`DESCRIBE COLUMNS<describe_columns>`
-     - List all columns in your internal or external table
-   * - :ref:`DESCRIBE CLUSTER STATUS<describe_cluster_status>`
-     - Displays the currently running cluster resources, state, and total line
-   * - :ref:`DESCRIBE DATABASES<describe_databases>`
-     - Show all databases in your cluster
-   * - :ref:`DESCRIBE LOCKS<describe_locks>`
-     - Returns a list of locks from across the cluster.
-   * - :ref:`DESCRIBE QUERY<describe_query>`
-     - Display information about query execution for monitoring and troubleshooting purposes
-   * - :ref:`DESCRIBE SCHEMAS<describe_schemas>`
-     - Show all schemas in your cluster
-   * - :ref:`DESCRIBE SESSIONS<describe_sessions>`
-     - Show a list of sessions
-   * - :ref:`DESCRIBE TABLES<describe_tables>`
-     - List all tables in your database
-   * - :ref:`DESCRIBE TABLES EXTENDED<describe_tables_extended>`
-     - List all tables in your database, including information about storage and deleted data.
-   * - :ref:`DESCRIBE USER FUNCTIONS<describe_user_functions>`
-     - List all user-defined functions
-   * - :ref:`DROP COLUMN<drop_column>`
+   * - :ref:`drop_clustering_key`
+     - Drops all clustering keys in a table
+   * - :ref:`drop_column`
      - Drop a column from a table
-   * - :ref:`DROP DATABASE<drop_database>`
+   * - :ref:`drop_database`
      - Drop a database and all of its objects
-   * - :ref:`DROP FUNCTION<drop_function>`
+   * - :ref:`drop_function`
      - Drop a function
-   * - :ref:`DROP SCHEMA<drop_schema>`
+   * - :ref:`drop_schema`
      - Drop a schema
-   * - :ref:`DROP TABLE<drop_table>`
+   * - :ref:`drop_table`
      - Drop a table and its contents from a database
-   * - :ref:`DROP VIEW<drop_view>`
+   * - :ref:`drop_view`
      - Drop a view
-   * - :ref:`RENAME COLUMN<rename_column>`
+   * - :ref:`rename_column`
      - Rename a column
-   * - :ref:`RENAME TABLE<rename_table>`
+   * - :ref:`rename_table`
      - Rename a table
-   * - :ref:`USE DATABASE<use_database>`
-     - Switch between databases on an existing connection and session
-   * - :ref:`USE SCHEMA<use_schema>`
-     - Switch between schemas	 
 
 Data Manipulation Commands (DML)
 ================================
@@ -139,32 +121,17 @@ Utility Commands
      - View the ``CREATE TABLE`` statement for an current database
    * - :ref:`SHOW CONNECTIONS<show_connections>`
      - Returns a list of active sessions on the current worker
+   * - :ref:`SHOW LOCKS<show_locks>`
+     - Returns a list of locks from across the cluster
+   * - :ref:`SHOW NODE INFO<show_node_info>`
+     - Returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases
+   * - :ref:`SHOW SERVER STATUS<show_server_status>`
+     - Returns a list of active sessions across the cluster
    * - :ref:`SHOW VERSION<show_version>`
      - Returns the system version for SQream DB
    * - :ref:`STOP STATEMENT<stop_statement>`
      - Stops or aborts an active statement
 
-Saved Queries
-===================
-
-.. list-table:: Saved Queries
-   :widths: auto
-   :header-rows: 1
-   
-   * - Command
-     - Usage
-   * - :ref:`SELECT DROP_SAVED_QUERY<drop_saved_query>`
-     - Drop a saved query
-   * - :ref:`SELECT EXECUTE_SAVED_QUERY<execute_saved_query>`
-     - Executes a saved query
-   * - :ref:`SELECT LIST_SAVED_QUERIES<list_saved_queries>`
-     - Returns a list of saved queries
-   * - :ref:`SELECT RECOMPILE_SAVED_QUERY<recompile_saved_query>`
-     - Recompiles a query that has been invalidated by a schema change
-   * - :ref:`SELECT SAVE_QUERY<save_query>`
-     - Compiles and saves a query for re-use and sharing
-   * - :ref:`SELECT SHOW_SAVED_QUERY<show_saved_query>`
-     - Shows query text for a saved query
 
 Monitoring
 ===============
@@ -181,12 +148,12 @@ Monitoring statements allow a database administrator to execute actions in the s
      - Returns a static query plan for a statement
    * - :ref:`show_connections`
      - Returns a list of jobs and statements on the current worker
-   * - :ref:`DESCRIBE LOCKS<describe_locks>`
-     - Returns a list of locks from across the cluster.
-   * - :ref:`DESCRIBE QUERY<describe_query>`
-     - Display information about query execution for monitoring and troubleshooting purposes
-   * - :ref:`DESCRIBE SESSIONS<describe_sessions>`
-     - Show a list of sessions
+   * - :ref:`show_locks`
+     - Returns any existing locks in the database
+   * - :ref:`show_node_info`
+     - Returns a query plan for an actively running statement with timing information
+   * - :ref:`show_server_status`
+     - Shows running statements across the cluster
    * - :ref:`show_version`
      - Returns the version of SQream DB
    * - :ref:`stop_statement`
