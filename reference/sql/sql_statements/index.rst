@@ -3,6 +3,11 @@
 ***************
 SQL Statements
 ***************
+The **SQL Statements** page describes the following commands:
+
+.. contents::
+   :local:
+   :depth: 1
 
 SQream DB supports commands from ANSI SQL.
 
@@ -100,6 +105,8 @@ Utility Commands
    
    * - Command
      - Usage
+   * - :ref:`EXPLAIN<explain>`
+     - Returns a static query plan, which can be used to debug query plans
    * - :ref:`SELECT GET_LICENSE_INFO<get_license_info>`
      - View a user's license information
    * - :ref:`SELECT GET_DDL<get_ddl>`
@@ -112,30 +119,18 @@ Utility Commands
      - Recreate a view after schema changes
    * - :ref:`SELECT DUMP_DATABASE_DDL<dump_database_ddl>`
      - View the ``CREATE TABLE`` statement for an current database
-
-Saved Queries
-===================
-
-.. list-table:: Saved Queries
-   :widths: auto
-   :header-rows: 1
-   
-   * - Command
-     - Usage
-   * - :ref:`SELECT DROP_SAVED_QUERY<drop_saved_query>`
-     - Drop a saved query
-   * - :ref:`SELECT EXECUTE_SAVED_QUERY<execute_saved_query>`
-     - Executes a saved query
-   * - :ref:`SELECT LIST_SAVED_QUERIES<list_saved_queries>`
-     - Returns a list of saved queries
-   * - :ref:`SELECT RECOMPILE_SAVED_QUERY<recompile_saved_query>`
-     - Recompiles a query that has been invalidated by a schema change
-   * - :ref:`SELECT SAVE_QUERY<save_query>`
-     - Compiles and saves a query for re-use and sharing
-   * - :ref:`SELECT SHOW_SAVED_QUERY<show_saved_query>`
-     - Shows query text for a saved query
-	 
-For more information, see :ref:`saved_queries`
+   * - :ref:`SHOW CONNECTIONS<show_connections>`
+     - Returns a list of active sessions on the current worker
+   * - :ref:`SHOW LOCKS<show_locks>`
+     - Returns a list of locks from across the cluster
+   * - :ref:`SHOW NODE INFO<show_node_info>`
+     - Returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases
+   * - :ref:`SHOW SERVER STATUS<show_server_status>`
+     - Returns a list of active sessions across the cluster
+   * - :ref:`SHOW VERSION<show_version>`
+     - Returns the system version for SQream DB
+   * - :ref:`STOP STATEMENT<stop_statement>`
+     - Stops or aborts an active statement
 
 
 Monitoring
