@@ -17,6 +17,7 @@ The **Built-In Scalar Functions** page describes functions that return one value
    * :ref:`between`
    * :ref:`case`
    * :ref:`coalesce`
+   * :ref:`decode`
    * :ref:`in`
    * :ref:`is_ascii`
    * :ref:`is_null`
