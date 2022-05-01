@@ -64,22 +64,6 @@ When are locks obtained?
 
 Statements that wait will exit with an error if they hit the lock timeout. The default timeout is 3 seconds, see ``statementLockTimeout``.
 
-Global locks
-----------------
-
-Some operations require exclusive global locks at the cluster level. These usually short-lived locks will be obtained for the following operations:
-
-   * :ref:`create_database`
-   * :ref:`create_role`
-   * :ref:`create_table`
-   * :ref:`alter_role`
-   * :ref:`alter_table`
-   * :ref:`drop_database`
-   * :ref:`drop_role`
-   * :ref:`drop_table`
-   * :ref:`grant`
-   * :ref:`revoke`
-
 Monitoring locks
 ===================
 
