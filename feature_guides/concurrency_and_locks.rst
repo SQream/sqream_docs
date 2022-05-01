@@ -10,7 +10,7 @@ Read only transactions are never blocked, and never block anything. Even if you 
 
 .. _locking_modes:
 
-Locking modes
+Locking Modes
 ================
 
 SQream DB has two kinds of locks:
@@ -27,7 +27,7 @@ SQream DB has two kinds of locks:
    
    This lock allows other statements to insert or delete data from a table, but they'll have to wait in order to run DDL.
 
-When are locks obtained?
+When are Locks Obtained?
 ============================
 
 .. list-table::
@@ -64,23 +64,7 @@ When are locks obtained?
 
 Statements that wait will exit with an error if they hit the lock timeout. The default timeout is 3 seconds, see ``statementLockTimeout``.
 
-Global locks
-----------------
-
-Some operations require exclusive global locks at the cluster level. These usually short-lived locks will be obtained for the following operations:
-
-   * :ref:`create_database`
-   * :ref:`create_role`
-   * :ref:`create_table`
-   * :ref:`alter_role`
-   * :ref:`alter_table`
-   * :ref:`drop_database`
-   * :ref:`drop_role`
-   * :ref:`drop_table`
-   * :ref:`grant`
-   * :ref:`revoke`
-
-Monitoring locks
+Monitoring Locks
 ===================
 
 Monitoring locks across the cluster can be useful when transaction contention takes place, and statements appear "stuck" while waiting for a previous statement to release locks.
@@ -100,3 +84,5 @@ In this example, we create a table based on results (:ref:`create_table_as`), bu
    287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | schema$t$public                 | Inclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
    287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | table$t$public$nba2$Insert      | Exclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
    287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | table$t$public$nba2$Update      | Exclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
+
+For more information on troubleshooting lock related issues, see :ref:`lock_related_issues`.
