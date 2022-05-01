@@ -3,42 +3,41 @@
 *************************
 JDBC
 *************************
-The SQream DB JDBC driver allows many Java applications and tools connect to SQream DB.
-This tutorial shows how to write a Java application using the JDBC interface.
+The SQream JDBC driver lets you connect to SQream using a variety of tools and Java applications. The **JDBC** page shows you how to write a Java application from the JDBC interface and describes the following:
 
-The JDBC driver requires Java 1.8 or newer.
-
-.. contents:: In this topic:
+.. contents::
    :local:
+   :depth: 1
 
-Installing the JDBC driver
+Installing the JDBC Driver
 ==================================
+The **Installing the JDBC Driver** section describes the following:
 
+.. contents::
+   :local:
+   :depth: 1
+   
 Prerequisites
 ----------------
-The SQream DB JDBC driver requires Java 1.8 or newer. We recommend either Oracle Java or OpenJDK.
+The SQream JDBC driver requires Java 1.8 or newer, and SQream recommends using Oracle Java or OpenJDK.
 
-**Oracle Java**
+* **Oracle** - `Oracle Java 8 <https://www.java.com/en/download/manual.jsp>`_
 
-Download and install Java 8 from Oracle for your platform
+* **Linux and BSD** - `OpenJDK Preriquisites <https://openjdk.java.net/install/>`_
 
-https://www.java.com/en/download/manual.jsp
-
-**OpenJDK**
-
-For Linux and BSD, see https://openjdk.java.net/install/
-
-For Windows, SQream recommends Zulu 8 https://www.azul.com/downloads/zulu-community/?&version=java-8-lts&architecture=x86-64-bit&package=jdk
+* **Windows** - `Zulu 8 <https://www.azul.com/downloads/zulu-community/?&version=java-8-lts&architecture=x86-64-bit&package=jdk>`_
 
 .. _get_jdbc_jar:
 
 Getting the JAR File
 ---------------------
-The JDBC driver is provided as a zipped JAR file, available for download from the :ref:`client drivers download page<client_drivers>`. This JAR file can integrate into your Java-based applications or projects.
+SQream provides the JDBC driver as a zipped JAR file, which can be integrated into your Java-based applications or projects.
 
-Extract the Zip Archive
+To download the JAR file, see :ref:`Client Drivers<client_drivers>`.
+
+Extracting the Zip Archive
 -------------------------
-Extract the JAR file from the zip archive
+You can extract the JAR file from the zip archive with the following command:
 
 .. code-block:: console
 
@@ -46,33 +45,40 @@ Extract the JAR file from the zip archive
 
 Setting Up the Class Path
 ----------------------------
-To use the driver, the JAR named ``sqream-jdbc-<version>.jar`` (for example, ``sqream-jdbc-4.3.0.jar``) needs to be included in the class path, either by putting it in the ``CLASSPATH`` environment variable, or by using flags on the relevant Java command line.
+To use the driver, you must include the jar called ``sqream-jdbc-<version>.jar`` in the class path. You can do this by using it in the ``CLASSPATH`` environment variable, or using flags on the relevant Java command line.
 
-For example, if the JDBC driver has been unzipped to ``/home/sqream/sqream-jdbc-4.3.0.jar``, the application should be run as follows:
+The following example shows how to set up the class pathwhen the JDBC driver has been unzipped to ``/home/sqream/sqream-jdbc-4.3.0.jar``:
 
 .. code-block:: console
 
    $ export CLASSPATH=/home/sqream/sqream-jdbc-4.3.0.jar:$CLASSPATH
    $ java my_java_app
 
-An alternative method is to pass ``-classpath`` to the Java executable:
+Alternatively, you can pass ``-classpath`` to the Java executable:
 
 .. code-block:: console
 
    $ java -classpath .:/home/sqream/sqream-jdbc-4.3.0.jar my_java_app
 
-Connect to SQream DB with a JDBC Application
+Connecting to SQream DB with a JDBC Application
 ==============================================
+The **Connecting to SQream DB with a JDBC Application** section describes the following:
 
-Driver Class
+.. contents::
+   :local:
+   :depth: 1
+   
+Connecting with a Driver Class
 --------------
-Use ``com.sqream.jdbc.SQDriver`` as the driver class in the JDBC application.
+You can use ``com.sqream.jdbc.SQDriver`` as the driver class in the JDBC application.
 
 .. _connection_string:
 
-Connection String
+Connecting with a Connection String
 --------------------
-JDBC drivers rely on a connection string. Use the following syntax for SQream DB
+JDBC drivers rely on a connection string.
+
+You can use the following syntax for SQream:
 
 .. code-block:: text
 
@@ -80,6 +86,7 @@ JDBC drivers rely on a connection string. Use the following syntax for SQream DB
 
 Connection Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^
+The following table shows the connection parameters:
 
 .. list-table:: 
    :widths: auto
@@ -90,31 +97,31 @@ Connection Parameters
      - Default
      - Description
    * - ``<host and port>``
-     - ✗
+     - Not supported
      - None
      - Hostname and port of the SQream DB worker. For example, ``127.0.0.1:5000``, ``sqream.mynetwork.co:3108``
    * - ``<database name>``
-     - ✗
+     - Not supported
      - None
      - Database name to connect to. For example, ``master``
    * - ``username=<username>``
-     - ✗
+     - Not supported
      - None
      - Username of a role to use for connection. For example, ``username=rhendricks``
    * - ``password=<password>``
-     - ✗
+     - Not supported
      - None
      - Specifies the password of the selected role. For example, ``password=Tr0ub4dor&3``
    * - ``service=<service>``
-     - ✓
+     - Supported
      - ``sqream``
      - Specifices service queue to use. For example, ``service=etl``
    * - ``<ssl>``
-     - ✓
+     - Supported
      - ``false``
      - Specifies SSL for this connection. For example, ``ssl=true``
    * - ``<cluster>``
-     - ✓
+     - Supported
      - ``true``
      - Connect via load balancer (use only if exists, and check port).
 
@@ -126,7 +133,7 @@ The following example shows how to create a standard connection stream to the ho
 
    jdbc:Sqream://192.168.4.89:80/master;user=rhendricks;password=Tr0ub4dor&3
 
-Sample Java Program
+Connecting with a Sample Java Program
 --------------------
 Download this file by right clicking and saving to your computer :download:`sample.java <sample.java>`.
 
