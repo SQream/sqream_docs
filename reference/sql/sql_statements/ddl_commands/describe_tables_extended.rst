@@ -11,7 +11,7 @@ The following is the correct syntax:
 
 .. code-block:: postgres
 
-   DESCRIBE TABLES EXTENDED [ SCHEMA <schema_name> ] [ DATABASE <database_name>] EXTERNAL | INTERNAL | VIEW | ALL(default) [ LIKE '<pattern>' ][ HISTORY ]
+   DESCRIBE TABLES EXTENDED [DATABASE <database_name>] [SCHEMA <schema_name>] EXTERNAL | INTERNAL | VIEW | ALL (default)
 
 Parameters
 ============
@@ -29,10 +29,6 @@ The following parameters can be used when switching databases with the **DESCRIB
      - Displays the name of the database.
    * - ``table type``
      - Lets you select EXTERNAL, INTERNAL, or ALL tables.
-   * - ``pattern``
-     - Outputs pre-defined information related to the table.
-   * - ``HISTORY``
-     - **Comment** - *What does HISTORY output?*    
 	 
 Examples
 ==============
@@ -40,10 +36,8 @@ The following is an example of the **DESCRIBE TABLES EXTENDED** command:
 
 .. code-block:: postgres
 
-   DESCRIBE TABLES EXTENDED [ SCHEMA <customers> ] [ DATABASE <public>] EXTERNAL | INTERNAL | VIEW | ALL(default) [ LIKE '<pattern>' ][ HISTORY ]
+   DESCRIBE TABLES EXTENDED DATABASE <public> SCHEMA <customers> INTERNAL
    
-**Comment** - *Please confirm if the example above is correct. I don't know what goes in the "pattern" variable.*
-	 
 Output
 =============
 Using the **DESCRIBE SCHEMAS** command generates the following output:

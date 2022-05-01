@@ -31,12 +31,7 @@ The following parameters can be used when switching databases with the **DESCRIB
      - (Optional) If blank, use the current session.
    * - ``query-id``
      - Displays the query ID of the user.
-     - Required
-   * - ``HISTORY``
-     - Returns closed sessions.
-     - Optional
-	 
-**Comment** - *If HISTORY is out of scope for MVP, perhaps we should not include it in the example...*
+     - Required	 
 	 
 Examples
 ==============
@@ -44,7 +39,7 @@ The following is an example of the **DESCRIBE SESSIONS** command:
 
 .. code-block:: postgres
 
-   DESCRIBE QUERY [SESSION ID <session-id>] QUERY ID <query-id>;
+   DESCRIBE QUERY SESSION ID session-id QUERY ID query-id;
    
 **Comment** - *Can you fill in the session-id and query-id above?*
 	 

@@ -11,7 +11,7 @@ The following is the correct syntax:
 
 .. code-block:: postgres
 
-   DESCRIBE USER FUNCTIONS [ DATABASE <database_name>] [ LIKE '<pattern>' ] [ HISTORY ]
+   DESCRIBE USER FUNCTIONS [DATABASE <database_name>]
 
 Parameters
 ============
@@ -27,10 +27,6 @@ The following parameters can be used when switching databases with the **DESCRIB
      - Displays the name of the database.
    * - ``table type``
      - Lets you select EXTERNAL, INTERNAL, or ALL tables.
-   * - ``column_name_pattern``
-     - Outputs pre-defined information related to the table.
-   * - ``HISTORY``
-     - **Comment** - *What does HISTORY output?*
 	 
 Examples
 ==============
@@ -38,7 +34,7 @@ The following is an example of the **DESCRIBE USER FUNCTIONS** command:
 
 .. code-block:: postgres
 
-   DESCRIBE USER FUNCTIONS [ DATABASE <master>] [ LIKE '<pattern>' ] [ HISTORY ] 
+   DESCRIBE USER FUNCTIONS DATABASE master
    
 **Comment** - *Please confirm if the example above is correct. I don't know what goes in the "column_name_pattern" variable.*
 	 
@@ -67,12 +63,8 @@ Using the **DESCRIBE COLUMNS** command generates the following output:
      - Text	 
    * - ``arguments``
      - Displays the data types of the arguments and of the returned value.
-     - Text
-	 
-**Comment** - *Source doc said, "V1 R&D catalog documentation for reference - functions return values should be the same as V1 catalog functions," and linked to this page: https://sqream.atlassian.net/wiki/spaces/RD/pages/1974894634/Catalog+Documentation
-
-*Should that page be converted to a public page? What is the difference in function between the page above and this public page:* https://docs.sqream.com/en/2022.3_preview/reference/catalog_reference.html#
-     
+     - Text	 
+    
 Examples
 ===========
 The following is an example of the generated output:

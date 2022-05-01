@@ -13,7 +13,7 @@ The following is the correct syntax:
 
 .. code-block:: postgres
 
-   DESCRIBE DATABASES [ LIKE '<pattern>' ][ HISTORY ]; 
+   DESCRIBE DATABASES
 
 Parameters
 ============
@@ -25,8 +25,8 @@ The following parameter can be used when switching databases with the **DESCRIBE
    
    * - Parameter
      - Description
-   * - ``pattern``
-     - Outputs pre-defined information related to the database.
+   * - ``DATABASES``
+     - Displays the name of the database.
 	 
 Examples
 ==============
@@ -34,10 +34,10 @@ The following is an example of the **DESCRIBE DATABASES** command:
 
 .. code-block:: postgres
 
-   DESCRIBE DATABASES [ LIKE '<pattern>' ][ HISTORY ];
-   
-**Comment** - *Please confirm if the example above is correct. I don't know what goes in the "pattern" variable.*
-	 
+   DESCRIBE DATABASES
+
+**Comment** - *Need example*   
+ 
 Output
 =============
 Using the **DESCRIBE DATABASES** command generates the following output:

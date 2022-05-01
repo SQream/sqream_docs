@@ -11,7 +11,7 @@ The following is the correct syntax:
 
 .. code-block:: postgres
 
-   DESCRIBE LOCKS [ SESSION ID <session-id> ][ HISTORY ];
+   DESCRIBE LOCKS [SESSION ID <session-id>}]
 
 Parameters
 ============
@@ -28,12 +28,7 @@ The following parameters can be used when switching databases with the **DESCRIB
      - Status
    * - ``session-id``
      - Displays the session ID of the user.
-     - (Optional) If blank, use the current session.
-   * - ``HISTORY``
-     - Returns closed sessions.
-     - Optional
-	 
-**Comment** - *If HISTORY is out of scope for MVP, perhaps we should not include it in the example...*
+     - (Optional) If blank, use the current session.	 
 	 
 Examples
 ==============
@@ -41,10 +36,8 @@ The following is an example of the **DESCRIBE SESSIONS** command:
 
 .. code-block:: postgres
 
-   DESCRIBE LOCKS [ SESSION ID <session-id> ][ HISTORY ];
-   
-**Comment** - *Can you fill in the session-id above?*
-	 
+   DESCRIBE LOCKS SESSION ID session-id;
+    
 Output
 =============
 Using the **DESCRIBE CLUSTER STATUS** command generates the following output:

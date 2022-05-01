@@ -13,7 +13,7 @@ The following is the correct syntax:
 
 .. code-block:: postgres
 
-   DESCRIBE SCHEMAS [ DATABASE <db_name> ][ LIKE '<pattern>' ][ HISTORY ];
+   DESCRIBE SCHEMAS [DATABASE <db_name>]
 
 Parameters
 ============
@@ -26,13 +26,7 @@ The following parameters can be used when switching databases with the **DESCRIB
    * - Parameter
      - Description
    * - ``db_name``
-     - Outputs the schema name.
-   * - ``pattern``
-     - Outputs pre-defined information related to the schema.
-   * - ``HISTORY``
-     - **Comment** - *What does HISTORY output?*
-	 
-**Comment** - *Please confirm if the example above is correct. I don't know what goes in the "pattern" variable.*
+     - Outputs the schema name.	 
 	 
 Examples
 ==============
@@ -40,10 +34,8 @@ The following is an example of the **DESCRIBE SCHEMAS** command:
 
 .. code-block:: postgres
 
-   DESCRIBE SCHEMAS [ DATABASE <master> ][ LIKE '<p%>' ][ HISTORY ];
-   
-**Comment** - *Please confirm if the example above is correct. I don't know what goes in the "pattern" variable.*
-	 
+   DESCRIBE SCHEMAS DATABASE master;
+   	 
 Output
 =============
 Using the **DESCRIBE SCHEMAS** command generates the following output:

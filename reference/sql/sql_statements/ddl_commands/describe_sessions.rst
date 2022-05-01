@@ -15,7 +15,7 @@ The following is the correct syntax:
 
 .. code-block:: postgres
 
-   DESCRIBE SESSIONS [ USER <username> ][ HISTORY ];
+   DESCRIBE SESSIONS [USER <username>]
    
 **Comment** - *The source doc had no syntax example. Can you please provide one?*
 
@@ -33,10 +33,6 @@ The following parameters can be used when switching databases with the **DESCRIB
      - Description
    * - ``username``
      - Displays the name of the user.
-   * - ``HISTORY``
-     - (Optional) Returns closed sessions.
-	 
-**Comment** - *If HISTORY is out of scope for MVP, perhaps we should not include it in the example...*
 	 
 Examples
 ==============
