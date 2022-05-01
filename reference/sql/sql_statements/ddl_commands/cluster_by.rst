@@ -25,6 +25,15 @@ Syntax
    alter_table_rename_table_statement ::=
        ALTER TABLE [schema_name.]table_name CLUSTER BY column_name [, ...]
        ;
+	   
+   create_table_statement ::=
+       CREATE [ OR REPLACE ] TABLE [schema_name.]table_name (
+           { column_def [, ...] }
+       )
+       [ CLUSTER BY { column_name [, ...] } ]
+       ;
+	   
+   column_def :: = { column_name type_name [ default ] [ column_constraint ] }
 
    table_name ::= identifier
    
@@ -42,6 +51,10 @@ Parameters
      - Description
    * - ``schema_name``
      - The schema name for the table. Defaults to ``public`` if not specified.
+   * - ``OR REPLACE``
+     - Creates a new tables and overwrites any existing table by the same name. Does not return an error if the table already exists. ``CREATE OR REPLACE`` does not check the table contents or structure, only the table name.
+   * - ``column_def``
+     - A comma separated list of column definitions. A minimal column definition includes a name identifier and a datatype. Other column constraints and default values can be added optionally.
    * - ``table_name``
      - The table name to apply the change to.
    * - ``column_name [, ... ]``
@@ -53,7 +66,7 @@ Usage notes
 
 Removing clustering keys does not affect existing data.
 
-To force data to re-cluster, the table has to be recreated (i.e. with :ref:`create_table_as`).
+To force data to re-cluster, the table has to be recreated (i.e. with :ref:`create_table`).
 
 
 Examples
