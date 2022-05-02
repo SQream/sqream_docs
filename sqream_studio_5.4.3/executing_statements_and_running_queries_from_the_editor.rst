@@ -102,7 +102,83 @@ The database object functions are used to perform the following:
 * The **additional operations** |icon-dots| - displays the following additional options:
   
 
+.. |icon-user| image:: /_static/images/studio_icon_user.png
+   :align: middle
+   
+.. |icon-dots| image:: /_static/images/studio_icon_dots.png
+   :align: middle   
+   
+.. |icon-editor| image:: /_static/images/studio_icon_editor.png
+   :align: middle
 
+.. |icon-copy| image:: /_static/images/studio_icon_copy.png
+   :align: middle
+
+.. |icon-select| image:: /_static/images/studio_icon_select.png
+   :align: middle
+
+.. |icon-dots| image:: /_static/images/studio_icon_dots.png
+   :align: middle
+
+.. |icon-filter| image:: /_static/images/studio_icon_filter.png
+   :align: middle
+
+.. |icon-ddl-edit| image:: /_static/images/studio_icon_ddl_edit.png
+   :align: middle
+
+.. |icon-run-optimizer| image:: /_static/images/studio_icon_run_optimizer.png
+   :align: middle
+
+.. |icon-generate-create-statement| image:: /_static/images/studio_icon_generate_create_statement.png
+   :align: middle
+
+.. |icon-plus| image:: /_static/images/studio_icon_plus.png
+   :align: middle
+
+.. |icon-close| image:: /_static/images/studio_icon_close.png
+   :align: middle
+
+.. |icon-left| image:: /_static/images/studio_icon_left.png
+   :align: middle
+
+.. |icon-right| image:: /_static/images/studio_icon_right.png
+   :align: middle
+
+.. |icon-format-sql| image:: /_static/images/studio_icon_format.png
+   :align: middle
+
+.. |icon-download-query| image:: /_static/images/studio_icon_download_query.png
+   :align: middle
+
+.. |icon-open-query| image:: /_static/images/studio_icon_open_query.png
+   :align: middle
+
+.. |icon-execute| image:: /_static/images/studio_icon_execute.png
+   :align: middle
+
+.. |icon-stop| image:: /_static/images/studio_icon_stop.png
+   :align: middle
+
+.. |icon-dashboard| image:: /_static/images/studio_icon_dashboard.png
+   :align: middle
+
+.. |icon-expand| image:: /_static/images/studio_icon_expand.png
+   :align: middle
+
+.. |icon-scale| image:: /_static/images/studio_icon_scale.png
+   :align: middle
+
+.. |icon-expand-down| image:: /_static/images/studio_icon_expand_down.png
+   :align: middle
+
+.. |icon-add| image:: /_static/images/studio_icon_add.png
+   :align: middle
+
+.. |icon-add-worker| image:: /_static/images/studio_icon_add_worker.png
+   :align: middle
+
+.. |keep-tabs| image:: /_static/images/studio_keep_tabs.png
+   :align: middle
 
 
 .. list-table::
@@ -126,7 +202,7 @@ The database object functions are used to perform the following:
    * - Drop table statement
      - Generates a ``DROP`` statement for the selected object in the editing area.
    * - Table DDL
-     - Generates a DDL statement for the selected object in the editing area. To get the entire database DDL, click the |icon-ddl-edit| icon next to the database name in the tree root. See `Seeing System Objects as DDL <https://docs.sqream.com/en/latest/operational_guides/seeing_system_objects_as_ddl.html>`_.
+     - Generates a DDL statement for the selected object in the editing area. To get the entire database DDL, click the |icon-ddl-edit| icon next to the database name in the tree root. See `Seeing System Objects as DDL <https://docs.sqream.com/en/v2020.3.2/operational_guides/seeing_system_objects_as_ddl.html>`_.
    * - DDL Optimizer
      - The `DDL Optimizer <https://docs.sqream.com/en/v2020.3.2/sqream_studio_5.4.3/executing_statements_and_running_queries_from_the_editor.html#optimizing-database-tables-using-the-ddl-optimizer>`_  lets you analyze database tables and recommends possible optimizations.
 
@@ -153,17 +229,17 @@ The following table describes the DDL Optimizer screen:
 
 Clicking **Run Optimizer** adds a tab to the Statement panel showing the optimized results of the selected object.
 
-For more information, see `Optimization and Best Practices <https://docs.sqream.com/en/v2020.3.2/guides/operations/optimization_best_practices.html>`_.
+For more information, see `Optimization and Best Practices <https://docs.sqream.com/en/v2020.3.2/operational_guides/optimization_best_practices.html>`_.
 
 Executing Pre-Defined Queries from the System Queries Panel
 ---------------
 The **System Queries** panel lets you execute predefined queries and includes the following system query types:
 
-* **Catalog queries** - used for analyzing table compression rates, users and permissions, etc.
+* **Catalog queries** - Used for analyzing table compression rates, users and permissions, etc.
     
 	::
 	
-* **Admin queries** - queries related to available  (describe the functionality in a general way). Queries useful for SQream database management.
+* **Admin queries** - Queries useful for SQream database management.
 
 Clicking an item pastes the query into the Statement pane, and you can undo a previous operation by pressing **Ctrl + Z**.
 
@@ -334,7 +410,9 @@ The execution tree displays the same information as shown in the plain view in t
 
 The Execution Tree tracks each phase of your query in real time as a vertical tree of nodes. Each node refers to an operation that occurred on the GPU or CPU. When a phase is completed, the next branch begins to its right until the entire query is complete. Joins are displayed as two parallel branches merged together in a node called **Join**, as shown in the figure above. The nodes are connected by a line indicating the number of rows passed from one node to the next. The width of the line indicates the amount of rows on a logarithmic scale.
 
-Each node displays a number displaying its **node ID**, its **type**, **table name** (if relevant), **status**, and **runtime**. The nodes are color-coded for easy identification. Green nodes indicate **completed nodes**, yellow indicates **nodes in progress**, and red indicates **slowest nodes**, typically joins.
+Each node displays a number displaying its **node ID**, its **type**, **table name** (if relevant), **status**, and **runtime**. The nodes are color-coded for easy identification. Green nodes indicate **completed nodes**, yellow indicates **nodes in progress**, and red indicates **slowest nodes**, typically joins, as shown below:
+
+.. image:: /_static/images/nodes.png
 
 Viewing Query Statistics
 ^^^^^^^^^^^^
@@ -412,81 +490,3 @@ The SQL View panel allows you to more easily view certain queries, such as a lon
 :ref:`Back to Viewing Statement and Query Results from the Results Panel<results_panel_5.4.3>`
 
 :ref:`Back to Executing Statements and Running Queries from the Editor<editor_top_5.4.3>`
-
-.. |icon-user| image:: /_static/images/studio_icon_user.png
-   :align: middle
-   
-.. |icon-dots| image:: /_static/images/studio_icon_dots.png
-   :align: middle   
-   
-.. |icon-editor| image:: /_static/images/studio_icon_editor.png
-   :align: middle
-
-.. |icon-copy| image:: /_static/images/studio_icon_copy.png
-   :align: middle
-
-.. |icon-select| image:: /_static/images/studio_icon_select.png
-   :align: middle
-
-.. |icon-dots| image:: /_static/images/studio_icon_dots.png
-   :align: middle
-
-.. |icon-filter| image:: /_static/images/studio_icon_filter.png
-   :align: middle
-
-.. |icon-ddl-edit| image:: /_static/images/studio_icon_ddl_edit.png
-   :align: middle
-
-.. |icon-run-optimizer| image:: /_static/images/studio_icon_run_optimizer.png
-   :align: middle
-
-.. |icon-generate-create-statement| image:: /_static/images/studio_icon_generate_create_statement.png
-   :align: middle
-
-.. |icon-plus| image:: /_static/images/studio_icon_plus.png
-   :align: middle
-
-.. |icon-close| image:: /_static/images/studio_icon_close.png
-   :align: middle
-
-.. |icon-left| image:: /_static/images/studio_icon_left.png
-   :align: middle
-
-.. |icon-right| image:: /_static/images/studio_icon_right.png
-   :align: middle
-
-.. |icon-format-sql| image:: /_static/images/studio_icon_format.png
-   :align: middle
-
-.. |icon-download-query| image:: /_static/images/studio_icon_download_query.png
-   :align: middle
-
-.. |icon-open-query| image:: /_static/images/studio_icon_open_query.png
-   :align: middle
-
-.. |icon-execute| image:: /_static/images/studio_icon_execute.png
-   :align: middle
-
-.. |icon-stop| image:: /_static/images/studio_icon_stop.png
-   :align: middle
-
-.. |icon-dashboard| image:: /_static/images/studio_icon_dashboard.png
-   :align: middle
-
-.. |icon-expand| image:: /_static/images/studio_icon_expand.png
-   :align: middle
-
-.. |icon-scale| image:: /_static/images/studio_icon_scale.png
-   :align: middle
-
-.. |icon-expand-down| image:: /_static/images/studio_icon_expand_down.png
-   :align: middle
-
-.. |icon-add| image:: /_static/images/studio_icon_add.png
-   :align: middle
-
-.. |icon-add-worker| image:: /_static/images/studio_icon_add_worker.png
-   :align: middle
-
-.. |keep-tabs| image:: /_static/images/studio_keep_tabs.png
-   :align: middle
