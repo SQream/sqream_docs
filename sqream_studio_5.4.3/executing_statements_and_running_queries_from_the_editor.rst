@@ -202,9 +202,9 @@ The database object functions are used to perform the following:
    * - Drop table statement
      - Generates a ``DROP`` statement for the selected object in the editing area.
    * - Table DDL
-     - Generates a DDL statement for the selected object in the editing area. To get the entire database DDL, click the |icon-ddl-edit| icon next to the database name in the tree root. See `Seeing System Objects as DDL <https://docs.sqream.com/en/v2021.2/guides/features/viewing_system_objects_as_ddl.html#seeing-system-objects-as-sql>`_.
+     - Generates a DDL statement for the selected object in the editing area. To get the entire database DDL, click the |icon-ddl-edit| icon next to the database name in the tree root. See `Seeing System Objects as DDL <https://docs.sqream.com/en/v2021.2/operational_guides/seeing_system_objects_as_ddl.html>`_.
    * - DDL Optimizer
-     - The `DDL Optimizer <https://docs.sqream.com/en/v2021.2/guides/operations/sqream_studio.html#using-the-ddl-optimizer DDL>`_  lets you analyze database tables and recommends possible optimizations.
+     - The `DDL Optimizer <https://docs.sqream.com/en/v2021.2/sqream_studio_5.4.3/executing_statements_and_running_queries_from_the_editor.html#optimizing-database-tables-using-the-ddl-optimizer>`_  lets you analyze database tables and recommends possible optimizations.
 
 Optimizing Database Tables Using the DDL Optimizer
 -----------------------
@@ -229,7 +229,7 @@ The following table describes the DDL Optimizer screen:
 
 Clicking **Run Optimizer** adds a tab to the Statement panel showing the optimized results of the selected object.
 
-For more information, see `Optimization and Best Practices <https://docs.sqream.com/en/v2021.2/guides/operations/optimization_best_practices.html>`_.
+For more information, see `Optimization and Best Practices <https://docs.sqream.com/en/v2021.2/operational_guides/optimization_best_practices.html>`_.
 
 Executing Pre-Defined Queries from the System Queries Panel
 ---------------
