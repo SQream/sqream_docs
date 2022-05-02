@@ -27,6 +27,8 @@ Data Definition Commands (DDL)
      - Add a new column to a table
    * - :ref:`ALTER TABLE<alter_table>`
      - Change the schema of a table
+   * - :ref:`CLUSTER BY<cluster_by>`
+     - Changes the clustering keys in a table
    * - :ref:`CREATE DATABASE<create_database>`
      - Create a new database
    * - :ref:`CREATE EXTERNAL TABLE<create_external_table>`
