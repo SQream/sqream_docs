@@ -235,11 +235,11 @@ Executing Pre-Defined Queries from the System Queries Panel
 ---------------
 The **System Queries** panel lets you execute predefined queries and includes the following system query types:
 
-* **Catalog queries** - used for analyzing table compression rates, users and permissions, etc.
+* **Catalog queries** - Used for analyzing table compression rates, users and permissions, etc.
     
 	::
 	
-* **Admin queries** - queries related to available  (describe the functionality in a general way). Queries useful for SQream database management.
+* **Admin queries** - Queries useful for SQream database management.
 
 Clicking an item pastes the query into the Statement pane, and you can undo a previous operation by pressing **Ctrl + Z**.
 
