@@ -102,7 +102,83 @@ The database object functions are used to perform the following:
 * The **additional operations** |icon-dots| - displays the following additional options:
   
 
+.. |icon-user| image:: /_static/images/studio_icon_user.png
+   :align: middle
+   
+.. |icon-dots| image:: /_static/images/studio_icon_dots.png
+   :align: middle   
+   
+.. |icon-editor| image:: /_static/images/studio_icon_editor.png
+   :align: middle
 
+.. |icon-copy| image:: /_static/images/studio_icon_copy.png
+   :align: middle
+
+.. |icon-select| image:: /_static/images/studio_icon_select.png
+   :align: middle
+
+.. |icon-dots| image:: /_static/images/studio_icon_dots.png
+   :align: middle
+
+.. |icon-filter| image:: /_static/images/studio_icon_filter.png
+   :align: middle
+
+.. |icon-ddl-edit| image:: /_static/images/studio_icon_ddl_edit.png
+   :align: middle
+
+.. |icon-run-optimizer| image:: /_static/images/studio_icon_run_optimizer.png
+   :align: middle
+
+.. |icon-generate-create-statement| image:: /_static/images/studio_icon_generate_create_statement.png
+   :align: middle
+
+.. |icon-plus| image:: /_static/images/studio_icon_plus.png
+   :align: middle
+
+.. |icon-close| image:: /_static/images/studio_icon_close.png
+   :align: middle
+
+.. |icon-left| image:: /_static/images/studio_icon_left.png
+   :align: middle
+
+.. |icon-right| image:: /_static/images/studio_icon_right.png
+   :align: middle
+
+.. |icon-format-sql| image:: /_static/images/studio_icon_format.png
+   :align: middle
+
+.. |icon-download-query| image:: /_static/images/studio_icon_download_query.png
+   :align: middle
+
+.. |icon-open-query| image:: /_static/images/studio_icon_open_query.png
+   :align: middle
+
+.. |icon-execute| image:: /_static/images/studio_icon_execute.png
+   :align: middle
+
+.. |icon-stop| image:: /_static/images/studio_icon_stop.png
+   :align: middle
+
+.. |icon-dashboard| image:: /_static/images/studio_icon_dashboard.png
+   :align: middle
+
+.. |icon-expand| image:: /_static/images/studio_icon_expand.png
+   :align: middle
+
+.. |icon-scale| image:: /_static/images/studio_icon_scale.png
+   :align: middle
+
+.. |icon-expand-down| image:: /_static/images/studio_icon_expand_down.png
+   :align: middle
+
+.. |icon-add| image:: /_static/images/studio_icon_add.png
+   :align: middle
+
+.. |icon-add-worker| image:: /_static/images/studio_icon_add_worker.png
+   :align: middle
+
+.. |keep-tabs| image:: /_static/images/studio_keep_tabs.png
+   :align: middle
 
 
 .. list-table::
@@ -112,23 +188,23 @@ The database object functions are used to perform the following:
    * - Function
      - Description
    * - Insert statement
-     - Generates an `INSERT <https://docs.sqream.com/en/v2020-2/reference/sql/sql_statements/dml_commands/insert.html#insert>`_ statement for the selected table in the editing area.
+     - Generates an `INSERT <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/insert.html#insert>`_ statement for the selected table in the editing area.
    * - Delete statement
-     - Generates a `DELETE <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/delete.html#delete>`_ statement for the selected table in the editing area.
+     - Generates a `DELETE <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/delete.html#delete>`_ statement for the selected table in the editing area.
    * - Create Table As statement
-     - Generates a `CREATE TABLE AS <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/ddl_commands/create_table_as.html#create-table-as>`_ statement for the selected table in the editing area.	 
+     - Generates a `CREATE TABLE AS <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/create_table_as.html#create-table-as>`_ statement for the selected table in the editing area.	 
    * - Rename statement
-     - Generates an `RENAME TABLE AS <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/ddl_commands/rename_table.html#rename-table>`_ statement for renaming the selected table in the editing area.
+     - Generates an `RENAME TABLE AS <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/rename_table.html#rename-table>`_ statement for renaming the selected table in the editing area.
    * - Adding column statement
-     - Generates an `ADD COLUMN <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/ddl_commands/add_column.html#add-column>`_ statement for adding columns to the selected table in the editing area.
+     - Generates an `ADD COLUMN <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/add_column.html#add-column>`_ statement for adding columns to the selected table in the editing area.
    * - Truncate table statement
-     - Generates a `TRUNCATE_IF_EXISTS <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/truncate_if_exists.html#truncate>`_ statement for the selected table in the editing area.
+     - Generates a `TRUNCATE_IF_EXISTS <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/truncate_if_exists.html#truncate>`_ statement for the selected table in the editing area.
    * - Drop table statement
      - Generates a ``DROP`` statement for the selected object in the editing area.
    * - Table DDL
-     - Generates a DDL statement for the selected object in the editing area. To get the entire database DDL, click the |icon-ddl-edit| icon next to the database name in the tree root. See `Seeing System Objects as DDL <https://docs.sqream.com/en/v2021.2/guides/features/viewing_system_objects_as_ddl.html#seeing-system-objects-as-sql>`_.
+     - Generates a DDL statement for the selected object in the editing area. To get the entire database DDL, click the |icon-ddl-edit| icon next to the database name in the tree root. See `Seeing System Objects as DDL <https://docs.sqream.com/en/latest/guides/features/viewing_system_objects_as_ddl.html#seeing-system-objects-as-sql>`_.
    * - DDL Optimizer
-     - The `DDL Optimizer <https://docs.sqream.com/en/v2021.2/guides/operations/sqream_studio.html#using-the-ddl-optimizer DDL>`_  lets you analyze database tables and recommends possible optimizations.
+     - The `DDL Optimizer <https://docs.sqream.com/en/latest/guides/operations/sqream_studio.html#using-the-ddl-optimizer DDL>`_  lets you analyze database tables and recommends possible optimizations.
 
 Optimizing Database Tables Using the DDL Optimizer
 -----------------------
@@ -153,17 +229,17 @@ The following table describes the DDL Optimizer screen:
 
 Clicking **Run Optimizer** adds a tab to the Statement panel showing the optimized results of the selected object.
 
-For more information, see `Optimization and Best Practices <https://docs.sqream.com/en/v2021.2/guides/operations/optimization_best_practices.html>`_.
+For more information, see `Optimization and Best Practices <https://docs.sqream.com/en/latest/guides/operations/optimization_best_practices.html>`_.
 
 Executing Pre-Defined Queries from the System Queries Panel
 ---------------
 The **System Queries** panel lets you execute predefined queries and includes the following system query types:
 
-* **Catalog queries** - used for analyzing table compression rates, users and permissions, etc.
+* **Catalog queries** - Used for analyzing table compression rates, users and permissions, etc.
     
 	::
 	
-* **Admin queries** - queries related to available  (describe the functionality in a general way). Queries useful for SQream database management.
+* **Admin queries** - Queries useful for SQream database management.
 
 Clicking an item pastes the query into the Statement pane, and you can undo a previous operation by pressing **Ctrl + Z**.
 
@@ -198,7 +274,7 @@ You can add and name new tabs for each statement that you need to execute, and S
 
 You can also rename the default tab name by double-clicking it and typing a new name and write multiple statements in tandem in the same tab by separating them with semicolons (``;``).If too many tabs to fit into the Statement Pane are open at the same time, the tab arrows are displayed. You can scroll through the tabs by clicking |icon-left| or |icon-right|, and close tabs by clicking |icon-close|. You can also close all tabs at once by clicking **Close all** located to the right of the tabs.
 
-.. tip:: If this is your first time using SQream, see `Getting Started <https://docs.sqream.com/en/v2021.2/first_steps.html#first-steps>`_.
+.. tip:: If this is your first time using SQream, see `Getting Started <https://docs.sqream.com/en/latest/first_steps.html#first-steps>`_.
 
 
 .. Keyboard shortcuts
@@ -414,81 +490,3 @@ The SQL View panel allows you to more easily view certain queries, such as a lon
 :ref:`Back to Viewing Statement and Query Results from the Results Panel<results_panel_5.4.3>`
 
 :ref:`Back to Executing Statements and Running Queries from the Editor<editor_top_5.4.3>`
-
-.. |icon-user| image:: /_static/images/studio_icon_user.png
-   :align: middle
-   
-.. |icon-dots| image:: /_static/images/studio_icon_dots.png
-   :align: middle   
-   
-.. |icon-editor| image:: /_static/images/studio_icon_editor.png
-   :align: middle
-
-.. |icon-copy| image:: /_static/images/studio_icon_copy.png
-   :align: middle
-
-.. |icon-select| image:: /_static/images/studio_icon_select.png
-   :align: middle
-
-.. |icon-dots| image:: /_static/images/studio_icon_dots.png
-   :align: middle
-
-.. |icon-filter| image:: /_static/images/studio_icon_filter.png
-   :align: middle
-
-.. |icon-ddl-edit| image:: /_static/images/studio_icon_ddl_edit.png
-   :align: middle
-
-.. |icon-run-optimizer| image:: /_static/images/studio_icon_run_optimizer.png
-   :align: middle
-
-.. |icon-generate-create-statement| image:: /_static/images/studio_icon_generate_create_statement.png
-   :align: middle
-
-.. |icon-plus| image:: /_static/images/studio_icon_plus.png
-   :align: middle
-
-.. |icon-close| image:: /_static/images/studio_icon_close.png
-   :align: middle
-
-.. |icon-left| image:: /_static/images/studio_icon_left.png
-   :align: middle
-
-.. |icon-right| image:: /_static/images/studio_icon_right.png
-   :align: middle
-
-.. |icon-format-sql| image:: /_static/images/studio_icon_format.png
-   :align: middle
-
-.. |icon-download-query| image:: /_static/images/studio_icon_download_query.png
-   :align: middle
-
-.. |icon-open-query| image:: /_static/images/studio_icon_open_query.png
-   :align: middle
-
-.. |icon-execute| image:: /_static/images/studio_icon_execute.png
-   :align: middle
-
-.. |icon-stop| image:: /_static/images/studio_icon_stop.png
-   :align: middle
-
-.. |icon-dashboard| image:: /_static/images/studio_icon_dashboard.png
-   :align: middle
-
-.. |icon-expand| image:: /_static/images/studio_icon_expand.png
-   :align: middle
-
-.. |icon-scale| image:: /_static/images/studio_icon_scale.png
-   :align: middle
-
-.. |icon-expand-down| image:: /_static/images/studio_icon_expand_down.png
-   :align: middle
-
-.. |icon-add| image:: /_static/images/studio_icon_add.png
-   :align: middle
-
-.. |icon-add-worker| image:: /_static/images/studio_icon_add_worker.png
-   :align: middle
-
-.. |keep-tabs| image:: /_static/images/studio_keep_tabs.png
-   :align: middle
