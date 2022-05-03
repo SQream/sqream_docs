@@ -24,7 +24,7 @@ The following parameters can be used with the ``DESCRIBE USER FUNCTIONS`` comman
    * - Element
      - Description
    * - ``database_name``
-     - Displays the name of the database.
+     - Displays all user functions belonging to the provided database.
 	 
 Examples
 ==============

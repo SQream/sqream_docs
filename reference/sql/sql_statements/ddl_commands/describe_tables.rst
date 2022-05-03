@@ -29,7 +29,10 @@ The following parameters can be used with the ``DESCRIBE TABLES`` command:
      - Text
    * - ``schema_name``
      - Displays the name of the table.
-     - Text	 
+     - Text
+   * - ``EXTERNAL`` | ``INTERNAL``
+     - Displays information belonging to either an external or internal table.
+     - Text	
 	 
 Examples
 ==============

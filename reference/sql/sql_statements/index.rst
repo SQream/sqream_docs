@@ -49,8 +49,6 @@ Data Definition Commands (DDL)
      - List all columns in your internal or external table
    * - :ref:`DESCRIBE DATABASES<describe_databases>`
      - Show all databases in your cluster
-   * - :ref:`DESCRIBE LOCKS<describe_locks>`
-     - Returns a list of locks from across the cluster.
    * - :ref:`DESCRIBE QUERY<describe_query>`
      - Display information about query execution for monitoring and troubleshooting purposes
    * - :ref:`DESCRIBE SCHEMAS<describe_schemas>`

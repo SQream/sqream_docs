@@ -3,7 +3,7 @@
 *****************
 DESCRIBE QUERY
 *****************
-The ``DESCRIBE SESSIONS`` command replaces the `SHOW_NODE_INFO <https://docs.sqream.com/en/latest/reference/sql/sql_functions/system_functions/show_node_info.html>`_ command. You can use it to display information about query execution for monitoring and troubleshooting purposes.
+The ``DESCRIBE QUERY`` command replaces the `SHOW_NODE_INFO <https://docs.sqream.com/en/latest/reference/sql/sql_functions/system_functions/show_node_info.html>`_ command. You can use it to display information about query execution for monitoring and troubleshooting purposes.
 
 Syntax
 ==========
@@ -16,8 +16,6 @@ The following is the correct syntax:
 Parameters
 ============
 The following parameters can be used when switching databases with the **DESCRIBE CLUSTER STATUS** command:
-
-**Comment** - *Parameter table must be based on the example when provided. The following table is just a space holder.*
 
 .. list-table:: 
    :widths: auto

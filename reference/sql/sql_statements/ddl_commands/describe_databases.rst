@@ -17,17 +17,8 @@ The following is the correct syntax for the ``DESCRIBE DATABASES`` command:
 
 Parameters
 ============
-The following parameters can be used with the ``DESCRIBE DATABASES`` command:
+The ``DESCRIBE DATABASES`` command has no parameters.
 
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Parameter
-     - Description
-   * - ``DATABASES``
-     - Displays the name of the database.
-	 
 Examples
 ==============
 The following is an example of the ``DESCRIBE DATABASES`` command:

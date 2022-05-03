@@ -62,10 +62,6 @@ Using the ``DESCRIBE SCHEMAS`` command generates the following output:
      - Displays the schema owner.
      - Text
      - sqream
-   * - ``rechunker_ignore``
-     - **Comment** - description needed.
-     - Boolean
-     - false
      
 Example
 ===========

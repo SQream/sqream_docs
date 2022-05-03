@@ -46,10 +46,34 @@ Using the ``DESCRIBE SESSIONS`` command generates the following output:
      - Description
      - Type
      - Example
+   * - ``query_id``
+     - Displays the query ID.
+     - Text
+     - b6173e04-6e2a-4266-bef0-6fc9b8ffc097:3
+   * - ``query_status``
+     - Displays the query status.
+     - Text
+     - EXECUTION_SUCCEED,SELECT
+   * - ``query_type``
+     - Displays the query type.
+     - Text
+     - SELECT
+   * - ``sql_text``
+     - Selects the defined SQL text from the specified table.
+     - Text
+     - select * from t1
    * - ``session_id``
-     - Displays the session ID.
-     - Integer
-     - b6173e04-6e2a-4266-bef0-6fc9b8ffc097	 
+     - Selects the session ID.
+     - Text
+     - b6173e04-6e2a-4266-bef0-6fc9b8ffc097
+   * - ``start_time``
+     - Displays the start date and time.
+     - Type
+     - 2022-05-02T15:32:49
+   * - ``client_info``
+     - Displays information about the client.
+     - Type
+     - SQream JDBC v0.1.33 
 
 Permissions
 =============
