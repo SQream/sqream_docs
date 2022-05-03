@@ -90,7 +90,7 @@ Elements
    * - ``MAX_FILE_SIZE``
      - Sets the maximum file size (bytes). Default value: 16*2^20 (16MB).
    * - ``ENFORCE_SINGLE_FILE``
-     - Sets the maximum file size (bytes). Permitted values: ``true`` - creates one file, ``false`` - permits creating more than one file. Default value: ``FALSE``. **Note:** File size not limited by ``MAX_FILE_SIZE`` setting.
+     - Enforces the maximum file size (bytes). Permitted values: ``true`` - creates one file of unlimited size, ``false`` - permits creating several files together limited by the ``MAX_FILE_SIZE``. When set to ``true``, the single file size is not limited by the ``MAX_FILE_SIZE`` setting. When set to ``false``, the combined file sizes cannot exceed the ``MAX_FILE_SIZE``. Default value: ``FALSE``.
 
 Usage Notes
 ===============
