@@ -61,6 +61,8 @@ Syntax
   AWS ID ::= string
 
   AWS Secret ::= string
+  
+.. note:: In Studio, you must write the parameters using lower case letters. Using upper case letters generates an error.
 
 Elements
 ============
@@ -88,7 +90,7 @@ Elements
    * - ``MAX_FILE_SIZE``
      - Sets the maximum file size (bytes). Default value: 16*2^20 (16MB).
    * - ``ENFORCE_SINGLE_FILE``
-     - Sets the maximum file size (bytes). Permitted values: ``TRUE`` - creates one file, ``FALSE`` - permits creating more than one file. Default value: ``FALSE``. **Note:** File size not limited by ``MAX_FILE_SIZE`` setting.
+     - Sets the maximum file size (bytes). Permitted values: ``true`` - creates one file, ``false`` - permits creating more than one file. Default value: ``FALSE``. **Note:** File size not limited by ``MAX_FILE_SIZE`` setting.
 
 Usage Notes
 ===============
