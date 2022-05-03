@@ -9,15 +9,15 @@ The ``DESCRIBE SCHEMAS`` command lets you show all schemas in your cluster.
 
 Syntax
 ==========
-The following is the correct syntax:
+The following is the correct syntax for the ``DESCRIBE SCHEMAS`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE SCHEMAS [DATABASE <db_name>]
+   DESCRIBE SCHEMAS [DATABASE <database_name>]
 
 Parameters
 ============
-The following parameters can be used when switching databases with the **DESCRIBE SCHEMAS** command:
+The following parameters can be used with the ``DESCRIBE SCHEMAS`` command:
 
 .. list-table:: 
    :widths: auto
@@ -25,12 +25,14 @@ The following parameters can be used when switching databases with the **DESCRIB
    
    * - Parameter
      - Description
-   * - ``db_name``
-     - Outputs the schema name.	 
+     - Type
+   * - ``database_name``
+     - Displays the name of the database.
+     - Text
 	 
 Examples
 ==============
-The following is an example of the **DESCRIBE SCHEMAS** command:
+The following is an example of the ``DESCRIBE SCHEMAS`` command:
 
 .. code-block:: postgres
 
@@ -38,30 +40,40 @@ The following is an example of the **DESCRIBE SCHEMAS** command:
    	 
 Output
 =============
-Using the **DESCRIBE SCHEMAS** command generates the following output:
+Using the ``DESCRIBE SCHEMAS`` command generates the following output:
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
-   * - Element
+   * - Parameter
      - Description
      - Type
+     - Example
    * - ``schema_id``
      - Displays the schema ID.
      - Integer
-   * - ``name``
+     - 0
+   * - ``schema_name``
      - Displays the schema name.
      - Text
-   * - ``owner``
+     - public
+   * - ``schema_owner``
      - Displays the schema owner.
      - Text
+     - sqream
+   * - ``rechunker_ignore``
+     - **Comment** - description needed.
+     - Boolean
+     - false
      
-Examples
+Example
 ===========
 The following is an example of the generated output:
 
-**Comment** - *Can you please provide an example?*
+.. code-block:: postgres
+
+   0,public,sqream,false
 
 Permissions
 =============

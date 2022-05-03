@@ -47,8 +47,6 @@ Data Definition Commands (DDL)
      - Create a new view in the database
    * - :ref:`DESCRIBE COLUMNS<describe_columns>`
      - List all columns in your internal or external table
-   * - :ref:`DESCRIBE CLUSTER STATUS<describe_cluster_status>`
-     - Displays the currently running cluster resources, state, and total line
    * - :ref:`DESCRIBE DATABASES<describe_databases>`
      - Show all databases in your cluster
    * - :ref:`DESCRIBE LOCKS<describe_locks>`
@@ -59,10 +57,10 @@ Data Definition Commands (DDL)
      - Show all schemas in your cluster
    * - :ref:`DESCRIBE SESSIONS<describe_sessions>`
      - Show a list of sessions
+   * - :ref:`DESCRIBE SESSION QUERIES<describe_session_queries>`
+     - Show a list of queries per session
    * - :ref:`DESCRIBE TABLES<describe_tables>`
      - List all tables in your database
-   * - :ref:`DESCRIBE TABLES EXTENDED<describe_tables_extended>`
-     - List all tables in your database, including information about storage and deleted data.
    * - :ref:`DESCRIBE USER FUNCTIONS<describe_user_functions>`
      - List all user-defined functions
    * - :ref:`DROP COLUMN<drop_column>`

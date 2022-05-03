@@ -78,15 +78,3 @@ The following example shows an example of the syntax for creating a schema:
    CREATE TABLE staging.users AS SELECT * FROM public.users;
    
    SELECT * FROM staging.users;
-
-Altering the Default Schema for a Role
------------------------------------------
-The following example shows an example of the syntax for altering the default schema for a role:
-
-.. code-block:: postgres
-
-   SELECT * FROM users; -- Refers to public.users
-   
-   ALTER DEFAULT SCHEMA FOR bgilfoyle TO staging;
-   
-   SELECT * FROM users; -- Now refers to staging.users, rather than public.users

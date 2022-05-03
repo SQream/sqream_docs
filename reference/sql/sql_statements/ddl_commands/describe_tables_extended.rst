@@ -3,44 +3,21 @@
 *****************
 DESCRIBE TABLES EXTENDED
 *****************
-The ``DESCRIBE TABLES EXTENDED`` command lets you list all the tables in your database, including information about storage and deleted data.
+.. note::  The **DESCRIBE TABLES EXTENDED** command is not relevant to Alpha, and will be implemented in Beta.
+
+The ``DESCRIBE TABLES EXTENDED`` command lets you list all the tables in your database, including information about storage and deleted data. You can define the ``DESCRIBE TABLES EXTENDED`` command as either ``EXTERNAL`` or ``INTERNAL``.
 
 Syntax
 ==========
-The following is the correct syntax:
+The following is the correct syntax for the ``DESCRIBE TABLES EXTENDED`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE TABLES EXTENDED [DATABASE <database_name>] [SCHEMA <schema_name>] EXTERNAL | INTERNAL | VIEW | ALL (default)
+   DESCRIBE TABLES [SCHEMA <schema_name>] [DATABASE <database_name>] EXTERNAL | INTERNAL
 
 Parameters
 ============
-The following parameters can be used when switching databases with the **DESCRIBE TABLES EXTENDED** command:
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Element
-     - Description
-   * - ``schema_name``
-     - Displays the schema name.
-   * - ``database_name``
-     - Displays the name of the database.
-   * - ``table type``
-     - Lets you select EXTERNAL, INTERNAL, or ALL tables.
-	 
-Examples
-==============
-The following is an example of the **DESCRIBE TABLES EXTENDED** command:
-
-.. code-block:: postgres
-
-   DESCRIBE TABLES EXTENDED DATABASE <public> SCHEMA <customers> INTERNAL
-   
-Output
-=============
-Using the **DESCRIBE SCHEMAS** command generates the following output:
+The following parameters can be used with the ``DESCRIBE TABLES EXTENDED`` command:
 
 .. list-table:: 
    :widths: auto
@@ -48,49 +25,119 @@ Using the **DESCRIBE SCHEMAS** command generates the following output:
    
    * - Parameter
      - Description
-	 - Type
-   * - ``created_on``
-     - Displays the date and time when the table was created.
-     - Date
-   * - ``name``
-     - Displays the name of the table.
-     - Text
-   * - ``type``
-     - Displays the type of table (internal/external/all).
-     - Text	 
-   * - ``database``
+     - Type
+   * - ``database_name``
      - Displays the name of the database.
-     - Text	    
-   * - ``schema``
+     - Text
+   * - ``schema_name``
+     - Displays the name of the table.
+     - Text	 
+	 
+Examples
+==============
+The following is an example of an **internal** ``DESCRIBE TABLES EXTENDED`` command:
+
+.. code-block:: postgres
+
+   DESCRIBE TABLES DATABASE master SCHEMA public INTERNAL;
+   
+The following is an example of an **external** ``DESCRIBE TABLES EXTENDED`` command:
+
+.. code-block:: postgres
+   
+   DESCRIBE TABLES DATABASE master SCHEMA public EXTERNAL;
+   
+Output
+=============
+Using the **internal** ``DESCRIBE_TABLES_EXTENDED`` command generates the following output:
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Description
+     - Type
+     - Example
+   * - ``database_name``
+     - Displays the name of the database.
+     - Text
+     - master
+   * - ``table_id``
+     - Displays the ID of the table.
+     - Integer
+     - 0	 
+   * - ``schema_name``
      - Displays the name of the schema.
      - Text
-   * - ``owner``
-     - Displays the owner of the schema.
+     - public
+   * - ``table_name``
+     - Displays the name of the table.
      - Text
-   * - ``rows``
-     - Displays the number of rows in the table, returning ``NULL`` for external table.
-     - Big Integer
-   * - ``bytes``
-     - Displays the compressed number of bytes scanned if the whole table is scanned during a query. This number may differ from the number of bytes stored on-disk for a table.
-     - 
-   * - ``dropped_on``
-     - Returned if the HISTORY variable is used, returning ``NULL`` when no tables are dropped.
-     - Date
-   * - ``number_of_chunks``
-     - Displays the number of chunks.
-     - Integer	 
-   * - ``bytes``
-     - Displays the uncompressed number of bytes scanned if the whole table is scanned during a query. This number may differ from the number of bytes stored on-disk for a table.	 
-     - Big Integer	 
-   * - ``number_of_chunks_with_deleted_rows``
-     - Displays the number of chunks that rows were deleted from.
+     - t5
+   * - ``row_count_valid``
+     - Indicates whether the row count is valid or invalid.
+     - Boolean
+     - true
+   * - ``row_count_valid``
+     - Displays whether the row count is valid or invalid.
+     - Boolean
+     - 1
+   * - ``row_count``
+     - Displays the amount of rows in the table.
      - Integer
-     
+     - 0
+
+Using the **external** ``DESCRIBE_TABLES_EXTENDED`` command generates the following output:
+
+master,3,public,t4,0,2022-05-02 15:25:57
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Description
+     - Type
+     - Example
+   * - ``database_name``
+     - Displays the name of the database.
+     - Text
+     - master
+   * - ``table_id``
+     - Displays the ID of the table.
+     - Integer
+     - 3	 
+   * - ``schema_name``
+     - Displays the name of the schema.
+     - Text	
+     - public
+   * - ``table_name``
+     - Displays the name of the table.
+     - Text
+     - t4	 
+   * - ``format``
+     - Indicates whether the table is formatted or not.
+     - Boolean
+     - 0	 
+   * - ``created``
+     - Displays the table's creation date and timestamp.
+     - Date
+     - 2022-05-02 15:25:57	 
+
 Examples
 ===========
-The following is an example of the generated output:
+The following is an example of the generated output for the **internal** ``DESCRIBE TABLES EXTENDED`` command:
 
-**Comment** - *Can you please provide an example?*
+.. code-block:: postgres
+
+   master,0,public,t5,true,1,0
+
+The following is an example of the generated output for the **external** ``DESCRIBE TABLES EXTENDED`` command:
+
+.. code-block:: postgres
+
+   master,3,public,t4,0,2022-05-02 15:25:57
 
 Permissions
 =============

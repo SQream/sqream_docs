@@ -9,7 +9,7 @@ The ``DESCRIBE DATABASES`` command lets you show all databases in your cluster.
 
 Syntax
 ==========
-The following is the correct syntax:
+The following is the correct syntax for the ``DESCRIBE DATABASES`` command:
 
 .. code-block:: postgres
 
@@ -17,7 +17,7 @@ The following is the correct syntax:
 
 Parameters
 ============
-The following parameter can be used when switching databases with the **DESCRIBE DATABASES** command:
+The following parameters can be used with the ``DESCRIBE DATABASES`` command:
 
 .. list-table:: 
    :widths: auto
@@ -30,40 +30,40 @@ The following parameter can be used when switching databases with the **DESCRIBE
 	 
 Examples
 ==============
-The following is an example of the **DESCRIBE DATABASES** command:
+The following is an example of the ``DESCRIBE DATABASES`` command:
 
 .. code-block:: postgres
 
    DESCRIBE DATABASES
-
-**Comment** - *Need example*   
  
 Output
 =============
-Using the **DESCRIBE DATABASES** command generates the following output:
+Using the ``DESCRIBE DATABASES`` command generates the following output:
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
-   * - Element
+   * - Parameter
      - Description
      - Type
+     - Example
+   * - ``database_name``
+     - Displays the name of the database.
+     - Text
+     - master
    * - ``created_on``
      - Displays the date and time when the database was created.
      - Date
-   * - ``name``
-     - Displays the name of the database.
-     - Text
-   * - ``is_current``
-     - Displays whether the database is currently being used.
-     - Boolean
+     - 2022-04-27 19:04:53
      
-Examples
+Example
 ===========
 The following is an example of the generated output:
 
-**Comment** - *Can you please provide an example?*
+.. code-block:: postgres
+
+   master,2022-04-27 19:04:53
 
 Permissions
 =============

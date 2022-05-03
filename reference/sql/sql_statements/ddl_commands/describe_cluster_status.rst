@@ -3,6 +3,8 @@
 *****************
 DESCRIBE CLUSTER STATUS
 *****************
+.. note::  The **DESCRIBE CLUSTER STATUS** command is not relevant to Alpha, and will be implemented in Beta.
+
 The ``DESCRIBE CLUSTER STATUS`` command lets you display the currently running cluster resources, state, and a total line where relevant, such as total CPU and RAM.
 
 Syntax

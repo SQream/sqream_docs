@@ -6,73 +6,76 @@ DESCRIBE SESSIONS
 The ``DESCRIBE SESSIONS`` command replaces the `SHOW_SERVER_STATUS <https://docs.sqream.com/en/latest/reference/sql/sql_functions/system_functions/show_server_status.html>`_ command, and lets you display a list of sessions:
 
 * Actively connected sessions with no running statements
+ 
+   ::
+
 * Sessions with queued queries
+
+   ::
+  
 * Closed sessions
 
 Syntax
 ==========
-The following is the correct syntax:
+The following is the correct syntax for the ``DESCRIBE SESSIONS`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE SESSIONS [USER <username>]
-   
-**Comment** - *The source doc had no syntax example. Can you please provide one?*
+   DESCRIBE SESSIONS
 
 Parameters
 ============
-The following parameters can be used when switching databases with the **DESCRIBE CLUSTER STATUS** command:
-
-**Comment** - *Parameter table must be based on the example when provided. The following table is just a space holder.*
+The following parameters can be used with the ``DESCRIBE SESSIONS`` command:
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
-   * - Element
+   * - Parameter
      - Description
-   * - ``username``
-     - Displays the name of the user.
+   * - ``DESCRIBE SESSIONS``
+     - Displays the name of the database.
 	 
 Examples
 ==============
-The following is an example of the **DESCRIBE SESSIONS** command:
+The following is an example of the ``DESCRIBE SESSIONS`` command:
 
 .. code-block:: postgres
 
-   EXAMPLE
-   
-**Comment** - *The source doc had no example. Can you please provide one?*
-	 
+   DESCRIBE SESSIONS
+   	 
 Output
 =============
-Using the **DESCRIBE CLUSTER STATUS** command generates the following output:
+Using the ``DESCRIBE SESSIONS`` command generates the following output:
 
-+-------------------+-----------+----------------------------------------------------------------------------------------------------------------------------------+
-| Field             | Type      | Comments                                                                                                                         |
-+===================+===========+==================================================================================================================================+
-| Start time        | datetime  | The time at which the connection was opened.                                                                                     |
-+-------------------+-----------+----------------------------------------------------------------------------------------------------------------------------------+
-| End time          | datetime  | The time in which the connection was closed. ``null`` if active.                                                                 |
-+-------------------+-----------+----------------------------------------------------------------------------------------------------------------------------------+
-| Database          | Text      |                                                                                                                                  |
-+-------------------+-----------+----------------------------------------------------------------------------------------------------------------------------------+
-| Role              | Text      |                                                                                                                                  |
-+-------------------+-----------+----------------------------------------------------------------------------------------------------------------------------------+
-| Source IP         | Text      |                                                                                                                                  |
-+-------------------+-----------+----------------------------------------------------------------------------------------------------------------------------------+
-| Client            | Text      | Name and version of SQream driver or client used for executing the statement, such as SQream JDBC v3.4, SQream Studio v2.3)      |
-+-------------------+-----------+----------------------------------------------------------------------------------------------------------------------------------+
-| Status            | Text      | One of the following:                                                                                                            |
-|                   |           |                                                                                                                                  |
-|                   |           |  * Active                                                                                                                        |
-|                   |           |  * Closed                                                                                                                        |
-|                   |           |  * Rejected                                                                                                  	         	   |
-+-------------------+-----------+----------------------------------------------------------------------------------------------------------------------------------+
-| Rejection reason  | Text      | Error message                                                                                                                    |
-+-------------------+-----------+----------------------------------------------------------------------------------------------------------------------------------+
-| Session ID        | Text      | Null for failed logins                                                                                                           |
-+-------------------+-----------+----------------------------------------------------------------------------------------------------------------------------------+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Description
+     - Type
+     - Example
+   * - ``start_time``
+     - Displays the name of the database.
+     - Date
+     - 02-05-2022 15:23:48
+   * - ``database``
+     - Displays the name of the database.
+     - Text
+     - master
+   * - ``client``
+     - Displays the name of the client.
+     - Text
+     - SQream JDBC v0.1.33
+   * - ``status``
+     - Displays the status of the client.
+     - Text
+     - Active
+   * - ``session_id``
+     - Displays the session ID.
+     - Text
+     - 64935a0b-7e9d-40b0-828c-6d4f196d4830	 
 
 Permissions
 =============
