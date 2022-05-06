@@ -7,7 +7,7 @@ The ``DESCRIBE QUERY`` command replaces the `SHOW_NODE_INFO <https://docs.sqream
 
 Syntax
 ==========
-The following is the correct syntax:
+The following is the syntax for the ``DESCRIBE QUERY`` command:
 
 .. code-block:: postgres
 
@@ -15,25 +15,28 @@ The following is the correct syntax:
    
 Parameters
 ============
-The following parameters can be used when switching databases with the **DESCRIBE CLUSTER STATUS** command:
+The following parameters can be used when switching databases with the **DESCRIBE QUERY** command:
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
-   * - Element
+   * - Parameter Name
+     - Parameter Value
      - Description
-     - Status
-   * - ``session-id``
-     - Displays the session ID of the user.
-     - (Optional) If blank, use the current session.
-   * - ``query-id``
-     - Displays the query ID of the user.
+     - Type
+   * - ``SESSION ID``
+     - ``session_id``
+     - (Optional) The session ID of the query.
+     - Type
+   * - ``QUERY ID``
+     - ``query-id``
+     - The query ID of the user.
      - Required	 
 	 
 Example
 ==============
-The following is an example of the ``DESCRIBE SESSIONS`` command:
+The following is an example of the ``DESCRIBE QUERY`` command:
 
 .. code-block:: postgres
 
@@ -41,8 +44,6 @@ The following is an example of the ``DESCRIBE SESSIONS`` command:
 	 
 Output
 =============
-**Comment** - *On the other pages I used the example above in the table below. Do we want to do the same with this page?*
-
 Using the ``DESCRIBE QUERY`` command generates the following output:
 
 .. list-table:: 
@@ -108,4 +109,4 @@ Using the ``DESCRIBE QUERY`` command generates the following output:
 
 Permissions
 =============
-**Comment** - *What are the permissions?*
+No permissions are required for the ``DESCRIBE QUERY`` command.

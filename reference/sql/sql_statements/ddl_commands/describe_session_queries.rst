@@ -7,7 +7,7 @@ The ``DESCRIBE SESSION QUERIES`` command outputs a list of queries per session, 
 
 Syntax
 ==========
-The following is the correct syntax for the ``DESCRIBE SESSION QUERIES`` command:
+The following is the syntax for the ``DESCRIBE SESSION QUERIES`` command:
 
 .. code-block:: postgres
 
@@ -21,10 +21,14 @@ The following parameters can be used with the ``DESCRIBE SESSION QUERIES`` comma
    :widths: auto
    :header-rows: 1
    
-   * - Parameter
+   * - Parameter Name
+     - Parameter Value
      - Description
-     - SESSION ID
-     - Displays the session ID.
+     - Type
+   * - ``SESSION ID``
+     - ``session_id``
+     - The session ID of the query.
+     - Text
 	 
 Examples
 ==============
@@ -77,4 +81,4 @@ Using the ``DESCRIBE SESSIONS`` command generates the following output:
 
 Permissions
 =============
-**Comment** - *What are the permissions?*
+No permissions are required for the ``DESCRIBE SESSION QUERIES`` command.

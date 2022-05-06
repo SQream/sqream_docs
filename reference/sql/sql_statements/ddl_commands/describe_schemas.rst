@@ -3,13 +3,11 @@
 *****************
 DESCRIBE SCHEMAS
 *****************
-The ``DESCRIBE SCHEMAS`` command lets you show all schemas in your cluster.
-
-**Comment** - *See the Output table for this command. The outputs there are not schemas, but rather INFORMATION about the schemas. Please confirm.*
+The ``DESCRIBE SCHEMAS`` command lets you list information about schemas in your cluster.
 
 Syntax
 ==========
-The following is the correct syntax for the ``DESCRIBE SCHEMAS`` command:
+The following is the syntax for the ``DESCRIBE SCHEMAS`` command:
 
 .. code-block:: postgres
 
@@ -23,11 +21,13 @@ The following parameters can be used with the ``DESCRIBE SCHEMAS`` command:
    :widths: auto
    :header-rows: 1
    
-   * - Parameter
+   * - Parameter Name
+     - Parameter Value
      - Description
      - Type
-   * - ``database_name``
-     - Displays the name of the database.
+   * - ``DATABASE``
+     - ``database_name``
+     - The name of the database.
      - Text
 	 
 Examples
@@ -73,4 +73,4 @@ The following is an example of the generated output:
 
 Permissions
 =============
-**Comment** - *What are the permissions?*
+No permissions are required for the ``DESCRIBE_SCHEMAS`` command.

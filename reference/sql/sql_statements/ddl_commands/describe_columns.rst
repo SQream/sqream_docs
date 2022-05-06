@@ -3,15 +3,15 @@
 *****************
 DESCRIBE COLUMNS
 *****************
-The ``DESCRIBE COLUMNS`` command lets you list all columns in an internal or external table.
+The ``DESCRIBE COLUMNS`` command lets you list information about all columns in an internal or external table.
 
 Syntax
 ==========
-The following is the correct syntax for the ``DESCRIBE COLUMNS`` command:
+The following is the syntax for the ``DESCRIBE COLUMNS`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE COLUMNS [SCHEMA <schema_name>] [DATABASE <database_name>][TABLE <table_name>]
+   DESCRIBE COLUMNS SCHEMA <schema_name> DATABASE <database_name> TABLE <table_name>
 
 Parameters
 ============
@@ -21,14 +21,22 @@ The following parameters can be used with the ``DESCRIBE COLUMNS`` command:
    :widths: auto
    :header-rows: 1
    
-   * - Element
+   * - Parameter Name
+     - Parameter Value
      - Description
-   * - ``database_name``
+     - Type
+   * - ``DATABASE``
+     - ``database_name``
      - The name of the database.
-   * - ``schema_name``
-     - The name of the schema.
-   * - ``table``
+     - Text
+   * - ``SCHEMA``
+     - ``schema_name``
      - The name of the table.
+     - Text
+   * - ``TABLE``
+     - ``table_name``
+     - The name of the table.
+     - Text
 	 
 Examples
 ==============
@@ -79,11 +87,11 @@ Using the ``DESCRIBE COLUMNS`` command generates the following output:
      - Text
      - xint		 
    * - ``type_name``
-     - Displays the name of the type.
+     - Displays the data type of the column.
      - Text
      - INT
    * - ``column_size``
-     - Displays the size of the column.
+     - Displays the size of the column in bytes.
      - Integer
      - 4 	 
    * - ``has_default``
@@ -117,4 +125,4 @@ The following is an example of the generated output:
 
 Permissions
 =============
-**Comment** - *What are the permissions?*
+No permissions are required for the ``DESCRIBE COLUMNS`` command.

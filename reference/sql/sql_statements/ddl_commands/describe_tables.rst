@@ -3,11 +3,14 @@
 *****************
 DESCRIBE TABLES
 *****************
-The ``DESCRIBE TABLES`` command lets you list all the tables in your database, including information about storage and deleted data. You can define the ``DESCRIBE TABLES`` command as either ``EXTERNAL`` or ``INTERNAL``.
+The ``DESCRIBE TABLES`` command lets you list information about all tables in your database, including information about storage and deleted data. You can define the ``DESCRIBE TABLES`` command as one of the following:
+
+* **Internal** - list information regarding SQream native tables residing in the defined SQream database storage area.
+* **External** - list information about tables residing as files external to the SQream database.
 
 Syntax
 ==========
-The following is the correct syntax for the ``DESCRIBE TABLES`` command:
+The following is the syntax for the ``DESCRIBE TABLES`` command:
 
 .. code-block:: postgres
 
@@ -21,17 +24,21 @@ The following parameters can be used with the ``DESCRIBE TABLES`` command:
    :widths: auto
    :header-rows: 1
    
-   * - Parameter
+   * - Parameter Name
+     - Parameter Value
      - Description
      - Type
-   * - ``database_name``
-     - Displays the name of the database.
+   * - ``DATABASE``
+     - ``database_name``
+     - The name of the database.
      - Text
-   * - ``schema_name``
-     - Displays the name of the table.
+   * - ``SCHEMA``
+     - ``schema_name``
+     - The name of the table.
      - Text
    * - ``EXTERNAL`` | ``INTERNAL``
-     - Displays information belonging to either an external or internal table.
+     - Select ``EXTERNAL`` or ``INTERNAL``
+     - Information belonging to either an external or internal table.
      - Text	
 	 
 Examples
@@ -80,10 +87,6 @@ Using the **internal** ``DESCRIBE_TABLES`` command generates the following outpu
      - Indicates whether the row count is valid or invalid.
      - Boolean
      - true
-   * - ``row_count_valid``
-     - Displays whether the row count is valid or invalid.
-     - Boolean
-     - 1
    * - ``row_count``
      - Displays the amount of rows in the table.
      - Integer
@@ -140,4 +143,4 @@ The following is an example of the generated output for the **external** ``DESCR
 
 Permissions
 =============
-**Comment** - *What are the permissions?*
+No permissions are required for the ``DESCRIBE TABLES`` command.

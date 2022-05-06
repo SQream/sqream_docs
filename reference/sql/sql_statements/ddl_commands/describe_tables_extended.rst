@@ -27,10 +27,10 @@ The following parameters can be used with the ``DESCRIBE TABLES EXTENDED`` comma
      - Description
      - Type
    * - ``database_name``
-     - Displays the name of the database.
+     - The name of the database.
      - Text
    * - ``schema_name``
-     - Displays the name of the table.
+     - The name of the table.
      - Text	 
 	 
 Examples

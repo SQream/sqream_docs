@@ -27,7 +27,7 @@ The following parameters can be used when switching databases with the **DESCRIB
      - Description
      - Status
    * - ``session-id``
-     - Displays the session ID of the user.
+     - The session ID of the user.
      - (Optional) If blank, use the current session.	 
 	 
 Examples

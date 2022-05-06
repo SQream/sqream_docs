@@ -3,47 +3,15 @@
 *****************
 DESCRIBE SESSIONS
 *****************
-The ``DESCRIBE SESSIONS`` command outputs a list sessions, letting you display a list of sessions:
-
-* Actively connected sessions with no running statements
- 
-   ::
-
-* Sessions with queued queries
-
-   ::
-  
-* Closed sessionsSome sessions may be actively connected, but not running any statements, some may have queued queries, some may be closed.
-
-This method is aimed to replace V1’s SHOW_SERVER_STATUS
-
-Output all information listed for “User operations” Cloud 2: External monitoring | User-operations  
-
-USER is an optional parameter to specify a specific username - default is current user.
-
-HISTORY is an optional parameter to return closed session (out of scope for MVP).
-
-
-
-The ``DESCRIBE SESSIONS`` command replaces the `SHOW_SERVER_STATUS <https://docs.sqream.com/en/latest/reference/sql/sql_functions/system_functions/show_server_status.html>`_ command, and lets you display a list of sessions:
-
-* Actively connected sessions with no running statements
- 
-   ::
-
-* Sessions with queued queries
-
-   ::
-  
-* Closed sessions
+The ``DESCRIBE SESSIONS`` command replaces the `SHOW_SERVER_STATUS <https://docs.sqream.com/en/latest/reference/sql/sql_functions/system_functions/show_server_status.html>`_ command.
 
 Syntax
 ==========
-The following is the correct syntax for the ``DESCRIBE SESSIONS`` command:
+The following is the syntax for the ``DESCRIBE SESSIONS`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE SESSIONS
+   DESCRIBE SESSIONS <user_name>
 
 Parameters
 ============
@@ -53,10 +21,14 @@ The following parameters can be used with the ``DESCRIBE SESSIONS`` command:
    :widths: auto
    :header-rows: 1
    
-   * - Parameter
+   * - Parameter Name
+     - Parameter Value
      - Description
-   * - ``DESCRIBE SESSIONS``
-     - Displays the name of the database.
+     - Type
+   * - ``SESSIONS``
+     - ``user_name``
+     - The name of the user on the session.
+     - Text
 	 
 Examples
 ==============
@@ -87,7 +59,7 @@ Using the ``DESCRIBE SESSIONS`` command generates the following output:
      - Text
      - master
    * - ``client``
-     - Displays the name of the client.
+     - Displays the name and version of the client.
      - Text
      - SQream JDBC v0.1.33
    * - ``status``
@@ -101,4 +73,4 @@ Using the ``DESCRIBE SESSIONS`` command generates the following output:
 
 Permissions
 =============
-**Comment** - *What are the permissions?*
+No permissions are required for the ``DESCRIBE SESSIONS`` command.

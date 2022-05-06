@@ -3,9 +3,7 @@
 *****************
 DESCRIBE DATABASES
 *****************
-The ``DESCRIBE DATABASES`` command lets you show all databases in your cluster.
-
-**Comment** - *See the Output table for this command. The outputs there are not databases, but rather INFORMATION about the database. Please confirm.*
+The ``DESCRIBE DATABASES`` command lets you list information about the specified database in your cluster.
 
 Syntax
 ==========
@@ -21,11 +19,7 @@ The ``DESCRIBE DATABASES`` command has no parameters.
 
 Examples
 ==============
-The following is an example of the ``DESCRIBE DATABASES`` command:
-
-.. code-block:: postgres
-
-   DESCRIBE DATABASES
+The ``DESCRIBE_DATABASES`` command has no parameters.
  
 Output
 =============
@@ -58,4 +52,4 @@ The following is an example of the generated output:
 
 Permissions
 =============
-**Comment** - *What are the permissions?*
+No permissions are required for the ``DESCRIBE DATABASES`` command.
