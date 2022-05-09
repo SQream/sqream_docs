@@ -30,13 +30,13 @@ The following is an example of encrypting a new table:
    
 Decrypting a New Table
 ----------------  
-The following is the correct syntax for **decrypting** a new table:
+The following is the correct syntax for **decrypting** a table:
 
 .. code-block:: console
 
    SELECT * FROM TABLE;
 
-The following is an example of decrypting a new table:
+The following is an example of decrypting a table:
 
 .. code-block:: console
      
