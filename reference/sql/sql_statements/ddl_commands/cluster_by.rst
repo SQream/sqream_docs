@@ -40,6 +40,7 @@ The following is the correct syntax for the CLUSTER BY command:
    
    column_name ::= identifier
 
+.. note:: SQream does not support clustering by TEXT columns.
 
 Parameters
 ============
