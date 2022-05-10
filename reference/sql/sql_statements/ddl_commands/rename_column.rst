@@ -3,16 +3,11 @@
 **********************
 RENAME COLUMN
 **********************
- 
-``RENAME COLUMN`` can be used to rename columns in a table.
-
-Permissions
-=============
-
-The role must have the ``DDL`` permission at the database or table level.
+The ``RENAME COLUMN`` command can be used to rename columns in a table.
 
 Syntax
 ==========
+The following is the correct syntax for the ``RENAME_COLUMN`` command:
 
 .. code-block:: postgres
 
@@ -30,6 +25,7 @@ Syntax
 
 Parameters
 ============
+The following table describes the `RENAME_COLUMN`` parameters:
 
 .. list-table:: 
    :widths: auto
@@ -48,18 +44,29 @@ Parameters
      
 Examples
 ===========
+The **Examples** section includes the following examples:
 
-Renaming a column
+.. contents::
+   :local:
+   :depth: 1
+
+Renaming a Column
 -----------------------------------------
+The following is an example of renaming a column:
 
 .. code-block:: postgres
 
    -- Remove the 'weight' column
    ALTER TABLE users RENAME COLUMN weight TO mass;
 
-Renaming a quoted name
+Renaming a Quoted Name
 --------------------------
+The following is an example of renaming a quoted name:
 
 .. code-block:: postgres
 
    ALTER TABLE users RENAME COLUMN "mass" TO "Mass (Kilograms);
+   
+Permissions
+=============
+The role must have the ``DDL`` permission at the database or table level.
