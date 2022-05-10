@@ -3,14 +3,11 @@
 **********************
 ADD COLUMN
 **********************
-
-The ``ADD COLUMN`` command is used to add columns to an existing table.  
-
-
+The ``ADD COLUMN`` command is used to add columns to an existing table.
 
 Syntax
 ==========
-The following is the correct syntax for adding a table:
+The following is the correct syntax for adding a column to an existing table:
 
 .. code-block:: postgres
 
@@ -32,8 +29,6 @@ The following is the correct syntax for adding a table:
    default ::=
        DEFAULT default_value
 
-
-
 Parameters
 ============
 The following parameters can be used for adding a table:
@@ -52,19 +47,20 @@ The following parameters can be used for adding a table:
      - A comma separated list of ADD COLUMN commands
    * - ``column_def``
      - A column definition. A minimal column definition includes a name identifier and a datatype. Other column constraints and default values can be added optionally.
-
-.. note::
-   * When adding a new column to an existing table, a default (or null constraint) has to be specified, even if the table is empty.
-   * A new column added to the table can not contain an IDENTITY or be of the TEXT type.
    
+Usage Notes
+=========== 
+The following usage notes apply when adding a column to an existing table:
 
-Permissions
-=============
-The role must have the ``DDL`` permission at the database or table level.
+   * When adding a new column to an existing table, a default (or null constraint) has to be specified, even if the table is empty.
+   
+      ::
+	  
+   * New columns you add to the table cannot be TEXT or contain an IDENTITY.
 
 Examples
 ===========
-This section includes the following examples:
+The **Examples** section includes the following examples:
 
 .. contents:: 
    :local:
@@ -77,8 +73,7 @@ This example shows how to add a simple column with a default value:
 .. code-block:: postgres
 
    ALTER TABLE cool_animals 
-     ADD COLUMN number_of_eyes INT DEFAULT 2 NOT NULL;
-     
+     ADD COLUMN number_of_eyes INT DEFAULT 2 NOT NULL;     
 
 Adding Several Columns in One Command
 -------------------------------------------
@@ -88,4 +83,8 @@ This example shows how to add several columns in one command:
 
    ALTER TABLE cool_animals
      ADD COLUMN number_of_eyes INT DEFAULT 2 NOT NULL,
-     ADD COLUMN date_seen DATE DEFAULT '2019-08-01'; 
+     ADD COLUMN date_seen DATE DEFAULT '2019-08-01';
+
+Permissions
+=============
+The role must have the ``DDL`` permission at the database or table level.
