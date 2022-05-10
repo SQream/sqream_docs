@@ -65,11 +65,11 @@ Using the ``DESCRIBE SCHEMAS`` command generates the following output:
      
 Example
 ===========
-The following is an example of the generated output:
+The following is an example of the generated output in Studio:
 
-.. code-block:: postgres
+.. image:: /_static/images/describe_schemas.png
 
-   0,public,sqream,false
+**Comment** - *Do we currently support rechunker_ignore? Compare screenshot with table above. Also, the "o" in "schema_id" and "rechunker_ignore" are lower case o's, not 0's.*
 
 Permissions
 =============

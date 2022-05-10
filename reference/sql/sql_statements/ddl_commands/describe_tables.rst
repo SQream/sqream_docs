@@ -82,15 +82,15 @@ Using the **internal** ``DESCRIBE_TABLES`` command generates the following outpu
    * - ``table_name``
      - Displays the name of the table.
      - Text
-     - t5
+     - dictionary
    * - ``row_count_valid``
      - Indicates whether the row count is valid or invalid.
      - Boolean
-     - true
+     - 1
    * - ``row_count``
      - Displays the amount of rows in the table.
      - Integer
-     - 0
+     - 6
 
 Using the **external** ``DESCRIBE_TABLES`` command generates the following output:
 
@@ -129,17 +129,19 @@ Using the **external** ``DESCRIBE_TABLES`` command generates the following outpu
 
 Examples
 ===========
-The following is an example of the generated output for the **internal** ``DESCRIBE TABLES`` command:
+The following is an example of the generated output in Studio for the **internal** ``DESCRIBE TABLES`` command:
 
-.. code-block:: postgres
+.. image:: /_static/images/describe_tables_internal.png
 
-   master,0,public,t5,true,1,0
+**Comment** - *Do we currently support rechunker_ignore? Compare screenshot with the internal table above.*
 
 The following is an example of the generated output for the **external** ``DESCRIBE TABLES`` command:
 
 .. code-block:: postgres
 
    master,3,public,t4,0,2022-05-02 15:25:57
+   
+**Comment** - *I wasn't able to generate an external table. Please assist.*
 
 Permissions
 =============

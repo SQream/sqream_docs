@@ -69,7 +69,13 @@ Using the ``DESCRIBE SESSIONS`` command generates the following output:
    * - ``session_id``
      - Displays the session ID.
      - Text
-     - 64935a0b-7e9d-40b0-828c-6d4f196d4830	 
+     - 64935a0b-7e9d-40b0-828c-6d4f196d4830
+	 
+Example
+===================
+The following is an example of the generated output in Studio:
+
+.. image:: /_static/images/describe_sessions.png
 
 Permissions
 =============

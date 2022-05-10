@@ -70,6 +70,8 @@ The following is an example of the generated output:
 .. code-block:: postgres
 
    master,0,my_upper
+   
+**Comment** - *I wasn't able to generate an external table. Please assist.*
 
 Permissions
 =============

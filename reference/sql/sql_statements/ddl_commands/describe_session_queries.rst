@@ -79,6 +79,16 @@ Using the ``DESCRIBE SESSIONS`` command generates the following output:
      - Type
      - SQream JDBC v0.1.33 
 
+Example
+===================
+The following is an example of the generated output in Studio:
+
+.. code-block:: postgres
+
+   query_id,query_status,query_type,sql_text,session_id,start_time,client_info
+
+**Comment** - *I wasn't able to generate a table in Studio. Please assist.*
+
 Permissions
 =============
 No permissions are required for the ``DESCRIBE SESSION QUERIES`` command.

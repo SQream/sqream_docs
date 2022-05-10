@@ -117,11 +117,9 @@ Using the ``DESCRIBE COLUMNS`` command generates the following output:
 	      
 Example
 ===========
-The following is an example of the generated output:
+The following is an example of the generated output in Studio:
 
-.. code-block:: postgres
-
-   master,public,2,t1,true,1,xint,INT,4,1,0,default,2022-04-28 08:00:36,2022-04-28 08:00:36
+.. image:: /_static/images/describe_columns.png
 
 Permissions
 =============
