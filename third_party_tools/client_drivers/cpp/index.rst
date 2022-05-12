@@ -24,7 +24,7 @@ The SQream DB C++ driver was built on 64-bit Linux, and is designed to work with
 Getting the Library
 ---------------------
 
-The C++ driver is provided as a tarball containing the compiled ``libsqream.so`` file and a header ``sqream.h``. Get the driver from the `SQream Drivers page <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/index.html>`_. The library can be integrated into your C++-based applications or projects.
+The C++ driver is provided as a tarball containing the compiled ``libsqream.so`` file and a header ``sqream.h``. Get the driver from the `SQream Drivers page <https://docs.sqream.com/en/v2020-1/third_party_tools/client_drivers/index.html>`_. The library can be integrated into your C++-based applications or projects.
 
 
 Extract the Tarball Archive
