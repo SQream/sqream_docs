@@ -9,7 +9,7 @@ The **Workload Manager** allows SQream DB workers to identify their availability
 Overview
 ===============================
 
-The Workload Manager allows a system engineer or database administrator to allocate specific workers and compute resoucres for various tasks.
+The Workload Manager allows a system engineer or database administrator to allocate specific workers and compute resources for various tasks.
 
 For example:
 
@@ -60,7 +60,7 @@ The configuration in this example allocates resources as shown below:
      - ✓
      - ✓
 
-This configuration gives the ETL queue dedicated access to two workers, one of which cannot be used by regular queries.
+This configuration gives the ETL queue dedicated access to one worker, which cannot be used.
 
 Queries from management uses any available worker.
 

@@ -171,7 +171,7 @@ Workload Management
    * - :ref:`subscribe_service`
      - Add a SQream DB worker to a service queue 
    * - :ref:`unsubscribe_service`
-     - Remove a SQream DB worker to a service queue
+     - Remove a SQream DB worker from a service queue
    * - :ref:`show_subscribed_instances`
      - Return a list of service queues and workers
 
