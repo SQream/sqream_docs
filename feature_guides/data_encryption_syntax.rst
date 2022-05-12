@@ -32,7 +32,7 @@ The following is an example of encrypting a new table:
 		   
 .. note::  Encrypting a column in a table prevents users from viewing the entire table without a decryption key.
    
-Decrypting a New Table
+Decrypting a Table
 ----------------  
 The following is the correct syntax for decrypting a table:
 
