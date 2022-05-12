@@ -13,7 +13,7 @@ This tutorial shows how to write a C++ program that uses this driver.
    :local:
 
 
-Installing the C++ driver
+Installing the C++ Driver
 ==================================
 
 Prerequisites
@@ -21,13 +21,13 @@ Prerequisites
 
 The SQream DB C++ driver was built on 64-bit Linux, and is designed to work with RHEL 7 and Ubuntu 16.04 and newer.
 
-Getting the library
+Getting the Library
 ---------------------
 
-The C++ driver is provided as a tarball containing the compiled ``libsqream.so`` file and a header ``sqream.h``. Get the driver from the `SQream Drivers page <http://sqream.com/product/client-drivers>`_. The library can be integrated into your C++-based applications or projects.
+The C++ driver is provided as a tarball containing the compiled ``libsqream.so`` file and a header ``sqream.h``. Get the driver from the `SQream Drivers page <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/index.html>`_. The library can be integrated into your C++-based applications or projects.
 
 
-Extract the tarball archive
+Extract the Tarball Archive
 -----------------------------
 
 Extract the library files from the tarball
@@ -41,7 +41,7 @@ Examples
 
 Assuming there is a SQream DB worker to connect to, we'll connect to it using the application and run some statements.
 
-Testing the connection to SQream DB
+Testing the Connection to SQream
 --------------------------------------------
 
 Download this file by right clicking and saving to your computer :download:`connect_test.cpp <connect_test.cpp>`.
@@ -52,7 +52,7 @@ Download this file by right clicking and saving to your computer :download:`conn
     :linenos:
 
 
-Compiling and running the application
+Compiling and Running the Application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To build this code, place the library and header file in ./libsqream-3.0/ and run
@@ -64,7 +64,7 @@ To build this code, place the library and header file in ./libsqream-3.0/ and ru
 
 Modify the ``-I`` and ``-L`` arguments to match the ``.so`` library and ``.h`` file if they are in another directory.
 
-Creating a table and inserting values
+Creating a Table and Inserting Values
 --------------------------------------------
 
 Download this file by right clicking and saving to your computer :download:`insert_test.cpp <insert_test.cpp>`.
@@ -75,7 +75,7 @@ Download this file by right clicking and saving to your computer :download:`inse
     :linenos:
 
 
-Compiling and running the application
+Compiling and Running the Application
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To build this code, use
@@ -84,4 +84,3 @@ To build this code, use
 
    $ g++ -Wall -Ilibsqream-3.0 -Llibsqream-3.0 -lsqream insert_test.cpp -o insert_test
    $ ./insert_test
-
