@@ -1,49 +1,52 @@
 .. _pysqream_api_reference:
 
 *************************
-pysqream API reference
+pysqream API Reference
 *************************
+The SQream Python connector allows Python programs to connect to SQream, and conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_.
 
-The SQream Python connector allows Python programs to connect to SQream DB.
+The main module is pysqream, which contains the ``Connection``` class:
 
-pysqream conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_
-
-
-The main module is pysqream, which contains the :py:meth:`Connection` class.
-
-.. method:: connect(host, port, database, username, password, clustered = False, use_ssl = False, service='sqream', reconnect_attempts=3, reconnect_interval=10)
+    .. code-block:: postgres
    
-   Creates a new :py:meth:`Connection` object and connects to SQream DB.
+       $ connect(host, port, database, username, password, clustered = False, use_ssl = False, service='sqream', reconnect_attempts=3, reconnect_interval=10)
+ 
+The ``Connection`` class creates a new ``Connection`` object and connects to SQream.
+
+The following table describes the ``Connection`` object parameters:
+
+.. list-table::
+   :widths: 15 75
+   :header-rows: 1   
    
-   host
-      SQream DB hostname or IP
+   * - Parameter
+     - Description
+   * - host
+     - Sets the SQream hostname or IP.
+   * - port
+     - Sets the SQream port.
+   * - database
+     - Sets the database name.
+   * - username
+     - Sets the username for establishing a connection.
+   * - password
+     - Sets the password used with your ``username``.
+   * - clustered
+     - Connects using either the load balancer or direct to worker (Default: false - direct to worker).
+   * - use_ssl
+     - Uses an SSL connection (default: false).
+   * - service
+     - (Optional) Sets the service queue (default: 'sqream').
+   * - reconnect_attempts
+     - Sets the number of failed reconnection attempts to attempt before closing the connection.
+   * - reconnect_interval
+     - Sets the time in seconds between reconnection attempts.
 
-   port
-      SQream DB port 
 
-   database
-      database name
 
-   username
-      Username to use for connection
 
-   password
-      Password for ``username``
 
-   clustered
-      Connect through load balancer, or direct to worker (Default: false - direct to worker)
 
-   use_ssl
-      use SSL connection (default: false)
-
-   service
-      Optional service queue (default: 'sqream')
-
-   reconnect_attempts
-      Number of reconnection attempts to attempt before closing the connection
-
-   reconnect_interval
-      Time in seconds between each reconnection attempt
 
 .. class:: Connection
    
