@@ -47,7 +47,7 @@ Notes
 
 * If the service name does not currently exist, it will be created
 
-.. warning:: ``UNSUBSCRIBE_SERVICE`` applies the service subscription immediately, but the setting applies for the duration of the session. To apply a persistent setting, use the ``initialSubscribedServices`` configuration setting. Read the :ref:`Workload manager guide<workload_manager>` for more information.
+.. warning:: ``UNSUBSCRIBE_SERVICE`` removes the service subscription immediately, but the setting applies for the duration of the session. To apply a persistent setting, use the ``initialSubscribedServices`` configuration setting. Read the :ref:`Workload manager guide<workload_manager>` for more information.
 
 Examples
 ===========
