@@ -152,8 +152,6 @@ Monitoring statements allow a database administrator to execute actions in the s
      - Returns any existing locks in the database
    * - :ref:`show_node_info`
      - Returns a query plan for an actively running statement with timing information
-   * - :ref:`show_server_status`
-     - Shows running statements across the cluster
    * - :ref:`show_version`
      - Returns the version of SQream DB
    * - :ref:`stop_statement`
