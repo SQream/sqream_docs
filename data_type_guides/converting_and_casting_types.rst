@@ -24,3 +24,5 @@ SQream supports the following three data conversion types:
    ::
   
 * See the :ref:`SQL functions reference <sql_functions>` for additional functions that convert from a specific value which is not an SQL type, such as :ref:`from_unixts`, etc.
+
+.. note:: SQream interprets integer constants exceeding the maximum bigint value as float constants, which may cause precision loss.
