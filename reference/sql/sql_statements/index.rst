@@ -152,31 +152,6 @@ Saved Queries
 For more information, see :ref:`saved_queries`
 
 
-Monitoring
-===============
-
-Monitoring statements allow a database administrator to execute actions in the system, such as aborting a query or get information about system processes.
-
-.. list-table:: Monitoring
-   :widths: auto
-   :header-rows: 1
-   
-   * - Command
-     - Usage
-   * - :ref:`explain`
-     - Returns a static query plan for a statement
-   * - :ref:`show_connections`
-     - Returns a list of jobs and statements on the current worker
-   * - :ref:`show_locks`
-     - Returns any existing locks in the database
-   * - :ref:`show_node_info`
-     - Returns a query plan for an actively running statement with timing information
-   * - :ref:`show_server_status`
-     - Shows running statements across the cluster
-   * - :ref:`show_version`
-     - Returns the version of SQream DB
-   * - :ref:`stop_statement`
-     - Stops a query (or statement) if it is currently running
 
 Workload Management
 ======================
