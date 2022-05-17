@@ -55,4 +55,13 @@ The **Core Dumping Related Issues** page describes the troubleshooting procedure
 
          $ ulimit -S -c ${DAEMON_COREFILE_LIMIT:-0} >/dev/null 2>&1
 
-   c. If the line is found, tag it with the **hash** symbol and reboot the server.
+   c. If the line is found, tag it with the **hash** symbol and reboot the server |icon-new_2022.1|.
+
+   
+  
+  
+.. |icon-new_2022.1| image:: /_static/images/new_2022.1.png
+   :align: middle
+   
+  
+  
