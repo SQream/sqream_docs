@@ -86,8 +86,6 @@ Data Manipulation Commands (DML)
      - Select rows and column from a table
    * - :ref:`TRUNCATE<truncate>`
      - Delete all rows from a table
-   * - :ref:`UPDATE<update>`
-     - Modify the value of certain columns in existing rows without creating a table
    * - :ref:`VALUES<values>`
      - Return rows containing literal values
 
