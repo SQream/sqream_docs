@@ -68,10 +68,6 @@ html_css_files = [
     'css/custom.css', # Relative to the _static path
 ]
 
-.red {
-    color:red;
-}
-
 html_logo = '_static/images/sqream_logo.png'
 
 # If true, sectionauthor and moduleauthor directives will be shown in the
