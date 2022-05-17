@@ -7,7 +7,7 @@ The ``DESCRIBE LOCKS`` command replaces the `SHOW_LOCKS <https://docs.sqream.com
 
 Syntax
 ==========
-The following is the correct syntax:
+The following is the syntax for the ``DESCRIBE LOCKS`` command::
 
 .. code-block:: postgres
 
@@ -30,7 +30,7 @@ The following parameters can be used when switching databases with the **DESCRIB
      - The session ID of the user.
      - (Optional) If blank, use the current session.	 
 	 
-Examples
+Example
 ==============
 The following is an example of the **DESCRIBE SESSIONS** command:
 

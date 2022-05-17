@@ -30,7 +30,9 @@ The following parameters can be used with the ``DESCRIBE SESSION QUERIES`` comma
      - The session ID of the query.
      - Text
 	 
-Examples
+.. note:: The ``SESSION_ID`` parameter is optional. If you do not specify a session ID, SQream uses the session ID of the current session.
+	 
+Example
 ==============
 The following is an example of the ``DESCRIBE SESSIONS`` command:
 
@@ -79,15 +81,11 @@ Using the ``DESCRIBE SESSIONS`` command generates the following output:
      - Type
      - SQream JDBC v0.1.33 
 
-Example
-===================
 The following is an example of the generated output in Studio:
+  
+.. image:: /_static/images/describe_session_queries.png
 
-.. code-block:: postgres
-
-   query_id,query_status,query_type,sql_text,session_id,start_time,client_info
-
-**Comment** - *I wasn't able to generate a table in Studio. Please assist.*
+**Comment** - *Need higher quality image. Please speak with me and I'll show you how to get one.*
 
 Permissions
 =============

@@ -107,8 +107,6 @@ Using the ``DESCRIBE QUERY`` command generates the following output:
      - Text
      - public.t1
 	 
-Example
-===================
 The following is an example of the generated output in Studio:
 
 .. code-block:: postgres

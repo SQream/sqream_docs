@@ -3,7 +3,7 @@
 *****************
 DESCRIBE COLUMNS
 *****************
-The ``DESCRIBE COLUMNS`` command lets you list information about all columns in an internal or external table.
+The ``DESCRIBE COLUMNS`` command lets you list information about columns in an internal or external table.
 
 Syntax
 ==========
@@ -31,7 +31,7 @@ The following parameters can be used with the ``DESCRIBE COLUMNS`` command:
      - Text
    * - ``SCHEMA``
      - ``schema_name``
-     - The name of the table.
+     - The name of the schema.
      - Text
    * - ``TABLE``
      - ``table_name``

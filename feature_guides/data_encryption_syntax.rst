@@ -3,7 +3,7 @@
 ***********************
 Syntax
 ***********************
-The following is the correct syntax for encrypting a new table:
+The following is the syntax for encrypting a new table:
 
 .. code-block:: console
      

@@ -30,7 +30,7 @@ The following parameters can be used with the ``DESCRIBE SCHEMAS`` command:
      - The name of the database.
      - Text
 	 
-Examples
+Example
 ==============
 The following is an example of the ``DESCRIBE SCHEMAS`` command:
 
@@ -63,8 +63,6 @@ Using the ``DESCRIBE SCHEMAS`` command generates the following output:
      - Text
      - sqream
      
-Example
-===========
 The following is an example of the generated output in Studio:
 
 .. image:: /_static/images/describe_schemas.png

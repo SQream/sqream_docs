@@ -3,11 +3,11 @@
 *****************
 DESCRIBE DATABASES
 *****************
-The ``DESCRIBE DATABASES`` command lets you list information about the specified database in your cluster.
+The ``DESCRIBE DATABASES`` command lets you list information about the database in your cluster.
 
 Syntax
 ==========
-The following is the correct syntax for the ``DESCRIBE DATABASES`` command:
+The following is the syntax for the ``DESCRIBE DATABASES`` command:
 
 .. code-block:: postgres
 
@@ -17,10 +17,10 @@ Parameters
 ============
 The ``DESCRIBE DATABASES`` command has no parameters.
 
-Examples
+Example
 ==============
 The ``DESCRIBE_DATABASES`` command has no parameters.
- 
+
 Output
 =============
 Using the ``DESCRIBE DATABASES`` command generates the following output:
@@ -41,9 +41,11 @@ Using the ``DESCRIBE DATABASES`` command generates the following output:
      - Displays the date and time when the database was created.
      - Date
      - 2022-04-12 15:10:38
+   * - ``is_current``
+     - Displays the database that you are currently connected to.
+     - Boolean
+     - 1
 	     
-Example
-===========
 The following is an example of the generated output in Studio:
 
 .. image:: /_static/images/describe_databases.png

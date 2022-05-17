@@ -11,7 +11,7 @@ The following is the syntax for the ``DESCRIBE SESSIONS`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE SESSIONS <user_name>
+   DESCRIBE SESSIONS [<user_name>]
 
 Parameters
 ============
@@ -26,11 +26,11 @@ The following parameters can be used with the ``DESCRIBE SESSIONS`` command:
      - Description
      - Type
    * - ``SESSIONS``
-     - ``user_name``
+     - *(Optional)* ``user_name``
      - The name of the user on the session.
      - Text
 	 
-Examples
+Example
 ==============
 The following is an example of the ``DESCRIBE SESSIONS`` command:
 
@@ -51,7 +51,7 @@ Using the ``DESCRIBE SESSIONS`` command generates the following output:
      - Type
      - Example
    * - ``start_time``
-     - Displays the name of the database.
+     - Displays the start time of the session.
      - Date
      - 02-05-2022 15:23:48
    * - ``database``
@@ -71,8 +71,6 @@ Using the ``DESCRIBE SESSIONS`` command generates the following output:
      - Text
      - 64935a0b-7e9d-40b0-828c-6d4f196d4830
 	 
-Example
-===================
 The following is an example of the generated output in Studio:
 
 .. image:: /_static/images/describe_sessions.png

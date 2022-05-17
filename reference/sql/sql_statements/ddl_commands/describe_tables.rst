@@ -3,7 +3,7 @@
 *****************
 DESCRIBE TABLES
 *****************
-The ``DESCRIBE TABLES`` command lets you list information about all tables in your database, including information about storage and deleted data. You can define the ``DESCRIBE TABLES`` command as one of the following:
+The ``DESCRIBE TABLES`` command lets you list information about tables in your database. You can define the ``DESCRIBE TABLES`` command as one of the following:
 
 * **Internal** - list information regarding SQream native tables residing in the defined SQream database storage area.
 * **External** - list information about tables residing as files external to the SQream database.
@@ -41,7 +41,7 @@ The following parameters can be used with the ``DESCRIBE TABLES`` command:
      - Information belonging to either an external or internal table.
      - Text	
 	 
-Examples
+Example
 ==============
 The following is an example of an **internal** ``DESCRIBE TABLES`` command:
 
@@ -92,6 +92,10 @@ Using the **internal** ``DESCRIBE_TABLES`` command generates the following outpu
      - Integer
      - 6
 
+The following is an example of the generated output in Studio for the **internal** ``DESCRIBE TABLES`` command:
+
+.. image:: /_static/images/describe_tables_internal.png
+
 Using the **external** ``DESCRIBE_TABLES`` command generates the following output:
 
 .. list-table:: 
@@ -126,14 +130,6 @@ Using the **external** ``DESCRIBE_TABLES`` command generates the following outpu
      - Displays the table's creation date and timestamp.
      - Date
      - 2022-05-02 15:25:57	 
-
-Examples
-===========
-The following is an example of the generated output in Studio for the **internal** ``DESCRIBE TABLES`` command:
-
-.. image:: /_static/images/describe_tables_internal.png
-
-**Comment** - *Do we currently support rechunker_ignore? Compare screenshot with the internal table above.*
 
 The following is an example of the generated output for the **external** ``DESCRIBE TABLES`` command:
 

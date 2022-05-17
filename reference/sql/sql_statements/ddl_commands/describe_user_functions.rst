@@ -30,7 +30,7 @@ The following parameters can be used with the ``DESCRIBE USER FUNCTIONS`` comman
      - The name of the database containing user-defined functions.
      - Text
 	 
-Examples
+Example
 ==============
 The following is an example of the ``DESCRIBE USER FUNCTIONS`` command:
 
@@ -62,9 +62,7 @@ Using the ``DESCRIBE USER FUNCTIONS`` command generates the following output:
      - Displays the name of the function.
      - Text
      - my_upper
-    
-Example
-===========
+
 The following is an example of the generated output:
 
 .. code-block:: postgres

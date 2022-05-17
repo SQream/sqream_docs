@@ -9,7 +9,7 @@ The ``DESCRIBE TABLES EXTENDED`` command lets you list all the tables in your da
 
 Syntax
 ==========
-The following is the correct syntax for the ``DESCRIBE TABLES EXTENDED`` command:
+The following is the syntax for the ``DESCRIBE TABLES EXTENDED`` command:
 
 .. code-block:: postgres
 
@@ -33,7 +33,7 @@ The following parameters can be used with the ``DESCRIBE TABLES EXTENDED`` comma
      - The name of the table.
      - Text	 
 	 
-Examples
+Example
 ==============
 The following is an example of an **internal** ``DESCRIBE TABLES EXTENDED`` command:
 
@@ -125,8 +125,6 @@ master,3,public,t4,0,2022-05-02 15:25:57
      - Date
      - 2022-05-02 15:25:57	 
 
-Examples
-===========
 The following is an example of the generated output for the **internal** ``DESCRIBE TABLES EXTENDED`` command:
 
 .. code-block:: postgres

@@ -3,14 +3,11 @@
 *****************
 CREATE TABLE
 *****************
-
 The ``CREATE TABLE`` statement is used to create a new table in an existing database.
 
 .. tip:: 
    * To create a table based on the result of a select query, see :ref:`CREATE TABLE AS <create_table_as>`.
    * To create a table based on files like Parquet and ORC, see :ref:`CREATE FOREIGN TABLE <create_foreign_table>`
-
-
 
 Syntax
 ==========
