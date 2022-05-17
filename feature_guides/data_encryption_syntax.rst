@@ -3,14 +3,6 @@
 ***********************
 Syntax
 ***********************
-The **Syntax** page describes the syntax for the following:
-
-.. contents::
-   :local:
-   :depth: 1
-   
-Encrypting a New Table
-----------------
 The following is the correct syntax for encrypting a new table:
 
 .. code-block:: console
@@ -30,18 +22,4 @@ The following is an example of encrypting a new table:
         last_name TEXT(128),
         salary INT(6) ENCRYPT);
 		   
-.. note::  Encrypting a column in a table prevents users from viewing the entire table without a decryption key.
-   
-Decrypting a Table
-----------------  
-The following is the correct syntax for decrypting a table:
-
-.. code-block:: console
-
-   SELECT * FROM <name of encrypted table>;
-
-The following is an example of decrypting a table:
-
-.. code-block:: console
-     
-   SELECT * FROM TABLE;
+.. note::  Users without permissions cannot view the entire table as long as at least one column is encrypted. The decryption key is relevant only at the system level and is not held by users.
