@@ -13,7 +13,7 @@ Release Notes
    * - Version
      - Release Date
    * - :ref:`2022.1`
-     - April 17, 2022
+     - MM DD, YYYY
    * - :ref:`2021.2`
      - September 13, 2021
    * - :ref:`2021.1`

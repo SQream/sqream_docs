@@ -3,7 +3,6 @@
 ***********************
 Data Encryption
 ***********************
-
 The **Data Encryption** page  |icon-new_2022.1| describes the following:
 
 .. |icon-new_2022.1| image:: /_static/images/new_2022.1.png
