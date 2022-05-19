@@ -3,8 +3,11 @@
 **********************
 UPDATE
 **********************
+The **UPDATE** statement page |icon-new_2022.1| describes the following:
 
-The **UPDATE** statement page describes the following:
+.. |icon-new_2022.1| image:: /_static/images/new_2022.1.png
+   :align: middle
+   :width: 110
 
 .. contents::
    :local:
@@ -12,13 +15,15 @@ The **UPDATE** statement page describes the following:
 
 Overview
 ==========
-The ``UPDATE`` command is used to modify the value of certain columns in existing rows without creating a table.
+The ``UPDATE`` statement is used to modify the value of certain columns in existing rows without creating a table.
 
 It can be used to do the following:
 
 * Perform localized changes in existing data, such as correcting mistakes discovered after ingesting data.
 
 * Setting columns based on the values of others.
+
+The ``UPDATE`` statement cannot be used to reference other tables in the ``WHERE`` or ``SET`` clauses.
 
 Syntax
 ==========
