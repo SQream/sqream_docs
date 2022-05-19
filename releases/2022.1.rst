@@ -13,10 +13,9 @@ Version Content
 ----------
 The 2022.1 Release Notes describes the following:
 
-* Example - Major feature release targeted for all on-premises customers.
-* Example - Basic Cloud functionality.
-
-**Comment** - *This will be done at the end.*
+* Enhanced security features.
+* New data manipulation command.
+* Additional data ingestion format.
 
 New Features
 ----------
@@ -32,6 +31,8 @@ SQream now supports data encryption mechanisms in accordance with **General Data
 
 For more information, see `Data Encryption <https://docs.sqream.com/en/v2022.1/feature_guides/data_encryption.html>`_.
 
+**Comment** - *Information regarding performance degradation, pending.*
+
 Update Feature
 ************
 SQream now supports the DML **Update** feature, which is used for modifying the value of certain columns in existing rows without creating a table.
@@ -44,18 +45,9 @@ SQream now supports ingesting data from Avro files.
 
 For more information, see `Inserting Data from Avro <https://docs.sqream.com/en/v2022.1/data_ingestion/avro.html>`_.
 
-Main Features
---------
-The following list describes the main features:
-
-* Main feature
-* Main feature
-
-**Comment** - *This will be done at the end.*
-
 Resolved Issues
 ---------
-The following table lists the issues that were resolved in Version 2021.2:
+The following table lists the issues that were resolved in Version 2022.1:
 
 .. list-table::
    :widths: 17 200
@@ -70,36 +62,18 @@ The following table lists the issues that were resolved in Version 2021.2:
    * - SQ-xxxx
      - Text
 
-**Comment** - *I will be updated regarding which resolved issues to include.*	 
+**Comment** - *The table above will be updated regarding which resolved issues to include.*	 
 
 Operations and Configuration Changes
 --------
-**Comment** - *TBD*	 
-
-
-Subject
-************
-Text
-
-
-
-
-Subject
-************
-Text
-
-
+No relevant operations and configuration changes were made.
 
 Naming Changes
 -------
-**Comment** - *TBD*	 
-
 No relevant naming changes were made.
 
 Deprecated Features
 -------
-**Comment** - *TBD*	 
-
 No features were depecrated.
 
 Known Issues and Limitations
