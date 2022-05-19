@@ -3,17 +3,21 @@
 *************************
 pysqream API Reference
 *************************
-The SQream Python connector allows Python programs to connect to SQream, and conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_.
+Overview
+===================
+The SQream Python connector allows Python programs to connect to SQream, and conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_. The main Python connector module is pysqream, which contains the ``connection`` class.
 
-The main module is pysqream, which contains the ``Connection``` class:
+**Comment** - *"Connect" or "connection"?*
 
-    .. code-block:: postgres
+The following is the syntax for the ``connect`` class:
+
+.. code-block:: postgres
    
-       $ connect(host, port, database, username, password, clustered = False, use_ssl = False, service='sqream', reconnect_attempts=3, reconnect_interval=10)
+   $ connect(host, port, database, username, password, clustered = False, use_ssl = False, service='sqream', reconnect_attempts=3, reconnect_interval=10)
  
 The ``Connection`` class creates a new ``Connection`` object and connects to SQream.
 
-The following table describes the ``Connection`` object parameters:
+The following table describes the ``connect`` object parameters:
 
 .. list-table::
    :widths: 15 75
@@ -41,9 +45,20 @@ The following table describes the ``Connection`` object parameters:
      - Sets the number of failed reconnection attempts to attempt before closing the connection.
    * - reconnect_interval
      - Sets the time in seconds between reconnection attempts.
+	 
+Connection Object Parameters
+===================
 
+The following table describes the ``Connection`` class parameters:
 
-
+.. list-table::
+   :widths: 15 75
+   :header-rows: 1   
+   
+   * - Parameter
+     - Description
+   * - arraysize
+     - Specifies the number of rows to fetch at a time using ``fetchmany()``. Default - ``1``.
 
 
 
