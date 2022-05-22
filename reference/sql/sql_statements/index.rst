@@ -103,6 +103,8 @@ Utility Commands
    
    * - Command
      - Usage
+   * - :ref:`EXECUTE SAVED QUERY<execute_saved_query>`
+     - Executes a previously saved query
    * - :ref:`EXPLAIN<explain>`
      - Returns a static query plan, which can be used to debug query plans
    * - :ref:`SELECT GET_LICENSE_INFO<get_license_info>`
