@@ -61,10 +61,7 @@ The following are applicable to Windows:
 
   For more information on installing and configuring ODBC on Windows, see :ref:`Install and configure ODBC on Windows <install_odbc_windows>`.
 
-
-* **Net driver** - `SQream .Net driver v3.0.2 <http://downloads.sqream.com/drivers/2020.2/SqreamNet_net48_3.0.2.dll>`_
-   
-   
+* **Net driver** - `SQream .Net driver v3.0.2 <https://sq-ftp-public.s3.amazonaws.com/SqreamNet_net48_3.0.2.zip>`_   
 
 Linux
 --------------
