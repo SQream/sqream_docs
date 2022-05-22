@@ -35,7 +35,7 @@ For more information, see `Data Encryption <https://docs.sqream.com/en/v2022.1/f
 
 Update Feature
 ************
-SQream now supports the DML **Update** feature, which is used for modifying the value of certain columns in existing rows without creating a table.
+SQream now supports the DML **Update** feature, which is used for modifying the value of certain columns in existing rows.
 
 For more information, see `UPDATE <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/dml_commands/update.html#update>`_.
 
@@ -87,8 +87,7 @@ The the list below describes the following known issues and limitations:
 
 End of Support
 -------
-**Comment** - *TBD*
-
+This section is not relevant to the 2022.1 release notes.
 
 Upgrading to v2022.1
 -------
