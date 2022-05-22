@@ -705,8 +705,8 @@ Configuration Roles
 ===========
 SQream divides flags into the following roles, each with their own set of permissions:
 
-* **`Administration flags <https://docs.sqream.com/en/v2020-1/configuration_guides/admin_flags.html>`_**: can be modified by administrators on a session and cluster basis using the ``ALTER SYSTEM SET`` command.
-* **`Generic flags <https://docs.sqream.com/en/v2020-1/configuration_guides/generic_flags.html>`_**: can be modified by standard users on a session basis.
+* `Administration flags <https://docs.sqream.com/en/v2020.3.2.1/configuration_guides/admin_flags.html>`_: can be modified by administrators on a session and cluster basis using the ``ALTER SYSTEM SET`` command.
+* `Generic flags <https://docs.sqream.com/en/v2020.3.2.1/configuration_guides/generic_flags.html>`_: can be modified by standard users on a session basis.
 
 Showing All Flags in the Catalog Table
 =======
