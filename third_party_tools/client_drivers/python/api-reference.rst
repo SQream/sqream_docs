@@ -1,8 +1,14 @@
 .. _pysqream_api_reference:
 
 *************************
-pysqream API Reference
+Python API Reference
 *************************
+The **Python API Reference** page describes the following:
+
+.. contents::
+   :local:
+   :depth: 1
+
 Overview
 ===================
 The SQream Python connector allows Python programs to connect to SQream, and conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_. The main Python connector module is pysqream, which contains the ``connection`` class.
@@ -45,165 +51,81 @@ The following table describes the ``connect`` object parameters:
      - Sets the number of failed reconnection attempts to attempt before closing the connection.
    * - reconnect_interval
      - Sets the time in seconds between reconnection attempts.
-	 
+	
+.. _connection_object_parameters:
+	
 Connection Object Parameters
 ===================
-
 The following table describes the ``Connection`` class parameters:
 
 .. list-table::
-   :widths: 15 75
+   :widths: 15 117
    :header-rows: 1   
    
    * - Parameter
      - Description
    * - arraysize
      - Specifies the number of rows to fetch at a time using ``fetchmany()``. Default - ``1``.
+   * - rowcount
+     - Not used. Return ``-1``.
+   * - description
+     - Displays read-only attributes containing the following result set metadata:
 
+       * ``name`` - Displays the column name.
+       * ``type_code`` - Displays the internal type code.
+       * ``display_size`` - Not used, identical to ``internal_size`` below.
+       * ``internal_size`` - Displays the Data size (bytes).
+       * ``precision`` - Not used. Displays the precision of numeric data.
+       * ``scale`` - Not used. Displays the scale for numeric data.
+       * ``null_ok`` - Specifices whether ``NULL`` values are allowed for the column.
+   * - execute
+     - Executes statements (self, query, params=None). Parameters are not supported.
+	 
+       * ``self`` - :ref:`Connection Object Parameters<connection_object_parameters>`.
+       * ``query`` - Displays a statment or query text.
+       * ``params`` - Not used.	 
+   * - executemany
+     - Prepares a statement and executes it against all parameter sequences found in ``rows_or_cols`` (self, query, rows_or_cols=None, data_as='rows', amount=None).
 
+       * ``self`` - :ref:`Connection Object Parameters<connection_object_parameters>`.
+       * ``query`` - INSERT statement.
+       * ``rows_or_cols`` - Data buffer to insert. This should be a sequence of lists or tuples..
+       * ``data_as`` - (Optional) Read data as rows or columns.
+       * ``amount`` - (Optional) count of rows to insert.
+   * - close
+     - Closes a statement and connection (self). Closed statements must be reopened by creating a new cursor.
 
+       * ``self`` - :ref:`Connection Object Parameters<connection_object_parameters>`.
+   * - cursor
+     - Creates a new :ref:`Connection Object Parameters<connection_object_parameters>` cursor (self). Recommended - create a new cursor for every statement.
 
-.. class:: Connection
-   
-   .. attribute:: arraysize
-   
-      Specifies the number of rows to fetch at a time with :py:meth:`~Connection.fetchmany`. Defaults to 1 - one row at a time.
+       * ``self`` - :ref:`Connection Object Parameters<connection_object_parameters>`.
+   * - fetchall
+     - Fetches all remaining records from the result set (self, data_as='rows'). Returns an empty sequence if no more rows are available.
+	 
+       * ``self`` - :ref:`Connection Object Parameters<connection_object_parameters>`.
+       * ``data_as`` - (Optional) Reads data as rows or columns.
+   * - fetchone
+     - Fetches one record from the result set. Returns an empty sequence if no more rows are available.
 
-   .. attribute:: rowcount
-   
-      Unused, always returns -1.
-   
-   .. attribute:: description
-      
-      Read-only attribute that contains result set metadata.
-      
-      This attribute is populated after a statement is executed.
-      
-      .. list-table:: 
-         :widths: auto
-         :header-rows: 1
-         
-         * - Value
-           - Description
-         * - ``name``
-           - Column name
-         * - ``type_code``
-           - Internal type code
-         * - ``display_size``
-           - Not used - same as ``internal_size``
-         * - ``internal_size``
-           - Data size in bytes
-         * - ``precision``
-           - Precision of numeric data (not used)
-         * - ``scale``
-           - Scale for numeric data (not used)
-         * - ``null_ok``
-           - Specifies if ``NULL`` values are allowed for this column
+       * ``self`` - :ref:`Connection Object Parameters<connection_object_parameters>`.
+       * ``size`` - Sets the number of records to fetch. If not set, fetches ``Connection.arraysize`` records (default = 1).
+       * ``data_as`` - (Optional) Reads data as rows or columns.
+   * - __iter__()
+     - Makes the cursor iterable.
+	 
+API Level Object Parameters
+===================
+apilevel = '2.0'
 
-   .. method:: execute(self, query, params=None)
-      
-      Execute a statement.
-      
-      Parameters are not supported
-      
-      self
-         :py:meth:`Connection`
+**Comment** - *On the original page, the above was part of the heading. Is it redundant given the following line?*
 
-      query
-         statement or query text
-      
-      params
-         Unused
-      
-   .. method:: executemany(self, query, rows_or_cols=None, data_as='rows', amount=None)
-      
-      Prepares a statement and executes it against all parameter sequences found in ``rows_or_cols``.
+The API Level object parameter is a string constant stating the supported API level. The Python connector supports API 2.0.
 
-      self
-         :py:meth:`Connection`
-
-      query
-         INSERT statement
-         
-      rows_or_cols
-         Data buffer to insert. This should be a sequence of lists or tuples.
-      
-      data_as
-         (Optional) Read data as rows or columns
-      
-      amount
-         (Optional) count of rows to insert
-   
-   .. method:: close(self)
-      
-      Close a statement and connection.
-      After a statement is closed, it must be reopened by creating a new cursor.
-            
-      self
-         :py:meth:`Connection`
-
-   .. method:: cursor(self)
-      
-      Create a new :py:meth:`Connection` cursor.
-      
-      We recommend creating a new cursor for every statement.
-      
-      self
-         :py:meth:`Connection`
-
-   .. method:: fetchall(self, data_as='rows')
-      
-         Fetch all remaining records from the result set.
-         
-         An empty sequence is returned when no more rows are available.
-      
-      self
-         :py:meth:`Connection`
-
-      data_as
-         (Optional) Read data as rows or columns
-
-   .. method:: fetchone(self, data_as='rows')
-      
-      Fetch one record from the result set.
-      
-      An empty sequence is returned when no more rows are available.
-      
-      self
-         :py:meth:`Connection`
-
-      data_as
-         (Optional) Read data as rows or columns
-
-
-   .. method:: fetchmany(self, size=[Connection.arraysize], data_as='rows')
-      
-         Fetches the next several rows of a query result set.
-
-         An empty sequence is returned when no more rows are available.
-
-      self
-         :py:meth:`Connection`
-
-      size
-         Number of records to fetch. If not set, fetches :py:obj:`Connection.arraysize` (1 by default) records
-
-      data_as
-         (Optional) Read data as rows or columns
-
-   .. method:: __iter__()
-
-         Makes the cursor iterable.
-
-
-.. attribute:: apilevel = '2.0'
-   
-   String constant stating the supported API level. The connector supports API "2.0".
-
-.. attribute:: threadsafety = 1
-      
-   Level of thread safety the interface supports. pysqream currently supports level 1, which states that threads can share the module, but not connections.
-
-.. attribute:: paramstyle = 'qmark'
-   
-   The placeholder marker. Set to ``qmark``, which is a question mark (``?``).
+Thread Safety Object Parameters
+===================
+The **Thread Safety** object parameter displays the thread safety level the interface supports. The Python connector currently supports level 1, which states that threads can share the module, but not connections.
+	 
+Parameter Style Object Parameters
+===================	 
+The **paramstyle** object parameter sets the placeholder marker and is set to to ``qmark``, which is a **question mark** (``?``).
