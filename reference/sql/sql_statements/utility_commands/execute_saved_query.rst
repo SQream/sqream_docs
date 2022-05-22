@@ -53,7 +53,7 @@ Notes
 
 * Query parameters can be used as substitutes for literal expressions. Parameters cannot be used to substitute identifiers, column names, table names, or other parts of the query.
 
-* Query parameters of a string datatype (like ``VARCHAR``) must be of a fixed length, and can be used in equality checks, but not patterns (e.g. :ref:`like`, :ref:`rlike`, etc)
+* Query parameters of a string datatype (like ``TEXT``) must be of a fixed length, and can be used in equality checks, but not patterns (e.g. :ref:`like`, :ref:`rlike`, etc)
 
 * Query parameters' types are inferred at compile time.
 
@@ -66,14 +66,14 @@ Assume a table named ``nba``, with the following structure:
    
    CREATE TABLE nba
    (
-      Name varchar(40),
-      Team varchar(40),
+      Name text(40),
+      Team text(40),
       Number tinyint,
-      Position varchar(2),
+      Position text(2),
       Age tinyint,
-      Height varchar(4),
+      Height text(4),
       Weight real,
-      College varchar(40),
+      College text(40),
       Salary float
     );
 
@@ -86,7 +86,7 @@ Here's a peek at the table contents (:download:`Download nba.csv </_static/sampl
    :header-rows: 1
 
 
-Saving and executing a simple query
+Saving and Executing a Simple Query
 ---------------------------------------
 
 .. code-block:: psql
@@ -102,7 +102,7 @@ Saving and executing a simple query
    R.J. Hunter              | Boston Celtics         |     28 | SG       |  22 | 6-5    |    185 | Georgia State         |  1148640
    [...]
 
-Saving and executing parametrized query
+Saving and Executing a Parametrized Query
 ------------------------------------------
 
 Use parameters to replace them later at execution time. 
@@ -120,4 +120,3 @@ Use parameters to replace them later at execution time.
    James Johnson     | Toronto Raptors |      3 | PF       |  29 | 6-9    |    250 | Wake Forest | 2500000
    Jason Thompson    | Toronto Raptors |      1 | PF       |  29 | 6-11   |    250 | Rider       |  245177
    Jonas Valanciunas | Toronto Raptors |     17 | C        |  24 | 7-0    |    255 |             | 4660482
-
