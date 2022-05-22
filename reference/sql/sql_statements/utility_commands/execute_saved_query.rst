@@ -8,7 +8,7 @@ EXECUTE_SAVED_QUERY
 
 Read more in the :ref:`saved_queries` guide.
 
-See also: ref:`save_query`, :ref:`drop_saved_query`,  ref:`show_saved_query`,  ref:`list_saved_queries`.
+See also: :ref:`save_query`, :ref:`drop_saved_query`, :ref:`show_saved_query`, :ref:`list_saved_queries`.
 
 Permissions
 =============
@@ -53,7 +53,7 @@ Notes
 
 * Query parameters can be used as substitutes for literal expressions. Parameters cannot be used to substitute identifiers, column names, table names, or other parts of the query.
 
-* Query parameters of a string datatype (like ``VARCHAR``) must be of a fixed length, and can be used in equality checks, but not patterns (e.g. :ref:`like`, :ref:`rlike`, etc)
+* Query parameters of a string datatype (like ``text``) must be of a fixed length, and can be used in equality checks, but not patterns (e.g. :ref:`like`, :ref:`rlike`, etc)
 
 * Query parameters' types are inferred at compile time.
 
@@ -66,14 +66,14 @@ Assume a table named ``nba``, with the following structure:
    
    CREATE TABLE nba
    (
-      Name varchar(40),
-      Team varchar(40),
+      Name text(40),
+      Team text(40),
       Number tinyint,
-      Position varchar(2),
+      Position text(2),
       Age tinyint,
-      Height varchar(4),
+      Height text(4),
       Weight real,
-      College varchar(40),
+      College text(40),
       Salary float
     );
 
