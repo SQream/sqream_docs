@@ -1,10 +1,9 @@
 .. _external_data:
 
 **********************************
-Working with External Data
+Accessing External Data
 **********************************
-
-SQream DB supports external data sources for use with :ref:`external_tables`, :ref:`copy_from`, and :ref:`copy_to`.
+SQream supports directly accessing data located in the following external sources:
 
 .. toctree::
    :maxdepth: 1
@@ -13,3 +12,8 @@ SQream DB supports external data sources for use with :ref:`external_tables`, :r
    s3
    hdfs
    
+You can access data from the above external sources using the following methods:
+
+* :ref:`external_tables`
+* :ref:`copy_from`
+* :ref:`copy_to`

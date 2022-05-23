@@ -3,30 +3,27 @@
 ***************************
 Inserting Data Overview
 ***************************
-
-The **Inserting Data Overview** page describes how to insert data into SQream, specifically how to insert data from a variety of sources and locations. 
+The **Inserting Data Overview** page describes how to insert data into SQream from a variety of sources and locations. 
 
 .. contents:: In this topic:
    :local:
 
-
 Getting Started
 ================================
-
-SQream supports importing data from the following sources:
+SQream supports ingesting data using the following methods:
 
 * Using :ref:`insert` with :ref:`a client driver<client_drivers>`
 * Using :ref:`copy_from`:
 
-   - Local filesystem and locally mounted network filesystems
-   - :ref:`s3`
-   - :ref:`hdfs`
+  - Local filesystem and locally mounted network filesystems
+  - :ref:`s3`
+  - :ref:`hdfs`
 
 * Using :ref:`external_tables`:
 
-   - Local filesystem and locally mounted network filesystems
-   - :ref:`s3`
-   - :ref:`hdfs`
+  - Local filesystem and locally mounted network filesystems
+  - :ref:`s3`
+  - :ref:`hdfs`
 
 
 SQream DB supports loading files in the following formats:

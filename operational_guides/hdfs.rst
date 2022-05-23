@@ -2,7 +2,7 @@
 
 .. _back_to_top_hdfs:
 
-Using SQream in an HDFS Environment
+HDFS
 =======================================
 
 .. _configuring_an_hdfs_environment_for_the_user_sqream:
@@ -46,13 +46,13 @@ This section describes how to configure an HDFS environment for the user **sqrea
       $ PATH=$PATH:$HOME/.local/bin:$HOME/bin:${SQREAM_HOME}/bin/:${JAVA_HOME}/bin:$HADOOP_INSTALL/bin
       $ export PATH
 
-3. Verify that the edits have been made:
+2. Verify that the edits have been made:
 
    .. code-block:: console
      
       source /home/sqream/.bash_profile
        
-4. Check if you can access Hadoop from your machine:       
+3. Check if you can access Hadoop from your machine:       
        
   .. code-block:: console
      
@@ -63,7 +63,7 @@ This section describes how to configure an HDFS environment for the user **sqrea
    **NOTICE:** If you cannot access Hadoop from your machine because it uses Kerberos, see `Connecting a SQream Server to Cloudera Hadoop with Kerberos <https://sqream.atlassian.net/wiki/spaces/DOC/pages/822902789/How+to+connect+sqream+server+to+Cloudera+Hadoop+with+kerberos>`_
 
 
-5. Verify that an HDFS environment exists for SQream services:
+4. Verify that an HDFS environment exists for SQream services:
 
    .. code-block:: console
      
@@ -72,7 +72,7 @@ This section describes how to configure an HDFS environment for the user **sqrea
 .. _step_6:
 
       
-6. If an HDFS environment does not exist for SQream services, create one (sqream_env.sh):
+5. If an HDFS environment does not exist for SQream services, create one (sqream_env.sh):
    
    .. code-block:: console
      
@@ -92,13 +92,11 @@ This section describes how to configure an HDFS environment for the user **sqrea
       $ export PATH
 	  
 :ref:`Back to top <back_to_top_hdfs>`
-
 	  
 .. _authenticate_hadoop_servers_that_require_kerberos:
 
 Authenticating Hadoop Servers that Require Kerberos
 ---------------------------------------------------
-
 If your Hadoop server requires Kerberos authentication, do the following:
 
 1. Create a principal for the user **sqream**.
@@ -134,9 +132,9 @@ If your Hadoop server requires Kerberos authentication, do the following:
    
       $ ls -lrt
 
-5. Look for a recently updated folder containing the text **hdfs**.
+6. Look for a recently updated folder containing the text **hdfs**.
 
-The following is an example of the correct folder name:
+   The following is an example of the correct folder name:
 
    .. code-block:: console
    
@@ -150,25 +148,31 @@ The following is an example of the correct folder name:
    Comment: - Does "something" need to be replaced with "file name"
    
 
-6. Copy the .keytab file to user **sqream's** Home directory on the remote machines that you are planning to use Hadoop on.
+7. Copy the .keytab file to user **sqream's** Home directory on the remote machines that you are planning to use Hadoop on.
 
-7. Copy the following files to the **sqream sqream@server:<sqream folder>/hdfs/hadoop/etc/hadoop:** directory:
+    ::
+
+8. Copy the following files to the **sqream sqream@server:<sqream folder>/hdfs/hadoop/etc/hadoop:** directory:
 
    * core-site.xml
    * hdfs-site.xml
 
-8. Connect to the sqream server and verify that the .keytab file's owner is a user sqream and is granted the correct permissions:
+9. Connect to the sqream server and verify that the .keytab file's owner is a user sqream and is granted the correct permissions:
 
    .. code-block:: console
    
       $ sudo chown sqream:sqream /home/sqream/hdfs.keytab
       $ sudo chmod 600 /home/sqream/hdfs.keytab
 
-9. Log into the sqream server.
+10. Log into the sqream server.
 
-10. Log in as the user **sqream**.
+     ::
 
-11. Navigate to the Home directory and check the name of a Kerberos principal represented by the following .keytab file:
+11. Log in as the user **sqream**.
+
+     ::
+
+12. Navigate to the Home directory and check the name of a Kerberos principal represented by the following .keytab file:
 
    .. code-block:: console
    
@@ -199,15 +203,17 @@ The following is an example of the correct folder name:
       $    5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
       $    5 09/15/2020 18:03:05 hdfs/nn1@SQ.COM
 
-12. Verify that the hdfs service named **hdfs/nn1@SQ.COM** is shown in the generated output above.
+13. Verify that the hdfs service named **hdfs/nn1@SQ.COM** is shown in the generated output above.
 
-13. Run the following:
+     ::
+
+14. Run the following:
 
    .. code-block:: console
    
       $ kinit -kt hdfs.keytab hdfs/nn1@SQ.COM
 
- 13. Check the output:
+15. Verify that the output is correct:
   
    .. code-block:: console
    
@@ -223,15 +229,20 @@ The following is an example of the correct folder name:
       $ Valid starting       Expires              Service principal
       $ 09/16/2020 13:44:18  09/17/2020 13:44:18  krbtgt/SQ.COM@SQ.COM
 
-14. List the files located at the defined server name or IP address:
+16. List the files located at the defined server name or IP address:
 
    .. code-block:: console
    
       $ hadoop fs -ls hdfs://<hadoop server name or ip>:8020/
 
-15. Do one of the following:
+17. Do one of the following:
 
-    * If the list below is output, continue with Step 16.
+     ::
+
+    * If the list below is output, continue with Step 18.
+
+     ::
+
     * If the list is not output, verify that your environment has been set up correctly.
 	
 If any of the following are empty, verify that you followed :ref:`Step 6 <step_6>` in the **Configuring an HDFS Environment for the User sqream** section above correctly:
@@ -245,8 +256,10 @@ If any of the following are empty, verify that you followed :ref:`Step 6 <step_6
       $ echo $LD_LIBRARY_PATH
       $ echo $PATH
 
-16. Verify that you copied the correct keytab file.
+18. Verify that you copied the correct keytab file.
 
-17. Review this procedure to verify that you have followed each step.
+     ::
+
+19. Review this procedure to verify that you have followed each step.
 
 :ref:`Back to top <back_to_top_hdfs>`
