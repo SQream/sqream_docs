@@ -3,23 +3,41 @@
 ***********************
 External Tables
 ***********************
-External tables can be used to run queries directly on data without inserting it into SQream DB first.
-SQream DB supports read only external tables, so you can query from external tables, but you cannot insert to them, or run deletes or updates on them.
-Running queries directly on external data is most effectively used for things like one off querying. If you will be repeatedly querying data, the performance will usually be better if you insert the data into SQream DB first.
-Although external tables can be used without inserting data into SQream DB, one of their main use cases is to help with the insertion process. An insert select statement on an external table can be used to insert data into SQream using the full power of the query engine to perform ETL.
+Overview
+-----------------------
+**Comment** - *I moved this page to the "External Data" topic in the left menu.*
+
+You can use external tables to run queries directly on data located in an external source, avoiding the need to insert data into SQream. The external table is read-only, letting you query external tables, but does not support inserting, deleting, or updating them. Running queries directly on external data is most effectively used for one off querying and related operations. To repeated queries, inserting the data into SQream improves performance.
+
+While you can use external tables without inserting data into SQream, one of their main uses is to facilitate data insertion. Using an **insert select** statement on an external table leverages the full power of the query engine to perform **ETL (extract, transform, load)**.
+
+For more information on ETL tools, see :ref:`third_party_tools`.
 
 .. contents:: In this topic:
    :local:
    
-What kind of data is supported?
-=====================================
-SQream DB supports external tables over:
+Supported Operations
+=========================
 
-* text files (e.g. CSV, PSV, TSV)
+.. contents:: In this topic:
+   :local:
+   
+   
+Supported File Formats
+--------------------------
+The external tables feature supports inserting data from the following file formats:
+
+* Text files (csv, psv, and tsv) - **Comment** - *Is this all of them, or are there any more?*
+
+   ::
+   
 * ORC
+
+   ::
+   
 * Parquet
 
-What kind of data staging is supported?
+Supported Data Staging Methods
 ============================================
 SQream DB can stage data from:
 

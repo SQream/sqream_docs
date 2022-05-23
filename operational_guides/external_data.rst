@@ -11,9 +11,9 @@ SQream supports directly accessing data located in the following external source
 
    s3
    hdfs
+   external_tables
    
 You can access data from the above external sources using the following methods:
 
-* :ref:`external_tables`
 * :ref:`copy_from`
 * :ref:`copy_to`
