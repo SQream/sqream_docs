@@ -13,7 +13,6 @@ This section describes the following features:
 
    delete_guide
    compression
-   flexible_data_clustering
    python_functions
    saved_queries
    viewing_system_objects_as_ddl
