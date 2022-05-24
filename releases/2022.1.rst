@@ -29,9 +29,9 @@ Data Encryption
 ************
 SQream now supports data encryption mechanisms in accordance with **General Data Protection Regulation (GDPR)** standards.
 
-For more information, see `Data Encryption <https://docs.sqream.com/en/v2022.1/feature_guides/data_encryption.html>`_.
+Using the data encryption feature may lead to a maximum of a 40% increase in performance degradation.
 
-**Comment** - *Information regarding performance degradation, pending.*
+For more information, see `Data Encryption <https://docs.sqream.com/en/v2022.1/feature_guides/data_encryption.html>`_.
 
 Update Feature
 ************
@@ -91,4 +91,36 @@ This section is not relevant to the 2022.1 release notes.
 
 Upgrading to v2022.1
 -------
-**Comment** - *TBD*
+1. Generate a back-up of the metadata by running the following command:
+
+   .. code-block:: console
+
+      $ select backup_metadata('out_path');
+	  
+   .. tip:: SQream recommends storing the generated back-up locally in case needed.
+   
+   SQream runs the Garbage Collector and creates a clean backup tarball package.
+   
+2. Shut down all SQream services.
+
+    ::
+
+3. Extract the recently created back-up file.
+
+    ::
+
+4. Replace your current metadata with the metadata you stored in the back-up file.
+
+    ::
+
+5. Navigate to the new SQream package bin folder.
+
+    ::
+
+6. Run the following command:
+
+   .. code-block:: console
+
+      $ ./upgrade_storage <levelDB path>
+
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in **Step 7** of the Upgrading SQream Version procedure.

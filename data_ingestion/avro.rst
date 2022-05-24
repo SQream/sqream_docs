@@ -17,147 +17,8 @@ Overview
 ===========
 **Avro** is a well-known data serialization system that relies on schemas. Due to its flexibility as an efficient data storage method, SQream supports the Avro binary data format as an alternative to JSON. Avro files are represented using the **Object Container File** format, in which the Avro schema is encoded alongside binary data. Multiple files loaded in the same transaction are serialized using the same schema. If they are not serialized using the same schema, an error message is displayed. SQream uses the **.avro** extension for ingested Avro files.
 
-Loading Data into SQream
-===========
-
-Syntax
------------
-Before ingesting data into SQream from an Avro file, you must create a table using the following syntax:
-
-.. code-block:: postgres
-   
-   CREATE TABLE <table name> AS
-      SELECT * FROM <external table>;
-	  
-After creating a table you can ingest data from an Avro file into SQream using the following syntax:
-
-.. code-block:: postgres
-
-   avro_fdw [OPTIONS(option=value[,...])]
-   
-Example
------------
-The following is an example of creating a table:
-
-.. code-block:: postgres
-   
-   CREATE TABLE nba AS
-      SELECT * FROM ext_nba;
-
-The following is an example of loading data from an Avro file into SQream:
-
-.. code-block:: postgres
-
-    WRAPPER avro_fdw
-    OPTIONS
-    (
-      LOCATION =  's3://sqream-demo-data/nba.avro'
-    );
-	  
-For more examples, see :ref:`additional_examples`.
-
-Avro Data Types
-===========
-Avro includes the following data types:
-
-.. contents:: 
-   :local:
-   :depth: 1
-
-Primitive Data Types
---------------
-The following table shows the supported **Primitive** data types:
-
-+-------------+------------------------------------------------------+
-| Avro Type   | SQream Type                                          |
-|             +-----------+---------------+-----------+--------------+
-|             | Number    | Date/Datetime | String    | Boolean      |
-+=============+===========+===============+===========+==============+
-| ``null``    | Supported | Supported     | Supported | Supported    |
-+-------------+-----------+---------------+-----------+--------------+
-| ``boolean`` |           |               | Supported | Supported    |
-+-------------+-----------+---------------+-----------+--------------+
-| ``int``     | Supported |               | Supported |              |
-+-------------+-----------+---------------+-----------+--------------+
-| ``long``    | Supported |               | Supported |              |
-+-------------+-----------+---------------+-----------+--------------+
-| ``float``   | Supported |               | Supported |              |
-+-------------+-----------+---------------+-----------+--------------+
-| ``double``  | Supported |               | Supported |              |
-+-------------+-----------+---------------+-----------+--------------+
-| ``bytes``   |           |               |           |              |
-+-------------+-----------+---------------+-----------+--------------+
-| ``string``  |           | Supported     | Supported |              |
-+-------------+-----------+---------------+-----------+--------------+
-
-Complex Data Types
---------------
-The following table shows the supported **Complex** data types:
-
-+------------+---------------------------------------------------+
-|            | SQream Type                                       |
-|            +-----------+---------------+-----------+-----------+
-|Avro Type   | Number    | Date/Datetime | String    | Boolean   |
-+============+===========+===============+===========+===========+
-| ``record`` |           |               |           |           |
-+------------+-----------+---------------+-----------+-----------+
-| ``enum``   |           |               | Supported |           |
-+------------+-----------+---------------+-----------+-----------+
-| ``array``  |           |               |           |           |
-+------------+-----------+---------------+-----------+-----------+
-| ``map``    |           |               |           |           |
-+------------+-----------+---------------+-----------+-----------+
-| ``union``  | Supported | Supported     | Supported | Supported |
-+------------+-----------+---------------+-----------+-----------+
-| ``fixed``  |           |               |           |           |
-+------------+-----------+---------------+-----------+-----------+
-
-Logical Data Types
---------------
-The following table shows the supported **Logical** data types:
-
-+----------------------------+-------------------------------------------------+
-| Avro Type                  | SQream Type                                     |
-|                            +-----------+---------------+-----------+---------+
-|                            | Number    | Date/Datetime | String    | Boolean |
-+============================+===========+===============+===========+=========+
-| ``decimal``                | Supported |               | Supported |         |
-+----------------------------+-----------+---------------+-----------+---------+
-| ``uuid``                   |           |               | Supported |         |
-+----------------------------+-----------+---------------+-----------+---------+
-| ``date``                   |           | Supported     | Supported |         |
-+----------------------------+-----------+---------------+-----------+---------+
-| ``time-millis``            |           |               |           |         |
-+----------------------------+-----------+---------------+-----------+---------+
-| ``time-micros``            |           |               |           |         |
-+----------------------------+-----------+---------------+-----------+---------+
-| ``timestamp-millis``       |           | Supported     | Supported |         |
-+----------------------------+-----------+---------------+-----------+---------+
-| ``timestamp-micros``       |           | Supported     | Supported |         |
-+----------------------------+-----------+---------------+-----------+---------+
-| ``local-timestamp-millis`` |           |               |           |         |
-+----------------------------+-----------+---------------+-----------+---------+
-| ``local-timestamp-micros`` |           |               |           |         |
-+----------------------------+-----------+---------------+-----------+---------+
-| ``duration``               |           |               |           |         |
-+----------------------------+-----------+---------------+-----------+---------+
-
-.. note:: Number types include **tinyint**, **smallint**, **int**, **bigint**, **real** and **float**, and **numeric**. String types include **text**.
-	 
-Mapping Objects to Rows
-===============
-When mapping objects to rows, each Avro object or message must contain one ``record`` type object corresponding to a single row in SQream. The ``record`` fields are associated by name to their target table columns. Additional unmapped fields will be ignored. Note that using the JSONPath option overrides this.
-
-Best Practices
-====================
-This section describes the best practices when ingesting Avro files into SQream:
-
-.. contents:: 
-   :local:
-   :depth: 1
-   
 Making Avro Files Accessible to Workers
----------------------
+================
 To give workers access to files every node must have the same view of the storage being used.
 
 The following apply for Avro files to be accessible to workers:
@@ -170,7 +31,55 @@ The following apply for Avro files to be accessible to workers:
 
 For more information about restricted worker access, see :ref:`workload_manager`.
 
-Basing Your Table Structure on Inserted Tables
+Preparing Your Table
+===============
+You can build your table structure on both local and foreign tables:
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Creating a Table
+---------------------   
+Before loading data, you must build the ``CREATE TABLE`` to correspond with the file structure of the inserted table.
+
+The example in this section is based on the source ``nba.avro`` table shown below:
+
+.. csv-table:: nba.avro
+   :file: nba-t10.csv
+   :widths: auto
+   :header-rows: 1 
+
+The following example shows the correct file structure used to create the ``CREATE TABLE`` statement based on the **nba.avro** table:
+
+.. code-block:: postgres
+   
+   CREATE TABLE ext_nba
+   (
+
+        Name       TEXT(40),
+        Team       TEXT(40),
+        Number     BIGINT,
+        Position   TEXT(2),
+        Age        BIGINT,
+        Height     TEXT(4),
+        Weight     BIGINT,
+        College    TEXT(40),
+        Salary     FLOAT
+    )
+    WRAPPER avro_fdw
+    OPTIONS
+    (
+      LOCATION =  's3://sqream-demo-data/nba.avro'
+    );
+
+.. tip:: 
+
+   An exact match must exist between the SQream and Avro types. For unsupported column types, you can set the type to any type and exclude it from subsequent queries.
+
+.. note:: The **nba.avro** file is stored on S3 at ``s3://sqream-demo-data/nba.avro``.
+
+Creating a Foreign Table
 ---------------------
 Before loading data, you must build the ``CREATE FOREIGN TABLE`` to correspond with the file structure of the inserted table.
 
@@ -210,9 +119,166 @@ The following example shows the correct file structure used to create the ``CREA
 
 .. note:: The **nba.avro** file is stored on S3 at ``s3://sqream-demo-data/nba.avro``.
 
-Verifying Your Table Output
----------------------
-Because external tables do not automatically verify the file integrity or structure, you must manually verify that the table output is identical to the original inserted table.
+.. note:: The examples in the sections above are identical except for the syntax used to create the tables.
+
+Mapping Between SQream and Avro Data Types
+=================
+Mapping between SQream and Avro data types depends on the Avro data type:
+
+.. contents:: 
+   :local:
+   :depth: 1
+
+Primitive Data Types
+--------------
+The following table shows the supported **Primitive** data types:
+
++-------------+------------------------------------------------------+
+| Avro Type   | SQream Type                                          |
+|             +-----------+---------------+-----------+--------------+
+|             | Number    | Date/Datetime | String    | Boolean      |
++=============+===========+===============+===========+==============+
+| ``null``    | Supported | Supported     | Supported | Supported    |
++-------------+-----------+---------------+-----------+--------------+
+| ``boolean`` |           |               | Supported | Supported    |
++-------------+-----------+---------------+-----------+--------------+
+| ``int``     | Supported |               | Supported |              |
++-------------+-----------+---------------+-----------+--------------+
+| ``long``    | Supported |               | Supported |              |
++-------------+-----------+---------------+-----------+--------------+
+| ``float``   | Supported |               | Supported |              |
++-------------+-----------+---------------+-----------+--------------+
+| ``double``  | Supported |               | Supported |              |
++-------------+-----------+---------------+-----------+--------------+
+| ``bytes``   |           |               |           |              |
++-------------+-----------+---------------+-----------+--------------+
+| ``string``  |           | Supported     | Supported |              |
++-------------+-----------+---------------+-----------+--------------+
+
+Complex Data Types
+--------------
+The following table shows the supported **Complex** data types:
+
++------------+-------------------------------------------------------+
+|            | SQream Type                                           |
+|            +---------------+---------------+-----------+-----------+
+|Avro Type   | Number     |  Date/Datetime |   String    | Boolean   |
++============+============+================+=============+===========+
+| ``record`` |            |                |             |           |
++------------+------------+----------------+-------------+-----------+
+| ``enum``   |            |                | Supported   |           |
++------------+------------+----------------+-------------+-----------+
+| ``array``  |            |                |             |           |
++------------+------------+----------------+-------------+-----------+
+| ``map``    |            |                |             |           |
++------------+------------+----------------+-------------+-----------+
+| ``union``  |  Supported | Supported      | Supported   | Supported |
++------------+------------+----------------+-------------+-----------+
+| ``fixed``  |            |                |             |           |
++------------+------------+----------------+-------------+-----------+
+
+Logical Data Types
+--------------
+The following table shows the supported **Logical** data types:
+
++----------------------------+-------------------------------------------------+
+| Avro Type                  | SQream Type                                     |
+|                            +-----------+---------------+-----------+---------+
+|                            | Number    | Date/Datetime | String    | Boolean |
++============================+===========+===============+===========+=========+
+| ``decimal``                | Supported |               | Supported |         |
++----------------------------+-----------+---------------+-----------+---------+
+| ``uuid``                   |           |               | Supported |         |
++----------------------------+-----------+---------------+-----------+---------+
+| ``date``                   |           | Supported     | Supported |         |
++----------------------------+-----------+---------------+-----------+---------+
+| ``time-millis``            |           |               |           |         |
++----------------------------+-----------+---------------+-----------+---------+
+| ``time-micros``            |           |               |           |         |
++----------------------------+-----------+---------------+-----------+---------+
+| ``timestamp-millis``       |           | Supported     | Supported |         |
++----------------------------+-----------+---------------+-----------+---------+
+| ``timestamp-micros``       |           | Supported     | Supported |         |
++----------------------------+-----------+---------------+-----------+---------+
+| ``local-timestamp-millis`` |           |               |           |         |
++----------------------------+-----------+---------------+-----------+---------+
+| ``local-timestamp-micros`` |           |               |           |         |
++----------------------------+-----------+---------------+-----------+---------+
+| ``duration``               |           |               |           |         |
++----------------------------+-----------+---------------+-----------+---------+
+
+.. note:: Number types include **tinyint**, **smallint**, **int**, **bigint**, **real** and **float**, and **numeric**. String types include **text**.
+
+Mapping Objects to Rows
+===============
+When mapping objects to rows, each Avro object or message must contain one ``record`` type object corresponding to a single row in SQream. The ``record`` fields are associated by name to their target table columns. Additional unmapped fields will be ignored. Note that using the JSONPath option overrides this.
+
+Ingesting Data into SQream
+==============
+This section includes the following:
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Syntax
+-----------
+Before ingesting data into SQream from an Avro file, you must create a table using the following syntax:
+
+.. code-block:: postgres
+   
+   COPY [schema name.]table_name
+     FROM WRAPPER fdw_name
+   ;
+	  
+After creating a table you can ingest data from an Avro file into SQream using the following syntax:
+
+.. code-block:: postgres
+
+   avro_fdw
+   
+Example
+-----------
+The following is an example of creating a table:
+
+.. code-block:: postgres
+   
+   COPY t
+     FROM WRAPPER fdw_name
+     OPTIONS
+     (
+       [ copy_from_option [, ...] ]
+     )
+   ;
+
+The following is an example of loading data from an Avro file into SQream:
+
+.. code-block:: postgres
+
+    WRAPPER avro_fdw
+    OPTIONS
+    (
+      LOCATION =  's3://sqream-demo-data/nba.avro'
+    );
+	  
+For more examples, see :ref:`additional_examples`.
+
+Parameters
+===================
+The following table shows the Avro parameter:
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Description
+   * - ``schema_name``
+     - The schema name for the table. Defaults to ``public`` if not specified.
+
+Best Practices
+============
+Because external tables do not automatically verify the file integrity or structure, SQream recommends manually verifying your table output when ingesting Avro files into SQream. This lets you determine if your table output is identical to your originally inserted table.
 
 The following is an example of the output based on the **nba.avro** table:
 

@@ -15,7 +15,6 @@ This section describes the following features:
    key_evaluation
    data_encryption
    compression
-   flexible_data_clustering
    python_functions
    workload_manager
    transactions
