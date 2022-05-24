@@ -16,6 +16,4 @@ The **Data Encryption** page  |icon-new_2022.1| describes the following:
    data_encryption_overview
    data_encryption_methods
    data_encryption_types
-   data_encryption_process
-   data_encryption_permissions
    data_encryption_syntax
