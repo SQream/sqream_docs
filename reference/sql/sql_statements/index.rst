@@ -107,7 +107,7 @@ Data Manipulation Commands (DML)
      - Select rows and column from a table
    * - :ref:`TRUNCATE<truncate>`
      - Delete all rows from a table
-   * - :ref:`UPDATE<update>` |icon-new_2022.1|
+   * - :ref:`UPDATE<update>`
      - Modify the value of certain columns in existing rows without creating a table
    * - :ref:`VALUES<values>`
      - Return rows containing literal values
@@ -146,45 +146,6 @@ Utility Commands
    * - :ref:`STOP STATEMENT<stop_statement>`
      - Stops or aborts an active statement
 
-Saved Queries
-===================
-
-.. list-table:: Saved Queries
-   :widths: auto
-   :header-rows: 1
-   
-   * - Command
-     - Usage
-   * - :ref:`SELECT DROP_SAVED_QUERY<drop_saved_query>`
-     - Drop a saved query
-   * - :ref:`SELECT EXECUTE_SAVED_QUERY<execute_saved_query>`
-     - Executes a saved query
-   * - :ref:`SELECT LIST_SAVED_QUERIES<list_saved_queries>`
-     - Returns a list of saved queries
-   * - :ref:`SELECT RECOMPILE_SAVED_QUERY<recompile_saved_query>`
-     - Recompiles a query that has been invalidated by a schema change
-   * - :ref:`SELECT SAVE_QUERY<save_query>`
-     - Compiles and saves a query for re-use and sharing
-   * - :ref:`SELECT SHOW_SAVED_QUERY<show_saved_query>`
-     - Shows query text for a saved query
-
-
-
-Workload Management
-======================
-
-.. list-table:: Workload Management
-   :widths: auto
-   :header-rows: 1
-   
-   * - Command
-     - Usage
-   * - :ref:`subscribe_service`
-     - Add a SQream DB worker to a service queue 
-   * - :ref:`unsubscribe_service`
-     - Remove a SQream DB worker to a service queue
-   * - :ref:`show_subscribed_instances`
-     - Return a list of service queues and workers
 
 Access Control Commands
 ================================

@@ -362,24 +362,6 @@ The following table shows the **window** functions:
 
 For more information about window functions, see :ref:`window_functions`.
 
-Workload Management Functions
----------------------------------
-The following table shows the **workload management** functions:
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-
-   * - Function
-     - Description
-   * - :ref:`subscribe_service`
-     - Add a SQream DB worker to a service queue 
-   * - :ref:`unsubscribe_service`
-     - Remove a SQream DB worker to a service queue
-   * - :ref:`show_subscribed_instances`
-     - Return a list of service queues and workers
-
-
 .. toctree::
    :maxdepth: 2
    :caption: All Functions:

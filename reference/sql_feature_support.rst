@@ -340,9 +340,6 @@ Extra Functionality
    * - CTEs
      - ✓
      - :ref:`common_table_expressions`
-   * - Saved queries, Saved queries with parameters
-     - ✓
-     - :ref:`saved_queries`
    * - Sequences
      - ✓
      - :ref:`identity`

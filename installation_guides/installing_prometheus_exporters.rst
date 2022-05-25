@@ -150,11 +150,12 @@ After installing the **node_exporter** and **Nvidia_exporter** you must install 
 
 **To install the process_exporter:**
 
-1. Do one of the following:
+1. Run the following command:
 
-   * For **CentOS**, run ``sudo rpm -i process_exporter/process-exporter_0.5.0_linux_amd64.rpm``.
-   * For **Ubuntu**, run ``sudo dpkg -i process_exporter/process-exporter_0.6.0_linux_amd64.deb``.
-   
+   .. code-block:: console
+
+      sudo rpm -i process_exporter/process-exporter_0.5.0_linux_amd64.rpm
+  
 2. Verify that the process_exporter is running:
 
    .. code-block:: console

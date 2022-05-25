@@ -54,7 +54,7 @@ An average single-node cluster can be a rackmount server or workstation, contain
    * - GPU
      - 2x A100 NVIDIA
    * - Operating System
-     - Red Hat Enterprise Linux v7.x or CentOS v7.x or Amazon Linux
+     - Red Hat Enterprise Linux v7.x or CentOS v7.x
 
 .. note:: If you are using internal storage, your volumes must be formatted as xfs.
 
@@ -92,7 +92,7 @@ The following table shows SQream's recommended hardware specifications:
    * - GPU
      - 2x A100 NVIDIA
    * - Operating System
-     - Red Hat Enterprise Linux v7.x or CentOS v7.x or Amazon Linux
+     - Red Hat Enterprise Linux v7.x or CentOS v7.x
 
 .. note:: With a NAS connected over Lustre, or NFS, each SQream worker can read data at up to 5GB/s.
 
@@ -189,9 +189,6 @@ SQream can run on the following 64-bit Linux operating systems:
 
    * Red Hat Enterprise Linux (RHEL) v7
    * CentOS v7
-   * Amazon Linux 2018.03
-   * Ubuntu v16.04 LTS, v18.04 LTS
-   * Other Linux distributions may be supported via nvidia-docker
 
 Storage
 -----------

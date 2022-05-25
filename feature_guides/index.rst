@@ -12,12 +12,10 @@ This section describes the following features:
    :titlesonly:
 
    delete_guide
-   data_encryption
    compression
    flexible_data_clustering
    python_functions
    viewing_system_objects_as_ddl
-   workload_manager
    transactions
    concurrency_and_locks
    concurrency_and_scaling_in_sqream

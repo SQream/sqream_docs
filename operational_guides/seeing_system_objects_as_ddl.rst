@@ -120,11 +120,6 @@ Exporting function DDL to a file
 
    COPY (SELECT GET_FUNCTION_DDL('my_distance')) TO '/home/rhendricks/my_distance.sql';
 
-Saved queries
------------------
-
-See :ref:`list_saved_queries`, :ref:`show_saved_query` for more information.
-
 Dump entire database DDLs
 ==================================
 

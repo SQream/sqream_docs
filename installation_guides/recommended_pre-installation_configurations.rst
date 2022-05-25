@@ -302,28 +302,7 @@ Installing NodeJS on CentOS
 
       $ sudo npm install pm2 -g
 
-Installing NodeJS on Ubuntu
---------------------------------
-**To install the node.js file on Ubuntu:**
-  
-1. Download the `setup_12.x file <https://deb.nodesource.com/setup_12.x>`__ as a root user logged in shell:
 
-   .. code-block:: console
-
-      $ curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
-  
-2. Install the node.js file:
-
-   .. code-block:: console
-
-      $ sudo apt-get install -y nodejs  
-  
-3. Install npm and make it available for all users:
-
-   .. code-block:: console
-
-      $ sudo npm install pm2 -g
-	  
 Installing NodeJS Offline
 -------------------------------------------
 **To install NodeJS Offline**
@@ -682,52 +661,28 @@ CUDA Driver Prerequisites
 
       $ gcc --version
   
-3. If gcc has not been installed, install it for one of the following operating systems:
-
-   * On RHEL/CentOS: 
+3. If gcc has not been installed, install it:
 
      .. code-block:: console
 
         $ sudo yum install -y gcc
 
-   * On Ubuntu: 
-
-     .. code-block:: console
-
-        $ sudo apt-get install gcc
-
 Updating the Kernel Headers  
 --------------------------------
 **To update the kernel headers:**
 
-1. Update the kernel headers on one of the following operating systems:
-
-   * On RHEL/CentOS:
+1. Update the kernel headers:
 
      .. code-block:: console
 
         $ sudo yum install kernel-devel-$(uname -r) kernel-headers-$(uname -r)
 		  
-   * On Ubuntu:
-   
-     .. code-block:: console
-
-        $ sudo apt-get install linux-headers-$(uname -r)
-		  
-2. Install **wget** one of the following operating systems:
-
-   * On RHEL/CentOS:
+2. Install **wget** 
    
      .. code-block:: console
 
         $ sudo yum install wget
-		  
-   * On Ubuntu:   
-		  
-     .. code-block:: console
 
-        $ sudo apt-get install wget
-		  		  
 Disabling Nouveau  
 --------------------------------
 You can disable Nouveau, which is the default driver.

@@ -832,37 +832,7 @@ Installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on CentOS
 
 For more information on installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on CentOS, see `NVIDIA Docker Installation - CentOS distributions <https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-2.0)#centos-distributions-1>`_
      
-Installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on Ubuntu
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-**To install the NVIDIA Docker2 Toolkit on an x86_64 bit processor on Ubuntu:**
-
-1. Add the repository for your distribution:
-
-   .. code-block:: postgres
-   
-      $ curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
-      $ sudo apt-key add -     
-      $ distribution=$(. /etc/os-release;echo $ID$VERSION_ID)  
-      $ curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | \
-      $ sudo tee /etc/apt/sources.list.d/nvidia-docker.list  
-      $ sudo apt-get update
-     
-2. Install the **nvidia-docker2** package and reload the Docker daemon configuration:
-   
-   .. code-block:: postgres
-   
-      $ sudo apt-get install nvidia-docker2
-      $ sudo pkill -SIGHUP dockerd
-     
-3. Verify that the nvidia-docker2 package has been installed correctly:
-
-   .. code-block:: postgres
-   
-      $ docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi  
-     
-For more information on installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on Ubuntu, see `NVIDIA Docker Installation - Ubuntu distributions <https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-2.0)#ubuntu-distributions-1>`_
-
-Go back to :ref:`Installing Your Kubernetes Cluster<install_kubernetes_cluster>`     
+ 
     
 Modifying the Docker Daemon JSON File for GPU and Compute Nodes
 -------------------------------------

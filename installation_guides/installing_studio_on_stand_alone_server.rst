@@ -39,12 +39,6 @@ Before installing Studio you must install NodeJS version 12 on the server.
      
         $ sudo yum remove -y nodejs
 
-   * On Ubuntu:
-
-     .. code-block:: console
-     
-        $ sudo apt remove -y nodejs
-
 3. If you have not installed NodeJS version 12, run the following commands:
 
    * On CentOS:
@@ -54,13 +48,6 @@ Before installing Studio you must install NodeJS version 12 on the server.
         $ curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
         $ sudo yum clean all && sudo yum makecache fast
         $ sudo yum install -y nodejs
-		
-   * On Ubuntu:
-
-     .. code-block:: console
-     
-        $ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-        $ sudo apt-get install -y nodejs
 		
   The following output is displayed if your installation has completed successfully:
 
