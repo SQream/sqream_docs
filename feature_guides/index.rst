@@ -11,11 +11,8 @@ This section describes the following features:
    :maxdepth: 1
    :titlesonly:
 
-   delete_guide
    compression
-   flexible_data_clustering
    python_functions
-   saved_queries
    viewing_system_objects_as_ddl
    workload_manager
    transactions
