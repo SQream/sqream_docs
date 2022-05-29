@@ -36,12 +36,11 @@ Use an external table to stage data before loading from CSV, Parquet or ORC file
 Planning for Data Staging
 --------------------------------
 For the following examples, we will want to interact with a CSV file. Here's a peek at the table contents:
-
+  
 .. csv-table:: nba.csv
-
    :file: nba-t10.csv
    :widths: auto
-   :header-rows: 1 
+   :header-rows: 1
 
 The file is stored on :ref:`s3`, at ``s3://sqream-demo-data/nba_players.csv``.
 We will make note of the file structure, to create a matching ``CREATE_EXTERNAL_TABLE`` statement.
