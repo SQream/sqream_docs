@@ -16,9 +16,13 @@ The ``UPDATE`` command is used to modify the value of certain columns in existin
 
 It can be used to do the following:
 
-* Perform localized changes in existing data, such as correcting mistakes discovered after ingesting data.
+* Performing localized changes in existing data, such as correcting mistakes discovered after ingesting data.
+
+   ::
 
 * Setting columns based on the values of others.
+
+.. warning:: Using the ``UPDATE`` command on column clustered using a cluster key can undo your clustering.
 
 Syntax
 ==========
