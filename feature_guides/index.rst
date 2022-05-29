@@ -11,7 +11,6 @@ This section describes the following features:
    :maxdepth: 1
    :titlesonly:  
 
-   delete_guide
    key_evaluation
    data_encryption
    compression
