@@ -19,9 +19,13 @@ The ``UPDATE`` command is used to modify the value of certain columns in existin
 
 It can be used to do the following:
 
-* Perform localized changes in existing data, such as correcting mistakes discovered after ingesting data.
+* Performing localized changes in existing data, such as correcting mistakes discovered after ingesting data.
+
+   ::
 
 * Setting columns based on the values of others.
+
+.. warning:: Using the ``UPDATE`` command on column clustered using a cluster key can undo your clustering.
 
 Syntax
 ==========
@@ -60,7 +64,7 @@ The following table describes the ``UPDATE`` parameters:
    * - ``condition``
      - Specifies the condition for updating the data.
 	 
-.. note:: Similar to a DELETE statement, an UPDATE statement may leave some uncleaned data behind, which requires a cleanup operation.
+.. note:: Similar to a ``DELETE`` statement, an ``UPDATE`` statement may leave some uncleaned data behind, which requires a clean-up operation.
 
 Examples
 ===========
@@ -87,17 +91,17 @@ The following section shows an example of triggering a clean-up:
    SELECT * FROM sqream_catalog.discarded_chunks;
    SELECT cleanup_discarded_chunks('public','t');   
 
-The following is an output example:
+The following is an example of the output generated from the above:
 
 * **database_name** - _discarded_master
 * **table_id** - 24
 * **column_id** - 1
 * **extent_ID** - 0
 
+Locking and Concurrency
+=============
+Executing the ``UPDATE`` statement obtains an exclusive ``UPDATE`` lock on the target table.
+
 Permissions
 =============
 Executing an ``UPDATE`` statement requires both ``UPDATE`` and ``SELECT`` permissions on the target table.
-
-Locking and Concurrency
-=============
-Executing the ``UPDATE`` statement obtains an exclusive UPDATE lock on the target table.
