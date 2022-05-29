@@ -34,8 +34,6 @@ Data Definition Commands (DDL)
    * - :ref:`create_database`
      - Create a new database
    * - :ref:`create_foreign_table`
-     - Create a new foreign table in the database (deprecated)
-   * - :ref:`create_foreign_table`
      - Create a new foreign table in the database
    * - :ref:`create_function`
      - Create a new user defined function in the database
