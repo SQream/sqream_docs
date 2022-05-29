@@ -13,7 +13,6 @@ This section describes the following features:
    
 
    access_control
-   delete_guide
    compression
    python_functions
    saved_queries
