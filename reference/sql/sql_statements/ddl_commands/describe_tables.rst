@@ -6,7 +6,7 @@ DESCRIBE TABLES
 The ``DESCRIBE TABLES`` command lets you list information about tables in your database. You can define the ``DESCRIBE TABLES`` command as one of the following:
 
 * **Internal** - list information regarding SQream native tables residing in the defined SQream database storage area.
-* **External** - list information about tables residing as files external to the SQream database.
+* **Foreign/External** - list information about tables residing as files external to the SQream database.
 
 Syntax
 ==========
@@ -96,7 +96,7 @@ The following is an example of the generated output in Studio for the **internal
 
 .. image:: /_static/images/describe_tables_internal.png
 
-Using the **external** ``DESCRIBE_TABLES`` command generates the following output:
+Using the **foreign/external** ``DESCRIBE_TABLES`` command generates the following output:
 
 .. list-table:: 
    :widths: auto
