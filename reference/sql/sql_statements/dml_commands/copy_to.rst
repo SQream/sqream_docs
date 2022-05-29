@@ -29,7 +29,7 @@ Syntax
        )
        ;
        
-   fdw_name ::= csw_fdw | parquet_fdw | orc_fdw
+   fdw_name ::= csw_fdw | parquet_fdw | orc_fdw | avro_fdw
    
    schema_name ::= identifer
   
