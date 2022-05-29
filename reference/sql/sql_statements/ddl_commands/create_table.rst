@@ -258,9 +258,9 @@ Either of the following examples can be used to create a second table based on t
    
 The generated output of both of the statements above is identical.
    
-Creating a Table based on External Tables and Views
+Creating a Table based on Foreign Tables and Views
 ~~~~~~~~~~~~
-The following is example of creating a table based on external tables and views:
+The following is example of creating a table based on foreign tables and views:
 
 
 .. code-block:: postgres
@@ -268,7 +268,7 @@ The following is example of creating a table based on external tables and views:
    CREATE VIEW v as SELECT x+1,y,y || 'abc' from t1;
    CREATE TABLE t3 LIKE v;
 
-When duplicating the column structure of an existing table, the target table of the ``LIKE`` clause can be a regular or an external table, or a view.
+When duplicating the column structure of an existing table, the target table of the ``LIKE`` clause can be a regular or a foreign table, or a view.
 
 Permissions
 =============

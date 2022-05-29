@@ -19,7 +19,7 @@ Any database host with access to S3 endpoints can access S3 without any configur
 S3 URI Format
 ===============
 
-With S3, specify a location for a file (or files) when using :ref:`copy_from` or :ref:`external_tables`.
+With S3, specify a location for a file (or files) when using :ref:`copy_from` or :ref:`foreign_tables`.
 
 The following is an example of the general S3 syntax:
 

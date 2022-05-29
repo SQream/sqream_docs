@@ -46,7 +46,7 @@ Data Definition Commands (DDL)
    * - :ref:`CREATE VIEW<create_view>`
      - Create a new view in the database
    * - :ref:`DESCRIBE COLUMNS<describe_columns>`
-     - List all columns in your internal or external table
+     - List all columns in your internal or foreign table
    * - :ref:`DESCRIBE DATABASES<describe_databases>`
      - Show all databases in your cluster
    * - :ref:`DESCRIBE QUERY<describe_query>`

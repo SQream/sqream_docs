@@ -1,50 +1,51 @@
-.. _external_tables:
+.. _foreign_tables:
 
 ***********************
-External Tables
+Foreign Tables
 ***********************
-External tables can be used to run queries directly on data without inserting it into SQream DB first.
+Foreign tables can be used to run queries directly on data without inserting it into SQream DB first.
 SQream DB supports read only external tables, so you can query from external tables, but you cannot insert to them, or run deletes or updates on them.
+
 Running queries directly on external data is most effectively used for things like one off querying. If you will be repeatedly querying data, the performance will usually be better if you insert the data into SQream DB first.
+
 Although external tables can be used without inserting data into SQream DB, one of their main use cases is to help with the insertion process. An insert select statement on an external table can be used to insert data into SQream using the full power of the query engine to perform ETL.
 
 .. contents:: In this topic:
    :local:
    
-What kind of data is supported?
+Supported Data Formats
 =====================================
 SQream DB supports external tables over:
 
-* text files (e.g. CSV, PSV, TSV)
+* Text files (e.g. CSV, PSV, TSV)
 * ORC
 * Parquet
 
-What kind of data staging is supported?
+Supported Data Staging
 ============================================
-SQream DB can stage data from:
+SQream can stage data from:
 
 * a local filesystem (e.g. ``/mnt/storage/....``)
 * :ref:`s3` buckets (e.g. ``s3://pp-secret-bucket/users/*.parquet``)
 * :ref:`hdfs` (e.g. ``hdfs://hadoop-nn.piedpiper.com/rhendricks/*.csv``)
 
-Using external tables - a practical example
+Using External Tables
 ==============================================
 Use an external table to stage data before loading from CSV, Parquet or ORC files.
 
-Planning for data staging
+Planning for Data Staging
 --------------------------------
 For the following examples, we will want to interact with a CSV file. Here's a peek at the table contents:
-
+  
 .. csv-table:: nba.csv
-
    :file: nba-t10.csv
    :widths: auto
-   :header-rows: 1 
+   :header-rows: 1
 
 The file is stored on :ref:`s3`, at ``s3://sqream-demo-data/nba_players.csv``.
 We will make note of the file structure, to create a matching ``CREATE_EXTERNAL_TABLE`` statement.
 
-Creating the external table
+Creating an External Table
 -----------------------------
 Based on the source file structure, we we :ref:`create an external table<create_external_table>` with the appropriate structure, and point it to the file.
 
@@ -52,14 +53,14 @@ Based on the source file structure, we we :ref:`create an external table<create_
    
    CREATE EXTERNAL TABLE nba
    (
-      Name varchar(40),
-      Team varchar(40),
+      Name text(40),
+      Team text(40),
       Number tinyint,
-      Position varchar(2),
+      Position text(2),
       Age tinyint,
-      Height varchar(4),
+      Height text(4),
       Weight real,
-      College varchar(40),
+      College text(40),
       Salary float
     )
       USING FORMAT CSV -- Text file
@@ -68,7 +69,8 @@ Based on the source file structure, we we :ref:`create an external table<create_
 
 The file format in this case is CSV, and it is stored as an :ref:`s3` object (if the path is on :ref:`hdfs`, change the URI accordingly).
 We also took note that the record delimiter was a DOS newline (``\r\n``).
-Querying external tables
+
+Querying External Tables
 ------------------------------
 
 Let's peek at the data from the external table:
@@ -89,7 +91,7 @@ Let's peek at the data from the external table:
    Terry Rozier  | Boston Celtics |     12 | PG       |  22 | 6-2    |    190 | Louisville        |  1824360
    Marcus Smart  | Boston Celtics |     36 | PG       |  22 | 6-4    |    220 | Oklahoma State    |  3431040
 
-Modifying data from staging
+Modifying Data from Staging
 -------------------------------
 One of the main reasons for staging data is to examine the contents and modify them before loading them.
 Assume we are unhappy with weight being in pounds, because we want to use kilograms instead. We can apply the transformation as part of a query:
@@ -115,7 +117,7 @@ Assume we are unhappy with weight being in pounds, because we want to use kilogr
 
 Now, if we're happy with the results, we can convert the staged external table to a standard table
 
-Converting an external table to a standard database table
+Converting an External Table to a Standard Database Table
 ---------------------------------------------------------------
 
 :ref:`create_table_as` can be used to materialize an external table into a regular table.
@@ -139,7 +141,7 @@ Converting an external table to a standard database table
    Jusuf Nurkic     | Denver Nuggets         |     23 | C        |  21 | 7-0    | 126.9841 |             |  1842000
    Andre Drummond   | Detroit Pistons        |      0 | C        |  22 | 6-11   | 126.5306 | Connecticut |  3272091
 
-Error handling and limitations
+Error Handling and Limitations
 ==================================
 * Error handling in external tables is limited. Any error that occurs during source data parsing will result in the statement aborting.
 

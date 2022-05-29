@@ -129,7 +129,7 @@ Text files like CSV rarely conform to `RFC 4180 <https://tools.ietf.org/html/rfc
 Best Practices for Parquet
 --------------------------------
 
-* Parquet files are loaded through :ref:`external_tables`. The destination table structure has to match in number of columns between the source files.
+* Parquet files are loaded through :ref:`foreign_tables`. The destination table structure has to match in number of columns between the source files.
 
 * Parquet files support predicate pushdown. When a query is issued over Parquet files, SQream DB uses row-group metadata to determine which row-groups in a file need to be read for a particular query and the row indexes can narrow the search to a particular set of rows.
 
@@ -250,14 +250,14 @@ Type Support and Behavior Notes
 Best Practices for ORC
 --------------------------------
 
-* ORC files are loaded through :ref:`external_tables`. The destination table structure has to match in number of columns between the source files.
+* ORC files are loaded through :ref:`foreign_tables`. The destination table structure has to match in number of columns between the source files.
 
 * ORC files support predicate pushdown. When a query is issued over ORC files, SQream DB uses ORC metadata to determine which stripes in a file need to be read for a particular query and the row indexes can narrow the search to a particular set of 10,000 rows.
 
 Type Support and Behavior Notes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* ORC files are loaded through :ref:`external_tables`. The destination table structure has to match in number of columns between the source files.
+* ORC files are loaded through :ref:`foreign_tables`. The destination table structure has to match in number of columns between the source files.
 
 * The types should match to some extent within the same "class" (see table below).
 
@@ -455,7 +455,7 @@ Further Reading and Migration Guides
 
 * :ref:`copy_from`
 * :ref:`insert`
-* :ref:`external_tables`
+* :ref:`foreign_tables`
 
 .. rubric:: Footnotes
 
