@@ -174,7 +174,7 @@ Statements
    * - CREATE TABLE
      - ✓
      - :ref:`create_table`
-   * - CREATE FOREIGN / EXTERNAL TABLE
+   * - CREATE FOREIGN TABLE
      - ✓
      - :ref:`create_foreign_table`
    * - DELETE

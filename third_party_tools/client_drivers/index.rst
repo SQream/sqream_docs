@@ -44,6 +44,7 @@ The following are applicable to all operating systems:
   * `Tableau connector <https://sq-ftp-public.s3.amazonaws.com/SQreamTaco.rar>`_ - SQream (.taco)
   * `Tableau manual installation <https://docs.sqream.com/en/v2020-1/third_party_tools/client_platforms/tableau.html#>`_
 
+
   
 .. _powerbi_connector:   
 
@@ -65,6 +66,7 @@ The following are applicable to Windows:
 * **Net driver** - `SQream .Net driver v3.0.2 <https://sq-ftp-public.s3.amazonaws.com/SqreamNet_net48_3.0.2.zip>`_
    
    
+
 
 Linux
 --------------

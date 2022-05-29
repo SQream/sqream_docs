@@ -18,6 +18,7 @@ Installing PHP
 
 1. Download the JDBC driver installer from the `SQream Drivers page <https://docs.sqream.com/en/v2020-1/third_party_tools/client_drivers/jdbc/index.html>`_.
 
+
     ::
 
 2. Create a DSN.
@@ -65,6 +66,7 @@ After configuring PHP, you can test your connection.
 	  
    For more information, download the sample :download:`PHP example connection file <test.php>` shown above.
 	  
+
    The following is an example of a valid DSN line:
       
    .. code:: php

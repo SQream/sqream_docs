@@ -14,9 +14,8 @@ This section summarizes the following operational guides:
 
    access_control
    creating_or_cloning_a_storage_cluster
-   delete
    external_data
-   external_tables
+   foreign_tables
    delete_guide
    exporting_data
    logging
@@ -24,6 +23,6 @@ This section summarizes the following operational guides:
    security
    saved_queries
    seeing_system_objects_as_ddl
-   spooling
-   hardware_guide
+   configuration
    optimization_best_practices
+   hardware_guide

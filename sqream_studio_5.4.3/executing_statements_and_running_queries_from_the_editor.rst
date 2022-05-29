@@ -231,6 +231,7 @@ Clicking **Run Optimizer** adds a tab to the Statement panel showing the optimiz
 
 For more information, see `Optimization and Best Practices <https://docs.sqream.com/en/v2020-1/operational_guides/optimization_best_practices.html>`_.
 
+
 Executing Pre-Defined Queries from the System Queries Panel
 ---------------
 The **System Queries** panel lets you execute predefined queries and includes the following system query types:

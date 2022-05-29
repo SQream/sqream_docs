@@ -4,7 +4,7 @@
 Inserting Data from a Parquet File
 **********************
 
-This guide covers inserting data from Parquet files into SQream DB using :ref:`FOREIGN TABLE<external_tables>`. 
+This guide covers inserting data from Parquet files into SQream DB using :ref:`FOREIGN TABLE<foreign_tables>`. 
 
 .. contents:: In this topic:
    :local:
@@ -161,7 +161,7 @@ For example, to import the data from ``nba.parquet``, we will first look at the 
 * The file is stored on S3, at ``s3://sqream-demo-data/nba.parquet``.
 
 
-We will make note of the file structure to create a matching ``CREATE EXTERNAL TABLE`` statement.
+We will make note of the file structure to create a matching ``CREATE FOREIGN TABLE`` statement.
 
 .. code-block:: postgres
    
@@ -193,7 +193,7 @@ We will make note of the file structure to create a matching ``CREATE EXTERNAL T
 4. Verify table contents
 ====================================
 
-External tables do not verify file integrity or structure, so verify that the table definition matches up and contains the correct data.
+Foreign tables do not verify file integrity or structure, so verify that the table definition matches up and contains the correct data.
 
 .. code-block:: psql
    
@@ -211,7 +211,7 @@ External tables do not verify file integrity or structure, so verify that the ta
    Terry Rozier  | Boston Celtics |     12 | PG       |  22 | 6-2    |    190 | Louisville        |  1824360
    Marcus Smart  | Boston Celtics |     36 | PG       |  22 | 6-4    |    220 | Oklahoma State    |  3431040
 
-If any errors show up at this stage, verify the structure of the Parquet files and match them to the external table structure you created.
+If any errors show up at this stage, verify the structure of the Parquet files and match them to the foreign table structure you created.
 
 5. Copying data into SQream DB
 ===================================
@@ -228,7 +228,7 @@ Working around unsupported column types
 
 Suppose you only want to load some of the columns - for example, if one of the columns isn't supported.
 
-By ommitting unsupported columns from queries that access the ``EXTERNAL TABLE``, they will never be called, and will not cause a "type mismatch" error.
+By ommitting unsupported columns from queries that access the ``FOREIGN TABLE``, they will never be called, and will not cause a "type mismatch" error.
 
 For this example, assume that the ``Position`` column isn't supported because of its type.
 
@@ -243,7 +243,7 @@ For this example, assume that the ``Position`` column isn't supported because of
 Modifying data during the copy process
 ------------------------------------------
 
-One of the main reasons for staging data with ``EXTERNAL TABLE`` is to examine the contents and modify them before loading them.
+One of the main reasons for staging data with ``FOREIGN TABLE`` is to examine the contents and modify them before loading them.
 
 Assume we are unhappy with weight being in pounds, because we want to use kilograms instead. We can apply the transformation as part of the :ref:`create_table_as` statement.
 

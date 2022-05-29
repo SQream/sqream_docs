@@ -33,8 +33,8 @@ Data Definition Commands (DDL)
      - Change clustering keys in a table
    * - :ref:`create_database`
      - Create a new database
-   * - :ref:`create_external_table`
-     - Create a new external table in the database (deprecated)
+   * - :ref:`create_foreign_table`
+     - Create a new foreign table in the database (deprecated)
    * - :ref:`create_foreign_table`
      - Create a new foreign table in the database
    * - :ref:`create_function`
@@ -174,4 +174,5 @@ Access Control Commands
    * - :ref:`revoke`
      - Revoke permissions from a role
    * - :ref:`rename_role`
+     - Rename a role
      - Rename a role

@@ -62,7 +62,7 @@ The following parameters can be used when creating a table:
      - 
          A commma separated list of clustering column keys.
          
-         See :ref:`data_clustering` for more information.
+         See :ref:`flexible_data_clustering` for more information.
    * - ``LIKE``
      - Duplicates the column structure of an existing table.
 	 
@@ -261,16 +261,16 @@ Either of the following examples can be used to create a second table based on t
    
 The generated output of both of the statements above is identical.
    
-Creating a Table based on External Tables and Views
+Creating a Table based on Foreign Tables and Views
 ~~~~~~~~~~~~
-The following is example of creating a table based on external tables and views:
+The following is example of creating a table based on foreign tables and views:
 
 
 .. code-block:: postgres
 
    CREATE VIEW v as SELECT x+1,y,y || 'abc' from t1;
    CREATE TABLE t3 LIKE v;
-
+   
 When duplicating the column structure of an existing table, the target table of the ``LIKE`` clause can be a regular or an external table, or a view.
    
 The following table describes the properties that must be copied from the target table:
@@ -290,6 +290,7 @@ The following table describes the properties that must be copied from the target
 +-----------------------------+------------------+---------------------------------+---------------------------------+
 | Default/identity            | Must be copied   | Does not exist in source object | Does not exist in source object |
 +-----------------------------+------------------+---------------------------------+---------------------------------+
+
 
 Permissions
 =============

@@ -425,7 +425,7 @@ Installing the pm2 Service Offline
   
 Configuring the Network Time Protocol
 ------------------------------------------- 
-This section describes how to configure your **Network Time Protocol (NTP)**.
+This section describes how to configure your **Network Time Protocol (NTP)**. When configuring the NTOP, you can sync with an existing NTP service or use your own server.
 
 If you don't have internet access, see `Configure NTP Client to Synchronize with NTP Server <https://www.thegeekstuff.com/2014/06/linux-ntp-server-client/>`__.
 
@@ -1197,13 +1197,7 @@ Setting the Output Directory of the /etc/sysctl.conf File
 	  
   .. code-block:: console
 
-     $ /tmp/core_dumps/core-%e-%s-%u-%g-%p-%t	  
-	  
-5. Verify that the core dumping works:	  
-	  
-  .. code-block:: console
-
-     $ select abort_server();
+     $ /tmp/core_dumps/core-%e-%s-%u-%g-%p-%t	  	  
 	  
 Verifying that the Core Dumps Work 
 ---------------------------------------------------	

@@ -9,11 +9,3 @@ The **User-Defined Functions** page describes the following:
 
 * `Python user-defined functions <https://docs.sqream.com/en/v2020-1/feature_guides/python_functions.html>`_
 * `Scalar SQL user-defined functions <https://docs.sqream.com/en/v2020-1/reference/sql/sql_functions/user_defined_functions/scalar_sql_udf.html>`_
-
-.. toctree::
-   :maxdepth: 8
-   :glob:
-   :hidden:   
-   
-   python_functions
-   scalar_sql_udf
