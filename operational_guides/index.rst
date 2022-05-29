@@ -17,6 +17,7 @@ This section summarizes the following operational guides:
    delete
    external_data
    external_tables
+   delete_guide
    exporting_data
    logging
    monitoring_query_performance
