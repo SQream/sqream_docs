@@ -7,10 +7,6 @@ The ``CLUSTER BY`` command is used for changing clustering keys in a table.
 
 For more information, see the following:
 
-* :ref:`flexible_data_clustering`
-
-   ::
-
 * :ref:`drop_clustering_key`
 
    ::
