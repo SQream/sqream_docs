@@ -11,19 +11,11 @@ The demand for confidentiality has steadily increased to protect the growing vol
 
 Encryption can be used for the following:
 
-* Deleting encrypted columns.
-
-   ::
-   
-* Creating tables with one or more encrypted columns.
+* Creating tables up to three encrypted columns.
 
    ::
    
 * Joining encrypted columns with other tables.
-
-   ::
-   
-* Encrypting existing data.
 
    ::
    
