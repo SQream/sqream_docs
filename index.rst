@@ -4,7 +4,7 @@
 SQream DB Documentation
 *************************
 
-The **2022.3 Preview** branch is a private branch designed for internal use only.
+The **v2022.1** branch is a private branch designed for internal use only until the release date.
 
 .. only:: html
 
@@ -57,7 +57,9 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
      - **Driver and Deployment**
      - **Help and Support**
    * -
-         :ref:`2021.2<2021.2>`
+         :ref:`2022.1<2022.1>`
+		 
+		 :ref:`2021.2<2021.2>`
 
          :ref:`2021.1<2021.1>`
         
@@ -87,7 +89,7 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
 
 .. rubric:: Looking for older versions?
 
-This version of the documentation is for SQream DB Version 2021.2.
+This version of the documentation is for SQream DB Version 2022.1.
 
 If you're looking for an older version of the documentation, versions 1.10 through 2019.2.1 are available at http://previous.sqream.com .
 
