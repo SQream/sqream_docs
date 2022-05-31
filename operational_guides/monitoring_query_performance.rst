@@ -15,30 +15,15 @@ See also our :ref:`sql_best_practices` guide for more information about data loa
 
 Setting Up the System for Monitoring
 =================================================
-By default, SQream DB logs execution details for every statement that runs for more than 60 seconds.
-If you want to see the execution details for a currently running statement, see :ref:`using_show_node_info` below.
+SQream logs all executed statements and their execution details. Because this data in five second intervals, you can view it while a statement is executing, or historically.
 
-Adjusting the Logging Frequency
----------------------------------------
-To adjust the frequency of logging for statements, you may want to reduce the interval from 60 seconds down to, 
-say, 5 or 10 seconds. Modify the configuration files and set the ``nodeInfoLoggingSec`` parameter as you see fit:
+For more information about setting up your system for monitoring, see the following:
 
-.. code-block::  json
-   :emphasize-lines: 7
+* Get a list of queries executed per session - :ref:`DESCRIBE SESSION QUERIES<describe_session_queries>`.
+
+   ::
    
-   { 
-      "compileFlags":{ 
-      },
-      "runtimeFlags":{ 
-      },
-      "runtimeGlobalFlags":{ 
-         "nodeInfoLoggingSec" : 5,
-      },
-      "server":{ 
-      }
-   }
-After restarting the SQream DB cluster, the execution plan details will be logged to the :ref:`standard SQream DB logs directory<logging>`, as a message of type ``200``.
-You can see these messages with a text viewer or with queries on the log :ref:`external_tables`.
+* See more details about the query execution process for troubleshooting purposes - :ref:`DESCRIBE_QUERY<describe_query>`.
 
 Reading Execution Plans with a Foreign Table
 -----------------------------------------------------
@@ -102,47 +87,34 @@ This is recommended over looking at the raw logs.
 
 .. _using_show_node_info:
 
-Using the ``SHOW_NODE_INFO`` Command
+Using the ``DESCRIBE QUERY`` Command
 =====================================
-The :ref:`show_node_info` command returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases.
-The :ref:`show_node_info` result, just like the periodically-logged execution plans described above, are an at-the-moment 
+The :ref:`describe_query` command returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases.
+
+The :ref:`describe_query` result, just like the periodically-logged execution plans described above, are an at-the-moment 
+
 view of the compiler's execution plan and runtime statistics for the specified statement.
-To inspect a currently running statement, execute the ``show_node_info`` utility function in a SQL client like
- :ref:`sqream sql<sqream_sql_cli_reference>`, the :ref:`SQream Studio Editor<studio_editor>`, or any other :ref:`third party SQL terminal<third_party_tools>`.
-In this example, we inspect a statement with statement ID of 176. The command looks like this:
+To inspect a currently running statement, execute the ``show_node_info`` utility function in a SQL client like :ref:`sqream sql<sqream_sql_cli_reference>`, the :ref:`SQream Studio Editor<studio_editor>`, or any other :ref:`third party SQL terminal<third_party_tools>`.
+
+The following is an example of a query inspecting a statement with a statement ID of **7**:
 
 .. code-block:: psql
    
-   t=> SELECT SHOW_NODE_INFO(176);
-   stmt_id | node_id | node_type          | rows | chunks | avg_rows_in_chunk | time                | parent_node_id | read | write | comment    | timeSum
-   --------+---------+--------------------+------+--------+-------------------+---------------------+----------------+------+-------+------------+--------
-       176 |       1 | PushToNetworkQueue |    1 |      1 |                 1 | 2019-12-25 23:53:13 |             -1 |      |       |            |  0.0025
-       176 |       2 | Rechunk            |    1 |      1 |                 1 | 2019-12-25 23:53:13 |              1 |      |       |            |       0
-       176 |       3 | GpuToCpu           |    1 |      1 |                 1 | 2019-12-25 23:53:13 |              2 |      |       |            |       0
-       176 |       4 | ReorderInput       |    1 |      1 |                 1 | 2019-12-25 23:53:13 |              3 |      |       |            |       0
-       176 |       5 | Filter             |    1 |      1 |                 1 | 2019-12-25 23:53:13 |              4 |      |       |            |  0.0002
-       176 |       6 | GpuTransform       |  457 |      1 |               457 | 2019-12-25 23:53:13 |              5 |      |       |            |  0.0002
-       176 |       7 | GpuDecompress      |  457 |      1 |               457 | 2019-12-25 23:53:13 |              6 |      |       |            |       0
-       176 |       8 | CpuToGpu           |  457 |      1 |               457 | 2019-12-25 23:53:13 |              7 |      |       |            |  0.0003
-       176 |       9 | Rechunk            |  457 |      1 |               457 | 2019-12-25 23:53:13 |              8 |      |       |            |       0
-       176 |      10 | CpuDecompress      |  457 |      1 |               457 | 2019-12-25 23:53:13 |              9 |      |       |            |       0
-       176 |      11 | ReadTable          |  457 |      1 |               457 | 2019-12-25 23:53:13 |             10 | 4MB  |       | public.nba |  0.0004
+   t=> DESCRIBE QUERY session id 'eac756b3-f31e-4eca-b35a-38b18e606d92' query id 7;
+   
+The following image shows the output of the above query:
+   
+.. image:: /_static/images/monitoring_describe_query.png   
 
 Understanding the Query Execution Plan Output
 ==================================================
-Both :ref:`show_node_info`  and the logged execution plans represents the query plan as a graph hierarchy, with data separated into different columns.
-Each row represents a single logical database operation, which is also called a **node** or **chunk producer**. A node reports 
-several metrics during query execution, such as how much data it has read and written, how many chunks and rows, and how much time has elapsed.
-Consider the example show_node_info presented above. The source node with ID #11 (``ReadTable``), has a parent node ID #10 
-(``CpuDecompress``). If we were to draw this out in a graph, it'd look like this:
-.. figure:: /_static/images/show_node_info_graph.png
-   :height: 70em
-   :align: center
+Both :ref:`describe_query`  and the logged execution plans represents the query plan as a graph hierarchy, with data separated into different columns.
+
+Each row represents a single logical database operation, which is also called a **node** or **chunk producer**. A node reports several metrics during query execution, such as how much data it has read and written, how many chunks and rows, and how much time has elapsed.
+
+Consider the example show_node_info presented above. The source node with ID **#16** (``ParallelReadWorker``), has a parent node ID **#15** (``CpuDecompress``).
    
-   This graph explains how the query execution details are arranged in a logical order, from the bottom up.
-   
-   
-The last node, also called the sink, has a parent node ID of -1, meaning it has no parent. This is typically a node that sends data over the network or into a table.
+The last node, also called the sink, has a parent node ID of **-1**, meaning it has no parent. This is typically a node that sends data over the network or into a table.
    
    
 .. 
@@ -180,7 +152,7 @@ The last node, also called the sink, has a parent node ID of -1, meaning it has 
      ReadTable [shape=house, style=filled, fillcolor=SeaGreen4];
          
    }
-When using :ref:`show_node_info`, a tabular representation of the currently running statement execution is presented.
+When using :ref:`describe_query`, a tabular representation of the currently running statement execution is presented.
 See the examples below to understand how the query execution plan is instrumental in identifying bottlenecks and optimizing long-running statements.
 
 Information Presented in the Execution Plan
@@ -292,7 +264,7 @@ Commonly Seen Nodes
      - CPU 
      - Writes the result set to a standard table stored on disk
 
-.. tip:: The full list of nodes appears in the :ref:`Node types table<node_types>`, as part of the :ref:`show_node_info` reference.
+.. tip:: The full list of nodes appears in the :ref:`Node types table<node_types>`, as part of the :ref:`describe_query` reference.
 
 Examples
 ==================
@@ -733,7 +705,7 @@ When running a ``GROUP BY`` on large ``VARCHAR`` fields, you may see nodes for `
 
 Identifying the Situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-When running a statement, inspect it with :ref:`show_node_info`. If you see ``Sort`` and ``Reduce`` among 
+When running a statement, inspect it with :ref:`describe_query`. If you see ``Sort`` and ``Reduce`` among 
 your top five longest running nodes, there is a potential issue.
 For example:
 #. 
@@ -880,7 +852,7 @@ When data is not well-clustered or naturally ordered, a join operation can take 
 
 Identifying the Situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-When running a statement, inspect it with :ref:`show_node_info`. If you see ``Join`` and ``DeferredGather`` among your 
+When running a statement, inspect it with :ref:`describe_query`. If you see ``Join`` and ``DeferredGather`` among your 
 top five longest running nodes, there is a potential issue.
 In this case, we're also interested in the number of chunks produced by these nodes.
 
