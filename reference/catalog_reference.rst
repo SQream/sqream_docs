@@ -15,7 +15,15 @@ The SQream database uses a schema called ``sqream_catalog`` that contains inform
 
 What Information Does the Schema Contain?
 ==============================================
-The following table shows the data objects contained in the ``sqream_catalog`` schema:
+The schema includes tables designated and relevant for both external and internal use:
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
+External Tables
+-----------------
+The following table shows the data objects contained in the ``sqream_catalog`` schema designated for external use:
 
 .. list-table:: Database Objects
    :widths: 20 110
@@ -46,20 +54,22 @@ The following table shows the data objects contained in the ``sqream_catalog`` s
    * - :ref:`User Defined Functions<udfs>`
      - ``user_defined_functions``
 
-The catalog contains a few more tables which contain storage details for internal use
+Internal Tables
+-----------------
+The following table shows the data objects contained in the ``sqream_catalog`` schema designated for internal use:
 
 .. list-table:: Storage Objects
    :widths: 100 750
    :header-rows: 1
    
-   * - Object
+   * - Database Object
      - Table
    * - Extents
-     - ``extents``
+     - Shows ``extents``.
    * - Chunks
-     - ``chunks``
+     - Shows ``chunks``.
    * - Delete predicates
-     - ``delete_predicates``
+     - Shows ``delete_predicates``. For more information, see :ref:`Deleting Data<delete_guide>`.
 
 Catalog Tables
 ========================
@@ -73,7 +83,7 @@ The ``sqream_catalog`` includes the following tables:
    
 Clustering Keys
 ----------------
-The ``clustering_keys`` data object is used for explicit clustering keys for tables. If you define more than one clustering key, each key is listed in a separate row,  and is described in the following table:
+The ``clustering_keys`` data object is used for explicit clustering keys for tables. If you define more than one clustering key, each key is listed in a separate row, and is described in the following table:
 
 .. list-table::
    :widths: 20 180
@@ -141,13 +151,15 @@ The ``column`` database object is used with standard tables and is described in 
 	 
 External Table Columns
 ***********
-Column objects for foreign tables
+The ``external_table_columns`` is used for viewing data from foreign tables.
+
+For more information on foreign tables, see :ref:`CREATE FOREIGN TABLE<create_foreign_table>`.
 
 .. _databases:
 
 Databases
 ----------------
-
+The ``databases`` data object is used for displaying database information, and is described in the following table:
 
 .. list-table::
    :widths: 20 180
@@ -156,26 +168,31 @@ Databases
    * - Column
      - Description
    * - ``database_Id``
-     - Unique ID of the database
+     - Shows the database's unique ID.
    * - ``database_name``
-     - Name of the database
+     - Shows the database's name.
    * - ``default_disk_chunk_size``
-     - Internal use
+     - Relevant for internal use.
    * - ``default_process_chunk_size``
-     - Internal use
+     - Relevant for internal use.
    * - ``rechunk_size``
-     - Internal use
+     - Relevant for internal use.
    * - ``storage_subchunk_size``
-     - Internal use
+     - Relevant for internal use.
    * - ``compression_chunk_size_threshold``
-     - Internal use
+     - Relevant for internal use.
 
 .. _permissions:
 
 Permissions
 ----------------
+The ``permissions`` data object is used for displaying permissions information, and is described in the following tables:
 
-table_permissions
+.. contents:: 
+   :local:
+   :depth: 1   
+
+Table Permissions
 ***********
 ``table_permissions`` identifies all permissions granted to tables. 
 
