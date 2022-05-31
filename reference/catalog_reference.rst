@@ -1,51 +1,55 @@
 .. _catalog_reference:
 
 *************************************
-Catalog reference
+Catalog Reference Guide
 *************************************
+The **Catalog Reference Guide** describes the following:
 
-SQream DB contains a schema called ``sqream_catalog`` that contains information about your database's objects - tables, columns, views, permissions, and more.
-
-Some additional catalog tables are used primarily for internal introspection, which could change across SQream DB versions.
-
-
-.. contents:: In this topic:
+.. contents:: 
    :local:
+   :depth: 1
+   
+Overview
+====================
+The SQream database uses a schema called ``sqream_catalog`` that contains information about your database's objects, such tables, columns, views, and permissions. Some additional catalog tables are used primarily for internal analysis and which may be different across SQream versions.
 
-Types of data exposed by ``sqream_catalog``
+What Information Does the Schema Contain?
 ==============================================
+The following table shows the data objects contained in the ``sqream_catalog`` schema:
 
-.. list-table:: Database objects
-   :widths: auto
+.. list-table:: Database Objects
+   :widths: 20 110
    :header-rows: 1
    
-   * - Object
+   * - Database Object
      - Table
-   * - Clustering keys
+   * - :ref:`Clustering Keys<clustering_keys>`
      - ``clustering_keys``
-   * - Columns
+   * - :ref:`Columns<columns>`
      - ``columns``, ``external_table_columns``
-   * - Databases
+   * - :ref:`Databases<databases>`
      - ``databases``
-   * - Permissions
-     - ``table_permissions``, ``database_permissions``, ``schema_permissions``, ``permission_types``, ``udf_permissions``
-   * - Roles
+   * - :ref:`Permissions<permissions>`
+     - ``table_permissions``, ``database_permissions``, ``schema_permissions``, ``permission_types``, ``udf_permissions``, ``sqream_catalog.table_default_permissions``
+   * - :ref:`Queries<queries>`
+     - ``saved_queries``
+   * - :ref:`Roles<roles>`
      - ``roles``, ``roles_memeberships``
-   * - Schemas
+   * - :ref:`Schemas<schemas>`
      - ``schemas``
-   * - Sequences
+   * - :ref:`Sequences<sequences>`
      - ``identity_key``
-   * - Tables
+   * - :ref:`Tables<tables>`
      - ``tables``, ``external_tables``
-   * - Views
+   * - :ref:`Views<views>`
      - ``views``
-   * - UDFs
+   * - :ref:`User Defined Functions<udfs>`
      - ``user_defined_functions``
 
 The catalog contains a few more tables which contain storage details for internal use
 
-.. list-table:: Storage objects
-   :widths: auto
+.. list-table:: Storage Objects
+   :widths: 100 750
    :header-rows: 1
    
    * - Object
@@ -57,79 +61,327 @@ The catalog contains a few more tables which contain storage details for interna
    * - Delete predicates
      - ``delete_predicates``
 
-Tables in the catalog
+Catalog Tables
 ========================
+The ``sqream_catalog`` includes the following tables:
 
-clustering_keys
------------------------
-
-Explicit clustering keys for tables.
-
-When more than one clustering key is defined, each key is listed in a separate row.
-
+.. contents:: 
+   :local:
+   :depth: 1
+   
+.. _clustering_keys:
+   
+Clustering Keys
+----------------
+The ``clustering_keys`` data object is used for explicit clustering keys for tables. If you define more than one clustering key, each key is listed in a separate row,  and is described in the following table:
 
 .. list-table::
-   :widths: auto
+   :widths: 20 180
    :header-rows: 1
    
    * - Column
      - Description
    * - ``database_name``
-     - Name of the database containing the table
+     - Shows the name of the database containing the table.
    * - ``table_id``
-     - ID of the table containing the column
+     - Shows the ID of the table containing the column.
    * - ``schema_name``
-     - Name of the schema containing the table
+     - Shows the name of the schema containing the table.
    * - ``table_name``
-     - Name of the table containing the column
+     - Shows the name of the table containing the column.
    * - ``clustering_key``
-     - Name of the column that is a clustering key for this table
+     - Shows the name of the column used as a clustering key for this table.
 
-columns
---------
+.. _columns:
 
-Column objects for standard tables
+Columns
+----------------
+The **Columns** database object shows the following tables:
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Columns
+***********
+The ``column`` database object is used with standard tables and is described in the following table:
 
 .. list-table::
-   :widths: auto
+   :widths: 20 150
    :header-rows: 1
    
    * - Column
      - Description
    * - ``database_name``
-     - Name of the database containing the table
+     - Shows the name of the database containing the table.
    * - ``schema_name``
-     - Name of the schema containing the table
+     - Shows the name of the schema containing the table.
    * - ``table_id``
-     - ID of the table containing the column
+     - Shows the ID of the table containing the column.
    * - ``table_name``
-     - Name of the table containing the column
+     - Shows the name of the table containing the column.
    * - ``column_id``
-     - Ordinal of the column in the table (begins at 0)
+     - Shows the ordinal number of the column in the table (begins at **0**).
    * - ``column_name``
-     - Name of the column
+     - Shows the column's name.
    * - ``type_name``
-     - :ref:`Data type <data_types>` of the column
+     - Shows the column's data type. For more information see :ref:`Supported Data Types <supported_data_types>`.
    * - ``column_size``
-     - The maximum length in bytes.
+     - Shows the maximum length in bytes.
    * - ``has_default``
-     - ``NULL`` if the column has no default value. ``1`` if the default is a fixed value, or ``2`` if the default is an :ref:`identity`
+     - Shows ``NULL`` if the column has no default value, ``1`` if the default is a fixed value, or ``2`` if the default is an identity. For more information, see :ref:`identity`.
    * - ``default_value``
-     - :ref:`Default value<default_values>` for the column
+     - Shows the column's default value. For more information, see :ref:`Default Value Constraints<default_values>`.
    * - ``compression_strategy``
-     - User-overridden compression strategy
+     - Shows the compression strategy that a user has overridden.
    * - ``created``
-     - Timestamp when the column was created
+     - Shows the timestamp displaying when the column was created.
    * - ``altered``
-     - Timestamp when the column was last altered
+     - Shows the timestamp displaying when the column was last altered.
+	 
+External Table Columns
+***********
+Column objects for foreign tables
 
+.. _databases:
 
-.. _external_tables_table:
-
-external_tables
+Databases
 ----------------
 
-``external_tables`` identifies external tables in the database.
+
+.. list-table::
+   :widths: 20 180
+   :header-rows: 1
+   
+   * - Column
+     - Description
+   * - ``database_Id``
+     - Unique ID of the database
+   * - ``database_name``
+     - Name of the database
+   * - ``default_disk_chunk_size``
+     - Internal use
+   * - ``default_process_chunk_size``
+     - Internal use
+   * - ``rechunk_size``
+     - Internal use
+   * - ``storage_subchunk_size``
+     - Internal use
+   * - ``compression_chunk_size_threshold``
+     - Internal use
+
+.. _permissions:
+
+Permissions
+----------------
+
+table_permissions
+***********
+``table_permissions`` identifies all permissions granted to tables. 
+
+There is one row for each combination of role (grantee) and permission granted to a table.
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Column
+     - Description
+   * - ``database_name``
+     - Name of the database containing the table
+   * - ``table_id``
+     - ID of the table the permission applies to
+   * - ``role_id``
+     - ID of the role granted permissions (grantee)
+   * - ``permission_type``
+     - Identifies the permission type
+	 
+database_permissions
+***********
+``database_permissions`` identifies all permissions granted to databases. 
+
+There is one row for each combination of role (grantee) and permission granted to a database.
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Column
+     - Description
+   * - ``database_name``
+     - Name of the database the permission applies to
+   * - ``role_id``
+     - ID of the role granted permissions (grantee)
+   * - ``permission_type``
+     - Identifies the permission type
+	 
+schema_permissions
+***********
+
+``schema_permissions`` identifies all permissions granted to schemas. 
+
+There is one row for each combination of role (grantee) and permission granted to a schema.
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Column
+     - Description
+   * - ``database_name``
+     - Name of the database containing the schema
+   * - ``schema_id``
+     - ID of the schema the permission applies to
+   * - ``role_id``
+     - ID of the role granted permissions (grantee)
+   * - ``permission_type``
+     - Identifies the permission type
+	 
+permission_types
+***********
+``permission_types`` Identifies the permission names that exist in the database.
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Column
+     - Description
+   * - ``permission_type_id``
+     - ID of the permission type
+   * - ``name``
+     - Name of the permission type
+	 
+
+udf_permissions
+***********
+
+.. _queries:
+
+Queries
+----------------
+``savedqueries`` identifies the :ref:`saved_queries<saved_queries>` in the database.
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Column
+     - Description
+   * - ``name``
+     - Saved query name
+   * - ``num_parameters``
+     - Number of parameters to be replaced at run-time	 
+
+.. _roles:
+	 
+Roles
+----------------
+roles
+***********
+
+``roles`` identifies the roles in the database.
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Column
+     - Description
+   * - ``role_id``
+     - Database-unique ID of the role
+   * - ``name``
+     - Name of the role
+   * - ``superuser``
+     - Identifies if this role is a superuser. ``1`` for superuser or ``0`` otherwise.
+   * - ``login``
+     - Identifies if this role can be used to log in to SQream DB. ``1`` for yes or ``0`` otherwise.
+   * - ``has_password``
+     - Identifies if this role has a password. ``1`` for yes or ``0`` otherwise.
+   * - ``can_create_function``
+     - Identifies if this role can create UDFs. ``1`` for yes, ``0`` otherwise.
+     
+roles_memberships
+***********
+
+``roles_memberships`` identifies the role memberships in the database.
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Column
+     - Description
+   * - ``role_id``
+     - Role ID
+   * - ``member_role_id``
+     - ID of the parent role from which this role will inherit
+   * - ``inherit``
+     - Identifies if permissions are inherited. ``1`` for yes or ``0`` otherwise.
+	 
+
+.. _schemas:
+
+Schemas
+----------------
+``schemas`` identifies all the database's schemas.
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Column
+     - Description
+   * - ``schema_id``
+     - Unique ID of the schema
+   * - ``schema_name``
+     - Name of the schema
+   * - ``schema_owner``
+     - Name of the role who owns this schema
+   * - ``rechunker_ignore``
+     - Internal use
+
+.. _sequences:
+
+Sequences
+----------------
+identity_key
+***********
+
+.. _tables:
+
+Tables
+----------------
+Tables
+***********
+``tables`` identifies proper SQream tables in the database.
+
+For ``EXTERNAL TABLES`` see :ref:`external_tables <external_tables_table>`
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Column
+     - Description
+   * - ``database_name``
+     - Name of the database containing the table
+   * - ``table_id``
+     - Database-unique ID for the table
+   * - ``schema_name``
+     - Name of the schema containing the table
+   * - ``table_name``
+     - Name of the table
+   * - ``row_count_valid``
+     - Identifies if the ``row_count`` can be used
+   * - ``row_count``
+     - Number of rows in the table
+   * - ``rechunker_ignore``
+     - Internal use
+	 
+Foreign Tables
+***********
+``external_tables`` identifies foreign tables in the database.
 
 For ``TABLES`` see :ref:`tables <tables_table>`
 
@@ -156,256 +408,12 @@ For ``TABLES`` see :ref:`tables <tables_table>`
    * - ``created``
      - Identifies the clause used to create the table
 
-external_table_columns
-------------------------
+.. _views:
 
-Column objects for external tables
-
-databases
------------
-
-.. list-table::
-   :widths: auto
-   :header-rows: 1
-   
-   * - Column
-     - Description
-   * - ``database_Id``
-     - Unique ID of the database
-   * - ``database_name``
-     - Name of the database
-   * - ``default_disk_chunk_size``
-     - Internal use
-   * - ``default_process_chunk_size``
-     - Internal use
-   * - ``rechunk_size``
-     - Internal use
-   * - ``storage_subchunk_size``
-     - Internal use
-   * - ``compression_chunk_size_threshold``
-     - Internal use
-
-database_permissions
-----------------------
-
-``database_permissions`` identifies all permissions granted to databases. 
-
-There is one row for each combination of role (grantee) and permission granted to a database.
-
-.. list-table::
-   :widths: auto
-   :header-rows: 1
-   
-   * - Column
-     - Description
-   * - ``database_name``
-     - Name of the database the permission applies to
-   * - ``role_id``
-     - ID of the role granted permissions (grantee)
-   * - ``permission_type``
-     - Identifies the permission type
-  
-
-identity_key
---------------
-
-
-permission_types
-------------------
-
-``permission_types`` Identifies the permission names that exist in the database.
-
-.. list-table::
-   :widths: auto
-   :header-rows: 1
-   
-   * - Column
-     - Description
-   * - ``permission_type_id``
-     - ID of the permission type
-   * - ``name``
-     - Name of the permission type
-
-roles
-------
-
-``roles`` identifies the roles in the database.
-
-.. list-table::
-   :widths: auto
-   :header-rows: 1
-   
-   * - Column
-     - Description
-   * - ``role_id``
-     - Database-unique ID of the role
-   * - ``name``
-     - Name of the role
-   * - ``superuser``
-     - Identifies if this role is a superuser. ``1`` for superuser or ``0`` otherwise.
-   * - ``login``
-     - Identifies if this role can be used to log in to SQream DB. ``1`` for yes or ``0`` otherwise.
-   * - ``has_password``
-     - Identifies if this role has a password. ``1`` for yes or ``0`` otherwise.
-   * - ``can_create_function``
-     - Identifies if this role can create UDFs. ``1`` for yes, ``0`` otherwise.
-     
-roles_memberships
--------------------
-
-``roles_memberships`` identifies the role memberships in the database.
-
-.. list-table::
-   :widths: auto
-   :header-rows: 1
-   
-   * - Column
-     - Description
-   * - ``role_id``
-     - Role ID
-   * - ``member_role_id``
-     - ID of the parent role from which this role will inherit
-   * - ``inherit``
-     - Identifies if permissions are inherited. ``1`` for yes or ``0`` otherwise.
-
-savedqueries
+Views
 ----------------
-
-``savedqueries`` identifies the :ref:`saved_queries<saved_queries>` in the database.
-
-.. list-table::
-   :widths: auto
-   :header-rows: 1
-   
-   * - Column
-     - Description
-   * - ``name``
-     - Saved query name
-   * - ``num_parameters``
-     - Number of parameters to be replaced at run-time
-
-schemas
-----------
-
-``schemas`` identifies all the database's schemas.
-
-.. list-table::
-   :widths: auto
-   :header-rows: 1
-   
-   * - Column
-     - Description
-   * - ``schema_id``
-     - Unique ID of the schema
-   * - ``schema_name``
-     - Name of the schema
-   * - ``schema_owner``
-     - Name of the role who owns this schema
-   * - ``rechunker_ignore``
-     - Internal use
-
-
-schema_permissions
---------------------
-
-``schema_permissions`` identifies all permissions granted to schemas. 
-
-There is one row for each combination of role (grantee) and permission granted to a schema.
-
-.. list-table::
-   :widths: auto
-   :header-rows: 1
-   
-   * - Column
-     - Description
-   * - ``database_name``
-     - Name of the database containing the schema
-   * - ``schema_id``
-     - ID of the schema the permission applies to
-   * - ``role_id``
-     - ID of the role granted permissions (grantee)
-   * - ``permission_type``
-     - Identifies the permission type
-  
-
-.. _tables_table:
-
-tables
-----------
-
-``tables`` identifies proper SQream tables in the database.
-
-For ``EXTERNAL TABLES`` see :ref:`external_tables <external_tables_table>`
-
-.. list-table::
-   :widths: auto
-   :header-rows: 1
-   
-   * - Column
-     - Description
-   * - ``database_name``
-     - Name of the database containing the table
-   * - ``table_id``
-     - Database-unique ID for the table
-   * - ``schema_name``
-     - Name of the schema containing the table
-   * - ``table_name``
-     - Name of the table
-   * - ``row_count_valid``
-     - Identifies if the ``row_count`` can be used
-   * - ``row_count``
-     - Number of rows in the table
-   * - ``rechunker_ignore``
-     - Internal use
-
-
-table_permissions
-------------------
-
-``table_permissions`` identifies all permissions granted to tables. 
-
-There is one row for each combination of role (grantee) and permission granted to a table.
-
-.. list-table::
-   :widths: auto
-   :header-rows: 1
-   
-   * - Column
-     - Description
-   * - ``database_name``
-     - Name of the database containing the table
-   * - ``table_id``
-     - ID of the table the permission applies to
-   * - ``role_id``
-     - ID of the role granted permissions (grantee)
-   * - ``permission_type``
-     - Identifies the permission type
-  
-
-udf_permissions
-------------------
-
-user_defined_functions
--------------------------
-
-``user_defined_functions`` identifies UDFs in the database. 
-
-.. list-table::
-   :widths: auto
-   :header-rows: 1
-   
-   * - Column
-     - Description
-   * - ``database_name``
-     - Name of the database containing the view
-   * - ``function_id``
-     - Database-unique ID for the UDF
-   * - ``function_name``
-     - Name of the UDF
-
-views
--------
-
+Views
+***********
 ``views`` identifies views in the database.
 
 .. list-table::
@@ -424,6 +432,66 @@ views
      - Internal use
    * - ``view_query_text``
      - Identifies the ``AS`` clause used to create the view
+
+.. _udfs:
+
+User Defined Functions
+----------------
+
+user_defined_functions
+***********
+``user_defined_functions`` identifies UDFs in the database. 
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Column
+     - Description
+   * - ``database_name``
+     - Name of the database containing the view
+   * - ``function_id``
+     - Database-unique ID for the UDF
+   * - ``function_name``
+     - Name of the UDF
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
 
 
 Additional tables 

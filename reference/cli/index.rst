@@ -1,7 +1,7 @@
 .. _cli_reference:
 
 ************************
-Command line programs
+Command Line Programs
 ************************
 
 SQream contains several command line programs for using, starting, managing, and configuring SQream DB clusters.

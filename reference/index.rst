@@ -3,12 +3,10 @@
 *************************
 Reference Guides
 *************************
-
-The **Reference Guides** section provides reference for using SQream DB's interfaces and SQL features.
+The **Reference Guides** section is a reference for using the following SQream interfaces and SQL features:
 
 .. toctree::
-   :maxdepth: 5
-   :caption: In this section:
+   :maxdepth: 2
    :glob:
 
    sql/index
