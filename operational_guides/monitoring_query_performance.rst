@@ -172,7 +172,7 @@ Commonly Seen Nodes
      - Description
    * - ``CpuDecompress``
      - CPU
-     - Decompression operation, common for longer ``VARCHAR`` types
+     - Decompression operation, common for longer ``TEXT`` types
    * - ``CpuLoopJoin``
      - CPU
      - A non-indexed nested loop join, performed on the CPU

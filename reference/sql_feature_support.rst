@@ -47,9 +47,6 @@ Read more about :ref:`supported data types<data_types>`.
    * - ``DECIMAL``, ``NUMERIC``
      - ✓
      - Fixed-point numbers.
-   * - ``VARCHAR``
-     - ✓
-     - Variable length string - ASCII only
    * - ``TEXT``
      - ✓
      - Variable length string - UTF-8 encoded
