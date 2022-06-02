@@ -303,7 +303,7 @@ Loading a table from a bucket of files on S3
 .. code-block:: postgres
 
    CREATE FOREIGN TABLE TEXT
-     (id INT NOT NULL, name VARCHAR(30) NOT NULL, email TEXT(50) NOT NULL)  
+     (id INT NOT NULL, name TEXT NOT NULL, email TEXT(50) NOT NULL)  
    WRAPPER orc_fdw
    OPTIONS
      (  LOCATION = 's3://pp-secret-bucket/users/*.ORC',

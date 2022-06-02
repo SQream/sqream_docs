@@ -401,17 +401,6 @@ The following table describes the **Generic** and **Administration** configurati
      - string
      - ``EOM`` 
 	 
-	 
-
-   * - ``varcharIdentifiers``
-     - Administration
-     - Regular
-     - Activates using varchar as an identifier.
-     - boolean
-     - ``true`` 
-
-	 
-	 
    * - ``extentStorageFileSizeMB``
      - Administration
      - Cluster

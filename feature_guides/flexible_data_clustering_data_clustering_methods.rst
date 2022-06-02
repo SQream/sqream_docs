@@ -63,7 +63,7 @@ Best Practices for Time-Based Management
 ~~~~~~~~~~
 Data inserted in bulks is automatically timestamped with the insertion date and time. Therefore, inserting data through small and frequent bulks has the effect of naturally ordering data according to timestamp. Frequent bulks generally refers to short time frames, such as at 15-minute, hourly, or daily intervals. As you insert new data, SQream chunks and appends it into your existing tables according to its timestamp.
 
-The ``DATE`` and ``DATETIME`` types were created to improve performance, minimze storage size, and maintain data integrity. SQream recommends using them instead of ``VARCHAR``.
+The ``DATE`` and ``DATETIME`` types were created to improve performance, minimze storage size, and maintain data integrity. SQream recommends using them instead of ``TEXT``.
 
 Using Clustering Keys
 ============
@@ -76,9 +76,9 @@ A clustering key is a subset of table columns or expressions and is defined usin
 .. code-block:: postgres
      
    CREATE TABLE users (
-      name VARCHAR(30) NOT NULL,
+      name TEXT NOT NULL,
       start_date datetime not null,
-      country VARCHAR(30) DEFAULT 'Unknown' NOT NULL
+      country TEXT DEFAULT 'Unknown' NOT NULL
    ) CLUSTER BY country;
    
 

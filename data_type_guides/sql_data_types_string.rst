@@ -22,7 +22,7 @@ The following table describes the String types:
      - Data Size (Not Null, Uncompressed)
      - Example
    * - ``TEXT [(n)]``
-     - Varaiable length string - UTF-8 unicode. ``NVARCHAR`` is synonymous with ``TEXT``.
+     - Varaiable length string - UTF-8 unicode.
      - Up to ``4*n`` bytes
      - ``'キウイは楽しい鳥です'``
 

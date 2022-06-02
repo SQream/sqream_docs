@@ -6,9 +6,6 @@ REPLACE
 
 Replaces all occurrences of a specified string value with another string value.
 
-.. warning:: With ``VARCHAR``, a substring can only be replaced with another substring of equal **byte length**. See :ref:`octet_length`.
-
-
 Syntax
 ==========
 

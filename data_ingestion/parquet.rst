@@ -269,7 +269,7 @@ Loading a table from a directory of Parquet files on HDFS
 .. code-block:: postgres
 
    CREATE FOREIGN TABLE ext_users
-     (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
+     (id INT NOT NULL, name TEXT NOT NULL, email TEXT NOT NULL)  
    WRAPPER parquet_fdw
    OPTIONS
      (

@@ -32,7 +32,7 @@ First, create a foreign table for the logs
 .. code-block:: postgres
    CREATE FOREIGN TABLE logs 
    (
-     start_marker      VARCHAR(4),
+     start_marker      TEXT,
      row_id            BIGINT,
      timestamp         DATETIME,
      message_level     TEXT,
@@ -46,7 +46,7 @@ First, create a foreign table for the logs
      service_name      TEXT,
      message_type_id   INT,
      message           TEXT,
-     end_message       VARCHAR(5)
+     end_message       TEXT
    )
    WRAPPER cdv_fdw
    OPTIONS
