@@ -3,18 +3,13 @@
 ********************
 SHOW_SERVER_STATUS
 ********************
-
 ``SHOW_SERVER_STATUS`` returns a list of active sessions across the cluster.
 
 To list active statements on the current worker only, see :ref:`show_connections`.
 
-Permissions
-=============
-
-The role must have the ``SUPERUSER`` permissions.
-
 Syntax
 ==========
+The following is the correct syntax when showing your server status:
 
 .. code-block:: postgres
 
@@ -24,79 +19,78 @@ Syntax
 
 Parameters
 ============
-
-None
+The Parameters section is not relevant for the ``SHOW_SERVER_STATUS`` statement.
 
 Returns
 =========
+The ``SHOW_SERVER_STATUS`` function returns a list of active sessions. If no sessions are active across the cluster, the result set will be empty.
 
-This function returns a list of active sessions. If no sessions are active across the cluster, the result set will be empty.
+The following table shows the ``SHOW_SERVER_STATUS`` result columns;
 
-.. list-table:: Result columns
+.. list-table:: Result Columns
    :widths: auto
    :header-rows: 1
    
-   * - ``service``
-     - The service name for the statement
+   * - service
+     - Statement Service Name
    * - ``instance``
-     - The worker ID
+     - Shows the worker ID.
    * - ``connection_id``
-     - Connection ID
+     - Shows the connection ID.
    * - ``serverip``
-     - Worker end-point IP
+     - Shows the worker end-point IP.
    * - ``serverport``
-     - Worker end-point port
+     - Shows the worker end-point port.
    * - ``database_name``
-     - Database name for the statement
+     - Shows the statement's database name.
    * - ``user_name``
-     - Username running the statement
+     - Shows the username running the statement.
    * - ``clientip``
-     - Client IP
+     - Shows the client IP.
    * - ``statementid``
-     - Statement ID
+     - Shows the statement ID.
    * - ``statement``
-     - Statement text
+     - Shows the statement text.
    * - ``statementstarttime``
-     - Statement start timestamp
+     - Shows the statement start timestamp.
    * - ``statementstatus``
-     - Statement status (see table below)
+     - Shows the statement status (see table below).
    * - ``statementstatusstart``
-     - Last updated timestamp
+     - Shows the most recently updated timestamp.
 
 .. include from here: 66
 
+The following table shows the statement status values:
 
-.. list-table:: Statement status values
+.. list-table:: Statement Status Values
    :widths: auto
    :header-rows: 1
    
    * - Status
      - Description
    * - ``Preparing``
-     - Statement is being prepared
+     - The statement is being prepared.
    * - ``In queue``
-     - Statement is waiting for execution
+     - The statement is waiting for execution.
    * - ``Initializing``
-     - Statement has entered execution checks
+     - The statement has entered execution checks.
    * - ``Executing``
-     - Statement is executing
+     - The statement is executing.
    * - ``Stopping``
-     - Statement is in the process of stopping
-
+     - The statement is in the process of stopping.
 
 .. include until here 86
 
 Notes
 ===========
+This utility shows the active sessions. Some sessions may be actively connected, but not running any statements.
 
-* This utility shows the active sessions. Some sessions may be actively connected, but not running any statements.
-
-Examples
+Example
 ===========
 
 Using SHOW_SERVER_STATUS to Get Statement IDs
 ----------------------------------------------------
-
+The following example shows how to use the ``SHOW_SERVER_STATUS`` statement to get statement IDs:
 
 .. code-block:: psql
 
@@ -111,5 +105,4 @@ The statement ID is ``128``, running on worker ``192.168.1.91``.
 
 Permissions
 =============
-
 The role must have the ``SUPERUSER`` permissions.
