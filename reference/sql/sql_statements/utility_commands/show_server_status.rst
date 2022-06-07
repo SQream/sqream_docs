@@ -101,8 +101,10 @@ Using ``SHOW_SERVER_STATUS`` to get statement IDs
 .. code-block:: psql
 
    t=> SELECT SHOW_SERVER_STATUS();
-   service | instanceid | connection_id | serverip     | serverport | database_name | user_name  | clientip    | statementid | statement                   | statementstarttime  | statementstatus | statementstatusstart
-   --------+------------+---------------+--------------+------------+---------------+------------+-------------+-------------+-----------------------------+---------------------+-----------------+---------------------
-   sqream  |            |           102 | 192.168.1.91 |       5000 | t             | rhendricks | 192.168.0.1 |         128 | SELECT SHOW_SERVER_STATUS() | 24-12-2019 00:14:53 | Executing       | 24-12-2019 00:14:53 
+   service | instanceid | connection_id | serverip      | serverport | database_name | user_name        | clientip      | statementid | statement                                                                                             | statementstarttime  | statementstatus | statementstatusstart
+   --------+------------+---------------+---------------+------------+---------------+------------------+---------------+-------------+-------------------------------------------------------------------------------------------------------+---------------------+-----------------+---------------------
+   sqream  | sqream_2   |  19           | 192.168.0.111 |       5000 | master        | etl              | 192.168.0.011 |2484923      | SELECT t1.account, t1.msisd from table a t1 join table b t2 on t1.id = t2.id where t1.msid='123123';  | 17-01-2022 16:19:31 | Executing       | 17-01-2022 16:19:32
+   sqream  | sqream_1   |  2            | 192.168.1.112 |       5000 | master        | etl              | 192.168.1.112 |2484924      | select show_server_status();                                                                          | 17-01-2022 16:19:39 | Executing       | 17-01-2022 16:19:39
+   sqream  | None       |  248          | 192.168.1.112 |       5007 | master        | maintenance_user | 192.168.1.112 |2484665      | select * from  sqream_catalog.tables;                                                                 | 17-01-2022 15:55:01 | In Queue        | 17-01-2022 15:55:02
 
 The statement ID is ``128``, running on worker ``192.168.1.91``.
