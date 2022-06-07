@@ -4,8 +4,9 @@
 Access Control
 **************
 
-.. contents:: In this topic:
+.. contents:: 
    :local:
+   :depth: 1
 
 Overview
 ==========
@@ -27,7 +28,7 @@ The following:
 
 * **Authorization** - checking the role has permissions to do a particular thing. The :ref:`grant` command is used for this.
 
-Roles
+Managing Roles
 =====
 Roles are used for both users and groups. Roles are global across all databases in the SQream DB cluster. To use a ``ROLE`` as a user, it should have a password, the login permission, and connect permissions to the relevant databases.
 
