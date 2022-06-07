@@ -94,7 +94,7 @@ Notes
 Examples
 ===========
 
-Using ``SHOW_SERVER_STATUS`` to get statement IDs
+Using SHOW_SERVER_STATUS to Get Statement IDs
 ----------------------------------------------------
 
 
@@ -108,3 +108,8 @@ Using ``SHOW_SERVER_STATUS`` to get statement IDs
    sqream  | None       |  248          | 192.168.1.112 |       5007 | master        | maintenance_user | 192.168.1.112 |2484665      | select * from  sqream_catalog.tables;                                                                 | 17-01-2022 15:55:01 | In Queue        | 17-01-2022 15:55:02
 
 The statement ID is ``128``, running on worker ``192.168.1.91``.
+
+Permissions
+=============
+
+The role must have the ``SUPERUSER`` permissions.
