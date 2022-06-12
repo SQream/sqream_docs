@@ -57,7 +57,7 @@ Based on the source file structure, we we :ref:`create an external table<create_
       Name text,
       Team text,
       Number tinyint,
-      Positiontext,
+      Position text,
       Age tinyint,
       Height text,
       Weight real,
