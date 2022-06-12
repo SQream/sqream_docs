@@ -3,160 +3,169 @@
 *************************
 JDBC
 *************************
+The SQream JDBC driver lets you connect to SQream using many Java applications and tools. This page describes how to write a Java application using the JDBC interface. The JDBC driver requires Java 1.8 or newer.
 
-The SQream DB JDBC driver allows many Java applications and tools connect to SQream DB.
-This tutorial shows how to write a Java application using the JDBC interface.
+The JDBC page includes the following sections:
 
-The JDBC driver requires Java 1.8 or newer.
-
-.. contents:: In this topic:
+.. contents:: 
    :local:
+   :depth: 1
 
-Installing the JDBC driver
+Installing the JDBC Driver
 ==================================
+The **Installing the JDBC Driver** section describes the following:
+
+.. contents:: 
+   :local:
+   :depth: 1
 
 Prerequisites
 ----------------
+The SQream JDBC driver requires Java 1.8 or newer, and SQream recommends using Oracle Java or OpenJDK.:
 
-The SQream DB JDBC driver requires Java 1.8 or newer. We recommend either Oracle Java or OpenJDK.
+* **Oracle Java** - Download and install `Java 8 <https://www.java.com/en/download/manual.jsp>`_ from Oracle for your platform.
 
-**Oracle Java**
+   ::
+   
+* **OpenJDK** - Install `OpenJDK <https://openjdk.java.net/install/>`_
 
-Download and install Java 8 from Oracle for your platform
-
-https://www.java.com/en/download/manual.jsp
-
-**OpenJDK**
-
-For Linux and BSD, see https://openjdk.java.net/install/
-
-For Windows, SQream recommends Zulu 8 https://www.azul.com/downloads/zulu-community/?&version=java-8-lts&architecture=x86-64-bit&package=jdk
-
-.. _get_jdbc_jar:
+   ::
+   
+* **Windows** - SQream recommends installing `Zulu 8 <https://www.azul.com/downloads/zulu-community/?&version=java-8-lts&architecture=x86-64-bit&package=jdk>`_
 
 Getting the JAR file
 ---------------------
+SQream provides the JDBC driver as a zipped JAR file, available for download from the :ref:`client drivers download page<client_drivers>`. This JAR file can be integrated into your Java-based applications or projects.
 
-The JDBC driver is provided as a zipped JAR file, available for download from the :ref:`client drivers download page<client_drivers>`. This JAR file can integrate into your Java-based applications or projects.
-
-
-Extract the zip archive
+Extracting the ZIP Archive
 -------------------------
-
-Extract the JAR file from the zip archive
+Run the following command to extract the JAR file from the ZIP archive:
 
 .. code-block:: console
 
    $ unzip sqream-jdbc-4.3.0.zip
 
-Setting up the Class Path
+Setting Up the Class Path
 ----------------------------
+To use the driver, you must include the JAR named ``sqream-jdbc-<version>.jar`` in the class path, either by inserting it in the ``CLASSPATH`` environment variable, or by using flags on the relevant Java command line.
 
-To use the driver, the JAR named ``sqream-jdbc-<version>.jar`` (for example, ``sqream-jdbc-4.3.0.jar``) needs to be included in the class path, either by putting it in the ``CLASSPATH`` environment variable, or by using flags on the relevant Java command line.
-
-For example, if the JDBC driver has been unzipped to ``/home/sqream/sqream-jdbc-4.3.0.jar``, the application should be run as follows:
+For example, if the JDBC driver has been unzipped to ``/home/sqream/sqream-jdbc-4.3.0.jar``, the following command is used to run application:
 
 .. code-block:: console
 
    $ export CLASSPATH=/home/sqream/sqream-jdbc-4.3.0.jar:$CLASSPATH
    $ java my_java_app
 
-An alternative method is to pass ``-classpath`` to the Java executable:
+Alternatively, you can pass ``-classpath`` to the Java executable file:
 
 .. code-block:: console
 
    $ java -classpath .:/home/sqream/sqream-jdbc-4.3.0.jar my_java_app
 
-
-Connect to SQream DB with a JDBC application
+Connecting to SQream Using a JDBC Application
 ==============================================
+You can connect to SQream using one of the following JDBC applications:
 
-Driver class
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Driver Class
 --------------
-
 Use ``com.sqream.jdbc.SQDriver`` as the driver class in the JDBC application.
 
-
-.. _connection_string:
-
-Connection string
+Connection String
 --------------------
+JDBC drivers rely on a connection string.
 
-JDBC drivers rely on a connection string. Use the following syntax for SQream DB
+The following is the syntax for SQream:
 
 .. code-block:: text
 
    jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>sqream;[<optional parameters>; ...]
 
-Connection parameters
+Connection Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^
+The following table shows the connection string parameters:
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
    * - Item
-     - Optional
+     - State
      - Default
      - Description
    * - ``<host and port>``
-     - ✗
+     - Mandatory
      - None
      - Hostname and port of the SQream DB worker. For example, ``127.0.0.1:5000``, ``sqream.mynetwork.co:3108``
    * - ``<database name>``
-     - ✗
+     - Mandatory
      - None
      - Database name to connect to. For example, ``master``
    * - ``username=<username>``
-     - ✗
+     - Mandatory
      - None
      - Username of a role to use for connection. For example, ``username=rhendricks``
    * - ``password=<password>``
-     - ✗
+     - Mandatory
      - None
      - Specifies the password of the selected role. For example, ``password=Tr0ub4dor&3``
    * - ``service=<service>``
-     - ✓
+     - Optional
      - ``sqream``
      - Specifices service queue to use. For example, ``service=etl``
    * - ``<ssl>``
-     - ✓
+     - Optional
      - ``false``
      - Specifies SSL for this connection. For example, ``ssl=true``
    * - ``<cluster>``
-     - ✓
+     - Optional
      - ``true``
      - Connect via load balancer (use only if exists, and check port).
+   * - ``<fetchSize>``
+     - Optional
+     - ``true``
+     - Enables on-demand loading, and defines double buffer size for result. The ``fetchSize`` parameter is rounded according to chunk size. For example, ``fetchSize=1`` loads one row and is rounded to one chunk. If the fetchSize is 100,600, a chunk size of 100,000 loads, and is rounded to, two chunks.
+   * - ``<insertBuffer>``
+     - Optional
+     - ``true``
+     -  Defines the bytes size for inserting a buffer before flushing data to the server. Clients running a parameterized insert (network insert) can define the amount of data to collect before flushing the buffer.
+   * - ``<loggerLevel>``
+     - Optional
+     - ``true``
+     -  Defines the logger level as either ``debug`` or ``trace``.
+   * - ``<logFile>``
+     - Optional
+     - ``true``
+     -  Enables the file appender and defines the file name. The file name can be set as either the file name or the file path.
 
-Connection string examples
+Connection String Examples
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-For a SQream DB cluster with load balancer and no service queues, with SSL
+The following is an example of a SQream cluster with load balancer and no service queues (with SSL):
 
 .. code-block:: text
 
    jdbc:Sqream://sqream.mynetwork.co:3108/master;user=rhendricks;password=Tr0ub4dor&3;ssl=true;cluster=true
 
-Minimal example for a local, standalone SQream DB
+The following is a minimal example for a local standalone SQream database:
 
 .. code-block:: text 
 
    jdbc:Sqream://127.0.0.1:5000/master;user=rhendricks;password=Tr0ub4dor&3
 
-For a SQream DB cluster with load balancer and a specific service queue named ``etl``, to the database named ``raviga``
+The following is an example of a SQream cluster with load balancer and a specific service queue named ``etl``, to the database named ``raviga``
 
 .. code-block:: text
 
    jdbc:Sqream://sqream.mynetwork.co:3108/raviga;user=rhendricks;password=Tr0ub4dor&3;cluster=true;service=etl
 
-
-Sample Java program
+Sample Java Program
 --------------------
-
-Download this file by right clicking and saving to your computer :download:`sample.java <sample.java>`.
+You can download the :download:`JDBC Application Sample File <sample.java>` below by right-clicking and saving it to your computer.
 
 .. literalinclude:: sample.java
     :language: java
-    :caption: JDBC application sample
+    :caption: JDBC Application Sample
     :linenos:
-
