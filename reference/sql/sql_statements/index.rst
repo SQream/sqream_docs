@@ -31,8 +31,6 @@ Data Definition Commands (DDL)
      - Changes the clustering keys in a table
    * - :ref:`CREATE DATABASE<create_database>`
      - Create a new database
-   * - :ref:`CREATE EXTERNAL TABLE<create_external_table>`
-     - Create a new external table in the database (deprecated)
    * - :ref:`CREATE FOREIGN TABLE<create_foreign_table>`
      - Create a new foreign table in the database
    * - :ref:`CREATE FUNCTION <create_function>`
