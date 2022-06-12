@@ -71,10 +71,6 @@ Using the **internal** ``DESCRIBE_TABLES`` command generates the following outpu
      - Displays the name of the database.
      - Text
      - master
-   * - ``table_id``
-     - Displays the ID of the table.
-     - Integer
-     - 0	 
    * - ``schema_name``
      - Displays the name of the schema.
      - Text
@@ -82,15 +78,23 @@ Using the **internal** ``DESCRIBE_TABLES`` command generates the following outpu
    * - ``table_name``
      - Displays the name of the table.
      - Text
-     - dictionary
-   * - ``row_count_valid``
-     - Indicates whether the row count is valid or invalid.
-     - Boolean
-     - 1
+     - cool_animals	 
+   * - ``table_type``
+     - Displays whether the table is internal or external.
+     - Text
+     - Internal	 
    * - ``row_count``
      - Displays the amount of rows in the table.
      - Integer
-     - 6
+     - 5
+   * - ``created_on``
+     - Displays the table creation timestamp.
+     - Date
+     - 2022-06-09 05:06:33
+   * - ``Addtional details``
+     - Displays additional table details.
+     - Text
+     - 
 
 The following is an example of the generated output in Studio for the **internal** ``DESCRIBE TABLES`` command:
 
@@ -110,10 +114,6 @@ Using the **foreign/external** ``DESCRIBE_TABLES`` command generates the followi
      - Displays the name of the database.
      - Text
      - master
-   * - ``table_id``
-     - Displays the ID of the table.
-     - Integer
-     - 3	 
    * - ``schema_name``
      - Displays the name of the schema.
      - Text	
@@ -121,24 +121,28 @@ Using the **foreign/external** ``DESCRIBE_TABLES`` command generates the followi
    * - ``table_name``
      - Displays the name of the table.
      - Text
-     - t4	 
-   * - ``format``
-     - Indicates whether the table is formatted or not.
-     - Boolean
-     - 0	 
-   * - ``created``
-     - Displays the table's creation date and timestamp.
+     - external_tables		 
+   * - ``table_type``
+     - Displays whether the table is internal or external.
+     - Text
+     - External
+   * - ``row_count``
+     - Displays the amount of rows in the table.
+     - Integer
+     - 
+   * - ``created_on``
+     - Displays the table creation timestamp.
      - Date
-     - 2022-05-02 15:25:57	 
+     - 2022-06-06 14:15:34
+   * - ``Addtional details``
+     - Displays additional table details.
+     - Text
+     - Format: parquet, Path: hdfs://hadoop-nn.piedpiper.com
 
 The following is an example of the generated output for the **external** ``DESCRIBE TABLES`` command:
 
-.. code-block:: postgres
-
-   master,3,public,t4,0,2022-05-02 15:25:57
+.. image:: /_static/images/describe_tables_external.png
    
-**Comment** - *I wasn't able to generate an external table. Please assist.*
-
 Permissions
 =============
 No permissions are required for the ``DESCRIBE TABLES`` command.

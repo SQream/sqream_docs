@@ -53,11 +53,15 @@ Using the ``DESCRIBE SESSIONS`` command generates the following output:
    * - ``start_time``
      - Displays the start time of the session.
      - Date
-     - 02-05-2022 15:23:48
+     - 12-06-2022 06:16:56
    * - ``database``
      - Displays the name of the database.
      - Text
      - master
+   * - ``source_ip``
+     - Displays the IP address of the client connected to SQream.
+     - Integer
+     - 10.212.134.4	 
    * - ``client``
      - Displays the name and version of the client.
      - Text
@@ -69,7 +73,7 @@ Using the ``DESCRIBE SESSIONS`` command generates the following output:
    * - ``session_id``
      - Displays the session ID.
      - Text
-     - 64935a0b-7e9d-40b0-828c-6d4f196d4830
+     - efd226bb-cc57-4d41-8ff9-c9300830c571
 	 
 The following is an example of the generated output in Studio:
 

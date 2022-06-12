@@ -65,55 +65,39 @@ Using the ``DESCRIBE COLUMNS`` command generates the following output:
    * - ``schema_name``
      - Displays the name of the schema.
      - Text
-     - public	 	 
+     - public
+   * - ``table_name``
+     - Displays the name of the table.
+     - Text
+     - cool_animals
+   * - ``is_nullable``
+     - Displays whether the column can contain ``null`` values.
+     - Text
+     - false	 
    * - ``table_id``
      - Displays the ID of the table.
      - Integer
      - 2		 
-   * - ``table_name``
-     - Displays the name of the table.
-     - Text
-     - t1	
-   * - ``is_nullable``
-     - Displays whether the column can contain ``null`` values.
-     - Text
-     - true
-   * - ``column_id``
-     - Displays the ID of the column.
-     - Integer
-     - 1
    * - ``column_name``
      - Displays the name of the column.
      - Text
-     - xint		 
+     - id
    * - ``type_name``
      - Displays the data type of the column.
      - Text
      - INT
+   * - ``default_value``
+     - Displays the column default value if one exists.
+     - Integer
+     - 0
+   * - ``created``
+     - Displays the table's creation date and timestamp.
+     - Date
+     - 2022-06-09 05:06:6:33	 
    * - ``column_size``
      - Displays the size of the column in bytes.
      - Integer
      - 4 	 
-   * - ``has_default``
-     - Indicates whether the column has a default value or not.
-     - Boolean
-     - 1		 
-   * - ``default_value``
-     - Displays the column default value if one exists.
-     - Integer
-     - 0		 
-   * - ``compression_strategy``
-     - Displays the column's default strategy.
-     - Text
-     - default
-   * - ``created``
-     - Displays the table's creation date and timestamp.
-     - Date
-     - 2022-04-28 08:00:36
-   * - ``altered``
-     - Displays the table's creation date and timestamp.
-     - Date
-     - 2022-04-28 08:00:36
 	      
 Example
 ===========

@@ -59,7 +59,7 @@ Using the ``DESCRIBE SESSIONS`` command generates the following output:
    * - ``query_status``
      - Displays the query status.
      - Text
-     - EXECUTION_SUCCEED,SELECT
+     - EXECUTION_FAILED
    * - ``query_type``
      - Displays the query type.
      - Text

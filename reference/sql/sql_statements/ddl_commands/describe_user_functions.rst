@@ -61,16 +61,18 @@ Using the ``DESCRIBE USER FUNCTIONS`` command generates the following output:
    * - ``function_name``
      - Displays the name of the function.
      - Text
-     - my_upper
+     - add_months
+   * - ``function_body``
+     - Displays the syntax of the function.
+     - Text
+     - select dateadd(month,n,dt);
 
 The following is an example of the generated output:
 
 .. code-block:: postgres
 
-   master,0,my_upper
+   master,0,november,november,4,1980
    
-**Comment** - *I wasn't able to generate an external table. Please assist.*
-
 Permissions
 =============
 No permissions are required for the ``DESCRIBE USER FUNCTIONS`` command.
