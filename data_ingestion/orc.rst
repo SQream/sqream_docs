@@ -107,7 +107,7 @@ Prepare the source ORC files, with the following requirements:
      - 
      - 
      - 
-   * - ``string`` / ``char`` / ``varchar``
+   * - ``string`` / ``char``
      - 
      - 
      - 
@@ -145,13 +145,13 @@ Prepare the source ORC files, with the following requirements:
 
 .. rubric:: Footnotes
 
-.. [#f0] Text values include ``TEXT``, ``VARCHAR``, and ``NVARCHAR``
+.. [#f0] Text values include ``TEXT``.
 
-.. [#f5] Boolean values are cast to 0, 1
+.. [#f5] Boolean values are cast to 0, 1.
 
-.. [#f6] Will succeed if all values are 0, 1
+.. [#f6] Will succeed if all values are 0, 1.
 
-.. [#f7] Will succeed if all values fit the destination type
+.. [#f7] Will succeed if all values fit the destination type.
 
 2. Place ORC files where SQream DB workers can access them
 ================================================================
@@ -186,14 +186,14 @@ We will make note of the file structure to create a matching ``CREATE FOREIGN TA
    
    CREATE FOREIGN TABLE ext_nba
    (
-        Name       VARCHAR(40),
-        Team       VARCHAR(40),
+        Name       TEXT(40),
+        Team       TEXT(40),
         Number     BIGINT,
-        Position   VARCHAR(2),
+        Position   TEXT(2),
         Age        BIGINT,
-        Height     VARCHAR(4),
+        Height     TEXT(4),
         Weight     BIGINT,
-        College    VARCHAR(40),
+        College    TEXT(40),
         Salary     FLOAT
     )
       WRAPPER orc_fdw
@@ -288,7 +288,7 @@ Loading a table from a directory of ORC files on HDFS
 .. code-block:: postgres
 
    CREATE FOREIGN TABLE ext_users
-     (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
+     (id INT NOT NULL, name TEXT(30) NOT NULL, email TEXT(50) NOT NULL)  
    WRAPPER orc_fdw
      OPTIONS
        ( 
@@ -302,8 +302,8 @@ Loading a table from a bucket of files on S3
 
 .. code-block:: postgres
 
-   CREATE FOREIGN TABLE ext_users
-     (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
+   CREATE FOREIGN TABLE TEXT
+     (id INT NOT NULL, name TEXT NOT NULL, email TEXT(50) NOT NULL)  
    WRAPPER orc_fdw
    OPTIONS
      (  LOCATION = 's3://pp-secret-bucket/users/*.ORC',
@@ -312,4 +312,4 @@ Loading a table from a bucket of files on S3
       )
    ;
    
-   CREATE TABLE users AS SELECT * FROM ext_users;
+   CREATE TABLE users AS SELECT * FROM ext_users

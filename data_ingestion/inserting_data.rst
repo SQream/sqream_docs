@@ -53,8 +53,6 @@ SQream therefore recommends:
 
 * Applications such as :ref:`Tableau<connect_to_tableau>` and others have been tested, and work
 
-* Data types were not over-provisioned (e.g. don't use VARCHAR(2000) to store a short string)
-
 File Soure Location when Loading
 --------------------------------
 
