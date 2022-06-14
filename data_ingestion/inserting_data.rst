@@ -63,7 +63,7 @@ Supported load methods
 
 SQream DB's :ref:`COPY FROM<copy_from>` syntax can be used to load CSV files, but can't be used for Parquet and ORC.
 
-:ref:`FOREIGN TABLE<foreign_tables>` can be used to load text files, Parquet, and ORC files, and can also transform the data prior to materialization as a full table.
+:ref:`FOREIGN TABLE<external_tables>` can be used to load text files, Parquet, and ORC files, and can also transform the data prior to materialization as a full table.
 
 .. list-table:: 
    :widths: auto
@@ -80,7 +80,7 @@ SQream DB's :ref:`COPY FROM<copy_from>` syntax can be used to load CSV files, bu
      - ✗
      - ✗
      - ✗
-   * - :ref:`foreign_tables`
+   * - :ref:`external_tables`
      - ✓
      - ✓
      - ✓
@@ -96,12 +96,12 @@ Unsupported Data Types
 
 SQream DB doesn't support the entire set of features that some other database systems may have, such as ``ARRAY``, ``BLOB``, ``ENUM``, ``SET``, etc.
 
-These data types will have to be converted before load. For example, ``ENUM`` can often be stored as a ``VARCHAR``.
+These data types will have to be converted before load. For example, ``ENUM`` can often be stored as a ``TEXT``.
 
 Handing Extended Errors
 ----------------------------
 
-While :ref:`foreign tables<foreign_tables>` can be used to load CSVs, the ``COPY FROM`` statement provides more fine-grained error handling options, as well as extended support for non-standard CSVs with multi-character delimiters, alternate timestamp formats, and more.
+While :ref:`external tables<external_tables>` can be used to load CSVs, the ``COPY FROM`` statement provides more fine-grained error handling options, as well as extended support for non-standard CSVs with multi-character delimiters, alternate timestamp formats, and more.
 
 Best Practices for CSV
 ------------------------------
@@ -127,7 +127,7 @@ Text files like CSV rarely conform to `RFC 4180 <https://tools.ietf.org/html/rfc
 Best Practices for Parquet
 --------------------------------
 
-* Parquet files are loaded through :ref:`foreign_tables`. The destination table structure has to match in number of columns between the source files.
+* Parquet files are loaded through :ref:`external_tables`. The destination table structure has to match in number of columns between the source files.
 
 * Parquet files support predicate pushdown. When a query is issued over Parquet files, SQream DB uses row-group metadata to determine which row-groups in a file need to be read for a particular query and the row indexes can narrow the search to a particular set of rows.
 
@@ -248,14 +248,14 @@ Type Support and Behavior Notes
 Best Practices for ORC
 --------------------------------
 
-* ORC files are loaded through :ref:`foreign_tables`. The destination table structure has to match in number of columns between the source files.
+* ORC files are loaded through :ref:`external_tables`. The destination table structure has to match in number of columns between the source files.
 
 * ORC files support predicate pushdown. When a query is issued over ORC files, SQream DB uses ORC metadata to determine which stripes in a file need to be read for a particular query and the row indexes can narrow the search to a particular set of 10,000 rows.
 
 Type Support and Behavior Notes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* ORC files are loaded through :ref:`foreign_tables`. The destination table structure has to match in number of columns between the source files.
+* ORC files are loaded through :ref:`external_tables`. The destination table structure has to match in number of columns between the source files.
 
 * The types should match to some extent within the same "class" (see table below).
 
@@ -354,7 +354,7 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-   * - ``string`` / ``char`` / ``varchar``
+   * - ``string`` / ``char`` / ``text``
      - 
      - 
      - 
@@ -453,20 +453,20 @@ Further Reading and Migration Guides
 
 * :ref:`copy_from`
 * :ref:`insert`
-* :ref:`foreign_tables`
+* :ref:`external_tables`
 
 .. rubric:: Footnotes
 
-.. [#f0] Text values include ``TEXT``, ``VARCHAR``, and ``NVARCHAR``
+.. [#f0] Text values include ``TEXT``.
 
-.. [#f2] With UTF8 annotation
+.. [#f2] With UTF8 annotation.
 
-.. [#f3] With ``TIMESTAMP_NANOS`` or ``TIMESTAMP_MILLIS`` annotation
+.. [#f3] With ``TIMESTAMP_NANOS`` or ``TIMESTAMP_MILLIS`` annotation.
 
 .. [#f4] Any microseconds will be rounded down to milliseconds.
 
-.. [#f5] Boolean values are cast to 0, 1
+.. [#f5] Boolean values are cast to 0, 1.
 
-.. [#f6] Will succeed if all values are 0, 1
+.. [#f6] Will succeed if all values are 0, 1.
 
-.. [#f7] Will succeed if all values fit the destination type
+.. [#f7] Will succeed if all values fit the destination type.

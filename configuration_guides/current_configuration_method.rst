@@ -404,12 +404,6 @@ The following table describes the **Generic** and **Administration** configurati
 	 
 	 
 
-   * - ``varcharIdentifiers``
-     - Administration
-     - Regular
-     - Activates using varchar as an identifier.
-     - boolean
-     - ``true`` 
 
 	 
 	 
@@ -724,7 +718,7 @@ The following is an example of a catalog table query:
 .. code-block:: console
    
    externalTableBlobEstimate, 100, 100, default,
-   varcharEncoding, ascii, ascii, default, Changes the expected encoding for Varchar columns
+   textEncoding, ascii, ascii, default, Changes the expected encoding for text columns
    useCrcForTextJoinKeys, true, true, default,
    hiveStyleImplicitStringCasts, false, false, default,
 

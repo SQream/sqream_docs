@@ -3,7 +3,9 @@
 *************************
 String
 *************************
+
 The ``TEXT`` type is designed for storing text or strings of characters.
+
 
 .. note:: The data type ``NVARCHAR`` has been deprecated by ``TEXT`` as of version 2020.1.
 
@@ -24,13 +26,16 @@ The following table describes the String types:
      - Up to ``4*n`` bytes
      - ``'キウイは楽しい鳥です'``
 
+
 Length
 ^^^^^^^^^
-When using ``TEXT``, specifying a size is optional. If not specified, the text field carries no constraints. To limit the size of the input, use ``VARCHAR(n)`` or ``TEXT(n)``, where ``n`` is the permitted number of characters.
+When using ``TEXT``, specifying a size is optional. If not specified, the text field carries no constraints. To limit the size of the input, use ``TEXT(n)``, where ``n`` is the permitted number of characters.
 
 The following apply to setting the String type length:
 
 * If the data exceeds the column length limit on ``INSERT`` or ``COPY`` operations, SQream DB will return an error.
+
+* ``TEXT`` strings are padded with spaces.
 
 Syntax
 ^^^^^^^^

@@ -113,8 +113,7 @@ A simple table from Tab-delimited file (TSV)
 .. code-block:: postgres
 
    CREATE OR REPLACE FOREIGN TABLE cool_animals
-
-     (id INT NOT NULL, name TEXT(30) NOT NULL, weight FLOAT NOT NULL)  
+     (id INT NOT NULL, name TEXT NOT NULL, weight FLOAT NOT NULL)  
    WRAPPER csv_fdw
    OPTIONS
      ( LOCATION = '/home/rhendricks/cool_animals.csv',
@@ -129,8 +128,7 @@ A table from a directory of Parquet files on HDFS
 .. code-block:: postgres
 
    CREATE FOREIGN TABLE users
-
-     (id INT NOT NULL, name TEXT(30) NOT NULL, email TEXT(50) NOT NULL)  
+     (id INT NOT NULL, name TEXT NOT NULL, email TEXT NOT NULL)  
    WRAPPER parquet_fdw
    OPTIONS
      (
@@ -143,8 +141,7 @@ A table from a bucket of ORC files on S3
 .. code-block:: postgres
 
    CREATE FOREIGN TABLE users
-
-     (id INT NOT NULL, name TEXT(30) NOT NULL, email TEXT(50) NOT NULL)  
+     (id INT NOT NULL, name TEXT NOT NULL, email TEXT NOT NULL)  
    WRAPPER orc_fdw
    OPTIONS
      (

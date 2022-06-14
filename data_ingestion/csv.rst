@@ -83,14 +83,14 @@ We will make note of the file structure to create a matching ``CREATE TABLE`` st
    
    CREATE TABLE nba
    (
-      Name text(40),
-      Team text(40),
+      Name text,
+      Team text,
       Number tinyint,
-      Position text(2),
+      Position text,
       Age tinyint,
-      Height text(4),
+      Height text,
       Weight real,
-      College text(40),
+      College text,
       Salary float
     );
 

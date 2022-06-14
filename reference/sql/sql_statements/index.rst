@@ -173,4 +173,3 @@ Access Control Commands
      - Revoke permissions from a role
    * - :ref:`rename_role`
      - Rename a role
-     - Rename a role

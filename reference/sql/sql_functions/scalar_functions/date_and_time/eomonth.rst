@@ -48,7 +48,7 @@ For these examples, consider the following table and contents:
 
 .. code-block:: postgres
 
-   CREATE TABLE cool_dates(name VARCHAR(40), d DATE, dt DATETIME);
+   CREATE TABLE cool_dates(name TEXT, d DATE, dt DATETIME);
    
    INSERT INTO cool_dates VALUES ('Marty McFly goes back to this time','1955-11-05','1955-11-05 01:21:00.000')
        , ('Marty McFly came from this time', '1985-10-26', '1985-10-26 01:22:00.000')

@@ -13,7 +13,7 @@ Although foreign tables can be used without inserting data into SQream DB, one o
 .. contents:: In this topic:
    :local:
    
-What kind of data is supported?
+What Kind of Data is Supported?
 =====================================
 SQream DB supports foreign tables over:
 
@@ -21,7 +21,7 @@ SQream DB supports foreign tables over:
 * ORC
 * Parquet
 
-What kind of data staging is supported?
+What Kind of Data Staging is Supported?
 ============================================
 SQream DB can stage data from:
 
@@ -29,22 +29,23 @@ SQream DB can stage data from:
 * :ref:`s3` buckets (e.g. ``s3://pp-secret-bucket/users/*.parquet``)
 * :ref:`hdfs` (e.g. ``hdfs://hadoop-nn.piedpiper.com/rhendricks/*.csv``)
 
+
 Using foreign tables - a practical example
 ==============================================
 Use a foreign table to stage data before loading from CSV, Parquet or ORC files.
 
-Planning for data staging
+Planning for Data Staging
 --------------------------------
 For the following examples, we will want to interact with a CSV file. Here's a peek at the table contents:
 
-.. csv-table:: nba.csv
-
-   :file: nba-t10.csv
+.. csv-table:: nba-t10
+   :file: ../_static/samples/nba-t10.csv
    :widths: auto
-   :header-rows: 1 
+   :header-rows: 1
 
 The file is stored on :ref:`s3`, at ``s3://sqream-demo-data/nba_players.csv``.
 We will make note of the file structure, to create a matching ``CREATE_FOREIGN_TABLE`` statement.
+
 
 Creating the foreign table
 -----------------------------
@@ -54,14 +55,14 @@ Based on the source file structure, we we :ref:`create a foreign table<create_fo
    
    CREATE FOREIGN TABLE nba
    (
-      Name varchar(40),
-      Team varchar(40),
+      Name text,
+      Team text,
       Number tinyint,
-      Position varchar(2),
+      Position text,
       Age tinyint,
-      Height varchar(4),
+      Height text,
       Weight real,
-      College varchar(40),
+      College text,
       Salary float
     )
       USING FORMAT CSV -- Text file
@@ -92,7 +93,7 @@ Let's peek at the data from the foreign table:
    Terry Rozier  | Boston Celtics |     12 | PG       |  22 | 6-2    |    190 | Louisville        |  1824360
    Marcus Smart  | Boston Celtics |     36 | PG       |  22 | 6-4    |    220 | Oklahoma State    |  3431040
 
-Modifying data from staging
+Modifying Data from Staging
 -------------------------------
 One of the main reasons for staging data is to examine the contents and modify them before loading them.
 Assume we are unhappy with weight being in pounds, because we want to use kilograms instead. We can apply the transformation as part of a query:
@@ -142,7 +143,7 @@ Converting an foreign table to a standard database table
    Jusuf Nurkic     | Denver Nuggets         |     23 | C        |  21 | 7-0    | 126.9841 |             |  1842000
    Andre Drummond   | Detroit Pistons        |      0 | C        |  22 | 6-11   | 126.5306 | Connecticut |  3272091
 
-Error handling and limitations
+Error Handling and Limitations
 ==================================
 * Error handling in foreign tables is limited. Any error that occurs during source data parsing will result in the statement aborting.
 

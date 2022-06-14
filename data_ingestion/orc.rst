@@ -107,7 +107,7 @@ Prepare the source ORC files, with the following requirements:
      - 
      - 
      - 
-   * - ``string`` / ``char``
+   * - ``string`` / ``char`` / ``text``
      - 
      - 
      - 
@@ -186,14 +186,14 @@ We will make note of the file structure to create a matching ``CREATE FOREIGN TA
    
    CREATE FOREIGN TABLE ext_nba
    (
-        Name       TEXT(40),
-        Team       TEXT(40),
+        Name       TEXT,
+        Team       TEXT,
         Number     BIGINT,
-        Position   TEXT(2),
+        Position   TEXT,
         Age        BIGINT,
-        Height     TEXT(4),
+        Height     TEXT,
         Weight     BIGINT,
-        College    TEXT(40),
+        College    TEXT,
         Salary     FLOAT
     )
       WRAPPER orc_fdw
@@ -212,7 +212,7 @@ We will make note of the file structure to create a matching ``CREATE FOREIGN TA
 4. Verify table contents
 ====================================
 
-Foreign tables do not verify file integrity or structure, so verify that the table definition matches up and contains the correct data.
+External tables do not verify file integrity or structure, so verify that the table definition matches up and contains the correct data.
 
 .. code-block:: psql
    
@@ -230,7 +230,7 @@ Foreign tables do not verify file integrity or structure, so verify that the tab
    Terry Rozier  | Boston Celtics |     12 | PG       |  22 | 6-2    |    190 | Louisville        |  1824360
    Marcus Smart  | Boston Celtics |     36 | PG       |  22 | 6-4    |    220 | Oklahoma State    |  3431040
 
-If any errors show up at this stage, verify the structure of the ORC files and match them to the foreign table structure you created.
+If any errors show up at this stage, verify the structure of the ORC files and match them to the external table structure you created.
 
 5. Copying data into SQream DB
 ===================================
@@ -247,7 +247,7 @@ Working around unsupported column types
 
 Suppose you only want to load some of the columns - for example, if one of the columns isn't supported.
 
-By ommitting unsupported columns from queries that access the ``FOREIGN TABLE``, they will never be called, and will not cause a "type mismatch" error.
+By ommitting unsupported columns from queries that access the ``EXTERNAL TABLE``, they will never be called, and will not cause a "type mismatch" error.
 
 For this example, assume that the ``Position`` column isn't supported because of its type.
 
@@ -288,7 +288,7 @@ Loading a table from a directory of ORC files on HDFS
 .. code-block:: postgres
 
    CREATE FOREIGN TABLE ext_users
-     (id INT NOT NULL, name TEXT(30) NOT NULL, email TEXT(50) NOT NULL)  
+     (id INT NOT NULL, name TEXT NOT NULL, email TEXT NOT NULL)  
    WRAPPER orc_fdw
      OPTIONS
        ( 
@@ -302,8 +302,8 @@ Loading a table from a bucket of files on S3
 
 .. code-block:: postgres
 
-   CREATE FOREIGN TABLE TEXT
-     (id INT NOT NULL, name TEXT NOT NULL, email TEXT(50) NOT NULL)  
+   CREATE FOREIGN TABLE ext_users
+     (id INT NOT NULL, name TEXT NOT NULL, email TEXT NOT NULL)  
    WRAPPER orc_fdw
    OPTIONS
      (  LOCATION = 's3://pp-secret-bucket/users/*.ORC',
@@ -312,4 +312,4 @@ Loading a table from a bucket of files on S3
       )
    ;
    
-   CREATE TABLE users AS SELECT * FROM ext_users
+   CREATE TABLE users AS SELECT * FROM ext_users;

@@ -35,8 +35,6 @@ Returns the same type as the argument supplied.
 Notes
 =======
 
-* When using ``VARCHAR`` values, SQream DB automatically trims the trailing whitespace. Using ``RTRIM`` on ``VARCHAR`` does not affect the result.
-
 * This function is equivalent to the ANSI form ``TRIM( TRAILING FROM expr )``
 
 * If the value is NULL, the result is NULL.
