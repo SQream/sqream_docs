@@ -12,7 +12,6 @@ Release Notes
    
    * - Version
      - Release Date
-       - October 8, 2020
    * - :ref:`2020.2`
      - July 22, 2020
    * - :ref:`2020.1`
