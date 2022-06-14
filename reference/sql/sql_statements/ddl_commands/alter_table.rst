@@ -3,16 +3,15 @@
 **********************
 ALTER TABLE
 **********************
-
-``ALTER TABLE`` can be used to make schema changes to a table. It works in conjunction with several subcommands.
+You can use the ``ALTER TABLE`` command to make schema changes to a table, and can be used in conjunction with several sub-commands.
 
 Locks
 =======
+Making changes to a schema makes an exclusive lock on tables. While these operations do not typically take much time, other statements may have to wait until the schema changes are completed.
 
-Schema changes take an exclusive lock on tables. While these operations are usually short, other statements may have to wait until the schema changes are completed.
-
-Subcommands
+Sub-Commands
 ==============
+The following table shows the sub-commands that can be used with the ``ALTER TABLE`` command:
 
 .. list-table::
    :widths: auto
@@ -21,14 +20,14 @@ Subcommands
    * - Command
      - Usage
    * - :ref:`ADD COLUMN<add_column>`
-     - Add a new column to a table
+     - Adds a new column to a table.
    * - :ref:`DROP COLUMN<drop_column>`
-     - Drop a column from a table
+     - Drops a column from a table.
    * - :ref:`RENAME COLUMN<rename_column>`
-     - Rename a column
+     - Renames a column.
    * - :ref:`RENAME TABLE<rename_table>`
-     - Rename a table
+     - Renames a table.
    * - :ref:`CLUSTER BY<cluster_by>`
-     - Modify (add or reorder) the clustering keys in a table
-   * - :ref:`DROP CLUSTERING KEY<drop_clustering_key`
-     - Drop all clustering keys
+     - Modifies (adds or reorders) the clustering keys in a table.
+   * - :ref:`DROP CLUSTERING KEY<drop_clustering_key>`
+     - Drops all clustering keys.

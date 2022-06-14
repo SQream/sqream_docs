@@ -3,8 +3,6 @@
 **********************************
 Operational Guides
 **********************************
-.. _operational_guides_top:
-
 The **Operational Guides** section describes processes that SQream users can manage to affect the way their system operates, such as creating storage clusters and monitoring query performance.
 
 This section summarizes the following operational guides:
@@ -14,18 +12,16 @@ This section summarizes the following operational guides:
    :glob:
    :titlesonly:
 
-
    access_control
    creating_or_cloning_a_storage_cluster
    external_data
-   exporting_data
-   delete_guide
    external_tables
+   delete_guide
+   exporting_data
    logging
    monitoring_query_performance
    security
    saved_queries
    viewing_system_objects_as_ddl
-   configuration
-   hardware_guide
    optimization_best_practices
+   hardware_guide

@@ -3,6 +3,7 @@
 **************************
 PERCENTILE_CONT
 **************************
+
 The **PERCENTILE_CONT** function returns the value located in the selected percentile of a specified column. The required input is a number between **0** and **1** that represents the wanted percentile and the column containing the wanted percentile. If the selected percentile does not have an exact value, the PERCENTILE_CONT function extrapolates a value estimated from the existing values. 
 
 The **PERCENTILE_CONT** function returns an extrapolated value closest to the values in the requested percentile. If you want to see the closest value in your data to the requested percentile, use `PERCENTILE DISC <https://docs.sqream.com/en/v2020-2/reference/sql/sql_functions/aggregate_functions/percentile_disc.html>`_.

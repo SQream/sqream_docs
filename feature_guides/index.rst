@@ -9,12 +9,10 @@ This section describes the following features:
 
 .. toctree::
    :maxdepth: 1
-   :titlesonly:  
+   :titlesonly:
 
-   access_control
    compression
    python_functions
-   saved_queries
    workload_manager
    transactions
    concurrency_and_locks

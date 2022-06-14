@@ -108,7 +108,11 @@ This is a full list of node types:
      - Compress data with both CPU and GPU schemes
    * - ``CpuDecompress``
      - CPU
+<<<<<<<< HEAD:reference/sql/sql_functions/system_functions/show_node_info.rst
      - Decompression operation, common for longer ``VARCHAR`` types
+========
+     - Decompression operation, common for longer ``TEXT`` types
+>>>>>>>> replace_varchar_with_text:reference/sql/sql_statements/utility_commands/show_node_info.rst
    * - ``CpuLoopJoin``
      - CPU
      - A non-indexed nested loop join, performed on the CPU

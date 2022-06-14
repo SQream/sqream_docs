@@ -24,4 +24,3 @@ quit;
 
 data sqlib.customers;
    set sqlib.customers;
-run;

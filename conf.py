@@ -30,7 +30,6 @@ author = 'SQream Documentation'
 release = '2020_2'
 
 
-
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be

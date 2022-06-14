@@ -1,0 +1,102 @@
+.. _2020.3:
+
+**************************
+Release Notes 2020.3
+**************************
+The 2020.3 release notes were released on October 8, 2020 and describes the following:
+
+.. contents:: 
+   :local:
+   :depth: 1
+
+
+Overview
+------------
+SQream DB v2020.3 contains new features, performance enhancements, and resolved issues.
+
+
+New Features
+----------
+The following list describes the new features:
+
+
+* Parquet and ORC files can now be exported to local storage, S3, and HDFS with :ref:`copy_to` and foreign data wrappers.
+
+* New error tolerance features when loading data with foreign data wrappers.
+
+* ``TEXT`` is ramping up with new features (previously only available with VARCHARs):
+
+    * :ref:`substring`, :ref:`lower`, :ref:`ltrim`, :ref:`charindex`, :ref:`replace`, etc.
+
+    * Binary operators - :ref:`concat`, :ref:`like`, etc.
+
+    * Casts to and from ``TEXT``
+
+* :ref:`sqream_studio` v5.1
+     
+     * New log viewer helps you track and debug what's going on in SQream DB.
+     
+     * Dashboard now also available for non-k8s deployments.
+     
+     * The editor contains a new query concurrency tool for date and numeric ranges.
+     
+
+
+Performance Enhancements
+----------
+The following list describes the performance enhancements:
+
+
+* Error handling for CSV FDW.
+* Enable logging errors - ORC, Parquet, CSV.
+* Add limit and offset options to ``csv_fdw`` import.
+* Enable logging errors to an external file when skipping CSV, Parquet, and ORC errors.
+* Option to specify date format to the CSV FDW.
+* Support all existing ``VARCHAR`` functions with ``TEXT`` on GPU.
+* Support ``INSERT INTO`` + ``ORDER BY`` optimization for non-clustered tables.
+* Performance improvements with I/O.
+
+Resolved Issues
+---------------
+The following list describes the resolved issues:
+
+
+* Better error message when passing the max errors limit. This was fixed.
+* ``showFullExceptionInfo`` is no longer restricted to Developer Mode. This was fixed.
+* An ``StreamAggregateA`` reduction error occured when performing aggregation on a ``NULL`` column.  This was fixed.
+* Insert into query fails with ""Error at Sql phase during Stages ""rewriteSqlQuery"". This was fixed.
+* Casting from ``VARCHAR`` to ``TEXT`` does not remove the spaces. This was fixed.
+* An ``Internal Runtime Error t1.size() == t2.size()`` occurs when querying the ``sqream_catalog.delete_predicates``.  This was fixed.
+* ``spoolMemoryGB`` and ``limitQueryMemoryGB`` show incorrectly in the **runtime global** section of ``show_conf.``  This was fixed.
+* Casting empty text to ``int`` causes illegal memory access. This was fixed.
+* Copying from the ``TEXT`` field is 1.5x slower than the ``VARCHAR`` equivalent. This was fixed.
+* ``TPCDS 10TB - Internal runtime error (std::bad_alloc: out of memory)`` occurs on 2020.1.0.2. This was fixed.
+* An unequal join on non-existing ``TEXT`` caused a system crash.  This was fixed.
+* An ``Internal runtime time error`` occured when using ``TEXT (tpcds)``.  This was fixed.
+* Copying CSV with a quote in the middle of a field to a ``TEXT`` field does not produce the required error.  This was fixed.
+* Cannot monitor long network insert loads with SQream. This was fixed.
+* Upper and like performance on ``TEXT``. This was fixed.
+* Insert into from 4 instances would get stuck (hanging).  This was fixed.
+* An invalid formatted CSV would cause an insufficient memory error on a ``COPY FROM`` statement if a quote was not closed and the file was much larger than system memory. This was fixed.
+* ``TEXT`` columns cannot be used with an outer join together with an inequality check (!= , <>). This was fixed.
+
+Known Issues And Limitations
+----------
+The following list describes the known issues and limitations:
+
+
+* Cast from ``TEXT`` to a ``DATE`` or ``DATETIME`` errors when the ``TEXT`` column contains ``NULL``
+
+* Casting an empty ``TEXT`` field to an ``INT`` type returns ``0`` instead of erroring
+
+* Multiple ``COUNT( distinct ... )`` operations on the ``TEXT`` data type are currently unsupported
+
+* Multiple ``COUNT( distinct ... )`` operations within the same query are limited to "developer mode" due to an instability that was identified. If you rely on this feature, contact your SQream account manager to enable this feature.
+
+
+Upgrading to v2020.3
+----------
+
+Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and other OSs via Docker.
+
+Contact your account manager to get the latest release of SQream.

@@ -3,7 +3,6 @@
 **************************
 REPEAT
 **************************
- 
 Repeats a string as many times as specified.
 
 .. warning:: This function works ONLY with ``TEXT`` data type.

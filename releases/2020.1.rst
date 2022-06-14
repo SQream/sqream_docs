@@ -1,9 +1,8 @@
 .. _2020.1:
 
 **************************
-2020.1 Release Notes
+Release Notes 2020.1
 **************************
-
 SQream DB v2020.1 contains lots of new features, improved performance, and bug fixes.
 
 This is the first release of 2020, with a strong focus on integration into existing environments. The release includes connectivity to Hadoop and other legacy data warehouse ecosystems. We’re also bringing lots of new capabilities to our analytics engine, to empower data users to analyze more data with less friction.

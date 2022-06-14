@@ -6,7 +6,7 @@ REPLACE
 
 Replaces all occurrences of a specified string value with another string value.
 
-.. warning:: A substring can only be replaced with another substring of equal byte length. See :ref:`octet_length`.
+
 
 Syntax
 ==========
@@ -39,7 +39,7 @@ Returns the same type as the argument supplied.
 Notes
 =======
 
-* ``source_expr`` and ``replacement_expr`` must be the same byte length. See :ref:`octet_length`.
+* In ``VARCHAR`` strings, the ``source_expr`` and ``replacement_expr`` must be the same **byte length**. See :ref:`octet_length`.
 
 * If the value is NULL, the result is NULL.
 
@@ -70,7 +70,7 @@ Replacing single characters
 
 
 Replacing words
--------------------
+----------------------------
 
 .. code-block:: psql
 
@@ -85,5 +85,3 @@ Replacing words
          The jaws that bite, þe claws that catch! 
    Beware þe Jubjub bird, and shun                
          The frumious Bandersnatch!"              
-
-.. note:: While 'the' and 'þe' do not have the same character length, they have the same :ref:`octet_length` of 3 bytes.

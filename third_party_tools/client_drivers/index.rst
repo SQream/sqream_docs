@@ -106,5 +106,3 @@ The following are applicable to Linux:
 If you couldn't find what you're looking for, we're always happy to help. Visit `SQream's support portal <https://support.sqream.com>`_ for additional support.
 
 .. rubric:: Looking for older drivers?
-
-If you're looking for an older version of SQream DB drivers, versions 1.10 through 2019.2.1 are available at https://sqream.com/product/client-drivers/.

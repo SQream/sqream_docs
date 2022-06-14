@@ -4,12 +4,13 @@
 Workload Manager
 ***********************
 
-The **Workload Manager** allows SQream DB workers to identify their availability to clients with specific service names. The load balancer uses that information to route statements to specific workers. 
+Overview
+===============================
+The **Workload Manager** allows SQream workers to identify their availability to clients with specific service names. The load balancer uses that information to route statements to specific workers. 
 
 Overview
 ===============================
-
-The Workload Manager allows a system engineer or database administrator to allocate specific workers and compute resoucres for various tasks.
+The Workload Manager allows a system engineer or database administrator to allocate specific workers and compute resources for various tasks.
 
 For example:
 
@@ -60,7 +61,7 @@ The configuration in this example allocates resources as shown below:
      - ✓
      - ✓
 
-This configuration gives the ETL queue dedicated access to two workers, one of which cannot be used by regular queries.
+This configuration gives the ETL queue dedicated access to one worker, which cannot be used.
 
 Queries from management uses any available worker.
 
@@ -115,8 +116,7 @@ Each worker gets a comma-separated list of service queues that it subscribes to.
 
 Verifying the Configuration
 -----------------------------------
-
-Use :ref:`show_subscribed_instances` to view service subscriptions for each worker. Use `SHOW_SERVER_STATUS <https://docs.sqream.com/en/latest/reference/sql/sql_statements/monitoring_commands/show_server_status.html>`_ to see the statement queues.
+Use :ref:`show_subscribed_instances` to view service subscriptions for each worker. Use `SHOW_SERVER_STATUS <https://docs.sqream.com/en/v2020-2/reference/sql/sql_statements/monitoring_commands/show_server_status.html>`_ to see the statement queues.
 
 
 
@@ -152,7 +152,8 @@ When using **SQream Studio**, you can configure a client connection to a specifi
 
 
 
-For more information, in Studio, see `Executing Statements from the Toolbar <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.0.html#executing-statements-from-the-toolbar>`_.
+For more information, in Studio, see `Executing Statements from the Toolbar <https://docs.sqream.com/en/v2020-2/sqream_studio_5.4.3/executing_statements_and_running_queries_from_the_editor.html#executing-statements-from-the-toolbar>`_.
+
 
 
 
@@ -186,7 +187,8 @@ When using a **JDBC client driver**, you can configure a client connection to a 
    jdbc:Sqream://127.0.0.1:3108/raviga;user=rhendricks;password=Tr0ub4dor&3;service=etl;cluster=true;ssl=false;
    
 
-For more information, see the `JDBC Client Driver <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html>`_.
+
+For more information, see the `JDBC Client Driver <https://docs.sqream.com/en/v2020-2/third_party_tools/client_drivers/jdbc/index.html>`_.
 
 
 Using an ODBC Client Driver
@@ -213,7 +215,8 @@ For example, ``Service="etl"``:
 
 On Windows, change the parameter in the :ref:`DSN editing window<create_windows_odbc_dsn>`.
 
-For more information, see the `ODBC Client Driver <https://docs.sqream.com/en/latest/guides/client_drivers/odbc/index.html#odbc>`_.
+
+For more information, see the `ODBC Client Driver <https://docs.sqream.com/en/v2020-2/third_party_tools/client_drivers/odbc/index.html>`_.
 
 
 Using a Python Client Driver
@@ -228,7 +231,9 @@ When using a **Python client driver**, you can configure a client connection to 
                           , username='rhendricks', password='Tr0ub4dor&3'
                           , clustered=True, use_ssl = False, service='etl')
 						  
-For more information, see the `Python (pysqream) connector <https://docs.sqream.com/en/latest/guides/client_drivers/python/index.html#pysqream>`_.
+
+For more information, see the `Python (pysqream) connector <https://docs.sqream.com/en/v2020-2/third_party_tools/client_drivers/python/index.html>`_.
+
 
 
 Using a Node.js Client Driver
@@ -250,4 +255,6 @@ When using a **Node.js client driver**, you can configure a client connection to
       service: 'etl'
    };
 
-For more information, see the `Node.js Client Driver <https://docs.sqream.com/en/latest/guides/client_drivers/nodejs/index.html#nodejs>`_.
+
+For more information, see the `Node.js Client Driver <https://docs.sqream.com/en/v2020-2/third_party_tools/client_drivers/nodejs/index.html>`_.
+

@@ -197,8 +197,3 @@ The following is a list of download links relevant to the Talend connector:
 * `Latest version of SQream JDBC <https://docs.sqream.com/en/latest/guides/client_drivers/index.html#client-drivers>`_
 
 :ref:`Back to top <top>`
-
-
-	 
-.. contents:: In this topic:
-   :local:

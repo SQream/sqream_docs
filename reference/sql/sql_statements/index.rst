@@ -3,6 +3,11 @@
 ***************
 SQL Statements
 ***************
+The **SQL Statements** page describes the following commands:
+
+.. contents::
+   :local:
+   :depth: 1
 
 SQream DB supports commands from ANSI SQL.
 
@@ -28,8 +33,6 @@ Data Definition Commands (DDL)
      - Change clustering keys in a table
    * - :ref:`create_database`
      - Create a new database
-   * - :ref:`create_external_table`
-     - Create a new external table in the database (deprecated)
    * - :ref:`create_foreign_table`
      - Create a new foreign table in the database
    * - :ref:`create_function`
@@ -126,7 +129,6 @@ Utility Commands
      - Returns the system version for SQream DB
    * - :ref:`STOP STATEMENT<stop_statement>`
      - Stops or aborts an active statement
-
 
 Workload Management
 ======================

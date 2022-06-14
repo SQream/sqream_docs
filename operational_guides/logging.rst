@@ -335,7 +335,7 @@ Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a databas
 
    CREATE FOREIGN TABLE logs 
    (
-     start_marker      VARCHAR(4),
+     start_marker      TEXT,
      row_id            BIGINT,
      timestamp         DATETIME,
      message_level     TEXT,
@@ -349,7 +349,7 @@ Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a databas
      service_name      TEXT,
      message_type_id   INT,
      message           TEXT,
-     end_message       VARCHAR(5)
+     end_message       TEXT
    )
    WRAPPER csv_fdw
    OPTIONS
@@ -360,7 +360,8 @@ Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a databas
      )
    ;
    
-For more information, see `Loading Logs with Foreign Tables <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/copy_from.html>`_.
+For more information, see `Loading Logs with Foreign Tables <https://docs.sqream.com/en/v2020-2/reference/sql/sql_statements/dml_commands/copy_from.html>`_.
+
 
 Counting Message Types
 ------------------------------

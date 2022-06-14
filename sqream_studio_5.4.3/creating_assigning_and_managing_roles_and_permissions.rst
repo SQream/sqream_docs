@@ -1,5 +1,3 @@
-.. _creating_assigning_and_managing_roles_and_permissions:
-
 .. _roles_5.4.3:
 
 ****************************
@@ -55,8 +53,6 @@ Clicking a role in the roles table displays the following information:
 Creating a New Role
 --------------------
 You can create a new role by clicking **New Role**.
-
-
    
 An admin creates a **user** by granting login permissions and a password to a role. Each role is defined by a set of permissions. An admin can also group several roles together to form a **group** to manage them simultaneously. For example, permissions can be granted to or revoked on a group level.
 

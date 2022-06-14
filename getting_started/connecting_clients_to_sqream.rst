@@ -23,4 +23,5 @@ SQream supports the following client drivers:
 * ODBC
 * C++ Driver
 
-For more information, see `Third Party Tools<https://docs.sqream.com/en/v2020-1/guides/third_party_tools/index.html>`_.
+For more information, see `Third Party Tools<https://docs.sqream.com/en/v2020-2/guides/third_party_tools/index.html>`_.
+

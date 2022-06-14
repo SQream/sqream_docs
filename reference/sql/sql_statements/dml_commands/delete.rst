@@ -4,27 +4,61 @@
 DELETE
 **********************
 
-``DELETE`` removes specific rows from a table.
+Overview
+==================
+The ``DELETE`` statement is used to remove specific rows from a table.
 
-See more information about how SQream DB deletes data in the :ref:`delete_guide` guide.
+SQream deletes data in the following steps:
+
+1. The designated rows are marked as deleted, but remain on-disk until the user initiates a clean-up process.
+
+    ::
+	
+#. The user initiates a clean-up process is initiated to delete the rows.
+
+For more information about SQream's delete methodology, see the :ref:`delete_guide` guide.
+
+Note the following:
+
+* The :ref:`ALTER TABLE<alter_table>` and other `DDL operations <https://docs.sqream.com/en/latest/reference/sql/sql_statements/index.html#data-definition-commands-ddl>`_ are blocked on tables that require clean-up.
+
+
+
+* The value expression for deletion cannot be the result of a sub-query or join.
+
+* SQream may abort delete processes exceeding a pre-defined time threshold. If the estimated time exceeds the threshold, an error message is displayed with an description for overriding the threshold and continuing with the delete.
+
+For more information about SQream's delete methodology, see the :ref:`delete_guide` guide.
 
 .. tip:: 
    * To delete all rows from a table, see :ref:`TRUNCATE<truncate>`
-   * To delete columns, see :ref:`DROP COLUMN<drop_column>`
+   * To delete columns, see :ref:`DROP COLUMN<drop_column>`.
 
 Permissions
 =============
 
-The role must have the ``DELETE`` and ``SELECT`` permissions at the table level.
+To execute the ``DELETE`` statement, the ``DELETE`` and ``SELECT`` permissions must be assigned to the role at the table level.
+
+For more information about assigning permissions to roles, see `Creating, Assigning, and Managing Roles and Permissions <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.0.html#creating-assigning-and-managing-roles-and-permissions>`_.
+
 
 Syntax
 ==========
+The following is the correct syntax for executing the ``DELETE`` statement:
 
 .. code-block:: postgres
 
    delete_table_statement ::=
        DELETE FROM [schema_name.]table_name [ WHERE value_expr ]
        ;
+
+   table_name ::= identifier
+   
+   schema_name ::= identifier
+   
+The following is the correct syntax for triggering a clean-up:
+
+.. code-block:: postgres
 
    chunk_cleanup_statement ::= 
        SELECT CLEANUP_CHUNKS ( 'schema_name', 'table_name' )
@@ -38,8 +72,10 @@ Syntax
    
    schema_name ::= identifier
 
+
 Parameters
 ============
+The following table describes the parameters used for executing the ``DELETE`` statement:
 
 .. list-table:: 
    :widths: auto
@@ -54,28 +90,22 @@ Parameters
    * - ``value_expr``
      - An expression that returns Boolean values using columns, such as ``<column> = <value>``. Rows that match the expression will be deleted.
 
-How SQream DB deletes data
-====================================
 
-Deleting data in SQream DB is a two-step process. First, SQream DB marks rows as deleted, but they remain on-disk until a cleanup process is initiated.
-
-See more information about how SQream DB deletes data in the :ref:`delete_guide` guide.
-
-Notes
-===========
-
-* :ref:`ALTER TABLE<alter_table>` and other DDL operations are blocked on tables that require clean-up.
-
-* The value expression for deletion can't be the result of a subquery or a join.
-
-* SQream DB may prevent a very long delete process. If the estimated time is beyond the threshold, the error message will explain how to override this limitation and continue the process.
 
 
 Examples
 ===========
+The **Examples** section shows the following examples:
 
-Deleting values from a table
+* :ref:`Deleting values from a table<deleting_values_from_a_table>`
+* :ref:`Deleting values based on more complex predicates<deleting_values_based_on_more_complex_predicates>`
+* :ref:`Identifying and cleaning up tables<identifying_and_cleaning_up_tables>`
+
+.. _deleting_values_from_a_table:
+
+Deleting Values from a Table
 ------------------------------
+The following shows an example of deleting values from a table:
 
 .. code-block:: psql
 
@@ -100,8 +130,11 @@ Deleting values from a table
    
    4 rows
 
-Deleting values based on more complex predicates
+.. _deleting_values_based_on_more_complex_predicates:
+
+Deleting Values Based on More Complex Predicates
 ---------------------------------------------------
+The following shows an example of deleting values based on more complex predicates:
 
 .. code-block:: psql
 
@@ -125,13 +158,43 @@ Deleting values based on more complex predicates
    6,\N,\N
    
    4 rows
+   
+Deleting Values that Contain Multi-Table Conditions
+-----------------
+The following shows an example of deleting values that contain multi-table conditions. The example is based on the following tables:
+
+.. image:: /_static/images/delete_optimization.png
 
 
-Identifying and cleaning up tables
+
+The statement below uses the ``EXISTS`` subquery to delete all bands based in Sweden:
+
+
+
+.. code-block:: psql
+
+   DELETE FROM bands
+   WHERE EXISTS (
+     SELECT 1 FROM countries
+     WHERE countries.country_id=bands.id
+     AND country.name = 'Sweden'
+   );
+
+.. _identifying_and_cleaning_up_tables:
+
+Identifying and Cleaning Up Tables
 ---------------------------------------
+The following section shows examples of each phase required for cleaning up tables:
 
-List tables that haven't been cleaned up
+* :ref:`Listing tables that require clean-up<listing_tables_that_require_cleanup>`
+* :ref:`Identifying clean-up predicates<identifying_cleanup_predicates>`
+* :ref:`Triggering a clean-up<triggering_a_cleanup>`
+
+.. _listing_tables_that_require_cleanup:
+
+Listing Tables that Require Clean-Up
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The following shows an example of listing tables that require clean-up:
 
 .. code-block:: psql
    
@@ -143,8 +206,11 @@ List tables that haven't been cleaned up
    
    1 row
 
-Identify predicates for clean-up
+.. _identifying_cleanup_predicates:
+
+Identify Clean-Up Predicates
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The following shows an example of listing the clean-up predicates:
 
 .. code-block:: psql
 
@@ -156,8 +222,11 @@ Identify predicates for clean-up
    
    1 row
 
-Triggering a cleanup
+.. _triggering_a_cleanup:
+
+Triggering a Clean-Up
 ^^^^^^^^^^^^^^^^^^^^^^
+The following shows an example of triggering a clean-up:
 
 .. code-block:: psql
 

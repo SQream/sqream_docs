@@ -6,3 +6,4 @@ Worker Generic Flags
 The Worker Generic Flags** page describes **Worker** modification type flags, which can be modified by standard users on a session basis:
 
    * `Persisting Your Cache Directory <https://docs.sqream.com/en/v2020-2/configuration_guides/limit_query_memory_gb.html>`_
+

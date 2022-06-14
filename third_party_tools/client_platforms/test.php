@@ -13,4 +13,4 @@ while (odbc_fetch_row($rs)) {
 }
 echo "\n"; 
 odbc_close($conn); // Finally, close the connection
-?> 
+?>

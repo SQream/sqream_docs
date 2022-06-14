@@ -248,6 +248,3 @@ ODBC DSN Parameters
             * 4 = Info tracing
             * 5 = Debug tracing
             * 6 = Detailed tracing
-
-
-

@@ -17,5 +17,4 @@ const sqream = new Connection(config);
 sqream.execute(query1).then((data) => {
    console.log(data);
 }, (err) => {
-   console.error(err);
 });

@@ -4,7 +4,9 @@
 SQream DB Documentation
 *************************
 
+
 For SQream DB Version 2020.2.
+
 
 .. only:: html
 
@@ -35,7 +37,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
      - **Reference**
      - **Guides**
    * -
-         :ref:`first_steps`
+         `Getting Started <https://docs.sqream.com/en/latest/getting_started/index.html>`_
          
          :ref:`sql_feature_support`
          
@@ -48,6 +50,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
          :ref:`sql_functions`
      - 
          `Setting up SQream <https://docs.sqream.com/en/v2020-2/installation_guides/index.html>`_
+
          
          :ref:`Best practices<sql_best_practices>`
          
@@ -57,6 +60,12 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
      - **Driver and Deployment**
      - **Help and Support**
    * -
+         :ref:`2021.2<2021.2>`
+
+         :ref:`2021.1<2021.1>`
+        
+         :ref:`2020.3<2020.3>`
+
          :ref:`2020.2<2020.2>`
          
          :ref:`2020.1<2020.1>`
@@ -83,7 +92,9 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
 
 .. rubric:: Looking for older versions?
 
-This version of the documentation is for SQream DB |latest_version|.
+
+This version of the documentation is for SQream DB Version 2021.2.
+
 
 If you're looking for an older version of the documentation, versions 1.10 through 2019.2.1 are available at http://previous.sqream.com .
 

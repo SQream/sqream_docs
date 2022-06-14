@@ -34,12 +34,9 @@ The following is a brief description of the Dashboard panels:
      - Monitors system health and shows each Sqreamd worker running in the cluster.
    * - 3
      - :ref:`License information<license_information_5.4.3>`
-     - Shows the remaining amount of days left on your license.
-   
+     - Shows the remaining amount of days left on your license.   
 
 .. _data_storage_panel_5.4.3:
-
-
 
 :ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_5.4.3>`
 
@@ -48,8 +45,6 @@ The following is a brief description of the Dashboard panels:
 Subscribing to Workers from the Services Panel
 --------------------------
 Services are used to categorize and associate (also known as **subscribing**) workers to particular services. The **Service** panel is used for viewing, monitoring, and adding defined `service queues <https://docs.sqream.com/en/v2020-2/feature_guides/workload_manager.html>`_.
-
-
 
 The following is a brief description of each pane:
 	 
@@ -113,12 +108,9 @@ You can hover over segments in the status bar to see the date and time correspon
 
 Adding A Worker to A Service
 ^^^^^^^^^^^^^^^^^^^^^	 
-You can add a worker to a service by clicking the **add** button. 
-
-
+You can add a worker to a service by clicking the **add** button.
 
 Clicking the **add** button shows the selected service's workers. You can add the selected worker to the service by clicking **Add Worker**. Adding a worker to a service does not break associations already made between that worker and other services.
-
 
 .. _view_worker_query_information_5.4.3:
 
@@ -126,20 +118,16 @@ Viewing A Worker's Active Query Information
 ^^^^^^^^^^^^^^^^^^^^^	 
 You can view a worker's active query information by clicking **Queries**, which displays them in the selected service.
 
-
 Each statement shows the **query ID**, **status**, **service queue**, **elapsed time**, **execution time**, and **estimated completion status**. In addition, each statement can be stopped or expanded to show its execution plan and progress. For more information on viewing a statement's execution plan and progress, see :ref:`Viewing a Worker's Execution Plan <view_worker_execution_plan_5.4.3>` below.
 
 Viewing A Worker's Host Utilization
 ^^^^^^^^^^^^^^^^^^^^^	 
-
 While viewing a worker's query information, clicking the **down arrow** expands to show the host resource utilization.
-
 
 
 The graphs show the resource utilization trends over time, and the **CPU memory** and **utilization** and the **GPU utilization** values on the right. You can hover over the graph to see more information about the activity at any point on the graph.
 
 Error notifications related to statements are displayed, and you can hover over them for more information about the error. 
-
 
 .. _view_worker_execution_plan_5.4.3:
 
@@ -159,13 +147,9 @@ For more information on the current query plan, see `SHOW_NODE_INFO <https://doc
 
 Managing Worker Status
 ^^^^^^^^^^^^^^^^^^^^^
-
 In some cases you may want to stop or restart workers for maintenance purposes. Each Worker line has a :kbd:`⋮` menu used for stopping, starting, or restarting workers.
 
-
 Starting or restarting workers terminates all queries related to that worker. When you stop a worker, its background turns gray.
-
-
 
 
 .. |icon-user| image:: /_static/images/studio_icon_user.png
@@ -248,8 +232,6 @@ Starting or restarting workers terminates all queries related to that worker. Wh
    
 :ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_5.4.3>`
 
-
-
 .. _license_information_5.4.3:
    
 License Information
@@ -260,6 +242,5 @@ The license information section shows the following:
  * The license storage capacity.
  
 .. image:: /_static/images/license_storage_capacity.png
-
  
 :ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_5.4.3>`

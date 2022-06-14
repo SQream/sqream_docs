@@ -35,7 +35,7 @@ Returns the same type as the argument supplied.
 Notes
 =======
 
-* When using ``VARCHAR`` values, SQream DB automatically trims the trailing whitespace.
+* When using ``TEXT`` values, SQream DB automatically trims the trailing whitespace.
 
 * This function is equivalent to the ANSI form ``TRIM( BOTH FROM expr )``
 

@@ -69,7 +69,7 @@ Notes
 
 * If the value is NULL, the result is NULL.
 
-* PATINDEX works on ``VARCHAR`` text types only.
+* PATINDEX works on ``TEXT`` text types only.
 
 * PATINDEX does not work on all literal values - only on column values.
    
@@ -79,15 +79,11 @@ Notes
 
 Examples
 ===========
-
 For these examples, consider the following table and contents:
 
 .. code-block:: postgres
 
-
-   CREATE TABLE jabberwocky(line TEXT(50));
-
-
+   CREATE TABLE jabberwocky(line TEXT);
    INSERT INTO jabberwocky VALUES 
       ('''Twas brillig, and the slithy toves '), ('      Did gyre and gimble in the wabe: ')
       ,('All mimsy were the borogoves, '), ('      And the mome raths outgrabe. ')

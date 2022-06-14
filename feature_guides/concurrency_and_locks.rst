@@ -64,9 +64,6 @@ When are Locks Obtained?
 
 Statements that wait will exit with an error if they hit the lock timeout. The default timeout is 3 seconds, see ``statementLockTimeout``.
 
-Monitoring Locks
-===================
-
 Monitoring locks across the cluster can be useful when transaction contention takes place, and statements appear "stuck" while waiting for a previous statement to release locks.
 
 The utility :ref:`show_locks` can be used to see the active locks.

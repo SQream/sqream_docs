@@ -9,8 +9,7 @@ Access Control
 
 Overview
 ==========
-
-Access control provides authentication and authorization in SQream DB.
+Access control provides authentication and authorization in SQream DB. 
 
 SQream DB manages authentication and authorization using a role-based access control system (RBAC), like ANSI SQL and other SQL products.
 
@@ -58,7 +57,6 @@ To use a ``ROLE`` as a user, it should have a password, the login permission, an
 
 Creating New Roles (Users)
 ------------------------------
-
 A user role can log in to the database, so it should have ``LOGIN`` permissions, as well as a password.
 
 For example:

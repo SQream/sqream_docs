@@ -22,8 +22,8 @@ The following example shows the syntax for a table named ``superstore`` used for
 
    CREATE TABLE superstore
    (
-      "Section" varchar(40),
-      "Product_Name" varchar(40),
+      "Section" text,
+      "Product_Name" text,
       "Sales_In_K" int,
        );
 	   

@@ -4,7 +4,7 @@
 DUMP_DATABASE_DDL
 *****************
 
-``DUMP_DATABASE_DDL()`` is a function that shows the ``CREATE`` statements for database objects including views and tables.
+``DUMP_DATABASE_DDL()`` is a function that shows the ``CREATE`` statements for database objects including views and tables. Begining with 2020.3.1, DUMP_DATABASE_DDL includes foreign tables in the output.
 
 .. warning:: 
    This function does not currently show UDFs. To list available UDFs, use the catalog:
@@ -51,7 +51,7 @@ Getting the DDL for a database
    farm=> SELECT DUMP_DATABASE_DDL();
    create table "public"."cool_animals" (
      "id" int not null,
-     "name" varchar(30) not null,
+     "name" text not null,
      "weight" double null,
      "is_agressive" bool default false not null
    )
