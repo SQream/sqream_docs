@@ -621,7 +621,7 @@ Common Solutions for Improving Filtering
 * Avoid full table scans when possible
 
 
-5. High Selectivity Data
+4. High Selectivity Data
 --------------------------
 Selectivity is the ratio of cardinality to the number of records of a chunk. We define selectivity as :math:`\frac{\text{Distinct values}}{\text{Total number of records in a chunk}}`
 SQream DB has a hint called ``HIGH_SELECTIVITY``, which is a function you can wrap a condition in.
@@ -656,7 +656,7 @@ Improving Performance with High Selectivity Hints
    to cut out more than 60% of the result set.
 * Use when the data is uniformly distributed or random
 
-7. Performance of unsorted data in joins
+5. Performance of unsorted data in joins
 ------------------------------------------
 When data is not well-clustered or naturally ordered, a join operation can take a long time. 
 
@@ -719,7 +719,7 @@ To tell SQream DB to rechunk the data, wrap a condition (or several) in the ``HI
          AND EnterpriseID=1150 
          AND MSISDN='9724871140341';
 
-8. Manual Join Reordering
+6. Manual Join Reordering
 --------------------------------
 When joining multiple tables, you may wish to change the join order to join the smallest tables first.
 
