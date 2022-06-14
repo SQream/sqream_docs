@@ -108,5 +108,5 @@ The following table shows the possible ``DATE`` and ``DATETIME`` value conversio
    
    * - Type
      - Details
-   * - ``VARCHAR(n)``
+   * - ``TEXT``
      - ``'1997-01-01'`` → ``'1997-01-01'``, ``'1955-11-05 01:24'`` → ``'1955-11-05 01:24:00.000'``

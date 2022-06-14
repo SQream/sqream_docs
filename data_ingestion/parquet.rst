@@ -125,11 +125,11 @@ Prepare the source Parquet files, with the following requirements:
 
 .. rubric:: Footnotes
 
-.. [#f0] Text values include ``TEXT``, ``VARCHAR``, and ``NVARCHAR``
+.. [#f0] Text values include ``TEXT``.
 
-.. [#f2] With UTF8 annotation
+.. [#f2] With UTF8 annotation.
 
-.. [#f3] With ``TIMESTAMP_NANOS`` or ``TIMESTAMP_MILLIS`` annotation
+.. [#f3] With ``TIMESTAMP_NANOS`` or ``TIMESTAMP_MILLIS`` annotation.
 
 .. [#f4] Any microseconds will be rounded down to milliseconds.
 
@@ -167,14 +167,14 @@ We will make note of the file structure to create a matching ``CREATE EXTERNAL T
    
    CREATE FOREIGN TABLE ext_nba
    (
-        Name       VARCHAR(40),
-        Team       VARCHAR(40),
+        Name       TEXT,
+        Team       TEXT,
         Number     BIGINT,
-        Position   VARCHAR(2),
+        Position   TEXT,
         Age        BIGINT,
-        Height     VARCHAR(4),
+        Height     TEXT,
         Weight     BIGINT,
-        College    VARCHAR(40),
+        College    TEXT,
         Salary     FLOAT
     )
     WRAPPER parquet_fdw
@@ -269,7 +269,7 @@ Loading a table from a directory of Parquet files on HDFS
 .. code-block:: postgres
 
    CREATE FOREIGN TABLE ext_users
-     (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
+     (id INT NOT NULL, name TEXT NOT NULL, email TEXT NOT NULL)  
    WRAPPER parquet_fdw
    OPTIONS
      (
@@ -284,7 +284,7 @@ Loading a table from a bucket of files on S3
 .. code-block:: postgres
 
    CREATE FOREIGN TABLE ext_users
-     (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
+     (id INT NOT NULL, name TEXT NOT NULL, email TEXT NOT NULL)  
    WRAPPER parquet_fdw
    OPTIONS
      ( LOCATION = 's3://pp-secret-bucket/users/*.parquet',
