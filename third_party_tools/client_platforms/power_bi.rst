@@ -1,7 +1,7 @@
 .. _power_bi:
 
 *************************
-Connect to SQream Using Power BI Desktop
+Connecting to SQream Using Power BI Desktop
 *************************
 
 Overview

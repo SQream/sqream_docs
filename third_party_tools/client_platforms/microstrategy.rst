@@ -2,7 +2,7 @@
 
 
 *************************
-Connect to SQream Using MicroStrategy
+Connecting to SQream Using MicroStrategy
 *************************
 
 .. _ms_top:

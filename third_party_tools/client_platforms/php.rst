@@ -1,7 +1,7 @@
 .. _php:
 
 *****************************
-Connect to SQream Using PHP
+Connecting to SQream Using PHP
 *****************************
 
 Overview

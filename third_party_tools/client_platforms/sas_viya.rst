@@ -1,7 +1,7 @@
 .. _connect_to_sas_viya:
 
 *************************
-Connect to SQream Using SAS Viya
+Connecting to SQream Using SAS Viya
 *************************
 
 Overview
