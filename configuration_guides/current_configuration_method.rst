@@ -72,8 +72,8 @@ SQream uses cluster-based configuration, enabling you to centralize configuratio
 
 For more information, see the following:
 
-* `Using SQream SQL <https://docs.sqream.com/en/latest/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
-* `SQream Acceleration Studio <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
+* `Using SQream SQL <https://docs.sqream.com/en/v2020-2/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
+* `SQream Acceleration Studio <https://docs.sqream.com/en/v2020-2/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
 
 For more information on flag-based access to cluster-based configuration, see **Configuration Flag Types** below.
 
@@ -92,8 +92,8 @@ For example, when the query below has completed executing, the values configured
 
 For more information, see the following:
 
-* `Using SQream SQL <https://docs.sqream.com/en/latest/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
-* `SQream Acceleration Studio <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
+* `Using SQream SQL <https://docs.sqream.com/en/v2020-2/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
+* `SQream Acceleration Studio <https://docs.sqream.com/en/v2020-2/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
 
 Configuration Flag Types
 ==========
@@ -280,6 +280,7 @@ The following table describes the Worker flag types:
 	   * Example 1: ``* master=> ALTER SYSTEM SET heartbeatTimeout=111;``
 	   * Example 2: ``* master=> select show_md_flag(‘all’); heartbeatTimeout,111``
 	   * Example 3: ``* master=> select show_md_flag(‘heartbeatTimeout’); heartbeatTimeout,111``
+
 
 All Configurations
 ---------------------
@@ -697,15 +698,81 @@ The following table describes the commands or command sets that can be run based
 	   * Example 2: ``* master=> select show_md_flag(‘all’); heartbeatTimeout,111``
 	   * Example 3: ``* master=> select show_md_flag(‘heartbeatTimeout’); heartbeatTimeout,111``
 
+
+Configuration Commands
+==========	 
+The configuration commands are associated with particular flag types based on permissions.
+
+The following table describes the commands or command sets that can be run based on their flag type. Note that the flag names described in the following table are described in the :ref:`Configuration Roles<configuration_roles>` section below.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 1 2 10 17
+   :class: my-class
+   :name: my-name
+
+   * - Flag Type
+     - Command
+     - Description
+     - Example
+   * - Regular
+     - ``SET <flag_name>``
+     - Used for modifying flag attributes.
+     - ``SET developerMode=true``
+   * - Cluster
+     - ``ALTER SYSTEM SET <flag-name>``
+     - Used to storing or modifying flag attributes in the metadata file.
+     - ``ALTER SYSTEM SET <heartbeatInterval=12;>``
+   * - Cluster
+     - ``ALTER SYSTEM RESET <flag-name / ALL>``
+     - Used to remove a flag or all flag attributes from the metadata file.
+     - ``ALTER SYSTEM RESET <heartbeatInterval ALTER SYSTEM RESET ALL>``
+   * - Regular, Cluster, Worker
+     - ``SHOW <flag-name> / ALL``
+     - Used to print the value of a specified value or all flag values.
+     - ``SHOW <heartbeatInterval>``
+   * - Regular, Cluster, Worker
+     - ``SHOW ALL LIKE``
+     - Used as a wildcard character for flag names.
+     - ``SHOW <heartbeat*>``
+   * - Regular, Cluster, Worker
+     - ``show_conf_UF``
+     - Used to print all flags with the following attributes:
+	 
+       * Flag name
+       * Default value
+       * Is developer mode (Boolean)
+       * Flag category
+       * Flag type
+	 
+
+	   
+     - ``rechunkThreshold,90,true,RND,regular``
+   * - Regular, Cluster, Worker
+     - ``show_conf_extended UF``
+     - Used to print all information output by the show_conf UF command, in addition to description, usage, data type, default value and range.
+     - ``spoolMemoryGB,15,false,generic,regular,Amount of memory (GB)``
+       ``the server can use for spooling,”Statement that perform “”group by””,``
+       ``“”order by”” or “”join”” operation(s) on large set of data will run``
+       ``much faster if given enough spool memory, otherwise disk spooling will``
+       ``be used resulting in performance hit.”,uint,,0-5000``
+   * - Regular, Cluster, Worker
+     - ``show_md_flag UF``
+     - Used to show a specific flag/all flags stored in the metadata file.
+     - 	 	 
+	   * Example 1: ``* master=> ALTER SYSTEM SET heartbeatTimeout=111;``
+	   * Example 2: ``* master=> select show_md_flag(‘all’); heartbeatTimeout,111``
+	   * Example 3: ``* master=> select show_md_flag(‘heartbeatTimeout’); heartbeatTimeout,111``
+
 .. _configuration_roles:
 
 Configuration Roles
 ===========
 SQream divides flags into the following roles, each with their own set of permissions:
 
+
 * `Administration flags <https://docs.sqream.com/en/v2020-2/configuration_guides/admin_flags.html>`_: can be modified by administrators on a session and cluster basis using the ``ALTER SYSTEM SET`` command.
 * `Generic flags <https://docs.sqream.com/en/v2020-2/configuration_guides/generic_flags.html>`_: can be modified by standard users on a session basis.
-
 
 Showing All Flags in the Catalog Table
 =======
