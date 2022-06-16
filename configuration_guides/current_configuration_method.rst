@@ -597,174 +597,52 @@ The following table describes the **Generic** and **Administration** configurati
 	 
  
 	 
-   * - ``gatherMemStat``
-     - Administration
-     - Regular
-     - Monitors all pinned allocations and all **memcopies** to/from device, and prints a report of pinned allocations that were not memcopied to/from the device using the **dump_pinned_misses** utility function.
-     - boolean
-     - ``FALSE``	 
-	 
-   * - ``increaseChunkSizeBeforeReduce``
-     - Administration
-     - Regular
-     - Increases the chunk size to reduce query speed.
-     - boolean
-     - ``FALSE``		 
-	 
-   * - ``increaseMemFactors``
-     - Administration
-     - Regular
-     - Adds rechunker before expensive chunk producer.
-     - boolean
-     - ``TRUE``	 
-	 
-   * - ``leveldbWriteBufferSize``
-     - Administration
-     - Regular
-     - Sets the buffer size.
-     - uint
-     - ``524288``	 	 
-	 
-   * - ``machineIP``
-     - Administration
-     - Worker
-     - Manual setting of reported IP.
-     - string
-     - ``127.0.0.1``		 
-	 
-
-	 
-	 
-   * - ``memoryResetTriggerMB``
-     - Administration
-     - Regular
-     - Sets the size of memory used during a query to trigger aborting the server.
-     - uint
-     - ``0``		 
  
-   * - ``metadataServerPort``
-     - Administration
-     - Worker
-     - Sets the port used to connect to the metadata server. SQream recommends using port ranges above 1024† because ports below 1024 are usually reserved, although there are no strict limitations. Any positive number (1 - 65535) can be used.
-     - uint
-     - ``3105``	 
-
-   * - ``mtRead``
-     - Administration
-     - Regular
-     - Splits large reads to multiple smaller ones and executes them concurrently.
-     - boolean
-     - ``FALSE``	 
-
-   * - ``mtReadWorkers``
-     - Administration
-     - Regular
-     - Sets the number of workers to handle smaller concurrent reads.
-     - uint
-     - ``30``	
-
-   * - ``orcImplicitCasts``
-     - Administration
-     - Regular
-     - Sets the implicit cast in orc files, such as **int** to **tinyint** and vice versa.
-     - boolean
-     - ``TRUE``	
-
-   * - ``statementLockTimeout``
-     - Administration
-     - Regular
-     - Sets the timeout (seconds) for acquiring object locks before executing statements.
-     - uint
-     - ``3``	
-
-   * - ``useConfigIP``
-     - Administration
-     - Worker
-     - Activates the machineIP (true). Setting to false ignores the machineIP and automatically assigns a local network IP. This cannot be activated in a cloud scenario (on-premises only).
-     - boolean
-     - ``FALSE``
-
-   * - ``useLegacyDecimalLiterals``
-     - Administration
-     - Regular
-     - Interprets decimal literals as **Double** instead of **Numeric**. Used to preserve legacy behavior in existing customers.
-     - boolean
-     - ``FALSE``
-
-   * - ``useLegacyStringLiterals``
-     - Administration
-     - Regular
-     - Interprets ASCII-only strings as **VARCHAR** instead of **TEXT**. Used to preserve legacy behavior in existing customers.
-     - boolean
-     - ``FALSE``
-
-   * - ``flipJoinOrder``
-     - Generic
-     - Regular
-     - Reorders join to force equijoins and/or equijoins sorted by table size.
-     - boolean
-     - ``FALSE``
-
-   * - ``limitQueryMemoryGB``
-     - Generic
-     - Worker
-     - Prevents a query from processing more memory than the flag’s value.
-     - uint
-     - ``100000``
 	 
-   * - ``cacheEvictionMilliseconds``
-     - Generic
-     - Regular
-     - Sets how long the cache stores contents before being flushed.
-     - size_t
-     - ``2000``
+ 
+	 
+	 
+ 	 
+	 
 	 
 
-   * - ``cacheDiskDir``
-     - Generic
-     - Regular
-     - Sets the ondisk directory location for the spool to save files on.
-     - size_t
-     - Any legal string
+	 
+	 
+		 
+ 
 	 
 
-   * - ``cacheDiskGB``
-     - Generic
-     - Regular
-     - Sets the amount of memory (GB) to be used by Spool on the disk.
-     - size_t
-     - ``128``
-	 
-   * - ``cachePartitions``
-     - Generic
-     - Regular
-     - Sets the number of partitions that the cache is split into.
-     - size_t
-     - ``4``
-	 
+ 
 
-   * - ``cachePersistentDir``
-     - Generic
-     - Regular
-     - Sets the persistent directory location for the spool to save files on.
-     - string
-     - Any legal string
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
 	 
 
-   * - ``cachePersistentGB``
-     - Generic
-     - Regular
-     - Sets the amount of data (GB) for the cache to store persistently.
-     - size_t
-     - ``128``
+	 
 
 
-   * - ``cacheRamGB``
-     - Generic
-     - Regular
-     - Sets the amount of memory (GB) to be used by Spool InMemory.
-     - size_t
-     - ``16``
+	 
+
+
+	 
+
+	 
+
+	 
+
+
 
 
 

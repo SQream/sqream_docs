@@ -1,8 +1,4 @@
-<<<<<<<< HEAD:operational_guides/viewing_system_objects_as_ddl.rst
-.. _viewing_system_objects_as_ddl:
-========
 .. _seeing_system_objects_as_ddl:
->>>>>>>> replace_varchar_with_text:operational_guides/seeing_system_objects_as_ddl.rst
 
 ********************************
 Seeing System Objects as DDL

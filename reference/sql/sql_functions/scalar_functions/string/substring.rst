@@ -8,7 +8,6 @@ Returns a substring of the input starting at ``start_pos``.
 
 .. note:: 
    Some systems call this function ``SUBSTR``.
-   This function supports only ``VARCHAR``.
 
 See also :ref:`regexp_substr`.
 

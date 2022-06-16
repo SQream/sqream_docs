@@ -39,8 +39,6 @@ Returns the same type as the argument supplied.
 Notes
 =======
 
-* In ``VARCHAR`` strings, the ``source_expr`` and ``replacement_expr`` must be the same **byte length**. See :ref:`octet_length`.
-
 * If the value is NULL, the result is NULL.
 
 Examples

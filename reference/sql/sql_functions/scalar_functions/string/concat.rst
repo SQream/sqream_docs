@@ -49,7 +49,7 @@ For these examples, assume a table named ``nba``, with the following structure:
    CREATE TABLE nba
    (
       Name text,
-      Team varchar(40),
+      Team text,
       Number tinyint,
       Position text,
       Age tinyint,
