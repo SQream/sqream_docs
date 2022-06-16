@@ -33,7 +33,7 @@ Prepare the source Parquet files, with the following requirements:
      - ``DATE``
      - ``DATETIME``
    * - ``BOOLEAN``
-     - ✓ 
+     - Supported 
      - 
      - 
      - 
@@ -46,7 +46,7 @@ Prepare the source Parquet files, with the following requirements:
    * - ``INT16``
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -58,7 +58,7 @@ Prepare the source Parquet files, with the following requirements:
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -70,7 +70,7 @@ Prepare the source Parquet files, with the following requirements:
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -82,7 +82,7 @@ Prepare the source Parquet files, with the following requirements:
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -94,7 +94,7 @@ Prepare the source Parquet files, with the following requirements:
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -106,7 +106,7 @@ Prepare the source Parquet files, with the following requirements:
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
    * - ``INT96`` [#f3]_
@@ -119,17 +119,17 @@ Prepare the source Parquet files, with the following requirements:
      - 
      - 
      - 
-     - ✓ [#f4]_
+     - Supported [#f4]_
 
 * If a Parquet file has an unsupported type like ``enum``, ``uuid``, ``time``, ``json``, ``bson``, ``lists``, ``maps``, but the data is not referenced in the table (it does not appear in the :ref:`SELECT` query), the statement will succeed. If the column is referenced, an error will be thrown to the user, explaining that the type is not supported, but the column may be ommited. This can be worked around. See more information in the examples.
 
 .. rubric:: Footnotes
 
-.. [#f0] Text values include ``TEXT``, ``VARCHAR``, and ``NVARCHAR``
+.. [#f0] Text values include ``TEXT``.
 
-.. [#f2] With UTF8 annotation
+.. [#f2] With UTF8 annotation.
 
-.. [#f3] With ``TIMESTAMP_NANOS`` or ``TIMESTAMP_MILLIS`` annotation
+.. [#f3] With ``TIMESTAMP_NANOS`` or ``TIMESTAMP_MILLIS`` annotation.
 
 .. [#f4] Any microseconds will be rounded down to milliseconds.
 
@@ -167,14 +167,14 @@ We will make note of the file structure to create a matching ``CREATE EXTERNAL T
    
    CREATE FOREIGN TABLE ext_nba
    (
-        Name       VARCHAR(40),
-        Team       VARCHAR(40),
+        Name       TEXT,
+        Team       TEXT,
         Number     BIGINT,
-        Position   VARCHAR(2),
+        Position   TEXT,
         Age        BIGINT,
-        Height     VARCHAR(4),
+        Height     TEXT,
         Weight     BIGINT,
-        College    VARCHAR(40),
+        College    TEXT,
         Salary     FLOAT
     )
     WRAPPER parquet_fdw
@@ -269,7 +269,7 @@ Loading a table from a directory of Parquet files on HDFS
 .. code-block:: postgres
 
    CREATE FOREIGN TABLE ext_users
-     (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
+     (id INT NOT NULL, name TEXT NOT NULL, email TEXT NOT NULL)  
    WRAPPER parquet_fdw
    OPTIONS
      (
@@ -284,7 +284,7 @@ Loading a table from a bucket of files on S3
 .. code-block:: postgres
 
    CREATE FOREIGN TABLE ext_users
-     (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
+     (id INT NOT NULL, name TEXT NOT NULL, email TEXT NOT NULL)  
    WRAPPER parquet_fdw
    OPTIONS
      ( LOCATION = 's3://pp-secret-bucket/users/*.parquet',

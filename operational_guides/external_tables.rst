@@ -37,7 +37,7 @@ Planning for data staging
 --------------------------------
 For the following examples, we will want to interact with a CSV file. Here's a peek at the table contents:
 
-.. csv-table:: nba.csv
+.. csv-table:: nba-10.csv
 
    :file: nba-t10.csv
    :widths: auto

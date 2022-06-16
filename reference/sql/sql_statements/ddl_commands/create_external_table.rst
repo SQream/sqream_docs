@@ -118,7 +118,7 @@ The following example shows how to create a simple table from a **tab-delimited 
 .. code-block:: postgres
 
    CREATE OR REPLACE EXTERNAL TABLE cool_animals
-     (id INT NOT NULL, name VARCHAR(30) NOT NULL, weight FLOAT NOT NULL)  
+     (id INT NOT NULL, name TEXT NOT NULL, weight FLOAT NOT NULL)  
    USING FORMAT csv 
    WITH  PATH  '/home/rhendricks/cool_animals.csv'
          FIELD DELIMITER '\t';
@@ -131,7 +131,7 @@ The following example shows how to create a table from a directory of Parquet fi
 .. code-block:: postgres
 
    CREATE EXTERNAL TABLE users
-     (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
+     (id INT NOT NULL, name TEXT NOT NULL, email TEXT NOT NULL)  
    USING FORMAT Parquet
    WITH  PATH  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet';
 
@@ -142,7 +142,7 @@ The following example shows how to create a table from a bucket of files on S3:
 .. code-block:: postgres
 
    CREATE EXTERNAL TABLE users
-     (id INT NOT NULL, name VARCHAR(30) NOT NULL, email VARCHAR(50) NOT NULL)  
+     (id INT NOT NULL, name TEXT NOT NULL, email TEXT NOT NULL)  
    USING FORMAT Parquet
    WITH  PATH  's3://pp-secret-bucket/users/*.parquet'
          AWS_ID 'our_aws_id'

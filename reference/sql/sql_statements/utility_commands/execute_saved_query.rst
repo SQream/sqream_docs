@@ -53,7 +53,7 @@ Notes
 
 * Query parameters can be used as substitutes for literal expressions. Parameters cannot be used to substitute identifiers, column names, table names, or other parts of the query.
 
-* Query parameters of a string datatype (like ``VARCHAR``) must be of a fixed length, and can be used in equality checks, but not patterns (e.g. :ref:`like`, :ref:`rlike`, etc)
+* Query parameters of a string datatype (like ``TEXT``) must be of a fixed length, and can be used in equality checks, but not patterns (e.g. :ref:`like`, :ref:`rlike`, etc)
 
 * Query parameters' types are inferred at compile time.
 
@@ -66,14 +66,14 @@ Assume a table named ``nba``, with the following structure:
    
    CREATE TABLE nba
    (
-      Name varchar(40),
-      Team varchar(40),
+      Name text,
+      Team text,
       Number tinyint,
-      Position varchar(2),
+      Position text,
       Age tinyint,
-      Height varchar(4),
+      Height text,
       Weight real,
-      College varchar(40),
+      College text,
       Salary float
     );
 
@@ -111,13 +111,12 @@ Use parameters to replace them later at execution time.
 
    .. code-block:: psql
 
-   t=> SELECT SAVE_QUERY('select_by_weight_and_team',$$SELECT * FROM nba WHERE Weight > ? AND Team = ?$$);
-   executed
-   t=> SELECT EXECUTE_SAVED_QUERY('select_by_weight_and_team', 240, 'Toronto Raptors');
-   Name              | Team            | Number | Position | Age | Height | Weight | College     | Salary 
-   ------------------+-----------------+--------+----------+-----+--------+--------+-------------+--------
-   Bismack Biyombo   | Toronto Raptors |      8 | C        |  23 | 6-9    |    245 |             | 2814000
-   James Johnson     | Toronto Raptors |      3 | PF       |  29 | 6-9    |    250 | Wake Forest | 2500000
-   Jason Thompson    | Toronto Raptors |      1 | PF       |  29 | 6-11   |    250 | Rider       |  245177
-   Jonas Valanciunas | Toronto Raptors |     17 | C        |  24 | 7-0    |    255 |             | 4660482
-
+      t=> SELECT SAVE_QUERY('select_by_weight_and_team',$$SELECT * FROM nba WHERE Weight > ? AND Team = ?$$);
+      executed
+      t=> SELECT EXECUTE_SAVED_QUERY('select_by_weight_and_team', 240, 'Toronto Raptors');
+      Name              | Team            | Number | Position | Age | Height | Weight | College     | Salary 
+      ------------------+-----------------+--------+----------+-----+--------+--------+-------------+--------
+      Bismack Biyombo   | Toronto Raptors |      8 | C        |  23 | 6-9    |    245 |             | 2814000
+      James Johnson     | Toronto Raptors |      3 | PF       |  29 | 6-9    |    250 | Wake Forest | 2500000
+      Jason Thompson    | Toronto Raptors |      1 | PF       |  29 | 6-11   |    250 | Rider       |  245177
+      Jonas Valanciunas | Toronto Raptors |     17 | C        |  24 | 7-0    |    255 |             | 4660482
