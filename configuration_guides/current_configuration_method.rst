@@ -624,13 +624,6 @@ The following table describes the **Generic** and **Administration** configurati
      - Interprets ASCII-only strings as **VARCHAR** instead of **TEXT**. Used to preserve legacy behavior in existing customers.
      - boolean
      - ``FALSE``
-	 
-   * - ``varcharIdentifiers``
-     - Administration
-     - Regular
-     - Activates using varchar as an identifier.
-     - boolean
-     - ``true``
 
 Configuration Commands
 ==========	 
