@@ -94,7 +94,7 @@ Refer to the table below to match the Oracle source data type to a new SQream DB
      - SQream DB data type
    * - ``CHAR(n)``, ``CHARACTER(n)``
      - Any ``n``
-     - ``VARCHAR(n)``
+     - ``TEXT``
    * - ``BLOB``, ``CLOB``, ``NCLOB``, ``LONG``
      - 
      - ``TEXT``
@@ -108,7 +108,7 @@ Refer to the table below to match the Oracle source data type to a new SQream DB
      - p > 63
      - ``FLOAT``, ``DOUBLE``
 
-   * - ``NCHAR(n)``, ``NVARCHAR2(n)``
+   * - ``NCHAR(n)``, ``TEXT``
      - Any ``n``
      - ``TEXT`` (alias of ``NVARCHAR``)
 
@@ -116,21 +116,25 @@ Refer to the table below to match the Oracle source data type to a new SQream DB
      - p < 5
      - ``SMALLINT``
 
-   * - ``NUMBER(p)``, `NUMBER(p,0)``
+   * - ``NUMBER(p)``, ``NUMBER(p,0)``
      - p < 9
      - ``INT``
 
-   * - ``NUMBER(p)``, `NUMBER(p,0)``
+   * - ``NUMBER(p)``, ``NUMBER(p,0)``
      - p < 19
      - ``INT``
 
-   * - ``NUMBER(p)``, `NUMBER(p,0)``
+   * - ``NUMBER(p)``, ``NUMBER(p,0)``
      - p >= 20
      - ``BIGINT``
 
    * - ``NUMBER(p,f)``, ``NUMBER(*,f)``
      - f > 0
      - ``FLOAT`` / ``DOUBLE``
+
+   * - ``TEXT``
+     - Any ``n``
+     - ``TEXT``
 
    * - ``TIMESTAMP``
      -  

@@ -12,8 +12,6 @@ Calculates the number of bytes in a string.
    
    * To get the length in characters, see :ref:`char_length`.
    
-   * For ``VARCHAR`` strings, the octet length is the number of characters. Use :ref:`len` instead.
-
 Syntax
 ==========
 The following is the correct syntax for the ``OCTET_LENGTH`` function:

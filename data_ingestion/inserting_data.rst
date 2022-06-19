@@ -53,7 +53,7 @@ SQream therefore recommends:
 
 * Applications such as :ref:`Tableau<connect_to_tableau>` and others have been tested, and work
 
-* Data types were not over-provisioned (e.g. don't use VARCHAR(2000) to store a short string)
+* Data types were not over-provisioned (e.g. don't use TEXT to store a short string)
 
 File Soure Location when Loading
 --------------------------------
@@ -98,7 +98,7 @@ Unsupported Data Types
 
 SQream DB doesn't support the entire set of features that some other database systems may have, such as ``ARRAY``, ``BLOB``, ``ENUM``, ``SET``, etc.
 
-These data types will have to be converted before load. For example, ``ENUM`` can often be stored as a ``VARCHAR``.
+These data types will have to be converted before load. For example, ``ENUM`` can often be stored as a ``TEXT``.
 
 Handing Extended Errors
 ----------------------------
@@ -356,7 +356,7 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-   * - ``string`` / ``char`` / ``varchar``
+   * - ``string`` / ``char`` / ``text``
      - 
      - 
      - 
@@ -459,16 +459,16 @@ Further Reading and Migration Guides
 
 .. rubric:: Footnotes
 
-.. [#f0] Text values include ``TEXT``, ``VARCHAR``, and ``NVARCHAR``
+.. [#f0] Text values include ``TEXT``.
 
-.. [#f2] With UTF8 annotation
+.. [#f2] With UTF8 annotation.
 
-.. [#f3] With ``TIMESTAMP_NANOS`` or ``TIMESTAMP_MILLIS`` annotation
+.. [#f3] With ``TIMESTAMP_NANOS`` or ``TIMESTAMP_MILLIS`` annotation.
 
 .. [#f4] Any microseconds will be rounded down to milliseconds.
 
-.. [#f5] Boolean values are cast to 0, 1
+.. [#f5] Boolean values are cast to 0, 1.
 
-.. [#f6] Will succeed if all values are 0, 1
+.. [#f6] Will succeed if all values are 0, 1.
 
-.. [#f7] Will succeed if all values fit the destination type
+.. [#f7] Will succeed if all values fit the destination type.
