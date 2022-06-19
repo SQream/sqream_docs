@@ -94,7 +94,7 @@ Refer to the table below to match the Oracle source data type to a new SQream DB
      - SQream DB data type
    * - ``CHAR(n)``, ``CHARACTER(n)``
      - Any ``n``
-     - ``VARCHAR(n)``
+     - ``TEXT``
    * - ``BLOB``, ``CLOB``, ``NCLOB``, ``LONG``
      - 
      - ``TEXT``
@@ -108,7 +108,7 @@ Refer to the table below to match the Oracle source data type to a new SQream DB
      - p > 63
      - ``FLOAT``, ``DOUBLE``
 
-   * - ``NCHAR(n)``, ``NVARCHAR2(n)``
+   * - ``NCHAR(n)``
      - Any ``n``
      - ``TEXT`` (alias of ``NVARCHAR``)
 
@@ -132,9 +132,9 @@ Refer to the table below to match the Oracle source data type to a new SQream DB
      - f > 0
      - ``FLOAT`` / ``DOUBLE``
 
-   * - ``VARCHAR(n)``, ``VARCHAR2(n)``
+   * - ``TEXT``
      - Any ``n``
-     - ``VARCHAR(n)`` or ``TEXT``
+     - ``TEXT``
    * - ``TIMESTAMP``
      -  
      - ``DATETIME``
@@ -165,15 +165,15 @@ Consider Oracle's ``HR.EMPLOYEES`` sample table:
 
       CREATE TABLE employees
          ( employee_id NUMBER(6)
-         , first_name VARCHAR2(20)
-         , last_name VARCHAR2(25)
+         , first_name TEXT
+         , last_name TEXT
          CONSTRAINT emp_last_name_nn NOT NULL
-         , email VARCHAR2(25)
+         , email TEXT
          CONSTRAINT emp_email_nn NOT NULL
-         , phone_number VARCHAR2(20)
+         , phone_number TEXT
          , hire_date DATE
          CONSTRAINT emp_hire_date_nn NOT NULL
-         , job_id VARCHAR2(10)
+         , job_id TEXT
          CONSTRAINT emp_job_nn NOT NULL
          , salary NUMBER(8,2)
          , commission_pct NUMBER(2,2)
@@ -208,12 +208,12 @@ This table rewritten for SQream DB would be created like this:
    CREATE TABLE employees
    (
      employee_id      SMALLINT NOT NULL,
-     first_name       VARCHAR(20),
-     last_name        VARCHAR(25) NOT NULL,
-     email            VARCHAR(20) NOT NULL,
-     phone_number     VARCHAR(20),
+     first_name       TEXT,
+     last_name        TEXT NOT NULL,
+     email            TEXT NOT NULL,
+     phone_number     TEXT,
      hire_date        DATE NOT NULL,
-     job_id           VARCHAR(10) NOT NULL,
+     job_id           TEXT NOT NULL,
      salary           FLOAT,
      commission_pct   REAL,
      manager_id       SMALLINT,
