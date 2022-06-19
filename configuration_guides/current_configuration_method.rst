@@ -72,8 +72,8 @@ SQream uses cluster-based configuration, enabling you to centralize configuratio
 
 For more information, see the following:
 
-* `Using SQream SQL <https://docs.sqream.com/en/2020.3.2.1/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
-* `SQream Acceleration Studio <https://docs.sqream.com/en/2020.3.2.1/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
+* `Using SQream SQL <https://docs.sqream.com/en/v2020.3.2.1/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
+* `SQream Acceleration Studio <https://docs.sqream.com/en/v2020.3.2.1/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
 
 For more information on flag-based access to cluster-based configuration, see **Configuration Flag Types** below.
 
@@ -92,8 +92,8 @@ For example, when the query below has completed executing, the values configured
 
 For more information, see the following:
 
-* `Using SQream SQL <https://docs.sqream.com/en/2020.3.2.1/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
-* `SQream Acceleration Studio <https://docs.sqream.com/en/2020.3.2.1/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
+* `Using SQream SQL <https://docs.sqream.com/en/v2020.3.2.1/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
+* `SQream Acceleration Studio <https://docs.sqream.com/en/v2020.3.2.1/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
 
 Configuration Flag Types
 ==========
@@ -624,8 +624,6 @@ The following table describes the **Generic** and **Administration** configurati
      - Interprets ASCII-only strings as **VARCHAR** instead of **TEXT**. Used to preserve legacy behavior in existing customers.
      - boolean
      - ``FALSE``
-	 
-
 
 Configuration Commands
 ==========	 
@@ -698,8 +696,8 @@ Configuration Roles
 ===========
 SQream divides flags into the following roles, each with their own set of permissions:
 
-* `Administration flags <https://docs.sqream.com/en/2020.3.2.1/configuration_guides/admin_flags.html>`_: can be modified by administrators on a session and cluster basis using the ``ALTER SYSTEM SET`` command.
-* `Generic flags <https://docs.sqream.com/en/2020.3.2.1/configuration_guides/generic_flags.html>`_: can be modified by standard users on a session basis.
+* `Administration flags <https://docs.sqream.com/en/v2020.3.2.1/configuration_guides/admin_flags.html>`_: can be modified by administrators on a session and cluster basis using the ``ALTER SYSTEM SET`` command.
+* `Generic flags <https://docs.sqream.com/en/v2020.3.2.1/configuration_guides/generic_flags.html>`_: can be modified by standard users on a session basis.
 
 Showing All Flags in the Catalog Table
 =======
@@ -716,7 +714,7 @@ The following is an example of a catalog table query:
 .. code-block:: console
    
    externalTableBlobEstimate, 100, 100, default,
-   varcharEncoding, ascii, ascii, default, Changes the expected encoding for Varchar columns
+   textEncoding, ascii, ascii, default, Changes the expected encoding for Text columns
    useCrcForTextJoinKeys, true, true, default,
    hiveStyleImplicitStringCasts, false, false, default,
 

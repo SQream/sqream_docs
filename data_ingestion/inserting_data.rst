@@ -53,7 +53,7 @@ SQream therefore recommends:
 
 * Applications such as :ref:`Tableau<connect_to_tableau>` and others have been tested, and work
 
-* Data types were not over-provisioned (e.g. don't use VARCHAR(2000) to store a short string)
+* Data types were not over-provisioned (e.g. don't use TEXT to store a short string)
 
 File Soure Location when Loading
 --------------------------------
@@ -78,27 +78,27 @@ SQream DB's :ref:`COPY FROM<copy_from>` syntax can be used to load CSV files, bu
      - ORC
      - Streaming data
    * - :ref:`copy_from`
-     - ✓
-     - ✗
-     - ✗
-     - ✗
+     - Supported
+     - Not supported
+     - Not supported
+     - Not supported
    * - :ref:`external_tables`
-     - ✓
-     - ✓
-     - ✓
-     - ✗
+     - Supported
+     - Supported
+     - Supported
+     - Not supported
    * - :ref:`insert`
-     - ✗
-     - ✗
-     - ✗
-     - ✓ (Python, JDBC, Node.JS)
+     - Not supported
+     - Not supported
+     - Not supported
+     - Supported (Python, JDBC, Node.JS)
 
 Unsupported Data Types
 -----------------------------
 
 SQream DB doesn't support the entire set of features that some other database systems may have, such as ``ARRAY``, ``BLOB``, ``ENUM``, ``SET``, etc.
 
-These data types will have to be converted before load. For example, ``ENUM`` can often be stored as a ``VARCHAR``.
+These data types will have to be converted before load. For example, ``ENUM`` can often be stored as a ``TEXT``.
 
 Handing Extended Errors
 ----------------------------
@@ -157,7 +157,7 @@ Type Support and Behavior Notes
      - ``DATE``
      - ``DATETIME``
    * - ``BOOLEAN``
-     - ✓ 
+     - Supported 
      - 
      - 
      - 
@@ -170,7 +170,7 @@ Type Support and Behavior Notes
    * - ``INT16``
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -182,7 +182,7 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -194,7 +194,7 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -206,7 +206,7 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -218,7 +218,7 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -230,7 +230,7 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
    * - ``INT96`` [#f3]_
@@ -243,7 +243,7 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓ [#f4]_
+     - Supported [#f4]_
 
 * If a Parquet file has an unsupported type like ``enum``, ``uuid``, ``time``, ``json``, ``bson``, ``lists``, ``maps``, but the data is not referenced in the table (it does not appear in the :ref:`SELECT` query), the statement will succeed. If the column is referenced, an error will be thrown to the user, explaining that the type is not supported, but the column may be ommited.
 
@@ -280,11 +280,11 @@ Type Support and Behavior Notes
      - ``DATE``
      - ``DATETIME``
    * - ``boolean``
-     - ✓ 
-     - ✓ [#f5]_
-     - ✓ [#f5]_
-     - ✓ [#f5]_
-     - ✓ [#f5]_
+     - Supported 
+     - Supported [#f5]_
+     - Supported [#f5]_
+     - Supported [#f5]_
+     - Supported [#f5]_
      - 
      - 
      - 
@@ -292,10 +292,10 @@ Type Support and Behavior Notes
      - 
    * - ``tinyint``
      - ○ [#f6]_
-     - ✓
-     - ✓
-     - ✓
-     - ✓
+     - Supported
+     - Supported
+     - Supported
+     - Supported
      - 
      - 
      - 
@@ -304,9 +304,9 @@ Type Support and Behavior Notes
    * - ``smallint``
      - ○ [#f6]_
      - ○ [#f7]_
-     - ✓
-     - ✓
-     - ✓
+     - Supported
+     - Supported
+     - Supported
      - 
      - 
      - 
@@ -316,8 +316,8 @@ Type Support and Behavior Notes
      - ○ [#f6]_
      - ○ [#f7]_
      - ○ [#f7]_
-     - ✓
-     - ✓
+     - Supported
+     - Supported
      - 
      - 
      - 
@@ -328,7 +328,7 @@ Type Support and Behavior Notes
      - ○ [#f7]_
      - ○ [#f7]_
      - ○ [#f7]_
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -340,8 +340,8 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓
-     - ✓
+     - Supported
+     - Supported
      - 
      - 
      - 
@@ -351,12 +351,12 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓
-     - ✓
+     - Supported
+     - Supported
      - 
      - 
      - 
-   * - ``string`` / ``char`` / ``varchar``
+   * - ``string`` / ``char`` / ``text``
      - 
      - 
      - 
@@ -364,7 +364,7 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
    * - ``date``
@@ -376,8 +376,8 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓
-     - ✓
+     - Supported
+     - Supported
    * - ``timestamp``, ``timestamp`` with timezone
      - 
      - 
@@ -388,7 +388,7 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓
+     - Supported
 
 * If an ORC file has an unsupported type like ``binary``, ``list``, ``map``, and ``union``, but the data is not referenced in the table (it does not appear in the :ref:`SELECT` query), the statement will succeed. If the column is referenced, an error will be thrown to the user, explaining that the type is not supported, but the column may be ommited.
 
@@ -459,16 +459,16 @@ Further Reading and Migration Guides
 
 .. rubric:: Footnotes
 
-.. [#f0] Text values include ``TEXT``, ``VARCHAR``, and ``NVARCHAR``
+.. [#f0] Text values include ``TEXT``.
 
-.. [#f2] With UTF8 annotation
+.. [#f2] With UTF8 annotation.
 
-.. [#f3] With ``TIMESTAMP_NANOS`` or ``TIMESTAMP_MILLIS`` annotation
+.. [#f3] With ``TIMESTAMP_NANOS`` or ``TIMESTAMP_MILLIS`` annotation.
 
 .. [#f4] Any microseconds will be rounded down to milliseconds.
 
-.. [#f5] Boolean values are cast to 0, 1
+.. [#f5] Boolean values are cast to 0, 1.
 
-.. [#f6] Will succeed if all values are 0, 1
+.. [#f6] Will succeed if all values are 0, 1.
 
-.. [#f7] Will succeed if all values fit the destination type
+.. [#f7] Will succeed if all values fit the destination type.

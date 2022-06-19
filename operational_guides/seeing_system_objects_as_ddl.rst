@@ -22,7 +22,7 @@ Getting the DDL for a table
    farm=> SELECT GET_DDL('cool_animals');
    create table "public"."cool_animals" (
      "id" int not null,
-     "name" varchar(30) not null,
+     "name" text not null,
      "weight" double null,
      "is_agressive" bool default false not null )
      ;
@@ -142,7 +142,7 @@ Exporting database DDL to a client
    farm=> SELECT DUMP_DATABASE_DDL();
    create table "public"."cool_animals" (
      "id" int not null,
-     "name" varchar(30) not null,
+     "name" text not null,
      "weight" double null,
      "is_agressive" bool default false not null
    )
