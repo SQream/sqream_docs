@@ -20,7 +20,7 @@ The following table describes the String types:
      - Data Size (Not Null, Uncompressed)
      - Example
    * - ``TEXT [(n)]``
-     - Varaiable length string - UTF-8 unicode. ``NVARCHAR`` is synonymous with ``TEXT``.
+     - Variable length string - UTF-8 unicode. ``NVARCHAR`` is synonymous with ``TEXT``.
      - Up to ``4*n`` bytes
      - ``'キウイは楽しい鳥です'``
 
@@ -41,7 +41,7 @@ String types can be written with standard SQL string literals, which are enclose
 
 Size
 ^^^^^^
-``VARCHAR(n)`` can occupy up to *n* bytes, whereas ``TEXT(n)`` can occupy up to *4*n* bytes. However, the size of strings is variable and is compressed by SQream.
+``TEXT(n)`` can occupy up to *4*n* bytes. However, the size of strings is variable and is compressed by SQream.
 
 String Examples
 ^^^^^^^^^^
