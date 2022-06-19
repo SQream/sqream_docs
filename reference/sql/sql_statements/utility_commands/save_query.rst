@@ -56,7 +56,7 @@ Notes
 
 * Query parameters can be used as substitutes for literal expressions. Parameters cannot be used to substitute identifiers, column names, table names, or other parts of the query.
 
-* Query parameters of a string datatype (like ``VARCHAR``) must be of a fixed length, and can be used in equality checks, but not patterns (e.g. :ref:`like`, :ref:`rlike`, etc)
+* Query parameters of a string datatype (like ``TEXT``) must be of a fixed length, and can be used in equality checks, but not patterns (e.g. :ref:`like`, :ref:`rlike`, etc)
 
 * Query parameters' types are inferred at compile time.
 
@@ -70,14 +70,14 @@ Assume a table named ``nba``, with the following structure:
    
    CREATE TABLE nba
    (
-      Name varchar(40),
-      Team varchar(40),
+      Name text,
+      Team text,
       Number tinyint,
-      Position varchar(2),
+      Position text,
       Age tinyint,
-      Height varchar(4),
+      Height text,
       Weight real,
-      College varchar(40),
+      College text,
       Salary float
     );
 
