@@ -146,8 +146,8 @@ For example:
    
    CREATE TABLE t (
       id BIGINT NOT NULL CHECK('CS "sequence"'),
-      y VARCHAR(110) CHECK('CS "lz4"'), -- General purpose text compression
-      z VARCHAR(80) CHECK('CS "dict"'), -- Low cardinality column
+      y TEXT CHECK('CS "lz4"'), -- General purpose text compression
+      z TEXT CHECK('CS "dict"'), -- Low cardinality column
       
    );
 

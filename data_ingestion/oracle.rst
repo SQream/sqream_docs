@@ -134,7 +134,7 @@ Refer to the table below to match the Oracle source data type to a new SQream DB
 
    * - ``TEXT``
      - Any ``n``
-     - ``VARCHAR(n)`` or ``TEXT``
+     - ``TEXT``
    * - ``TIMESTAMP``
      -  
      - ``DATETIME``
