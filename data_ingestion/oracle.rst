@@ -132,9 +132,9 @@ Refer to the table below to match the Oracle source data type to a new SQream DB
      - f > 0
      - ``FLOAT`` / ``DOUBLE``
 
-   * - ``VARCHAR(n)``, ``VARCHAR2(n)``
+   * - ``TEXT``
      - Any ``n``
-     - ``VARCHAR(n)`` or ``TEXT``
+     - ``TEXT``
    * - ``TIMESTAMP``
      -  
      - ``DATETIME``

@@ -25,7 +25,7 @@ Arguments
    * - Parameter
      - Description
    * - ``expr``
-     - Text expression (``VARCHAR``, ``TEXT``)
+     - Text expression ``TEXT``)
 
 Returns
 ============
@@ -50,7 +50,7 @@ Calculate a CRC-64 hash of a string
 .. code-block:: psql
 
    numbers=> SELECT CRC64(x) FROM 
-   .    (VALUES ('This is a relatively long text string, that can be converted to a shorter hash' :: varchar(80)))
+   .    (VALUES ('This is a relatively long text string, that can be converted to a shorter hash' :: text))
    .    as t(x);
    crc64               
    --------------------

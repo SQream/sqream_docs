@@ -40,7 +40,7 @@ For these examples, consider the following table and contents:
 
 .. code-block:: postgres
    
-   CREATE TABLE t (id INT NOT NULL, name VARCHAR(30), weight INT);
+   CREATE TABLE t (id INT NOT NULL, name TEXT, weight INT);
    
    INSERT INTO t VALUES (1, 'Kangaroo', 120), (2, 'Koala', 20), (3, 'Wombat', 60)
                        ,(4, 'Kappa', NULL),(5, 'Echidna', 8),(6, 'Chupacabra', NULL)

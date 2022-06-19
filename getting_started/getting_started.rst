@@ -147,7 +147,7 @@ The ``CREATE TABLE`` syntax is used to create your first table. This table inclu
 
    CREATE TABLE cool_animals (
       id INT NOT NULL,
-      name VARCHAR(20),
+      name TEXT,
       weight INT
    );
 
@@ -163,7 +163,7 @@ You can drop an existing table and create a new one by adding the ``OR REPLACE``
 
    CREATE OR REPLACE TABLE cool_animals (
       id INT NOT NULL,
-      name VARCHAR(20),
+      name TEXT,
       weight INT
    );
 
@@ -180,7 +180,7 @@ You can list the full, verbose ``CREATE TABLE`` statement for a table by using t
    test=> SELECT GET_DDL('cool_animals');
    create table "public"."cool_animals" (
    "id" int not null,
-   "name" varchar(20),
+   "name" text,
    "weight" int
    );
 
