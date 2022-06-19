@@ -79,5 +79,5 @@ The following table shows the possible Integer value conversions:
      - Details
    * - ``REAL``, ``DOUBLE``
      - ``1`` → ``1.0``, ``-32`` → ``-32.0``
-   * - ``TEXT`` (All numberic values must fit in the string length)
+   * - ``TEXT`` (All numeric values must fit in the string length)
      - ``1`` → ``'1'``, ``2451`` → ``'2451'``
