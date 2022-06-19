@@ -626,12 +626,7 @@ The following table describes the **Generic** and **Administration** configurati
      - boolean
      - ``FALSE``
 	 
-   * - ``varcharIdentifiers``
-     - Administration
-     - Regular
-     - Activates using varchar as an identifier.
-     - boolean
-     - ``true``
+
 
 Configuration Commands
 ~~~~~~~~~~~~~~~	 
