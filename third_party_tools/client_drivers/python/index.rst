@@ -351,7 +351,7 @@ This example loads 10,000 rows of dummy data to a SQream DB instance
                       , clustered=True)
    
    # Create a table for loading
-   create = 'create or replace table perf (b bool, t tinyint, sm smallint, i int, bi bigint, f real, d double, s text, ss text, dt date, dtt datetime)'
+   create = 'create or replace table perf (b bool, t tinyint, sm smallint, i int, bi bigint, f real, d double, s varchar(12), ss text, dt date, dtt datetime)'
    con.execute(create)
 
    # After creating the table, we can load data into it with the INSERT command
@@ -471,8 +471,8 @@ For example:
    'employees'
    , metadata 
    , sa.Column('id', sa.Integer)
-   , sa.Column('name', sa.TEXT)
-   , sa.Column('lastname', sa.TEXT)
+   , sa.Column('name', sa.VARCHAR(32))
+   , sa.Column('lastname', sa.VARCHAR(32))
    , sa.Column('salary', sa.Float)
    )
 

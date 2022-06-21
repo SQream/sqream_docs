@@ -4,7 +4,7 @@
 Inserting Data from a Parquet File
 **********************
 
-This guide covers inserting data from Parquet files into SQream DB using :ref:`FOREIGN TABLE<external_tables>`. 
+This guide covers inserting data from Parquet files into SQream DB using :ref:`FOREIGN TABLE<foreign_tables>`. 
 
 .. contents:: In this topic:
    :local:
@@ -33,7 +33,7 @@ Prepare the source Parquet files, with the following requirements:
      - ``DATE``
      - ``DATETIME``
    * - ``BOOLEAN``
-     - ✓ 
+     - Supported 
      - 
      - 
      - 
@@ -46,7 +46,7 @@ Prepare the source Parquet files, with the following requirements:
    * - ``INT16``
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -58,7 +58,7 @@ Prepare the source Parquet files, with the following requirements:
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -70,7 +70,7 @@ Prepare the source Parquet files, with the following requirements:
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -82,7 +82,7 @@ Prepare the source Parquet files, with the following requirements:
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -94,7 +94,7 @@ Prepare the source Parquet files, with the following requirements:
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -106,7 +106,7 @@ Prepare the source Parquet files, with the following requirements:
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
    * - ``INT96`` [#f3]_
@@ -119,7 +119,7 @@ Prepare the source Parquet files, with the following requirements:
      - 
      - 
      - 
-     - ✓ [#f4]_
+     - Supported [#f4]_
 
 * If a Parquet file has an unsupported type like ``enum``, ``uuid``, ``time``, ``json``, ``bson``, ``lists``, ``maps``, but the data is not referenced in the table (it does not appear in the :ref:`SELECT` query), the statement will succeed. If the column is referenced, an error will be thrown to the user, explaining that the type is not supported, but the column may be ommited. This can be worked around. See more information in the examples.
 
@@ -161,7 +161,7 @@ For example, to import the data from ``nba.parquet``, we will first look at the 
 * The file is stored on S3, at ``s3://sqream-demo-data/nba.parquet``.
 
 
-We will make note of the file structure to create a matching ``CREATE EXTERNAL TABLE`` statement.
+We will make note of the file structure to create a matching ``CREATE FOREIGN TABLE`` statement.
 
 .. code-block:: postgres
    

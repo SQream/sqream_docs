@@ -81,7 +81,7 @@ Examples
    '1997-01-01' -- This is a string
 
 
-The actual data type of the value changes based on context, the format used, and the value itself. In the example below, the first value is interpreted as a ``DATE``, while the second is interpreted as ``TEXT``.
+The actual data type of the value changes based on context, the format used, and the value itself. In the example below, the first value is interpreted as a ``DATE``, while the second is interpreted as a ``VARCHAR``.
 
 .. code-block:: postgres
 
@@ -127,7 +127,7 @@ Syntax reference
        | REAL
        | DATE
        | DATETIME
-       | TEXT ( digits )
+       | VARCHAR ( digits )
 
 Examples
 ----------

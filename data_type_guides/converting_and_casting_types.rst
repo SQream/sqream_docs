@@ -15,7 +15,7 @@ You can rectify this by casting the value to a larger data type, as shown below:
 
 SQream supports the following three data conversion types:
 
-* ``CAST(<value> TO <data type>)``, to convert a value from one type to another. For example, ``CAST('1997-01-01' TO DATE)``, ``CAST(3.45 TO SMALLINT)``, ``CAST(some_column TO TEXT)``.
+* ``CAST(<value> TO <data type>)``, to convert a value from one type to another. For example, ``CAST('1997-01-01' TO DATE)``, ``CAST(3.45 TO SMALLINT)``, ``CAST(some_column TO VARCHAR(30))``.
 
    ::
   

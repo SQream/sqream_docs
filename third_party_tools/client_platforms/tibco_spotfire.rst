@@ -141,7 +141,7 @@ After creating a connection, you can create your SQream data source template.
                 <to>Integer   </to>
               </type-mapping>
               <type-mapping>
-                <from>TEXT)   </from>
+                <from>VARCHAR(2048)   </from>
                 <to>String   </to>
               </type-mapping>
               <type-mapping>

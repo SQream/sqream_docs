@@ -186,15 +186,15 @@ We will make note of the file structure to create a matching ``CREATE FOREIGN TA
    
    CREATE FOREIGN TABLE ext_nba
    (
-        Name       TEXT,
-        Team       TEXT,
-        Number     BIGINT,
-        Position   TEXT,
-        Age        BIGINT,
-        Height     TEXT,
-        Weight     BIGINT,
-        College    TEXT,
-        Salary     FLOAT
+      "Name" varchar(40),
+      "Team" varchar(40),
+      "Number" tinyint,
+      "Position" varchar(2),
+      "Age" tinyint,
+      "Height" varchar(4),
+      "Weight" real,
+      "College" varchar(40),
+      "Salary" float
     )
       WRAPPER orc_fdw
       OPTIONS
@@ -212,7 +212,7 @@ We will make note of the file structure to create a matching ``CREATE FOREIGN TA
 4. Verify table contents
 ====================================
 
-External tables do not verify file integrity or structure, so verify that the table definition matches up and contains the correct data.
+Foreign tables do not verify file integrity or structure, so verify that the table definition matches up and contains the correct data.
 
 .. code-block:: psql
    
@@ -247,7 +247,7 @@ Working around unsupported column types
 
 Suppose you only want to load some of the columns - for example, if one of the columns isn't supported.
 
-By ommitting unsupported columns from queries that access the ``EXTERNAL TABLE``, they will never be called, and will not cause a "type mismatch" error.
+By ommitting unsupported columns from queries that access the ``FOREIGN TABLE``, they will never be called, and will not cause a "type mismatch" error.
 
 For this example, assume that the ``Position`` column isn't supported because of its type.
 
@@ -288,7 +288,7 @@ Loading a table from a directory of ORC files on HDFS
 .. code-block:: postgres
 
    CREATE FOREIGN TABLE ext_users
-     (id INT NOT NULL, name TEXT NOT NULL, email TEXT NOT NULL)  
+     (id INT NOT NULL, name TEXT(30) NOT NULL, email TEXT(50) NOT NULL)  
    WRAPPER orc_fdw
      OPTIONS
        ( 
@@ -302,8 +302,8 @@ Loading a table from a bucket of files on S3
 
 .. code-block:: postgres
 
-   CREATE FOREIGN TABLE ext_users
-     (id INT NOT NULL, name TEXT NOT NULL, email TEXT NOT NULL)  
+   CREATE FOREIGN TABLE TEXT
+     (id INT NOT NULL, name TEXT NOT NULL, email TEXT(50) NOT NULL)  
    WRAPPER orc_fdw
    OPTIONS
      (  LOCATION = 's3://pp-secret-bucket/users/*.ORC',
