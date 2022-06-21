@@ -140,7 +140,7 @@ The following is an example of the syntax used to create a standard table:
 
    CREATE TABLE cool_animals (
       id INT NOT NULL,
-      name text NOT NULL,
+      name varchar(30) NOT NULL,
       weight FLOAT,
       is_agressive BOOL
    );
@@ -153,8 +153,8 @@ The following is an example of the syntax used to create a table with default va
 .. code-block:: postgres
 
    CREATE TABLE cool_animals (
-      id INT NOT NULL,
-      name text NOT NULL,
+      name VARCHAR(30) NOT NULL,
+      country VARCHAR(30) DEFAULT 'Unknown' NOT NULL
       weight FLOAT,
       is_agressive BOOL DEFAULT false NOT NULL
    );
@@ -170,7 +170,7 @@ The following is an example of the syntax used to create a table with an identit
 
    CREATE TABLE users (
       id BIGINT IDENTITY(0,1) NOT NULL , -- Start with 0, increment by 1
-      name TEXT NOT NULL,
+      name VARCHAR(30) NOT NULL,
       country TEXT DEFAULT 'Unknown' NOT NULL
    );
 
@@ -204,7 +204,7 @@ The following is an example of the syntax used to create a table with a clusteri
    CREATE TABLE users (
       name TEXT NOT NULL,
       start_date datetime not null,
-      country TEXT DEFAULT 'Unknown' NOT NULL
+      country VARCHAR(30) DEFAULT 'Unknown' NOT NULL
    ) CLUSTER BY start_date;
    
 For more information on data clustering, see :ref:`data_clustering`.

@@ -68,6 +68,9 @@ Notes
 
 * If the value is NULL, the result is NULL.
 
+* PATINDEX works on ``VARCHAR`` text types only.
+
+
 Examples
 ===========
 
