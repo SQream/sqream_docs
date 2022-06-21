@@ -11,7 +11,7 @@ Syntax
 
 .. code-block:: postgres
 
-   TO_HEX( expr ) --> TEXT
+   TO_HEX( expr ) --> VARCHAR
 
 Arguments
 ============
@@ -28,7 +28,7 @@ Arguments
 Returns
 ============
 
-* Representation of the hexadecimal number of type ``TEXT``.
+* Representation of the hexadecimal number of type ``VARCHAR``.
 
 
 Examples

@@ -96,7 +96,7 @@ Unsupported Data Types
 
 SQream DB doesn't support the entire set of features that some other database systems may have, such as ``ARRAY``, ``BLOB``, ``ENUM``, ``SET``, etc.
 
-These data types will have to be converted before load. For example, ``ENUM`` can often be stored as a ``TEXT``.
+These data types will have to be converted before load. For example, ``ENUM`` can often be stored as a ``VARCHAR``.
 
 Handing Extended Errors
 ----------------------------
@@ -354,7 +354,7 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-   * - ``string`` / ``char`` / ``text``
+   * - ``string`` / ``char`` / ``varchar``
      - 
      - 
      - 
@@ -457,7 +457,7 @@ Further Reading and Migration Guides
 
 .. rubric:: Footnotes
 
-.. [#f0] Text values include ``TEXT``.
+.. [#f0] Text values include ``TEXT``, ``VARCHAR``, and ``NVARCHAR``.
 
 .. [#f2] With UTF8 annotation.
 

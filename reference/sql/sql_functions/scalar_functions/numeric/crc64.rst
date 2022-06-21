@@ -25,7 +25,7 @@ Arguments
    * - Parameter
      - Description
    * - ``expr``
-     - Text expression (``TEXT``)
+     - Text expression (``VARCHAR``, ``TEXT``)
 
 Returns
 ============
@@ -37,7 +37,7 @@ Notes
 
 * If the input value is NULL, the result is NULL.
 
-* The ``CRC64_JOIN`` can be used with ``TEXT`` only.
+* The ``CRC64_JOIN`` can be used with ``VARCHAR`` only. It can not be used with ``TEXT``.
 
 * The ``CRC64_JOIN`` variant ignores leading whitespace when used as a ``JOIN`` key.
 
@@ -50,7 +50,7 @@ Calculate a CRC-64 hash of a string
 .. code-block:: psql
 
    numbers=> SELECT CRC64(x) FROM 
-   .    (VALUES ('This is a relatively long text string, that can be converted to a shorter hash' ::text))
+   .    (VALUES ('This is a relatively long text string, that can be converted to a shorter hash' :: varchar(80)))
    .    as t(x);
    crc64               
    --------------------

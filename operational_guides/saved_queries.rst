@@ -18,7 +18,7 @@ Query parameters can be used as substitutes for literal expressions in queries.
 
 * Parameters cannot be used to substitute things like column names and table names.
 
-* Query parameters of a string datatype (like ``TEXT``) must be of a fixed length, and can be used in equality checks, but not patterns (e.g. :ref:`like`, :ref:`rlike`, etc.)
+* Query parameters of a string datatype (like ``VARCHAR``) must be of a fixed length, and can be used in equality checks, but not patterns (e.g. :ref:`like`, :ref:`rlike`, etc.)
 
 Creating a saved query
 ======================

@@ -14,7 +14,7 @@ int main () {
                "raviga", "sqream");
 
    run_direct_query(&sqc,
-       "CREATE TABLE animals (id INT NOT NULL, name TEXT NOT NULL)");
+       "CREATE TABLE animals (id INT NOT NULL, name VARCHAR(10) NOT NULL)");
 
    // prepare the statement
    sqc.new_query("INSERT INTO animals VALUES (?, ?)");
@@ -27,7 +27,7 @@ int main () {
 
    for (int i = 0; i < len; ++i) {  
       sqc.set_int(0, row0[i]);
-      sqc.set_text(1, row1[i]);
+      sqc.set_varchar(1, row1[i]);
       sqc.next_query_row();
    }  
 

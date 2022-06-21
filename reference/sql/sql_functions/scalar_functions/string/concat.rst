@@ -48,14 +48,14 @@ For these examples, assume a table named ``nba``, with the following structure:
    
    CREATE TABLE nba
    (
-      Name text,
-      Team text,
+      Name varchar(40),
+      Team varchar(40),
       Number tinyint,
-      Position text,
+      Position varchar(2),
       Age tinyint,
-      Height text,
+      Height varchar(40),
       Weight real,
-      College text,
+      College varchar(40),
       Salary float
     );
 
@@ -76,7 +76,7 @@ Convert values to string types before concatenation
 .. code-block:: psql
 
    
-   nba=> SELECT ("Age" :: TEXT) || "Name" FROM nba ORDER BY 1 DESC LIMIT 5;
+   nba=> SELECT ("Age" :: VARCHAR(2)) || "Name" FROM nba ORDER BY 1 DESC LIMIT 5;
    ?column?        
    ----------------
    40Tim Duncan    
@@ -116,7 +116,7 @@ Add a space and concatenate it first to bypass the space trimming issue
 
 .. code-block:: psql
 
-   nba=> SELECT ("Age" :: TEXT || (' ' || "Name")) FROM nba ORDER BY 1 DESC LIMIT 5;
+   nba=> SELECT ("Age" :: VARCHAR(2) || (' ' || "Name")) FROM nba ORDER BY 1 DESC LIMIT 5;
    ?column?         
    -----------------
    40 Tim Duncan    
