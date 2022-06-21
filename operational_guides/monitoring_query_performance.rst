@@ -47,8 +47,7 @@ First, create a foreign table for the logs
 .. code-block:: postgres
    CREATE FOREIGN TABLE logs 
    (
-
-     start_marker      TEXT,
+     start_marker      VARCHAR(4),
      row_id            BIGINT,
      timestamp         DATETIME,
      message_level     TEXT,
@@ -62,7 +61,7 @@ First, create a foreign table for the logs
      service_name      TEXT,
      message_type_id   INT,
      message           TEXT,
-     end_message       TEXT
+     end_message       VARCHAR(5)
    )
    WRAPPER cdv_fdw
    OPTIONS
@@ -201,7 +200,7 @@ Commonly Seen Nodes
      - Description
    * - ``CpuDecompress``
      - CPU
-     - Decompression operation, common for longer ``TEXT`` types
+     - Decompression operation, common for longer ``VARCHAR`` types
    * - ``CpuLoopJoin``
      - CPU
      - A non-indexed nested loop join, performed on the CPU
@@ -461,11 +460,7 @@ Identifying the Offending Nodes
           494 |     194 | DeferredGather       |    133241 |     20 |              6662 | 2020-09-04 19:07:03 |            193 |         |       |                 |    0.41
           [...]
           494 |     221 | ReadTable            |  20000000 |     20 |           1000000 | 2020-09-04 19:07:01 |            220 | 20MB    |       | public.part     |     0.1
-
-
-
-
-
+  
    When you see ``DeferredGather`` operations taking more than a few seconds, that's a sign that you're selecting too much data.
    In this case, the DeferredGather with node ID 166 took over 21 seconds.
    
@@ -626,8 +621,225 @@ Common Solutions for Improving Filtering
 * Use :ref:`clustering keys and naturally ordered data<data_clustering>` in your filters.
 * Avoid full table scans when possible
 
+4. Joins with ``varchar`` Keys
+-----------------------------------
+Joins on long text keys, such as ``varchar(100)`` do not perform as well as numeric data types or very short text keys.
 
-4. High Selectivity Data
+Identifying the Situation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+When a join is inefficient, you may note that a query spends a lot of time on the ``Join`` node.
+For example, consider these two table structures:
+   
+.. code-block:: postgres
+   CREATE TABLE t_a 
+   (
+     amt            FLOAT NOT NULL,
+     i              INT NOT NULL,
+     ts             DATETIME NOT NULL,
+     country_code   VARCHAR(3) NOT NULL,
+     flag           VARCHAR(10) NOT NULL,
+     fk             VARCHAR(50) NOT NULL
+   );
+   CREATE TABLE t_b 
+   (
+     id          VARCHAR(50) NOT NULL
+     prob        FLOAT NOT NULL,
+     j           INT NOT NULL,
+   );
+#. 
+   Run a query.
+     
+   In this example, we will join ``t_a.fk`` with ``t_b.id``, both of which are ``VARCHAR(50)``.
+   
+   .. code-block:: postgres
+      
+      SELECT AVG(t_b.j :: BIGINT),
+             t_a.country_code
+      FROM t_a
+        JOIN t_b ON (t_a.fk = t_b.id)
+      GROUP BY t_a.country_code
+#. 
+   
+   Observe the execution information by using the foreign table, or use ``show_node_info``
+   
+   The execution below has been shortened, but note the highlighted rows for ``Join``.
+   The ``Join`` node is by far the most time-consuming part of this statement - clocking in at 69.7 seconds
+   joining 1.5 billion records.
+   
+   .. code-block:: psql
+      :linenos:
+      :emphasize-lines: 8
+      
+      t=> SELECT show_node_info(5);
+      stmt_id | node_id | node_type            | rows       | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment    | timeSum
+      --------+---------+----------------------+------------+--------+-------------------+---------------------+----------------+-------+-------+------------+--------
+      [...]
+            5 |      19 | GpuTransform         | 1497366528 |    204 |           7340032 | 2020-09-08 18:29:03 |             18 |       |       |            |    1.46
+            5 |      20 | ReorderInput         | 1497366528 |    204 |           7340032 | 2020-09-08 18:29:03 |             19 |       |       |            |       0
+            5 |      21 | ReorderInput         | 1497366528 |    204 |           7340032 | 2020-09-08 18:29:03 |             20 |       |       |            |       0
+            5 |      22 | Join                 | 1497366528 |    204 |           7340032 | 2020-09-08 18:29:03 |             21 |       |       | inner      |    69.7
+            5 |      24 | AddSortedMinMaxMet.. |    6291456 |      1 |           6291456 | 2020-09-08 18:26:05 |             22 |       |       |            |       0
+            5 |      25 | Sort                 |    6291456 |      1 |           6291456 | 2020-09-08 18:26:05 |             24 |       |       |            |    2.06
+      [...]
+            5 |      31 | ReadTable            |    6291456 |      1 |           6291456 | 2020-09-08 18:26:03 |             30 | 235MB |       | public.t_b |    0.02
+      [...]
+            5 |      41 | CpuDecompress        |   10000000 |      2 |           5000000 | 2020-09-08 18:26:09 |             40 |       |       |            |       0
+            5 |      42 | ReadTable            |   10000000 |      2 |           5000000 | 2020-09-08 18:26:09 |             41 | 14MB  |       | public.t_a |       0
+   
+Improving Query Performance
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* In general, try to avoid ``VARCHAR`` as a join key. As a rule of thumb, ``BIGINT`` works best as a join key.
+* 
+   Convert text values on-the-fly before running the query. For example, the :ref:`crc64` function takes a text
+   input and returns a ``BIGINT`` hash.
+   
+   For example:
+   
+   .. code-block:: postgres
+      
+         SELECT AVG(t_b.j :: BIGINT),
+               t_a.country_code
+         FROM t_a
+         JOIN t_b ON (crc64_join(t_a.fk) = crc64_join(t_b.id))
+         GROUP BY t_a.country_code
+   The execution below has been shortened, but note the highlighted rows for ``Join``.
+   The ``Join`` node went from taking nearly 70 seconds, to just 6.67 seconds for joining 1.5 billion records.
+
+   .. code-block:: psql
+      :linenos:
+      :emphasize-lines: 8
+      
+      t=> SELECT show_node_info(6);
+         stmt_id | node_id | node_type            | rows       | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment    | timeSum
+         --------+---------+----------------------+------------+--------+-------------------+---------------------+----------------+-------+-------+------------+--------
+         [...]
+               6 |      19 | GpuTransform         | 1497366528 |     85 |          17825792 | 2020-09-08 18:57:04 |             18 |       |       |            |    1.48
+               6 |      20 | ReorderInput         | 1497366528 |     85 |          17825792 | 2020-09-08 18:57:04 |             19 |       |       |            |       0
+               6 |      21 | ReorderInput         | 1497366528 |     85 |          17825792 | 2020-09-08 18:57:04 |             20 |       |       |            |       0
+               6 |      22 | Join                 | 1497366528 |     85 |          17825792 | 2020-09-08 18:57:04 |             21 |       |       | inner      |    6.67
+               6 |      24 | AddSortedMinMaxMet.. |    6291456 |      1 |           6291456 | 2020-09-08 18:55:12 |             22 |       |       |            |       0
+         [...]
+               6 |      32 | ReadTable            |    6291456 |      1 |           6291456 | 2020-09-08 18:55:12 |             31 | 235MB |       | public.t_b |    0.02
+         [...]
+               6 |      43 | CpuDecompress        |   10000000 |      2 |           5000000 | 2020-09-08 18:55:13 |             42 |       |       |            |       0
+               6 |      44 | ReadTable            |   10000000 |      2 |           5000000 | 2020-09-08 18:55:13 |             43 | 14MB  |       | public.t_a |       0
+   
+* You can map some text values to numeric types by using a dimension table. Then, reconcile the values when you need them by joining the dimension table.
+
+5. Sorting on big ``VARCHAR`` fields
+---------------------------------------
+In general, SQream DB automatically inserts a ``Sort`` node which arranges the data prior to reductions and aggregations.
+When running a ``GROUP BY`` on large ``VARCHAR`` fields, you may see nodes for ``Sort`` and ``Reduce`` taking a long time.
+
+Identifying the Situation
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+When running a statement, inspect it with :ref:`show_node_info`. If you see ``Sort`` and ``Reduce`` among 
+your top five longest running nodes, there is a potential issue.
+For example:
+#. 
+   Run a query to test it out.
+     
+   
+   Our ``t_inefficient`` table contains 60,000,000 rows, and the structure is simple, but with an oversized ``country_code`` column:
+   
+   .. code-block:: postgres
+      :emphasize-lines: 5
+   
+      CREATE TABLE t_inefficient (
+         i INT NOT NULL,
+         amt DOUBLE NOT NULL,
+         ts DATETIME NOT NULL,
+         country_code VARCHAR(100) NOT NULL,
+         flag VARCHAR(10) NOT NULL,
+         string_fk VARCHAR(50) NOT NULL
+      );
+   
+   We will run a query, and inspect it's execution details:
+   
+   .. code-block:: psql
+      
+      t=> SELECT country_code,
+      .          SUM(amt)
+      .   FROM t_inefficient
+      .   GROUP BY country_code;
+      executed
+      time: 47.55s
+      
+      country_code | sum       
+      -------------+-----------
+      VUT          | 1195416012
+      GIB          | 1195710372
+      TUR          | 1195946178
+      [...]
+      
+   
+   .. code-block:: psql
+      :emphasize-lines: 8,9
+      
+      t=> select show_node_info(30);
+      stmt_id | node_id | node_type          | rows     | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment              | timeSum
+      --------+---------+--------------------+----------+--------+-------------------+---------------------+----------------+-------+-------+----------------------+--------
+           30 |       1 | PushToNetworkQueue |      249 |      1 |               249 | 2020-09-10 16:17:10 |             -1 |       |       |                      |    0.25
+           30 |       2 | Rechunk            |      249 |      1 |               249 | 2020-09-10 16:17:10 |              1 |       |       |                      |       0
+           30 |       3 | ReduceMerge        |      249 |      1 |               249 | 2020-09-10 16:17:10 |              2 |       |       |                      |    0.01
+           30 |       4 | GpuToCpu           |     1508 |     15 |               100 | 2020-09-10 16:17:10 |              3 |       |       |                      |       0
+           30 |       5 | Reduce             |     1508 |     15 |               100 | 2020-09-10 16:17:10 |              4 |       |       |                      |    7.23
+           30 |       6 | Sort               | 60000000 |     15 |           4000000 | 2020-09-10 16:17:10 |              5 |       |       |                      |    36.8
+           30 |       7 | GpuTransform       | 60000000 |     15 |           4000000 | 2020-09-10 16:17:10 |              6 |       |       |                      |    0.08
+           30 |       8 | GpuDecompress      | 60000000 |     15 |           4000000 | 2020-09-10 16:17:10 |              7 |       |       |                      |    2.01
+           30 |       9 | CpuToGpu           | 60000000 |     15 |           4000000 | 2020-09-10 16:17:10 |              8 |       |       |                      |    0.16
+           30 |      10 | Rechunk            | 60000000 |     15 |           4000000 | 2020-09-10 16:17:10 |              9 |       |       |                      |       0
+           30 |      11 | CpuDecompress      | 60000000 |     15 |           4000000 | 2020-09-10 16:17:10 |             10 |       |       |                      |       0
+           30 |      12 | ReadTable          | 60000000 |     15 |           4000000 | 2020-09-10 16:17:10 |             11 | 520MB |       | public.t_inefficient |    0.05
+
+#. We can look to see if there's any shrinking we can do on the ``GROUP BY`` key
+   
+   .. code-block:: psql
+      
+      t=> SELECT MAX(LEN(country_code)) FROM t_inefficient;
+      max
+      ---
+      3
+   With a maximum string length of just 3 characters, our ``VARCHAR(100)`` is way oversized.
+#. 
+   We can recreate the table with a more restrictive ``VARCHAR(3)``, and can examine the difference in performance:
+   
+   .. code-block:: psql
+      t=> CREATE TABLE t_efficient 
+      .     AS SELECT i,
+      .              amt,
+      .              ts,
+      .              country_code::VARCHAR(3) AS country_code,
+      .              flag
+      .         FROM t_inefficient;
+      executed
+      time: 16.03s
+      
+      t=> SELECT country_code,
+      .      SUM(amt::bigint)
+      .   FROM t_efficient
+      .   GROUP BY country_code;
+      executed
+      time: 4.75s
+      country_code | sum       
+      -------------+-----------
+      VUT          | 1195416012
+      GIB          | 1195710372
+      TUR          | 1195946178
+      [...]
+   
+   This time, the entire query took just 4.75 seconds, or just about 91% faster.
+
+Improving Sort Performance on Text Keys
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+When using VARCHAR, ensure that the maximum length defined in the table structure is as small as necessary.
+For example, if you're storing phone numbers, don't define the field as ``VARCHAR(255)``, as that affects sort performance.
+   
+You can run a query to get the maximum column length (e.g. ``MAX(LEN(a_column))``), and potentially modify the table structure.
+
+.. _high_selectivity_data_opt:
+
+6. High Selectivity Data
 --------------------------
 Selectivity is the ratio of cardinality to the number of records of a chunk. We define selectivity as :math:`\frac{\text{Distinct values}}{\text{Total number of records in a chunk}}`
 SQream DB has a hint called ``HIGH_SELECTIVITY``, which is a function you can wrap a condition in.
@@ -662,8 +874,7 @@ Improving Performance with High Selectivity Hints
    to cut out more than 60% of the result set.
 * Use when the data is uniformly distributed or random
 
-
-5. Performance of unsorted data in joins
+7. Performance of unsorted data in joins
 ------------------------------------------
 When data is not well-clustered or naturally ordered, a join operation can take a long time. 
 
@@ -726,8 +937,7 @@ To tell SQream DB to rechunk the data, wrap a condition (or several) in the ``HI
          AND EnterpriseID=1150 
          AND MSISDN='9724871140341';
 
-
-6. Manual Join Reordering
+8. Manual Join Reordering
 --------------------------------
 When joining multiple tables, you may wish to change the join order to join the smallest tables first.
 
