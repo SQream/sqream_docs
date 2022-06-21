@@ -55,15 +55,15 @@ Based on the source file structure, we we :ref:`create a foreign table<create_fo
    
    CREATE FOREIGN TABLE nba
    (
-      Name text,
-      Team text,
-      Number tinyint,
-      Position text,
-      Age tinyint,
-      Height text,
-      Weight real,
-      College text,
-      Salary float
+      "Name" varchar(40),
+      "Team" varchar(40),
+      "Number" tinyint,
+      "Position" varchar(2),
+      "Age" tinyint,
+      "Height" varchar(4),
+      "Weight" real,
+      "College" varchar(40),
+      "Salary" float
     )
       USING FORMAT CSV -- Text file
       WITH  PATH  's3://sqream-demo-data/nba_players.csv' 

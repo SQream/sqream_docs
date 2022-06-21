@@ -20,8 +20,20 @@ This section describes best practices and guidelines for designing tables.
 Use date and datetime types for columns
 -----------------------------------------
 
-When creating tables with dates or timestamps, using the purpose-built ``DATE`` and ``DATETIME`` types over integer types or ``TEXT`` will bring performance and storage footprint improvements, and in many cases huge performance improvements (as well as data integrity benefits). SQream DB stores dates and datetimes very efficiently and can strongly optimize queries using these specific types.
+When creating tables with dates or timestamps, using the purpose-built ``DATE`` and ``DATETIME`` types over integer types or ``VARCHAR`` will bring performance and storage footprint improvements, and in many cases huge performance improvements (as well as data integrity benefits). SQream DB stores dates and datetimes very efficiently and can strongly optimize queries using these specific types.
 
+Reduce varchar length to a minimum
+--------------------------------------
+
+With the ``VARCHAR`` type, the length has a direct effect on query performance.
+
+If the size of your column is predictable, by defining an appropriate column length (no longer than the maximum actual value) you will get the following benefits:
+
+* Data loading issues can be identified more quickly
+
+* SQream DB can reserve less memory for decompression operations
+
+* Third-party tools that expect a data size are less likely to over-allocate memory
 Don't flatten or denormalize data
 -----------------------------------
 
@@ -58,6 +70,12 @@ For example, if a value can't be missing (or ``NULL``), specify a ``NOT NULL`` c
 
 Not only does specifying ``NOT NULL`` save on data storage, it lets the query compiler know that a column cannot have a ``NULL`` value, which can improve query performance.
 
+Keep VARCHAR lengths to a minimum
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+While it won't make a big difference in storage, large strings allocate a lot of memory at query time.
+
+If a column's string length never exceeds 50 characters, specify ``VARCHAR(50)`` rather than an arbitrarily large number.
 
 
 Sorting 
