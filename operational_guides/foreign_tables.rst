@@ -1,22 +1,21 @@
-.. _external_tables:
+.. _foreign_tables:
 
 ***********************
-External Tables
+Foreign Tables
 ***********************
-External tables can be used to run queries directly on data without inserting it into SQream DB first.
+Foreign tables can be used to run queries directly on data without inserting it into SQream DB first.
 
-SQream DB supports read only external tables, so you can query from external tables, but you cannot insert to them, or run deletes or updates on them.
+SQream DB supports read only foreign tables, so you can query from foreign tables, but you cannot insert to them, or run deletes or updates on them.
+Running queries directly on foreign data is most effectively used for things like one off querying. If you will be repeatedly querying data, the performance will usually be better if you insert the data into SQream DB first.
 
-Running queries directly on external data is most effectively used for things like one off querying. If you will be repeatedly querying data, the performance will usually be better if you insert the data into SQream DB first.
-
-Although external tables can be used without inserting data into SQream DB, one of their main use cases is to help with the insertion process. An insert select statement on an external table can be used to insert data into SQream using the full power of the query engine to perform ETL.
+Although foreign tables can be used without inserting data into SQream DB, one of their main use cases is to help with the insertion process. An insert select statement on a foreign table can be used to insert data into SQream using the full power of the query engine to perform ETL.
 
 .. contents:: In this topic:
    :local:
    
 What Kind of Data is Supported?
 =====================================
-SQream DB supports external tables over:
+SQream DB supports foreign tables over:
 
 * text files (e.g. CSV, PSV, TSV)
 * ORC
@@ -31,9 +30,9 @@ SQream DB can stage data from:
 * :ref:`hdfs` (e.g. ``hdfs://hadoop-nn.piedpiper.com/rhendricks/*.csv``)
 
 
-Using External Tables - A Practical Example
+Using foreign tables - a practical example
 ==============================================
-Use an external table to stage data before loading from CSV, Parquet or ORC files.
+Use a foreign table to stage data before loading from CSV, Parquet or ORC files.
 
 Planning for Data Staging
 --------------------------------
@@ -45,25 +44,26 @@ For the following examples, we will want to interact with a CSV file. Here's a p
    :header-rows: 1
 
 The file is stored on :ref:`s3`, at ``s3://sqream-demo-data/nba_players.csv``.
-We will make note of the file structure, to create a matching ``CREATE_EXTERNAL_TABLE`` statement.
+We will make note of the file structure, to create a matching ``CREATE_FOREIGN_TABLE`` statement.
 
-Creating External Tables
+
+Creating the foreign table
 -----------------------------
-Based on the source file structure, we we :ref:`create an external table<create_external_table>` with the appropriate structure, and point it to the file.
+Based on the source file structure, we we :ref:`create a foreign table<create_foreign_table>` with the appropriate structure, and point it to the file.
 
 .. code-block:: postgres
    
-   CREATE EXTERNAL TABLE nba
+   CREATE FOREIGN TABLE nba
    (
-      Name text,
-      Team text,
-      Number tinyint,
-      Position text,
-      Age tinyint,
-      Height text,
-      Weight real,
-      College text,
-      Salary float
+      "Name" varchar(40),
+      "Team" varchar(40),
+      "Number" tinyint,
+      "Position" varchar(2),
+      "Age" tinyint,
+      "Height" varchar(4),
+      "Weight" real,
+      "College" varchar(40),
+      "Salary" float
     )
       USING FORMAT CSV -- Text file
       WITH  PATH  's3://sqream-demo-data/nba_players.csv' 
@@ -72,10 +72,10 @@ Based on the source file structure, we we :ref:`create an external table<create_
 The file format in this case is CSV, and it is stored as an :ref:`s3` object (if the path is on :ref:`hdfs`, change the URI accordingly).
 We also took note that the record delimiter was a DOS newline (``\r\n``).
 
-Querying External Tables
+Querying foreign tables
 ------------------------------
 
-Let's peek at the data from the external table:
+Let's peek at the data from the foreign table:
 
 .. code-block:: psql
    
@@ -117,14 +117,14 @@ Assume we are unhappy with weight being in pounds, because we want to use kilogr
    Cristiano Felicio        | Chicago Bulls          |      6 | PF       |  23 | 6-10   | 124.7166 |                       |   525093
    [...]
 
-Now, if we're happy with the results, we can convert the staged external table to a standard table
+Now, if we're happy with the results, we can convert the staged foreign table to a standard table
 
-Converting an External Table to a Standard Database Table
+Converting an foreign table to a standard database table
 ---------------------------------------------------------------
 
-:ref:`create_table_as` can be used to materialize an external table into a regular table.
+:ref:`create_table_as` can be used to materialize a foreign table into a regular table.
 
-.. tip:: If you intend to use the table multiple times, convert the external table to a standard table.
+.. tip:: If you intend to use the table multiple times, convert the foreign table to a standard table.
 
 .. code-block:: psql
    
@@ -143,13 +143,12 @@ Converting an External Table to a Standard Database Table
    Jusuf Nurkic     | Denver Nuggets         |     23 | C        |  21 | 7-0    | 126.9841 |             |  1842000
    Andre Drummond   | Detroit Pistons        |      0 | C        |  22 | 6-11   | 126.5306 | Connecticut |  3272091
 
-
 Error Handling and Limitations
 ==================================
-* Error handling in external tables is limited. Any error that occurs during source data parsing will result in the statement aborting.
+* Error handling in foreign tables is limited. Any error that occurs during source data parsing will result in the statement aborting.
 
 * 
-   External tables are logical and do not contain any data, their structure is not verified or enforced until a query uses the table.
+   Foreign tables are logical and do not contain any data, their structure is not verified or enforced until a query uses the table.
    For example, a CSV with the wrong delimiter may cause a query to fail, even though the table has been created successfully:
    
    .. code-block:: psql
@@ -157,6 +156,4 @@ Error Handling and Limitations
       t=> SELECT * FROM nba;
       master=> select * from nba;
       Record delimiter mismatch during CSV parsing. User defined line delimiter \n does not match the first delimiter \r\n found in s3://sqream-demo-data/nba.csv
-
-* Since the data for an external table is not stored in SQream DB, it can be changed or removed at any time by an external process. As a result, the same query can return different results each time it runs against an external table. Similarly, a query might fail if the external data is moved, removed, or has changed structure.
-
+* Since the data for a foreign table is not stored in SQream DB, it can be changed or removed at any time by an external process. As a result, the same query can return different results each time it runs against a foreign table. Similarly, a query might fail if the external data is moved, removed, or has changed structure.

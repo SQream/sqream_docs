@@ -726,7 +726,7 @@ The following is an example of a catalog table query:
 .. code-block:: console
    
    externalTableBlobEstimate, 100, 100, default,
-   textEncoding, ascii, ascii, default, Changes the expected encoding for text columns
+   varcharEncoding, ascii, ascii, default, Changes the expected encoding for Varchar columns
    useCrcForTextJoinKeys, true, true, default,
    hiveStyleImplicitStringCasts, false, false, default,
 

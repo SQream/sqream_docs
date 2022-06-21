@@ -139,7 +139,7 @@ The following is an example of the syntax used to create a standard table:
 
    CREATE TABLE cool_animals (
       id INT NOT NULL,
-      name text NOT NULL,
+      name varchar(30) NOT NULL,
       weight FLOAT,
       is_agressive BOOL
    );
@@ -169,8 +169,8 @@ The following is an example of the syntax used to create a table with an identit
 
    CREATE TABLE users (
       id BIGINT IDENTITY(0,1) NOT NULL , -- Start with 0, increment by 1
-      name TEXT NOT NULL,
-      country TEXT DEFAULT 'Unknown' NOT NULL
+       name VARCHAR(30) NOT NULL,
+      country VARCHAR(30) DEFAULT 'Unknown' NOT NULL
    );
 
 .. note:: 

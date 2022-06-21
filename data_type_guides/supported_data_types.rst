@@ -51,7 +51,7 @@ The following table shows the supported data types.
      - 8 bytes
      - ``0.000003``
      - ``FLOAT``/``DOUBLE PRECISION``
-   * - ``TEXT [(n)]``
+   * - ``TEXT [(n)]``, ``NVARCHAR (n)``
      - Variable length string - UTF-8 unicode
      - Up to ``4*n`` bytes
      - ``'キウイは楽しい鳥です'``
@@ -61,6 +61,11 @@ The following table shows the supported data types.
      - 16 bytes
      - ``0.123245678901234567890123456789012345678``
      - ``DECIMAL``
+   * - ``VARCHAR (n)``
+     - Variable length string - ASCII only
+     - ``n`` bytes
+     - ``'Kiwis have tiny wings, but cannot fly.'``
+     - ``SQL VARIANT``
    * - ``DATE``
      - Date
      - 4 bytes
