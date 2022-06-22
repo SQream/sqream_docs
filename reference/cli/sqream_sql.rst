@@ -225,7 +225,7 @@ Creating a new database and switching over to it without reconnecting:
 
 .. code-block:: psql
 
-   farm=> create table animals(id int not null, name text not null, is_angry bool not null);
+   farm=> create table animals(id int not null, name varchar(30) not null, is_angry bool not null);
    executed
    time: 0.011940s
 
@@ -303,7 +303,7 @@ Assuming a file containing SQL statements (separated by semicolons):
 
    $ cat some_queries.sql
       CREATE TABLE calm_farm_animals 
-     ( id INT IDENTITY(0, 1), name TEXT 
+     ( id INT IDENTITY(0, 1), name VARCHAR(30)
      ); 
 
    INSERT INTO calm_farm_animals (name) 

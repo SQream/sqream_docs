@@ -54,14 +54,14 @@ For these examples, assume a table named ``nba``, with the following structure:
    
    CREATE TABLE nba
    (
-      Name text,
-      Team text,
+      Name varchar(40),
+      Team varchar(40),
       Number tinyint,
-      Position text,
+      Position varchar(2),
       Age tinyint,
-      Height text,
+      Height varchar(4),
       Weight real,
-      College text,
+      College varchar(40),
       Salary float
     );
 

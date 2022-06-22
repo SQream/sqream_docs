@@ -65,7 +65,7 @@ Supported load methods
 
 SQream DB's :ref:`COPY FROM<copy_from>` syntax can be used to load CSV files, but can't be used for Parquet and ORC.
 
-:ref:`FOREIGN TABLE<external_tables>` can be used to load text files, Parquet, and ORC files, and can also transform the data prior to materialization as a full table.
+:ref:`FOREIGN TABLE<foreign_tables>` can be used to load text files, Parquet, and ORC files, and can also transform the data prior to materialization as a full table.
 
 .. list-table:: 
    :widths: auto
@@ -82,7 +82,7 @@ SQream DB's :ref:`COPY FROM<copy_from>` syntax can be used to load CSV files, bu
      - ✗
      - ✗
      - ✗
-   * - :ref:`external_tables`
+   * - :ref:`foreign_tables`
      - ✓
      - ✓
      - ✓
@@ -98,12 +98,12 @@ Unsupported Data Types
 
 SQream DB doesn't support the entire set of features that some other database systems may have, such as ``ARRAY``, ``BLOB``, ``ENUM``, ``SET``, etc.
 
-These data types will have to be converted before load. For example, ``ENUM`` can often be stored as ``TEXT``.
+These data types will have to be converted before load. For example, ``ENUM`` can often be stored as a ``VARCHAR``.
 
 Handing Extended Errors
 ----------------------------
 
-While :ref:`external tables<external_tables>` can be used to load CSVs, the ``COPY FROM`` statement provides more fine-grained error handling options, as well as extended support for non-standard CSVs with multi-character delimiters, alternate timestamp formats, and more.
+While :ref:`foreign tables<foreign_tables>` can be used to load CSVs, the ``COPY FROM`` statement provides more fine-grained error handling options, as well as extended support for non-standard CSVs with multi-character delimiters, alternate timestamp formats, and more.
 
 Best Practices for CSV
 ------------------------------
@@ -129,7 +129,7 @@ Text files like CSV rarely conform to `RFC 4180 <https://tools.ietf.org/html/rfc
 Best Practices for Parquet
 --------------------------------
 
-* Parquet files are loaded through :ref:`external_tables`. The destination table structure has to match in number of columns between the source files.
+* Parquet files are loaded through :ref:`foreign_tables`. The destination table structure has to match in number of columns between the source files.
 
 * Parquet files support predicate pushdown. When a query is issued over Parquet files, SQream DB uses row-group metadata to determine which row-groups in a file need to be read for a particular query and the row indexes can narrow the search to a particular set of rows.
 
@@ -250,14 +250,14 @@ Type Support and Behavior Notes
 Best Practices for ORC
 --------------------------------
 
-* ORC files are loaded through :ref:`external_tables`. The destination table structure has to match in number of columns between the source files.
+* ORC files are loaded through :ref:`foreign_tables`. The destination table structure has to match in number of columns between the source files.
 
 * ORC files support predicate pushdown. When a query is issued over ORC files, SQream DB uses ORC metadata to determine which stripes in a file need to be read for a particular query and the row indexes can narrow the search to a particular set of 10,000 rows.
 
 Type Support and Behavior Notes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* ORC files are loaded through :ref:`external_tables`. The destination table structure has to match in number of columns between the source files.
+* ORC files are loaded through :ref:`foreign_tables`. The destination table structure has to match in number of columns between the source files.
 
 * The types should match to some extent within the same "class" (see table below).
 
@@ -356,7 +356,7 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-   * - ``string`` / ``char`` / ``text``
+   * - ``string`` / ``char`` / ``varchar``
      - 
      - 
      - 
@@ -455,11 +455,11 @@ Further Reading and Migration Guides
 
 * :ref:`copy_from`
 * :ref:`insert`
-* :ref:`external_tables`
+* :ref:`foreign_tables`
 
 .. rubric:: Footnotes
 
-.. [#f0] Text values include ``TEXT``.
+.. [#f0] Text values include ``TEXT``, ``VARCHAR``, and ``NVARCHAR``.
 
 .. [#f2] With UTF8 annotation.
 

@@ -52,7 +52,7 @@ Parameters
    * - ``argument_list``
      - A comma separated list of column definitions. A column definition includes a name identifier and a datatype.
    * - ``return_type``
-     - The SQL datatype of the return value, such as ``INT``, ``TEXT``, etc.
+     - The SQL datatype of the return value, such as ``INT``, ``VARCHAR``, etc.
    * - ``function_body``
      - Python code, dollar-quoted (``$$``). 
 

@@ -9,7 +9,8 @@ DUMP_DATABASE_DDL
 .. warning:: 
    This function does not currently show UDFs. To list available UDFs, use the catalog:
    
-   .. code-block:: psql
+   .. code-block:: psql     "name" text not null,
+
 
       farm=> SELECT * FROM sqream_catalog.user_defined_functions;
       farm,1,my_distance
@@ -51,7 +52,7 @@ Getting the DDL for a database
    farm=> SELECT DUMP_DATABASE_DDL();
    create table "public"."cool_animals" (
      "id" int not null,
-     "name" text not null,
+     "name" varchar(30) not null,
      "weight" double null,
      "is_agressive" bool default false not null
    )

@@ -5,11 +5,13 @@ REGEXP_REPLACE
 **************************
 The ``REGEXP_REPLACE`` function finds and replaces text column substrings using constant regexp-based patterns with constant replacement strings. 
 
+.. warning:: With ``VARCHAR``, a substring can only be replaced with another substring of equal **byte length**. See :ref:`octet_length`.
+
 For related information, see the following:
 
-* `REGEXP_COUNT <https://docs.sqream.com/en/latest/reference/sql/sql_functions/scalar_functions/string/regexp_count.html>`_
-* `REGEXP_INSTR <https://docs.sqream.com/en/latest/reference/sql/sql_functions/scalar_functions/string/regexp_instr.html>`_
-* `REGEXP_SUBSTR <https://docs.sqream.com/en/latest/reference/sql/sql_functions/scalar_functions/string/regexp_substr.html>`_
+* `REGEXP_COUNT <https://docs.sqream.com/en/v2020.3.1/reference/sql/sql_functions/scalar_functions/string/regexp_count.html>`_
+* `REGEXP_INSTR <https://docs.sqream.com/en/v2020.3.1/reference/sql/sql_functions/scalar_functions/string/regexp_instr.html>`_
+* `REGEXP_SUBSTR <https://docs.sqream.com/en/v2020.3.1/reference/sql/sql_functions/scalar_functions/string/regexp_substr.html>`_
 
 
 

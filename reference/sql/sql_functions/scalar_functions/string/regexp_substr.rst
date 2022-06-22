@@ -104,15 +104,15 @@ For these examples, assume a table named ``nba``, with the following structure:
    
    CREATE TABLE nba
    (
-      "Name" text,
-      "Team" text,
-      "Number" tinyint,
-      "Position" text,
-      "Age" tinyint,
-      "Height" text,
-      "Weight" real,
-      "College" text,
-      "Salary" float
+      Name varchar(40),
+      Team varchar(40),
+      Number tinyint,
+      Position varchar(2),
+      Age tinyint,
+      Height varchar(4),
+      Weight real,
+      College varchar(40),
+      Salary float
     );
 
 

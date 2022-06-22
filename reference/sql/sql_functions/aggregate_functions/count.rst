@@ -67,15 +67,15 @@ The examples in this section are based on a table named ``nba``, structured as f
    
    CREATE TABLE nba
    (
-      "Name" text,
-      "Team" text,
-      "Number" tinyint,
-      "Position" text,
-      "Age" tinyint,
-      "Height" text,
-      "Weight" real,
-      "College" text,
-      "Salary" float
+      Name varchar(40),
+      Team varchar(40),
+      Number tinyint,
+      Position varchar(2),
+      Age tinyint,
+      Height varchar(4),
+      Weight real,
+      College varchar(40),
+      Salary float
     );
 
 The following table is a preview of the source :download:`nba.csv </_static/samples/nba.csv>` table shown below:

@@ -11,6 +11,9 @@ Calculates the number of characters in a string.
    * This function is supported on ``TEXT`` only.
    
    * To get the length in bytes, see :ref:`octet_length`.
+
+   * For ``VARCHAR`` strings, the octet length is the number of characters. Use :ref:`len` instead.
+
    
 Syntax
 ==========

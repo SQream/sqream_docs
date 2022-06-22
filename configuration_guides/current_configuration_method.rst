@@ -625,6 +625,13 @@ The following table describes the **Generic** and **Administration** configurati
      - boolean
      - ``FALSE``
 
+   * - ``varcharIdentifiers``
+     - Administration
+     - Regular
+     - Activates using varchar as an identifier.
+     - boolean
+     - ``true`` 
+
 Configuration Commands
 ==========	 
 The configuration commands are associated with particular flag types based on permissions.

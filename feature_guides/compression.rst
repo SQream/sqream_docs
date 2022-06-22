@@ -108,7 +108,7 @@ The following two are equivalent:
    
    CREATE TABLE t (
       x INT,
-      y TEXT(50)
+      y VARCHAR(50)
    );
 
 In this version, the default compression is specified explicitly:
@@ -117,7 +117,7 @@ In this version, the default compression is specified explicitly:
    
    CREATE TABLE t (
       x INT CHECK('CS "default"'),
-      y TEXT CHECK('CS "default"')
+      y VARCHAR(50) CHECK('CS "default"')
    );
 
 Forcing no compression (flat)
@@ -130,7 +130,7 @@ in order to reduce CPU or GPU resource utilization at the expense of increased I
    
    CREATE TABLE t (
       x INT NOT NULL CHECK('CS "flat"'), -- This column won't be compressed
-      y TEXT -- This column will still be compressed automatically
+      y VARCHAR(50) -- This column will still be compressed automatically
    );
 
 
@@ -146,8 +146,8 @@ For example:
    
    CREATE TABLE t (
       id BIGINT NOT NULL CHECK('CS "sequence"'),
-      y TEXT CHECK('CS "lz4"'), -- General purpose text compression
-      z TEXT CHECK('CS "dict"'), -- Low cardinality column
+      y VARCHAR(110) CHECK('CS "lz4"'), -- General purpose text compression
+      z VARCHAR(80) CHECK('CS "dict"'), -- Low cardinality column
       
    );
 
