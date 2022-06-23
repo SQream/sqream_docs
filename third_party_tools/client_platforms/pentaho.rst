@@ -53,9 +53,9 @@ After installing Pentaho you can create a transformation.
 
 1. Use the CLI to open the PDI client for your operating system (Windows):
    
-     .. code-block:: console
+  .. code-block:: console
      
-        $ spoon.bat
+     $ spoon.bat
 
 2. Open the spoon.bat file from its folder location.
 
@@ -63,7 +63,7 @@ After installing Pentaho you can create a transformation.
 		  
 3. In the **View** tab, right-click **Transformations** and click **New**.
 
-A new transformation tab is created.
+   A new transformation tab is created.
 
 4. In the **Design** tab, click **Input** to show its file contents.
 
@@ -95,7 +95,7 @@ A new transformation tab is created.
 
 11. In the **Sample data** window, enter the number of lines you want to sample and click **OK**. The default setting is **100**.
 
-The tool reads the file and suggests the field name and type.
+    The tool reads the file and suggests the field name and type.
 
 12. In the CSV file input window, click **Preview**.
 
@@ -135,42 +135,42 @@ After creating your transformation you must define your output.
 
 4. From the **Table output** dialog box, type a **Step name** and click **New** to create a new connection. Your **steps** are the building blocks of a transformation, such as file input or a table output.
 
-The **Database Connection** window is displayed with the **General** tab selected by default.
+   The **Database Connection** window is displayed with the **General** tab selected by default.
 
 5. Enter or select the following information in the Database Connection window and click **Test**.
 
-The following table shows and describes the information that you need to fill out in the Database Connection window:
+   The following table shows and describes the information that you need to fill out in the Database Connection window:
 
-.. list-table:: 
-   :widths: 6 31 73
-   :header-rows: 1
+   .. list-table:: 
+      :widths: 6 31 73
+      :header-rows: 1
    
-   * - No.
-     - Element Name
-     - Description
-   * - 1
-     - Connection name
-     - Enter a name that uniquely describes your connection, such as **sampledata**.
-   * - 2
-     - Connection type
-     - Select **Generic database**.
-   * - 3
-     - Access
-     - Select **Native (JDBC)**.
-   * - 4
-     - Custom connection URL
-     - Insert **jdbc:Sqream://<host:port>/<database name>;user=<username>;password=<password>;[<optional parameters>; ...];**. The IP is a node in your SQream cluster and is the name or schema of the database you want to connect to. Verify that you have not used any leading or trailing spaces.
-   * - 5
-     - Custom driver class name
-     - Insert **com.sqream.jdbc.SQDriver**. Verify that you have not used any leading or trailing spaces.
-   * - 6
-     - Username
-     - Your SQreamdb username. If you leave this blank, you will be prompted to provide it when you connect.	 
-   * - 7
-     - Password
-     - Your password. If you leave this blank, you will be prompted to provide it when you connect.
+      * - No.
+        - Element Name
+        - Description
+      * - 1
+        - Connection name
+        - Enter a name that uniquely describes your connection, such as **sampledata**.
+      * - 2
+        - Connection type
+        - Select **Generic database**.
+      * - 3
+        - Access
+        - Select **Native (JDBC)**.
+      * - 4
+        - Custom connection URL
+        - Insert **jdbc:Sqream://<host:port>/<database name>;user=<username>;password=<password>;[<optional parameters>; ...];**. The IP is a node in your SQream cluster and is the name or schema of the database you want to connect to. Verify that you have not used any leading or trailing spaces.
+      * - 5
+        - Custom driver class name
+        - Insert **com.sqream.jdbc.SQDriver**. Verify that you have not used any leading or trailing spaces.
+      * - 6
+        - Username
+        - Your SQreamdb username. If you leave this blank, you will be prompted to provide it when you connect.	 
+      * - 7
+        - Password
+        - Your password. If you leave this blank, you will be prompted to provide it when you connect.
 
-The following message is displayed:	 
+   The following message is displayed:	 
 	 
 .. image:: /_static/images/third_party_connectors/pentaho/connection_tested_successfully_2.png	 
 	 
@@ -211,6 +211,8 @@ For more information about backing up users, permissions, or schedules, see `Bac
       .. image:: /_static/images/third_party_connectors/pentaho/csv_file_input_options_2.png   
 
    3. Release the mouse button. The following options are displayed.
+
+       ::
    
    4. Select **Main output of step**.
    
@@ -244,6 +246,8 @@ For more information about backing up users, permissions, or schedules, see `Bac
 
     The **Run Options** dialog box is displayed.
 
-11. Click **Run**. The **Execution Results** are displayed.
+11. Click **Run**.
+
+    The **Execution Results** are displayed.
  
 :ref:`Back to Overview <pentaho_top>`
