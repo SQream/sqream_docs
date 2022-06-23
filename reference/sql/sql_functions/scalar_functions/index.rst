@@ -44,7 +44,6 @@ The **Built-In Scalar Functions** page describes functions that return one value
    * :ref:`ceiling`
    * :ref:`cos`
    * :ref:`cot`
-   * :ref:`crc64`
    * :ref:`degrees`
    * :ref:`exp`
    * :ref:`floor`
