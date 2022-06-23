@@ -62,7 +62,7 @@ The following parameters can be used when creating a table:
      - 
          A commma separated list of clustering column keys.
          
-         See :ref:`data_clustering` for more information.
+         See :ref:`flexible_data_clustering` for more information.
    * - ``LIKE``
      - Duplicates the column structure of an existing table.
 	 
@@ -74,13 +74,14 @@ Default Value Constraints
 
 The ``DEFAULT`` value constraint specifies a value to use if one is not defined in an :ref:`insert` or :ref:`copy_from` statement. 
 
-The value may be either a literal, which is evaluated at the time the row is created.
+The value may be a literal, which is evaluated at the time the row is created.
 
 .. note:: The ``DEFAULT`` constraint only applies if the column does not have a value specified in the :ref:`insert` or :ref:`copy_from` statement. You can still insert a ``NULL`` into an nullable column by explicitly inserting ``NULL``. For example, ``INSERT INTO cool_animals VALUES (1, 'Gnu', NULL)``.
 
 Syntax
 ---------
 The following is the correct syntax for using the **DEFAULT** value constraints:
+
 
 .. code-block:: postgres
 
@@ -153,8 +154,8 @@ The following is an example of the syntax used to create a table with default va
 .. code-block:: postgres
 
    CREATE TABLE cool_animals (
-      name VARCHAR(30) NOT NULL,
-      country VARCHAR(30) DEFAULT 'Unknown' NOT NULL
+      id INT NOT NULL,
+      name varchar(30) NOT NULL,
       weight FLOAT,
       is_agressive BOOL DEFAULT false NOT NULL
    );
@@ -171,7 +172,7 @@ The following is an example of the syntax used to create a table with an identit
    CREATE TABLE users (
       id BIGINT IDENTITY(0,1) NOT NULL , -- Start with 0, increment by 1
       name VARCHAR(30) NOT NULL,
-      country TEXT DEFAULT 'Unknown' NOT NULL
+      country VARCHAR(30) DEFAULT 'Unknown' NOT NULL
    );
 
 .. note:: 
@@ -202,7 +203,7 @@ The following is an example of the syntax used to create a table with a clusteri
 .. code-block:: postgres
 
    CREATE TABLE users (
-      name TEXT NOT NULL,
+      name VARCHAR(30) NOT NULL,
       start_date datetime not null,
       country VARCHAR(30) DEFAULT 'Unknown' NOT NULL
    ) CLUSTER BY start_date;
@@ -260,9 +261,9 @@ Either of the following examples can be used to create a second table based on t
    
 The generated output of both of the statements above is identical.
    
-Creating a Table based on External Tables and Views
+Creating a Table based on Foreign Tables and Views
 ~~~~~~~~~~~~
-The following is example of creating a table based on external tables and views:
+The following is example of creating a table based on foreign tables and views:
 
 
 .. code-block:: postgres
@@ -271,6 +272,24 @@ The following is example of creating a table based on external tables and views:
    CREATE TABLE t3 LIKE v;
 
 When duplicating the column structure of an existing table, the target table of the ``LIKE`` clause can be a regular or an external table, or a view.
+
+The following table describes the properties that must be copied from the target table:
+
++-----------------------------+------------------+---------------------------------+---------------------------------+
+| **Property**                | **Native Table** | **External Table**              | **View**                        |
++-----------------------------+------------------+---------------------------------+---------------------------------+
+| Column names                | Must be copied   | Must be copied                  | Must be copied                  |
++-----------------------------+------------------+---------------------------------+---------------------------------+
+| Column types                | Must be copied   | Must be copied                  | Must be copied                  |
++-----------------------------+------------------+---------------------------------+---------------------------------+
+| ``NULL``/``NOT NULL``       | Must be copied   | Must be copied                  | Must be copied                  |
++-----------------------------+------------------+---------------------------------+---------------------------------+
+| ``text`` length constraints | Must be copied   | Must be copied                  | Does not exist in source object |
++-----------------------------+------------------+---------------------------------+---------------------------------+
+| Compression specification   | Must be copied   | Does not exist in source object | Does not exist in source object |
++-----------------------------+------------------+---------------------------------+---------------------------------+
+| Default/identity            | Must be copied   | Does not exist in source object | Does not exist in source object |
++-----------------------------+------------------+---------------------------------+---------------------------------+
 
 Permissions
 =============
