@@ -3,7 +3,7 @@
 *****************
 CREATE TABLE
 *****************
- 
+
 The ``CREATE TABLE`` statement is used to create a new table in an existing database.
 
 .. tip:: 
@@ -62,7 +62,7 @@ The following parameters can be used when creating a table:
      - 
          A commma separated list of clustering column keys.
          
-         See :ref:`data_clustering` for more information.
+         See :ref:`flexible_data_clustering` for more information.
    * - ``LIKE``
      - Duplicates the column structure of an existing table.
 	 
@@ -141,7 +141,7 @@ The following is an example of the syntax used to create a standard table:
 
    CREATE TABLE cool_animals (
       id INT NOT NULL,
-      name text(30) NOT NULL,
+      name varchar(30) NOT NULL,
       weight FLOAT,
       is_agressive BOOL
    );
@@ -155,7 +155,7 @@ The following is an example of the syntax used to create a table with default va
 
    CREATE TABLE cool_animals (
       id INT NOT NULL,
-      name text(30) NOT NULL,
+      name varchar(30) NOT NULL,
       weight FLOAT,
       is_agressive BOOL DEFAULT false NOT NULL
    );
@@ -171,8 +171,8 @@ The following is an example of the syntax used to create a table with an identit
 
    CREATE TABLE users (
       id BIGINT IDENTITY(0,1) NOT NULL , -- Start with 0, increment by 1
-      name TEXT(30) NOT NULL,
-      country TEXT(30) DEFAULT 'Unknown' NOT NULL
+      name VARCHAR(30) NOT NULL,
+      country VARCHAR(30) DEFAULT 'Unknown' NOT NULL
    );
 
 .. note:: 
@@ -203,9 +203,9 @@ The following is an example of the syntax used to create a table with a clusteri
 .. code-block:: postgres
 
    CREATE TABLE users (
-      name TEXT(30) NOT NULL,
+      name VARCHAR(30) NOT NULL,
       start_date datetime not null,
-      country TEXT(30) DEFAULT 'Unknown' NOT NULL
+      country VARCHAR(30) DEFAULT 'Unknown' NOT NULL
    ) CLUSTER BY start_date;
    
 For more information on data clustering, see :ref:`data_clustering`.
@@ -261,9 +261,9 @@ Either of the following examples can be used to create a second table based on t
    
 The generated output of both of the statements above is identical.
    
-Creating a Table based on External Tables and Views
+Creating a Table based on Foreign Tables and Views
 ~~~~~~~~~~~~
-The following is example of creating a table based on external tables and views:
+The following is example of creating a table based on foreign tables and views:
 
 
 .. code-block:: postgres
@@ -272,7 +272,7 @@ The following is example of creating a table based on external tables and views:
    CREATE TABLE t3 LIKE v;
 
 When duplicating the column structure of an existing table, the target table of the ``LIKE`` clause can be a regular or an external table, or a view.
-   
+
 The following table describes the properties that must be copied from the target table:
 
 +-----------------------------+------------------+---------------------------------+---------------------------------+
