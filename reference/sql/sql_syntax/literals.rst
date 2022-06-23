@@ -240,6 +240,7 @@ The following is a syntax reference for typed literals:
        | DATE
        | DATETIME
        | VARCHAR ( digits )
+       | TEXT ( digits )
 
 Examples
 ----------
