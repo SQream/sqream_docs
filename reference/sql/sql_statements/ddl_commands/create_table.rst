@@ -3,7 +3,7 @@
 *****************
 CREATE TABLE
 *****************
- 
+
 The ``CREATE TABLE`` statement is used to create a new table in an existing database.
 
 .. tip:: 
@@ -270,9 +270,9 @@ The following is example of creating a table based on foreign tables and views:
 
    CREATE VIEW v as SELECT x+1,y,y || 'abc' from t1;
    CREATE TABLE t3 LIKE v;
-   
+
 When duplicating the column structure of an existing table, the target table of the ``LIKE`` clause can be a regular or an external table, or a view.
-   
+
 The following table describes the properties that must be copied from the target table:
 
 +-----------------------------+------------------+---------------------------------+---------------------------------+
@@ -290,7 +290,6 @@ The following table describes the properties that must be copied from the target
 +-----------------------------+------------------+---------------------------------+---------------------------------+
 | Default/identity            | Must be copied   | Does not exist in source object | Does not exist in source object |
 +-----------------------------+------------------+---------------------------------+---------------------------------+
-
 
 Permissions
 =============
