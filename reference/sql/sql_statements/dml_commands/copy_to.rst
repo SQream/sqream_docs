@@ -3,20 +3,23 @@
 **********************
 COPY TO
 **********************
+The **COPY TO** page includes the following sections:
 
+.. contents:: 
+   :local:
+   :depth: 1
+
+Overview
+==========
 ``COPY ... TO`` is a statement that can be used to export data from a SQream database table or query to a file on the filesystem.
 
 In general, ``COPY`` moves data between filesystem files and SQream DB tables.
 
 .. note:: To copy data from a file to a table, see :ref:`COPY FROM<copy_from>`.
 
-Permissions
-=============
-
-The role must have the ``SELECT`` permission on every table or schema that is referenced by the statement.
-
 Syntax
 ==========
+The following is the correct syntax for using the **COPY TO** statement:
 
 .. code-block:: postgres
 
@@ -48,6 +51,11 @@ Syntax
       | AWS_ID = '{ AWS ID }'
       
       | AWS_SECRET = '{ AWS Secret }'
+	  
+      | MAX_FILE_SIZE = '{ size_in_bytes }'
+	  
+      | ENFORCE_SINGLE_FILE = { true | false }
+
 
   delimiter ::= string
 
@@ -56,6 +64,10 @@ Syntax
   AWS ID ::= string
 
   AWS Secret ::= string
+
+.. note:: The DELIMITER is applicable to the CSV format only.
+  
+.. note:: In Studio, you must write the parameters using lower case letters. Using upper case letters generates an error.
 
 Elements
 ============
@@ -80,21 +92,25 @@ Elements
      - Specifies the character that separates fields (columns) within each row of the file. The default is a comma character (``,``).
    * - ``AWS_ID``, ``AWS_SECRET``
      - Specifies the authentication details for secured S3 buckets
+   * - ``MAX_FILE_SIZE``
+     - Sets the maximum file size (bytes). Default value: 16*2^20 (16MB).
+   * - ``ENFORCE_SINGLE_FILE``
+     - Enforces the maximum file size (bytes). Permitted values: ``true`` - creates one file of unlimited size, ``false`` - permits creating several files together limited by the ``MAX_FILE_SIZE``. When set to ``true``, the single file size is not limited by the ``MAX_FILE_SIZE`` setting. When set to ``false``, the combined file sizes cannot exceed the ``MAX_FILE_SIZE``. Default value: ``FALSE``.
 
-Usage notes
+Usage Notes
 ===============
 
-Supported field delimiters
+Supported Field Delimiters
 ------------------------------
 
-Printable characters
+Printable Characters
 ^^^^^^^^^^^^^^^^^^^^^
 
 Any printable ASCII character can be used as a delimiter without special syntax. The default CSV field delimiter is a comma (``,``).
 
 A printable character is any ASCII character in the range 32 - 126.
 
-Non-printable characters
+Non-Printable Characters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A non-printable character (1 - 31, 127) can be used in its octal form. 
@@ -104,7 +120,7 @@ A tab can be specified by escaping it, for example ``\t``. Other non-printable c
 For example, ASCII character ``15``, known as "shift in", can be specified using ``E'\017'``.
 
 
-Date format
+Date Format
 ---------------
 
 The date format in the output CSV is formatted as ISO 8601 (``2019-12-31 20:30:55.123``), regardless of how it was parsed initially with :ref:`COPY FROM date parsers<copy_date_parsers>`.
@@ -113,7 +129,7 @@ The date format in the output CSV is formatted as ISO 8601 (``2019-12-31 20:30:5
 Examples
 ===========
 
-Export table to a CSV without HEADER
+Exporting a Table to a CSV without HEADER
 ------------------------------------
 
 .. code-block:: psql
@@ -130,7 +146,7 @@ Export table to a CSV without HEADER
    Jonas Jerebko,Boston Celtics,8,PF,29,6-10,231,\N,5000000
    Amir Johnson,Boston Celtics,90,PF,29,6-9,240,\N,12000000
 
-Export table to a CSV with a HEADER row
+Exporting a Table to a CSV with a HEADER Row
 -----------------------------------------
 
 .. code-block:: psql
@@ -147,7 +163,7 @@ Export table to a CSV with a HEADER row
    R.J. Hunter,Boston Celtics,28,SG,22,6-5,185,Georgia State,1148640
    Jonas Jerebko,Boston Celtics,8,PF,29,6-10,231,\N,5000000
 
-Export table to a TSV with a header row
+Exporting a Table to TSV with a HEADER Row
 -----------------------------------------
 
 .. code-block:: psql
@@ -164,7 +180,7 @@ Export table to a TSV with a header row
    R.J. Hunter     Boston Celtics  28      SG      22      6-5     185     Georgia State   1148640
    Jonas Jerebko   Boston Celtics  8       PF      29      6-10    231     \N     5000000
 
-Use non-printable ASCII characters as delimiter
+Using Non-Printable ASCII Characters as Delimiters
 -------------------------------------------------------
 
 Non-printable characters can be specified using their octal representations, by using the ``E'\000'`` format, where ``000`` is the octal value of the character.
@@ -179,7 +195,7 @@ For example, ASCII character ``15``, known as "shift in", can be specified using
    
 	COPY nba TO WRAPPER csv_fdw OPTIONS (LOCATION = '/tmp/nba_export.csv', DELIMITER = E'\011'); -- 011 is a tab character
 
-Exporting the result of a query to a CSV
+Exporting the Result of a Query to CSV File
 --------------------------------------------
 
 .. code-block:: psql
@@ -195,14 +211,14 @@ Exporting the result of a query to a CSV
    Charlotte Hornets,5222728
    Chicago Bulls,5785558
 
-Saving files to an authenticated S3 bucket
+Saving Files to an Authenticated S3 Buckets
 --------------------------------------------
 
 .. code-block:: psql
    
 	COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) TO WRAPPER csv_fdw OPTIONS (LOCATION = 's3://my_bucket/salaries/nba_export.csv', AWS_ID = 'my_aws_id', AWS_SECRET = 'my_aws_secret');
 
-Saving files to an HDFS path
+Saving Files to an HDFS Path
 --------------------------------------------
 
 .. code-block:: psql
@@ -210,7 +226,7 @@ Saving files to an HDFS path
    	COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) TO WRAPPER csv_fdw OPTIONS (LOCATION = 'hdfs://pp_namenode:8020/nba_export.csv');
 
 
-Export table to a parquet file
+Exporting a Table to a Parquet File
 ------------------------------
 
 .. code-block:: psql
@@ -218,7 +234,7 @@ Export table to a parquet file
 	COPY nba TO WRAPPER parquet_fdw OPTIONS (LOCATION = '/tmp/nba_export.parquet');
 
 
-Export a query to a parquet file
+Exporting a Query to a Parquet File
 --------------------------------
 
 .. code-block:: psql
@@ -226,9 +242,14 @@ Export a query to a parquet file
 	COPY (select x,y from t where z=0) TO WRAPPER parquet_fdw OPTIONS (LOCATION = '/tmp/file.parquet');
 
 
-Export table to a ORC file
+Exporting a Table to an ORC File
 ------------------------------
 
 .. code-block:: psql
    
 	COPY nba TO WRAPPER orc_fdw OPTIONS (LOCATION = '/tmp/nba_export.orc');
+
+Permissions
+=============
+
+The role must have the ``SELECT`` permission on every table or schema that is referenced by the statement.
