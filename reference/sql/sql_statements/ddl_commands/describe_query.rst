@@ -109,11 +109,7 @@ Using the ``DESCRIBE QUERY`` command generates the following output:
 	 
 The following is an example of the generated output in Studio:
 
-.. code-block:: postgres
-
-   query_id,node_id,parent_id,node_type,elapsed_time,total_compute_time,total_waiting_time,rows_produced,chunks_produced,data_read,data_written,output,additional_info
-
-**Comment** - *I wasn't able to generate an external table. Please assist.*
+.. image:: /_static/images/describe_query.png
 
 Permissions
 =============
