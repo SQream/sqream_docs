@@ -8,6 +8,6 @@ The following user-defined functions are functions that can be defined and confi
 
 The **User-Defined Functions** page describes the following:
 
-* :ref:`Python UDF (User-Defined Functions)<python_functions>`
-* :ref:`Scalar SQL UDF (User-Defined Functions)<scalar_sql_udf>`
-* :ref:`Role permissions<get_role>`
+* :ref:`Python UDFs (User-Defined Functions)<python_functions>`
+* :ref:`Scalar SQL UDFs (User-Defined Functions)<scalar_sql_udf>`
+* :ref:`Role UDFs<get_role>`

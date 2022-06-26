@@ -12,13 +12,13 @@ The ``GET_ROLE`` user-defined function shows the following role-related informat
      - Description
      - Default
    * - ``select get_role_permissions``
-     - Returns all permissions granted to a role in table form.
+     - Returns all permissions granted to a role in table format.
      - Yes/No **Comment** - *Verify.*
    * - ``select get_role_global_ddl``
-     - Return the definition of a role in a DDL format. **Comment** - *Need description.*
+     - Returns the definition of a global role in DDL format.
      - Yes/No **Comment** - *Verify.*
    * - ``select get_role_database_ddl``
-     - Return the definition of a role in a DDL format. **Comment** - *Need description.*
+     - Returns the definition of a database role in DDL format.
      - Yes/No **Comment** - *Verify.*
 
 The following is an example output of the ``select get_role_permissions`` function:
