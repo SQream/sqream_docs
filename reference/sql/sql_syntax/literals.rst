@@ -3,17 +3,15 @@
 ***************************
 Literals
 ***************************
+**Literals** represent constant values.
 
+SQream supports the following literal types:
 
-Literals represent constant values.
-
-SQream DB contains the following types of literals:
-
-* :ref:`Numeric literals<numeric_literals>` - define numbers such as ``1.3``, ``-5``
-* :ref:`String literals<string_literals>` - define text values like ``'Foxes are cool'``, ``'1997-01-01'``
-* :ref:`Typed literals<typed_literals>` - define values with explicit types like ``(3.0 :: float)``
-* :ref:`Boolean literals<boolean_literals>` - define values that include ``true`` and ``false``
-* :ref:`Other constants<constants>` - predefined values like ``NULL`` or ``TRUE``
+* :ref:`Numeric literals<numeric_literals>` - define numbers such as ``1.3``, ``-5``.
+* :ref:`String literals<string_literals>` - define text values like ``'Foxes are cool'``, ``'1997-01-01'``.
+* :ref:`Typed literals<typed_literals>` - define values with explicit types like ``(3.0 :: float)``.
+* :ref:`Boolean literals<boolean_literals>` - define values that include ``true`` and ``false``.
+* :ref:`Other constants<constants>` - predefined values like ``NULL`` or ``TRUE``.
 
 .. _numeric_literals:
 
@@ -33,6 +31,7 @@ Numeric Literals
 
 Examples
 ------------
+The following block shows examples of numeric literals:
 
 .. code-block:: postgres
 
@@ -65,44 +64,68 @@ Examples
 String Literals
 ==================
 
-**String literals** are string (text) values, encoded either in ASCII or UTF-8.
-
-String literals are surrounded by single quotes (``'``) or dollars (``$$``)
+Overview
+------------
+**String literals** are string (text) values, encoded either in ASCII or UTF-8, and are surrounded by single quotes (``'``) or dollars (``$$``)
 
 .. tip:: To use a single quote in a string, use a repeated single quote.
 
-
 Examples
 ------------
+This section shows the following examples:
+
+.. contents:: 
+   :local:
+   :depth: 1
+
+Example 1 - Regular String
+~~~~~~~~~~~~~~~~~~~~~
 
 .. code-block:: postgres
    
    'This is an example of a string'
-   
-   'Hello? Is it me you''re looking for?' -- Repeated single quotes are treated as a single quote
-   
-   $$That is my brother's company's CEO's son's dog's toy$$ -- Dollar-quoted
-   
-   '1997-01-01' -- This is a string
 
+Example 2 - Repeated Single Quotes Treated as a Single Quote
+~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: postgres
+   
+   'Hello? Is it me you''re looking for?'
+
+Example 3 - Dollar-Quotes
+~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: postgres
+   
+   $$That is my brother's company's CEO's son's dog's toy$$
+
+Example 4 - Date String
+~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: postgres
+   
+   '1997-01-01'
 
 The actual data type of the value changes based on context, the format used, and the value itself. In the example below, the first value is interpreted as a ``DATE``, while the second is interpreted as a ``VARCHAR``.
+
+.. warning::  Inserting a **date** or **datetime** value for a year with less than four digits automatically adds zeros into the date and inserts it without generating an error. For example, inserting the datetime value **2-22** automatically converts it to **2-02-02**.
 
 .. code-block:: postgres
 
    INSERT INTO cool_dates(date_col, reason) VALUES ('1955-11-05', 'Doc Brown discovers flux capacitor');
    
-This section describes the following types of literals:
-
-* :ref:`Regular string literals<regular_literals>`
-* :ref:`Dollar-quoted string literals<dollar_quoted_string_literals>`
-* :ref:`Escaped string literals<escaped_string_literals>`
-
-
 .. _regular_literals:
 
+String Literal Types
+------------
+This section describes the following types of literals:
+
+.. contents:: 
+   :local:
+   :depth: 1
+
 Regular String Literals
------------------------
+~~~~~~~~~~~~~~~~~~~~~
 In SQL, a **regular string literal** is a sequence of zero or more characters bound by single quotes (``'``):
 
 .. code-block:: postgres
@@ -115,12 +138,9 @@ You can include a single-quote character in a string literal with two consecutiv
 
    'Dianne''s horse'.
 
-Note that two adjacent single quotes is not the same as a double-quote character (``"``).
+.. note:: Using two adjacent single quotes is not the same as using a double-quote character (``"``).
 
-Examples
-------------
-
-The following are some examples of regular string literals:
+The following block shows examples of regular string literals:
 
 .. code-block:: postgres
 
@@ -135,35 +155,27 @@ The following are some examples of regular string literals:
 .. _dollar_quoted_string_literals:
 
 Dollar-Quoted String Literals
------------------------
+~~~~~~~~~~~~~~~~~~~~~
 **Dollar-quoted string literals** consist of a dollar sign (``$``), an optional "tag" of zero or more characters, another dollar sign, an arbitrary sequence of characters that make up the string content, a dollar sign, the same tag at the beginning of the dollar quote, and another dollar sign.
 
-
-Examples
-------------
-
-For example, below are two different ways to specify the string ``Dianne's horse`` using dollar-quoted string literals:
+The following are some examples show different ways to specify the string ``Dianne's horse`` using dollar-quoted string literals:
 
 .. code-block:: postgres
 
    $$Dianne's horse$$
    $<tag>$Dianne's horse$<tag>$
    
-Note that you can use single quotes inside the dollar-quoted string without an escape. Because the string is always written literally, you do not need to escape any characters inside a dollar-quoted string. Backslashes and dollar signs indicate no specific functions unless they are part of a sequence matching the opening tag.
+.. note:: You can use single quotes inside the dollar-quoted string without an escape. Because the string is always written literally, you do not need to escape any characters inside a dollar-quoted string. Backslashes and dollar signs indicate no specific functions unless they are part of a sequence matching the opening tag.
 
-Any used tags in a dollar-quoted string follow the same rules as for unquoted identifiers, except that they cannot contain a dollar sign.
-
-In addition, because tags are case sensitive, ``$<tag>$String content$<tag>$`` is correct, but ``$<TAG>$String content$<tag>$`` is incorrect.
-
-A dollar-quoted string that follows a keyword or identifier must be separated from it by whitespace (such as spaces, tabs, or newlines). If you do not separate them with whitespace, the dollar-quoting delimiter is taken as part of the preceding identifier.
+Any used tags in a dollar-quoted string follow the same rules as for unquoted identifiers, except that they cannot contain a dollar sign. In addition, because tags are case sensitive, ``$<tag>$String content$<tag>$`` is correct, but ``$<TAG>$String content$<tag>$`` is incorrect. A dollar-quoted string that follows a keyword or identifier must be separated from it by whitespace (such as spaces, tabs, or newlines). If you do not separate them with whitespace, the dollar-quoting delimiter is taken as part of the preceding identifier.
 
 .. _escaped_string_literals:
 
 Escaped String Literals
------------------------
+~~~~~~~~~~~~~~~~~~~~~
 Because regular string literals do not support inserting special characters (such as new lines), the **escaped string literals** syntax was added to support inserting special characters with an escaping syntax.
 
-In addition to being enclosed by single quotes (e.g. 'abc'), escaped string literals are preceded by a capital ``E``.
+In addition to being enclosed by single quotes (e.g. 'abc'), escaped string literals are preceded by a capital ``E``, as shown below:
 
 .. code-block:: postgres
 
@@ -200,12 +212,15 @@ Excluding the characters in the table above, escaped string literals take all ot
 
 Typed Literals
 ================
+**Typed literals** let you create any data type using either of the following syntax examples:
 
-**Typed literals** allow you to create any data type using either of the following syntaxes:
+**Example 1**
 
 .. code-block:: postgres
    
    CAST(literal AS type_name)
+
+**Example 2**
 
 .. code-block:: postgres
 
@@ -244,6 +259,7 @@ The following is a syntax reference for typed literals:
 
 Examples
 ----------
+The following block shows examples of typed literals:
 
 .. code-block:: postgres
    
@@ -263,6 +279,7 @@ Boolean Literals
 
 Example
 ----------
+The following block shows examples of a boolean literal:
 
 .. code-block:: postgres
 
@@ -272,7 +289,6 @@ Example
 
 Other Constants
 ================
-
 The following other constants can be used:
 
 * ``TRUE`` and ``FALSE`` - interpreted as values of type ``BOOL``.
