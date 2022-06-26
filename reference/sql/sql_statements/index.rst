@@ -120,7 +120,7 @@ Utility Commands
    * - :ref:`SELECT GET_VIEW_DDL<get_view_ddl>`
      - Displays the ``CREATE VIEW`` statement for a view
    * - :ref:`SELECT RECOMPILE_VIEW<recompile_view>`
-     - ReCreates a view after schema changes
+     - Recreates a view after schema changes
    * - :ref:`SELECT DUMP_DATABASE_DDL<dump_database_ddl>`
      - Displays the ``CREATE TABLE`` statement for an current database
    * - :ref:`SHOW CONNECTIONS<show_connections>`
