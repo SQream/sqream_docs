@@ -11,7 +11,7 @@ The following is the syntax for the ``DESCRIBE SESSIONS`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE SESSIONS [<user_name>]
+   DESCRIBE SESSIONS [ USER <user_name> ][ HISTORY ]
 
 Parameters
 ============
