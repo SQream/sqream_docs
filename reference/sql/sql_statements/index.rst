@@ -45,6 +45,8 @@ Data Definition Commands (DDL)
      - Create a new view in the database
    * - :ref:`DESCRIBE COLUMNS<describe_columns>`
      - List all columns in your internal or foreign table
+   * - :ref:`DESCRIBE CONFIGURATION<describe_configuration>`
+     - List all RTC configurations set on the session level using the SET command.
    * - :ref:`DESCRIBE DATABASES<describe_databases>`
      - Show all databases in your cluster
    * - :ref:`DESCRIBE QUERY<describe_query>`
