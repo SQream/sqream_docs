@@ -5,7 +5,7 @@ DESCRIBE CONFIGURATION
 *****************
 The ``DESCRIBE CONFIGURATION`` command is used for showing all RTC configurations set on the session level using the ``SET`` command. Closing a session restores all RTC configurations to their default settings.
 
-**Comment** - *According to the* `current configuration page <https://docs.sqream.com/en/latest/configuration_guides/current_configuration_method.html#regular-flag-types>`_, *the full name of the command is* ``show_conf_UF``. *Is this the command that DESCRIBE CONFIGURATION is replacing in V2?*
+**Comment** - *The SHOW_CONF command has to be added to the* `current configuration page <https://docs.sqream.com/en/latest/configuration_guides/current_configuration_method.html#regular-flag-types>`_,.
 
 .. note:: The ``DESCRIBE CONFIGURATION`` command replaces the ``SHOW_CONF`` command. 
 
@@ -13,19 +13,19 @@ For more information, see :ref:`current_configuration_method`.
 
 Syntax
 ==========
-The following is the syntax for the ``DESCRIBE QUERY`` command:
-
-**Comment** - *The syntax example below is unclear.*
+The following is the syntax for the ``DESCRIBE CONFIGURATION`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE CONFIG[URATION] (PARAM[ETER] <parameter>)* [LIKE 'pattern'] [DEV_MODE];
+   DESCRIBE CONFIGURATION (PARAMETER <parameter>)* [LIKE 'pattern'] [DEV_MODE];
+   
+**Comment** - *The PRD says, "Describe dev_mode config parameters (in additon to the non_dev parameters list) - hidden option for internal use only, not to be documented." Confirm.*
+   
+.. note::  The ``DESCRIBE_CONFIGURATION`` arguments (``CONFIGURATION`` and ``PARAMETER``) can be written in either short (``CONFIG``, ``PARAM``) or long format (``CONFIGURATION``, ``PARAMETER``).
    
 Parameters
 ============
 The following parameters can be used when switching databases with the **DESCRIBE CONFIGURATION** command:
-
-**Comment** - *I will update this table based on the response to the above comment.* 
 
 .. list-table:: 
    :widths: auto
@@ -35,30 +35,32 @@ The following parameters can be used when switching databases with the **DESCRIB
      - Parameter Value
      - Description
      - Type
-   * - ``SESSION ID``
-     - ``session_id``
-     - (Optional) The session ID of the query.
-     - Type
-   * - ``QUERY ID``
-     - ``query-id``
-     - The query ID of the user.
-     - Required
+   * - ``PARAMETER``
+     - ``parameter``
+     - Describes the specified configuration parameter(s), listing all parameters if nothing is specified.
+     - Required **Comment** - *True?*
+   * - ``LIKE 'pattern'``
+     - **Comment** - *Value needed*
+     - Describe specific config parameters using LIKE pattern.
+     - Required **Comment** - *True?*
+   * - ``DEV_MODE``
+     - **Comment** - *Does not need to be documented. Confirm.*
+     - 
+     - 
  
 Example
 ==============
-The following is an example of the ``DESCRIBE QUERY`` command:
+The following is an example of the ``DESCRIBE CONFIGURATION`` command:
 
-**Comment** - *Need example*
+**Comment** - *Waiting for access to doc.*
 
-.. code-block:: postgres
-
-   DESCRIBE QUERY SESSION ID '3d5b9e46-4ef8-46d7-bfc3-5c19505494b5' QUERY ID '5';
+.. code-block:: postgres   
 	 
 Output
 =============
 Using the ``DESCRIBE CONFIGURATION`` command generates the following output:
 
-**Comment** - *Each row needs an example*
+**Comment** - *When you have access, populate the table according to the correct output.*
 
 .. list-table:: 
    :widths: auto
@@ -101,7 +103,7 @@ Using the ``DESCRIBE CONFIGURATION`` command generates the following output:
      - Text
      - 
 	 
-The following is an example of the generated output in Studio:
+The following is an example of the generated output:
 
 **Comment** - *Need generated output example.*
 
