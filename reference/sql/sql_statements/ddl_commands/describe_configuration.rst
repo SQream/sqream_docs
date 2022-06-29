@@ -17,10 +17,12 @@ The following is the syntax for the ``DESCRIBE CONFIGURATION`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE CONFIGURATION (PARAMETER <parameter>)* [LIKE 'pattern'] [DEV_MODE];
+   DESCRIBE CONFIGURATION (PARAMETER <parameter>)* [LIKE 'pattern']
    
-**Comment** - *The PRD says, "Describe dev_mode config parameters (in additon to the non_dev parameters list) - hidden option for internal use only, not to be documented." Confirm.*
-   
+The ``[LIKE 'pattern']`` is used to define a wildcard pattern containing one or more characters in a string. For example, defining it as ``'%port%'`` will describe all configurations containing the string ``port,`` as in ``portSsl``.
+
+For an example of an output, see the :ref:`Output<output>` section below.
+     
 .. note::  The ``DESCRIBE_CONFIGURATION`` arguments (``CONFIGURATION`` and ``PARAMETER``) can be written in either short (``CONFIG``, ``PARAM``) or long format (``CONFIGURATION``, ``PARAMETER``).
    
 Parameters
@@ -40,25 +42,68 @@ The following parameters can be used when switching databases with the **DESCRIB
      - Describes the specified configuration parameter(s), listing all parameters if nothing is specified.
      - Required **Comment** - *True?*
    * - ``LIKE 'pattern'``
-     - **Comment** - *Value needed*
-     - Describe specific config parameters using LIKE pattern.
+     - ``'pattern'``
+     - Describes all configurations containing the defined string.
      - Required **Comment** - *True?*
-   * - ``DEV_MODE``
-     - **Comment** - *Does not need to be documented. Confirm.*
-     - 
-     - 
- 
+
 Example
 ==============
 The following is an example of the ``DESCRIBE CONFIGURATION`` command:
 
-**Comment** - *Waiting for access to doc.*
-
 .. code-block:: postgres   
+
+   DESCRIBE CONFIGURATION PARAMETER PORT LIKE '%PORT%';
+
+.. _output:
 	 
 Output
 =============
-Using the ``DESCRIBE CONFIGURATION`` command generates the following output:
+The **Output** section shows individual output examples of the following arguments:
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
+DESCRIBE CONFIGURATION
+-------------------------   
+Defining the ``DESCRIBE CONFIGURATION`` argument generates the following output:
+
+.. code-block:: postgres   
+
+   DESCRIBE Configuration;
+
+   flag_name                         |flag_value                                     |def_flag_value|flag_category|flag_type|data_type|description                                                                                                                                                                                                                                                    |
+   ----------------------------------+-----------------------------------------------+--------------+-------------+---------+---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   gpu                               |0                                              |0             |RND          |worker   |         |                                                                                                                                                                                                                                                               |
+   port                              |5000                                           |5000          |RND          |worker   |         |                                                                                                                                                                                                                                                               |
+   portSsl                           |433                                            |433           |RND          |worker   |         |Configuration file only. This flag can only be set before the daemon starts. It cannot be changed dynamically. Port conflicts will cause the server not to start.¶If the daemon has started, this was probably set correctly. Connect with a client such as Cli|
+   cluster                           |"\/mnt\/sqream\/sqreamdb"                      |              |RND          |worker   |         |                                                                                                                                                                                                                                                               |
+   metadataPath                      |"\/mnt\/sqream\/sqreamdb\/leveldb"             |              |RND          |worker   |         |  
+   
+DESCRIBE CONFIGURATION PARAMETER
+------------------------
+Defining the ``PARAMETER`` argument generates the following output:
+
+.. code-block:: postgres   
+
+   describe config param port;
+
+   flag_name|flag_value|def_flag_value|flag_category|flag_type|data_type|description|
+   ---------+----------+--------------+-------------+---------+---------+-----------+
+   port     |5000      |5000          |RND          |worker   |         |           |
+
+DESCRIBE CONFIGURATION LIKE PATTERN
+------------------------   
+Defining the ``LIKE PATTERN`` argument generates the following output:
+
+.. code-block:: postgres   
+
+   describe config like '%port%';
+
+   flag_name|flag_value|def_flag_value|flag_category|flag_type|data_type|description|
+   ---------+----------+--------------+-------------+---------+---------+-----------+
+   port     |5000      |5000          |RND          |worker   |         |           |
+   portSsl  |433       |433           |RND          |worker   |         |Configuration file only. This flag can only be set before the daemon starts. It cannot be changed dynamically. Port conflicts will cause the server not to start.¶If the daemon has started, this was probably set correctly. Connect with a client such as Cli|
 
 **Comment** - *When you have access, populate the table according to the correct output.*
 
