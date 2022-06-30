@@ -74,7 +74,31 @@ No relevant naming changes were made.
 
 Deprecated Features
 -------
-No features were depecrated.
+In SQream version 2022.1 the ``VARCHAR`` data type has been deprecated and replaced with ``TEXT``. ``VARCHAR`` will be maintained in all previous versions until migration to ``TEXT`` is complete, at which point it will be deprecated in all earlier versions.
+
+If you are using an earlier version of SQream, see `Using Legacy String Literals <https://docs.sqream.com/en/latest/configuration_guides/use_legacy_string_literals.html>`_.
+
+An automated process is being used to facilitate migration from ``VARCHAR`` to ``TEXT``. For more information, contact SQream.
+
+**Comment** - *Below is the original text of the VARCHAR deprecation email. I don't think that we need to necessarily expose our logic to our customers, but focus on certain aspects of it (see the first paragraph above). However, I can use more/all of this content if deemed necessary.*
+
+* SQream has decided to deprecated support in varchar data type, the decision made out of SQream effort to enhance its core functionalities and with respect to ever changing eco system requirements.
+
+   :: 
+   
+* For new customers Varchar data type is not supported  
+
+   ::
+   
+* The supported data type that will replace this data type is text as all different functionalities encapsulated within this data type
+
+   ::
+   
+* SQream will maintain varchar data type support until the last customer will be fully migrated
+
+   ::
+
+* In order to enhance the conversion mechanism to be as fast as possible SQream will provide an automated and secured tool to help customers with the conversion phase from VARCHAR to TEXT data type, please address delivery for further information
 
 Known Issues and Limitations
 --------
@@ -87,6 +111,8 @@ The the list below describes the following known issues and limitations:
 
 End of Support
 -------
+**Comment** - *We need to know what to put here.*
+
 This section is not relevant to the 2022.1 release notes.
 
 Upgrading to v2022.1
