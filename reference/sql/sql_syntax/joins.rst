@@ -60,7 +60,6 @@ An inner join can also be specified by listing several tables in the ``FROM`` cl
    [ { INNER JOIN
      | LEFT [OUTER] JOIN
      | RIGHT [OUTER] JOIN
-     | FULL [OUTER] JOIN } table2
    ON table1.column1 = table2.column1 ]
 
 Omitting the ``ON`` or ``WHERE`` clause creates a ``CROSS JOIN``, where every ``left_side`` row is matched with every ``right_side`` row.
