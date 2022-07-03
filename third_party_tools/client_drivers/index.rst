@@ -41,7 +41,7 @@ The following are applicable to all operating systems:
 
 * **Tableau**:
 
-  * `Tableau connector <https://sq-ftp-public.s3.amazonaws.com/SQreamTaco.rar>`_ - SQream (.taco)
+  * `Tableau connector <https://sq-ftp-public.s3.amazonaws.com/SQreamDB.taco>`_ - SQream (.taco)
   * `Tableau manual installation <https://docs.sqream.com/en/v2020-1/third_party_tools/client_platforms/tableau.html#>`_
 
 
