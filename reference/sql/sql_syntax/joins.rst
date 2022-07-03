@@ -46,8 +46,8 @@ The following shows the correct syntax for creating an **inner join**:
 
 .. code-block:: postgres
 
-   left_side [ INNER ] JOIN right_side ON value_expr
-   left_side [ INNER ] JOIN right_side USING ( join_column [, ... ] )
+   left_side [ INNER ] JOIN left_side ON value_expr
+   left_side [ INNER ] JOIN left_side USING ( join_column [, ... ] )
 
 
 Inner joins are the default join type and return rows from the ``left_side`` and ``right_side`` based on a matching condition.
@@ -60,7 +60,6 @@ An inner join can also be specified by listing several tables in the ``FROM`` cl
    [ { INNER JOIN
      | LEFT [OUTER] JOIN
      | RIGHT [OUTER] JOIN
-     | FULL [OUTER] JOIN } table2
    ON table1.column1 = table2.column1 ]
 
 Omitting the ``ON`` or ``WHERE`` clause creates a ``CROSS JOIN``, where every ``left_side`` row is matched with every ``right_side`` row.
@@ -117,7 +116,7 @@ The ``CROSS JOIN`` clause cannot have an ``ON`` clause, but the ``WHERE`` clause
 
 The following is an example of two tables that will be used as the basis for a cross join:
 
-.. image:: /_static/images/joins/color_table.png
+.. image:: /_static/images/color_table.png
 
 The following is the output result of the cross join:
 
