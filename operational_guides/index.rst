@@ -13,6 +13,7 @@ This section summarizes the following operational guides:
    :titlesonly:
 
    access_control
+   mounting_an_nfs_shared_drive
    creating_or_cloning_a_storage_cluster
    external_data
    foreign_tables
