@@ -71,6 +71,7 @@ The following is the correct syntax for using the **COPY TO** statement:
 
 Elements
 ============
+The following table shows the ``COPY_TO`` elements:
 
 .. list-table:: 
    :widths: auto
@@ -99,38 +100,91 @@ Elements
 
 Usage Notes
 ===============
+The **Usage Notes** describes the following:
+
+.. contents:: 
+   :local:
+   :depth: 1
 
 Supported Field Delimiters
 ------------------------------
 
-Printable Characters
+Printable ASCII Characters
 ^^^^^^^^^^^^^^^^^^^^^
-
 Any printable ASCII character can be used as a delimiter without special syntax. The default CSV field delimiter is a comma (``,``).
 
-A printable character is any ASCII character in the range 32 - 126.
+The following table shows the supported printable ASCII characters:
 
-Non-Printable Characters
+.. list-table:: Printable ASCII Characters
+   :widths: 25
+   :header-rows: 1
+   
+   * - Octal Notation
+   * - 32-33
+   * - 35-38
+   * - 40-43
+   * - 59-64
+   * - 91-96
+   * - 123-126 (ASCII)
+
+Non-Printable ASCII Characters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The following table shows the supported non-printable ASCII characters:
 
-A non-printable character (1 - 31, 127) can be used in its octal form. 
+.. list-table:: Non-Printable ASCII Characters
+   :widths: 25
+   :header-rows: 1
 
+   * - Octal Notation
+   * - 1-9, 11, 12
+   * - 14-31
+   * - 127 (ASCII)
+   
 A tab can be specified by escaping it, for example ``\t``. Other non-printable characters can be specified using their octal representations, by using the ``E'\000'`` format, where ``000`` is the octal value of the character.
 
 For example, ASCII character ``15``, known as "shift in", can be specified using ``E'\017'``.
 
+.. note:: Delimiters are only applicable to the CSV file format.
 
 Date Format
 ---------------
-
 The date format in the output CSV is formatted as ISO 8601 (``2019-12-31 20:30:55.123``), regardless of how it was parsed initially with :ref:`COPY FROM date parsers<copy_date_parsers>`.
 
+Unsupported ASCII Field Delimiters
+------------------------------
+The following table shows the unsupported ASCII field delimiters:
+
+.. list-table:: Unsupported ASCII Field Delimiters
+   :widths: 25 25
+   :header-rows: 1
+
+   * - Character
+     - Octal Notation
+   * - ``"``
+     - 42
+   * - ``-``
+     - 55
+   * - ``.``
+     - 56
+   * - ``:``
+     - 72
+   * - ``\``
+     - 134
+   * - Digits ``0`` - ``9``
+     - 060-070
+   * - Letters ``a`` - ``z``
+     - 141-172
+   * - Letter ``N``
+     - 116
+   * - ASCII character ``10`` and ``13``
+     - 012 and 015
 
 Examples
 ===========
 
-Exporting a Table to a CSV without HEADER
+Exporting a Table to a CSV File without a HEADER Row
 ------------------------------------
+The following is an example of exporting a table to a CSV file without a HEADER row:
 
 .. code-block:: psql
    
@@ -148,6 +202,7 @@ Exporting a Table to a CSV without HEADER
 
 Exporting a Table to a CSV with a HEADER Row
 -----------------------------------------
+The following is an example of exporting a table to a CSV file with a HEADER row:
 
 .. code-block:: psql
    
@@ -165,6 +220,7 @@ Exporting a Table to a CSV with a HEADER Row
 
 Exporting a Table to TSV with a HEADER Row
 -----------------------------------------
+The following is an example of exporting a table to a TSV file with a HEADER row:
 
 .. code-block:: psql
    
@@ -182,6 +238,7 @@ Exporting a Table to TSV with a HEADER Row
 
 Using Non-Printable ASCII Characters as Delimiters
 -------------------------------------------------------
+The following is an example of using non-printable ASCII characters as delimiters:
 
 Non-printable characters can be specified using their octal representations, by using the ``E'\000'`` format, where ``000`` is the octal value of the character.
 
@@ -197,6 +254,7 @@ For example, ASCII character ``15``, known as "shift in", can be specified using
 
 Exporting the Result of a Query to CSV File
 --------------------------------------------
+The following is an example of exporting the result of a query to a CSV file:
 
 .. code-block:: psql
    
@@ -211,8 +269,9 @@ Exporting the Result of a Query to CSV File
    Charlotte Hornets,5222728
    Chicago Bulls,5785558
 
-Saving Files to an Authenticated S3 Buckets
+Saving Files to an Authenticated S3 Bucket
 --------------------------------------------
+The following is an example of saving files to an authenticated S3 bucket:
 
 .. code-block:: psql
    
@@ -220,30 +279,31 @@ Saving Files to an Authenticated S3 Buckets
 
 Saving Files to an HDFS Path
 --------------------------------------------
+The following is an example of saving files to an HDFS path:
 
 .. code-block:: psql
    
    	COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) TO WRAPPER csv_fdw OPTIONS (LOCATION = 'hdfs://pp_namenode:8020/nba_export.csv');
 
-
 Exporting a Table to a Parquet File
 ------------------------------
+The following is an example of exporting a table to a Parquet file:
 
 .. code-block:: psql
    
 	COPY nba TO WRAPPER parquet_fdw OPTIONS (LOCATION = '/tmp/nba_export.parquet');
 
-
 Exporting a Query to a Parquet File
 --------------------------------
+The following is an example of exporting a query to a Parquet file:
 
 .. code-block:: psql
 
 	COPY (select x,y from t where z=0) TO WRAPPER parquet_fdw OPTIONS (LOCATION = '/tmp/file.parquet');
 
-
 Exporting a Table to an ORC File
 ------------------------------
+The following is an example of exporting a table to an ORC file:
 
 .. code-block:: psql
    
@@ -251,5 +311,4 @@ Exporting a Table to an ORC File
 
 Permissions
 =============
-
 The role must have the ``SELECT`` permission on every table or schema that is referenced by the statement.
