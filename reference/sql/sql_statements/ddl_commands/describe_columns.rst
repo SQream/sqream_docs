@@ -11,7 +11,7 @@ The following is the syntax for the ``DESCRIBE COLUMNS`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE COLUMNS SCHEMA <schema_name> DATABASE <database_name> TABLE <table_name>
+   DESCRIBE COLUMNS [ SCHEMA <schema_name> ] [ DATABASE  <database_name> ] TABLE <table_name>
 
 Parameters
 ============
@@ -27,11 +27,11 @@ The following parameters can be used with the ``DESCRIBE COLUMNS`` command:
      - Type
    * - ``DATABASE``
      - ``database_name``
-     - The name of the database.
+     - Optional - The name of the database.
      - Text
    * - ``SCHEMA``
      - ``schema_name``
-     - The name of the schema.
+     - Optional - The name of the schema.
      - Text
    * - ``TABLE``
      - ``table_name``

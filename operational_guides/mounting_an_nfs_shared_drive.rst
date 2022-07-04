@@ -3,9 +3,7 @@
 **********************************
 Mounting an NFS Shared Drive
 **********************************
-**This page is In Review**.
-
-The **Mounting an NFS Shared Drive** page describes how to use your existing NFS share drives or S3 buckets when reading data from or exporting to external files, and describes the following:
+The **Mounting an NFS Shared Drive** page describes how to use your existing NFS share drives when reading data from or exporting to external files, and describes the following:
 
 .. contents:: 
    :local:
@@ -13,7 +11,7 @@ The **Mounting an NFS Shared Drive** page describes how to use your existing NFS
    
 Overview
 ==============   
-SQream supports reading external tables and/or writing exported data to **NFS (Network File System)** shared drives. Because SQream runs microservices as Dockerized containers, NFS shared drives must be mounted on a SQream cluster. Note that mounted shared drives are persistent. In addition, SQream provides a script used to map data types when data is ingested. This script is called **update-nfs-share.sh** and is located in the ``utilities/nfsshares/`` folder.
+SQream supports reading external tables and/or writing exported data to **NFS (Network File System)** shared drives. Because SQream runs microservices as Dockerized containers, NFS shared drives must be mounted to the relevant Docker pods. Note that mounted shared drives are persistent. SQream provides a script used to map data types when data is ingested. This script is called **update-nfs-share.sh** and is located in the ``utilities/nfsshares/`` folder.
 
 Script Prerequisites
 ==============
@@ -29,7 +27,7 @@ The following list describes the prerequisites required to run the **update-nfs-
    
 * Verification that **NFS share** is shared with your SQream cluster.
 
-**Comment** - *NFS share?* 
+**Comment** - *NFS share = NFS shared drive?* 
 
 Using your NFS server IP address(es), you can run the following Linux command to verify that your NFS is shared with your SQream cluster:
 
@@ -57,7 +55,7 @@ For more information, see :ref:`copy_from`.
 
 Syntax
 ==============
-The following is the syntax for verifying that your NFS is shared with your SQream cluster:
+The following is an example of the syntax used for executing the script:
 
 .. code-block:: console
 
