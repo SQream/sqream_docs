@@ -11,7 +11,7 @@ The **Mounting an NFS Shared Drive** page describes how to use your existing NFS
    
 Overview
 ==============   
-SQream supports reading external tables and/or writing exported data to **NFS (Network File System)** shared drives. Because SQream runs microservices as Dockerized containers, NFS shared drives must be mounted to the relevant Docker pods. Note that mounted shared drives are persistent. SQream provides a script used to map data types when data is ingested. This script is called **update-nfs-share.sh** and is located in the ``utilities/nfsshares/`` folder.
+SQream supports reading external tables and/or writing exported data to **NFS (Network File System)** shared drives. Because SQream runs microservices as Dockerized containers, NFS shared drives must be mounted to the relevant Docker pods. Note that mounted shared drives are persistent. SQream provides a script used to map NFS shared drives. This script is called **update-nfs-share.sh** and is located in the ``utilities/nfsshares/`` folder.
 
 Script Prerequisites
 ==============
@@ -25,19 +25,17 @@ The following list describes the prerequisites required to run the **update-nfs-
 
    ::
    
-* Verification that **NFS share** is shared with your SQream cluster.
+* Verification that **NFS shared drive** is shared with your SQream cluster.
 
-**Comment** - *NFS share = NFS shared drive?* 
+.. tip::  Using your NFS server IP address(es), you can run the following Linux command to verify that your NFS is shared with your SQream cluster:
 
-Using your NFS server IP address(es), you can run the following Linux command to verify that your NFS is shared with your SQream cluster:
+          .. code-block:: console
 
-.. code-block:: console
-
-   $ showmount -e 192.168.4.28
-     >Export list for 192.168.4.28:
-     >/mnt/shares/csv     192.168.4.0/24
-     >/newdir/myshareddir 192.168.4.0/24
-     >/mnt/myshareddir    192.168.4.0/24
+             $ showmount -e 192.168.4.28
+             >Export list for 192.168.4.28:
+             >/mnt/shares/csv     192.168.4.0/24
+             >/newdir/myshareddir 192.168.4.0/24
+             >/mnt/myshareddir    192.168.4.0/24
 	 
 Script Input Parameters
 ==============
@@ -48,8 +46,6 @@ The following list describes the script input parameters for verifying that your
    ::
    
 * **The NFS directory path** - The mount directory path used for copying data from external sources or exporting data.
-
-.. note:: You must run the script for each director you add.
 
 For more information, see :ref:`copy_from`.
 
