@@ -16,4 +16,3 @@ This section describes how to use the SQream Accleration Studio version 5.4.3:
    executing_statements_and_running_queries_from_the_editor
    viewing_logs
    creating_assigning_and_managing_roles_and_permissions
-   configuring_your_instance_of_sqream
