@@ -13,7 +13,7 @@ The **Configuration Methods** page describes the following configurations method
    :titlesonly:
 
    current_configuration_method
-   previous_configuration_method
+
 
 
 

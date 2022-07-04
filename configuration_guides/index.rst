@@ -11,8 +11,4 @@ The **Configuration Guides** page describes the following configuration informat
    :glob:
 
    spooling
-   configuration_methods
-   configuration_flags
-
-
-
+   configuring_sqream

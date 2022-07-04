@@ -1,4 +1,4 @@
-.. _current_configuration_method:
+.. _configuring_sqream:
 
 **************************
 Configuring SQream
