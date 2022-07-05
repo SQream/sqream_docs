@@ -47,7 +47,13 @@ The following list describes the script input parameters for verifying that your
    
 * **The NFS directory path** - The mount directory path used for copying data from external sources or exporting data.
 
-For more information, see :ref:`copy_from`.
+For more information, see the following:
+
+ * :ref:`copy_from`
+ 
+    ::
+	
+ * :ref:`copy_to`
 
 Syntax
 ==============
