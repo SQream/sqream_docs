@@ -3,38 +3,61 @@
 ***************************
 Inserting Data Overview
 ***************************
-The **Inserting Data Overview** page describes how to insert data into SQream from a variety of sources and locations. 
+The **Inserting Data Overview** page provides basic information useful when ingesting data into SQream from a variety of sources and locations, and describes the following:
 
-.. contents:: In this topic:
+.. contents:: 
    :local:
+   :depth: 1
 
 Getting Started
 ================================
 SQream supports ingesting data using the following methods:
 
-* Using :ref:`insert` with :ref:`a client driver<client_drivers>`
-* Using :ref:`copy_from`:
+* Executing the ``INSERT`` statement using a client driver.
 
-  - Local filesystem and locally mounted network filesystems
-  - :ref:`s3`
-  - :ref:`hdfs`
+   ::
+   
+* Executing the ``COPY FROM`` statement or ingesting data from external tables:
 
-* Using :ref:`external_tables`:
+  * Local filesystem and locally mounted network filesystems
+  * Inserting Data using the Amazon S3 object storage service
+  * Inserting Data using an HDFS data storage system
 
-  - Local filesystem and locally mounted network filesystems
-  - :ref:`s3`
-  - :ref:`hdfs`
+SQream supports loading files from the following formats:
 
-
-SQream DB supports loading files in the following formats:
-
-* Text - CSV, TSV, PSV
+* Text - CSV, TSV, and PSV
 * Parquet
 * ORC
 
+For more information, see the following:
+
+.. list-table::
+   :widths: 25 25
+   :header-rows: 1
+   
+   * - Function
+     - Link
+   * - **INSERT** statement
+     - :ref:`insert`
+   * - Client drivers
+     - :ref:`Client drivers<client_drivers>`
+   * - **COPY FROM** statement
+     - :ref:`copy_from`
+   * - Amazon S3 object storage service
+     - :ref:`s3`
+   * - HDFS data storage system
+     - :ref:`hdfs`
+   * - External tables
+     - :ref:`external_tables`
+
 Data Loading Considerations
 ================================
+The **Data Loading Considerations** section describes the following:
 
+.. contents:: 
+   :local:
+   :depth: 1
+   
 Verifying Data and Performance after Loading
 -----------------------------------------
 
