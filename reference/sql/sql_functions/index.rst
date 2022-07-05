@@ -174,8 +174,6 @@ The following table shows the **arithmetic operator** functions:
      - Calculates the cosine of an argument
    * - :ref:`cot`
      - Calculates the cotangent of an argument
-   * - :ref:`crc64`
-     - Calculates a CRC-64 hash of an argument
    * - :ref:`degrees`
      - Converts a value from radian values to degrees
    * - :ref:`exp`
