@@ -98,9 +98,7 @@ Using the ``DESCRIBE COLUMNS`` command generates the following output:
      - Displays the size of the column in bytes.
      - Integer
      - 4 	 
-	      
-Example
-===========
+
 The following is an example of the generated output in Studio:
 
 .. image:: /_static/images/describe_columns.png
