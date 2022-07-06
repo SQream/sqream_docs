@@ -10,5 +10,6 @@ SQream DB supports external data sources for use with :ref:`external_tables`, :r
    :titlesonly:
 
    s3
+   hdfs
    mounting_an_nfs_shared_drive
    
