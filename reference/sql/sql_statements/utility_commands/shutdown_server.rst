@@ -3,7 +3,7 @@
 ********************
 SHUTDOWN SERVER
 ********************
-**Comment** - When finished, add command to Utility Commands > shutdown_server.
+**Comment** - *This feature is in development and has not been published to any live branch.*
 
 The **SHUTDOWN SERVER** guide describes the following:
 
@@ -33,7 +33,7 @@ Running the ``SHUTDOWN_SERVER`` command does the following:
 
   * Setting the SQream server to unavailable in the metadata server. **Comment** - *Is "unavailable" the official server setting?*
 
-    :: 
+     :: 
 
   * Unsubscribing the server from its service.
 
@@ -51,7 +51,7 @@ The following is the syntax for using the ``SHUTDOWN_SERVER`` command:
 
 .. code-block:: postgres
 
-   select shutdown_server([is_graceful, [timeout]]);
+   select shutdown_server([force[,timeout]]);
    
 **Comment** - *Is the below syntax correct?*
 
@@ -77,13 +77,13 @@ The following table shows the ``shutdown_server`` parameters:
      - Description
      - Example
      - Default
-   * - ``is_graceful``
-     - Determines the method used to shut down the server.
-     - Selecting ``false`` shuts down the server while queries are running. Selecting ``true`` uses the graceful shutdown method.
-     - **Comment** - Is the default ``true`` or ``false``?
+   * - ``force``
+     - Specifies whether or not the server should wait for queued statements to complete before shutting down. Selecting ``false`` shuts down the server while queries are running. Selecting ``true`` uses the graceful shutdown method.
+     - ``select shutdown_server([true[,timeout]]);``
+     - ``false``
    * - ``timeout``
      - Sets the maximum amount of minutes for the graceful shutdown method to run before the server is shut down using the standard method.
-     - ``30``
+     - ``select shutdown_server([force[,30]]);``
      - ``5``
 	 
 .. note:: Setting ``is_graceful`` to ``false`` and defining the ``timeout`` value shuts the server down mid-query after the defined time.
