@@ -410,6 +410,11 @@ For more information on the ``datetime`` format, see :ref:`sql_data_types_date`.
 
 Examples
 ===========
+The **Examples** section shows the following examples:
+
+.. contents:: 
+   :local:
+   :depth: 1
 
 Exporting a Table to a CSV File without a HEADER Row
 ------------------------------------
