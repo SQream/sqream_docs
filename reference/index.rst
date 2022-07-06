@@ -14,3 +14,4 @@ The **Reference Guides** section is a reference for using the following SQream i
    cli/index
    sql_feature_support
    xxconfiguration
+   python_api_reference_guide
