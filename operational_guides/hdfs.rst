@@ -2,7 +2,7 @@
 
 .. _back_to_top_hdfs:
 
-HDFS
+Using SQream in an HDFS Environment
 =======================================
 
 .. _configuring_an_hdfs_environment_for_the_user_sqream:

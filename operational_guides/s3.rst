@@ -1,7 +1,7 @@
 .. _s3:
 
 ***********************
-Amazon S3
+Inserting Data Using Amazon S3
 ***********************
 SQream uses a native S3 connector for directly inserting data from a number of external sources directly into SQream. This is done using the ``s3://`` URI to specify an external file path on an S3 bucket. Your files can be saved in CSV or columnar format, such as Parquet and ORC, and your file names can include wildcard characters.
 
