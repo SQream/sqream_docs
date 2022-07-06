@@ -3,9 +3,7 @@
 ***********************
 Hardware Guide
 ***********************
-
-This guide describes the SQream reference architecture, emphasizing the benefits to the technical audience, and provides guidance for end-users on selecting the right configuration for a SQream installation.
-
+The **Hardware Guide** describes the SQream reference architecture, emphasizing the benefits to the technical audience, and provides guidance for end-users on selecting the right configuration for a SQream installation.
 
 .. rubric:: Need help?
 
@@ -15,20 +13,22 @@ Visit `SQream's support portal <https://sqream.atlassian.net/servicedesk/custome
 
 A SQream Cluster
 ============================
-
 SQream recommends rackmount servers by server manufacturers Dell, Lenovo, HP, Cisco, Supermicro, IBM, and others.
 
 A typical SQream cluster includes one or more nodes, consisting of
 
-* Two-socket enterprise processors, like the Intel® Xeon® Gold processor family or an IBM® POWER9 processors, providing the high performance required for compute-bound database workloads. 
+* Two-socket enterprise processors, like the Intel® Xeon® Gold processor family or an IBM® POWER9 processors, providing the high performance required for compute-bound database workloads.
 
-* NVIDIA Tesla GPU accelerators, with up to 5,120 CUDA and Tensor cores, running on PCIe or fast NVLINK busses, delivering high core count, and high-throughput performance on massive datasets
+   ::
+
+* NVIDIA Tesla GPU accelerators, with up to 5,120 CUDA and Tensor cores, running on PCIe or fast NVLINK busses, delivering high core count, and high-throughput performance on massive datasets.
+
+   ::
 
 * High density chassis design, offering between 2 and 4 GPUs in a 1U, 2U, or 3U package, for best-in-class performance per cm\ :sup:`2`.
 
 Single-Node Cluster Example
 -----------------------------------
-
 A single-node SQream cluster can handle between 1 and 8 concurrent users, with up to 1PB of data storage (when connected via NAS).
 
 An average single-node cluster can be a rackmount server or workstation, containing the following components:
@@ -78,12 +78,10 @@ The following table shows SQream's recommended hardware specifications:
 
 .. list-table::
    :widths: 15 65
-   :header-rows: 2
+   :header-rows: 1
    
    * - Component
      - Type
-   * - No. of Servers
-     - Two Dell R750XA or similar servers each with the following charactersitics:
    * - Server
      - Dell R750, Dell R940xa, HP ProLiant DL380 Gen10 or similar (Intel only)
    * - Processor
@@ -125,7 +123,7 @@ The following table shows SQream's recommended metadata server specifications:
      - Two 1 GbE cards or similar
    * - Power sources
      - Two Power Supplies - 800W AC 50/60Hz 100~240Vac/9.2-4.7A, 3139 BTU/hr
-   * - OS
+   * - Operating System
      - Red Hat Enterprise Linux v7.x or CentOS v7.x or Amazon Linux
 
 Web User Interface Specifications
@@ -146,7 +144,7 @@ The following table shows SQream's recommended web user interface server specifi
      - 256 GB SATA 6Gb SSD drive or similar
    * - Network Card (Corporate)
      - Two 1 GbE cards or similar
-   * - OS
+   * - Operating System
      - Red Hat Enterprise Linux v7.x or CentOS v7.x or Amazon Linux
 
 .. note:: With a NAS connected over GPFS, Lustre, or NFS, each SQream worker can read data at up to 5GB/s.
@@ -172,11 +170,9 @@ The following table shows SQream's recommended Studio server specifications:
    * - Operating System
      - Red Hat Enterprise Linux v7.x or CentOS v7.x
 
-
-
-
 Cluster Design Considerations
 ====================================
+This section describes the following cluster design considerations:
 
 * In a SQream installation, the storage and compute are logically separated. While they may reside on the same machine in a standalone installation, they may also reside on different hosts, providing additional flexibility and scalability.
 
