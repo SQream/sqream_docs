@@ -78,7 +78,7 @@ The following table shows SQream's recommended hardware specifications:
 
 .. list-table::
    :widths: 15 65
-   :header-rows: 2
+   :header-rows: 1
    
    * - Component
      - Type
