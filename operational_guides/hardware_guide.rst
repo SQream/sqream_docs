@@ -109,12 +109,10 @@ The following table shows SQream's recommended metadata server specifications:
 
 .. list-table::
    :widths: 15 90
-   :header-rows: 2
+   :header-rows: 1
    
    * - Component
      - Type
-   * - No. of Servers
-     - One Dell R650 server or similar with the following characteristics:
    * - Processors
      - Two Intel Xeon Gold 6342 2.8 Ghz 24C processors or similar
    * - RAM
@@ -127,10 +125,8 @@ The following table shows SQream's recommended metadata server specifications:
      - Two 1 GbE cards or similar
    * - Power sources
      - Two Power Supplies - 800W AC 50/60Hz 100~240Vac/9.2-4.7A, 3139 BTU/hr
-   * - Rack Size
-     - 1U
    * - OS
-     - Red Hat Enterprise Linux v.7.9
+     - Red Hat Enterprise Linux v7.x or CentOS v7.x or Amazon Linux
 
 Web User Interface Specifications
 ~~~~~~~~~~~~~~~~~~~~~~~~~	 
@@ -138,26 +134,20 @@ The following table shows SQream's recommended web user interface server specifi
 
 .. list-table::
    :widths: 15 90
-   :header-rows: 2
+   :header-rows: 1
    
    * - Component
      - Type
-   * - No. of Servers
-     - One Dell R650 server or similar with the following characteristics:
    * - Processors
-     - One Intel Xeon Silver 4316 2.4 Ghz 16C processor or similar
+     - One Intel i7 16C processor or similar
    * - RAM
      - 64 GB DDR4 RAM 2x32 GB RDIMM or similar
    * - Discs
-     - Two 256 GB SATA 6Gb SSD drives or similar
+     - 256 GB SATA 6Gb SSD drive or similar
    * - Network Card (Corporate)
      - Two 1 GbE cards or similar
-   * - Power sources
-     - Two Power Supplies - 800W AC 50/60Hz 100~240Vac/9.2-4.7A, 3139 BTU/hr
-   * - Rack Size
-     - 1U
    * - OS
-     - Red Hat Enterprise Linux v.7.9/Web Service - NGINX
+     - Red Hat Enterprise Linux v7.x or CentOS v7.x or Amazon Linux
 
 .. note:: With a NAS connected over GPFS, Lustre, or NFS, each SQream worker can read data at up to 5GB/s.
 
