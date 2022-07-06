@@ -495,8 +495,4 @@ For example:
    # Execute the command
    result = engine.execute(ins)
 
-.. toctree::
-   :maxdepth: 8
-   :caption: Further information
-   
-   api-reference
+For more information, see the :ref:`python_api_reference_guide`.
