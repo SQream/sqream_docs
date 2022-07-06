@@ -62,19 +62,28 @@ In this system configuration, SQream can store about 200TB of raw data (assuming
 
 If a NAS is used, the 14x SSD drives can be omitted, but SQream recommends 2TB of local spool space on SSD or NVMe drives.
 
-Multi-Node Cluster Example
+Multi-Node Cluster Examples
 -----------------------------------
+Multi-node clusters can handle any number of concurrent users. A typical SQream cluster relies on a minimum of two GPU-enabled servers and shared storage connected over a network fabric, such as InfiniBand EDR, 40GbE, or 100GbE.
 
-Multi-node clusters can handle any number of concurrent users. A typical SQream cluster relies on several GPU-enabled servers and shared storage connected over a network fabric, such as InfiniBand EDR, 40GbE, or 100GbE.
+The **Multi-Node Cluster Examples** section describes the following specifications: 
 
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Hardware Specifications
+~~~~~~~~~~~~~~~~~~~~~~~~~
 The following table shows SQream's recommended hardware specifications:
 
 .. list-table::
-   :widths: auto
-   :header-rows: 1
+   :widths: 15 65
+   :header-rows: 2
    
    * - Component
      - Type
+   * - No. of Servers
+     - Two Dell R750XA or similar servers each with the following charactersitics:
    * - Server
      - Dell R750, Dell R940xa, HP ProLiant DL380 Gen10 or similar (Intel only)
    * - Processor
@@ -93,6 +102,62 @@ The following table shows SQream's recommended hardware specifications:
      - 2x A100 NVIDIA
    * - Operating System
      - Red Hat Enterprise Linux v7.x or CentOS v7.x or Amazon Linux
+	 
+Metadata Specifications
+~~~~~~~~~~~~~~~~~~~~~~~~~	 
+The following table shows SQream's recommended metadata server specifications:
+
+.. list-table::
+   :widths: 15 90
+   :header-rows: 2
+   
+   * - Component
+     - Type
+   * - No. of Servers
+     - One Dell R650 server or similar with the following characteristics:
+   * - Processors
+     - Two Intel Xeon Gold 6342 2.8 Ghz 24C processors or similar
+   * - RAM
+     - 512GB DDR4 RAM 8x64GB RDIMM or similar
+   * - Discs
+     - Two 960 GB MVMe SSD drives in RAID 1 or similar
+   * - Network Card (Storage)
+     - Two Mellanox ConnectX-6 Single Port HDR VPI InfiniBand Adapter cards at 100GbE or similar.
+   * - Network Card (Corporate)
+     - Two 1 GbE cards or similar
+   * - Power sources
+     - Two Power Supplies - 800W AC 50/60Hz 100~240Vac/9.2-4.7A, 3139 BTU/hr
+   * - Rack Size
+     - 1U
+   * - OS
+     - Red Hat Enterprise Linux v.7.9
+
+Web User Interface Specifications
+~~~~~~~~~~~~~~~~~~~~~~~~~	 
+The following table shows SQream's recommended web user interface server specifications:
+
+.. list-table::
+   :widths: 15 90
+   :header-rows: 2
+   
+   * - Component
+     - Type
+   * - No. of Servers
+     - One Dell R650 server or similar with the following characteristics:
+   * - Processors
+     - One Intel Xeon Silver 4316 2.4 Ghz 16C processor or similar
+   * - RAM
+     - 64 GB DDR4 RAM 2x32 GB RDIMM or similar
+   * - Discs
+     - Two 256 GB SATA 6Gb SSD drives or similar
+   * - Network Card (Corporate)
+     - Two 1 GbE cards or similar
+   * - Power sources
+     - Two Power Supplies - 800W AC 50/60Hz 100~240Vac/9.2-4.7A, 3139 BTU/hr
+   * - Rack Size
+     - 1U
+   * - OS
+     - Red Hat Enterprise Linux v.7.9/Web Service - NGINX
 
 .. note:: With a NAS connected over GPFS, Lustre, or NFS, each SQream worker can read data at up to 5GB/s.
 
@@ -166,19 +231,16 @@ The **Balancing Cost and Performance** section provides a breakdown of deploymen
 
 CPU Compute
 -------------
-
 SQream relies on multi-core Intel Gold Xeon processors or IBM POWER9 processors, and recommends a dual-socket machine populated with CPUs with 18C/36HT or better. While a higher core count may not necessarily affect query performance, more cores will enable higher concurrency and better load performance.
 
 GPU Compute and RAM
 -------------------------
-
 The NVIDIA Tesla range of high-throughput GPU accelerators provides the best performance for enterprise environments. Most cards have ECC memory, which is crucial for delivering correct results every time. SQream recommends the NVIDIA Tesla V100 32GB or NVIDIA Tesla A100 40GB GPU for best performance and highest concurrent user support.
 
 GPU RAM, sometimes called GRAM or VRAM, is used for processing queries. It is possible to select GPUs with less RAM, like the NVIDIA Tesla V100 16GB or P100 16GB, or T4 16GB. However, the smaller GPU RAM results in reduced concurrency, as the GPU RAM is used extensively in operations like JOINs, ORDER BY, GROUP BY, and all SQL transforms.
 
 RAM
 --------
-
 SQream requires using **Error-Correcting Code memory (ECC)**, standard on most enterprise servers. Large amounts of memory are required for improved performance for heavy external operations, such as sorting and joining.
 
 SQream recommends at least 256GB of RAM per GPU on your machine. 
@@ -190,7 +252,6 @@ SQream can run on the following 64-bit Linux operating systems:
    * Red Hat Enterprise Linux (RHEL) v7
    * CentOS v7
    * Amazon Linux 2018.03
-   * Ubuntu v16.04 LTS, v18.04 LTS
    * Other Linux distributions may be supported via nvidia-docker
 
 Storage
