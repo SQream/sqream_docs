@@ -406,6 +406,8 @@ Date Format
 ---------------
 The date format in the output CSV is formatted as ISO 8601 (``2019-12-31 20:30:55.123``), regardless of how it was parsed initially with :ref:`COPY FROM date parsers<copy_date_parsers>`.
 
+For more information on the ``datetime`` format, see :ref:`sql_data_types_date`.
+
 Examples
 ===========
 
