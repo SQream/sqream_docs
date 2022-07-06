@@ -126,27 +126,6 @@ The following table shows SQream's recommended metadata server specifications:
    * - Operating System
      - Red Hat Enterprise Linux v7.x or CentOS v7.x or Amazon Linux
 
-Web User Interface Specifications
-~~~~~~~~~~~~~~~~~~~~~~~~~	 
-The following table shows SQream's recommended web user interface server specifications:
-
-.. list-table::
-   :widths: 15 90
-   :header-rows: 1
-   
-   * - Component
-     - Type
-   * - Processors
-     - One Intel i7 16C processor or similar
-   * - RAM
-     - 64 GB DDR4 RAM 2x32 GB RDIMM or similar
-   * - Discs
-     - 256 GB SATA 6Gb SSD drive or similar
-   * - Network Card (Corporate)
-     - Two 1 GbE cards or similar
-   * - Operating System
-     - Red Hat Enterprise Linux v7.x or CentOS v7.x or Amazon Linux
-
 .. note:: With a NAS connected over GPFS, Lustre, or NFS, each SQream worker can read data at up to 5GB/s.
 
 SQream Studio Server Example
