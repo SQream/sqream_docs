@@ -105,6 +105,8 @@ Utility Commands
      - Executes a previously saved query
    * - :ref:`EXPLAIN<explain>`
      - Returns a static query plan, which can be used to debug query plans
+   * - :ref:`SHUTDOWN SERVER<shutdown_server>`
+     - Provides users an improved method of shutting down a running server, in a way that takes into account running queries and relevant configurations of the system.
    * - :ref:`SELECT GET_LICENSE_INFO<get_license_info>`
      - Views a user's license information
    * - :ref:`SELECT GET_DDL<get_ddl>`
