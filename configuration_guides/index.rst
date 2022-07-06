@@ -12,3 +12,4 @@ The **Configuration Guides** page describes the following configuration informat
 
    spooling
    configuring_sqream
+   configuration_flags
