@@ -9,12 +9,13 @@ The **SQL Statements** page describes the following commands:
    :local:
    :depth: 1
 
-SQream DB supports commands from ANSI SQL.
+SQream supports commands from ANSI SQL.
 
 .. _ddl_commands_list:
 
 Data Definition Commands (DDL)
 ================================
+The following table shows the DDL commands, which are used to create and modify the structure of database objects in a database:
 
 .. list-table:: DDL Commands
    :widths: auto
@@ -84,6 +85,7 @@ Data Definition Commands (DDL)
 
 Data Manipulation Commands (DML)
 ================================
+The following table shows the DML commands, which let you to manipulate data in your database:
 
 .. list-table:: DML Commands
    :widths: auto
@@ -118,6 +120,7 @@ Data Manipulation Commands (DML)
 
 Utility Commands
 ==================
+The following table shows the Utility commands:
 
 .. list-table:: Utility Commands
    :widths: auto
@@ -142,13 +145,15 @@ Utility Commands
    * - :ref:`SHOW CONNECTIONS<show_connections>`
      - Returns a list of active sessions on the current worker
    * - :ref:`SHOW VERSION<show_version>`
-     - Returns the system version for SQream DB
+     - Returns the system version for SQream
+   * - :ref:`SHUTDOWN SERVER<shutdown_server>`
+     - Performs a graceful server shutdown
    * - :ref:`STOP STATEMENT<stop_statement>`
      - Stops or aborts an active statement
 
-
 Access Control Commands
 ================================
+The following table shows the Access Control commands:
 
 .. list-table:: Access Control Commands
    :widths: auto
