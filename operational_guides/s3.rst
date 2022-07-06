@@ -1,9 +1,8 @@
 .. _s3:
 
 ***********************
-Amazon S3
+Inserting Data Using Amazon S3
 ***********************
-
 SQream uses a native S3 connector for inserting data. The ``s3://`` URI specifies an external file path on an S3 bucket. File names may contain wildcard characters, and the files can be in CSV or columnar format, such as Parquet and ORC.
 
 The **Amazon S3** describes the following topics:
@@ -13,12 +12,10 @@ The **Amazon S3** describes the following topics:
    
 S3 Configuration
 ==============================
-
 Any database host with access to S3 endpoints can access S3 without any configuration. To read files from an S3 bucket, the database must have listable files.
 
 S3 URI Format
 ===============
-
 With S3, specify a location for a file (or files) when using :ref:`copy_from` or :ref:`external_tables`.
 
 The following is an example of the general S3 syntax:
@@ -29,12 +26,10 @@ The following is an example of the general S3 syntax:
 
 Authentication
 =================
-
 SQream supports ``AWS ID`` and ``AWS SECRET`` authentication. These should be specified when executing a statement.
 
 Examples
 ==========
-
 Use a foreign table to stage data from S3 before loading from CSV, Parquet, or ORC files.
 
 The **Examples** section includes the following examples:
@@ -42,12 +37,8 @@ The **Examples** section includes the following examples:
 .. contents::
    :local:
    :depth: 1
-
-
-
 Planning for Data Staging
 --------------------------------
-
 The examples in this section are based on a CSV file, as shown in the following table:
 
 .. csv-table:: nba.csv
@@ -59,7 +50,6 @@ The file is stored on Amazon S3, and this bucket is public and listable. To crea
 
 Creating a Foreign Table
 -----------------------------
-
 Based on the source file's structure, you can create a foreign table with the appropriate structure, and point it to your file as shown in the following example:
 
 .. code-block:: postgres
@@ -93,7 +83,6 @@ For more information, see the following:
 
 Querying Foreign Tables
 ------------------------------
-
 The following shows the data in the foreign table:
 
 .. code-block:: psql
@@ -114,7 +103,6 @@ The following shows the data in the foreign table:
    
 Bulk Loading a File from a Public S3 Bucket
 ----------------------------------------------
-
 The ``COPY FROM`` command can also be used to load data without staging it first.
 
 .. note:: The bucket must be publicly available and objects can be listed.
