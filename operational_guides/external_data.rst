@@ -11,6 +11,7 @@ SQream supports the following external data sources:
 
    s3
    hdfs
+   mounting_an_nfs_shared_drive
    
 For more information, see the following:
 
