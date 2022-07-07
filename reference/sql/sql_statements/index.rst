@@ -9,81 +9,81 @@ The **SQL Statements** page describes the following commands:
    :local:
    :depth: 1
 
-SQream DB supports commands from ANSI SQL.
+SQream supports commands from ANSI SQL.
 
 .. _ddl_commands_list:
 
 Data Definition Commands (DDL)
 ================================
+The following table shows the Data Definition commands:
 
-.. list-table:: DDL Commands
-   :widths: auto
+.. list-table::
+   :widths: 10 100
    :header-rows: 1
    :name: ddl_commands
    
    * - Command
      - Usage
-   * - :ref:`add_column`
+   * - :ref:`ADD_COLUMN<add_column>`
      - Add a new column to a table
-   * - :ref:`alter_default_schema`
+   * - :ref:`ALTER_DEFAULT_SCHEMA<alter_default_schema>`
      - Change the default schema for a role
-   * - :ref:`alter_table`
+   * - :ref:`ALTER_TABLE<alter_table>`
      - Change the schema of a table
-   * - :ref:`cluster_by`
+   * - :ref:`CLUSTER_BY<cluster_by>`
      - Change clustering keys in a table
-   * - :ref:`create_database`
+   * - :ref:`CREATE_DATABASE<create_database>`
      - Create a new database
-   * - :ref:`create_external_table`
-     - Create a new external table in the database (deprecated)
-   * - :ref:`create_foreign_table`
+   * - :ref:`CREATE_FOREIGN_TABLE<create_foreign_table>`
      - Create a new foreign table in the database
-   * - :ref:`create_function`
+   * - :ref:`CREATE_FUNCTION<create_function>`
      - Create a new user defined function in the database
-   * - :ref:`create_schema`
+   * - :ref:`CREATE_SCHEMA<create_schema>`
      - Create a new schema in the database
-   * - :ref:`create_table`
+   * - :ref:`CREATE_TABLE<create_table>`
      - Create a new table in the database
-   * - :ref:`create_table_as`
+   * - :ref:`CREATE_TABLE_AS<create_table_as>`
      - Create a new table in the database using results from a select query
-   * - :ref:`create_view`
+   * - :ref:`CREATE_VIEW<create_view>`
      - Create a new view in the database
-   * - :ref:`drop_clustering_key`
+   * - :ref:`DROP_CLUSTERING_KEY<drop_clustering_key>`
      - Drops all clustering keys in a table
-   * - :ref:`drop_column`
+   * - :ref:`DROP_COLUMN<drop_column>`
      - Drop a column from a table
-   * - :ref:`drop_database`
+   * - :ref:`DROP_DATABASE<drop_database>`
      - Drop a database and all of its objects
-   * - :ref:`drop_function`
+   * - :ref:`DROP_FUNCTION<drop_function>`
      - Drop a function
-   * - :ref:`drop_schema`
+   * - :ref:`DROP_SCHEMA<drop_schema>`
      - Drop a schema
-   * - :ref:`drop_table`
+   * - :ref:`DROP_TABLE<drop_table>`
      - Drop a table and its contents from a database
-   * - :ref:`drop_view`
+   * - :ref:`DROP_VIEW<drop_view>`
      - Drop a view
-   * - :ref:`rename_column`
+   * - :ref:`RENAME_COLUMN<rename_column>`
      - Rename a column
-   * - :ref:`rename_table`
+   * - :ref:`RENAME_TABLE<rename_table>`
      - Rename a table
+
 
 Data Manipulation Commands (DML)
 ================================
+The following table shows the Data Manipulation commands:
 
-.. list-table:: DML Commands
-   :widths: auto
+.. list-table::
+   :widths: 10 100
    :header-rows: 1
    :name: dml_commands
-
    
    * - Command
      - Usage
-   * - :ref:`CREATE TABLE AS<create_table_as>`
+   * - :ref:`CREATE_TABLE_AS<create_table_as>`
      - Create a new table in the database using results from a select query
    * - :ref:`DELETE<delete>`
      - Delete specific rows from a table
-   * - :ref:`COPY FROM<copy_from>`
+   * - :ref:`COPY_FROM<copy_from>`
      - Bulk load CSV data into an existing table
-   * - :ref:`COPY TO<copy_to>`
+   * - :ref:`COPY_TO<copy_to>`
      - Export a select query or entire table to CSV files
    * - :ref:`INSERT<insert>`
      - Insert rows into a table
@@ -98,15 +98,20 @@ Data Manipulation Commands (DML)
 
 Utility Commands
 ==================
+The following table shows the Utility commands:
 
-.. list-table:: Utility Commands
-   :widths: auto
+.. list-table::
+   :widths: 10 100
    :header-rows: 1
    
    * - Command
      - Usage
    * - :ref:`EXPLAIN<explain>`
      - Returns a static query plan, which can be used to debug query plans
+   * - :ref:`GET_EXTENTS_FILE_FOR_CHUNK<get_extents_file_list_for_chunk>`
+     - Points to all files that contain data related to a specific chunk
+   * - :ref:`GET_METADATA_CHUNK_KEY<get_metadata_chunk_key>`
+     - Returns a list of metadata key values for the chunks that you specify
    * - :ref:`SELECT GET_LICENSE_INFO<get_license_info>`
      - View a user's license information
    * - :ref:`SELECT GET_DDL<get_ddl>`
@@ -132,14 +137,12 @@ Utility Commands
    * - :ref:`STOP STATEMENT<stop_statement>`
      - Stops or aborts an active statement
 
-
-
-
 Workload Management
 ======================
+The following table shows the Workload Management commands:
 
-.. list-table:: Workload Management
-   :widths: auto
+.. list-table::
+   :widths: 10 100
    :header-rows: 1
    
    * - Command
@@ -153,9 +156,10 @@ Workload Management
 
 Access Control Commands
 ================================
+The following table shows the Access Control commands:
 
-.. list-table:: Access Control Commands
-   :widths: auto
+.. list-table::
+   :widths: 10 100
    :header-rows: 1
    
    * - Command

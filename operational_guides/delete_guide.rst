@@ -3,144 +3,183 @@
 ***********************
 Deleting Data
 ***********************
+The **Deleting Data** page describes how the **Delete** statement works and how to maintain data that you delete:
 
-SQream DB supports deleting data, but it's important to understand how this works and how to maintain deleted data.
+.. contents::
+   :local:
+   :depth: 1
 
-How does deleting in SQream DB work?
+Overview
 ========================================
+Deleting data typically refers to deleting rows, but can refer to deleting other table content as well. The general workflow for deleting data is to delete data followed by triggering a cleanup operation. The cleanup operation reclaims the space occupied by the deleted rows, discussed further below.
 
-In SQream DB, when you run a delete statement, any rows that match the delete predicate will no longer be returned when running subsequent queries.
-Deleted rows are tracked in a separate location, in *delete predicates*.
+The **DELETE** statement deletes rows defined by a predicate that you have specified, preventing them from appearing in subsequent queries.
 
-After the delete statement, a separate process can be used to reclaim the space occupied by these rows, and to remove the small overhead that queries will have until this is done. 
+For example, the predicate below defines and deletes rows containing animals heavier than 1000 weight units:
 
-Some benefits to this design are:
+.. code-block:: psql
 
-#. Delete transactions complete quickly
+   farm=> DELETE FROM cool_animals WHERE weight > 1000;
 
-#. The total disk footprint overhead at any time for a delete transaction or cleanup process is small and bounded (while the system still supports low overhead commit, rollback and recovery for delete transactions).
+The major benefit of the DELETE statement is that it deletes transactions simply and quickly.
 
+The Deletion Process
+==========
+Deleting rows occurs in the following two phases:
 
-Phase 1: Delete
----------------------------
+* **Phase 1 - Deletion** - All rows you mark for deletion are ignored when you run any query. These rows are not deleted until the clean-up phase. 
+
+   ::
+   
+* **Phase 2 - Clean-up** - The rows you marked for deletion in Phase 1 are physically deleted. The clean-up phase is not automated, letting users or DBAs control when to activate it. The files you marked for deletion during Phase 1 are removed from disk, which you do by by sequentially running the utility function commands ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS``.
 
 .. TODO: isn't the delete cleanup able to complete a certain amount of work transactionally, so that you can do a massive cleanup in stages?
 
-.. TODO: our current best practices is to use a cron job with sqream sql to run the delete cleanup. we should document how to do this, we have customers with very different delete schedules so we can give a few extreme examples and when/why you'd use them
+.. TODO: our current best practices is to use a cron job with sqream sql to run the delete cleanup. we should document how to do this, we have customers with very different delete schedules so we can give a few extreme examples and when/why you'd use them.
+
+Usage Notes
+=====================
+The **Usage Notes** section includes important information about the DELETE statement:
+
+.. contents::
+   :local:
+   :depth: 1
    
-When a :ref:`delete` statement is run, SQream DB records the delete predicates used. These predicates will be used to filter future statements on this table until all this delete predicate's matching rows have been physically cleaned up.
+General Notes
+----------------
+This section describes the general notes applicable when deleting rows:
 
-This filtering process takes full advantage of SQream's zone map feature.
+* The :ref:`alter_table` command and other DDL operations are locked on tables that require clean-up. If the estimated clean-up time exceeds the permitted threshold, an error message is displayed describing how to override the threshold limitation. For more information, see :ref:`concurrency_and_locks`.
 
-Phase 2: Clean-up
---------------------
+   ::
 
-The cleanup process is not automatic. This gives control to the user or DBA, and gives flexibility on when to run the clean up.
+* If the number of deleted records exceeds the threshold defined by the ``mixedColumnChunksThreshold`` parameter, the delete operation is aborted. This alerts users that the large number of deleted records may result in a large number of mixed chunks. To circumvent this alert, use the following syntax (replacing ``XXX`` with the desired number of records) before running the delete operation:
 
-Files marked for deletion during the logical deletion stage are removed from disk. This is achieved by calling both utility function commands: ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS`` sequentially.
+  .. code-block:: postgres
 
-.. note::
-   * :ref:`alter_table` and other DDL operations are blocked on tables that require clean-up. See more in the :ref:`concurrency_and_locks` guide.
-   * If the estimated time for a cleanup processs is beyond a threshold, you will get an error message about it. The message will explain how to override this limitation and run the process anywhere.
-
-Notes on data deletion
-=========================================
-
-.. note::
-   * If the number of deleted records crosses the threshold defined by the ``mixedColumnChunksThreshold`` parameter, the delete operation will be aborted.
-   * This is intended to alert the user that the large number of deleted records may result in a large number of mixed chuncks.
-   * To circumvent this alert, replace XXX with the desired number of records before running the delete operation:
-
-.. code-block:: postgres
-
-   set mixedColumnChunksThreshold=XXX;
+     set mixedColumnChunksThreshold=XXX;
    
-
-Deleting data does not free up space
+Deleting Data does not Free Space
 -----------------------------------------
+With the exception of running a full table delete, deleting data does not free unused disk space. To free unused disk space you must trigger the clean-up process.
 
-With the exception of a full table delete (:ref:`TRUNCATE<truncate>`), deleting data does not free up disk space. To free up disk space, trigger the cleanup process.
+For more information on running a full table delete, see :ref:`TRUNCATE<truncate>`.
 
-``SELECT`` performance on deleted rows
-----------------------------------------
+  ::
+  
+For more information on freeing disk space, see :ref:`Triggering a Clean-Up<trigger_cleanup>`.
 
-Queries on tables that have deleted rows may have to scan data that hasn't been cleaned up.
-In some cases, this can cause queries to take longer than expected. To solve this issue, trigger the cleanup process.
-
-Use ``TRUNCATE`` instead of ``DELETE``
----------------------------------------
-For tables that are frequently emptied entirely, consider using :ref:`truncate` rather than :ref:`delete`. TRUNCATE removes the entire content of the table immediately, without requiring a subsequent cleanup to free up disk space.
-
-Cleanup is I/O intensive
+Clean-Up Operations Are I/O Intensive
 -------------------------------
+The clean-up process reduces table size by removing all unused space from column chunks. While this reduces query time, it is a time-costly operation occupying disk space for the new copy of the table until the operation is complete.
 
-The cleanup process actively compacts tables by writing a complete new version of column chunks with no dead space. This minimizes the size of the table, but can take a long time. It also requires extra disk space for the new copy of the table, until the operation completes.
-
-Cleanup operations can create significant I/O load on the database. Consider this when planning the best time for the cleanup process.
+.. tip::  Because clean-up operations can create significant I/O load on your database, consider using them sparingly during ideal times.
 
 If this is an issue with your environment, consider using ``CREATE TABLE AS`` to create a new table and then rename and drop the old table.
 
-
-Example
+Examples
 =============
+The **Examples** section includes the following examples:
 
-Deleting values from a table
+.. contents::
+   :local:
+   :depth: 1
+   
+Deleting Rows from a Table
 ------------------------------
+The following example shows how to delete rows from a table.
 
-.. code-block:: psql
+1. Display the table:
 
-   farm=> SELECT * FROM cool_animals;
-   1,Dog                 ,7
-   2,Possum              ,3
-   3,Cat                 ,5
-   4,Elephant            ,6500
-   5,Rhinoceros          ,2100
-   6,\N,\N
-   
-   6 rows
-   
-   farm=> DELETE FROM cool_animals WHERE weight > 1000;
-   executed
-   
-   farm=> SELECT * FROM cool_animals;
-   1,Dog                 ,7
-   2,Possum              ,3
-   3,Cat                 ,5
-   6,\N,\N
-   
-   4 rows
+   .. code-block:: psql
 
-Deleting values based on more complex predicates
+      farm=> SELECT * FROM cool_animals;
+   
+   The following table is displayed:
+
+   .. code-block:: psql
+
+      1,Dog                 ,7
+      2,Possum              ,3
+      3,Cat                 ,5
+      4,Elephant            ,6500
+      5,Rhinoceros          ,2100
+      6,\N,\N
+   
+2. Delete rows from the table:
+
+   .. code-block:: psql
+
+      farm=> DELETE FROM cool_animals WHERE weight > 1000;
+	  
+3. Display the table:
+
+   .. code-block:: psql
+
+      farm=> SELECT * FROM cool_animals;
+   
+   The following table is displayed:
+  
+   .. code-block:: psql    
+
+      1,Dog                 ,7
+      2,Possum              ,3
+      3,Cat                 ,5
+      6,\N,\N
+   
+Deleting Values Based on Complex Predicates
 ---------------------------------------------------
+The following example shows how to delete values based on complex predicates.
 
-.. code-block:: psql
+1. Display the table:
 
-   farm=> SELECT * FROM cool_animals;
-   1,Dog                 ,7
-   2,Possum              ,3
-   3,Cat                 ,5
-   4,Elephant            ,6500
-   5,Rhinoceros          ,2100
-   6,\N,\N
-   
-   6 rows
-   
-   farm=> DELETE FROM cool_animals WHERE weight > 1000;
-   executed
-   
-   farm=> SELECT * FROM cool_animals;
-   1,Dog                 ,7
-   2,Possum              ,3
-   3,Cat                 ,5
-   6,\N,\N
-   
-   4 rows
+   .. code-block:: psql
 
-Identifying and cleaning up tables
+      farm=> SELECT * FROM cool_animals;
+   
+   The following table is displayed:
+
+   .. code-block:: psql
+
+      1,Dog                 ,7
+      2,Possum              ,3
+      3,Cat                 ,5
+      4,Elephant            ,6500
+      5,Rhinoceros          ,2100
+      6,\N,\N
+   
+2. Delete rows from the table:
+
+   .. code-block:: psql
+
+      farm=> DELETE FROM cool_animals WHERE weight > 1000;
+	  
+3. Display the table:
+
+   .. code-block:: psql
+
+      farm=> SELECT * FROM cool_animals;
+   
+   The following table is displayed:
+  
+   .. code-block:: psql    
+
+      1,Dog                 ,7
+      2,Possum              ,3
+      3,Cat                 ,5
+      6,\N,\N
+   
+Identifying and Cleaning Up Tables
 ---------------------------------------
+The **Identifying and Cleaning Up Tables** section includes the following examples:
 
-List tables that haven't been cleaned up
+.. contents::
+   :local:
+   :depth: 1
+   
+Listing Tables that Have Not Been Cleaned Up
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The following example shows how to list tables that have not been cleaned up:
 
 .. code-block:: psql
    
@@ -152,8 +191,9 @@ List tables that haven't been cleaned up
    
    1 row
 
-Identify predicates for clean-up
+Identifying Predicates for Clean-Up
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The following example shows how to identify predicates for clean-up:
 
 .. code-block:: psql
 
@@ -164,42 +204,55 @@ Identify predicates for clean-up
    weight > 1000
    
    1 row
+   
+.. _trigger_cleanup:
 
-Triggering a cleanup
+Triggering a Clean-Up
 ^^^^^^^^^^^^^^^^^^^^^^
+The following example shows how to trigger a clean-up:
 
-.. code-block:: psql
+1. Run the chunk ``CLEANUP_CHUNKS`` command (also known as ``SWEEP``) to reorganize the chunks:
 
-   -- Chunk reorganization (aka SWEEP)
-   farm=> SELECT CLEANUP_CHUNKS('public','cool_animals');
-   executed
+   .. code-block:: psql
 
-   -- Delete leftover files (aka VACUUM)
-   farm=> SELECT CLEANUP_EXTENTS('public','cool_animals');
-   executed
+      farm=> SELECT CLEANUP_CHUNKS('public','cool_animals');
+
+2. Run the ``CLEANUP_EXTENTS`` command (also known as ``VACUUM``) to delete the leftover files:
+
+   .. code-block:: psql
    
+      farm=> SELECT CLEANUP_EXTENTS('public','cool_animals');
    
-   farm=> SELECT delete_predicate FROM sqream_catalog.delete_predicates dp
-      JOIN sqream_catalog.tables t
-      ON dp.table_id = t.table_id
-      WHERE t.table_name = 'cool_animals';
+3. Display the table:
+
+   .. code-block:: psql
    
-   0 rows
-
-
-
-Best practices for data deletion
+      farm=> SELECT delete_predicate FROM sqream_catalog.delete_predicates dp
+         JOIN sqream_catalog.tables t
+         ON dp.table_id = t.table_id
+         WHERE t.table_name = 'cool_animals';
+		 
+Best Practices
 =====================================
+This section includes the best practices when deleting rows:
 
-* Run ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS`` after large ``DELETE`` operations.
+* Run ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS`` after running large ``DELETE`` operations.
 
-* When deleting large proportions of data from very large tables, consider running a ``CREATE TABLE AS`` operation instead, then rename and drop the original table.
+   ::
 
-* Avoid killing ``CLEANUP_EXTENTS`` operations after they've started.
+* When you delete large segments of data from very large tables, consider running a ``CREATE TABLE AS`` operation instead, renaming, and dropping the original table.
 
-* SQream DB is optimised for time-based data. When data is naturally ordered by a date or timestamp, deleting based on those columns will perform best. For more information, see our :ref:`time based data management guide<time_based_data_management>`.
+   ::
 
+* Avoid killing ``CLEANUP_EXTENTS`` operations in progress.
 
+   ::
+
+* SQream is optimized for time-based data, which is data naturally ordered according to date or timestamp. Deleting rows based on such columns leads to increased performance.
+
+   ::
+
+For more information, see `Time-Based Data Management <https://docs.sqream.com/en/v2022.3_preview/feature_guides/flexible_data_clustering_data_clustering_methods.html#using-time-based-data-management>`_.
 
 .. soft update concept
 
@@ -211,4 +264,3 @@ Best practices for data deletion
 .. when does delete use the metadata effectively
 
 .. more examples
-
