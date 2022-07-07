@@ -13,15 +13,15 @@ Overview
 ========================================
 Deleting data typically refers to deleting rows, but can refer to deleting other table content as well. The general workflow for deleting data is to delete data followed by triggering a cleanup operation. The cleanup operation reclaims the space occupied by the deleted rows, discussed further below.
 
-The **DELETE** statement deletes rows defined by a predicate you specify, and prevents them from appearing in subsequent queries.
+The **DELETE** statement deletes rows defined by a predicate that you have specified, preventing them from appearing in subsequent queries.
 
-For example, the predicate below deletes rows containing animals heavier than 1000 weight units:
+For example, the predicate below defines and deletes rows containing animals heavier than 1000 weight units:
 
 .. code-block:: psql
 
    farm=> DELETE FROM cool_animals WHERE weight > 1000;
 
-The major benefit of the DELETE statement is that deletes transactions quickly.
+The major benefit of the DELETE statement is that it deletes transactions simply and quickly.
 
 The Deletion Process
 ==========
@@ -31,7 +31,7 @@ Deleting rows occurs in the following two phases:
 
    ::
    
-* **Phase 2 - Cleanup** - The rows you marked for deletion in Phase 1 are physically deleted. The cleanup phase is not automated, letting users or DBAs control when to activate it. The files you marked for deletion during Phase 1 are removed from disk, done by sequentially running the utility function commands ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS``.
+* **Phase 2 - Clean-up** - The rows you marked for deletion in Phase 1 are physically deleted. The clean-up phase is not automated, letting users or DBAs control when to activate it. The files you marked for deletion during Phase 1 are removed from disk, which you do by by sequentially running the utility function commands ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS``.
 
 .. TODO: isn't the delete cleanup able to complete a certain amount of work transactionally, so that you can do a massive cleanup in stages?
 
@@ -49,7 +49,7 @@ General Notes
 ----------------
 This section describes the general notes applicable when deleting rows:
 
-* The :ref:`alter_table` command and other DDL operations are blocked on tables that require clean-up. If the estimated clean-up time exceeds the permitted threshold, an error message is displayed describing how to override the threshold limitation. For more information, see :ref:`concurrency_and_locks`.
+* The :ref:`alter_table` command and other DDL operations are locked on tables that require clean-up. If the estimated clean-up time exceeds the permitted threshold, an error message is displayed describing how to override the threshold limitation. For more information, see :ref:`concurrency_and_locks`.
 
    ::
 

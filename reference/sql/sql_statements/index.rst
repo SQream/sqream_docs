@@ -17,7 +17,7 @@ Data Definition Commands (DDL)
 ================================
 
 .. list-table:: DDL Commands
-   :widths: auto
+   :widths: 40 50
    :header-rows: 1
    :name: ddl_commands
    
@@ -68,7 +68,7 @@ Data Manipulation Commands (DML)
 ================================
 
 .. list-table:: DML Commands
-   :widths: auto
+   :widths: 95 80
    :header-rows: 1
    :name: dml_commands
 
@@ -96,7 +96,7 @@ Utility Commands
 ==================
 
 .. list-table:: Utility Commands
-   :widths: auto
+   :widths: 40 50
    :header-rows: 1
    
    * - Command
@@ -105,8 +105,6 @@ Utility Commands
      - Executes a previously saved query
    * - :ref:`EXPLAIN<explain>`
      - Returns a static query plan, which can be used to debug query plans
-   * - :ref:`SHUTDOWN SERVER<shutdown_server>`
-     - Provides users an improved method of shutting down a running server, in a way that takes into account running queries and relevant configurations of the system.
    * - :ref:`SELECT GET_LICENSE_INFO<get_license_info>`
      - Views a user's license information
    * - :ref:`SELECT GET_DDL<get_ddl>`
@@ -135,6 +133,8 @@ Utility Commands
      - Returns a list of active sessions across the cluster
    * - :ref:`SHOW VERSION<show_version>`
      - Returns the system version for SQream DB
+   * - :ref:`SHUTDOWN_SERVER<shutdown_server>`
+     - Sets your server to finish compiling all active queries before shutting down according to a user-defined time value
    * - :ref:`STOP STATEMENT<stop_statement>`
      - Stops or aborts an active statement
 
@@ -144,7 +144,7 @@ Workload Management
 ======================
 
 .. list-table:: Workload Management
-   :widths: auto
+   :widths: 40 50
    :header-rows: 1
    
    * - Command
@@ -160,7 +160,7 @@ Access Control Commands
 ================================
 
 .. list-table:: Access Control Commands
-   :widths: auto
+   :widths: 40 50
    :header-rows: 1
    
    * - Command

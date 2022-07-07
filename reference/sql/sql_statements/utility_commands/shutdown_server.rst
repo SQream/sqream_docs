@@ -42,7 +42,7 @@ Running the ``SHUTDOWN_SERVER`` command does the following:
 
 * Prevents new queries from entering the server by doing the following:
 
-  * Setting the SQream server to unavailable in the metadata server. **Comment** - *Is "unavailable" the official server setting?*
+  * Makes the SQream server unavailable in the metadata server.
 
     :: 
 
@@ -54,6 +54,23 @@ Running the ``SHUTDOWN_SERVER`` command does the following:
    
 * Waiting for the statement queue to be cleared - the graceful shutdown waits for queries that have been compiled on the server to be cleared from the statement queue. During this time - start executing on other available servers.
 
+* You start running a query on a server.
+* The server compiles the query.
+* When finished, the statement enters teh statement queue.
+* When the server is ready to take the sentence from the queue, the compilation data on teh server is passed to another server, which allows it to begin on another server.
+
+Tachlis - the server waits for any queued statements that depend on the server to leave the queue.
+
+Graceful shutdown lets me finish what the first server is already working on without taking on any new work.
+
+Why would you want to shut down a server? 
+
+
+
+
+
+The graceful shutdown will wait for queries that have been compiled on the server leave the statement queue and start executing on other available servers.
+
 **Comment** - *The last bullet requires clarification.*
 
 Syntax
@@ -62,15 +79,9 @@ The following is the syntax for using the ``SHUTDOWN_SERVER`` command:
 
 .. code-block:: postgres
 
-   select shutdown_server([is_graceful, [timeout]]);
-   
-**Comment** - *Is the below syntax correct?*
-
-.. code-block:: postgres
-
    select shutdown_server([true/false, [timeout]]);
    
-**Comment** - *Can you set the timeout as a flag in Studio, or only in the CLI?*
+**Comment** - *Update Configuration page with this flag. NOT RN 2022.1*
 
 Returns
 ==========
@@ -86,16 +97,16 @@ The following table shows the ``shutdown_server`` parameters:
    
    * - Parameter
      - Description
-	 - Example
-	 - Default
+     - Example
+     - Default
    * - ``is_graceful``
      - Determines the method used to shut down the server.
-	 - Selecting ``false`` shuts down the server while queries are running. Selecting ``true`` uses the graceful shutdown method.
- 	 - **Comment** - Is the default ``true`` or ``false``?
+     - Selecting ``false`` shuts down the server while queries are running. Selecting ``true`` uses the graceful shutdown method.
+     - NA
    * - ``timeout``
      - Sets the maximum amount of minutes for the graceful shutdown method to run before the server is shut down using the standard method.
-	 - ``30``
-	 - Five minutes.
+     - ``30``
+     - Five minutes.
 	 
 .. note:: Setting ``is_graceful`` to ``false`` and defining the ``timeout`` value shuts the server down mid-query after the defined time.
 
@@ -111,16 +122,6 @@ For more information, see :ref:`graceful_shutdown`.
 
 Like shutdown_server() graceful shutdown will stop any query currently running on the server.
 
-**Comment** - *The above makes it seem like it's a separate command, but that's not the case.*
-
-Relationship to Healer & Use Case
-============================
-**Comment** - *Cannot document this section until I know what the Healer actually does.*
-
-Currently the Healer will not trigger a graceful shutdown upon detection of a stuck query. It will however log detection of such a query, prompting the user to run a graceful shutdown of the server, possibly saving existing queued queries.
-
 Permissions
 =============
 Using the ``shutdown_server`` command requires no special permissions.
-
-**Comment** - *Confirm.*
