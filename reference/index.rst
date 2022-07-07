@@ -1,7 +1,7 @@
 .. _reference:
 
 *************************
-Reference Guide
+Reference Guides
 *************************
 
 This section provides reference for using SQream DB's interfaces and SQL features.
