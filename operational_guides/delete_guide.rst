@@ -250,10 +250,6 @@ This section includes the best practices when deleting rows:
 
 * SQream is optimized for time-based data, which is data naturally ordered according to date or timestamp. Deleting rows based on such columns leads to increased performance.
 
-   ::
-
-For more information, see `Time-Based Data Management <https://docs.sqream.com/en/v2022.3_preview/feature_guides/flexible_data_clustering_data_clustering_methods.html#using-time-based-data-management>`_.
-
 .. soft update concept
 
 .. delete cleanup and it's properties. automatic/manual, in transaction or background
