@@ -53,14 +53,14 @@ Based on the source file structure, we we :ref:`create an external table<create_
    
    CREATE EXTERNAL TABLE nba
    (
-      Name text(40),
-      Team text(40),
+      Name varchar,
+      Team varchar,
       Number tinyint,
-      Position text(2),
+      Position varchar,
       Age tinyint,
-      Height text(4),
+      Height varchar,
       Weight real,
-      College text(40),
+      College varchar,
       Salary float
     )
       USING FORMAT CSV -- Text file

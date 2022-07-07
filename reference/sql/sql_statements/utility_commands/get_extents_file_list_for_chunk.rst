@@ -3,7 +3,11 @@
 ********************
 GET_EXTENTS_FILE_FOR_CHUNK
 ********************
-The ``GET_EXTENTS_FILE_FOR_CHUNK`` command points to all files that contain data related to a specific chunk. This command is used for debugging purposes.
+The ``GET_EXTENTS_FILE_FOR_CHUNK`` |icon-new_2022.1| command points to all files that contain data related to a specific chunk. This command is used for debugging purposes.
+
+.. |icon-new_2022.1| image:: /_static/images/new_2022.1.png
+   :align: middle
+   :width: 110
 
 This reference page includes the following information:
 

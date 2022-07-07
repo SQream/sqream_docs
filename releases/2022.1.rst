@@ -45,6 +45,16 @@ SQream now supports ingesting data from Avro files.
 
 For more information, see `Inserting Data from Avro <https://docs.sqream.com/en/v2022.1/data_ingestion/avro.html>`_.
 
+New Utility Commands
+************
+The following two new utility commands have been created:
+
+* `GET EXTENTS FILE FOR CHUNK <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/utility_commands/get_extents_file_list_for_chunk.html>`_ - points to all files that contain data related to a specific chunk. This command is used for debugging purposes.
+
+   ::
+   
+* `GET_METADATA_CHUNK_KEY <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/utility_commands/get_metadata_chunk_key.html>`_ - returns specific metadata key values for user-specified chunks.
+
 Resolved Issues
 ---------
 The following table lists the issues that were resolved in Version 2022.1:
@@ -76,7 +86,7 @@ Deprecated Features
 -------
 In SQream version 2022.1 the ``VARCHAR`` data type has been deprecated and replaced with ``TEXT``. ``VARCHAR`` will be maintained in all previous versions until migration to ``TEXT`` is complete, at which point it will be deprecated in all earlier versions.
 
-If you are using an earlier version of SQream, see `Using Legacy String Literals <https://docs.sqream.com/en/latest/configuration_guides/use_legacy_string_literals.html>`_.
+If you are using an earlier version of SQream, see `Using Legacy String Literals <https://docs.sqream.com/en/v2022.1/configuration_guides/use_legacy_string_literals.html>`_.
 
 An automated process is being used to facilitate migration from ``VARCHAR`` to ``TEXT``. For more information, contact SQream.
 

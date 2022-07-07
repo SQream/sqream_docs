@@ -3,7 +3,11 @@
 ********************
 GET_METADATA_CHUNK_KEY
 ********************
-The ``GET_METADATA_CHUNK_KEY`` command returns specific metadata key values for user-specified chunks.
+The ``GET_METADATA_CHUNK_KEY`` |icon-new_2022.1| command returns specific metadata key values for user-specified chunks.
+
+.. |icon-new_2022.1| image:: /_static/images/new_2022.1.png
+   :align: middle
+   :width: 110
 
 This reference page includes the following information:
 
