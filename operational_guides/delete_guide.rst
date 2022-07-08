@@ -3,7 +3,7 @@
 ***********************
 Deleting Data
 ***********************
-The **Deleting Data** page describes how the **Delete** statement works and how to maintain data that you delete:
+The **Deleting Data** guide describes how the **Delete** statement works and how to properly maintain data that you delete:
 
 .. contents::
    :local:
@@ -13,7 +13,7 @@ Overview
 ========================================
 Deleting data typically refers to deleting rows, but can refer to deleting other table content as well. The general workflow for deleting data is to delete data followed by triggering a cleanup operation. The cleanup operation reclaims the space occupied by the deleted rows, discussed further below.
 
-The **DELETE** statement deletes rows defined by a predicate that you have specified, preventing them from appearing in subsequent queries.
+You can delete data using the **DELETE** statement, which deletes rows defined by a predicate that you have specified, which prevents from appearing in subsequent queries.
 
 For example, the predicate below defines and deletes rows containing animals heavier than 1000 weight units:
 
@@ -37,9 +37,9 @@ Deleting rows occurs in the following two phases:
 
 .. TODO: our current best practices is to use a cron job with sqream sql to run the delete cleanup. we should document how to do this, we have customers with very different delete schedules so we can give a few extreme examples and when/why you'd use them.
 
-Usage Notes
+How the DELETE Statement Works
 =====================
-The **Usage Notes** section includes important information about the DELETE statement:
+The **Usage Notes** section describes important information about the DELETE statement:
 
 .. contents::
    :local:
@@ -49,19 +49,23 @@ General Notes
 ----------------
 This section describes the general notes applicable when deleting rows:
 
-* The :ref:`alter_table` command and other DDL operations are locked on tables that require clean-up. If the estimated clean-up time exceeds the permitted threshold, an error message is displayed describing how to override the threshold limitation. For more information, see :ref:`concurrency_and_locks`.
+* SQream prevents certain DDL operations, such as the ``alter_table`` command, on tables that require a clean-up. This is known as a "lock". If the estimated clean-up time exceeds the permitted threshold, an error message is displayed describing how to override the threshold limitation.
 
    ::
 
-* If the number of deleted records exceeds the threshold defined by the ``mixedColumnChunksThreshold`` parameter, the delete operation is aborted. This alerts users that the large number of deleted records may result in a large number of mixed chunks. To circumvent this alert, use the following syntax (replacing ``XXX`` with the desired number of records) before running the delete operation:
+* If the number of deleted records exceeds the permitted threshold defined by the ``mixedColumnChunksThreshold`` parameter, the delete operation is aborted. This alerts users that the large number of deleted records may result in a large number of mixed chunks. To override this alert, use the following syntax (replacing ``XXX`` with the desired number of records) before running the delete operation:
 
   .. code-block:: postgres
 
-     set mixedColumnChunksThreshold=XXX;
+     set mixedColumnChunksThreshold=<XXX>;
    
 **Comment** - *I didn't see the above parameter in the Configuration Flags sheet. Has it been updated or replaced with a different parameter?*
 
-Deleting Data does not Free Space
+For more information on the ``alter_table`` command, see :ref:`alter_table`.
+
+For more information on locks, see :ref:`concurrency_and_locks`.
+
+Deleting Data does not Vacate Space
 -----------------------------------------
 With the exception of running a full table delete, deleting data does not free unused disk space. To free unused disk space you must trigger the clean-up process.
 
@@ -73,11 +77,11 @@ For more information on freeing disk space, see :ref:`Triggering a Clean-Up<trig
 
 Clean-Up Operations Are I/O Intensive
 -------------------------------
-The clean-up process reduces table size by removing all unused space from column chunks. While this reduces query time, it is a time-costly operation occupying disk space for the new copy of the table until the operation is complete.
+The clean-up process reduces table size by removing all unused space from column chunks. While this reduces query time in the long run, it is a time-costly operation that occupies disk space for the new copy of the table until the operation is complete.
 
 .. tip::  Because clean-up operations can create significant I/O load on your database, consider using them sparingly during ideal times.
 
-If this is an issue with your environment, consider using ``CREATE TABLE AS`` to create a new table and then rename and drop the old table.
+If performing a clean-up operating poses an issue for your environment, consider using ``CREATE TABLE AS`` to create a new table and then rename and drop the old table.
 
 **Comment** - *Unclear.*
 
@@ -91,7 +95,7 @@ The **Examples** section includes the following examples:
    
 Deleting Rows from a Table
 ------------------------------
-The following example shows how to delete rows from a table.
+The following example shows how to delete rows from a table:
 
 1. Display the table:
 
@@ -133,7 +137,7 @@ The following example shows how to delete rows from a table.
    
 Deleting Values Based on Complex Predicates
 ---------------------------------------------------
-The following example shows how to delete values based on complex predicates.
+The following example shows how to delete values based on complex predicates:
 
 **Comment** - *The example below is identical to the one in the previous section.*
 
@@ -242,13 +246,13 @@ The following example shows how to trigger a clean-up:
 
 Best Practices
 =====================================
-This section includes the best practices when deleting rows:
+This section includes the best practices for deleting rows:
 
 * Run ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS`` after running large ``DELETE`` operations.
 
    ::
 
-* When you delete large segments of data from very large tables, consider running a ``CREATE TABLE AS`` operation instead, renaming, and dropping the original table.
+* When you delete large segments of data from very large tables, consider running a ``CREATE TABLE AS`` operation instead of performing a clean-up, renaming, and dropping the original table.
 
    ::
 

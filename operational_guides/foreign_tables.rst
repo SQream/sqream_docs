@@ -1,52 +1,61 @@
-.. _external_tables:
+.. _foreign_tables:
 
 ***********************
-External Tables
+Foreign Tables
 ***********************
-External tables can be used to run queries directly on data without inserting it into SQream DB first.
+The **Foreign Tables** guide describes the following:
 
-SQream DB supports read only external tables, so you can query from external tables, but you cannot insert to them, or run deletes or updates on them.
-
-Running queries directly on external data is most effectively used for things like one off querying. If you will be repeatedly querying data, the performance will usually be better if you insert the data into SQream DB first.
-
-Although external tables can be used without inserting data into SQream DB, one of their main use cases is to help with the insertion process. An insert select statement on an external table can be used to insert data into SQream using the full power of the query engine to perform ETL.
-
-.. contents:: In this topic:
+.. contents::
    :local:
-   
-What Kind of Data is Supported?
-=====================================
-SQream DB supports external tables over:
 
-* text files (e.g. CSV, PSV, TSV)
+Overview
+=====================================
+You can use **foreign tables** to run queries directly on data without inserting it into your SQream database. Because SQream supports read-only foreign tables, you can only query from foreign tables, but cannot insert, run deletes, or updates. Running queries directly on external data is most effectively used for things like one-off querying. If you need to repeatedly query data, inserting your data into SQream before running queries enhances performance.
+
+Although you can use foreign data without inserting data into the SQream database, foreign tables were designed to streamline inserting data. Using an ``insert select statement`` on a foreign table to insert data leverages the full power of the query engine.
+   
+Supported Data Formats
+=====================================
+SQream supports the following foreign table formats:
+
+* Text files (such as CSV, PSV, and TSV)
+
+   ::
+
 * ORC
+
+   ::
+
 * Parquet
 
-What Kind of Data Staging is Supported?
+Supported Data Staging
 ============================================
-SQream DB can stage data from:
+SQream supports staging data from the following sources:
 
-* a local filesystem (e.g. ``/mnt/storage/....``)
-* :ref:`s3` buckets (e.g. ``s3://pp-secret-bucket/users/*.parquet``)
+* A local filesystem, such as ``/mnt/storage/....``.
+
+   ::
+
+* :ref:`s3` buckets, such as ``s3://pp-secret-bucket/users/*.parquet``)
 * :ref:`hdfs` (e.g. ``hdfs://hadoop-nn.piedpiper.com/rhendricks/*.csv``)
 
-Using External Tables - A Practical Example
+Using External Tables
 ==============================================
 Use an external table to stage data before loading from CSV, Parquet or ORC files.
 
 Planning for Data Staging
 --------------------------------
 For the following examples, we will want to interact with a CSV file. Here's a peek at the table contents:
-
-.. csv-table:: nba-t10
-   :file: ../_static/samples/nba-t10.csv
+  
+.. csv-table:: nba.csv
+   :file: nba-t10.csv
    :widths: auto
    :header-rows: 1
 
 The file is stored on :ref:`s3`, at ``s3://sqream-demo-data/nba_players.csv``.
 We will make note of the file structure, to create a matching ``CREATE_EXTERNAL_TABLE`` statement.
 
-Creating External Tables
+Creating an External Table
 -----------------------------
 Based on the source file structure, we we :ref:`create an external table<create_external_table>` with the appropriate structure, and point it to the file.
 
@@ -54,14 +63,14 @@ Based on the source file structure, we we :ref:`create an external table<create_
    
    CREATE EXTERNAL TABLE nba
    (
-      Name text,
-      Team text,
+      Name varchar,
+      Team varchar,
       Number tinyint,
-      Positiontext,
+      Position varchar,
       Age tinyint,
-      Height text,
+      Height varchar,
       Weight real,
-      College text,
+      College varchar,
       Salary float
     )
       USING FORMAT CSV -- Text file
