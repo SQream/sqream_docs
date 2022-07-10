@@ -17,7 +17,7 @@ SQream supports ingesting data using the following methods:
 
    ::
    
-* Executing the ``COPY FROM`` statement or ingesting data from external tables:
+* Executing the ``COPY FROM`` statement or ingesting data from foreign tables:
 
   * Local filesystem and locally mounted network filesystems
   * Inserting Data using the Amazon S3 object storage service
