@@ -16,3 +16,8 @@ After installing SQream you can perform the operations described on this page:
    running_queries
    deleting_rows
    saving_query_results_to_a_csv_or_psv_file
+
+For more information on other basic SQream operations, see the following:
+
+* `Creating a Database <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/ddl_commands/create_database.html>`_
+* :ref:`data_ingestion`
