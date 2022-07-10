@@ -10,7 +10,7 @@ The **v2022.1** branch is a private branch designed for internal use only until 
 
    .. tip::
       Want to read this offline?
-      `Download the documentation as a single PDF <https://docs.sqream.com/_/downloads/en/latest/pdf/>`_ .
+      `Download the documentation as a single PDF <https://docs.sqream.com/_/downloads/en/v2022.1/pdf/>`_ .
 
 .. only:: pdf or latex
    
@@ -35,7 +35,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
      - **Reference**
      - **Guides**
    * -
-         `Getting Started <https://docs.sqream.com/en/latest/getting_started/index.html>`_
+         `Getting Started <https://docs.sqream.com/en/v2022.1/getting_started/index.html>`_
          
          :ref:`sql_feature_support`
          
@@ -47,7 +47,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
          
          :ref:`sql_functions`
      - 
-         `Setting up SQream <https://docs.sqream.com/en/latest/installation_guides/index.html>`_
+         `Setting up SQream <https://docs.sqream.com/en/v2022.1/installation_guides/index.html>`_
          
          :ref:`Best practices<sql_best_practices>`
          
@@ -59,7 +59,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
    * -
          :ref:`2022.1<2022.1>`
 		 
-		 :ref:`2021.2<2021.2>`
+	   :ref:`2021.2<2021.2>`
 
          :ref:`2021.1<2021.1>`
         
@@ -103,7 +103,8 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    getting_started/index
    installation_guides/index
    data_ingestion/index
-   third_party_tools/index
+   connecting_to_sqream/index
+   loading_and_unloading/index
    feature_guides/index
    operational_guides/index
    sqream_studio_5.4.3/index
@@ -116,7 +117,7 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    glossary
 
 ..
-   Indices and tables
+   Indices and Tables
    ==================
 
    * :ref:`genindex`

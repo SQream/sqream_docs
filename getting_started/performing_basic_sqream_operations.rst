@@ -11,10 +11,13 @@ After installing SQream you can perform the operations described on this page:
 
    running_the_sqream_sql_client
    creating_your_first_table
-   creating_a_database
-   querying_data
    listing_tables
    inserting_rows
    running_queries
    deleting_rows
    saving_query_results_to_a_csv_or_psv_file
+
+For more information on other basic SQream operations, see the following:
+
+* `Creating a Database <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/create_database.html>`_
+* :ref:`data_ingestion`
