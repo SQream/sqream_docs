@@ -73,7 +73,7 @@ This procedure describes how to install SQream using Binary packages and must be
       
 The configuration files are **service configuration files**, and the JSON files are **SQream configuration files**, for a total of four files. The number of SQream configuration files and JSON files must be identical.
       
-**NOTICE** - Verify that the JSON files have been configured correctly and that all required flags have been set to the correct values.
+.. note:: Verify that the JSON files have been configured correctly and that all required flags have been set to the correct values.
 
 In each JSON file, the following parameters **must be updated**:
 

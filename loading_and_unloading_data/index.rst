@@ -7,11 +7,13 @@ The **Loading Data** section describes concepts and operations related to import
 
 * `Overview of loading data <https://docs.sqream.com/en/latest/data_ingestion/inserting_data.html>`_ - Describes best practices and considerations for loading data into SQream from a variety of sources and locations.
 
-* `Alternatives to loading data (external tables) <https://docs.sqream.com/en/latest/operational_guides/external_tables.html>`_ - Useful for running queries directly on external data without importing into your SQream database.
+* `Alternatives to loading data (foreign tables) <https://docs.sqream.com/en/latest/operational_guides/foreign_tables.html>`_ - Useful for running queries directly on external data without importing into your SQream database.
 
 * `Supported data types <https://docs.sqream.com/en/latest/data_type_guides/supported_data_types.html>`_ - Overview of supported data types, including descriptions, examples, and relevant aliases.
    
-* `Ingesting datea from external sources <https://docs.sqream.com/en/latest/data_ingestion/index.html>`_ - List of data ingestion sources that SQream supports.
+* `Ingesting data from external sources <https://docs.sqream.com/en/latest/data_ingestion/index.html>`_ - List of data ingestion sources that SQream supports.
+
+* `Inserting data from external tables <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/insert.html#insert>`_ - Inserts one or more rows into a table.
 
 * `Ingesting data from third party client platforms <https://docs.sqream.com/en/latest/third_party_tools/client_platforms/index.html>`_ - Gives you direct access to a variety of drivers, connectors, tools, vizualisers, and utilities..
 
