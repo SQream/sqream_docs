@@ -3,138 +3,161 @@
 ***************************
 Inserting Data Overview
 ***************************
+The **Inserting Data Overview** page provides basic information useful when ingesting data into SQream from a variety of sources and locations, and describes the following:
 
-The **Inserting Data Overview** page describes how to insert data into SQream, specifically how to insert data from a variety of sources and locations. 
-
-.. contents:: In this topic:
+.. contents::
    :local:
-
-
+   :depth: 1
+   
 Getting Started
 ================================
+SQream supports ingesting data using the following methods:
 
-SQream supports importing data from the following sources:
+* Executing the ``INSERT`` statement using a client driver.
 
-* Using :ref:`insert` with :ref:`a client driver<client_drivers>`
-* Using :ref:`copy_from`:
+   ::
+   
+* Executing the ``COPY FROM`` statement or ingesting data from foreign tables:
 
-   - Local filesystem and locally mounted network filesystems
-   - :ref:`s3`
-   - :ref:`hdfs`
+  * Local filesystem and locally mounted network filesystems
+  * Inserting Data using the Amazon S3 object storage service
+  * Inserting Data using an HDFS data storage system
 
-* Using :ref:`external_tables`:
+SQream supports loading files from the following formats:
 
-   - Local filesystem and locally mounted network filesystems
-   - :ref:`s3`
-   - :ref:`hdfs`
-
-
-SQream DB supports loading files in the following formats:
-
-* Text - CSV, TSV, PSV
+* Text - CSV, TSV, and PSV
 * Parquet
 * ORC
 
+For more information, see the following:
+
+* Using the ``INSERT`` statement - :ref:`insert`
+
+* Using client drivers - :ref:`Client drivers<client_drivers>`
+
+* Using the ``COPY FROM`` statement - :ref:`copy_from`
+
+* Using the Amazon S3 object storage service - :ref:`s3`
+
+* Using the HDFS data storage system - :ref:`hdfs`
+
+* Loading data from foreign tables - :ref:`foreign_tables`
+
 Data Loading Considerations
 ================================
+The **Data Loading Considerations** section describes the following:
 
+.. contents:: 
+   :local:
+   :depth: 1
+   
 Verifying Data and Performance after Loading
 -----------------------------------------
+Like many RDBMSs, SQream recommends its own set of best practices for table design and query optimization. When using SQream, verify the following:
 
-Like other RDBMSs, SQream DB has its own set of best practcies for table design and query optimization.
+* That your data is structured as you expect (row counts, data types, formatting, content).
 
-SQream therefore recommends:
+* That your query performance is adequate.
 
-* Verify that the data is as you expect it (e.g. row counts, data types, formatting, content)
+* That you followed the table design best practices (:ref:`Optimization and Best Practices<sql_best_practices>`).
 
-* The performance of your queries is adequate
+* That you've tested and verified that your applications work (such as :ref:`Tableau<connect_to_tableau>`).
 
-* :ref:`Best practices<sql_best_practices>` were followed for table design
-
-* Applications such as :ref:`Tableau<connect_to_tableau>` and others have been tested, and work
+* That your data types have not been not over-provisioned.
 
 File Soure Location when Loading
 --------------------------------
+While you are loading data, you can use the ``COPY FROM`` command to let statements run on any worker. If you are running multiple nodes, verify that all nodes can see the source the same. Loading data from a local file that is only on one node and not on shared storage may cause it to fail. If required, you can also control which node a statement runs on using the Workload Manager).
 
-During loading using :ref:`copy_from`, the statement can run on any worker. If you are running multiple nodes, make sure that all nodes can see the source the same. If you load from a local file which is only on 1 node and not on shared storage, it will fail some of the time. (If you need to, you can also control which node a statement runs on using the :ref:`workload_manager`).
+For more information, see the following:
 
-Supported load methods
+* :ref:`copy_from`
+
+* :ref:`workload_manager`
+
+Supported Load Methods
 -------------------------------
+You can use the ``COPY FROM`` syntax to load CSV files.
 
-SQream DB's :ref:`COPY FROM<copy_from>` syntax can be used to load CSV files, but can't be used for Parquet and ORC.
+.. note:: The ``COPY FROM`` cannot be used for loading data from Parquet and ORC files.
 
-:ref:`FOREIGN TABLE<external_tables>` can be used to load text files, Parquet, and ORC files, and can also transform the data prior to materialization as a full table.
+You can use foreign tables to load text files, Parquet, and ORC files, and to transform your data before generating a full table, as described in the following table:
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    :stub-columns: 1
    
-   * - Method / File type
+   * - Method/File Type
      - Text (CSV)
      - Parquet
      - ORC
-     - Streaming data
-   * - :ref:`copy_from`
+     - Streaming Data
+   * - COPY FROM
      - Supported
      - Not supported
      - Not supported
      - Not supported
-   * - :ref:`external_tables`
+   * - Foreign tables
      - Supported
      - Supported
      - Supported
      - Not supported
-   * - :ref:`insert`
+   * - INSERT
      - Not supported
      - Not supported
      - Not supported
      - Supported (Python, JDBC, Node.JS)
+	 
+For more information, see the following:
+
+* :ref:`COPY FROM<copy_from>`
+
+* :ref:`Foreign tables<foreign_tables>`
+
+* :ref:`INSERT<insert>`
 
 Unsupported Data Types
 -----------------------------
-
-SQream DB doesn't support the entire set of features that some other database systems may have, such as ``ARRAY``, ``BLOB``, ``ENUM``, ``SET``, etc.
-
-These data types will have to be converted before load. For example, ``ENUM`` can often be stored as a ``TEXT``.
+SQream does not support certain features that are supported by other databases, such as ``ARRAY``, ``BLOB``, ``ENUM``, and ``SET``. You must convert these data types before loading them. For example, you can store ``ENUM`` as ``TEXT``.
 
 Handing Extended Errors
 ----------------------------
+While you can use foreign tables to load CSVs, the ``COPY FROM`` statement provides more fine-grained error handling options and extended support for non-standard CSVs with multi-character delimiters, alternate timestamp formats, and more.
 
-While :ref:`external tables<external_tables>` can be used to load CSVs, the ``COPY FROM`` statement provides more fine-grained error handling options, as well as extended support for non-standard CSVs with multi-character delimiters, alternate timestamp formats, and more.
+For more information, see :ref:`foreign tables<foreign_tables>`.
 
 Best Practices for CSV
 ------------------------------
+Text files, such as CSV, rarely conform to `RFC 4180 <https://tools.ietf.org/html/rfc4180>`_ , so you may need to make the following modifications:
 
-Text files like CSV rarely conform to `RFC 4180 <https://tools.ietf.org/html/rfc4180>`_ , so alterations may be required:
+* Use ``OFFSET 2`` for files containing header rows.
 
-* Use ``OFFSET 2`` for files containing header rows
+* You can capture failed rows in a log file for later analysis, or skip them. See :ref:`capturing_rejected_rows` for information on skipping rejected rows.
 
-* Failed rows can be captured in a log file for later analysis, or just to skip them. See :ref:`capturing_rejected_rows` for information on skipping rejected rows.
+* You can modify record delimiters (new lines) using the :ref:`RECORD DELIMITER<changing_record_delimiter>` syntax.
 
-* Record delimiters (new lines) can be modified with the :ref:`RECORD DELIMITER<changing_record_delimiter>` syntax.
+* If the date formats deviate from ISO 8601, refer to the :ref:`copy_date_parsers` section for overriding the default parsing.
 
-* If the date formats differ from ISO 8601, refer to the :ref:`copy_date_parsers` section to see how to override default parsing.
+* *(Optional)* You can quote fields in a CSV using double-quotes (``"``).
 
-* 
-   Fields in a CSV can be optionally quoted with double-quotes (``"``). However, any field containing a newline or another double-quote character must be quoted.
+.. note:: You must quote any field containing a new line or another double-quote character.
 
-   If a field is quoted, any double quote that appears must be double-quoted (similar to the :ref:`string literals quoting rules<string_literals>`. For example, to encode ``What are "birds"?``, the field should appear as ``"What are ""birds""?"``.
+* If a field is quoted, you must double quote any double quote, similar to the **string literals quoting rules**. For example, to encode ``What are "birds"?``, the field should appear as ``"What are ""birds""?"``. For more information, see :ref:`string literals quoting rules<string_literals>`.
 
-* Field delimiters don't have a to be a displayable ASCII character. See :ref:`field_delimiters` for all options.
-
+* Field delimiters do not have to be a displayable ASCII character. For all supported field delimiters, see :ref:`field_delimiters`.
 
 Best Practices for Parquet
 --------------------------------
+The following list shows the best practices when inserting data from Parquet files:
 
-* Parquet files are loaded through :ref:`external_tables`. The destination table structure has to match in number of columns between the source files.
+* You must load Parquet files through :ref:`foreign_tables`. Note that the destination table structure must be identical to the number of columns between the source files.
 
-* Parquet files support predicate pushdown. When a query is issued over Parquet files, SQream DB uses row-group metadata to determine which row-groups in a file need to be read for a particular query and the row indexes can narrow the search to a particular set of rows.
+* Parquet files support **predicate pushdown**. When a query is issued over Parquet files, SQream uses row-group metadata to determine which row-groups in a file must be read for a particular query and the row indexes can narrow the search to a particular set of rows.
 
-Type Support and Behavior Notes
+Supported Types and Behavior Notes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-* Unlike ORC, the column types should match the data types exactly (see table below).
+Unlike the ORC format, the column types should match the data types exactly, as shown in the table below:
 
 .. list-table:: 
    :widths: auto
@@ -155,7 +178,7 @@ Type Support and Behavior Notes
      - ``DATE``
      - ``DATETIME``
    * - ``BOOLEAN``
-     - ✓ 
+     - Supported 
      - 
      - 
      - 
@@ -168,7 +191,7 @@ Type Support and Behavior Notes
    * - ``INT16``
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -180,7 +203,7 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -192,7 +215,7 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -204,7 +227,7 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -216,7 +239,7 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
      - 
@@ -228,7 +251,7 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓
+     - Supported
      - 
      - 
    * - ``INT96`` [#f3]_
@@ -241,31 +264,34 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-     - ✓ [#f4]_
+     - Supported [#f4]_
 
-* If a Parquet file has an unsupported type like ``enum``, ``uuid``, ``time``, ``json``, ``bson``, ``lists``, ``maps``, but the data is not referenced in the table (it does not appear in the :ref:`SELECT` query), the statement will succeed. If the column is referenced, an error will be thrown to the user, explaining that the type is not supported, but the column may be ommited.
+If a Parquet file has an unsupported type, such as ``enum``, ``uuid``, ``time``, ``json``, ``bson``, ``lists``, ``maps``, but the table does not reference this data (i.e., the data does not appear in the :ref:`SELECT` query), the statement will succeed. If the table **does** reference a column, an error will be displayed explaining that the type is not supported, but the column may be omitted.
 
 Best Practices for ORC
 --------------------------------
+The following list shows the best practices when inserting data from ORC files:
 
-* ORC files are loaded through :ref:`external_tables`. The destination table structure has to match in number of columns between the source files.
+* You must load ORC files through :ref:`foreign_tables`. Note that the destination table structure must be identical to the number of columns between the source files.
 
-* ORC files support predicate pushdown. When a query is issued over ORC files, SQream DB uses ORC metadata to determine which stripes in a file need to be read for a particular query and the row indexes can narrow the search to a particular set of 10,000 rows.
+* ORC files support **predicate pushdown**. When a query is issued over ORC files, SQream uses ORC metadata to determine which stripes in a file need to be read for a particular query and the row indexes can narrow the search to a particular set of 10,000 rows.
 
 Type Support and Behavior Notes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+You must load ORC files through foreign table. Note that the destination table structure must be identical to the number of columns between the source files.
 
-* ORC files are loaded through :ref:`external_tables`. The destination table structure has to match in number of columns between the source files.
+For more information, see :ref:`foreign_tables`.
 
-* The types should match to some extent within the same "class" (see table below).
+The types should match to some extent within the same "class", as shown in the following table:
 
 .. list-table:: 
-   :widths: 5 5 70 70 70 70 5 5 5 5 5
+   :widths: auto
    :header-rows: 1
+   :stub-columns: 1
    
-   * -   SQream DB type →
+   * -   SQream DB Type →
    
-         ORC source
+         ORC Source
      - ``BOOL``
      - ``TINYINT``
      - ``SMALLINT``
@@ -273,7 +299,7 @@ Type Support and Behavior Notes
      - ``BIGINT``
      - ``REAL``
      - ``DOUBLE``
-     - ``Text`` [#f0]_
+     - Text [#f0]_
      - ``DATE``
      - ``DATETIME``
    * - ``boolean``
@@ -353,7 +379,7 @@ Type Support and Behavior Notes
      - 
      - 
      - 
-   * - ``string`` / ``char`` / ``text``
+   * - ``string`` / ``char`` / ``varchar``
      - 
      - 
      - 
@@ -432,31 +458,15 @@ Type Support and Behavior Notes
 
 Further Reading and Migration Guides
 =======================================
-
-.. toctree::
-   :caption: Data loading guides
-   :titlesonly:
-   
-   migration/csv
-   migration/parquet
-   migration/orc
-
-.. toctree::
-   :caption: Migration guides
-   :titlesonly:
-   
-   migration/oracle
-
-
-.. rubric:: See also:
+For more information, see the following:
 
 * :ref:`copy_from`
 * :ref:`insert`
-* :ref:`external_tables`
+* :ref:`foreign_tables`
 
 .. rubric:: Footnotes
 
-.. [#f0] Text values include ``TEXT``
+.. [#f0] Text values include ``TEXT``, ``VARCHAR``, and ``NVARCHAR``
 
 .. [#f2] With UTF8 annotation
 
