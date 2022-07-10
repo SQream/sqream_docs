@@ -83,8 +83,6 @@ The clean-up process reduces table size by removing all unused space from column
 
 If performing a clean-up operating poses an issue for your environment, consider using ``CREATE TABLE AS`` to create a new table and then rename and drop the old table.
 
-**Comment** - *Unclear.*
-
 Examples
 =============
 The **Examples** section includes the following examples:
