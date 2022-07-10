@@ -13,6 +13,36 @@ Overview
 -----
 Modifications that you make to your configurations are persistent based on whether they are made at the session or cluster level. Persistent configurations are modifications made to attributes that are retained after shutting down your system.
 
+SQream categorizes the configuration flags in the following two ways:
+
+According to level:
+
+* **Regular** - 
+
+   ::
+   
+* **Cluster** - 
+
+   ::
+   
+* **Worker** - 
+
+According to type:
+
+* **Generic** - intended for end user (i.e. Data Analyst) 
+   
+   ::
+   
+* **Admin** - intended for system admin (i.e. Customer's system admin)
+
+   ::
+   
+* **Tuning**- intended for use by SQream onsite engineer (delivery)
+
+   ::
+   
+* **RND** - intended for use by SQream development team
+
 Modifying Your Configuration
 ----
 The **Modifying Your Configuration** section describes the following:
@@ -99,7 +129,7 @@ Configuration Flag Types
 ==========
 The flag type attribute can be set for each flag and determines its write access as follows:
 
-* **Administration:** session-based read/write flags that can be stored in the metadata file.
+* **Regular:** session-based read/write flags that can be stored in the metadata file.
 * **Cluster:** global cluster-based read/write flags that can be stored in the metadata file.
 * **Worker:** single worker-based read-only flags that can be stored in the worker configuration file.
 
@@ -114,7 +144,7 @@ The following table describes the file or command modification rights for each f
    * - **Flag Type**
      - **Legacy Configuration File**
      - **ALTER SYSTEM SET**
-     - **Worker Configuration File**
+     - **Worker JSON Configuration File**
    * - :ref:`Regular<regular_flag_types>`
      - Can modify
      - Can modify
