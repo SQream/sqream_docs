@@ -1,10 +1,9 @@
-.. _external_tables:
+.. _foreign_tables:
 
 ***********************
-External Tables
+Foreign Tables
 ***********************
-External tables can be used to run queries directly on data without inserting it into SQream DB first.
-
+Foreign tables can be used to run queries directly on data without inserting it into SQream DB first.
 SQream DB supports read only external tables, so you can query from external tables, but you cannot insert to them, or run deletes or updates on them.
 
 Running queries directly on external data is most effectively used for things like one off querying. If you will be repeatedly querying data, the performance will usually be better if you insert the data into SQream DB first.
@@ -14,39 +13,39 @@ Although external tables can be used without inserting data into SQream DB, one 
 .. contents:: In this topic:
    :local:
    
-What Kind of Data is Supported?
+Supported Data Formats
 =====================================
 SQream DB supports external tables over:
 
-* text files (e.g. CSV, PSV, TSV)
+* Text files (e.g. CSV, PSV, TSV)
 * ORC
 * Parquet
 
-What Kind of Data Staging is Supported?
+Supported Data Staging
 ============================================
-SQream DB can stage data from:
+SQream can stage data from:
 
 * a local filesystem (e.g. ``/mnt/storage/....``)
 * :ref:`s3` buckets (e.g. ``s3://pp-secret-bucket/users/*.parquet``)
 * :ref:`hdfs` (e.g. ``hdfs://hadoop-nn.piedpiper.com/rhendricks/*.csv``)
 
-Using External Tables - A Practical Example
+Using External Tables
 ==============================================
 Use an external table to stage data before loading from CSV, Parquet or ORC files.
 
 Planning for Data Staging
 --------------------------------
 For the following examples, we will want to interact with a CSV file. Here's a peek at the table contents:
-
-.. csv-table:: nba-t10
-   :file: ../_static/samples/nba-t10.csv
+  
+.. csv-table:: nba.csv
+   :file: nba-t10.csv
    :widths: auto
    :header-rows: 1
 
 The file is stored on :ref:`s3`, at ``s3://sqream-demo-data/nba_players.csv``.
 We will make note of the file structure, to create a matching ``CREATE_EXTERNAL_TABLE`` statement.
 
-Creating External Tables
+Creating an External Table
 -----------------------------
 Based on the source file structure, we we :ref:`create an external table<create_external_table>` with the appropriate structure, and point it to the file.
 
@@ -54,14 +53,14 @@ Based on the source file structure, we we :ref:`create an external table<create_
    
    CREATE EXTERNAL TABLE nba
    (
-      Name text,
-      Team text,
+      Name varchar,
+      Team varchar,
       Number tinyint,
-      Position text,
+      Position varchar,
       Age tinyint,
-      Height text,
+      Height varchar,
       Weight real,
-      College text,
+      College varchar,
       Salary float
     )
       USING FORMAT CSV -- Text file
