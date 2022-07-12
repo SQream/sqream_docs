@@ -27,21 +27,6 @@ The following is an example of using the ``GET_ROLE_PERMISSIONS`` statement:
 
    select get_role_permissions();
 
-Output
-==========
-The following is an example of the output of the ``GET_ROLE_PERMISSIONS`` statement:
-
-.. code-block:: postgres
-
-permission_type
-object_type
-object_name
-
-
-   
-   
-
-
 Parameters
 ============
 The following table shows the ``GET_ROLE_PERMISSIONS`` parameters:
@@ -52,14 +37,33 @@ The following table shows the ``GET_ROLE_PERMISSIONS`` parameters:
    
    * - Parameter
      - Description
-   * - ``role_name``
+   * - ``()``
      - The permissions belonging to the role.
+
+Output
+==========
+The following is an example of the output of the ``GET_ROLE_PERMISSIONS`` statement:
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Description
+     - Example
+   * - ``permission_type``
+     - The permission type granted to the role.
+     - SUPERUSER
+   * - ``object_type``
+     - The data object type.
+     - table
+   * - ``object_name``
+     - The name of the object.
+     - master.public.nba
 
 Permissions
 =============
 Using the ``GET_ROLE_PERMISSIONS`` statement requires no special permissions.
-
-**Comment** - *Confirm.*
 
 For more information, see the following:
 
