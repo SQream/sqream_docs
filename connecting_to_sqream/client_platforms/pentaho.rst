@@ -1,7 +1,7 @@
 .. _pentaho_data_integration:
 
 *************************
-Connect to SQream Using Pentaho Data Integration
+Connecting to SQream Using Pentaho Data Integration
 *************************
 .. _pentaho_top:
 
@@ -95,7 +95,7 @@ A new transformation tab is created.
 
 11. In the **Sample data** window, enter the number of lines you want to sample and click **OK**. The default setting is **100**.
 
-The tool reads the file and suggests the field name and type.
+    The tool reads the file and suggests the field name and type.
 
 12. In the CSV file input window, click **Preview**.
 

@@ -1,7 +1,7 @@
 .. _informatica:
 
 *************************
-Connect to SQream Using Informatica Cloud Services
+Connecting to SQream Using Informatica Cloud Services
 *************************
 
 Overview

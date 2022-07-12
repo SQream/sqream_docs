@@ -1,4 +1,4 @@
-.. _connect_to_tableau:
+.. _tableau:
 
 *************************
 Connecting to SQream Using Tableau
