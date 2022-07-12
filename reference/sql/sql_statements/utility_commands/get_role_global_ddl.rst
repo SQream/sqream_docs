@@ -17,7 +17,7 @@ The following is the correct syntax for using the ``GET_ROLE_GLOBAL_DDL`` statem
 
 .. code-block:: postgres
 
-   select get_role_global_ddl('role_name')
+   select get_role_global_ddl(<'role_name'>)
    
 Example
 ===========
@@ -25,15 +25,7 @@ The following is an example of using the ``GET_ROLE_GLOBAL_DDL`` statement:
 
 .. code-block:: psql
 
-   select get_role_global_ddl('sqream');
-
-Output
-==========
-The following is an example of the output of the ``GET_ROLE_GLOBAL_DDL`` statement:
-
-.. code-block:: postgres
-
-   create role "sqream"; grant superuser, login to "sqream" ;
+   select get_role_global_ddl('public');
 
 Parameters
 ============
@@ -48,11 +40,17 @@ The following table shows the ``GET_ROLE_GLOBAL_DDL`` parameters:
    * - ``role_name``
      - The definition of the global role in DDL format.
 
+Output
+==========
+The following is an example of the output of the ``GET_ROLE_GLOBAL_DDL`` statement:
+
+.. code-block:: postgres
+
+   create role "public";
+
 Permissions
 =============
 Using the ``GET_ROLE_GLOBAL_DDL`` statement requires no special permissions.
-
-**Comment** - *Confirm.*
 
 For more information, see the following:
 

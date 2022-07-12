@@ -17,23 +17,15 @@ The following is the correct syntax for using the ``GET_ROLE_DATABASE_DDL`` stat
 
 .. code-block:: postgres
 
-   select get_role_database_ddl('role_name')
-   
+   select get_role_database_ddl(<'role_name'>)
+
 Example
 ===========
-The following is an example of using the ``GET_ROLE_DATABASE_DDL`` statement:
+The following is an example of using the ``GET_ROLE_GLOBAL_DDL`` statement:
 
 .. code-block:: psql
 
-   select get_role_database_ddl('sqream');
-
-Output
-==========
-The following is an example of the output of the ``GET_ROLE_DATABASE_DDL`` statement:
-
-.. code-block:: postgres
-
-   grant select, insert, delete, ddl on table "public"."sample" to "sqream" ; grant select, insert, delete, ddl on table "public"."t" to "sqream" ; grant select, insert, delete, ddl on table "public"."ti_kafka_demo" to "sqream" ; alter default schema for "sqream" to "public";
+   select get_role_global_ddl('public');
 
 Parameters
 ============
@@ -47,12 +39,18 @@ The following table shows the ``GET_ROLE_DATABASE_DDL`` parameters:
      - Description
    * - ``role_name``
      - The definition of the database role in DDL format.
+   
+Output
+==========
+The following is an example of the output of the ``GET_ROLE_DATABASE_DDL`` statement:
+
+.. code-block:: postgres
+
+   grant select, insert, delete, ddl on table "public"."sample" to "sqream" ; grant select, insert, delete, ddl on table "public"."t" to "sqream" ; grant select, insert, delete, ddl on table "public"."ti_kafka_demo" to "sqream" ; alter default schema for "sqream" to "public";
 
 Permissions
 =============
 Using the ``GET_ROLE_DATABASE_DDL`` statement requires no special permissions.
-
-**Comment** - *Confirm.*
 
 For more information, see the following:
 

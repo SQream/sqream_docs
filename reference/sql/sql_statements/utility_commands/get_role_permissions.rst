@@ -17,17 +17,15 @@ The following is the correct syntax for using the ``GET_ROLE_PERMISSIONS`` state
 
 .. code-block:: postgres
 
-   select get_role_permissions('role_name')
-   
-**Comment** - *This statement generates an error in Studio. It only works if you remove "'role_name'".*
-   
+   select get_role_permissions()
+      
 Example
 ===========
 The following is an example of using the ``GET_ROLE_PERMISSIONS`` statement:
 
 .. code-block:: psql
 
-   select get_role_permissions('role_name');
+   select get_role_permissions();
 
 Output
 ==========
@@ -35,9 +33,14 @@ The following is an example of the output of the ``GET_ROLE_PERMISSIONS`` statem
 
 .. code-block:: postgres
 
+permission_type
+object_type
+object_name
+
+
    
    
-**Comment** - *Running it generated an error.*
+
 
 Parameters
 ============

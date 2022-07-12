@@ -175,6 +175,8 @@ Access Control Commands
      - Removes roles
    * - :ref:`get_statement_permissions`
      - Returns a list of permissions required to run a statement or query
+   * - :ref:`get_role_database_ddl`
+     - Returns the definition of a database role in DDL format
    * - :ref:`grant`
      - Grants permissions to a role
    * - :ref:`revoke`
