@@ -153,7 +153,7 @@ Access Control Commands
 
 .. list-table:: Access Control Commands
    :widths: auto
-   :header-rows: 1
+   :header-rows: 1   
    
    * - Command
      - Usage
@@ -165,6 +165,12 @@ Access Control Commands
      - Creates a roles, which lets a database administrator control permissions on tables and databases
    * - :ref:`drop_role`
      - Removes roles
+   * - :ref:`get_role_permissions`
+     - Returns all permissions granted to a role in table format
+   * - :ref:`get_role_global_ddl`
+     - Returns the definition of a global role in DDL format
+   * - :ref:`get_role_database_ddl`
+     - Returns the definition of a database role in DDL format
    * - :ref:`get_statement_permissions`
      - Returns a list of permissions required to run a statement or query
    * - :ref:`grant`
