@@ -118,46 +118,7 @@ The following is an example of the generated output in Studio for the **ALL** ``
    master       |public     |nba         |Internal  |914      |2022-06-14 13:14:45|     		                        |
    master       |public     |cool_animals|Internal  |5        |2022-06-20 12:09:40|                                             |
    master       |public     |users	 |External  |         |2022-06-22 15:05:12|Format:parquet, Path:/var/mounts/nfsshare... |		
-
-Using the **INTERNAL** ``DESCRIBE_TABLES`` command generates the following output:
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Parameter
-     - Description
-     - Type
-     - Example
-   * - ``database_name``
-     - Displays the name of the database.
-     - Text
-     - master
-   * - ``schema_name``
-     - Displays the name of the schema.
-     - Text
-     - public
-   * - ``table_name``
-     - Displays the name of the table.
-     - Text
-     - nba	 
-   * - ``table_type``
-     - Displays whether the table is internal or external.
-     - Text
-     - Internal	 
-   * - ``row_count``
-     - Displays the amount of rows in the table.
-     - Integer
-     - 914
-   * - ``created_on``
-     - Displays the table creation timestamp.
-     - Date
-     - 2022-06-14 13:14:45
-   * - ``Addtional details``
-     - Displays additional table details.
-     - Text
-     - 
-	 
+ 
 The following is an example of the generated output in Studio for the **INTERNAL** ``DESCRIBE TABLES`` command:
 
 .. code-block:: postgres
@@ -168,46 +129,7 @@ The following is an example of the generated output in Studio for the **INTERNAL
    -------------+-----------+------------+----------+---------+-------------------+--------------------------------------------+
    master       |public     |nba         |Internal  |914      |2022-06-14 13:14:45|                                            |
    master       |public     |cool_animals|Internal  |5        |2022-06-20 12:09:40|                                            |
-   
-Using the **EXTERNAL** ``DESCRIBE_TABLES`` command generates the following output:
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Parameter
-     - Description
-     - Type
-     - Example
-   * - ``database_name``
-     - Displays the name of the database.
-     - Text
-     - master
-   * - ``schema_name``
-     - Displays the name of the schema.
-     - Text	
-     - public
-   * - ``table_name``
-     - Displays the name of the table.
-     - Text
-     - users		 
-   * - ``table_type``
-     - Displays whether the table is internal or external.
-     - Text
-     - External
-   * - ``row_count``
-     - Displays the amount of rows in the table.
-     - Integer
-     - 
-   * - ``created_on``
-     - Displays the table creation timestamp.
-     - Date
-     - 2022-06-22 15:05:12
-   * - ``Addtional details``
-     - Displays additional table details.
-     - Text
-     - Format:parquet, Path:/var/mounts/nfsshare
-	 
+   	 
 The following is an example of the generated output in Studio for the **EXTERNAL** ``DESCRIBE TABLES`` command:
 
 .. code-block:: postgres

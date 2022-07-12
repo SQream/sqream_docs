@@ -90,7 +90,7 @@ The following is an example of the correct syntax for running a **Worker** flag 
 
 .. code-block:: console
    
-   SHOW spoolMemoryGB;
+   DESCRIBE PARAM spoolMemoryGB;
    
 The following table describes the Worker flag types:
 
