@@ -74,7 +74,7 @@ Default Value Constraints
 
 The ``DEFAULT`` value constraint specifies a value to use if one is not defined in an :ref:`insert` or :ref:`copy_from` statement. 
 
-The value may be a literal, which is evaluated at the time the row is created.
+The value may either be a literal, **GETDATE()**, or Null, which is evaluated at the time the row is created.
 
 .. note:: The ``DEFAULT`` constraint only applies if the column does not have a value specified in the :ref:`insert` or :ref:`copy_from` statement. You can still insert a ``NULL`` into an nullable column by explicitly inserting ``NULL``. For example, ``INSERT INTO cool_animals VALUES (1, 'Gnu', NULL)``.
 
@@ -141,7 +141,7 @@ The following is an example of the syntax used to create a standard table:
 
    CREATE TABLE cool_animals (
       id INT NOT NULL,
-      name varchar(30) NOT NULL,
+      name text(30) NOT NULL,
       weight FLOAT,
       is_agressive BOOL
    );
@@ -155,7 +155,7 @@ The following is an example of the syntax used to create a table with default va
 
    CREATE TABLE cool_animals (
       id INT NOT NULL,
-      name varchar(30) NOT NULL,
+      name text(30) NOT NULL,
       weight FLOAT,
       is_agressive BOOL DEFAULT false NOT NULL
    );
@@ -171,8 +171,8 @@ The following is an example of the syntax used to create a table with an identit
 
    CREATE TABLE users (
       id BIGINT IDENTITY(0,1) NOT NULL , -- Start with 0, increment by 1
-      name VARCHAR(30) NOT NULL,
-      country VARCHAR(30) DEFAULT 'Unknown' NOT NULL
+      name TEXT(30) NOT NULL,
+      country TEXT(30) DEFAULT 'Unknown' NOT NULL
    );
 
 .. note:: 
@@ -203,9 +203,9 @@ The following is an example of the syntax used to create a table with a clusteri
 .. code-block:: postgres
 
    CREATE TABLE users (
-      name VARCHAR(30) NOT NULL,
+      name TEXT(30) NOT NULL,
       start_date datetime not null,
-      country VARCHAR(30) DEFAULT 'Unknown' NOT NULL
+      country TEXT(30) DEFAULT 'Unknown' NOT NULL
    ) CLUSTER BY start_date;
    
 For more information on data clustering, see :ref:`data_clustering`.
