@@ -45,7 +45,6 @@ For more information, see `Deleting Values that Contain Multi-Table Conditions <
 
 For more information, see :ref:`regexp_replace`.
 
-
 Performance Enhancements
 ------
 The **Performance Enhancements** section is not relevant to Version 2021.2.1.
@@ -61,12 +60,64 @@ The following table lists the issues that were resolved in Version 2021.2.1:
    * - SQ No.
      - Description
    * - SQ-8267
-     - A method has been provided for including the ``GROUP BY`` and ``DISTINCT COUNT`` statements.     
-  
+     - A method has been provided for including the ``GROUP BY`` and ``DISTINCT COUNT`` statements.
+
+The following table lists the issues that were resolved in Version 2021.2.1.1:
+
+.. list-table::
+   :widths: 17 200
+   :header-rows: 1  
+   
+   * - SQ No.
+     - Description
+   * - SQ-9114
+     - `cleanup_extents` on empty texts results in a missing file
+   * - SQ-8849
+     - Unclear "Map:at" error for invalid column mapping of Parquet files
+ 	 
+The following table lists the issues that were resolved in Version 2021.2.1.23:
+
+.. list-table::
+   :widths: 17 200
+   :header-rows: 1  
+   
+   * - SQ No.
+     - Description
+   * - SQ-10703
+     -  it implements a FILTER on delete statements which means that delete statements would not scan the entire metadata but only according to the filter
 
 Known Issues
 ------
 The **Known Issues** section is not relevant to 2021.2.1.
+
+The following table lists the issues that were resolved in Version 2021.2.1.1:
+
+.. list-table::
+   :widths: 17 200
+   :header-rows: 1  
+   
+   * - SQ No.
+     - Description
+   * - SQ-9003
+     - Insert as Select with Order By - Internal Runtime Error
+   * - SQ-9121
+     - Support cleanup_extents with empty text columns for cloud environment
+   * - SQ-8954
+     - GCP one worker crash when copying a table using 8 workers
+   * - SQ-5485
+     - The compiler has an issue with count being used as an alias and in the select list
+   * - SQ-7732
+     - Fail to read numeric (38,0) from parquet
+   * - SQ-7800
+     - AWS - Creating 4,000,000 chunks in leveldb by a copy operation causes segmentation fault in leveldb
+   * - SQ-7903
+     - Filters and metadata_filters doesn't work well for numeric/float literals without an explicit cast
+   * - SQ-7931
+     - Difference to Postgres when comparing literal float4 and float8
+   * - SQ-8274
+     - Cast to numeric with default precision doesn't work
+	 
+The **Known Issues** section is not relevant to Version 2021.2.1.23.
 
 Naming Convention Modifications
 ------
