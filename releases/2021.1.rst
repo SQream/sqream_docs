@@ -211,3 +211,10 @@ The the list below describes the following known issues and limitations:
 Upgrading to v2021.1
 -------
 Due to the known issue of a limitation on the amount of access requests that can be simultaneously sent to AWS, deploying S3 requires setting the ``ObjectStoreClients`` parameter to ``40``.
+
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :hidden:
+
+   2021.1

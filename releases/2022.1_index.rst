@@ -1,14 +1,14 @@
-.. _2020.3_index:
+.. _2022.1_index:
 
 **************************
-Release Notes 2020.3
+Release Notes 2022.1
 **************************
-SQream releases notes are specific to each version of the application. Select your version from the table below to see the related release notes.
+The 2022.1 Release Notes describe the following releases:
 
 +---------------------------------+----------------------------------+------------------------------------------------------------------+
 | **Major Release**               | **Minor Releases**                                                                                  |
 +---------------------------------+----------------------------------+--------------------------------+---------------------------------+
-| :ref:`2020.3<2020.3>`           | :ref:`2020.3.1<2020.3.1>`        | :ref:`2020.3.2.1<2020.3.2.1>`  |                                 |
+| :ref:`2022.1<2022.1>`                                                                                                                 |
 +---------------------------------+----------------------------------+--------------------------------+---------------------------------+
 
 .. toctree::
@@ -16,6 +16,4 @@ SQream releases notes are specific to each version of the application. Select yo
    :glob:
    :hidden:
 
-   2020.3
-   2020.3.1
-   2020.3.2.1
+   2022.1
