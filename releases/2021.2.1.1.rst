@@ -21,7 +21,7 @@ The following table lists the issues that were resolved in Version 2021.2.1.1:
 Version 2021.2.1.1 has no unresolved issues.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 3
    :glob:
    :hidden:
 
