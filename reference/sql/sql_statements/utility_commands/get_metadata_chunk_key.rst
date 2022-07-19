@@ -78,12 +78,12 @@ The following table describes the output generated from the ``GET_METADATA_CHUNK
 	 
    * - ``chunk_status``
      - The status of the chunk.
-     - **Comment** - *What is the type?*
+     - Numeric
      - ``1``
 	 
    * - ``chunk_aligned``
      - Describes the state of the chunk.
-     - **Comment** - *What is the type?*
+     - Text
      - ``chunk_state::``
 	 
    * - ``offset_in_file``
