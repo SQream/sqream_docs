@@ -102,15 +102,15 @@ The ``databases`` data object is used for displaying database information, and i
    * - ``database_name``
      - Shows the database's name.
    * - ``default_disk_chunk_size``
-     - Relevant for internal use.
+     - Reserved for internal use.
    * - ``default_process_chunk_size``
-     - Relevant for internal use.
+     - Reserved for internal use.
    * - ``rechunk_size``
-     - Relevant for internal use.
+     - Reserved for internal use.
    * - ``storage_subchunk_size``
-     - Relevant for internal use.
+     - Reserved for internal use.
    * - ``compression_chunk_size_threshold``
-     - Relevant for internal use.
+     - Reserved for internal use.
 
 .. _permissions:
 
@@ -120,7 +120,74 @@ The ``permissions`` data object is used for displaying permissions information, 
 
 .. contents:: 
    :local:
-   :depth: 1   
+   :depth: 1
+   
+Permission Types
+***********
+The ``permission_types`` object identifies the permission names existing in the database.
+
+The following table describes the ``permission_types`` data object:
+
+.. list-table::
+   :widths: 20 180
+   :header-rows: 1
+   
+   * - Column
+     - Description
+   * - ``permission_type_id``
+     - Shows the permission type's ID.
+   * - ``name``
+     - Shows the name of the permission type.
+   
+Default Permissions
+***********
+The commands included in the **Default Permissions** section describe how to check the following default permissions:
+
+.. contents:: 
+   :local:
+   :depth: 1
+
+Default Table Permissions
+~~~~~~~~~~~~~~~~
+The ``sqream_catalog.table_default_permissions`` command shows the columns described below:
+
+.. list-table::
+   :widths: 20 180
+   :header-rows: 1
+   
+   * - Column
+     - Description
+   * - ``database_name``
+     - Shows the database that the default permission rule applies to.
+   * - ``schema_id``
+     - Shows the schema that the rule applies to, or ``NULL`` if the ``ALTER`` statement does not specify a schema.
+   * - ``modifier_role_id``
+     - Shows the role to apply the rule to.
+   * - ``getter_role_id``
+     - Shows the role that the permission is granted to.
+   * - ``permission_type``
+     - Shows the type of permission granted.
+	 
+Default Schema Permissions
+~~~~~~~~~~~~~~~~
+The ``sqream_catalog.schema_default_permissions`` command shows the columns described below:
+
+.. list-table::
+   :widths: 20 180
+   :header-rows: 1
+   
+   * - Column
+     - Description
+   * - ``database_name``
+     - Shows the database that the default permission rule applies to.
+   * - ``modifier_role_id``
+     - Shows the role to apply the rule to.
+   * - ``getter_role_id``
+     - Shows the role that the permission is granted to.
+   * - ``permission_type``
+     - Shows the type of permission granted.
+	 
+For an example of using the ``sqream_catalog.table_default_permissions`` command, see `Granting Default Table Permissions <https://docs.sqream.com/en/latest/reference/sql/sql_statements/access_control_commands/alter_default_permissions/#granting-default-table-permissions.html>`_.
 
 Table Permissions
 ***********
@@ -181,24 +248,7 @@ The following table describes the ``schema_permissions`` data object:
    * - ``role_id``
      - Shows the ID of the role granted permissions.
    * - ``permission_type``
-     - Identifies the permission type.
-	 
-Permission Types
-***********
-The ``permission_types`` object identifies the permission names existing in the database.
-
-The following table describes the ``permission_types`` data object:
-
-.. list-table::
-   :widths: 20 180
-   :header-rows: 1
-   
-   * - Column
-     - Description
-   * - ``permission_type_id``
-     - Shows the permission type's ID.
-   * - ``name``
-     - Shows the name of the permission type.	 
+     - Identifies the permission type.	 
 
 UDF Permissions
 ***********
@@ -292,7 +342,7 @@ The ``schemas`` data object identifies all the database's schemas, as shown belo
    * - ``schema_owner``
      - Shows the name of the role that owns the schema.
    * - ``rechunker_ignore``
-     - Relevant for internal use.
+     - Reserved for internal use.
 
 .. _sequences:
 
@@ -381,7 +431,7 @@ The ``views`` data object is used for displaying views in the database, as shown
    * - ``view_name``
      - Shows the name of the view.
    * - ``view_data``
-     - Relevant for internal use.
+     - Reserved for internal use.
    * - ``view_query_text``
      - Identifies the ``AS`` clause used to create the view.
 

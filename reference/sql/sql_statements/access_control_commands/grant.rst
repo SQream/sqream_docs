@@ -126,8 +126,9 @@ Parameters
 
 .. include from here
 
-Supported permissions
+Supported Permissions
 =======================
+The following table describes the supported permissions:
 
 .. list-table:: 
    :widths: auto

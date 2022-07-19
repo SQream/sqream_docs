@@ -54,6 +54,8 @@ The following table shows the data objects contained in the ``sqream_catalog`` s
      - Table
    * - Extents
      - Shows ``extents``.
+   * - Chunk columns
+     - Shows ``chunks_columns``.
    * - Chunks
      - Shows ``chunks``.
    * - Delete predicates
