@@ -11,5 +11,4 @@ One or more of the following connection methods can be used to connect SQream us
    :titlesonly:
 
    sap_connect_using_information_design_tool
-   sap_web_intelligence_rich_client
    sap_universe_designer_tool

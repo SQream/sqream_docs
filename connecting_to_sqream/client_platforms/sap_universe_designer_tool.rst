@@ -10,7 +10,6 @@ The **Information Design Tool (IDT)** supports the following:
    :local:
    :depth: 1
 
-
 Overview
 =====================
 SAP Universe Design tool allows users to create, edit or delete existing models published in BO repository. With Universe Designer, you can build data foundation and business layer to meet your BI report requirements and perform different functions available in UDT tool before you develop BI reports and dashboards on top of these Universes. Universe Designer helps you to create semantic layer between your Relational database and BI tool.
@@ -49,10 +48,10 @@ This section describes how to connect to SQream using the Universe Designer Tool
 	 
    * Use an **existing connection** by selecting one from the drop-down list located near the bottom of the wizard.
 
-4. When the **Welcome to the New Connection Wizard (1/2)** window is displayed, from the **Connection Type** drop-down select a connection type.
+4. When the **Welcome to the New Connection Wizard (1/2)** window is displayed, from the **Connection Type** drop-down select **As Secured**.
 
-**Comment** - *What does "as secured" mean?
-
+    ::
+	
 5. From the **Connection Name** field, type a connection name.
 
     ::
@@ -106,7 +105,7 @@ This section describes how to connect to SQream using the Universe Designer Tool
 
      ::
 
-13. *(Optional) Create a schema by doing the following:
+13. *(Optional)* Create a schema by doing the following:
 
     1. Click **Save**.
 	
