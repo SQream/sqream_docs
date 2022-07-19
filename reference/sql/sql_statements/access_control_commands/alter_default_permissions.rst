@@ -3,22 +3,27 @@
 *****************************
 ALTER DEFAULT PERMISSIONS
 *****************************
+The **ALTER DEFAULT PERMISSIONS** page describes the following:
 
-``ALTER DEFAULT PERMISSIONS`` allows granting automatic permissions to future objects.
+.. contents:: 
+   :local:
+   :depth: 1
 
-By default, if one user creates a table, another user will not have ``SELECT`` permissions on it.
-By modifying the target role's default permissions, a database administrator can ensure that
-all objects created by that role will be accessible to others.
+Overview
+=============
+The ``ALTER DEFAULT PERMISSIONS`` command lets you grant automatic permissions to future objects.
 
-Learn more about the permission system in the :ref:`access control guide<access_control>`.
+By default, users do not have ``SELECT`` permissions on tables created by other users. Database administrators can grant access to other users by modifying the target role default permissions.
+
+For more information about access control, see :ref:`Access Control<access_control>`.
 
 Permissions
 =============
-
-To alter default permissions, the current role must have the ``SUPERUSER`` permission.
+The ``SUPERUSER`` permission is required to alter default permissions.
 
 Syntax
 ==========
+The following is the syntax for altering default permissions:
 
 .. code-block:: postgres
 
@@ -55,31 +60,70 @@ Syntax
    :start-line: 127
    :end-line: 180
 
-
 Examples
 ============
+This section includes the following examples:
 
-Automatic permissions for newly created schemas
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Granting Default Table Permissions
 -------------------------------------------------
+This example is based on the roles **r1** and **r2**, created as follows:
 
-When role ``demo`` creates a new schema, roles u1,u2 will get USAGE and CREATE permissions in the new schema:
+.. code-block:: postgres
+
+   create role r1;
+   create role r2;
+   alter default permissions for r1 for tables grant select to r2;
+
+Once created, you can build and run the following query based on the above:
+
+.. code-block:: postgres
+
+   select
+     tdp.database_name as "database_name",
+     ss.schema_name as "schema_name",
+     rs1.name as "table_creator",
+     rs2.name as "grant_to",
+     pts.name  as "permission_type"
+   from sqream_catalog.table_default_permissions tdp
+   inner join sqream_catalog.roles rs1 on tdp.modifier_role_id = rs1.role_id
+   inner join sqream_catalog.roles rs2 on tdp.getter_role_id = rs2.role_id
+   left join sqream_catalog.schemas ss on tdp.schema_id = ss.schema_id
+   inner join sqream_catalog.permission_types pts on pts.permission_type_id=tdp.permission_type
+   ;   
+   
+The following is an example of the output generated from the above queries:
+
++-----------------------+----------------------+-------------------+--------------+------------------------------+
+| **database_name**     | **schema_name**      | **table_creator** | **grant_to** | **permission_type**          |
++-----------------------+----------------------+-------------------+--------------+------------------------------+
+| master                |   NULL               | public            | public       | select                       | 
++-----------------------+----------------------+-------------------+--------------+------------------------------+
+
+For more information about default permissions, see `Default Permissions <https://docs.sqream.com/en/latest/reference/catalog_reference_catalog_tables.html#default-permissions.html>`_.  
+   
+Granting Automatic Permissions for Newly Created Schemas
+-------------------------------------------------
+When the role ``demo`` creates a new schema, roles **u1,u2** are granted ``USAGE`` and ``CREATE`` permissions in the new schema, as shown below:
 
 .. code-block:: postgres
 
    ALTER DEFAULT PERMISSIONS FOR demo FOR SCHEMAS GRANT USAGE, CREATE TO u1,u2;
 
-
-Automatic permissions for newly created tables in a schema
+Granting Automatic Permissions for Newly Created Tables in a Schema
 ----------------------------------------------------------------
-
-When role ``demo`` creates a new table in schema ``s1``, roles u1,u2 wil be granted with SELECT on it:
+When the role ``demo`` creates a new table in schema ``s1``, roles **u1,u2** are granted ``SELECT`` permissions, as shown below:
 
 .. code-block:: postgres
 
    ALTER DEFAULT PERMISSIONS FOR demo IN s1 FOR TABLES GRANT SELECT TO u1,u2;
 
-Revoke (``DROP GRANT``) permissions for newly created tables
+Revoking Permissions from Newly Created Tables
 ---------------------------------------------------------------
+Revoking permissions refers to using the ``DROP GRANT`` command, as shown below:
 
 .. code-block:: postgres
 
