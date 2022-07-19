@@ -107,34 +107,34 @@ The following table describes the output generated from the ``GET_METADATA_CHUNK
      - ``2``
 	 
    * - ``min_long``
-     - **Comment** - What is it?
-     - **Comment** - What is it?
-     - ``flat``	
+     - Shows the minimum value of the type.
+     - Long
+     - ``25``	
 	 
    * - ``max_long``
-     - **Comment** - What is it?
-     - **Comment** - What is it?
-     - **Comment** - What is it?
+     - Shows the maximum value in the chunk of a number.
+     - Long
+     - ``12345``
 	 
    * - ``min_string_max_string``
-     - **Comment** - What is it?
-     - **Comment** - What is it?
-     - **Comment** - What is it?
+     - Shows the minimum value of the string type.
+     - String
+     - ``"abc"``
 	 
    * - ``min_numeric``
-     - **Comment** - What is it?
-     - **Comment** - What is it?
-     - **Comment** - What is it?
+     - Shows the minimum value of the numeric type in the chunk.
+     - Numeric
+     - ``12.22``
 	 
    * - ``max_numeric``
-     - **Comment** - What is it?
-     - **Comment** - What is it?
-     - **Comment** - What is it?
+     - Shows the maximum value of the numeric type in the chunk.
+     - Numeric
+     - ``555.22``
 	 
    * - ``column_aligned``
-     - **Comment** - What is it?
-     - **Comment** - What is it?
-     - **Comment** - What is it?
+     - Relevant to text columns, aligment in memory.
+     - Boolean
+     - ``Yes`` / ``No``
 
 The following is an example of the output generated from the ``GET_METADATA_CHUNK_KEY`` command:
 
