@@ -53,8 +53,6 @@ Output
 ==========
 The following table describes the output generated from the ``GET_EXTENTS_FILE_FOR_CHUNK`` command:
 
-Database name. table name, table id, column id, chunk id, file path
-
 .. list-table:: 
    :widths: 25 25 25 25
    :header-rows: 1
@@ -81,31 +79,29 @@ Database name. table name, table id, column id, chunk id, file path
 	 
    * - ``column_id``
      - The status of the chunk.
-     - **Comment** - *What is the type?*
+     - Numeric
      - ``1``
 	 
    * - ``chunk_id``
      - Describes the state of the chunk.
-     - **Comment** - *What is the type?*
+     - Numeric
      - ``chunk_state::``
 	 
    * - ``file_path``
      - Shows the path of the file.
      - Text
-     - **Comment** - *Provide example
+     - /home/sqream_testing_temp/sqreamdb/databases/master/tables
 	 
 The following is an example of the output generated from the ``GET_EXTENTS_FILE_FOR_CHUNK`` command:
 
 .. code-block:: postgres
 
-   master,public.t_1,0,0,3,/home/eyalw/sqream_testing_temp/sqreamdb/databases/master/tables/0/0/0-2
-   master,public.t_1,0,1,3,/home/eyalw/sqream_testing_temp/sqreamdb/databases/master/tables/0/1/1-2
-   master,public.t_1,0,2,3,/home/eyalw/sqream_testing_temp/sqreamdb/databases/master/tables/0/2/2-2 
-   master,public.t_1,0,3,3,/home/eyalw/sqream_testing_temp/sqreamdb/databases/master/tables/0/3/3-2
-   master,public.t_1,0,4,3,/home/eyalw/sqream_testing_temp/sqreamdb/databases/master/tables/0/4/4-2
+   master,public.t_1,0,0,3,/home/sqream_testing_temp/sqreamdb/databases/master/tables
+   master,public.t_1,0,1,3,/home/sqream_testing_temp/sqreamdb/databases/master/tables
+   master,public.t_1,0,2,3,/home/sqream_testing_temp/sqreamdb/databases/master/tables 
+   master,public.t_1,0,3,3,/home/sqream_testing_temp/sqreamdb/databases/master/tables
+   master,public.t_1,0,4,3,/home/sqream_testing_temp/sqreamdb/databases/master/tables
    
 Permissions
 =============
 The ``GET_EXTENTS_FILE_FOR_CHUNK`` requires no special permissions.
-
-**Comment** - *Does it require any special permissions?*

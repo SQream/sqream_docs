@@ -149,5 +149,3 @@ The following is an example of the output generated from the ``GET_METADATA_CHUN
 Permissions
 =============
 The ``GET_METADATA_CHUNK_KEY`` requires no special permissions.
-
-**Comment** - *Does it require any special permissions?*
