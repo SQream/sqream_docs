@@ -126,7 +126,7 @@ Parameters
 
 .. include from here
 
-Supported permissions
+Supported Permissions
 =======================
 
 .. list-table:: 
