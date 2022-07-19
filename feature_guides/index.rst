@@ -11,10 +11,10 @@ This section describes the following features:
    :maxdepth: 1
    :titlesonly:
 
+   key_evaluation
+   data_encryption
    compression
    python_functions
-   saved_queries
-   viewing_system_objects_as_ddl
    workload_manager
    transactions
    concurrency_and_locks
