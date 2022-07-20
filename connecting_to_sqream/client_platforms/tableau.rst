@@ -96,7 +96,7 @@ Note the following when installing the JDBC driver:
    Based on the installation method that you used, your Tableau driver directory is located in one of the following places:
 
    * **Tableau Desktop on Windows:** *C:\\Users\\<your user>\\My Tableau Repository\\Connectors*
-   * **Tableau Desktop on Windows:** *~/My Tableau Repository/Connectors*
+   * **Tableau Desktop on Mac:** *~/My Tableau Repository/Connectors*
    
       ::
 	  
