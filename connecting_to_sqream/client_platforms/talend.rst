@@ -194,7 +194,7 @@ Download Links
 The following is a list of download links relevant to the Talend connector:
 
 * `Talend Open Studio for Big Data <https://www.talend.com/products/talend-open-studio/>`_
-* `Latest version of SQream JDBC <https://docs.sqream.com/en/latest/guides/client_drivers/index.html#client-drivers>`_
+* `Latest version of SQream JDBC <https://docs.sqream.com/en/v2022.1/connecting_to_sqream/client_drivers/index.html>`_
 
 :ref:`Back to top <top>`
 

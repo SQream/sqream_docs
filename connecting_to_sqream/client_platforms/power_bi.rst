@@ -22,7 +22,7 @@ SQream integrates with Power BI Desktop to do the following:
 
 SQream uses Power BI for extracting data sets using the following methods:
 
-* **Direct query** - Direct queries lets you connect easily with no errors, and refreshes Power BI artifacts, such as graphs and reports, in a considerable amount of time in relation to the time taken for queries to run using the `SQream SQL CLI Reference guide <https://docs.sqream.com/en/v2020-1/reference/cli/sqream_sql.html>`_.
+* **Direct query** - Direct queries lets you connect easily with no errors, and refreshes Power BI artifacts, such as graphs and reports, in a considerable amount of time in relation to the time taken for queries to run using the `SQream SQL CLI Reference guide <https://docs.sqream.com/en/v2022.1/reference/cli/sqream_sql.html>`_.
 
    ::
 
@@ -52,7 +52,7 @@ Installing Power BI Desktop
 
 2. Download and configure your ODBC driver.
 
-   For more information about configuring your ODBC driver, see `ODBC <https://docs.sqream.com/en/v2020-1/third_party_tools/client_drivers/odbc/index.html>`_.
+   For more information about configuring your ODBC driver, see `ODBC <https://docs.sqream.com/en/v2022.1/connecting_to_sqream/client_drivers/odbc/index.html>`_.
    
 3. Navigate to **Windows** > **Documents** and create a folder called **Power BI Desktop Custom Connectors**.
 
@@ -140,4 +140,4 @@ SQream supports the following SQream driver versions:
 
 Related Information
 -------------------
-For more information, see the `Glossary <https://docs.sqream.com/en/v2020-1/glossary.html>`_.
+For more information, see the `Glossary <https://docs.sqream.com/en/v2022.1/glossary.html>`_.
