@@ -1,0 +1,133 @@
+.. _2022.1.1:
+
+**************************
+Release Notes 2022.1.1
+**************************
+The 2022.1.1 patch release notes were released on 7/20/2022 and describe the following: 
+
+.. contents:: 
+   :local:
+   :depth: 1      
+
+Version Content
+----------
+The **Version Content** section is not relevant to the 2022.1.1 patch release notes.
+
+New Features
+----------
+The **New Features** section is not relevant to the 2022.1.1 patch release notes.
+   
+Resolved Issues
+---------
+The following table lists the issues that were resolved in the 2022.1.1 patch release:
+
+**Comment** - *Unfiltered.*
+
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| **SQ No.**  | **Description**                                                                                                       |
++=============+=======================================================================================================================+
+| SQ-6419     | Internal compiler error when casting numeric literal in aggregation function                                          |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-10216    | Performance degradation - tpch1t_1mchunk - case #1326 #1345                                                           |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-10793    | Implement "Brute Force" Protection policy for the system login                                                        |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-10840    | UF - list all files related to chunk id, Get specific chunk key values                                                |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-10852    | Password Strength Check                                                                                               |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-10873    | Inserting 100K bytes to a text column results in unclear error message                                                |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-10886    | Error in compilation process: : "Internal compiler error:                                                             |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-10892    | Update || change error message when trying to run update on foreign table                                             |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-10916    | [AIS] varcharEncoding": "WINDOWS-874" Flag should work NOT ONLY in Developer mode                                     |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-10919    | Automatic Foreign Table DDL Resolution                                                                                |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-10955    | No metadata filters when filtering by nullable date using dateadd (LGU+)                                              |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-10959    | Error from QueryWorker: cudaErrorNoKernelImageForDevice (on 192.168.0.111)                                            |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-10963    | Extract File Reaper Mechanism To Separated Process                                                                    |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-10976    | Merging all V2021.1.X fixes/features to V2021.2&V2022.1.X                                                             |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-10980    | sqream crashing when executing copy from avro (negative case copy file to unmatched column table)                     |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-11045    | parallel_for failed: cudaErrorInvalidConfiguration: invalid configuration argument                                    |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-11070    | failed to synchronize: cudaErrorMisalignedAddress (on 110 111 v100)                                                   |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-11121    | Merging ACL's open snapshot functionality from V2021.1.1 to v2022.1.x code line                                       |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-11154    | After SQ-10980 fix, there is wrong error raised ("OVERFLOW exception") instead of "Tried inserting AVRO non-decimal"  |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-11194    | migration tool bug ConnectionResetError                                                                               |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-11204    | Migration Tool Bug backup tables                                                                                      |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-11210    | Migration Tool Bug with varchar column with more that 100000 chars                                                    |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+| SQ-11215    | Error is caused by lack of memory resources                                                                           |
++-------------+-----------------------------------------------------------------------------------------------------------------------+
+
+Operations and Configuration Changes
+--------
+The **Operations and Configuration Changes** section is not relevant to the 2022.1.1 patch release notes.
+
+Naming Changes
+-------
+The **Naming Changes** section is not relevant to the 2022.1.1 patch release notes.
+
+Deprecated Features
+-------
+The **Deprecated Features** section is not relevant to the 2022.1.1 patch release.
+
+End of Support
+-------
+The **End of Support** section is not relevant to the 2022.1.1 patch release.
+
+Upgrading to v2022.1.1
+-------
+1. Generate a back-up of the metadata by running the following command:
+
+   .. code-block:: console
+
+      $ select backup_metadata('out_path');
+	  
+   .. tip:: SQream recommends storing the generated back-up locally in case needed.
+   
+   SQream runs the Garbage Collector and creates a clean backup tarball package.
+   
+2. Shut down all SQream services.
+
+    ::
+
+3. Extract the recently created back-up file.
+
+    ::
+
+4. Replace your current metadata with the metadata you stored in the back-up file.
+
+    ::
+
+5. Navigate to the new SQream package bin folder.
+
+    ::
+
+6. Run the following command:
+
+   .. code-block:: console
+
+      $ ./upgrade_storage <levelDB path>
+
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in **Step 7** of the Upgrading SQream Version procedure.
+  
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :hidden:
+
+   2022.1.1

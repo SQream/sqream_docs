@@ -1,0 +1,315 @@
+.. _2022.1:
+
+**************************
+Release Notes 2022.1
+**************************
+The 2022.1.1 patch release notes were released on 7/20/2022 and describe the following:
+
+.. contents:: 
+   :local:
+   :depth: 1      
+
+Version Content
+----------
+The 2022.1 Release Notes describes the following:
+
+* Enhanced security features.
+* New data manipulation command.
+* Additional data ingestion format.
+* New utility commands.
+
+New Features
+----------
+The 2022.1 Release Notes include the following new features:
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Data Encryption
+************
+SQream now supports data encryption mechanisms in accordance with **General Data Protection Regulation (GDPR)** standards.
+
+Using the data encryption feature may lead to a maximum of a 10% increase in performance degradation.
+
+For more information, see `Data Encryption <https://docs.sqream.com/en/v2022.1/feature_guides/data_encryption.html>`_.
+
+Update Feature
+************
+SQream now supports the DML **Update** feature, which is used for modifying the value of certain columns in existing rows.
+
+For more information, see `UPDATE <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/dml_commands/update.html#update>`_.
+
+Avro Ingestion
+************
+SQream now supports ingesting data from Avro files.
+
+For more information, see `Inserting Data from Avro <https://docs.sqream.com/en/v2022.1/data_ingestion/avro.html>`_.
+
+New Utility Commands
+************
+The following two new utility commands have been created:
+
+* `GET EXTENTS FILE FOR CHUNK <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/utility_commands/get_extents_file_list_for_chunk.html>`_ - points to all files that contain data related to a specific chunk. This command is used for debugging purposes.
+
+   ::
+   
+* `GET_METADATA_CHUNK_KEY <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/utility_commands/get_metadata_chunk_key.html>`_ - returns specific metadata key values for user-specified chunks.
+
+Resolved Issues
+---------
+The following table lists the issues that were resolved in Version 2022.1:
+
+**Comment** - *The items in the table below must be filtered according to external and internal bugs. We CANNOT expose internal bugs to external users.*
+
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| **SQ No.** | **Description**                                                                                                                     |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-7490    | Native Avro file   access via a dedicated FDW                                                                                       |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-7718    | Certify LTS Ubuntu   versions (18.04 & 20.04) for production usage                                                                  |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-7732    | Fail to read numeric   columns from an external generated parquet file                                                              |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-8163    | Performance   degradation - tpch1t_external_table_parquet - cases #6079 & #6105                                                     |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-8182    | Encryption Function                                                                                                                 |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-8984    | Update statement MVP:   literal assignment                                                                                          |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-9221    | [Mobicom] PBI -   External Tables are not shown on the tables list.                                                                 |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-9611    | Create a WIN-874 to   UTF-8 conversion function                                                                                     |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-9634    | identifier not found                                                                                                                |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-9644    | [ACL] Incomplete logs   query causing Internal Runtime Error                                                                        |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-9671    | Trying to read Thai   UTF-8 csv file in TEXT column and it not shows Thai                                                           |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-9764    | No error when create   a foreign table with difference in the column numbers in the table and the   file                            |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-9790    | Encryption - MVP   scope                                                                                                            |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-9808    | Allowing to set   deferredValueIOThresholdFactor flag not in developer Mode=true                                                    |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-9823    | [AIS] The user can't   use literals when using sqream with Thai varchar                                                             |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-9889    | [AIS] Internal   runtime Error receive                                                                                              |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-9952    | Removing temp files   takes too long - timeout issue at LGU+                                                                        |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-9988    | Find a proper   solution for data lost during copy from parquet - without reverting previous   optimization                         |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-9990    | Merge   v2021.2.1_stable into develop                                                                                               |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10005   | Go / No Go approvals                                                                                                                |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10011   | Delete filter   optimization chicken flag                                                                                           |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10055   | [SamsungDisplay] Slow   loading of sqream after backup compacting                                                                   |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10061   | compiler side -   Implement MVP scope                                                                                               |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10071   | error on exists   subqueries with text and varchar equality condition                                                               |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10111   | Parquet numeric -   Sqream can't import parquet numeric columns from other sources                                                  |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10191   | [LGE] ALTER DEFAULT   SCHEMA command has a problem.                                                                                 |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10216   | Performance   degradation - tpch1t_1mchunk - case #1326 #1345                                                                       |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10242   | socket 11 error from   "Create as Select~"                                                                                          |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10269   | cleanup_chunk error   with text(X) column                                                                                           |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10314   | Unable to load avro   file to sqream v1 + v2 from s3                                                                                |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10319   | Error on copy from   avro file with numeric data                                                                                    |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10425   | Lot of time in copy   from, external table parquet file                                                                             |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10428   | [LGU] Can not execute   cleanup_extents on table because there are mixed chunks                                                     |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10470   | count distinct on 0   rows doesn't return any value                                                                                 |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10478   | get_ddl disregards   encrypted columns                                                                                              |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10479   | create a table with   more than three encrypted column with no error                                                                |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10492   | Wrong values when   select from table have encrypted column and regular column                                                      |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10494   | No “encrypted” label   when read from table with encrypted column                                                                   |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10496   | Not able to insert   data to encrypted column after performing delete on the column                                                 |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10514   | No error when create   table with encrypted column for the unsupported data types                                                   |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10515   | Run time error when   decrypt 1 million rows                                                                                        |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10518   | create foreign table   with encrypted column with no error                                                                          |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10532   | Get Read time out   error when try to read avro to wrong ddl (Frozen client)                                                        |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10534   | Wrong error message   when copy null values from avro file to not null ddl (Overflow case instead   null to not null)               |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10551   | No error when add   encrypt column to already existing table                                                                        |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10585   | [V1] ORC Numeric   reading - Overflow error                                                                                         |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10586   | SQream crashed when   encrypt 1 billion rows                                                                                        |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10593   | Seg fault when   inserting AVRO non-decimal value to Numeric type                                                                   |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10594   | Some of configuration   flags are displaced in default config                                                                       |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10613   | Samsung test fail on   branch v2022.1_stable                                                                                        |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10629   | Different join type   between SELECT (Left) vs INSERT INTO SELECT (Left cross)                                                      |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10631   | Performance   degradation - copies - copy_nvarchar40.sql - case #4556                                                               |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10632   | Performance   degradation - insert_as_select - insert_as_select_parquet_int.sql - case   #4971                                      |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10655   | Performance   degradation- some queries that perform COPY FROM - case #4624                                                         |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10656   | Performance   degradation - insert_as_select - #4971 & #4984                                                                        |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10659   | [SDC] Compile Error   when using comment                                                                                            |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10665   | AWS V2 - Files are   not deleted from S3 storage after DROP database and DROP table                                                 |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10667   | Log file not created   when execute copy from avro                                                                                  |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10677   | Different results   between subquery and physical table                                                                             |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10692   | Internal Runtime   Error when decrypt 1 million rows of text data type                                                              |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10695   | when ingest 100   million data into table with 3 encrypted column it took time more than   expected                                 |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10716   | Error on copy from   avro (Expected auto cast)                                                                                      |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10734   | nvarchar_backward_comp1   failed in regression on branch v2022.1_stable                                                             |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10735   | numeric_upgrade_storage   has failed in regression on v2022.1_stable                                                                |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10738   | Sqream worker on GPU   id 1 consume also from GPU id 0                                                                              |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10745   | compiler_tests failed   in regression on v2022.1_stable                                                                             |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10776   | Out Of Memory invoked   during copy from with multiple files                                                                        |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10813   | Copy To - The   statement doesn't working when I use with 'Avro' format for location='s3....'                                       |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10823   | window_functions_part1   failed in regression in develop                                                                            |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10855   | CLONE - UF - list all   files related to chunk id, Get specific chunk key values                                                    |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10869   | Enable/Disable   encryption by default                                                                                              |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10871   | Copy To - Getting an   error when missing file_name in the end of the path at the location   field(This happen only at Avro format) |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10877   | Avro not implemented   on stable version v2022 s3                                                                                   |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10885   | Filter on Delete -   should be tested                                                                                               |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10889   | v2022.1_stable =>   Internal compiler error: Bad encryption type                                                                    |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10895   | [AIS] behavior is not   consistent when the user using Literals with Thai varchar WIN-874 or Thai   text UTF-8                      |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10902   | test_copy_null_to_not_null[all_types-parquet]   (from Generic Copy From) crashes sqreamd                                            |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10916   | [AIS]   varcharEncoding": "WINDOWS-874" Flag should work NOT ONLY in   Developer mode                                               |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10938   | REGEXP_REPLACE is not   supported in 2022 version                                                                                   |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10962   | Using Thai Literals   on v2022 with Text type output shows bad results ONLY ON Clientcmd                                            |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10987   | [AIS] The system not   allowing to control the update permissions - Grant update permission                                         |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10999   | File tracker error   logs on Sqream with MD - insert & select queries                                                               |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-11043   | correlated_subqueries_v1   test failed                                                                                              |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-11063   | Migration of Varchar   to Text - keep the size of Varchar after the migration to the text type.                                     |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-11101   | Show locks test   failed in regression for v2022.1                                                                                  |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-11109   | User can't change his   own password using the UI                                                                                   |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-11168   | Migration script on   1B rows table and 8 columns output with Internal run time error.                                              |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-11170   | Create a tool for   migrating a Varchar table to Text                                                                               |
++------------+-------------------------------------------------------------------------------------------------------------------------------------+
+
+Operations and Configuration Changes
+--------
+No relevant operations and configuration changes were made.
+
+Naming Changes
+-------
+No relevant naming changes were made.
+
+Deprecated Features
+-------
+In SQream version 2022.1 the ``VARCHAR`` data type has been deprecated and replaced with ``TEXT``. SQream will maintain ``VARCHAR`` in all previous versions until completing the migration to ``TEXT``, at which point it will be deprecated in all earlier versions. SQream also provides an automated and secure tool to facilitate and simplify migration from ``VARCHAR`` to ``TEXT``.  
+
+If you are using an earlier version of SQream, see the `Using Legacy String Literals <https://docs.sqream.com/en/v2022.1/configuration_guides/use_legacy_string_literals.html>`_ configuration flag.
+
+Known Issues and Limitations
+--------
+**Comment** - *TBD*	 
+
+The the list below describes the following known issues and limitations:
+
+* Text
+* Text
+
+End of Support
+-------
+**Comment** - *We need to know what to put here.*
+
+This section is not relevant to the 2022.1 release notes.
+
+Upgrading to v2022.1
+-------
+1. Generate a back-up of the metadata by running the following command:
+
+   .. code-block:: console
+
+      $ select backup_metadata('out_path');
+	  
+   .. tip:: SQream recommends storing the generated back-up locally in case needed.
+   
+   SQream runs the Garbage Collector and creates a clean backup tarball package.
+   
+2. Shut down all SQream services.
+
+    ::
+
+3. Extract the recently created back-up file.
+
+    ::
+
+4. Replace your current metadata with the metadata you stored in the back-up file.
+
+    ::
+
+5. Navigate to the new SQream package bin folder.
+
+    ::
+
+6. Run the following command:
+
+   .. code-block:: console
+
+      $ ./upgrade_storage <levelDB path>
+
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in **Step 7** of the Upgrading SQream Version procedure.
+  
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :hidden:
+
+   2022.1
