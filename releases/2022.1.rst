@@ -138,7 +138,7 @@ Upgrading to v2022.1
 
       $ ./upgrade_storage <levelDB path>
 
-  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in **Step 7** of the Upgrading SQream Version procedure.
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <https://docs.sqream.com/en/v2022.1/installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
   
 .. toctree::
    :maxdepth: 2
