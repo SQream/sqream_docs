@@ -53,10 +53,6 @@ This section shows an example of using a generic JDBC connector to establish a n
       </JDBCDriver>
       </DataBase>
 
-    The following is an example of modifying the jdbc.sbo file to include the SQream JDBC driver location:
-	
-	**Comment** - *We don't need the original example, correct? The above is all we need.*
-
 3. Restart the BusinessObjects server.
 
    When the connection is established, **SQream** is listed as a driver selection.
