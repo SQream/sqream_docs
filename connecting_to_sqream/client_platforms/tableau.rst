@@ -6,7 +6,7 @@ Connecting to SQream Using Tableau
 
 Overview
 =====================
-SQream's Tableau connector plugin, based on standard JDBC, enables storing and fast querying large volumes of data. 
+SQream's Tableau connector plugin, based on standard JDBC, enables storing and fast querying large volumes of data.
 
 The **Connecting to SQream Using Tableau** page is a Quick Start Guide that describes how install Tableau and the JDBC driver and connect to SQream for data analysis. It also describes using best practices and troubleshoot issues that may occur while installing Tableau. SQream supports both Tableau Desktop and Tableau Server on Windows, MacOS, and Linux distributions.
 
