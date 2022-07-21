@@ -14,3 +14,4 @@ The **Installing and Launching SQream** page includes the following installation
    running_sqream_in_a_docker_container
    installing_sqream_with_kubernetes
    installing_monit
+   launching_sqream_with_monit
