@@ -14,3 +14,4 @@ The **Getting Started** page describes the following things you need to start us
    creating_a_database
    executing_statements_in_sqream
    performing_basic_sqream_operations
+   hardware_guide
