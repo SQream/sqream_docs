@@ -8,7 +8,7 @@ Overview
 =====================
 SQream's Tableau connector plugin, based on standard JDBC, enables storing and fast querying large volumes of data. 
 
-The **Connecting to SQream Using Tableau** page is a Quick Start Guide that describes how install Tableau and the JDBC and ODBC drivers and connect to SQream using the JDBC and ODBC drivers for data analysis. It also describes using best practices and troubleshoot issues that may occur while installing Tableau. SQream supports both Tableau Desktop and Tableau Server on Windows, MacOS, and Linux distributions.
+The **Connecting to SQream Using Tableau** page is a Quick Start Guide that describes how install Tableau and the JDBC driver and connect to SQream for data analysis. It also describes using best practices and troubleshoot issues that may occur while installing Tableau. SQream supports both Tableau Desktop and Tableau Server on Windows, MacOS, and Linux distributions.
 
 For more information on SQream's integration with Tableau, see `Tableau's Extension Gallery <https://extensiongallery.tableau.com/connectors?version=2019.4>`_.
 
@@ -30,13 +30,11 @@ You can connect to SQream using Tableau by doing one of the following:
 
    * **For Windows** - See :ref:`Installing Tableau Using the Windows Installer <tableau_windows_installer>`.
    
-Installing the JDBC Driver Manually
+Installing the JDBC Driver
 ~~~~~~~~~~~~~
 If you are using MacOS, Linux, or the Tableau server, after installing the Tableau Desktop application you can install the JDBC driver manually. When the driver is installed, you can connect to SQream.
 
-**Comment** - *Did you mean to remove the introduction above?*
-
-**To install the JDBC driver manually:**
+**To install the JDBC driver:**
 
 1. Download the JDBC installer and SQream Tableau connector (.taco) file from the :ref:`from the client drivers page<client_drivers>`.
 
@@ -44,12 +42,12 @@ If you are using MacOS, Linux, or the Tableau server, after installing the Table
 
 2. Based on your operating system, your Tableau driver directory is located in one of the following places:
 
-   * **Tableau Desktop on Windows:** *C:\\Program Files\\Tableau\\Drivers*
+   * **Tableau Desktop on MacOS:** *~/Library/Tableau/Drivers*
    
       ::
 	  
-   * **Tableau Desktop on MacOS:** *~/Library/Tableau/Drivers*
-   
+   * **Tableau Desktop on Windows:** *C:\\Program Files\\Tableau\\Drivers*
+      
       ::
    
    * **Tableau on Linux**: */opt/tableau/tableau_driver/jdbc*
@@ -78,7 +76,7 @@ If you are using MacOS, Linux, or the Tableau server, after installing the Table
    
       ::
 	  
-   * **Tableau Desktop on Windows:** *~/My Tableau Repository/Connectors*
+   * **Tableau Desktop on MacOS:** *~/My Tableau Repository/Connectors*
 
 You can now restart Tableau Desktop or Server to begin using the SQream driver by connecting to SQream as described in the section below.
 
@@ -144,10 +142,7 @@ After installing the JDBC driver you can connect to SQream.
        - 
 
 The connection is established and the data source page is displayed.
-
-.. tip:: 
-   Tableau automatically assigns your connection a default name based on the DSN and table. SQream recommends giving the connection a more descriptive name.
-   
+  
 .. _set_up_sqream_tables_as_data_sources:
 
 Setting Up SQream Tables as Data Sources
@@ -170,25 +165,12 @@ After connecting to SQream you must set up the SQream tables as data sources.
 	
 #. Open a new sheet to analyze data. 
 
-.. tip:: 
-   For more information about configuring data sources, joining, filtering, see Tableau's `Set Up Data Sources <https://help.tableau.com/current/pro/desktop/en-us/datasource_prepare.htm>`_ tutorials.   
-
 Tableau Best Practices and Troubleshooting
 ---------------
 This section describes the following best practices and troubleshooting procedures when connecting to SQream using Tableau:
 
 .. contents::
    :local:
-
-Inserting Only Required Data
-~~~~~~~~~~~~~~~~~~
-When using Tableau, SQream recommends using only data that you need, as described below:
-
-* Insert only the data sources you need into Tableau, excluding tables that don't require analysis.
-
-   ::
-
-* To increase query performance, add filters before analyzing. Every modification you make while analyzing data queries the SQream database, sometimes several times. Adding filters to the datasource before exploring limits the amount of data analyze and increases query performance.
 
 Using Tableau's Table Query Syntax
 ~~~~~~~~~~~~~~~~~~~
