@@ -21,17 +21,18 @@ If you are looking for a tool that is not listed, SQream and our partners can he
    :caption: In this section:
    :titlesonly:
 
+   informatica
+   microstrategy
+   pentaho
+   php
    power_bi
-   tibco_spotfire
+   r
    sas_viya
    sql_workbench
    tableau
-   pentaho
-   microstrategy
-   informatica
-   r
-   php
    talend
+   tibco_spotfire
    xxdiagnosing_common_connectivity_issues
+
 
 .. image:: /_static/images/connectivity_ecosystem.png
