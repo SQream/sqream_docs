@@ -24,14 +24,12 @@ This section describes how to install the JDBC driver using the fully-integrated
 
 You can connect to SQream using Tableau by doing one of the following:
 
-   * **For MacOS or Linux** - See :ref:`Installing the JDBC Driver Manually <tableau_jdbc_installer>`.
+   * **For MacOS or Linux** - See :ref:`Installing the JDBC Driver <tableau_jdbc_installer>`.
 
-      ::
-
-   * **For Windows** - See :ref:`Installing Tableau Using the Windows Installer <tableau_windows_installer>`.
+.. _tableau_jdbc_installer:
    
 Installing the JDBC Driver
-~~~~~~~~~~~~~
+-------------------
 If you are using MacOS, Linux, or the Tableau server, after installing the Tableau Desktop application you can install the JDBC driver manually. When the driver is installed, you can connect to SQream.
 
 **To install the JDBC driver:**
@@ -79,12 +77,6 @@ If you are using MacOS, Linux, or the Tableau server, after installing the Table
    * **Tableau Desktop on MacOS:** *~/My Tableau Repository/Connectors*
 
 You can now restart Tableau Desktop or Server to begin using the SQream driver by connecting to SQream as described in the section below.
-
-.. _tableau_windows_installer:
-
-.. _tableau_jdbc_installer:
-
-.. _tableau_connect_to_sqream:
 
 Connecting to SQream
 ---------------------
