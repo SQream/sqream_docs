@@ -108,9 +108,9 @@ Utility Commands
    * - :ref:`EXPLAIN<explain>`
      - Returns a static query plan, which can be used to debug query plans
    * - :ref:`GET_EXTENTS_FILE_FOR_CHUNK<get_extents_file_list_for_chunk>`
-     - Points to all files that contain data related to a specific chunk |icon-new_2022.1|
+     - Points to all files that contain data related to a specific chunk |icon-New_Dark_Gray|
    * - :ref:`GET_METADATA_CHUNK_KEY<get_metadata_chunk_key>`
-     - Returns a list of metadata key values for the chunks that you specify |icon-New_Dark_Gray|
+     - Returns a list of metadata key values for the chunks that you specify |icon-new_2022.1|
    * - :ref:`SELECT GET_LICENSE_INFO<get_license_info>`
      - View a user's license information
    * - :ref:`SELECT GET_DDL<get_ddl>`
@@ -136,6 +136,13 @@ Utility Commands
    * - :ref:`STOP STATEMENT<stop_statement>`
      - Stops or aborts an active statement
 
+.. |icon-new_2022.1| image:: /_static/images/new_2022.1.png
+   :align: middle
+   :width: 110
+
+.. |icon-new_2022.1| image:: /_static/images/New_Dark_Gray.png
+   :align: middle
+   :width: 110
 
 
 Workload Management
