@@ -385,6 +385,7 @@ schema statement is run.
         | USAGE
         | SELECT
         | INSERT
+        | UPDATE
         | DELETE
         | DDL
         | EXECUTE
