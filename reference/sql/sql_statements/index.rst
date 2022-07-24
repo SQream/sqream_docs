@@ -128,6 +128,8 @@ The following table shows the Utility commands:
    
    * - Command
      - Usage
+   * - :ref:`AUDIT LOG<audit_log>`
+     - Shows system events logged by the Audit Log feature
    * - :ref:`EXPLAIN<explain>`
      - Returns a static query plan, which can be used to debug query plans
    * - :ref:`SELECT GET_LICENSE_INFO<get_license_info>`

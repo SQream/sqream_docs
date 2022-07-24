@@ -13,6 +13,7 @@ This section summarizes the following operational guides:
    :titlesonly:
 
    access_control
+   audit_log_operation
    creating_or_cloning_a_storage_cluster
    external_data
    external_tables
@@ -24,4 +25,3 @@ This section summarizes the following operational guides:
    seeing_system_objects_as_ddl
    configuration
    optimization_best_practices
-   hardware_guide
