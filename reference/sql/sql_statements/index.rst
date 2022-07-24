@@ -128,6 +128,8 @@ The following table shows the Utility commands:
    
    * - Command
      - Usage
+   * - :ref:`ABORT STATEMENT<abort_statement>`
+     - Performs a graceful stop on an active statement
    * - :ref:`AUDIT LOG<audit_log>`
      - Shows system events logged by the Audit Log feature
    * - :ref:`EXPLAIN<explain>`
@@ -150,8 +152,6 @@ The following table shows the Utility commands:
      - Returns the system version for SQream
    * - :ref:`SHUTDOWN SERVER<shutdown_server>`
      - Performs a graceful server shutdown
-   * - :ref:`STOP STATEMENT<stop_statement>`
-     - Stops or aborts an active statement
 
 Access Control Commands
 ================================
