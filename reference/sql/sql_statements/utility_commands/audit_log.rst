@@ -11,7 +11,7 @@ The **AUDIT LOG** page includes the following sections:
 
 Overview
 ====================
-The ``AUDITLOG`` command is used for investigating historic events captured by your system, and is designed for tracking user activity and for incident response. The Audit Log feature records executed SQL statements, login and logout events, as well as other system events, such as session and query IDs and user triggered responses.
+The ``AUDITLOG`` command is used for investigating historic events captured by your system, and is designed for tracking user activity and for incident response. The Audit Log feature records executed SQL statements and login and logout events.
 
 Syntax
 ====================
@@ -29,9 +29,9 @@ The following is the ``AUDITLOG`` syntax:
    [ ADDITONALDETAILS LIKE <%additional_details%> ]
    [ ERRORDETAILS LIKE <%error_details%> ]
 
-Parameters
+Filters
 ====================
-The following table shows the ``AUDITLOG`` parameters:
+The following table shows the ``AUDITLOG`` filters:
 
 +--------------------------------------------------------------+---------------------+---------------------------------------------------------------------------------------------+-------------------+
 | **Parameter Name**                                           | **Parameter Value** | **Description**                                                                             | **Type**          |
@@ -109,13 +109,13 @@ The following is the output of the ``AUDITLOG`` command:
 
 Example 2 - AUDITLOG_TIMEFRAME_FROM
 -----------------------
-The following is the ``AUDITLOG`` command using the ``AUDITLOG_TIMEFRAME_FROM`` parameter:
+The following is the ``AUDITLOG`` command using the ``TIMEFRAME_FROM`` filter:
 
 .. code-block:: console
 
   AUDITLOG TIMEFRAME FROM '2022-06-28 12:00:00' TO '2022-06-28 13:00:00';
 
-The following is the output of the ``AUDITLOG`` command using the ``AUDITLOG_TIMEFRAME_FROM`` parameter:
+The following is the output of the ``AUDITLOG`` command using the ``TIMEFRAME_FROM`` filter:
 
 .. code-block:: console
 
@@ -149,13 +149,13 @@ The following is the output of the ``AUDITLOG`` command using the ``AUDITLOG_TIM
    
 Example 3 - AUDITLOG_USERNAME
 -----------------------
-The following is the ``AUDITLOG`` command using the ``AUDITLOG_USERNAME`` parameter:
+The following is the ``AUDITLOG`` command using the ``USERNAME`` filter:
 
 .. code-block:: console
 
    AUDITLOG USERNAME in ('sqream', 'dbuser1');
    
-The following is the output of the ``AUDITLOG`` command using the ``AUDITLOG_USERNAME`` parameter:
+The following is the output of the ``AUDITLOG`` command using the ``USERNAME`` filter:
 
 .. code-block:: console
 
@@ -181,4 +181,6 @@ The following is the output of the ``AUDITLOG`` command using the ``AUDITLOG_USE
    
 Permissions
 ====================
-**Comment** - *Do we know what the permissions are?*
+Using the ``AUDIT_LOG`` command requires ``SUPERUSER`` permissions.
+
+For more information, see `Supported Permissions <https://docs.sqream.com/en/2022.3_preview/reference/sql/sql_statements/access_control_commands/alter_default_permissions.html#supported-permissions>`_.

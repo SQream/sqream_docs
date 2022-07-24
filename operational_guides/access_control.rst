@@ -592,6 +592,4 @@ After this setup:
 
 All this will happen without having to run any more ``GRANT`` statements.
 
-Any security officer will be able to add and remove users from these
-groups. Creating and dropping login users themselves must be done by a
-superuser.
+Any security officer will be able to add and remove users from these groups. Creating and dropping login users themselves must be done by a superuser.
