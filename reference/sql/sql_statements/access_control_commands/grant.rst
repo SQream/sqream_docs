@@ -15,13 +15,9 @@ Learn more about the permission system in the :ref:`access control guide<access_
 
 See also :ref:`revoke`, :ref:`create_role`.
 
-Permissions
-=============
-
-To grant permissions, the current role must have the ``SUPERUSER`` permission, or have the ``ADMIN OPTION``.
-
 Syntax
 ==========
+The following is the syntax for the ``GRANT` statement:
 
 .. code-block:: postgres
 
@@ -105,6 +101,7 @@ Syntax
 
 Parameters
 ============
+The following table describes the ``GRANT`` parameters:
 
 .. list-table:: 
    :widths: auto
@@ -128,6 +125,7 @@ Parameters
 
 Supported Permissions
 =======================
+The following table describes the supported permissions:
 
 .. list-table:: 
    :widths: auto
@@ -163,6 +161,9 @@ Supported Permissions
    * - ``INSERT``
      - Table
      - Allows a user to run :ref:`copy_from` and :ref:`insert` statements to load data into a table
+   * - ``UPDATE``
+     - Table
+     - Allows a user to modify the value of certain columns in existing rows without creating a table
    * - ``DELETE``
      - Table
      - Allows a user to run :ref:`delete`, :ref:`truncate` statements to delete data from a table
@@ -176,17 +177,20 @@ Supported Permissions
      - Cluster, Database, Schema, Table, Function
      - All of the above permissions at the respective level
 
-
 .. end include
 
 
 Examples
 ===========
+This section includes the following examples:
 
-Creating a user role with login permissions
+.. contents:: 
+   :local:
+   :depth: 1
+
+Creating a User Role with Log-in Permissions
 ----------------------------------------------
-
-Convert a role to a user by granting a password and login permissions
+The following example shows how to convert a role to a user by granting password and log-in permissions:
 
 .. code-block:: postgres
 
@@ -195,8 +199,9 @@ Convert a role to a user by granting a password and login permissions
    GRANT PASSWORD 'Tr0ub4dor&3' to new_role;
    GRANT CONNECT ON DATABASE master to new_role; -- Repeat for other desired databases
 
-Promoting a user to a superuser
+Promoting a User to a Superuser
 -------------------------------------
+The following is the syntax for promoting a user to a superuser:
 
 .. code-block:: postgres
    
@@ -206,9 +211,9 @@ Promoting a user to a superuser
    -- For a specific database
    GRANT SUPERUSER ON DATABASE my_database TO new_role;
 
-
-Creating a new role for a group of users
+Creating a New Role for a Group of Users
 --------------------------------------------
+The following example shows how to create a new role for a group of users:
 
 .. code-block:: postgres
    
@@ -222,10 +227,9 @@ Creating a new role for a group of users
    GRANT r_database_architect TO dba_user2;
    GRANT r_database_architect TO dba_user3;
 
-Granting with admin option
+Granting with Admin Option
 ------------------------------
-
-If ``WITH ADMIN OPTION`` is specified, the role that has the admin option can in turn grant membership in the role to others, and revoke membership in the role as well.
+If ``WITH ADMIN OPTION`` is specified, the role with the **admin** option can grant membership in the role to others and revoke membership, as shown below:
 
 .. code-block:: postgres
    
@@ -234,13 +238,16 @@ If ``WITH ADMIN OPTION`` is specified, the role that has the admin option can in
    
    GRANT r_database_architect TO dba_user1 WITH ADMIN OPTION;
 
-Change password for user role
+Changing Password for User Role
 --------------------------------------
-
-To change a user role's password, grant the user a new password.
+The following is an example of changing a password for a user role. This is done by granting the user a new password:
 
 .. code-block:: postgres
 
    GRANT  PASSWORD  'new_password'  TO  rhendricks;  
 
 .. note:: Granting a new password overrides any previous password. Changing the password while the role has an active running statement does not affect that statement, but will affect subsequent statements.
+
+Permissions
+=============
+To grant permissions, the current role must have the ``SUPERUSER`` permission, or have the ``ADMIN OPTION``.
