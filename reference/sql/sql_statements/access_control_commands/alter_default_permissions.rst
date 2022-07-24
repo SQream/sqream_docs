@@ -43,6 +43,7 @@ The following is the syntax for altering default permissions:
          | USAGE
          | SELECT
          | INSERT
+         | UPDATE
          | DELETE
          | DDL
          | EXECUTE
@@ -103,7 +104,7 @@ The following is an example of the output generated from the above queries:
 | master                |   NULL               | public            | public       | select                       | 
 +-----------------------+----------------------+-------------------+--------------+------------------------------+
 
-For more information about default permissions, see `Default Permissions <https://docs.sqream.com/en/v2022.1/reference/catalog_reference_catalog_tables.html#default-permissions.html>`_.  
+For more information about default permissions, see `Default Permissions <https://docs.sqream.com/en/latest/reference/catalog_reference_catalog_tables.html#default-permissions.html>`_.  
    
 Granting Automatic Permissions for Newly Created Schemas
 -------------------------------------------------
