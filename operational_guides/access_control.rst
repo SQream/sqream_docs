@@ -209,7 +209,7 @@ The following table displays the access control permissions:
      - ``INSERT``
      - :ref:`insert` into the table
      
-     * - table
+   * - table
      - ``UPDATE``
      - :ref:`update` the value of certain columns in existing rows without creating a table
 
