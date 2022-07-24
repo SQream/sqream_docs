@@ -208,6 +208,10 @@ The following table displays the access control permissions:
    * - table
      - ``INSERT``
      - :ref:`insert` into the table
+     
+     * - table
+     - ``UPDATE``
+     - :ref:`update` the value of certain columns in existing rows without creating a table
 
    * - table
      - ``DELETE``
