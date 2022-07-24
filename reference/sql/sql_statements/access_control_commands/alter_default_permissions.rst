@@ -43,6 +43,7 @@ The following is the syntax for altering default permissions:
          | USAGE
          | SELECT
          | INSERT
+         | UPDATE
          | DELETE
          | DDL
          | EXECUTE
