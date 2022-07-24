@@ -128,7 +128,7 @@ The following table shows the Utility commands:
    
    * - Command
      - Usage
-   * - :ref:`ABORT STATEMENT<abort_statement>`
+   * - :ref:`ABORT<abort>`
      - Performs a graceful stop on an active statement
    * - :ref:`AUDIT LOG<audit_log>`
      - Shows system events logged by the Audit Log feature

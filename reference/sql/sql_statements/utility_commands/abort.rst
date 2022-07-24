@@ -1,23 +1,19 @@
-.. _abort_statement:
+.. _abort:
 
 ********************
-ABORT_STATEMENT
+ABORT
 ********************
-The ``ABORT_STATEMENT`` command performs a graceful stop, known as an **abort**, on an active statement. This is useful for queries that are stuck or which have been run unintentionally.
+The ``ABORT`` command performs a graceful stop, known as an **abort**, on an active statement. This is useful for queries that are stuck or which have been run unintentionally.
 
-The **ABORT_STATEMENT** page describes the following:
+The **ABORT** page describes the following:
 
 .. contents:: 
    :local:
    :depth: 1   
 
-For more information on getting a list of session and query ID's, see :ref:`describe_session_queries`.
-
-.. note:: The ABORT_STATEMENT command may take a few moments to completely stop and free up all resources executing statements.
-
 Syntax
 ==========
-The following is the syntax for the ``ABORT_STATEMENT`` command:
+The following is the syntax for the ``ABORT`` command:
 
 .. code-block:: postgres
 
@@ -25,7 +21,7 @@ The following is the syntax for the ``ABORT_STATEMENT`` command:
 
 Parameters
 ============
-The following table describes the ``ABORT_STATEMENT`` parameters:
+The following table describes the ``ABORT`` parameters:
 
 .. list-table:: 
    :widths: 25 25 25 25
@@ -37,34 +33,22 @@ The following table describes the ``ABORT_STATEMENT`` parameters:
      - **Type**
    * - Session ID
      - ``session_id``
-     - The unique ID of the aborted session.
+     - The unique ID of the session.
      - Text
    * - Query ID
      - ``query_id``
      - The unique ID of the aborted query.
      - Text
+	 
+To retrieve a list of all queries per session, see :ref:`describe_session_queries`.
 
 Output
 =========
-The ``ABORT_STATEMENT`` command does not return any value, it always succeeds in providing the provided session and query IDs exist.
-
-**Comment** - *I wasn't exactly sure what this meant, and maybe it should be reworded.*
-
-**Comment** - *The internal Confluence doc says the following:*
-
-*Possible return values:*
-
- * *abort request succesfully initated*
-
- * *Session ID not found*
-
- * *Query ID not found*
-
- * *Query ID in not in running state*
+The ``ABORT`` command does not return any value. As long as the session and query ID that you specify exist, the ABORT command successfully initiates an abort.
 
 Notes
 ===========
-The ``ABORT_STATEMENT`` command has no notes.
+The ``ABORT`` command may take a few moments to completely stop and free up all resources executing statements.
 
 Example
 ===========
