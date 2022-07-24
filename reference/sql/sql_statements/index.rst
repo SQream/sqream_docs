@@ -134,6 +134,10 @@ The following table shows the Utility commands:
      - Shows system events logged by the Audit Log feature
    * - :ref:`EXPLAIN<explain>`
      - Returns a static query plan, which can be used to debug query plans
+   * - :ref:`GET_EXTENTS_FILE_FOR_CHUNK<get_extents_file_list_for_chunk>`
+     - Points to all files that contain data related to a specific chunk
+   * - :ref:`GET_METADATA_CHUNK_KEY<get_metadata_chunk_key>`
+     - Returns a list of metadata key values for the chunks that you specify
    * - :ref:`SELECT GET_LICENSE_INFO<get_license_info>`
      - View a user's license information
    * - :ref:`SELECT GET_DDL<get_ddl>`
@@ -152,7 +156,7 @@ The following table shows the Utility commands:
      - Returns the system version for SQream
    * - :ref:`SHUTDOWN SERVER<shutdown_server>`
      - Performs a graceful server shutdown
-
+	 
 Access Control Commands
 ================================
 The following table shows the Access Control commands:
