@@ -11,6 +11,7 @@ This section describes the following features:
    :maxdepth: 1
    :titlesonly:
 
+   automatic_schema_identification
    compression
    python_functions
    viewing_system_objects_as_ddl
