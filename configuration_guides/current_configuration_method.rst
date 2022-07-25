@@ -9,20 +9,70 @@ The **Configuring SQream** page describes SQream’s method for configuring your
    :local:
    :depth: 1
 
-Overview
------
-Modifications that you make to your configurations are persistent based on whether they are made at the session or cluster level. Persistent configurations are modifications made to attributes that are retained after shutting down your system.
+Flag Types
+===========
+All of the configuration parameters SQream uses are categorized as one of the flag types described in the following table:
 
-Modifying Your Configuration
-----
-The **Modifying Your Configuration** section describes the following:
+.. list-table::
+   :widths: 17 17 17 29
+   :header-rows: 1
+   
+   * - **Flag Type**
+     - **Scope**
+     - **Persistent**
+     - **Examples**
+   * - Regular
+     - Modifies your current session.
+     - No
+     - Setting bin size, setting CUDA memory.
+   * - Worker
+     - Modifies individual workers.
+     - Yes
+     - Setting total device memory usage, setting metadata server connection port.
+   * - Cluster
+     - Modifies all workers in a cluster.
+     - Yes
+     - Persisting your cache directory
+	 
+.. note:: Persistent configurations are modifications that are retained after shutting down your system.
+
+Session-Based Configuration
+--------------
+Session-based configurations are not persistent and are deleted when your session ends. This method enables you to modify all required configurations while avoiding conflicts between flag attributes modified on different devices at different points in time. The **SET flag_name** command is used to modify flag attributes. Any modifications you make with the **SET flag_name** command apply only to your open session, and are not saved when it ends.
+
+For example, when the query below has completed executing, the values configured will be restored to its previous setting: 
+
+.. code-block:: console
+   
+   set spoolMemoryGB=700;
+   select * from table a where date='2021-11-11'
+
+For more information, see the following:
+
+* `Using SQream SQL <https://docs.sqream.com/en/latest/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
+
+   ::
+   
+* `SQream Acceleration Studio <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
+
+Worker-Based Configuration
+--------------
+Populate
+
+Cluster-Based Configuration
+--------------
+SQream uses cluster-based configuration, enabling you to centralize configurations for all workers on the cluster. Only flags set to the regular or cluster flag type have access to cluster-based configuration. Configurations made on the cluster level are persistent and stored at the metadata level. The parameter settings in this file are applied globally to all workers connected to it.
+
+Modification Methods
+==========
+SQream provides two different ways to modify your configurations. The current method is to make modifications on the **worker configuration file**, while you can still make modifications using the **legacy configuration file**, both described below:
 
 .. contents:: 
    :local:
    :depth: 1
 
 Modifying Your Configuration Using the Worker Configuration File
-~~~~~~~~~~~
+-------------------
 You can modify your configuration using the **worker configuration file (config.json)**. Changes that you make to worker configuration files are persistent. Note that you can only set the attributes in your worker configuration file **before** initializing your SQream worker, and while your worker is active these attributes are read-only.
 
 The following is an example of a worker configuration file:
@@ -44,7 +94,7 @@ The following is an example of a worker configuration file:
 You can access the legacy configuration file from the ``legacyConfigFilePath`` parameter shown above. If all (or most) of your workers require the same flag settings, you can set the ``legacyConfigFilePath`` attribute to the same legacy file.
 
 Modifying Your Configuration Using a Legacy Configuration File
-~~~~~~~~~~~
+---------------------
 You can modify your configuration using a legacy configuration file.
 
 The Legacy configuration file provides access to the read/write flags used in SQream’s previous configuration method. A link to this file is provided in the **legacyConfigFilePath** parameter in the worker configuration file.
@@ -58,75 +108,53 @@ The following is an example of the legacy configuration file:
       “reextentUse”: false,
       “useClientLog”: true,
       “useMetadataServer”” false
-   }   
-	 
-Session vs Cluster Based Configuration
+   }
+   
+Configuration Methods
 ==============================
-.. contents:: 
-   :local:
-   :depth: 1
+
+.. list-table::
+   :widths: 24 20 54
+   :header-rows: 1
    
-Cluster-Based Configuration
---------------
-SQream uses cluster-based configuration, enabling you to centralize configurations for all workers on the cluster. Only flags set to the regular or cluster flag type have access to cluster-based configuration. Configurations made on the cluster level are persistent and stored at the metadata level. The parameter settings in this file are applied globally to all workers connected to it.
+   * - **Method**
+     - **Command Modification Permissions**
+     - **Description**
+   * - Legacy JSON Configuration files/SET flag name
+     - Regular
+     - 2 configuration files, worker & legacy
+   * - SET flag_name command
+     - Regular
+     - All flags of type Regular (not worker or cluster flags) can be changed using SET command (developer_mode set to TRUE is required in order to change flags that are of types tuning and RND	 
+   * - ALTER SYSTEM SET flag_name command
+     - Cluster, Regular
+     - this new command allows us to store configuration flags at the MetaData. having that done allows all workers in the same cluster (that are connected to the same MD) to use the same configuration).	 
+   * - Worker json config file
+     - Worker
+     - **Comment** - *Description needed. See "Updated SQream Configuration August 2021" internal doc.*
+   * - ALTER SYSTEM RESET flag_name  |  ALL
+     - Regular, Worker, Cluster
+     - can remove flag \ all flags from the MD
+	 
+JSON Configuration files: 2 configuration files, worker & legacy 
 
-For more information, see the following:
+SET flag_name command: All flags of type Regular (not worker or cluster flags) can be changed using SET command (developer_mode set to TRUE is required in order to change flags that are of types tuning and RND
 
-* `Using SQream SQL <https://docs.sqream.com/en/latest/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
-* `SQream Acceleration Studio <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
+ALTER SYSTEM SET flag_name command: this new command allows us to store configuration flags at the MetaData. having that done allows all workers in the same cluster (that are connected to the same MD) to use the same configuration). 
 
-For more information on flag-based access to cluster-based configuration, see **Configuration Flag Types** below.
-
-Session-Based Configuration
-----------------
-Session-based configurations are not persistent and are deleted when your session ends. This method enables you to modify all required configurations while avoiding conflicts between flag attributes modified on different devices at different points in time.
-
-The **SET flag_name** command is used to modify flag attributes. Any modifications you make with the **SET flag_name** command apply only to your open session, and are not saved when it ends
-
-For example, when the query below has completed executing, the values configured will be restored to its previous setting: 
-
-.. code-block:: console
-   
-   set spoolMemoryGB=700;
-   select * from table a where date='2021-11-11'
-
-For more information, see the following:
-
-* `Using SQream SQL <https://docs.sqream.com/en/latest/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
-* `SQream Acceleration Studio <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
+ALTER SYSTEM RESET flag_name  |  ALL can remove flag \ all flags from the MD
 
 Configuration Flag Types
 ==========
 The flag type attribute can be set for each flag and determines its write access as follows:
 
-* **Administration:** session-based read/write flags that can be stored in the metadata file.
+* **Regular:** session-based read/write flags that can be stored in the metadata file.
 * **Cluster:** global cluster-based read/write flags that can be stored in the metadata file.
 * **Worker:** single worker-based read-only flags that can be stored in the worker configuration file.
 
 The flag type determines which files can be accessed and which commands or commands sets users can run.
 
-The following table describes the file or command modification rights for each flag type:
 
-.. list-table::
-   :widths: 20 20 20 20
-   :header-rows: 1
-   
-   * - **Flag Type**
-     - **Legacy Configuration File**
-     - **ALTER SYSTEM SET**
-     - **Worker Configuration File**
-   * - :ref:`Regular<regular_flag_types>`
-     - Can modify
-     - Can modify
-     - Cannot modify
-   * - :ref:`Cluster<cluster_flag_types>`
-     - Cannot modify
-     - Can modify
-     - Cannot modify
-   * - :ref:`Worker<worker_flag_types>`
-     - Cannot modify
-     - Cannot modify
-     - Can modify
 
 .. _regular_flag_types:
 
