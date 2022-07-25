@@ -14,7 +14,7 @@ Flag Types
 All of the configuration parameters SQream uses are categorized as one of the flag types described in the following table:
 
 .. list-table::
-   :widths: 17 17 17 29
+   :widths: 10 29 10 55
    :header-rows: 1
    
    * - **Flag Type**
@@ -22,15 +22,15 @@ All of the configuration parameters SQream uses are categorized as one of the fl
      - **Persistent**
      - **Examples**
    * - Regular
-     - Modifies your current session.
+     - **Session-based**: used for modifying your current session.
      - No
      - Setting bin size, setting CUDA memory.
    * - Worker
-     - Modifies individual workers.
+     - **Worker-based**: used for modifying individual workers.
      - Yes
      - Setting total device memory usage, setting metadata server connection port.
    * - Cluster
-     - Modifies all workers in a cluster.
+     - **Cluster-based**: used for modifying all workers in a cluster.
      - Yes
      - Persisting your cache directory
 	 
