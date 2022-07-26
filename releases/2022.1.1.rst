@@ -41,6 +41,10 @@ The following table lists the issues that were resolved in the 2022.1.1 patch re
 | SQ-10955    | Unneeded reads occured when filtering by date.                                                                        |
 +-------------+-----------------------------------------------------------------------------------------------------------------------+
 
+Known Issues
+---------
+The **Known Issues** section is not relevant to Version 2022.1.1.
+
 Operations and Configuration Changes
 --------
 The **Operations and Configuration Changes** section is not relevant to the 2022.1.1 patch release notes.
