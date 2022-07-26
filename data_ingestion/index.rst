@@ -3,7 +3,7 @@
 *************************
 Data Ingestion Sources
 *************************
-The **Data Ingestion Sources** provides information about the following:
+The **Data Ingestion Sources** provides information about the following: 
 
 .. toctree::
    :maxdepth: 1

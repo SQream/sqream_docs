@@ -4,7 +4,7 @@
 Configuration Guides
 *************************
 
-The **Configuration Guides** page describes the following configuration information:
+The **Configuration Guides** page describes the following configuration information: 
 
 .. toctree::
    :maxdepth: 1

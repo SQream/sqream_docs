@@ -4,7 +4,7 @@
 System Architecture
 ***********************
 
-This topic includes guides that walk an end-user, database administrator, or system architect through the main ideas behind SQream DB.
+This topic includes guides that walk an end-user, database administrator, or system architect through the main ideas behind SQream DB. 
 
 While SQream DB has many similarities to other database management systems, it has some unique and additional capabilities.
 

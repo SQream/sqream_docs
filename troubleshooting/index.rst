@@ -4,7 +4,7 @@
 Troubleshooting
 ***********************
 
-The **Troubleshooting** page describes solutions to the following issues:
+The **Troubleshooting** page describes solutions to the following issues: 
 
 .. toctree::
    :maxdepth: 1

@@ -3,7 +3,7 @@
 *************************
 Getting Started
 *************************
-The **Getting Started** page describes the following things you need to start using SQream:
+The **Getting Started** page describes the following things you need to start using SQream: 
 
 .. toctree::
    :maxdepth: 1

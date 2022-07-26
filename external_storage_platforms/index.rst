@@ -3,7 +3,7 @@
 ***********************
 External Storage Platforms
 ***********************
-SQream supports the following external storage platforms:
+SQream supports the following external storage platforms: 
 
 .. toctree::
    :maxdepth: 1

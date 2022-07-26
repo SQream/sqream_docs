@@ -3,7 +3,7 @@
 ***********************
 Loading and Unloading Data
 ***********************
-The **Loading Data** section describes concepts and operations related to importing data into your SQream database:
+The **Loading Data** section describes concepts and operations related to importing data into your SQream database: 
 
 * `Overview of loading data <https://docs.sqream.com/en/latest/data_ingestion/inserting_data.html>`_ - Describes best practices and considerations for loading data into SQream from a variety of sources and locations.
 

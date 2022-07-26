@@ -3,7 +3,7 @@
 *************************
 Data Type Guides
 *************************
-This section describes the following:
+This section describes the following: 
 
 .. toctree::
    :maxdepth: 1
