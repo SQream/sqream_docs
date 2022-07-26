@@ -43,4 +43,4 @@ The following is an example of using the automatic schema identification feature
    
 Permissions
 ----------
-**Comment** - *What are the permissions?*
+The Automatic Schema Identification feature requires **Read** permissions.
