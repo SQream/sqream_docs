@@ -15,15 +15,15 @@ SQream uses three flag types, **Regular**, **Worker**, and **Cluster**. Each of 
 
 The lowest level is Regular, which means that modifying values of Regular flags affects only your current session, restoring them to their default setting when the session ends. This is known as **session-based configuration**. Some examples of Regular flags includes **setting your bin size** and **setting CUDA memory**.
 
-**Comment** - *Make link to relevant section below.*
+For more information on session-based configuration, see :ref:`Session-Based Configuration<session_based_configuration>`. 
 
-The second level is Worker, which lets you configure individual workers. Modifying Worker values is **persistent**, meaning that any configurations you set are retained after shutting down your system. This is known as **Worker-based configuration**. Some examples of Worker flags includes **setting total device memory usage** and **setting metadata server connection port**.
+The second level is Worker, which lets you configure individual workers. Modifying Worker values is **persistent**, meaning that any configurations you set are retained after shutting down your system. This is known as **worker-based configuration**. Some examples of Worker flags includes **setting total device memory usage** and **setting metadata server connection port**.
 
-**Comment** - *Make link to relevant section below.*
+For more information on worker-based configuration, see :ref:`Worker-Based Configuration<worker_based_configuration>`. 
 
-The third level is Cluster, which lets you set configurations across all workers in a given cluster, and are also persistent. Configurations set at the Cluster level take the highest priority and override settings made on the Regular and Worker level **Comment** - *Confirm*. This is known as **Cluster-based configuration**. Note that Cluster-based configuration lets you modify Cluster *and* Regular flag types. An example of a Cluster flag is **persisting your cache directory.**
+The third level is Cluster, which lets you set configurations across all workers in a given cluster, and are also persistent. Configurations set at the Cluster level take the highest priority and override settings made on the Regular and Worker level **Comment** - *Confirm*. This is known as **cluster-based configuration**. Note that Cluster-based configuration lets you modify Cluster *and* Regular flag types. An example of a Cluster flag is **persisting your cache directory.**
 
-**Comment** - *Make link to relevant section below.*
+For more information on cluster-based configuration, see :ref:`Cluster-Based Configuration<cluster_based_configuration>`. 
 
 The following table describes the flag types used to categorize the available configuration parameters:
 
@@ -58,6 +58,8 @@ SQream divides its configuration parameters into the following three levels:
    :local:
    :depth: 1
 
+.. _session_based_configuration:
+
 Session-Based Configuration
 --------------
 Session-based configurations are not persistent and are deleted when your session ends. This method enables you to modify all required configurations while avoiding conflicts between flag attributes modified on different devices at different points in time. The **SET flag_name** command is used to modify flag values on the session level. Any modifications you make with the **SET flag_name** command apply only to your open session, and are not saved when it ends.
@@ -69,9 +71,13 @@ For example, when the query below has completed executing, the values configured
    set spoolMemoryGB=700;
    select * from table a where date='2021-11-11'
 
+.. _worker_based_configuration:
+
 Worker-Based Configuration
 --------------
 Populate
+
+.. _cluster_based_configuration:
 
 Cluster-Based Configuration
 --------------
