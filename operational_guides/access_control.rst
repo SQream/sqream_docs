@@ -3,6 +3,7 @@
 **************
 Access Control
 **************
+The **Access Control** page describes the following:
 
 .. contents:: 
    :local:
@@ -10,29 +11,27 @@ Access Control
 
 Overview
 ==========
-Access control provides authentication and authorization in SQream DB. SQream DB manages authentication and authorization using a role-based access control system (RBAC), like ANSI SQL and other SQL products.
+Access control refers to SQream's authentication and authorization operations, managed using a **Role-Based Access Control (RBAC)** system, such as ANSI SQL or other SQL products. SQream's default permissions system is similar to Postgres, but is more powerful. SQream's method lets administrators prepare the system to automatically provide objects with their required permissions.
 
-SQream DB has a default permissions system which is inspired by Postgres, but with more power. In most cases, this allows an administrator to set things up so that every object gets permissions set automatically. In SQream DB, users log in from any worker which verifies their roles and permissions from the metadata server. Each statement issues commands as the currently logged in role.
+SQream users can log in from any worker, which verify their roles and permissions from the metadata server. Each statement issues commands as the role that you're currently logged into. Roles are defined at the cluster level, and are valid for all databases in the cluster. To bootstrap SQream, new installations require one ``SUPERUSER`` role, typically named ``sqream``. You can only create new roles by connecting as this role.
 
-Roles are defined at the cluster level, meaning they are valid for all databases in the cluster. To bootstrap SQream DB, a new install will always have one ``SUPERUSER`` role, typically named ``sqream``. To create more roles, you should first connect as this role.
+Access control refers to the following basic concepts:
 
-The following:
+ * **Role** - A role can be a user, a group, or both. Roles can own database objects (such as tables) and can assign permissions on those objects to other roles. Roles can be members of other roles, meaning a user role can inherit permissions from its parent role.
 
-* **Role** - a role can be a user, a group, or both. Roles can own database objects (e.g. tables), and can assign permissions on those objects to other roles. Roles can be members of other roles, meaning a user role can inherit permissions from its parent role.
+    ::
+   
+ * **Authentication** - Verifies the identity of the role. User roles have usernames (or **role names**) and passwords.
 
-   ::
-
-* **Authentication** - verifying the identity of the role. User roles have usernames (:term:`role names<role>`) and passwords.
-
-   ::
-
-* **Authorization** - checking the role has permissions to do a particular thing. The :ref:`grant` command is used for this.
+    ::
+ 
+ * **Authorization** - Checks that a role has permissions to perform a particular operation, such as the :ref:`grant` command.
 
 Managing Roles
-=====
-Roles are used for both users and groups. Roles are global across all databases in the SQream DB cluster. To use a ``ROLE`` as a user, it should have a password, the login permission, and connect permissions to the relevant databases.
+================
+Roles are used for both users and groups, and are global across all databases in the SQream cluster. For a ``ROLE`` to be used as a user, it requires a password and log-in and connect permissionss to the relevant databases.
 
-The Roles section describes the following role-related operations:
+The Managing Roles section describes the following role-related operations:
 
 .. contents:: 
    :local:
@@ -40,71 +39,70 @@ The Roles section describes the following role-related operations:
 
 Creating New Roles (Users)
 ------------------------------
-A user role can log in to the database, so it should have ``LOGIN`` permissions, as well as a password.
+A user role logging in to the database requires ``LOGIN`` permissions and as a password.
 
-For example:
+The following is the syntax for creating a new role:
 
 .. code-block:: postgres
                 
-   CREATE ROLE role_name ;
-   GRANT LOGIN to role_name ;
-   GRANT PASSWORD 'new_password' to role_name ;
-   GRANT CONNECT ON DATABASE database_name to role_name ;
+   CREATE ROLE <role_name> ;
+   GRANT LOGIN to <role_name> ;
+   GRANT PASSWORD <'new_password'> to <role_name> ;
+   GRANT CONNECT ON DATABASE <database_name> to <role_name> ;
 
-Examples:
+The following is an example of creating a new role:
 
 .. code-block:: postgres
 
    CREATE  ROLE  new_role_name  ;  
    GRANT  LOGIN  TO  new_role_name;  
-   GRANT  PASSWORD  'my_password'  TO  new_role_name;  
-   GRANT  CONNECT  ON  DATABASE  master  TO  new_role_name;
+   GRANT  PASSWORD  'my_password' to new_role_name;  
+   GRANT  CONNECT  ON  DATABASE  master to new_role_name;
 
-A database role may have a number of permissions that define what tasks it can perform. These are assigned using the :ref:`grant` command.
+A database role may have a number of permissions that define what tasks it can perform, which are  assigned using the :ref:`grant` command.
 
-Dropping Users
----------------
+Dropping a User
+------------------------------
+The following is the syntax for dropping a user:
 
 .. code-block:: postgres
 
-   DROP ROLE role_name ;
+   DROP ROLE <role_name> ;
 
-Examples:
+The following is an example of dropping a user:
 
 .. code-block:: postgres
 
    DROP ROLE  admin_role ;
 
 Altering a User Name
-------------------------
-
-Renaming a user's role:
-
-.. code-block:: postgres
-
-   ALTER ROLE role_name RENAME TO new_role_name ;
-
-Examples:
+------------------------------
+The following is the syntax for altering a user name:
 
 .. code-block:: postgres
 
-   ALTER ROLE  admin_role  RENAME  TO  copy_role ;
+   ALTER ROLE <role_name> RENAME TO <new_role_name> ;
 
-.. _change_password:
-
-Changing User Passwords
---------------------------
-
-To change a user role's password, grant the user a new password.
+The following is an example of altering a user name:
 
 .. code-block:: postgres
 
-   GRANT  PASSWORD  'new_password'  TO  rhendricks;  
+   ALTER ROLE admin_role RENAME TO copy_role ;
+
+Changing a User Password
+------------------------------
+You can change a user role's password by granting the user a new password.
+
+The following is an example of changing a user password:
+
+.. code-block:: postgres
+
+   GRANT  PASSWORD  <'new_password'>  TO  rhendricks;  
 
 .. note:: Granting a new password overrides any previous password. Changing the password while the role has an active running statement does not affect that statement, but will affect subsequent statements.
 
 Altering Public Role Permissions
------------
+------------------------------
 
 There is a public role which always exists. Each role is granted to the ``PUBLIC`` role (i.e. is a member of the public group), and this cannot be revoked. You can alter the permissions granted to the public role.
 
@@ -112,7 +110,7 @@ The ``PUBLIC`` role has ``USAGE`` and ``CREATE`` permissions on ``PUBLIC`` schem
 
 
 Altering Role Membership (Groups)
--------------------------
+------------------------------
 
 Many database administrators find it useful to group user roles together. By grouping users, permissions can be granted to, or revoked from a group with one command. In SQream DB, this is done by creating a group role, granting permissions to it, and then assigning users to that group role.
 
@@ -151,96 +149,69 @@ Removing users and permissions can be done with the ``REVOKE`` command:
    -- remove my_other_user from this group
    REVOKE my_group FROM my_other_user;
 
-.. _permissions_table:
-
 Permissions
 ===========
 The following table displays the access control permissions:
 
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
 
-   * - Object/layer
-     - Permission
-     - Description
 
-   * - all databases
-     - ``LOGIN``
-     - use role to log into the system (the role also needs connect permission on the database it is connecting to)
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| **Permission**     | **Description**                                                                                                         |
++====================+=========================================================================================================================+
+| **Object/Layer: All Databases**                                                                                                              |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``LOGIN``          | use role to log into the system (the role also needs connect permission on the database it is connecting to)            |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``PASSWORD``       | the password used for logging into the system                                                                           |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``SUPERUSER``      | no permission restrictions on any activity                                                                              |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| **Object/Layer: Database**                                                                                                                   |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``SUPERUSER``      | no permission restrictions on any activity within that database (this does not include modifying roles or permissions)  |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``CONNECT``        | connect to the database                                                                                                 |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``CREATE``         | create schemas in the database                                                                                          |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``CREATE FUNCTION``| create and drop functions                                                                                               |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| **Object/Layer: Schema**                                                                                                                     |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``USAGE``          | allows additional permissions within the schema                                                                         |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``CREATE``         | create tables in the schema                                                                                             |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| **Object/Layer: Table**                                                                                                                      |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``SELECT``         | :ref:`select` from the table                                                                                            |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``INSERT``         | :ref:`insert` into the table                                                                                            |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``UPDATE``         | UPDATE the value of certain columns in existing rows without creating a table                                           |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``DELETE``         | :ref:`delete` and :ref:`truncate` on the table                                                                          |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``DDL``            | drop and alter on the table                                                                                             |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``ALL``            | all the table permissions                                                                                               |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| **Object/Layer: Function**                                                                                                                   |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``EXECUTE``        | use the function                                                                                                        |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``DDL``            | drop and alter on the function                                                                                          |   
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``ALL``            | all function permissions                                                                                                |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
 
-   * - all databases
-     - ``PASSWORD``
-     - the password used for logging into the system
 
-   * - all databases
-     - ``SUPERUSER``
-     - no permission restrictions on any activity
 
-   * - database
-     - ``SUPERUSER``
-     - no permission restrictions on any activity within that database (this does not include modifying roles or permissions)
-
-   * - database
-     - ``CONNECT``
-     - connect to the database
-
-   * - database
-     - ``CREATE``
-     - create schemas in the database
-
-   * - database
-     - ``CREATE FUNCTION``
-     - create and drop functions
-     
-   * - schema
-     - ``USAGE``
-     - allows additional permissions within the schema
-
-   * - schema
-     - ``CREATE``
-     - create tables in the schema
-
-   * - table
-     - ``SELECT``
-     - :ref:`select` from the table
-
-   * - table
-     - ``INSERT``
-     - :ref:`insert` into the table
-     
-   * - table
-     - ``UPDATE``
-     - :ref:`update` the value of certain columns in existing rows without creating a table
-
-   * - table
-     - ``DELETE``
-     - :ref:`delete` and :ref:`truncate` on the table
-
-   * - table
-     - ``DDL``
-     - drop and alter on the table
-
-   * - table
-     - ``ALL``
-     - all the table permissions
-
-   * - function
-     - ``EXECUTE``
-     - use the function
-
-   * - function
-     - ``DDL``
-     - drop and alter on the function
-
-   * - function
-     - ``ALL``
-     - all function permissions
 
 GRANT
 -----
 
-:ref:`grant` gives permissions to a role, shown in the following syntax example:
+:ref:`grant` gives permissions to a role.
 
 .. code-block:: postgres
 
@@ -282,8 +253,8 @@ GRANT
    GRANT <role1> [, ...] 
    TO <role2> 
    WITH ADMIN OPTION
-   
-The following are some ``GRANT`` examples:
+  
+``GRANT`` examples:
 
 .. code-block:: postgres
 
@@ -310,7 +281,7 @@ The following are some ``GRANT`` examples:
 REVOKE
 ------
 
-:ref:`revoke` removes permissions from a role, shown in the following syntax example:
+:ref:`revoke` removes permissions from a role.
 
 .. code-block:: postgres
 
@@ -358,7 +329,7 @@ Examples:
 
    REVOKE  CREATE  FUNCTION  FROM  admin;
 
-Default Permissions
+Default permissions
 -------------------
 
 The default permissions system (See :ref:`alter_default_permissions`) 
@@ -389,7 +360,6 @@ schema statement is run.
         | USAGE
         | SELECT
         | INSERT
-        | UPDATE
         | DELETE
         | DDL
         | EXECUTE
@@ -410,10 +380,7 @@ A superuser must do new setup for each new schema which is a limitation, but sup
 
 In the example, the database is called ``my_database``, and the new or existing schema being set up to be managed in this way is called ``my_schema``.
 
-.. figure:: /_static/images/access_control_department_example.png
-   :scale: 60 %
-   
-   Our departmental example has four user group roles and seven users roles
+Our departmental example has four user group roles and seven users roles
 
 There will be a group for this schema for each of the following:
 
