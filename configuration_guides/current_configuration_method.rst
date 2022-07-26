@@ -9,47 +9,6 @@ The **Configuring SQream** page describes how to configure your instance of SQre
    :local:
    :depth: 1
 
-Flag Types
-===========
-SQream uses three flag types, **Regular**, **Worker**, and **Cluster**. Each of these flag types is associated with one of three hierarchical configuration levels, making it easier to configure your system.
-
-The lowest level is Regular, which means that modifying values of Regular flags affects only your current session, restoring them to their default setting when the session ends. This is known as **session-based configuration**. Some examples of Regular flags includes **setting your bin size** and **setting CUDA memory**.
-
-For more information on session-based configuration, see :ref:`Session-Based Configuration<session_based_configuration>`. 
-
-The second level is Worker, which lets you configure individual workers. Modifying Worker values is **persistent**, meaning that any configurations you set are retained after shutting down your system. This is known as **worker-based configuration**. Some examples of Worker flags includes **setting total device memory usage** and **setting metadata server connection port**.
-
-For more information on worker-based configuration, see :ref:`Worker-Based Configuration<worker_based_configuration>`. 
-
-The third level is Cluster, which lets you set configurations across all workers in a given cluster, and are also persistent. Configurations set at the Cluster level take the highest priority and override settings made on the Regular and Worker level **Comment** - *Confirm*. This is known as **cluster-based configuration**. Note that Cluster-based configuration lets you modify Cluster *and* Regular flag types. An example of a Cluster flag is **persisting your cache directory.**
-
-For more information on cluster-based configuration, see :ref:`Cluster-Based Configuration<cluster_based_configuration>`. 
-
-The following table describes the flag types used to categorize the available configuration parameters:
-
-.. list-table::
-   :widths: 10 29 10 55
-   :header-rows: 1
-   
-   * - **Flag Type**
-     - **Scope**
-     - **Persistent**
-     - **Examples**
-   * - Regular
-     - **Session-based**: used for modifying your current session.
-     - No
-     - Setting bin size, setting CUDA memory.
-   * - Worker
-     - **Worker-based**: used for modifying individual workers.
-     - Yes
-     - Setting total device memory usage, setting metadata server connection port.
-   * - Cluster
-     - **Cluster-based**: used for modifying all workers in a cluster.
-     - Yes
-     - Persisting your cache directory
-	 
-.. note:: Persistent configurations are modifications that are retained after shutting down your system.
-
 Configuration Levels
 ===========
 SQream divides its configuration parameters into the following three levels:
@@ -86,6 +45,31 @@ Cluster-based configuration lets you centralize configurations for all workers o
 .. note:: While cluster-based configuration was designed for configuring Workers, you can only configure Worker values set to the Regular or Cluster type.
 
 For more information on the Regular and Cluster flag types, see Configuration Flags.
+   
+Flag Types
+===========
+SQream uses three flag types, **Regular**, **Worker**, and **Cluster**. Each of these flag types is associated with one of three hierarchical configuration levels, making it easier to configure your system.
+
+The lowest level is Regular, which means that modifying values of Regular flags affects only your current session, restoring them to their default setting when the session ends. This is known as **session-based configuration**. Some examples of Regular flags includes **setting your bin size** and **setting CUDA memory**.
+
+The second level is Worker, which lets you configure individual workers. Modifying Worker values is **persistent**, meaning that any configurations you set are retained after shutting down your system. This is known as **worker-based configuration**. Some examples of Worker flags includes **setting total device memory usage** and **setting metadata server connection port**.
+
+The third level is Cluster, which lets you set configurations across all workers in a given cluster, and are also persistent. Configurations set at the Cluster level take the highest priority and override settings made on the Regular and Worker level **Comment** - *Confirm*. This is known as **cluster-based configuration**. Note that Cluster-based configuration lets you modify Cluster *and* Regular flag types. An example of a Cluster flag is **persisting your cache directory.**
+
+Configuration Roles
+===========
+SQream divides flags into the following roles, each with their own set of permissions:
+
+* :ref:`admin_flags` - can be modified by administrators on a session and cluster basis using the ``ALTER SYSTEM SET`` command:
+   
+   * Regular
+   * Worker
+   * Cluster
+   
+* :ref:`generic_flags` - can be modified by standard users on a session basis:
+
+   * Regular
+   * Worker
 
 Modification Methods
 ==========
@@ -134,278 +118,79 @@ The following is an example of the legacy configuration file:
       “useMetadataServer”” false
    }
    
-Configuration Methods
+Configuring Your Parameter Values
 ==============================
+The method you must use to configure your parameter values depends on the configuration level. Each configuration level has its own command or set of commands used to configure values.
 
-.. list-table::
-   :widths: 24 20 54
-   :header-rows: 1
-   
-   * - **Method**
-     - **Relevant Flag Types**
-     - **Description**
-   * - Legacy JSON Configuration files/SET flag name
-     - Regular
-     - 2 configuration files, worker & legacy
-   * - SET flag_name command
-     - Regular
-     - All flags of type Regular (not worker or cluster flags) can be changed using SET command (developer_mode set to TRUE is required in order to change flags that are of types tuning and RND	 
-   * - ALTER SYSTEM SET flag_name command
-     - Cluster, Regular
-     - this new command allows us to store configuration flags at the MetaData. having that done allows all workers in the same cluster (that are connected to the same MD) to use the same configuration).	 
-   * - Worker json config file
-     - Worker
-     - **Comment** - *Description needed. See "Updated SQream Configuration August 2021" internal doc.*
-   * - ALTER SYSTEM RESET flag_name  |  ALL
-     - Regular, Worker, Cluster
-     - can remove flag \ all flags from the MD
-	 
-JSON Configuration files: 2 configuration files, worker & legacy 
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Configuration Level**                                                                                                                                                                                                                                                                                         |
++=================================================================================================================================================================================================================================================================================================================+
+| **Regular, Worker, and Cluster**                                                                                                                                                                                                                                                                                |
++-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **Command**                                         | **Description**                                                                                                                           | **Example**                                                                                                   |
++-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| ``SET <flag_name>``                                 | Used for modifying flag attributes.                                                                                                       | ``SET developerMode=true``                                                                                    |
++-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| ``SHOW <flag-name> / ALL``                          | Used to preset either a specific flag value or all flag values.                                                                           | ``SET developerMode=true``                                                                                    |
++-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| ``SHOW ALL LIKE``                                   | Used as a wildcard character for flag names.                                                                                              | ``SHOW <heartbeat*>``                                                                                         |
++-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| ``show_conf_UF``                                    | Used to print all flags with the following attributes:                                                                                    | ``rechunkThreshold,90,true,RND,regular``                                                                      |
+|                                                     |                                                                                                                                           |                                                                                                               |
+|                                                     | * Flag name                                                                                                                               |                                                                                                               |
+|                                                     | * Default value                                                                                                                           |                                                                                                               |
+|                                                     | * Is Developer Mode (Boolean)                                                                                                             |                                                                                                               |
+|                                                     | * Flag category                                                                                                                           |                                                                                                               |
+|                                                     | * Flag type                                                                                                                               |                                                                                                               |
++-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| ``show_conf_extended UF``                           | Used to print all information output by the show_conf UF command, in addition to description, usage, data type, default value and range.  | ``rechunkThreshold,90,true,RND,regular``                                                                      |
++-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| ``show_md_flag UF``                                 | Used to show a specific flag/all flags stored in the metadata file.                                                                       |* Example 1: ``* master=> ALTER SYSTEM SET heartbeatTimeout=111;``                                             |
+|                                                     |                                                                                                                                           |* Example 2: ``* master=> select show_md_flag(‘all’); heartbeatTimeout,111``                                   |
+|                                                     |                                                                                                                                           |* Example 3: ``* master=> select show_md_flag(‘heartbeatTimeout’); heartbeatTimeout,111``                      |
++-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| **Worker and Cluster**                                                                                                                                                                                                                                                                                          |
++-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| ``ALTER SYSTEM SET <flag-name>``                    | Used for storing or modifying flag attributes in the metadata file.                                                                       |  ``ALTER SYSTEM SET <heartbeatInterval=12;>``                                                                 |
++-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
+| ``ALTER SYSTEM RESET <flag-name / ALL>``            | Used to remove a flag or all flag attributes from the metadata file.                                                                      |  ``ALTER SYSTEM RESET <heartbeatInterval ALTER SYSTEM RESET ALL>``                                            |
++-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
 
-SET flag_name command: All flags of type Regular (not worker or cluster flags) can be changed using SET command (developer_mode set to TRUE is required in order to change flags that are of types tuning and RND
-
-ALTER SYSTEM SET flag_name command: this new command allows us to store configuration flags at the MetaData. having that done allows all workers in the same cluster (that are connected to the same MD) to use the same configuration). 
-
-ALTER SYSTEM RESET flag_name  |  ALL can remove flag \ all flags from the MD
-
-Configuration Flag Types
+Examples
 ==========
-The flag type attribute can be set for each flag and determines its write access as follows:
+This section includes the following examples:
 
-* **Regular:** session-based read/write flags that can be stored in the metadata file.
-* **Cluster:** global cluster-based read/write flags that can be stored in the metadata file.
-* **Worker:** single worker-based read-only flags that can be stored in the worker configuration file.
-
-The flag type determines which files can be accessed and which commands or commands sets users can run.
-
-
-
-.. _regular_flag_types:
-
-Regular Flag Types
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Running a Regular Flag Type Command
 ---------------------
-The following is an example of the correct syntax for running a **Regular** flag type command:
+The following is an example of running a **Regular** flag type command:
 
 .. code-block:: console
    
    SET spoolMemoryGB= 11;
    executed
    
-The following table describes the Regular flag types:
-
-.. list-table::
-   :widths: 2 5 10
-   :header-rows: 1
-   
-   * - **Command**
-     - **Description**
-     - **Example**
-   * - ``SET <flag_name>``
-     - Used for modifying flag attributes.
-     - ``SET developerMode=true``
-   * - ``SHOW <flag-name> / ALL``
-     - Used to preset either a specific flag value or all flag values.
-     - ``SHOW <heartbeatInterval>``
-   * - ``SHOW ALL LIKE``
-     - Used as a wildcard character for flag names.
-     - ``SHOW <heartbeat*>``
-   * - ``show_conf_UF``
-     - Used to print all flags with the following attributes:
-	 	 
-	   * Flag name
-	   * Default value
-	   * Is developer mode (Boolean)
-	   * Flag category
-	   * Flag type
-     - ``rechunkThreshold,90,true,RND,regular``
-   * - ``show_conf_extended UF``
-     - Used to print all information output by the show_conf UF command, in addition to description, usage, data type, default value and range.
-     - ``compilerGetsOnlyUFs,false,generic,regular,Makes runtime pass to compiler only``
-	   ``utility functions names,boolean,true,false``
-   * - ``show_md_flag UF``
-     - Used to show a specific flag/all flags stored in the metadata file.
-     - 	 	 
-	   * Example 1: ``* master=> ALTER SYSTEM SET heartbeatTimeout=111;``
-	   * Example 2: ``* master=> select show_md_flag(‘all’); heartbeatTimeout,111``
-	   * Example 3: ``* master=> select show_md_flag(‘heartbeatTimeout’); heartbeatTimeout,111``
-
-.. _cluster_flag_types:
-
-Cluster Flag Types
+Running a Worker Flag Type Command
 ---------------------
-The following is an example of the correct syntax for running a **Cluster** flag type command:
+The following is an example of running a **Worker** flag type command:
+
+.. code-block:: console
+   
+   SHOW spoolMemoryGB;
+
+Running a Cluster Flag Type Command
+---------------------
+The following is an example of running a **Cluster** flag type command:
 
 .. code-block:: console
    
    ALTER SYSTEM RESET useMetadataServer;
    executed
-   
-The following table describes the Cluster flag types:
 
-.. list-table::
-   :widths: 1 5 10
-   :header-rows: 1
-   
-   * - **Command**
-     - **Description**
-     - **Example**
-   * - ``ALTER SYSTEM SET <flag-name>``
-     - Used to storing or modifying flag attributes in the metadata file.
-     - ``ALTER SYSTEM SET <heartbeatInterval=12;>``
-   * - ``ALTER SYSTEM RESET <flag-name / ALL>``
-     - Used to remove a flag or all flag attributes from the metadata file.
-     - ``ALTER SYSTEM RESET <heartbeatInterval ALTER SYSTEM RESET ALL>``
-   * - ``SHOW <flag-name> / ALL``
-     - Used to print the value of a specified value or all flag values.
-     - ``SHOW <heartbeatInterval>``
-   * - ``SHOW ALL LIKE``
-     - Used as a wildcard character for flag names.
-     - ``SHOW <heartbeat*>``
-   * - ``show_conf_UF``
-     - Used to print all flags with the following attributes:
-	 	 
-	   * Flag name
-	   * Default value
-	   * Is developer mode (Boolean)
-	   * Flag category
-	   * Flag type
-     - ``rechunkThreshold,90,true,RND,regular``
-   * - ``show_conf_extended UF``
-     - Used to print all information output by the show_conf UF command, in addition to description, usage, data type, default value and range.
-     - ``compilerGetsOnlyUFs,false,generic,regular,Makes runtime pass to compiler only``
-	     ``utility functions names,boolean,true,false``
-   * - ``show_md_flag UF``
-     - Used to show a specific flag/all flags stored in the metadata file.
-     - 	 	 
-	   * Example 1: ``* master=> ALTER SYSTEM SET heartbeatTimeout=111;``
-	   * Example 2: ``* master=> select show_md_flag(‘all’); heartbeatTimeout,111``
-	   * Example 3: ``* master=> select show_md_flag(‘heartbeatTimeout’); heartbeatTimeout,111``
 
-.. _worker_flag_types:
-
-Worker Flag Types
----------------------
-The following is an example of the correct syntax for running a **Worker** flag type command:
-
-.. code-block:: console
-   
-   SHOW spoolMemoryGB;
-   
-The following table describes the Worker flag types:
-
-.. list-table::
-   :widths: 1 5 10
-   :header-rows: 1
-   
-   * - **Command**
-     - **Description**
-     - **Example**
-   * - ``ALTER SYSTEM SET <flag-name>``
-     - Used to storing or modifying flag attributes in the metadata file.
-     - ``ALTER SYSTEM SET <heartbeatInterval=12;>``
-   * - ``ALTER SYSTEM RESET <flag-name / ALL>``
-     - Used to remove a flag or all flag attributes from the metadata file.
-     - ``ALTER SYSTEM RESET <heartbeatInterval ALTER SYSTEM RESET ALL>``
-   * - ``SHOW <flag-name> / ALL``
-     - Used to print the value of a specified value or all flag values.
-     - ``SHOW <heartbeatInterval>``
-   * - ``SHOW ALL LIKE``
-     - Used as a wildcard character for flag names.
-     - ``SHOW <heartbeat*>``
-   * - ``show_conf_UF``
-     - Used to print all flags with the following attributes:
-	 	 
-	   * Flag name
-	   * Default value
-	   * Is developer mode (Boolean)
-	   * Flag category
-	   * Flag type
-     - ``rechunkThreshold,90,true,RND,regular``
-   * - ``show_conf_extended UF``
-     - Used to print all information output by the show_conf UF command, in addition to description, usage, data type, default value and range.
-     - 
-	   ``compilerGetsOnlyUFs,false,generic,regular,Makes runtime pass to compiler only``
-	   ``utility functions names,boolean,true,false``
-   * - ``show_md_flag UF``
-     - Used to show a specific flag/all flags stored in the metadata file.
-     - 	 	 
-	   * Example 1: ``* master=> ALTER SYSTEM SET heartbeatTimeout=111;``
-	   * Example 2: ``* master=> select show_md_flag(‘all’); heartbeatTimeout,111``
-	   * Example 3: ``* master=> select show_md_flag(‘heartbeatTimeout’); heartbeatTimeout,111``
-
-Configuration Commands
-==========	 
-The configuration commands are associated with particular flag types based on permissions.
-
-The following table describes the commands or command sets that can be run based on their flag type. Note that the flag names described in the following table are described in the :ref:`Configuration Roles<configuration_roles>` section below.
-
-.. list-table::
-   :header-rows: 1
-   :widths: 1 2 10 17
-   :class: my-class
-   :name: my-name
-
-   * - Flag Type
-     - Command
-     - Description
-     - Example
-   * - Regular
-     - ``SET <flag_name>``
-     - Used for modifying flag attributes.
-     - ``SET developerMode=true``
-   * - Cluster
-     - ``ALTER SYSTEM SET <flag-name>``
-     - Used to storing or modifying flag attributes in the metadata file.
-     - ``ALTER SYSTEM SET <heartbeatInterval=12;>``
-   * - Cluster
-     - ``ALTER SYSTEM RESET <flag-name / ALL>``
-     - Used to remove a flag or all flag attributes from the metadata file.
-     - ``ALTER SYSTEM RESET <heartbeatInterval ALTER SYSTEM RESET ALL>``
-   * - Regular, Cluster, Worker
-     - ``SHOW <flag-name> / ALL``
-     - Used to print the value of a specified value or all flag values.
-     - ``SHOW <heartbeatInterval>``
-   * - Regular, Cluster, Worker
-     - ``SHOW ALL LIKE``
-     - Used as a wildcard character for flag names.
-     - ``SHOW <heartbeat*>``
-   * - Regular, Cluster, Worker
-     - ``show_conf_UF``
-     - Used to print all flags with the following attributes:
-	 
-       * Flag name
-       * Default value
-       * Is developer mode (Boolean)
-       * Flag category
-       * Flag type
-	 
-
-	   
-     - ``rechunkThreshold,90,true,RND,regular``
-   * - Regular, Cluster, Worker
-     - ``show_conf_extended UF``
-     - Used to print all information output by the show_conf UF command, in addition to description, usage, data type, default value and range.
-     - ``spoolMemoryGB,15,false,generic,regular,Amount of memory (GB)``
-       ``the server can use for spooling,”Statement that perform “”group by””,``
-       ``“”order by”” or “”join”” operation(s) on large set of data will run``
-       ``much faster if given enough spool memory, otherwise disk spooling will``
-       ``be used resulting in performance hit.”,uint,,0-5000``
-   * - Regular, Cluster, Worker
-     - ``show_md_flag UF``
-     - Used to show a specific flag/all flags stored in the metadata file.
-     - 	 	 
-	   * Example 1: ``* master=> ALTER SYSTEM SET heartbeatTimeout=111;``
-	   * Example 2: ``* master=> select show_md_flag(‘all’); heartbeatTimeout,111``
-	   * Example 3: ``* master=> select show_md_flag(‘heartbeatTimeout’); heartbeatTimeout,111``
-
-.. _configuration_roles:
-
-Configuration Roles
-===========
-SQream divides flags into the following roles, each with their own set of permissions:
-
-* :ref:`admin_flags`: can be modified by administrators on a session and cluster basis using the ``ALTER SYSTEM SET`` command.
-* :ref:`generic_flags`: can be modified by standard users on a session basis.
 
 
 Showing All Flags in the Catalog Table
