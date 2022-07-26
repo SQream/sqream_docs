@@ -35,7 +35,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
      - **Reference**
      - **Guides**
    * -
-         :ref:`first_steps`
+         `Getting Started <https://docs.sqream.com/en/v2020-1/getting_started/index.html>`_
          
          :ref:`sql_feature_support`
          
@@ -57,12 +57,6 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
      - **Driver and Deployment**
      - **Help and Support**
    * -
-         :ref:`2021.1<2021.1>`
-        
-         :ref:`2020.3<2020.3>`
-
-         :ref:`2020.2<2020.2>`
-         
          :ref:`2020.1<2020.1>`
                   
          :ref:`All recent releases<releases>`
