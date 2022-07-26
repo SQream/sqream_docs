@@ -107,10 +107,6 @@ Utility Commands
      - Executes a previously saved query
    * - :ref:`EXPLAIN<explain>`
      - Returns a static query plan, which can be used to debug query plans
-   * - :ref:`GET_EXTENTS_FILE_FOR_CHUNK<get_extents_file_list_for_chunk>`
-     - Points to all files that contain data related to a specific chunk |icon-New_Dark_Gray|
-   * - :ref:`GET_METADATA_CHUNK_KEY<get_metadata_chunk_key>`
-     - Returns a list of metadata key values for the chunks that you specify |icon-new_2022.1|
    * - :ref:`SELECT GET_LICENSE_INFO<get_license_info>`
      - View a user's license information
    * - :ref:`SELECT GET_DDL<get_ddl>`

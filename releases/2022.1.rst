@@ -46,16 +46,6 @@ SQream now supports ingesting data from Avro files.
 
 For more information, see `Inserting Data from Avro <https://docs.sqream.com/en/latest/data_ingestion/avro.html>`_.
 
-New Utility Commands
-************
-The following two new utility commands have been created:
-
-* `GET EXTENTS FILE FOR CHUNK <https://docs.sqream.com/en/latest/reference/sql/sql_statements/utility_commands/get_extents_file_list_for_chunk.html>`_ - points to all files that contain data related to a specific chunk. This command is used for debugging purposes.
-
-   ::
-   
-* `GET_METADATA_CHUNK_KEY <https://docs.sqream.com/en/latest/reference/sql/sql_statements/utility_commands/get_metadata_chunk_key.html>`_ - returns specific metadata key values for user-specified chunks.
-
 Known Issues
 ---------
 The following table lists the known issues for Version 2022.1:
