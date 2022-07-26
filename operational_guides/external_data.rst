@@ -14,7 +14,7 @@ SQream supports the following external data sources:
    
 For more information, see the following:
 
-* :ref:`external_tables`
+* :ref:`foreign_tables`
 
    ::
    
