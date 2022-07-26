@@ -4,7 +4,7 @@
 SQream DB Documentation
 *************************
 
-For SQream DB 2020.1.
+For SQream DB Version 2020.1.
 
 .. only:: html
 
@@ -47,7 +47,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
          
          :ref:`sql_functions`
      - 
-         `Setting up SQream <https://docs.sqream.com/en/v2020-1/installation_guides/index.html>`_
+         :ref:`setup`
          
          :ref:`Best practices<sql_best_practices>`
          
@@ -57,6 +57,12 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
      - **Driver and Deployment**
      - **Help and Support**
    * -
+         :ref:`2021.1<2021.1>`
+        
+         :ref:`2020.3<2020.3>`
+
+         :ref:`2020.2<2020.2>`
+         
          :ref:`2020.1<2020.1>`
                   
          :ref:`All recent releases<releases>`
@@ -64,9 +70,8 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
      - 
          :ref:`Client drivers<client_drivers>`
 
-         :ref:`Third party tools integration<third_party_tools>`
+         :ref:`Connecting to SQream<connecting_to_sqream>`
 
-         :ref:`connect_to_tableau`
      - 
          :ref:`troubleshooting` guide
          
@@ -81,7 +86,7 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
 
 .. rubric:: Looking for older versions?
 
-This version of the documentation is for SQream DB Version 2020.1.
+This version of the documentation is for SQream DB |latest_version|.
 
 If you're looking for an older version of the documentation, versions 1.10 through 2019.2.1 are available at http://previous.sqream.com .
 
@@ -96,6 +101,7 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    installation_guides/index
    data_ingestion/index
    connecting_to_sqream/index
+   external_storage_platforms/index
    loading_and_unloading_data/index
    feature_guides/index
    operational_guides/index
@@ -107,7 +113,6 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    releases/index
    troubleshooting/index
    glossary
-
 
 ..
    Indices and tables

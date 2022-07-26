@@ -47,8 +47,6 @@ After creating a second ``SUPERUSER`` role, remove or change the default credent
 
 No database user should ever use the default ``SUPERUSER`` role in a production environment.
 
-If you don't change the user role itself, change the password of the default ``SUPERUSER``. See the :ref:`change password<change_password>` section of our :ref:`access control<access_control>` guide.
-
 Create distinct user roles
 --------------------------------
 
@@ -80,11 +78,6 @@ Follow these recommendations to strengthen passwords:
 * Mix letters and numbers
 * Include non-alphanumeric characters (except ``"`` and ``'``)
 
-
-
-
-
-
 Use TLS/SSL when possible
 ----------------------------
 
@@ -97,3 +90,6 @@ All SQream DB connectors and drivers support transport encryption. Ensure that e
 * A SQream DB worker is often started with the secure port enabled at an offset of 100 from the original port (e.g. port 5000 for the unsecured connection and port 5100 for the secured connection).
 
 Refer to each :ref:`client driver<client_drivers>` for instructions on enabling TLS/SSL.
+
+
+

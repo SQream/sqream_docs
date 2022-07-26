@@ -1,4 +1,4 @@
-.. _optimization_best_practices:
+.. _sql_best_practices:
 
 **********************************
 Optimization and Best Practices
@@ -77,6 +77,7 @@ Keep VARCHAR lengths to a minimum
 While it won't make a big difference in storage, large strings allocate a lot of memory at query time.
 
 If a column's string length never exceeds 50 characters, specify ``VARCHAR(50)`` rather than an arbitrarily large number.
+
 
 Sorting 
 ==============

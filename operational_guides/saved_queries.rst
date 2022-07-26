@@ -1,17 +1,17 @@
 .. _saved_queries:
 
 ***********************
-Saved queries
+Saved Queries
 ***********************
 
-Saved queries can be used to reuse a query plan for a query to eliminate compilation times for repeated queries. They also provide a way to implement 'parameterized views'.
+Saved queries can be used to reuse a query plan for a query to eliminate compilation times for repeated queries. They also provide a way to implement 'parameterized views'. 
 
 How saved queries work
 ==========================
 
 Saved queries are compiled when they are created. When a saved query is run, this query plan is used instead of compiling a query plan at query time.
 
-Parameter support
+Parameters support
 ===========================
 
 Query parameters can be used as substitutes for literal expressions in queries.
