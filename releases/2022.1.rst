@@ -16,7 +16,6 @@ The 2022.1 Release Notes describes the following:
 * Enhanced security features.
 * New data manipulation command.
 * Additional data ingestion format.
-* New utility commands.
 
 New Features
 ----------
@@ -45,16 +44,6 @@ Avro Ingestion
 SQream now supports ingesting data from Avro files.
 
 For more information, see `Inserting Data from Avro <https://docs.sqream.com/en/v2022.1/data_ingestion/avro.html>`_.
-
-New Utility Commands
-************
-The following two new utility commands have been created:
-
-* `GET EXTENTS FILE FOR CHUNK <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/utility_commands/get_extents_file_list_for_chunk.html>`_ - points to all files that contain data related to a specific chunk. This command is used for debugging purposes.
-
-   ::
-   
-* `GET_METADATA_CHUNK_KEY <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/utility_commands/get_metadata_chunk_key.html>`_ - returns specific metadata key values for user-specified chunks.
 
 Resolved Issues
 ---------
