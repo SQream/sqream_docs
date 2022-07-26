@@ -16,7 +16,6 @@ The 2022.1 Release Notes describes the following:
 * Enhanced security features.
 * New data manipulation command.
 * Additional data ingestion format.
-* New utility commands.
 
 New Features
 ----------
