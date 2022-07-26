@@ -3,7 +3,7 @@
 **************************
 Configuring SQream
 **************************
-The **Configuring SQream** page describes SQream’s method for configuring your instance of SQream and includes the following topics:
+The **Configuring SQream** page describes how to configure your instance of SQream and includes the following topics:
 
 .. contents:: 
    :local:
@@ -11,7 +11,21 @@ The **Configuring SQream** page describes SQream’s method for configuring your
 
 Flag Types
 ===========
-All of the configuration parameters SQream uses are categorized as one of the flag types described in the following table:
+SQream uses three flag types, **Regular**, **Worker**, and **Cluster**. Each of these flag types is associated with one of three hierarchical configuration levels, making it easier to configure your system.
+
+The lowest level is Regular, which means that modifying values of Regular flags affects only your current session, restoring them to their default setting when the session ends. This is known as **session-based configuration**. Some examples of Regular flags includes **setting your bin size** and **setting CUDA memory**.
+
+**Comment** - *Make link to relevant section below.*
+
+The second level is Worker, which lets you configure individual workers. Modifying Worker values is **persistent**, meaning that any configurations you set are retained after shutting down your system. This is known as **Worker-based configuration**. Some examples of Worker flags includes **setting total device memory usage** and **setting metadata server connection port**.
+
+**Comment** - *Make link to relevant section below.*
+
+The third level is Cluster, which lets you set configurations across all workers in a given cluster, and are also persistent. Configurations set at the Cluster level take the highest priority and override settings made on the Regular and Worker level **Comment** - *Confirm*. This is known as **Cluster-based configuration**. Note that Cluster-based configuration lets you modify Cluster *and* Regular flag types. An example of a Cluster flag is **persisting your cache directory.**
+
+**Comment** - *Make link to relevant section below.*
+
+The following table describes the flag types used to categorize the available configuration parameters:
 
 .. list-table::
    :widths: 10 29 10 55
@@ -36,9 +50,17 @@ All of the configuration parameters SQream uses are categorized as one of the fl
 	 
 .. note:: Persistent configurations are modifications that are retained after shutting down your system.
 
+Configuration Levels
+===========
+SQream divides its configuration parameters into the following three levels:
+
+.. contents:: 
+   :local:
+   :depth: 1
+
 Session-Based Configuration
 --------------
-Session-based configurations are not persistent and are deleted when your session ends. This method enables you to modify all required configurations while avoiding conflicts between flag attributes modified on different devices at different points in time. The **SET flag_name** command is used to modify flag attributes. Any modifications you make with the **SET flag_name** command apply only to your open session, and are not saved when it ends.
+Session-based configurations are not persistent and are deleted when your session ends. This method enables you to modify all required configurations while avoiding conflicts between flag attributes modified on different devices at different points in time. The **SET flag_name** command is used to modify flag values on the session level. Any modifications you make with the **SET flag_name** command apply only to your open session, and are not saved when it ends.
 
 For example, when the query below has completed executing, the values configured will be restored to its previous setting: 
 
@@ -47,25 +69,21 @@ For example, when the query below has completed executing, the values configured
    set spoolMemoryGB=700;
    select * from table a where date='2021-11-11'
 
-For more information, see the following:
-
-* `Using SQream SQL <https://docs.sqream.com/en/latest/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
-
-   ::
-   
-* `SQream Acceleration Studio <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
-
 Worker-Based Configuration
 --------------
 Populate
 
 Cluster-Based Configuration
 --------------
-SQream uses cluster-based configuration, enabling you to centralize configurations for all workers on the cluster. Only flags set to the regular or cluster flag type have access to cluster-based configuration. Configurations made on the cluster level are persistent and stored at the metadata level. The parameter settings in this file are applied globally to all workers connected to it.
+Cluster-based configuration lets you centralize configurations for all workers on the cluster. Only flags set to the regular or cluster flag type have access to cluster-based configuration. Configurations made on the cluster level are persistent and stored at the metadata level. The parameter settings in this file are applied globally to all workers connected to it.
+
+.. note:: While cluster-based configuration was designed for configuring Workers, you can only configure Worker values set to the Regular or Cluster type.
+
+For more information on the Regular and Cluster flag types, see Configuration Flags.
 
 Modification Methods
 ==========
-SQream provides two different ways to modify your configurations. The current method is to make modifications on the **worker configuration file**, while you can still make modifications using the **legacy configuration file**, both described below:
+SQream provides two different ways to modify your configurations. The current method is based on hierarchical configuration as described above. This method is based on making modifications on the **worker configuration file**, while you can still make modifications using the previous method using the **legacy configuration file**, both described below:
 
 .. contents:: 
    :local:
@@ -118,7 +136,7 @@ Configuration Methods
    :header-rows: 1
    
    * - **Method**
-     - **Command Modification Permissions**
+     - **Relevant Flag Types**
      - **Description**
    * - Legacy JSON Configuration files/SET flag name
      - Regular
