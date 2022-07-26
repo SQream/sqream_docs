@@ -11,13 +11,21 @@ The **Configuring SQream** page describes how to configure your instance of SQre
 
 Configuration Levels
 ===========
-SQream divides its configuration parameters into the following three levels:
+SQream's configuration parameters are based on the following hierarchy:
 
 .. contents:: 
    :local:
    :depth: 1
 
-.. _session_based_configuration:
+Cluster-Based Configuration
+--------------
+Cluster-based configuration lets you centralize configurations for all workers on the cluster. Only flags set to the regular or cluster flag type have access to cluster-based configuration. Configurations made on the cluster level are persistent and stored at the metadata level. The parameter settings in this file are applied globally to all workers connected to it.
+
+.. note:: While cluster-based configuration was designed for configuring Workers, you can only configure Worker values set to the Regular or Cluster type.
+
+Worker-Based Configuration
+--------------
+**Comment** - *Need to populate.*
 
 Session-Based Configuration
 --------------
@@ -29,38 +37,30 @@ For example, when the query below has completed executing, the values configured
    
    set spoolMemoryGB=700;
    select * from table a where date='2021-11-11'
-
-.. _worker_based_configuration:
-
-Worker-Based Configuration
---------------
-Populate
-
-.. _cluster_based_configuration:
-
-Cluster-Based Configuration
---------------
-Cluster-based configuration lets you centralize configurations for all workers on the cluster. Only flags set to the regular or cluster flag type have access to cluster-based configuration. Configurations made on the cluster level are persistent and stored at the metadata level. The parameter settings in this file are applied globally to all workers connected to it.
-
-.. note:: While cluster-based configuration was designed for configuring Workers, you can only configure Worker values set to the Regular or Cluster type.
-
-For more information on the Regular and Cluster flag types, see Configuration Flags.
    
 Flag Types
 ===========
-SQream uses three flag types, **Regular**, **Worker**, and **Cluster**. Each of these flag types is associated with one of three hierarchical configuration levels, making it easier to configure your system.
+SQream uses three flag types, **Cluster**, **Worker**, and **Regular**. Each of these flag types is associated with one of three hierarchical configuration levels described earlier, making it easier to configure your system.
 
-The lowest level is Regular, which means that modifying values of Regular flags affects only your current session, restoring them to their default setting when the session ends. This is known as **session-based configuration**. Some examples of Regular flags includes **setting your bin size** and **setting CUDA memory**.
+The highest level in the hierarchy is Cluster, which lets you set configurations across all workers in a given cluster. Modifying cluster values is **persistent**, meaning that any configurations you set are retained after shutting down your system. Configurations set at the Cluster level take the highest priority and override settings made on the Regular and Worker level **Comment** - *Confirm*. This is known as **cluster-based configuration**. Note that Cluster-based configuration lets you modify Cluster *and* Regular flag types. An example of a Cluster flag is **persisting your cache directory.**
 
-The second level is Worker, which lets you configure individual workers. Modifying Worker values is **persistent**, meaning that any configurations you set are retained after shutting down your system. This is known as **worker-based configuration**. Some examples of Worker flags includes **setting total device memory usage** and **setting metadata server connection port**.
+The second level is Worker, which lets you configure individual workers. Modifying Worker values are also **persistent**. This is known as **worker-based configuration**. Some examples of Worker flags includes **setting total device memory usage** and **setting metadata server connection port**.
 
-The third level is Cluster, which lets you set configurations across all workers in a given cluster, and are also persistent. Configurations set at the Cluster level take the highest priority and override settings made on the Regular and Worker level **Comment** - *Confirm*. This is known as **cluster-based configuration**. Note that Cluster-based configuration lets you modify Cluster *and* Regular flag types. An example of a Cluster flag is **persisting your cache directory.**
+The lowest level is Regular, which means that modifying values of Regular flags affects only your current session and are not persistent. This means that they are automatically restored to their default value when the session ends. This is known as **session-based configuration**. Some examples of Regular flags includes **setting your bin size** and **setting CUDA memory**.
+
+To see each flag's default value, see one of the following:
+
+* The **Default Value** column in the :ref:`All Configurations<all_configurations>` section.
+
+   ::
+   
+* The flag's individual description page, such as :ref:`Setting CUDA Memory<check_cuda_memory>`.
 
 Configuration Roles
 ===========
 SQream divides flags into the following roles, each with their own set of permissions:
 
-* :ref:`admin_flags` - can be modified by administrators on a session and cluster basis using the ``ALTER SYSTEM SET`` command:
+* :ref:`admin_flags` - can be modified by administrators on a session and cluster basis using the ``ALTER SYSTEM SET`` command: **Comment** - *I don't think we need to mention the command here, as it's described below, and also not mentioned for Generic Flags.*
    
    * Regular
    * Worker
@@ -117,10 +117,11 @@ The following is an example of the legacy configuration file:
       “useClientLog”: true,
       “useMetadataServer”” false
    }
-   
+For more information on using the previous configuration method, see :ref:`previous_configuration_method`.
+
 Configuring Your Parameter Values
 ==============================
-The method you must use to configure your parameter values depends on the configuration level. Each configuration level has its own command or set of commands used to configure values.
+The method you must use to configure your parameter values depends on the configuration level. Each configuration level has its own command or set of commands used to configure values, as shown below:
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Configuration Level**                                                                                                                                                                                                                                                                                         |
@@ -131,7 +132,7 @@ The method you must use to configure your parameter values depends on the config
 +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | ``SET <flag_name>``                                 | Used for modifying flag attributes.                                                                                                       | ``SET developerMode=true``                                                                                    |
 +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
-| ``SHOW <flag-name> / ALL``                          | Used to preset either a specific flag value or all flag values.                                                                           | ``SET developerMode=true``                                                                                    |
+| ``SHOW <flag-name> / ALL``                          | Used to preset either a specific flag value or all flag values.                                                                           | ``SHOW <heartbeatInterval>``                                                                                  |
 +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
 | ``SHOW ALL LIKE``                                   | Used as a wildcard character for flag names.                                                                                              | ``SHOW <heartbeat*>``                                                                                         |
 +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
@@ -156,9 +157,9 @@ The method you must use to configure your parameter values depends on the config
 | ``ALTER SYSTEM RESET <flag-name / ALL>``            | Used to remove a flag or all flag attributes from the metadata file.                                                                      |  ``ALTER SYSTEM RESET <heartbeatInterval ALTER SYSTEM RESET ALL>``                                            |
 +-----------------------------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
 
-Examples
+Command Examples
 ==========
-This section includes the following examples:
+This section includes the following command examples:
 
 .. contents:: 
    :local:
@@ -190,9 +191,6 @@ The following is an example of running a **Cluster** flag type command:
    ALTER SYSTEM RESET useMetadataServer;
    executed
 
-
-
-
 Showing All Flags in the Catalog Table
 =======
 SQream uses the **sqream_catalog.parameters** catalog table for showing all flags, providing the scope (default, cluster and session), description, default value and actual value.
@@ -212,10 +210,11 @@ The following is an example of a catalog table query:
    useCrcForTextJoinKeys, true, true, default,
    hiveStyleImplicitStringCasts, false, false, default,
 
+.. _all_configurations:
 
 All Configurations
----------------------
-The following table describes the Generic and Admin configuration flags:
+================
+The following table describes all **Generic** and **Administration** configuration flags:
 
 .. list-table::
    :header-rows: 1
