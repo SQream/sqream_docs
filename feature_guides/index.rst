@@ -11,6 +11,7 @@ This section describes the following features:
    :maxdepth: 1
    :titlesonly:
 
+   query_healer
    automatic_schema_identification
    compression
    python_functions
