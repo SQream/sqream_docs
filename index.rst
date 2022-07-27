@@ -35,7 +35,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
      - **Reference**
      - **Guides**
    * -
-         :ref:`first_steps`
+         :ref:`getting_started`
          
          :ref:`sql_feature_support`
          
@@ -47,19 +47,19 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
          
          :ref:`sql_functions`
      - 
-         :ref:`setup`
+         `Getting Set Up <https://docs.sqream.com/en/v2022.1/installation_guides/index.html>`_
          
          :ref:`Best practices<sql_best_practices>`
          
-         :ref:`connect_to_tableau`
+         `Connecting to Tableau <https://docs.sqream.com/en/v2020.3.2.1/connecting_to_sqream/client_platforms/tableau.html>`_
 
    * - **Releases**
      - **Driver and Deployment**
      - **Help and Support**
-   * -        
+   * -      
          :ref:`2020.3<2020.3>`
 
-	   :ref:`2020.2<2020.2>`
+         :ref:`2020.2<2020.2>`
          
          :ref:`2020.1<2020.1>`
                   
@@ -68,13 +68,14 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
      - 
          :ref:`Client drivers<client_drivers>`
 
-         :ref:`Third party tools integration<third_party_tools>`
+         `Connecting to SQream <https://docs.sqream.com/en/v2020.3.2.1/connecting_to_sqream/index.html>`_
 
-         :ref:`connect_to_tableau`
      - 
          `Troubleshooting Page <https://docs.sqream.com/en/v2020.3.2.1/troubleshooting/information_for_support.html#information-for-support>`_
          
          `Gathering Information for SQream Support <https://docs.sqream.com/en/v2020.3.2.1/troubleshooting/information_for_support.html#information-for-support>`_
+
+
 
 
 
@@ -100,6 +101,7 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    installation_guides/index
    data_ingestion/index
    connecting_to_sqream/index
+   external_storage_platforms
    loading_and_unloading_data/index
    feature_guides/index
    operational_guides/index
