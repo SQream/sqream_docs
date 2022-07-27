@@ -11,7 +11,7 @@ The **Query Healer** page describes the following:
    
 Overview
 ----------
-The **Query Healer** periodically examines the progress of running statements, creating a log entry for all statements exceeding the ``healerMaxInactivityHours`` flag setting. The default setting of the ``healerMaxInactivityHours`` is five hours.
+The **Query Healer** periodically examines the progress of running statements, creating a log entry for all inactive statements exceeding the ``healerMaxInactivityHours`` flag setting. The default setting of the ``healerMaxInactivityHours`` is five hours.
 
 Configuring the Healer
 ------------------
@@ -31,4 +31,4 @@ For more information, see the following Administration Worker flags:
 
     ::
 
- * :ref:`healerMaxInactivityHours`
+ * :ref:`healer_max_inactivity_hours`
