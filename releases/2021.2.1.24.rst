@@ -25,11 +25,13 @@ Query Healer
 ************
 The new **Query Healer** feature periodically examines the progress of running statements, and is used for query maintenance.
 
-For more information, see `Query Healer <https://docs.sqream.com/en/latest//feature_guides/query_healer.html>`_.
+For more information, see :ref:`query_healer`.
 
 Known Issues
 ---------
 The following table lists the known issues for Version 2021.2.1.24:
+
+**Comment** - *NOT FILTERED*
 
 +-------------+------------------------------------------------------------------------------------------------------------------------------------+
 | **SQ No.**  | **Description**                                                                                                                    |

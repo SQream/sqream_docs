@@ -31,4 +31,4 @@ For more information, see the following Administration Worker flags:
 
     ::
 
- * :ref:`healerMaxInactivityHours
+ * :ref:`healerMaxInactivityHours`

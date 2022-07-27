@@ -8,4 +8,4 @@ The ``gatherMemStat`` flag monitors all pinned allocations and all **memcopies**
 The following describes the ``gatherMemStat`` flag:
 
 * **Data type** - boolean
-* **Default value** - ``FALSE``
+* **Default value** - ``FALSE``s

@@ -1,4 +1,4 @@
-.. _healerMaxInactivityHours
+.. _healer_max_inactivity_hours:
 
 *************************
 Configuring the Query Healer
