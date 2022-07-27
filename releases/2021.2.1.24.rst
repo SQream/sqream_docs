@@ -1,0 +1,119 @@
+.. _2021.2.1.24:
+
+**************************
+Release Notes 2021.2.1.24
+**************************
+The 2021.2.1.24 release notes were released on xx/xx/2022 and describe the following:
+
+.. contents:: 
+   :local:
+   :depth: 1      
+
+Version Content
+----------
+The 2021.2.1.24 Release Notes includes a query maintenance feature.
+
+New Features
+----------
+The 2021.2.1.24 Release Notes include the following new features:
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Query Healer
+************
+The new **Query Healer** feature periodically examines the progress of running statements, and is used for query maintenance.
+
+For more information, see `Query Healer <https://docs.sqream.com/en/latest//feature_guides/query_healer.html>`_.
+
+Known Issues
+---------
+The following table lists the known issues for Version 2021.2.1.24:
+
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+| **SQ No.**  | **Description**                                                                                                                    |
++=============+====================================================================================================================================+
+| SQ-10071    |  error on exists subqueries with text and varchar equality condition                                                               |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10606    |  \[ACL\] Queries getting stuck in the queue for a long time \(Executing status\)                                                   |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10691    |  DB Schema identifier causes an error running some queries from joins suite - v2021.2.1\_stable                                    |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10902    |  test\_copy\_null\_to\_not\_null\[all\_types-parquet\] \(from Generic Copy From\) crashes sqreamd                                  |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10918    | \[SDC\] WLM only assigns jobs sequentially and it causes delay on user sqls when they are assigned to a worker running a huge job  |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10955    |  No metadata filters when filtering by nullable date using dateadd \(LGU\+\                                                        |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10975    |  Merging ACL's open snapshot functionality from V2021.1.1 to V2021.2.1.x                                                           |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-11088    |  specific worker compiling causes low performance                                                                                  |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-11121    |  Merging ACL's open snapshot functionality from V2021.1.1 to v2022.1.x code lin                                                    |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+
+Resolved Issues
+---------
+The following table lists the issues that were resolved in Version 2021.2.1.24:
+
+
+
+Operations and Configuration Changes
+--------
+No relevant operations and configuration changes were made.
+
+Naming Changes
+-------
+No relevant naming changes were made.
+
+Deprecated Features
+-------
+Version 2021.2.1.24 includes no deprecated features.
+
+End of Support
+-------
+The End of Support section is not relevant to Version 2021.2.1.24.
+
+Upgrading to v2021.2.1.24
+-------
+1. Generate a back-up of the metadata by running the following command:
+
+   .. code-block:: console
+
+      $ select backup_metadata('out_path');
+	  
+   .. tip:: SQream recommends storing the generated back-up locally in case needed.
+   
+   SQream runs the Garbage Collector and creates a clean backup tarball package.
+   
+2. Shut down all SQream services.
+
+    ::
+
+3. Extract the recently created back-up file.
+
+    ::
+
+4. Replace your current metadata with the metadata you stored in the back-up file.
+
+    ::
+
+5. Navigate to the new SQream package bin folder.
+
+    ::
+
+6. Run the following command:
+
+   .. code-block:: console
+
+      $ ./upgrade_storage <levelDB path>
+
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <https://docs.sqream.com/en/latest/installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
+  
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :hidden:
+
+   2021.2.1.24
