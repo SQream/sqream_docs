@@ -11,6 +11,7 @@ This section describes the following features:
    :maxdepth: 1
    :titlesonly:  
 
+   query_healer
    key_evaluation
    data_encryption
    compression
