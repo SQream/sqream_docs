@@ -15,9 +15,9 @@ The **Query Healer** periodically examines the progress of running statements, c
 
 The following is an example of a log record for a query stuck in the query detection phase for more than five hours:
 
-   .. code-block:: console
+.. code-block:: console
 
-      2022/05/19::20:01:25|ERROR|Healer|(0x7f07147fc700)|Stuck query found. Statement ID: 72, Last chunk producer updated: 1 WriteTable, Started on: Thu May 19 14:01:25 2022, Last updated: Thu May 19 15:01:25 2022, Stuck time: 5 hours, Max allowed stuck query time: 5 hours
+   2022/05/19::20:01:25|ERROR|Healer|(0x7f07147fc700)|Stuck query found. Statement ID: 72, Last chunk producer updated: 1 WriteTable, Started on: Thu May 19 14:01:25 2022, Last updated: Thu May 19 15:01:25 2022, Stuck time: 5 hours, Max allowed stuck query time: 5 hours
 
 Configuring the Healer
 ------------------
