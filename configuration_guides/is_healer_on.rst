@@ -11,4 +11,4 @@ The following describes the ``is_healer_on`` flag:
 * **Default value** - ``true``
 * **Allowed values** - ``true``, ``false``
 
-For related flags, see :ref:`healerMaxInactivityHours`.
+For related flags, see :ref:`healer_max_inactivity_hours`.
