@@ -3,7 +3,7 @@
 **************************
 Release Notes 2021.2.1.24
 **************************
-The 2021.2.1.24 release notes were released on xx/xx/2022 and describe the following:
+The 2021.2.1.24 release notes were released on 7/28/2022 and describe the following:
 
 .. contents:: 
    :local:
