@@ -13,4 +13,5 @@ The 2022.1 Release Notes describe the following releases:
    :maxdepth: 1
    :glob:
 
+   2022.1.1
    2022.1
