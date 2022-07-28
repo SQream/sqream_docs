@@ -1,7 +1,7 @@
 .. _healer_max_inactivity_hours:
 
 *************************
-Query Healer
+Configuring the Query Healer
 *************************
 The ``healerMaxInactivityHours`` flag is used for defining the threshold for creating a log recording a slow statement. The log includes information about the log memory, CPU and GPU.
 
