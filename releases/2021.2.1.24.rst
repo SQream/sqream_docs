@@ -55,7 +55,13 @@ The Resolved Issues section is not relevant for Version 2021.2.1.24.
 
 Operations and Configuration Changes
 --------
-No relevant operations and configuration changes were made.
+The following configuration flags have been added to use the Query Healer:
+
+* :ref:`healer_max_inactivity_hours`
+
+   ::
+   
+* :ref:`is_healer_on`
 
 Naming Changes
 -------
