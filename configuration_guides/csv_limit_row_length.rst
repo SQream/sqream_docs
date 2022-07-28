@@ -3,7 +3,7 @@
 *************************
 Setting Maximum CSV Row Length
 *************************
-The ``csvLimitRowLength`` flag sets the maximum supported CSV row length.
+The ``csvLimitRowLength`` flag sets the maximum supported CSV row length.s
 
 The following describes the ``csvLimitRowLength`` flag:
 
