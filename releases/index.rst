@@ -32,7 +32,7 @@ Release Notes
    :glob:
    :hidden:
 
-   2022.1_index
+   2022.1
    2021.2_index
    2021.1_index
    2020.3_index
