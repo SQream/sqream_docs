@@ -32,3 +32,11 @@ You can create a password through the Studio graphic interface or through the CL
    GRANT PASSWORD 'BBAu47?fqPL' to user_a ;
 
 Creating a password that does not comply with the above requirements generates an error message with a request to modify it.
+
+Unsuccessfully attempting to log in three times displays the following message:
+
+.. code-block:: console
+
+   The user is locked. please contact your system administrator to reset the password and regain access functionality.
+
+For more information, see :ref:`login_max_retries`.

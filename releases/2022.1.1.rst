@@ -3,7 +3,7 @@
 **************************
 Release Notes 2022.1.1
 **************************
-The 2022.1.1 patch release notes were released on xx/xx/2022 and describe the following: 
+The 2022.1.1 patch release notes were released on 7/28/2022 and describe the following: 
 
 .. contents:: 
    :local:
@@ -15,13 +15,23 @@ The **Version Content** section is not relevant to the 2022.1.1 patch release no
 
 New Features
 ----------
-The 2022.1.1 release includes automatically identifying schemas when mapping foreign tables, described below.
+The 2022.1 Release Notes include the following new features:
+
+.. contents:: 
+   :local:
+   :depth: 1
 
 Automatically Identifying Schemas when Mapping Foreign Tables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 SQream can now automatically identify the corresponding schema, avoiding complex error-prone DDL operations, saving you the time and effort required to build your schema manually. This is especially useful for particular file formats, such as Parquet, which include a built-in schema declaration. In addition, this feature improves user experience by letting you quickly load foreign tables without specifying hundred of columns. 
 
 For more information, see :ref:`automatic_schema_identification`.
+
+Password Policy
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+SQream has implemented a strong password policy required when accessing the CLI or Studio.
+
+For more information, see :ref:`access_control_password_policy`.
    
 Resolved Issues
 ---------
