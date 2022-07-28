@@ -1,4 +1,4 @@
-.. _healerMaxInactivityHours
+.. _healerMaxInactivityHours:
 
 *************************
 Query Healer
