@@ -24,62 +24,39 @@ Even a :ref:`basic SQream DB machine<hardware_guide>` can support tens to hundre
 
 SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tableau>` comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc>`, :ref:`ODBC<odbc>`, and :ref:`Python DB-API<pysqream>`.
 
-.. 
-   .. ref`features_tour`
-
-.. list-table::
-   :widths: 33 33 33
-   :header-rows: 0
-
-   * - **Get Started**
-     - **Reference**
-     - **Guides**
-   * -
-         `Getting Started <https://docs.sqream.com/en/latest/getting_started/index.html>`_
-         
-         :ref:`sql_feature_support`
-         
-         :ref:`Bulk load CSVs<csv>`
-     - 
-         :ref:`SQL Reference<sql>`
-         
-         :ref:`sql_statements`
-         
-         :ref:`sql_functions`
-     - 
-         `Setting up SQream <https://docs.sqream.com/en/latest/installation_guides/index.html>`_
-         
-         :ref:`Best practices<sql_best_practices>`
-         
-         :ref:`connect_to_tableau`
-
-   * - **Releases**
-     - **Driver and Deployment**
-     - **Help and Support**
-   * -
-         :ref:`2021.2<2021.2>`
-
-         :ref:`2021.1<2021.1>`
-        
-         :ref:`2020.3<2020.3>`
-
-         :ref:`2020.2<2020.2>`
-         
-         :ref:`2020.1<2020.1>`
-                  
-         :ref:`All recent releases<releases>`
-
-     - 
-         :ref:`Client drivers<client_drivers>`
-
-         :ref:`Third party tools integration<third_party_tools>`
-
-         :ref:`connect_to_tableau`
-     - 
-         :ref:`troubleshooting` guide
-         
-         :ref:`information_for_support`
-
++----------------------------------------+----------------------------+---------------------------------------+---------------------------+---------------------------------+
+| **Getting Started**                    | **Installation Guides**    | **Data Ingestion Sources**            | **Connecting to SQream**  | **Loading and Unloading Data**  |
++----------------------------------------+----------------------------+-------------+-------------+-----------+---------------------------+                                 +
+| Preparing Your Machine                 | Install and Launch SQream  | CSV Files   |Parquet Files|Avro Files | Client Platforms          |                                 |
++----------------------------------------+                            +-------------+-------------+-----------+                           +                                 +
+| Executing Statements                   |                            | ORC Files   | Oracle      |           |                           |                                 |
++----------------------------------------+----------------------------+-------------+-------------+-----------+                           +                                 +
+| Basic Operations                       | Installing Studio          |                                       |                           |                                 |
++----------------------------------------+                            +-------------+-------------+-----------+---------------------------+                                 +
+| Hardware Guide                         |                            |                                       | Client Drivers            |                                 |
++----------------------------------------+----------------------------+---------------------------------------+                           +                                 +
+|                                        |                            |                                       |                           |                                 |
++----------------------------------------+                            +---------------------------------------+                           +                                 +
+|                                        |                            |                                       |                           |                                 |
++----------------------------------------+----------------------------+---------------------------------------+---------------------------+---------------------------------+
+| **Feature Guides**                     | **Operational Guides**     | **SQream Acceleration Studio 5.4.3**  | **System Architecture**   | **Configuration Guides**        |
++                                        +                            +                                       +                           +---------------------------------+
+|                                        |                            |                                       |                           | Configuration Methods           |
++                                        +                            +                                       +                           +---------------------------------+
+|                                        |                            |                                       |                           | Configuration Flags             |
++----------------------------------------+----------------------------+---------------------------------------+---------------------------+---------------------------------+
+| **Reference Guides**                   | **Data Type Guides**       | **Release Notes**                     | **Troubleshooting**       | **Glossary**                    |
++----------------------------------------+----------------------------+-------------+-------------+-----------+---------------------------+---------------------------------+
+| SQL Syntax, Statements, and Functions  | Converting and Casting     | 2022.1      | 2021.2      | 2021.1    |                           |                                 |
++----------------------------------------+----------------------------+-------------+-------------+-----------+---------------------------+---------------------------------+
+| Catalog Reference Guide                | Supported Data Types       | 2020.3      | 2020.2      | 2020.1    |                           |                                 |
++----------------------------------------+----------------------------+-------------+-------------+-----------+---------------------------+---------------------------------+
+| Command Line Programs                  | Supported Casts            |                                       |                           |                                 |
++----------------------------------------+----------------------------+---------------------------------------+---------------------------+---------------------------------+
+| SQL Feature Checklist                  |                            |                                       |                           |                                 |
++----------------------------------------+----------------------------+---------------------------------------+---------------------------+---------------------------------+
+| Python API Reference Guide             |                            |                                       |                           |                                 |
++----------------------------------------+----------------------------+---------------------------------------+---------------------------+---------------------------------+
 
 
 .. rubric:: Need help?
