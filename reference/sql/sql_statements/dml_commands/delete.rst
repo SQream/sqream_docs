@@ -20,7 +20,7 @@ For more information about SQream's delete methodology, see the :ref:`delete_gui
 
 Note the following:
 
-* The :ref:`ALTER TABLE<alter_table>` and other `DDL operations <https://docs.sqream.com/en/latest/reference/sql/sql_statements/index.html#data-definition-commands-ddl>`_ are blocked on tables that require clean-up.
+* The :ref:`ALTER TABLE<alter_table>` and other `DDL operations <https://docs.sqream.com/en/v2021.2.1/reference/sql/sql_statements/index.html>`_ are blocked on tables that require clean-up.
 
 
 
@@ -39,7 +39,7 @@ Permissions
 
 To execute the ``DELETE`` statement, the ``DELETE`` and ``SELECT`` permissions must be assigned to the role at the table level.
 
-For more information about assigning permissions to roles, see `Creating, Assigning, and Managing Roles and Permissions <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.0.html#creating-assigning-and-managing-roles-and-permissions>`_.
+For more information about assigning permissions to roles, see `Creating, Assigning, and Managing Roles and Permissions <https://docs.sqream.com/en/v2021.2.1/sqream_studio_5.4.3/creating_assigning_and_managing_roles_and_permissions.html>`_.
 
 
 Syntax
@@ -159,28 +159,7 @@ The following shows an example of deleting values based on more complex predicat
    
    4 rows
    
-Deleting Values that Contain Multi-Table Conditions
------------------
-The following shows an example of deleting values that contain multi-table conditions. The example is based on the following tables:
 
-.. image:: /_static/images/delete_optimization.png
-
-
-
-The statement below uses the ``EXISTS`` subquery to delete all bands based in Sweden:
-
-
-
-.. code-block:: psql
-
-   DELETE FROM bands
-   WHERE EXISTS (
-     SELECT 1 FROM countries
-     WHERE countries.country_id=bands.id
-     AND country.name = 'Sweden'
-   );
-
-.. _identifying_and_cleaning_up_tables:
 
 Identifying and Cleaning Up Tables
 ---------------------------------------

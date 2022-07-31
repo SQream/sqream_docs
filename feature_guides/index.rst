@@ -11,8 +11,6 @@ This section describes the following features:
    :maxdepth: 1
    :titlesonly:
 
-   query_healer
-   data_encryption
    compression
    python_functions
    workload_manager

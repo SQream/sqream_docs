@@ -12,10 +12,6 @@ Release Notes
    
    * - Version
      - Release Date
-   * - :ref:`2022.1`
-     - July 19, 2022
-   * - :ref:`2021.2`
-     - September 13, 2021
    * - :ref:`2021.1`
      - June 13, 2021  
    * - :ref:`2020.3`
@@ -32,8 +28,6 @@ Release Notes
    :glob:
    :hidden:
 
-   2022.1
-   2021.2_index
    2021.1_index
    2020.3_index
    2020.2

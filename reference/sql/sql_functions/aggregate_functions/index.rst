@@ -22,9 +22,6 @@ The following list shows the available aggregate functions:
    * :ref:`COVAR_SAMP`
    * :ref:`MAX`
    * :ref:`MIN`
-   * :ref:`MODE`
-   * :ref:`PERCENTILE_CONT`
-   * :ref:`PERCENTILE_DISC`
    * :ref:`STDDEV_POP`
    * :ref:`STDDEV_SAMP`
    * :ref:`SUM`
