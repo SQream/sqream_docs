@@ -33,8 +33,8 @@ SQream now uses a new configuration system based on centralized configuration ac
 
 For more information, see the following:
 
-* `Configuration <https://docs.sqream.com/en/latest/guides/operations/configuration.html>`_ - describes how to configure your instance of SQream from a centralized location.
-* `SQream Studio 5.4.2 <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.2.html#>`_ - configure your instance of SQream from Studio.
+* `Configuration <https://docs.sqream.com/en/v2021.2/guides/operations/configuration.html>`_ - describes how to configure your instance of SQream from a centralized location.
+* `SQream Studio 5.4.2 <https://docs.sqream.com/en/v2021.2/guides/operations/sqream_studio_5.4.2.html#>`_ - configure your instance of SQream from Studio.
    
 Qualifying Schemas Without Providing an Alias
 ************
