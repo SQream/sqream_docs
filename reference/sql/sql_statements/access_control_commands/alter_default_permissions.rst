@@ -104,7 +104,7 @@ The following is an example of the output generated from the above queries:
 | master                |   NULL               | public            | public       | select                       | 
 +-----------------------+----------------------+-------------------+--------------+------------------------------+
 
-For more information about default permissions, see `Default Permissions <https://docs.sqream.com/en/latest/reference/catalog_reference_catalog_tables.html#default-permissions.html>`_.  
+For more information about default permissions, see `Default Permissions <https://docs.sqream.com/en/v2021.2.1/reference/catalog_reference_catalog_tables.html#default-permissions.html>`_.  
    
 Granting Automatic Permissions for Newly Created Schemas
 -------------------------------------------------

@@ -11,32 +11,32 @@ This procedure describes how to install SQream using Binary packages and must be
 
    .. code-block:: console
    
-      $ tar -xf sqream-db-v<2020.2>.tar.gz
+      $ tar -xf sqream-db-v<2020.2.1>.tar.gz
 
 2. Append the version number to the name of the SQream folder. The version number in the following example is **v2020.2**:
 
    .. code-block:: console
    
-      $ mv sqream sqream-db-v<2020.2>
+      $ mv sqream sqream-db-v<2020.2.1>
 
 3. Move the new version of the SQream folder to the **/usr/local/** directory:
 
    .. code-block:: console
    
-      $ sudo mv sqream-db-v<2020.2> /usr/local/
+      $ sudo mv sqream-db-v<2020.2.1> /usr/local/
       
 4. Change the ownership of the folder to **sqream folder**:
 
    .. code-block:: console
    
-      $ sudo chown -R sqream:sqream  /usr/local/sqream-db-v<2020.2>
+      $ sudo chown -R sqream:sqream  /usr/local/sqream-db-v<2020.2.1>
 
 5. Navigate to the **/usr/local/** directory and create a symbolic link to SQream:
 
    .. code-block:: console
    
       $ cd /usr/local
-      $ sudo ln -s sqream-db-v<2020.2> sqream
+      $ sudo ln -s sqream-db-v<2020.2.1> sqream
       
 6. Verify that the symbolic link that you created points to the folder that you created:
 
@@ -48,7 +48,7 @@ This procedure describes how to install SQream using Binary packages and must be
 
    .. code-block:: console
    
-      $ sqream -> sqream-db-v<2020.2>
+      $ sqream -> sqream-db-v<2020.2.1>
       
 8. Create the SQream configuration file destination folders and set their ownership to **sqream**:
 
@@ -274,6 +274,6 @@ For an example of stopping actively running SQream services, see :ref:`Launching
       1 row
       time: 0.050603s 
  
-For more information, see the `upgrade_storage <https://docs.sqream.com/en/latest/reference/cli/upgrade_storage.html>`_ command line program.
+For more information, see the `upgrade_storage <https://docs.sqream.com/en/2021.2.1/reference/cli/upgrade_storage.html>`_ command line program.
 
-For more information about installing Studio on a stand-alone server, see `Installing Studio on a Stand-Alone Server <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.2.html>`_.
+For more information about installing Studio on a stand-alone server, see `Installing Studio on a Stand-Alone Server <https://docs.sqream.com/en/2021.2.1/guides/operations/sqream_studio_5.4.2.html>`_.

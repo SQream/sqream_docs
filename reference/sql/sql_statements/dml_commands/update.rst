@@ -3,9 +3,8 @@
 **********************
 UPDATE
 **********************
-The **UPDATE** statement page  |icon-new_2022.1| describes the following:
+The **UPDATE** statement page describes the following:
 
-.. |icon-new_2022.1| image:: /_static/images/new_2022.1.png
    :align: middle
    :width: 110
 

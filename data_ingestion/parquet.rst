@@ -4,7 +4,7 @@
 Inserting Data from a Parquet File
 **********************
 
-This guide covers inserting data from Parquet files into SQream DB using :ref:`FOREIGN TABLE<external_tables>`. 
+This guide covers inserting data from Parquet files into SQream DB using :ref:`FOREIGN TABLE<foreign_tables>`. 
 
 .. contents:: In this topic:
    :local:

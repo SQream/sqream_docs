@@ -12,4 +12,4 @@ You can export data from SQream, which you may want to do for the following reas
 
 SQream provides the following methods for exporting data:
 
-* Copying data from a SQream database table or query to another file - See `COPY TO <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/copy_to.html>`_.
+* Copying data from a SQream database table or query to another file - See `COPY TO <https://docs.sqream.com/en/v2021.2.1/reference/sql/sql_statements/dml_commands/copy_to.html>`_.

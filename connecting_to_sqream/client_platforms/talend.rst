@@ -44,7 +44,7 @@ Creating a New Metadata JDBC DB Connection
 
 6. In the **JDBC URL** field, type the relevant connection string.
 
-   For connection string examples, see `Connection Strings <https://docs.sqream.com/en/latest/connecting_to_sqream/client_drivers/jdbc/index.html#connection-string-examples>`_.
+   For connection string examples, see `Connection Strings <https://docs.sqream.com/en/2021.2.1/connecting_to_sqream/client_drivers/jdbc/index.html#connection-string-examples>`_.
    
 7. In the **Drivers** field, click the **Add** button.
 

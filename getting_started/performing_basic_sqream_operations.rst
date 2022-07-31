@@ -19,5 +19,5 @@ After installing SQream you can perform the operations described on this page:
 
 For more information on other basic SQream operations, see the following:
 
-* `Creating a Database <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/create_database.html>`_
+* `Creating a Database <https://docs.sqream.com/en/2021.2.1/reference/sql/sql_statements/ddl_commands/create_database.html>`_
 * :ref:`data_ingestion`

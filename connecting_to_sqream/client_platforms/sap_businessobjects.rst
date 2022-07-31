@@ -37,7 +37,7 @@ This section shows an example of using a generic JDBC connector to establish a n
    
    .. note:: Modifying the jdbc.prm file for the generic driver impacts all other databases using the same driver.
 
-   For more information, see `Connection String Examples <https://docs.sqream.com/en/latest/connecting_to_sqream/client_drivers/jdbc/index.html#connection-string-examples>`_.
+   For more information, see `Connection String Examples <https://docs.sqream.com/en/2021.2.1/connecting_to_sqream/client_drivers/jdbc/index.html#connection-string-examples>`_.
 
 2. (Optonal)If you are using the generic JDBC driver specific to SQream, modify the jdbc.sbo file to include the SQream JDBC driver location by adding the following lines under the Database section of the file:
 

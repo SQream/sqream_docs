@@ -4,7 +4,7 @@
 Inserting Data from an ORC File
 **********************
 
-This guide covers inserting data from ORC files into SQream DB using :ref:`FOREIGN TABLE<external_tables>`. 
+This guide covers inserting data from ORC files into SQream DB using :ref:`FOREIGN TABLE<foreign_tables>`. 
 
 
 1. Prepare the files

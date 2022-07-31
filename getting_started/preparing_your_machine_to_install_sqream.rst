@@ -32,4 +32,4 @@ To prepare your machine to install SQream, do the following:
 For more information, see the following:
 
 * :ref:`recommended_pre-installation_configurations`
-* `Hardware Guide <https://docs.sqream.com/en/latest/operational_guides/hardware_guide.html>`_
+* `Hardware Guide <https://docs.sqream.com/en/2021.2.1/operational_guides/hardware_guide.html>`_

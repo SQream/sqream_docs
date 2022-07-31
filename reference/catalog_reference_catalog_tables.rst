@@ -187,7 +187,7 @@ The ``sqream_catalog.schema_default_permissions`` command shows the columns desc
    * - ``permission_type``
      - Shows the type of permission granted.
 	 
-For an example of using the ``sqream_catalog.table_default_permissions`` command, see `Granting Default Table Permissions <https://docs.sqream.com/en/latest/reference/sql/sql_statements/access_control_commands/alter_default_permissions.html#granting-default-table-permissions>`_.
+For an example of using the ``sqream_catalog.table_default_permissions`` command, see `Granting Default Table Permissions <https://docs.sqream.com/en/v2021.2.1/reference/sql/sql_statements/access_control_commands/alter_default_permissions.html#granting-default-table-permissions>`_.
 
 Table Permissions
 ***********
