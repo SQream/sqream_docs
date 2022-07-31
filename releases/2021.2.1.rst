@@ -27,9 +27,9 @@ PERCENTILE FUNCTIONS
 ************
 SQream now supports the following aggregation functions:
 
-* `PERCENTILE_CONT <https://docs.sqream.com/en/v2021.2/reference/sql/sql_functions/aggregate_functions/percentile_cont.html#percentile-cont>`_ 
-* :ref:`percentile_disc`
-* :ref:`mode`
+* `PERCENTILE_CONT <https://docs.sqream.com/en/v2021.2.1/reference/sql/sql_functions/aggregate_functions/percentile_cont.html#percentile-cont>`_
+* `PERCENTILE_DISC <https://docs.sqream.com/en/v2021.2.1/reference/sql/sql_functions/aggregate_functions/percentile_disc.html#percentile-disc>`_
+* `MODE <https://docs.sqream.com/en/v2021.2.1/reference/sql/sql_functions/aggregate_functions/mode.html#mode>`_
 
 REGEX REPLACE
 ************   
