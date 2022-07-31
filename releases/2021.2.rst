@@ -40,7 +40,7 @@ Qualifying Schemas Without Providing an Alias
 ************
 When running queries, SQream now supports qualifying schemas without providing an alias.
 
-For more information, see `CREATE_SCHEMA <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/ddl_commands/create_schema.html?highlight=create%20schema>`_.
+For more information, see `CREATE_SCHEMA <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/ddl_commands/create_schema.html>`_.
 
 Double-Quotations Supported When Importing and Exporting CSVs
 ************

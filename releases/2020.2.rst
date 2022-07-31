@@ -30,7 +30,7 @@ SQL Support
 * Added :ref:`lag`/:ref:`lead` ranking functions to our :ref:`window_functions` support. We will have more features coming in the next version.
 
 * 
-   New syntax preview for :ref:`external_tables`. Foreign tables replace external tables, with improved functionality. 
+   New syntax preview for :ref:`foreign_tables`. Foreign tables replace foreign tables, with improved functionality. 
 
    You can keep using the existing foreign table syntax for now, but it may be deprecated in the future.
    
