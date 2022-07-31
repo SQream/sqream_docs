@@ -40,7 +40,7 @@ SQream now supports Numeric Data types for the following operations:
    * All aggregation types (not including Window functions).
    * Scalar functions (not including some trigonometric and logarithmic functions).
    
-For more information, see `Numeric Data Types <https://docs.sqream.com/en/latest/reference/sql_data_types.html#numeric-data-types.html>`_.
+For more information, see `Numeric Data Types <https://docs.sqream.com/en/v2021.1/reference/sql_data_types.html#numeric-data-types.html>`_.
 
 Text Data Type
 ************
@@ -54,7 +54,7 @@ SQream now supports TEXT data types in all operations, which is default string d
    * Support text columns in queries with multiple distinct aggregates.
    * Text literal support for all functions.
    
-For more information, see `String Types <https://docs.sqream.com/en/latest/reference/sql_data_types.html#string-types-text-varchar>`_.
+For more information, see `String Types <https://docs.sqream.com/en/v2021.1/reference/sql_data_types.html#string-types-text-varchar>`_.
 
 
 Supports Scalar Subqueries
