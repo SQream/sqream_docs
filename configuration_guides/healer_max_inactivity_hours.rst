@@ -10,5 +10,3 @@ The following describes the ``healerMaxInactivityHours`` flag:
 * **Data type** - size_t
 * **Default value** - ``5``
 * **Allowed values** - 1-4000000000
-
-For related flags, see :ref:`is_healer_on`.
