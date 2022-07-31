@@ -40,7 +40,7 @@ Qualifying Schemas Without Providing an Alias
 ************
 When running queries, SQream now supports qualifying schemas without providing an alias.
 
-For more information, see :ref:`create_schema`.
+For more information, see `CREATE_SCHEMA <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/ddl_commands/create_schema.html?highlight=create%20schema>`_.
 
 Double-Quotations Supported When Importing and Exporting CSVs
 ************
@@ -48,9 +48,9 @@ When importing and exporting CSVs, SQream now supports using quotation character
 
 For more information, see the following:
 
-* :ref:`copy_from`
+* `COPY_FROM <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/copy_from.html>`_
 
-* :ref:`copy_to`
+* `COPY_TO <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/copy_to.html>`_
 
 Note the following:
 
@@ -86,9 +86,9 @@ Note the following:
 	 
 For more information, see the following statements:
 
-* :ref:`copy_from`
+* `COPY_FROM <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/copy_from.html>`_
 
-* :ref:`create_foreign_table`
+* `CREATE_FOREIGN_TABLE <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/ddl_commands/create_foreign_table.html>`_
 
 Performance Enhancements
 ------
@@ -123,7 +123,7 @@ NVARCHAR Data Type Renamed TEXT
 ************
 The ``NVARCHAR`` data type has been renamed ``TEXT``.
 
-For more information on the ``TEXT`` data type, see `String (TEXT) <https://docs.sqream.com/en/latest/reference/sql_data_types.html#string-text-varchar>`_
+For more information on the ``TEXT`` data type, see `String (TEXT) <https://docs.sqream.com/en/v2021.2/reference/sql_data_types.html#string-text-varchar>`_
 
 End of Support
 ------
@@ -150,11 +150,11 @@ When upgrading from a SQream version earlier than 2021.2 you must upgrade your s
       $ cat /etc/sqream/sqream1_config.json |grep cluster
       $ ./upgrade_storage <cluster path>
 	  
-For more information on upgrading your SQream version, see `Upgrading SQream Version <https://docs.sqream.com/en/latest/guides/operations/installing_sqream_with_binary.html#upgrading-sqream-version>`_.
+For more information on upgrading your SQream version, see `Upgrading SQream Version <https://docs.sqream.com/en/v2021.2/installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_.
 
 Upgrading Your Client Drivers
 ************
-For more information on the client drivers for version 2021.2, see `Client Drivers for 2021.2 <https://docs.sqream.com/en/v2021.2/guides/client_drivers/index.html>`_.
+For more information on the client drivers for version 2021.2, see `Client Drivers for 2021.2 <https://docs.sqream.com/en/v2021.2/connecting_to_sqream/client_drivers/index.html#>`_.
 
 Configuring Your Instance of SQream
 ************
