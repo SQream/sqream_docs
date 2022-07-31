@@ -22,5 +22,3 @@ The following is an example of a log record for a query stuck in the query detec
 Configuring the Healer
 ------------------
 The **healerMaxInactivityHours** is required define the threshold for creating a log recording a slow statement. The log includes information about the log memory, CPU and GPU. The ``healerMaxInactivityHours`` log frequency is calculated as 5% of the flag setting. For example, setting ``healerMaxInactivityHours`` to five hours (the default setting) triggers an examination every 15 minutes.
-
-For more information, see :ref:`healer_max_inactivity_hours`.
