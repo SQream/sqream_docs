@@ -34,17 +34,13 @@ SQream now uses a new configuration system based on centralized configuration ac
 For more information, see the following:
 
 * `Configuration <https://docs.sqream.com/en/v2021.2/guides/operations/configuration.html>`_ - describes how to configure your instance of SQream from a centralized location.
-* `SQream Studio 5.4.2 <https://docs.sqream.com/en/v2021.2/guides/operations/sqream_studio_5.4.2.html#>`_ - configure your instance of SQream from Studio.
+* `SQream Studio 5.4.3 <https://docs.sqream.com/en/v2022.1/sqream_studio_5.4.3/index.html>`_ - configure your instance of SQream from Studio.
    
 Qualifying Schemas Without Providing an Alias
 ************
 When running queries, SQream now supports qualifying schemas without providing an alias.
 
-For more information, see :ref:`create_schema`.
-
-
-
-
+For more information, see `SQream Studio 5.4.3 <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/create_schema.html>`_.
 
 Double-Quotations Supported When Importing and Exporting CSVs
 ************
