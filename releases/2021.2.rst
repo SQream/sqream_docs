@@ -33,8 +33,8 @@ SQream now uses a new configuration system based on centralized configuration ac
 
 For more information, see the following:
 
-* `Configuration <https://docs.sqream.com/en/latest/guides/operations/configuration.html>`_ - describes how to configure your instance of SQream from a centralized location.
-* `SQream Studio 5.4.2 <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.2.html#>`_ - configure your instance of SQream from Studio.
+* `Configuration <https://docs.sqream.com/en/v2021.1/configuration_guides/index.html>`_ - describes how to configure your instance of SQream from a centralized location.
+* `SQream Studio 5.4.2 <https://docs.sqream.com/en/v2021.2/sqream_studio_5.4.3/index.html>`_ - configure your instance of SQream from Studio.
    
 Qualifying Schemas Without Providing an Alias
 ************
@@ -131,8 +131,7 @@ NVARCHAR Data Type Renamed TEXT
 ************
 The ``NVARCHAR`` data type has been renamed ``TEXT``.
 
-
-For more information on the ``TEXT`` data type, see `String (TEXT) <https://docs.sqream.com/en/latest/reference/sql_data_types.html#string-text-varchar>`_
+For more information on the ``TEXT`` data type, see `String (TEXT) <https://docs.sqream.com/en/v2021.2/data_type_guides/sql_data_types_string.html>`_
 
 End of Support
 ------
@@ -159,14 +158,14 @@ When upgrading from a SQream version earlier than 2021.2 you must upgrade your s
       $ cat /etc/sqream/sqream1_config.json |grep cluster
       $ ./upgrade_storage <cluster path>
 	  
-For more information on upgrading your SQream version, see `Upgrading SQream Version <https://docs.sqream.com/en/latest/guides/operations/installing_sqream_with_binary.html#upgrading-sqream-version>`_.
+For more information on upgrading your SQream version, see `Upgrading SQream Version <https://docs.sqream.com/en/v2021.2/installation_guides/installing_sqream_with_binary.html>`_.
 
 Upgrading Your Client Drivers
 ************
-For more information on the client drivers for version 2021.2, see `Client Drivers for 2021.2 <https://docs.sqream.com/en/latest/guides/client_drivers/index.html>`_.
+For more information on the client drivers for version 2021.2, see `Client Drivers for 2021.2 <https://docs.sqream.com/en/v2021.2/connecting_to_sqream/client_drivers/index.html>`_.
 
 Configuring Your Instance of SQream
 ************
 A new configuration method is used starting with Version 2021.2.
 
-For more information about configuring your instance of SQream, see :ref:`configuration`.
+For more information about configuring your instance of SQream, see `Client Drivers for 2021.2 <https://docs.sqream.com/en/2021.2/configuration_guides/index.html>`_.

@@ -24,7 +24,7 @@ Integrations
 * Load files directly from :ref:`HDFS<inserting_data>`. SQream DB now comes with built-in, native HDFS support for directly loading data from Hadoop-based data lakes. Our focus on helping Hadoop customers do more with their data led us to develop this feature, which works out of the box. As a result, SQream DB can now not only read but also write data, and intermediate results back to HDFS for HIVE and other data consumers. SQream DB now fits seamlessly into a Hadoop data pipeline.
 
 
-* Import :ref:`ORC files<orc>`, through :ref:`external_tables`. ORC files join Parquet as files that can be natively accessed and inserted into SQream DB tables.
+* Import :ref:`ORC files<orc>`, through :ref:`foreign_tables`. ORC files join Parquet as files that can be natively accessed and inserted into SQream DB tables.
 
 * :ref:`Python driver (pysqream)<pysqream>` is now DB-API v2.0 compliant. Customers can write high-performance Python applications that make full use of SQream DB - connect, query, delete, and insert data. Data scientists can use pysqream with Pandas, Numpy, and AI/ML frameworks like TensorFlow for direct queries of huge datasets.
 
