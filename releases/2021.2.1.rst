@@ -27,15 +27,15 @@ PERCENTILE FUNCTIONS
 ************
 SQream now supports the following aggregation functions:
 
-* `PERCENTILE_CONT <https://docs.sqream.com/en/v2021.2/reference/sql/sql_functions/aggregate_functions/percentile_cont.html>`_
-* `PERCENTILE_DISC <https://docs.sqream.com/en/v2021.2/reference/sql/sql_functions/aggregate_functions/percentile_disc.html>`_
-* `MODE <https://docs.sqream.com/en/v2021.2/reference/sql/sql_functions/aggregate_functions/mode.html>`_
+* `PERCENTILE_CONT <https://docs.sqream.com/en/v2021.2.1/reference/sql/sql_functions/aggregate_functions/percentile_cont.html>`_
+* `PERCENTILE_DISC <https://docs.sqream.com/en/v2021.2.1/reference/sql/sql_functions/aggregate_functions/percentile_disc.html>`_
+* `MODE <https://docs.sqream.com/en/v2021.2.1/reference/sql/sql_functions/aggregate_functions/mode.html>`_
 
 REGEX REPLACE
 ************   
 SQream now supports the ``REGEXP_REPLACE`` function for finding and replacing text column substrings.
 
-For more information, see `REGEX_REPLACE <https://docs.sqream.com/en/v2021.2/reference/sql/sql_functions/scalar_functions/string/regexp_replace.html>`_.
+For more information, see `REGEX_REPLACE <https://docs.sqream.com/en/v2021.2.1/reference/sql/sql_functions/scalar_functions/string/regexp_replace.html>`_.
 
 Delete Optimization
 ************
@@ -43,7 +43,7 @@ The ``DELETE`` statement can now delete values that contain multi-table conditio
 
 For more information, see `Deleting Values that Contain Multi-Table Conditions <https://docs.sqream.com/en/v2021.2.1/reference/sql/sql_statements/dml_commands/delete.html#deleting-values-that-contain-multi-table-conditions>`_.
 
-For more information, see `REGEX_REPLACE <https://docs.sqream.com/en/v2021.2/reference/sql/sql_functions/scalar_functions/string/regexp_replace.html>`_.
+For more information, see `REGEX_REPLACE <https://docs.sqream.com/en/v2021.2.1/reference/sql/sql_functions/scalar_functions/string/regexp_replace.html>`_.
 
 Performance Enhancements
 ------

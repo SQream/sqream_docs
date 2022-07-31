@@ -34,13 +34,13 @@ SQream now uses a new configuration system based on centralized configuration ac
 For more information, see the following:
 
 * `Configuration <https://docs.sqream.com/en/v2021.2/guides/operations/configuration.html>`_ - describes how to configure your instance of SQream from a centralized location.
-* `SQream Studio 5.4.3 <https://docs.sqream.com/en/v2022.1/sqream_studio_5.4.3/index.html>`_ - configure your instance of SQream from Studio.
+* `SQream Studio 5.4.3 <https://docs.sqream.com/en/v2021.2/sqream_studio_5.4.3/index.html>`_ - configure your instance of SQream from Studio.
    
 Qualifying Schemas Without Providing an Alias
 ************
 When running queries, SQream now supports qualifying schemas without providing an alias.
 
-For more information, see `SQream Studio 5.4.3 <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/create_schema.html>`_.
+For more information, see `SQream Studio 5.4.3 <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/ddl_commands/create_schema.html>`_.
 
 Double-Quotations Supported When Importing and Exporting CSVs
 ************
@@ -48,9 +48,10 @@ When importing and exporting CSVs, SQream now supports using quotation character
 
 For more information, see the following:
 
-* :ref:`copy_from`
+* `COPY_FROM <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/copy_from.html#copy-from>`_
 
-* :ref:`copy_to`
+* `COPY_TO <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/copy_to.html#copy-to>`_
+
 
 
 Note the following:
@@ -128,7 +129,7 @@ NVARCHAR Data Type Renamed TEXT
 The ``NVARCHAR`` data type has been renamed ``TEXT``.
 
 
-For more information on the ``TEXT`` data type, see `String (TEXT) <https://docs.sqream.com/en/latest/reference/sql_data_types.html#string-text-varchar>`_
+For more information on the ``TEXT`` data type, see `String (TEXT) <https://docs.sqream.com/en/v2021.2/data_type_guides/sql_data_types_string.html>`_
 
 End of Support
 ------
@@ -159,13 +160,13 @@ For more information on upgrading your SQream version, see `Upgrading SQream Ver
 
 Upgrading Your Client Drivers
 ************
-For more information on the client drivers for version 2021.2, see `Client Drivers for 2021.2 <https://docs.sqream.com/en/latest/guides/client_drivers/index.html>`_.
+For more information on the client drivers for version 2021.2, see `Client Drivers for 2021.2 <https://docs.sqream.com/en/v2021.2/connecting_to_sqream/client_drivers/index.html>`_.
 
 Configuring Your Instance of SQream
 ************
 A new configuration method is used starting with Version 2021.2.
 
-For more information about configuring your instance of SQream, see :ref:`configuration`.
+For more information about configuring your instance of SQream, see `Client Drivers for 2021.2 <https://docs.sqream.com/en/v2021.2/configuration_guides/index.html>`_.
 
 .. toctree::
    :maxdepth: 2
