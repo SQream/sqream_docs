@@ -33,18 +33,14 @@ SQream now uses a new configuration system based on centralized configuration ac
 
 For more information, see the following:
 
-* `Configuration <https://docs.sqream.com/en/latest/guides/operations/configuration.html>`_ - describes how to configure your instance of SQream from a centralized location.
-* `SQream Studio 5.4.2 <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.2.html#>`_ - configure your instance of SQream from Studio.
+* `Configuration <https://docs.sqream.com/en/v2021.2/guides/operations/configuration.html>`_ - describes how to configure your instance of SQream from a centralized location.
+* `SQream Studio 5.4.2 <https://docs.sqream.com/en/v2021.2/guides/operations/sqream_studio_5.4.2.html#>`_ - configure your instance of SQream from Studio.
    
 Qualifying Schemas Without Providing an Alias
 ************
 When running queries, SQream now supports qualifying schemas without providing an alias.
 
 For more information, see :ref:`create_schema`.
-
-
-
-
 
 Double-Quotations Supported When Importing and Exporting CSVs
 ************
@@ -55,7 +51,6 @@ For more information, see the following:
 * :ref:`copy_from`
 
 * :ref:`copy_to`
-
 
 Note the following:
 
@@ -91,7 +86,6 @@ Note the following:
 	 
 For more information, see the following statements:
 
-
 * :ref:`copy_from`
 
 * :ref:`create_foreign_table`
@@ -115,13 +109,11 @@ The following table lists the issues that were resolved in Version 2021.2:
    * - SQ-8288
      - Saved ``TEXT`` query parameters were not supported.        
    * - SQ-8266
-     - A data loading issue occurred related to column order.      
-
+     - A data loading issue occurred related to column order.
 	 
 Known Issues
 ------
 The **Known Issues** section is not relevant to Version 2021.2.
-
 
 Naming Convention Modifications
 ------
@@ -130,7 +122,6 @@ The **Naming Convention Modifications** describes SQream features, such as data 
 NVARCHAR Data Type Renamed TEXT
 ************
 The ``NVARCHAR`` data type has been renamed ``TEXT``.
-
 
 For more information on the ``TEXT`` data type, see `String (TEXT) <https://docs.sqream.com/en/latest/reference/sql_data_types.html#string-text-varchar>`_
 
@@ -163,10 +154,10 @@ For more information on upgrading your SQream version, see `Upgrading SQream Ver
 
 Upgrading Your Client Drivers
 ************
-For more information on the client drivers for version 2021.2, see `Client Drivers for 2021.2 <https://docs.sqream.com/en/latest/guides/client_drivers/index.html>`_.
+For more information on the client drivers for version 2021.2, see `Client Drivers for 2021.2 <https://docs.sqream.com/en/v2021.2/guides/client_drivers/index.html>`_.
 
 Configuring Your Instance of SQream
 ************
 A new configuration method is used starting with Version 2021.2.
 
-For more information about configuring your instance of SQream, see :ref:`configuration`.
+For more information about configuring your instance of SQream, see `Configuration Guides <https://docs.sqream.com/en/v2021.2/configuration_guides/index.html>`_.
