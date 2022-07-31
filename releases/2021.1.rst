@@ -40,7 +40,7 @@ SQream now supports Numeric Data types for the following operations:
    * All aggregation types (not including Window functions).
    * Scalar functions (not including some trigonometric and logarithmic functions).
    
-For more information, see `Numeric Data Types <https://docs.sqream.com/en/latest/reference/sql_data_types.html#numeric-data-types.html>`_.
+For more information, see `Numeric Data Types <https://docs.sqream.com/en/v2021.1/reference/sql_data_types.html#numeric-data-types.html>`_.
 
 Text Data Type
 ************
@@ -54,14 +54,14 @@ SQream now supports TEXT data types in all operations, which is default string d
    * Support text columns in queries with multiple distinct aggregates.
    * Text literal support for all functions.
    
-For more information, see `String Types <https://docs.sqream.com/en/latest/reference/sql_data_types.html#string-types-text-varchar>`_.
+For more information, see `String Types <https://docs.sqream.com/en/v2021.1/reference/sql_data_types.html#string-types-text-varchar>`_.
 
 
 Supports Scalar Subqueries
 ************
 SQream now supports running initial scalar subqueries.
 
-For more information, see `Subqueries <https://docs.sqream.com/en/latest/reference/sql/sql_syntax/subqueries.html>`_.
+For more information, see `Subqueries <https://docs.sqream.com/en/v2021.1/reference/sql/sql_syntax/subqueries.html>`_.
 
 Literal Arguments
 ************
@@ -72,7 +72,7 @@ Simple Scalar SQL UDFs
 ************
 SQream now supports simple scalar SQL UDF's.
 
-For more information, see `Simple Scalar SQL UDF’s <https://docs.sqream.com/en/latest/reference/sql/sql_functions/user_defined_functions/scalar_sql_udf.html>`_.
+For more information, see `Simple Scalar SQL UDF’s <https://docs.sqream.com/en/v2021.1/reference/sql/sql_functions/user_defined_functions/scalar_sql_udf.html>`_.
 
 Logging Enhancements
 ************
@@ -91,7 +91,7 @@ Improved Presented License Information
 ************
 SQream now displays information related to data size limitations, expiration date, type of license shown by the new UF. The **Utility Function (UF)** name is ``get_license_info()``.
 
-For more information, see `GET_LICENSE_INFO <https://docs.sqream.com/en/latest/reference/sql/sql_statements/utility_commands/get_license_info.html>`_.
+For more information, see `GET_LICENSE_INFO <https://docs.sqream.com/en/v2021.1/reference/sql/sql_statements/utility_commands/get_license_info.html>`_.
 
 
   
@@ -171,7 +171,7 @@ Operations and Configuration Changes
 Recommended SQream Configuration on Cloud
 ************
 
-For more information about AWS, see `Amazon S3 <https://docs.sqream.com/en/latest/guides/features/external_data/s3.html>`_.
+For more information about AWS, see `Amazon S3 <https://docs.sqream.com/en/v2021.1/operational_guides/s3.html>`_.
 
 
 
@@ -183,7 +183,7 @@ SQream now has a new ``runtimeGlobalFlags`` flag called ``WriteToFileThreads``.
 
 This flag configures the number of threads in the **WriteToFile** function. The default value is ``16``.
 
-For more information about the ``runtimeGlobalFlags`` flag, see the **Runtime Global Flags** table in `Configuration <https://docs.sqream.com/en/latest/guides/operations/configuration.html>`_.
+For more information about the ``runtimeGlobalFlags`` flag, see the **Runtime Global Flags** table in `Configuration <https://docs.sqream.com/en/v2021.1/configuration_guides/index.html>`_.
 
 
 
