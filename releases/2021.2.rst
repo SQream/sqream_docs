@@ -88,7 +88,7 @@ For more information, see the following statements:
 
 * `COPY_FROM <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/copy_from.html#copy-from>`_
 
-* `Foreign Tables <https://docs.sqream.com/en/latest/operational_guides/foreign_tables.html>`_
+* `Foreign Tables <https://docs.sqream.com/en/v2021.2/operational_guides/foreign_tables.html>`_
 
 Performance Enhancements
 ------
@@ -126,7 +126,7 @@ NVARCHAR Data Type Renamed TEXT
 The ``NVARCHAR`` data type has been renamed ``TEXT``.
 
 
-For more information on the ``TEXT`` data type, see `String (TEXT) <https://docs.sqream.com/en/latest/reference/sql_data_types.html#string-text-varchar>`_
+For more information on the ``TEXT`` data type, see `String (TEXT) <https://docs.sqream.com/en/v2021.2/data_type_guides/sql_data_types_string.html>`_
 
 End of Support
 ------

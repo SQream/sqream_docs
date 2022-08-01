@@ -46,7 +46,7 @@ Decimal Literals Interpreted as Numeric Columns
 ************
 SQream now interprets literals containing decimal points as ``numeric`` instead of as ``double``.
 
-For more information, see `Data Types <https://docs.sqream.com/en/latest/reference/sql_data_types.html>`_.
+For more information, see `Data Types <https://docs.sqream.com/en/v2021.1.2/reference/sql_data_types.html>`_.
 
 Roles Area Added to Studio Version 5.4.3
 ****************
