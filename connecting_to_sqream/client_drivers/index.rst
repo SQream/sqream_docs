@@ -18,14 +18,14 @@ The following are applicable to all operating systems:
 * **JDBC** - recommended installation via ``mvn``:
 
   * `JDBC .jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.3.jar>`_ - sqream-jdbc-4.5.3 (.jar)
-  * `JDBC driver <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/jdbc/index.html#>`_
+  * `JDBC driver <https://docs.sqream.com/en/v2022.1/third_party_tools/client_drivers/jdbc/index.html#>`_
 
 .. _tableau_connector:   
 
 * **Tableau**:
 
   * `Tableau connector <https://sq-ftp-public.s3.amazonaws.com/SQreamDB.taco>`_ - SQream (.taco)
-  * `Tableau manual installation <https://docs.sqream.com/en/latest/third_party_tools/client_platforms/tableau.html#>`_
+  * `Tableau manual installation <https://docs.sqream.com/en/v2022.1/third_party_tools/client_platforms/tableau.html#>`_
 
   
 .. _powerbi_connector:   
@@ -33,7 +33,7 @@ The following are applicable to all operating systems:
 * **Power BI**:
 
   * `Power BI PowerQuery connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_ - SQream (.mez)
-  * `Power BI manual installation <https://docs.sqream.com/en/latest/third_party_tools/client_platforms/power_bi.html>`_
+  * `Power BI manual installation <https://docs.sqream.com/en/v2022.1/third_party_tools/client_platforms/power_bi.html>`_
 
 
 Windows
@@ -53,12 +53,12 @@ Linux
 The following are applicable to Linux:
 
 * `SQream SQL (x86_64) <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.x86_64.tar.gz>`_ - sqream-sql-v2020.1.1_stable.x86_64.tar.gz
-* `Sqream SQL CLI Reference <https://docs.sqream.com/en/latest/reference/cli/sqream_sql.html#sqream-sql-cli-reference>`_ - Interactive command-line SQL client for Intel-based machines
+* `Sqream SQL CLI Reference <https://docs.sqream.com/en/v2022.1/reference/cli/sqream_sql.html#sqream-sql-cli-reference>`_ - Interactive command-line SQL client for Intel-based machines
 
    ::
 
 * `SQream SQL*(IBM POWER9) <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.ppc64le.tar.gz>`_ - sqream-sql-v2020.1.1_stable.ppc64le.tar.gz
-* `Sqream SQL CLI Reference <https://docs.sqream.com/en/latest/reference/cli/sqream_sql.html#sqream-sql-cli-reference>`_ - Interactive command-line SQL client for IBM POWER9-based machines
+* `Sqream SQL CLI Reference <https://docs.sqream.com/en/v2022.1/reference/cli/sqream_sql.html#sqream-sql-cli-reference>`_ - Interactive command-line SQL client for IBM POWER9-based machines
    
    ::
 
