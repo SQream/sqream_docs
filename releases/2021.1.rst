@@ -60,7 +60,8 @@ Supports Scalar Subqueries
 ************
 SQream now supports running initial scalar subqueries.
 
-For more information, see `Simple Scalar SQL UDF’s <https://docs.sqream.com/en/v2021.1/reference/sql/sql_functions/use
+For more information, see `Simple Scalar SQL UDF’s <https://docs.sqream.com/en/latest/reference/sql/sql_functions/user_defined_functions/scalar_sql_udf.html
+
 Literal Arguments
 ************
 
@@ -169,7 +170,7 @@ Operations and Configuration Changes
 Recommended SQream Configuration on Cloud
 ************
 
-For more information about AWS, see `Amazon S3 <https://docs.sqream.com/en/latest/guides/features/external_data/s3.html>`_.
+For more information about AWS, see `Amazon S3 <https://docs.sqream.com/en/v2021.1/guides/features/external_data/s3.html>`_.
 
 
 
