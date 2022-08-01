@@ -52,7 +52,6 @@ SQream now supports the following new ranking functions:
 
 For more information, navigate to Windows Functions and scroll to the `Ranking Functions table <https://docs.sqream.com/en/latest/reference/sql/sql_syntax/window_functions.html#id3>`_.
 
-
 Resolved Issues
 -------------
 The following list describes the resolved issues:

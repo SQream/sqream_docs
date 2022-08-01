@@ -33,18 +33,14 @@ SQream now uses a new configuration system based on centralized configuration ac
 
 For more information, see the following:
 
-* `Configuration <https://docs.sqream.com/en/latest/guides/operations/configuration.html>`_ - describes how to configure your instance of SQream from a centralized location.
-* `SQream Studio 5.4.2 <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.2.html#>`_ - configure your instance of SQream from Studio.
+* `Configuration <https://docs.sqream.com/en/v2021.2/guides/operations/configuration.html>`_ - describes how to configure your instance of SQream from a centralized location.
+* `SQream Studio 5.4.3 <https://docs.sqream.com/en/v2021.2/sqream_studio_5.4.3/index.html>`_ - configure your instance of SQream from Studio.
    
 Qualifying Schemas Without Providing an Alias
 ************
 When running queries, SQream now supports qualifying schemas without providing an alias.
 
-For more information, see :ref:`create_schema`.
-
-
-
-
+For more information, see `CREATE_SCHEMA <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/ddl_commands/create_schema.html>`_.
 
 Double-Quotations Supported When Importing and Exporting CSVs
 ************
@@ -52,10 +48,9 @@ When importing and exporting CSVs, SQream now supports using quotation character
 
 For more information, see the following:
 
-* :ref:`copy_from`
+* `COPY_FROM <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/copy_from.html#copy-from>`_
 
-* :ref:`copy_to`
-
+* `COPY_TO <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/copy_to.html#copy-to>`_
 
 Note the following:
 
@@ -91,10 +86,9 @@ Note the following:
 	 
 For more information, see the following statements:
 
+* `COPY_FROM <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/copy_from.html#copy-from>`_
 
-* :ref:`copy_from`
-
-* :ref:`create_foreign_table`
+* `Foreign Tables <https://docs.sqream.com/en/latest/operational_guides/foreign_tables.html>`_
 
 Performance Enhancements
 ------
@@ -159,14 +153,21 @@ When upgrading from a SQream version earlier than 2021.2 you must upgrade your s
       $ cat /etc/sqream/sqream1_config.json |grep cluster
       $ ./upgrade_storage <cluster path>
 	  
-For more information on upgrading your SQream version, see `Upgrading SQream Version <https://docs.sqream.com/en/latest/guides/operations/installing_sqream_with_binary.html#upgrading-sqream-version>`_.
+For more information on upgrading your SQream version, see `Upgrading SQream Version <https://docs.sqream.com/en/v2021.2/installation_guides/installing_sqream_with_binary.html>`_.
 
 Upgrading Your Client Drivers
 ************
-For more information on the client drivers for version 2021.2, see `Client Drivers for 2021.2 <https://docs.sqream.com/en/latest/guides/client_drivers/index.html>`_.
+For more information on the client drivers for version 2021.2, see `Client Drivers for 2021.2 <https://docs.sqream.com/en/v2021.2/connecting_to_sqream/client_drivers/index.html>`_.
 
 Configuring Your Instance of SQream
 ************
 A new configuration method is used starting with Version 2021.2.
 
-For more information about configuring your instance of SQream, see :ref:`configuration`.
+For more information about configuring your instance of SQream, see `Client Drivers for 2021.2 <https://docs.sqream.com/en/v2021.2/configuration_guides/index.html>`_.
+
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :hidden:
+
+   2021.2

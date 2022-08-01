@@ -40,7 +40,7 @@ String Literals Containing ASCII Characters Interepreted as TEXT
 ************
 SQream now interprets all string literals, including those containing ASCII characters, as ``text``.
 
-For more information, see `String Types <https://docs.sqream.com/en/latest/reference/sql_data_types.html#string-types>`_.
+For more information, see `Data Types <https://docs.sqream.com/en/v2021.1.2/data_type_guides/index.html>`_.
 
 Decimal Literals Interpreted as Numeric Columns
 ************
@@ -48,9 +48,9 @@ SQream now interprets literals containing decimal points as ``numeric`` instead 
 
 For more information, see `Data Types <https://docs.sqream.com/en/latest/reference/sql_data_types.html>`_.
 
-Roles Area Added to Studio Version 5.3.3
+Roles Area Added to Studio Version 5.4.3
 ****************
-The **Roles** area has been added to `Studio version 5.3.3 <https://docs.sqream.com/en/latest/guides/operations/sqream_studio.html>`_. From the Roles area users can create and assign roles and manage user permissions.
+The **Roles** area has been added to `Studio version 5.4.3 <https://docs.sqream.com/en/v2021.1.2/sqream_studio_5.4.3/creating_assigning_and_managing_roles_and_permissions.html>`_. From the Roles area users can create and assign roles and manage user permissions.
 
 Resolved Issues
 -------------
@@ -59,3 +59,10 @@ The following list describes the resolved issues:
 * In Parquet files, ``float`` columns could not be mapped to SQream ``double`` columns. This was fixed.
 * The ``REPLACE`` function only supported constant values as arguments. This was fixed.
 * The ``LIKE`` function did not check for incorrect patterns or handle escape characters. This was fixed.
+
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :hidden:
+
+   2021.1.2
