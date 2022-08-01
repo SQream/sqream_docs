@@ -22,7 +22,7 @@ SQream integrates with Power BI Desktop to do the following:
 
 SQream uses Power BI for extracting data sets using the following methods:
 
-* **Direct query** - Direct queries lets you connect easily with no errors, and refreshes Power BI artifacts, such as graphs and reports, in a considerable amount of time in relation to the time taken for queries to run using the `SQream SQL CLI Reference guide <https://docs.sqream.com/en/latest/reference/cli/sqream_sql.html>`_.
+* **Direct query** - Direct queries lets you connect easily with no errors, and refreshes Power BI artifacts, such as graphs and reports, in a considerable amount of time in relation to the time taken for queries to run using the `SQream SQL CLI Reference guide <https://docs.sqream.com/en/v2021.1.1/reference/cli/sqream_sql.html>`_.
 
    ::
 
@@ -140,4 +140,4 @@ SQream supports the following SQream driver versions:
 
 Related Information
 -------------------
-For more information, see the `Glossary <https://docs.sqream.com/en/latest/glossary.html>`_.
+For more information, see the `Glossary <https://docs.sqream.com/en/v2021.1.1/glossary.html>`_.

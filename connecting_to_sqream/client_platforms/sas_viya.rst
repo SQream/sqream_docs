@@ -32,7 +32,7 @@ The SQream JDBC driver is required for establishing a connection between SAS Viy
 
 **To install the JDBC driver:**
 
-#. Download the `JDBC driver <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/jdbc/index.html>`_.
+#. Download the `JDBC driver <https://docs.sqream.com/en/v2021.1.1/connecting_to_sqream/client_drivers/index.html>`_.
 
     ::
 
@@ -59,7 +59,7 @@ After installing the JDBC driver, you must configure the JDBC driver from the SA
    .. literalinclude:: connect3.sas
       :language: php
 
-For more information about writing a connection string, see **Connect to SQream DB with a JDBC Application** and navigate to `Connection String <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/jdbc/index.html#connection-string-examples>`_.
+For more information about writing a connection string, see **Connect to SQream DB with a JDBC Application** and navigate to `Connection String <https://docs.sqream.com/en/v2021.1.1/connecting_to_sqream/client_drivers/jdbc/index.html#connection-string-examples>`_.
 
 Operating SAS Viya
 --------------------  

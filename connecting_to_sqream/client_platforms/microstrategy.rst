@@ -54,7 +54,7 @@ Connecting a Data Source
 
     ::
 	
-2. Download the most current version of the `SQream JDBC driver <https://docs.sqream.com/en/latest/guides/client_drivers/index.html#client-drivers>`_.
+2. Download the most current version of the `SQream JDBC driver <https://docs.sqream.com/en/v2021.1.1/connecting_to_sqream/client_drivers/index.html>`_.
 
     ::
 

@@ -89,9 +89,9 @@ Because SQL UDF's are one type of supported UDFs, the following Python UDF chara
 
 * UDF permission rules - see `Access Control <https://docs.sqream.com/en/latest/guides/features/access_control.html#access-control>`_.
 
-* The ``get_function_ddl`` utility function works on these functions - see `Getting the DDL for a Function <https://docs.sqream.com/en/latest/guides/features/python_functions.html#getting-the-ddl-for-a-function>`_.
+* The ``get_function_ddl`` utility function works on these functions - see `Getting the DDL for a Function <https://docs.sqream.com/en/v2021.1.1/feature_guides/python_functions.html?#getting-the-ddl-for-a-function>`_.
 
-* SQL UDF's should appear in the catalog with Python UDF's - see `Finding Existing UDFs in the Catalog <https://docs.sqream.com/en/latest/guides/features/python_functions.html#finding-existing-udfs-in-the-catalog>`_.
+* SQL UDF's should appear in the catalog with Python UDF's - see `Finding Existing UDFs in the Catalog <https://docs.sqream.com/en/v2021.1.1/feature_guides/python_functions.html?#finding-existing-udfs-in-the-catalog>`_.
 
 Restrictions
 ~~~~~~~~~~~~~~~~

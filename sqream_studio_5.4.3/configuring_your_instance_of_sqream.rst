@@ -20,4 +20,4 @@ Exporting and Importing Configuration Files
 -------------------------
 You can also export and import your configuration settings into a .json file. This allows you to easily edit your parameters and to share this file with other users if required.
 
-For more information about configuring your instance of SQream, see `Configuration Guides <https://docs.sqream.com/en/latest/configuration_guides/index.html>`_.
+For more information about configuring your instance of SQream, see `Configuration Guides <https://docs.sqream.com/en/v2021.1.1/configuration_guides/index.html>`_.

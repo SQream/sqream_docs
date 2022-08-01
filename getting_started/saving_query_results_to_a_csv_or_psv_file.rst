@@ -21,4 +21,4 @@ For more output options, see :ref:`Controlling the Client Output<controlling_out
 
 * Explore all of SQream DB's :ref:`SQL Syntax <sql_syntax>`.
 * See the full :ref:`SQream SQL CLI reference <sqream_sql_cli_reference>`.
-* Connect a :ref:`third party tool <third_party_tools>` to start analyzing data.
+* Connect a `connection platform <https://docs.sqream.com/en/latest/connecting_to_sqream/client_platforms/index.html>`_ to start analyzing data.

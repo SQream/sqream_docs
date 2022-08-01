@@ -72,8 +72,8 @@ SQream uses cluster-based configuration, enabling you to centralize configuratio
 
 For more information, see the following:
 
-* `Using SQream SQL <https://docs.sqream.com/en/latest/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
-* `SQream Acceleration Studio <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
+* `Using SQream SQL <https://docs.sqream.com/en/v2021.1.1/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
+* `SQream Acceleration Studio <https://docs.sqream.com/en/v2021.1.1/sqream_studio_5.4.3/index.html>`_ - modifying flag attributes from Studio.
 
 For more information on flag-based access to cluster-based configuration, see **Configuration Flag Types** below.
 
@@ -92,8 +92,8 @@ For example, when the query below has completed executing, the values configured
 
 For more information, see the following:
 
-* `Using SQream SQL <https://docs.sqream.com/en/latest/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
-* `SQream Acceleration Studio <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.0.html>`_ - modifying flag attributes from Studio.
+* `Using SQream SQL <https://docs.sqream.com/en/v2021.1.1/reference/cli/sqream_sql.html#using-sqream-sql>`_ - modifying flag attributes from the CLI.
+* `SQream Acceleration Studio <https://docs.sqream.com/en/v2021.1.1/sqream_studio_5.4.3/index.html>`_ - modifying flag attributes from Studio.
 
 Configuration Flag Types
 ==========
@@ -704,8 +704,8 @@ Configuration Roles
 ===========
 SQream divides flags into the following roles, each with their own set of permissions:
 
-* `Administration flags <https://docs.sqream.com/en/latest/configuration_guides/admin_flags.html>`_: can be modified by administrators on a session and cluster basis using the ``ALTER SYSTEM SET`` command.
-* `Generic flags <https://docs.sqream.com/en/latest/configuration_guides/generic_flags.html>`_: can be modified by standard users on a session basis.
+* `Administration flags <https://docs.sqream.com/en/v2021.1.1/configuration_guides/admin_flags.html>`_: can be modified by administrators on a session and cluster basis using the ``ALTER SYSTEM SET`` command.
+* `Generic flags <https://docs.sqream.com/en/v2021.1.1/configuration_guides/generic_flags.html>`_: can be modified by standard users on a session basis.
 
 Showing All Flags in the Catalog Table
 =======

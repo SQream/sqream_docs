@@ -47,7 +47,7 @@ We will make note of the file structure, to create a matching ``CREATE_EXTERNAL_
 
 Creating an External Table
 -----------------------------
-Based on the source file structure, we we :ref:`create an external table<create_external_table>` with the appropriate structure, and point it to the file.
+Based on the source file structure, we we :ref:`create a foreign table<create_foreign_table>` with the appropriate structure, and point it to the file.
 
 .. code-block:: postgres
    

@@ -188,23 +188,23 @@ The database object functions are used to perform the following:
    * - Function
      - Description
    * - Insert statement
-     - Generates an `INSERT <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/insert.html#insert>`_ statement for the selected table in the editing area.
+     - Generates an `INSERT <https://docs.sqream.com/en/v2021.1.1/reference/sql/sql_statements/dml_commands/insert.html#insert>`_ statement for the selected table in the editing area.
    * - Delete statement
-     - Generates a `DELETE <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/delete.html#delete>`_ statement for the selected table in the editing area.
+     - Generates a `DELETE <https://docs.sqream.com/en/v2021.1.1/reference/sql/sql_statements/dml_commands/delete.html#delete>`_ statement for the selected table in the editing area.
    * - Create Table As statement
-     - Generates a `CREATE TABLE AS <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/create_table_as.html#create-table-as>`_ statement for the selected table in the editing area.	 
+     - Generates a `CREATE TABLE AS <https://docs.sqream.com/en/v2021.1.1/reference/sql/sql_statements/ddl_commands/create_table_as.html#create-table-as>`_ statement for the selected table in the editing area.	 
    * - Rename statement
-     - Generates an `RENAME TABLE AS <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/rename_table.html#rename-table>`_ statement for renaming the selected table in the editing area.
+     - Generates an `RENAME TABLE AS <https://docs.sqream.com/en/v2021.1.1/reference/sql/sql_statements/ddl_commands/rename_table.html#rename-table>`_ statement for renaming the selected table in the editing area.
    * - Adding column statement
-     - Generates an `ADD COLUMN <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/add_column.html#add-column>`_ statement for adding columns to the selected table in the editing area.
+     - Generates an `ADD COLUMN <https://docs.sqream.com/en/v2021.1.1/reference/sql/sql_statements/ddl_commands/add_column.html#add-column>`_ statement for adding columns to the selected table in the editing area.
    * - Truncate table statement
-     - Generates a `TRUNCATE_IF_EXISTS <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/truncate_if_exists.html#truncate>`_ statement for the selected table in the editing area.
+     - Generates a `TRUNCATE_IF_EXISTS <https://docs.sqream.com/en/v2021.1.1/reference/sql/sql_statements/dml_commands/truncate_if_exists.html#truncate>`_ statement for the selected table in the editing area.
    * - Drop table statement
      - Generates a ``DROP`` statement for the selected object in the editing area.
    * - Table DDL
-     - Generates a DDL statement for the selected object in the editing area. To get the entire database DDL, click the |icon-ddl-edit| icon next to the database name in the tree root. See `Seeing System Objects as DDL <https://docs.sqream.com/en/latest/operational_guides/seeing_system_objects_as_ddl.html>`_.
+     - Generates a DDL statement for the selected object in the editing area. To get the entire database DDL, click the |icon-ddl-edit| icon next to the database name in the tree root. See `Seeing System Objects as DDL <https://docs.sqream.com/en/v2021.1.1/operational_guides/seeing_system_objects_as_ddl.html>`_.
    * - DDL Optimizer
-     - The `DDL Optimizer <https://docs.sqream.com/en/latest/sqream_studio_5.4.3/executing_statements_and_running_queries_from_the_editor.html#optimizing-database-tables-using-the-ddl-optimizer>`_  lets you analyze database tables and recommends possible optimizations.
+     - The `DDL Optimizer <https://docs.sqream.com/en/v2021.1.1/sqream_studio_5.4.3/executing_statements_and_running_queries_from_the_editor.html#optimizing-database-tables-using-the-ddl-optimizer>`_  lets you analyze database tables and recommends possible optimizations.
 
 Optimizing Database Tables Using the DDL Optimizer
 -----------------------
