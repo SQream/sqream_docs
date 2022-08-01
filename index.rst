@@ -106,6 +106,7 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    installation_guides/index
    data_ingestion/index
    connecting_to_sqream/index
+   external_storage_platforms/index
    loading_and_unloading_data/index
    feature_guides/index
    operational_guides/index
