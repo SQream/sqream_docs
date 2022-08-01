@@ -31,7 +31,7 @@ SQream now supports data encryption mechanisms in accordance with **General Data
 
 Using the data encryption feature may lead to a maximum of a 10% increase in performance degradation.
 
-For more information, see `Data Encryption <https://docs.sqream.com/en/latest/feature_guides/data_encryption.html>`_.
+For more information, see `Data Encryption <https://docs.sqream.com/en/v2022.1/feature_guides/data_encryption.html>`_.
 
 Update Feature
 ************

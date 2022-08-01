@@ -89,7 +89,10 @@ Note the following:
 For more information, see the following statements:
 
 
-* :ref:`copy_from`
+* `COPY_FROM <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/copy_from.html#copy-from>`_
+
+* `CREATE_FOREIGN_TABLE <https://docs.sqream.com/en/v2022.2/reference/sql/sql_statements/ddl_commands/create_foreign_table.html>`_
+
 
 * :ref:`create_foreign_table`
 
