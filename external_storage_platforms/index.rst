@@ -1,9 +1,9 @@
-.. _external_data:
+.. _external_storage_platforms:
 
-**********************************
-Working with External Data
-**********************************
-SQream supports the following external data sources:
+***********************
+External Storage Platforms
+***********************
+SQream supports the following external storage platforms:
 
 .. toctree::
    :maxdepth: 1
