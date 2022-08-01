@@ -1,7 +1,7 @@
 .. _client_drivers:
 
 ************************************
-Client Drivers for |latest_version|
+Client Drivers for Version 2021.1.2
 ************************************
 
 The guides on this page describe how to use the Sqream DB client drivers and client applications with SQream.
@@ -18,7 +18,7 @@ The following are applicable to all operating systems:
 * **JDBC** - recommended installation via ``mvn``:
 
   * `JDBC .jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.3.jar>`_ - sqream-jdbc-4.5.3 (.jar)
-  * `JDBC driver <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/jdbc/index.html#>`_
+  * `JDBC driver <https://docs.sqream.com/en/v2021.1.2/third_party_tools/client_drivers/jdbc/index.html#>`_
 
 
 .. _python:
@@ -26,7 +26,7 @@ The following are applicable to all operating systems:
 * **Python** - Recommended installation via ``pip``:
 
   * `Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.1.3>`_ - pysqream v3.1.3 (.tar.gz)
-  * `Python driver <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/python/index.html>`_
+  * `Python driver <https://docs.sqream.com/en/v2021.1.2/third_party_tools/client_drivers/python/index.html>`_
 
 
 .. _nodejs:
@@ -34,7 +34,7 @@ The following are applicable to all operating systems:
 * **Node.JS** - Recommended installation via ``npm``:
 
   * `Node.JS <https://sq-ftp-public.s3.amazonaws.com/sqream-sqreamdb-4.2.4.tgz>`_ - sqream-v4.2.4 (.tar.gz)
-  * `Node.JS driver <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/nodejs/index.html>`_
+  * `Node.JS driver <https://docs.sqream.com/en/v2021.1.2/third_party_tools/client_drivers/nodejs/index.html>`_
 
 
 .. _tableau_connector:   
@@ -42,7 +42,7 @@ The following are applicable to all operating systems:
 * **Tableau**:
 
   * `Tableau connector <https://sq-ftp-public.s3.amazonaws.com/SQreamDB.taco>`_ - SQream (.taco)
-  * `Tableau manual installation <https://docs.sqream.com/en/latest/third_party_tools/client_platforms/tableau.html#>`_
+  * `Tableau manual installation <https://docs.sqream.com/en/v2021.1.2/third_party_tools/client_platforms/tableau.html#>`_
 
   
 .. _powerbi_connector:   
@@ -50,7 +50,7 @@ The following are applicable to all operating systems:
 * **Power BI**:
 
   * `Power BI PowerQuery connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_ - SQream (.mez)
-  * `Power BI manual installation <https://docs.sqream.com/en/latest/third_party_tools/client_platforms/power_bi.html>`_
+  * `Power BI manual installation <https://docs.sqream.com/en/v2021.1.2/third_party_tools/client_platforms/power_bi.html>`_
 
 
 Windows
@@ -68,12 +68,12 @@ Linux
 The following are applicable to Linux:
 
 * `SQream SQL (x86_64) <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.x86_64.tar.gz>`_ - sqream-sql-v2020.1.1_stable.x86_64.tar.gz
-* `Sqream SQL CLI Reference <https://docs.sqream.com/en/latest/reference/cli/sqream_sql.html#sqream-sql-cli-reference>`_ - Interactive command-line SQL client for Intel-based machines
+* `Sqream SQL CLI Reference <https://docs.sqream.com/en/v2021.1.2/reference/cli/sqream_sql.html#sqream-sql-cli-reference>`_ - Interactive command-line SQL client for Intel-based machines
 
    ::
 
 * `SQream SQL*(IBM POWER9) <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.ppc64le.tar.gz>`_ - sqream-sql-v2020.1.1_stable.ppc64le.tar.gz
-* `Sqream SQL CLI Reference <https://docs.sqream.com/en/latest/reference/cli/sqream_sql.html#sqream-sql-cli-reference>`_ - Interactive command-line SQL client for IBM POWER9-based machines
+* `Sqream SQL CLI Reference <https://docs.sqream.com/en/v2021.1.2/reference/cli/sqream_sql.html#sqream-sql-cli-reference>`_ - Interactive command-line SQL client for IBM POWER9-based machines
    
    ::
 
@@ -82,7 +82,7 @@ The following are applicable to Linux:
    ::
 
 * C++ connector - `libsqream-4.0 <https://sq-ftp-public.s3.amazonaws.com/libsqream-4.0.tar.gz>`_   
-* `C++ shared object library <https://docs.sqream.com/en/latest/third_party_tools/client_drivers/cpp/index.html#getting-the-library>`_
+* `C++ shared object library <https://docs.sqream.com/en/v2021.1.2/third_party_tools/client_drivers/cpp/index.html#getting-the-library>`_
 
 
 .. toctree::
