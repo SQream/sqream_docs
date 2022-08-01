@@ -77,15 +77,15 @@ The ``temp`` directory is where SQream DB writes temporary data.
 
 The directory to which SQream DB writes temporary data can be changed to any other directory on the filesystem. SQream recommends remapping this directory to a fast local storage to get better performance when executing intensive larger-than-RAM operations like sorting. SQream recommends an SSD or NVMe drive, in mirrored RAID 1 configuration.
 
-If desired, the ``temp`` folder can be redirected to a local disk for improved performance, by setting the ``tempPath`` setting in the :ref:`configuration<configuration>` file.
-
+If desired, the ``temp`` folder can be redirected to a local disk for improved performance, by setting the ``tempPath`` setting in the `legacy configuration file <https://docs.sqream.com/en/v2021.1.1/configuration_guides/current_configuration_method.html#modifying-your-configuration-using-the-worker-configuration-file>`_ file.
 
 ``logs``
 ----------------
 
 The logs directory contains logs produced by SQream DB.
 
-See more about the logs in the :ref:`logging` guide.
+See more about the logs in the `legacy configuration file <https://docs.sqream.com/en/v2021.1.1/operational_guides/logging.html
+>`_.
 
 .. what kind of access patterns for different files to optimise for
 

@@ -37,8 +37,6 @@ Data Definition Commands (DDL)
      - Create a new foreign table in the database
    * - :ref:`create_function`
      - Create a new user defined function in the database
-   * - :ref:`create_schema`
-     - Create a new schema in the database
    * - :ref:`create_table`
      - Create a new table in the database
    * - :ref:`create_table_as`
