@@ -1,7 +1,7 @@
 .. _client_drivers:
 
 ************************************
-Client Drivers for |latest_version|
+Client Drivers for Version 2020.3.2.1
 ************************************
 
 The guides on this page describe how to use the Sqream DB client drivers and client applications with SQream.
