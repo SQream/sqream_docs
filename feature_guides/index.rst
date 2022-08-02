@@ -12,7 +12,6 @@ This section describes the following features:
    :titlesonly:
    
 
-   access_control
    compression
    python_functions
    saved_queries
