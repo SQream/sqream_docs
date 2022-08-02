@@ -12,6 +12,7 @@ This section describes the following features:
    :titlesonly:
 
    compression
+   data_encryption
    flexible_data_clustering
    python_functions
    viewing_system_objects_as_ddl
