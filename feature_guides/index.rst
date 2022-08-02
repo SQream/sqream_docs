@@ -12,6 +12,7 @@ This section describes the following features:
    :titlesonly:
 
    query_healer
+   data_encryption
    automatic_schema_identification
    compression
    python_functions
