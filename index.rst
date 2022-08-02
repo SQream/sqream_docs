@@ -4,13 +4,13 @@
 SQream DB Documentation
 *************************
 
-For SQream version 2022.1.
+For SQream Version 2021.2.1.24.
 
 .. only:: html
 
    .. tip::
       Want to read this offline?
-      `Download the documentation as a single PDF <https://docs.sqream.com/_/downloads/en/v2022.1/pdf/>`_ .
+      `Download the documentation as a single PDF <https://docs.sqream.com/_/downloads/en/v2021.2.1.24/pdf/>`_ .
 
 .. only:: pdf or latex
    
@@ -35,7 +35,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
      - **Reference**
      - **Guides**
    * -
-         `Getting Started <https://docs.sqream.com/en/v2022.1/getting_started/index.html>`_
+         :ref:`first_steps`
          
          :ref:`sql_feature_support`
          
@@ -47,17 +47,16 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
          
          :ref:`sql_functions`
      - 
-         `Setting up SQream <https://docs.sqream.com/en/v2022.1/installation_guides/index.html>`_
+         `Setting up SQream <https://docs.sqream.com/en/v2021.2.1.24/installation_guides/index.html>`_
          
          :ref:`Best practices<sql_best_practices>`
          
+         :ref:`connect_to_tableau`
 
    * - **Releases**
      - **Driver and Deployment**
      - **Help and Support**
-   * -
-         :ref:`2022.1<2022.1>`
-
+   * -         
          :ref:`2021.2<2021.2>`
 
          :ref:`2021.1<2021.1>`
@@ -75,10 +74,12 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
 
          :ref:`Third party tools integration<third_party_tools>`
 
+         :ref:`connect_to_tableau`
      - 
-         :ref:`troubleshooting` guide
+         `Troubleshooting Page <https://docs.sqream.com/en/v2021.2.1.24/troubleshooting/index.html>`_
          
-         :ref:`information_for_support`
+         `Gathering Information for SQream Support <https://docs.sqream.com/en/v2021.2.1.24/troubleshooting/information_for_support.html>`_
+
 
 
 
@@ -89,7 +90,7 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
 
 .. rubric:: Looking for older versions?
 
-This version of the documentation is for SQream DB Version 2022.1.
+This version of the documentation is for SQream DB |latest_version|.
 
 If you're looking for an older version of the documentation, versions 1.10 through 2019.2.1 are available at http://previous.sqream.com .
 
