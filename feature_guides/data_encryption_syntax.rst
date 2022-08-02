@@ -23,4 +23,12 @@ The following is an example of encrypting a new table:
         last_name TEXT,
         salary INT ENCRYPT);
 		   
-.. note::  Users without permissions cannot view the entire table as long as at least one column is encrypted. The (unique) encryption/decryption key is relevant only at the system level and is not held by users.
+.. note:: Because encryption is not associated with any role, users with **Read** or **Insert** permissions can read tables containing encrypted data.
+
+.. warning:: Your performance degradation increases in correlation with the amount of added columns.
+
+You cannot encrypt more than three columns. Attempting to encrypt more than three columns displays the following error message:
+
+.. code-block:: console
+
+   Error preparing statement: Cannot create a table with more than three encrypted columns.
