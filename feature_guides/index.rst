@@ -13,7 +13,6 @@ This section describes the following features:
    
 
    xxconfiguring_your_database
-   access_control
    compression
    xxflexible_data_clustering
    python_functions
