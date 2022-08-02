@@ -18,7 +18,7 @@ For SQream version 2021.2.
 
 SQream DB is a columnar analytic SQL database management system. SQream DB supports regular SQL including :ref:`a substantial amount of ANSI SQL<sql_feature_support>`, uses :ref:`serializable transactions<transactions>`, and :ref:`scales horizontally<concurrency_and_scaling_in_sqream>` for concurrent statements. Even a :ref:`basic SQream DB machine<hardware_guide>` can support tens to hundreds of terabytes of data. SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tableau>` comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc>`, :ref:`ODBC<odbc>`, and :ref:`Python DB-API<pysqream>`.
 
-:ref:`csv`
+:ref:`client_platforms`
 
 +---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 | Topic                                             | Description                                                                                                                            |
@@ -46,30 +46,20 @@ SQream DB is a columnar analytic SQL database management system. SQream DB suppo
 | :ref:`parquet`           | :ref:`orc`             |                                                                                                                                        |
 +--------------------------+------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 | :ref:`oracle`                                                                                                                                                                              |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Connecting to SQream**                                                                                                                                                                   |
 +--------------------------+------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`client_platforms`                           | Describes how to install and connect a variety of third party connection platforms and tools.                                          |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`client_drivers`                             | Describes how to use the SQream client drivers and client applications with SQream.                                                    |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| **External Storage Platforms**                                                                                                                                                             |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`s3`                                         | Describes how to insert data over a native S3 connector.                                                                               |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`hdfs`                                       | Describes how to configure an HDFS environment for the user sqream and is only relevant for users with an HDFS environment.            |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 
-
-
-:ref:`preparing_your_machine_to_install_sqream`
-
-   Ingesting data:
-
-   * From CSV files
-   * From Avro files
-   * From Parquet files
-   * From ORC files
-   * From Oracle
-
-   Connecting to SQream:
-
-   * Client platforms
-   * Client drivers
-
-   External storage platforms:
-
-   * Inserting data using Amazon S3 (make sure that this title is accurate)
-   * Using SQream in an HDFS environment
-   * Mounting an NFS shared drive (check this one)
 
    Loading and unloading data:
 
