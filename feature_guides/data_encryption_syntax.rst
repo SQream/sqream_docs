@@ -7,19 +7,20 @@ The following is the syntax for encrypting a new table:
 
 .. code-block:: console
      
-   CREATE TABLE <name of table>  (
-        <column_name> <data type> <(maximum string length)>,
-        <column_name> <data type>
-	last_name <data type> <(maximum string length)>,
-        salary <data type>(<(maximum string length)>) ENCRYPT);
+   CREATE TABLE <table name>  (
+        <column_name> NOT NULL ENCRYPT,
+        <column_name> <type_name> ENCRYPT,
+        <column_name> <type_name>,
+        <column_name> <type_name> ENCRYPT);
 		
 The following is an example of encrypting a new table:
 
 .. code-block:: console
      
    CREATE TABLE client_name  (
-        first_name TEXT(128),
-        last_name TEXT(128),
-        salary INT(6) ENCRYPT);
+        id BIGINT NOT NULL ENCRYPT,
+        first_name TEXT ENCRYPT,
+        last_name TEXT,
+        salary INT ENCRYPT);
 		   
 .. note::  Users without permissions cannot view the entire table as long as at least one column is encrypted. The (unique) encryption/decryption key is relevant only at the system level and is not held by users.
