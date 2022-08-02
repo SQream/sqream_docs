@@ -1,0 +1,136 @@
+.. _2022.1.1:
+
+**************************
+Release Notes 2022.1.1
+**************************
+The 2022.1.1 release notes were released on 7/19/2022 and describe the following:
+
+.. contents:: 
+   :local:
+   :depth: 1      
+
+Version Content
+----------
+The 2022.1.1 Release Notes describes the following: 
+
+* Enhanced security features.
+* New data manipulation command.
+* Additional data ingestion format.
+
+New Features
+----------
+The 2022.1.1 Release Notes include the following new features:
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Update Feature
+************
+SQream now supports the DML **Update** feature, which is used for modifying the value of certain columns in existing rows.
+
+For more information, see `UPDATE <https://docs.sqream.com/en/v2022.1.1/reference/sql/sql_statements/dml_commands/update.html#update>`_.
+
+file:///C:/Users/Yaniv/sqream_docs/_build/html/reference/sql/sql_statements/dml_commands/update.html?highlight=update
+
+Password Policy
+************
+In compliance with GDPR standards, SQream now requires a strong password policy when accessing the CLI or Studio.
+
+For more information, see `Password Policy <https://docs.sqream.com/en/v2022.1.1/operational_guides/access_control_password_policy.html>`_.
+
+file:///C:/Users/Yaniv/sqream_docs/_build/html/operational_guides/access_control_password_policy.html?highlight=password%20policy
+
+Compression
+************
+
+SQream now supports the **zlib** compression format.
+
+For more information, see `Compression <https://docs.sqream.com/en/v2022.1.1/feature_guides/compression.html#compression-strategies>`_. 
+
+file:///C:/Users/Yaniv/sqream_docs/_build/html/feature_guides/compression.html#compression-strategies
+
+Known Issues
+---------
+The following table lists the known issues for Version 2022.1.1:
+
++-------------+------------------------------------------------------------------------------------------------+
+| **SQ No.**  | **Description**                                                                                |
++=============+================================================================================================+
+| SQ-6419     | An internal compiler error occurred when casting Numeric literals in an aggregation function.  |
++-------------+------------------------------------------------------------------------------------------------+
+
+Resolved Issues
+---------
+The following table lists the issues that were resolved in Version 2022.1.1:
+
++-------------+----------------------------------------------------------------------------------------+
+| **SQ No.**  | **Description**                                                                        |
++=============+========================================================================================+
+| SQ-10873    | Inserting 100K bytes into a text column resulted in an unclear error message.          |
++-------------+----------------------------------------------------------------------------------------+
+| SQ-10955    | No metadata filters were applied when filtering by a nullable date using ``dateadd``.  |
++-------------+----------------------------------------------------------------------------------------+
+
+Operations and Configuration Changes
+--------
+The ``login_max_retries`` configuration flag is required for adjusting the permitted log-in attempts.
+
+For more information, see `Adjusting the Permitted Log-In Attempts <https://docs.sqream.com/en/v2022.1.1/configuration_guides/login_max_retries.html>`_.
+
+https://docs.sqream.com/en/latest/configuration_guides/login_max_retries.html
+
+Naming Changes
+-------
+No relevant naming changes were made.
+
+Deprecated Features
+-------
+No features were deprecated for Version 2022.1.1.
+
+End of Support
+-------
+The End of Support section is not relevant to Version 2022.1.1.
+
+Upgrading to v2022.1.1
+-------
+1. Generate a back-up of the metadata by running the following command:
+
+   .. code-block:: console
+
+      $ select backup_metadata('out_path');
+	  
+   .. tip:: SQream recommends storing the generated back-up locally in case needed.
+   
+   SQream runs the Garbage Collector and creates a clean backup tarball package.
+   
+2. Shut down all SQream services.
+
+    ::
+
+3. Extract the recently created back-up file.
+
+    ::
+
+4. Replace your current metadata with the metadata you stored in the back-up file.
+
+    ::
+
+5. Navigate to the new SQream package bin folder.
+
+    ::
+
+6. Run the following command:
+
+   .. code-block:: console
+
+      $ ./upgrade_storage <levelDB path>
+
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <https://docs.sqream.com/en/v2022.1.1/installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
+  
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :hidden:
+
+   2022.1.1.1
