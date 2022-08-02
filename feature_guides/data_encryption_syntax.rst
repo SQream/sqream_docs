@@ -23,5 +23,3 @@ The following is an example of encrypting a new table:
         salary INT(6) ENCRYPT);
 		   
 .. note::  Users without permissions cannot view the entire table as long as at least one column is encrypted. The (unique) encryption/decryption key is relevant only at the system level and is not held by users.
-
-Note that the master key is hard-coded in the system and cannot be changed.
