@@ -91,10 +91,7 @@ For more information, see the following statements:
 
 * `COPY_FROM <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/dml_commands/copy_from.html#copy-from>`_
 
-* `CREATE_FOREIGN_TABLE <https://docs.sqream.com/en/v2022.2/reference/sql/sql_statements/ddl_commands/create_foreign_table.html>`_
-
-
-* :ref:`create_foreign_table`
+* `CREATE_FOREIGN_TABLE <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/ddl_commands/create_foreign_table.html>`_
 
 Performance Enhancements
 ------
@@ -159,7 +156,7 @@ When upgrading from a SQream version earlier than 2021.2 you must upgrade your s
       $ cat /etc/sqream/sqream1_config.json |grep cluster
       $ ./upgrade_storage <cluster path>
 	  
-For more information on upgrading your SQream version, see `Upgrading SQream Version <https://docs.sqream.com/en/latest/guides/operations/installing_sqream_with_binary.html#upgrading-sqream-version>`_.
+For more information on upgrading your SQream version, see `Upgrading SQream Version <https://docs.sqream.com/en/v2021.2/guides/operations/installing_sqream_with_binary.html#upgrading-sqream-version>`_.
 
 Upgrading Your Client Drivers
 ************
