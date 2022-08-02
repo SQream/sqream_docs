@@ -19,6 +19,16 @@ The following is an example of a log record for a query stuck in the query detec
 
    2022/05/19::20:01:25|ERROR|Healer|(0x7f07147fc700)|Stuck query found. Statement ID: 72, Last chunk producer updated: 1 WriteTable, Started on: Thu May 19 14:01:25 2022, Last updated: Thu May 19 15:01:25 2022, Stuck time: 5 hours, Max allowed stuck query time: 5 hours
 
+The ``healerMaxInactivityHours`` log frequency is calculated as 5% of the flag setting. When set to to five hours (the default setting), the Query Healer triggers an examination every 15 minutes.
+
 Configuring the Healer
 ------------------
-The **healerMaxInactivityHours** is required define the threshold for creating a log recording a slow statement. The log includes information about the log memory, CPU and GPU. The ``healerMaxInactivityHours`` log frequency is calculated as 5% of the flag setting. For example, setting ``healerMaxInactivityHours`` to five hours (the default setting) triggers an examination every 15 minutes.
+The following **Administration Worker** flags are required to configure the Query Healer:
+
+ * :ref:`is_healer_on` - Enables the Query Healer.
+
+    ::
+
+ * :ref:`healer_max_inactivity_hours` - Defines the threshold for creating a log recording a slow statement. The log includes information about the log memory, CPU and GPU.
+
+The ``healerMaxInactivityHours`` log frequency is calculated as 5% of the flag setting. For example, setting ``healerMaxInactivityHours`` to five hours (the default setting) triggers an examination every 15 minutes.
