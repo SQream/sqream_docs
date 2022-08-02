@@ -18,98 +18,39 @@ For SQream version 2021.2.
 
 SQream DB is a columnar analytic SQL database management system. SQream DB supports regular SQL including :ref:`a substantial amount of ANSI SQL<sql_feature_support>`, uses :ref:`serializable transactions<transactions>`, and :ref:`scales horizontally<concurrency_and_scaling_in_sqream>` for concurrent statements. Even a :ref:`basic SQream DB machine<hardware_guide>` can support tens to hundreds of terabytes of data. SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tableau>` comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc>`, :ref:`ODBC<odbc>`, and :ref:`Python DB-API<pysqream>`.
 
-+----------------------------------+--------------+---------------------------+--------------+
-| **Getting Started**                             | **Ingesting Data**                       |
-+==================================+==============+===========================+==============+
-| Topic                            | Description  | Topic                     | Description  |
-+----------------------------------+--------------+---------------------------+--------------+
-| Preparing your machine           | Description  | From CSV files            | Description  |
-+----------------------------------+--------------+---------------------------+--------------+
-| Executing statements             | Description  | From Avro files           | Description  |
-+----------------------------------+--------------+---------------------------+--------------+
-| Performing basic operations      | Description  | From Parquet files        | Description  |
-+----------------------------------+--------------+---------------------------+--------------+
-| Hardware guide                   | Description  | From ORC files            | Description  |
-+----------------------------------+--------------+---------------------------+--------------+
-| **Installation Guides**          |              | From Oracle               |              |
-+----------------------------------+--------------+---------------------------+--------------+
-| Installing and launching SQream  | Description  | **Connecting to SQream**  |              |
-+----------------------------------+--------------+---------------------------+--------------+
-| Installing Studio your machine   | Description  | Client platforms          | Description  |
-+----------------------------------+--------------+---------------------------+--------------+
-|                                  |              | Client drivers            | Description  |
-+----------------------------------+--------------+---------------------------+--------------+
+:ref:`csv`
+
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| Topic                                             | Description                                                                                                                            |
++===================================================+========================================================================================================================================+
+| **Getting Started**                                                                                                                                                                        |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`preparing_your_machine_to_install_sqream`   | Set up your local machine according to SQream’s recommended pre-installation configurations.                                           |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`executing_statements_in_sqream`             | Provides more information about the available methods for executing statements in SQream.                                              |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`performing_basic_sqream_operations`         | Provides more information on performing basic operations.                                                                              |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`hardware_guide`                             | Describes SQream’s mandatory and recommended hardware settings, designed for a technical audience.                                     |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| **Installation Guides**                                                                                                                                                                    |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`installing_and_launching_sqream`            | Refers to SQream’s installation guides.                                                                                                |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`sqream_studio_installation`                 | Refers to all installation guides required for installations related to Studio.                                                        |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| **Ingesting Data**                                                                                                                                                                         |
++--------------------------+------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`csv`               | :ref:`avro`            |                                                                                                                                        |
++--------------------------+------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`parquet`           | :ref:`orc`             |                                                                                                                                        |
++--------------------------+------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`oracle`                                                                                                                                                                              |
++--------------------------+------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 
 
 
-
-Getting Started
-===============
-Getting started refers to the following:
-
-.. list-table::
-   :widths: 15 75
-   :header-rows: 1   
-   
-   * - Topic
-     - Description
-   * - Preparing your machine
-     - Description
-   * - Executing statements
-     - Description
-   * - Performing basic operations
-     - Description
-   * - Hardware guide
-     - Description
-	 
-Installation Guides
-===============
-The installation guides section include the following information:
-
-.. list-table::
-   :widths: 15 75
-   :header-rows: 1 
-
-   * - Topic
-     - Description   
-   * - Installing and launching SQream
-     - Description
-   * - Installing Studio your machine
-     - Description
-
-.. hlist::
-   :columns: 5
-		
-   * Getting Started:
-
-   .. list-table::
-   :widths: 15 75
-   :header-rows: 1   
-   
-   * - Role Type
-     - Description
-   * - Groups
-     - Roles with no users.
-   * - Enabled users
-     - Users with log-in permissions and a password.
-   * - Disabled users
-     - Users with log-in permissions and with a disabled password. An admin may disable a user's password permissions to temporary disable access to the system.
-   
-
-.. hlist::
-   :columns: 5
-
-   * Getting Started:
-
-     * Preparing your machine
-     * Executing statements
-     * Performing basic operations
-     * Hardware guide
-
-   Installation guides:
-
-   * Installing and launching SQream
-   * Installing Studio
+:ref:`preparing_your_machine_to_install_sqream`
 
    Ingesting data:
 
