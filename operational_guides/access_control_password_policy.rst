@@ -1,7 +1,7 @@
 .. _access_control_password_policy:
 
 **************
-Password Policy (New!)
+Password Security Compliance (New!)
 **************
 
 .. |icon-new_gray_2022.1.1| image:: /_static/images/new_gray_2022.1.1.png

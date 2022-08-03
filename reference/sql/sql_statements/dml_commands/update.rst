@@ -78,31 +78,7 @@ The **Examples** section includes the following examples:
 .. contents::
    :local:
    :depth: 1
-
-Updating an Entire Table
------------------
-The Examples section shows how to modify the value of certain columns in existing rows without creating a table. The examples are based on the following tables:
-
-.. image:: /_static/images/delete_optimization.png
-
-The following methods for updating an entire table generate the same output, and result with the ``bands`` record set to ``NULL``:
-
-.. code-block:: postgres
-
-   UPDATE bands SET records_sold = 0;
-   
-.. code-block:: postgres
-
-   UPDATE bands SET records_sold = 0 WHERE true;
-   
-.. code-block:: postgres
-
-   UPDATE bands SET records_sold = 0 USING countries;
-
-.. code-block:: postgres
-
-   UPDATE bands SET records_sold = 0 USING countries WHERE 1=1;
-   
+  
 Performing Simple Updates
 -----------------
 The following is an example of performing a simple update:
@@ -125,87 +101,8 @@ The following shows an example of updating tables that contain multi-table condi
      AND country.name = 'Sweden'
    );
    
-Updating Tables that Contain Multi-Table Conditions using the FROM Clause
------------------
-The following shows an example of updating tables that contain multi-table conditions using the ``FROM`` clause:
-
-.. code-block:: postgres
-
-   UPDATE bands
-   SET records_sold = records_sold +
-     CASE
-       WHEN c.name = 'Israel' THEN 2
-       ELSE 1
-     END
-   FROM countries c
-
-You can also write the statement above using the FROM clause:
-
-.. code-block:: psql
-
-   UPDATE bands
-   SET records_sold = records_sold + 1
-   FROM countries
-   WHERE countries.id=bands.country_id AND country.name = 'Sweden';
-   
-Updating Tables that Contain Multi-Table Expressions
------------------
-The following shows an example of updating tables that contain multi-table expressions:
-
-.. code-block:: postgres
-
-   UPDATE bands
-   SET records_sold = records_sold +
-     CASE
-       WHEN c.name = 'Israel' THEN 2
-       ELSE 1
-     END
-   FROM countries c
-   
-Identifying and Cleaning Up Tables
----------------------------------------
-The following section shows examples of each phase required for cleaning up tables:
-
-* :ref:`Listing tables that require clean-up<listing_tables_that_require_cleanup>`
-* :ref:`Identifying clean-up predicates<identifying_cleanup_predicates>`
-* :ref:`Triggering a clean-up<triggering_a_cleanup>`
-
-.. _listing_tables_that_require_cleanup:
-
-Listing Tables that Require Clean-Up
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The following shows an example of listing tables that require clean-up:
-
-.. code-block:: psql
-   
-   farm=> SELECT t.table_name FROM sqream_catalog.delete_predicates dp
-      JOIN sqream_catalog.tables t
-      ON dp.table_id = t.table_id
-      GROUP BY 1;
-   cool_animals
-   
-   1 row
-
-.. _identifying_cleanup_predicates:
-
-Identifying Clean-Up Predicates
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The following shows an example of listing the clean-up predicates:
-
-.. code-block:: psql
-
-   farm=> SELECT delete_predicate FROM sqream_catalog.delete_predicates dp
-      JOIN sqream_catalog.tables t
-      ON dp.table_id = t.table_id
-      WHERE t.table_name = 'cool_animals';
-   weight > 1000
-   
-   1 row
-
-.. _triggering_a_cleanup:
-
 Triggering a Clean-Up
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------
 The following section shows an example of triggering a clean-up:
 
 .. code-block:: psql
@@ -219,20 +116,6 @@ The following is an example of the output generated from the above:
 * **table_id** - 24
 * **column_id** - 1
 * **extent_ID** - 0
-
-Security and Access Control
-=============
-Executing an ``UPDATE`` statement requires the following:
-
-* Both ``UPDATE`` and ``SELECT`` permissions on the target table.
-
-   ::
-   
-* The ``SELECT`` permission for each additional table referenced in the the statement (either in the ``FROM`` clause or in a ``WHERE`` subquery expression).
-
-For more information, navigate to the **Access Control** page and see `Permissions <https://docs.sqream.com/en/v2022.1.1/operational_guides/access_control_permissions.html>`_.
-
-file:///C:/Users/Yaniv/sqream_docs/_build/html/operational_guides/access_control_permissions.html
 
 Locking and Concurrency
 =============

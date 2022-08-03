@@ -27,28 +27,21 @@ The 2022.1.1 Release Notes include the following new features:
    
 Update Feature
 ************
-SQream now supports the DML **Update** feature, which is used for modifying the value of certain columns in existing rows.
+The DML ``UPDATE`` statement has been enhanced to support running subqueries in the ``WHERE`` condition.
 
 For more information, see `UPDATE <https://docs.sqream.com/en/v2022.1.1/reference/sql/sql_statements/dml_commands/update.html#update>`_.
 
-file:///C:/Users/Yaniv/sqream_docs/_build/html/reference/sql/sql_statements/dml_commands/update.html?highlight=update
-
-Password Policy
+Password Security Compliance
 ************
 In compliance with GDPR standards, SQream now requires a strong password policy when accessing the CLI or Studio.
 
-For more information, see `Password Policy <https://docs.sqream.com/en/v2022.1.1/operational_guides/access_control_password_policy.html>`_.
-
-file:///C:/Users/Yaniv/sqream_docs/_build/html/operational_guides/access_control_password_policy.html?highlight=password%20policy
+For more information, see :ref:`access_control_password_policy`.
 
 Compression
 ************
-
 SQream now supports the **zlib** compression format.
 
 For more information, see `Compression <https://docs.sqream.com/en/v2022.1.1/feature_guides/compression.html#compression-strategies>`_. 
-
-file:///C:/Users/Yaniv/sqream_docs/_build/html/feature_guides/compression.html#compression-strategies
 
 Known Issues
 ---------
@@ -69,7 +62,7 @@ The following table lists the issues that were resolved in Version 2022.1.1:
 +=============+========================================================================================+
 | SQ-10873    | Inserting 100K bytes into a text column resulted in an unclear error message.          |
 +-------------+----------------------------------------------------------------------------------------+
-| SQ-10955    | No metadata filters were applied when filtering by a nullable date using ``dateadd``.  |
+| SQ-10892    | An unclear message was displayed when users ran ``UPDATE`` on foreign tables.          |
 +-------------+----------------------------------------------------------------------------------------+
 
 Operations and Configuration Changes
@@ -77,8 +70,6 @@ Operations and Configuration Changes
 The ``login_max_retries`` configuration flag is required for adjusting the permitted log-in attempts.
 
 For more information, see `Adjusting the Permitted Log-In Attempts <https://docs.sqream.com/en/v2022.1.1/configuration_guides/login_max_retries.html>`_.
-
-https://docs.sqream.com/en/latest/configuration_guides/login_max_retries.html
 
 Naming Changes
 -------
@@ -133,4 +124,4 @@ Upgrading to v2022.1.1
    :glob:
    :hidden:
 
-   2022.1.1.1
+   2022.1.1
