@@ -89,7 +89,7 @@ The following is an example of performing a simple update:
    
 Updating Tables that Contain Multi-Table Conditions
 -----------------
-The following shows an example of updating tables that contain multi-table conditions:
+The following shows an example of updating tables that contain multi-table conditions |icon-new_2022.1.1|:
 
 .. code-block:: postgres
 
