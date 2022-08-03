@@ -19,7 +19,7 @@ Worker-Based Configuration
 --------------
 Worker-based configuration lets you modify the configuration belong to individual workers from the worker configuration file.
 
-For more information on making configurations from the worker configuration file, see `Modifying Your Configuration Using a Legacy Configuration File <https://docs.sqream.com/en/latest/configuration_guides/current_configuration_method.html#modifying-your-configuration-using-a-legacy-configuration-file>`_.
+For more information on making configurations from the worker configuration file, see `Modifying Your Configuration Using a Legacy Configuration File <https://docs.sqream.com/en/v2022.3_preview/configuration_guides/current_configuration_method.html#modifying-your-configuration-using-a-legacy-configuration-file>`_.
 
 Session-Based Configuration
 --------------
