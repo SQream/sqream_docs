@@ -24,3 +24,5 @@ This section summarizes the following operational guides:
    seeing_system_objects_as_ddl
    configuration
    optimization_best_practices
+   mounting_an_nfs_shared_drive
+   mounting_a_san_shared_drive
