@@ -88,9 +88,7 @@ Note that you set the timeout value using the ``defaultGracefulShutdownTimeoutMi
 
 For more information, see :ref:`graceful_shutdown`.
 
-**Comment** - *I have not yet created the ``graceful_shutdown`` configuration flag. I need to know what category it belongs in before doing so.*
-
-Like shutdown_server() graceful shutdown will stop any query currently running on the server.
+As with the ``shutdown_server`` command, the **graceful server shutdown** stops all queries currently running on your server.
 
 Permissions
 =============
