@@ -21,6 +21,8 @@ The following is an example of a log record for a query stuck in the query detec
 
 The ``healerMaxInactivityHours`` log frequency is calculated as 5% of the flag setting. When set to to five hours (the default setting), the Query Healer triggers an examination every 15 minutes.
 
+.. note:: The logs are located in your cluster.
+
 Configuring the Healer
 ------------------
 The following **Administration Worker** flags are required to configure the Query Healer:
