@@ -69,16 +69,16 @@ The following table shows the ``shutdown_server`` parameters:
    
    * - Parameter
      - Description
-	 - Example
-	 - Default
+     - Example
+     - Default
    * - ``is_graceful``
      - Determines the method used to shut down the server.
-	 - Selecting ``false`` shuts down the server while queries are running. Selecting ``true`` uses the graceful shutdown method.
- 	 - ``false``
+     - Selecting ``false`` shuts down the server while queries are running. Selecting ``true`` uses the graceful shutdown method.
+     - ``false``
    * - ``timeout``
      - Sets the maximum amount of minutes for the graceful shutdown method to run before the server is shut down using the standard method.
-	 - ``30``
-	 - Five minutes.
+     - ``30``
+     - Five minutes.
 	 
 .. note:: Setting ``is_graceful`` to ``false`` and defining the ``timeout`` value shuts the server down mid-query after the defined time.
 

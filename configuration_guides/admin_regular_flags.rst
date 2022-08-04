@@ -3,7 +3,7 @@
 *************************
 Regular Administration Flags
 *************************
-The **Regular Administration Flags** page describes **Regular** modification type flags, which can be modified by administrators on a session and cluster basis using the ``ALTER SYSTEM SET`` command:
+The **Regular Administration Flags** page describes **Regular** modification type flags, which can be modified by administrators on a session and cluster basis using the ``ALTER SYSTEM SET`` command: 
 
 * `Setting Bin Size <https://docs.sqream.com/en/v2022.1/configuration_guides/bin_sizes.html>`_
 * `Setting CUDA Memory <https://docs.sqream.com/en/v2022.1/configuration_guides/check_cuda_memory.html>`_
@@ -12,6 +12,7 @@ The **Regular Administration Flags** page describes **Regular** modification typ
 * `Reducing CPU Hashtable Sizes <https://docs.sqream.com/en/v2022.1/configuration_guides/cpu_reduce_hashtable_size.html>`_
 * `Setting Chunk Size for Copying from CPU to GPU <https://docs.sqream.com/en/v2022.1/configuration_guides/cuda_mem_cpy_max_size_bytes.html>`_
 * `Indicating GPU Synchronicity <https://docs.sqream.com/en/v2022.1/configuration_guides/cuda_mem_cpy_synchronous.html>`_
+* `Setting the Graceful Server Shutdown <https://docs.sqream.com/en/v2022.1/configuration_guides/graceful_shutdown.html>`_
 * `Enabling Modification of R&D Flags <https://docs.sqream.com/en/v2022.1/configuration_guides/developer_mode.html>`_
 * `Checking for Post-Production CUDA Errors <https://docs.sqream.com/en/v2022.1/configuration_guides/enable_device_debug_messages.html>`_
 * `Enabling Modification of clientLogger_debug File <https://docs.sqream.com/en/v2022.1/configuration_guides/enable_log_debug.html>`_

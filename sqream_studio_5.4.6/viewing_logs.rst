@@ -102,24 +102,3 @@ In the Systems table, you can click on the **Timestamp** and **Log type** items 
 :ref:`Back to Viewing Logs<logs_top_5.4.6>`
 
 .. _log_lines_5.4.6:
-
-Viewing All Log Lines
-----------
-**Comment** - *Has this tab been removed from the GUI?*
-
-The **LOG LINES** tab is used for viewing the total amount of log lines in a table. From here users can view a more granular breakdown of log information collected by Studio. The other tabs (QUERIES, SESSIONS, and SYSTEM) show a filtered form of the raw log lines. For example, the QUERIES tab shows an aggregation of several log lines.
-
-From here you can see and sort by the following:
-
-* Timestamp
-* Message level
-* Worker hostname
-* Worker port
-* Connection ID
-* Database name
-* User name
-* Statement ID
-
-In the **LOG LINES** table, you can click on any of the items to set them as your filters.
-
-:ref:`Back to Viewing Logs<logs_top_5.4.6>`
