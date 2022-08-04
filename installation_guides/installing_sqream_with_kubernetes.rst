@@ -220,7 +220,7 @@ After completing all of the steps above, you must check the CUDA version.
       |  No running processes found                                                 |
       +-----------------------------------------------------------------------------+
 
-In the above output, the CUDA version is **1**.
+In the above output, the CUDA version is **11.4**.
 
 If the above output is not generated, CUDA has not been installed. To install CUDA, see `Installing the CUDA driver <https://docs.sqream.com/en/latest/guides/operations/setup/recommended_pre-installation_configurations.html?highlight=install%20CUDA#installing-the-cuda-driver>`_.
 
