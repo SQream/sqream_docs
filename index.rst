@@ -87,7 +87,7 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
 
 This version of the documentation is for SQream DB Version 2022.1.
 
-If you're looking for an older version of the documentation, versions 1.10 through 2019.2.1 are available at http://previous.sqream.com .
+If you're looking for an older version of the documentation, versions 1.10 through 2019.2.1 are available at http://previous.sqream.com.
 
 .. toctree::
    :caption: Contents:

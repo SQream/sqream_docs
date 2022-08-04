@@ -16,4 +16,3 @@ This section describes how to use the SQream Accleration Studio version 5.4.6:
    monitoring_workers_and_services_from_the_dashboard
    viewing_logs
    creating_assigning_and_managing_roles_and_permissions
-   configuring_your_instance_of_sqream
