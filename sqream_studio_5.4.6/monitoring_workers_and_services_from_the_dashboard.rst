@@ -34,12 +34,9 @@ The following is a brief description of the Dashboard panels:
      - Monitors system health and shows each Sqreamd worker running in the cluster.
    * - 3
      - :ref:`License information<license_information_5.4.6>`
-     - Shows the remaining amount of days left on your license.
-   
+     - Shows the remaining amount of days left on your license.  
 
 .. _data_storage_panel_5.4.6:
-
-
 
 :ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_5.4.6>`
 
@@ -47,9 +44,7 @@ The following is a brief description of the Dashboard panels:
 
 Subscribing to Workers from the Services Panel
 --------------------------
-Services are used to categorize and associate (also known as **subscribing**) workers to particular services. The **Service** panel is used for viewing, monitoring, and adding defined `service queues <https://docs.sqream.com/en/latest/guides/features/workload_manager.html#workload-manager>`_.
-
-
+Services are used to categorize and associate (also known as **subscribing**) workers to particular services. The **Service** panel is used for viewing, monitoring, and adding defined in the :ref:`workload_manager`.
 
 The following is a brief description of each pane:
 	 
@@ -138,20 +133,27 @@ While viewing a worker's query information, clicking the **down arrow** expands 
 
 The graphs show the resource utilization trends over time, and the **CPU memory** and **utilization** and the **GPU utilization** values on the right. You can hover over the graph to see more information about the activity at any point on the graph.
 
-Error notifications related to statements are displayed, and you can hover over them for more information about the error. 
-
+Error notifications related to statements are displayed, and you can hover over them for more information about the error.
 
 .. _view_worker_execution_plan_5.4.6:
 
 Viewing a Worker's Execution Plan
-^^^^^^^^^^^^^^^^^^^^^
-	 
+^^^^^^^^^^^^^^^^^^^^^	 
 Clicking the ellipsis in a service shows the following additional options:
 
 * **Stop Query** - stops the query.
+
+   ::
+   
 * **Show Execution Plan** - shows the execution plan as a table. The columns in the **Show Execution Plan** table can be sorted.
 
-For more information on the current query plan, see `SHOW_NODE_INFO <https://docs.sqream.com/en/latest/reference/sql/sql_statements/monitoring_commands/show_node_info.html#show-node-info>`_. For more information on checking active sessions across the cluster, see `SHOW_SERVER_STATUS <https://docs.sqream.com/en/latest/reference/sql/sql_statements/monitoring_commands/show_server_status.html>`_.
+For more information on the current query plan, see the following:
+
+* :ref:`show_node_info`
+ 
+   ::
+
+* :ref:`show_server_status`
 
 .. include:: /reference/sql/sql_statements/monitoring_commands/show_server_status.rst
    :start-line: 67
@@ -159,14 +161,9 @@ For more information on the current query plan, see `SHOW_NODE_INFO <https://doc
 
 Managing Worker Status
 ^^^^^^^^^^^^^^^^^^^^^
-
 In some cases you may want to stop or restart workers for maintenance purposes. Each Worker line has a :kbd:`⋮` menu used for stopping, starting, or restarting workers.
 
-
 Starting or restarting workers terminates all queries related to that worker. When you stop a worker, its background turns gray.
-
-
-
 
 .. |icon-user| image:: /_static/images/studio_icon_user.png
    :align: middle

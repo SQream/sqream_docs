@@ -3,6 +3,8 @@
 ****************************
 Configuring Your Instance of SQream
 ****************************
+**Comment** - *Has this functionality been removed from Studio 5.4.6?*
+
 The **Configuration** section lets you edit parameters from one centralized location. While you can edit these parameters from the **worker configuration file (config.json)** or from your CLI, you can also modify them in Studio in an easy-to-use format.
 
 Configuring your instance of SQream in Studio is session-based, which enables you to edit parameters per session on your own device. 
@@ -20,4 +22,4 @@ Exporting and Importing Configuration Files
 -------------------------
 You can also export and import your configuration settings into a .json file. This allows you to easily edit your parameters and to share this file with other users if required.
 
-For more information about configuring your instance of SQream, see `Configuration Guides <https://docs.sqream.com/en/latest/configuration_guides/index.html>`_.
+For more information about configuring your instance of SQream, see :ref:`configuration_guides`.

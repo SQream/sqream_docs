@@ -3,8 +3,6 @@
 ********************
 SHUTDOWN SERVER
 ********************
-**Comment** - When finished, add command to Utility Commands > shutdown_server.
-
 The **SHUTDOWN_SERVER** guide describes the following:
 
 .. contents:: 

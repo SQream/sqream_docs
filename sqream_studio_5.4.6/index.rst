@@ -11,7 +11,7 @@ This section describes how to use the SQream Accleration Studio version 5.4.6:
    :maxdepth: 1
    :glob:
 
-   getting_started
+   getting_started_sqream
    executing_statements_and_running_queries_from_the_editor
    monitoring_workers_and_services_from_the_dashboard
    viewing_logs

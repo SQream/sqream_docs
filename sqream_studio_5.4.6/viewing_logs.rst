@@ -24,6 +24,7 @@ The **Logs** screen is used for viewing logs and includes the following elements
    * - :ref:`Log lines tab<log_lines_5.4.6>`
      - Shows the total amount of log lines.
 
+.. note:: Because the logs are stored in the **system** database, you cannot search the logs without first creating a **system** database. When you access the **Logs** tab, SQream can automatically create a **system** database for you.
 
 .. _filter_5.4.6:
 
@@ -104,6 +105,8 @@ In the Systems table, you can click on the **Timestamp** and **Log type** items 
 
 Viewing All Log Lines
 ----------
+**Comment** - *Has this tab been removed from the GUI?*
+
 The **LOG LINES** tab is used for viewing the total amount of log lines in a table. From here users can view a more granular breakdown of log information collected by Studio. The other tabs (QUERIES, SESSIONS, and SYSTEM) show a filtered form of the raw log lines. For example, the QUERIES tab shows an aggregation of several log lines.
 
 From here you can see and sort by the following:

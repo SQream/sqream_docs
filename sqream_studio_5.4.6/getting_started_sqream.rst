@@ -1,15 +1,13 @@
-.. _getting_started:
+.. _getting_started_sqream:
 
 ****************************
 Getting Started with SQream Acceleration Studio 5.4.6
 ****************************
 Setting Up and Starting Studio
 ----------------
+Studio is included with all dockerized installations of SQream. When starting Studio, it listens on the local machine on port 8080.
 
-:ref:`installing-sqream-db-docker`
-
-
-Studio is included with all `dockerized installations of SQream DB <https://docs.sqream.com/en/latest/guides/operations/setup/local_docker.html#installing-sqream-db-docker>`_. When starting Studio, it listens on the local machine on port 8080.
+For more information, see :ref:`running_sqream_in_a_docker_container`.
 
 Logging In to Studio
 ---------------
