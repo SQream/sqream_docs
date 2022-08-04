@@ -17,7 +17,7 @@ The following is an example of a log record for a query stuck in the query detec
 
 .. code-block:: console
 
-   2022/05/19::20:01:25|ERROR|Healer|(0x7f07147fc700)|Stuck query found. Statement ID: 72, Last chunk producer updated: 1 WriteTable, Started on: Thu May 19 14:01:25 2022, Last updated: Thu May 19 15:01:25 2022, Stuck time: 5 hours, Max allowed stuck query time: 5 hours
+   #SQ#|1659621825880088264|2022-05-19 20:01:25.880|INFO|0x00007f9a497fe700:Healer|192.168.4.65|5001|-1|master|sqream|-1|sqream|0|"[ERROR]|cpp/SqrmRT/healer.cpp:140 |"Stuck query found. Statement ID: 72, Last chunk producer updated: 1 WriteTable, Started on: Thu May 19 14:01:25 2022, Last updated: Thu May 19 15:01:25 2022, Stuck time: 5 hours, Max allowed stuck query time: 5 hours"|#EOM#
 
 The ``healerMaxInactivityHours`` log frequency is calculated as 5% of the flag setting. When set to to five hours (the default setting), the Query Healer triggers an examination every 15 minutes.
 

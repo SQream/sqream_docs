@@ -197,27 +197,32 @@ After completing all of the steps above, you must check the CUDA version.
 
    .. code-block:: postgres
    
-      $ +-----------------------------------------------------------------------------+
-      $ | NVIDIA-SMI 418.87.00    Driver Version: 418.87.00    CUDA Version: 10.1     |
-      $ |-------------------------------+----------------------+----------------------+
-      $ | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
-      $ | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-      $ |===============================+======================+======================|
-      $ |   0  GeForce GTX 105...  Off  | 00000000:01:00.0 Off |                  N/A |
-      $ | 32%   38C    P0    N/A /  75W |      0MiB /  4039MiB |      0%      Default |
-      $ +-------------------------------+----------------------+----------------------+
-      $                                                                                
-      $ +-----------------------------------------------------------------------------+
-      $ | Processes:                                                       GPU Memory |
-      $ |  GPU       PID   Type   Process name                             Usage      |
-      $ |=============================================================================|
-      $ |  No running processes found                                                 |
-      $ +-----------------------------------------------------------------------------+
+      +-----------------------------------------------------------------------------+
+      | NVIDIA-SMI 470.82.01    Driver Version: 470.82.01    CUDA Version: 11.4     |
+      |-------------------------------+----------------------+----------------------+
+      | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+      | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+      |                               |                      |               MIG M. |
+      |===============================+======================+======================|
+      |   0  NVIDIA A100-PCI...  On   | 00000000:17:00.0 Off |                    0 |
+      | N/A   34C    P0    64W / 300W |  79927MiB / 80994MiB |      0%      Default |
+      |                               |                      |             Disabled |
+      +-------------------------------+----------------------+----------------------+
+      |   1  NVIDIA A100-PCI...  On   | 00000000:CA:00.0 Off |                    0 |
+      | N/A   35C    P0    60W / 300W |  79927MiB / 80994MiB |      0%      Default |
+      |                               |                      |             Disabled |
+      +-------------------------------+----------------------+----------------------+
+	  
+      +-----------------------------------------------------------------------------+
+      | Processes:                                                       GPU Memory |
+      |  GPU       PID   Type   Process name                             Usage      |
+      |=============================================================================|
+      |  No running processes found                                                 |
+      +-----------------------------------------------------------------------------+
 
-In the above output, the CUDA version is **10.1**.
+In the above output, the CUDA version is **11.4**.
 
-If the above output is not generated, CUDA has not been installed. To install CUDA, see `Installing the CUDA driver <https://docs.sqream.com/en/latest/guides/operations/setup/recommended_pre-installation_configurations.html?highlight=install%20CUDA#installing-the-cuda-driver>`_.
-
+If the above output is not generated, CUDA has not been installed. To install CUDA, see :ref:`installing-the-cuda-driver`.
 
 Go back to :ref:`Setting Up Your Hosts<set_up_your_hosts>`
 
@@ -795,40 +800,46 @@ Installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on CentOS
 
    .. code-block:: postgres
    
-      $ docker run --runtime=nvidia --rm nvidia/cuda:10.1-base nvidia-smi
+      $ docker run --runtime=nvidia --rm nvidia/cuda:11.4.3-base-centos7 nvidia-smi
 
    The following is an example of the correct output:
 
    .. code-block:: postgres
    
-      $ docker run --runtime=nvidia --rm nvidia/cuda:10.1-base nvidia-smi
-      $ Unable to find image 'nvidia/cuda:10.1-base' locally
-      $ 10.1-base: Pulling from nvidia/cuda
-      $ d519e2592276: Pull complete 
-      $ d22d2dfcfa9c: Pull complete 
-      $ b3afe92c540b: Pull complete 
-      $ 13a10df09dc1: Pull complete 
-      $ 4f0bc36a7e1d: Pull complete 
-      $ cd710321007d: Pull complete 
-      $ Digest: sha256:635629544b2a2be3781246fdddc55cc1a7d8b352e2ef205ba6122b8404a52123
-      $ Status: Downloaded newer image for nvidia/cuda:10.1-base
-      $ Sun Feb 14 13:27:58 2021       
-      $ +-----------------------------------------------------------------------------+
-      $ | NVIDIA-SMI 418.87.00    Driver Version: 418.87.00    CUDA Version: 10.1     |
-      $ |-------------------------------+----------------------+----------------------+
-      $ | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
-      $ | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-      $ |===============================+======================+======================|
-      $ |   0  GeForce GTX 105...  Off  | 00000000:01:00.0 Off |                  N/A |
-      $ | 32%   37C    P0    N/A /  75W |      0MiB /  4039MiB |      0%      Default |
-      $ +-------------------------------+----------------------+----------------------+
-      $                                                                                
-      $ +-----------------------------------------------------------------------------+
-      $ | Processes:                                                       GPU Memory |
-      $ |  GPU       PID   Type   Process name                             Usage      |
-      $ |=============================================================================|
-      $ |  No running processes found                                                 |
-      $ +-----------------------------------------------------------------------------+
+      docker run --runtime=nvidia --rm nvidia/cuda:11.4.3-base-centos7 nvidia-smi
+      Unable to find image 'nvidia/cuda:11.4.3-base-centos7' locally
+      11.4.3-base-centos7: Pulling from nvidia/cuda
+      d519e2592276: Pull complete 
+      d22d2dfcfa9c: Pull complete 
+      b3afe92c540b: Pull complete 
+      13a10df09dc1: Pull complete 
+      4f0bc36a7e1d: Pull complete 
+      cd710321007d: Pull complete 
+      Digest: sha256:635629544b2a2be3781246fdddc55cc1a7d8b352e2ef205ba6122b8404a52123
+      Status: Downloaded newer image for nvidia/cuda:11.4.3-base-centos7
+      Sun Feb 14 13:27:58 2021       
+      +-----------------------------------------------------------------------------+
+      | NVIDIA-SMI 470.82.01    Driver Version: 470.82.01    CUDA Version: 11.4     |
+      |-------------------------------+----------------------+----------------------+
+      | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
+      | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
+      |                               |                      |               MIG M. |
+      |===============================+======================+======================|
+      |   0  NVIDIA A100-PCI...  On   | 00000000:17:00.0 Off |                    0 |
+      | N/A   34C    P0    64W / 300W |  79927MiB / 80994MiB |      0%      Default |
+      |                               |                      |             Disabled |
+      +-------------------------------+----------------------+----------------------+
+      |   1  NVIDIA A100-PCI...  On   | 00000000:CA:00.0 Off |                    0 |
+      | N/A   35C    P0    60W / 300W |  79927MiB / 80994MiB |      0%      Default |
+      |                               |                      |             Disabled |
+      +-------------------------------+----------------------+----------------------+
+                                                                                        
+      +-----------------------------------------------------------------------------+
+      | Processes:                                                       GPU Memory |
+      |  GPU       PID   Type   Process name                             Usage      |
+      |=============================================================================|
+      |  No running processes found                                                 |
+      +-----------------------------------------------------------------------------+
 
 For more information on installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on CentOS, see `NVIDIA Docker Installation - CentOS distributions <https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-2.0)#centos-distributions-1>`_
      
