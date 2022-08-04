@@ -808,14 +808,7 @@ Installing the CUDA driver from the Repository is the recommended installation m
    Installing the CUDA depedendencies from the **epel** repository is only required for installing **runfile**.
 
 3. Download and install the required local repository:
-
-   * **Intel - CUDA 10.1 for RHEL7**:
-
-      .. code-block:: console
-
-         $ wget http://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
-         $ sudo yum localinstall cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
-		 
+	 
    * **Intel - 11.4.3 repository**:
 
       .. code-block:: console
@@ -878,42 +871,42 @@ You can prepare the CUDA driver offline from a server connected to the CUDA repo
 
    .. code-block:: console
 
-      $ cuda-10-1-local.repo
+      $ cuda-11.4.3-local.repo
 
-9. Edit the **/etc/yum.repos.d/cuda-10-1-local.repo** file:
+9. Edit the **/etc/yum.repos.d/cuda-11.4.3-local.repo** file:
 
    .. code-block:: console
 
-      $ vim /etc/yum.repos.d/cuda-10-1-local.repo
+      $ vim /etc/yum.repos.d/cuda-11.4.3-local.repo
 
    The following is an example of the correct output:
 
    .. code-block:: console
 
-      $ name=cuda-10-1-local
+      $ name=cuda-11.4.3-local
    
 10. Clone the repository to a location where it can be copied from:
 
    .. code-block:: console
 
-      $ reposync -g -l -m --repoid=cuda-10-1-local --download_path=/var/cuda-repo-10.1-local
+      $ reposync -g -l -m --repoid=cuda-11.4.3-local.repo --download_path=/var/cuda-11.4.3-local
 
 11. Copy the repository to the installation server and create the repository:
 
    .. code-block:: console
 
-      $ createrepo -g comps.xml /var/cuda-repo-10.1-local
+      $ createrepo -g comps.xml /var/cuda-11.4.3-local.repo
 
-12. Add a repo configuration file in **/etc/yum.repos.d/** by editing the **/etc/yum.repos.d/cuda-10.1-local.repo** repository:
+12. Add a repo configuration file in **/etc/yum.repos.d/** by editing the **/etc/yum.repos.d/cuda-11.4.3-local.repo** repository:
  
    .. code-block:: console
 
-      $ [cuda-10.1-local]
-      $ name=cuda-10.1-local
-      $ baseurl=file:///var/cuda-repo-10.1-local
+      $ [cuda-11.4.3-local]
+      $ name=cuda-11.4.3-local.repo
+      $ baseurl=file:///var/cuda-11.4.3-local
       $ enabled=1
       $ gpgcheck=1
-      $ gpgkey=file:///var/cuda-repo-10-1-local/7fa2af80.pub   
+      $ gpgkey=file:///var/cuda-11.4.3-local/7fa2af80.pub   
    
 13. Install the CUDA drivers by installing the most current DKMS (Dynamic Kernel Module Support) NVIDIA driver as a root user logged in shell:
   
