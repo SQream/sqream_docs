@@ -8,13 +8,11 @@ Password Security Compliance (New!)
    :align: middle
    :width: 110
       
-As part of our compliance with GDPR standards |icon-new_gray_2022.1.1| SQream relies on a strong password policy when accessing the CLI or Studio, with the following requirements:
+As part of our compliance with GDPR standards |icon-new_gray_2022.1.1| SQream relies on a strong password policy when accessing the CLI or Studio.
+
+The following requirements apply when creating a password:
 
 * At least eight characters long.
-
-   ::
-
-* Mandatory upper and lowercase letters.
 
    ::
 
@@ -22,13 +20,25 @@ As part of our compliance with GDPR standards |icon-new_gray_2022.1.1| SQream re
 
    ::
 
-* May not include a username.
+* Should not include a username.
 
    ::
 
 * Must include at least one special character, such as **?**, **!**, **$**, etc.
 
-You can create a password through the Studio graphic interface or through the CLI, as in the following example command:
+   ::
+
+* Mandatory upper and lowercase letters.
+
+The following is the syntax for creating a password:
+
+.. code-block:: console
+
+   CREATE ROLE <name of role> ;
+   GRANT LOGIN <permisson type> ;
+   GRANT PASSWORD <'password'> to <name of user> ;
+
+The following is an example of creating a password:
 
 .. code-block:: console
 
@@ -52,7 +62,7 @@ Creating a password that does not comply with the above requirements generates t
 
    * Must include at least one “special” character (?, !, $, etc.).
    
-.. note:: When a new user created in Studio, a message is displayed to help you determine what the constraints are. 
+.. note:: When a new user is created in Studio, a message is displayed to help you determine what the constraints are. 
 
 Unsuccessfully attempting to log in three times displays the following message:
 

@@ -25,8 +25,6 @@ The following is an example of encrypting a new table:
 		   
 .. note:: Because encryption is not associated with any role, users with **Read** or **Insert** permissions can read tables containing encrypted data.
 
-.. warning:: Your performance degradation increases in correlation with the amount of added columns.
-
 You cannot encrypt more than three columns. Attempting to encrypt more than three columns displays the following error message:
 
 .. code-block:: console
