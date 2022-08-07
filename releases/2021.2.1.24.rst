@@ -26,7 +26,22 @@ Query Healer
 The new **Query Healer** feature periodically examines the progress of running statements, and is used for query maintenance.
 
 For more information, see `Query Healer <https://docs.sqream.com/en/v2021.2.1.24/feature_guides/query_healer.html>`_.
-For more information, see :ref:`query_healer`.
+
+Resolved Issues
+---------
+The following table lists the resolved issues for Version 2021.2.1.24:
+
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+| **SQ No.**  | **Description**                                                                                                                    |
++=============+====================================================================================================================================+
+| SQ-10606    | Queries were getting stuck in the queue for a prolonged time.                                                                      |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10691    | The DB schema identifier was causing an error when running queries from joins suite.                                               |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10918    | The Workload Manager was only assigning jobs sequentially, delaying user SQLs assigned to workers running very large jobs.         |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10955    | Metadata filters were not being applied when users filtered by nullable dates using ``dateadd``                                    |
++-------------+------------------------------------------------------------------------------------------------------------------------------------+
 
 Known Issues
 ---------
@@ -37,22 +52,10 @@ The following table lists the known issues for Version 2021.2.1.24:
 +=============+====================================================================================================================================+
 | SQ-10071    | An error occurred on existing subqueries with ``TEXT`` and ``VARCHAR`` equality conditions.                                        |
 +-------------+------------------------------------------------------------------------------------------------------------------------------------+
-| SQ-10606    | Queries were getting stuck in the queue for a prolonged time.                                                                      |
-+-------------+------------------------------------------------------------------------------------------------------------------------------------+
-| SQ-10691    | The DB schema identifier was causing an error when running queries from joins suite.                                               |
-+-------------+------------------------------------------------------------------------------------------------------------------------------------+
 | SQ-10902    | Inserting a null value into non-null column was causing SQream to crash.                                                           |
-+-------------+------------------------------------------------------------------------------------------------------------------------------------+
-| SQ-10918    | The Workload Manager was only assigning jobs sequentially, delaying user SQLs assigned to workers running very large jobs.         |
-+-------------+------------------------------------------------------------------------------------------------------------------------------------+
-| SQ-10955    | Metadata filters were not being applied when users filtered by nullable dates using ``dateadd``                                    |
 +-------------+------------------------------------------------------------------------------------------------------------------------------------+
 | SQ-11088    | Specific workers caused low performance during compilation.                                                                        |
 +-------------+------------------------------------------------------------------------------------------------------------------------------------+
-
-Resolved Issues
----------
-The Resolved Issues section is not relevant for Version 2021.2.1.24.
 
 Operations and Configuration Changes
 --------
