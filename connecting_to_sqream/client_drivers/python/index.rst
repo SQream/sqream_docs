@@ -73,15 +73,15 @@ Some distributions of Python do not include OpenSSL. The Python connector relies
 
 * To install OpenSSL on RHEL/CentOS
 
-   .. code-block:: console
+  .. code-block:: console
    
-      $ sudo yum install -y libffi-devel openssl-devel
+     $ sudo yum install -y libffi-devel openssl-devel
 
 * To install OpenSSL on Ubuntu
 
-   .. code-block:: console
+  .. code-block:: console
    
-      $ sudo apt-get install libssl-dev libffi-dev -y
+     $ sudo apt-get install libssl-dev libffi-dev -y
 
 Installing via PIP
 -----------------
@@ -127,13 +127,13 @@ This section describes how to validate your installation.
       $ python test.py
       Version: v2020.1
 
-If the validation was successful, you can build an application using the SQream Python connector. If you receive a connection error, verify the following:
+   If the validation was successful, you can build an application using the SQream Python connector. If you receive a connection error, verify the following:
 
-* You have access to a running SQream database.
+   * You have access to a running SQream database.
 
-   ::
+      ::
 
-* The connection parameters are correct.
+   * The connection parameters are correct.
 
 SQLAlchemy Examples
 ========================
@@ -409,7 +409,7 @@ This example shows how to load 10,000 rows of dummy data to an instance of SQrea
       result = cur.fetchall() # `fetchall` collects the entire data set
       print (f"Count of inserted rows: {result[0][0]}")
 
-9. Close the cursor
+9. Close the cursor:
 
    .. code-block:: python
 
