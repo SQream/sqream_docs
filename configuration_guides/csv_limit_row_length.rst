@@ -9,3 +9,4 @@ The following describes the ``csvLimitRowLength`` flag:
 
 * **Data type** - uint
 * **Default value** - ``100000``
+* **Allowed values** - 1-4000000000

@@ -8,4 +8,5 @@ The ``developerMode`` flag enables modifying R&D flags.
 The following describes the ``developerMode`` flag:
 
 * **Data type** - boolean
-* **Default value** - ``FALSE``
+* **Default value** - ``false``
+* **Allowed values** - ``true``, ``false``

@@ -9,3 +9,4 @@ The following describes the ``spoolMemoryGB`` flag:
 
 * **Data type** - uint
 * **Default value** - ``8``
+* **Allowed values** - 0-5000

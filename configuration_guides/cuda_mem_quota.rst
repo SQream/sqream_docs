@@ -9,3 +9,4 @@ The following describes the ``cudaMemQuota`` flag:
 
 * **Data type** - uint
 * **Default value** - ``90``
+* **Allowed values** - 0-100
