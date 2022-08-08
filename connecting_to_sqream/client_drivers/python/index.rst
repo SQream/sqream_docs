@@ -3,27 +3,34 @@
 *************************
 Python (pysqream)
 *************************
+The **Python** connector page describes the following:
 
+.. contents:: 
+   :local:
+   :depth: 1
+
+Overview
+=============
 The SQream Python connector is a set of packages that allows Python programs to connect to SQream DB.
 
 * ``pysqream`` is a pure Python connector. It can be installed with ``pip`` on any operating system, including Linux, Windows, and macOS.
 
 * ``pysqream-sqlalchemy`` is a SQLAlchemy dialect for ``pysqream``
 
-The connector supports Python 3.6.5 and newer.
+The connector supports Python 3.6.5 and newer. The base ``pysqream`` package conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_.
 
-The base ``pysqream`` package conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_.
-
-.. contents:: In this topic:
-   :local:
-
-Installing the Python connector
+Installing the Python Connector
 ==================================
 
 Prerequisites
 ----------------
+Installing the Python connector includes the following prerequisites:
 
-1. Python
+.. contents:: 
+   :local:
+   :depth: 1
+
+Python
 ^^^^^^^^^^^^
 
 The connector requires Python 3.6.5 or newer. To verify your version of Python:
@@ -38,7 +45,7 @@ The connector requires Python 3.6.5 or newer. To verify your version of Python:
 
 .. warning:: If you're running on an older version, ``pip`` will fetch an older version of ``pysqream``, with version <3.0.0. This version is currently not supported.
 
-2. PIP
+PIP
 ^^^^^^^^^^^^
 The Python connector is installed via ``pip``, the Python package manager and installer.
 
@@ -60,9 +67,8 @@ We recommend upgrading to the latest version of ``pip`` before installing. To ve
    * On macOS, you may want to use virtualenv to install Python and the connector, to ensure compatibility with the built-in Python environment
    *  If you encounter an error including ``SSLError`` or ``WARNING: pip is configured with locations that require TLS/SSL, however the ssl module in Python is not available.`` - please be sure to reinstall Python with SSL enabled, or use virtualenv or Anaconda.
 
-3. OpenSSL for Linux
+OpenSSL for Linux
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 Some distributions of Python do not include OpenSSL. The Python connector relies on OpenSSL for secure connections to SQream DB.
 
 * To install OpenSSL on RHEL/CentOS
@@ -77,18 +83,8 @@ Some distributions of Python do not include OpenSSL. The Python connector relies
    
       $ sudo apt-get install libssl-dev libffi-dev -y
 
-4. Cython (optional)
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-Optional but highly recommended is Cython, which improves performance of Python applications.
-
-   .. code-block:: console
-   
-      $ pip install cython
-
-Install via pip
+Installing via PIP
 -----------------
-
 The Python connector is available via `PyPi <https://pypi.org/project/pysqream/>`_.
 
 Install the connector with ``pip``:
@@ -99,49 +95,59 @@ Install the connector with ``pip``:
 
 ``pip`` will automatically install all necessary libraries and modules.
 
-Upgrading an existing installation
+Upgrading an Existing Installation
 --------------------------------------
-
-The Python drivers are updated periodically.
-To upgrade an existing pysqream installation, use pip's ``-U`` flag.
+The Python drivers are updated periodically. To upgrade an existing pysqream installation, use pip's ``-U`` flag:
 
 .. code-block:: console
    
    $ pip install pysqream pysqream-sqlalchemy -U
 
-
-Validate the installation
+Validating Your Installation
 -----------------------------
+This section describes how to validate your installation.
 
-Create a file called ``test.py``, containing the following:
+**To validate your installation**:
+
+1. Create a file called ``test.py``, containing the following:
 
 .. literalinclude:: test.py
     :language: python
     :caption: pysqream Validation Script
     :linenos:
 
-Make sure to replace the parameters in the connection with the respective parameters for your SQream DB installation.
+2. Verify that the parameters in the connection have been replaced with your respective SQream installation parameters.
 
-Run the test file to verify that you can connect to SQream DB:
+    ::
 
-.. code-block:: console
+3. Run the test file to verify that you can connect to SQream:
+
+   .. code-block:: console
    
-   $ python test.py
-   Version: v2020.1
+      $ python test.py
+      Version: v2020.1
 
-If all went well, you are now ready to build an application using the SQream DB Python connector!
+If the validation was successful, you can build an application using the SQream Python connector. If you receive a connection error, verify the following:
 
-If any connection error appears, verify that you have access to a running SQream DB and that the connection parameters are correct.
+* You have access to a running SQream database.
 
-SQLAlchemy examples
+   ::
+
+* The connection parameters are correct.
+
+SQLAlchemy Examples
 ========================
+SQLAlchemy is an **Object-Relational Mapper (ORM) for Python. When you install the SQream dialect (``pysqream-sqlalchemy``) you can use frameworks such as Pandas, TensorFlow, and Alembic to query SQream directly.
 
-SQLAlchemy is an ORM for Python.
+This section includes the following examples:
 
-When you install the SQream DB dialect (``pysqream-sqlalchemy``) you can use frameworks like Pandas, TensorFlow, and Alembic to query SQream DB directly.
+.. contents:: 
+   :local:
+   :depth: 1
 
-A simple connection example
+Standard Connection Example
 ---------------------------------
+The following is a standard connection example:
 
 .. code-block:: python
 
@@ -162,10 +168,9 @@ A simple connection example
    res = engine.execute('insert into test values (5), (6)')
    res = engine.execute('select * from test')
 
-Pulling a table into Pandas
+Pulling a Table into Pandas
 ---------------------------------
-
-In this example, we use the URL method to create the connection string.
+The following example shows how to pull a table in Pandas. This examples uses the URL method to create the connection string:
 
 .. code-block:: python
 
@@ -186,72 +191,76 @@ In this example, we use the URL method to create the connection string.
    
    table_df = pd.read_sql("select * from nba", con=engine)
 
-
 API Examples
 ===============
+This section includes the following examples:
 
-Explaining the connection example
+.. contents:: 
+   :local:
+   :depth: 1
+
+Describing Your Connection
 ---------------------------------------
+This example shows how to describe the connection.
 
-First, import the package and create a connection
+**Describing your connection**:
 
-.. code-block:: python
+1. Import the package and create a connection:
+
+   .. code-block:: python
    
-   # Import pysqream package
+      # Import pysqream package
    
-   import pysqream
+      import pysqream
 
-   """
-   Connection parameters include:
-   * IP/Hostname
-   * Port
-   * database name
-   * username
-   * password 
-   * Connect through load balancer, or direct to worker (Default: false - direct to worker)
-   * use SSL connection (default: false)
-   * Optional service queue (default: 'sqream')
-   """
+      """
+      Connection parameters include:
+      * IP/Hostname
+      * Port
+      * database name
+      * username
+      * password 
+      * Connect through load balancer, or direct to worker (Default: false - direct to worker)
+      * use SSL connection (default: false)
+      * Optional service queue (default: 'sqream')
+      """
    
-   # Create a connection object
+     # Create a connection object
+
+     con = pysqream.connect(host='127.0.0.1', port=3108, database='raviga'
+                   , username='rhendricks', password='Tr0ub4dor&3'
+                   , clustered=True)
+
+2. Run a query and fetch the results:
+
+   .. code-block:: python
+
+      cur = con.cursor()  # Create a new cursor
+      # Prepare and execute a query
+      cur.execute('select show_version()')
    
-   con = pysqream.connect(host='127.0.0.1', port=3108, database='raviga'
-                      , username='rhendricks', password='Tr0ub4dor&3'
-                      , clustered=True)
-
-Then, run a query and fetch the results
-
-.. code-block:: python
-
-   cur = con.cursor()  # Create a new cursor
-   # Prepare and execute a query
-   cur.execute('select show_version()')
+      result = cur.fetchall() # `fetchall` gets the entire data set
    
-   result = cur.fetchall() # `fetchall` gets the entire data set
+      print (f"Version: {result[0][0]}")
+
+   The SQream version should be output, such as ``v2020.1``.
+
+3. Close the connection:
+
+   .. code-block:: python
    
-   print (f"Version: {result[0][0]}")
+      con.close()
 
-This should print the SQream DB version. For example ``v2020.1``.
-
-Finally, we will close the connection
-
-.. code-block:: python
-   
-   con.close()
-
-Using the cursor
+Using the Cursor
 --------------------------------------------
-
-The DB-API specification includes several methods for fetching results from the cursor.
-
-We will use the ``nba`` example. Here's a peek at the table contents:
+The DB-API specification includes several methods for fetching results from the cursor. This sections shows an example using the ``nba`` table, which looks as follows:
 
 .. csv-table:: nba
    :file: nba-t10.csv
    :widths: auto
    :header-rows: 1 
 
-Like before, we will import the library and create a :py:meth:`~Connection`, followed by :py:meth:`~Connection.execute` on a simple ``SELECT *`` query.
+As before, you must import the library and create a :py:meth:`~Connection`, followed by :py:meth:`~Connection.execute` on a simple ``SELECT *`` query:
 
 .. code-block:: python
    
@@ -265,9 +274,9 @@ Like before, we will import the library and create a :py:meth:`~Connection`, fol
    statement = 'SELECT * FROM nba'
    cur.execute(statement)
 
-After executing the statement, we have a :py:meth:`Connection<cursor>` cursor object waiting. A cursor is iterable, meaning that everytime we fetch, it advances the cursor to the next row.
+When the statement has finished executing, you have a :py:meth:`Connection<cursor>` cursor object waiting. A cursor is iterable, meaning that it advances the cursor to the next row when fetched.
 
-Use :py:meth:`~Connection.fetchone` to get one record at a time:
+You can use :py:meth:`~Connection.fetchone` to fetch one record at a time:
 
 .. code-block:: python
    
@@ -275,14 +284,14 @@ Use :py:meth:`~Connection.fetchone` to get one record at a time:
    
    second_row = cur.fetchone() # Fetch one row at a time (second row)
 
-To get several rows at a time, use :py:meth:`~Connection.fetchmany`:
+To fetch several rows at a time, use :py:meth:`~Connection.fetchmany`:
 
 .. code-block:: python
    
    # executing `fetchone` twice is equivalent to this form:
    third_and_fourth_rows = cur.fetchmany(2)
 
-To get all rows at once, use :py:meth:`~Connection.fetchall`:
+To fetch all rows at once, use :py:meth:`~Connection.fetchall`:
 
 .. code-block:: python
    
@@ -292,7 +301,7 @@ To get all rows at once, use :py:meth:`~Connection.fetchall`:
    # Close the connection when done
    con.close()
 
-Here are the contents of the row variables we used:
+The following is an example of the contents of the row variables used in our examples:
 
 .. code-block:: pycon
    
@@ -308,12 +317,11 @@ Here are the contents of the row variables we used:
 
 .. note:: Calling a fetch command after all rows have been fetched will return an empty array (``[]``).
 
-Reading result metadata
+Reading Result Metadata
 ----------------------------
+When you execute a statement, the connection object also contains metadata about the result set, such as **column names**, **types**, etc).
 
-When executing a statement, the connection object also contains metadata about the result set (e.g.column names, types, etc).
-
-The metadata is stored in the :py:attr:`Connection.description` object of the cursor.
+The metadata is stored in the :py:attr:`Connection.description` object of the cursor:
 
 .. code-block:: pycon
    
@@ -328,78 +336,112 @@ The metadata is stored in the :py:attr:`Connection.description` object of the cu
    >>> print(cur.description)
    [('Name', 'STRING', 24, 24, None, None, True), ('Team', 'STRING', 22, 22, None, None, True), ('Number', 'NUMBER', 1, 1, None, None, True), ('Position', 'STRING', 2, 2, None, None, True), ('Age (as of 2018)', 'NUMBER', 1, 1, None, None, True), ('Height', 'STRING', 4, 4, None, None, True), ('Weight', 'NUMBER', 2, 2, None, None, True), ('College', 'STRING', 21, 21, None, None, True), ('Salary', 'NUMBER', 4, 4, None, None, True)]
 
-To get a list of column names, iterate over the ``description`` list:
+You can fetch a list of column names by iterating over the ``description`` list:
    
 .. code-block:: pycon
    
    >>> [ i[0] for i in cur.description ]
    ['Name', 'Team', 'Number', 'Position', 'Age (as of 2018)', 'Height', 'Weight', 'College', 'Salary']
 
-Loading data into a table
+Loading Data into a Table
 ---------------------------
+This example shows how to load 10,000 rows of dummy data to an instance of SQream.
 
-This example loads 10,000 rows of dummy data to a SQream DB instance
+**To load data 10,000 rows of dummy data to an instance of SQream:**
 
-.. code-block:: python
+1. Run the following:
+
+   .. code-block:: python
    
-   import pysqream
-   from datetime import date, datetime
-   from time import time
+      import pysqream
+      from datetime import date, datetime
+      from time import time
 
-   con = pysqream.connect(host='127.0.0.1', port=3108, database='master'
-                      , username='rhendricks', password='Tr0ub4dor&3'
-                      , clustered=True)
+      con = pysqream.connect(host='127.0.0.1', port=3108, database='master'
+                         , username='rhendricks', password='Tr0ub4dor&3'
+                         , clustered=True)
    
-   # Create a table for loading
-   create = 'create or replace table perf (b bool, t tinyint, sm smallint, i int, bi bigint, f real, d double, s varchar(12), ss text, dt date, dtt datetime)'
-   con.execute(create)
+2. Create a table for loading:
 
-   # After creating the table, we can load data into it with the INSERT command
+   .. code-block:: python
 
-   # Create dummy data which matches the table we created
-   data = (False, 2, 12, 145, 84124234, 3.141, -4.3, "Marty McFly" , u"キウイは楽しい鳥です" , date(2019, 12, 17), datetime(1955, 11, 4, 1, 23, 0, 0))
+      create = 'create or replace table perf (b bool, t tinyint, sm smallint, i int, bi bigint, f real, d double, s varchar(12), ss text, dt date, dtt datetime)'
+      con.execute(create)
+
+3. Load your data into table using the ``INSERT`` command.
+
+    ::
+
+4. Create dummy data matching the table you created:
+
+   .. code-block:: python
+
+      data = (False, 2, 12, 145, 84124234, 3.141, -4.3, "Marty McFly" , u"キウイは楽しい鳥です" , date(2019, 12, 17), datetime(1955, 11, 4, 1, 23, 0, 0))
+      
+      row_count = 10**4
+
+5. Get a new cursor:
+
+   .. code-block:: python
+
+      cur = con.cursor()
+      insert = 'insert into perf values (?,?,?,?,?,?,?,?,?,?,?)'
+      start = time()
+      cur.executemany(insert, [data] * row_count)
+      print (f"Total insert time for {row_count} rows: {time() - start} seconds")
+
+6. Close this cursor:
+
+   .. code-block:: python
+
+      cur.close()
    
+7. Verify that the data was inserted correctly.
+
+    ::
+
+8. Get a new cursor:
+
+   .. code-block:: python
+
+      cur = con.cursor()
+      cur.execute('select count(*) from perf')
+      result = cur.fetchall() # `fetchall` collects the entire data set
+      print (f"Count of inserted rows: {result[0][0]}")
+
+9. Close the cursor
+
+   .. code-block:: python
+
+       cur.close()
    
-   row_count = 10**4
+10. Close the connection:
 
-   # Get a new cursor
-   cur = con.cursor()
-   insert = 'insert into perf values (?,?,?,?,?,?,?,?,?,?,?)'
-   start = time()
-   cur.executemany(insert, [data] * row_count)
-   print (f"Total insert time for {row_count} rows: {time() - start} seconds")
+   .. code-block:: python
 
-   # Close this cursor
-   cur.close()
-   
-   # Verify that the data was inserted correctly
-   # Get a new cursor
-   cur = con.cursor()
-   cur.execute('select count(*) from perf')
-   result = cur.fetchall() # `fetchall` collects the entire data set
-   print (f"Count of inserted rows: {result[0][0]}")
+      con.close()
 
-   # When done, close the cursor
-   cur.close()
-   
-   # Close the connection
-   con.close()
-
-Reading data from a CSV file for load into a table
+Reading Data from a CSV File for Loading into a Table
 ----------------------------------------------------------
+This example shows how to write a helper function to create an :ref:`insert` statement, by reading an existing table's metadata.
 
-We will write a helper function to create an :ref:`insert` statement, by reading an existing table's metadata.
+**To read data from a CSV file for loading into a table:**
 
-.. code-block:: python
+1. Run the following:
+
+   .. code-block:: python
    
-   import pysqream
-   import datetime
+      import pysqream
+      import datetime
 
-   def insert_from_csv(cur, table_name, csv_filename, field_delimiter = ',', null_markers = []):
-      """
-      We will first ask SQream DB for some table information.
-      This is important for understanding the number of columns, and will help
-      to create a matching INSERT statement
+      def insert_from_csv(cur, table_name, csv_filename, field_delimiter = ',', null_markers = []):
+         """
+2. Ask SQream for some table information.
+
+   This is important for determining the number of columns, and helps create a matching ``INSERT`` statement:
+   
+   .. code-block:: python
+   
       """
 
       column_info = cur.execute(f"SELECT * FROM {table_name} LIMIT 0").description
@@ -414,85 +456,113 @@ We will write a helper function to create an :ref:`insert` statement, by reading
                except ValueError:
                   return datetime.datetime.strptime(row[i], '%Y-%m-%d')
 
-      # Create enough placeholders (`?`) for the INSERT query string
+3. Create enough placeholders (`?`) for the ``INSERT`` query string:
+
+
+   .. code-block:: python
+
       qstring = ','.join(['?'] * len(column_info))
       insert_statement = f"insert into {table_name} values ({qstring})"
 
-      # Open the CSV file
+4. Open the CSV file:
+
+   .. code-block:: python
+
       with open(csv_filename, mode='r') as csv_file:
          csv_reader = csv.reader(csv_file, delimiter=field_delimiter)
 
-      # Execute the INSERT statement with the CSV data
+5. Execute the ``INSERT`` statement with the CSV data:
+
+   .. code-block:: python
+
       cur.executemany(insert_statement, [row for row in csv_reader])
 
 
-   con = pysqream.connect(host='127.0.0.1', port=3108, database='master'
+      con = pysqream.connect(host='127.0.0.1', port=3108, database='master'
                       , username='rhendricks', password='Tr0ub4dor&3'
                       , clustered=True)
    
-   cur = con.cursor()
-   insert_from_csv(cur, 'nba', 'nba.csv', field_delimiter = ',', null_markers = [])
+      cur = con.cursor()
+      insert_from_csv(cur, 'nba', 'nba.csv', field_delimiter = ',', null_markers = [])
    
-   con.close()
+      con.close()
 
-
-Using SQLAlchemy ORM to create tables and fill them with data
+Using SQLAlchemy ORM to Create and Populate Tables
 -----------------------------------------------------------------------
+This section shows how to use the ORM to create and populate tables from Python objects.
 
-You can also use the ORM to create tables and insert data to them from Python objects.
+**To use SQLAlchemy ORM to create and populate tables:**
 
-For example:
+1. Run the following:
 
-.. code-block:: python
+   .. code-block:: python
+      
+      import sqlalchemy as sa
+      import pandas as pd
+      from sqlalchemy.engine.url import URL
+
+
+      engine_url = URL('sqream'
+                    , username='rhendricks'
+                    , password='secret_passwor"
+                    , host='localhost'
+                    , port=5000
+                    , database='raviga'
+                    , query={'use_ssl': False})
+
+      engine = sa.create_engine(engine_url)
    
-   import sqlalchemy as sa
-   import pandas as pd
-   from sqlalchemy.engine.url import URL
+2. Build a metadata object and bind it:
 
+   .. code-block:: python
+   
+      metadata = sa.MetaData()
+      metadata.bind = engine
+   
+3. Create a table in the local metadata:
+   
+   .. code-block:: python
+   
+      employees = sa.Table(
+      'employees'
+      , metadata 
+      , sa.Column('id', sa.Integer)
+      , sa.Column('name', sa.VARCHAR(32))
+      , sa.Column('lastname', sa.VARCHAR(32))
+      , sa.Column('salary', sa.Float)
+      )
 
-   engine_url = URL('sqream'
-                 , username='rhendricks'
-                 , password='secret_passwor"
-                 , host='localhost'
-                 , port=5000
-                 , database='raviga'
-                 , query={'use_ssl': False})
+   The ``create_all()`` function uses the SQream engine object.
 
-   engine = sa.create_engine(engine_url)
-   
-   # Build a metadata object and bind it
-   
-   metadata = sa.MetaData()
-   metadata.bind = engine
-   
-   # Create a table in the local metadata
-   
-   employees = sa.Table(
-   'employees'
-   , metadata 
-   , sa.Column('id', sa.Integer)
-   , sa.Column('name', sa.VARCHAR(32))
-   , sa.Column('lastname', sa.VARCHAR(32))
-   , sa.Column('salary', sa.Float)
-   )
+4. Create all the defined table objects:
 
-   # The create_all() function uses the SQream DB engine object
-   # to create all the defined table objects.
+   .. code-block:: python
 
-   metadata.create_all(engine)
+      metadata.create_all(engine)
    
-   # Now that the table exists, we can insert data into it.
-   
-   # Build the data rows
-   insert_data = [ {'id': 1, 'name': 'Richard','lastname': 'Hendricks',   'salary': 12000.75}
-                  ,{'id': 3,  'name': 'Bertram', 'lastname': 'Gilfoyle', 'salary': 8400.0}
-                  ,{'id': 8,  'name': 'Donald', 'lastname': 'Dunn', 'salary': 6500.40}
-                 ]
+5. Populate your table.
 
-   # Build the insert command
-   ins = employees.insert(insert_data)
+    ::
    
-   # Execute the command
-   result = engine.execute(ins)
+6. Build the data rows:
+
+   .. code-block:: python
+
+      insert_data = [ {'id': 1, 'name': 'Richard','lastname': 'Hendricks',   'salary': 12000.75}
+                     ,{'id': 3,  'name': 'Bertram', 'lastname': 'Gilfoyle', 'salary': 8400.0}
+                     ,{'id': 8,  'name': 'Donald', 'lastname': 'Dunn', 'salary': 6500.40}
+                    ]
+
+7. Build the ``INSERT`` command:
+   
+   .. code-block:: python
+
+      ins = employees.insert(insert_data)
+   
+8. Execute the command:
+
+   .. code-block:: python
+
+      result = engine.execute(ins)
 
 For more information, see the :ref:`python_api_reference_guide`.
