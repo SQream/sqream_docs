@@ -8,4 +8,5 @@ The ``compilerGetsOnlyUFs`` flag sets the runtime to pass only utility functions
 The following describes the ``compilerGetsOnlyUFs`` flag:
 
 * **Data type** - boolean
-* **Default value** - ``FALSE``
+* **Default value** - ``false``
+* **Allowed values** - ``true``, ``false``

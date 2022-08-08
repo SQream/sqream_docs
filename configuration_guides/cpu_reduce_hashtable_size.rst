@@ -1,11 +1,12 @@
 .. _cpu_reduce_hashtable_size:
 
 *************************
-Enabling High Bin Control Granularity
+Setting Hashtable Size for GROUP BY Queries
 *************************
-The ``copyToRestrictUtf8`` flag sets the custom bin size in the cache to enable high bin control granularity.
+The ``cpuReduceHashtableSize`` flag sets the size of the hashtable in your CPU while running a ``GROUP BY`` query. 
 
-The following describes the ``checkCudaMemory`` flag:
+The following describes the ``cpuReduceHashtableSize`` flag:
 
-* **Data type** - boolean
-* **Default value** - ``FALSE``
+* **Data type** - uint
+* **Default value** - ``10000``
+* **Allowed values** - 1-4000000000

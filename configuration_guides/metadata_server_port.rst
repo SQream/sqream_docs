@@ -9,3 +9,4 @@ The following describes the ``metadataServerPort`` flag:
 
 * **Data type** - uint
 * **Default value** - ``3105``
+* **Allowed values** - 1-65535
