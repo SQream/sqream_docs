@@ -1,0 +1,67 @@
+ Volume in drive C is Windows
+ Volume Serial Number is 565C-23BD
+
+ Directory of C:\Users\Yaniv\Desktop\Local Reorganization Folder\configuration_guides
+
+03/22/2022  12:47 PM    <DIR>          .
+03/22/2022  12:47 PM    <DIR>          ..
+03/13/2022  11:57 AM               440 admin_cluster_flags.rst
+03/09/2022  10:31 AM               403 admin_flags.rst
+03/09/2022  11:19 AM             3,561 admin_regular_flags.rst
+03/09/2022  10:31 AM               813 admin_worker_flags.rst
+03/09/2022  11:22 AM               615 bin_sizes.rst
+03/09/2022  12:10 PM               368 cache_disk_dir.rst
+03/09/2022  12:14 PM               340 cache_disk_gb.rst
+03/09/2022  11:59 AM               378 cache_eviction_milliseconds.rst
+03/09/2022  11:42 AM               344 cache_partitions.rst
+03/09/2022  12:02 PM               402 cache_persistent_dir.rst
+03/09/2022  12:13 PM               377 cache_persistent_gb.rst
+03/09/2022  11:53 AM               337 cache_ram_gb.rst
+03/09/2022  11:23 AM               381 check_cuda_memory.rst
+03/09/2022  11:24 AM               394 compiler_gets_only_ufs.rst
+03/08/2022  05:38 PM               570 configuration_flags.rst
+03/08/2022  05:38 PM               605 configuration_methods.rst
+03/09/2022  11:24 AM               403 copy_to_restrict_utf8.rst
+03/09/2022  11:38 AM               408 cpu_reduce_hashtable_size.rst
+03/09/2022  11:25 AM               344 csv_limit_row_length.rst
+03/09/2022  11:25 AM               424 cuda_mem_cpy_max_size_bytes.rst
+03/09/2022  11:26 AM               369 cuda_mem_cpy_synchronous.rst
+03/09/2022  11:26 AM               374 cuda_mem_quota.rst
+03/20/2022  11:02 AM            24,433 current_configuration_method.rst
+03/09/2022  11:27 AM               331 developer_mode.rst
+03/09/2022  11:27 AM               397 enable_device_debug_messages.rst
+03/09/2022  11:28 AM               383 enable_log_debug.rst
+03/09/2022  11:28 AM               372 enable_nv_prof_markers.rst
+03/09/2022  11:29 AM               302 end_log_message.rst
+03/09/2022  10:31 AM               363 extent_storage_file_size_mb.rst
+03/22/2022  12:47 PM                 0 files_and_folders.txt
+03/09/2022  11:29 AM               377 flip_join_order.rst
+03/09/2022  11:30 AM               536 gather_mem_stat.rst
+03/09/2022  10:31 AM               344 generic_flags.rst
+03/09/2022  12:14 PM             1,837 generic_regular_flags.rst
+03/09/2022  10:36 AM               381 generic_worker_flags.rst
+03/09/2022  11:30 AM               410 increase_chunk_size_before_reduce.rst
+03/09/2022  11:30 AM               379 increase_mem_factors.rst
+03/09/2022  10:31 AM               308 index.rst
+03/09/2022  11:31 AM               332 level_db_write_buffer_size.rst
+03/09/2022  11:31 AM               385 limit_query_memory_gb.rst
+03/09/2022  11:32 AM               441 log_sys_level.rst
+03/09/2022  11:32 AM               328 machine_ip.rst
+03/09/2022  11:33 AM               424 max_avg_blob_size_to_compress_on_gpu.rst
+03/13/2022  04:54 PM               422 max_pinned_percentage_of_total_ram.rst
+03/09/2022  11:33 AM               388 memory_reset_trigger_mb.rst
+03/09/2022  11:33 AM               573 metadata_server_port.rst
+03/09/2022  11:34 AM               371 mt_read.rst
+03/09/2022  11:34 AM               367 mt_read_workers.rst
+03/09/2022  11:35 AM               395 orc_implicit_casts.rst
+03/08/2022  07:27 PM             9,074 previous_configuration_method.rst
+03/09/2022  12:09 PM               313 session_tag.rst
+03/09/2022  10:31 AM             2,822 spooling.rst
+03/09/2022  11:35 AM               340 spool_memory_gb.rst
+03/09/2022  11:35 AM               428 statement_lock_timeout.rst
+03/09/2022  11:36 AM               487 use_config_ip.rst
+03/09/2022  11:37 AM               494 use_legacy_decimal_literals.rst
+03/13/2022  12:21 PM               461 use_legacy_string_literals.rst
+03/09/2022  11:37 AM               354 varchar_identifiers.rst
+              58 File(s)         63,002 bytes
+               2 Dir(s)  898,522,271,744 bytes free
