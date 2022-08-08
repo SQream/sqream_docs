@@ -8,4 +8,5 @@ The ``useLegacyDecimalLiterals`` flag interprets decimal literals as **Double** 
 The following describes the ``useLegacyDecimalLiterals`` flag:
 
 * **Data type** - boolean
-* **Default value** - ``FALSE``
+* **Default value** - ``false``
+* **Allowed values** - ``true``, ``false``
