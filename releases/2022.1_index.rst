@@ -35,9 +35,6 @@ The following enhancements were introduced in :ref:`August 2022 (2022.1.1) <2022
    * - **Operational Guides**
      - :ref:`Password Security Compliance<access_control_password_policy>`
      - Integrated password security compliance measures when logging in to the CLI or Studio.
-   * - **Reference Guides**
-     - :ref:`update`
-     - The DML ``UPDATE`` statement has been enhanced to support running subqueries in the ``WHERE`` condition.
 
 July 2022
 ==================

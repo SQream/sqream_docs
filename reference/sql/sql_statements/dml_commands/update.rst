@@ -62,8 +62,6 @@ The following table describes the ``UPDATE`` parameters:
      - Specifies the column containing the data to be updated.
    * - ``additional_table_name``
      - Specifies the column containing the data to be updated.
-   * - ``FROM`` |icon-new_2022.1.1|
-     - For making complex joins, specifies additional tables to be used in the WHERE condition. ``FROM`` is similar to the ``FROM`` clause in a ``DELETE`` statement.
    * - ``condition``
      - Specifies the condition for updating the data.
 	 
@@ -86,20 +84,6 @@ The following is an example of performing a simple update:
 .. code-block:: postgres
 
    UPDATE bands SET records_sold = records_sold + 1 WHERE name LIKE 'The %';
-   
-Updating Tables that Contain Multi-Table Conditions
------------------
-The following shows an example of updating tables that contain multi-table conditions |icon-new_2022.1.1|:
-
-.. code-block:: postgres
-
-   UPDATE bands
-   SET records_sold = records_sold + 1
-   WHERE EXISTS (
-     SELECT 1 FROM countries
-     WHERE countries.id=bands.country_id
-     AND country.name = 'Sweden'
-   );
    
 Triggering a Clean-Up
 -----------------

@@ -14,7 +14,6 @@ Version Content
 The 2022.1.1 Release Notes describes the following: 
 
 * Enhanced security features.
-* New data manipulation command.
 * Additional data ingestion format.
 
 New Features
@@ -25,12 +24,6 @@ The 2022.1.1 Release Notes include the following new features:
    :local:
    :depth: 1
    
-Update Feature
-************
-The DML ``UPDATE`` statement has been enhanced to support running subqueries in the ``WHERE`` condition.
-
-For more information, see `UPDATE <https://docs.sqream.com/en/v2022.1.1/reference/sql/sql_statements/dml_commands/update.html#update>`_.
-
 Password Security Compliance
 ************
 In compliance with GDPR standards, SQream now requires a strong password policy when accessing the CLI or Studio.
