@@ -18,3 +18,4 @@ The **Regular Generic Flags** page describes **Regular** modification type flags
 * `Setting Spool Saved File Directory Location <https://docs.sqream.com/en/v2020-1/configuration_guides/cache_disk_dir.html>`_
 * `Setting Data Stored Persistently on Cache <https://docs.sqream.com/en/v2020-1/configuration_guides/cache_persistent_gb.html>`_
 * `Setting Persistent Spool Saved File Directory Location <https://docs.sqream.com/en/v2020-1/configuration_guides/cache_persistent_dir.html>`_
+* `Setting Session Tag Name <https://docs.sqream.com/en/v2020-1/configuration_guides/session_tag.html>`_
