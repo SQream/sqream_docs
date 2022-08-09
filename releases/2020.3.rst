@@ -26,12 +26,9 @@ The following list describes the new features:
 
 * ``TEXT`` is ramping up with new features (previously only available with VARCHARs):
 
-    * `SUBSTRING <https://docs.sqream.com/en/v2020.3/reference/sql/sql_functions/scalar_functions/string/substring.html>`_ 
-    * `LTRIM <https://docs.sqream.com/en/v2020.3/reference/sql/sql_functions/scalar_functions/string/substring.html>`_ 
-    * `CHARINDEX <https://docs.sqream.com/en/v2020.3/reference/sql/sql_functions/scalar_functions/string/substring.html>`_
-    * `REPLACE <https://docs.sqream.com/en/v2020.3/reference/sql/sql_functions/scalar_functions/string/substring.html>`_ 
+    * :ref:`substring`, :ref:`lower`, :ref:`ltrim`, :ref:`charindex`, :ref:`replace`, etc.
 
-    * Binary operators - `CONCAT <https://docs.sqream.com/en/v2020.3/reference/sql/sql_functions/scalar_functions/string/concat.html>`_ , `REPLACE <https://docs.sqream.com/en/v2020.3/reference/sql/sql_functions/scalar_functions/string/like.html>`_ , etc.
+    * Binary operators - :ref:`concat`, :ref:`like`, etc.
 
     * Casts to and from ``TEXT``
 

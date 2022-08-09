@@ -185,11 +185,4 @@ Upgrading to v2020.1
 
 Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and other OSs via Docker.
 
-Contact your account manager to get the latest release of SQream.
-
-.. toctree::
-   :maxdepth: 2
-   :glob:
-   :hidden:
-
-   2020.1
+Contact your account manager to get the latest release of SQream DB.

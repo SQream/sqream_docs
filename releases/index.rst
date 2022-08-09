@@ -3,7 +3,7 @@
 **********
 Release Notes
 **********
- 
+
    
 .. list-table::
    :widths: auto

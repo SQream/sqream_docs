@@ -67,6 +67,10 @@ The following configuration flags were added:
 
  * :ref:`healer_max_inactivity_hours`
 
+    ::
+
+ * :ref:`login_max_retries`
+
 Naming Changes
 -------
 No relevant naming changes were made.
