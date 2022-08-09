@@ -45,11 +45,13 @@ The following enhancements were introduced in :ref:`July 2022 (2022.1) <2022.1>`
      - Feature
      - Description
    * - **Data Ingestion**
-     - :ref:`avro`
+     - `Inserting data from Avro <https://docs.sqream.com/en/v2022.1/data_ingestion/avro.html#avro>`_
      - SQream now supports ingesting data from Avro files.
    * - **Feature Guides**
-     - :ref:`data_encryption`
+     - `Data encryption <https://docs.sqream.com/en/v2022.1/feature_guides/data_encryption.html#data-encryption>`_
      - SQream has integrated data encryption mechanisms in accordance with General Data Protection Regulation (GDPR) standards.
    * - **Reference Guides**
      - `UPDATE <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/dml_commands/update.html#update>`_
      - The DML ``UPDATE`` statement has been introduced to support modifying the value of certain columns in existing rows.
+
+
