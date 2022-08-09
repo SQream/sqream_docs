@@ -57,9 +57,19 @@ The following table lists the known issues for Version 2021.2.1.24:
 | SQ-11088    | Specific workers caused low performance during compilation.                                                                        |
 +-------------+------------------------------------------------------------------------------------------------------------------------------------+
 
-Operations and Configuration Changes
+Operations and Configuration Changes 
 --------
-No relevant operations and configuration changes were made.
+The following configuration flags were added:
+
+ * :ref:`is_healer_on`
+
+    ::
+
+ * :ref:`healer_max_inactivity_hours`
+
+    ::
+
+ * :ref:`login_max_retries`
 
 Naming Changes
 -------
