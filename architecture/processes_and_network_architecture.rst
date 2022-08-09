@@ -4,7 +4,7 @@
 Processes and Network Architecture
 *************************************
 
-A SQream DB installation contains several components:
+A SQream DB installation contains several components: 
 
 * SQream DB workers (``sqreamd``)
 * Metadata daemon (``metadata_server``)
