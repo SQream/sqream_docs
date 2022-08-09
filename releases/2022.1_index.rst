@@ -134,4 +134,4 @@ Upgrading to v2022.1
    :glob:
    :hidden:
 
-   2022.1
+   2022.1_index
