@@ -30,7 +30,7 @@ The following enhancements were introduced in :ref:`August 2022 (2022.1.1) <2022
      - Feature
      - Description
    * - **Operational Guides**
-     - :ref:`Password Security Compliance<access_control_password_policy>`
+     - `Password Security Compliance <https://docs.sqream.com/en/v2022.1.1/operational_guides/access_control_password_policy.html#access-control-password-policy>`_
      - Integrated password security compliance measures when logging in to the CLI or Studio.
 
 July 2022
