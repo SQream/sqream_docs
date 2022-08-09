@@ -29,9 +29,6 @@ The following enhancements were introduced in :ref:`August 2022 (2022.1.1) <2022
    * - Topic
      - Feature
      - Description
-   * - **Feature Guides**
-     - :ref:`compression`
-     - SQream supports compressing and decompressing data in and from the **ZLIB** format.
    * - **Operational Guides**
      - :ref:`Password Security Compliance<access_control_password_policy>`
      - Integrated password security compliance measures when logging in to the CLI or Studio.
