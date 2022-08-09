@@ -8,7 +8,7 @@ Password Security Compliance (New!)
    :align: middle
    :width: 110
       
-As part of our compliance with GDPR standards |icon-new_gray_2022.1.1| SQream relies on a strong password policy when accessing the CLI or Studio.
+As part of our compliance with GDPR standards SQream relies on a strong password policy when accessing the CLI or Studio.
 
 The following requirements apply when creating a password:
 

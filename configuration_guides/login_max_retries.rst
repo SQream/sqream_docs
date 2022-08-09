@@ -8,7 +8,7 @@ Adjusting Permitted Log-in Attempts
    :align: middle
    :width: 110
    
-The ``loginMaxRetries`` flag |icon-new_2022.1.1| sets the permitted log-in attempts.
+The ``loginMaxRetries`` flag sets the permitted log-in attempts.
 
 The following describes the ``loginMaxRetries`` flag:
 
