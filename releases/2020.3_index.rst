@@ -3,7 +3,7 @@
 **************************
 Release Notes 2020.3
 **************************
-The 2020.3 Release Notes describe the following releases:
+The 2020.3 release notes describe the following releases:
 
 .. contents:: 
    :local:
