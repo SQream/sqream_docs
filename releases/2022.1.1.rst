@@ -14,7 +14,6 @@ Version Content
 The 2022.1.1 Release Notes describes the following: 
 
 * Enhanced security features.
-* Additional data ingestion format.
 
 New Features
 ----------
@@ -29,12 +28,6 @@ Password Security Compliance
 In compliance with GDPR standards, SQream now requires a strong password policy when accessing the CLI or Studio.
 
 For more information, see :ref:`access_control_password_policy`.
-
-Compression
-************
-SQream now supports the **zlib** compression format.
-
-For more information, see `Compression <https://docs.sqream.com/en/v2022.1.1/feature_guides/compression.html#compression-strategies>`_. 
 
 Known Issues
 ---------

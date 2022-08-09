@@ -93,10 +93,6 @@ Compression strategies
      - Integer types
      - Optimized RLE + Delta type for built-in :ref:`identity columns<identity>`. 
      - GPU
-   * - ``zlib`` |icon-new_dark_gray_2022.1.1.png|
-     - All types
-     - The **basic_zlib_compressor** and **basic_zlib_decompressor** compress and decompress data in the **ZLIB** format, using **DualUseFilters** for input and output. In general, compression filters are for output, and decompression filters for input.
-     - CPU
 
 .. _specifying_compressions:
 

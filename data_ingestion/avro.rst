@@ -3,7 +3,7 @@
 **************************
 Inserting Data from Avro
 **************************
-The **Inserting Data from Avro** page |icon-new_2022.1| describes inserting data from Avro into SQream and includes the following:
+The **Inserting Data from Avro** page describes inserting data from Avro into SQream and includes the following:
 
 .. |icon-new_2022.1| image:: /_static/images/new_2022.1.png
    :align: middle

@@ -29,9 +29,6 @@ The following enhancements were introduced in :ref:`August 2022 (2022.1.1) <2022
    * - Topic
      - Feature
      - Description
-   * - **Feature Guides**
-     - :ref:`compression`
-     - SQream supports compressing and decompressing data in and from the **ZLIB** format.
    * - **Operational Guides**
      - :ref:`Password Security Compliance<access_control_password_policy>`
      - Integrated password security compliance measures when logging in to the CLI or Studio.
@@ -54,5 +51,5 @@ The following enhancements were introduced in :ref:`July 2022 (2022.1) <2022.1>`
      - :ref:`data_encryption`
      - SQream has integrated data encryption mechanisms in accordance with General Data Protection Regulation (GDPR) standards.
    * - **Reference Guides**
-     - `UPDATE <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/dml_commands/update.html#update>`_
+     - `UPDATE <https://docs.sqream.com/en/v2022.1.1/reference/sql/sql_statements/dml_commands/update.html#update>`_
      - The DML ``UPDATE`` statement has been introduced to support modifying the value of certain columns in existing rows.
