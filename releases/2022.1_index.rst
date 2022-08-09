@@ -5,12 +5,54 @@ Release Notes 2022.1
 **************************
 The 2022.1 Release Notes describe the following releases:
 
-.. contents:: 
-   :local:
-   :depth: 1
-
 .. toctree::
    :maxdepth: 1
    :glob:
 
+   2022.1.1
    2022.1
+
+You can also use the following tables for a summary of the new features in Version 2022.1 according to month:
+
+.. contents:: 
+   :local:
+   :depth: 1
+
+August 2022
+==================
+The following enhancements were introduced in :ref:`August 2022 (2022.1.1) <2022.1.1>`:
+
+.. list-table::
+   :widths: 24 25 60
+   :header-rows: 1  
+   
+   * - Topic
+     - Feature
+     - Description
+   * - **Feature Guides**
+     - :ref:`compression`
+     - SQream supports compressing and decompressing data in and from the **ZLIB** format.
+   * - **Operational Guides**
+     - :ref:`Password Security Compliance<access_control_password_policy>`
+     - Integrated password security compliance measures when logging in to the CLI or Studio.
+
+July 2022
+==================
+The following enhancements were introduced in :ref:`July 2022 (2022.1) <2022.1>`:
+
+.. list-table::
+   :widths: 20 20 60
+   :header-rows: 1  
+   
+   * - Topic
+     - Feature
+     - Description
+   * - **Data Ingestion**
+     - :ref:`avro`
+     - SQream now supports ingesting data from Avro files.
+   * - **Feature Guides**
+     - :ref:`data_encryption`
+     - SQream has integrated data encryption mechanisms in accordance with General Data Protection Regulation (GDPR) standards.
+   * - **Reference Guides**
+     - `UPDATE <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/dml_commands/update.html#update>`_
+     - The DML ``UPDATE`` statement has been introduced to support modifying the value of certain columns in existing rows.
