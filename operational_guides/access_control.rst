@@ -8,7 +8,6 @@ Access Control
    :maxdepth: 1
    :titlesonly:
 
-   access_control_password_policy
    access_control_overview
    access_control_managing_roles
    access_control_permissions
