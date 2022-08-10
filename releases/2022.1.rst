@@ -31,19 +31,19 @@ SQream now supports data encryption mechanisms in accordance with **General Data
 
 Using the data encryption feature may lead to a maximum of a 10% increase in performance degradation.
 
-For more information, see `Data Encryption <https://docs.sqream.com/en/v2022.1/feature_guides/data_encryption.html>`_.
+For more information, see `Data Encryption <https://docs.sqream.com/en/latest/feature_guides/data_encryption.html>`_.
 
 Update Feature
 ************
 SQream now supports the DML **Update** feature, which is used for modifying the value of certain columns in existing rows.
 
-For more information, see `UPDATE <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/dml_commands/update.html#update>`_.
+For more information, see `UPDATE <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/update.html#update>`_.
 
 Avro Ingestion
 ************
 SQream now supports ingesting data from Avro files.
 
-For more information, see `Inserting Data from Avro <https://docs.sqream.com/en/v2022.1/data_ingestion/avro.html>`_.
+For more information, see `Inserting Data from Avro <https://docs.sqream.com/en/latest/data_ingestion/avro.html>`_.
 
 Known Issues
 ---------
@@ -87,7 +87,7 @@ Deprecated Features
 -------
 In SQream version 2022.1 the ``VARCHAR`` data type has been deprecated and replaced with ``TEXT``. SQream will maintain ``VARCHAR`` in all previous versions until completing the migration to ``TEXT``, at which point it will be deprecated in all earlier versions. SQream also provides an automated and secure tool to facilitate and simplify migration from ``VARCHAR`` to ``TEXT``.  
 
-If you are using an earlier version of SQream, see the `Using Legacy String Literals <https://docs.sqream.com/en/v2022.1/configuration_guides/use_legacy_string_literals.html>`_ configuration flag.
+If you are using an earlier version of SQream, see the `Using Legacy String Literals <https://docs.sqream.com/en/latest/configuration_guides/use_legacy_string_literals.html>`_ configuration flag.
 
 End of Support
 -------
@@ -127,7 +127,7 @@ Upgrading to v2022.1
 
       $ ./upgrade_storage <levelDB path>
 
-  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <https://docs.sqream.com/en/v2022.1/installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <https://docs.sqream.com/en/latest/installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
   
 .. toctree::
    :maxdepth: 2
