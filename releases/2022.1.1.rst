@@ -31,25 +31,21 @@ For more information, see :ref:`access_control_password_policy`.
 
 Known Issues
 ---------
-The following table lists the known issues for Version 2022.1.1:
+There were no known issues in Version 2022.1.1.
+
+Resolved Issues
+---------
+The following table lists the issues that were resolved in Version 2022.1.1:
 
 +-------------+------------------------------------------------------------------------------------------------+
 | **SQ No.**  | **Description**                                                                                |
 +=============+================================================================================================+
 | SQ-6419     | An internal compiler error occurred when casting Numeric literals in an aggregation function.  |
 +-------------+------------------------------------------------------------------------------------------------+
-
-Resolved Issues
----------
-The following table lists the issues that were resolved in Version 2022.1.1:
-
-+-------------+----------------------------------------------------------------------------------------+
-| **SQ No.**  | **Description**                                                                        |
-+=============+========================================================================================+
-| SQ-10873    | Inserting 100K bytes into a text column resulted in an unclear error message.          |
-+-------------+----------------------------------------------------------------------------------------+
-| SQ-10892    | An unclear message was displayed when users ran ``UPDATE`` on foreign tables.          |
-+-------------+----------------------------------------------------------------------------------------+
+| SQ-10873    | Inserting 100K bytes into a text column resulted in an unclear error message.                  |
++-------------+------------------------------------------------------------------------------------------------+
+| SQ-10955    | Unneeded reads were occurring when filtering by date.                                          |
++-------------+------------------------------------------------------------------------------------------------+
 
 Operations and Configuration Changes
 --------
