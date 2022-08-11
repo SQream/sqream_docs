@@ -104,7 +104,7 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    loading_and_unloading_data/index
    feature_guides/index
    operational_guides/index
-   sqream_studio_5.4.3/index
+   sqream_studio_5.4.7/index
    architecture/index
    configuration_guides/index
    reference/index
