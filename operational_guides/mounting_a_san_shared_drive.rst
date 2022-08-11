@@ -11,7 +11,7 @@ The **Mounting a SAN Shared Drive** page describes how to use your existing SAN 
    
 Overview
 ==============   
-SQream supports reading external tables and/or writing exported data to **SAN (Storage Area Network)** shared drives. Because SQream runs microservices as Dockerized containers, SAN shared drives must be mounted to the relevant Docker pods. Note that mounted shared drives are persistent. SQream provides a script used to map SAN shared drives. This script is called **update-san-share.sh** and is located in the ``utilities/sanshares/`` folder.
+SQream supports reading foreign tables and/or writing exported data to **SAN (Storage Area Network)** shared drives. Because SQream runs microservices as Dockerized containers, SAN shared drives must be mounted to the relevant Docker pods. Note that mounted shared drives are persistent. SQream provides a script used to map SAN shared drives. This script is called **update-san-mountpoint.sh** and is located in the ``utilities/sanshares/`` folder.
 
 Script Prerequisites
 ==============
