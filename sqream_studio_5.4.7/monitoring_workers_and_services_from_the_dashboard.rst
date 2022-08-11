@@ -1,6 +1,6 @@
 .. _monitoring_workers_and_services_from_the_dashboard:
 
-.. _back_to_dashboard_5.4.6:
+.. _back_to_dashboard_5.4.7:
 
 ****************************
 Monitoring Workers and Services from the Dashboard
@@ -27,20 +27,20 @@ The following is a brief description of the Dashboard panels:
      - Element
      - Description
    * - 1
-     - :ref:`Services panel<services_panel_5.4.6>`
+     - :ref:`Services panel<services_panel_5.4.7>`
      - Used for viewing and monitoring the defined service queues.
    * - 2
-     - :ref:`Workers panel<workers_panel_5.4.6>`
+     - :ref:`Workers panel<workers_panel_5.4.7>`
      - Monitors system health and shows each Sqreamd worker running in the cluster.
    * - 3
-     - :ref:`License information<license_information_5.4.6>`
+     - :ref:`License information<license_information_5.4.7>`
      - Shows the remaining amount of days left on your license.  
 
-.. _data_storage_panel_5.4.6:
+.. _data_storage_panel_5.4.7:
 
-:ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_5.4.6>`
+:ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_5.4.7>`
 
-.. _services_panel_5.4.6:
+.. _services_panel_5.4.7:
 
 Subscribing to Workers from the Services Panel
 --------------------------
@@ -73,23 +73,23 @@ You can add a service by clicking **+ Add** and defining the service name.
 
 You can manage workers from the **Workers** panel. For more information about managing workers, see the following:
 
-* :ref:`Managing Workers from the Workers Panel<workers_panel_5.4.6>`
+* :ref:`Managing Workers from the Workers Panel<workers_panel_5.4.7>`
 * `Workers <https://docs.sqream.com/en/latest/reference/cli/sqream_console.html?highlight=workers#workers>`_
 
-:ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_5.4.6>`
+:ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_5.4.7>`
 
-.. _workers_panel_5.4.6:
+.. _workers_panel_5.4.7:
 
 Managing Workers from the Workers Panel
 ------------
 From the **Workers** panel you can do the following:
 
-* :ref:`View workers <view_workers_5.4.6>`
-* :ref:`Add a worker to a service<add_worker_to_service_5.4.6>`
-* :ref:`View a worker's active query information<view_worker_query_information_5.4.6>`
-* :ref:`View a worker's execution plan<view_worker_execution_plan_5.4.6>`
+* :ref:`View workers <view_workers_5.4.7>`
+* :ref:`Add a worker to a service<add_worker_to_service_5.4.7>`
+* :ref:`View a worker's active query information<view_worker_query_information_5.4.7>`
+* :ref:`View a worker's execution plan<view_worker_execution_plan_5.4.7>`
 
-.. _view_workers_5.4.6:
+.. _view_workers_5.4.7:
 
 Viewing Workers
 ^^^^^^^^
@@ -104,7 +104,7 @@ You can hover over segments in the status bar to see the date and time correspon
 * **Stopped** – the worker was stopped (either deliberately or due to an error).
 * **Waiting** – the worker was waiting on an object locked by another worker.
 
-.. _add_worker_to_service_5.4.6:
+.. _add_worker_to_service_5.4.7:
 
 Adding A Worker to A Service
 ^^^^^^^^^^^^^^^^^^^^^	 
@@ -115,14 +115,14 @@ You can add a worker to a service by clicking the **add** button.
 Clicking the **add** button shows the selected service's workers. You can add the selected worker to the service by clicking **Add Worker**. Adding a worker to a service does not break associations already made between that worker and other services.
 
 
-.. _view_worker_query_information_5.4.6:
+.. _view_worker_query_information_5.4.7:
 
 Viewing A Worker's Active Query Information
 ^^^^^^^^^^^^^^^^^^^^^	 
 You can view a worker's active query information by clicking **Queries**, which displays them in the selected service.
 
 
-Each statement shows the **query ID**, **status**, **service queue**, **elapsed time**, **execution time**, and **estimated completion status**. In addition, each statement can be stopped or expanded to show its execution plan and progress. For more information on viewing a statement's execution plan and progress, see :ref:`Viewing a Worker's Execution Plan <view_worker_execution_plan_5.4.6>` below.
+Each statement shows the **query ID**, **status**, **service queue**, **elapsed time**, **execution time**, and **estimated completion status**. In addition, each statement can be stopped or expanded to show its execution plan and progress. For more information on viewing a statement's execution plan and progress, see :ref:`Viewing a Worker's Execution Plan <view_worker_execution_plan_5.4.7>` below.
 
 Viewing A Worker's Host Utilization
 ^^^^^^^^^^^^^^^^^^^^^	 
@@ -135,7 +135,7 @@ The graphs show the resource utilization trends over time, and the **CPU memory*
 
 Error notifications related to statements are displayed, and you can hover over them for more information about the error.
 
-.. _view_worker_execution_plan_5.4.6:
+.. _view_worker_execution_plan_5.4.7:
 
 Viewing a Worker's Execution Plan
 ^^^^^^^^^^^^^^^^^^^^^	 
@@ -243,11 +243,11 @@ Starting or restarting workers terminates all queries related to that worker. Wh
 .. |keep-tabs| image:: /_static/images/studio_keep_tabs.png
    :align: middle
    
-:ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_5.4.6>`
+:ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_5.4.7>`
 
 
 
-.. _license_information_5.4.6:
+.. _license_information_5.4.7:
    
 License Information
 ----------------------
@@ -259,4 +259,4 @@ The license information section shows the following:
 .. image:: /_static/images/license_storage_capacity.png
 
  
-:ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_5.4.6>`
+:ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_5.4.7>`
