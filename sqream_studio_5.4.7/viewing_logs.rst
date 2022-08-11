@@ -21,9 +21,6 @@ The **Logs** screen is used for viewing logs and includes the following elements
      - Shows basic session information logs, such as session ID and user name.
    * - :ref:`System tab<system_5.4.7>`
      - Shows all system logs.
-   * - :ref:`Log lines tab<log_lines_5.4.7>`
-     - Shows the total amount of log lines.
-
 
 .. _filter_5.4.7:
 
@@ -99,5 +96,3 @@ From here you can see and sort by the following:
 In the Systems table, you can click on the **Timestamp** and **Log type** items to set them as your filters. In the **Message** column, you can also click on an item to show more information about the message.
 
 :ref:`Back to Viewing Logs<logs_top_5.4.7>`
-
-.. _log_lines_5.4.7:

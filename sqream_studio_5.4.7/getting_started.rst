@@ -43,8 +43,6 @@ From here you can navigate between the main areas of the Studio:
      - Lets you view usage logs.
    * - :ref:`Roles<creating_assigning_and_managing_roles_and_permissions>`
      - Lets you create users and manage user permissions.
-   * - :ref:`Configuration<configuring_your_instance_of_sqream>`
-     - Lets you configure your instance of SQream.
 
 By clicking the user icon, you can also use it for logging out and viewing the following:
 
