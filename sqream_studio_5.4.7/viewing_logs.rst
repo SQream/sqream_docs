@@ -21,9 +21,6 @@ The **Logs** screen is used for viewing logs and includes the following elements
      - Shows basic session information logs, such as session ID and user name.
    * - :ref:`System tab<system_5.4.7>`
      - Shows all system logs.
-   * - :ref:`Log lines tab<log_lines_5.4.7>`
-     - Shows the total amount of log lines.
-
 
 .. _filter_5.4.7:
 
