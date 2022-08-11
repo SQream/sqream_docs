@@ -13,4 +13,6 @@ The 2021.2 Release Notes describe the following releases:
    :maxdepth: 1
    :glob:
 
+   2021.2.1.24
+   2021.2.1
    2021.2
