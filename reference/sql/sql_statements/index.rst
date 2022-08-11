@@ -138,8 +138,6 @@ The following table shows the Utility commands:
      - Points to all files that contain data related to a specific chunk
    * - :ref:`GET_METADATA_CHUNK_KEY<get_metadata_chunk_key>`
      - Returns a list of metadata key values for the chunks that you specify
-   * - :ref:`SELECT GET_LICENSE_INFO<get_license_info>`
-     - View a user's license information
    * - :ref:`SELECT GET_DDL<get_ddl>`
      - View the ``CREATE TABLE`` statement for a table
    * - :ref:`SELECT GET_FUNCTION_DDL<get_function_ddl>`
@@ -150,12 +148,6 @@ The following table shows the Utility commands:
      - Recreate a view after schema changes
    * - :ref:`SELECT DUMP_DATABASE_DDL<dump_database_ddl>`
      - View the ``CREATE TABLE`` statement for an current database
-   * - :ref:`SHOW CONNECTIONS<show_connections>`
-     - Returns a list of active sessions on the current worker
-   * - :ref:`SHOW VERSION<show_version>`
-     - Returns the system version for SQream
-   * - :ref:`SHUTDOWN SERVER<shutdown_server>`
-     - Performs a graceful server shutdown
 	 
 Access Control Commands
 ================================
