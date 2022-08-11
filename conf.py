@@ -27,7 +27,7 @@ author = 'SQream Documentation'
 
 # The full version, including alpha/beta/rc tags
 
-release = '2020_2'
+release = '2020-2'
 
 
 # -- General configuration ---------------------------------------------------
