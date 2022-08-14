@@ -19,7 +19,7 @@ The following is an example of a log record for a query stuck in the query detec
 
    2022/05/19::20:01:25|ERROR|Healer|(0x7f07147fc700)|Stuck query found. Statement ID: 72, Last chunk producer updated: 1 WriteTable, Started on: Thu May 19 14:01:25 2022, Last updated: Thu May 19 15:01:25 2022, Stuck time: 5 hours, Max allowed stuck query time: 5 hours
 
-The ``healerMaxInactivityHours`` log frequency is calculated as 5% of the flag setting. When set to to five hours (the default setting), the Query Healer triggers an examination every 15 minutes.
+The ``healerMaxInactivityHours`` log frequency is calculated as 5% of the flag setting. When set to to five hours (the default setting), the Query Healer triggers an examination every 15 minutes.  
 
 Configuring the Healer
 ------------------
@@ -32,3 +32,21 @@ The following **Administration Worker** flags are required to configure the Quer
  * :ref:`healer_max_inactivity_hours` - Defines the threshold for creating a log recording a slow statement. The log includes information about the log memory, CPU and GPU.
 
 The ``healerMaxInactivityHours`` log frequency is calculated as 5% of the flag setting. For example, setting ``healerMaxInactivityHours`` to five hours (the default setting) triggers an examination every 15 minutes.
+
+Activating a Graceful Shutdown
+------------------
+If your log entry says ``Stuck query found``, you must set the **shutdown_server** utility function to ``select shutdown_server(true);``, as in the following example:
+
+.. code-block:: console
+
+   |INFO|0x00007f9a497fe700:Healer|192.168.4.65|5001|-1|master|sqream|-1|sqream|0|"[ERROR]|cpp/SqrmRT/healer.cpp:140 |"Stuck query found. Statement ID: 72, Last chunk producer updated: 1.
+
+Note that the log above identifies the IP (192.168.4.65) and port (5001) referring to the stuck query.
+
+For more information, see the following:
+
+* Activating the :ref:`shutdown_server_command` utility function.
+
+   ::
+
+* Configuring the :ref:`shutdown_server` flag.
