@@ -63,6 +63,14 @@ Unsuccessfully attempting to log in three times displays the following message:
 
 .. code-block:: console
 
-   The user is locked. please contact your system administrator to reset the password and regain access functionality.
+   The user is locked. Please contact your system administrator to reset the password and regain access functionality.
+
+You must have superuser permissions to release a locked user to grant a new password:
+
+.. code-block:: console
+
+   GRANT PASSWORD '<password>' to <blocked_user>;
 
 For more information, see :ref:`login_max_retries`.
+
+.. warning:: Because superusers can also be blocked, **you must have** at least two superusers per cluster.

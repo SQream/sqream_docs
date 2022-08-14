@@ -35,7 +35,13 @@ The ``healerMaxInactivityHours`` log frequency is calculated as 5% of the flag s
 
 Activating a Graceful Shutdown
 ------------------
-If your log entry says ``Stuck query found``, you must set the **shutdown_server** utility function to ``select shutdown_server(true);``.
+If your log entry says ``Stuck query found``, you must set the **shutdown_server** utility function to ``select shutdown_server(true);``, as in the following example:
+
+.. code-block:: console
+
+   |INFO|0x00007f9a497fe700:Healer|192.168.4.65|5001|-1|master|sqream|-1|sqream|0|"[ERROR]|cpp/SqrmRT/healer.cpp:140 |"Stuck query found. Statement ID: 72, Last chunk producer updated: 1.
+
+Note that the log identifies the IP (192.168.4.65) and port (5001) referring to the stuck query.
 
 For more information, see the following:
 
