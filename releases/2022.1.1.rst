@@ -14,7 +14,7 @@ Version Content
 The 2022.1.1 Release Notes describes the following: 
 
 * Enhanced security features.
-* :ref:`sqream_studio_5.4.7`
+* For more information, see `SQream Acceleration Studio 5.4.7 <https://docs.sqream.com/en/v2022.1.1/sqream_studio_5.4.7/index.html>`_
 
 New Features
 ----------
