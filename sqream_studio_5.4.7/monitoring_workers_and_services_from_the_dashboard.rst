@@ -1,6 +1,6 @@
 .. _monitoring_workers_and_services_from_the_dashboard:
 
-.. _back_to_dashboard_5.4.6:
+.. _back_to_dashboard_:
 
 ****************************
 Monitoring Workers and Services from the Dashboard
@@ -27,24 +27,29 @@ The following is a brief description of the Dashboard panels:
      - Element
      - Description
    * - 1
-     - :ref:`Services panel<services_panel_5.4.6>`
+     - :ref:`Services panel<services_panel_>`
      - Used for viewing and monitoring the defined service queues.
    * - 2
-     - :ref:`Workers panel<workers_panel_5.4.6>`
+     - :ref:`Workers panel<workers_panel_>`
      - Monitors system health and shows each Sqreamd worker running in the cluster.
    * - 3
-     - :ref:`License information<license_information_5.4.6>`
-     - Shows the remaining amount of days left on your license.  
+     - :ref:`License information<license_information_>`
+     - Shows the remaining amount of days left on your license.
+   
 
-.. _data_storage_panel_5.4.6:
+.. _data_storage_panel_:
 
-:ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_5.4.6>`
 
-.. _services_panel_5.4.6:
+
+:ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_>`
+
+.. _services_panel_:
 
 Subscribing to Workers from the Services Panel
 --------------------------
-Services are used to categorize and associate (also known as **subscribing**) workers to particular services. The **Service** panel is used for viewing, monitoring, and adding defined in the :ref:`workload_manager`.
+Services are used to categorize and associate (also known as **subscribing**) workers to particular services. The **Service** panel is used for viewing, monitoring, and adding defined `service queues <https://docs.sqream.com/en/v2020.3/feature_guides/workload_manager.html>`_.
+
+
 
 The following is a brief description of each pane:
 	 
@@ -73,23 +78,23 @@ You can add a service by clicking **+ Add** and defining the service name.
 
 You can manage workers from the **Workers** panel. For more information about managing workers, see the following:
 
-* :ref:`Managing Workers from the Workers Panel<workers_panel_5.4.6>`
-* `Workers <https://docs.sqream.com/en/latest/reference/cli/sqream_console.html?highlight=workers#workers>`_
+* :ref:`Managing Workers from the Workers Panel<workers_panel_>`
+* `Workers <https://docs.sqream.com/en/v2020-2/reference/cli/sqream_console.html?highlight=workers#workers>`_
 
-:ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_5.4.6>`
+:ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_>`
 
-.. _workers_panel_5.4.6:
+.. _workers_panel_:
 
 Managing Workers from the Workers Panel
 ------------
 From the **Workers** panel you can do the following:
 
-* :ref:`View workers <view_workers_5.4.6>`
-* :ref:`Add a worker to a service<add_worker_to_service_5.4.6>`
-* :ref:`View a worker's active query information<view_worker_query_information_5.4.6>`
-* :ref:`View a worker's execution plan<view_worker_execution_plan_5.4.6>`
+* :ref:`View workers <view_workers_>`
+* :ref:`Add a worker to a service<add_worker_to_service_>`
+* :ref:`View a worker's active query information<view_worker_query_information_>`
+* :ref:`View a worker's execution plan<view_worker_execution_plan_>`
 
-.. _view_workers_5.4.6:
+.. _view_workers_:
 
 Viewing Workers
 ^^^^^^^^
@@ -104,7 +109,7 @@ You can hover over segments in the status bar to see the date and time correspon
 * **Stopped** – the worker was stopped (either deliberately or due to an error).
 * **Waiting** – the worker was waiting on an object locked by another worker.
 
-.. _add_worker_to_service_5.4.6:
+.. _add_worker_to_service_:
 
 Adding A Worker to A Service
 ^^^^^^^^^^^^^^^^^^^^^	 
@@ -115,14 +120,14 @@ You can add a worker to a service by clicking the **add** button.
 Clicking the **add** button shows the selected service's workers. You can add the selected worker to the service by clicking **Add Worker**. Adding a worker to a service does not break associations already made between that worker and other services.
 
 
-.. _view_worker_query_information_5.4.6:
+.. _view_worker_query_information_:
 
 Viewing A Worker's Active Query Information
 ^^^^^^^^^^^^^^^^^^^^^	 
 You can view a worker's active query information by clicking **Queries**, which displays them in the selected service.
 
 
-Each statement shows the **query ID**, **status**, **service queue**, **elapsed time**, **execution time**, and **estimated completion status**. In addition, each statement can be stopped or expanded to show its execution plan and progress. For more information on viewing a statement's execution plan and progress, see :ref:`Viewing a Worker's Execution Plan <view_worker_execution_plan_5.4.6>` below.
+Each statement shows the **query ID**, **status**, **service queue**, **elapsed time**, **execution time**, and **estimated completion status**. In addition, each statement can be stopped or expanded to show its execution plan and progress. For more information on viewing a statement's execution plan and progress, see :ref:`Viewing a Worker's Execution Plan <view_worker_execution_plan_>` below.
 
 Viewing A Worker's Host Utilization
 ^^^^^^^^^^^^^^^^^^^^^	 
@@ -133,27 +138,20 @@ While viewing a worker's query information, clicking the **down arrow** expands 
 
 The graphs show the resource utilization trends over time, and the **CPU memory** and **utilization** and the **GPU utilization** values on the right. You can hover over the graph to see more information about the activity at any point on the graph.
 
-Error notifications related to statements are displayed, and you can hover over them for more information about the error.
+Error notifications related to statements are displayed, and you can hover over them for more information about the error. 
 
-.. _view_worker_execution_plan_5.4.6:
+
+.. _view_worker_execution_plan_:
 
 Viewing a Worker's Execution Plan
-^^^^^^^^^^^^^^^^^^^^^	 
+^^^^^^^^^^^^^^^^^^^^^
+	 
 Clicking the ellipsis in a service shows the following additional options:
 
 * **Stop Query** - stops the query.
-
-   ::
-   
 * **Show Execution Plan** - shows the execution plan as a table. The columns in the **Show Execution Plan** table can be sorted.
 
-For more information on the current query plan, see the following:
-
-* :ref:`show_node_info`
- 
-   ::
-
-* :ref:`show_server_status`
+For more information on the current query plan, see `SHOW_NODE_INFO <https://docs.sqream.com/en/v2020-2/reference/sql/sql_statements/monitoring_commands/show_node_info.html#show-node-info>`_. For more information on checking active sessions across the cluster, see `SHOW_SERVER_STATUS <https://docs.sqream.com/en/v2020-2/reference/sql/sql_statements/monitoring_commands/show_server_status.html>`_.
 
 .. include:: /reference/sql/sql_statements/monitoring_commands/show_server_status.rst
    :start-line: 67
@@ -161,9 +159,14 @@ For more information on the current query plan, see the following:
 
 Managing Worker Status
 ^^^^^^^^^^^^^^^^^^^^^
+
 In some cases you may want to stop or restart workers for maintenance purposes. Each Worker line has a :kbd:`⋮` menu used for stopping, starting, or restarting workers.
 
+
 Starting or restarting workers terminates all queries related to that worker. When you stop a worker, its background turns gray.
+
+
+
 
 .. |icon-user| image:: /_static/images/studio_icon_user.png
    :align: middle
@@ -243,11 +246,11 @@ Starting or restarting workers terminates all queries related to that worker. Wh
 .. |keep-tabs| image:: /_static/images/studio_keep_tabs.png
    :align: middle
    
-:ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_5.4.6>`
+:ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_>`
 
 
 
-.. _license_information_5.4.6:
+.. _license_information_:
    
 License Information
 ----------------------
@@ -259,4 +262,4 @@ The license information section shows the following:
 .. image:: /_static/images/license_storage_capacity.png
 
  
-:ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_5.4.6>`
+:ref:`Back to Monitoring Workers and Services from the Dashboard<back_to_dashboard_>`

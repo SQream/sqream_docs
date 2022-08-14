@@ -1,6 +1,6 @@
 .. _executing_statements_and_running_queries_from_the_editor:
 
-.. _editor_top_5.4.6:
+.. _editor_top_5.4.3:
 
 ****************************
 Executing Statements and Running Queries from the Editor
@@ -14,6 +14,7 @@ The **Editor** is used for the following:
 	 
 The following is a brief description of the Editor panels:
 
+
 .. list-table::
    :widths: 10 34 56
    :header-rows: 1  
@@ -22,21 +23,23 @@ The following is a brief description of the Editor panels:
      - Element
      - Description
    * - 1
-     - :ref:`Toolbar<studio_5.4.6_editor_toolbar>`
+     - :ref:`Toolbar<studio_5.4.3_editor_toolbar>`
      - Used to select the active database you want to work on, limit the number of rows, save query, etc.
    * - 2
-     - :ref:`Database Tree and System Queries panel<studio_5.4.6_editor_db_tree>`
+     - :ref:`Database Tree and System Queries panel<studio_5.4.3_editor_db_tree>`
      - Shows a hierarchy tree of databases, views, tables, and columns
    * - 3
-     - :ref:`Statement panel<studio_5.4.6_editor_statement_area>`
+     - :ref:`Statement panel<studio_5.4.3_editor_statement_area>`
      - Used for writing queries and statements
    * - 4
-     - :ref:`Results panel<studio_5.4.6_editor_results>`
+     - :ref:`Results panel<studio_5.4.3_editor_results>`
      - Shows query results and execution information.
 
-.. _top_5.4.6:
 
-.. _studio_5.4.6_editor_toolbar:
+
+.. _top_5.4.3:
+
+.. _studio_5.4.3_editor_toolbar:
 
 Executing Statements from the Toolbar
 ================
@@ -70,15 +73,21 @@ You can access the following from the Toolbar pane:
 
 * **Max Rows** - By default, the Editor fetches only the first 10,000 rows. You can modify this number by selecting an option from the **Max Rows** dropdown list. Note that setting a higher number may slow down your browser if the result is very large. This number is limited to 100,000 results. To see a higher number, you can save the results in a file or a table using the :ref:`create_table_as` command.
 
-For more information on stopping active statements, see the :ref:`SHUTDOWN_SERVER<shutdown_server>` command.
 
-:ref:`Back to Executing Statements and Running Queries from the Editor<editor_top_5.4.6>`
+For more information on stopping active statements, see the :ref:`STOP_STATEMENT<stop_statement>` command.
 
-.. _studio_5.4.6_editor_db_tree:
+:ref:`Back to Executing Statements and Running Queries from the Editor<editor_top_5.4.3>`
+
+
+.. _studio_5.4.3_editor_db_tree:
 
 Performing Statement-Related Operations from the Database Tree
 ================
 From the Database Tree you can perform statement-related operations and show metadata (such as a number indicating the amount of rows in the table).
+
+
+
+
 
 The database object functions are used to perform the following:
 
@@ -170,8 +179,7 @@ The database object functions are used to perform the following:
 
 .. |keep-tabs| image:: /_static/images/studio_keep_tabs.png
    :align: middle
-   
-   :ref:`insert`
+
 
 .. list-table::
    :widths: 30 70
@@ -180,23 +188,23 @@ The database object functions are used to perform the following:
    * - Function
      - Description
    * - Insert statement
-     - Generates an :ref:`insert` statement for the selected table in the editing area.
+     - Generates an `INSERT <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/insert.html#insert>`_ statement for the selected table in the editing area.
    * - Delete statement
-     - Generates a :ref:`delete` statement for the selected table in the editing area.
+     - Generates a `DELETE <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/delete.html#delete>`_ statement for the selected table in the editing area.
    * - Create Table As statement
-     - Generates a `CREATE TABLE AS <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/create_table_as.html#create-table-as>`_ statement for the selected table in the editing area.	 
+     - Generates a `CREATE TABLE AS <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/create_table_as.html#create-table-as>`_ statement for the selected table in the editing area.	 
    * - Rename statement
-     - Generates an :ref:`rename_table` statement for renaming the selected table in the editing area.
+     - Generates an `RENAME TABLE AS <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/rename_table.html#rename-table>`_ statement for renaming the selected table in the editing area.
    * - Adding column statement
-     - Generates an :ref:`add_column` statement for adding columns to the selected table in the editing area.
+     - Generates an `ADD COLUMN <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/add_column.html#add-column>`_ statement for adding columns to the selected table in the editing area.
    * - Truncate table statement
-     - Generates a :ref:`truncate` statement for the selected table in the editing area.
+     - Generates a `TRUNCATE_IF_EXISTS <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/truncate_if_exists.html#truncate>`_ statement for the selected table in the editing area.
    * - Drop table statement
      - Generates a ``DROP`` statement for the selected object in the editing area.
    * - Table DDL
-     - Generates a DDL statement for the selected object in the editing area. To get the entire database DDL, click the |icon-ddl-edit| icon next to the database name in the tree root. See :ref:`seeing_system_objects_as_ddl`.
+     - Generates a DDL statement for the selected object in the editing area. To get the entire database DDL, click the |icon-ddl-edit| icon next to the database name in the tree root. See `Seeing System Objects as DDL <https://docs.sqream.com/en/latest/operational_guides/seeing_system_objects_as_ddl.html>`_.
    * - DDL Optimizer
-     - The `DDL Optimizer <https://docs.sqream.com/en/v2022.1.1/sqream_studio_5.4.6/executing_statements_and_running_queries_from_the_editor.html#optimizing-database-tables-using-the-ddl-optimizer>`_ lets you analyze database tables and recommends possible optimizations.
+     - The `DDL Optimizer <https://docs.sqream.com/en/latest/sqream_studio_5.4.3/executing_statements_and_running_queries_from_the_editor.html#optimizing-database-tables-using-the-ddl-optimizer>`_  lets you analyze database tables and recommends possible optimizations.
 
 Optimizing Database Tables Using the DDL Optimizer
 -----------------------
@@ -221,7 +229,7 @@ The following table describes the DDL Optimizer screen:
 
 Clicking **Run Optimizer** adds a tab to the Statement panel showing the optimized results of the selected object.
 
-For more information, see :ref:`sql_best_practices`.
+For more information, see `Optimization and Best Practices <https://docs.sqream.com/en/latest/operational_guides/optimization_best_practices.html>`_.
 
 Executing Pre-Defined Queries from the System Queries Panel
 ---------------
@@ -235,7 +243,7 @@ The **System Queries** panel lets you execute predefined queries and includes th
 
 Clicking an item pastes the query into the Statement pane, and you can undo a previous operation by pressing **Ctrl + Z**.
 
-.. _studio_5.4.6_editor_statement_area:
+.. _studio_5.4.3_editor_statement_area:
 
 Writing Statements and Queries from the Statement Panel
 ==============
@@ -266,7 +274,8 @@ You can add and name new tabs for each statement that you need to execute, and S
 
 You can also rename the default tab name by double-clicking it and typing a new name and write multiple statements in tandem in the same tab by separating them with semicolons (``;``).If too many tabs to fit into the Statement Pane are open at the same time, the tab arrows are displayed. You can scroll through the tabs by clicking |icon-left| or |icon-right|, and close tabs by clicking |icon-close|. You can also close all tabs at once by clicking **Close all** located to the right of the tabs.
 
-.. tip:: If this is your first time using SQream, see :ref:`getting_started`.
+.. tip:: If this is your first time using SQream, see `Getting Started <https://docs.sqream.com/en/latest/first_steps.html#first-steps>`_.
+
 
 .. Keyboard shortcuts
 .. ^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -279,13 +288,13 @@ You can also rename the default tab name by double-clicking it and typing a new 
 
 .. :kbd:`Ctrl` + :kbd:`↓` - Switch to previous tab
 
-.. _studio_editor_results_5.4.6:
+.. _studio_editor_results_5.4.3:
 
-:ref:`Back to Executing Statements and Running Queries from the Editor<editor_top_5.4.6>`
+:ref:`Back to Executing Statements and Running Queries from the Editor<editor_top_5.4.3>`
 
-.. _studio_5.4.6_editor_results:
+.. _studio_5.4.3_editor_results:
 
-.. _results_panel_5.4.6:
+.. _results_panel_5.4.3:
 
 Viewing Statement and Query Results from the Results Panel
 ==============
@@ -301,17 +310,17 @@ The following is a brief description of the Results panel views highlighted in t
    
    * - Element
      - Description
-   * - :ref:`Results view<results_view_5.4.6>`
+   * - :ref:`Results view<results_view_5.4.3>`
      - Lets you view search query results.
-   * - :ref:`Execution Details view<execution_details_view_5.4.6>`
+   * - :ref:`Execution Details view<execution_details_view_5.4.3>`
      - Lets you analyze your query for troubleshooting and optimization purposes.
-   * - :ref:`SQL view<sql_view_5.4.6>`
+   * - :ref:`SQL view<sql_view_5.4.3>`
      - Lets you see the SQL view.
 
 
-.. _results_view_5.4.6:
+.. _results_view_5.4.3:
 
-:ref:`Back to Executing Statements and Running Queries from the Editor<editor_top_5.4.6>`
+:ref:`Back to Executing Statements and Running Queries from the Editor<editor_top_5.4.3>`
 	 
 Searching Query Results in the Results View
 ----------------
@@ -329,7 +338,7 @@ Saving Results to the Clipboard
 ^^^^^^^^^^^^
 The **Save results to clipboard** function lets you save your results to the clipboard to paste into another text editor or into Excel for further analysis.
 
-.. _save_results_to_local_file_5.4.6:
+.. _save_results_to_local_file_5.4.3:
 
 Saving Results to a Local File
 ^^^^^^^^^^^^
@@ -337,7 +346,7 @@ The **Save results to local file** functions lets you save your search query res
 
 In the Results view you can also run parallel statements, as described in **Running Parallel Statements** below.
 
-.. _running_parallel_statements_5.4.6:
+.. _running_parallel_statements_5.4.3:
 
 Running Parallel Statements
 ^^^^^^^^^^^^
@@ -355,11 +364,11 @@ The following shows the syntax for running parallel statements:
    $ $$
 
 
-:ref:`Back to Viewing Statement and Query Results from the Results Panel<results_panel_5.4.6>`
+:ref:`Back to Viewing Statement and Query Results from the Results Panel<results_panel_5.4.3>`
 
-.. _execution_details_view_5.4.6:
+.. _execution_details_view_5.4.3:
 
-.. _execution_tree_5.4.6:
+.. _execution_tree_5.4.3:
 
 Execution Details View
 --------------
@@ -468,16 +477,16 @@ This can be seen in the **timeSum** column as follows:
 * **Rows highlighted orange** - medium runtime
 * **Rows highlighted yellow** - shortest runtime
 
-:ref:`Back to Viewing Statement and Query Results from the Results Panel<results_panel_5.4.6>`
+:ref:`Back to Viewing Statement and Query Results from the Results Panel<results_panel_5.4.3>`
 
-.. _sql_view_5.4.6:
+.. _sql_view_5.4.3:
 
 Viewing Wrapped Strings in the SQL View
 ------------------
 The SQL View panel allows you to more easily view certain queries, such as a long string that appears on one line. The SQL View makes it easier to see by wrapping it so that you can see the entire string at once. It also reformats and organizes query syntax entered in the Statement panel for more easily locating particular segments of your queries. The SQL View is identical to the **Format SQL** feature in the Toolbar, allowing you to retain your originally constructed query while viewing a more intuitively structured snapshot of it.
 
-.. _save_results_to_clipboard_5.4.6:
+.. _save_results_to_clipboard_5.4.3:
 
-:ref:`Back to Viewing Statement and Query Results from the Results Panel<results_panel_5.4.6>`
+:ref:`Back to Viewing Statement and Query Results from the Results Panel<results_panel_5.4.3>`
 
-:ref:`Back to Executing Statements and Running Queries from the Editor<editor_top_5.4.6>`
+:ref:`Back to Executing Statements and Running Queries from the Editor<editor_top_5.4.3>`

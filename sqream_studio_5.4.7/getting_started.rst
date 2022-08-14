@@ -1,13 +1,11 @@
-.. _getting_started_sqream:
+.. _getting_started:
 
 ****************************
-Getting Started with SQream Acceleration Studio 5.4.6
+Getting Started with SQream Acceleration Studio 5.4.3
 ****************************
 Setting Up and Starting Studio
 ----------------
-Studio is included with all dockerized installations of SQream. When starting Studio, it listens on the local machine on port 8080.
-
-For more information, see :ref:`running_sqream_in_a_docker_container`.
+Studio is included with all `dockerized installations of SQream DB <https://docs.sqream.com/en/v2020-2/guides/operations/setup/local_docker.html#installing-sqream-db-docker>`_. When starting Studio, it listens on the local machine on port 8080.
 
 Logging In to Studio
 ---------------
@@ -45,6 +43,8 @@ From here you can navigate between the main areas of the Studio:
      - Lets you view usage logs.
    * - :ref:`Roles<creating_assigning_and_managing_roles_and_permissions>`
      - Lets you create users and manage user permissions.
+   * - :ref:`Configuration<configuring_your_instance_of_sqream>`
+     - Lets you configure your instance of SQream.
 
 By clicking the user icon, you can also use it for logging out and viewing the following:
 
@@ -56,6 +56,6 @@ By clicking the user icon, you can also use it for logging out and viewing the f
 * License storage capacity
 * Log out
 
-.. _back_to_dashboard_5.4.6:
+.. _back_to_dashboard_5.4.3:
 
-.. _studio_dashboard_5.4.6:
+.. _studio_dashboard_5.4.3:
