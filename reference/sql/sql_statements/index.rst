@@ -129,6 +129,8 @@ Utility Commands
      - Returns a list of active sessions across the cluster
    * - :ref:`SHOW VERSION<show_version>`
      - Returns the system version for SQream DB
+   * - :ref:`SHUTDOWN_SERVER<shutdown_server>`
+     - Sets your server to finish compiling all active queries before shutting down according to a user-defined time value
    * - :ref:`STOP STATEMENT<stop_statement>`
      - Stops or aborts an active statement
 
