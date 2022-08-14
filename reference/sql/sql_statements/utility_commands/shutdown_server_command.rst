@@ -1,10 +1,8 @@
-.. _shutdown_server:
+.. _shutdown_server_command:
 
 ********************
 SHUTDOWN SERVER
 ********************
-**Comment** - When finished, add command to Utility Commands > shutdown_server.
-
 The **SHUTDOWN_SERVER** guide describes the following:
 
 .. contents:: 
@@ -21,18 +19,18 @@ Running the ``SHUTDOWN_SERVER`` command gives you more control over the followin
 
 * Preventing new queries from connecting to the server by:
 
-   1. Setting the server as unavailable in the metadata server.
+  * Setting the server as unavailable in the metadata server.
 
-       ::
+      ::
 
-   2. Unsubscribing the server from its service.
+  * Unsubscribing the server from its service.
 
 * Stopping users from making new connections to the server. Attempting to connect to the server after activating a graceful shutdown displays the following message:
 
-  ``Server is shutting down, no new connections are possible at the moment.``
+  .. code-block:: postgres
 
-   ::
-   
+     Server is shutting down, no new connections are possible at the moment.
+  
 * The amount of time to wait before shutting down the server.
 
    ::
@@ -47,8 +45,6 @@ The following is the syntax for using the ``SHUTDOWN_SERVER`` command:
 
    select shutdown_server([true/false, [timeout]]);
    
-**Comment** - *Update Configuration page with this flag. NOT RN 2022.1*
-
 Returns
 ==========
 Running the ``shutdown_server`` command returns no output.
@@ -71,20 +67,46 @@ The following table shows the ``shutdown_server`` parameters:
      - NA
    * - ``timeout``
      - Sets the maximum amount of minutes for the graceful shutdown method to run before the server is shut down using the standard method.
-     - ``30``
-     - Five minutes.
+     - ``([is_graceful, [30]]);``
+     - Five minutes
 	 
 .. note:: Setting ``is_graceful`` to ``false`` and defining the ``timeout`` value shuts the server down mid-query after the defined time.
 
-You can define the ``timeout`` argument as the amount minutes after which a forceful shutdown will run, even if a graceful shutdown is in progress.
+You can define the ``timeout`` argument as the amount minutes after which a forceful shutdown will run, even if a graceful shutdown is in progress. 
 
 Note that activating a forced shutdown with a timeout, such as ``select shutdown_server(false, 30)``, outputs the following error message:
 
-``forced shutdown has no timeout timer"``
+.. code-block:: postgres
+
+   forced shutdown has no timeout timer
 
 .. note:: You can set the timeout value using the ``defaultGracefulShutdownTimeoutMinutes`` flag in the Acceleration Studio.
 
-For more information, see :ref:`graceful_shutdown`.
+For more information, see :ref:`shutdown_server`.
+
+Examples
+===================
+This section shows the following examples:
+
+**Example 1 - Activating a Forceful Shutdown**
+
+.. code-block:: postgres
+
+   shutdown_server ()
+
+**Example 2 - Activating a Graceful Shutdown**
+
+.. code-block:: postgres
+
+   shutdown_server (true)
+
+**Example 3 - Overriding the timeout Default with Another Value**
+
+.. code-block:: postgres
+
+   shutdown_server (500)
+
+The ``timeout`` unit is minutes.
 
 Permissions
 =============
