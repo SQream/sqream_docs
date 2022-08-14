@@ -22,7 +22,7 @@ import sphinx_rtd_theme
 
 project = 'SQream DB'
 copyright = '2021 SQream'
-author = 'Sean Tomarian'
+author = 'Yaniv Gerowitz'
 
 # The full version, including alpha/beta/rc tags
 release = 'deprecate_varchar_with_text'
