@@ -61,15 +61,15 @@ Operations and Configuration Changes
 --------
 The following configuration flags were added:
 
- * :ref:`is_healer_on`
+ * `Enabling the Query Healer <https://docs.sqream.com/en/v2021.2.1.24/configuration_guides/is_healer_on.html>`_
 
     ::
 
- * :ref:`healer_max_inactivity_hours`
+ * `Query Healer <https://docs.sqream.com/en/v2021.2.1.24/configuration_guides/healer_max_inactivity_hours.html>`_
 
     ::
 
- * :ref:`login_max_retries`
+ * `Adjusting Permitted Log-in Attempts <https://docs.sqream.com/en/v2021.2.1.24/configuration_guides/login_max_retries.html>`_
 
 Naming Changes
 -------

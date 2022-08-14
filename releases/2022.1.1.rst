@@ -14,7 +14,7 @@ Version Content
 The 2022.1.1 Release Notes describes the following: 
 
 * Enhanced security features
-* :ref:`sqream_studio_5.4.7`
+* `SQream Acceleration Studio 5.4.7 <https://docs.sqream.com/en/v2022.1.1/sqream_studio_5.4.7/index.html>`_
 
 New Features
 ----------
@@ -28,7 +28,7 @@ Password Security Compliance
 ************
 In compliance with GDPR standards, SQream now requires a strong password policy when accessing the CLI or Studio.
 
-For more information, see :ref:`access_control_password_policy`.
+For more information, see `Password Policy <https://docs.sqream.com/en/v2022.1.1/operational_guides/access_control_password_policy.html>`_.
 
 Known Issues
 ---------
@@ -100,7 +100,7 @@ Upgrading to v2022.1.1
 
       $ ./upgrade_storage <levelDB path>
 
-  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <https://docs.sqream.com/en/latest/installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <https://docs.sqream.com/en/v2022.1.1/installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
   
 .. toctree::
    :maxdepth: 2
