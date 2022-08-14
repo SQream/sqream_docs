@@ -14,7 +14,7 @@ Version Content
 The 2022.1.1 Release Notes describes the following: 
 
 * Enhanced security features
-* :ref:`sqream_studio_5.4.7`
+* For more information, see `SQream Acceleration Studio 5.4.7 <https://docs.sqream.com/en/v2022.1.1/sqream_studio_5.4.7/index.html>`_.
 
 New Features
 ----------
@@ -60,7 +60,7 @@ No relevant naming changes were made.
 
 Deprecated Features
 -------
-In :ref:`sqream_studio_5.4.7`, the **Configuration** section has been temporarily disabled and will be enabled at a later date. In addition, the **Log Lines** tab in the **Log** section has been removed.
+In `SQream Acceleration Studio 5.4.7 <https://docs.sqream.com/en/v2022.1.1/sqream_studio_5.4.7/index.html>`_, the **Configuration** section has been temporarily disabled and will be enabled at a later date. In addition, the **Log Lines** tab in the **Log** section has been removed.
 
 End of Support
 -------
