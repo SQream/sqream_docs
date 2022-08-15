@@ -5,6 +5,8 @@ Loading and Unloading Data
 ***********************
 The **Loading Data** section describes concepts and operations related to importing data into your SQream database:
 
+* :ref:`loading_data_using_sqload`
+
 * `Overview of loading data <https://docs.sqream.com/en/latest/data_ingestion/inserting_data.html>`_ - Describes best practices and considerations for loading data into SQream from a variety of sources and locations.
 
 * `Alternatives to loading data (foreign tables) <https://docs.sqream.com/en/latest/operational_guides/foreign_tables.html>`_ - Useful for running queries directly on external data without importing into your SQream database.
