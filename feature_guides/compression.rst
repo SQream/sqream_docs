@@ -3,43 +3,37 @@
 ***********************
 Compression
 ***********************
+The **Compression** page describes the following:
+
+.. contents:: 
+   :local:
+   :depth: 1
 
 .. |icon-new_dark_gray_2022.1.1.png| image:: /_static/images/new_dark_gray_2022.1.1.png
    :align: middle
    :width: 110
 
-SQream DB uses compression and encoding techniques to optimize query performance and save on disk space.
+SQream uses a variety of compression and encoding methods to optimize query performance and to save disk space.
 
 Encoding
 =============
+**Encoding** is an automatic operation used to convert data into common formats. For example, certain formats are often used for data stored in columnar format, in contrast with data stored in a CSV file, which stores all data in text format.
 
-Encoding converts data into a common format.
+Encoding enhances performance and reduces data size by using specific data formats and encoding methods. SQream encodes data in a number of ways in accordance with the data type. For example, a **date** is stored as an **integer**, starting with **March 1st 1CE**, which is significantly more efficient than encoding the date as a string. In addition, it offers a wider range than storing it relative to the Unix Epoch. 
 
-When data is stored in a columnar format, it is often in a common format. This is in contrast with data stored in CSVs for example, where everything is stored in a text format.
-
-Because encoding uses specific data formats and encodings, it increases performance and reduces data size. 
-
-SQream DB encodes data in several ways depending on the data type. For example, a date is stored as an integer, with March 1st 1CE as the start. This is a lot more efficient than encoding the date as a string, and offers a wider range than storing it relative to the Unix Epoch. 
-
-Compression
+Lossless Compression
 ==============
+**Compression** transforms data into a smaller format without sacrificing accuracy, known as **lossless compression**.
 
-Compression transforms data into a smaller format without losing accuracy (lossless).
+After encoding a set of column values, SQream packs the data and compresses it and decompresses it to make it accessible to users. Depending on the compression scheme used, these operations can be performed on the CPU or the GPU. Some users find that GPU compressions provide better performance.
 
-After encoding a set of column values, SQream DB packs the data and compresses it.
-
-Before data can be accessed, SQream DB needs to decompress it.
-
-Depending on the compression scheme, the operations can be performed on the CPU or the GPU. Some users find that GPU compressions perform better for their data.
-
-Automatic compression
+Automatic Compression
 ------------------------
-
-By default, SQream DB automatically compresses every column (see :ref:`Specifying compressions<specifying_compressions>` below for overriding default compressions). This feature is called **automatic adaptive compression** strategy.
+By default, SQream automatically compresses every column (see :ref:`Specifying compressions<specifying_compressions>` below for overriding default compressions). This feature is called **automatic adaptive compression** strategy.
 
 When loading data, SQream DB automatically decides on the compression schemes for specific chunks of data by trying several compression schemes and selecting the one that performs best. SQream DB tries to balance more agressive compressions with the time and CPU/GPU time required to compress and decompress the data.
 
-Compression strategies
+Compression Methods
 ------------------------
 
 .. list-table:: 
@@ -93,6 +87,11 @@ Compression strategies
      - Integer types
      - Optimized RLE + Delta type for built-in :ref:`identity columns<identity>`. 
      - GPU
+   * - ``zlib``
+     - All types
+     - The **basic_zlib_compressor** and **basic_zlib_decompressor** compress and decompress data in the **ZLIB** format, using **DualUseFilters** for input and output. In general, compression filters are for output, and decompression filters for input.
+
+ .. note:: Automatic compression does not select the **zlib** compression method.
 
 .. _specifying_compressions:
 
