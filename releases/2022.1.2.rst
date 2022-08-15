@@ -23,15 +23,11 @@ The 2022.1.2 Release Notes include the following new features:
    :local:
    :depth: 1
    
-Feature 1
+Enhanced Automatic Adaptive Compression
 ************
-<Description>
+SQream's automatic adaptive compression has been enhanced with new compression methods. This mechanism automatically uses the best compression method for each scenario, improving the compression ratio by approximately twice of that in Version 2022.1
 
-For more information, see 
-
-Feature 2
-************
-<Description>
+.. note:: The compression ratio is highly dependent on the nature of the compressed data and on other variables, such as ordering, cardinality and data types.
 
 For more information, see 
 
