@@ -29,10 +29,12 @@ SQream's automatic adaptive compression has been enhanced with new compression m
 
 .. note:: The compression ratio depends on the nature of the compressed data and on other variables, such as ordering, cardinality and data types.
 
-For more information, see :ref:`compression`.
+For more information, navigate to the **Compression Methods** table on the :ref:`compression` page.
 
 Parquet Read Optimization
-************ 
+************
+
+https://sqream.atlassian.net/wiki/spaces/PRODUCT/pages/2277998593/Parquet+read+optimization
 
 Known Issues
 ---------
