@@ -11,6 +11,7 @@ This section describes the following features:
    :maxdepth: 1
    :titlesonly:  
 
+   automatic_foreign_table_ddl_resolution
    query_healer
    data_encryption
    compression
