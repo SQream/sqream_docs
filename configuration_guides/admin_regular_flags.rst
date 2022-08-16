@@ -5,7 +5,7 @@ Regular Administration Flags
 *************************
 The **Regular Administration Flags** page describes **Regular** modification type flags, which can be modified by administrators on a session and cluster basis using the ``ALTER SYSTEM SET`` command:
 
-* `Setting Bin Size <https://docs.sqream.com/en/v2020-1/configuration_guides/bin_sizes.html>`_
+* :ref:`bin_sizes`
 * `Setting CUDA Memory <https://docs.sqream.com/en/v2020-1/configuration_guides/check_cuda_memory.html>`_
 * `Limiting Runtime to Utility Functions <https://docs.sqream.com/en/v2020-1/configuration_guides/compiler_gets_only_ufs.html>`_
 * `Enabling High Bin Control Granularity <https://docs.sqream.com/en/v2020-1/configuration_guides/copy_to_restrict_utf8.html>`_
