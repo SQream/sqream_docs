@@ -1,5 +1,5 @@
-.. _troubleshooting:
+.. _best_practices:
 
 ***********************
-Troubleshooting
+Best Practices
 ***********************

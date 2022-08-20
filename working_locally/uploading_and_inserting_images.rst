@@ -1,0 +1,34 @@
+.. _uploading_and_inserting_images:
+
+***********************
+How to Upload and Insert Images
+***********************
+This section describes how to upload and insert images on your local GitHub:
+
+**To insert images on your local GitHub:**
+
+1. On your local computer, save your image(s) in the **_static** folder.
+
+   This lets you easily transfer images to all required branch folders. Note that you can also save a folder of images.
+
+2. Copy the image(s) or folder into the **_static** folder into the branch folder you're working in.
+
+    ::
+
+3. Insert the image syntax shown below into the location on the page you want the image to be displayed:
+
+   .. code-block:: console
+
+      .. image:: /_static/<folder>/<image_file_name>.png
+
+   The following is an example of the image syntax:
+
+   .. code-block:: console
+
+      .. image:: /_static/images/dashboard.png
+
+4. Generate and check your build file.
+
+    ::
+
+5. Push and commit your changes.

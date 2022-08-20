@@ -1,0 +1,145 @@
+.. _<YYYY.X>:
+
+**************************
+Release Notes <YYYY.X>
+**************************
+The <YYYY.X> release notes were released on <xx/xx/yyyy> and describe the following:
+
+.. contents:: 
+   :local:
+   :depth: 1      
+
+Version Content
+----------
+The <YYYY.X> Release Notes describes the following:
+
+* <Feature description 1>
+* <Feature description 2>
+* <Feature description 3>
+
+New Features
+----------
+The <YYYY.X> Release Notes include the following new features:
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Feature 1
+************
+SQream now supports the <feature 1>, which is used for <description>.
+
+For more information, see `Page Title <absolute link>`_.
+
+Feature 2
+************
+SQream now supports the <feature 2>, which is used for <description>.
+
+For more information, see `Page Title <absolute link>`_.
+
+Feature 3
+************
+SQream now supports the <feature 3>, which is used for <description>.
+
+For more information, see `Page Title <absolute link>`_.
+
+Resolved Issues
+---------
+The following table lists the resolved issues for Version <YYYY.X>:
+
++-------------+-------------------------------------------------------------------------------------------+
+| **SQ No.**  | **Description**                                                                           |
++=============+===========================================================================================+
+| SQ-####     | <Description>                                                                             |
++-------------+-------------------------------------------------------------------------------------------+
+| SQ-####     | <Description>                                                                             |
++-------------+-------------------------------------------------------------------------------------------+
+| SQ-####     | <Description>                                                                             |
++-------------+-------------------------------------------------------------------------------------------+
+
+Operations and Configuration Changes
+--------
+Write one of the following:
+
+* No relevant operations and configuration changes were made.
+
+   ::
+
+* The following configuration flags were added:
+
+   * :ref:`is_healer_on` (example)
+
+      ::
+
+   * :ref:`<flag>`
+
+      ::
+
+   * :ref:`<flag>`
+
+Naming Changes
+-------
+Write one of the following:
+
+* No relevant naming changes were made.
+
+   ::
+
+* Describe the naming changes.
+
+Deprecated Features
+-------
+Write one of the following:
+
+* The **Deprecated Components** section is not relevant to Version <XXXX.Y>.
+
+   ::
+
+* <Description>  
+
+End of Support
+-------
+The End of Support section is not relevant to Version <XXXX.Y>.
+
+Upgrading to Version <XXXX.Y>
+-------
+1. Generate a back-up of the metadata by running the following command:
+
+   .. code-block:: console
+
+      $ select backup_metadata('out_path');
+	  
+   .. tip:: SQream recommends storing the generated back-up locally in case needed.
+   
+   SQream runs the Garbage Collector and creates a clean backup tarball package.
+   
+2. Shut down all SQream services.
+
+    ::
+
+3. Extract the recently created back-up file.
+
+    ::
+
+4. Replace your current metadata with the metadata you stored in the back-up file.
+
+    ::
+
+5. Navigate to the new SQream package bin folder.
+
+    ::
+
+6. Run the following command:
+
+   .. code-block:: console
+
+      $ ./upgrade_storage <levelDB path>
+
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <https://docs.sqream.com/en/<XXXX.Y>/installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
+  
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :hidden:
+
+   <XXXX.Y>

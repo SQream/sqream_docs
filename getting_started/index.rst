@@ -1,17 +1,16 @@
 .. _getting_started:
 
-*************************
+***********************
 Getting Started
-*************************
-The **Getting Started** page describes the following things you need to start using SQream:
+***********************
+At the time that this document was written, SQream's documentation set included the following menu topics: 
 
 .. toctree::
    :maxdepth: 1
+   :caption: Let's Begin
    :glob:
 
-   preparing_your_machine_to_install_sqream
-   installing_sqream
-   creating_a_database
-   executing_statements_in_sqream
-   performing_basic_sqream_operations
-   hardware_guide
+   what_kind_of_information_does_sqream_provide
+   main_tasks
+   platforms/index
+   getting_information

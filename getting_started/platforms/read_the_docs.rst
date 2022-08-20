@@ -1,5 +1,5 @@
-.. _troubleshooting:
+.. _read_the_docs:
 
 ***********************
-Troubleshooting
+Read-the-Docs
 ***********************
