@@ -1,126 +1,46 @@
 .. _index:
 
 *************************
-SQream DB Documentation
+Technical Documentation Training
 *************************
 
-For SQream version 2022.1.
-
-.. only:: html
-
-   .. tip::
-      Want to read this offline?
-      `Download the documentation as a single PDF <https://docs.sqream.com/_/downloads/en/v2022.1/pdf/>`_ .
-
-.. only:: pdf or latex
-   
-   .. tip:: This documentation is available online at https://docs.sqream.com/
-
-SQream DB is a columnar analytic SQL database management system. 
-
-SQream DB supports regular SQL including :ref:`a substantial amount of ANSI SQL<sql_feature_support>`, uses :ref:`serializable transactions<transactions>`, and :ref:`scales horizontally<concurrency_and_scaling_in_sqream>` for concurrent statements.
-
-Even a :ref:`basic SQream DB machine<hardware_guide>` can support tens to hundreds of terabytes of data.
-
-SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tableau>` comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc>`, :ref:`ODBC<odbc>`, and :ref:`Python DB-API<pysqream>`.
-
-.. 
-   .. ref`features_tour`
-
-.. list-table::
-   :widths: 33 33 33
-   :header-rows: 0
-
-   * - **Get Started**
-     - **Reference**
-     - **Guides**
-   * -
-         `Getting Started <https://docs.sqream.com/en/v2022.1/getting_started/index.html>`_
-         
-         :ref:`sql_feature_support`
-         
-         :ref:`Bulk load CSVs<csv>`
-     - 
-         :ref:`SQL Reference<sql>`
-         
-         :ref:`sql_statements`
-         
-         :ref:`sql_functions`
-     - 
-         `Setting up SQream <https://docs.sqream.com/en/v2022.1/installation_guides/index.html>`_
-         
-         :ref:`Best practices<sql_best_practices>`
-         
-
-   * - **Releases**
-     - **Driver and Deployment**
-     - **Help and Support**
-   * -
-         :ref:`2022.1<2022.1>`
-
-         :ref:`2021.2<2021.2>`
-
-         :ref:`2021.1<2021.1>`
-        
-         :ref:`2020.3<2020.3>`
-
-         :ref:`2020.2<2020.2>`
-         
-         :ref:`2020.1<2020.1>`
-                  
-         :ref:`All recent releases<releases>`
-
-     - 
-         :ref:`Client drivers<client_drivers>`
-
-         :ref:`Third party tools integration<third_party_tools>`
-
-     - 
-         :ref:`troubleshooting` guide
-         
-         :ref:`information_for_support`
-
-
-
-.. rubric:: Need help?
-
-If you couldn't find what you're looking for, we're always happy to help. Visit `SQream's support portal <https://sqream.atlassian.net/servicedesk/>`_ for additional support.
-
-
-.. rubric:: Looking for older versions?
-
-This version of the documentation is for SQream DB Version 2022.1.
-
-If you're looking for an older version of the documentation, versions 1.10 through 2019.2.1 are available at http://previous.sqream.com .
-
-.. toctree::
-   :caption: Contents:
-   :glob:
-   :maxdepth: 6
-   :titlesonly:
-   :hidden:
-
-   getting_started/index
-   installation_guides/index
-   data_ingestion/index
-   connecting_to_sqream/index
-   external_storage_platforms/index
-   loading_and_unloading_data/index
-   feature_guides/index
-   operational_guides/index
-   sqream_studio_5.4.7/index
-   architecture/index
-   configuration_guides/index
-   reference/index
-   data_type_guides/index
-   releases/index
-   troubleshooting/index
-   glossary
-
-..
-   Indices and tables
-   ==================
-
-   * :ref:`genindex`
-   * :ref:`modindex`
-   * :ref:`search`
++-----------------------------------------------------+-----------------------------------------+
+| .. toctree::                                        | .. toctree::                            |
+|    :maxdepth: 1                                     |    :maxdepth: 1                         |
+|    :caption: In The Beginning...                    |    :caption: Managing Documentation     |
+|    :glob:                                           |    :glob:                               |
+|                                                     |                                         |
+|    getting_started/index                            |    documentation_basics/index           |
+|    working_remotely/index                           |    anatomy_of_a_file/index              |
+|    working_locally/index                            |    previews_and_reviews/index           |
+|    using_notepad/index                              |    creating_documentation_backup/index  |
++-----------------------------------------------------+-----------------------------------------+
+| .. toctree::                                        | .. toctree::                            |
+|    :maxdepth: 1                                     |    :maxdepth: 1                         |
+|    :caption: Managing Branches                      |    :caption: Managing Menus             |
+|    :glob:                                           |    :glob:                               |
+|                                                     |                                         |
+|    what_are_branches_used_for/index                 |    menu_elements/index                  |
+|    private_branches/index                           |    organizing_your_menu/index           |
+|                                                     |                                         |
++-----------------------------------------------------+-----------------------------------------+
+| .. toctree::                                        | .. toctree::                            |
+|    :maxdepth: 1                                     |    :maxdepth: 1                         |
+|    :caption: Managing Release Notes                 |    :caption: Best Practices             |
+|    :glob:                                           |    :glob:                               |
+|                                                     |                                         |
+|    the_flyout_menu/index                            |    creating_documentation_backup/index  |
+|    managing_release_notes/index                     |    using_a_table_generator/index        |
+|    updating_other_areas_of_the_documentation/index  |    using_a_table_generator/index        |
++-----------------------------------------------------+-----------------------------------------+
+| .. toctree::                                                                                  |
+|    :maxdepth: 1                                                                               |
+|    :caption: Troubleshooting                                                                  |
+|    :glob:                                                                                     |
+|                                                                                               |
+|    disappearing_tables/index                                                                  |
+|    bulleted_list_issues/index                                                                 |
+|    wacky_build_file_behavior/index                                                            |
+|    list_indentation_issues/index                                                              |
+|                                                                                               |                        
++-----------------------------------------------------------------------------------------------+
