@@ -19,7 +19,7 @@ You can add items to the flyout menu by setting each as **Active**.
 
     ::
 
-4. In the row corresponding to a version, click Edit.
+4. In the row corresponding to a version, click **Edit**.
 
     ::
 
@@ -27,4 +27,13 @@ You can add items to the flyout menu by setting each as **Active**.
 
     ::
 
-6. In the **Privacy Level** region, from the dropdown menu select **Public**. 
+6. In the **Privacy Level** region, from the dropdown menu select **Public**.
+
+    ::
+
+7. In the top menu, click **Builds**, and in the **Recent Builds** list verify that the branch is **Uploading**.
+
+   .. note:: You can view a more granular upload progress by clicking **Uploading**.
+
+   .. note:: If any issue occurs at this stage verify that you have not committed more than four branches at a time. You can cancel a build by clicking **Cancel Build**. When you do this, you must make a minor change and recommit it. If you experience issues during this phase, speak with Slavi Khodorkovsky. 
+
