@@ -64,3 +64,5 @@ Private branches are branches that you want to make accesible to people at SQrea
    .. code-block:: console
 
       https://docs.sqream.com/_/sharing/Af30ZOGNth4lmS47HKL6hc2UWN9pbAoA?next=/en/v2022.1.1/getting_started/index.html
+
+   .. note:: Private branches are visible on the flyout menu only by clicking on a private link. Users viewing the front-end from a public branch cannot see any private branches.

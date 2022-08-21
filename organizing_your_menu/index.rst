@@ -1,7 +1,7 @@
 .. _organizing_your_menu:
 
 ***********************
-How Do I Organize My Menu?
+Organizing Your Menu
 ***********************
 This section describes the following:
 
@@ -11,4 +11,4 @@ This section describes the following:
 
    nesting_items
    rearranging_menu_items
-   redirects
+   redirects/index

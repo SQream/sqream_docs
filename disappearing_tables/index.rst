@@ -3,6 +3,12 @@
 ***********************
 Why Do My Tables Keep Disappearing?
 ***********************
+This section describes the following:
+
+.. contents:: 
+   :local:
+   :depth: 1
+
 Overview
 =======================
 It appears that you've stumbled upon a most aggravating magic trick! You may spend a relatively considerable amount of effort making a table, only to find that it disappears from your page when you publish it. Don't pull your hairs out. Read this page instead.
@@ -94,4 +100,4 @@ As above, the following table doesn't appear because it's misaligned:
      - Column 3, Row 2
      - Column 3, Row 3
 
-I promise you that the table syntax is really there! I'm trying to make things easier for you, I really am.
+I promise you that the table syntax is really there! I'm trying to make things easier for you, I re
