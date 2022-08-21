@@ -1,8 +1,11 @@
-.. _advancing_to_the_next_release_branch:
+.. _advancing_to_the_next_release_version:
 
 ***********************
-How Do I Advance to the Next Release Branch?
+How Do I Advance to the Next Release Version?
 ***********************
+This page describes how to advancea branch to the next release notes version.
+
+**To advance a documentation branch to the next release notes version:**
 1. Create your new branch:
 
 

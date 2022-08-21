@@ -13,7 +13,7 @@ At the time that this document was written, SQream's documentation set included 
 * Loading and Unloading Data
 * Feature Guides
 * Operational Guides
-* SQream Acceleration Studio 5.4.6
+* SQream Acceleration Studio 5.4.7
 * System Architecture
 * Configuration Guides
 * Reference Guides

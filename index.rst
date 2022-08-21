@@ -31,15 +31,16 @@ Technical Documentation Training
 |                                                     |                                               |
 |    the_flyout_menu/index                            |    creating_documentation_backup/index        |
 |    managing_release_notes/index                     |    using_a_table_generator/index              |
-|    updating_other_areas_of_the_documentation/index  |    using_a_table_generator/index              |
+|    updating_other_areas_of_the_documentation/index  |    preparing_for_release_notes/index          |
 +-----------------------------------------------------+-----------------------------------------------+
-| .. toctree::                                                                                        |
-|    :maxdepth: 1                                                                                     |
-|    :caption: Troubleshooting                                                                        |
-|    :glob:                                                                                           |
-|                                                                                                     |
-|    list_indentation_issues/index                                                                    |
-|    disappearing_tables/index                                                                        |
-|    wacky_build_file_behavior/index                                                                  |
-|    disappearing_menu_items/index                                                                    |
+| .. toctree::                                        | .. toctree::                                  |
+|    :maxdepth: 1                                     |    :maxdepth: 1                               |
+|    :caption: Troubleshooting                        |    :caption: Miscellaneous                    |
+|    :glob:                                           |    :glob:                                     |
+|                                                     |                                               |
+|    list_indentation_issues/index                    |    documenting_in_word/index                  | 
+|    disappearing_tables/index                        |    updating_tech_docs/index                   |
+|    wacky_build_file_behavior/index                  |                                               |
+|    disappearing_menu_items/index                    |                                               |
+|    failed_live_builds/index                         |                                               |
 +-----------------------------------------------------------------------------------------------------+

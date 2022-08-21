@@ -7,6 +7,6 @@ What is the Correct Way to Advance Release Notes Branches?
    :maxdepth: 1
    :glob:
 
-   advancing_to_the_next_release_branch
+   advancing_to_the_next_release_version
    documenting_minor_releases
    template

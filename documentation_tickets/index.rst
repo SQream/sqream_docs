@@ -41,8 +41,12 @@ Creating a Sprint
 ===================
 This section describes how to create a sprint.
 
+**Comment** - *Verify this procedure.*
+
 **To create a sprint:**
 
-1. 
+1. Click **Create Sprint and set the dates.
+
+2. Click **Done**.
 
 

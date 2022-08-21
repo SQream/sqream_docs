@@ -3,7 +3,7 @@
 ***********************
 Major vs. Minor Branches
 ***********************
-The release notes menu structure depends on whether a version has any minor versions or not. If a version doesn't have any minor versions, such as the `2020.2 Release Notes <https://docs.sqream.com/en/latest/releases/2020.2.html>`_ version, the Release Notes section must directly to its release notes page.
+The release notes menu structure depends on whether a version has any minor versions or not. If a version doesn't have any minor versions, such as the `2020.2 Release Notes <https://docs.sqream.com/en/latest/releases/2020.2.html>`_ version, the Release Notes section must link directly to its release notes page.
 
 However, versions with minor versions, such as 2021.2, all related minor versions must be nested in it, such as the `Release Notes 2021.2 <https://docs.sqream.com/en/latest/releases/2021.2_index.html>`_ page.
 
