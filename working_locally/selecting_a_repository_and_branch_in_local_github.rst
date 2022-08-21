@@ -1,11 +1,11 @@
-.. _selecting_a_repository_and_branch:
+.. _selecting_a_repository_and_branch_in_local_github:
 
 ***********************
-Selecting a Repository and Branch
+Selecting a Repository and Branch in Local GitHub
 ***********************
 This section describes how to select a repository.
 
-**To select a repository:**
+**To select a repository while working locally:**
 
 1. From the **Current repository** menu, click the arrow and select a repository.
 

@@ -9,7 +9,7 @@ Working Locally
     :maxdepth: 1
     :glob:
 
-    selecting_a_repository_and_branch
+    selecting_a_repository_and_branch_in_local_github
     accessing_your_file_menu
     creating_a_new_folder
     deleting_a_folder

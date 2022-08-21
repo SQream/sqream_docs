@@ -9,7 +9,7 @@ Working Remotely
     :maxdepth: 1
     :glob:
 
-    selecting_a_repository_and_branch
+    selecting_a_repository_and_branch_in_remote_github
     adding_folders
     deleting_folders
     adding_individual_files

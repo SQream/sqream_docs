@@ -1,7 +1,7 @@
-.. _selecting_a_repository_and_branch:
+.. _selecting_a_repository_and_branch_in_remote_github:
 
 ***********************
-Selecting a Repository and Branch
+Selecting a Repository and Branch in Remote GitHub
 ***********************
 This section describes how to select a repository and branch while working remotely.
 

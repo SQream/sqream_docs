@@ -11,6 +11,7 @@ The **Syntax Guide** describes the following syntactical elements, which you eit
 
       heading_levels
       toc_tree
+      multi_column_toc_tree
       local_toc
       bulleted_lists
       extra_lines
