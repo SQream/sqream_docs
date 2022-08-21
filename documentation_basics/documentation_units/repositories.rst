@@ -19,4 +19,4 @@ You can select a repository in one of the following ways:
 
      C:\Users\Yaniv>cd sqream_docs
 
-.. note:: ``sqream_docs`` is the name of the main documentation repository.
+.. note:: ``sqream_docs`` is the name of the main documentation repository. In the past, other documentation repositories existed for particular projects, but they have been deprecated and deleted.

@@ -13,7 +13,7 @@ Technical Documentation Training
 |    getting_started/index                            |    documentation_basics/index                 |
 |    working_remotely/index                           |    anatomy_of_a_file/index                    |
 |    working_locally/index                            |    previews_and_reviews/index                 |
-|    using_notepad/index                              |    creating_documentation_backup/index        |
+|    using_notepad/index                              |    documentation_tickets/index                |
 +-----------------------------------------------------+-----------------------------------------------+
 | .. toctree::                                        | .. toctree::                                  |
 |    :maxdepth: 1                                     |    :maxdepth: 1                               |

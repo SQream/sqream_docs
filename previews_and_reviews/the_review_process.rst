@@ -11,6 +11,10 @@ A good way to submit your work for review is to convert the build page to PDF, u
 
 The following are the general guidelines on your points of contact:
 
+* **Release notes** - The author of the PRD (identified at the top of the document)
+
+   ::
+
 * **Installation guides** - Slavi Khodorkovsky
 
    ::
