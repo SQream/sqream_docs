@@ -23,6 +23,9 @@ The following is the actual ``toctree`` syntax from the Release Notes index page
       2020.2
       2020.1
 
+.. image:: /_static/images/major_minor_releases.png
+    :align: right
+
 Notice that the 2020.2 menu item is simply the 2020.2 release notes page, while the 2021.2 menu item (2021.2_index) is a separate page with its own ``toctree`` referring to all other versions released in 2021.2.
 
 For example, the following is the ``toctree`` syntax located on the **2021.2_index** file:
