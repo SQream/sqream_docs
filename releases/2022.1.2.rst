@@ -3,7 +3,7 @@
 **************************
 Release Notes 2022.1.2
 **************************
-The 2022.1.2 release notes were released on x/xx/2022 and describe the following:
+The 2022.1.2 release notes were released on 8/24/2022 and describe the following:
 
 .. contents:: 
    :local:
@@ -13,7 +13,15 @@ Version Content
 ----------
 The 2022.1.2 Release Notes describes the following: 
 
+* Automatic schema identification.
+
+   ::
+
 * Enhanced compression features.
+
+   ::
+
+* Support for external Parquet files.
 
 New Features
 ----------
@@ -41,43 +49,23 @@ Parquet Read Optimization
 ************
 SQream now supports storing and running queries on data located on external Parquet files. For more information, see :ref:`parquet`.
 
-Known Issues
----------
-The following table lists the known issues for Version 2022.1.2:
-
-+-------------+------------------------------------------------------------------------------------------------+
-| **SQ No.**  | **Description**                                                                                |
-+=============+================================================================================================+
-| SQ-xxxx     | Description                                                                                    |
-+-------------+------------------------------------------------------------------------------------------------+
-| SQ-xxxx     | Description                                                                                    |
-+-------------+------------------------------------------------------------------------------------------------+
-| SQ-xxxx     | Description                                                                                    |
-+-------------+------------------------------------------------------------------------------------------------+
-| SQ-xxxx     | Description                                                                                    |
-+-------------+------------------------------------------------------------------------------------------------+
-
 Resolved Issues
 ---------
 The following table lists the issues that were resolved in Version 2022.1.2:
 
-+-------------+------------------------------------------------------------------------------------------------+
-| **SQ No.**  | **Description**                                                                                |
-+=============+================================================================================================+
-| SQ-xxxx     | Description                                                                                    |
-+-------------+------------------------------------------------------------------------------------------------+
-| SQ-xxxx     | Description                                                                                    |
-+-------------+------------------------------------------------------------------------------------------------+
-| SQ-xxxx     | Description                                                                                    |
-+-------------+------------------------------------------------------------------------------------------------+
-| SQ-xxxx     | Description                                                                                    |
-+-------------+------------------------------------------------------------------------------------------------+
++-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| **SQ No.**  | **Description**                                                                                                                           |
++=============+===========================================================================================================================================+
+| SQ-11273    | Clustering ``partial-partial`` optimization only occurs when copying data from CSV files.                                                 |
++-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-11291    | Metadata filters were not applied when using the ``LIKE`` function, causing certain queries to run on full tables instead of sorted data. |
++-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+
+**Comment** - *Was SQ-11291 just removed?*
 
 Operations and Configuration Changes
 --------
-The ``xxxx`` configuration flag is required for adjusting the permitted log-in attempts.
-
-For more information, see 
+No configuration changes were made.
 
 Naming Changes
 -------

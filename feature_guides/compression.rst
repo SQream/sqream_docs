@@ -91,8 +91,9 @@ The following table shows the available compression methods:
    * - ``zlib``
      - All types
      - The **basic_zlib_compressor** and **basic_zlib_decompressor** compress and decompress data in the **ZLIB** format, using **DualUseFilters** for input and output. In general, compression filters are for output, and decompression filters for input.
+     - CPU
 	 
-.. note:: Automatic compression does not select the **zlib** compression method.
+.. note:: Automatic compression does **not** select the ``zlib`` compression method.
 
 .. _specifying_compressions:
 

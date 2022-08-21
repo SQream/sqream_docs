@@ -21,19 +21,51 @@ Prepare your source Parquet files according to the requirements described in the
    :widths: 40 5 20 20 20 20 5 5 5 5 10
    :header-rows: 1
    
-   * -   SQream DB type →
+   * -   SQream Type →
    
-         Parquet source
+          ::
+
+         Parquet Source ↓
      - ``BOOL``
+
+          ::
+
      - ``TINYINT``
+
+          ::
+
      - ``SMALLINT``
+
+          ::
+
      - ``INT``
+
+          ::
+
      - ``BIGINT``
+
+          ::
+
      - ``REAL``
+
+          ::
+
      - ``DOUBLE``
+
+          ::
+
      - ``TEXT`` [#f0]_
+
+          ::
+
      - ``DATE``
+
+          ::
+
      - ``DATETIME``
+
+          ::
+
    * - ``BOOLEAN``
      - Supported 
      - 
