@@ -11,6 +11,9 @@ Making a **redirect** refers to automatically redirecting a link to another, whe
 
    .. note:: If you can't sign in, speak with Slavi Khodorkovsky, who is the **IT manager**.
 
+   .. image:: /_static/images/redirects.png
+       :align: right
+
 2. Click **sqream / sqream_docs**.
 
     ::
