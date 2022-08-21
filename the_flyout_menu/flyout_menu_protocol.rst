@@ -5,6 +5,10 @@ The Flyout Menu Protocol
 *************************
 You can switch and view branches on the front-end from the fly-out menu, located at the bottom of the documentation page.
 
+.. image:: /_static/images/flyout_menu.png
+    :width: 800px
+    :align: right 
+
 To avoid crowding the fly-out menu, our policy is to show only major release branches on it. Because users cannot access minor branches from the fly-out menu, they can be accessed from each version from their respective release notes branch page.
 
 For example, the 2021.1 version shows all of its related minor versions:

@@ -3,7 +3,7 @@
 ***********************
 Getting Started
 ***********************
-At the time that this document was written, SQream's documentation set included the following menu topics: 
+At the time that this document was written, SQream's documentation set included the following menu topics:
 
 .. toctree::
    :maxdepth: 1

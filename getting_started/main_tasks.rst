@@ -12,7 +12,7 @@ This includes:
    ::
 
 * **Configuration guides** - Documentation related to new or modified flags corresponding to new features.
-
+  
    ::
 
 * **Reference guides** - Descriptions of new statements, commands, or functions.
@@ -23,7 +23,7 @@ This includes:
 
    ::
 
-* **Installation guides** - Updates to installation-related procedures**.
+* **Installation guides** - Updates to installation-related procedures.
 
    ::
 
@@ -32,3 +32,7 @@ This includes:
    ::
 
 * **Other aspects of the documentation set** - All other documentation, such as operational guides, data ingestion sources, and troubleshooting guides.
+
+.. image:: /_static/images/tw_getting_started.png
+    :width: 400px
+    :align: right 

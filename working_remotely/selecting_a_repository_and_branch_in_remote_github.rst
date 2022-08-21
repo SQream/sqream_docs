@@ -3,11 +3,19 @@
 ***********************
 Selecting a Repository and Branch in Remote GitHub
 ***********************
+
+
+.. image:: /_static/images/github.png
+    :align: right 
+
+
 This section describes how to select a repository and branch while working remotely.
 
 **To select a repository while working remotely:**
 
   1. Go to ``https://github.com``.
+
+      ::
 
   2. From the list of repositories, select **sqream_docs**.
 
@@ -18,3 +26,4 @@ This section describes how to select a repository and branch while working remot
      .. note:: The branch selected by default is **master**.
 
      The contents of the branch you selected is displayed.
+
