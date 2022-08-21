@@ -39,8 +39,7 @@ For more information, navigate to the **Compression Methods** table on the :ref:
 
 Parquet Read Optimization
 ************
-
-https://sqream.atlassian.net/wiki/spaces/PRODUCT/pages/2277998593/Parquet+read+optimization
+SQream now supports storing and running queries on data located on external Parquet files. For more information, see :ref:`parquet`.
 
 Known Issues
 ---------

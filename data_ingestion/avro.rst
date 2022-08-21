@@ -352,7 +352,7 @@ The following is an example of loading a table from a directory of Avro files on
    
    CREATE TABLE users AS SELECT * FROM ext_users;
 
-For more configuration option examples, see the `CREATE FOREIGN TABLE parameters <https://docs.sqream.com/en/v2020.3/reference/sql/sql_statements/ddl_commands/create_foreign_table.html#cft-parameters>`_.
+For more configuration option examples, navigate to the :ref:`create_foreign_table` page and see the **Parameters** table.
 
 Loading a Table from a Directory of Avro Files on S3
 --------------

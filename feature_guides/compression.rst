@@ -90,8 +90,7 @@ The following table shows the available compression methods:
      - GPU
    * - ``zlib``
      - All types
-     - The **basic_zlib_compressor** and **basic_zlib_decompressor** compress and decompress data in the **ZLIB** format, using **DualUseFilters** for input and output. In general, compression filters are for output, and decompression filters for input. 
-     - **Comment - GPU, CPU?**
+     - The **basic_zlib_compressor** and **basic_zlib_decompressor** compress and decompress data in the **ZLIB** format, using **DualUseFilters** for input and output. In general, compression filters are for output, and decompression filters for input.
 	 
 .. note:: Automatic compression does not select the **zlib** compression method.
 

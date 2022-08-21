@@ -3,16 +3,19 @@
 **********************
 Inserting Data from a Parquet File
 **********************
+This guide covers inserting data from Parquet files into SQream using :ref:`FOREIGN TABLE<foreign_tables>`, and describes the following;
 
-This guide covers inserting data from Parquet files into SQream DB using :ref:`FOREIGN TABLE<external_tables>`. 
-
-.. contents:: In this topic:
+.. contents:: 
    :local:
+   :depth: 1
 
-1. Prepare the files
+Overview
+===================
+As described in **Inserting Data from a Parquet File** section, you can insert data into SQream from Parquet files. However, because it is an open-source column-oriented data storage format, you may want to retain your data on external Parquet files instead of inserting it into SQream. SQream supports executing queries on external Parquet files.
+
+Preparing Your Parquet Files
 =====================
-
-Prepare the source Parquet files, with the following requirements:
+Prepare your source Parquet files according to the requirements described in the following table:
 
 .. list-table:: 
    :widths: 40 5 20 20 20 20 5 5 5 5 10
@@ -120,7 +123,7 @@ Prepare the source Parquet files, with the following requirements:
      - 
      - Supported [#f4]_
 
-* If a Parquet file has an unsupported type, such as ``enum``, ``uuid``, ``time``, ``json``, ``bson``, ``lists``, ``maps``, but the data is not referenced in the table (it does not appear in the :ref:`SELECT` query), the statement will succeed. If the column is referenced, an error will be thrown to the user, explaining that the type is not Supported, but the column may be ommited. This can be worked around. See more information in the examples.
+* Your statements will succeed even if your Parquet file contains an unsupported type, such as ``enum``, ``uuid``, ``time``, ``json``, ``bson``, ``lists``, ``maps``, but the data is not referenced in the table (it does not appear in the :ref:`SELECT` query). If the column containing the unsupported type is referenced, an error message is displayed explaining that the type is not supported and that the column may be ommitted. For solutions to this error message, see more information in **Managing Unsupported Column Types** example in the **Example** section.
 
 .. rubric:: Footnotes
 
@@ -132,35 +135,28 @@ Prepare the source Parquet files, with the following requirements:
 
 .. [#f4] Any microseconds will be rounded down to milliseconds.
 
-2. Place Parquet files where SQream DB workers can access them
+Making Parquet Files Accessible to Workers
 ================================================================
-
-Any worker may try to access files (unless explicitly speficied with the :ref:`workload_manager`).
-It is important that every node has the same view of the storage being used - meaning, every SQream DB worker should have access to the files.
+To give workers access to files every node must have the same view of the storage being used.
 
 * For files hosted on NFS, ensure that the mount is accessible from all servers.
 
-* For HDFS, ensure that SQream DB servers can access the HDFS name node with the correct user-id. See our :ref:`hdfs` guide for more information.
+* For HDFS, ensure that SQream servers have access to the HDFS name node with the correct user-id. For more information, see :ref:`hdfs` guide for more information.
 
-* For S3, ensure network access to the S3 endpoint. See our :ref:`s3` guide for more information.
+* For S3, ensure network access to the S3 endpoint. For more information, see :ref:`s3` guide for more information.
 
-
-3. Figure out the table structure
+Creating a Table
 ===============================================
+Before loading data, you must build the CREATE TABLE to correspond with the file structure of the inserted table.
 
-Prior to loading data, you will need to write out the table structure, so that it matches the file structure.
-
-For example, to import the data from ``nba.parquet``, we will first look at the source table:
+The example in this section is based on the source nba.parquet table shown below:
 
 .. csv-table:: nba.parquet
    :file: nba-t10.csv
    :widths: auto
    :header-rows: 1 
 
-* The file is stored on S3, at ``s3://sqream-demo-data/nba.parquet``.
-
-
-We will make note of the file structure to create a matching ``CREATE EXTERNAL TABLE`` statement.
+The following example shows the correct file structure used to create the ``CREATE EXTERNAL TABLE`` statement based on the nba.parquet table:
 
 .. code-block:: postgres
    
@@ -182,17 +178,101 @@ We will make note of the file structure to create a matching ``CREATE EXTERNAL T
       LOCATION =  's3://sqream-demo-data/nba.parquet'
     );
 
-.. tip:: 
+.. tip:: An exact match must exist between the SQream and Parquet types. For unsupported column types, you can set the type to any type and exclude it from subsequent queries.
 
-   Types in SQream DB must match Parquet types exactly.
+.. note:: The **nba.parquet** file is stored on S3 at ``s3://sqream-demo-data/nba.parquet``.
+
+Ingesting Data into SQream
+===================================
+This section describes the following:
+
+.. contents:: 
+   :local:
+   :depth: 1
    
-   If the column type isn't Supported, a possible workaround is to set it to any arbitrary type and then exclude it from subsequent queries.
+Syntax
+-----------
+You can use the :ref:`create_table_as` statement to load the data into SQream, as shown below:
 
+.. code-block:: postgres
+   
+   CREATE TABLE nba AS
+      SELECT * FROM ext_nba;
 
-4. Verify table contents
-====================================
+Examples
+----------------
+This section describes the following examples:
 
-External tables do not verify file integrity or structure, so verify that the table definition matches up and contains the correct data.
+.. contents:: 
+   :local:
+   :depth: 1
+
+Omitting Unsupported Column Types
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+When loading data, you can omit columns using the NULL as argument. You can use this argument to omit unsupported columns from queries that access external tables. By omitting them, these columns will not be called and will avoid generating a “type mismatch” error.
+
+In the example below, the ``Position column`` is not supported due its type.
+
+.. code-block:: postgres
+   
+   CREATE TABLE nba AS
+      SELECT Name, Team, Number, NULL as Position, Age, Height, Weight, College, Salary FROM ext_nba;
+
+Modifying Data Before Loading
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+One of the main reasons for staging data using the ``EXTERNAL TABLE`` argument is to examine and modify table contents before loading it into SQream.
+
+For example, we can replace **pounds** with **kilograms** using the ``CREATE TABLE AS`` statement.
+
+In the example below, the ``Position column`` is set to the default ``NULL``.
+
+.. code-block:: postgres
+   
+   CREATE TABLE nba AS 
+      SELECT name, team, number, NULL as position, age, height, (weight / 2.205) as weight, college, salary 
+              FROM ext_nba
+              ORDER BY weight;
+
+Loading a Table from a Directory of Parquet Files on HDFS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The following is an example of loading a table from a directory of Parquet files on HDFS:
+
+.. code-block:: postgres
+
+   CREATE FOREIGN TABLE ext_users
+     (id INT NOT NULL, name TEXT(30) NOT NULL, email TEXT(50) NOT NULL)  
+   WRAPPER parquet_fdw
+   OPTIONS
+     (
+        LOCATION =  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet'
+     );
+   
+   CREATE TABLE users AS SELECT * FROM ext_users;
+
+Loading a Table from a Directory of Parquet Files on S3
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The following is an example of loading a table from a directory of Parquet files on S3:
+
+.. code-block:: postgres
+
+   CREATE FOREIGN TABLE ext_users
+     (id INT NOT NULL, name TEXT(30) NOT NULL, email TEXT(50) NOT NULL)  
+   WRAPPER parquet_fdw
+   OPTIONS
+     ( LOCATION = 's3://pp-secret-bucket/users/*.parquet',
+       AWS_ID = 'our_aws_id',
+       AWS_SECRET = 'our_aws_secret'
+      );
+   
+   CREATE TABLE users AS SELECT * FROM ext_users;
+
+For more configuration option examples, navigate to the :ref:`create_foreign_table` page and see the **Parameters** table.
+
+Best Practices
+============
+Because external tables do not automatically verify the file integrity or structure, SQream recommends manually verifying your table output when ingesting Parquet files into SQream. This lets you determine if your table output is identical to your originally inserted table.
+
+The following is an example of the output based on the **nba.parquet** table:
 
 .. code-block:: psql
    
@@ -210,85 +290,4 @@ External tables do not verify file integrity or structure, so verify that the ta
    Terry Rozier  | Boston Celtics |     12 | PG       |  22 | 6-2    |    190 | Louisville        |  1824360
    Marcus Smart  | Boston Celtics |     36 | PG       |  22 | 6-4    |    220 | Oklahoma State    |  3431040
 
-If any errors show up at this stage, verify the structure of the Parquet files and match them to the external table structure you created.
-
-5. Copying data into SQream DB
-===================================
-
-To load the data into SQream DB, use the :ref:`create_table_as` statement:
-
-.. code-block:: postgres
-   
-   CREATE TABLE nba AS
-      SELECT * FROM ext_nba;
-
-Working around unSupported column types
----------------------------------------------
-
-Suppose you only want to load some of the columns - for example, if one of the columns isn't Supported.
-
-By ommitting unSupported columns from queries that access the ``EXTERNAL TABLE``, they will never be called, and will not cause a "type mismatch" error.
-
-For this example, assume that the ``Position`` column isn't Supported because of its type.
-
-.. code-block:: postgres
-   
-   CREATE TABLE nba AS
-      SELECT Name, Team, Number, NULL as Position, Age, Height, Weight, College, Salary FROM ext_nba;
-   
-   -- We ommitted the unSupported column `Position` from this query, and replaced it with a default ``NULL`` value, to maintain the same table structure.
-
-
-Modifying data during the copy process
-------------------------------------------
-
-One of the main reasons for staging data with ``EXTERNAL TABLE`` is to examine the contents and modify them before loading them.
-
-Assume we are unhappy with weight being in pounds, because we want to use kilograms instead. We can apply the transformation as part of the :ref:`create_table_as` statement.
-
-Similar to the previous example, we will also set the ``Position`` column as a default ``NULL``.
-
-.. code-block:: postgres
-   
-   CREATE TABLE nba AS 
-      SELECT name, team, number, NULL as position, age, height, (weight / 2.205) as weight, college, salary 
-              FROM ext_nba
-              ORDER BY weight;
-
-
-Further Parquet loading examples
-=======================================
-
-:ref:`create_foreign_table` contains several configuration options. See more in :ref:`the CREATE FOREIGN TABLE parameters section<cft_parameters>`.
-
-
-Loading a table from a directory of Parquet files on HDFS
-------------------------------------------------------------
-
-.. code-block:: postgres
-
-   CREATE FOREIGN TABLE ext_users
-     (id INT NOT NULL, name TEXT(30) NOT NULL, email TEXT(50) NOT NULL)  
-   WRAPPER parquet_fdw
-   OPTIONS
-     (
-        LOCATION =  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet'
-     );
-   
-   CREATE TABLE users AS SELECT * FROM ext_users;
-
-Loading a table from a bucket of files on S3
------------------------------------------------
-
-.. code-block:: postgres
-
-   CREATE FOREIGN TABLE ext_users
-     (id INT NOT NULL, name TEXT(30) NOT NULL, email TEXT(50) NOT NULL)  
-   WRAPPER parquet_fdw
-   OPTIONS
-     ( LOCATION = 's3://pp-secret-bucket/users/*.parquet',
-       AWS_ID = 'our_aws_id',
-       AWS_SECRET = 'our_aws_secret'
-      );
-   
-   CREATE TABLE users AS SELECT * FROM ext_users;
+.. note:: If your table output has errors, verify that the structure of the Parquet files correctly corresponds to the external table structure that you created.
