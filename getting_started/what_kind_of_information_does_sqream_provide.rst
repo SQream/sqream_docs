@@ -3,7 +3,11 @@
 ***********************
 What Kind of Documentation Does SQream Provide?
 ***********************
-At the time that this document was written, SQream's documentation set included the following menu topics: 
+At the time that this document was written, SQream's documentation set included the following menu topics:
+
+   .. image:: /_static/images/doc_set.png
+      :width: 800px
+      :align: right
 
 * Getting Started
 * Installation Guides
