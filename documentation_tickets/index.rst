@@ -11,7 +11,11 @@ This section describes the following:
 
 Overview
 ===================
-**Documentation tickets** are requests made by others for you to create, modify, remove, and/or correct some page in our documentation. You can (and should) also create tickets for yourself.
+   .. image:: /_static/images/ticket.png
+      :width: 300px
+      :align: right
+
+**Documentation tickets** are requests made by others for you to create, modify, remove, and/or correct some page in our documentation. You can (and should) also create tickets for yourself. 
 
 When a ticket is created on your TPD board, it automatically enters your `Backlog <https://sqream.atlassian.net/jira/software/projects/TPD/boards/101/backlog>`_.
 
