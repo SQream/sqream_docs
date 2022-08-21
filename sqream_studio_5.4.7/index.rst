@@ -1,7 +1,7 @@
 .. _sqream_studio_:
 
 **********************************
-SQream Acceleration Studio 
+SQream Acceleration Studio 5.4.7
 **********************************
 The SQream Acceleration Studio 5.4.7 is a web-based client for use with SQream. Studio provides users with all functionality available from the command line in an intuitive and easy-to-use format. This includes running statements, managing roles and permissions, and managing SQream clusters.
 
