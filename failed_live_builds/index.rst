@@ -3,6 +3,10 @@
 ***********************
 Why Are My Public Builds Failing?
 ***********************
+.. image:: /_static/images/failed_build.png
+    :width: 350px
+    :align: right 
+
 Occasionally, a live build will fail when you try to publish it on Read-the-Docs.
 
 The following are the main reasons for a failed build:
