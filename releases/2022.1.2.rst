@@ -56,6 +56,8 @@ The following table lists the issues that were resolved in Version 2022.1.2:
 +-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 | **SQ No.**  | **Description**                                                                                                                           |
 +=============+===========================================================================================================================================+
+| SQ-10892    | An incorrect error message was displayed when users ran the ``UPDATE`` command on foreign tables.                                         |
++-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 | SQ-11273    | Clustering ``partial-partial`` optimization only occurs when copying data from CSV files.                                                 |
 +-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 | SQ-11291    | Metadata filters were not applied when using the ``LIKE`` function, causing certain queries to run on full tables instead of sorted data. |
