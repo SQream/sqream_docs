@@ -1,7 +1,7 @@
 .. _getting_started:
 
 ****************************
-Getting Started with SQream Acceleration Studio 5.4.3
+Getting Started with SQream Acceleration Studio 5.4.7
 ****************************
 Setting Up and Starting Studio
 ----------------
@@ -56,6 +56,6 @@ By clicking the user icon, you can also use it for logging out and viewing the f
 * License storage capacity
 * Log out
 
-.. _back_to_dashboard_5.4.3:
+.. _back_to_dashboard_5.4.7:
 
-.. _studio_dashboard_5.4.3:
+.. _studio_dashboard_5.4.7:

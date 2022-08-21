@@ -1,6 +1,6 @@
 .. _creating_assigning_and_managing_roles_and_permissions:
 
-.. _roles_5.4.3:
+.. _roles_5.4.7:
 
 ****************************
 Creating, Assigning, and Managing Roles and Permissions
@@ -32,7 +32,7 @@ The **Type** column displays one of the following assigned role types:
 
 .. note:: If you disable a password, when you enable it you have to create a new one.
 
-:ref:`Back to Creating, Assigning, and Managing Roles and Permissions<roles_5.4.3>`
+:ref:`Back to Creating, Assigning, and Managing Roles and Permissions<roles_5.4.7>`
 
 
 Viewing Information About a Role
@@ -49,7 +49,7 @@ Clicking a role in the roles table displays the following information:
    
  * **Permissions** - displays the role's permissions. The arrow indicates the permissions that the role has inherited. Hovering over a permission displays the roles that the permission is inherited from.
  
-:ref:`Back to Creating, Assigning, and Managing Roles and Permissions<roles_5.4.3>`
+:ref:`Back to Creating, Assigning, and Managing Roles and Permissions<roles_5.4.7>`
 
 
 Creating a New Role
@@ -73,7 +73,7 @@ From the New Role panel you view directly and indirectly (or inherited) granted 
 
 When adding a new role, you must select the **Enable login for this role** and **Has password** check boxes.
 
-:ref:`Back to Creating, Assigning, and Managing Roles and Permissions<roles_5.4.3>`
+:ref:`Back to Creating, Assigning, and Managing Roles and Permissions<roles_5.4.7>`
 
 Editing a Role
 --------------------
@@ -89,10 +89,10 @@ Once you've created a role, clicking the **Edit Role** button lets you do the fo
 
 From the Edit Role panel you view directly and indirectly (or inherited) granted permissions. Disabled permissions have no connect permissions for the referenced database and are displayed in gray text. You can add or remove permissions from the **Add permissions** field. From the Edit Role panel you can also search and scroll through the permissions. In the **Search** field you can use the **and** operator to search for strings that fulfill multiple criteria.
 
-:ref:`Back to Creating, Assigning, and Managing Roles and Permissions<roles_5.4.3>`
+:ref:`Back to Creating, Assigning, and Managing Roles and Permissions<roles_5.4.7>`
 
 Deleting a Role
 -----------------
 Clicking the **delete** icon displays a confirmation message with the amount of users and groups that will be impacted by deleting the role.
 
-:ref:`Back to Creating, Assigning, and Managing Roles and Permissions<roles_5.4.3>`
+:ref:`Back to Creating, Assigning, and Managing Roles and Permissions<roles_5.4.7>`
