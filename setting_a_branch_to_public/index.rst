@@ -5,6 +5,9 @@ Setting A Branch to Public
 ***********************
 I’ve made and prepared the 2022.1.2 release branch and set it to **Private**. This allows us to view it without publishing it on the front-end. Because I’ve documented all the features and resolved issues, all you need to do to publish it is to set it to **Public**.
 
+For a short video describing how to set your branch to public, see 
+`Setting A Branch to Public <https://drive.google.com/file/d/1xLjDPXGGmYtk8IbQkHKc6vA6z5YOHi6U/view>`_.
+
 **To set a private branch to Public:**
 
 1. Navigate to `Read-the-Docs <https://readthedocs.com/dashboard/>`_.
