@@ -11,7 +11,7 @@ This guide covers inserting data from Parquet files into SQream using :ref:`FORE
 
 Overview
 ===================
-As described in **Inserting Data from a Parquet File** section, you can insert data into SQream from Parquet files. However, because it is an open-source column-oriented data storage format, you may want to retain your data on external Parquet files instead of inserting it into SQream. SQream supports executing queries on external Parquet files.
+SQream supports inserting data into SQream from Parquet files. However, because it is an open-source column-oriented data storage format, you may want to retain your data on external Parquet files instead of inserting it into SQream. SQream supports executing queries on external Parquet files.
 
 Preparing Your Parquet Files
 =====================
