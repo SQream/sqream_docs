@@ -3,43 +3,78 @@
 ***********************
 How Do I Document Minor Releases?
 ***********************
-Because many releases are completed on a yearly basis, we give users access to all of them, as in the `2021.2 release notes <https://docs.sqream.com/en/latest/releases/2021.2_index.html>`_.
+This page describes the following:
 
-You do this by nesting all releases under the **2021.2_index** file using a TOC tree, as follows:
+.. contents:: 
+   :local:
+   :depth: 1
+
+Overview
+==========
+Documenting minor releases is a little more compiclated than documenting major releases. Because many releases are completed on a yearly basis, we give users access to all of them, as in the `2021.2 release notes <https://docs.sqream.com/en/latest/releases/2021.2_index.html>`_.
+
+Displaying Your Minor Release Pages
+===============================
+This page describes how to display your minor release pages when publishing minor releases.
+
+**To display your minor release pages:**
+
+1. In GitHub, access the most current branch.
+  
+   For example, access the v2022.1.2 branch.
+
+2. In the main folder, open the **index.rst** file.
+
+    ::
+
+3. Set the ``toctree`` syntax as in the following example:
+
+   .. code-block::
+
+      .. toctree::
+         :maxdepth: 1
+         :glob:
+
+         2022.1.2
+         2022.1.1
+         2022.1
+
+.. tip:: Each of the above is the **page anchor** of each respective page. The page anchor is used for calling and referencing other pages. Only include the pages that you want to display in your menu.
+
+4. In the **release_notes** folder, open the **index.rst** file.
+
+    ::
+
+5. As in steps 2 and 3, set the ``toctree`` syntax as in the following example:
+
+   .. code-block::
+
+      .. toctree::
+         :maxdepth: 1
+         :glob:
+
+         2022.1.2
+         2022.1.1
+         2022.1
+
+   The syntax in steps 3 and 5 instructs GitHub to display the **2022.1.2**, **2022.1.1**, and **2022.1** pages.
+
+   .. note:: Only include the page anchor of the files that you want to display on the menu.
+
+6. When you are ready to publish the branch, set it to **Public**.
+
+   For more information about setting a branch to **Public**, see :ref:`setting_a_branch_to_public`.
+
+Setting Your Absolute Links
+===============================
+While the best practice for making links is to use the ``:ref:`` syntax, the one notable exception is the links on each minor release notes page. Because we **do not show** any minor branches on the fly-out menu, users have no way to access them. However, because the minor branches are public users must be able to access them.
+
+Therefore, every link on each respective release notes page must be an **absolute link** pointing to its respective branch. For example, all links on the 2022.1.2 branch must be absolute links to that branch. Clicking one of these absolute links takes the user to that specific branch, where all of its features are documented. Once in that branch, all ``:ref:`` links point to only to pages within that specific branch.
+
+The following is an absolute link to the **Query Healer** page on the 2022.1.2 branch:
 
 .. code-block::
 
-   .. toctree::
-      :maxdepth: 1
-      :glob:
+   https://docs.sqream.com/en/v2022.1.2/feature_guides/query_healer.html
 
-      2021.2.1.24
-      2021.2.1
-      2021.2
-
-Here's where it gets a little complex, so take a seat.
-
-As described earlier, it's better (and correct) to use the **ref** syntax to create links to other pages. However, this rule does not apply to links on minor release notes pages.
-
-For example, when you're viewing the **2021.2** branch on the front end, the menu shows a link to each of the nested minor branches. However, clicking **Release Notes 2021.2.1.24** *does not* take you to the 2021.2.1.24 branch, but rather to the page referring to that release notes file *in the branch that you're already on* (2022.2). This is the correct behavior.
-
-Here's where it gets a little tricky. Notice that the `Release Notes 2021.2.1.24 <https://docs.sqream.com/en/v2022.1/releases/2021.2.1.24.html>`_ page describes the **Query Healer** feature. Because this feature was introduced in version 2021.2.1.24, it is documented on only the 2021.2.1.24 branch and all later branches. This feature *does not exist* on all versions (and therefore branches) before 2021.2.1.24. Therefore, the link to the Query Healer documentation is actually a link to the Query Healer page located *on the 2021.2.1.24 branch*.
-
-If you click the Query Healer link on this page, you'll notice that you're taken to the 2021.2.1.24 branch, away from the branch that you were previously on. However, the entire branch is identical except for the Query Healer (and related configuration flags). This is the reason for basing a new release branch on the previous version. If you were to search for the Query Healer on the 2021.2 (or earlier) branch, you would not find it. The **query_healer** page does not exist in the folders belonging to all branches preceding 2021.2.1.24.
-
-When it's time to advance to the new release, you simply add the new release's anchor (for example, 2021.2.1.25) to the TOC tree file, as follows:
-
-.. code-block::
-
-   .. toctree::
-      :maxdepth: 1
-      :glob:
-
-      2021.2.1.25
-      2021.2.1.24
-      2021.2.1
-      2021.2
-
-.. tip:: Make sure that you've added the actual 2021.2.1.25 file to the 2021.2 folder. Even if the anchor exists in the TOC tree, the page will not appear on the front-end if the file does not exist. To the converse, if the file exists, but its anchor is not in the TOC tree, users will be able to search for it using the search bar, but will not see it anywhere on the menu.
-
-This content of this page is related to the :ref:`release_notes_menu_structure` page.
+.. tip:: The file being called by the ``toctree`` syntax must be located in the folder containing the **index** file calling it. Even if the page's anchor exists in the TOC tree, the page will not appear on the front-end if the file is not in the same folder as the **index** file. To the converse, if the file exists, but its anchor is not in the TOC tree, users will be able to search for it using the search bar, but will not see it anywhere on the menu.

@@ -8,5 +8,6 @@ What is the Correct Way to Advance Release Notes Branches?
    :glob:
 
    advancing_to_the_next_release_version
+   documenting_major_releases
    documenting_minor_releases
    template
