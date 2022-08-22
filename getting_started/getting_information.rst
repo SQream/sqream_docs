@@ -7,11 +7,11 @@ This page describes how to get the source information you need to write your doc
 
 The main sources of information are:
 
-* **PRDs** - Product Requirement Documents are internal documents written by SMEs to describe features.
+* **PRDs** - Product Requirement Documents are internal documents written by SMEs to describe features. You can find PRDs on our internal `Confluence <https://sqream.atlassian.net/wiki/home>`_ page.
 
      ::
 
-* **Release notes pages** - Release notes pages are internal pages that describe the content of each release.
+* **Release notes pages** - Release notes pages are internal pages that describe the content of each release. For more information, see `Release Notes Master List <https://sqream.atlassian.net/wiki/spaces/DOC/pages/9928723/Release+Notes>`_.
 
      ::
 
@@ -19,4 +19,4 @@ The main sources of information are:
 
      ::
 
-* **Library content** - <describe and put link>.
+* **Library content** - Internal educational videos. For more information, see the `Library <https://drive.google.com/drive/folders/1o2Fd08Cg8TmrSUk1GKojvQcg2g1gpvBq>`_.

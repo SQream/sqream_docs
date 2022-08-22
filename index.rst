@@ -40,7 +40,7 @@ Technical Documentation Training
 |                                                     |                                               |
 |                                                     |    documenting_in_word/index                  | 
 |    disappearing_tables/index                        |    updating_tech_docs/index                   |
-|    wacky_build_file_behavior/index                  |                                               |
+|    wacky_build_file_behavior/index                  |    toolkit/index                              |
 |    disappearing_menu_items/index                    |                                               |
 |    failed_live_builds/index                         |                                               |
 +-----------------------------------------------------+-----------------------------------------------+

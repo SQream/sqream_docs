@@ -6,8 +6,6 @@ How Do I Advance to the Next Release Version?
 This page describes how to advance a branch to the next release notes version.
 
 **To advance a documentation branch to the next release notes version:**
-1. Create your new branch:
-
 
    1. From the GitHub remote platform, select a repository.
 
@@ -45,24 +43,5 @@ This page describes how to advance a branch to the next release notes version.
       * ```Setting Total Device Memory Usage in SQream Instance <https://docs.sqream.com/en/v2022.1.2/configuration_guides/cuda_mem_quota.html>`_``.
 
       Using the **ref** syntax avoids the need to replace absolute links (and each branch has many), but cannot be used in all cases. Because the **ref** syntax can only point to a page and not to a specific section on a page, if you want to link users to a certain section you must use an absolute link. Instead, you can use the **ref** syntax and instruct users to navigate to the correct section on the page. The **ref** syntax is **:ref:`<anchor_name>`**.
-
-      There are certain specific cases in release notes documentation where you must use the *absolute link* instead of the **ref** syntax, as shown below:
-
-      .. code-block::
-
-         .. _admin_worker_flags:
-
-            *************************
-            Worker Administration Flags
-            *************************
-            The **Worker Administration Flags** page describes **Worker** modification type flags, which can be modified by administrators on a session and cluster basis using the ``ALTER SYSTEM SET`` command:
-
-            * `Setting Total Device Memory Usage in SQream Instance <https://docs.sqream.com/en/v2022.1.1/configuration_guides/cuda_mem_quota.html>`_
-            * `Enabling Manually Setting Reported IP <https://docs.sqream.com/en/v2022.1.1/configuration_guides/machine_ip.html>`_
-            * `Setting Port Used for Metadata Server Connection <https://docs.sqream.com/en/v2022.1.1/configuration_guides/metadata_server_port.html>`_
-            * `Assigning Local Network IP <https://docs.sqream.com/en/v2022.1.1/configuration_guides/use_config_ip.html>`_
-            * `Enabling the Query Healer <https://docs.sqream.com/en/v2022.1.1/configuration_guides/is_healer_on.html>`_
-            * `Configuring the Query Healer <https://docs.sqream.com/en/v2022.1.1/configuration_guides/healer_max_inactivity_hours.html>`_
-            * `Adjusting Permitted Log-in Attempts <https://docs.sqream.com/en/v2022.1.1/configuration_guides/login_max_retries.html>`_
 
 For more information, see :ref:`documenting_minor_releases`.

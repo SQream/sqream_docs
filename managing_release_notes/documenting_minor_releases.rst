@@ -11,7 +11,7 @@ This page describes the following:
 
 Overview
 ==========
-Documenting minor releases is a little more compiclated than documenting major releases. Because many releases are completed on a yearly basis, we give users access to all of them, as in the `2021.2 release notes <https://docs.sqream.com/en/latest/releases/2021.2_index.html>`_.
+Documenting minor releases is a little more compiclated than documenting major releases. Because several releases are completed during the year, we give users access to all of them, as in the `2021.2 release notes <https://docs.sqream.com/en/latest/releases/2021.2_index.html>`_.
 
 Displaying Your Minor Release Pages
 ===============================
@@ -45,7 +45,7 @@ This page describes how to display your minor release pages when publishing mino
 
     ::
 
-5. As in steps 2 and 3, set the ``toctree`` syntax as in the following example:
+5. As in Step 3, set the ``toctree`` syntax as in the following example:
 
    .. code-block::
 

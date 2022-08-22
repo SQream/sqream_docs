@@ -1,8 +1,10 @@
 .. _managing_release_notes:
 
 ***********************
-What is the Correct Way to Advance Release Notes Branches?
+The Next Release
 ***********************
+This section describes the following:
+
 .. toctree::
    :maxdepth: 1
    :glob:
@@ -10,4 +12,5 @@ What is the Correct Way to Advance Release Notes Branches?
    advancing_to_the_next_release_version
    documenting_major_releases
    documenting_minor_releases
+   documenting_known_issues
    template

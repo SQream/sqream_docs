@@ -21,3 +21,4 @@ The **Syntax Guide** describes the following syntactical elements, which you eit
       code_block
       links_and_ref_syntax
       embedding_files
+      inserting_inline_icons

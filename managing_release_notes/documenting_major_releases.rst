@@ -31,7 +31,7 @@ Publishing major releases is simpler than publising minor ones, and this page de
 
     ::
 
-5. As in steps 2 and 3, set the ``toctree`` syntax as in the following example:
+5. As in Step 3, set the ``toctree`` syntax as in the following example:
 
    .. code-block::
 
