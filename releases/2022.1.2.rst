@@ -35,7 +35,7 @@ Automatic Foreign Table DDL Resolution
 ************
 When mapping external files to foreign tables, SQream now automatically identifies the required schema. This is especially useful for Parquet files, which include built-in schema declarations. 
 
-For more information, see :ref:`automatic_foreign_table_ddl_resolution`.
+For more information, see `Automatic Foreign Table DDL Resolution <https://docs.sqream.com/en/v2022.1.2/feature_guides/automatic_foreign_table_ddl_resolution.html#automatic-foreign-table-ddl-resolution>`_.
    
 Enhanced Automatic Adaptive Compression
 ************
@@ -43,11 +43,11 @@ SQream's automatic adaptive compression has been enhanced with new compression m
 
 .. note:: The compression ratio depends on the nature of the compressed data and on other variables, such as ordering, cardinality and data types.
 
-For more information, navigate to the **Compression Methods** table on the :ref:`compression` page.
+For more information, navigate to the **Compression Methods** table on the `Compression <https://docs.sqream.com/en/v2022.1.2/feature_guides/compression.html#compression>`_ page.
 
 Parquet Read Optimization
 ************
-SQream now supports storing and running queries on data located on external Parquet files. For more information, see :ref:`parquet`.
+SQream now supports storing and running queries on data located on external Parquet files. For more information, see `Inserting Data from a Parquet File <https://docs.sqream.com/en/v2022.1.2/data_ingestion/parquet.html#parquet>`_.
 
 Resolved Issues
 ---------
@@ -60,10 +60,6 @@ The following table lists the issues that were resolved in Version 2022.1.2:
 +-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 | SQ-11273    | Clustering ``partial-partial`` optimization only occurs when copying data from CSV files.                                                 |
 +-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
-| SQ-11291    | Metadata filters were not applied when using the ``LIKE`` function, causing certain queries to run on full tables instead of sorted data. |
-+-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
-
-**Comment** - *Was SQ-11291 just removed?*
 
 Operations and Configuration Changes
 --------
