@@ -22,7 +22,7 @@ Technical Documentation Training
 |                                                     |                                               |
 |    what_are_branches_used_for/index                 |    menu_elements/index                        |
 |    private_branches/index                           |    organizing_your_menu/index                 |
-|                                                     |                                               |
+|    setting_a_branch_to_public/index                 |                                               |
 +-----------------------------------------------------+-----------------------------------------------+
 | .. toctree::                                        | .. toctree::                                  |
 |    :maxdepth: 1                                     |    :maxdepth: 1                               |

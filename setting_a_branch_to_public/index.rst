@@ -13,7 +13,7 @@ I’ve made and prepared the 2022.1.2 release branch and set it to **Private**. 
 
 2. Do one of the following:
 
-   * **If the branch is not active** - At the bottom of the page in the **Activate a version** section, click **Activate** corresponding to a branch that you want to make Active.
+   * **If the branch is not active** - At the bottom of the page in the **Activate a version** section, click **Activate** corresponding to a branch that you want to make Active. Activating a branch displays it on the top half of the screen. The **2022.1.2** branch is Active.
 
         ::
 
