@@ -48,4 +48,4 @@ For a short video describing how to set your branch to public, see
 
 7. Check the front-end to validate that the page is displayed.
 
-   If the page is not displayed, check the page syntax of 
+   If the page is not displayed, check the page syntax of the ``toctree`` syntax in the **index** file. The index file for 2022.1.2 is called **2022.1_index**.
