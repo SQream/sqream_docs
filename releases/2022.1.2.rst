@@ -17,10 +17,6 @@ The 2022.1.2 Release Notes describes the following:
 
    ::
 
-* Added `zlib` compression.
-
-   ::
-
 * Optimized queries on external Parquet tables.
 
 New Features
@@ -36,10 +32,6 @@ Automatic Foreign Table DDL Resolution
 When mapping external files to foreign tables, SQream now automatically identifies the required schema. This is especially useful for Parquet files, which include built-in schema declarations. 
 
 For more information, see `Automatic Foreign Table DDL Resolution <https://docs.sqream.com/en/v2022.1.2/feature_guides/automatic_foreign_table_ddl_resolution.html#automatic-foreign-table-ddl-resolution>`_.
-   
-Added `zlib` compression
-************
-Added support for the `zlib` compression algorithm. For more information, navigate to the **Compression Methods** table on the `Compression <https://docs.sqream.com/en/v2022.1.2/feature_guides/compression.html#compression>`_ page.
 
 Parquet Read Optimization
 ************
@@ -54,7 +46,9 @@ The following table lists the issues that were resolved in Version 2022.1.2:
 +=============+===========================================================================================================================================+
 | SQ-10892    | An incorrect error message was displayed when users ran the ``UPDATE`` command on foreign tables.                                         |
 +-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
-| SQ-11273    | Clustering optimization only occurs when copying data from CSV files.                                                 |
+| SQ-11273    | Clustering optimization only occurs when copying data from CSV files.                                                                     |
++-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-11273    | Clustering optimization only occurs when copying data from CSV files.                                                                     |
 +-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 
 Operations and Configuration Changes
