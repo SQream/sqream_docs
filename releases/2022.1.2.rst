@@ -27,12 +27,6 @@ The 2022.1.2 Release Notes include the following new features:
    :local:
    :depth: 1
    
-Automatic Foreign Table DDL Resolution
-************
-When mapping external files to foreign tables, SQream now automatically identifies the required schema. This is especially useful for Parquet files, which include built-in schema declarations. 
-
-For more information, see `Automatic Foreign Table DDL Resolution <https://docs.sqream.com/en/v2022.1.2/feature_guides/automatic_foreign_table_ddl_resolution.html#automatic-foreign-table-ddl-resolution>`_.
-
 Parquet Read Optimization
 ************
 Querying Parquet foreign tables has been optimized and is now up to 20x faster than in previous versions.
