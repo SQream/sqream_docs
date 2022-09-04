@@ -7,11 +7,11 @@ Reviewing all documentation on your new branch is the final step before duplicat
 
 During this phase, make sure that the following are correct:
 
- * TOC and toctree syntax
+ * ``TOC`` and ``toctree`` syntax
 
      ::
 
- * As described <in other document>, make sure that your release notes landing pages uses only absolute links, and not the :ref:: syntax.
+ * As described in `Creating the Release Notes Page <https://docs.sqream.com/en/tech_doc_training/creating_and_publishing_your_release_notes/creating_the_release_notes_page.html#summarizing-the-release-version>`_, make sure that your release notes landing pages uses only absolute links, and not the ``:ref::`` syntax.
 
      ::
 
