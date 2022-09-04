@@ -52,6 +52,3 @@ This section describes how to create a sprint.
 1. Click **Create Sprint and set the dates.
 
 2. Click **Done**.
-
-
-Hello Shachar.
