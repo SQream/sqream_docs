@@ -8,11 +8,11 @@ When you create a new branch is it automatically set to **Inactive**, which mean
 
 **To activate the new branch:**
 
-1. From `Read-the-Docs <https://readthedocs.com/dashboard/>`_, click **Admin**.
+1. From `Read-the-Docs <https://readthedocs.com/dashboard/>`_, click **Versions**.
 
    A list of branches is displayed.
 
-2. Scroll to the **Inactive Branches** area at the bottom of the page and locate the row corresponding to your new branch
+2. Scroll to the **Activate a version** area at the bottom of the page and locate the row corresponding to your new branch
 
      ::
 
@@ -34,6 +34,6 @@ When you create a new branch is it automatically set to **Inactive**, which mean
  
 5. Click **Save**.
 
-   Your new branch is moved to the **Active Branch** area at the top of the page.
+   Your new branch is moved to the **Active Versions** area at the top of the page.
 
 For more information about private branches, see :ref:`private_branches`.

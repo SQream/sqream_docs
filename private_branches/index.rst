@@ -7,7 +7,7 @@ Private branches are branches that you want to make accesible to people at SQrea
 
 **To set a branch to private:**
 
-1. Log in to Read-the-Docs.
+1. Log in to `Read-the-Docs <https://readthedocs.com/dashboard/>`_.
 
    If you cannot log in to Read-the-Docs, speak with Slavi.
 
