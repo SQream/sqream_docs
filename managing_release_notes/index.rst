@@ -10,7 +10,3 @@ This section describes the following:
    :glob:
 
    creating_and_publishing_your_release_notes
-   advancing_to_the_next_release_version
-   documenting_major_releases
-   documenting_minor_releases
-   documenting_known_issues
