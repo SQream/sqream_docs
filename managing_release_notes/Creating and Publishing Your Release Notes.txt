@@ -1,0 +1,157 @@
+.. _creating_and_publishing_your_release_notes:
+
+
+********************************************************
+Creating and Publishing Your Release Notes
+********************************************************
+This section describes the following best practices in the **correct order** for documenting your release notes:
+
+
+Creating a New Branch
+===============
+When it's time to release a new version of SQream, you must create a new branch where you will document all new features. This is done by creating a new branch based on the previous branch.
+
+**To create a new branch:**
+
+1. From GitHub remote, from the branch menu, select the most current branch (such as **v2022.1.1**).
+
+     ::
+
+2. Type a name for the new branch.
+
+   The naming convention for branches is **vXXXX.X**, such as **v2022.1.2**. The new branch has been created and is identical to the branch you based it on.
+
+Activating the New Branch
+=========
+When you create a new branch is it automatically set to **Inactive**, which means that it **cannot be accessed on the front end**, even if set to **Private** and shared with others.
+
+**To activate the new branch:**
+
+1. From `Read-the-Docs <https://readthedocs.com/dashboard/>`_, click **Admin**.
+
+   A list of branches is displayed.
+
+2. Scroll to the **Inactive Branches** area at the bottom of the page and locate the row corresponding to your new branch
+
+     ::
+
+3. In the row corresponding to the new branch, click **Edit**.
+
+     ::
+
+4. Set the branch to the following:
+
+    * **Active** - Lets you view the branch on the front end.
+
+       ::
+
+    * **Hidden** - Hides the branch from the fly-out menu.
+
+       ::
+
+    * **Private** - Lets you view the branch only from a custom private link.fff
+ 
+5. Click **Save**.
+
+   Your new branch is moved to the **Active Branch** area at the top of the page.
+
+For more information, see :ref:`private_branches`.
+
+
+Modifing the New Branch
+===============
+<See conf.py on the front end to document the NOTE correctly>
+
+Once you've activated your new branch you can begin modifying it. Modifying a branch refers to creating all required new pages and/or updating existing ones as needed. Note that documenting features may require updating several areas of the documentation. For example, the Query Healer feature introduced in release notes 2022.1.1 includes two new configuration flags. When you document a new feature make sure to clarify all related new and/or existing documentation.
+
+Tip: On every new page, include a link to all related documentation. For example, the Query Healer page includes a link to its related configuration flags.
+
+As you're working, make sure to generate and view your build file to verify that your page formatting is correct.
+
+Tip: It is recommended to begin sending your documentation for review immediately after completing your first draft, ideally giving all involved developers and PRD authors enough time to review your documentation. Occasional delays in the development process, and the introduction of last-minute changes, sometimes require you to update documentation very close to the release date. Make sure to actively reach out to and communicate with the involved parties during the review cycle. Note that the upcoming_releases Slack channel is used daily to communicate regarding important release developments.
+
+NOTE: Because your new branch is a copy of the previous, you must update the **conf.py** file. This area of the conf.py file associates the content of each branch with its respective content. Each branch must be set to its matching version in the conf.py file, and an incorrect setting can cause incorrect behavior.
+
+For more information, see Reviewing your Documentation.
+
+
+Creating the Release Notes Page
+=================
+This page describes the following:
+
+
+Summarizing the Release Version
+---------------------------
+Creating the release notes page refers to creating the new release's "landing page". This landing page summarizes the contents of the new release and cross-references users to all related new and/or existing documentation. Make sure to use the **Release Notes Template** document when creating your release notes page.
+
+For more information, see the Release Notes Template.
+
+Documenting the Resolved Issues
+------------------------------
+<Copy and paste the procedure you wrote about this on your laptop.>
+
+Setting Up Your Topic Menu
+=====================
+Now that you've documented all of your new features and resolved issues, you need to add your release notes page to the topic menu. This is done slightly differently depending on whether only one version was released during the year, or whether it includes more than one.
+
+When only one version is released during a given year, the menu must show the only page, as with **2020.2**. For example, this means that the ``toctree`` in the main index file must reference **only** the 2020.2 page.
+
+However, when several versions are released, the menu must show all pages. To do this, the ``toctree`` in the main index file must reference an **index** page that refers to each branch released during that year. For example, the index page for the 2022 branches is called **2022.1_index**, and contains a ``toc_tree`` referencing all 2022 branches (2022.1, 2022.1.1 and 2022.1.2), as follows:
+
+toctree:
+
+2022.1.2
+2022.1.1
+2022.1
+
+Because we do not display minor releases in the fly-out menu, this method is used to give users access to all major and minor versions released during each year.
+
+Note:  Major releases are named vYYYY.X, such as v2022.1, while minor release are named vYYYY.X.X, or even vYYYY.X.X.X. The letters YYYY refer to the year, and X to the release version number.
+
+<Nest here the procedures for documenting major and minor releases.>
+
+Running a Final Review
+=============
+Reviewing all documentation on your new branch is the final step before duplicating the modifications to the Master branch and publishing them. During this page you want to briefly run through all documentation you created and/or updated, and follow all links to make sure that they work and direct to the correct location.
+
+During this phase, make sure that the following are correct:
+
+ * TOC and toctree syntax
+
+     ::
+
+ * As described <in other document>, make sure that your release notes landing pages uses only absolute links, and not the :ref:: syntax.
+
+     ::
+
+ * All links work and direct to the correct locations
+
+     ::
+
+ * Grammar and punctuation
+
+Because your branch is still set to Private at this point, you can actually publish it and begin viewing it on the front end using the Private link.
+
+For more information, see Private Branches.
+
+Duplicating All Changes to the Master Branch
+===================
+When the time has arrived to publish the new release, you must manually copy and paste all new documentation you created in the new branch to the Master branch. The reason for this is that the new and Master branches must be identical.
+
+TIP: In the first phase when you created a new branch, you didn't base the new branch off of Master to avoid having two Master branches. If the **conf.py** file in your new branch points to **latest**, users clicking the **new branch** will instead be directed to the **Master branch**. Therefore iIn the event you forget to modify the **conf.py** file in your new branch, the Master branch will still be set at the default landing page on our documentation.
+
+The best practice is to save all new documentation for each branch locally in an easy-to-find location, and manually copy all new and/or updated existing content to the correct folders in the Master branch. This ensures that all modifications you made on your new branch are documented in the Master branch.
+
+TIP: Because the Master branch is the default branch users see when accessing our front-end documentation, update the Master branch before publishing the new branch.
+
+For more information, see the following:
+
+<The relevant Troubleshooting procedures>
+
+
+
+
+
+Publishing the New Branch
+====================
+<Copy and paste the existing documentation located on your laptop>
