@@ -3,9 +3,15 @@
 ***********************
 What are My Main Tasks?
 ***********************
-Your main tasks as SQream's technical writer is to document and manage all aspects of the front-end documentation.
+This page describes the following:
 
-This includes:
+.. contents:: 
+   :local:
+   :depth: 1
+
+Overview of Main Tasks
+-----------------------
+Your main tasks as SQream's technical writer is to document and manage all aspects of the front-end documentation, including:
 
 * **Release notes** - Descriptions of all features and related documentation corresponding to new versions of SQream.
 
@@ -35,4 +41,14 @@ This includes:
 
 .. image:: /_static/images/tw_getting_started.png
     :width: 400px
-    :align: right 
+    :align: right
+
+Writing Methodology
+-----------------------
+SQream documentation tends to be based on a granular approach, also known as **chunking**. This method breaks down content into smaller, more granular pages instead of large pages containing a lot of information.
+
+One of your tasks is therefore to break large pages down into smaller chunks, such as `Data Encryption <https://docs.sqream.com/en/latest/feature_guides/data_encryption.html>`_, which initially contained all four sections on one page.
+
+An example of a page that has not been reviewed as described above is `Concurrency and Locks <https://docs.sqream.com/en/latest/feature_guides/concurrency_and_locks.html>`_.
+
+In addition, part of your responsibilities is to gradually review all documentation pages for readability, accuracy, structure, grammar, and general editing.
