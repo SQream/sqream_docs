@@ -3,8 +3,6 @@
 *************************
 Getting Started
 *************************
-Hello, Shachar.
-
 The **Getting Started** page describes the following things you need to start using SQream:
 
 .. toctree::
