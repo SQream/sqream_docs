@@ -3,11 +3,12 @@
 *************************
 Technical Documentation Training
 *************************
-  
+The following table describes the main subjects described in the training documentation:
+
 +-----------------------------------------------------+-----------------------------------------------+
 | .. toctree::                                        | .. toctree::                                  |
 |    :maxdepth: 1                                     |    :maxdepth: 1                               |
-|    :caption: In The Beginning...                    |    :caption: Managing Documentation           |
+|    :caption: In The Beginning...                    |    :caption: Managing Documentation           |  
 |    :glob:                                           |    :glob:                                     |
 |                                                     |                                               |
 |    getting_started/index                            |    documentation_basics/index                 |
