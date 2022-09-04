@@ -30,7 +30,7 @@ Technical Documentation Training
 |    :glob:                                           |    :glob:                                     |
 |                                                     |                                               |
 |    the_flyout_menu/index                            |    creating_documentation_backup/index        |
-|    managing_release_notes/index                     |    using_a_table_generator/index              |
+|    creating_and_publishing_your_release_notes/index |    using_a_table_generator/index              |
 |    updating_other_areas_of_the_documentation/index  |    using_the_ref_syntax/index                 |
 +-----------------------------------------------------+-----------------------------------------------+
 | .. toctree::                                        | .. toctree::                                  |
