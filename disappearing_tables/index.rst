@@ -100,4 +100,4 @@ As above, the following table doesn't appear because it's misaligned:
      - Column 3, Row 2
      - Column 3, Row 3
 
-I promise you that the table syntax is really there! I'm trying to make things easier for you, I re
+I promise you that the table syntax is really there! I'm trying to make things easier for you, I really am.
