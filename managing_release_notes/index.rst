@@ -95,6 +95,8 @@ As you're working, make sure to generate and view your build file to verify that
 
 For more information, see :ref:`the_review_process`
 
+For more information about modifying other areas of the documentation, see :ref:`updating_other_areas_of_the_documentation`.
+
 Creating the Release Notes Page
 =================
 Once you've completed the above sections, you can create your actual release notes page. It's a good practice to document the release notes page **after** updating and/or documenting all new and/or updated features, which makes it easier to accurately and briefly summarize them.
