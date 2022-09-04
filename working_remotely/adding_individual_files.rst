@@ -15,6 +15,9 @@ This section describes how to add individual files.
 
     ::
 
+.. image:: /_static/images/individual.png
+    :align: right 
+
 3. In the **name your file** field, name your file using the following syntax:
 
    .. code-block:: console
@@ -36,7 +39,7 @@ This section describes how to add individual files.
 
     ::
 
-6. Click **Commit new file**.
+6. Click **Commit new file**. 
 
 .. note::  Verify that **Commit directly to the <branch name> branch** is selected. This option is selected by default.
 

@@ -7,6 +7,9 @@ This section describes how to add a new folder.
 
 **To add a new folder:**
 
+.. image:: /_static/images/folder.png
+    :align: right 
+
 1. Click **Add file**.
 
     ::
