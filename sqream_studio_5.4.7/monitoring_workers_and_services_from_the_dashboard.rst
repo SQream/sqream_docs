@@ -151,7 +151,7 @@ Clicking the ellipsis in a service shows the following additional options:
 * **Stop Query** - stops the query.
 * **Show Execution Plan** - shows the execution plan as a table. The columns in the **Show Execution Plan** table can be sorted.
 
-For more information on the current query plan, see `SHOW_NODE_INFO <https://docs.sqream.com/en/latest/reference/sql/sql_statements/monitoring_commands/show_node_info.html#show-node-info>`_. For more information on checking active sessions across the cluster, see `SHOW_SERVER_STATUS <https://docs.sqream.com/en/latest/reference/sql/sql_statements/monitoring_commands/show_server_status.html>`_.
+For more information on the current query plan, see `SHOW_NODE_INFO <https://docs.sqream.com/en/latest/reference/sql/sql_statements/utility_commands/show_node_info.html#show-node-info>`_. For more information on checking active sessions across the cluster, see `SHOW_SERVER_STATUS <https://docs.sqream.com/en/latest/reference/sql/sql_statements/monitoring_commands/show_server_status.html>`_.
 
 .. include:: /reference/sql/sql_statements/monitoring_commands/show_server_status.rst
    :start-line: 67
