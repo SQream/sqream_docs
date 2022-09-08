@@ -41,23 +41,25 @@ Resolved Issues
 ---------
 The following table lists the issues that were resolved in Version 2022.1.3:
 
-+-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
-| **SQ No.**  | **Description**                                                                                                                           |
-+=============+===========================================================================================================================================+
-| SQ-11487    | COPY FROM with offset = 0 (which is an unsupported option) is stuck up to the query timeout.                                         	  |
-+-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
-| SQ-11378    | Python connector fails to run multi threaded per one connection.                                                                          |
-+-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
-| SQ-11373    | SQL statement fails after changing the foreign table the statement tries to query.                                                        |
-+-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
-| SQ-11320    | Locked users are not being released on system reset.                                                   								      |
-+-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
-| SQ-11310    | Using "create table like" on foreign tables results in flat compression of the created table.                                  		      |
-+-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
-| SQ-11287    | SQL User Defined Function declaration fails when UDF contains parenthesis.                        					          		      |
-+-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
-| SQ-10892    | Update || enhanced error message when trying to run update on foreign table.          				                        		      |
-+-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
++-------------+-------------------------------------------------------------------------------------------------+
+| **SQ No.**  | **Description**                                                                                 |
++=============+=================================================================================================+
+| SQ-11487    | COPY FROM with offset = 0 (which is an unsupported option) is stuck up to the query timeout.    |
++-------------+-------------------------------------------------------------------------------------------------+
+| SQ-11378    | Python connector fails to run multi threaded per one connection.                                |
++-------------+-------------------------------------------------------------------------------------------------+
+| SQ-11373    | SQL statement fails after changing the foreign table the statement tries to query.              |
++-------------+-------------------------------------------------------------------------------------------------+
+| SQ-11320    | Locked users are not being released on system reset.                                            |
++-------------+-------------------------------------------------------------------------------------------------+
+| SQ-11310    | Using "create table like" on foreign tables results in flat compression of the created table.   |
++-------------+-------------------------------------------------------------------------------------------------+
+| SQ-11287    | SQL User Defined Function declaration fails when UDF contains parenthesis.                      |
++-------------+-------------------------------------------------------------------------------------------------+
+| SQ-10892    | Update - enhanced error message when trying to run update on foreign table.                     |
++-------------+-------------------------------------------------------------------------------------------------+
+
+
 
 Operations and Configuration Changes
 --------
@@ -69,14 +71,17 @@ No relevant naming changes were made.
 
 Deprecated Features
 -------
-No features were deprecated for Version 2022.1.3.
+SQream is declaring end of support of VARCHAR data type, the decision resulted by SQream's effort to enhance its core functionalities and with respect to ever changing echo system requirements.
+
+VARCHAR is no longer supported for new customers - effective immanently.  
+
+TEXT data type is replacing VARCHAR - SQream will maintain VARCHAR data type support until 09/30/2023.
+
+As part of this release 2022.1.3, SQream provides an automated and secured migration tool to help customers with the conversion phase from VARCHAR to TEXT data type, please address delivery for further information.
 
 End of Support
 -------
-SQream is declaring end of support of VARCHAR data type, the decision resulted by SQream's effort to enhance its core functionalities and with respect to ever changing echo system requirements.
-VARCHAR is no longer supported for new customers - effective immanently.  
-TEXT data type is replacing VARCHAR - SQream will maintain VARCHAR data type support until 09/30/2023.
-As part of this release 2022.1.3, SQream provides an automated and secured migration tool to help customers with the conversion phase from VARCHAR to TEXT data type, please address delivery for further information.
+No End of Support changes were made.
 
 Upgrading to v2022.1.3
 -------
