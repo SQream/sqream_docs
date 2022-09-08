@@ -13,11 +13,20 @@ Version Content
 ----------
 The 2022.1.3 Release Notes describes the following: 
 
-* Automatic schema identification.
+* Optimize the delete operation by removing redundant calls.
 
    ::
 
-* Optimized queries on external Parquet tables.
+* Support LIKE condition for filtering metadata.
+
+   ::
+
+* Migration tool for converting VARCHAR columns into TEXT columns.
+
+   ::
+
+* Support sub-queries in the UPDATE condition.
+
 
 New Features
 ----------
@@ -27,9 +36,9 @@ The 2022.1.3 Release Notes include the following new features:
    :local:
    :depth: 1
    
-Parquet Read Optimization
+Support sub-queries in the UPDATE condition
 ************
-Querying Parquet foreign tables has been optimized and is now up to 20x faster than in previous versions.
+Update functionality has been enhanced to support sub-queries allowing to update table and / or columns based on other table and / or columns.
 
 Resolved Issues
 ---------
@@ -38,9 +47,19 @@ The following table lists the issues that were resolved in Version 2022.1.3:
 +-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 | **SQ No.**  | **Description**                                                                                                                           |
 +=============+===========================================================================================================================================+
-| SQ-10892    | An incorrect error message was displayed when users ran the ``UPDATE`` command on foreign tables.                                         |
+| SQ-11487    | COPY FROM with offset = 0 (which is an unsupported option) is stuck up to the query timeout.                                         	  |
 +-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
-| SQ-11273    | Clustering optimization only occurs when copying data from CSV files.                                                                     |
+| SQ-11378    | Python connector fails to run multi threaded per one connection.                                                                          |
++-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-11373    | SQL statement fails after changing the foreign table the statement tries to query.                                                        |
++-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-11320    | Locked users are not being released on system reset.                                                   								      |
++-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-11310    | Using "create table like" on foreign tables results in flat compression of the created table.                                  		      |
++-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-11287    | SQL User Defined Function declaration fails when UDF contains parenthesis.                        					          		      |
++-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
+| SQ-10892    | Update || enhanced error message when trying to run update on foreign table.          				                        		      |
 +-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 
 Operations and Configuration Changes
@@ -57,7 +76,10 @@ No features were deprecated for Version 2022.1.3.
 
 End of Support
 -------
-The End of Support section is not relevant to Version 2022.1.3.
+SQream is declaring end of support of VARCHAR data type, the decision resulted by SQream's effort to enhance its core functionalities and with respect to ever changing echo system requirements.
+VARCHAR is no longer supported for new customers - effective immanently.  
+TEXT data type is replacing VARCHAR - SQream will maintain VARCHAR data type support until 09/30/2023.
+As part of this release 2022.1.3, SQream provides an automated and secured migration tool to help customers with the conversion phase from VARCHAR to TEXT data type, please address delivery for further information.
 
 Upgrading to v2022.1.3
 -------
