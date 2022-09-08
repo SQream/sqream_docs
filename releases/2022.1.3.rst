@@ -46,8 +46,6 @@ The following table lists the issues that were resolved in Version 2022.1.3:
 +=============+=================================================================================================+
 | SQ-11487    | COPY FROM with offset = 0 (which is an unsupported option) is stuck up to the query timeout.    |
 +-------------+-------------------------------------------------------------------------------------------------+
-| SQ-11378    | Python connector fails to run multi threaded per one connection.                                |
-+-------------+-------------------------------------------------------------------------------------------------+
 | SQ-11373    | SQL statement fails after changing the foreign table the statement tries to query.              |
 +-------------+-------------------------------------------------------------------------------------------------+
 | SQ-11320    | Locked users are not being released on system reset.                                            |
