@@ -1,9 +1,9 @@
-.. _2022.1.2:
+.. _2022.1.3:
 
 **************************
-Release Notes 2022.1.2
+Release Notes 2022.1.3
 **************************
-The 2022.1.2 release notes were released on 8/24/2022 and describe the following:
+The 2022.1.3 release notes were released on 9/8/2022 and describe the following:
 
 .. contents:: 
    :local:
@@ -11,7 +11,7 @@ The 2022.1.2 release notes were released on 8/24/2022 and describe the following
 
 Version Content
 ----------
-The 2022.1.2 Release Notes describes the following: 
+The 2022.1.3 Release Notes describes the following: 
 
 * Automatic schema identification.
 
@@ -21,7 +21,7 @@ The 2022.1.2 Release Notes describes the following:
 
 New Features
 ----------
-The 2022.1.2 Release Notes include the following new features:
+The 2022.1.3 Release Notes include the following new features:
 
 .. contents:: 
    :local:
@@ -33,7 +33,7 @@ Querying Parquet foreign tables has been optimized and is now up to 20x faster t
 
 Resolved Issues
 ---------
-The following table lists the issues that were resolved in Version 2022.1.2:
+The following table lists the issues that were resolved in Version 2022.1.3:
 
 +-------------+-------------------------------------------------------------------------------------------------------------------------------------------+
 | **SQ No.**  | **Description**                                                                                                                           |
@@ -53,13 +53,13 @@ No relevant naming changes were made.
 
 Deprecated Features
 -------
-No features were deprecated for Version 2022.1.2.
+No features were deprecated for Version 2022.1.3.
 
 End of Support
 -------
-The End of Support section is not relevant to Version 2022.1.2.
+The End of Support section is not relevant to Version 2022.1.3.
 
-Upgrading to v2022.1.2
+Upgrading to v2022.1.3
 -------
 1. Generate a back-up of the metadata by running the following command:
 
@@ -93,11 +93,11 @@ Upgrading to v2022.1.2
 
       $ ./upgrade_storage <levelDB path>
 
-  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <https://docs.sqream.com/en/v2022.1.2/installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <https://docs.sqream.com/en/v2022.1.3/installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
   
 .. toctree::
    :maxdepth: 2
    :glob:
    :hidden:
 
-   2022.1.2
+   2022.1.3
