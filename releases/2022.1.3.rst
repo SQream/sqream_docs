@@ -32,9 +32,6 @@ New Features
 ----------
 The 2022.1.3 Release Notes include the following new features:
 
-.. contents:: 
-   :local:
-   :depth: 1
    
 Support sub-queries in the UPDATE condition
 ************
