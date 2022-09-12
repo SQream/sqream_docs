@@ -27,15 +27,16 @@ The 2022.1.3 Release Notes describes the following:
 
 * Support sub-queries in the UPDATE condition.
 
+Known Issues
+---------
+The following table lists the issues that are known limitations in Version 2022.1.3:
 
-New Features
-----------
-The 2022.1.3 Release Notes include the following new features:
++-------------+--------------------------------------------------------------------------------------------+
+| **SQ No.**  | **Description**                                                                            |
++=============+============================================================================================+
+| SQ-11677    | UPADTE or DELETE using a sub-query that includes '%' (modulo) is crashing SQreamDB worker  |
++-------------+--------------------------------------------------------------------------------------------+
 
-   
-Support sub-queries in the UPDATE condition
-************
-Update functionality has been enhanced to support sub-queries allowing to update table and / or columns based on other table and / or columns.
 
 Resolved Issues
 ---------
