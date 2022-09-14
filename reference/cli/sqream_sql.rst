@@ -4,70 +4,35 @@
 Sqream SQL CLI Reference
 *********************************
 
-SQream DB comes with a built-in client for executing SQL statements either interactively or from the command-line.
+SQream DB comes with a native client for executing SQL statements either interactively or from the command-line.
 
 This page serves as a reference for the options and parameters. Learn more about using SQream DB SQL with the CLI by visiting the :ref:`first_steps` tutorial.
 
 .. contents:: In this topic:
    :local:
 
+Pre-requisites of Sqream SQL
+==============================
+SQream CLI is Java based and may be run on any Java supported platform - use the following link to check supported platforms and download Java 11 https://www.oracle.com/java/technologies/downloads/#java11
+
+
 Installing Sqream SQL
 =========================
 
-If you have a SQream DB installation on your server, ``sqream sql`` can be found in the ``bin`` directory of your SQream DB installation, under the name ``sqream``.
+To run ``sqream sql`` on any host the supports Java:
 
-.. note:: If you installed SQream DB via Docker, the command is named ``sqream-client sql``, and can be found in the same location as the console.
-
-
-.. versionchanged:: 2020.1
-   As of version 2020.1, ``ClientCmd`` has been renamed to ``sqream sql``.
-   
-
-To run ``sqream sql`` on any other Linux host:
-
-#. Download the ``sqream sql`` tarball package from the :ref:`client_drivers` page.
-#. Untar the package: ``tar xf sqream-sql-v2020.1.1_stable.x86_64.tar.gz``
+#. Download the ``jdbc-console-X.X.X.jar`` JAR package from the :ref:`client_drivers` page.
 #. Start the client:
    
    .. code-block:: psql
       
-      $ cd sqream-sql-v2020.1.1_stable.x86_64
-      $ ./sqream sql --port=5000 --username=jdoe --databasename=master
-      Password:
-     
-      Interactive client mode
-      To quit, use ^D or \q.
-      
-      master=> _
+    sudo java -jar jdbc-console-0.0.84-35.jar --host=192.168.4.89  --username=sqream
+	Password:
+    Welcome to JDBC console, SQream DB version 2.0.0
+    To quit use ^d or exit; to abort ^c
+	Connection URL: jdbc:Sqream://192.168.4.89:80/master;user=sqream;cluster=false
+	master=> _
 
-Troubleshooting Sqream SQL Installation
--------------------------------------------
-
-Upon running sqream sql for the first time, you may get an error ``error while loading shared libraries: libtinfo.so.5: cannot open shared object file: No such file or directory``.
-
-Solving this error requires installing the ncruses or libtinfo libraries, depending on your operating system.
-
-* Ubuntu:
-
-   #. Install ``libtinfo``:
-      
-      ``$ sudo apt-get install -y libtinfo``
-   #. Depending on your Ubuntu version, you may need to create a symbolic link to the newer libtinfo that was installed.
-   
-      For example, if ``libtinfo`` was installed as ``/lib/x86_64-linux-gnu/libtinfo.so.6.2``:
-      
-      ``$ sudo ln -s /lib/x86_64-linux-gnu/libtinfo.so.6.2 /lib/x86_64-linux-gnu/libtinfo.so.5``
-      
-* CentOS / RHEL:
-
-   #. Install ``ncurses``:
-   
-      ``$ sudo yum install -y ncurses-libs``
-   #. Depending on your RHEL version, you may need to create a symbolic link to the newer libtinfo that was installed.
-   
-      For example, if ``libtinfo`` was installed as ``/usr/lib64/libtinfo.so.6``:
-      
-      ``$ sudo ln -s /usr/lib64/libtinfo.so.6 /usr/lib64/libtinfo.so.5``
 
 Using Sqream SQL
 =================
@@ -79,15 +44,16 @@ Running Commands Interactively (SQL shell)
 
 When starting sqream sql, after entering your password, you are presented with the SQL shell.
 
-To exit the shell, type ``\q``  or :kbd:`Ctrl-d`. 
+To exit the shell, type ``exit;``  or :kbd:`Ctrl-d`. 
+To abort currently executing statements, type :kbd:`Ctrl-c`. 
 
 .. code-block:: psql
 
-   $ sqream sql --port=5000 --username=jdoe --databasename=master
+   $ sudo java -jar jdbc-console-0.0.84-35.jar --host=192.168.4.89   --username=jdoe --databasename=master
    Password:
    
-   Interactive client mode
-   To quit, use ^D or \q.
+   Welcome to JDBC console, SQream DB version 2.0.0
+   To quit use ^d or exit; to abort ^c
    
    master=> _
 
@@ -116,11 +82,11 @@ The prompt for a multi-line statement will change from ``=>`` to ``.``, to alert
 .. code-block:: psql
    :emphasize-lines: 13
 
-   $ sqream sql --port=5000 --username=mjordan -d master
+   $ sudo java -jar jdbc-console-0.0.84-35.jar --host=192.168.4.89   --username=mjordan -d master
    Password:
    
-   Interactive client mode
-   To quit, use ^D or \q.
+   Welcome to JDBC console, SQream DB version 2.0.0
+   To quit use ^d or exit; to abort ^c
    
    master=> SELECT "Age",
    . AVG("Salary")
@@ -147,7 +113,7 @@ For example,
 
 .. code-block:: console
 
-   $ sqream sql --port=5000 --username=jdoe -d master -f sql_script.sql --results-only
+   $ sudo java -jar jdbc-console-0.0.84-35.jar --host=192.168.4.89   --username=jdoe -d master -f sql_script.sql --results-only
 
 .. tip:: Output can be saved to a file by using redirection (``>``).
 
@@ -160,7 +126,7 @@ For example,
 
 .. code-block:: console
 
-   $ sqream sql --port=5000 --username=jdoe -d nba -c "SELECT TOP 5 * FROM nba"
+   $ sudo java -jar jdbc-console-0.0.84-35.jar --host=192.168.4.89   --username=jdoe -d nba -c "SELECT TOP 5 * FROM nba"
    Avery Bradley           ,Boston Celtics        ,0,PG,25,6-2 ,180,Texas                ,7730337
    Jae Crowder             ,Boston Celtics        ,99,SF,25,6-6 ,235,Marquette            ,6796117
    John Holland            ,Boston Celtics        ,30,SG,27,6-5 ,205,Boston University    ,\N
@@ -175,32 +141,6 @@ For example,
 Examples
 ===========
 
-Starting a Regular Interactive Shell
------------------------------------
-
-Connect to local server 127.0.0.1 on port 5000, to the default built-in database, `master`:
-
-.. code-block:: psql
-
-   $ sqream sql --port=5000 --username=mjordan -d master
-   Password:
-   
-   Interactive client mode
-   To quit, use ^D or \q.
-   
-   master=>_
-
-Connect to local server 127.0.0.1 via the built-in load balancer on port 3108, to the default built-in database, `master`:
-
-.. code-block:: psql
-
-   $ sqream sql --port=3105 --clustered --username=mjordan -d master
-   Password:
-   
-   Interactive client mode
-   To quit, use ^D or \q.
-   
-   master=>_
 
 Executing Statements in an Interactive Shell
 -----------------------------------------------
@@ -211,11 +151,11 @@ Creating a new database and switching over to it without reconnecting:
 
 .. code-block:: psql
 
-   $ sqream sql --port=3105 --clustered --username=oldmcd -d master
+   $ sudo java -jar jdbc-console-0.0.84-35.jar --host=192.168.4.89  --username=sqream
    Password:
    
-   Interactive client mode
-   To quit, use ^D or \q.
+   Welcome to JDBC console, SQream DB version 2.0.0
+   To quit use ^d or exit; to abort ^c
    
    master=> create database farm;
    executed
@@ -248,7 +188,7 @@ Executing SQL Statements from the Command Line
 
 .. code-block:: console
 
-   $ sqream sql --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals WHERE is_angry = true"
+   $ sudo java -jar jdbc-console-0.0.84-35.jar --host=192.168.4.89 --username=oldmcd -d farm -c "SELECT * FROM animals WHERE is_angry = true"
    4,bull                          ,1
    1 row
    time: 0.095941s
@@ -270,7 +210,7 @@ Using the ``--results-only`` flag removes the row counts and timing.
 
 .. code-block:: console
 
-   $ sqream sql --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals" --results-only > file.csv
+   $ sudo java -jar jdbc-console-0.0.84-35.jar --host=192.168.4.89 --username=oldmcd -d farm -c "SELECT * FROM animals" --results-only > file.csv
    $ cat file.csv
    1,goat                          ,0
    2,sow                           ,0
@@ -286,7 +226,7 @@ The ``--delimiter`` parameter accepts any printable character.
 
 .. code-block:: console
 
-   $ sqream sql --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals" --delimiter '  ' > file.tsv
+   $ sudo java -jar jdbc-console-0.0.84-35.jar --host=192.168.4.89 --username=oldmcd -d farm -c "SELECT * FROM animals" --delimiter '  ' > file.tsv
    $ cat file.tsv
    1  goat                             0
    2  sow                              0
@@ -311,7 +251,7 @@ Assuming a file containing SQL statements (separated by semicolons):
 
 .. code-block:: console
 
-   $ sqream sql --port=3105 --clustered --username=oldmcd -d farm -f some_queries.sql
+   $ sudo java -jar jdbc-console-0.0.84-35.jar --host=192.168.4.89 --username=oldmcd -d farm -f some_queries.sql
    executed
    time: 0.018289s
    executed
@@ -326,22 +266,8 @@ You can save connection parameters as environment variables:
 
    $ export SQREAM_USER=sqream;
    $ export SQREAM_DATABASE=farm;
-   $ sqream sql --port=3105 --clustered --username=$SQREAM_USER -d $SQREAM_DATABASE
+   $ sudo java -jar jdbc-console-0.0.84-35.jar --host=192.168.4.89 --username=$SQREAM_USER -d $SQREAM_DATABASE
 
-Connecting to a Specific Queue
------------------------------------
-
-When using the :ref:`dynamic workload manager<workload_manager>` - connect to ``etl`` queue instead of using the default ``sqream`` queue.
-
-.. code-block:: psql
-
-   $ sqream sql --port=3105 --clustered --username=mjordan -d master --service=etl
-   Password:
-   
-   Interactive client mode
-   To quit, use ^D or \q.
-   
-   master=>_
 
 
 Operations and Flag References
@@ -366,11 +292,11 @@ Command Line Arguments
      - None
      - Changes the mode of operation to multi-command, non-interactive. Use this argument to run a sequence of statements from an external file and immediately exit.
    * - ``--host``
-     - ``127.0.0.1``
-     - Address of the SQream DB worker.
+     - ``192.168.0.1``
+     - Address of the SQream DB cluster - use of ``localhost`` or ``127.0.0.1`` is not supported.
    * - ``--port``
-     - ``5000``
-     - Sets the connection port.
+     - ``80``
+     - Sets the connection port - defualt port for the SQream DB cluster is 80.
    * - ``--databasename`` or ``-d``
      - None
      - Specifies the database name for queries and statements in this session.
@@ -380,23 +306,14 @@ Command Line Arguments
    * - ``--password``
      - None
      - Specify the password using the command line argument. If not specified, the client will prompt the user for the password.
-   * - ``--clustered``
-     - False
-     - When used, the client connects to the load balancer, usually on port ``3108``. If not set, the client assumes the connection is to a standalone SQream DB worker.
-   * - ``--service``
-     - ``sqream``
-     - :ref:`Service name (queue)<workload_manager>` that statements will file into.
    * - ``--results-only``
      - False
      - Outputs results only, without timing information and row counts
-   * - ``--no-history``
-     - False
-     - When set, prevents command history from being saved in ``~/.sqream/clientcmdhist``
    * - ``--delimiter``
      - ``,``
      - Specifies the field separator. By default, ``sqream sql`` outputs valid CSVs. Change the delimiter to modify the output to another delimited format (e.g. TSV, PSV). See the section :ref:`supported record delimiters<supported_record_delimiters>` below for more information.
 
-.. tip:: Run ``$  sqream sql --help`` to see a full list of arguments
+.. tip:: Run ``$  java -jar jdbc-console-0.0.84-35.jar`` without any input parameters to see a full list of arguments
 
 .. _supported_record_delimiters: 
 

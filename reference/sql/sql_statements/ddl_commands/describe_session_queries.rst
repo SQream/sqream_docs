@@ -4,6 +4,7 @@
 DESCRIBE SESSION QUERIES
 *****************
 The ``DESCRIBE SESSION QUERIES`` command outputs a list of queries per session, including queued queries.
+A session is opened per connection or per tab.
 
 Syntax
 ==========
@@ -32,13 +33,6 @@ The following parameters can be used with the ``DESCRIBE SESSION QUERIES`` comma
 	 
 .. note:: The ``SESSION_ID`` parameter is optional. If you do not specify a session ID, SQream uses the session ID of the current session.
 	 
-Example
-==============
-The following is an example of the ``DESCRIBE SESSIONS`` command:
-
-.. code-block:: postgres
-
-   DESCRIBE SESSION QUERIES SESSION ID  'b6173e04-6e2a-4266-bef0-6fc9b8ffc097';
    	 
 Output
 =============
@@ -81,12 +75,32 @@ Using the ``DESCRIBE SESSIONS`` command generates the following output:
      - Type
      - SQream JDBC v0.1.33 
 
-The following is an example of the generated output in Studio:
-  
-.. image:: /_static/images/describe_session_queries.png
+Example
+==============
+The following is an example of the ``DESCRIBE SESSIONS`` command:
 
-**Comment** - *Need higher quality image. Please speak with me and I'll show you how to get one.*
+.. code-block:: postgres
+
+   DESCRIBE SESSION QUERIES SESSION ID  '9a034b00-bbfc-4c5f-8e84-bdddc057e9fe';
+   
+
++-----------+--------------------+-------------+---------------------------------------------------------------+---------------------------------------+---------------------+---------------------+------------+-----------------------+
+| query_id  | query_status       | query_type  | sql_text                                                      | session_id                            | start_time          | end_time            | user_name  | client_info           |
++===========+====================+=============+===============================================================+=======================================+=====================+=====================+============+=======================+
+| 34        | NEW                | DESCRIBE    | describe session queries                                      | 9a034b00-bbfc-4c5f-8e84-bdddc057e9fe  | 2022-09-14 5:37:34  | null                | sqream     | SQream JDBC v0.1.33   |
++-----------+--------------------+-------------+---------------------------------------------------------------+---------------------------------------+---------------------+---------------------+------------+-----------------------+
+| 33        | EXECUTION_SUCCEED  | DESCRIBE    | DESCRIBE ROLES LIKE 'sq%'                                     | 9a034b00-bbfc-4c5f-8e84-bdddc057e9fe  | 2022-09-14 5:37:27  | 2022-09-14 5:37:27  | sqream     | SQream JDBC v0.1.33   |
++-----------+--------------------+-------------+---------------------------------------------------------------+---------------------------------------+---------------------+---------------------+------------+-----------------------+
+| 32        | EXECUTION_SUCCEED  | DESCRIBE    | describe saved queries list DATABASE master like 'select%'    | 9a034b00-bbfc-4c5f-8e84-bdddc057e9fe  | 2022-09-14 5:37:16  | 2022-09-14 5:37:16  | sqream     | SQream JDBC v0.1.33   |
++-----------+--------------------+-------------+---------------------------------------------------------------+---------------------------------------+---------------------+---------------------+------------+-----------------------+
+| 31        | EXECUTION_SUCCEED  | SELECT      | SELECT id, name, weight FROM cool_animals where weight > 10;  | 9a034b00-bbfc-4c5f-8e84-bdddc057e9fe  | 2022-09-14 5:37:08  | 2022-09-14 5:37:09  | sqream     | SQream JDBC v0.1.33   |
++-----------+--------------------+-------------+---------------------------------------------------------------+---------------------------------------+---------------------+---------------------+------------+-----------------------+
+| 30        | COMPILATION_FAILED | SELECT      | select * from external_tables                                 | 9a034b00-bbfc-4c5f-8e84-bdddc057e9fe  | 2022-09-14 5:37:01  | 2022-09-14 5:37:01  | sqream     | SQream JDBC v0.1.33   |
++-----------+--------------------+-------------+---------------------------------------------------------------+---------------------------------------+---------------------+---------------------+------------+-----------------------+
+
 
 Permissions
 =============
-No permissions are required for the ``DESCRIBE SESSION QUERIES`` command.
+A user may execute ``DESCRIBE SESSION QUERIES`` on his sessions.
+
+``SUPERUSER`` may execute ``DESCRIBE SESSION QUERIES`` on any session.
