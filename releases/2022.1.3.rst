@@ -55,7 +55,8 @@ The following table lists the issues that were resolved in Version 2022.1.3:
 +-------------+-------------------------------------------------------------------------------------------------+
 | SQ-10892    | Update - enhanced error message when trying to run update on foreign table.                     |
 +-------------+-------------------------------------------------------------------------------------------------+
-
+https://sqream.atlassian.net/browse/SQ-11287
+https://sqream.atlassian.net/browse/SQ-11187
 
 
 Operations and Configuration Changes
