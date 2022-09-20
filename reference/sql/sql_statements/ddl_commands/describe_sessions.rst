@@ -81,4 +81,6 @@ The following is an example of the generated output in Studio:
 
 Permissions
 =============
-No permissions are required for the ``DESCRIBE SESSIONS`` command.
+A user may execute ``DESCRIBE SESSIONS`` to list his sessions.
+
+``SUPERUSER`` may execute ``DESCRIBE SESSIONS`` to list any session by any user.

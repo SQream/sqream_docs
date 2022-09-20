@@ -75,4 +75,4 @@ The following is an example of the generated output:
    
 Permissions
 =============
-No permissions are required for the ``DESCRIBE USER FUNCTIONS`` command.
+Using the ``DESCRIBE USER FUNCTINS`` command requires ``USAGE`` permissions.

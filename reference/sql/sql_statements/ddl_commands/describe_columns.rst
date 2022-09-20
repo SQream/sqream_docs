@@ -105,4 +105,4 @@ The following is an example of the generated output in Studio:
 
 Permissions
 =============
-No permissions are required for the ``DESCRIBE COLUMNS`` command.
+Using the ``DESCRIBE COLUMNS`` command requires ``USAGE`` permissions.

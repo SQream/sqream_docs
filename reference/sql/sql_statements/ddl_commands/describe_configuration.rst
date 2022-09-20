@@ -154,4 +154,4 @@ The following is an example of the generated output of the ``DESCRIBE CONFIGURAT
 
 Permissions
 =============
-No permissions are required for the ``DESCRIBE CONFIGURATION`` command.
+Using the ``DESCRIBE CONFIGURATION`` command requires ``SUPERUSER`` permissions.

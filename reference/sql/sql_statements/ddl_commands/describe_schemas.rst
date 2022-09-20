@@ -71,4 +71,4 @@ The following is an example of the generated output in Studio:
 
 Permissions
 =============
-No permissions are required for the ``DESCRIBE_SCHEMAS`` command.
+Using the ``DESCRIBE SCHEMAS`` command requires ``SUPERUSER`` permissions.

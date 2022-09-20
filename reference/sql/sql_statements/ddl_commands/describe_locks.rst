@@ -7,36 +7,16 @@ The ``DESCRIBE LOCKS`` command replaces the `SHOW_LOCKS <https://docs.sqream.com
 
 Syntax
 ==========
-The following is the syntax for the ``DESCRIBE LOCKS`` command::
+The following is the syntax for the ``DESCRIBE LOCKS`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE LOCKS [SESSION ID <session-id>}]
-
+   DESCRIBE LOCKS
+   
 Parameters
 ============
-The following parameters can be used when switching databases with the **DESCRIBE CLUSTER STATUS** command:
+``DESCRIBE LOCKS`` command has no input parameters.
 
-**Comment** - *Parameter table must be based on the example when provided. The following table is just a space holder.*
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Element
-     - Description
-     - Status
-   * - ``session-id``
-     - The session ID of the user.
-     - (Optional) If blank, use the current session.	 
-	 
-Example
-==============
-The following is an example of the **DESCRIBE SESSIONS** command:
-
-.. code-block:: postgres
-
-   DESCRIBE LOCKS SESSION ID session-id;
     
 Output
 =============
@@ -47,9 +27,11 @@ Using the **DESCRIBE CLUSTER STATUS** command generates the following output:
 +=======================+===========+=================================================================================================================================================================+
 | statement_id          | Text      | Displays the statement ID that caused the lock.                                                                                                                 |
 +-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| statement_sql         | Text      | Displays the statement text.                                                                                                                                    |
-+-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | username              | Text      | Displays the the user that executed the statement.                                                                                                              |
++-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| server		        | Text      | Displays the the server name                                                                                                                                    |
++-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| port  		        | Text      | Displays the the port number                                                                                                                                    |
 +-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | locked_object         | Text      | Displays the the full qualified name of the object being locked, separated with $ (e.g. table$t$public$nba2 for table nba2 in schema public, in database t).    |
 +-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -59,7 +41,9 @@ Using the **DESCRIBE CLUSTER STATUS** command generates the following output:
 +-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+ 
 | lock_start_time       | Datetime  | Displays the timestamp the lock was obtained.                                                                                                                   |
 +-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| statement_string      | Text      | The SQL syntax that triggered this lock.                                                                                                                        |
++-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Permissions
 =============
-**Comment** - *What are the permissions?*
+Using the ``DESCRIBE LOCKS`` command requires ``SUPERUSER`` permissions.

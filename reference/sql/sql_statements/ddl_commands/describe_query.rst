@@ -153,6 +153,6 @@ The following is an example of the ``DESCRIBE QUERY`` command:
 
 Permissions
 =============
-A user may execute ``DESCRIBE SESSION QUERIES`` on his sessions.
+A user may execute ``DESCRIBE QUERY`` on his sessions.
 
-``SUPERUSER`` may execute ``DESCRIBE SESSION QUERIES`` on any session.
+``SUPERUSER`` may execute ``DESCRIBE QUERY`` on any session.

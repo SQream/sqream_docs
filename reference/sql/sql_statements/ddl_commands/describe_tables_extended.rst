@@ -139,4 +139,4 @@ The following is an example of the generated output for the **external** ``DESCR
 
 Permissions
 =============
-**Comment** - *What are the permissions?*
+Using the ``DESCRIBE TABLES EXTENDED`` command requires ``USAGE`` permissions.

@@ -142,4 +142,4 @@ The following is an example of the generated output in Studio for the **EXTERNAL
 
 Permissions
 =============
-No permissions are required for the ``DESCRIBE TABLES`` command.
+Using the ``DESCRIBE TABLES`` command requires ``USAGE`` permissions.

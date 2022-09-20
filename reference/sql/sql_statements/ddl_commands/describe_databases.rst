@@ -52,4 +52,4 @@ The following is an example of the generated output in Studio:
 
 Permissions
 =============
-No permissions are required for the ``DESCRIBE DATABASES`` command.
+Using the ``DESCRIBE DATABASES`` command requires ``SUPERUSER`` permissions.
