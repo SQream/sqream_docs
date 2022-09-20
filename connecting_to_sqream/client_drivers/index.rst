@@ -40,7 +40,7 @@ Windows
 --------------
 The following are applicable to Windows:
 
-* **ODBC installer** - SQream Drivers v2020.2.0, with Tableau customizations. Please contact your `SSream represenative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_ for this installer.
+* **ODBC installer** - SQream Drivers v2020.2.0, with Tableau customization. Please contact your `SQream representative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_ for this installer.
 
   For more information on installing and configuring ODBC on Windows, see :ref:`Install and configure ODBC on Windows <install_odbc_windows>`.
 
