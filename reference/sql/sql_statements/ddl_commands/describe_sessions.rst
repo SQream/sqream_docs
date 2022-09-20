@@ -11,7 +11,7 @@ The following is the syntax for the ``DESCRIBE SESSIONS`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE SESSIONS [ USER <user_name> ][ HISTORY ]
+   DESCRIBE SESSIONS [ USER <user_name> ][ TIMEFRAME FROM <start_date_time> TO <end_date_time> ]
 
 Parameters
 ============
@@ -25,19 +25,20 @@ The following parameters can be used with the ``DESCRIBE SESSIONS`` command:
      - Parameter Value
      - Description
      - Type
-   * - ``SESSIONS``
-     - *(Optional)* ``user_name``
-     - The name of the user on the session.
+   * - ``USER``
+     - ``user_name``
+     - Optional parameter for filtering by username.
      - Text
+   * - ``TIMEFRAME FROM``  
+     - ``<start_date_time>``
+     - Optional parameter for filtering by time frame - must be used in combination with ``TO``.
+     - DATETIME
+   * - ``TIMEFRAME TO``  
+     - ``<end_date_time>``
+     - Optional parameter for filtering by time frame - must be used in combination with ``FROM``.
+     - DATETIME
 	 
-Example
-==============
-The following is an example of the ``DESCRIBE SESSIONS`` command:
-
-.. code-block:: postgres
-
-   DESCRIBE SESSIONS
-   	 
+	 
 Output
 =============
 Using the ``DESCRIBE SESSIONS`` command generates the following output:
@@ -75,9 +76,49 @@ Using the ``DESCRIBE SESSIONS`` command generates the following output:
      - Text
      - efd226bb-cc57-4d41-8ff9-c9300830c571
 	 
-The following is an example of the generated output in Studio:
+Examples
+==============
+The following is an example of the ``DESCRIBE SESSIONS`` command:
 
-.. image:: /_static/images/describe_sessions.png
+.. code-block:: postgres
+
+   DESCRIBE SESSIONS;
+   	 
+	 
++---------------------+----------------------+-----------+-------+----------------+----------------------+---------+-------------------+---------------------------------------+------------+
+| start_time          | end_time             | database  | role  | source_ip      | client               | status  | rejection_reason  | session_id                            | username   |
++=====================+======================+===========+=======+================+======================+=========+===================+=======================================+============+
+| 2022-09-20 6:46:47  | 0000-00-00 00:00:00  | master    | N/A   | 192.168.0.209  | SQream JDBC v0.1.54  | Active  | N/A               | e77075e0-51cc-4956-b192-b68ce17a4bc5  | sqream     |
+| 2022-09-20 6:46:46  | 0000-00-00 00:00:00  | master    | N/A   | 192.168.0.209  | SQream JDBC v0.1.54  | Active  | N/A               | 6f2c3ee3-4f4b-48f2-90d3-458a26c2788c  | sqream     |
+| 2022-09-20 6:46:46  | 0000-00-00 00:00:00  | master    | N/A   | 192.168.0.209  | SQream JDBC v0.1.54  | Active  | N/A               | e1e4ca64-5079-4e3d-bc47-c1216960ae0f  | sqream     |
+| 2022-09-20 5:23:27  | 0000-00-00 00:00:00  | master    | N/A   | 10.233.84.4    | SQream Node.js       | Active  | N/A               | 4bad606f-696f-42a2-9df1-c9f3eb1cf801  | sqream     |
+| 2022-09-20 5:22:28  | 0000-00-00 00:00:00  | master    | N/A   | 10.233.84.4    | SQream Node.js       | Active  | N/A               | c5d86508-86e1-490f-8421-d2bfbc3f062c  | sqream     |
+| 2022-09-20 5:19:39  | 0000-00-00 00:00:00  | master    | N/A   | 10.233.84.4    | SQream Node.js       | Active  | N/A               | a6485840-1191-4154-a303-7872a466ac70  | sqream     |
+| 2022-09-20 5:19:25  | 0000-00-00 00:00:00  | master    | N/A   | 10.233.84.4    | SQream Node.js       | Active  | N/A               | 2aaf1e33-3b55-4b2b-8fe9-c837d700665d  | sqream     |
+| 2022-09-20 5:19:25  | 0000-00-00 00:00:00  | master    | N/A   | 10.233.84.4    | SQream Node.js       | Active  | N/A               | 8f3c91b7-816e-4e36-b999-e4853e4fe255  | sqream     |
+| 2022-09-20 5:19:25  | 0000-00-00 00:00:00  | master    | N/A   | 10.233.84.4    | SQream Node.js       | Active  | N/A               | ca5b1c86-a696-49f9-bc72-6fff76691799  | sqream     |
++---------------------+----------------------+-----------+-------+----------------+----------------------+---------+-------------------+---------------------------------------+------------+
+
+The following is an example of the ``DESCRIBE SESSIONS`` command filtering a specific time frame:
+
+.. code-block:: postgres
+
+   DESCRIBE SESSIONS TIMEFRAME FROM '2022-09-19 10:00:00' TO '2022-09-19 16:00:00';
+   
++----------------------+----------------------+-----------+-------+---------------+----------------------+---------+-------------------+---------------------------------------+------------+
+| start_time           | end_time             | database  | role  | source_ip     | client               | status  | rejection_reason  | session_id                            | username   |
++======================+======================+===========+=======+===============+======================+=========+===================+=======================================+============+
+| 2022-09-19 15:32:49  | 2022-09-19 15:32:55  | master    | N/A   | 192.168.4.69  | SQream JDBC v0.1.33  | Closed  | N/A               | dd40f403-ba34-460c-835b-2161a59f52a3  | sqream     |
+| 2022-09-19 15:27:04  | 2022-09-19 15:27:04  | master    | N/A   | 192.168.2.31  | SQream JDBC v0.1.33  | Closed  | N/A               | 914869f7-d4f4-45ea-9563-68eeb2ea3189  | sqream     |
+| 2022-09-19 14:08:50  | 2022-09-19 14:08:59  | master    | N/A   | 192.168.2.31  | SQream JDBC v0.1.33  | Closed  | N/A               | a4dfa69a-a73e-4731-81e5-b7c87dd8dc7b  | sqream     |
+| 2022-09-19 14:08:38  | 2022-09-19 14:08:48  | master    | N/A   | 192.168.2.31  | SQream JDBC v0.1.33  | Closed  | N/A               | c3339342-02fa-49e8-b7f1-1172d577c5b7  | sqream     |
+|                      |                      |           |       |               |                      |         |                   |                                       |            |
+|                      |                      |           |       |               |                      |         |                   |                                       |            |
+|                      |                      |           |       |               |                      |         |                   |                                       |            |
+|                      |                      |           |       |               |                      |         |                   |                                       |            |
+|                      |                      |           |       |               |                      |         |                   |                                       |            |
++----------------------+----------------------+-----------+-------+---------------+----------------------+---------+-------------------+---------------------------------------+------------+
+
 
 Permissions
 =============
