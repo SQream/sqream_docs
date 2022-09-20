@@ -53,10 +53,13 @@ The following table lists the issues that were resolved in Version 2022.1.3:
 +-------------+-------------------------------------------------------------------------------------------------+
 | SQ-11310    | Using "create table like" on foreign tables results in flat compression of the created table.   |
 +-------------+-------------------------------------------------------------------------------------------------+
+| SQ-11287    | SQL User Defined Function fails when function definition contain parenthesis                    |
++-------------+-------------------------------------------------------------------------------------------------+
+| SQ-11187    | FLAT compression is wrongly chosen when dealing with data sets starting with all-nulls          |
++-------------+-------------------------------------------------------------------------------------------------+
 | SQ-10892    | Update - enhanced error message when trying to run update on foreign table.                     |
 +-------------+-------------------------------------------------------------------------------------------------+
-https://sqream.atlassian.net/browse/SQ-11287
-https://sqream.atlassian.net/browse/SQ-11187
+
 
 
 Operations and Configuration Changes
@@ -115,7 +118,7 @@ Upgrading to v2022.1.3
 
       $ ./upgrade_storage <levelDB path>
 
-  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <https://docs.sqream.com/en/v2022.1.3/installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
   
 .. toctree::
    :maxdepth: 2
