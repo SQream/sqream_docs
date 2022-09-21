@@ -8,7 +8,7 @@ SQream DB Documentation
 
    .. tip::
       Want to read this offline?
-      `Download the documentation as a single PDF <https://docs.sqream.com/_/downloads/en/v2022.1/pdf/>`_ .
+      `Download the documentation as a single PDF <https://docs.sqream.com/_/downloads/en/latest/pdf/>`_ .
 
 .. only:: pdf or latex
    
@@ -33,7 +33,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
      - **Reference**
      - **Guides**
    * -
-         `Getting Started <https://docs.sqream.com/en/v2022.1/getting_started/index.html>`_
+         `Getting Started <https://docs.sqream.com/en/latest/getting_started/index.html>`_
          
          :ref:`sql_feature_support`
          
@@ -45,7 +45,7 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
          
          :ref:`sql_functions`
      - 
-         `Setting up SQream <https://docs.sqream.com/en/v2022.1/installation_guides/index.html>`_
+         `Setting up SQream <https://docs.sqream.com/en/latest/installation_guides/index.html>`_
          
          :ref:`Best practices<sql_best_practices>`
          
