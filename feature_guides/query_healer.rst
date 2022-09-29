@@ -11,7 +11,7 @@ The **Query Healer** page describes the following:
    
 Overview
 ----------
-The **Query Healer** periodically examines the progress of running statements, creating a log entry for all statements exceeding the ``healerMaxInactivityHours`` flag setting. The default setting of the ``healerMaxInactivityHours`` is five hours. The ``healerMaxInactivityHours`` log frequency is calculated as 5% of the flag setting. When set to to five hours (the default setting), the Query Healer triggers an examination every 15 minutes.  
+The **Query Healer** periodically examines the progress of running statements, creating a log entry for all statements exceeding the ``healerMaxInactivityHours`` flag setting. The default setting of the ``healerMaxInactivityHours`` is five hours. The ``healerMaxInactivityHours`` log frequency is calculated as 5% of the flag setting. When set to five hours (the default setting), the Query Healer triggers an examination every 15 minutes.  
 
 The following is an example of a log record for a query stuck in the query detection phase for more than five hours:
 
