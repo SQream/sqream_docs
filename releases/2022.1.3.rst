@@ -74,7 +74,7 @@ Deprecated Features
 -------
 SQream is declaring end of support of VARCHAR data type, the decision resulted by SQream's effort to enhance its core functionalities and with respect to ever changing echo system requirements.
 
-VARCHAR is no longer supported for new customers - effective immanently.  
+VARCHAR is no longer supported for new customers - effective immediately.  
 
 TEXT data type is replacing VARCHAR - SQream will maintain VARCHAR data type support until 09/30/2023.
 
