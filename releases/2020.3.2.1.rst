@@ -30,9 +30,3 @@ Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and othe
 
 Contact your account manager to get the latest release of SQream.
 
-.. toctree::
-   :maxdepth: 2
-   :glob:
-   :hidden:
-
-   2020.3.2.1

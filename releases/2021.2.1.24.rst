@@ -79,9 +79,3 @@ End of Support
 -------
 The End of Support section is not relevant to Version 2021.2.1.24.
  
-.. toctree::
-   :maxdepth: 2
-   :glob:
-   :hidden:
-
-   2021.2.1.24

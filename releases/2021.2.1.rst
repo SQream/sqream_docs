@@ -78,9 +78,3 @@ Deprecated Features
 ------
 The **Deprecated Components** section is not relevant to Version 2021.2.1.
 
-.. toctree::
-   :maxdepth: 2
-   :glob:
-   :hidden:
-
-   2021.2.1

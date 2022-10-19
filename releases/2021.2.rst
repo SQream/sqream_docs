@@ -168,9 +168,3 @@ A new configuration method is used starting with Version 2021.2.
 
 For more information about configuring your instance of SQream, see `Client Drivers for 2021.2 <https://docs.sqream.com/en/v2021.2/configuration_guides/index.html>`_.
 
-.. toctree::
-   :maxdepth: 2
-   :glob:
-   :hidden:
-
-   2021.2
