@@ -33,7 +33,7 @@ The following table is a checklist you can use to identify the cause of your slo
      - 
          Use ``SELECT show_cluster_nodes();`` to list the active cluster workers.
          
-         If the worker list is incomplete, follow the :ref:`cluster troubleshooting<cluster_troubleshooting>` section below.
+         If the worker list is incomplete, locate and start the missing worker(s).
          
          If all workers are up, continue to step 4.
    * - 4
@@ -73,7 +73,7 @@ The following table is a checklist you can use to identify the cause of your slo
      - Check free memory across hosts
      - 
          #. Check free memory across the hosts by running ``$ free -th`` from the terminal.
-         #. If the machine has less than 5% free memory, consider **lowering** the ``limitQueryMemoryGB`` and ``spoolMemoryGB`` settings. Refer to the :ref:`configuration` guide.
+         #. If the machine has less than 5% free memory, consider **lowering** the ``limitQueryMemoryGB`` and ``spoolMemoryGB`` settings. Refer to the :ref:`spooling` guide.
          #. If the machine has a lot of free memory, consider **increasing** the ``limitQueryMemoryGB`` and ``spoolMemoryGB`` settings.
          
          If performance does not improve, contact SQream support for more help.
