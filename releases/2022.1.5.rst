@@ -3,7 +3,7 @@
 **************************
 Release Notes 2022.1.5
 **************************
-The 2022.1.5 release notes were released on 10/XX/2022 and describe the following:
+The 2022.1.5 release notes were released on 11/02/2022 and describe the following:
 
 .. contents:: 
    :local:
@@ -27,7 +27,22 @@ Resolved Issues
 ---------
 The following table lists the issues that were resolved in Version 2022.1.5:
 
-XXXXXX  TBD XXXXXXXXXXXXXXXXXXXX
++--------------+------------------------------------------------------------------------------------------+
+| **SQ No.**   | **Description**                                                                          |
++==============+==========================================================================================+
+| SQ-11473     | SQream Command Line Interface connectivity issues                                        |
++--------------+------------------------------------------------------------------------------------------+
+| SQ-11551     | SQream Studio Logs pages filtering issues                                                |
++--------------+------------------------------------------------------------------------------------------+
+| SQ-11631     | Log related configuration flags are not working as expected                              |
++--------------+------------------------------------------------------------------------------------------+
+| SQ-11745     | Missing validation of sufficient GPU memory                                              |
++--------------+------------------------------------------------------------------------------------------+
+| SQ-11792     | CUME_DIST function causes query execution errors                                         |
++--------------+------------------------------------------------------------------------------------------+
+| SQ-11905     | GetDate casting to as text returns DATE with 0s in the time part or no time part at all  |
++--------------+------------------------------------------------------------------------------------------+
+
 
 
 
