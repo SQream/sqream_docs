@@ -198,7 +198,7 @@ After completing all of the steps above, you must check the CUDA version.
    .. code-block:: postgres
    
       +-----------------------------------------------------------------------------+
-      | NVIDIA-SMI 470.82.01    Driver Version: 470.82.01    CUDA Version: 11.4     |
+      | NVIDIA-SMI 470.82.01    Driver Version: 470.82.01    CUDA Version: 10.1    |
       |-------------------------------+----------------------+----------------------+
       | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
       | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
@@ -220,7 +220,7 @@ After completing all of the steps above, you must check the CUDA version.
       |  No running processes found                                                 |
       +-----------------------------------------------------------------------------+
 
-In the above output, the CUDA version is **11.4**.
+In the above output, the CUDA version is **10.1**.
 
 If the above output is not generated, CUDA has not been installed. To install CUDA, see :ref:`installing-the-cuda-driver`.
 
@@ -800,15 +800,15 @@ Installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on CentOS
 
    .. code-block:: postgres
    
-      $ docker run --runtime=nvidia --rm nvidia/cuda:11.4.3-base-centos7 nvidia-smi
+      $ docker run --runtime=nvidia --rm nvidia/cuda:10.1.3-base-centos7 nvidia-smi
 
    The following is an example of the correct output:
 
    .. code-block:: postgres
    
-      docker run --runtime=nvidia --rm nvidia/cuda:11.4.3-base-centos7 nvidia-smi
-      Unable to find image 'nvidia/cuda:11.4.3-base-centos7' locally
-      11.4.3-base-centos7: Pulling from nvidia/cuda
+      docker run --runtime=nvidia --rm nvidia/cuda:10.1.3-base-centos7 nvidia-smi
+      Unable to find image 'nvidia/cuda:10.1.3-base-centos7' locally
+      10.1.3-base-centos7: Pulling from nvidia/cuda
       d519e2592276: Pull complete 
       d22d2dfcfa9c: Pull complete 
       b3afe92c540b: Pull complete 
@@ -816,10 +816,10 @@ Installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on CentOS
       4f0bc36a7e1d: Pull complete 
       cd710321007d: Pull complete 
       Digest: sha256:635629544b2a2be3781246fdddc55cc1a7d8b352e2ef205ba6122b8404a52123
-      Status: Downloaded newer image for nvidia/cuda:11.4.3-base-centos7
+      Status: Downloaded newer image for nvidia/cuda:10.1.3-base-centos7
       Sun Feb 14 13:27:58 2021       
       +-----------------------------------------------------------------------------+
-      | NVIDIA-SMI 470.82.01    Driver Version: 470.82.01    CUDA Version: 11.4     |
+      | NVIDIA-SMI 470.82.01    Driver Version: 470.82.01    CUDA Version: 10.1     |
       |-------------------------------+----------------------+----------------------+
       | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
       | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |

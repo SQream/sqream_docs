@@ -248,7 +248,7 @@ Installing the Nvidia CUDA Driver
       nvidia-smi
       Wed Oct 30 14:05:42 2019
       +-----------------------------------------------------------------------------+
-      | NVIDIA-SMI 470.82.01    Driver Version: 470.82.01    CUDA Version: 11.4     |
+      | NVIDIA-SMI 470.82.01    Driver Version: 470.82.01    CUDA Version: 10.1     |
       |-------------------------------+----------------------+----------------------+
       | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
       | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
@@ -267,7 +267,7 @@ Installing the Nvidia CUDA Driver
       |  No running processes found                                                 |
       +-----------------------------------------------------------------------------+
 
-#. Verify that the installed CUDA version shown in the output above is ``11.4``.
+#. Verify that the installed CUDA version shown in the output above is ``10.1``.
     
 	::
 
@@ -276,25 +276,25 @@ Installing the Nvidia CUDA Driver
 
     ::
    
-   1. If CUDA version 11.4 has already been installed, skip to Docktime Runtime (Community Edition).
+   1. If CUDA version 10.1 has already been installed, skip to Docktime Runtime (Community Edition).
     ::
 
-   2. If CUDA version 11.4 has not been installed yet, continue with Step 7 below.
+   2. If CUDA version 10.1 has not been installed yet, continue with Step 7 below.
 
 #. Do one of the following:
 
-   * Install :ref:`CUDA Driver version 11.4 for x86_64 <CUDA_11.4_x8664>`.
+   * Install :ref:`CUDA Driver version 10.1 for x86_64 <CUDA_10.1_x8664>`.
    
       ::
 	  
    * Install :ref:`CUDA driver version 10.1 for IBM Power9 <CUDA_10.1_IBMPower9>`.
 
-.. _CUDA_11.4_x8664:
+.. _CUDA_10.1_x8664:
 
-Installing the CUDA Driver Version 11.4 for x86_64
+Installing the CUDA Driver Version 10.1 for x86_64
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**To install the CUDA driver version 11.4 for x86_64:**
+**To install the CUDA driver version 10.1 for x86_64:**
 
 1. Make the following target platform selections:
    
@@ -352,7 +352,7 @@ For installer type, SQream recommends selecting **runfile (local)**. The availab
       nvidia-smi
       Wed Oct 30 14:05:42 2019
       +-----------------------------------------------------------------------------+
-      | NVIDIA-SMI 470.82.01    Driver Version: 470.82.01    CUDA Version: 11.4     |
+      | NVIDIA-SMI 470.82.01    Driver Version: 470.82.01    CUDA Version: 10.1     |
       |-------------------------------+----------------------+----------------------+
       | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
       | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
@@ -622,7 +622,7 @@ Installing the NVIDIA Docker2 Toolkit on a CentOS Operating System
 
    .. code-block::
 
-      $ docker run --runtime=nvidia --rm nvidia/cuda:11.4.3-base-centos7 nvidia-smi
+      $ docker run --runtime=nvidia --rm nvidia/cuda:10.1.3-base-centos7 nvidia-smi
 
 For more information on installing the NVIDIA Docker2 Toolkit on a CentOS operating system, see :ref:`Installing the NVIDIA Docker2 Toolkit on a CentOS operating system <https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-2.0)#centos-distributions-1>`
 
@@ -674,7 +674,7 @@ Installing the NVIDIA Docker2 Toolkit on an Ubuntu Operating System
 
    .. code-block::
 
-      $ docker run --runtime=nvidia --rm nvidia/cuda:11.4.3-base-centos7 nvidia-smi
+      $ docker run --runtime=nvidia --rm nvidia/cuda:10.1.3-base-centos7 nvidia-smi
 
 For more information on installing the NVIDIA Docker2 Toolkit on a CentOS operating system, see :ref:`Installing the NVIDIA Docker2 Toolkit on an Ubuntu operating system <https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-2.0)#ubuntu-distributions-1>`
 
@@ -1062,7 +1062,7 @@ The following is an example of the correct output:
    METADATA_PORT=3105
    PICKER_PORT=3108
    NUM_OF_GPUS=2
-   CUDA_VERSION=11.4
+   CUDA_VERSION=10.1
    NVIDIA_SMI_PATH=/usr/bin/nvidia-smi
    DOCKER_PATH=/usr/bin/docker
    NVIDIA_DRIVER=418
