@@ -26,4 +26,6 @@ If the locks still appear in the :ref:`show_locks` utility, we can force remove 
    t=> SELECT RELEASE_DEFUNCT_LOCKS();
    executed
 
+.. tip:: ``RELEASE_DEFUNCT_LOCKS`` has an optional input parameter to specify the number of seconds, after which ``RELEASE_DEFUNCT_LOCKS`` will execute.
+
 .. warning:: This operation can cause some statements to fail on the specific worker on which they are queued. This is intended as a "last resort" to solve stale locks.

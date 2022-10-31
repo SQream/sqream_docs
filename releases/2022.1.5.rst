@@ -9,13 +9,21 @@ The 2022.1.5 release notes were released on 11/02/2022 and describe the followin
    :local:
    :depth: 1      
 
-Version Content
+New Features
 ----------
-The 2022.1.5 Release Notes describes the following: 
+The 2022.1.5 Release Notes include the following new features:
+ 
+* keys_evaluate utility function enhancement - add problematic chunk ID to the function's output report.
 
-XXXXXX  TBD XXXXXXXXXXXXXXXXXXXX
+	::
 
-   ::
+* Automatically close database connections that have been open for 24 hours without any active statements.
+
+	::
+
+* release_defunct_locks utility function enhancement to receive new optional input parameter to specify timeout - for more details see `Lock Related Issues <../troubleshooting/lock_related_issues.html>`_.
+
+   
 
 
 Known Issues
