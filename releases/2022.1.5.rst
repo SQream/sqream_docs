@@ -17,7 +17,7 @@ The 2022.1.5 Release Notes include the following new features:
 
 	::
 
-* Automatically close database connections that have been open for 24 hours without any active statements.
+* Automatically close database client connections that have been open for 24 hours without any active statements.
 
 	::
 
@@ -28,7 +28,7 @@ The 2022.1.5 Release Notes include the following new features:
 
 Known Issues
 ---------
-No relevant Known Issues.
+Recently discovered issue with the encryption feature, at this time SQream recommends to avoid using this feature - a fix will be introduced in the near future.
 
 
 Resolved Issues
