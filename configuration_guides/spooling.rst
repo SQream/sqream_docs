@@ -55,15 +55,7 @@ The following is an example of setting ``spoolMemoryGB`` value in the current co
        “legacyConfigFilePath”: “home/SQream_develop/SqrmRT/utils/json/legacy_congif.json”
    }
    
-The following is an example of setting ``spoolMemoryGB`` value in the previous configuration method per-worker for 512GB of RAM and 4 workers:
-
-.. code-block:: console
-     
-   “runtimeFlags”: {
-   “limitQueryMemoryGB” : 121,
-   “spoolMemoryGB” : 108
 
 For more information about configuring the ``spoolMemoryGB`` flag, see the following:
 
 * `Current configuration method <https://docs.sqream.com/en/latest/configuration_guides/spool_memory_gb.html>`_
-* `Previous configuration method <https://docs.sqream.com/en/latest/configuration_guides/previous_configuration_method.html#id2>`_
