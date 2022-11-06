@@ -95,8 +95,14 @@ The following is displayed:
    deployment.apps/sqream-worker-0 patched
    --Deployment patched successfully! :-)
    
-When you have finished mounting your NFS shared drives on your SQream cluster, you can use them with **COPY FROM** or **COPY TO** statements, as shown in the following example:
+When you have finished mounting your NFS shared drives on your SQream cluster, you can use them with :ref:`copy_from` or :ref:`copy_to` statements, as shown in the following example:
 
 .. code-block:: console
 
    $ COPY table1 from wrapper csv_fdw options (location = '/mnt/nfs_shares/csv/t_a.csv' , quote='@');
+   
+    * :ref:`copy_from`
+ 
+    ::
+	
+ * :ref:`copy_to`
