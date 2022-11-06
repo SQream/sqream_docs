@@ -37,12 +37,12 @@ The following parameters can be used when switching databases with the ``DESCRIB
      - Type
    * - ``PARAMETER``
      - ``parameter``
-     - Describes the specified configuration parameter(s), listing all parameters if nothing is specified.
-     - Required **Comment** - *True?*
+     - Describes the specified configuration parameter, listing all parameters if nothing is specified.
+     - Text
    * - ``LIKE 'pattern'``
      - ``'pattern'``
      - Describes all configurations containing the defined string.
-     - Required **Comment** - *True?*
+     - Text
 
 Example
 ==============
