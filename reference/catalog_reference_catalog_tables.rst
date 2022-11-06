@@ -303,8 +303,6 @@ The ``roles`` data object identifies the roles in the database, as shown in the 
      - Identifies whether the role can be used to log in to SQream (``1`` - yes, ``0`` - no).
    * - ``has_password``
      - Identifies whether the role has a password (``1`` - yes, ``0`` - no).
-   * - ``can_create_function``
-     - Identifies whether role can create UDFs (``1`` - yes, ``0`` - no).
      
 Role Memberships
 ***********
