@@ -101,8 +101,3 @@ When you have finished mounting your NFS shared drives on your SQream cluster, y
 
    $ COPY table1 from wrapper csv_fdw options (location = '/mnt/nfs_shares/csv/t_a.csv' , quote='@');
    
-    * :ref:`copy_from`
- 
-    ::
-	
- * :ref:`copy_to`
