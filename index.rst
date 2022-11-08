@@ -4,6 +4,8 @@
 SQream DB Documentation
 *************************
 
+For SQream version 2021.2.
+
 .. only:: html
 
    .. tip::
@@ -14,67 +16,155 @@ SQream DB Documentation
    
    .. tip:: This documentation is available online at https://docs.sqream.com/
 
-SQream DB is a columnar analytic SQL database management system. 
+SQream DB is a columnar analytic SQL database management system. SQream DB supports regular SQL including :ref:`a substantial amount of ANSI SQL<sql_feature_support>`, uses :ref:`serializable transactions<transactions>`, and :ref:`scales horizontally<concurrency_and_scaling_in_sqream>` for concurrent statements. Even a :ref:`basic SQream DB machine<hardware_guide>` can support tens to hundreds of terabytes of data. SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tableau>` comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc>`, :ref:`ODBC<odbc>`, and :ref:`Python DB-API<pysqream>`.
 
-SQream DB supports regular SQL including :ref:`a substantial amount of ANSI SQL<sql_feature_support>`, uses :ref:`serializable transactions<transactions>`, and :ref:`scales horizontally<concurrency_and_scaling_in_sqream>` for concurrent statements.
+:ref:`client_platforms`
 
-Even a :ref:`basic SQream DB machine<hardware_guide>` can support tens to hundreds of terabytes of data.
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| Topic                                             | Description                                                                                                                            |
++===================================================+========================================================================================================================================+
+| **Getting Started**                                                                                                                                                                        |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`preparing_your_machine_to_install_sqream`   | Set up your local machine according to SQream’s recommended pre-installation configurations.                                           |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`executing_statements_in_sqream`             | Provides more information about the available methods for executing statements in SQream.                                              |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`performing_basic_sqream_operations`         | Provides more information on performing basic operations.                                                                              |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`hardware_guide`                             | Describes SQream’s mandatory and recommended hardware settings, designed for a technical audience.                                     |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| **Installation Guides**                                                                                                                                                                    |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`installing_and_launching_sqream`            | Refers to SQream’s installation guides.                                                                                                |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`sqream_studio_installation`                 | Refers to all installation guides required for installations related to Studio.                                                        |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| **Ingesting Data**                                                                                                                                                                         |
++--------------------------+------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`csv`               | :ref:`avro`            |                                                                                                                                        |
++--------------------------+------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`parquet`           | :ref:`orc`             |                                                                                                                                        |
++--------------------------+------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`oracle`                                                                                                                                                                              |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Connecting to SQream**                                                                                                                                                                   |
++--------------------------+------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`client_platforms`                           | Describes how to install and connect a variety of third party connection platforms and tools.                                          |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`client_drivers`                             | Describes how to use the SQream client drivers and client applications with SQream.                                                    |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| **External Storage Platforms**                                                                                                                                                             |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`s3`                                         | Describes how to insert data over a native S3 connector.                                                                               |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`hdfs`                                       | Describes how to configure an HDFS environment for the user sqream and is only relevant for users with an HDFS environment.            |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 
-SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tableau>` comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc>`, :ref:`ODBC<odbc>`, and :ref:`Python DB-API<pysqream>`.
 
-.. 
-   .. ref`features_tour`
+   Loading and unloading data:
 
-.. list-table::
-   :widths: 33 33 33
-   :header-rows: 0
+   * Loading data:
 
-   * - **Get Started**
-     - **Reference**
-     - **Guides**
-   * -
-         `Getting Started <https://docs.sqream.com/en/latest/getting_started/index.html>`_
-         
-         :ref:`sql_feature_support`
-         
-         :ref:`Bulk load CSVs<csv>`
-     - 
-         :ref:`SQL Reference<sql>`
-         
-         :ref:`sql_statements`
-         
-         :ref:`sql_functions`
-     - 
-         `Setting up SQream <https://docs.sqream.com/en/latest/installation_guides/index.html>`_
-         
-         :ref:`Best practices<sql_best_practices>`
-         
+     * Overview of loading data
+     * Alternatives to loading data (foreign tables)
+     * Supported data types
+     * Ingesting data from external sources
+     * Inserting data from external tables
+     * Ingesting data from third party client platforms
+     * Using the **COPY FROM** statement
+     * Importing data using Studio
+     * Loading data using Amazon S3
 
-   * - **Releases**
-     - **Driver and Deployment**
-     - **Help and Support**
-   * -
-         :ref:`2022.1<2022.1>`
-		 
-         :ref:`2021.2<2021.2>`
+   * Unloading data:
 
-         :ref:`2021.1<2021.1>`
-        
-         :ref:`2020.3<2020.3>`
+     * Overview of unloading data
+     * Using the **COPY TO** statement
 
-         :ref:`2020.2<2020.2>`
-         
-         :ref:`2020.1<2020.1>`
-                  
-         :ref:`All recent releases<releases>`
+   Feature guides:
 
-     - 
-         :ref:`Client drivers<client_drivers>`
+   * Query Healer
+   * Automatic schema Identification
+   * Compression
+   * Python UDF (User-Defined Functions)
+   * Workload Manager
+   * Transactions
+   * Concurrency and locks
+   * Concurrency and scaling in SQream DB
 
-     - 
-         :ref:`troubleshooting` guide
-         
-         :ref:`information_for_support`
+   Operational guides:
+
+   * Access control
+   * Creating or cloning storage clusters
+   * Foreign tables
+   * Deleting data
+   * Exporting data
+   * Logging
+   * Monitoring query performance
+   * Security
+   * Saved queries
+   * Seeing system objects as DDL
+   * Optimization and best practices
+
+   SQream Accelerated Studio 5.4.3:
+
+   * Getting started with SQream Acceleration Studio 5.4.3
+   * Monitoring workers and services from the dashboard
+   * Executing statements and running queries from the Editor
+   * Viewing logs
+   * Creating, assigning, and managing roles and permissions
+   * Configuring Your instance of SQream
+
+   System architecture:
+
+   * Internals and architecture
+   * Filesystem and usage
+
+   Configuring SQream:
+
+   * Configuration methods
+   * Configuration flags
+
+   Reference guides:
+
+   * SQL syntax, statements, and functions
+   * Catalog reference guide
+   * Command Line programs
+   * SQL feature checklist
+   * Python API reference guide
+
+   Data type guides:
+
+   * Converting and casting
+   * Supported data types
+   * Supported casts
+
+   Release notes:
+
+   * 2022.1
+   * 2021.2
+   * 2021.1
+   * 2020.3
+   * 2020.2
+   * 2020.1
+
+   Troubleshooting:
+
+   * Remedying slow queries
+   * Resolving common issues
+   * Examining logs
+   * Identifying configuration issues
+   * Lock related issues
+   * SAS Viya related issues
+   * Tableau related issues
+   * Solving “Code 126” ODBC errors
+   * Log related issues
+   * Node.js related issues
+   * Core dumping related issues
+   * SQream SQL installation related issues
+   * Gathering information for SQream support
+
+   Glossary
+
 
 
 
@@ -85,9 +175,9 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
 
 .. rubric:: Looking for older versions?
 
-This version of the documentation is for SQream DB Version 2022.1.
+This version of the documentation is for SQream DB Version 2021.2.
 
-If you're looking for an older version of the documentation, versions 1.10 through 2019.2.1 are available at http://previous.sqream.com.
+If you're looking for an older version of the documentation, versions 1.10 through 2019.2.1 are available at http://previous.sqream.com .
 
 .. toctree::
    :caption: Contents:
@@ -100,7 +190,6 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    installation_guides/index
    data_ingestion/index
    connecting_to_sqream/index
-   external_storage_platforms/index
    loading_and_unloading_data/index
    feature_guides/index
    operational_guides/index
@@ -114,7 +203,7 @@ If you're looking for an older version of the documentation, versions 1.10 throu
    glossary
 
 ..
-   Indices and Tables
+   Indices and tables
    ==================
 
    * :ref:`genindex`
