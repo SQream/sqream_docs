@@ -32,7 +32,7 @@ The following is the correct syntax for using the **COPY TO** statement:
        )
        ;
        
-   fdw_name ::= csw_fdw | parquet_fdw | orc_fdw
+   fdw_name ::= csv_fdw | parquet_fdw | orc_fdw
    
    schema_name ::= identifer
   
@@ -84,7 +84,7 @@ The following table shows the ``COPY_TO`` elements:
    * - ``query``
      - An SQL query that returns a table result, or a table name
    * - ``fdw_name``
-     - The name of the Foreign Data Wrapper to use. Supported FDWs are ``csv_fdw``, ``orc_fdw``, or ``parquet_fdw``.
+     - The name of the Foreign Data Wrapper to use. Supported FDWs are ``csv_fdw``, ``orc_fdw``, ``avro_fdw`` or ``parquet_fdw``.
    * - ``LOCATION``
      - A path on the local filesystem, S3, or HDFS URI. For example, ``/tmp/foo.csv``, ``s3://my-bucket/foo.csv``, or ``hdfs://my-namenode:8020/foo.csv``. The local path must be an absolute path that SQream DB can access.
    * - ``HEADER``
