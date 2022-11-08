@@ -82,7 +82,7 @@ The following is the syntax for SQream:
 
 .. code-block:: text
 
-   jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>sqream;[<optional parameters>; ...]
+   jdbc:Sqream://{host}[:{port}][/{database}];user={user}
 
 Connection Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -92,74 +92,37 @@ The following table shows the connection string parameters:
    :widths: auto
    :header-rows: 1
    
-   * - Item
-     - State
-     - Default
-     - Description
-   * - ``<host and port>``
-     - Mandatory
-     - None
-     - Hostname and port of the SQream DB worker. For example, ``127.0.0.1:5000``, ``sqream.mynetwork.co:3108``
-   * - ``<database name>``
-     - Mandatory
-     - None
-     - Database name to connect to. For example, ``master``
-   * - ``username=<username>``
-     - Mandatory
-     - None
-     - Username of a role to use for connection. For example, ``username=rhendricks``
-   * - ``password=<password>``
-     - Mandatory
-     - None
-     - Specifies the password of the selected role. For example, ``password=Tr0ub4dor&3``
-   * - ``service=<service>``
-     - Optional
-     - ``sqream``
-     - Specifices service queue to use. For example, ``service=etl``
-   * - ``<ssl>``
-     - Optional
-     - ``false``
-     - Specifies SSL for this connection. For example, ``ssl=true``
-   * - ``<cluster>``
-     - Optional
-     - ``true``
-     - Connect via load balancer (use only if exists, and check port).
-   * - ``<fetchSize>``
-     - Optional
-     - ``true``
-     - Enables on-demand loading, and defines double buffer size for result. The ``fetchSize`` parameter is rounded according to chunk size. For example, ``fetchSize=1`` loads one row and is rounded to one chunk. If the fetchSize is 100,600, a chunk size of 100,000 loads, and is rounded to, two chunks.
-   * - ``<insertBuffer>``
-     - Optional
-     - ``true``
-     -  Defines the bytes size for inserting a buffer before flushing data to the server. Clients running a parameterized insert (network insert) can define the amount of data to collect before flushing the buffer.
-   * - ``<loggerLevel>``
-     - Optional
-     - ``true``
-     -  Defines the logger level as either ``debug`` or ``trace``.
-   * - ``<logFile>``
-     - Optional
-     - ``true``
-     -  Enables the file appender and defines the file name. The file name can be set as either the file name or the file path.
++--------------------------+------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| *Item*                   | *State*    | *Default*  | Description                                                                                                                                                                                                                                                                                        |
++==========================+============+============+====================================================================================================================================================================================================================================================================================================+
+| ``<host and port>``      | Mandatory  | None       | Hostname and port of the SQream DB worker. For example, 192.168.0.12:80, sqream.mynetwork.co:80                                                                                                                                                                                                    |
++--------------------------+------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``<database name>``      | Mandatory  | None       | Database name to connect to. For example, master                                                                                                                                                                                                                                                   |
++--------------------------+------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``username=<username>``  | Mandatory  | None       | Username of a role to use for connection. For example, username=rhendricks                                                                                                                                                                                                                         |
++--------------------------+------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``password=<password>``  | Mandatory  | None       | Specifies the password of the selected role. For example, password=Tr0ub4dor&3                                                                                                                                                                                                                     |
++--------------------------+------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``<fetchSize>``          | Optional   | ``TRUE``   | Enables on-demand loading, and defines double buffer size for result. The fetchSize parameter is rounded according to chunk size. For example, fetchSize=1 loads one row and is rounded to one chunk. If the fetchSize is 100,600, a chunk size of 100,000 loads, and is rounded to, two chunks.   |
++--------------------------+------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``<insertBuffer>``       | Optional   | ``TRUE``   | Defines the bytes size for inserting a buffer before flushing data to the server. Clients running a parameterized insert (network insert) can define the amount of data to collect before flushing the buffer.                                                                                     |
++--------------------------+------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``<loggerLevel>``        | Optional   | ``TRUE``   | Defines the logger level as either debug or trace.                                                                                                                                                                                                                                                 |
++--------------------------+------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| ``<logFile>``            | Optional   | ``TRUE``   | Enables the file appender and defines the file name. The file name can be set as either the file name or the file path.                                                                                                                                                                            |
++--------------------------+------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-Connection String Examples
+
+
+Connection String Example
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The following is an example of a SQream cluster with load balancer and no service queues (with SSL):
+
 
 .. code-block:: text
 
-   jdbc:Sqream://sqream.mynetwork.co:3108/master;user=rhendricks;password=Tr0ub4dor&3;ssl=true;cluster=true
+   jdbc:Sqream://192.168.4.89:80/master;user=rhendricks;password=Tr0ub4dor&3
 
-The following is a minimal example for a local standalone SQream database:
 
-.. code-block:: text 
-
-   jdbc:Sqream://127.0.0.1:5000/master;user=rhendricks;password=Tr0ub4dor&3
-
-The following is an example of a SQream cluster with load balancer and a specific service queue named ``etl``, to the database named ``raviga``
-
-.. code-block:: text
-
-   jdbc:Sqream://sqream.mynetwork.co:3108/raviga;user=rhendricks;password=Tr0ub4dor&3;cluster=true;service=etl
 
 Sample Java Program
 --------------------
