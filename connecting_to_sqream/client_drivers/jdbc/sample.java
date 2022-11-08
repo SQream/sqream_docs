@@ -43,7 +43,7 @@ public class SampleTest {
    public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException {
 ​
        // Load SQream DB JDBC driver
-       Class.forName("com.sqream.jdbc.SQDriver");
+       Class.forName("com.sqream.jdbc.BlueDriver");
 ​
        // Create test object and run
        SampleTest test = new SampleTest();
