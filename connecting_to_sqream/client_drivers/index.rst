@@ -82,10 +82,6 @@ The following are applicable to Linux:
 
 * ODBC Installer  - Please contact your SQream representative for this installer.
 
-   ::
-
-* C++ connector - `libsqream-4.0 <https://sq-ftp-public.s3.amazonaws.com/libsqream-4.0.tar.gz>`_   
-* `C++ shared object library <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/cpp/index.html#getting-the-library>`_
 
 
 .. toctree::
@@ -97,7 +93,6 @@ The following are applicable to Linux:
    python/index
    nodejs/index
    odbc/index
-   cpp/index
 
 
 
