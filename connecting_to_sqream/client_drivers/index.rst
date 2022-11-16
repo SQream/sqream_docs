@@ -20,6 +20,12 @@ The following are applicable to all operating systems:
   * `JDBC .jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.3.jar>`_ - sqream-jdbc-4.5.3 (.jar)
   * `JDBC driver <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/jdbc/index.html#>`_
 
+.. _.net:
+
+* **.NET**:
+
+  * `.NET integration
+
 
 .. _python:
 
