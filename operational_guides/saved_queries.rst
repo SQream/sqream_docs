@@ -4,21 +4,18 @@
 Saved Queries
 ***********************
 
-Saved queries can be used to reuse a query plan for a query to eliminate compilation times for repeated queries. They also provide a way to implement 'parameterized views'. 
 
-How saved queries work
-==========================
+Using the SAVE_QUERY command allows you to save time by easily running frequently used complex queries which once saved, do not require execution plan compilation. You may also use saved queries to implement 'parameterized views'. 
 
-Saved queries are compiled when they are created. When a saved query is run, this query plan is used instead of compiling a query plan at query time.
 
 Parameters support
 ===========================
 
-Query parameters can be used as substitutes for literal expressions in queries.
+* Query parameters can be used as substitutes for literal expressions in queries.
 
 * Parameters cannot be used to substitute things like column names and table names.
 
-* Query parameters of a string datatype (like ``VARCHAR``) must be of a fixed length, and can be used in equality checks, but not patterns (e.g. :ref:`like`, :ref:`rlike`, etc.)
+* Query parameters of a string datatype (like ``TEXT``) must be of a fixed length, and can be used in equality checks, but not patterns (e.g. :ref:`like`, :ref:`rlike`, etc.)
 
 Creating a saved query
 ======================
