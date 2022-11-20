@@ -1,9 +1,9 @@
-.. _2022.1.5:
+.. _2022.1.6:
 
 **************************
 Release Notes 2022.1.6
 **************************
-The 2022.1.5 release notes were released on 11/02/2022 and describe the following:
+The 2022.1.6 release notes were released on 11/xx/2022 and describe the following:
 
 .. contents:: 
    :local:
@@ -11,7 +11,7 @@ The 2022.1.5 release notes were released on 11/02/2022 and describe the followin
 
 New Features
 ----------
-The 2022.1.5 Release Notes include the following new features:
+The 2022.1.6 Release Notes include the following new features:
  
 * keys_evaluate utility function enhancement - add problematic chunk ID to the function's output report.
 
@@ -28,36 +28,32 @@ The 2022.1.5 Release Notes include the following new features:
 
 Known Issues
 ---------
-Recently discovered issue with the encryption feature, at this time SQream recommends to avoid using this feature - a fix will be introduced in the near future.
+No known issues.
 
 
-Resolved Issues
+Version 2022.1.6 resolved Issues
 ---------
-The following table lists the issues that were resolved in Version 2022.1.5:
 
-+--------------+------------------------------------------------------------------------------------------+
-| **SQ No.**   | **Description**                                                                          |
-+==============+==========================================================================================+
-| SQ-11081     | Tableau connection are not getting closed                                                |
-+--------------+------------------------------------------------------------------------------------------+
-| SQ-11473     | SQream Command Line Interface connectivity issues                                        |
-+--------------+------------------------------------------------------------------------------------------+
-| SQ-11551     | SQream Studio Logs pages filtering issues                                                |
-+--------------+------------------------------------------------------------------------------------------+
-| SQ-11631     | Log related configuration flags are not working as expected                              |
-+--------------+------------------------------------------------------------------------------------------+
-| SQ-11745     | Missing validation of sufficient GPU memory                                              |
-+--------------+------------------------------------------------------------------------------------------+
-| SQ-11792     | CUME_DIST function causes query execution errors                                         |
-+--------------+------------------------------------------------------------------------------------------+
-| SQ-11905     | GetDate casting to as text returns DATE with 0s in the time part or no time part at all  |
-+--------------+------------------------------------------------------------------------------------------+
++-------------------------------+---------------------------------------------------------+
+| **SQ No.**                    | **Description**                                         |
++===============================+=========================================================+
+| SQ-10160                      | Spotfire casting issues when reading SQream data        |
++-------------------------------+---------------------------------------------------------+
+| SQ-11811, SQ-11772            | Queries containing JOIN TEXT columns slow runtime       |
++-------------------------------+---------------------------------------------------------+
+| SQ-11940, SQ-11926, SQ-11874  | Version 2022.1.5 encryption issues                      |
++-------------------------------+---------------------------------------------------------+
+| SQ-12089                      | ``COUNT (*)`` execution fails when using foreign table  |
++-------------------------------+---------------------------------------------------------+
+|                               |                                                         |
++-------------------------------+---------------------------------------------------------+
+|                               |                                                         |
++-------------------------------+---------------------------------------------------------+
 
 
 
 
-
-Operations and Configuration Changes
+Configuration Changes
 --------
 No configuration changes were made.
 
@@ -78,7 +74,7 @@ End of Support
 -------
 No End of Support changes were made.
 
-Upgrading to v2022.1.5
+Upgrading to v2022.1.6
 -------
 1. Generate a back-up of the metadata by running the following command:
 
