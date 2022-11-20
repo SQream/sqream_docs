@@ -4,21 +4,9 @@
 SQream DB Documentation
 *************************
 
-For SQream version 2021.2.
-
-.. only:: html
-
-   .. tip::
-      Want to read this offline?
-      `Download the documentation as a single PDF <https://docs.sqream.com/_/downloads/en/latest/pdf/>`_ .
-
-.. only:: pdf or latex
-   
-   .. tip:: This documentation is available online at https://docs.sqream.com/
 
 SQream DB is a columnar analytic SQL database management system. SQream DB supports regular SQL including :ref:`a substantial amount of ANSI SQL<sql_feature_support>`, uses :ref:`serializable transactions<transactions>`, and :ref:`scales horizontally<concurrency_and_scaling_in_sqream>` for concurrent statements. Even a :ref:`basic SQream DB machine<hardware_guide>` can support tens to hundreds of terabytes of data. SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tableau>` comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc>`, :ref:`ODBC<odbc>`, and :ref:`Python DB-API<pysqream>`.
 
-:ref:`client_platforms`
 
 +---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 | Topic                                             | Description                                                                                                                            |
@@ -61,111 +49,15 @@ SQream DB is a columnar analytic SQL database management system. SQream DB suppo
 +---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 
 
-   Loading and unloading data:
+.. only:: html
 
-   * Loading data:
+   .. tip::
+      Want to read this offline?
+      `Download the documentation as a single PDF <https://docs.sqream.com/_/downloads/en/latest/pdf/>`_ .
 
-     * Overview of loading data
-     * Alternatives to loading data (foreign tables)
-     * Supported data types
-     * Ingesting data from external sources
-     * Inserting data from external tables
-     * Ingesting data from third party client platforms
-     * Using the **COPY FROM** statement
-     * Importing data using Studio
-     * Loading data using Amazon S3
-
-   * Unloading data:
-
-     * Overview of unloading data
-     * Using the **COPY TO** statement
-
-   Feature guides:
-
-   * Query Healer
-   * Automatic schema Identification
-   * Compression
-   * Python UDF (User-Defined Functions)
-   * Workload Manager
-   * Transactions
-   * Concurrency and locks
-   * Concurrency and scaling in SQream DB
-
-   Operational guides:
-
-   * Access control
-   * Creating or cloning storage clusters
-   * Foreign tables
-   * Deleting data
-   * Exporting data
-   * Logging
-   * Monitoring query performance
-   * Security
-   * Saved queries
-   * Seeing system objects as DDL
-   * Optimization and best practices
-
-   SQream Accelerated Studio 5.4.3:
-
-   * Getting started with SQream Acceleration Studio 5.4.3
-   * Monitoring workers and services from the dashboard
-   * Executing statements and running queries from the Editor
-   * Viewing logs
-   * Creating, assigning, and managing roles and permissions
-   * Configuring Your instance of SQream
-
-   System architecture:
-
-   * Internals and architecture
-   * Filesystem and usage
-
-   Configuring SQream:
-
-   * Configuration methods
-   * Configuration flags
-
-   Reference guides:
-
-   * SQL syntax, statements, and functions
-   * Catalog reference guide
-   * Command Line programs
-   * SQL feature checklist
-   * Python API reference guide
-
-   Data type guides:
-
-   * Converting and casting
-   * Supported data types
-   * Supported casts
-
-   Release notes:
-
-   * 2022.1
-   * 2021.2
-   * 2021.1
-   * 2020.3
-   * 2020.2
-   * 2020.1
-
-   Troubleshooting:
-
-   * Remedying slow queries
-   * Resolving common issues
-   * Examining logs
-   * Identifying configuration issues
-   * Lock related issues
-   * SAS Viya related issues
-   * Tableau related issues
-   * Solving “Code 126” ODBC errors
-   * Log related issues
-   * Node.js related issues
-   * Core dumping related issues
-   * SQream SQL installation related issues
-   * Gathering information for SQream support
-
-   Glossary
-
-
+.. only:: pdf or latex
+   
+   .. tip:: This documentation is available online at https://docs.sqream.com/
 
 
 .. rubric:: Need help?
@@ -175,9 +67,8 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
 
 .. rubric:: Looking for older versions?
 
-This version of the documentation is for SQream DB Version 2021.2.
 
-If you're looking for an older version of the documentation, versions 1.10 through 2019.2.1 are available at http://previous.sqream.com .
+If you're looking for an older version of the documentation, go to http://previous.sqream.com .
 
 .. toctree::
    :caption: Contents:
