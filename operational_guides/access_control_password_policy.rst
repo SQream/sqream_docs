@@ -31,7 +31,7 @@ As part of our compliance with GDPR standards SQream relies on a strong password
 
 * Must include at least one special character, such as **?**, **!**, **$**, etc.
 
-You can grant a password through the Studio graphic interface or through the CLI, as in the following example command:
+You can create a password by using the Studio graphic interface or using the CLI, as in the following example command:
 
 .. code-block:: console
 
@@ -39,7 +39,7 @@ You can grant a password through the Studio graphic interface or through the CLI
    GRANT LOGIN to user_a ;
    GRANT PASSWORD 'BBAu47?fqPL' to user_a ;
 
-Granting a password that does not comply with the above requirements generates an error message with a request to modify it;
+Creating a password which does not comply with the password policy generates an error message with a request to include any of the missing above requirements:
 
 .. code-block:: console
 
@@ -59,7 +59,7 @@ Granting a password that does not comply with the above requirements generates a
 
 Brute Force Prevention
 ==============================
-Unsuccessfully attempting to log in three times displays the following message:
+Unsuccessfully attempting to log in five times displays the following message:
 
 .. code-block:: console
 
