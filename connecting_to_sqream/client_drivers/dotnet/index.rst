@@ -50,7 +50,7 @@ Use ``com.sqream.jdbc.SQDriver`` as the driver class in the JDBC application.
 
 Connection String
 --------------------
-JSQreamNet Data Provider relies on a connection string.
+SQreamNet Data Provider relies on a connection string.
 
 The following is the syntax for SQream:
 
@@ -105,21 +105,23 @@ The following is an example of a SQream cluster with load balancer and no servic
 
 .. code-block:: text
 
-   jdbc:Sqream://sqream.mynetwork.co:3108/master;user=rhendricks;password=Tr0ub4dor&3;ssl=true;cluster=true
+   Data Source=sqream.mynetwork.co,3108;User=rhendricks;Password=Tr0ub4dor&3;Initial \ Catalog=master;Integrated Security=true;ssl=true;cluster=true;
+
 
 The following is a minimal example for a local standalone SQream database:
 
 .. code-block:: text 
 
-   jdbc:Sqream://127.0.0.1:5000/master;user=rhendricks;password=Tr0ub4dor&3
+  
+   Data Source=127.0.0.1,5000;User=rhendricks;Password=Tr0ub4dor&3;Initial \ Catalog=master;
 
 The following is an example of a SQream cluster with load balancer and a specific service queue named ``etl``, to the database named ``raviga``
 
 .. code-block:: text
 
-   jdbc:Sqream://sqream.mynetwork.co:3108/raviga;user=rhendricks;password=Tr0ub4dor&3;cluster=true;service=etl
+   Data Source=sqream.mynetwork.co,3108;User=rhendricks;Password=Tr0ub4dor&3;Initial \ Catalog=raviga;Integrated Security=true;service=etl;cluster=true;
 
-Sample Java Program
+Sample C# Program
 --------------------
 You can download the :download:`JDBC Application Sample File <sample.java>` below by right-clicking and saving it to your computer.
 

@@ -99,7 +99,7 @@ The following are applicable to Linux:
    python/index
    nodejs/index
    odbc/index
-   .net/index
+   dotnet/index
 
 
 
