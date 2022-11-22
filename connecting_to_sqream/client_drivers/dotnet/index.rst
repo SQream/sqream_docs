@@ -25,7 +25,7 @@ The SqreamNet provider requires a .NET version 6 or newer.
 
 Integrating SQreamNet
 -------------------------
-To integrate SQreamNet, unzip the archive file and save to a known location. Next, in your IDE, add a Sqreamnet.dll reference to your project.
+To integrate SQreamNet,save the archive file to a known location. Next, in your IDE, add a Sqreamnet.dll reference to your project.
 If you wish to upgrade SQreamNet within an existing project, you may replace the existing .dll file with an updated one or change the project's reference location to a new one.
 
 

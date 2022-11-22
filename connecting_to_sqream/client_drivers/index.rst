@@ -24,7 +24,7 @@ The following are applicable to all operating systems:
 
 * **.NET**:
 
-  * `.NET integration
+  * `.NET driver <https://get.sqream-share.com/share/sIsu8fxv>`_
 
 
 .. _python:
