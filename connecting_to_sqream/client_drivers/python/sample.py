@@ -32,6 +32,11 @@ print (f"Version: {result[0][0]}")
 
 # This should print the SQream DB version. For example ``Version: v2020.1``.
 
+# Close cursor
+
+cur.close()
+
+
 # Finally, close the connection
 
 con.close()
