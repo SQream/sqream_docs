@@ -23,9 +23,14 @@ Prerequisites
 ----------------
 The SqreamNet provider requires a .NET version 6 or newer.
 
+Getting the DLL file
+----------------
+The .NET driver is available for download from the :ref:`client drivers download page<client_drivers>`.
+
 Integrating SQreamNet
 -------------------------
-To integrate SQreamNet,save the archive file to a known location. Next, in your IDE, add a Sqreamnet.dll reference to your project.
+After downloading the .NET driver, save the archive file to a known location. Next, in your IDE, add a Sqreamnet.dll reference to your project.
+
 If you wish to upgrade SQreamNet within an existing project, you may replace the existing .dll file with an updated one or change the project's reference location to a new one.
 
 
