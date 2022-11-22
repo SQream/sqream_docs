@@ -3,7 +3,7 @@
 *************************
 .NET
 *************************
-The SqreamNet ADO.NET Data Provider allows you to connect to a SQream database server through .NET environments. This page describes how to establish such connection.
+The SqreamNet ADO.NET Data Provider lets you connect to SQream through your .NET environment.
 
 The .NET page includes the following sections:
 
@@ -25,32 +25,32 @@ The SqreamNet provider requires a .NET Framework 6 or newer.
 
 Verifying the Correct .NET Framework Version is Installed 
 ---------------------
-To verify the correct version of .NET Framework is installed, go to your Framework directory, under Microsoft.NET and look for a v6.x.x directory. In case an older version of .NET Framework exists, you may follow Microsoft guidelines: ____
+To verify the correct version of .NET Framework is installed, go to the Microsoft.NET directory, open the Framework directory, and verify that a v6.x.x directory exists. 
+In case an older version of .NET Framework exists, you may follow Microsoft guidelines for upgrading .NET Framework: ________________
 
 Integrating SQreamNet
 -------------------------
-To integrate SQreamNet, unzip the archive file and save to a known location. Next, in your Visual Studio, add a reference to the Sqreamnet.dll file to your project.
-If you wish to upgrade SQreamNet within an existing project, you may replace the .dll file with an updated one or add a reference to the updated .dll file within its new location.
+To integrate SQreamNet, unzip the archive file and save to a known location. Next, in your Visual Studio, add a Sqreamnet.dll reference to your project.
+If you wish to upgrade SQreamNet within an existing project, you may replace the existing .dll file with an updated one or change the project's reference location to a new one.
 
-Using SQreamNet in your Visual Studio project
+Known Driver Limitations
 ----------------------------
+Unicode characters are not supported when using ``INSERT INTO AS SELECT``.
 
+To avoid possible casting issues, use ``getDouble`` when using ``FLOAT``.
 
 Connecting to SQream For the First Time
 ==============================================
-An initial connection to SQream must be established by creating a **SqreamConnection** object by using a connection string.
+An initial connection to SQream must be established by creating a **SqreamConnection** object using a connection string.
 
 .. contents:: 
    :local:
    :depth: 1
    
-Connection string
---------------
-Use ``com.sqream.jdbc.SQDriver`` as the driver class in the JDBC application.
 
 Connection String
 --------------------
-SQreamNet Data Provider relies on a connection string.
+The SQreamNet Data Provider relies on a connection string.
 
 The following is the syntax for SQream:
 
@@ -60,7 +60,6 @@ The following is the syntax for SQream:
 
 Connection Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^
-The following table shows the connection string parameters:
 
 .. list-table:: 
    :widths: auto
@@ -123,9 +122,9 @@ The following is an example of a SQream cluster with load balancer and a specifi
 
 Sample C# Program
 --------------------
-You can download the :download:`JDBC Application Sample File <sample.java>` below by right-clicking and saving it to your computer.
+You can download the :download:`.NET Application Sample File <sample.cs>` below by right-clicking and saving it to your computer.
 
-.. literalinclude:: sample.java
-    :language: java
-    :caption: JDBC Application Sample
+.. literalinclude:: sample.cs
+    :language: C#
+    :caption: .NET Application Sample
     :linenos:
