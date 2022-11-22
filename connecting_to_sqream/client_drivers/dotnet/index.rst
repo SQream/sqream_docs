@@ -21,23 +21,19 @@ The **Integrating SQreamNet** section describes the following:
 
 Prerequisites
 ----------------
-The SqreamNet provider requires a .NET Framework 6 or newer.
-
-Verifying the Correct .NET Framework Version is Installed 
----------------------
-To verify the correct version of .NET Framework is installed, go to the Microsoft.NET directory, open the Framework directory, and verify that a v6.x.x directory exists. 
-In case an older version of .NET Framework exists, you may follow Microsoft guidelines for upgrading .NET Framework: ________________
+The SqreamNet provider requires a .NET version 6 or newer.
 
 Integrating SQreamNet
 -------------------------
-To integrate SQreamNet, unzip the archive file and save to a known location. Next, in your Visual Studio, add a Sqreamnet.dll reference to your project.
+To integrate SQreamNet, unzip the archive file and save to a known location. Next, in your IDE, add a Sqreamnet.dll reference to your project.
 If you wish to upgrade SQreamNet within an existing project, you may replace the existing .dll file with an updated one or change the project's reference location to a new one.
+
 
 Known Driver Limitations
 ----------------------------
-Unicode characters are not supported when using ``INSERT INTO AS SELECT``.
+ * Unicode characters are not supported when using ``INSERT INTO AS SELECT``.
 
-To avoid possible casting issues, use ``getDouble`` when using ``FLOAT``.
+ * To avoid possible casting issues, use ``getDouble`` when using ``FLOAT``.
 
 Connecting to SQream For the First Time
 ==============================================
@@ -50,13 +46,13 @@ An initial connection to SQream must be established by creating a **SqreamConnec
 
 Connection String
 --------------------
-The SQreamNet Data Provider relies on a connection string.
+To connect to SQream, instantiate a **SqreamConnection** object using this connection string.
 
 The following is the syntax for SQream:
 
 .. code-block:: text
 
-   "Data Source=<hostname or ip>,<port>;User=<username>;Password=<password>;Initial \ Catalog=master;Integrated Security=true";
+   "Data Source=<hostname or ip>,<port>;User=<username>;Password=<password>;Initial Catalog=<database name>;Integrated Security=true";
 
 Connection Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -77,15 +73,15 @@ Connection Parameters
      - Mandatory
      - None
      - Database name to connect to. For example, ``master``
-   * - ``username=<username>``
+   * - ``<username>``
      - Mandatory
      - None
      - Username of a role to use for connection. For example, ``username=rhendricks``
-   * - ``password=<password>``
+   * - ``<password>``
      - Mandatory
      - None
      - Specifies the password of the selected role. For example, ``password=Tr0ub4dor&3``
-   * - ``service=<service>``
+   * - ``<service>``
      - Optional
      - ``sqream``
      - Specifices service queue to use. For example, ``service=etl``
@@ -104,21 +100,21 @@ The following is an example of a SQream cluster with load balancer and no servic
 
 .. code-block:: text
 
-   Data Source=sqream.mynetwork.co,3108;User=rhendricks;Password=Tr0ub4dor&3;Initial \ Catalog=master;Integrated Security=true;ssl=true;cluster=true;
-
+   Data Source=sqream.mynetwork.co,3108;User=rhendricks;Password=Tr0ub4dor&3;Initial Catalog=master;Integrated Security=true;ssl=true;cluster=true;
+    
 
 The following is a minimal example for a local standalone SQream database:
 
 .. code-block:: text 
 
   
-   Data Source=127.0.0.1,5000;User=rhendricks;Password=Tr0ub4dor&3;Initial \ Catalog=master;
+   Data Source=127.0.0.1,5000;User=rhendricks;Password=Tr0ub4dor&3;Initial Catalog=master;
 
 The following is an example of a SQream cluster with load balancer and a specific service queue named ``etl``, to the database named ``raviga``
 
 .. code-block:: text
 
-   Data Source=sqream.mynetwork.co,3108;User=rhendricks;Password=Tr0ub4dor&3;Initial \ Catalog=raviga;Integrated Security=true;service=etl;cluster=true;
+   Data Source=sqream.mynetwork.co,3108;User=rhendricks;Password=Tr0ub4dor&3;Initial Catalog=raviga;Integrated Security=true;service=etl;cluster=true;
 
 Sample C# Program
 --------------------
