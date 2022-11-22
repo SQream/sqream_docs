@@ -24,7 +24,8 @@ The following are applicable to all operating systems:
 
 * **.NET**:
 
-  * `.NET driver <https://get.sqream-share.com/share/sIsu8fxv>`_
+  * `.NET .dll file <https://get.sqream-share.com/share/sIsu8fxv>`_ 
+  * `.NET driver <https://docs.sqream.com/en/v2022.1.6/connecting_to_sqream/client_drivers/dotnet/index.html>`_
 
 
 .. _python:
