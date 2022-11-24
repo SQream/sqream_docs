@@ -106,8 +106,16 @@ The following table shows the Utility commands:
    
    * - Command
      - Usage
+   * - :ref:`DROP SAVED QUERY<drop_saved_query>`
+     - Drops a saved query
+   * - :ref:`EXECUTE SAVED QUERY<execute_saved_query>`
+     - Executes a previously saved query
    * - :ref:`EXPLAIN<explain>`
      - Returns a static query plan, which can be used to debug query plans
+   * - :ref:`LIST SAVED QUERIES<list_saved_queries>`
+     - Lists previously saved query names, one per row.
+   * - :ref:`RECOMPILE SAVED QUERY<recompile_saved_query>`
+     - Recompiles a saved query that has been invalidated due to a schema change
    * - :ref:`SELECT GET_LICENSE_INFO<get_license_info>`
      - View a user's license information
    * - :ref:`SELECT GET_DDL<get_ddl>`
@@ -126,6 +134,8 @@ The following table shows the Utility commands:
      - Returns a list of locks from across the cluster
    * - :ref:`SHOW NODE INFO<show_node_info>`
      - Returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases
+   * - :ref:`SHOW SAVED QUERY<show_saved_query>`
+     - Returns a single row result containing the saved query string
    * - :ref:`SHOW SERVER STATUS<show_server_status>`
      - Returns a list of active sessions across the cluster
    * - :ref:`SHOW VERSION<show_version>`

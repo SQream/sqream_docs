@@ -6,6 +6,8 @@ RECOMPILE_SAVED_QUERY
 
 ``RECOMPILE_SAVED_QUERY`` recompiles a saved query that has been invalidated due to a schema change.
 
+Read more in the :ref:`saved_queries<saved_queries>` guide.
+
 Permissions
 =============
 
