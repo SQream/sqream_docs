@@ -13,7 +13,7 @@ See also :ref:`create_role`.
 Permissions
 =============
 
-To drop a role, the current role must have the ``SUPERUSER`` permission.
+To drop a role, the current role must have a ``SUPERUSER`` cluster-level permission.
 
 Syntax
 ==========
