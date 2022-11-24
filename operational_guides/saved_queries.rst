@@ -4,7 +4,12 @@
 Saved Queries
 ***********************
 
-Saved queries can be used to reuse a query plan for a query to eliminate compilation times for repeated queries. They also provide a way to implement 'parameterized views'. 
+
+
+Using the ``save_query`` command will both generate and save an execution plan. This allows you to save time when running frequently used complex queries.
+
+Note that the saved execution plan is tightly coupled with the structure of its underlying tables, which means that if one or more of the objects mentioned in the query is modified, the saved query must be re-created.
+
 
 How saved queries work
 ==========================
@@ -14,11 +19,11 @@ Saved queries are compiled when they are created. When a saved query is run, thi
 Parameters support
 ===========================
 
-Query parameters can be used as substitutes for literal expressions in queries.
+Query parameters can be used as substitutes for constants expressions in queries.
 
-* Parameters cannot be used to substitute things like column names and table names.
+* Parameters cannot be used to substitute identifiers like column names and table names.
 
-* Query parameters of a string datatype (like ``VARCHAR``) must be of a fixed length, and can be used in equality checks, but not patterns (e.g. :ref:`like`, :ref:`rlike`, etc.)
+* Query parameters of a string datatype (like ``TEXT``) must be of a fixed length, and can be used in equality checks, but not patterns (e.g. :ref:`like`, :ref:`rlike`, etc.)
 
 Creating a saved query
 ======================
@@ -51,32 +56,8 @@ Use parameters to replace them later at execution time.
 ..   executed
 
 
-Listing and executing saved queries
-======================================
-
-Saved queries are saved as a database objects. They can be listed in one of two ways:
-
-Using the :ref:`catalog<catalog_reference>`:
-
-.. code-block:: psql
-
-   t=> SELECT * FROM sqream_catalog.savedqueries;
-   name                      | num_parameters
-   --------------------------+---------------
-   select_all                |              0
-   select_by_weight          |              1
-   select_by_weight_and_team |              2
-
-Using the :ref:`list_saved_queries` utility function:
-
-.. code-block:: psql
-
-   t=> SELECT LIST_SAVED_QUERIES();
-   saved_query              
-   -------------------------
-   select_all               
-   select_by_weight         
-   select_by_weight_and_team
+Executing saved queries
+=======================
 
 Executing a saved query requires calling it by it's name in a :ref:`execute_saved_query` statement. A saved query with no parameter is called without parameters.
 
@@ -102,6 +83,33 @@ Executing a saved query with parameters requires specifying the parameters in th
    James Johnson     | Toronto Raptors |      3 | PF       |  29 | 6-9    |    250 | Wake Forest | 2500000
    Jason Thompson    | Toronto Raptors |      1 | PF       |  29 | 6-11   |    250 | Rider       |  245177
    Jonas Valanciunas | Toronto Raptors |     17 | C        |  24 | 7-0    |    255 |             | 4660482
+
+Listing saved queries
+=======================
+
+Saved queries are saved as a database objects. They can be listed in one of two ways:
+
+Using the :ref:`catalog<catalog_reference>`:
+
+.. code-block:: psql
+
+   t=> SELECT * FROM sqream_catalog.savedqueries;
+   name                      | num_parameters
+   --------------------------+---------------
+   select_all                |              0
+   select_by_weight          |              1
+   select_by_weight_and_team |              2
+
+Using the :ref:`list_saved_queries` utility function:
+
+.. code-block:: psql
+
+   t=> SELECT LIST_SAVED_QUERIES();
+   saved_query              
+   -------------------------
+   select_all               
+   select_by_weight         
+   select_by_weight_and_team
 
 
 Dropping a saved query
