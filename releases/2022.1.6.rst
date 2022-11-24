@@ -11,46 +11,35 @@ The 2022.1.6 release notes were released on 11/xx/2022 and describe the followin
 
 New Features
 ----------
-The 2022.1.6 Release Notes include the following new features:
  
-* keys_evaluate utility function enhancement - add problematic chunk ID to the function's output report.
+* Improved ZLIB compression performance. 
 
 	::
-
-* Automatically close database client connections that have been open for 24 hours without any active statements.
-
-	::
-
-* release_defunct_locks utility function enhancement to receive new optional input parameter to specify timeout - for more details see `Lock Related Issues <../troubleshooting/lock_related_issues.html>`_.
-
-   
-
 
 Known Issues
 ---------
-No known issues.
-
+:ref:`Percentile<percentile_disc>` is not supported for Window functions.
 
 Version 2022.1.6 resolved Issues
 ---------
 
-+-------------------------------+---------------------------------------------------------+
-| **SQ No.**                    | **Description**                                         |
-+===============================+=========================================================+
-| SQ-10160                      | Spotfire casting issues when reading SQream data        |
-+-------------------------------+---------------------------------------------------------+
-| SQ-11811, SQ-11772            | Queries containing JOIN TEXT columns slow runtime       |
-+-------------------------------+---------------------------------------------------------+
-| SQ-11940, SQ-11926, SQ-11874  | Version 2022.1.5 encryption issues                      |
-+-------------------------------+---------------------------------------------------------+
-| SQ-12089                      | ``COUNT (*)`` execution fails when using foreign table  |
-+-------------------------------+---------------------------------------------------------+
-|                               |                                                         |
-+-------------------------------+---------------------------------------------------------+
-|                               |                                                         |
-+-------------------------------+---------------------------------------------------------+
-
-
++-------------------------------+-------------------------------------------------------------------------------------------+
+| **SQ No.**                    | **Description**                                                                           |
++===============================+===========================================================================================+
+| SQ-10160                      | Spotfire casting issues when reading SQream data                                          |
++-------------------------------+-------------------------------------------------------------------------------------------+
+| SQ-11772                      | Queries containing JOIN TEXT columns slow runtime                                         |
++-------------------------------+-------------------------------------------------------------------------------------------+
+| SQ-12117	    			    | Running TCPH-21 results in out of memory                                                  |
++-------------------------------+-------------------------------------------------------------------------------------------+
+| SQ-12089                      | ``COUNT (*)`` execution fails when using foreign table                                    |
++-------------------------------+-------------------------------------------------------------------------------------------+
+| SQ-12019                      | Using ``PERCENTILE_DISC`` function with ``PARTITION BY`` function causes internal error   |           
++-------------------------------+-------------------------------------------------------------------------------------------+
+| SQ-11940, SQ-11926, SQ-11874  | Known encryption issues                                                       		    |
++-------------------------------+-------------------------------------------------------------------------------------------+
+| SQ-11295???????		     	|																							|
++-------------------------------+-------------------------------------------------------------------------------------------+
 
 
 Configuration Changes
