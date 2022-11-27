@@ -26,7 +26,7 @@ author = 'SQream Documentation'
 
 
 # The full version, including alpha/beta/rc tags
-release = '2022.1.3'
+release = '2022.1.5'
 
 
 
@@ -68,7 +68,7 @@ html_css_files = [
     'css/custom.css', # Relative to the _static path
 ]
 
-html_logo = '_static/images/sqream_logo.png'
+html_logo = '_static/images/SQream_logo_without background-15.png'
 
 # If true, sectionauthor and moduleauthor directives will be shown in the
 # output. They are ignored by default.
@@ -90,7 +90,7 @@ html_theme_options = {
    'logo_only': True # Hide "SQream DB" title and only show logo
    , 'display_version': True # Display version at the top
    , 'style_external_links': True # Show little icon next to external links
-   , 'style_nav_header_background': '#0f9790' # SQream teal
+   , 'style_nav_header_background': '#133148' # SQream teal
    , 'navigation_depth': -1
    , 'collapse_navigation': False
    , 'titles_only': True
