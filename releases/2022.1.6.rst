@@ -6,7 +6,7 @@ Release Notes 2022.1.6
 The 2022.1.6 release notes were released on 11/xx/2022 and describe the following:
 
 .. contents:: 
-   :local:
+   :local: 
    :depth: 1      
 
 New Features
