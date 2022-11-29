@@ -11,7 +11,7 @@ The demand for confidentiality has steadily increased to protect the growing vol
 
 Encryption can be used for the following:
 
-* Creating tables up to three encrypted columns.
+* Creating tables with up to three encrypted columns.
 
    ::
    
@@ -21,7 +21,7 @@ Encryption can be used for the following:
    
 * Selecting data from an encrypted column.
 
-.. note:: Executing ``CREATE TABLE AS`` ``SELECT`` when one or more columns contain encrypted data will result in newly created table containing unencrypted data. 
+.. note:: The ``SELECT`` statement decrypts information by default. When executing ``CREATE TABLE AS SELECT``, re-encryption of confidential information is required.
 
 
 For more information on the encryption syntax, see :ref:`data_encryption_syntax`.
