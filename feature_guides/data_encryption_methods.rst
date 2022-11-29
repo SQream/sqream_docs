@@ -5,9 +5,6 @@ Encryption Methods
 ***********************
 Data exists in one of following states and determines the encryption method:
 
-.. contents::
-   :local:
-   :depth: 1
 
 Encrypting Data in Transit
 ----------------
