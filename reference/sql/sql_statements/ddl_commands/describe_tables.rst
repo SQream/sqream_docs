@@ -15,9 +15,6 @@ The ``DESCRIBE TABLES`` command lets you list information about tables in your d
    
 * **External** - list information about tables residing as files external to the SQream database.
 
-   ::
-   
-* **View** - list information regarding database views.
 
 Syntax
 ==========
@@ -25,7 +22,7 @@ The following is the syntax for the ``DESCRIBE TABLES`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE TABLES [SCHEMA <schema_name>] [DATABASE <database_name>] ALL | EXTERNAL | INTERNAL | VIEW
+   DESCRIBE TABLES [SCHEMA <schema_name>] [DATABASE <database_name>] ALL | EXTERNAL | INTERNAL
 
 Parameters
 ============
@@ -47,9 +44,9 @@ The following parameters can be used with the ``DESCRIBE TABLES`` command:
      - ``schema_name``
      - The name of the table.
      - Text
-   * - ``ALL`` | ``EXTERNAL`` | ``INTERNAL`` | ``VIEW``
-     - Select ``ALL``, ``EXTERNAL``, ``INTERNAL``, or ``VIEW``.
-     - Information belonging to all tables, an external or internal table ,or displays information related to databases views.
+   * - ``ALL`` | ``EXTERNAL`` | ``INTERNAL``
+     - Select ``ALL``, ``EXTERNAL``, or ``INTERNAL``.
+     - Information belonging to all tables or to an external or internal table.
      - Text	
 	 
 Example
