@@ -161,7 +161,7 @@ Without ``PARTITION BY``, all rows produced by the query are treated as a single
 ``ORDER BY``
 ----------------------
 
-The ``ORDER BY`` clause determines the order in which the rows of a partition are processed by the window function. It works similarly to a query-level ``ORDER BY`` clause, but cannot use output-column names or numbers.
+The ``ORDER BY`` clause determines the order in which the rows of a partition are processed by the window function. It works similarly to a query-level ``ORDER BY`` clause, but cannot use output-column names or indexes.
 
 Without ``ORDER BY``, rows are processed in an unspecified order.
 
