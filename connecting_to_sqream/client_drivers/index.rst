@@ -1,7 +1,7 @@
 .. _client_drivers:
 
 ************************************
-Client Drivers for 2022.1.6
+Client Drivers for 2022.1.5
 ************************************
 
 The guides on this page describe how to use the Sqream DB client drivers and client applications with SQream.
@@ -25,7 +25,7 @@ The following are applicable to all operating systems:
 * **.NET**:
 
   * `.NET .dll file <https://get.sqream-share.com/share/sIsu8fxv>`_ 
-  * `.NET driver <https://docs.sqream.com/en/v2022.1.6/connecting_to_sqream/client_drivers/dotnet/index.html>`_
+  * `.NET driver <https://docs.sqream.com/en/v2022.1.5/connecting_to_sqream/client_drivers/dotnet/index.html>`_
 
 
 .. _python:
