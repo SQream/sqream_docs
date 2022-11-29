@@ -21,6 +21,9 @@ Encryption can be used for the following:
    
 * Selecting data from an encrypted column.
 
+.. note:: Executing ``CREATE TABLE AS`` ``SELECT`` when one or more columns contain encrypted data will result in newly created table containing unencrypted data. 
+
+
 For more information on the encryption syntax, see :ref:`data_encryption_syntax`.
 
 For more information on GDPR compliance requirements, see the `GDPR checklist <https://gdpr.eu/checklist/>`_.
