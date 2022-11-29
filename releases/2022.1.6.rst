@@ -13,6 +13,7 @@ New Features
 ----------
  
 * Improved ZLIB compression performance. 
+* :ref:`.Net Driver<net>` now supports .NET version 6 or newer. 
 
 	::
 
