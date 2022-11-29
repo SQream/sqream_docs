@@ -3,7 +3,7 @@
 **************************
 Release Notes 2022.1.6
 **************************
-The 2022.1.6 release notes were released on 11/xx/2022 and describe the following:
+The 2022.1.6 release notes were released on 11/29/2022 and describe the following:
 
 .. contents:: 
    :local:
@@ -56,7 +56,7 @@ SQream is declaring end of support of VARCHAR data type, the decision resulted b
 
 VARCHAR is no longer supported for new customers - effective from Version 2022.1.3 (September 2022).  
 
-TEXT data type is replacing VARCHAR - SQream will maintain VARCHAR data type support until 09/30/2023.
+TEXT data type is replacing VARCHAR and NVARCHAR - SQream will maintain VARCHAR data type support until 09/30/2023.
 
 
 End of Support
