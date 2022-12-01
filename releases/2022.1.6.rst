@@ -12,7 +12,6 @@ The 2022.1.6 release notes were released on 11/29/2022 and describe the followin
 New Features
 ----------
  
-* Improved ZLIB compression performance. 
 * :ref:`.Net Driver<net>` now supports .NET version 6 or newer. 
 
 	::
