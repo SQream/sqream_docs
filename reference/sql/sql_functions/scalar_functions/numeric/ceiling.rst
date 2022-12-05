@@ -15,7 +15,7 @@ Syntax
 
    CEILING( expr )
    
-   CEIL ( expr ) --> DOUBLE
+   CEIL ( expr )
 
 Arguments
 ============
@@ -34,7 +34,7 @@ Returns
 
 * ``CEIL`` Always returns a floating point result.
 
-* ``CEILING`` returns the same type as the argument supplied.
+
 
 Notes
 =======
