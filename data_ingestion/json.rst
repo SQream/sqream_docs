@@ -50,7 +50,7 @@ Before loading data, you must build the ``CREATE TABLE`` statement to correspond
 
 The example in this section is based on the source ``nba.json`` table shown below:
 
-.. csv-table:: nba.avro
+.. csv-table:: nba.json
    :file: nba-t10.csv
    :widths: auto
    :header-rows: 1 
@@ -90,7 +90,7 @@ Before loading data, you must build the ``CREATE FOREIGN TABLE`` statement to co
 
 The example in this section is based on the source ``nba.json`` table shown below:
 
-.. csv-table:: nba.avro
+.. csv-table:: nba.json
    :file: nba-t10.csv
    :widths: auto
    :header-rows: 1 
