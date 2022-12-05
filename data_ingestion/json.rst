@@ -36,57 +36,10 @@ The following are required for JSON files to be accessible to workers:
 For more information about restricted worker access, see :ref:`workload_manager`.
 
 
-Preparing Your Table
-====================
-You can build your table structure on both local and foreign tables:
-
-.. contents:: 
-   :local:
-   :depth: 1
-   
-Creating a Table
----------------------   
-Before loading data, you must build the ``CREATE TABLE`` statement to correspond with the file structure of the inserted table.
-
-The example in this section is based on the source ``nba.json`` table shown below:
-
-.. csv-table:: nba.json
-   :file: nba-t10.csv
-   :widths: auto
-   :header-rows: 1 
-
-The following example shows the correct file structure used to build the ``CREATE TABLE`` statement based on the **nba.json** table:
-
-.. code-block:: postgres
-   
-   CREATE TABLE ext_nba
-   (
-
-        Name       TEXT(40),
-        Team       TEXT(40),
-        Number     BIGINT,
-        Position   TEXT(2),
-        Age        BIGINT,
-        Height     TEXT(4),
-        Weight     BIGINT,
-        College    TEXT(40),
-        Salary     FLOAT
-    )
-    WRAPPER json_fdw
-    OPTIONS
-    (
-      LOCATION =  's3://sqream-demo-data/nba.json'
-    );
-
-.. tip:: 
-
-   An exact match must exist between the SQream and JSON types. For unsupported column types, you can set the type to any type and exclude it from subsequent queries.
-
-.. note:: The **nba.json** file is stored on S3 at ``s3://sqream-demo-data/nba.json``.
 
 Creating a Foreign Table
----------------------
-Before loading data, you must build the ``CREATE FOREIGN TABLE`` statement to correspond with the file structure of the inserted table.
+=========================
+When creating a foreign table statement, make sure that the table schema corresponds with the JSON file structure.
 
 The example in this section is based on the source ``nba.json`` table shown below:
 
@@ -102,14 +55,14 @@ The following example shows the correct file structure used to build the ``CREAT
    CREATE FOREIGN TABLE ext_nba
    (
 
-        Name       TEXT(40),
-        Team       TEXT(40),
+        Name       TEXT,
+        Team       TEXT,
         Number     BIGINT,
-        Position   TEXT(2),
+        Position   TEXT,
         Age        BIGINT,
-        Height     TEXT(4),
+        Height     TEXT,
         Weight     BIGINT,
-        College    TEXT(40),
+        College    TEXT,
         Salary     FLOAT
     )
     WRAPPER json_fdw
@@ -222,7 +175,7 @@ You may let SQream DB automatically infer the schema of a foreign table when usi
 Examples
 ------------
 
-The following is an example of creating a table:
+The following is an example of creating a table using the COPY FROM statement:
 
 .. code-block:: postgres
    
