@@ -175,15 +175,38 @@ You may let SQream DB automatically infer the schema of a foreign table when usi
 Examples
 ------------
 
-The following is an example of creating a table using the COPY FROM statement:
+The following is an example of creating a table using the ``COPY FROM``, ``COPY TO``, and ``CREATE FOREIGN TABLE`` statements:
 
 .. code-block:: postgres
    
    COPY t
-     FROM WRAPPER fdw_name
+     FROM WRAPPER json_fdw
      OPTIONS
      (
-       [ copy_from_option [, ...] ]
+       location = 'somefile.json'
+     )
+   ;
+
+.. code-block:: postgres
+   
+   COPY t
+     TO WRAPPER json_fdw
+     OPTIONS
+     (
+       location = 'somefile.json'
+     )
+   ;
+
+.. code-block:: postgres
+   
+   CREATE FOREIGN TABLE t
+	 (
+	   id int not null
+	 )
+     WRAPPER json_fdw
+     OPTIONS
+     (
+       location = 'somefile.json'
      )
    ;
 
