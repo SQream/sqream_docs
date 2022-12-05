@@ -1,9 +1,9 @@
 .. _avro:
 
 **************************
-Inserting Data from Avro
+Ingesting Data from Avro
 **************************
-The **Inserting Data from Avro** page describes inserting data from Avro into SQream and includes the following:
+The **Ingesting Data from Avro** page describes ingesting data from Avro into SQream and includes the following:
 
 
 

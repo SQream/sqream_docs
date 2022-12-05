@@ -1,14 +1,15 @@
 .. _csv:
 
 **********************
-Inserting Data from a CSV File
+Ingesting Data from a CSV File
 **********************
 
-This guide covers inserting data from CSV files into SQream DB using the :ref:`copy_from` method. 
+This guide covers ingesting data from CSV files into SQream DB using the :ref:`copy_from` method. 
 
 
-.. contents:: In this topic:
+.. contents:: 
    :local:
+   :depth: 1
 
 1. Prepare CSVs
 =====================

@@ -1,9 +1,9 @@
-.. _inserting_data:
+.. _ingesting_data:
 
 ***************************
-Inserting Data Overview
+Ingesting Data Overview
 ***************************
-The **Inserting Data Overview** page provides basic information useful when ingesting data into SQream from a variety of sources and locations, and describes the following:
+The **Ingesting Data Overview** page provides basic information useful when ingesting data into SQream from a variety of sources and locations, and describes the following:
 
 .. contents::
    :local:
@@ -20,8 +20,8 @@ SQream supports ingesting data using the following methods:
 * Executing the ``COPY FROM`` statement or ingesting data from foreign tables:
 
   * Local filesystem and locally mounted network filesystems
-  * Inserting Data using the Amazon S3 object storage service
-  * Inserting Data using an HDFS data storage system
+  * Ingesting Data using the Amazon S3 object storage service
+  * Ingesting Data using an HDFS data storage system
 
 SQream supports loading files from the following formats:
 
@@ -149,7 +149,7 @@ Text files, such as CSV, rarely conform to `RFC 4180 <https://tools.ietf.org/htm
 
 Best Practices for Parquet
 --------------------------------
-The following list shows the best practices when inserting data from Parquet files:
+The following list shows the best practices when ingesting data from Parquet files:
 
 * You must load Parquet files through :ref:`foreign_tables`. Note that the destination table structure must be identical to the number of columns between the source files.
 
@@ -270,7 +270,7 @@ If a Parquet file has an unsupported type, such as ``enum``, ``uuid``, ``time``,
 
 Best Practices for ORC
 --------------------------------
-The following list shows the best practices when inserting data from ORC files:
+The following list shows the best practices when ingesting data from ORC files:
 
 * You must load ORC files through :ref:`foreign_tables`. Note that the destination table structure must be identical to the number of columns between the source files.
 

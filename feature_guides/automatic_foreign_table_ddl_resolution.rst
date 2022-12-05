@@ -15,7 +15,7 @@ SQream must be able to access a schema when reading and mapping external files t
 
 Usage Notes
 ----------
-The automatic foreign table DDL resolution feature supports Parquet, ORC, and Avro files, while using it with CSV files generates an error. You can activate this feature when you create a foreign table by omitting the column list, described in the **Syntax** section below.
+The automatic foreign table DDL resolution feature supports Parquet, ORC, JSON, and Avro files, while using it with CSV files generates an error. You can activate this feature when you create a foreign table by omitting the column list, described in the **Syntax** section below.
 
 Using this feature the path you specify in the ``LOCATION`` option must point to at least one existing file. If no files exist for the schema to read, an error will be generated. You can specify the schema manually even in the event of the error above.
 

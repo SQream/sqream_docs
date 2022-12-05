@@ -1,9 +1,9 @@
 .. _parquet:
 
 **********************
-Inserting Data from a Parquet File
+Ingesting Data from a Parquet File
 **********************
-This guide covers inserting data from Parquet files into SQream using :ref:`FOREIGN TABLE<foreign_tables>`, and describes the following;
+This guide covers ingesting data from Parquet files into SQream using :ref:`FOREIGN TABLE<foreign_tables>`, and describes the following;
 
 .. contents:: 
    :local:
@@ -11,7 +11,7 @@ This guide covers inserting data from Parquet files into SQream using :ref:`FORE
 
 Overview
 ===================
-SQream supports inserting data into SQream from Parquet files. However, because it is an open-source column-oriented data storage format, you may want to retain your data on external Parquet files instead of inserting it into SQream. SQream supports executing queries on external Parquet files.
+SQream supports ingesting data into SQream from Parquet files. However, because it is an open-source column-oriented data storage format, you may want to retain your data on external Parquet files instead of ingesting it into SQream. SQream supports executing queries on external Parquet files.
 
 Preparing Your Parquet Files
 =====================

@@ -3,13 +3,13 @@
 *************************
 Data Ingestion Sources
 *************************
-The **Data Ingestion Sources** provides information about the following:
+The **Data Ingestion Sources** page provides information about the following:
 
 .. toctree::
    :maxdepth: 1
    :glob:
    
-   inserting_data
+   ingesting_data
    avro
    csv
    parquet
