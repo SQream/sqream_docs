@@ -11,12 +11,14 @@ Ingesting Data from JSON
 Overview
 ========
 
-JSON (Java Script Object Notation) is both a file format and a serializer. It is a flexible file format commonly used for dynamic, nested, and semi-structured data representations.
+JSON (Java Script Object Notation) is used both as a file format and as a serialization method. The JSON file format is flexible and is commonly used for dynamic, nested, and semi-structured data representations. 
 
-SQream DB's JSON parser handles `RFC 8259 <https://datatracker.ietf.org/doc/html/rfc8259>`_. SQream supports JSON files either as a continuous batch of JSON objects, or as an array of JSON objects.
+The SQream DB JSON parser handles `RFC 8259 <https://datatracker.ietf.org/doc/html/rfc8259>`_.
+SQream DB supports:
 
-SQream supports the `JSON Lines <https://jsonlines.org/>`_  standard, in which each line in the input file contains exactly one JSON row. When exporting data, SQream will always use objects.
-Note that in JSON Line files, every newline (ASCII 10) character always marks the end of a JSON object; therefore, if a value string contains a newline character, it must be escaped as \\n.
+* JSON files either as a continuous batch of JSON objects, or as an array of JSON objects
+* The `JSON Lines <https://jsonlines.org/>`_  standard, in which every newline (ASCII 10) character always marks the end of a JSON object; therefore, if a value string contains a newline character, it must be escaped as \\n
+When exporting data, SQream will always use objects.
 
 
 Making JSON Files Accessible to Workers
@@ -44,7 +46,7 @@ You can build your table structure on both local and foreign tables:
    
 Creating a Table
 ---------------------   
-Before loading data, you must build the ``CREATE TABLE`` to correspond with the file structure of the inserted table.
+Before loading data, you must build the ``CREATE TABLE`` statement to correspond with the file structure of the inserted table.
 
 The example in this section is based on the source ``nba.json`` table shown below:
 
@@ -53,7 +55,7 @@ The example in this section is based on the source ``nba.json`` table shown belo
    :widths: auto
    :header-rows: 1 
 
-The following example shows the correct file structure used to create the ``CREATE TABLE`` statement based on the **nba.json** table:
+The following example shows the correct file structure used to build the ``CREATE TABLE`` statement based on the **nba.json** table:
 
 .. code-block:: postgres
    
@@ -84,7 +86,7 @@ The following example shows the correct file structure used to create the ``CREA
 
 Creating a Foreign Table
 ---------------------
-Before loading data, you must build the ``CREATE FOREIGN TABLE`` to correspond with the file structure of the inserted table.
+Before loading data, you must build the ``CREATE FOREIGN TABLE`` statement to correspond with the file structure of the inserted table.
 
 The example in this section is based on the source ``nba.json`` table shown below:
 
@@ -93,7 +95,7 @@ The example in this section is based on the source ``nba.json`` table shown belo
    :widths: auto
    :header-rows: 1 
 
-The following example shows the correct file structure used to create the ``CREATE FOREIGN TABLE`` statement based on the **nba.json** table:
+The following example shows the correct file structure used to build the ``CREATE FOREIGN TABLE`` statement based on the **nba.json** table:
 
 .. code-block:: postgres
    
@@ -153,11 +155,9 @@ A JSON field consists of a key name and a value. JSON values may be one of the f
      - ``TEXT``
      - 
  
-JSON key names are mapped to SQream columns. Key names are case sensitive.
- 
-By default, rows containing extra fields will be treated as errors. This behavior can be changed so they will be ignored instead.
+JSON key names, which are case sensitive, are mapped to SQream columns. By default, key names which do not have corresponding SQream table columns are treated as errors, though this behavior can be changed so that they are ignored instead.
 
-An empty JSON field is automatically mapped with ``null`` as the value.
+An empty JSON field is automatically mapped to SQream with ``null`` as a value.
 
 
 Ingesting Data into SQream
@@ -175,12 +175,12 @@ The FDW syntax is:
 
 	json_fdw [OPTIONS(option=value[,...])]
 
-.. note:: Reading and writing JSON files can be done only by using the ``json-fdw`` file format specifier.
+.. note:: Reading and writing JSON files is enabled only by using the ``json-fdw`` file format specifier.
 
 Parameters
 ------------
 
-The following parameters are supported by json_fdw:
+The following parameters are supported by ``json_fdw``:
 
 .. list-table:: 
    :widths: auto
@@ -217,7 +217,7 @@ The following parameters are supported by json_fdw:
 Automatic Schema Inference
 ---------------------------
 
-You may let SQream DB to automatically infer the schema of a foreign table when using ``json_fdw``. For more information, follow the :ref:`Automatic Foreign Table DDL Resolution<automatic_foreign_table_ddl_resolution>` page.
+You may let SQream DB automatically infer the schema of a foreign table when using ``json_fdw``. For more information, follow the :ref:`Automatic Foreign Table DDL Resolution<automatic_foreign_table_ddl_resolution>` page.
 
 Examples
 ------------
