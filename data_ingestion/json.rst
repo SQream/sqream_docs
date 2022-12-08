@@ -15,9 +15,12 @@ JSON (Java Script Object Notation) is used both as a file format and as a serial
 
 The SQream DB JSON parser handles `RFC 8259 <https://datatracker.ietf.org/doc/html/rfc8259>`_ and supports both JSON objects and object arrays.
 
+The only JSON standard supported by SQream is `JSON Lines <https://jsonlines.org/>`_.
+
 
 Making JSON Files Accessible to Workers
 =======================================
+
 To give workers access to files, every node in your system must have access to the storage being used.
 
 The following are required for JSON files to be accessible to workers:
@@ -34,14 +37,11 @@ For more information about restricted worker access, see :ref:`workload_manager`
 Mapping between JSON and SQream
 ===============================
 
-The only JSON standard supported by SQream is the `JSON Lines <https://jsonlines.org/>`_  standard.
-
 A JSON field consists of a key name and a value.
 
 Key names, which are case sensitive, are mapped to SQream columns. Key names which do not have corresponding SQream table columns are treated as errors by default, unless the ``IGNORE_EXTRA_FIELDS`` parameter is set to ``true``, in which case these key names will be ignored during the mapping process.
 
 Values may be one of the following reserved words (lower-case): ``false``, ``true``, and ``null``, or any of the following data types:
-
 
 .. list-table:: 
    :widths: auto
@@ -60,18 +60,16 @@ Values may be one of the following reserved words (lower-case): ``false``, ``tru
    * - JSON Object
      - ``TEXT``
  
-An empty JSON field is automatically mapped to SQream with ``null`` as a value.
+Missing JSON fields are automatically mapped to SQream with ``null`` as a value.
 
 Character Escaping
 ------------------
 
 The ASCII 10 character (LF) marks the end of JSON objects. Use ``\\n`` to avoid a new line within a value string.
 
-When exporting data, SQream will always use objects.
 
-
-Ingesting Data into SQream
-===========================
+Ingesting JSON Data into SQream
+===============================
 
 .. contents:: In this topic:
    :local:
@@ -85,8 +83,6 @@ The Foreign Data Wrapper (FDW) syntax is:
 .. code-block:: 
 
 	json_fdw [OPTIONS(option=value[,...])]
-
-.. note:: The ``json_fdw`` is the only file format specifier which may be used for reading and writing JSON files.
 
 
 Parameters
@@ -139,8 +135,39 @@ You may let SQream DB automatically infer the schema of a foreign table when usi
 
 For more information, follow the :ref:`Automatic Foreign Table DDL Resolution<automatic_foreign_table_ddl_resolution>` page.
 
+Automatic Schema Inference example:
+
+.. code-block:: postgres
+   
+   CREATE FOREIGN TABLE t
+     WRAPPER json_fdw
+     OPTIONS
+     (
+       location = 'somefile.json'
+     )
+   ;
+
+
 Examples
 ------------
+
+JSON object array:
+
+.. code-block:: postgres
+
+	{ "name":"Avery Bradley", "age":25, "position":"PG" }
+	{ "name":"Jae Crowder", "age":25, "position":"PG" }
+	{ "name":"John Holland", "age":27, "position":"SG" }
+
+JSON objects:
+
+.. code-block:: postgres
+
+	[
+	{ "name":"Avery Bradley", "age":25, "position":"PG" },
+	{ "name":"Jae Crowder", "age":25, "position":"SF" },
+	{ "name":"John Holland", "age":27, "position":"SG" }
+	]
 
 Using the ``COPY FROM`` statement:
 
@@ -154,7 +181,7 @@ Using the ``COPY FROM`` statement:
      )
    ;
 
-Using the ``COPY TO`` statement:
+Note that JSON files generated using the ``COPY TO`` statement will store objects, and not object arrays.
 
 .. code-block:: postgres
    
@@ -192,67 +219,6 @@ The following is an example of loading data from a JSON file into SQream:
     );
 	  
 
-
-JSON object array:
-
-.. code-block:: postgres
-
-	{
-	  "name":"Avery Bradley",
-	  "age":25,
-	  "position":"PG"
-	}
-	{
-	  "name":"Jae Crowder",
-	  "age":25,
-	  "position":"PG"
-	}
-	{
-	  "name":"John Holland",
-	  "age":27,
-	  "position":"SG"
-	}
-
-JSON objects:
-
-.. code-block:: postgres
-
-	[
-	{ "name":"Avery Bradley", "age":25, "position":"PG" },
-	{ "name":"Jae Crowder", "age":25, "position":"SF" },
-	{ "name":"John Holland", "age":27, "position":"SG" }
-	]
-
-
-The example in this section is based on the source ``nba.json`` table shown below:
-
-.. csv-table:: nba.json
-   :file: nba-t10.csv
-   :widths: auto
-   :header-rows: 1 
-
-The following example shows the correct file structure used to build the ``CREATE FOREIGN TABLE`` statement based on the **nba.json** table:
-
-.. code-block:: postgres
-   
-   CREATE FOREIGN TABLE ext_nba
-   (
-
-        Name       TEXT,
-        Team       TEXT,
-        Number     BIGINT,
-        Position   TEXT,
-        Age        BIGINT,
-        Height     TEXT,
-        Weight     BIGINT,
-        College    TEXT,
-        Salary     FLOAT
-    )
-    WRAPPER json_fdw
-    OPTIONS
-    (
-      LOCATION =  's3://sqream-demo-data/nba.json'
-    );
 
 .. tip:: 
 

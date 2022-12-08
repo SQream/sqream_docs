@@ -11,7 +11,7 @@ This guide covers ingesting data from CSV files into SQream DB using the :ref:`c
    :local:
    :depth: 1
 
-1. Prepare CSVs
+Prepare CSVs
 =====================
 
 Prepare the source CSVs, with the following requirements:
@@ -45,7 +45,7 @@ Prepare the source CSVs, with the following requirements:
    .. note:: If a text field is quoted but contains no content (``""``) it is considered an empty text field. It is not considered ``NULL``.
 
 
-2. Place CSVs where SQream DB workers can access
+Place CSVs where SQream DB workers can access
 =======================================================
 
 During data load, the :ref:`copy_from` command can run on any worker (unless explicitly speficied with the :ref:`workload_manager`).
@@ -57,7 +57,7 @@ It is important that every node has the same view of the storage being used - me
 
 * For S3, ensure network access to the S3 endpoint. See our :ref:`s3` guide for more information.
 
-3. Figure out the table structure
+Figure out the table structure
 ===============================================
 
 Prior to loading data, you will need to write out the table structure, so that it matches the file structure.
@@ -96,7 +96,7 @@ We will make note of the file structure to create a matching ``CREATE TABLE`` st
     );
 
 
-4. Bulk load the data with COPY FROM
+Bulk load the data with COPY FROM
 ====================================
 
 The CSV is a standard CSV, but with two differences from SQream DB defaults:

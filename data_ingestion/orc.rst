@@ -11,7 +11,7 @@ Ingesting Data from an ORC File
 This guide covers ingesting data from ORC files into SQream DB using :ref:`FOREIGN TABLE<external_tables>`. 
 
 
-1. Prepare the files
+Prepare the files
 =====================
 
 Prepare the source ORC files, with the following requirements:
@@ -157,7 +157,7 @@ Prepare the source ORC files, with the following requirements:
 
 .. [#f7] Will succeed if all values fit the destination type
 
-2. Place ORC files where SQream DB workers can access them
+Place ORC files where SQream DB workers can access them
 ================================================================
 
 Any worker may try to access files (unless explicitly speficied with the :ref:`workload_manager`).
@@ -169,7 +169,7 @@ It is important that every node has the same view of the storage being used - me
 
 * For S3, ensure network access to the S3 endpoint. See our :ref:`s3` guide for more information.
 
-3. Figure out the table structure
+Figure out the table structure
 ===============================================
 
 Prior to loading data, you will need to write out the table structure, so that it matches the file structure.
@@ -213,7 +213,7 @@ We will make note of the file structure to create a matching ``CREATE FOREIGN TA
    If the column type isn't supported, a possible workaround is to set it to any arbitrary type and then exclude it from subsequent queries.
 
 
-4. Verify table contents
+Verify table contents
 ====================================
 
 External tables do not verify file integrity or structure, so verify that the table definition matches up and contains the correct data.
@@ -236,7 +236,7 @@ External tables do not verify file integrity or structure, so verify that the ta
 
 If any errors show up at this stage, verify the structure of the ORC files and match them to the external table structure you created.
 
-5. Copying data into SQream DB
+Copying data into SQream DB
 ===================================
 
 To load the data into SQream DB, use the :ref:`create_table_as` statement:
