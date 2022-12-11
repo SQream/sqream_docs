@@ -1,0 +1,228 @@
+.. _json:
+
+**************************
+Ingesting Data from JSON
+**************************
+
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Overview
+========
+
+JSON (Java Script Object Notation) is used both as a file format and as a serialization method. The JSON file format is flexible and is commonly used for dynamic, nested, and semi-structured data representations. 
+
+The SQream DB JSON parser handles `RFC 8259 <https://datatracker.ietf.org/doc/html/rfc8259>`_ and supports both JSON objects and object arrays.
+
+The only JSON standard supported by SQream is `JSON Lines <https://jsonlines.org/>`_.
+
+
+Making JSON Files Accessible to Workers
+=======================================
+
+To give workers access to files, every node in your system must have access to the storage being used.
+
+The following are required for JSON files to be accessible to workers:
+
+* For files hosted on NFS, ensure that the mount is accessible from all servers.
+
+* For HDFS, ensure that SQream servers have access to the HDFS NameNode with the correct **user-id**. For more information, see :ref:`hdfs`.
+
+* For S3, ensure network access to the S3 endpoint. For more information, see :ref:`s3`.
+
+For more information about restricted worker access, see :ref:`workload_manager`.
+
+
+Mapping between JSON and SQream
+===============================
+
+A JSON field consists of a key name and a value.
+
+Key names, which are case sensitive, are mapped to SQream columns. Key names which do not have corresponding SQream table columns are treated as errors by default, unless the ``IGNORE_EXTRA_FIELDS`` parameter is set to ``true``, in which case these key names will be ignored during the mapping process.
+
+Values may be one of the following reserved words (lower-case): ``false``, ``true``, and ``null``, or any of the following data types:
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - JSON Data Type
+     - Representation in SQream
+   * - Number
+     - ``TINYINT``, ``SMALLINT``, ``INT``, ``BIGINT``, ``FLOAT``, ``DOUBLE``, ``NUMERIC``
+   * - String
+     - ``TEXT``
+   * - JSON Literal
+     - ``NULL``, ``TRUE``, ``FALSE``
+   * - JSON Array
+     - ``TEXT``
+   * - JSON Object
+     - ``TEXT``
+ 
+Missing JSON fields are automatically mapped to SQream with ``null`` as a value.
+
+Character Escaping
+------------------
+
+The ASCII 10 character (LF) marks the end of JSON objects. Use ``\\n`` to avoid a new line within a value string.
+
+
+Ingesting JSON Data into SQream
+===============================
+
+.. contents:: In this topic:
+   :local:
+
+Syntax
+-------
+To access JSON files, use the ``json_fdw`` with a ``COPY FROM``, ``COPY TO``, or ``CREATE FOREIGN TABLE`` statement.
+
+The Foreign Data Wrapper (FDW) syntax is:
+
+.. code-block:: 
+
+	json_fdw [OPTIONS(option=value[,...])]
+
+
+Parameters
+------------
+
+The following parameters are supported by ``json_fdw``:
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Description
+   * - ``DATETIME_FORMAT``
+     - Default format is ``yyyy-mm-dd``. Other supported date formats are:``iso8601``, ``iso8601c``, ``dmy``, ``ymd``, ``mdy``, ``yyyymmdd``, ``yyyy-m-d``, ``yyyy-mm-dd``, ``yyyy/m/d``, ``yyyy/mm/dd``, ``d/m/yyyy``, ``dd/mm/yyyy``, ``mm/dd/yyyy``, ``dd-mon-yyyy``, ``yyyy-mon-dd``.  
+   * - ``IGNORE_EXTRA_FIELDS``
+     - Default value is ``false``. When value is ``true``, key names which do not have corresponding SQream table columns will be ignored. Parameter may be used with the ``COPY TO`` and ``IGNORE FOREIGN TABLE`` statements. 
+   * - ``COMPRESSION``
+     - Supported values are ``auto``, ``gzip``, and ``none``. ``auto`` means that the compression type is automatically detected upon import. Parameter is not supported for exporting. ``gzip`` means that a ``gzip`` compression is applied. ``none`` means that no compression or an attempt to decompress will take place. 
+   * - ``LOCATION``
+     - A path on the local filesystem, S3, or HDFS URI. The local path must be an absolute path that SQream DB can access.
+   * - ``OFFSET``
+     - The row number to start with.
+   * - ``LIMIT``
+     - When specified, tells SQream DB to stop loading after the specified number of rows. Unlimited if unset.
+   * - ``ERROR_LOG``
+     - When used, the ``COPY`` process will write error information from unparsable rows to the file specified by this parameter. 
+         
+         * If an existing file path is specified, it will be overwritten.
+         
+         * Specifying the same file for ``ERROR_LOG`` and ``REJECTED_DATA`` is not allowed and will result in error.
+         
+         * Specifing an error log when creating a foreign table will write a new error log for every query on the foreign table.
+   * - ``CONTINUE_ON_ERROR``
+     - Specifies if errors should be ignored or skipped. When set to true, the transaction will continue despite rejected data. This parameter should be set together with ``ERROR_COUNT``. When reading multiple files, if an entire file can’t be opened it will be skipped.
+   * - ``ERROR_COUNT``
+     - Specifies the threshold for the maximum number of faulty records that will be ignored. This setting must be used in conjunction with ``continue_on_error``.
+   * - ``ENFORCE_SINGLE_FILE``
+     - Enforces the maximum file size (bytes). Permitted values: ``true`` - creates one file of unlimited size, ``false`` - permits creating several files together limited by the ``max_file_size``. When set to ``true``, the single file size is not limited by the ``max_file_size`` setting. When set to ``false``, the combined file sizes cannot exceed the ``max_file_size``. Default value: ``false``.
+   * - ``MAX_FILE_SIZE``
+     - Sets the maximum file size (bytes).
+   * - ``AWS_ID``, ``AWS_SECRET``
+     - Specifies the authentication details for secured S3 buckets
+ 
+
+Automatic Schema Inference
+---------------------------
+
+You may let SQream DB automatically infer the schema of a foreign table when using ``json_fdw``. 
+
+For more information, follow the :ref:`Automatic Foreign Table DDL Resolution<automatic_foreign_table_ddl_resolution>` page.
+
+Automatic Schema Inference example:
+
+.. code-block:: postgres
+   
+   CREATE FOREIGN TABLE t
+     WRAPPER json_fdw
+     OPTIONS
+     (
+       location = 'somefile.json'
+     )
+   ;
+
+
+Examples
+------------
+
+JSON object array:
+
+.. code-block:: postgres
+
+	{ "name":"Avery Bradley", "age":25, "position":"PG" }
+	{ "name":"Jae Crowder", "age":25, "position":"PG" }
+	{ "name":"John Holland", "age":27, "position":"SG" }
+
+JSON objects:
+
+.. code-block:: postgres
+
+	[
+	{ "name":"Avery Bradley", "age":25, "position":"PG" },
+	{ "name":"Jae Crowder", "age":25, "position":"SF" },
+	{ "name":"John Holland", "age":27, "position":"SG" }
+	]
+
+Using the ``COPY FROM`` statement:
+
+.. code-block:: postgres
+   
+   COPY t
+     FROM WRAPPER json_fdw
+     OPTIONS
+     (
+       location = 'somefile.json'
+     )
+   ;
+
+Note that JSON files generated using the ``COPY TO`` statement will store objects, and not object arrays.
+
+.. code-block:: postgres
+   
+   COPY t
+     TO WRAPPER json_fdw
+     OPTIONS
+     (
+       location = 'somefile.json'
+     )
+   ;
+
+When using the ``CREATE FOREIGN TABLE`` statement, make sure that the table schema corresponds with the JSON file structure.
+
+.. code-block:: postgres
+   
+   CREATE FOREIGN TABLE t
+	 (
+	   id int not null
+	 )
+     WRAPPER json_fdw
+     OPTIONS
+     (
+       location = 'somefile.json'
+     )
+   ;
+
+The following is an example of loading data from a JSON file into SQream:
+
+.. code-block:: postgres
+
+    WRAPPER json_fdw
+    OPTIONS
+    (
+      LOCATION =  'somefile.json'
+    );
+	  
+
+
+.. tip:: 
+
+   An exact match must exist between the SQream and JSON types. For unsupported column types, you can set the type to any type and exclude it from subsequent queries.
+
+
+
