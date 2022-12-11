@@ -51,7 +51,7 @@ Results and error codes
      - ``no need to upgrade``
      - Storage doesn't need an upgrade
    * - Failure: can't read storage
-     - ``levelDB is in use by another application``
+     - ``RocksDB is in use by another application``
      - Check permissions, and ensure no SQream DB workers or :ref:`metadata_server <metadata_server_cli_reference>` are running when performing this operation.
 
 
@@ -64,7 +64,7 @@ Upgrade SQream DB's storage cluster
 .. code-block:: console
 
    $ ./upgrade_storage /home/rhendricks/raviga_database
-   get_leveldb_version path{/home/rhendricks/raviga_database}
+   get_rocksdb_version path{/home/rhendricks/raviga_database}
    current storage version 23
    upgrade_v24
    upgrade_storage to 24
@@ -75,7 +75,7 @@ Upgrade SQream DB's storage cluster
    upgrade_v26
    upgrade_storage to 26
    upgrade_storage to 26 - Done
-   validate_leveldb
+   validate_rocksdb
    storage has been upgraded successfully to version 26
 
 This message confirms that the cluster has already been upgraded correctly.
