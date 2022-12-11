@@ -27,7 +27,7 @@ The **cluster root** is the directory in which all data for SQream DB is stored.
 
 The databases directory houses all of the actual data in tables and columns.
 
-Each database is stored as its own directory. Each table is stored under its respective database, and columns are stored in their respective table.
+Each database is stored as its own directory. Each table is stored under it's respective database, and columns are stored in their respective table.
 
 .. figure:: /_static/images/table_columns_storage.png
 
