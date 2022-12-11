@@ -40,7 +40,7 @@ You can delete all rows in a table using the ``TRUNCATE`` command followed by th
    
    executed
 
-.. note:: While using the :ref:`truncate` command will both delete rows from a table and remove data from disk, using the :ref:`delete` command will only delete rows from a table. To remove data from disk after using the ``DELETE`` command, use :ref:`delete_guide`.
+.. note:: While using the :ref:`truncate` command will both delete rows from a table and physically remove data from your disk, using the :ref:`delete` command will logically delete rows from a table. To remove data from your disk after using the ``DELETE`` command, use `CLEAN UP <https://docs.sqream.com/en/latest/operational_guides/delete_guide.html>`_.
 
 For more information, see the following:
 
