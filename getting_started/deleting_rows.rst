@@ -12,7 +12,7 @@ The **Deleting Rows** section describes the following:
 
 **Deleting Selected Rows**
 
-You can delete rows in a table selectively using the ``DELETE`` command. You must include a table name and `WHERE` clause to specify the rows to delete, as shown in the following example:
+You can delete rows in a table selectively using the ``DELETE`` command. You must include a table name and a ``WHERE`` clause to specify the rows to delete, as shown in the following example:
 
 .. code-block:: psql
 
@@ -40,7 +40,7 @@ You can delete all rows in a table using the ``TRUNCATE`` command followed by th
    
    executed
 
-.. note:: While :ref:`truncate` deletes data from disk immediately, :ref:`delete` does not physically remove the deleted rows.
+.. note:: The :ref:`truncate` command will immediately delete rows from table and remove data from disk, while the :ref:`delete` command will delete rows from table but will not remove data from disk. Use ``CLEAN UP`` after ``DELETE`` to remove data from disk. 
 
 For more information, see the following:
 
