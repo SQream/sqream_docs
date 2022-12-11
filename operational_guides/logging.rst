@@ -416,8 +416,8 @@ Finding Fatal Errors
 .. code-block:: psql
 
    t=> SELECT message FROM logs WHERE message_type_id=1010;
-   Internal Runtime Error,open cluster metadata database:IO error: lock /home/rhendricks/sqream_storage/leveldb/LOCK: Resource temporarily unavailable
-   Internal Runtime Error,open cluster metadata database:IO error: lock /home/rhendricks/sqream_storage/leveldb/LOCK: Resource temporarily unavailable
+   Internal Runtime Error,open cluster metadata database:IO error: lock /home/rhendricks/sqream_storage/rocksdb/LOCK: Resource temporarily unavailable
+   Internal Runtime Error,open cluster metadata database:IO error: lock /home/rhendricks/sqream_storage/rocksdb/LOCK: Resource temporarily unavailable
    Mismatch in storage version, upgrade is needed,Storage version: 25, Server version is: 26
    Mismatch in storage version, upgrade is needed,Storage version: 25, Server version is: 26
    Internal Runtime Error,open cluster metadata database:IO error: lock /home/rhendricks/sqream_storage/LOCK: Resource temporarily unavailable

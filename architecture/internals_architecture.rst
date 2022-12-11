@@ -45,7 +45,7 @@ The storage is split into the :ref:`metadata layer<metadata_system>` and an appe
 Metadata layer
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The metadata layer uses LevelDB, and uses LevelDB's snapshot and write atomic features as part of the transaction system.
+The metadata layer uses RocksDB, and uses RocksDB's snapshot and write atomic features as part of the transaction system.
 
 The metadata layer, together with the append-only bulk data layer help ensure consistency.
 
