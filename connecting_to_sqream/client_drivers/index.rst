@@ -17,7 +17,7 @@ The following are applicable to all operating systems:
 
 * **JDBC** - recommended installation via ``mvn``:
 
-  * `JDBC .jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.3.jar>`_ - sqream-jdbc-4.5.3 (.jar)
+  * `JDBC 
   * `JDBC driver <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/jdbc/index.html#>`_
 
 
@@ -25,7 +25,7 @@ The following are applicable to all operating systems:
 
 * **Python** - Recommended installation via ``pip``:
 
-  * `Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.1.3>`_ - pysqream v3.1.3 (.tar.gz)
+  * `Python 
   * `Python driver <https://docs.sqream.com/en/v2022.1.5/connecting_to_sqream/client_drivers/python/index.html>`_
 
 
