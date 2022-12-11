@@ -40,7 +40,7 @@ You can delete all rows in a table using the ``TRUNCATE`` command followed by th
    
    executed
 
-.. note:: The :ref:`truncate` command will immediately delete rows from table and remove data from disk, while the :ref:`delete` command will delete rows from table but will not remove data from disk. Use ``CLEAN UP`` after ``DELETE`` to remove data from disk. 
+.. note:: While using the :ref:`truncate` command will both delete rows from a table and remove data from disk, using the :ref:`delete` command will only delete rows from a table. To remove data from disk after using the ``DELETE`` command, use :ref:`delete_guide`.
 
 For more information, see the following:
 
