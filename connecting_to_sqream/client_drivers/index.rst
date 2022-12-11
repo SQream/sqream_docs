@@ -1,8 +1,8 @@
 .. _client_drivers:
 
-************************************
-Client Drivers for 2022.1.6
-************************************
+**************
+Client Drivers
+**************
 
 The guides on this page describe how to use the Sqream DB client drivers and client applications with SQream.
 
@@ -17,7 +17,7 @@ The following are applicable to all operating systems:
 
 * **JDBC** - recommended installation via ``mvn``:
 
-  * `JDBC .jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.6.jar>`_ - sqream-jdbc-4.5.6 (.jar)
+  * `JDBC .jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.3.jar>`_ - sqream-jdbc-4.5.3 (.jar)
   * `JDBC driver <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/jdbc/index.html#>`_
 
 .. _.net:
@@ -25,7 +25,7 @@ The following are applicable to all operating systems:
 * **.NET**:
 
   * `.NET .dll file <https://get.sqream-share.com/share/sIsu8fxv>`_ 
-  * `.NET driver <https://docs.sqream.com/en/v2022.1.6/connecting_to_sqream/client_drivers/dotnet/index.html>`_
+  * `.NET driver <https://docs.sqream.com/en/v2022.1.5/connecting_to_sqream/client_drivers/dotnet/index.html>`_
 
 
 .. _python:
@@ -33,7 +33,7 @@ The following are applicable to all operating systems:
 * **Python** - Recommended installation via ``pip``:
 
   * `Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.1.3>`_ - pysqream v3.1.3 (.tar.gz)
-  * `Python driver <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/python/index.html>`_
+  * `Python driver <https://docs.sqream.com/en/v2022.1.5/connecting_to_sqream/client_drivers/python/index.html>`_
 
 
 .. _nodejs:
