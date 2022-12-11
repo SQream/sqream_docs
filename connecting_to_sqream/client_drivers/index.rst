@@ -1,8 +1,8 @@
 .. _client_drivers:
 
-************************************
-Client Drivers for 2022.1.5
-************************************
+**************
+Client Drivers
+**************
 
 The guides on this page describe how to use the Sqream DB client drivers and client applications with SQream.
 
