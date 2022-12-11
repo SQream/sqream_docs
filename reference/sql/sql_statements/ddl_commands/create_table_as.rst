@@ -64,6 +64,8 @@ This section includes the following examples:
    :local:
    :depth: 1
 
+.. warning:: The ``SELECT`` statement decrypts information by default. When executing ``CREATE TABLE AS SELECT``, encrypted information will appear as clear text in the newly created table.
+
 Creating a Copy of a Foreign Table or View
 ---------------------------------------------------------------------------
 
