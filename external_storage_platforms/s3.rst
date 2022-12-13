@@ -1,9 +1,9 @@
 .. _s3:
 
 ***********************
-Inserting Data Using Amazon S3
+Ingestinging Data Using Amazon S3
 ***********************
-SQream uses a native S3 connector for inserting data. The ``s3://`` URI specifies an external file path on an S3 bucket. File names may contain wildcard characters, and the files can be in CSV or columnar format, such as Parquet and ORC.
+SQream uses a native S3 connector for ingesting data. The ``s3://`` URI specifies an external file path on an S3 bucket. File names may contain wildcard characters, and the files can be in CSV or columnar format, such as Parquet and ORC.
 
 The **Amazon S3** describes the following topics:
 
