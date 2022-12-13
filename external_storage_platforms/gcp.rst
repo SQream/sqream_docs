@@ -24,9 +24,9 @@ Granting GCP access
 
    tf-gke-blue-appnext-pr-gcv6@blue-appnext-prod-sandbox.iam.gserviceaccount.com
    
-7. Under **Assign roles**, in the **Select a role** box, select **Storage Admin**.
-8. Select **ADD ANOTHER ROLE** and in the newly created **Select a role** box, select **Storage Object Admin**.
-9. Select **SAVE**
+8. Under **Assign roles**, in the **Select a role** box, select **Storage Admin**.
+9. Select **ADD ANOTHER ROLE** and in the newly created **Select a role** box, select **Storage Object Admin**.
+10. Select **SAVE**
 
 .. note:: To minimize access time to your data, configure bucket location to **us-east-1**. If not possible, please contact SQream help desk.
 
