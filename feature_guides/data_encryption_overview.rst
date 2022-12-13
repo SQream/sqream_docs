@@ -21,7 +21,7 @@ Encryption can be used for the following:
    
 * Selecting data from an encrypted column.
 
-.. warning:: The ``SELECT`` statement decrypts information by default. When executing ``CREATE TABLE AS SELECT``, encrypted information will appear as clear text in the newly created table.
+.. warning:: The ``SELECT`` statement decrypts information by default. When executing ``CREATE TABLE AS SELECT`` or ``INSERT INTO TABLE AS SELECT``, encrypted information will appear as clear text in the newly created table.
 
 For more information on the encryption syntax, see :ref:`data_encryption_syntax`.
 
