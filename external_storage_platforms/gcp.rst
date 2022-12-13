@@ -9,12 +9,12 @@ Ingesting data using Google Cloud Platform (GCP) requires GCP bucket access conf
 .. contents::
    :local:
    
-Granting access to GCP
-======================
+Granting GCP access
+===================
 
 1. In your Google console, go to **Select a project** and select the desired project.
 2. From the **PRODUCTS** menu select **Cloud Storage**.
-3. Under the **Cloud Storage** menu, select **Buckets*.
+3. Under the **Cloud Storage** menu, select **Buckets**.
 4. Select the bucket you wish to configure or otherwise create a new bucket by selecting **CREATE**, follow the **Create a bucket** procedure, and select the newly created bucket.
 5. Select **UPLOAD FILES** and upload the data files you wish to grant BLUE access to.
 6. Go to **PERMISSIONS** and select **GRANT ACCESS**.
