@@ -15,93 +15,75 @@ SQream supports commands from ANSI SQL.
 
 Data Definition Commands (DDL)
 ================================
-The following table shows the DDL commands, which are used to create and modify the structure of database objects in a database:
+The following table shows the Data Definition commands:
 
-.. list-table:: DDL Commands
-   :widths: auto
+.. list-table::
+   :widths: 10 100
    :header-rows: 1
    :name: ddl_commands
    
    * - Command
      - Usage
-   * - :ref:`ADD COLUMN<add_column>`
+   * - :ref:`ADD_COLUMN<add_column>`
      - Add a new column to a table
-   * - :ref:`ALTER TABLE<alter_table>`
+   * - :ref:`ALTER_DEFAULT_SCHEMA<alter_default_schema>`
+     - Change the default schema for a role
+   * - :ref:`ALTER_TABLE<alter_table>`
      - Change the schema of a table
-   * - :ref:`CLUSTER BY<cluster_by>`
-     - Changes the clustering keys in a table
-   * - :ref:`CREATE DATABASE<create_database>`
+   * - :ref:`CLUSTER_BY<cluster_by>`
+     - Change clustering keys in a table
+   * - :ref:`CREATE_DATABASE<create_database>`
      - Create a new database
-   * - :ref:`CREATE FOREIGN TABLE<create_foreign_table>`
+   * - :ref:`CREATE_FOREIGN_TABLE<create_foreign_table>`
      - Create a new foreign table in the database
-   * - :ref:`CREATE FUNCTION <create_function>`
+   * - :ref:`CREATE_FUNCTION<create_function>`
      - Create a new user defined function in the database
-   * - :ref:`CREATE SCHEMA<create_schema>`
+   * - :ref:`CREATE_SCHEMA<create_schema>`
      - Create a new schema in the database
-   * - :ref:`CREATE TABLE<create_table>`
+   * - :ref:`CREATE_TABLE<create_table>`
      - Create a new table in the database
-   * - :ref:`CREATE TABLE AS<create_table_as>`
+   * - :ref:`CREATE_TABLE_AS<create_table_as>`
      - Create a new table in the database using results from a select query
-   * - :ref:`CREATE VIEW<create_view>`
+   * - :ref:`CREATE_VIEW<create_view>`
      - Create a new view in the database
-   * - :ref:`DESCRIBE COLUMNS<describe_columns>`
-     - List all columns in your internal or foreign table
-   * - :ref:`DESCRIBE CONFIGURATION<describe_configuration>`
-     - List all RTC configurations set on the session level using the SET command.
-   * - :ref:`DESCRIBE DATABASES<describe_databases>`
-     - Show all databases in your cluster
-   * - :ref:`DESCRIBE QUERY<describe_query>`
-     - Display information about query execution for monitoring and troubleshooting purposes
-   * - :ref:`DESCRIBE SCHEMAS<describe_schemas>`
-     - Show all schemas in your cluster
-   * - :ref:`DESCRIBE SESSIONS<describe_sessions>`
-     - Show a list of sessions
-   * - :ref:`DESCRIBE SESSION QUERIES<describe_session_queries>`
-     - Show a list of queries per session
-   * - :ref:`DESCRIBE TABLES<describe_tables>`
-     - List all tables in your database
-   * - :ref:`DESCRIBE USER FUNCTIONS<describe_user_functions>`
-     - List all user-defined functions
-   * - :ref:`DROP COLUMN<drop_column>`
+   * - :ref:`DROP_CLUSTERING_KEY<drop_clustering_key>`
+     - Drops all clustering keys in a table
+   * - :ref:`DROP_COLUMN<drop_column>`
      - Drop a column from a table
-   * - :ref:`DROP DATABASE<drop_database>`
+   * - :ref:`DROP_DATABASE<drop_database>`
      - Drop a database and all of its objects
-   * - :ref:`DROP FUNCTION<drop_function>`
+   * - :ref:`DROP_FUNCTION<drop_function>`
      - Drop a function
-   * - :ref:`DROP SCHEMA<drop_schema>`
+   * - :ref:`DROP_SCHEMA<drop_schema>`
      - Drop a schema
-   * - :ref:`DROP TABLE<drop_table>`
+   * - :ref:`DROP_TABLE<drop_table>`
      - Drop a table and its contents from a database
-   * - :ref:`DROP VIEW<drop_view>`
+   * - :ref:`DROP_VIEW<drop_view>`
      - Drop a view
-   * - :ref:`RENAME COLUMN<rename_column>`
+   * - :ref:`RENAME_COLUMN<rename_column>`
      - Rename a column
-   * - :ref:`RENAME TABLE<rename_table>`
+   * - :ref:`RENAME_TABLE<rename_table>`
      - Rename a table
-   * - :ref:`USE DATABASE<use_database>`
-     - Switch between databases on an existing connection and session
-   * - :ref:`USE SCHEMA<use_schema>`
-     - Switch between schemas	 
+
 
 Data Manipulation Commands (DML)
 ================================
-The following table shows the DML commands, which let you to manipulate data in your database:
+The following table shows the Data Manipulation commands:
 
-.. list-table:: DML Commands
-   :widths: auto
+.. list-table::
+   :widths: 10 100
    :header-rows: 1
    :name: dml_commands
-
    
    * - Command
      - Usage
-   * - :ref:`CREATE TABLE AS<create_table_as>`
+   * - :ref:`CREATE_TABLE_AS<create_table_as>`
      - Create a new table in the database using results from a select query
    * - :ref:`DELETE<delete>`
      - Delete specific rows from a table
-   * - :ref:`COPY FROM<copy_from>`
+   * - :ref:`COPY_FROM<copy_from>`
      - Bulk load CSV data into an existing table
-   * - :ref:`COPY TO<copy_to>`
+   * - :ref:`COPY_TO<copy_to>`
      - Export a select query or entire table to CSV files
    * - :ref:`INSERT<insert>`
      - Insert rows into a table
@@ -113,31 +95,32 @@ The following table shows the DML commands, which let you to manipulate data in 
      - Modify the value of certain columns in existing rows without creating a table
    * - :ref:`VALUES<values>`
      - Return rows containing literal values
-	 
-.. |icon-new_2022.1| image:: /_static/images/new_2022.1.png
-   :align: middle
-   :width: 110
+
+.. note:: The returned records count ``feedback`` command is not supported by BLUE.
+
 
 Utility Commands
 ==================
 The following table shows the Utility commands:
 
-.. list-table:: Utility Commands
-   :widths: auto
+.. list-table::
+   :widths: 10 100
    :header-rows: 1
    
    * - Command
      - Usage
-   * - :ref:`ABORT<abort>`
-     - Performs a graceful stop on an active statement
-   * - :ref:`AUDIT LOG<audit_log>`
-     - Shows system events logged by the Audit Log feature
+   * - :ref:`DROP SAVED QUERY<drop_saved_query>`
+     - Drops a saved query
+   * - :ref:`EXECUTE SAVED QUERY<execute_saved_query>`
+     - Executes a previously saved query
    * - :ref:`EXPLAIN<explain>`
      - Returns a static query plan, which can be used to debug query plans
-   * - :ref:`GET_EXTENTS_FILE_FOR_CHUNK<get_extents_file_list_for_chunk>`
-     - Points to all files that contain data related to a specific chunk
-   * - :ref:`GET_METADATA_CHUNK_KEY<get_metadata_chunk_key>`
-     - Returns a list of metadata key values for the chunks that you specify
+   * - :ref:`LIST SAVED QUERIES<list_saved_queries>`
+     - Lists previously saved query names, one per row.
+   * - :ref:`RECOMPILE SAVED QUERY<recompile_saved_query>`
+     - Recompiles a saved query that has been invalidated due to a schema change
+   * - :ref:`SELECT GET_LICENSE_INFO<get_license_info>`
+     - View a user's license information
    * - :ref:`SELECT GET_DDL<get_ddl>`
      - View the ``CREATE TABLE`` statement for a table
    * - :ref:`SELECT GET_FUNCTION_DDL<get_function_ddl>`
@@ -148,14 +131,55 @@ The following table shows the Utility commands:
      - Recreate a view after schema changes
    * - :ref:`SELECT DUMP_DATABASE_DDL<dump_database_ddl>`
      - View the ``CREATE TABLE`` statement for an current database
-	 
+   * - :ref:`SHOW CONNECTIONS<show_connections>`
+     - Returns a list of active sessions on the current worker
+   * - :ref:`SHOW LOCKS<show_locks>`
+     - Returns a list of locks from across the cluster
+   * - :ref:`SHOW NODE INFO<show_node_info>`
+     - Returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases
+   * - :ref:`SHOW SAVED QUERY<show_saved_query>`
+     - Returns a single row result containing the saved query string
+   * - :ref:`SHOW SERVER STATUS<show_server_status>`
+     - Returns a list of active sessions across the cluster
+   * - :ref:`SHOW VERSION<show_version>`
+     - Returns the system version for SQream DB
+   * - :ref:`SHUTDOWN_SERVER<shutdown_server_command>`
+     - Sets your server to finish compiling all active queries before shutting down according to a user-defined time value
+   * - :ref:`STOP STATEMENT<stop_statement>`
+     - Stops or aborts an active statement
+
+.. |icon-new_2022.1| image:: /_static/images/new_2022.1.png
+   :align: middle
+   :width: 110
+
+.. |icon-New_Dark_Gray| image:: /_static/images/New_Dark_Gray.png
+   :align: middle
+   :width: 110
+
+Workload Management
+======================
+The following table shows the Workload Management commands:
+
+.. list-table::
+   :widths: 10 100
+   :header-rows: 1
+   
+   * - Command
+     - Usage
+   * - :ref:`subscribe_service`
+     - Add a SQream DB worker to a service queue 
+   * - :ref:`unsubscribe_service`
+     - Remove a SQream DB worker from a service queue
+   * - :ref:`show_subscribed_instances`
+     - Return a list of service queues and workers
+
 Access Control Commands
 ================================
 The following table shows the Access Control commands:
 
-.. list-table:: Access Control Commands
-   :widths: auto
-   :header-rows: 1
+.. list-table::
+   :widths: 10 100
+   :header-rows: 1   
    
    * - Command
      - Usage
