@@ -30,23 +30,6 @@ Granting GCP access
 
 .. note:: To minimize access time to your data, configure bucket location to **us-east-1**. If not possible, please contact SQream help desk.
 
-Script Input Parameters
-=======================
-The following list describes the script input parameters for verifying that your GCP is shared with your SQream cluster:
-
-* **The GCP server IP address** - The IP address of the GCP server.
-
-   ::
-   
-* **The GCP directory path** - The mount directory path used for copying data from external sources or exporting data.
-
-For more information, see the following:
-
- * :ref:`copy_from`
- 
-    ::
-	
- * :ref:`copy_to`
 
 Syntax
 ==============
