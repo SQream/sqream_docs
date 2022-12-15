@@ -10,6 +10,7 @@ SQream supports the following external storage platforms:
    :titlesonly:
 
    s3
+   
    hdfs
    
 For more information, see the following:
