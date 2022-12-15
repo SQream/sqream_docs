@@ -80,8 +80,8 @@ If you're looking for an older version of the documentation, go to http://previo
    getting_started/index
    installation_guides/index
    data_ingestion/index
-   external_storage_platforms/index
    connecting_to_sqream/index
+   external_storage_platforms/index
    loading_and_unloading_data/index
    feature_guides/index
    operational_guides/index
