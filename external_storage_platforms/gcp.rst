@@ -30,40 +30,14 @@ Granting GCP access
 
 .. note:: To minimize access time to your data, configure bucket location to **us-east-1**. If not possible, please contact SQream help desk.
 
-
-Syntax
-==============
-The following is an example of the syntax used for executing the script:
-
-.. code-block:: console
-
    
 
 Example
-==============
-The following is an example of the syntax used for verifying that your GCP is shared with your SQream cluster:
+=======
+The following is an example of the syntax used for executing a ``SELECT FROM FOREIGN TABLE`` statement:
 
 .. code-block:: console
 
-   
- 
-Output
-==============
-The following is an example of the output generated from verifying that your GCP is shared with your SQream cluster:
-
-.. code-block:: console
-
- 
-
-The following is displayed:
-
-.. code-block:: console
-
-  
-   
-When you have finished mounting your GCP shared drives on your SQream cluster, you can use them with :ref:`copy_from` or :ref:`copy_to` statements, as shown in the following example:
-
-.. code-block:: console
 
    
    
