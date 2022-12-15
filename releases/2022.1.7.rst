@@ -3,7 +3,7 @@
 **************************
 Release Notes 2022.1.7
 **************************
-The 2022.1.7 release notes were released on 11/15/2022 and describe the following:
+The 2022.1.7 release notes were released on 12/15/2022 and describe the following:
 
 .. contents:: 
    :local:
