@@ -12,7 +12,8 @@ The **Amazon S3** describes the following topics:
    
 S3 Configuration
 ==============================
-Any database host with access to S3 endpoints can access S3 without any configuration. To read files from an S3 bucket, the database must have listable files.
+
+A best practice for granting access to AWS S3 is by creating an `Identity and Access Management (IAM) <https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started.html>`_ user account. If creating an IAM user account is not possible, you may follow AWS guidelines for `using the global configuration object <https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/global-config-object.html>`_ and setting an `AWS region <https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-region.html>`_
 
 S3 URI Format
 ===============
