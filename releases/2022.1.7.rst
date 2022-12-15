@@ -12,7 +12,7 @@ The 2022.1.7 release notes were released on 12/15/2022 and describe the followin
 New Features
 ----------
 
- * Ingesting data from JSON files.
+ * Ingesting data from :ref:`JSON<json>` files.
 
 	::
 
