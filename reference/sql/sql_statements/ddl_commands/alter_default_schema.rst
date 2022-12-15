@@ -43,7 +43,7 @@ The following parameters can be used when altering a default schema:
 	 
 Permissions
 =============
-No special permissions are required.
+To alter user default schema, the current role must have a ``superuser`` permission.
 
 Examples
 ===========
