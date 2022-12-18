@@ -88,7 +88,7 @@ GRANT
    TO <role> [, ...] 
        
    -- Grant permissions at the object level: 
-   GRANT {{SELECT | INSERT | DELETE | DDL } [, ...] | ALL [PERMISSIONS]} 
+   GRANT {{SELECT | INSERT | DELETE | DDL | UPDATE } [, ...] | ALL [PERMISSIONS]} 
    ON { TABLE <table_name> [, ...] | ALL TABLES IN SCHEMA <schema_name> [, ...]} 
    TO <role> [, ...]
        
@@ -155,7 +155,7 @@ REVOKE
    FROM <role> [, ...]
             
    -- Revoke permissions at the object level:
-   REVOKE { { SELECT | INSERT | DELETE | DDL } [, ...] | ALL }
+   REVOKE { { SELECT | INSERT | DELETE | DDL | UPDATE } [, ...] | ALL }
    ON { [ TABLE ] <table_name> [, ...] | ALL TABLES IN SCHEMA
 
          <schema_name> [, ...] }
@@ -213,6 +213,7 @@ schema statement is run.
         | INSERT
         | DELETE
         | DDL
+		| UPDATE
         | EXECUTE
         | ALL
         }
