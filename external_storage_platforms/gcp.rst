@@ -4,7 +4,7 @@
 Ingesting Data Using Google Cloud Platform
 ***********************
 
-Ingesting data using Google Cloud Platform (GCP) requires GCP bucket access configurations. You may configure BLUE to separate source and destination by granting read access to one bucket and write access to a different bucket. Such separation requires that each bucket is individually configured.    
+Ingesting data using Google Cloud Platform (GCP) requires Google Cloud Storage (GCS) bucket access configurations. You may configure BLUE to separate source and destination by granting read access to one bucket and write access to a different bucket. Such separation requires that each bucket is individually configured.    
 
 .. contents::
    :local:
@@ -20,24 +20,27 @@ Granting GCP access
 6. Go to **PERMISSIONS** and select **GRANT ACCESS**.
 7. Under **Add principals**, in the **New principals** box, paste the following string:
 
-.. code-block:: console
+.. code-block:: postgres
 
-   tf-gke-blue-appnext-pr-gcv6@blue-appnext-prod-sandbox.iam.gserviceaccount.com
+   sample_service_account@sample_project.iam.gserviceaccount.com
    
 8. Under **Assign roles**, in the **Select a role** box, select **Storage Admin**.
 9. Select **ADD ANOTHER ROLE** and in the newly created **Select a role** box, select **Storage Object Admin**.
 10. Select **SAVE**
 
-.. note:: To minimize access time to your data, configure bucket location to **us-east-1**. If not possible, please contact SQream help desk.
+.. note:: Optimize access time to your data by configuring the location of your bucket according to `Google Cloud location considerations. <https://cloud.google.com/storage/docs/locations#location-r>`_
 
    
 
 Example
 =======
-The following is an example of the syntax used for executing a ``SELECT FROM FOREIGN TABLE`` statement:
+The following is an example of the syntax used for executing a ``CREATE FOREIGN TABLE`` statement:
 
-.. code-block:: console
+.. code-block:: postgres
 
-
-   
-   
+	CREATE or REPLACE FOREIGN TABLE "public"."transactions_fh_json"
+	wrapper
+	  json_fdw
+	options
+	  (location = 'gs://<gcs path>/<gcs_bucket>/*');
+  

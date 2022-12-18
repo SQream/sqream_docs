@@ -66,6 +66,10 @@ The following table shows the Data Definition commands:
      - Rename a table
    * - :ref:`DESCRIBE_VIEWS<describe_views>`
      - Describe database views
+   * - :ref:`DESCRIBE_SAVED_QUERIES_LIST<describe_saved_queries_list>`
+     - Creates a list of saved queries
+   * - :ref:`DESCRIBE_SAVED_QUERY<describe_saved_query>`
+     - Returns the SQL syntax of a specific saved query
 
 
 Data Manipulation Commands (DML)

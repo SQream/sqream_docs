@@ -79,17 +79,27 @@ Using the ``DESCRIBE_TABLES`` command generates the following output:
      - TEXT
      - create view "public".nba_view as  select * from nba;	 
 
+
+The following is the syntax for the ``DESCRIBE VIEWS`` command:
+
+.. code-block:: postgres
+
+		DESCRIBE VIEWS;
+
+
 	 
-The following is an example of the generated output in SQream Studio for the ``DESCRIBE VIEWS`` command:
+The following is an example of the ``DESCRIBE VIEWS`` command output:
 
 .. code-block:: postgres
  
-	created_on         |name             |database|schema|sql                                                                      |
-	-------------------+-----------------+--------+------+-------------------------------------------------------------------------+
-	2022-12-15 07:29:07|cool_animals_view|master  |public|create view "public".cool_animals_view as¶  select * from cool_animals;¶¶|
+		created_on         |name              |database|schema|sql                                                                                                   |
+		-------------------+------------------+--------+------+------------------------------------------------------------------------------------------------------+
+		2022-12-15 07:29:07|cool_animals_view |master  |public|create view "public".cool_animals_view as¶  select * from cool_animals;¶¶                             |
+		2022-12-15 15:12:29|only_heavy_animals|master  |public|create view "public".only_heavy_animals as¶  select *¶  from cool_animals¶  where¶    weight > 1000;¶¶|
  
 
 	 
 Permissions
 =============
-Using the ``DESCRIBE VIEWS`` command requires ``USAGE`` permissions.
+
+The role must have the ``USAGE`` permission.
