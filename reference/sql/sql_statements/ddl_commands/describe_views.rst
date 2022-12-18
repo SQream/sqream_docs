@@ -80,7 +80,7 @@ Using the ``DESCRIBE_TABLES`` command generates the following output:
      - create view "public".nba_view as  select * from nba;	 
 
 	 
-The following is an example of the generated output in Studio for the ``DESCRIBE VIEWS`` command:
+The following is an example of the generated output in SQream Studio for the ``DESCRIBE VIEWS`` command:
 
 .. code-block:: postgres
  
