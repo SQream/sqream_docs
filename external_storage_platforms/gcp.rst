@@ -13,10 +13,15 @@ Granting GCP access
 ===================
 
 1. In your Google Cloud console, go to **Select a project** and select the desired project.
+
 1. From the **PRODUCTS** menu, select **Cloud Storage** > **Buckets**.
+
 1. Select the bucket you wish to configure; or create a new bucket by selecting **CREATE** and following the **Create a bucket** procedure, and select the newly created bucket.
+
 1. Select **UPLOAD FILES** and upload the data files you wish BLUE to ingest.
+
 1. Go to **PERMISSIONS** and select **GRANT ACCESS**.
+
 1. Under **Add principals**, in the **New principals** box, paste the following string:
 
 		.. code-block:: postgres
@@ -24,7 +29,9 @@ Granting GCP access
 		   sample_service_account@sample_project.iam.gserviceaccount.com
    
 1. Under **Assign roles**, in the **Select a role** box, select **Storage Admin**.
+
 1. Select **ADD ANOTHER ROLE** and in the newly created **Select a role** box, select **Storage Object Admin**.
+
 1. Select **SAVE**
 
 
