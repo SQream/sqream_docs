@@ -17,7 +17,7 @@ The best practice for granting access to AWS S3 is to create an `Identity and Ac
 
 S3 URI
 ======
-When you want to access data in an S3 bucket (using :ref:`copy_from` or :ref:``external_tables``), you must specify the S3 URI with the file path.
+When you want to access data in an S3 bucket (using :ref:`copy_from` or loading to :ref:``external_tables``), you must specify the S3 URI with the file path.
 
 The following is an example of the general S3 syntax:
 
