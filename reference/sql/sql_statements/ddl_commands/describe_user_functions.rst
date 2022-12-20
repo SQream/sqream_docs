@@ -5,6 +5,8 @@ DESCRIBE USER FUNCTIONS
 *****************
 The ``DESCRIBE USER FUNCTIONS`` command lets you list all user-defined functions created in a SQream database.
 
+.. note:: ``DESCRIBE`` commands use CPU to increase usability.
+
 Syntax
 ==========
 The following is the syntax for the ``DESCRIBE USER FUNCTIONS`` command:

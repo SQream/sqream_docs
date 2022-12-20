@@ -5,6 +5,8 @@ DESCRIBE COLUMNS
 *****************
 The ``DESCRIBE COLUMNS`` command lets you list information about columns in an internal or external table.
 
+.. note:: ``DESCRIBE`` commands use CPU to increase usability.
+
 Syntax
 ==========
 The following is the syntax for the ``DESCRIBE COLUMNS`` command:

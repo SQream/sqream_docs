@@ -5,6 +5,8 @@ DESCRIBE QUERY
 *****************
 The ``DESCRIBE QUERY`` command replaces the `SHOW_NODE_INFO <https://docs.sqream.com/en/latest/reference/sql/sql_functions/system_functions/show_node_info.html>`_ command. You can use it to display information about query execution for monitoring and troubleshooting purposes.
 
+.. note:: ``DESCRIBE`` commands use CPU to increase usability.
+
 Syntax
 ==========
 The following is the syntax for the ``DESCRIBE QUERY`` command:

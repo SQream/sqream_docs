@@ -15,6 +15,7 @@ The ``DESCRIBE TABLES`` command lets you list information about tables in your d
    
 * **External** - list information about tables residing as files external to the SQream database.
 
+.. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
 Syntax
 ==========

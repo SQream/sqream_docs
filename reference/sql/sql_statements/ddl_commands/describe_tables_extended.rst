@@ -3,9 +3,13 @@
 *****************
 DESCRIBE TABLES EXTENDED
 *****************
-.. note::  The **DESCRIBE TABLES EXTENDED** command is not relevant to Alpha, and will be implemented in Beta.
+
 
 The ``DESCRIBE TABLES EXTENDED`` command lets you list all the tables in your database, including information about storage and deleted data. You can define the ``DESCRIBE TABLES EXTENDED`` command as either ``EXTERNAL`` or ``INTERNAL``.
+
+.. note:: ``DESCRIBE`` commands use CPU to increase usability.
+.. note::  The **DESCRIBE TABLES EXTENDED** command is not relevant to Alpha, and will be implemented in Beta.
+
 
 Syntax
 ==========

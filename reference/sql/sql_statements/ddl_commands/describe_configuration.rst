@@ -6,7 +6,7 @@ DESCRIBE CONFIGURATION
 The ``DESCRIBE CONFIGURATION`` command is used for showing all configurations set on the session level using the ``SET`` command. Closing a session restores all configurations to their default settings.
 
 .. note:: The ``DESCRIBE CONFIGURATION`` command replaces the ``SHOW_CONF`` command. 
-
+.. note:: ``DESCRIBE`` commands use CPU to increase usability.
 For more information, see :ref:`configuring_sqream`.
 
 Syntax

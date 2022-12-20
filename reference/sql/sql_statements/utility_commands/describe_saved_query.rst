@@ -5,7 +5,7 @@ DESCRIBE SAVED QUERY
 ********************
 The ``DESCRIBE SAVED QUERY`` command returns the SQL syntax of a specific saved query.
 
-.. note:: ``DESCRIBE`` commands use CPU.
+.. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
 .. tip:: You may use the :ref:`DESCRIBE_SAVED_QUERIES_LIST<describe_saved_queries_list>` command to locate any saved queries.
 

@@ -5,7 +5,7 @@ DESCRIBE VIEWS
 *****************
 The ``DESCRIBE VIEWS`` command enables creating a list of database views. 
 
-.. note:: ``DESCRIBE`` commands use CPU.
+.. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
 Syntax
 ==========

@@ -5,6 +5,8 @@ DESCRIBE SCHEMAS
 *****************
 The ``DESCRIBE SCHEMAS`` command lets you list information about schemas in your cluster.
 
+.. note:: ``DESCRIBE`` commands use CPU to increase usability.
+
 Syntax
 ==========
 The following is the syntax for the ``DESCRIBE SCHEMAS`` command:
