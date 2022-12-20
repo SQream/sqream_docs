@@ -74,7 +74,7 @@ The following is an example of the ``DESCRIBE SAVED QUERIES LIST`` command outpu
 		select_all        |
 
 
-The following is the syntax for the ``DESCRIBE SAVED QUERIES LIST LIKE`` command:
+The following is the syntax for the ``DESCRIBE SAVED QUERIES LIST LIKE`` command with a database specification:
 
 .. code-block:: postgres
 
