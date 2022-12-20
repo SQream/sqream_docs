@@ -5,6 +5,8 @@ DESCRIBE SAVED QUERIES LIST
 *****************
 The ``DESCRIBE SAVED QUERIES LIST`` command creates a list of all of your saved queries.
 
+.. note:: ``DESCRIBE`` commands use CPU.
+
 Syntax
 ==========
 The following is the syntax for the ``DESCRIBE SAVED QUERIES LIST`` command:
