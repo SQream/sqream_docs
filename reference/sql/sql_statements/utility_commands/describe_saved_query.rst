@@ -62,7 +62,7 @@ The following is the syntax for the ``DESCRIBE SAVED QUERY`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE saved query database master NAME 'select_all';
+   DESCRIBE SAVED QUERY database master NAME 'select_all';
    
    
 The following is an example of the ``DESCRIBE SAVED QUERY`` command output:
@@ -73,22 +73,6 @@ The following is an example of the ``DESCRIBE SAVED QUERY`` command output:
 	-----------------
 	SELECT * FROM nba
 
-The following is an example of the generated output in SQream Studio for a ``DESCRIBE saved queries list`` command:
-
-.. code-block:: postgres
-	
-		save_query_name   |
-		------------------+
-		cool_heavy_animals|
-		select_all        |
-
-The following is an example of the generated output in SQream Studio for a ``DESCRIBE saved queries list`` command, using the ``LIKE`` parameter:
-
-.. code-block:: postgres
-
-		save_query_name|
-		---------------+
-		select_all     |
 
 Permissions
 =============

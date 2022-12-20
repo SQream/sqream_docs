@@ -66,10 +66,7 @@ The following table shows the Data Definition commands:
      - Rename a table
    * - :ref:`DESCRIBE_VIEWS<describe_views>`
      - Describe database views
-   * - :ref:`DESCRIBE_SAVED_QUERIES_LIST<describe_saved_queries_list>`
-     - Creates a list of saved queries
-   * - :ref:`DESCRIBE_SAVED_QUERY<describe_saved_query>`
-     - Returns the SQL syntax of a specific saved query
+
 
 
 Data Manipulation Commands (DML)
@@ -121,8 +118,6 @@ The following table shows the Utility commands:
      - Executes a previously saved query
    * - :ref:`EXPLAIN<explain>`
      - Returns a static query plan, which can be used to debug query plans
-   * - :ref:`LIST SAVED QUERIES<list_saved_queries>`
-     - Lists previously saved query names, one per row.
    * - :ref:`RECOMPILE SAVED QUERY<recompile_saved_query>`
      - Recompiles a saved query that has been invalidated due to a schema change
    * - :ref:`SELECT GET_LICENSE_INFO<get_license_info>`
@@ -143,8 +138,6 @@ The following table shows the Utility commands:
      - Returns a list of locks from across the cluster
    * - :ref:`SHOW NODE INFO<show_node_info>`
      - Returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases
-   * - :ref:`SHOW SAVED QUERY<show_saved_query>`
-     - Returns a single row result containing the saved query string
    * - :ref:`SHOW SERVER STATUS<show_server_status>`
      - Returns a list of active sessions across the cluster
    * - :ref:`SHOW VERSION<show_version>`
@@ -153,6 +146,12 @@ The following table shows the Utility commands:
      - Sets your server to finish compiling all active queries before shutting down according to a user-defined time value
    * - :ref:`STOP STATEMENT<stop_statement>`
      - Stops or aborts an active statement
+   * - :ref:`DESCRIBE_SAVED_QUERIES_LIST<describe_saved_queries_list>`
+     - Creates a list of saved queries
+   * - :ref:`DESCRIBE_SAVED_QUERY<describe_saved_query>`
+     - Returns the SQL syntax of a specific saved query
+
+
 
 .. |icon-new_2022.1| image:: /_static/images/new_2022.1.png
    :align: middle
