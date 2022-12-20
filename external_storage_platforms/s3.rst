@@ -1,9 +1,9 @@
 .. _s3:
 
 ***********************
-Inserting Data Using Amazon S3
+Ingesting Data Using Amazon S3
 ***********************
-SQream uses a native S3 connector for inserting data. The ``s3://`` URI specifies an external file path on an S3 bucket. File names may contain wildcard characters, and the files can be in CSV or columnar format, such as Parquet and ORC.
+SQream uses a native S3 connector for ingesting data. File names may contain wildcard characters, and the files can be in CSV or columnar format, such as Parquet and ORC.
 
 The **Amazon S3** describes the following topics:
 
@@ -13,11 +13,11 @@ The **Amazon S3** describes the following topics:
 S3 Configuration
 ==============================
 
-A best practice for granting access to AWS S3 is by creating an `Identity and Access Management (IAM) <https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started.html>`_ user account. If creating an IAM user account is not possible, you may follow AWS guidelines for `using the global configuration object <https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/global-config-object.html>`_ and setting an `AWS region <https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-region.html>`_
+The best practice for granting access to AWS S3 is to create an `Identity and Access Management (IAM) <https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started.html>`_ user account. If creating an IAM user account is not possible, you may follow AWS guidelines for `using the global configuration object <https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/global-config-object.html>`_ and setting an `AWS region <https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-region.html>`_
 
-S3 URI Format
-===============
-With S3, specify a location for a file (or files) when using :ref:`copy_from` or :ref:`external_tables`.
+S3 URI
+======
+When you want to access data in an S3 bucket (using :ref:`copy_from` or loading to``external_tables``), you must specify the S3 URI with the file path.
 
 The following is an example of the general S3 syntax:
 
