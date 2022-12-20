@@ -102,7 +102,7 @@ The following table shows the Data Manipulation commands:
    * - :ref:`VALUES<values>`
      - Return rows containing literal values
 
-.. note:: The returned records count ``feedback`` command is not supported by BLUE.
+.. note:: The affected records count ``feedback`` command is not supported by BLUE.
 
 
 Utility Commands
