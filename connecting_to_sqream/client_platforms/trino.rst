@@ -6,10 +6,7 @@ Connecting to SQream Using Trino
 
 Overview
 =====================
-SQream's Trino connector plugin, based on standard JDBC, enables storing and fast querying large volumes of data.
-
-The **Connecting to SQream Using Trino** page is a Quick Start Guide that describes how to install Trino and the JDBC driver and connect to SQream for data analysis. It also describes using best practices and troubleshoot issues that may occur while installing Trino.
-
+The JDBC based SQream Trino plugin supports large volumes of data storage and fast querying. 
 
 
 .. contents::
@@ -18,22 +15,32 @@ The **Connecting to SQream Using Trino** page is a Quick Start Guide that descri
 
 Prerequisites
 -------------
+To use Trino with SQream, you must have the following installed:
 
-SQream version xxxxx
-JDBC version 4.5.6 or later
-Trino version 403 or later
+* SQream version 2022.1.8 or later
+* Trino version 403 or later
+* SQream Trino plugin xxxx
+* JDBC version 4.5.6 or later
 
-   
-Installing the Trino Connector Plugin
--------------------------------------
 
-Install the Trino plugin on all nodes dedicated to Trino within your cluster.
 
-1. Create a dedicated directory for the Trino plugin.
+Installation
+------------
 
-2. Download the latest version of Trino plugin.
+.. contents::
+   :local:
+   :depth: 1
 
-3. Extract the Trino plugin ZIP file and copy the extracted directory into the Trino plugin directory.
+
+SQream Trino Plugin
+~~~~~~~~~~~~~~~~~~~
+
+The SQream Trino plugin must be installed on each cluster node dedicated to Trino.
+
+1. Create a dedicated directory for the SQream Trino plugin.
+
+2. Download the `SQream Trino Plugin<...>` and extract the content of the ZIP file to the dedicated directory, as shown in the example:
+
 
 .. code-block:: postgres
 
@@ -45,22 +52,52 @@ Install the Trino plugin on all nodes dedicated to Trino within your cluster.
 			├── trino-sqream-SNAPSHOT.jar
 			└── all dependencies
 
+JDBC
+~~~~
 
+In case JDBC is not yet installed on your system, follow the `JDBC Client Drivers page <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/jdbc/index.html>`_ for installation and configuration guidance.
 
 Connecting to SQream
 --------------------
 
-Under ``trino-server/etc/catalog``, create a ``sqream.properties`` file.
+Trino uses catalogs for referencing stored objects such as tables, databases, and functions. Each Trino catalog may be configured with access to a single SQream database. If you wish for Trino to have access to more than one SQream database or server, you must create additional catalogs.
+ 
+Catalogs may be created using ``properties`` files. Start by creating a ``sqream.properties`` file and placing it under ``trino-server/etc/catalog``. 
+
+The following is an example of a properties file:
 
 .. code-block:: postgres
 
-	connector.name=sqream
-	connection-url=jdbc:Sqream://<host>:<port>/<database>...
+	connector.name=<name>
+	connection-url=jdbc:Sqream://<host and port>/<database name>;[<optional parameters>; ...]
+	connection-user=<user>
+	connection-password=<password>
+	
+Syntax examples
+---------------
+
+The following is an example of the ``SHOW SCHEMAS FROM`` statement:
+
+.. code-block:: postgres
+
+	SHOW SCHEMAS FROM sqream;
+
+The following is an example of the ``SHOW TABLES FROM`` statement:
+	
+.. code-block:: postgres	
+
+	SHOW TABLES FROM sqream.public;
+
+The following is an example of the ``DESCRIBE sqream.public.t`` statement:
+
+.. code-block:: postgres
+
+	DESCIBE sqream.public.t;
+
 	
 Supported Data Types and Mapping
 --------------------------------
-
-When executing queries in Trino, use Trino data types. The plugin converts them into SQream data types.
+Use the appropriate Trino data type for executing queries. Upon execution, incompatible data types will be converted by Trino to SQream data types.  
 
 .. list-table:: 
    :widths: auto
@@ -93,3 +130,14 @@ When executing queries in Trino, use Trino data types. The plugin converts them 
    * - ``DECIMAL(P,S)``
      - ``NUMERIC(P,S)``
 
+
+
+Limitations
+-----------
+
+SQream does not support the following SQL statements:
+
+``GRANT``
+``REVOKE``
+``SHOW GRANTSHOW ROLES``
+``SHOW ROLE GRANTS``

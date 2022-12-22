@@ -16,7 +16,7 @@ New Features
 
 	::
 
- * xxxxxxxxx 
+ * xxxxxxxxx Trino
 
 	::
 

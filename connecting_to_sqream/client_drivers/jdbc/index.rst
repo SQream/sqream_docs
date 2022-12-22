@@ -82,7 +82,7 @@ The following is the syntax for SQream:
 
 .. code-block:: text
 
-   jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>sqream;[<optional parameters>; ...]
+   jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>;[<optional parameters>; ...]
 
 Connection Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^
