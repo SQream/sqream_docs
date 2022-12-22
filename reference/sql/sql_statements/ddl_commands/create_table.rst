@@ -271,7 +271,7 @@ The following is an example of creating a table based on foreign tables and view
    CREATE VIEW v as SELECT x+1,y,y || 'abc' from t1;
    CREATE TABLE t3 LIKE v;
 
-When duplicating the column structure of an existing table, the target table of the ``LIKE`` clause can be either a regular or an external table, or a view.
+When duplicating the column structure of an existing table, the target table of the ``LIKE`` clause can be either a native, a regular, or an external table, or a view.
 
 The following table describes which properties are copied from the target table to the newly created table:
 
