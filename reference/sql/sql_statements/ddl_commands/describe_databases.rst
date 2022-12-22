@@ -3,7 +3,7 @@
 *****************
 DESCRIBE DATABASES
 *****************
-The ``DESCRIBE DATABASES`` command lets you list information about the database in your cluster.
+The ``DESCRIBE DATABASES`` command lets you list information about the databases in your cluster.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 

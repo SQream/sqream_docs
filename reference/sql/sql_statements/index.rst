@@ -46,6 +46,20 @@ The following table shows the Data Definition commands:
      - Create a new table in the database using results from a select query
    * - :ref:`CREATE_VIEW<create_view>`
      - Create a new view in the database
+   * - :ref:`DESCRIBE_VIEWS<describe_views>`
+     - Creates a list of database views
+   * - :ref:`DESCRIBE DATABASES<describe_databases>`
+     - Lists information about the databases in your cluster
+   * - :ref:`DESCRIBE SCHEMAS<describe_schemas>`
+     - Lists information about schemas in your cluster
+   * - :ref:`DESCRIBE TABLES<describe_tables>`
+     - Lists information about tables in your database
+   * - :ref:`DESCRIBE TABLES EXTENDED<describe_tables_extended>`
+     - Lists all the tables in your database, including information about storage and deleted data
+   * - :ref:`DESCRIBE COLUMNS<describe_columns>`
+     - Lists information about columns in an internal or external table
+   * - :ref:`DESCRIBE USER FUNCTIONS<describe_user_functions>`
+     - Lists all user-defined functions created in a SQream database  
    * - :ref:`DROP_CLUSTERING_KEY<drop_clustering_key>`
      - Drops all clustering keys in a table
    * - :ref:`DROP_COLUMN<drop_column>`
@@ -64,8 +78,7 @@ The following table shows the Data Definition commands:
      - Rename a column
    * - :ref:`RENAME_TABLE<rename_table>`
      - Rename a table
-   * - :ref:`DESCRIBE_VIEWS<describe_views>`
-     - Describe database views
+ 
 
 
 
@@ -112,6 +125,8 @@ The following table shows the Utility commands:
    
    * - Command
      - Usage
+   * - :ref:`ABORT<abort>`
+     - Performs a graceful stop on active statements. 
    * - :ref:`DROP SAVED QUERY<drop_saved_query>`
      - Drops a saved query
    * - :ref:`EXECUTE SAVED QUERY<execute_saved_query>`
@@ -132,16 +147,6 @@ The following table shows the Utility commands:
      - Recreate a view after schema changes
    * - :ref:`SELECT DUMP_DATABASE_DDL<dump_database_ddl>`
      - View the ``CREATE TABLE`` statement for an current database
-   * - :ref:`SHOW CONNECTIONS<show_connections>`
-     - Returns a list of active sessions on the current worker
-   * - :ref:`SHOW LOCKS<show_locks>`
-     - Returns a list of locks from across the cluster
-   * - :ref:`SHOW NODE INFO<show_node_info>`
-     - Returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases
-   * - :ref:`SHOW SERVER STATUS<show_server_status>`
-     - Returns a list of active sessions across the cluster
-   * - :ref:`SHOW VERSION<show_version>`
-     - Returns the system version for SQream DB
    * - :ref:`SHUTDOWN_SERVER<shutdown_server_command>`
      - Sets your server to finish compiling all active queries before shutting down according to a user-defined time value
    * - :ref:`STOP STATEMENT<stop_statement>`
@@ -150,6 +155,13 @@ The following table shows the Utility commands:
      - Creates a list of saved queries
    * - :ref:`DESCRIBE_SAVED_QUERY<describe_saved_query>`
      - Returns the SQL syntax of a specific saved query
+   * - :ref:`DESCRIBE LOCKS<describe_locks>`
+     - Lists locks from across your cluster
+   * - :ref:`DESCRIBE SESSIONS<describe_sessions>`
+     - Returns a list of active sessions across your cluster
+   * - :ref:`DESCRIBE SESSION QUERIES<describe_session_queries>`
+     - Lists queries per session, including queued queries
+
 
 
 
@@ -161,22 +173,6 @@ The following table shows the Utility commands:
    :align: middle
    :width: 110
 
-Workload Management
-======================
-The following table shows the Workload Management commands:
-
-.. list-table::
-   :widths: 10 100
-   :header-rows: 1
-   
-   * - Command
-     - Usage
-   * - :ref:`subscribe_service`
-     - Add a SQream DB worker to a service queue 
-   * - :ref:`unsubscribe_service`
-     - Remove a SQream DB worker from a service queue
-   * - :ref:`show_subscribed_instances`
-     - Return a list of service queues and workers
 
 Access Control Commands
 ================================
