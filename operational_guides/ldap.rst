@@ -25,9 +25,9 @@ To enable LDAP Authentication, configure the following **cluster** flag attribut
    * - Attribute
      - Description
    * - ``authenticationMethod``
-     - Configure an authentication method. Attribute may be set to either ``sqream`` or ``ldap``. To configure LDAP, choose ``ldap``. 	 
+     - Configure an authentication method. Attribute may be set to either ``sqream`` or ``ldap``. To configure LDAP authentication, choose ``ldap``. 	 
    * - ``ldapDomain``
-     - Configure users` location domain.
+     - Configure users` domain.
    * - ``ldapIpAddress``
      - Configure the IP address of your LDAP server and select a protocol. Out of the ``ldap`` and ``ldaps``, we recommend to use the encrypted ``ldaps`` protocol.
    * - ``ldapConnTimeoutSec``
@@ -39,9 +39,9 @@ LDAP Configuration
 
 Configuring system roles
 ------------------------
-It is recommend to set up the roles of externally authenticated users in advance.
+When using external authentication such as LDAP, it is recommend that roles be configured in advance.
 
-To set up roles, follow these steps:
+To configure roles, follow these steps:
 
 1. Create a new role.
 	
@@ -55,7 +55,7 @@ To set up roles, follow these steps:
 
 	GRANT LOGIN TO my_new_role;
 
-Grant a specific database role ``CONNECT`` permissions.
+Grant the new role ``CONNECT`` permissions.
 
 .. code-block:: postgres
 
