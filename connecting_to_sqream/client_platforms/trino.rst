@@ -55,7 +55,7 @@ The SQream Trino plugin must be installed on each cluster node dedicated to Trin
 JDBC
 ~~~~
 
-In case JDBC is not yet installed on your system, follow the `JDBC Client Drivers page <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/jdbc/index.html>`_ for installation and configuration guidance.
+In case JDBC is not yet deployed, follow the `JDBC Client Drivers page <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/jdbc/index.html>`_ for registration and configuration guidance.
 
 Connecting to SQream
 --------------------
@@ -92,7 +92,7 @@ The following is an example of the ``DESCRIBE sqream.public.t`` statement:
 
 .. code-block:: postgres
 
-	DESCIBE sqream.public.t;
+	DESCRIBE sqream.public.t;
 
 	
 Supported Data Types and Mapping
@@ -124,7 +124,7 @@ Use the appropriate Trino data type for executing queries. Upon execution, incom
    * - ``TIMESTAMP``
      - ``DATETIME``
    * - ``VARCHAR(N)``
-     - ``VARCHAR(N)``
+     - ``VARCHAR(N)``. Note that VARCHAR is soon to be deprecated and may not be used in SQream DB.
    * - ``VARCHAR``
      - ``TEXT``
    * - ``DECIMAL(P,S)``
