@@ -72,6 +72,13 @@ The following is the correct syntax for triggering a clean-up:
    
    schema_name ::= identifier
 
+For high-concurrency storage systems, use the following syntax to enhance deletion performance and shorten runtime:
+
+.. code-block:: postgres
+
+	SELECT set_parallel_delete_threads(x);
+
+.. note:: You may configure up to 10 threads.
 
 Parameters
 ============
