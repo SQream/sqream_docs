@@ -1,25 +1,26 @@
 .. _ldap:
 
-*************************
-LDAP Authentication
-*************************
+*************************************
+Configuring authentication using LDAP
+*************************************
+
+
+Lightweight Directory Access Protocol (LDAP) is an authentication management service. Once LDAP is configured to authenticate SQream users, all existing roles, with the exception of a ``SUPERUSER``, are required to be authenticated by an LDAP server.
+
+	 
 
 .. contents:: In this topic:
    :local:
 
 
-Overview
-========
-
-Lightweight Directory Access Protocol (LDAP) is an authentication management service. Once LDAP is configured to authenticate SQream users, all existing roles, with the exception of a ``SUPERUSER``, are required to be authenticated by an LDAP server.
-
-	 
 LDAP Configuration
 ==================
 
 Configuring system roles
 ------------------------
-When using external authentication such as LDAP, it is recommend that roles be configured in advance.
+
+It is recommended that SQream roles be configured before implementing LDAP authentication.
+
 
 To configure roles, follow these steps:
 
