@@ -16,13 +16,13 @@ Lightweight Directory Access Protocol (LDAP) is an authentication management ser
 LDAP Configuration
 ==================
 
-Configuring system roles
+Configuring SQream roles
 ------------------------
 
 It is recommended that SQream roles be configured before implementing LDAP authentication.
 
 
-To configure roles, follow these steps:
+**Procedure**
 
 1. Create a new role.
 	
