@@ -11,7 +11,7 @@ LDAP Authentication
 Overview
 ============
 
-Lightweight Directory Access Protocol (LDAP) is an external authentication source. Once LDAP is configured to authenticate SQream users, all existing roles, with the exception of a ``SUPERUSER``, are required to be authenticated by an external LDAP server.
+Lightweight Directory Access Protocol (LDAP) is an authentication management service. Once LDAP is configured to authenticate SQream users, all existing roles, with the exception of a ``SUPERUSER``, are required to be authenticated by an external LDAP server.
 
 
 New Flag Attributes
