@@ -104,7 +104,7 @@ Only roles with admin privileges or higher may enable LDAP Authentication.
 Disabling LDAP Authentication
 -----------------------------
 
-To disable LDAP authentication and configure sqream authentication, execute the following syntax:
+To disable LDAP authentication and configure sqream authentication, use the following syntax:
 
 .. code-block:: postgres	
 
