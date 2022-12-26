@@ -1,7 +1,7 @@
 .. _ldap:
 
 *************************************
-Configuring authentication using LDAP
+Configuring LDAP authentication
 *************************************
 
 
