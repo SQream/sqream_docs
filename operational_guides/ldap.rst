@@ -24,25 +24,26 @@ It is recommended that SQream roles be configured before implementing LDAP authe
 
 **Procedure**
 
-1. Create a new role.
+1. To create a new role, run:
 	
 .. code-block:: postgres	
 	
-	CREATE ROLE my_new_role;
+	CREATE ROLE <new_role>;
 
-2. Grant new role login permissions.
-
-.. code-block:: postgres
-
-	GRANT LOGIN TO my_new_role;
-
-Grant the new role ``CONNECT`` permissions.
+2. To grant new role login permissions:
 
 .. code-block:: postgres
 
-	GRANT CONNECT ON DATABASE my_database TO my_new_role;
+	GRANT LOGIN TO <new_role>;
 
-Note - in the case that no role exists but LDAP authentication is successful, a role with no login or connection permissions will be added.
+3. To grant the new role ``CONNECT`` permissions:
+
+.. code-block:: postgres
+
+	GRANT CONNECT ON DATABASE <my_database> TO <new_role>;
+
+
+If no role exists but LDAP authentication is successful, a role with no login or connection permissions will be added.
 
 Flag Attributes
 ---------------
