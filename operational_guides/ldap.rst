@@ -13,37 +13,39 @@ Lightweight Directory Access Protocol (LDAP) is an authentication management ser
    :local:
 
 
-LDAP Configuration
-==================
 
 Configuring SQream roles
-------------------------
+========================
 
 It is recommended that SQream roles be configured before implementing LDAP authentication.
 
 
 **Procedure**
 
-1. To create a new role, run:
+1. Create a new role:
 	
 .. code-block:: postgres	
 	
 	CREATE ROLE <new_role>;
 
-2. To grant new role login permissions:
+2. Grant new role login permission:
 
 .. code-block:: postgres
 
 	GRANT LOGIN TO <new_role>;
 
-3. To grant the new role ``CONNECT`` permissions:
+3. Grant the new role ``CONNECT`` permission:
 
 .. code-block:: postgres
 
 	GRANT CONNECT ON DATABASE <my_database> TO <new_role>;
 
 
-If no role exists but LDAP authentication is successful, a role with no login or connection permissions will be added.
+.. note:: If no role exists but LDAP authentication is successful, a role with no login or connection permissions will be added.
+
+
+Configuring LDAP Authentication
+============================
 
 Flag Attributes
 ---------------
@@ -63,33 +65,34 @@ To enable LDAP Authentication, configure the following **cluster** flag attribut
      - Configure the IP address of your LDAP server and select a protocol. Out of the ``ldap`` and ``ldaps``, we recommend to use the encrypted ``ldaps`` protocol.
    * - ``ldapConnTimeoutSec``
      - Configure the LDAP connection timeout threshold (seconds). The default is 30 seconds.
+.. comment::
 
 Enabling LDAP Authentication
-----------------------------
+-------------------------------
 
 Only roles with admin privileges or higher may enable LDAP Authentication. 
 
-To enable LDAP Authentication, follow these steps. The provided syntax for each of the steps is an example.
+**Procedure**
 
-1. Set the ``ldapIpAddress`` attribute. 
-
-.. code-block:: postgres
-
-	ALTER SYSTEM SET ldapIpAddress = 'ldaps://192.168.10.20';
-
-2. Set the ``ldapDomain`` attribute.
+1. Set the ``ldapIpAddress`` attribute: 
 
 .. code-block:: postgres
 
-	ALTER SYSTEM SET ldapDomain = '@sqream.loc';
+	ALTER SYSTEM SET ldapIpAddress = 'ldaps://<192.168.10.20>';
 
-3. Set the ``ldapConnTimeoutSec`` attribute (Optional).
+2. Set the ``ldapDomain`` attribute:
 
 .. code-block:: postgres
 
-	ALTER SYSTEM SET ldapConnTimeoutSec = 15;
+	ALTER SYSTEM SET ldapDomain = <'@sqream.loc'>;
 
-4. Set the ``authenticationMethod`` attribute.
+3. To set the ``ldapConnTimeoutSec`` attribute (Optional), run:
+
+.. code-block:: postgres
+
+	ALTER SYSTEM SET ldapConnTimeoutSec = <15>;
+
+4. Set the ``authenticationMethod`` attribute:
 
 .. code-block:: postgres
 
@@ -101,7 +104,7 @@ To enable LDAP Authentication, follow these steps. The provided syntax for each 
 Disabling LDAP Authentication
 -----------------------------
 
-To disable LDAB authentication and configure sqream authentication, execute the following syntax:
+To disable LDAP authentication and configure sqream authentication, execute the following syntax:
 
 .. code-block:: postgres	
 
