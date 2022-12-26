@@ -13,26 +13,6 @@ Overview
 
 Lightweight Directory Access Protocol (LDAP) is an authentication management service. Once LDAP is configured to authenticate SQream users, all existing roles, with the exception of a ``SUPERUSER``, are required to be authenticated by an LDAP server.
 
-
-Flag Attributes
----------------
-To enable LDAP Authentication, configure the following **cluster** flag attributes using the ``ALERT SYSTEM SET`` command:
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Attribute
-     - Description
-   * - ``authenticationMethod``
-     - Configure an authentication method. Attribute may be set to either ``sqream`` or ``ldap``. To configure LDAP authentication, choose ``ldap``. 	 
-   * - ``ldapDomain``
-     - Configure users` domain.
-   * - ``ldapIpAddress``
-     - Configure the IP address of your LDAP server and select a protocol. Out of the ``ldap`` and ``ldaps``, we recommend to use the encrypted ``ldaps`` protocol.
-   * - ``ldapConnTimeoutSec``
-     - Configure the LDAP connection timeout threshold (seconds). The default is 30 seconds.
-
 	 
 LDAP Configuration
 ==================
@@ -63,6 +43,24 @@ Grant the new role ``CONNECT`` permissions.
 
 Note - in the case that no role exists but LDAP authentication is successful, a role with no login or connection permissions will be added.
 
+Flag Attributes
+---------------
+To enable LDAP Authentication, configure the following **cluster** flag attributes using the ``ALERT SYSTEM SET`` command:
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Attribute
+     - Description
+   * - ``authenticationMethod``
+     - Configure an authentication method. Attribute may be set to either ``sqream`` or ``ldap``. To configure LDAP authentication, choose ``ldap``. 	 
+   * - ``ldapDomain``
+     - Configure users` domain.
+   * - ``ldapIpAddress``
+     - Configure the IP address of your LDAP server and select a protocol. Out of the ``ldap`` and ``ldaps``, we recommend to use the encrypted ``ldaps`` protocol.
+   * - ``ldapConnTimeoutSec``
+     - Configure the LDAP connection timeout threshold (seconds). The default is 30 seconds.
 
 Enabling LDAP Authentication
 ----------------------------
