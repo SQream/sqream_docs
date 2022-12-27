@@ -17,7 +17,7 @@ Syntax
 ====================
 The following is the ``AUDITLOG`` syntax:
 
-.. code-block:: console
+.. code-block:: postgres
 
    AUDITLOG
    [ TIMEFRAME FROM <start_date_time> TO <end_date_time> ]
@@ -83,13 +83,13 @@ Example 1 - AUDITLOG
 -----------------------
 The following is the ``AUDITLOG`` command:
 
-.. code-block:: console
+.. code-block:: postgres
 
    AUDITLOG;
 	  
 The following is the output of the ``AUDITLOG`` command:
 
-.. code-block:: console
+.. code-block:: postgres
 
    +---------+-----------------+------------------+---------------+---------------------------------------+---------------+------------------------+---------------------+-------------------+---------------+-----------------------------------------------------------+-----------------------------------------------+----------------+
    | id      | time_stamp      | last_update      | username      | session_id                            | query_id      | client_ip_address      | client_version      | status            | category      | additional_details                                        | error_details                                 | tenant_id      |
@@ -111,13 +111,13 @@ Example 2 - AUDITLOG_TIMEFRAME_FROM
 -----------------------
 The following is the ``AUDITLOG`` command using the ``TIMEFRAME_FROM`` filter:
 
-.. code-block:: console
+.. code-block:: postgres
 
   AUDITLOG TIMEFRAME FROM '2022-06-28 12:00:00' TO '2022-06-28 13:00:00';
 
 The following is the output of the ``AUDITLOG`` command using the ``TIMEFRAME_FROM`` filter:
 
-.. code-block:: console
+.. code-block:: postgres
 
    +---------+-----------------+------------------+---------------+---------------------------------------+---------------+------------------------+---------------------+-------------------+---------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
    | id      | time_stamp      | last_update      | username      | session_id                            | query_id      | client_ip_address      | client_version      | status            | category      | additional_details                                        | error_details                                                                                                                                       | tenant_id      |
@@ -151,13 +151,13 @@ Example 3 - AUDITLOG_USERNAME
 -----------------------
 The following is the ``AUDITLOG`` command using the ``USERNAME`` filter:
 
-.. code-block:: console
+.. code-block:: postgres
 
    AUDITLOG USERNAME in ('sqream', 'dbuser1');
    
 The following is the output of the ``AUDITLOG`` command using the ``USERNAME`` filter:
 
-.. code-block:: console
+.. code-block:: postgres
 
    +---------+-----------------+------------------+---------------+---------------------------------------+---------------+------------------------+---------------------+--------------------+---------------+----------------------------------------------------------------------+--------------------+
    | id      | time_stamp      | last_update      | username      | session_id                            | query_id      | client_ip_address      | client_version      | status             | category      | additional_details                                                   | error_details      |

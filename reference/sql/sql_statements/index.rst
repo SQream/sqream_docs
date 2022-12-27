@@ -126,7 +126,9 @@ The following table shows the Utility commands:
    * - Command
      - Usage
    * - :ref:`ABORT<abort>`
-     - Performs a graceful stop on active statements. 
+     - Performs a graceful stop on active statements.
+   * - :ref:`AUDIT LOG<audit_log>`
+     - Investigates system historic events and tracks user activity and incident response. 
    * - :ref:`DROP SAVED QUERY<drop_saved_query>`
      - Drops a saved query
    * - :ref:`EXECUTE SAVED QUERY<execute_saved_query>`
@@ -190,6 +192,8 @@ The following table shows the Access Control commands:
      - Applies a change to an existing role
    * - :ref:`create_role`
      - Creates a roles, which lets a database administrator control permissions on tables and databases
+   * - :ref:`describe_roles`
+     - Lists all system roles
    * - :ref:`drop_role`
      - Removes roles
    * - :ref:`get_role_permissions`

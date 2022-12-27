@@ -90,8 +90,6 @@ Once created, you can build and run the following query based on the above:
      rs2.name as "grant_to",
      pts.name  as "permission_type"
    from sqream_catalog.table_default_permissions tdp
-   inner join sqream_catalog.roles rs1 on tdp.modifier_role_id = rs1.role_id
-   inner join sqream_catalog.roles rs2 on tdp.getter_role_id = rs2.role_id
    left join sqream_catalog.schemas ss on tdp.schema_id = ss.schema_id
    inner join sqream_catalog.permission_types pts on pts.permission_type_id=tdp.permission_type
    ;   
