@@ -21,7 +21,6 @@ This section summarizes the following operational guides:
    logging
    monitoring_query_performance
    security
-   ldap
    saved_queries
    seeing_system_objects_as_ddl
    configuration

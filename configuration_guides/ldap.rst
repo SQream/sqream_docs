@@ -5,7 +5,7 @@ Configuring LDAP authentication
 *************************************
 
 
-Lightweight Directory Access Protocol (LDAP) is an authentication management service. Once LDAP is configured to authenticate SQream users, all existing roles, with the exception of a ``SUPERUSER``, are required to be authenticated by an LDAP server.
+Lightweight Directory Access Protocol (LDAP) is an authentication management service. Once LDAP is configured to authenticate SQream users, all existing SQream roles, with the exception of a ``SUPERUSER``, will be required to be authenticated by an LDAP server.
 
 	 
 
@@ -17,7 +17,7 @@ Lightweight Directory Access Protocol (LDAP) is an authentication management ser
 Configuring SQream roles
 ========================
 
-It is recommended that SQream roles be configured before implementing LDAP authentication.
+It is recommended that SQream roles be configured before implementing LDAP authentication. 
 
 
 **Procedure**
@@ -45,7 +45,7 @@ It is recommended that SQream roles be configured before implementing LDAP authe
 
 
 Configuring LDAP Authentication
-============================
+===============================
 
 Flag Attributes
 ---------------
@@ -62,7 +62,7 @@ To enable LDAP Authentication, configure the following **cluster** flag attribut
    * - ``ldapDomain``
      - Configure users` domain.
    * - ``ldapIpAddress``
-     - Configure the IP address of your LDAP server and select a protocol. Out of the ``ldap`` and ``ldaps``, we recommend to use the encrypted ``ldaps`` protocol.
+     - Configure the IP address or the Fully Qualified Domain Name (FQDN) of your LDAP server and select a protocol. Out of the ``ldap`` and ``ldaps``, we recommend to use the encrypted ``ldaps`` protocol.
    * - ``ldapConnTimeoutSec``
      - Configure the LDAP connection timeout threshold (seconds). The default is 30 seconds.
 .. comment::
@@ -70,7 +70,7 @@ To enable LDAP Authentication, configure the following **cluster** flag attribut
 Enabling LDAP Authentication
 -------------------------------
 
-Only roles with admin privileges or higher may enable LDAP Authentication. 
+Only roles with SQream ``SUPERUSER`` privileges or higher may enable LDAP Authentication. 
 
 **Procedure**
 
@@ -98,16 +98,18 @@ Only roles with admin privileges or higher may enable LDAP Authentication.
 
 	ALTER SYSTEM SET authenticationMethod = 'ldap';
 
-5. **Reset all ``sqreamd`` servers.** 
+5. Restart all sqreamd servers. 
 
 
 Disabling LDAP Authentication
 -----------------------------
 
-To disable LDAP authentication and configure sqream authentication, use the following syntax:
+To disable LDAP authentication and configure sqream authentication: 
+
+1. Execute the following syntax:
 
 .. code-block:: postgres	
 
 	ALTER SYSTEM SET authenticationMethod = 'sqream';
 
-
+2. Restart all sqreamd servers.  
