@@ -53,23 +53,23 @@ Output
      - Example
    * - ``id``
      - Role id
-     - int
+     - INT
      - 1
    * - ``name``
      - Role name
-     - text
+     - TEXT
      - new_role1
    * - ``superuser``
      - Validates whether or not role is a ``SUPERUSER``
-     - Bool
+     - BOOL
      - 0
    * - ``login``
      - Validates whether or not role has login privileges
-     - Bool
+     - BOOL
      - 1
    * - ``has_password``
      - Validates whether or not role has a password.
-     - Bool
+     - BOOL
      - 0
 
 Examples
