@@ -96,7 +96,7 @@ The following table shows the ``COPY_TO`` elements:
    * - ``MAX_FILE_SIZE``
      - Sets the maximum file size (bytes). Default value: 16*2^20 (16MB).
    * - ``ENFORCE_SINGLE_FILE``
-     - Enforces the maximum file size (bytes). Permitted values: ``true`` - creates one file of unlimited size, ``false`` - permits creating several files together limited by the ``MAX_FILE_SIZE``. When set to ``true``, the single file size is not limited by the ``MAX_FILE_SIZE`` setting. When set to ``false``, the combined file sizes cannot exceed the ``MAX_FILE_SIZE``. Default value: ``FALSE``.
+     - Enforces the maximum file size (bytes). Permitted values: ``true`` - creates one file of unlimited size, ``false`` - permits creating several files together limited by the ``MAX_FILE_SIZE``. When set to ``true``, the single file size is not limited by the ``MAX_FILE_SIZE`` setting. When set to ``false``, the combined file sizes cannot exceed the ``MAX_FILE_SIZE``. Default value: ``TRUE``.
 
 Usage Notes
 ===============
