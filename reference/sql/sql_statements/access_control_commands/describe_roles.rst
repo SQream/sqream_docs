@@ -85,7 +85,7 @@ The following is the syntax for the ``DESCRIBE ROLES LIKE`` command:
 The following is the output for the ``DESCRIBE ROLES LIKE`` command:
 
 
-.. code-block:: postgres
+.. code-block:: console
 
 	id|name     |superuser|login|has_password|
 	--+---------+---------+-----+------------+
