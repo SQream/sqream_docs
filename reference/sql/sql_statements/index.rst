@@ -48,6 +48,8 @@ The following table shows the Data Definition commands:
      - Create a new view in the database
    * - :ref:`DESCRIBE_VIEWS<describe_views>`
      - Creates a list of database views
+   * - :ref:`DESCRIBE QUERY<describe_query>`
+     - Displays information about query execution for monitoring and troubleshooting purposes
    * - :ref:`DESCRIBE DATABASES<describe_databases>`
      - Lists information about the databases in your cluster
    * - :ref:`DESCRIBE SCHEMAS<describe_schemas>`

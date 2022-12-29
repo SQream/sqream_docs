@@ -63,7 +63,7 @@ Output
      - BOOL
      - 0
    * - ``login``
-     - Validates whether or not role has login privileges. Enabled for actual users.
+     - Validates whether or not role has login privileges. Enabled for actual users
      - BOOL
      - 1
    * - ``has_password``
