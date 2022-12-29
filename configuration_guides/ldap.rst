@@ -5,13 +5,12 @@ Configuring LDAP authentication
 *************************************
 
 
-Lightweight Directory Access Protocol (LDAP) is an authentication management service. Once LDAP is configured to authenticate SQream users, all existing SQream roles, with the exception of a ``SUPERUSER``, will be required to be authenticated by an LDAP server.
+Lightweight Directory Access Protocol (LDAP) is an authentication management service. Once it has been configured to authenticate SQream roles, all existing and newly added roles will be required to be authenticated by an LDAP server, with the exception of the initial system deployment ``sqream`` role, which is granted full control permissions upon deployment.
 
-It is recommended that SQream roles be configured before integrating LDAP authentication.
+Prior to integrating SQream with LDAP, two preconditions must be considered:
 
-This is ideal for when:
-	* SQream DB is being installed within an environment which had already been integrated with LDAP
-	* Creating a new SQream role when SQream DB had already been integrated with LDAP
+	* If SQream DB is being installed within an LDAP-integrated environment, it is best practice to ensure that the newly created SQream role names are consistent with existing LDAP user names.
+	* If LDAP is being integrated with a SQream environment, it is best practice to ensure that the newly created LDAP user names are consistent with existing SQream role names. Note that after LDAP has been successfully integrated, SQream roles that were mistakenly not configured or have conflicting names with LDAP will be recreated in SQream as roles without the ability to log in, without permissions, and without a default schema.
 
 .. contents:: In this topic:
    :local:
@@ -44,7 +43,6 @@ Configuring SQream roles
 	GRANT CONNECT ON DATABASE <my_database> TO <new_role>;
 
 
-.. note:: If no role exists but LDAP authentication is successful, a role with no login or connection permissions will be added.
 
 
 Configuring LDAP Authentication
@@ -81,13 +79,13 @@ Only roles with SQream ``SUPERUSER`` privileges or higher may enable LDAP Authen
 
 .. code-block:: postgres
 
-	ALTER SYSTEM SET ldapIpAddress = 'ldaps://<192.168.10.20>';
+	ALTER SYSTEM SET ldapIpAddress = '<ldaps://192.168.10.20>';
 
 2. Set the ``ldapDomain`` attribute:
 
 .. code-block:: postgres
 
-	ALTER SYSTEM SET ldapDomain = <'@sqream.loc'>;
+	ALTER SYSTEM SET ldapDomain = '<@sqream.loc>';
 
 3. To set the ``ldapConnTimeoutSec`` attribute (Optional), run:
 
