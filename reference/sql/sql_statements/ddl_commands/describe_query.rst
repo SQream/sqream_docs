@@ -162,3 +162,5 @@ Permissions
 Users may execute ``DESCRIBE QUERY`` on their own sessions.
 
 ``SUPERUSER`` may execute ``DESCRIBE QUERY`` on any session.
+
+
