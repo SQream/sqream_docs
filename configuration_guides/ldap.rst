@@ -5,7 +5,7 @@ Configuring LDAP authentication
 *************************************
 
 
-Lightweight Directory Access Protocol (LDAP) is a Microsoft Active Directory authentication management service. Once LDAP is configured to authenticate SQream users, all existing SQream roles, with the exception of a ``SUPERUSER``, will be required to be authenticated by an LDAP server.
+Lightweight Directory Access Protocol (LDAP) is an authentication management service. Once LDAP is configured to authenticate SQream users, all existing SQream roles, with the exception of a ``SUPERUSER``, will be required to be authenticated by an LDAP server.
 
 It is recommended that SQream roles be configured before integrating LDAP authentication.
 
