@@ -1,7 +1,7 @@
 .. _server_picker_cli_reference:
 
 *************************
-server_picker
+Server Picker
 *************************
 
 SQream DB's load balancer is called ``server_picker``.
