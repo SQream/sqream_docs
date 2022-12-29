@@ -5,7 +5,7 @@ Configuring LDAP authentication
 *************************************
 
 
-Lightweight Directory Access Protocol (LDAP) is an authentication management service. Once it has been configured to authenticate SQream roles, all existing and newly added roles will be required to be authenticated by an LDAP server, with the exception of the initial system deployment ``sqream`` role, which is granted full control permissions upon deployment.
+Lightweight Directory Access Protocol (LDAP) is an authentication management service widely use with Microsoft Active Directory. Once it has been configured to authenticate SQream roles, all existing and newly added roles will be required to be authenticated by an LDAP server, with the exception of the initial system deployment ``sqream`` role, which is granted full control permissions upon deployment.
 
 Prior to integrating SQream with LDAP, two preconditions must be considered:
 
@@ -19,8 +19,6 @@ Prior to integrating SQream with LDAP, two preconditions must be considered:
 
 Configuring SQream roles
 ========================
-
-
 
 **Procedure**
 
@@ -43,6 +41,7 @@ Configuring SQream roles
 	GRANT CONNECT ON DATABASE <my_database> TO <new_role>;
 
 
+You may also wish to :ref:`rename SQream roles<rename_role>`.
 
 
 Configuring LDAP Authentication
@@ -71,7 +70,7 @@ To enable LDAP Authentication, configure the following **cluster** flag attribut
 Enabling LDAP Authentication
 -------------------------------
 
-Only roles with SQream ``SUPERUSER`` privileges or higher may enable LDAP Authentication. 
+Roles with admin privileges or higher may enable LDAP Authentication. 
 
 **Procedure**
 
