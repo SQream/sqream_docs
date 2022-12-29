@@ -9,6 +9,8 @@ The 4.0.0 release notes were released on xx/xx/20xx and describe the following:
    :local:
    :depth: 1      
 
+SQream is introducing a more commonly used versioning system, beginning with 4.0.0 as a minor version.
+
 New Features
 ----------
 
