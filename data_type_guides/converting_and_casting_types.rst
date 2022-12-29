@@ -3,7 +3,7 @@
 *************************
 Converting and Casting Types
 *************************
-SQream supports explicit and implicit casting and type conversion. The system may automatically add implicit casts when combining different data types in the same expression. In many cases, while the details related to this are not important, they can affect the query results of a query. When necessary, an explicit cast can be used to override the automatic cast added by SQream DB.
+SQream supports explicit and implicit casting and type conversion. The system may automatically add implicit casts when combining different data types in the same expression. In many cases, while the details related to this are not important, they can affect the results of a query. When necessary, an explicit cast can be used to override the automatic cast added by SQream DB.
 
 For example, the ANSI standard defines a ``SUM()`` aggregation over an ``INT`` column as an ``INT``. However, when dealing with large amounts of data this could cause an overflow. 
 
@@ -25,4 +25,24 @@ SQream supports the following three data conversion types:
   
 * See the :ref:`SQL functions reference <sql_functions>` for additional functions that convert from a specific value which is not an SQL type, such as :ref:`from_unixts`, etc.
 
-.. note:: SQream interprets integer constants exceeding the maximum bigint value as float constants, which may cause precision loss.
+
+Supported Casts
+---------------
+
++----------------------------------------------+-----------+----------------------------------------------+-----------------+--------------+------------------------+-----------------------+
+|                                              | **BOOL**  | **TINYINT**/**SMALLINT**/**INT**/**BIGINT**  | **REAL/FLOAT**  | **NUMERIC**  | **DATE**/**DATETIME**  | **VARCHAR**/**TEXT**  |
++==============================================+===========+==============================================+=================+==============+========================+=======================+
+| **BOOL**                                     | N/A       | ✓                                            | ✗               | ✗            | ✗                      | ✓                     |
++----------------------------------------------+-----------+----------------------------------------------+-----------------+--------------+------------------------+-----------------------+
+| **TINYINT**/**SMALLINT**/**INT**/**BIGINT**  | ✓         | N/A                                          | ✓               | ✓            | ✗                      | ✓                     |
++----------------------------------------------+-----------+----------------------------------------------+-----------------+--------------+------------------------+-----------------------+
+| **REAL/FLOAT**                               | ✗         | ✓                                            | N/A             | ✓            | ✗                      | ✓                     |
++----------------------------------------------+-----------+----------------------------------------------+-----------------+--------------+------------------------+-----------------------+
+| **NUMERIC**                                  | ✗         | ✓                                            | ✓               | N/A          | ✗                      | ✓                     |
++----------------------------------------------+-----------+----------------------------------------------+-----------------+--------------+------------------------+-----------------------+
+| **DATE**/**DATETIME**                        | ✗         | ✗                                            | ✗               | ✗            | N/A                    | ✓                     |
++----------------------------------------------+-----------+----------------------------------------------+-----------------+--------------+------------------------+-----------------------+
+| **VARCHAR**/**TEXT**                         | ✓         | ✓                                            | ✓               | ✓            | ✓                      | N/A                   |
++----------------------------------------------+-----------+----------------------------------------------+-----------------+--------------+------------------------+-----------------------+
+
+ :check_mark:
