@@ -1,37 +1,98 @@
-.. _net:
+.. _kafka:
 
 *************************
-Connecting to SQream Using .NET
+Connecting to SQream Using Kafka
 *************************
-The SqreamNet ADO.NET Data Provider lets you connect to SQream through your .NET environment.
 
-The .NET page includes the following sections:
+Intro to Kafka producer, consumer, and loader.
+Data formats
+Confluent GUI
+
+
+The Kafka page includes the following sections:
 
 .. contents:: 
    :local:
    :depth: 1
 
-Integrating SQreamNet
+Getting Started
 ==================================
-The **Integrating SQreamNet** section describes the following:
+System requirements
+-------------------
+No system requirements
 
-.. contents:: 
-   :local:
-   :depth: 1
+
+Download Kafka connector files
+------------------------------
+
+
+Installation and configuration
+=============
 
 Prerequisites
 ----------------
-The SqreamNet provider requires a .NET version 6 or newer.
+Both Kafka consumer and SQream loader require JAVA 11.
 
-Getting the DLL file
-----------------
-The .NET driver is available for download from the :ref:`client drivers download page<client_drivers>`.
 
-Integrating SQreamNet
--------------------------
-After downloading the .NET driver, save the archive file to a known location. Next, in your IDE, add a Sqreamnet.dll reference to your project.
 
-If you wish to upgrade SQreamNet within an existing project, you may replace the existing .dll file with an updated one or change the project's reference location to a new one.
+Kafka producer
+==============
+
+Installing Kafka producer
+---------------------------
+The Kafka producer is installed on the 192.168.0.125 server.
+
+Operating Kafka producer
+--------------------------
+
+For the producer to properly function, two processes must continuously be running: Kafka producer and Zookeeper. Note that Kafka producer will not run unless Zookeeper is already running.
+
+Running Zookeeper:
+
+.. code-block:: postgres
+
+	cd /home/sqream/kafka_2.12-3.2.1/
+	bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
+	
+Running Kafka producer:	
+
+.. code-block:: postgres
+
+	cd /home/sqream/kafka_2.12-3.2.1/
+	bin/kafka-server-start.sh -daemon  config/server.properties
+	
+Creating a new topic:
+
+.. code-block:: postgres
+
+	cd /home/sqream/kafka_2.12-3.2.1/
+	bin/kafka-topics.sh --create --bootstrap-server localhost:2181 --replication-factor 1 --partitions 1 --topic <topic name>
+	
+Reading data from a topic:
+
+.. code-block:: postgres
+
+	cd /home/sqream/kafka_2.12-3.2.1/
+	./kafka-console-consumer.sh --topic <topic name> --from-beginning --bootstrap-server localhost:9092
+	
+Loading data from a file:
+
+.. code-block:: postgres
+
+	cd /home/sqream/kafka_2.12-3.2.1/
+	./kafka-console-producer.sh --bootstrap-server localhost:9092 --topic <topic name> < <full path to file>
+
+To close Kafka producer, you must first stop the producer and only then stop Zookeeper. 
+
+Closing Kafka producer: 
+
+.. code-block:: postgres
+
+	cd /home/sqream/kafka_2.12-3.2.1/
+	bin/kafka-server-stop.sh
+	
+Verifying that the producer is running
+--------------------------------------
 
 
 Known Driver Limitations

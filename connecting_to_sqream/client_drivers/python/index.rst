@@ -1,7 +1,7 @@
 .. _pysqream:
 
 *************************
-Python (pysqream)
+Connecting to SQream Using Python (pysqream)
 *************************
 The **Python** connector page describes the following:
 

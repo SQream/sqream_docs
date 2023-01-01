@@ -1,7 +1,7 @@
 .. _nodejs:
 
 *************************
-Node.JS
+Connecting to SQream Using Node.JS
 *************************
 
 The SQream DB Node.JS driver allows Javascript applications and tools connect to SQream DB.

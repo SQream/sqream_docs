@@ -1,7 +1,7 @@
 .. _odbc:
 
 *************************
-ODBC
+Connecting to SQream Using ODBC
 *************************
 
 .. toctree::

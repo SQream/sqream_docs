@@ -18,22 +18,26 @@ The following are applicable to all operating systems:
 * **JDBC** - recommended installation via ``mvn``:
 
   * `JDBC .jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.6.jar>`_ - sqream-jdbc-4.5.3 (.jar)
-  * `JDBC driver <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/jdbc/index.html#>`_
+  * :ref:`java_jdbc`
 
 .. _.net:
 
 * **.NET**:
 
   * `.NET .dll file <https://get.sqream-share.com/share/sIsu8fxv>`_ 
-  * `.NET driver <https://docs.sqream.com/en/v2022.1.6/connecting_to_sqream/client_drivers/dotnet/index.html>`_
+  * :ref:`net`
 
+* **Kafka**:
+
+  * `Kafka  file <>`_ 
+  * :ref:`kafka`
 
 .. _python:
 
 * **Python** - Recommended installation via ``pip``:
 
   * `Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.1.3>`_ - pysqream v3.1.3 (.tar.gz)
-  * `Python driver <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/python/index.html>`_
+  * :ref:`pysqream`
 
 
 .. _nodejs:
@@ -41,7 +45,7 @@ The following are applicable to all operating systems:
 * **Node.JS** - Recommended installation via ``npm``:
 
   * `Node.JS <https://sq-ftp-public.s3.amazonaws.com/sqream-sqreamdb-4.2.4.tgz>`_ - sqream-v4.2.4 (.tar.gz)
-  * `Node.JS driver <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/nodejs/index.html>`_
+  * :ref:`nodejs`
 
 
 .. _tableau_connector:   
@@ -49,7 +53,7 @@ The following are applicable to all operating systems:
 * **Tableau**:
 
   * `Tableau connector <https://sq-ftp-public.s3.amazonaws.com/SQreamDB.taco>`_ - SQream (.taco)
-  * `Tableau manual installation <https://docs.sqream.com/en/v2021.1/third_party_tools/client_platforms/tableau.html#>`_
+  * :ref:`tableau`
 
   
 .. _powerbi_connector:   
@@ -57,7 +61,7 @@ The following are applicable to all operating systems:
 * **Power BI**:
 
   * `Power BI PowerQuery connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_ - SQream (.mez)
-  * `Power BI manual installation <https://docs.sqream.com/en/v2021.1/third_party_tools/client_platforms/power_bi.html>`_
+  * :ref:`power_bi`
 
 
 Windows
