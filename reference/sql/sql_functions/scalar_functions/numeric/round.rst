@@ -32,7 +32,7 @@ Arguments
 Returns
 ============
 
-``ROUND``always returns a ``double`` floating point number.
+``ROUND`` always returns a ``double`` floating point number.
 
 Notes
 =======
