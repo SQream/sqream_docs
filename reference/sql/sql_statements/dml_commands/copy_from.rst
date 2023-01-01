@@ -9,7 +9,7 @@ COPY FROM
 .. note:: 
    * Learn how to migrate from CSV files in the :ref:`csv` guide
    * To copy data from a table to a file, see :ref:`COPY TO<copy_to>`.
-   * To load Parquet or ORC files, see :ref:`CREATE FOREIGN TABLE<create_foreign_table>`
+   * To load Parquet, ORC, or JSON files, see :ref:`CREATE FOREIGN TABLE<create_foreign_table>`
 
 Permissions
 =============
@@ -82,7 +82,7 @@ Syntax
    Some options are applicable to CSVs only.
 
    These include:
-   ``OFFSET``, ``LIMIT``, ``DELIMITER``, ``RECORD_DELIMITER``, ``REJECTED_DATA``, ``DATETIME_FORMAT``
+   ``DELIMITER``, ``RECORD_DELIMITER``, and ``REJECTED_DATA``.
 
 .. _copy_from_config_options:
 
@@ -107,7 +107,7 @@ Elements
      - Specifies an alternative quote character. The quote character must be a single, 1-byte printable ASCII character, and the equivalent octal syntax of the copy command can be used. The quote character cannot be contained in the field delimiter, the record delimiter, or the null marker. ``QUOTE`` can be used with ``csv_fdw`` in **COPY FROM** and foreign tables.
    * - ``name_fdw``
      - 
-     - ``csv_fdw``, ``orc_fdw``, or ``parquet_fdw``
+     - ``csv_fdw``, ``orc_fdw``, ``parquet_fdw``, or ``json_fdw``.
      - The name of the Foreign Data Wrapper to use
    * - ``LOCATION``
      - None
@@ -176,6 +176,11 @@ Elements
      - None
      - 
      - Specifies the authentication details for secured S3 buckets
+
+
+
+
+
 
 .. _copy_date_parsers:
 
@@ -429,6 +434,13 @@ Loading a Standard CSV File
 .. code-block:: postgres
    
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.csv');
+   
+Loading a JSON File
+------------------------------
+
+.. code-block:: postgres
+   
+   COPY table_name FROM WRAPPER json_fdw OPTIONS (location = '/tmp/file.json');
 
 
 Skipping Faulty Rows

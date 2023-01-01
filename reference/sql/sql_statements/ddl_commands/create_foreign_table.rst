@@ -44,7 +44,7 @@ Syntax
    table_name ::= identifier  
 
    fdw_name ::= 
-       { csv_fdw | orc_fdw | parquet_fdw }
+       { csv_fdw | orc_fdw | parquet_fdw | json_fdw }
    
    option_def ::= 
    {
@@ -93,7 +93,7 @@ Parameters
    * - ``column_def``
      - A comma separated list of column definitions. A minimal column definition includes a name identifier and a datatype. Other column constraints and default values can be added optionally.
    * - ``WRAPPER ...``
-     - Specifies the format of the source files, such as ``parquet_fdw``, ``orc_fdw``, or ``csv_fdw``.
+     - Specifies the format of the source files, such as ``parquet_fdw``, ``orc_fdw``, ``csv_fdw``, or ``json_fdw``
    * - ``LOCATION = ...``
      - Specifies a path or URI of the source files, such as ``/path/to/*.parquet``.
    * - ``DELIMITER = ...``
