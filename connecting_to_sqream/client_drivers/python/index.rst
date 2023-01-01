@@ -165,7 +165,7 @@ The following is a standard connection example:
    res = engine.execute('select * from test')
 
 Pulling a Table into Pandas
----------------------------------
+---------------------------
 The following example shows how to pull a table in Pandas. This examples uses the URL method to create the connection string:
 
 .. code-block:: python

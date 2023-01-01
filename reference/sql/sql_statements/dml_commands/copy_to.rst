@@ -90,7 +90,7 @@ The following table shows the ``COPY_TO`` elements:
    * - ``HEADER``
      - The CSV file will contain a header line with the names of each column in the file. This option is allowed only when using CSV format.
    * - ``DELIMITER``
-     - Specifies the character that separates fields (columns) within each row of the file. The default is a comma character (``,``).
+     - Specifies the character or string that separates fields (columns) within each row of the file. The default is a comma character (``,``).
    * - ``AWS_ID``, ``AWS_SECRET``
      - Specifies the authentication details for secured S3 buckets
    * - ``MAX_FILE_SIZE``
@@ -269,8 +269,6 @@ The following table shows the unsupported ASCII field delimiters:
 +-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
 | 34        | "             | Double Quote           | 42        | 22      | 100010     | &#34;         | &quot;        |
 +-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
-| 39        | '             | Single Quote           | 47        | 27      | 100111     | &#39;         | &apos;        |
-+-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
 | 45        | -             | Minus Sign             | 55        | 2D      | 101101     | &#45;         | &minus;       |
 +-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
 | 46        | .             | Period                 | 56        | 2E      | 101110     | &#46;         | &period;      |
@@ -348,6 +346,8 @@ The following table shows the unsupported ASCII field delimiters:
 | 89        | Y             | Upper Case Letter Y    | 131       | 59      | 1011001    | &#89;         |               |
 +-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
 | 90        | Z             | Upper Case Letter Z    | 132       | 5A      | 1011010    | &#90;         |               |
++-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
+| 92        | \\            | Backslash              | 134       | 5C      | 01011100   |               |               |
 +-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
 | 97        | a             | Lower Case Letter a    | 141       | 61      | 1100001    | &#97;         |               |
 +-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
