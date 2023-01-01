@@ -39,7 +39,7 @@ The following table displays the access control permissions:
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``INSERT``         | :ref:`insert` into the table                                                                                            |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``UPDATE``         | UPDATE the value of certain columns in existing rows without creating a table                                           |
+| ``UPDATE``         | :ref:`update` the value of certain columns in existing rows                                                             |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``DELETE``         | :ref:`delete` and :ref:`truncate` on the table                                                                          |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
@@ -213,7 +213,7 @@ schema statement is run.
         | INSERT
         | DELETE
         | DDL
-		| UPDATE
+        | UPDATE
         | EXECUTE
         | ALL
         }
