@@ -18,26 +18,22 @@ The following are applicable to all operating systems:
 * **JDBC** - recommended installation via ``mvn``:
 
   * `JDBC .jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.6.jar>`_ - sqream-jdbc-4.5.3 (.jar)
-  * :ref:`java_jdbc`
+  * `JDBC driver <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/jdbc/index.html#>`_
 
 .. _.net:
 
 * **.NET**:
 
   * `.NET .dll file <https://get.sqream-share.com/share/sIsu8fxv>`_ 
-  * :ref:`net`
+  * `.NET driver <https://docs.sqream.com/en/v2022.1.6/connecting_to_sqream/client_drivers/dotnet/index.html>`_
 
-* **Kafka**:
-
-  * `Kafka  file <>`_ 
-  * :ref:`kafka`
 
 .. _python:
 
 * **Python** - Recommended installation via ``pip``:
 
   * `Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.1.3>`_ - pysqream v3.1.3 (.tar.gz)
-  * :ref:`pysqream`
+  * `Python driver <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/python/index.html>`_
 
 
 .. _nodejs:
@@ -45,7 +41,7 @@ The following are applicable to all operating systems:
 * **Node.JS** - Recommended installation via ``npm``:
 
   * `Node.JS <https://sq-ftp-public.s3.amazonaws.com/sqream-sqreamdb-4.2.4.tgz>`_ - sqream-v4.2.4 (.tar.gz)
-  * :ref:`nodejs`
+  * `Node.JS driver <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/nodejs/index.html>`_
 
 
 .. _tableau_connector:   
@@ -53,7 +49,7 @@ The following are applicable to all operating systems:
 * **Tableau**:
 
   * `Tableau connector <https://sq-ftp-public.s3.amazonaws.com/SQreamDB.taco>`_ - SQream (.taco)
-  * :ref:`tableau`
+  * `Tableau manual installation <https://docs.sqream.com/en/v2021.1/third_party_tools/client_platforms/tableau.html#>`_
 
   
 .. _powerbi_connector:   
@@ -61,7 +57,7 @@ The following are applicable to all operating systems:
 * **Power BI**:
 
   * `Power BI PowerQuery connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_ - SQream (.mez)
-  * :ref:`power_bi`
+  * `Power BI manual installation <https://docs.sqream.com/en/v2021.1/third_party_tools/client_platforms/power_bi.html>`_
 
 
 Windows
