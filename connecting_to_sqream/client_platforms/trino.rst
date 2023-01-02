@@ -4,9 +4,8 @@
 Connecting to SQream Using Trino
 *************************
 
-Overview
-=====================
-The JDBC based SQream Trino plugin supports large volumes of data storage and fast querying. 
+
+If you are using Trino for distributed SQL query processing and wish to use it to connect to a SQream, follow these instructions. 
 
 
 .. contents::
@@ -31,6 +30,11 @@ Installation
    :local:
    :depth: 1
 
+JDBC
+~~~~
+
+In case JDBC is not yet configured, follow the `JDBC Client Drivers page <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/jdbc/index.html>`_ for registration and configuration guidance.
+
 
 SQream Trino Plugin
 ~~~~~~~~~~~~~~~~~~~
@@ -52,15 +56,12 @@ The SQream Trino plugin must be installed on each cluster node dedicated to Trin
 			├── trino-sqream-SNAPSHOT.jar
 			└── all dependencies
 
-JDBC
-~~~~
 
-In case JDBC is not yet deployed, follow the `JDBC Client Drivers page <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/jdbc/index.html>`_ for registration and configuration guidance.
 
 Connecting to SQream
 --------------------
 
-Trino uses catalogs for referencing stored objects such as tables, databases, and functions. Each Trino catalog may be configured with access to a single SQream database. If you wish for Trino to have access to more than one SQream database or server, you must create additional catalogs.
+Trino uses catalogs for referencing stored objects such as tables, databases, and functions. Each Trino catalog may be configured with access to a single SQream database. If you wish Trino to have access to more than one SQream database or server, you must create additional catalogs.
  
 Catalogs may be created using ``properties`` files. Start by creating a ``sqream.properties`` file and placing it under ``trino-server/etc/catalog``. 
 
@@ -137,7 +138,7 @@ Limitations
 
 SQream does not support the following SQL statements:
 
-``GRANT``
-``REVOKE``
-``SHOW GRANTSHOW ROLES``
-``SHOW ROLE GRANTS``
+* ``GRANT``
+* ``REVOKE``
+* ``SHOW GRANTSHOW ROLES``
+* ``SHOW ROLE GRANTS``
