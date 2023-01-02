@@ -136,7 +136,7 @@ Use the appropriate Trino data type for executing queries. Upon execution, incom
 Limitations
 -----------
 
-SQream does not support the following SQL statements:
+The SQream Trino plugin does not support the following SQL statements:
 
 * ``GRANT``
 * ``REVOKE``
