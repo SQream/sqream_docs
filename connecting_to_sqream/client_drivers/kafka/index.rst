@@ -249,7 +249,6 @@ What needs to be configured:
    * - ``name``
      -    
 
-
 Configuration file structure:
 
  .. code-block:: postgres
