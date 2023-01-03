@@ -103,7 +103,7 @@ Using the ``DESCRIBE QUERY`` command generates the following output:
      - public.t1
    * - ``time``
      - Query execution time
-     - Integer
+     - Text
      - 2023-01-01 11:08:22
    * - ``status``
      - Query status
