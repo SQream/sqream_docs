@@ -35,7 +35,9 @@ When loading data, SQream DB automatically decides on the compression schemes fo
 
 Compression Methods
 ------------------------
-The following table shows the available compression methods:
+In some cases, if SQream finds that the given compression method cannot effectively compress the data, it will return to the default compression type.
+
+The following table shows the supported compression methods:
 
 .. list-table:: 
    :widths: auto
