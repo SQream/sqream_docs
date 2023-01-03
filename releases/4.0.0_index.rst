@@ -4,7 +4,7 @@
 Release Notes 4.0.0
 **************************
 
-**SQream is introducing a more commonly used versioning system, beginning with 4.0.0 as a minor version.**
+**SQream is introducing a new version release system that follows the more commonly used Major.Minor.Patch versioning schema. No considerable preparations are required upon the 4.0.0 version release, as it is a minor version upgrade.**
 
 The 4.0.0 release notes were released on xx/xx/20xx and describe the following:
 
