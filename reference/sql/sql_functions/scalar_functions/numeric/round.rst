@@ -13,8 +13,10 @@ Syntax
 
 .. code-block:: postgres
 
-   ROUND( expr [, scale ] )
-
+   ROUND( numeric ) -> numeric
+   ROUND( numeric [, int ] ) -> numeric
+   ROUND( double ) -> double
+   
 Arguments
 ============
 
@@ -24,20 +26,23 @@ Arguments
    
    * - Parameter
      - Description
-   * - ``expr``
-     - Numeric expression to round
-   * - ``scale``
-     - Number of digits after the decimal point to round to. Defaults to 0 if not specified.
+   * - ``numeric``
+     - Stores numeric values such as integers, decimal numbers, and currency values
+   * - ``int``
+     - Stores integer values
 
 Returns
 ============
 
-``ROUND`` always returns a ``double`` floating point number.
+The ``ROUND()`` function returns a ``numeric`` value when used with numeric input types, such as ``integer`` or ``decimal``. When the input is ``double``, the return type is also ``double``.
+
+
+.. note:: ``integer`` data types are automatically cast to ``numeric`` data types.
 
 Notes
 =======
 
-* If the input value is NULL, the result is NULL.
+If the input value is NULL, the result is NULL.
 
 Examples
 ===========
