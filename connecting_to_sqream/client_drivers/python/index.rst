@@ -1,7 +1,7 @@
 .. _pysqream:
 
 *************************
-Python (pysqream)
+Connecting to SQream Using Python (pysqream)
 *************************
 The **Python** connector page describes the following:
 
@@ -143,29 +143,58 @@ This section includes the following examples:
 
 Standard Connection Example
 ---------------------------------
-The following is a standard connection example:
+
 
 .. code-block:: python
 
-   import sqlalchemy as sa
-   from sqlalchemy.engine.url import URL
+	import sqlalchemy as sa
+	from sqlalchemy.engine.url import URL
 
-   engine_url = URL('sqream'
-                 , username='rhendricks'
-                 , password='secret_passwor"
-                 , host='localhost'
-                 , port=5000
-                 , database='raviga'
-                 , query={'use_ssl': False})
+	engine_url = URL('sqream'
+				  , username='rhendricks'
+				  , password='secret_passwor"
+				  , host='localhost'
+				  , port=5000
+				  , database='raviga'
+				  , query={'use_ssl': False})
 
-   engine = sa.create_engine(engine_url)
+	engine = sa.create_engine(engine_url)
 
-   res = engine.execute('create table test (ints int)')
-   res = engine.execute('insert into test values (5), (6)')
-   res = engine.execute('select * from test')
+	res = engine.execute('create or replace table test (ints int, ints2 int)')
+	res = engine.execute('insert into test (ints,ints2) values (5,1), (6,2)')
+	res = engine.execute('select * from test')
+	for item in res:
+	print(item)
+	
+Multi Cluster Connection Example
+------------------------ 
+
+The following example is for using a ServerPicker:
+
+.. code-block:: python
+
+	import sqlalchemy as sa
+	from sqlalchemy.engine.url import URL
+
+
+	engine_url = URL('sqream'
+				  , username='dor'
+				  , password='DorBerg123$'
+				  , host='localhost'
+				  , port=3108
+				  , database='pushlive')
+
+	engine = sa.create_engine(engine_url,connect_args={"clustered": True})
+
+	res = engine.execute("create or replace table test100 (dor int);")
+	res = engine.execute('insert into test100 values (5), (6);')
+	res = engine.execute('select * from test100')
+	for item in res:
+			print(item)
+
 
 Pulling a Table into Pandas
----------------------------------
+---------------------------
 The following example shows how to pull a table in Pandas. This examples uses the URL method to create the connection string:
 
 .. code-block:: python
@@ -309,6 +338,7 @@ This example shows how to load 10,000 rows of dummy data to an instance of SQrea
                          , username='rhendricks', password='Tr0ub4dor&3'
                          , clustered=True)
 						 , cur = con.cursor()
+						 
 2. Create a table for loading:
 
    .. code-block:: python
