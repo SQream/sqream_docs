@@ -74,7 +74,7 @@ Default Value Constraints
 
 The ``DEFAULT`` value constraint specifies a value to use if one is not defined in an :ref:`insert` or :ref:`copy_from` statement. 
 
-The default value may be a literal, GETDATE(), or NULL.
+The default value may be a literal or NULL.
 
 .. note:: The ``DEFAULT`` constraint only applies if the column does not have a value specified in the :ref:`insert` or :ref:`copy_from` statement. You can still insert a ``NULL`` into an nullable column by explicitly inserting ``NULL``. For example, ``INSERT INTO cool_animals VALUES (1, 'Gnu', NULL)``.
 
