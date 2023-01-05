@@ -173,8 +173,7 @@ The following example is for using a ServerPicker:
 
 .. code-block:: python
 
-		import sqlalchemy as sa
-	import pandas as pd
+	import sqlalchemy as sa
 	from sqlalchemy.engine.url import URL
 
 
