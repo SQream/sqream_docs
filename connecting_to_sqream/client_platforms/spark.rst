@@ -23,8 +23,8 @@ To use Spark with SQream, you must have the following installed:
 
 
 
-Installation
-------------
+Installation and Configuration
+------------------------------
 
 .. contents::
    :local:
