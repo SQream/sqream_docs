@@ -31,7 +31,7 @@ Positional command line arguments
    * - ``TCP listen port``
      - ``3108``
      - TCP port for server picker to listen on
-   * - ``Metadata server port``
+   * - ``SSL listen port``
      - ``3109``
      - SSL port for server picker to listen on
 
