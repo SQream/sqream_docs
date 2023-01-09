@@ -1,11 +1,11 @@
 .. _spark:
 
 *************************
-Connecting to SQream Using Spark
+Using Spark With SQream
 *************************
 
 
-If you are using Spark for distributed processing and analysis and wish to use it to connect to SQream, follow these instructions. 
+If you are using Spark for distributed processing and analysis and wish to use it with SQream, follow these instructions.
 
 
 .. contents::
@@ -33,16 +33,18 @@ Installation and Configuration
 JDBC
 ~~~~
 
-In case JDBC is not yet configured, follow the `JDBC Client Drivers page <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/jdbc/index.html>`_ for registration and configuration guidance.
+If JDBC is not yet configured, follow the `JDBC Client Drivers page <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/jdbc/index.html>`_ for registration and configuration guidance.
 
 
 SQream Spark Plugin
 ~~~~~~~~~~~~~~~~~~~
 
-The SQream Spark plugin supports bi-directional data transfer between the different clusters. The Spark cluster may be self-hosted or third-party hosted, using services such as Qubole, AWS EMR, or Databricks. 
+The SQream Spark plugin supports bi-directional data transfer between the Spark and the SQream cluster.
 
-Connection Parameters
+Connection Command and Parameters
 ~~~~~~~~~~~~~~~~~~~~~
+
+**Missing connection command**
 
 .. list-table:: 
    :widths: auto
@@ -114,18 +116,20 @@ Connection Parameters
      - The name of the JDBC connection provider to use to connect to this URL, e.g. ``db2``, ``mssql``. Must be one of the providers loaded with the JDBC data source. Used to disambiguate when more than one provider can handle the specified driver and options. The selected provider must not be disabled by ``spark.sql.sources.disabledJdbcConnProviderList``.
 	 
 
-Data transfer from SQream to Spark
---------------------
+Transferring Data From SQream to Spark
+-------------------------------------
 
-1. Use the read() method of the SqlContext object to construct a DataFrameReader.
+In the Spark UI, configure Spark to write to the SQream database.
 
-2. Specify SQREAM_SOURCE_NAME using the format() method. For the definition
+1. From the SqlContext object, use the read() method to construct a DataFrameReader.
 
-3. Specify the connector options using either the option() or options() method.
+2. Use the format() method to specify SQREAM_SOURCE_NAME.
 
-4. Specify one of the following options for the table data to be read:
+3. Use either the option() or options() method to specify the connector options.
 
- * dbtable: The name of the table to be read. All columns and records are retrieved (i.e. it is equivalent to SELECT * FROM db_table).
+4. Specify one of the following options for reading tables:
+
+ * dbtable: The name of the table to be read. All columns and records are retrieved (i.e. it is equivalent to ``SELECT * FROM db_table``).
 
  * query: The exact query (SELECT statement) to run.
 	
@@ -145,8 +149,10 @@ To read query results:
 	val df: DataFrame = sqlContext.read .format(SQREAM_SOURCE_NAME) .options(sfOptions) .option("query", "<EXECUTED_QUERY> <table_name>") .load()
 
 	
-Data transfer from Spark to SQream
---------------------------------
+Transferring data From Spark to SQream
+--------------------------------------
+
+In the Spark UI, configure Spark to read from the SQream database.
 
 1. Use the write() method of the DataFrame to construct a DataFrameWriter.
 
