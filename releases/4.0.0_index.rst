@@ -4,7 +4,7 @@
 Release Notes 4.0.0
 **************************
 
-**SQream is introducing a new version release system that follows the more commonly used Major.Minor.Patch versioning schema. The newly released 4.0.0 version is a minor version upgrade and does not require considerable preparation.**
+SQream is introducing a new version release system that follows the more commonly used Major.Minor.Patch versioning schema. The newly released **4.0.0 version** is a minor version upgrade and does not require considerable preparation.
 
 The 4.0.0 release notes were released on xx/xx/20xx and describe the following:
 
@@ -42,13 +42,29 @@ Version 4.0.0 resolved Issues
 +---------------+------------------------------------------------------------------------------------------+
 |  **SQ No.**   |  **Description**                                                                         |
 +===============+==========================================================================================+
-| SQ-10544      |                                                                                          |
+| SQ-10544      | SQream Studio Worker Panel issue                                                         |
++---------------+------------------------------------------------------------------------------------------+
+| SQ-11199      | AWS S3 internal runtime error when executing ``COPY TO`` statement                       |
++---------------+------------------------------------------------------------------------------------------+
+| SQ-11296      | Slow catalog queries                                                                     |
++---------------+------------------------------------------------------------------------------------------+
+| SQ-11772      | Slow ``JOIN`` query                                                                      |
++---------------+------------------------------------------------------------------------------------------+
+| SQ-11948      | ``SAVED QUERY`` execution using ``SELECT`` or ``INSERT INTO`` returns error              |
 +---------------+------------------------------------------------------------------------------------------+
 | SQ-12228      | ``CREATE AS SELECT`` statement fails when executed with ``UNION ALL`` and ``GROUP BY``   |
 +---------------+------------------------------------------------------------------------------------------+
+| SQ-12310      | ``DICT`` compression buffer size issue                                                   |
++---------------+------------------------------------------------------------------------------------------+
+| SQ-12318      | JDBC ``insertBuffer`` parameter issue                                                    |
++---------------+------------------------------------------------------------------------------------------+
+| SQ-12364      | ``GET DDL`` foreign table output issue                                                   |
++---------------+------------------------------------------------------------------------------------------+
+| SQ-12468      | Internal compiler error                                                                  |
++---------------+------------------------------------------------------------------------------------------+
 | SQ-12580      | Server Picker GPU dependency                                                             |
 +---------------+------------------------------------------------------------------------------------------+
-| SQ-12652      | Result panel adjustment                                                                  |
+| SQ-12652      | SQream Studio result panel adjustment                                                    |
 +---------------+------------------------------------------------------------------------------------------+
 
 Configuration Changes
