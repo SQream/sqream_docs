@@ -4,7 +4,8 @@
 Connecting to SQream Using Kafka
 *************************
 
-This page describes how to connect SQream with Kafka Apache. 
+If you are using Kafka Apache for distributed streaming and wish to use it with SQream, follow these instructions.
+
 
 .. contents:: 
    :local:
@@ -42,9 +43,7 @@ Supported Data Formats
 Kafka Producer
 --------------
 
-The Kafka Producer can be used for creating new topics, reading data from existing topics, and loading data from files.
-
-In order for the Kafka producer to operate correctly, both the Kafka producer and Zookeeper processes must be running simultaneously. If Zookeeper is not running, the Kafka producer will not start.
+The Kafka Producer requires both the Kafka producer and Zookeeper processes to be running in order to create new topics, read data from existing topics, and load data from files. If Zookeeper is not running, the Kafka producer will not start.
 
 .. contents:: 
    :local:
@@ -53,7 +52,7 @@ In order for the Kafka producer to operate correctly, both the Kafka producer an
 Kafka Producer Installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Kafka producer is installed on the 192.168.0.125 server.
+The Kafka Producer is installed on the 192.168.0.125 server.
 
 Kafka Producer Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -110,34 +109,34 @@ Loading data from a file:
 	cd /home/sqream/kafka_2.12-3.2.1/
 	./kafka-console-producer.sh --bootstrap-server localhost:9092 --topic <topic name> < <full path to file>
 
-Closing Kafka producer: 
+Terminating the Kafka Producer requires that both the Kafka Producer and Zookeeper be terminated. To avoid data inconsistency and potential data loss, terminate the Kafka Producer before terminating the Zookeeper.
 
-To close the Kafka producer, you must first stop the producer and then stop Zookeeper.
+Terminating the Kafka Producer: 
 
 .. code-block:: postgres
 
 	cd /home/sqream/kafka_2.12-3.2.1/
 	bin/kafka-server-stop.sh
 
-Kafka Consumer
+SQream Consumer
 ---------------
 
 .. contents:: 
    :local:
    :depth: 1
 
-The Kafka consumer converts data formatted as CSV and JSON into ``.tmp`` files and saves it in a predefined directory. 
+The SQream Consumer converts data formatted as CSV and JSON into ``.tmp`` files and saves it in a predefined directory. 
 You must define the number of files to be converted before they are saved as a ``sqream.batchRecordCount`` file. Once reaching the defined number of files, the consumer saves the converted files and begins the process all over again.
 
-Kafka Consumer Installation
+SQream Consumer Installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The Kafka consumer version is located under /home/sqream/kafkaconnect1, machine IP 192.168.0.102
+The SQream Consumer version is located under /home/sqream/kafkaconnect1, machine IP 192.168.0.102
 Credentials:
 user = sqream
 pass = sqprj2021$
 
-Kafka Consumer Configuration
+SQream Consumer Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 What needs to be configured:
