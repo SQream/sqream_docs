@@ -11,7 +11,7 @@ SQream's configuration parameters are based on the following hierarchy:
 
 Cluster-Based Configuration
 --------------
-Cluster-based configuration lets you centralize configurations for all workers on the cluster. Only Regular and Cluster flag types can be modified on the cluster level. These modifications are persistent and stored at the metadata level, which are applied globally to all workers in the cluster.
+Cluster-based configuration lets you centralize configurations for all workers on the cluster. Only :ref:`Regular and Cluster flag types<current_method_flag_types>` can be modified on the cluster level. These modifications are persistent and stored at the metadata level, which are applied globally to all workers in the cluster.
 
 .. note:: While cluster-based configuration was designed for configuring Workers, you can only configure Worker values set to the Regular or Cluster type.
 
