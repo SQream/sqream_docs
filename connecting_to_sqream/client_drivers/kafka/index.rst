@@ -19,26 +19,15 @@ Installation and Configuration
    :local:
    :depth: 1
 
-Prerequisites
+Before You Begin
 ----------------
- * JAVA 11
- * Network bandwidth should be not less than X Giga/Sec
- 
-Supported Data Formats
-----------------------
 
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Data Format
-     - Specification
-   * - JSON
-     -
-   * - CSV
-     - 
-   * - Avro
-     -
+* You must have JAVA 11 installed
+* Your network bandwidth must be at least X gigabits per second
+* Supported data formats for streaming data are:
+ * JSON
+ * CSV
+ * Avro
 
 Kafka Producer
 --------------
@@ -125,8 +114,9 @@ SQream Consumer
    :local:
    :depth: 1
 
-The SQream Consumer converts data formatted as CSV and JSON into ``.tmp`` files and saves it in a predefined directory. 
-You must define the number of files to be converted before they are saved as a ``sqream.batchRecordCount`` file. Once reaching the defined number of files, the consumer saves the converted files and begins the process all over again.
+The SQream Consumer reads Kafka topics and writes messages into text files in either CSV, JSON, or Avro format. The files are created with the extension ``.tmp`` and stored in the specified directory. The ``sqream.batchRecordCount`` parameter defines the number of records to be written to each file. When the specified number of records is reached, the SQream Consumer closes the file, renames it to the ``sqream.fileExtension``, and then creates a new file.
+
+SQream tables must be created according to the columns configured in ``csvorder``.
 
 SQream Consumer Installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -139,7 +129,7 @@ pass = sqprj2021$
 SQream Consumer Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-What needs to be configured:
+The following parameters require configuration.
 
 .. list-table:: 
    :widths: auto
@@ -150,11 +140,11 @@ What needs to be configured:
    * - Topic
      - A category or feed name to which messages are published and subscribed to
    * - ``sqream.batchrecordcount``
-     - Preferably configured according to an estimated number of messages
+     - The record count to be written to each file
    * - ``outputdir``
      - Copy the ``sqream.outputdir`` path, from its beginning and until ``outputs``, included, and save it to a known location. It is required to configure SQream loader to use this section of the path
    * - ``csvorder``
-     - Create table columns
+     - Defines table columns. SQream table columns must align with the ``csvorder`` table columns
 
 
 Connection string:
@@ -186,7 +176,7 @@ Configuration file structure:
 	sqream.outputType=csv
 	sqream.csvOrder=receivedTime,equipmentId,asdf,timestamp,intv
  
-SQream tables must be created according to the columns configured in ``csvorder``.
+
 
 Running commands:
 
@@ -215,7 +205,7 @@ pass = sqprj2021$
 SQream Loader Configuration 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Building SQream loader:
+Building the SQream Loader:
 
  .. code-block:: postgres
  
@@ -223,7 +213,7 @@ Building SQream loader:
 	mvn clean package
 
 
-Running SQream loader:
+Running the SQream Loader:
 
  .. code-block:: postgres
 
@@ -235,6 +225,7 @@ What needs to be configured:
 .. list-table:: 
    :widths: auto
    :header-rows: 1
+   
    
    * - Parameter
      - Description
