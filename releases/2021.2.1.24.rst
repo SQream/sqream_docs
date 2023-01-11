@@ -65,7 +65,7 @@ The following worker level configuration flags were added:
 
     ::
 
- * :ref:`healer_max_inactivity_hours`
+ * :ref:`healer_max_statement_inactivity_seconds`
 
 Naming Changes
 -------
