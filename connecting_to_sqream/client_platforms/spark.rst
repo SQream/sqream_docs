@@ -12,17 +12,6 @@ If you are using Spark for distributed processing and analysis and wish to use i
    :local:
    :depth: 1
 
-Prerequisites
--------------
-To use Spark with SQream, you must have the following installed:
-
-* SQream version 2022.1.8 or later
-* Spark version 3.3.1 or later
-* SQream Spark plugin 1.0.0
-* JDBC version 4.5.6 or later
-
-
-
 Installation and Configuration
 ------------------------------
 
@@ -30,36 +19,48 @@ Installation and Configuration
    :local:
    :depth: 1
 
+Before You Begin
+~~~~~~~~~~~~~~~~
+
+To use Spark with SQream, you must have the following installed:
+
+* SQream version 2022.1.8 or later
+* Spark version 3.3.1 or later
+* SQream Spark Connector 1.0.0
+* JDBC version 4.5.6 or later
+
 JDBC
 ~~~~
 
 If JDBC is not yet configured, follow the `JDBC Client Drivers page <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/jdbc/index.html>`_ for registration and configuration guidance.
 
 
-SQream Spark Plugin
+SQream-Spark Connector
 ~~~~~~~~~~~~~~~~~~~
 
-The SQream Spark plugin supports bi-directional data transfer between the Spark and the SQream cluster.
+The SQream-Spark Connector enables inserting DataFrames into SQream tables and export tables or queries as DataFrames for use with Spark. DataFrames are Spark objects used for transferring data from one data source to another.
 
-How to use with Spark Shell
-~~~~~~~~~~~~~~~~~~~~~
 
-Plugin command:
+The SQream-Spark Connector command for Spark Shell:
 
 .. code-block:: postgres
 
 		./spark-shell --driver-class-path {driver path}  --jars {Spark-Sqream-Connector.jar path}
 
 
-Plugin command example:
+An example for the SQream-Spark Connector command:
 
 .. code-block:: postgres
 
 		./spark-shell --driver-class-path /home/sqream/sqream-jdbc-4.5.6.jar  --jars Spark-Sqream-Connector-1.0.jar
 
 
+Connector Configuration
+~~~~~~~~~~~~~~~~~~~~~~~
 
-Spark options supported by SQream: 
+The Spark JDBC connection properties allow users to configure connections between Spark and databases. These properties enable database access, query execution, and result retrieval, as well as authentication, encryption, and connection pooling.
+
+The following Spark connection properties are supported by SQream: 
 
 .. list-table:: 
    :widths: auto
