@@ -4,7 +4,7 @@
 Connecting to SQream Using Kafka
 *************************
 
-If you are using Kafka Apache for distributed streaming and wish to use it with SQream, follow these instructions.
+If you are using Kafka Apache for distributed streaming and wish to use it with SQream, follow these instructions. 
 
 
 .. contents:: 
@@ -23,7 +23,7 @@ Before You Begin
 ----------------
 
 * You must have JAVA 11 installed
-* Your network bandwidth must be at least X gigabits per second
+* Your network bandwidth must be at least 100 megabits per second
 * Supported data formats for streaming data are:
  * JSON
  * CSV
