@@ -65,7 +65,6 @@ The following is the correct syntax for using the **COPY TO** statement:
 
   AWS Secret ::= string
 
-.. note:: The DELIMITER is applicable to the CSV format only.
   
 .. note:: In Studio, you must write the parameters using lower case letters. Using upper case letters generates an error.
 
@@ -90,7 +89,9 @@ The following table shows the ``COPY_TO`` elements:
    * - ``HEADER``
      - The CSV file will contain a header line with the names of each column in the file. This option is allowed only when using CSV format.
    * - ``DELIMITER``
-     - Specifies the character that separates fields (columns) within each row of the file. The default is a comma character (``,``).
+     - Specifies the character or string that separates fields (columns) within each row of the file. The default is a comma character (``,``). This option is allowed only when using CSV format.
+   * - ``RECORD_DELIMITER``
+     - Specifies the character or string that separates records in a data set. This option is allowed only when using CSV format.
    * - ``AWS_ID``, ``AWS_SECRET``
      - Specifies the authentication details for secured S3 buckets
    * - ``MAX_FILE_SIZE``
@@ -161,7 +162,7 @@ The following table shows the supported printable ASCII characters:
 +---------------+----------------------+-----------+-----------+---------+------------+---------------+---------------+
 | [             | Left Square Bracket  | 91        | 133       | 5B      | 1011011    | &#91;         | &lsqb;        |
 +---------------+----------------------+-----------+-----------+---------+------------+---------------+---------------+
-| \             | Backslash            | 92        | 134       | 5C      | 1011100    | &#92;         | &bsol;        |
+| \             | Backslash            | 92        | 134       | 5C      | 1011100    | \&\#92\;      | &bsol;        |
 +---------------+----------------------+-----------+-----------+---------+------------+---------------+---------------+
 | ]             | Right Square Bracket | 93        | 135       | 5D      | 1011101    | &#93;         | &rsqb;        |
 +---------------+----------------------+-----------+-----------+---------+------------+---------------+---------------+
@@ -269,8 +270,6 @@ The following table shows the unsupported ASCII field delimiters:
 +-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
 | 34        | "             | Double Quote           | 42        | 22      | 100010     | &#34;         | &quot;        |
 +-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
-| 39        | '             | Single Quote           | 47        | 27      | 100111     | &#39;         | &apos;        |
-+-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
 | 45        | -             | Minus Sign             | 55        | 2D      | 101101     | &#45;         | &minus;       |
 +-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
 | 46        | .             | Period                 | 56        | 2E      | 101110     | &#46;         | &period;      |
@@ -349,6 +348,8 @@ The following table shows the unsupported ASCII field delimiters:
 +-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
 | 90        | Z             | Upper Case Letter Z    | 132       | 5A      | 1011010    | &#90;         |               |
 +-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
+| 92        | \\            | Backslash              | 134       | 5C      | 01011100   | \&\#92\;      |               |
++-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
 | 97        | a             | Lower Case Letter a    | 141       | 61      | 1100001    | &#97;         |               |
 +-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
 | 98        | b             | Lower Case Letter b    | 142       | 62      | 1100010    | &#98;         |               |
@@ -379,7 +380,7 @@ The following table shows the unsupported ASCII field delimiters:
 +-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
 | 111       | o             | Lower Case Letter o    | 157       | 6F      | 1101111    | &#111;        |               |
 +-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
-| 112       | p             | Lower Case Letter p    | 160       | 70      | 1110000    | p             |               |
+| 112       | p             | Lower Case Letter p    | 160       | 70      | 1110000    | &#112;        |               |
 +-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
 | 113       | q             | Lower Case Letter q    | 161       | 71      | 1110001    | &#113;        |               |
 +-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
@@ -458,7 +459,7 @@ The following is an example of exporting a table to a TSV file with a HEADER row
 
 .. code-block:: psql
    
-	COPY nba TO WRAPPER csv_fdw OPTIONS (LOCATION = '/tmp/nba_export.csv', DELIMITER = '|', HEADER = true);
+	COPY nba TO WRAPPER csv_fdw OPTIONS (LOCATION = '/tmp/nba_export.csv', DELIMITER = '\t', HEADER = true);
 
 .. code-block:: console
    
