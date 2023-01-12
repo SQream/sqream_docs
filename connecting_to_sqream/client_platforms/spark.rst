@@ -18,7 +18,7 @@ To use Spark with SQream, you must have the following installed:
 
 * SQream version 2022.1.8 or later
 * Spark version 3.3.1 or later
-* SQream Spark plugin xxxx
+* SQream Spark plugin 1.0.0
 * JDBC version 4.5.6 or later
 
 
@@ -41,10 +41,25 @@ SQream Spark Plugin
 
 The SQream Spark plugin supports bi-directional data transfer between the Spark and the SQream cluster.
 
-Connection Command and Parameters
+How to use with Spark Shell
 ~~~~~~~~~~~~~~~~~~~~~
 
-**Missing connection command**
+Plugin command:
+
+.. code-block:: postgres
+
+		./spark-shell --driver-class-path {driver path}  --jars {Spark-Sqream-Connector.jar path}
+
+
+Plugin command example:
+
+.. code-block:: postgres
+
+		./spark-shell --driver-class-path /home/sqream/sqream-jdbc-4.5.6.jar  --jars Spark-Sqream-Connector-1.0.jar
+
+
+
+Spark options supported by SQream: 
 
 .. list-table:: 
    :widths: auto
@@ -172,6 +187,7 @@ To read an entire table:
 
 	df.write .format(SQREAM_SOURCE_NAME) .options(sfOptions) .option("<sqream_table_name>", "<table_name>") .mode(SaveMode.Overwrite) .save()
 
+
 Supported Data Types and Mapping
 --------------------------------
 
@@ -238,47 +254,6 @@ Spark data types mapped to SQream
 
 Examples
 ---------
-
-Scala
-
-.. code-block:: postgres
-
-	// Note: JDBC loading and saving can be achieved via either the load/save or jdbc methods
-	// Loading data from a JDBC source
-	val jdbcDF = spark.read
-	  .format("jdbc")
-	  .option("url", "jdbc:Sqream:dbserver")
-	  .option("dbtable", "schema.tablename")
-	  .option("user", "username")
-	  .option("password", "password")
-	  .load()
-
-	val connectionProperties = new Properties()
-	connectionProperties.put("user", "username")
-	connectionProperties.put("password", "password")
-	val jdbcDF2 = spark.read
-	  .jdbc("jdbc:Sqream:dbserver", "schema.tablename", connectionProperties)
-	// Specifying the custom data types of the read schema
-	connectionProperties.put("customSchema", "id DECIMAL(38, 0), name TEXT")
-	val jdbcDF3 = spark.read
-	  .jdbc("jdbc:postgresql:dbserver", "schema.tablename", connectionProperties)
-
-	// Saving data to a JDBC source
-	jdbcDF.write
-	  .format("jdbc")
-	  .option("url", "jdbc:Sqream:dbserver")
-	  .option("dbtable", "schema.tablename")
-	  .option("user", "username")
-	  .option("password", "password")
-	  .save()
-
-	jdbcDF2.write
-	  .jdbc("jdbc:Sqream:dbserver", "schema.tablename", connectionProperties)
-
-	// Specifying create table column data types on write
-	jdbcDF.write
-	  .option("createTableColumnTypes", "name TEXT, comments TEXT")
-	  .jdbc("jdbc:Sqream:dbserver", "schema.tablename", connectionProperties)
 	  
 JAVA
 
@@ -317,75 +292,3 @@ JAVA
 	  .option("createTableColumnTypes", "name TEXT, comments TEXT")
 	  .jdbc("jdbc:Sqream:dbserver", "schema.tablename", connectionProperties);
 	  
-Python
-
-.. code-block:: postgres
-
-	# Note: JDBC loading and saving can be achieved via either the load/save or jdbc methods
-	# Loading data from a JDBC source
-	jdbcDF = spark.read \
-		.format("jdbc") \
-		.option("url", "jdbc:Sqream:dbserver") \
-		.option("dbtable", "schema.tablename") \
-		.option("user", "username") \
-		.option("password", "password") \
-		.load()
-
-	jdbcDF2 = spark.read \
-		.jdbc("jdbc:Sqream:dbserver", "schema.tablename",
-			  properties={"user": "username", "password": "password"})
-
-	# Specifying dataframe column data types on read
-	jdbcDF3 = spark.read \
-		.format("jdbc") \
-		.option("url", "jdbc:Sqream:dbserver") \
-		.option("dbtable", "schema.tablename") \
-		.option("user", "username") \
-		.option("password", "password") \
-		.option("customSchema", "id DECIMAL(38, 0), name TEXT") \
-		.load()
-
-	# Saving data to a JDBC source
-	jdbcDF.write \
-		.format("jdbc") \
-		.option("url", "jdbc:Sqream:dbserver") \
-		.option("dbtable", "schema.tablename") \
-		.option("user", "username") \
-		.option("password", "password") \
-		.save()
-
-	jdbcDF2.write \
-		.jdbc("jdbc:Sqream:dbserver", "schema.tablename",
-			  properties={"user": "username", "password": "password"})
-
-	# Specifying create table column data types on write
-	jdbcDF.write \
-		.option("createTableColumnTypes", "name TEXT, comments TEXT") \
-		.jdbc("jdbc:Sqream:dbserver", "schema.tablename",
-			  properties={"user": "username", "password": "password"})
-			  
-R
-
-.. code-block:: postgres
-
-	# Loading data from a JDBC source
-	df <- read.jdbc("jdbc:Sqream:dbserver", "schema.tablename", user = "username", password = "password")
-
-	# Saving data to a JDBC source
-	write.jdbc(df, "jdbc:Sqream:dbserver", "schema.tablename", user = "username", password = "password")
-	
-SQL
-
-.. code-block:: postgres
-
-	CREATE TEMPORARY VIEW jdbcTable
-	USING org.apache.spark.sql.jdbc
-	OPTIONS (
-	  url "jdbc:Sqream:dbserver",
-	  dbtable "schema.tablename",
-	  user 'username',
-	  password 'password'
-	)
-
-	INSERT INTO TABLE jdbcTable
-	SELECT * FROM resultTable
