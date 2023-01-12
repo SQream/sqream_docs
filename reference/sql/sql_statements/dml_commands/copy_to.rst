@@ -65,7 +65,6 @@ The following is the correct syntax for using the **COPY TO** statement:
 
   AWS Secret ::= string
 
-.. note:: The DELIMITER is applicable to the CSV format only.
   
 .. note:: In Studio, you must write the parameters using lower case letters. Using upper case letters generates an error.
 
@@ -90,7 +89,7 @@ The following table shows the ``COPY_TO`` elements:
    * - ``HEADER``
      - The CSV file will contain a header line with the names of each column in the file. This option is allowed only when using CSV format.
    * - ``DELIMITER``
-     - Specifies the character or string that separates fields (columns) within each row of the file. The default is a comma character (``,``).
+     - Specifies the character or string that separates fields (columns) within each row of the file. The default is a comma character (``,``). This option is allowed only when using CSV format.
    * - ``RECORD_DELIMITER``
      - Specifies the character or string that separates records in a data set. This option is allowed only when using CSV format.
    * - ``AWS_ID``, ``AWS_SECRET``
