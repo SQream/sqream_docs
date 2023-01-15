@@ -63,11 +63,11 @@ An admin creates a **user** by granting login permissions and a password to a ro
 Clicking **New Role** lets you do the following:
 
  * Add and assign a role name (required)
- * Enable or disable log-in permissions for the role.
- * Set a password.
- * Assign or delete parent roles.
- * Add or delete permissions.
- * Grant the selected user with superuser permissions.
+ * Enable or disable log-in permissions for the role
+ * Set a password
+ * Assign or delete parent roles
+ * Add or delete permissions
+ * Grant the selected user with superuser permissions
  
 From the New Role panel you view directly and indirectly (or inherited) granted permissions. Disabled permissions have no connect permissions for the referenced database and are displayed in gray text. You can add or remove permissions from the **Add permissions** field. From the New Role panel you can also search and scroll through the permissions. In the **Search** field you can use the **and** operator to search for strings that fulfill multiple criteria.
 
@@ -79,13 +79,13 @@ Editing a Role
 --------------------
 Once you've created a role, clicking the **Edit Role** button lets you do the following:
 
- * Edit the role name.
- * Enable or disable log-in permissions.
- * Set a password.
- * Assign or delete parent roles.
- * Assign a role **administrator** permissions.
- * Add or delete permissions.
- * Grant the selected user with superuser permissions.
+ * Edit role name
+ * Enable or disable log-in permissions
+ * Set a password
+ * Assign or delete parent roles
+ * Assign a role **administrator** permissions
+ * Add or delete permissions
+ * Grant the selected user with superuser permissions
 
 From the Edit Role panel you view directly and indirectly (or inherited) granted permissions. Disabled permissions have no connect permissions for the referenced database and are displayed in gray text. You can add or remove permissions from the **Add permissions** field. From the Edit Role panel you can also search and scroll through the permissions. In the **Search** field you can use the **and** operator to search for strings that fulfill multiple criteria.
 
