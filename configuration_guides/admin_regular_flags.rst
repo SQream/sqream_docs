@@ -28,5 +28,5 @@ The **Regular Administration Flags** page describes **Regular** modification typ
 * `Setting Implicit Casts in ORC Files <https://docs.sqream.com/en/v2022.1.1/configuration_guides/orc_implicit_casts.html>`_
 * `Setting Timeout Limit for Locking Objects before Executing Statements <https://docs.sqream.com/en/v2022.1.1/configuration_guides/statement_lock_timeout.html>`_
 * `Interpreting Decimal Literals as Double Instead of Numeric <https://docs.sqream.com/en/v2022.1.1/configuration_guides/use_legacy_decimal_literals.html>`_
-* `Interpreting VARCHAR as TEXT <https://docs.sqream.com/en/v2022.1.1/configuration_guides/use_legacy_string_literals.html>`_
+* :ref:`Blocking New VARCHAR Objects<block_new_varchar_objects>`
 * `VARCHAR Identifiers <https://docs.sqream.com/en/v2022.1.1/configuration_guides/varchar_identifiers.html>`_
