@@ -1,7 +1,7 @@
 .. _char_length:
 
 **************************
-CHAR_LENGTH
+CHARACTER_LENGTH / CHAR_LENGTH
 **************************
 
 Calculates the number of characters in a string.
@@ -16,6 +16,7 @@ Syntax
 .. code-block:: postgres
 
    CHAR_LEN( text_expr ) --> INT
+   CHARACTER_LEN( text_expr ) --> INT
 
 Arguments
 ============
@@ -32,7 +33,7 @@ Arguments
 Returns
 ============
 
-Returns an integer containing the number of characters in the string.
+Return an integer containing the number of characters in the string.
 
 Notes
 =======
@@ -59,7 +60,7 @@ Length in characters and bytes of strings
 
 ASCII characters take up 1 byte per character, while Thai takes up 3 bytes and Hebrew takes up 2 bytes.
 
-Unlike :ref:`len`, ``CHAR_LENGTH`` preserves the trailing whitespaces.
+Unlike :ref:`len`, ``CHARACTER_LENGTH`` and ``CHAR_LENGTH`` preserve the trailing white spaces.
 
 .. code-block:: psql
 
