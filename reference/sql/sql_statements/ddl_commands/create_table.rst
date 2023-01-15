@@ -175,10 +175,7 @@ The following is an example of the syntax used to create a table with an identit
       country TEXT(30) DEFAULT 'Unknown' NOT NULL
    );
 
-.. note:: 
-   * Identity columns are supported on ``BIGINT`` columns.
-   
-   * Identity does not enforce the uniqueness of values. The identity value can be bypassed by specifying it in an :ref:`insert` command.
+.. note:: Identity does not enforce the uniqueness of values. The identity value can be bypassed by specifying it in an :ref:`insert` command.
 
 Creating a Table from a SELECT Query
 -----------------------------------------
