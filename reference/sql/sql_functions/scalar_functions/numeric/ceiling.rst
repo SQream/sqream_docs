@@ -32,7 +32,7 @@ Arguments
 Returns
 ============
 
-``CEIL`` always returns a ``double`` floating point number.
+``CEILING`` and ``CEIL`` always return a ``double`` floating point number.
 
 
 Notes
