@@ -13,7 +13,7 @@ The lowest level is Regular, which means that modifying values of Regular flags 
 
 To see each flag's default value, see one of the following:
 
-* The **Default Value** column in the :ref:`All Configurations<all_configurations>` section.
+* The **Default Value** column in the :ref:`All Configurations<current_method_all_configurations>` section.
 
    ::
    
