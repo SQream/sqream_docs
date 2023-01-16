@@ -32,23 +32,22 @@ To use Spark with SQream, you must have the following installed:
 JDBC
 ~~~~
 
-If JDBC is not yet configured, follow the `JDBC Client Drivers page <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/jdbc/index.html>`_ for registration and configuration guidance.
+If JDBC is not yet configured, follow the `JDBC Client Drivers page <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/jdbc/index.html>`_ for guidance in registring and configuring.
 
 
-SQream-Spark Connector
+Connecting Spark to SQream
 ~~~~~~~~~~~~~~~~~~~
 
-The SQream-Spark Connector enables inserting DataFrames into SQream tables and export tables or queries as DataFrames for use with Spark. DataFrames are Spark objects used for transferring data from one data source to another.
+The SQream-Spark Connector enables inserting DataFrames into SQream tables and exporting tables or queries as DataFrames for use with Spark. DataFrames are Spark objects used for transferring data from one data source to another.
 
-
-The SQream-Spark Connector command for Spark Shell:
+1. In the Spark Shell, run:
 
 .. code-block:: postgres
 
 		./spark-shell --driver-class-path {driver path}  --jars {Spark-Sqream-Connector.jar path}
 
 
-An example for the SQream-Spark Connector command:
+Example:
 
 .. code-block:: postgres
 
@@ -72,16 +71,14 @@ The following Spark connection properties are supported by SQream:
      - Description
    * - ``url``
      -
-     - The JDBC URL of the form ``jdbc:subprotocol:subname`` to connect to. The source-specific connection properties may be specified in the URL. e.g., ``jdbc:Sqream://localhost/test?user=fred&password=secret``.
+     - 
+     The JDBC URL ``jdbc:subprotocol:subname`` establishes the connection between SQream and Spark. Source-specific connection properties may be specified in the URL, such as ``user`` and ``password``, e.g. ``jdbc:Sqream://localhost/test?user=fred&password=secret``.
    * - ``dbtable``
      - 
-     - The JDBC table that should be read from or written into. Note that when using it in the read path anything that is valid in a ``FROM`` clause of a SQL query can be used. For example, instead of a full table you could also use a subquery in parentheses. It is not allowed to specify ``dbtable`` and ``query`` options at the same time.
-   * - ``dbtable``
-     - 
-     - The JDBC table that should be read from or written into. Note that when using it in the read path anything that is valid in a ``FROM`` clause of a SQL query can be used. For example, instead of a full table you could also use a subquery in parentheses. It is not allowed to specify ``dbtable`` and ``query`` options at the same time.
+     - A JDBC table to read from or write to. When reading from a ``dbtable``, anything that is valid in an SQL ``FROM`` clause may be used. For example, you may use a subquery in parentheses instead of querying a full table. It is not allowed to specify ``dbtable`` and ``query`` options at the same time.
    * - ``query``
      - 
-     - A query that will be used to read data into Spark. The specified query will be parenthesized and used as a subquery in the ``FROM`` clause. Spark will also assign an alias to the subquery clause. As an example, spark will issue a query of the following form to the JDBC Source. ``SELECT <columns> FROM (<user_specified_query>) spark_gen_alias``. Restrictions while using this option: 1. It is not allowed to specify ``dbtable`` and ``query`` options at the same time. 2. It is not allowed to specify ``query`` and ``partitionColumn`` options at the same time. When specifying ``partitionColumn`` option is required, the subquery can be specified using ``dbtable`` option instead and partition columns can be qualified using the subquery alias provided as part of ``dbtable``. Example: ``spark.read.format("jdbc").option("url", jdbcUrl).option("query", "select c1, c2 from t1").load()``
+     - The ``query`` property in Spark is used to read data into the program by specifying a query. This query is used as a subquery in the ``FROM`` clause and Spark will assign an alias to the subquery. For example, when using a JDBC Source, Spark will issue a query in the format of ``SELECT <columns> FROM (<user_specified_query>) spark_gen_alias``. It's important to note that it is not allowed to use both the ``dbtable`` and ``query`` options at the same time, and the ``query`` option cannot be used with the ``partitionColumn`` option. If the ``partitionColumn`` option is needed, it must be specified using the ``dbtable`` option and qualified using the subquery alias provided in ``dbtable``. An example of how to use this option would be: spark.read.format("jdbc").option("url", jdbcUrl).option("query", "select c1, c2 from t1").load()
    * - ``driver``
      - 
      - The class name of the JDBC driver to use to connect to this URL.
