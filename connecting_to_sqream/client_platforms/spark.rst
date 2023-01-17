@@ -71,8 +71,7 @@ The following Spark connection properties are supported by SQream:
      - Description
    * - ``url``
      -
-     - 
-     The JDBC URL ``jdbc:subprotocol:subname`` establishes the connection between SQream and Spark. Source-specific connection properties may be specified in the URL, such as ``user`` and ``password``, e.g. ``jdbc:Sqream://localhost/test?user=fred&password=secret``.
+     - The JDBC URL ``jdbc:subprotocol:subname`` establishes the connection between SQream and Spark. Source-specific connection properties may be specified in the URL, such as ``user`` and ``password``, e.g. ``jdbc:Sqream://localhost/test?user=fred&password=secret``.
    * - ``dbtable``
      - 
      - A JDBC table to read from or write to. When reading from a ``dbtable``, anything that is valid in an SQL ``FROM`` clause may be used. For example, you may use a subquery in parentheses instead of querying a full table. It is not allowed to specify ``dbtable`` and ``query`` options at the same time.
@@ -257,36 +256,33 @@ JAVA
 
 .. code-block:: postgres
 
-	// Note: JDBC loading and saving can be achieved via either the load/save or jdbc methods
-	// Loading data from a JDBC source
-	Dataset<Row> jdbcDF = spark.read()
-	  .format("jdbc")
-	  .option("url", "jdbc:Sqream:dbserver")
-	  .option("dbtable", "schema.tablename")
-	  .option("user", "username")
-	  .option("password", "password")
-	  .load();
+	import com.sqream.driver.SqreamSession;
+	import org.apache.spark.sql.Dataset;
+	import org.apache.spark.sql.Row;
 
-	Properties connectionProperties = new Properties();
-	connectionProperties.put("user", "username");
-	connectionProperties.put("password", "password");
-	Dataset<Row> jdbcDF2 = spark.read()
-	  .jdbc("jdbc:Sqream:dbserver", "schema.tablename", connectionProperties);
+	import java.util.HashMap;
 
-	// Saving data to a JDBC source
-	jdbcDF.write()
-	  .format("jdbc")
-	  .option("url", "jdbc:Sqream:dbserver")
-	  .option("dbtable", "schema.tablename")
-	  .option("user", "username")
-	  .option("password", "password")
-	  .save();
+	public class main {
+		public static void main(String[] args) {
+			HashMap<String, String> config = new HashMap<>();
+			//spark configuration
+			//optional configuration here: https://spark.apache.org/docs/latest/configuration.html
+			config.put("spark.master", "local");
+			SqreamSession sqreamSession = SqreamSession.getSession(config);
 
-	jdbcDF2.write()
-	  .jdbc("jdbc:Sqream:dbserver", "schema.tablename", connectionProperties);
+			//spark properties
+			//optional properties here: https://spark.apache.org/docs/latest/sql-data-sources-jdbc.html
+			HashMap<String, String> props = new HashMap<>();
 
-	// Specifying create table column data types on write
-	jdbcDF.write()
-	  .option("createTableColumnTypes", "name TEXT, comments TEXT")
-	  .jdbc("jdbc:Sqream:dbserver", "schema.tablename", connectionProperties);
+			props.put("url", "jdbc:Sqream://192.168.4.51:5000/master;user=sqream;password=sqream;cluster=false;logfile=logsFiles.txt;loggerlevel=DEBUG");
+			props.put("dbtable", "test");
+
+			/*Read from sqream table*/
+			Dataset<Row> dataFrame = sqreamSession.read(props);
+
+			/*Added to sqream table*/
+			sqreamSession.write(dataFrame, props);
+
+		}
+	}
 	  
