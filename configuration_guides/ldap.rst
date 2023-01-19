@@ -54,6 +54,7 @@ You may also wish to :ref:`rename SQream roles<rename_role>`.
 Configuring LDAP Authentication
 ===============================
 
+
 Flag Attributes
 ---------------
 To enable LDAP Authentication, configure the following **cluster** flag attributes using the ``ALERT SYSTEM SET`` command:
