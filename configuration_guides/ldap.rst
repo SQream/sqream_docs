@@ -10,6 +10,7 @@ Lightweight Directory Access Protocol (LDAP) is an authentication management ser
 Prior to integrating SQream with LDAP, two preconditions must be considered:
 
 	* If SQream DB is being installed within an LDAP-integrated environment, it is best practice to ensure that the newly created SQream role names are consistent with existing LDAP user names.
+	
 	* If LDAP is being integrated with a SQream environment, it is best practice to ensure that the newly created LDAP user names are consistent with existing SQream role names. Note that after LDAP has been successfully integrated, SQream roles that were mistakenly not configured or have conflicting names with LDAP will be recreated in SQream as roles without the ability to log in, without permissions, and without a default schema.
 
 .. contents:: In this topic:
