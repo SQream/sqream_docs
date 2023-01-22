@@ -72,9 +72,9 @@ To configure LDAP authentication for SQream, you may choose one of the following
    * - Method 
      - Description
    * - Basic method
-     - Use a given username in attempt to bind it to a distinguished name. To simplify usage, the ``ldapPrefix`` and ``ldapSuffix`` flags are used to construct a distinguished name built by ``ldapPrefix``, ``username``, or ``ldapSuffix``.
+     - A traditional approach to authentication in which the user provides a username and password combination to authenticate with the LDAP server. In this approach, all users are given the same level of access to the server.
    * - Advanced method
-     - Bind to the LDAP directory using a fixed username and password, which are set in the flags ``ldapBindDn`` and ``ldapBindDnPassword``. In the case that ``ldapBindDn`` and ``ldapBindDnPassword`` are not set, an anonymous bind will be attempted to the directory. A search will be preformed over the subtree set by ``ldapBaseDn``, by searching for an exact match of the given username in the attribute set in the ``ldapSearchAttribute`` flag. Only a single match is allowed in the search result. Once the user has been found in the search, the server disconnects and re-binds to the directory as this user, using the password specified by the client. Follow this procedure if you are configuring LDAP authentication for SQream.
+     - This approach allows for compartmentalization, which means that users can be grouped into categories, and each category can be assigned different levels of access to the LDAP server. This allows administrators to control access to different parts of the system.
 
 
    
