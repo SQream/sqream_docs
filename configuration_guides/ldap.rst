@@ -173,7 +173,7 @@ Logging in will be possible using the username ElonMusk using sqream client
 
 .. code-block:: postgres
 
-	./sqream sql --username=ElonMusk --password=sqream123 --databasename=master --port=636
+	./sqream sql --username=ElonMusk --password=sqream123 --databasename=master --port=5000
 
 Advanced Method
 ---------------
@@ -293,7 +293,7 @@ User has value of elonm for attribute ``sAMAccountName``.
 
 	ALTER SYSTEM SET ldapIpAddress = 'ldaps://192.168.10.20';
 	
-	ALTER SYSTEM SET ldapPort = 636
+	ALTER SYSTEM SET ldapPort = 5000
 
 	ALTER SYSTEM SET ldapBindDn = 'CN=LDAP admin,OU=network admin,DC=sqream,DC=loc';
 
@@ -310,7 +310,7 @@ Logging in will be possible using the username elonm using sqream client
 
 .. code-block:: postgres
 
-	./sqream sql --username=elonm --password=<elonm_password> --databasename=master --port=636
+	./sqream sql --username=elonm --password=<elonm_password> --databasename=master --port=5000
 	
 
 Disabling LDAP Authentication
