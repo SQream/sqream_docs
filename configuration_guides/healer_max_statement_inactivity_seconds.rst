@@ -1,7 +1,7 @@
 .. _healer_max_statement_inactivity_seconds:
 
 *************************
-Configuring the Query Healer
+Max Statement Inactivity Seconds
 *************************
 The ``maxStatementInactivitySeconds`` flag is used for defining the threshold for creating a log recording a slow statement. The log includes information about the log memory, CPU and GPU.
 

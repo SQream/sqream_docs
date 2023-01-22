@@ -11,7 +11,27 @@ The **Query Healer** page describes the following:
    
 Overview
 ----------
-The **Query Healer** periodically examines the progress of running statements, creating a log entry for all statements exceeding the ``maxStatementInactivitySeconds`` worker level flag setting. The default setting of the ``maxStatementInactivitySeconds`` is five hours. The ``maxStatementInactivitySeconds`` log frequency is calculated as 5% of the flag setting. When set to five hours (the default setting), the Query Healer triggers an examination every 15 minutes.  
+The **Query Healer** periodically examines the progress of running statements, creating a log entry for all statements exceeding a defined time period.   
+
+Configuration
+-------------
+The following **Administration Worker** flags are required to configure the Query Healer:
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+
+   * - Flag
+     - Description
+   * - ``is_healer_on``
+     - The :ref:`is_healer_on` enables and disables the Query Healer.
+   * - ``maxStatementInactivitySeconds``
+     - The :ref:`healer_max_statement_inactivity_seconds` worker level flag defines the threshold for creating a log recording a slow statement. The log includes information about the log memory, CPU and GPU. The default setting is five hours.
+   * - ``healerDetectionFrequencySeconds``
+     - The :ref:`healer_detection_frequency_seconds` worker level flag triggers the healer to examine the progress of running statements. The default setting is one hour. 
+
+Query Log
+---------------
 
 The following is an example of a log record for a query stuck in the query detection phase for more than five hours:
 
@@ -46,13 +66,3 @@ For more information, see the following:
    ::
 
 * Configuring the :ref:`shutdown_server` flag.
-
-Configuring the Healer
-------------------
-The following **Administration Worker** flags are required to configure the Query Healer:
-
- * :ref:`is_healer_on` - Enables the Query Healer.
-
-    ::
-
- * :ref:`healer_max_statement_inactivity_seconds` - Defines the threshold for creating a log recording a slow statement. The log includes information about the log memory, CPU and GPU.
