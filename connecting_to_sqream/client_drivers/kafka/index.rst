@@ -12,121 +12,40 @@ If you are using Kafka Apache for distributed streaming and wish to use it with 
    :depth: 1
 
 
-Installation and Configuration
-=============
-
-.. contents:: 
-   :local:
-   :depth: 1
-
 Before You Begin
-----------------
+================
 
 * You must have JAVA 11 installed
-* Your network bandwidth must be at least X gigabits per second
-* Supported data formats for streaming data are:
- * JSON
- * CSV
- * Avro
+* You must have `JDBC <java_jdbc>`_ installed
+* Your network bandwidth must be at least 100 mega per second
+* Supported data formats for streamed data is JSON
 
-Kafka Producer
---------------
-
-The Kafka Producer requires both the Kafka producer and Zookeeper processes to be running in order to create new topics, read data from existing topics, and load data from files. If Zookeeper is not running, the Kafka producer will not start.
+Installation and Configuration
+==============================
 
 .. contents:: 
    :local:
    :depth: 1
 
-Kafka Producer Installation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The Kafka Producer is installed on the 192.168.0.125 server.
-
-Kafka Producer Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Running Zookeeper:
-
-.. code-block:: postgres
-
-	cd /home/sqream/kafka_2.12-3.2.1/
-	bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
-	
-Running Kafka producer:	
-
-.. code-block:: postgres
-
-	cd /home/sqream/kafka_2.12-3.2.1/
-	bin/kafka-server-start.sh -daemon  config/server.properties
-	
-Verifying that both Zookeeper and Kafka producer are running:
-
-1. Log in to your machine.
- 
-2. Run the following string:
- 
- .. code-block:: postgres
- 
-	[sqream@metadata-0-125 ~]$ ps -ef |grep java
-	
-The following is an example of an output indicating that both processes are running:
-
- .. code-block:: postgres
- 
-	<JAVA_HOME>/bin/java...  org.apache.zookeeper.server.quorum.QuorumPeerMain config/zookeeper.properties
-	<JAVA_HOME>/bin/java... kafka.Kafka config/server.properties
-	
-Creating a new topic:
-
-.. code-block:: postgres
-
-	cd /home/sqream/kafka_2.12-3.2.1/
-	bin/kafka-topics.sh --create --bootstrap-server localhost:2181 --replication-factor 1 --partitions 1 --topic <topic name>
-	
-Reading data from a topic:
-
-.. code-block:: postgres
-
-	cd /home/sqream/kafka_2.12-3.2.1/
-	./kafka-console-consumer.sh --topic <topic name> --from-beginning --bootstrap-server localhost:9092
-	
-Loading data from a file:
-
-.. code-block:: postgres
-
-	cd /home/sqream/kafka_2.12-3.2.1/
-	./kafka-console-producer.sh --bootstrap-server localhost:9092 --topic <topic name> < <full path to file>
-
-Terminating the Kafka Producer requires that both the Kafka Producer and Zookeeper be terminated. To avoid data inconsistency and potential data loss, terminate the Kafka Producer before terminating the Zookeeper.
-
-Terminating the Kafka Producer: 
-
-.. code-block:: postgres
-
-	cd /home/sqream/kafka_2.12-3.2.1/
-	bin/kafka-server-stop.sh
-
-SQream Consumer
+Sink Connector
 ---------------
 
 .. contents:: 
    :local:
    :depth: 1
 
-The SQream Consumer reads Kafka topics and writes messages into text files in either CSV, JSON, or Avro format. The files are created with the extension ``.tmp`` and stored in the specified directory. The ``sqream.batchRecordCount`` parameter defines the number of records to be written to each file. When the specified number of records is reached, the SQream Consumer closes the file, renames it to the ``sqream.fileExtension``, and then creates a new file.
+The Sink Connector reads Kafka topics and writes messages into text files in either CSV, JSON, or Avro format. The files are created with the extension ``.tmp`` and stored in the specified directory. The ``sqream.batchRecordCount`` parameter defines the number of records to be written to each file. When the specified number of records is reached, the Sink Connector closes the file, renames it to the ``sqream.fileExtension``, and then creates a new file.
 
 SQream tables must be created according to the columns configured in ``csvorder``.
 
-SQream Consumer Installation
+.. figure:: /_static/images/kafka_flow.png
+
+Sink Connector Installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The SQream Consumer version is located under /home/sqream/kafkaconnect1, machine IP 192.168.0.102
-Credentials:
-user = sqream
-pass = sqprj2021$
 
-SQream Consumer Configuration
+
+Sink Connector Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following parameters require configuration.
