@@ -24,7 +24,7 @@ The following **Administration Worker** flags are required to configure the Quer
    * - Flag
      - Description
    * - ``is_healer_on``
-     - The :ref:`is_healer_on` enables the Query Healer.
+     - The :ref:`is_healer_on` enables and disables the Query Healer.
    * - ``maxStatementInactivitySeconds``
      - The :ref:`healer_max_statement_inactivity_seconds` worker level flag defines the threshold for creating a log recording a slow statement. The log includes information about the log memory, CPU and GPU. The default setting is five hours.
    * - ``healerDetectionFrequencySeconds``

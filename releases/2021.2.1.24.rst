@@ -66,6 +66,10 @@ The following worker level configuration flags were added:
     ::
 
  * :ref:`healer_max_statement_inactivity_seconds`
+ 
+    ::
+	
+ * :ref:`healer_detection_frequency_seconds`
 
 Naming Changes
 -------
