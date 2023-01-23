@@ -5,12 +5,13 @@ Configuring LDAP authentication
 *************************************
 
 
-Lightweight Directory Access Protocol (LDAP) is an authentication management service widely used with Microsoft Active Directory. Once it has been configured to authenticate SQream roles, all existing and newly added roles will be required to be authenticated by an LDAP server, with the exception of the initial system deployment ``sqream`` role, which is granted full control permissions upon deployment.
+Lightweight Directory Access Protocol (LDAP) is an authentication management service used with Microsoft Active Directory and other directory services. Once LDAP authentication has been configured for SQream, authorization for all existing and newly added roles must be handled by the LDAP server, except for the initial system deployment ``sqream`` role, which was immediately given full control permissions when SQream was initially deployed. 
 
-Prior to integrating SQream with LDAP, two preconditions must be considered:
+Before integrating SQream with LDAP consider the following:
 
-	* If SQream DB is being installed within an LDAP-integrated environment, it is best practice to ensure that the newly created SQream role names are consistent with existing LDAP user names.
-	* If LDAP is being integrated with a SQream environment, it is best practice to ensure that the newly created LDAP user names are consistent with existing SQream role names. Note that after LDAP has been successfully integrated, SQream roles that were mistakenly not configured or have conflicting names with LDAP will be recreated in SQream as roles without the ability to log in, without permissions, and without a default schema.
+* If SQream DB is being installed within an environment where LDAP is already configured, it is best practice to ensure that the newly created SQream role names are consistent with existing LDAP user names.
+
+* If SQream DB has been installed and LDAP has not yet been integrated with SQream, it is best practice to ensure that the newly created LDAP user names are consistent with existing SQream role names. Previously existing SQream roles that were mistakenly not configured in LDAP or that have names which are different than in LDAP, will be recreated in SQream as roles that cannot log in, have no permissions, and have no default schema.
 
 .. contents:: In this topic:
    :local:
@@ -39,7 +40,7 @@ Follow this procedure if you already have LDAP configured for your environment.
 	
 	CREATE ROLE <new_role>;
 
-2. Grant new role login permission:
+2. Grant the new role login permission:
 
 .. code-block:: postgres
 
@@ -82,8 +83,13 @@ Basic Method
 ------------
 
 Flag Attributes
+<<<<<<< Updated upstream
 ~~~~~~~~~~~~~~~
-To enable LDAP Authentication, configure the following **Cluster** flag attributes using the ``ALTER SYSTEM SET`` command:
+To enable LDAP authentication, configure the following **Cluster** flag attributes using the ``ALTER SYSTEM SET`` command:
+=======
+---------------
+To enable LDAP authentication, configure the following **cluster** flag attributes using the ``ALERT SYSTEM SET`` command:
+>>>>>>> Stashed changes
 
 .. list-table:: 
    :widths: auto
