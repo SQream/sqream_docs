@@ -85,7 +85,7 @@ Basic Method
 Flag Attributes
 ~~~~~~~~~~~~~~~
 
-To enable LDAP authentication, configure the following **Cluster** flag attributes using the ``ALTER SYSTEM SET`` command:
+To enable basic LDAP authentication, configure the following **Cluster** flag attributes using the ``ALTER SYSTEM SET`` command:
 
 .. list-table:: 
    :widths: auto
@@ -94,17 +94,17 @@ To enable LDAP authentication, configure the following **Cluster** flag attribut
    * - Attribute
      - Description
    * - ``authenticationMethod``
-     - Configure an authentication method. Attribute may be set to either ``sqream`` or ``ldap``. To configure LDAP authentication, choose ``ldap``. 	 
+     - Configure an authentication method: ``sqream`` or ``ldap``. To configure LDAP authentication, choose ``ldap``. 	 
    * - ``ldapIpAddress``
-     - Configure the IP address or the Fully Qualified Domain Name (FQDN) of your LDAP server and select a protocol. Out of the ``ldap`` and ``ldaps``, we recommend to use the encrypted ``ldaps`` protocol.
+     - Configure the IP address or the Fully Qualified Domain Name (FQDN) of your LDAP server and select a protocol: ``ldap`` or ``ldaps``. Sqream recommends using the encrypted ``ldaps`` protocol.
    * - ``ldapConnTimeoutSec``
-     - Configure the LDAP connection timeout threshold (seconds). The default is 30 seconds.
+     - Configure the LDAP connection timeout threshold (seconds). Default = 30 seconds.
    * - ``ldapPort``
      - LDAP server port number.
    * - ``ldapAdvancedMode``
-     - Configure either basic or advanced authentication method. Default is ``false``.
+     - Configure either basic or advanced authentication method. Default = ``false``.
    * - ``ldapPrefix``
-     - String to prepend to the user name when forming the DN to bind as, when doing simple bind authentication.
+     - String to prefix to the user name when forming the DN to bind as, when doing simple bind authentication.
    * - ``ldapSuffix``
      - String to append to the user name when forming the DN to bind as, when doing simple bind authentication.
 
@@ -112,7 +112,7 @@ To enable LDAP authentication, configure the following **Cluster** flag attribut
 Basic Method Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Only roles with admin privileges and higher may enable LDAP Authentication. 
+Only roles with admin privileges or higher may enable LDAP Authentication. 
 
 **Procedure**
 
@@ -157,7 +157,7 @@ Only roles with admin privileges and higher may enable LDAP Authentication.
 Example
 ~~~~~~~
 
-After completing the setup above we can try to bind to a user by a distinguished name. For example if the DN of the user is:
+After completing the setup above, we can try to bind to a user by a distinguished name. For example, if the DN of the user is:
 
 .. code-block:: postgres
 
@@ -183,7 +183,7 @@ Advanced Method
 Flag Attributes
 ~~~~~~~~~~~~~~~
 
-To enable LDAP Authentication, configure the following **Cluster** flag attributes using the ``ALTER SYSTEM SET`` command:
+To enable advanced LDAP authentication, configure the following **Cluster** flag attributes using the ``ALTER SYSTEM SET`` command:
 
 .. list-table:: 
    :widths: auto
@@ -192,23 +192,23 @@ To enable LDAP Authentication, configure the following **Cluster** flag attribut
    * - Attribute
      - Description
    * - ``authenticationMethod``
-     - Configure an authentication method. Attribute may be set to either ``sqream`` or ``ldap``. To configure LDAP authentication, choose ``ldap``. 	 
+     - Configure an authentication method: ``sqream`` or ``ldap``. To configure LDAP authentication, choose ``ldap``.
    * - ``ldapIpAddress``
-     - Configure the IP address or the Fully Qualified Domain Name (FQDN) of your LDAP server and select a protocol. Out of the ``ldap`` and ``ldaps``, we recommend to use the encrypted ``ldaps`` protocol.
+     - Configure the IP address or the Fully Qualified Domain Name (FQDN) of your LDAP server and select a protocol: ``ldap`` or ``ldaps``. Sqream recommends using the encrypted ``ldaps`` protocol.
    * - ``ldapConnTimeoutSec``
-     - Configure the LDAP connection timeout threshold (seconds). The default is 30 seconds.
+     - Configure the LDAP connection timeout threshold (seconds). Default = 30 seconds.
    * - ``ldapPort``
      - LDAP server port number.
    * - ``ldapAdvancedMode``
-     - Configure either basic or advanced authentication method. Default is ``false``.
+     - Set ``ldapAdvancedMode`` = ``true``.
    * - ``ldapBaseDn``
      - Root DN to begin the search for the user in, when doing advanced authentication.
    * - ``ldapBindDn``
-     - DN of user to bind to the directory with to perform the search when doing advanced authentication.
+     - DN of user with which to bind to the directory to perform the search when doing search + bind authentication.
    * - ``ldapBindDnPassword``
-     - Password for user to bind to the directory with to perform the search when doing advanced authentication.
+     - Password for user with which to bind to the directory to perform the search when doing search + bind authentication.
    * - ``ldapSearchAttribute``
-     - Attribute to match against the user name in the search when doing advanced authentication. If no attribute is specified, the ``uid`` attribute will be used.
+     - Attribute to match against the user name in the search when doing search + bind authentication. If no attribute is specified, ``the uid`` attribute will be used.
 
 Advanced Method Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
