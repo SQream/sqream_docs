@@ -73,9 +73,9 @@ To configure LDAP authentication for SQream, you may choose one of the following
    * - Method 
      - Description
    * - Basic method
-     - A traditional approach to authentication in which the user provides a username and password combination to authenticate with the LDAP server. In this approach, all users are given the same level of access to the server.
+     - A traditional approach to authentication in which the user provides a username and password combination to authenticate with the LDAP server. In this approach, all users are given access to SQream.
    * - Advanced method
-     - This approach allows for compartmentalization, which means that users can be grouped into categories, and each category can be assigned different levels of access to the LDAP server. This allows administrators to control access to different parts of the system.
+     - This approach allows for compartmentalization, which means that users can be grouped into categories, and each category can be assigned or denied access to SQream. This allows administrators to control access to SQream.
 
 
    
@@ -83,13 +83,9 @@ Basic Method
 ------------
 
 Flag Attributes
-<<<<<<< Updated upstream
 ~~~~~~~~~~~~~~~
+
 To enable LDAP authentication, configure the following **Cluster** flag attributes using the ``ALTER SYSTEM SET`` command:
-=======
----------------
-To enable LDAP authentication, configure the following **cluster** flag attributes using the ``ALERT SYSTEM SET`` command:
->>>>>>> Stashed changes
 
 .. list-table:: 
    :widths: auto
