@@ -20,6 +20,16 @@ Before You Begin
 * Your network bandwidth must be at least 100 mega per second
 * Supported data formats for streamed data is JSON
 
+High Level Workflow
+===================
+
+1. Install the JDBC Connector.
+2. Install kafka_2.12-3.2.1
+3. Run your Kafka Connect API.
+4. 
+ 
+
+
 Installation and Configuration
 ==============================
 
@@ -30,19 +40,13 @@ Installation and Configuration
 Sink Connector
 ---------------
 
-.. contents:: 
-   :local:
-   :depth: 1
-
-The Sink Connector reads Kafka topics and writes messages into text files in either CSV, JSON, or Avro format. The files are created with the extension ``.tmp`` and stored in the specified directory. The ``sqream.batchRecordCount`` parameter defines the number of records to be written to each file. When the specified number of records is reached, the Sink Connector closes the file, renames it to the ``sqream.fileExtension``, and then creates a new file.
+The Sink Connector reads JSON format Kafka topics and writes the messages inside each topic into text files. The files are created with the extension ``.tmp`` and stored in a specified directory. The ``sqream.batchRecordCount`` parameter defines the number of records to be written to each file, and when the specified number is reached, the Sink Connector closes the file, renames it to ``sqream.fileExtension``, and then creates a new file. Unlike data streaming, which continuously sends data from the Kafka topic to the database, the Sink Connector only sends the data when the file size reaches a predefined threshold. This means that data will arrive in batches. 
 
 SQream tables must be created according to the columns configured in ``csvorder``.
 
+
+
 .. figure:: /_static/images/kafka_flow.png
-
-Sink Connector Installation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 
 
 Sink Connector Configuration
@@ -116,13 +120,11 @@ SQream Loader
 SQream Loader Installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Sqream loader credentials:
-ip machine: 192.168.0.102
-user = sqream
-pass = sqprj2021$
+
 
 SQream Loader Configuration 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 Building the SQream Loader:
 
