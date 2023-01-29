@@ -4,130 +4,78 @@
 Connecting to SQream Using Kafka
 *************************
 
-If you are using Kafka Apache for distributed streaming and wish to use it with SQream, follow these instructions. 
+If you are using Kafka Apache for distributed streaming and wish to use it with SQream, follow these instructions.
 
 
 .. contents:: 
    :local:
    :depth: 1
+
+
+Before You Begin
+================
+
+* You must have JAVA 11 installed
+* You must have `JDBC <java_jdbc>`_ installed
+* Your network bandwidth must be at least 100 mega per second
+* Supported data formats for streamed data is JSON
+
+High Level Workflow
+===================
+
+1. Install the JDBC Connector.
+2. Install kafka_2.12-3.2.1
+3. Run your Kafka Connect API.
+4. 
+ 
 
 
 Installation and Configuration
-=============
+==============================
+
+Before you configure the Kafka Connector, make sure that Kafka and Zookeeper are both running. 
+
+Kafka Connector workflow:
+
+.. figure:: /_static/images/kafka_flow.png
 
 .. contents:: 
    :local:
    :depth: 1
 
-Before You Begin
-----------------
-
-* You must have JAVA 11 installed
-* Your network bandwidth must be at least 100 megabits per second
-* Supported data formats for streaming data are:
- * JSON
- * CSV
- * Avro
-
-Kafka Producer
---------------
-
-The Kafka Producer requires both the Kafka producer and Zookeeper processes to be running in order to create new topics, read data from existing topics, and load data from files. If Zookeeper is not running, the Kafka producer will not start.
-
-.. contents:: 
-   :local:
-   :depth: 1
-
-Kafka Producer Installation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The Kafka Producer is installed on the 192.168.0.125 server.
-
-Kafka Producer Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Running Zookeeper:
-
-.. code-block:: postgres
-
-	cd /home/sqream/kafka_2.12-3.2.1/
-	bin/zookeeper-server-start.sh -daemon config/zookeeper.properties
-	
-Running Kafka producer:	
-
-.. code-block:: postgres
-
-	cd /home/sqream/kafka_2.12-3.2.1/
-	bin/kafka-server-start.sh -daemon  config/server.properties
-	
-Verifying that both Zookeeper and Kafka producer are running:
-
-1. Log in to your machine.
- 
-2. Run the following string:
- 
- .. code-block:: postgres
- 
-	[sqream@metadata-0-125 ~]$ ps -ef |grep java
-	
-The following is an example of an output indicating that both processes are running:
-
- .. code-block:: postgres
- 
-	<JAVA_HOME>/bin/java...  org.apache.zookeeper.server.quorum.QuorumPeerMain config/zookeeper.properties
-	<JAVA_HOME>/bin/java... kafka.Kafka config/server.properties
-	
-Creating a new topic:
-
-.. code-block:: postgres
-
-	cd /home/sqream/kafka_2.12-3.2.1/
-	bin/kafka-topics.sh --create --bootstrap-server localhost:2181 --replication-factor 1 --partitions 1 --topic <topic name>
-	
-Reading data from a topic:
-
-.. code-block:: postgres
-
-	cd /home/sqream/kafka_2.12-3.2.1/
-	./kafka-console-consumer.sh --topic <topic name> --from-beginning --bootstrap-server localhost:9092
-	
-Loading data from a file:
-
-.. code-block:: postgres
-
-	cd /home/sqream/kafka_2.12-3.2.1/
-	./kafka-console-producer.sh --bootstrap-server localhost:9092 --topic <topic name> < <full path to file>
-
-Terminating the Kafka Producer requires that both the Kafka Producer and Zookeeper be terminated. To avoid data inconsistency and potential data loss, terminate the Kafka Producer before terminating the Zookeeper.
-
-Terminating the Kafka Producer: 
-
-.. code-block:: postgres
-
-	cd /home/sqream/kafka_2.12-3.2.1/
-	bin/kafka-server-stop.sh
-
-SQream Consumer
+Sink Connector
 ---------------
 
-.. contents:: 
-   :local:
-   :depth: 1
-
-The SQream Consumer reads Kafka topics and writes messages into text files in either CSV, JSON, or Avro format. The files are created with the extension ``.tmp`` and stored in the specified directory. The ``sqream.batchRecordCount`` parameter defines the number of records to be written to each file. When the specified number of records is reached, the SQream Consumer closes the file, renames it to the ``sqream.fileExtension``, and then creates a new file.
+The Sink Connector reads JSON format Kafka topics and writes the messages inside each topic into text files. The files are created with the extension ``.tmp`` and stored in a specified directory. The ``sqream.batchRecordCount`` parameter defines the number of records to be written to each file, and when the specified number is reached, the Sink Connector closes the file, renames it to ``sqream.fileExtension``, and then creates a new file. Unlike data streaming, which continuously sends data from the Kafka topic to the database, the Sink Connector only sends the data when the file size reaches a predefined threshold. This means that data will arrive in batches. 
 
 SQream tables must be created according to the columns configured in ``csvorder``.
 
-SQream Consumer Installation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The SQream Consumer version is located under /home/sqream/kafkaconnect1, machine IP 192.168.0.102
-Credentials:
-user = sqream
-pass = sqprj2021$
-
-SQream Consumer Configuration
+Sink Connector Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Configuration file structure:
+
+ .. code-block:: postgres
+
+	name=SQReamFileSink
+	topics=topsqreamtest1
+	tasks.max=4
+	connector.class=tr.com.entegral.FileSinkConnector
+	errors.tolerance=all
+	errors.log.enable=true
+	errors.log.include.messages=true
+	value.converter=org.apache.kafka.connect.json.JsonConverter
+	value.converter.schemas.enable=false
+	transforms=flatten
+	transforms.flatten.type=org.apache.kafka.connect.transforms.Flatten$Value
+	transforms.flatten.delimiter=.
+	sqream.outputdir=/home/sqream/kafkaconnect/outputs
+	sqream.batchRecordCount =10
+	sqream.fileExtension=csv
+	sqream.removeNewline =false
+	sqream.outputType=csv
+	sqream.csvOrder=receivedTime,equipmentId,asdf,timestamp,intv
 
 The following parameters require configuration.
 
@@ -153,31 +101,6 @@ Connection string:
  
 	vi /home/sqream/kafkaconnect1/sqream-kafka-connector/sqream-kafkaconnect/config/sqream-filesink.properties
 	
-Configuration file structure:
-
- .. code-block:: postgres
-
-	name=SQReamFileSink
-	topics=topsqreamtest1
-	tasks.max=4
-	connector.class=tr.com.entegral.FileSinkConnector
-	errors.tolerance=all
-	errors.log.enable=true
-	errors.log.include.messages=true
-	value.converter=org.apache.kafka.connect.json.JsonConverter
-	value.converter.schemas.enable=false
-	transforms=flatten
-	transforms.flatten.type=org.apache.kafka.connect.transforms.Flatten$Value
-	transforms.flatten.delimiter=.
-	sqream.outputdir=/home/sqream/kafkaconnect/outputs
-	sqream.batchRecordCount =10
-	sqream.fileExtension=csv
-	sqream.removeNewline =false
-	sqream.outputType=csv
-	sqream.csvOrder=receivedTime,equipmentId,asdf,timestamp,intv
- 
-
-
 Running commands:
 
  .. code-block:: postgres
@@ -187,23 +110,49 @@ Running commands:
 
 
 
-SQream Loader
+JDBC
 -------------
+
+The JDBC connector can be used to ingest data from Kafka, allowing SQream DB to consume the messages directly. This enables efficient and secure data ingestion into SQream DB.
 
 .. contents:: 
    :local:
    :depth: 1
 
-SQream Loader Installation
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+JDBC Configuration
+~~~~~~~~~~~~~~~~~~
 
-Sqream loader credentials:
-ip machine: 192.168.0.102
-user = sqream
-pass = sqprj2021$
+.. code-block:: postgres
+	vi /home/sqream/kafkaconnect1/sqream-kafka-connector/sqream-kafkaconnect/config/sqream-jdbcsink.properties
+	
+Example
+
+.. code-block:: postgres
+	
+	name=SQReamJDBCSink
+	topics=demo1
+	tasks.max=1
+	connector.class=tr.com.entegral.JDBCSinkConnector
+	errors.tolerance=all
+	errors.log.enable=true
+	errors.log.include.messages=true
+	value.converter=org.apache.kafka.connect.json.JsonConverter
+	value.converter.schemas.enable=false
+	transforms=flatten
+	transforms.flatten.type=org.apache.kafka.connect.transforms.Flatten$Value
+	transforms.flatten.delimiter=.
+	sqream.batchRecordCount =3
+	#sqream.jdbc.connectionstring=jdbc:sqlserver://localhost;databaseName=TestDB;user=kafka;password=kafka;encrypt=true;trustServerCertificate=true;
+	sqream.jdbc.connectionstring=jdbc:Sqream://192.168.0.102:5001/kafka;user=sqream;password=sqream;cluster=false
+	sqream.input.inputfields=intStr,inInt,indateTime,inFloat
+	sqream.jdbc.tablename=testtable
+	sqream.jdbc.table.columnnames=colStr,colInt,Coldatetime,ColFloat
+	sqream.jdbc.table.columntypes=VARCHAR,INTEGER,TIMESTAMP,FLOAT
+	sqream.jdbc.dateformat=yyyy-MM-dd HH:mm:ss
 
 SQream Loader Configuration 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 Building the SQream Loader:
 
