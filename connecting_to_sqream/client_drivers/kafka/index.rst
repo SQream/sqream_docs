@@ -33,6 +33,12 @@ High Level Workflow
 Installation and Configuration
 ==============================
 
+Before you configure the Kafka Connector, make sure that Kafka and Zookeeper are both running. 
+
+Kafka Connector workflow:
+
+.. figure:: /_static/images/kafka_flow.png
+
 .. contents:: 
    :local:
    :depth: 1
@@ -45,12 +51,31 @@ The Sink Connector reads JSON format Kafka topics and writes the messages inside
 SQream tables must be created according to the columns configured in ``csvorder``.
 
 
-
-.. figure:: /_static/images/kafka_flow.png
-
-
 Sink Connector Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Configuration file structure:
+
+ .. code-block:: postgres
+
+	name=SQReamFileSink
+	topics=topsqreamtest1
+	tasks.max=4
+	connector.class=tr.com.entegral.FileSinkConnector
+	errors.tolerance=all
+	errors.log.enable=true
+	errors.log.include.messages=true
+	value.converter=org.apache.kafka.connect.json.JsonConverter
+	value.converter.schemas.enable=false
+	transforms=flatten
+	transforms.flatten.type=org.apache.kafka.connect.transforms.Flatten$Value
+	transforms.flatten.delimiter=.
+	sqream.outputdir=/home/sqream/kafkaconnect/outputs
+	sqream.batchRecordCount =10
+	sqream.fileExtension=csv
+	sqream.removeNewline =false
+	sqream.outputType=csv
+	sqream.csvOrder=receivedTime,equipmentId,asdf,timestamp,intv
 
 The following parameters require configuration.
 
@@ -76,31 +101,6 @@ Connection string:
  
 	vi /home/sqream/kafkaconnect1/sqream-kafka-connector/sqream-kafkaconnect/config/sqream-filesink.properties
 	
-Configuration file structure:
-
- .. code-block:: postgres
-
-	name=SQReamFileSink
-	topics=topsqreamtest1
-	tasks.max=4
-	connector.class=tr.com.entegral.FileSinkConnector
-	errors.tolerance=all
-	errors.log.enable=true
-	errors.log.include.messages=true
-	value.converter=org.apache.kafka.connect.json.JsonConverter
-	value.converter.schemas.enable=false
-	transforms=flatten
-	transforms.flatten.type=org.apache.kafka.connect.transforms.Flatten$Value
-	transforms.flatten.delimiter=.
-	sqream.outputdir=/home/sqream/kafkaconnect/outputs
-	sqream.batchRecordCount =10
-	sqream.fileExtension=csv
-	sqream.removeNewline =false
-	sqream.outputType=csv
-	sqream.csvOrder=receivedTime,equipmentId,asdf,timestamp,intv
- 
-
-
 Running commands:
 
  .. code-block:: postgres
@@ -110,17 +110,45 @@ Running commands:
 
 
 
-SQream Loader
+JDBC
 -------------
+
+The JDBC connector can be used to ingest data from Kafka, allowing SQream DB to consume the messages directly. This enables efficient and secure data ingestion into SQream DB.
 
 .. contents:: 
    :local:
    :depth: 1
 
-SQream Loader Installation
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+JDBC Configuration
+~~~~~~~~~~~~~~~~~~
 
+.. code-block:: postgres
+	vi /home/sqream/kafkaconnect1/sqream-kafka-connector/sqream-kafkaconnect/config/sqream-jdbcsink.properties
+	
+Example
 
+.. code-block:: postgres
+	
+	name=SQReamJDBCSink
+	topics=demo1
+	tasks.max=1
+	connector.class=tr.com.entegral.JDBCSinkConnector
+	errors.tolerance=all
+	errors.log.enable=true
+	errors.log.include.messages=true
+	value.converter=org.apache.kafka.connect.json.JsonConverter
+	value.converter.schemas.enable=false
+	transforms=flatten
+	transforms.flatten.type=org.apache.kafka.connect.transforms.Flatten$Value
+	transforms.flatten.delimiter=.
+	sqream.batchRecordCount =3
+	#sqream.jdbc.connectionstring=jdbc:sqlserver://localhost;databaseName=TestDB;user=kafka;password=kafka;encrypt=true;trustServerCertificate=true;
+	sqream.jdbc.connectionstring=jdbc:Sqream://192.168.0.102:5001/kafka;user=sqream;password=sqream;cluster=false
+	sqream.input.inputfields=intStr,inInt,indateTime,inFloat
+	sqream.jdbc.tablename=testtable
+	sqream.jdbc.table.columnnames=colStr,colInt,Coldatetime,ColFloat
+	sqream.jdbc.table.columntypes=VARCHAR,INTEGER,TIMESTAMP,FLOAT
+	sqream.jdbc.dateformat=yyyy-MM-dd HH:mm:ss
 
 SQream Loader Configuration 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
