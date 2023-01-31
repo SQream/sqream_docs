@@ -11,19 +11,6 @@ The **Resolving Common Issues** page describes how to resolve the following comm
    :glob:
    :titlesonly:
 
-
-Troubleshooting Cluster Setup and Configuration
------------------------------------------------------
-
-#. Note any errors - Make a note of any error you see, or check the :ref:`logs<logging>` for errors you might have missed.
-
-#. If SQream DB can't start, start SQream DB on a new storage cluster, with default settings. If it still can't start, there could be a driver or hardware issue. :ref:`Contact SQream support<information_for_support>`.
-
-#. Reproduce the issue with a standalone SQream DB - starting up a temporary, standalone SQream DB can isolate the issue to a configuration issue, network issue, or similar.
-
-#. Reproduce on a minimal example - Start a standalone SQream DB on a clean storage cluster and try to replicate the issue if possible.
-
-
 Troubleshooting Connectivity Issues
 -----------------------------------
 
