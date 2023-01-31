@@ -3,7 +3,7 @@
 ********************
 GET_ROLE_DATABASE_DDL
 ********************
-The ``GET_ROLE_DATABASE_DDL`` statement returns the definition of a global role in DDL format.
+The ``GET_ROLE_DATABASE_DDL`` statement returns the definition of a role's database in DDL format.
 
 The ``GET_ROLE_DATABASE_DDL`` page describes the following:
 

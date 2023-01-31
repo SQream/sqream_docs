@@ -3,7 +3,7 @@
 ********************
 GET_ALL_ROLES_DATABASE_DDL
 ********************
-The ``GET_ALL_ROLES_DATABASE_DDL`` statement returns the definition of all global roles in DDL format.
+The ``GET_ALL_ROLES_DATABASE_DDL`` statement returns the definition of all role databases in DDL format.
 
 .. contents:: 
    :local:
