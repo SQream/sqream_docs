@@ -192,8 +192,12 @@ The following table shows the Access Control commands:
      - Returns all permissions granted to a role in table format
    * - :ref:`get_role_global_ddl`
      - Returns the definition of a global role in DDL format
+   * - :ref:`get_all_roles_global_ddl`
+     - Returns the definition of all global roles in DDL format
    * - :ref:`get_role_database_ddl`
-     - Returns the definition of a database role in DDL format
+     - Returns the definition of a role's database in DDL format
+   * - :ref:`get_all_roles_database_ddl`
+     - Returns the definition of all role databases in DDL format
    * - :ref:`get_statement_permissions`
      - Returns a list of permissions required to run a statement or query
    * - :ref:`grant`
