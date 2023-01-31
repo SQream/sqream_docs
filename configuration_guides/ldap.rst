@@ -15,7 +15,14 @@ Prior to integrating SQream with LDAP, two preconditions must be considered:
 .. contents:: In this topic:
    :local:
 
+Before You Begin
+================
 
+Enable self-signed certificates for OpenLDAP by adding the following line to the ``ldap.conf`` configuration file:
+
+.. code-block:: postgres	
+
+	``TLS_REQCERT allow``
 
 Configuring SQream roles
 ========================
@@ -78,19 +85,19 @@ Roles with admin privileges or higher may enable LDAP Authentication.
 
 .. code-block:: postgres
 
-	ALTER SYSTEM SET ldapIpAddress = '<ldaps://192.168.10.20>';
+	ALTER SYSTEM SET ldapIpAddress = '<ldaps://...>';
 
 2. Set the ``ldapDomain`` attribute:
 
 .. code-block:: postgres
 
-	ALTER SYSTEM SET ldapDomain = '<@sqream.loc>';
+	ALTER SYSTEM SET ldapDomain = '<domain>';
 
 3. To set the ``ldapConnTimeoutSec`` attribute (Optional), run:
 
 .. code-block:: postgres
 
-	ALTER SYSTEM SET ldapConnTimeoutSec = <15>;
+	ALTER SYSTEM SET ldapConnTimeoutSec = <...>;
 
 4. Set the ``authenticationMethod`` attribute:
 
@@ -100,7 +107,17 @@ Roles with admin privileges or higher may enable LDAP Authentication.
 
 5. Restart all sqreamd servers. 
 
+Example
+-------
 
+.. code-block:: postgres
+
+	ALTER SYSTEM SET ldapIpAddress = '<ldaps://192.168.10.20>';
+	ALTER SYSTEM SET ldapDomain = '<@sqream.loc>';
+	ALTER SYSTEM SET ldapConnTimeoutSec = <15>;
+	ALTER SYSTEM SET authenticationMethod = 'ldap';
+		
+		
 Disabling LDAP Authentication
 -----------------------------
 
