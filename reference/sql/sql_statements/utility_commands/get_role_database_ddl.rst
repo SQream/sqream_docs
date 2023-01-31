@@ -21,11 +21,11 @@ The following is the correct syntax for using the ``GET_ROLE_DATABASE_DDL`` stat
 
 Example
 ===========
-The following is an example of using the ``GET_ROLE_GLOBAL_DDL`` statement:
+The following is an example of using the ``GET_ROLE_DATABASE_DDL`` statement:
 
 .. code-block:: psql
 
-   select get_role_global_ddl('public');
+   select get_role_database_ddl('public');
 
 Parameters
 ============
