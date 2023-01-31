@@ -128,52 +128,52 @@ After creating a connection, you can create your SQream data source template.
        .. code-block:: console
 	
           <jdbc-type-settings>
-            <type-name>SQream   </type-name>
-            <driver>com.sqream.jdbc.SQDriver   </driver>
-            <connection-url-pattern>jdbc:Sqream://&lt;host&gt;:&lt;port&gt;/database;user=sqream;password=sqream;cluster=true   </connection-url-pattern>
-            <supports-catalogs>true   </supports-catalogs>
-            <supports-schemas>true   </supports-schemas>
-            <supports-procedures>false   </supports-procedures>
-            <table-types>TABLE,EXTERNAL_TABLE   </table-types>
+            <type-name>SQream</type-name>
+            <driver>com.sqream.jdbc.SQDriver</driver>
+            <connection-url-pattern>jdbc:Sqream://&lt;host&gt;:&lt;port&gt;/database;user=sqream;password=sqream;cluster=true</connection-url-pattern>
+            <supports-catalogs>true</supports-catalogs>
+            <supports-schemas>true</supports-schemas>
+            <supports-procedures>false</supports-procedures>
+            <table-types>TABLE,EXTERNAL_TABLE</table-types>
             <java-to-sql-type-conversions>
              <type-mapping>
-                <from>Bool   </from>
-                <to>Integer   </to>
+                <from>Bool</from>
+                <to>Integer</to>
               </type-mapping>
               <type-mapping>
-                <from>VARCHAR(2048)   </from>
-                <to>String   </to>
+                <from>VARCHAR(2048)</from>
+                <to>String</to>
               </type-mapping>
               <type-mapping>
-                <from>INT   </from>
-                <to>Integer   </to>
+                <from>INT</from>
+                <to>Integer</to>
               </type-mapping>
               <type-mapping>
-                <from>BIGINT   </from>
-                <to>LongInteger   </to>
+                <from>BIGINT</from>
+                <to>LongInteger</to>
               </type-mapping>
               <type-mapping>
-                <from>Real   </from>
-                <to>Real   </to>
+                <from>Real</from>
+                <to>Real</to>
               </type-mapping>
 	           <type-mapping>
-                <from>Decimal   </from>
-                <to>Float   </to>
+                <from>Decimal</from>
+                <to>Float</to>
               </type-mapping>
                <type-mapping>
-                <from>Numeric   </from>
-                <to>Float   </to>
+                <from>Numeric</from>
+                <to>Float</to>
               </type-mapping>
               <type-mapping>
-                <from>Date   </from>
-                <to>DATE   </to>
+                <from>Date</from>
+                <to>DATE</to>
               </type-mapping>
               <type-mapping>
-                <from>DateTime   </from>
-                <to>DateTime   </to>
+                <from>DateTime</from>
+                <to>DateTime</to>
               </type-mapping>
              </java-to-sql-type-conversions>
-            <ping-command>   </ping-command>
+            <ping-command></ping-command>
           </jdbc-type-settings>			
 	
 4. Click **Save configuration**.
