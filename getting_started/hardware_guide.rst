@@ -58,9 +58,9 @@ An average single-node cluster can be a rackmount server or workstation, contain
 
 .. note:: If you are using internal storage, your volumes must be formatted as xfs.
 
-In this system configuration, SQream can store about 200TB of raw data (assuming average compression ratio and ~50TB of usable raw storage).
+In this system configuration, SQream can store about 100TB of raw data (assuming average compression ratio and ~30TB of usable raw storage).
 
-If a NAS is used, the 14x SSD drives can be omitted, but SQream recommends 2TB of local spool space on SSD or NVMe drives.
+If a NAS is used, the 10x SSD drives can be omitted, but SQream recommends 2TB of local spool space on SSD or NVMe drives.
 
 Multi-Node Cluster Examples
 -----------------------------------
