@@ -31,6 +31,9 @@ SQream Studio Updates and Improvements
  *  When creating a **New Role**, you may now create a group role by selecting **Set as a group role**.
 
 	::
+*   When editing an **Existing Role** user is no longer obligated to update the password.
+
+	::
 
 Known Issues
 ------------
