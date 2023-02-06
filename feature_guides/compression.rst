@@ -35,7 +35,7 @@ When loading data, SQream DB automatically decides on the compression schemes fo
 
 Compression Methods
 ------------------------
-In some cases, if SQream finds that the given compression method cannot effectively compress the data, it will return to the default compression type.
+
 
 The following table shows the supported compression methods:
 
@@ -154,6 +154,8 @@ In other cases, you may want to force SQream to use a specific compression schem
       z TEXT(80) CHECK('CS "dict"'), -- Low cardinality column
       
    );
+
+However, if SQream finds that the given compression method cannot effectively compress the data, it will return to the default compression type.
 
 Examining Compression Effectiveness
 --------------------------------------

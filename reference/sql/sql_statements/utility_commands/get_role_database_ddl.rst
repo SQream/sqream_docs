@@ -3,7 +3,7 @@
 ********************
 GET_ROLE_DATABASE_DDL
 ********************
-The ``GET_ROLE_DATABASE_DDL`` statement returns the definition of a global role in DDL format.
+The ``GET_ROLE_DATABASE_DDL`` statement returns the definition of a role's database in DDL format.
 
 The ``GET_ROLE_DATABASE_DDL`` page describes the following:
 
@@ -21,11 +21,11 @@ The following is the correct syntax for using the ``GET_ROLE_DATABASE_DDL`` stat
 
 Example
 ===========
-The following is an example of using the ``GET_ROLE_GLOBAL_DDL`` statement:
+The following is an example of using the ``GET_ROLE_DATABASE_DDL`` statement:
 
 .. code-block:: psql
 
-   select get_role_global_ddl('public');
+   select get_role_database_ddl('public');
 
 Parameters
 ============
