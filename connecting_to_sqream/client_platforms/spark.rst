@@ -83,13 +83,13 @@ The following Spark connection properties are supported by SQream:
      - The class name of the JDBC driver to use to connect to this URL.
    * - ``numPartitions`` 
      - 
-     - The maximum number of partitions that can be used for parallelism in table reading and writing. This also determines the maximum number of concurrent JDBC connections. If the number of partitions to write exceeds this limit, we decrease it to this limit by calling ``coalesce(numPartitions)`` before writing.
+     - The maximum number of partitions that can be used for parallel processing in reading and writing tables. ``numPartitions`` also determines the maximum number of concurrent JDBC connections. If the number of partitions to write exceeds this limit, we decrease it to this limit by calling ``coalesce(numPartitions)`` before writing.
    * - ``queryTimeout``
      - 0
-     - The number of seconds the driver will wait for a Statement object to execute to the given number of seconds. Zero means there is no limit. In the write path, this option depends on how JDBC drivers implement the API ``setQueryTimeout``, e.g., the h2 JDBC driver checks the timeout of each query instead of an entire JDBC batch.
+     - The queryTimeout parameter in Spark determines the maximum number of seconds a query can run before it is automatically terminated. Zero means there is no limit. This parameter is used to help ensure that queries do not run for too long and consume excessive resources. The setQueryTimeout() method of the java.sql.Statement interface allows a JDBC driver to specify a timeout for each query instead of an entire JDBC batch. The H2 JDBC driver implements this API and will check the timeout of each query instead of an entire batch.
    * - ``fetchsize``
      - 1
-     - The JDBC fetch size, which determines how many rows to fetch per round trip. This can help performance on JDBC drivers which default to low fetch size (e.g. Oracle with 10 rows).
+     - The ``fetchsize`` parameter is an integer value that controls the number of rows that are internally fetched by the driver at a time. The ``fetchsize`` parameter can be adjusted to help enhance the performance of JDBC drivers that typically have a low number of rows being fetched (e.g. Oracle with 10 rows).
    * - ``batchsize``
      - 1000000
      - The JDBC batch size, which determines how many rows to insert per round trip. This can help performance on JDBC drivers. This option applies only to writing.
