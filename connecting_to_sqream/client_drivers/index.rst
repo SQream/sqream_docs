@@ -27,10 +27,6 @@ The following are applicable to all operating systems:
   * `.NET .dll file <https://get.sqream-share.com/share/sIsu8fxv>`_ 
   * :ref:`net`
 
-* **Kafka**:
-
-  * `Kafka download file <>`_ 
-  * :ref:`kafka`
 
 .. _python:
 
