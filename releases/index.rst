@@ -12,8 +12,8 @@ Release Notes
    
    * - Version
      - Release Date
-   * - :ref:`4.0.0`
-     - XXXX xx, xxxx
+   * - :ref:`4.0`
+     - January 25, 2023
    * - :ref:`2022.1`
      - July 19, 2022
    * - :ref:`2021.2`
@@ -34,7 +34,7 @@ Release Notes
    :glob:
    :hidden:
 
-   4.0.0_index
+   4.0_index
    2022.1_index
    2021.2_index
    2021.1_index
