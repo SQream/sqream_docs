@@ -1,122 +1,17 @@
-.. _4.0:
+.. _4.0_index:
 
 **************************
 Release Notes 4.0
 **************************
-
-SQream is introducing a new version release system that follows the more commonly used Major.Minor.Patch versioning schema. The newly released **4.0 version** is a minor version upgrade and does not require considerable preparation.
-
-The 4.0 release notes were released on 01/25/2023 and describe the following:
+The 4.0 Release Notes describe the following releases:
 
 .. contents:: 
    :local:
-   :depth: 1      
+   :depth: 1
 
-New Features
-------------
+.. toctree::
+   :maxdepth: 1
+   :glob:
 
- * Re-enabling an enhanced version of the :ref:`License Storage Capacity<monitoring_workers_and_services_from_the_dashboard>` feature 
-
-	::
-
- * :ref:`Lightweight Directory Access Protocol(LDAP)<ldap>` may be used to authenticate SQream roles
-
-	::
-
- * :ref:`Physical deletion performance enhancement<delete>` by supporting file systems with parallelism capabilities
- 
-SQream Studio Updates and Improvements
---------------------------------------
-
- *  When creating a **New Role**, you may now create a group role by selecting **Set as a group role**.
-
-	::
- *   When editing an **Existing Role** user is no longer obligated to update the password.
-
-	::
-
-Known Issues
-------------
-:ref:`Percentile<percentile_disc>` is not supported for Window functions.
-
-Version 4.0 resolved Issues
------------------------------
-
-+-----------------+------------------------------------------------------------------------------------------+
-|  **SQ No.**     | **Description**                                                                          |
-+=================+==========================================================================================+
-| SQ-10544        | SQream Studio Dashboard periodic update enhancement                                      |
-+-----------------+------------------------------------------------------------------------------------------+
-| SQ-11772        | Slow query performance when using ``JOIN`` clause                                        |
-+-----------------+------------------------------------------------------------------------------------------+
-| SQ-12318        | JDBC connector ``insertBuffer`` parameter issue                                          |
-+-----------------+------------------------------------------------------------------------------------------+
-| SQ-12364        | ``GET DDL`` foreign table output issue                                                   |
-+-----------------+------------------------------------------------------------------------------------------+
-| SQ-12446        | SQream Studio group role modification issue                                              |
-+-----------------+------------------------------------------------------------------------------------------+
-| SQ-12468        | Internal compiler error                                                                  |
-+-----------------+------------------------------------------------------------------------------------------+
-| SQ-12580        | Server Picker GPU dependency                                                             |
-+-----------------+------------------------------------------------------------------------------------------+
-| SQ-12652        | SQream Studio result panel adjustment                                                    |
-+-----------------+------------------------------------------------------------------------------------------+
-
-
-Configuration Changes
----------------------
-No configuration changes were made.
-
-Naming Changes
---------------
-No relevant naming changes were made.
-
-Deprecated Features
--------------------
-SQream is declaring end of support of VARCHAR data type, the decision resulted by SQream's effort to enhance its core functionalities and with respect to ever changing echo system requirements.
-
-VARCHAR is no longer supported for new customers - effective from Version 2022.1.3 (September 2022).  
-
-TEXT data type is replacing VARCHAR and NVARCHAR - SQream will maintain VARCHAR data type support until 09/30/2023.
-
-
-End of Support
----------------
-No End of Support changes were made.
-
-Upgrading to v4.0
--------------------
-1. Generate a back-up of the metadata by running the following command:
-
-   .. code-block:: console
-
-      $ select backup_metadata('out_path');
-	  
-   .. tip:: SQream recommends storing the generated back-up locally in case needed.
-   
-   SQream runs the Garbage Collector and creates a clean backup tarball package.
-   
-2. Shut down all SQream services.
-
-    ::
-
-3. Extract the recently created back-up file.
-
-    ::
-
-4. Replace your current metadata with the metadata you stored in the back-up file.
-
-    ::
-
-5. Navigate to the new SQream package bin folder.
-
-    ::
-
-6. Run the following command:
-
-   .. code-block:: console
-
-      $ ./upgrade_storage <levelDB path>
-
-  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
+   4.0
   
