@@ -80,7 +80,7 @@ Altering Public Role Permissions
 
 There is a public role which always exists. Each role is granted to the ``PUBLIC`` role (i.e. is a member of the public group), and this cannot be revoked. You can alter the permissions granted to the public role.
 
-The ``PUBLIC`` role has ``USAGE`` and ``CREATE`` permissions on ``PUBLIC`` schema by default, therefore, new users can ``CREATE``, :ref:`insert`, :ref:`delete`, :ref:`select` and :ref:`UPDATE` from objects in the ``PUBLIC`` schema.
+The ``PUBLIC`` role has ``USAGE`` and ``CREATE`` permissions on ``PUBLIC`` schema by default, therefore, new users can ``CREATE``, :ref:`insert`, :ref:`delete`, :ref:`select` and :ref:`UPDATE` objects in the ``PUBLIC`` schema.
 
 
 Altering Role Membership (Groups)
