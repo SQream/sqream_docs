@@ -4,44 +4,58 @@
 Resolving Common Issues
 ***********************
 
-The **Resolving Common Issues** page describes how to resolve the following common issues:
 
 .. toctree::
    :maxdepth: 2
    :glob:
    :titlesonly:
 
-Troubleshooting Connectivity Issues
------------------------------------
+Connectivity Issues
+-------------------
 
-#. Verify the correct login credentials - username, password, and database name.
+Connectivity issues can be caused by several factors, including incorrect login credentials, improper configurations, or network problems. The solution may be quick and simple, so to save invaluable querying time, we recommend checking for these potential issues before reaching out to customer support. By doing so, you can avoid unnecessary delays and get your connection up and running again in no time.
 
-#. Verify the host name and port
+Verify that:
 
-#. Try connecting directly to a SQream DB worker, rather than via the load balancer
+* The correct username, password, and database name are set
 
-#. Verify that the driver version you're using is supported by the SQream DB version. Driver versions often get updated together with major SQream DB releases.
+* The correct host name and port are set
 
-#. Try connecting directly with :ref:`the built in SQL client<sqream_sql_cli_reference>`. If you can connect with the local SQL client, check network availability and firewall settings.
+* Your network is available
 
-Troubleshooting Query Performance
-------------------------------------
+* Your firewall setup allows (.....)
 
-#. Use :ref:`show_node_info` to examine which building blocks consume time in a statement. If the query has finished, but the results are not yet materialized in the client, it could point to a problem in the application's data buffering or a network throughput issue..
+* (.....)
 
-#. If a problem occurs through a 3\ :sup:`rd` party client, try reproducing it directly with :ref:`the built in SQL client<sqream_sql_cli_reference>`. If the performance is better in the local client, it could point to a problem in the application or network connection.
+Query Performance
+-----------------
 
-#. Consult the :ref:`sql_best_practices` guide to learn how to optimize queries and table structures.
+Query performance can be influenced by various factors, including complex queries involving subqueries and joins, large data volumes, and network latency. To improve performance, refer to the :ref:`sql_best_practices` guide to learn how to optimize queries and table structures, and make sure that: 
+
+* Table indexes are properly configured
+
+* Queries are not unnecessarily overly complex
+
+* Your data storage is properly set
+
+* Your system is not overloaded
+
+* The database schema is properly designed 
 
 
-Troubleshooting Query Behavior
----------------------------------
+Query Behavior
+--------------
 
-#. Consult the :ref:`sql` reference to verify if a statement or syntax behaves correctly. SQream DB may have some differences in behavior when compared to other databases.
+Several factors can influence the behavior of SQL queries, including data inconsistencies, user permissions and access, and improper database configurations. To ensure that queries behave as expected, refer to the :ref:`sql` guide to learn about query syntax and optimization, and make sure that: 
 
-#. If a problem occurs through a 3\ :sup:`rd` party client, try reproducing it directly with :ref:`the built in SQL client<sqream_sql_cli_reference>`. If the problem still occurs, file an issue with SQream support.
+* The data in your database in consistent
 
-File an issue with SQream support
-------------------------------------
+* The appropriate isolation level is set
 
-To file an issue, follow our :ref:`information_for_support` guide.
+* The proper concurrency mechanisms are used 
+
+
+Nope, none of it helps
+""""""""""""""""""""""
+
+Follow our :ref:`information_for_support` guide and one of our experts will contact you.
