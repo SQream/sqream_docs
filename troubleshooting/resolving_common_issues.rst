@@ -19,13 +19,11 @@ Verify that:
 
 * The correct username, password, and database name are set
 
-* The correct host name and port are set
+* The correct Fully Qualified Domain Name (FQDN) is set
 
-* Your network is available
+* Your internet connection is active
 
-* Your firewall setup allows (.....)
-
-* (.....)
+* Your connection to the BLUE system is not blocked and that you are able to log in to https://company.isqream.com. If not, reach out to your IT for support.
 
 Query Performance
 -----------------
