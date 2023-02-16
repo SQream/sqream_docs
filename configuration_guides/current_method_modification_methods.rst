@@ -10,7 +10,7 @@ For optimal performance, it is recommended that all SQream workers are similarly
    :local:
    :depth: 1
 
-Modifying Your Configuration Using the Worker Configuration File
+Modifying Configurations Using the Worker Configuration File
 -------------------
 You can modify your configuration using the **worker configuration file (config.json)**. Changes that you make to worker configuration files are persistent. Note that you can only set the attributes in your worker configuration file **before** initializing your SQream worker, and while your worker is active these attributes are read-only.
 
@@ -32,7 +32,7 @@ The following is an example of a worker configuration file:
 
 You can access the legacy configuration file from the ``legacyConfigFilePath`` parameter shown above. If all (or most) of your workers require the same flag settings, you can set the ``legacyConfigFilePath`` attribute to the same legacy file.
 
-Modifying Your Configuration Using a Legacy Configuration File
+Modifying Configurations Using a Legacy Configuration File
 ---------------------
 You can modify your configuration using a legacy configuration file.
 
@@ -49,3 +49,14 @@ The following is an example of the legacy configuration file:
       “useMetadataServer”” false
    }
 For more information on using the previous configuration method, see :ref:`previous_configuration_method`.
+
+Reviewing Current System Configurations
+---------------------------------------
+
+Use the following command to review a list of currently configured flags, their values, default values, scope, and description.
+
+.. code-block:: postgres
+	
+	SELECT * FROM sqream_catalog.parameters
+	
+	
