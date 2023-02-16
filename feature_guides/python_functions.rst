@@ -6,7 +6,7 @@ Python UDF (User-Defined Functions)
 
 User-defined functions (UDFs) are a feature that extends SQream DB's built in SQL functionality. SQream DB's Python UDFs allow developers to create new functionality in SQL by writing the lower-level language implementation in Python. 
 
-.. note:: Starting v2022.1.4, Python UDF are disabled by default in order to enhance product security. Use the ``enablePythonUdfs`` configuration flag in order to enable Python UDF.
+.. note:: Starting v2022.1.4, Python UDF are disabled by default in order to enhance product security. Use the ``enablePythonUdfs`` :ref:`configuration flag<enable_python_udfs>` in order to enable Python UDF.
 
 .. contents:: In this topic:
    :local:

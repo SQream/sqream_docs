@@ -5,6 +5,7 @@ Regular Administration Flags
 *************************
 The **Regular Administration Flags** page describes **Regular** modification type flags, which can be modified by administrators on a session and cluster basis using the ``ALTER SYSTEM SET`` command: 
 
+
 * :ref:`Setting Bin Size<bin_sizes>`
 * :ref:`Setting CUDA Memory<check_cuda_memory>`
 * :ref:`Limiting Runtime to Utility Functions<compiler_gets_only_ufs>`
@@ -30,3 +31,6 @@ The **Regular Administration Flags** page describes **Regular** modification typ
 * :ref:`Interpreting Decimal Literals as Double Instead of Numeric<use_legacy_decimal_literals>`
 * :ref:`Using Legacy String Literals<use_legacy_string_literals>`
 * :ref:`Blocking New VARCHAR Objects<block_new_varchar_objects>`
+* :ref:`Enabling Python UDFs<enable_python_udfs>`
+
+
