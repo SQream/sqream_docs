@@ -1,9 +1,10 @@
 .. _current_method_modification_methods:
 
 **************************
-Modification Methods
+System Configuration Methods
 **************************
-SQream provides two different ways to modify your configurations. The current method is based on hierarchical configuration as described above. This method is based on making modifications on the **worker configuration file**, while you can still make modifications using the previous method using the **legacy configuration file**, both described below:
+
+For optimal performance, it is recommended that all SQream workers are similarly configured. To facilitate this, we offer a **worker configuration file** which allows users to make permanent cross-system changes that will be applied to all workers. However, there may be certain operations where it is preferable to configure some workers differently from others. In such cases, the "legacy configuration file" can be utilized to configure specific workers within a cluster differently.
 
 .. contents:: 
    :local:
