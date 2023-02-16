@@ -4,7 +4,7 @@
 System Configuration Methods
 **************************
 
-For optimal performance, it is recommended that all SQream workers are similarly configured. To facilitate this, we offer a **worker configuration file** which allows users to make permanent cross-system changes that will be applied to all workers. However, there may be certain operations where it is preferable to configure some workers differently from others. In such cases, the "legacy configuration file" can be utilized to configure specific workers within a cluster differently.
+For optimal performance, it is recommended that all SQream workers are similarly configured. To facilitate this, we provide a **worker configuration file** which allows users to make persistent cross-system changes that will be applied to all workers. However, for some operations it might be preferable to configure some workers differently from others. In such cases, the "legacy configuration file" can be used to configure specific workers within a cluster differently.
 
 .. contents:: 
    :local:
