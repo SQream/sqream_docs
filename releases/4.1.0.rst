@@ -6,7 +6,7 @@ Release Notes 4.1.0
 
 SQream is introducing a new version release system that follows the more commonly used Major.Minor.Patch versioning schema. The newly released **4.0.0 version** is a minor version upgrade and does not require considerable preparation.
 
-The 4.0.0 release notes were released on xx/xx/20xx and describe the following:
+The 4.1.0 release notes were released on xx/xx/20xx and describe the following:
 
 .. contents:: 
    :local:
@@ -36,7 +36,7 @@ Known Issues
 ------------
 :ref:`Percentile<percentile_disc>` is not supported for Window functions.
 
-Version 4.0.0 resolved Issues
+Version 4.1.0 resolved Issues
 -----------------------------
 
 +------------------------+------------------------------------------------------------------------------------------+
@@ -89,7 +89,7 @@ End of Support
 ---------------
 No End of Support changes were made.
 
-Upgrading to v4.0.0
+Upgrading to v4.1.0
 -------------------
 1. Generate a back-up of the metadata by running the following command:
 
