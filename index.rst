@@ -54,13 +54,8 @@ SQream DB is a columnar analytic SQL database management system. SQream DB suppo
 
 .. rubric:: Need help?
 
-If you couldn't find what you're looking for, we're always happy to help. Visit `SQream's support portal <https://sqream.atlassian.net/servicedesk/>`_ for additional support.
+If you couldn't find what you're looking for, we're always happy to help. Visit our `support center<https://sqream.atlassian.net/servicedesk/>`.
 
-
-.. rubric:: Looking for older versions?
-
-
-If you're looking for an older version of the documentation, go to http://previous.sqream.com .
 
 .. toctree::
    :caption: Contents:
