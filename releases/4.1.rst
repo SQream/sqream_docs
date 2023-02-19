@@ -70,7 +70,7 @@ Deprecated Features
 
 ► Square Brackets ``[]``
 
-To facilitate the use of array data types, the ``[]``, which are frequently used to delimit identifiers such as column names, table names, and other database objects, have been deprecated.
+To facilitate the use of array data types, the ``[]``, which are frequently used to delimit :ref:`identifiers<keywords_and_identifiers>` such as column names, table names, and other database objects, have been deprecated.
 
 * Support in ``[]`` for delimiting database object identifiers ends at xx/xx/20xx.
 
