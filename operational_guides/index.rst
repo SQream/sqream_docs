@@ -14,15 +14,10 @@ This section summarizes the following operational guides:
 
    access_control
    audit_log_operation
-   creating_or_cloning_a_storage_cluster
    external_tables
-   delete_guide
    exporting_data
-   logging
    monitoring_query_performance
    security
    seeing_system_objects_as_ddl
    configuration
    optimization_best_practices
-   mounting_an_nfs_shared_drive
-   mounting_a_san_shared_drive

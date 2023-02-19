@@ -14,7 +14,6 @@ After installing SQream you can perform the operations described on this page:
    listing_tables
    inserting_rows
    running_queries
-   deleting_rows
    saving_query_results_to_a_csv_or_psv_file
 
 For more information on other basic SQream operations, see the following:

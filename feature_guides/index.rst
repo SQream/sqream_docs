@@ -11,11 +11,10 @@ This section describes the following features:
    :maxdepth: 1
    :titlesonly:
 
-   compression
-   data_encryption
-   flexible_data_clustering
+
+
+
    python_functions
    viewing_system_objects_as_ddl
-   transactions
    concurrency_and_locks
    concurrency_and_scaling_in_sqream
