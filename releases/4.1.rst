@@ -1,0 +1,129 @@
+.. _4.1:
+
+**************************
+Release Notes 4.1
+**************************
+
+SQream is introducing a new version release system that follows the more commonly used Major.Minor.Patch versioning schema. The newly released **4.0 version** is a minor version upgrade and does not require considerable preparation.
+
+The 4.1 release notes were released on xx/xx/20xx and describe the following:
+
+.. contents:: 
+   :local:
+   :depth: 1      
+
+New Features
+------------
+
+ * :ref:`Lightweight Directory Access Protocol (LDAP)<ldap>` enhanced management
+ 
+	::
+
+ * The :ref:`Trino<trino>` ETL tool may now be used for distributed SQL query processing
+ 
+ 	::
+	
+ * A brute-force attack protection locks out user accounts for 15 minutes following 5 consecutive failed login attempts
+ 
+SQream Studio Updates and Improvements
+--------------------------------------
+
+No Studio updates
+
+	::
+
+Known Issues
+------------
+
+No known issues
+
+
+Version 4.1 resolved Issues
+-----------------------------
+
++------------------------+------------------------------------------------------------------------------------------+
+|  **SQ No.**            | **Description**                                                                          |
++========================+==========================================================================================+
+| SQ-11287               | Function definition SQL UDF parenthesis issue                                            |
++------------------------+------------------------------------------------------------------------------------------+
+| SQ-11296               | Slow catalog queries                                                                     |
++------------------------+------------------------------------------------------------------------------------------+
+| SQ-12255               | Text column additional characters when using ``COPY TO`` statement                       |
++------------------------+------------------------------------------------------------------------------------------+
+| SQ-12510               | Encryption memory issues                                                                 |
++------------------------+------------------------------------------------------------------------------------------+
+
+
+Configuration Changes
+---------------------
+
+No configuration changes
+
+
+Naming Changes
+--------------
+No naming changes
+
+
+Deprecated Features
+-------------------
+
+► Square Brackets ``[]``
+
+To facilitate the use of array data types, the ``[]``, which are frequently used to delimit identifiers such as column names, table names, and other database objects, have been deprecated.
+
+* Support in ``[]`` for delimiting database object identifiers ends at xx/xx/20xx.
+
+* You may still use double quotes ``""`` to delimit database object identifiers.
+
+► ``VARCHAR``
+
+``VARCHAR`` is deprecated to improve the core functionalities of the platform and to align with the constantly evolving ecosystem requirements.
+
+* ``VARCHAR`` is no longer supported for new customers, effective from Version 2022.1.3 (September 2022).  
+
+* The ``TEXT`` data type is replacing ``VARCHAR`` and ``NVARCHAR``.
+
+*Support in ``VARCHAR`` ends at September 30th, 2023.
+
+
+End of Support
+---------------
+No End of Support changes were made.
+
+Upgrading to v4.1
+-------------------
+1. Generate a back-up of the metadata by running the following command:
+
+   .. code-block:: console
+
+      $ select backup_metadata('out_path');
+	  
+   .. tip:: SQream recommends storing the generated back-up locally in case needed.
+   
+   SQream runs the Garbage Collector and creates a clean backup tarball package.
+   
+2. Shut down all SQream services.
+
+    ::
+
+3. Extract the recently created back-up file.
+
+    ::
+
+4. Replace your current metadata with the metadata you stored in the back-up file.
+
+    ::
+
+5. Navigate to the new SQream package bin folder.
+
+    ::
+
+6. Run the following command:
+
+   .. code-block:: console
+
+      $ ./upgrade_storage <levelDB path>
+
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
+  

@@ -27,6 +27,12 @@ The following are applicable to all operating systems:
   * `.NET .dll file <https://get.sqream-share.com/share/sIsu8fxv>`_ 
   * :ref:`net`
 
+.. _trino:
+
+* **Trino**:
+
+  * `Trino connector <>`_ 
+  * :ref:`trino`
 
 .. _python:
 
@@ -96,13 +102,13 @@ The following are applicable to Linux:
    :caption: Client Driver Documentation:
    :titlesonly:
    
+   trino/index
    jdbc/index
    python/index
-   dotnet/index
-   kafka/index
    nodejs/index
    odbc/index
    dotnet/index
+
 
 
 
