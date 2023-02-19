@@ -19,14 +19,20 @@ SQream DB is a columnar analytic SQL database management system. SQream DB suppo
 +---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 | :ref:`performing_basic_sqream_operations`         | Provides more information on performing basic operations.                                                                              |
 +---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`hardware_guide`                             | Describes SQream’s mandatory and recommended hardware settings, designed for a technical audience.                                     |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| **Installation Guides**                                                                                                                                                                    |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`installing_and_launching_sqream`            | Refers to SQream’s installation guides.                                                                                                |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
+| :ref:`sqream_studio_installation`                 | Refers to all installation guides required for installations related to Studio.                                                        |
++---------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 | **Ingesting Data**                                                                                                                                                                         |
 +--------------------------+------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 | :ref:`csv`               | :ref:`avro`            |                                                                                                                                        |
 +--------------------------+------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 | :ref:`parquet`           | :ref:`orc`             |                                                                                                                                        |
 +--------------------------+------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
-| :ref:`oracle`                                                                                                                                                                              |
-+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Connecting to SQream**                                                                                                                                                                   |
 +--------------------------+------------------------+----------------------------------------------------------------------------------------------------------------------------------------+
 | :ref:`client_platforms`                           | Describes how to install and connect a variety of third party connection platforms and tools.                                          |
@@ -54,8 +60,13 @@ SQream DB is a columnar analytic SQL database management system. SQream DB suppo
 
 .. rubric:: Need help?
 
-If you couldn't find what you're looking for, we're always happy to help. Visit our `support center<https://sqream.atlassian.net/servicedesk/>`.
+If you couldn't find what you're looking for, we're always happy to help. Visit `SQream's support portal <https://sqream.atlassian.net/servicedesk/>`_ for additional support.
 
+
+.. rubric:: Looking for older versions?
+
+
+If you're looking for an older version of the documentation, go to http://previous.sqream.com .
 
 .. toctree::
    :caption: Contents:
