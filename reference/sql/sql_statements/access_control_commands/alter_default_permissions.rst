@@ -36,9 +36,7 @@ The following is the syntax for altering default permissions:
    
    grant_clause ::= 
       GRANT 
-         { CREATE FUNCTION
-         | SUPERUSER
-         | CONNECT
+         { SUPERUSER
          | CREATE
          | USAGE
          | SELECT
@@ -46,7 +44,6 @@ The following is the syntax for altering default permissions:
          | UPDATE
          | DELETE
          | DDL
-         | EXECUTE
          | ALL
          }
 
