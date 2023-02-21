@@ -17,7 +17,7 @@ Connectivity issues can be caused by several factors, including incorrect login 
 
 Verify that:
 
-* The correct username, password, and database name are set
+* You are using a valid access token
 
 * The correct Fully Qualified Domain Name (FQDN) is set
 
@@ -33,8 +33,6 @@ Query performance can be influenced by various factors, including complex querie
 * Table indexes are properly configured
 
 * Queries are not unnecessarily overly complex
-
-* Your data storage is properly set
 
 * Your system is not overloaded
 
