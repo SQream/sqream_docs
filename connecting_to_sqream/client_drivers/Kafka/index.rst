@@ -20,16 +20,17 @@ Before You Begin
 * You must have `JDBC <java_jdbc>`_ deployed
 * Your network bandwidth must be at least 100 mega per second
 * Supported data formats for streamed data is JSON - Remove
-* Kafka ***
+* Kafka 2.12-3.2.1
 
 High Level Workflow
 ===================
 
-1. Deploy the JDBC Connector.
-2. Install kafka_2.12-3.2.1
-3. Configure
-3. Run your Kafka Connect API.
-4. 
+1. Deploy the JDBC Connector
+2. Download Sink Connector
+3. Configure Sink Connector
+4. Download SQream Loader
+5. Configure SQream Loader
+6. Run your Kafka Connect API 
  
 
 
