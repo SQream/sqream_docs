@@ -64,6 +64,11 @@ The following are applicable to all operating systems:
 
   * `Power BI PowerQuery connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_ - SQream (.mez)
   * :ref:`power_bi`
+  
+* **Kafka**:
+
+  * :ref:`Kafka<kafka>`
+
 
 
 Windows
