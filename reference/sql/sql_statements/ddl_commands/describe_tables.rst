@@ -3,17 +3,7 @@
 *****************
 DESCRIBE TABLES
 *****************
-The ``DESCRIBE TABLES`` command lets you list information about tables in your database. You can define the ``DESCRIBE TABLES`` command as one of the following:
-
-* **All** - list information regarding both internal and external tables.
-
-   ::
-   
-* **Internal** - list information regarding SQream native tables residing in the defined SQream database storage area.
-
-   ::
-   
-* **External** - list information about tables residing as files external to the SQream database.
+The ``DESCRIBE TABLES`` command lets you list information about tables in your database.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
@@ -23,7 +13,7 @@ The following is the syntax for the ``DESCRIBE TABLES`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE TABLES [SCHEMA <schema_name>] [DATABASE <database_name>] ALL | EXTERNAL | INTERNAL
+   DESCRIBE TABLES:
 
 Parameters
 ============
@@ -45,20 +35,20 @@ The following parameters can be used with the ``DESCRIBE TABLES`` command:
      - ``schema_name``
      - The name of the table.
      - Text
-   * - ``ALL`` | ``EXTERNAL`` | ``INTERNAL``
-     - Select ``ALL``, ``EXTERNAL``, or ``INTERNAL``.
-     - Information belonging to all tables or to an external or internal table.
+   * - ``ALL``, ``EXTERNAL``, ``INTERNAL``
+     - ``ALL``, ``EXTERNAL``, or ``INTERNAL``.
+     - You may define the ``DESCRIBE TABLES`` command to show information related to all tables, external tables, or internal tables. The default value is ``ALL``.
      - Text	
 	 
-Example
+Examples
 ==============
-The following is an example of an **internal** ``DESCRIBE TABLES`` command:
+Listing internal tables:
 
 .. code-block:: postgres
 
    DESCRIBE TABLES DATABASE master SCHEMA public INTERNAL;
    
-The following is an example of an **external** ``DESCRIBE TABLES`` command:
+Listing external tables:
 
 .. code-block:: postgres
    
@@ -66,7 +56,7 @@ The following is an example of an **external** ``DESCRIBE TABLES`` command:
    
 Output
 =============
-Using the **ALL** ``DESCRIBE_TABLES`` command generates the following output:
+When the set to ``ALL``, the ``DESCRIBE_TABLES`` command returns the following parameters:
 
 .. list-table:: 
    :widths: auto
@@ -105,34 +95,31 @@ Using the **ALL** ``DESCRIBE_TABLES`` command generates the following output:
      - Text
      - 
 	 
-The following is an example of the generated output in Studio for the **ALL** ``DESCRIBE TABLES`` command:
+Output Examples
+~~~~~~~~~~~~~~~
+Listing all tables:
+
 
 .. code-block:: postgres
- 
-   DESCRIBE TABLES SCHEMA public DATABASE master ALL;
 
    database_name|schema_name|table_name  |table_type|row_count|created_on         |Additional details                           |
    -------------+-----------+------------+----------+---------+-------------------+---------------------------------------------+
-   master       |public     |nba         |Internal  |914      |2022-06-14 13:14:45|     		                        |
+   master       |public     |nba         |Internal  |914      |2022-06-14 13:14:45|     		                                |
    master       |public     |cool_animals|Internal  |5        |2022-06-20 12:09:40|                                             |
-   master       |public     |users	 |External  |         |2022-06-22 15:05:12|Format:parquet, Path:/var/mounts/nfsshare... |		
+   master       |public     |users	 |External  |         |2022-06-22 15:05:12|Format:parquet, Path:/var/mounts/nfsshare...     |		
  
-The following is an example of the generated output in Studio for the **INTERNAL** ``DESCRIBE TABLES`` command:
+Listing internal tables:
 
 .. code-block:: postgres
- 
-   DESCRIBE TABLES SCHEMA public DATABASE master INTERNAL;
 
    database_name|schema_name|table_name  |table_type|row_count|created_on         |Additional details	                       |
    -------------+-----------+------------+----------+---------+-------------------+--------------------------------------------+
    master       |public     |nba         |Internal  |914      |2022-06-14 13:14:45|                                            |
    master       |public     |cool_animals|Internal  |5        |2022-06-20 12:09:40|                                            |
    	 
-The following is an example of the generated output in Studio for the **EXTERNAL** ``DESCRIBE TABLES`` command:
+Listing external tables:
 
 .. code-block:: postgres
-
-   DESCRIBE TABLES SCHEMA public DATABASE master EXTERNAL;
 
    database_name|schema_name|table_name  |table_type|row_count|created_on          |Additional details                          |
   --------------+-----------+------------+----------+---------+--------------------+--------------------------------------------+

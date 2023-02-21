@@ -46,6 +46,8 @@ The following table shows the Data Definition commands:
      - Create a new table in the database using results from a select query
    * - :ref:`CREATE_VIEW<create_view>`
      - Create a new view in the database
+   * - :ref:`DESCRIBE_TABLE<describe_tables>`
+     - List information about tables in your database
    * - :ref:`DROP_CLUSTERING_KEY<drop_clustering_key>`
      - Drops all clustering keys in a table
    * - :ref:`DROP_COLUMN<drop_column>`
