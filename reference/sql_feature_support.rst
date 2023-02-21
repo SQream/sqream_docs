@@ -64,10 +64,10 @@ Read more about :ref:`Yes data types<data_types>`.
      - Can be stored as a text string or as part of a ``DATETIME``
 
 
-Contraints
+Constraints
 ===============
 
-.. list-table:: Contraints
+.. list-table:: Constraints
    :widths: auto
    :header-rows: 1
    
@@ -91,8 +91,6 @@ Transactions
 SQream DB treats each statement as an auto-commit transaction. Each transaction is isolated from other transactions with serializable isolation. 
 
 If a statement fails, the entire transaction is cancelled and rolled back. The database is unchanged.
-
-Read more about :ref:`transactions in SQream DB<transactions>`.
 
 
 Indexes

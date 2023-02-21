@@ -17,6 +17,5 @@ This section describes the following features:
    compression
    python_functions
    workload_manager
-   transactions
    concurrency_and_locks
    concurrency_and_scaling_in_sqream
