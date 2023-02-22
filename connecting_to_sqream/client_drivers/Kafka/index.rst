@@ -17,43 +17,33 @@ Before You Begin
 
 * You must have JAVA 11 installed
 * You must have `JDBC <java_jdbc>`_ deployed
-* You must have SQream Sink Connector and Loader downloaded
+* You must have Kafka Connector downloaded
 * Your network bandwidth must be at least 100 mega per second
 * You must have Kafka 2.12-3.2.1
 * Streamed data supported format is JSON
  
-Installation and Configuration
-==============================
+Kafka Connector Installation and Configuration
+==============================================
 
 Before you configure the Kafka Connector, make sure that Kafka and Zookeeper are both running. 
 
 Kafka Connector workflow:
 
-.. figure:: /_static/images/kafka_flow.png
+.. figure:: /_static/images/SQreamDB connector to Kafka.png
 
 .. contents:: 
    :local:
    :depth: 1
 
-Sink Connector
+Configuring The Sink Connector
 ---------------
-
-Download sink connector
-
-The Sink Connector reads JSON format Kafka topics and writes the messages inside each topic into text files. The files are created with the extension ``.tmp`` and stored in a specified directory. The ``sqream.batchRecordCount`` parameter defines the number of records to be written to each file, and when the specified number is reached, the Sink Connector closes the file, renames it to ``sqream.fileExtension``, and then creates a new file. Unlike data streaming, which continuously sends data from the Kafka topic to the database, the Sink Connector only sends the data when the file size reaches a predefined threshold. This means that data will arrive in batches. 
-
-SQream tables must be created according to the columns configured in ``csvorder``.
-
-
-Sink Connector Configuration
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Configuration file structure:
 
- .. code-block:: postgres
+.. code-block:: postgres
 
 	name=SQReamFileSink
-	topics=topsqreamtest1
+	topics=<topic>
 	tasks.max=4
 	connector.class=tr.com.entegral.FileSinkConnector
 	errors.tolerance=all
@@ -64,14 +54,22 @@ Configuration file structure:
 	transforms=flatten
 	transforms.flatten.type=org.apache.kafka.connect.transforms.Flatten$Value
 	transforms.flatten.delimiter=.
-	sqream.outputdir=/home/sqream/kafkaconnect/outputs
+	sqream.outputdir=<full path to files landing zone: example- /home/sqream/kafkaconnect/outputs>
 	sqream.batchRecordCount =10
 	sqream.fileExtension=csv
 	sqream.removeNewline =false
 	sqream.outputType=csv
-	sqream.csvOrder=receivedTime,equipmentId,asdf,timestamp,intv
+	sqream.csvOrder=<column1, column2, column3, column4>
 
-The following parameters require configuration.
+1. Use the following connection string:
+
+.. code-block:: postgres
+
+	vi /home/sqream/kafkaconnect1/sqream-kafka-connector/sqream-kafkaconnect/config/sqream-filesink.properties
+
+
+2. Configure the following Sink Connector parameters:
+
 
 .. list-table:: 
    :widths: auto
@@ -89,42 +87,33 @@ The following parameters require configuration.
      - Defines table columns. SQream table columns must align with the ``csvorder`` table columns
 
 
-Connection string:
-
- .. code-block:: postgres
- 
-	vi /home/sqream/kafkaconnect1/sqream-kafka-connector/sqream-kafkaconnect/config/sqream-filesink.properties
+.. note:: If the Sink Connector sqream.fileExtension is configured with csv extension, make sure that your SQream Loader parameter readyFileSuffix matches and is configured with csv extension as well.
 	
-Running commands:
+3. Run the following command:
 
- .. code-block:: postgres
+.. code-block:: postgres
  
 	export JAVA_HOME=/home/sqream/copy-from-util/jdk-11;export CLASSPATH=.:$JAVA_HOME/jre/lib:$JAVA_HOME/lib:$JAVA_HOME/lib/tools.jar;cd /home/sqream/kafkaconnect1/kafka/bin/ && ./connect-standalone.sh /home/sqream/kafkaconnect1/sqream-kafka-connector/sqream-kafkaconnect/config/connect-standalone.properties  /home/sqream/kafkaconnect1/sqream-kafka-connector/sqream-kafkaconnect/config/sqream-filesink.properties &
 
 
+Configuring JDBC
+----------------
+
+The JDBC connector is used to ingest data from Kafka, allowing SQream DB to consume the messages directly. This enables efficient and secure data ingestion into SQream DB.
 
 
-JDBC
--------------
-
-The JDBC connector can be used to ingest data from Kafka, allowing SQream DB to consume the messages directly. This enables efficient and secure data ingestion into SQream DB.
-
-.. contents:: 
-   :local:
-   :depth: 1
-
-JDBC Configuration
-~~~~~~~~~~~~~~~~~~
+1. Open the JDBC configuration file:
 
 .. code-block:: postgres
+	
 	vi /home/sqream/kafkaconnect1/sqream-kafka-connector/sqream-kafkaconnect/config/sqream-jdbcsink.properties
 	
-Example
+JDBC Configuration file Example
 
 .. code-block:: postgres
 	
 	name=SQReamJDBCSink
-	topics=demo1
+	topics=<topic>
 	tasks.max=1
 	connector.class=tr.com.entegral.JDBCSinkConnector
 	errors.tolerance=all
@@ -136,34 +125,69 @@ Example
 	transforms.flatten.type=org.apache.kafka.connect.transforms.Flatten$Value
 	transforms.flatten.delimiter=.
 	sqream.batchRecordCount =3
-	#sqream.jdbc.connectionstring=jdbc:sqlserver://localhost;databaseName=TestDB;user=kafka;password=kafka;encrypt=true;trustServerCertificate=true;
-	sqream.jdbc.connectionstring=jdbc:Sqream://192.168.0.102:5001/kafka;user=sqream;password=sqream;cluster=false
-	sqream.input.inputfields=intStr,inInt,indateTime,inFloat
+
+	sqream.jdbc.connectionstring=jdbc:Sqream://<host>:<port>/kafka;user=<user name>;password=<password>;cluster=false
+	sqream.input.inputfields=<Column1, Column2, Column3, Column4>
 	sqream.jdbc.tablename=testtable
-	sqream.jdbc.table.columnnames=colStr,colInt,Coldatetime,ColFloat
-	sqream.jdbc.table.columntypes=VARCHAR,INTEGER,TIMESTAMP,FLOAT
+	sqream.jdbc.table.columnnames=<Column1, Column2, Column3, Column4...>
+	sqream.jdbc.table.columntypes=<data types>
 	sqream.jdbc.dateformat=yyyy-MM-dd HH:mm:ss
 
-SQream Loader Configuration 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+2. Configure the following JDBC parameters:
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+
+   * - Parameter
+     - Description
+   * - Topic
+     - Must be defined according to sink connector
+   * - ``sqream.jdbc.table.columntypes``
+     - SQream data types to match the columns that were defined in the Sink Connector sqream.csvOrder parameter.
+   * - ``sqream.jdbc.table.columnnames``
+     - SQream column names as defined in the Sink Connector configuration file.
+   * - ``sqream.input.inputfields``
+     - Columns as defined in the original Kafka message.
 
 
-Building the SQream Loader:
 
- .. code-block:: postgres
- 
-	git clone -b develop http://gitlab.sq.l/java/copy-from-util.git
-	mvn clean package
+Configuring The SQream Loader
+---------------------------
+
+Configuration file structure:
+
+.. code-block:: postgres
 
 
-Running the SQream Loader:
+	#config.yaml
 
- .. code-block:: postgres
+		com:
+		  sqream:
+			kafka:
+			  common:
+				root: "<full path to directory of utility>"
+				readyFileSuffix: ".<suffix as configured in Sink Connector>"
+			  connection:
+				ip: "<host>"
+				port: <port>
+				database: "<database name>"
+				cluster: true
+				user: <username>
+				pass: <password>
+				delimiter: ","
+			  tables:
+				- schema: "<scema name>"
+				  name: "<table name>"
+				  parallel: <number of parallel processes>
+				- schema: "<schema name>"
+				  name: "<table name>"
+				  parallel: <number of parallel processes>
+				- schema: ...
 
-	git clone -b develop http://gitlab.sq.l/java/copy-from-util.git
-	mvn clean package
 
-What needs to be configured:
+1. Configure the following SQream Loader parameters:
 
 .. list-table:: 
    :widths: auto
@@ -172,52 +196,20 @@ What needs to be configured:
    
    * - Parameter
      - Description
-   * - ``root``
-     – paste copied path to root
-   * - ``schema``
-     -
-   * - ``name``
-     -    
+   * - ``readyFileSuffix``
+     - As defined in Sink Connector configuration file
+   * - ``ip``
+     - Host name of the machine where the Sink Connector is configured
+   * - ``Connection parameters``
+     - 
+   * - ``Table parameters``
+     - 
 
-Configuration file structure:
-
- .. code-block:: postgres
-
-	#config.yaml
-
-	com:
-	  sqream:
-		kafka:
-		  common:
-			root: "/home/sqream/copy_from_root"
-			readyFileSuffix: ".csv"
-		  connection:
-			ip: "127.0.0.1"
-			port: 3108
-			database: "master"
-			cluster: true
-			user: sqream
-			pass: sqream
-			delimiter: ","
-		  tables:
-			- schema: "public"
-			  name: "t1"
-			  parallel: 5
-			- schema: "public"
-			  name: "t2"
-			  parallel: 3
-			- schema: "public"
-			  name: "t3"
-			  parallel: 1
-
-
-
-
-Running commands:
+2. Run the following command
 
  .. code-block:: postgres
  
-	/home/sqream/copy-from-util/jdk-11/bin/java -jar /home/sqream/copy-from-util/copy-from-util/target/copy-from-util-0.0.1-SNAPSHOT.jar --spring.config.additional-location=/home/sqream/copy-from-util/config.yaml &
+	<full path to jdk11>/bin/java -jar <full path to copy from util jar>/copy-from-util-0.0.1-SNAPSHOT.jar --spring.config.additional-location=<full path to copy from util configuration yamel> &
 
 Logging and Monitoring
 ========================
@@ -242,6 +234,3 @@ Limitations
 Latency
 
 Retention
-
-Examples
-=========
