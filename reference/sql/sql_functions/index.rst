@@ -174,6 +174,8 @@ The following table shows the **arithmetic operator** functions:
      - Calculates the cosine of an argument
    * - :ref:`cot`
      - Calculates the cotangent of an argument
+   * - :ref:`crc64`
+     - Calculates a CRC-64 hash of an argument
    * - :ref:`degrees`
      - Converts a value from radian values to degrees
    * - :ref:`exp`
@@ -265,6 +267,8 @@ The following table shows the **string** functions:
      - Trims whitespaces from an argument
    * - :ref:`upper`
      - Converts an argument to an upper-case equivalent
+   * - :ref:`select_ascii`
+     - Return the ASCII code value of the leftmost character of a string
 
 User-Defined Scalar Functions
 ---------------------
@@ -359,6 +363,24 @@ The following table shows the **window** functions:
      - Returns an integer ranging between ``1`` and the argument value, dividing the partitions as equally as possible
 
 For more information about window functions, see :ref:`window_functions`.
+
+Workload Management Functions
+---------------------------------
+The following table shows the **workload management** functions:
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+
+   * - Function
+     - Description
+   * - :ref:`subscribe_service`
+     - Add a SQream DB worker to a service queue 
+   * - :ref:`unsubscribe_service`
+     - Remove a SQream DB worker to a service queue
+   * - :ref:`show_subscribed_instances`
+     - Return a list of service queues and workers
+
 
 .. toctree::
    :maxdepth: 2
