@@ -267,6 +267,8 @@ The following table shows the **string** functions:
      - Trims whitespaces from an argument
    * - :ref:`upper`
      - Converts an argument to an upper-case equivalent
+   * - :ref:`select_ascii`
+     - Return the ASCII code value of the leftmost character of a string
 
 User-Defined Scalar Functions
 ---------------------
