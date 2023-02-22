@@ -84,3 +84,4 @@ The **Built-In Scalar Functions** page describes functions that return one value
    * :ref:`substring`
    * :ref:`trim`
    * :ref:`upper`
+   * :ref:`select_ascii`
