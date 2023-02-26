@@ -29,7 +29,7 @@ Ensure that both Kafka and Zookeeper are running before starting the configurati
 
 Kafka Connector workflow:
 
-.. figure:: /_static/images/SQreamDB connector to Kafka.png
+.. figure:: /_static/images/SQreamDB_connector_to_Kafka.png
 
 .. contents:: 
    :local:
