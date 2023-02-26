@@ -13,7 +13,7 @@ The following is the syntax for the ``DESCRIBE TABLES`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE [DATABASE database_name.] [SCHEMA schema_name.] TABLE table_name [ALL|INTERNAL|EXTERNAL];
+   DESCRIBE TABLES [DATABASE database_name.] [SCHEMA schema_name.] [ALL|INTERNAL|EXTERNAL];
 
 
 Parameters
