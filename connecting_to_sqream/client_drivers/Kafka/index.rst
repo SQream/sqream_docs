@@ -36,9 +36,9 @@ Kafka Connector workflow:
    :depth: 1
 
 Configuring The Sink Connector
----------------
+------------------------------
 
-Configuration file structure:
+Sink Connector configuration file structure:
 
 .. code-block:: postgres
 
@@ -61,7 +61,7 @@ Configuration file structure:
 	sqream.outputType=csv
 	sqream.csvOrder=<column1, column2, column3, column4>
 
-1. Use the following connection string:
+1. Open the Sink Connector configuration file:
 
 .. code-block:: postgres
 
@@ -100,15 +100,8 @@ Configuring JDBC
 ----------------
 
 The JDBC connector is used to ingest data from Kafka, allowing SQream DB to consume the messages directly. This enables efficient and secure data ingestion into SQream DB.
-
-
-1. Open the JDBC configuration file:
-
-.. code-block:: postgres
 	
-	vi /home/sqream/kafkaconnect1/sqream-kafka-connector/sqream-kafkaconnect/config/sqream-jdbcsink.properties
-	
-JDBC Configuration file Example
+JDBC Configuration file structure:
 
 .. code-block:: postgres
 	
@@ -134,6 +127,12 @@ JDBC Configuration file Example
 	sqream.jdbc.dateformat=yyyy-MM-dd HH:mm:ss
 
 
+1. Open the JDBC configuration file:
+
+.. code-block:: postgres
+	
+	vi /home/sqream/kafkaconnect1/sqream-kafka-connector/sqream-kafkaconnect/config/sqream-jdbcsink.properties
+
 2. Configure the following JDBC parameters:
 
 .. list-table:: 
@@ -156,7 +155,7 @@ JDBC Configuration file Example
 Configuring The SQream Loader
 ---------------------------
 
-Configuration file structure:
+SQream Loader configuration file structure:
 
 .. code-block:: postgres
 
