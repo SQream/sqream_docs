@@ -13,7 +13,7 @@ The following is the syntax for the ``DESCRIBE TABLES`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE TABLES [DATABASE database_name.] [SCHEMA schema_name.] [ALL|INTERNAL|EXTERNAL];
+   DESCRIBE TABLES[DATABASE database_name.] [SCHEMA schema_name.] [ALL|INTERNAL|EXTERNAL];
 
 
 Parameters
@@ -105,9 +105,9 @@ Listing all tables:
 
    database_name|schema_name|table_name  |table_type|row_count|created_on         |Additional details                           |
    -------------+-----------+------------+----------+---------+-------------------+---------------------------------------------+
-   master       |public     |nba         |Internal  |914      |2022-06-14 13:14:45|     		                                |
+   master       |public     |nba         |Internal  |914      |2022-06-14 13:14:45|     		                        |
    master       |public     |cool_animals|Internal  |5        |2022-06-20 12:09:40|                                             |
-   master       |public     |users	 |External  |         |2022-06-22 15:05:12|Format:parquet, Path:/var/mounts/nfsshare...     |		
+   master       |public     |users	 |External  |         |2022-06-22 15:05:12|Format:parquet, Path:/var/mounts/nfsshare... |		
  
 Listing internal tables:
 
