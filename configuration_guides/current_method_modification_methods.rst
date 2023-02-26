@@ -53,10 +53,27 @@ For more information on using the previous configuration method, see :ref:`previ
 Reviewing Current System Configurations
 ---------------------------------------
 
-To obtain a comprehensive list of flags that includes their scope, description, default values, and configuration status, execute the command provided below.
+To obtain a comprehensive list of flags with their value, default value, scope, and description, execute the following command:
 
 .. code-block:: postgres
 	
-	SELECT * FROM sqream_catalog.parameters
+	SELECT * FROM sqream_catalog.parameters;
 	
+To obtain a comprehensive list of all configuration flags with their value, developer mode attribute, category and type, execute the following command:
+
+.. code-block:: postgres
+
+	SELECT show_conf();
 	
+To obtain a comprehensive list of all configuration flags with their value, developer mode attribute, category, type, description, usage, data type, default value, and range, execute the following command:
+	
+.. code-block:: postgres
+
+	SELECT show_conf_extended();
+	
+To see flags that are stored in your metadata, execute the following commands:
+
+.. code-block:: postgres
+
+	SELECT show_md_flag('all');
+	SELECT show_md_flag('<flag_name>');
