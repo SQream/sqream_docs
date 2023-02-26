@@ -206,6 +206,8 @@ The following table shows the **arithmetic operator** functions:
      - Calculates the tangent of an argument
    * - :ref:`trunc`
      - Rounds a number to its integer representation towards 0
+   * - :ref:`sign`
+     - Returns an integer value of -1, 0, or 1, depending on the sign of the input expression.
 
 Strings
 ^^^^^^^^^^^
