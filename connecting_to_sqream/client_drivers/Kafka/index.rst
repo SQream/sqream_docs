@@ -87,7 +87,7 @@ Configuration file structure:
      - Defines table columns. SQream table columns must align with the ``csvorder`` table columns
 
 
-.. note:: If the Sink Connector sqream.fileExtension is configured with csv extension, make sure that your SQream Loader parameter readyFileSuffix matches and is configured with csv extension as well.
+.. note:: If the Sink Connector ``qream.fileExtension`` parameter is configured with csv extension, make sure that your SQream Loader parameter readyFileSuffix matches and is configured with csv extension as well.
 	
 3. Run the following command:
 
