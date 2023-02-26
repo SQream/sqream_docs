@@ -272,6 +272,6 @@ For an example of stopping actively running SQream services, see :ref:`Launching
       1 row
       time: 0.050603s 
  
-For more information, see the `upgrade_storage <https://docs.sqream.com/en/v2020-1/reference/cli/upgrade_storage.html>`_ command line program.
+For more information, see the :ref:`upgrade_storage<upgrade_storage_cli_reference>` command line program.
 
-For more information about installing Studio on a stand-alone server, see `Installing Studio on a Stand-Alone Server <https://docs.sqream.com/en/v2020-1/installation_guides/installing_studio_on_stand_alone_server.html>`_.
+For more information about installing Studio on a stand-alone server, see :ref:`Installing Studio on a Stand-Alone Server<installing_studio_on_stand_alone_server>`.
