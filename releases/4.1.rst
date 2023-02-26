@@ -15,7 +15,7 @@ The 4.1 release notes were released on xx/xx/20xx and describe the following:
 New Features
 ------------
 
- * :ref:`Lightweight Directory Access Protocol (LDAP)<ldap>` enhanced management
+ * :ref:`Lightweight Directory Access Protocol (LDAP)<ldap>` management enhancement
  
 	::
 
@@ -23,7 +23,7 @@ New Features
  
  	::
 	
- * A brute-force attack protection locks out user accounts for 15 minutes following 5 consecutive failed login attempts
+ * A new brute-force attack protection mechanism locks out user accounts for 15 minutes following 5 consecutive failed login attempts
  
 SQream Studio Updates and Improvements
 --------------------------------------
