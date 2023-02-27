@@ -22,10 +22,10 @@ Before You Begin
 * You must have Kafka 2.12—3.2.1
 * Streaming data in JSON format is supported
  
-Kafka Connector Installation and Configuration
-==============================================
+Installing and Configuring Kafka Connector
+==========================================
 
-Ensure that both Kafka and Zookeeper are running before starting the configuration of the Kafka Connector.
+Before configuring the Kafka Connector, ensure that both Kafka and Zookeeper are running.
 
 Kafka Connector workflow:
 
@@ -35,10 +35,10 @@ Kafka Connector workflow:
    :local:
    :depth: 1
 
-Configuring The Sink Connector
+Configuring the Sink Connector
 ------------------------------
 
-Sink Connector configuration file structure:
+The structure of the Sink Connector configuration file:
 
 .. code-block:: postgres
 
@@ -75,14 +75,14 @@ Sink Connector configuration file structure:
    
    * - Parameter
      - Description
-   * - Topic
-     - A category or feed name to which messages are published and subscribed to.
+   * -``topics``
+     - A category or feed name to which messages are published and subscribed.
    * - ``sqream.batchrecordcount``
-     - The record count to be written to each folder.
+     - The number of records to be written to each folder.
    * - ``sqream.outputdir``
      - Full path to a staging area, the temporary location where files are stored before they are processed or moved to their final destination.
    * - ``sqream.csvOrder``
-     - The table column names by which streamed data is arranged. The ``sqream.csvOrder`` column names must align with a SQream table.
+     - The names of the columns of the table that is receiving the streamed data. The ``sqream.csvOrder`` column names must align with a SQream table.
 	
 3. Run the following command:
 
@@ -95,7 +95,7 @@ Configuring JDBC
 
 The JDBC connector is used to ingest data from Kafka, allowing SQream DB to consume the messages directly. This enables efficient and secure data ingestion into SQream DB.
 	
-JDBC Configuration file structure:
+The structure of the JDBC configuration file:
 
 .. code-block:: postgres
 	
@@ -133,16 +133,16 @@ JDBC Configuration file structure:
 
    * - Parameter
      - Description
-   * - Topic
-     - Must be defined according to sink connector.
+   * - ``topics``
+     - Must be defined according to the Sink Connector.
    * - ``sqream.jdbc.table.columntypes``
-     - SQream data types which must match the columns that were defined in the Sink Connector sqream.csvOrder parameter.
+     - SQream data types which must match the columns that were defined in the Sink Connector ``sqream.csvOrder`` parameter.
    * - ``sqream.jdbc.table.columnnames``
      - The table column names by which streamed data is arranged. The ``sqream.jdbc.table.columnnames`` column names must align with the Sink Connector column names.
    * - ``sqream.input.inputfields``
      - Columns as defined in the original Kafka message.
 
-Configuring The SQream Loader
+Configuring the SQream Loader
 ---------------------------
 
 SQream Loader configuration file structure:
