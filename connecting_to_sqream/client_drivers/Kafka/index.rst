@@ -18,8 +18,8 @@ Before You Begin
 * You must have JAVA 11 installed
 * You must have `JDBC <java_jdbc>`_ deployed
 * You must have Kafka Connect installed
-* Your network bandwidth must be at least 100 mega per second
-* You must have Kafka 2.12-3.2.1
+* Your network bandwidth must be at least 100 megabytes per second
+* You must have Kafka 2.12—3.2.1
 * Streamed data supported format is JSON
  
 Kafka Connector Installation and Configuration
