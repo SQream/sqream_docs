@@ -20,7 +20,7 @@ Before You Begin
 * You must have Kafka Connect installed
 * Your network bandwidth must be at least 100 megabytes per second
 * You must have Kafka 2.12—3.2.1
-* Streamed data supported format is JSON
+* Streaming data in JSON format is supported
  
 Kafka Connector Installation and Configuration
 ==============================================
