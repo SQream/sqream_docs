@@ -38,8 +38,6 @@ SQream has an ODBC driver to connect to SQream DB. This tutorial shows how to in
 
 Other distributions may also work, but are not officially supported by SQream.
 
-.. contents:: In this topic:
-   :local:
 
 Downloading the ODBC driver
 ==================================
