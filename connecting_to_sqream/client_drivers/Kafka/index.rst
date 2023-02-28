@@ -13,13 +13,14 @@ The Kafka Connector provides a file-based solution for storing and managing data
 
 
 Before You Begin
+
 ================
 
-* You must have JAVA 11 installed
-* You must have `JDBC <java_jdbc>`_ deployed
-* You must have Kafka Connect installed
+* It is necessary to have JAVA 11 installed
+* It is necessary to have `JDBC <java_jdbc>`_ deployed
+* It is necessary to have Kafka Connect installed
 * Your network bandwidth must be at least 100 megabytes per second
-* You must have Kafka 2.12—3.2.1
+* It is necessary to have Kafka 2.12—3.2.1
 * Streaming data in JSON format is supported
  
 Installing and Configuring Kafka Connector
@@ -195,7 +196,7 @@ SQream Loader configuration file structure:
    * - Table parameters
      - Schema, table name, number of parallel processes
 
-2. Run the following command
+2. Run the following command:
 
  .. code-block:: postgres
  
@@ -212,10 +213,10 @@ Either
 Or
  * SQream loader folder is not the same as Kenan folder 
  
-Purging
-=======
+Retention policy
+================
 Ingested files are automatically zipped and archived for 60 days.  
-User needs to prepare storage.
+User should allocate storage.
 User may configure archive time.
 
 Limitations
