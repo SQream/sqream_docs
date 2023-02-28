@@ -60,7 +60,7 @@ For these examples, consider the following table and contents:
    1.4142135623730951
 
 .. note:: 
-   * ``SQRT`` always returns a floating point result.
+
    * Some clients may show fewer digits. See your client settings to change the precision shown.
 
 Replacing negative values with ``NULL``

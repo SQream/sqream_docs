@@ -3,7 +3,6 @@
 *****************************
 ALTER DEFAULT PERMISSIONS
 *****************************
-The **ALTER DEFAULT PERMISSIONS** page describes the following:
 
 .. contents:: 
    :local:
@@ -28,11 +27,11 @@ The following is the syntax for altering default permissions:
 .. code-block:: postgres
 
    alter_default_permissions_statement ::=
-         ALTER DEFAULT PERMISSIONS FOR target_role_name
+         ALTER DEFAULT PERMISSIONS FOR { target_role_name | ALL ROLES }
          [IN schema_name, ...] 
          FOR { TABLES | SCHEMAS }
-         { grant_clause | DROP grant_clause} 
-         TO ROLE { role_name | public };
+         { grant_clause [, ...] | DROP grant_clause[, ...]} 
+         TO { role_name [, ...] | public };
    
    grant_clause ::= 
       GRANT 
@@ -45,7 +44,7 @@ The following is the syntax for altering default permissions:
          | DELETE
          | DDL
          | ALL
-         }
+         } [, ...]
 
    target_role_name ::= identifier 
    
@@ -54,13 +53,46 @@ The following is the syntax for altering default permissions:
    schema_name ::= identifier
    
 
-.. include:: grant.rst
-   :start-line: 127
-   :end-line: 180
+Supported Permissions
+=======================
+The following table describes the supported permissions:
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Permission
+     - Object
+     - Description
+   * - ``SUPERUSER``
+     - Cluster, Database, Schema
+     - The most privileged role, with full control over a cluster, database, or schema
+   * - ``CREATE``
+     - Database, Schema
+     - For a role to create and manage objects, it needs the ``CREATE`` and ``USAGE`` permissions at the respective level
+   * - ``USAGE``
+     - Schema
+     - For a role to see tables in a schema, it needs the ``USAGE`` permissions
+   * - ``SELECT``
+     - Table
+     - Allows a user to run :ref:`select` queries on table contents
+   * - ``INSERT``
+     - Table
+     - Allows a user to run :ref:`copy_from` and :ref:`insert` statements to load data into a table
+   * - ``UPDATE``
+     - Table
+     - Allows a user to modify the value of certain columns in existing rows without creating a table
+   * - ``DELETE``
+     - Table
+     - Allows a user to run :ref:`delete`, :ref:`truncate` statements to delete data from a table
+   * - ``DDL``
+     - Database, Schema, Table, Function
+     - Allows a user to :ref:`alter tables<alter_table>`, rename columns and tables, etc.
+
+
 
 Examples
 ============
-This section includes the following examples:
 
 .. contents:: 
    :local:
