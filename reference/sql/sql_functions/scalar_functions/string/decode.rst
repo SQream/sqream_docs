@@ -11,7 +11,7 @@ The following shows the correct syntax for the DECODE function:
 
 .. code-block:: postgres
 
-   DECODE(string input_text, format type_text)
+   DECODE(string input_text, format type_text);
 
 Parameters
 ============
@@ -28,3 +28,9 @@ The following table shows the DECODE parameters:
    * - ``type_text``
      - Defines the format used for decoding the input text.
 
+Return
+======
+
+Returns the same type as the argument supplied.
+
+	
