@@ -3,7 +3,7 @@
 ********************
 DECODE
 ********************
-The **DECODE** function is used for decoding or extracting binary data from a textual input string.
+The **DECODE** function is used to translate a code value into a corresponding value that is meaningful to humans. This function is typically used in situations where a code needs to be presented to a user in a more understandable format, such as when displaying data in a report or on a user interface.
 
 Syntax
 ==========
@@ -11,7 +11,7 @@ The following shows the correct syntax for the DECODE function:
 
 .. code-block:: postgres
 
-   DECODE(string input_text, format type_text)
+   DECODE(string input_text, format type_text);
 
 Parameters
 ============
@@ -28,16 +28,9 @@ The following table shows the DECODE parameters:
    * - ``type_text``
      - Defines the format used for decoding the input text.
 
-Returns
-=========
+Return
+======
 
+Returns the same type as the argument supplied.
 
-
-Examples
-===========
-
-   
-Permissions
-=============
-
-The role must have the ``SUPERUSER`` permissions.
+	
