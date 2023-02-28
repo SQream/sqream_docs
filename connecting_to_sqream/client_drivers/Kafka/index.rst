@@ -4,7 +4,7 @@
 Connecting to SQream Using Kafka
 *************************
 
-The SQream Connector provides a file-based solution for storing and managing data that is being processed and streamed through Kafka. 
+The Kafka Connector provides a file-based solution for storing and managing data that is being processed and streamed through Kafka. 
 
 
 .. contents:: 
@@ -75,7 +75,7 @@ The structure of the Sink Connector configuration file:
    
    * - Parameter
      - Description
-   * -``topics``
+   * - ``topics``
      - A category or feed name to which messages are published and subscribed.
    * - ``sqream.batchrecordcount``
      - The number of records to be written to each folder.
@@ -83,6 +83,8 @@ The structure of the Sink Connector configuration file:
      - Full path to a staging area, the temporary location where files are stored before they are processed or moved to their final destination.
    * - ``sqream.csvOrder``
      - The names of the columns of the table that is receiving the streamed data. The ``sqream.csvOrder`` column names must align with a SQream table.
+
+	
 	
 3. Run the following command:
 
