@@ -6,7 +6,7 @@ Release Notes 4.1
 
 SQream is introducing a new version release system that follows the more commonly used Major.Minor.Patch versioning schema. The newly released **4.0 version** is a minor version upgrade and does not require considerable preparation.
 
-The 4.1 release notes were released on xx/xx/20xx and describe the following:
+The 4.1 release notes were released on 03/01/2023 and describe the following:
 
 .. contents:: 
    :local:
@@ -72,7 +72,7 @@ Deprecated Features
 
 The ``[]``, which are frequently used to delimit :ref:`identifiers<keywords_and_identifiers>` such as column names, table names, and other database objects, will soon be deprecated to facilitate the use of the ``ARRAY`` data type.
 
-* Support in ``[]`` for delimiting database object identifiers ends at xx/xx/20xx.
+* Support in ``[]`` for delimiting database object identifiers ends at 06/01/2023.
 
 * To delimit database object identifiers, you will be able to use double quotes ``""``.
 
