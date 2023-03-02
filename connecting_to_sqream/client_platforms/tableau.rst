@@ -212,4 +212,4 @@ If Tableau cannot locate the SQream JDBC driver, do the following:
 
 	.. image:: /_static/images/Third_Party_Connectors/tableau/envrionment_variable_for_classpath.png
 
-If you experience issues after restarting Tableau, see the `SQream support portal <https://support.sqream.com>`_.
+If you experience issues after restarting Tableau, contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_

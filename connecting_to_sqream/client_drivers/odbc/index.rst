@@ -39,10 +39,10 @@ SQream has an ODBC driver to connect to SQream DB. This tutorial shows how to in
 Other distributions may also work, but are not officially supported by SQream.
 
 
-Downloading the ODBC driver
-==================================
+Getting the ODBC driver
+=======================
 
-The SQream DB ODBC driver is distributed by your SQream account manager. Before contacting your account manager, verify which platform the ODBC driver will be used on. Go to `SQream Support <http://support.sqream.com/>`_ or contact your SQream account manager to get the driver.
+The SQream ODBC driver is distributed by your SQream account manager. Before contacting your account manager, verify which platform the ODBC driver will be used on. Go to `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ or contact your SQream account manager to get the driver.
 
 The driver is provided as an executable installer for Windows, or a compressed tarball for Linux platforms.
 After downloading the driver, follow the relevant instructions to install and configure the driver for your platform:

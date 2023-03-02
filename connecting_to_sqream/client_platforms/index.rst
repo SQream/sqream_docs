@@ -14,7 +14,7 @@ SQream DB is designed to work with most common database tools and interfaces, al
 
 The tools listed have been tested and approved for use with SQream DB. Most 3\ :sup:`rd` party tools that work through JDBC, ODBC, and Python should work.
 
-If you are looking for a tool that is not listed, SQream and our partners can help. Go to `SQream Support <http://support.sqream.com/>`_ or contact your SQream account manager for more information.
+If you are looking for a tool that is not listed, SQream and our partners can help. Go to `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ or contact your SQream account manager for more information.
 
 .. toctree::
    :maxdepth: 4

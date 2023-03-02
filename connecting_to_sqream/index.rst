@@ -15,4 +15,4 @@ This section provides information about the following third party tools:
    client_platforms/index
    client_drivers/index
 
-If you need a tool that SQream does not support, contact SQream Support or your SQream account manager for more information.
+If you need a tool that SQream does not support, contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ or your SQream account manager for more information.

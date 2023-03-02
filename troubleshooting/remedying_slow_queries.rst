@@ -58,7 +58,7 @@ The following table is a checklist you can use to identify the cause of your slo
          #. If there are more statements than available resources, some statements may be in an ``In queue`` mode.
          #. If there is a statement that has been running for too long and is blocking the queue, consider stopping it (use ``SELECT stop_statement(<statement id>)``).
          
-         If the statement does not stop correctly, contact SQream support.
+         If the statement does not stop correctly, contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
          
          If there are no long running statements or this does not help, continue to step 7.
    * - 7
@@ -76,4 +76,4 @@ The following table is a checklist you can use to identify the cause of your slo
          #. If the machine has less than 5% free memory, consider **lowering** the ``limitQueryMemoryGB`` and ``spoolMemoryGB`` settings. Refer to the :ref:`spooling` guide.
          #. If the machine has a lot of free memory, consider **increasing** the ``limitQueryMemoryGB`` and ``spoolMemoryGB`` settings.
          
-         If performance does not improve, contact SQream support for more help.
+         If performance does not improve, contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.

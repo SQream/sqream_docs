@@ -178,7 +178,7 @@ In some cases, SAS Viya cannot locate the SQream JDBC driver, generating the fol
 
 3. Restart SAS Viya.
 
-For more troubleshooting assistance, see the `SQream Support Portal <https://sqream.atlassian.net/servicedesk/customer/portals>`_.
+For more troubleshooting assistance, see the `SQream Support Portal <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
 
 Supporting TEXT
 ~~~~~~~~~~~~~~~~~~

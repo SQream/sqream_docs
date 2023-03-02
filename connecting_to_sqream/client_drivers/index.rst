@@ -116,7 +116,7 @@ The following are applicable to Linux:
 
 .. rubric:: Need help?
 
-If you couldn't find what you're looking for, we're always happy to help. Visit :ref:`information_for_support` for additional support.
+If you couldn't find what you're looking for, contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_
 
 .. rubric:: Looking for older drivers?
 

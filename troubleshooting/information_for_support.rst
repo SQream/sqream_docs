@@ -4,18 +4,14 @@
 Gathering Information for SQream Support
 *******************************************
 
-.. What do we want to look into a performance issue
-
-.. what about other kinds of issues
-
-.. what about bug reports
-
-`SQream Support <https://sqream.atlassian.net/servicedesk/>`_ is ready to answer any questions, and help solve any issues with SQream DB.
+.. contents:: 
+   :local:
+   :depth: 1
 
 Getting Support and Reporting Bugs
 =======================================
 
-When contacting `SQream Support <https://sqream.atlassian.net/servicedesk/>`_, we recommend reporting the following information:
+When contacting `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_, we recommend reporting the following information:
 
 * What is the problem encountered?
 * What was the expected outcome?
