@@ -33,6 +33,8 @@ The following table displays the access control permissions:
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``CREATE``         | Create tables in the schema                                                                                             |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``DDL``            | Drop and alter on the schema                                                                                            |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Object/Layer: Table**                                                                                                                      |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``SELECT``         | :ref:`select` from the table                                                                                            |
@@ -71,9 +73,10 @@ GRANT
 
    { SUPERUSER
    | LOGIN 
+   | UPDATE
    | PASSWORD '<password>' 
    } 
-   TO <role> [, ...] 
+   TO <role_name> [, ...] 
 
    -- Grant permissions at the database level:
         GRANT {{CREATE | CONNECT| DDL | SUPERUSER | CREATE FUNCTION} [, ...] | ALL [PERMISSIONS]}
@@ -90,20 +93,19 @@ GRANT
    -- Grant permissions at the object level: 
    GRANT {{SELECT | INSERT | DELETE | DDL | UPDATE } [, ...] | ALL [PERMISSIONS]} 
    ON { TABLE <table_name> [, ...] | ALL TABLES IN SCHEMA <schema_name> [, ...]} 
-   TO <role> [, ...]
+   TO <role> [, ...] [NO INHERIT | INHERIT]
        
    -- Grant execute function permission: 
-   GRANT {ALL | EXECUTE | DDL} ON FUNCTION function_name 
-   TO role; 
+   GRANT {ALL | EXECUTE | DDL} ON FUNCTION { function_name [, ...]} 
+   TO { role [, ...]}
        
    -- Allows role2 to use permissions granted to role1
    GRANT <role1> [, ...] 
-   TO <role2> 
+   TO <role2> [, ...] 
 
     -- Also allows the role2 to grant role1 to other roles:
    GRANT <role1> [, ...] 
-   TO <role2> 
-   WITH ADMIN OPTION
+   TO <role2> [, ...] [ WITH ADMIN OPTION ]
   
 ``GRANT`` examples:
 
@@ -140,6 +142,7 @@ REVOKE
    REVOKE
    { SUPERUSER
    | LOGIN
+   | UPDATE
    | PASSWORD
    }
    FROM <role> [, ...]
@@ -158,14 +161,17 @@ REVOKE
    REVOKE { { SELECT | INSERT | DELETE | DDL | UPDATE } [, ...] | ALL }
    ON { [ TABLE ] <table_name> [, ...] | ALL TABLES IN SCHEMA
 
+   -- Revoke execute function permission: 
+   REVOKE {ALL | EXECUTE | DDL} ON FUNCTION { function_name [, ...]} FROM role_name [, ...]
+
          <schema_name> [, ...] }
    FROM <role> [, ...]
             
    -- Removes access to permissions in role1 by role 2
-   REVOKE <role1> [, ...] FROM <role2> [, ...] WITH ADMIN OPTION
+   REVOKE <role1> [, ...] FROM <role2> [, ...] [ WITH ADMIN OPTION ]
 
    -- Removes permissions to grant role1 to additional roles from role2
-   REVOKE <role1> [, ...] FROM <role2> [, ...] WITH ADMIN OPTION
+   REVOKE <role1> [, ...] FROM <role2> [, ...] [ WITH ADMIN OPTION ]
 
 
 Examples:
