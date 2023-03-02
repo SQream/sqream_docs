@@ -35,7 +35,7 @@ No Studio updates
 Known Issues
 ------------
 
-No known issues
+:ref:`Percentile<percentile_disc>` is not supported for Window functions.
 
 
 Version 4.1 resolved Issues
