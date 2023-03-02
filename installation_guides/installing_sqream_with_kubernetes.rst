@@ -1769,7 +1769,7 @@ Before Upgrading Your System
 ----------------------------
 Before upgrading your system you must do the following:
 
-1. Contact SQream support for a new SQream package tarball file.
+1. Contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ for a new SQream package tarball file.
 
 ::
 
@@ -1813,4 +1813,4 @@ If you continue upgrading, all running SQream workers (master and editor) are st
 
 4. When SQream has successfully upgraded, load the SQream console and restart your services.
 
-For questions, contact SQream Support.  
+For questions, contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.  

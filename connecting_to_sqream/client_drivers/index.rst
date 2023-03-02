@@ -27,6 +27,12 @@ The following are applicable to all operating systems:
   * `.NET .dll file <https://get.sqream-share.com/share/sIsu8fxv>`_ 
   * :ref:`net`
 
+.. _trino:
+
+* **Trino**:
+
+  * `Trino connector <>`_ 
+  * :ref:`trino`
 
 .. _python:
 
@@ -58,6 +64,8 @@ The following are applicable to all operating systems:
 
   * `Power BI PowerQuery connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_ - SQream (.mez)
   * :ref:`power_bi`
+  
+
 
 
 Windows
@@ -96,19 +104,19 @@ The following are applicable to Linux:
    :caption: Client Driver Documentation:
    :titlesonly:
    
+   trino/index
    jdbc/index
    python/index
-   dotnet/index
-   kafka/index
    nodejs/index
    odbc/index
    dotnet/index
 
 
 
+
 .. rubric:: Need help?
 
-If you couldn't find what you're looking for, we're always happy to help. Visit :ref:`information_for_support` for additional support.
+If you couldn't find what you're looking for, contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_
 
 .. rubric:: Looking for older drivers?
 
