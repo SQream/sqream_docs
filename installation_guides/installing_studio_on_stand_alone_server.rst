@@ -121,7 +121,7 @@ After installing the Dashboard Data Collector, you can install Studio.
  
 **To install Studio:**
 
-1. Copy the SQream Studio package from SQream Artifactory into the target server. For access to the Sqream Studio package, contact SQream Support.
+1. Copy the SQream Studio package from SQream Artifactory into the target server. For access to the Sqream Studio package, contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
 
 ::
 

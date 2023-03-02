@@ -807,7 +807,7 @@ After preparing your local environment you must deploy the SQream software. Depl
 
 **To deploy the SQream software:**
 
-1. Contact the SQream Support team for access to the **sqream_installer-nnn-DBnnn-COnnn-EDnnn-<arch>.tar.gz** file.
+1. Contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ for access to the **sqream_installer-nnn-DBnnn-COnnn-EDnnn-<arch>.tar.gz** file.
 
 The **sqream_installer-nnn-DBnnn-COnnn-EDnnn-<arch>.tar.gz** file includes the following parameter values:
 
@@ -1426,7 +1426,7 @@ This section describes how to upgrade your SQream system.
 
 **To upgrade your SQream system:**
 
-1. Contact the SQream Support team for access to the new SQream package tarball file.
+1. Contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ team for access to the new SQream package tarball file.
 
     ::
 	
@@ -1466,4 +1466,4 @@ This section describes how to upgrade your SQream system.
  
 7. When the upgrade is complete, load the SQream console and restart your services.
 
-   For assistance, contact SQream Support.
+   For assistance, contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
