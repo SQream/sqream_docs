@@ -65,10 +65,10 @@ The following table describes the supported permissions:
      - Object
      - Description
    * - ``SUPERUSER``
-     - Cluster, Database, Schema
+     - Schema
      - The most privileged role, with full control over a cluster, database, or schema
    * - ``CREATE``
-     - Database, Schema
+     - Schema
      - For a role to create and manage objects, it needs the ``CREATE`` and ``USAGE`` permissions at the respective level
    * - ``USAGE``
      - Schema
@@ -86,7 +86,7 @@ The following table describes the supported permissions:
      - Table
      - Allows a user to run :ref:`delete`, :ref:`truncate` statements to delete data from a table
    * - ``DDL``
-     - Database, Schema, Table, Function
+     - Schema, Table
      - Allows a user to :ref:`alter tables<alter_table>`, rename columns and tables, etc.
 
 
