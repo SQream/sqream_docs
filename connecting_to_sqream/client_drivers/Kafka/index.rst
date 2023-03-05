@@ -23,6 +23,16 @@ Before You Begin
 * It is necessary to have Kafka 2.12—3.2.1
 * Streaming data in JSON format is supported
  
+ 
+How to load data into Kafka
+===========================
+
+To load JSON files into Kafka, run the following command:
+
+.. code-block:: postgres
+
+	./kafka-console-producer.sh --bootstrap-server localhost:<Kafka broker port number> --topic <topic name> < <full path to file>
+ 
 Installing and Configuring Kafka Connector
 ==========================================
 
