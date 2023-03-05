@@ -4,7 +4,7 @@
 COT
 **************************
 
-Returns the cotangent value of a numeric expression
+Calculates the cotangent value of a numeric expression
 
 Syntax
 ==========
@@ -29,7 +29,7 @@ Arguments
 Returns
 ============
 
-Always returns a floating point result of the cotangent.
+When using the ``COT`` floating point number scalar function, real arguments are automatically cast to double precision.
 
 Notes
 =======

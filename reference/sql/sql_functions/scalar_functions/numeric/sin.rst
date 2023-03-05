@@ -4,7 +4,7 @@
 SIN
 **************************
 
-Returns the sine value of a numeric expression
+Calculates the sine value of a numeric expression.
 
 Syntax
 ==========
@@ -29,7 +29,7 @@ Arguments
 Returns
 ============
 
-Always returns a floating point result of the sine.
+When using the ``SIN`` floating point number scalar function, real arguments are automatically cast to double precision.
 
 Notes
 =======

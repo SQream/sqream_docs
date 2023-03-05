@@ -4,7 +4,7 @@
 SQRT
 **************************
 
-Returns the square root value of a non-negative numeric expression.
+Calculates the square root value of a non-negative numeric expression.
 
 Syntax
 ==========
@@ -28,7 +28,8 @@ Arguments
 Returns
 ============
 
-Always returns a floating point result of the square root
+When using the ``SQRT`` floating point number scalar function, real arguments are automatically cast to double precision.
+
 
 Notes
 =======
