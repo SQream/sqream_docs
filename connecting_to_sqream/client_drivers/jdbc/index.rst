@@ -1,7 +1,7 @@
 .. _java_jdbc:
 
 *************************
-Connecting to SQream Using JDBC
+JDBC
 *************************
 The SQream JDBC driver lets you connect to SQream using many Java applications and tools. This page describes how to write a Java application using the JDBC interface. The JDBC driver requires Java 1.8 or newer.
 
@@ -35,15 +35,8 @@ The SQream JDBC driver requires Java 1.8 or newer, and SQream recommends using O
 
 Getting the JAR file
 ---------------------
-SQream provides the JDBC driver as a zipped JAR file, available for download from the :ref:`client drivers download page<client_drivers>`. This JAR file can be integrated into your Java-based applications or projects.
+The SQream JDBC driver is available for download from the :ref:`client drivers download page<client_drivers>`. This JAR file can be integrated into your Java-based applications or projects.
 
-Extracting the ZIP Archive
--------------------------
-Run the following command to extract the JAR file from the ZIP archive:
-
-.. code-block:: console
-
-   $ unzip sqream-jdbc-4.3.0.zip
 
 Setting Up the Class Path
 ----------------------------
@@ -82,7 +75,7 @@ The following is the syntax for SQream:
 
 .. code-block:: text
 
-   jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>;[<optional parameters>; ...]
+   jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>sqream;[<optional parameters>; ...]
 
 Connection Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^
