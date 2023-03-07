@@ -18,7 +18,7 @@ The 2022.1 Release Notes describes the following:
 * Additional data ingestion format.
 
 Storage Version
----------------
+--------------- 
 
 The storage version presently in effect is version 40. 
 
