@@ -49,7 +49,7 @@ The following is the correct syntax for executing the ``DELETE`` statement:
 .. code-block:: postgres
 
    delete_table_statement ::=
-       DELETE FROM [schema_name.]table_name [ WHERE value_expr ]
+       DELETE FROM "schema_name."table_name [ WHERE value_expr ]
        ;
 
    table_name ::= identifier
@@ -72,6 +72,13 @@ The following is the correct syntax for triggering a clean-up:
    
    schema_name ::= identifier
 
+For systems with delete parallelism capabilities, use the following syntax to enhance deletion performance and shorten runtime:
+
+.. code-block:: postgres
+
+	SELECT set_parallel_delete_threads(x);
+
+.. note:: You may configure up to 10 threads.
 
 Parameters
 ============
