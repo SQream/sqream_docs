@@ -25,6 +25,12 @@ New Features
 
  * :ref:`Physical deletion performance enhancement<delete>` by supporting file systems with parallelism capabilities
  
+Storage Version
+---------------
+
+The storage version presently in effect is version 45. 
+
+ 
 SQream Studio Updates and Improvements
 --------------------------------------
 
