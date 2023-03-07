@@ -27,6 +27,12 @@ The 2022.1.3 Release Notes describes the following:
 
 * Support sub-queries in the UPDATE condition.
 
+Storage Version
+---------------
+
+The storage version presently in effect is version 42. 
+
+
 Known Issues
 ---------
 The following table lists the issues that are known limitations in Version 2022.1.3:
