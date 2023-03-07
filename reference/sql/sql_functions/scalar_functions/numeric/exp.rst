@@ -4,7 +4,7 @@
 EXP
 **************************
 
-Returns the natural exponent value of a numeric expression (*e*\ :sup:`x`)
+Returns the natural exponent value of a numeric expression (*e*\ :sup:`x`).
 
 See also :ref:`log`.
 
@@ -30,7 +30,7 @@ Arguments
 Returns
 ============
 
-Always returns a floating point result.
+When using the ``EXP`` floating point number scalar function, ``real`` arguments are automatically cast to ``double`` precision.
 
 Notes
 =======

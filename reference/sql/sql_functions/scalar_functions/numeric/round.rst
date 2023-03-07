@@ -32,7 +32,7 @@ Arguments
 Returns
 ============
 
-``ROUND`` always returns a ``double`` floating point number.
+When using the ``ROUND`` floating point number scalar function, ``real`` arguments are automatically cast to ``double`` precision.
 
 Notes
 =======
