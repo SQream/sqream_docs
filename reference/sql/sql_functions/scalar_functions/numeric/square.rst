@@ -30,7 +30,7 @@ Arguments
 Returns
 ============
 
-Always returns a floating point result
+When using the ``SQUARE`` floating point number scalar function, ``real`` arguments are automatically cast to ``double`` precision.
 
 Notes
 =======
