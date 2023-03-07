@@ -28,7 +28,7 @@ Arguments
 Returns
 ============
 
-When using the ``SQRT`` floating point number scalar function, real arguments are automatically cast to double precision.
+When using the ``SQRT`` floating point number scalar function, ``real`` arguments are automatically cast to ``double`` precision.
 
 
 Notes

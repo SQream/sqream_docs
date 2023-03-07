@@ -30,7 +30,7 @@ Arguments
 Returns
 ============
 
-Always returns a floating point result of the value in degrees.
+When using the ``DEGREES`` floating point number scalar function, ``real`` arguments are automatically cast to ``double`` precision.
 
 Notes
 =======

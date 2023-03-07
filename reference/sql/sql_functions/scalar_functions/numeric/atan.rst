@@ -29,7 +29,7 @@ Arguments
 Returns
 ============
 
-Always returns a floating point result of the inverse tangent, in radians.
+When using the ``ATAN`` floating point number scalar function, ``real`` arguments are automatically cast to ``double`` precision.
 
 Notes
 =======

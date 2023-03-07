@@ -29,7 +29,7 @@ Arguments
 Returns
 ============
 
-When using the ``COT`` floating point number scalar function, real arguments are automatically cast to double precision.
+When using the ``COT`` floating point number scalar function, ``real`` arguments are automatically cast to ``double`` precision.
 
 Notes
 =======
