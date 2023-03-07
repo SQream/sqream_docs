@@ -17,6 +17,11 @@ The 2022.1 Release Notes describes the following:
 * New data manipulation command.
 * Additional data ingestion format.
 
+Storage Version
+--------------- 
+
+The storage version presently in effect is version 40. 
+
 New Features
 ----------
 The 2022.1 Release Notes include the following new features:
