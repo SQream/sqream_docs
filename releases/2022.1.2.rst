@@ -19,6 +19,11 @@ The 2022.1.2 Release Notes describes the following:
 
 * Optimized queries on external Parquet tables.
 
+Storage Version
+---------------
+
+The storage version presently in effect is version 41. 
+
 New Features
 ----------
 The 2022.1.2 Release Notes include the following new features:
