@@ -25,6 +25,11 @@ New Features
 	
  * A new brute-force attack protection mechanism locks out user accounts for 15 minutes following 5 consecutive failed login attempts
  
+Storage Version
+---------------
+
+The storage version presently in effect is version 45.
+ 
 SQream Studio Updates and Improvements
 --------------------------------------
 
@@ -111,7 +116,7 @@ Upgrading to v4.1
 
     ::
 
-3. Extract the recently created back-up file.
+3. Copy the recently created back-up file.
 
     ::
 
