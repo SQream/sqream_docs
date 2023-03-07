@@ -13,13 +13,13 @@ Regular identifiers must follow these rules:
 * Must be case-insensitive. SQream converts all identifiers to lowercase unless quoted.
 * Does not equal any keywords, such as ``SELECT``, ``OR``, or ``AND``, etc.
 
-To bypass the rules above you can surround an identifier with double quotes (``"``) or square brackets (``[]``).
+To bypass the rules above you can surround an identifier with double quotes (``"``).
 
 Quoted identifiers must follow these rules:
 
-* Must be surrounded with double quotes (``"``) or square brackets (``[]``).
+* Must be surrounded with double quotes (``"``).
 * May contain any ASCII character except ``@``, ``$`` or ``"``.
-* Must be case-sensitive and referenced with double quotes or square brackets (``[]``).
+* Must be case-sensitive and referenced with double quotes (``"``).
 
 Identifiers are different than **keywords**, which are predefined words reserved with specific meanings in a statement. Some examples of keywords are ``SELECT``, ``CREATE``, and ``WHERE``. Note that keywords **cannot** be used as identifiers.
 
