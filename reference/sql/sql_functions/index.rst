@@ -174,8 +174,6 @@ The following table shows the **arithmetic operator** functions:
      - Calculates the cosine of an argument
    * - :ref:`cot`
      - Calculates the cotangent of an argument
-   * - :ref:`crc64`
-     - Calculates a CRC-64 hash of an argument
    * - :ref:`degrees`
      - Converts a value from radian values to degrees
    * - :ref:`exp`
@@ -206,8 +204,6 @@ The following table shows the **arithmetic operator** functions:
      - Calculates the tangent of an argument
    * - :ref:`trunc`
      - Rounds a number to its integer representation towards 0
-   * - :ref:`sign`
-     - Returns an integer value of -1, 0, or 1, depending on the sign of the input expression.
 
 Strings
 ^^^^^^^^^^^
@@ -225,6 +221,8 @@ The following table shows the **string** functions:
      - Calculates the position where a string starts inside another string
    * - :ref:`concat`
      - Concatenates two strings
+   * - :ref:`crc64`
+     - Calculates a CRC-64 hash of an argument
    * - :ref:`decode`
      - Decodes or extracts binary data from a textual input string
    * - :ref:`isprefixof`
