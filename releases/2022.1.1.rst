@@ -13,8 +13,13 @@ Version Content
 ----------
 The 2022.1.1 Release Notes describes the following: 
 
-* Enhanced security features.
-* For more information, see `SQream Acceleration Studio 5.4.7 <https://docs.sqream.com/en/v2022.1.1/sqream_studio_5.4.7/index.html>`_
+* Enhanced security features
+* For more information, see `SQream Acceleration Studio 5.4.7 <https://docs.sqream.com/en/v2022.1.1/sqream_studio_5.4.7/index.html>`_.
+
+Storage Version
+---------------
+
+The storage version presently in effect is version 40. 
 
 New Features
 ----------
@@ -28,7 +33,7 @@ Password Security Compliance
 ************
 In compliance with GDPR standards, SQream now requires a strong password policy when accessing the CLI or Studio.
 
-For more information, see `Access Control Password Policy <https://docs.sqream.com/en/v2022.1.1/operational_guides/access_control_password_policy.html>`_.
+For more information, see `Password Policy <https://docs.sqream.com/en/v2022.1.1/operational_guides/access_control_password_policy.html>`_.
 
 Known Issues
 ---------
