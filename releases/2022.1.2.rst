@@ -19,6 +19,11 @@ The 2022.1.2 Release Notes describes the following:
 
 * Optimized queries on external Parquet tables.
 
+Storage Version
+---------------
+
+The storage version presently in effect is version 41. 
+
 New Features
 ----------
 The 2022.1.2 Release Notes include the following new features:
@@ -53,9 +58,7 @@ No relevant naming changes were made.
 
 Deprecated Features
 -------
-In SQream version 2022.1 the ``VARCHAR`` data type has been deprecated and replaced with ``TEXT``. SQream will maintain ``VARCHAR`` in all previous versions until completing the migration to ``TEXT``, at which point it will be deprecated in all earlier versions. SQream also provides an automated and secure tool to facilitate and simplify migration from ``VARCHAR`` to ``TEXT``.  
-
-If you are using an earlier version of SQream, see the `Using Legacy String Literals <https://docs.sqream.com/en/v2022.1/configuration_guides/use_legacy_string_literals.html>`_ configuration flag.
+No features were deprecated for Version 2022.1.2.
 
 End of Support
 -------
@@ -97,3 +100,9 @@ Upgrading to v2022.1.2
 
   .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <https://docs.sqream.com/en/v2022.1.2/installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
   
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   :hidden:
+
+   2022.1.2

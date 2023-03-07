@@ -23,7 +23,10 @@ The 2022.1.5 Release Notes include the following new features:
 
 * release_defunct_locks utility function enhancement to receive new optional input parameter to specify timeout - for more details see `Lock Related Issues <../troubleshooting/lock_related_issues.html>`_.
 
-   
+Storage Version
+---------------
+
+The storage version presently in effect is version 42. 
 
 
 Known Issues
