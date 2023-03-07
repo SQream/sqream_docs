@@ -18,6 +18,11 @@ The 2022.1.4 Release Notes describes the following:
    ::
 
 
+Storage Version
+---------------
+
+The storage version presently in effect is version 42. 
+
 Known Issues
 ---------
 No relevant Known Issues.
