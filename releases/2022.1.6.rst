@@ -16,6 +16,11 @@ New Features
 
 	::
 
+Storage Version
+---------------
+
+The storage version presently in effect is version 42. 
+
 Known Issues
 ---------
 :ref:`Percentile<percentile_disc>` is not supported for Window functions.
