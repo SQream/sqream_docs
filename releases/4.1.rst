@@ -33,7 +33,7 @@ The storage version presently in effect is version 45.
 SQream Studio Updates and Improvements
 --------------------------------------
 
-No Studio updates
+SQream Studio v5.5.4 has been released. 
 
 	::
 
