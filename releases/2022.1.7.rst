@@ -20,6 +20,10 @@ New Features
 
 	::
 
+Storage Version
+---------------
+
+The storage version presently in effect is version 43. 
 
 Known Issues
 ---------
