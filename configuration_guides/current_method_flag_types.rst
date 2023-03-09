@@ -10,7 +10,7 @@ It is worth noting that the worker configuration file is not subject to frequent
 
 
 .. list-table::
-   :widths: auto
+   :widths: auto 
    :header-rows: 1
 
    * - Flag Name
