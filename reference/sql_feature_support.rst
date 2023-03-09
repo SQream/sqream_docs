@@ -183,7 +183,7 @@ Statements
      - ✓
      - :ref:`truncate`
    * - UPDATE
-     - ✗
+     - ✓
      -
    * - VALUES
      - ✓
