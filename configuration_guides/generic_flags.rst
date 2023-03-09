@@ -12,6 +12,6 @@ The **Generic Flags** page describes the following flag types, which can be modi
 
    generic_regular_flags
    generic_cluster_flags
-   generic_worker_flags
+
 
 
