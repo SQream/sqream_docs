@@ -182,7 +182,7 @@ Statements
      - Yes
      - :ref:`truncate`
    * - UPDATE
-     - No
+     - Yes
      -
    * - VALUES
      - Yes
