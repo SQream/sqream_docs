@@ -1,17 +1,8 @@
 .. _current_method_flag_types:
 
 **************************
-<<<<<<< Updated upstream
-System Operation 
-**************************
-
-When configuring how your system operates, you may choose to configure your entire cluster; meaning how all clients operate, or you may choose to configure only how the system works for a specific session. Any configurations made to the entire cluster are persistant, meaning that any alteration will continue to be valid for the duration of the session and also after the session is terminated. Persistant configurations are valid after downtime and restart.
-
-SQream uses three flag types, **Cluster**, **Worker**, and **Regular**. Each of these flag types is associated with one of three hierarchical configuration levels described earlier, making it easier to configure your system.
-=======
 Configuring Workers
 **************************
->>>>>>> Stashed changes
 
 Workers can be individually configured using a worker configuration file, which allows for persistent modifications to be made. Persistent modification refers to changes made to a system or component that are saved and retained even after the system is restarted or shut down, allowing the modifications to persist over time. 
 
