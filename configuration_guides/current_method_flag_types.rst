@@ -1,20 +1,72 @@
 .. _current_method_flag_types:
 
 **************************
-Flag Types
+Configuring Workers
 **************************
-SQream uses three flag types, **Cluster**, **Worker**, and **Regular**. Each of these flag types is associated with one of three hierarchical configuration levels described earlier, making it easier to configure your system.
 
-The highest level in the hierarchy is Cluster, which lets you set configurations across all workers in a given cluster. Modifying cluster values is **persistent**, meaning that any configurations you set are retained after shutting down your system. Configurations set at the Cluster level take the highest priority and override settings made on the Regular and Worker level. This is known as **cluster-based configuration**. Note that Cluster-based configuration lets you modify Cluster *and* Regular flag types. An example of a Cluster flag is **persisting your cache directory.**
+Workers can be individually configured using a worker configuration file, which allows for persistent modifications to be made. Persistent modification refers to changes made to a system or component that are saved and retained even after the system is restarted or shut down, allowing the modifications to persist over time. 
 
-The second level is Worker, which lets you configure individual workers. Modifying Worker values are also **persistent**. This is known as **worker-based configuration**. Some examples of Worker flags includes **setting total device memory usage** and **setting metadata server connection port**.
+It is worth noting that the worker configuration file is not subject to frequent changes on a daily basis, providing stability to the system's configuration.
 
-The lowest level is Regular, which means that modifying values of Regular flags affects only your current session and are not persistent. This means that they are automatically restored to their default value when the session ends. This is known as **session-based configuration**. Some examples of Regular flags includes **setting your bin size** and **setting CUDA memory**.
 
-To see each flag's default value, see one of the following:
+.. list-table::
+   :widths: auto 
+   :header-rows: 1
 
-* The **Default Value** column in the :ref:`All Configurations<all_configurations>` section.
+   * - Flag Name
+     - Who May Configure
+     - Description
+     - Data Type
+     - Default Value
+   * - ``cudaMemQuota``
+     - SUPERUSER
+     - Sets the percentage of total device memory used by your instance of SQream.
+     - uint
+     - ``90`` 
+   * - ``healerMaxInactivityHours``
+     - SUPERUSER
+     - Used for defining the threshold for creating a log recording a slow statement. The log includes information about the log memory, CPU and GPU.
+     - bigint
+     - ``5``
+   * - ``isHealerOn``
+     - SUPERUSER
+     - Enables the Query Healer, which periodically examines the progress of running statements and logs statements exceeding the ``healerMaxInactivityHours`` flag setting.
+     - boolean
+     - ``TRUE``	 
+   * - ``limitQueryMemoryGB``
+     - Anyone
+     - Prevents a query from processing more memory than the defined value.
+     - uint
+     - ``100000``
+   * - ``loginMaxRetries``
+     - SUPERUSER
+     - Sets the permitted log-in attempts.
+     - bigint
+     - ``5``	 
+   * - ``machineIP``
+     - SUPERUSER
+     - Enables you to manually set the reported IP.
+     - string
+     - ``127.0.0.1``	
+   * - ``metadataServerPort``
+     - SUPERUSER
+     - Sets the port used to connect to the metadata server. SQream recommends using port ranges above 1024 because ports below 1024 are usually reserved, although there are no strict limitations. You can use any positive number (1 - 65535) while setting this flag.
+     - uint
+     - ``3105``	 
+   * - ``useConfigIP``
+     - SUPERUSER
+     - Activates the machineIP (``TRUE``). Setting this flag to ``FALSE`` ignores the machineIP and automatically assigns a local network IP. This cannot be activated in a cloud scenario (on-premises only).
+     - boolean
+     - ``FALSE``	 
 
-   ::
-   
-* The flag's individual description page, such as :ref:`Setting CUDA Memory<check_cuda_memory>`.
+
+
+
+
+
+
+
+
+
+
+
