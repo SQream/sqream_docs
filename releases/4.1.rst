@@ -78,7 +78,7 @@ Deprecated Features
 
 The ``[]``, which are frequently used to delimit :ref:`identifiers<keywords_and_identifiers>` such as column names, table names, and other database objects, will soon be deprecated to facilitate the use of the ``ARRAY`` data type.
 
-* Support in ``[]`` for delimiting database object identifiers ends at 06/01/2023.
+* Support in ``[]`` for delimiting database object identifiers ends on June 1st, 2023.
 
 * To delimit database object identifiers, you will be able to use double quotes ``""``.
 
