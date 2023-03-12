@@ -76,6 +76,11 @@ No naming changes
 Deprecated Features
 -------------------
 
+► ``INT96``
+
+Due to Parquet's lack of support for the "INT96" data type, SQream has decided to immediately deprecate this data type.
+
+
 ► Square Brackets ``[]``
 
 The ``[]``, which are frequently used to delimit :ref:`identifiers<keywords_and_identifiers>` such as column names, table names, and other database objects, will soon be deprecated to facilitate the use of the ``ARRAY`` data type.
