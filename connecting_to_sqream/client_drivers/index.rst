@@ -34,6 +34,7 @@ The following are applicable to all operating systems:
   * `Trino Connector <>`_ 
   * :ref:`trino`
   
+  
 * **Spark**:
 
   * `Spark Connector <>`_ 
