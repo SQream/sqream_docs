@@ -35,7 +35,7 @@ JDBC
 Storage Version
 ---------------
 
-The storage version presently in effect is version xx.
+The storage version presently in effect is version 46.
  
 SQream Studio Updates and Improvements
 --------------------------------------
