@@ -31,8 +31,13 @@ The following are applicable to all operating systems:
 
 * **Trino**:
 
-  * `Trino connector <>`_ 
+  * `Trino Connector <>`_ 
   * :ref:`trino`
+  
+* **Spark**:
+
+  * `Spark Connector <>`_ 
+  * :ref:`spark`  
 
 .. _python:
 
@@ -41,14 +46,12 @@ The following are applicable to all operating systems:
   * `Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.1.3>`_ - pysqream v3.1.3 (.tar.gz)
   * :ref:`pysqream`
 
-
 .. _nodejs:
 
 * **Node.JS** - Recommended installation via ``npm``:
 
   * `Node.JS <https://sq-ftp-public.s3.amazonaws.com/sqream-sqreamdb-4.2.4.tgz>`_ - sqream-v4.2.4 (.tar.gz)
   * :ref:`nodejs`
-
 
 .. _tableau_connector:   
 
@@ -62,7 +65,7 @@ The following are applicable to all operating systems:
 
 * **Power BI**:
 
-  * `Power BI PowerQuery connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_ - SQream (.mez)
+  * `Power BI PowerQuery Connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_ - SQream (.mez)
   * :ref:`power_bi`
   
 
