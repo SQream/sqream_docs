@@ -133,6 +133,10 @@ The following table shows the connection string parameters:
      - Optional
      - ``true``
      -  Enables the file appender and defines the file name. The file name can be set as either the file name or the file path.
+   * - ``<idleconnectiontimeout>``
+     - Optional
+     - 0
+     - Sets the duration, in seconds, for which a database connection can remain idle before it is terminated. If the parameter is set to its default value, idle connections will not be terminated. The idle connection timer begins counting after the completion of a query execution.
 
 Connection String Examples
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
