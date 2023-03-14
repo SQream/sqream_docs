@@ -108,7 +108,7 @@ Upgrading to v2022.1
 	  
    .. tip:: SQream recommends storing the generated back-up locally in case needed.
    
-   SQream runs the Garbage Collector and creates a clean backup tarball package.
+   SQream runs the Garbage Collector and creates a multi-file directory as specified in the ``out_path``.
    
 2. Shut down all SQream services.
 
