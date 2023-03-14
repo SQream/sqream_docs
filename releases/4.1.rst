@@ -25,6 +25,11 @@ New Features
 	
  * A new brute-force attack protection mechanism locks out user accounts for 15 minutes following 5 consecutive failed login attempts
  
+Newly Released Connector Drivers
+--------------------------------
+
+JDBC 4.5.7 `.jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.7.jar>`_ 
+ 
 Storage Version
 ---------------
 
