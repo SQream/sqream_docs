@@ -423,9 +423,9 @@ The following table describes all **Generic** and **Administration** configurati
 
 
 
-   * - ``varcharIdentifiers``
+   * - ``blockNewVarcharObjects``
      - Admin
      - Regular
-     - Activates using varchar as an identifier.
+     - Disables the creation of new tables, views, external tables containing Varchar columns, and the creation of user-defined functions with Varchar arguments or a Varchar return value.
      - boolean
-     - ``true``
+     - ``FALSE``
