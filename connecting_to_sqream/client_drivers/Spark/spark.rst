@@ -160,7 +160,7 @@ Transferring Data From Spark to SQream
 .. code-block:: postgres
 
 	import org.apache.spark.sql.SaveMode
-	val df=sqreamSession.write((df, options, SaveMode.Overwrite))
+	val df=sqreamSession.write(df, options, SaveMode.Overwrite)
 
 Supported Data Types and Mapping
 --------------------------------
