@@ -44,7 +44,7 @@ The following are applicable to all operating systems:
 
 * **Python** - Recommended installation via ``pip``:
 
-  * `Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.1.3>`_ - pysqream v3.1.3 (.tar.gz)
+  * `Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.2.4>`_ - pysqream v3.2.4 (.tar.gz)
   * :ref:`pysqream`
 
 .. _nodejs:
@@ -82,24 +82,6 @@ The following are applicable to Windows:
 
 
 * **Net driver** - `SQream .Net driver v3.0.2 <https://sq-ftp-public.s3.amazonaws.com/SqreamNet_net48_3.0.2.zip>`_
-   
-   
-
-Linux
---------------
-The following are applicable to Linux:
-
-* `SQream SQL (x86_64) <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.x86_64.tar.gz>`_ - sqream-sql-v2020.1.1_stable.x86_64.tar.gz
-* :ref:`sqream_sql_cli_reference` - Interactive command-line SQL client for Intel-based machines
-
-   ::
-
-* `SQream SQL*(IBM POWER9) <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.ppc64le.tar.gz>`_ - sqream-sql-v2020.1.1_stable.ppc64le.tar.gz
-* :ref:`sqream_sql_cli_reference` - Interactive command-line SQL client for IBM POWER9-based machines
-   
-   ::
-
-* ODBC Installer  - Please contact your SQream representative for this installer.
 
 
 
