@@ -7,7 +7,7 @@ SQream supports the most common database tools and interfaces, giving you direct
 
 .. toctree::
    :maxdepth: 2
-   :glob:
+   :glob: 
    :titlesonly:
    
    client_platforms/index
