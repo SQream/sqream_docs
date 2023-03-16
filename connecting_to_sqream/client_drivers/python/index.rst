@@ -4,7 +4,7 @@
 Connecting to SQream Using Python (pysqream)
 *************************
 
-The Pysqream connector supports Python version 3.9 and newer. It includes a set of packages that allows Python programs to connect to SQream DB. The base ``pysqream`` package conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_.
+The current Pysqream connector supports Python version 3.9 and newer. It includes a set of packages that allows Python programs to connect to SQream DB. The base ``pysqream`` package conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_.
 
 ``pysqream`` is a pure Python connector that can be installed with ``pip`` on any operating system, including Linux, Windows, and macOS. ``pysqream-sqlalchemy`` is a SQLAlchemy dialect for ``pysqream``.
 
@@ -163,16 +163,9 @@ Standard Connection Example
 .. code-block:: python
 
 	import sqlalchemy as sa
-	from sqlalchemy.engine.url import URL
 
-	engine_url = URL('sqream'
-				  , username='rhendricks'
-				  , password='secret_passwor"
-				  , host='localhost'
-				  , port=5000
-				  , database='raviga'
-				  , query={'use_ssl': False})
-
+	engine_url = "sqream://rhendricks:secret_passwor@localhost:5000/raviga"
+	
 	engine = sa.create_engine(engine_url)
 
 	res = engine.execute('create or replace table test (ints int, ints2 int)')
@@ -189,17 +182,10 @@ The following example is for using a ServerPicker:
 .. code-block:: python
 
 	import sqlalchemy as sa
-	from sqlalchemy.engine.url import URL
-
-
-	engine_url = URL('sqream'
-				  , username='dor'
-				  , password='DorBerg123$'
-				  , host='localhost'
-				  , port=3108
-				  , database='pushlive')
-
-	engine = sa.create_engine(engine_url,connect_args={"clustered": True})
+				  
+	engine_url = "sqream://dor:DorBerg123$@localhost:3108/pushlive"
+	
+	engine = sa.create_engine(engine_url, connect_args={"clustered": True})
 
 	res = engine.execute("create or replace table test100 (dor int);")
 	res = engine.execute('insert into test100 values (5), (6);')
@@ -216,20 +202,12 @@ The following example shows how to pull a table in Pandas. This examples uses th
 
    import sqlalchemy as sa
    import pandas as pd
-   from sqlalchemy.engine.url import URL
 
+	engine_url = "sqream://rhendricks:secret_passwor@localhost:5000/raviga"
 
-   engine_url = URL('sqream'
-                 , username='rhendricks'
-                 , password='secret_passwor"
-                 , host='localhost'
-                 , port=5000
-                 , database='raviga'
-                 , query={'use_ssl': False})
-
-   engine = sa.create_engine(engine_url)
-   
-   table_df = pd.read_sql("select * from nba", con=engine)
+	engine = sa.create_engine(engine_url)
+	   
+	table_df = pd.read_sql("select * from nba", con=engine)
 
 API Examples
 ===============
@@ -421,20 +399,12 @@ This section shows how to use the ORM to create and populate tables from Python 
 
    .. code-block:: python
       
-      import sqlalchemy as sa
-      import pandas as pd
-      from sqlalchemy.engine.url import URL
+		import sqlalchemy as sa
+		import pandas as pd
 
+		engine_url = "sqream://rhendricks:secret_passwor@localhost:5000/raviga"
 
-      engine_url = URL('sqream'
-                    , username='rhendricks'
-                    , password='secret_passwor"
-                    , host='localhost'
-                    , port=5000
-                    , database='raviga'
-                    , query={'use_ssl': False})
-
-      engine = sa.create_engine(engine_url)
+		engine = sa.create_engine(engine_url)
    
 2. Build a metadata object and bind it:
 

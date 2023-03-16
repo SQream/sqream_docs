@@ -4,8 +4,6 @@
 Client Drivers
 **************
 
-
-
 The guides on this page describe how to use the Sqream DB client drivers and client applications with SQream.
 
 Client Driver Downloads
@@ -36,6 +34,7 @@ The following are applicable to all operating systems:
   * `Trino Connector <>`_ 
   * :ref:`trino`
   
+.. _spark:
   
 * **Spark**:
 
