@@ -4,6 +4,8 @@
 Client Drivers
 **************
 
+
+
 The guides on this page describe how to use the Sqream DB client drivers and client applications with SQream.
 
 Client Driver Downloads
@@ -38,7 +40,7 @@ The following are applicable to all operating systems:
 * **Spark**:
 
   * `Spark Connector <>`_ 
-  * :ref:`spark`  
+  * :ref:`spark`   
 
 .. _python:
 
