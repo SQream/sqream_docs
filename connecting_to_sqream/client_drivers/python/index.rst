@@ -3,28 +3,22 @@
 *************************
 Connecting to SQream Using Python (pysqream)
 *************************
-The **Python** connector page describes the following:
+
+The Pysqream connector is a set of packages that allows Python programs to connect to SQream DB. It includes ``pysqream`` and ``pysqream-sqlalchemy``. ``pysqream`` is a pure Python connector. It can be installed with ``pip`` on any operating system, including Linux, Windows, and macOS. ``pysqream-sqlalchemy`` is a SQLAlchemy dialect for ``pysqream``.
+
+The connector supports Python version 3.9 and newer. The base ``pysqream`` package conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_.
 
 .. contents:: 
    :local:
    :depth: 1
-
-Overview
-=============
-The SQream Python connector is a set of packages that allows Python programs to connect to SQream DB.
-
-* ``pysqream`` is a pure Python connector. It can be installed with ``pip`` on any operating system, including Linux, Windows, and macOS.
-
-* ``pysqream-sqlalchemy`` is a SQLAlchemy dialect for ``pysqream``
-
-The connector supports Python 3.6.5 and newer. The base ``pysqream`` package conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_.
 
 Installing the Python Connector
 ==================================
 
 Prerequisites
 ----------------
-Installing the Python connector includes the following prerequisites:
+
+It is essential that you have the following installed:
 
 .. contents:: 
    :local:
@@ -33,17 +27,20 @@ Installing the Python connector includes the following prerequisites:
 Python
 ^^^^^^^^^^^^
 
-The connector requires Python 3.6.5 or newer. To verify your version of Python:
+The connector requires Python 3.9 or newer. 
+
+To see your current Python version, run the following command:
 
 .. code-block:: console
 
    $ python --version
-   Python 3.7.3
+   
+   
    
 
 PIP
 ^^^^^^^^^^^^
-The Python connector is installed via ``pip``, the Python package manager and installer.
+The Python connector is installed via ``pip``, the standard package manager for Python, which is used to install, upgrade and manage Python packages (libraries) and their dependencies.
 
 We recommend upgrading to the latest version of ``pip`` before installing. To verify that you are on the latest version, run the following command:
 
