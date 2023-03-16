@@ -14,7 +14,7 @@ All Operating Systems
 The following are applicable to all operating systems:
 
 .. _jdbc:
- 
+  
 * **JDBC** - recommended installation via ``mvn``:
 
   * `JDBC .jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.6.jar>`_ - sqream-jdbc-4.5.3 (.jar)
