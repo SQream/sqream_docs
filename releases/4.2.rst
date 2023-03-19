@@ -6,7 +6,7 @@ Release Notes 4.2
 
 SQream is introducing a new version release system that follows the more commonly used Major.Minor.Patch versioning schema. The newly released **4.0 version** is a minor version upgrade and does not require considerable preparation.
 
-The 4.2 release notes were released on xx/xx/2023 and describe the following:
+The 4.2 release notes were released on 03/19/2023 and describe the following:
 
 .. contents:: 
    :local:
@@ -47,7 +47,9 @@ SQream Studio v5.5.4 has been released.
 Known Issues
 ------------
 
-:ref:`Percentile<percentile_disc>` is not supported for Window functions.
+:ref:`Percentile<percentile_disc>` is not supported for :ref:`Window Functions<window_functions>`.
+
+Performance degradation when using ``VARCHAR`` partition key in a :ref:`Window Functions<window_functions>` expression.
 
 
 Version 4.2 resolved Issues
