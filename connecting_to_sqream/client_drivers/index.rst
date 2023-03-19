@@ -97,6 +97,7 @@ The following are applicable to Windows:
    nodejs/index
    odbc/index
    dotnet/index
+   Spark/index
 
 
 
