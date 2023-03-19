@@ -55,6 +55,8 @@ The following table lists the issues that were resolved in Version 2022.1.5:
 +--------------+------------------------------------------------------------------------------------------+
 | SQ-11905     | GetDate casting to as text returns DATE with 0s in the time part or no time part at all  |
 +--------------+------------------------------------------------------------------------------------------+
+| SQ-12580     | Server Picker and Meta Data server may not be deployed on servers without GPU            |
++--------------+------------------------------------------------------------------------------------------+
 
 
 
