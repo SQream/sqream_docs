@@ -13,13 +13,13 @@ Regular identifiers must follow these rules:
 * Must be case-insensitive. SQream converts all identifiers to lowercase unless quoted.
 * Does not equal any keywords, such as ``SELECT``, ``OR``, or ``AND``, etc.
 
-To bypass the rules above you can surround an identifier with double quotes (``"``).
+To bypass the rules above you can surround an identifier with double quotes (``"``) or square brackets (``[]``).
 
 Quoted identifiers must follow these rules:
 
-* Must be surrounded with double quotes (``"``).
+* Must be surrounded with double quotes (``"``) or square brackets (``[]``).
 * May contain any ASCII character except ``@``, ``$`` or ``"``.
-* Must be case-sensitive and referenced with double quotes.
+* Must be case-sensitive and referenced with double quotes or square brackets (``[]``).
 
 Identifiers are different than **keywords**, which are predefined words reserved with specific meanings in a statement. Some examples of keywords are ``SELECT``, ``CREATE``, and ``WHERE``. Note that keywords **cannot** be used as identifiers.
 
@@ -28,43 +28,47 @@ The following table shows a full list of the reserved keywords:
 +-------------------------------------------------------------------------------------------------+
 | **Keywords**                                                                                    |
 +-------------------+---------------------+--------------------+------------------+---------------+
+| **A - C**         | **C - G**           | **H - N**          | **N - S**        | **S - W**     |
++-------------------+---------------------+--------------------+------------------+---------------+
 | ``ALL``           | ``CURRENT_CATALOG`` | ``HASH``           | ``NOT``          | ``SIMILAR``   |
 +-------------------+---------------------+--------------------+------------------+---------------+
 | ``ANALYSE``       | ``CURRENT_ROLE``    | ``HAVING``         | ``NOTNULL``      | ``SOME``      |
 +-------------------+---------------------+--------------------+------------------+---------------+
 | ``ANALYZE``       | ``CURRENT_TIME``    | ``ILIKE``          | ``NULL``         | ``SYMMETRIC`` |
 +-------------------+---------------------+--------------------+------------------+---------------+
-| ``AND``           | ``CURRENT_USER``    | ``IN``             | ``OFFSET``       | ``SYMMETRIC`` |
+| ``AND``           | ``CURRENT_USER``    | ``IN``             | ``OFFSET``       | ``TABLE``     |
 +-------------------+---------------------+--------------------+------------------+---------------+
-| ``ANY``           | ``DEFAULT``         | ``INITIALLY``      | ``ON``           | ``TABLE``     |
+| ``ANY``           | ``DEFAULT``         | ``INITIALLY``      | ``ON``           | ``THEN``      |
 +-------------------+---------------------+--------------------+------------------+---------------+
-| ``ARRAY``         | ``DEFERRABLE``      | ``INNER``          | ``ONLY``         | ``THEN``      |
+| ``ARRAY``         | ``DEFERRABLE``      | ``INNER``          | ``ONLY``         | ``TO``        |
 +-------------------+---------------------+--------------------+------------------+---------------+
-| ``AS``            | ``DESC``            | ``INTERSECT``      | ``OPTION``       | ``TO``        |
+| ``AS``            | ``DESC``            | ``INTERSECT``      | ``OPTION``       | ``TRAILING``  |
 +-------------------+---------------------+--------------------+------------------+---------------+
-| ``ASC``           | ``DISTINCT``        | ``INTO``           | ``OR``           | ``TRAILING``  |
+| ``ASC``           | ``DISTINCT``        | ``INTO``           | ``OR``           | ``TRAN``      |
 +-------------------+---------------------+--------------------+------------------+---------------+
 | ``AUTHORIZATION`` | ``DO``              | ``IS``             | ``ORDER``        | ``TRUE``      |
 +-------------------+---------------------+--------------------+------------------+---------------+
 | ``BINARY``        | ``ELSE``            | ``ISNULL``         | ``OUTER``        | ``UNION``     |
 +-------------------+---------------------+--------------------+------------------+---------------+
-| ``BOTH``          | ``END``             | ``JOIN``           | ``OVER``         | ``UNIQUE``    |
+| ``BIGINT``        | ``END``             | ``JOIN``           | ``OVER``         | ``UNIQUE``    |
 +-------------------+---------------------+--------------------+------------------+---------------+
-| ``CASE``          | ``EXCEPT``          | ``LEADING``        | ``OVERLAPS``     | ``USER``      |
+| ``BOTH``          | ``EXCEPT``          | ``LEADING``        | ``OVERLAPS``     | ``USER``      |
 +-------------------+---------------------+--------------------+------------------+---------------+
-| ``CAST``          | ``FALSE``           | ``LEFT``           | ``PLACING``      | ``USING``     |
+| ``CASE``          | ``FALSE``           | ``LEFT``           | ``PLACING``      | ``USING``     |
 +-------------------+---------------------+--------------------+------------------+---------------+
-| ``CHECK``         | ``FETCH``           | ``LIKE``           | ``PRIMARY``      | ``VARIADIC``  |
+| ``CAST``          | ``FETCH``           | ``LIKE``           | ``PRIMARY``      | ``VARIADIC``  |
 +-------------------+---------------------+--------------------+------------------+---------------+
-| ``COLLATE``       | ``FOR``             | ``LIMIT``          | ``REFERENCES``   | ``VERBOSE``   |
+| ``CHECK``         | ``FOR``             | ``LIMIT``          | ``REFERENCES``   | ``VERBOSE``   |
 +-------------------+---------------------+--------------------+------------------+---------------+
-| ``COLUMN``        | ``FREEZE``          | ``LOCALTIME``      | ``RETURNING``    | ``WHEN``      |
+| ``COLLATE``       | ``FREEZE``          | ``LOCALTIME``      | ``RETURNING``    | ``WHEN``      |
 +-------------------+---------------------+--------------------+------------------+---------------+
-| ``CONCURRENTLY``  | ``FROM``            | ``LOCALTIMESTAMP`` | ``RIGHT``        | ``WHERE``     |
+| ``COLUMN``        | ``FROM``            | ``LOCALTIMESTAMP`` | ``RIGHT``        | ``WHERE``     |
 +-------------------+---------------------+--------------------+------------------+---------------+
-| ``CONSTRAINT``    | ``FULL``            | ``LOOP``           | ``RLIKE``        | ``WINDOW``    |
-+-------------------+---------------------+--------------------+------------------+---------------+
-| ``CREATE``        | ``GRANT``           | ``MERGE``          | ``SELECT``       | ``WITH``      |
+| ``CONCURRENTLY``  | ``FULL``            | ``LOOP``           | ``RLIKE``        | ``WINDOW``    |
++-------------------+---------------------+--------------------+------------------+---------------+ 
+| ``CONSTRAINT``    | ``FUNCTION``        | ``MERGE``          | ``SELECT``       | ``WITH``      |
++-------------------+---------------------+--------------------+------------------+               | 
+| ``CREATE``        | ``GRANT``           | ``NATURAL``        | ``SESSION_USER`` |               |  
 +-------------------+---------------------+--------------------+------------------+               |
-| ``CROSS``         | ``GROUP``           | ``NATURAL``        | ``SESSION_USER`` |               |
+| ``CROSS``         | ``GROUP``           |                    |                  |               |
 +-------------------+---------------------+--------------------+------------------+---------------+
