@@ -26,11 +26,17 @@ New Features
 Newly Released Connector Drivers
 --------------------------------
 
-Pysqream 3.2.4 - `.tar.gz file <https://github.com/SQream/pysqream/releases>`_ Supports Python 3.9
+► Pysqream 3.2.5
+ * Supports Python version 3.9 and newer
+ * `.tar.gz file <`Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.2.5>`_
+ * :ref:`Documentation<pysqream>`
 
-ODBC 4.4.4 :ref:`Getting the ODBC Driver<odbc>`
+► ODBC 4.4.4
+ * :ref:`Getting the ODBC Driver<odbc>`
 
-JDBC 4.5.8 `.jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.8.jar>`_
+► JDBC 4.5.8
+ * `.jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.8.jar>`_
+ * :ref:`Documentation<java_jdbc>`
  
 Storage Version
 ---------------
@@ -47,9 +53,9 @@ SQream Studio v5.5.4 has been released.
 Known Issues
 ------------
 
-:ref:`Percentile<percentile_disc>` is not supported for :ref:`Window Functions<window_functions>`.
+* :ref:`Percentile<percentile_disc>` is not supported for :ref:`Window Functions<window_functions>`.
 
-Performance degradation when using ``VARCHAR`` partition key in a :ref:`Window Functions<window_functions>` expression
+* Performance degradation when using ``VARCHAR`` partition key in a :ref:`Window Functions<window_functions>` expression
 
 
 
@@ -89,7 +95,6 @@ Due to Parquet's lack of support of the ``INT96`` data type, SQream has decided 
 The ``[]``, which are frequently used to delimit :ref:`identifiers<keywords_and_identifiers>` such as column names, table names, and other database objects, will soon be deprecated to facilitate the use of the ``ARRAY`` data type.
 
 * Support in ``[]`` for delimiting database object identifiers ends on June 1st, 2023.
-
 * To delimit database object identifiers, you will be able to use double quotes ``""``.
 
 
@@ -98,9 +103,7 @@ The ``[]``, which are frequently used to delimit :ref:`identifiers<keywords_and_
 The ``VARCHAR`` data type is deprecated to improve the core functionalities of the platform and to align with the constantly evolving ecosystem requirements.
 
 * Support in the ``VARCHAR`` data type ends at September 30th, 2023.
-
 * ``VARCHAR`` is no longer supported for new customers, effective from Version 2022.1.3.  
-
 * The ``TEXT`` data type is replacing the ``VARCHAR`` and ``NVARCHAR`` data types.
 
 
