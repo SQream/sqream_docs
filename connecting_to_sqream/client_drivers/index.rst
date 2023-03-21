@@ -45,7 +45,7 @@ The following are applicable to all operating systems:
 
 * **Python** - Recommended installation via ``pip``:
 
-  * `Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.2.4>`_ - pysqream v3.2.4 (.tar.gz)
+  * `Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.2.5>`_ - pysqream v3.2.5 (.tar.gz)
   * :ref:`pysqream`
 
 .. _nodejs:
@@ -97,8 +97,7 @@ The following are applicable to Windows:
    nodejs/index
    odbc/index
    dotnet/index
-   Spark/index
-
+   spark/index
 
 
 
