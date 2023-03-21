@@ -28,7 +28,7 @@ Newly Released Connector Drivers
 
 ► Pysqream 3.2.5
  * Supports Python version 3.9 and newer
- * `.tar.gz file <`Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.2.5>`_
+ * `.tar file <https://github.com/SQream/pysqream/releases/tag/v3.2.5>`_
  * :ref:`Documentation<pysqream>`
 
 ► ODBC 4.4.4
