@@ -66,7 +66,7 @@ On floating point
 
 .. code-block:: psql
 
-   numbers=> SELECT POWER(3.0,x) FROM (VALUES (1), (2), (3), (4), (5)) AS t(x);
+   numbers=> SELECT POWER(3.0::double precision,x) FROM (VALUES (1), (2), (3), (4), (5)) AS t(x);
    power
    -----
      3.0
