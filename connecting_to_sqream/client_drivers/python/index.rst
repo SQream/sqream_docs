@@ -117,34 +117,7 @@ The Python drivers are updated periodically. To upgrade an existing pysqream ins
    
    $ pip3.9 install pysqream pysqream-sqlalchemy -U
 
-Validating Your Installation
------------------------------
 
-#. Create a file called ``sample.py``, containing the following:
-
-.. literalinclude:: sample.py
-    :language: python
-    :caption: pysqream Validation Script
-    :linenos:
-
-#. Verify that the parameters in the connection have been replaced with your respective SQream installation parameters.
-
-    ::
-
-#. Run the sample file to verify that you can connect to SQream:
-
-   .. code-block:: console
-   
-    $ python3.9 sample.py
-	Version: v2020.1
-
-   If the validation was successful, you can build an application using the SQream Python connector. If you receive a connection error, verify the following:
-
-   * You have access to a running SQream database.
-
-      ::
-
-   * The connection parameters are correct.
 
 SQLAlchemy Examples
 ========================
