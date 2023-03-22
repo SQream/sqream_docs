@@ -151,14 +151,14 @@ The structure of the JDBC configuration file:
    * - ``sqream.jdbc.table.columntypes``
      - SQream data types which must match the columns that were defined in the Sink Connector ``sqream.csvOrder`` parameter.
    * - ``sqream.jdbc.table.columnnames``
-     - The table column names by which streamed data is arranged. The ``sqream.jdbc.table.columnnames`` column names must align with the Sink Connector column names.
+     - The names of the columns of the table that is receiving the streamed data. The ``sqream.jdbc.table.columnnames`` column names must align with a the Sink Connector.
    * - ``sqream.input.inputfields``
      - Columns as defined in the original Kafka message.
 
 Configuring the SQream Loader
 ---------------------------
 
-SQream Loader configuration file structure:
+The structure of the SQream Loader configuration file:
 
 .. code-block:: postgres
 
