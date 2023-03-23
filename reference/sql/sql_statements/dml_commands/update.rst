@@ -35,10 +35,10 @@ The following is the correct syntax for the ``UPDATE`` command:
 
 .. code-block:: postgres
  
-   UPDATE target_table_name [[AS] alias1]
-   SET column_name = expression [,...]
-  [FROM additional_table_name [[AS] alias2][,...]]
-  [WHERE condition]
+	UPDATE target_table_name [[AS] alias1]
+	SET column_name = expression [,...]
+	[FROM additional_table_name [[AS] alias2][,...]]
+	[WHERE condition]
   
 The following is the correct syntax for triggering a clean-up:
 
