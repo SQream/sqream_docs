@@ -199,7 +199,7 @@ For an example of stopping actively running SQream services, see :ref:`Launching
       $ cd /home/sqream
       $ mkdir tempfolder
       $ mv sqream-db-v2021.1.tar.gz tempfolder/
-	  $ cd tempfolder/
+      $ cd tempfolder/
       $ tar -xf sqream-db-v2021.1.tar.gz
       $ sudo mv sqream /usr/local/sqream-db-v2021.1
       $ cd /usr/local
