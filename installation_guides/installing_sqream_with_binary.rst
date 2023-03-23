@@ -192,13 +192,14 @@ For an example of stopping actively running SQream services, see :ref:`Launching
 
       $ sudo netstat -nltp    #to make sure sqream stopped listening on 500X, 510X and 310X ports.
 
-3. Replace the old version ``sqream-db-v2020.2``, with the new version ``sqream-db-v2021.1``:
+3. Replace the old version ``sqream-db-v2021.1``, with the new version ``sqream-db-v2021.1``:
 
    .. code-block:: console
     
       $ cd /home/sqream
       $ mkdir tempfolder
       $ mv sqream-db-v2021.1.tar.gz tempfolder/
+      $ cd tempfolder/
       $ tar -xf sqream-db-v2021.1.tar.gz
       $ sudo mv sqream /usr/local/sqream-db-v2021.1
       $ cd /usr/local
