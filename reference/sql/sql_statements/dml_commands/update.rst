@@ -144,7 +144,7 @@ The following shows an example of updating tables that contain multi-table expre
        ELSE 1
      END
    FROM countries c
-
+ 
 
 Triggering a Clean-Up
 ---------------------------------------
