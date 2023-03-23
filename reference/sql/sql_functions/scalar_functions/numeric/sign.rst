@@ -4,7 +4,7 @@
 SIGN
 **************************
 
-The SIGN function takes a single argument, which can be any numeric data type such as INTEGER, FLOAT, or DECIMAL. The function returns an integer value of -1, 0, or 1, depending on the sign of the input expression.
+The SIGN function takes a single argument, which can be any numeric data type such as INTEGER, FLOAT, or DECIMAL. The function returns an ``INT`` value of -1, 0, or 1, depending on the sign of the input expression.
 
 
 
@@ -13,7 +13,7 @@ Syntax
 
 .. code-block:: postgres
 
-	SELECT SIGN ();
+	SELECT SIGN(expr);
 
 Arguments
 =========
