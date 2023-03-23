@@ -47,7 +47,6 @@ The following shows the correct syntax for creating an **inner join**:
 .. code-block:: postgres
 
    left_side [ INNER ] JOIN left_side ON value_expr
-   left_side [ INNER ] JOIN left_side USING ( join_column [, ... ] )
 
 
 Inner joins are the default join type and return rows from the ``left_side`` and ``right_side`` based on a matching condition.
@@ -77,7 +76,6 @@ The following shows the correct syntax for creating an **left outer join**:
 .. code-block:: postgres
 
    left_side LEFT [ OUTER ] JOIN right_side ON value_expr
-   left_side LEFT [ OUTER ] JOIN right_side USING ( join_column [, ... ] )
 
 Left outer joins are similar to inner joins, except that for every ``left_side`` row without a matching condition, a ``NULL`` value is returned for the corresponding ``right_side`` column.
 
@@ -93,7 +91,6 @@ The following shows the correct syntax for creating an **right outer join**:
 .. code-block:: postgres
 
    left_side RIGHT [ OUTER ] JOIN right_side ON value_expr
-   left_side RIGHT [ OUTER ] JOIN right_side USING ( join_column [, ... ] )
 
 Right outer joins are similar to inner joins, except that for every ``right_side`` row without a matching condition, a ``NULL`` value is returned for the corresponding ``left_side`` column.
 
@@ -160,8 +157,6 @@ For example, the following is displayed when two name columns match:
    ON left_side.name = right_side.name
 
 The ``ON`` clause is optional for ``LEFT`` and ``RIGHT`` joins. However, excluding it results in a computationally intensive cross join.
-
-.. tip:: SQream DB does not support the ``USING`` syntax. However, queries can be easily rewritten. ``left_side JOIN right_side using (name)`` is equivalent to ``ON left_side.name = right_side.name``
 
 
 
