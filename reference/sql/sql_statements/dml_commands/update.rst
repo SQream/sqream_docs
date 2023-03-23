@@ -144,27 +144,7 @@ The following shows an example of updating tables that contain multi-table expre
        ELSE 1
      END
    FROM countries c
-   
-Configuring Update Behavior
------------------
-The ``failOnNondeterministicUpdate`` flag is used to configure ``UPDATE`` behavior when updating tables containing multi-table expressions. This flag is needed when you use the ``FROM`` clause along with a set expression containing columns from additional tables. Doing this can cause a match to occur between a row from the target table with multiple rows from the additional tables.
 
-For instance, the example in the previous section sets the records sold to ``2`` when the country name is Israel. If you were to insert a new entry into this table with Israel spelled in Hebrew (using the same country ID), you would have two rows with identical country ID's. 
-
-When this happens, both rows 5 and 6 in the ``bands`` table match both Israel entries. Because no algorithm exists for determining which entry to use, updating this table may either increase ``records_sold`` by 2 (for Israel in English) or 1 (for Israel in Hebrew).
-
-You must set the ``failOnNondeterministicUpdate`` flag to ``FALSE`` to prevent an error from occuring.
-
-Note that a similar ambiguity can occur when the Hebrew spelling is used in the following example:
-
-.. code-block:: postgres
-
-   UPDATE bands
-   SET record_count = record_count + 1
-   FROM countries c
-   WHERE c.name = 'Israel'
-   
-However, the ``WHERE`` clause above prevents a match with any entry other than the defined one. Because the target table row must match with the ``WHERE`` condition at least once to be included in the UPDATE statment, this scenario does not require configuring the ``failOnNondeterministicUpdate`` flag.
 
 Triggering a Clean-Up
 ---------------------------------------
