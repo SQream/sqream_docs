@@ -70,7 +70,54 @@ The following table describes the ``UPDATE`` parameters:
 
 Examples
 ===========
-The **Examples** section includes the following examples:
+
+The examples section shows how to modify the value of certain columns in existing rows without creating a table.
+
+To be able to follow the examples, create these two tables:
+
+**countries**
+
++----+--------+--------------+	
+| id | name   | records_sold |
++====+========+==============+
+| 1  | Israel | null         |
++----+--------+--------------+
+| 2  | UK     | null         |
++----+--------+--------------+
+| 3  | USA    | null         |
++----+--------+--------------+
+| 4  | Sweden | null         |
++----+--------+--------------+
+
+**bands**
+
++----+-------------+------------+
+| id | name        | country_id |
++====+=============+============+
+| 1  | The Beatles | 2          |
++----+-------------+------------+
+| 2  | The Ramones | 3          |
++----+-------------+------------+
+| 3  | ABBA        | 4          |
++----+-------------+------------+
+| 4  | Ace of Base | 4          |
++----+-------------+------------+
+
+.. code-block:: postgres
+
+	create or replace table countries ( id int, name text, records_sold int); 
+	insert into countries values (1, 'Israel', null); 
+	insert into countries values (2, 'UK', null); 
+	insert into countries values (3, 'USA', null); 
+	insert into countries values (4, 'Sweden', null); 
+   
+	create or replace table bands ( id int, name text, country_id int); 
+	insert into bands values (1, 'The Beatles', 2); 
+	insert into bands values (2, 'The Ramones', 3); 
+	insert into bands values (3, 'ABBA', 4); 
+	insert into bands values (4, 'Ace of Base', 4); 
+	
+	
 
 .. contents::
    :local:
@@ -78,27 +125,17 @@ The **Examples** section includes the following examples:
 
 Updating an Entire Table
 -----------------
-The Examples section shows how to modify the value of certain columns in existing rows without creating a table. The examples are based on the following tables:
 
-.. image:: /_static/images/delete_optimization.png
-
-The following methods for updating an entire table generate the same output, and result with the ``bands`` record set to ``NULL``:
+Two different ``UPDATE`` methods for updating an entire table.
 
 .. code-block:: postgres
 
-   UPDATE bands SET records_sold = 0;
+   UPDATE countries SET records_sold = 0;
    
 .. code-block:: postgres
 
-   UPDATE bands SET records_sold = 0 WHERE true;
-   
-.. code-block:: postgres
+   UPDATE countries SET records_sold = 0 WHERE true;
 
-   UPDATE bands SET records_sold = 0 USING countries;
-
-.. code-block:: postgres
-
-   UPDATE bands SET records_sold = 0 USING countries WHERE 1=1;
 
 Performing Simple Updates
 -----------------
@@ -106,7 +143,7 @@ The following is an example of performing a simple update:
 
 .. code-block:: postgres
 
-   UPDATE bands SET records_sold = records_sold + 1 WHERE name LIKE 'The %';
+    UPDATE countries SET records_sold = records_sold + 1 WHERE name = 'Israel';
 
 Updating Tables that Contain Multi-Table Conditions
 -----------------
