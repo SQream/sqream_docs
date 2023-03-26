@@ -151,22 +151,14 @@ The following shows an example of updating tables that contain multi-table condi
 
 .. code-block:: postgres
 
-   UPDATE bands
-   SET records_sold = records_sold + 1
-   WHERE EXISTS (
-     SELECT 1 FROM countries
-     WHERE countries.id=bands.country_id
-     AND country.name = 'Sweden'
-   );
+	UPDATE countries
+	SET records_sold = records_sold + 1
+	WHERE EXISTS (
+	  SELECT 1 FROM bands
+	  WHERE bands.country_id = countries.id
+	  AND bands.name = 'ABBA'
+	);
 
-You can also write the statement above using the FROM clause:
-
-.. code-block:: psql
-
-   UPDATE bands
-   SET records_sold = records_sold + 1
-   FROM countries
-   WHERE countries.id=bands.country_id AND country.name = 'Sweden';
 
 Updating Tables that Contain Multi-Table Expressions
 -----------------
@@ -174,13 +166,14 @@ The following shows an example of updating tables that contain multi-table expre
 
 .. code-block:: postgres
 
-   UPDATE bands
-   SET records_sold = records_sold +
-     CASE
-       WHEN c.name = 'Israel' THEN 2
-       ELSE 1
-     END
-   FROM countries c
+	UPDATE countries
+	SET records_sold = records_sold +
+	  CASE
+		WHEN name = 'Israel' THEN 2
+		ELSE 1
+	  END
+	FROM countries c  
+	;
  
 
 Triggering a Clean-Up
