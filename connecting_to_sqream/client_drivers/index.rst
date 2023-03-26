@@ -17,7 +17,7 @@ The following are applicable to all operating systems:
   
 * **JDBC** - recommended installation via ``mvn``:
 
-  * `JDBC .jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.6.jar>`_ - sqream-jdbc-4.5.3 (.jar)
+  * `JDBC .jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.6.jar>`_ - sqream-jdbc-4.5.6 (.jar)
   * :ref:`java_jdbc`
 
 .. _.net:
