@@ -35,17 +35,12 @@ The following is the correct syntax for the ``UPDATE`` command:
 
 .. code-block:: postgres
  
-   UPDATE target_table_name [[AS] alias1]
-   SET column_name = expression [,...]
-  [FROM additional_table_name [[AS] alias2][,...]]
-  [WHERE condition]
+	UPDATE target_table_name [[AS] alias1]
+	SET column_name = expression [,...]
+	[FROM additional_table_name [[AS] alias2][,...]]
+	[WHERE condition]
   
-The following is the correct syntax for triggering a clean-up:
 
-.. code-block:: postgres
-
-   SELECT cleanup_chunks('schema_name','table_name');
-   SELECT cleanup_extents('schema_name','table_name');
    
 Parameters
 ============
@@ -65,12 +60,57 @@ The following table describes the ``UPDATE`` parameters:
      - Additional tables used in the WHERE condition for performing complex joins.
    * - ``condition``
      - Specifies the condition for updating the data.
-	 
-.. note:: Similar to a DELETE statement, an UPDATE statement may leave some uncleaned data behind, which requires a cleanup operation.
 
 Examples
 ===========
-The **Examples** section includes the following examples:
+
+The examples section shows how to modify the value of certain columns in existing rows without creating a table.
+
+To be able to follow the examples, create these two tables:
+
+**countries**
+
++----+--------+--------------+	
+| id | name   | records_sold |
++====+========+==============+
+| 1  | Israel | null         |
++----+--------+--------------+
+| 2  | UK     | null         |
++----+--------+--------------+
+| 3  | USA    | null         |
++----+--------+--------------+
+| 4  | Sweden | null         |
++----+--------+--------------+
+
+**bands**
+
++----+-------------+------------+
+| id | name        | country_id |
++====+=============+============+
+| 1  | The Beatles | 2          |
++----+-------------+------------+
+| 2  | The Ramones | 3          |
++----+-------------+------------+
+| 3  | ABBA        | 4          |
++----+-------------+------------+
+| 4  | Ace of Base | 4          |
++----+-------------+------------+
+
+.. code-block:: postgres
+
+	create or replace table countries ( id int, name text, records_sold int); 
+	insert into countries values (1, 'Israel', null); 
+	insert into countries values (2, 'UK', null); 
+	insert into countries values (3, 'USA', null); 
+	insert into countries values (4, 'Sweden', null); 
+   
+	create or replace table bands ( id int, name text, country_id int); 
+	insert into bands values (1, 'The Beatles', 2); 
+	insert into bands values (2, 'The Ramones', 3); 
+	insert into bands values (3, 'ABBA', 4); 
+	insert into bands values (4, 'Ace of Base', 4); 
+	
+	
 
 .. contents::
    :local:
@@ -78,27 +118,17 @@ The **Examples** section includes the following examples:
 
 Updating an Entire Table
 -----------------
-The Examples section shows how to modify the value of certain columns in existing rows without creating a table. The examples are based on the following tables:
 
-.. image:: /_static/images/delete_optimization.png
-
-The following methods for updating an entire table generate the same output, and result with the ``bands`` record set to ``NULL``:
+Two different ``UPDATE`` methods for updating an entire table.
 
 .. code-block:: postgres
 
-   UPDATE bands SET records_sold = 0;
+   UPDATE countries SET records_sold = 0;
    
 .. code-block:: postgres
 
-   UPDATE bands SET records_sold = 0 WHERE true;
-   
-.. code-block:: postgres
+   UPDATE countries SET records_sold = 0 WHERE true;
 
-   UPDATE bands SET records_sold = 0 USING countries;
-
-.. code-block:: postgres
-
-   UPDATE bands SET records_sold = 0 USING countries WHERE 1=1;
 
 Performing Simple Updates
 -----------------
@@ -106,7 +136,7 @@ The following is an example of performing a simple update:
 
 .. code-block:: postgres
 
-   UPDATE bands SET records_sold = records_sold + 1 WHERE name LIKE 'The %';
+    UPDATE countries SET records_sold = records_sold + 1 WHERE name = 'Israel';
 
 Updating Tables that Contain Multi-Table Conditions
 -----------------
@@ -114,81 +144,51 @@ The following shows an example of updating tables that contain multi-table condi
 
 .. code-block:: postgres
 
-   UPDATE bands
-   SET records_sold = records_sold + 1
-   WHERE EXISTS (
-     SELECT 1 FROM countries
-     WHERE countries.id=bands.country_id
-     AND country.name = 'Sweden'
-   );
+	UPDATE countries
+	SET records_sold = records_sold + 1
+	WHERE EXISTS (
+	  SELECT 1 FROM bands
+	  WHERE bands.country_id = countries.id
+	  AND bands.name = 'ABBA'
+	);
 
-You can also write the statement above using the FROM clause:
-
-.. code-block:: psql
-
-   UPDATE bands
-   SET records_sold = records_sold + 1
-   FROM countries
-   WHERE countries.id=bands.country_id AND country.name = 'Sweden';
 
 Updating Tables that Contain Multi-Table Expressions
------------------
+----------------------------------------------------
 The following shows an example of updating tables that contain multi-table expressions:
 
 .. code-block:: postgres
 
-   UPDATE bands
-   SET records_sold = records_sold +
-     CASE
-       WHEN c.name = 'Israel' THEN 2
-       ELSE 1
-     END
-   FROM countries c
-   
-Configuring Update Behavior
------------------
-The ``failOnNondeterministicUpdate`` flag is used to configure ``UPDATE`` behavior when updating tables containing multi-table expressions. This flag is needed when you use the ``FROM`` clause along with a set expression containing columns from additional tables. Doing this can cause a match to occur between a row from the target table with multiple rows from the additional tables.
+	UPDATE countries
+	SET records_sold = records_sold +
+	  CASE
+		WHEN name = 'Israel' THEN 2
+		ELSE 1
+	  END
+	FROM countries c  
+	;
+ 
+Triggering a Cleanup
+---------------------
 
-For instance, the example in the previous section sets the records sold to ``2`` when the country name is Israel. If you were to insert a new entry into this table with Israel spelled in Hebrew (using the same country ID), you would have two rows with identical country ID's. 
+When an ``UPDATE`` statement is executed, it creates a new table that contains the updated data, while the original table remains intact. As a result, residual data may be left behind, and a cleanup operation is necessary to ensure the database remains in a consistent state.
 
-When this happens, both rows 5 and 6 in the ``bands`` table match both Israel entries. Because no algorithm exists for determining which entry to use, updating this table may either increase ``records_sold`` by 2 (for Israel in English) or 1 (for Israel in Hebrew).
-
-You must set the ``failOnNondeterministicUpdate`` flag to ``FALSE`` to prevent an error from occuring.
-
-Note that a similar ambiguity can occur when the Hebrew spelling is used in the following example:
+ 
+The following is the syntax for triggering a cleanup:
 
 .. code-block:: postgres
 
-   UPDATE bands
-   SET record_count = record_count + 1
-   FROM countries c
-   WHERE c.name = 'Israel'
-   
-However, the ``WHERE`` clause above prevents a match with any entry other than the defined one. Because the target table row must match with the ``WHERE`` condition at least once to be included in the UPDATE statment, this scenario does not require configuring the ``failOnNondeterministicUpdate`` flag.
+   SELECT cleanup_chunks('schema_name','table_name');
+   SELECT cleanup_extents('schema_name','table_name'); 
 
-Triggering a Clean-Up
----------------------------------------
-The following shows an example of triggering a clean-up:
-
-.. code-block:: psql
-
-   SELECT * FROM sqream_catalog.discarded_chunks;
-   SELECT cleanup_discarded_chunks('public','t'); 
-
-The following is an example of the output generated from the above:
-
-* **database_name** - _discarded_master
-* **table_id** - 24
-* **column_id** - 1
-* **extent_ID** - 0
    
 Permissions
-=============
+===========
 Executing an ``UPDATE`` statement requires the following permissions:
 
 * Both ``UPDATE`` and ``SELECT`` permissions on the target table.
 * The ``SELECT`` permission for each additional table you reference in the statement (in ither the ``FROM`` clause or ``WHERE`` subquery section).
 
 Locking and Concurrency
-=============
+=======================
 Executing the ``UPDATE`` statement obtains an exclusive UPDATE lock on the target table, but does not lock the destination tables.
