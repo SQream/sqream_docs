@@ -187,7 +187,7 @@ Permissions
 Executing an ``UPDATE`` statement requires the following permissions:
 
 * Both ``UPDATE`` and ``SELECT`` permissions on the target table.
-* The ``SELECT`` permission for each additional table you reference in the statement (in ither the ``FROM`` clause or ``WHERE`` subquery section).
+* The ``SELECT`` permission for each additional table you reference in the statement (in either the ``FROM`` clause or ``WHERE`` subquery section).
 
 Locking and Concurrency
 =======================
