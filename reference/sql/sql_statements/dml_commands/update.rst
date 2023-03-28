@@ -167,19 +167,7 @@ The following shows an example of updating tables that contain multi-table expre
 	  END
 	FROM countries c  
 	;
- 
-Triggering a Cleanup
----------------------
 
-When an ``UPDATE`` statement is executed, it creates a new table that contains the updated data, while the original table remains intact. As a result, residual data may be left behind, and a cleanup operation is necessary to ensure the database remains in a consistent state.
-
- 
-The following is the syntax for triggering a cleanup:
-
-.. code-block:: postgres
-
-   SELECT cleanup_chunks('schema_name','table_name');
-   SELECT cleanup_extents('schema_name','table_name'); 
 
    
 Permissions
