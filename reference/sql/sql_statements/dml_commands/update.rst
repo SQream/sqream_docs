@@ -40,12 +40,7 @@ The following is the correct syntax for the ``UPDATE`` command:
 	[FROM additional_table_name [[AS] alias2][,...]]
 	[WHERE condition]
   
-The following is the correct syntax for triggering a clean-up:
 
-.. code-block:: postgres
-
-   SELECT cleanup_chunks('schema_name','table_name');
-   SELECT cleanup_extents('schema_name','table_name');
    
 Parameters
 ============
@@ -65,8 +60,6 @@ The following table describes the ``UPDATE`` parameters:
      - Additional tables used in the WHERE condition for performing complex joins.
    * - ``condition``
      - Specifies the condition for updating the data.
-	 
-.. note:: Similar to a DELETE statement, an UPDATE statement may leave some uncleaned data behind, which requires a cleanup operation.
 
 Examples
 ===========
@@ -161,7 +154,7 @@ The following shows an example of updating tables that contain multi-table condi
 
 
 Updating Tables that Contain Multi-Table Expressions
------------------
+----------------------------------------------------
 The following shows an example of updating tables that contain multi-table expressions:
 
 .. code-block:: postgres
@@ -175,30 +168,27 @@ The following shows an example of updating tables that contain multi-table expre
 	FROM countries c  
 	;
  
+Triggering a Cleanup
+---------------------
 
-Triggering a Clean-Up
----------------------------------------
-The following shows an example of triggering a clean-up:
+When an ``UPDATE`` statement is executed, it creates a new table that contains the updated data, while the original table remains intact. As a result, residual data may be left behind, and a cleanup operation is necessary to ensure the database remains in a consistent state.
 
-.. code-block:: psql
+ 
+The following is the syntax for triggering a cleanup:
 
-   SELECT * FROM sqream_catalog.discarded_chunks;
-   SELECT cleanup_discarded_chunks('public','t'); 
+.. code-block:: postgres
 
-The following is an example of the output generated from the above:
+   SELECT cleanup_chunks('schema_name','table_name');
+   SELECT cleanup_extents('schema_name','table_name'); 
 
-* **database_name** - _discarded_master
-* **table_id** - 24
-* **column_id** - 1
-* **extent_ID** - 0
    
 Permissions
-=============
+===========
 Executing an ``UPDATE`` statement requires the following permissions:
 
 * Both ``UPDATE`` and ``SELECT`` permissions on the target table.
 * The ``SELECT`` permission for each additional table you reference in the statement (in ither the ``FROM`` clause or ``WHERE`` subquery section).
 
 Locking and Concurrency
-=============
+=======================
 Executing the ``UPDATE`` statement obtains an exclusive UPDATE lock on the target table, but does not lock the destination tables.
