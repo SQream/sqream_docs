@@ -29,7 +29,7 @@ Arguments
 
 Return
 ======
-Returns an output of the same data type as the input data type.
+Returns an ``INT`` value.
 
 Depending on the sign of the input argument, the return is:
 
