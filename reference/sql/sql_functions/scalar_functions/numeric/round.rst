@@ -9,7 +9,7 @@ Rounds a numeric expression to the nearest precision.
 See also :ref:`ceiling`, :ref:`floor`.
 
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
