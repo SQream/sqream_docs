@@ -1,16 +1,40 @@
 .. _index:
 
-****
-BLUE
-****
+.. raw:: html
+
+	<font color="red">BLUE</font>
+=================================
 
 
-SQream DB is a columnar analytic SQL database management system. SQream DB supports regular SQL including :ref:`a substantial amount of ANSI SQL<sql_feature_support>`, uses :ref:`serializable transactions<transactions>`, and :ref:`scales horizontally<concurrency_and_scaling_in_sqream>` for concurrent statements. Even a :ref:`basic SQream DB machine<hardware_guide>` can support tens to hundreds of terabytes of data. SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tableau>` comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc>`, :ref:`ODBC<odbc>`, and :ref:`Python DB-API<pysqream>`.
+tl;dr
+=====
+
+Blue is a cloud-based platform that's perfect for businesses using data lake architectures or AWS Redshift/GCP BigQuery. It makes it easy to set up new workflows for complex data integration and move your data integration to the cloud. With a patented GPU optimization engine, parallelism, and optimization for Apache Parquet, Blue helps you process data quickly and efficiently. Plus, it connects seamlessly with your favorite open-source workflow tools and offers a unique architecture that keeps your data secure and eliminates duplication.
+
+Read the Damn Article
+=====================
+
+Blue is a platform that can benefit enterprises that work with cloud-based data lake architectures, as well as those who currently use AWS Redshift or GCP BigQuery. It is also suitable for those who are considering a move to the cloud and are evaluating the benefits of using AWS Redshift, GCP BigQuery, or a data lake infrastructure.
+
+The platform is particularly useful for setting up new workflows for data integration use cases that require complex data flows ranging from 2TB to petabyte-scale. It can also help businesses that are looking to move their data integration use cases from on-premises to the public cloud.
+
+Main Features and Capabilities:
 
 
-.. rubric:: Need help?
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| **Feature**                  | **Description**                                                                                                                                                                                                                                                                                                                                 |
++==============================+=================================================================================================================================================================================================================================================================================================================================================+
+| GPU Optimization Engine      | Blue's performance relies on a patented GPU acceleration technology that synchronizes all available resources (CPU, GPU, RAM) and utilizes the GPU's processing power for even the most complex analytical tasks.                                                                                                                               |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Parallelism                  | SQream uses the GPU to achieve parallel data processing. By breaking large tasks into smaller processes, SQream distributes operations across multiple GPU cores, allowing administrators to balance parallelism and concurrency according to their business needs.                                                                             |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Optimized for Apache Parquet | Blue's processing engine utilizes Parquet's column-oriented structure and metadata to avoid unnecessary data reads, resulting in optimized processing times.                                                                                                                                                                                    |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Connectivity                 | Blue easily integrates with common open-source workflow management and orchestration tools, such as Apache Airflow, Dgaster, and Prefect. It also supports industry-standard ODBC, JDBC, and Python connectors, and provides a REST API for cluster management.                                                                                 |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Architecture                 | SQream Blue does not require data ingestion or movement and relies on direct access to data in open-standard formats. Throughout the data preparation cycle, all data remains in the customer's low-cost cloud storage, ensuring privacy and ownership while preserving a single source of truth and eliminating the need for data duplication. |
++------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-If you couldn't find what you're looking for, we're always happy to help. Visit `SQream's support center<https://sqream.atlassian.net/servicedesk/>`.
 
 
 
