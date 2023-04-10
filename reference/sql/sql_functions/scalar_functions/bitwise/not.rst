@@ -1,10 +1,10 @@
 .. _bitwise_not:
 
 ***************************
-``~`` (bitwise ``NOT``)
+``~`` (bitwise NOT)
 ***************************
 
-Returns the bitwise ``NOT`` (negation) of two numeric expressions. This is the bitwise complement.
+The bitwise NOT operator (``~``) is a unary operator used to invert the bits of a binary value. It converts each 0 to a 1 and each 1 to a 0, resulting in the ones' complement of the original value.
 
 Syntax
 ==========
@@ -32,12 +32,12 @@ Arguments
 Returns
 ============
 
-Returns an integer that is the bitwise ``NOT`` of the input.
+Returns an integer that is the bitwise ``NOT`` of the input and preserves the data type of the argument supplied.
 
 Notes
 =======
 
-* If the value is NULL, the result is NULL.
+* If the value is ``NULL``, the result is ``NULL``.
 
 Examples
 ===========
@@ -56,21 +56,15 @@ Examples
 
 .. code-block:: psql
 
-   master=> CREATE TABLE bit(b1 int, b2 int, b3 int);
-   executed
+
+   master=> CREATE OR REPLACE TABLE t (xtinyInt tinyInt, xsmallInt smallInt, xint int, xbigInt bigInt);
+
+   master=> INSERT INTO t VALUES (1,1,1,1);
+
+   master=> SELECT ~xtinyInt, ~xsmallInt, ~xint, ~xbigInt from t;
    
-   master=> INSERT INTO bit VALUES (1,2,3), (2, 4, 6), (4, 2, 6), (2, 8, 16), (null, null, 64), (5, 3, 1), (6, 1, 0);
-   executed
-   
-   SELECT b1, b2, b3, ~b1, ~b2, ~b3 FROM bit;
-   b1 | b2 | b3 | ?column? | ?column?0 | ?column?1
-   ---+----+----+----------+-----------+----------
-    1 |  2 |  3 |       -2 |        -3 |        -4
-    2 |  4 |  6 |       -3 |        -5 |        -7
-    4 |  2 |  6 |       -5 |        -3 |        -7
-    2 |  8 | 16 |       -3 |        -9 |       -17
-      |    | 64 |          |           |       -65
-    5 |  3 |  1 |       -6 |        -4 |        -2
-    6 |  1 |  0 |       -7 |        -2 |        -1
+   ?column? | ?column?0 | ?column?1 | ?column?2 |
+   ---------+-----------+-----------+-----------+
+        254 |        -2 |        -2 |        -2 |
 
 
