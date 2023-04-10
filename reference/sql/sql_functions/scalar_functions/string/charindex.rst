@@ -39,7 +39,7 @@ Integer start position of a match, or 0 if no match was found.
 Notes
 =======
 
-* If the value is NULL, the result is NULL.
+* If the value is ``NULL``, the result is ``NULL``.
 
 
 Examples
@@ -49,13 +49,18 @@ For these examples, consider the following table and contents:
 
 .. code-block:: postgres
 
-   CREATE TABLE jabberwocky(line TEXT);
+      CREATE TABLE users (
+          id INT,
+          username TEXT,
+          email TEXT,
+          password TEXT
+      );
 
-   INSERT INTO jabberwocky VALUES 
-      ('''Twas brillig, and the slithy toves '), ('      Did gyre and gimble in the wabe: ')
-      ,('All mimsy were the borogoves, '), ('      And the mome raths outgrabe. ')
-      ,('"Beware the Jabberwock, my son! '), ('      The jaws that bite, the claws that catch! ')
-      ,('Beware the Jubjub bird, and shun '), ('      The frumious Bandersnatch!" ');
+      INSERT INTO users (id, username, email, password)
+      VALUES (1, 'john_doe', 'john.doe@example.com', 'password1'),
+             (2, 'jane_doe', 'jane.doe@example.com', 'password2'),
+             (3, 'bob_smith', 'bob.smith@example.com', 'password3'),
+             (4, 'susan_jones', 'susan.jones@example.com', 'password4');
 
 
 Using ``CHARINDEX``
@@ -63,14 +68,12 @@ Using ``CHARINDEX``
 
 .. code-block:: psql
 
-   t=> SELECT line, CHARINDEX('the', line) FROM jabberwocky
-   line                                            | charindex
-   ------------------------------------------------+----------
-   'Twas brillig, and the slithy toves             |        20
-         Did gyre and gimble in the wabe:          |        30
-   All mimsy were the borogoves,                   |        16
-         And the mome raths outgrabe.              |        11
-   "Beware the Jabberwock, my son!                 |         9
-         The jaws that bite, the claws that catch! |        27
-   Beware the Jubjub bird, and shun                |         8
-         The frumious Bandersnatch!"               |         0
+   SELECT username, CHARINDEX('john', username) FROM users;
+
+   username      | charindex
+   --------------+----------
+   john_doe      |         1
+   jane_doe      |         0
+   bob_smith     |         0
+   susan_jones   |         0
+
