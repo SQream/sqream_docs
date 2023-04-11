@@ -48,7 +48,7 @@ Main Features and Capabilities:
    getting_started/index
    installation_guides/index
    data_ingestion/index
-   connecting_to_sqream/index
+   Logging_In/index
    external_storage_platforms/index
    loading_and_unloading_data/index
    feature_guides/index
