@@ -4,13 +4,13 @@
 LEN
 **************************
 
-Calculates the number of characters in a string.
+The LEN function calculates the number of characters in a string. Keep in mind that SQream DB does not count trailing spaces, but does count leading spaces. For UTF-8 encoded ``TEXT`` strings, multi-byte characters are counted as a single character. To get the length in bytes, see :ref:`octet_length`. To get the length in characters, see :ref:`char_length`.
+
 
 .. note::
-   
-   * This function is provided for SQL Server compatability.
-   
-   * For UTF-8 encoded ``TEXT`` strings, multi-byte characters are counted as a single character. To get the length in bytes, see :ref:`octet_length`. To get the length in characters, see :ref:`char_length`.
+
+   This function is provided for SQL Server compatibility.
+
 
 Syntax
 ==========
@@ -35,12 +35,12 @@ Arguments
 Returns
 ============
 
-Returns an integer containing the number of characters in the string.
+The LEN function returns an integer value representing the length of the input string, which includes any leading spaces but excludes any trailing spaces.
 
 Notes
 =======
 
-* If the value is NULL, the result is NULL.
+* If the value is ``NULL``, the result is ``NULL``.
 
 Examples
 ===========
@@ -49,7 +49,7 @@ For these examples, consider the following table and contents:
 
 .. code-block:: postgres
    
-   CREATE TABLE jabberwocky(line TEXT);
+   CREATE TABLE jabberwocky(line TEXT(50));
    
    INSERT INTO jabberwocky VALUES 
       ($$'Twas brillig, and the slithy toves$$), ('      Did gyre and gimble in the wabe:')
@@ -80,8 +80,6 @@ ASCII characters take up 1 byte per character, while Thai takes up 3 bytes and H
 
 Length of an ASCII string
 ----------------------------
-
-.. note:: SQream DB does not count trailing spaces, but does keep leading spaces.
 
 .. code-block:: psql
 
