@@ -1,7 +1,7 @@
-.. _connecting_to_sqream:
+.. _logging_in:
 
 *************************
-Connecting to SQream
+Logging In
 *************************
 SQream supports the most common database tools and interfaces, giving you direct access through a variety of drivers, connectors, and visualiztion tools and utilities. The tools described on this page have been tested and approved for use with SQream. Most third party tools that work through JDBC, ODBC, and Python should work.
 
