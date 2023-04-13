@@ -4,7 +4,7 @@
 Cost Management
 *****************
 
-This page explains how to suspend and resume your BLUE environment automatically. While it is possible to suspend and resume manually, setting up automatic suspension can result in a smoother experience.
+This page explains how to suspend and resume your BLUE environment automatically, which can be a useful strategy for managing costs. While it is possible to suspend and resume manually, setting up automatic suspension can result in a smoother experience.
 
 When you suspend an environment, its resources are temporarily released, which allows billing to be paused for a set duration during which the environment is not expected to be used. If your BLUE environment is suspended, it means that your `Workers <glossary>_` are not operational, and statements cannot be executed. However, after you resume operation, the resource count will return to its pre-suspension value. It's important to note that your cluster remains accessible, and you can still perform administrative actions like resize and flow management.
 
