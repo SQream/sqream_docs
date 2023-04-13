@@ -14,20 +14,21 @@ Suspending Your BLUE Environment
 To control the automatic suspension of your environment through the BLUE web interface, navigate to the **Settings** tab. 
 Within the **Worker Management** section, you can manage worker activity.
 
-Activate the **Automatically Suspend Workers** feature and define the number of minutes afterwhich all workers will automatically be suspended.
+Activate the **Automatically Suspend Workers** feature to define the number of minutes afterwhich all workers will automatically be suspended.
 
 At the bottom of the page you will find the **Suspension By** feature. This feature provides three suspension method options that you can choose from. 
 Use this feature to define your preferred suspension method.
 
-+----------------------------------------+--------------------------------------------------------------------------------------------------------------------+
-| **Suspension Method**                  | **Description**                                                                                                    |
-+========================================+====================================================================================================================+
-| Brute force                            | All workers and all running queries are immediately suspended.                                                     |
-+----------------------------------------+--------------------------------------------------------------------------------------------------------------------+
-| Graceful shutdown                      | Suspension of all workers will occur only after completion of all running queries.                                 |
-+----------------------------------------+--------------------------------------------------------------------------------------------------------------------+
-| Graceful shutdown and pending requests | Suspension of workers will occur only after completion of all running queries and execution of all queued queries. |
-+----------------------------------------+--------------------------------------------------------------------------------------------------------------------+
++----------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| **Suspension Method**                  | **Description**                                                                                                          |
++========================================+==========================================================================================================================+
+| Brute force                            | All workers are immediately suspended and all running statements are aborted.                                            |
++----------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| Graceful shutdown                      | Suspension of all workers will occur only after completion of all running statements.                                    |
++----------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
+| Graceful shutdown and pending requests | Suspension of workers will occur only after completion of all running statements and execution of all queued statements. |
++----------------------------------------+--------------------------------------------------------------------------------------------------------------------------+
+
 
 
 Resuming Your BLUE Environment
