@@ -5,16 +5,6 @@ JDBC
 *************************
 The SQream JDBC driver lets you connect to SQream using many Java applications and tools. This page describes how to write a Java application using the JDBC interface. The JDBC driver requires Java 1.8 or newer.
 
-The JDBC page includes the following sections:
-
-.. contents:: 
-   :local:
-   :depth: 1
-
-Installing the JDBC Driver
-==================================
-The **Installing the JDBC Driver** section describes the following:
-
 .. contents:: 
    :local:
    :depth: 1
@@ -22,38 +12,6 @@ The **Installing the JDBC Driver** section describes the following:
 Prerequisites
 ----------------
 The SQream JDBC driver requires Java 1.8 or newer, and SQream recommends using Oracle Java or OpenJDK.:
-
-* **Oracle Java** - Download and install `Java 8 <https://www.java.com/en/download/manual.jsp>`_ from Oracle for your platform.
-
-   ::
-   
-* **OpenJDK** - Install `OpenJDK <https://openjdk.java.net/install/>`_
-
-   ::
-   
-* **Windows** - SQream recommends installing `Zulu 8 <https://www.azul.com/downloads/zulu-community/?&version=java-8-lts&architecture=x86-64-bit&package=jdk>`_
-
-Getting the JAR file
----------------------
-The SQream JDBC driver is available for download from the :ref:`client drivers download page<client_drivers>`. This JAR file can be integrated into your Java-based applications or projects.
-
-
-Setting Up the Class Path
-----------------------------
-To use the driver, you must include the JAR named ``sqream-jdbc-<version>.jar`` in the class path, either by inserting it in the ``CLASSPATH`` environment variable, or by using flags on the relevant Java command line.
-
-For example, if the JDBC driver has been unzipped to ``/home/sqream/sqream-jdbc-4.3.0.jar``, the following command is used to run application:
-
-.. code-block:: console
-
-   $ export CLASSPATH=/home/sqream/sqream-jdbc-4.3.0.jar:$CLASSPATH
-   $ java my_java_app
-
-Alternatively, you can pass ``-classpath`` to the Java executable file:
-
-.. code-block:: console
-
-   $ java -classpath .:/home/sqream/sqream-jdbc-4.3.0.jar my_java_app
 
 Connecting to SQream Using a JDBC Application
 ==============================================
@@ -71,11 +29,11 @@ Connection String
 --------------------
 JDBC drivers rely on a connection string.
 
-The following is the syntax for SQream:
+The following is the syntax for BLUE:
 
 .. code-block:: text
 
-   jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>sqream;[<optional parameters>; ...]
+   jdbc:Sqream://<host and port>/<database name>;access token=<access token>sqream;[<optional parameters>; ...]
 
 Connection Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -97,14 +55,10 @@ The following table shows the connection string parameters:
      - Mandatory
      - None
      - Database name to connect to. For example, ``master``
-   * - ``username=<username>``
+   * - ``access token=<access token>``
      - Mandatory
      - None
-     - Username of a role to use for connection. For example, ``username=rhendricks``
-   * - ``password=<password>``
-     - Mandatory
-     - None
-     - Specifies the password of the selected role. For example, ``password=Tr0ub4dor&3``
+     - The generated access token when creating a new client in the **Access Token Management** section, under :ref:`Settings<>`. 
    * - ``service=<service>``
      - Optional
      - ``sqream``
