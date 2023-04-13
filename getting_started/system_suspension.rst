@@ -13,7 +13,7 @@ Suspending Your BLUE Environment
 ================================
 
 To control the automatic suspension of your environment through the BLUE web interface, navigate to the **Settings** tab. 
-Within the **Worker Management** section, you can manage worker activity to control Run Time Container (RTC).
+Within the **Worker Management** section, you can manage worker activity.
 
 Activate the **Automatically Suspend Workers** feature and define the number of minutes afterwhich all workers will automatically be suspended.
 
