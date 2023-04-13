@@ -1,7 +1,7 @@
 .. system_suspension:
   
 *****************
-System Suspension
+Cost Management
 *****************
 
 This page explains how to suspend and resume your BLUE environment automatically. While it is possible to suspend and resume manually, setting up automatic suspension can result in a smoother experience.
