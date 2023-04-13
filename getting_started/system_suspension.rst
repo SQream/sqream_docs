@@ -39,4 +39,5 @@ Within the **Worker Management** section, you can manage worker activity to cont
 
 Activate the **Automatically Resume Workers** feature to enable the resumption of your environment by executing statements.
 
+**Subscription Management**
 To manage you BLUE subscription, follow this link.
