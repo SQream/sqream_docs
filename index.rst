@@ -45,16 +45,12 @@ Main Features and Capabilities:
    :titlesonly:
    :hidden:
 
-   getting_started/index
-   installation_guides/index
-   data_ingestion/index
    Logging_In/index
-   external_storage_platforms/index
+   getting_started/index
+   data_ingestion/index
    loading_and_unloading_data/index
    feature_guides/index
    operational_guides/index
-   sqream_studio_5.4.7/index
-   architecture/index
    configuration_guides/index
    reference/index
    data_type_guides/index
