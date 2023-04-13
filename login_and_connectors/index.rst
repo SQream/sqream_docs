@@ -16,7 +16,9 @@ Connectors
 You may use any of the following connectors:
 
 `JDBC <_java_jdbc>`_
+
 `ODBC <odbc>`_
+
 `PySQream <pysqream>`_
 
 If you need a tool that BLUE does not currently support, contact our support team and we'll look into it.
