@@ -38,3 +38,5 @@ To control the automatic resumption of your environment through the BLUE web int
 Within the **Worker Management** section, you can manage worker activity to control Real Time Communication (RTC).
 
 Activate the **Automatically Resume Workers** feature to enable the resumption of your environment by executing statements.
+
+To manage you BLUE subscription, follow this link.
