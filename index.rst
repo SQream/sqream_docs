@@ -45,7 +45,7 @@ Main Features and Capabilities:
    :titlesonly:
    :hidden:
 
-   Logging_In/index
+   login_and_connectors/index
    getting_started/index
    data_ingestion/index
    loading_and_unloading_data/index
