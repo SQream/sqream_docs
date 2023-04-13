@@ -15,7 +15,7 @@ Connectors
    
 You may use any of the following connectors:
 
-:ref:`JDBC <_java_jdbc>`
+:ref:`JDBC <java_jdbc>`
 
 :ref:`ODBC <odbc>`
 
