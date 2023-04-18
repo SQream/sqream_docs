@@ -28,11 +28,17 @@ Command line arguments
    :header-rows: 1
    
    * - Argument
-     - Required
+     - State
      - Description
-   * - Storage path
-     - ✓
-     - Full path to a valid storage cluster
+   * - ``storage_path``
+     - Mandatory
+     - Full path to a valid storage cluster.
+   * - ``storage_version``
+     - Optional
+     - Displays your current storage version.
+   * - ``check_predicates=0``
+     - Optional
+     - Allows the upgrade process to proceed even if there are predicates marked for deletion.
 
 Results and error codes
 ========================
