@@ -9,12 +9,12 @@
 \\tl;dr
 ^^^^^^
 
-Blue is a cloud-based platform that's perfect for businesses using data lake architectures or AWS Redshift/GCP BigQuery. It makes it easy to set up new workflows for complex data integration and move your data integration to the cloud. With a patented GPU optimization engine, parallelism, and optimization for Apache Parquet, Blue helps you process data quickly and efficiently. Plus, it connects seamlessly with your favorite open-source workflow tools and offers a unique architecture that keeps your data secure and eliminates duplication.
+Blue is a cloud-based platform designed for businesses using data lake architectures or AWS Redshift/GCP BigQuery. It makes it easy to set up new workflows for complex data integration and move your data integration to the cloud. With a patented GPU optimization engine, parallelism, and optimization for Apache Parquet, Blue helps you process data quickly and efficiently. Plus, it connects seamlessly with your favorite open-source workflow tools and offers a unique architecture that keeps your data secure and eliminates duplication.
 
 \\SELECT *
 ^^^^^^^^^
 
-Blue is a platform that can benefit enterprises that work with cloud-based data lake architectures, as well as those who currently use AWS Redshift or GCP BigQuery. It is also suitable for those who are considering a move to the cloud and are evaluating the benefits of using AWS Redshift, GCP BigQuery, or a data lake infrastructure.
+Blue is a platform that can benefit enterprises that work with cloud-based data lake architectures, as well as those who currently use AWS or GCP. It is also suitable for those who are considering a move to the cloud and are evaluating the benefits of using AWS, GCP, or a data lake infrastructure.
 
 The platform is particularly useful for setting up new workflows for data integration use cases that require complex data flows ranging from 2TB to petabyte-scale. It can also help businesses that are looking to move their data integration use cases from on-premises to the public cloud.
 
