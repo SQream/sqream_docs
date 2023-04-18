@@ -319,7 +319,9 @@ The ``roles_memberships`` data object identifies the role memberships in the dat
    * - ``member_role_id``
      - Shows the ID of the parent role that this role inherits from.
    * - ``inherit``
-     - Identifies whether permissions are inherited (``1`` - yes, ``0`` - no).	 
+     - Identifies whether permissions are inherited (``1`` - yes, ``0`` - no).	
+   * - ``admin``
+     - Identifies whether role is admin (``1`` - yes, ``0`` - no).		 
 
 .. _schemas:
 
