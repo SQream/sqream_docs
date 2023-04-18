@@ -28,10 +28,10 @@ Listing All Schemas in a Database
 .. code-block:: psql
    
    master=> SELECT * FROM sqream_catalog.schemas;
-   schema_id | schema_name   | schema_owner | rechunker_ignore
-   ----------+---------------+--------------+-----------------
-           0 | public        | sqream       | false           
-           1 | secret_schema | mjordan      | false           
+   schema_id | schema_name   | rechunker_ignore
+   ----------+---------------+-----------------
+           0 | public        | false           
+           1 | secret_schema | false           
 
 
 Listing Columns and Their Types for a Specific Table
