@@ -32,7 +32,7 @@ Arguments
 Returns
 ============
 
-Returns an integer that is the bitwise ``NOT`` of the input and preserves the data type of the argument supplied.
+Returns an integer that is the bitwise NOT of the input and preserves the data type of the argument supplied.
 
 Notes
 =======
