@@ -89,7 +89,7 @@ Altering Role Membership (Groups)
 Many database administrators find it useful to group user roles together. By grouping users, permissions can be granted to, or revoked from a group with one command. In SQream DB, this is done by creating a group role, granting permissions to it, and then assigning users to that group role.
 
 To use a role purely as a group, omit granting it ``LOGIN`` and ``PASSWORD`` permissions.
-
+ 
 The ``CONNECT`` permission can be given directly to user roles, and/or to the groups they are part of.
 
 .. code-block:: postgres
