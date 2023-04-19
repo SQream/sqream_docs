@@ -9,7 +9,7 @@
 \\tl;dr
 ^^^^^^
 
-Blue is a cloud-based platform designed for businesses using data lake architectures or AWS Redshift/GCP BigQuery. It makes it easy to set up new workflows for complex data integration and move your data integration to the cloud. With a patented GPU optimization engine, parallelism, and optimization for Apache Parquet, Blue helps you process data quickly and efficiently. Plus, it connects seamlessly with your favorite open-source workflow tools and offers a unique architecture that keeps your data secure and eliminates duplication.
+Blue is a cloud-based platform designed for businesses using data lake architectures. It makes it easy to set up new workflows for complex data integration and move your data integration to the cloud. With a patented GPU optimization engine, parallelism, and optimization for Apache Parquet, Blue helps you process data quickly and efficiently. Plus, it connects seamlessly with your favorite open-source workflow tools and offers a unique architecture that keeps your data secure and eliminates duplication.
 
 \\SELECT *
 ^^^^^^^^^
