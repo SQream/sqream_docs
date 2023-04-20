@@ -6,12 +6,12 @@
 =================================
 
 
-\\tl;dr
+tl;dr
 ^^^^^^
 
 Blue is a cloud-based platform designed for businesses using data lake architectures. It makes it easy to set up new workflows for complex data integration and move your data integration to the cloud. With a patented GPU optimization engine, parallelism, and optimization for Apache Parquet, Blue helps you process data quickly and efficiently. Plus, it connects seamlessly with your favorite open-source workflow tools and offers a unique architecture that keeps your data secure and eliminates duplication.
 
-\\SELECT *
+SELECT *
 ^^^^^^^^^
 
 Blue is a platform designed for enterprises working with cloud-based data lake architectures, or those considering a move to the cloud. The product includes a range of features to streamline workflows, gain deeper insights into data, and perform real-time data analysis.
