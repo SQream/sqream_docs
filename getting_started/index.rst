@@ -9,6 +9,7 @@ The **Getting Started** page describes the following things you need to start us
    :maxdepth: 1
    :glob:
 
+   login_and_connectors
    cost_management
    executing_statements_in_sqream
    performing_basic_sqream_operations
