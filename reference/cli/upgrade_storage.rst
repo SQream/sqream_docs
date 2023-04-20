@@ -14,25 +14,40 @@ Running upgrade_storage
 ``upgrade_storage`` can be found in the ``bin`` directory of your SQream DB installation.
 
 
-Command line arguments
-==========================
-
-``upgrade_storage`` contains one positional argument:
-
-.. code-block:: console
-
-   $ upgrade_storage <storage path>
+Command line arguments and options
+----------------------------------
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
-   * - Argument
-     - Required
+   * - Parameter
+     - Parameter Type
      - Description
-   * - Storage path
-     - ✓
-     - Full path to a valid storage cluster
+   * - ``storage_path``
+     - Argument
+     - Full path to a valid storage cluster.
+   * - ``--storage_version``
+     - Option
+     - Displays your current storage version.
+   * - ``--check_predicates=0``
+     - Option
+     - Allows the upgrade process to proceed even if there are predicates marked for deletion.	 
+
+
+Syntax
+------
+
+.. code-block:: console
+
+   $ upgrade_storage <storage path> [option]
+
+
+.. code-block:: console
+
+   $ upgrade_storage <storage path> [--storage_version] [--check_predicates=0]
+
+   
 
 Results and error codes
 ========================
