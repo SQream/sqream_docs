@@ -6,7 +6,7 @@ Release Notes 4.2
 
 SQream is introducing a new version release system that follows the more commonly used Major.Minor.Patch versioning schema. The newly released **4.0 version** is a minor version upgrade and does not require considerable preparation.
 
-The 4.2 release notes were released on 03/19/2023 and describe the following:
+The 4.2 release notes were released on 04/23/2023 and describe the following:
 
 .. contents:: 
    :local:
@@ -38,6 +38,10 @@ Newly Released Connector Drivers
  * `.jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.8.jar>`_
  * :ref:`Documentation<java_jdbc>`
  
+► Spark 5.0.0
+ * `.jar file <https://sq-ftp-public.s3.amazonaws.com/Spark-Sqream-Connector-5.0.0.jar>`_
+ * :ref:`Documentation<spark>`
+ 
 Storage Version
 ---------------
 
@@ -65,11 +69,18 @@ Version 4.2 resolved Issues
 +------------------------+------------------------------------------------------------------------------------------+
 |  **SQ No.**            | **Description**                                                                          |
 +========================+==========================================================================================+
-| SQ-12598               | External table ``SELECT`` statement issue                                                |
+| SQ-12078               |                                                                                          |
++------------------------+------------------------------------------------------------------------------------------+
+| SQ-12598               | Foreign table ``SELECT`` statement issue                                                 |                                                                                          
++------------------------+------------------------------------------------------------------------------------------+
+| SQ-13018               |                                                                                          |
 +------------------------+------------------------------------------------------------------------------------------+
 | SQ-13055               | Pysqream ``NULL`` value issue                                                            |
 +------------------------+------------------------------------------------------------------------------------------+
-
+| SQ-13322               |                                                                                          |
++------------------------+------------------------------------------------------------------------------------------+
+| SQ-13450               | Storage upgrade issue                                                                    |
++------------------------+------------------------------------------------------------------------------------------+
 
 Configuration Changes
 ---------------------
@@ -105,8 +116,6 @@ The ``VARCHAR`` data type is deprecated to improve the core functionalities of t
 * Support in the ``VARCHAR`` data type ends at September 30th, 2023.
 * ``VARCHAR`` is no longer supported for new customers, effective from Version 2022.1.3.  
 * The ``TEXT`` data type is replacing the ``VARCHAR`` and ``NVARCHAR`` data types.
-
-
 
 
 End of Support

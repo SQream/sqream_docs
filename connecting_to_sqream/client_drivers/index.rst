@@ -38,7 +38,7 @@ The following are applicable to all operating systems:
   
 * **Spark**:
 
-  * `Spark Connector <>`_ 
+  * `Spark Connector <https://sq-ftp-public.s3.amazonaws.com/Spark-Sqream-Connector-5.0.0.jar>`_ 
   * :ref:`spark`   
 
 .. _python:
