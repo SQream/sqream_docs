@@ -80,7 +80,7 @@ Altering Public Role Permissions
 
 There is a public role which always exists. Each role is granted to the ``PUBLIC`` role (i.e. is a member of the public group), and this cannot be revoked. You can alter the permissions granted to the public role.
 
-The ``PUBLIC`` role has ``USAGE`` and ``CREATE`` permissions on ``PUBLIC`` schema by default, therefore, new users can ``CREATE``, :ref:`insert`, :ref:`delete`, :ref:`select` and :ref:`UPDATE` from objects in the ``PUBLIC`` schema.
+The ``PUBLIC`` role has ``USAGE`` and ``CREATE`` permissions on ``PUBLIC`` schema by default, therefore, new users can :ref:`insert`, :ref:`delete`, :ref:`select`, :ref:`UPDATE` and ``CREATE`` (:ref:`databases<create_database>`, :ref:`schemas<create_schema>`, :ref:`roles<create_role>`, :ref:`functions<create_function>`, :ref:`views<create_view>`, and :ref:`tables<create_table>`) from objects in the ``PUBLIC`` schema.
 
 
 Altering Role Membership (Groups)
@@ -89,7 +89,7 @@ Altering Role Membership (Groups)
 Many database administrators find it useful to group user roles together. By grouping users, permissions can be granted to, or revoked from a group with one command. In SQream DB, this is done by creating a group role, granting permissions to it, and then assigning users to that group role.
 
 To use a role purely as a group, omit granting it ``LOGIN`` and ``PASSWORD`` permissions.
-
+ 
 The ``CONNECT`` permission can be given directly to user roles, and/or to the groups they are part of.
 
 .. code-block:: postgres
