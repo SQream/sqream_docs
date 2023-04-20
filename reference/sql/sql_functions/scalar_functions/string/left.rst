@@ -27,9 +27,7 @@ Arguments
    * - ``expr``
      - String expression
    * - ``character_count``
-     - A positive integer that specifies how many characters to return
-   * - ``cnt``
-     - The number of characters to be returned. If ``cnt <= 0``, an empty string is returned. 
+     - The number of characters to be returned. If ``character_count <= 0``, an empty string is returned.
 Returns
 ============
 
