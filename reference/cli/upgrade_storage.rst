@@ -21,7 +21,7 @@ Command line arguments
 
 .. code-block:: console
 
-   $ upgrade_storage <storage path>
+   $ upgrade_storage <storage path> [option]
 
 .. list-table:: 
    :widths: auto
@@ -33,10 +33,10 @@ Command line arguments
    * - ``storage_path``
      - Mandatory
      - Full path to a valid storage cluster.
-   * - ``storage_version``
+   * - ``--storage_version``
      - Optional
      - Displays your current storage version.
-   * - ``check_predicates=0``
+   * - ``--check_predicates=0``
      - Optional
      - Allows the upgrade process to proceed even if there are predicates marked for deletion.
 
