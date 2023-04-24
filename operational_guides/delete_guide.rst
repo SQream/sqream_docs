@@ -11,31 +11,30 @@ The **Deleting Data** page describes how the **Delete** statement works and how 
 
 Overview
 ========================================
-Deleting data typically refers to deleting rows, but can refer to deleting other table content as well. The general workflow for deleting data is to delete data followed by triggering a cleanup operation. The cleanup operation reclaims the space occupied by the deleted rows, discussed further below.
+When working with a table in a database, deleting data typically involves removing rows, although it can also involve removing columns. The process for deleting data involves first deleting the desired content, followed by a cleanup operation that reclaims the space previously occupied by the deleted data. This process is further explained below.
 
-The **DELETE** statement deletes rows defined by a predicate that you have specified, preventing them from appearing in subsequent queries.
-
-For example, the predicate below defines and deletes rows containing animals heavier than 1000 weight units:
+The ``DELETE`` statement is used to remove rows that match a specified predicate, thereby preventing them from being included in subsequent queries. For example, the following statement deletes all rows in the ``cool_animals`` table where the weight of the animal is greater than 1000 weight units:
 
 .. code-block:: psql
 
-   farm=> DELETE FROM cool_animals WHERE weight > 1000;
+	DELETE FROM cool_animals WHERE weight > 1000;
 
-The major benefit of the DELETE statement is that it deletes transactions simply and quickly.
+By using the WHERE clause in the DELETE statement, you can specify a condition or predicate that determines which rows should be deleted from the table. In this example, the predicate "weight > 1000" specifies that only rows with an animal weight greater than 1000 should be deleted.
+
 
 The Deletion Process
 ==========
-Deleting rows occurs in the following two phases:
 
-* **Phase 1 - Deletion** - All rows you mark for deletion are ignored when you run any query. These rows are not deleted until the clean-up phase. 
+When you delete rows from a SQL database, the actual deletion process occurs in two steps:
+
+* Marking for Deletion: When you issue a ``DELETE`` statement to remove one or more rows from a table, the database marks these rows for deletion. These rows are not actually removed from the database immediately, but are instead temporarily ignored when you run any query. 
 
    ::
    
-* **Phase 2 - Clean-up** - The rows you marked for deletion in Phase 1 are physically deleted. The clean-up phase is not automated, letting users or DBAs control when to activate it. The files you marked for deletion during Phase 1 are removed from disk, which you do by sequentially running the utility function commands ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS``.
+* Clean-up: Once the rows have been marked for deletion, you need to trigger a clean-up operation to permanently remove them from the database. During the clean-up process, the database frees up the disk space previously occupied by the deleted rows. To remove all files associated with the deleted rows, you can use the utility function commands ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS``. These commands should be run sequentially to ensure that these files removed from disk.
 
-.. TODO: isn't the delete cleanup able to complete a certain amount of work transactionally, so that you can do a massive cleanup in stages?
+If you want to delete all rows from a table, you can use the :ref:`TRUNCATE<truncate>` command, which deletes all rows in a table and frees up the associated disk space.
 
-.. TODO: our current best practices is to use a cron job with sqream sql to run the delete cleanup. we should document how to do this, we have customers with very different delete schedules so we can give a few extreme examples and when/why you'd use them.
 
 Usage Notes
 =====================
@@ -57,15 +56,6 @@ General Notes
 
      set mixedColumnChunksThreshold=XXX;
    
-Deleting Data does not Free Space
------------------------------------------
-With the exception of running a full table delete, deleting data does not free unused disk space. To free unused disk space you must trigger the clean-up process.
-
-For more information on running a full table delete, see :ref:`TRUNCATE<truncate>`.
-
-  ::
-  
-For more information on freeing disk space, see :ref:`Triggering a Clean-Up<trigger_cleanup>`.
 
 Clean-Up Operations Are I/O Intensive
 -------------------------------
@@ -235,8 +225,8 @@ Triggering a Clean-Up
          ON dp.table_id = t.table_id
          WHERE t.table_name = 'cool_animals';
 		 
-Best Practices
-==============
+Best Practice
+=============
 
 
 * After running large ``DELETE`` operations, run ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS`` to improve performance and free up space. These commands remove empty chunks and extents, respectively, and can help prevent fragmentation of the table.
