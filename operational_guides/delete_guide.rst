@@ -166,9 +166,7 @@ Listing Tables that Have Not Been Cleaned Up
       JOIN sqream_catalog.tables t
       ON dp.table_id = t.table_id
       GROUP BY 1;
-   cool_animals
-   
-   1 row
+
 
 Identifying Predicates for Clean-Up
 
@@ -178,9 +176,6 @@ Identifying Predicates for Clean-Up
       JOIN sqream_catalog.tables t
       ON dp.table_id = t.table_id
       WHERE t.table_name = 'cool_animals';
-   weight > 1000
-   
-   1 row
    
 .. _trigger_cleanup:
 
