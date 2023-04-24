@@ -40,12 +40,12 @@ Syntax
 
 .. code-block:: console
 
-   $ upgrade_storage <storage path> [option]
+   $ upgrade_storage <storage path> [--check_predicates=0]
 
 
 .. code-block:: console
 
-   $ upgrade_storage <storage path> [--storage_version] [--check_predicates=0]
+   $ upgrade_storage <storage path> [--storage_version] 
 
    
 
