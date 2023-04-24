@@ -3,14 +3,7 @@
 ***********************
 Deleting Data
 ***********************
-The **Deleting Data** page describes how the **Delete** statement works and how to maintain data that you delete:
 
-.. contents::
-   :local:
-   :depth: 1
-
-Overview
-========================================
 When working with a table in a database, deleting data typically involves removing rows, although it can also involve removing columns. The process for deleting data involves first deleting the desired content, followed by a cleanup operation that reclaims the space previously occupied by the deleted data. This process is further explained below.
 
 The ``DELETE`` statement is used to remove rows that match a specified predicate, thereby preventing them from being included in subsequent queries. For example, the following statement deletes all rows in the ``cool_animals`` table where the weight of the animal is greater than 1000 weight units:
@@ -21,30 +14,29 @@ The ``DELETE`` statement is used to remove rows that match a specified predicate
 
 By using the WHERE clause in the DELETE statement, you can specify a condition or predicate that determines which rows should be deleted from the table. In this example, the predicate "weight > 1000" specifies that only rows with an animal weight greater than 1000 should be deleted.
 
+.. contents::
+   :local:
+   :depth: 1
 
 The Deletion Process
 ==========
 
 When you delete rows from a SQL database, the actual deletion process occurs in two steps:
 
-* Marking for Deletion: When you issue a ``DELETE`` statement to remove one or more rows from a table, the database marks these rows for deletion. These rows are not actually removed from the database immediately, but are instead temporarily ignored when you run any query. 
+* **Marking for Deletion**: When you issue a ``DELETE`` statement to remove one or more rows from a table, the database marks these rows for deletion. These rows are not actually removed from the database immediately, but are instead temporarily ignored when you run any query. 
 
    ::
    
-* Clean-up: Once the rows have been marked for deletion, you need to trigger a clean-up operation to permanently remove them from the database. During the clean-up process, the database frees up the disk space previously occupied by the deleted rows. To remove all files associated with the deleted rows, you can use the utility function commands ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS``. These commands should be run sequentially to ensure that these files removed from disk.
+* **Clean-up**: Once the rows have been marked for deletion, you need to trigger a clean-up operation to permanently remove them from the database. During the clean-up process, the database frees up the disk space previously occupied by the deleted rows. To remove all files associated with the deleted rows, you can use the utility function commands ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS``. These commands should be run sequentially to ensure that these files removed from disk.
 
 If you want to delete all rows from a table, you can use the :ref:`TRUNCATE<truncate>` command, which deletes all rows in a table and frees up the associated disk space.
 
 
 Usage Notes
 =====================
-
-.. contents::
-   :local:
-   :depth: 1
    
 General Notes
-----------------
+-------------
 
 * The :ref:`alter_table` command and other DDL operations are locked on tables that require clean-up. If the estimated clean-up time exceeds the permitted threshold, an error message is displayed describing how to override the threshold limitation. For more information, see :ref:`concurrency_and_locks`.
 
@@ -58,7 +50,7 @@ General Notes
    
 
 Clean-Up Operations Are I/O Intensive
--------------------------------
+-------------------------------------
 The clean-up process reduces table size by removing all unused space from column chunks. While this reduces query time, it is a time-costly operation occupying disk space for the new copy of the table until the operation is complete.
 
 .. tip::  Because clean-up operations can create significant I/O load on your database, consider using them sparingly during ideal times.
@@ -66,115 +58,107 @@ The clean-up process reduces table size by removing all unused space from column
 If this is an issue with your environment, consider using ``CREATE TABLE AS`` to create a new table and then rename and drop the old table.
 
 Examples
-=============
-The **Examples** section includes the following examples:
+========
+
+To follow the examples section, create the following table:
+
+   .. code-block:: psql
+   
+	   CREATE OR REPLACE TABLE cool_animals (
+		animal_id INT,
+		animal_name TEXT,
+		animal_weight FLOAT
+	   );
+
+Insert the following content:
+
+   .. code-block:: psql
+   
+		INSERT INTO cool_animals (animal_id, animal_name, animal_weight)
+		VALUES
+		(1, 'Dog', 7),
+		(2, 'Possum', 3),
+		(3, 'Cat', 5),
+		(4, 'Elephant', 6500),
+		(5, 'Rhinoceros', 2100),
+		(6, NULL, NULL);
+
+View table content:
+
+.. code-block:: psql
+   
+	farm=> SELECT * FROM cool_animals;
+		
+	Return:
+		
+	   animal_id   | animal_name      | animal_weight
+	   ------------+------------------+--------------------
+	   1           | Dog              | 7 
+	   2           | Possum           | 3  
+	   3           | Cat              | 5      
+	   4           | Elephant         | 6500
+	   5           | Rhinoceros       | 2100
+	   6           | NULL             | NULL 
+
+Now you may use the following examples for:
 
 .. contents::
    :local:
    :depth: 1
    
 Deleting Rows from a Table
-------------------------------
-The following example shows how to delete rows from a table.
+--------------------------
 
-1. Display the table:
+1. Delete rows from the table:
 
-   .. code-block:: psql
+.. code-block:: psql
 
-      farm=> SELECT * FROM cool_animals;
-   
-   The following table is displayed:
-
-   .. code-block:: psql
-   
-	   animal_id   | animal_name      | animal_weight
-	   ------------+------------------+--------------------
-	   1           | Dog              | 7 
-	   2           | Possum           | 3  
-	   3           | Cat              | 5      
-	   4           | Elephant         | 6500
-	   5           | Rhinoceros       | 2100
-	   6           | NULL             | NULL 
-
-
-2. Delete rows from the table:
-
-   .. code-block:: psql
-
-      farm=> DELETE FROM cool_animals WHERE animal_weight > 1000;
+    farm=> DELETE FROM cool_animals WHERE animal_weight > 1000;
 	  
-3. Display the table:
+2. Display the table:
 
-   .. code-block:: psql
+.. code-block:: psql
 
-      farm=> SELECT * FROM cool_animals;
+	farm=> SELECT * FROM cool_animals;
    
-   The following table is displayed:
-  
-   .. code-block:: psql    
+	Return
 
-	   animal_id   | animal_name      | animal_weight
-	   ------------+------------------+--------------------
-	   1           | Dog              | 7 
-	   2           | Possum           | 3  
-	   3           | Cat              | 5      
-	   6           | NULL             | NULL 
+	animal_id   | animal_name      | animal_weight
+	------------+------------------+--------------------
+	1           | Dog              | 7 
+	2           | Possum           | 3  
+	3           | Cat              | 5      
+	6           | NULL             | NULL 
+   
    
 Deleting Values Based on Complex Predicates
 ---------------------------------------------------
-The following example shows how to delete values based on complex predicates.
-
-1. Display the table:
-
-   .. code-block:: psql
-
-      farm=> SELECT * FROM cool_animals;
    
-   The following table is displayed:
+1. Delete rows from the table:
 
-   .. code-block:: psql
+.. code-block:: psql
 
-	   animal_id   | animal_name      | animal_weight
-	   ------------+------------------+--------------------
-	   1           | Dog              | 7 
-	   2           | Possum           | 3  
-	   3           | Cat              | 5      
-	   4           | Elephant         | 6500
-	   5           | Rhinoceros       | 2100
-	   6           | NULL             | NULL 
-   
-2. Delete rows from the table:
-
-   .. code-block:: psql
-
-      farm=>  DELETE FROM cool_animals
-	     WHERE animal_weight < 100 AND animal_name LIKE '%o%';
+    farm=>  DELETE FROM cool_animals
+	   WHERE animal_weight < 100 AND animal_name LIKE '%o%';
 	  
-3. Display the table:
+2. Display the table:
 
-   .. code-block:: psql
+.. code-block:: psql
 
-      farm=> SELECT * FROM cool_animals;
-   
-   The following table is displayed:
-  
-   .. code-block:: psql    
+	farm=> SELECT * FROM cool_animals;
 
-	   animal_id   | animal_name      | animal_weight
-	   ------------+------------------+--------------------
-	   3           | Cat              | 5      
-	   4           | Elephant         | 6500
-	   6           | NULL             | NULL 
+	Return
+
+	animal_id   | animal_name      | animal_weight
+	------------+------------------+--------------------
+	3           | Cat              | 5      
+	4           | Elephant         | 6500
+	6           | NULL             | NULL 
    
 Identifying and Cleaning Up Tables
 ---------------------------------------
-
-.. contents::
-   :local:
-   :depth: 1
    
 Listing Tables that Have Not Been Cleaned Up
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: psql
    
@@ -187,7 +171,6 @@ Listing Tables that Have Not Been Cleaned Up
    1 row
 
 Identifying Predicates for Clean-Up
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: psql
 
@@ -204,19 +187,33 @@ Identifying Predicates for Clean-Up
 Triggering a Clean-Up
 ^^^^^^^^^^^^^^^^^^^^^^
 
+When running the clean-up operation, you need to specify two parameters: ``schema_name`` and ``table_name``. However, it's important to note that the second parameter is case-sensitive for both ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS``. By default, both operations will accept lowercase table names.
+
 1. Run the ``CLEANUP_CHUNKS`` command (also known as ``SWEEP``) to reorganize the chunks:
 
    .. code-block:: psql
 
-      farm=> SELECT CLEANUP_CHUNKS('public','cool_animals');
+      farm=> SELECT CLEANUP_CHUNKS('<schema_name>','<table_name>');
 
 2. Run the ``CLEANUP_EXTENTS`` command (also known as ``VACUUM``) to delete the leftover files:
 
    .. code-block:: psql
    
-      farm=> SELECT CLEANUP_EXTENTS('public','cool_animals');
+      farm=> SELECT CLEANUP_EXTENTS('<schema_name>','<table_name>');
+
+	  
+If you need to run a clean-up operation for a table name that contains uppercase letters, you can use the ``false`` flag to convert the uppercase letters to lowercase, such as in the following examples:
+
+	.. code-block:: psql
+
+	  farm=> SELECT CLEANUP_CHUNKS('<schema_name>','<table_name>', false);
+			  
+	.. code-block:: psql
+		   
+	  farm=> SELECT CLEANUP_EXTENTS('<schema_name>','<table_name>', false);
+	  
    
-3. Display the table:
+To display the table:
 
    .. code-block:: psql
    
