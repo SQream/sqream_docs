@@ -31,7 +31,7 @@ Deleting rows occurs in the following two phases:
 
    ::
    
-* **Phase 2 - Clean-up** - The rows you marked for deletion in Phase 1 are physically deleted. The clean-up phase is not automated, letting users or DBAs control when to activate it. The files you marked for deletion during Phase 1 are removed from disk, which you do by by sequentially running the utility function commands ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS``.
+* **Phase 2 - Clean-up** - The rows you marked for deletion in Phase 1 are physically deleted. The clean-up phase is not automated, letting users or DBAs control when to activate it. The files you marked for deletion during Phase 1 are removed from disk, which you do by sequentially running the utility function commands ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS``.
 
 .. TODO: isn't the delete cleanup able to complete a certain amount of work transactionally, so that you can do a massive cleanup in stages?
 
@@ -39,7 +39,6 @@ Deleting rows occurs in the following two phases:
 
 Usage Notes
 =====================
-The **Usage Notes** section includes important information about the DELETE statement:
 
 .. contents::
    :local:
@@ -47,7 +46,6 @@ The **Usage Notes** section includes important information about the DELETE stat
    
 General Notes
 ----------------
-This section describes the general notes applicable when deleting rows:
 
 * The :ref:`alter_table` command and other DDL operations are locked on tables that require clean-up. If the estimated clean-up time exceeds the permitted threshold, an error message is displayed describing how to override the threshold limitation. For more information, see :ref:`concurrency_and_locks`.
 
@@ -98,19 +96,22 @@ The following example shows how to delete rows from a table.
    The following table is displayed:
 
    .. code-block:: psql
-
-      1,Dog                 ,7
-      2,Possum              ,3
-      3,Cat                 ,5
-      4,Elephant            ,6500
-      5,Rhinoceros          ,2100
-      6,\N,\N
    
+	   animal_id   | animal_name      | animal_weight
+	   ------------+------------------+--------------------
+	   1           | Dog              | 7 
+	   2           | Possum           | 3  
+	   3           | Cat              | 5      
+	   4           | Elephant         | 6500
+	   5           | Rhinoceros       | 2100
+	   6           | NULL             | NULL 
+
+
 2. Delete rows from the table:
 
    .. code-block:: psql
 
-      farm=> DELETE FROM cool_animals WHERE weight > 1000;
+      farm=> DELETE FROM cool_animals WHERE animal_weight > 1000;
 	  
 3. Display the table:
 
@@ -122,10 +123,12 @@ The following example shows how to delete rows from a table.
   
    .. code-block:: psql    
 
-      1,Dog                 ,7
-      2,Possum              ,3
-      3,Cat                 ,5
-      6,\N,\N
+	   animal_id   | animal_name      | animal_weight
+	   ------------+------------------+--------------------
+	   1           | Dog              | 7 
+	   2           | Possum           | 3  
+	   3           | Cat              | 5      
+	   6           | NULL             | NULL 
    
 Deleting Values Based on Complex Predicates
 ---------------------------------------------------
@@ -141,18 +144,21 @@ The following example shows how to delete values based on complex predicates.
 
    .. code-block:: psql
 
-      1,Dog                 ,7
-      2,Possum              ,3
-      3,Cat                 ,5
-      4,Elephant            ,6500
-      5,Rhinoceros          ,2100
-      6,\N,\N
+	   animal_id   | animal_name      | animal_weight
+	   ------------+------------------+--------------------
+	   1           | Dog              | 7 
+	   2           | Possum           | 3  
+	   3           | Cat              | 5      
+	   4           | Elephant         | 6500
+	   5           | Rhinoceros       | 2100
+	   6           | NULL             | NULL 
    
 2. Delete rows from the table:
 
    .. code-block:: psql
 
-      farm=> DELETE FROM cool_animals WHERE weight > 1000;
+      farm=>  DELETE FROM cool_animals
+	     WHERE animal_weight < 100 AND animal_name LIKE '%o%';
 	  
 3. Display the table:
 
@@ -164,14 +170,14 @@ The following example shows how to delete values based on complex predicates.
   
    .. code-block:: psql    
 
-      1,Dog                 ,7
-      2,Possum              ,3
-      3,Cat                 ,5
-      6,\N,\N
+	   animal_id   | animal_name      | animal_weight
+	   ------------+------------------+--------------------
+	   3           | Cat              | 5      
+	   4           | Elephant         | 6500
+	   6           | NULL             | NULL 
    
 Identifying and Cleaning Up Tables
 ---------------------------------------
-The **Identifying and Cleaning Up Tables** section includes the following examples:
 
 .. contents::
    :local:
@@ -179,7 +185,6 @@ The **Identifying and Cleaning Up Tables** section includes the following exampl
    
 Listing Tables that Have Not Been Cleaned Up
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The following example shows how to list tables that have not been cleaned up:
 
 .. code-block:: psql
    
@@ -193,7 +198,6 @@ The following example shows how to list tables that have not been cleaned up:
 
 Identifying Predicates for Clean-Up
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The following example shows how to identify predicates for clean-up:
 
 .. code-block:: psql
 
@@ -209,9 +213,8 @@ The following example shows how to identify predicates for clean-up:
 
 Triggering a Clean-Up
 ^^^^^^^^^^^^^^^^^^^^^^
-The following example shows how to trigger a clean-up:
 
-1. Run the chunk ``CLEANUP_CHUNKS`` command (also known as ``SWEEP``) to reorganize the chunks:
+1. Run the ``CLEANUP_CHUNKS`` command (also known as ``SWEEP``) to reorganize the chunks:
 
    .. code-block:: psql
 
@@ -233,30 +236,19 @@ The following example shows how to trigger a clean-up:
          WHERE t.table_name = 'cool_animals';
 		 
 Best Practices
-=====================================
-This section includes the best practices when deleting rows:
+==============
 
-* Run ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS`` after running large ``DELETE`` operations.
 
-   ::
-
-* When you delete large segments of data from very large tables, consider running a ``CREATE TABLE AS`` operation instead, renaming, and dropping the original table.
+* After running large ``DELETE`` operations, run ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS`` to improve performance and free up space. These commands remove empty chunks and extents, respectively, and can help prevent fragmentation of the table.
 
    ::
 
-* Avoid killing ``CLEANUP_EXTENTS`` operations in progress.
+* If you need to delete large segments of data from very large tables, consider using a ``CREATE TABLE AS`` operation instead. This involves creating a new table with the desired data and then renaming and dropping the original table. This approach can be faster and more efficient than running a large ``DELETE`` operation, especially if you don't need to preserve any data in the original table.
 
    ::
 
-* SQream is optimized for time-based data, which is data naturally ordered according to date or timestamp. Deleting rows based on such columns leads to increased performance.
+* Avoid interrupting or killing ``CLEANUP_EXTENTS`` operations that are in progress. These operations can take a while to complete, especially if the table is very large or has a lot of fragmentation, but interrupting them can cause data inconsistencies or other issues.
 
-.. soft update concept
+   ::
 
-.. delete cleanup and it's properties. automatic/manual, in transaction or background
-
-.. automatic background gives fast delete, minimal transaction overhead,
-.. small cost to queries until background reorganised
-
-.. when does delete use the metadata effectively
-
-.. more examples
+* SQream is optimized for time-based data, which means that data that is naturally ordered according to date or timestamp fields will generally perform better. If you need to delete rows from such tables, consider using the time-based columns in your ``DELETE`` predicates to improve performance.
