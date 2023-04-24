@@ -182,7 +182,7 @@ Identifying Predicates for Clean-Up
 Triggering a Clean-Up
 ^^^^^^^^^^^^^^^^^^^^^^
 
-When running the clean-up operation, you need to specify two parameters: ``schema_name`` and ``table_name``. However, it's important to note that the second parameter is case-sensitive for both ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS``. By default, both operations will accept lowercase table names.
+When running the clean-up operation, you need to specify two parameters: ``schema_name`` and ``table_name``. It's important to note that both parameters are case-sensitive for both ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS`` operations. By default, both operations will not accept uppercase table names.
 
 1. Run the ``CLEANUP_CHUNKS`` command (also known as ``SWEEP``) to reorganize the chunks:
 
