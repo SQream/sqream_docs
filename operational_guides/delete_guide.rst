@@ -187,22 +187,22 @@ Identifying Predicates for Clean-Up
 Triggering a Clean-Up
 ^^^^^^^^^^^^^^^^^^^^^^
 
-When running the clean-up operation, you need to specify two parameters: ``schema_name`` and ``table_name``. However, it's important to note that the second parameter is case-sensitive for both ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS``. By default, both operations will accept lowercase table names.
+When running the clean-up operation, you need to specify two parameters: ``schema_name`` and ``table_name``. However, it's important to note that the second parameter is case-sensitive for both ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS``.
 
-1. Run the ``CLEANUP_CHUNKS`` command (also known as ``SWEEP``) to reorganize the chunks:
+Running a ``CLEANUP_CHUNKS`` command (also known as ``SWEEP``) to reorganize the chunks:
 
    .. code-block:: psql
 
       farm=> SELECT CLEANUP_CHUNKS('<schema_name>','<table_name>');
 
-2. Run the ``CLEANUP_EXTENTS`` command (also known as ``VACUUM``) to delete the leftover files:
+Running a ``CLEANUP_EXTENTS`` command (also known as ``VACUUM``) to delete the leftover files:
 
    .. code-block:: psql
    
       farm=> SELECT CLEANUP_EXTENTS('<schema_name>','<table_name>');
 
 	  
-If you need to run a clean-up operation for a table name that contains uppercase letters, you can use the ``false`` flag to convert the uppercase letters to lowercase, such as in the following examples:
+If you should want to run a clean-up operation without worrying about uppercase and lowercase letters, you can use the ``false`` flag to enable lowercase letters for both lowercase and uppercase table and schema names, such as in the following examples:
 
 	.. code-block:: psql
 
