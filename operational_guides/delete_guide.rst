@@ -195,17 +195,6 @@ Running a ``CLEANUP_EXTENTS`` command (also known as ``VACUUM``) to delete the l
    .. code-block:: psql
    
       farm=> SELECT CLEANUP_EXTENTS('<schema_name>','<table_name>');
-
-	  
-If you need to run a clean-up operation for a table name that contains uppercase letters, you can use the ``false`` flag to convert the uppercase letters to lowercase, such as in the following examples:
-
-	.. code-block:: psql
-
-	  farm=> SELECT CLEANUP_CHUNKS('<schema_name>','<table_name>', false);
-			  
-	.. code-block:: psql
-		   
-	  farm=> SELECT CLEANUP_EXTENTS('<schema_name>','<table_name>', false);
 	  
    
 To display the table:
