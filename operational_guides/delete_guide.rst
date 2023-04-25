@@ -182,15 +182,15 @@ Identifying Predicates for Clean-Up
 Triggering a Clean-Up
 ^^^^^^^^^^^^^^^^^^^^^^
 
-When running the clean-up operation, you need to specify two parameters: ``schema_name`` and ``table_name``. It's important to note that both parameters are case-sensitive for both ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS`` operations. By default, both operations will not accept uppercase table names.
+When running the clean-up operation, you need to specify two parameters: ``schema_name`` and ``table_name``. It's important to note that both parameters are case-sensitive for both ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS`` operations.
 
-1. Run the ``CLEANUP_CHUNKS`` command (also known as ``SWEEP``) to reorganize the chunks:
+Running a ``CLEANUP_CHUNKS`` command (also known as ``SWEEP``) to reorganize the chunks:
 
    .. code-block:: psql
 
       farm=> SELECT CLEANUP_CHUNKS('<schema_name>','<table_name>');
 
-2. Run the ``CLEANUP_EXTENTS`` command (also known as ``VACUUM``) to delete the leftover files:
+Running a ``CLEANUP_EXTENTS`` command (also known as ``VACUUM``) to delete the leftover files:
 
    .. code-block:: psql
    
