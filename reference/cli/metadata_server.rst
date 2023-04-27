@@ -35,7 +35,7 @@ The ``metadata_server`` supports the following command line arguments:
      - ``<...sqreamd/leveldb>``
      - Specifies the path to the directory where metadata files are stored for a system or program.
    * - ``--help``
-     - 
+     - None
      - Used to display a help message or documentation for a particular program or command.
 
 Positional Command Line Arguments
