@@ -26,21 +26,7 @@ New Features
 Newly Released Connector Drivers
 --------------------------------
 
-► Pysqream 3.2.5
- * Supports Python version 3.9 and newer
- * `.tar file <https://github.com/SQream/pysqream/releases/tag/v3.2.5>`_
- * :ref:`Documentation<pysqream>`
 
-► ODBC 4.4.4
- * :ref:`Getting the ODBC Driver<odbc>`
-
-► JDBC 5.0.0
- * `.jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.8.jar>`_
- * :ref:`Documentation<java_jdbc>`
- 
-► Spark 5.0.0
- * `.jar file <https://sq-ftp-public.s3.amazonaws.com/Spark-Sqream-Connector-5.0.0.jar>`_
- * :ref:`Documentation<spark>`
  
 Storage Version
 ---------------
