@@ -13,55 +13,6 @@ This page serves as a reference for the options and parameters.
 .. contents:: In this topic:
    :local:
 
-Starting the console
-======================
-
-``sqream-console`` can be found in your SQream DB installation, under the name ``sqream-console``.
-
-Start the console by executing it from the shell
-
-.. code-block:: console
-   
-   $ ./sqream-console
-   ....................................................................................................................
-
-   ███████╗ ██████╗ ██████╗ ███████╗ █████╗ ███╗   ███╗     ██████╗ ██████╗ ███╗   ██╗███████╗ ██████╗ ██╗     ███████╗
-   ██╔════╝██╔═══██╗██╔══██╗██╔════╝██╔══██╗████╗ ████║    ██╔════╝██╔═══██╗████╗  ██║██╔════╝██╔═══██╗██║     ██╔════╝
-   ███████╗██║   ██║██████╔╝█████╗  ███████║██╔████╔██║    ██║     ██║   ██║██╔██╗ ██║███████╗██║   ██║██║     █████╗
-   ╚════██║██║▄▄ ██║██╔══██╗██╔══╝  ██╔══██║██║╚██╔╝██║    ██║     ██║   ██║██║╚██╗██║╚════██║██║   ██║██║     ██╔══╝
-   ███████║╚██████╔╝██║  ██║███████╗██║  ██║██║ ╚═╝ ██║    ╚██████╗╚██████╔╝██║ ╚████║███████║╚██████╔╝███████╗███████╗
-   ╚══════╝ ╚══▀▀═╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝     ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚══════╝╚══════╝
-
-   ....................................................................................................................
-
-
-   Welcome to SQream Console ver 1.7.6, type exit to log-out
-
-   usage: sqream [-h] [--settings] {master,worker,client,editor} ...
-
-   Run SQream Cluster
-
-   optional arguments:
-     -h, --help            show this help message and exit
-     --settings            sqream environment variables settings
-
-   subcommands:
-     sqream services
-
-     {master,worker,client,editor}
-                           sub-command help
-       master              start sqream master
-       worker              start sqream worker
-       client              operating sqream client
-       editor              operating sqream statement editor
-   sqream-console>
-
-The console is now waiting for commands.
-
-The console is a wrapper around a standard linux shell. It supports commands like ``ls``, ``cp``, etc.
-
-All SQream DB-specific commands start with the keyword ``sqream``.
-
 
 Operations and flag reference
 ===============================
@@ -70,6 +21,7 @@ Commands
 -----------------------
 
 .. list-table:: 
+
    :widths: auto
    :header-rows: 1
    
@@ -122,50 +74,7 @@ Syntax
    * - ``-m <port>``
      - Sets the port for the metadata server. Defaults to ``3105``
 
-Common usage
-^^^^^^^^^^^^^^^
 
-Start master node
-********************
-
-.. code-block:: console
-   
-   sqream-console> sqream master --start
-   starting master server in single_host mode ...
-   sqream_single_host_master is up and listening on ports:   3105,3108
-
-Start master node on different ports
-*******************************************
-
-.. code-block:: console
-   
-   sqream-console> sqream master --start -p 4105 -m 4108
-   starting master server in single_host mode ...
-   sqream_single_host_master is up and listening on ports:   4105,4108
-
-Listing active master nodes and workers
-***************************************************
-
-.. code-block:: console
-   
-   sqream-console> sqream master --list
-   container name: sqream_single_host_worker_1, container id: de9b8aff0a9c
-   container name: sqream_single_host_worker_0, container id: c919e8fb78c8
-   container name: sqream_single_host_master, container id: ea7eef80e038
-
-Stopping all SQream DB workers and master
-*********************************************
-
-.. code-block:: console
-   
-   sqream-console> sqream master --stop --all
-     shutting down 2 sqream services ...
-    sqream_editor    stopped
-    sqream_single_host_worker_1    stopped
-    sqream_single_host_worker_0    stopped
-    sqream_single_host_master    stopped
-
-.. _workers:
 
 Workers
 ------------

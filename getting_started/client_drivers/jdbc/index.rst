@@ -21,9 +21,6 @@ You can connect to SQream using one of the following JDBC applications:
    :local:
    :depth: 1
    
-Driver Class
---------------
-Use ``com.sqream.jdbc.SQDriver`` as the driver class in the JDBC application.
 
 Connection String
 --------------------
