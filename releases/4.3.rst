@@ -16,11 +16,11 @@ New Features
 ------------
 
 
-:ref:`Apache Spark<spark>` may now be used for large-scale data processing.
+:ref:`<>`
  
  	::
 
-:ref:`Physical deletion<delete_guide>` performance enhancement by supporting file systems with parallelism capabilities
+:ref:`<>`
  
  
 Newly Released Connector Drivers
@@ -34,7 +34,7 @@ Newly Released Connector Drivers
 ► ODBC 4.4.4
  * :ref:`Getting the ODBC Driver<odbc>`
 
-► JDBC 4.5.8
+► JDBC 5.0.0
  * `.jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.8.jar>`_
  * :ref:`Documentation<java_jdbc>`
  
@@ -69,16 +69,8 @@ Version 4.3 resolved Issues
 +------------------------+------------------------------------------------------------------------------------------+
 |  **SQ No.**            | **Description**                                                                          |
 +========================+==========================================================================================+
-| SQ-12598               | Foreign table ``SELECT`` statement issue                                                 |                                                                                          
-+------------------------+------------------------------------------------------------------------------------------+
-| SQ-13018               | `cleanup_extent` operation buffer issue                                                  |
-+------------------------+------------------------------------------------------------------------------------------+
-| SQ-13055               | Pysqream ``NULL`` value issue                                                            |
-+------------------------+------------------------------------------------------------------------------------------+
-| SQ-13322               | Clean up process is case sensitive                                                       |
-+------------------------+------------------------------------------------------------------------------------------+
-| SQ-13450               | Storage upgrade issue                                                                    |
-+------------------------+------------------------------------------------------------------------------------------+
+| SQ-11108               | Slow ``COPY FROM`` statements using ORC files                                            |
++------------------------+------------------------------------------------------------------------------------------+  
 
 Configuration Changes
 ---------------------
