@@ -55,7 +55,7 @@ To use a non-default port, specify the logging path as well.
 
 .. code-block:: console
 
-   $ nohup metadata_server /home/rhendricks/metadata_logs 9241 &
+   nohup metadata_server --log_path=/home/rhendricks/metadata_logs --port=9241 &
    $ MS_PID=$!
 
 Using ``nohup`` and ``&`` sends metadata server to run in the background.
