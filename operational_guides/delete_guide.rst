@@ -220,7 +220,7 @@ To display the table:
       farm=> SELECT delete_predicate FROM sqream_catalog.delete_predicates dp
          JOIN sqream_catalog.tables t
          ON dp.table_id = t.table_id
-         WHERE t.table_name = 'cool_animals';
+         WHERE t.table_name = '<table_name>';
 		 
 Best Practice
 =============
