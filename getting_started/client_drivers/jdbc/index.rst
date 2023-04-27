@@ -33,7 +33,7 @@ The following is the syntax for BLUE:
 
 .. code-block:: text
 
-   jdbc:Sqream://<host and port>/<database name>;access token=<access token>sqream;[<optional parameters>; ...]
+   jdbc:Sqream://<host and port>/<database name>;--access-token=<access-token>;[<optional parameters>; ...]
 
 Connection Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^
