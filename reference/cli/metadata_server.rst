@@ -38,26 +38,6 @@ The ``metadata_server`` supports the following command line arguments:
      - None
      - Used to display a help message or documentation for a particular program or command.
 
-Positional Command Line Arguments
----------------------------------
-
-.. code-block:: console
-
-   $ metadata_server [ <logging path> [ <listen port> ] ]
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Argument
-     - Default
-     - Description
-   * - Logging path
-     - Current directory
-     - Path to store metadata logs into
-   * - Listen port
-     - ``3105``
-     - TCP listen port. If used, log path must be specified beforehand.
 
 Starting metadata server
 ============================
@@ -83,7 +63,7 @@ To use a non-default port, specify the logging path as well.
 
 .. code-block:: console
 
-   $ nohup metadata_server /home/rhendricks/metadata_logs 9241 &
+   $ nohup metadata_server --log_path=/home/rhendricks/metadata_logs 9241 &
    $ MS_PID=$!
 
 Using ``nohup`` and ``&`` sends metadata server to run in the background.
