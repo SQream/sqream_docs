@@ -10,8 +10,36 @@ In general, you should not need to run ``metadata_server`` manually, but it is s
 
 This page serves as a reference for the options and parameters.
 
-Positional command line arguments
-===================================
+Command Line Arguments
+======================
+
+The ``metadata_server`` supports the following command line arguments:
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Argument
+     - Default
+     - Description
+   * - ``--log_path``
+     - ``./metadata_server_log``
+     - The ``metadata_server`` log file output contains information about the activities and events related to the metadata server of a system.
+   * - ``--log4_config``
+     - None
+     - Specifies the location of the configuration file for the ``Log4cxx`` logging library.
+   * - ``--num_deleters``
+     - 1
+     - Specifies the number of threads to use for the file reaper in a system or program.
+   * - ``--metadata_path``
+     - ``<...sqreamd/leveldb>``
+     - Specifies the path to the directory where metadata files are stored for a system or program.
+   * - ``--help``
+     - 
+     - Used to display a help message or documentation for a particular program or command.
+
+Positional Command Line Arguments
+---------------------------------
 
 .. code-block:: console
 
@@ -39,7 +67,7 @@ Starting temporarily
 
 .. code-block:: console
 
-   $ nohup metadata_server &
+   $ nohup metadata_server -config ~/.sqream/metadata_server_config.json &
    $ MS_PID=$!
 
 Using ``nohup`` and ``&`` sends metadata server to run in the background.
