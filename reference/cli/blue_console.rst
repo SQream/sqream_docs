@@ -1,7 +1,7 @@
 .. _blue_console:
 
 ************
-BLUE console
+Console
 ************
 
 ``sqream-console`` is an interactive shell designed to help manage a dockerized SQream DB installation.
@@ -10,8 +10,7 @@ The console itself is a dockerized application.
 
 This page serves as a reference for the options and parameters.
 
-.. contents:: In this topic:
-   :local:
+
 
 
 Operations and flag reference
@@ -38,7 +37,7 @@ Commands
    * - ``sqream editor``
      - Controls the statement editor's operations (web UI)
 
-.. _master_node:
+
 
 Master
 ------------
