@@ -42,10 +42,31 @@ Newly Released Connector Drivers
  * `.jar file <https://sq-ftp-public.s3.amazonaws.com/Spark-Sqream-Connector-5.0.0.jar>`_
  * :ref:`Documentation<spark>`
  
-Storage Version
----------------
+System Requirements
+-------------------
+ 
++-----------------------+------------------------------------------------------------------------+
+| System Requirement    | Details                                                                |
++=======================+========================================================================+
+| Prerequisites version |   4.16                                                                 |
++-----------------------+------------------------------------------------------------------------+
+| OS support            | * CentOS / REHL - 7.6 - 7.9                                            |
+|                       | * IBM RedHat 7.6                                                       |
++-----------------------+------------------------------------------------------------------------+
+| Nvidia driver         |   CUDA version 10.1 and 11.4.3                                         |
++-----------------------+------------------------------------------------------------------------+
+| Storage version       |   46                                                                   |
++-----------------------+------------------------------------------------------------------------+
+| Driver compatibility  | * JDBC 4.5.3                                                           |
+|                       | * ODBC 4.4.4                                                           | 
+|                       | * NodeJS                                                               |
+|                       | * .NET 3.0.2                                                           |
+|                       | * Pysqream 3.2.5                                                       |
++-----------------------+------------------------------------------------------------------------+
 
-The storage version presently in effect is version 46.
+Protocol
+--------
+The client-server protocol version in this release is 8.
  
 SQream Studio Updates and Improvements
 --------------------------------------
@@ -63,7 +84,7 @@ Known Issues
 
 
 
-Version 4.2 resolved Issues
+Version 4.2 Resolved Issues
 -----------------------------
 
 +------------------------+------------------------------------------------------------------------------------------+
