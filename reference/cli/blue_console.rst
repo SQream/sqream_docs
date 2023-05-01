@@ -1,359 +1,317 @@
 .. _blue_console:
 
 ************
-Console
+Sqream SQL CLI Reference
 ************
 
-``sqream-console`` is an interactive shell designed to help manage a dockerized SQream DB installation.
-
-The console itself is a dockerized application.
-
+SQream DB has a native client for executing SQL statements either interactively or from the command-line.
 This page serves as a reference for the options and parameters.
 
 
 
 
-Operations and flag reference
-===============================
+Installing Sqream SQL
+=====================
 
-Commands
+SQream CLI is Java based and may be run on any Java supported platform - use the following link to check supported platforms and download Java 11 https://www.oracle.com/java/technologies/downloads/#java11
+
+Start the client:
+Browse to the location of the ``jdbc-console-*.*.**.jar`` file and execute it as follows:
+
+.. code-block:: console
+
+	$ sudo java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
+	$ 
+	Welcome to JDBC console
+	To quit, use ^C or exit
+	Connection URLjdbc:Sqream://[SQream cluster IP address]:[SQream cluster port]/master;user=[username];password=[password];cluster=false
+	master=> _
+
+	master=> _
+
+
+Using Sqream SQL
+================
+
+By default, sqream sql runs in interactive mode. You can issue commands or SQL statements.
+
+Running Commands Interactively (SQL shell)
+------------------------------------------
+
+When starting sqream sql, after entering your password, you are presented with the SQL shell.
+To exit the shell, type ``\q or Ctrl-d``.
+
+.. code-block:: console
+
+	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
+	 --port=5000 --username=jdoe --databasename=master
+	Password:
+
+	Interactive client mode
+	To quit, use ^D or \q.
+
+	master=> _
+
+The database name shown means you are now ready to run statements and queries.
+
+Statements and queries are standard SQL, followed by a semicolon (;). Statement results are usually formatted as a valid CSV, followed by the number of rows and the elapsed time for that statement.
+
+.. code-block:: console
+
+	master=> SELECT TOP 5 * FROM nba;
+	Avery Bradley           ,Boston Celtics        ,0,PG,25,6-2 ,180,Texas                ,7730337
+	Jae Crowder             ,Boston Celtics        ,99,SF,25,6-6 ,235,Marquette            ,6796117
+	John Holland            ,Boston Celtics        ,30,SG,27,6-5 ,205,Boston University    ,\N
+	R.J. Hunter             ,Boston Celtics        ,28,SG,22,6-5 ,185,Georgia State        ,1148640
+	Jonas Jerebko           ,Boston Celtics        ,8,PF,29,6-10,231,\N,5000000
+	5 rows
+	time: 0.001185s
+
+.. Note::
+
+	Null values are represented as \N.
+	
+When writing long statements and queries, it may be beneficial to use line-breaks. The prompt for a multi-line statement will change from => to ., to alert users to the change. The statement will not execute until a semicolon is used.
+
+.. code-block:: posgres
+
+	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
+	 --port=5000 --username=mjordan -d master
+	Password:
+
+	Interactive client mode
+	To quit, use ^D or \q.
+
+	master=> SELECT "Age",
+	. AVG("Salary")
+	. FROM NBA
+	. GROUP BY 1
+	. ORDER BY 2 ASC
+	. LIMIT 5
+
+
+	. ;
+
+
+	38,1840041
+	19,1930440
+	23,2034746
+	21,2067379
+	36,2238119
+	5 rows
+	time: 0.009320s
+	
+Executing Batch Scripts (-f)
+----------------------------	
+
+To run an SQL script, use the ``-f <filename>`` argument.
+For example,
+
+.. code-block::
+
+	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
+	 --port=5000 --username=jdoe -d master -f sql_script.sql --results-only
+	 
+.. tip::
+
+	Output can be saved to a file by using redirection (>).
+	
+Executing Commands Immediately (-c)
+-----------------------------------
+
+To run a statement from the console, use the ``-c <statement>`` argument.
+
+For example,
+
+.. code-block::
+
+	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
+	 --port=5000 --username=jdoe -d nba -c "SELECT TOP 5 * FROM nba"
+	Avery Bradley           ,Boston Celtics        ,0,PG,25,6-2 ,180,Texas                ,7730337
+	Jae Crowder             ,Boston Celtics        ,99,SF,25,6-6 ,235,Marquette            ,6796117
+	John Holland            ,Boston Celtics        ,30,SG,27,6-5 ,205,Boston University    ,\N
+	R.J. Hunter             ,Boston Celtics        ,28,SG,22,6-5 ,185,Georgia State        ,1148640
+	Jonas Jerebko           ,Boston Celtics        ,8,PF,29,6-10,231,\N,5000000
+	5 rows
+	time: 0.202618s
+
+.. tip::
+
+	Remove the timing and row count by passing the ``--results-only`` parameter.
+
+Examples
+========
+
+Executing Statements in an Interactive Shell
+--------------------------------------------
+
+Note that all SQL commands end with a semicolon.
+
+Creating a new database and switching over to it without reconnecting:
+
+.. code-block::
+
+	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
+	 --port=3105 --clustered --username=oldmcd -d master
+	Password:
+
+	Interactive client mode
+	To quit, use ^D or \q.
+
+	master=> create database farm;
+	executed
+	time: 0.003811s
+	master=> \c farm
+	farm=>
+
+
+	farm=> create table animals(id int not null, name varchar(30) not null, is_angry bool not null);
+	executed
+	time: 0.011940s
+
+	farm=> insert into animals values(1,'goat',false);
+	executed
+	time: 0.000405s
+
+	farm=> insert into animals values(4,'bull',true) ;
+	executed
+	time: 0.049338s
+
+	farm=> select * from animals;
+	1,goat                          ,0
+	4,bull                          ,1
+	2 rows
+	time: 0.029299s
+	
+Executing SQL Statements from the Command Line
+----------------------------------------------
+
+.. code-block::
+
+	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
+	 --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals WHERE is_angry = true"
+	4,bull                          ,1
+	1 row
+	time: 0.095941s
+	
+Controlling the Client Output
+-----------------------------
+
+Two parameters control the dispay of results from the client:
+* ``--results-only`` - removes row counts and timing information
+* ``--delimiter`` - changes the record delimiter
+
+Exporting SQL Query Results to CSV
+----------------------------------
+
+Using the ``--results-only`` flag removes the row counts and timing.
+
+..code-block::
+
+	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
+	 --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals" --results-only > file.csv
+	$ cat file.csv
+	1,goat                          ,0
+	2,sow                           ,0
+	3,chicken                       ,0
+	4,bull                          ,1
+	
+Changing a CSV to a TSV
 -----------------------
 
-.. list-table:: 
+The ``--delimiter`` parameter accepts any printable character.
 
+.. tip::
+
+	To insert a tab, use ``Ctrl-V`` followed by ``Tab`` in Bash.
+
+.. code-block::
+
+	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
+	 --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals" --delimiter '  ' > file.tsv
+	$ cat file.tsv
+	1  goat                             0
+	2  sow                              0
+	3  chicken                          0
+	4  bull                             1
+
+Executing a Series of Statements From a File
+-------------------------------------------- 
+
+Assuming a file containing SQL statements (separated by semicolons):
+
+.. code-block::
+
+	$ cat some_queries.sql
+	   CREATE TABLE calm_farm_animals
+	  ( id INT IDENTITY(0, 1), name VARCHAR(30)
+	  );
+
+	INSERT INTO calm_farm_animals (name)
+	  SELECT name FROM   animals WHERE  is_angry = false;
+
+
+	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
+	 --port=3105 --clustered --username=oldmcd -d farm -f some_queries.sql
+	executed
+	time: 0.018289s
+	executed
+	time: 0.090697s
+
+Connecting Using Environment Variables in Linux environments
+------------------------------------------------------------
+
+.. code-block::
+
+	You can save connection parameters as environment variables:
+	$ export SQREAM_USER=sqream;
+	$ export SQREAM_DATABASE=farm;
+	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
+	 --port=3105 --clustered --username=$SQREAM_USER -d $SQREAM_DATABASE
+
+Operations and Flag References
+==============================
+
+Command Line Arguments
+----------------------
+
+Sqream SQL supports the following command line arguments:
+
+.. list-table:: 
    :widths: auto
    :header-rows: 1
    
-   * - Command
+   * - Argument
+     - Defaul
      - Description
-   * - ``sqream --help``
-     - Shows the initial usage information
-   * - ``sqream master``
-     - Controls the master node's operations
-   * - ``sqream worker``
-     - Controls workers' operations
-   * - ``sqream client``
-     - Access to :ref:`sqream sql<sqream_sql_cli_reference>`
-   * - ``sqream editor``
-     - Controls the statement editor's operations (web UI)
-
-
-
-Master
-------------
-
-The master node contains the :ref:`metadata server<metadata_server_cli_reference>` and the :ref:`load balancer<server_picker_cli_reference>`.
-
-Syntax
-^^^^^^^^^^
-
-.. code-block:: console
-   
-   sqream master <flags>
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Flag/command
-     - Description
-   * - ``--start [ --single-host ]``
+   * - ``-c`` or ``command``
+     - None
+     - Changes the mode of operation to single-command, non-interactive. Use this argument to run a statement and immediately exit.
+   * - ``-f`` or ``--file``
+     - None
+     - Changes the mode of operation to multi-command, non-interactive. Use this argument to run a sequence of statements from an external file and immediately exit.
+   * - ``--host``
      - 
-         Starts the master node.
-         The ``--single-host`` modifier sets the mode to allow all containers to run on the same server.
-
-   * - ``--stop [ --all ]``
+     - Fully Qualified Domain Name (FQDN) address of the Blue server to connect to
+   * - ``--databasename`` or ``-d``
+     - None
+     - Specifies the database name for queries and statements in this session.
+   * - ``results-only``
+     - False
+     - Outputs results only, without timing information and row counts
+   * - ``no-history``
+     - False
+     - When set, prevents command history from being saved in ``~/.sqream/clientcmdhist``
+   * - ``delimiter``
+     - ``,``
+     - Specifies the field separator. By default, ``sqream sql`` outputs valid CSVs. Change the delimiter to modify the output to another delimited format (e.g. TSV, PSV). See the section supported record delimiters below for more information.
+   * - 
      - 
-         Stops the master node and all connected :ref:`workers<workers>`.
-         The ``--all`` modifier instructs the ``--stop`` command to stop all running services related to SQream DB
-   * - ``--list``
-     - Shows a list of all active master nodes and their workers
-   * - ``-p <port>``
-     - Sets the port for the load balancer. Defaults to ``3108``
-   * - ``-m <port>``
-     - Sets the port for the metadata server. Defaults to ``3105``
-
-
-
-Workers
-------------
-
-Workers are :ref:`SQream DB daemons<sqreamd_cli_reference>`, that connect to the master node.
-
-Syntax
-^^^^^^^^^^
-
-.. code-block:: console
-   
-   sqream worker <flags>
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Flag/command
-     - Description
-   * - ``--start [ options [ ...] ]``
-     - Starts worker nodes. See options table below.
-   * - ``--stop [ <worker name> | --all ]``
      - 
-         Stops the specified worker name.
-         The ``--all`` modifier instructs the ``--stop`` command to stop all running workers.
-
-Start options are specified consecutively, separated by spaces.
-
-.. list-table:: Start options
-   :widths: auto
-   :header-rows: 1
-   
-   * - Option
-     - Description
-   * - ``<n>``
-     - Specifies the number of workers to start
-   * - ``-j <config file> [ ...]``
-     - Specifies configuration files to apply to each worker. When launching multiple workers, specify one file per worker, separated by spaces.
-   * - ``-p <port> [ ...]``
-     - Sets the ports to listen on. When launching multiple workers, specify one port per worker, separated by spaces. Defaults to 5000 - 5000+n.
-   * - ``-g <gpu id> [ ...]``
-     - Sets the GPU ordinal to assign to each worker. When launching multiple workers, specify one GPU ordinal per worker, separated by spaces. Defaults to automatic allocation.
-   * - ``-m <spool memory>``
-     - Sets the spool memory per node in gigabytes.
-   * - ``--master-host``
-     - Sets the hostname for the master node. Defaults to ``localhost``.
-   * - ``--master-port``
-     - Sets the port for the master node. Defaults to ``3105``.
-   * - ``--stand-alone``
-     - For testing only: Starts a worker without connecting to the master node.
-
-Common usage
-^^^^^^^^^^^^^^^
-
-Start 2 workers
-********************
-
-After starting the master node, start workers:
-
-.. code-block:: console
-   
-   sqream-console> sqream worker --start 2
-   started sqream_single_host_worker_0 on port 5000, allocated gpu: 0
-   started sqream_single_host_worker_1 on port 5001, allocated gpu: 1
-
-Stop a single worker
-*******************************************
-
-To stop a single worker, find its name first:
-
-.. code-block:: console
-   
-   sqream-console> sqream master --list
-   container name: sqream_single_host_worker_1, container id: de9b8aff0a9c
-   container name: sqream_single_host_worker_0, container id: c919e8fb78c8
-   container name: sqream_single_host_master, container id: ea7eef80e038
-
-Then, issue a stop command:
-
-.. code-block:: console
-   
-   sqream-console> sqream worker --stop sqream_single_host_worker_1
-   stopped sqream_single_host_worker_1
-
-Start workers with a different spool size
-**********************************************
-
-If no spool size is specified, the RAM is equally distributed among workers.
-Sometimes a system engineer may wish to specify the spool size manually.
-
-This example starts two workers, with a spool size of 50GB per node:
-
-.. code-block:: console
-   
-   sqream-console> sqream worker --start 2 -m 50
-
-Starting multiple workers on non-dedicated GPUs
-****************************************************
-
-By default, SQream DB workers assign one worker per GPU. However, a system engineer may wish to assign multiple workers per GPU, if the workload permits it.
-
-This example starts 4 workers on 2 GPUs, with 50GB spool each:
-
-.. code-block:: console
-   
-   sqream-console> sqream worker --start 2 -g 0 -m 50
-   started sqream_single_host_worker_0 on port 5000, allocated gpu: 0
-   started sqream_single_host_worker_1 on port 5001, allocated gpu: 0
-   sqream-console> sqream worker --start 2 -g 1 -m 50
-   started sqream_single_host_worker_2 on port 5002, allocated gpu: 1
-   started sqream_single_host_worker_3 on port 5003, allocated gpu: 1
-
-Overriding default configuration files
-*******************************************
-
-It is possible to override default configuration settings by listing a configuration file for every worker. 
-
-This example starts 2 workers on the same GPU, with modified configuration files:
-
-.. code-block:: console
-   
-   sqream-console> sqream worker --start 2 -g 0 -j /etc/sqream/configfile.json /etc/sqream/configfile2.json
-
-Client
-------------
-
-The client operation runs :ref:`sqream sql<sqream_sql_cli_reference>` in interactive mode.
-
-.. note:: The dockerized client is useful for testing and experimentation. It is not the recommended method for executing analytic queries. See more about connecting a :ref:`third party tool to SQream DB <third_party_tools>` for data analysis.
-
-Syntax
-^^^^^^^^^^
-
-.. code-block:: console
-   
-   sqream client <flags>
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Flag/command
-     - Description
-   * - ``--master``
-     - Connects to the master node via the load balancer
-   * - ``--worker``
-     -  Connects to a worker directly
-   * - ``--host <hostname>``
-     - Specifies the hostname to connect to. Defaults to ``localhost``.
-   * - ``--port <port>``, ``-p <port>``
-     - Specifies the port to connect to. Defaults to ``3108`` when used with ``-master``.
-   * - ``--user <username>``, ``-u <username>``
-     - Specifies the role's username to use
-   * - ``--password <password>``, ``-w <password>``
-     - Specifies the password to use for the role
-   * - ``--database <database>``, ``-d <database>``
-     - Specifies the database name for the connection. Defaults to ``master``.
-
-Common usage
-^^^^^^^^^^^^^^^
-
-Start a client
-********************
-
-Connect to default ``master`` database through the load balancer:
-
-.. code-block:: console
-   
-   sqream-console> sqream client --master -u sqream -w sqream
-   Interactive client mode
-   To quit, use ^D or \q.
-   
-   master=> _
-
-Start a client to a specific worker
-**************************************
-
-Connect to database ``raviga`` directly to a worker on port 5000:
-
-.. code-block:: console
-   
-   sqream-console> sqream client --worker -u sqream -w sqream -p 5000 -d raviga
-   Interactive client mode
-   To quit, use ^D or \q.
-   
-   raviga=> _
-
-Start master node on different ports
-*******************************************
-
-.. code-block:: console
-   
-   sqream-console> sqream master --start -p 4105 -m 4108
-   starting master server in single_host mode ...
-   sqream_single_host_master is up and listening on ports:   4105,4108
-
-Listing active master nodes and worker nodes
-***************************************************
-
-.. code-block:: console
-   
-   sqream-console> sqream master --list
-   container name: sqream_single_host_worker_1, container id: de9b8aff0a9c
-   container name: sqream_single_host_worker_0, container id: c919e8fb78c8
-   container name: sqream_single_host_master, container id: ea7eef80e038
-
-.. _start_editor:
-
-Editor
-------------
-
-The editor operation runs the web UI for the :ref:`SQream DB Statement Editor<statement_editor>`.
-
-The editor can be used to run queries from a browser.
-
-Syntax
-^^^^^^^^^^
-
-.. code-block:: console
-   
-   sqream editor <flags>
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Flag/command
-     - Description
-   * - ``--start``
-     - Start the statement editor
-   * - ``--stop``
-     - Shut down the statement editor
-   * - ``--port <port>``, ``-p <port>``
-     - Specify a different port for the editor. Defaults to ``3000``.
-
-Common usage
-^^^^^^^^^^^^^^^
-
-Start the editor UI
-**********************
-
-.. code-block:: console
-   
-   sqream-console> sqream editor --start
-   access sqream statement editor through Chrome http://192.168.0.100:3000
-
-Stop the editor UI
-**********************
-
-.. code-block:: console
-   
-   sqream-console> sqream editor --stop
-    sqream_editor    stopped
-
-
-Using the console to start SQream DB
-============================================
-
-The console is used to start and stop SQream DB components in a dockerized environment.
-
-Starting a SQream DB cluster for the first time
--------------------------------------------------------
-
-To start a SQream DB cluster, start the master node, followed by workers.
-
-The example below starts 2 workers, running on 2 dedicated GPUs.
-
-.. code-block:: console
-
-   sqream-console> sqream master --start
-   starting master server in single_host mode ...
-   sqream_single_host_master is up and listening on ports:   3105,3108
-   
-   sqream-console> sqream worker --start 2
-   started sqream_single_host_worker_0 on port 5000, allocated gpu: 0
-   started sqream_single_host_worker_1 on port 5001, allocated gpu: 1
-   
-   sqream-console> sqream editor --start
-   access sqream statement editor through Chrome http://192.168.0.100:3000
-
-SQream DB is now listening on port 3108 for any incoming statements.
-
-A user can also access the web editor (running on port ``3000`` on the SQream DB machine) to connect and run queries.
+   * - 
+     - 
+     - 
+   * - 
+     - 
+     - 
+	 
