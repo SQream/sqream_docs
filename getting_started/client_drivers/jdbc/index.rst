@@ -85,25 +85,6 @@ The following table shows the connection string parameters:
      - ``true``
      -  Enables the file appender and defines the file name. The file name can be set as either the file name or the file path.
 
-Connection String Examples
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The following is an example of a SQream cluster with load balancer and no service queues (with SSL):
-
-.. code-block:: text
-
-   jdbc:Sqream://sqream.mynetwork.co:3108/master;user=rhendricks;password=Tr0ub4dor&3;ssl=true;cluster=true
-
-The following is a minimal example for a local standalone SQream database:
-
-.. code-block:: text 
-
-   jdbc:Sqream://127.0.0.1:5000/master;user=rhendricks;password=Tr0ub4dor&3
-
-The following is an example of a SQream cluster with load balancer and a specific service queue named ``etl``, to the database named ``raviga``
-
-.. code-block:: text
-
-   jdbc:Sqream://sqream.mynetwork.co:3108/raviga;user=rhendricks;password=Tr0ub4dor&3;cluster=true;service=etl
 
 Sample Java Program
 --------------------
