@@ -1,7 +1,7 @@
 .. _date_trunc:
 
 **************************
-TRUNC
+Date and Time TRUNC
 **************************
 
 Truncates a ``DATE`` or ``DATETIME`` value to a specified resolution.
