@@ -1,8 +1,8 @@
 .. _blue_console:
 
-************
+************************
 Sqream SQL CLI Reference
-************
+************************
 
 SQream DB has a native client for executing SQL statements either interactively or from the command-line.
 This page serves as a reference for the options and parameters.
@@ -24,7 +24,7 @@ Browse to the location of the ``jdbc-console-*.*.**.jar`` file and execute it as
 	$ 
 	Welcome to JDBC console
 	To quit, use ^C or exit
-	Connection URLjdbc:Sqream://[SQream cluster IP address]:[SQream cluster port]/master;user=[username];password=[password];cluster=false
+	Connection URL jdbc:Sqream://<host and port>/<database name>;--access-token=<access-token>;[<optional parameters>; ...]
 	master=> _
 
 	master=> _
@@ -38,14 +38,13 @@ By default, sqream sql runs in interactive mode. You can issue commands or SQL s
 Running Commands Interactively (SQL shell)
 ------------------------------------------
 
-When starting sqream sql, after entering your password, you are presented with the SQL shell.
+When starting sqream sql, after entering your access token, you are presented with the SQL shell.
 To exit the shell, type ``\q or Ctrl-d``.
 
 .. code-block:: console
 
-	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
-	 --port=5000 --username=jdoe --databasename=master
-	Password:
+	$ java -jar jdbc-console-0.0.90.jar --host=idan-ost.isqream.com --access-token=<access-token>
+	
 
 	Interactive client mode
 	To quit, use ^D or \q.
@@ -77,7 +76,7 @@ When writing long statements and queries, it may be beneficial to use line-break
 
 	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
 	 --port=5000 --username=mjordan -d master
-	Password:
+
 
 	Interactive client mode
 	To quit, use ^D or \q.
@@ -153,7 +152,7 @@ Creating a new database and switching over to it without reconnecting:
 
 	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
 	 --port=3105 --clustered --username=oldmcd -d master
-	Password:
+
 
 	Interactive client mode
 	To quit, use ^D or \q.
