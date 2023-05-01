@@ -282,7 +282,7 @@ Sqream SQL supports the following command line arguments:
    :header-rows: 1
    
    * - Argument
-     - Defaul
+     - Default
      - Description
    * - ``-c`` or ``command``
      - None
@@ -305,13 +305,106 @@ Sqream SQL supports the following command line arguments:
    * - ``delimiter``
      - ``,``
      - Specifies the field separator. By default, ``sqream sql`` outputs valid CSVs. Change the delimiter to modify the output to another delimited format (e.g. TSV, PSV). See the section supported record delimiters below for more information.
-   * - 
+
+.. tip::
+
+	Run ``$  java -jar jdbc-console-*.*.**.jar  --help`` to see a full list of arguments.
+	
+Supported Record Delimiters
+---------------------------
+
+The supported record delimiters are printable ASCII values (32-126).
+
+* Recommended delimiters for use are: ``,``, ``|``, tab character.
+* The following characters are **not supported**: ``\, N, -, :, ", \n, \r, .,`` lower-case latin letters, digits (0-9)
+
+Meta-Commands
+-------------
+
+* Meta-commands in Sqream SQL start with a backslash (\)
+
+.. note::
+
+	Meta commands do not end with a semicolon.
+	
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Command
+     - Example
+     - Description
+   * - ``^c``
      - 
-     - 
-   * - 
-     - 
-     - 
-   * - 
-     - 
-     - 
+     - Abort the currently running statement 
+   * - ``^d`` or ``exit``
+     - ``master=> exit;``
+     - Quit the client. (Same as ``Ctrl-d``)
+   * - ``\c <database> or \connect <database>``
+     - ``master=> \c fox`` 
+       ``fox=>``
+     - Changes the current connection to an alternate database
 	 
+Moving Around the Command Line
+==============================
+
+Note: below shortcuts are only supported for Linux environments 
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Command
+     - Description
+   * - ``Ctrl-a``
+     - Goes to the beginning of the command line.
+   * - ``Ctrl-e``
+     - Goes to the end of the command line.
+   * - ``Ctrl-u``
+     - Deletes from cursor to the beginning of the command line.
+   * - ``Ctrl-k``
+     - Deletes from the cursor to the end of the command line.
+   * - ``Ctrl-w``
+     - Delete from cursor to beginning of a word.
+   * - ``Ctrl-y``
+     - Pastes a word or text that was cut using one of the deletion shortcuts (such as the one above) after the cursor. 
+   * - ``Alt-b``
+     - Moves back one word (or goes to the beginning of the word where the cursor is).
+   * - ``Alt-f``
+     - Moves forward one word (or goes to the end of word the cursor is).
+   * - ``Alt-d``
+     - Deletes to the end of a word starting at the cursor. Deletes the whole word if the cursor is at the beginning of that word.
+   * - ``Alt-c``
+     - Capitalizes letters in a word starting at the cursor. Capitalizes the whole word if the cursor is at the beginning of that word.
+   * - ``Alt-u``
+     - Capitalizes from the cursor to the end of the word.
+   * - ``Alt-l``
+     - Makes lowercase from the cursor to the end of the word.
+   * - ``Ctrl-f``
+     - Moves forward one character.
+   * - ``Ctrl-b``
+     - Moves backward one character.
+   * - ``Ctrl-h``
+     - Deletes characters located before the cursor.
+   * - ``Ctrl-t``
+     - Swaps a character at the cursor with the previous character.
+
+	 
+Searching
+---------
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+
+   * - Command
+     - Description
+   * - ``Ctrl-r``
+     - Searches the history backward.
+   * - ``Ctrl-g``
+     - Escapes from history-searching mode.
+   * - ``Ctrl-p``
+     - Searches the previous command in history.
+   * - ``Ctrl-n``
+     - Searches the next command in history.
+
