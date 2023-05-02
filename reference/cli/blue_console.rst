@@ -218,7 +218,7 @@ Exporting SQL Query Results to CSV
 
 Using the ``--results-only`` flag removes the row counts and timing.
 
-..code-block::
+.. code-block::
 
 	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
 	 --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals" --results-only > file.csv
