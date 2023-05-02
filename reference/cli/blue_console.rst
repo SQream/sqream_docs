@@ -1,7 +1,7 @@
 .. _blue_console:
 
 ************************
-CLI Reference
+BLUE Console
 ************************
 
 BLUE has a native client program that provides a command-line interface (CLI) for interacting with your on-line stored data. It allows you to connect to database servers, execute SQL queries and commands, and receive the results in a text-based format.
