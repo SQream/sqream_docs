@@ -20,17 +20,17 @@ BLUE CLI is Java based and may be run on any Java supported platform - use the f
 
 .. code-block:: console
 
-	$ sudo java -jar jdbc-console-*.*.**.jar --host=<BLUE cluster IP FQDN> --access-token=<#####################################>
+	$ sudo java -jar jdbc-console-*.*.**.jar --host=<BLUE cluster FQDN> --access-token=<access-token>
 	
 	Output:
 	
 	Welcome to JDBC console, SQream DB version 2.0.0
-	To quit exit; to abort ^c
-	Connection URL jdbc:Sqream://<BLUE cluster IP FQDN>:<port>/<database name>;--access-token=<#####################################>;[<optional parameters>; ...]
-	master=>
+	To quit use ^d or exit; to abort ^c
+	Connection URL: jdbc:Sqream://java3-sqream.isqream.com:443/master;accesstoken=##########
+	
 
 
-Running Commands Interactively (SQL shell)
+Running Commands Interactively (SQL Shell)
 ------------------------------------------
 
 After entering your access token, you are presented with the **SQL shell**. The database name shown means you are now ready to run statements and queries. 
@@ -116,12 +116,11 @@ For example,
 
 .. code-block::
 
-	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
-	 --port=5000 --username=jdoe -d master -f sql_script.sql --results-only
+	$ java -jar jdbc-console-0.0.92-48.jar --host=product.isqream.com --access-token=########## -f=script.sql
 	 
 .. tip::
 
-	Output can be saved to a file by using redirection (>).
+	Output can be saved to a file by using the ``>`` redirection operator.
 	
 Executing Commands Immediately (-c)
 -----------------------------------
@@ -132,8 +131,7 @@ For example,
 
 .. code-block::
 
-	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
-	 --port=5000 --username=jdoe -d nba -c "SELECT TOP 5 * FROM nba"
+	$ java -jar jdbc-console-0.0.92-48.jar --host=product.isqream.com --access-token=########## -d master -c "SELECT TOP 5 * FROM nba;"
 	Avery Bradley           ,Boston Celtics        ,0,PG,25,6-2 ,180,Texas                ,7730337
 	Jae Crowder             ,Boston Celtics        ,99,SF,25,6-6 ,235,Marquette            ,6796117
 	John Holland            ,Boston Celtics        ,30,SG,27,6-5 ,205,Boston University    ,\N
@@ -158,35 +156,31 @@ Creating a new database and switching over to it without reconnecting:
 
 .. code-block::
 
-	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
-	 --port=3105 --clustered --username=oldmcd -d master
+	$ java -jar jdbc-console-0.0.92-48.jar --host=product.isqream.com --access-token=########## -d master
 
 
 	Interactive client mode
 	To quit, use ^D or \q.
 
-	master=> create database farm;
-	executed
+	master=> CREATE DATABASE farm;
 	time: 0.003811s
+	
 	master=> \c farm
 	farm=>
 
 
-	farm=> create table animals(id int not null, name varchar(30) not null, is_angry bool not null);
-	executed
+	farm=> CREATE TABLE animals(id int not null, name varchar(30) not null, is_angry bool not null);
 	time: 0.011940s
 
-	farm=> insert into animals values(1,'goat',false);
-	executed
+	farm=> INSERT INTO animals values(1,'goat',false);
 	time: 0.000405s
 
-	farm=> insert into animals values(4,'bull',true) ;
-	executed
+	farm=> INSERT INTO animals values(4,'bull',true) ;
 	time: 0.049338s
 
-	farm=> select * from animals;
-	1,goat                          ,0
-	4,bull                          ,1
+	farm=> SELECT * FROM animals;
+	1,goat,false
+	4,bull,true
 	2 rows
 	time: 0.029299s
 	
@@ -195,9 +189,11 @@ Executing SQL Statements from the Command Line
 
 .. code-block::
 
-	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
-	 --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals WHERE is_angry = true"
-	4,bull                          ,1
+	$ java -jar jdbc-console-0.0.92-48.jar --host=product.isqream.com --access-token=########## -d farm -c "SELECT * FROM animals WHERE is_angry = true;"
+	
+	Output:
+	
+	4,bull,true
 	1 row
 	time: 0.095941s
 	
