@@ -203,7 +203,7 @@ Executing SQL Statements from the Command Line
 Controlling the Client Output
 -----------------------------
 
-Two parameters control the display of results from the client:
+Two parameters control the client result display:
 
 +-----------------------+---------------------------------------------------+
 | Parameter             | Description                                       |
