@@ -40,7 +40,7 @@ After entering your access token, you are presented with the **SQL shell**. The 
 +-----------------------+----------------------------+
 | Command               | Description                |
 +=======================+============================+
-| ``Ctrl-d``, ``exit;`` | Exit the SQL shell         |
+| ``Ctrl-d``, ``exit;`` | Exit the SQL Shell         |
 +-----------------------+----------------------------+
 | ``^c``                | Abort a statement or query |
 +-----------------------+----------------------------+
@@ -203,9 +203,15 @@ Executing SQL Statements from the Command Line
 Controlling the Client Output
 -----------------------------
 
-Two parameters control the dispay of results from the client:
-* ``--results-only`` - removes row counts and timing information
-* ``--delimiter`` - changes the record delimiter
+Two parameters control the display of results from the client:
+
++-----------------------+---------------------------------------------------+
+| Parameter             | Description                                       |
++=======================+===================================================+
+| ``--results-only``    | Removes row counts and timing information         |
++-----------------------+---------------------------------------------------+
+| ``--delimiter``       | Changes the record delimiter                      |
++-----------------------+---------------------------------------------------+
 
 Exporting SQL Query Results to CSV
 ----------------------------------
