@@ -1,59 +1,80 @@
 .. _blue_console:
 
 ************************
-Sqream SQL CLI Reference
+CLI Reference
 ************************
 
-SQream DB has a native client for executing SQL statements either interactively or from the command-line.
+BLUE has a native client for executing SQL statements either interactively or from the command-line.
 This page serves as a reference for the options and parameters.
 
 
+Running BLUE CLI
+================
 
+BLUE CLI is Java based and may be run on any Java supported platform - use the following link to check supported platforms and download `Java 11 <https://www.oracle.com/java/technologies/downloads/#java11>`_.
 
-Installing Sqream SQL
-=====================
+#. Using the BLUE web interface, generate and copy an access token.
+   
+   For instruction on how to generate and copy access tokens, go to the :ref:access_tokens
 
-SQream CLI is Java based and may be run on any Java supported platform - use the following link to check supported platforms and download Java 11 https://www.oracle.com/java/technologies/downloads/#java11
-
-Start the client:
-Browse to the location of the ``jdbc-console-*.*.**.jar`` file and execute it as follows:
+#. Start the client by browsing your CLI for the location of the ``jdbc-console-*.*.**.jar`` file and execute it as follows:
 
 .. code-block:: console
 
-	$ sudo java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
-	$ 
-	Welcome to JDBC console
-	To quit, use ^C or exit
-	Connection URL jdbc:Sqream://<host and port>/<database name>;--access-token=<access-token>;[<optional parameters>; ...]
-	master=> _
+	$ sudo java -jar jdbc-console-*.*.**.jar --host=<BLUE cluster IP FQDN> --access-token=<#####################################>
+	
+	Output:
+	
+	Welcome to JDBC console, SQream DB version 2.0.0
+	To quit exit; to abort ^c
+	Connection URL jdbc:Sqream://<BLUE cluster IP FQDN>:<port>/<database name>;--access-token=<#####################################>;[<optional parameters>; ...]
+	master=>
 
-	master=> _
-
-
-Using Sqream SQL
-================
-
-By default, sqream sql runs in interactive mode. You can issue commands or SQL statements.
 
 Running Commands Interactively (SQL shell)
 ------------------------------------------
 
-When starting sqream sql, after entering your access token, you are presented with the SQL shell.
-To exit the shell, type ``\q or Ctrl-d``.
+After entering your access token, you are presented with the **SQL shell**. The database name shown means you are now ready to run statements and queries. 
+
+**SQL shell** control commands:
+
++-----------------------+----------------------------+
+| Command               | Description                |
++=======================+============================+
+| ``Ctrl-d``, ``exit;`` | Exit the SQL shell         |
++-----------------------+----------------------------+
+| ``^c``                | Abort a statement or query |
++-----------------------+----------------------------+
+
+
+Statements and queries are standard SQL, followed by a semicolon ``;``.
 
 .. code-block:: console
-
-	$ java -jar jdbc-console-0.0.90.jar --host=idan-ost.isqream.com --access-token=<access-token>
+ 
+	master=> CREATE TABLE nba (
+	  player_name TEXT,
+	  team_name TEXT,
+	  jersey_number INT,
+	  position TEXT,
+	  age INT,
+	  height TEXT,
+	  weight INT,
+	  college TEXT,
+	  salary INT
+	);
 	
+.. code-block:: console
 
-	Interactive client mode
-	To quit, use ^D or \q.
+	INSERT INTO nba VALUES
+	  ('Avery Bradley', 'Boston Celtics', 0, 'PG', 25, '6-2', 180, 'Texas', 7730337),
+	  ('Jae Crowder', 'Boston Celtics', 99, 'SF', 25, '6-6', 235, 'Marquette', 6796117),
+	  ('John Holland', 'Boston Celtics', 30, 'SG', 27, '6-5', 205, 'Boston University', NULL),
+	  ('R.J. Hunter', 'Boston Celtics', 28, 'SG', 22, '6-5', 185, 'Georgia State', 1148640),
+	  ('Jonas Jerebko', 'Boston Celtics', 8, 'PF', 29, '6-10', 231, NULL, 5000000);
 
-	master=> _
+Statement results are usually formatted as a valid CSV, followed by the number of rows and the elapsed time for that statement. 
 
-The database name shown means you are now ready to run statements and queries.
-
-Statements and queries are standard SQL, followed by a semicolon (;). Statement results are usually formatted as a valid CSV, followed by the number of rows and the elapsed time for that statement.
+Null values are represented as ``\N``.
 
 .. code-block:: console
 
@@ -66,39 +87,26 @@ Statements and queries are standard SQL, followed by a semicolon (;). Statement 
 	5 rows
 	time: 0.001185s
 
-.. Note::
-
-	Null values are represented as \N.
+	
 	
 When writing long statements and queries, it may be beneficial to use line-breaks. The prompt for a multi-line statement will change from => to ., to alert users to the change. The statement will not execute until a semicolon is used.
 
-.. code-block:: posgres
+.. code-block:: console
 
-	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
-	 --port=5000 --username=mjordan -d master
-
-
-	Interactive client mode
-	To quit, use ^D or \q.
-
-	master=> SELECT "Age",
-	. AVG("Salary")
-	. FROM NBA
-	. GROUP BY 1
-	. ORDER BY 2 ASC
-	. LIMIT 5
+	master=> SELECT Age, AVG(Salary)
+	FROM nba
+	GROUP BY 1
+	ORDER BY 2 ASC
+	LIMIT 5
+	;
 
 
-	. ;
-
-
-	38,1840041
-	19,1930440
-	23,2034746
-	21,2067379
-	36,2238119
-	5 rows
-	time: 0.009320s
+	27,\N
+	22,1148640
+	29,5000000
+	25,7263227
+	4 rows
+	time: 0.604 s
 	
 Executing Batch Scripts (-f)
 ----------------------------	
