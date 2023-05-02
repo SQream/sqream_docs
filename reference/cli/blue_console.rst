@@ -88,7 +88,7 @@ Null values are represented as ``\N``.
 
 	
 	
-When writing long statements and queries, it may be beneficial to use line-breaks. The prompt for a multi-line statement will change from => to ., to alert users to the change. The statement will not execute until a semicolon is used.
+When writing long statements and queries, it may be beneficial to use line-breaks.
 
 .. code-block:: console
 
@@ -99,6 +99,7 @@ When writing long statements and queries, it may be beneficial to use line-break
 	LIMIT 5
 	;
 
+	Output:
 
 	27,\N
 	22,1148640
