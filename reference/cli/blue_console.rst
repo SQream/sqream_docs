@@ -43,7 +43,7 @@ After entering your access token, you are presented with the **SQL shell**. The 
 | ``Ctrl-d``, ``exit;`` | Exit the SQL Shell         |
 +-----------------------+----------------------------+
 | ``^c``                | Abort a statement or query |
-+-----------------------+----------------------------+
++-----------------------+----------------------------+ 
 
 
 Statements and queries are standard SQL, followed by a semicolon ``;``.
