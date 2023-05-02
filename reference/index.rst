@@ -4,7 +4,7 @@
 Reference
 *************************
 
-This section provides reference for using SQream DB's interfaces and SQL features.
+Get to know the BLUE console and other features, and learn how to run statements.
 
 .. toctree::
    :maxdepth: 1
