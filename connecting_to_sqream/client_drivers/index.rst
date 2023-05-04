@@ -14,7 +14,7 @@ All Operating Systems
 The following are applicable to all operating systems:
 
 .. _jdbc:
-  
+
 * **JDBC** - recommended installation via ``mvn``:
 
   * `JDBC .jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.6.jar>`_ - sqream-jdbc-4.5.6 (.jar)
@@ -32,13 +32,20 @@ The following are applicable to all operating systems:
 * **Trino**:
 
   * `Trino Connector <>`_ 
-  * :ref:`trino` 
+  * :ref:`trino`
+  
+.. _spark:
+  
+* **Spark**:
+
+  * `Spark Connector <https://sq-ftp-public.s3.amazonaws.com/Spark-Sqream-Connector-5.0.0.jar>`_ 
+  * :ref:`spark`   
 
 .. _python:
 
 * **Python** - Recommended installation via ``pip``:
 
-  * `Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.2.4>`_ - pysqream v3.2.4 (.tar.gz)
+  * `Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.2.5>`_ - pysqream v3.2.5 (.tar.gz)
   * :ref:`pysqream`
 
 .. _nodejs:
@@ -90,7 +97,7 @@ The following are applicable to Windows:
    nodejs/index
    odbc/index
    dotnet/index
-
+   spark/index
 
 
 
