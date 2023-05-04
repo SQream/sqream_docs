@@ -51,10 +51,10 @@ The following table shows the supported data types.
      - 8 bytes
      - ``0.000003``
      - ``FLOAT``/``DOUBLE PRECISION``
-   * - ``TEXT [(n)]``
+   * - ``TEXT (n)``
      - Variable length string - UTF-8 unicode
-     - Up to ``4*n`` bytes
-     - ``'キウイは楽しい鳥です'``
+     - Up to ``4`` bytes
+     - ``'Kiwis have tiny wings, but cannot fly.'``
      - ``CHAR VARYING``, ``CHAR``, ``CHARACTER VARYING``, ``CHARACTER``, ``NATIONAL CHARACTER VARYING``, ``NATIONAL CHARACTER``, ``NCHAR VARYING``, ``NCHAR``
    * - ``NUMERIC``
      -  38 digits
