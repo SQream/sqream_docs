@@ -5,8 +5,6 @@ JDBC
 *************************
 The SQream JDBC driver lets you connect to SQream using many Java applications and tools. This page describes how to write a Java application using the JDBC interface. The JDBC driver requires Java 1.8 or newer.
 
-The JDBC page includes the following sections:
-
 .. contents:: 
    :local:
    :depth: 1

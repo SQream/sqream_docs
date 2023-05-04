@@ -4,91 +4,69 @@
 Connecting to SQream Using Tableau
 *************************
 
-Overview
-=====================
-SQream's Tableau connector plugin, based on standard JDBC, enables storing and fast querying large volumes of data.
+SQream's Tableau connector, based on standard JDBC, enables storing and fast querying large volumes of data. This connector is useful for users who want to integrate and analyze data from various sources within the Tableau platform. With the Tableau connector, users can easily connect to databases and cloud applications and perform high-speed queries on large datasets. Additionally, the connector allows for seamless integration with Tableau, enabling users to visualize their data.
 
-The **Connecting to SQream Using Tableau** page is a Quick Start Guide that describes how install Tableau and the JDBC driver and connect to SQream for data analysis. It also describes using best practices and troubleshoot issues that may occur while installing Tableau. SQream supports both Tableau Desktop and Tableau Server on Windows, MacOS, and Linux distributions.
+SQream supports both Tableau Desktop and Tableau Server on Windows, MacOS, and Linux distributions.
 
-For more information on SQream's integration with Tableau, see `Tableau's Extension Gallery <https://extensiongallery.tableau.com/connectors?version=2019.4>`_.
-
-The Connecting to SQream Using Tableau page describes the following:
+For more information on SQream's integration with Tableau, see `Tableau Connectors <https://extensiongallery.tableau.com/connectors?version=2019.4>`_.
 
 .. contents::
    :local:
    :depth: 1
 
-Installing the JDBC Driver and Tableau Connector Plugin
--------------------
-This section describes how to install the JDBC driver using the fully-integrated Tableau connector plugin (Tableau Connector, or **.taco** file). SQream has been tested with Tableau versions 9.2 and newer.
+Prerequisites
+-------------
 
-You can connect to SQream using Tableau by doing one of the following:
+It is essential that you have the following installed:
 
-   * **For MacOS or Linux** - See :ref:`Installing the JDBC Driver <tableau_jdbc_installer>`.
+* :ref:`JDBC <java_jdbc>`
+* Tableau version 9.2 or newer 
 
-.. _tableau_jdbc_installer:
+Installing the Tableau Connector
+--------------------------------
+
+#. Download the :ref:`Tableau Connector <client_drivers>` ``SQreamDB.taco`` file.
+
+   Based on your operating system, you may find the Tableau driver directory here:
    
-Installing the JDBC Driver
--------------------
-If you are using MacOS, Linux, or the Tableau server, after installing the Tableau Desktop application you can install the JDBC driver manually. When the driver is installed, you can connect to SQream.
-
-**To install the JDBC driver:**
-
-1. Download the JDBC installer and SQream Tableau connector (.taco) file from the :ref:`from the client drivers page<client_drivers>`.
-
-    ::
-
-2. Based on your operating system, your Tableau driver directory is located in one of the following places:
-
-   * **Tableau Desktop on MacOS:** *~/Library/Tableau/Drivers*
+   * Tableau Desktop on MacOS: ``~/Library/Tableau/Drivers``
+   * Tableau Desktop on Windows: ``C:\Program Files\Tableau\Drivers``
+   * Tableau on Linux: ``/opt/tableau/tableau_driver/jdbc``
    
-      ::
-	  
-   * **Tableau Desktop on Windows:** *C:\\Program Files\\Tableau\\Drivers*
-      
-      ::
-   
-   * **Tableau on Linux**: */opt/tableau/tableau_driver/jdbc*
-	  
-   Note the following when installing the JDBC driver:
+#. Based on the installation method that you used for installing Tableau, place the Tableau Connector ``SQreamDB.taco`` file in the Tableau connector directory:
 
-   * You must have read permissions on the .jar file.
+.. list-table::
+   :widths: auto
+   :header-rows: 1
    
-      ::
-	  
-   * Tableau requires a JDBC 4.0 or later driver.
-   
-      ::
-	  
-   * Tableau requires a Type 4 JDBC driver.
-   
-      ::
-	  
-   * The latest 64-bit version of Java 8 is installed.
+   * - Product / Platform
+     - Path
+   * - Tableau Desktop for Windows
+     - ``C:\Users[user]\Documents\My Tableau Repository\Connectors``
+   * - Tableau Desktop for Mac
+     - ``/Users/[user]/Documents/My Tableau Repository/Connectors``
+   * - Tableau Prep for Windows
+     - ``C:\Users[user]\Documents\My Tableau Prep Repository\Connectors``
+   * - Tableau Prep for Mac
+     - ``/Users/[user]/Documents/My Tableau Prep Repository/Connectors``
+   * - Flow web authoring on Tableau Server
+     - ``/data/tabsvc/flowqueryservice/Connectors``
+   * - Tableau Prep Conductor on Tableau Server
+     - ``/data/tabsvc/flowprocessor/Connectors``
+   * - Tableau Server
+     - ``C:\ProgramData\Tableau\Tableau Server\data\tabsvc\vizqlserver\Connectors``
 
-3. Install the **SQreamDB.taco** file by moving the SQreamDB.taco file into the Tableau connectors directory.
-   
-   Based on the installation method that you used, your Tableau driver directory is located in one of the following places:
-
-   * **Tableau Desktop on Windows:** *C:\\Users\\<your user>\\My Tableau Repository\\Connectors*
-   
-      ::
-	  
-   * **Tableau Desktop on MacOS:** *~/My Tableau Repository/Connectors*
-
-You can now restart Tableau Desktop or Server to begin using the SQream driver by connecting to SQream as described in the section below.
+3. Restart Tableau Desktop or Tableau server.
 
 Connecting to SQream
 ---------------------
-After installing the JDBC driver you can connect to SQream.
 
-**To connect to SQream:**
 
 #. Start Tableau Desktop.
 
     ::
 	
-#. In the **Connect** menu, in the **To a Server** sub-menu, click **More...**.
+#. In the **Connect** menu, click **More** in the To a Server sub-menu.
 
    More connection options are displayed.
 
@@ -101,6 +79,8 @@ After installing the JDBC driver you can connect to SQream.
     ::
 	
 #. In the New Connection dialog box, fill in the fields and click **Sign In**.
+
+   The connection is established, and the data source page is displayed.
 
   The following table describes the fields:
    
@@ -132,10 +112,6 @@ After installing the JDBC driver you can connect to SQream.
      * - Require SSL (recommended)
        - Sets SSL as a requirement for establishing this connection.
        - 
-
-The connection is established and the data source page is displayed.
-  
-.. _set_up_sqream_tables_as_data_sources:
 
 Setting Up SQream Tables as Data Sources
 ----------------
