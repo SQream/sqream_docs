@@ -19,19 +19,24 @@ Prerequisites
 
 It is essential that you have the following installed:
 
-* :ref:`JDBC <java_jdbc>`
 * Tableau version 9.2 or newer 
+
+Setting Up JDBC
+----------------
+
+#. Download the SQream JDBC Connector :ref:`.jar file <client_drivers>`.
+#. Place the JDBC .jar file in the Tableau driver directory.
+
+   Based on your operating system, you may find the Tableau driver directory in one of the following locations:
+   
+   * Tableau Desktop on MacOS: ``~/Library/Tableau/Drivers``
+   * Tableau Desktop on Windows: ``C:\Program Files\Tableau\Drivers``
+   * Tableau on Linux: ``/opt/tableau/tableau_driver/jdbc``
 
 Installing the Tableau Connector
 --------------------------------
 
 #. Download the :ref:`Tableau Connector <client_drivers>` ``SQreamDB.taco`` file.
-
-   Based on your operating system, you may find the Tableau driver directory here:
-   
-   * Tableau Desktop on MacOS: ``~/Library/Tableau/Drivers``
-   * Tableau Desktop on Windows: ``C:\Program Files\Tableau\Drivers``
-   * Tableau on Linux: ``/opt/tableau/tableau_driver/jdbc``
    
 #. Based on the installation method that you used for installing Tableau, place the Tableau Connector ``SQreamDB.taco`` file in the Tableau connector directory:
 
@@ -66,29 +71,29 @@ Connecting to SQream
 
     ::
 	
-#. In the **Connect** menu, click **More** in the To a Server sub-menu.
+#. In the **Connect** menu, under the **To a Server** option , click **More**.
 
-   More connection options are displayed.
+   Additional connection options are displayed.
 
     ::
 	
 #. Select **SQream DB by SQream Technologies**.
 
-   The **New Connection** dialog box is displayed.
+   The connection dialog box is displayed.
 
     ::
 	
-#. In the New Connection dialog box, fill in the fields and click **Sign In**.
+#. In the connection dialog box, fill in the fields and click **Sign In**.
 
    The connection is established, and the data source page is displayed.
 
-  The following table describes the fields:
+Information about step 4 fields:
    
   .. list-table:: 
      :widths: 15 38 38
      :header-rows: 1
    
-     * - Item
+     * - Field name
        - Description
        - Example
      * - Server
@@ -109,83 +114,9 @@ Connecting to SQream
      * - Password
        - Specifies the password of the selected role.
        - ``Tr0ub4dor&3``
-     * - Require SSL (recommended)
+     * - Require SSL 
        - Sets SSL as a requirement for establishing this connection.
        - 
 
-Setting Up SQream Tables as Data Sources
-----------------
-After connecting to SQream you must set up the SQream tables as data sources.
 
-**To set up SQream tables as data sources:**
-	
-1. From the **Table** menu, select the desired database and schema.
 
-   SQream's default schema is **public**.
-   
-    ::
-	
-#. Drag the desired tables into the main area (labeled **Drag tables here**).
-
-   This area is also used for specifying joins and data source filters.
-   
-    ::
-	
-#. Open a new sheet to analyze data. 
-
-Tableau Best Practices and Troubleshooting
----------------
-This section describes the following best practices and troubleshooting procedures when connecting to SQream using Tableau:
-
-.. contents::
-   :local:
-
-Using Tableau's Table Query Syntax
-~~~~~~~~~~~~~~~~~~~
-Dragging your desired tables into the main area in Tableau builds queries based on its own syntax. This helps ensure increased performance, while using views or custom SQL may degrade performance. In addition, SQream recommends using the :ref:`create_view` to create pre-optimized views, which your datasources point to. 
-
-Creating a Separate Service for Tableau
-~~~~~~~~~~~~~~~~~~~
-SQream recommends creating a separate service for Tableau with the DWLM. This reduces the impact that Tableau has on other applications and processes, such as ETL. In addition, this works in conjunction with the load balancer to ensure good performance.
-
-Troubleshooting Workbook Performance Before Deploying to the Tableau Server
-~~~~~~~~~~~~~~~~~~~
-Tableau has a built-in `performance recorder <https://help.tableau.com/current/pro/desktop/en-us/perf_record_create_desktop.htm>`_ that shows how time is being spent. If you're seeing slow performance, this could be the result of a misconfiguration such as setting concurrency too low.
-
-Use the Tableau Performance Recorder for viewing the performance of queries run by Tableau. You can use this information to identify queries that can be optimized by using views.
-
-Troubleshooting Error Codes
-~~~~~~~~~~~~~~~~~~~
-Tableau may be unable to locate the SQream JDBC driver. The following message is displayed when Tableau cannot locate the driver:
-
-.. code-block:: console
-     
-   Error Code: 37CE01A3, No suitable driver installed or the URL is incorrect
-   
-**To troubleshoot error codes:**
-
-If Tableau cannot locate the SQream JDBC driver, do the following:
-
- 1. Verify that the JDBC driver is located in the correct directory:
- 
-   * **Tableau Desktop on Windows:** *C:\Program Files\Tableau\Drivers*
-   
-      ::
-	  
-   * **Tableau Desktop on MacOS:** *~/Library/Tableau/Drivers*
-   
-      ::
-	  
-   * **Tableau on Linux**: */opt/tableau/tableau_driver/jdbc*
-   
- 2. Find the file path for the JDBC driver and add it to the Java classpath:
-   
-   * **For Linux** - ``export CLASSPATH=<absolute path of SQream DB JDBC driver>;$CLASSPATH``
-
-        ::
-		
-   * **For Windows** - add an environment variable for the classpath:  
-
-	.. image:: /_static/images/Third_Party_Connectors/tableau/envrionment_variable_for_classpath.png
-
-If you experience issues after restarting Tableau, contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_
