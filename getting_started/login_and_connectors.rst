@@ -19,7 +19,8 @@ Log In Using the BLUE Interface
 Connectors
 ==========
    
-You may use any of the following connectors:
+Users who want to connect to BLUE from their own applications or tools may need to use connectors. Developers and data analysts are typical users who may wish to use such connectors.  
+
 
 :ref:`JDBC <java_jdbc>`
 
