@@ -1,7 +1,7 @@
-.. _september:
+.. _september_2023:
 
 **************************
-Release Notes 4.3
+September 2023
 **************************
 
 SQream is introducing a new version release system that follows the more commonly used Major.Minor.Patch versioning schema. The newly released **4.0 version** is a minor version upgrade and does not require considerable preparation.
@@ -15,37 +15,12 @@ The 4.3 release notes were released on xx/xx/xxxx and describe the following:
 New Features
 ------------
 
-
-:ref:`<>`
- 
- 	::
-
-:ref:`<>`
  
  
 Newly Released Connector Drivers
 --------------------------------
 
-Compatibility Matrix
---------------------
- 
-+-------------------------+------------------------------------------------------------------------+
-| System Requirement      | Details                                                                |
-+=========================+========================================================================+
-| Supported OS            | * CentOS / REHL - 7.6 - 7.9                                            |
-|                         | * IBM RedHat 7.6                                                       |
-+-------------------------+------------------------------------------------------------------------+
-| supported Nvidia driver | CUDA version from 10.1 up to 11.4.3                                    |
-+-------------------------+------------------------------------------------------------------------+
-| Storage version         |   46                                                                   |
-+-------------------------+------------------------------------------------------------------------+
-| Driver compatibility    | * JDBC 4.5.8                                                           |
-|                         | * ODBC 4.4.4                                                           | 
-|                         | * NodeJS                                                               |
-|                         | * .NET 3.0.2                                                           |
-|                         | * Pysqream 3.2.5                                                       |
-|                         | * Spark                                                                |
-+-------------------------+------------------------------------------------------------------------+
+
  
 SQream Studio Updates and Improvements
 --------------------------------------
@@ -63,7 +38,7 @@ Known Issues
 
 
 
-Version 4.3 resolved Issues
+Resolved Issues
 -----------------------------
 
 +------------------------+------------------------------------------------------------------------------------------+
@@ -71,11 +46,6 @@ Version 4.3 resolved Issues
 +========================+==========================================================================================+
 | SQ-11108               | Slow ``COPY FROM`` statements using ORC files                                            |
 +------------------------+------------------------------------------------------------------------------------------+  
-
-Configuration Changes
----------------------
-
-You may now configure the ``metadata_server`` using the ``metadata_server_config.json`` :ref:`configuration file<metadata_server>`.
 
 
 Naming Changes
@@ -112,39 +82,4 @@ End of Support
 ---------------
 No End of Support changes were made.
 
-Upgrading to v4.2
--------------------
-1. Generate a back-up of the metadata by running the following command:
-
-   .. code-block:: console
-
-      $ select backup_metadata('out_path');
-	  
-   .. tip:: SQream recommends storing the generated back-up locally in case needed.
-   
-   SQream runs the Garbage Collector and creates a clean backup tarball package.
-   
-2. Shut down all SQream services.
-
-    ::
-
-3. Copy the recently created back-up file.
-
-    ::
-
-4. Replace your current metadata with the metadata you stored in the back-up file.
-
-    ::
-
-5. Navigate to the new SQream package bin folder.
-
-    ::
-
-6. Run the following command:
-
-   .. code-block:: console
-
-      $ ./upgrade_storage <levelDB path>
-
-  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
   

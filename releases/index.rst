@@ -5,9 +5,5 @@ Release Notes
 **********
 
    
-:ref:`september`
-
-
-
-
+:ref:`september_2023`
    
