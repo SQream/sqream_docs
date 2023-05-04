@@ -95,7 +95,7 @@ The following table shows SQream's recommended hardware specifications:
    * - External Storage
      -   
          * Mellanox Connectx5/6 100G NVIDIA Network Card (if applicable) or other high speed network card minimum 40G compatible to customer’s infrastructure
-         * 50 TB (NAS connected over GPFS, Lustre, or NFS) GPFS recommended
+         * 50 TB (NAS connected over GPFS, Lustre, Weka, or VAST) GPFS recommended
    * - GPU
      - 2x A100 NVIDIA
    * - Operating System
@@ -126,7 +126,7 @@ The following table shows SQream's recommended metadata server specifications:
    * - Operating System
      - Red Hat Enterprise Linux v7.x or CentOS v7.x or Amazon Linux
 
-.. note:: With a NAS connected over GPFS, Lustre, or NFS, each SQream worker can read data at up to 5GB/s.
+.. note:: With a NAS connected over GPFS, Lustre, Weka, or VAST, each SQream worker can read data at up to 5GB/s.
 
 SQream Studio Server Example
 -----------------------------------
