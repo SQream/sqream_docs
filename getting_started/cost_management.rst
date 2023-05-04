@@ -1,4 +1,4 @@
-.. cost_management:
+.. _cost_management:
   
 *****************
 Cost Management
