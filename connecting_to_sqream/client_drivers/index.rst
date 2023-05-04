@@ -31,16 +31,22 @@ The following are applicable to all operating systems:
 
 * **Trino**:
 
-  * `Trino connector <>`_ 
+  * `Trino Connector <>`_ 
   * :ref:`trino`
+  
+.. _spark:
+  
+* **Spark**:
+
+  * `Spark Connector <https://sq-ftp-public.s3.amazonaws.com/Spark-Sqream-Connector-5.0.0.jar>`_ 
+  * :ref:`spark`   
 
 .. _python:
 
 * **Python** - Recommended installation via ``pip``:
 
-  * `Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.1.3>`_ - pysqream v3.1.3 (.tar.gz)
+  * `Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.2.5>`_ - pysqream v3.2.5 (.tar.gz)
   * :ref:`pysqream`
-
 
 .. _nodejs:
 
@@ -48,7 +54,6 @@ The following are applicable to all operating systems:
 
   * `Node.JS <https://sq-ftp-public.s3.amazonaws.com/sqream-sqreamdb-4.2.4.tgz>`_ - sqream-v4.2.4 (.tar.gz)
   * :ref:`nodejs`
-
 
 .. _tableau_connector:   
 
@@ -62,7 +67,7 @@ The following are applicable to all operating systems:
 
 * **Power BI**:
 
-  * `Power BI PowerQuery connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_ - SQream (.mez)
+  * `Power BI PowerQuery Connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_ - SQream (.mez)
   * :ref:`power_bi`
   
 
@@ -78,24 +83,6 @@ The following are applicable to Windows:
 
 
 * **Net driver** - `SQream .Net driver v3.0.2 <https://sq-ftp-public.s3.amazonaws.com/SqreamNet_net48_3.0.2.zip>`_
-   
-   
-
-Linux
---------------
-The following are applicable to Linux:
-
-* `SQream SQL (x86_64) <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.x86_64.tar.gz>`_ - sqream-sql-v2020.1.1_stable.x86_64.tar.gz
-* :ref:`sqream_sql_cli_reference` - Interactive command-line SQL client for Intel-based machines
-
-   ::
-
-* `SQream SQL*(IBM POWER9) <https://sq-ftp-public.s3.amazonaws.com/sqream-sql-v2020.1.1_stable.ppc64le.tar.gz>`_ - sqream-sql-v2020.1.1_stable.ppc64le.tar.gz
-* :ref:`sqream_sql_cli_reference` - Interactive command-line SQL client for IBM POWER9-based machines
-   
-   ::
-
-* ODBC Installer  - Please contact your SQream representative for this installer.
 
 
 
@@ -110,7 +97,7 @@ The following are applicable to Linux:
    nodejs/index
    odbc/index
    dotnet/index
-
+   spark/index
 
 
 
