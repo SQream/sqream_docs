@@ -1,9 +1,9 @@
-.. _get_all_roles_database_ddl:
+.. _get_total_chunks_size:
 
 ********************
-GET_ALL_ROLES_DATABASE_DDL
+GET TOTAL CHUNKS SIZE
 ********************
-The ``GET_ALL_ROLES_DATABASE_DDL`` statement returns the definition of all role databases in DDL format.
+The ``get_total_chunks_size`` function returns the total size of all data chunks saved in the system in both compressed and uncompressed formats.
 
 .. contents:: 
    :local:
@@ -11,36 +11,52 @@ The ``GET_ALL_ROLES_DATABASE_DDL`` statement returns the definition of all role 
 
 Syntax
 ==========
-The following is the correct syntax for using the ``GET_ALL_ROLES_DATABASE_DDL`` statement:
 
 .. code-block:: postgres
 
-   select get_all_roles_database_ddl()
+   SELECT get_total_chunks_size(<OUTPUT_UNITS>, [DATABASE_NAME], [SCHEMA_NAME, [TABLE_NAME]])
+
+Parameters
+============
+The following table shows the ``SELECT get_total_chunks_size`` parameters:
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - State
+     - Description
+   * - ``OUTPUT_UNITS``
+     - Mandatory
+     - Specifies the desired unit of measurement for the output size, with valid values of ``BYTE``, ``MB``, ``GB``, ``TB``, or ``PB``
+   * - ``DATABASE_NAME``
+     - Optional
+     - Specifies the name of the database to analyze. If not specified, the function will analyze all databases in the cluster.
+   * - ``SCHEMA_NAME``
+     - Optional
+     - Specifies the name of the schema to analyze. If not specified, the function will analyze all schemas in the specified database.
+   * - ``TABLE_NAME``
+     - Optional
+     - Specifies the name of a specific table to analyze. If not specified, the function will analyze all tables in the specified schema.
 
 Example
 ===========
-The following is an example of using the ``GET_ALL_ROLES_DATABASE_DDL`` statement:
 
 .. code-block:: psql
 
-   select get_all_roles_database_ddl();
+   SELECT get_total_chunks_size('MB');
    
 Output
 ==========
-The following is an example of the output of the ``GET_ALL_ROLES_DATABASE_DDL`` statement:
+
 
 .. code-block:: postgres
 
-   grant create, usage on schema "public" to "public" ; alter default schema for "public" to "public"; alter default permissions for "public" for schemas grant superuser to creator_role ; alter default permissions for "public" for tables grant select, insert, delete, ddl, update to creator_role ; grant select, insert, delete, ddl, update on table "public"."customer" to "sqream" ; grant select, insert, delete, ddl, update on table "public"."d_customer" to "sqream" ; grant select, insert, delete, ddl, update on table "public"."demo_customer" to "sqream" ; grant select, insert, delete, ddl, update on table "public"."demo_lineitem" to "sqream" ; grant select, insert, delete, ddl, update on table "public"."lineitem" to "sqream" ; grant select, insert, delete, ddl, update on table "public"."nation" to "sqream" ; grant select, insert, delete, ddl, update on table "public"."orders" to "sqream" ; grant select, insert, delete, ddl, update on table "public"."part" to "sqream" ; grant select, insert, delete, ddl, update on table "public"."partsupp" to "sqream" ; grant select, insert, delete, ddl, update on table "public"."region" to "sqream" ; grant select, insert, delete, ddl, update on table "public"."supplier" to "sqream" ; alter default schema for "sqream" to "public";
+   compression-type         | value                          | size  | 
+   -------------------------+--------------------------------+-------+
+   Compressed               | 0.00036144256591796875         |   MB  |
+   Uncompressed             | 0.00036144256591796875         |   MB  |
 
 Permissions
 =============
-Using the ``GET_ALL_ROLES_DATABASE_DDL`` statement requires no special permissions.
-
-For more information, see the following:
-
-* :ref:`get_all_roles_global_ddl`
-
-    ::
-	
-* :ref:`get_role_permissions`

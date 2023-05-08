@@ -122,6 +122,8 @@ The following table shows the Utility commands:
      - View the ``CREATE TABLE`` statement for a table
    * - :ref:`SELECT GET_FUNCTION_DDL<get_function_ddl>`
      - View the ``CREATE FUNCTION`` statement for a UDF
+   * - :ref:`SELECT GET_TOTAL_CHUNKS_SIZE<get_total_chunks_size>`
+     - Shows the total size of all data chunks saved in the system in both compressed and uncompressed formats
    * - :ref:`SELECT GET_VIEW_DDL<get_view_ddl>`
      - View the ``CREATE VIEW`` statement for a view
    * - :ref:`SELECT RECOMPILE_VIEW<recompile_view>`
