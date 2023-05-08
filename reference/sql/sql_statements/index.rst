@@ -103,7 +103,7 @@ The following table shows the Utility commands:
 .. list-table::
    :widths: 10 100
    :header-rows: 1
-   
+    
    * - Command
      - Usage
    * - :ref:`DROP SAVED QUERY<drop_saved_query>`
