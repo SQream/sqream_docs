@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SQL Functions &mdash; SQream Blue 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Built-In Scalar Functions" href="scalar_functions/index.html" />
+    <link rel="prev" title="SQL Statements" href="../sql_statements/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #133148" >
+            <a href="../../../index.html">
+            <img src="../../../_static/SQream_logo_without background-15.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/login_and_connectors.html">Login and Connectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/cost_management.html">Cost Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/performing_basic_sqream_operations.html">Performing Basic SQream Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/running_the_sqream_sql_client.html">Running the SQream SQL Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/creating_your_first_table.html">Creating Your First Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/listing_tables.html">Listing Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/inserting_rows.html">Inserting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/running_queries.html">Running Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/saving_query_results_to_a_csv_or_psv_file.html">Saving Query Results to a CSV or PSV File</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../file_types/index.html">File Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../file_types/file_types_overview.html">File Types Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../file_types/avro.html">Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../file_types/csv.html">CSV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../file_types/parquet.html">Parquet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../file_types/orc.html">ORC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../file_types/json.html">JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../loading_and_unloading_data/index.html">Loading and Unloading Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../feature_guides/index.html">Feature Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/python_functions.html">Python UDF (User-Defined Functions)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/concurrency_and_locks.html">Concurrency and Locks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/concurrency_and_scaling_in_sqream.html">Concurrency and Scaling in SQream DB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../operational_guides/index.html">Operational Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/access_control.html">Access Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_managing_roles.html">Managing Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_permissions.html">Permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_password_policy.html">Password Policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_departmental_example.html">Departmental Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/audit_log_operation.html">Audit Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/exporting_data.html">Exporting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/monitoring_query_performance.html">Monitoring Query Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/seeing_system_objects_as_ddl.html">Seeing System Objects as DDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/optimization_best_practices.html">Optimization and Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration_guides/index.html">Configuration Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration_guides/bucket/bucket_integration.html">Bucket Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration_guides/spooling.html">Configuring the Spooling Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration_guides/configuring_sqream.html">Configuring SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration_guides/configuration_flags.html">Configuration Flags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/admin_flags.html">Administration Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/admin_regular_flags.html">Regular Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/admin_worker_flags.html">Worker Administration Flags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/generic_flags.html">Generic Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/generic_regular_flags.html">Regular Generic Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/generic_worker_flags.html">Worker Generic Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../blue_console.html">BLUE Console</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">SQL Statements and Syntax</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../sql_syntax/index.html">SQL Syntax Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sql_statements/index.html">SQL Statements</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">SQL Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="scalar_functions/index.html">Built-In Scalar Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_defined_functions/index.html">User-Defined Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="aggregate_functions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="window_functions/index.html">Window Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../sql_feature_support.html">SQL Feature Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_type_guides/index.html">Data Type Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_type_guides/converting_and_casting_types.html">Converting and Casting Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_type_guides/supported_data_types.html">Supported Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_type_guides/supported_casts.html">Supported Casts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_boolean.html">Boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_integer.html">Integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_floating_point.html">Floating Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_string.html">String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_date.html">Date</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/index.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/remedying_slow_queries.html">Remedying Slow Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/resolving_common_issues.html">Resolving Common Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/lock_related_issues.html">Lock Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/information_for_support.html">Gathering Information for SQream Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #133148" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SQream Blue</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Reference</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">SQL Statements and Syntax</a></li>
+      <li class="breadcrumb-item active">SQL Functions</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sql-functions">
+<span id="id1"></span><h1>SQL Functions<a class="headerlink" href="#sql-functions" title="Permalink to this heading"></a></h1>
+<p>SQream supports functions from ANSI SQL, as well as others for compatibility.</p>
+<section id="summary-of-functions">
+<h2>Summary of Functions<a class="headerlink" href="#summary-of-functions" title="Permalink to this heading"></a></h2>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#built-in-scalar-functions" id="id4">Built-In Scalar Functions</a></p>
+<ul>
+<li><p><a class="reference internal" href="#bitwise-operations" id="id5">Bitwise Operations</a></p></li>
+<li><p><a class="reference internal" href="#conditionals" id="id6">Conditionals</a></p></li>
+<li><p><a class="reference internal" href="#conversion" id="id7">Conversion</a></p></li>
+<li><p><a class="reference internal" href="#date-and-time" id="id8">Date and Time</a></p></li>
+<li><p><a class="reference internal" href="#numeric" id="id9">Numeric</a></p></li>
+<li><p><a class="reference internal" href="#strings" id="id10">Strings</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#user-defined-scalar-functions" id="id11">User-Defined Scalar Functions</a></p></li>
+<li><p><a class="reference internal" href="#aggregate-functions" id="id12">Aggregate Functions</a></p></li>
+<li><p><a class="reference internal" href="#window-functions" id="id13">Window Functions</a></p></li>
+<li><p><a class="reference internal" href="#workload-management-functions" id="id14">Workload Management Functions</a></p></li>
+</ul>
+</div>
+<section id="built-in-scalar-functions">
+<h3><a class="toc-backref" href="#id4">Built-In Scalar Functions</a><a class="headerlink" href="#built-in-scalar-functions" title="Permalink to this heading"></a></h3>
+<p>For more information about built-in scalar functions, see <a class="reference internal" href="scalar_functions/index.html#scalar-functions"><span class="std std-ref">Built-In Scalar Functions</span></a>.</p>
+<section id="bitwise-operations">
+<h4><a class="toc-backref" href="#id5">Bitwise Operations</a><a class="headerlink" href="#bitwise-operations" title="Permalink to this heading"></a></h4>
+<p>The following table shows the <strong>bitwise operations</strong> functions:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/bitwise/and.html#bitwise-and"><span class="std std-ref">&amp; (bitwise AND)</span></a></p></td>
+<td><p>Bitwise AND</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/bitwise/not.html#bitwise-not"><span class="std std-ref">~ (bitwise NOT)</span></a></p></td>
+<td><p>Bitwise NOT</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/bitwise/or.html#bitwise-or"><span class="std std-ref">| (bitwise OR)</span></a></p></td>
+<td><p>Bitwise OR</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/bitwise/shift_left.html#bitwise-shift-left"><span class="std std-ref">&lt;&lt; (bitwise shift left)</span></a></p></td>
+<td><p>Bitwise shift left</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/bitwise/shift_right.html#bitwise-shift-right"><span class="std std-ref">&gt;&gt; (bitwise shift right)</span></a></p></td>
+<td><p>Bitwise shift right</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/bitwise/xor.html#bitwise-xor"><span class="std std-ref">XOR (bitwise XOR)</span></a></p></td>
+<td><p>Bitwise XOR</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="conditionals">
+<h4><a class="toc-backref" href="#id6">Conditionals</a><a class="headerlink" href="#conditionals" title="Permalink to this heading"></a></h4>
+<p>The following table shows the <strong>conditionals</strong> functions:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/conditionals/between.html#between"><span class="std std-ref">BETWEEN</span></a></p></td>
+<td><p>Value is in [ or not within ] the range</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/conditionals/case.html#case"><span class="std std-ref">CASE</span></a></p></td>
+<td><p>Test a conditional expression, and depending on the result, evaluate additional expressions.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/conditionals/coalesce.html#coalesce"><span class="std std-ref">COALESCE</span></a></p></td>
+<td><p>Evaluate first non-NULL expression</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/conditionals/in.html#in"><span class="std std-ref">IN</span></a></p></td>
+<td><p>Value is in [ or not within ] a set of values</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/conditionals/isnull.html#isnull"><span class="std std-ref">ISNULL</span></a></p></td>
+<td><p>Alias for <a class="reference internal" href="scalar_functions/conditionals/coalesce.html#coalesce"><span class="std std-ref">COALESCE</span></a> with two expressions</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/conditionals/is_ascii.html#is-ascii"><span class="std std-ref">IS_ASCII</span></a></p></td>
+<td><p>Test a <code class="docutils literal notranslate"><span class="pre">TEXT</span></code> for ASCII-only characters</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/conditionals/is_null.html#is-null"><span class="std std-ref">IS NULL</span></a></p></td>
+<td><p>Check for <code class="docutils literal notranslate"><span class="pre">NULL</span></code> [ or non-<code class="docutils literal notranslate"><span class="pre">NULL</span></code> ] values</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="conversion">
+<h4><a class="toc-backref" href="#id7">Conversion</a><a class="headerlink" href="#conversion" title="Permalink to this heading"></a></h4>
+<p>The following table shows the <strong>conversion</strong> functions:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/conversion/from_unixts.html#from-unixts"><span class="std std-ref">FROM_UNIXTS, FROM_UNIXTSMS</span></a></p></td>
+<td><p>Converts a UNIX Timestamp to <code class="docutils literal notranslate"><span class="pre">DATE</span></code> or <code class="docutils literal notranslate"><span class="pre">DATETIME</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/conversion/to_hex.html#to-hex"><span class="std std-ref">TO_HEX</span></a></p></td>
+<td><p>Converts a number to a hexadecimal string representation</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/conversion/to_unixts.html#to-unixts"><span class="std std-ref">TO_UNIXTS, TO_UNIXTSMS</span></a></p></td>
+<td><p>Converts a <code class="docutils literal notranslate"><span class="pre">DATE</span></code> or <code class="docutils literal notranslate"><span class="pre">DATETIME</span></code> to a UNIX Timestamp</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="date-and-time">
+<h4><a class="toc-backref" href="#id8">Date and Time</a><a class="headerlink" href="#date-and-time" title="Permalink to this heading"></a></h4>
+<p>The following table shows the <strong>date and time</strong> functions:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/date_and_time/curdate.html#curdate"><span class="std std-ref">CURDATE</span></a></p></td>
+<td><p>Special syntax, equivalent to <a class="reference internal" href="scalar_functions/date_and_time/current_date.html#current-date"><span class="std std-ref">CURRENT_DATE</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/date_and_time/current_date.html#current-date"><span class="std std-ref">CURRENT_DATE</span></a></p></td>
+<td><p>Returns the current date as <code class="docutils literal notranslate"><span class="pre">DATE</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/date_and_time/current_timestamp.html#current-timestamp"><span class="std std-ref">CURRENT_TIMESTAMP</span></a></p></td>
+<td><p>Equivalent to <a class="reference internal" href="scalar_functions/date_and_time/getdate.html#getdate"><span class="std std-ref">GETDATE</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/date_and_time/datepart.html#datepart"><span class="std std-ref">DATEPART</span></a></p></td>
+<td><p>Extracts a date or time element from a date expression</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/date_and_time/dateadd.html#dateadd"><span class="std std-ref">DATEADD</span></a></p></td>
+<td><p>Adds an interval to a date expression</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/date_and_time/datediff.html#datediff"><span class="std std-ref">DATEDIFF</span></a></p></td>
+<td><p>Calculates the time difference between two date expressions</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/date_and_time/eomonth.html#eomonth"><span class="std std-ref">EOMONTH</span></a></p></td>
+<td><p>Calculates the last day of the month of a given date expression</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/date_and_time/extract.html#extract"><span class="std std-ref">EXTRACT</span></a></p></td>
+<td><p>ANSI syntax for extracting date or time element from a date expression</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/date_and_time/getdate.html#getdate"><span class="std std-ref">GETDATE</span></a></p></td>
+<td><p>Returns the current timestamp as <code class="docutils literal notranslate"><span class="pre">DATETIME</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/date_and_time/sysdate.html#sysdate"><span class="std std-ref">SYSDATE</span></a></p></td>
+<td><p>Equivalent to <a class="reference internal" href="scalar_functions/date_and_time/getdate.html#getdate"><span class="std std-ref">GETDATE</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/date_and_time/trunc.html#date-trunc"><span class="std std-ref">Date and Time TRUNC</span></a></p></td>
+<td><p>Truncates a date element down to a specified date or time element</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="numeric">
+<h4><a class="toc-backref" href="#id9">Numeric</a><a class="headerlink" href="#numeric" title="Permalink to this heading"></a></h4>
+<p>The following table shows the <strong>arithmetic operators</strong>:</p>
+<table class="colwidths-auto docutils align-default" id="id2">
+<caption><span class="caption-text">Arithmetic Operators</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Operator</p></th>
+<th class="head"><p>Syntax</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">+</span></code> (unary)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">+a</span></code></p></td>
+<td><p>Converts a string to a numeric value. Identical to <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">::</span> <span class="pre">double</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">+</span> <span class="pre">b</span></code></p></td>
+<td><p>Adds two expressions together</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-</span></code> (unary)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-a</span></code></p></td>
+<td><p>Negates a numeric expression</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">-</span> <span class="pre">b</span></code></p></td>
+<td><p>Subtracts <code class="docutils literal notranslate"><span class="pre">b</span></code> from <code class="docutils literal notranslate"><span class="pre">a</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">*</span> <span class="pre">b</span></code></p></td>
+<td><p>Multiplies <code class="docutils literal notranslate"><span class="pre">a</span></code> by <code class="docutils literal notranslate"><span class="pre">b</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">/</span> <span class="pre">b</span></code></p></td>
+<td><p>Divides <code class="docutils literal notranslate"><span class="pre">a</span></code> by <code class="docutils literal notranslate"><span class="pre">b</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">%</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">%</span> <span class="pre">b</span></code></p></td>
+<td><p>Modulu of <code class="docutils literal notranslate"><span class="pre">a</span></code> by <code class="docutils literal notranslate"><span class="pre">b</span></code>. See also <a class="reference internal" href="scalar_functions/numeric/mod.html#mod"><span class="std std-ref">MOD, %</span></a></p></td>
+</tr>
+</tbody>
+</table>
+<p>For more information about arithmetic operators, see <a class="reference internal" href="scalar_functions/numeric/arithmetic_operators.html#arithmetic-operators"><span class="std std-ref">Arithmetic operators</span></a>.</p>
+<p>The following table shows the <strong>arithmetic operator</strong> functions:</p>
+<table class="colwidths-auto docutils align-default" id="id3">
+<caption><span class="caption-text">Arithemtic Operator Functions</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/numeric/abs.html#abs"><span class="std std-ref">ABS</span></a></p></td>
+<td><p>Calculates the absolute value of an argument</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/numeric/acos.html#acos"><span class="std std-ref">ACOS</span></a></p></td>
+<td><p>Calculates the inverse cosine of an argument</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/numeric/asin.html#asin"><span class="std std-ref">ASIN</span></a></p></td>
+<td><p>Calculates the inverse sine of an argument</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/numeric/atan.html#atan"><span class="std std-ref">ATAN</span></a></p></td>
+<td><p>Calculates the inverse tangent of an argument</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/numeric/atn2.html#atn2"><span class="std std-ref">ATN2</span></a></p></td>
+<td><p>Calculates the inverse tangent for a point (y, x)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/numeric/ceiling.html#ceiling"><span class="std std-ref">CEILING / CEIL</span></a></p></td>
+<td><p>Calculates the next integer for an argument</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/numeric/cos.html#cos"><span class="std std-ref">COS</span></a></p></td>
+<td><p>Calculates the cosine of an argument</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/numeric/cot.html#cot"><span class="std std-ref">COT</span></a></p></td>
+<td><p>Calculates the cotangent of an argument</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/numeric/degrees.html#degrees"><span class="std std-ref">DEGREES</span></a></p></td>
+<td><p>Converts a value from radian values to degrees</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/numeric/exp.html#exp"><span class="std std-ref">EXP</span></a></p></td>
+<td><p>Calcalates the natural exponent for an argument (<em>e</em><sup>x</sup>)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/numeric/floor.html#floor"><span class="std std-ref">FLOOR</span></a></p></td>
+<td><p>Calculates the largest integer smaller than the argument</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/numeric/log.html#log"><span class="std std-ref">LOG</span></a></p></td>
+<td><p>Calculates the natural log for an argument</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/numeric/log10.html#log10"><span class="std std-ref">LOG10</span></a></p></td>
+<td><p>Calculates the 10-based log for an argument</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/numeric/mod.html#mod"><span class="std std-ref">MOD, %</span></a></p></td>
+<td><p>Calculates the modulu (remainder) of two arguments</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/numeric/pi.html#pi"><span class="std std-ref">PI</span></a></p></td>
+<td><p>Returns the constant value for π</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/numeric/power.html#power"><span class="std std-ref">POWER</span></a></p></td>
+<td><p>Calculates x to the power of y (x<sup>y</sup>)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/numeric/radians.html#radians"><span class="std std-ref">RADIANS</span></a></p></td>
+<td><p>Converts a value from degree values to radians</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/numeric/round.html#round"><span class="std std-ref">ROUND</span></a></p></td>
+<td><p>Rounds an argument down to the nearest integer, or an arbitrary precision</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/numeric/sin.html#sin"><span class="std std-ref">SIN</span></a></p></td>
+<td><p>Calculates the sine  of an argument</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/numeric/sqrt.html#sqrt"><span class="std std-ref">SQRT</span></a></p></td>
+<td><p>Calculates the square root of an argument (√x)</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/numeric/square.html#square"><span class="std std-ref">SQUARE</span></a></p></td>
+<td><p>Raises an argument to the power of 2 (x<sup>y</sup>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/numeric/tan.html#tan"><span class="std std-ref">TAN</span></a></p></td>
+<td><p>Calculates the tangent of an argument</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/numeric/trunc.html#trunc"><span class="std std-ref">TRUNC</span></a></p></td>
+<td><p>Rounds a number to its integer representation towards 0</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="strings">
+<h4><a class="toc-backref" href="#id10">Strings</a><a class="headerlink" href="#strings" title="Permalink to this heading"></a></h4>
+<p>The following table shows the <strong>string</strong> functions:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/string/char_length.html#char-length"><span class="std std-ref">CHARACTER_LENGTH / CHAR_LENGTH</span></a></p></td>
+<td><p>Calculates number of characters in an argument</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/string/charindex.html#charindex"><span class="std std-ref">CHARINDEX</span></a></p></td>
+<td><p>Calculates the position where a string starts inside another string</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/string/concat.html#concat"><span class="std std-ref">|| (Concatenate)</span></a></p></td>
+<td><p>Concatenates two strings</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="xref std std-ref">crc64</span></p></td>
+<td><p>Calculates a CRC-64 hash of an argument</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/string/decode.html#decode"><span class="std std-ref">DECODE</span></a></p></td>
+<td><p>Decodes or extracts binary data from a textual input string</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/string/isprefixof.html#isprefixof"><span class="std std-ref">ISPREFIXOF</span></a></p></td>
+<td><p>Matches if a string is the prefix of another string</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/string/left.html#left"><span class="std std-ref">LEFT</span></a></p></td>
+<td><p>Returns the first number of characters from an argument</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/string/len.html#len"><span class="std std-ref">LEN</span></a></p></td>
+<td><p>Calculates the length of a string in characters</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/string/like.html#like"><span class="std std-ref">LIKE</span></a></p></td>
+<td><p>Tests if a string argument matches a pattern</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/string/lower.html#lower"><span class="std std-ref">LOWER</span></a></p></td>
+<td><p>Converts an argument to a lower-case equivalent</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/string/ltrim.html#ltrim"><span class="std std-ref">LTRIM</span></a></p></td>
+<td><p>Trims whitespaces from the left side of an argument</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/string/octet_length.html#octet-length"><span class="std std-ref">OCTET_LENGTH</span></a></p></td>
+<td><p>Calculates the length of a string in bytes</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/string/patindex.html#patindex"><span class="std std-ref">PATINDEX</span></a></p></td>
+<td><p>Calculates the position where a pattern matches a string</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/string/regexp_count.html#regexp-count"><span class="std std-ref">REGEXP_COUNT</span></a></p></td>
+<td><p>Calculates the number of matches of a regular expression match in an argument</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/string/regexp_instr.html#regexp-instr"><span class="std std-ref">REGEXP_INSTR</span></a></p></td>
+<td><p>Returns the start position of a regular expression match in an argument</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/string/regexp_replace.html#regexp-replace"><span class="std std-ref">REGEXP_REPLACE</span></a></p></td>
+<td><p>Replaces and returns the text column substrings of a regular expression match in an argument</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/string/regexp_substr.html#regexp-substr"><span class="std std-ref">REGEXP_SUBSTR</span></a></p></td>
+<td><p>Returns a substring of an argument that matches a regular expression</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/string/repeat.html#repeat"><span class="std std-ref">REPEAT</span></a></p></td>
+<td><p>Repeats a string as many times as specified</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/string/replace.html#replace"><span class="std std-ref">REPLACE</span></a></p></td>
+<td><p>Replaces characters in a string</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/string/reverse.html#reverse"><span class="std std-ref">REVERSE</span></a></p></td>
+<td><p>Reverses a string argument</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/string/right.html#right"><span class="std std-ref">RIGHT</span></a></p></td>
+<td><p>Returns the last number of characters from an argument</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/string/rlike.html#rlike"><span class="std std-ref">RLIKE</span></a></p></td>
+<td><p>Tests if a string argument matches a regular expression pattern</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/string/rtrim.html#rtrim"><span class="std std-ref">RTRIM</span></a></p></td>
+<td><p>Trims whitespace from the right side of an argument</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/string/substring.html#substring"><span class="std std-ref">SUBSTRING</span></a></p></td>
+<td><p>Returns a substring of an argument</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/string/trim.html#trim"><span class="std std-ref">TRIM</span></a></p></td>
+<td><p>Trims whitespaces from an argument</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="scalar_functions/string/upper.html#upper"><span class="std std-ref">UPPER</span></a></p></td>
+<td><p>Converts an argument to an upper-case equivalent</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="scalar_functions/string/select_ascii.html#select-ascii"><span class="std std-ref">SELECT ASCII</span></a></p></td>
+<td><p>Return the ASCII code value of the leftmost character of a string</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="user-defined-scalar-functions">
+<h3><a class="toc-backref" href="#id11">User-Defined Scalar Functions</a><a class="headerlink" href="#user-defined-scalar-functions" title="Permalink to this heading"></a></h3>
+<p>For more information about user-defined scalar functions, see <a class="reference internal" href="user_defined_functions/scalar_sql_udf.html#scalar-sql-udf"><span class="std std-ref">Scalar SQL UDF</span></a>.</p>
+</section>
+<section id="aggregate-functions">
+<h3><a class="toc-backref" href="#id12">Aggregate Functions</a><a class="headerlink" href="#aggregate-functions" title="Permalink to this heading"></a></h3>
+<p>The following table shows the <strong>aggregate</strong> functions:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Aliases</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="aggregate_functions/avg.html#avg"><span class="std std-ref">AVG</span></a></p></td>
+<td></td>
+<td><p>Calculates the average of all of the values</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="aggregate_functions/corr.html#corr"><span class="std std-ref">CORR</span></a></p></td>
+<td></td>
+<td><p>Calculates the Pearson correlation coefficient</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="aggregate_functions/count.html#count"><span class="std std-ref">COUNT</span></a></p></td>
+<td></td>
+<td><p>Calculates the count of all of the values or only distinct values</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="aggregate_functions/covar_pop.html#covar-pop"><span class="std std-ref">COVAR_POP</span></a></p></td>
+<td></td>
+<td><p>Calculates population covariance of values</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="aggregate_functions/covar_samp.html#covar-samp"><span class="std std-ref">COVAR_SAMP</span></a></p></td>
+<td></td>
+<td><p>Calculates sample covariance of values</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="aggregate_functions/max.html#max"><span class="std std-ref">MAX</span></a></p></td>
+<td></td>
+<td><p>Returns maximum value of all values</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="aggregate_functions/min.html#min"><span class="std std-ref">MIN</span></a></p></td>
+<td></td>
+<td><p>Returns minimum value of all values</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="aggregate_functions/sum.html#sum"><span class="std std-ref">SUM</span></a></p></td>
+<td></td>
+<td><p>Calculates the sum of all of the values or only distinct values</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="aggregate_functions/stddev_samp.html#stddev-samp"><span class="std std-ref">STDDEV_SAMP</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">stdev</span></code>, <code class="docutils literal notranslate"><span class="pre">stddev</span></code></p></td>
+<td><p>Calculates sample standard deviation of values</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="aggregate_functions/stddev_pop.html#stddev-pop"><span class="std std-ref">STDDEV_POP</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">stdevp</span></code></p></td>
+<td><p>Calculates population standard deviation of values</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="aggregate_functions/var_samp.html#var-samp"><span class="std std-ref">VAR_SAMP</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">var</span></code>, <code class="docutils literal notranslate"><span class="pre">variance</span></code></p></td>
+<td><p>Calculates sample variance of values</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="aggregate_functions/var_pop.html#var-pop"><span class="std std-ref">VAR_POP</span></a></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">varp</span></code></p></td>
+<td><p>Calculates population variance of values</p></td>
+</tr>
+</tbody>
+</table>
+<p>For more information about aggregate functions, see <a class="reference internal" href="aggregate_functions/index.html#aggregate-functions"><span class="std std-ref">Aggregate Functions</span></a>.</p>
+</section>
+<section id="window-functions">
+<h3><a class="toc-backref" href="#id13">Window Functions</a><a class="headerlink" href="#window-functions" title="Permalink to this heading"></a></h3>
+<p>The following table shows the <strong>window</strong> functions:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="window_functions/lag.html#lag"><span class="std std-ref">LAG</span></a></p></td>
+<td><p>Calculates the value evaluated at the row that is before the current row within the partition</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="window_functions/lead.html#lead"><span class="std std-ref">LEAD</span></a></p></td>
+<td><p>Calculates the value evaluated at the row that is after the current row within the partition</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="aggregate_functions/max.html#max"><span class="std std-ref">MAX</span></a></p></td>
+<td><p>Calculates the maximum value</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="aggregate_functions/min.html#min"><span class="std std-ref">MIN</span></a></p></td>
+<td><p>Calculates the minimum value</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="aggregate_functions/sum.html#sum"><span class="std std-ref">SUM</span></a></p></td>
+<td><p>Calculates the sum of all of the values</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="window_functions/rank.html#rank"><span class="std std-ref">RANK</span></a></p></td>
+<td><p>Calculates the rank of a row</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="window_functions/first_value.html#first-value"><span class="std std-ref">FIRST_VALUE</span></a></p></td>
+<td><p>Returns the value in the first row of a window</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="window_functions/last_value.html#last-value"><span class="std std-ref">LAST_VALUE</span></a></p></td>
+<td><p>Returns the value in the last row of a window</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="window_functions/nth_value.html#nth-value"><span class="std std-ref">NTH_VALUE</span></a></p></td>
+<td><p>Returns the value in a specified <code class="docutils literal notranslate"><span class="pre">(n)</span></code> row of a window</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="window_functions/dense_rank.html#dense-rank"><span class="std std-ref">DENSE_RANK</span></a></p></td>
+<td><p>Returns the rank of the current row with no gaps</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="window_functions/percent_rank.html#percent-rank"><span class="std std-ref">PERCENT_RANK</span></a></p></td>
+<td><p>Returns the relative rank of the current row</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="window_functions/cume_dist.html#cume-dist"><span class="std std-ref">CUME_DIST</span></a></p></td>
+<td><p>Returns the cumulative distribution of rows</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="window_functions/ntile.html#ntile"><span class="std std-ref">NTILE</span></a></p></td>
+<td><p>Returns an integer ranging between <code class="docutils literal notranslate"><span class="pre">1</span></code> and the argument value, dividing the partitions as equally as possible</p></td>
+</tr>
+</tbody>
+</table>
+<p>For more information about window functions, see <a class="reference internal" href="../sql_syntax/window_functions.html#window-functions"><span class="std std-ref">Window Functions</span></a>.</p>
+</section>
+<section id="workload-management-functions">
+<h3><a class="toc-backref" href="#id14">Workload Management Functions</a><a class="headerlink" href="#workload-management-functions" title="Permalink to this heading"></a></h3>
+<p>The following table shows the <strong>workload management</strong> functions:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="xref std std-ref">subscribe_service</span></p></td>
+<td><p>Add a SQream DB worker to a service queue</p></td>
+</tr>
+<tr class="row-odd"><td><p><span class="xref std std-ref">unsubscribe_service</span></p></td>
+<td><p>Remove a SQream DB worker to a service queue</p></td>
+</tr>
+<tr class="row-even"><td><p><span class="xref std std-ref">show_subscribed_instances</span></p></td>
+<td><p>Return a list of service queues and workers</p></td>
+</tr>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../sql_statements/index.html" class="btn btn-neutral float-left" title="SQL Statements" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="scalar_functions/index.html" class="btn btn-neutral float-right" title="Built-In Scalar Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 SQream.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Null handling &mdash; SQream Blue 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #133148" >
+            <a href="../../../index.html">
+            <img src="../../../_static/SQream_logo_without background-15.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/login_and_connectors.html">Login and Connectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/cost_management.html">Cost Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/performing_basic_sqream_operations.html">Performing Basic SQream Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/running_the_sqream_sql_client.html">Running the SQream SQL Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/creating_your_first_table.html">Creating Your First Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/listing_tables.html">Listing Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/inserting_rows.html">Inserting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/running_queries.html">Running Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/saving_query_results_to_a_csv_or_psv_file.html">Saving Query Results to a CSV or PSV File</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ingestion/index.html">Data Ingestion Sources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/ingesting_data.html">Ingesting Data Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/avro.html">Ingesting Data from Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/csv.html">Ingesting Data from a CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/parquet.html">Ingesting Data from a Parquet File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/orc.html">Ingesting Data from an ORC File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/json.html">Ingesting Data from JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../loading_and_unloading_data/index.html">Loading and Unloading Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../feature_guides/index.html">Feature Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/python_functions.html">Python UDF (User-Defined Functions)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/concurrency_and_locks.html">Concurrency and Locks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/concurrency_and_scaling_in_sqream.html">Concurrency and Scaling in SQream DB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../operational_guides/index.html">Operational Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/access_control.html">Access Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_managing_roles.html">Managing Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_permissions.html">Permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_password_policy.html">Password Policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_departmental_example.html">Departmental Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/audit_log_operation.html">Audit Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/exporting_data.html">Exporting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/monitoring_query_performance.html">Monitoring Query Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/seeing_system_objects_as_ddl.html">Seeing System Objects as DDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/optimization_best_practices.html">Optimization and Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration_guides/index.html">Configuration Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration_guides/spooling.html">Configuring the Spooling Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration_guides/configuring_sqream.html">Configuring SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration_guides/configuration_flags.html">Configuration Flags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/admin_flags.html">Administration Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/admin_regular_flags.html">Regular Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/admin_worker_flags.html">Worker Administration Flags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/generic_flags.html">Generic Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/generic_regular_flags.html">Regular Generic Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/generic_worker_flags.html">Worker Generic Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../blue_console.html">BLUE Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html">SQL Statements and Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="index.html">SQL Syntax Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sql_statements/index.html">SQL Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sql_functions/index.html">SQL Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sql_functions/scalar_functions/index.html">Built-In Scalar Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sql_functions/user_defined_functions/index.html">User-Defined Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sql_functions/aggregate_functions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sql_functions/window_functions/index.html">Window Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../sql_feature_support.html">SQL Feature Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_type_guides/index.html">Data Type Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_type_guides/converting_and_casting_types.html">Converting and Casting Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_type_guides/supported_data_types.html">Supported Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_type_guides/supported_casts.html">Supported Casts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_boolean.html">Boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_integer.html">Integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_floating_point.html">Floating Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_string.html">String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_date.html">Date</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/index.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/remedying_slow_queries.html">Remedying Slow Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/resolving_common_issues.html">Resolving Common Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/lock_related_issues.html">Lock Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/information_for_support.html">Gathering Information for SQream Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #133148" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SQream Blue</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Null handling</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="null-handling">
+<span id="id1"></span><h1>Null handling<a class="headerlink" href="#null-handling" title="Permalink to this heading"></a></h1>
+<p>SQream DB handles <code class="docutils literal notranslate"><span class="pre">NULL</span></code> values similar to other RDBMSs, with some minor differences.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>When using <span class="xref std std-ref">sqream sql</span> <code class="docutils literal notranslate"><span class="pre">NULL</span></code> values are displayed as <code class="docutils literal notranslate"><span class="pre">\N</span></code>. Different clients may show other values, including an empty string.</p>
+</div>
+<section id="comparisons">
+<h2>Comparisons<a class="headerlink" href="#comparisons" title="Permalink to this heading"></a></h2>
+<p>Any comparison between a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> and a value will result in <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
+<p>For example, writing <code class="docutils literal notranslate"><span class="pre">WHERE</span> <span class="pre">a</span> <span class="pre">=</span> <span class="pre">NULL</span></code> will never match to <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> or <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>, because the comparison results in <code class="docutils literal notranslate"><span class="pre">NULL</span></code>. Use <a class="reference internal" href="../sql_functions/scalar_functions/conditionals/is_null.html#is-null"><span class="std std-ref">IS NULL</span></a> to check for <code class="docutils literal notranslate"><span class="pre">NULL</span></code> values in result sets.</p>
+</section>
+<section id="conditionals">
+<h2>Conditionals<a class="headerlink" href="#conditionals" title="Permalink to this heading"></a></h2>
+<p>Functions like <a class="reference internal" href="../sql_functions/scalar_functions/conditionals/isnull.html#isnull"><span class="std std-ref">ISNULL</span></a> and <a class="reference internal" href="../sql_functions/scalar_functions/conditionals/coalesce.html#coalesce"><span class="std std-ref">COALESCE</span></a> evaluate arguments in their given order, so they may never evaluate some arguments.</p>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">COALESCE(a,b,c,d,NULL)</span></code> will never evalulate <code class="docutils literal notranslate"><span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span></code>, <code class="docutils literal notranslate"><span class="pre">d</span></code>, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if <code class="docutils literal notranslate"><span class="pre">a</span></code> is not <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
+</section>
+<section id="operations">
+<h2>Operations<a class="headerlink" href="#operations" title="Permalink to this heading"></a></h2>
+<section id="scalar-functions">
+<h3>Scalar functions<a class="headerlink" href="#scalar-functions" title="Permalink to this heading"></a></h3>
+<p>With all scalar functions, a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> input to any one of the arguments means the result is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
+<div class="highlight-psql notranslate"><div class="highlight"><pre><span></span><span class="gp">t=&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="s s-Name">&quot;x+y&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="s s-Name">&quot;x*y&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">*</span><span class="n">z</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="s s-Name">&quot;y*z&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">z</span><span class="o">-</span><span class="n">y</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="s s-Name">&quot;z-y&quot;</span><span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
+<span class="go">x | y  | z  | x+y | x*y | y*z | z-y</span>
+<span class="go">--+----+----+-----+-----+-----+----</span>
+<span class="go">1 |  0 |  1 |   1 |   0 |   0 |   1</span>
+<span class="go">2 |  1 |  1 |   3 |   2 |   1 |   0</span>
+<span class="go">3 | \N |  4 |  \N |  \N |  \N |  \N</span>
+<span class="go">4 | \N | \N |  \N |  \N |  \N |  \N</span>
+<span class="go">5 |  6 | \N |  11 |  30 |  \N |  \N</span>
+</pre></div>
+</div>
+</section>
+<section id="aggregates">
+<h3>Aggregates<a class="headerlink" href="#aggregates" title="Permalink to this heading"></a></h3>
+<p>With aggregates, <code class="docutils literal notranslate"><span class="pre">NULL</span></code> values are ignored, so they do not affect the result set.</p>
+<div class="highlight-psql notranslate"><div class="highlight"><pre><span></span><span class="gp">t=&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">SUM</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s s-Name">&quot;sum(x)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">SUM</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s s-Name">&quot;sum(y)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">SUM</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s s-Name">&quot;sum(z)&quot;</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
+<span class="go">sum(x) | sum(y) | sum(z)</span>
+<span class="go">-------+--------+-------</span>
+<span class="go">    15 |      7 |      6</span>
+
+<span class="gp">t=&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">COUNT</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s s-Name">&quot;count(x)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">COUNT</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s s-Name">&quot;count(y)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">COUNT</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="s s-Name">&quot;count(z)&quot;</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
+<span class="go">count(x) | count(y) | count(z)</span>
+<span class="go">---------+----------+---------</span>
+<span class="go">       5 |        3 |        3</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">NULL</span></code> values are not included in <code class="docutils literal notranslate"><span class="pre">COUNT()</span></code> of a column. <code class="docutils literal notranslate"><span class="pre">COUNT(x)</span></code> shows the full row-count because it’s a non-nullable column. <code class="docutils literal notranslate"><span class="pre">COUNT(y)</span></code> returns 3 - just the non-<code class="docutils literal notranslate"><span class="pre">NULL</span></code> values.</p></li>
+<li><p>With <a class="reference internal" href="../sql_functions/aggregate_functions/min.html#min"><span class="std std-ref">MIN</span></a>, <a class="reference internal" href="../sql_functions/aggregate_functions/max.html#max"><span class="std std-ref">MAX</span></a>, and <a class="reference internal" href="../sql_functions/aggregate_functions/avg.html#avg"><span class="std std-ref">AVG</span></a> - <code class="docutils literal notranslate"><span class="pre">NULL</span></code> values are completely ignored.</p></li>
+</ul>
+</section>
+<section id="distincts">
+<h3>Distincts<a class="headerlink" href="#distincts" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">NULL</span></code> values are considered distinct, but only counted once.</p>
+<div class="highlight-psql notranslate"><div class="highlight"><pre><span></span><span class="gp">t=&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
+<span class="go">z</span>
+<span class="go">--</span>
+<span class="go"> 1</span>
+<span class="go"> 4</span>
+<span class="go">\N</span>
+</pre></div>
+</div>
+<p>Running <a class="reference internal" href="../sql_functions/aggregate_functions/count.html#count"><span class="std std-ref">COUNT</span></a> DISTINCT however, ignores the <code class="docutils literal notranslate"><span class="pre">NULL</span></code> values:</p>
+<p><code class="docutils literal notranslate"><span class="pre">NULL</span></code> values are considered distinct, but only counted once.</p>
+<div class="highlight-psql notranslate"><div class="highlight"><pre><span></span><span class="gp">t=&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">COUNT</span><span class="p">(</span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">z</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"></span>
+<span class="go">count</span>
+<span class="go">-----</span>
+<span class="go">    2</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="sorting">
+<h2>Sorting<a class="headerlink" href="#sorting" title="Permalink to this heading"></a></h2>
+<p>When sorting a column containing <code class="docutils literal notranslate"><span class="pre">NULL</span></code> values, SQream DB sorts <code class="docutils literal notranslate"><span class="pre">NULL</span></code> values first with <code class="docutils literal notranslate"><span class="pre">ASC</span></code> and last with <code class="docutils literal notranslate"><span class="pre">DESC</span></code>.</p>
+<p>SQream DB does not implement <code class="docutils literal notranslate"><span class="pre">NULLS</span> <span class="pre">FIRST</span></code> or <code class="docutils literal notranslate"><span class="pre">NULLS</span> <span class="pre">LAST</span></code>, so where <code class="docutils literal notranslate"><span class="pre">NULL</span></code> appears cannot change where NULL values appear in the sort order.</p>
+<div class="highlight-psql notranslate"><div class="highlight"><pre><span></span><span class="gp">t=&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="k">ASC</span><span class="p">;</span><span class="w"></span>
+<span class="go">x | y  | z</span>
+<span class="go">--+----+---</span>
+<span class="go">4 | \N | \N</span>
+<span class="go">5 |  6 | \N</span>
+<span class="go">1 |  0 |  1</span>
+<span class="go">2 |  1 |  1</span>
+<span class="go">3 | \N |  4</span>
+
+<span class="gp">t=&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span><span class="w"></span>
+<span class="go">x | y  | z</span>
+<span class="go">--+----+---</span>
+<span class="go">3 | \N |  4</span>
+<span class="go">1 |  0 |  1</span>
+<span class="go">2 |  1 |  1</span>
+<span class="go">4 | \N | \N</span>
+<span class="go">5 |  6 | \N</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 SQream.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

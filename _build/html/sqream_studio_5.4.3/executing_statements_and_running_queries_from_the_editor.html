@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Executing Statements and Running Queries from the Editor &mdash; SQream Blue 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #133148" >
+            <a href="../index.html">
+            <img src="../_static/SQream_logo_without background-15.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/login_and_connectors.html">Login and Connectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/cost_management.html">Cost Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/performing_basic_sqream_operations.html">Performing Basic SQream Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/running_the_sqream_sql_client.html">Running the SQream SQL Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/creating_your_first_table.html">Creating Your First Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/listing_tables.html">Listing Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/inserting_rows.html">Inserting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/running_queries.html">Running Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/saving_query_results_to_a_csv_or_psv_file.html">Saving Query Results to a CSV or PSV File</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/blue_console.html">BLUE Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sql/index.html">SQL Statements and Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_syntax/index.html">SQL Syntax Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_statements/index.html">SQL Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_functions/index.html">SQL Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/scalar_functions/index.html">Built-In Scalar Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/user_defined_functions/index.html">User-Defined Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/aggregate_functions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/window_functions/index.html">Window Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sql_feature_support.html">SQL Feature Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_type_guides/index.html">Data Type Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/converting_and_casting_types.html">Converting and Casting Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/supported_data_types.html">Supported Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/supported_casts.html">Supported Casts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_boolean.html">Boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_integer.html">Integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_floating_point.html">Floating Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_string.html">String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_date.html">Date</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../file_types/index.html">File Types</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../file_types/file_types_overview.html">File Types Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../file_types/avro.html">Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../file_types/csv.html">CSV</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../file_types/parquet.html">Parquet</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../file_types/orc.html">ORC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../file_types/json.html">JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../feature_guides/index.html">Feature Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/python_functions.html">Python UDF (User-Defined Functions)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/concurrency_and_locks.html">Concurrency and Locks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/concurrency_and_scaling_in_sqream.html">Concurrency and Scaling in SQream DB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operational_guides/index.html">Operational Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/access_control.html">Access Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_managing_roles.html">Managing Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_permissions.html">Permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_password_policy.html">Password Policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_departmental_example.html">Departmental Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/audit_log_operation.html">Audit Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/exporting_data.html">Exporting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/monitoring_query_performance.html">Monitoring Query Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/seeing_system_objects_as_ddl.html">Seeing System Objects as DDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/optimization_best_practices.html">Optimization and Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_guides/index.html">Configuration Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/bucket/bucket_integration.html">Bucket Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/spooling.html">Configuring the Spooling Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/configuring_sqream.html">Configuring SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/configuration_flags.html">Configuration Flags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/admin_flags.html">Administration Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/admin_regular_flags.html">Regular Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/admin_worker_flags.html">Worker Administration Flags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/generic_flags.html">Generic Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/generic_regular_flags.html">Regular Generic Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/generic_worker_flags.html">Worker Generic Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../loading_and_unloading_data/index.html">Loading and Unloading Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/remedying_slow_queries.html">Remedying Slow Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/resolving_common_issues.html">Resolving Common Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/lock_related_issues.html">Lock Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/information_for_support.html">Gathering Information for SQream Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #133148" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SQream Blue</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Executing Statements and Running Queries from the Editor</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="editor-top-5-4-3">
+<span id="executing-statements-and-running-queries-from-the-editor"></span><span id="id1"></span><h1>Executing Statements and Running Queries from the Editor<a class="headerlink" href="#editor-top-5-4-3" title="Permalink to this heading"></a></h1>
+<p>The <strong>Editor</strong> is used for the following:</p>
+<ul class="simple">
+<li><p>Selecting an active database and executing queries.</p></li>
+<li><p>Performing statement-related operations and showing metadata.</p></li>
+<li><p>Executing pre-defined queries.</p></li>
+<li><p>Writing queries and statements and viewing query results.</p></li>
+</ul>
+<p>The following is a brief description of the Editor panels:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 34%" />
+<col style="width: 56%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>No.</p></th>
+<th class="head"><p>Element</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p><a class="reference internal" href="#studio-5-4-3-editor-toolbar"><span class="std std-ref">Toolbar</span></a></p></td>
+<td><p>Used to select the active database you want to work on, limit the number of rows, save query, etc.</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p><a class="reference internal" href="#studio-5-4-3-editor-db-tree"><span class="std std-ref">Database Tree and System Queries panel</span></a></p></td>
+<td><p>Shows a hierarchy tree of databases, views, tables, and columns</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p><a class="reference internal" href="#studio-5-4-3-editor-statement-area"><span class="std std-ref">Statement panel</span></a></p></td>
+<td><p>Used for writing queries and statements</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p><a class="reference internal" href="#studio-5-4-3-editor-results"><span class="std std-ref">Results panel</span></a></p></td>
+<td><p>Shows query results and execution information.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="executing-statements-from-the-toolbar">
+<span id="studio-5-4-3-editor-toolbar"></span><span id="top-5-4-3"></span><h2>Executing Statements from the Toolbar<a class="headerlink" href="#executing-statements-from-the-toolbar" title="Permalink to this heading"></a></h2>
+<p>You can access the following from the Toolbar pane:</p>
+<ul>
+<li><p><strong>Database dropdown list</strong> - select a database that you want to run statements on.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p><strong>Service dropdown list</strong> - select a service that you want to run statements on. The options in the service dropdown menu depend on the database you select from the <strong>Database</strong> dropdown list.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p><strong>Execute</strong> - lets you set which statements to execute. The <strong>Execute</strong> button toggles between <strong>Execute</strong> and <strong>Stop</strong>, and can be used to stop an active statement before it completes:</p>
+<ul class="simple">
+<li><p><strong>Statements</strong> - executes the statement at the location of the cursor.</p></li>
+<li><p><strong>Selected</strong> - executes only the highlighted text. This mode should be used when executing subqueries or sections of large queries (as long as they are valid SQLs).</p></li>
+<li><p><strong>All</strong> - executes all statements in a selected tab.</p></li>
+</ul>
+</li>
+<li><p><strong>Format SQL</strong> - Lets you reformat and reindent statements.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p><strong>Download query</strong> - Lets you download query text to your computer.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p><strong>Open query</strong> - Lets you upload query text from your computer.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p><strong>Max Rows</strong> - By default, the Editor fetches only the first 10,000 rows. You can modify this number by selecting an option from the <strong>Max Rows</strong> dropdown list. Note that setting a higher number may slow down your browser if the result is very large. This number is limited to 100,000 results. To see a higher number, you can save the results in a file or a table using the <a class="reference internal" href="../reference/sql/sql_statements/ddl_commands/create_table_as.html#create-table-as"><span class="std std-ref">CREATE TABLE AS</span></a> command.</p></li>
+</ul>
+<p>For more information on stopping active statements, see the <a class="reference internal" href="../reference/sql/sql_statements/utility_commands/stop_statement.html#stop-statement"><span class="std std-ref">STOP_STATEMENT</span></a> command.</p>
+<p><a class="reference internal" href="#editor-top-5-4-3"><span class="std std-ref">Back to Executing Statements and Running Queries from the Editor</span></a></p>
+</section>
+<section id="performing-statement-related-operations-from-the-database-tree">
+<span id="studio-5-4-3-editor-db-tree"></span><h2>Performing Statement-Related Operations from the Database Tree<a class="headerlink" href="#performing-statement-related-operations-from-the-database-tree" title="Permalink to this heading"></a></h2>
+<p>From the Database Tree you can perform statement-related operations and show metadata (such as a number indicating the amount of rows in the table).</p>
+<p>The database object functions are used to perform the following:</p>
+<ul>
+<li><p>The <strong>SELECT</strong> statement - copies the selected table’s <strong>columns</strong> into the Statement panel as <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> parameters.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p>The <strong>copy</strong> feature <img alt="icon-copy" class="align-middle" src="../_images/studio_icon_copy.png" /> - copies the selected table’s <strong>name</strong> into the Statement panel.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p>The <strong>additional operations</strong> <img alt="icon-dots" class="align-middle" src="../_images/studio_icon_dots.png" /> - displays the following additional options:</p></li>
+</ul>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Function</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Insert statement</p></td>
+<td><p>Generates an <a class="reference external" href="https://docs.sqream.com/en/2022.3_preview/reference/sql/sql_statements/dml_commands/insert.html#insert">INSERT</a> statement for the selected table in the editing area.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Delete statement</p></td>
+<td><p>Generates a <a class="reference external" href="https://docs.sqream.com/en/2022.3_preview/reference/sql/sql_statements/dml_commands/delete.html#delete">DELETE</a> statement for the selected table in the editing area.</p></td>
+</tr>
+<tr class="row-even"><td><p>Create Table As statement</p></td>
+<td><p>Generates a <a class="reference external" href="https://docs.sqream.com/en/2022.3_preview/reference/sql/sql_statements/ddl_commands/create_table_as.html#create-table-as">CREATE TABLE AS</a> statement for the selected table in the editing area.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rename statement</p></td>
+<td><p>Generates an <a class="reference external" href="https://docs.sqream.com/en/2022.3_preview/reference/sql/sql_statements/ddl_commands/rename_table.html#rename-table">RENAME TABLE AS</a> statement for renaming the selected table in the editing area.</p></td>
+</tr>
+<tr class="row-even"><td><p>Adding column statement</p></td>
+<td><p>Generates an <a class="reference external" href="https://docs.sqream.com/en/2022.3_preview/reference/sql/sql_statements/ddl_commands/add_column.html#add-column">ADD COLUMN</a> statement for adding columns to the selected table in the editing area.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Truncate table statement</p></td>
+<td><p>Generates a <a class="reference external" href="https://docs.sqream.com/en/2022.3_preview/reference/sql/sql_statements/dml_commands/truncate_if_exists.html#truncate">TRUNCATE_IF_EXISTS</a> statement for the selected table in the editing area.</p></td>
+</tr>
+<tr class="row-even"><td><p>Drop table statement</p></td>
+<td><p>Generates a <code class="docutils literal notranslate"><span class="pre">DROP</span></code> statement for the selected object in the editing area.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Table DDL</p></td>
+<td><p>Generates a DDL statement for the selected object in the editing area. To get the entire database DDL, click the <img alt="icon-ddl-edit" class="align-middle" src="../_images/studio_icon_ddl_edit.png" /> icon next to the database name in the tree root. See <a class="reference external" href="https://docs.sqream.com/en/2022.3_preview/operational_guides/seeing_system_objects_as_ddl.html">Seeing System Objects as DDL</a>.</p></td>
+</tr>
+<tr class="row-even"><td><p>DDL Optimizer</p></td>
+<td><p>The <a class="reference external" href="https://docs.sqream.com/en/2022.3_preview/sqream_studio_5.4.3/executing_statements_and_running_queries_from_the_editor.html#optimizing-database-tables-using-the-ddl-optimizer">DDL Optimizer</a>  lets you analyze database tables and recommends possible optimizations.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="optimizing-database-tables-using-the-ddl-optimizer">
+<h3>Optimizing Database Tables Using the DDL Optimizer<a class="headerlink" href="#optimizing-database-tables-using-the-ddl-optimizer" title="Permalink to this heading"></a></h3>
+<p>The <strong>DDL Optimizer</strong> tab analyzes database tables and recommends possible optimizations according to SQream’s best practices.</p>
+<p>As described in the previous table, you can access the DDL Optimizer by clicking the <strong>additional options icon</strong> and selecting <strong>DDL Optimizer</strong>.</p>
+<p>The following table describes the DDL Optimizer screen:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 83%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Column area</p></td>
+<td><p>Shows the column <strong>names</strong> and <strong>column types</strong> from the selected table. You can scroll down or to the right/left for long column lists.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Optimization area</p></td>
+<td><p>Shows the number of rows to sample as the basis for running an optimization, the default setting (1,000,000) when running an optimization (this is also the overhead threshold used when analyzing <code class="docutils literal notranslate"><span class="pre">TEXT</span></code> fields),  and the default percent buffer to add to <code class="docutils literal notranslate"><span class="pre">TEXT</span></code> lengths (10%). Attempts to determine field nullability.</p></td>
+</tr>
+<tr class="row-even"><td><p>Run Optimizer</p></td>
+<td><p>Starts the optimization process.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Clicking <strong>Run Optimizer</strong> adds a tab to the Statement panel showing the optimized results of the selected object.</p>
+<p>For more information, see <a class="reference external" href="https://docs.sqream.com/en/2022.3_preview/operational_guides/optimization_best_practices.html">Optimization and Best Practices</a>.</p>
+</section>
+<section id="executing-pre-defined-queries-from-the-system-queries-panel">
+<h3>Executing Pre-Defined Queries from the System Queries Panel<a class="headerlink" href="#executing-pre-defined-queries-from-the-system-queries-panel" title="Permalink to this heading"></a></h3>
+<p>The <strong>System Queries</strong> panel lets you execute predefined queries and includes the following system query types:</p>
+<ul>
+<li><p><strong>Catalog queries</strong> - Used for analyzing table compression rates, users and permissions, etc.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p><strong>Admin queries</strong> - Queries useful for SQream database management.</p></li>
+</ul>
+<p>Clicking an item pastes the query into the Statement pane, and you can undo a previous operation by pressing <strong>Ctrl + Z</strong>.</p>
+</section>
+</section>
+<section id="writing-statements-and-queries-from-the-statement-panel">
+<span id="studio-5-4-3-editor-statement-area"></span><h2>Writing Statements and Queries from the Statement Panel<a class="headerlink" href="#writing-statements-and-queries-from-the-statement-panel" title="Permalink to this heading"></a></h2>
+<p>The multi-tabbed statement area is used for writing queries and statements, and is used in tandem with the toolbar. When writing and executing statements, you must first select a database from the <strong>Database</strong> dropdown menu in the toolbar. When you execute a statement, it passes through a series of statuses until completed. Knowing the status helps you with statement maintenance, and the statuses are shown in the <strong>Results panel</strong>.</p>
+<p>The auto-complete feature assists you when writing statements by suggesting statement options.</p>
+<p>The following table shows the statement statuses:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 78%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Status</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Pending</p></td>
+<td><p>The statement is pending.</p></td>
+</tr>
+<tr class="row-odd"><td><p>In queue</p></td>
+<td><p>The statement is waiting for execution.</p></td>
+</tr>
+<tr class="row-even"><td><p>Initializing</p></td>
+<td><p>The statement has entered execution checks.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Executing</p></td>
+<td><p>The statement is executing.</p></td>
+</tr>
+<tr class="row-even"><td><p>Statement stopped</p></td>
+<td><p>The statement has been stopped.</p></td>
+</tr>
+</tbody>
+</table>
+<p>You can add and name new tabs for each statement that you need to execute, and Studio preserves your created tabs when you switch between databases. You can add new tabs by clicking <img alt="icon-plus" class="align-middle" src="../_images/studio_icon_plus.png" /> , which creates a new tab to the right with a default name of SQL and an increasing number. This helps you keep track of your statements.</p>
+<p>You can also rename the default tab name by double-clicking it and typing a new name and write multiple statements in tandem in the same tab by separating them with semicolons (<code class="docutils literal notranslate"><span class="pre">;</span></code>).If too many tabs to fit into the Statement Pane are open at the same time, the tab arrows are displayed. You can scroll through the tabs by clicking <img alt="icon-left" class="align-middle" src="../_images/studio_icon_left.png" /> or <img alt="icon-right" class="align-middle" src="../_images/studio_icon_right.png" />, and close tabs by clicking <img alt="icon-close" class="align-middle" src="../_images/studio_icon_close.png" />. You can also close all tabs at once by clicking <strong>Close all</strong> located to the right of the tabs.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>If this is your first time using SQream, see <a class="reference external" href="https://docs.sqream.com/en/2022.3_preview/first_steps.html#first-steps">Getting Started</a>.</p>
+</div>
+<p id="studio-editor-results-5-4-3"><a class="reference internal" href="#editor-top-5-4-3"><span class="std std-ref">Back to Executing Statements and Running Queries from the Editor</span></a></p>
+</section>
+<section id="viewing-statement-and-query-results-from-the-results-panel">
+<span id="results-panel-5-4-3"></span><span id="studio-5-4-3-editor-results"></span><h2>Viewing Statement and Query Results from the Results Panel<a class="headerlink" href="#viewing-statement-and-query-results-from-the-results-panel" title="Permalink to this heading"></a></h2>
+<p>The results panel shows statement and query results. By default, only the first 10,000 results are returned, although you can modify this from the <span class="xref std std-ref">studio_editor_toolbar</span>, as described above. By default, executing several statements together opens a separate results tab for each statement. Executing statements together executes them serially, and any failed statement cancels all subsequent executions.</p>
+<img alt="../_images/results_panel.png" src="../_images/results_panel.png" />
+<p>The following is a brief description of the Results panel views highlighted in the figure above:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 78%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#results-view-5-4-3"><span class="std std-ref">Results view</span></a></p></td>
+<td><p>Lets you view search query results.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#execution-details-view-5-4-3"><span class="std std-ref">Execution Details view</span></a></p></td>
+<td><p>Lets you analyze your query for troubleshooting and optimization purposes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sql-view-5-4-3"><span class="std std-ref">SQL view</span></a></p></td>
+<td><p>Lets you see the SQL view.</p></td>
+</tr>
+</tbody>
+</table>
+<p id="results-view-5-4-3"><a class="reference internal" href="#editor-top-5-4-3"><span class="std std-ref">Back to Executing Statements and Running Queries from the Editor</span></a></p>
+<section id="searching-query-results-in-the-results-view">
+<h3>Searching Query Results in the Results View<a class="headerlink" href="#searching-query-results-in-the-results-view" title="Permalink to this heading"></a></h3>
+<p>The <strong>Results view</strong> lets you view search query results.</p>
+<p>From this view you can also do the following:</p>
+<ul class="simple">
+<li><p>View the amount of time (in seconds) taken for a query to finish executing.</p></li>
+<li><p>Switch and scroll between tabs.</p></li>
+<li><p>Close all tabs at once.</p></li>
+<li><p>Enable keeping tabs by selecting <strong>Keep tabs</strong>.</p></li>
+<li><p>Sort column results.</p></li>
+</ul>
+<section id="saving-results-to-the-clipboard">
+<h4>Saving Results to the Clipboard<a class="headerlink" href="#saving-results-to-the-clipboard" title="Permalink to this heading"></a></h4>
+<p>The <strong>Save results to clipboard</strong> function lets you save your results to the clipboard to paste into another text editor or into Excel for further analysis.</p>
+</section>
+<section id="saving-results-to-a-local-file">
+<span id="save-results-to-local-file-5-4-3"></span><h4>Saving Results to a Local File<a class="headerlink" href="#saving-results-to-a-local-file" title="Permalink to this heading"></a></h4>
+<p>The <strong>Save results to local file</strong> functions lets you save your search query results to a local file. Clicking <strong>Save results to local file</strong> downloads the contents of the Results panel to an Excel sheet. You can then use copy and paste this content into other editors as needed.</p>
+<p>In the Results view you can also run parallel statements, as described in <strong>Running Parallel Statements</strong> below.</p>
+</section>
+<section id="running-parallel-statements">
+<span id="running-parallel-statements-5-4-3"></span><h4>Running Parallel Statements<a class="headerlink" href="#running-parallel-statements" title="Permalink to this heading"></a></h4>
+<p>While Studio’s default functionality is to open a new tab for each executed statement, Studio supports running parallel statements in one statement tab. Running parallel statements requires using macros and is useful for advanced users.</p>
+<p>The following shows the syntax for running parallel statements:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>@@ parallel
+<span class="gp">$ </span><span class="nv">$$</span>
+<span class="gp">$ </span><span class="k">select</span> <span class="m">1</span><span class="p">;</span>
+<span class="gp">$ </span><span class="k">select</span> <span class="m">2</span><span class="p">;</span>
+<span class="gp">$ </span><span class="k">select</span> <span class="m">3</span><span class="p">;</span>
+<span class="gp">$ </span><span class="nv">$$</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="#results-panel-5-4-3"><span class="std std-ref">Back to Viewing Statement and Query Results from the Results Panel</span></a></p>
+</section>
+</section>
+<section id="execution-details-view">
+<span id="execution-tree-5-4-3"></span><span id="execution-details-view-5-4-3"></span><h3>Execution Details View<a class="headerlink" href="#execution-details-view" title="Permalink to this heading"></a></h3>
+<p>The <strong>Execution Details View</strong> section describes the following:</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id2">Overview</a></p></li>
+<li><p><a class="reference internal" href="#viewing-query-statistics" id="id3">Viewing Query Statistics</a></p></li>
+<li><p><a class="reference internal" href="#using-the-plain-view" id="id4">Using the Plain View</a></p></li>
+</ul>
+</div>
+<section id="overview">
+<h4><a class="toc-backref" href="#id2">Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading"></a></h4>
+<p>Clicking <strong>Execution Details View</strong> displays the <strong>Execution Tree</strong>, which is a chronological tree of processes that occurred to execute your queries. The purpose of the Execution Tree is to analyze all aspects of your query for troubleshooting and optimization purposes, such as resolving queries with an exceptionally long runtime.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <strong>Execution Details View</strong> button is enabled only when a query takes longer than five seconds.</p>
+</div>
+<p>From this screen you can scroll in, out, and around the execution tree with the mouse to analyze all aspects of your query. You can navigate around the execution tree by dragging or by using the mini-map in the bottom right corner.</p>
+<img alt="../_images/execution_tree_1.png" src="../_images/execution_tree_1.png" />
+<p>You can also search for query data by pressing <strong>Ctrl+F</strong> or clicking the search icon <img alt="icon-search" class="align-middle" src="../_images/studio_icon_search.png" /> in the search field in the top right corner and typing text.</p>
+<img alt="../_images/search_field.png" src="../_images/search_field.png" />
+<p>Pressing <strong>Enter</strong> takes you directly to the next result matching your search criteria, and pressing <strong>Shift + Enter</strong> takes you directly to the previous result. You can also search next and previous results using the up and down arrows.</p>
+<p>The nodes are color-coded based on the following:</p>
+<ul class="simple">
+<li><p><strong>Slow nodes</strong> - red</p></li>
+<li><p><strong>In progress nodes</strong> - yellow</p></li>
+<li><p><strong>Completed nodes</strong> - green</p></li>
+<li><p><strong>Pending nodes</strong> - white</p></li>
+<li><p><strong>Currently selected node</strong> - blue</p></li>
+<li><p><strong>Search result node</strong> - purple (in the mini-map)</p></li>
+</ul>
+<p>The execution tree displays the same information as shown in the plain view in tree format.</p>
+<p>The Execution Tree tracks each phase of your query in real time as a vertical tree of nodes. Each node refers to an operation that occurred on the GPU or CPU. When a phase is completed, the next branch begins to its right until the entire query is complete. Joins are displayed as two parallel branches merged together in a node called <strong>Join</strong>, as shown in the figure above. The nodes are connected by a line indicating the number of rows passed from one node to the next. The width of the line indicates the amount of rows on a logarithmic scale.</p>
+<p>Each node displays a number displaying its <strong>node ID</strong>, its <strong>type</strong>, <strong>table name</strong> (if relevant), <strong>status</strong>, and <strong>runtime</strong>. The nodes are color-coded for easy identification. Green nodes indicate <strong>completed nodes</strong>, yellow indicates <strong>nodes in progress</strong>, and red indicates <strong>slowest nodes</strong>, typically joins, as shown below:</p>
+<img alt="../_images/nodes.png" src="../_images/nodes.png" />
+</section>
+<section id="viewing-query-statistics">
+<h4><a class="toc-backref" href="#id3">Viewing Query Statistics</a><a class="headerlink" href="#viewing-query-statistics" title="Permalink to this heading"></a></h4>
+<p>The following statistical information is displayed in the top left corner, as shown in the figure above:</p>
+<ul>
+<li><p><strong>Query Statistics</strong>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Elapsed</strong> - the total time taken for the query to complete.</p></li>
+<li><p><strong>Result rows</strong> - the amount of rows fetched.</p></li>
+<li><p><strong>Running nodes completion</strong></p></li>
+<li><p><strong>Total query completion</strong> - the amount of the total execution tree that was executed (nodes marked green).</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><strong>Slowest Nodes</strong> information is displayed in the top right corner in red text. Clicking the slowest node centers automatically on that node in the execution tree.</p></li>
+</ul>
+<p>You can also view the following <strong>Node Statistics</strong> in the top right corner for each individual node by clicking a node:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 78%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Node type</p></td>
+<td><p>Shows the node type.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Status</p></td>
+<td><p>Shows the execution status.</p></td>
+</tr>
+<tr class="row-even"><td><p>Time</p></td>
+<td><p>The total time taken to execute.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rows</p></td>
+<td><p>Shows the number of produced rows passed to the next node.</p></td>
+</tr>
+<tr class="row-even"><td><p>Chunks</p></td>
+<td><p>Shows number of produced chunks.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Average rows per chunk</p></td>
+<td><p>Shows the number of average rows per chunk.</p></td>
+</tr>
+<tr class="row-even"><td><p>Table (for <strong>ReadTable</strong> and joins only)</p></td>
+<td><p>Shows the table name.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Write (for joins only)</p></td>
+<td><p>Shows the total date size written to the disk.</p></td>
+</tr>
+<tr class="row-even"><td><p>Read (for <strong>ReadTable</strong> and joins only)</p></td>
+<td><p>Shows the total data size read from the disk.</p></td>
+</tr>
+</tbody>
+</table>
+<p>Note that you can scroll the Node Statistics table. You can also download the execution plan table in .csv format by clicking the download arrow <img alt="icon-download" class="align-middle" src="../_images/studio_icon_download.png" /> in the upper-right corner.</p>
+</section>
+<section id="using-the-plain-view">
+<h4><a class="toc-backref" href="#id4">Using the Plain View</a><a class="headerlink" href="#using-the-plain-view" title="Permalink to this heading"></a></h4>
+<p>You can use the <strong>Plain View</strong> instead of viewing the execution tree by clicking <strong>Plain View</strong> <img alt="icon-plain" class="align-middle" src="../_images/studio_icon_plain.png" /> in the top right corner. The plain view displays the same information as shown in the execution tree in table format.</p>
+<p>The plain view lets you view a query’s execution plan for monitoring purposes and highlights rows based on how long they ran relative to the entire query.</p>
+<p>This can be seen in the <strong>timeSum</strong> column as follows:</p>
+<ul class="simple">
+<li><p><strong>Rows highlighted red</strong> - longest runtime</p></li>
+<li><p><strong>Rows highlighted orange</strong> - medium runtime</p></li>
+<li><p><strong>Rows highlighted yellow</strong> - shortest runtime</p></li>
+</ul>
+<p><a class="reference internal" href="#results-panel-5-4-3"><span class="std std-ref">Back to Viewing Statement and Query Results from the Results Panel</span></a></p>
+</section>
+</section>
+<section id="viewing-wrapped-strings-in-the-sql-view">
+<span id="sql-view-5-4-3"></span><h3>Viewing Wrapped Strings in the SQL View<a class="headerlink" href="#viewing-wrapped-strings-in-the-sql-view" title="Permalink to this heading"></a></h3>
+<p>The SQL View panel allows you to more easily view certain queries, such as a long string that appears on one line. The SQL View makes it easier to see by wrapping it so that you can see the entire string at once. It also reformats and organizes query syntax entered in the Statement panel for more easily locating particular segments of your queries. The SQL View is identical to the <strong>Format SQL</strong> feature in the Toolbar, allowing you to retain your originally constructed query while viewing a more intuitively structured snapshot of it.</p>
+<p id="save-results-to-clipboard-5-4-3"><a class="reference internal" href="#results-panel-5-4-3"><span class="std std-ref">Back to Viewing Statement and Query Results from the Results Panel</span></a></p>
+<p><a class="reference internal" href="#editor-top-5-4-3"><span class="std std-ref">Back to Executing Statements and Running Queries from the Editor</span></a></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 SQream.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

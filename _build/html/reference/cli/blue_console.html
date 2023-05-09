@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BLUE Console &mdash; SQream Blue Beta documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="SQL Statements and Syntax" href="../sql/index.html" />
+    <link rel="prev" title="Command Line Programs" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #133148" >
+            <a href="../../index.html">
+            <img src="../../_static/SQream_logo_without background-15.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/login_and_connectors.html">Login and Connectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/cost_management.html">Cost Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/executing_statements_in_sqream.html">Executing Statements in SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/performing_basic_sqream_operations.html">Performing Basic SQream Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/running_the_sqream_sql_client.html">Running the SQream SQL Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/creating_your_first_table.html">Creating Your First Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/listing_tables.html">Listing Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/inserting_rows.html">Inserting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/running_queries.html">Running Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/saving_query_results_to_a_csv_or_psv_file.html">Saving Query Results to a CSV or PSV File</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_ingestion/index.html">Data Ingestion Sources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data_ingestion/ingesting_data.html">Ingesting Data Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_ingestion/avro.html">Ingesting Data from Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_ingestion/csv.html">Ingesting Data from a CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_ingestion/parquet.html">Ingesting Data from a Parquet File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_ingestion/orc.html">Ingesting Data from an ORC File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_ingestion/json.html">Ingesting Data from JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../loading_and_unloading_data/index.html">Loading and Unloading Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../feature_guides/index.html">Feature Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../feature_guides/python_functions.html">Python UDF (User-Defined Functions)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../feature_guides/concurrency_and_locks.html">Concurrency and Locks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../feature_guides/concurrency_and_scaling_in_sqream.html">Concurrency and Scaling in SQream DB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../operational_guides/index.html">Operational Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../operational_guides/access_control.html">Access Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../operational_guides/access_control_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../operational_guides/access_control_managing_roles.html">Managing Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../operational_guides/access_control_permissions.html">Permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../operational_guides/access_control_password_policy.html">Password Policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../operational_guides/access_control_departmental_example.html">Departmental Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../operational_guides/audit_log_operation.html">Audit Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../operational_guides/exporting_data.html">Exporting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../operational_guides/monitoring_query_performance.html">Monitoring Query Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../operational_guides/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../operational_guides/seeing_system_objects_as_ddl.html">Seeing System Objects as DDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../operational_guides/optimization_best_practices.html">Optimization and Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_guides/index.html">Configuration Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration_guides/spooling.html">Configuring the Spooling Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration_guides/configuring_sqream.html">Configuring SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration_guides/configuration_flags.html">Configuration Flags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../configuration_guides/admin_flags.html">Administration Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../configuration_guides/admin_regular_flags.html">Regular Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../configuration_guides/admin_worker_flags.html">Worker Administration Flags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../configuration_guides/generic_flags.html">Generic Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../configuration_guides/generic_regular_flags.html">Regular Generic Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../configuration_guides/generic_worker_flags.html">Worker Generic Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Command Line Programs</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">BLUE Console</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../sql/index.html">SQL Statements and Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../sql/sql_syntax/index.html">SQL Syntax Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sql/sql_statements/index.html">SQL Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../sql/sql_functions/index.html">SQL Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sql/sql_functions/scalar_functions/index.html">Built-In Scalar Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sql/sql_functions/user_defined_functions/index.html">User-Defined Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sql/sql_functions/aggregate_functions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sql/sql_functions/window_functions/index.html">Window Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../sql_feature_support.html">SQL Feature Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_type_guides/index.html">Data Type Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data_type_guides/converting_and_casting_types.html">Converting and Casting Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_type_guides/supported_data_types.html">Supported Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_type_guides/supported_casts.html">Supported Casts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../data_type_guides/sql_data_types_numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data_type_guides/sql_data_types_boolean.html">Boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data_type_guides/sql_data_types_integer.html">Integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data_type_guides/sql_data_types_floating_point.html">Floating Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data_type_guides/sql_data_types_string.html">String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data_type_guides/sql_data_types_date.html">Date</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release Notes</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshooting/remedying_slow_queries.html">Remedying Slow Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshooting/resolving_common_issues.html">Resolving Common Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshooting/lock_related_issues.html">Lock Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshooting/information_for_support.html">Gathering Information for SQream Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #133148" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SQream Blue</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Reference</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Command Line Programs</a></li>
+      <li class="breadcrumb-item active">BLUE Console</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="blue-console">
+<span id="id1"></span><h1>BLUE Console<a class="headerlink" href="#blue-console" title="Permalink to this heading"></a></h1>
+<p>BLUE has a native client program that provides a command-line interface (CLI) for interacting with your on-line stored data. It allows you to connect to database servers, execute SQL queries and commands, and receive the results in a text-based format.</p>
+<section id="running-blue-cli">
+<h2>Running BLUE CLI<a class="headerlink" href="#running-blue-cli" title="Permalink to this heading"></a></h2>
+<p>BLUE CLI is Java based and may be run on any Java supported platform - use the following link to check supported platforms and download <a class="reference external" href="https://www.oracle.com/java/technologies/downloads/#java11">Java 11</a>.</p>
+<ol class="arabic">
+<li><p>Using the BLUE web interface, generate and copy an access token.</p>
+<p>For instruction on how to generate and copy access tokens, go to the :ref:access_tokens</p>
+</li>
+<li><p>Start the client by browsing your CLI for the location of the <code class="docutils literal notranslate"><span class="pre">jdbc-console-*.*.**.jar</span></code> file and execute it as follows:</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo java -jar jdbc-console-*.*.**.jar --host<span class="o">=</span>&lt;BLUE cluster FQDN&gt; --access-token<span class="o">=</span>&lt;access-token&gt;
+
+<span class="go">Output:</span>
+
+<span class="go">Welcome to JDBC console, SQream DB version 2.0.0</span>
+<span class="go">To quit use ^d or exit; to abort ^c</span>
+<span class="go">Connection URL: jdbc:Sqream://java3-sqream.isqream.com:443/master;accesstoken=##########</span>
+</pre></div>
+</div>
+<section id="running-commands-interactively-sql-shell">
+<h3>Running Commands Interactively (SQL Shell)<a class="headerlink" href="#running-commands-interactively-sql-shell" title="Permalink to this heading"></a></h3>
+<p>After entering your access token, you are presented with the <strong>SQL shell</strong>. The database name shown means you are now ready to run statements and queries.</p>
+<p><strong>SQL shell</strong> control commands:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 55%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Ctrl-d</span></code>, <code class="docutils literal notranslate"><span class="pre">exit;</span></code></p></td>
+<td><p>Exit the SQL Shell</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">^c</span></code></p></td>
+<td><p>Abort a statement or query</p></td>
+</tr>
+</tbody>
+</table>
+<p>Statements and queries are standard SQL, followed by a semicolon <code class="docutils literal notranslate"><span class="pre">;</span></code>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">master=&gt; CREATE TABLE nba (</span>
+<span class="go">  player_name TEXT,</span>
+<span class="go">  team_name TEXT,</span>
+<span class="go">  jersey_number INT,</span>
+<span class="go">  position TEXT,</span>
+<span class="go">  age INT,</span>
+<span class="go">  height TEXT,</span>
+<span class="go">  weight INT,</span>
+<span class="go">  college TEXT,</span>
+<span class="go">  salary INT</span>
+<span class="go">);</span>
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">INSERT INTO nba VALUES</span>
+<span class="go">  (&#39;Avery Bradley&#39;, &#39;Boston Celtics&#39;, 0, &#39;PG&#39;, 25, &#39;6-2&#39;, 180, &#39;Texas&#39;, 7730337),</span>
+<span class="go">  (&#39;Jae Crowder&#39;, &#39;Boston Celtics&#39;, 99, &#39;SF&#39;, 25, &#39;6-6&#39;, 235, &#39;Marquette&#39;, 6796117),</span>
+<span class="go">  (&#39;John Holland&#39;, &#39;Boston Celtics&#39;, 30, &#39;SG&#39;, 27, &#39;6-5&#39;, 205, &#39;Boston University&#39;, NULL),</span>
+<span class="go">  (&#39;R.J. Hunter&#39;, &#39;Boston Celtics&#39;, 28, &#39;SG&#39;, 22, &#39;6-5&#39;, 185, &#39;Georgia State&#39;, 1148640),</span>
+<span class="go">  (&#39;Jonas Jerebko&#39;, &#39;Boston Celtics&#39;, 8, &#39;PF&#39;, 29, &#39;6-10&#39;, 231, NULL, 5000000);</span>
+</pre></div>
+</div>
+<p>Statement results are usually formatted as a valid CSV, followed by the number of rows and the elapsed time for that statement.</p>
+<p>Null values are represented as <code class="docutils literal notranslate"><span class="pre">\N</span></code>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">master=&gt; SELECT TOP 5 * FROM nba;</span>
+<span class="go">Avery Bradley           ,Boston Celtics        ,0,PG,25,6-2 ,180,Texas                ,7730337</span>
+<span class="go">Jae Crowder             ,Boston Celtics        ,99,SF,25,6-6 ,235,Marquette            ,6796117</span>
+<span class="go">John Holland            ,Boston Celtics        ,30,SG,27,6-5 ,205,Boston University    ,\N</span>
+<span class="go">R.J. Hunter             ,Boston Celtics        ,28,SG,22,6-5 ,185,Georgia State        ,1148640</span>
+<span class="go">Jonas Jerebko           ,Boston Celtics        ,8,PF,29,6-10,231,\N,5000000</span>
+<span class="go">5 rows</span>
+<span class="go">time: 0.001185s</span>
+</pre></div>
+</div>
+<p>When writing long statements and queries, it may be beneficial to use line-breaks.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">master=&gt; SELECT Age, AVG(Salary)</span>
+<span class="go">FROM nba</span>
+<span class="go">GROUP BY 1</span>
+<span class="go">ORDER BY 2 ASC</span>
+<span class="go">LIMIT 5</span>
+<span class="go">;</span>
+
+<span class="go">Output:</span>
+
+<span class="go">27,\N</span>
+<span class="go">22,1148640</span>
+<span class="go">29,5000000</span>
+<span class="go">25,7263227</span>
+<span class="go">4 rows</span>
+<span class="go">time: 0.604 s</span>
+</pre></div>
+</div>
+</section>
+<section id="executing-batch-scripts-f">
+<h3>Executing Batch Scripts (-f)<a class="headerlink" href="#executing-batch-scripts-f" title="Permalink to this heading"></a></h3>
+<p>To run an SQL script, use the <code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">&lt;filename&gt;</span></code> argument.
+For example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ java -jar jdbc-console-0.0.92-48.jar --host=product.isqream.com --access-token=########## -f=script.sql
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Output can be saved to a file by using the <code class="docutils literal notranslate"><span class="pre">&gt;</span></code> redirection operator.</p>
+</div>
+</section>
+<section id="executing-commands-immediately-c">
+<h3>Executing Commands Immediately (-c)<a class="headerlink" href="#executing-commands-immediately-c" title="Permalink to this heading"></a></h3>
+<p>To run a statement from the console, use the <code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">&lt;statement&gt;</span></code> argument.</p>
+<p>For example,</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ java -jar jdbc-console-0.0.92-48.jar --host=product.isqream.com --access-token=########## -d master -c &quot;SELECT TOP 5 * FROM nba;&quot;
+Avery Bradley           ,Boston Celtics        ,0,PG,25,6-2 ,180,Texas                ,7730337
+Jae Crowder             ,Boston Celtics        ,99,SF,25,6-6 ,235,Marquette            ,6796117
+John Holland            ,Boston Celtics        ,30,SG,27,6-5 ,205,Boston University    ,\N
+R.J. Hunter             ,Boston Celtics        ,28,SG,22,6-5 ,185,Georgia State        ,1148640
+Jonas Jerebko           ,Boston Celtics        ,8,PF,29,6-10,231,\N,5000000
+5 rows
+time: 0.202618s
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Remove the timing and row count by passing the <code class="docutils literal notranslate"><span class="pre">--results-only</span></code> parameter.</p>
+</div>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<section id="executing-statements-in-an-interactive-shell">
+<h3>Executing Statements in an Interactive Shell<a class="headerlink" href="#executing-statements-in-an-interactive-shell" title="Permalink to this heading"></a></h3>
+<p>Note that all SQL commands end with a semicolon.</p>
+<p>Creating a new database and switching over to it without reconnecting:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ java -jar jdbc-console-0.0.92-48.jar --host=product.isqream.com --access-token=########## -d master
+
+
+Interactive client mode
+To quit, use ^D or \q.
+
+master=&gt; CREATE DATABASE farm;
+time: 0.003811s
+
+master=&gt; \c farm
+farm=&gt;
+
+
+farm=&gt; CREATE TABLE animals(id int not null, name varchar(30) not null, is_angry bool not null);
+time: 0.011940s
+
+farm=&gt; INSERT INTO animals values(1,&#39;goat&#39;,false);
+time: 0.000405s
+
+farm=&gt; INSERT INTO animals values(4,&#39;bull&#39;,true) ;
+time: 0.049338s
+
+farm=&gt; SELECT * FROM animals;
+1,goat,false
+4,bull,true
+2 rows
+time: 0.029299s
+</pre></div>
+</div>
+</section>
+<section id="executing-sql-statements-from-the-command-line">
+<h3>Executing SQL Statements from the Command Line<a class="headerlink" href="#executing-sql-statements-from-the-command-line" title="Permalink to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ java -jar jdbc-console-0.0.92-48.jar --host=product.isqream.com --access-token=########## -d farm -c &quot;SELECT * FROM animals WHERE is_angry = true;&quot;
+
+Output:
+
+4,bull,true
+1 row
+time: 0.095941s
+</pre></div>
+</div>
+</section>
+<section id="controlling-the-client-output">
+<h3>Controlling the Client Output<a class="headerlink" href="#controlling-the-client-output" title="Permalink to this heading"></a></h3>
+<p>Two parameters control the client result display:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 69%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--results-only</span></code></p></td>
+<td><p>Removes row counts and timing information</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--delimiter</span></code></p></td>
+<td><p>Changes the record delimiter</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="exporting-sql-query-results-to-csv">
+<h3>Exporting SQL Query Results to CSV<a class="headerlink" href="#exporting-sql-query-results-to-csv" title="Permalink to this heading"></a></h3>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">--results-only</span></code> flag removes the row counts and timing.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
+ --port=3105 --clustered --username=oldmcd -d farm -c &quot;SELECT * FROM animals&quot; --results-only &gt; file.csv
+$ cat file.csv
+1,goat                          ,0
+2,sow                           ,0
+3,chicken                       ,0
+4,bull                          ,1
+</pre></div>
+</div>
+</section>
+<section id="changing-a-csv-to-a-tsv">
+<h3>Changing a CSV to a TSV<a class="headerlink" href="#changing-a-csv-to-a-tsv" title="Permalink to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">--delimiter</span></code> parameter accepts any printable character.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To insert a tab, use <code class="docutils literal notranslate"><span class="pre">Ctrl-V</span></code> followed by <code class="docutils literal notranslate"><span class="pre">Tab</span></code> in Bash.</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
+ --port=3105 --clustered --username=oldmcd -d farm -c &quot;SELECT * FROM animals&quot; --delimiter &#39;  &#39; &gt; file.tsv
+$ cat file.tsv
+1  goat                             0
+2  sow                              0
+3  chicken                          0
+4  bull                             1
+</pre></div>
+</div>
+</section>
+<section id="executing-a-series-of-statements-from-a-file">
+<h3>Executing a Series of Statements From a File<a class="headerlink" href="#executing-a-series-of-statements-from-a-file" title="Permalink to this heading"></a></h3>
+<p>Assuming a file containing SQL statements (separated by semicolons):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cat some_queries.sql
+   CREATE TABLE calm_farm_animals
+  ( id INT IDENTITY(0, 1), name VARCHAR(30)
+  );
+
+INSERT INTO calm_farm_animals (name)
+  SELECT name FROM   animals WHERE  is_angry = false;
+
+
+$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
+ --port=3105 --clustered --username=oldmcd -d farm -f some_queries.sql
+executed
+time: 0.018289s
+executed
+time: 0.090697s
+</pre></div>
+</div>
+</section>
+<section id="connecting-using-environment-variables-in-linux-environments">
+<h3>Connecting Using Environment Variables in Linux environments<a class="headerlink" href="#connecting-using-environment-variables-in-linux-environments" title="Permalink to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>You can save connection parameters as environment variables:
+$ export SQREAM_USER=sqream;
+$ export SQREAM_DATABASE=farm;
+$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
+ --port=3105 --clustered --username=$SQREAM_USER -d $SQREAM_DATABASE
+</pre></div>
+</div>
+</section>
+</section>
+<section id="operations-and-flag-references">
+<h2>Operations and Flag References<a class="headerlink" href="#operations-and-flag-references" title="Permalink to this heading"></a></h2>
+<section id="command-line-arguments">
+<h3>Command Line Arguments<a class="headerlink" href="#command-line-arguments" title="Permalink to this heading"></a></h3>
+<p>Sqream SQL supports the following command line arguments:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Argument</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">command</span></code></p></td>
+<td><p>None</p></td>
+<td><p>Changes the mode of operation to single-command, non-interactive. Use this argument to run a statement and immediately exit.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">-f</span></code> or <code class="docutils literal notranslate"><span class="pre">--file</span></code></p></td>
+<td><p>None</p></td>
+<td><p>Changes the mode of operation to multi-command, non-interactive. Use this argument to run a sequence of statements from an external file and immediately exit.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">--host</span></code></p></td>
+<td></td>
+<td><p>Fully Qualified Domain Name (FQDN) address of the Blue server to connect to</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">--databasename</span></code> or <code class="docutils literal notranslate"><span class="pre">-d</span></code></p></td>
+<td><p>None</p></td>
+<td><p>Specifies the database name for queries and statements in this session.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">results-only</span></code></p></td>
+<td><p>False</p></td>
+<td><p>Outputs results only, without timing information and row counts</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">no-history</span></code></p></td>
+<td><p>False</p></td>
+<td><p>When set, prevents command history from being saved in <code class="docutils literal notranslate"><span class="pre">~/.sqream/clientcmdhist</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">delimiter</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">,</span></code></p></td>
+<td><p>Specifies the field separator. By default, <code class="docutils literal notranslate"><span class="pre">sqream</span> <span class="pre">sql</span></code> outputs valid CSVs. Change the delimiter to modify the output to another delimited format (e.g. TSV, PSV). See the section supported record delimiters below for more information.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">access-token</span></code></p></td>
+<td><p>None</p></td>
+<td><p>Provide a security token that grants access to protected resources or operations.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Run <code class="docutils literal notranslate"><span class="pre">$</span>&#160; <span class="pre">java</span> <span class="pre">-jar</span> <span class="pre">jdbc-console-*.*.**.jar</span>&#160; <span class="pre">--help</span></code> to see a full list of arguments.</p>
+</div>
+</section>
+<section id="supported-record-delimiters">
+<h3>Supported Record Delimiters<a class="headerlink" href="#supported-record-delimiters" title="Permalink to this heading"></a></h3>
+<p>The supported record delimiters are printable ASCII values (32-126).</p>
+<ul class="simple">
+<li><p>Recommended delimiters for use are: <code class="docutils literal notranslate"><span class="pre">,</span></code>, <code class="docutils literal notranslate"><span class="pre">|</span></code>, tab character.</p></li>
+<li><p>The following characters are <strong>not supported</strong>: <code class="docutils literal notranslate"><span class="pre">\,</span> <span class="pre">N,</span> <span class="pre">-,</span> <span class="pre">:,</span> <span class="pre">&quot;,</span> <span class="pre">\n,</span> <span class="pre">\r,</span> <span class="pre">.,</span></code> lower-case latin letters, digits (0-9)</p></li>
+</ul>
+</section>
+<section id="meta-commands">
+<h3>Meta-Commands<a class="headerlink" href="#meta-commands" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Meta-commands in Sqream SQL start with a backslash ()</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Meta commands do not end with a semicolon.</p>
+</div>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Example</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">^c</span></code></p></td>
+<td></td>
+<td><p>Abort the currently running statement</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">^d</span></code> or <code class="docutils literal notranslate"><span class="pre">exit</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">master=&gt;</span> <span class="pre">exit;</span></code></p></td>
+<td><p>Quit the client. (Same as <code class="docutils literal notranslate"><span class="pre">Ctrl-d</span></code>)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">\c</span> <span class="pre">&lt;database&gt;</span> <span class="pre">or</span> <span class="pre">\connect</span> <span class="pre">&lt;database&gt;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">master=&gt;</span> <span class="pre">\c</span> <span class="pre">fox</span></code>
+<code class="docutils literal notranslate"><span class="pre">fox=&gt;</span></code></p></td>
+<td><p>Changes the current connection to an alternate database</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="moving-around-the-command-line">
+<h2>Moving Around the Command Line<a class="headerlink" href="#moving-around-the-command-line" title="Permalink to this heading"></a></h2>
+<p>Note: below shortcuts are only supported for Linux environments</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Ctrl-a</span></code></p></td>
+<td><p>Goes to the beginning of the command line.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Ctrl-e</span></code></p></td>
+<td><p>Goes to the end of the command line.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Ctrl-u</span></code></p></td>
+<td><p>Deletes from cursor to the beginning of the command line.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Ctrl-k</span></code></p></td>
+<td><p>Deletes from the cursor to the end of the command line.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Ctrl-w</span></code></p></td>
+<td><p>Delete from cursor to beginning of a word.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Ctrl-y</span></code></p></td>
+<td><p>Pastes a word or text that was cut using one of the deletion shortcuts (such as the one above) after the cursor.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Alt-b</span></code></p></td>
+<td><p>Moves back one word (or goes to the beginning of the word where the cursor is).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Alt-f</span></code></p></td>
+<td><p>Moves forward one word (or goes to the end of word the cursor is).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Alt-d</span></code></p></td>
+<td><p>Deletes to the end of a word starting at the cursor. Deletes the whole word if the cursor is at the beginning of that word.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Alt-c</span></code></p></td>
+<td><p>Capitalizes letters in a word starting at the cursor. Capitalizes the whole word if the cursor is at the beginning of that word.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Alt-u</span></code></p></td>
+<td><p>Capitalizes from the cursor to the end of the word.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Alt-l</span></code></p></td>
+<td><p>Makes lowercase from the cursor to the end of the word.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Ctrl-f</span></code></p></td>
+<td><p>Moves forward one character.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Ctrl-b</span></code></p></td>
+<td><p>Moves backward one character.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Ctrl-h</span></code></p></td>
+<td><p>Deletes characters located before the cursor.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Ctrl-t</span></code></p></td>
+<td><p>Swaps a character at the cursor with the previous character.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="searching">
+<h3>Searching<a class="headerlink" href="#searching" title="Permalink to this heading"></a></h3>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Command</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Ctrl-r</span></code></p></td>
+<td><p>Searches the history backward.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Ctrl-g</span></code></p></td>
+<td><p>Escapes from history-searching mode.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Ctrl-p</span></code></p></td>
+<td><p>Searches the previous command in history.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Ctrl-n</span></code></p></td>
+<td><p>Searches the next command in history.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Command Line Programs" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../sql/index.html" class="btn btn-neutral float-right" title="SQL Statements and Syntax" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 SQream.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

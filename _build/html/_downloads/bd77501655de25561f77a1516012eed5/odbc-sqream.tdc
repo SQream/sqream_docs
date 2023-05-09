@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<connection-customization class='genericodbc' enabled='true' version='2019.3'>
+    <vendor name='SQream DB Server' />
+    <driver name='SqreamODBCDriver' />
+    <customizations>
+      <customization name='CAP_SKIP_CONNECT_VALIDATION' value='yes' />
+      <customization name='CAP_CREATE_TEMP_TABLES' value='no' />
+      <customization name='CAP_QUERY_GROUP_BY_ALIAS' value='no' />
+      <customization name='CAP_ODBC_METADATA_SUPPRESS_SQLFOREIGNKEYS_API' value='yes' />
+      <customization name='CAP_ODBC_METADATA_SUPPRESS_SQLPRIMARYKEYS_API' value='yes' />
+      <customization name='CAP_QUERY_JOIN_ACROSS_SCHEMAS' value='yes' />
+      <customization name='CAP_SELECT_INTO' value='no' />
+      <customization name='CAP_QUERY_SUBQUERIES' value='no' />
+      <customization name='CAP_QUERY_SUBQUERY_DATASOURCE_CONTEXT' value='yes' />
+      <customization name='CAP_QUERY_SUBQUERY_QUERY_CONTEXT' value='yes' />
+      <customization name='CAP_QUERY_SUBQUERIES_WITH_TOP' value='yes' />
+      <customization name='CAP_QUERY_TOP_N' value='yes' />
+      <customization name='CAP_QUERY_TOPSTYLE_TOP' value='yes' />
+      <customization name='CAP_STORED_PROCEDURE_PREFER_TEMP_TABLE' value='no' />
+      <customization name='CAP_SUPPRESS_DISPLAY_LIMITATIONS' value='yes' />
+      <customization name='CAP_QUERY_GROUP_BY_DEGREE' value='yes' />
+      <customization name='CAP_FAST_METADATA' value='yes' />
+      <customization name='CAP_MULTIPLE_CONNECTIONS_FROM_SAME_IP' value='yes' />
+    </customizations>
+</connection-customization>

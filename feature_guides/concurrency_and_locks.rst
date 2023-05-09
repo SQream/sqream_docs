@@ -4,7 +4,7 @@
 Concurrency and Locks
 ***********************
 
-Locks are used in SQream DB to provide consistency when there are multiple concurrent transactions updating the database. 
+Locks are used in BLUE to provide consistency when there are multiple concurrent transactions updating the database. 
 
 Read only transactions are never blocked, and never block anything. Even if you drop a database while concurrently running a query on it, both will succeed correctly (as long as the query starts running before the drop database commits).
 
@@ -13,7 +13,7 @@ Read only transactions are never blocked, and never block anything. Even if you 
 Locking Modes
 ================
 
-SQream DB has two kinds of locks:
+BLUE has two kinds of locks:
 
 * 
    ``exclusive`` - this lock mode prevents the resource from being modified by other statements
@@ -45,12 +45,7 @@ When are Locks Obtained?
      - Concurrent
      - Concurrent
      - Concurrent
-   * - :ref:`insert`
-     - Concurrent
-     - Concurrent
-     - Concurrent
-     - Wait
-   * - :ref:`delete`, :ref:`truncate`
+   * - :ref:`delete`
      - Concurrent
      - Concurrent
      - Wait
@@ -71,7 +66,7 @@ Monitoring locks across the cluster can be useful when transaction contention ta
 
 The utility :ref:`show_locks` can be used to see the active locks.
 
-In this example, we create a table based on results (:ref:`create_table_as`), but we are also effectively dropping the previous table (by using ``OR REPLACE`` which also :ref:`drops the table<drop_table>`). Thus, SQream DB applies locks during the table creation process to prevent the table from being altered during it's creation.
+In this example, we create a table based on results (:ref:`create_table_as`), but we are also effectively dropping the previous table (by using ``OR REPLACE`` which also :ref:`drops the table<drop_table>`). Thus, BLUE applies locks during the table creation process to prevent the table from being altered during it's creation.
 
 
 .. code-block:: psql

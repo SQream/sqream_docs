@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File Types Overview &mdash; SQream Blue 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Ingesting Data from Avro" href="avro.html" />
+    <link rel="prev" title="Data Ingestion Sources" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #133148" >
+            <a href="../index.html">
+            <img src="../_static/SQream_logo_without background-15.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/login_and_connectors.html">Login and Connectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/cost_management.html">Cost Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/performing_basic_sqream_operations.html">Performing Basic SQream Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/running_the_sqream_sql_client.html">Running the SQream SQL Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/creating_your_first_table.html">Creating Your First Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/listing_tables.html">Listing Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/inserting_rows.html">Inserting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/running_queries.html">Running Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/saving_query_results_to_a_csv_or_psv_file.html">Saving Query Results to a CSV or PSV File</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Data Ingestion Sources</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">File Types Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="avro.html">Ingesting Data from Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="csv.html">Ingesting Data from a CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parquet.html">Ingesting Data from a Parquet File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="orc.html">Ingesting Data from an ORC File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json.html">Ingesting Data from JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../loading_and_unloading_data/index.html">Loading and Unloading Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../feature_guides/index.html">Feature Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/python_functions.html">Python UDF (User-Defined Functions)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/concurrency_and_locks.html">Concurrency and Locks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/concurrency_and_scaling_in_sqream.html">Concurrency and Scaling in SQream DB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operational_guides/index.html">Operational Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/access_control.html">Access Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_managing_roles.html">Managing Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_permissions.html">Permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_password_policy.html">Password Policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_departmental_example.html">Departmental Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/audit_log_operation.html">Audit Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/exporting_data.html">Exporting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/monitoring_query_performance.html">Monitoring Query Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/seeing_system_objects_as_ddl.html">Seeing System Objects as DDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/optimization_best_practices.html">Optimization and Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_guides/index.html">Configuration Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/bucket/bucket_integration.html">Bucket Integration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/spooling.html">Configuring the Spooling Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/configuring_sqream.html">Configuring SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/configuration_flags.html">Configuration Flags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/admin_flags.html">Administration Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/admin_regular_flags.html">Regular Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/admin_worker_flags.html">Worker Administration Flags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/generic_flags.html">Generic Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/generic_regular_flags.html">Regular Generic Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/generic_worker_flags.html">Worker Generic Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/blue_console.html">BLUE Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sql/index.html">SQL Statements and Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_syntax/index.html">SQL Syntax Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_statements/index.html">SQL Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_functions/index.html">SQL Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/scalar_functions/index.html">Built-In Scalar Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/user_defined_functions/index.html">User-Defined Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/aggregate_functions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/window_functions/index.html">Window Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sql_feature_support.html">SQL Feature Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_type_guides/index.html">Data Type Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/converting_and_casting_types.html">Converting and Casting Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/supported_data_types.html">Supported Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/supported_casts.html">Supported Casts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_boolean.html">Boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_integer.html">Integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_floating_point.html">Floating Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_string.html">String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_date.html">Date</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/remedying_slow_queries.html">Remedying Slow Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/resolving_common_issues.html">Resolving Common Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/lock_related_issues.html">Lock Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/information_for_support.html">Gathering Information for SQream Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #133148" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SQream Blue</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Data Ingestion Sources</a></li>
+      <li class="breadcrumb-item active">File Types Overview</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="file-types-overview">
+<span id="file-types"></span><h1>File Types Overview<a class="headerlink" href="#file-types-overview" title="Permalink to this heading"></a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#unsupported-data-types" id="id20">Unsupported Data Types</a></p></li>
+<li><p><a class="reference internal" href="#best-practices-for-csv" id="id21">Best Practices for CSV</a></p></li>
+<li><p><a class="reference internal" href="#best-practices-for-parquet" id="id22">Best Practices for Parquet</a></p></li>
+<li><p><a class="reference internal" href="#best-practices-for-orc" id="id23">Best Practices for ORC</a></p></li>
+</ul>
+</div>
+<section id="unsupported-data-types">
+<h2><a class="toc-backref" href="#id20">Unsupported Data Types</a><a class="headerlink" href="#unsupported-data-types" title="Permalink to this heading"></a></h2>
+<p>SQream does not support certain features that are supported by other databases, such as <code class="docutils literal notranslate"><span class="pre">ARRAY</span></code>, <code class="docutils literal notranslate"><span class="pre">BLOB</span></code>, <code class="docutils literal notranslate"><span class="pre">ENUM</span></code>, and <code class="docutils literal notranslate"><span class="pre">SET</span></code>. You must convert these data types before loading them. For example, you can store <code class="docutils literal notranslate"><span class="pre">ENUM</span></code> as <code class="docutils literal notranslate"><span class="pre">TEXT</span></code>.</p>
+</section>
+<section id="best-practices-for-csv">
+<h2><a class="toc-backref" href="#id21">Best Practices for CSV</a><a class="headerlink" href="#best-practices-for-csv" title="Permalink to this heading"></a></h2>
+<p>Text files, such as CSV, rarely conform to <a class="reference external" href="https://tools.ietf.org/html/rfc4180">RFC 4180</a> , so you may need to make the following modifications:</p>
+<ul class="simple">
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">OFFSET</span> <span class="pre">2</span></code> for files containing header rows.</p></li>
+<li><p>You can capture failed rows in a log file for later analysis, or skip them. See <span class="xref std std-ref">capturing_rejected_rows</span> for information on skipping rejected rows.</p></li>
+<li><p>You can modify record delimiters (new lines) using the <a class="reference internal" href="csv.html#changing-record-delimiter"><span class="std std-ref">RECORD DELIMITER</span></a> syntax.</p></li>
+<li><p>If the date formats deviate from ISO 8601, refer to the <span class="xref std std-ref">copy_date_parsers</span> section for overriding the default parsing.</p></li>
+<li><p><em>(Optional)</em> You can quote fields in a CSV using double-quotes (<code class="docutils literal notranslate"><span class="pre">&quot;</span></code>).</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You must quote any field containing a new line or another double-quote character.</p>
+</div>
+<ul class="simple">
+<li><p>If a field is quoted, you must double quote any double quote, similar to the <strong>string literals quoting rules</strong>. For example, to encode <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">are</span> <span class="pre">&quot;birds&quot;?</span></code>, the field should appear as <code class="docutils literal notranslate"><span class="pre">&quot;What</span> <span class="pre">are</span> <span class="pre">&quot;&quot;birds&quot;&quot;?&quot;</span></code>. For more information, see <a class="reference internal" href="../reference/sql/sql_syntax/literals.html#string-literals"><span class="std std-ref">string literals quoting rules</span></a>.</p></li>
+<li><p>Field delimiters do not have to be a displayable ASCII character. For all supported field delimiters, see <span class="xref std std-ref">field_delimiters</span>.</p></li>
+</ul>
+</section>
+<section id="best-practices-for-parquet">
+<h2><a class="toc-backref" href="#id22">Best Practices for Parquet</a><a class="headerlink" href="#best-practices-for-parquet" title="Permalink to this heading"></a></h2>
+<p>The following list shows the best practices when ingesting data from Parquet files:</p>
+<ul class="simple">
+<li><p>You must load Parquet files through <a class="reference internal" href="../operational_guides/foreign_tables.html#foreign-tables"><span class="std std-ref">Foreign Tables</span></a>. Note that the destination table structure must be identical to the number of columns between the source files.</p></li>
+<li><p>Parquet files support <strong>predicate pushdown</strong>. When a query is issued over Parquet files, SQream uses row-group metadata to determine which row-groups in a file must be read for a particular query and the row indexes can narrow the search to a particular set of rows.</p></li>
+</ul>
+<section id="supported-types-and-behavior-notes">
+<h3>Supported Types and Behavior Notes<a class="headerlink" href="#supported-types-and-behavior-notes" title="Permalink to this heading"></a></h3>
+<p>Unlike the ORC format, the column types should match the data types exactly, as shown in the table below:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head stub"><p>SQream DB type →</p>
+<p>Parquet source</p>
+</th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">BOOL</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">TINYINT</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">SMALLINT</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">INT</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">BIGINT</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">REAL</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code></p></th>
+<th class="head"><p>Text <a class="footnote-reference brackets" href="#f0" id="id1">1</a></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">DATE</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">DATETIME</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">BOOLEAN</span></code></p></th>
+<td><p>Supported</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">INT16</span></code></p></th>
+<td></td>
+<td></td>
+<td><p>Supported</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">INT32</span></code></p></th>
+<td></td>
+<td></td>
+<td></td>
+<td><p>Supported</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">INT64</span></code></p></th>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>Supported</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">FLOAT</span></code></p></th>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>Supported</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code></p></th>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>Supported</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">BYTE_ARRAY</span></code> <a class="footnote-reference brackets" href="#f2" id="id2">2</a></p></th>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>Supported</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">INT96</span></code> <a class="footnote-reference brackets" href="#f3" id="id3">3</a></p></th>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>Supported <a class="footnote-reference brackets" href="#f4" id="id4">4</a></p></td>
+</tr>
+</tbody>
+</table>
+<p>If a Parquet file has an unsupported type, such as <code class="docutils literal notranslate"><span class="pre">enum</span></code>, <code class="docutils literal notranslate"><span class="pre">uuid</span></code>, <code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">json</span></code>, <code class="docutils literal notranslate"><span class="pre">bson</span></code>, <code class="docutils literal notranslate"><span class="pre">lists</span></code>, <code class="docutils literal notranslate"><span class="pre">maps</span></code>, but the table does not reference this data (i.e., the data does not appear in the <a class="reference internal" href="../reference/sql/sql_statements/dml_commands/select.html#select"><span class="std std-ref">SELECT</span></a> query), the statement will succeed. If the table <strong>does</strong> reference a column, an error will be displayed explaining that the type is not supported, but the column may be omitted.</p>
+</section>
+</section>
+<section id="best-practices-for-orc">
+<h2><a class="toc-backref" href="#id23">Best Practices for ORC</a><a class="headerlink" href="#best-practices-for-orc" title="Permalink to this heading"></a></h2>
+<p>The following list shows the best practices when ingesting data from ORC files:</p>
+<ul class="simple">
+<li><p>You must load ORC files through <a class="reference internal" href="../operational_guides/foreign_tables.html#foreign-tables"><span class="std std-ref">Foreign Tables</span></a>. Note that the destination table structure must be identical to the number of columns between the source files.</p></li>
+<li><p>ORC files support <strong>predicate pushdown</strong>. When a query is issued over ORC files, SQream uses ORC metadata to determine which stripes in a file need to be read for a particular query and the row indexes can narrow the search to a particular set of 10,000 rows.</p></li>
+</ul>
+<section id="type-support-and-behavior-notes">
+<h3>Type Support and Behavior Notes<a class="headerlink" href="#type-support-and-behavior-notes" title="Permalink to this heading"></a></h3>
+<p>You must load ORC files through foreign table. Note that the destination table structure must be identical to the number of columns between the source files.</p>
+<p>For more information, see <a class="reference internal" href="../operational_guides/foreign_tables.html#foreign-tables"><span class="std std-ref">Foreign Tables</span></a>.</p>
+<p>The types should match to some extent within the same “class”, as shown in the following table:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head stub"><p>SQream DB Type →</p>
+<p>ORC Source</p>
+</th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">BOOL</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">TINYINT</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">SMALLINT</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">INT</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">BIGINT</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">REAL</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code></p></th>
+<th class="head"><p>Text <a class="footnote-reference brackets" href="#f0" id="id5">1</a></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">DATE</span></code></p></th>
+<th class="head"><p><code class="docutils literal notranslate"><span class="pre">DATETIME</span></code></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></th>
+<td><p>Supported</p></td>
+<td><p>Supported <a class="footnote-reference brackets" href="#f5" id="id6">5</a></p></td>
+<td><p>Supported <a class="footnote-reference brackets" href="#f5" id="id7">5</a></p></td>
+<td><p>Supported <a class="footnote-reference brackets" href="#f5" id="id8">5</a></p></td>
+<td><p>Supported <a class="footnote-reference brackets" href="#f5" id="id9">5</a></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">tinyint</span></code></p></th>
+<td><p>○ <a class="footnote-reference brackets" href="#f6" id="id10">6</a></p></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">smallint</span></code></p></th>
+<td><p>○ <a class="footnote-reference brackets" href="#f6" id="id11">6</a></p></td>
+<td><p>○ <a class="footnote-reference brackets" href="#f7" id="id12">7</a></p></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></th>
+<td><p>○ <a class="footnote-reference brackets" href="#f6" id="id13">6</a></p></td>
+<td><p>○ <a class="footnote-reference brackets" href="#f7" id="id14">7</a></p></td>
+<td><p>○ <a class="footnote-reference brackets" href="#f7" id="id15">7</a></p></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">bigint</span></code></p></th>
+<td><p>○ <a class="footnote-reference brackets" href="#f6" id="id16">6</a></p></td>
+<td><p>○ <a class="footnote-reference brackets" href="#f7" id="id17">7</a></p></td>
+<td><p>○ <a class="footnote-reference brackets" href="#f7" id="id18">7</a></p></td>
+<td><p>○ <a class="footnote-reference brackets" href="#f7" id="id19">7</a></p></td>
+<td><p>Supported</p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></th>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">double</span></code></p></th>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">string</span></code> / <code class="docutils literal notranslate"><span class="pre">char</span></code> / <code class="docutils literal notranslate"><span class="pre">varchar</span></code></p></th>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>Supported</p></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">date</span></code></p></th>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p><code class="docutils literal notranslate"><span class="pre">timestamp</span></code>, <code class="docutils literal notranslate"><span class="pre">timestamp</span></code> with timezone</p></th>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td><p>Supported</p></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li><p>If an ORC file has an unsupported type like <code class="docutils literal notranslate"><span class="pre">binary</span></code>, <code class="docutils literal notranslate"><span class="pre">list</span></code>, <code class="docutils literal notranslate"><span class="pre">map</span></code>, and <code class="docutils literal notranslate"><span class="pre">union</span></code>, but the data is not referenced in the table (it does not appear in the <a class="reference internal" href="../reference/sql/sql_statements/dml_commands/select.html#select"><span class="std std-ref">SELECT</span></a> query), the statement will succeed. If the column is referenced, an error will be thrown to the user, explaining that the type is not supported, but the column may be ommited.</p></li>
+</ul>
+<section id="further-reading-and-migration-guides">
+<h4>Further Reading and Migration Guides<a class="headerlink" href="#further-reading-and-migration-guides" title="Permalink to this heading"></a></h4>
+<p>For more information, see the following:</p>
+<ul class="simple">
+<li><p><span class="xref std std-ref">copy_from</span></p></li>
+<li><p><span class="xref std std-ref">insert</span></p></li>
+<li><p><a class="reference internal" href="../operational_guides/foreign_tables.html#foreign-tables"><span class="std std-ref">Foreign Tables</span></a></p></li>
+</ul>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="f0"><span class="brackets">1</span><span class="fn-backref">(<a href="#id1">1</a>,<a href="#id5">2</a>)</span></dt>
+<dd><p>Text values include <code class="docutils literal notranslate"><span class="pre">TEXT</span></code>, <code class="docutils literal notranslate"><span class="pre">VARCHAR</span></code>, and <code class="docutils literal notranslate"><span class="pre">NVARCHAR</span></code></p>
+</dd>
+<dt class="label" id="f2"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>With UTF8 annotation</p>
+</dd>
+<dt class="label" id="f3"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>With <code class="docutils literal notranslate"><span class="pre">TIMESTAMP_NANOS</span></code> or <code class="docutils literal notranslate"><span class="pre">TIMESTAMP_MILLIS</span></code> annotation</p>
+</dd>
+<dt class="label" id="f4"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dd><p>Any microseconds will be rounded down to milliseconds.</p>
+</dd>
+<dt class="label" id="f5"><span class="brackets">5</span><span class="fn-backref">(<a href="#id6">1</a>,<a href="#id7">2</a>,<a href="#id8">3</a>,<a href="#id9">4</a>)</span></dt>
+<dd><p>Boolean values are cast to 0, 1</p>
+</dd>
+<dt class="label" id="f6"><span class="brackets">6</span><span class="fn-backref">(<a href="#id10">1</a>,<a href="#id11">2</a>,<a href="#id13">3</a>,<a href="#id16">4</a>)</span></dt>
+<dd><p>Will succeed if all values are 0, 1</p>
+</dd>
+<dt class="label" id="f7"><span class="brackets">7</span><span class="fn-backref">(<a href="#id12">1</a>,<a href="#id14">2</a>,<a href="#id15">3</a>,<a href="#id17">4</a>,<a href="#id18">5</a>,<a href="#id19">6</a>)</span></dt>
+<dd><p>Will succeed if all values fit the destination type</p>
+</dd>
+</dl>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Data Ingestion Sources" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="avro.html" class="btn btn-neutral float-right" title="Ingesting Data from Avro" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 SQream.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

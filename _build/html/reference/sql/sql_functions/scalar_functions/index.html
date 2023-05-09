@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Built-In Scalar Functions &mdash; SQream Blue 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="User-Defined Functions" href="../user_defined_functions/index.html" />
+    <link rel="prev" title="SQL Functions" href="../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #133148" >
+            <a href="../../../../index.html">
+            <img src="../../../../_static/SQream_logo_without background-15.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started/login_and_connectors.html">Login and Connectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started/cost_management.html">Cost Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started/performing_basic_sqream_operations.html">Performing Basic SQream Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../getting_started/running_the_sqream_sql_client.html">Running the SQream SQL Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../getting_started/creating_your_first_table.html">Creating Your First Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../getting_started/listing_tables.html">Listing Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../getting_started/inserting_rows.html">Inserting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../getting_started/running_queries.html">Running Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../getting_started/saving_query_results_to_a_csv_or_psv_file.html">Saving Query Results to a CSV or PSV File</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../data_ingestion/index.html">Data Ingestion Sources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_ingestion/ingesting_data.html">Ingesting Data Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_ingestion/avro.html">Ingesting Data from Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_ingestion/csv.html">Ingesting Data from a CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_ingestion/parquet.html">Ingesting Data from a Parquet File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_ingestion/orc.html">Ingesting Data from an ORC File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_ingestion/json.html">Ingesting Data from JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../loading_and_unloading_data/index.html">Loading and Unloading Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../feature_guides/index.html">Feature Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../feature_guides/python_functions.html">Python UDF (User-Defined Functions)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../feature_guides/concurrency_and_locks.html">Concurrency and Locks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../feature_guides/concurrency_and_scaling_in_sqream.html">Concurrency and Scaling in SQream DB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../operational_guides/index.html">Operational Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/access_control.html">Access Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../operational_guides/access_control_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../operational_guides/access_control_managing_roles.html">Managing Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../operational_guides/access_control_permissions.html">Permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../operational_guides/access_control_password_policy.html">Password Policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../operational_guides/access_control_departmental_example.html">Departmental Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/audit_log_operation.html">Audit Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/exporting_data.html">Exporting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/monitoring_query_performance.html">Monitoring Query Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/seeing_system_objects_as_ddl.html">Seeing System Objects as DDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/optimization_best_practices.html">Optimization and Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../configuration_guides/index.html">Configuration Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration_guides/spooling.html">Configuring the Spooling Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration_guides/configuring_sqream.html">Configuring SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration_guides/configuration_flags.html">Configuration Flags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/admin_flags.html">Administration Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../configuration_guides/admin_regular_flags.html">Regular Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../configuration_guides/admin_worker_flags.html">Worker Administration Flags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/generic_flags.html">Generic Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../configuration_guides/generic_regular_flags.html">Regular Generic Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../configuration_guides/generic_worker_flags.html">Worker Generic Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../index.html">Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../../blue_console.html">BLUE Console</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html">SQL Statements and Syntax</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../../sql_syntax/index.html">SQL Syntax Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sql_statements/index.html">SQL Statements</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">SQL Functions</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Built-In Scalar Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_defined_functions/index.html">User-Defined Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../aggregate_functions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../window_functions/index.html">Window Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sql_feature_support.html">SQL Feature Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../data_type_guides/index.html">Data Type Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_type_guides/converting_and_casting_types.html">Converting and Casting Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_type_guides/supported_data_types.html">Supported Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_type_guides/supported_casts.html">Supported Casts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../data_type_guides/sql_data_types_numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../data_type_guides/sql_data_types_boolean.html">Boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../data_type_guides/sql_data_types_integer.html">Integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../data_type_guides/sql_data_types_floating_point.html">Floating Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../data_type_guides/sql_data_types_string.html">String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../data_type_guides/sql_data_types_date.html">Date</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../releases/index.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/remedying_slow_queries.html">Remedying Slow Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/resolving_common_issues.html">Resolving Common Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/lock_related_issues.html">Lock Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/information_for_support.html">Gathering Information for SQream Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #133148" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">SQream Blue</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../index.html">Reference</a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">SQL Statements and Syntax</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">SQL Functions</a></li>
+      <li class="breadcrumb-item active">Built-In Scalar Functions</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="built-in-scalar-functions">
+<span id="scalar-functions"></span><h1>Built-In Scalar Functions<a class="headerlink" href="#built-in-scalar-functions" title="Permalink to this heading"></a></h1>
+<p>The <strong>Built-In Scalar Functions</strong> page describes functions that return one value per call:</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><p><a class="reference external" href="https://docs.sqream.com/en/v2022.1/reference/sql/sql_functions/scalar_functions/bitwise/and.html">AND</a></p></li>
+<li><p><a class="reference external" href="https://docs.sqream.com/en/v2022.1/reference/sql/sql_functions/scalar_functions/bitwise/not.html">NOT</a></p></li>
+<li><p><a class="reference external" href="https://docs.sqream.com/en/v2022.1/reference/sql/sql_functions/scalar_functions/bitwise/or.html">OR</a></p></li>
+<li><p><a class="reference external" href="https://docs.sqream.com/en/v2022.1/reference/sql/sql_functions/scalar_functions/bitwise/shift_left.html">SHIFT_LEFT</a></p></li>
+<li><p><a class="reference external" href="https://docs.sqream.com/en/v2022.1/reference/sql/sql_functions/scalar_functions/bitwise/shift_right.html">SHIFT_RIGHT</a></p></li>
+<li><p><a class="reference external" href="https://docs.sqream.com/en/v2022.1/reference/sql/sql_functions/scalar_functions/bitwise/xor.html">XOR</a></p></li>
+<li><p><a class="reference internal" href="conditionals/between.html#between"><span class="std std-ref">BETWEEN</span></a></p></li>
+<li><p><a class="reference internal" href="conditionals/case.html#case"><span class="std std-ref">CASE</span></a></p></li>
+<li><p><a class="reference internal" href="conditionals/coalesce.html#coalesce"><span class="std std-ref">COALESCE</span></a></p></li>
+<li><p><a class="reference internal" href="string/decode.html#decode"><span class="std std-ref">DECODE</span></a></p></li>
+<li><p><a class="reference internal" href="conditionals/in.html#in"><span class="std std-ref">IN</span></a></p></li>
+<li><p><a class="reference internal" href="conditionals/is_ascii.html#is-ascii"><span class="std std-ref">IS_ASCII</span></a></p></li>
+<li><p><a class="reference internal" href="conditionals/is_null.html#is-null"><span class="std std-ref">IS NULL</span></a></p></li>
+<li><p><a class="reference internal" href="conditionals/isnull.html#isnull"><span class="std std-ref">ISNULL</span></a></p></li>
+<li><p><a class="reference internal" href="conversion/from_unixts.html#from-unixts"><span class="std std-ref">FROM_UNIXTS, FROM_UNIXTSMS</span></a></p></li>
+<li><p><a class="reference internal" href="conversion/to_hex.html#to-hex"><span class="std std-ref">TO_HEX</span></a></p></li>
+</ul>
+</td><td><ul class="simple">
+<li><p><a class="reference internal" href="conversion/to_unixts.html#to-unixts"><span class="std std-ref">TO_UNIXTS, TO_UNIXTSMS</span></a></p></li>
+<li><p><a class="reference internal" href="date_and_time/curdate.html#curdate"><span class="std std-ref">CURDATE</span></a></p></li>
+<li><p><a class="reference internal" href="date_and_time/current_date.html#current-date"><span class="std std-ref">CURRENT_DATE</span></a></p></li>
+<li><p><a class="reference internal" href="date_and_time/current_timestamp.html#current-timestamp"><span class="std std-ref">CURRENT_TIMESTAMP</span></a></p></li>
+<li><p><a class="reference internal" href="date_and_time/dateadd.html#dateadd"><span class="std std-ref">DATEADD</span></a></p></li>
+<li><p><a class="reference internal" href="date_and_time/datediff.html#datediff"><span class="std std-ref">DATEDIFF</span></a></p></li>
+<li><p><a class="reference internal" href="date_and_time/datepart.html#datepart"><span class="std std-ref">DATEPART</span></a></p></li>
+<li><p><a class="reference internal" href="date_and_time/eomonth.html#eomonth"><span class="std std-ref">EOMONTH</span></a></p></li>
+<li><p><a class="reference internal" href="date_and_time/extract.html#extract"><span class="std std-ref">EXTRACT</span></a></p></li>
+<li><p><a class="reference internal" href="date_and_time/getdate.html#getdate"><span class="std std-ref">GETDATE</span></a></p></li>
+<li><p><a class="reference internal" href="date_and_time/sysdate.html#sysdate"><span class="std std-ref">SYSDATE</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/trunc.html#trunc"><span class="std std-ref">TRUNC</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/abs.html#abs"><span class="std std-ref">ABS</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/acos.html#acos"><span class="std std-ref">ACOS</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/asin.html#asin"><span class="std std-ref">ASIN</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/atan.html#atan"><span class="std std-ref">ATAN</span></a></p></li>
+</ul>
+</td><td><ul class="simple">
+<li><p><a class="reference internal" href="numeric/atn2.html#atn2"><span class="std std-ref">ATN2</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/ceiling.html#ceiling"><span class="std std-ref">CEILING / CEIL</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/cos.html#cos"><span class="std std-ref">COS</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/cot.html#cot"><span class="std std-ref">COT</span></a></p></li>
+<li><p><span class="xref std std-ref">crc64</span></p></li>
+<li><p><a class="reference internal" href="numeric/degrees.html#degrees"><span class="std std-ref">DEGREES</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/exp.html#exp"><span class="std std-ref">EXP</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/floor.html#floor"><span class="std std-ref">FLOOR</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/log.html#log"><span class="std std-ref">LOG</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/log10.html#log10"><span class="std std-ref">LOG10</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/mod.html#mod"><span class="std std-ref">MOD, %</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/pi.html#pi"><span class="std std-ref">PI</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/power.html#power"><span class="std std-ref">POWER</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/radians.html#radians"><span class="std std-ref">RADIANS</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/round.html#round"><span class="std std-ref">ROUND</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/sin.html#sin"><span class="std std-ref">SIN</span></a></p></li>
+</ul>
+</td><td><ul class="simple">
+<li><p><a class="reference internal" href="numeric/sqrt.html#sqrt"><span class="std std-ref">SQRT</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/square.html#square"><span class="std std-ref">SQUARE</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/tan.html#tan"><span class="std std-ref">TAN</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/trunc.html#trunc"><span class="std std-ref">TRUNC</span></a></p></li>
+<li><p><a class="reference internal" href="string/char_length.html#char-length"><span class="std std-ref">CHARACTER_LENGTH / CHAR_LENGTH</span></a></p></li>
+<li><p><a class="reference internal" href="string/charindex.html#charindex"><span class="std std-ref">CHARINDEX</span></a></p></li>
+<li><p><a class="reference internal" href="string/concat.html#concat"><span class="std std-ref">|| (Concatenate)</span></a></p></li>
+<li><p><a class="reference internal" href="string/isprefixof.html#isprefixof"><span class="std std-ref">ISPREFIXOF</span></a></p></li>
+<li><p><a class="reference internal" href="string/left.html#left"><span class="std std-ref">LEFT</span></a></p></li>
+<li><p><a class="reference internal" href="string/len.html#len"><span class="std std-ref">LEN</span></a></p></li>
+<li><p><a class="reference internal" href="string/like.html#like"><span class="std std-ref">LIKE</span></a></p></li>
+<li><p><a class="reference internal" href="string/lower.html#lower"><span class="std std-ref">LOWER</span></a></p></li>
+<li><p><a class="reference internal" href="string/ltrim.html#ltrim"><span class="std std-ref">LTRIM</span></a></p></li>
+<li><p><a class="reference internal" href="string/octet_length.html#octet-length"><span class="std std-ref">OCTET_LENGTH</span></a></p></li>
+<li><p><a class="reference internal" href="string/patindex.html#patindex"><span class="std std-ref">PATINDEX</span></a></p></li>
+</ul>
+</td><td><ul class="simple">
+<li><p><a class="reference internal" href="string/regexp_count.html#regexp-count"><span class="std std-ref">REGEXP_COUNT</span></a></p></li>
+<li><p><a class="reference internal" href="string/regexp_instr.html#regexp-instr"><span class="std std-ref">REGEXP_INSTR</span></a></p></li>
+<li><p><a class="reference internal" href="string/regexp_replace.html#regexp-replace"><span class="std std-ref">REGEXP_REPLACE</span></a></p></li>
+<li><p><a class="reference internal" href="string/regexp_substr.html#regexp-substr"><span class="std std-ref">REGEXP_SUBSTR</span></a></p></li>
+<li><p><a class="reference internal" href="string/repeat.html#repeat"><span class="std std-ref">REPEAT</span></a></p></li>
+<li><p><a class="reference internal" href="string/replace.html#replace"><span class="std std-ref">REPLACE</span></a></p></li>
+<li><p><a class="reference internal" href="string/reverse.html#reverse"><span class="std std-ref">REVERSE</span></a></p></li>
+<li><p><a class="reference internal" href="string/right.html#right"><span class="std std-ref">RIGHT</span></a></p></li>
+<li><p><a class="reference internal" href="string/rlike.html#rlike"><span class="std std-ref">RLIKE</span></a></p></li>
+<li><p><a class="reference internal" href="string/rtrim.html#rtrim"><span class="std std-ref">RTRIM</span></a></p></li>
+<li><p><a class="reference internal" href="string/substring.html#substring"><span class="std std-ref">SUBSTRING</span></a></p></li>
+<li><p><a class="reference internal" href="string/trim.html#trim"><span class="std std-ref">TRIM</span></a></p></li>
+<li><p><a class="reference internal" href="string/upper.html#upper"><span class="std std-ref">UPPER</span></a></p></li>
+<li><p><a class="reference internal" href="string/select_ascii.html#select-ascii"><span class="std std-ref">SELECT ASCII</span></a></p></li>
+<li><p><a class="reference internal" href="numeric/sign.html#sign"><span class="std std-ref">SIGN</span></a></p></li>
+</ul>
+</td></tr></table>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../index.html" class="btn btn-neutral float-left" title="SQL Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../user_defined_functions/index.html" class="btn btn-neutral float-right" title="User-Defined Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 SQream.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

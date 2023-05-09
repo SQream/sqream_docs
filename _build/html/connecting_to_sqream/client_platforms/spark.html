@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using Spark With SQream &mdash; SQream DB 4.1 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #133148" >
+            <a href="../../index.html">
+            <img src="../../_static/SQream_logo_without background-15.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/preparing_your_machine_to_install_sqream.html">Preparing Your Machine to Install SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/installing_sqream.html">Installing SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/executing_statements_in_sqream.html">Executing Statements in SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/performing_basic_sqream_operations.html">Performing Basic SQream Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/running_the_sqream_sql_client.html">Running the SQream SQL Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/creating_your_first_table.html">Creating Your First Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/listing_tables.html">Listing Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/inserting_rows.html">Inserting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/running_queries.html">Running Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/deleting_rows.html">Deleting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../getting_started/saving_query_results_to_a_csv_or_psv_file.html">Saving Query Results to a CSV or PSV File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../getting_started/hardware_guide.html">Hardware Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation_guides/index.html">Installation Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation_guides/installing_and_launching_sqream.html">Installing and Launching SQream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../installation_guides/recommended_pre-installation_configurations.html">Recommended Pre-Installation Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation_guides/installing_sqream_with_binary.html">Installing SQream Using Binary Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation_guides/running_sqream_in_a_docker_container.html">Installing and Running SQream in a Docker Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation_guides/installing_sqream_with_kubernetes.html">Installing SQream with Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation_guides/installing_monit.html">Installing Monit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation_guides/launching_sqream_with_monit.html">Launching SQream with Monit</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation_guides/sqream_studio_installation.html">Installing SQream Studio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../installation_guides/installing_prometheus_exporters.html">Installing Prometheus Exporter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation_guides/installing_prometheus_using_binary_packages.html">Installing Prometheus Using Binary Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation_guides/installing_dashboard_data_collector.html">Installing the Dashboard Data Collector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation_guides/installing_studio_on_stand_alone_server.html">Installing Studio on a Stand-Alone Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation_guides/installing_nginx_proxy_over_secure_connection.html">Installing an NGINX Proxy Over a Secure Connection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_ingestion/index.html">Data Ingestion Sources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data_ingestion/ingesting_data.html">Ingesting Data Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_ingestion/avro.html">Ingesting Data from Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_ingestion/csv.html">Ingesting Data from a CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_ingestion/parquet.html">Ingesting Data from a Parquet File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_ingestion/orc.html">Ingesting Data from an ORC File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_ingestion/json.html">Ingesting Data from JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Connecting to SQream</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="index.html">Client Platforms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="informatica.html">Connect to SQream Using Informatica Cloud Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="microstrategy.html">Connect to SQream Using MicroStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pentaho.html">Connecting to SQream Using Pentaho Data Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="php.html">Connect to SQream Using PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="power_bi.html">Connecting to SQream Using Power BI Desktop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="r.html">Connect to SQream Using R</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sap_businessobjects.html">Connecting to SQream Using SAP BusinessObjects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sas_viya.html">Connect to SQream Using SAS Viya</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sql_workbench.html">Connect to SQream Using SQL Workbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tableau.html">Connecting to SQream Using Tableau</a></li>
+<li class="toctree-l3"><a class="reference internal" href="talend.html">Connecting to SQream Using Talend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tibco_spotfire.html">Connecting to SQream Using TIBCO Spotfire</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../client_drivers/index.html">Client Drivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../client_drivers/trino/index.html">Connecting to SQream Using Trino</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../client_drivers/jdbc/index.html">JDBC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../client_drivers/python/index.html">Connecting to SQream Using Python (pysqream)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../client_drivers/nodejs/index.html">Connecting to SQream Using Node.JS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../client_drivers/odbc/index.html">ODBC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../client_drivers/odbc/install_configure_odbc_windows.html">Install and Configure ODBC on Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../client_drivers/odbc/install_configure_odbc_linux.html">Install and configure ODBC on Linux</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../client_drivers/dotnet/index.html">Connecting to SQream Using .NET</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../external_storage_platforms/index.html">External Storage Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../external_storage_platforms/s3.html">Inserting Data Using Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external_storage_platforms/hdfs.html">Using SQream in an HDFS Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../loading_and_unloading_data/index.html">Loading and Unloading Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../feature_guides/index.html">Feature Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../feature_guides/automatic_foreign_table_ddl_resolution.html">Automatic Foreign Table DDL Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../feature_guides/query_healer.html">Query Healer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../feature_guides/data_encryption.html">Data Encryption</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../feature_guides/data_encryption_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../feature_guides/data_encryption_methods.html">Encryption Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../feature_guides/data_encryption_types.html">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../feature_guides/data_encryption_syntax.html">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../feature_guides/data_encryption_permissions.html">Permissions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../feature_guides/compression.html">Compression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../feature_guides/python_functions.html">Python UDF (User-Defined Functions)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../feature_guides/workload_manager.html">Workload Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../feature_guides/concurrency_and_locks.html">Concurrency and Locks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../feature_guides/concurrency_and_scaling_in_sqream.html">Concurrency and Scaling in SQream DB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../operational_guides/index.html">Operational Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../operational_guides/access_control.html">Access Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../operational_guides/access_control_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../operational_guides/access_control_password_policy.html">Password Policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../operational_guides/access_control_managing_roles.html">Managing Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../operational_guides/access_control_permissions.html">Permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../operational_guides/access_control_departmental_example.html">Departmental Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../operational_guides/creating_or_cloning_a_storage_cluster.html">Creating or Cloning Storage Clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../operational_guides/external_data.html">Working with External Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../operational_guides/s3.html">Inserting Data Using Amazon S3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../operational_guides/hdfs.html">Using SQream in an HDFS Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../operational_guides/foreign_tables.html">Foreign Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../operational_guides/delete_guide.html">Deleting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../operational_guides/exporting_data.html">Exporting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../operational_guides/logging.html">Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../operational_guides/monitoring_query_performance.html">Monitoring Query Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../operational_guides/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../operational_guides/saved_queries.html">Saved Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../operational_guides/seeing_system_objects_as_ddl.html">Seeing System Objects as DDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../operational_guides/optimization_best_practices.html">Optimization and Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sqream_studio_5.4.7/index.html">SQream Acceleration Studio 5.4.7</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../sqream_studio_5.4.7/getting_started.html">Getting Started with SQream Acceleration Studio 5.4.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sqream_studio_5.4.7/monitoring_workers_and_services_from_the_dashboard.html">Monitoring Workers and Services from the Dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sqream_studio_5.4.7/executing_statements_and_running_queries_from_the_editor.html">Executing Statements and Running Queries from the Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sqream_studio_5.4.7/viewing_logs.html">Viewing Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sqream_studio_5.4.7/creating_assigning_and_managing_roles_and_permissions.html">Creating, Assigning, and Managing Roles and Permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../sqream_studio_5.4.7/configuring_your_instance_of_sqream.html">Configuring Your Instance of SQreams</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../architecture/index.html">System Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../architecture/internals_architecture.html">Internals and architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../architecture/filesystem_and_filesystem_usage.html">Filesystem and usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../configuration_guides/index.html">Configuration Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration_guides/spooling.html">Configuring the Spooling Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration_guides/configuring_sqream.html">Configuring SQream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../configuration_guides/current_method_configuration_levels.html">Configuration Levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../configuration_guides/current_method_flag_types.html">Flag Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../configuration_guides/current_method_configuration_roles.html">Configuration Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../configuration_guides/current_method_modification_methods.html">Modification Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../configuration_guides/current_method_configuring_your_parameter_values.html">Configuring Your Parameter Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../configuration_guides/current_method_command_examples.html">Command Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../configuration_guides/current_method_showing_all_flags_in_the_catalog_table.html">Showing All Flags in the Catalog Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../configuration_guides/current_method_all_configurations.html">All Configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration_guides/ldap.html">Configuring LDAP authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration_guides/configuration_flags.html">Configuration Flags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../configuration_guides/admin_flags.html">Administration Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../configuration_guides/admin_regular_flags.html">Regular Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../configuration_guides/admin_cluster_flags.html">Cluster Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../configuration_guides/admin_worker_flags.html">Worker Administration Flags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../configuration_guides/generic_flags.html">Generic Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../configuration_guides/generic_regular_flags.html">Regular Generic Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../configuration_guides/generic_worker_flags.html">Worker Generic Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../configuration_guides/previous_configuration_method.html">Configuring SQream Using the Previous Configuration Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/index.html">Reference Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/sql/index.html">SQL Statements and Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/sql/sql_syntax/index.html">SQL Syntax Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/sql/sql_statements/index.html">SQL Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/sql/sql_functions/index.html">SQL Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/sql/sql_functions/scalar_functions/index.html">Built-In Scalar Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/sql/sql_functions/user_defined_functions/index.html">User-Defined Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/sql/sql_functions/aggregate_functions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/sql/sql_functions/window_functions/index.html">Window Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/catalog_reference.html">Catalog Reference Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/catalog_reference_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/catalog_reference_schema_information.html">What Information Does the Schema Contain?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/catalog_reference_catalog_tables.html">Catalog Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/catalog_reference_additonal_tables.html">Additional Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/catalog_reference_examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/cli/index.html">Command line programs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/cli/metadata_server.html">metadata_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/cli/sqreamd.html">sqreamd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/cli/sqream_console.html">sqream-console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/cli/sqream_installer.html">sqream-installer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/cli/server_picker.html">Server Picker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/cli/sqream_storage.html">SqreamStorage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/cli/sqream_sql.html">sqream sql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/cli/upgrade_storage.html">upgrade_storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/sql_feature_support.html">SQL Feature Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data_type_guides/index.html">Data Type Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../data_type_guides/converting_and_casting_types.html">Converting and Casting Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_type_guides/supported_data_types.html">Supported Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../data_type_guides/supported_casts.html">Supported Casts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../data_type_guides/sql_data_types_numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data_type_guides/sql_data_types_boolean.html">Boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data_type_guides/sql_data_types_integer.html">Integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data_type_guides/sql_data_types_floating_point.html">Floating Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data_type_guides/sql_data_types_string.html">String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../data_type_guides/sql_data_types_date.html">Date</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../releases/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../releases/4.0_index.html">Release Notes 4.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/4.0.html">Release Notes 4.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/4.1.html">Release Notes 4.1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../releases/2022.1_index.html">Release Notes 2022.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/2022.1.7.html">Release Notes 2022.1.7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/2022.1.6.html">Release Notes 2022.1.6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/2022.1.5.html">Release Notes 2022.1.5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/2022.1.4.html">Release Notes 2022.1.4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/2022.1.3.html">Release Notes 2022.1.3</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/2022.1.2.html">Release Notes 2022.1.2</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/2022.1.1.html">Release Notes 2022.1.1</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/2022.1.html">Release Notes 2022.1</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../releases/2021.2_index.html">Release Notes 2021.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/2021.2.1.24.html">Release Notes 2021.2.1.24</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/2021.2.1.html">Release Notes 2021.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/2021.2.html">Release Notes 2021.2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../releases/2021.1_index.html">Release Notes 2021.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/2021.1.2.html">Release Notes 2021.1.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/2021.1.html">Release Notes 2021.1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../releases/2020.3_index.html">Release Notes 2020.3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/2020.3.2.1.html">Release Notes 2020.3.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/2020.3.2.html">What’s new in 2020.3.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/2020.3.1.html">Release Notes 2020.3.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../releases/2020.3.html">Release Notes 2020.3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../releases/2020.2.html">Release Notes 2020.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../releases/2020.1.html">Release Notes 2020.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshooting/remedying_slow_queries.html">Remedying Slow Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshooting/resolving_common_issues.html">Resolving Common Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshooting/examining_logs.html">Examining Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshooting/identifying_configuration_issues.html">Identifying Configuration Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshooting/lock_related_issues.html">Lock Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshooting/log_related_issues.html">Log Related Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshooting/core_dumping_related_issues.html">Core Dumping Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../troubleshooting/information_for_support.html">Gathering Information for SQream Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #133148" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SQream DB</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Using Spark With SQream</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="using-spark-with-sqream">
+<span id="spark"></span><h1>Using Spark With SQream<a class="headerlink" href="#using-spark-with-sqream" title="Permalink to this heading"></a></h1>
+<p>If you are using Spark for distributed processing and analysis and wish to use it with SQream, follow these instructions.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#installation-and-configuration" id="id4">Installation and Configuration</a></p></li>
+<li><p><a class="reference internal" href="#transferring-data-from-sqream-to-spark" id="id5">Transferring Data From SQream to Spark</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id6">Examples</a></p></li>
+<li><p><a class="reference internal" href="#transferring-data-from-spark-to-sqream" id="id7">Transferring data From Spark to SQream</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id8">Examples</a></p></li>
+<li><p><a class="reference internal" href="#supported-data-types-and-mapping" id="id9">Supported Data Types and Mapping</a></p></li>
+<li><p><a class="reference internal" href="#id3" id="id10">Examples</a></p></li>
+</ul>
+</div>
+<section id="installation-and-configuration">
+<h2><a class="toc-backref" href="#id4">Installation and Configuration</a><a class="headerlink" href="#installation-and-configuration" title="Permalink to this heading"></a></h2>
+<div class="contents local topic" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#before-you-begin" id="id11">Before You Begin</a></p></li>
+<li><p><a class="reference internal" href="#jdbc" id="id12">JDBC</a></p></li>
+<li><p><a class="reference internal" href="#connecting-spark-to-sqream" id="id13">Connecting Spark to SQream</a></p></li>
+<li><p><a class="reference internal" href="#connector-configuration" id="id14">Connector Configuration</a></p></li>
+</ul>
+</div>
+<section id="before-you-begin">
+<h3><a class="toc-backref" href="#id11">Before You Begin</a><a class="headerlink" href="#before-you-begin" title="Permalink to this heading"></a></h3>
+<p>To use Spark with SQream, you must have the following installed:</p>
+<ul class="simple">
+<li><p>SQream version 2022.1.8 or later</p></li>
+<li><p>Spark version 3.3.1 or later</p></li>
+<li><p>SQream Spark Connector 1.0.0</p></li>
+<li><p>JDBC version 4.5.6 or later</p></li>
+</ul>
+</section>
+<section id="jdbc">
+<h3><a class="toc-backref" href="#id12">JDBC</a><a class="headerlink" href="#jdbc" title="Permalink to this heading"></a></h3>
+<p>If JDBC is not yet configured, follow the <a class="reference external" href="https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/jdbc/index.html">JDBC Client Drivers page</a> for guidance in registring and configuring.</p>
+</section>
+<section id="connecting-spark-to-sqream">
+<h3><a class="toc-backref" href="#id13">Connecting Spark to SQream</a><a class="headerlink" href="#connecting-spark-to-sqream" title="Permalink to this heading"></a></h3>
+<p>The SQream-Spark Connector enables inserting DataFrames into SQream tables and exporting tables or queries as DataFrames for use with Spark. DataFrames are Spark objects used for transferring data from one data source to another.</p>
+<ol class="arabic simple">
+<li><p>In the Spark Shell, run:</p></li>
+</ol>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="mf">.</span><span class="o">/</span><span class="n">spark</span><span class="o">-</span><span class="n">shell</span><span class="w"> </span><span class="c1">--driver-class-path {driver path}  --jars {Spark-Sqream-Connector.jar path}</span>
+</pre></div>
+</div>
+<p>Example:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="mf">.</span><span class="o">/</span><span class="n">spark</span><span class="o">-</span><span class="n">shell</span><span class="w"> </span><span class="c1">--driver-class-path /home/sqream/sqream-jdbc-4.5.6.jar  --jars Spark-Sqream-Connector-1.0.jar</span>
+</pre></div>
+</div>
+</section>
+<section id="connector-configuration">
+<h3><a class="toc-backref" href="#id14">Connector Configuration</a><a class="headerlink" href="#connector-configuration" title="Permalink to this heading"></a></h3>
+<p>The Spark JDBC connection properties allow users to configure connections between Spark and databases. These properties enable database access, query execution, and result retrieval, as well as authentication, encryption, and connection pooling.</p>
+<p>The following Spark connection properties are supported by SQream:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">url</span></code></p></td>
+<td></td>
+<td><p>The JDBC URL <code class="docutils literal notranslate"><span class="pre">jdbc:subprotocol:subname</span></code> establishes the connection between SQream and Spark. Source-specific connection properties may be specified in the URL, such as <code class="docutils literal notranslate"><span class="pre">user</span></code> and <code class="docutils literal notranslate"><span class="pre">password</span></code>, e.g. <code class="docutils literal notranslate"><span class="pre">jdbc:Sqream://localhost/test?user=fred&amp;password=secret</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">dbtable</span></code></p></td>
+<td></td>
+<td><p>A JDBC table to read from or write to. When reading from a <code class="docutils literal notranslate"><span class="pre">dbtable</span></code>, anything that is valid in an SQL <code class="docutils literal notranslate"><span class="pre">FROM</span></code> clause may be used. For example, you may use a subquery in parentheses instead of querying a full table. It is not allowed to specify <code class="docutils literal notranslate"><span class="pre">dbtable</span></code> and <code class="docutils literal notranslate"><span class="pre">query</span></code> options at the same time.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">query</span></code></p></td>
+<td></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">query</span></code> property in Spark is used to read data into the program by specifying a query. This query is used as a subquery in the <code class="docutils literal notranslate"><span class="pre">FROM</span></code> clause and Spark will assign an alias to the subquery. For example, when using a JDBC Source, Spark will issue a query in the format of <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">&lt;columns&gt;</span> <span class="pre">FROM</span> <span class="pre">(&lt;user_specified_query&gt;)</span> <span class="pre">spark_gen_alias</span></code>. It’s important to note that it is not allowed to use both the <code class="docutils literal notranslate"><span class="pre">dbtable</span></code> and <code class="docutils literal notranslate"><span class="pre">query</span></code> options at the same time, and the <code class="docutils literal notranslate"><span class="pre">query</span></code> option cannot be used with the <code class="docutils literal notranslate"><span class="pre">partitionColumn</span></code> option. If the <code class="docutils literal notranslate"><span class="pre">partitionColumn</span></code> option is needed, it must be specified using the <code class="docutils literal notranslate"><span class="pre">dbtable</span></code> option and qualified using the subquery alias provided in <code class="docutils literal notranslate"><span class="pre">dbtable</span></code>. An example of how to use this option would be: spark.read.format(“jdbc”).option(“url”, jdbcUrl).option(“query”, “select c1, c2 from t1”).load()</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">driver</span></code></p></td>
+<td></td>
+<td><p>The class name of the JDBC driver to use to connect to this URL.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">numPartitions</span></code></p></td>
+<td></td>
+<td><p>The maximum number of partitions that can be used for parallelism in table reading and writing. This also determines the maximum number of concurrent JDBC connections. If the number of partitions to write exceeds this limit, we decrease it to this limit by calling <code class="docutils literal notranslate"><span class="pre">coalesce(numPartitions)</span></code> before writing.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">queryTimeout</span></code></p></td>
+<td><p>0</p></td>
+<td><p>The number of seconds the driver will wait for a Statement object to execute to the given number of seconds. Zero means there is no limit. In the write path, this option depends on how JDBC drivers implement the API <code class="docutils literal notranslate"><span class="pre">setQueryTimeout</span></code>, e.g., the h2 JDBC driver checks the timeout of each query instead of an entire JDBC batch.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fetchsize</span></code></p></td>
+<td><p>1</p></td>
+<td><p>The JDBC fetch size, which determines how many rows to fetch per round trip. This can help performance on JDBC drivers which default to low fetch size (e.g. Oracle with 10 rows).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">batchsize</span></code></p></td>
+<td><p>1000000</p></td>
+<td><p>The JDBC batch size, which determines how many rows to insert per round trip. This can help performance on JDBC drivers. This option applies only to writing.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">sessionInitStatement</span></code></p></td>
+<td></td>
+<td><p>After each database session is opened to the remote DB and before starting to read data, this option executes a custom SQL statement (or a PL/SQL block). Use this to implement session initialization code. Example: <code class="docutils literal notranslate"><span class="pre">option(&quot;sessionInitStatement&quot;,</span> <span class="pre">&quot;&quot;&quot;BEGIN</span> <span class="pre">execute</span> <span class="pre">immediate</span> <span class="pre">'alter</span> <span class="pre">session</span> <span class="pre">set</span> <span class="pre">&quot;_serial_direct_read&quot;=true';</span> <span class="pre">END;&quot;&quot;&quot;)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">truncate</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+<td><p>This is a JDBC writer related option. When <code class="docutils literal notranslate"><span class="pre">SaveMode.Overwrite</span></code> is enabled, this option causes Spark to truncate an existing table instead of dropping and recreating it. This can be more efficient, and prevents the table metadata (e.g., indices) from being removed. However, it will not work in some cases, such as when the new data has a different schema. In case of failures, users should turn off <code class="docutils literal notranslate"><span class="pre">truncate</span></code> option to use <code class="docutils literal notranslate"><span class="pre">DROP</span> <span class="pre">TABLE</span></code> again. Also, due to the different behavior of <code class="docutils literal notranslate"><span class="pre">TRUNCATE</span> <span class="pre">TABLE</span></code> among DBMS, it’s not always safe to use this. MySQLDialect, DB2Dialect, MsSqlServerDialect, DerbyDialect, and OracleDialect supports this while PostgresDialect and default JDBCDirect doesn’t. For unknown and unsupported JDBCDirect, the user option <code class="docutils literal notranslate"><span class="pre">truncate</span></code> is ignored.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">cascadeTruncate</span></code></p></td>
+<td><p>the default cascading truncate behaviour of the JDBC database in question, specified in the <code class="docutils literal notranslate"><span class="pre">isCascadeTruncate</span></code> in each JDBCDialect</p></td>
+<td><p>This is a JDBC writer related option. If enabled and supported by the JDBC database (PostgreSQL and Oracle at the moment), this options allows execution of a <code class="docutils literal notranslate"><span class="pre">TRUNCATE</span> <span class="pre">TABLE</span> <span class="pre">t</span> <span class="pre">CASCADE</span></code> (in the case of PostgreSQL a TRUNCATE TABLE ONLY t CASCADE is executed to prevent inadvertently truncating descendant tables). This will affect other tables, and thus should be used with care.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">createTableOptions</span></code></p></td>
+<td></td>
+<td><p>This is a JDBC writer related option. If specified, this option allows setting of database-specific table and partition options when creating a table (e.g., <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span> <span class="pre">t</span> <span class="pre">(name</span> <span class="pre">string)</span> <span class="pre">ENGINE=InnoDB.</span></code>).</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">createTableColumnTypes</span></code></p></td>
+<td></td>
+<td><p>The database column data types to use instead of the defaults, when creating the table. Data type information should be specified in the same format as CREATE TABLE columns syntax (e.g: <code class="docutils literal notranslate"><span class="pre">&quot;name</span> <span class="pre">CHAR(64),</span> <span class="pre">comments</span> <span class="pre">VARCHAR(1024)&quot;</span></code>). The specified types should be valid spark sql data types.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">customSchema</span></code></p></td>
+<td></td>
+<td><p>The custom schema to use for reading data from JDBC connectors. For example, <code class="docutils literal notranslate"><span class="pre">&quot;id</span> <span class="pre">DECIMAL(38,</span> <span class="pre">0),</span> <span class="pre">name</span> <span class="pre">STRING&quot;</span></code>. You can also specify partial fields, and the others use the default type mapping. For example, <code class="docutils literal notranslate"><span class="pre">&quot;id</span> <span class="pre">DECIMAL(38,</span> <span class="pre">0)&quot;</span></code>. The column names should be identical to the corresponding column names of JDBC table. Users can specify the corresponding data types of Spark SQL instead of using the defaults.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pushDownPredicate</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+<td><p>The option to enable or disable predicate push-down into the JDBC data source. The default value is true, in which case Spark will push down filters to the JDBC data source as much as possible. Otherwise, if set to false, no filter will be pushed down to the JDBC data source and thus all filters will be handled by Spark. Predicate push-down is usually turned off when the predicate filtering is performed faster by Spark than by the JDBC data source.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pushDownAggregate</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+<td><p>The option to enable or disable aggregate push-down in V2 JDBC data source. The default value is false, in which case Spark will not push down aggregates to the JDBC data source. Otherwise, if sets to true, aggregates will be pushed down to the JDBC data source. Aggregate push-down is usually turned off when the aggregate is performed faster by Spark than by the JDBC data source. Please note that aggregates can be pushed down if and only if all the aggregate functions and the related filters can be pushed down. If <code class="docutils literal notranslate"><span class="pre">numPartitions</span></code> equals to 1 or the group by key is the same as <code class="docutils literal notranslate"><span class="pre">partitionColumn</span></code>, Spark will push down aggregate to data source completely and not apply a final aggregate over the data source output. Otherwise, Spark will apply a final aggregate over the data source output.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">pushDownLimit</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+<td><p>The option to enable or disable LIMIT push-down into V2 JDBC data source. The LIMIT push-down also includes LIMIT + SORT , a.k.a. the Top N operator. The default value is false, in which case Spark does not push down LIMIT or LIMIT with SORT to the JDBC data source. Otherwise, if sets to true, LIMIT or LIMIT with SORT is pushed down to the JDBC data source. If <code class="docutils literal notranslate"><span class="pre">numPartitions</span></code> is greater than 1, SPARK still applies LIMIT or LIMIT with SORT on the result from data source even if LIMIT or LIMIT with SORT is pushed down. Otherwise, if LIMIT or LIMIT with SORT is pushed down and <code class="docutils literal notranslate"><span class="pre">numPartitions</span></code> equals to 1, SPARK will not apply LIMIT or LIMIT with SORT on the result from data source.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">pushDownTableSample</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+<td><p>The option to enable or disable TABLESAMPLE push-down into V2 JDBC data source. The default value is false, in which case Spark does not push down TABLESAMPLE to the JDBC data source. Otherwise, if value sets to true, TABLESAMPLE is pushed down to the JDBC data source.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">connectionProvider</span></code></p></td>
+<td></td>
+<td><p>The name of the JDBC connection provider to use to connect to this URL, e.g. <code class="docutils literal notranslate"><span class="pre">db2</span></code>, <code class="docutils literal notranslate"><span class="pre">mssql</span></code>. Must be one of the providers loaded with the JDBC data source. Used to disambiguate when more than one provider can handle the specified driver and options. The selected provider must not be disabled by <code class="docutils literal notranslate"><span class="pre">spark.sql.sources.disabledJdbcConnProviderList</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="transferring-data-from-sqream-to-spark">
+<h2><a class="toc-backref" href="#id5">Transferring Data From SQream to Spark</a><a class="headerlink" href="#transferring-data-from-sqream-to-spark" title="Permalink to this heading"></a></h2>
+<p>In the Spark UI, configure Spark to write to the SQream database.</p>
+<ol class="arabic simple">
+<li><p>From the SqlContext object, use the read() method to construct a DataFrameReader.</p></li>
+<li><p>Use the format() method to specify SQREAM_SOURCE_NAME.</p></li>
+<li><p>Use either the option() or options() method to specify the connector options.</p></li>
+<li><p>Specify one of the following options for reading tables:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>dbtable: The name of the table to be read. All columns and records are retrieved (i.e. it is equivalent to <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span> <span class="pre">FROM</span> <span class="pre">db_table</span></code>).</p></li>
+<li><p>query: The exact query (SELECT statement) to run.</p></li>
+</ul>
+</div></blockquote>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id6">Examples</a><a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<p>To read an entire table:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="n">val</span><span class="w"> </span><span class="n">df</span><span class="p">:</span><span class="w"> </span><span class="n">DataFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlContext</span><span class="mf">.</span><span class="k">read</span><span class="w"> </span><span class="mf">.</span><span class="n">format</span><span class="p">(</span><span class="n">SQREAM_SOURCE_NAME</span><span class="p">)</span><span class="w"> </span><span class="mf">.</span><span class="k">options</span><span class="p">(</span><span class="n">sfOptions</span><span class="p">)</span><span class="w"> </span><span class="mf">.</span><span class="k">option</span><span class="p">(</span><span class="s s-Name">&quot;&lt;sqream_table_name&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Name">&quot;&lt;table_name&gt;&quot;</span><span class="p">)</span><span class="w"> </span><span class="mf">.</span><span class="k">load</span><span class="p">()</span><span class="w"></span>
+</pre></div>
+</div>
+<p>To read query results:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="n">val</span><span class="w"> </span><span class="n">df</span><span class="p">:</span><span class="w"> </span><span class="n">DataFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqlContext</span><span class="mf">.</span><span class="k">read</span><span class="w"> </span><span class="mf">.</span><span class="n">format</span><span class="p">(</span><span class="n">SQREAM_SOURCE_NAME</span><span class="p">)</span><span class="w"> </span><span class="mf">.</span><span class="k">options</span><span class="p">(</span><span class="n">sfOptions</span><span class="p">)</span><span class="w"> </span><span class="mf">.</span><span class="k">option</span><span class="p">(</span><span class="s s-Name">&quot;query&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Name">&quot;&lt;EXECUTED_QUERY&gt; &lt;table_name&gt;&quot;</span><span class="p">)</span><span class="w"> </span><span class="mf">.</span><span class="k">load</span><span class="p">()</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="transferring-data-from-spark-to-sqream">
+<h2><a class="toc-backref" href="#id7">Transferring data From Spark to SQream</a><a class="headerlink" href="#transferring-data-from-spark-to-sqream" title="Permalink to this heading"></a></h2>
+<p>In the Spark UI, configure Spark to read from the SQream database.</p>
+<ol class="arabic simple">
+<li><p>Use the write() method of the DataFrame to construct a DataFrameWriter.</p></li>
+<li><p>Specify SQREAM_SOURCE_NAME using the format() method.</p></li>
+<li><p>Specify the connector options using either the option() or options() method.</p></li>
+<li><p>Use the dbtable option to specify the table to which data is written.</p></li>
+<li><p>Use the mode() method to specify the save mode for the content.</p></li>
+</ol>
+</section>
+<section id="id2">
+<h2><a class="toc-backref" href="#id8">Examples</a><a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>To read an entire table:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="mf">.</span><span class="k">write</span><span class="w"> </span><span class="mf">.</span><span class="n">format</span><span class="p">(</span><span class="n">SQREAM_SOURCE_NAME</span><span class="p">)</span><span class="w"> </span><span class="mf">.</span><span class="k">options</span><span class="p">(</span><span class="n">sfOptions</span><span class="p">)</span><span class="w"> </span><span class="mf">.</span><span class="k">option</span><span class="p">(</span><span class="s s-Name">&quot;&lt;sqream_table_name&gt;&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Name">&quot;&lt;table_name&gt;&quot;</span><span class="p">)</span><span class="w"> </span><span class="mf">.</span><span class="k">mode</span><span class="p">(</span><span class="n">SaveMode</span><span class="mf">.</span><span class="n">Overwrite</span><span class="p">)</span><span class="w"> </span><span class="mf">.</span><span class="n">save</span><span class="p">()</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="supported-data-types-and-mapping">
+<h2><a class="toc-backref" href="#id9">Supported Data Types and Mapping</a><a class="headerlink" href="#supported-data-types-and-mapping" title="Permalink to this heading"></a></h2>
+<p>SQream data types mapped to Spark</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>SQream</p></th>
+<th class="head"><p>Spark</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BIGINT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">LONGINT</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BOOL</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BooleanType</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DATE</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DateType</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DoubleType</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">REAL</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">FloateType</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DECIMAL</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DeciamlType</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">INT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">Integer</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SMALLINT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ShortType</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TINYINT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ShortType</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DATETIME</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TimestampType</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>Spark data types mapped to SQream</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Spark</p></th>
+<th class="head"><p>SQream</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">BooleanType</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BOOL</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ByteType</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SMALLINT</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DateType</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DATE</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DecimalType</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DECIMAL</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DoubleType</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DOUBLE</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">FloatType</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">REAL</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">IntegerType</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">INT</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LongType</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">BIGINT</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ShortType</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">SMALLINT</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">StringType</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TEXT</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TimestampType</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DATETIME</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id3">
+<h2><a class="toc-backref" href="#id10">Examples</a><a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<p>JAVA</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="n">com</span><span class="mf">.</span><span class="n">sqream</span><span class="mf">.</span><span class="n">driver</span><span class="mf">.</span><span class="n">SqreamSession</span><span class="p">;</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="n">org</span><span class="mf">.</span><span class="n">apache</span><span class="mf">.</span><span class="n">spark</span><span class="mf">.</span><span class="k">sql</span><span class="mf">.</span><span class="n">Dataset</span><span class="p">;</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="n">org</span><span class="mf">.</span><span class="n">apache</span><span class="mf">.</span><span class="n">spark</span><span class="mf">.</span><span class="k">sql</span><span class="mf">.</span><span class="k">Row</span><span class="p">;</span><span class="w"></span>
+
+<span class="k">import</span><span class="w"> </span><span class="n">java</span><span class="mf">.</span><span class="n">util</span><span class="mf">.</span><span class="n">HashMap</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">public</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="n">main</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">public</span><span class="w"> </span><span class="n">static</span><span class="w"> </span><span class="nb">void</span><span class="w"> </span><span class="n">main</span><span class="p">(</span><span class="n">String</span><span class="p">[]</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="w">                </span><span class="o">//</span><span class="n">spark</span><span class="w"> </span><span class="k">configuration</span><span class="w"></span>
+<span class="w">                </span><span class="o">//</span><span class="n">optional</span><span class="w"> </span><span class="k">configuration</span><span class="w"> </span><span class="n">here</span><span class="p">:</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">spark</span><span class="mf">.</span><span class="n">apache</span><span class="mf">.</span><span class="n">org</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">latest</span><span class="o">/</span><span class="k">configuration</span><span class="mf">.</span><span class="n">html</span><span class="w"></span>
+<span class="w">                </span><span class="n">config</span><span class="mf">.</span><span class="n">put</span><span class="p">(</span><span class="s s-Name">&quot;spark.master&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Name">&quot;local&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">SqreamSession</span><span class="w"> </span><span class="n">sqreamSession</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SqreamSession</span><span class="mf">.</span><span class="n">getSession</span><span class="p">(</span><span class="n">config</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">                </span><span class="o">//</span><span class="n">spark</span><span class="w"> </span><span class="n">properties</span><span class="w"></span>
+<span class="w">                </span><span class="o">//</span><span class="n">optional</span><span class="w"> </span><span class="n">properties</span><span class="w"> </span><span class="n">here</span><span class="p">:</span><span class="w"> </span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">spark</span><span class="mf">.</span><span class="n">apache</span><span class="mf">.</span><span class="n">org</span><span class="o">/</span><span class="n">docs</span><span class="o">/</span><span class="n">latest</span><span class="o">/</span><span class="k">sql</span><span class="o">-</span><span class="k">data</span><span class="o">-</span><span class="n">sources</span><span class="o">-</span><span class="n">jdbc</span><span class="mf">.</span><span class="n">html</span><span class="w"></span>
+<span class="w">                </span><span class="n">HashMap</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">props</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">props</span><span class="mf">.</span><span class="n">put</span><span class="p">(</span><span class="s s-Name">&quot;url&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Name">&quot;jdbc:Sqream://192.168.4.51:5000/master;user=sqream;password=sqream;cluster=false;logfile=logsFiles.txt;loggerlevel=DEBUG&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">                </span><span class="n">props</span><span class="mf">.</span><span class="n">put</span><span class="p">(</span><span class="s s-Name">&quot;dbtable&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Name">&quot;test&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">                </span><span class="cm">/*Read from sqream table*/</span><span class="w"></span>
+<span class="w">                </span><span class="n">Dataset</span><span class="o">&lt;</span><span class="k">Row</span><span class="o">&gt;</span><span class="w"> </span><span class="n">dataFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sqreamSession</span><span class="mf">.</span><span class="k">read</span><span class="p">(</span><span class="n">props</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">                </span><span class="cm">/*Added to sqream table*/</span><span class="w"></span>
+<span class="w">                </span><span class="n">sqreamSession</span><span class="mf">.</span><span class="k">write</span><span class="p">(</span><span class="n">dataFrame</span><span class="p">,</span><span class="w"> </span><span class="n">props</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 SQream.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

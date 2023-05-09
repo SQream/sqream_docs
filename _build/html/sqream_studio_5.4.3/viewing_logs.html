@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Viewing Logs &mdash; SQream Blue 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #133148" >
+            <a href="../index.html">
+            <img src="../_static/SQream_logo_without background-15.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/login_and_connectors.html">Login and Connectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/cost_management.html">Cost Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/performing_basic_sqream_operations.html">Performing Basic SQream Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/running_the_sqream_sql_client.html">Running the SQream SQL Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/creating_your_first_table.html">Creating Your First Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/listing_tables.html">Listing Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/inserting_rows.html">Inserting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/running_queries.html">Running Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/saving_query_results_to_a_csv_or_psv_file.html">Saving Query Results to a CSV or PSV File</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_ingestion/index.html">Data Ingestion Sources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/ingesting_data.html">Ingesting Data Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/avro.html">Ingesting Data from Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/csv.html">Ingesting Data from a CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/parquet.html">Ingesting Data from a Parquet File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/orc.html">Ingesting Data from an ORC File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/json.html">Ingesting Data from JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../loading_and_unloading_data/index.html">Loading and Unloading Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../feature_guides/index.html">Feature Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/python_functions.html">Python UDF (User-Defined Functions)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/concurrency_and_locks.html">Concurrency and Locks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/concurrency_and_scaling_in_sqream.html">Concurrency and Scaling in SQream DB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operational_guides/index.html">Operational Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/access_control.html">Access Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_managing_roles.html">Managing Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_permissions.html">Permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_password_policy.html">Password Policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_departmental_example.html">Departmental Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/audit_log_operation.html">Audit Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/exporting_data.html">Exporting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/monitoring_query_performance.html">Monitoring Query Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/seeing_system_objects_as_ddl.html">Seeing System Objects as DDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/optimization_best_practices.html">Optimization and Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_guides/index.html">Configuration Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/spooling.html">Configuring the Spooling Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/configuring_sqream.html">Configuring SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/configuration_flags.html">Configuration Flags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/admin_flags.html">Administration Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/admin_regular_flags.html">Regular Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/admin_worker_flags.html">Worker Administration Flags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/generic_flags.html">Generic Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/generic_regular_flags.html">Regular Generic Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/generic_worker_flags.html">Worker Generic Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/blue_console.html">BLUE Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sql/index.html">SQL Statements and Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_syntax/index.html">SQL Syntax Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_statements/index.html">SQL Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_functions/index.html">SQL Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/scalar_functions/index.html">Built-In Scalar Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/user_defined_functions/index.html">User-Defined Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/aggregate_functions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/window_functions/index.html">Window Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sql_feature_support.html">SQL Feature Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_type_guides/index.html">Data Type Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/converting_and_casting_types.html">Converting and Casting Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/supported_data_types.html">Supported Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/supported_casts.html">Supported Casts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_boolean.html">Boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_integer.html">Integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_floating_point.html">Floating Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_string.html">String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_date.html">Date</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/remedying_slow_queries.html">Remedying Slow Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/resolving_common_issues.html">Resolving Common Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/lock_related_issues.html">Lock Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/information_for_support.html">Gathering Information for SQream Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #133148" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SQream Blue</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Viewing Logs</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="logs-top-5-4-3">
+<span id="viewing-logs"></span><span id="id1"></span><h1>Viewing Logs<a class="headerlink" href="#logs-top-5-4-3" title="Permalink to this heading"></a></h1>
+<p>The <strong>Logs</strong> screen is used for viewing logs and includes the following elements:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 83%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Element</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="#filter-5-4-3"><span class="std std-ref">Filter area</span></a></p></td>
+<td><p>Lets you filter the data shown in the table.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#queries-5-4-3"><span class="std std-ref">Query tab</span></a></p></td>
+<td><p>Shows basic query information logs, such as query number and the time the query was run.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#sessions-5-4-3"><span class="std std-ref">Session tab</span></a></p></td>
+<td><p>Shows basic session information logs, such as session ID and user name.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#system-5-4-3"><span class="std std-ref">System tab</span></a></p></td>
+<td><p>Shows all system logs.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#log-lines-5-4-3"><span class="std std-ref">Log lines tab</span></a></p></td>
+<td><p>Shows the total amount of log lines.</p></td>
+</tr>
+</tbody>
+</table>
+<section id="filtering-table-data">
+<span id="filter-5-4-3"></span><h2>Filtering Table Data<a class="headerlink" href="#filtering-table-data" title="Permalink to this heading"></a></h2>
+<p>From the Logs tab, from the <strong>FILTERS</strong> area you can also apply the <strong>TIMESPAN</strong>, <strong>ONLY ERRORS</strong>, and additional filters (<strong>Add</strong>). The <strong>Timespan</strong> filter lets you select a timespan. The <strong>Only Errors</strong> toggle button lets you show all queries, or only queries that generated errors. The <strong>Add</strong> button lets you add additional filters to the data shown in the table. The <strong>Filter</strong> button applies the selected filter(s).</p>
+<p>Other filters require you to select an item from a dropdown menu:</p>
+<ul class="simple">
+<li><p>INFO</p></li>
+<li><p>WARNING</p></li>
+<li><p>ERROR</p></li>
+<li><p>FATAL</p></li>
+<li><p>SYSTEM</p></li>
+</ul>
+<p>You can also export a record of all of your currently filtered logs in Excel format by clicking <strong>Download</strong> located above the Filter area.</p>
+<p id="queries-5-4-3"><a class="reference internal" href="#logs-top-5-4-3"><span class="std std-ref">Back to Viewing Logs</span></a></p>
+</section>
+<section id="viewing-query-logs">
+<h2>Viewing Query Logs<a class="headerlink" href="#viewing-query-logs" title="Permalink to this heading"></a></h2>
+<p>The <strong>QUERIES</strong> log area shows basic query information, such as query number and the time the query was run. The number next to the title indicates the amount of queries that have been run.</p>
+<p>From the Queries area you can see and sort by the following:</p>
+<ul class="simple">
+<li><p>Query ID</p></li>
+<li><p>Start time</p></li>
+<li><p>Query</p></li>
+<li><p>Compilation duration</p></li>
+<li><p>Execution duration</p></li>
+<li><p>Total duration</p></li>
+<li><p>Details (execution details, error details, successful query details)</p></li>
+</ul>
+<p>In the Queries table, you can click on the <strong>Statement ID</strong> and <strong>Query</strong> items to set them as your filters. In the <strong>Details</strong> column you can also access additional details by clicking one of the <strong>Details</strong> options for a more detailed explanation of the query.</p>
+<p><a class="reference internal" href="#logs-top-5-4-3"><span class="std std-ref">Back to Viewing Logs</span></a></p>
+</section>
+<section id="viewing-session-logs">
+<span id="sessions-5-4-3"></span><h2>Viewing Session Logs<a class="headerlink" href="#viewing-session-logs" title="Permalink to this heading"></a></h2>
+<p>The <strong>SESSIONS</strong> tab shows the sessions log table and is used for viewing activity that has occurred during your sessions. The number at the top indicates the amount of sessions that have occurred.</p>
+<p>From here you can see and sort by the following:</p>
+<ul class="simple">
+<li><p>Timestamp</p></li>
+<li><p>Connection ID</p></li>
+<li><p>Username</p></li>
+<li><p>Client IP</p></li>
+<li><p>Login (Success or Failed)</p></li>
+<li><p>Duration (of session)</p></li>
+<li><p>Configuration Changes</p></li>
+</ul>
+<p>In the Sessions table, you can click on the <strong>Timestamp</strong>, <strong>Connection ID</strong>, and <strong>Username</strong> items to set them as your filters.</p>
+<p><a class="reference internal" href="#logs-top-5-4-3"><span class="std std-ref">Back to Viewing Logs</span></a></p>
+</section>
+<section id="viewing-system-logs">
+<span id="system-5-4-3"></span><h2>Viewing System Logs<a class="headerlink" href="#viewing-system-logs" title="Permalink to this heading"></a></h2>
+<p>The <strong>SYSTEM</strong> tab shows the system log table and is used for viewing all system logs. The number at the top indicates the amount of sessions that have occurred. Because system logs occur less frequently than queries and sessions, you may need to increase the filter timespan for the table to display any system logs.</p>
+<p>From here you can see and sort by the following:</p>
+<ul class="simple">
+<li><p>Timestamp</p></li>
+<li><p>Log type</p></li>
+<li><p>Message</p></li>
+</ul>
+<p>In the Systems table, you can click on the <strong>Timestamp</strong> and <strong>Log type</strong> items to set them as your filters. In the <strong>Message</strong> column, you can also click on an item to show more information about the message.</p>
+<p><a class="reference internal" href="#logs-top-5-4-3"><span class="std std-ref">Back to Viewing Logs</span></a></p>
+</section>
+<section id="viewing-all-log-lines">
+<span id="log-lines-5-4-3"></span><h2>Viewing All Log Lines<a class="headerlink" href="#viewing-all-log-lines" title="Permalink to this heading"></a></h2>
+<p>The <strong>LOG LINES</strong> tab is used for viewing the total amount of log lines in a table. From here users can view a more granular breakdown of log information collected by Studio. The other tabs (QUERIES, SESSIONS, and SYSTEM) show a filtered form of the raw log lines. For example, the QUERIES tab shows an aggregation of several log lines.</p>
+<p>From here you can see and sort by the following:</p>
+<ul class="simple">
+<li><p>Timestamp</p></li>
+<li><p>Message level</p></li>
+<li><p>Worker hostname</p></li>
+<li><p>Worker port</p></li>
+<li><p>Connection ID</p></li>
+<li><p>Database name</p></li>
+<li><p>User name</p></li>
+<li><p>Statement ID</p></li>
+</ul>
+<p>In the <strong>LOG LINES</strong> table, you can click on any of the items to set them as your filters.</p>
+<p><a class="reference internal" href="#logs-top-5-4-3"><span class="std std-ref">Back to Viewing Logs</span></a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 SQream.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

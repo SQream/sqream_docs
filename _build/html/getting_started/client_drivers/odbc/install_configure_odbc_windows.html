@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Install and Configure ODBC on Windows &mdash; SQream Blue 1.0 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #133148" >
+            <a href="../../../index.html">
+            <img src="../../../_static/SQream_logo_without background-15.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../login_and_connectors.html">Login and Connectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../cost_management.html">Cost Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../performing_basic_sqream_operations.html">Performing Basic SQream Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../running_the_sqream_sql_client.html">Running the SQream SQL Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../creating_your_first_table.html">Creating Your First Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../listing_tables.html">Listing Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../inserting_rows.html">Inserting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../running_queries.html">Running Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../saving_query_results_to_a_csv_or_psv_file.html">Saving Query Results to a CSV or PSV File</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ingestion/index.html">Data Ingestion Sources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/ingesting_data.html">Ingesting Data Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/avro.html">Ingesting Data from Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/csv.html">Ingesting Data from a CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/parquet.html">Ingesting Data from a Parquet File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/orc.html">Ingesting Data from an ORC File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/json.html">Ingesting Data from JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../loading_and_unloading_data/index.html">Loading and Unloading Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../feature_guides/index.html">Feature Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/python_functions.html">Python UDF (User-Defined Functions)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/concurrency_and_locks.html">Concurrency and Locks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/concurrency_and_scaling_in_sqream.html">Concurrency and Scaling in SQream DB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../operational_guides/index.html">Operational Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/access_control.html">Access Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_managing_roles.html">Managing Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_permissions.html">Permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_password_policy.html">Password Policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_departmental_example.html">Departmental Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/audit_log_operation.html">Audit Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/exporting_data.html">Exporting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/monitoring_query_performance.html">Monitoring Query Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/seeing_system_objects_as_ddl.html">Seeing System Objects as DDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/optimization_best_practices.html">Optimization and Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration_guides/index.html">Configuration Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration_guides/spooling.html">Configuring the Spooling Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration_guides/configuring_sqream.html">Configuring SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration_guides/configuration_flags.html">Configuration Flags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/admin_flags.html">Administration Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/admin_regular_flags.html">Regular Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/admin_worker_flags.html">Worker Administration Flags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/generic_flags.html">Generic Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/generic_regular_flags.html">Regular Generic Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/generic_worker_flags.html">Worker Generic Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/blue_console.html">BLUE Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/sql/index.html">SQL Statements and Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/sql/sql_syntax/index.html">SQL Syntax Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/sql/sql_statements/index.html">SQL Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/sql/sql_functions/index.html">SQL Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/sql/sql_functions/scalar_functions/index.html">Built-In Scalar Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/sql/sql_functions/user_defined_functions/index.html">User-Defined Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/sql/sql_functions/aggregate_functions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/sql/sql_functions/window_functions/index.html">Window Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/sql_feature_support.html">SQL Feature Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_type_guides/index.html">Data Type Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_type_guides/converting_and_casting_types.html">Converting and Casting Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_type_guides/supported_data_types.html">Supported Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_type_guides/supported_casts.html">Supported Casts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_boolean.html">Boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_integer.html">Integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_floating_point.html">Floating Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_string.html">String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_date.html">Date</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/index.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/remedying_slow_queries.html">Remedying Slow Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/resolving_common_issues.html">Resolving Common Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/lock_related_issues.html">Lock Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/information_for_support.html">Gathering Information for SQream Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #133148" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SQream Blue</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Install and Configure ODBC on Windows</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="install-and-configure-odbc-on-windows">
+<span id="install-odbc-windows"></span><h1>Install and Configure ODBC on Windows<a class="headerlink" href="#install-and-configure-odbc-on-windows" title="Permalink to this heading"></a></h1>
+<p>The ODBC driver for Windows is provided as a self-contained installer.</p>
+<p>This tutorial shows you how to install and configure ODBC on Windows.</p>
+<div class="contents local topic" id="in-this-topic">
+<p class="topic-title">In this topic:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#installing-the-odbc-driver" id="id1">Installing the ODBC Driver</a></p>
+<ul>
+<li><p><a class="reference internal" href="#prerequisites" id="id2">Prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#run-the-windows-installer" id="id3">1. Run the Windows installer</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#configuring-the-odbc-driver-dsn" id="id4">3. Configuring the ODBC Driver DSN</a></p>
+<ul>
+<li><p><a class="reference internal" href="#connection-parameters" id="id5">Connection Parameters</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#troubleshooting" id="id6">Troubleshooting</a></p>
+<ul>
+<li><p><a class="reference internal" href="#solving-code-126-odbc-errors" id="id7">Solving “Code 126” ODBC errors</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="installing-the-odbc-driver">
+<h2><a class="toc-backref" href="#id1">Installing the ODBC Driver</a><a class="headerlink" href="#installing-the-odbc-driver" title="Permalink to this heading"></a></h2>
+<section id="prerequisites">
+<h3><a class="toc-backref" href="#id2">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h3>
+<section id="visual-studio-2015-redistributables">
+<span id="vcredist"></span><h4>Visual Studio 2015 Redistributables<a class="headerlink" href="#visual-studio-2015-redistributables" title="Permalink to this heading"></a></h4>
+<p>To install the ODBC driver you must first install Microsoft’s <strong>Visual C++ Redistributable for Visual Studio 2015</strong>. To install Visual C++ Redistributable for Visual Studio 2015, see the <a class="reference external" href="https://www.microsoft.com/en-us/download/details.aspx?id=48145">Install Instructions</a>.</p>
+</section>
+<section id="administrator-privileges">
+<h4>Administrator Privileges<a class="headerlink" href="#administrator-privileges" title="Permalink to this heading"></a></h4>
+<p>The SQream DB ODBC driver requires administrator privileges on your computer to add the DSNs (data source names).</p>
+</section>
+</section>
+<section id="run-the-windows-installer">
+<h3><a class="toc-backref" href="#id3">1. Run the Windows installer</a><a class="headerlink" href="#run-the-windows-installer" title="Permalink to this heading"></a></h3>
+<p>Install the driver by following the on-screen instructions in the easy-to-follow installer.</p>
+<img alt="../../../_images/odbc_windows_installer_screen1.png" src="../../../_images/odbc_windows_installer_screen1.png" />
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The installer will install the driver in <code class="docutils literal notranslate"><span class="pre">C:\Program</span> <span class="pre">Files\SQream</span> <span class="pre">Technologies\ODBC</span> <span class="pre">Driver</span></code> by default. This path is changable during the installation.</p>
+</div>
+<section id="selecting-components">
+<h4>2. Selecting Components<a class="headerlink" href="#selecting-components" title="Permalink to this heading"></a></h4>
+<p>The installer includes additional components, like JDBC and Tableau customizations.</p>
+<img alt="../../../_images/odbc_windows_installer_screen2.png" src="../../../_images/odbc_windows_installer_screen2.png" />
+<p>You can deselect items you don’t want to install, but the items named <strong>ODBC Driver DLL</strong> and <strong>ODBC Driver Registry Keys</strong> must remain selected for a complete installation of the ODBC driver.</p>
+<p>Once the installer finishes, you will be ready to configure the DSN for connection.</p>
+</section>
+</section>
+</section>
+<section id="configuring-the-odbc-driver-dsn">
+<span id="create-windows-odbc-dsn"></span><h2><a class="toc-backref" href="#id4">3. Configuring the ODBC Driver DSN</a><a class="headerlink" href="#configuring-the-odbc-driver-dsn" title="Permalink to this heading"></a></h2>
+<p>ODBC driver configurations are done via DSNs. Each DSN represents one SQream DB database.</p>
+<ol class="arabic">
+<li><p>Open up the Windows menu by clicking the Windows button on your keyboard (<kbd class="kbd compound docutils literal notranslate"><kbd class="kbd docutils literal notranslate">⊞</kbd> <kbd class="kbd docutils literal notranslate">Win</kbd></kbd>) or pressing the Windows button with your mouse.</p></li>
+<li><p>Type <strong>ODBC</strong> and select <strong>ODBC Data Sources (64-bit)</strong>. Click the item to open up the setup window.</p>
+<img alt="../../../_images/odbc_windows_startmenu.png" src="../../../_images/odbc_windows_startmenu.png" />
+</li>
+<li><p>The installer has created a sample User DSN named <strong>SQreamDB</strong></p>
+<p>You can modify this DSN, or create a new one (<span class="menuselection">Add ‣ SQream ODBC Driver ‣ Next</span>)</p>
+<img alt="../../../_images/odbc_windows_dsns.png" src="../../../_images/odbc_windows_dsns.png" />
+</li>
+<li><p>Enter your connection parameters. See the reference below for a description of the parameters.</p>
+<img alt="../../../_images/odbc_windows_dsn_config.png" src="../../../_images/odbc_windows_dsn_config.png" />
+</li>
+<li><p>When completed, save the DSN by selecting <span class="menuselection">OK</span></p></li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Test the connection by clicking <span class="menuselection">Test</span> before saving. A successful test looks like this:</p>
+<img alt="../../../_images/odbc_windows_dsn_test.png" src="../../../_images/odbc_windows_dsn_test.png" />
+</div>
+<ol class="arabic simple">
+<li><p>You can now use this DSN in ODBC applications like <span class="xref std std-ref">Tableau</span>.</p></li>
+</ol>
+<section id="connection-parameters">
+<h3><a class="toc-backref" href="#id5">Connection Parameters</a><a class="headerlink" href="#connection-parameters" title="Permalink to this heading"></a></h3>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Data Source Name</p></td>
+<td><p>An easily recognizable name that you’ll use to reference this DSN. Once you set this, it can not be changed.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Description</p></td>
+<td><p>A description of this DSN for your convenience. You can leave this blank.</p></td>
+</tr>
+<tr class="row-even"><td><p>User</p></td>
+<td><p>Username of a role to use for connection. For example, <code class="docutils literal notranslate"><span class="pre">rhendricks</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Password</p></td>
+<td><p>Specifies the password of the selected role. For example, <code class="docutils literal notranslate"><span class="pre">Tr0ub4dor&amp;3</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Database</p></td>
+<td><p>Specifies the database name to connect to. For example, <code class="docutils literal notranslate"><span class="pre">master</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Service</p></td>
+<td><p>Specifices <span class="xref std std-ref">service queue</span> to use. For example, <code class="docutils literal notranslate"><span class="pre">etl</span></code>. Leave blank for default service <code class="docutils literal notranslate"><span class="pre">sqream</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>Server</p></td>
+<td><p>Hostname of the SQream DB worker. For example, <code class="docutils literal notranslate"><span class="pre">127.0.0.1</span></code> or <code class="docutils literal notranslate"><span class="pre">sqream.mynetwork.co</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Port</p></td>
+<td><p>TCP port of the SQream DB worker. For example, <code class="docutils literal notranslate"><span class="pre">5000</span></code> or <code class="docutils literal notranslate"><span class="pre">3108</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>User server picker</p></td>
+<td><p>Connect via load balancer (use only if exists, and check port)</p></td>
+</tr>
+<tr class="row-odd"><td><p>SSL</p></td>
+<td><p>Specifies SSL for this connection</p></td>
+</tr>
+<tr class="row-even"><td><p>Logging options</p></td>
+<td><p>Use this screen to alter logging options when tracing the ODBC connection for possible connection issues.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="troubleshooting">
+<h2><a class="toc-backref" href="#id6">Troubleshooting</a><a class="headerlink" href="#troubleshooting" title="Permalink to this heading"></a></h2>
+<section id="solving-code-126-odbc-errors">
+<h3><a class="toc-backref" href="#id7">Solving “Code 126” ODBC errors</a><a class="headerlink" href="#solving-code-126-odbc-errors" title="Permalink to this heading"></a></h3>
+<p>After installing the ODBC driver, you may experience the following error:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The setup routines for the SQreamDriver64 ODBC driver could not be loaded due to system error
+code 126: The specified module could not be found.
+(c:\Program Files\SQream Technologies\ODBC Driver\sqreamOdbc64.dll)
+</pre></div>
+</div>
+<p>This is an issue with the Visual Studio Redistributable packages. Verify you’ve correctly installed them, as described in the <a class="reference internal" href="#vcredist"><span class="std std-ref">Visual Studio 2015 Redistributables</span></a> section above.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 SQream.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

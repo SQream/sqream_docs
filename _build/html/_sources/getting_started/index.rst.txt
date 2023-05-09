@@ -1,0 +1,14 @@
+.. _getting_started:
+
+*************************
+Getting Started
+*************************
+The **Getting Started** page describes the following things you need to start using SQream:
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   login_and_connectors
+   cost_management
+   performing_basic_sqream_operations

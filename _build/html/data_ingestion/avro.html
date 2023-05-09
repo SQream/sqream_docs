@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ingesting Data from Avro &mdash; SQream Blue 1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Ingesting Data from a CSV File" href="csv.html" />
+    <link rel="prev" title="Ingesting Data Overview" href="ingesting_data.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #133148" >
+            <a href="../index.html">
+            <img src="../_static/SQream_logo_without background-15.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/login_and_connectors.html">Login and Connectors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/cost_management.html">Cost Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/performing_basic_sqream_operations.html">Performing Basic SQream Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/running_the_sqream_sql_client.html">Running the SQream SQL Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/creating_your_first_table.html">Creating Your First Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/listing_tables.html">Listing Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/inserting_rows.html">Inserting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/running_queries.html">Running Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/saving_query_results_to_a_csv_or_psv_file.html">Saving Query Results to a CSV or PSV File</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Data Ingestion Sources</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ingesting_data.html">Ingesting Data Overview</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Ingesting Data from Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="csv.html">Ingesting Data from a CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parquet.html">Ingesting Data from a Parquet File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="orc.html">Ingesting Data from an ORC File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="json.html">Ingesting Data from JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../loading_and_unloading_data/index.html">Loading and Unloading Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../feature_guides/index.html">Feature Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/python_functions.html">Python UDF (User-Defined Functions)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/concurrency_and_locks.html">Concurrency and Locks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/concurrency_and_scaling_in_sqream.html">Concurrency and Scaling in SQream DB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operational_guides/index.html">Operational Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/access_control.html">Access Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_managing_roles.html">Managing Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_permissions.html">Permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_password_policy.html">Password Policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_departmental_example.html">Departmental Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/audit_log_operation.html">Audit Log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/exporting_data.html">Exporting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/monitoring_query_performance.html">Monitoring Query Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/seeing_system_objects_as_ddl.html">Seeing System Objects as DDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/optimization_best_practices.html">Optimization and Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_guides/index.html">Configuration Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/spooling.html">Configuring the Spooling Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/configuring_sqream.html">Configuring SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/configuration_flags.html">Configuration Flags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/admin_flags.html">Administration Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/admin_regular_flags.html">Regular Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/admin_worker_flags.html">Worker Administration Flags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/generic_flags.html">Generic Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/generic_regular_flags.html">Regular Generic Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/generic_worker_flags.html">Worker Generic Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/blue_console.html">BLUE Console</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sql/index.html">SQL Statements and Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_syntax/index.html">SQL Syntax Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_statements/index.html">SQL Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_functions/index.html">SQL Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/scalar_functions/index.html">Built-In Scalar Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/user_defined_functions/index.html">User-Defined Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/aggregate_functions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/window_functions/index.html">Window Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sql_feature_support.html">SQL Feature Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_type_guides/index.html">Data Type Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/converting_and_casting_types.html">Converting and Casting Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/supported_data_types.html">Supported Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/supported_casts.html">Supported Casts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_boolean.html">Boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_integer.html">Integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_floating_point.html">Floating Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_string.html">String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_date.html">Date</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/remedying_slow_queries.html">Remedying Slow Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/resolving_common_issues.html">Resolving Common Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/lock_related_issues.html">Lock Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/information_for_support.html">Gathering Information for SQream Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #133148" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SQream Blue</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Data Ingestion Sources</a></li>
+      <li class="breadcrumb-item active">Ingesting Data from Avro</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ingesting-data-from-avro">
+<span id="avro"></span><h1>Ingesting Data from Avro<a class="headerlink" href="#ingesting-data-from-avro" title="Permalink to this heading"></a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id6">Overview</a></p></li>
+<li><p><a class="reference internal" href="#preparing-your-foreign-table" id="id7">Preparing Your Foreign Table</a></p></li>
+<li><p><a class="reference internal" href="#mapping-between-sqream-and-avro-data-types" id="id8">Mapping Between SQream and Avro Data Types</a></p></li>
+<li><p><a class="reference internal" href="#mapping-objects-to-rows" id="id9">Mapping Objects to Rows</a></p></li>
+<li><p><a class="reference internal" href="#ingesting-data-into-sqream" id="id10">Ingesting Data into SQream</a></p></li>
+<li><p><a class="reference internal" href="#parameters" id="id11">Parameters</a></p></li>
+<li><p><a class="reference internal" href="#best-practices" id="id12">Best Practices</a></p></li>
+<li><p><a class="reference internal" href="#additional-examples" id="id13">Additional Examples</a></p></li>
+</ul>
+</div>
+<section id="overview">
+<h2><a class="toc-backref" href="#id6">Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p><strong>Avro</strong> is a well-known data serialization system that relies on schemas. Due to its flexibility as an efficient data storage method, SQream supports the Avro binary data format as an alternative to JSON. Avro files are represented using the <strong>Object Container File</strong> format, in which the Avro schema is encoded alongside binary data. Multiple files loaded in the same transaction are serialized using the same schema. If they are not serialized using the same schema, an error message is displayed. SQream uses the <strong>.avro</strong> extension for ingested Avro files.</p>
+</section>
+<section id="preparing-your-foreign-table">
+<h2><a class="toc-backref" href="#id7">Preparing Your Foreign Table</a><a class="headerlink" href="#preparing-your-foreign-table" title="Permalink to this heading"></a></h2>
+<p>Before loading data, you must build the <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">FOREIGN</span> <span class="pre">TABLE</span></code> to correspond with the file structure of the inserted table.</p>
+<p>The example in this section is based on the source <code class="docutils literal notranslate"><span class="pre">nba.avro</span></code> table shown below:</p>
+<table class="colwidths-auto docutils align-default" id="id5">
+<caption><span class="caption-text">nba.avro</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Team</p></th>
+<th class="head"><p>Number</p></th>
+<th class="head"><p>Position</p></th>
+<th class="head"><p>Age</p></th>
+<th class="head"><p>Height</p></th>
+<th class="head"><p>Weight</p></th>
+<th class="head"><p>College</p></th>
+<th class="head"><p>Salary</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Avery Bradley</p></td>
+<td><p>Boston Celtics</p></td>
+<td><p>0</p></td>
+<td><p>PG</p></td>
+<td><p>25</p></td>
+<td><p>44714</p></td>
+<td><p>180</p></td>
+<td><p>Texas</p></td>
+<td><p>7730337</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jae Crowder</p></td>
+<td><p>Boston Celtics</p></td>
+<td><p>99</p></td>
+<td><p>SF</p></td>
+<td><p>25</p></td>
+<td><p>44718</p></td>
+<td><p>235</p></td>
+<td><p>Marquette</p></td>
+<td><p>6796117</p></td>
+</tr>
+<tr class="row-even"><td><p>John Holland</p></td>
+<td><p>Boston Celtics</p></td>
+<td><p>30</p></td>
+<td><p>SG</p></td>
+<td><p>27</p></td>
+<td><p>44717</p></td>
+<td><p>205</p></td>
+<td><p>Boston University</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>R.J. Hunter</p></td>
+<td><p>Boston Celtics</p></td>
+<td><p>28</p></td>
+<td><p>SG</p></td>
+<td><p>22</p></td>
+<td><p>44717</p></td>
+<td><p>185</p></td>
+<td><p>Georgia State</p></td>
+<td><p>1148640</p></td>
+</tr>
+<tr class="row-even"><td><p>Jonas Jerebko</p></td>
+<td><p>Boston Celtics</p></td>
+<td><p>8</p></td>
+<td><p>PF</p></td>
+<td><p>29</p></td>
+<td><p>44722</p></td>
+<td><p>231</p></td>
+<td></td>
+<td><p>5000000</p></td>
+</tr>
+<tr class="row-odd"><td><p>Amir Johnson</p></td>
+<td><p>Boston Celtics</p></td>
+<td><p>90</p></td>
+<td><p>PF</p></td>
+<td><p>29</p></td>
+<td><p>44721</p></td>
+<td><p>240</p></td>
+<td></td>
+<td><p>12000000</p></td>
+</tr>
+<tr class="row-even"><td><p>Jordan Mickey</p></td>
+<td><p>Boston Celtics</p></td>
+<td><p>55</p></td>
+<td><p>PF</p></td>
+<td><p>21</p></td>
+<td><p>44720</p></td>
+<td><p>235</p></td>
+<td><p>LSU</p></td>
+<td><p>1170960</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kelly Olynyk</p></td>
+<td><p>Boston Celtics</p></td>
+<td><p>41</p></td>
+<td><p>C</p></td>
+<td><p>25</p></td>
+<td><p>36708</p></td>
+<td><p>238</p></td>
+<td><p>Gonzaga</p></td>
+<td><p>2165160</p></td>
+</tr>
+<tr class="row-even"><td><p>Terry Rozier</p></td>
+<td><p>Boston Celtics</p></td>
+<td><p>12</p></td>
+<td><p>PG</p></td>
+<td><p>22</p></td>
+<td><p>44714</p></td>
+<td><p>190</p></td>
+<td><p>Louisville</p></td>
+<td><p>1824360</p></td>
+</tr>
+</tbody>
+</table>
+<p>The following example shows the correct file structure used to create the <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">FOREIGN</span> <span class="pre">TABLE</span></code> statement based on the <strong>nba.avro</strong> table:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ext_nba</span><span class="w"></span>
+<span class="p">(</span><span class="w"></span>
+
+<span class="w">     </span><span class="k">Name</span><span class="w">       </span><span class="nb">TEXT</span><span class="p">(</span><span class="mf">40</span><span class="p">),</span><span class="w"></span>
+<span class="w">     </span><span class="n">Team</span><span class="w">       </span><span class="nb">TEXT</span><span class="p">(</span><span class="mf">40</span><span class="p">),</span><span class="w"></span>
+<span class="w">     </span><span class="n">Number</span><span class="w">     </span><span class="nb">BIGINT</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="k">Position</span><span class="w">   </span><span class="nb">TEXT</span><span class="p">(</span><span class="mf">2</span><span class="p">),</span><span class="w"></span>
+<span class="w">     </span><span class="n">Age</span><span class="w">        </span><span class="nb">BIGINT</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="n">Height</span><span class="w">     </span><span class="nb">TEXT</span><span class="p">(</span><span class="mf">4</span><span class="p">),</span><span class="w"></span>
+<span class="w">     </span><span class="n">Weight</span><span class="w">     </span><span class="nb">BIGINT</span><span class="p">,</span><span class="w"></span>
+<span class="w">     </span><span class="n">College</span><span class="w">    </span><span class="nb">TEXT</span><span class="p">(</span><span class="mf">40</span><span class="p">),</span><span class="w"></span>
+<span class="w">     </span><span class="n">Salary</span><span class="w">     </span><span class="k">FLOAT</span><span class="w"></span>
+<span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">avro_fdw</span><span class="w"></span>
+<span class="w"> </span><span class="k">OPTIONS</span><span class="w"></span>
+<span class="w"> </span><span class="p">(</span><span class="w"></span>
+<span class="w">   </span><span class="k">LOCATION</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="s1">&#39;s3://sqream-demo-data/nba.avro&#39;</span><span class="w"></span>
+<span class="w"> </span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>An exact match must exist between the SQream and Avro types. For unsupported column types, you can set the type to any type and exclude it from subsequent queries.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <strong>nba.avro</strong> file is stored on S3 at <code class="docutils literal notranslate"><span class="pre">s3://sqream-demo-data/nba.avro</span></code>.</p>
+</div>
+</section>
+<section id="mapping-between-sqream-and-avro-data-types">
+<h2><a class="toc-backref" href="#id8">Mapping Between SQream and Avro Data Types</a><a class="headerlink" href="#mapping-between-sqream-and-avro-data-types" title="Permalink to this heading"></a></h2>
+<p>Mapping between SQream and Avro data types depends on the Avro data type:</p>
+<div class="contents local topic" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#primitive-data-types" id="id14">Primitive Data Types</a></p></li>
+<li><p><a class="reference internal" href="#complex-data-types" id="id15">Complex Data Types</a></p></li>
+<li><p><a class="reference internal" href="#logical-data-types" id="id16">Logical Data Types</a></p></li>
+</ul>
+</div>
+<section id="primitive-data-types">
+<h3><a class="toc-backref" href="#id14">Primitive Data Types</a><a class="headerlink" href="#primitive-data-types" title="Permalink to this heading"></a></h3>
+<p>The following table shows the supported <strong>Primitive</strong> data types:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 17%" />
+<col style="width: 23%" />
+<col style="width: 17%" />
+<col style="width: 22%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" rowspan="2"><p>Avro Type</p></th>
+<th class="head" colspan="4"><p>SQream Type</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Number</p></th>
+<th class="head"><p>Date/Datetime</p></th>
+<th class="head"><p>String</p></th>
+<th class="head"><p>Boolean</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">null</span></code></p></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">boolean</span></code></p></td>
+<td></td>
+<td></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">int</span></code></p></td>
+<td><p>Supported</p></td>
+<td></td>
+<td><p>Supported</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">long</span></code></p></td>
+<td><p>Supported</p></td>
+<td></td>
+<td><p>Supported</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">float</span></code></p></td>
+<td><p>Supported</p></td>
+<td></td>
+<td><p>Supported</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">double</span></code></p></td>
+<td><p>Supported</p></td>
+<td></td>
+<td><p>Supported</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">bytes</span></code></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></td>
+<td></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="complex-data-types">
+<h3><a class="toc-backref" href="#id15">Complex Data Types</a><a class="headerlink" href="#complex-data-types" title="Permalink to this heading"></a></h3>
+<p>The following table shows the supported <strong>Complex</strong> data types:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 19%" />
+<col style="width: 25%" />
+<col style="width: 20%" />
+<col style="width: 17%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" rowspan="2"><p>Avro Type</p></th>
+<th class="head" colspan="4"><p>SQream Type</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Number</p></th>
+<th class="head"><p>Date/Datetime</p></th>
+<th class="head"><p>String</p></th>
+<th class="head"><p>Boolean</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">record</span></code></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">enum</span></code></p></td>
+<td></td>
+<td></td>
+<td><p>Supported</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">map</span></code></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">union</span></code></p></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">fixed</span></code></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="logical-data-types">
+<h3><a class="toc-backref" href="#id16">Logical Data Types</a><a class="headerlink" href="#logical-data-types" title="Permalink to this heading"></a></h3>
+<p>The following table shows the supported <strong>Logical</strong> data types:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 38%" />
+<col style="width: 15%" />
+<col style="width: 20%" />
+<col style="width: 15%" />
+<col style="width: 12%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" rowspan="2"><p>Avro Type</p></th>
+<th class="head" colspan="4"><p>SQream Type</p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Number</p></th>
+<th class="head"><p>Date/Datetime</p></th>
+<th class="head"><p>String</p></th>
+<th class="head"><p>Boolean</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">decimal</span></code></p></td>
+<td><p>Supported</p></td>
+<td></td>
+<td><p>Supported</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">uuid</span></code></p></td>
+<td></td>
+<td></td>
+<td><p>Supported</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">date</span></code></p></td>
+<td></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">time-millis</span></code></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">time-micros</span></code></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">timestamp-millis</span></code></p></td>
+<td></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">timestamp-micros</span></code></p></td>
+<td></td>
+<td><p>Supported</p></td>
+<td><p>Supported</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">local-timestamp-millis</span></code></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">local-timestamp-micros</span></code></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">duration</span></code></p></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Number types include <strong>tinyint</strong>, <strong>smallint</strong>, <strong>int</strong>, <strong>bigint</strong>, <strong>real</strong> and <strong>float</strong>, and <strong>numeric</strong>. String types include <strong>text</strong>.</p>
+</div>
+</section>
+</section>
+<section id="mapping-objects-to-rows">
+<h2><a class="toc-backref" href="#id9">Mapping Objects to Rows</a><a class="headerlink" href="#mapping-objects-to-rows" title="Permalink to this heading"></a></h2>
+<p>When mapping objects to rows, each Avro object or message must contain one <code class="docutils literal notranslate"><span class="pre">record</span></code> type object corresponding to a single row in SQream. The <code class="docutils literal notranslate"><span class="pre">record</span></code> fields are associated by name to their target table columns. Additional unmapped fields will be ignored. Note that using the JSONPath option overrides this.</p>
+</section>
+<section id="ingesting-data-into-sqream">
+<h2><a class="toc-backref" href="#id10">Ingesting Data into SQream</a><a class="headerlink" href="#ingesting-data-into-sqream" title="Permalink to this heading"></a></h2>
+<p>This section includes the following:</p>
+<div class="contents local topic" id="id2">
+<ul class="simple">
+<li><p><a class="reference internal" href="#syntax" id="id17">Syntax</a></p></li>
+<li><p><a class="reference internal" href="#example" id="id18">Example</a></p></li>
+</ul>
+</div>
+<section id="syntax">
+<h3><a class="toc-backref" href="#id17">Syntax</a><a class="headerlink" href="#syntax" title="Permalink to this heading"></a></h3>
+<p>Before ingesting data into SQream from an Avro file, you must create a table using the following syntax:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="p">[</span><span class="k">schema</span><span class="w"> </span><span class="k">name</span><span class="mf">.</span><span class="p">]</span><span class="n">table_name</span><span class="w"></span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">fdw_name</span><span class="w"></span>
+<span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>After creating a table you can ingest data from an Avro file into SQream using the following syntax:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="n">avro_fdw</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="example">
+<h3><a class="toc-backref" href="#id18">Example</a><a class="headerlink" href="#example" title="Permalink to this heading"></a></h3>
+<p>The following is an example of creating a table:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="n">t</span><span class="w"></span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">fdw_name</span><span class="w"></span>
+<span class="w">  </span><span class="k">OPTIONS</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="p">[</span><span class="w"> </span><span class="n">copy_from_option</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="mf">...</span><span class="p">]</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="w">  </span><span class="p">)</span><span class="w"></span>
+<span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The following is an example of loading data from an Avro file into SQream:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">avro_fdw</span><span class="w"></span>
+<span class="k">OPTIONS</span><span class="w"></span>
+<span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="k">LOCATION</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="s1">&#39;s3://sqream-demo-data/nba.avro&#39;</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>For more examples, see <a class="reference internal" href="#additional-examples"><span class="std std-ref">Additional Examples</span></a>.</p>
+</section>
+</section>
+<section id="parameters">
+<h2><a class="toc-backref" href="#id11">Parameters</a><a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<p>The following table shows the Avro parameter:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">schema_name</span></code></p></td>
+<td><p>The schema name for the table. Defaults to <code class="docutils literal notranslate"><span class="pre">public</span></code> if not specified.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="best-practices">
+<h2><a class="toc-backref" href="#id12">Best Practices</a><a class="headerlink" href="#best-practices" title="Permalink to this heading"></a></h2>
+<p>Because external tables do not automatically verify the file integrity or structure, SQream recommends manually verifying your table output when ingesting Avro files into SQream. This lets you determine if your table output is identical to your originally inserted table.</p>
+<p>The following is an example of the output based on the <strong>nba.avro</strong> table:</p>
+<div class="highlight-psql notranslate"><div class="highlight"><pre><span></span><span class="gp">t=&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">ext_nba</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="mf">10</span><span class="p">;</span><span class="w"></span>
+<span class="go">Name          | Team           | Number | Position | Age | Height | Weight | College           | Salary</span>
+<span class="go">--------------+----------------+--------+----------+-----+--------+--------+-------------------+---------</span>
+<span class="go">Avery Bradley | Boston Celtics |      0 | PG       |  25 | 6-2    |    180 | Texas             |  7730337</span>
+<span class="go">Jae Crowder   | Boston Celtics |     99 | SF       |  25 | 6-6    |    235 | Marquette         |  6796117</span>
+<span class="go">John Holland  | Boston Celtics |     30 | SG       |  27 | 6-5    |    205 | Boston University |</span>
+<span class="go">R.J. Hunter   | Boston Celtics |     28 | SG       |  22 | 6-5    |    185 | Georgia State     |  1148640</span>
+<span class="go">Jonas Jerebko | Boston Celtics |      8 | PF       |  29 | 6-10   |    231 |                   |  5000000</span>
+<span class="go">Amir Johnson  | Boston Celtics |     90 | PF       |  29 | 6-9    |    240 |                   | 12000000</span>
+<span class="go">Jordan Mickey | Boston Celtics |     55 | PF       |  21 | 6-8    |    235 | LSU               |  1170960</span>
+<span class="go">Kelly Olynyk  | Boston Celtics |     41 | C        |  25 | 7-0    |    238 | Gonzaga           |  2165160</span>
+<span class="go">Terry Rozier  | Boston Celtics |     12 | PG       |  22 | 6-2    |    190 | Louisville        |  1824360</span>
+<span class="go">Marcus Smart  | Boston Celtics |     36 | PG       |  22 | 6-4    |    220 | Oklahoma State    |  3431040</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If your table output has errors, verify that the structure of the Avro files correctly corresponds to the external table structure that you created.</p>
+</div>
+</section>
+<section id="additional-examples">
+<span id="id3"></span><h2><a class="toc-backref" href="#id13">Additional Examples</a><a class="headerlink" href="#additional-examples" title="Permalink to this heading"></a></h2>
+<p>This section includes the following additional examples of loading data into SQream:</p>
+<div class="contents local topic" id="id4">
+<ul class="simple">
+<li><p><a class="reference internal" href="#omitting-unsupported-column-types" id="id19">Omitting Unsupported Column Types</a></p></li>
+<li><p><a class="reference internal" href="#modifying-data-before-loading" id="id20">Modifying Data Before Loading</a></p></li>
+<li><p><a class="reference internal" href="#loading-a-table-from-a-directory-of-avro-files-on-hdfs" id="id21">Loading a Table from a Directory of Avro Files on HDFS</a></p></li>
+<li><p><a class="reference internal" href="#loading-a-table-from-a-directory-of-avro-files-on-s3" id="id22">Loading a Table from a Directory of Avro Files on S3</a></p></li>
+</ul>
+</div>
+<section id="omitting-unsupported-column-types">
+<h3><a class="toc-backref" href="#id19">Omitting Unsupported Column Types</a><a class="headerlink" href="#omitting-unsupported-column-types" title="Permalink to this heading"></a></h3>
+<p>When loading data, you can omit columns using the <code class="docutils literal notranslate"><span class="pre">NULL</span> <span class="pre">as</span></code> argument. You can use this argument to omit unsupported columns from queries that access external tables. By omitting them, these columns will not be called and will avoid generating a “type mismatch” error.</p>
+<p>In the example below, the <code class="docutils literal notranslate"><span class="pre">Position</span></code> column is not supported due its type.</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">nba</span><span class="w"> </span><span class="k">AS</span><span class="w"></span>
+<span class="w">   </span><span class="k">SELECT</span><span class="w"> </span><span class="k">Name</span><span class="p">,</span><span class="w"> </span><span class="n">Team</span><span class="p">,</span><span class="w"> </span><span class="n">Number</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">Position</span><span class="p">,</span><span class="w"> </span><span class="n">Age</span><span class="p">,</span><span class="w"> </span><span class="n">Height</span><span class="p">,</span><span class="w"> </span><span class="n">Weight</span><span class="p">,</span><span class="w"> </span><span class="n">College</span><span class="p">,</span><span class="w"> </span><span class="n">Salary</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">ext_nba</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="modifying-data-before-loading">
+<h3><a class="toc-backref" href="#id20">Modifying Data Before Loading</a><a class="headerlink" href="#modifying-data-before-loading" title="Permalink to this heading"></a></h3>
+<p>One of the main reasons for staging data using the <code class="docutils literal notranslate"><span class="pre">EXTERNAL</span> <span class="pre">TABLE</span></code> argument is to examine and modify table contents before loading it into SQream.</p>
+<p>For example, we can replace pounds with kilograms using the <a class="reference internal" href="../reference/sql/sql_statements/ddl_commands/create_table_as.html#create-table-as"><span class="std std-ref">CREATE TABLE AS</span></a> statement</p>
+<p>In the example below, the <code class="docutils literal notranslate"><span class="pre">Position</span></code> column is set to the default <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">nba</span><span class="w"> </span><span class="k">AS</span><span class="w"></span>
+<span class="w">   </span><span class="k">SELECT</span><span class="w"> </span><span class="k">name</span><span class="p">,</span><span class="w"> </span><span class="n">team</span><span class="p">,</span><span class="w"> </span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="k">Position</span><span class="p">,</span><span class="w"> </span><span class="n">age</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">weight</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2.205</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">weight</span><span class="p">,</span><span class="w"> </span><span class="n">college</span><span class="p">,</span><span class="w"> </span><span class="n">salary</span><span class="w"></span>
+<span class="w">           </span><span class="k">FROM</span><span class="w"> </span><span class="n">ext_nba</span><span class="w"></span>
+<span class="w">           </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">weight</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="loading-a-table-from-a-directory-of-avro-files-on-hdfs">
+<h3><a class="toc-backref" href="#id21">Loading a Table from a Directory of Avro Files on HDFS</a><a class="headerlink" href="#loading-a-table-from-a-directory-of-avro-files-on-hdfs" title="Permalink to this heading"></a></h3>
+<p>The following is an example of loading a table from a directory of Avro files on HDFS:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ext_users</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="k">name</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">(</span><span class="mf">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">(</span><span class="mf">50</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">)</span><span class="w"></span>
+<span class="k">WRAPPER</span><span class="w"> </span><span class="n">avro_fdw</span><span class="w"></span>
+<span class="k">OPTIONS</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="w"></span>
+<span class="w">     </span><span class="k">LOCATION</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="s1">&#39;hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.avro&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">ext_users</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>For more configuration option examples, navigate to the <a class="reference internal" href="../reference/sql/sql_statements/ddl_commands/create_foreign_table.html#create-foreign-table"><span class="std std-ref">CREATE FOREIGN TABLE</span></a> page and see the <strong>Parameters</strong> table.</p>
+</section>
+<section id="loading-a-table-from-a-directory-of-avro-files-on-s3">
+<h3><a class="toc-backref" href="#id22">Loading a Table from a Directory of Avro Files on S3</a><a class="headerlink" href="#loading-a-table-from-a-directory-of-avro-files-on-s3" title="Permalink to this heading"></a></h3>
+<p>The following is an example of loading a table from a directory of Avro files on S3:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ext_users</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="k">name</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">(</span><span class="mf">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">(</span><span class="mf">50</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">)</span><span class="w"></span>
+<span class="k">WRAPPER</span><span class="w"> </span><span class="n">avro_fdw</span><span class="w"></span>
+<span class="k">OPTIONS</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="w"> </span><span class="k">LOCATION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;s3://pp-secret-bucket/users/*.avro&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">AWS_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;our_aws_id&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">AWS_SECRET</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;our_aws_secret&#39;</span><span class="w"></span>
+<span class="w">   </span><span class="p">);</span><span class="w"></span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">ext_users</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="ingesting_data.html" class="btn btn-neutral float-left" title="Ingesting Data Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="csv.html" class="btn btn-neutral float-right" title="Ingesting Data from a CSV File" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 SQream.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
