@@ -1,5 +1,4 @@
 # sphinx build folder
-$READTHEDOCS_OUTPUT/html
 
 # OS generated files #
 ######################
