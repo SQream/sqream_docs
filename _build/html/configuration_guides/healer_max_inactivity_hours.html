@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configuring the Query Healer &mdash; SQream DB 2022.1.5 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #133148" >
+            <a href="../index.html">
+            <img src="../_static/SQream_logo_without background-15.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/preparing_your_machine_to_install_sqream.html">Preparing Your Machine to Install SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installing_sqream.html">Installing SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/executing_statements_in_sqream.html">Executing Statements in SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/performing_basic_sqream_operations.html">Performing Basic SQream Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/running_the_sqream_sql_client.html">Running the SQream SQL Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/creating_your_first_table.html">Creating Your First Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/listing_tables.html">Listing Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/inserting_rows.html">Inserting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/running_queries.html">Running Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/deleting_rows.html">Deleting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/saving_query_results_to_a_csv_or_psv_file.html">Saving Query Results to a CSV or PSV File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/hardware_guide.html">Hardware Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation_guides/index.html">Installation Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation_guides/installing_and_launching_sqream.html">Installing and Launching SQream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/recommended_pre-installation_configurations.html">Recommended Pre-Installation Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/installing_sqream_with_binary.html">Installing SQream Using Binary Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/running_sqream_in_a_docker_container.html">Installing and Running SQream in a Docker Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/installing_sqream_with_kubernetes.html">Installing SQream with Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/installing_monit.html">Installing Monit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/launching_sqream_with_monit.html">Launching SQream with Monit</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation_guides/sqream_studio_installation.html">Installing SQream Studio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/installing_prometheus_exporters.html">Installing Prometheus Exporter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/installing_prometheus_using_binary_packages.html">Installing Prometheus Using Binary Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/installing_dashboard_data_collector.html">Installing the Dashboard Data Collector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/installing_studio_on_stand_alone_server.html">Installing Studio on a Stand-Alone Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/installing_nginx_proxy_over_secure_connection.html">Installing an NGINX Proxy Over a Secure Connection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_ingestion/index.html">Data Ingestion Sources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/inserting_data.html">Inserting Data Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/avro.html">Inserting Data from Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/csv.html">Inserting Data from a CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/parquet.html">Inserting Data from a Parquet File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/orc.html">Inserting Data from an ORC File</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../connecting_to_sqream/index.html">Connecting to SQream</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../connecting_to_sqream/client_platforms/index.html">Client Platforms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/informatica.html">Connect to SQream Using Informatica Cloud Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/microstrategy.html">Connect to SQream Using MicroStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/pentaho.html">Connecting to SQream Using Pentaho Data Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/php.html">Connect to SQream Using PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/power_bi.html">Connect to SQream Using Power BI Desktop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/r.html">Connect to SQream Using R</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/sap_businessobjects.html">Connecting to SQream Using SAP BusinessObjects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/sas_viya.html">Connect to SQream Using SAS Viya</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/sql_workbench.html">Connect to SQream Using SQL Workbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/tableau.html">Connecting to SQream Using Tableau</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/talend.html">Connecting to SQream Using Talend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/tibco_spotfire.html">Connecting to SQream Using TIBCO Spotfire</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../connecting_to_sqream/client_drivers/index.html">Client Drivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/jdbc/index.html">JDBC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/python/index.html">Python (pysqream)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/nodejs/index.html">Node.JS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/odbc/index.html">ODBC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../connecting_to_sqream/client_drivers/odbc/install_configure_odbc_windows.html">Install and Configure ODBC on Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../connecting_to_sqream/client_drivers/odbc/install_configure_odbc_linux.html">Install and configure ODBC on Linux</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/dotnet/index.html">.NET</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../loading_and_unloading_data/index.html">Loading and Unloading Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../feature_guides/index.html">Feature Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/automatic_foreign_table_ddl_resolution.html">Automatic Foreign Table DDL Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/query_healer.html">Query Healer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/data_encryption.html">Data Encryption</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../feature_guides/data_encryption_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../feature_guides/data_encryption_methods.html">Encryption Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../feature_guides/data_encryption_types.html">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../feature_guides/data_encryption_syntax.html">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../feature_guides/data_encryption_permissions.html">Permissions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/compression.html">Compression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/python_functions.html">Python UDF (User-Defined Functions)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/workload_manager.html">Workload Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/concurrency_and_locks.html">Concurrency and Locks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/concurrency_and_scaling_in_sqream.html">Concurrency and Scaling in SQream DB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operational_guides/index.html">Operational Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/access_control.html">Access Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_password_policy.html">Password Policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_managing_roles.html">Managing Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_permissions.html">Permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_departmental_example.html">Departmental Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/creating_or_cloning_a_storage_cluster.html">Creating or Cloning Storage Clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/external_data.html">Working with External Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/s3.html">Inserting Data Using Amazon S3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/hdfs.html">Using SQream in an HDFS Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/foreign_tables.html">Foreign Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/delete_guide.html">Deleting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/exporting_data.html">Exporting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/logging.html">Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/monitoring_query_performance.html">Monitoring Query Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/seeing_system_objects_as_ddl.html">Seeing System Objects as DDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/optimization_best_practices.html">Optimization and Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sqream_studio_5.4.7/index.html">SQream Acceleration Studio 5.4.7</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/getting_started.html">Getting Started with SQream Acceleration Studio 5.4.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/monitoring_workers_and_services_from_the_dashboard.html">Monitoring Workers and Services from the Dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/executing_statements_and_running_queries_from_the_editor.html">Executing Statements and Running Queries from the Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/viewing_logs.html">Viewing Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/creating_assigning_and_managing_roles_and_permissions.html">Creating, Assigning, and Managing Roles and Permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/configuring_your_instance_of_sqream.html">Configuring Your Instance of SQreams</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">System Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/internals_architecture.html">Internals and architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/filesystem_and_filesystem_usage.html">Filesystem and usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Configuration Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="spooling.html">Configuring the Spooling Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuring_sqream.html">Configuring SQream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="current_method_configuration_levels.html">Configuration Levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="current_method_flag_types.html">Flag Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="current_method_configuration_roles.html">Configuration Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="current_method_modification_methods.html">Modification Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="current_method_configuring_your_parameter_values.html">Configuring Your Parameter Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="current_method_command_examples.html">Command Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="current_method_showing_all_flags_in_the_catalog_table.html">Showing All Flags in the Catalog Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="current_method_all_configurations.html">All Configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="configuration_flags.html">Configuration Flags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="admin_flags.html">Administration Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="admin_regular_flags.html">Regular Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="admin_cluster_flags.html">Cluster Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="admin_worker_flags.html">Worker Administration Flags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="generic_flags.html">Generic Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="generic_regular_flags.html">Regular Generic Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generic_worker_flags.html">Worker Generic Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="previous_configuration_method.html">Configuring SQream Using the Previous Configuration Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sql/index.html">SQL Statements and Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_syntax/index.html">SQL Syntax Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_statements/index.html">SQL Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_functions/index.html">SQL Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/scalar_functions/index.html">Built-In Scalar Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/user_defined_functions/index.html">User-Defined Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/aggregate_functions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/window_functions/index.html">Window Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/catalog_reference.html">Catalog Reference Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/catalog_reference_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/catalog_reference_schema_information.html">What Information Does the Schema Contain?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/catalog_reference_catalog_tables.html">Catalog Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/catalog_reference_additonal_tables.html">Additional Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/catalog_reference_examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/cli/index.html">Command line programs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/metadata_server.html">metadata_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/sqreamd.html">sqreamd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/sqream_console.html">sqream-console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/sqream_installer.html">sqream-installer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/server_picker.html">server_picker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/sqream_storage.html">SqreamStorage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/sqream_sql.html">sqream sql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/upgrade_storage.html">upgrade_storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sql_feature_support.html">SQL Feature Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_type_guides/index.html">Data Type Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/converting_and_casting_types.html">Converting and Casting Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/supported_data_types.html">Supported Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/supported_casts.html">Supported Casts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_boolean.html">Boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_integer.html">Integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_floating_point.html">Floating Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_string.html">String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_date.html">Date</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2022.1_index.html">Release Notes 2022.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.5.html">Release Notes 2022.1.5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.4.html">Release Notes 2022.1.4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.3.html">Release Notes 2022.1.3</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.2.html">Release Notes 2022.1.2</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.1.html">Release Notes 2022.1.1</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.html">Release Notes 2022.1</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2021.2_index.html">Release Notes 2021.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2021.2.1.24.html">Release Notes 2021.2.1.24</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2021.2.1.html">Release Notes 2021.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2021.2.html">Release Notes 2021.2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2021.1_index.html">Release Notes 2021.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2021.1.2.html">Release Notes 2021.1.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2021.1.html">Release Notes 2021.1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2020.3_index.html">Release Notes 2020.3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2020.3.2.1.html">Release Notes 2020.3.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2020.3.2.html">What’s new in 2020.3.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2020.3.1.html">Release Notes 2020.3.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2020.3.html">Release Notes 2020.3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2020.2.html">Release Notes 2020.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2020.1.html">Release Notes 2020.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/remedying_slow_queries.html">Remedying Slow Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/resolving_common_issues.html">Resolving Common Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/examining_logs.html">Examining Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/identifying_configuration_issues.html">Identifying Configuration Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/lock_related_issues.html">Lock Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/log_related_issues.html">Log Related Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/core_dumping_related_issues.html">Core Dumping Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/information_for_support.html">Gathering Information for SQream Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #133148" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SQream DB</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Configuring the Query Healer</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="configuring-the-query-healer">
+<span id="healer-max-inactivity-hours"></span><h1>Configuring the Query Healer<a class="headerlink" href="#configuring-the-query-healer" title="Permalink to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">healerMaxInactivityHours</span></code> flag is used for defining the threshold for creating a log recording a slow statement. The log includes information about the log memory, CPU and GPU.</p>
+<p>The following describes the <code class="docutils literal notranslate"><span class="pre">healerMaxInactivityHours</span></code> flag:</p>
+<ul class="simple">
+<li><p><strong>Data type</strong> - size_t</p></li>
+<li><p><strong>Default value</strong> - <code class="docutils literal notranslate"><span class="pre">5</span></code></p></li>
+<li><p><strong>Allowed values</strong> - 1-4000000000</p></li>
+</ul>
+<p>For related flags, see <a class="reference internal" href="is_healer_on.html#is-healer-on"><span class="std std-ref">Enabling the Query Healer</span></a>.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022 SQream.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

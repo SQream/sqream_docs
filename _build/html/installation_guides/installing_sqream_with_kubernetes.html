@@ -1,0 +1,2124 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installing SQream with Kubernetes &mdash; SQream DB 4.2 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Installing Monit" href="installing_monit.html" />
+    <link rel="prev" title="Installing and Running SQream in a Docker Container" href="running_sqream_in_a_docker_container.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #133148" >
+            <a href="../index.html">
+            <img src="../_static/SQream_logo_without background-15.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/preparing_your_machine_to_install_sqream.html">Preparing Your Machine to Install SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installing_sqream.html">Installing SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/executing_statements_in_sqream.html">Executing Statements in SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/performing_basic_sqream_operations.html">Performing Basic SQream Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/running_the_sqream_sql_client.html">Running the SQream SQL Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/creating_your_first_table.html">Creating Your First Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/listing_tables.html">Listing Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/inserting_rows.html">Inserting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/running_queries.html">Running Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/deleting_rows.html">Deleting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/saving_query_results_to_a_csv_or_psv_file.html">Saving Query Results to a CSV or PSV File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/hardware_guide.html">Hardware Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation Guides</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="installing_and_launching_sqream.html">Installing and Launching SQream</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="recommended_pre-installation_configurations.html">Recommended Pre-Installation Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installing_sqream_with_binary.html">Installing SQream Using Binary Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_sqream_in_a_docker_container.html">Installing and Running SQream in a Docker Container</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Installing SQream with Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installing_monit.html">Installing Monit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="launching_sqream_with_monit.html">Launching SQream with Monit</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sqream_studio_installation.html">Installing SQream Studio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installing_prometheus_exporters.html">Installing Prometheus Exporter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installing_prometheus_using_binary_packages.html">Installing Prometheus Using Binary Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installing_dashboard_data_collector.html">Installing the Dashboard Data Collector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installing_studio_on_stand_alone_server.html">Installing Studio on a Stand-Alone Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installing_nginx_proxy_over_secure_connection.html">Installing an NGINX Proxy Over a Secure Connection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_ingestion/index.html">Data Ingestion Sources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/ingesting_data.html">Ingesting Data Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/avro.html">Ingesting Data from Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/csv.html">Ingesting Data from a CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/parquet.html">Ingesting Data from a Parquet File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/orc.html">Ingesting Data from an ORC File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/json.html">Ingesting Data from JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../connecting_to_sqream/index.html">Connecting to SQream</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../connecting_to_sqream/client_platforms/index.html">Client Platforms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/informatica.html">Connect to SQream Using Informatica Cloud Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/microstrategy.html">Connect to SQream Using MicroStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/pentaho.html">Connecting to SQream Using Pentaho Data Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/php.html">Connect to SQream Using PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/power_bi.html">Connecting to SQream Using Power BI Desktop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/r.html">Connect to SQream Using R</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/sap_businessobjects.html">Connecting to SQream Using SAP BusinessObjects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/sas_viya.html">Connect to SQream Using SAS Viya</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/sql_workbench.html">Connect to SQream Using SQL Workbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/tableau.html">Connecting to SQream Using Tableau</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/talend.html">Connecting to SQream Using Talend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/tibco_spotfire.html">Connecting to SQream Using TIBCO Spotfire</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../connecting_to_sqream/client_drivers/index.html">Client Drivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/trino/index.html">Connecting to SQream Using Trino</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/jdbc/index.html">JDBC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/python/index.html">Connecting to SQream Using Python (pysqream)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/nodejs/index.html">Connecting to SQream Using Node.JS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/odbc/index.html">ODBC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../connecting_to_sqream/client_drivers/odbc/install_configure_odbc_windows.html">Install and Configure ODBC on Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../connecting_to_sqream/client_drivers/odbc/install_configure_odbc_linux.html">Install and configure ODBC on Linux</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/dotnet/index.html">Connecting to SQream Using .NET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/Spark/index.html">Using Spark With SQream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../external_storage_platforms/index.html">External Storage Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../external_storage_platforms/s3.html">Inserting Data Using Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../external_storage_platforms/hdfs.html">Using SQream in an HDFS Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../loading_and_unloading_data/index.html">Loading and Unloading Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../feature_guides/index.html">Feature Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/automatic_foreign_table_ddl_resolution.html">Automatic Foreign Table DDL Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/query_healer.html">Query Healer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/data_encryption.html">Data Encryption</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../feature_guides/data_encryption_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../feature_guides/data_encryption_methods.html">Encryption Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../feature_guides/data_encryption_types.html">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../feature_guides/data_encryption_syntax.html">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../feature_guides/data_encryption_permissions.html">Permissions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/compression.html">Compression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/python_functions.html">Python UDF (User-Defined Functions)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/workload_manager.html">Workload Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/concurrency_and_locks.html">Concurrency and Locks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/concurrency_and_scaling_in_sqream.html">Concurrency and Scaling in SQream DB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operational_guides/index.html">Operational Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/access_control.html">Access Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_password_policy.html">Password Policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_managing_roles.html">Managing Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_permissions.html">Permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_departmental_example.html">Departmental Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/creating_or_cloning_a_storage_cluster.html">Creating or Cloning Storage Clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/external_data.html">Working with External Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/s3.html">Inserting Data Using Amazon S3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/hdfs.html">Using SQream in an HDFS Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/foreign_tables.html">Foreign Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/delete_guide.html">Deleting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/exporting_data.html">Exporting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/logging.html">Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/monitoring_query_performance.html">Monitoring Query Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/saved_queries.html">Saved Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/seeing_system_objects_as_ddl.html">Seeing System Objects as DDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/optimization_best_practices.html">Optimization and Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sqream_studio_5.4.7/index.html">SQream Acceleration Studio 5.4.7</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/getting_started.html">Getting Started with SQream Acceleration Studio 5.4.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/monitoring_workers_and_services_from_the_dashboard.html">Monitoring Workers and Services from the Dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/executing_statements_and_running_queries_from_the_editor.html">Executing Statements and Running Queries from the Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/viewing_logs.html">Viewing Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/creating_assigning_and_managing_roles_and_permissions.html">Creating, Assigning, and Managing Roles and Permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/configuring_your_instance_of_sqream.html">Configuring Your Instance of SQreams</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">System Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/internals_architecture.html">Internals and architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/filesystem_and_filesystem_usage.html">Filesystem and usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_guides/index.html">Configuration Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/spooling.html">Configuring the Spooling Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/configuring_sqream.html">Configuring SQream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_configuration_levels.html">Configuration Levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_flag_types.html">Flag Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_configuration_roles.html">Configuration Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_modification_methods.html">Modification Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_configuring_your_parameter_values.html">Configuring Your Parameter Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_command_examples.html">Command Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_showing_all_flags_in_the_catalog_table.html">Showing All Flags in the Catalog Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_all_configurations.html">All Configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/ldap.html">Configuring LDAP authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/configuration_flags.html">Configuration Flags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/admin_flags.html">Administration Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/admin_regular_flags.html">Regular Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/admin_cluster_flags.html">Cluster Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/admin_worker_flags.html">Worker Administration Flags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/generic_flags.html">Generic Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/generic_regular_flags.html">Regular Generic Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/generic_worker_flags.html">Worker Generic Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/previous_configuration_method.html">Configuring SQream Using the Previous Configuration Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sql/index.html">SQL Statements and Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_syntax/index.html">SQL Syntax Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_statements/index.html">SQL Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_functions/index.html">SQL Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/scalar_functions/index.html">Built-In Scalar Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/user_defined_functions/index.html">User-Defined Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/aggregate_functions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/window_functions/index.html">Window Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/catalog_reference.html">Catalog Reference Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/catalog_reference_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/catalog_reference_schema_information.html">What Information Does the Schema Contain?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/catalog_reference_catalog_tables.html">Catalog Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/catalog_reference_additonal_tables.html">Additional Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/catalog_reference_examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/cli/index.html">Command line programs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/metadata_server.html">metadata_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/sqreamd.html">sqreamd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/sqream_console.html">sqream-console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/sqream_installer.html">sqream-installer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/server_picker.html">Server Picker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/sqream_storage.html">SqreamStorage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/sqream_sql.html">sqream sql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/upgrade_storage.html">upgrade_storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sql_feature_support.html">SQL Feature Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_type_guides/index.html">Data Type Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/converting_and_casting_types.html">Converting and Casting Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/supported_data_types.html">Supported Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/supported_casts.html">Supported Casts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_boolean.html">Boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_integer.html">Integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_floating_point.html">Floating Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_string.html">String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_date.html">Date</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../releases/4.0_index.html">Release Notes 4.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/4.0.html">Release Notes 4.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/4.1.html">Release Notes 4.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/4.2.html">Release Notes 4.2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2022.1_index.html">Release Notes 2022.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.7.html">Release Notes 2022.1.7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.6.html">Release Notes 2022.1.6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.5.html">Release Notes 2022.1.5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.4.html">Release Notes 2022.1.4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.3.html">Release Notes 2022.1.3</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.2.html">Release Notes 2022.1.2</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.1.html">Release Notes 2022.1.1</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.html">Release Notes 2022.1</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2021.2_index.html">Release Notes 2021.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2021.2.1.24.html">Release Notes 2021.2.1.24</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2021.2.1.html">Release Notes 2021.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2021.2.html">Release Notes 2021.2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2021.1_index.html">Release Notes 2021.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2021.1.2.html">Release Notes 2021.1.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2021.1.html">Release Notes 2021.1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2020.3_index.html">Release Notes 2020.3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2020.3.2.1.html">Release Notes 2020.3.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2020.3.2.html">What’s new in 2020.3.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2020.3.1.html">Release Notes 2020.3.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2020.3.html">Release Notes 2020.3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2020.2.html">Release Notes 2020.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2020.1.html">Release Notes 2020.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/remedying_slow_queries.html">Remedying Slow Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/resolving_common_issues.html">Resolving Common Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/examining_logs.html">Examining Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/identifying_configuration_issues.html">Identifying Configuration Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/lock_related_issues.html">Lock Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/log_related_issues.html">Log Related Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/core_dumping_related_issues.html">Core Dumping Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/information_for_support.html">Gathering Information for SQream Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #133148" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SQream DB</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Installation Guides</a> &raquo;</li>
+          <li><a href="installing_and_launching_sqream.html">Installing and Launching SQream</a> &raquo;</li>
+      <li>Installing SQream with Kubernetes</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installing-sqream-with-kubernetes">
+<span id="id1"></span><h1>Installing SQream with Kubernetes<a class="headerlink" href="#installing-sqream-with-kubernetes" title="Permalink to this heading"></a></h1>
+<p><strong>Kubernetes</strong>, also known as <strong>k8s</strong>, is a portable open source platform that automates Linux container operations. Kubernetes supports outsourcing data centers to public cloud service providers or can be scaled for web hosting. SQream uses Kubernetes as an orchestration and recovery solution.</p>
+<p>The <strong>Installing SQream with Kubernetes</strong> guide describes the following:</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#preparing-the-sqream-environment-to-launch-sqream-using-kubernetes" id="id10">Preparing the SQream Environment to Launch SQream Using Kubernetes</a></p></li>
+<li><p><a class="reference internal" href="#setting-up-your-hosts" id="id11">Setting Up Your Hosts</a></p></li>
+<li><p><a class="reference internal" href="#installing-your-kubernetes-cluster" id="id12">Installing Your Kubernetes Cluster</a></p></li>
+<li><p><a class="reference internal" href="#installing-the-sqream-software" id="id13">Installing the SQream Software</a></p></li>
+<li><p><a class="reference internal" href="#running-the-sqream-install-service" id="id14">Running the Sqream-install Service</a></p></li>
+<li><p><a class="reference internal" href="#using-the-sqream-start-commands" id="id15">Using the sqream-start Commands</a></p></li>
+<li><p><a class="reference internal" href="#upgrading-your-sqream-version" id="id16">Upgrading Your SQream Version</a></p></li>
+</ul>
+</div>
+<section id="preparing-the-sqream-environment-to-launch-sqream-using-kubernetes">
+<span id="preparing-sqream-environment"></span><h2><a class="toc-backref" href="#id10">Preparing the SQream Environment to Launch SQream Using Kubernetes</a><a class="headerlink" href="#preparing-the-sqream-environment-to-launch-sqream-using-kubernetes" title="Permalink to this heading"></a></h2>
+<p>The <strong>Preparing the SQream environment to Launch SQream Using Kubernetes</strong> section describes the following:</p>
+<div class="contents local topic" id="id2">
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id17">Overview</a></p></li>
+<li><p><a class="reference internal" href="#operating-system-requirements" id="id18">Operating System Requirements</a></p></li>
+<li><p><a class="reference internal" href="#compute-server-specifications" id="id19">Compute Server Specifications</a></p></li>
+</ul>
+</div>
+<section id="overview">
+<h3><a class="toc-backref" href="#id17">Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading"></a></h3>
+<p>A minimum of three servers is required for preparing the SQream environment using Kubernetes.</p>
+<p>Kubernetes uses clusters, which are sets of nodes running containterized applications. A cluster consists of at least two GPU nodes and one additional server without GPU to act as the quorum manager.</p>
+<p>Each server must have the following IP addresses:</p>
+<ul class="simple">
+<li><p>An IP address located in the management network.</p></li>
+<li><p>An additional IP address from the same subnet to function as a floating IP.</p></li>
+</ul>
+<p>All servers must be mounted in the same shared storage folder.</p>
+<p>The following list shows the server host name format requirements:</p>
+<ul class="simple">
+<li><p>A maximum of 253 characters.</p></li>
+<li><p>Only lowercase alphanumeric characters, such as <code class="docutils literal notranslate"><span class="pre">-</span></code> or <code class="docutils literal notranslate"><span class="pre">.</span></code>.</p></li>
+<li><p>Starts and ends with alphanumeric characters.</p></li>
+</ul>
+<p>Go back to <a class="reference internal" href="#preparing-sqream-environment"><span class="std std-ref">Preparing the SQream Environment to Launch SQream Using Kubernetes</span></a></p>
+</section>
+<section id="operating-system-requirements">
+<h3><a class="toc-backref" href="#id18">Operating System Requirements</a><a class="headerlink" href="#operating-system-requirements" title="Permalink to this heading"></a></h3>
+<p>The required operating system is a version of x86 CentOS/RHEL between 7.6 and 7.9. Regarding PPC64le, the required version is RHEL 7.6.</p>
+<p>Go back to <a class="reference internal" href="#preparing-sqream-environment"><span class="std std-ref">Preparing the SQream Environment to Launch SQream Using Kubernetes</span></a></p>
+</section>
+<section id="compute-server-specifications">
+<h3><a class="toc-backref" href="#id19">Compute Server Specifications</a><a class="headerlink" href="#compute-server-specifications" title="Permalink to this heading"></a></h3>
+<p>Installing SQream with Kubernetes includes the following compute server specifications:</p>
+<ul class="simple">
+<li><p><strong>CPU:</strong> 4 cores</p></li>
+<li><p><strong>RAM:</strong> 16GB</p></li>
+<li><p><strong>HD:</strong> 500GB</p></li>
+</ul>
+<p>Go back to <a class="reference internal" href="#preparing-sqream-environment"><span class="std std-ref">Preparing the SQream Environment to Launch SQream Using Kubernetes</span></a></p>
+</section>
+</section>
+<section id="setting-up-your-hosts">
+<span id="set-up-your-hosts"></span><h2><a class="toc-backref" href="#id11">Setting Up Your Hosts</a><a class="headerlink" href="#setting-up-your-hosts" title="Permalink to this heading"></a></h2>
+<p>SQream requires you to set up your hosts. Setting up your hosts requires the following:</p>
+<div class="contents local topic" id="id3">
+<ul class="simple">
+<li><p><a class="reference internal" href="#configuring-the-hosts-file" id="id20">Configuring the Hosts File</a></p></li>
+<li><p><a class="reference internal" href="#installing-the-required-packages" id="id21">Installing the Required Packages</a></p></li>
+<li><p><a class="reference internal" href="#disabling-the-linux-ui" id="id22">Disabling the Linux UI</a></p></li>
+<li><p><a class="reference internal" href="#disabling-selinux" id="id23">Disabling SELinux</a></p></li>
+<li><p><a class="reference internal" href="#disabling-your-firewall" id="id24">Disabling Your Firewall</a></p></li>
+<li><p><a class="reference internal" href="#checking-the-cuda-version" id="id25">Checking the CUDA Version</a></p></li>
+</ul>
+</div>
+<section id="configuring-the-hosts-file">
+<h3><a class="toc-backref" href="#id20">Configuring the Hosts File</a><a class="headerlink" href="#configuring-the-hosts-file" title="Permalink to this heading"></a></h3>
+<p><strong>To configure the /etc/hosts file:</strong></p>
+<ol class="arabic">
+<li><p>Edit the <strong>/etc/hosts</strong> file:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo vim /etc/hosts
+</pre></div>
+</div>
+</li>
+<li><p>Call your local host:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="m">127</span>.0.0.1       localhost
+<span class="gp">$ </span>&lt;server ip&gt;     &lt;server_name&gt;
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="installing-the-required-packages">
+<h3><a class="toc-backref" href="#id21">Installing the Required Packages</a><a class="headerlink" href="#installing-the-required-packages" title="Permalink to this heading"></a></h3>
+<p>The first step in setting up your hosts is to install the required packages.</p>
+<p><strong>To install the required packages:</strong></p>
+<ol class="arabic">
+<li><p>Run the following command based on your operating system:</p>
+<ul class="simple">
+<li><p>RHEL:</p></li>
+</ul>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ sudo yum -y install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+</pre></div>
+</div>
+</div></blockquote>
+<ul class="simple">
+<li><p>CentOS:</p></li>
+</ul>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ sudo yum install epel-release
+$ sudo yum install pciutils openssl-devel python36 python36-pip kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc jq net-tools ntp
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Verify that that the required packages were successfully installed. The following is the correct output:</p>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>ntpq --version
+jq --version
+python3 --version
+pip3 --version
+rpm -qa |grep kernel-devel-$(uname -r)
+rpm -qa |grep kernel-headers-$(uname -r)
+gcc --version
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Enable the <strong>ntpd (Network Time Protocol daemon)</strong> program on all servers:</p>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ sudo systemctl start ntpd
+$ sudo systemctl enable ntpd
+$ sudo systemctl status ntpd
+$ sudo ntpq -p
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<p>Go back to <a class="reference internal" href="#set-up-your-hosts"><span class="std std-ref">Setting Up Your Hosts</span></a></p>
+</section>
+<section id="disabling-the-linux-ui">
+<h3><a class="toc-backref" href="#id22">Disabling the Linux UI</a><a class="headerlink" href="#disabling-the-linux-ui" title="Permalink to this heading"></a></h3>
+<p>After installing the required packages, you must disable the Linux UI if it has been installed.</p>
+<p>You can disable Linux by running the following command:</p>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ sudo systemctl set-default multi-user.target
+</pre></div>
+</div>
+</div></blockquote>
+<p>Go back to <a class="reference internal" href="#set-up-your-hosts"><span class="std std-ref">Setting Up Your Hosts</span></a></p>
+</section>
+<section id="disabling-selinux">
+<h3><a class="toc-backref" href="#id23">Disabling SELinux</a><a class="headerlink" href="#disabling-selinux" title="Permalink to this heading"></a></h3>
+<p>After disabling the Linux UI you must disable SELinux.</p>
+<p><strong>To disable SELinux:</strong></p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Run the following command:</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ sed -i -e s/enforcing/disabled/g /etc/selinux/config
+$ sudo reboot
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic" start="2">
+<li><p>Reboot the system as a root user:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ sudo reboot
+</pre></div>
+</div>
+</li>
+</ol>
+</div></blockquote>
+<p>Go back to <a class="reference internal" href="#set-up-your-hosts"><span class="std std-ref">Setting Up Your Hosts</span></a></p>
+</section>
+<section id="disabling-your-firewall">
+<h3><a class="toc-backref" href="#id24">Disabling Your Firewall</a><a class="headerlink" href="#disabling-your-firewall" title="Permalink to this heading"></a></h3>
+<p>After disabling SELinux, you must disable your firewall by running the following commands:</p>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ sudo systemctl stop firewalld
+$ sudo systemctl disable firewalld
+</pre></div>
+</div>
+</div></blockquote>
+<p>Go back to <a class="reference internal" href="#set-up-your-hosts"><span class="std std-ref">Setting Up Your Hosts</span></a></p>
+</section>
+<section id="checking-the-cuda-version">
+<h3><a class="toc-backref" href="#id25">Checking the CUDA Version</a><a class="headerlink" href="#checking-the-cuda-version" title="Permalink to this heading"></a></h3>
+<p>After completing all of the steps above, you must check the CUDA version.</p>
+<p><strong>To check the CUDA version:</strong></p>
+<ol class="arabic">
+<li><p>Check the CUDA version:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ nvidia-smi
+</pre></div>
+</div>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="o">+-----------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="n">NVIDIA</span><span class="o">-</span><span class="n">SMI</span><span class="w"> </span><span class="mf">470.82.01</span><span class="w">    </span><span class="n">Driver</span><span class="w"> </span><span class="k">Version</span><span class="p">:</span><span class="w"> </span><span class="mf">470.82.01</span><span class="w">    </span><span class="n">CUDA</span><span class="w"> </span><span class="k">Version</span><span class="p">:</span><span class="w"> </span><span class="mf">10.1</span><span class="w">    </span><span class="o">|</span><span class="w"></span>
+<span class="o">|-------------------------------+----------------------+----------------------+</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="n">GPU</span><span class="w">  </span><span class="k">Name</span><span class="w">        </span><span class="n">Persistence</span><span class="o">-</span><span class="n">M</span><span class="o">|</span><span class="w"> </span><span class="n">Bus</span><span class="o">-</span><span class="n">Id</span><span class="w">        </span><span class="n">Disp</span><span class="mf">.</span><span class="n">A</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Volatile</span><span class="w"> </span><span class="n">Uncorr</span><span class="mf">.</span><span class="w"> </span><span class="n">ECC</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="n">Fan</span><span class="w">  </span><span class="k">Temp</span><span class="w">  </span><span class="n">Perf</span><span class="w">  </span><span class="n">Pwr</span><span class="nv">:Usage</span><span class="o">/</span><span class="n">Cap</span><span class="o">|</span><span class="w">         </span><span class="n">Memory</span><span class="o">-</span><span class="n">Usage</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">GPU</span><span class="o">-</span><span class="n">Util</span><span class="w">  </span><span class="n">Compute</span><span class="w"> </span><span class="n">M</span><span class="mf">.</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">                               </span><span class="o">|</span><span class="w">                      </span><span class="o">|</span><span class="w">               </span><span class="n">MIG</span><span class="w"> </span><span class="n">M</span><span class="mf">.</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|===============================+======================+======================|</span><span class="w"></span>
+<span class="o">|</span><span class="w">   </span><span class="mf">0</span><span class="w">  </span><span class="n">NVIDIA</span><span class="w"> </span><span class="n">A100</span><span class="o">-</span><span class="n">PCI</span><span class="mf">...</span><span class="w">  </span><span class="k">On</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mf">00000000</span><span class="p">:</span><span class="mf">17</span><span class="p">:</span><span class="mf">00.0</span><span class="w"> </span><span class="k">Off</span><span class="w"> </span><span class="o">|</span><span class="w">                    </span><span class="mf">0</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="w">   </span><span class="mf">34</span><span class="n">C</span><span class="w">    </span><span class="n">P0</span><span class="w">    </span><span class="mf">64</span><span class="n">W</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">300</span><span class="n">W</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mf">79927</span><span class="n">MiB</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">80994</span><span class="n">MiB</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mf">0</span><span class="o">%</span><span class="w">      </span><span class="k">Default</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">                               </span><span class="o">|</span><span class="w">                      </span><span class="o">|</span><span class="w">             </span><span class="n">Disabled</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+-------------------------------+----------------------+----------------------+</span><span class="w"></span>
+<span class="o">|</span><span class="w">   </span><span class="mf">1</span><span class="w">  </span><span class="n">NVIDIA</span><span class="w"> </span><span class="n">A100</span><span class="o">-</span><span class="n">PCI</span><span class="mf">...</span><span class="w">  </span><span class="k">On</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mf">00000000</span><span class="nv">:CA</span><span class="p">:</span><span class="mf">00.0</span><span class="w"> </span><span class="k">Off</span><span class="w"> </span><span class="o">|</span><span class="w">                    </span><span class="mf">0</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="w">   </span><span class="mf">35</span><span class="n">C</span><span class="w">    </span><span class="n">P0</span><span class="w">    </span><span class="mf">60</span><span class="n">W</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">300</span><span class="n">W</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mf">79927</span><span class="n">MiB</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">80994</span><span class="n">MiB</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mf">0</span><span class="o">%</span><span class="w">      </span><span class="k">Default</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">                               </span><span class="o">|</span><span class="w">                      </span><span class="o">|</span><span class="w">             </span><span class="n">Disabled</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+-------------------------------+----------------------+----------------------+</span><span class="w"></span>
+
+<span class="o">+-----------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="n">Processes</span><span class="p">:</span><span class="w">                                                       </span><span class="n">GPU</span><span class="w"> </span><span class="n">Memory</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">  </span><span class="n">GPU</span><span class="w">       </span><span class="n">PID</span><span class="w">   </span><span class="k">Type</span><span class="w">   </span><span class="n">Process</span><span class="w"> </span><span class="k">name</span><span class="w">                             </span><span class="n">Usage</span><span class="w">      </span><span class="o">|</span><span class="w"></span>
+<span class="o">|=============================================================================|</span><span class="w"></span>
+<span class="o">|</span><span class="w">  </span><span class="k">No</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="n">processes</span><span class="w"> </span><span class="n">found</span><span class="w">                                                 </span><span class="o">|</span><span class="w"></span>
+<span class="o">+-----------------------------------------------------------------------------+</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>In the above output, the CUDA version is <strong>10.1</strong>.</p>
+<p>If the above output is not generated, CUDA has not been installed. To install CUDA, see <span class="xref std std-ref">installing-the-cuda-driver</span>.</p>
+<p>Go back to <a class="reference internal" href="#set-up-your-hosts"><span class="std std-ref">Setting Up Your Hosts</span></a></p>
+</section>
+</section>
+<section id="installing-your-kubernetes-cluster">
+<span id="install-kubernetes-cluster"></span><h2><a class="toc-backref" href="#id12">Installing Your Kubernetes Cluster</a><a class="headerlink" href="#installing-your-kubernetes-cluster" title="Permalink to this heading"></a></h2>
+<p>After setting up your hosts, you must install your Kubernetes cluster. The Kubernetes and SQream software must be installed from the management host, and can be installed on any server in the cluster.</p>
+<p>Installing your Kubernetes cluster requires the following:</p>
+<div class="contents local topic" id="id4">
+<ul class="simple">
+<li><p><a class="reference internal" href="#generating-and-sharing-ssh-keypairs-across-all-existing-nodes" id="id26">Generating and Sharing SSH Keypairs Across All Existing Nodes</a></p></li>
+<li><p><a class="reference internal" href="#installing-and-deploying-a-kubernetes-cluster-using-kubespray" id="id27">Installing and Deploying a Kubernetes Cluster Using Kubespray</a></p></li>
+<li><p><a class="reference internal" href="#adjusting-kubespray-deployment-values" id="id28">Adjusting Kubespray Deployment Values</a></p></li>
+<li><p><a class="reference internal" href="#checking-your-kubernetes-status" id="id29">Checking Your Kubernetes Status</a></p></li>
+<li><p><a class="reference internal" href="#adding-a-sqream-label-to-your-kubernetes-cluster-nodes" id="id30">Adding a SQream Label to Your Kubernetes Cluster Nodes</a></p></li>
+<li><p><a class="reference internal" href="#copying-your-kubernetes-configuration-api-file-to-the-master-cluster-nodes" id="id31">Copying Your Kubernetes Configuration API File to the Master Cluster Nodes</a></p></li>
+<li><p><a class="reference internal" href="#creating-an-env-file-in-your-home-directory" id="id32">Creating an env_file in Your Home Directory</a></p></li>
+<li><p><a class="reference internal" href="#creating-a-base-kubernetes-namespace" id="id33">Creating a Base Kubernetes Namespace</a></p></li>
+<li><p><a class="reference internal" href="#pushing-the-env-file-file-to-the-kubernetes-configmap" id="id34">Pushing the <strong>env_file</strong> File to the Kubernetes Configmap</a></p></li>
+<li><p><a class="reference internal" href="#installing-the-nvidia-docker2-toolkit" id="id35">Installing the NVIDIA Docker2 Toolkit</a></p></li>
+<li><p><a class="reference internal" href="#modifying-the-docker-daemon-json-file-for-gpu-and-compute-nodes" id="id36">Modifying the Docker Daemon JSON File for GPU and Compute Nodes</a></p></li>
+<li><p><a class="reference internal" href="#installing-the-nvidia-device-plugin-daemonset" id="id37">Installing the Nvidia-device-plugin Daemonset</a></p></li>
+<li><p><a class="reference internal" href="#creating-an-nvidia-device-plugin" id="id38">Creating an Nvidia Device Plugin</a></p></li>
+<li><p><a class="reference internal" href="#checking-gpu-resources-allocatable-to-gpu-nodes" id="id39">Checking GPU Resources Allocatable to GPU Nodes</a></p></li>
+<li><p><a class="reference internal" href="#preparing-the-watchdog-monitor" id="id40">Preparing the WatchDog Monitor</a></p></li>
+</ul>
+</div>
+<section id="generating-and-sharing-ssh-keypairs-across-all-existing-nodes">
+<h3><a class="toc-backref" href="#id26">Generating and Sharing SSH Keypairs Across All Existing Nodes</a><a class="headerlink" href="#generating-and-sharing-ssh-keypairs-across-all-existing-nodes" title="Permalink to this heading"></a></h3>
+<p>You can generate and share SSH keypairs across all existing nodes. Sharing SSH keypairs across all nodes enables passwordless access from the management server to all nodes in the cluster. All nodes in the cluster require passwordless access.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You must generate and share an SSH keypair across all nodes even if you are installing the Kubernetes cluster on a single host.</p>
+</div>
+<p><strong>To generate and share an SSH keypair:</strong></p>
+<ol class="arabic simple">
+<li><p>Switch to root user access:</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ sudo su -
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Generate an RSA key pair:</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ ssh-keygen
+</pre></div>
+</div>
+</div></blockquote>
+<p>The following is an example of the correct output:</p>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ ssh-keygen
+$ Generating public/private rsa key pair.
+$ Enter file in which to save the key (/root/.ssh/id_rsa):
+$ Created directory &#39;/root/.ssh&#39;.
+$ Enter passphrase (empty for no passphrase):
+$ Enter same passphrase again:
+$ Your identification has been saved in /root/.ssh/id_rsa.
+$ Your public key has been saved in /root/.ssh/id_rsa.pub.
+$ The key fingerprint is:
+$ SHA256:xxxxxxxxxxxxxxdsdsdffggtt66gfgfg root@localhost.localdomain
+$ The key&#39;s randomart image is:
+$ +---[RSA 2048]----+
+$ |            =*.  |
+$ |            .o   |
+$ |            ..o o|
+$ |     .     .oo +.|
+$ |      = S =...o o|
+$ |       B + *..o+.|
+$ |      o * *..o .+|
+$ |       o * oo.E.o|
+$ |      . ..+..B.+o|
+$ +----[SHA256]-----+
+</pre></div>
+</div>
+</div></blockquote>
+<p>The generated file is <code class="docutils literal notranslate"><span class="pre">/root/.ssh/id_rsa.pub</span></code>.</p>
+<ol class="arabic simple" start="3">
+<li><p>Copy the public key to all servers in the cluster, including the one that you are running on.</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ ssh-copy-id -i ~/.ssh/id_rsa.pub root@remote-host
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="4">
+<li><p>Replace the <code class="docutils literal notranslate"><span class="pre">remote</span> <span class="pre">host</span></code> with your host IP address.</p></li>
+</ol>
+<p>Go back to <a class="reference internal" href="#install-kubernetes-cluster"><span class="std std-ref">Installing Your Kubernetes Cluster</span></a></p>
+</section>
+<section id="installing-and-deploying-a-kubernetes-cluster-using-kubespray">
+<h3><a class="toc-backref" href="#id27">Installing and Deploying a Kubernetes Cluster Using Kubespray</a><a class="headerlink" href="#installing-and-deploying-a-kubernetes-cluster-using-kubespray" title="Permalink to this heading"></a></h3>
+<p>SQream uses the Kubespray software package to install and deploy Kubernetes clusters.</p>
+<p><strong>To install and deploy a Kubernetes cluster using Kubespray:</strong></p>
+<ol class="arabic">
+<li><p>Clone Kubernetes:</p>
+<ol class="arabic">
+<li><p>Clone the <strong>kubespray.git</strong> repository:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/kubernetes-incubator/kubespray.git
+</pre></div>
+</div>
+</li>
+<li><p>Nagivate to the <strong>kubespray</strong> directory:</p>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ cd kubespray
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Install the <strong>requirements.txt</strong> configuration file:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ pip3 install -r requirements.txt
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+<li><p>Create your SQream inventory directory:</p>
+<ol class="arabic">
+<li><p>Run the following command:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ cp -rp inventory/sample inventory/sqream
+</pre></div>
+</div>
+</li>
+<li><p>Replace the <strong>&lt;cluster node IP&gt;</strong> with the defined cluster node IP address(es).</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ declare -a IPS=(&lt;host&gt;, &lt;cluster node IP address&gt;)
+</pre></div>
+</div>
+<p>For example, the following replaces <code class="docutils literal notranslate"><span class="pre">192.168.0.93</span></code> with <code class="docutils literal notranslate"><span class="pre">192.168.0.92</span></code>:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ declare -a IPS=(host-93,192.168.0.93 host-92,192.168.0.92)
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+<dl class="simple">
+<dt>Note the following:</dt><dd><ul class="simple">
+<li><p>Running a declare requires defining a pair (host name and cluster node IP address), as shown in the above example.</p></li>
+<li><p>You can define more than one pair.</p></li>
+</ul>
+</dd>
+</dl>
+<ol class="arabic" start="3">
+<li><p>When the reboot is complete, switch back to the root user:</p>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ sudo su -
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Navigate to <strong>root/kubespray</strong>:</p>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ cd /root/kubespray
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Copy <code class="docutils literal notranslate"><span class="pre">inventory/sample</span></code> as <code class="docutils literal notranslate"><span class="pre">inventory/sqream</span></code>:</p>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ cp -rfp inventory/sample inventory/sqream
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Update the Ansible inventory file with the inventory builder:</p>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ declare -a IPS=(&lt;hostname1&gt;,&lt;IP1&gt; &lt;hostname2&gt;,&lt;IP2&gt; &lt;hostname3&gt;,&lt;IP3&gt;)
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>In the <strong>kubespray hosts.yml</strong> file, set the node IP’s:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ CONFIG_FILE=inventory/sqream/hosts.yml python3 contrib/inventory_builder/inventory.py ${IPS[@]}
+</pre></div>
+</div>
+<p>If you do not set a specific hostname in declare, the server hostnames will change to <code class="docutils literal notranslate"><span class="pre">node1</span></code>, <code class="docutils literal notranslate"><span class="pre">node2</span></code>, etc. To maintain specific hostnames, run declare as in the following example:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ declare -a IPS=(eks-rhl-1,192.168.5.81 eks-rhl-2,192.168.5.82 eks-rhl-3,192.168.5.83)
+</pre></div>
+</div>
+<p>Note that the declare must contain pairs (hostname,ip).</p>
+</li>
+</ol>
+<ol class="arabic simple" start="8">
+<li><p>Verify that the following have been done:</p>
+<ul class="simple">
+<li><p>That the <strong>hosts.yml</strong> file is configured correctly.</p></li>
+<li><p>That all children are included with their relevant nodes.</p></li>
+</ul>
+</li>
+</ol>
+<p>You can save your current server hostname by replacing &lt;nodeX&gt; with your server hostname.</p>
+<ol class="arabic" start="9">
+<li><p>Generate the content output of the <strong>hosts.yml</strong> file. Make sure to include the file’s directory:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ cat  inventory/sqream/hosts.yml
+</pre></div>
+</div>
+</li>
+</ol>
+<p>The hostname can be lowercase and contain <code class="docutils literal notranslate"><span class="pre">-</span></code> or <code class="docutils literal notranslate"><span class="pre">.</span></code> only, and must be aligned with the server’s hostname.</p>
+<p>The following is an example of the correct output. Each host and IP address that you provided in Step 2 should be displayed once:</p>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ all:
+$   hosts:
+$     node1:
+$       ansible_host: 192.168.5.81
+$       ip: 192.168.5.81
+$       access_ip: 192.168.5.81
+$     node2:
+$       ansible_host: 192.168.5.82
+$       ip: 192.168.5.82
+$       access_ip: 192.168.5.82
+$     node3:
+$       ansible_host: 192.168.5.83
+$       ip: 192.168.5.83
+$       access_ip: 192.168.5.83
+$   children:
+$     kube-master:
+$       hosts:
+$         node1:
+$         node2:
+$         node3:
+$     kube-node:
+$       hosts:
+$         node1:
+$         node2:
+$         node3:
+$     etcd:
+$       hosts:
+$         node1:
+$         node2:
+$         node3:
+$     k8s-cluster:
+$       children:
+$         kube-master:
+$         kube-node:
+$     calico-rr:
+$       hosts: {}
+</pre></div>
+</div>
+</div></blockquote>
+<p>Go back to <a class="reference internal" href="#install-kubernetes-cluster"><span class="std std-ref">Installing Your Kubernetes Cluster</span></a></p>
+</section>
+<section id="adjusting-kubespray-deployment-values">
+<h3><a class="toc-backref" href="#id28">Adjusting Kubespray Deployment Values</a><a class="headerlink" href="#adjusting-kubespray-deployment-values" title="Permalink to this heading"></a></h3>
+<p>After downloading and configuring Kubespray, you can adjust your Kubespray deployment values. A script is used to modify how the Kubernetes cluster is deployed, and you must set the cluster name variable before running this script.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The script must be run from the <strong>kubespray</strong> folder.</p>
+</div>
+<p><strong>To adjust Kubespray deployment values:</strong></p>
+<ol class="arabic">
+<li><p>Add the following export to the local user’s <strong>~/.bashrc</strong> file by replacing the &lt;VIP IP&gt; with the user’s Virtual IP address:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ export VIP_IP=&lt;VIP IP&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Logout, log back in, and verify the following:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ echo $VIP_IP
+</pre></div>
+</div>
+</li>
+<li><p>Make the following replacements to the <strong>kubespray.settings.sh</strong> file:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ cat &lt;&lt;EOF &gt; kubespray_settings.sh
+$ sed -i &quot;/cluster_name: cluster.local/c   \cluster_name: cluster.local.$cluster_name&quot; inventory/sqream/group_vars/k8s-cluster/k8s-cluster.yml
+$ sed -i &quot;/dashboard_enabled/c   \dashboard_enabled\: &quot;false&quot;&quot; inventory/sqream/group_vars/k8s-cluster/addons.yml
+$ sed -i &quot;/kube_version/c   \kube_version\: &quot;v1.18.3&quot;&quot; inventory/sqream/group_vars/k8s-cluster/k8s-cluster.yml
+$ sed -i &quot;/metrics_server_enabled/c   \metrics_server_enabled\: &quot;true&quot;&quot; inventory/sample/group_vars/k8s-cluster/addons.yml
+$ echo &#39;kube_apiserver_node_port_range: &quot;3000-6000&quot;&#39; &gt;&gt; inventory/sqream/group_vars/k8s-cluster/k8s-cluster.yml
+$ echo &#39;kube_controller_node_monitor_grace_period: 20s&#39; &gt;&gt; inventory/sqream/group_vars/k8s-cluster/k8s-cluster.yml
+$ echo &#39;kube_controller_node_monitor_period: 2s&#39; &gt;&gt; inventory/sqream/group_vars/k8s-cluster/k8s-cluster.yml
+$ echo &#39;kube_controller_pod_eviction_timeout: 30s&#39; &gt;&gt; inventory/sqream/group_vars/k8s-cluster/k8s-cluster.yml
+$ echo &#39;kubelet_status_update_frequency: 4s&#39; &gt;&gt; inventory/sqream/group_vars/k8s-cluster/k8s-cluster.yml
+$ echo &#39;ansible ALL=(ALL) NOPASSWD: ALL&#39; &gt;&gt; /etc/sudoers
+$ EOF
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In most cases, the Docker data resides on the system disk. Because Docker requires a high volume of data (images, containers, volumes, etc.), you can change the default Docker data location to prevent the system disk from running out of space.</p>
+</div>
+<ol class="arabic" start="4">
+<li><p><em>Optional</em> - Change the default Docker data location:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ sed -i &quot;/docker_daemon_graph/c   \docker_daemon_graph\: &quot;&lt;/path/to/desired/location&gt;&quot;&quot; inventory/sqream/group_vars/all/docker.yml
+</pre></div>
+</div>
+</li>
+<li><p>Make the <strong>kubespray_settings.sh</strong> file executable for your user:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ chmod u+x kubespray_settings.sh &amp;&amp; ./kubespray_settings.sh
+</pre></div>
+</div>
+</li>
+<li><p>Run the following script:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ ./kubespray_settings.sh
+</pre></div>
+</div>
+</li>
+<li><p>Run a playbook on the <strong>inventory/sqream/hosts.yml cluster.yml</strong> file:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ ansible-playbook -i inventory/sqream/hosts.yml cluster.yml -v
+</pre></div>
+</div>
+</li>
+</ol>
+<p>The Kubespray installation takes approximately 10 - 15 minutes.</p>
+<p>The following is an example of the correct output:</p>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ PLAY RECAP
+$ *********************************************************************************************
+$ node-1             : ok=680  changed=133  unreachable=0    failed=0
+$ node-2             : ok=583  changed=113  unreachable=0    failed=0
+$ node-3             : ok=586  changed=115  unreachable=0    failed=0
+$ localhost          : ok=1    changed=0    unreachable=0    failed=0
+</pre></div>
+</div>
+</div></blockquote>
+<p>In the event that the output is incorrect, or a failure occurred during the installation, please contact a SQream customer support representative.</p>
+<p>Go back to <a class="reference internal" href="#install-kubernetes-cluster"><span class="std std-ref">Installing Your Kubernetes Cluster</span></a>.</p>
+</section>
+<section id="checking-your-kubernetes-status">
+<h3><a class="toc-backref" href="#id29">Checking Your Kubernetes Status</a><a class="headerlink" href="#checking-your-kubernetes-status" title="Permalink to this heading"></a></h3>
+<p>After adjusting your Kubespray deployment values, you must check your Kubernetes status.</p>
+<p><strong>To check your Kuberetes status:</strong></p>
+<ol class="arabic">
+<li><p>Check the status of the node:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ kubectl get nodes
+</pre></div>
+</div>
+</li>
+</ol>
+<p>The following is an example of the correct output:</p>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ NAME        STATUS   ROLES                  AGE   VERSION
+$ eks-rhl-1   Ready    control-plane,master   29m   v1.21.1
+$ eks-rhl-2   Ready    control-plane,master   29m   v1.21.1
+$ eks-rhl-3   Ready    &lt;none&gt;                 28m   v1.21.1
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic" start="2">
+<li><p>Check the status of the pod:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ kubectl get pods --all-namespaces
+</pre></div>
+</div>
+<p>The following is an example of the correct output:</p>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ NAMESPACE                NAME                                         READY   STATUS    RESTARTS   AGE
+$ kube-system              calico-kube-controllers-68dc8bf4d5-n9pbp     1/1     Running   0          160m
+$ kube-system              calico-node-26cn9                            1/1     Running   1          160m
+$ kube-system              calico-node-kjsgw                            1/1     Running   1          160m
+$ kube-system              calico-node-vqvc5                            1/1     Running   1          160m
+$ kube-system              coredns-58687784f9-54xsp                     1/1     Running   0          160m
+$ kube-system              coredns-58687784f9-g94xb                     1/1     Running   0          159m
+$ kube-system              dns-autoscaler-79599df498-hlw8k              1/1     Running   0          159m
+$ kube-system              kube-apiserver-k8s-host-1-134                1/1     Running   0          162m
+$ kube-system              kube-apiserver-k8s-host-194                  1/1     Running   0          161m
+$ kube-system              kube-apiserver-k8s-host-68                   1/1     Running   0          161m
+$ kube-system              kube-controller-manager-k8s-host-1-134       1/1     Running   0          162m
+$ kube-system              kube-controller-manager-k8s-host-194         1/1     Running   0          161m
+$ kube-system              kube-controller-manager-k8s-host-68          1/1     Running   0          161m
+$ kube-system              kube-proxy-5f42q                             1/1     Running   0          161m
+$ kube-system              kube-proxy-bbwvk                             1/1     Running   0          161m
+$ kube-system              kube-proxy-fgcfb                             1/1     Running   0          161m
+$ kube-system              kube-scheduler-k8s-host-1-134                1/1     Running   0          161m
+$ kube-system              kube-scheduler-k8s-host-194                  1/1     Running   0          161m
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ol>
+<p>Go back to <a class="reference internal" href="#install-kubernetes-cluster"><span class="std std-ref">Installing Your Kubernetes Cluster</span></a></p>
+</section>
+<section id="adding-a-sqream-label-to-your-kubernetes-cluster-nodes">
+<h3><a class="toc-backref" href="#id30">Adding a SQream Label to Your Kubernetes Cluster Nodes</a><a class="headerlink" href="#adding-a-sqream-label-to-your-kubernetes-cluster-nodes" title="Permalink to this heading"></a></h3>
+<p>After checking your Kubernetes status, you must add a SQream label on your Kubernetes cluster nodes.</p>
+<p><strong>To add a SQream label on your Kubernetes cluster nodes:</strong></p>
+<ol class="arabic">
+<li><p>Get the cluster node list:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ kubectl get nodes
+</pre></div>
+</div>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ NAME        STATUS   ROLES                  AGE   VERSION
+$ eks-rhl-1   Ready    control-plane,master   29m   v1.21.1
+$ eks-rhl-2   Ready    control-plane,master   29m   v1.21.1
+$ eks-rhl-3   Ready    &lt;none&gt;                 28m   v1.21.1
+</pre></div>
+</div>
+</li>
+<li><p>Set the node label, change the <code class="docutils literal notranslate"><span class="pre">node-name</span></code> to the node NAME(s) in the above example:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ kubectl label nodes &lt;node-name&gt; cluster=sqream
+</pre></div>
+</div>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ [root@edk-rhl-1 kubespray]# kubectl label nodes eks-rhl-1 cluster=sqream
+$ node/eks-rhl-1 labeled
+$ [root@edk-rhl-1 kubespray]# kubectl label nodes eks-rhl-2 cluster=sqream
+$ node/eks-rhl-2 labeled
+$ [root@edk-rhl-1 kubespray]# kubectl label nodes eks-rhl-3 cluster=sqream
+$ node/eks-rhl-3 labeled
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Go back to <a class="reference internal" href="#install-kubernetes-cluster"><span class="std std-ref">Installing Your Kubernetes Cluster</span></a></p>
+</section>
+<section id="copying-your-kubernetes-configuration-api-file-to-the-master-cluster-nodes">
+<h3><a class="toc-backref" href="#id31">Copying Your Kubernetes Configuration API File to the Master Cluster Nodes</a><a class="headerlink" href="#copying-your-kubernetes-configuration-api-file-to-the-master-cluster-nodes" title="Permalink to this heading"></a></h3>
+<p>After adding a SQream label on your Kubernetes cluster nodes, you must copy your Kubernetes configuration API file to your Master cluster nodes.</p>
+<p>When the Kubernetes cluster installation is complete, an API configuration file is automatically created in the <strong>.kube</strong> folder of the root user. This file enables the <strong>kubectl</strong> command access Kubernetes’ internal API service. Following this step lets you run <strong>kubectl</strong> commands from any node in the cluster.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You must perform this on the management server only!</p>
+</div>
+<p><strong>To copy your Kubernetes configuration API file to your Master cluster nodes:</strong></p>
+<ol class="arabic">
+<li><p>Create the <strong>.kube</strong> folder in the <strong>local user</strong> directory:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ mkdir /home/&lt;local user&gt;/.kube
+</pre></div>
+</div>
+</li>
+<li><p>Copy the configuration file from the root user directory to the &lt;local user&gt; directory:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ sudo cp /root/.kube/config /home/&lt;local user&gt;/.kube
+</pre></div>
+</div>
+</li>
+<li><p>Change the file owner from <strong>root user</strong> to the &lt;local user&gt;:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$  sudo chown &lt;local user&gt;.&lt;local user&gt; /home/&lt;local user&gt;/.kube/config
+</pre></div>
+</div>
+</li>
+<li><p>Create the <strong>.kube</strong> folder in the other nodes located in the &lt;local user&gt; directory:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ ssh &lt;local user&gt;@&lt;node name&gt; mkdir .kube
+</pre></div>
+</div>
+</li>
+<li><p>Copy the configuration file from the management node to the other nodes:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ scp /home/&lt;local user&gt;/.kube/config &lt;local user&gt;@&lt;node name&gt;:/home/&lt;local user&gt;/.kube/
+</pre></div>
+</div>
+</li>
+<li><p>Under local user on each server you copied <strong>.kube</strong> to, run the following command:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ sudo usermod -aG docker $USER
+</pre></div>
+</div>
+</li>
+</ol>
+<p>This grants the local user the necessary permissions to run Docker commands.</p>
+<p>Go back to <a class="reference internal" href="#install-kubernetes-cluster"><span class="std std-ref">Installing Your Kubernetes Cluster</span></a></p>
+</section>
+<section id="creating-an-env-file-in-your-home-directory">
+<h3><a class="toc-backref" href="#id32">Creating an env_file in Your Home Directory</a><a class="headerlink" href="#creating-an-env-file-in-your-home-directory" title="Permalink to this heading"></a></h3>
+<p>After copying your Kubernetes configuration API file to your Master cluster nodes, you must create an <strong>env_file</strong> in your home directory, and must set the VIP address as a variable.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You must perform this on the management server only!</p>
+</div>
+<p><strong>To create an env_file for local users in the user’s home directory:</strong></p>
+<ol class="arabic">
+<li><p>Set a variable that includes the VIP IP address:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ export VIP_IP=&lt;VIP IP&gt;
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you use Kerberos, replace the <code class="docutils literal notranslate"><span class="pre">KRB5_SERVER</span></code> value with the IP address of your Kerberos server.</p>
+</div>
+<ol class="arabic" start="2">
+<li><p>Do one of the following:</p>
+<ul>
+<li><p>For local users:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ mkdir /home/$USER/.sqream
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p>Make the following replacements to the <strong>kubespray.settings.sh</strong> file, verifying that the <code class="docutils literal notranslate"><span class="pre">KRB5_SERVER</span></code> parameter is set to your server IP:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ cat &lt;&lt;EOF &gt; /home/$USER/.sqream/env_file
+SQREAM_K8S_VIP=$VIP_IP
+SQREAM_ADMIN_UI_PORT=8080
+SQREAM_DASHBOARD_DATA_COLLECTOR_PORT=8100
+SQREAM_DATABASE_NAME=master
+SQREAM_K8S_ADMIN_UI=sqream-admin-ui
+SQREAM_K8S_DASHBOARD_DATA_COLLECTOR=dashboard-data-collector
+SQREAM_K8S_METADATA=sqream-metadata
+SQREAM_K8S_NAMESPACE=sqream
+SQREAM_K8S_PICKER=sqream-picker
+SQREAM_K8S_PROMETHEUS=prometheus
+SQREAM_K8S_REGISTRY_PORT=6000
+SQREAM_METADATA_PORT=3105
+SQREAM_PICKER_PORT=3108
+SQREAM_PROMETHEUS_PORT=9090
+SQREAM_SPOOL_MEMORY_RATIO=0.25
+SQREAM_WORKER_0_PORT=5000
+KRB5CCNAME=FILE:/tmp/tgt
+KRB5_SERVER=kdc.sq.com:&lt;server IP&gt;1
+KRB5_CONFIG_DIR=${        $ SQREAM_MOUNT_DIR}/krb5
+KRB5_CONFIG_FILE=${KRB5_CONFIG_DIR}/krb5.conf
+HADOOP_CONFIG_DIR=${        $ SQREAM_MOUNT_DIR}/hadoop
+HADOOP_CORE_XML=${HADOOP_CONFIG_DIR}/core-site.xml
+HADOOP_HDFS_XML=${HADOOP_CONFIG_DIR}/hdfs-site.xml
+EOF
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Go back to <a class="reference internal" href="#install-kubernetes-cluster"><span class="std std-ref">Installing Your Kubernetes Cluster</span></a></p>
+</section>
+<section id="creating-a-base-kubernetes-namespace">
+<h3><a class="toc-backref" href="#id33">Creating a Base Kubernetes Namespace</a><a class="headerlink" href="#creating-a-base-kubernetes-namespace" title="Permalink to this heading"></a></h3>
+<p>After creating an env_file in the user’s home directory, you must create a base Kubernetes namespace.</p>
+<p>You can create a Kubernetes namespace by running the following command:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ kubectl create namespace sqream-init
+</pre></div>
+</div>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ namespace/sqream-init created
+</pre></div>
+</div>
+<p>Go back to <a class="reference internal" href="#install-kubernetes-cluster"><span class="std std-ref">Installing Your Kubernetes Cluster</span></a></p>
+</section>
+<section id="pushing-the-env-file-file-to-the-kubernetes-configmap">
+<h3><a class="toc-backref" href="#id34">Pushing the <strong>env_file</strong> File to the Kubernetes Configmap</a><a class="headerlink" href="#pushing-the-env-file-file-to-the-kubernetes-configmap" title="Permalink to this heading"></a></h3>
+<p>After creating a base Kubernetes namespace, you must push the <strong>env_file</strong> to the Kubernetes configmap. You must push the <strong>env_file</strong> file to the Kubernetes <strong>configmap</strong> in the <strong>sqream-init</strong> namespace.</p>
+<p>This is done by running the following command:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ kubectl create configmap sqream-init -n sqream-init --from-env-file=/home/$USER/.sqream/env_file
+</pre></div>
+</div>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ configmap/sqream-init created
+</pre></div>
+</div>
+<p>Go back to <a class="reference internal" href="#install-kubernetes-cluster"><span class="std std-ref">Installing Your Kubernetes Cluster</span></a></p>
+</section>
+<section id="installing-the-nvidia-docker2-toolkit">
+<h3><a class="toc-backref" href="#id35">Installing the NVIDIA Docker2 Toolkit</a><a class="headerlink" href="#installing-the-nvidia-docker2-toolkit" title="Permalink to this heading"></a></h3>
+<p>After pushing the <strong>env_file</strong> file to the Kubernetes configmap, you must install the NVIDIA Docker2 Toolkit. The <strong>NVIDIA Docker2 Toolkit</strong> lets users build and run GPU-accelerated Docker containers, and must be run only on GPU servers. The NVIDIA Docker2 Toolkit includes a container runtime library and utilities that automatically configure containers to leverage NVIDIA GPUs.</p>
+<section id="installing-the-nvidia-docker2-toolkit-on-an-x86-64-bit-processor-on-centos">
+<h4>Installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on CentOS<a class="headerlink" href="#installing-the-nvidia-docker2-toolkit-on-an-x86-64-bit-processor-on-centos" title="Permalink to this heading"></a></h4>
+<p><strong>To install the NVIDIA Docker2 Toolkit on an x86_64 bit processor on CentOS:</strong></p>
+<ol class="arabic">
+<li><p>Add the repository for your distribution:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+$ curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.repo | \
+$ sudo tee /etc/yum.repos.d/nvidia-docker.repo
+</pre></div>
+</div>
+</li>
+<li><p>Install the <strong>nvidia-docker2</strong> package and reload the Docker daemon configuration:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ sudo yum install nvidia-docker2
+$ sudo pkill -SIGHUP dockerd
+</pre></div>
+</div>
+</li>
+<li><p>Verify that the <strong>nvidia-docker2</strong> package has been installed correctly:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ docker run --runtime=nvidia --rm nvidia/cuda:10.1.3-base-centos7 nvidia-smi
+</pre></div>
+</div>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="w"> </span><span class="n">run</span><span class="w"> </span><span class="c1">--runtime=nvidia --rm nvidia/cuda:10.1.3-base-centos7 nvidia-smi</span>
+<span class="n">Unable</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">find</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="s1">&#39;nvidia/cuda:10.1.3-base-centos7&#39;</span><span class="w"> </span><span class="n">locally</span><span class="w"></span>
+<span class="mf">10.1.3</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="n">centos7</span><span class="p">:</span><span class="w"> </span><span class="n">Pulling</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">nvidia</span><span class="o">/</span><span class="n">cuda</span><span class="w"></span>
+<span class="n">d519e2592276</span><span class="p">:</span><span class="w"> </span><span class="n">Pull</span><span class="w"> </span><span class="n">complete</span><span class="w"></span>
+<span class="n">d22d2dfcfa9c</span><span class="p">:</span><span class="w"> </span><span class="n">Pull</span><span class="w"> </span><span class="n">complete</span><span class="w"></span>
+<span class="n">b3afe92c540b</span><span class="p">:</span><span class="w"> </span><span class="n">Pull</span><span class="w"> </span><span class="n">complete</span><span class="w"></span>
+<span class="mf">13</span><span class="n">a10df09dc1</span><span class="p">:</span><span class="w"> </span><span class="n">Pull</span><span class="w"> </span><span class="n">complete</span><span class="w"></span>
+<span class="mf">4</span><span class="n">f0bc36a7e1d</span><span class="p">:</span><span class="w"> </span><span class="n">Pull</span><span class="w"> </span><span class="n">complete</span><span class="w"></span>
+<span class="n">cd710321007d</span><span class="p">:</span><span class="w"> </span><span class="n">Pull</span><span class="w"> </span><span class="n">complete</span><span class="w"></span>
+<span class="n">Digest</span><span class="p">:</span><span class="w"> </span><span class="n">sha256</span><span class="p">:</span><span class="mf">635629544</span><span class="n">b2a2be3781246fdddc55cc1a7d8b352e2ef205ba6122b8404a52123</span><span class="w"></span>
+<span class="n">Status</span><span class="p">:</span><span class="w"> </span><span class="n">Downloaded</span><span class="w"> </span><span class="n">newer</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">nvidia</span><span class="o">/</span><span class="n">cuda</span><span class="p">:</span><span class="mf">10.1.3</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="n">centos7</span><span class="w"></span>
+<span class="n">Sun</span><span class="w"> </span><span class="n">Feb</span><span class="w"> </span><span class="mf">14</span><span class="w"> </span><span class="mf">13</span><span class="p">:</span><span class="mf">27</span><span class="p">:</span><span class="mf">58</span><span class="w"> </span><span class="mf">2021</span><span class="w"></span>
+<span class="o">+-----------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="n">NVIDIA</span><span class="o">-</span><span class="n">SMI</span><span class="w"> </span><span class="mf">470.82.01</span><span class="w">    </span><span class="n">Driver</span><span class="w"> </span><span class="k">Version</span><span class="p">:</span><span class="w"> </span><span class="mf">470.82.01</span><span class="w">    </span><span class="n">CUDA</span><span class="w"> </span><span class="k">Version</span><span class="p">:</span><span class="w"> </span><span class="mf">10.1</span><span class="w">     </span><span class="o">|</span><span class="w"></span>
+<span class="o">|-------------------------------+----------------------+----------------------+</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="n">GPU</span><span class="w">  </span><span class="k">Name</span><span class="w">        </span><span class="n">Persistence</span><span class="o">-</span><span class="n">M</span><span class="o">|</span><span class="w"> </span><span class="n">Bus</span><span class="o">-</span><span class="n">Id</span><span class="w">        </span><span class="n">Disp</span><span class="mf">.</span><span class="n">A</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Volatile</span><span class="w"> </span><span class="n">Uncorr</span><span class="mf">.</span><span class="w"> </span><span class="n">ECC</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="n">Fan</span><span class="w">  </span><span class="k">Temp</span><span class="w">  </span><span class="n">Perf</span><span class="w">  </span><span class="n">Pwr</span><span class="nv">:Usage</span><span class="o">/</span><span class="n">Cap</span><span class="o">|</span><span class="w">         </span><span class="n">Memory</span><span class="o">-</span><span class="n">Usage</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">GPU</span><span class="o">-</span><span class="n">Util</span><span class="w">  </span><span class="n">Compute</span><span class="w"> </span><span class="n">M</span><span class="mf">.</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">                               </span><span class="o">|</span><span class="w">                      </span><span class="o">|</span><span class="w">               </span><span class="n">MIG</span><span class="w"> </span><span class="n">M</span><span class="mf">.</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|===============================+======================+======================|</span><span class="w"></span>
+<span class="o">|</span><span class="w">   </span><span class="mf">0</span><span class="w">  </span><span class="n">NVIDIA</span><span class="w"> </span><span class="n">A100</span><span class="o">-</span><span class="n">PCI</span><span class="mf">...</span><span class="w">  </span><span class="k">On</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mf">00000000</span><span class="p">:</span><span class="mf">17</span><span class="p">:</span><span class="mf">00.0</span><span class="w"> </span><span class="k">Off</span><span class="w"> </span><span class="o">|</span><span class="w">                    </span><span class="mf">0</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="w">   </span><span class="mf">34</span><span class="n">C</span><span class="w">    </span><span class="n">P0</span><span class="w">    </span><span class="mf">64</span><span class="n">W</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">300</span><span class="n">W</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mf">79927</span><span class="n">MiB</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">80994</span><span class="n">MiB</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mf">0</span><span class="o">%</span><span class="w">      </span><span class="k">Default</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">                               </span><span class="o">|</span><span class="w">                      </span><span class="o">|</span><span class="w">             </span><span class="n">Disabled</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+-------------------------------+----------------------+----------------------+</span><span class="w"></span>
+<span class="o">|</span><span class="w">   </span><span class="mf">1</span><span class="w">  </span><span class="n">NVIDIA</span><span class="w"> </span><span class="n">A100</span><span class="o">-</span><span class="n">PCI</span><span class="mf">...</span><span class="w">  </span><span class="k">On</span><span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="mf">00000000</span><span class="nv">:CA</span><span class="p">:</span><span class="mf">00.0</span><span class="w"> </span><span class="k">Off</span><span class="w"> </span><span class="o">|</span><span class="w">                    </span><span class="mf">0</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="w">   </span><span class="mf">35</span><span class="n">C</span><span class="w">    </span><span class="n">P0</span><span class="w">    </span><span class="mf">60</span><span class="n">W</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">300</span><span class="n">W</span><span class="w"> </span><span class="o">|</span><span class="w">  </span><span class="mf">79927</span><span class="n">MiB</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">80994</span><span class="n">MiB</span><span class="w"> </span><span class="o">|</span><span class="w">      </span><span class="mf">0</span><span class="o">%</span><span class="w">      </span><span class="k">Default</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">                               </span><span class="o">|</span><span class="w">                      </span><span class="o">|</span><span class="w">             </span><span class="n">Disabled</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">+-------------------------------+----------------------+----------------------+</span><span class="w"></span>
+
+<span class="o">+-----------------------------------------------------------------------------+</span><span class="w"></span>
+<span class="o">|</span><span class="w"> </span><span class="n">Processes</span><span class="p">:</span><span class="w">                                                       </span><span class="n">GPU</span><span class="w"> </span><span class="n">Memory</span><span class="w"> </span><span class="o">|</span><span class="w"></span>
+<span class="o">|</span><span class="w">  </span><span class="n">GPU</span><span class="w">       </span><span class="n">PID</span><span class="w">   </span><span class="k">Type</span><span class="w">   </span><span class="n">Process</span><span class="w"> </span><span class="k">name</span><span class="w">                             </span><span class="n">Usage</span><span class="w">      </span><span class="o">|</span><span class="w"></span>
+<span class="o">|=============================================================================|</span><span class="w"></span>
+<span class="o">|</span><span class="w">  </span><span class="k">No</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="n">processes</span><span class="w"> </span><span class="n">found</span><span class="w">                                                 </span><span class="o">|</span><span class="w"></span>
+<span class="o">+-----------------------------------------------------------------------------+</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>For more information on installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on CentOS, see <a class="reference external" href="https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-2.0)#centos-distributions-1">NVIDIA Docker Installation - CentOS distributions</a></p>
+</section>
+<section id="installing-the-nvidia-docker2-toolkit-on-an-x86-64-bit-processor-on-ubuntu">
+<h4>Installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on Ubuntu<a class="headerlink" href="#installing-the-nvidia-docker2-toolkit-on-an-x86-64-bit-processor-on-ubuntu" title="Permalink to this heading"></a></h4>
+<p><strong>To install the NVIDIA Docker2 Toolkit on an x86_64 bit processor on Ubuntu:</strong></p>
+<ol class="arabic">
+<li><p>Add the repository for your distribution:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | \
+$ sudo apt-key add -
+$ distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+$ curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | \
+$ sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+$ sudo apt-get update
+</pre></div>
+</div>
+</li>
+<li><p>Install the <strong>nvidia-docker2</strong> package and reload the Docker daemon configuration:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install nvidia-docker2
+$ sudo pkill -SIGHUP dockerd
+</pre></div>
+</div>
+</li>
+<li><p>Verify that the nvidia-docker2 package has been installed correctly:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ docker run --runtime=nvidia --rm nvidia/cuda nvidia-smi
+</pre></div>
+</div>
+</li>
+</ol>
+<p>For more information on installing the NVIDIA Docker2 Toolkit on an x86_64 Bit Processor on Ubuntu, see <a class="reference external" href="https://github.com/NVIDIA/nvidia-docker/wiki/Installation-(version-2.0)#ubuntu-distributions-1">NVIDIA Docker Installation - Ubuntu distributions</a></p>
+<p>Go back to <a class="reference internal" href="#install-kubernetes-cluster"><span class="std std-ref">Installing Your Kubernetes Cluster</span></a></p>
+</section>
+</section>
+<section id="modifying-the-docker-daemon-json-file-for-gpu-and-compute-nodes">
+<h3><a class="toc-backref" href="#id36">Modifying the Docker Daemon JSON File for GPU and Compute Nodes</a><a class="headerlink" href="#modifying-the-docker-daemon-json-file-for-gpu-and-compute-nodes" title="Permalink to this heading"></a></h3>
+<p>After installing the NVIDIA Docker2 toolkit, you must modify the Docker daemon JSON file for GPU and Compute nodes.</p>
+<section id="modifying-the-docker-daemon-json-file-for-gpu-nodes">
+<h4>Modifying the Docker Daemon JSON File for GPU Nodes<a class="headerlink" href="#modifying-the-docker-daemon-json-file-for-gpu-nodes" title="Permalink to this heading"></a></h4>
+<p><strong>To modify the Docker daemon JSON file for GPU nodes:</strong></p>
+<ol class="arabic simple">
+<li><p>Enable GPU and set HTTP access to the local Kubernetes Docker registry.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The Docker daemon JSON file must be modified on all GPU nodes.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Contact your IT department for a virtual IP.</p>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Replace the <code class="docutils literal notranslate"><span class="pre">VIP</span> <span class="pre">address</span></code> with your assigned VIP address.</p></li>
+</ol>
+<ol class="arabic" start="3">
+<li><p>Connect as a root user:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$  sudo -i
+</pre></div>
+</div>
+</li>
+<li><p>Set a variable that includes the VIP address:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ export VIP_IP=&lt;VIP IP&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Replace the &lt;VIP IP&gt; with the VIP address:</p>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ cat &lt;&lt;EOF &gt; /etc/docker/daemon.json
+$ {
+$    &quot;insecure-registries&quot;: [&quot;$VIP_IP:6000&quot;],
+$     &quot;default-runtime&quot;: &quot;nvidia&quot;,
+$     &quot;runtimes&quot;: {
+$         &quot;nvidia&quot;: {
+$             &quot;path&quot;: &quot;nvidia-container-runtime&quot;,
+$             &quot;runtimeArgs&quot;: []
+$         }
+$     }
+$ }
+$ EOF
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p>Apply the changes and restart Docker:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ systemctl daemon-reload &amp;&amp; systemctl restart docker
+</pre></div>
+</div>
+</li>
+<li><p>Exit the root user:</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ exit
+</pre></div>
+</div>
+</div></blockquote>
+<p>Go back to <a class="reference internal" href="#install-kubernetes-cluster"><span class="std std-ref">Installing Your Kubernetes Cluster</span></a></p>
+</section>
+<section id="modifying-the-docker-daemon-json-file-for-compute-nodes">
+<h4>Modifying the Docker Daemon JSON File for Compute Nodes<a class="headerlink" href="#modifying-the-docker-daemon-json-file-for-compute-nodes" title="Permalink to this heading"></a></h4>
+<p>You must follow this procedure only if you have a Compute node.</p>
+<p><strong>To modify the Docker daemon JSON file for Compute nodes:</strong></p>
+<ol class="arabic">
+<li><p>Switch to a root user:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$  sudo -i
+</pre></div>
+</div>
+</li>
+<li><p>Set a variable that includes a VIP address.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Contact your IT department for a virtual IP.</p>
+</div>
+<ol class="arabic" start="3">
+<li><p>Replace the <code class="docutils literal notranslate"><span class="pre">VIP</span> <span class="pre">address</span></code> with your assigned VIP address.</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ cat &lt;&lt;EOF &gt; /etc/docker/daemon.json
+$ {
+$    &quot;insecure-registries&quot;: [&quot;$VIP_IP:6000&quot;]
+$ }
+$ EOF
+</pre></div>
+</div>
+</li>
+<li><p>Restart the services:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ systemctl daemon-reload &amp;&amp; systemctl restart docker
+</pre></div>
+</div>
+</li>
+<li><p>Exit the root user:</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ exit
+</pre></div>
+</div>
+</div></blockquote>
+<p>Go back to <a class="reference internal" href="#install-kubernetes-cluster"><span class="std std-ref">Installing Your Kubernetes Cluster</span></a></p>
+</section>
+</section>
+<section id="installing-the-nvidia-device-plugin-daemonset">
+<h3><a class="toc-backref" href="#id37">Installing the Nvidia-device-plugin Daemonset</a><a class="headerlink" href="#installing-the-nvidia-device-plugin-daemonset" title="Permalink to this heading"></a></h3>
+<p>After modifying the Docker daemon JSON file for GPU or Compute Nodes, you must installing the Nvidia-device-plugin daemonset. The Nvidia-device-plugin daemonset is only relevant to GPU nodes.</p>
+<p><strong>To install the Nvidia-device-plugin daemonset:</strong></p>
+<ol class="arabic simple">
+<li><p>Set <code class="docutils literal notranslate"><span class="pre">nvidia.com/gpu</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code> on all GPU nodes:</p></li>
+</ol>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ kubectl label nodes &lt;GPU node name&gt; nvidia.com/gpu=true
+</pre></div>
+</div>
+<ol class="arabic" start="2">
+<li><p>Replace the <em>&lt;GPU node name&gt;</em> with your GPU node name:</p>
+<p>For a complete list of GPU node names, run the <code class="docutils literal notranslate"><span class="pre">kubectl</span> <span class="pre">get</span> <span class="pre">nodes</span></code> command.</p>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ [root@eks-rhl-1 ~]# kubectl label nodes eks-rhl-1 nvidia.com/gpu=true
+$ node/eks-rhl-1 labeled
+$ [root@eks-rhl-1 ~]# kubectl label nodes eks-rhl-2 nvidia.com/gpu=true
+$ node/eks-rhl-2 labeled
+$ [root@eks-rhl-1 ~]# kubectl label nodes eks-rhl-3 nvidia.com/gpu=true
+$ node/eks-rhl-3 labeled
+</pre></div>
+</div>
+</li>
+</ol>
+<p>Go back to <a class="reference internal" href="#install-kubernetes-cluster"><span class="std std-ref">Installing Your Kubernetes Cluster</span></a></p>
+</section>
+<section id="creating-an-nvidia-device-plugin">
+<h3><a class="toc-backref" href="#id38">Creating an Nvidia Device Plugin</a><a class="headerlink" href="#creating-an-nvidia-device-plugin" title="Permalink to this heading"></a></h3>
+<p>After installing the Nvidia-device-plugin daemonset, you must create an Nvidia-device-plugin. You can create an Nvidia-device-plugin by running the following command</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$  kubectl create -f https://raw.githubusercontent.com/NVIDIA/k8s-device-plugin/1.0.0-beta6/nvidia-device-plugin.yml
+</pre></div>
+</div>
+<p>If needed, you can check the status of the Nvidia-device-plugin-daemonset pod status:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ kubectl get pods -n kube-system -o wide | grep nvidia-device-plugin
+</pre></div>
+</div>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ NAME                                       READY   STATUS    RESTARTS   AGE
+$ nvidia-device-plugin-daemonset-fxfct       1/1     Running   0          6h1m
+$ nvidia-device-plugin-daemonset-jdvxs       1/1     Running   0          6h1m
+$ nvidia-device-plugin-daemonset-xpmsv       1/1     Running   0          6h1m
+</pre></div>
+</div>
+<p>Go back to <a class="reference internal" href="#install-kubernetes-cluster"><span class="std std-ref">Installing Your Kubernetes Cluster</span></a></p>
+</section>
+<section id="checking-gpu-resources-allocatable-to-gpu-nodes">
+<h3><a class="toc-backref" href="#id39">Checking GPU Resources Allocatable to GPU Nodes</a><a class="headerlink" href="#checking-gpu-resources-allocatable-to-gpu-nodes" title="Permalink to this heading"></a></h3>
+<p>After creating an Nvidia Device Plugin, you must check the GPU resources alloctable to the GPU nodes. Each GPU node has records, such as <code class="docutils literal notranslate"><span class="pre">nvidia.com/gpu:</span>&#160;&#160;&#160;&#160; <span class="pre">&lt;#&gt;</span></code>. The <code class="docutils literal notranslate"><span class="pre">#</span></code> indicates the number of allocatable, or available, GPUs in each node.</p>
+<p>You can output a description of allocatable resources by running the following command:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ kubectl describe node | grep -i -A 7 -B 2 allocatable:
+</pre></div>
+</div>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ Allocatable:
+$  cpu:                3800m
+$  ephemeral-storage:  94999346224
+$  hugepages-1Gi:      0
+$  hugepages-2Mi:      0
+$  memory:             15605496Ki
+$  nvidia.com/gpu:     1
+$  pods:               110
+</pre></div>
+</div>
+<p>Go back to <a class="reference internal" href="#install-kubernetes-cluster"><span class="std std-ref">Installing Your Kubernetes Cluster</span></a></p>
+</section>
+<section id="preparing-the-watchdog-monitor">
+<h3><a class="toc-backref" href="#id40">Preparing the WatchDog Monitor</a><a class="headerlink" href="#preparing-the-watchdog-monitor" title="Permalink to this heading"></a></h3>
+<p>SQream’s deployment includes installing two watchdog services. These services monitor Kuberenetes management and the server’s storage network.</p>
+<p>You can enable the storage watchdogs by adding entries in the <strong>/etc/hosts</strong> file on each server:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ &lt;address 1&gt; k8s-node1.storage
+$ &lt;address 2&gt; k8s-node2.storage
+$ &lt;address 3&gt; k8s-node3.storage
+</pre></div>
+</div>
+<p>The following is an example of the correct syntax:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ 10.0.0.1 k8s-node1.storage
+$ 10.0.0.2 k8s-node2.storage
+$ 10.0.0.3 k8s-node3.storage
+</pre></div>
+</div>
+<p>Go back to <a class="reference internal" href="#install-kubernetes-cluster"><span class="std std-ref">Installing Your Kubernetes Cluster</span></a></p>
+</section>
+</section>
+<section id="installing-the-sqream-software">
+<span id="installing-sqream-software"></span><h2><a class="toc-backref" href="#id13">Installing the SQream Software</a><a class="headerlink" href="#installing-the-sqream-software" title="Permalink to this heading"></a></h2>
+<p>Once you’ve prepared the SQream environment for launching it using Kubernetes, you can begin installing the SQream software.</p>
+<p>The <strong>Installing the SQream Software</strong> section describes the following:</p>
+<div class="contents local topic" id="id5">
+<ul class="simple">
+<li><p><a class="reference internal" href="#getting-the-sqream-package" id="id41">Getting the SQream Package</a></p></li>
+<li><p><a class="reference internal" href="#setting-up-and-configuring-hadoop" id="id42">Setting Up and Configuring Hadoop</a></p></li>
+<li><p><a class="reference internal" href="#starting-a-local-docker-image-registry" id="id43">Starting a Local Docker Image Registry</a></p></li>
+<li><p><a class="reference internal" href="#installing-the-kubernetes-dashboard" id="id44">Installing the Kubernetes Dashboard</a></p></li>
+<li><p><a class="reference internal" href="#installing-the-sqream-prometheus-package" id="id45">Installing the SQream Prometheus Package</a></p></li>
+</ul>
+</div>
+<section id="getting-the-sqream-package">
+<span id="getting-sqream-package"></span><h3><a class="toc-backref" href="#id41">Getting the SQream Package</a><a class="headerlink" href="#getting-the-sqream-package" title="Permalink to this heading"></a></h3>
+<p>The first step in installing the SQream software is getting the SQream package. Please contact the SQream Support team to get the <strong>sqream_k8s-nnn-DBnnn-COnnn-SDnnn-&lt;arch&gt;.tar.gz</strong> tarball file.</p>
+<p>This file includes the following values:</p>
+<ul class="simple">
+<li><p><strong>sqream_k8s-&lt;nnn&gt;</strong> - the SQream installer version.</p></li>
+<li><p><strong>DB&lt;nnn&gt;</strong> - the SQreamDB version.</p></li>
+<li><p><strong>CO&lt;nnn&gt;</strong> - the SQream console version.</p></li>
+<li><p><strong>SD&lt;nnn&gt;</strong> - the SQream Acceleration Studio version.</p></li>
+<li><p><strong>arch</strong> - the server architecture.</p></li>
+</ul>
+<p>You can extract the contents of the tarball by running the following command:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ tar -xvf sqream_k8s-1.0.15-DB2020.1.0.2-SD0.7.3-x86_64.tar.gz
+$ cd sqream_k8s-1.0.15-DB2020.1.0.2-SD0.7.3-x86_64
+$ ls
+</pre></div>
+</div>
+<p>Extracting the contents of the tarball file generates a new folder with the same name as the tarball file.</p>
+<p>The following shows the output of the extracted file:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="n">drwxrwxr</span><span class="o">-</span><span class="n">x</span><span class="mf">.</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="n">sqream</span><span class="w"> </span><span class="n">sqream</span><span class="w">    </span><span class="mf">22</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mf">27</span><span class="w"> </span><span class="mf">11</span><span class="p">:</span><span class="mf">39</span><span class="w"> </span><span class="n">license</span><span class="w"></span>
+<span class="n">lrwxrwxrwx</span><span class="mf">.</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="n">sqream</span><span class="w"> </span><span class="n">sqream</span><span class="w">    </span><span class="mf">49</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mf">27</span><span class="w"> </span><span class="mf">11</span><span class="p">:</span><span class="mf">39</span><span class="w"> </span><span class="n">sqream</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="mf">.</span><span class="n">sqream</span><span class="o">/</span><span class="n">sqream</span><span class="o">-</span><span class="k">sql</span><span class="o">-</span><span class="n">v2020</span><span class="mf">.3.1</span><span class="n">_stable</span><span class="mf">.</span><span class="n">x86_64</span><span class="o">/</span><span class="n">sqream</span><span class="w"></span>
+<span class="o">-</span><span class="n">rwxrwxr</span><span class="o">-</span><span class="n">x</span><span class="mf">.</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="n">sqream</span><span class="w"> </span><span class="n">sqream</span><span class="w">  </span><span class="mf">9465</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mf">27</span><span class="w"> </span><span class="mf">11</span><span class="p">:</span><span class="mf">39</span><span class="w"> </span><span class="n">sqream</span><span class="o">-</span><span class="n">install</span><span class="w"></span>
+<span class="o">-</span><span class="n">rwxrwxr</span><span class="o">-</span><span class="n">x</span><span class="mf">.</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="n">sqream</span><span class="w"> </span><span class="n">sqream</span><span class="w"> </span><span class="mf">12444</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mf">27</span><span class="w"> </span><span class="mf">11</span><span class="p">:</span><span class="mf">39</span><span class="w"> </span><span class="n">sqream</span><span class="o">-</span><span class="k">start</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Go back to <a class="reference internal" href="running_sqream_in_a_docker_container.html#installing-sqream-software"><span class="std std-ref">Installing Your SQream Software</span></a></p>
+</section>
+<section id="setting-up-and-configuring-hadoop">
+<h3><a class="toc-backref" href="#id42">Setting Up and Configuring Hadoop</a><a class="headerlink" href="#setting-up-and-configuring-hadoop" title="Permalink to this heading"></a></h3>
+<p>After getting the SQream package, you can set up and configure Hadoop by configuring the <strong>keytab</strong> and <strong>krb5.conf</strong> files.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You only need to configure the <strong>keytab</strong> and <strong>krb5.conf</strong> files if you use Hadoop with Kerberos authentication.</p>
+</div>
+<p><strong>To set up and configure Hadoop:</strong></p>
+<ol class="arabic simple">
+<li><p>Contact IT for the <strong>keytab</strong> and <strong>krb5.conf</strong> files.</p></li>
+</ol>
+<ol class="arabic simple" start="2">
+<li><p>Copy both files into the respective empty <strong>.hadoop/</strong> and <strong>.krb5/</strong> directories:</p></li>
+</ol>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ cp hdfs.keytab krb5.conf .krb5/
+$ cp core-site.xml hdfs-site.xml .hadoop/
+</pre></div>
+</div>
+<p>The SQream installer automatically copies the above files during the installation process.</p>
+<p>Go back to <a class="reference internal" href="running_sqream_in_a_docker_container.html#installing-sqream-software"><span class="std std-ref">Installing Your SQream Software</span></a></p>
+</section>
+<section id="starting-a-local-docker-image-registry">
+<h3><a class="toc-backref" href="#id43">Starting a Local Docker Image Registry</a><a class="headerlink" href="#starting-a-local-docker-image-registry" title="Permalink to this heading"></a></h3>
+<p>After getting the SQream package, or (optionally) setting up and configuring Hadoop, you must start a local Docker image registry. Because Kubernetes is based on Docker, you must start the local Docker image registry on the host’s shared folder. This allows all hosts to pull the SQream Docker images.</p>
+<p><strong>To start a local Docker image registry:</strong></p>
+<ol class="arabic">
+<li><p>Create a Docker registry folder:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ mkdir &lt;shared path&gt;/docker-registry/
+</pre></div>
+</div>
+</li>
+<li><p>Set the <code class="docutils literal notranslate"><span class="pre">docker_path</span></code> for the Docker registry folder:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ export docker_path=&lt;path&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Apply the <strong>docker-registry</strong> service to the cluster:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ cat .k8s/admin/docker_registry.yaml | envsubst | kubectl create -f -
+</pre></div>
+</div>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="n">namespace</span><span class="o">/</span><span class="n">sqream</span><span class="o">-</span><span class="n">docker</span><span class="o">-</span><span class="n">registry</span><span class="w"> </span><span class="n">created</span><span class="w"></span>
+<span class="n">configmap</span><span class="o">/</span><span class="n">sqream</span><span class="o">-</span><span class="n">docker</span><span class="o">-</span><span class="n">registry</span><span class="o">-</span><span class="n">config</span><span class="w"> </span><span class="n">created</span><span class="w"></span>
+<span class="n">deployment</span><span class="mf">.</span><span class="n">apps</span><span class="o">/</span><span class="n">sqream</span><span class="o">-</span><span class="n">docker</span><span class="o">-</span><span class="n">registry</span><span class="w"> </span><span class="n">created</span><span class="w"></span>
+<span class="n">service</span><span class="o">/</span><span class="n">sqream</span><span class="o">-</span><span class="n">docker</span><span class="o">-</span><span class="n">registry</span><span class="w"> </span><span class="n">created</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>Check the pod status of the <strong>docker-registry</strong> service:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ kubectl get pods -n sqream-docker-registry
+</pre></div>
+</div>
+</li>
+</ol>
+<p>The following is an example of the correct output:</p>
+<blockquote>
+<div><div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="k">NAME</span><span class="w">                                      </span><span class="n">READY</span><span class="w">   </span><span class="n">STATUS</span><span class="w">    </span><span class="n">RESTARTS</span><span class="w">   </span><span class="n">AGE</span><span class="w"></span>
+<span class="n">sqream</span><span class="o">-</span><span class="n">docker</span><span class="o">-</span><span class="n">registry</span><span class="o">-</span><span class="mf">655889</span><span class="n">fc57</span><span class="o">-</span><span class="n">hmg7h</span><span class="w">   </span><span class="mf">1</span><span class="o">/</span><span class="mf">1</span><span class="w">     </span><span class="n">Running</span><span class="w">   </span><span class="mf">0</span><span class="w">          </span><span class="mf">6</span><span class="n">h40m</span><span class="w"></span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Go back to <a class="reference internal" href="running_sqream_in_a_docker_container.html#installing-sqream-software"><span class="std std-ref">Installing Your SQream Software</span></a></p>
+</section>
+<section id="installing-the-kubernetes-dashboard">
+<h3><a class="toc-backref" href="#id44">Installing the Kubernetes Dashboard</a><a class="headerlink" href="#installing-the-kubernetes-dashboard" title="Permalink to this heading"></a></h3>
+<p>After starting a local Docker image registry, you must install the Kubernetes dashboard. The Kubernetes dashboard lets you see the Kubernetes cluster, nodes, services, and pod status.</p>
+<p><strong>To install the Kubernetes dashboard:</strong></p>
+<ol class="arabic">
+<li><p>Apply the <strong>k8s-dashboard</strong> service to the cluster:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0/aio/deploy/recommended.yaml
+</pre></div>
+</div>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="n">namespace</span><span class="o">/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">dashboard</span><span class="w"> </span><span class="n">created</span><span class="w"></span>
+<span class="n">serviceaccount</span><span class="o">/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">dashboard</span><span class="w"> </span><span class="n">created</span><span class="w"></span>
+<span class="n">service</span><span class="o">/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">dashboard</span><span class="w"> </span><span class="n">created</span><span class="w"></span>
+<span class="n">secret</span><span class="o">/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">dashboard</span><span class="o">-</span><span class="n">certs</span><span class="w"> </span><span class="n">created</span><span class="w"></span>
+<span class="n">secret</span><span class="o">/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">dashboard</span><span class="o">-</span><span class="n">csrf</span><span class="w"> </span><span class="n">created</span><span class="w"></span>
+<span class="n">secret</span><span class="o">/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">dashboard</span><span class="o">-</span><span class="k">key</span><span class="o">-</span><span class="n">holder</span><span class="w"> </span><span class="n">created</span><span class="w"></span>
+<span class="n">configmap</span><span class="o">/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">dashboard</span><span class="o">-</span><span class="n">settings</span><span class="w"> </span><span class="n">created</span><span class="w"></span>
+<span class="k">role</span><span class="mf">.</span><span class="n">rbac</span><span class="mf">.</span><span class="k">authorization</span><span class="mf">.</span><span class="n">k8s</span><span class="mf">.</span><span class="n">io</span><span class="o">/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">dashboard</span><span class="w"> </span><span class="n">created</span><span class="w"></span>
+<span class="n">clusterrole</span><span class="mf">.</span><span class="n">rbac</span><span class="mf">.</span><span class="k">authorization</span><span class="mf">.</span><span class="n">k8s</span><span class="mf">.</span><span class="n">io</span><span class="o">/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">dashboard</span><span class="w"> </span><span class="n">created</span><span class="w"></span>
+<span class="n">rolebinding</span><span class="mf">.</span><span class="n">rbac</span><span class="mf">.</span><span class="k">authorization</span><span class="mf">.</span><span class="n">k8s</span><span class="mf">.</span><span class="n">io</span><span class="o">/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">dashboard</span><span class="w"> </span><span class="n">created</span><span class="w"></span>
+<span class="n">clusterrolebinding</span><span class="mf">.</span><span class="n">rbac</span><span class="mf">.</span><span class="k">authorization</span><span class="mf">.</span><span class="n">k8s</span><span class="mf">.</span><span class="n">io</span><span class="o">/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">dashboard</span><span class="w"> </span><span class="n">created</span><span class="w"></span>
+<span class="n">deployment</span><span class="mf">.</span><span class="n">apps</span><span class="o">/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">dashboard</span><span class="w"> </span><span class="n">created</span><span class="w"></span>
+<span class="n">service</span><span class="o">/</span><span class="n">dashboard</span><span class="o">-</span><span class="n">metrics</span><span class="o">-</span><span class="n">scraper</span><span class="w"> </span><span class="n">created</span><span class="w"></span>
+<span class="n">deployment</span><span class="mf">.</span><span class="n">apps</span><span class="o">/</span><span class="n">dashboard</span><span class="o">-</span><span class="n">metrics</span><span class="o">-</span><span class="n">scraper</span><span class="w"> </span><span class="n">created</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>Grant the user external access to the Kubernetes dashboard:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ cat .k8s/admin/kubernetes-dashboard-svc-metallb.yaml | envsubst | kubectl create -f -
+</pre></div>
+</div>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="n">service</span><span class="o">/</span><span class="n">kubernetes</span><span class="o">-</span><span class="n">dashboard</span><span class="o">-</span><span class="n">nodeport</span><span class="w"> </span><span class="n">created</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the <code class="docutils literal notranslate"><span class="pre">cluster-admin-sa.yaml</span></code> file:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ kubectl create -f .k8s/admin/cluster-admin-sa.yaml
+</pre></div>
+</div>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="n">clusterrolebinding</span><span class="mf">.</span><span class="n">rbac</span><span class="mf">.</span><span class="k">authorization</span><span class="mf">.</span><span class="n">k8s</span><span class="mf">.</span><span class="n">io</span><span class="o">/</span><span class="k">cluster</span><span class="o">-</span><span class="k">admin</span><span class="o">-</span><span class="n">sa</span><span class="o">-</span><span class="k">cluster</span><span class="o">-</span><span class="k">admin</span><span class="w"> </span><span class="n">created</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>Check the pod status of the <strong>K8s-dashboard</strong> service:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ kubectl get pods -n kubernetes-dashboard
+</pre></div>
+</div>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">NAME</span><span class="w">                                         </span><span class="n">READY</span><span class="w">   </span><span class="n">STATUS</span><span class="w">    </span><span class="n">RESTARTS</span><span class="w">   </span><span class="n">AGE</span><span class="w"></span>
+<span class="n">dashboard</span><span class="o">-</span><span class="n">metrics</span><span class="o">-</span><span class="n">scraper</span><span class="o">-</span><span class="mf">6</span><span class="n">b4884c9d5</span><span class="o">-</span><span class="n">n8p57</span><span class="w">   </span><span class="mf">1</span><span class="o">/</span><span class="mf">1</span><span class="w">     </span><span class="n">Running</span><span class="w">   </span><span class="mf">0</span><span class="w">          </span><span class="mf">4</span><span class="n">m32s</span><span class="w"></span>
+<span class="n">kubernetes</span><span class="o">-</span><span class="n">dashboard</span><span class="o">-</span><span class="mf">7</span><span class="n">b544877d5</span><span class="o">-</span><span class="n">qc8b4</span><span class="w">        </span><span class="mf">1</span><span class="o">/</span><span class="mf">1</span><span class="w">     </span><span class="n">Running</span><span class="w">   </span><span class="mf">0</span><span class="w">          </span><span class="mf">4</span><span class="n">m32s</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>Obtain the <strong>k8s-dashboard</strong> access token:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span>$ kubectl -n kube-system describe secrets cluster-admin-sa-token
+</pre></div>
+</div>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">Name</span><span class="p">:</span><span class="w">         </span><span class="k">cluster</span><span class="o">-</span><span class="k">admin</span><span class="o">-</span><span class="n">sa</span><span class="o">-</span><span class="n">token</span><span class="o">-</span><span class="n">rbl9p</span><span class="w"></span>
+<span class="n">Namespace</span><span class="p">:</span><span class="w">    </span><span class="n">kube</span><span class="o">-</span><span class="k">system</span><span class="w"></span>
+<span class="n">Labels</span><span class="p">:</span><span class="w">       </span><span class="o">&lt;</span><span class="k">none</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">Annotations</span><span class="p">:</span><span class="w">  </span><span class="n">kubernetes</span><span class="mf">.</span><span class="n">io</span><span class="o">/</span><span class="n">service</span><span class="o">-</span><span class="n">account</span><span class="mf">.</span><span class="k">name</span><span class="p">:</span><span class="w"> </span><span class="k">cluster</span><span class="o">-</span><span class="k">admin</span><span class="o">-</span><span class="n">sa</span><span class="w"></span>
+<span class="w">              </span><span class="n">kubernetes</span><span class="mf">.</span><span class="n">io</span><span class="o">/</span><span class="n">service</span><span class="o">-</span><span class="n">account</span><span class="mf">.</span><span class="n">uid</span><span class="p">:</span><span class="w"> </span><span class="mf">81866</span><span class="n">d6d</span><span class="o">-</span><span class="mf">8</span><span class="n">ef3</span><span class="o">-</span><span class="mf">4805</span><span class="o">-</span><span class="mf">840</span><span class="n">d</span><span class="o">-</span><span class="mf">58618235</span><span class="n">f68d</span><span class="w"></span>
+
+<span class="k">Type</span><span class="p">:</span><span class="w">  </span><span class="n">kubernetes</span><span class="mf">.</span><span class="n">io</span><span class="o">/</span><span class="n">service</span><span class="o">-</span><span class="n">account</span><span class="o">-</span><span class="n">token</span><span class="w"></span>
+
+<span class="k">Data</span><span class="w"></span>
+<span class="o">====</span><span class="w"></span>
+<span class="n">ca</span><span class="mf">.</span><span class="n">crt</span><span class="p">:</span><span class="w">     </span><span class="mf">1025</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">namespace</span><span class="p">:</span><span class="w">  </span><span class="mf">11</span><span class="w"> </span><span class="n">bytes</span><span class="w"></span>
+<span class="n">token</span><span class="p">:</span><span class="w">      </span><span class="n">eyJhbGciOiJSUzI1NiIsImtpZCI6IjRMV09qVzFabjhId09oamQzZGFFNmZBeEFzOHp3SlJOZWdtVm5lVTdtSW8ifQ</span><span class="mf">.</span><span class="n">eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJrdWJlLXN5c3RlbSIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VjcmV0Lm5hbWUiOiJjbHVzdGVyLWFkbWluLXNhLXRva2VuLXJibDlwIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6ImNsdXN0ZXItYWRtaW4tc2EiLCJrdWJlcm5ldGVzLmlvL3NlcnZpY2VhY2NvdW50L3NlcnZpY2UtYWNjb3VudC51aWQiOiI4MTg2NmQ2ZC04ZWYzLTQ4MDUtODQwZC01ODYxODIzNWY2OGQiLCJzdWIiOiJzeXN0ZW06c2VydmljZWFjY291bnQ6a3ViZS1zeXN0ZW06Y2x1c3Rlci1hZG1pbi1zYSJ9</span><span class="mf">.</span><span class="n">mNhp8JMr5y3hQ44QrvRDCMueyjSHSrmqZcoV00ZC7iBzNUqh3n</span><span class="o">-</span><span class="n">fB99CvC_GR15ys43jnfsz0tdsTy7VtSc9hm5ENBI</span><span class="o">-</span><span class="n">tQ_mwT1Zc7zJrEtgFiA0o_eyfYZOARdhdyFEJg84bzkIxJFPKkBWb4iPWU1Xb7RibuMCjNTarZMZbqzKYfQEcMZWJ5UmfUqp</span><span class="o">-</span><span class="n">HahZZR4BNbjSWybs7t6RWdcQZt6sO_rRCDrOeEJlqKKjx4</span><span class="o">-</span><span class="mf">5</span><span class="n">jFZB8Du_0kKmnw2YJmmSCEOXrpQCyXIiZJpX08HyDDYfFp8IGzm61arB8HDA9dN_xoWvuz4Cj8klUtTzL9effJJPjHJlZXcEqQc9hE3jw</span><span class="w"></span>
+</pre></div>
+</div>
+</li>
+<li><p>Navigate to <code class="docutils literal notranslate"><span class="pre">https://&lt;VIP</span> <span class="pre">address&gt;:5999</span></code>.</p></li>
+</ol>
+<ol class="arabic simple" start="7">
+<li><p>Select the <strong>Token</strong> radio button, paste the token from the previous command output, and click <strong>Sign in</strong>.</p></li>
+</ol>
+<p>The Kubernetes dashboard is displayed.</p>
+<p>Go back to <a class="reference internal" href="running_sqream_in_a_docker_container.html#installing-sqream-software"><span class="std std-ref">Installing Your SQream Software</span></a></p>
+</section>
+<section id="installing-the-sqream-prometheus-package">
+<h3><a class="toc-backref" href="#id45">Installing the SQream Prometheus Package</a><a class="headerlink" href="#installing-the-sqream-prometheus-package" title="Permalink to this heading"></a></h3>
+<p>After installing the Kubernetes dashboard, you must install the SQream Prometheus package. To properly monitor the host and GPU statistics the <strong>exporter service</strong> must be installed on each Kubernetes cluster node.</p>
+<p>This section describes how to install the following:</p>
+<ul class="simple">
+<li><p><strong>node_exporter</strong> - collects host data, such as CPU memory usage.</p></li>
+<li><p><strong>nvidia_exporter</strong> - collects GPU utilization data.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The steps in this section must be done on <strong>all</strong> cluster nodes.</p>
+</div>
+<p>To install the <strong>sqream-prometheus</strong> package, you must do the following:</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#install-exporter-service"><span class="std std-ref">Install the exporter service</span></a></p></li>
+</ol>
+<ol class="arabic simple" start="2">
+<li><p><a class="reference internal" href="#check-exporter-status"><span class="std std-ref">Check the exporter service</span></a></p></li>
+</ol>
+<p>Go back to <a class="reference internal" href="running_sqream_in_a_docker_container.html#installing-sqream-software"><span class="std std-ref">Installing Your SQream Software</span></a></p>
+<section id="installing-the-exporter-service">
+<span id="install-exporter-service"></span><h4>Installing the Exporter Service<a class="headerlink" href="#installing-the-exporter-service" title="Permalink to this heading"></a></h4>
+<p><strong>To install the exporter service:</strong></p>
+<ol class="arabic">
+<li><p>Create a user and group that will be used to run the exporter services:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo groupadd --system prometheus <span class="o">&amp;&amp;</span> sudo useradd -s /sbin/nologin --system -g prometheus prometheus
+</pre></div>
+</div>
+</li>
+<li><p>Extract the <strong>sqream_exporters_prometheus.0.1.tar.gz</strong> file:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span> .prometheus
+<span class="gp">$ </span>tar -xf sqream_exporters_prometheus.0.1.tar.gz
+</pre></div>
+</div>
+</li>
+<li><p>Copy the exporter software files to the <strong>/usr/bin</strong> directory:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span>  sqream_exporters_prometheus.0.1
+<span class="gp">$ </span>sudo cp node_exporter/node_exporter /usr/bin/
+<span class="gp">$ </span>sudo cp nvidia_exporter/nvidia_exporter /usr/bin/
+</pre></div>
+</div>
+</li>
+<li><p>Copy the exporters service file to the <strong>/etc/systemd/system/</strong> directory:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo cp services/node_exporter.service /etc/systemd/system/
+<span class="gp">$ </span>sudo cp services/nvidia_exporter.service /etc/systemd/system/
+</pre></div>
+</div>
+</li>
+<li><p>Set the permission and group of the service files:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo chown prometheus:prometheus /usr/bin/node_exporter
+<span class="gp">$ </span>sudo chmod u+x /usr/bin/node_exporter
+<span class="gp">$ </span>sudo chown prometheus:prometheus /usr/bin/nvidia_exporter
+<span class="gp">$ </span>sudo chmod u+x /usr/bin/nvidia_exporter
+</pre></div>
+</div>
+</li>
+<li><p>Reload the services:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo systemctl daemon-reload
+</pre></div>
+</div>
+</li>
+<li><p>Start both services and set them to start when the server is booted up:</p>
+<ul>
+<li><p>Node_exporter:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo systemctl start node_exporter <span class="o">&amp;&amp;</span> sudo systemctl <span class="nb">enable</span> node_exporter
+</pre></div>
+</div>
+</li>
+<li><p>Nvidia_exporter:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo systemctl start nvidia_exporter <span class="o">&amp;&amp;</span> sudo systemctl <span class="nb">enable</span> nvidia_exporter
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="checking-the-exporter-status">
+<span id="check-exporter-status"></span><h4>Checking the Exporter Status<a class="headerlink" href="#checking-the-exporter-status" title="Permalink to this heading"></a></h4>
+<p>After installing the <strong>exporter</strong> service, you must check its status.</p>
+<p>You can check the exporter status by running the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo systemctl status node_exporter <span class="o">&amp;&amp;</span> sudo systemctl status nvidia_exporter
+</pre></div>
+</div>
+<p>Go back to <a class="reference internal" href="running_sqream_in_a_docker_container.html#installing-sqream-software"><span class="std std-ref">Installing Your SQream Software</span></a></p>
+</section>
+</section>
+</section>
+<section id="running-the-sqream-install-service">
+<span id="running-sqream-install-service"></span><h2><a class="toc-backref" href="#id14">Running the Sqream-install Service</a><a class="headerlink" href="#running-the-sqream-install-service" title="Permalink to this heading"></a></h2>
+<p>The <strong>Running the Sqream-install Service</strong> section describes the following:</p>
+<div class="contents local topic" id="id6">
+<ul class="simple">
+<li><p><a class="reference internal" href="#installing-your-license" id="id46">Installing Your License</a></p></li>
+<li><p><a class="reference internal" href="#changing-your-data-ingest-folder" id="id47">Changing Your Data Ingest Folder</a></p></li>
+<li><p><a class="reference internal" href="#checking-your-system-settings" id="id48">Checking Your System Settings</a></p></li>
+<li><p><a class="reference internal" href="#sqream-installation-command-reference" id="id49">SQream Installation Command Reference</a></p></li>
+<li><p><a class="reference internal" href="#controlling-your-kubernetes-cluster-using-sqream-flags" id="id50">Controlling Your Kubernetes Cluster Using SQream Flags</a></p></li>
+</ul>
+</div>
+<section id="installing-your-license">
+<h3><a class="toc-backref" href="#id46">Installing Your License</a><a class="headerlink" href="#installing-your-license" title="Permalink to this heading"></a></h3>
+<p>After install the SQream Prometheus package, you must install your license.</p>
+<p><strong>To install your license:</strong></p>
+<ol class="arabic simple">
+<li><p>Copy your license package to the sqream <strong>/license</strong> folder.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You do not need to untar the license package after copying it to the <strong>/license</strong> folder because the installer script does it automatically.</p>
+</div>
+<p>The following flags are <strong>mandatory</strong> during your first run:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo ./sqream-install -i -k -m &lt;path to sqream cluster&gt;
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you cannot run the script with <strong>sudo</strong>, verify that you have the right permission (<strong>rwx</strong> for the user) on the relevant directories (config, log, volume, and data-in directories).</p>
+</div>
+<p>Go back to <a class="reference internal" href="#running-sqream-install-service"><span class="std std-ref">Running the SQream_install Service</span></a>.</p>
+</section>
+<section id="changing-your-data-ingest-folder">
+<h3><a class="toc-backref" href="#id47">Changing Your Data Ingest Folder</a><a class="headerlink" href="#changing-your-data-ingest-folder" title="Permalink to this heading"></a></h3>
+<p>After installing your license, you must change your data ingest folder.</p>
+<p>You can change your data ingest folder by running the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo ./sqream-install -d /media/nfs/sqream/data_in
+</pre></div>
+</div>
+<p>Go back to <a class="reference internal" href="#running-sqream-install-service"><span class="std std-ref">Running the SQream_install Service</span></a>.</p>
+</section>
+<section id="checking-your-system-settings">
+<h3><a class="toc-backref" href="#id48">Checking Your System Settings</a><a class="headerlink" href="#checking-your-system-settings" title="Permalink to this heading"></a></h3>
+<p>After changing your data ingest folder, you must check your system settings.</p>
+<p>The following command shows you all the variables that your SQream system is running with:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./sqream-install -s
+</pre></div>
+</div>
+<p>After optionally checking your system settings, you can use the <strong>sqream-start</strong> application to control your Kubernetes cluster.</p>
+<p>Go back to <a class="reference internal" href="#running-sqream-install-service"><span class="std std-ref">Running the SQream_install Service</span></a>.</p>
+</section>
+<section id="sqream-installation-command-reference">
+<h3><a class="toc-backref" href="#id49">SQream Installation Command Reference</a><a class="headerlink" href="#sqream-installation-command-reference" title="Permalink to this heading"></a></h3>
+<p>If needed, you can use the <strong>sqream-install</strong> flag reference for any needed flags by typing:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./sqream-install --help
+</pre></div>
+</div>
+<p>The following shows the <strong>sqream–install</strong> flag descriptions:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 56%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Flag</p></th>
+<th class="head"><p>Function</p></th>
+<th class="head"><p>Note</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>-i</strong></p></td>
+<td><p>Loads all the software from the hidden <strong>.docker</strong> folder.</p></td>
+<td><p>Mandatory</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>-k</strong></p></td>
+<td><p>Loads the license package from the <strong>/license</strong> directory.</p></td>
+<td><p>Mandatory</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>-m</strong></p></td>
+<td><p>Sets the relative path for all SQream folders under the shared filesystem available from all nodes (sqreamdb, config, logs and data_in). No other flags are required if you use this flag (such as c, v, l or d).</p></td>
+<td><p>Mandatory</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>-c</strong></p></td>
+<td><p>Sets the path where to write/read SQream configuration files from. The default is <strong>/etc/sqream/</strong>.</p></td>
+<td><p>Optional</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>-v</strong></p></td>
+<td><p>Shows the location of the SQream cluster. <code class="docutils literal notranslate"><span class="pre">v</span></code> creates a cluster if none exist, and mounts it if does.</p></td>
+<td><p>Optional</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>-l</strong></p></td>
+<td><p>Shows the location of the SQream system startup logs. The logs contain startup and Docker logs. The default is <strong>/var/log/sqream/</strong>.</p></td>
+<td><p>Optional</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>-d</strong></p></td>
+<td><p>Shows the folder containing data that you want to import into or copy from SQream.</p></td>
+<td><p>Optional</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>-n</strong> &lt;Namespace&gt;</p></td>
+<td><p>Sets the Kubernetes namespace. The default is <strong>sqream</strong>.</p></td>
+<td><p>Optional</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>-N</strong> &lt;Namespace&gt;</p></td>
+<td><p>Deletes a specific Kubernetes namespace and sets the factory default namespace (sqream).</p></td>
+<td><p>Optional</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>-f</strong></p></td>
+<td><p>Overwrite existing folders and all files located in mounted directories.</p></td>
+<td><p>Optional</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>-r</strong></p></td>
+<td><p>Resets the system configuration. This flag is run without any other variables.</p></td>
+<td><p>Optional</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>-s</strong></p></td>
+<td><p>Shows the system settings.</p></td>
+<td><p>Optional</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>-e</strong></p></td>
+<td><p>Sets the Kubernetes cluster’s virtual IP address.</p></td>
+<td><p>Optional</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>-h</strong></p></td>
+<td><p>Help, shows all available flags.</p></td>
+<td><p>Optional</p></td>
+</tr>
+</tbody>
+</table>
+<p>Go back to <a class="reference internal" href="#running-sqream-install-service"><span class="std std-ref">Running the SQream_install Service</span></a>.</p>
+</section>
+<section id="controlling-your-kubernetes-cluster-using-sqream-flags">
+<h3><a class="toc-backref" href="#id50">Controlling Your Kubernetes Cluster Using SQream Flags</a><a class="headerlink" href="#controlling-your-kubernetes-cluster-using-sqream-flags" title="Permalink to this heading"></a></h3>
+<p>You can control your Kubernetes cluster using SQream flags.</p>
+<p>The following command shows you the available Kubernetes cluster control options:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./sqream-start -h
+</pre></div>
+</div>
+<p>The following describes the <strong>sqream-start</strong> flags:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 56%" />
+<col style="width: 24%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Flag</p></th>
+<th class="head"><p>Function</p></th>
+<th class="head"><p>Note</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>-s</strong></p></td>
+<td><p>Starts the sqream services, starting metadata, server picker, and workers. The number of workers started is based on the number of available GPU’s.</p></td>
+<td><p>Mandatory</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>-p</strong></p></td>
+<td><p>Sets specific ports to the workers services. You must enter the starting port for the sqream-start application to allocate it based on the number of workers.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>-j</strong></p></td>
+<td><p>Uses an external .json configuration file. The file must be located in the <strong>configuration</strong> directory.</p></td>
+<td><p>The workers must each be started individually.</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>-m</strong></p></td>
+<td><p>Allocates worker spool memory.</p></td>
+<td><p>The workers must each be started individually.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>-a</strong></p></td>
+<td><p>Starts the SQream Administration dashboard and specifies the listening port.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>-d</strong></p></td>
+<td><p>Deletes all running SQream services.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>-h</strong></p></td>
+<td><p>Shows all available flags.</p></td>
+<td><p>Help</p></td>
+</tr>
+</tbody>
+</table>
+<p>Go back to <a class="reference internal" href="#running-sqream-install-service"><span class="std std-ref">Running the SQream_install Service</span></a>.</p>
+</section>
+</section>
+<section id="using-the-sqream-start-commands">
+<span id="using-sqream-start-commands"></span><h2><a class="toc-backref" href="#id15">Using the sqream-start Commands</a><a class="headerlink" href="#using-the-sqream-start-commands" title="Permalink to this heading"></a></h2>
+<p>In addition to controlling your Kubernetes cluster using SQream flags, you can control it using <strong>sqream-start</strong> commands.</p>
+<p>The <strong>Using the sqream-start Commands</strong> section describes the following:</p>
+<div class="contents local topic" id="id7">
+<ul class="simple">
+<li><p><a class="reference internal" href="#starting-your-sqream-services" id="id51">Starting Your SQream Services</a></p></li>
+<li><p><a class="reference internal" href="#starting-your-sqream-services-in-split-mode" id="id52">Starting Your SQream Services in Split Mode</a></p></li>
+<li><p><a class="reference internal" href="#starting-the-sqream-studio-ui" id="id53">Starting the Sqream Studio UI</a></p></li>
+<li><p><a class="reference internal" href="#stopping-the-sqream-services" id="id54">Stopping the SQream Services</a></p></li>
+<li><p><a class="reference internal" href="#advanced-sqream-start-commands" id="id55">Advanced sqream-start Commands</a></p></li>
+</ul>
+</div>
+<section id="starting-your-sqream-services">
+<h3><a class="toc-backref" href="#id51">Starting Your SQream Services</a><a class="headerlink" href="#starting-your-sqream-services" title="Permalink to this heading"></a></h3>
+<p>You can run the <strong>sqream-start</strong> command with the <strong>-s</strong> flag to start SQream services on all available GPU’s:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo ./sqream-start -s
+</pre></div>
+</div>
+<p>This command starts the SQream metadata, server picker, and sqream workers on all available GPU’s in the cluster.</p>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">./sqream-start -s</span>
+<span class="go">Initializing network watchdogs on 3 hosts...</span>
+<span class="go">Network watchdogs are up and running</span>
+
+<span class="go">Initializing 3 worker data collectors ...</span>
+<span class="go">Worker data collectors are up and running</span>
+
+<span class="go">Starting Prometheus ...</span>
+<span class="go">Prometheus is available at 192.168.5.100:9090</span>
+
+<span class="go">Starting SQream master ...</span>
+<span class="go">SQream master is up and running</span>
+
+<span class="go">Starting up 3 SQream workers ...</span>
+<span class="go">All SQream workers are up and running, SQream-DB is available at 192.168.5.100:3108</span>
+<span class="go">All SQream workers are up and running, SQream-DB is available at 192.168.5.100:3108</span>
+</pre></div>
+</div>
+<p>Go back to <a class="reference internal" href="#using-sqream-start-commands"><span class="std std-ref">Using the SQream-start Commands</span></a>.</p>
+</section>
+<section id="starting-your-sqream-services-in-split-mode">
+<h3><a class="toc-backref" href="#id52">Starting Your SQream Services in Split Mode</a><a class="headerlink" href="#starting-your-sqream-services-in-split-mode" title="Permalink to this heading"></a></h3>
+<p>Starting SQream services in split mode refers to running multiple SQream workers on a single GPU. You can do this by running the <strong>sqream-start</strong> command with the <strong>-s</strong> and <strong>-z</strong> flags. In addition, you can define the amount of hosts to run the multiple workers on. In the example below, the command defines to run the multiple workers on three hosts.</p>
+<p><strong>To start SQream services in split mode:</strong></p>
+<ol class="arabic simple">
+<li><p>Run the following command:</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./sqream-start -s -z <span class="m">3</span>
+</pre></div>
+</div>
+<p>This command starts the SQream metadata, server picker, and sqream workers on a single GPU for three hosts:</p>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Initializing network watchdogs on 3 hosts...</span>
+<span class="go">Network watchdogs are up and running</span>
+
+<span class="go">Initializing 3 worker data collectors ...</span>
+<span class="go">Worker data collectors are up and running</span>
+
+<span class="go">Starting Prometheus ...</span>
+<span class="go">Prometheus is available at 192.168.5.101:9090</span>
+
+<span class="go">Starting SQream master ...</span>
+<span class="go">SQream master is up and running</span>
+
+<span class="go">Starting up 9 SQream workers over &lt;#&gt; available GPUs ...</span>
+<span class="go">All SQream workers are up and running, SQream-DB is available at 192.168.5.101:3108</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Verify all pods are properly running in k8s cluster (<strong>STATUS</strong> column):</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">kubectl -n sqream get pods</span>
+
+<span class="go">NAME                                          READY   STATUS             RESTARTS   AGE</span>
+<span class="go">prometheus-bcf877867-kxhld                    1/1     Running            0          106s</span>
+<span class="go">sqream-metadata-fbcbc989f-6zlkx               1/1     Running            0          103s</span>
+<span class="go">sqream-picker-64b8c57ff5-ndfr9                1/1     Running            2          102s</span>
+<span class="go">sqream-split-workers-0-1-2-6bdbfbbb86-ml7kn   1/1     Running            0          57s</span>
+<span class="go">sqream-split-workers-3-4-5-5cb49d49d7-596n4   1/1     Running            0          57s</span>
+<span class="go">sqream-split-workers-6-7-8-6d598f4b68-2n9z5   1/1     Running            0          56s</span>
+<span class="go">sqream-workers-start-xj75g                    1/1     Running            0          58s</span>
+<span class="go">watchdog-network-management-6dnfh             1/1     Running            0          115s</span>
+<span class="go">watchdog-network-management-tfd46             1/1     Running            0          115s</span>
+<span class="go">watchdog-network-management-xct4d             1/1     Running            0          115s</span>
+<span class="go">watchdog-network-storage-lr6v4                1/1     Running            0          116s</span>
+<span class="go">watchdog-network-storage-s29h7                1/1     Running            0          116s</span>
+<span class="go">watchdog-network-storage-sx9mw                1/1     Running            0          116s</span>
+<span class="go">worker-data-collector-62rxs                   0/1     Init:0/1           0          54s</span>
+<span class="go">worker-data-collector-n8jsv                   0/1     Init:0/1           0          55s</span>
+<span class="go">worker-data-collector-zp8vf                   0/1     Init:0/1           0          54s</span>
+</pre></div>
+</div>
+<p>Go back to <a class="reference internal" href="#using-sqream-start-commands"><span class="std std-ref">Using the SQream-start Commands</span></a>.</p>
+</section>
+<section id="starting-the-sqream-studio-ui">
+<h3><a class="toc-backref" href="#id53">Starting the Sqream Studio UI</a><a class="headerlink" href="#starting-the-sqream-studio-ui" title="Permalink to this heading"></a></h3>
+<p>You can run the following command the to start the SQream Studio UI (Editor and Dashboard):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./sqream-start -a
+</pre></div>
+</div>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./sqream-start -a
+<span class="go">Please enter USERNAME:</span>
+<span class="go">sqream</span>
+<span class="go">Please enter PASSWORD:</span>
+<span class="go">******</span>
+<span class="go">Please enter port value or press ENTER to keep 8080:</span>
+
+<span class="go">Starting up SQream Admin UI...</span>
+<span class="go">SQream admin ui is available at 192.168.5.100:8080</span>
+</pre></div>
+</div>
+<p>Go back to <a class="reference internal" href="#using-sqream-start-commands"><span class="std std-ref">Using the SQream-start Commands</span></a>.</p>
+</section>
+<section id="stopping-the-sqream-services">
+<h3><a class="toc-backref" href="#id54">Stopping the SQream Services</a><a class="headerlink" href="#stopping-the-sqream-services" title="Permalink to this heading"></a></h3>
+<p>You can run the following command to stop all SQream services:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./sqream-start -d
+</pre></div>
+</div>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./sqream-start -d
+<span class="gp">$ </span>Cleaning all SQream services <span class="k">in</span> sqream namespace ...
+<span class="gp">$ </span>All SQream service removed from sqream namespace
+</pre></div>
+</div>
+<p>Go back to <a class="reference internal" href="#using-sqream-start-commands"><span class="std std-ref">Using the SQream-start Commands</span></a>.</p>
+</section>
+<section id="advanced-sqream-start-commands">
+<h3><a class="toc-backref" href="#id55">Advanced sqream-start Commands</a><a class="headerlink" href="#advanced-sqream-start-commands" title="Permalink to this heading"></a></h3>
+<section id="controlling-your-sqream-spool-size">
+<h4>Controlling Your SQream Spool Size<a class="headerlink" href="#controlling-your-sqream-spool-size" title="Permalink to this heading"></a></h4>
+<p>If you do not specify the SQream spool size, the console automatically distributes the available RAM between all running workers.</p>
+<p>You can define a specific spool size by running the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./sqream-start -s -m <span class="m">4</span>
+</pre></div>
+</div>
+</section>
+<section id="using-a-custom-json-file">
+<h4>Using a Custom .json File<a class="headerlink" href="#using-a-custom-json-file" title="Permalink to this heading"></a></h4>
+<p>You have the option of using your own .json file for your own custom configurations. Your .json file must be placed within the path mounted in the installation. SQream recommends placing your .json file in the <strong>configuration</strong> folder.</p>
+<p>The SQream console does not validate the integrity of external .json files.</p>
+<p>You can use the following command (using the <code class="docutils literal notranslate"><span class="pre">j</span></code> flag) to set the full path of your .json file to the configuration file:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./sqream-start -s -f &lt;full path&gt;.json
+</pre></div>
+</div>
+<p>This command starts one worker with an external configuration file.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The configuration file must be available in the shared configuration folder.</p>
+</div>
+</section>
+<section id="checking-the-status-of-the-sqream-services">
+<h4>Checking the Status of the SQream Services<a class="headerlink" href="#checking-the-status-of-the-sqream-services" title="Permalink to this heading"></a></h4>
+<p>You can show all running SQream services by running the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>kubectl get pods -n &lt;namespace&gt; -o wide
+</pre></div>
+</div>
+<p>This command shows all running services in the cluster and which nodes they are running in.</p>
+<p>Go back to <a class="reference internal" href="#using-sqream-start-commands"><span class="std std-ref">Using the SQream-start Commands</span></a>.</p>
+</section>
+</section>
+</section>
+<section id="upgrading-your-sqream-version">
+<h2><a class="toc-backref" href="#id16">Upgrading Your SQream Version</a><a class="headerlink" href="#upgrading-your-sqream-version" title="Permalink to this heading"></a></h2>
+<p>The <strong>Upgrading Your SQream Version</strong> section describes the following:</p>
+<div class="contents local topic" id="id8">
+<ul class="simple">
+<li><p><a class="reference internal" href="#before-upgrading-your-system" id="id56">Before Upgrading Your System</a></p></li>
+<li><p><a class="reference internal" href="#upgrading-your-system" id="id57">Upgrading Your System</a></p></li>
+</ul>
+</div>
+<section id="before-upgrading-your-system">
+<h3><a class="toc-backref" href="#id56">Before Upgrading Your System</a><a class="headerlink" href="#before-upgrading-your-system" title="Permalink to this heading"></a></h3>
+<p>Before upgrading your system you must do the following:</p>
+<ol class="arabic simple">
+<li><p>Contact <a class="reference external" href="https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26">SQream Support</a> for a new SQream package tarball file.</p></li>
+</ol>
+<ol class="arabic simple" start="2">
+<li><p>Set a maintenance window.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You must stop the system while upgrading it.</p>
+</div>
+</section>
+<section id="upgrading-your-system">
+<h3><a class="toc-backref" href="#id57">Upgrading Your System</a><a class="headerlink" href="#upgrading-your-system" title="Permalink to this heading"></a></h3>
+<p>After completing the steps in <strong>Before Upgrading Your System</strong> above, you can upgrade your system.</p>
+<p><strong>To upgrade your system:</strong></p>
+<ol class="arabic simple">
+<li><p>Extract the contents of the tarball file that you received from SQream support. Make sure to extract the contents to the same directory as in <a class="reference internal" href="#getting-sqream-package"><span class="std std-ref">Getting the SQream Package</span></a> and for the same user:</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>tar -xvf sqream_installer-2.0.5-DB2019.2.1-CO1.6.3-ED3.0.0-x86_64/
+<span class="gp">$ </span><span class="nb">cd</span> sqream_installer-2.0.5-DB2019.2.1-CO1.6.3-ED3.0.0-x86_64/
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Start the upgrade process run the following command:</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>./sqream-install -i
+</pre></div>
+</div>
+</div></blockquote>
+<p>The upgrade process checks if the SQream services are running and will prompt you to stop them.</p>
+<ol class="arabic simple" start="3">
+<li><p>Do one of the following:</p>
+<ul class="simple">
+<li><p>Stop the upgrade by writing <code class="docutils literal notranslate"><span class="pre">No</span></code>.</p></li>
+<li><p>Continue the upgrade by writing <code class="docutils literal notranslate"><span class="pre">Yes</span></code>.</p></li>
+</ul>
+</li>
+</ol>
+<p>If you continue upgrading, all running SQream workers (master and editor) are stopped. When all services have been stopped, the new version is loaded.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>SQream periodically upgrades its metadata structure. If an upgrade version includes an upgraded metadata service, an approval request message is displayed. This approval is required to finish the upgrade process. Because SQream supports only specific metadata versions, all SQream services must be upgraded at the same time.</p>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>When SQream has successfully upgraded, load the SQream console and restart your services.</p></li>
+</ol>
+<p>For questions, contact <a class="reference external" href="https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26">SQream Support</a>.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="running_sqream_in_a_docker_container.html" class="btn btn-neutral float-left" title="Installing and Running SQream in a Docker Container" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="installing_monit.html" class="btn btn-neutral float-right" title="Installing Monit" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 SQream.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

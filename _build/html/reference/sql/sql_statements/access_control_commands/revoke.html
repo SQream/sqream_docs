@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>REVOKE &mdash; SQream DB 4.2 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #133148" >
+            <a href="../../../../index.html">
+            <img src="../../../../_static/SQream_logo_without background-15.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started/preparing_your_machine_to_install_sqream.html">Preparing Your Machine to Install SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started/installing_sqream.html">Installing SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started/executing_statements_in_sqream.html">Executing Statements in SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started/performing_basic_sqream_operations.html">Performing Basic SQream Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../getting_started/running_the_sqream_sql_client.html">Running the SQream SQL Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../getting_started/creating_your_first_table.html">Creating Your First Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../getting_started/listing_tables.html">Listing Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../getting_started/inserting_rows.html">Inserting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../getting_started/running_queries.html">Running Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../getting_started/deleting_rows.html">Deleting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../getting_started/saving_query_results_to_a_csv_or_psv_file.html">Saving Query Results to a CSV or PSV File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started/hardware_guide.html">Hardware Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation_guides/index.html">Installation Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation_guides/installing_and_launching_sqream.html">Installing and Launching SQream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/recommended_pre-installation_configurations.html">Recommended Pre-Installation Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/installing_sqream_with_binary.html">Installing SQream Using Binary Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/running_sqream_in_a_docker_container.html">Installing and Running SQream in a Docker Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/installing_sqream_with_kubernetes.html">Installing SQream with Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/installing_monit.html">Installing Monit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/launching_sqream_with_monit.html">Launching SQream with Monit</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation_guides/sqream_studio_installation.html">Installing SQream Studio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/installing_prometheus_exporters.html">Installing Prometheus Exporter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/installing_prometheus_using_binary_packages.html">Installing Prometheus Using Binary Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/installing_dashboard_data_collector.html">Installing the Dashboard Data Collector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/installing_studio_on_stand_alone_server.html">Installing Studio on a Stand-Alone Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/installing_nginx_proxy_over_secure_connection.html">Installing an NGINX Proxy Over a Secure Connection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../data_ingestion/index.html">Data Ingestion Sources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_ingestion/ingesting_data.html">Ingesting Data Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_ingestion/avro.html">Ingesting Data from Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_ingestion/csv.html">Ingesting Data from a CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_ingestion/parquet.html">Ingesting Data from a Parquet File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_ingestion/orc.html">Ingesting Data from an ORC File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_ingestion/json.html">Ingesting Data from JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../connecting_to_sqream/index.html">Connecting to SQream</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/index.html">Client Platforms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/informatica.html">Connect to SQream Using Informatica Cloud Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/microstrategy.html">Connect to SQream Using MicroStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/pentaho.html">Connecting to SQream Using Pentaho Data Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/php.html">Connect to SQream Using PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/power_bi.html">Connecting to SQream Using Power BI Desktop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/r.html">Connect to SQream Using R</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/sap_businessobjects.html">Connecting to SQream Using SAP BusinessObjects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/sas_viya.html">Connect to SQream Using SAS Viya</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/sql_workbench.html">Connect to SQream Using SQL Workbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/tableau.html">Connecting to SQream Using Tableau</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/talend.html">Connecting to SQream Using Talend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/tibco_spotfire.html">Connecting to SQream Using TIBCO Spotfire</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../connecting_to_sqream/client_drivers/index.html">Client Drivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_drivers/trino/index.html">Connecting to SQream Using Trino</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_drivers/jdbc/index.html">JDBC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_drivers/python/index.html">Connecting to SQream Using Python (pysqream)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_drivers/nodejs/index.html">Connecting to SQream Using Node.JS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_drivers/odbc/index.html">ODBC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../connecting_to_sqream/client_drivers/odbc/install_configure_odbc_windows.html">Install and Configure ODBC on Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../connecting_to_sqream/client_drivers/odbc/install_configure_odbc_linux.html">Install and configure ODBC on Linux</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_drivers/dotnet/index.html">Connecting to SQream Using .NET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_drivers/Spark/index.html">Using Spark With SQream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../external_storage_platforms/index.html">External Storage Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../external_storage_platforms/s3.html">Inserting Data Using Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../external_storage_platforms/hdfs.html">Using SQream in an HDFS Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../loading_and_unloading_data/index.html">Loading and Unloading Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../feature_guides/index.html">Feature Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../feature_guides/automatic_foreign_table_ddl_resolution.html">Automatic Foreign Table DDL Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../feature_guides/query_healer.html">Query Healer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../feature_guides/data_encryption.html">Data Encryption</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../feature_guides/data_encryption_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../feature_guides/data_encryption_methods.html">Encryption Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../feature_guides/data_encryption_types.html">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../feature_guides/data_encryption_syntax.html">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../feature_guides/data_encryption_permissions.html">Permissions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../feature_guides/compression.html">Compression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../feature_guides/python_functions.html">Python UDF (User-Defined Functions)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../feature_guides/workload_manager.html">Workload Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../feature_guides/concurrency_and_locks.html">Concurrency and Locks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../feature_guides/concurrency_and_scaling_in_sqream.html">Concurrency and Scaling in SQream DB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../operational_guides/index.html">Operational Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/access_control.html">Access Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../operational_guides/access_control_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../operational_guides/access_control_password_policy.html">Password Policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../operational_guides/access_control_managing_roles.html">Managing Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../operational_guides/access_control_permissions.html">Permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../operational_guides/access_control_departmental_example.html">Departmental Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/creating_or_cloning_a_storage_cluster.html">Creating or Cloning Storage Clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/external_data.html">Working with External Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../operational_guides/s3.html">Inserting Data Using Amazon S3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../operational_guides/hdfs.html">Using SQream in an HDFS Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/foreign_tables.html">Foreign Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/delete_guide.html">Deleting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/exporting_data.html">Exporting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/logging.html">Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/monitoring_query_performance.html">Monitoring Query Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/saved_queries.html">Saved Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/seeing_system_objects_as_ddl.html">Seeing System Objects as DDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/optimization_best_practices.html">Optimization and Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sqream_studio_5.4.7/index.html">SQream Acceleration Studio 5.4.7</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../sqream_studio_5.4.7/getting_started.html">Getting Started with SQream Acceleration Studio 5.4.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../sqream_studio_5.4.7/monitoring_workers_and_services_from_the_dashboard.html">Monitoring Workers and Services from the Dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../sqream_studio_5.4.7/executing_statements_and_running_queries_from_the_editor.html">Executing Statements and Running Queries from the Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../sqream_studio_5.4.7/viewing_logs.html">Viewing Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../sqream_studio_5.4.7/creating_assigning_and_managing_roles_and_permissions.html">Creating, Assigning, and Managing Roles and Permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../sqream_studio_5.4.7/configuring_your_instance_of_sqream.html">Configuring Your Instance of SQreams</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture/index.html">System Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture/internals_architecture.html">Internals and architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture/filesystem_and_filesystem_usage.html">Filesystem and usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../configuration_guides/index.html">Configuration Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration_guides/spooling.html">Configuring the Spooling Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration_guides/configuring_sqream.html">Configuring SQream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/current_method_configuration_levels.html">Configuration Levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/current_method_flag_types.html">Flag Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/current_method_configuration_roles.html">Configuration Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/current_method_modification_methods.html">Modification Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/current_method_configuring_your_parameter_values.html">Configuring Your Parameter Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/current_method_command_examples.html">Command Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/current_method_showing_all_flags_in_the_catalog_table.html">Showing All Flags in the Catalog Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/current_method_all_configurations.html">All Configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration_guides/ldap.html">Configuring LDAP authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration_guides/configuration_flags.html">Configuration Flags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/admin_flags.html">Administration Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../configuration_guides/admin_regular_flags.html">Regular Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../configuration_guides/admin_cluster_flags.html">Cluster Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../configuration_guides/admin_worker_flags.html">Worker Administration Flags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/generic_flags.html">Generic Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../configuration_guides/generic_regular_flags.html">Regular Generic Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../configuration_guides/generic_worker_flags.html">Worker Generic Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration_guides/previous_configuration_method.html">Configuring SQream Using the Previous Configuration Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Reference Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html">SQL Statements and Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../sql_syntax/index.html">SQL Syntax Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html">SQL Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sql_functions/index.html">SQL Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../sql_functions/scalar_functions/index.html">Built-In Scalar Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sql_functions/user_defined_functions/index.html">User-Defined Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sql_functions/aggregate_functions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sql_functions/window_functions/index.html">Window Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../catalog_reference.html">Catalog Reference Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../catalog_reference_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../catalog_reference_schema_information.html">What Information Does the Schema Contain?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../catalog_reference_catalog_tables.html">Catalog Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../catalog_reference_additonal_tables.html">Additional Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../catalog_reference_examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cli/index.html">Command line programs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../cli/metadata_server.html">metadata_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cli/sqreamd.html">sqreamd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cli/sqream_console.html">sqream-console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cli/sqream_installer.html">sqream-installer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cli/server_picker.html">Server Picker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cli/sqream_storage.html">SqreamStorage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cli/sqream_sql.html">sqream sql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cli/upgrade_storage.html">upgrade_storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sql_feature_support.html">SQL Feature Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../data_type_guides/index.html">Data Type Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_type_guides/converting_and_casting_types.html">Converting and Casting Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_type_guides/supported_data_types.html">Supported Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_type_guides/supported_casts.html">Supported Casts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../data_type_guides/sql_data_types_numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../data_type_guides/sql_data_types_boolean.html">Boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../data_type_guides/sql_data_types_integer.html">Integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../data_type_guides/sql_data_types_floating_point.html">Floating Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../data_type_guides/sql_data_types_string.html">String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../data_type_guides/sql_data_types_date.html">Date</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../releases/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../releases/4.0_index.html">Release Notes 4.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/4.0.html">Release Notes 4.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/4.1.html">Release Notes 4.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/4.2.html">Release Notes 4.2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../releases/2022.1_index.html">Release Notes 2022.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2022.1.7.html">Release Notes 2022.1.7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2022.1.6.html">Release Notes 2022.1.6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2022.1.5.html">Release Notes 2022.1.5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2022.1.4.html">Release Notes 2022.1.4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2022.1.3.html">Release Notes 2022.1.3</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2022.1.2.html">Release Notes 2022.1.2</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2022.1.1.html">Release Notes 2022.1.1</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2022.1.html">Release Notes 2022.1</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../releases/2021.2_index.html">Release Notes 2021.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2021.2.1.24.html">Release Notes 2021.2.1.24</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2021.2.1.html">Release Notes 2021.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2021.2.html">Release Notes 2021.2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../releases/2021.1_index.html">Release Notes 2021.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2021.1.2.html">Release Notes 2021.1.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2021.1.html">Release Notes 2021.1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../releases/2020.3_index.html">Release Notes 2020.3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2020.3.2.1.html">Release Notes 2020.3.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2020.3.2.html">What’s new in 2020.3.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2020.3.1.html">Release Notes 2020.3.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2020.3.html">Release Notes 2020.3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../releases/2020.2.html">Release Notes 2020.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../releases/2020.1.html">Release Notes 2020.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/remedying_slow_queries.html">Remedying Slow Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/resolving_common_issues.html">Resolving Common Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/examining_logs.html">Examining Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/identifying_configuration_issues.html">Identifying Configuration Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/lock_related_issues.html">Lock Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/log_related_issues.html">Log Related Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/core_dumping_related_issues.html">Core Dumping Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/information_for_support.html">Gathering Information for SQream Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #133148" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">SQream DB</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>REVOKE</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="revoke">
+<span id="id1"></span><h1>REVOKE<a class="headerlink" href="#revoke" title="Permalink to this heading"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">REVOKE</span></code> statement removes permissions from a role. It allows for removing permissions to specific objects.</p>
+<p>Learn more about the permission system in the <a class="reference internal" href="../../../../operational_guides/access_control.html#access-control"><span class="std std-ref">access control guide</span></a>.</p>
+<p>See also <a class="reference internal" href="grant.html#grant"><span class="std std-ref">GRANT</span></a>, <a class="reference internal" href="drop_role.html#drop-role"><span class="std std-ref">DROP ROLE</span></a>.</p>
+<section id="permissions">
+<h2>Permissions<a class="headerlink" href="#permissions" title="Permalink to this heading"></a></h2>
+<p>To revoke permissions, the current role must have the <code class="docutils literal notranslate"><span class="pre">SUPERUSER</span></code> permission, or have the <code class="docutils literal notranslate"><span class="pre">ADMIN</span> <span class="pre">OPTION</span></code>.</p>
+</section>
+<section id="syntax">
+<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this heading"></a></h2>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="n">grant_statement</span><span class="w"> </span><span class="o">::=</span><span class="w"></span>
+<span class="w">   </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="c1">-- revoke permissions at the cluster level:</span>
+<span class="w">   </span><span class="k">REVOKE</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="n">SUPERUSER</span><span class="w"></span>
+<span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">LOGIN</span><span class="w"></span>
+<span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">PASSWORD</span><span class="w"> </span><span class="s1">&#39;password&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="n">role_name</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="mf">...</span><span class="p">]</span><span class="w"></span>
+
+<span class="w">   </span><span class="c1">-- Revoke permissions at the database level:</span>
+<span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">REVOKE</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">         </span><span class="p">{</span><span class="w"> </span><span class="k">CREATE</span><span class="w"></span>
+<span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">CONNECT</span><span class="w"></span>
+<span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">DDL</span><span class="w"></span>
+<span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">SUPERUSER</span><span class="w"></span>
+<span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="k">CREATE</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"></span>
+<span class="w">         </span><span class="p">}</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="mf">...</span><span class="p">]</span><span class="w"></span>
+<span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="p">[</span><span class="n">PERMISSIONS</span><span class="p">]</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">database_name</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="mf">...</span><span class="p">]</span><span class="w"></span>
+<span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="n">role_name</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="mf">...</span><span class="p">]</span><span class="w"></span>
+
+<span class="w">   </span><span class="c1">-- Revoke permissions at the schema level:</span>
+<span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">REVOKE</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">         </span><span class="p">{</span><span class="w"> </span><span class="k">CREATE</span><span class="w"></span>
+<span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">DDL</span><span class="w"></span>
+<span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">USAGE</span><span class="w"></span>
+<span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">SUPERUSER</span><span class="w"></span>
+<span class="w">         </span><span class="p">}</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="mf">...</span><span class="p">]</span><span class="w"></span>
+<span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="p">[</span><span class="n">PERMISSIONS</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="n">schema_name</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="mf">...</span><span class="p">]</span><span class="w"></span>
+<span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="n">role_name</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="mf">...</span><span class="p">]</span><span class="w"></span>
+
+<span class="w">   </span><span class="c1">-- Revoke permissions at the object level:</span>
+<span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">REVOKE</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"></span>
+<span class="w">         </span><span class="p">{</span><span class="w"> </span><span class="k">SELECT</span><span class="w"></span>
+<span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="k">INSERT</span><span class="w"></span>
+<span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="k">DELETE</span><span class="w"></span>
+<span class="w">         </span><span class="o">|</span><span class="w"> </span><span class="n">DDL</span><span class="w"></span>
+<span class="w">         </span><span class="p">}</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="mf">...</span><span class="p">]</span><span class="w"></span>
+<span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="p">[</span><span class="n">PERMISSIONS</span><span class="p">]</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="mf">...</span><span class="p">]</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">TABLES</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="k">SCHEMA</span><span class="w"> </span><span class="n">schema_name</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="mf">...</span><span class="p">]}</span><span class="w"></span>
+<span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="n">role_name</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="mf">...</span><span class="p">]</span><span class="w"></span>
+
+
+<span class="w">   </span><span class="c1">-- Revoke execute function permission:</span>
+<span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">REVOKE</span><span class="w"></span>
+<span class="w">      </span><span class="p">{</span><span class="w"> </span><span class="k">ALL</span><span class="w"></span>
+<span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="k">EXECUTE</span><span class="w"></span>
+<span class="w">      </span><span class="o">|</span><span class="w"> </span><span class="n">DDL</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="k">ON</span><span class="w"> </span><span class="k">FUNCTION</span><span class="w"> </span><span class="n">function_name</span><span class="w"></span>
+<span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="n">role_name</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="mf">...</span><span class="p">]</span><span class="w"></span>
+
+
+<span class="w">   </span><span class="c1">-- Remove permissions between roles by revoking role membership:</span>
+<span class="w">   </span><span class="o">|</span><span class="w"> </span><span class="k">REVOKE</span><span class="w"> </span><span class="n">role_name</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="mf">...</span><span class="p">]</span><span class="w"></span>
+<span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="n">role_name_2</span><span class="w"></span>
+<span class="w">      </span><span class="p">[</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">ADMIN</span><span class="w"> </span><span class="k">OPTION</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+
+<span class="w">   </span><span class="p">;</span><span class="w"></span>
+
+<span class="n">role_name</span><span class="w"> </span><span class="o">::=</span><span class="w"> </span><span class="n">identifier</span><span class="w"></span>
+
+<span class="n">role_name2</span><span class="w"> </span><span class="o">::=</span><span class="w"> </span><span class="n">identifier</span><span class="w"></span>
+
+<span class="n">database_name</span><span class="w"> </span><span class="o">::=</span><span class="w"> </span><span class="n">identifier</span><span class="w"></span>
+
+<span class="n">table_name</span><span class="w"> </span><span class="o">::=</span><span class="w"> </span><span class="n">identifier</span><span class="w"></span>
+
+<span class="n">schema_name</span><span class="w"> </span><span class="o">::=</span><span class="w"> </span><span class="n">identifier</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="parameters">
+<h2>Parameters<a class="headerlink" href="#parameters" title="Permalink to this heading"></a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">role_name</span></code></p></td>
+<td><p>The name of the role to revoke permissions from</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">table_name</span></code>, <code class="docutils literal notranslate"><span class="pre">database_name</span></code>, <code class="docutils literal notranslate"><span class="pre">schema_name</span></code>, <code class="docutils literal notranslate"><span class="pre">function_name</span></code></p></td>
+<td><p>Object to revoke permissions on.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">WITH</span> <span class="pre">ADMIN</span> <span class="pre">OPTION</span></code></p></td>
+<td><p>If <code class="docutils literal notranslate"><span class="pre">WITH</span> <span class="pre">ADMIN</span> <span class="pre">OPTION</span></code> is specified, the role that has the admin option can in turn grant membership in the role to others, and revoke membership in the role as well.</p>
+<p>Specifying <code class="docutils literal notranslate"><span class="pre">WITH</span> <span class="pre">ADMIN</span> <span class="pre">OPTION</span></code> for revocation will return the role to an ordinary role. An ordinary role cannot grant or revoke membership.</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>The following table describes the supported permissions:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Permission</p></th>
+<th class="head"><p>Object</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">LOGIN</span></code></p></td>
+<td><p>Cluster</p></td>
+<td><p>Login permissions (with a password) allows a role to be a user and login to a database</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PASSWORD</span></code></p></td>
+<td><p>Cluster</p></td>
+<td><p>Sets the password for a user role</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">FUNCTION</span></code></p></td>
+<td><p>Database</p></td>
+<td><p>Allows a user to <a class="reference internal" href="../ddl_commands/create_function.html#create-function"><span class="std std-ref">create a Python UDF</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SUPERUSER</span></code></p></td>
+<td><p>Cluster, Database, Schema</p></td>
+<td><p>The most privileged role, with full control over a cluster, database, or schema</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CONNECT</span></code></p></td>
+<td><p>Database</p></td>
+<td><p>Allows a user to connect and use a database</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">CREATE</span></code></p></td>
+<td><p>Database, Schema, Table</p></td>
+<td><p>For a role to create and manage objects, it needs the <code class="docutils literal notranslate"><span class="pre">CREATE</span></code> and <code class="docutils literal notranslate"><span class="pre">USAGE</span></code> permissions at the respective level</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">USAGE</span></code></p></td>
+<td><p>Schema</p></td>
+<td><p>For a role to see tables in a schema, it needs the <code class="docutils literal notranslate"><span class="pre">USAGE</span></code> permissions</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SELECT</span></code></p></td>
+<td><p>Table</p></td>
+<td><p>Allows a user to run <a class="reference internal" href="../dml_commands/select.html#select"><span class="std std-ref">SELECT</span></a> queries on table contents</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">INSERT</span></code></p></td>
+<td><p>Table</p></td>
+<td><p>Allows a user to run <a class="reference internal" href="../dml_commands/copy_from.html#copy-from"><span class="std std-ref">COPY FROM</span></a> and <a class="reference internal" href="../dml_commands/insert.html#insert"><span class="std std-ref">INSERT</span></a> statements to load data into a table</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">UPDATE</span></code></p></td>
+<td><p>Table</p></td>
+<td><p>Allows a user to modify the value of certain columns in existing rows without creating a table</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DELETE</span></code></p></td>
+<td><p>Table</p></td>
+<td><p>Allows a user to run <a class="reference internal" href="../dml_commands/delete.html#delete"><span class="std std-ref">DELETE</span></a>, <a class="reference internal" href="../dml_commands/truncate.html#truncate"><span class="std std-ref">TRUNCATE</span></a> statements to delete data from a table</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DDL</span></code></p></td>
+<td><p>Database, Schema, Table, Function</p></td>
+<td><p>Allows a user to <a class="reference internal" href="../ddl_commands/alter_table.html#alter-table"><span class="std std-ref">alter tables</span></a>, rename columns and tables, etc.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">EXECUTE</span></code></p></td>
+<td><p>Function</p></td>
+<td><p>Allows a user to execute UDFs</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ALL</span></code></p></td>
+<td><p>Cluster, Database, Schema, Table, Function</p></td>
+<td><p>All of the above permissions at the respective level</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<section id="prevent-a-role-from-modifying-table-contents">
+<h3>Prevent a role from modifying table contents<a class="headerlink" href="#prevent-a-role-from-modifying-table-contents" title="Permalink to this heading"></a></h3>
+<p>If you don’t trust user <code class="docutils literal notranslate"><span class="pre">shifty</span></code>, reokve DDL and INSERT permissions.</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">REVOKE</span><span class="w"> </span><span class="k">INSERT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">important_table</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">shifty</span><span class="p">;</span><span class="w"></span>
+<span class="k">REVOKE</span><span class="w"> </span><span class="n">DDL</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">important_table</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">shifty</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="demoting-a-user-from-superuser">
+<h3>Demoting a user from superuser<a class="headerlink" href="#demoting-a-user-from-superuser" title="Permalink to this heading"></a></h3>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="c1">-- On the entire cluster</span>
+<span class="k">REVOKE</span><span class="w"> </span><span class="n">SUPERUSER</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">new_role</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="revoking-admin-option">
+<h3>Revoking admin option<a class="headerlink" href="#revoking-admin-option" title="Permalink to this heading"></a></h3>
+<p>If <code class="docutils literal notranslate"><span class="pre">WITH</span> <span class="pre">ADMIN</span> <span class="pre">OPTION</span></code> is specified, the role that has the admin option can in turn grant membership in the role to others, and revoke membership in the role as well.</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="c1">-- dba_user1 has been demoted from team lead, so he should not be able to grant</span>
+<span class="c1">-- permissions to other users.</span>
+
+<span class="k">REVOKE</span><span class="w"> </span><span class="n">r_database_architect</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dba_user1</span><span class="w"> </span><span class="k">WITH</span><span class="w"> </span><span class="k">ADMIN</span><span class="w"> </span><span class="k">OPTION</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 SQream.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

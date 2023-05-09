@@ -1,0 +1,129 @@
+.. _s3:
+
+***********************
+Inserting Data Using Amazon S3
+***********************
+SQream uses a native S3 connector for directly inserting data from a number of external sources directly into SQream. This is done using the ``s3://`` URI to specify an external file path on an S3 bucket. Your files can be saved in CSV or columnar format, such as Parquet and ORC, and your file names can include wildcard characters.
+
+The **Amazon S3** page describes the following topics:
+
+.. contents::
+   :local:
+   :depth: 1
+   
+Configuring Amazon S3
+==============================
+Any database host with access to S3 endpoints can access S3 without any configuration. To read files from an S3 bucket, the database must have listable files.
+
+Setting the S3 URI Format
+===============
+With S3, specify a location for a file (or files) when using :ref:`copy_from` or :ref:`external_tables`.
+
+The following is an example of the general S3 syntax:
+
+.. code-block:: console
+ 
+   s3://bucket_name/path
+
+Authenticating Users
+=================
+
+SQream supports ``AWS ID`` and ``AWS SECRET`` authentication. These should be specified when executing a statement.
+
+Examples
+==========
+You can use a foreign table to stage data from S3 before loading from CSV, Parquet, or ORC files.
+
+This section includes the following examples:
+
+.. contents::
+   :local:
+   :depth: 1
+
+Planning for Data Staging
+--------------------------------
+The examples in this section are based on the CSV file shown in the following table: 
+   
+.. csv-table:: nba-t10
+   :file: ../_static/samples/nba-t10.csv
+   :widths: auto
+   :header-rows: 1
+
+This CSV file is stored on Amazon S3, and this bucket is public and listable. To create a matching ``CREATE FOREIGN TABLE`` statement you can make a record of your source file's structure and use it to reproduce a corresponding foreign table, as shown in the following section.
+
+Creating a Foreign Table
+-----------------------------
+Based on the source file's structure above, you can create a foreign table with the structure you want and point it to your file, as shown in the following example:
+
+.. code-block:: postgres
+   
+   CREATE FOREIGN TABLE nba
+   (
+      Name text(40),
+      Team text(40),
+      Number tinyint,
+      Position text(2),
+      Age tinyint,
+      Height text(4),
+      Weight real,
+      College text(40),
+      Salary float
+    )
+    WRAPPER csv_fdw
+    OPTIONS
+      (
+         LOCATION = 's3://sqream-demo-data/nba_players.csv',
+         RECORD_DELIMITER = '\r\n' -- DOS delimited file
+      )
+    ;
+
+.. note:: In the example above the file format is CSV and is stored as an S3 object. If your file has an HDFS path, you must change the URI accordingly. Note that the record delimiter is a DOS newline (``\r\n``).
+
+For more information, see the following:
+
+* **Creating a foreign table** - see :ref:`creating a foreign table<create_foreign_table>`.
+* **Using SQream in an HDFS environment** - see :ref:`hdfs`.
+
+Querying Foreign Tables
+------------------------------
+The following shows the data located in the foreign table:
+
+.. code-block:: psql
+   
+   t=> SELECT * FROM nba LIMIT 10;
+   name          | team           | number | position | age | height | weight | college           | salary  
+   --------------+----------------+--------+----------+-----+--------+--------+-------------------+---------
+   Avery Bradley | Boston Celtics |      0 | PG       |  25 | 6-2    |    180 | Texas             |  7730337
+   Jae Crowder   | Boston Celtics |     99 | SF       |  25 | 6-6    |    235 | Marquette         |  6796117
+   John Holland  | Boston Celtics |     30 | SG       |  27 | 6-5    |    205 | Boston University |         
+   R.J. Hunter   | Boston Celtics |     28 | SG       |  22 | 6-5    |    185 | Georgia State     |  1148640
+   Jonas Jerebko | Boston Celtics |      8 | PF       |  29 | 6-10   |    231 |                   |  5000000
+   Amir Johnson  | Boston Celtics |     90 | PF       |  29 | 6-9    |    240 |                   | 12000000
+   Jordan Mickey | Boston Celtics |     55 | PF       |  21 | 6-8    |    235 | LSU               |  1170960
+   Kelly Olynyk  | Boston Celtics |     41 | C        |  25 | 7-0    |    238 | Gonzaga           |  2165160
+   Terry Rozier  | Boston Celtics |     12 | PG       |  22 | 6-2    |    190 | Louisville        |  1824360
+   Marcus Smart  | Boston Celtics |     36 | PG       |  22 | 6-4    |    220 | Oklahoma State    |  3431040
+   
+Bulk Loading a File from a Public S3 Bucket
+----------------------------------------------
+Youc an use the ``COPY FROM`` command to load data without staging it first.
+
+.. note:: The bucket must be publicly available and objects can be listed.
+
+The following is an example of bulk loading a file from a public S3 bucket:
+
+.. code-block:: postgres
+
+   COPY nba FROM 's3://sqream-demo-data/nba.csv' WITH OFFSET 2 RECORD DELIMITER '\r\n';
+   
+For more information on the ``COPY FROM`` command, see :ref:`copy_from`.
+
+Loading Files from an Authenticated S3 Bucket
+---------------------------------------------------
+The following is an example of loading fles from an authenticated S3 bucket:
+
+.. code-block:: postgres
+
+   COPY nba FROM 's3://secret-bucket/*.csv' WITH OFFSET 2 RECORD DELIMITER '\r\n' 
+   AWS_ID '12345678'
+   AWS_SECRET 'super_secretive_secret';

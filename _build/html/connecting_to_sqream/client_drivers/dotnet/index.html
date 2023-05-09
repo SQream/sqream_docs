@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connecting to SQream Using .NET &mdash; SQream DB 4.2 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="External Storage Platforms" href="../../../external_storage_platforms/index.html" />
+    <link rel="prev" title="Install and configure ODBC on Linux" href="../odbc/install_configure_odbc_linux.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #133148" >
+            <a href="../../../index.html">
+            <img src="../../../_static/SQream_logo_without background-15.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/preparing_your_machine_to_install_sqream.html">Preparing Your Machine to Install SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/installing_sqream.html">Installing SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/executing_statements_in_sqream.html">Executing Statements in SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/performing_basic_sqream_operations.html">Performing Basic SQream Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/running_the_sqream_sql_client.html">Running the SQream SQL Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/creating_your_first_table.html">Creating Your First Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/listing_tables.html">Listing Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/inserting_rows.html">Inserting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/running_queries.html">Running Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/deleting_rows.html">Deleting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/saving_query_results_to_a_csv_or_psv_file.html">Saving Query Results to a CSV or PSV File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/hardware_guide.html">Hardware Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation_guides/index.html">Installation Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation_guides/installing_and_launching_sqream.html">Installing and Launching SQream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/recommended_pre-installation_configurations.html">Recommended Pre-Installation Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/installing_sqream_with_binary.html">Installing SQream Using Binary Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/running_sqream_in_a_docker_container.html">Installing and Running SQream in a Docker Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/installing_sqream_with_kubernetes.html">Installing SQream with Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/installing_monit.html">Installing Monit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/launching_sqream_with_monit.html">Launching SQream with Monit</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation_guides/sqream_studio_installation.html">Installing SQream Studio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/installing_prometheus_exporters.html">Installing Prometheus Exporter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/installing_prometheus_using_binary_packages.html">Installing Prometheus Using Binary Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/installing_dashboard_data_collector.html">Installing the Dashboard Data Collector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/installing_studio_on_stand_alone_server.html">Installing Studio on a Stand-Alone Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/installing_nginx_proxy_over_secure_connection.html">Installing an NGINX Proxy Over a Secure Connection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ingestion/index.html">Data Ingestion Sources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/ingesting_data.html">Ingesting Data Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/avro.html">Ingesting Data from Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/csv.html">Ingesting Data from a CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/parquet.html">Ingesting Data from a Parquet File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/orc.html">Ingesting Data from an ORC File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/json.html">Ingesting Data from JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Connecting to SQream</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client_platforms/index.html">Client Platforms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/informatica.html">Connect to SQream Using Informatica Cloud Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/microstrategy.html">Connect to SQream Using MicroStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/pentaho.html">Connecting to SQream Using Pentaho Data Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/php.html">Connect to SQream Using PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/power_bi.html">Connecting to SQream Using Power BI Desktop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/r.html">Connect to SQream Using R</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/sap_businessobjects.html">Connecting to SQream Using SAP BusinessObjects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/sas_viya.html">Connect to SQream Using SAS Viya</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/sql_workbench.html">Connect to SQream Using SQL Workbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/tableau.html">Connecting to SQream Using Tableau</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/talend.html">Connecting to SQream Using Talend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/tibco_spotfire.html">Connecting to SQream Using TIBCO Spotfire</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Client Drivers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../trino/index.html">Connecting to SQream Using Trino</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../jdbc/index.html">JDBC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../python/index.html">Connecting to SQream Using Python (pysqream)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nodejs/index.html">Connecting to SQream Using Node.JS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../odbc/index.html">ODBC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../odbc/install_configure_odbc_windows.html">Install and Configure ODBC on Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../odbc/install_configure_odbc_linux.html">Install and configure ODBC on Linux</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Connecting to SQream Using .NET</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../external_storage_platforms/index.html">External Storage Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../external_storage_platforms/s3.html">Inserting Data Using Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../external_storage_platforms/hdfs.html">Using SQream in an HDFS Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../loading_and_unloading_data/index.html">Loading and Unloading Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../feature_guides/index.html">Feature Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/automatic_foreign_table_ddl_resolution.html">Automatic Foreign Table DDL Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/query_healer.html">Query Healer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/data_encryption.html">Data Encryption</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../feature_guides/data_encryption_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../feature_guides/data_encryption_methods.html">Encryption Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../feature_guides/data_encryption_types.html">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../feature_guides/data_encryption_syntax.html">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../feature_guides/data_encryption_permissions.html">Permissions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/compression.html">Compression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/python_functions.html">Python UDF (User-Defined Functions)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/workload_manager.html">Workload Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/concurrency_and_locks.html">Concurrency and Locks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/concurrency_and_scaling_in_sqream.html">Concurrency and Scaling in SQream DB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../operational_guides/index.html">Operational Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/access_control.html">Access Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_password_policy.html">Password Policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_managing_roles.html">Managing Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_permissions.html">Permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_departmental_example.html">Departmental Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/creating_or_cloning_a_storage_cluster.html">Creating or Cloning Storage Clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/external_data.html">Working with External Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/s3.html">Inserting Data Using Amazon S3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/hdfs.html">Using SQream in an HDFS Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/foreign_tables.html">Foreign Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/delete_guide.html">Deleting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/exporting_data.html">Exporting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/logging.html">Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/monitoring_query_performance.html">Monitoring Query Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/saved_queries.html">Saved Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/seeing_system_objects_as_ddl.html">Seeing System Objects as DDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/optimization_best_practices.html">Optimization and Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sqream_studio_5.4.7/index.html">SQream Acceleration Studio 5.4.7</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../sqream_studio_5.4.7/getting_started.html">Getting Started with SQream Acceleration Studio 5.4.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sqream_studio_5.4.7/monitoring_workers_and_services_from_the_dashboard.html">Monitoring Workers and Services from the Dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sqream_studio_5.4.7/executing_statements_and_running_queries_from_the_editor.html">Executing Statements and Running Queries from the Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sqream_studio_5.4.7/viewing_logs.html">Viewing Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sqream_studio_5.4.7/creating_assigning_and_managing_roles_and_permissions.html">Creating, Assigning, and Managing Roles and Permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sqream_studio_5.4.7/configuring_your_instance_of_sqream.html">Configuring Your Instance of SQreams</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture/index.html">System Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture/internals_architecture.html">Internals and architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture/filesystem_and_filesystem_usage.html">Filesystem and usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration_guides/index.html">Configuration Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration_guides/spooling.html">Configuring the Spooling Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration_guides/configuring_sqream.html">Configuring SQream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/current_method_configuration_levels.html">Configuration Levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/current_method_flag_types.html">Flag Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/current_method_configuration_roles.html">Configuration Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/current_method_modification_methods.html">Modification Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/current_method_configuring_your_parameter_values.html">Configuring Your Parameter Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/current_method_command_examples.html">Command Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/current_method_showing_all_flags_in_the_catalog_table.html">Showing All Flags in the Catalog Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/current_method_all_configurations.html">All Configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration_guides/ldap.html">Configuring LDAP authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration_guides/configuration_flags.html">Configuration Flags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/admin_flags.html">Administration Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/admin_regular_flags.html">Regular Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/admin_cluster_flags.html">Cluster Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/admin_worker_flags.html">Worker Administration Flags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/generic_flags.html">Generic Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/generic_regular_flags.html">Regular Generic Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/generic_worker_flags.html">Worker Generic Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration_guides/previous_configuration_method.html">Configuring SQream Using the Previous Configuration Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/sql/index.html">SQL Statements and Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/sql/sql_syntax/index.html">SQL Syntax Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/sql/sql_statements/index.html">SQL Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/sql/sql_functions/index.html">SQL Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/sql/sql_functions/scalar_functions/index.html">Built-In Scalar Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/sql/sql_functions/user_defined_functions/index.html">User-Defined Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/sql/sql_functions/aggregate_functions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/sql/sql_functions/window_functions/index.html">Window Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/catalog_reference.html">Catalog Reference Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/catalog_reference_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/catalog_reference_schema_information.html">What Information Does the Schema Contain?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/catalog_reference_catalog_tables.html">Catalog Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/catalog_reference_additonal_tables.html">Additional Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/catalog_reference_examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/cli/index.html">Command line programs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/cli/metadata_server.html">metadata_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/cli/sqreamd.html">sqreamd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/cli/sqream_console.html">sqream-console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/cli/sqream_installer.html">sqream-installer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/cli/server_picker.html">Server Picker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/cli/sqream_storage.html">SqreamStorage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/cli/sqream_sql.html">sqream sql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/cli/upgrade_storage.html">upgrade_storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/sql_feature_support.html">SQL Feature Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_type_guides/index.html">Data Type Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_type_guides/converting_and_casting_types.html">Converting and Casting Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_type_guides/supported_data_types.html">Supported Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_type_guides/supported_casts.html">Supported Casts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_boolean.html">Boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_integer.html">Integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_floating_point.html">Floating Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_string.html">String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_date.html">Date</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../releases/4.0_index.html">Release Notes 4.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/4.0.html">Release Notes 4.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/4.1.html">Release Notes 4.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/4.2.html">Release Notes 4.2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../releases/2022.1_index.html">Release Notes 2022.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2022.1.7.html">Release Notes 2022.1.7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2022.1.6.html">Release Notes 2022.1.6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2022.1.5.html">Release Notes 2022.1.5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2022.1.4.html">Release Notes 2022.1.4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2022.1.3.html">Release Notes 2022.1.3</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2022.1.2.html">Release Notes 2022.1.2</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2022.1.1.html">Release Notes 2022.1.1</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2022.1.html">Release Notes 2022.1</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../releases/2021.2_index.html">Release Notes 2021.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2021.2.1.24.html">Release Notes 2021.2.1.24</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2021.2.1.html">Release Notes 2021.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2021.2.html">Release Notes 2021.2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../releases/2021.1_index.html">Release Notes 2021.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2021.1.2.html">Release Notes 2021.1.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2021.1.html">Release Notes 2021.1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../releases/2020.3_index.html">Release Notes 2020.3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2020.3.2.1.html">Release Notes 2020.3.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2020.3.2.html">What’s new in 2020.3.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2020.3.1.html">Release Notes 2020.3.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2020.3.html">Release Notes 2020.3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../releases/2020.2.html">Release Notes 2020.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../releases/2020.1.html">Release Notes 2020.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/remedying_slow_queries.html">Remedying Slow Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/resolving_common_issues.html">Resolving Common Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/examining_logs.html">Examining Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/identifying_configuration_issues.html">Identifying Configuration Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/lock_related_issues.html">Lock Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/log_related_issues.html">Log Related Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/core_dumping_related_issues.html">Core Dumping Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/information_for_support.html">Gathering Information for SQream Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #133148" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SQream DB</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Connecting to SQream</a> &raquo;</li>
+          <li><a href="../index.html">Client Drivers</a> &raquo;</li>
+      <li>Connecting to SQream Using .NET</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="connecting-to-sqream-using-net">
+<span id="net"></span><h1>Connecting to SQream Using .NET<a class="headerlink" href="#connecting-to-sqream-using-net" title="Permalink to this heading"></a></h1>
+<p>The SqreamNet ADO.NET Data Provider lets you connect to SQream through your .NET environment.</p>
+<p>The .NET page includes the following sections:</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#integrating-sqreamnet" id="id5">Integrating SQreamNet</a></p></li>
+<li><p><a class="reference internal" href="#connecting-to-sqream-for-the-first-time" id="id6">Connecting to SQream For the First Time</a></p></li>
+</ul>
+</div>
+<section id="integrating-sqreamnet">
+<h2><a class="toc-backref" href="#id5">Integrating SQreamNet</a><a class="headerlink" href="#integrating-sqreamnet" title="Permalink to this heading"></a></h2>
+<p>The <strong>Integrating SQreamNet</strong> section describes the following:</p>
+<div class="contents local topic" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#prerequisites" id="id7">Prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#getting-the-dll-file" id="id8">Getting the DLL file</a></p></li>
+<li><p><a class="reference internal" href="#id2" id="id9">Integrating SQreamNet</a></p></li>
+<li><p><a class="reference internal" href="#known-driver-limitations" id="id10">Known Driver Limitations</a></p></li>
+</ul>
+</div>
+<section id="prerequisites">
+<h3><a class="toc-backref" href="#id7">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h3>
+<p>The SqreamNet provider requires a .NET version 6 or newer.</p>
+</section>
+<section id="getting-the-dll-file">
+<h3><a class="toc-backref" href="#id8">Getting the DLL file</a><a class="headerlink" href="#getting-the-dll-file" title="Permalink to this heading"></a></h3>
+<p>The .NET driver is available for download from the <a class="reference internal" href="../index.html#client-drivers"><span class="std std-ref">client drivers download page</span></a>.</p>
+</section>
+<section id="id2">
+<h3><a class="toc-backref" href="#id9">Integrating SQreamNet</a><a class="headerlink" href="#id2" title="Permalink to this heading"></a></h3>
+<p>After downloading the .NET driver, save the archive file to a known location. Next, in your IDE, add a Sqreamnet.dll reference to your project.</p>
+<p>If you wish to upgrade SQreamNet within an existing project, you may replace the existing .dll file with an updated one or change the project’s reference location to a new one.</p>
+</section>
+<section id="known-driver-limitations">
+<h3><a class="toc-backref" href="#id10">Known Driver Limitations</a><a class="headerlink" href="#known-driver-limitations" title="Permalink to this heading"></a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><p>Unicode characters are not supported when using <code class="docutils literal notranslate"><span class="pre">INSERT</span> <span class="pre">INTO</span> <span class="pre">AS</span> <span class="pre">SELECT</span></code>.</p></li>
+<li><p>To avoid possible casting issues, use <code class="docutils literal notranslate"><span class="pre">getDouble</span></code> when using <code class="docutils literal notranslate"><span class="pre">FLOAT</span></code>.</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="connecting-to-sqream-for-the-first-time">
+<h2><a class="toc-backref" href="#id6">Connecting to SQream For the First Time</a><a class="headerlink" href="#connecting-to-sqream-for-the-first-time" title="Permalink to this heading"></a></h2>
+<p>An initial connection to SQream must be established by creating a <strong>SqreamConnection</strong> object using a connection string.</p>
+<div class="contents local topic" id="id3">
+<ul class="simple">
+<li><p><a class="reference internal" href="#connection-string" id="id11">Connection String</a></p></li>
+<li><p><a class="reference internal" href="#sample-c-program" id="id12">Sample C# Program</a></p></li>
+</ul>
+</div>
+<section id="connection-string">
+<h3><a class="toc-backref" href="#id11">Connection String</a><a class="headerlink" href="#connection-string" title="Permalink to this heading"></a></h3>
+<p>To connect to SQream, instantiate a <strong>SqreamConnection</strong> object using this connection string.</p>
+<p>The following is the syntax for SQream:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>&quot;Data Source=&lt;hostname or ip&gt;,&lt;port&gt;;User=&lt;username&gt;;Password=&lt;password&gt;;Initial Catalog=&lt;database name&gt;;Integrated Security=true&quot;;
+</pre></div>
+</div>
+<section id="connection-parameters">
+<h4>Connection Parameters<a class="headerlink" href="#connection-parameters" title="Permalink to this heading"></a></h4>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>State</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;data</span> <span class="pre">source&gt;</span></code></p></td>
+<td><p>Mandatory</p></td>
+<td><p>None</p></td>
+<td><p>Hostname/IP/FQDN and port of the SQream DB worker. For example, <code class="docutils literal notranslate"><span class="pre">127.0.0.1:5000</span></code>, <code class="docutils literal notranslate"><span class="pre">sqream.mynetwork.co:3108</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;initial</span> <span class="pre">catalog&gt;</span></code></p></td>
+<td><p>Mandatory</p></td>
+<td><p>None</p></td>
+<td><p>Database name to connect to. For example, <code class="docutils literal notranslate"><span class="pre">master</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;username&gt;</span></code></p></td>
+<td><p>Mandatory</p></td>
+<td><p>None</p></td>
+<td><p>Username of a role to use for connection. For example, <code class="docutils literal notranslate"><span class="pre">username=rhendricks</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;password&gt;</span></code></p></td>
+<td><p>Mandatory</p></td>
+<td><p>None</p></td>
+<td><p>Specifies the password of the selected role. For example, <code class="docutils literal notranslate"><span class="pre">password=Tr0ub4dor&amp;3</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;service&gt;</span></code></p></td>
+<td><p>Optional</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sqream</span></code></p></td>
+<td><p>Specifices service queue to use. For example, <code class="docutils literal notranslate"><span class="pre">service=etl</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;ssl&gt;</span></code></p></td>
+<td><p>Optional</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+<td><p>Specifies SSL for this connection. For example, <code class="docutils literal notranslate"><span class="pre">ssl=true</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&lt;cluster&gt;</span></code></p></td>
+<td><p>Optional</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">true</span></code></p></td>
+<td><p>Connect via load balancer (use only if exists, and check port).</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="connection-string-examples">
+<h4>Connection String Examples<a class="headerlink" href="#connection-string-examples" title="Permalink to this heading"></a></h4>
+<p>The following is an example of a SQream cluster with load balancer and no service queues (with SSL):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Data Source=sqream.mynetwork.co,3108;User=rhendricks;Password=Tr0ub4dor&amp;3;Initial Catalog=master;Integrated Security=true;ssl=true;cluster=true;
+</pre></div>
+</div>
+<p>The following is a minimal example for a local standalone SQream database:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Data Source=127.0.0.1,5000;User=rhendricks;Password=Tr0ub4dor&amp;3;Initial Catalog=master;
+</pre></div>
+</div>
+<p>The following is an example of a SQream cluster with load balancer and a specific service queue named <code class="docutils literal notranslate"><span class="pre">etl</span></code>, to the database named <code class="docutils literal notranslate"><span class="pre">raviga</span></code></p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Data Source=sqream.mynetwork.co,3108;User=rhendricks;Password=Tr0ub4dor&amp;3;Initial Catalog=raviga;Integrated Security=true;service=etl;cluster=true;
+</pre></div>
+</div>
+</section>
+</section>
+<section id="sample-c-program">
+<h3><a class="toc-backref" href="#id12">Sample C# Program</a><a class="headerlink" href="#sample-c-program" title="Permalink to this heading"></a></h3>
+<p>You can download the <a class="reference download internal" download="" href="../../../_downloads/88ebc1db6d72d437e454aafb6ae27039/sample.cs"><code class="xref download docutils literal notranslate"><span class="pre">.NET</span> <span class="pre">Application</span> <span class="pre">Sample</span> <span class="pre">File</span></code></a> below by right-clicking and saving it to your computer.</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">.NET Application Sample</span><a class="headerlink" href="#id4" title="Permalink to this code"></a></div>
+<div class="highlight-C# notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Test</span><span class="p">()</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="w">            </span><span class="kt">var</span><span class="w"> </span><span class="n">connection</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">OpenConnection</span><span class="p">(</span><span class="s">&quot;192.168.4.62&quot;</span><span class="p">,</span><span class="w"> </span><span class="m">5000</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sqream&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;sqream&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;master&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 4</span>
+<span class="linenos"> 5</span><span class="w">            </span><span class="n">ExecuteSQLCommand</span><span class="p">(</span><span class="n">connection</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;create or replace table tbl_example as select 1 as x , &#39;a&#39; as y;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="w">            </span><span class="kt">var</span><span class="w"> </span><span class="n">tableData</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="n">ReadExampleData</span><span class="p">(</span><span class="n">connection</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;select * from tbl_example;&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos">11</span><span class="w">        </span><span class="c1">/// Builds a connection string to sqream server and opens a connection</span>
+<span class="linenos">12</span><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos">13</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;ipAddress&quot;&gt;host to connect&lt;/param&gt;</span>
+<span class="linenos">14</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;port&quot;&gt;port sqreamd is running on&lt;/param&gt;</span>
+<span class="linenos">15</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;username&quot;&gt;role username&lt;/param&gt;</span>
+<span class="linenos">16</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;password&quot;&gt;role password&lt;/param&gt;</span>
+<span class="linenos">17</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;databaseName&quot;&gt;database name&lt;/param&gt;</span>
+<span class="linenos">18</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;isCluster&quot;&gt;optional - set to true when the ip,port endpoint is a server picker process&lt;/param&gt;</span>
+<span class="linenos">19</span><span class="w">        </span><span class="c1">/// &lt;returns&gt;</span>
+<span class="linenos">20</span><span class="w">        </span><span class="c1">/// SQream connection object</span>
+<span class="linenos">21</span><span class="w">        </span><span class="c1">/// Throws SqreamException if fails to open a connction</span>
+<span class="linenos">22</span><span class="w">        </span><span class="c1">/// &lt;/returns&gt;</span>
+<span class="linenos">23</span><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">SqreamConnection</span><span class="w"> </span><span class="nf">OpenConnection</span><span class="p">(</span><span class="kt">string</span><span class="w"> </span><span class="n">ipAddress</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">port</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">username</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">password</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">databaseName</span><span class="p">,</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">isCluster</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">false</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">24</span><span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">25</span><span class="w">            </span><span class="c1">// create the connection string according to the format</span>
+<span class="linenos">26</span><span class="w">            </span><span class="kt">var</span><span class="w"> </span><span class="n">connectionString</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">                </span><span class="s">&quot;Data Source={0},{1};User={2};Password={3};Initial Catalog={4};Cluster={5}&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">28</span><span class="w">                </span><span class="n">ipAddress</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">29</span><span class="w">                </span><span class="n">port</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">30</span><span class="w">                </span><span class="n">username</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">31</span><span class="w">                </span><span class="n">password</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">32</span><span class="w">                </span><span class="n">databaseName</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">33</span><span class="w">                </span><span class="n">isCluster</span><span class="w"></span>
+<span class="linenos">34</span><span class="w">                </span><span class="p">);</span><span class="w"></span>
+<span class="linenos">35</span>
+<span class="linenos">36</span><span class="w">            </span><span class="c1">// create a sqeram connection object</span>
+<span class="linenos">37</span><span class="w">            </span><span class="kt">var</span><span class="w"> </span><span class="n">connection</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SqreamConnection</span><span class="p">(</span><span class="n">connectionString</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">38</span>
+<span class="linenos">39</span><span class="w">            </span><span class="c1">// open a connection</span>
+<span class="linenos">40</span><span class="w">            </span><span class="n">connection</span><span class="p">.</span><span class="n">Open</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">41</span>
+<span class="linenos">42</span><span class="w">            </span><span class="c1">// returns the connection object</span>
+<span class="linenos">43</span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">connection</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">44</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">45</span>
+<span class="linenos">46</span><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos">47</span><span class="w">        </span><span class="c1">/// Executes a SQL command to sqream server</span>
+<span class="linenos">48</span><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos">49</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;connection&quot;&gt;connection to sqream server&lt;/param&gt;</span>
+<span class="linenos">50</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;sql&quot;&gt;sql command&lt;/param&gt;</span>
+<span class="linenos">51</span><span class="w">        </span><span class="c1">/// &lt;exception cref=&quot;InvalidOperationException&quot;&gt; thrown when the connection is not open&lt;/exception&gt;</span>
+<span class="linenos">52</span><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">ExecuteSQLCommand</span><span class="p">(</span><span class="n">SqreamConnection</span><span class="w"> </span><span class="n">connection</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">sql</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">53</span><span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">54</span><span class="w">            </span><span class="c1">// validates the connection is open and throws exception if not</span>
+<span class="linenos">55</span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">connection</span><span class="p">.</span><span class="n">State</span><span class="w"> </span><span class="p">!=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">ConnectionState</span><span class="p">.</span><span class="n">Open</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">56</span><span class="w">                </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nf">InvalidOperationException</span><span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;connection to sqream is not open. connection.State: {0}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">connection</span><span class="p">.</span><span class="n">State</span><span class="p">));</span><span class="w"></span>
+<span class="linenos">57</span>
+<span class="linenos">58</span><span class="w">            </span><span class="c1">// creates a new command object utilizing the sql and the connection</span>
+<span class="linenos">59</span><span class="w">            </span><span class="kt">var</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SqreamCommand</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span><span class="w"> </span><span class="n">connection</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">60</span>
+<span class="linenos">61</span><span class="w">            </span><span class="c1">// executes the command</span>
+<span class="linenos">62</span><span class="w">            </span><span class="n">command</span><span class="p">.</span><span class="n">ExecuteNonQuery</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">63</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">64</span>
+<span class="linenos">65</span><span class="w">        </span><span class="c1">/// &lt;summary&gt;</span>
+<span class="linenos">66</span><span class="w">        </span><span class="c1">/// Executes a SQL command to sqream server, and reads the result set usiing DataReader</span>
+<span class="linenos">67</span><span class="w">        </span><span class="c1">/// &lt;/summary&gt;</span>
+<span class="linenos">68</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;connection&quot;&gt;connection to sqream server&lt;/param&gt;</span>
+<span class="linenos">69</span><span class="w">        </span><span class="c1">/// &lt;param name=&quot;sql&quot;&gt;sql command&lt;/param&gt;</span>
+<span class="linenos">70</span><span class="w">        </span><span class="c1">/// &lt;exception cref=&quot;InvalidOperationException&quot;&gt; thrown when the connection is not open&lt;/exception&gt;</span>
+<span class="linenos">71</span><span class="w">        </span><span class="k">public</span><span class="w"> </span><span class="n">List</span><span class="p">&lt;</span><span class="n">Tuple</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="p">&gt;&gt;</span><span class="w"> </span><span class="n">ReadExampleData</span><span class="p">(</span><span class="n">SqreamConnection</span><span class="w"> </span><span class="n">connection</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">sql</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">72</span><span class="w">        </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">73</span><span class="w">            </span><span class="c1">// validates the connection is open and throws exception if not</span>
+<span class="linenos">74</span><span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">connection</span><span class="p">.</span><span class="n">State</span><span class="w"> </span><span class="p">!=</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="n">Data</span><span class="p">.</span><span class="n">ConnectionState</span><span class="p">.</span><span class="n">Open</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">75</span><span class="w">                </span><span class="k">throw</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="nf">InvalidOperationException</span><span class="p">(</span><span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">&quot;connection to sqream is not open. connection.State: {0}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">connection</span><span class="p">.</span><span class="n">State</span><span class="p">));</span><span class="w"></span>
+<span class="linenos">76</span>
+<span class="linenos">77</span><span class="w">            </span><span class="c1">// creates a new command object utilizing the sql and the connection</span>
+<span class="linenos">78</span><span class="w">            </span><span class="kt">var</span><span class="w"> </span><span class="n">command</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">SqreamCommand</span><span class="p">(</span><span class="n">sql</span><span class="p">,</span><span class="w"> </span><span class="n">connection</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">79</span>
+<span class="linenos">80</span><span class="w">            </span><span class="c1">// creates a reader object to iterate over the result set</span>
+<span class="linenos">81</span><span class="w">            </span><span class="kt">var</span><span class="w"> </span><span class="n">reader</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="p">(</span><span class="n">SqreamDataReader</span><span class="p">)</span><span class="n">command</span><span class="p">.</span><span class="n">ExecuteReader</span><span class="p">();</span><span class="w"></span>
+<span class="linenos">82</span>
+<span class="linenos">83</span><span class="w">            </span><span class="c1">// list of results</span>
+<span class="linenos">84</span><span class="w">            </span><span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">List</span><span class="p">&lt;</span><span class="n">Tuple</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="p">&gt;&gt;();</span><span class="w"></span>
+<span class="linenos">85</span>
+<span class="linenos">86</span><span class="w">            </span><span class="c1">//iterate the reader and read the table int,string values into a result tuple object</span>
+<span class="linenos">87</span><span class="w">            </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">reader</span><span class="p">.</span><span class="n">Read</span><span class="p">())</span><span class="w"></span>
+<span class="linenos">88</span><span class="w">                </span><span class="n">result</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Tuple</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="kt">string</span><span class="p">&gt;(</span><span class="n">reader</span><span class="p">.</span><span class="n">GetInt32</span><span class="p">(</span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="n">reader</span><span class="p">.</span><span class="n">GetString</span><span class="p">(</span><span class="m">1</span><span class="p">)));</span><span class="w"></span>
+<span class="linenos">89</span>
+<span class="linenos">90</span><span class="w">            </span><span class="c1">// return the result set</span>
+<span class="linenos">91</span><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">result</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">92</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../odbc/install_configure_odbc_linux.html" class="btn btn-neutral float-left" title="Install and configure ODBC on Linux" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../../external_storage_platforms/index.html" class="btn btn-neutral float-right" title="External Storage Platforms" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 SQream.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

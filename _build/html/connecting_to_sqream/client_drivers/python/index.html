@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connecting to SQream Using Python (pysqream) &mdash; SQream DB 4.2 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Connecting to SQream Using Node.JS" href="../nodejs/index.html" />
+    <link rel="prev" title="JDBC" href="../jdbc/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #133148" >
+            <a href="../../../index.html">
+            <img src="../../../_static/SQream_logo_without background-15.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/preparing_your_machine_to_install_sqream.html">Preparing Your Machine to Install SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/installing_sqream.html">Installing SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/executing_statements_in_sqream.html">Executing Statements in SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/performing_basic_sqream_operations.html">Performing Basic SQream Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/running_the_sqream_sql_client.html">Running the SQream SQL Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/creating_your_first_table.html">Creating Your First Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/listing_tables.html">Listing Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/inserting_rows.html">Inserting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/running_queries.html">Running Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/deleting_rows.html">Deleting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../getting_started/saving_query_results_to_a_csv_or_psv_file.html">Saving Query Results to a CSV or PSV File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../getting_started/hardware_guide.html">Hardware Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation_guides/index.html">Installation Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation_guides/installing_and_launching_sqream.html">Installing and Launching SQream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/recommended_pre-installation_configurations.html">Recommended Pre-Installation Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/installing_sqream_with_binary.html">Installing SQream Using Binary Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/running_sqream_in_a_docker_container.html">Installing and Running SQream in a Docker Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/installing_sqream_with_kubernetes.html">Installing SQream with Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/installing_monit.html">Installing Monit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/launching_sqream_with_monit.html">Launching SQream with Monit</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation_guides/sqream_studio_installation.html">Installing SQream Studio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/installing_prometheus_exporters.html">Installing Prometheus Exporter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/installing_prometheus_using_binary_packages.html">Installing Prometheus Using Binary Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/installing_dashboard_data_collector.html">Installing the Dashboard Data Collector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/installing_studio_on_stand_alone_server.html">Installing Studio on a Stand-Alone Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation_guides/installing_nginx_proxy_over_secure_connection.html">Installing an NGINX Proxy Over a Secure Connection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_ingestion/index.html">Data Ingestion Sources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/ingesting_data.html">Ingesting Data Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/avro.html">Ingesting Data from Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/csv.html">Ingesting Data from a CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/parquet.html">Ingesting Data from a Parquet File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/orc.html">Ingesting Data from an ORC File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_ingestion/json.html">Ingesting Data from JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Connecting to SQream</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../client_platforms/index.html">Client Platforms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/informatica.html">Connect to SQream Using Informatica Cloud Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/microstrategy.html">Connect to SQream Using MicroStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/pentaho.html">Connecting to SQream Using Pentaho Data Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/php.html">Connect to SQream Using PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/power_bi.html">Connecting to SQream Using Power BI Desktop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/r.html">Connect to SQream Using R</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/sap_businessobjects.html">Connecting to SQream Using SAP BusinessObjects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/sas_viya.html">Connect to SQream Using SAS Viya</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/sql_workbench.html">Connect to SQream Using SQL Workbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/tableau.html">Connecting to SQream Using Tableau</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/talend.html">Connecting to SQream Using Talend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../client_platforms/tibco_spotfire.html">Connecting to SQream Using TIBCO Spotfire</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">Client Drivers</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../trino/index.html">Connecting to SQream Using Trino</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../jdbc/index.html">JDBC</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Connecting to SQream Using Python (pysqream)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../nodejs/index.html">Connecting to SQream Using Node.JS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../odbc/index.html">ODBC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../odbc/install_configure_odbc_windows.html">Install and Configure ODBC on Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../odbc/install_configure_odbc_linux.html">Install and configure ODBC on Linux</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../dotnet/index.html">Connecting to SQream Using .NET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../Spark/index.html">Using Spark With SQream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../external_storage_platforms/index.html">External Storage Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../external_storage_platforms/s3.html">Inserting Data Using Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../external_storage_platforms/hdfs.html">Using SQream in an HDFS Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../loading_and_unloading_data/index.html">Loading and Unloading Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../feature_guides/index.html">Feature Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/automatic_foreign_table_ddl_resolution.html">Automatic Foreign Table DDL Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/query_healer.html">Query Healer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/data_encryption.html">Data Encryption</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../feature_guides/data_encryption_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../feature_guides/data_encryption_methods.html">Encryption Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../feature_guides/data_encryption_types.html">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../feature_guides/data_encryption_syntax.html">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../feature_guides/data_encryption_permissions.html">Permissions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/compression.html">Compression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/python_functions.html">Python UDF (User-Defined Functions)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/workload_manager.html">Workload Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/concurrency_and_locks.html">Concurrency and Locks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../feature_guides/concurrency_and_scaling_in_sqream.html">Concurrency and Scaling in SQream DB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../operational_guides/index.html">Operational Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/access_control.html">Access Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_password_policy.html">Password Policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_managing_roles.html">Managing Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_permissions.html">Permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/access_control_departmental_example.html">Departmental Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/creating_or_cloning_a_storage_cluster.html">Creating or Cloning Storage Clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/external_data.html">Working with External Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/s3.html">Inserting Data Using Amazon S3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../operational_guides/hdfs.html">Using SQream in an HDFS Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/foreign_tables.html">Foreign Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/delete_guide.html">Deleting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/exporting_data.html">Exporting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/logging.html">Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/monitoring_query_performance.html">Monitoring Query Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/saved_queries.html">Saved Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/seeing_system_objects_as_ddl.html">Seeing System Objects as DDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../operational_guides/optimization_best_practices.html">Optimization and Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../sqream_studio_5.4.7/index.html">SQream Acceleration Studio 5.4.7</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../sqream_studio_5.4.7/getting_started.html">Getting Started with SQream Acceleration Studio 5.4.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sqream_studio_5.4.7/monitoring_workers_and_services_from_the_dashboard.html">Monitoring Workers and Services from the Dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sqream_studio_5.4.7/executing_statements_and_running_queries_from_the_editor.html">Executing Statements and Running Queries from the Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sqream_studio_5.4.7/viewing_logs.html">Viewing Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sqream_studio_5.4.7/creating_assigning_and_managing_roles_and_permissions.html">Creating, Assigning, and Managing Roles and Permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sqream_studio_5.4.7/configuring_your_instance_of_sqream.html">Configuring Your Instance of SQreams</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../architecture/index.html">System Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture/internals_architecture.html">Internals and architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../architecture/filesystem_and_filesystem_usage.html">Filesystem and usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../configuration_guides/index.html">Configuration Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration_guides/spooling.html">Configuring the Spooling Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration_guides/configuring_sqream.html">Configuring SQream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/current_method_configuration_levels.html">Configuration Levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/current_method_flag_types.html">Flag Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/current_method_configuration_roles.html">Configuration Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/current_method_modification_methods.html">Modification Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/current_method_configuring_your_parameter_values.html">Configuring Your Parameter Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/current_method_command_examples.html">Command Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/current_method_showing_all_flags_in_the_catalog_table.html">Showing All Flags in the Catalog Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/current_method_all_configurations.html">All Configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration_guides/ldap.html">Configuring LDAP authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration_guides/configuration_flags.html">Configuration Flags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/admin_flags.html">Administration Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/admin_regular_flags.html">Regular Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/admin_cluster_flags.html">Cluster Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/admin_worker_flags.html">Worker Administration Flags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../configuration_guides/generic_flags.html">Generic Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/generic_regular_flags.html">Regular Generic Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../configuration_guides/generic_worker_flags.html">Worker Generic Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../configuration_guides/previous_configuration_method.html">Configuring SQream Using the Previous Configuration Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../reference/index.html">Reference Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/sql/index.html">SQL Statements and Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/sql/sql_syntax/index.html">SQL Syntax Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/sql/sql_statements/index.html">SQL Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/sql/sql_functions/index.html">SQL Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/sql/sql_functions/scalar_functions/index.html">Built-In Scalar Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/sql/sql_functions/user_defined_functions/index.html">User-Defined Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/sql/sql_functions/aggregate_functions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../reference/sql/sql_functions/window_functions/index.html">Window Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/catalog_reference.html">Catalog Reference Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/catalog_reference_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/catalog_reference_schema_information.html">What Information Does the Schema Contain?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/catalog_reference_catalog_tables.html">Catalog Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/catalog_reference_additonal_tables.html">Additional Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/catalog_reference_examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/cli/index.html">Command line programs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/cli/metadata_server.html">metadata_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/cli/sqreamd.html">sqreamd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/cli/sqream_console.html">sqream-console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/cli/sqream_installer.html">sqream-installer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/cli/server_picker.html">Server Picker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/cli/sqream_storage.html">SqreamStorage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/cli/sqream_sql.html">sqream sql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../reference/cli/upgrade_storage.html">upgrade_storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../reference/sql_feature_support.html">SQL Feature Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../data_type_guides/index.html">Data Type Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_type_guides/converting_and_casting_types.html">Converting and Casting Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_type_guides/supported_data_types.html">Supported Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../data_type_guides/supported_casts.html">Supported Casts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_boolean.html">Boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_integer.html">Integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_floating_point.html">Floating Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_string.html">String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../data_type_guides/sql_data_types_date.html">Date</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../releases/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../releases/4.0_index.html">Release Notes 4.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/4.0.html">Release Notes 4.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/4.1.html">Release Notes 4.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/4.2.html">Release Notes 4.2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../releases/2022.1_index.html">Release Notes 2022.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2022.1.7.html">Release Notes 2022.1.7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2022.1.6.html">Release Notes 2022.1.6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2022.1.5.html">Release Notes 2022.1.5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2022.1.4.html">Release Notes 2022.1.4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2022.1.3.html">Release Notes 2022.1.3</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2022.1.2.html">Release Notes 2022.1.2</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2022.1.1.html">Release Notes 2022.1.1</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2022.1.html">Release Notes 2022.1</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../releases/2021.2_index.html">Release Notes 2021.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2021.2.1.24.html">Release Notes 2021.2.1.24</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2021.2.1.html">Release Notes 2021.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2021.2.html">Release Notes 2021.2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../releases/2021.1_index.html">Release Notes 2021.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2021.1.2.html">Release Notes 2021.1.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2021.1.html">Release Notes 2021.1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../releases/2020.3_index.html">Release Notes 2020.3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2020.3.2.1.html">Release Notes 2020.3.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2020.3.2.html">What’s new in 2020.3.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2020.3.1.html">Release Notes 2020.3.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../releases/2020.3.html">Release Notes 2020.3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../releases/2020.2.html">Release Notes 2020.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../releases/2020.1.html">Release Notes 2020.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/remedying_slow_queries.html">Remedying Slow Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/resolving_common_issues.html">Resolving Common Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/examining_logs.html">Examining Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/identifying_configuration_issues.html">Identifying Configuration Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/lock_related_issues.html">Lock Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/log_related_issues.html">Log Related Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/core_dumping_related_issues.html">Core Dumping Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../troubleshooting/information_for_support.html">Gathering Information for SQream Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #133148" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">SQream DB</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../index.html">Connecting to SQream</a> &raquo;</li>
+          <li><a href="../index.html">Client Drivers</a> &raquo;</li>
+      <li>Connecting to SQream Using Python (pysqream)</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="connecting-to-sqream-using-python-pysqream">
+<span id="pysqream"></span><h1>Connecting to SQream Using Python (pysqream)<a class="headerlink" href="#connecting-to-sqream-using-python-pysqream" title="Permalink to this heading"></a></h1>
+<p>The current Pysqream connector supports Python version 3.9 and newer. It includes a set of packages that allows Python programs to connect to SQream DB. The base <code class="docutils literal notranslate"><span class="pre">pysqream</span></code> package conforms to Python DB-API specifications <a class="reference external" href="https://www.python.org/dev/peps/pep-0249/">PEP-249</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pysqream</span></code> is a pure Python connector that can be installed with <code class="docutils literal notranslate"><span class="pre">pip</span></code> on any operating system, including Linux, Windows, and macOS. <code class="docutils literal notranslate"><span class="pre">pysqream-sqlalchemy</span></code> is a SQLAlchemy dialect for <code class="docutils literal notranslate"><span class="pre">pysqream</span></code>.</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#installing-the-python-connector" id="id7">Installing the Python Connector</a></p></li>
+<li><p><a class="reference internal" href="#sqlalchemy-examples" id="id8">SQLAlchemy Examples</a></p></li>
+<li><p><a class="reference internal" href="#api-examples" id="id9">API Examples</a></p></li>
+</ul>
+</div>
+<section id="installing-the-python-connector">
+<h2><a class="toc-backref" href="#id7">Installing the Python Connector</a><a class="headerlink" href="#installing-the-python-connector" title="Permalink to this heading"></a></h2>
+<section id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this heading"></a></h3>
+<p>It is essential that you have the following installed:</p>
+<div class="contents local topic" id="id1">
+<ul class="simple">
+<li><p><a class="reference internal" href="#python" id="id10">Python</a></p></li>
+<li><p><a class="reference internal" href="#pip" id="id11">PIP</a></p></li>
+<li><p><a class="reference internal" href="#openssl-for-linux" id="id12">OpenSSL for Linux</a></p></li>
+</ul>
+</div>
+<section id="python">
+<h4><a class="toc-backref" href="#id10">Python</a><a class="headerlink" href="#python" title="Permalink to this heading"></a></h4>
+<p>The connector requires Python version 3.9 or newer.</p>
+<p>To see your current Python version, run the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python --version
+</pre></div>
+</div>
+</section>
+<section id="pip">
+<h4><a class="toc-backref" href="#id11">PIP</a><a class="headerlink" href="#pip" title="Permalink to this heading"></a></h4>
+<p>The Python connector is installed via <code class="docutils literal notranslate"><span class="pre">pip</span></code>, the standard package manager for Python, which is used to install, upgrade and manage Python packages (libraries) and their dependencies.</p>
+<p>We recommend upgrading to the latest version of <code class="docutils literal notranslate"><span class="pre">pip</span></code> before installing.</p>
+<p>To verify that you have the latest version, run the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3 -m pip install --upgrade pip
+<span class="go">Collecting pip</span>
+<span class="go">   Downloading https://files.pythonhosted.org/packages/00/b6/9cfa56b4081ad13874b0c6f96af8ce16cfbc1cb06bedf8e9164ce5551ec1/pip-19.3.1-py2.py3-none-any.whl (1.4MB)</span>
+<span class="go">         |████████████████████████████████| 1.4MB 1.6MB/s</span>
+<span class="go">Installing collected packages: pip</span>
+<span class="go">  Found existing installation: pip 19.1.1</span>
+<span class="go">        Uninstalling pip-19.1.1:</span>
+<span class="go">          Successfully uninstalled pip-19.1.1</span>
+<span class="go">Successfully installed pip-19.3.1</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>On macOS, you may want to use virtualenv to install Python and the connector, to ensure compatibility with the built-in Python environment</p></li>
+<li><p>If you encounter an error including <code class="docutils literal notranslate"><span class="pre">SSLError</span></code> or <code class="docutils literal notranslate"><span class="pre">WARNING:</span> <span class="pre">pip</span> <span class="pre">is</span> <span class="pre">configured</span> <span class="pre">with</span> <span class="pre">locations</span> <span class="pre">that</span> <span class="pre">require</span> <span class="pre">TLS/SSL,</span> <span class="pre">however</span> <span class="pre">the</span> <span class="pre">ssl</span> <span class="pre">module</span> <span class="pre">in</span> <span class="pre">Python</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">available.</span></code> - please be sure to reinstall Python with SSL enabled, or use virtualenv or Anaconda.</p></li>
+</ul>
+</div>
+</section>
+<section id="openssl-for-linux">
+<h4><a class="toc-backref" href="#id12">OpenSSL for Linux</a><a class="headerlink" href="#openssl-for-linux" title="Permalink to this heading"></a></h4>
+<p>The Python connector relies on OpenSSL for secure connections to SQream DB. Some distributions of Python do not include OpenSSL.</p>
+<p>To install OpenSSL on RHEL/CentOS, run the following command:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo yum install -y libffi-devel openssl-devel
+</pre></div>
+</div>
+</div></blockquote>
+<p>To install OpenSSL on Ubuntu, run the following command:</p>
+<blockquote>
+<div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo apt-get install libssl-dev libffi-dev -y
+</pre></div>
+</div>
+</div></blockquote>
+</section>
+</section>
+<section id="installing-via-pip-with-an-internet-connection">
+<h3>Installing via PIP with an internet connection<a class="headerlink" href="#installing-via-pip-with-an-internet-connection" title="Permalink to this heading"></a></h3>
+<p>The Python connector is available via <a class="reference external" href="https://pypi.org/project/pysqream/">PyPi</a>.</p>
+<p>To install the connector using pip, it is advisable to use the <code class="docutils literal notranslate"><span class="pre">-U</span></code> or <code class="docutils literal notranslate"><span class="pre">--user</span></code> flags instead of sudo, as it ensures packages are installed per user. However, it is worth noting that the connector can only be accessed under the same user.</p>
+<p>To install <code class="docutils literal notranslate"><span class="pre">pysqream</span></code> and <code class="docutils literal notranslate"><span class="pre">pysqream-sqlalchemy</span></code> with the <code class="docutils literal notranslate"><span class="pre">--user</span></code> flag, run the following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip3.9 install pysqream pysqream-sqlalchemy --user
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">pip3</span></code> will automatically install all necessary libraries and modules.</p>
+</section>
+<section id="installing-via-pip-without-an-internet-connection">
+<h3>Installing via PIP without an internet connection<a class="headerlink" href="#installing-via-pip-without-an-internet-connection" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>To get the <code class="docutils literal notranslate"><span class="pre">.whl</span></code> package file, contact you SQream support representative.</p></li>
+<li><p>Run the following command:</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">tar -xf pysqream_connector_3.2.5.tar.gz</span>
+<span class="go">cd pysqream_connector_3.2.5</span>
+<span class="gp">#</span>Install all packages with --no-index --find-links .
+<span class="go">python3 -m pip install *.whl -U --no-index --find-links .</span>
+<span class="go">python3.9 -m pip install pysqream-3.2.5.zip -U --no-index --find-links .</span>
+<span class="go">python3.9 -m pip install pysqream-sqlalchemy-0.8.zip  -U --no-index --find-links .</span>
+</pre></div>
+</div>
+</section>
+<section id="upgrading-an-existing-installation">
+<h3>Upgrading an Existing Installation<a class="headerlink" href="#upgrading-an-existing-installation" title="Permalink to this heading"></a></h3>
+<p>The Python drivers are updated periodically. To upgrade an existing pysqream installation, use pip’s <code class="docutils literal notranslate"><span class="pre">-U</span></code> flag:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip3.9 install pysqream pysqream-sqlalchemy -U
+</pre></div>
+</div>
+</section>
+<section id="validating-your-installation">
+<h3>Validating Your Installation<a class="headerlink" href="#validating-your-installation" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Create a file called <code class="docutils literal notranslate"><span class="pre">sample.py</span></code>, containing the following:</p></li>
+</ol>
+<ol class="arabic">
+<li><p>Verify that the parameters in the connection have been replaced with your respective SQream installation parameters.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p>Run the sample file to verify that you can connect to SQream:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python3.9 sample.py
+<span class="go">    Version: v2020.1</span>
+</pre></div>
+</div>
+<p>If the validation was successful, you can build an application using the SQream Python connector. If you receive a connection error, verify the following:</p>
+<ul>
+<li><p>You have access to a running SQream database.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p>The connection parameters are correct.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+<section id="sqlalchemy-examples">
+<h2><a class="toc-backref" href="#id8">SQLAlchemy Examples</a><a class="headerlink" href="#sqlalchemy-examples" title="Permalink to this heading"></a></h2>
+<p>SQLAlchemy is an <a href="#id2"><span class="problematic" id="id3">**</span></a>Object-Relational Mapper (ORM) for Python. When you install the SQream dialect (<code class="docutils literal notranslate"><span class="pre">pysqream-sqlalchemy</span></code>) you can use frameworks such as Pandas, TensorFlow, and Alembic to query SQream directly.</p>
+<p>This section includes the following examples:</p>
+<div class="contents local topic" id="id4">
+<ul class="simple">
+<li><p><a class="reference internal" href="#standard-connection-example" id="id13">Standard Connection Example</a></p></li>
+<li><p><a class="reference internal" href="#multi-cluster-connection-example" id="id14">Multi Cluster Connection Example</a></p></li>
+<li><p><a class="reference internal" href="#pulling-a-table-into-pandas" id="id15">Pulling a Table into Pandas</a></p></li>
+</ul>
+</div>
+<section id="standard-connection-example">
+<h3><a class="toc-backref" href="#id13">Standard Connection Example</a><a class="headerlink" href="#standard-connection-example" title="Permalink to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="k">as</span> <span class="nn">sa</span>
+
+<span class="n">engine_url</span> <span class="o">=</span> <span class="s2">&quot;sqream://rhendricks:secret_passwor@localhost:5000/raviga&quot;</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">sa</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span><span class="n">engine_url</span><span class="p">)</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;create or replace table test (ints int, ints2 int)&#39;</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;insert into test (ints,ints2) values (5,1), (6,2)&#39;</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;select * from test&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="multi-cluster-connection-example">
+<h3><a class="toc-backref" href="#id14">Multi Cluster Connection Example</a><a class="headerlink" href="#multi-cluster-connection-example" title="Permalink to this heading"></a></h3>
+<p>The following example is for using a ServerPicker:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="k">as</span> <span class="nn">sa</span>
+
+<span class="n">engine_url</span> <span class="o">=</span> <span class="s2">&quot;sqream://dor:DorBerg123$@localhost:3108/pushlive&quot;</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">sa</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span><span class="n">engine_url</span><span class="p">,</span> <span class="n">connect_args</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;clustered&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+
+<span class="n">res</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;create or replace table test100 (dor int);&quot;</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;insert into test100 values (5), (6);&#39;</span><span class="p">)</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;select * from test100&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="pulling-a-table-into-pandas">
+<h3><a class="toc-backref" href="#id15">Pulling a Table into Pandas</a><a class="headerlink" href="#pulling-a-table-into-pandas" title="Permalink to this heading"></a></h3>
+<p>The following example shows how to pull a table in Pandas. This examples uses the URL method to create the connection string:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="k">as</span> <span class="nn">sa</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+     <span class="n">engine_url</span> <span class="o">=</span> <span class="s2">&quot;sqream://rhendricks:secret_passwor@localhost:5000/raviga&quot;</span>
+
+     <span class="n">engine</span> <span class="o">=</span> <span class="n">sa</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span><span class="n">engine_url</span><span class="p">)</span>
+
+     <span class="n">table_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_sql</span><span class="p">(</span><span class="s2">&quot;select * from nba&quot;</span><span class="p">,</span> <span class="n">con</span><span class="o">=</span><span class="n">engine</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="api-examples">
+<h2><a class="toc-backref" href="#id9">API Examples</a><a class="headerlink" href="#api-examples" title="Permalink to this heading"></a></h2>
+<p>This section includes the following examples:</p>
+<div class="contents local topic" id="id5">
+<ul class="simple">
+<li><p><a class="reference internal" href="#using-the-cursor" id="id16">Using the Cursor</a></p></li>
+<li><p><a class="reference internal" href="#reading-result-metadata" id="id17">Reading Result Metadata</a></p></li>
+<li><p><a class="reference internal" href="#loading-data-into-a-table" id="id18">Loading Data into a Table</a></p></li>
+<li><p><a class="reference internal" href="#using-sqlalchemy-orm-to-create-and-populate-tables" id="id19">Using SQLAlchemy ORM to Create and Populate Tables</a></p></li>
+</ul>
+</div>
+<section id="using-the-cursor">
+<h3><a class="toc-backref" href="#id16">Using the Cursor</a><a class="headerlink" href="#using-the-cursor" title="Permalink to this heading"></a></h3>
+<p>The DB-API specification includes several methods for fetching results from the cursor. This sections shows an example using the <code class="docutils literal notranslate"><span class="pre">nba</span></code> table, which looks as follows:</p>
+<table class="colwidths-auto docutils align-default" id="id6">
+<caption><span class="caption-text">nba</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Team</p></th>
+<th class="head"><p>Number</p></th>
+<th class="head"><p>Position</p></th>
+<th class="head"><p>Age</p></th>
+<th class="head"><p>Height</p></th>
+<th class="head"><p>Weight</p></th>
+<th class="head"><p>College</p></th>
+<th class="head"><p>Salary</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Avery Bradley</p></td>
+<td><p>Boston Celtics</p></td>
+<td><p>0.0</p></td>
+<td><p>PG</p></td>
+<td><p>25.0</p></td>
+<td><p>6-2</p></td>
+<td><p>180.0</p></td>
+<td><p>Texas</p></td>
+<td><p>7730337.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jae Crowder</p></td>
+<td><p>Boston Celtics</p></td>
+<td><p>99.0</p></td>
+<td><p>SF</p></td>
+<td><p>25.0</p></td>
+<td><p>6-6</p></td>
+<td><p>235.0</p></td>
+<td><p>Marquette</p></td>
+<td><p>6796117.0</p></td>
+</tr>
+<tr class="row-even"><td><p>John Holland</p></td>
+<td><p>Boston Celtics</p></td>
+<td><p>30.0</p></td>
+<td><p>SG</p></td>
+<td><p>27.0</p></td>
+<td><p>6-5</p></td>
+<td><p>205.0</p></td>
+<td><p>Boston University</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>R.J. Hunter</p></td>
+<td><p>Boston Celtics</p></td>
+<td><p>28.0</p></td>
+<td><p>SG</p></td>
+<td><p>22.0</p></td>
+<td><p>6-5</p></td>
+<td><p>185.0</p></td>
+<td><p>Georgia State</p></td>
+<td><p>1148640.0</p></td>
+</tr>
+<tr class="row-even"><td><p>Jonas Jerebko</p></td>
+<td><p>Boston Celtics</p></td>
+<td><p>8.0</p></td>
+<td><p>PF</p></td>
+<td><p>29.0</p></td>
+<td><p>6-10</p></td>
+<td><p>231.0</p></td>
+<td></td>
+<td><p>5000000.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Amir Johnson</p></td>
+<td><p>Boston Celtics</p></td>
+<td><p>90.0</p></td>
+<td><p>PF</p></td>
+<td><p>29.0</p></td>
+<td><p>6-9</p></td>
+<td><p>240.0</p></td>
+<td></td>
+<td><p>12000000.0</p></td>
+</tr>
+<tr class="row-even"><td><p>Jordan Mickey</p></td>
+<td><p>Boston Celtics</p></td>
+<td><p>55.0</p></td>
+<td><p>PF</p></td>
+<td><p>21.0</p></td>
+<td><p>6-8</p></td>
+<td><p>235.0</p></td>
+<td><p>LSU</p></td>
+<td><p>1170960.0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Kelly Olynyk</p></td>
+<td><p>Boston Celtics</p></td>
+<td><p>41.0</p></td>
+<td><p>C</p></td>
+<td><p>25.0</p></td>
+<td><p>7-0</p></td>
+<td><p>238.0</p></td>
+<td><p>Gonzaga</p></td>
+<td><p>2165160.0</p></td>
+</tr>
+<tr class="row-even"><td><p>Terry Rozier</p></td>
+<td><p>Boston Celtics</p></td>
+<td><p>12.0</p></td>
+<td><p>PG</p></td>
+<td><p>22.0</p></td>
+<td><p>6-2</p></td>
+<td><p>190.0</p></td>
+<td><p>Louisville</p></td>
+<td><p>1824360.0</p></td>
+</tr>
+</tbody>
+</table>
+<p>As before, you must import the library and create a <code class="xref py py-meth docutils literal notranslate"><span class="pre">Connection()</span></code>, followed by <code class="xref py py-meth docutils literal notranslate"><span class="pre">execute()</span></code> on a simple <code class="docutils literal notranslate"><span class="pre">SELECT</span> <span class="pre">*</span></code> query:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pysqream</span>
+<span class="n">con</span> <span class="o">=</span> <span class="n">pysqream</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">3108</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;master&#39;</span>
+                   <span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;rhendricks&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;Tr0ub4dor&amp;3&#39;</span>
+                   <span class="p">,</span> <span class="n">clustered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span> <span class="c1"># Create a new cursor</span>
+<span class="c1"># The select statement:</span>
+<span class="n">statement</span> <span class="o">=</span> <span class="s1">&#39;SELECT * FROM nba&#39;</span>
+<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When the statement has finished executing, you have a <code class="xref py py-meth docutils literal notranslate"><span class="pre">Connection</span></code> cursor object waiting. A cursor is iterable, meaning that it advances the cursor to the next row when fetched.</p>
+<p>You can use <code class="xref py py-meth docutils literal notranslate"><span class="pre">fetchone()</span></code> to fetch one record at a time:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">first_row</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span> <span class="c1"># Fetch one row at a time (first row)</span>
+
+<span class="n">second_row</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span> <span class="c1"># Fetch one row at a time (second row)</span>
+</pre></div>
+</div>
+<p>To fetch several rows at a time, use <code class="xref py py-meth docutils literal notranslate"><span class="pre">fetchmany()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># executing `fetchone` twice is equivalent to this form:</span>
+<span class="n">third_and_fourth_rows</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchmany</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>To fetch all rows at once, use <code class="xref py py-meth docutils literal notranslate"><span class="pre">fetchall()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># To get all rows at once, use `fetchall`</span>
+<span class="n">remaining_rows</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+<span class="n">cur</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+<span class="c1"># Close the connection when done</span>
+<span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The following is an example of the contents of the row variables used in our examples:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">first_row</span><span class="p">)</span>
+<span class="go">(&#39;Avery Bradley&#39;, &#39;Boston Celtics&#39;, 0, &#39;PG&#39;, 25, &#39;6-2&#39;, 180, &#39;Texas&#39;, 7730337)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">second_row</span><span class="p">)</span>
+<span class="go">(&#39;Jae Crowder&#39;, &#39;Boston Celtics&#39;, 99, &#39;SF&#39;, 25, &#39;6-6&#39;, 235, &#39;Marquette&#39;, 6796117)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">third_and_fourth_rows</span><span class="p">)</span>
+<span class="go">[(&#39;John Holland&#39;, &#39;Boston Celtics&#39;, 30, &#39;SG&#39;, 27, &#39;6-5&#39;, 205, &#39;Boston University&#39;, None), (&#39;R.J. Hunter&#39;, &#39;Boston Celtics&#39;, 28, &#39;SG&#39;, 22, &#39;6-5&#39;, 185, &#39;Georgia State&#39;, 1148640)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">remaining_rows</span><span class="p">)</span>
+<span class="go">[(&#39;Jonas Jerebko&#39;, &#39;Boston Celtics&#39;, 8, &#39;PF&#39;, 29, &#39;6-10&#39;, 231, None, 5000000), (&#39;Amir Johnson&#39;, &#39;Boston Celtics&#39;, 90, &#39;PF&#39;, 29, &#39;6-9&#39;, 240, None, 12000000), (&#39;Jordan Mickey&#39;, &#39;Boston Celtics&#39;, 55, &#39;PF&#39;, 21, &#39;6-8&#39;, 235, &#39;LSU&#39;, 1170960), (&#39;Kelly Olynyk&#39;, &#39;Boston Celtics&#39;, 41, &#39;C&#39;, 25, &#39;7-0&#39;, 238, &#39;Gonzaga&#39;, 2165160),</span>
+<span class="go">[...]</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Calling a fetch command after all rows have been fetched will return an empty array (<code class="docutils literal notranslate"><span class="pre">[]</span></code>).</p>
+</div>
+</section>
+<section id="reading-result-metadata">
+<h3><a class="toc-backref" href="#id17">Reading Result Metadata</a><a class="headerlink" href="#reading-result-metadata" title="Permalink to this heading"></a></h3>
+<p>When you execute a statement, the connection object also contains metadata about the result set, such as <strong>column names</strong>, <strong>types</strong>, etc).</p>
+<p>The metadata is stored in the <code class="xref py py-attr docutils literal notranslate"><span class="pre">Connection.description</span></code> object of the cursor:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">pysqream</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">con</span> <span class="o">=</span> <span class="n">pysqream</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">3108</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;master&#39;</span>
+<span class="gp">... </span>               <span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;rhendricks&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;Tr0ub4dor&amp;3&#39;</span>
+<span class="gp">... </span>               <span class="p">,</span> <span class="n">clustered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">statement</span> <span class="o">=</span> <span class="s1">&#39;SELECT * FROM nba&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">statement</span><span class="p">)</span>
+<span class="go">&lt;pysqream.dbapi.Connection object at 0x000002EA952139B0&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cur</span><span class="o">.</span><span class="n">description</span><span class="p">)</span>
+<span class="go">[(&#39;Name&#39;, &#39;STRING&#39;, 24, 24, None, None, True), (&#39;Team&#39;, &#39;STRING&#39;, 22, 22, None, None, True), (&#39;Number&#39;, &#39;NUMBER&#39;, 1, 1, None, None, True), (&#39;Position&#39;, &#39;STRING&#39;, 2, 2, None, None, True), (&#39;Age (as of 2018)&#39;, &#39;NUMBER&#39;, 1, 1, None, None, True), (&#39;Height&#39;, &#39;STRING&#39;, 4, 4, None, None, True), (&#39;Weight&#39;, &#39;NUMBER&#39;, 2, 2, None, None, True), (&#39;College&#39;, &#39;STRING&#39;, 21, 21, None, None, True), (&#39;Salary&#39;, &#39;NUMBER&#39;, 4, 4, None, None, True)]</span>
+</pre></div>
+</div>
+<p>You can fetch a list of column names by iterating over the <code class="docutils literal notranslate"><span class="pre">description</span></code> list:</p>
+<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span> <span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">cur</span><span class="o">.</span><span class="n">description</span> <span class="p">]</span>
+<span class="go">[&#39;Name&#39;, &#39;Team&#39;, &#39;Number&#39;, &#39;Position&#39;, &#39;Age (as of 2018)&#39;, &#39;Height&#39;, &#39;Weight&#39;, &#39;College&#39;, &#39;Salary&#39;]</span>
+</pre></div>
+</div>
+</section>
+<section id="loading-data-into-a-table">
+<h3><a class="toc-backref" href="#id18">Loading Data into a Table</a><a class="headerlink" href="#loading-data-into-a-table" title="Permalink to this heading"></a></h3>
+<p>This example shows how to load 10,000 rows of dummy data to an instance of SQream.</p>
+<p><strong>To load data 10,000 rows of dummy data to an instance of SQream:</strong></p>
+<ol class="arabic">
+<li><p>Run the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pysqream</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">date</span><span class="p">,</span> <span class="n">datetime</span>
+<span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">time</span>
+
+<span class="n">con</span> <span class="o">=</span> <span class="n">pysqream</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">3108</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;master&#39;</span>
+                   <span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;rhendricks&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;Tr0ub4dor&amp;3&#39;</span>
+                   <span class="p">,</span> <span class="n">clustered</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+                                           <span class="p">,</span> <span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create a table for loading:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">create</span> <span class="o">=</span> <span class="s1">&#39;create or replace table perf (b bool, t tinyint, sm smallint, i int, bi bigint, f real, d double, s varchar(12), ss text, dt date, dtt datetime)&#39;</span>
+<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">create</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Load your data into table using the <code class="docutils literal notranslate"><span class="pre">INSERT</span></code> command.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p>Create dummy data matching the table you created:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="kc">False</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">145</span><span class="p">,</span> <span class="mi">84124234</span><span class="p">,</span> <span class="mf">3.141</span><span class="p">,</span> <span class="o">-</span><span class="mf">4.3</span><span class="p">,</span> <span class="s2">&quot;Marty McFly&quot;</span> <span class="p">,</span> <span class="sa">u</span><span class="s2">&quot;キウイは楽しい鳥です&quot;</span> <span class="p">,</span> <span class="n">date</span><span class="p">(</span><span class="mi">2019</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">17</span><span class="p">),</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">1955</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+<span class="n">row_count</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="mi">4</span>
+</pre></div>
+</div>
+</li>
+<li><p>Get a new cursor:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">insert</span> <span class="o">=</span> <span class="s1">&#39;insert into perf values (?,?,?,?,?,?,?,?,?,?,?)&#39;</span>
+<span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="p">()</span>
+<span class="n">cur</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="n">insert</span><span class="p">,</span> <span class="p">[</span><span class="n">data</span><span class="p">]</span> <span class="o">*</span> <span class="n">row_count</span><span class="p">)</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total insert time for </span><span class="si">{</span><span class="n">row_count</span><span class="si">}</span><span class="s2"> rows: </span><span class="si">{</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start</span><span class="si">}</span><span class="s2"> seconds&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Close this cursor:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Verify that the data was inserted correctly:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cur</span> <span class="o">=</span> <span class="n">con</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">cur</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;select count(*) from perf&#39;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span> <span class="c1"># `fetchall` collects the entire data set</span>
+<span class="nb">print</span> <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Count of inserted rows: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Close the cursor:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cur</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>Close the connection:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">con</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="using-sqlalchemy-orm-to-create-and-populate-tables">
+<h3><a class="toc-backref" href="#id19">Using SQLAlchemy ORM to Create and Populate Tables</a><a class="headerlink" href="#using-sqlalchemy-orm-to-create-and-populate-tables" title="Permalink to this heading"></a></h3>
+<p>This section shows how to use the ORM to create and populate tables from Python objects.</p>
+<p><strong>To use SQLAlchemy ORM to create and populate tables:</strong></p>
+<ol class="arabic">
+<li><p>Run the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sqlalchemy</span> <span class="k">as</span> <span class="nn">sa</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">engine_url</span> <span class="o">=</span> <span class="s2">&quot;sqream://rhendricks:secret_passwor@localhost:5000/raviga&quot;</span>
+
+<span class="n">engine</span> <span class="o">=</span> <span class="n">sa</span><span class="o">.</span><span class="n">create_engine</span><span class="p">(</span><span class="n">engine_url</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Build a metadata object and bind it:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">metadata</span> <span class="o">=</span> <span class="n">sa</span><span class="o">.</span><span class="n">MetaData</span><span class="p">()</span>
+<span class="n">metadata</span><span class="o">.</span><span class="n">bind</span> <span class="o">=</span> <span class="n">engine</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create a table in the local metadata:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">employees</span> <span class="o">=</span> <span class="n">sa</span><span class="o">.</span><span class="n">Table</span><span class="p">(</span>
+<span class="s1">&#39;employees&#39;</span>
+<span class="p">,</span> <span class="n">metadata</span>
+<span class="p">,</span> <span class="n">sa</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="n">sa</span><span class="o">.</span><span class="n">Integer</span><span class="p">)</span>
+<span class="p">,</span> <span class="n">sa</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="n">sa</span><span class="o">.</span><span class="n">VARCHAR</span><span class="p">(</span><span class="mi">32</span><span class="p">))</span>
+<span class="p">,</span> <span class="n">sa</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="s1">&#39;lastname&#39;</span><span class="p">,</span> <span class="n">sa</span><span class="o">.</span><span class="n">VARCHAR</span><span class="p">(</span><span class="mi">32</span><span class="p">))</span>
+<span class="p">,</span> <span class="n">sa</span><span class="o">.</span><span class="n">Column</span><span class="p">(</span><span class="s1">&#39;salary&#39;</span><span class="p">,</span> <span class="n">sa</span><span class="o">.</span><span class="n">Float</span><span class="p">)</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">create_all()</span></code> function uses the SQream engine object.</p>
+</li>
+<li><p>Create all the defined table objects:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">metadata</span><span class="o">.</span><span class="n">create_all</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Populate your table.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p>Build the data rows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">insert_data</span> <span class="o">=</span> <span class="p">[</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Richard&#39;</span><span class="p">,</span><span class="s1">&#39;lastname&#39;</span><span class="p">:</span> <span class="s1">&#39;Hendricks&#39;</span><span class="p">,</span>   <span class="s1">&#39;salary&#39;</span><span class="p">:</span> <span class="mf">12000.75</span><span class="p">}</span>
+               <span class="p">,{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>  <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Bertram&#39;</span><span class="p">,</span> <span class="s1">&#39;lastname&#39;</span><span class="p">:</span> <span class="s1">&#39;Gilfoyle&#39;</span><span class="p">,</span> <span class="s1">&#39;salary&#39;</span><span class="p">:</span> <span class="mf">8400.0</span><span class="p">}</span>
+               <span class="p">,{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>  <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Donald&#39;</span><span class="p">,</span> <span class="s1">&#39;lastname&#39;</span><span class="p">:</span> <span class="s1">&#39;Dunn&#39;</span><span class="p">,</span> <span class="s1">&#39;salary&#39;</span><span class="p">:</span> <span class="mf">6500.40</span><span class="p">}</span>
+              <span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p>Build the <code class="docutils literal notranslate"><span class="pre">INSERT</span></code> command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ins</span> <span class="o">=</span> <span class="n">employees</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">insert_data</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Execute the command:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">engine</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">ins</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>For more information, see the <span class="xref std std-ref">python_api_reference_guide</span>.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../jdbc/index.html" class="btn btn-neutral float-left" title="JDBC" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../nodejs/index.html" class="btn btn-neutral float-right" title="Connecting to SQream Using Node.JS" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 SQream.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

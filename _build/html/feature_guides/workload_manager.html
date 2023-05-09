@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Workload Manager &mdash; SQream DB 4.2 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Concurrency and Locks" href="concurrency_and_locks.html" />
+    <link rel="prev" title="Python UDF (User-Defined Functions)" href="python_functions.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #133148" >
+            <a href="../index.html">
+            <img src="../_static/SQream_logo_without background-15.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/preparing_your_machine_to_install_sqream.html">Preparing Your Machine to Install SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installing_sqream.html">Installing SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/executing_statements_in_sqream.html">Executing Statements in SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/performing_basic_sqream_operations.html">Performing Basic SQream Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/running_the_sqream_sql_client.html">Running the SQream SQL Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/creating_your_first_table.html">Creating Your First Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/listing_tables.html">Listing Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/inserting_rows.html">Inserting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/running_queries.html">Running Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/deleting_rows.html">Deleting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/saving_query_results_to_a_csv_or_psv_file.html">Saving Query Results to a CSV or PSV File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/hardware_guide.html">Hardware Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../installation_guides/index.html">Installation Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation_guides/installing_and_launching_sqream.html">Installing and Launching SQream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/recommended_pre-installation_configurations.html">Recommended Pre-Installation Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/installing_sqream_with_binary.html">Installing SQream Using Binary Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/running_sqream_in_a_docker_container.html">Installing and Running SQream in a Docker Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/installing_sqream_with_kubernetes.html">Installing SQream with Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/installing_monit.html">Installing Monit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/launching_sqream_with_monit.html">Launching SQream with Monit</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../installation_guides/sqream_studio_installation.html">Installing SQream Studio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/installing_prometheus_exporters.html">Installing Prometheus Exporter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/installing_prometheus_using_binary_packages.html">Installing Prometheus Using Binary Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/installing_dashboard_data_collector.html">Installing the Dashboard Data Collector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/installing_studio_on_stand_alone_server.html">Installing Studio on a Stand-Alone Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation_guides/installing_nginx_proxy_over_secure_connection.html">Installing an NGINX Proxy Over a Secure Connection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_ingestion/index.html">Data Ingestion Sources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/ingesting_data.html">Ingesting Data Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/avro.html">Ingesting Data from Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/csv.html">Ingesting Data from a CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/parquet.html">Ingesting Data from a Parquet File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/orc.html">Ingesting Data from an ORC File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/json.html">Ingesting Data from JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../connecting_to_sqream/index.html">Connecting to SQream</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../connecting_to_sqream/client_platforms/index.html">Client Platforms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/informatica.html">Connect to SQream Using Informatica Cloud Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/microstrategy.html">Connect to SQream Using MicroStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/pentaho.html">Connecting to SQream Using Pentaho Data Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/php.html">Connect to SQream Using PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/power_bi.html">Connecting to SQream Using Power BI Desktop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/r.html">Connect to SQream Using R</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/sap_businessobjects.html">Connecting to SQream Using SAP BusinessObjects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/sas_viya.html">Connect to SQream Using SAS Viya</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/sql_workbench.html">Connect to SQream Using SQL Workbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/tableau.html">Connecting to SQream Using Tableau</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/talend.html">Connecting to SQream Using Talend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/tibco_spotfire.html">Connecting to SQream Using TIBCO Spotfire</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../connecting_to_sqream/client_drivers/index.html">Client Drivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/trino/index.html">Connecting to SQream Using Trino</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/jdbc/index.html">JDBC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/python/index.html">Connecting to SQream Using Python (pysqream)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/nodejs/index.html">Connecting to SQream Using Node.JS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/odbc/index.html">ODBC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../connecting_to_sqream/client_drivers/odbc/install_configure_odbc_windows.html">Install and Configure ODBC on Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../connecting_to_sqream/client_drivers/odbc/install_configure_odbc_linux.html">Install and configure ODBC on Linux</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/dotnet/index.html">Connecting to SQream Using .NET</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/Spark/index.html">Using Spark With SQream</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../external_storage_platforms/index.html">External Storage Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../external_storage_platforms/s3.html">Inserting Data Using Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../external_storage_platforms/hdfs.html">Using SQream in an HDFS Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../loading_and_unloading_data/index.html">Loading and Unloading Data</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Feature Guides</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="automatic_foreign_table_ddl_resolution.html">Automatic Foreign Table DDL Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="query_healer.html">Query Healer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_encryption.html">Data Encryption</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="data_encryption_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_encryption_methods.html">Encryption Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_encryption_types.html">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_encryption_syntax.html">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="data_encryption_permissions.html">Permissions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="compression.html">Compression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="python_functions.html">Python UDF (User-Defined Functions)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Workload Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency_and_locks.html">Concurrency and Locks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency_and_scaling_in_sqream.html">Concurrency and Scaling in SQream DB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operational_guides/index.html">Operational Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/access_control.html">Access Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_password_policy.html">Password Policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_managing_roles.html">Managing Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_permissions.html">Permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_departmental_example.html">Departmental Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/creating_or_cloning_a_storage_cluster.html">Creating or Cloning Storage Clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/external_data.html">Working with External Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/s3.html">Inserting Data Using Amazon S3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/hdfs.html">Using SQream in an HDFS Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/foreign_tables.html">Foreign Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/delete_guide.html">Deleting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/exporting_data.html">Exporting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/logging.html">Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/monitoring_query_performance.html">Monitoring Query Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/saved_queries.html">Saved Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/seeing_system_objects_as_ddl.html">Seeing System Objects as DDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/optimization_best_practices.html">Optimization and Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sqream_studio_5.4.7/index.html">SQream Acceleration Studio 5.4.7</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/getting_started.html">Getting Started with SQream Acceleration Studio 5.4.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/monitoring_workers_and_services_from_the_dashboard.html">Monitoring Workers and Services from the Dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/executing_statements_and_running_queries_from_the_editor.html">Executing Statements and Running Queries from the Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/viewing_logs.html">Viewing Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/creating_assigning_and_managing_roles_and_permissions.html">Creating, Assigning, and Managing Roles and Permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/configuring_your_instance_of_sqream.html">Configuring Your Instance of SQreams</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">System Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/internals_architecture.html">Internals and architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/filesystem_and_filesystem_usage.html">Filesystem and usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_guides/index.html">Configuration Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/spooling.html">Configuring the Spooling Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/configuring_sqream.html">Configuring SQream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_configuration_levels.html">Configuration Levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_flag_types.html">Flag Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_configuration_roles.html">Configuration Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_modification_methods.html">Modification Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_configuring_your_parameter_values.html">Configuring Your Parameter Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_command_examples.html">Command Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_showing_all_flags_in_the_catalog_table.html">Showing All Flags in the Catalog Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_all_configurations.html">All Configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/ldap.html">Configuring LDAP authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/configuration_flags.html">Configuration Flags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/admin_flags.html">Administration Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/admin_regular_flags.html">Regular Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/admin_cluster_flags.html">Cluster Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/admin_worker_flags.html">Worker Administration Flags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/generic_flags.html">Generic Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/generic_regular_flags.html">Regular Generic Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/generic_worker_flags.html">Worker Generic Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/previous_configuration_method.html">Configuring SQream Using the Previous Configuration Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sql/index.html">SQL Statements and Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_syntax/index.html">SQL Syntax Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_statements/index.html">SQL Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_functions/index.html">SQL Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/scalar_functions/index.html">Built-In Scalar Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/user_defined_functions/index.html">User-Defined Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/aggregate_functions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/window_functions/index.html">Window Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/catalog_reference.html">Catalog Reference Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/catalog_reference_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/catalog_reference_schema_information.html">What Information Does the Schema Contain?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/catalog_reference_catalog_tables.html">Catalog Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/catalog_reference_additonal_tables.html">Additional Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/catalog_reference_examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/cli/index.html">Command line programs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/metadata_server.html">metadata_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/sqreamd.html">sqreamd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/sqream_console.html">sqream-console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/sqream_installer.html">sqream-installer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/server_picker.html">Server Picker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/sqream_storage.html">SqreamStorage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/sqream_sql.html">sqream sql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/upgrade_storage.html">upgrade_storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sql_feature_support.html">SQL Feature Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_type_guides/index.html">Data Type Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/converting_and_casting_types.html">Converting and Casting Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/supported_data_types.html">Supported Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/supported_casts.html">Supported Casts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_boolean.html">Boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_integer.html">Integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_floating_point.html">Floating Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_string.html">String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_date.html">Date</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../releases/4.0_index.html">Release Notes 4.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/4.0.html">Release Notes 4.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/4.1.html">Release Notes 4.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/4.2.html">Release Notes 4.2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2022.1_index.html">Release Notes 2022.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.7.html">Release Notes 2022.1.7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.6.html">Release Notes 2022.1.6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.5.html">Release Notes 2022.1.5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.4.html">Release Notes 2022.1.4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.3.html">Release Notes 2022.1.3</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.2.html">Release Notes 2022.1.2</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.1.html">Release Notes 2022.1.1</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.html">Release Notes 2022.1</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2021.2_index.html">Release Notes 2021.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2021.2.1.24.html">Release Notes 2021.2.1.24</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2021.2.1.html">Release Notes 2021.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2021.2.html">Release Notes 2021.2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2021.1_index.html">Release Notes 2021.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2021.1.2.html">Release Notes 2021.1.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2021.1.html">Release Notes 2021.1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2020.3_index.html">Release Notes 2020.3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2020.3.2.1.html">Release Notes 2020.3.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2020.3.2.html">What’s new in 2020.3.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2020.3.1.html">Release Notes 2020.3.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2020.3.html">Release Notes 2020.3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2020.2.html">Release Notes 2020.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2020.1.html">Release Notes 2020.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/remedying_slow_queries.html">Remedying Slow Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/resolving_common_issues.html">Resolving Common Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/examining_logs.html">Examining Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/identifying_configuration_issues.html">Identifying Configuration Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/lock_related_issues.html">Lock Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/log_related_issues.html">Log Related Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/core_dumping_related_issues.html">Core Dumping Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/information_for_support.html">Gathering Information for SQream Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #133148" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SQream DB</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Feature Guides</a> &raquo;</li>
+      <li>Workload Manager</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="workload-manager">
+<span id="id1"></span><h1>Workload Manager<a class="headerlink" href="#workload-manager" title="Permalink to this heading"></a></h1>
+<p>The <strong>Workload Manager</strong> allows SQream workers to identify their availability to clients with specific service names. The load balancer uses that information to route statements to specific workers.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>The Workload Manager allows a system engineer or database administrator to allocate specific workers and compute resources for various tasks.</p>
+<p>For example:</p>
+<ol class="arabic simple">
+<li><p>Creating a service queue named <code class="docutils literal notranslate"><span class="pre">ETL</span></code> and allocating two workers exclusively to this service prevents non-<code class="docutils literal notranslate"><span class="pre">ETL</span></code> statements from utilizing these compute resources.</p></li>
+<li><p>Creating a service for the company’s leadership during working hours for dedicated access, and disabling this service at night to allow maintenance operations to use the available compute.</p></li>
+</ol>
+</section>
+<section id="setting-up-service-queues">
+<h2>Setting Up Service Queues<a class="headerlink" href="#setting-up-service-queues" title="Permalink to this heading"></a></h2>
+<p>By default, every worker subscribes to the <code class="docutils literal notranslate"><span class="pre">sqream</span></code> service queue.</p>
+<p>Additional service names are configured in the configuration file for every worker, but can also be <a class="reference internal" href="../reference/sql/sql_statements/wlm_commands/subscribe_service.html#subscribe-service"><span class="std std-ref">set on a per-session basis</span></a>.</p>
+</section>
+<section id="example-allocating-etl-resources">
+<h2>Example - Allocating ETL Resources<a class="headerlink" href="#example-allocating-etl-resources" title="Permalink to this heading"></a></h2>
+<p>Allocating ETL resources ensures high quality service without requiring management users to wait.</p>
+<p>The configuration in this example allocates resources as shown below:</p>
+<ul class="simple">
+<li><p>1 worker for ETL work</p></li>
+<li><p>3 workers for general queries</p></li>
+<li><p>All workers assigned to queries from management</p></li>
+</ul>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head stub"><p>Service / Worker</p></th>
+<th class="head"><p>Worker #1</p></th>
+<th class="head"><p>Worker #2</p></th>
+<th class="head"><p>Worker #3</p></th>
+<th class="head"><p>Worker #4</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><th class="stub"><p>ETL</p></th>
+<td><p>✓</p></td>
+<td><p>✗</p></td>
+<td><p>✗</p></td>
+<td><p>✗</p></td>
+</tr>
+<tr class="row-odd"><th class="stub"><p>Query service</p></th>
+<td><p>✗</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+</tr>
+<tr class="row-even"><th class="stub"><p>Management</p></th>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+<td><p>✓</p></td>
+</tr>
+</tbody>
+</table>
+<p>This configuration gives the ETL queue dedicated access to one worker, which cannot be used..</p>
+<p>Queries from management uses any available worker.</p>
+<section id="creating-the-configuration">
+<h3>Creating the Configuration<a class="headerlink" href="#creating-the-configuration" title="Permalink to this heading"></a></h3>
+<p>The persistent configuration for this set-up is listed in the four configuration files shown below.</p>
+<p>Each worker gets a comma-separated list of service queues that it subscribes to. These services are specified in the <code class="docutils literal notranslate"><span class="pre">initialSubscribedServices</span></code> attribute.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">Worker #1</span><a class="headerlink" href="#id2" title="Permalink to this code"></a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;compileFlags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;runtimeFlags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;runtimeGlobalFlags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="hll"><span class="w">       </span><span class="nt">&quot;initialSubscribedServices&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;etl,management&quot;</span><span class="w"></span>
+</span><span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;gpu&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;cluster&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/rhendricks/raviga_database&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;licensePath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/sqream/.sqream/license.enc&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">Workers #2, #3, #4</span><a class="headerlink" href="#id3" title="Permalink to this code"></a></div>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;compileFlags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;runtimeFlags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;runtimeGlobalFlags&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="hll"><span class="w">       </span><span class="nt">&quot;initialSubscribedServices&quot;</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;query,management&quot;</span><span class="w"></span>
+</span><span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;gpu&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">5001</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;cluster&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/rhendricks/raviga_database&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;licensePath&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/home/sqream/.sqream/license.enc&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>You can create this configuration temporarily (for the current session only) by using the <a class="reference internal" href="../reference/sql/sql_statements/wlm_commands/subscribe_service.html#subscribe-service"><span class="std std-ref">SUBSCRIBE_SERVICE</span></a> and <a class="reference internal" href="../reference/sql/sql_statements/wlm_commands/unsubscribe_service.html#unsubscribe-service"><span class="std std-ref">UNSUBSCRIBE_SERVICE</span></a> statements.</p>
+</div>
+</section>
+<section id="verifying-the-configuration">
+<h3>Verifying the Configuration<a class="headerlink" href="#verifying-the-configuration" title="Permalink to this heading"></a></h3>
+<p>Use <a class="reference internal" href="../reference/sql/sql_statements/wlm_commands/show_subscribed_instances.html#show-subscribed-instances"><span class="std std-ref">SHOW_SUBSCRIBED_INSTANCES</span></a> to view service subscriptions for each worker. Use <a class="reference external" href="https://docs.sqream.com/en/v2020.3/reference/sql/sql_statements/monitoring_commands/show_server_status.html">SHOW_SERVER_STATUS</a> to see the statement queues.</p>
+<div class="highlight-psql notranslate"><div class="highlight"><pre><span></span><span class="gp">t=&gt;</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="n">SHOW_SUBSCRIBED_INSTANCES</span><span class="p">();</span><span class="w"></span>
+<span class="go">service    | servernode | serverip      | serverport</span>
+<span class="go">-----------+------------+---------------+-----------</span>
+<span class="go">management | node_9383  | 192.168.0.111 |       5000</span>
+<span class="go">etl        | node_9383  | 192.168.0.111 |       5000</span>
+<span class="go">query      | node_9384  | 192.168.0.111 |       5001</span>
+<span class="go">management | node_9384  | 192.168.0.111 |       5001</span>
+<span class="go">query      | node_9385  | 192.168.0.111 |       5002</span>
+<span class="go">management | node_9385  | 192.168.0.111 |       5002</span>
+<span class="go">query      | node_9551  | 192.168.1.91  |       5000</span>
+<span class="go">management | node_9551  | 192.168.1.91  |       5000</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="configuring-a-client-connection-to-a-specific-service">
+<h2>Configuring a Client Connection to a Specific Service<a class="headerlink" href="#configuring-a-client-connection-to-a-specific-service" title="Permalink to this heading"></a></h2>
+<p>You can configure a client connection to a specific service in one of the following ways:</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#using-sqream-studio" id="id8">Using SQream Studio</a></p></li>
+<li><p><a class="reference internal" href="#using-the-sqream-sql-cli-reference" id="id9">Using the SQream SQL CLI Reference</a></p></li>
+<li><p><a class="reference internal" href="#using-a-jdbc-client-driver" id="id10">Using a JDBC Client Driver</a></p></li>
+<li><p><a class="reference internal" href="#using-an-odbc-client-driver" id="id11">Using an ODBC Client Driver</a></p></li>
+<li><p><a class="reference internal" href="#using-a-python-client-driver" id="id12">Using a Python Client Driver</a></p></li>
+<li><p><a class="reference internal" href="#using-a-node-js-client-driver" id="id13">Using a Node.js Client Driver</a></p></li>
+</ul>
+</div>
+<section id="using-sqream-studio">
+<h3><a class="toc-backref" href="#id8">Using SQream Studio</a><a class="headerlink" href="#using-sqream-studio" title="Permalink to this heading"></a></h3>
+<p>When using <strong>SQream Studio</strong>, you can configure a client connection to a specific service from the SQream Studio, as shown below:</p>
+<img alt="../_images/TPD_33.png" src="../_images/TPD_33.png" />
+<p>For more information, in Studio, see <a class="reference external" href="https://docs.sqream.com/en/v2020.3/sqream_studio_5.4.3/executing_statements_and_running_queries_from_the_editor.html#executing-statements-from-the-toolbar">Executing Statements from the Toolbar</a>.</p>
+</section>
+<section id="using-the-sqream-sql-cli-reference">
+<h3><a class="toc-backref" href="#id9">Using the SQream SQL CLI Reference</a><a class="headerlink" href="#using-the-sqream-sql-cli-reference" title="Permalink to this heading"></a></h3>
+<p>When using the <strong>SQream SQL CLI Reference</strong>, you can configure a client connection to a specific service by adding <code class="docutils literal notranslate"><span class="pre">--service=&lt;service</span> <span class="pre">name&gt;</span></code> to the command line, as shown below:</p>
+<div class="highlight-psql notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sqream sql --port<span class="o">=</span><span class="m">3108</span> --clustered --username<span class="o">=</span>mjordan --databasename<span class="o">=</span>master --service<span class="o">=</span>etl
+<span class="go">Password:</span>
+
+<span class="go">Interactive client mode</span>
+<span class="go">To quit, use ^D or \q.</span>
+
+<span class="gp">master=&gt;</span><span class="n">_</span><span class="w"></span>
+</pre></div>
+</div>
+<p>For more information, see the <a class="reference internal" href="../reference/cli/sqream_sql.html#sqream-sql-cli-reference"><span class="std std-ref">Sqream SQL CLI Reference</span></a>.</p>
+</section>
+<section id="using-a-jdbc-client-driver">
+<h3><a class="toc-backref" href="#id10">Using a JDBC Client Driver</a><a class="headerlink" href="#using-a-jdbc-client-driver" title="Permalink to this heading"></a></h3>
+<p>When using a <strong>JDBC client driver</strong>, you can configure a client connection to a specific service by adding <code class="docutils literal notranslate"><span class="pre">--service=&lt;service</span> <span class="pre">name&gt;</span></code> to the command line, as shown below:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">JDBC Connection String</span><a class="headerlink" href="#id4" title="Permalink to this code"></a></div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>jdbc:Sqream://127.0.0.1:3108/raviga;user=rhendricks;password=Tr0ub4dor&amp;3;service=etl;cluster=true;ssl=false;
+</pre></div>
+</div>
+</div>
+<p>For more information, see the <a class="reference external" href="https://docs.sqream.com/en/v2020.3/third_party_tools/client_drivers/jdbc/index.html">JDBC Client Driver</a>.</p>
+</section>
+<section id="using-an-odbc-client-driver">
+<h3><a class="toc-backref" href="#id11">Using an ODBC Client Driver</a><a class="headerlink" href="#using-an-odbc-client-driver" title="Permalink to this heading"></a></h3>
+<p>When using an <strong>ODBC client driver</strong>, you can configure a client connection to a specific service on Linux by modifying the <a class="reference internal" href="../connecting_to_sqream/client_drivers/odbc/install_configure_odbc_linux.html#dsn-params"><span class="std std-ref">DSN parameters</span></a> in <code class="docutils literal notranslate"><span class="pre">odbc.ini</span></code>.</p>
+<p>For example, <code class="docutils literal notranslate"><span class="pre">Service=&quot;etl&quot;</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">odbc.ini</span><a class="headerlink" href="#id5" title="Permalink to this code"></a></div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>   [sqreamdb]
+   Description=64-bit Sqream ODBC
+   Driver=/home/rhendricks/sqream_odbc64/sqream_odbc64.so
+   Server=&quot;127.0.0.1&quot;
+   Port=&quot;3108&quot;
+   Database=&quot;raviga&quot;
+<span class="hll">   Service=&quot;etl&quot;
+</span>   User=&quot;rhendricks&quot;
+   Password=&quot;Tr0ub4dor&amp;3&quot;
+   Cluster=true
+   Ssl=false
+</pre></div>
+</div>
+</div>
+<p>On Windows, change the parameter in the <a class="reference internal" href="../connecting_to_sqream/client_drivers/odbc/install_configure_odbc_windows.html#create-windows-odbc-dsn"><span class="std std-ref">DSN editing window</span></a>.</p>
+<p>For more information, see the <a class="reference external" href="https://docs.sqream.com/en/v2020.3/third_party_tools/client_drivers/odbc/index.html">ODBC Client Driver</a>.</p>
+</section>
+<section id="using-a-python-client-driver">
+<h3><a class="toc-backref" href="#id12">Using a Python Client Driver</a><a class="headerlink" href="#using-a-python-client-driver" title="Permalink to this heading"></a></h3>
+<p>When using a <strong>Python client driver</strong>, you can configure a client connection to a specific service by setting the <code class="docutils literal notranslate"><span class="pre">service</span></code> parameter in the connection command, as shown below:</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">Python</span><a class="headerlink" href="#id6" title="Permalink to this code"></a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">con</span> <span class="o">=</span> <span class="n">pysqream</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="n">port</span><span class="o">=</span><span class="mi">3108</span><span class="p">,</span> <span class="n">database</span><span class="o">=</span><span class="s1">&#39;raviga&#39;</span>
+                       <span class="p">,</span> <span class="n">username</span><span class="o">=</span><span class="s1">&#39;rhendricks&#39;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s1">&#39;Tr0ub4dor&amp;3&#39;</span>
+<span class="hll">                       <span class="p">,</span> <span class="n">clustered</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">use_ssl</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span> <span class="n">service</span><span class="o">=</span><span class="s1">&#39;etl&#39;</span><span class="p">)</span>
+</span></pre></div>
+</div>
+</div>
+<p>For more information, see the <a class="reference external" href="https://docs.sqream.com/en/v2020.3/third_party_tools/client_drivers/python/index.html">Python (pysqream) connector</a>.</p>
+</section>
+<section id="using-a-node-js-client-driver">
+<h3><a class="toc-backref" href="#id13">Using a Node.js Client Driver</a><a class="headerlink" href="#using-a-node-js-client-driver" title="Permalink to this heading"></a></h3>
+<p>When using a <strong>Node.js client driver</strong>, you can configure a client connection to a specific service by adding the service to the connection settings, as shown below:</p>
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">Node.js</span><a class="headerlink" href="#id7" title="Permalink to this code"></a></div>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="kd">const</span><span class="w"> </span><span class="nx">Connection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;sqreamdb&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">config</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="nx">host</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">   </span><span class="nx">port</span><span class="o">:</span><span class="w"> </span><span class="mf">3108</span><span class="p">,</span><span class="w"></span>
+<span class="hll"><span class="w">   </span><span class="nx">username</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;rhendricks&#39;</span><span class="p">,</span><span class="w"></span>
+</span><span class="w">   </span><span class="nx">password</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;Tr0ub4dor&amp;3&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">   </span><span class="nx">connectDatabase</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;raviga&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">   </span><span class="nx">cluster</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;true&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">   </span><span class="nx">service</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;etl&#39;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<p>For more information, see the <a class="reference external" href="https://docs.sqream.com/en/v2020.3/third_party_tools/client_drivers/nodejs/index.html">Node.js Client Driver</a>.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="python_functions.html" class="btn btn-neutral float-left" title="Python UDF (User-Defined Functions)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="concurrency_and_locks.html" class="btn btn-neutral float-right" title="Concurrency and Locks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 SQream.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
