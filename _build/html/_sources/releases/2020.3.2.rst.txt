@@ -1,0 +1,28 @@
+.. _2020.3.2:
+
+**************************
+What's new in 2020.3.2
+**************************
+
+SQream DB v2020.3.2 contains major performance improvements and some bug fixes.
+
+Performance Enhancements
+=========================
+* Metadata on Demand optimization resulting in reduced latency and improved overall performance
+
+
+Known Issues & Limitations
+================================
+* Bug with STDDEV_SAMP,STDDEV_POP and STDEV functions
+* Window function query returns wrong results
+* rank() in window function sometimes returns garbage
+* Window function on null value could have bad result
+* Window function lead() on varchar can have garbage results
+* Performance degradation when using "groupby" or outer_join
+
+Upgrading to v2020.3.2
+========================
+
+Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and other OSs via Docker.
+
+Contact your account manager to get the latest release of SQream DB.

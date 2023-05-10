@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COPY FROM &mdash; SQream DB 4.1 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #133148" >
+            <a href="../../../../index.html">
+            <img src="../../../../_static/SQream_logo_without background-15.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started/preparing_your_machine_to_install_sqream.html">Preparing Your Machine to Install SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started/installing_sqream.html">Installing SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started/executing_statements_in_sqream.html">Executing Statements in SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started/performing_basic_sqream_operations.html">Performing Basic SQream Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../getting_started/running_the_sqream_sql_client.html">Running the SQream SQL Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../getting_started/creating_your_first_table.html">Creating Your First Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../getting_started/listing_tables.html">Listing Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../getting_started/inserting_rows.html">Inserting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../getting_started/running_queries.html">Running Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../getting_started/deleting_rows.html">Deleting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../getting_started/saving_query_results_to_a_csv_or_psv_file.html">Saving Query Results to a CSV or PSV File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../getting_started/hardware_guide.html">Hardware Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../installation_guides/index.html">Installation Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation_guides/installing_and_launching_sqream.html">Installing and Launching SQream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/recommended_pre-installation_configurations.html">Recommended Pre-Installation Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/installing_sqream_with_binary.html">Installing SQream Using Binary Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/running_sqream_in_a_docker_container.html">Installing and Running SQream in a Docker Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/installing_sqream_with_kubernetes.html">Installing SQream with Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/installing_monit.html">Installing Monit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/launching_sqream_with_monit.html">Launching SQream with Monit</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../installation_guides/sqream_studio_installation.html">Installing SQream Studio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/installing_prometheus_exporters.html">Installing Prometheus Exporter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/installing_prometheus_using_binary_packages.html">Installing Prometheus Using Binary Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/installing_dashboard_data_collector.html">Installing the Dashboard Data Collector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/installing_studio_on_stand_alone_server.html">Installing Studio on a Stand-Alone Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../installation_guides/installing_nginx_proxy_over_secure_connection.html">Installing an NGINX Proxy Over a Secure Connection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../data_ingestion/index.html">Data Ingestion Sources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_ingestion/ingesting_data.html">Ingesting Data Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_ingestion/avro.html">Ingesting Data from Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_ingestion/csv.html">Ingesting Data from a CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_ingestion/parquet.html">Ingesting Data from a Parquet File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_ingestion/orc.html">Ingesting Data from an ORC File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_ingestion/json.html">Ingesting Data from JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../connecting_to_sqream/index.html">Connecting to SQream</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/index.html">Client Platforms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/informatica.html">Connect to SQream Using Informatica Cloud Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/microstrategy.html">Connect to SQream Using MicroStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/pentaho.html">Connecting to SQream Using Pentaho Data Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/php.html">Connect to SQream Using PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/power_bi.html">Connecting to SQream Using Power BI Desktop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/r.html">Connect to SQream Using R</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/sap_businessobjects.html">Connecting to SQream Using SAP BusinessObjects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/sas_viya.html">Connect to SQream Using SAS Viya</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/sql_workbench.html">Connect to SQream Using SQL Workbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/tableau.html">Connecting to SQream Using Tableau</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/talend.html">Connecting to SQream Using Talend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_platforms/tibco_spotfire.html">Connecting to SQream Using TIBCO Spotfire</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../connecting_to_sqream/client_drivers/index.html">Client Drivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_drivers/trino/index.html">Connecting to SQream Using Trino</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_drivers/jdbc/index.html">Connecting to SQream Using JDBC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_drivers/python/index.html">Connecting to SQream Using Python (pysqream)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_drivers/nodejs/index.html">Connecting to SQream Using Node.JS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_drivers/odbc/index.html">ODBC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../connecting_to_sqream/client_drivers/odbc/install_configure_odbc_windows.html">Install and Configure ODBC on Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../connecting_to_sqream/client_drivers/odbc/install_configure_odbc_linux.html">Install and configure ODBC on Linux</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../connecting_to_sqream/client_drivers/dotnet/index.html">Connecting to SQream Using .NET</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../external_storage_platforms/index.html">External Storage Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../external_storage_platforms/s3.html">Inserting Data Using Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../external_storage_platforms/hdfs.html">Using SQream in an HDFS Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../loading_and_unloading_data/index.html">Loading and Unloading Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../feature_guides/index.html">Feature Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../feature_guides/automatic_foreign_table_ddl_resolution.html">Automatic Foreign Table DDL Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../feature_guides/query_healer.html">Query Healer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../feature_guides/data_encryption.html">Data Encryption</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../feature_guides/data_encryption_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../feature_guides/data_encryption_methods.html">Encryption Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../feature_guides/data_encryption_types.html">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../feature_guides/data_encryption_syntax.html">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../feature_guides/data_encryption_permissions.html">Permissions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../feature_guides/compression.html">Compression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../feature_guides/python_functions.html">Python UDF (User-Defined Functions)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../feature_guides/workload_manager.html">Workload Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../feature_guides/concurrency_and_locks.html">Concurrency and Locks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../feature_guides/concurrency_and_scaling_in_sqream.html">Concurrency and Scaling in SQream DB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../operational_guides/index.html">Operational Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/access_control.html">Access Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../operational_guides/access_control_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../operational_guides/access_control_password_policy.html">Password Policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../operational_guides/access_control_managing_roles.html">Managing Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../operational_guides/access_control_permissions.html">Permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../operational_guides/access_control_departmental_example.html">Departmental Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/creating_or_cloning_a_storage_cluster.html">Creating or Cloning Storage Clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/external_data.html">Working with External Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../operational_guides/s3.html">Inserting Data Using Amazon S3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../operational_guides/hdfs.html">Using SQream in an HDFS Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/foreign_tables.html">Foreign Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/delete_guide.html">Deleting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/exporting_data.html">Exporting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/logging.html">Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/monitoring_query_performance.html">Monitoring Query Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/saved_queries.html">Saved Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/seeing_system_objects_as_ddl.html">Seeing System Objects as DDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../operational_guides/optimization_best_practices.html">Optimization and Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../sqream_studio_5.4.7/index.html">SQream Acceleration Studio 5.4.7</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../sqream_studio_5.4.7/getting_started.html">Getting Started with SQream Acceleration Studio 5.4.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../sqream_studio_5.4.7/monitoring_workers_and_services_from_the_dashboard.html">Monitoring Workers and Services from the Dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../sqream_studio_5.4.7/executing_statements_and_running_queries_from_the_editor.html">Executing Statements and Running Queries from the Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../sqream_studio_5.4.7/viewing_logs.html">Viewing Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../sqream_studio_5.4.7/creating_assigning_and_managing_roles_and_permissions.html">Creating, Assigning, and Managing Roles and Permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../sqream_studio_5.4.7/configuring_your_instance_of_sqream.html">Configuring Your Instance of SQreams</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../architecture/index.html">System Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture/internals_architecture.html">Internals and architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../architecture/filesystem_and_filesystem_usage.html">Filesystem and usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../configuration_guides/index.html">Configuration Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration_guides/spooling.html">Configuring the Spooling Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration_guides/configuring_sqream.html">Configuring SQream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/current_method_configuration_levels.html">Configuration Levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/current_method_flag_types.html">Flag Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/current_method_configuration_roles.html">Configuration Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/current_method_modification_methods.html">Modification Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/current_method_configuring_your_parameter_values.html">Configuring Your Parameter Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/current_method_command_examples.html">Command Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/current_method_showing_all_flags_in_the_catalog_table.html">Showing All Flags in the Catalog Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/current_method_all_configurations.html">All Configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration_guides/ldap.html">Configuring LDAP authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration_guides/configuration_flags.html">Configuration Flags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/admin_flags.html">Administration Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../configuration_guides/admin_regular_flags.html">Regular Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../configuration_guides/admin_cluster_flags.html">Cluster Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../configuration_guides/admin_worker_flags.html">Worker Administration Flags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../configuration_guides/generic_flags.html">Generic Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../../configuration_guides/generic_regular_flags.html">Regular Generic Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../../configuration_guides/generic_worker_flags.html">Worker Generic Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../configuration_guides/previous_configuration_method.html">Configuring SQream Using the Previous Configuration Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../index.html">Reference Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../index.html">SQL Statements and Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../sql_syntax/index.html">SQL Syntax Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../index.html">SQL Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../sql_functions/index.html">SQL Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../sql_functions/scalar_functions/index.html">Built-In Scalar Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sql_functions/user_defined_functions/index.html">User-Defined Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sql_functions/aggregate_functions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../sql_functions/window_functions/index.html">Window Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../catalog_reference.html">Catalog Reference Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../catalog_reference_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../catalog_reference_schema_information.html">What Information Does the Schema Contain?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../catalog_reference_catalog_tables.html">Catalog Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../catalog_reference_additonal_tables.html">Additional Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../catalog_reference_examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../cli/index.html">Command line programs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../cli/metadata_server.html">metadata_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cli/sqreamd.html">sqreamd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cli/sqream_console.html">sqream-console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cli/sqream_installer.html">sqream-installer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cli/server_picker.html">Server Picker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cli/sqream_storage.html">SqreamStorage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cli/sqream_sql.html">sqream sql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../cli/upgrade_storage.html">upgrade_storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../sql_feature_support.html">SQL Feature Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../data_type_guides/index.html">Data Type Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_type_guides/converting_and_casting_types.html">Converting and Casting Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_type_guides/supported_data_types.html">Supported Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../data_type_guides/supported_casts.html">Supported Casts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../data_type_guides/sql_data_types_numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../data_type_guides/sql_data_types_boolean.html">Boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../data_type_guides/sql_data_types_integer.html">Integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../data_type_guides/sql_data_types_floating_point.html">Floating Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../data_type_guides/sql_data_types_string.html">String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../data_type_guides/sql_data_types_date.html">Date</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../releases/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../releases/4.0_index.html">Release Notes 4.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/4.0.html">Release Notes 4.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/4.1.html">Release Notes 4.1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../releases/2022.1_index.html">Release Notes 2022.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2022.1.7.html">Release Notes 2022.1.7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2022.1.6.html">Release Notes 2022.1.6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2022.1.5.html">Release Notes 2022.1.5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2022.1.4.html">Release Notes 2022.1.4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2022.1.3.html">Release Notes 2022.1.3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2022.1.2.html">Release Notes 2022.1.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2022.1.1.html">Release Notes 2022.1.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2022.1.html">Release Notes 2022.1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../releases/2021.2_index.html">Release Notes 2021.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2021.2.1.24.html">Release Notes 2021.2.1.24</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2021.2.1.html">Release Notes 2021.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2021.2.html">Release Notes 2021.2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../releases/2021.1_index.html">Release Notes 2021.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2021.1.2.html">Release Notes 2021.1.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2021.1.html">Release Notes 2021.1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../releases/2020.3_index.html">Release Notes 2020.3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2020.3.2.1.html">Release Notes 2020.3.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2020.3.2.html">What’s new in 2020.3.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2020.3.1.html">Release Notes 2020.3.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../../releases/2020.3.html">Release Notes 2020.3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../releases/2020.2.html">Release Notes 2020.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../releases/2020.1.html">Release Notes 2020.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/remedying_slow_queries.html">Remedying Slow Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/resolving_common_issues.html">Resolving Common Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/examining_logs.html">Examining Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/identifying_configuration_issues.html">Identifying Configuration Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/lock_related_issues.html">Lock Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/log_related_issues.html">Log Related Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/core_dumping_related_issues.html">Core Dumping Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../troubleshooting/information_for_support.html">Gathering Information for SQream Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #133148" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">SQream DB</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>COPY FROM</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="copy-from">
+<span id="id1"></span><h1>COPY FROM<a class="headerlink" href="#copy-from" title="Permalink to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">COPY</span> <span class="pre">...</span> <span class="pre">FROM</span></code> is a statement that allows loading data from files on the filesystem and importing them into SQream tables. This is the recommended way for bulk loading CSV files into SQream DB. In general, <code class="docutils literal notranslate"><span class="pre">COPY</span></code> moves data between filesystem files and SQream DB tables.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ul class="simple">
+<li><p>Learn how to migrate from CSV files in the <a class="reference internal" href="../../../../data_ingestion/csv.html#csv"><span class="std std-ref">Ingesting Data from a CSV File</span></a> guide</p></li>
+<li><p>To copy data from a table to a file, see <a class="reference internal" href="copy_to.html#copy-to"><span class="std std-ref">COPY TO</span></a>.</p></li>
+<li><p>To load Parquet or ORC files, see <a class="reference internal" href="../ddl_commands/create_foreign_table.html#create-foreign-table"><span class="std std-ref">CREATE FOREIGN TABLE</span></a></p></li>
+</ul>
+</div>
+<section id="permissions">
+<h2>Permissions<a class="headerlink" href="#permissions" title="Permalink to this heading"></a></h2>
+<p>The role must have the <code class="docutils literal notranslate"><span class="pre">INSERT</span></code> permission to the destination table.</p>
+</section>
+<section id="syntax">
+<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this heading"></a></h2>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="k">COPY</span><span class="w"> </span><span class="p">[</span><span class="k">schema</span><span class="w"> </span><span class="k">name</span><span class="mf">.</span><span class="p">]</span><span class="n">table_name</span><span class="w"></span>
+<span class="w">   </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">fdw_name</span><span class="w"></span>
+<span class="w">   </span><span class="k">OPTIONS</span><span class="w"></span>
+<span class="w">   </span><span class="p">(</span><span class="w"></span>
+<span class="w">     </span><span class="p">[</span><span class="w"> </span><span class="n">copy_from_option</span><span class="w"> </span><span class="p">[,</span><span class="w"> </span><span class="mf">...</span><span class="p">]</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="w">   </span><span class="p">)</span><span class="w"></span>
+<span class="w"> </span><span class="p">;</span><span class="w"></span>
+
+<span class="w"> </span><span class="n">schema_name</span><span class="w"> </span><span class="o">::=</span><span class="w"> </span><span class="n">identifer</span><span class="w"></span>
+
+<span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="o">::=</span><span class="w"> </span><span class="n">identifier</span><span class="w"></span>
+
+<span class="w"> </span><span class="n">copy_from_option</span><span class="w"> </span><span class="o">::=</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">LOCATION</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">filename</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">S3</span><span class="w"> </span><span class="n">URI</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">HDFS</span><span class="w"> </span><span class="n">URI</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">QUOTE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;C&#39;</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="sa">E</span><span class="s1">&#39;\ooo&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">OFFSET</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">offset</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">LIMIT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">limit</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="k">DELIMITER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;{ delimiter }&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">RECORD_DELIMITER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;{ record delimiter }&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">ERROR_LOG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;{ local filepath }&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">REJECTED_DATA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;{ local filepath }&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">CONTINUE_ON_ERROR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">true</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">false</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">ERROR_COUNT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;{ error count }&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">DATETIME_FORMAT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;{ parser format }&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">AWS_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;{ AWS ID }&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="o">|</span><span class="w"> </span><span class="n">AWS_SECRET</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;{ AWS Secret }&#39;</span><span class="w"></span>
+
+<span class="k">offset</span><span class="w"> </span><span class="o">::=</span><span class="w"> </span><span class="n">positive</span><span class="w"> </span><span class="nb">integer</span><span class="w"></span>
+
+<span class="k">limit</span><span class="w"> </span><span class="o">::=</span><span class="w"> </span><span class="n">positive</span><span class="w"> </span><span class="nb">integer</span><span class="w"></span>
+
+<span class="k">delimiter</span><span class="w"> </span><span class="o">::=</span><span class="w"> </span><span class="n">string</span><span class="w"></span>
+
+<span class="nb">record</span><span class="w"> </span><span class="k">delimiter</span><span class="w"> </span><span class="o">::=</span><span class="w"> </span><span class="n">string</span><span class="w"></span>
+
+<span class="n">error</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">::=</span><span class="w"> </span><span class="nb">integer</span><span class="w"></span>
+
+<span class="n">parser_format</span><span class="w"> </span><span class="o">::=</span><span class="w"> </span><span class="n">see</span><span class="w"> </span><span class="n">supported</span><span class="w"> </span><span class="k">parser</span><span class="w"> </span><span class="k">table</span><span class="w"> </span><span class="n">below</span><span class="w"></span>
+
+<span class="n">AWS</span><span class="w"> </span><span class="n">ID</span><span class="w"> </span><span class="o">::=</span><span class="w"> </span><span class="n">string</span><span class="w"></span>
+
+<span class="n">AWS</span><span class="w"> </span><span class="n">Secret</span><span class="w"> </span><span class="o">::=</span><span class="w"> </span><span class="n">string</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some options are applicable to CSVs only.</p>
+<p>These include:
+<code class="docutils literal notranslate"><span class="pre">OFFSET</span></code>, <code class="docutils literal notranslate"><span class="pre">LIMIT</span></code>, <code class="docutils literal notranslate"><span class="pre">DELIMITER</span></code>, <code class="docutils literal notranslate"><span class="pre">RECORD_DELIMITER</span></code>, <code class="docutils literal notranslate"><span class="pre">REJECTED_DATA</span></code>, <code class="docutils literal notranslate"><span class="pre">DATETIME_FORMAT</span></code></p>
+</div>
+</section>
+<section id="elements">
+<span id="copy-from-config-options"></span><h2>Elements<a class="headerlink" href="#elements" title="Permalink to this heading"></a></h2>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Default value</p></th>
+<th class="head"><p>Value range</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">[schema_name.]table_name</span></code></p></td>
+<td><p>None</p></td>
+<td></td>
+<td><p>Table to copy data into</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">QUOTE</span></code></p></td>
+<td><p>“</p></td>
+<td></td>
+<td><p>Specifies an alternative quote character. The quote character must be a single, 1-byte printable ASCII character, and the equivalent octal syntax of the copy command can be used. The quote character cannot be contained in the field delimiter, the record delimiter, or the null marker. <code class="docutils literal notranslate"><span class="pre">QUOTE</span></code> can be used with <code class="docutils literal notranslate"><span class="pre">csv_fdw</span></code> in <strong>COPY FROM</strong> and foreign tables.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">name_fdw</span></code></p></td>
+<td></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">csv_fdw</span></code>, <code class="docutils literal notranslate"><span class="pre">orc_fdw</span></code>, or <code class="docutils literal notranslate"><span class="pre">parquet_fdw</span></code></p></td>
+<td><p>The name of the Foreign Data Wrapper to use</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LOCATION</span></code></p></td>
+<td><p>None</p></td>
+<td></td>
+<td><p>A path on the local filesystem, S3, or HDFS URI. For example, <code class="docutils literal notranslate"><span class="pre">/tmp/foo.csv</span></code>, <code class="docutils literal notranslate"><span class="pre">s3://my-bucket/foo.csv</span></code>, or <code class="docutils literal notranslate"><span class="pre">hdfs://my-namenode:8020/foo.csv</span></code>. The local path must be an absolute path that SQream DB can access. Wildcards are premitted in this field.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">OFFSET</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>&gt;1, but no more than the number of lines in the first file</p></td>
+<td><p>The row number to start with. The first row is <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">LIMIT</span></code></p></td>
+<td><p>unlimited</p></td>
+<td><p>1 to 2147483647.</p></td>
+<td><p>When specified, tells SQream DB to stop loading after the specified number of rows. Unlimited if unset.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DELIMITER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">','</span></code></p></td>
+<td><p>Almost any ASCII character, <a class="reference internal" href="#field-delimiters"><span class="std std-ref">See field delimiters section below</span></a></p></td>
+<td><p>Specifies the field terminator - the character (or characters) that separates fields or columns within each row of the file.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">RECORD_DELIMITER</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">\n</span></code> (UNIX style newline)</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">\n</span></code>, <code class="docutils literal notranslate"><span class="pre">\r\n</span></code>, <code class="docutils literal notranslate"><span class="pre">\r</span></code></p></td>
+<td><p>Specifies the row terminator - the character that separates lines or rows, also known as a new line separator.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ERROR_LOG</span></code></p></td>
+<td><p>No error log</p></td>
+<td></td>
+<td><p>When used, the <code class="docutils literal notranslate"><span class="pre">COPY</span></code> process will write error information from unparsable rows to the file specified by this parameter.</p>
+<ul class="simple">
+<li><p>If an existing file path is specified, it will be overwritten.</p></li>
+<li><p>Specifying the same file for <code class="docutils literal notranslate"><span class="pre">ERROR_LOG</span></code> and <code class="docutils literal notranslate"><span class="pre">REJECTED_DATA</span></code> is not allowed and will result in error.</p></li>
+<li><p>Specifing an error log when creating a foreign table will write a new error log for every query on the foreign table.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">REJECTED_DATA</span></code></p></td>
+<td><p>Inactive</p></td>
+<td></td>
+<td><p>When used, the <code class="docutils literal notranslate"><span class="pre">COPY</span></code> process will write the rejected record lines to this file.</p>
+<ul class="simple">
+<li><p>If an existing file path is specified, it will be overwritten.</p></li>
+<li><p>Specifying the same file for <code class="docutils literal notranslate"><span class="pre">ERROR_LOG</span></code> and <code class="docutils literal notranslate"><span class="pre">REJECTED_DATA</span></code> is not allowed and will result in error.</p></li>
+<li><p>Specifing an error log when creating a foreign table will write a new error log for every query on the foreign table.</p></li>
+</ul>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">CONTINUE_ON_ERROR</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">false</span></code></p></td>
+<td><p>true, false</p></td>
+<td><p>Specifies if errors should be ignored or skipped. When set to <code class="docutils literal notranslate"><span class="pre">true</span></code>, the transaction will continue despite rejected data.</p>
+<p>This parameter should be set together with <code class="docutils literal notranslate"><span class="pre">ERROR_COUNT</span></code>
+When reading multiple files, if an entire file can’t be opened it will be skipped.</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ERROR_COUNT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">unlimited</span></code></p></td>
+<td><p>1 to 2147483647</p></td>
+<td><p>Specifies the threshold for the maximum number of faulty records that will be ignored.</p>
+<p>This setting must be used in conjunction with <code class="docutils literal notranslate"><span class="pre">CONTINUE_ON_ERROR</span></code>.</p>
+</td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DATETIME_FORMAT</span></code></p></td>
+<td><p>ISO8601 for all columns</p></td>
+<td><p><a class="reference internal" href="#copy-date-parsers"><span class="std std-ref">See table below</span></a></p></td>
+<td><p>Allows specifying a non-default date formats for specific columns</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">AWS_ID</span></code>, <code class="docutils literal notranslate"><span class="pre">AWS_SECRET</span></code></p></td>
+<td><p>None</p></td>
+<td></td>
+<td><p>Specifies the authentication details for secured S3 buckets</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="supported-date-formats">
+<span id="copy-date-parsers"></span><h2>Supported Date Formats<a class="headerlink" href="#supported-date-formats" title="Permalink to this heading"></a></h2>
+<table class="colwidths-auto docutils align-default" id="id3">
+<caption><span class="caption-text">Supported date parsers</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Pattern</p></th>
+<th class="head"><p>Examples</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ISO8601</span></code>, <code class="docutils literal notranslate"><span class="pre">DEFAULT</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">YYYY-MM-DD</span> <span class="pre">[hh:mm:ss[.SSS]]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2017-12-31</span> <span class="pre">11:12:13.456</span></code>, <code class="docutils literal notranslate"><span class="pre">2018-11-02</span> <span class="pre">11:05:00</span></code>, <code class="docutils literal notranslate"><span class="pre">2019-04-04</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ISO8601C</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">YYYY-MM-DD</span> <span class="pre">[hh:mm:ss[:SSS]]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2017-12-31</span> <span class="pre">11:12:13:456</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DMY</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DD/MM/YYYY</span> <span class="pre">[hh:mm:ss[.SSS]]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">31/12/2017</span> <span class="pre">11:12:13.123</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">YMD</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">YYYY/MM/DD</span> <span class="pre">[hh:mm:ss[.SSS]]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2017/12/31</span> <span class="pre">11:12:13.678</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MDY</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">MM/DD/YYYY</span> <span class="pre">[hh:mm:ss[.SSS]]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">12/31/2017</span> <span class="pre">11:12:13.456</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">YYYYMMDD</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">YYYYMMDD[hh[mm[ss[SSS]]]]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">20171231111213456</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">YYYY-M-D</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">YYYY-M-D[</span> <span class="pre">h:m[:s[.S]]]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2017-9-10</span> <span class="pre">10:7:21.1</span></code> (optional leading zeroes)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">YYYY/M/D</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">YYYY/M/D[</span> <span class="pre">h:m[:s[.S]]]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2017/9/10</span> <span class="pre">10:7:21.1</span></code> (optional leading zeroes)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DD-mon-YYYY</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DD-mon-YYYY[</span> <span class="pre">hh:mm[:ss[.SSS]]]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">31-Dec-2017</span> <span class="pre">11:12:13.456</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">YYYY-mon-DD</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">YYYY-mon-DD[</span> <span class="pre">hh:mm[:ss[.SSS]]]</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">2017-Dec-31</span> <span class="pre">11:12:13.456</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Pattern</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">YYYY</span></code></p></td>
+<td><p>four digit year representation (0000-9999)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MM</span></code></p></td>
+<td><p>two digit month representation (01-12)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DD</span></code></p></td>
+<td><p>two digit day of month representation (01-31)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">m</span></code></p></td>
+<td><p>short month representation (Jan-Dec)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">a</span></code></p></td>
+<td><p>short day of week representation (Sun-Sat).</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">hh</span></code></p></td>
+<td><p>two digit 24 hour representation (00-23)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">h</span></code></p></td>
+<td><p>two digit 12 hour representation (00-12)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">P</span></code></p></td>
+<td><p>uppercase AM/PM representation</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">mm</span></code></p></td>
+<td><p>two digit minute representation (00-59)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ss</span></code></p></td>
+<td><p>two digit seconds representation (00-59)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SSS</span></code></p></td>
+<td><p>3 digits fraction representation for milliseconds (000-999)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>These date patterns are not the same as date parts used in the <a class="reference internal" href="../../sql_functions/scalar_functions/date_and_time/datepart.html#datepart"><span class="std std-ref">DATEPART</span></a> function.</p>
+</div>
+</section>
+<section id="supported-field-delimiters">
+<span id="field-delimiters"></span><h2>Supported Field Delimiters<a class="headerlink" href="#supported-field-delimiters" title="Permalink to this heading"></a></h2>
+<p>Field delimiters can be one or more characters.</p>
+<section id="customizing-quotations-using-alternative-characters">
+<h3>Customizing Quotations Using Alternative Characters<a class="headerlink" href="#customizing-quotations-using-alternative-characters" title="Permalink to this heading"></a></h3>
+<section id="syntax-example-1-customizing-quotations-using-alternative-characters">
+<h4>Syntax Example 1 - Customizing Quotations Using Alternative Characters<a class="headerlink" href="#syntax-example-1-customizing-quotations-using-alternative-characters" title="Permalink to this heading"></a></h4>
+<p>The following is the correct syntax for customizing quotations using alternative characters:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">copy</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">wrapper</span><span class="w"> </span><span class="n">csv_fdw</span><span class="w"> </span><span class="k">options</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/source_file.csv&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">quote</span><span class="o">=</span><span class="s1">&#39;@&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="k">copy</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">wrapper</span><span class="w"> </span><span class="n">csv_fdw</span><span class="w"> </span><span class="k">options</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/destination_file.csv&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">quote</span><span class="o">=</span><span class="s1">&#39;@&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="usage-example-1-customizing-quotations-using-alternative-characters">
+<h4>Usage Example 1 - Customizing Quotations Using Alternative Characters<a class="headerlink" href="#usage-example-1-customizing-quotations-using-alternative-characters" title="Permalink to this heading"></a></h4>
+<p>The following is an example of line taken from a CSV when customizing quotations using a character:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="n">Pepsi</span><span class="o">-</span><span class="s s-Name">&quot;Cola&quot;</span><span class="p">,</span><span class="o">@</span><span class="n">Coca</span><span class="o">-</span><span class="s s-Name">&quot;Cola&quot;</span><span class="o">@</span><span class="p">,</span><span class="n">Sprite</span><span class="p">,</span><span class="n">Fanta</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="syntax-example-2-customizing-quotations-using-ascii-character-codes">
+<h4>Syntax Example 2 - Customizing Quotations Using ASCII Character Codes<a class="headerlink" href="#syntax-example-2-customizing-quotations-using-ascii-character-codes" title="Permalink to this heading"></a></h4>
+<p>The following is the correct syntax for customizing quotations using ASCII character codes:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">copy</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="k">wrapper</span><span class="w"> </span><span class="n">csv_fdw</span><span class="w"> </span><span class="k">options</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/source_file.csv&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">quote</span><span class="o">=</span><span class="sa">E</span><span class="s1">&#39;\064&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="k">copy</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="k">wrapper</span><span class="w"> </span><span class="n">csv_fdw</span><span class="w"> </span><span class="k">options</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/destination_file.csv&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">quote</span><span class="o">=</span><span class="sa">E</span><span class="s1">&#39;\064&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="usage-example-2-customizing-quotations-using-ascii-character-codes">
+<h4>Usage Example 2 - Customizing Quotations Using ASCII Character Codes<a class="headerlink" href="#usage-example-2-customizing-quotations-using-ascii-character-codes" title="Permalink to this heading"></a></h4>
+<p>The following is an example of line taken from a CSV when customizing quotations using an ASCII character code:</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="n">Pepsi</span><span class="o">-</span><span class="s s-Name">&quot;Cola&quot;</span><span class="p">,</span><span class="o">@</span><span class="n">Coca</span><span class="o">-</span><span class="s s-Name">&quot;Cola&quot;</span><span class="o">@</span><span class="p">,</span><span class="n">Sprite</span><span class="p">,</span><span class="n">Fanta</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="multi-character-delimiters">
+<h3>Multi-Character Delimiters<a class="headerlink" href="#multi-character-delimiters" title="Permalink to this heading"></a></h3>
+<p>SQream DB supports multi-character field delimiters, sometimes found in non-standard files.</p>
+<p>A multi-character delimiter can be specified. For example, <code class="docutils literal notranslate"><span class="pre">DELIMITER</span> <span class="pre">'%%'</span></code>, <code class="docutils literal notranslate"><span class="pre">DELIMITER</span> <span class="pre">'{~}'</span></code>, etc.</p>
+</section>
+<section id="printable-characters">
+<h3>Printable Characters<a class="headerlink" href="#printable-characters" title="Permalink to this heading"></a></h3>
+<p>Any printable ASCII character (or characters) can be used as a delimiter without special syntax. The default CSV field delimiter is a comma (<code class="docutils literal notranslate"><span class="pre">,</span></code>).</p>
+<p>A printable character is any ASCII character in the range 32 - 126.</p>
+<p><a class="reference internal" href="../../sql_syntax/literals.html#string-literals"><span class="std std-ref">Literal quoting rules</span></a> apply with delimiters. For example, to use <code class="docutils literal notranslate"><span class="pre">'</span></code> as a field delimiter, use <code class="docutils literal notranslate"><span class="pre">DELIMITER</span> <span class="pre">''''</span></code></p>
+</section>
+<section id="non-printable-characters">
+<h3>Non-Printable Characters<a class="headerlink" href="#non-printable-characters" title="Permalink to this heading"></a></h3>
+<p>A non-printable character (1 - 31, 127) can be used in its octal form.</p>
+<p>A tab can be specified by escaping it, for example <code class="docutils literal notranslate"><span class="pre">\t</span></code>. Other non-printable characters can be specified using their octal representations, by using the <code class="docutils literal notranslate"><span class="pre">E'\000'</span></code> format, where <code class="docutils literal notranslate"><span class="pre">000</span></code> is the octal value of the character.</p>
+<p>For example, ASCII character <code class="docutils literal notranslate"><span class="pre">15</span></code>, known as “shift in”, can be specified using <code class="docutils literal notranslate"><span class="pre">E'\017'</span></code>.</p>
+</section>
+</section>
+<section id="unsupported-field-delimiters">
+<span id="capturing-rejected-rows"></span><h2>Unsupported Field Delimiters<a class="headerlink" href="#unsupported-field-delimiters" title="Permalink to this heading"></a></h2>
+<p>The following ASCII field delimiters (octal range 001 - 176) are not supported:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 11%" />
+<col style="width: 10%" />
+<col style="width: 13%" />
+<col style="width: 11%" />
+<col style="width: 10%" />
+<col style="width: 13%" />
+<col style="width: 11%" />
+<col style="width: 10%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Character</strong></p></th>
+<th class="head"><p><strong>Decimal</strong></p></th>
+<th class="head"><p><strong>Symbol</strong></p></th>
+<th class="head"><p><strong>Character</strong></p></th>
+<th class="head"><p><strong>Decimal</strong></p></th>
+<th class="head"><p><strong>Symbol</strong></p></th>
+<th class="head"><p><strong>Character</strong></p></th>
+<th class="head"><p><strong>Decimal</strong></p></th>
+<th class="head"><p><strong>Symbol</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>45</p></td>
+<td><p>55</p></td>
+<td><p>b</p></td>
+<td><p>98</p></td>
+<td><p>142</p></td>
+<td><p>q</p></td>
+<td><p>113</p></td>
+<td><p>161</p></td>
+</tr>
+<tr class="row-odd"><td><p>.</p></td>
+<td><p>46</p></td>
+<td><p>56</p></td>
+<td><p>c</p></td>
+<td><p>99</p></td>
+<td><p>143</p></td>
+<td><p>r</p></td>
+<td><p>114</p></td>
+<td><p>162</p></td>
+</tr>
+<tr class="row-even"><td><p>:</p></td>
+<td><p>58</p></td>
+<td><p>72</p></td>
+<td><p>d</p></td>
+<td><p>100</p></td>
+<td><p>144</p></td>
+<td><p>s</p></td>
+<td><p>115</p></td>
+<td><p>163</p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p>92</p></td>
+<td><p>134</p></td>
+<td><p>e</p></td>
+<td><p>101</p></td>
+<td><p>145</p></td>
+<td><p>t</p></td>
+<td><p>116</p></td>
+<td><p>164</p></td>
+</tr>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>48</p></td>
+<td><p>60</p></td>
+<td><p>f</p></td>
+<td><p>102</p></td>
+<td><p>146</p></td>
+<td><p>u</p></td>
+<td><p>117</p></td>
+<td><p>165</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>49</p></td>
+<td><p>61</p></td>
+<td><p>g</p></td>
+<td><p>103</p></td>
+<td><p>147</p></td>
+<td><p>v</p></td>
+<td><p>118</p></td>
+<td><p>166</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>50</p></td>
+<td><p>62</p></td>
+<td><p>h</p></td>
+<td><p>104</p></td>
+<td><p>150</p></td>
+<td><p>w</p></td>
+<td><p>119</p></td>
+<td><p>167</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>51</p></td>
+<td><p>63</p></td>
+<td><p>i</p></td>
+<td><p>105</p></td>
+<td><p>151</p></td>
+<td><p>x</p></td>
+<td><p>120</p></td>
+<td><p>170</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>52</p></td>
+<td><p>64</p></td>
+<td><p>j</p></td>
+<td><p>106</p></td>
+<td><p>152</p></td>
+<td><p>y</p></td>
+<td><p>121</p></td>
+<td><p>171</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>53</p></td>
+<td><p>65</p></td>
+<td><p>k</p></td>
+<td><p>107</p></td>
+<td><p>153</p></td>
+<td><p>z</p></td>
+<td><p>122</p></td>
+<td><p>172</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>54</p></td>
+<td><p>66</p></td>
+<td><p>l</p></td>
+<td><p>108</p></td>
+<td><p>154</p></td>
+<td><p>N</p></td>
+<td><p>78</p></td>
+<td><p>116</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>55</p></td>
+<td><p>67</p></td>
+<td><p>m</p></td>
+<td><p>109</p></td>
+<td><p>155</p></td>
+<td><p>10</p></td>
+<td><p>49</p></td>
+<td><p>12</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>56</p></td>
+<td><p>70</p></td>
+<td><p>n</p></td>
+<td><p>110</p></td>
+<td><p>156</p></td>
+<td rowspan="3"><p>13</p></td>
+<td rowspan="3"><p>49</p></td>
+<td rowspan="3"><p>13</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>57</p></td>
+<td><p>71</p></td>
+<td><p>o</p></td>
+<td><p>111</p></td>
+<td><p>157</p></td>
+</tr>
+<tr class="row-even"><td><p>a</p></td>
+<td><p>97</p></td>
+<td><p>141</p></td>
+<td><p>p</p></td>
+<td><p>112</p></td>
+<td><p>160</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id2">
+<h2>Capturing Rejected Rows<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>Prior to the column process and storage, the <code class="docutils literal notranslate"><span class="pre">COPY</span></code> command parses the data.
+Whenever the data can’t be parsed because it is improperly formatted or doesn’t match the data structure, the entire record (or row) will be rejected.</p>
+<img alt="../../../../_images/copy_from_rejected_rows.png" src="../../../../_images/copy_from_rejected_rows.png" />
+<ol class="arabic simple">
+<li><p>When <code class="docutils literal notranslate"><span class="pre">ERROR_LOG</span></code> is not used, the <code class="docutils literal notranslate"><span class="pre">COPY</span></code> command will stop and roll back the transaction upon the first error.</p></li>
+<li><p>When <code class="docutils literal notranslate"><span class="pre">ERROR_LOG</span></code> is set and <code class="docutils literal notranslate"><span class="pre">ERROR_VERBOSITY</span></code> is set to <code class="docutils literal notranslate"><span class="pre">1</span></code> (default), all errors and rejected rows are saved to the file path specified.</p></li>
+<li><p>When <code class="docutils literal notranslate"><span class="pre">ERROR_LOG</span></code> is set and <code class="docutils literal notranslate"><span class="pre">ERROR_VERBOSITY</span></code> is set to <code class="docutils literal notranslate"><span class="pre">0</span></code>, rejected rows are saved to the file path specified, but errors are not logged. This is useful for replaying the file later.</p></li>
+</ol>
+</section>
+<section id="csv-support">
+<h2>CSV Support<a class="headerlink" href="#csv-support" title="Permalink to this heading"></a></h2>
+<p>By default, SQream DB’s CSV parser can handle <a class="reference external" href="https://tools.ietf.org/html/rfc4180">RFC 4180 standard CSVs</a> , but can also be modified to support non-standard CSVs (with multi-character delimiters, unquoted fields, etc).</p>
+<p>All CSV files should be prepared according to these recommendations:</p>
+<ul>
+<li><p>Files are UTF-8 or ASCII encoded</p></li>
+<li><p>Field delimiter is an ASCII character or characters</p></li>
+<li><p>Record delimiter, also known as a new line separator, is a Unix-style newline (<code class="docutils literal notranslate"><span class="pre">\n</span></code>), DOS-style newline (<code class="docutils literal notranslate"><span class="pre">\r\n</span></code>), or Mac style newline (<code class="docutils literal notranslate"><span class="pre">\r</span></code>).</p></li>
+<li><p>Fields are optionally enclosed by double-quotes, or mandatory quoted if they contain one of the following characters:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The record delimiter or field delimiter</p></li>
+<li><p>A double quote character</p></li>
+<li><p>A newline</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>If a field is quoted, any double quote that appears must be double-quoted (similar to the <a class="reference internal" href="../../sql_syntax/literals.html#string-literals"><span class="std std-ref">string literals quoting rules</span></a>. For example, to encode <code class="docutils literal notranslate"><span class="pre">What</span> <span class="pre">are</span> <span class="pre">&quot;birds&quot;?</span></code>, the field should appear as <code class="docutils literal notranslate"><span class="pre">&quot;What</span> <span class="pre">are</span> <span class="pre">&quot;&quot;birds&quot;&quot;?&quot;</span></code>.</p>
+<p>Other modes of escaping are not supported (e.g. <code class="docutils literal notranslate"><span class="pre">1,&quot;What</span> <span class="pre">are</span> <span class="pre">\&quot;birds\&quot;?&quot;</span></code> is not a valid way of escaping CSV values).</p>
+</li>
+</ul>
+<section id="marking-null-markers">
+<h3>Marking Null Markers<a class="headerlink" href="#marking-null-markers" title="Permalink to this heading"></a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">NULL</span></code> values can be marked in two ways in the CSV:</p>
+<ul class="simple">
+<li><p>An explicit null marker. For example, <code class="docutils literal notranslate"><span class="pre">col1,\N,col3</span></code></p></li>
+<li><p>An empty field delimited by the field delimiter. For example, <code class="docutils literal notranslate"><span class="pre">col1,,col3</span></code></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If a text field is quoted but contains no content (<code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code>) it is considered an empty text field. It is not considered <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
+</div>
+</section>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<section id="loading-a-standard-csv-file">
+<h3>Loading a Standard CSV File<a class="headerlink" href="#loading-a-standard-csv-file" title="Permalink to this heading"></a></h3>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">csv_fdw</span><span class="w"> </span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/file.csv&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="skipping-faulty-rows">
+<h3>Skipping Faulty Rows<a class="headerlink" href="#skipping-faulty-rows" title="Permalink to this heading"></a></h3>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">csv_fdw</span><span class="w"> </span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/file.csv&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">continue_on_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="skipping-a-maximum-of-100-faulty-rows">
+<h3>Skipping a Maximum of 100 Faulty Rows<a class="headerlink" href="#skipping-a-maximum-of-100-faulty-rows" title="Permalink to this heading"></a></h3>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">csv_fdw</span><span class="w"> </span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/file.csv&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">continue_on_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="p">,</span><span class="w"> </span><span class="n">error_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="loading-a-pipe-separated-value-psv-file">
+<h3>Loading a Pipe Separated Value (PSV) File<a class="headerlink" href="#loading-a-pipe-separated-value-psv-file" title="Permalink to this heading"></a></h3>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">csv_fdw</span><span class="w"> </span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/file.psv&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">delimiter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="loading-a-tab-separated-value-tsv-file">
+<h3>Loading a Tab Separated Value (TSV) File<a class="headerlink" href="#loading-a-tab-separated-value-tsv-file" title="Permalink to this heading"></a></h3>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">csv_fdw</span><span class="w"> </span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/file.tsv&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">delimiter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;\t&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="loading-an-orc-file">
+<h3>Loading an ORC File<a class="headerlink" href="#loading-an-orc-file" title="Permalink to this heading"></a></h3>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">orc_fdw</span><span class="w"> </span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/file.orc&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="loading-a-parquet-file">
+<h3>Loading a Parquet File<a class="headerlink" href="#loading-a-parquet-file" title="Permalink to this heading"></a></h3>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">parquet_fdw</span><span class="w"> </span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/file.parquet&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="loading-a-text-file-with-non-printable-delimiters">
+<h3>Loading a Text File with Non-Printable Delimiters<a class="headerlink" href="#loading-a-text-file-with-non-printable-delimiters" title="Permalink to this heading"></a></h3>
+<p>In the file below, the separator is <code class="docutils literal notranslate"><span class="pre">DC1</span></code>, which is represented by ASCII 17 decimal or 021 octal.</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">psv_fdw</span><span class="w"> </span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/file.txt&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">delimiter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sa">E</span><span class="s1">&#39;\021&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="loading-a-text-file-with-multi-character-delimiters">
+<h3>Loading a Text File with Multi-Character Delimiters<a class="headerlink" href="#loading-a-text-file-with-multi-character-delimiters" title="Permalink to this heading"></a></h3>
+<p>In the file below, the separator is <code class="docutils literal notranslate"><span class="pre">^|</span></code>.</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">psv_fdw</span><span class="w"> </span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/file.txt&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">delimiter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;^|&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In the file below, the separator is <code class="docutils literal notranslate"><span class="pre">'|</span></code>. The quote character has to be repeated, as per the <a class="reference internal" href="../../sql_syntax/literals.html#string-literals"><span class="std std-ref">literal quoting rules</span></a>.</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">psv_fdw</span><span class="w"> </span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/file.txt&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">delimiter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;&#39;&#39;</span><span class="o">|</span><span class="s1">&#39;);</span>
+</pre></div>
+</div>
+</section>
+<section id="loading-files-with-a-header-row">
+<h3>Loading Files with a Header Row<a class="headerlink" href="#loading-files-with-a-header-row" title="Permalink to this heading"></a></h3>
+<p>Use <code class="docutils literal notranslate"><span class="pre">OFFSET</span></code> to skip rows.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When loading multiple files (e.g. with wildcards), this setting affects each file separately.</p>
+</div>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">csv_fdw</span><span class="w"> </span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/file.psv&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">delimiter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="loading-files-formatted-for-windows-r-n">
+<h3>Loading Files Formatted for Windows (<code class="docutils literal notranslate"><span class="pre">\r\n</span></code>)<a class="headerlink" href="#loading-files-formatted-for-windows-r-n" title="Permalink to this heading"></a></h3>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">csv_fdw</span><span class="w"> </span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/file.psv&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">delimiter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;\r\n&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="loading-a-file-from-a-public-s3-bucket">
+<h3>Loading a File from a Public S3 Bucket<a class="headerlink" href="#loading-a-file-from-a-public-s3-bucket" title="Permalink to this heading"></a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The bucket must be publicly available and objects can be listed</p>
+</div>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">csv_fdw</span><span class="w"> </span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;s3://sqream-demo-data/file.csv&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">delimiter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;\r\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">offset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="loading-files-from-an-authenticated-s3-bucket">
+<h3>Loading Files from an Authenticated S3 Bucket<a class="headerlink" href="#loading-files-from-an-authenticated-s3-bucket" title="Permalink to this heading"></a></h3>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">psv_fdw</span><span class="w"> </span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;s3://secret-bucket/*.csv&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">DELIMITER</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;\r\n&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">OFFSET</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="n">AWS_ID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;12345678&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">AWS_SECRET</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;super_secretive_secret&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="saving-rejected-rows-to-a-file">
+<h3>Saving Rejected Rows to a File<a class="headerlink" href="#saving-rejected-rows-to-a-file" title="Permalink to this heading"></a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When loading multiple files (e.g. with wildcards), this error threshold is for the entire transaction.</p>
+</div>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">csv_fdw</span><span class="w"> </span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/file.csv&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">                                                                                                                     </span><span class="p">,</span><span class="n">continue_on_error</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="k">true</span><span class="w"></span>
+<span class="w">                                             </span><span class="p">,</span><span class="n">error_log</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/temp/load_error.log&#39;</span><span class="w"></span>
+<span class="w">                                             </span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">csv_fdw</span><span class="w"> </span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/file.psv&#39;</span><span class="w"></span>
+<span class="w">                                                                                                                     </span><span class="p">,</span><span class="k">delimiter</span><span class="w"> </span><span class="s1">&#39;|&#39;</span><span class="w"></span>
+<span class="w">                                             </span><span class="p">,</span><span class="n">error_log</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/temp/load_error.log&#39;</span><span class="w"> </span><span class="c1">-- Save error log</span>
+<span class="w">                                             </span><span class="p">,</span><span class="n">rejected_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/temp/load_rejected.log&#39;</span><span class="w"> </span><span class="c1">-- Only save rejected rows</span>
+<span class="w">                                             </span><span class="p">,</span><span class="k">limit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span><span class="w"> </span><span class="c1">-- Only load 100 rows</span>
+<span class="w">                                             </span><span class="p">,</span><span class="n">error_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="w"> </span><span class="c1">-- Stop the load if 5 errors reached</span>
+<span class="w">                                             </span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="loading-csv-files-from-a-set-of-directories">
+<h3>Loading CSV Files from a Set of Directories<a class="headerlink" href="#loading-csv-files-from-a-set-of-directories" title="Permalink to this heading"></a></h3>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">csv_fdw</span><span class="w"> </span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/2019_08_*/*.csv&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="rearranging-destination-columns">
+<h3>Rearranging Destination Columns<a class="headerlink" href="#rearranging-destination-columns" title="Permalink to this heading"></a></h3>
+<p>When the source of the files does not match the table structure, tell the <code class="docutils literal notranslate"><span class="pre">COPY</span></code> command what the order of columns should be</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="p">(</span><span class="n">fifth</span><span class="p">,</span><span class="w"> </span><span class="k">first</span><span class="p">,</span><span class="w"> </span><span class="n">third</span><span class="p">)</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">csv_fdw</span><span class="w"> </span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/*.csv&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Any column not specified will revert to its default value or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> value if nullable</p>
+</div>
+</section>
+<section id="loading-non-standard-dates">
+<h3>Loading Non-Standard Dates<a class="headerlink" href="#loading-non-standard-dates" title="Permalink to this heading"></a></h3>
+<p>If files contain dates not formatted as <code class="docutils literal notranslate"><span class="pre">ISO8601</span></code>, tell <code class="docutils literal notranslate"><span class="pre">COPY</span></code> how to parse the column. After parsing, the date will appear as <code class="docutils literal notranslate"><span class="pre">ISO8601</span></code> inside SQream DB.</p>
+<p>These are called date parsers. You can find the supported dates in the <a class="reference internal" href="#copy-date-parsers"><span class="std std-ref">‘Supported date parsers’ table</span></a> above</p>
+<p>In this example, <code class="docutils literal notranslate"><span class="pre">date_col1</span></code> and <code class="docutils literal notranslate"><span class="pre">date_col2</span></code> in the table are non-standard. <code class="docutils literal notranslate"><span class="pre">date_col3</span></code> is mentioned explicitly, but can be left out. Any column that is not specified is assumed to be <code class="docutils literal notranslate"><span class="pre">ISO8601</span></code>.</p>
+<div class="highlight-postgres notranslate"><div class="highlight"><pre><span></span><span class="k">COPY</span><span class="w"> </span><span class="n">table_name</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">WRAPPER</span><span class="w"> </span><span class="n">csv_fdw</span><span class="w"> </span><span class="k">OPTIONS</span><span class="w"> </span><span class="p">(</span><span class="k">location</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;/tmp/*.csv&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">datetime_format</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;DMY&#39;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 SQream.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

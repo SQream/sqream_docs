@@ -1,0 +1,1690 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Installing and Running SQream in a Docker Container &mdash; SQream DB 4.1 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Installing SQream with Kubernetes" href="installing_sqream_with_kubernetes.html" />
+    <link rel="prev" title="Installing SQream Using Binary Packages" href="installing_sqream_with_binary.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #133148" >
+            <a href="../index.html">
+            <img src="../_static/SQream_logo_without background-15.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/index.html">Getting Started</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/preparing_your_machine_to_install_sqream.html">Preparing Your Machine to Install SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/installing_sqream.html">Installing SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/executing_statements_in_sqream.html">Executing Statements in SQream</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/performing_basic_sqream_operations.html">Performing Basic SQream Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/running_the_sqream_sql_client.html">Running the SQream SQL Client</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/creating_your_first_table.html">Creating Your First Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/listing_tables.html">Listing Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/inserting_rows.html">Inserting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/running_queries.html">Running Queries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/deleting_rows.html">Deleting Rows</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../getting_started/saving_query_results_to_a_csv_or_psv_file.html">Saving Query Results to a CSV or PSV File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../getting_started/hardware_guide.html">Hardware Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation Guides</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="installing_and_launching_sqream.html">Installing and Launching SQream</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="recommended_pre-installation_configurations.html">Recommended Pre-Installation Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installing_sqream_with_binary.html">Installing SQream Using Binary Packages</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Installing and Running SQream in a Docker Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installing_sqream_with_kubernetes.html">Installing SQream with Kubernetes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installing_monit.html">Installing Monit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="launching_sqream_with_monit.html">Launching SQream with Monit</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="sqream_studio_installation.html">Installing SQream Studio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installing_prometheus_exporters.html">Installing Prometheus Exporter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installing_prometheus_using_binary_packages.html">Installing Prometheus Using Binary Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installing_dashboard_data_collector.html">Installing the Dashboard Data Collector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installing_studio_on_stand_alone_server.html">Installing Studio on a Stand-Alone Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installing_nginx_proxy_over_secure_connection.html">Installing an NGINX Proxy Over a Secure Connection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_ingestion/index.html">Data Ingestion Sources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/ingesting_data.html">Ingesting Data Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/avro.html">Ingesting Data from Avro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/csv.html">Ingesting Data from a CSV File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/parquet.html">Ingesting Data from a Parquet File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/orc.html">Ingesting Data from an ORC File</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_ingestion/json.html">Ingesting Data from JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../connecting_to_sqream/index.html">Connecting to SQream</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../connecting_to_sqream/client_platforms/index.html">Client Platforms</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/informatica.html">Connect to SQream Using Informatica Cloud Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/microstrategy.html">Connect to SQream Using MicroStrategy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/pentaho.html">Connecting to SQream Using Pentaho Data Integration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/php.html">Connect to SQream Using PHP</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/power_bi.html">Connecting to SQream Using Power BI Desktop</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/r.html">Connect to SQream Using R</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/sap_businessobjects.html">Connecting to SQream Using SAP BusinessObjects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/sas_viya.html">Connect to SQream Using SAS Viya</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/sql_workbench.html">Connect to SQream Using SQL Workbench</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/tableau.html">Connecting to SQream Using Tableau</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/talend.html">Connecting to SQream Using Talend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_platforms/tibco_spotfire.html">Connecting to SQream Using TIBCO Spotfire</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../connecting_to_sqream/client_drivers/index.html">Client Drivers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/trino/index.html">Connecting to SQream Using Trino</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/jdbc/index.html">Connecting to SQream Using JDBC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/python/index.html">Connecting to SQream Using Python (pysqream)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/nodejs/index.html">Connecting to SQream Using Node.JS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/odbc/index.html">ODBC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../connecting_to_sqream/client_drivers/odbc/install_configure_odbc_windows.html">Install and Configure ODBC on Windows</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../connecting_to_sqream/client_drivers/odbc/install_configure_odbc_linux.html">Install and configure ODBC on Linux</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../connecting_to_sqream/client_drivers/dotnet/index.html">Connecting to SQream Using .NET</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../external_storage_platforms/index.html">External Storage Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../external_storage_platforms/s3.html">Inserting Data Using Amazon S3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../external_storage_platforms/hdfs.html">Using SQream in an HDFS Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../loading_and_unloading_data/index.html">Loading and Unloading Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../feature_guides/index.html">Feature Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/automatic_foreign_table_ddl_resolution.html">Automatic Foreign Table DDL Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/query_healer.html">Query Healer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/data_encryption.html">Data Encryption</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../feature_guides/data_encryption_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../feature_guides/data_encryption_methods.html">Encryption Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../feature_guides/data_encryption_types.html">Data Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../feature_guides/data_encryption_syntax.html">Syntax</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../feature_guides/data_encryption_permissions.html">Permissions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/compression.html">Compression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/python_functions.html">Python UDF (User-Defined Functions)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/workload_manager.html">Workload Manager</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/concurrency_and_locks.html">Concurrency and Locks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../feature_guides/concurrency_and_scaling_in_sqream.html">Concurrency and Scaling in SQream DB</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../operational_guides/index.html">Operational Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/access_control.html">Access Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_password_policy.html">Password Policy</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_managing_roles.html">Managing Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_permissions.html">Permissions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/access_control_departmental_example.html">Departmental Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/creating_or_cloning_a_storage_cluster.html">Creating or Cloning Storage Clusters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/external_data.html">Working with External Data</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/s3.html">Inserting Data Using Amazon S3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../operational_guides/hdfs.html">Using SQream in an HDFS Environment</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/foreign_tables.html">Foreign Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/delete_guide.html">Deleting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/exporting_data.html">Exporting Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/logging.html">Logging</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/monitoring_query_performance.html">Monitoring Query Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/security.html">Security</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/saved_queries.html">Saved Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/seeing_system_objects_as_ddl.html">Seeing System Objects as DDL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operational_guides/optimization_best_practices.html">Optimization and Best Practices</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../sqream_studio_5.4.7/index.html">SQream Acceleration Studio 5.4.7</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/getting_started.html">Getting Started with SQream Acceleration Studio 5.4.7</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/monitoring_workers_and_services_from_the_dashboard.html">Monitoring Workers and Services from the Dashboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/executing_statements_and_running_queries_from_the_editor.html">Executing Statements and Running Queries from the Editor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/viewing_logs.html">Viewing Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/creating_assigning_and_managing_roles_and_permissions.html">Creating, Assigning, and Managing Roles and Permissions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../sqream_studio_5.4.7/configuring_your_instance_of_sqream.html">Configuring Your Instance of SQreams</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../architecture/index.html">System Architecture</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/internals_architecture.html">Internals and architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../architecture/filesystem_and_filesystem_usage.html">Filesystem and usage</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../configuration_guides/index.html">Configuration Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/spooling.html">Configuring the Spooling Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/configuring_sqream.html">Configuring SQream</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_configuration_levels.html">Configuration Levels</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_flag_types.html">Flag Types</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_configuration_roles.html">Configuration Roles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_modification_methods.html">Modification Methods</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_configuring_your_parameter_values.html">Configuring Your Parameter Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_command_examples.html">Command Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_showing_all_flags_in_the_catalog_table.html">Showing All Flags in the Catalog Table</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/current_method_all_configurations.html">All Configurations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/ldap.html">Configuring LDAP authentication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/configuration_flags.html">Configuration Flags</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/admin_flags.html">Administration Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/admin_regular_flags.html">Regular Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/admin_cluster_flags.html">Cluster Administration Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/admin_worker_flags.html">Worker Administration Flags</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../configuration_guides/generic_flags.html">Generic Flags</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/generic_regular_flags.html">Regular Generic Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../configuration_guides/generic_worker_flags.html">Worker Generic Flags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration_guides/previous_configuration_method.html">Configuring SQream Using the Previous Configuration Method</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../reference/index.html">Reference Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sql/index.html">SQL Statements and Syntax</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_syntax/index.html">SQL Syntax Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_statements/index.html">SQL Statements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/sql/sql_functions/index.html">SQL Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/scalar_functions/index.html">Built-In Scalar Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/user_defined_functions/index.html">User-Defined Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/aggregate_functions/index.html">Aggregate Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../reference/sql/sql_functions/window_functions/index.html">Window Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/catalog_reference.html">Catalog Reference Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/catalog_reference_overview.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/catalog_reference_schema_information.html">What Information Does the Schema Contain?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/catalog_reference_catalog_tables.html">Catalog Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/catalog_reference_additonal_tables.html">Additional Tables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/catalog_reference_examples.html">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/cli/index.html">Command line programs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/metadata_server.html">metadata_server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/sqreamd.html">sqreamd</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/sqream_console.html">sqream-console</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/sqream_installer.html">sqream-installer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/server_picker.html">Server Picker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/sqream_storage.html">SqreamStorage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/sqream_sql.html">sqream sql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../reference/cli/upgrade_storage.html">upgrade_storage</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../reference/sql_feature_support.html">SQL Feature Checklist</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../data_type_guides/index.html">Data Type Guides</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/converting_and_casting_types.html">Converting and Casting Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/supported_data_types.html">Supported Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_type_guides/supported_casts.html">Supported Casts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_numeric.html">Numeric</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_boolean.html">Boolean</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_integer.html">Integer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_floating_point.html">Floating Point</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_string.html">String</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../data_type_guides/sql_data_types_date.html">Date</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../releases/index.html">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../releases/4.0_index.html">Release Notes 4.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/4.0.html">Release Notes 4.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/4.1.html">Release Notes 4.1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2022.1_index.html">Release Notes 2022.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.7.html">Release Notes 2022.1.7</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.6.html">Release Notes 2022.1.6</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.5.html">Release Notes 2022.1.5</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.4.html">Release Notes 2022.1.4</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.3.html">Release Notes 2022.1.3</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.2.html">Release Notes 2022.1.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.1.html">Release Notes 2022.1.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2022.1.html">Release Notes 2022.1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2021.2_index.html">Release Notes 2021.2</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2021.2.1.24.html">Release Notes 2021.2.1.24</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2021.2.1.html">Release Notes 2021.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2021.2.html">Release Notes 2021.2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2021.1_index.html">Release Notes 2021.1</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2021.1.2.html">Release Notes 2021.1.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2021.1.html">Release Notes 2021.1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2020.3_index.html">Release Notes 2020.3</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2020.3.2.1.html">Release Notes 2020.3.2.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2020.3.2.html">What’s new in 2020.3.2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2020.3.1.html">Release Notes 2020.3.1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../releases/2020.3.html">Release Notes 2020.3</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2020.2.html">Release Notes 2020.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../releases/2020.1.html">Release Notes 2020.1</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../troubleshooting/index.html">Troubleshooting</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/remedying_slow_queries.html">Remedying Slow Queries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/resolving_common_issues.html">Resolving Common Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/examining_logs.html">Examining Logs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/identifying_configuration_issues.html">Identifying Configuration Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/lock_related_issues.html">Lock Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/log_related_issues.html">Log Related Issues</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/core_dumping_related_issues.html">Core Dumping Related Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../troubleshooting/information_for_support.html">Gathering Information for SQream Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #133148" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SQream DB</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">Installation Guides</a> &raquo;</li>
+          <li><a href="installing_and_launching_sqream.html">Installing and Launching SQream</a> &raquo;</li>
+      <li>Installing and Running SQream in a Docker Container</li>
+
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="installing-and-running-sqream-in-a-docker-container">
+<span id="running-sqream-in-a-docker-container"></span><h1>Installing and Running SQream in a Docker Container<a class="headerlink" href="#installing-and-running-sqream-in-a-docker-container" title="Permalink to this heading"></a></h1>
+<p>The <strong>Installing and Running SQream in a Docker Container</strong> page describes how to prepare your machine’s environment for installing and running SQream in a Docker container.</p>
+<p>This page describes the following:</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#setting-up-a-host" id="id3">Setting Up a Host</a></p></li>
+<li><p><a class="reference internal" href="#installing-the-docker-engine-community-edition" id="id4">Installing the Docker Engine (Community Edition)</a></p></li>
+<li><p><a class="reference internal" href="#docker-post-installation" id="id5">Docker Post-Installation</a></p></li>
+<li><p><a class="reference internal" href="#installing-the-nvidia-docker2-toolkit" id="id6">Installing the Nvidia Docker2 ToolKit</a></p></li>
+<li><p><a class="reference internal" href="#installing-the-sqream-software" id="id7">Installing the SQream Software</a></p></li>
+<li><p><a class="reference internal" href="#using-the-sqream-console" id="id8">Using the SQream Console</a></p></li>
+</ul>
+</div>
+<section id="setting-up-a-host">
+<h2><a class="toc-backref" href="#id3">Setting Up a Host</a><a class="headerlink" href="#setting-up-a-host" title="Permalink to this heading"></a></h2>
+<section id="operating-system-requirements">
+<h3>Operating System Requirements<a class="headerlink" href="#operating-system-requirements" title="Permalink to this heading"></a></h3>
+<p>SQream was tested and verified on the following versions of Linux:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>x86 CentOS/RHEL 7.6 - 7.9</p></li>
+<li><p>IBM RHEL 7.6</p></li>
+</ul>
+</div></blockquote>
+<p>SQream recommends installing a clean OS on the host to avoid any installation issues.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Docker-based installation supports only single host deployment and cannot be used on a multi-node cluster. Installing Docker on a single host you will not be able to scale it to a multi-node cluster.</p>
+</div>
+</section>
+<section id="creating-a-local-user">
+<h3>Creating a Local User<a class="headerlink" href="#creating-a-local-user" title="Permalink to this heading"></a></h3>
+<p>To run SQream in a Docker container you must create a local user.</p>
+<p><strong>To create a local user:</strong></p>
+<ol class="arabic">
+<li><p>Add a local user:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ useradd -m -U &lt;local user name&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Set the local user’s password:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ passwd &lt;local user name&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Add the local user to the <code class="docutils literal notranslate"><span class="pre">wheel</span></code> group:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ usermod -aG wheel &lt;local user name&gt;
+</pre></div>
+</div>
+<p>You can remove the local user from the <code class="docutils literal notranslate"><span class="pre">wheel</span></code> group when you have completed the installation.</p>
+</li>
+<li><p>Log out and log back in as the local user.</p></li>
+</ol>
+</section>
+<section id="setting-a-local-language">
+<h3>Setting a Local Language<a class="headerlink" href="#setting-a-local-language" title="Permalink to this heading"></a></h3>
+<p>After creating a local user you must set a local language.</p>
+<p><strong>To set a local language:</strong></p>
+<ol class="arabic">
+<li><p>Set the local language:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo localectl set-locale LANG=en_US.UTF-8
+</pre></div>
+</div>
+</li>
+<li><p>Set the time stamp (time and date) of the locale:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo timedatectl set-timezone Asia/Jerusalem
+</pre></div>
+</div>
+</li>
+</ol>
+<p>You can run the <code class="docutils literal notranslate"><span class="pre">timedatectl</span> <span class="pre">list-timezones</span></code> command to see your timezone.</p>
+</section>
+<section id="adding-the-epel-repository">
+<h3>Adding the EPEL Repository<a class="headerlink" href="#adding-the-epel-repository" title="Permalink to this heading"></a></h3>
+<p>After setting a local language you must add the EPEL repository.</p>
+<p><strong>To add the EPEL repository:</strong></p>
+<ol class="arabic">
+<li><p>As a root user, upgrade the <strong>epel-release-latest-7.noarch.rpm</strong> repository:</p>
+<ol class="arabic simple">
+<li><p>RedHat (RHEL 7):</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>CentOS 7</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo yum install epel-release
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="installing-the-required-ntp-packages">
+<h3>Installing the Required NTP Packages<a class="headerlink" href="#installing-the-required-ntp-packages" title="Permalink to this heading"></a></h3>
+<p>After adding the EPEL repository, you must install the required NTP packages.</p>
+<p>You can install the required NTP packages by running the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo yum install ntp  pciutils python36 kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc
+</pre></div>
+</div>
+</section>
+<section id="installing-the-recommended-tools">
+<h3>Installing the Recommended Tools<a class="headerlink" href="#installing-the-recommended-tools" title="Permalink to this heading"></a></h3>
+<p>After installin gthe required NTP packages you must install the recommended tools.</p>
+<p>SQream recommends installing the following recommended tools:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo yum install bash-completion.noarch  vim-enhanced.x86_64 vim-common.x86_64 net-tools iotop htop psmisc screen xfsprogs wget yum-utils deltarpm dos2unix
+</pre></div>
+</div>
+</section>
+<section id="updating-to-the-current-version-of-the-operating-system">
+<h3>Updating to the Current Version of the Operating System<a class="headerlink" href="#updating-to-the-current-version-of-the-operating-system" title="Permalink to this heading"></a></h3>
+<p>After installing the recommended tools you must update to the current version of the operating system.</p>
+<p>SQream recommends updating to the current version of the operating system. This is not recommended if the nvidia driver has <strong>not been installed.</strong></p>
+</section>
+<section id="configuring-the-ntp-package">
+<h3>Configuring the NTP Package<a class="headerlink" href="#configuring-the-ntp-package" title="Permalink to this heading"></a></h3>
+<p>After updating to the current version of the operating system you must configure the NTP package.</p>
+<p><strong>To configure the NTP package:</strong></p>
+<ol class="arabic">
+<li><p>Add your local servers to the NTP configuration.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p>Configure the <strong>ntpd</strong> service to begin running when your machine is started:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo systemctl enable ntpd
+$ sudo systemctl start ntpd
+$ sudo ntpq -p
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="configuring-the-performance-profile">
+<h3>Configuring the Performance Profile<a class="headerlink" href="#configuring-the-performance-profile" title="Permalink to this heading"></a></h3>
+<p>After configuring the NTP package you must configure the performance profile.</p>
+<p><strong>To configure the performance profile:</strong></p>
+<ol class="arabic">
+<li><p><em>Optional</em> - Switch the active profile:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo tuned-adm profile throughput-performance
+</pre></div>
+</div>
+</li>
+<li><p>Change the multi-user’s default run level:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo systemctl set-default multi-user.target
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="configuring-your-security-limits">
+<h3>Configuring Your Security Limits<a class="headerlink" href="#configuring-your-security-limits" title="Permalink to this heading"></a></h3>
+<p>After configuring the performance profile you must configure your security limits. Configuring your security limits refers to configuring the number of open files, processes, etc.</p>
+<p><strong>To configure your security limits:</strong></p>
+<ol class="arabic">
+<li><p>Run the <strong>bash</strong> shell as a super-user:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo bash
+</pre></div>
+</div>
+</li>
+<li><p>Run the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo -e &quot;sqream soft nproc 500000\nsqream hard nproc 500000\nsqream soft nofile 500000\nsqream hard nofile 500000\nsqream soft core unlimited\nsqream hard core unlimited&quot; &gt;&gt; /etc/security/limits.conf
+</pre></div>
+</div>
+</li>
+<li><p>Run the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ echo -e &quot;vm.dirty_background_ratio = 5 \n vm.dirty_ratio = 10 \n vm.swappiness = 10 \n vm.zone_reclaim_mode = 0 \n vm.vfs_cache_pressure = 200 \n&quot;  &gt;&gt; /etc/sysctl.conf
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="disabling-automatic-bug-reporting-tools">
+<h3>Disabling Automatic Bug-Reporting Tools<a class="headerlink" href="#disabling-automatic-bug-reporting-tools" title="Permalink to this heading"></a></h3>
+<p>After configuring your security limits you must disable the following automatic bug-reporting tools:</p>
+<ul class="simple">
+<li><p>ccpp.service</p></li>
+<li><p>oops.service</p></li>
+<li><p>pstoreoops.service</p></li>
+<li><p>vmcore.service</p></li>
+<li><p>xorg.service</p></li>
+</ul>
+<p>You can abort the above but-reporting tools by running the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ for i in abrt-ccpp.service abrtd.service abrt-oops.service abrt-pstoreoops.service abrt-vmcore.service abrt-xorg.service ; do sudo systemctl disable $i; sudo systemctl stop $i; done
+</pre></div>
+</div>
+</section>
+<section id="installing-the-nvidia-cuda-driver">
+<h3>Installing the Nvidia CUDA Driver<a class="headerlink" href="#installing-the-nvidia-cuda-driver" title="Permalink to this heading"></a></h3>
+<ol class="arabic">
+<li><p>Verify that the Tesla NVIDIA card has been installed and is detected by the system:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lspci | grep -i nvidia
+</pre></div>
+</div>
+<p>The correct output is a list of Nvidia graphic cards. If you do not receive this output, verify that an NVIDIA GPU card has been installed.</p>
+</li>
+<li><p>Verify that the open-source upstream Nvidia driver is running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lsmod | grep nouveau
+</pre></div>
+</div>
+<p>No output should be generated.</p>
+</li>
+<li><p>If you receive any output, do the following:</p>
+<ol class="arabic">
+<li><p>Disable the open-source upstream Nvidia driver:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo bash
+$ echo &quot;blacklist nouveau&quot; &gt; /etc/modprobe.d/blacklist-nouveau.conf
+$ echo &quot;options nouveau modeset=0&quot;  &gt;&gt; /etc/modprobe.d/blacklist-nouveau.conf
+$ dracut --force
+$ modprobe --showconfig | grep nouveau
+</pre></div>
+</div>
+</li>
+<li><p>Reboot the server and verify that the Nouveau model has not been loaded:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ lsmod | grep nouveau
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+<li><p>Check if the Nvidia CUDA driver has already been installed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nvidia-smi
+</pre></div>
+</div>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nvidia</span><span class="o">-</span><span class="n">smi</span>
+<span class="n">Wed</span> <span class="n">Oct</span> <span class="mi">30</span> <span class="mi">14</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mi">42</span> <span class="mi">2019</span>
+<span class="o">+-----------------------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">NVIDIA</span><span class="o">-</span><span class="n">SMI</span> <span class="mf">470.82.01</span>    <span class="n">Driver</span> <span class="n">Version</span><span class="p">:</span> <span class="mf">470.82.01</span>    <span class="n">CUDA</span> <span class="n">Version</span><span class="p">:</span> <span class="mf">10.1</span>     <span class="o">|</span>
+<span class="o">|-------------------------------+----------------------+----------------------+</span>
+<span class="o">|</span> <span class="n">GPU</span>  <span class="n">Name</span>        <span class="n">Persistence</span><span class="o">-</span><span class="n">M</span><span class="o">|</span> <span class="n">Bus</span><span class="o">-</span><span class="n">Id</span>        <span class="n">Disp</span><span class="o">.</span><span class="n">A</span> <span class="o">|</span> <span class="n">Volatile</span> <span class="n">Uncorr</span><span class="o">.</span> <span class="n">ECC</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">Fan</span>  <span class="n">Temp</span>  <span class="n">Perf</span>  <span class="n">Pwr</span><span class="p">:</span><span class="n">Usage</span><span class="o">/</span><span class="n">Cap</span><span class="o">|</span>         <span class="n">Memory</span><span class="o">-</span><span class="n">Usage</span> <span class="o">|</span> <span class="n">GPU</span><span class="o">-</span><span class="n">Util</span>  <span class="n">Compute</span> <span class="n">M</span><span class="o">.</span> <span class="o">|</span>
+<span class="o">|===============================+======================+======================|</span>
+<span class="o">|</span>   <span class="mi">0</span>  <span class="n">Tesla</span> <span class="n">V100</span><span class="o">-</span><span class="n">SXM2</span><span class="o">...</span>  <span class="n">On</span>   <span class="o">|</span> <span class="mi">00000004</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mf">00.0</span> <span class="n">Off</span> <span class="o">|</span>                    <span class="mi">0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span>   <span class="mi">32</span><span class="n">C</span>    <span class="n">P0</span>    <span class="mi">37</span><span class="n">W</span> <span class="o">/</span> <span class="mi">300</span><span class="n">W</span> <span class="o">|</span>      <span class="mi">0</span><span class="n">MiB</span> <span class="o">/</span> <span class="mi">16130</span><span class="n">MiB</span> <span class="o">|</span>      <span class="mi">0</span><span class="o">%</span>      <span class="n">Default</span> <span class="o">|</span>
+<span class="o">+-------------------------------+----------------------+----------------------+</span>
+<span class="o">|</span>   <span class="mi">1</span>  <span class="n">Tesla</span> <span class="n">V100</span><span class="o">-</span><span class="n">SXM2</span><span class="o">...</span>  <span class="n">On</span>   <span class="o">|</span> <span class="mi">00000035</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">00.0</span> <span class="n">Off</span> <span class="o">|</span>                    <span class="mi">0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span>   <span class="mi">33</span><span class="n">C</span>    <span class="n">P0</span>    <span class="mi">37</span><span class="n">W</span> <span class="o">/</span> <span class="mi">300</span><span class="n">W</span> <span class="o">|</span>      <span class="mi">0</span><span class="n">MiB</span> <span class="o">/</span> <span class="mi">16130</span><span class="n">MiB</span> <span class="o">|</span>      <span class="mi">0</span><span class="o">%</span>      <span class="n">Default</span> <span class="o">|</span>
+<span class="o">+-------------------------------+----------------------+----------------------+</span>
+
+<span class="o">+-----------------------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">Processes</span><span class="p">:</span>                                                       <span class="n">GPU</span> <span class="n">Memory</span> <span class="o">|</span>
+<span class="o">|</span>  <span class="n">GPU</span>       <span class="n">PID</span>   <span class="n">Type</span>   <span class="n">Process</span> <span class="n">name</span>                             <span class="n">Usage</span>      <span class="o">|</span>
+<span class="o">|=============================================================================|</span>
+<span class="o">|</span>  <span class="n">No</span> <span class="n">running</span> <span class="n">processes</span> <span class="n">found</span>                                                 <span class="o">|</span>
+<span class="o">+-----------------------------------------------------------------------------+</span>
+</pre></div>
+</div>
+</li>
+<li><p>Verify that the installed CUDA version shown in the output above is <code class="docutils literal notranslate"><span class="pre">10.1</span></code>.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p>Do one of the following:</p>
+<blockquote>
+<div></div></blockquote>
+<ol class="arabic simple">
+<li><p>If CUDA version 10.1 has already been installed, skip to Docktime Runtime (Community Edition).</p></li>
+</ol>
+<blockquote>
+<div></div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>If CUDA version 10.1 has not been installed yet, continue with Step 7 below.</p></li>
+</ol>
+</li>
+<li><p>Do one of the following:</p>
+<ul>
+<li><p>Install <a class="reference internal" href="#cuda-10-1-x8664"><span class="std std-ref">CUDA Driver version 10.1 for x86_64</span></a>.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p>Install <a class="reference internal" href="#cuda-10-1-ibmpower9"><span class="std std-ref">CUDA driver version 10.1 for IBM Power9</span></a>.</p></li>
+</ul>
+</li>
+</ol>
+<section id="installing-the-cuda-driver-version-10-1-for-x86-64">
+<span id="cuda-10-1-x8664"></span><h4>Installing the CUDA Driver Version 10.1 for x86_64<a class="headerlink" href="#installing-the-cuda-driver-version-10-1-for-x86-64" title="Permalink to this heading"></a></h4>
+<p><strong>To install the CUDA driver version 10.1 for x86_64:</strong></p>
+<ol class="arabic">
+<li><p>Make the following target platform selections:</p>
+<blockquote>
+<div></div></blockquote>
+<ul class="simple">
+<li><p><strong>Operating system</strong>: Linux</p></li>
+<li><p><strong>Architecture</strong>: x86_64</p></li>
+<li><p><strong>Distribution</strong>: CentOS</p></li>
+<li><p><strong>Version</strong>: 7</p></li>
+<li><p><strong>Installer type</strong>: the relevant installer type</p></li>
+</ul>
+</li>
+</ol>
+<p>For installer type, SQream recommends selecting <strong>runfile (local)</strong>. The available selections shows only the supported platforms.</p>
+<ol class="arabic" start="2">
+<li><p>Download the base installer for Linux CentOS 7 x86_64:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">developer</span><span class="o">.</span><span class="n">download</span><span class="o">.</span><span class="n">nvidia</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">compute</span><span class="o">/</span><span class="n">cuda</span><span class="o">/</span><span class="mf">10.1</span><span class="o">/</span><span class="n">Prod</span><span class="o">/</span><span class="n">local_installers</span><span class="o">/</span><span class="n">cuda</span><span class="o">-</span><span class="n">repo</span><span class="o">-</span><span class="n">rhel7</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">local</span><span class="o">-</span><span class="mf">10.1.243</span><span class="o">-</span><span class="mf">418.87.00</span><span class="o">-</span><span class="mf">1.0</span><span class="o">-</span><span class="mf">1.</span><span class="n">x86_64</span><span class="o">.</span><span class="n">rpm</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install the base installer for Linux CentOS 7 x86_64 by running the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo yum localinstall cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
+$ sudo yum clean all
+$ sudo yum install nvidia-driver-latest-dkms
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Verify that the output indicates that driver <strong>418.87</strong> will be installed.</p>
+</div>
+<ol class="arabic" start="4">
+<li><p>Follow the command line prompts.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p>Enable the Nvidia service to start at boot and start it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo systemctl enable nvidia-persistenced.service &amp;&amp; sudo systemctl start nvidia-persistenced.service
+</pre></div>
+</div>
+</li>
+</ol>
+<ol class="arabic" start="7">
+<li><p>Reboot the server.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p>Verify that the Nvidia driver has been installed and shows all available GPU’s:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nvidia-smi
+</pre></div>
+</div>
+<p>The following is the correct output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nvidia</span><span class="o">-</span><span class="n">smi</span>
+<span class="n">Wed</span> <span class="n">Oct</span> <span class="mi">30</span> <span class="mi">14</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mi">42</span> <span class="mi">2019</span>
+<span class="o">+-----------------------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">NVIDIA</span><span class="o">-</span><span class="n">SMI</span> <span class="mf">470.82.01</span>    <span class="n">Driver</span> <span class="n">Version</span><span class="p">:</span> <span class="mf">470.82.01</span>    <span class="n">CUDA</span> <span class="n">Version</span><span class="p">:</span> <span class="mf">10.1</span>     <span class="o">|</span>
+<span class="o">|-------------------------------+----------------------+----------------------+</span>
+<span class="o">|</span> <span class="n">GPU</span>  <span class="n">Name</span>        <span class="n">Persistence</span><span class="o">-</span><span class="n">M</span><span class="o">|</span> <span class="n">Bus</span><span class="o">-</span><span class="n">Id</span>        <span class="n">Disp</span><span class="o">.</span><span class="n">A</span> <span class="o">|</span> <span class="n">Volatile</span> <span class="n">Uncorr</span><span class="o">.</span> <span class="n">ECC</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">Fan</span>  <span class="n">Temp</span>  <span class="n">Perf</span>  <span class="n">Pwr</span><span class="p">:</span><span class="n">Usage</span><span class="o">/</span><span class="n">Cap</span><span class="o">|</span>         <span class="n">Memory</span><span class="o">-</span><span class="n">Usage</span> <span class="o">|</span> <span class="n">GPU</span><span class="o">-</span><span class="n">Util</span>  <span class="n">Compute</span> <span class="n">M</span><span class="o">.</span> <span class="o">|</span>
+<span class="o">|===============================+======================+======================|</span>
+<span class="o">|</span>   <span class="mi">0</span>  <span class="n">Tesla</span> <span class="n">V100</span><span class="o">-</span><span class="n">SXM2</span><span class="o">...</span>  <span class="n">On</span>   <span class="o">|</span> <span class="mi">00000004</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mf">00.0</span> <span class="n">Off</span> <span class="o">|</span>                    <span class="mi">0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span>   <span class="mi">32</span><span class="n">C</span>    <span class="n">P0</span>    <span class="mi">37</span><span class="n">W</span> <span class="o">/</span> <span class="mi">300</span><span class="n">W</span> <span class="o">|</span>      <span class="mi">0</span><span class="n">MiB</span> <span class="o">/</span> <span class="mi">16130</span><span class="n">MiB</span> <span class="o">|</span>      <span class="mi">0</span><span class="o">%</span>      <span class="n">Default</span> <span class="o">|</span>
+<span class="o">+-------------------------------+----------------------+----------------------+</span>
+<span class="o">|</span>   <span class="mi">1</span>  <span class="n">Tesla</span> <span class="n">V100</span><span class="o">-</span><span class="n">SXM2</span><span class="o">...</span>  <span class="n">On</span>   <span class="o">|</span> <span class="mi">00000035</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">00.0</span> <span class="n">Off</span> <span class="o">|</span>                    <span class="mi">0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span>   <span class="mi">33</span><span class="n">C</span>    <span class="n">P0</span>    <span class="mi">37</span><span class="n">W</span> <span class="o">/</span> <span class="mi">300</span><span class="n">W</span> <span class="o">|</span>      <span class="mi">0</span><span class="n">MiB</span> <span class="o">/</span> <span class="mi">16130</span><span class="n">MiB</span> <span class="o">|</span>      <span class="mi">0</span><span class="o">%</span>      <span class="n">Default</span> <span class="o">|</span>
+<span class="o">+-------------------------------+----------------------+----------------------+</span>
+
+<span class="o">+-----------------------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">Processes</span><span class="p">:</span>                                                       <span class="n">GPU</span> <span class="n">Memory</span> <span class="o">|</span>
+<span class="o">|</span>  <span class="n">GPU</span>       <span class="n">PID</span>   <span class="n">Type</span>   <span class="n">Process</span> <span class="n">name</span>                             <span class="n">Usage</span>      <span class="o">|</span>
+<span class="o">|=============================================================================|</span>
+<span class="o">|</span>  <span class="n">No</span> <span class="n">running</span> <span class="n">processes</span> <span class="n">found</span>                                                 <span class="o">|</span>
+<span class="o">+-----------------------------------------------------------------------------+</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="installing-the-cuda-driver-version-10-1-for-ibm-power9">
+<span id="cuda-10-1-ibmpower9"></span><h4>Installing the CUDA Driver Version 10.1 for IBM Power9<a class="headerlink" href="#installing-the-cuda-driver-version-10-1-for-ibm-power9" title="Permalink to this heading"></a></h4>
+<p><strong>To install the CUDA driver version 10.1 for IBM Power9:</strong></p>
+<ol class="arabic">
+<li><p>Download the base installer for Linux CentOS 7 PPC64le:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">developer</span><span class="o">.</span><span class="n">download</span><span class="o">.</span><span class="n">nvidia</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">compute</span><span class="o">/</span><span class="n">cuda</span><span class="o">/</span><span class="mf">10.1</span><span class="o">/</span><span class="n">Prod</span><span class="o">/</span><span class="n">local_installers</span><span class="o">/</span><span class="n">cuda</span><span class="o">-</span><span class="n">repo</span><span class="o">-</span><span class="n">rhel7</span><span class="o">-</span><span class="mi">10</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">local</span><span class="o">-</span><span class="mf">10.1.243</span><span class="o">-</span><span class="mf">418.87.00</span><span class="o">-</span><span class="mf">1.0</span><span class="o">-</span><span class="mf">1.</span><span class="n">ppc64le</span><span class="o">.</span><span class="n">rpm</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install the base installer for Linux CentOS 7 x86_64 by running the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo rpm -i cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
+$ sudo yum clean all
+$ sudo yum  install nvidia-driver-latest-dkms
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Verify that the output indicates that driver <strong>418.87</strong> will be installed.</p>
+</div>
+<ol class="arabic" start="3">
+<li><p>Copy the file to the <strong>/etc/udev/rules.d</strong> directory.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p>If you are using RHEL 7 version (7.6 or later), comment out, remove, or change the hot-pluggable memory rule located in file copied to the <strong>/etc/udev/rules.d</strong> directory by running the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo cp /lib/udev/rules.d/40-redhat.rules /etc/udev/rules.d
+$ sudo sed -i &#39;s/SUBSYSTEM!=&quot;memory&quot;,.*GOTO=&quot;memory_hotplug_end&quot;/SUBSYSTEM==&quot;*&quot;, GOTO=&quot;memory_hotplug_end&quot;/&#39; /etc/udev/rules.d/40-redhat.rules
+</pre></div>
+</div>
+</li>
+<li><p>Enable the <strong>nvidia-persisted.service</strong> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo systemctl enable nvidia-persistenced.service
+</pre></div>
+</div>
+</li>
+<li><p>Reboot your system to initialize the above modifications.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p>Verify that the Nvidia driver and the <strong>nvidia-persistenced.service</strong> files are running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ nvidia smi
+</pre></div>
+</div>
+<p>The following is the correct output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nvidia</span><span class="o">-</span><span class="n">smi</span>
+<span class="n">Wed</span> <span class="n">Oct</span> <span class="mi">30</span> <span class="mi">14</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mi">42</span> <span class="mi">2019</span>
+<span class="o">+-----------------------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">NVIDIA</span><span class="o">-</span><span class="n">SMI</span> <span class="mf">418.87.00</span>    <span class="n">Driver</span> <span class="n">Version</span><span class="p">:</span> <span class="mf">418.87.00</span>    <span class="n">CUDA</span> <span class="n">Version</span><span class="p">:</span> <span class="mf">10.1</span>     <span class="o">|</span>
+<span class="o">|-------------------------------+----------------------+----------------------+</span>
+<span class="o">|</span> <span class="n">GPU</span>  <span class="n">Name</span>        <span class="n">Persistence</span><span class="o">-</span><span class="n">M</span><span class="o">|</span> <span class="n">Bus</span><span class="o">-</span><span class="n">Id</span>        <span class="n">Disp</span><span class="o">.</span><span class="n">A</span> <span class="o">|</span> <span class="n">Volatile</span> <span class="n">Uncorr</span><span class="o">.</span> <span class="n">ECC</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">Fan</span>  <span class="n">Temp</span>  <span class="n">Perf</span>  <span class="n">Pwr</span><span class="p">:</span><span class="n">Usage</span><span class="o">/</span><span class="n">Cap</span><span class="o">|</span>         <span class="n">Memory</span><span class="o">-</span><span class="n">Usage</span> <span class="o">|</span> <span class="n">GPU</span><span class="o">-</span><span class="n">Util</span>  <span class="n">Compute</span> <span class="n">M</span><span class="o">.</span> <span class="o">|</span>
+<span class="o">|===============================+======================+======================|</span>
+<span class="o">|</span>   <span class="mi">0</span>  <span class="n">Tesla</span> <span class="n">V100</span><span class="o">-</span><span class="n">SXM2</span><span class="o">...</span>  <span class="n">On</span>   <span class="o">|</span> <span class="mi">00000004</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mf">00.0</span> <span class="n">Off</span> <span class="o">|</span>                    <span class="mi">0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span>   <span class="mi">32</span><span class="n">C</span>    <span class="n">P0</span>    <span class="mi">37</span><span class="n">W</span> <span class="o">/</span> <span class="mi">300</span><span class="n">W</span> <span class="o">|</span>      <span class="mi">0</span><span class="n">MiB</span> <span class="o">/</span> <span class="mi">16130</span><span class="n">MiB</span> <span class="o">|</span>      <span class="mi">0</span><span class="o">%</span>      <span class="n">Default</span> <span class="o">|</span>
+<span class="o">+-------------------------------+----------------------+----------------------+</span>
+<span class="o">|</span>   <span class="mi">1</span>  <span class="n">Tesla</span> <span class="n">V100</span><span class="o">-</span><span class="n">SXM2</span><span class="o">...</span>  <span class="n">On</span>   <span class="o">|</span> <span class="mi">00000035</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">00.0</span> <span class="n">Off</span> <span class="o">|</span>                    <span class="mi">0</span> <span class="o">|</span>
+<span class="o">|</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span>   <span class="mi">33</span><span class="n">C</span>    <span class="n">P0</span>    <span class="mi">37</span><span class="n">W</span> <span class="o">/</span> <span class="mi">300</span><span class="n">W</span> <span class="o">|</span>      <span class="mi">0</span><span class="n">MiB</span> <span class="o">/</span> <span class="mi">16130</span><span class="n">MiB</span> <span class="o">|</span>      <span class="mi">0</span><span class="o">%</span>      <span class="n">Default</span> <span class="o">|</span>
+<span class="o">+-------------------------------+----------------------+----------------------+</span>
+
+<span class="o">+-----------------------------------------------------------------------------+</span>
+<span class="o">|</span> <span class="n">Processes</span><span class="p">:</span>                                                       <span class="n">GPU</span> <span class="n">Memory</span> <span class="o">|</span>
+<span class="o">|</span>  <span class="n">GPU</span>       <span class="n">PID</span>   <span class="n">Type</span>   <span class="n">Process</span> <span class="n">name</span>                             <span class="n">Usage</span>      <span class="o">|</span>
+<span class="o">|=============================================================================|</span>
+<span class="o">|</span>  <span class="n">No</span> <span class="n">running</span> <span class="n">processes</span> <span class="n">found</span>                                                 <span class="o">|</span>
+<span class="o">+-----------------------------------------------------------------------------+</span>
+</pre></div>
+</div>
+</li>
+<li><p>Verify that the <strong>nvidia-persistenced</strong> service is running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ systemctl status nvidia-persistenced
+</pre></div>
+</div>
+<p>The following is the correct output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>root@gpudb ~]systemctl status nvidia-persistenced
+  nvidia-persistenced.service - NVIDIA Persistence Daemon
+   Loaded: loaded (/usr/lib/systemd/system/nvidia-persistenced.service; enabled; vendor preset: disabled)
+   Active: active (running) since Tue 2019-10-15 21:43:19 KST; 11min ago
+  Process: 8257 ExecStart=/usr/bin/nvidia-persistenced --verbose (code=exited, status=0/SUCCESS)
+ Main PID: 8265 (nvidia-persiste)
+    Tasks: 1
+   Memory: 21.0M
+   CGroup: /system.slice/nvidia-persistenced.service
+    └─8265 /usr/bin/nvidia-persistenced --verbose
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+</section>
+<section id="installing-the-docker-engine-community-edition">
+<h2><a class="toc-backref" href="#id4">Installing the Docker Engine (Community Edition)</a><a class="headerlink" href="#installing-the-docker-engine-community-edition" title="Permalink to this heading"></a></h2>
+<p>After installing the Nvidia CUDA driver you must install the Docker engine.</p>
+<p>This section describes how to install the Docker engine using the following processors:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#dockerx8664centos"><span class="std std-ref">Using x86_64 processor on CentOS</span></a></p></li>
+<li><p><a class="reference internal" href="#dockerx8664ubuntu"><span class="std std-ref">Using x86_64 processor on Ubuntu</span></a></p></li>
+<li><p><a class="reference internal" href="#docker-ibmpower9"><span class="std std-ref">Using IBM Power9 (PPC64le) processor</span></a></p></li>
+</ul>
+<section id="installing-the-docker-engine-using-an-x86-64-processor-on-centos">
+<span id="dockerx8664centos"></span><h3>Installing the Docker Engine Using an x86_64 Processor on CentOS<a class="headerlink" href="#installing-the-docker-engine-using-an-x86-64-processor-on-centos" title="Permalink to this heading"></a></h3>
+<p>The x86_64 processor supports installing the <strong>Docker Community Edition (CE)</strong> versions 18.03 and higher.</p>
+<p>For more information on installing the Docker Engine CE on an x86_64 processor, see <a class="reference external" href="https://docs.docker.com/engine/install/centos/">Install Docker Engine on CentOS</a></p>
+</section>
+<section id="installing-the-docker-engine-using-an-x86-64-processor-on-ubuntu">
+<span id="dockerx8664ubuntu"></span><h3>Installing the Docker Engine Using an x86_64 Processor on Ubuntu<a class="headerlink" href="#installing-the-docker-engine-using-an-x86-64-processor-on-ubuntu" title="Permalink to this heading"></a></h3>
+<p>The x86_64 processor supports installing the <strong>Docker Community Edition (CE)</strong> versions 18.03 and higher.</p>
+<p>For more information on installing the Docker Engine CE on an x86_64 processor, see <a class="reference external" href="https://docs.docker.com/install/linux/docker-ce/ubuntu/">Install Docker Engine on Ubuntu</a></p>
+</section>
+<section id="installing-the-docker-engine-on-an-ibm-power9-processor">
+<span id="docker-ibmpower9"></span><h3>Installing the Docker Engine on an IBM Power9 Processor<a class="headerlink" href="#installing-the-docker-engine-on-an-ibm-power9-processor" title="Permalink to this heading"></a></h3>
+<p>The x86_64 processor only supports installing the <strong>Docker Community Edition (CE)</strong> version 18.03.</p>
+<p><strong>To install the Docker Engine on an IBM Power9 processor:</strong></p>
+<p>You can install the Docker Engine on an IBM Power9 processor by running the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">ftp</span><span class="o">.</span><span class="n">unicamp</span><span class="o">.</span><span class="n">br</span><span class="o">/</span><span class="n">pub</span><span class="o">/</span><span class="n">ppc64el</span><span class="o">/</span><span class="n">rhel</span><span class="o">/</span><span class="mi">7_1</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">ppc64el</span><span class="o">/</span><span class="n">container</span><span class="o">-</span><span class="n">selinux</span><span class="o">-</span><span class="mf">2.9</span><span class="o">-</span><span class="mf">4.</span><span class="n">el7</span><span class="o">.</span><span class="n">noarch</span><span class="o">.</span><span class="n">rpm</span>
+<span class="n">wget</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">ftp</span><span class="o">.</span><span class="n">unicamp</span><span class="o">.</span><span class="n">br</span><span class="o">/</span><span class="n">pub</span><span class="o">/</span><span class="n">ppc64el</span><span class="o">/</span><span class="n">rhel</span><span class="o">/</span><span class="mi">7_1</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">ppc64el</span><span class="o">/</span><span class="n">docker</span><span class="o">-</span><span class="n">ce</span><span class="o">-</span><span class="mf">18.03.1</span><span class="o">.</span><span class="n">ce</span><span class="o">-</span><span class="mf">1.</span><span class="n">el7</span><span class="o">.</span><span class="n">centos</span><span class="o">.</span><span class="n">ppc64le</span><span class="o">.</span><span class="n">rpm</span>
+<span class="n">yum</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="n">container</span><span class="o">-</span><span class="n">selinux</span><span class="o">-</span><span class="mf">2.9</span><span class="o">-</span><span class="mf">4.</span><span class="n">el7</span><span class="o">.</span><span class="n">noarch</span><span class="o">.</span><span class="n">rpm</span> <span class="n">docker</span><span class="o">-</span><span class="n">ce</span><span class="o">-</span><span class="mf">18.03.1</span><span class="o">.</span><span class="n">ce</span><span class="o">-</span><span class="mf">1.</span><span class="n">el7</span><span class="o">.</span><span class="n">centos</span><span class="o">.</span><span class="n">ppc64le</span><span class="o">.</span><span class="n">rpm</span>
+</pre></div>
+</div>
+<p>For more information on installing the Docker Engine CE on an IBM Power9 processor, see <a class="reference external" href="https://developer.ibm.com/components/ibm-power/tutorials/install-docker-on-linux-on-power/">Install Docker Engine on Ubuntu</a>.</p>
+</section>
+</section>
+<section id="docker-post-installation">
+<h2><a class="toc-backref" href="#id5">Docker Post-Installation</a><a class="headerlink" href="#docker-post-installation" title="Permalink to this heading"></a></h2>
+<p>After installing the Docker engine you must configure Docker on your local machine.</p>
+<p><strong>To configure Docker on your local machine:</strong></p>
+<ol class="arabic">
+<li><p>Enable Docker to start on boot:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo systemctl enable docker &amp;&amp; sudo systemctl start docker
+</pre></div>
+</div>
+</li>
+<li><p>Enable managing Docker as a non-root user:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo usermod -aG docker $USER
+</pre></div>
+</div>
+</li>
+<li><p>Log out and log back in via SSH. This causes Docker to re-evaluate your group membership.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p>Verify that you can run the following Docker command as a non-root user (without <code class="docutils literal notranslate"><span class="pre">sudo</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run hello-world
+</pre></div>
+</div>
+</li>
+</ol>
+<p>If you can run the above Docker command as a non-root user, the following occur:</p>
+<ul class="simple">
+<li><p>Docker downloads a test image and runs it in a container.</p></li>
+<li><p>When the container runs, it prints an informational message and exits.</p></li>
+</ul>
+<p>For more information on installing the Docker Post-Installation, see <a class="reference external" href="https://docs.docker.com/install/linux/linux-postinstall/">Docker Post-Installation</a>.</p>
+</section>
+<section id="installing-the-nvidia-docker2-toolkit">
+<h2><a class="toc-backref" href="#id6">Installing the Nvidia Docker2 ToolKit</a><a class="headerlink" href="#installing-the-nvidia-docker2-toolkit" title="Permalink to this heading"></a></h2>
+<p>After configuring Docker on your local machine you must install the Nvidia Docker2 ToolKit.  The NVIDIA Docker2 Toolkit lets you build and run GPU-accelerated Docker containers. The Toolkit includes a container runtime library and related utilities for automatically configuring containers to leverage NVIDIA GPU’s.</p>
+<p>This section describes the following:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#install-nvidia-docker2-toolkit-x8664-processor"><span class="std std-ref">Installing the NVIDIA Docker2 Toolkit on an x86_64 processor</span></a></p></li>
+<li><p><a class="reference internal" href="#install-nvidia-docker2-toolkit-ppc64le-processor"><span class="std std-ref">Installing the NVIDIA Docker2 Toolkit on a PPC64le processor</span></a></p></li>
+</ul>
+<section id="installing-the-nvidia-docker2-toolkit-on-an-x86-64-processor">
+<span id="install-nvidia-docker2-toolkit-x8664-processor"></span><h3>Installing the NVIDIA Docker2 Toolkit on an x86_64 Processor<a class="headerlink" href="#installing-the-nvidia-docker2-toolkit-on-an-x86-64-processor" title="Permalink to this heading"></a></h3>
+<p>This section describes the following:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#install-nvidia-docker2-toolkit-centos"><span class="std std-ref">Installing the NVIDIA Docker2 Toolkit on a CentOS operating system</span></a></p></li>
+<li><p><a class="reference internal" href="#install-nvidia-docker2-toolkit-ubuntu"><span class="std std-ref">Installing the NVIDIA Docker2 Toolkit on an Ubuntu operating system</span></a></p></li>
+</ul>
+<section id="installing-the-nvidia-docker2-toolkit-on-a-centos-operating-system">
+<span id="install-nvidia-docker2-toolkit-centos"></span><h4>Installing the NVIDIA Docker2 Toolkit on a CentOS Operating System<a class="headerlink" href="#installing-the-nvidia-docker2-toolkit-on-a-centos-operating-system" title="Permalink to this heading"></a></h4>
+<p><strong>To install the NVIDIA Docker2 Toolkit on a CentOS operating system:</strong></p>
+<ol class="arabic">
+<li><p>Install the repository for your distribution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.repo | \
+sudo tee /etc/yum.repos.d/nvidia-docker.repo
+</pre></div>
+</div>
+</li>
+<li><p>Install the <code class="docutils literal notranslate"><span class="pre">nvidia-docker2</span></code> package and reload the Docker daemon configuration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo yum install nvidia-docker2
+$ sudo pkill -SIGHUP dockerd
+</pre></div>
+</div>
+</li>
+<li><p>Do one of the following:</p>
+<ul class="simple">
+<li><p>If you received an error when installing the <code class="docutils literal notranslate"><span class="pre">nvidia-docker2</span></code> package, skip to <a class="reference internal" href="#step-4-centos"><span class="std std-ref">Step 4</span></a>.</p></li>
+<li><p>If you successfully installed the <code class="docutils literal notranslate"><span class="pre">nvidia-docker2</span></code> package, skip to <a class="reference internal" href="#step-5-centos"><span class="std std-ref">Step 5</span></a>.</p></li>
+</ul>
+</li>
+</ol>
+<ol class="arabic" id="step-4-centos" start="4">
+<li><p>Do the following:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">vi</span> <span class="pre">/etc/yum.repos.d/nvidia-docker.repo</span></code> command if the following error is displayed when installing the <code class="docutils literal notranslate"><span class="pre">nvidia-docker2</span></code> package:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">nvidia</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">nvidia</span><span class="o">-</span><span class="n">docker</span><span class="o">/</span><span class="n">centos7</span><span class="o">/</span><span class="n">ppc64le</span><span class="o">/</span><span class="n">repodata</span><span class="o">/</span><span class="n">repomd</span><span class="o">.</span><span class="n">xml</span><span class="p">:</span>
+<span class="p">[</span><span class="n">Errno</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="n">repomd</span><span class="o">.</span><span class="n">xml</span> <span class="n">signature</span> <span class="n">could</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">verified</span> <span class="k">for</span> <span class="n">nvidia</span><span class="o">-</span><span class="n">docker</span>
+</pre></div>
+</div>
+</li>
+<li><p>Change <code class="docutils literal notranslate"><span class="pre">repo_gpgcheck=1</span></code> to <code class="docutils literal notranslate"><span class="pre">repo_gpgcheck=0</span></code>.</p></li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic" id="step-5-centos" start="5">
+<li><p>Verify that the NVIDIA-Docker run has been installed correctly:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run --runtime=nvidia --rm nvidia/cuda:10.1.3-base-centos7 nvidia-smi
+</pre></div>
+</div>
+</li>
+</ol>
+<p>For more information on installing the NVIDIA Docker2 Toolkit on a CentOS operating system, see <span class="xref std std-ref">Installing the NVIDIA Docker2 Toolkit on a CentOS operating system</span></p>
+</section>
+<section id="installing-the-nvidia-docker2-toolkit-on-an-ubuntu-operating-system">
+<span id="install-nvidia-docker2-toolkit-ubuntu"></span><h4>Installing the NVIDIA Docker2 Toolkit on an Ubuntu Operating System<a class="headerlink" href="#installing-the-nvidia-docker2-toolkit-on-an-ubuntu-operating-system" title="Permalink to this heading"></a></h4>
+<p><strong>To install the NVIDIA Docker2 Toolkit on an Ubuntu operating system:</strong></p>
+<ol class="arabic">
+<li><p>Install the repository for your distribution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+sudo apt-get update
+</pre></div>
+</div>
+</li>
+<li><p>Install the <code class="docutils literal notranslate"><span class="pre">nvidia-docker2</span></code> package and reload the Docker daemon configuration:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install nvidia-docker2
+$ sudo pkill -SIGHUP dockerd
+</pre></div>
+</div>
+</li>
+<li><p>Do one of the following:</p>
+<ul class="simple">
+<li><p>If you received an error when installing the <code class="docutils literal notranslate"><span class="pre">nvidia-docker2</span></code> package, skip to <a class="reference internal" href="#step-4-ubuntu"><span class="std std-ref">Step 4</span></a>.</p></li>
+<li><p>If you successfully installed the <code class="docutils literal notranslate"><span class="pre">nvidia-docker2</span></code> package, skip to <a class="reference internal" href="#step-5-ubuntu"><span class="std std-ref">Step 5</span></a>.</p></li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<div></div></blockquote>
+<ol class="arabic" id="step-4-ubuntu" start="4">
+<li><p>Do the following:</p>
+<blockquote>
+<div><ol class="arabic">
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">vi</span> <span class="pre">/etc/yum.repos.d/nvidia-docker.repo</span></code> command if the following error is displayed when installing the <code class="docutils literal notranslate"><span class="pre">nvidia-docker2</span></code> package:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">nvidia</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">nvidia</span><span class="o">-</span><span class="n">docker</span><span class="o">/</span><span class="n">centos7</span><span class="o">/</span><span class="n">ppc64le</span><span class="o">/</span><span class="n">repodata</span><span class="o">/</span><span class="n">repomd</span><span class="o">.</span><span class="n">xml</span><span class="p">:</span>
+<span class="p">[</span><span class="n">Errno</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="n">repomd</span><span class="o">.</span><span class="n">xml</span> <span class="n">signature</span> <span class="n">could</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">verified</span> <span class="k">for</span> <span class="n">nvidia</span><span class="o">-</span><span class="n">docker</span>
+</pre></div>
+</div>
+</li>
+<li><p>Change <code class="docutils literal notranslate"><span class="pre">repo_gpgcheck=1</span></code> to <code class="docutils literal notranslate"><span class="pre">repo_gpgcheck=0</span></code>.</p></li>
+</ol>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic" id="step-5-ubuntu" start="5">
+<li><p>Verify that the NVIDIA-Docker run has been installed correctly:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run --runtime=nvidia --rm nvidia/cuda:10.1.3-base-centos7 nvidia-smi
+</pre></div>
+</div>
+</li>
+</ol>
+<p>For more information on installing the NVIDIA Docker2 Toolkit on a CentOS operating system, see <span class="xref std std-ref">Installing the NVIDIA Docker2 Toolkit on an Ubuntu operating system</span></p>
+</section>
+</section>
+<section id="installing-the-nvidia-docker2-toolkit-on-a-ppc64le-processor">
+<span id="install-nvidia-docker2-toolkit-ppc64le-processor"></span><h3>Installing the NVIDIA Docker2 Toolkit on a PPC64le Processor<a class="headerlink" href="#installing-the-nvidia-docker2-toolkit-on-a-ppc64le-processor" title="Permalink to this heading"></a></h3>
+<p>This section describes how to install the NVIDIA Docker2 Toolkit on an IBM RHEL operating system:</p>
+<p><strong>To install the NVIDIA Docker2 Toolkit on an IBM RHEL operating system:</strong></p>
+<ol class="arabic">
+<li><p>Import the repository and install the <code class="docutils literal notranslate"><span class="pre">libnvidia-container</span></code> and the <code class="docutils literal notranslate"><span class="pre">nvidia-container-runtime</span></code> containers.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+$ curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.repo | \
+  sudo tee /etc/yum.repos.d/nvidia-docker.repo
+$ sudo yum install -y libnvidia-container*
+</pre></div>
+</div>
+</li>
+<li><p>Do one of the following:</p>
+<ul class="simple">
+<li><p>If you received an error when installing the containers, skip to <a class="reference internal" href="#step-3-installing-nvidia-docker2-toolkit-ppc64le-processor"><span class="std std-ref">Step 3</span></a>.</p></li>
+<li><p>If you successfully installed the containers, skip to <a class="reference internal" href="#step-4-installing-nvidia-docker2-toolkit-ppc64le-processor"><span class="std std-ref">Step 4</span></a>.</p></li>
+</ul>
+</li>
+</ol>
+<ol class="arabic" id="step-3-installing-nvidia-docker2-toolkit-ppc64le-processor" start="3">
+<li><p>Do the following:</p>
+<ol class="arabic">
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">vi</span> <span class="pre">/etc/yum.repos.d/nvidia-docker.repo</span></code> command if the following error is displayed when installing the containers:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">nvidia</span><span class="o">.</span><span class="n">github</span><span class="o">.</span><span class="n">io</span><span class="o">/</span><span class="n">nvidia</span><span class="o">-</span><span class="n">docker</span><span class="o">/</span><span class="n">centos7</span><span class="o">/</span><span class="n">ppc64le</span><span class="o">/</span><span class="n">repodata</span><span class="o">/</span><span class="n">repomd</span><span class="o">.</span><span class="n">xml</span><span class="p">:</span>
+<span class="p">[</span><span class="n">Errno</span> <span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="n">repomd</span><span class="o">.</span><span class="n">xml</span> <span class="n">signature</span> <span class="n">could</span> <span class="ow">not</span> <span class="n">be</span> <span class="n">verified</span> <span class="k">for</span> <span class="n">nvidia</span><span class="o">-</span><span class="n">docker</span>
+</pre></div>
+</div>
+</li>
+<li><p>Change <code class="docutils literal notranslate"><span class="pre">repo_gpgcheck=1</span></code> to <code class="docutils literal notranslate"><span class="pre">repo_gpgcheck=0</span></code>.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p>Install the <code class="docutils literal notranslate"><span class="pre">libnvidia-container</span></code> container.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo yum install -y libnvidia-container*
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+</ol>
+<blockquote>
+<div></div></blockquote>
+<ol class="arabic" id="step-4-installing-nvidia-docker2-toolkit-ppc64le-processor" start="4">
+<li><p>Install the <code class="docutils literal notranslate"><span class="pre">nvidia-container-runtime</span></code> container:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo yum install -y nvidia-container-runtime*
+</pre></div>
+</div>
+</li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">nvidia</span> <span class="pre">runtime</span></code> to the Docker daemon:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo mkdir -p /etc/systemd/system/docker.service.d/
+$ sudo vi /etc/systemd/system/docker.service.d/override.conf
+
+$ [Service]
+$ ExecStart=
+$ ExecStart=/usr/bin/dockerd
+</pre></div>
+</div>
+</li>
+<li><p>Restart Docker:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo systemctl daemon-reload
+$ sudo systemctl restart docker
+</pre></div>
+</div>
+</li>
+<li><p>Verify that the NVIDIA-Docker run has been installed correctly:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ docker run --runtime=nvidia --rm nvidia/cuda-ppc64le nvidia-smi
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="accessing-the-hadoop-and-kubernetes-configuration-files">
+<span id="accessing-hadoop-kubernetes-configuration-files"></span><h3>Accessing the Hadoop and Kubernetes Configuration Files<a class="headerlink" href="#accessing-the-hadoop-and-kubernetes-configuration-files" title="Permalink to this heading"></a></h3>
+<p>The information this section is optional and is only relevant for Hadoop users. If you require Hadoop and Kubernetes (Krb5) connectivity, contact your IT department for access to the following configuration files:</p>
+<ul>
+<li><p>Hadoop configuration files:</p>
+<ul class="simple">
+<li><p>core-site.xml</p></li>
+<li><p>hdfs-site.xml</p></li>
+</ul>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p>Kubernetes files:</p>
+<ul class="simple">
+<li><p>Configuration file - krb.conf</p></li>
+<li><p>Kubernetes Hadoop client certificate - hdfs.keytab</p></li>
+</ul>
+</li>
+</ul>
+<p>Once you have the above files, you must copy them into the correct folders in your working directory.</p>
+<p>For more information about the correct directory to copy the above files into, see the <a class="reference internal" href="#installing-sqream-software"><span class="std std-ref">Installing the SQream Software</span></a> section below.</p>
+<p>For related information, see the following sections:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#configure-hadoop-kubernetes-configuration-files"><span class="std std-ref">Configuring the Hadoop and Kubernetes Configuration Files</span></a></p></li>
+<li><p><a class="reference internal" href="#setting-hadoop-kubernetes-connectivity-parameters"><span class="std std-ref">Setting the Hadoop and Kubernetes Configuration Parameters</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="installing-the-sqream-software">
+<span id="installing-sqream-software"></span><h2><a class="toc-backref" href="#id7">Installing the SQream Software</a><a class="headerlink" href="#installing-the-sqream-software" title="Permalink to this heading"></a></h2>
+<section id="preparing-your-local-environment">
+<h3>Preparing Your Local Environment<a class="headerlink" href="#preparing-your-local-environment" title="Permalink to this heading"></a></h3>
+<p>After installing the Nvidia Docker2 toolKit you must prepare your local environment.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You must install the SQream software under a <em>sqream</em> and not a <em>root</em> user.</p>
+</div>
+<p>The Linux user preparing the local environment must have <strong>read/write</strong> access to the following directories for the SQream software to correctly read and write the required resources:</p>
+<ul class="simple">
+<li><p><strong>Log directory</strong> - default: /var/log/sqream/</p></li>
+<li><p><strong>Configuration directory</strong> - default: /etc/sqream/</p></li>
+<li><p><strong>Cluster directory</strong> - the location where SQream writes its DB system, such as <em>/mnt/sqreamdb</em></p></li>
+<li><p><strong>Ingest directory</strong> - the location where the required data is loaded, such as <em>/mnt/data_source/</em></p></li>
+</ul>
+</section>
+<section id="deploying-the-sqream-software">
+<span id="download-sqream-software"></span><h3>Deploying the SQream Software<a class="headerlink" href="#deploying-the-sqream-software" title="Permalink to this heading"></a></h3>
+<p>After preparing your local environment you must deploy the SQream software. Deploying the SQream software requires you to access and extract the required files and to place them in the correct directory.</p>
+<p><strong>To deploy the SQream software:</strong></p>
+<ol class="arabic simple">
+<li><p>Contact the SQream Support team for access to the <strong>sqream_installer-nnn-DBnnn-COnnn-EDnnn-&lt;arch&gt;.tar.gz</strong> file.</p></li>
+</ol>
+<p>The <strong>sqream_installer-nnn-DBnnn-COnnn-EDnnn-&lt;arch&gt;.tar.gz</strong> file includes the following parameter values:</p>
+<ul class="simple">
+<li><p><strong>sqream_installer-nnn</strong> - sqream installer version</p></li>
+<li><p><strong>DBnnn</strong> - SQreamDB version</p></li>
+<li><p><strong>COnnn</strong> - SQream console version</p></li>
+<li><p><strong>EDnnn</strong> - SQream editor version</p></li>
+<li><p><strong>arch</strong> - server arch (applicable to X86.64 and ppc64le)</p></li>
+</ul>
+<ol class="arabic" start="2">
+<li><p>Extract the tarball file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tar -xvf sqream_installer-1.1.5-DB2019.2.1-CO1.5.4-ED3.0.0-x86_64.tar.gz
+</pre></div>
+</div>
+<p>When the tarball file has been extracted, a new folder will be created. The new folder is automatically given the name of the tarball file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">drwxrwxr</span><span class="o">-</span><span class="n">x</span> <span class="mi">9</span> <span class="n">sqream</span> <span class="n">sqream</span> <span class="mi">4096</span> <span class="n">Aug</span> <span class="mi">11</span> <span class="mi">11</span><span class="p">:</span><span class="mi">51</span> <span class="n">sqream_istaller</span><span class="o">-</span><span class="mf">1.1.5</span><span class="o">-</span><span class="n">DB2019</span><span class="mf">.2.1</span><span class="o">-</span><span class="n">CO1</span><span class="mf">.5.4</span><span class="o">-</span><span class="n">ED3</span><span class="mf">.0.0</span><span class="o">-</span><span class="n">x86_64</span><span class="o">/</span>
+<span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">rw</span><span class="o">-</span><span class="n">r</span><span class="o">--</span> <span class="mi">1</span> <span class="n">sqream</span> <span class="n">sqream</span> <span class="mi">3130398797</span> <span class="n">Aug</span> <span class="mi">11</span> <span class="mi">11</span><span class="p">:</span><span class="mi">20</span> <span class="n">sqream_installer</span><span class="o">-</span><span class="mf">1.1.5</span><span class="o">-</span><span class="n">DB2019</span><span class="mf">.2.1</span><span class="o">-</span><span class="n">CO1</span><span class="mf">.5.4</span><span class="o">-</span><span class="n">ED3</span><span class="mf">.0.0</span><span class="o">-</span><span class="n">x86_64</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+</pre></div>
+</div>
+</li>
+<li><p>Change the directory to the new folder that you created in the previous step.</p></li>
+</ol>
+<ol class="arabic" start="4">
+<li><p>Verify that the folder you just created contains all of the required files.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls -la
+</pre></div>
+</div>
+<p>The following is an example of the files included in the new folder:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">drwxrwxr</span><span class="o">-</span><span class="n">x</span><span class="o">.</span> <span class="mi">10</span> <span class="n">sqream</span> <span class="n">sqream</span>   <span class="mi">198</span> <span class="n">Jun</span>  <span class="mi">3</span> <span class="mi">17</span><span class="p">:</span><span class="mi">57</span> <span class="o">.</span>
+<span class="n">drwx</span><span class="o">------.</span> <span class="mi">25</span> <span class="n">sqream</span> <span class="n">sqream</span>  <span class="mi">4096</span> <span class="n">Jun</span>  <span class="mi">7</span> <span class="mi">18</span><span class="p">:</span><span class="mi">11</span> <span class="o">..</span>
+<span class="n">drwxrwxr</span><span class="o">-</span><span class="n">x</span><span class="o">.</span>  <span class="mi">2</span> <span class="n">sqream</span> <span class="n">sqream</span>   <span class="mi">226</span> <span class="n">Jun</span>  <span class="mi">7</span> <span class="mi">18</span><span class="p">:</span><span class="mi">09</span> <span class="o">.</span><span class="n">docker</span>
+<span class="n">drwxrwxr</span><span class="o">-</span><span class="n">x</span><span class="o">.</span>  <span class="mi">2</span> <span class="n">sqream</span> <span class="n">sqream</span>    <span class="mi">64</span> <span class="n">Jun</span>  <span class="mi">3</span> <span class="mi">12</span><span class="p">:</span><span class="mi">55</span> <span class="o">.</span><span class="n">hadoop</span>
+<span class="n">drwxrwxr</span><span class="o">-</span><span class="n">x</span><span class="o">.</span>  <span class="mi">2</span> <span class="n">sqream</span> <span class="n">sqream</span>  <span class="mi">4096</span> <span class="n">May</span> <span class="mi">31</span> <span class="mi">14</span><span class="p">:</span><span class="mi">18</span> <span class="o">.</span><span class="n">install</span>
+<span class="n">drwxrwxr</span><span class="o">-</span><span class="n">x</span><span class="o">.</span>  <span class="mi">2</span> <span class="n">sqream</span> <span class="n">sqream</span>    <span class="mi">39</span> <span class="n">Jun</span>  <span class="mi">3</span> <span class="mi">12</span><span class="p">:</span><span class="mi">53</span> <span class="o">.</span><span class="n">krb5</span>
+<span class="n">drwxrwxr</span><span class="o">-</span><span class="n">x</span><span class="o">.</span>  <span class="mi">2</span> <span class="n">sqream</span> <span class="n">sqream</span>    <span class="mi">22</span> <span class="n">May</span> <span class="mi">31</span> <span class="mi">14</span><span class="p">:</span><span class="mi">18</span> <span class="n">license</span>
+<span class="n">drwxrwxr</span><span class="o">-</span><span class="n">x</span><span class="o">.</span>  <span class="mi">2</span> <span class="n">sqream</span> <span class="n">sqream</span>    <span class="mi">82</span> <span class="n">May</span> <span class="mi">31</span> <span class="mi">14</span><span class="p">:</span><span class="mi">18</span> <span class="o">.</span><span class="n">sqream</span>
+<span class="o">-</span><span class="n">rwxrwxr</span><span class="o">-</span><span class="n">x</span><span class="o">.</span>  <span class="mi">1</span> <span class="n">sqream</span> <span class="n">sqream</span>  <span class="mi">1712</span> <span class="n">May</span> <span class="mi">31</span> <span class="mi">14</span><span class="p">:</span><span class="mi">18</span> <span class="n">sqream</span><span class="o">-</span><span class="n">console</span>
+<span class="o">-</span><span class="n">rwxrwxr</span><span class="o">-</span><span class="n">x</span><span class="o">.</span>  <span class="mi">1</span> <span class="n">sqream</span> <span class="n">sqream</span>  <span class="mi">4608</span> <span class="n">May</span> <span class="mi">31</span> <span class="mi">14</span><span class="p">:</span><span class="mi">18</span> <span class="n">sqream</span><span class="o">-</span><span class="n">install</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>For information relevant to Hadoop users, see the following sections:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#accessing-hadoop-kubernetes-configuration-files"><span class="std std-ref">Accessing the Hadoop and Kubernetes Configuration Files</span></a>.</p></li>
+<li><p><a class="reference internal" href="#configure-hadoop-kubernetes-configuration-files"><span class="std std-ref">Configuring the Hadoop and Kubernetes Configuration Files</span></a>.</p></li>
+<li><p><a class="reference internal" href="#setting-hadoop-kubernetes-connectivity-parameters"><span class="std std-ref">Setting the Hadoop and Kubernetes Configuration Parameters</span></a>.</p></li>
+</ul>
+</section>
+<section id="configuring-the-hadoop-and-kubernetes-configuration-files">
+<span id="configure-hadoop-kubernetes-configuration-files"></span><h3>Configuring the Hadoop and Kubernetes Configuration Files<a class="headerlink" href="#configuring-the-hadoop-and-kubernetes-configuration-files" title="Permalink to this heading"></a></h3>
+<p>The information in this section is optional and is only relevant for Hadoop users. If you require Hadoop and Kubernetes (Krb5) connectivity, you must copy the Hadoop and Kubernetes files into the correct folders in your working directory as shown below:</p>
+<ul class="simple">
+<li><p>.hadoop/core-site.xml</p></li>
+<li><p>.hadoop/hdfs-site.xml</p></li>
+<li><p>.krb5/krb5.conf</p></li>
+<li><p>.krb5/hdfs.keytab</p></li>
+</ul>
+<p>For related information, see the following sections:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#accessing-hadoop-kubernetes-configuration-files"><span class="std std-ref">Accessing the Hadoop and Kubernetes Configuration Files</span></a>.</p></li>
+<li><p><a class="reference internal" href="#setting-hadoop-kubernetes-connectivity-parameters"><span class="std std-ref">Setting the Hadoop and Kubernetes Configuration Parameters</span></a>.</p></li>
+</ul>
+</section>
+<section id="configuring-the-sqream-software">
+<h3>Configuring the SQream Software<a class="headerlink" href="#configuring-the-sqream-software" title="Permalink to this heading"></a></h3>
+<p>After deploying the SQream software, and optionally configuring the Hadoop and Kubernetes configuration files, you must configure the SQream software.</p>
+<p>Configuring the SQream software requires you to do the following:</p>
+<ul class="simple">
+<li><p>Configure your local environment</p></li>
+<li><p>Understand the <code class="docutils literal notranslate"><span class="pre">sqream-install</span></code> flags</p></li>
+<li><p>Install your SQream license</p></li>
+<li><p>Validate your SQream icense</p></li>
+<li><p>Change your data ingest folder</p></li>
+</ul>
+<section id="configuring-your-local-environment">
+<h4>Configuring Your Local Environment<a class="headerlink" href="#configuring-your-local-environment" title="Permalink to this heading"></a></h4>
+<p>Once you’ve downloaded the SQream software, you can begin configuring your local environment. The following commands must be run (as <strong>sudo</strong>) from the same directory that you located your packages.</p>
+<p>For example, you may have saved your packages in <strong>/home/sqream/sqream-console-package/</strong>.</p>
+<p>The following table shows the flags that you can use to configure your local directory:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 50%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Flag</p></th>
+<th class="head"><p>Function</p></th>
+<th class="head"><p>Note</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>-i</strong></p></td>
+<td><p>Loads all software from the hidden folder <strong>.docker</strong>.</p></td>
+<td><p>Mandatory</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>-k</strong></p></td>
+<td><p>Loads all license packages from the <strong>/license</strong> directory.</p></td>
+<td><p>Mandatory</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>-f</strong></p></td>
+<td><p>Overwrites existing folders. <strong>Note</strong> Using <code class="docutils literal notranslate"><span class="pre">-f</span></code> overwrites <strong>all files</strong> located in mounted directories.</p></td>
+<td><p>Mandatory</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>-c</strong></p></td>
+<td><p>Defines the origin path for writing/reading SQream configuration files. The default location is <code class="docutils literal notranslate"><span class="pre">/etc/sqream/</span></code>.</p></td>
+<td><p>If you are installing the Docker version on a server that already works with SQream, do not use the default path.</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>-v</strong></p></td>
+<td><p>The SQream cluster location. If a cluster does not exist yet, <code class="docutils literal notranslate"><span class="pre">-v</span></code> creates one. If a cluster already exists, <code class="docutils literal notranslate"><span class="pre">-v</span></code> mounts it.</p></td>
+<td><p>Mandatory</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>-l</strong></p></td>
+<td><p>SQream system startup logs location, including startup logs and docker logs. The default location is <code class="docutils literal notranslate"><span class="pre">/var/log/sqream/</span></code>.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>-d</strong></p></td>
+<td><p>The directory containing customer data to be imported and/or copied to SQream.</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>-s</strong></p></td>
+<td><p>Shows system settings.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>-r</strong></p></td>
+<td><p>Resets the system configuration. This value is run without any other variables.</p></td>
+<td><p>Mandatory</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>-h</strong></p></td>
+<td><p>Help. Shows the available flags.</p></td>
+<td><p>Mandatory</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>-K</strong></p></td>
+<td><p>Runs license validation</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p><strong>-e</strong></p></td>
+<td><p>Used for inserting your RKrb5 server DNS name. For more information on setting your Kerberos configuration parameters, see <a class="reference internal" href="#setting-hadoop-kubernetes-connectivity-parameters"><span class="std std-ref">Setting the Hadoop and Kubernetes Configuration Parameters</span></a>.</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p><strong>-p</strong></p></td>
+<td><p>Used for inserting your Kerberos user name.  For more information on setting your Kerberos configuration parameters, see <a class="reference internal" href="#setting-hadoop-kubernetes-connectivity-parameters"><span class="std std-ref">Setting the Hadoop and Kubernetes Configuration Parameters</span></a>.</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="installing-your-license">
+<h4>Installing Your License<a class="headerlink" href="#installing-your-license" title="Permalink to this heading"></a></h4>
+<p>Once you’ve configured your local environment, you must install your license by copying it into the SQream installation package folder located in the <strong>./license</strong> folder:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo ./sqream-install -k
+</pre></div>
+</div>
+<p>You do not need to extract this folder after uploading into the <strong>./license</strong>.</p>
+</section>
+<section id="validating-your-license">
+<h4>Validating Your License<a class="headerlink" href="#validating-your-license" title="Permalink to this heading"></a></h4>
+<p>You can copy your license package into the SQream console folder located in the <strong>/license</strong> folder by running the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo ./sqream-install -K
+</pre></div>
+</div>
+<p>The following mandatory flags must be used in the first run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo ./sqream-install -i -k -v &lt;volume path&gt;
+</pre></div>
+</div>
+<p>The following is an example of the correct command syntax:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo ./sqream-install -i -k -c /etc/sqream -v /home/sqream/sqreamdb -l /var/log/sqream -d /home/sqream/data_ingest
+</pre></div>
+</div>
+</section>
+</section>
+<section id="setting-the-hadoop-and-kubernetes-connectivity-parameters">
+<span id="setting-hadoop-kubernetes-connectivity-parameters"></span><h3>Setting the Hadoop and Kubernetes Connectivity Parameters<a class="headerlink" href="#setting-the-hadoop-and-kubernetes-connectivity-parameters" title="Permalink to this heading"></a></h3>
+<p>The information in this section is optional, and is only relevant for Hadoop users. If you require Hadoop and Kubernetes (Krb5) connectivity, you must set their connectivity parameters.</p>
+<p>The following is the correct syntax when setting the Hadoop and Kubernetes connectivity parameters:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo ./sqream-install -p &lt;Kerberos user name&gt; -e  &lt;Kerberos server DNS name&gt;:&lt;Kerberos server IP&gt;
+</pre></div>
+</div>
+<p>The following is an example of setting the Hadoop and Kubernetes connectivity parameters:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo ./sqream-install -p &lt;nn1@SQ.COM&gt; -e  kdc.sq.com:&lt;192.168.1.111&gt;
+</pre></div>
+</div>
+<p>For related information, see the following sections:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#accessing-hadoop-kubernetes-configuration-files"><span class="std std-ref">Accessing the Hadoop and Kubernetes Configuration Files</span></a>.</p></li>
+<li><p><a class="reference internal" href="#configure-hadoop-kubernetes-configuration-files"><span class="std std-ref">Configuring the Hadoop and Kubernetes Configuration Files</span></a>.</p></li>
+</ul>
+<section id="modifying-your-data-ingest-folder">
+<h4>Modifying Your Data Ingest Folder<a class="headerlink" href="#modifying-your-data-ingest-folder" title="Permalink to this heading"></a></h4>
+<p>Once you’ve validated your license, you can modify your data ingest folder after the first run by running the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo ./sqream-install -d /home/sqream/data_in
+</pre></div>
+</div>
+</section>
+<section id="configuring-your-network-for-docker">
+<h4>Configuring Your Network for Docker<a class="headerlink" href="#configuring-your-network-for-docker" title="Permalink to this heading"></a></h4>
+<p>Once you’ve modified your data ingest folder (if needed), you must validate that the server network and Docker network that you are setting up do not overlap.</p>
+<p><strong>To configure your network for Docker:</strong></p>
+<ol class="arabic simple">
+<li><p>To verify that your server network and Docker network do not overlap, run the following command:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ifconfig | grep 172.
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Do one of the following:</p></li>
+</ol>
+<blockquote>
+<div><ul>
+<li><p>If running the above command output no results, continue the installation process.</p></li>
+<li><p>If running the above command output results, run the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ifconfig | grep 192.168.
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="checking-and-verifying-your-system-settings">
+<h4>Checking and Verifying Your System Settings<a class="headerlink" href="#checking-and-verifying-your-system-settings" title="Permalink to this heading"></a></h4>
+<p>Once you’ve configured your network for Docker, you can check and verify your system settings.</p>
+<p>Running the following command shows you all the variables used by your SQream system:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./sqream-install -s
+</pre></div>
+</div>
+<p>The following is an example of the correct output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SQREAM_CONSOLE_TAG</span><span class="o">=</span><span class="mf">1.5.4</span>
+<span class="n">SQREAM_TAG</span><span class="o">=</span><span class="mf">2019.2.1</span>
+<span class="n">SQREAM_EDITOR_TAG</span><span class="o">=</span><span class="mf">3.0.0</span>
+<span class="n">license_worker_0</span><span class="o">=</span><span class="n">f0</span><span class="p">:</span><span class="n">cc</span><span class="p">:</span>
+<span class="n">license_worker_1</span><span class="o">=</span><span class="mi">26</span><span class="p">:</span><span class="mi">91</span><span class="p">:</span>
+<span class="n">license_worker_2</span><span class="o">=</span><span class="mi">20</span><span class="p">:</span><span class="mi">26</span><span class="p">:</span>
+<span class="n">license_worker_3</span><span class="o">=</span><span class="mi">00</span><span class="p">:</span><span class="mi">36</span><span class="p">:</span>
+<span class="n">SQREAM_VOLUME</span><span class="o">=/</span><span class="n">media</span><span class="o">/</span><span class="n">sqreamdb</span>
+<span class="n">SQREAM_DATA_INGEST</span><span class="o">=/</span><span class="n">media</span><span class="o">/</span><span class="n">sqreamdb</span><span class="o">/</span><span class="n">data_in</span>
+<span class="n">SQREAM_CONFIG_DIR</span><span class="o">=/</span><span class="n">etc</span><span class="o">/</span><span class="n">sqream</span><span class="o">/</span>
+<span class="n">LICENSE_VALID</span><span class="o">=</span><span class="n">true</span>
+<span class="n">SQREAM_LOG_DIR</span><span class="o">=/</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="o">/</span><span class="n">sqream</span><span class="o">/</span>
+<span class="n">SQREAM_USER</span><span class="o">=</span><span class="n">sqream</span>
+<span class="n">SQREAM_HOME</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">sqream</span>
+<span class="n">SQREAM_ENV_PATH</span><span class="o">=/</span><span class="n">home</span><span class="o">/</span><span class="n">sqream</span><span class="o">/.</span><span class="n">sqream</span><span class="o">/</span><span class="n">env_file</span>
+<span class="n">PROCESSOR</span><span class="o">=</span><span class="n">x86_64</span>
+<span class="n">METADATA_PORT</span><span class="o">=</span><span class="mi">3105</span>
+<span class="n">PICKER_PORT</span><span class="o">=</span><span class="mi">3108</span>
+<span class="n">NUM_OF_GPUS</span><span class="o">=</span><span class="mi">2</span>
+<span class="n">CUDA_VERSION</span><span class="o">=</span><span class="mf">10.1</span>
+<span class="n">NVIDIA_SMI_PATH</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">nvidia</span><span class="o">-</span><span class="n">smi</span>
+<span class="n">DOCKER_PATH</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">docker</span>
+<span class="n">NVIDIA_DRIVER</span><span class="o">=</span><span class="mi">418</span>
+<span class="n">SQREAM_MODE</span><span class="o">=</span><span class="n">single_host</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="using-the-sqream-console">
+<h2><a class="toc-backref" href="#id8">Using the SQream Console</a><a class="headerlink" href="#using-the-sqream-console" title="Permalink to this heading"></a></h2>
+<p>After configuring the SQream software and veriying your system settings you can begin using the SQream console.</p>
+<section id="sqream-console-basic-commands">
+<h3>SQream Console - Basic Commands<a class="headerlink" href="#sqream-console-basic-commands" title="Permalink to this heading"></a></h3>
+<p>The SQream console offers the following basic commands:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#starting-sqream-console"><span class="std std-ref">Starting your SQream console</span></a></p></li>
+<li><p><a class="reference internal" href="#starting-metadata-and-picker"><span class="std std-ref">Starting Metadata and Picker</span></a></p></li>
+<li><p><a class="reference internal" href="#starting-running-services"><span class="std std-ref">Starting the running services</span></a></p></li>
+<li><p><a class="reference internal" href="#listing-running-services"><span class="std std-ref">Listing the running services</span></a></p></li>
+<li><p><a class="reference internal" href="#stopping-running-services"><span class="std std-ref">Stopping the running services</span></a></p></li>
+<li><p><a class="reference internal" href="#using-sqream-editor"><span class="std std-ref">Using the SQream editor</span></a></p></li>
+<li><p><a class="reference internal" href="#using-sqream-client"><span class="std std-ref">Using the SQream Client</span></a></p></li>
+</ul>
+<section id="starting-your-sqream-console">
+<span id="starting-sqream-console"></span><h4>Starting Your SQream Console<a class="headerlink" href="#starting-your-sqream-console" title="Permalink to this heading"></a></h4>
+<p>You can start your SQream console by running the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./sqream-console
+</pre></div>
+</div>
+</section>
+<section id="starting-the-sqream-master">
+<span id="starting-metadata-and-picker"></span><h4>Starting the SQream Master<a class="headerlink" href="#starting-the-sqream-master" title="Permalink to this heading"></a></h4>
+<p><strong>To listen to metadata and picker:</strong></p>
+<ol class="arabic">
+<li><p>Start the metadata server (default port 3105) and picker (default port 3108) by running the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sqream master --start
+</pre></div>
+</div>
+<p>The following is the correct output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sqream</span><span class="o">-</span><span class="n">console</span><span class="o">&gt;</span> <span class="n">sqream</span> <span class="n">master</span> <span class="o">--</span><span class="n">start</span>
+<span class="n">starting</span> <span class="n">master</span> <span class="n">server</span> <span class="ow">in</span> <span class="n">single_host</span> <span class="n">mode</span> <span class="o">...</span>
+<span class="n">sqream_single_host_master</span> <span class="ow">is</span> <span class="n">up</span> <span class="ow">and</span> <span class="n">listening</span> <span class="n">on</span> <span class="n">ports</span><span class="p">:</span> <span class="mi">3105</span><span class="p">,</span><span class="mi">3108</span>
+</pre></div>
+</div>
+</li>
+<li><p><em>Optional</em> - Change the metadata and server picker ports by adding <code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">&lt;port</span> <span class="pre">number&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">&lt;port</span> <span class="pre">number&gt;</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sqream-console&gt;sqream master --start -p 4105 -m 43108
+$ starting master server in single_host mode ...
+$ sqream_single_host_master is up and listening on ports: 4105,4108
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<section id="starting-sqream-workers">
+<span id="starting-running-services"></span><h4>Starting SQream Workers<a class="headerlink" href="#starting-sqream-workers" title="Permalink to this heading"></a></h4>
+<p>When starting SQream workers, setting the <code class="docutils literal notranslate"><span class="pre">&lt;number</span> <span class="pre">of</span> <span class="pre">workers&gt;</span></code> value sets how many workers to start. Leaving the <code class="docutils literal notranslate"><span class="pre">&lt;number</span> <span class="pre">of</span> <span class="pre">workers&gt;</span></code> value unspecified runs all of the available resources.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sqream worker --start &lt;number of workers&gt;
+
+The following is an example of expected output when setting the ``&lt;number of workers&gt;`` value to ``2``:
+
+.. code-block::
+
+   sqream-console&gt;sqream worker --start 2
+   started sqream_single_host_worker_0 on port 5000, allocated gpu: 0
+   started sqream_single_host_worker_1 on port 5001, allocated gpu: 1
+</pre></div>
+</div>
+</section>
+<section id="listing-the-running-services">
+<span id="listing-running-services"></span><h4>Listing the Running Services<a class="headerlink" href="#listing-the-running-services" title="Permalink to this heading"></a></h4>
+<p>You can list running SQream services to look for container names and ID’s by running the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sqream master --list
+</pre></div>
+</div>
+<p>The following is an example of the expected output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sqream</span><span class="o">-</span><span class="n">console</span><span class="o">&gt;</span><span class="n">sqream</span> <span class="n">master</span> <span class="o">--</span><span class="nb">list</span>
+<span class="n">container</span> <span class="n">name</span><span class="p">:</span> <span class="n">sqream_single_host_worker_0</span><span class="p">,</span> <span class="n">container</span> <span class="nb">id</span><span class="p">:</span> <span class="n">c919e8fb78c8</span>
+<span class="n">container</span> <span class="n">name</span><span class="p">:</span> <span class="n">sqream_single_host_master</span><span class="p">,</span> <span class="n">container</span> <span class="nb">id</span><span class="p">:</span> <span class="n">ea7eef80e038</span><span class="o">--</span>
+</pre></div>
+</div>
+</section>
+<section id="stopping-the-running-services">
+<span id="stopping-running-services"></span><h4>Stopping the Running Services<a class="headerlink" href="#stopping-the-running-services" title="Permalink to this heading"></a></h4>
+<p>You can stop running services either for a single SQream worker, or all SQream services for both master and worker.</p>
+<p>The following is the command for stopping a running service for a single SQream worker:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sqream worker --stop &lt;full worker name&gt;
+</pre></div>
+</div>
+<p>The following is an example of expected output when stopping a running service for a single SQream worker:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sqream</span> <span class="n">worker</span> <span class="n">stop</span> <span class="o">&lt;</span><span class="n">full</span> <span class="n">worker</span> <span class="n">name</span><span class="o">&gt;</span>
+<span class="n">stopped</span> <span class="n">container</span> <span class="n">sqream_single_host_worker_0</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">892</span><span class="n">a8f1a58c5</span>
+</pre></div>
+</div>
+<p>You can stop all running SQream services (both master and worker) by running the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sqream-console&gt;sqream master --stop --all
+</pre></div>
+</div>
+<p>The following is an example of expected output when stopping all running services:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sqream</span><span class="o">-</span><span class="n">console</span><span class="o">&gt;</span><span class="n">sqream</span> <span class="n">master</span> <span class="o">--</span><span class="n">stop</span> <span class="o">--</span><span class="nb">all</span>
+<span class="n">stopped</span> <span class="n">container</span> <span class="n">sqream_single_host_worker_0</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">892</span><span class="n">a8f1a58c5</span>
+<span class="n">stopped</span> <span class="n">container</span> <span class="n">sqream_single_host_master</span><span class="p">,</span> <span class="nb">id</span><span class="p">:</span> <span class="mi">55</span><span class="n">cb7e38eb22</span>
+</pre></div>
+</div>
+</section>
+<section id="using-sqream-studio">
+<span id="using-sqream-editor"></span><h4>Using SQream Studio<a class="headerlink" href="#using-sqream-studio" title="Permalink to this heading"></a></h4>
+<p>SQream Studio is an SQL statement editor.</p>
+<p><strong>To start SQream Studio:</strong></p>
+<ol class="arabic">
+<li><p>Run the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sqream studio --start
+</pre></div>
+</div>
+</li>
+</ol>
+<p>The following is an example of the expected output:</p>
+<blockquote>
+<div><div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">SQream</span> <span class="n">Acceleration</span> <span class="n">Studio</span> <span class="ow">is</span> <span class="n">available</span> <span class="n">at</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168.1.62</span><span class="p">:</span><span class="mi">8080</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Click the <code class="docutils literal notranslate"><span class="pre">http://192.168.1.62:8080</span></code> link shown in the CLI.</p></li>
+</ol>
+<p><strong>To stop SQream Studio:</strong></p>
+<p>You can stop your SQream Studio by running the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sqream studio --stop
+</pre></div>
+</div>
+<p>The following is an example of the expected output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sqream_admin</span>    <span class="n">stopped</span>
+</pre></div>
+</div>
+</section>
+<section id="using-the-sqream-client">
+<span id="using-sqream-client"></span><h4>Using the SQream Client<a class="headerlink" href="#using-the-sqream-client" title="Permalink to this heading"></a></h4>
+<p>You can use the embedded SQream Client on the following nodes:</p>
+<ul class="simple">
+<li><p>Master node</p></li>
+<li><p>Worker node</p></li>
+</ul>
+<p>When using the SQream Client on the Master node, the following default settings are used:</p>
+<ul class="simple">
+<li><p><strong>Default port</strong>: 3108. You can change the default port using the  <code class="docutils literal notranslate"><span class="pre">-p</span></code> variable.</p></li>
+<li><p><strong>Default database</strong>: master. You can change the default database using the <code class="docutils literal notranslate"><span class="pre">-d</span></code> variable.</p></li>
+</ul>
+<p>The following is an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sqream client --master -u sqream -w sqream
+</pre></div>
+</div>
+<p>When using the SQream Client on a Worker node (or nodes), you should use the <code class="docutils literal notranslate"><span class="pre">-p</span></code> variable for Worker ports. The default database is <code class="docutils literal notranslate"><span class="pre">master</span></code>, but you can use the <code class="docutils literal notranslate"><span class="pre">-d</span></code> variable to change databases.</p>
+<p>The following is an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sqream client --worker -p 5000 -u sqream -w sqream
+</pre></div>
+</div>
+</section>
+</section>
+<section id="moving-from-docker-installation-to-standard-on-premises-installation">
+<h3>Moving from Docker Installation to Standard On-Premises Installation<a class="headerlink" href="#moving-from-docker-installation-to-standard-on-premises-installation" title="Permalink to this heading"></a></h3>
+<p>Because Docker creates all files and directories on the host at the <strong>root</strong> level, you must grant ownership of the SQream storage folder to the working directory user.</p>
+</section>
+<section id="sqream-console-advanced-commands">
+<h3>SQream Console - Advanced Commands<a class="headerlink" href="#sqream-console-advanced-commands" title="Permalink to this heading"></a></h3>
+<p>The SQream console offers the following advanced commands:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#controlling-spool-size"><span class="std std-ref">Controlling the spool size</span></a></p></li>
+<li><p><a class="reference internal" href="#splitting-gpu"><span class="std std-ref">Splitting a GPU</span></a></p></li>
+<li><p><a class="reference internal" href="#splitting-gpu-setting-spool-size"><span class="std std-ref">Splitting a GPU and setting the spool size</span></a></p></li>
+<li><p><a class="reference internal" href="#using-custom-configuration-file"><span class="std std-ref">Using a custom configuration file</span></a></p></li>
+<li><p><a class="reference internal" href="#clustering-docker-environment"><span class="std std-ref">Clustering your Docker environment</span></a></p></li>
+</ul>
+<section id="controlling-the-spool-size">
+<span id="controlling-spool-size"></span><h4>Controlling the Spool Size<a class="headerlink" href="#controlling-the-spool-size" title="Permalink to this heading"></a></h4>
+<p>From the console you can define a spool size value.</p>
+<p>The following example shows the spool size being set to <code class="docutils literal notranslate"><span class="pre">50</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sqream-console&gt;sqream worker --start 2 -m 50
+</pre></div>
+</div>
+<p>If you don’t define the SQream spool size, the SQream console automatically distributes the available RAM between all running workers.</p>
+</section>
+<section id="splitting-a-gpu">
+<span id="splitting-gpu"></span><h4>Splitting a GPU<a class="headerlink" href="#splitting-a-gpu" title="Permalink to this heading"></a></h4>
+<p>You can start more than one sqreamd on a single GPU by splitting it.</p>
+<p>The following example shows the GPU being split into <strong>two</strong> sqreamd’s on the GPU in <strong>slot 0</strong>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sqream-console&gt;sqream worker --start 2 -g 0
+</pre></div>
+</div>
+</section>
+<section id="splitting-gpu-and-setting-the-spool-size">
+<span id="splitting-gpu-setting-spool-size"></span><h4>Splitting GPU and Setting the Spool Size<a class="headerlink" href="#splitting-gpu-and-setting-the-spool-size" title="Permalink to this heading"></a></h4>
+<p>You can simultaneously split a GPU and set the spool size by appending the <code class="docutils literal notranslate"><span class="pre">-m</span></code> flag:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sqream-console&gt;sqream worker --start 2 -g 0 -m 50
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The console does not validate whether the user-defined spool size is available. Before setting the spool size, verify that the requested resources are available.</p>
+</div>
+</section>
+<section id="using-a-custom-configuration-file">
+<span id="using-custom-configuration-file"></span><h4>Using a Custom Configuration File<a class="headerlink" href="#using-a-custom-configuration-file" title="Permalink to this heading"></a></h4>
+<p>SQream lets you use your own external custom configuration json files. You must place these json files in the path mounted in the installation. SQream recommends placing the json file in the Configuration folder.</p>
+<p>The SQream console does not validate the integrity of your external configuration files.</p>
+<p>When using your custom configuration file, you can use the <code class="docutils literal notranslate"><span class="pre">-j</span></code> flag to define the full path to the Configuration file, as in the example below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sqream-console&gt;sqream worker --start 1 -j /etc/sqream/configfile.json
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To start more than one sqream daemon, you must provide files for each daemon, as in the example below:</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sqream worker --start 2 -j /etc/sqream/configfile.json /etc/sqream/configfile2.json
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To split a specific GPU, you must also list the GPU flag, as in the example below:</p>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sqream worker --start 2 -g 0 -j /etc/sqream/configfile.json /etc/sqream/configfile2.json
+</pre></div>
+</div>
+</section>
+<section id="clustering-your-docker-environment">
+<span id="clustering-docker-environment"></span><h4>Clustering Your Docker Environment<a class="headerlink" href="#clustering-your-docker-environment" title="Permalink to this heading"></a></h4>
+<p>SQream lets you connect to a remote Master node to start Docker in Distributed mode. If you have already connected to a Slave node server in Distributed mode, the <strong>sqream Master</strong> and <strong>Client</strong> commands are only available on the Master node.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ --master-host
+$ sqream-console&gt;sqream worker --start 1 --master-host 192.168.0.1020
+</pre></div>
+</div>
+</section>
+</section>
+<section id="checking-the-status-of-sqream-services">
+<h3>Checking the Status of SQream Services<a class="headerlink" href="#checking-the-status-of-sqream-services" title="Permalink to this heading"></a></h3>
+<p>SQream lets you check the status of SQream services from the following locations:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#inside-sqream-console"><span class="std std-ref">From the Sqream console</span></a></p></li>
+<li><p><a class="reference internal" href="#outside-sqream-console"><span class="std std-ref">From outside the Sqream console</span></a></p></li>
+</ul>
+<section id="checking-the-status-of-sqream-services-from-the-sqream-console">
+<span id="inside-sqream-console"></span><h4>Checking the Status of SQream Services from the SQream Console<a class="headerlink" href="#checking-the-status-of-sqream-services-from-the-sqream-console" title="Permalink to this heading"></a></h4>
+<p>From the SQream console, you can check the status of SQream services by running the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sqream-console&gt;sqream master --list
+</pre></div>
+</div>
+<p>The following is an example of the expected output:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sqream-console&gt;sqream master --list
+$ checking 3 sqream services:
+$ sqream_single_host_worker_1 up, listens on port: 5001 allocated gpu: 1
+$ sqream_single_host_worker_0 up, listens on port: 5000 allocated gpu: 1
+$ sqream_single_host_master up listens on ports: 3105,3108
+</pre></div>
+</div>
+</section>
+<section id="checking-the-status-of-sqream-services-from-outside-the-sqream-console">
+<span id="outside-sqream-console"></span><h4>Checking the Status of SQream Services from Outside the SQream Console<a class="headerlink" href="#checking-the-status-of-sqream-services-from-outside-the-sqream-console" title="Permalink to this heading"></a></h4>
+<p>From outside the Sqream Console, you can check the status of SQream services by running the following commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sqream-status
+$ NAMES STATUS PORTS
+$ sqream_single_host_worker_1 Up 3 minutes 0.0.0.0:5001-&gt;5001/tcp
+$ sqream_single_host_worker_0 Up 3 minutes 0.0.0.0:5000-&gt;5000/tcp
+$ sqream_single_host_master Up 3 minutes 0.0.0.0:3105-&gt;3105/tcp, 0.0.0.0:3108-&gt;3108/tcp
+$ sqream_editor_3.0.0 Up 3 hours (healthy) 0.0.0.0:3000-&gt;3000/tcp
+</pre></div>
+</div>
+</section>
+</section>
+<section id="upgrading-your-sqream-system">
+<h3>Upgrading Your SQream System<a class="headerlink" href="#upgrading-your-sqream-system" title="Permalink to this heading"></a></h3>
+<p>This section describes how to upgrade your SQream system.</p>
+<p><strong>To upgrade your SQream system:</strong></p>
+<ol class="arabic">
+<li><p>Contact the SQream Support team for access to the new SQream package tarball file.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p>Set a maintenance window to enable stopping the system while upgrading it.</p>
+<blockquote>
+<div></div></blockquote>
+</li>
+<li><p>Extract the following tarball file received from the SQream Support team, under it with the same user and in the same folder that you used while <span class="xref std std-ref">Downloading the SQream Software</span>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ tar -xvf sqream_installer-2.0.5-DB2019.2.1-CO1.6.3-ED3.0.0-x86_64/
+</pre></div>
+</div>
+</li>
+<li><p>Navigate to the new folder created as a result of extracting the tarball file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ cd sqream_installer-2.0.5-DB2019.2.1-CO1.6.3-ED3.0.0-x86_64/
+</pre></div>
+</div>
+</li>
+<li><p>Initiate the upgrade process:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ./sqream-install -i
+</pre></div>
+</div>
+<p>Initiating the upgrade process checks if any SQream services are running. If any services are running, you will be prompted to stop them.</p>
+</li>
+<li><p>Do one of the following:</p>
+<ul class="simple">
+<li><p>Select <strong>Yes</strong> to stop all running SQream workers (Master and Editor) and continue the upgrade process.</p></li>
+<li><p>Select <strong>No</strong> to stop the upgrade process.</p></li>
+</ul>
+<p>SQream periodically upgrades the metadata structure. If an upgrade version includes a change to the metadata structure, you will be prompted with an approval request message. Your approval is required to finish the upgrade process.</p>
+<p>Because SQream supports only certain metadata versions, all SQream services must be upgraded at the same time.</p>
+</li>
+<li><p>When the upgrade is complete, load the SQream console and restart your services.</p>
+<p>For assistance, contact SQream Support.</p>
+</li>
+</ol>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="installing_sqream_with_binary.html" class="btn btn-neutral float-left" title="Installing SQream Using Binary Packages" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="installing_sqream_with_kubernetes.html" class="btn btn-neutral float-right" title="Installing SQream with Kubernetes" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023 SQream.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
