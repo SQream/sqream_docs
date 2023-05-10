@@ -1,5 +1,5 @@
 # sphinx build folder
-_build
+$READTHEDOCS_OUTPUT/html
 # OS generated files #
 ######################
 .DS_Store?
