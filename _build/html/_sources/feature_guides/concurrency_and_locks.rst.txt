@@ -45,12 +45,7 @@ When are Locks Obtained?
      - Concurrent
      - Concurrent
      - Concurrent
-   * - :ref:`insert`
-     - Concurrent
-     - Concurrent
-     - Concurrent
-     - Wait
-   * - :ref:`delete`, :ref:`truncate`
+   * - :ref:`delete`
      - Concurrent
      - Concurrent
      - Wait
