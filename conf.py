@@ -93,6 +93,7 @@ html_theme_options = {
    , 'navigation_depth': -1
    , 'collapse_navigation': False
    , 'titles_only': True
+   , "top_of_page_button": "None"
 
 }
 
