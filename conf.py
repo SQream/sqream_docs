@@ -87,7 +87,7 @@ html_show_copyright = True
 
 html_theme_options = {
    'logo_only': True # Hide "SQream DB" title and only show logo
-   , 'display_version': True # Display version at the top
+   , 'display_version': False # Display version at the top
    , 'style_external_links': True # Show little icon next to external links
    , 'style_nav_header_background': '#133148' # SQream teal
    , 'navigation_depth': -1
