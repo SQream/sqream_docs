@@ -98,6 +98,11 @@ html_theme_options = {
    , 'light_logo': 'images/SQream_logo_bright_mode.png'
    , "sidebar_hide_name": True
    , "footer_icons": 'None'
+   , "light_css_variables": {
+        "color-brand-primary": "elephant",
+        "color-brand-content": "#133148",
+        "color-admonition-background": "orange",
+    },
    
    
 }
