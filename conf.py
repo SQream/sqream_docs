@@ -96,6 +96,7 @@ html_theme_options = {
    , 'top_of_page_button': 'None'
    , 'dark_logo': 'SQream_logo_dark_mode.png'
    , 'light_logo': 'SQream_logo_bright_mode.png'
+   , "sidebar_hide_name": True
    
 
 }
