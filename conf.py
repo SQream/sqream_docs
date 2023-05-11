@@ -56,7 +56,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # a list of builtin themes.
 #
 html_theme = "furo"
-
+ 
 pygments_style = "sphinx"
 pygments_dark_style = "monokai"
 
