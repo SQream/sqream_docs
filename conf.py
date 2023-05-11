@@ -78,6 +78,9 @@ show_authors = False
 # Hide "Sphinx" details
 html_show_sphinx = False
 
+#Hide the sidebar
+html_sidebars = {}
+
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = "perldoc"
@@ -98,7 +101,6 @@ html_theme_options = {
    , 'light_logo': 'images/SQream_logo_bright_mode.png'
    , "sidebar_hide_name": True
    , "footer_icons": 'None'
-   , 'nosidebar': True
    
    
 }
