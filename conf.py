@@ -86,16 +86,16 @@ html_show_copyright = True
 # furo theme specifics
 
 html_theme_options = {
-   'logo_only': True # Hide "SQream DB" title and only show logo
+   'logo_only': True # Hide "SQream Blue" title and only show logo
    , 'display_version': False # Display version at the top
    , 'style_external_links': True # Show little icon next to external links
    , 'style_nav_header_background': '#133148' # SQream teal
    , 'navigation_depth': -1
    , 'collapse_navigation': False
    , 'titles_only': True
-   , "top_of_page_button": "None"
-   , "dark_logo": "_static/images/SQream_logo_dark_mode.png"
-   , "light_logo": "_static/images/SQream_logo_bright_mode.png"
+   , 'top_of_page_button': 'None'
+   , 'dark_logo': '_static/images/SQream_logo_dark_mode.png'
+   , 'light_logo': '_static/images/SQream_logo_bright_mode.png'
    
 
 }
