@@ -6,7 +6,7 @@ File Types Overview
 
 .. contents::
    :local:
-   :depth: 1
+   :depth: 1 
    
 
 Unsupported Data Types
