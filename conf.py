@@ -97,7 +97,9 @@ html_theme_options = {
    , 'dark_logo': 'SQream_logo_dark_mode.png'
    , 'light_logo': 'SQream_logo_bright_mode.png'
    , "sidebar_hide_name": True
-   , "footer_icons":
+   , "footer_icons": []
+   
+   
 }
 
 latex_engine = 'xelatex'
