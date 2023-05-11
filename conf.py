@@ -40,7 +40,7 @@ extensions = [
     'notfound.extension', # 404 handling
     'sphinx_copybutton'
 ]
-
+ 
 # Mark 'index' as the main page
 master_doc = 'index'
 
