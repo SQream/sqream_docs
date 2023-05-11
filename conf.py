@@ -16,7 +16,7 @@
 
 import sphinx_rtd_theme
 
-# sys.path.append(os.path.abspath('c:\python311\lib\site-packages'))
+# sys.path.append(os.path.abspath('c:/python311/lib/site-packages'))
 
 # -- Project information -----------------------------------------------------
 
