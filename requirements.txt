@@ -8,4 +8,4 @@ openssl-python>=0.1.1
 sphinx-notfound-page
 Pygments>=2.4.0
 sphinx-copybutton>=0.5.2
-
+furo==2022.9.24
