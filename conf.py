@@ -112,7 +112,7 @@ latex_elements = {
 
 # For version replaces in some pages (like client drivers page)
 
-base_version = release.split('-')[0]
-rst_epilog = """
-.. |latest_version| replace:: v{}
-""".format(base_version)
+#base_version = release.split('-')[0]
+#rst_epilog = """
+#.. |latest_version| replace:: v{}
+#""".format(base_version)
