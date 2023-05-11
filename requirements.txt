@@ -3,7 +3,6 @@
 # Defining the exact version will make sure things don't break
 sphinx==5.3.0
 sphinx_rtd_theme==1.2.0
-html_theme=='furo'
 urllib3<=2.0.0
 openssl-python>=0.1.1
 sphinx-notfound-page
