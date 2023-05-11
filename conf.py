@@ -14,7 +14,7 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-import sphinx_rtd_theme
+import sphinx_furo_theme
 
 # -- Project information -----------------------------------------------------
 
@@ -83,7 +83,7 @@ pygments_style = 'autumn'
 
 html_show_copyright = True
 
-# RTD theme specifics
+# furo theme specifics
 
 html_theme_options = {
    'logo_only': True # Hide "SQream DB" title and only show logo
