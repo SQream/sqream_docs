@@ -80,8 +80,8 @@ html_show_sphinx = False
 
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = "github-dark"
-pygments_dark_style = "monokai"
+pygments_style = "perldoc"
+pygments_dark_style = "perldoc"
 
 html_show_copyright = True
 
