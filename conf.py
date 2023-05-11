@@ -99,7 +99,6 @@ html_theme_options = {
    , "sidebar_hide_name": True
    , "footer_icons":
    
-
 }
 
 latex_engine = 'xelatex'
