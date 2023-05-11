@@ -57,8 +57,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 #
 html_theme = "furo"
  
-pygments_style = "sphinx"
-pygments_dark_style = "monokai"
+
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -81,7 +80,8 @@ html_show_sphinx = False
 
 
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'autumn'
+pygments_style = "sphinx"
+pygments_dark_style = "monokai"
 
 html_show_copyright = True
 
