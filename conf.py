@@ -16,7 +16,7 @@
 
 import sphinx_rtd_theme
 
-
+sys.path.append(os.path.abspath('path/to/sphinx_copybutton'))
 
 # -- Project information -----------------------------------------------------
 
