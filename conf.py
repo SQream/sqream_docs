@@ -18,7 +18,7 @@
 
 # -- Project information -----------------------------------------------------
 
-project = 'SQream Blue'
+project = 'BLUE'
 copyright = '2023 SQream'
 author = 'SQream Documentation'
 
