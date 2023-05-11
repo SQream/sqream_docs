@@ -67,7 +67,7 @@ html_css_files = [
     'css/custom.css', # Relative to the _static path
 ]
 
-html_logo = '_static/images/SQream_logo_without background-15.png'
+
 
 # If true, sectionauthor and moduleauthor directives will be shown in the
 # output. They are ignored by default.
@@ -94,6 +94,9 @@ html_theme_options = {
    , 'collapse_navigation': False
    , 'titles_only': True
    , "top_of_page_button": "None"
+   , "dark_logo": "SQream_logo_dark_mode".png
+   , "light_logo": "SQream_logo_bright_mode".png
+   
 
 }
 
