@@ -38,7 +38,7 @@ The following table shows the connection string parameters:
      - State
      - Default
      - Description
-   * - ``host:port>``
+   * - ``host:port``
      - Mandatory
      - None
      - FQDN and port of the Blue cluster. For example, ``blue-cluster.isqream.com:443``
