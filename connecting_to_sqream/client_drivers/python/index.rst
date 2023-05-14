@@ -3,93 +3,111 @@
 *************************
 Connecting to SQream Using Python (pysqream)
 *************************
-The **Python** connector page describes the following:
+
+The current Pysqream connector supports Python version 3.9 and newer. It includes a set of packages that allows Python programs to connect to SQream DB. The base ``pysqream`` package conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_.
+
+``pysqream`` is a pure Python connector that can be installed with ``pip`` on any operating system, including Linux, Windows, and macOS. ``pysqream-sqlalchemy`` is a SQLAlchemy dialect for ``pysqream``.
+
 
 .. contents:: 
    :local:
    :depth: 1
 
-Overview
-=============
-The SQream Python connector is a set of packages that allows Python programs to connect to SQream DB.
-
-* ``pysqream`` is a pure Python connector. It can be installed with ``pip`` on any operating system, including Linux, Windows, and macOS.
-
-* ``pysqream-sqlalchemy`` is a SQLAlchemy dialect for ``pysqream``
-
-The connector supports Python 3.6.5 and newer. The base ``pysqream`` package conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_.
-
 Installing the Python Connector
 ==================================
 
 Prerequisites
-----------------
-Installing the Python connector includes the following prerequisites:
+-------------
+
+It is essential that you have the following installed:
 
 .. contents:: 
    :local:
    :depth: 1
 
 Python
-^^^^^^^^^^^^
+~~~~~~
 
-The connector requires Python 3.6.5 or newer. To verify your version of Python:
+The connector requires Python version 3.9 or newer. 
+
+To see your current Python version, run the following command:
 
 .. code-block:: console
 
    $ python --version
-   Python 3.7.3
    
-
+   
 PIP
-^^^^^^^^^^^^
-The Python connector is installed via ``pip``, the Python package manager and installer.
+~~~
+The Python connector is installed via ``pip``, the standard package manager for Python, which is used to install, upgrade and manage Python packages (libraries) and their dependencies.
 
-We recommend upgrading to the latest version of ``pip`` before installing. To verify that you are on the latest version, run the following command:
+We recommend upgrading to the latest version of ``pip`` before installing. 
+
+To verify that you have the latest version, run the following command:
 
 .. code-block:: console
 
-   $ python3 -m pip install --upgrade pip
-   Collecting pip
-      Downloading https://files.pythonhosted.org/packages/00/b6/9cfa56b4081ad13874b0c6f96af8ce16cfbc1cb06bedf8e9164ce5551ec1/pip-19.3.1-py2.py3-none-any.whl (1.4MB)
-        |████████████████████████████████| 1.4MB 1.6MB/s
-   Installing collected packages: pip
-     Found existing installation: pip 19.1.1
-       Uninstalling pip-19.1.1:
-         Successfully uninstalled pip-19.1.1
-   Successfully installed pip-19.3.1
+	$ python3 -m pip install --upgrade pip
+	Collecting pip
+	   Downloading https://files.pythonhosted.org/packages/00/b6/9cfa56b4081ad13874b0c6f96af8ce16cfbc1cb06bedf8e9164ce5551ec1/pip-19.3.1-py2.py3-none-any.whl (1.4MB)
+		 |████████████████████████████████| 1.4MB 1.6MB/s
+	Installing collected packages: pip
+	  Found existing installation: pip 19.1.1
+		Uninstalling pip-19.1.1:
+		  Successfully uninstalled pip-19.1.1
+	Successfully installed pip-19.3.1
+
 
 .. note:: 
    * On macOS, you may want to use virtualenv to install Python and the connector, to ensure compatibility with the built-in Python environment
    *  If you encounter an error including ``SSLError`` or ``WARNING: pip is configured with locations that require TLS/SSL, however the ssl module in Python is not available.`` - please be sure to reinstall Python with SSL enabled, or use virtualenv or Anaconda.
 
 OpenSSL for Linux
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-Some distributions of Python do not include OpenSSL. The Python connector relies on OpenSSL for secure connections to SQream DB.
+~~~~~~~~~~~~~~~~~
+The Python connector relies on OpenSSL for secure connections to SQream DB. Some distributions of Python do not include OpenSSL. 
 
-* To install OpenSSL on RHEL/CentOS
+To install OpenSSL on RHEL/CentOS, run the following command:
 
   .. code-block:: console
    
      $ sudo yum install -y libffi-devel openssl-devel
 
-* To install OpenSSL on Ubuntu
+To install OpenSSL on Ubuntu, run the following command:
 
   .. code-block:: console
    
      $ sudo apt-get install libssl-dev libffi-dev -y
 
-Installing via PIP
------------------
+
+Installing via PIP with an internet connection
+----------------------------------------------
 The Python connector is available via `PyPi <https://pypi.org/project/pysqream/>`_.
 
-Install the connector with ``pip``:
+To install the connector using pip, it is advisable to use the ``-U`` or ``--user`` flags instead of sudo, as it ensures packages are installed per user. However, it is worth noting that the connector can only be accessed under the same user. 
+
+To install ``pysqream`` and ``pysqream-sqlalchemy`` with the ``--user`` flag, run the following command:
 
 .. code-block:: console
    
-   $ pip3 install pysqream pysqream-sqlalchemy
+   $ pip3.9 install pysqream pysqream-sqlalchemy --user
 
 ``pip3`` will automatically install all necessary libraries and modules.
+
+Installing via PIP without an internet connection
+----------------------------------------------
+
+#. To get the ``.whl`` package file, contact you SQream support representative.
+
+#. Run the following command:
+
+.. code-block:: console
+
+	tar -xf pysqream_connector_3.2.5.tar.gz
+	cd pysqream_connector_3.2.5
+	#Install all packages with --no-index --find-links .
+	python3 -m pip install *.whl -U --no-index --find-links .
+	python3.9 -m pip install pysqream-3.2.5.zip -U --no-index --find-links .
+	python3.9 -m pip install pysqream-sqlalchemy-0.8.zip  -U --no-index --find-links .
 
 Upgrading an Existing Installation
 --------------------------------------
@@ -97,39 +115,9 @@ The Python drivers are updated periodically. To upgrade an existing pysqream ins
 
 .. code-block:: console
    
-   $ pip3 install pysqream pysqream-sqlalchemy -U
+   $ pip3.9 install pysqream pysqream-sqlalchemy -U
 
-Validating Your Installation
------------------------------
-This section describes how to validate your installation.
 
-**To validate your installation**:
-
-1. Create a file called ``sample.py``, containing the following:
-
-.. literalinclude:: sample.py
-    :language: python
-    :caption: pysqream Validation Script
-    :linenos:
-
-2. Verify that the parameters in the connection have been replaced with your respective SQream installation parameters.
-
-    ::
-
-3. Run the sample file to verify that you can connect to SQream:
-
-   .. code-block:: console
-   
-      $ python sample.py
-      Version: v2020.1
-
-   If the validation was successful, you can build an application using the SQream Python connector. If you receive a connection error, verify the following:
-
-   * You have access to a running SQream database.
-
-      ::
-
-   * The connection parameters are correct.
 
 SQLAlchemy Examples
 ========================
@@ -148,16 +136,9 @@ Standard Connection Example
 .. code-block:: python
 
 	import sqlalchemy as sa
-	from sqlalchemy.engine.url import URL
 
-	engine_url = URL('sqream'
-				  , username='rhendricks'
-				  , password='secret_passwor"
-				  , host='localhost'
-				  , port=5000
-				  , database='raviga'
-				  , query={'use_ssl': False})
-
+	engine_url = "sqream://rhendricks:secret_password@localhost:5000/raviga"
+	
 	engine = sa.create_engine(engine_url)
 
 	res = engine.execute('create or replace table test (ints int, ints2 int)')
@@ -174,21 +155,14 @@ The following example is for using a ServerPicker:
 .. code-block:: python
 
 	import sqlalchemy as sa
-	from sqlalchemy.engine.url import URL
+				  
+	engine_url = "sqream://rhendricks:secret_password@localhost:5000/raviga"
+	
+	engine = sa.create_engine(engine_url, connect_args={"clustered": True})
 
-
-	engine_url = URL('sqream'
-				  , username='dor'
-				  , password='DorBerg123$'
-				  , host='localhost'
-				  , port=3108
-				  , database='pushlive')
-
-	engine = sa.create_engine(engine_url,connect_args={"clustered": True})
-
-	res = engine.execute("create or replace table test100 (dor int);")
-	res = engine.execute('insert into test100 values (5), (6);')
-	res = engine.execute('select * from test100')
+	res = engine.execute("create or replace table tab1 (x int);")
+	res = engine.execute('insert into tab1 values (5), (6);')
+	res = engine.execute('select * from tab1')
 	for item in res:
 			print(item)
 
@@ -201,20 +175,12 @@ The following example shows how to pull a table in Pandas. This examples uses th
 
    import sqlalchemy as sa
    import pandas as pd
-   from sqlalchemy.engine.url import URL
 
+	engine_url = "sqream://rhendricks:secret_password@localhost:5000/raviga"
 
-   engine_url = URL('sqream'
-                 , username='rhendricks'
-                 , password='secret_passwor"
-                 , host='localhost'
-                 , port=5000
-                 , database='raviga'
-                 , query={'use_ssl': False})
-
-   engine = sa.create_engine(engine_url)
-   
-   table_df = pd.read_sql("select * from nba", con=engine)
+	engine = sa.create_engine(engine_url)
+	   
+	table_df = pd.read_sql("select * from nba", con=engine)
 
 API Examples
 ===============
@@ -406,20 +372,12 @@ This section shows how to use the ORM to create and populate tables from Python 
 
    .. code-block:: python
       
-      import sqlalchemy as sa
-      import pandas as pd
-      from sqlalchemy.engine.url import URL
+		import sqlalchemy as sa
+		import pandas as pd
 
+		engine_url = "sqream://rhendricks:secret_password@localhost:5000/raviga"
 
-      engine_url = URL('sqream'
-                    , username='rhendricks'
-                    , password='secret_passwor"
-                    , host='localhost'
-                    , port=5000
-                    , database='raviga'
-                    , query={'use_ssl': False})
-
-      engine = sa.create_engine(engine_url)
+		engine = sa.create_engine(engine_url)
    
 2. Build a metadata object and bind it:
 
