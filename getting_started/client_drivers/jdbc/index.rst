@@ -30,7 +30,7 @@ The following is the syntax for BLUE:
 
 .. code-block:: text
 
-   jdbc:Sqream://<host and port>/<database name>;--access-token=<access-token>;[<optional parameters>; ...]
+   jdbc:Sqream://{host}:{port}/{database};accessToken=<access-token>;[<optional parameters>; ...]
 
 Connection Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -47,27 +47,15 @@ The following table shows the connection string parameters:
    * - ``<host and port>``
      - Mandatory
      - None
-     - Hostname and port of the SQream DB worker. For example, ``127.0.0.1:5000``, ``sqream.mynetwork.co:3108``
+     - FQDN and port of the Blue cluster. For example, ``blue-cluster.isqream.com:443``
    * - ``<database name>``
      - Mandatory
      - None
      - Database name to connect to. For example, ``master``
-   * - ``access token=<access token>``
+   * - ``accessToken=<access token>``
      - Mandatory
      - None
      - The generated access token when creating a new client in the **Access Token Management** section, under :ref:`Settings<>`. 
-   * - ``service=<service>``
-     - Optional
-     - ``sqream``
-     - Specifices service queue to use. For example, ``service=etl``
-   * - ``<ssl>``
-     - Optional
-     - ``false``
-     - Specifies SSL for this connection. For example, ``ssl=true``
-   * - ``<cluster>``
-     - Optional
-     - ``true``
-     - Connect via load balancer (use only if exists, and check port).
    * - ``<fetchSize>``
      - Optional
      - ``true``
