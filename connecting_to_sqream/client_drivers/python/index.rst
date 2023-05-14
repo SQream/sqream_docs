@@ -137,7 +137,7 @@ Standard Connection Example
 
 	import sqlalchemy as sa
 
-	engine_url = "sqream://rhendricks:secret_passwor@localhost:5000/raviga"
+	engine_url = "sqream://rhendricks:secret_password@localhost:5000/raviga"
 	
 	engine = sa.create_engine(engine_url)
 
@@ -156,13 +156,13 @@ The following example is for using a ServerPicker:
 
 	import sqlalchemy as sa
 				  
-	engine_url = "sqream://dor:DorBerg123$@localhost:3108/pushlive"
+	engine_url = "sqream://rhendricks:secret_password@localhost:5000/raviga"
 	
 	engine = sa.create_engine(engine_url, connect_args={"clustered": True})
 
-	res = engine.execute("create or replace table test100 (dor int);")
-	res = engine.execute('insert into test100 values (5), (6);')
-	res = engine.execute('select * from test100')
+	res = engine.execute("create or replace table tab1 (x int);")
+	res = engine.execute('insert into tab1 values (5), (6);')
+	res = engine.execute('select * from tab1')
 	for item in res:
 			print(item)
 
@@ -176,7 +176,7 @@ The following example shows how to pull a table in Pandas. This examples uses th
    import sqlalchemy as sa
    import pandas as pd
 
-	engine_url = "sqream://rhendricks:secret_passwor@localhost:5000/raviga"
+	engine_url = "sqream://rhendricks:secret_password@localhost:5000/raviga"
 
 	engine = sa.create_engine(engine_url)
 	   
@@ -375,7 +375,7 @@ This section shows how to use the ORM to create and populate tables from Python 
 		import sqlalchemy as sa
 		import pandas as pd
 
-		engine_url = "sqream://rhendricks:secret_passwor@localhost:5000/raviga"
+		engine_url = "sqream://rhendricks:secret_password@localhost:5000/raviga"
 
 		engine = sa.create_engine(engine_url)
    
