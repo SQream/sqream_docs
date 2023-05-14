@@ -14,7 +14,7 @@ import java.sql.SQLException;
 public  class  SampleTest  {  
 
     // Replace with your connection string
-    static  final  String  url  =  "jdbc:Sqream://sqream.mynetwork.co:3108/master;user=rhendricks;password=Tr0ub4dor&3;ssl=true;cluster=true";  
+    static  final  String  url  =  "jdbc:Sqream://blue_cluster:443/master;accessToken=######################";  
 
     // Allocate objects for result set and metadata
     Connection  conn    =  null;  
@@ -27,7 +27,7 @@ public  class  SampleTest  {
     public  void  testJDBC()  throws  SQLException,  IOException  {  
 
         // Create a connection
-        conn  =  DriverManager.getConnection(url,"rhendricks","Tr0ub4dor&3");  
+        conn  =  DriverManager.getConnection(url);  
 
         // Create a table with a single integer column
         String sql  =  "CREATE TABLE test (x INT)";
@@ -57,8 +57,8 @@ public  class  SampleTest  {
 
     public  static  void  main(String[]  args)  throws  SQLException,  KeyManagementException,  NoSuchAlgorithmException,  IOException,  ClassNotFoundException{  
 
-        // Load SQream DB JDBC driver
-        Class.forName("com.sqream.jdbc.SQDriver");  
+        // Load Blue JDBC driver
+        Class.forName("com.sqream.jdbc.BlueDriver");  
 
         // Create test object and run
         SampleTest  test  =  new  SampleTest();  
