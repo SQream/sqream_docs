@@ -151,12 +151,10 @@ Standard Connection Example
 	from sqlalchemy.engine.url import URL
 
 	engine_url = URL('sqream'
-				  , username='rhendricks'
-				  , password='secret_passwor"
-				  , host='localhost'
-				  , port=5000
+				  , access-token='access-token'
+				  , host='blue_cluster.isqream.com'
+				  , port=443
 				  , database='raviga'
-				  , query={'use_ssl': False})
 
 	engine = sa.create_engine(engine_url)
 
@@ -166,32 +164,6 @@ Standard Connection Example
 	for item in res:
 	print(item)
 	
-Multi Cluster Connection Example
------------------------- 
-
-The following example is for using a ServerPicker:
-
-.. code-block:: python
-
-	import sqlalchemy as sa
-	from sqlalchemy.engine.url import URL
-
-
-	engine_url = URL('sqream'
-				  , username='dor'
-				  , password='DorBerg123$'
-				  , host='localhost'
-				  , port=3108
-				  , database='pushlive')
-
-	engine = sa.create_engine(engine_url,connect_args={"clustered": True})
-
-	res = engine.execute("create or replace table test100 (dor int);")
-	res = engine.execute('insert into test100 values (5), (6);')
-	res = engine.execute('select * from test100')
-	for item in res:
-			print(item)
-
 
 Pulling a Table into Pandas
 ---------------------------
@@ -205,12 +177,10 @@ The following example shows how to pull a table in Pandas. This examples uses th
 
 
    engine_url = URL('sqream'
-                 , username='rhendricks'
-                 , password='secret_passwor"
-                 , host='localhost'
-                 , port=5000
+                 , access-token='access-token'
+                 , host='blue_cluster.isqream.com'
+                 , port=443
                  , database='raviga'
-                 , query={'use_ssl': False})
 
    engine = sa.create_engine(engine_url)
    
@@ -239,9 +209,8 @@ As before, you must import the library and create a :py:meth:`~Connection`, foll
 .. code-block:: python
    
    import pysqream
-   con = pysqream.connect(host='127.0.0.1', port=3108, database='master'
-                      , username='rhendricks', password='Tr0ub4dor&3'
-                      , clustered=True)
+   con = pysqream.connect(host='blue_cluster.isqream.com', port=443, database='master'
+                      , access-token='access-token')
 
    cur = con.cursor() # Create a new cursor
    # The select statement:
@@ -303,9 +272,8 @@ The metadata is stored in the :py:attr:`Connection.description` object of the cu
 .. code-block:: pycon
    
    >>> import pysqream
-   >>> con = pysqream.connect(host='127.0.0.1', port=3108, database='master'
-   ...                , username='rhendricks', password='Tr0ub4dor&3'
-   ...                , clustered=True)
+   >>> con = pysqream.connect(host='blue_cluster.isqream.com', port=443, database='master'
+   ...                , access-token='access-token')
    >>> cur = con.cursor()
    >>> statement = 'SELECT * FROM nba'
    >>> cur.execute(statement)
@@ -334,9 +302,8 @@ This example shows how to load 10,000 rows of dummy data to an instance of SQrea
       from datetime import date, datetime
       from time import time
 
-      con = pysqream.connect(host='127.0.0.1', port=3108, database='master'
-                         , username='rhendricks', password='Tr0ub4dor&3'
-                         , clustered=True)
+      con = pysqream.connect(host='blue_cluster.isqream.com', port=443, database='master'
+                         , access-token='access-token')
 						 , cur = con.cursor()
 						 
 2. Create a table for loading:
@@ -412,12 +379,10 @@ This section shows how to use the ORM to create and populate tables from Python 
 
 
       engine_url = URL('sqream'
-                    , username='rhendricks'
-                    , password='secret_passwor"
-                    , host='localhost'
-                    , port=5000
-                    , database='raviga'
-                    , query={'use_ssl': False})
+                 , access-token='access-token'
+                 , host='blue_cluster.isqream.com'
+                 , port=443
+                 , database='raviga')
 
       engine = sa.create_engine(engine_url)
    
