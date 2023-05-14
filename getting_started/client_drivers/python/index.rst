@@ -5,9 +5,6 @@ Connecting to SQream Using Python (pysqream)
 *************************
 The **Python** connector page describes the following:
 
-.. contents:: 
-   :local:
-   :depth: 1
 
 Overview
 =============
