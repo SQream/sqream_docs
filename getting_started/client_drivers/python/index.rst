@@ -26,9 +26,6 @@ Prerequisites
 ----------------
 Installing the Python connector includes the following prerequisites:
 
-.. contents:: 
-   :local:
-   :depth: 1
 
 Python
 ^^^^^^^^^^^^
@@ -137,9 +134,6 @@ SQLAlchemy is an **Object-Relational Mapper (ORM) for Python. When you install t
 
 This section includes the following examples:
 
-.. contents:: 
-   :local:
-   :depth: 1
 
 Standard Connection Example
 ---------------------------------
@@ -190,9 +184,6 @@ API Examples
 ===============
 This section includes the following examples:
 
-.. contents:: 
-   :local:
-   :depth: 1
 
 
 Using the Cursor
