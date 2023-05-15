@@ -178,11 +178,11 @@ The following example is for using a ServerPicker:
 
 
 	engine_url = URL('sqream'
-				  , username='dor'
-				  , password='DorBerg123$'
+				  , username='rhendricks'
+				  , password='secret_password'
 				  , host='localhost'
-				  , port=3108
-				  , database='pushlive')
+				  , port=5000
+				  , database='raviga')
 
 	engine = sa.create_engine(engine_url,connect_args={"clustered": True})
 
@@ -206,7 +206,7 @@ The following example shows how to pull a table in Pandas. This examples uses th
 
    engine_url = URL('sqream'
                  , username='rhendricks'
-                 , password='secret_passwor"
+                 , password='secret_password"
                  , host='localhost'
                  , port=5000
                  , database='raviga'
