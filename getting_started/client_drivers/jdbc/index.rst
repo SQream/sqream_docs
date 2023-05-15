@@ -18,13 +18,20 @@ You can connect to SQream using one of the following JDBC applications:
 
 Connection String
 --------------------
-JDBC drivers rely on a connection string.
+JDBC drivers rely on a connection string .
 
 The following is the syntax for BLUE:
 
-.. code-block:: text
+.. code-block:: JavaScript
 
    jdbc:Sqream://{host}:{port}/{database};accessToken=<access-token>;[<optional parameters>; ...]
+   
+JDBC driver classpath:
+
+.. code-block:: Java
+
+	com.sqream.jdbc.BlueDriver
+   
 
 Connection Parameters
 ^^^^^^^^^^^^^^^^^^^^^^^^
