@@ -81,6 +81,7 @@ html_show_sphinx = False
 html_show_copyright = True
 
 
+
 #Hide the sidebar
 html_sidebars = {}
 
@@ -116,3 +117,9 @@ latex_elements = {
 '''
 }
 
+# For version replaces in some pages (like client drivers page)
+
+#base_version = release.split('-')[0]
+#rst_epilog = """
+#.. |latest_version| replace:: v{}
+#""".format(base_version)
