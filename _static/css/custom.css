@@ -51,3 +51,9 @@ kbd
 
 
 
+/* Hide the entire flyout version menu */
+
+div.rst-versions > {
+    display: none;
+}
+
