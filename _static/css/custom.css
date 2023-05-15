@@ -53,7 +53,7 @@ kbd
 
 /* Hide the entire flyout version menu */
 
-div.rst-versions > {
-    display: none;
-}
+	div.rst-versions > {
+		display: none;
+	}
 
