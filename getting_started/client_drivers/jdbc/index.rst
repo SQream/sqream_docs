@@ -22,11 +22,11 @@ JDBC drivers rely on a connection string .
 
 The following is the syntax for BLUE:
 
-.. code-block:: JDBC
+.. code-block:: JavaScript
 
    jdbc:Sqream://{host}:{port}/{database};accessToken=<access-token>;[<optional parameters>; ...]
    
-JDBC driver classpath
+JDBC driver classpath:
 
 .. code-block:: Java
 
