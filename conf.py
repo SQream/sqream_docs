@@ -91,7 +91,6 @@ pygments_style = "perldoc"
 pygments_dark_style = "perldoc"
 
 
-
 # furo theme specifics
 
 html_theme_options = {
@@ -105,9 +104,10 @@ html_theme_options = {
    , 'light_logo': 'images/SQream_logo_bright_mode.png'
    , "sidebar_hide_name": True
    , "footer_icons": 'None'
-   
-   
 }
+   
+   
+
 
 latex_engine = 'xelatex'
 
