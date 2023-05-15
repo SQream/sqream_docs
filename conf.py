@@ -106,12 +106,7 @@ html_theme_options = {
    , "footer_icons": 'None'
 }
    
-# Hide the entire flyout version menu
 
-rst-versions = {
-	'display': False
-    
-	}
 
 
 latex_engine = 'xelatex'
