@@ -49,17 +49,5 @@ kbd
   text-shadow:0 1px 0 #fff;
 }
 
-/* Hide "GitHub" sections from versions menu */
-div.rst-versions > div.rst-other-versions > div.injected > dl:nth-child(0) {
-    display: none;
-}
-div.rst-versions > div.rst-other-versions > div.injected > dl:nth-child(1) {
-    display: none;
-}
 
-/* Hide the entire flyout version menu */
-
-div.rst-versions > {
-    display: none;
-}
 
