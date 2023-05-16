@@ -62,6 +62,10 @@ Output
      - Validates whether or not role is a ``SUPERUSER``
      - BOOL
      - 0
+   * - ``clusteradmin``
+     - Validates whether or not role is a ``clusteradmin``
+     - BOOL
+     - 0
    * - ``login``
      - Validates whether or not role has login privileges. Enabled for actual users
      - BOOL
@@ -86,12 +90,12 @@ The following is the output for the ``DESCRIBE ROLES`` command:
 
 .. code-block:: console
 
-	id|name     |superuser|login|has_password|
-	--+---------+---------+-----+------------+
-	0 |public   |0        |0    |0           |
-	1 |sqream   |1        |1    |1           |
-	2 |new_role1|0        |1    |0           |
-	3 |new_role2|0        |1    |0           |
+	id|name     |superuser|clusteradmin|login|has_password|
+	--+---------+---------+------------+-----+------------+
+	0 |public   |0        |0           |0    |0           |
+	1 |sqream   |1        |0           |1    |1           |
+	2 |new_role1|0        |1           |1    |1           |
+	3 |new_role2|0        |0           |1    |1           |
 
 The following is the syntax for the ``DESCRIBE ROLES LIKE`` command:
 
@@ -105,7 +109,7 @@ The following is the output for the ``DESCRIBE ROLES LIKE`` command:
 
 .. code-block:: console
 
-	id|name     |superuser|login|has_password|
-	--+---------+---------+-----+------------+
-	2 |new_role1|0        |1    |0           |
-	3 |new_role2|0        |1    |0           |
+    id|name     |superuser|clusteradmin|login|has_password|
+    --+---------+---------+------------+-----+------------+
+    2 |new_role1|0        |1           |1    |1           |
+    3 |new_role2|0        |0           |1    |1           |
