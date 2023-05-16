@@ -1,8 +1,8 @@
 .. _describe_roles:
 
-*****************
+**************
 DESCRIBE ROLES
-*****************
+**************
 
 
 You may use the ``DESCRIBE ROLES`` command to list all roles defined in your system. Since SQream roles refer to both users and their assigned privileges, you will receive a list of users along with the associated name, privileges, login, and password.
@@ -16,14 +16,14 @@ Permissions
 This command requires a ``SUPERUSER`` permission.
 
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
 	DESCRIBE ROLES [LIKE 'pattern'];
 
 Parameters
-============
+==========
 
 .. list-table:: 
    :widths: auto
