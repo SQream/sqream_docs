@@ -86,9 +86,6 @@ html_show_copyright = True
 html_sidebars = {}
 
 
-# The name of the Pygments (syntax highlighting) style to use.
-pygments_style = "perldoc"
-pygments_dark_style = "perldoc"
 
 
 # furo theme specifics
