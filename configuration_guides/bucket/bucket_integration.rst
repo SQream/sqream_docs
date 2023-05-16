@@ -4,13 +4,7 @@
 Bucket Integration
 **************************
  
-.. contents:: 
-   :local:
-   :depth: 1
 
-
-Overview
-----------
 
 
 Making Parquet Files Accessible to Workers

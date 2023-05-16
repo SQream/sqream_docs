@@ -15,7 +15,6 @@ This section summarizes the following operational guides:
    access_control
    audit_log_operation
    external_tables
-   exporting_data
    monitoring_query_performance
    security
    seeing_system_objects_as_ddl

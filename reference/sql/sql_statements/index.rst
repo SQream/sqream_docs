@@ -3,18 +3,12 @@
 ***************
 SQL Statements
 ***************
-The **SQL Statements** page describes the following commands:
-
-.. contents::
-   :local:
-   :depth: 1
 
 SQream supports commands from ANSI SQL.
 
-.. _ddl_commands_list:
 
 Data Definition Commands (DDL)
-================================
+==============================
 The following table shows the Data Definition commands:
 
 .. list-table::
@@ -99,7 +93,7 @@ The following table shows the Data Manipulation commands:
      - Return rows containing literal values
 
 Utility Commands
-==================
+================
 The following table shows the Utility commands:
 
 .. list-table::
@@ -156,7 +150,7 @@ The following table shows the Utility commands:
    :width: 110
 
 Workload Management
-======================
+===================
 The following table shows the Workload Management commands:
 
 .. list-table::
@@ -173,7 +167,7 @@ The following table shows the Workload Management commands:
      - Return a list of service queues and workers
 
 Access Control Commands
-================================
+=======================
 The following table shows the Access Control commands:
 
 .. list-table::

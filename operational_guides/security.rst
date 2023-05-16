@@ -6,9 +6,6 @@ Security
 
 SQream DB has some security features that you should be aware of to increase the security of your data.
 
-.. contents:: In this topic:
-   :local:
-
 
 Overview
 ============
