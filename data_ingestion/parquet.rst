@@ -3,16 +3,13 @@
 **********************
 Ingesting Data from a Parquet File
 **********************
-This guide covers ingesting data from Parquet files into SQream using :ref:`FOREIGN TABLE<foreign_tables>`, and describes the following;
+
+Ingesting Parquet files into SQream is generally useful when you want to store the data permanently and perform frequent queries on it. Ingesting the data can also make it easier to join with other tables in your database. However, if you wish to retain your data on external Parquet files instead of ingesting it into SQream due to it being an open-source column-oriented data storage format, you may also execute :ref:`FOREIGN TABLE<foreign_tables>` queries.
 
 .. contents:: 
    :local:
    :depth: 1
-
-Overview
-===================
-SQream supports ingesting data into SQream from Parquet files. However, because it is an open-source column-oriented data storage format, you may want to retain your data on external Parquet files instead of ingesting it into SQream. SQream supports executing queries on external Parquet files.
-
+   
 Preparing Your Parquet Files
 =====================
 Prepare your source Parquet files according to the requirements described in the following table:
@@ -155,7 +152,7 @@ Prepare your source Parquet files according to the requirements described in the
      - 
      - Supported [#f4]_
 
-* Your statements will succeed even if your Parquet file contains an unsupported type, such as ``enum``, ``uuid``, ``time``, ``json``, ``bson``, ``lists``, ``maps``, but the data is not referenced in the table (it does not appear in the :ref:`SELECT` query). If the column containing the unsupported type is referenced, an error message is displayed explaining that the type is not supported and that the column may be ommitted. For solutions to this error message, see more information in **Managing Unsupported Column Types** example in the **Example** section.
+Your statements will succeed even if your Parquet file contains unsupported types, such as ``enum``, ``uuid``, ``time``, ``json``, ``bson``, ``lists``, ``maps``, but the data is not referenced in the table (it does not appear in the :ref:`SELECT` query). If the column containing the unsupported type is referenced, an error message is displayed explaining that the type is not supported and that the column may be ommitted. For solutions to this error message, see more information in **Managing Unsupported Column Types** example in the **Example** section.
 
 .. rubric:: Footnotes
 
@@ -169,17 +166,17 @@ Prepare your source Parquet files according to the requirements described in the
 
 Making Parquet Files Accessible to Workers
 ================================================================
-To give workers access to files every node must have the same view of the storage being used.
+To give workers access to files, every node must have the same view of the storage being used.
 
 * For files hosted on NFS, ensure that the mount is accessible from all servers.
 
-* For HDFS, ensure that SQream servers have access to the HDFS name node with the correct user-id. For more information, see :ref:`hdfs` guide for more information.
+* For HDFS, ensure that SQream servers have access to the HDFS name node with the correct user-id. For more information, see :ref:`hdfs` guide.
 
-* For S3, ensure network access to the S3 endpoint. For more information, see :ref:`s3` guide for more information.
+* For S3, ensure network access to the S3 endpoint. For more information, see :ref:`s3` guide.
 
 Creating a Table
 ===============================================
-Before loading data, you must build the CREATE TABLE to correspond with the file structure of the inserted table.
+Before loading data, you must create a table that corresponds to the file structure of the table you wish to insert.
 
 The example in this section is based on the source nba.parquet table shown below:
 
@@ -188,7 +185,7 @@ The example in this section is based on the source nba.parquet table shown below
    :widths: auto
    :header-rows: 1 
 
-The following example shows the correct file structure used to create the ``CREATE EXTERNAL TABLE`` statement based on the nba.parquet table:
+The following example shows the correct file structure used for creating a :ref:`FOREIGN TABLE<foreign_tables>` based on the nba.parquet table:
 
 .. code-block:: postgres
    
@@ -215,12 +212,7 @@ The following example shows the correct file structure used to create the ``CREA
 .. note:: The **nba.parquet** file is stored on S3 at ``s3://sqream-demo-data/nba.parquet``.
 
 Ingesting Data into SQream
-===================================
-This section describes the following:
-
-.. contents:: 
-   :local:
-   :depth: 1
+==========================
    
 Syntax
 -----------
@@ -233,7 +225,6 @@ You can use the :ref:`create_table_as` statement to load the data into SQream, a
 
 Examples
 ----------------
-This section describes the following examples:
 
 .. contents:: 
    :local:

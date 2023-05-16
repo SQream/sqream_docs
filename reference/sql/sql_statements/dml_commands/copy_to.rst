@@ -3,19 +3,19 @@
 **********************
 COPY TO
 **********************
-The **COPY TO** page includes the following sections:
+
+The ``COPY TO`` statement is used for exporting data from a SQream database table or for exporting query results to a file on the filesystem.
+You may wish to export data from SQream for any of the following reasons:
+
+* To use data in external tables. See :ref:`Working with External Data<external_data>`.
+* To share data with other clients or consumers using different systems.
+* To copy data into another SQream cluster.
+
+In general, ``COPY`` moves data between filesystem files and SQream DB tables. If you wish to copy data from a file to a table, see :ref:`COPY FROM<copy_from>`.
 
 .. contents:: 
    :local:
    :depth: 1
-
-Overview
-==========
-``COPY ... TO`` is a statement that can be used to export data from a SQream database table or query to a file on the filesystem.
-
-In general, ``COPY`` moves data between filesystem files and SQream DB tables.
-
-.. note:: To copy data from a file to a table, see :ref:`COPY FROM<copy_from>`.
 
 Syntax
 ==========
@@ -100,8 +100,7 @@ The following table shows the ``COPY_TO`` elements:
      - Enforces the maximum file size (bytes). Permitted values: ``true`` - creates one file of unlimited size, ``false`` - permits creating several files together limited by the ``MAX_FILE_SIZE``. When set to ``true``, the single file size is not limited by the ``MAX_FILE_SIZE`` setting. When set to ``false``, the combined file sizes cannot exceed the ``MAX_FILE_SIZE``. Default value: ``TRUE``.
 
 Usage Notes
-===============
-The **Usage Notes** describes the following:
+===========
 
 .. contents:: 
    :local:
@@ -109,7 +108,6 @@ The **Usage Notes** describes the following:
 
 Supported Field Delimiters
 ------------------------------
-The **Supported Field Delimiters** section describes the following:
 
 .. contents:: 
    :local:
@@ -410,15 +408,40 @@ The date format in the output CSV is formatted as ISO 8601 (``2019-12-31 20:30:5
 For more information on the ``datetime`` format, see :ref:`sql_data_types_date`.
 
 Examples
-===========
-The **Examples** section shows the following examples:
+========
 
 .. contents:: 
    :local:
    :depth: 1
 
-Exporting a Table to a CSV File without a HEADER Row
-------------------------------------
+Exporting Data From SQream to External File Tables
+--------------------------------------------------
+
+Exporting Tables to Parquet Files
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The compression algorithm used for exporting data from SQream to Parquet files is Snappy.
+
+.. code-block:: psql
+   
+	COPY nba TO WRAPPER parquet_fdw OPTIONS (LOCATION = '/tmp/nba_export.parquet');
+
+Exporting Query Results to Parquet Files
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: psql
+
+	COPY (select x,y from t where z=0) TO WRAPPER parquet_fdw OPTIONS (LOCATION = '/tmp/file.parquet');
+
+Exporting Tables to ORC Files
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: psql
+   
+	COPY nba TO WRAPPER orc_fdw OPTIONS (LOCATION = '/tmp/nba_export.orc');
+
+CSV Files
+^^^^^^^^^
+
 The following is an example of exporting a table to a CSV file without a HEADER row:
 
 .. code-block:: psql
@@ -435,8 +458,6 @@ The following is an example of exporting a table to a CSV file without a HEADER 
    Jonas Jerebko,Boston Celtics,8,PF,29,6-10,231,\N,5000000
    Amir Johnson,Boston Celtics,90,PF,29,6-9,240,\N,12000000
 
-Exporting a Table to a CSV with a HEADER Row
------------------------------------------
 The following is an example of exporting a table to a CSV file with a HEADER row:
 
 .. code-block:: psql
@@ -452,9 +473,25 @@ The following is an example of exporting a table to a CSV file with a HEADER row
    John Holland,Boston Celtics,30,SG,27,6-5,205,Boston University,\N
    R.J. Hunter,Boston Celtics,28,SG,22,6-5,185,Georgia State,1148640
    Jonas Jerebko,Boston Celtics,8,PF,29,6-10,231,\N,5000000
+   
+The following is an example of exporting the result of a query to a CSV file:
 
-Exporting a Table to TSV with a HEADER Row
------------------------------------------
+.. code-block:: psql
+   
+	COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) TO WRAPPER csv_fdw OPTIONS (LOCATION = '/tmp/nba_export.csv');
+
+.. code-block:: console
+   
+   $ head -n5 nba_salaries.csv
+   Atlanta Hawks,4860196
+   Boston Celtics,4181504
+   Brooklyn Nets,3501898
+   Charlotte Hornets,5222728
+   Chicago Bulls,5785558   
+
+TSV Files
+^^^^^^^^^
+
 The following is an example of exporting a table to a TSV file with a HEADER row:
 
 .. code-block:: psql
@@ -471,8 +508,23 @@ The following is an example of exporting a table to a TSV file with a HEADER row
    R.J. Hunter     Boston Celtics  28      SG      22      6-5     185     Georgia State   1148640
    Jonas Jerebko   Boston Celtics  8       PF      29      6-10    231     \N     5000000
 
+Exporting Data From SQream to Cloud Storage
+-------------------------------------------
+
+The following is an example of saving files to an authenticated S3 bucket:
+
+.. code-block:: psql
+   
+	COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) TO WRAPPER csv_fdw OPTIONS (LOCATION = 's3://my_bucket/salaries/nba_export.csv', AWS_ID = 'my_aws_id', AWS_SECRET = 'my_aws_secret');
+
+The following is an example of saving files to an HDFS path:
+
+.. code-block:: psql
+   
+   	COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) TO WRAPPER csv_fdw OPTIONS (LOCATION = 'hdfs://pp_namenode:8020/nba_export.csv');
+
 Using Non-Printable ASCII Characters as Delimiters
--------------------------------------------------------
+--------------------------------------------------
 The following is an example of using non-printable ASCII characters as delimiters:
 
 Non-printable characters can be specified using their octal representations, by using the ``E'\000'`` format, where ``000`` is the octal value of the character.
@@ -486,63 +538,6 @@ For example, ASCII character ``15``, known as "shift in", can be specified using
 .. code-block:: psql
    
 	COPY nba TO WRAPPER csv_fdw OPTIONS (LOCATION = '/tmp/nba_export.csv', DELIMITER = E'\011'); -- 011 is a tab character
-
-Exporting the Result of a Query to CSV File
---------------------------------------------
-The following is an example of exporting the result of a query to a CSV file:
-
-.. code-block:: psql
-   
-	COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) TO WRAPPER csv_fdw OPTIONS (LOCATION = '/tmp/nba_export.csv');
-
-.. code-block:: console
-   
-   $ head -n5 nba_salaries.csv
-   Atlanta Hawks,4860196
-   Boston Celtics,4181504
-   Brooklyn Nets,3501898
-   Charlotte Hornets,5222728
-   Chicago Bulls,5785558
-
-Saving Files to an Authenticated S3 Bucket
---------------------------------------------
-The following is an example of saving files to an authenticated S3 bucket:
-
-.. code-block:: psql
-   
-	COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) TO WRAPPER csv_fdw OPTIONS (LOCATION = 's3://my_bucket/salaries/nba_export.csv', AWS_ID = 'my_aws_id', AWS_SECRET = 'my_aws_secret');
-
-Saving Files to an HDFS Path
---------------------------------------------
-The following is an example of saving files to an HDFS path:
-
-.. code-block:: psql
-   
-   	COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) TO WRAPPER csv_fdw OPTIONS (LOCATION = 'hdfs://pp_namenode:8020/nba_export.csv');
-
-Exporting a Table to a Parquet File
-------------------------------
-The following is an example of exporting a table to a Parquet file:
-
-.. code-block:: psql
-   
-	COPY nba TO WRAPPER parquet_fdw OPTIONS (LOCATION = '/tmp/nba_export.parquet');
-
-Exporting a Query to a Parquet File
---------------------------------
-The following is an example of exporting a query to a Parquet file:
-
-.. code-block:: psql
-
-	COPY (select x,y from t where z=0) TO WRAPPER parquet_fdw OPTIONS (LOCATION = '/tmp/file.parquet');
-
-Exporting a Table to an ORC File
-------------------------------
-The following is an example of exporting a table to an ORC file:
-
-.. code-block:: psql
-   
-	COPY nba TO WRAPPER orc_fdw OPTIONS (LOCATION = '/tmp/nba_export.orc');
 
 Permissions
 =============
