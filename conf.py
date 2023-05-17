@@ -101,7 +101,7 @@ html_theme_options = {
    , 'light_logo': 'images/SQream_logo_bright_mode.png'
    , "sidebar_hide_name": True
    , "footer_icons": 'None'
-   , "readthedocs-versions": 'None'
+   , "furo-readthedocs-versions": 'None'
 }
    
 
