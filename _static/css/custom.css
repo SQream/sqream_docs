@@ -53,14 +53,8 @@ kbd
 
 /* Hide the entire flyout version menu */
 
-	div.rst-versions > {
+	div.rst-versions {
 		display: none;
 	}
 
-/* Hide "GitHub" sections from versions menu */
-div.rst-versions > div.rst-other-versions > div.injected > dl:nth-child(3) {
-    display: none;
-}
-div.rst-versions > div.rst-other-versions > div.injected > dl:nth-child(4) {
-    display: none;
-}
+
