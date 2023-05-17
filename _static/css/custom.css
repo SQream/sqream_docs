@@ -54,7 +54,7 @@ kbd
 /* Hide the entire flyout version menu */
 
 /* Hide "On GitHub" section from versions menu */
-div.rst-versions > div.rst-other-versions > div.injected {
+div.rst-versions > div.injected {
     display: none;
 }
 
