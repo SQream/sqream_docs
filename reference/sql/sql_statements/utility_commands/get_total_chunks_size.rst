@@ -60,3 +60,5 @@ Output
 
 Permissions
 =============
+
+Using the ``get_total_chunks_size`` command requires no special permissions.

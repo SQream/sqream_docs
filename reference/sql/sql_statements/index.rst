@@ -106,6 +106,8 @@ The following table shows the Utility commands:
      
    * - Command
      - Usage
+   * - :ref:`GET TOTAL CHUNKS SIZE<get_total_chunks_size>`
+     - Returns the total size of all data chunks saved in the system	 
    * - :ref:`DROP SAVED QUERY<drop_saved_query>`
      - Drops a saved query
    * - :ref:`EXECUTE SAVED QUERY<execute_saved_query>`
@@ -190,6 +192,8 @@ The following table shows the Access Control commands:
      - Creates a roles, which lets a database administrator control permissions on tables and databases
    * - :ref:`drop_role`
      - Removes roles
+   * - :ref:`get_all_roles_database_ddl`
+     - Returns the definition of all role databases in DDL format
    * - :ref:`get_role_permissions`
      - Returns all permissions granted to a role in table format
    * - :ref:`get_role_global_ddl`
@@ -198,8 +202,6 @@ The following table shows the Access Control commands:
      - Returns the definition of all global roles in DDL format
    * - :ref:`get_role_database_ddl`
      - Returns the definition of a role's database in DDL format
-   * - :ref:`get_all_roles_database_ddl`
-     - Returns the definition of all role databases in DDL format
    * - :ref:`get_statement_permissions`
      - Returns a list of permissions required to run a statement or query
    * - :ref:`grant`
