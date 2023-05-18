@@ -103,9 +103,11 @@ The following table shows the Utility commands:
 .. list-table::
    :widths: 10 100
    :header-rows: 1
-   
+     
    * - Command
      - Usage
+   * - :ref:`GET TOTAL CHUNKS SIZE<get_total_chunks_size>`
+     - Returns the total size of all data chunks saved in the system	 
    * - :ref:`DROP SAVED QUERY<drop_saved_query>`
      - Drops a saved query
    * - :ref:`EXECUTE SAVED QUERY<execute_saved_query>`
@@ -122,6 +124,8 @@ The following table shows the Utility commands:
      - View the ``CREATE TABLE`` statement for a table
    * - :ref:`SELECT GET_FUNCTION_DDL<get_function_ddl>`
      - View the ``CREATE FUNCTION`` statement for a UDF
+   * - :ref:`SELECT GET_TOTAL_CHUNKS_SIZE<get_total_chunks_size>`
+     - Shows the total size of all data chunks saved in the system in both compressed and uncompressed formats
    * - :ref:`SELECT GET_VIEW_DDL<get_view_ddl>`
      - View the ``CREATE VIEW`` statement for a view
    * - :ref:`SELECT RECOMPILE_VIEW<recompile_view>`
@@ -188,6 +192,8 @@ The following table shows the Access Control commands:
      - Creates a roles, which lets a database administrator control permissions on tables and databases
    * - :ref:`drop_role`
      - Removes roles
+   * - :ref:`get_all_roles_database_ddl`
+     - Returns the definition of all role databases in DDL format
    * - :ref:`get_role_permissions`
      - Returns all permissions granted to a role in table format
    * - :ref:`get_role_global_ddl`
@@ -196,8 +202,6 @@ The following table shows the Access Control commands:
      - Returns the definition of all global roles in DDL format
    * - :ref:`get_role_database_ddl`
      - Returns the definition of a role's database in DDL format
-   * - :ref:`get_all_roles_database_ddl`
-     - Returns the definition of all role databases in DDL format
    * - :ref:`get_statement_permissions`
      - Returns a list of permissions required to run a statement or query
    * - :ref:`grant`
