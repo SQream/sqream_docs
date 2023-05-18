@@ -5,8 +5,12 @@ DESCRIBE CONNECT PERMISSIONS
 ****************************
 
 
-The ``DESCRIBE CONNECT PERMISSIONS`` statement lists all roles and their connection privileges.
+The ``DESCRIBE CONNECT PERMISSIONS`` statement lists all roles and their database connection privileges.
 
+.. note:: 
+	
+	``DESCRIBE`` commands use CPU to increase usability.
+	
 Syntax
 ======
 
@@ -32,11 +36,11 @@ Parameters
    * - ``ROLE ID``
      - ``role_id``
      - Enables filtering by one or more role IDs
-     - ``INT`` and ``AMSLLINT``
+     - ``INT``
    * - ``PERMISSION ID``
      - ``permission_id``
      - Enables filtering by one or more permission IDs
-     - ``INT`` and ``AMSLLINT``
+     - ``INT``
 
 
 Output
@@ -56,11 +60,11 @@ Output
      - The name of a specific role
      - ``TEXT``
    * - ``database_name``
-     - A database name to filter the results by 
+     - Database name
      - ``TEXT``
    * - ``permission_id``
-     - A permission ID to filter the results by
-     - ``INT`` and ``AMSLLINT``
+     - Permission ID
+     - ``INT``
    * - ``superuser``
      - Identifies whether or not a role has ``SUPERUSER`` permissions, with ``1`` indicating ``SUPERUSER`` status and ``0`` indicating regular system user
      - ``BOOL``
@@ -82,10 +86,14 @@ Output:
 
 .. code-block:: none
 
-	role_id|role_name               |database_name|permission_id|superuser|clusteradmin|
-	-------+------------------------+-------------+-------------+---------+------------+
-	1      |sqream                  |copy_to      |1002         |1        |0           |
-	1      |sqream                  |copy_to      |1003         |1        |0           |
+	role_id|role_name              |database_name|permission_id|superuser|clusteradmin|
+	-------+-----------------------+-------------+-------------+---------+------------+
+	1      |sqream                 |farm         |1002         |1        |0           |
+	1      |sqream                 |farm         |1003         |1        |0           |
+	2      |someone@blue.com       |master       |1003         |1        |1           |
+	4      |anothersomeone@blue.com|master       |1003         |1        |0           |
+	6      |triceratop@blue.com    |master       |1003         |1        |1           |
+	8      |tyrannosaurus@blue.com |master       |1003         |1        |1           |
 
 Using optional parameters
 -------------------------
@@ -98,8 +106,13 @@ Output:
 
 .. code-block:: none
 
-	role_id|role_name                |database_name|permission_id|superuser|clusteradmin|
-	-------+-------------------------+-------------+-------------+---------+------------+
-	2      |someone@blue.com         |master       |1003         |1        |0           |
-	3      |anothersomeone@blue.com  |master       |1003         |1        |0           |
+	role_id|role_name        |database_name|permission_id|superuser|clusteradmin|
+	-------+-----------------+-------------+-------------+---------+------------+
+	2      |someone@blue.com |master       |1003         |1        |1           |
+	
+	
+Permissions
+===========
+
+This command requires a ``SUPERUSER`` permission.
 	

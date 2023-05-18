@@ -5,20 +5,19 @@ DESCRIBE ROLES
 **************
 
 
-You may use the ``DESCRIBE ROLES`` command to list all roles defined in your system. Since SQream roles refer to both users and their assigned privileges, you will receive a list of users along with the associated name, privileges, login, and password.
+You may use the ``DESCRIBE ROLES`` command to list all roles defined in your system. Since SQream roles refer to both users and their assigned privileges, you will receive a list of users along with the associated name, privileges, login, and a password if it exists.
+
+.. note:: 
+	
+	``DESCRIBE`` commands use CPU to increase usability.
 
 
 
-
-Permissions
-===========
-
-This command requires a ``SUPERUSER`` permission.
 
 Syntax
 ======
 
-.. code-block:: postgres
+.. code-block:: sql
 
 	DESCRIBE ROLES [LIKE 'pattern'];
 
@@ -35,7 +34,7 @@ Parameters
      - Type
    * - ``LIKE``
      - ``pattern``
-     - Optional parameter for filtering by view name using wildcards.
+     - Optional parameter for filtering by role name using wildcards.
      - TEXT
 
 
@@ -78,17 +77,18 @@ Output
 Examples
 ========
 
-The following is the syntax for the ``DESCRIBE ROLES`` command:
+Executing ``DESCRIBE ROLES``
+----------------------------
 
 .. code-block:: postgres
 
 	DESCRIBE ROLES;
 
 
-The following is the output for the ``DESCRIBE ROLES`` command:
+Output:
 
 
-.. code-block:: console
+.. code-block:: none
 
 	id|name     |superuser|clusteradmin|login|has_password|
 	--+---------+---------+------------+-----+------------+
@@ -97,19 +97,26 @@ The following is the output for the ``DESCRIBE ROLES`` command:
 	2 |new_role1|0        |1           |1    |1           |
 	3 |new_role2|0        |0           |1    |1           |
 
-The following is the syntax for the ``DESCRIBE ROLES LIKE`` command:
+Executing ``DESCRIBE ROLES LIKE``
+---------------------------------
 
-.. code-block:: postgres
+.. code-block:: sql
 
 	DESCRIBE ROLES LIKE 'ne%';
 
 
-The following is the output for the ``DESCRIBE ROLES LIKE`` command:
+Output:
 
 
-.. code-block:: console
+.. code-block:: none
 
     id|name     |superuser|clusteradmin|login|has_password|
     --+---------+---------+------------+-----+------------+
     2 |new_role1|0        |1           |1    |1           |
     3 |new_role2|0        |0           |1    |1           |
+
+
+Permissions
+===========
+
+This command requires a ``SUPERUSER`` permission.
