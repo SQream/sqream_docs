@@ -1,8 +1,8 @@
 .. _get_all_roles_database_ddl:
 
-********************
+**************************
 GET_ALL_ROLES_DATABASE_DDL
-********************
+**************************
 The ``GET_ALL_ROLES_DATABASE_DDL`` statement returns the definition of all role databases in DDL format.
 
 .. contents:: 
