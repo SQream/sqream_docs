@@ -1,7 +1,7 @@
 .. _pysqream:
 
 *************************
-Connecting to SQream Using Python (pysqream)
+Connecting to SQream Using Python (pysqream-blue)
 *************************
 The **Python** connector page describes the following:
 
@@ -10,11 +10,11 @@ Overview
 =============
 The SQream Python connector is a set of packages that allows Python programs to connect to SQream DB.
 
-* ``pysqream`` is a pure Python connector. It can be installed with ``pip`` on any operating system, including Linux, Windows, and macOS.
+* ``pysqream-blue`` is a pure Python connector. It can be installed with ``pip`` on any operating system, including Linux, Windows, and macOS.
 
-* ``pysqream-sqlalchemy`` is a SQLAlchemy dialect for ``pysqream``
+* ``pysqream-blue-sqlalchemy`` is a SQLAlchemy dialect for ``pysqream-blue``
 
-The connector supports Python 3.6.5 and newer. The base ``pysqream`` package conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_.
+The connector supports Python 3.9.x. The base ``pysqream-blue`` package conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_.
 
 Installing the Python Connector
 ==================================
@@ -27,12 +27,12 @@ Installing the Python connector includes the following prerequisites:
 Python
 ^^^^^^^^^^^^
 
-The connector requires Python 3.6.5 or newer. To verify your version of Python:
+The connector requires Python 3.9.x To verify your version of Python:
 
 .. code-block:: console
 
    $ python --version
-   Python 3.7.3
+   Python 3.9.13
    
 
 PIP
@@ -41,57 +41,25 @@ The Python connector is installed via ``pip``, the Python package manager and in
 
 We recommend upgrading to the latest version of ``pip`` before installing. To verify that you are on the latest version, run the following command:
 
-.. code-block:: console
-
-   $ python3 -m pip install --upgrade pip
-   Collecting pip
-      Downloading https://files.pythonhosted.org/packages/00/b6/9cfa56b4081ad13874b0c6f96af8ce16cfbc1cb06bedf8e9164ce5551ec1/pip-19.3.1-py2.py3-none-any.whl (1.4MB)
-        |████████████████████████████████| 1.4MB 1.6MB/s
-   Installing collected packages: pip
-     Found existing installation: pip 19.1.1
-       Uninstalling pip-19.1.1:
-         Successfully uninstalled pip-19.1.1
-   Successfully installed pip-19.3.1
-
-.. note:: 
-   * On macOS, you may want to use virtualenv to install Python and the connector, to ensure compatibility with the built-in Python environment
-   *  If you encounter an error including ``SSLError`` or ``WARNING: pip is configured with locations that require TLS/SSL, however the ssl module in Python is not available.`` - please be sure to reinstall Python with SSL enabled, or use virtualenv or Anaconda.
-
-OpenSSL for Linux
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-Some distributions of Python do not include OpenSSL. The Python connector relies on OpenSSL for secure connections to SQream DB.
-
-* To install OpenSSL on RHEL/CentOS
-
-  .. code-block:: console
-   
-     $ sudo yum install -y libffi-devel openssl-devel
-
-* To install OpenSSL on Ubuntu
-
-  .. code-block:: console
-   
-     $ sudo apt-get install libssl-dev libffi-dev -y
-
 Installing via PIP
 -----------------
-The Python connector is available via `PyPi <https://pypi.org/project/pysqream/>`_.
+The Python connector is available via `PyPi <https://pypi.org/project/pysqream-blue/>`_.
 
 Install the connector with ``pip``:
 
 .. code-block:: console
    
-   $ pip3 install pysqream pysqream-sqlalchemy
+   $ pip install --upgrade pysqream-blue pysqream_blue_sqlalchemy
 
 ``pip3`` will automatically install all necessary libraries and modules.
 
 Upgrading an Existing Installation
 --------------------------------------
-The Python drivers are updated periodically. To upgrade an existing pysqream installation, use pip's ``-U`` flag:
+The Python drivers are updated periodically. To upgrade an existing pysqream-blue installation, use pip's ``-U`` flag:
 
 .. code-block:: console
    
-   $ pip3 install pysqream pysqream-sqlalchemy -U
+   $ pip3 install pysqream-blue pysqream-blue-sqlalchemy -U
 
 Validating Your Installation
 -----------------------------
@@ -103,7 +71,7 @@ This section describes how to validate your installation.
 
 .. literalinclude:: sample.py
     :language: python
-    :caption: pysqream Validation Script
+    :caption: pysqream-blue Validation Script
     :linenos:
 
 2. Verify that the parameters in the connection have been replaced with your respective SQream installation parameters.
@@ -115,7 +83,7 @@ This section describes how to validate your installation.
    .. code-block:: console
    
       $ python sample.py
-      Version: v2020.1
+      [['farm', '2023-05-02 12:43:58', 'false'], ['master', '2023-04-27 19:43:07', 'true']]
 
    If the validation was successful, you can build an application using the SQream Python connector. If you receive a connection error, verify the following:
 
@@ -127,7 +95,7 @@ This section describes how to validate your installation.
 
 SQLAlchemy Examples
 ========================
-SQLAlchemy is an **Object-Relational Mapper (ORM) for Python. When you install the SQream dialect (``pysqream-sqlalchemy``) you can use frameworks such as Pandas, TensorFlow, and Alembic to query SQream directly.
+SQLAlchemy is an **Object-Relational Mapper (ORM) for Python. When you install the SQream dialect (``pysqream-blue-sqlalchemy``) you can use frameworks such as Pandas, TensorFlow, and Alembic to query SQream directly.
 
 This section includes the following examples:
 
@@ -138,22 +106,16 @@ Standard Connection Example
 
 .. code-block:: python
 
-	import sqlalchemy as sa
-	from sqlalchemy.engine.url import URL
+import sqlalchemy as sa
 
-	engine_url = URL('sqream'
-				  , access-token='access-token'
-				  , host='blue_cluster.isqream.com'
-				  , port=443
-				  , database='raviga'
+_access_token = "##########################"
+conn_str = f"sqream_blue://blue_cluster.isqream.com:443/raviga"
+connect_args = {'access_token': _access_token}
+engine = sa.create_engine(conn_str, connect_args=connect_args)
+conn = engine.connect()
 
-	engine = sa.create_engine(engine_url)
-
-	res = engine.execute('create or replace table test (ints int, ints2 int)')
-	res = engine.execute('insert into test (ints,ints2) values (5,1), (6,2)')
-	res = engine.execute('select * from test')
-	for item in res:
-	print(item)
+res = conn.execute("select * from nba").fetchall()
+print(res)
 	
 
 Pulling a Table into Pandas
@@ -162,20 +124,18 @@ The following example shows how to pull a table in Pandas. This examples uses th
 
 .. code-block:: python
 
-   import sqlalchemy as sa
-   import pandas as pd
-   from sqlalchemy.engine.url import URL
+import sqlalchemy as sa
+import pandas as pd
+from sqlalchemy.engine.url import URL
 
+_access_token = "##########################"
+conn_str = f"sqream_blue://blue_cluster.isqream.com:443/raviga"
+connect_args = {'access_token': _access_token}
+engine = sa.create_engine(conn_str, connect_args=connect_args)
+conn = engine.connect()
 
-   engine_url = URL('sqream'
-                 , access-token='access-token'
-                 , host='blue_cluster.isqream.com'
-                 , port=443
-                 , database='raviga'
-
-   engine = sa.create_engine(engine_url)
-   
-   table_df = pd.read_sql("select * from nba", con=engine)
+table_df = pd.read_sql("select * from nba", con=engine)
+print(table_df)
 
 API Examples
 ===============
@@ -196,8 +156,8 @@ As before, you must import the library and create a :py:meth:`~Connection`, foll
 
 .. code-block:: python
    
-   import pysqream
-   con = pysqream.connect(host='blue_cluster.isqream.com', port=443, database='master'
+   import pysqream-blue
+   con = pysqream-blue.connect(host='blue_cluster.isqream.com', port=443, database='master'
                       , access-token='access-token')
 
    cur = con.cursor() # Create a new cursor
@@ -259,13 +219,13 @@ The metadata is stored in the :py:attr:`Connection.description` object of the cu
 
 .. code-block:: pycon
    
-   >>> import pysqream
-   >>> con = pysqream.connect(host='blue_cluster.isqream.com', port=443, database='master'
+   >>> import pysqream-blue
+   >>> con = pysqream-blue.connect(host='blue_cluster.isqream.com', port=443, database='master'
    ...                , access-token='access-token')
    >>> cur = con.cursor()
    >>> statement = 'SELECT * FROM nba'
    >>> cur.execute(statement)
-   <pysqream.dbapi.Connection object at 0x000002EA952139B0>
+   <pysqream-blue.dbapi.Connection object at 0x000002EA952139B0>
    >>> print(cur.description)
    [('Name', 'STRING', 24, 24, None, None, True), ('Team', 'STRING', 22, 22, None, None, True), ('Number', 'NUMBER', 1, 1, None, None, True), ('Position', 'STRING', 2, 2, None, None, True), ('Age (as of 2018)', 'NUMBER', 1, 1, None, None, True), ('Height', 'STRING', 4, 4, None, None, True), ('Weight', 'NUMBER', 2, 2, None, None, True), ('College', 'STRING', 21, 21, None, None, True), ('Salary', 'NUMBER', 4, 4, None, None, True)]
 
@@ -286,11 +246,11 @@ This example shows how to load 10,000 rows of dummy data to an instance of SQrea
 
    .. code-block:: python
    
-      import pysqream
+      import pysqream-blue
       from datetime import date, datetime
       from time import time
 
-      con = pysqream.connect(host='blue_cluster.isqream.com', port=443, database='master'
+      con = pysqream-blue.connect(host='blue_cluster.isqream.com', port=443, database='master'
                          , access-token='access-token')
 						 , cur = con.cursor()
 						 
