@@ -18,7 +18,7 @@ BLUE CLI is Java based and may be run on any Java supported platform - use the f
 
 #. Start the client by browsing your CLI for the location of the ``jdbc-console-*.*.**.jar`` file and execute it as follows:
 
-.. code-block:: console
+.. code-block:: none
 
 	$ sudo java -jar jdbc-console-*.*.**.jar --host=<BLUE cluster FQDN> --access-token=<access-token>
 	
@@ -48,7 +48,7 @@ After entering your access token, you are presented with the **SQL shell**. The 
 
 Statements and queries are standard SQL, followed by a semicolon ``;``.
 
-.. code-block:: console
+.. code-block:: none
  
 	master=> CREATE TABLE nba (
 	  player_name TEXT,
@@ -62,7 +62,7 @@ Statements and queries are standard SQL, followed by a semicolon ``;``.
 	  salary INT
 	);
 	
-.. code-block:: console
+.. code-block:: none
 
 	INSERT INTO nba VALUES
 	  ('Avery Bradley', 'Boston Celtics', 0, 'PG', 25, '6-2', 180, 'Texas', 7730337),
@@ -75,7 +75,7 @@ Statement results are usually formatted as a valid CSV, followed by the number o
 
 Null values are represented as ``\N``.
 
-.. code-block:: console
+.. code-block:: none
 
 	master=> SELECT TOP 5 * FROM nba;
 	Avery Bradley           ,Boston Celtics        ,0,PG,25,6-2 ,180,Texas                ,7730337
@@ -90,7 +90,7 @@ Null values are represented as ``\N``.
 	
 When writing long statements and queries, it may be beneficial to use line-breaks.
 
-.. code-block:: console
+.. code-block:: none
 
 	master=> SELECT Age, AVG(Salary)
 	FROM nba
@@ -114,7 +114,7 @@ Executing Batch Scripts (-f)
 To run an SQL script, use the ``-f <filename>`` argument.
 For example,
 
-.. code-block::
+.. code-block:: none
 
 	$ java -jar jdbc-console-0.0.92-48.jar --host=product.isqream.com --access-token=########## -f=script.sql
 	 
@@ -129,7 +129,7 @@ To run a statement from the console, use the ``-c <statement>`` argument.
 
 For example,
 
-.. code-block::
+.. code-block:: none
 
 	$ java -jar jdbc-console-0.0.92-48.jar --host=product.isqream.com --access-token=########## -d master -c "SELECT TOP 5 * FROM nba;"
 	Avery Bradley           ,Boston Celtics        ,0,PG,25,6-2 ,180,Texas                ,7730337
@@ -154,7 +154,7 @@ Note that all SQL commands end with a semicolon.
 
 Creating a new database and switching over to it without reconnecting:
 
-.. code-block::
+.. code-block:: none
 
 	$ java -jar jdbc-console-0.0.92-48.jar --host=product.isqream.com --access-token=########## -d master
 
@@ -187,7 +187,7 @@ Creating a new database and switching over to it without reconnecting:
 Executing SQL Statements from the Command Line
 ----------------------------------------------
 
-.. code-block::
+.. code-block:: none
 
 	$ java -jar jdbc-console-0.0.92-48.jar --host=product.isqream.com --access-token=########## -d farm -c "SELECT * FROM animals WHERE is_angry = true;"
 	
@@ -215,7 +215,7 @@ Exporting SQL Query Results to CSV
 
 Using the ``--results-only`` flag removes the row counts and timing.
 
-.. code-block::
+.. code-block:: none
 
 	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
 	 --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals" --results-only > file.csv
@@ -234,7 +234,7 @@ The ``--delimiter`` parameter accepts any printable character.
 
 	To insert a tab, use ``Ctrl-V`` followed by ``Tab`` in Bash.
 
-.. code-block::
+.. code-block:: none
 
 	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
 	 --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals" --delimiter '  ' > file.tsv
@@ -249,7 +249,7 @@ Executing a Series of Statements From a File
 
 Assuming a file containing SQL statements (separated by semicolons):
 
-.. code-block::
+.. code-block:: none
 
 	$ cat some_queries.sql
 	   CREATE TABLE calm_farm_animals
@@ -270,7 +270,7 @@ Assuming a file containing SQL statements (separated by semicolons):
 Connecting Using Environment Variables in Linux environments
 ------------------------------------------------------------
 
-.. code-block::
+.. code-block:: none
 
 	You can save connection parameters as environment variables:
 	$ export SQREAM_USER=sqream;
