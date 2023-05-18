@@ -55,7 +55,7 @@ The following table shows the supported data types.
      - Variable length string - UTF-8 unicode
      - Up to ``4`` bytes
      - ``'Kiwis have tiny wings, but cannot fly.'``
-     - ``CHAR VARYING``, ``CHAR``, ``CHARACTER VARYING``, ``CHARACTER``, ``NATIONAL CHARACTER VARYING``, ``NATIONAL CHARACTER``, ``NCHAR VARYING``, ``NCHAR``
+     - ``CHAR VARYING``, ``CHAR``, ``CHARACTER VARYING``, ``CHARACTER``, ``NATIONAL CHARACTER VARYING``, ``NATIONAL CHARACTER``, ``NCHAR VARYING``, ``NCHAR``, ``NATIONAL CHAR``, ``NATIONAL CHAR VARYING``
    * - ``NUMERIC``
      -  38 digits
      - 16 bytes
