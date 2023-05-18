@@ -3,19 +3,9 @@
 ****************************
 Running Queries
 ****************************
-The **Running Queries** section describes the following:
 
-* :ref:`Running basic queries<running_basic_queries>`
-* :ref:`Outputting all columns<outputting_all_columns>`
-* :ref:`Outputting shorthand table values<outputting_shorthand_table_values>`
-* :ref:`Filtering results<filtering_results>`
-* :ref:`Sorting results<sorting_results>`
-* :ref:`Filtering null rows<filtering_null_rows>`
-
-
-.. _running_basic_queries:
-
-**Running Basic Queries**
+Running Basic Queries
+---------------------
 
 You can run a basic query using the ``SELECT`` keyword, followed by a list of columns and values to be returned, and the table to get the data from, as shown in the following example:
 
@@ -33,9 +23,9 @@ You can run a basic query using the ``SELECT`` keyword, followed by a list of co
    
 For more information on the ``SELECT`` keyword, see :ref:`select`.
 
-.. _outputting_all_columns:
 
-**To Output All Columns**
+To Output All Columns
+---------------------
 
 You can output all columns without specifying them using the star operator ``*``, as shown in the following example:
 
@@ -51,9 +41,9 @@ You can output all columns without specifying them using the star operator ``*``
    
    6 rows
 
-.. _outputting_shorthand_table_values:
 
-**Outputting Shorthand Table Values**
+Outputting Shorthand Table Values
+---------------------------------
 
 You can output the number of values in a table without getting the full result set by using the ``COUNT`` statement:
 
@@ -64,9 +54,9 @@ You can output the number of values in a table without getting the full result s
    
    1 row
 
-.. _filtering_results:
 
-**Filtering Results**
+Filtering Results
+-----------------
 
 You can filter results by adding a ``WHERE`` clause and specifying the filter condition, as shown in the following example:
 
@@ -78,9 +68,8 @@ You can filter results by adding a ``WHERE`` clause and specifying the filter co
    
    2 rows
 
-.. _sorting_results:
-
-**Sorting Results**
+Sorting Results
+---------------
 
 You can sort results by adding an ``ORDER BY`` clause and specifying ascending (``ASC``) or descending (``DESC``) order, as shown in the following example:
 
@@ -96,9 +85,9 @@ You can sort results by adding an ``ORDER BY`` clause and specifying ascending (
 
    6 rows
 
-.. _filtering_null_rows:
 
-**Filtering Null Rows**
+Filtering Null Rows
+--------------------
 
 You can filter null rows by adding an ``IS NOT NULL`` filter, as shown in the following example:
 

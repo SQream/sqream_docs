@@ -3,6 +3,7 @@
 *********************************
 Monitoring Query Performance
 *********************************
+
 When analyzing options for query tuning, the first step is to analyze the query plan and execution. 
 The query plan and execution details explains how SQream DB processes a query and where time is spent.
 This document details how to analyze query performance with execution plans.
@@ -10,8 +11,6 @@ This guide focuses specifically on identifying bottlenecks and possible optimiza
 Performance tuning options for each query are different. You should adapt the recommendations and tips for your own workloads.
 See also our :ref:`sql_best_practices` guide for more information about data loading considerations and other best practices.
 
-.. contents:: In this section:
-   :local:
 
 Setting Up the System for Monitoring
 =================================================
@@ -271,8 +270,6 @@ Examples
 In general, looking at the top three longest running nodes (as is detailed in the ``timeSum`` column) can indicate the biggest bottlenecks.
 In the following examples you will learn how to identify and solve some common issues.
 
-.. contents:: In this section:
-   :local:
 
 1. Spooling to Disk
 -----------------------

@@ -3,13 +3,10 @@
 **************
 Managing Roles
 **************
-Roles are used for both users and groups, and are global across all databases in the SQream cluster. For a ``ROLE`` to be used as a user, it requires a password and log-in and connect permissionss to the relevant databases.
+Roles are used for both users and groups, and are global across all databases in the SQream cluster. For a ``ROLE`` to be used as a user, it requires a password and log-in and connect permissions to the relevant databases.
 
 The Managing Roles section describes the following role-related operations:
 
-.. contents:: 
-   :local:
-   :depth: 1
 
 Creating New Roles (Users)
 ------------------------------

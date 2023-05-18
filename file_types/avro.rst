@@ -4,12 +4,6 @@
 Avro
 **************************
 
-.. contents:: 
-   :local:
-   :depth: 1
-   
-Overview
-===========
 **Avro** is a well-known data serialization system that relies on schemas. Due to its flexibility as an efficient data storage method, BLUE supports the Avro binary data format as an alternative to JSON. Avro files are represented using the **Object Container File** format, in which the Avro schema is encoded alongside binary data. Multiple files loaded in the same transaction are serialized using the same schema. If they are not serialized using the same schema, an error message is displayed. BLUE uses the **.avro** extension for ingested Avro files.
 
 
@@ -56,11 +50,8 @@ The following example shows the correct file structure used to create the ``CREA
 
 Mapping Between BLUE and Avro Data Types
 =================
-Mapping between BLUE and Avro data types depends on the Avro data type:
 
-.. contents:: 
-   :local:
-   :depth: 1
+Mapping between BLUE and Avro data types depends on the Avro data type:
 
 Primitive Data Types
 --------------

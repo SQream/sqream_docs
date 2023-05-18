@@ -3,19 +3,12 @@
 ***************
 SQL Statements
 ***************
-The **SQL Statements** page describes the following commands:
-
-.. contents::
-   :local:
-   :depth: 1
 
 SQream supports commands from ANSI SQL.
 
-.. _ddl_commands_list:
 
 Data Definition Commands (DDL)
-================================
-The following table shows the Data Definition commands:
+==============================
 
 .. list-table::
    :widths: 10 100
@@ -70,7 +63,6 @@ The following table shows the Data Definition commands:
 
 Data Manipulation Commands (DML)
 ================================
-The following table shows the Data Manipulation commands:
 
 .. list-table::
    :widths: 10 100
@@ -83,12 +75,8 @@ The following table shows the Data Manipulation commands:
      - Create a new table in the database using results from a select query
    * - :ref:`DELETE<delete>`
      - Delete specific rows from a table
-   * - :ref:`COPY_FROM<copy_from>`
-     - Bulk load CSV data into an existing table
    * - :ref:`COPY_TO<copy_to>`
      - Export a select query or entire table to CSV files
-   * - :ref:`INSERT<insert>`
-     - Insert rows into a table
    * - :ref:`SELECT<select>`
      - Select rows and column from a table
    * - :ref:`TRUNCATE<truncate>`
@@ -99,8 +87,7 @@ The following table shows the Data Manipulation commands:
      - Return rows containing literal values
 
 Utility Commands
-==================
-The following table shows the Utility commands:
+================
 
 .. list-table::
    :widths: 10 100
@@ -134,46 +121,15 @@ The following table shows the Utility commands:
      - Returns a list of active sessions on the current worker
    * - :ref:`SHOW LOCKS<show_locks>`
      - Returns a list of locks from across the cluster
-   * - :ref:`SHOW NODE INFO<show_node_info>`
-     - Returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases
    * - :ref:`SHOW SAVED QUERY<show_saved_query>`
      - Returns a single row result containing the saved query string
-   * - :ref:`SHOW SERVER STATUS<show_server_status>`
-     - Returns a list of active sessions across the cluster
-   * - :ref:`SHOW VERSION<show_version>`
-     - Returns the system version for SQream DB
    * - :ref:`SHUTDOWN_SERVER<shutdown_server_command>`
      - Sets your server to finish compiling all active queries before shutting down according to a user-defined time value
    * - :ref:`STOP STATEMENT<stop_statement>`
      - Stops or aborts an active statement
 
-.. |icon-new_2022.1| image:: /_static/images/new_2022.1.png
-   :align: middle
-   :width: 110
-
-.. |icon-New_Dark_Gray| image:: /_static/images/New_Dark_Gray.png
-   :align: middle
-   :width: 110
-
-Workload Management
-======================
-The following table shows the Workload Management commands:
-
-.. list-table::
-   :widths: 10 100
-   :header-rows: 1
-   
-   * - Command
-     - Usage
-   * - :ref:`subscribe_service`
-     - Add a SQream DB worker to a service queue 
-   * - :ref:`unsubscribe_service`
-     - Remove a SQream DB worker from a service queue
-   * - :ref:`show_subscribed_instances`
-     - Return a list of service queues and workers
-
 Access Control Commands
-================================
+=======================
 The following table shows the Access Control commands:
 
 .. list-table::

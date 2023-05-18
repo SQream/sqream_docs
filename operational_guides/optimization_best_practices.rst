@@ -8,10 +8,6 @@ This topic explains some best practices of working with SQream DB.
 
 See also our :ref:`monitoring_query_performance` guide for more information.
 
-.. contents:: In this topic:
-   :local:
-
-.. _table_design_best_practices:
 
 Table design
 ==============
@@ -61,7 +57,7 @@ Not only does specifying ``NOT NULL`` save on data storage, it lets the query co
 
 
 Sorting 
-==============
+=======
 
 Data sorting is an important factor in minimizing storage size and improving query performance.
 
@@ -107,7 +103,7 @@ Can be rewritten as
    ON dim.store_id=fact.store_id; 
 
 Prefer the ANSI JOIN
-----------------------------
+--------------------
 
 SQream DB prefers the ANSI JOIN syntax.
 In some cases, the ANSI JOIN performs better than the non-ANSI variety.
@@ -137,10 +133,10 @@ This non-ANSI JOIN is supported, but not recommended:
 
 
 
-.. _high_selectivity:
+
 
 Use the high selectivity hint
---------------------------------
+-----------------------------
 
 Selectivity is the ratio of cardinality to the number of records of a chunk. We define selectivity as :math:`\frac{\text{Distinct values}}{\text{Total number of records in a chunk}}`
 
@@ -166,7 +162,7 @@ This hint tells the query compiler that the ``WHERE`` condition is expected to f
 Read more about identifying the scenarios for the high selectivity hint in our :ref:`Monitoring query performance guide<high_selectivity_data_opt>`.
 
 Cast smaller types to avoid overflow in aggregates
-------------------------------------------------------
+--------------------------------------------------
 
 When using an ``INT`` or smaller type, the ``SUM`` and ``COUNT`` operations return a value of the same type. 
 To avoid overflow on large results, cast the column up to a larger type.
@@ -180,13 +176,13 @@ For example
 
 
 Prefer ``COUNT(*)`` and ``COUNT`` on non-nullable columns
-------------------------------------------------------------
+---------------------------------------------------------
 
 SQream DB optimizes ``COUNT(*)`` queries very strongly. This also applies to ``COUNT(column_name)`` on non-nullable columns. Using ``COUNT(column_name)`` on a nullable column will operate quickly, but much slower than the previous variations.
 
 
 Return only required columns
--------------------------------
+----------------------------
 
 Returning only the columns you need to client programs can improve overall query performance.
 This also reduces the overall result set, which can improve performance in third-party tools.
@@ -205,7 +201,7 @@ When executed, the saved query plan is recalled and executed on the up-to-date d
 See how to use saved queries in the :ref:`saved queries guide<saved_queries>`.
 
 Pre-filter to reduce :ref:`JOIN<joins>` complexity
---------------------------------------------------------
+--------------------------------------------------
 
 Filter and reduce table sizes prior to joining on them
 
@@ -232,13 +228,13 @@ Can be rewritten as:
                  GROUP BY store_id) AS fact ON dim.store_id = fact.store_id;
 
 
-.. _data_loading_considerations:
+
 
 Data loading considerations
-=================================
+===========================
 
 Allow and use natural sorting on data
-----------------------------------------
+-------------------------------------
 
 Very often, tabular data is already naturally ordered along a dimension such as a timestamp or area.
 
@@ -250,7 +246,7 @@ Natural ordering can also be used for effective :ref:`delete` operations.
 
 
 Further reading and monitoring query performance
-=======================================================
+================================================
 
 Read our :ref:`monitoring_query_performance` guide to learn how to use the built in monitoring utilities. 
 The guide also gives concerete examples for improving query performance.

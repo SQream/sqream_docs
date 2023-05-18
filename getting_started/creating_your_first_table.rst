@@ -3,17 +3,8 @@
 ****************************
 Creating Your First Table
 ****************************
-The **Creating Your First Table** section describes the following:
 
-* :ref:`Creating a table<creating_a_table>`
-* :ref:`Replacing a table<replacing_a_table>`
-* :ref:`Listing a CREATE TABLE statement<listing_a_create_table_statement>`
-* :ref:`Dropping a table<dropping_a_table>`
-
-
-.. _creating_a_table:
-
-**Creating a Table**
+Creating a Table
 
 The ``CREATE TABLE`` syntax is used to create your first table. This table includes a table name and column specifications, as shown in the following example:
 
@@ -27,9 +18,9 @@ The ``CREATE TABLE`` syntax is used to create your first table. This table inclu
 
 For more information on creating a table, see :ref:`create_table`.
 
-.. _replacing_a_table:
 
-**Replacing a Table**
+Replacing a Table
+-----------------
 
 You can drop an existing table and create a new one by adding the ``OR REPLACE`` parameter after the ``CREATE`` keyword, as shown in the following example:
 
@@ -41,12 +32,10 @@ You can drop an existing table and create a new one by adding the ``OR REPLACE``
       weight INT
    );
 
-.. TODO: cool_animals? I think we need to decide if the customer for this documenation is 12 years old, or an IT professional.
 
-.. _listing_a_create_table_statement:
+Listing a CREATE TABLE Statement
+--------------------------------
 
-**Listing a CREATE TABLE Statement**
-   
 You can list the full, verbose ``CREATE TABLE`` statement for a table by using the **GET DDL** function with the table name as shown in the following example:
 
 .. code-block:: psql
@@ -65,9 +54,8 @@ You can list the full, verbose ``CREATE TABLE`` statement for a table by using t
    
 For information on listing a ``CREATE TABLE`` statement, see :ref:`get_ddl`.
 
-.. _dropping_a_table:
-
-**Dropping a Table**
+Dropping a Table
+----------------
 
 When you have finished working with your table, you can drop the table to remove it table and its content, as shown in the following example:
 

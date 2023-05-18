@@ -4,10 +4,6 @@
 ORC
 **********************
 
-.. contents:: 
-   :local:
-   :depth: 1
-
 This guide covers ingesting data from ORC files into BLUE using :ref:`FOREIGN TABLE<external_tables>`. 
 
 

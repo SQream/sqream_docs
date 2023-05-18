@@ -7,10 +7,6 @@ CSV
 This guide covers ingesting data from CSV files into BLUE using the :ref:`copy_from` method. 
 
 
-.. contents:: 
-   :local:
-   :depth: 1
-
 Figure out the table structure
 ==============================
 

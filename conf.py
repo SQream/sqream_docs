@@ -26,7 +26,8 @@ author = 'SQream Documentation'
 # The full version, including alpha/beta/rc tags
 release = '1.0'
 
- 
+
+
 
 # -- General configuration ---------------------------------------------------
 
@@ -76,17 +77,17 @@ html_logo = '_static/images'
 show_authors = False
 
 # Hide "Sphinx" details
+
 html_show_sphinx = False
+html_show_copyright = True
+
+
 
 #Hide the sidebar
 html_sidebars = {}
 
 
-# The name of the Pygments (syntax highlighting) style to use.
-pygments_style = "perldoc"
-pygments_dark_style = "perldoc"
 
-html_show_copyright = True
 
 # furo theme specifics
 
@@ -101,9 +102,11 @@ html_theme_options = {
    , 'light_logo': 'images/SQream_logo_bright_mode.png'
    , "sidebar_hide_name": True
    , "footer_icons": 'None'
-   
-   
+   , "rst-versions": False
 }
+   
+
+
 
 latex_engine = 'xelatex'
 

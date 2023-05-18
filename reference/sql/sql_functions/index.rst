@@ -7,17 +7,14 @@ SQL Functions
 SQream supports functions from ANSI SQL, as well as others for compatibility.
 
 Summary of Functions
-=======================
-
-.. contents::
-   :local:
+====================
 
 Built-In Scalar Functions
 -------------------
 For more information about built-in scalar functions, see :ref:`scalar_functions`.
 
 Bitwise Operations
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
 The following table shows the **bitwise operations** functions:
 
@@ -83,7 +80,7 @@ The following table shows the **conversion** functions:
      - Converts a ``DATE`` or ``DATETIME`` to a UNIX Timestamp
 
 Date and Time
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^
 The following table shows the **date and time** functions:
 
 .. list-table:: 
@@ -116,7 +113,7 @@ The following table shows the **date and time** functions:
      - Truncates a date element down to a specified date or time element
 
 Numeric
-^^^^^^^^^^^
+^^^^^^^
 The following table shows the **arithmetic operators**:
 
 .. list-table:: Arithmetic Operators
@@ -206,7 +203,7 @@ The following table shows the **arithmetic operator** functions:
      - Rounds a number to its integer representation towards 0
 
 Strings
-^^^^^^^^^^^
+^^^^^^^
 The following table shows the **string** functions:
 
 .. list-table:: 
@@ -271,12 +268,12 @@ The following table shows the **string** functions:
      - Return the ASCII code value of the leftmost character of a string
 
 User-Defined Scalar Functions
----------------------
+-----------------------------
 For more information about user-defined scalar functions, see :ref:`scalar_sql_udf`.
 
 
 Aggregate Functions
----------------------
+-------------------
 The following table shows the **aggregate** functions:
 
 .. list-table:: 
@@ -326,8 +323,7 @@ The following table shows the **aggregate** functions:
 For more information about aggregate functions, see :ref:`aggregate_functions`.
 
 Window Functions
--------------------
-The following table shows the **window** functions:
+----------------
 
 .. list-table:: 
    :widths: auto
@@ -382,13 +378,3 @@ The following table shows the **workload management** functions:
      - Return a list of service queues and workers
 
 
-.. toctree::
-   :maxdepth: 2
-   :caption: All Functions:
-   :hidden:
-   :glob:
-
-   scalar_functions/index
-   user_defined_functions/index
-   aggregate_functions/index
-   window_functions/index

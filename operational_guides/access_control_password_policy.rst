@@ -7,19 +7,11 @@ As part of our compliance with GDPR standards SQream relies on a strong password
 
 * At least eight characters long.
 
-   ::
-
 * Mandatory upper and lowercase letters.
-
-   ::
 
 * At least one numeric character.
 
-   ::
-
 * May not include a username.
-
-   ::
 
 * Must include at least one special character, such as **?**, **!**, **$**, etc.
 

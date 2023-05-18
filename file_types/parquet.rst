@@ -4,12 +4,6 @@
 Parquet
 **********************
 
-.. contents:: 
-   :local:
-   :depth: 1
-
-Overview
-===================
 BLUE supports ingesting data into BLUE from Parquet files. However, because it is an open-source column-oriented data storage format, you may want to retain your data on foreign Parquet files instead of ingesting it into BLUE. BLUE supports executing queries on foreign Parquet files.
 
 Preparing Your Parquet Files

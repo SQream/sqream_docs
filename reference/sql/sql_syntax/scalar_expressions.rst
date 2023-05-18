@@ -8,10 +8,6 @@ Scalar expressions are functions that calculate a single (scalar) value, even if
 
 A scalar expression can be any one of these:
 
-.. contents::
-   :local:
-   :depth: 1
-
 .. 
   *_string_literal_*
     | *_number_literal_*

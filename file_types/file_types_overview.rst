@@ -3,12 +3,7 @@
 ***************************
 File Types Overview
 ***************************
-
-.. contents::
-   :local:
-   :depth: 1 
    
-
 Unsupported Data Types
 -----------------------------
 SQream does not support certain features that are supported by other databases, such as ``ARRAY``, ``BLOB``, ``ENUM``, and ``SET``. You must convert these data types before loading them. For example, you can store ``ENUM`` as ``TEXT``.

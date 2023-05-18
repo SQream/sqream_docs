@@ -9,14 +9,14 @@ Returns the starting position of a string inside another string.
 See also :ref:`patindex`, :ref:`regexp_instr`.
 
 Syntax
+======
+
+.. code-block:: sql
+
+	CHARINDEX ( needle_string_expr , haystack_string_expr [ , start_location ] )
+
+Parameters
 ==========
-
-.. code-block:: postgres
-
-   CHARINDEX ( needle_string_expr , haystack_string_expr [ , start_location ] )
-
-Arguments
-============
 
 .. list-table:: 
    :widths: auto
@@ -32,22 +32,18 @@ Arguments
      - An integer at which the search starts. This value is optional and when not supplied, the search starts at the beggining of ``needle_string_expr``
 
 Returns
-============
+=======
 
 Integer start position of a match, or 0 if no match was found.
 
-Notes
-=======
-
-* If the value is ``NULL``, the result is ``NULL``.
-
+If one of the parameters is NULL, then the return value is NULL.
 
 Examples
-===========
+========
 
 For these examples, consider the following table and contents:
 
-.. code-block:: postgres
+.. code-block:: sql
 
       CREATE TABLE users (
           id INT,
@@ -64,16 +60,21 @@ For these examples, consider the following table and contents:
 
 
 Using ``CHARINDEX``
------------------------------------------
+-------------------
 
-.. code-block:: psql
+.. code-block:: sql
 
-   SELECT username, CHARINDEX('john', username) FROM users;
+   SELECT CHARINDEX('john', username) FROM users;
 
-   username      | charindex
-   --------------+----------
-   john_doe      |         1
-   jane_doe      |         0
-   bob_smith     |         0
-   susan_jones   |         0
+Output:
+
+.. code-block:: none
+
+   charindex|
+   ---------+
+   1        |
+   0        |
+   0        |
+   0        |
+
 
