@@ -54,7 +54,6 @@ Main Features and Capabilities:
    feature_guides/index
    operational_guides/index
    configuration_guides/index
-   loading_and_unloading_data/index
    releases/index
    troubleshooting/index
    glossary
