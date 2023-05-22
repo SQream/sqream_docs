@@ -42,9 +42,7 @@ The Python drivers are updated periodically. To upgrade an existing pysqream-blu
 Validating Your ``pysqream-blue`` Installation
 ----------------------------------------------
 
-.. only:: builder_html
-
-:download:`Download <_downloads/sample.py>` or create a file named ``sample.py``, with the information from the following example.
+#. :download:`Download<sample.py>` or create a file named ``sample.py``, with the information from the following example.
 
    Verify that the parameters in the connection have been replaced with your respective BLUE installation parameters.
 	
@@ -67,11 +65,14 @@ Validating Your ``pysqream-blue`` Installation
 	#Close the connection
 	con.close()
 
-2. Run the sample file to verify that you can connect to SQream.
+#. Run the sample file to verify that you can connect to SQream.
 
-A successful validation means you can go ahead and build an application using ``pysqream-blue``. 
+Next Steps
+----------
 
-If you receive a connection error, verify the following:
+A successful validation means you can go ahead and build an application using the SQLAlchemy examples in the following section. 
+
+If you receive a connection error, verify that:
 
 * You have access to BLUE.
 
@@ -80,13 +81,10 @@ If you receive a connection error, verify the following:
 SQLAlchemy Examples
 ===================
 
-SQLAlchemy is an **Object-Relational Mapper (ORM) for Python. When you install the SQream dialect (``pysqream-blue-sqlalchemy``) you can use frameworks such as Pandas, TensorFlow, and Alembic to query SQream directly.
-
-This section includes the following examples:
-
+SQLAlchemy is an Object-Relational Mapper (ORM) for Python. When you install the SQream dialect (``pysqream-blue-sqlalchemy``) you can use frameworks such as Pandas, TensorFlow, and Alembic to query SQream directly.
 
 Standard Connection Example
----------------------------------
+---------------------------
 
 .. code-block:: python
 
