@@ -8,19 +8,19 @@ User-defined functions (UDFs) are a feature that extends SQreamDB's built in SQL
 
 
 A simple example
-=====================
+================
 
 Most databases have an :ref:`UPPER` function, including SQream DB. However, assume that this function is missing for the sake of this example.
 
 You can write a function in Python to uppercase a text value using the :ref:`create_function` syntax.
 
-.. code-block:: postgres
+.. code-block:: sql
 
-   CREATE FUNCTION my_upper (x1 text)
-     RETURNS text
-     AS $$  
-   return x1.upper()
-   $$ LANGUAGE PYTHON;
+	   CREATE FUNCTION my_upper (x1 text)
+		 RETURNS text
+		 AS $$  
+	   return x1.upper()
+	   $$ LANGUAGE PYTHON;
 
 Let's break down this example:
 
@@ -31,23 +31,35 @@ Let's break down this example:
 * ``return x1.upper()`` - the Python function's body is the argument named ``x1``, uppercased.
 * ``$$ LANGUAGE PYTHON`` - this is the end of the function, and it's in the Python language.
 
-.. rubric:: Running this example
+Running this example
+^^^^^^^^^^^^^^^^^^^^
 
 After creating the function, you can use it in any SQL query.
 
-For example:
+Create the following table:
 
-.. code-block:: psql
+.. code-block:: sql
    
    master=>CREATE TABLE jabberwocky(line text);
-   executed
+   
+.. code-block:: sql
+  
    master=> INSERT INTO jabberwocky VALUES 
       ('''Twas brillig, and the slithy toves '), ('      Did gyre and gimble in the wabe: ')
       ,('All mimsy were the borogoves, '), ('      And the mome raths outgrabe. ')
       ,('"Beware the Jabberwock, my son! '), ('      The jaws that bite, the claws that catch! ')
       ,('Beware the Jubjub bird, and shun '), ('      The frumious Bandersnatch!" ');
-   executed
-   master=> SELECT line, my_upper(line) FROM jabberwocky;
+
+Execute function:
+
+.. code-block:: sql
+
+	master=> SELECT line, my_upper(line) FROM jabberwocky;
+   
+Output:
+
+.. code-block:: none
+
    line                                             | my_upper                                        
    -------------------------------------------------+-------------------------------------------------
    'Twas brillig, and the slithy toves              | 'TWAS BRILLIG, AND THE SLITHY TOVES             
@@ -60,7 +72,7 @@ For example:
          The frumious Bandersnatch!"                |       THE FRUMIOUS BANDERSNATCH!"               
 
 Why use UDFs?
-=====================
+=============
 
 * They allow simpler statements - You can create the function once, store it in the database, and call it any number of times in a statement.
 
@@ -69,15 +81,15 @@ Why use UDFs?
 * They can simplify downstream code - UDFs can be modified in SQream DB independently of program source code.
 
 SQream DB's UDF support
-=============================
+=======================
 
 Scalar functions
----------------------
+----------------
 
 SQream DB's UDFs are scalar functions. This means that the UDF returns a single data value of the type defined in the ``RETURNS`` clause. For an inline scalar function, the returned scalar value is the result of a single statement.
 
 Python
--------------------
+------
 
 At this time, SQream DB's UDFs are supported for Python.
 
@@ -86,7 +98,7 @@ You may have a different version of Python installed on your server.
 
 To find which version of Python is installed for use by SQream DB, create and run this UDF:
 
-.. code-block:: psql
+.. code-block:: sql
    
    master=> CREATE OR REPLACE FUNCTION py_version()
    .  RETURNS text
@@ -102,30 +114,35 @@ To find which version of Python is installed for use by SQream DB, create and ru
    Path: /opt/sqream/python-3.6.7-5.4.0
 
 Using modules
----------------------
+-------------
 
 To import a Python module, use the standard ``import`` syntax in the first lines of the user-defined function.
 
 
 Finding existing UDFs in the catalog
-========================================
+====================================
 
 The ``user_defined_functions`` catalog view contains function information.
 
 Here's how you'd list all UDFs in the system:
 
-.. code-block:: psql
+.. code-block:: sql
    
    master=> SELECT * FROM sqream_catalog.user_defined_functions;
+   
+Output:
+
+.. code-block:: none
+
    database_name | function_id | function_name
    --------------+-------------+--------------
    master        |           1 | my_upper  
 
 
 Getting the DDL for a function
-=====================================
+==============================
 
-.. code-block:: psql
+.. code-block:: sql
 
    master=> SELECT GET_FUNCTION_DDL('my_upper');
    ddl                                                 
@@ -139,18 +156,18 @@ Getting the DDL for a function
 See :ref:`get_function_ddl` for more information.
 
 Error handling
-=====================
+==============
 
 In UDFs, any error that occurs causes the execution of the function to stop. This in turn causes the statement that invoked the function to be canceled.
 
 Permissions and sharing
-============================
+=======================
 
 To create a UDF, the creator needs the ``CREATE FUNCTION`` permission at the database level.
 
 For example, to grant ``CREATE FUNCTION`` to a non-superuser role:
 
-.. code-block:: postgres
+.. code-block:: sql
    
    GRANT CREATE FUNCTION ON DATABASE master TO mjordan;
 
@@ -158,7 +175,7 @@ To execute a UDF, the role needs the ``EXECUTE FUNCTION`` permission for every f
 
 For example, to grant the permission to the ``r_bi_users`` role group, run:
 
-.. code-block:: postgres
+.. code-block:: sql
    
    GRANT EXECUTE ON FUNCTION my_upper TO r_bi_users;
 
@@ -168,7 +185,7 @@ See more information about permissions in the :ref:`Access control guide<access_
 
 
 Best practices
-=====================
+==============
 
 Although user-defined functions add flexibility, they may have some performance drawbacks. They are not usually a replacement for subqueries or views.
 
@@ -176,10 +193,3 @@ In some cases, the user-defined function provides benefits like sharing extended
 
 Use user-defined functions sparingly in the ``WHERE`` clause. SQream DB can't optimize the function's usage, and it will be called once for every value. If possible, you should narrow down the number of results before the UDF is called by using a subquery.
 
-
-
-.. python udfs are trusted
-
-.. working with python modules
-
-.. performance considerations
