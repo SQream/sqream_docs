@@ -417,32 +417,58 @@ Examples
 Exporting Data From SQream to External File Tables
 --------------------------------------------------
 
-Exporting Tables to Parquet Files
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Parquet
+^^^^^^^
 The compression algorithm used for exporting data from SQream to Parquet files is Snappy.
+
+Exporting tables to Parquet files:
 
 .. code-block:: psql
    
 	COPY nba TO WRAPPER parquet_fdw OPTIONS (LOCATION = '/tmp/nba_export.parquet');
 
-Exporting Query Results to Parquet Files
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Exporting query results to Parquet files:
 
 .. code-block:: psql
 
-	COPY (select x,y from t where z=0) TO WRAPPER parquet_fdw OPTIONS (LOCATION = '/tmp/file.parquet');
+	COPY (SELECT name FROM nba WHERE salary<1148640) TO WRAPPER parquet_fdw OPTIONS (LOCATION = '/tmp/file.parquet');
 
-Exporting Tables to ORC Files
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ORC
+^^^
+The compression algorithm used for exporting data from SQream to ORC files is ZLIB.
+
+Exporting tables to ORC files:
 
 .. code-block:: psql
    
 	COPY nba TO WRAPPER orc_fdw OPTIONS (LOCATION = '/tmp/nba_export.orc');
+	
+Exporting query results to ORC files:
 
-CSV Files
-^^^^^^^^^
+.. code-block:: psql
+	
+	COPY (SELECT name from nba where salary<1148640) TO WRAPPER orc_fdw OPTIONS (LOCATION = '/tmp/file.orc');
 
-The following is an example of exporting a table to a CSV file without a HEADER row:
+AVRO
+^^^^
+The compression algorithm used for exporting data from SQream to Parquet files is Snappy.
+
+Exporting tables to AVRO files:
+
+.. code-block:: psql
+   
+	COPY nba TO WRAPPER avro_fdw OPTIONS (LOCATION = '/tmp/nba_export.avro');
+	
+Exporting query results to AVRO files:
+
+.. code-block:: psql
+	
+	COPY (SELECT name from nba where salary<1148640) TO WRAPPER avro_fdw OPTIONS (LOCATION = '/tmp/file.avro');
+
+CSV
+^^^
+
+Exporting a table to a CSV file without a HEADER row:
 
 .. code-block:: psql
    
@@ -458,7 +484,7 @@ The following is an example of exporting a table to a CSV file without a HEADER 
    Jonas Jerebko,Boston Celtics,8,PF,29,6-10,231,\N,5000000
    Amir Johnson,Boston Celtics,90,PF,29,6-9,240,\N,12000000
 
-The following is an example of exporting a table to a CSV file with a HEADER row:
+Exporting a table to a CSV file with a HEADER row:
 
 .. code-block:: psql
    
@@ -474,11 +500,11 @@ The following is an example of exporting a table to a CSV file with a HEADER row
    R.J. Hunter,Boston Celtics,28,SG,22,6-5,185,Georgia State,1148640
    Jonas Jerebko,Boston Celtics,8,PF,29,6-10,231,\N,5000000
    
-The following is an example of exporting the result of a query to a CSV file:
+Exporting the result of a query to a CSV file:
 
 .. code-block:: psql
    
-	COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) TO WRAPPER csv_fdw OPTIONS (LOCATION = '/tmp/nba_export.csv');
+	COPY (SELECT Team, AVG(Salary) FROM nba GROUP BY 1) TO WRAPPER csv_fdw OPTIONS (LOCATION = '/tmp/nba_export.csv');
 
 .. code-block:: console
    
@@ -489,10 +515,10 @@ The following is an example of exporting the result of a query to a CSV file:
    Charlotte Hornets,5222728
    Chicago Bulls,5785558   
 
-TSV Files
-^^^^^^^^^
+TSV
+^^^
 
-The following is an example of exporting a table to a TSV file with a HEADER row:
+Exporting a table to a TSV file with a HEADER row:
 
 .. code-block:: psql
    
