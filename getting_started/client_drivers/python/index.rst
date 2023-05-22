@@ -42,7 +42,7 @@ The Python drivers are updated periodically. To upgrade an existing pysqream-blu
 Validating Your ``pysqream-blue`` Installation
 ----------------------------------------------
 
-#. :download:`Download<sample.py>` or create a file named ``sample.py``, with the information from the following example.
+1. :download:`Download<sample.py>` or create a file named ``sample.py``, with the information from the following example.
 
    Verify that the parameters in the connection have been replaced with your respective BLUE installation parameters.
 	
@@ -65,7 +65,7 @@ Validating Your ``pysqream-blue`` Installation
 	#Close the connection
 	con.close()
 
-#. Run the sample file to verify that you can connect to SQream.
+2. Run the sample file to verify that you can connect to SQream.
 
 Next Steps
 ----------
