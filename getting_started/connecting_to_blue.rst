@@ -1,12 +1,12 @@
-.. _login_and_connectors:
+.. _connecting_to_blue:
 
 *************************
-Login and Connectors
+Connecting to BLUE
 *************************
 BLUE supports the most common database tools and interfaces, giving you direct access through a variety of connectors, visualization tools, and utilities.
 
-Log In Using you Identity Provider
-=============================== 
+Log In
+======
 
 BLUE leverages Auth0 to enable users to log in using their own identity providers (IDPs), offer multi-factor authentication, encryption, and anomaly detection to protect user data and prevent unauthorized access. 
 
