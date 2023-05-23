@@ -21,7 +21,14 @@ BLUE leverages Auth0 to enable users to log in using their own identity provider
 Connectors
 ==========
    
-Users who want to connect to BLUE from their own applications or tools may need to use connectors. Developers and data analysts are typical users who may wish to use such connectors.  
+Users who want to connect to BLUE from their own applications or tools may need to use connectors. 
+
+To use any of the following connectors, it is essential that you provide a BLUE connection access token.
+
+Generating Access Tokens
+------------------------
+
+
 
 
 :ref:`java_jdbc`
@@ -30,7 +37,7 @@ Users who want to connect to BLUE from their own applications or tools may need 
 
 :ref:`pysqream`
 
-.. topic:: More Connection Tools
+.. topic:: More Connection Methods
 
-   If you need a tool that BLUE does not currently support, contact our support team and we'll look into it.
+   If you wish to use any other connection method which is not currently supported, feel free to contact our `support team <https://sqream.atlassian.net/servicedesk/>`_, and we'll look into it.
 

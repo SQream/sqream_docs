@@ -14,7 +14,10 @@ The connector supports Python 3.9.x. The base ``pysqream-blue`` package conforms
 
 **Before You Begin**
 
-It is essential that you have Python 3.9x
+It is essential that you have:
+
+* Python 3.9x
+* BLUE connection access token
 
 Installing the Python Connector
 ===============================
@@ -42,16 +45,14 @@ The Python drivers are updated periodically. To upgrade an existing pysqream-blu
 Validating Your ``pysqream-blue`` Installation
 ----------------------------------------------
 
-1. :download:`Download<sample.py>` or create a file named ``sample.py``, with the information from the following example.
-
-   Verify that the parameters in the connection have been replaced with your respective BLUE installation parameters.
+To validate your connection to BLUE, run the following Python script and make sure to replace ``host-name``, ``database``, and ``token`` with your respective BLUE parameters.
 	
 .. code-block:: python
 
 	import pysqream_blue
 
 	# Create a connection object
-	con = pysqream_blue.connect(host=<'your-host-name.com'>, port=<port>, database=<'your_database_name'>, access_token='#########################')
+	con = pysqream_blue.connect(host=<'your-host-name.com'>, port=<443>, database=<'your_database_name'>, access_token=<'YourToken'>)
 
 	# Create a new cursor
 	cur = con.cursor() 
@@ -65,45 +66,44 @@ Validating Your ``pysqream-blue`` Installation
 	#Close the connection
 	con.close()
 
-2. Run the sample file to verify that you can connect to SQream.
+Using SQLAlchemy and Pandas
+===========================
 
-Next Steps
+SQLAlchemy is an Object-Relational Mapper (ORM) for Python. Installing the ``pysqream-blue-sqlalchemy`` BLUE dialect, enables the use of frameworks such as Pandas, TensorFlow, and Alembic to query BLUE directly.
+
+**Before You Begin**
+
+To use BLUE with SQLAlchemy, it is essential that you:
+
+* Download the ``pysqream-blue-sqlalchemy`` dialect through `PyPi <https://pypi.org/project/pysqream-blue-sqlalchemy/>`_
+* :download:`Download <SQLAlchemy_blue_requirements.txt>` and run the dialect requirements file
+
+SQLAlchemy
 ----------
 
-A successful validation means you can go ahead and build an application using the SQLAlchemy examples in the following section. 
+SQLAlchemy simplifies working with query engines by providing a user-friendly Python interface. It offers a flexible SQL toolkit and object-relational mapper (ORM), allowing developers to write intuitive queries and switch between database engines easily.
 
-If you receive a connection error, verify that:
-
-* You have access to BLUE.
-
-* The connection parameters are correct.
-
-SQLAlchemy Examples
-===================
-
-SQLAlchemy is an Object-Relational Mapper (ORM) for Python. When you install the SQream dialect (``pysqream-blue-sqlalchemy``) you can use frameworks such as Pandas, TensorFlow, and Alembic to query SQream directly.
-
-Standard Connection Example
----------------------------
+To validate your SQLAlchemy connection to BLUE, run the following script and make sure to replace ``host-name``, ``database``, and ``token`` with your respective BLUE parameters.
 
 .. code-block:: python
 
 	import sqlalchemy as sa
 
-	_access_token = "##########################"
-	conn_str = f"sqream_blue://blue_cluster.isqream.com:443/raviga"
+	_access_token = <"YourToken">
+	conn_str = f"sqream_blue://<your-host-name.com>:443/<your_database_name>"
 	connect_args = {'access_token': _access_token}
 	engine = sa.create_engine(conn_str, connect_args=connect_args)
 	conn = engine.connect()
 
 	res = conn.execute("select * from nba").fetchall()
 	print(res)
-	
 
-Pulling a Table into Pandas
----------------------------
+Pandas
+------
 
-The following example shows how to pull a table in Pandas. This examples uses the URL method to create the connection string:
+Pandas is a popular Python library for efficient data manipulation, including query engine integration. Its DataFrame structure enables easy querying, filtering, and manipulation using Python syntax. By seamlessly working with query engines, Pandas provides a user-friendly experience for executing SQL queries and analyzing data.
+
+To validate your Pandas connection to BLUE, run the following script and make sure to replace ``host-name``, ``database``, and ``token`` with your respective BLUE parameters.
 
 .. code-block:: python
 
@@ -111,8 +111,10 @@ The following example shows how to pull a table in Pandas. This examples uses th
 	import pandas as pd
 	from sqlalchemy.engine.url import URL
 
-	_access_token = "##########################"
-	conn_str = f"sqream_blue://blue_cluster.isqream.com:443/raviga"
+	_access_token = <"YourToken">
+	conn_str = 
+	
+	"sqream_blue://<your-host-name.com>:443/<your_database_name>"
 	connect_args = {'access_token': _access_token}
 	engine = sa.create_engine(conn_str, connect_args=connect_args)
 	conn = engine.connect()
@@ -120,3 +122,12 @@ The following example shows how to pull a table in Pandas. This examples uses th
 	table_df = pd.read_sql("select * from nba", con=engine)
 	print(table_df)
 
+
+Troubleshooting
+===============
+
+A successful validation means you can go ahead and build a Python application. However, if you receive a connection error, verify that:
+
+* You have access to BLUE.
+
+* The connection parameters are correct.
