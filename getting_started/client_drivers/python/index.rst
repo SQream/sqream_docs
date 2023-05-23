@@ -1,8 +1,8 @@
 .. _pysqream:
 
-============================
-Connecting BLUE Using Python
-============================
+===============================
+Connecting to BLUE Using Python
+===============================
 
 The SQream Python connector is a set of packages that allows Python programs to connect to BLUE.
 

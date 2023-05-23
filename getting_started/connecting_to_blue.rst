@@ -1,8 +1,8 @@
 .. _connecting_to_blue:
 
-*************************
+==================
 Connecting to BLUE
-*************************
+==================
 BLUE supports the most common database tools and interfaces, giving you direct access through a variety of connectors, visualization tools, and utilities.
 
 Log In
@@ -24,11 +24,13 @@ Connectors
 Users who want to connect to BLUE from their own applications or tools may need to use connectors. Developers and data analysts are typical users who may wish to use such connectors.  
 
 
-:ref:`JDBC <java_jdbc>`
+:ref:`java_jdbc`
 
-:ref:`ODBC <odbc>`
+:ref:`odbc`
 
-:ref:`PySQream <pysqream>`
+:ref:`pysqream`
 
+.. topic:: More Connection Tools
 
-If you need a tool that BLUE does not currently support, contact our support team and we'll look into it.
+   If you need a tool that BLUE does not currently support, contact our support team and we'll look into it.
+
