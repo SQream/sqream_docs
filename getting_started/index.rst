@@ -21,11 +21,11 @@ From your second login onward, you will be automatically redirected to the BLUE 
 Third-Party Tools
 -----------------
 
-Use the data analysis platform you're used to work with by :ref:`<connecting_to_blue> connecting to BLUE` using Python, JDBC, or ODBC.
+Use the data analysis platform you're used to work with by :ref:`connecting to BLUE<connecting_to_blue>` using Python, JDBC, or ODBC.
 
 Cost Management
 ---------------
-To facilitate :ref:`<cost_management> cost management`, you have the option to use the suspension/resumption feature in your BLUE environment. This functionality allows you to temporarily pause the system and associated billing during periods when system usage is not required. You can subsequently resume the system as needed, ensuring flexibility and control over billing cycles.
+To facilitate :ref:`cost management<cost_management>`, you have the option to use the suspension/resumption feature in your BLUE environment. This functionality allows you to temporarily pause the system and associated billing during periods when system usage is not required. You can subsequently resume the system as needed, ensuring flexibility and control over billing cycles.
 
 .. toctree::
    :maxdepth: 1
