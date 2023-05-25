@@ -5,7 +5,8 @@ Getting Started with SQream Acceleration Studio 5.4.7
 ****************************
 Setting Up and Starting Studio
 ----------------
-Studio is included with all :ref:`dockerized installations of SQream DB<running_sqream_in_a_docker_container>`. When starting Studio, it listens on the local machine on port 8080.
+
+When starting Studio, it listens on the local machine on port 8080.
 
 Logging In to Studio
 ---------------
