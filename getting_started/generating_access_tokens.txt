@@ -4,7 +4,7 @@
 Generating Access Tokens
 ========================
 
-
+Using any of your third-party tools depends upon providing access tokens to establish a connection. 
 
 #. Log in to your BLUE interface and navigate to **Settings** > **Access Token Management**.
 
