@@ -27,6 +27,11 @@ Cost Management
 ---------------
 To facilitate :ref:`cost management<cost_management>`, you have the option to use the suspension/resumption feature in your BLUE environment. This functionality allows you to temporarily pause the system and associated billing during periods when system usage is not required. You can subsequently resume the system as needed, ensuring flexibility and control over billing cycles.
 
+Performing Basic BLUE Operations
+--------------------------------
+
+
+
 .. toctree::
    :maxdepth: 1
    :glob:
