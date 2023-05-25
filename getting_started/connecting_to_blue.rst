@@ -3,28 +3,17 @@
 ==================
 Connecting to BLUE
 ==================
-BLUE supports the most common database tools and interfaces, giving you direct access through a variety of connectors, visualization tools, and utilities.
+BLUE supports the most common database tools and interfaces, giving you direct access through a variety of connectors, visualization tools, and utilities. Users who want to connect to BLUE from their own applications or tools may need to use connectors. To use any of the following connectors, it is essential that you generate access tokens using the BLUE interface.
 
-Connectors
-==========
-   
-Users who want to connect to BLUE from their own applications or tools may need to use connectors. 
+After you have generated one or more access tokens, you may go ahead and use third-party tools by connecting through:
 
-To use any of the following connectors, it is essential that you provide a BLUE connection access token.
+:ref:`JDBC<java_jdbc>`
 
-Generating Access Tokens
-------------------------
+:ref:`ODBC<odbc>`
 
-
-
-
-:ref:`java_jdbc`
-
-:ref:`odbc`
-
-:ref:`pysqream`
+:ref:`Python<pysqream>`
 
 .. topic:: Additional Connection Methods
 
-   If you wish to use any other connection method which is not currently supported, feel free to contact our `support team <https://sqream.atlassian.net/servicedesk/>`_, and we'll look into it.
+   If you wish to use any other connection method which is not currently supported, you may contact our `support team <https://sqream.atlassian.net/servicedesk/>`_, and we'll look into it.
 
