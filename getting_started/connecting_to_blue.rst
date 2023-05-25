@@ -24,7 +24,7 @@ Generating Access Tokens
 
 :ref:`pysqream`
 
-.. topic:: More Connection Methods
+.. topic:: Additional Connection Methods
 
    If you wish to use any other connection method which is not currently supported, feel free to contact our `support team <https://sqream.atlassian.net/servicedesk/>`_, and we'll look into it.
 
