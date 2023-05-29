@@ -14,7 +14,6 @@ S3 Configuration
 A best practice for granting access to AWS S3 is by creating an `Identity and Access Management (IAM) <https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started.html>`_ user account. If creating an IAM user account is not possible, you may follow AWS guidelines for `using the global configuration object <https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/global-config-object.html>`_ and setting an `AWS region <https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-region.html>`_.
 
 
-
 S3 URI Format
 =============
 With S3, specify a location for a file (or files) when using :ref:`copy_from` or :ref:`foreign_tables`.
@@ -25,9 +24,29 @@ The following is an example of the general S3 syntax:
  
    s3://bucket_name/path
 
+
 Authentication
 ==============
 SQream supports ``AWS ID`` and ``AWS SECRET`` authentication. These should be specified when executing a statement.
+
+
+Access
+======
+You may use the following flags within your SQreamDB configuration file to configure access to S3:
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Description
+     - Default Value
+   * - ``AwsEndpointOverride``
+     - Override the HTTP endpoint used to talk to a service.
+     -
+     - ``AwsObjectAccessStyle``
+     -  There are two main S3 object access styles, which determine how you can access and interact with the objects stored in an S3 bucket.
+     -
 
 Examples
 ========
@@ -47,6 +66,7 @@ Use a foreign table to stage data from S3 before loading from CSV, Parquet, or O
 .. contents::
    :local:
    :depth: 1
+   
 Planning for Data Staging
 -------------------------
 The examples in this section are based on the following table:
