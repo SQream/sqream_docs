@@ -1,8 +1,8 @@
 .. _delete_guide:
 
-***********************
+*************
 Deleting Data
-***********************
+*************
 
 When working with a table in a database, deleting data typically involves removing rows, although it can also involve removing columns. The process for deleting data involves first deleting the desired content, followed by a cleanup operation that reclaims the space previously occupied by the deleted data. This process is further explained below.
 
@@ -19,7 +19,7 @@ By using the WHERE clause in the DELETE statement, you can specify a condition o
    :depth: 1
 
 The Deletion Process
-==========
+====================
 
 When you delete rows from a SQL database, the actual deletion process occurs in two steps:
 
@@ -33,7 +33,7 @@ If you want to delete all rows from a table, you can use the :ref:`TRUNCATE<trun
 
 
 Usage Notes
-=====================
+===========
    
 General Notes
 -------------
@@ -124,7 +124,7 @@ Deleting Rows from a Table
 	Return
 
 	animal_id   | animal_name      | animal_weight
-	------------+------------------+--------------------
+	------------+------------------+--------------
 	1           | Dog              | 7 
 	2           | Possum           | 3  
 	3           | Cat              | 5      
@@ -132,7 +132,7 @@ Deleting Rows from a Table
    
    
 Deleting Values Based on Complex Predicates
----------------------------------------------------
+-------------------------------------------
    
 1. Delete rows from the table:
 
@@ -158,7 +158,7 @@ Deleting Values Based on Complex Predicates
 Identifying and Cleaning Up Tables
 ---------------------------------------
    
-Listing Tables that Have Not Been Cleaned Up
+Listing tables that have not been cleaned up:
 
 .. code-block:: psql
    
@@ -170,7 +170,7 @@ Listing Tables that Have Not Been Cleaned Up
    
    1 row
 
-Identifying Predicates for Clean-Up
+Identifying predicates for Clean-Up:
 
 .. code-block:: psql
 
@@ -181,13 +181,12 @@ Identifying Predicates for Clean-Up
    weight > 1000
    
    1 row
-   
-.. _trigger_cleanup:
+
 
 Triggering a Clean-Up
 ^^^^^^^^^^^^^^^^^^^^^^
 
-When running the clean-up operation, you need to specify two parameters: ``schema_name`` and ``table_name``. However, it's important to note that the second parameter is case-sensitive for both ``CLEANUP_CHUNKS`` and ``CLEANUP_EXTENTS``.
+When running the clean-up operation, you need to specify two parameters: ``schema_name`` and ``table_name``. Note that both parameters are case-sensitive and cannot operate with upper-cased schema or table names.
 
 Running a ``CLEANUP_CHUNKS`` command (also known as ``SWEEP``) to reorganize the chunks:
 
@@ -206,11 +205,11 @@ If you should want to run a clean-up operation without worrying about uppercase 
 
 	.. code-block:: psql
 
-	  farm=> SELECT CLEANUP_CHUNKS('<schema_name>','<table_name>', false);
+	  farm=> SELECT CLEANUP_CHUNKS('<schema_name>','<table_name>', true);
 			  
 	.. code-block:: psql
 		   
-	  farm=> SELECT CLEANUP_EXTENTS('<schema_name>','<table_name>', false);
+	  farm=> SELECT CLEANUP_EXTENTS('<schema_name>','<table_name>', true);
 	  
    
 To display the table:
