@@ -106,6 +106,12 @@ The ``VARCHAR`` data type is deprecated to improve the core functionalities of t
 * ``VARCHAR`` is no longer supported for new customers, effective from Version 2022.1.3.  
 * The ``TEXT`` data type is replacing the ``VARCHAR`` and ``NVARCHAR`` data types.
 
+End of Support
+--------------
+
+Support in an :ref:`old method <previous_configuration_method>` of configuring the SQreamDB instance ends on September xxx, 2023.
+ 
+
 Upgrading to v4.3
 -------------------
 1. Generate a back-up of the metadata by running the following command:
