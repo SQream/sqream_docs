@@ -4,6 +4,10 @@
 Permissions
 **************
 
+.. contents:: 
+   :local:
+   :depth: 1    
+
 The following table displays the access control permissions:
 
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
@@ -85,129 +89,110 @@ The following table displays the access control permissions:
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
 
 
-GRANT
------
+GRANT Syntax
+============
 
 :ref:`grant` gives permissions to a role.
 
 .. code-block:: postgres
 
-   -- Grant permissions at the instance/ storage cluster level:
-   GRANT 
+	-- Grant permissions at the instance/ storage cluster level:
+	GRANT 
 
-   { SUPERUSER
-   | LOGIN 
-   | PASSWORD '<password>' 
-   } 
-   TO <role> [, ...] 
+	{ SUPERUSER
+	| LOGIN 
+	| PASSWORD '<password>' 
+	} 
+	TO <role> [, ...] 
 
-   -- Grant permissions at the database level:
-        GRANT {{CREATE | CONNECT| DDL | SUPERUSER | CREATE FUNCTION} [, ...] | ALL [PERMISSIONS]}
+	-- Grant permissions at the database level:
+	GRANT {{CREATE | CONNECT| DDL | SUPERUSER | CREATE FUNCTION} [, ...] | ALL [PERMISSIONS]}
 
-   ON DATABASE <database> [, ...]
-   TO <role> [, ...] 
+	ON DATABASE <database> [, ...]
+	TO <role> [, ...] 
 
-   -- Grant permissions at the schema level: 
-   GRANT {{ CREATE | DDL | USAGE | SUPERUSER } [, ...] | ALL [ 
-   PERMISSIONS ]} 
-   ON SCHEMA <schema> [, ...] 
-   TO <role> [, ...] 
-       
-   -- Grant permissions at the object level: 
-   GRANT {{SELECT | INSERT | DELETE | DDL | UPDATE } [, ...] | ALL [PERMISSIONS]} 
-   ON { TABLE <table_name> [, ...] | ALL TABLES IN SCHEMA <schema_name> [, ...]} 
-   TO <role> [, ...]
-       
-   -- Grant execute function permission: 
-   GRANT {ALL | EXECUTE | DDL} ON FUNCTION function_name 
-   TO role; 
-       
-   -- Allows role2 to use permissions granted to role1
-   GRANT <role1> [, ...] 
-   TO <role2> 
+	-- Grant permissions at the schema level: 
+	GRANT {{ CREATE | DDL | USAGE | SUPERUSER } [, ...] | ALL [ 
+	PERMISSIONS ]} 
+	ON SCHEMA <schema> [, ...] 
+	TO <role> [, ...] 
+		   
+	-- Grant permissions at the object level: 
+	GRANT {{SELECT | INSERT | DELETE | DDL | UPDATE } [, ...] | ALL [PERMISSIONS]}
+	ON { TABLE <table_name> [, ...] | ALL TABLES IN SCHEMA <schema_name> [, ...] | VIEW <view_name> [, ...] | ALL VIEWS IN SCHEMA <schema_name> [, ...] | FOREIGN TABLE <table_name> [, ...] | ALL FOREIGN TABLE IN SCHEMA <schema_name> [, ...] | CATALOG <catalog_name> [, ...] }
+	TO <role> [, ...];
 
-    -- Also allows the role2 to grant role1 to other roles:
-   GRANT <role1> [, ...] 
-   TO <role2> 
-   WITH ADMIN OPTION
-  
-``GRANT`` examples:
+	-- Grant execute function permission: 
+	GRANT {ALL | EXECUTE | DDL} ON FUNCTION function_name 
+	TO role; 
+	   
+	-- Grant permissions at the column level:
+	GRANT {{SELECT | DDL } [, ...] | ALL [PERMISSIONS]}
+	ON { COLUMN <column_name> [, ...] | ALL COLUMNS IN TABLE <table_name> [, ...] | ALL COLUMNS IN FOREIGN TABLE <foreign_table_name> [, ...] | ALL COLUMNS IN VIEW <view_name> [, ...] | ALL COLUMNS IN CATALOG <catalog_name> [, ...]}
+	TO <role> [, ...];
 
-.. code-block:: postgres
+	-- Grant permissions at the Service level:
+	GRANT {{USAGE} [, ...] | ALL [PERMISSIONS]}
+	ON { SERVICE <service_name> [, ...] | ALL SERVICES IN SYSTEM }
+	TO <role> [, ...]
 
-   GRANT  LOGIN,superuser  TO  admin;
+	-- Allows role2 to use permissions granted to role1
+	GRANT <role1> [, ...] 
+	TO <role2> 
 
-   GRANT  CREATE  FUNCTION  ON  database  master  TO  admin;
+	-- Also allows the role2 to grant role1 to other roles:
+	GRANT <role1> [, ...] 
+	TO <role2> 
+	WITH ADMIN OPTION
 
-   GRANT  SELECT  ON  TABLE  admin.table1  TO  userA;
-
-   GRANT  EXECUTE  ON  FUNCTION  my_function  TO  userA;
-
-   GRANT  ALL  ON  FUNCTION  my_function  TO  userA;
-
-   GRANT  DDL  ON  admin.main_table  TO  userB;
-
-   GRANT  ALL  ON  all  tables  IN  schema  public  TO  userB;
-
-   GRANT  admin  TO  userC;
-
-   GRANT  superuser  ON  schema  demo  TO  userA
-
-   GRANT  admin_role  TO  userB;
-
-REVOKE
-------
+REVOKE Syntax
+=============
 
 :ref:`revoke` removes permissions from a role.
 
 .. code-block:: postgres
 
-   -- Revoke permissions at the instance/ storage cluster level:
-   REVOKE
-   { SUPERUSER
-   | LOGIN
-   | PASSWORD
-   }
-   FROM <role> [, ...]
-            
-   -- Revoke permissions at the database level:
-   REVOKE {{CREATE | CONNECT | DDL | SUPERUSER | CREATE FUNCTION}[, ...] |ALL [PERMISSIONS]}
-   ON DATABASE <database> [, ...]
-   FROM <role> [, ...]
+	-- Revoke permissions at the instance/ storage cluster level:
+	REVOKE
+	{ SUPERUSER
+	| LOGIN
+	| PASSWORD
+	}
+	FROM <role> [, ...]
+				
+	-- Revoke permissions at the database level:
+	REVOKE {{CREATE | CONNECT | DDL | SUPERUSER | CREATE FUNCTION}[, ...] |ALL [PERMISSIONS]}
+	ON DATABASE <database> [, ...]
+	FROM <role> [, ...]
 
-   -- Revoke permissions at the schema level:
-   REVOKE { { CREATE | DDL | USAGE | SUPERUSER } [, ...] | ALL [PERMISSIONS]}
-   ON SCHEMA <schema> [, ...]
-   FROM <role> [, ...]
-            
-   -- Revoke permissions at the object level:
-   REVOKE { { SELECT | INSERT | DELETE | DDL | UPDATE } [, ...] | ALL }
-   ON { [ TABLE ] <table_name> [, ...] | ALL TABLES IN SCHEMA
+	-- Revoke permissions at the schema level:
+	REVOKE { { CREATE | DDL | USAGE | SUPERUSER } [, ...] | ALL [PERMISSIONS]}
+	ON SCHEMA <schema> [, ...]
+	FROM <role> [, ...]
+				
+	-- Revoke permissions at the object level:
+	REVOKE { { SELECT | INSERT | DELETE | DDL | UPDATE } [, ...] | ALL }
+	ON { [ TABLE ] <table_name> [, ...] | ALL TABLES IN SCHEMA <schema_name> [, ...] | VIEW <view_name> [, ...] | ALL VIEWS IN SCHEMA <schema_name> [, ...] | FOREIGN TABLE <table_name> [, ...] | ALL FOREIGN TABLES IN SCHEMA <schema_name> [, ...] | CATALOG <catalog_name> [, ...] }
+	FROM <role> [, ...];
+				
+	-- Revoke permissions at the column level:
+	REVOKE {{SELECT | DDL } [, ...] | ALL [PERMISSIONS]}
+	ON { COLUMN <column_name> [, ...] | ALL COLUMNS IN TABLE <table_name> [, ...] | ALL COLUMNS IN FOREIGN TABLE <foreign_table_name> [, ...] | ALL COLUMNS IN VIEW <view_name> [, ...] | ALL COLUMNS IN CATALOG <catalog_name> [, ...]}
+	FROM <role> [, ...];
+		
+	-- Revoke permissions at the column level:
+	REVOKE {{USAGE} [, ...] | ALL [PERMISSIONS]}
+	ON { SERVICE <service_name> [, ...] | ALL SERVICES IN SYSTEM}
+	FROM <role> [, ...]
+		
+	-- Removes access to permissions in role1 by role 2
+	REVOKE <role1> [, ...] FROM <role2> [, ...] WITH ADMIN OPTION
 
-         <schema_name> [, ...] }
-   FROM <role> [, ...]
-            
-   -- Removes access to permissions in role1 by role 2
-   REVOKE <role1> [, ...] FROM <role2> [, ...] WITH ADMIN OPTION
+	-- Removes permissions to grant role1 to additional roles from role2
+	REVOKE <role1> [, ...] FROM <role2> [, ...] WITH ADMIN OPTION
 
-   -- Removes permissions to grant role1 to additional roles from role2
-   REVOKE <role1> [, ...] FROM <role2> [, ...] WITH ADMIN OPTION
-
-
-Examples:
-
-.. code-block:: postgres
-
-   REVOKE  superuser  on  schema  demo  from  userA;
-
-   REVOKE  delete  on  admin.table1  from  userB;
-
-   REVOKE  login  from  role_test;
-
-   REVOKE  CREATE  FUNCTION  FROM  admin;
-
-Default permissions
--------------------
+Altering Default Permissions
+============================
 
 The default permissions system (See :ref:`alter_default_permissions`) 
 can be used to automatically grant permissions to newly 
@@ -221,12 +206,11 @@ schema statement is run.
 
 .. code-block:: postgres
 
-
-   ALTER DEFAULT PERMISSIONS FOR target_role_name
-        [IN schema_name, ...]
-        FOR { TABLES | SCHEMAS }
-        { grant_clause | DROP grant_clause}
-        TO ROLE { role_name | public };
+	ALTER DEFAULT PERMISSIONS FOR target_role_name
+		 [IN schema_name, ...]
+		 FOR { SCHEMAS | TABLES | FOREIGN TABLE | VIEWS | COLUMN | SERVICES | CATALOG }
+		 { grant_clause | DROP grant_clause}
+		 TO ROLE { role_name | public };
 
    grant_clause ::=
      GRANT
@@ -243,3 +227,117 @@ schema statement is run.
         | EXECUTE
         | ALL
         }
+		
+Examples
+========
+
+GRANT Examples
+--------------
+
+Grant superuser privileges and login capability to a role:
+
+.. code-block:: postgres
+
+	GRANT SUPERUSER, LOGIN TO role_name;
+	
+Grant specific permissions on a database to a role:
+
+.. code-block:: postgres
+
+	GRANT CREATE, CONNECT, DDL, SUPERUSER, CREATE FUNCTION ON DATABASE database_name TO role_name;
+	
+Grant various permissions on a schema to a role:
+
+.. code-block:: postgres
+
+	GRANT CREATE, DDL, USAGE, SUPERUSER ON SCHEMA schema_name TO role_name;
+	
+Grant permissions on specific objects (table, view, foreign table, or catalog) to a role:
+
+.. code-block:: postgres
+
+	GRANT SELECT, INSERT, DELETE, DDL, UPDATE ON TABLE table_name TO role_name;
+
+Grant execute function permission to a role:
+
+.. code-block:: postgres
+
+	GRANT EXECUTE ON FUNCTION function_name TO role_name;
+
+Grant column-level permissions to a role:
+
+.. code-block:: postgres
+
+	GRANT SELECT, DDL ON COLUMN column_name TO role_name;
+
+Grant usage permissions on a service to a role:
+
+.. code-block:: postgres
+
+	GRANT USAGE ON SERVICE service_name TO role_name;
+
+Grant role2 the ability to use permissions granted to role1:
+
+.. code-block:: postgres
+
+	GRANT role1 TO role2;
+
+Grant role2 the ability to grant role1 to other roles:
+
+.. code-block:: postgres
+
+	GRANT role1 TO role2 WITH ADMIN OPTION;
+
+
+REVOKE Examples
+---------------
+
+Revoke superuser privileges or login capability from a role:
+
+.. code-block:: postgres
+
+	REVOKE SUPERUSER, LOGIN FROM role_name;
+
+Revoke specific permissions on a database from a role:
+
+.. code-block:: postgres
+
+	REVOKE CREATE, CONNECT, DDL, SUPERUSER, CREATE FUNCTION FROM role_name;
+
+Revoke permissions on a schema from a role:
+
+.. code-block:: postgres
+
+	REVOKE CREATE, DDL, USAGE, SUPERUSER FROM role_name;
+
+Revoke permissions on specific objects (table, view, foreign table, or catalog) from a role:
+
+.. code-block:: postgres
+
+	REVOKE SELECT, INSERT, DELETE, DDL, UPDATE FROM TABLE table_name;
+
+Revoke column-level permissions from a role:
+
+.. code-block:: postgres
+
+	REVOKE SELECT, DDL FROM COLUMN column_name;
+
+Revoke usage permissions on a service from a role:
+
+.. code-block:: postgres
+
+	REVOKE USAGE FROM SERVICE service_name;
+
+Remove access to permissions in role1 by role2:
+
+.. code-block:: postgres
+
+	REVOKE role1 FROM role2 WITH ADMIN OPTION;
+
+Remove permissions to grant role1 to additional roles from role2:
+
+.. code-block:: postgres
+
+	REVOKE role1 FROM role2 WITH ADMIN OPTION;
+
+
