@@ -38,11 +38,11 @@ New Features and Enhancements
 
 Access control permissions in SQreamDB have been expanded, allowing roles to now grant and revoke access to other roles for the following:
 
-* VIEWS
-* FOREIGN TABLE
-* COLUMN
-* CATALOG
-* SERVICE
+ * VIEWS
+ * FOREIGN TABLE
+ * COLUMN
+ * CATALOG
+ * SERVICE
 
 To learn more about how and when you should use the new permissions, visit :ref:`access_control_permissions`.
 
