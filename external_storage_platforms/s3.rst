@@ -70,16 +70,6 @@ You may use the following parameters within your SQreamDB legacy configuration f
 Examples
 ========
 
-AwsEndpointOverride - Enables custom endpoint 
-
-Example: 'https://s3.amazonaws.com'
-
-AwsObjectAccessStyle - whether to use path-style or virtual object style access - read about in AWS documentation.
-
-If you wish to use custom endpoint, you need to configure sqream using our legacy configuration file, and add AwsEndpointOverride - Enables custom endpoint. And you may add the AwsObjectAccessStyle flag to send request for a different access style. 
-
-
-
 Use a foreign table to stage data from S3 before loading from CSV, Parquet, or ORC files.
 
 .. contents::
