@@ -119,53 +119,56 @@ The Python drivers are updated periodically. To upgrade an existing pysqream ins
 
 
 
-SQLAlchemy Examples
-========================
-SQLAlchemy is an **Object-Relational Mapper (ORM) for Python. When you install the SQream dialect (``pysqream-sqlalchemy``) you can use frameworks such as Pandas, TensorFlow, and Alembic to query SQream directly.
-
-This section includes the following examples:
+SQLAlchemy
+==========
+SQLAlchemy is an Object-Relational Mapper (ORM) for Python. When you install the SQream dialect (``pysqream-sqlalchemy``) you can use frameworks such as Pandas, TensorFlow, and Alembic to query SQream directly.
 
 .. contents:: 
    :local:
    :depth: 1
 
-Standard Connection Example
----------------------------------
+Creating a Standard Connection
+------------------------------
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Description
+   * - ``username``
+     - Username of a role to use for connection
+   * - ``password``
+     - Specifies the password of the selected role
+   * - ``host``
+     - Specifies the host name
+   * - ``port``
+     - Specifies the port number
+   * - ``port_ssl``
+     - An optional parameter
+   * - ``database``
+     - Specifies the database name 
+   * - ``clustered``
+     - Establishing a multi-clustered connection. Input values: ``True``, ``False``. Default is ``False``
+   * - ``service``
+     - Specifies service queue to use
 
 
 .. code-block:: python
 
 	import sqlalchemy as sa
 
-	engine_url = "sqream://rhendricks:secret_password@localhost:5000/raviga"
-	
-	engine = sa.create_engine(engine_url)
+	from sqlalchemy.engine.url import URL
 
-	res = engine.execute('create or replace table test (ints int, ints2 int)')
-	res = engine.execute('insert into test (ints,ints2) values (5,1), (6,2)')
-	res = engine.execute('select * from test')
-	for item in res:
-	print(item)
-	
-Multi Cluster Connection Example
------------------------- 
-
-The following example is for using a ServerPicker:
-
-.. code-block:: python
-
-	import sqlalchemy as sa
-				  
-	engine_url = "sqream://rhendricks:secret_password@localhost:5000/raviga"
-	
-	engine = sa.create_engine(engine_url, connect_args={"clustered": True})
-
-	res = engine.execute("create or replace table tab1 (x int);")
-	res = engine.execute('insert into tab1 values (5), (6);')
-	res = engine.execute('select * from tab1')
-	for item in res:
-			print(item)
-
+	engine_url = URL('sqream'
+			, username='<user_name>'
+			, password='<password>'
+			, host='<host_name>'
+			, port=<port_number>
+			, port_ssl=<port_ssl>
+			, database='<database_name>')
+	engine = sa.create_engine(engine_url,connect_args={"clustered": False, "service": "<service_name>"})
+				 
 
 Pulling a Table into Pandas
 ---------------------------
@@ -174,25 +177,31 @@ The following example shows how to pull a table in Pandas. This examples uses th
 .. code-block:: python
 
    import sqlalchemy as sa
+   
+   from sqlalchemy.engine.url import URL
+   
    import pandas as pd
 
-	engine_url = "sqream://rhendricks:secret_password@localhost:5000/raviga"
 
-	engine = sa.create_engine(engine_url)
+	engine_url = URL('sqream'
+		, username='sqream'
+		, password='12345'
+		, host='127.0.0.1'
+		, port=3108
+		, database='master')
+	engine = sa.create_engine(engine_url,connect_args={"clustered": True, "service": "admin"})
 	   
 	table_df = pd.read_sql("select * from nba", con=engine)
 
-API Examples
-===============
-This section includes the following examples:
+API
+===
 
 .. contents:: 
    :local:
    :depth: 1
 
-
 Using the Cursor
---------------------------------------------
+----------------
 The DB-API specification includes several methods for fetching results from the cursor. This sections shows an example using the ``nba`` table, which looks as follows:
 
 .. csv-table:: nba
@@ -261,7 +270,7 @@ The following is an example of the contents of the row variables used in our exa
 .. note:: Calling a fetch command after all rows have been fetched will return an empty array (``[]``).
 
 Reading Result Metadata
-----------------------------
+-----------------------
 When you execute a statement, the connection object also contains metadata about the result set, such as **column names**, **types**, etc).
 
 The metadata is stored in the :py:attr:`Connection.description` object of the cursor:
@@ -287,7 +296,7 @@ You can fetch a list of column names by iterating over the ``description`` list:
    ['Name', 'Team', 'Number', 'Position', 'Age (as of 2018)', 'Height', 'Weight', 'College', 'Salary']
 
 Loading Data into a Table
----------------------------
+-------------------------
 This example shows how to load 10,000 rows of dummy data to an instance of SQream.
 
 **To load data 10,000 rows of dummy data to an instance of SQream:**
@@ -363,7 +372,7 @@ This example shows how to load 10,000 rows of dummy data to an instance of SQrea
 
 
 Using SQLAlchemy ORM to Create and Populate Tables
------------------------------------------------------------------------
+--------------------------------------------------
 This section shows how to use the ORM to create and populate tables from Python objects.
 
 **To use SQLAlchemy ORM to create and populate tables:**
