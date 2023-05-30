@@ -7,6 +7,7 @@ SQream uses a native S3 connector for inserting data. The ``s3://`` URI specifie
 
 .. contents::
    :local:
+   :depth: 1
    
 S3 Configuration
 ================
@@ -30,9 +31,11 @@ Authentication
 SQream supports ``AWS ID`` and ``AWS SECRET`` authentication. These should be specified when executing a statement.
 
 
-Access
-======
-You may use the following flags within your SQreamDB configuration file to configure access to S3:
+Connecting to S3 Using SQreamDB Legacy Configuration File
+=========================================================
+
+
+You may use the following parameters within your SQreamDB legacy configuration file:
 
 .. list-table:: 
    :widths: auto
@@ -40,13 +43,29 @@ You may use the following flags within your SQreamDB configuration file to confi
    
    * - Parameter
      - Description
-     - Default Value
+     - Parameter Value
+     - Example
    * - ``AwsEndpointOverride``
-     - Override the HTTP endpoint used to talk to a service.
-     -
-     - ``AwsObjectAccessStyle``
-     -  There are two main S3 object access styles, which determine how you can access and interact with the objects stored in an S3 bucket.
-     -
+     - Overrides the AWS S3 HTTP endpoint when using Virtual Private Cloud (VPC)
+     - ``URL``
+	   Default: None
+     - .. code-block::
+	 
+			sqream_config_legacy.json:
+			{
+			  ...,	
+			  "AwsEndpointOverride": "https://my.endpoint.local"
+			}		   
+   * - ``AwsObjectAccessStyle``
+     - Enables configuration of S3 object access styles, which determine how you can access and interact with the objects stored in an S3 bucket
+     - ``virtual-host`` or ``path``. Default is ``virtual-host``
+     - .. code-block::
+	 
+			sqream_config_legacy.json:
+			{
+			  ...,
+			  "AwsObjectAccessStyle": "path"
+			}
 
 Examples
 ========

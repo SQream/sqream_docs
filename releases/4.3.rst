@@ -76,10 +76,15 @@ Version 4.3 resolved Issues
 | SQ-12721           | ``maxConnectionInactivitySeconds`` flag issue when executing Batch Shell Program ETLs          |
 +--------------------+------------------------------------------------------------------------------------------------+
 
-Configuration Changes
----------------------
+Configuration Adjustments
+-------------------------
 
-You may now configure the ``metadata_server`` using the ``metadata_server_config.json`` :ref:`configuration file<metadata_server>`.
+When using SQreamDB legacy configuration file and AWS S3, you may be required to use the following new parameters:
+
+* ``AwsEndpointOverride``
+* ``AwsObjectAccessStyle``
+
+To learn more about how and when you should use them, visit :ref:`s3`.
 
 
 Deprecated Features
