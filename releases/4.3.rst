@@ -6,7 +6,7 @@ Release Notes 4.3
 
 SQream is introducing a new version release system that follows the more commonly used Major.Minor.Patch versioning schema. The newly released **4.0 version** is a minor version upgrade and does not require considerable preparation.
 
-The 4.3 release notes were released on xx/xx/xxxx and describe the following:
+The 4.3 release notes were released on 31/05/2023 and describe the following:
 
 .. contents:: 
    :local:
