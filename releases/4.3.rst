@@ -127,7 +127,7 @@ The ``VARCHAR`` data type is deprecated to improve the core functionalities of t
 End of Support
 --------------
 
-Support in an :ref:`old method <previous_configuration_method>` of configuring the SQreamDB instance ends on September xxx, 2023.
+Support in an :ref:`old method <previous_configuration_method>` of configuring the SQreamDB instance ends on September 30th, 2023.
  
 
 Upgrading to v4.3
