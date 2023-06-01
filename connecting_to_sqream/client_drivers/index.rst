@@ -74,10 +74,10 @@ The following are applicable to all operating systems:
 
 
 Windows
---------------
+-------
 The following are applicable to Windows:
 
-* **ODBC installer** - SQream Drivers v2020.2.0. Please contact your `Sqream representative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_ for this installer.
+* For the **ODBC installer**, please contact your `Sqream representative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_.
 
   For more information on installing and configuring ODBC on Windows, see :ref:`Install and configure ODBC on Windows <install_odbc_windows>`.
 
@@ -107,4 +107,4 @@ If you couldn't find what you're looking for, contact `SQream Support <https://s
 
 .. rubric:: Looking for older drivers?
 
-If you're looking for an older version of SQream DB drivers, versions 1.10 through 2019.2.1 are available at https://sqream.com/product/client-drivers/.
+If you're looking for an older version of SQreamDB drivers, visit `here <https://sqream.com/product/client-drivers/>`_.
