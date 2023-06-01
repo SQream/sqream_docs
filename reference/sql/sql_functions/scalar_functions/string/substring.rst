@@ -1,8 +1,8 @@
 .. _substring:
 
-**************************
+*********
 SUBSTRING
-**************************
+*********
 
 Returns a substring of the input starting at ``start_pos``.
 
@@ -11,14 +11,14 @@ Returns a substring of the input starting at ``start_pos``.
 See also :ref:`regexp_substr`.
 
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
    SUBSTRING( expr, start_pos, length )
 
 Arguments
-============
+=========
 
 .. list-table:: 
    :widths: auto
@@ -29,24 +29,25 @@ Arguments
    * - ``expr``
      - Original string expression from which you want to extract the substring
    * - ``start_pos``
-     - Starting position within the string where the extraction should start (starts at 1)
+     - The start parameter, which accepts an integer or bigint expression, indicates the position from which the returned characters begin. If start is less than 1, the expression starts from the first character. The number of characters returned is determined by the larger value between start + length - 1 and 0. If start exceeds the number of characters in the expression, an empty string is returned
    * - ``length``
-     - Number of characters to be extracted from the string
+     - A positive integer or bigint expression that specifies the number of characters to be returned from the expression. If the sum of start and length exceeds the total number of characters in the expression, the entire value starting from the position specified by start is returned. If length is negative or zero, the function returns an empty string
 
 Returns
-============
+=======
 
-Returns the same type as the argument supplied.
+* Returns the same type as the argument supplied
+
+* If any of the arguments is NULL, the return is NULL
 
 Notes
-=======
+=====
 
 * Character count starts at 1.
 
-* If the value is NULL, the result is NULL.
 
 Examples
-===========
+========
 
 For these examples, assume a table named ``nba``, with the following structure:
 
