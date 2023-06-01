@@ -135,7 +135,9 @@ Each row represents a single logical database operation, which is also called a 
 several metrics during query execution, such as how much data it has read and written, how many chunks and rows, and how much time has elapsed.
 Consider the example show_node_info presented above. The source node with ID #11 (``ReadTable``), has a parent node ID #10 
 (``CpuDecompress``). If we were to draw this out in a graph, it'd look like this:
+
 .. figure:: /_static/images/show_node_info_graph.png
+
    :height: 70em
    :align: center
    
