@@ -192,7 +192,7 @@ Loading a file from a public S3 bucket
    COPY nba FROM 's3://sqream-demo-data/nba.csv' WITH OFFSET 2 RECORD DELIMITER '\r\n';
 
 Loading files from an authenticated S3 bucket
----------------------------------------------------
+---------------------------------------------
 
 .. code-block:: postgres
 
@@ -201,7 +201,7 @@ Loading files from an authenticated S3 bucket
 .. _hdfs_copy_from_example:
 
 Loading files from an HDFS storage
----------------------------------------------------
+----------------------------------
 
 .. code-block:: postgres
 
@@ -220,7 +220,7 @@ See :ref:`capturing_rejected_rows` for more information about the error handling
 
 
 Stopping the load if a certain amount of rows were rejected
-------------------------------------------------------------------
+-----------------------------------------------------------
 
 .. code-block:: postgres
 
