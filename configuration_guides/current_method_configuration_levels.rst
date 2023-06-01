@@ -19,7 +19,6 @@ Worker-Based Configuration
 --------------
 Worker-based configuration lets you modify individual workers using a worker configuration file. Worker-based configuration modifications are persistent.
 
-For more information on making configurations from the worker configuration file, see :ref:`previous_configuration_method`.
 
 Session-Based Configuration
 --------------

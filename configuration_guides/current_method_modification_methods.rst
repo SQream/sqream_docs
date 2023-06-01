@@ -3,7 +3,7 @@
 **************************
 Modification Methods
 **************************
-SQream provides two different ways to modify your configurations. The current method is based on hierarchical configuration as described above. This method is based on making modifications on the **worker configuration file**, while you can still make modifications using the previous method using the **legacy configuration file**, both described below:
+
 
 .. contents:: 
    :local:
@@ -35,7 +35,7 @@ Modifying Your Configuration Using a Legacy Configuration File
 ---------------------
 You can modify your configuration using a legacy configuration file.
 
-The Legacy configuration file provides access to the read/write flags used in SQream’s previous configuration method. A link to this file is provided in the **legacyConfigFilePath** parameter in the worker configuration file.
+The Legacy configuration file provides access to the read/write flags. A link to this file is provided in the **legacyConfigFilePath** parameter in the worker configuration file.
 
 The following is an example of the legacy configuration file:
 
@@ -47,4 +47,3 @@ The following is an example of the legacy configuration file:
       “useClientLog”: true,
       “useMetadataServer”” false
    }
-For more information on using the previous configuration method, see :ref:`previous_configuration_method`.
