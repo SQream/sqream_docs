@@ -27,11 +27,11 @@ Arguments
    * - Parameter
      - Description
    * - ``expr``
-     - String expression
+     - Original string expression from which you want to extract the substring
    * - ``start_pos``
-     - Starting position (starts at 1)
+     - Starting position within the string where the extraction should start (starts at 1)
    * - ``length``
-     - Number of characters to extract
+     - Number of characters to be extracted from the string
 
 Returns
 ============

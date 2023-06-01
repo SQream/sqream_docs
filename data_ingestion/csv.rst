@@ -46,7 +46,7 @@ Prepare the source CSVs, with the following requirements:
 
 
 Place CSVs where SQream DB workers can access
-=======================================================
+=============================================
 
 During data load, the :ref:`copy_from` command can run on any worker (unless explicitly speficied with the :ref:`workload_manager`).
 It is important that every node has the same view of the storage being used - meaning, every SQream DB worker should have access to the files.
@@ -58,7 +58,7 @@ It is important that every node has the same view of the storage being used - me
 * For S3, ensure network access to the S3 endpoint. See our :ref:`s3` guide for more information.
 
 Figure out the table structure
-===============================================
+==============================
 
 Prior to loading data, you will need to write out the table structure, so that it matches the file structure.
 
@@ -97,7 +97,7 @@ We will make note of the file structure to create a matching ``CREATE TABLE`` st
 
 
 Bulk load the data with COPY FROM
-====================================
+=================================
 
 The CSV is a standard CSV, but with two differences from SQream DB defaults:
 
@@ -117,13 +117,13 @@ Repeat steps 3 and 4 for every CSV file you want to import.
 
 
 Loading different types of CSV files
-=======================================
+====================================
 
 :ref:`copy_from` contains several configuration options. See more in :ref:`the COPY FROM elements section<copy_from_config_options>`.
 
 
 Loading a standard CSV file from a local filesystem
----------------------------------------------------------
+---------------------------------------------------
 
 .. code-block:: postgres
    
@@ -215,8 +215,12 @@ See :ref:`capturing_rejected_rows` for more information about the error handling
 
 .. code-block:: postgres
 
-   COPY  table_name FROM 'filename.psv'  WITH DELIMITER '|'
-                                         ERROR_LOG  '/temp/load_error.log' -- Save error log
+	COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.psv'
+                ,delimiter = '|'
+				,continue_on_error = True
+                ,error_log = '/temp/load_error.log' -- Save error log
+                ,rejected_data = '/temp/load_rejected.log' -- Only save rejected rows
+                );
 
 
 Stopping the load if a certain amount of rows were rejected
@@ -225,10 +229,10 @@ Stopping the load if a certain amount of rows were rejected
 .. code-block:: postgres
 
    COPY  table_name  FROM  'filename.csv'   WITH  delimiter  '|'  
-                                            ERROR_LOG  '/temp/load_err.log' -- Save error log
-                                            OFFSET 2 -- skip header row
-                                            LIMIT  100 -- Only load 100 rows
-                                            STOP AFTER 5 ERRORS; -- Stop the load if 5 errors reached
+                ERROR_LOG  '/temp/load_err.log' -- Save error log
+                OFFSET 2 -- skip header row
+                LIMIT  100 -- Only load 100 rows
+                STOP AFTER 5 ERRORS; -- Stop the load if 5 errors reached
 
 Load CSV files from a set of directories
 ------------------------------------------
