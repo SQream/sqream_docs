@@ -22,7 +22,7 @@ JDBC drivers rely on a connection string.
 
 URL Template:
 
-.. code-block:: JavaScript
+.. code-block:: Java
 
    jdbc:Sqream://{host}:{port}/{database};accessToken=<access-token>;[<optional parameters>; ...]
    

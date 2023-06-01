@@ -10,14 +10,15 @@ Connecting to BLUE Using ODBC
    :hidden:
 
 
-The following is the syntax for BLUE:
+Connection String Syntax
+------------------------
 
-.. code-block:: text
+.. code-block:: java
 
    odbc:Sqream://<host and port>/<database name>;--access-token=<access-token>;[<optional parameters>; ...]
 
 Connection Parameters
-^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------
 The following table shows the connection string parameters:
 
 .. list-table:: 
