@@ -217,7 +217,6 @@ See :ref:`capturing_rejected_rows` for more information about the error handling
 
    COPY  table_name FROM 'filename.psv'  WITH DELIMITER '|'
                                          ERROR_LOG  '/temp/load_error.log' -- Save error log
-                                         ERROR_VERBOSITY 0; -- Only save rejected rows
 
 
 Stopping the load if a certain amount of rows were rejected
