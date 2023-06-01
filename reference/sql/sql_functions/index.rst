@@ -81,6 +81,8 @@ The following table shows the **conversion** functions:
      - Converts a number to a hexadecimal string representation
    * - :ref:`to_unixts`
      - Converts a ``DATE`` or ``DATETIME`` to a UNIX Timestamp
+   * - :ref:`chr`
+     - Returns the ASCII character representation of the supplied integer
 
 Date and Time
 ^^^^^^^^^^^^^^^^
