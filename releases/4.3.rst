@@ -4,9 +4,7 @@
 Release Notes 4.3
 *****************
 
-SQream is introducing a new version release system that follows the more commonly used Major.Minor.Patch versioning schema. The newly released **4.0 version** is a minor version upgrade and does not require considerable preparation.
-
-The 4.3 release notes were released on 31/05/2023 and describe the following:
+The 4.3 release notes were released on xx/06/2023 and describe the following:
 
 .. contents:: 
    :local:
@@ -44,7 +42,7 @@ Access control permissions in SQreamDB have been expanded, allowing roles to now
  * CATALOG
  * SERVICE
 
-To learn more about how and when you should use the new permissions, visit :ref:`access_control_permissions`.
+To learn more about how and when you should use this new capability, visit :ref:`access_control_permissions`.
 
 Known Issues
 ------------
@@ -110,10 +108,7 @@ Due to Parquet's lack of support of the ``INT96`` data type, SQream has decided 
 
 ► Square Brackets ``[]``
 
-The ``[]``, which are frequently used to delimit :ref:`identifiers<keywords_and_identifiers>` such as column names, table names, and other database objects, will soon be deprecated to facilitate the use of the ``ARRAY`` data type.
-
-* Support in ``[]`` for delimiting database object identifiers ends on June 1st, 2023.
-* To delimit database object identifiers, you will be able to use double quotes ``""``.
+The ``[]``, which are frequently used to delimit :ref:`identifiers<keywords_and_identifiers>` such as column names, table names, and other database objects, are officially deprecated to facilitate the use of the ``ARRAY`` data type. To delimit database object identifiers, use double quotes ``""``.
 
 
 ► ``VARCHAR``
@@ -121,17 +116,11 @@ The ``[]``, which are frequently used to delimit :ref:`identifiers<keywords_and_
 The ``VARCHAR`` data type is deprecated to improve the core functionalities of the platform and to align with the constantly evolving ecosystem requirements.
 
 * Support in the ``VARCHAR`` data type ends at September 30th, 2023.
-* ``VARCHAR`` is no longer supported for new customers, effective from Version 2022.1.3.  
+* ``VARCHAR`` is no longer supported for new customers, effective from version 2022.1.3.  
 * The ``TEXT`` data type is replacing the ``VARCHAR`` and ``NVARCHAR`` data types.
 
-End of Support
---------------
-
-Support in an :ref:`old method <previous_configuration_method>` of configuring the SQreamDB instance ends on September 30th, 2023.
- 
-
 Upgrading to v4.3
--------------------
+-----------------
 1. Generate a back-up of the metadata by running the following command:
 
    .. code-block:: console
