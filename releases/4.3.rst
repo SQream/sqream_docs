@@ -90,13 +90,14 @@ Version 4.3 resolved Issues
 Configuration Adjustments
 -------------------------
 
-When using SQreamDB legacy configuration file and AWS S3, you may be required to use the following new parameters:
+► You may now configure the object access style and your endpoint URL with Virtual Private Cloud (VPC) when using AWS S3. 
+
+Visit :ref:`s3` to learn more about how and when you should use these two new parameters:
 
 * ``AwsEndpointOverride``
 * ``AwsObjectAccessStyle``
 
-To learn more about how and when you should use them, visit :ref:`s3`.
-
+► Upgrading from SQreamDB version 4.2 to 4.3 requires you to grant access to all services for all roles. To learn more, visit :ref:`grant_usage_on_service_to_all_roles`.
 
 Deprecated Features
 -------------------
@@ -152,6 +153,14 @@ Upgrading to v4.3
    .. code-block:: console
 
       $ ./upgrade_storage <levelDB path>
+	
+	::
+	
+7. To grant access to all services for all roles, run the following command:
+
+   .. code-block:: psql
+
+	SELECT grant_usage_on_service_to_all_roles();
 
   .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
   
