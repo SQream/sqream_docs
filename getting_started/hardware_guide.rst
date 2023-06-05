@@ -165,7 +165,7 @@ This section describes the following cluster design considerations:
 
  ::
 
-* When using SAN or NAS devices, SQream recommends approximately 5GB/s of burst throughput from storage per GPU.
+* When using NAS devices, SQream recommends approximately 5GB/s of burst throughput from storage per GPU.
 
 Balancing Cost and Performance
 --------------------------------
@@ -221,7 +221,7 @@ SQream can run on the following 64-bit Linux operating systems:
 
 Storage
 -----------
-For clustered scale-out installations, SQream relies on NAS/SAN storage. For stand-alone installations, SQream relies on redundant disk configurations, such as RAID 5, 6, or 10. These RAID configurations replicate blocks of data between disks to avoid data loss or system unavailability. 
+For clustered scale-out installations, SQream relies on NAS storage. For stand-alone installations, SQream relies on redundant disk configurations, such as RAID 5, 6, or 10. These RAID configurations replicate blocks of data between disks to avoid data loss or system unavailability. 
 
 SQream recommends using enterprise-grade SAS SSD or NVMe drives. For a 32-user configuration, the number of GPUs should roughly match the number of users. SQream recommends 1 Tesla V100 or A100 GPU per 2 users, for full, uninterrupted dedicated access.
 
