@@ -18,7 +18,7 @@ Data Definition Commands (DDL)
 The following table shows the Data Definition commands:
 
 .. list-table::
-   :widths: 10 100
+   :widths: 30 100
    :header-rows: 1
    :name: ddl_commands
    
@@ -71,7 +71,7 @@ Data Manipulation Commands (DML)
 The following table shows the Data Manipulation commands:
 
 .. list-table::
-   :widths: 10 100
+   :widths: 30 100
    :header-rows: 1
    :name: dml_commands
    
@@ -101,7 +101,7 @@ Utility Commands
 The following table shows the Utility commands:
 
 .. list-table::
-   :widths: 10 100
+   :widths: 30 100
    :header-rows: 1
      
    * - Command
@@ -162,7 +162,7 @@ Workload Management
 The following table shows the Workload Management commands:
 
 .. list-table::
-   :widths: 10 100
+   :widths: 30 100
    :header-rows: 1
    
    * - Command
@@ -179,7 +179,7 @@ Access Control Commands
 The following table shows the Access Control commands:
 
 .. list-table::
-   :widths: 10 100
+   :widths: 30 100
    :header-rows: 1   
    
    * - Command
@@ -206,6 +206,8 @@ The following table shows the Access Control commands:
      - Returns a list of permissions required to run a statement or query
    * - :ref:`grant`
      - Grant permissions to a role
+   * - :ref:`GRANT_USAGE_ON_SERVICE_TO_ALL_ROLES`
+     - Grant service usage permissions
    * - :ref:`revoke`
      - Revoke permissions from a role
    * - :ref:`rename_role`

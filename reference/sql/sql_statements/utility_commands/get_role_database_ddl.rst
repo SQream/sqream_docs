@@ -5,11 +5,7 @@ GET_ROLE_DATABASE_DDL
 ********************
 The ``GET_ROLE_DATABASE_DDL`` statement returns the definition of a role's database in DDL format.
 
-The ``GET_ROLE_DATABASE_DDL`` page describes the following:
-
-.. contents:: 
-   :local:
-   :depth: 1   
+The ``GET_ROLE_DATABASE_DDL`` page describes the following:  
 
 Syntax
 ==========
@@ -18,14 +14,6 @@ The following is the correct syntax for using the ``GET_ROLE_DATABASE_DDL`` stat
 .. code-block:: postgres
 
    select get_role_database_ddl(<'role_name'>)
-
-Example
-===========
-The following is an example of using the ``GET_ROLE_DATABASE_DDL`` statement:
-
-.. code-block:: psql
-
-   select get_role_database_ddl('public');
 
 Parameters
 ============
@@ -39,6 +27,15 @@ The following table shows the ``GET_ROLE_DATABASE_DDL`` parameters:
      - Description
    * - ``role_name``
      - The definition of the database role in DDL format.
+
+Example
+===========
+The following is an example of using the ``GET_ROLE_DATABASE_DDL`` statement:
+
+.. code-block:: psql
+
+   select get_role_database_ddl('public');
+
    
 Output
 ==========
