@@ -31,7 +31,7 @@ The following are applicable to all operating systems:
 
 * **Trino**:
 
-  * `Trino Connector <>`_ 
+  * Trino Connector
   * :ref:`trino`
   
 .. _spark:

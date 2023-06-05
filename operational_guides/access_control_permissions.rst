@@ -132,8 +132,8 @@ GRANT Syntax
 	TO <role> [, ...];
 
 	-- Grant permissions at the Service level:
-	GRANT {{USAGE} [, ...] | ALL [PERMISSIONS]}
-	ON { SERVICE <service_name> [, ...] | ALL SERVICES IN SYSTEM }
+	GRANT {{USAGE} [PERMISSIONS]}
+	ON { SERVICE <service_name> }
 	TO <role> [, ...]
 
 	-- Allows role2 to use permissions granted to role1
@@ -179,10 +179,11 @@ REVOKE Syntax
 	REVOKE {{SELECT | DDL } [, ...] | ALL [PERMISSIONS]}
 	ON { COLUMN <column_name> [, ...] | ALL COLUMNS IN TABLE <table_name> [, ...] | ALL COLUMNS IN FOREIGN TABLE <foreign_table_name> [, ...] | ALL COLUMNS IN VIEW <view_name> [, ...] | ALL COLUMNS IN CATALOG <catalog_name> [, ...]}
 	FROM <role> [, ...];
+
 		
-	-- Revoke permissions at the column level:
+	-- Revoke permissions at the service level:
 	REVOKE {{USAGE} [, ...] | ALL [PERMISSIONS]}
-	ON { SERVICE <service_name> [, ...] | ALL SERVICES IN SYSTEM}
+	ON { SERVICE <service_name> }
 	FROM <role> [, ...]
 		
 	-- Removes access to permissions in role1 by role 2
