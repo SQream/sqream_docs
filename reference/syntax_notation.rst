@@ -10,21 +10,39 @@ Syntax Notation
     :header-rows: 1
 	
     * - Notation
-      - Example
-      - Element
       - Description
-    * - UPPERCASE
+      - Example
+    * - ``UPPERCASE``
+      - Reserved words used as keywords in SQL statements. See full list :ref:`here<keywords_and_identifiers>`	
       - ``SELECT``
-      - Keyword
-      - Reserved words used for specific purposes in SQL statements
-    * - Square brackets
-      - ``[]``
-      - Identifier
-      - Used to enclose identifiers that contain special characters or reserved keywords
-    * - Angle brackets
-      - ``<>``
-      - Placeholder
-      - Used to represent placeholders or user-defined elements in SQL statements
+    * - ``lowercase``
+      - User-defined identifiers such as table names, column names, aliases, and variables.
+      - ``table_name``
+    * - Arithmetic operators
+      - Used to perform mathematical operations on numeric values. See full list :ref:`here<arithmetic_operators>`
+      - ``%``
+    * - Comparison operators
+      - Used to compare values or expressions and determine their relationship or equality within SQL statements. See full list :ref:`here<scalar_expressions>`
+      - ``=>``
+    * - ``""``
+      - Double quotes are used to enclose identifiers that contain special characters or reserved keywords
+      - ``SELECT * FROM "order";``
+    * - ``<>``
+      - Angle brackets are used to represent placeholders or user-defined elements in SQL statements
+      - ``<user_name>``
+    * - ``[]``
+      - Square brackets are used within statements to denote an array data type and within documentation to mark optional inputs
+      - * Array data type: ``INT[]``
+        * Optional input: ``GRANT LOGIN TO <role>``
+    * - ``|``
+      - The vertical bar is used to indicate a choice or alternative between different options. It signifies that only one option should be selected from the given set of possibilities.
+      - ``GRANT { SUPERUSER | LOGIN | PASSWORD '<password>' } TO <role>``
+    * - ``{}``
+      - The curly brackets are used to group options or parameters together. They indicate that the elements inside the brackets are choices, and you can select only one of them
+      - ``GRANT { SUPERUSER | LOGIN | PASSWORD '<password>' } TO <role>``
+	    
+	  
+
 	  
 	  
 	  
