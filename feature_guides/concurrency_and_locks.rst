@@ -11,7 +11,7 @@ Read only transactions are never blocked, and never block anything. Even if you 
 .. _locking_modes:
 
 Locking Modes
-================
+=============
 
 BLUE has two kinds of locks:
 
@@ -28,7 +28,7 @@ BLUE has two kinds of locks:
    This lock allows other statements to insert or delete data from a table, but they'll have to wait in order to run DDL.
 
 When are Locks Obtained?
-============================
+========================
 
 .. list-table::
    :widths: auto
@@ -69,9 +69,14 @@ The utility :ref:`show_locks` can be used to see the active locks.
 In this example, we create a table based on results (:ref:`create_table_as`), but we are also effectively dropping the previous table (by using ``OR REPLACE`` which also :ref:`drops the table<drop_table>`). Thus, BLUE applies locks during the table creation process to prevent the table from being altered during it's creation.
 
 
-.. code-block:: psql
+.. code-block:: sql
 
-   t=> SELECT SHOW_LOCKS();
+	SELECT SHOW_LOCKS();
+   
+Output:
+
+.. code-block:: sql
+
    statement_id | statement_string                                                                                | username | server       | port | locked_object                   | lockmode  | statement_start_time | lock_start_time    
    -------------+-------------------------------------------------------------------------------------------------+----------+--------------+------+---------------------------------+-----------+----------------------+--------------------
    287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | database$t                      | Inclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30

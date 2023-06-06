@@ -50,7 +50,7 @@ Statements and queries are standard SQL, followed by a semicolon ``;``.
 
 .. code-block:: none
  
-	master=> CREATE TABLE nba (
+	CREATE FOREIGN TABLE nba (
 	  player_name TEXT,
 	  team_name TEXT,
 	  jersey_number INT,
@@ -60,16 +60,14 @@ Statements and queries are standard SQL, followed by a semicolon ``;``.
 	  weight INT,
 	  college TEXT,
 	  salary INT
-	);
+	  )
+	WRAPPER parquet_fdw
+	OPTIONS
+	  (
+		LOCATION =  'hdfs://hadoop-nn.piedpiper.com/rhendricks/nba/*.parquet'
+	  );
 	
 .. code-block:: none
-
-	INSERT INTO nba VALUES
-	  ('Avery Bradley', 'Boston Celtics', 0, 'PG', 25, '6-2', 180, 'Texas', 7730337),
-	  ('Jae Crowder', 'Boston Celtics', 99, 'SF', 25, '6-6', 235, 'Marquette', 6796117),
-	  ('John Holland', 'Boston Celtics', 30, 'SG', 27, '6-5', 205, 'Boston University', NULL),
-	  ('R.J. Hunter', 'Boston Celtics', 28, 'SG', 22, '6-5', 185, 'Georgia State', 1148640),
-	  ('Jonas Jerebko', 'Boston Celtics', 8, 'PF', 29, '6-10', 231, NULL, 5000000);
 
 Statement results are usually formatted as a valid CSV, followed by the number of rows and the elapsed time for that statement. 
 
@@ -86,8 +84,6 @@ Null values are represented as ``\N``.
 	5 rows
 	time: 0.001185s
 
-	
-	
 When writing long statements and queries, it may be beneficial to use line-breaks.
 
 .. code-block:: none
@@ -99,7 +95,9 @@ When writing long statements and queries, it may be beneficial to use line-break
 	LIMIT 5
 	;
 
-	Output:
+Output:
+
+.. code-block:: none
 
 	27,\N
 	22,1148640
@@ -191,8 +189,10 @@ Executing SQL Statements from the Command Line
 
 	$ java -jar jdbc-console-0.0.92-48.jar --host=product.isqream.com --access-token=########## -d farm -c "SELECT * FROM animals WHERE is_angry = true;"
 	
-	Output:
+Output:
 	
+.. code-block:: none
+
 	4,bull,true
 	1 row
 	time: 0.095941s

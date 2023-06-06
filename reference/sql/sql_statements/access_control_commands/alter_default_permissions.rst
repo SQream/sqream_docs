@@ -34,9 +34,7 @@ The following is the syntax for altering default permissions:
          | CREATE
          | USAGE
          | SELECT
-         | INSERT
          | UPDATE
-         | DELETE
          | DDL
          | ALL
          } [, ...]
@@ -149,4 +147,4 @@ Revoking permissions refers to using the ``DROP GRANT`` command, as shown below:
 
 .. code-block:: sql
 
-   ALTER DEFAULT PERMISSIONS FOR public FOR TABLES DROP GRANT SELECT,DDL,INSERT,DELETE TO public;
+   ALTER DEFAULT PERMISSIONS FOR public FOR TABLES DROP GRANT SELECT,DDL TO public;

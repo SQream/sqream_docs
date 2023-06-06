@@ -5,14 +5,7 @@
 ****************************
 Creating, Assigning, and Managing Roles and Permissions
 ****************************
-The **Creating, Assigning, and Managing Roles and Permissions** describes the following:
 
-.. contents:: 
-   :local:
-   :depth: 1   
-   
-Overview
----------------
 In the **Roles** area you can create and assign roles and manage user permissions. 
 
 The **Type** column displays one of the following assigned role types:
