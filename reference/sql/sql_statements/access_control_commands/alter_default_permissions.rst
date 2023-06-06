@@ -4,12 +4,7 @@
 ALTER DEFAULT PERMISSIONS
 *****************************
 
-.. contents:: 
-   :local:
-   :depth: 1
 
-Overview
-=============
 The ``ALTER DEFAULT PERMISSIONS`` command lets you grant automatic permissions to future objects.
 
 By default, users do not have ``SELECT`` permissions on tables created by other users. Database administrators can grant access to other users by modifying the target role default permissions.
@@ -17,14 +12,14 @@ By default, users do not have ``SELECT`` permissions on tables created by other 
 For more information about access control, see :ref:`Access Control<access_control>`.
 
 Permissions
-=============
+===========
 The ``SUPERUSER`` permission is required to alter default permissions.
 
 Syntax
-==========
+=======
 The following is the syntax for altering default permissions:
 
-.. code-block:: postgres
+.. code-block:: sql
 
    alter_default_permissions_statement ::=
          ALTER DEFAULT PERMISSIONS FOR { target_role_name | ALL ROLES }
@@ -93,17 +88,13 @@ The following table describes the supported permissions:
 
 
 Examples
-============
-
-.. contents:: 
-   :local:
-   :depth: 1
+========
    
 Granting Default Table Permissions
--------------------------------------------------
+----------------------------------
 This example is based on the roles **r1** and **r2**, created as follows:
 
-.. code-block:: postgres
+.. code-block:: sql
 
    create role r1;
    create role r2;
@@ -111,7 +102,7 @@ This example is based on the roles **r1** and **r2**, created as follows:
 
 Once created, you can build and run the following query based on the above:
 
-.. code-block:: postgres
+.. code-block:: sql
 
    select
      tdp.database_name as "database_name",
@@ -134,13 +125,13 @@ The following is an example of the output generated from the above queries:
 | master                |   NULL               | public            | public       | select                       | 
 +-----------------------+----------------------+-------------------+--------------+------------------------------+
 
-For more information about default permissions, see `Default Permissions <https://docs.sqream.com/en/latest/reference/catalog_reference_catalog_tables.html#default-permissions.html>`_.  
+For more information about default permissions, see :ref:`Default Permissions<catalog_reference_catalog_tables>`.  
    
 Granting Automatic Permissions for Newly Created Schemas
 -------------------------------------------------
 When the role ``demo`` creates a new schema, roles **u1,u2** are granted ``USAGE`` and ``CREATE`` permissions in the new schema, as shown below:
 
-.. code-block:: postgres
+.. code-block:: sql
 
    ALTER DEFAULT PERMISSIONS FOR demo FOR SCHEMAS GRANT USAGE, CREATE TO u1,u2;
 
@@ -148,7 +139,7 @@ Granting Automatic Permissions for Newly Created Tables in a Schema
 ----------------------------------------------------------------
 When the role ``demo`` creates a new table in schema ``s1``, roles **u1,u2** are granted ``SELECT`` permissions, as shown below:
 
-.. code-block:: postgres
+.. code-block:: sql
 
    ALTER DEFAULT PERMISSIONS FOR demo IN s1 FOR TABLES GRANT SELECT TO u1,u2;
 
@@ -156,6 +147,6 @@ Revoking Permissions from Newly Created Tables
 ---------------------------------------------------------------
 Revoking permissions refers to using the ``DROP GRANT`` command, as shown below:
 
-.. code-block:: postgres
+.. code-block:: sql
 
    ALTER DEFAULT PERMISSIONS FOR public FOR TABLES DROP GRANT SELECT,DDL,INSERT,DELETE TO public;

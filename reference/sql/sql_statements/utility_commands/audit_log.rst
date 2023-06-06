@@ -3,21 +3,14 @@
 *****************
 AUDIT LOG
 *****************
-The **AUDIT LOG** page includes the following sections:
 
-.. contents::
-   :local:
-   :depth: 1
-
-Overview
-====================
 The ``AUDITLOG`` command is used for investigating historic events captured by your system, and is designed for tracking user activity and for incident response. The Audit Log feature records executed SQL statements and login and logout events.
 
 Syntax
-====================
+======
 The following is the ``AUDITLOG`` syntax:
 
-.. code-block:: postgres
+.. code-block:: sql
 
    AUDITLOG
    [ TIMEFRAME FROM <start_date_time> TO <end_date_time> ]
@@ -30,7 +23,7 @@ The following is the ``AUDITLOG`` syntax:
    [ ERRORDETAILS LIKE <%error_details%> ]
 
 Filters
-====================
+=======
 The following table shows the ``AUDITLOG`` filters:
 
 +--------------------------------------------------------------+---------------------+---------------------------------------------------------------------------------------------+-------------------+
@@ -72,24 +65,19 @@ The following table shows the ``AUDITLOG`` filters:
 +--------------------------------------------------------------+---------------------+---------------------------------------------------------------------------------------------+-------------------+
 
 Examples
-====================
-This section shows the following ``AUDITLOG`` examples:
+========
 
-.. contents::
-   :local:
-   :depth: 1
-
-Example 1 - AUDITLOG
------------------------
+AUDITLOG
+--------
 The following is the ``AUDITLOG`` command:
 
-.. code-block:: postgres
+.. code-block:: sql
 
    AUDITLOG;
 	  
 The following is the output of the ``AUDITLOG`` command:
 
-.. code-block:: postgres
+.. code-block:: none
 
    +---------+-----------------+------------------+---------------+---------------------------------------+---------------+------------------------+---------------------+-------------------+---------------+-----------------------------------------------------------+-----------------------------------------------+----------------+
    | id      | time_stamp      | last_update      | username      | session_id                            | query_id      | client_ip_address      | client_version      | status            | category      | additional_details                                        | error_details                                 | tenant_id      |
@@ -105,17 +93,17 @@ The following is the output of the ``AUDITLOG`` command:
    |         | 6/28/2022 12:11 | null             | sqream        | cbec0cb7-2bbc-48f8-b4e1-37fd575e7891  |               |                        |                     | Active            | SESSION       |                                                           |                                               |                |
    +---------+-----------------+------------------+---------------+---------------------------------------+---------------+------------------------+---------------------+-------------------+---------------+-----------------------------------------------------------+-----------------------------------------------+----------------+
 
-Example 2 - AUDITLOG_TIMEFRAME_FROM
+AUDITLOG_TIMEFRAME_FROM
 -----------------------
 The following is the ``AUDITLOG`` command using the ``TIMEFRAME_FROM`` filter:
 
-.. code-block:: postgres
+.. code-block:: sql
 
   AUDITLOG TIMEFRAME FROM '2022-06-28 12:00:00' TO '2022-06-28 13:00:00';
 
 The following is the output of the ``AUDITLOG`` command using the ``TIMEFRAME_FROM`` filter:
 
-.. code-block:: postgres
+.. code-block:: none
 
    +---------+-----------------+------------------+---------------+---------------------------------------+---------------+------------------------+---------------------+-------------------+---------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
    | id      | time_stamp      | last_update      | username      | session_id                            | query_id      | client_ip_address      | client_version      | status            | category      | additional_details                                        | error_details                                                                                                                                       | tenant_id      |
@@ -139,17 +127,17 @@ The following is the output of the ``AUDITLOG`` command using the ``TIMEFRAME_FR
    | 1       | 6/28/2022 12:54 | null             | sqream        | a42be0ac-d9ea-44fd-a187-5ded36057f0d  | 1             | 192.168.4.89           | SQream JDBC v0.1.33 | EXECUTION_SUCCEED | SELECT        | select * from nba;                                        |                                                                                                                                                     | tenant         |
    +---------+-----------------+------------------+---------------+---------------------------------------+---------------+------------------------+---------------------+-------------------+---------------+-----------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------+----------------+
    
-Example 3 - AUDITLOG_USERNAME
------------------------
+AUDITLOG_USERNAME
+-----------------
 The following is the ``AUDITLOG`` command using the ``USERNAME`` filter:
 
-.. code-block:: postgres
+.. code-block:: sql
 
    AUDITLOG USERNAME in ('sqream', 'dbuser1');
    
 The following is the output of the ``AUDITLOG`` command using the ``USERNAME`` filter:
 
-.. code-block:: postgres
+.. code-block:: none
 
    +---------+-----------------+------------------+---------------+---------------------------------------+---------------+------------------------+---------------------+--------------------+---------------+----------------------------------------------------------------------+--------------------+
    | id      | time_stamp      | last_update      | username      | session_id                            | query_id      | client_ip_address      | client_version      | status             | category      | additional_details                                                   | error_details      |
@@ -172,7 +160,7 @@ The following is the output of the ``AUDITLOG`` command using the ``USERNAME`` f
    +---------+-----------------+------------------+---------------+---------------------------------------+---------------+------------------------+---------------------+--------------------+---------------+----------------------------------------------------------------------+--------------------+
    
 Permissions
-====================
+===========
 Using the ``AUDIT_LOG`` command requires ``SUPERUSER`` permissions.
 
-For more information, see `Supported Permissions <https://docs.sqream.com/en/2022.3_preview/reference/sql/sql_statements/access_control_commands/alter_default_permissions.html#supported-permissions>`_.
+For more information, see :ref:`Supported Permissions<alter_default_permissions>`.
