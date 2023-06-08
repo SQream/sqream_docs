@@ -31,9 +31,8 @@ Syntax Notation
       - Angle brackets are used to represent placeholders or user-defined elements in SQL statements
       - ``<user_name>``
     * - ``[]``
-      - Square brackets are used within statements to denote an array data type and within documentation to mark optional inputs
-      - * Array data type: ``INT[]``
-        * Optional input: ``GRANT LOGIN TO <role>``
+      - Square brackets are used as syntax notation to indicate optional inputs
+      - ``GRANT LOGIN TO <role1> [, ...]``
     * - ``|``
       - The vertical bar is used to indicate a choice or alternative between different options. It signifies that only one option should be selected from the given set of possibilities.
       - ``GRANT { SUPERUSER | LOGIN | PASSWORD '<password>' } TO <role>``
