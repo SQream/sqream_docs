@@ -270,7 +270,7 @@ The following table shows the **string** functions:
    * - :ref:`upper`
      - Converts an argument to an upper-case equivalent
    * - :ref:`select_ascii`
-     - Return the ASCII code value of the leftmost character of a string
+     - Returns an ``INT`` value representing the ASCII code of the leftmost character in a string
 
 User-Defined Scalar Functions
 ---------------------
