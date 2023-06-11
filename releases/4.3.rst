@@ -97,8 +97,6 @@ Visit :ref:`s3` to learn more about how and when you should use these two new pa
 * ``AwsEndpointOverride``
 * ``AwsObjectAccessStyle``
 
-► Upgrading from SQreamDB version 4.2 to 4.3 requires you to grant access to all services for all roles. To learn more, visit :ref:`grant_usage_on_service_to_all_roles`.
-
 Deprecated Features
 -------------------
 
@@ -156,7 +154,7 @@ Upgrading to v4.3
 	
 	::
 	
-7. v4.3 introduced a new SERVICE permission, existing users may lose SERVICE access. To resolve, either grant users with SERVICE USAGE permission or grant access to all services for all roles using :ref:`grant-usage-on-service-to-all-roles`.
+7. v4.3 introduced a new SERVICE permission, existing users may lose SERVICE access. To resolve, either grant users with SERVICE USAGE permission or grant access to all services for all roles using :ref:`grant_usage_on_service_to_all_roles`.
 
 
   .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
