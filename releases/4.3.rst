@@ -4,7 +4,7 @@
 Release Notes 4.3
 *****************
 
-The 4.3 release notes were released on xx/06/2023 and describe the following:
+The 4.3 release notes were released on 11/06/2023 and describe the following:
 
 .. contents:: 
    :local:

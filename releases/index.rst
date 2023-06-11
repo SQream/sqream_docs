@@ -13,7 +13,7 @@ Release Notes
    * - Version
      - Release Date
    * - :ref:`4.3`
-     - May 31, 2023
+     - June 11, 2023
    * - :ref:`4.2`
      - April 23, 2023
    * - :ref:`4.1`
