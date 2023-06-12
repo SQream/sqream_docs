@@ -5,7 +5,7 @@ Max Statement Inactivity Seconds
 *************************
 The ``maxStatementInactivitySeconds`` flag is used for defining the threshold for creating a log recording a slow statement. The log includes information about the log memory, CPU and GPU.
 
-The following describes the ``maxStatementInactivitySeconds`` worker level flag:
+The following describes the ``maxStatementInactivitySeconds`` worker flag:
 
 * **Data type** - size_t
 * **Default value** - ``5``

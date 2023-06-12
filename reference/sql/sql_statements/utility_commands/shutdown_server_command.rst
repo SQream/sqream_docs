@@ -81,7 +81,6 @@ Note that activating a forced shutdown with a timeout, such as ``select shutdown
 
 .. note:: You can set the timeout value using the ``defaultGracefulShutdownTimeoutMinutes`` flag in the Acceleration Studio.
 
-For more information, see :ref:`shutdown_server`.
 
 Examples
 ===================

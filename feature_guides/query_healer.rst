@@ -3,19 +3,13 @@
 ***********************
 Query Healer
 ***********************
-The **Query Healer** page describes the following:
+ 
 
-.. contents:: 
-   :local:
-   :depth: 1      
-   
-Overview
-----------
 The **Query Healer** periodically examines the progress of running statements, creating a log entry for all statements exceeding a defined time period.   
 
 Configuration
 -------------
-The following **Administration Worker** flags are required to configure the Query Healer:
+The following worker flags are required to configure the Query Healer:
 
 .. list-table:: 
    :widths: auto
@@ -31,7 +25,7 @@ The following **Administration Worker** flags are required to configure the Quer
      - The :ref:`healer_detection_frequency_seconds` worker level flag triggers the healer to examine the progress of running statements. The default setting is one hour. 
 
 Query Log
----------------
+---------
 
 The following is an example of a log record for a query stuck in the query detection phase for more than five hours:
 
@@ -42,7 +36,7 @@ The following is an example of a log record for a query stuck in the query detec
 Once you identify the stuck worker, you can execute the ``shutdown_server`` utility function from this specific worker, as described in the next section.
 
 Activating a Graceful Shutdown
-------------------
+------------------------------
 You can activate a graceful shutdown if your log entry says ``Stuck query found``, as shown in the example above. You can do this by setting the **shutdown_server** utility function to ``select shutdown_server();``.
 
 **To activte a graceful shutdown:**
@@ -59,10 +53,4 @@ You can activate a graceful shutdown if your log entry says ``Stuck query found`
 
 3. Execute ``shutdown_server``.
 
-For more information, see the following:
-
-* Activating the :ref:`shutdown_server_command` utility function. This page describes all of ``shutdown_server`` options.
-
-   ::
-
-* Configuring the :ref:`shutdown_server` flag.
+For more information, see the :ref:`shutdown_server_command` utility function. This page describes all of ``shutdown_server`` options.
