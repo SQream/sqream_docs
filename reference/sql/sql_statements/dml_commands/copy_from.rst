@@ -9,7 +9,7 @@ COPY FROM
 .. note:: 
    * Learn how to migrate from CSV files in the :ref:`csv` guide
    * To copy data from a table to a file, see :ref:`COPY TO<copy_to>`.
-   * To load Parquet, ORC, or JSON files, see :ref:`CREATE FOREIGN TABLE<create_foreign_table>`
+   * To load Parquet or ORC files, see :ref:`CREATE FOREIGN TABLE<create_foreign_table>`
 
 Permissions
 =============
@@ -82,12 +82,12 @@ Syntax
    Some options are applicable to CSVs only.
 
    These include:
-   ``DELIMITER``, ``RECORD_DELIMITER``, and ``REJECTED_DATA``.
+   ``OFFSET``, ``LIMIT``, ``DELIMITER``, ``RECORD_DELIMITER``, ``REJECTED_DATA``, ``DATETIME_FORMAT``
 
 .. _copy_from_config_options:
 
 Elements
-============
+========
 
 .. list-table:: 
    :widths: auto
@@ -105,9 +105,9 @@ Elements
      - "
      - 
      - Specifies an alternative quote character. The quote character must be a single, 1-byte printable ASCII character, and the equivalent octal syntax of the copy command can be used. The quote character cannot be contained in the field delimiter, the record delimiter, or the null marker. ``QUOTE`` can be used with ``csv_fdw`` in **COPY FROM** and foreign tables.
-   * - ``name_fdw``
+   * - ``fdw_name``
      - 
-     - ``csv_fdw``, ``orc_fdw``, ``parquet_fdw``, or ``json_fdw``.
+     - ``csv_fdw``, ``orc_fdw``, or ``parquet_fdw``
      - The name of the Foreign Data Wrapper to use
    * - ``LOCATION``
      - None
@@ -176,11 +176,6 @@ Elements
      - None
      - 
      - Specifies the authentication details for secured S3 buckets
-
-
-
-
-
 
 .. _copy_date_parsers:
 
@@ -259,15 +254,15 @@ Supported Date Formats
 .. _field_delimiters:
 
 Supported Field Delimiters
-=====================================================
+==========================
 
 Field delimiters can be one or more characters.
 
 Customizing Quotations Using Alternative Characters
 ----------------------------
 
-Syntax Example 1 - Customizing Quotations Using Alternative Characters
-************
+Customizing Quotations Using Alternative Characters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following is the correct syntax for customizing quotations using alternative characters:
 
@@ -276,8 +271,8 @@ The following is the correct syntax for customizing quotations using alternative
    copy t from wrapper csv_fdw options (location = '/tmp/source_file.csv', quote='@');
    copy t to wrapper csv_fdw options (location = '/tmp/destination_file.csv', quote='@');
 
-Usage Example 1 - Customizing Quotations Using Alternative Characters
-************
+Customizing Quotations Using Alternative Characters
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following is an example of line taken from a CSV when customizing quotations using a character:
 
@@ -286,8 +281,8 @@ The following is an example of line taken from a CSV when customizing quotations
    Pepsi-"Cola",@Coca-"Cola"@,Sprite,Fanta
 
 
-Syntax Example 2 - Customizing Quotations Using ASCII Character Codes
-************
+Customizing Quotations Using ASCII Character Codes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following is the correct syntax for customizing quotations using ASCII character codes:
 
@@ -296,8 +291,8 @@ The following is the correct syntax for customizing quotations using ASCII chara
    copy t from wrapper csv_fdw options (location = '/tmp/source_file.csv', quote=E'\064');
    copy t to wrapper csv_fdw options (location = '/tmp/destination_file.csv', quote=E'\064');
 
-Usage Example 2 - Customizing Quotations Using ASCII Character Codes
-************
+Customizing Quotations Using ASCII Character Codes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following is an example of line taken from a CSV when customizing quotations using an ASCII character code:
 
@@ -308,14 +303,14 @@ The following is an example of line taken from a CSV when customizing quotations
 
 
 Multi-Character Delimiters
-----------------------------------
+--------------------------
 
 SQream DB supports multi-character field delimiters, sometimes found in non-standard files.
 
 A multi-character delimiter can be specified. For example, ``DELIMITER '%%'``, ``DELIMITER '{~}'``, etc.
 
 Printable Characters
------------------------
+--------------------
 
 Any printable ASCII character (or characters) can be used as a delimiter without special syntax. The default CSV field delimiter is a comma (``,``).
 
@@ -324,7 +319,7 @@ A printable character is any ASCII character in the range 32 - 126.
 :ref:`Literal quoting rules<string_literals>` apply with delimiters. For example, to use ``'`` as a field delimiter, use ``DELIMITER ''''``
 
 Non-Printable Characters
-----------------------------
+------------------------
 
 A non-printable character (1 - 31, 127) can be used in its octal form. 
 
@@ -375,22 +370,18 @@ The following ASCII field delimiters (octal range 001 - 176) are not supported:
 
 
 Capturing Rejected Rows
-==========================
+=======================
 
 Prior to the column process and storage, the ``COPY`` command parses the data.
-Whenever the data can’t be parsed because it is improperly formatted or doesn’t match the data structure, the entire record (or row) will be rejected. 
+Whenever the data can’t be parsed because it is improperly formatted or doesn’t match the data structure, the entire record (or row) will be rejected.
+
+When ``ERROR_LOG`` is not used, the ``COPY`` command will stop and roll back the transaction upon the first error.
 
 .. image:: /_static/images/copy_from_rejected_rows.png
 
 
-#. When ``ERROR_LOG`` is not used, the ``COPY`` command will stop and roll back the transaction upon the first error.
-
-#. When ``ERROR_LOG`` is set and ``ERROR_VERBOSITY`` is set to ``1`` (default), all errors and rejected rows are saved to the file path specified.
-
-#. When ``ERROR_LOG`` is set and ``ERROR_VERBOSITY`` is set to ``0``, rejected rows are saved to the file path specified, but errors are not logged. This is useful for replaying the file later.
-
 CSV Support
-================
+===========
 
 By default, SQream DB's CSV parser can handle `RFC 4180 standard CSVs <https://tools.ietf.org/html/rfc4180>`_ , but can also be modified to support non-standard CSVs (with multi-character delimiters, unquoted fields, etc).
 
@@ -426,25 +417,18 @@ Marking Null Markers
 .. note:: If a text field is quoted but contains no content (``""``) it is considered an empty text field. It is not considered ``NULL``.
 
 Examples
-===========
+========
 
 Loading a Standard CSV File
-------------------------------
+---------------------------
 
 .. code-block:: postgres
    
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.csv');
-   
-Loading a JSON File
-------------------------------
-
-.. code-block:: postgres
-   
-   COPY table_name FROM WRAPPER json_fdw OPTIONS (location = '/tmp/file.json');
 
 
 Skipping Faulty Rows
-------------------------------
+--------------------
 
 .. code-block:: postgres
    
@@ -475,7 +459,7 @@ Loading a Tab Separated Value (TSV) File
    
 
 Loading an ORC File
--------------------------------------------
+-------------------
 
 .. code-block:: postgres
    
@@ -483,7 +467,7 @@ Loading an ORC File
 
 
 Loading a Parquet File
--------------------------------------------
+----------------------
 
 .. code-block:: postgres
    
@@ -491,7 +475,7 @@ Loading a Parquet File
 
 
 Loading a Text File with Non-Printable Delimiters
------------------------------------------------------
+-------------------------------------------------
 
 In the file below, the separator is ``DC1``, which is represented by ASCII 17 decimal or 021 octal.
 
@@ -500,7 +484,7 @@ In the file below, the separator is ``DC1``, which is represented by ASCII 17 de
    COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', delimiter = E'\021');   
 
 Loading a Text File with Multi-Character Delimiters
------------------------------------------------------
+--------------------------------------------------
 
 In the file below, the separator is ``^|``.
 
@@ -516,7 +500,7 @@ In the file below, the separator is ``'|``. The quote character has to be repeat
    
 
 Loading Files with a Header Row
------------------------------------
+-------------------------------
 
 Use ``OFFSET`` to skip rows.
 
