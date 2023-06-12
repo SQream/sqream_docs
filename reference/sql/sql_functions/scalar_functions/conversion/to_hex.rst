@@ -42,7 +42,7 @@ Examples
    
 .. code-block:: postgres
 
-   INSERT INTO cool_numbers VALUES (42), (3735928559), (666), (3135097598), (3221229823);
+   INSERT INTO cool_numbers VALUES (-42), (3735928559), (666), (3135097598), (3221229823);
 
 .. code-block:: postgres
 
@@ -52,13 +52,13 @@ Output:
 
 .. code-block:: none
 
-   to_hex            
-   ------------------
-   0x000000000000002a
-   0x00000000deadbeef
-   0x000000000000029a
-   0x00000000baddcafe
-   0x00000000c00010ff
+	to_hex            
+	------------------
+	0xffffffffffffffd6
+	0x00000000deadbeef
+	0x000000000000029a
+	0x00000000baddcafe
+	0x00000000c00010ff
 
 
 ``INT`` data type
@@ -70,7 +70,7 @@ Output:
 	
 .. code-block:: postgres
 
-	INSERT INTO cool_numbers VALUES (42), (373592855), (666), (313509759), (322122982);
+	INSERT INTO cool_numbers VALUES (-42), (373592855), (666), (313509759), (322122982);
 	
 .. code-block:: postgres
 
@@ -80,10 +80,10 @@ Output:
 
 .. code-block:: none
 
-   to_hex            
-   ------------------
-   0x0000002a
-   0x16449317
-   0x0000029a
-   0x12afc77f
-   0x133334e6
+	to_hex            
+	----------
+	0xffffffd6
+	0x16449317
+	0x0000029a
+	0x12afc77f
+	0x133334e6
