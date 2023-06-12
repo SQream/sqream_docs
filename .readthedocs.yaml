@@ -26,4 +26,3 @@ formats: [htmlzip,pdf]
 python:
    install:
    - requirements: requirements.txt
-system_packages: true
