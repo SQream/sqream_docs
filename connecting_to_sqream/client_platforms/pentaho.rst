@@ -207,7 +207,6 @@ For more information about backing up users, permissions, or schedules, see `Bac
 
    3. Release the mouse button. The following options are displayed.
 
-       ::
    
    4. Select **Main output of step**.
    
