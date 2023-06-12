@@ -85,7 +85,7 @@ Basic Method
 Flag Attributes
 ~~~~~~~~~~~~~~~
 
-To enable basic LDAP authentication, configure the following **Cluster** flag attributes using the ``ALTER SYSTEM SET`` command:
+To enable basic LDAP authentication, configure the following cluster flag attributes using the ``ALTER SYSTEM SET`` command:
 
 .. list-table:: 
    :widths: auto
@@ -183,7 +183,7 @@ Advanced Method
 Flag Attributes
 ~~~~~~~~~~~~~~~
 
-To enable advanced LDAP authentication, configure the following **Cluster** flag attributes using the ``ALTER SYSTEM SET`` command:
+To enable advanced LDAP authentication, configure the following cluster flag attributes using the ``ALTER SYSTEM SET`` command:
 
 .. list-table:: 
    :widths: auto

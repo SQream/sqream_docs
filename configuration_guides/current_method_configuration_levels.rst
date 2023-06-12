@@ -4,17 +4,17 @@
 Cluster and Session Environment
 *******************************
 
-When configuring your SQreamDB environment, you have the option to use flags that apply to either the entire cluster or a specific session. Cluster configurations involve metadata and are persistent. Persistent modifications refer to changes made to a system or component that are saved and retained even after the system is restarted or shut down, allowing the modifications to persist over time.
+When configuring your SQreamDB environment, you have the option to use flags that apply to either the entire cluster or a specific session. Cluster configuration involve metadata and are persistent. Persistent modifications refer to changes made to a system or component that are saved and retained even after the system is restarted or shut down, allowing the modifications to persist over time.
 
-Session-based flags only apply to a specific session and are not persistent. Changes made using session-based flags are not visible to other users, and once the session ends, the flags return to their default values.
+Session flags only apply to a specific session and are not persistent. Changes made using session flags are not visible to other users, and once the session ends, the flags return to their default values.
 
-Cluster-based flag syntax:
+Cluster flag syntax:
 
 .. code-block:: postgress
 
 	ALTER SYSTEM SET <flagName>
 
-Session-based flag syntax:
+Session flag syntax:
 
 .. code-block:: postgress
 
