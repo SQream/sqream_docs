@@ -7,16 +7,15 @@ The ``REGEXP_REPLACE`` function finds and replaces text column substrings using 
 
 For related information, see the following:
 
-* `REGEXP_COUNT <https://docs.sqream.com/en/latest/reference/sql/sql_functions/scalar_functions/string/regexp_count.html>`_
-* `REGEXP_INSTR <https://docs.sqream.com/en/latest/reference/sql/sql_functions/scalar_functions/string/regexp_instr.html>`_
-* `REGEXP_SUBSTR <https://docs.sqream.com/en/latest/reference/sql/sql_functions/scalar_functions/string/regexp_substr.html>`_
+* :ref:`REGEXP_COUNT<regexp_count>`
+* :ref:`REGEXP_INSTR<regexp_instr>`
+* :ref:`REGEXP_SUBSTR<regexp_substr>`
 
 
 
 
 Syntax
---------------
-The following is a syntactic example of the ``REGEXP_REPLACE`` function:
+------
 
 .. code-block:: postgres
    
@@ -92,15 +91,15 @@ The following table shows the ``REGEXP_REPLACE`` test patterns:
          Any character that does not have a defined special meaning inside a [] pair matches only itself.
 
 Returns
-------------
+-------
 The ``REGEXP_REPLACE`` function returns the replaced input value.
 	 
 Notes
---------------
+-----
 The test pattern must be a literal string.
 
 Example
---------------
+-------
 The following is an example of the ``REGEXP_REPLACE`` function:
 
 .. code-block::
@@ -109,8 +108,12 @@ The following is an example of the ``REGEXP_REPLACE`` function:
    INSERT INTO test values('SWEDEN');
    SELECT REGEXP_REPLACE(country_name, 'WEDE', 'PAI') FROM test;
 
-   SELECT * FROM test;
+Output:
 
-The output generated from the example above is ``SPAIN``.
+.. code-block:: none
+
+	country_name|
+	------------+
+	SPAIN       |
 
 
