@@ -43,8 +43,7 @@ The following table shows the ``REGEXP_REPLACE`` arguments:
      - (Optional) Sets a specific occurrence to replace. Using ``0`` replaces all occurrences.
 
 Test Patterns
---------------
-The following table shows the ``REGEXP_REPLACE`` test patterns:
+-------------
 
 .. list-table::
    :widths: auto
