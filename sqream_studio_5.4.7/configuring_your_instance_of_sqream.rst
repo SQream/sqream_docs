@@ -10,7 +10,7 @@ Because session-based configurations are not persistent and are deleted when you
 
 Editing Your Parameters
 -------------------------------
-When configuring your instance of SQream in Studio you can edit parameters for the **Generic** and **Admin** parameters only.
+When configuring your instance of SQream in Studio you can edit session and cluster parameters only.
 
 Studio includes two types of parameters: toggle switches, such as **flipJoinOrder**, and text fields, such as **logSysLevel**. After editing a parameter, you can reset each one to its previous value or to its default value individually, or revert all parameters to their default setting simultaneously. Note that you must click **Save** to save your configurations.
 
