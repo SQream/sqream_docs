@@ -10,8 +10,6 @@ The **Configuration Guides** page describes the following configuration informat
    :maxdepth: 1
    :glob:
 
-   spooling
    configuring_sqream
+   spooling
    ldap
-   configuration_flags
-   previous_configuration_method
