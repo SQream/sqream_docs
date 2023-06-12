@@ -1,8 +1,8 @@
 .. _current_method_configuring_your_parameter_values:
 
-**************************
-Configuring Your Parameter Values
-**************************
+****************
+Parameter Values
+****************
 The method you must use to configure your parameter values depends on the configuration level. Each configuration level has its own command or set of commands used to configure values, as shown below:
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
