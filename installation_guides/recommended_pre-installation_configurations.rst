@@ -830,7 +830,6 @@ Installing the CUDA driver from the Repository is the recommended installation m
          $ wget https://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
          $ sudo yum localinstall cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
 		 
-.. warning:: For Power9 with V100 GPUs, you must install the **CUDA 10.1** driver.
 
 4. Install the CUDA drivers:
 
@@ -961,7 +960,7 @@ To Tune Up NVIDIA Performance when Driver Installed from the Repository
 
       $ sudo systemctl enable nvidia-persistenced
 	  
-5. For **V100/A100**, add the following lines:
+5. For **H100/A100**, add the following lines:
 
    .. code-block:: console
 
@@ -1000,7 +999,7 @@ To Tune Up NVIDIA Performance when Driver Installed from the Runfile
 		 
 3. Add the following lines:
 
-   * **For V100/A100**:
+   * **For H100/A100**:
 
       .. code-block:: console
 

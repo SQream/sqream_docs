@@ -52,7 +52,7 @@ An average single-node cluster can be a rackmount server or workstation, contain
          * 10x 3.84TB SSD 2.5in Hot plug for storage, RAID6
 
    * - GPU
-     - 2x A100 NVIDIA
+     - NVIDIA 2x A100 or H100
    * - Operating System
      - Red Hat Enterprise Linux v7.x or CentOS v7.x or Amazon Linux
 
@@ -97,7 +97,7 @@ The following table shows SQream's recommended hardware specifications:
          * Mellanox Connectx5/6 100G NVIDIA Network Card (if applicable) or other high speed network card minimum 40G compatible to customer’s infrastructure
          * 50 TB (NAS connected over GPFS, Lustre, Weka, or VAST) GPFS recommended
    * - GPU
-     - 2x A100 NVIDIA
+     - NVIDIA 2x A100 or H100
    * - Operating System
      - Red Hat Enterprise Linux v7.x or CentOS v7.x or Amazon Linux
 	 
@@ -200,9 +200,9 @@ SQream relies on multi-core Intel Gold Xeon processors or IBM POWER9 processors,
 
 GPU Compute and RAM
 -------------------------
-The NVIDIA Tesla range of high-throughput GPU accelerators provides the best performance for enterprise environments. Most cards have ECC memory, which is crucial for delivering correct results every time. SQream recommends the NVIDIA Tesla V100 32GB or NVIDIA Tesla A100 40GB GPU for best performance and highest concurrent user support.
+The NVIDIA Tesla range of high-throughput GPU accelerators provides the best performance for enterprise environments. Most cards have ECC memory, which is crucial for delivering correct results every time. SQream recommends the  NVIDIA Tesla A100 40GB or H100 GPU for best performance and highest concurrent user support.
 
-GPU RAM, sometimes called GRAM or VRAM, is used for processing queries. It is possible to select GPUs with less RAM, like the NVIDIA Tesla V100 16GB or P100 16GB, or T4 16GB. However, the smaller GPU RAM results in reduced concurrency, as the GPU RAM is used extensively in operations like JOINs, ORDER BY, GROUP BY, and all SQL transforms.
+GPU RAM, sometimes called GRAM or VRAM, is used for processing queries. It is possible to select GPUs with less RAM. However, the smaller GPU RAM results in reduced concurrency, as the GPU RAM is used extensively in operations like JOINs, ORDER BY, GROUP BY, and all SQL transforms.
 
 RAM
 --------
@@ -223,7 +223,7 @@ Storage
 -----------
 For clustered scale-out installations, SQream relies on NAS storage. For stand-alone installations, SQream relies on redundant disk configurations, such as RAID 5, 6, or 10. These RAID configurations replicate blocks of data between disks to avoid data loss or system unavailability. 
 
-SQream recommends using enterprise-grade SAS SSD or NVMe drives. For a 32-user configuration, the number of GPUs should roughly match the number of users. SQream recommends 1 Tesla V100 or A100 GPU per 2 users, for full, uninterrupted dedicated access.
+SQream recommends using enterprise-grade SAS SSD or NVMe drives. For a 32-user configuration, the number of GPUs should roughly match the number of users. SQream recommends 1 Tesla A100 GPU or H100 per 2 users, for full, uninterrupted dedicated access.
 
 
 .. note:: Non production HW requirements may be found at `Non Production HW Requirements <non_production_hardware_guide.html>`_
