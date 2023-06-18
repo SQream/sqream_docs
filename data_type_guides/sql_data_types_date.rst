@@ -95,7 +95,6 @@ The following is an example of the correct output:
    1997-01-01 00:00:00.0,1955-11-05
    
 
-.. warning:: Some client applications may alter the ``DATETIME`` value by modifying the timezone.
 
 Date Casts and Conversions
 ^^^^^^^^^^^^^^^^^^^^^^^
