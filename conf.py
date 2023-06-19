@@ -38,6 +38,7 @@ release = '4.3'
 extensions = [
     'sphinx_rtd_theme'
     ,'notfound.extension' # 404 handling
+    ,'versionwarning.extension'
 ]
 
 # Mark 'index' as the main page
