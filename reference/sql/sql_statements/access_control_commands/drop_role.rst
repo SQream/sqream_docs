@@ -4,29 +4,22 @@
 DROP ROLE
 *****************
 
-``DROP ROLE`` remove roles.
-
-Learn more about the permission system in the :ref:`access control guide<access_control>`.
+The ``DROP ROLE`` command is used for removing roles.
 
 See also :ref:`create_role`.
 
-Permissions
-=============
-
-To drop a role, the current role must have a ``SUPERUSER`` cluster-level permission.
-
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
    drop_role_statement ::=
-      DROP ROLE role_name ;
+      DROP ROLE <role_name>
 
    role_name ::= identifier  
-
+   
 Parameters
-============
+==========
 
 .. list-table:: 
    :widths: auto
@@ -35,15 +28,18 @@ Parameters
    * - Parameter
      - Description
    * - ``role_name``
-     - The name of the role to drop.
-
+     - Role name to be removed
 
 Examples
-===========
-
-Dropping a role
------------------------------------------
+========
 
 .. code-block:: postgres
 
    DROP ROLE new_role;
+
+Permissions
+===========
+
+To drop a role, the current role must have a ``SUPERUSER`` permission.
+
+You can learn more about system permissions in the :ref:`access control guide<access_control>`.
