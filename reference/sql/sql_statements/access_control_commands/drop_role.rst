@@ -4,7 +4,7 @@
 DROP ROLE
 *****************
 
-The ``DROP ROLE`` command is used for removing roles.
+The ``DROP ROLE`` command is used for removing roles from the database. The optional ``IF EXISTS`` clause can be included to prevent an error if the specified role does not exist. If the ``IF EXISTS`` clause is omitted and the role does not exist, an error will be raised.
 
 See also :ref:`create_role`.
 
@@ -14,7 +14,7 @@ Syntax
 .. code-block:: postgres
 
    drop_role_statement ::=
-      DROP ROLE <role_name>
+      DROP ROLE [IF EXISTS] <role_name>
 
    role_name ::= identifier  
    
