@@ -41,7 +41,6 @@ extensions = [
     'sphinx_rtd_theme' 
     ,'notfound.extension' # 404 handling
     ,'versionwarning.extension'
-    
 ]
 
 # Mark 'index' as the main page
