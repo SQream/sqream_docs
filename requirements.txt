@@ -8,3 +8,4 @@ openssl-python>=0.1.1
 sphinx-notfound-page
 Pygments>=2.4.0
 pdftex
+sphinx-version-warning
