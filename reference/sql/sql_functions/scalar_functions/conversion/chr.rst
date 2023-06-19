@@ -11,7 +11,20 @@ Syntax
 
 .. code-block:: postgres
 
-   CHR(n)
+   CHR(int)
+   
+Argument
+========
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Argument
+     - Description
+   * - ``int``
+     - Integer argument that represents the ASCII code of the character you want to retrieve
+
 
 Returns
 =======
