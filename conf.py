@@ -42,7 +42,7 @@ extensions = [
     ,'notfound.extension' # 404 handling
     ,'versionwarning.extension'
 ]
-
+ 
 # Mark 'index' as the main page
 master_doc = 'index'
 
