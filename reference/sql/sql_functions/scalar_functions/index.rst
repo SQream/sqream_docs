@@ -86,3 +86,4 @@ The **Built-In Scalar Functions** page describes functions that return one value
    * :ref:`upper`
    * :ref:`select_ascii`
    * :ref:`sign`
+   * :ref:`chr`
