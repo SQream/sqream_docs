@@ -1,9 +1,8 @@
 .. _supported_data_types:
 
-*************************
+********************
 Supported Data Types
-*************************
-The **Supported Data Types** page describes SQream's supported data types:
+********************
 
 The following table shows the supported data types.
 
@@ -71,5 +70,10 @@ The following table shows the supported data types.
      - 8 bytes
      - ``'1955-11-05 01:24:00.000'``
      -  ``TIMESTAMP``, ``DATETIME2``
+   * - ``ARRAY``
+     - Array of values
+     - Variable
+     - ``[1,2,3]``
+     -  NA
 
 .. note:: SQream compresses all columns and types. The data size noted is the maximum data size allocation for uncompressed data.

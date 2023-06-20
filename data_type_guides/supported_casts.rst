@@ -15,3 +15,4 @@ The **Supported Casts** section describes supported casts for the following type
    sql_data_types_floating_point
    sql_data_types_string
    sql_data_types_date
+   sql_data_type_array

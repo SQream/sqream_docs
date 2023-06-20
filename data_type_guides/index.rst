@@ -1,8 +1,8 @@
 .. _data_type_guides:
 
-*************************
-Data Type Guides
-*************************
+**********
+Data Types
+**********
 This section describes the following:
 
 .. toctree::
