@@ -5,9 +5,6 @@ COPY TO
 **********************
 The **COPY TO** page includes the following sections:
 
-.. contents:: 
-   :local:
-   :depth: 1
 
 Overview
 ==========
