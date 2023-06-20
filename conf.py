@@ -30,7 +30,10 @@ author = 'SQream Documentation'
 # The full version, including alpha/beta/rc tags
 release = '4.3'
 
-
+# -- Version Warning Banner configuration ------------------------------------
+versionwarning_messages = {
+    'latest': 'This is a custom message only for version "latest" of this documentation.',
+}
 
 # -- General configuration ---------------------------------------------------
 
