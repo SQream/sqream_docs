@@ -1,8 +1,9 @@
 .. _running_the_sqream_sql_client:
 
-****************************
+*****************************
 Running the SQream SQL Client
-****************************
+*****************************
+
 The following example shows how to run the SQream SQL client:
 
 .. code-block:: console
