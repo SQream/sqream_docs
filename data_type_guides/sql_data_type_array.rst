@@ -15,7 +15,7 @@ Defining an array is done by appending the ``[]`` notation to a supported data t
 
 .. code-block::
 
-	CREAT TABLE <table_name> (<column1> TEXT[], <column2> INT[])
+	CREATE TABLE <table_name> (<column1> TEXT[], <column2> INT[])
 	
 	INSERT INTO TABLE <table_name> VALUES ARRAY[<'a','b','c'>], ARRAY[<1,2,3>]
 
@@ -66,9 +66,9 @@ Creating a table with arrayed columns:
 
 .. code-block::
 
-	CREAT TABLE array (column1 TEXT[], column2 INT[]);
+	CREATE TABLE array (column1 TEXT[], column2 INT[]);
 	
-Inserting arrayed values into a table:
+Inserting array values into a table:
 
 .. code-block::
 	
@@ -79,13 +79,28 @@ Converting arrayed elements into a set of rows:
 .. code-block::
 	
 	SELECT UNNEST(ARRAY['a','b','c'], ARRAY[1,2,3]);
-	
-Output:
 
 .. code-block::
 	
-	column1	|	column2
+	column1	| column2
 	--------+----------
 	a       | 1
 	b       | 2
 	c       | 3
+	
+Updating table values:
+
+.. code-block::
+
+	INSERT INTO TABLE array VALUES ARRAY['a','b','c'], ARRAY[1,2,3];
+	
+	UPDATE array SET arr[0] = '{7,8,9}';
+	
+	SELECT * FROM array;
+	
+.. code-block::
+
+	column1	| column2
+	--------+----------
+	
+	
