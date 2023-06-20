@@ -38,6 +38,18 @@ versionwarning_admonition_type = 'tip'
 versionwarning_banner_title = 'Tip'
 versionwarning_body_selector = 'div[itemprop="articleBody"]'
 
+versionwarning_api_url = {
+    "build": "https://readthedocs.com/api/v2/build/",
+    "command": "https://readthedocs.com/api/v2/command/",
+    "version": "https://readthedocs.com/api/v2/version/",
+    "project": "https://readthedocs.com/api/v2/project/",
+    "organization": "https://readthedocs.com/api/v2/organization/",
+    "remote/org": "https://readthedocs.com/api/v2/remote/org/",
+    "remote/repo": "https://readthedocs.com/api/v2/remote/repo/",
+    "remote/account": "https://readthedocs.com/api/v2/remote/account/"
+
+}
+
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
