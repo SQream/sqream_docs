@@ -13,6 +13,8 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+# print(sys.executable)
+
 
 import sphinx_rtd_theme
 
@@ -28,7 +30,10 @@ author = 'SQream Documentation'
 # The full version, including alpha/beta/rc tags
 release = '4.2'
 
-
+# -- Version Warning Banner configuration ------------------------------------
+versionwarning_messages = {
+    'latest': 'This is a custom message only for version "latest" of this documentation.',
+}
 
 # -- General configuration ---------------------------------------------------
 
@@ -36,10 +41,11 @@ release = '4.2'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx_rtd_theme'
+    'sphinx_rtd_theme' 
     ,'notfound.extension' # 404 handling
+    ,'versionwarning.extension'
 ]
-
+ 
 # Mark 'index' as the main page
 master_doc = 'index'
 
@@ -49,7 +55,7 @@ templates_path = ['_templates']
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store'] 
 
 
 # -- Options for HTML output -------------------------------------------------
