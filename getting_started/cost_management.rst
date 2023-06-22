@@ -88,4 +88,5 @@ To enable the automatic resumption of your environment, activate the **Automatic
 3. Toggle **Automatically resume workers** on/off.
 
 .. topic:: Subscription Management
-To manage your BLUE subscription, follow this link.
+
+  To manage your BLUE subscription, follow this link.
