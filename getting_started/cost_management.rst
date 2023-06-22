@@ -87,6 +87,6 @@ To enable the automatic resumption of your environment, activate the **Automatic
 2. Select the pool of which you wish to set automatic resumption and make sure it is now highlighted.
 3. Toggle **Automatically resume workers** on/off.
 
-.. topic:: Subscription Management
+.. topic:: Subscription
 
   To manage your BLUE subscription, follow this link.
