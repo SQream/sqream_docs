@@ -4,7 +4,7 @@
 Managing Your Resources
 ***********************
 
-Resource Pool enables you to optimize resource usage by managing and customizing your BLUE clusters and your BLUE environment runtime. This is highly effective for organizations that may wish to allocate budget resources according to different departments, use more than one concurrency mode for different purposes, and control their environment's runtime and downtime for better end-of-the-month costs. 
+Resource Pool enables you to optimize resource usage by managing and customizing your BLUE clusters and your BLUE environment runtime. This is highly effective for organizations that may wish to allocate budget resources according to different departments, use multiple concurrency modes for various purposes, and control their environment's runtime and downtime for better end-of-the-month costs. 
 
 Managing Clusters
 =================
@@ -22,7 +22,7 @@ Creating a New Pool
 Editing Existing Pools
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Press the three-dot menu that is located in the top right corner of the pool you wish to edit and select:
+Press the three-dot menu that is located in the top right corner of the pool you wish to edit and select one of the following:
 
 * **Rename**
 * **Make Default**
@@ -33,16 +33,18 @@ Managing Cost
 
 When you suspend an environment, its resources are temporarily released, which allows billing to be paused for a set duration during which the environment is not expected to be used. If your BLUE environment is suspended, it means that your Workers are not operational, and statements cannot be executed. However, after you resume operation, the resource count will return to its pre-suspension value. It's important to note that your cluster remains accessible, and you can still perform administrative actions like resize and flow management.
 
-Suspending Your BLUE Environment
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+You can set each of your pools with its own unique suspension policy.
 
-To control the automatic suspension of your environment through the BLUE web interface, navigate to the **Settings** tab. 
-Within the **Worker Management** section, you can manage worker activity.
+Automatically Suspending and Resuming Your BLUE Environment
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To automatically suspend idle workers after a defined number of minutes, activate the **Automatically Suspend Workers** feature.
+To enable the automatic suspension of idle workers, activate the **Automatically Suspend Workers** feature.
 
-At the bottom of the page you will find the **Suspension By** feature. This feature provides three suspension method options that you can choose from. 
-Use this feature to define your preferred suspension method.
+1. In the sidebar, go to **Settings** and select the **Resource Pool** tab.
+2. Select the pool of which you wish to set automatic suspension and make sure it is now highlighted.
+3. Toggle **Automatically suspend workers** on/off.
+4. If toggled on, make sure to define the **Idle suspension period**.
+5. If toggled on, go to **Suspension policy** and select one of the suspension methods:
 
 .. list-table:: 
    :widths: auto
@@ -57,13 +59,16 @@ Use this feature to define your preferred suspension method.
    * - Graceful shutdown and pending requests
      - Suspension of workers will occur only after completion of all running statements and execution of all queued statements
 
-Resuming Your BLUE Environment
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To enable the automatic resumption of your environment, activate the **Automatically Resume Workers** feature.
 
-To control the automatic resumption of your environment through the BLUE web interface, navigate to the **Settings** tab. 
+1. In the sidebar, go to **Settings** and select the **Resource Pool** tab.
+2. Select the pool of which you wish to set automatic resumption and make sure it is now highlighted.
+3. Toggle **Automatically resume workers** on/off.
+
+
 Within the **Worker Management** section, you can manage worker activity to control Real Time Communication (RTC).
 
-Activate the **Automatically Resume Workers** feature to enable the resumption of your environment by executing statements.
+
 
 **Subscription Management**
 To manage you BLUE subscription, follow this link.
