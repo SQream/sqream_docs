@@ -9,12 +9,12 @@ You may manage your BLUE resources using the Resource Pool feature and manage yo
 Cluster Management
 ==================
 
-For best resource usage and allocation, define a number of resource pools and for each pool, define the number of designated Workers.   
+For best resource usage and allocation, define the number of resource pools and for each pool, define the number of designated Workers.   
 
 Cost Management
 ===============
 
-When you suspend an environment, its resources are temporarily released, which allows billing to be paused for a set duration during which the environment is not expected to be used. If your BLUE environment is suspended, it means that your :ref:`Workers<glossary>` are not operational, and statements cannot be executed. However, after you resume operation, the resource count will return to its pre-suspension value. It's important to note that your cluster remains accessible, and you can still perform administrative actions like resize and flow management.
+When you suspend an environment, its resources are temporarily released, which allows billing to be paused for a set duration during which the environment is not expected to be used. If your BLUE environment is suspended, it means that your :ref:`Workers <glossary>` are not operational, and statements cannot be executed. However, after you resume operation, the resource count will return to its pre-suspension value. It's important to note that your cluster remains accessible, and you can still perform administrative actions like resize and flow management.
 
 Suspending Your BLUE Environment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
