@@ -28,12 +28,34 @@ Press the three-dot menu that is located in the top right corner of the pool you
 * **Make Default**
 * **Delete Pool**
 
+Setting Worker Parallelism Policy
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You can manage worker activity to control Real-Time Communication (RTC) and concurrency.
+
+1. In the sidebar, go to **Settings** and select the **Resource Pool** tab.
+2. Select the pool of which you wish to set automatic resumption and make sure it is now highlighted.
+3. Under **Parallelism Policy**, select one of the policies:
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+
+   * - Policy
+     - Description
+   * - No parallelism
+     - 
+   * - Partial parallelism (50% of workers)
+     - 
+   * - Maximum parallelism
+     - 
+
 Managing Cost
 =============
 
 When you suspend an environment, its resources are temporarily released, which allows billing to be paused for a set duration during which the environment is not expected to be used. If your BLUE environment is suspended, it means that your Workers are not operational, and statements cannot be executed. However, after you resume operation, the resource count will return to its pre-suspension value. It's important to note that your cluster remains accessible, and you can still perform administrative actions like resize and flow management.
 
-You can set each of your pools with its own unique suspension policy.
+You can set each of your pools with a unique suspension policy.
 
 Setting Automatic Worker Suspension and Resumption
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -64,28 +86,6 @@ To enable the automatic resumption of your environment, activate the **Automatic
 1. In the sidebar, go to **Settings** and select the **Resource Pool** tab.
 2. Select the pool of which you wish to set automatic resumption and make sure it is now highlighted.
 3. Toggle **Automatically resume workers** on/off.
-
-Setting Worker Parallelism Policy
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-You can manage worker activity to control Real-Time Communication (RTC) and concurrency.
-
-1. In the sidebar, go to **Settings** and select the **Resource Pool** tab.
-2. Select the pool of which you wish to set automatic resumption and make sure it is now highlighted.
-3. Under **Parallelism Policy**, select one of the policies:
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-
-   * - Policy
-     - Description
-   * - No parallelism
-     - 
-   * - Partial parallelism (50% of workers)
-     - 
-   * - Maximum parallelism
-     - 
 
 **Subscription Management**
 To manage your BLUE subscription, follow this link.
