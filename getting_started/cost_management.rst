@@ -35,8 +35,8 @@ When you suspend an environment, its resources are temporarily released, which a
 
 You can set each of your pools with its own unique suspension policy.
 
-Automatically Suspending and Resuming Your BLUE Environment
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Setting Automatic Worker Suspension and Resumption
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 To enable the automatic suspension of idle workers, activate the **Automatically Suspend Workers** feature.
 
@@ -65,10 +65,27 @@ To enable the automatic resumption of your environment, activate the **Automatic
 2. Select the pool of which you wish to set automatic resumption and make sure it is now highlighted.
 3. Toggle **Automatically resume workers** on/off.
 
+Setting Worker Parallelism Policy
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Within the **Worker Management** section, you can manage worker activity to control Real Time Communication (RTC).
+You can manage worker activity to control Real-Time Communication (RTC) and concurrency.
 
+1. In the sidebar, go to **Settings** and select the **Resource Pool** tab.
+2. Select the pool of which you wish to set automatic resumption and make sure it is now highlighted.
+3. Under **Parallelism Policy**, select one of the policies:
 
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+
+   * - Policy
+     - Description
+   * - No parallelism
+     - 
+   * - Partial parallelism (50% of workers)
+     - 
+   * - Maximum parallelism
+     - 
 
 **Subscription Management**
-To manage you BLUE subscription, follow this link.
+To manage your BLUE subscription, follow this link.
