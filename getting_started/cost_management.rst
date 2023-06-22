@@ -4,17 +4,19 @@
 Managing Your Resources
 ***********************
 
+Resource Pool enables you to optimize resource usage by managing and customizing your BLUE clusters and your BLUE environment runtime. This is highly effective for organizations that may wish to allocate budget resources according to different departments, use more than one concurrency mode for different purposes, and control their environment's runtime and downtime for controlling end-of-the-month costs. 
+
 You may manage your BLUE resources using the Resource Pool feature and manage your monthly cost by suspending idle Workers.
 
-Cluster Management
-==================
+Managing Clusters
+=================
 
 For best resource usage and allocation, define the number of resource pools and for each pool, define the number of designated Workers.   
 
-Cost Management
-===============
+Managing Cost
+=============
 
-When you suspend an environment, its resources are temporarily released, which allows billing to be paused for a set duration during which the environment is not expected to be used. If your BLUE environment is suspended, it means that your :ref:`Workers <glossary>` are not operational, and statements cannot be executed. However, after you resume operation, the resource count will return to its pre-suspension value. It's important to note that your cluster remains accessible, and you can still perform administrative actions like resize and flow management.
+When you suspend an environment, its resources are temporarily released, which allows billing to be paused for a set duration during which the environment is not expected to be used. If your BLUE environment is suspended, it means that your Workers are not operational, and statements cannot be executed. However, after you resume operation, the resource count will return to its pre-suspension value. It's important to note that your cluster remains accessible, and you can still perform administrative actions like resize and flow management.
 
 Suspending Your BLUE Environment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
