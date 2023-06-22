@@ -4,14 +4,25 @@
 Managing Your Resources
 ***********************
 
-Resource Pool enables you to optimize resource usage by managing and customizing your BLUE clusters and your BLUE environment runtime. This is highly effective for organizations that may wish to allocate budget resources according to different departments, use more than one concurrency mode for different purposes, and control their environment's runtime and downtime for controlling end-of-the-month costs. 
-
-You may manage your BLUE resources using the Resource Pool feature and manage your monthly cost by suspending idle Workers.
+Resource Pool enables you to optimize resource usage by managing and customizing your BLUE clusters and your BLUE environment runtime. This is highly effective for organizations that may wish to allocate budget resources according to different departments, use more than one concurrency mode for different purposes, and control their environment's runtime and downtime for better end-of-the-month costs. 
 
 Managing Clusters
 =================
 
-For best resource usage and allocation, define the number of resource pools and for each pool, define the number of designated Workers.   
+You can define the number of resource pools you wish to create and the number of workers you wish to designate for each pool to optimize the allocation and usage of your resources. 
+
+Creating a New Pool
+^^^^^^^^^^^^^^^^^^^
+
+1. In the sidebar, go to **Settings** and select the **Resource Pool** tab.
+   All of your workers are assigned to the default **SQream** pool.
+2. To create a new pool, press **Create New Pool**, provide a pool name and assign workers.
+   The number of workers assigned to the new pool will automatically be reduced from your default pool.
+
+Editing Existing Pools
+^^^^^^^^^^^^^^^^^^^^^^
+
+Press the three-dot menu that is located in the top right corner of the pool you wish to edit and select **Rename**, **Make Default**, or **Delete Pool**.
 
 Managing Cost
 =============
