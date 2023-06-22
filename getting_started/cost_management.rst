@@ -22,7 +22,11 @@ Creating a New Pool
 Editing Existing Pools
 ^^^^^^^^^^^^^^^^^^^^^^
 
-Press the three-dot menu that is located in the top right corner of the pool you wish to edit and select **Rename**, **Make Default**, or **Delete Pool**.
+Press the three-dot menu that is located in the top right corner of the pool you wish to edit and select:
+
+* **Rename**
+* **Make Default**
+* **Delete Pool**
 
 Managing Cost
 =============
