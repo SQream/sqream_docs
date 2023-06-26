@@ -4,7 +4,7 @@
 SUBSTRING
 *********
 
-Returns a substring of the input starting at ``start_pos``.
+the ``SUBSTRING`` function is used to extract a portion of a string based on specified starting position and length.
 
 .. note:: Some systems call this function ``SUBSTR``.
 
@@ -29,9 +29,9 @@ Arguments
    * - ``expr``
      - Original string expression from which you want to extract the substring
    * - ``start_pos``
-     - The start parameter, which accepts an integer or bigint expression, indicates the position from which the returned characters begin. If start is less than 1, the expression starts from the first character. The number of characters returned is determined by the larger value between start + length - 1 and 0. If start exceeds the number of characters in the expression, an empty string is returned
+     - Accepts an integer or bigint expression that specifies the position within the string where the extraction should begin. If start exceeds the number of characters in the expression, an empty string is returned.  If start is less than 1, the expression starts from the first character
    * - ``length``
-     - A positive integer or bigint expression that specifies the number of characters to be returned from the expression. If the sum of start and length exceeds the total number of characters in the expression, the entire value starting from the position specified by start is returned. If length is negative or zero, the function returns an empty string
+     - Accepts an integer or bigint expression that specifies the number of characters to be returned from the expression. If the sum of start and length exceeds the total number of characters in the expression, the entire value starting from the position specified by start is returned. If length is negative or zero, the function returns an empty string
 
 Returns
 =======
