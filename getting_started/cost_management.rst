@@ -111,3 +111,63 @@ Manually Suspending and Resuming Pools
 .. topic:: Subscription
 
   To manage your BLUE subscription, follow this link.
+
+Syntax
+======
+
+.. code-block::
+
+	DESCRIBE [RESOURCE] POOLS
+	
+	USE [RESOURCE] POOL <pool_name>
+	
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Description
+   * - ``pool_name``
+     - Specifies the name of a specific pool 	
+	
+Examples
+^^^^^^^^
+	
+Listing all existing pools:
+
+.. code-block::
+
+
+
+Shifting between pools:
+
+.. code-block::
+
+	
+
+Connection Strings
+==================
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Description
+   * - ``pool``
+     - Specifies the name of a specific pool to connect to
+	 
+Examples
+^^^^^^^^
+
+Connecting to a specified pool:
+
+.. code-block::
+
+	sudo java -jar jdbc-console-0.0.88-43.jar --host=myhost.isqream.com --access-token=######### --resource-pool=ETL
+
+Connecting to a default pool:
+
+.. code-block::
+
+	sudo java -jar jdbc-console-0.0.88-43.jar --host=myhost.isqream.com --access-token=######### --resource-pool=pool1
