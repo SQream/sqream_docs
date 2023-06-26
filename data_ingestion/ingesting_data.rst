@@ -76,10 +76,8 @@ For more information, see the following:
 * :ref:`workload_manager`
 
 Supported Load Methods
--------------------------------
+----------------------
 You can use the ``COPY FROM`` syntax to load CSV files.
-
-.. note:: The ``COPY FROM`` cannot be used for loading data from Parquet and ORC files.
 
 You can use foreign tables to load text files, Parquet, and ORC files, and to transform your data before generating a full table, as described in the following table:
 
@@ -95,8 +93,8 @@ You can use foreign tables to load text files, Parquet, and ORC files, and to tr
      - Streaming Data
    * - COPY FROM
      - Supported
-     - Not supported
-     - Not supported
+     - Supported
+     - Supported
      - Not supported
    * - Foreign tables
      - Supported
