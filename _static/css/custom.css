@@ -36,7 +36,7 @@ div[data-toggle="rst-versions"] {
 
 /* Show the copybutton */
 button.copybtn {
-   opacity: ;
+   opacity: hover;
 }
 
 kbd
