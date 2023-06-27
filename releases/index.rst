@@ -1,11 +1,11 @@
 .. _releases:
 
-**********
+*************
 Release Notes
-**********
+*************
 
    
-:ref:`september_2023`
+:ref:`may_2023`
 
 * `New jobs page <https://docs.sqream.com/en/blue/releases/2023/september.html#new-jobs-page>`_
 * `Log in using an Identity Provider (IDP) <https://docs.sqream.com/en/blue/releases/2023/september.html#log-in-using-an-identity-provider-idp>`_
