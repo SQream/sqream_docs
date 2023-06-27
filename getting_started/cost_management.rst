@@ -158,7 +158,7 @@ This command requires ``CONNECT`` permission.
 	DESCRIBE [RESOURCE] POOLS
 	DESC [RESOURCE] POOLS
 
-The ``USE [RESOURCE] POOL`` command enables you to shift between pools within a session. 
+The ``USE [RESOURCE] POOL`` command lets you shift between pools within a session. 
 
 This command requires ``CONNECT`` permission.
 
@@ -190,7 +190,7 @@ Listing all existing pools:
 
 .. code-block::
 
-	DESCRIBE [RESOURCE] POOLS;
+	DESCRIBE RESOURCE POOLS;
 
 Shifting between pools:
 

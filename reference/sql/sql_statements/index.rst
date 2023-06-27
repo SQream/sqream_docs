@@ -39,6 +39,8 @@ Data Definition Commands (DDL)
      - Create a new table in the database using results from a select query
    * - :ref:`CREATE_VIEW<create_view>`
      - Create a new view in the database
+   * - :ref:`DESCRIBE_POOLS<describe_pools>`
+     - List all of your pools
    * - :ref:`DESCRIBE_TABLE<describe_tables>`
      - List information about tables in your database
    * - :ref:`DROP_CLUSTERING_KEY<drop_clustering_key>`
@@ -59,6 +61,12 @@ Data Definition Commands (DDL)
      - Rename a column
    * - :ref:`RENAME_TABLE<rename_table>`
      - Rename a table
+   * - :ref:`USE_DATABASE<use_database>`
+     - Lets you shift between databases within an existing session
+   * - :ref:`USE_POOL<use_pool>`
+     - Lets you shift between pools within a session
+   * - :ref:`USE_SCHEMA<use_schema>`
+     - Lets you shift between schemes within an existing session
 
 
 Data Manipulation Commands (DML)
@@ -71,18 +79,10 @@ Data Manipulation Commands (DML)
    
    * - Command
      - Usage
-   * - :ref:`CREATE_TABLE_AS<create_table_as>`
-     - Create a new table in the database using results from a select query
-   * - :ref:`DELETE<delete>`
-     - Delete specific rows from a table
    * - :ref:`COPY_TO<copy_to>`
      - Export a select query or entire table to CSV files
    * - :ref:`SELECT<select>`
      - Select rows and column from a table
-   * - :ref:`TRUNCATE<truncate>`
-     - Delete all rows from a table
-   * - :ref:`UPDATE<update>`
-     - Modify the value of certain columns in existing rows without creating a table
    * - :ref:`VALUES<values>`
      - Return rows containing literal values
 
