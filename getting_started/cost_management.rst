@@ -4,14 +4,14 @@
 Managing Your Resources
 ***********************
 
-You can optimize the utilization of your resources using the **Resource Pool** panel which enables you to manage your end-of-the-month cost by lowering runtime when your BLUE environment is idle and to enhance cluster utilization by allocating Real-Time Communication (RTC) Workers according to specific needs of different departments in your organization, whether it be high concurrency or high performance.
+You can optimize the utilization of your resources using the **Resource Pool** panel which enables you to manage your end-of-the-month cost by lowering runtime when your BLUE environment is idle and to enhance cluster utilization by allocating Workers according to specific needs of different departments in your organization, whether it be high concurrency or high performance.
 
 All **Resource Pool** operations require a ``ClusterAdmin`` permission.
 
 Managing Cluster
 ================
 
-By default, your cluster has a single default pool that is assigned all the Real-Time Communication (RTC) workers in the cluster.
+By default, your cluster has a single default pool that is assigned all the workers in the cluster.
 
 Creating a New Pool
 ^^^^^^^^^^^^^^^^^^^
@@ -37,7 +37,7 @@ To edit an existing pool, it must be in either an idle or suspended state.
 Setting Worker Parallelism Policy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Each pool in the system is associated with a parallelism policy that determines whether it prioritizes high performance or high concurrency. By configuring different pools with distinct parallelism modes, you can optimize resource usage based on the specific needs of various organizational departments or work groups.
+Each pool in the system is associated with a parallelism policy that determines whether it prioritizes performance or high concurrency. By configuring different pools with distinct parallelism modes, you can optimize resource usage based on the specific needs of various organizational departments or work groups.
 
 1. In the sidebar, go to **Settings** and select the **Resource Pool** tab.
 2. Select a pool you wish to set.
@@ -108,10 +108,6 @@ Manually Suspending and Resuming Pools
 3. To suspend pool ,under **Suspension Policy**, select **Suspend Now**
 4. To resume pool ,under **Suspension Policy**, select **Activate Now**
 
-.. topic:: Subscription
-
-  To manage your BLUE subscription, follow this link.
-
 Syntax
 ======
 
@@ -164,10 +160,10 @@ Connecting to a specified pool:
 
 .. code-block::
 
-	sudo java -jar jdbc-console-0.0.88-43.jar --host=myhost.isqream.com --access-token=######### --resource-pool=ETL
+	sudo java -jar jdbc-console-0.0.88-43.jar --host=myhost.isqream.com --access-token=######### --pool=ETL
 
 Connecting to a default pool:
 
 .. code-block::
 
-	sudo java -jar jdbc-console-0.0.88-43.jar --host=myhost.isqream.com --access-token=######### --resource-pool=pool1
+	sudo java -jar jdbc-console-0.0.88-43.jar --host=myhost.isqream.com --access-token=######### --pool
