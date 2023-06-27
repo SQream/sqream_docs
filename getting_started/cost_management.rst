@@ -16,23 +16,31 @@ By default, your cluster has a single default pool that is assigned all the work
 Creating a New Pool
 ^^^^^^^^^^^^^^^^^^^
 
-When creating a pool, it is crucial to remember that Worker assignment is only possible during the initial setup. It is recommended to carefully consider the number of Workers you intend to assign to new pools before their creation.
+When creating new pools, Workers must be assigned to them. The number of Workers allocated to the new pool will be automatically deducted from your default pool.
 
 1. In the sidebar, go to **Settings** and select the **Resource Pool** tab.
-2. To create a new pool, press **Create New Pool**, provide a pool name, and assign Workers.
-
-   The number of Workers assigned to the new pool will automatically be reduced from your default pool.
+2. To create a new pool, select the **Create New Pool** button, provide a pool name, and assign Workers.
+   Pool names are rendered as identifiers, which means they may not include whitespace characters. 
+   
+   See full list of :ref:`identifier rules<keywords_and_identifiers>`.
 
 Editing Existing Pools
 ^^^^^^^^^^^^^^^^^^^^^^
 
-To edit an existing pool, it must be in either an idle or suspended state.
+To edit an existing pool, the pool must be in either an idle or suspended state.
 
-1. Press the three-dot menu that is located in the top right corner of the pool you wish to edit and select one of the following:
+1. In the sidebar, go to **Settings** and select the **Resource Pool** tab.
+2. Select a pool you wish to edit.
+   
+   The pool you selected is now highlighted.
 
-   * Rename
-   * Make Default
-   * Delete Pool
+3. To add or reduce Workers, in the pool's settings panel, select the number to the right of the **Worker Count**, and use the ``+`` or ``-`` key.
+4. To make this pool your default pool, go to the three-dot menu located in the top right corner of the pool panel, and choose **Make Default**.
+5. To rename pool, you may either:
+
+   * Go to the three-dot menu located in the top right corner of the pool panel and choose **Rename**
+   * Select the pool name in the pool's settings panel and rename pool
+6. To delete pool, go to the three-dot menu located in the top right corner of the pool panel and choose **Delete**.
 
 Setting Worker Parallelism Policy
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -65,21 +73,46 @@ Each pool in the system is associated with a parallelism policy that determines 
 Managing Cost
 =============
 
-When you suspend an environment, its resources are temporarily released, which allows billing to be paused for a set duration during which the environment is not expected to be used. If your BLUE environment is suspended, it means that your Workers are not operational, and statements cannot be executed. However, after you resume operation, the resource count will return to its pre-suspension value. It's important to note that your cluster remains accessible, and you can still perform administrative actions like resize and flow management.
+When you suspend an environment, its resources are temporarily released, which allows billing to be paused for a set duration during which the environment is not expected to be used. If your BLUE environment is suspended, it means that your Workers are not operational, and statements cannot be executed. However, after you resume operation, the resource count will return to its pre-suspension value. It's important to note that your cluster remains accessible, and you can still perform administrative actions.
 
 You have the flexibility to manually or automatically suspend and resume each of your pools based on your specific requirements. 
 
 Setting Automatic Pool Suspension and Resumption
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To enable the automatic suspension of idle workers, activate the **Automatically Suspend Workers** feature.
+**Suspending**
+
+Once the automatic suspension is activated, Workers will automatically be suspended after a specific idle session period that has been defined.
 
 1. In the sidebar, go to **Settings** and select the **Resource Pool** tab.
 2. Select a pool you wish to set.
    
    The pool you selected is now highlighted.
-3. Under **Suspension Policy**, select one of the policies:
-4. Select one of the suspension policies:
+3. Toggle **Automatically suspend workers** on.
+4. Under **Idle suspension period**, define the number of minutes for an idle period after which the pool will be suspended.
+5. To turn off automatic suspension, toggle **Automatically suspend workers** off.
+
+**Resuming**
+
+Once the automatic resumption is activated, Workers will automatically be resumed when a query is executed.
+
+1. In the sidebar, go to **Settings** and select the **Resource Pool** tab.
+2. Select a pool you wish to set.
+   
+   The pool you selected is now highlighted.
+3. Toggle **Automatically resume workers** on.
+4. To turn off automatic resumption, toggle **Automatically resume workers** off.
+
+Manually Suspending and Resuming Pools
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+**Suspending**
+
+1. In the sidebar, go to **Settings** and select the **Resource Pool** tab.
+2. Select a pool you wish to set.
+   
+   The pool you selected is now highlighted.
+3. Under **Suspension Policy**, select one of the following policies:
 
    * Brute force
    * Graceful shutdown
@@ -98,22 +131,29 @@ To enable the automatic suspension of idle workers, activate the **Automatically
    * - Graceful shutdown and pending requests
      - Suspension of workers will occur only after completion of all running statements and execution of all queued statements
 
-Manually Suspending and Resuming Pools
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+4. select **Suspend Now**
+
+**Resuming**
 
 1. In the sidebar, go to **Settings** and select the **Resource Pool** tab.
 2. Select a pool you wish to set.
    
    The pool you selected is now highlighted.
-3. To suspend pool ,under **Suspension Policy**, select **Suspend Now**
-4. To resume pool ,under **Suspension Policy**, select **Activate Now**
+4. Under **Suspension Policy**, select **Activate Now**
 
 Syntax
 ======
 
+The ``DESCRIBE [RESOURCE] POOLS`` is a CPU based SQL command that lists all of your pools. 
+
+The ``USE [RESOURCE] POOL`` command enables you to shift between pools within a session.
+
+Both commands require ``CONNECT`` permission.
+
 .. code-block::
 
 	DESCRIBE [RESOURCE] POOLS
+	DESC [RESOURCE] POOLS
 	
 	USE [RESOURCE] POOL <pool_name>
 	
@@ -133,13 +173,13 @@ Listing all existing pools:
 
 .. code-block::
 
-
+	DESCRIBE [RESOURCE] POOLS;
 
 Shifting between pools:
 
 .. code-block::
 
-	
+	USE POOL bi_pool;
 
 Connection Strings
 ==================
@@ -166,4 +206,4 @@ Connecting to a default pool:
 
 .. code-block::
 
-	sudo java -jar jdbc-console-0.0.88-43.jar --host=myhost.isqream.com --access-token=######### --pool
+	sudo java -jar jdbc-console-0.0.88-43.jar --host=myhost.isqream.com --access-token=#########

@@ -1,15 +1,13 @@
 .. _use_schema:
 
-*****************
+**********
 USE SCHEMA
-*****************
-The ``USE SCHEMA`` command lets you switch your schema. If the ``db_name`` argument is ``null``, ``USE SCHEMA`` uses the current database and switches to the defined schema.
+**********
 
-**Comment** - *Please confirm/correct the description above.*
+The ``USE SCHEMA`` command lets you shift between schemes within an existing session. If the ``schema`` argument is ``null``, ``USE SCHEMA`` uses the current schema and switches to the defined schema.
 
 Syntax
-==========
-The following is the correct syntax for switching schemas:
+======
 
 .. code-block:: postgres
 
@@ -28,8 +26,7 @@ You can **combine** USE commands as shown in the following examples:
 The compiler executes both of the above commands in the same order regardless of how you write them, switching the database first and the schema second.
 
 Parameters
-============
-The following parameter can be used when switching databases with the **USE SCHEMA** command:
+==========
 
 .. list-table:: 
    :widths: auto
@@ -41,17 +38,17 @@ The following parameter can be used when switching databases with the **USE SCHE
      - The name of the schema.
      
 Examples
-===========
-The following are examples of the **USE SCHEMA** command:
+========
 
 .. code-block:: postgres
 
-   USE SCHEMA <customers>
+   USE SCHEMA customers;
    
 .. code-block:: postgres
    
-   USE DATABASE <master> SCHEMA <customers>
+   USE DATABASE master SCHEMA customers;
 
 Permissions
-=============
-**Comment** - *What are the permissions?*
+===========
+
+The ``USE SCHEMA`` command requires **Comment** permission. 
