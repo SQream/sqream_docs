@@ -1,22 +1,26 @@
 .. _describe_views:
 
-*****************
+**************
 DESCRIBE VIEWS
-*****************
+**************
+
 The ``DESCRIBE VIEWS`` command enables creating a list of database views. 
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
 Syntax
-==========
+======
+
 The following is the syntax for the ``DESCRIBE VIEWS`` command:
 
 .. code-block:: postgres
 
    DESCRIBE VIEWS [ SCHEMA <schema_name> ] [ DATABASE <database_name>] [ LIKE '<pattern>' ]
+   DESC VIEWS [ SCHEMA <schema_name> ] [ DATABASE <database_name>] [ LIKE '<pattern>' ]
 
 Parameters
-============
+==========
+
 The following parameters can be used with the ``DESCRIBE VIEWS`` command:
 
 .. list-table:: 
@@ -44,15 +48,13 @@ The following parameters can be used with the ``DESCRIBE VIEWS`` command:
    
    
 Output
-=============
+======
+
 Using the ``DESCRIBE_TABLES`` command generates the following output:
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
-   
-   
-   
    
    * - Parameter
      - Description
@@ -115,6 +117,6 @@ The following is an example of the ``DESCRIBE VIEWS LIKE`` command output:
 		2022-12-20 11:14:16|only_agressive_animals|master  |public|create view "public".only_agressive_animals as¶  select *¶  from cool_animals¶  where¶    weight > 1000;¶¶|
 	 
 Permissions
-=============
+===========
 
 The role must have the ``USAGE`` permission.

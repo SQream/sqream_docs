@@ -14,6 +14,7 @@ The following is the syntax for the ``DESCRIBE COLUMNS`` command:
 .. code-block:: postgres
 
    DESCRIBE COLUMNS [ SCHEMA <schema_name> ] [ DATABASE  <database_name> ] TABLE <table_name>
+   DESC COLUMNS [ SCHEMA <schema_name> ] [ DATABASE  <database_name> ] TABLE <table_name>
 
 Parameters
 ============

@@ -33,8 +33,6 @@ Data Definition Commands (DDL)
      - Create a new user defined function in the database
    * - :ref:`CREATE_SCHEMA<create_schema>`
      - Create a new schema in the database
-   * - :ref:`CREATE_TABLE<create_table>`
-     - Create a new table in the database
    * - :ref:`CREATE_TABLE_AS<create_table_as>`
      - Create a new table in the database using results from a select query
    * - :ref:`CREATE_VIEW<create_view>`

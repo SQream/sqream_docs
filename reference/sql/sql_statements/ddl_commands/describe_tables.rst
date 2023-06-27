@@ -1,23 +1,27 @@
 .. _describe_tables:
 
-*****************
+***************
 DESCRIBE TABLES
-*****************
+***************
+
 The ``DESCRIBE TABLES`` command lets you list information about tables in your database.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
 Syntax
-==========
+======
+
 The following is the syntax for the ``DESCRIBE TABLES`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE TABLES[DATABASE database_name.] [SCHEMA schema_name.] [ALL|INTERNAL|EXTERNAL];
+   DESCRIBE TABLES[DATABASE database_name.] [SCHEMA schema_name.] [ALL|INTERNAL|EXTERNAL]
+   DESC TABLES[DATABASE database_name.] [SCHEMA schema_name.] [ALL|INTERNAL|EXTERNAL]
 
 
 Parameters
-============
+==========
+
 The following parameters can be used with the ``DESCRIBE TABLES`` command:
 
 .. list-table:: 
@@ -42,7 +46,8 @@ The following parameters can be used with the ``DESCRIBE TABLES`` command:
      - Text	
 	 
 Examples
-==============
+========
+
 Listing internal tables:
 
 .. code-block:: postgres
@@ -56,7 +61,8 @@ Listing external tables:
    DESCRIBE TABLES DATABASE master SCHEMA public EXTERNAL;
    
 Output
-=============
+======
+
 When the set to ``ALL``, the ``DESCRIBE_TABLES`` command returns the following parameters:
 
 .. list-table:: 
@@ -98,6 +104,7 @@ When the set to ``ALL``, the ``DESCRIBE_TABLES`` command returns the following p
 	 
 Output Examples
 ~~~~~~~~~~~~~~~
+
 Listing all tables:
 
 
@@ -127,5 +134,6 @@ Listing external tables:
    master       |public     |users	 |External  |         |2022-06-22 15:05:12 |Format:parquet, Path:/var/mounts/nfsshare...|
 
 Permissions
-=============
+===========
+
 Using the ``DESCRIBE TABLES`` command requires ``USAGE`` permissions.

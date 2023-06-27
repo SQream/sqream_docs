@@ -1,22 +1,26 @@
 .. _describe_query:
 
-*****************
+**************
 DESCRIBE QUERY
-*****************
+**************
+
 The ``DESCRIBE QUERY`` command replaces the `SHOW_NODE_INFO <https://docs.sqream.com/en/latest/reference/sql/sql_functions/system_functions/show_node_info.html>`_ command. You can use it to display information about query execution for monitoring and troubleshooting purposes.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
 Syntax
-==========
+======
+
 The following is the syntax for the ``DESCRIBE QUERY`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE QUERY [SESSION ID <session-id>] QUERY ID <query-id>;
+   DESCRIBE QUERY [SESSION ID <session-id>] QUERY ID <query-id>
+   DESC QUERY [SESSION ID <session-id>] QUERY ID <query-id>
    
 Parameters
-============
+==========
+
 The following parameters can be used when switching databases with the **DESCRIBE QUERY** command:
 
 .. list-table:: 
@@ -38,7 +42,8 @@ The following parameters can be used when switching databases with the **DESCRIB
 	 
 	 
 Output
-=============
+======
+
 Using the ``DESCRIBE QUERY`` command generates the following output:
 
 .. list-table:: 
@@ -111,7 +116,8 @@ Using the ``DESCRIBE QUERY`` command generates the following output:
      - 1
 	 
 Example
-==============
+=======
+
 The following is an example of the ``DESCRIBE QUERY`` command:
 
 .. code-block:: postgres
@@ -175,7 +181,8 @@ The following is an example of the ``DESCRIBE QUERY`` command output:
 
 
 Permissions
-=============
+===========
+
 Users may execute ``DESCRIBE QUERY`` on their own sessions.
 
 ``SUPERUSER`` may execute ``DESCRIBE QUERY`` on any session.
