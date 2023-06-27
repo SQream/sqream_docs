@@ -34,6 +34,10 @@ div[data-toggle="rst-versions"] {
    color: inherit;
 }
 
+/* Show the copybutton */
+.highlight:hover button.copybtn, button.copybtn.success {
+	opacity: 1;
+}
 
 kbd
 {

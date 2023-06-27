@@ -200,7 +200,7 @@ Connecting to a specified pool:
 
 .. code-block::
 
-	sudo java -jar jdbc-console-0.0.88-43.jar --host=myhost.isqream.com --access-token=######### --pool=ETL
+	sudo java -jar jdbc-console-0.0.88-43.jar --host=myhost.isqream.com --access-token=######### --pool=bi_pool
 
 Connecting to a default pool:
 
