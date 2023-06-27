@@ -1,27 +1,32 @@
 .. _describe_locks:
 
-*****************
+**************
 DESCRIBE LOCKS
-*****************
+**************
+
 The ``DESCRIBE LOCKS`` command replaces the `SHOW_LOCKS <https://docs.sqream.com/en/latest/reference/sql/sql_functions/system_functions/show_locks.html>`_ command. You can use it to return a list of locks from across your cluster.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
 Syntax
-==========
+======
+
 The following is the syntax for the ``DESCRIBE LOCKS`` command:
 
 .. code-block:: postgres
 
    DESCRIBE LOCKS
+   DESC LOCKS
    
 Parameters
-============
+==========
+
 ``DESCRIBE LOCKS`` command has no input parameters.
 
     
 Output
-=============
+======
+
 Using the **DESCRIBE CLUSTER STATUS** command generates the following output:
 
 +-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -47,5 +52,6 @@ Using the **DESCRIBE CLUSTER STATUS** command generates the following output:
 +-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Permissions
-=============
+===========
+
 Using the ``DESCRIBE LOCKS`` command requires ``SUPERUSER`` permissions.

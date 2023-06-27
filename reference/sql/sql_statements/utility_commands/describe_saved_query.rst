@@ -3,6 +3,7 @@
 ********************
 DESCRIBE SAVED QUERY
 ********************
+
 The ``DESCRIBE SAVED QUERY`` command returns the SQL syntax of a specific saved query.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
@@ -10,15 +11,18 @@ The ``DESCRIBE SAVED QUERY`` command returns the SQL syntax of a specific saved 
 .. tip:: You may use the :ref:`DESCRIBE_SAVED_QUERIES_LIST<describe_saved_queries_list>` command to locate any saved queries.
 
 Syntax
-==========
+======
+
 The following is the syntax for the ``DESCRIBE SAVED QUERY`` command:
 
 .. code-block:: postgres
 
    DESCRIBE SAVED QUERY [ DATABASE <database_name>] NAME <saved_query_name>
+   DESC SAVED QUERY [ DATABASE <database_name>] NAME <saved_query_name>
    
 Parameters
-============
+==========
+
 The following parameters can be used with the ``DESCRIBE SAVED QUERY`` command:
 
 .. list-table:: 
@@ -40,7 +44,8 @@ The following parameters can be used with the ``DESCRIBE SAVED QUERY`` command:
 	 
 	 
 Output
-=============
+======
+
 Using the ``DESCRIBE SAVED QUERY`` command generates the following output:
 
 .. list-table:: 
@@ -55,10 +60,6 @@ Using the ``DESCRIBE SAVED QUERY`` command generates the following output:
      - The SQL syntax of the selected saved query
      - TEXT
      - “SELECT * FROM nba”
-
-
-
-
 
 The following is the syntax for the ``DESCRIBE SAVED QUERY`` command:
 
@@ -77,6 +78,6 @@ The following is an example of the ``DESCRIBE SAVED QUERY`` command output:
 
 
 Permissions
-=============
+===========
 
 The role must have the ``CONNECT`` permission.

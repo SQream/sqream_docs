@@ -1,22 +1,26 @@
 .. _describe_saved_queries_list:
 
-*****************
+***************************
 DESCRIBE SAVED QUERIES LIST
-*****************
+***************************
+
 The ``DESCRIBE SAVED QUERIES LIST`` command creates a list of all of your saved queries.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
 Syntax
-==========
+======
+
 The following is the syntax for the ``DESCRIBE SAVED QUERIES LIST`` command:
 
 .. code-block:: postgres
 
    DESCRIBE SAVED QUERIES LIST [ DATABASE <database_name>] [ LIKE '<pattern>' ]
+   DESC SAVED QUERIES LIST [ DATABASE <database_name>] [ LIKE '<pattern>' ]
    
 Parameters
-============
+==========
+
 The following parameters can be used with the ``DESCRIBE SAVED QUERIES LIST`` command:
 
 .. list-table:: 
@@ -38,7 +42,8 @@ The following parameters can be used with the ``DESCRIBE SAVED QUERIES LIST`` co
 	 
 	 
 Output
-=============
+======
+
 Using the ``DESCRIBE SAVED QUERIES LIST`` command generates the following output:
 
 .. list-table:: 
@@ -92,6 +97,6 @@ The following is an example of the ``DESCRIBE SAVED QUERIES LIST LIKE`` command 
 
 
 Permissions
-=============
+===========
 
 The role must have the ``CONNECT`` permission.

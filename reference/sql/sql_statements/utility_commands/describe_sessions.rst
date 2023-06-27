@@ -3,20 +3,24 @@
 *****************
 DESCRIBE SESSIONS
 *****************
+
 The ``DESCRIBE SESSIONS`` command replaces the `SHOW_SERVER_STATUS <https://docs.sqream.com/en/latest/reference/sql/sql_functions/system_functions/show_server_status.html>`_ command.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
 Syntax
-==========
+======
+
 The following is the syntax for the ``DESCRIBE SESSIONS`` command:
 
 .. code-block:: postgres
 
    DESCRIBE SESSIONS [ USER <user_name> ][ TIMEFRAME FROM <start_date_time> TO <end_date_time> ]
+   DESC SESSIONS [ USER <user_name> ][ TIMEFRAME FROM <start_date_time> TO <end_date_time> ]
 
 Parameters
-============
+==========
+
 The following parameters can be used with the ``DESCRIBE SESSIONS`` command:
 
 .. list-table:: 
@@ -42,7 +46,8 @@ The following parameters can be used with the ``DESCRIBE SESSIONS`` command:
 	 
 	 
 Output
-=============
+======
+
 Using the ``DESCRIBE SESSIONS`` command generates the following output:
 
 .. list-table:: 
@@ -79,7 +84,8 @@ Using the ``DESCRIBE SESSIONS`` command generates the following output:
      - efd226bb-cc57-4d41-8ff9-c9300830c571
 	 
 Examples
-==============
+========
+
 The following is an example of the ``DESCRIBE SESSIONS`` command:
 
 .. code-block:: postgres
@@ -123,7 +129,8 @@ The following is an example of the ``DESCRIBE SESSIONS`` command filtering a spe
 
 
 Permissions
-=============
+===========
+
 A user may execute ``DESCRIBE SESSIONS`` to list his sessions.
 
 ``SUPERUSER`` may execute ``DESCRIBE SESSIONS`` to list any session by any user.

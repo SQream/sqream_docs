@@ -16,7 +16,9 @@ Syntax
 
 .. code-block:: sql
 
-	DESCRIBE CONNECT PERMISSIONS [DATABASE <database_name>] [ROLE ID in (<role_id 1>,...,<role_id N>)] [PERMISSION ID in (<permission_id 1>,...,<permission_id N>)];
+	DESCRIBE CONNECT PERMISSIONS [DATABASE <database_name>] [ROLE ID in (<role_id 1>,...,<role_id N>)] [PERMISSION ID in (<permission_id 1>,...,<permission_id N>)]
+	
+	DESC CONNECT PERMISSIONS [DATABASE <database_name>] [ROLE ID in (<role_id 1>,...,<role_id N>)] [PERMISSION ID in (<permission_id 1>,...,<permission_id N>)]
 
 Parameters
 ==========

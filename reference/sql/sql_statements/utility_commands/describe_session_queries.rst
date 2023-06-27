@@ -1,23 +1,27 @@
 .. _describe_session_queries:
 
-*****************
+************************
 DESCRIBE SESSION QUERIES
-*****************
+************************
+
 The ``DESCRIBE SESSION QUERIES`` command outputs a list of queries per session, including queued queries.
 A session is opened per connection or per tab.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
 Syntax
-==========
+======
+
 The following is the syntax for the ``DESCRIBE SESSION QUERIES`` command:
 
 .. code-block:: postgres
 
    DESCRIBE SESSION QUERIES  [SESSION ID <session-id>] 
+   DESC SESSION QUERIES  [SESSION ID <session-id>] 
 
 Parameters
-============
+==========
+
 The following parameters can be used with the ``DESCRIBE SESSION QUERIES`` command:
 
 .. list-table:: 
@@ -37,7 +41,8 @@ The following parameters can be used with the ``DESCRIBE SESSION QUERIES`` comma
 	 
    	 
 Output
-=============
+======
+
 Using the ``DESCRIBE SESSIONS`` command generates the following output:
 
 .. list-table:: 
@@ -78,7 +83,8 @@ Using the ``DESCRIBE SESSIONS`` command generates the following output:
      - SQream JDBC v0.1.33 
 
 Example
-==============
+=======
+
 The following is an example of the ``DESCRIBE SESSIONS`` command:
 
 .. code-block:: postgres
@@ -102,7 +108,8 @@ The following is an example of the ``DESCRIBE SESSIONS`` command:
 
 
 Permissions
-=============
+===========
+
 A user may execute ``DESCRIBE SESSION QUERIES`` on his sessions.
 
 ``SUPERUSER`` may execute ``DESCRIBE SESSION QUERIES`` on any session.
