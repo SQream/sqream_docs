@@ -4,7 +4,7 @@
 Healer Detection Frequency Seconds
 **********************************
 
-The ``healerDetectionFrequencySeconds`` flag is used for defining the threshold for creating a log recording a slow statement. The log includes information about the log memory, CPU and GPU.
+The ``healerDetectionFrequencySeconds`` flag determines the default frequency for the healer to check that its conditions are met.
 
 * **Data type** - size_t
 * **Default value** - ``60*60*24``
