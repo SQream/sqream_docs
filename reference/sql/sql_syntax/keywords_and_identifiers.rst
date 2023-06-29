@@ -3,7 +3,7 @@
 ***********
 Identifiers
 ***********
-
+ 
 **Identifiers** are names given to SQL entities, such as tables, columns, databases, and variables. Identifiers must be unique so that entities can be correctly identified during the execution of a program. Identifiers can also be used to change a column name in the result (column alias) in a  ``SELECT`` statement. Identifiers can be either quoted or unquoted and a maximum 128 characters long.
 
 Identifiers are sometimes referred to as "names".
