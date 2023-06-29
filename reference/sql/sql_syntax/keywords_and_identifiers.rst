@@ -1,25 +1,26 @@
 .. _keywords_and_identifiers:
 
-***************************
+***********
 Identifiers
-***************************
+***********
+
 **Identifiers** are names given to SQL entities, such as tables, columns, databases, and variables. Identifiers must be unique so that entities can be correctly identified during the execution of a program. Identifiers can also be used to change a column name in the result (column alias) in a  ``SELECT`` statement. Identifiers can be either quoted or unquoted and a maximum 128 characters long.
 
 Identifiers are sometimes referred to as "names".
 
 Regular identifiers must follow these rules:
 
-* Must not contain any special characters except for underscores (``_``).
-* Must be case-insensitive. SQream converts all identifiers to lowercase unless quoted.
-* Does not equal any keywords, such as ``SELECT``, ``OR``, or ``AND``, etc.
+* Must not contain a whitespace character or any special characters except for underscores (``_``)
+* Must be case-insensitive. SQream converts all identifiers to lowercase unless quoted
+* Does not equal any keywords, such as ``SELECT``, ``OR``, or ``AND``, etc
 
-To bypass the rules above you can surround an identifier with double quotes (``"``) or square brackets (``[]``).
+To bypass the rules above you can surround an identifier with double quotes (``"``).
 
 Quoted identifiers must follow these rules:
 
-* Must be surrounded with double quotes (``"``) or square brackets (``[]``).
+* Must be surrounded with double quotes (``"``)
 * May contain any ASCII character except ``@``, ``$`` or ``"``.
-* Must be case-sensitive and referenced with double quotes or square brackets (``[]``).
+* Must be case-sensitive and referenced with double quotes (``"``)
 
 Identifiers are different than **keywords**, which are predefined words reserved with specific meanings in a statement. Some examples of keywords are ``SELECT``, ``CREATE``, and ``WHERE``. Note that keywords **cannot** be used as identifiers.
 
