@@ -40,4 +40,4 @@ Performing Basic BLUE Operations
 
    connecting_to_blue
    managing_your_resources
-   performing_basic_sqream_operations
+   performing_basic_blue_operations

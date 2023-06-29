@@ -1,25 +1,18 @@
 .. _sql_functions:
 
-****************
+*************
 SQL Functions
-****************
+*************
 
-SQream supports functions from ANSI SQL, as well as others for compatibility.
-
-Summary of Functions
-=======================
-
-.. contents::
-   :local:
+BLUE supports functions from ANSI SQL, as well as others for compatibility.
 
 Built-In Scalar Functions
--------------------
+-------------------------
+
 For more information about built-in scalar functions, see :ref:`scalar_functions`.
 
 Bitwise Operations
-^^^^^^^^^^^^^^^^^^^^^^^
-
-The following table shows the **bitwise operations** functions:
+^^^^^^^^^^^^^^^^^^
 
 .. list-table:: 
    :widths: auto
@@ -40,9 +33,8 @@ The following table shows the **bitwise operations** functions:
    * - :ref:`bitwise_xor`
      - Bitwise XOR
 
-Conditionals
-^^^^^^^^^^^^^^
-The following table shows the **conditionals** functions:
+Conditional Functions
+^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table:: 
    :widths: auto
@@ -65,9 +57,8 @@ The following table shows the **conditionals** functions:
    * - :ref:`is_null`
      - Check for ``NULL`` [ or non-``NULL`` ] values
 
-Conversion
-^^^^^^^^^^^^
-The following table shows the **conversion** functions:
+Conversion Functions
+^^^^^^^^^^^^^^^^^^^^
 
 .. list-table:: 
    :widths: auto
@@ -84,9 +75,8 @@ The following table shows the **conversion** functions:
    * - :ref:`chr`
      - Returns the ASCII character representation of the supplied integer
 
-Date and Time
-^^^^^^^^^^^^^^^^
-The following table shows the **date and time** functions:
+Date and Time Functions
+^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table:: 
    :widths: auto
@@ -117,9 +107,8 @@ The following table shows the **date and time** functions:
    * - :ref:`date_trunc`
      - Truncates a date element down to a specified date or time element
 
-Numeric
-^^^^^^^^^^^
-The following table shows the **arithmetic operators**:
+Numeric Functions
+^^^^^^^^^^^^^^^^^
 
 .. list-table:: Arithmetic Operators
    :widths: auto
@@ -207,9 +196,8 @@ The following table shows the **arithmetic operator** functions:
    * - :ref:`trunc`
      - Rounds a number to its integer representation towards 0
 
-Strings
-^^^^^^^^^^^
-The following table shows the **string** functions:
+Strings Functions
+^^^^^^^^^^^^^^^^^
 
 .. list-table:: 
    :widths: auto
@@ -273,12 +261,14 @@ The following table shows the **string** functions:
      - Returns an ``INT`` value representing the ASCII code of the leftmost character in a string
 
 User-Defined Scalar Functions
----------------------
+-----------------------------
+
 For more information about user-defined scalar functions, see :ref:`scalar_sql_udf`.
 
 
 Aggregate Functions
----------------------
+-------------------
+
 The following table shows the **aggregate** functions:
 
 .. list-table:: 
@@ -328,7 +318,8 @@ The following table shows the **aggregate** functions:
 For more information about aggregate functions, see :ref:`aggregate_functions`.
 
 Window Functions
--------------------
+----------------
+
 The following table shows the **window** functions:
 
 .. list-table:: 
@@ -367,7 +358,8 @@ The following table shows the **window** functions:
 For more information about window functions, see :ref:`window_functions`.
 
 Workload Management Functions
----------------------------------
+-----------------------------
+
 The following table shows the **workload management** functions:
 
 .. list-table:: 

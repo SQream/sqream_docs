@@ -1,7 +1,7 @@
-.. _performing_basic_sqream_operations:
+.. _performing_basic_blue_operations:
 
 **********************************
-Performing Basic SQream Operations
+Performing Basic BLUE Operations
 **********************************
 
 .. toctree::
