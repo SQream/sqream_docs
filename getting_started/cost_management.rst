@@ -35,6 +35,8 @@ To edit an existing pool, the pool must be in either an idle or suspended state.
    The pool you selected is now highlighted.
 
 3. To add or reduce Workers, in the pool's settings panel, select the number to the right of the **Worker Count**, and use the ``+`` or ``-`` key.
+   When adding workers to a pool, ensure that there are enough available workers in your default pool to be reduced from. 
+   
 4. To make this pool your default pool, go to the three-dot menu located in the top right corner of the pool panel, and choose **Make Default**.
 5. To rename pool, you may either:
 
