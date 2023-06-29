@@ -6,8 +6,8 @@ Getting Started
 
 To start querying and analyzing your data, simply log in to the BLUE interface using your own Identity Provider (IDP) credentials. By leveraging Auth0, BLUE enables not only IDP authentication, but also multi-factor authentication, encryption, and anomaly detection to protect user data and prevent unauthorized access. 
 
-Log In
-------
+Login
+-----
 
 #. First, check your email for an invite from your administrator to join BLUE and follow the attachet link. 
 
@@ -23,9 +23,10 @@ Third-Party Tools
 
 Use the data analysis platform you're used to work with by :ref:`connecting to BLUE<connecting_to_blue>` using Python, JDBC, or ODBC.
 
-Cost Management
----------------
-To facilitate :ref:`cost management<cost_management>`, you have the option to use the suspension/resumption feature in your BLUE environment. This functionality allows you to temporarily pause the system and associated billing during periods when system usage is not required. You can subsequently resume the system as needed, ensuring flexibility and control over billing cycles.
+Resource Management
+-------------------
+
+The :ref:`Resource Pool <managing_your_resources>` panel optimizes resource utilization in your BLUE environment. Reduce runtime during idle periods to manage costs and allocate workers based on department-specific needs for improved cluster utilization. Fine-tune worker allocation to maximize the benefits of your BLUE environment.
 
 Performing Basic BLUE Operations
 --------------------------------
@@ -38,5 +39,5 @@ Performing Basic BLUE Operations
    :hidden:
 
    connecting_to_blue
-   cost_management
+   managing_your_resources
    performing_basic_sqream_operations
