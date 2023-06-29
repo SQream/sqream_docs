@@ -1,11 +1,10 @@
 .. _is_healer_on:
 
-*************************
+************
 Is Healer On
-*************************
-The ``is_healer_on`` flag enables the Query Healer, which periodically examines the progress of running statements and logs statements exceeding the ``maxStatementInactivitySeconds`` flag setting.
+************
 
-The following describes the ``is_healer_on`` flag:
+The ``is_healer_on`` flag enables the Query Healer, which periodically examines the progress of running statements and logs statements exceeding the ``maxStatementInactivitySeconds`` flag setting.
 
 * **Data type** - boolean
 * **Default value** - ``true``
