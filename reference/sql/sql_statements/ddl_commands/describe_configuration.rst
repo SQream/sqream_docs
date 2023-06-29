@@ -8,7 +8,6 @@ The ``DESCRIBE CONFIGURATION`` command is used for showing all configurations se
 
 .. note:: The ``DESCRIBE CONFIGURATION`` command replaces the ``SHOW_CONF`` command. 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
-For more information, see :ref:`configuring_sqream`.
 
 Syntax
 ======
