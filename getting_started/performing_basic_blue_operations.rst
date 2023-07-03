@@ -21,9 +21,9 @@ You can use **Jobs**, the BLUE workflow management tool, to orchestrate complex,
    * - SQL Scripts
      - A list of saved SQL scripts. It is recommended that scripts be named according to the action performed when script is executed. 
    * - Task
-     - A task is one element within a linear, step-by-step operation. Tasks are meant to be arranged one after the other in a way that will form a workflow.
+     - A step within a linear operation that forms a workflow.
    * - Job
-     - A job constructed out of several tasks. The aim of executing a job is to automatically execute all the tasks, one by one, in a way that will form a workflow and generate insight.
+     - Consists of multiple tasks, executed in sequence to generate insights.
 
 Creating a New Job
 ==================
@@ -82,14 +82,26 @@ Utilizing Other Users' Jobs
 
 To save time, you may create a job based on other users' jobs. This may be helpful when an existing job has elements in it that are required for a job you plan to create, but require some modifications or additions.
 
-1. In the sidebar go to **Jobs** > **Drafts**.
-2. Hover over the job you wish to utilize and from the three-dot menu choose **Duplicate Job**.
+1. In the sidebar go to **Jobs** and then either **All Jobs** or **Drafts**.
+2. Hover over the job you wish to utilize and choose **Duplicate Job** from the three-dot menu.
+3. 
+
+Monitoring Completed Jobs
+=========================
+
+You may monitor all completed jobs, verify query execution success, and investigate failed queries.
+
+1. In the sidebar go to **Jobs** > **History**.
+2. Hover over and select the job you wish to investigate.
+
+   A drop-down menu opens, reviling information about each job task. 
 
 Deleting Jobs
 =============
 
-You may delete jobs that are of no use to you.
+You may only delete jobs created by you.
 
-1. 
+1. In the sidebar go to **Jobs** and then either **All Jobs** or **Drafts**.
+2. Hover over the job you wish to delete and choose **Delete** from the three-dot menu.
 
 
