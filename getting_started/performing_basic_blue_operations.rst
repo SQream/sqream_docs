@@ -56,6 +56,7 @@ Jobs are composed of multiple tasks that are executed in a specific sequence. Ea
 5. To create a sequel task, select the ``+`` button located under the last task in the **Preview** window.
 6. After having added all required SQL scripts, it is essential that you save the job by selecting the **Save Job** button located in the upper right-hand corner.
 7. You may choose one of the following options:
+
 * **Save to Jobs**
 * **Schedule Job**
 
