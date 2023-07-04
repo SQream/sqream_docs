@@ -10,9 +10,9 @@ SQL Workflows
    :titlesonly:
    :hidden:
    
-**Jobs** is a workflow management tool that enables you to create complex SQL workflows. You can use **Jobs** to create and automate sequences of SQL scripts, enabling them to trigger one another and deliver insights or prepare your data for advanced tasks like data modeling and training. Each job is constructed out of the following elements:
+**Jobs** is a workflow management tool that enables you to create complex SQL workflows. You can use **Jobs** to create and automate sequences of SQL scripts, enabling them to trigger one another and deliver insights or prepare your data for advanced tasks like data modeling and training.
 
-.. list-table:: Job Elements
+.. list-table:: SQL Workflow Elements
    :widths: auto
    :header-rows: 1
 
@@ -23,12 +23,17 @@ SQL Workflows
    * - Task
      - A step within a linear operation that forms a workflow.
    * - Job
-     - Consists of multiple tasks, executed in sequence to generate insights.
+     - Consist of multiple tasks that are executed in a specific sequence.
+
+Saving SQL Scripts to Be Used in Jobs
+=====================================
+
+
 
 Creating a New Job
 ==================
 
-Jobs are constructed from one or more SQL scripts represented by tasks. A **Task** has a name and a SQL script. Since jobs are sequential operations, the order of the tasks within a job has to make sense. You can set jobs to be executed either manually or schedule them to be executed automatically.
+Jobs consist of multiple tasks that are executed in a specific sequence. Each individual **Task** represents a single SQL script. As jobs are sequential operations, it is important to order the tasks in a meaningful way. You have the flexibility to choose between executing jobs manually or scheduling them for automatic execution.
 
 1. In the sidebar go to **Jobs**.
 2. Select the **Create New Job** button, enter job name, and select **Save**.
