@@ -30,7 +30,7 @@ Saving SQL Scripts to Be Used in Jobs
 
 Jobs are composed of multiple tasks. Each task is associated with a single SQL script. To create tasks, you need to have SQL scripts prepared and ready to be used. After having created and saved a SQL script, it will automatically appear on the **SQL Scripts** list that is used for creating jobs.
 
-Keep in mind that SQL scripts that are saved and uploaded to the **SQL Scripts** list by default will be executed using your master database and public schema. To have your SQL scripts use any other database and/or schema, use the :ref:`use_database` and :ref:`use_schema` within your script. 
+Keep in mind that SQL scripts that are saved and uploaded to the **SQL Scripts** list will be executed using your master database and public schema by default. To have your SQL scripts use any other database and/or schema, use the :ref:`use_database` and :ref:`use_schema` commands within your script. 
 
 1. In the sidebar, go to **Editor** and create an SQL script.
 2. On the right-hand side of the ribbon, select **Upload**.
