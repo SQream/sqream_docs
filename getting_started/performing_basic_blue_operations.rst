@@ -36,6 +36,8 @@ Jobs are composed of multiple tasks. Each task is associated with a single SQL s
    The **SQL Catalogue** window opens.
 3. In the **Save As** box, type in a name for your SQL script and select **Save**.
 
+.. tip:: When you choose a name for a SQL script, it is advisable to choose a name that accurately reflects the SQL action or purpose.
+
 Creating a New Job
 ==================
 
@@ -53,7 +55,7 @@ Jobs are composed of multiple tasks that are executed in a specific sequence. Ea
 
 5. To create a sequel task, select the ``+`` button located under the last task in the **Preview** window.
 6. After having added all required SQL scripts, it is essential that you save the job by selecting the **Save Job** button located in the upper right-hand corner.
-7. You may choose on of the following options:
+7. You may choose one of the following options:
 * **Save to Jobs**
 * **Schedule Job**
 
@@ -72,30 +74,31 @@ Jobs are composed of multiple tasks that are executed in a specific sequence. Ea
 Drafting Jobs
 =============
 
-You can decide that for some jobs it is best to work on over time or else, you might have started composing a job but for any reason did not get to finish the work. If you did not save the job and had moved on to another page, the job will automatically be saved under **Jobs** > **Drafts**. You may edit jobs saved to **Drafts** only if they were created by you. 
+If you are working on a job over a period of time or if you have started composing a job but haven't finished it, you have the option to save it as a draft. In case you didn't save the job and navigated to another page, the job will be automatically saved under **Jobs** > **Drafts**. It's important to note that you can only edit jobs saved in the **Drafts** section if you were the one who created them.
 
 1. In the sidebar go to **Jobs**.
 2. Select the **Create New Job** button, enter job name, and select **Save**.
 
    The newly created job page opens.
    
-3. In the upper left-hand corner, type in task name and description.
+3. In the upper left-hand corner, type in the task name and description.
 4. Drag a script from the **SQL Scripts** menu to the **Drag SQL** box of the task.
 
    Tasks are always shown in the **Preview** window.
 
 5. To create a sequel task, select the ``+`` button located under the last task in the **Preview** window.
-6. You may now close the webpage you are working on and the job will be automatically be saved under **Jobs** > **Drafts**.
-7. To edit a job that is saved to **Drafts**, hover over a job that you created and from the three-dot menu on the right-hand side choose **Edit Job**.
+6. You may now close the webpage you are working on and the job will be automatically saved under **Jobs** > **Drafts**.
+7. To edit a job that is saved to **Drafts**, hover over a job that you created, and from the three-dot menu on the right-hand side choose **Edit Job**.
 
-Utilizing Other Users' Jobs
-===========================
+Utilizing Existing Jobs
+=======================
 
-To save time, you may create a job based on other users' jobs. This may be helpful when an existing job has elements in it that are required for a job you plan to create, but require some modifications or additions.
+To optimize your time and effort, you have the option to create a new job based on existing jobs from other users. This feature proves helpful when there are elements within an existing job that you require for your own job but with some modifications or additional components.
 
-1. In the sidebar go to **Jobs** and then either **All Jobs** or **Drafts**.
-2. Hover over the job you wish to utilize and choose **Duplicate Job** from the three-dot menu.
-3. 
+1. In the sidebar go to **Jobs** > **All Jobs**.
+2. Hover over the job you wish to utilize and from the three-dot menu choose **Duplicate Job**.
+
+   The duplication is automatically saved to the **Drafts** tab under the same name as the original job with a time-stamp addition (yyyy-mm-dd hh:mm:ss).
 
 Monitoring Completed Jobs
 =========================
