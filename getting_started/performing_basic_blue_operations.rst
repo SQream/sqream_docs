@@ -117,6 +117,6 @@ Deleting Jobs
 You may only delete jobs created by you.
 
 1. In the sidebar go to **Jobs** and then either **All Jobs** or **Drafts**.
-2. Hover over the job you wish to delete and choose **Delete** from the three-dot menu.
+2. Hover over the job you wish to delete and from the three-dot menu choose **Delete**.
 
 
