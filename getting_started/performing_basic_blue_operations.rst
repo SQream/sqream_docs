@@ -21,26 +21,32 @@ SQL Workflows
    * - SQL Scripts
      - A list of saved SQL scripts. It is recommended that scripts be named according to the action performed when the script is executed. 
    * - Task
-     - A step within a linear operation that forms a workflow.
+     - A step within a linear operation that forms a job.
    * - Job
-     - Consist of multiple tasks that are executed in a specific sequence.
+     - Composed of multiple tasks that are executed in a specific sequence.
 
 Saving SQL Scripts to Be Used in Jobs
 =====================================
 
+Jobs are composed of multiple tasks. Each task is associated with a single SQL script. To create tasks, you need to have SQL scripts prepared and ready to be used. After having created and saved a SQL script, it will automatically appear in the **SQL Scripts** list and you will be able to use it when creating jobs.
 
+1. In the sidebar go to **Editor** and create an SQL script.
+2. On the right-hand side of the ribbon, select **Upload**.
+
+   The **SQL Catalogue** window opens.
+3. In the **Save As** box, type in a name for your SQL script and select **Save**.
 
 Creating a New Job
 ==================
 
-Jobs consist of multiple tasks that are executed in a specific sequence. Each individual **Task** represents a single SQL script. As jobs are sequential operations, it is important to order the tasks in a meaningful way. You have the flexibility to choose between executing jobs manually or scheduling them for automatic execution.
+Jobs are composed of multiple tasks that are executed in a specific sequence. Each individual **Task** represents a single SQL script. As jobs are sequential operations, it is important to order the tasks in a meaningful way. You have the flexibility to choose between executing jobs manually or scheduling them for automatic execution.
 
 1. In the sidebar go to **Jobs**.
 2. Select the **Create New Job** button, enter job name, and select **Save**.
 
    The newly created job page opens.
    
-3. In the upper left-hand corner, type in task name and description.
+3. In the upper left-hand corner, type in the task name and description.
 4. Drag a script from the **SQL Scripts** menu to the **Drag SQL** box of the task.
 
    Tasks are always shown in the **Preview** window.
@@ -66,7 +72,7 @@ Jobs consist of multiple tasks that are executed in a specific sequence. Each in
 Drafting Jobs
 =============
 
-You can decide that for some jobs it is best to work on over time or else, you might have started constructing a job but for any reason did not get to finish the work. If you did not save the job and had moved on to another page, the job will automatically be saved under **Jobs** > **Drafts**. You may edit jobs saved to **Drafts** only if they were created by you. 
+You can decide that for some jobs it is best to work on over time or else, you might have started composing a job but for any reason did not get to finish the work. If you did not save the job and had moved on to another page, the job will automatically be saved under **Jobs** > **Drafts**. You may edit jobs saved to **Drafts** only if they were created by you. 
 
 1. In the sidebar go to **Jobs**.
 2. Select the **Create New Job** button, enter job name, and select **Save**.
