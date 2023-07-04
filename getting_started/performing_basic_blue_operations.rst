@@ -10,7 +10,7 @@ SQL Workflows
    :titlesonly:
    :hidden:
    
-**Jobs** is a workflow management tool that enables you to create complex SQL workflows. You can use **Jobs** to create and automate sequences of SQL scripts, enabling them to trigger one another and deliver insights or prepare your data for advanced tasks like data modeling and training.
+**Jobs** is a workflow management tool that enables you to create complex SQL workflows. You can use **Jobs** to create and automate sequences of SQL scripts, enabling them to trigger one another and deliver insights or prepare your data for advanced tasks like data modeling and training. You may execute your jobs manually or schedule them for automatic execution. 
 
 .. list-table:: SQL Workflow Elements
    :widths: auto
@@ -19,16 +19,16 @@ SQL Workflows
    * - Element
      - Description
    * - SQL Scripts
-     - A list of saved and ready to use SQL scripts. When you choose a name for a SQL script, it is advisable to choose a name that accurately reflects the SQL action or purpose.
+     - A list of saved and ready-to-use SQL scripts. When you choose a name for a SQL script, it is advisable to choose a name that accurately reflects the SQL action or purpose. Scripts are managed 
    * - Task
-     - A step within a linear operation that forms a job.
+     - A step within a serial operation that forms a job. 
    * - Job
      - Composed of multiple tasks that are executed in a specific sequence.
 
 Saving SQL Scripts to Be Used in Jobs
 =====================================
 
-Jobs are composed of multiple tasks. Each task is associated with a single SQL script. To create tasks, you need to have SQL scripts prepared and ready to be used. After having created and saved a SQL script, it will automatically appear in the **SQL Scripts** list and you will be able to use it when creating jobs.
+Jobs are composed of multiple tasks. Each task is associated with a single SQL script. To create tasks, you need to have SQL scripts prepared and ready to be used. After having created and saved a SQL script, it will automatically appear on the **SQL Scripts** list and you will be able to use it when creating jobs. It 
 
 1. In the sidebar go to **Editor** and create an SQL script.
 2. On the right-hand side of the ribbon, select **Upload**.
@@ -109,7 +109,18 @@ You may monitor all completed jobs, verify query execution success, and investig
 1. In the sidebar, go to **Jobs** > **History**.
 2. Hover over and select the job you wish to investigate.
 
-   A drop-down menu opens, reviling information about each job task. 
+   A drop-down menu opens, reviling information about each task.
+
+.. list-table:: Job and Task Status
+   :widths: auto
+   :header-rows: 1
+
+   * - Option
+     - Description
+   * - 
+     - 
+   * - 
+     - 
 
 Deleting Jobs
 =============
@@ -118,5 +129,7 @@ You may only delete jobs created by you.
 
 1. In the sidebar, go to **Jobs** and then either **All Jobs** or **Drafts**.
 2. Hover over the job you wish to delete and from the three-dot menu choose **Delete**.
+
+Session idleness may be set to 10—130,000 minutes.
 
 
