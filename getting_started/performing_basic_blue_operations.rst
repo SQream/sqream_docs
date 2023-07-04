@@ -1,8 +1,8 @@
 .. _performing_basic_blue_operations:
 
-**********************
-Workflow Orchestration
-**********************
+*************
+SQL Workflows
+*************
 
 .. toctree::
    :maxdepth: 1
@@ -10,7 +10,7 @@ Workflow Orchestration
    :titlesonly:
    :hidden:
    
-You can use **Jobs**, the BLUE workflow management tool, to orchestrate complex, sequential operations based on SQL scripts.
+**Jobs** is a workflow management tool that enables you to create complex SQL workflows. You can use **Jobs** to create and automate sequences of SQL scripts, enabling them to trigger one another and deliver insights or prepare your data for advanced tasks like data modeling and training. Each job is constructed out of the following elements:
 
 .. list-table:: Job Elements
    :widths: auto
@@ -19,7 +19,7 @@ You can use **Jobs**, the BLUE workflow management tool, to orchestrate complex,
    * - Element
      - Description
    * - SQL Scripts
-     - A list of saved SQL scripts. It is recommended that scripts be named according to the action performed when script is executed. 
+     - A list of saved SQL scripts. It is recommended that scripts be named according to the action performed when the script is executed. 
    * - Task
      - A step within a linear operation that forms a workflow.
    * - Job
@@ -28,7 +28,7 @@ You can use **Jobs**, the BLUE workflow management tool, to orchestrate complex,
 Creating a New Job
 ==================
 
-Jobs are constructed out of one or more SQL scripts that are represented by tasks. A **Task** has a name and a SQL script. Since jobs are sequential operations, the order of the tasks within a job has to make sense. You can set jobs to be executed either manually or schedule them to be executed automatically.
+Jobs are constructed from one or more SQL scripts represented by tasks. A **Task** has a name and a SQL script. Since jobs are sequential operations, the order of the tasks within a job has to make sense. You can set jobs to be executed either manually or schedule them to be executed automatically.
 
 1. In the sidebar go to **Jobs**.
 2. Select the **Create New Job** button, enter job name, and select **Save**.
