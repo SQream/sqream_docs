@@ -99,7 +99,7 @@ To optimize your time and effort, you have the option to create a new job based 
 1. In the sidebar go to **Jobs** > **All Jobs**.
 2. Hover over the job you wish to utilize and from the three-dot menu choose **Duplicate Job**.
 
-   The duplication is automatically saved to the **Drafts** tab under the same name as the original job with a time-stamp addition (yyyy-mm-dd hh:mm:ss).
+   The duplication is automatically saved to the **Drafts** tab under the same name as the original job with a time-stamp addition ``yyyy-mm-dd hh:mm:ss``.
 
 Monitoring Completed Jobs
 =========================
