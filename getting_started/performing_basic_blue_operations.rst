@@ -19,7 +19,7 @@ SQL Workflows
    * - Element
      - Description
    * - SQL Scripts
-     - A list of saved SQL scripts. It is recommended that scripts be named according to the action performed when the script is executed. 
+     - A list of saved and ready to use SQL scripts. When you choose a name for a SQL script, it is advisable to choose a name that accurately reflects the SQL action or purpose.
    * - Task
      - A step within a linear operation that forms a job.
    * - Job
