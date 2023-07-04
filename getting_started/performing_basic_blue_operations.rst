@@ -77,7 +77,7 @@ Drafting Jobs
 
 If you are working on a job over a period of time or if you have started composing a job but haven't finished it, you have the option to save it as a draft. In case you didn't save the job and navigated to another page, the job will be automatically saved under **Jobs** > **Drafts**. It's important to note that you can only edit jobs saved in the **Drafts** section if you were the one who created them.
 
-1. In the sidebar go to **Jobs**.
+1. In the sidebar, go to **Jobs**.
 2. Select the **Create New Job** button, enter job name, and select **Save**.
 
    The newly created job page opens.
@@ -96,7 +96,7 @@ Utilizing Existing Jobs
 
 To optimize your time and effort, you have the option to create a new job based on existing jobs from other users. This feature proves helpful when there are elements within an existing job that you require for your own job but with some modifications or additional components.
 
-1. In the sidebar go to **Jobs** > **All Jobs**.
+1. In the sidebar, go to **Jobs** > **All Jobs**.
 2. Hover over the job you wish to utilize and from the three-dot menu choose **Duplicate Job**.
 
    The duplication is automatically saved to the **Drafts** tab under the same name as the original job with a time-stamp addition ``yyyy-mm-dd hh:mm:ss``.
@@ -106,7 +106,7 @@ Monitoring Completed Jobs
 
 You may monitor all completed jobs, verify query execution success, and investigate failed queries.
 
-1. In the sidebar go to **Jobs** > **History**.
+1. In the sidebar, go to **Jobs** > **History**.
 2. Hover over and select the job you wish to investigate.
 
    A drop-down menu opens, reviling information about each job task. 
@@ -116,7 +116,7 @@ Deleting Jobs
 
 You may only delete jobs created by you.
 
-1. In the sidebar go to **Jobs** and then either **All Jobs** or **Drafts**.
+1. In the sidebar, go to **Jobs** and then either **All Jobs** or **Drafts**.
 2. Hover over the job you wish to delete and from the three-dot menu choose **Delete**.
 
 
