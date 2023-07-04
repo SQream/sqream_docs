@@ -284,7 +284,7 @@ Operations and Flag References
 Command Line Arguments
 ----------------------
 
-Sqream SQL supports the following command line arguments:
+BLUE SQL supports the following command line arguments:
 
 .. list-table:: 
    :widths: auto
@@ -313,7 +313,7 @@ Sqream SQL supports the following command line arguments:
      - When set, prevents command history from being saved in ``~/.sqream/clientcmdhist``
    * - ``delimiter``
      - ``,``
-     - Specifies the field separator. By default, ``sqream sql`` outputs valid CSVs. Change the delimiter to modify the output to another delimited format (e.g. TSV, PSV). See the section supported record delimiters below for more information.
+     - Specifies the field separator. By default, ``blue sql`` outputs valid CSVs. Change the delimiter to modify the output to another delimited format (e.g. TSV, PSV). See the section supported record delimiters below for more information.
    * - ``access-token``
      - None
      - Provide a security token that grants access to protected resources or operations.
@@ -333,7 +333,7 @@ The supported record delimiters are printable ASCII values (32-126).
 Meta-Commands
 -------------
 
-* Meta-commands in Sqream SQL start with a backslash (\)
+* Meta-commands in BLUE SQL start with a backslash (\)
 
 .. note::
 
