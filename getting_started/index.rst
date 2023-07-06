@@ -23,14 +23,15 @@ Third-Party Tools
 
 Use the data analysis platform you're used to work with by :ref:`connecting to BLUE<connecting_to_blue>` using Python, JDBC, or ODBC.
 
-Resource Management
--------------------
+Managing Your Resources
+-----------------------
 
 The :ref:`Resource Pool <managing_your_resources>` panel optimizes resource utilization in your BLUE environment. Reduce runtime during idle periods to manage costs and allocate workers based on department-specific needs for improved cluster utilization. Fine-tune worker allocation to maximize the benefits of your BLUE environment.
 
-Performing Basic BLUE Operations
---------------------------------
+SQL Workflows
+-------------
 
+**Jobs** is a SQL :ref:`workflow tool <performing_basic_blue_operations>` for creating complex workflows. It automates sequences of SQL scripts, triggering them to deliver insights or prepare data for advanced tasks like modeling and training. Execute jobs manually or schedule them for automatic execution.
 
 
 .. toctree::
