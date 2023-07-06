@@ -60,7 +60,7 @@ You can list the full, verbose ``CREATE TABLE`` statement for a table by using t
 
 .. note:: 
 
-   * SQream DB identifier names such as table names and column names are not case sensitive. SQream DB lowercases all identifiers bu default. If you want to maintain case, enclose the identifiers with double-quotes.
+   * SQream DB identifier names such as table names and column names are not case sensitive. SQreamDB lowercases all identifiers by default. If you want to maintain case, enclose the identifiers with double-quotes.
    * SQream DB places all tables in the `public` schema, unless another schema is created and specified as part of the table name.
    
 For information on listing a ``CREATE TABLE`` statement, see :ref:`get_ddl`.
