@@ -13,7 +13,7 @@ SQL Workflows
    * - Element
      - Description
    * - SQL Scripts
-     - A list of saved and ready-to-use SQL scripts. When you choose a name for a SQL script, it is advisable to choose a name that accurately reflects the SQL action or purpose. Saved SQL scripts may be managed using the **Editor** > :ref:``.
+     - A list of saved and ready-to-use SQL scripts. When you choose a name for a SQL script, it is advisable to choose a name that accurately reflects the SQL action or purpose. Saved SQL scripts may be managed using the :ref:`Editor<https://docs.sqream.com/en/blue/getting_started/performing_basic_blue_operations.html#editing-saved-sql-scripts>_`.
    * - Task
      - A step within a serial operation that forms a job. 
    * - Job
@@ -40,9 +40,6 @@ Editing Saved SQL Scripts
 
 1. In the sidebar, go to **Editor**.
 2. On the right-hand side of the ribbon, select **Download**.
-
-   The **SQL Catalogue** window opens.
-   
 3. Select the script you wish to edit by either typing in the script name in the **File Name** box or select the script from the script menu.
 4. Select **Open**.
 
