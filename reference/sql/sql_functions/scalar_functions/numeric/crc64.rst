@@ -1,20 +1,20 @@
 .. _crc64:
 
-**************************
+*****
 CRC64
-**************************
+*****
 
-Calculates the CRC-64 hash of a text expression
+The ``CRC64`` function calculates the CRC-64 hash of a text expression.
 
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
    CRC64( expr ) --> BIGINT
 
 Arguments
-============
+=========
 
 .. list-table:: 
    :widths: auto
@@ -26,17 +26,17 @@ Arguments
      - Text expression (``TEXT``)
 
 Returns
-============
+=======
 
 Returns a CRC-64 hash of the text input, of type ``BIGINT``.
 
 .. note:: If the input value is NULL, the result is NULL.
 
 Examples
-===========
+========
 
 Calculate a CRC-64 hash of a string
----------------------------------------
+-----------------------------------
 
 .. code-block:: psql
 
