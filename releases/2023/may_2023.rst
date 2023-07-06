@@ -4,12 +4,14 @@
 May 2023
 ********
 
-Log in using an Identity Provider (IDP)
----------------------------------------
+Auth0
+-----
 
 May 01, 2023
 
-You may now `log in <https://docs.sqream.com/en/blue/getting_started/index.html#login>`_ to BLUE using your IDP credentials. 
+By leveraging Auth0, BLUE enables not only IDP authentication, but also multi-factor authentication, encryption, and anomaly detection to protect user data and prevent unauthorized access. 
+
+`Read more here <https://docs.sqream.com/en/blue/getting_started/index.html#login>`_
 
 Automatically suspend and resume your BLUE environment
 ------------------------------------------------------
