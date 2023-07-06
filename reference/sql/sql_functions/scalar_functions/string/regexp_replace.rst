@@ -1,8 +1,9 @@
 .. _regexp_replace:
 
-**************************
+**************
 REGEXP_REPLACE
-**************************
+**************
+
 The ``REGEXP_REPLACE`` function finds and replaces text column substrings using constant regexp-based patterns with constant replacement strings.
 
 For related information, see the following:
@@ -11,18 +12,16 @@ For related information, see the following:
 * :ref:`REGEXP_INSTR<regexp_instr>`
 * :ref:`REGEXP_SUBSTR<regexp_substr>`
 
-
-
-
 Syntax
-------
+======
 
 .. code-block:: postgres
    
    REGEXP_REPLACE(input, pattern [, replacement [, position [, occurrence]]])
 
 Arguments
---------------
+=========
+
 The following table shows the ``REGEXP_REPLACE`` arguments:
 
 .. list-table:: 
@@ -43,7 +42,7 @@ The following table shows the ``REGEXP_REPLACE`` arguments:
      - (Optional) Sets a specific occurrence to replace. Using ``0`` replaces all occurrences.
 
 Test Patterns
--------------
+=============
 
 .. list-table::
    :widths: auto
@@ -90,16 +89,17 @@ Test Patterns
          Any character that does not have a defined special meaning inside a [] pair matches only itself.
 
 Returns
--------
+=======
+
 The ``REGEXP_REPLACE`` function returns the replaced input value.
 	 
 Notes
------
+=====
+
 The test pattern must be a literal string.
 
 Example
--------
-The following is an example of the ``REGEXP_REPLACE`` function:
+=======
 
 .. code-block::
 
@@ -114,5 +114,4 @@ Output:
 	country_name|
 	------------+
 	SPAIN       |
-
 
