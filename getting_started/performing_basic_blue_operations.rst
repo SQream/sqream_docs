@@ -3,12 +3,6 @@
 *************
 SQL Workflows
 *************
-
-.. toctree::
-   :maxdepth: 1
-   :glob:
-   :titlesonly:
-   :hidden:
    
 **Jobs** is a workflow management tool that enables you to create complex SQL workflows. You can use **Jobs** to create and automate sequences of SQL scripts, enabling them to trigger one another and deliver insights or prepare your data for advanced tasks like data modeling and training. You may execute your jobs manually or schedule them for automatic execution. 
 
@@ -39,6 +33,8 @@ Keep in mind that SQL scripts that are saved and uploaded to the **SQL Scripts**
 3. In the **Save As** box, type in a name for your SQL script and select **Save**.
 
 .. tip:: When you choose a name for a SQL script, it is advisable to choose a name that accurately reflects the SQL action or purpose.
+
+Editing SQL Scripts 
 
 Creating a New Job
 ==================
