@@ -40,6 +40,9 @@ Editing Saved SQL Scripts
 
 1. In the sidebar, go to **Editor**.
 2. On the right-hand side of the ribbon, select **Download**.
+
+   The SQL **Catalogue** window opens.
+   
 3. Select the script you wish to edit by either typing in the script name in the **File Name** box or select the script from the script menu.
 4. Select **Open**.
 
