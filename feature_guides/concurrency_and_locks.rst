@@ -1,8 +1,8 @@
 .. _concurrency_and_locks:
 
-***********************
+*********************
 Concurrency and Locks
-***********************
+*********************
 
 Locks are used in BLUE to provide consistency when there are multiple concurrent transactions updating the database. 
 
@@ -20,7 +20,7 @@ BLUE has two kinds of locks:
    
    This lock tells other statements that they'll have to wait in order to change an object.
    
-   DDL operations are always exclusive. They block other DDL operations, and update DML operations (insert and delete).
+   DDL operations are always exclusive. They block other DDL operations, and update DML operations (insert).
 
 * 
    ``inclusive`` - For insert operations, an inclusive lock is obtained on a specific object. This prevents other statements from obtaining an exclusive lock on the object.
@@ -60,7 +60,7 @@ When are Locks Obtained?
 Statements that wait will exit with an error if they hit the lock timeout. The default timeout is 3 seconds, see ``statementLockTimeout``.
 
 Monitoring Locks
-===================
+================
 
 Monitoring locks across the cluster can be useful when transaction contention takes place, and statements appear "stuck" while waiting for a previous statement to release locks.
 
