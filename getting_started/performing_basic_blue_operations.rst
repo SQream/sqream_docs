@@ -13,7 +13,7 @@ SQL Workflows
    * - Element
      - Description
    * - SQL Scripts
-     - A list of saved and ready-to-use SQL scripts. When you choose a name for a SQL script, it is advisable to choose a name that accurately reflects the SQL action or purpose. Scripts are managed 
+     - A list of saved and ready-to-use SQL scripts. When you choose a name for a SQL script, it is advisable to choose a name that accurately reflects the SQL action or purpose. Saved SQL scripts may be managed using the **Editor** > :ref:``.
    * - Task
      - A step within a serial operation that forms a job. 
    * - Job
@@ -34,7 +34,25 @@ Keep in mind that SQL scripts that are saved and uploaded to the **SQL Scripts**
 
 .. tip:: When you choose a name for a SQL script, it is advisable to choose a name that accurately reflects the SQL action or purpose.
 
-Editing SQL Scripts 
+Editing Saved SQL Scripts
+=========================
+
+1. In the sidebar, go to **Editor**.
+2. On the right-hand side of the ribbon, select **Download**.
+
+      The **SQL Catalogue** window opens.
+	  
+3. Select the script you wish to edit by either typing in the script name in the **File Name** box or select the script from the script menu.
+4. Select **Open*.
+
+   The SQL script is displayed in the **Editor*.
+
+5. Edit the script.
+6. On the right-hand side of the ribbon, select **Upload**.
+
+   The **SQL Catalogue** window opens.   
+
+7. Name the script you wish to save by either typing in the script name in the **Save As** box or select the script from the script menu.
 
 Creating a New Job
 ==================
