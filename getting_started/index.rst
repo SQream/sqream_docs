@@ -4,10 +4,12 @@
 Getting Started
 ***************
 
-To start querying and analyzing your data, simply log in to the BLUE interface using your own Identity Provider (IDP) credentials. By leveraging Auth0, BLUE enables not only IDP authentication, but also multi-factor authentication, encryption, and anomaly detection to protect user data and prevent unauthorized access. 
+The Getting Started guide provides an overview of the key steps to begin using BLUE, a comprehensive platform that offers advanced security features and seamless integration with various data analysis tools. This guide covers the login process, third-party tool integration, managing resources effectively, and utilizing Jobs, a powerful SQL workflow tool.
 
 Login
 -----
+
+By leveraging Auth0, BLUE enables not only IDP authentication, but also multi-factor authentication, encryption, and anomaly detection to protect user data and prevent unauthorized access. 
 
 #. First, check your email for an invite from your administrator to join BLUE and follow the attachet link. 
 
