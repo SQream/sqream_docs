@@ -28,7 +28,7 @@ Logging In Using Auth0
 
 #. First, check your email for an Auth0 invite from your administrator to join BLUE and follow the Invitation link.
 
-
+#. Follow the BLUE URL provided by your admin and select **Log In**. 
 
 Third-Party Tools
 -----------------
