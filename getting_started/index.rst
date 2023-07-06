@@ -11,7 +11,10 @@ Login
 
 By leveraging Auth0, BLUE enables not only IDP authentication, but also multi-factor authentication, encryption, and anomaly detection to protect user data and prevent unauthorized access. 
 
-#. First, check your email for an invite from your administrator to join BLUE and follow the attached link. 
+Logging In Using Identity Provider
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+#. Follow the BLUE URL provided by your admin. 
 
 #. Once you're in, select **Log In**. 
 
@@ -19,6 +22,13 @@ By leveraging Auth0, BLUE enables not only IDP authentication, but also multi-fa
    This is a one-time process, after which you will be redirected back to the BLUE interface. 
 
 From your second login onward, you will be automatically redirected to the BLUE interface.
+
+Logging In Using Auth0
+^^^^^^^^^^^^^^^^^^^^^^
+
+#. First, check your email for an Auth0 invite from your administrator to join BLUE and follow the Invitation link.
+
+
 
 Third-Party Tools
 -----------------
