@@ -88,7 +88,6 @@ Jobs are composed of multiple tasks that are executed in a specific sequence. Ea
    * - Schedule Job
      - You may set the date and time of day for the job to be executed for the first time by setting **Date** and **Time**. Additionally, you may set the job to be executed repeatedly by setting it to **Repeat Every** certain number of days. Your job will be saved under **Jobs** > **All Jobs**. The job **Status** will show **Pending**.
 
-
 Drafting Jobs
 =============
 
@@ -118,15 +117,13 @@ To optimize your time and effort, you have the option to create a new job based 
 
    The duplication is automatically saved to the **Drafts** tab under the same name as the original job with a time-stamp addition ``yyyy-mm-dd hh:mm:ss``.
 
-Monitoring Completed Jobs
-=========================
+Monitoring Executed Jobs
+========================
 
-You may monitor all completed jobs, verify query execution success, and investigate failed queries.
+You may monitor all executed jobs, verify query execution success, and investigate failed queries.
 
 1. In the sidebar, go to **Jobs** > **History**.
 2. Hover over and select the job you wish to investigate.
-
-   A drop-down menu opens, reviling information about each task.
 
 .. list-table:: Job Status
    :widths: auto
@@ -140,7 +137,7 @@ You may monitor all completed jobs, verify query execution success, and investig
      - Your job has failed and is not completed
    * - Running
      - Your job is currently running
-   * - Queued
+   * - Pending
      - You job will be executed as soon as a Worker becomes available
 	 
 .. list-table:: Task Status
@@ -150,14 +147,14 @@ You may monitor all completed jobs, verify query execution success, and investig
    * - Status
      - Description
    * - Done
-     - The specific task is completed
-   * - Error
-     - 
-   * - Upstream Error
-     - 
-   * - 
-     - 
-
+     - Task was successfully completed
+   * - Failed
+     - Task has failed and is not completed
+   * - Running
+     - Task is currently running
+   * - Pending
+     - Task will be executed as soon as a Worker becomes available
+	 
 Deleting Jobs
 =============
 
