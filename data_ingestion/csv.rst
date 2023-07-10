@@ -1,8 +1,8 @@
 .. _csv:
 
-**********************
-Ingesting Data from a CSV File
-**********************
+***
+CSV
+***
 
 This guide covers ingesting data from CSV files into SQream DB using the :ref:`copy_from` method. 
 
@@ -12,7 +12,7 @@ This guide covers ingesting data from CSV files into SQream DB using the :ref:`c
    :depth: 1
 
 Prepare CSVs
-=====================
+============
 
 Prepare the source CSVs, with the following requirements:
 
@@ -131,21 +131,21 @@ Loading a standard CSV file from a local filesystem
 
 
 Loading a PSV (pipe separated value) file
--------------------------------------------
+-----------------------------------------
 
 .. code-block:: postgres
    
    COPY table_name FROM '/home/rhendricks/file.psv' WITH DELIMITER '|';
 
 Loading a TSV (tab separated value) file
--------------------------------------------
+----------------------------------------
 
 .. code-block:: postgres
    
    COPY table_name FROM '/home/rhendricks/file.tsv' WITH DELIMITER '\t';
 
 Loading a text file with non-printable delimiter
------------------------------------------------------
+------------------------------------------------
 
 In the file below, the separator is ``DC1``, which is represented by ASCII 17 decimal or 021 octal.
 
@@ -154,7 +154,7 @@ In the file below, the separator is ``DC1``, which is represented by ASCII 17 de
    COPY table_name FROM 'file.txt' WITH DELIMITER E'\021';
 
 Loading a text file with multi-character delimiters
------------------------------------------------------
+---------------------------------------------------
 
 In the file below, the separator is ``'|``.
 
@@ -163,7 +163,7 @@ In the file below, the separator is ``'|``.
    COPY table_name FROM 'file.txt' WITH DELIMITER '''|';
 
 Loading files with a header row
------------------------------------
+-------------------------------
 
 Use ``OFFSET`` to skip rows.
 
@@ -176,14 +176,14 @@ Use ``OFFSET`` to skip rows.
 .. _changing_record_delimiter:
 
 Loading files formatted for Windows (``\r\n``)
----------------------------------------------------
+----------------------------------------------
 
 .. code-block:: postgres
 
    COPY table_name FROM 'filename.psv' WITH DELIMITER '|' RECORD DELIMITER '\r\n';
 
 Loading a file from a public S3 bucket
-------------------------------------------
+--------------------------------------
 
 .. note:: The bucket must be publicly available and objects can be listed
 
@@ -209,7 +209,7 @@ Loading files from an HDFS storage
 
 
 Saving rejected rows to a file
-----------------------------------
+------------------------------
 
 See :ref:`capturing_rejected_rows` for more information about the error handling capabilities of ``COPY FROM``.
 
@@ -235,7 +235,7 @@ Stopping the load if a certain amount of rows were rejected
                 STOP AFTER 5 ERRORS; -- Stop the load if 5 errors reached
 
 Load CSV files from a set of directories
-------------------------------------------
+----------------------------------------
 
 Use glob patterns (wildcards) to load multiple files to one table.
 
@@ -245,7 +245,7 @@ Use glob patterns (wildcards) to load multiple files to one table.
 
 
 Rearrange destination columns
----------------------------------
+-----------------------------
 
 When the source of the files does not match the table structure, tell the ``COPY`` command what the order of columns should be
 
@@ -256,7 +256,7 @@ When the source of the files does not match the table structure, tell the ``COPY
 .. note:: Any column not specified will revert to its default value or ``NULL`` value if nullable
 
 Loading non-standard dates
-----------------------------------
+--------------------------
 
 If files contain dates not formatted as ``ISO8601``, tell ``COPY`` how to parse the column. After parsing, the date will appear as ``ISO8601`` inside SQream DB.
 

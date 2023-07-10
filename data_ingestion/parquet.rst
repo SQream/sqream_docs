@@ -1,8 +1,8 @@
 .. _parquet:
 
-**********************
-Ingesting Data from a Parquet File
-**********************
+*******
+Parquet
+*******
 
 Ingesting Parquet files into SQream is generally useful when you want to store the data permanently and perform frequent queries on it. Ingesting the data can also make it easier to join with other tables in your database. However, if you wish to retain your data on external Parquet files instead of ingesting it into SQream due to it being an open-source column-oriented data storage format, you may also execute :ref:`FOREIGN TABLE<foreign_tables>` queries.
 
