@@ -1,9 +1,10 @@
 .. _connecting_to_sqream:
 
-*************************
-Connecting to SQream
-*************************
-SQream supports the most common database tools and interfaces, giving you direct access through a variety of drivers, connectors, and visualization tools and utilities. The tools described on this page have been tested and approved for use with SQream.
+**********************
+Connecting to SQreamDB
+**********************
+
+SQreamDB supports the most common database tools and interfaces, giving you direct access through a variety of drivers, connectors, and visualization tools and utilities. The tools described on this page have been tested and approved for use with SQream.
 
 .. toctree::
    :maxdepth: 2

@@ -11,7 +11,8 @@ Ingesting Parquet files into SQream is generally useful when you want to store t
    :depth: 1
    
 Preparing Your Parquet Files
-=====================
+============================
+
 Prepare your source Parquet files according to the requirements described in the following table:
 
 .. list-table:: 
@@ -165,7 +166,8 @@ Your statements will succeed even if your Parquet file contains unsupported type
 .. [#f4] Any microseconds will be rounded down to milliseconds.
 
 Making Parquet Files Accessible to Workers
-================================================================
+==========================================
+
 To give workers access to files, every node must have the same view of the storage being used.
 
 * For files hosted on NFS, ensure that the mount is accessible from all servers.
@@ -175,7 +177,8 @@ To give workers access to files, every node must have the same view of the stora
 * For S3, ensure network access to the S3 endpoint. For more information, see :ref:`s3` guide.
 
 Creating a Table
-===============================================
+================
+
 Before loading data, you must create a table that corresponds to the file structure of the table you wish to insert.
 
 The example in this section is based on the source nba.parquet table shown below:
@@ -215,7 +218,8 @@ Ingesting Data into SQream
 ==========================
    
 Syntax
------------
+------
+
 You can use the :ref:`create_table_as` statement to load the data into SQream, as shown below:
 
 .. code-block:: postgres
@@ -224,14 +228,15 @@ You can use the :ref:`create_table_as` statement to load the data into SQream, a
       SELECT * FROM ext_nba;
 
 Examples
-----------------
+--------
 
 .. contents:: 
    :local:
    :depth: 1
 
 Omitting Unsupported Column Types
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 When loading data, you can omit columns using the NULL as argument. You can use this argument to omit unsupported columns from queries that access external tables. By omitting them, these columns will not be called and will avoid generating a “type mismatch” error.
 
 In the example below, the ``Position column`` is not supported due its type.
@@ -257,7 +262,8 @@ In the example below, the ``Position column`` is set to the default ``NULL``.
               ORDER BY weight;
 
 Loading a Table from a Directory of Parquet Files on HDFS
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 The following is an example of loading a table from a directory of Parquet files on HDFS:
 
 .. code-block:: postgres
@@ -273,7 +279,8 @@ The following is an example of loading a table from a directory of Parquet files
    CREATE TABLE users AS SELECT * FROM ext_users;
 
 Loading a Table from a Directory of Parquet Files on S3
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 The following is an example of loading a table from a directory of Parquet files on S3:
 
 .. code-block:: postgres
@@ -292,7 +299,8 @@ The following is an example of loading a table from a directory of Parquet files
 For more configuration option examples, navigate to the :ref:`create_foreign_table` page and see the **Parameters** table.
 
 Best Practices
-============
+==============
+
 Because external tables do not automatically verify the file integrity or structure, SQream recommends manually verifying your table output when ingesting Parquet files into SQream. This lets you determine if your table output is identical to your originally inserted table.
 
 The following is an example of the output based on the **nba.parquet** table:
