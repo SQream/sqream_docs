@@ -1,12 +1,13 @@
 .. _talend:
 
-*************************
-Connecting to SQream Using Talend
-*************************
+******
+Talend
+******
 
 Overview
-================= 
-This page describes how to use Talend to interact with a SQream cluster. The Talend connector is used for reading data from a SQream cluster and loading data into SQream. In addition, this page provides a viability report on Talend's comptability with SQream for stakeholders.
+========
+ 
+This page describes how to use Talend to interact with a SQream cluster. The Talend connector is used for reading data from a SQream cluster and loading data into SQream. In addition, this page provides a viability report on Talend's comparability with SQream for stakeholders.
 
 The **Connecting to SQream Using Talend** describes the following:
 
@@ -15,7 +16,8 @@ The **Connecting to SQream Using Talend** describes the following:
    :depth: 1
 
 Creating a New Metadata JDBC DB Connection
-----------------
+------------------------------------------
+
 **To create a new metadata JDBC DB connection:**
 
 1. In the **Repository** panel, nagivate to **Metadata** and right-click **Db connections**.
@@ -97,7 +99,8 @@ Creating a New Metadata JDBC DB Connection
     For more information on loading data from JSON files to the Talend Open Studio, see `How to Load Data from JSON Files in Talend <https://www.youtube.com/watch?v=qNt9CYZFFqQ&list=PLOr008ImHvfan_fuDr5RVyexpeYJAp9FX&index=6>`_.
 
 Supported SQream Drivers
-----------------
+------------------------
+
 The following list shows the supported SQream drivers and versions:
 
 * **JDBC** - Version 4.3.3 and higher.
@@ -107,7 +110,8 @@ The following list shows the supported SQream drivers and versions:
 * **ODBC** - Version 4.0.0. This version requires a Bridge to connect. For more information on the required Bridge, see `Connecting Talend on Windows to an ODBC Database <https://www.easysoft.com/blog/talend.html>`_.
 
 Supported Data Sources
-----------------
+----------------------
+
 Talend Cloud connectors let you create reusable connections with a wide variety of systems and environments, such as those shown below. This lets you access and read records of a range of diverse data.
 
 * **Connections:** Connections are environments or systems for storing datasets, including databases, file systems, distributed systems and platforms. Because these systems are reusable, you only need to establish connectivity with them once.
@@ -117,7 +121,8 @@ Talend Cloud connectors let you create reusable connections with a wide variety 
 * **Datasets:** Datasets include database tables, file names, topics (Kafka), queues (JMS) and file paths (HDFS). For more information on the complete list of connectors and datasets that Talend supports, see `Introducing Talend Connectors <https://help.talend.com/r/vqIZei8ynfi_BaDCg3d~_g/M0qzU1kTnL0bPou7OuxJfw>`_.
 
 Known Issues
-----------------
+------------
+
 As of 6/1/2021 schemas were not displayed for tables with identical names.
 
 If you experience issues using Talend, see the `SQream support portal <https://support.sqream.com>`_.

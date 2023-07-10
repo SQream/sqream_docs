@@ -1,14 +1,15 @@
 .. _microstrategy:
 
 
-*************************
-Connect to SQream Using MicroStrategy
-*************************
+*************
+MicroStrategy
+*************
 
 .. _ms_top:
 
 Overview 
----------------
+--------
+
 This document is a Quick Start Guide that describes how to install MicroStrategy and connect a datasource to the MicroStrategy dasbhoard for analysis.
 
 
@@ -20,12 +21,9 @@ The **Connecting to SQream Using MicroStrategy** page describes the following:
    :local:
    
 
-
-
-
-
 What is MicroStrategy?
-================
+======================
+
 MicroStrategy is a Business Intelligence software offering a wide variety of data analytics capabilities. SQream uses the MicroStrategy connector for reading and loading data into SQream.
 
 MicroStrategy provides the following:
@@ -48,7 +46,7 @@ For more information about Microstrategy, see `MicroStrategy <https://www.micros
 
 
 Connecting a Data Source
-=======================
+========================
 
 1. Activate the **MicroStrategy Desktop** app. The app displays the Dossiers panel to the right.
 
@@ -172,7 +170,7 @@ Your populated dashboard is displayed and is ready for data discovery and analyt
 :ref:`Back to Overview <ms_top>`
 
 Supported SQream Drivers
-================
+========================
 
 The following list shows the supported SQream drivers and versions:
 

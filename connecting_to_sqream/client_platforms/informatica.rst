@@ -1,11 +1,12 @@
 .. _informatica:
 
-*************************
-Connect to SQream Using Informatica Cloud Services
-*************************
+**************************
+Informatica Cloud Services
+**************************
 
 Overview
-=========
+========
+
 The **Connecting to SQream Using Informatica Cloud Services** page is quick start guide for connecting to SQream using Informatica cloud services.
 
 It describes the following:
@@ -14,7 +15,8 @@ It describes the following:
    :local:
 
 Establishing a Connection between SQream and Informatica
------------------
+--------------------------------------------------------
+
 The **Establishing a Connection between SQream and Informatica** page describes how to establish a connection between SQream and the Informatica data integration Cloud.
 
 **To establish a connection between SQream and the Informatica data integration Cloud:**
@@ -93,7 +95,7 @@ The **Establishing a Connection between SQream and Informatica** page describes 
     .. note:: If you do not download Secure Agent, you will not be able to connect your Runtime Environment with the running agent and continue establishing a connection between SQream and the Informatica data integration Cloud.
 	
 Establishing a Connection In Your Environment
------------------
+---------------------------------------------
 
 The **Establishing a Connection In Your Environment** describes the following:
 
@@ -101,7 +103,8 @@ The **Establishing a Connection In Your Environment** describes the following:
    :local:
 
 Establishing an ODBC DSN Connection In Your Environment
-~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 After establishing a connection between SQream and Informatica you can establish an ODBC DSN connection in your environment.
 
 **To establish an ODBC connection in your environment:**
@@ -129,7 +132,8 @@ After establishing a connection between SQream and Informatica you can establish
 6. Click **Actions** > **Publish**.
 	
 Establishing a JDBC Connection In Your Environment
-~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 After establishing a connection between SQream and Informatica you can establish a JDBC connection in your environment.
 
 **To establish a JDBC connection in your environment:**
@@ -162,7 +166,7 @@ After establishing a connection between SQream and Informatica you can establish
 6. Click **Actions** > **Publish**.
 
 Supported SQream Driver Versions
----------------
+--------------------------------
 
 SQream supports the following SQream driver versions: 
 

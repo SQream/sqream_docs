@@ -1,8 +1,8 @@
 .. _spark:
 
-*************************
-Using Spark With SQream
-*************************
+*****
+Spark
+*****
 
 
 The Spark connector enables reading and writing data to and from SQreamDB and may be used for large-scale data processing.

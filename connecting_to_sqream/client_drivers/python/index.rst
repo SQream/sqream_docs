@@ -1,8 +1,8 @@
 .. _pysqream:
 
-*************************
-Connecting to SQream Using Python (pysqream)
-*************************
+*****************
+Python (pysqream)
+*****************
 
 The current Pysqream connector supports Python version 3.9 and newer. It includes a set of packages that allows Python programs to connect to SQream DB. The base ``pysqream`` package conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_.
 
@@ -14,7 +14,7 @@ The current Pysqream connector supports Python version 3.9 and newer. It include
    :depth: 1
 
 Installing the Python Connector
-==================================
+===============================
 
 Prerequisites
 -------------
@@ -39,6 +39,7 @@ To see your current Python version, run the following command:
    
 PIP
 ~~~
+
 The Python connector is installed via ``pip``, the standard package manager for Python, which is used to install, upgrade and manage Python packages (libraries) and their dependencies.
 
 We recommend upgrading to the latest version of ``pip`` before installing. 
@@ -64,6 +65,7 @@ To verify that you have the latest version, run the following command:
 
 OpenSSL for Linux
 ~~~~~~~~~~~~~~~~~
+
 The Python connector relies on OpenSSL for secure connections to SQream DB. Some distributions of Python do not include OpenSSL. 
 
 To install OpenSSL on RHEL/CentOS, run the following command:
@@ -81,6 +83,7 @@ To install OpenSSL on Ubuntu, run the following command:
 
 Installing via PIP with an internet connection
 ----------------------------------------------
+
 The Python connector is available via `PyPi <https://pypi.org/project/pysqream/>`_.
 
 To install the connector using pip, it is advisable to use the ``-U`` or ``--user`` flags instead of sudo, as it ensures packages are installed per user. However, it is worth noting that the connector can only be accessed under the same user. 
@@ -94,7 +97,7 @@ To install ``pysqream`` and ``pysqream-sqlalchemy`` with the ``--user`` flag, ru
 ``pip3`` will automatically install all necessary libraries and modules.
 
 Installing via PIP without an internet connection
-----------------------------------------------
+-------------------------------------------------
 
 #. To get the ``.whl`` package file, contact you SQream support representative.
 
@@ -110,7 +113,8 @@ Installing via PIP without an internet connection
 	python3.9 -m pip install pysqream-sqlalchemy-0.8.zip  -U --no-index --find-links .
 
 Upgrading an Existing Installation
---------------------------------------
+----------------------------------
+
 The Python drivers are updated periodically. To upgrade an existing pysqream installation, use pip's ``-U`` flag:
 
 .. code-block:: console
@@ -172,6 +176,7 @@ Creating a Standard Connection
 
 Pulling a Table into Pandas
 ---------------------------
+
 The following example shows how to pull a table in Pandas. This examples uses the URL method to create the connection string:
 
 .. code-block:: python
@@ -271,6 +276,7 @@ The following is an example of the contents of the row variables used in our exa
 
 Reading Result Metadata
 -----------------------
+
 When you execute a statement, the connection object also contains metadata about the result set, such as **column names**, **types**, etc).
 
 The metadata is stored in the :py:attr:`Connection.description` object of the cursor:
@@ -297,6 +303,7 @@ You can fetch a list of column names by iterating over the ``description`` list:
 
 Loading Data into a Table
 -------------------------
+
 This example shows how to load 10,000 rows of dummy data to an instance of SQream.
 
 **To load data 10,000 rows of dummy data to an instance of SQream:**
@@ -373,6 +380,7 @@ This example shows how to load 10,000 rows of dummy data to an instance of SQrea
 
 Using SQLAlchemy ORM to Create and Populate Tables
 --------------------------------------------------
+
 This section shows how to use the ORM to create and populate tables from Python objects.
 
 **To use SQLAlchemy ORM to create and populate tables:**

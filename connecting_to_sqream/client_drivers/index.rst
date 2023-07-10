@@ -7,10 +7,11 @@ Client Drivers
 The guides on this page describe how to use the Sqream DB client drivers and client applications with SQream.
 
 Client Driver Downloads
-=============================
+=======================
 
 All Operating Systems 
----------------------------
+---------------------
+
 The following are applicable to all operating systems:
 
 .. _jdbc:
@@ -75,6 +76,7 @@ The following are applicable to all operating systems:
 
 Windows
 -------
+
 The following are applicable to Windows:
 
 * For the **ODBC installer**, please contact your `Sqream representative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_.

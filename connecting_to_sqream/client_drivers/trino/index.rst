@@ -1,8 +1,8 @@
 .. _trino:
 
-*************************
-Connecting to SQream Using Trino
-*************************
+*****
+Trino
+*****
 
 
 If you are using Trino for distributed SQL query processing and wish to use it to connect to a SQream, follow these instructions. 
@@ -14,6 +14,7 @@ If you are using Trino for distributed SQL query processing and wish to use it t
 
 Prerequisites
 -------------
+
 To use Trino with SQream, you must have the following installed:
 
 * SQream version 4.1 or later
@@ -37,7 +38,7 @@ In case JDBC is not yet configured, follow the `JDBC Client Drivers page <https:
 
 
 Trino Connector
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
 
 The Trino Connector must be installed on each cluster node dedicated to Trino.
 
@@ -98,6 +99,7 @@ The following is an example of the ``DESCRIBE sqream.public.t`` statement:
 	
 Supported Data Types and Mapping
 --------------------------------
+
 Use the appropriate Trino data type for executing queries. Upon execution, incompatible data types will be converted by Trino to SQream data types.  
 
 .. list-table:: 

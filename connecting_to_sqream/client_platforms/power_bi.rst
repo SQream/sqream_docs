@@ -1,11 +1,12 @@
 .. _power_bi:
 
-*************************
-Connecting to SQream Using Power BI Desktop
-*************************
+**********
+BI Desktop
+**********
 
 Overview
-=========
+========
+
 **Power BI Desktop** lets you connect to SQream and use underlying data as with other data sources in Power BI Desktop.
 
 SQream integrates with Power BI Desktop to do the following:
@@ -35,7 +36,8 @@ The **Connect to SQream Using Power BI** page describes the following:
    :depth: 1
    
 Prerequisites
--------------------
+-------------
+
 To connect to SQream, the following must be installed:
 
 * **ODBC data source administrator** - 32 or 64, depending on your operating system. For Windows users, the ODBC data source administrator is embedded within the operating system.
@@ -43,7 +45,8 @@ To connect to SQream, the following must be installed:
 * **SQream driver** - The SQream application required for interacting with the ODBC according to the configuration specified in the ODBC administrator tool.
 
 Installing Power BI Desktop
--------------------
+---------------------------
+
 **To install Power BI Desktop:**
 
 1. Download `Power BI Desktop 64x <https://powerbi.microsoft.com/en-us/downloads/>`_.
@@ -115,7 +118,8 @@ Installing Power BI Desktop
 13. Provide your user name and password and click **Connect**.
 
 Best Practices for Power BI
----------------
+---------------------------
+
 SQream recommends using Power BI in the following ways for acquiring the best performance metrics:
 
 * Creating bar, pie, line, or plot charts when illustrating one or more columns.
@@ -129,7 +133,8 @@ SQream recommends using Power BI in the following ways for acquiring the best pe
 * Creating a unified view using **PowerQuery** to connect different data sources into a single dashboard.	   
 
 Supported SQream Driver Versions
----------------
+--------------------------------
+
 SQream supports the following SQream driver versions: 
 
 * The **PowerQuery Connector** is an additional layer on top of the ODBC. 
@@ -140,4 +145,5 @@ SQream supports the following SQream driver versions:
 
 Related Information
 -------------------
+
 For more information, see the `Glossary <https://docs.sqream.com/en/v2022.1/glossary.html>`_.

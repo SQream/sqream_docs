@@ -1,11 +1,13 @@
 .. _tibco_spotfire:
 
 
-*************************
-Connecting to SQream Using TIBCO Spotfire
-*************************
+**************
+TIBCO Spotfire
+**************
+
 Overview
-=========
+========
+
 The **TIBCO Spotfire** software is an analytics solution that enables visualizing and exploring data through dashboards and advanced analytics.
 
 This document is a Quick Start Guide that describes the following:
@@ -15,7 +17,8 @@ This document is a Quick Start Guide that describes the following:
    :depth: 1
    
 Establishing a Connection between TIBCO Spotfire and SQream
------------------
+-----------------------------------------------------------
+
 TIBCO Spotfire supports the following versions:
 
 * **JDBC driver** - Version 4.5.2 
@@ -30,13 +33,15 @@ The **Establishing a JDBC Connection between TIBCO Spotfire and SQream** section
    :depth: 1   
    
 Creating a JDBC Connection
-~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 For TIBCO Spotfire to recognize SQream, you must add the correct JDBC jar file to Spotfire's loaded binary folder. The following is an example of a path to the Spotfire loaded binaries folder: ``C:\tibco\tss\7.12.0\tomcat\bin``.
 
 For the complete TIBCO Spotfire documentation, see `TIBCO Spotfire® JDBC Data Access Connectivity Details <https://community.tibco.com/wiki/tibco-spotfire-jdbc-data-access-connectivity-details>`_. 
 
 Creating an ODBC Connection
-~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 **To create an ODBC connection**
 
 1. Install and configure ODBC on Windows.
@@ -84,7 +89,8 @@ Creating an ODBC Connection
 .. note:: Verify that you have checked the SQL statement. 
 
 Creating the SQream Data Source Template
-~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 After creating a connection, you can create your SQream data source template.
 
 **To create your SQream data source template:**
@@ -183,7 +189,8 @@ After creating a connection, you can create your SQream data source template.
 5. Close and restart your Spotfire server.
 
 Creating a Data Source
-~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+
 After creating the SQream data source template, you can create a data source.
 
 **To create a data source:**
@@ -225,7 +232,8 @@ After creating the SQream data source template, you can create a data source.
    * **Username and Password** - define your SQream username and password.   
 
 Creating an Information Link
-~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 After creating a data source, you can create an information link.
 
 **To create an information link**:
@@ -354,7 +362,8 @@ After creating a data source, you can create an information link.
 For more information on the Information Link attributes, see `Information Link Tab <https://docs.tibco.com/pub/spotfire/7.0.1/doc/html/id/id_information_link_tab.htm>`_.
 
 Troubleshooting
--------------
+---------------
+
 The **Troubleshooting** section describes the following scenarios:
 
 .. contents::
@@ -362,7 +371,8 @@ The **Troubleshooting** section describes the following scenarios:
    :depth: 1 
 
 The JDBC Driver does not Support Boolean, Decimal, or Numeric Types
-~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 When attempting to load data, the the Boolean, Decimal, or Numeric column types are not supported and generate the following error:
 
 .. code-block:: console
@@ -381,7 +391,8 @@ For more information, see the following:
 * **Supported data types** - :ref:`Data Types<supported_data_types>`.
 
 Information Services do not Support Live Queries
-~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 TIBCO Spotfire data connectors support live queries, but no APIs currently exist for creating custom data connectors. This is resolved by creating a customized SQream adapter using TIBCO's **Data Virtualization (TDV)** or the **Spotfire Advanced Services (ADS)**. These can be used from the built-in TDV connector to enable live queries.
 
 This resolution applies to JDBC and ODBC drivers.

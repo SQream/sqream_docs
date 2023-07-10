@@ -1,12 +1,13 @@
 .. _pentaho_data_integration:
 
-*************************
-Connecting to SQream Using Pentaho Data Integration
-*************************
+************************
+Pentaho Data Integration
+************************
 .. _pentaho_top:
 
 Overview
-=========
+========
+
 This document is a Quick Start Guide that describes how to install Pentaho, create a transformation, and define your output. 
 
 The Connecting to SQream Using Pentaho page describes the following:
@@ -20,7 +21,8 @@ The Connecting to SQream Using Pentaho page describes the following:
 .. _install_pentaho:
 
 Installing Pentaho
-~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~
+
 To install PDI, see the `Pentaho Community Edition (CE) Installation Guide <https://www.hitachivantara.com/en-us/pdf/white-paper/pentaho-community-edition-installation-guide-for-windows-whitepaper.pdf>`_.
 
 The **Pentaho Community Edition (CE) Installation Guide** describes how to do the following:
@@ -34,7 +36,8 @@ The **Pentaho Community Edition (CE) Installation Guide** describes how to do th
 .. _install_set_up_jdbc_driver:
 
 Installing and Setting Up the JDBC Driver
-~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 After installing Pentaho you must install and set up the JDBC driver. This section explains how to set up the JDBC driver using Pentaho. These instructions use Spoon, the graphical transformation and job designer associated with the PDI suite.
 
 You can install the driver by copying and pasting the SQream JDBC .jar file into your **<directory>/design-tools/data-integration/lib** directory. 
@@ -46,7 +49,8 @@ You can install the driver by copying and pasting the SQream JDBC .jar file into
 .. _create_transformation:
 
 Creating a Transformation
-~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
 After installing Pentaho you can create a transformation.
 
 **To create a transformation:**
@@ -116,7 +120,8 @@ After installing Pentaho you can create a transformation.
 .. _define_output:
 
 Defining Your Output
------------------
+--------------------
+
 After creating your transformation you must define your output.
 
 **To define your output:**
@@ -178,7 +183,8 @@ After creating your transformation you must define your output.
 .. _import_data:
 
 Importing Data
------------------
+--------------
+
 After defining your output you can begin importing your data.
 
 For more information about backing up users, permissions, or schedules, see `Backup and Restore Pentaho Repositories <https://help.pentaho.com/Documentation/7.0/0P0/Managing_the_Pentaho_Repository/Backup_and_Restore_Pentaho_Repositories>`_
