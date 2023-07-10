@@ -128,13 +128,13 @@ You may monitor all completed jobs, verify query execution success, and investig
 
    A drop-down menu opens, reviling information about each task.
 
-.. list-table:: Job and Task Status
+.. list-table:: Job Status
    :widths: auto
    :header-rows: 1
 
    * - Status
      - Description
-   * - Success
+   * - Completed Successfully
      - Your job was successfully completed
    * - Failed
      - Your job has failed and is not completed
@@ -142,6 +142,21 @@ You may monitor all completed jobs, verify query execution success, and investig
      - Your job is currently running
    * - Queued
      - You job will be executed as soon as a Worker becomes available
+	 
+.. list-table:: Task Status
+   :widths: auto
+   :header-rows: 1
+
+   * - Status
+     - Description
+   * - Done
+     - The specific task is completed
+   * - Error
+     - 
+   * - Upstream Error
+     - 
+   * - 
+     - 
 
 Deleting Jobs
 =============
