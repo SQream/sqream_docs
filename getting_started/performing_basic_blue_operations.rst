@@ -55,8 +55,8 @@ Editing Saved SQL Scripts
    
 7. Name the script you wish to save by either typing in the script name in the **Save As** box or select the script from the script menu.
 
-Creating a New Job
-==================
+Creating New Jobs
+=================
 
 Jobs are composed of multiple tasks that are executed in a specific sequence. Each individual **Task** represents a single SQL script. As jobs are sequential operations, it is important to order the tasks in a meaningful way. You have the flexibility to choose between executing jobs manually or scheduling them for automatic execution.
 
@@ -132,12 +132,16 @@ You may monitor all completed jobs, verify query execution success, and investig
    :widths: auto
    :header-rows: 1
 
-   * - Option
+   * - Status
      - Description
-   * - 
-     - 
-   * - 
-     - 
+   * - Success
+     - Your job was successfully completed
+   * - Failed
+     - Your job has failed and is not completed
+   * - Running
+     - Your job is currently running
+   * - Queued
+     - You job will be executed as soon as a Worker becomes available
 
 Deleting Jobs
 =============

@@ -26,9 +26,11 @@ From your second login onward, you will be automatically redirected to the BLUE 
 Logging In Using Auth0
 ^^^^^^^^^^^^^^^^^^^^^^
 
-#. First, check your email for an Auth0 invite from your administrator to join BLUE and follow the Invitation link.
+#. Check your email for an Auth0 invite from your administrator to join BLUE and select **ACCEPT INVITATION**.
 
-#. Follow the BLUE URL provided by your admin and select **Log In**. 
+   An invitation window opens.
+   
+#. Select **Continue** and you will be logged in to BLUE.
 
 Third-Party Tools
 -----------------
