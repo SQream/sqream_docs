@@ -1,8 +1,9 @@
 .. _4.0_index:
 
-**************************
+*****************
 Release Notes 4.0
-**************************
+*****************
+
 The 4.0 Release Notes describe the following releases:
 
 .. contents:: 
@@ -17,3 +18,4 @@ The 4.0 Release Notes describe the following releases:
    4.1
    4.2
    4.3
+   4.4

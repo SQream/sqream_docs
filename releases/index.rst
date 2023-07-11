@@ -12,6 +12,8 @@ Release Notes
    
    * - Version
      - Release Date
+   * - :ref:`4.4`
+     - xxxxxxx xx, xxxx
    * - :ref:`4.3`
      - June 11, 2023
    * - :ref:`4.2`
