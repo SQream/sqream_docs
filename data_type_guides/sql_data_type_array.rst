@@ -48,13 +48,13 @@ Supported Operators
    * - Concatenate ``||``
      - Converts arrayed elements into one string. For example, ``SELECT <column_name> || <column2_name> FROM <table_name>``
    * - ``array_length``
-     - Returns the number of arrayed elements within the specified column. For Example, ``SELECT array_length(<column_name>) FROM <table_name>``
+     - Returns the number of arrayed elements within the specified column. For example, ``SELECT array_length(<column_name>) FROM <table_name>``
    * - ``array_position``
-     - Locates the position of the specified value within the specified array. For example, ``SELECT array_position(<column_name>,<value>) FROM <table_name>;
-   * - 
-     - 
-   * - 
-     - 
+     - Locates the position of the specified value within the specified array. For example, ``SELECT array_position(<column_name>,<value>) FROM <table_name>;``. Returns ``NULL`` if the value is not found.
+   * - ``array_remove``
+     - Returns the specified array column with the specified value deducted. For example, ``SELECT array_remove(<column_name>,<value>) FROM <table_name>;``
+   * - ``array_replace``
+     - Enables replacing values within an ``ARRAY`` column. For example, ``SELECT array_replace(<column_name>,<value_to_replace>,<value_that_replaces>) FROM <table_name>;``
    * - 
      - 
    * - 
