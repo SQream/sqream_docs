@@ -49,8 +49,8 @@ Supported Operators
      - Converts arrayed elements into one string. For example, ``SELECT <column_name> || <column2_name> FROM <table_name>``
    * - ``array_length``
      - Returns the number of arrayed elements within the specified column. For Example, ``SELECT array_length(<column_name>) FROM <table_name>``
-   * - 
-     - 
+   * - ``array_position``
+     - Locates the position of the specified value within the specified array. For example, ``SELECT array_position(<column_name>,<value>) FROM <table_name>;
    * - 
      - 
    * - 
