@@ -38,7 +38,7 @@ Supported Operators
    * - Operator
      - Description
    * - Literals ``ARRAY []``
-     - An array literal can be created using the ``ARRAY`` operator. For example, ``ARRAY[1,2,3];``
+     - An array literal can be created using the ``ARRAY`` operator. For example, ``ARRAY[1,2,3]``
    * - Mapping
      - Parquet, ORC, JSON, and AVRO array types may be mapped into SQreamDB arrays
    * - Indexing
@@ -46,7 +46,7 @@ Supported Operators
    * - ``UNNEST``
      - Converts the arrayed elements within a single row into a set of rows. For example, ``SELECT UNNEST <column_name> FROM <table_name>``
    * - Concatenate ``||``
-     - Converts arrayed elements into one string. For example, 
+     - Converts arrayed elements into one string. For example, ``SELECT <column_name> || <column2_name> FROM <table_name>``
    * - ``array_length``
      - Returns the number of arrayed elements within the specified column. For Example, ``SELECT array_length(<column_name>) FROM <table_name>``
    * - 
