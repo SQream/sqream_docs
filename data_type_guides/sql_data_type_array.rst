@@ -32,7 +32,7 @@ Supported Operators
 ===================
 
 .. list-table::
-   :widths: auto
+   :widths: 8 40
    :header-rows: 1
    
    * - Operator
@@ -54,11 +54,11 @@ Supported Operators
    * - ``array_remove``
      - Returns the specified array column with the specified value deducted. For example, ``SELECT array_remove(<column_name>,<value>) FROM <table_name>;``
    * - ``array_replace``
-     - Enables replacing values within an ``ARRAY`` column. For example, ``SELECT array_replace(<column_name>,<value_to_replace>,<value_that_replaces>) FROM <table_name>;``
-   * - 
-     - 
-   * - 
-     - 
+     - Enables replacing values within an ``ARRAY`` column. For example, ``SELECT array_replace(<column_name>,<value_to_replace>,<replacing_value>) FROM <table_name>;``
+   * - Limiting number of arrayed elements 
+     - You may limit the number of arrayed elements within an ``ARRAY``. For example, ``CREATE TABLE <table_name> (<column1> TEXT[]);``
+   * - Creating different column types
+     - You may create a table that has arrayed columns and non-arrayed columns. For example, ``CREATE TABLE <table_name> (<column1> TEXT('a','b','c')['d']);`` 
    * - 
      - 
    * - 
@@ -71,33 +71,33 @@ Creating a table with arrayed columns:
 
 .. code-block::
 
-	CREATE TABLE array (column1 TEXT[], column2 INT[]);
+	CREATE TABLE array (column1 TEXT[], column2 TEXT[], column3 INT[]);
 	
 Inserting array values into a table:
 
 .. code-block::
 	
-	INSERT INTO TABLE array VALUES ARRAY['a','b','c'], ARRAY[1,2,3];
+	INSERT INTO array VALUES (ARRAY['1','2','3'], ARRAY['4','5','6'], ARRAY[7,8,9,10]);
 	
 Converting arrayed elements into a set of rows:
 
 .. code-block::
 	
-	SELECT UNNEST(ARRAY['a','b','c'], ARRAY[1,2,3]);
+	SELECT UNNEST(ARRAY['1','2','3'], ARRAY['4','5','6']);
 
 .. code-block::
 	
 	column1	| column2
 	--------+----------
-	a       | 1
-	b       | 2
-	c       | 3
+	1       | 4
+	2       | 5
+	3       | 6
 	
 Updating table values:
 
 .. code-block::
 
-	INSERT INTO TABLE array VALUES ARRAY['a','b','c'], ARRAY[1,2,3];
+	INSERT INTO array VALUES ARRAY['a','b','c'], ARRAY[1,2,3];
 	
 	UPDATE array SET arr[0] = '{7,8,9}';
 	
