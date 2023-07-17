@@ -103,7 +103,7 @@ Examples
 Granting Default Table Permissions
 ----------------------------------
 
-This example is based on the roles **r1** and **r2**, created as follows:
+Altering the default permissions of **r1** so that **r2** is able to execute ``SELECT`` on **r1** tables:
 
 .. code-block:: postgres
 
