@@ -1,9 +1,10 @@
 .. _getting_started:
 
-*************************
+***************
 Getting Started
-*************************
-The **Getting Started** page describes the following things you need to start using SQream:
+***************
+
+The **Getting Started** page describes the following things you need to start using SQreamDB:
 
 .. toctree::
    :maxdepth: 1
