@@ -2,9 +2,10 @@
 
 .. _editor_top_5.4.7:
 
-****************************
+********************************************************
 Executing Statements and Running Queries from the Editor
-****************************
+********************************************************
+
 The **Editor** is used for the following:
 
 * Selecting an active database and executing queries.
@@ -42,7 +43,8 @@ The following is a brief description of the Editor panels:
 .. _studio_5.4.7_editor_toolbar:
 
 Executing Statements from the Toolbar
-================
+=====================================
+
 You can access the following from the Toolbar pane:
 
 * **Database dropdown list** - select a database that you want to run statements on.
@@ -82,7 +84,8 @@ For more information on stopping active statements, see the :ref:`STOP_STATEMENT
 .. _studio_5.4.7_editor_db_tree:
 
 Performing Statement-Related Operations from the Database Tree
-================
+==============================================================
+
 From the Database Tree you can perform statement-related operations and show metadata (such as a number indicating the amount of rows in the table).
 
 
@@ -207,8 +210,9 @@ The database object functions are used to perform the following:
      - The `DDL Optimizer <https://docs.sqream.com/en/latest/sqream_studio_5.4.7/executing_statements_and_running_queries_from_the_editor.html#optimizing-database-tables-using-the-ddl-optimizer>`_  lets you analyze database tables and recommends possible optimizations.
 
 Optimizing Database Tables Using the DDL Optimizer
------------------------
-The **DDL Optimizer** tab analyzes database tables and recommends possible optimizations according to SQream's best practices.
+--------------------------------------------------
+
+The **DDL Optimizer** tab analyzes database tables and recommends possible optimizations according to SQreamDB's best practices.
 
 As described in the previous table, you can access the DDL Optimizer by clicking the **additional options icon** and selecting **DDL Optimizer**.
 
@@ -232,21 +236,23 @@ Clicking **Run Optimizer** adds a tab to the Statement panel showing the optimiz
 For more information, see `Optimization and Best Practices <https://docs.sqream.com/en/latest/operational_guides/optimization_best_practices.html>`_.
 
 Executing Pre-Defined Queries from the System Queries Panel
----------------
+-----------------------------------------------------------
+
 The **System Queries** panel lets you execute predefined queries and includes the following system query types:
 
 * **Catalog queries** - Used for analyzing table compression rates, users and permissions, etc.
     
 	::
 	
-* **Admin queries** - Queries useful for SQream database management.
+* **Admin queries** - Queries useful for SQreamDB database management.
 
 Clicking an item pastes the query into the Statement pane, and you can undo a previous operation by pressing **Ctrl + Z**.
 
 .. _studio_5.4.7_editor_statement_area:
 
 Writing Statements and Queries from the Statement Panel
-==============
+=======================================================
+
 The multi-tabbed statement area is used for writing queries and statements, and is used in tandem with the toolbar. When writing and executing statements, you must first select a database from the **Database** dropdown menu in the toolbar. When you execute a statement, it passes through a series of statuses until completed. Knowing the status helps you with statement maintenance, and the statuses are shown in the **Results panel**.
 
 The auto-complete feature assists you when writing statements by suggesting statement options.
@@ -274,11 +280,11 @@ You can add and name new tabs for each statement that you need to execute, and S
 
 You can also rename the default tab name by double-clicking it and typing a new name and write multiple statements in tandem in the same tab by separating them with semicolons (``;``).If too many tabs to fit into the Statement Pane are open at the same time, the tab arrows are displayed. You can scroll through the tabs by clicking |icon-left| or |icon-right|, and close tabs by clicking |icon-close|. You can also close all tabs at once by clicking **Close all** located to the right of the tabs.
 
-.. tip:: If this is your first time using SQream, see `Getting Started <https://docs.sqream.com/en/latest/first_steps.html#first-steps>`_.
+.. tip:: If this is your first time using SQreamDB, see :ref:`Getting Started <getting_started>`.
 
 
 .. Keyboard shortcuts
-.. ^^^^^^^^^^^^^^^^^^^^^^^^^
+.. ^^^^^^^^^^^^^^^^^^
 
 .. :kbd:`Ctrl` +: kbd:`Enter` - Execute all queries in the statement area, or just the highlighted part of the query.
 
@@ -297,7 +303,8 @@ You can also rename the default tab name by double-clicking it and typing a new 
 .. _results_panel_5.4.7:
 
 Viewing Statement and Query Results from the Results Panel
-==============
+==========================================================
+
 The results panel shows statement and query results. By default, only the first 10,000 results are returned, although you can modify this from the :ref:`studio_editor_toolbar`, as described above. By default, executing several statements together opens a separate results tab for each statement. Executing statements together executes them serially, and any failed statement cancels all subsequent executions.
 
 .. image:: /_static/images/results_panel.png
@@ -323,7 +330,8 @@ The following is a brief description of the Results panel views highlighted in t
 :ref:`Back to Executing Statements and Running Queries from the Editor<editor_top_5.4.7>`
 	 
 Searching Query Results in the Results View
-----------------
+-------------------------------------------
+
 The **Results view** lets you view search query results.
 
 From this view you can also do the following:
@@ -335,13 +343,15 @@ From this view you can also do the following:
 * Sort column results.
 
 Saving Results to the Clipboard
-^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The **Save results to clipboard** function lets you save your results to the clipboard to paste into another text editor or into Excel for further analysis.
 
 .. _save_results_to_local_file_5.4.7:
 
 Saving Results to a Local File
-^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The **Save results to local file** functions lets you save your search query results to a local file. Clicking **Save results to local file** downloads the contents of the Results panel to an Excel sheet. You can then use copy and paste this content into other editors as needed.
 
 In the Results view you can also run parallel statements, as described in **Running Parallel Statements** below.
@@ -349,7 +359,8 @@ In the Results view you can also run parallel statements, as described in **Runn
 .. _running_parallel_statements_5.4.7:
 
 Running Parallel Statements
-^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 While Studio's default functionality is to open a new tab for each executed statement, Studio supports running parallel statements in one statement tab. Running parallel statements requires using macros and is useful for advanced users.
 
 The following shows the syntax for running parallel statements:
@@ -371,7 +382,8 @@ The following shows the syntax for running parallel statements:
 .. _execution_tree_5.4.7:
 
 Execution Details View
---------------
+----------------------
+
 The **Execution Details View** section describes the following:
 
 .. contents:: 
@@ -379,7 +391,8 @@ The **Execution Details View** section describes the following:
    :depth: 1
    
 Overview
-^^^^^^^^^^^^
+^^^^^^^^
+
 Clicking **Execution Details View** displays the **Execution Tree**, which is a chronological tree of processes that occurred to execute your queries. The purpose of the Execution Tree is to analyze all aspects of your query for troubleshooting and optimization purposes, such as resolving queries with an exceptionally long runtime.
 
 .. note::  The **Execution Details View** button is enabled only when a query takes longer than five seconds. 
@@ -415,7 +428,8 @@ Each node displays a number displaying its **node ID**, its **type**, **table na
 .. image:: /_static/images/nodes.png
 
 Viewing Query Statistics
-^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
+
 The following statistical information is displayed in the top left corner, as shown in the figure above:
 
 * **Query Statistics**:
@@ -460,7 +474,8 @@ Note that you can scroll the Node Statistics table. You can also download the ex
    :align: middle
 
 Using the Plain View
-^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
+
 You can use the **Plain View** instead of viewing the execution tree by clicking **Plain View** |icon-plain| in the top right corner. The plain view displays the same information as shown in the execution tree in table format.
 
 .. |icon-plain| image:: /_static/images/studio_icon_plain.png
@@ -482,7 +497,8 @@ This can be seen in the **timeSum** column as follows:
 .. _sql_view_5.4.7:
 
 Viewing Wrapped Strings in the SQL View
-------------------
+---------------------------------------
+
 The SQL View panel allows you to more easily view certain queries, such as a long string that appears on one line. The SQL View makes it easier to see by wrapping it so that you can see the entire string at once. It also reformats and organizes query syntax entered in the Statement panel for more easily locating particular segments of your queries. The SQL View is identical to the **Format SQL** feature in the Toolbar, allowing you to retain your originally constructed query while viewing a more intuitively structured snapshot of it.
 
 .. _save_results_to_clipboard_5.4.7:
