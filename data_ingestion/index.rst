@@ -1,8 +1,9 @@
 .. _data_ingestion:
 
-*************************
+**********************
 Data Ingestion Sources
-*************************
+**********************
+
 The **Data Ingestion Sources** page provides information about the following:
 
 .. toctree::
@@ -15,5 +16,6 @@ The **Data Ingestion Sources** page provides information about the following:
    parquet
    orc
    json
+
 
 For information about database tools and interfaces that SQream supports, see :ref:`Third Party Tools <connecting_to_sqream>`.
