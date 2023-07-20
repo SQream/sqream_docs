@@ -1,8 +1,9 @@
 .. _2022.1:
 
-**************************
+********************
 Release Notes 2022.1
-**************************
+********************
+
 The 2022.1 release notes were released on 7/19/2022 and describe the following:
 
 .. contents:: 
@@ -10,7 +11,8 @@ The 2022.1 release notes were released on 7/19/2022 and describe the following:
    :depth: 1      
 
 Version Content
-----------
+---------------
+
 The 2022.1 Release Notes describes the following:
 
 * Enhanced security features.
@@ -23,7 +25,8 @@ Storage Version
 The storage version presently in effect is version 40. 
 
 New Features
-----------
+------------
+
 The 2022.1 Release Notes include the following new features:
 
 .. contents:: 
@@ -31,7 +34,8 @@ The 2022.1 Release Notes include the following new features:
    :depth: 1
    
 Data Encryption
-************
+***************
+
 SQream now supports data encryption mechanisms in accordance with **General Data Protection Regulation (GDPR)** standards.
 
 Using the data encryption feature may lead to a maximum of a 10% increase in performance degradation.
@@ -39,19 +43,22 @@ Using the data encryption feature may lead to a maximum of a 10% increase in per
 For more information, see `Data Encryption <https://docs.sqream.com/en/v2022.1/feature_guides/data_encryption.html>`_.
 
 Update Feature
-************
+**************
+
 SQream now supports the DML **Update** feature, which is used for modifying the value of certain columns in existing rows.
 
 For more information, see `UPDATE <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/dml_commands/update.html#update>`_.
 
 Avro Ingestion
-************
+**************
+
 SQream now supports ingesting data from Avro files.
 
 For more information, see `Inserting Data from Avro <https://docs.sqream.com/en/v2022.1/data_ingestion/avro.html>`_.
 
 Known Issues
----------
+------------
+
 The following table lists the known issues for Version 2022.1:
 
 +-------------+-------------------------------------------------------------------------------------------+
@@ -71,7 +78,8 @@ The following table lists the known issues for Version 2022.1:
 +-------------+-------------------------------------------------------------------------------------------+
 
 Resolved Issues
----------
+---------------
+
 The following table lists the issues that were resolved in Version 2022.1:
 
 +-------------+-------------------------------------------------------------------------------------------+
@@ -81,25 +89,30 @@ The following table lists the issues that were resolved in Version 2022.1:
 +-------------+-------------------------------------------------------------------------------------------+
 
 Operations and Configuration Changes
---------
+------------------------------------
+
 No relevant operations and configuration changes were made.
 
 Naming Changes
--------
+--------------
+
 No relevant naming changes were made.
 
 Deprecated Features
--------
+-------------------
+
 In SQream version 2022.1 the ``VARCHAR`` data type has been deprecated and replaced with ``TEXT``. SQream will maintain ``VARCHAR`` in all previous versions until completing the migration to ``TEXT``, at which point it will be deprecated in all earlier versions. SQream also provides an automated and secure tool to facilitate and simplify migration from ``VARCHAR`` to ``TEXT``.  
 
-If you are using an earlier version of SQream, see the `Using Legacy String Literals <https://docs.sqream.com/en/v2022.1/configuration_guides/use_legacy_string_literals.html>`_ configuration flag.
+If you are using an earlier version of SQream, see the :ref:`Using Legacy String Literals <use_legacy_string_literals>` configuration flag.
 
 End of Support
--------
+--------------
+
 The End of Support section is not relevant to Version 2022.1.
 
 Upgrading to v2022.1
--------
+--------------------
+
 1. Generate a back-up of the metadata by running the following command:
 
    .. code-block:: console
@@ -134,9 +147,3 @@ Upgrading to v2022.1
 
   .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <https://docs.sqream.com/en/v2022.1/installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
   
-.. toctree::
-   :maxdepth: 2
-   :glob:
-   :hidden:
-
-   2022.1

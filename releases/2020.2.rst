@@ -1,8 +1,8 @@
 .. _2020.2:
 
-**************************
+********************
 Release Notes 2020.2
-**************************
+********************
 
 SQream v2020.2 contains some new features, improved performance, and bug fixes.
 
@@ -12,20 +12,20 @@ As always, the latest release improves reliability and performance, and makes ge
 
 
 New Features
-================
+============
 
 UI
-----------
+--
 
 * New :ref:`sqream_studio` replaces the previous Statement Editor.
 
-Integrations
------------------
+Integration
+-----------
 
 * Our :ref:`Python driver (pysqream)<pysqream>` now has an SQLAlchemy dialect. Customers can write high-performance Python applications that make full use of SQream - connect, query, delete, and insert data. Data scientists can use pysqream with Pandas, Numpy, and AI/ML frameworks like TensorFlow for direct queries of huge datasets.
 
 SQL Support
----------------
+-----------
 
 * Added :ref:`lag`/:ref:`lead` ranking functions to our :ref:`window_functions` support. We will have more features coming in the next version.
 
@@ -48,7 +48,7 @@ SQL Support
 
 
 Improvements and Fixes
-========================
+======================
 
 SQream v2020.2 includes hundreds of small new features and tunable parameters that improve performance, reliability, and stability.
 
@@ -65,7 +65,7 @@ SQream v2020.2 includes hundreds of small new features and tunable parameters th
 
 
 Operations
-========================
+==========
 
 * When upgrading from a previous version of SQream (for example, v2019.2), the storage version must be upgraded using the :ref:`upgrade_storage_cli_reference` utility: ``./bin/upgrade_storage /path/to/storage/sqreamdb/``
 
@@ -98,7 +98,7 @@ Operations
 
  
 Known Issues and Limitations
-================================
+============================
 
 * An invalid formatted CSV can cause an ``insufficient memory`` error on a :ref:`copy_from` statement if a quote isn't closed and the file is much larger than system memory.
 
@@ -108,7 +108,7 @@ Known Issues and Limitations
 
 
 Upgrading to  Version 2020.2
-========================
+============================
 
 Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and other OSs via Docker.
 

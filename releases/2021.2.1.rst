@@ -1,8 +1,9 @@
 .. _2021.2.1:
 
-**************************
+**********************
 Release Notes 2021.2.1
-**************************
+**********************
+
 The 2021.2.1 release notes were released on 15/12/2021 and describes the following:
 
 .. contents:: 
@@ -10,7 +11,8 @@ The 2021.2.1 release notes were released on 15/12/2021 and describes the followi
    :depth: 1
 
 New Features
--------------
+------------
+
 The 2021.2.1 Release Notes include the following new features:
 
 .. contents:: 
@@ -19,6 +21,7 @@ The 2021.2.1 Release Notes include the following new features:
    
 CREATE TABLE
 ************
+
 SQream now supports duplicating the column structure of an existing table using the ``LIKE`` clause.
 
 For more information, see `Duplicating the Column Structure of an Existing Table <https://docs.sqream.com/en/v2021.2.1/reference/sql/sql_statements/ddl_commands/create_table.html#duplicating-the-column-structure-of-an-existing-table>`_.
@@ -32,13 +35,15 @@ SQream now supports the following aggregation functions:
 * `MODE <https://docs.sqream.com/en/v2021.2.1/reference/sql/sql_functions/aggregate_functions/mode.html>`_
 
 REGEX REPLACE
-************   
+*************
+   
 SQream now supports the ``REGEXP_REPLACE`` function for finding and replacing text column substrings.
 
 For more information, see `REGEX_REPLACE <https://docs.sqream.com/en/v2021.2.1/reference/sql/sql_functions/scalar_functions/string/regexp_replace.html>`_.
 
 Delete Optimization
-************
+*******************
+
 The ``DELETE`` statement can now delete values that contain multi-table conditions.
 
 For more information, see `Deleting Values that Contain Multi-Table Conditions <https://docs.sqream.com/en/v2021.2.1/reference/sql/sql_statements/dml_commands/delete.html#deleting-values-that-contain-multi-table-conditions>`_.
@@ -46,11 +51,13 @@ For more information, see `Deleting Values that Contain Multi-Table Conditions <
 For more information, see `REGEX_REPLACE <https://docs.sqream.com/en/v2021.2.1/reference/sql/sql_functions/scalar_functions/string/regexp_replace.html>`_.
 
 Performance Enhancements
-------
+------------------------
+
 The **Performance Enhancements** section is not relevant to Version 2021.2.1.
 
 Resolved Issues
--------------
+---------------
+
 The following table lists the issues that were resolved in Version 2021.2.1:
 
 .. list-table::
@@ -63,18 +70,22 @@ The following table lists the issues that were resolved in Version 2021.2.1:
      - A method has been provided for including the ``GROUP BY`` and ``DISTINCT COUNT`` statements.
 
 Known Issues
-------
+------------
+
 The **Known Issues** section is not relevant to 2021.2.1.
 
 Naming Convention Modifications
-------
+-------------------------------
+
 The **Naming Convention Modifications** section is not relevant to Version 2021.2.1.
 
 End of Support
-------
+--------------
+
 The **End of Support** section is not relevant to Version 2021.2.1.
 
 Deprecated Features
-------
+-------------------
+
 The **Deprecated Components** section is not relevant to Version 2021.2.1.
 

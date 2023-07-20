@@ -1,8 +1,9 @@
 .. _2020.3:
 
-**************************
+********************
 Release Notes 2020.3
-**************************
+********************
+
 The 2020.3 release notes were released on October 8, 2020 and describes the following:
 
 .. contents:: 
@@ -11,12 +12,14 @@ The 2020.3 release notes were released on October 8, 2020 and describes the foll
 
 
 Overview
-------------
+--------
+
 SQream DB v2020.3 contains new features, performance enhancements, and resolved issues.
 
 
 New Features
-----------
+------------
+
 The following list describes the new features:
 
 
@@ -46,7 +49,8 @@ The following list describes the new features:
 
 
 Performance Enhancements
-----------
+------------------------
+
 The following list describes the performance enhancements:
 
 
@@ -61,6 +65,7 @@ The following list describes the performance enhancements:
 
 Resolved Issues
 ---------------
+
 The following list describes the resolved issues:
 
 
@@ -84,7 +89,8 @@ The following list describes the resolved issues:
 * ``TEXT`` columns cannot be used with an outer join together with an inequality check (!= , <>). This was fixed.
 
 Known Issues And Limitations
-----------
+----------------------------
+
 The following list describes the known issues and limitations:
 
 
@@ -98,7 +104,7 @@ The following list describes the known issues and limitations:
 
 
 Upgrading to v2020.3
-----------
+--------------------
 
 Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and other OSs via Docker.
 

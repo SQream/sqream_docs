@@ -1,8 +1,9 @@
 .. _2021.2:
 
-**************************
+********************
 Release Notes 2021.2
-**************************
+********************
+
 The 2021.2 release notes were released on 13/9/2021.
 
 .. contents:: 
@@ -10,7 +11,8 @@ The 2021.2 release notes were released on 13/9/2021.
    :depth: 1
    
 New Features
-----------
+------------
+
 The 2021.2 Release Notes include the following new features:
 
 .. contents:: 
@@ -18,7 +20,8 @@ The 2021.2 Release Notes include the following new features:
    :depth: 1
    
 New Driver Compatibility
-************
+************************
+
 The 2021.2 release supports the following drivers:
 
 * **JDBC** - new driver version (JDBC 4.5) with important bug fixes.
@@ -28,22 +31,25 @@ The 2021.2 release supports the following drivers:
 * **Pysqream** - pysqream 3.1.2
 
 Centralized Configuration System
-************
+********************************
+
 SQream now uses a new configuration system based on centralized configuration accessible from SQream Studio.
 
 For more information, see the following:
 
-* `Configuration <https://docs.sqream.com/en/v2021.2/guides/operations/configuration.html>`_ - describes how to configure your instance of SQream from a centralized location.
+* `Configuration <https://docs.sqream.com/en/v2021.2/guides/operations/configuration.html>` - describes how to configure your instance of SQream from a centralized location.
 * `SQream Studio 5.4.3 <https://docs.sqream.com/en/v2021.2/sqream_studio_5.4.3/index.html>`_ - configure your instance of SQream from Studio.
    
 Qualifying Schemas Without Providing an Alias
-************
+*********************************************
+
 When running queries, SQream now supports qualifying schemas without providing an alias.
 
 For more information, see `SQream Studio 5.4.3 <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/ddl_commands/create_schema.html>`_.
 
 Double-Quotations Supported When Importing and Exporting CSVs
-************
+*************************************************************
+
 When importing and exporting CSVs, SQream now supports using quotation characters other than double quotation marks (``"``).
 
 For more information, see the following:
@@ -94,11 +100,13 @@ For more information, see the following statements:
 * `CREATE_FOREIGN_TABLE <https://docs.sqream.com/en/v2021.2/reference/sql/sql_statements/ddl_commands/create_foreign_table.html>`_
 
 Performance Enhancements
-------
+------------------------
+
 In Version 2021.2, an advanced smart spooling mechanism splits spool memory based on required CP usage.
 
 Resolved Issues
-------
+---------------
+
 The following table lists the issues that were resolved in Version 2021.2:
 
 .. list-table::
@@ -116,12 +124,14 @@ The following table lists the issues that were resolved in Version 2021.2:
 
 	 
 Known Issues
-------
+------------
+
 The **Known Issues** section is not relevant to Version 2021.2.
 
 
 Naming Convention Modifications
-------
+-------------------------------
+
 The **Naming Convention Modifications** describes SQream features, such as data types or statements, that have been renamed.
 
 NVARCHAR Data Type Renamed TEXT
@@ -132,15 +142,18 @@ The ``NVARCHAR`` data type has been renamed ``TEXT``.
 For more information on the ``TEXT`` data type, see `String (TEXT) <https://docs.sqream.com/en/v2021.2/data_type_guides/sql_data_types_string.html>`_
 
 End of Support
-------
+--------------
+
 The **End of Support** section is not relevant to Version 2021.2.
 
 Deprecated Features
-------
+-------------------
+
 The **Deprecated Components** section is not relevant to Version 2021.2.
 
 Upgrading Your SQream Version
-------
+-----------------------------
+
 The **Upgrading Your SQream Version** section describes the following:
 
 .. contents:: 
@@ -148,7 +161,8 @@ The **Upgrading Your SQream Version** section describes the following:
    :depth: 1
    
 Upgrading Your Storage Version
-************
+******************************
+
 When upgrading from a SQream version earlier than 2021.2 you must upgrade your storage version, as shown in the following example:
 
    .. code-block:: console  

@@ -1,8 +1,9 @@
 .. _2020.3.1:
 
-**************************
+**********************
 Release Notes 2020.3.1
-**************************
+**********************
+
 The 2020.3.1 release notes were released on October 8, 2020 and describe the following:
 
 .. contents:: 
@@ -12,7 +13,8 @@ The 2020.3.1 release notes were released on October 8, 2020 and describe the fol
 
 
 New Features
--------------
+------------
+
 The following list describes the new features:
 
 
@@ -39,7 +41,8 @@ The following list describes the new features:
 
 
 Performance Enhancements
--------------
+------------------------
+
 The following list describes the performance enhancements:
 
 
@@ -49,7 +52,8 @@ The following list describes the performance enhancements:
 
 
 Resolved Issues
--------------
+---------------
+
 The following list describes the resolved issues:
 
 
@@ -60,12 +64,13 @@ The following list describes the resolved issues:
 
 
 Known Issues and Limitations
--------------
+----------------------------
+
 No known issues and limitations.
 
 
 Upgrading to v2020.3.1
-----------------
+----------------------
 
 Versions are available for IBM POWER9, RedHat (CentOS) 7, Ubuntu 18.04, and other OSs via Docker.
 

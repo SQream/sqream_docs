@@ -1,8 +1,9 @@
 .. _2021.1:
 
-**************************
+********************
 Release Notes 2021.1
-**************************
+********************
+
 The 2021.1 release notes were released on 6/13/2021 and describe the following:
 
 .. contents:: 
@@ -11,7 +12,8 @@ The 2021.1 release notes were released on 6/13/2021 and describe the following:
    
 
 Version Content
-----------
+---------------
+
 The 2021.1 Release Notes describes the following:
 
 * Major feature release targeted for all on-premises customers.
@@ -19,7 +21,8 @@ The 2021.1 Release Notes describes the following:
 
 
 New Features
-----------
+------------
+
 The 2021.1 Release Notes include the following new features:
 
 
@@ -29,11 +32,13 @@ The 2021.1 Release Notes include the following new features:
    :depth: 1
    
 SQream DB on Cloud
-************
+******************
+
 SQream DB can now be run on AWS, GCP, and Azure.
 
 Numeric Data Types
-************
+******************
+
 SQream now supports Numeric Data types for the following operations:
 
    * All join types.
@@ -43,7 +48,8 @@ SQream now supports Numeric Data types for the following operations:
 For more information, see `Numeric Data Types <https://docs.sqream.com/en/v2021.1/reference/sql_data_types.html#numeric-data-types.html>`_.
 
 Text Data Type
-************
+**************
+
 SQream now supports TEXT data types in all operations, which is default string data type for new projects.
 
 
@@ -58,18 +64,20 @@ For more information, see `String Types <https://docs.sqream.com/en/v2021.1/data
 
 
 Supports Scalar Subqueries
-************
+**************************
+
 SQream now supports running initial scalar subqueries.
 
 For more information, see `Subqueries <https://docs.sqream.com/en/v2021.1/reference/sql/sql_syntax/subqueries.html>`_.
 
 Literal Arguments
-************
+*****************
 
 SQream now supports literal arguments for functions in all cases where column/scalar arguments are supported.
 
 Simple Scalar SQL UDFs
-************
+**********************
+
 SQream now supports simple scalar SQL UDF's.
 
 For more information, see `Simple Scalar SQL UDF’s <https://docs.sqream.com/en/v2021.1/reference/sql/sql_functions/user_defined_functions/scalar_sql_udf.html>`_.
@@ -97,7 +105,8 @@ For more information, see `GET_LICENSE_INFO <https://docs.sqream.com/en/v2021.1/
   
 
 Optimized Foreign Data Wrapper Export
-************
+*************************************
+
 Sqream now supports exporting to multiple files concurrently. This is useful when you need to reduce file size to more easily export multiple files.
 
 The following is the correct syntax for exporting multiple files concurrently:
@@ -121,7 +130,8 @@ The following apply:
 * When the ``enforce_single_file`` value is set to ``TRUE``, only one file is created, and its size is not limited by the ``max_file_size`` value. Its default value is ``TRUE``.
 
 Main Features
---------
+-------------
+
 The following list describes the main features:
 
 * SQreamDB available on AWS.
@@ -141,7 +151,8 @@ The following list describes the main features:
 
 
 Resolved Issues
----------
+---------------
+
 The following list describes the resolved issues:
 
 * Copying text from a CSV file to the TEXT column without closing quotes caused SQream to crash. This was fixed.
@@ -160,16 +171,11 @@ The following list describes the resolved issues:
 
 
 
-
-
-	
-
-
-
 Operations and Configuration Changes
---------
+------------------------------------
+
 Recommended SQream Configuration on Cloud
-************
+*****************************************
 
 For more information about AWS, see `Amazon S3 <https://docs.sqream.com/en/v2021.1/operational_guides/s3.html>`_.
 
@@ -177,7 +183,7 @@ For more information about AWS, see `Amazon S3 <https://docs.sqream.com/en/v2021
 
 
 Optimized Foreign Data Wrapper Export Configuration Flag
-************
+********************************************************
 
 SQream now has a new ``runtimeGlobalFlags`` flag called ``WriteToFileThreads``.
 
@@ -189,15 +195,18 @@ For more information about the ``runtimeGlobalFlags`` flag, see the **Runtime Gl
 
 
 Naming Changes
--------
+--------------
+
 No relevant naming changes were made.
 
 Deprecated Features
--------
+-------------------
+
 No features were depecrated.
 
 Known Issues and Limitations
---------
+----------------------------
+
 The the list below describes the following known issues and limitations:
 
 * In cases when selecting top 1 from foreign table using the Parquet format with an hdfs path, SQream experienced an error.
@@ -209,6 +218,7 @@ The the list below describes the following known issues and limitations:
 * Deploying S3 requires setting the ``ObjectStoreClients`` parameter to ``40``.
 
 Upgrading to v2021.1
--------
+--------------------
+
 Due to the known issue of a limitation on the amount of access requests that can be simultaneously sent to AWS, deploying S3 requires setting the ``ObjectStoreClients`` parameter to ``40``.
 

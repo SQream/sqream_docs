@@ -1,8 +1,9 @@
 .. _2021.2.1.24:
 
-**************************
+*************************
 Release Notes 2021.2.1.24
-**************************
+*************************
+
 The 2021.2.1.24 release notes were released on 7/28/2022 and describe the following:
 
 .. contents:: 
@@ -10,11 +11,13 @@ The 2021.2.1.24 release notes were released on 7/28/2022 and describe the follow
    :depth: 1      
 
 Version Content
-----------
+---------------
+
 The 2021.2.1.24 Release Notes includes a query maintenance feature.
 
 New Features
-----------
+------------
+
 The 2021.2.1.24 Release Notes include the following new features:
 
 .. contents:: 
@@ -28,7 +31,8 @@ The new **Query Healer** feature periodically examines the progress of running s
 For more information, see `Query Healer <https://docs.sqream.com/en/v2021.2.1.24/feature_guides/query_healer.html>`_.
 
 Resolved Issues
----------
+---------------
+
 The following table lists the resolved issues for Version 2021.2.1.24:
 
 +-------------+------------------------------------------------------------------------------------------------------------------------------------+
@@ -44,7 +48,8 @@ The following table lists the resolved issues for Version 2021.2.1.24:
 +-------------+------------------------------------------------------------------------------------------------------------------------------------+
 
 Known Issues
----------
+------------
+
 The following table lists the known issues for Version 2021.2.1.24:
 
 +-------------+------------------------------------------------------------------------------------------------------------------------------------+
@@ -58,7 +63,8 @@ The following table lists the known issues for Version 2021.2.1.24:
 +-------------+------------------------------------------------------------------------------------------------------------------------------------+
 
 Operations and Configuration Changes 
---------
+------------------------------------
+
 The following worker level configuration flags were added:
 
  * :ref:`is_healer_on`
@@ -72,14 +78,17 @@ The following worker level configuration flags were added:
  * :ref:`healer_detection_frequency_seconds`
 
 Naming Changes
--------
+--------------
+
 No relevant naming changes were made.
 
 Deprecated Features
--------
+-------------------
+
 Version 2021.2.1.24 includes no deprecated features.
 
 End of Support
--------
+--------------
+
 The End of Support section is not relevant to Version 2021.2.1.24.
  

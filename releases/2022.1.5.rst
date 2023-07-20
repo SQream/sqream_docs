@@ -1,8 +1,9 @@
 .. _2022.1.5:
 
-**************************
+**********************
 Release Notes 2022.1.5
-**************************
+**********************
+
 The 2022.1.5 release notes were released on 11/02/2022 and describe the following:
 
 .. contents:: 
@@ -10,7 +11,8 @@ The 2022.1.5 release notes were released on 11/02/2022 and describe the followin
    :depth: 1      
 
 New Features
-----------
+------------
+
 The 2022.1.5 Release Notes include the following new features:
  
 * keys_evaluate utility function enhancement - add problematic chunk ID to the function's output report.
@@ -30,12 +32,14 @@ The storage version presently in effect is version 42.
 
 
 Known Issues
----------
+------------
+
 Recently discovered issue with the encryption feature, at this time SQream recommends to avoid using this feature - a fix will be introduced in the near future.
 
 
 Resolved Issues
----------
+---------------
+
 The following table lists the issues that were resolved in Version 2022.1.5:
 
 +--------------+------------------------------------------------------------------------------------------+
@@ -57,19 +61,19 @@ The following table lists the issues that were resolved in Version 2022.1.5:
 +--------------+------------------------------------------------------------------------------------------+
 
 
-
-
-
 Operations and Configuration Changes
---------
+------------------------------------
+
 No configuration changes were made.
 
 Naming Changes
--------
+--------------
+
 No relevant naming changes were made.
 
 Deprecated Features
--------
+-------------------
+
 SQream is declaring end of support of VARCHAR data type, the decision resulted by SQream's effort to enhance its core functionalities and with respect to ever changing echo system requirements.
 
 VARCHAR is no longer supported for new customers - effective from Version 2022.1.3 (September 2022).  
@@ -78,11 +82,13 @@ TEXT data type is replacing VARCHAR - SQream will maintain VARCHAR data type sup
 
 
 End of Support
--------
+--------------
+
 No End of Support changes were made.
 
 Upgrading to v2022.1.5
--------
+----------------------
+
 1. Generate a back-up of the metadata by running the following command:
 
    .. code-block:: console
