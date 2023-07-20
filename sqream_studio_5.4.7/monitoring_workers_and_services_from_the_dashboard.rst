@@ -2,9 +2,10 @@
 
 .. _back_to_dashboard_:
 
-****************************
+**************************************************
 Monitoring Workers and Services from the Dashboard
-****************************
+**************************************************
+
 The **Dashboard** is used for the following:
 
 * Monitoring system health.
@@ -46,7 +47,8 @@ The following is a brief description of the Dashboard panels:
 .. _services_panel_:
 
 Subscribing to Workers from the Services Panel
---------------------------
+----------------------------------------------
+
 Services are used to categorize and associate (also known as **subscribing**) workers to particular services. The **Service** panel is used for viewing, monitoring, and adding defined :ref:`service queues<workload_manager>`.
 
 
@@ -71,7 +73,8 @@ The following is a brief description of each pane:
      - Shows the currently processed queries belonging to the service/total queries for that service in the system (including queued queries).	 
 
 Adding A Service
-^^^^^^^^^^^^^^^^^^^^^	 
+^^^^^^^^^^^^^^^^
+	 
 You can add a service by clicking **+ Add** and defining the service name.
 
 .. note:: If you do not associate a worker with the new service, it will not be created.
@@ -86,7 +89,8 @@ You can manage workers from the **Workers** panel. For more information about ma
 .. _workers_panel_:
 
 Managing Workers from the Workers Panel
-------------
+---------------------------------------
+
 From the **Workers** panel you can do the following:
 
 * :ref:`View workers <view_workers_>`
@@ -97,7 +101,8 @@ From the **Workers** panel you can do the following:
 .. _view_workers_:
 
 Viewing Workers
-^^^^^^^^
+^^^^^^^^^^^^^^^
+
 The **Worker** panel shows each worker (``sqreamd``) running in the cluster. Each worker has a status bar that represents the status over time. The status bar is divided into 20 equal segments, showing the most dominant activity in that segment.
 	 
 From the **Scale** dropdown menu you can set the time scale of the displayed information
@@ -112,7 +117,8 @@ You can hover over segments in the status bar to see the date and time correspon
 .. _add_worker_to_service_:
 
 Adding A Worker to A Service
-^^^^^^^^^^^^^^^^^^^^^	 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	 
 You can add a worker to a service by clicking the **add** button. 
 
 
@@ -123,14 +129,15 @@ Clicking the **add** button shows the selected service's workers. You can add th
 .. _view_worker_query_information_:
 
 Viewing A Worker's Active Query Information
-^^^^^^^^^^^^^^^^^^^^^	 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+		 
 You can view a worker's active query information by clicking **Queries**, which displays them in the selected service.
 
 
 Each statement shows the **query ID**, **status**, **service queue**, **elapsed time**, **execution time**, and **estimated completion status**. In addition, each statement can be stopped or expanded to show its execution plan and progress. For more information on viewing a statement's execution plan and progress, see :ref:`Viewing a Worker's Execution Plan <view_worker_execution_plan_>` below.
 
 Viewing A Worker's Host Utilization
-^^^^^^^^^^^^^^^^^^^^^	 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^	 
 
 While viewing a worker's query information, clicking the **down arrow** expands to show the host resource utilization.
 
@@ -144,7 +151,7 @@ Error notifications related to statements are displayed, and you can hover over 
 .. _view_worker_execution_plan_:
 
 Viewing a Worker's Execution Plan
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 	 
 Clicking the ellipsis in a service shows the following additional options:
 
@@ -158,7 +165,7 @@ For more information on the current query plan, see :ref:`SHOW_NODE_INFO<show_no
    :end-line: 84
 
 Managing Worker Status
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 In some cases you may want to stop or restart workers for maintenance purposes. Each Worker line has a :kbd:`⋮` menu used for stopping, starting, or restarting workers.
 
@@ -253,7 +260,8 @@ Starting or restarting workers terminates all queries related to that worker. Wh
 .. _license_information_:
    
 License Information
-----------------------
+-------------------
+
 The license information section shows the following:
 
  * The amount of time in days remaining on the license.

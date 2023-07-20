@@ -14,59 +14,50 @@ All Operating Systems
 
 The following are applicable to all operating systems:
 
-.. _jdbc:
 
-* **JDBC** - recommended installation via ``mvn``:
+**JDBC** - recommended installation via ``mvn``:
 
   * `JDBC .jar file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.9.jar>`_ - sqream-jdbc-4.5.9 (.jar)
   * :ref:`java_jdbc`
 
-.. _.net:
 
-* **.NET**:
+**.NET**:
 
   * `.NET .dll file <https://get.sqream-share.com/share/sIsu8fxv>`_ 
   * :ref:`net`
 
-.. _trino:
 
-* **Trino**:
+**Trino**:
 
   * Trino Connector
   * :ref:`trino`
   
-.. _spark:
   
-* **Spark**:
+**Spark**:
 
   * `Spark Connector <https://sq-ftp-public.s3.amazonaws.com/Spark-Sqream-Connector-5.0.0.jar>`_ 
   * :ref:`spark`   
 
-.. _python:
 
-* **Python** - Recommended installation via ``pip``:
+**Python** - Recommended installation via ``pip``:
 
   * `Python .tar file <https://github.com/SQream/pysqream/releases/tag/v3.2.5>`_ - pysqream v3.2.5 (.tar.gz)
   * :ref:`pysqream`
 
-.. _nodejs:
 
-* **Node.JS** - Recommended installation via ``npm``:
+**Node.JS** - Recommended installation via ``npm``:
 
   * `Node.JS <https://sq-ftp-public.s3.amazonaws.com/sqream-sqreamdb-4.2.4.tgz>`_ - sqream-v4.2.4 (.tar.gz)
   * :ref:`nodejs`
 
-.. _tableau_connector:   
 
-* **Tableau**:
+**Tableau**:
 
   * `Tableau connector <https://sq-ftp-public.s3.amazonaws.com/SQreamDB.taco>`_ - SQream (.taco)
   * :ref:`tableau`
 
-  
-.. _powerbi_connector:   
 
-* **Power BI**:
+**Power BI**:
 
   * `Power BI PowerQuery Connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_ - SQream (.mez)
   * :ref:`power_bi`
@@ -106,7 +97,3 @@ The following are applicable to Windows:
 .. rubric:: Need help?
 
 If you couldn't find what you're looking for, contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_
-
-.. rubric:: Looking for older drivers?
-
-If you're looking for an older version of SQreamDB drivers, visit `here <https://sqream.com/product/client-drivers/>`_.

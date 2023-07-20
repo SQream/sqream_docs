@@ -1,8 +1,9 @@
 .. _installing_and_launching_sqream:
 
-*************************
+*******************************
 Installing and Launching SQream
-*************************
+*******************************
+
 The **Installing and Launching SQream** page includes the following installation guides:
 
 .. toctree::

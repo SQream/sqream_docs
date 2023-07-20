@@ -2,11 +2,9 @@
 
 .. _install_prometheus_binary_top:
 
-***********************
+*******************************************
 Installing Prometheus Using Binary Packages
-***********************
-
-
+*******************************************
 
 The **Installing Prometheus Using Binary Packages** guide includes the following sections:
 
@@ -15,11 +13,13 @@ The **Installing Prometheus Using Binary Packages** guide includes the following
    :depth: 1
 
 Overview
-^^^^^^^^^^^^^^^
+^^^^^^^^
+
 Prometheus is an application used for event monitoring and alerting.
 
 Installing Prometheus
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
+
 You must install Prometheus before installing the Dashboard Data Collector.
 
 **To install Prometheus:**
@@ -107,7 +107,8 @@ For more information on installing the Dashboard Data Collector, see `Installing
 Back to :ref:`Installing Prometheus Using Binary Packages<install_prometheus_binary_top>`
 
 Configuring Your Prometheus Settings
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 After installing Prometheus you must configure your Prometheus settings. You must perform all Prometheus configurations in the **/etc/prometheus/prometheus.yml** file.
 
 **To configure your Prometheus settings:**
@@ -163,7 +164,8 @@ After installing Prometheus you must configure your Prometheus settings. You mus
 Back to :ref:`Installing Prometheus Using Binary Packages<install_prometheus_binary_top>`
 
 Configuring Your Prometheus Service File	  
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 After configuring your Prometheus settings you must configure your Prometheus service file.
 
 **To configure your Prometheus service file**:
@@ -219,7 +221,8 @@ After configuring your Prometheus settings you must configure your Prometheus se
 Back to :ref:`Installing Prometheus Using Binary Packages<install_prometheus_binary_top>`
 
 Accessing the Prometheus User Interface
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 After configuring your prometheus service file, you can access the Prometheus user interface.
 
 You can access the Prometheus user interface by running the following command:

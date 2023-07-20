@@ -1,8 +1,8 @@
 .. _revoke:
 
-*****************
+******
 REVOKE
-*****************
+******
 
 The ``REVOKE`` statement removes permissions from a role. It allows for removing permissions to specific objects.
 
@@ -11,12 +11,12 @@ Learn more about the permission system in the :ref:`access control guide<access_
 See also :ref:`grant`, :ref:`drop_role`.
 
 Permissions
-=============
+===========
 
 To revoke permissions, the current role must have the ``SUPERUSER`` permission, or have the ``ADMIN OPTION``.
 
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
@@ -99,7 +99,7 @@ Syntax
    schema_name ::= identifier
 
 Parameters
-============
+==========
 
 .. list-table:: 
    :widths: auto
@@ -125,10 +125,10 @@ Parameters
 
 
 Examples
-===========
+========
 
 Prevent a role from modifying table contents
-----------------------------------------------
+--------------------------------------------
 
 If you don't trust user ``shifty``, reokve DDL and INSERT permissions.
 
@@ -138,7 +138,7 @@ If you don't trust user ``shifty``, reokve DDL and INSERT permissions.
    REVOKE DDL ON TABLE important_table FROM shifty;
 
 Demoting a user from superuser
--------------------------------------
+------------------------------
 
 .. code-block:: postgres
    
@@ -146,7 +146,7 @@ Demoting a user from superuser
    REVOKE SUPERUSER FROM new_role;
 
 Revoking admin option
-------------------------------
+---------------------
 
 If ``WITH ADMIN OPTION`` is specified, the role that has the admin option can in turn grant membership in the role to others, and revoke membership in the role as well.
 

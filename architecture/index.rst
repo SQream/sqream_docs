@@ -1,8 +1,8 @@
 .. _architecture:
 
-***********************
+*******************
 System Architecture
-***********************
+*******************
 
 This topic includes guides that walk an end-user, database administrator, or system architect through the main ideas behind SQream DB.
 
@@ -17,5 +17,4 @@ Explore the guides below for information about SQream DB's architecture.
    :titlesonly:
 
    internals_architecture
-   xxprocesses_and_network_architecture
    filesystem_and_filesystem_usage
