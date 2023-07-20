@@ -92,6 +92,7 @@ This is recommended over looking at the raw logs.
 
 Using the ``DESCRIBE QUERY`` Command
 ====================================
+
 The :ref:`describe_query` command returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases.
 
 The :ref:`describe_query` result, just like the periodically-logged execution plans described above, are an at-the-moment 
@@ -111,6 +112,7 @@ The following image shows the output of the above query:
 
 Understanding the Query Execution Plan Output
 =============================================
+
 Both :ref:`describe_query`  and the logged execution plans represents the query plan as a graph hierarchy, with data separated into different columns.
 
 Each row represents a single logical database operation, which is also called a **node** or **chunk producer**. A node reports several metrics during query execution, such as how much data it has read and written, how many chunks and rows, and how much time has elapsed.
@@ -278,8 +280,8 @@ In general, looking at the top three longest running nodes (as is detailed in th
 In the following examples you will learn how to identify and solve some common issues.
 
 
-1. Spooling to Disk
--------------------
+Spooling to Disk
+----------------
 
 When there is not enough RAM to process a statement, SQream DB will spill over data to the ``temp`` folder in the storage disk.
 While this ensures that a statement can always finish processing, it can slow down the processing significantly.
@@ -374,6 +376,7 @@ Identifying the Offending Nodes
 
 Common Solutions for Reducing Spool
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 * 
    Increase the amount of spool memory available for the workers, as a proportion of the maximum statement memory.
    When the amount of spool memory is increased, SQream DB may not need to write to disk.
@@ -383,8 +386,8 @@ Common Solutions for Reducing Spool
    Reduce the amount of **workers** per host, and increase the amount of spool available to the (now reduced amount of) active workers.
    This may reduce the amount of concurrent statements, but will improve performance for heavy statements.
    
-2. Queries with Large Result Sets
----------------------------------
+Queries with Large Result Sets
+------------------------------
 
 When queries have large result sets, you may see a node called ``DeferredGather``.
 This gathering occurs when the result set is assembled, in preparation for sending it to the client.
@@ -463,8 +466,8 @@ Common Solutions for Reducing Gather Time
 * Reduce the effect of the preparation time. Avoid selecting unnecessary columns (``SELECT * FROM...``), or reduce the result set size by using more filters.
 .. ``
 
-3. Inefficient Filtering
-------------------------
+Inefficient Filtering
+---------------------
 
 When running statements, SQream DB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
 If statements do not include efficient filtering, SQream DB will read a lot of data off disk.
@@ -615,8 +618,8 @@ Common Solutions for Improving Filtering
 * Use :ref:`clustering keys and naturally ordered data<data_clustering>` in your filters.
 * Avoid full table scans when possible
 
-4. High Selectivity Data
-------------------------
+High Selectivity Data
+---------------------
 
 Selectivity is the ratio of cardinality to the number of records of a chunk. We define selectivity as :math:`\frac{\text{Distinct values}}{\text{Total number of records in a chunk}}`
 SQream DB has a hint called ``HIGH_SELECTIVITY``, which is a function you can wrap a condition in.
@@ -650,13 +653,14 @@ All of these rows could fit in one single chunk, instead of spanning 74 rather s
 
 Improving Performance with High Selectivity Hints
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 * 
    Use when there's a ``WHERE`` condition on an :ref:`unclustered column<data_clustering>`, and when you expect the filter
    to cut out more than 60% of the result set.
 * Use when the data is uniformly distributed or random
 
-6. Performance of unsorted data in joins
-----------------------------------------
+Performance of unsorted data in joins
+-------------------------------------
 
 When data is not well-clustered or naturally ordered, a join operation can take a long time. 
 
@@ -724,8 +728,8 @@ To tell SQream DB to rechunk the data, wrap a condition (or several) in the ``HI
          AND EnterpriseID=1150 
          AND MSISDN='9724871140341';
 
-5. Manual Join Reordering
--------------------------
+Manual Join Reordering
+----------------------
 
 When joining multiple tables, you may wish to change the join order to join the smallest tables first.
 

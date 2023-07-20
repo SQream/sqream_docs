@@ -37,13 +37,16 @@ After entering your access token, you are presented with the **SQL shell**. The 
 
 **SQL shell** control commands:
 
-+-----------------------+----------------------------+
-| Command               | Description                |
-+=======================+============================+
-| ``Ctrl-d``, ``exit;`` | Exit the SQL Shell         |
-+-----------------------+----------------------------+
-| ``^c``                | Abort a statement or query |
-+-----------------------+----------------------------+ 
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Command
+     - Description
+   * - ``Ctrl-d``, ``exit;``
+     - Exit the SQL Shell   
+   * - ``^c`` 
+     - Abort a statement or query
 
 
 Statements and queries are standard SQL, followed by a semicolon ``;``.
