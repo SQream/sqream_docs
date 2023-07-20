@@ -12,7 +12,6 @@ The **Installing and Launching SQream** page includes the following installation
 
    recommended_pre-installation_configurations
    installing_sqream_with_binary
-   running_sqream_in_a_docker_container
    installing_sqream_with_kubernetes
    installing_monit
    launching_sqream_with_monit
