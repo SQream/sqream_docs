@@ -1,8 +1,9 @@
 .. _2022.1_index:
 
-**************************
+********************
 Release Notes 2022.1
-**************************
+********************
+
 The 2022.1 Release Notes describe the following releases:
 
 .. contents:: 
