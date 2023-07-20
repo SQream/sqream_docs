@@ -34,34 +34,45 @@ Supported Operators
 ===================
 
 .. list-table::
-   :widths: 8 40
+   :widths: auto
    :header-rows: 1
    
    * - Operator
      - Description
+     - Example	 
    * - Literals ``ARRAY []``
-     - Literals are created using the ``ARRAY`` operator. For example, ``ARRAY[1,2,3]``
+     - Literals are created using the ``ARRAY`` operator
+     - ``ARRAY[1,2,3]``
    * - Mapping
      - Parquet, ORC, JSON, and AVRO ``ARRAY`` types may be mapped into SQreamDB ``ARRAY``
+     - See extended section under **Examples** 
    * - Indexing
-     - Access to specific elements within the array by using a **zero-based index**. For example, ``SELECT (<column_name>[2]) FROM <table_name>`` returns the third element of the specified column
+     - Access to specific elements within the array by using a **zero-based index**
+     - ``SELECT (<column_name>[2]) FROM <table_name>`` returns the third element of the specified column  
    * - ``UNNEST``
-     - Converts the arrayed elements within a single row into a set of rows. For example, ``SELECT UNNEST (<column_name>) FROM <table_name>``
+     - Converts the arrayed elements within a single row into a set of rows
+     - ``SELECT UNNEST (<column_name>) FROM <table_name>``  
    * - Concatenate ``||``
-     - Converts arrayed elements into one string. For example, ``SELECT (<column_name>) || (<column2_name>) FROM <table_name>``
+     - Converts arrayed elements into one string
+     - ``SELECT (<column_name>) || (<column2_name>) FROM <table_name>``  
    * - ``array_length``
-     - Returns the number of arrayed elements within the specified column. For example, ``SELECT array_length(<column_name>) FROM <table_name>``
+     - Returns the number of arrayed elements within the specified column
+     - ``SELECT array_length(<column_name>) FROM <table_name>``  
    * - ``array_position``
-     - Locates the position of the specified value within the specified array. For example, ``SELECT array_position(<column_name>,<value>) FROM <table_name>;``. Returns ``NULL`` if the value is not found.
+     - Locates the position of the specified value within the specified array. Returns ``NULL`` if the value is not found
+     - ``SELECT array_position(<column_name>,<value>) FROM <table_name>;``  
    * - ``array_remove``
-     - Returns the specified ``ARRAY`` column with the specified value deducted. For example, ``SELECT array_remove(<column_name>,<value>) FROM <table_name>;``
+     - Returns the specified ``ARRAY`` column with the specified value deducted
+     - ``SELECT array_remove(<column_name>,<value>) FROM <table_name>;``  
    * - ``array_replace``
-     - Enables replacing values within an ``ARRAY`` column. For example, ``SELECT array_replace(<column_name>,<value_to_replace>,<replacing_value>) FROM <table_name>;``
+     - Enables replacing values within an ``ARRAY`` column
+     - ``SELECT array_replace(<column_name>,<value_to_replace>,<replacing_value>) FROM <table_name>;``  
    * - Limiting number of arrayed elements 
-     - You may limit the number of arrayed elements within an ``ARRAY``. For example, ``CREATE TABLE <table_name> (<column1> TEXT[]);``
+     - You may limit the number of arrayed elements within an ``ARRAY``
+     - ``CREATE TABLE <table_name> (<column1> TEXT[]);``  
    * - Creating different column types
-     - You may create a table that has arrayed columns and non-arrayed columns. For example, ``CREATE TABLE <table_name> (<column1> TEXT('a','b','c')['d']);`` 
-
+     - You may create a table that has arrayed columns and non-arrayed columns
+     - ``CREATE TABLE <table_name> (<column1> TEXT('a','b','c')['d']);`` 
 
 Examples
 ========
@@ -152,11 +163,11 @@ Result:
 Limitations
 ===========
 
-Casting
--------
+Casting Limitations
+-------------------
 
 Numeric
-^^^^^^^
+~~~~~~~
 
 Numeric data types smaller than ``INT``, such as ``TINYINT``, ``SMALLINT``, and ``BOOL``, must explicitly be cast.
 
@@ -169,15 +180,15 @@ Numeric data types smaller than ``INT``, such as ``TINYINT``, ``SMALLINT``, and 
 	SELECT array_replace(clmn1 , 0::bool, 1::bool) from my_array;
 	
 TEXT
-^^^^
+~~~~
 
 Casting ``TEXT`` to non-``TEXT`` and non-``TEXT`` to ``TEXT`` data types is not supported.
 	
-Functions
----------
+Function Limitations
+--------------------
 
-``||`` (Concatenate)
-^^^^^^^^^^^^^^^^^^^^
+|| (Concatenate)
+~~~~~~~~~~~~~~~~
 
 Using the ``||`` (Concatenate) function with two different data types requires explicit casting.
 
@@ -185,12 +196,12 @@ Using the ``||`` (Concatenate) function with two different data types requires e
 
 	SELECT (clmn1, 4::tinyint) || (clmn2, 5::tinyint) from my_array;
 	
-``UNNEST``
-^^^^^^^^^^
+UNNEST
+~~~~~~
 
 It is possible to use the ``UNNEST`` operator within a statement only once.
 
 Window
-^^^^^^
+~~~~~~
 
 Window functions are not supported.
