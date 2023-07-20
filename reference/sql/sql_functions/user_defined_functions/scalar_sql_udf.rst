@@ -87,7 +87,7 @@ Usage Notes
 
 Since SQL UDF's are one type of supported UDFs, the following Python UDF characteristics apply:
 
-* UDF permission rules - see `Access Control <https://docs.sqream.com/en/latest/guides/features/access_control.html#access-control>`_.
+* UDF permission rules - see :ref:`Access Control <access_control>`.
 
 * The ``get_function_ddl`` utility function works on these functions - see `Getting the DDL for a Function <https://docs.sqream.com/en/latest/guides/features/python_functions.html#getting-the-ddl-for-a-function>`_.
 

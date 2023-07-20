@@ -1,8 +1,8 @@
 .. _admin_worker_flags:
 
-*************************
+***************************
 Worker Administration Flags
-*************************
+***************************
 
 .. |icon-new_gray_2022.1.1| image:: /_static/images/new_gray_2022.1.1.png
    :align: middle
@@ -11,10 +11,10 @@ Worker Administration Flags
    
 The **Worker Administration Flags** page describes **Worker** modification type flags, which can be modified by administrators on a session and cluster basis using the ``ALTER SYSTEM SET`` command:
 
-* `Setting Total Device Memory Usage in SQream Instance <https://docs.sqream.com/en/v2022.1.2/configuration_guides/cuda_mem_quota.html>`_
-* `Enabling Manually Setting Reported IP <https://docs.sqream.com/en/v2022.1.2/configuration_guides/machine_ip.html>`_
-* `Setting Port Used for Metadata Server Connection <https://docs.sqream.com/en/v2022.1.2/configuration_guides/metadata_server_port.html>`_
-* `Assigning Local Network IP <https://docs.sqream.com/en/v2022.1.2/configuration_guides/use_config_ip.html>`_
-* `Enabling the Query Healer <https://docs.sqream.com/en/v2022.1.2/configuration_guides/is_healer_on.html>`_
-* `Configuring the Query Healer <https://docs.sqream.com/en/v2022.1.2/configuration_guides/healer_max_inactivity_hours.html>`_
-* `Adjusting Permitted Log-in Attempts <https://docs.sqream.com/en/v2022.1.2/configuration_guides/login_max_retries.html>`_
+* :ref:`Setting Total Device Memory Usage in SQream Instance <cuda_mem_quota>`
+* :ref:`Enabling Manually Setting Reported IP <machine_ip>`
+* :ref:`Setting Port Used for Metadata Server Connection <metadata_server_port>`
+* :ref:`Assigning Local Network IP <use_config_ip>`
+* :ref:`Enabling the Query Healer <is_healer_on>`
+* :ref:`Configuring the Query Healer <healer_detection_frequency_seconds>`
+* :ref:`Adjusting Permitted Log-in Attempts <login_max_retries>`
