@@ -10,6 +10,8 @@ An ``ARRAY`` represents a sequence of zero or more elements of the same data typ
 
 Each data type has its companion ``ARRAY`` type, such as ``INT[]`` for integers and ``TEXT[]`` for text values.
 
+You may use the ``ARRAY`` data type with all :ref:`SQreamDB connectors <connecting_to_sqream>`, except for ODBC since the ODBC protocol does not support ``ARRAY``. 
+
 .. seealso:: A full list of :ref:`data types<supported_data_types>` supported by SQreamDB.
 
 Syntax
@@ -42,11 +44,11 @@ Supported Operators
    * - Mapping
      - Parquet, ORC, JSON, and AVRO ``ARRAY`` types may be mapped into SQreamDB ``ARRAY``
    * - Indexing
-     - Access to specific elements within the array by using a **zero-based index**. For example, ``SELECT <column_name>[2] FROM <table_name>`` returns the third element of the specified column
+     - Access to specific elements within the array by using a **zero-based index**. For example, ``SELECT (<column_name>[2]) FROM <table_name>`` returns the third element of the specified column
    * - ``UNNEST``
-     - Converts the arrayed elements within a single row into a set of rows. For example, ``SELECT UNNEST <column_name> FROM <table_name>``
+     - Converts the arrayed elements within a single row into a set of rows. For example, ``SELECT UNNEST (<column_name>) FROM <table_name>``
    * - Concatenate ``||``
-     - Converts arrayed elements into one string. For example, ``SELECT <column_name> || <column2_name> FROM <table_name>``
+     - Converts arrayed elements into one string. For example, ``SELECT (<column_name>) || (<column2_name>) FROM <table_name>``
    * - ``array_length``
      - Returns the number of arrayed elements within the specified column. For example, ``SELECT array_length(<column_name>) FROM <table_name>``
    * - ``array_position``
@@ -63,6 +65,9 @@ Supported Operators
 
 Examples
 ========
+
+``ARRAY`` Statements
+--------------------
 
 Creating a table with arrayed columns:
 
@@ -84,12 +89,12 @@ Converting arrayed elements into a set of rows:
 
 .. code-block:: console
 	
-	clmn1     | clmn2     | clmn3
-	----------+-----------+-----------
-	"1"       | "4"       | [7,8,9,10]
-	"2"       | "5"       |
-	"3"       | "6"       |
-	
+	 clmn1    | clmn2     
+	----------+----------
+	 "1"      | "4"       
+	 "2"      | "5"       
+	 "3"      | "6"       
+
 Updating table values:
 
 .. code-block:: sql
@@ -104,6 +109,53 @@ Updating table values:
 	---------------------+------------------+-----------
 	["A","1","2","3"]    | ["4","5","6"]    | [7,8,9,10]
 
+Mapping JSON Files
+------------------
+
+
+
 Limitations
 ===========
 
+Casting
+-------
+
+Numeric
+^^^^^^^
+
+Numeric data types smaller than ``INT``, such as ``TINYINT``, ``SMALLINT``, and ``BOOL``, must explicitly be cast.
+
+.. code-block:: sql
+
+	CREATE OR REPLACE TABLE my_array (clmn1 tinyint []); 
+	SELECT array_replace(clmn1 , 4::tinyint, 5::tinyint) from my_array;  
+	
+	CREATE OR REPLACE TABLE my_array (clmn1 bool []); 
+	SELECT array_replace(clmn1 , 0::bool, 1::bool) from my_array;
+	
+TEXT
+^^^^
+
+Casting ``TEXT`` to non-``TEXT`` and non-``TEXT`` to ``TEXT`` data types is not supported.
+	
+Functions
+---------
+
+``||`` (Concatenate)
+^^^^^^^^^^^^^^^^^^^^
+
+Using the ``||`` (Concatenate) function with two different data types requires explicit casting.
+
+.. code-block:: sql
+
+	SELECT (clmn1, 4::tinyint) || (clmn2, 5::tinyint) from my_array;
+	
+``UNNEST``
+^^^^^^^^^^
+
+It is possible to use the ``UNNEST`` operator within a statement only once.
+
+Window
+^^^^^^
+
+Window functions are not supported.
