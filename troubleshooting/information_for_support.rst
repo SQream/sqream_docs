@@ -1,8 +1,8 @@
 .. _information_for_support:
 
-*******************************************
-Gathering Information for SQream Support
-*******************************************
+**************************************
+Gathering Information for BLUE Support
+**************************************
 
 .. What do we want to look into a performance issue
 
@@ -10,16 +10,16 @@ Gathering Information for SQream Support
 
 .. what about bug reports
 
-`SQream Support <https://sqream.atlassian.net/servicedesk/>`_ is ready to answer any questions, and help solve any issues with SQream DB.
+`BLUE Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ is ready to answer any questions, and help solve any issues with BLUE DB.
 
 Getting Support and Reporting Bugs
-=======================================
+==================================
 
-When contacting `SQream Support <https://sqream.atlassian.net/servicedesk/>`_, we recommend reporting the following information:
+When contacting `BLUE Support <https://sqream.atlassian.net/servicedesk/>`_, we recommend reporting the following information:
 
 * What is the problem encountered?
 * What was the expected outcome?
-* How can SQream reproduce the issue? 
+* How can BLUE reproduce the issue? 
 
 When possible, please attach as many of the following:
 
@@ -28,18 +28,18 @@ When possible, please attach as many of the following:
 * :ref:`Log files<logging>`
 * Screen captures if relevant
 
-How SQream Debugs Issues
-===================================
+How BLUE Debugs Issues
+======================
 
 Reproduce
---------------
+---------
 
 If we are able to easily reproduce your issue in our testing lab, this greatly improves the speed at which we can fix it.
 
 Reproducing an issue consists of understanding:
 
-#. What was SQream DB doing at the time?
-#. How is the SQream DB cluster configured?
+#. What was BLUE doing at the time?
+#. How is the BLUE cluster configured?
 #. How does the schema look?
 #. What is the query or statement that exposed the problem?
 #. Were there any external factors? (e.g. Network disconnection, hardware failure, etc.)
@@ -47,33 +47,33 @@ Reproducing an issue consists of understanding:
 See the :ref:`reproducible_statement` section ahead for information about collecting a full reproducible example.
 
 Logs
---------
+----
 
-The logs produced by SQream DB contain a lot of information that may be useful for debugging.
+The logs produced by BLUE contain a lot of information that may be useful for debugging.
 
 Look for :ref:`error messages in the log and the offending statements<tracing_errors>`. SQream's support staff are experienced in correlating logs to workloads, and finding possible problems.
 
-See the :ref:`collecting_logs` section ahead for information about collecting a set of logs that can be analyzed by SQream support.
+See the :ref:`collecting_logs` section ahead for information about collecting a set of logs that can be analyzed by BLUE support.
 
 
 Fix
----------
+---
 
 Once we have a fix, this can be issued as a hotfix to an existing version, or as part of a bigger major release.
 
-Your SQream account manager will keep you up-to-date about the status of the issue.
+Your BLUE account manager will keep you up-to-date about the status of the issue.
 
 .. _reproducible_statement:
 
 Collecting a Reproducible Example of a Problematic Statement
-===============================================================
+============================================================
 
-SQream DB contains an SQL utility that can help SQream support reproduce a problem with a query or statement.
+BLUE contains an SQL utility that can help SQream support reproduce a problem with a query or statement.
 
 This utility compiles and executes a statement, and collects the relevant data in a small database which can be used to recreate and investigate the issue.
 
 SQL Syntax
----------------
+----------
 
 .. code-block:: postgres
    
@@ -85,7 +85,7 @@ SQL Syntax
       
 
 Parameters
----------------
+----------
 
 .. list-table::
    :widths: auto
@@ -99,7 +99,7 @@ Parameters
      - Statements to analyze.
 
 Example
------------
+-------
 
 .. code-block:: postgres
 
@@ -108,14 +108,14 @@ Example
 .. _collecting_logs:
 
 Collecting Logs and Metadata Database
-=============================================
+=====================================
 
-SQream DB comes bundled with a data collection utility and an SQL utility intended for collecting logs and additional information that can help SQream support drill down into possible issues.
+BLUE comes bundled with a data collection utility and an SQL utility intended for collecting logs and additional information that can help BLUE support drill down into possible issues.
 
 See more information in the :ref:`Collect logs from your cluster<collecting_logs2>` section of the :ref:`logging` guide.
 
 Examples
------------------
+--------
 
 Write an archive to ``/home/rhendricks``, containing log files:
 
@@ -133,7 +133,7 @@ Write an archive to ``/home/rhendricks``, containing log files and metadata data
    
 
 Using the Command Line Utility:
-=============================================
+===============================
 
 .. code-block:: console
    
