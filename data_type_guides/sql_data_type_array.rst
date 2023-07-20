@@ -109,10 +109,45 @@ Updating table values:
 	---------------------+------------------+-----------
 	["A","1","2","3"]    | ["4","5","6"]    | [7,8,9,10]
 
-Mapping JSON Files
-------------------
+JSON Files
+----------
 
+Consider the following JSON file to be ingested into SQreamDB:
 
+.. code-block:: json
+
+	{ "name":"Avery Bradley", "age":25, "position":"PG", {years_in_nba":[2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]"}
+	{ "name":"Jae Crowder", "age":25, "position":"PG" }, {years_in_nba":[2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]"}
+	{ "name":"John Holland", "age":27, "position":"SG" }, {years_in_nba":[2017, 2018]"}
+
+Execute the following statement:
+
+.. code-block:: sql
+
+	CREATE FOREIGN TABLE nba
+		  (name text not null),
+		  (age int not null),
+		  (position text not null),
+		  (years_in_nba int[] not null)
+		  
+	  WRAPPER json_fdw
+	  OPTIONS
+	  (
+		location = 'nba.json'
+	  )
+	;
+	
+	SELECT * FROM nba;
+	
+Result:
+
+.. code-block:: console
+
+	name           | age    | position    | years_in_nba
+	---------------+--------+-------------+-------------------------------------------------------------------------
+	Avery Bradley  | 25     | PG          | [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
+	Jae Crowder    | 25     | PG          | [2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
+	John Holland   | 27     | SG          | [2017, 2018]
 
 Limitations
 ===========
