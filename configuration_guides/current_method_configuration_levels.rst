@@ -28,8 +28,7 @@ Flag List
 
 .. list-table::
    :header-rows: 1
-   :widths: 1 2 1 15 1 20
-   :class: my-class
+   :widths: auto
    :name: my-name
 
    * - Flag Name
