@@ -1,8 +1,8 @@
 .. _reference:
 
-*************************
+*********
 Reference
-*************************
+*********
 
 Get to know the BLUE console and other features, and learn how to run statements.
 
