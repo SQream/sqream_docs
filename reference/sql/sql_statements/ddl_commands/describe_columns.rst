@@ -1,22 +1,26 @@
 .. _describe_columns:
 
-*****************
+****************
 DESCRIBE COLUMNS
-*****************
+****************
+
 The ``DESCRIBE COLUMNS`` command lets you list information about columns in an internal or external table.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
 Syntax
-==========
+======
+
 The following is the syntax for the ``DESCRIBE COLUMNS`` command:
 
 .. code-block:: postgres
 
    DESCRIBE COLUMNS [ SCHEMA <schema_name> ] [ DATABASE  <database_name> ] TABLE <table_name>
+   DESC COLUMNS [ SCHEMA <schema_name> ] [ DATABASE  <database_name> ] TABLE <table_name>
 
 Parameters
-============
+==========
+
 The following parameters can be used with the ``DESCRIBE COLUMNS`` command:
 
 .. list-table:: 
@@ -41,7 +45,8 @@ The following parameters can be used with the ``DESCRIBE COLUMNS`` command:
      - Text
 	 
 Examples
-==============
+========
+
 The following is an example of the ``DESCRIBE COLUMNS`` command:
 
 .. code-block:: postgres
@@ -49,7 +54,8 @@ The following is an example of the ``DESCRIBE COLUMNS`` command:
    DESCRIBE COLUMNS DATABASE master SCHEMA public TABLE t1;
    	 
 Output
-=============
+======
+
 Using the ``DESCRIBE COLUMNS`` command generates the following output:
 
 .. list-table:: 
@@ -106,5 +112,6 @@ The following is an example of the generated output in Studio:
 .. image:: /_static/images/describe_columns.png
 
 Permissions
-=============
+===========
+
 Using the ``DESCRIBE COLUMNS`` command requires ``USAGE`` permissions.

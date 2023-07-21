@@ -1,8 +1,8 @@
 .. _python_functions:
 
-*************************************
+***********************************
 Python UDF (User-Defined Functions)
-*************************************
+***********************************
  
 User-defined functions (UDFs) are a feature that extends SQreamDB's built in SQL functionality. SQreamDB's Python UDFs allow developers to create new functionality in SQL by writing the lower-level language implementation in Python. 
 
@@ -10,7 +10,7 @@ User-defined functions (UDFs) are a feature that extends SQreamDB's built in SQL
 A simple example
 ================
 
-Most databases have an :ref:`UPPER` function, including SQream DB. However, assume that this function is missing for the sake of this example.
+Most databases have an :ref:`UPPER` function, including BLUE. However, assume that this function is missing for the sake of this example.
 
 You can write a function in Python to uppercase a text value using the :ref:`create_function` syntax.
 
@@ -78,15 +78,15 @@ Why use UDFs?
 
 * They can be shared - UDFs can be created by a database administrator, and then used by other roles.
 
-* They can simplify downstream code - UDFs can be modified in SQream DB independently of program source code.
+* They can simplify downstream code - UDFs can be modified in BLUE independently of program source code.
 
-SQream DB's UDF support
-=======================
+BLUE's UDF support
+==================
 
 Scalar functions
 ----------------
 
-SQream DB's UDFs are scalar functions. This means that the UDF returns a single data value of the type defined in the ``RETURNS`` clause. For an inline scalar function, the returned scalar value is the result of a single statement.
+BLUE's UDFs are scalar functions. This means that the UDF returns a single data value of the type defined in the ``RETURNS`` clause. For an inline scalar function, the returned scalar value is the result of a single statement.
 
 Python
 ------
@@ -96,7 +96,7 @@ At this time, SQream DB's UDFs are supported for Python.
 Python 3.6.7 is installed alongside SQream DB, for use exclusively by SQream DB.
 You may have a different version of Python installed on your server.
 
-To find which version of Python is installed for use by SQream DB, create and run this UDF:
+To find which version of Python is installed for use by BLUE, create and run this UDF:
 
 .. code-block:: sql
    
@@ -191,5 +191,5 @@ Although user-defined functions add flexibility, they may have some performance 
 
 In some cases, the user-defined function provides benefits like sharing extended functionality which makes it very appealing.
 
-Use user-defined functions sparingly in the ``WHERE`` clause. SQream DB can't optimize the function's usage, and it will be called once for every value. If possible, you should narrow down the number of results before the UDF is called by using a subquery.
+Use user-defined functions sparingly in the ``WHERE`` clause. BLUE can't optimize the function's usage, and it will be called once for every value. If possible, you should narrow down the number of results before the UDF is called by using a subquery.
 

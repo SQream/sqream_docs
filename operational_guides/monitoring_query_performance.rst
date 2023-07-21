@@ -1,8 +1,8 @@
 .. _monitoring_query_performance:
 
-*********************************
+****************************
 Monitoring Query Performance
-*********************************
+****************************
 
 When analyzing options for query tuning, the first step is to analyze the query plan and execution. 
 The query plan and execution details explains how SQream DB processes a query and where time is spent.
@@ -13,22 +13,23 @@ See also our :ref:`sql_best_practices` guide for more information about data loa
 
 
 Setting Up the System for Monitoring
-=================================================
+====================================
+
 SQream logs all executed statements and their execution details. Because this data in five second intervals, you can view it while a statement is executing, or historically.
 
 For more information about setting up your system for monitoring, see the following:
 
 * Get a list of queries executed per session - :ref:`DESCRIBE SESSION QUERIES<describe_session_queries>`.
-
-   ::
    
 * See more details about the query execution process for troubleshooting purposes - :ref:`DESCRIBE_QUERY<describe_query>`.
 
 Reading Execution Plans with a Foreign Table
------------------------------------------------------
-First, create a foreign table for the logs
+--------------------------------------------
 
-.. code-block:: postgres
+First, create a foreign table for the logs.
+
+.. code-block:: sql
+
    CREATE FOREIGN TABLE logs 
    (
      start_marker      TEXT,
@@ -57,11 +58,14 @@ First, create a foreign table for the logs
 Once you've defined the foreign table, you can run queries to observe the previously logged execution plans.
 This is recommended over looking at the raw logs.
 
-.. code-block:: psql
+.. code-block:: sql
+
    t=> SELECT message
    .     FROM logs
    .     WHERE message_type_id = 200
    .     AND timestamp BETWEEN '2020-06-11' AND '2020-06-13';
+   
+   
    message                                                                                                                          
    ---------------------------------------------------------------------------------------------------------------------------------
    SELECT *,coalesce((depdelay > 15),false) AS isdepdelayed FROM ontime WHERE year IN (2005, 2006, 2007, 2008, 2009, 2010)
@@ -84,10 +88,11 @@ This is recommended over looking at the raw logs.
     : 16,CpuDecompress       ,10485760,10,1048576,2020-06-12 20:41:34,15,,,,0.04
     : 17,ReadTable           ,10485760,10,1048576,2020-06-12 20:41:34,16,832MB,,public.ontime,0.55
 
-.. _using_show_node_info:
+
 
 Using the ``DESCRIBE QUERY`` Command
-=====================================
+====================================
+
 The :ref:`describe_query` command returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases.
 
 The :ref:`describe_query` result, just like the periodically-logged execution plans described above, are an at-the-moment 
@@ -97,7 +102,7 @@ To inspect a currently running statement, execute the ``show_node_info`` utility
 
 The following is an example of a query inspecting a statement with a statement ID of **7**:
 
-.. code-block:: psql
+.. code-block:: sql
    
    t=> DESCRIBE QUERY session id 'eac756b3-f31e-4eca-b35a-38b18e606d92' query id 7;
    
@@ -106,7 +111,8 @@ The following image shows the output of the above query:
 .. image:: /_static/images/monitoring_describe_query.png   
 
 Understanding the Query Execution Plan Output
-==================================================
+=============================================
+
 Both :ref:`describe_query`  and the logged execution plans represents the query plan as a graph hierarchy, with data separated into different columns.
 
 Each row represents a single logical database operation, which is also called a **node** or **chunk producer**. A node reports several metrics during query execution, such as how much data it has read and written, how many chunks and rows, and how much time has elapsed.
@@ -155,13 +161,15 @@ When using :ref:`describe_query`, a tabular representation of the currently runn
 See the examples below to understand how the query execution plan is instrumental in identifying bottlenecks and optimizing long-running statements.
 
 Information Presented in the Execution Plan
-----------------------------------------------------
+-------------------------------------------
+
 .. include:: /reference/sql/sql_statements/monitoring_commands/show_node_info.rst
    :start-line: 47
    :end-line: 78
 
 Commonly Seen Nodes
-----------------------
+-------------------
+
 .. list-table:: Node types
    :widths: auto
    :header-rows: 1
@@ -266,13 +274,15 @@ Commonly Seen Nodes
 .. tip:: The full list of nodes appears in the :ref:`Node types table<node_types>`, as part of the :ref:`describe_query` reference.
 
 Examples
-==================
+========
+
 In general, looking at the top three longest running nodes (as is detailed in the ``timeSum`` column) can indicate the biggest bottlenecks.
 In the following examples you will learn how to identify and solve some common issues.
 
 
-1. Spooling to Disk
------------------------
+Spooling to Disk
+----------------
+
 When there is not enough RAM to process a statement, SQream DB will spill over data to the ``temp`` folder in the storage disk.
 While this ensures that a statement can always finish processing, it can slow down the processing significantly.
 It's worth identifying these statements, to figure out if the cluster is configured correctly, as well as potentially reduce
@@ -282,7 +292,8 @@ A node that spools will have a value, shown in megabytes in the ``write`` column
 Common nodes that write spools include ``Join`` or ``LoopJoin``.
 
 Identifying the Offending Nodes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 #. 
    Run a query.
      
@@ -314,7 +325,8 @@ Identifying the Offending Nodes
    
    The execution below has been shortened, but note the highlighted rows for ``LoopJoin``:
    
-   .. code-block:: psql
+.. code-block:: sql
+   
       :emphasize-lines: 33,35,37,39
    
       t=> SELECT message FROM logs WHERE message_type_id = 200 LIMIT 1;
@@ -363,7 +375,8 @@ Identifying the Offending Nodes
    The total spool used by this query is around 20GB (1915MB + 2191MB + 3064MB + 12860MB).
 
 Common Solutions for Reducing Spool
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 * 
    Increase the amount of spool memory available for the workers, as a proportion of the maximum statement memory.
    When the amount of spool memory is increased, SQream DB may not need to write to disk.
@@ -372,19 +385,22 @@ Common Solutions for Reducing Spool
 * 
    Reduce the amount of **workers** per host, and increase the amount of spool available to the (now reduced amount of) active workers.
    This may reduce the amount of concurrent statements, but will improve performance for heavy statements.
-2. Queries with Large Result Sets
-------------------------------------
+   
+Queries with Large Result Sets
+------------------------------
+
 When queries have large result sets, you may see a node called ``DeferredGather``.
 This gathering occurs when the result set is assembled, in preparation for sending it to the client.
 
 Identifying the Offending Nodes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 #. 
    Run a query.
      
    For example, a modified query from the TPC-H benchmark:
 
-   .. code-block:: postgres
+.. code-block:: sql
       
       SELECT s.*,
              l.*,
@@ -413,7 +429,8 @@ Identifying the Offending Nodes
    
    The execution below has been shortened, but note the highlighted rows for ``DeferredGather``:
    
-   .. code-block:: psql
+.. code-block:: sql
+   
       :emphasize-lines: 7,9,11
    
       t=> SELECT show_node_info(494);
@@ -444,22 +461,26 @@ Identifying the Offending Nodes
       FROM ...
 
 Common Solutions for Reducing Gather Time
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 * Reduce the effect of the preparation time. Avoid selecting unnecessary columns (``SELECT * FROM...``), or reduce the result set size by using more filters.
 .. ``
 
-3. Inefficient Filtering
---------------------------------
+Inefficient Filtering
+---------------------
+
 When running statements, SQream DB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
 If statements do not include efficient filtering, SQream DB will read a lot of data off disk.
 In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line,
 it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
 
 Identifying the Situation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
 We consider the filtering to be inefficient when the ``Filter`` node shows that the number of rows processed is less
 than a third of the rows passed into it by the ``ReadTable`` node.
 For example:
+
 #. 
    Run a query.
      
@@ -498,6 +519,9 @@ For example:
       :emphasize-lines: 9,17,19,27
    
       t=> SELECT show_node_info(559);
+	  
+   .. code-block:: none	  
+	  
       stmt_id | node_id | node_type            | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read   | write | comment         | timeSum
       --------+---------+----------------------+-----------+--------+-------------------+---------------------+----------------+--------+-------+-----------------+--------
           559 |       1 | PushToNetworkQueue   |         2 |      1 |                 2 | 2020-09-07 11:12:01 |             -1 |        |       |                 |    0.28
@@ -538,7 +562,7 @@ For example:
 #. Modify the statement to see the difference
    Altering the statement to have a ``WHERE`` condition on the clustered ``l_orderkey`` column of the ``lineitem`` table will help SQream DB skip reading the data.
    
-   .. code-block:: postgres
+   .. code-block:: sql
       :emphasize-lines: 15
       
       SELECT o_year,
@@ -561,11 +585,14 @@ For example:
       GROUP BY o_year
       ORDER BY o_year;
 
-   .. code-block:: psql
+   .. code-block:: sql
       :linenos:
       :emphasize-lines: 5,13
       
       t=> SELECT show_node_info(586);
+	  
+   .. code-block:: none	  
+	  
       stmt_id | node_id | node_type            | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read   | write | comment         | timeSum
       --------+---------+----------------------+-----------+--------+-------------------+---------------------+----------------+--------+-------+-----------------+--------
       [...]
@@ -586,15 +613,14 @@ For example:
    The metadata skipping has performed very well, and has pre-filtered the data for us by pruning unnecessary chunks.
       
 Common Solutions for Improving Filtering
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 * Use :ref:`clustering keys and naturally ordered data<data_clustering>` in your filters.
 * Avoid full table scans when possible
 
+High Selectivity Data
+---------------------
 
-
-
-4. High Selectivity Data
---------------------------
 Selectivity is the ratio of cardinality to the number of records of a chunk. We define selectivity as :math:`\frac{\text{Distinct values}}{\text{Total number of records in a chunk}}`
 SQream DB has a hint called ``HIGH_SELECTIVITY``, which is a function you can wrap a condition in.
 The hint signals to SQream DB that the result of the condition will be very sparse, and that it should attempt to rechunk
@@ -604,13 +630,17 @@ the results into fewer, fuller chunks.
    well-clustered data, which is the more common scenario.
 
 Identifying the Situation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
 This is easily identifiable - when the amount of average of rows in a chunk is small, following a ``Filter`` operation.
 Consider this execution plan:
 
 .. code-block:: psql
    
    t=> select show_node_info(30);
+   
+.. code-block:: none
+
    stmt_id | node_id | node_type         | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment    | timeSum
    --------+---------+-------------------+-----------+--------+-------------------+---------------------+----------------+-------+-------+------------+--------
    [...]
@@ -622,28 +652,34 @@ The filter node reduced the output to just 18,160 relevant rows, but they're dis
 All of these rows could fit in one single chunk, instead of spanning 74 rather sparse chunks.
 
 Improving Performance with High Selectivity Hints
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 * 
    Use when there's a ``WHERE`` condition on an :ref:`unclustered column<data_clustering>`, and when you expect the filter
    to cut out more than 60% of the result set.
 * Use when the data is uniformly distributed or random
 
-6. Performance of unsorted data in joins
-------------------------------------------
+Performance of unsorted data in joins
+-------------------------------------
+
 When data is not well-clustered or naturally ordered, a join operation can take a long time. 
 
 Identifying the Situation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
 When running a statement, inspect it with :ref:`describe_query`. If you see ``Join`` and ``DeferredGather`` among your 
 top five longest running nodes, there is a potential issue.
 In this case, we're also interested in the number of chunks produced by these nodes.
 
 Consider this execution plan:
 
-.. code-block:: psql
+.. code-block:: sql
    :emphasize-lines: 6,11
    
    t=> select show_node_info(30);
+   
+.. code-block:: none
+
    stmt_id | node_id | node_type         | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment    | timeSum
    --------+---------+-------------------+-----------+--------+-------------------+---------------------+----------------+-------+-------+------------+--------
    [...]
@@ -666,13 +702,14 @@ The filter node reduced the output to just 18,160 relevant rows, but they're dis
 All of these rows could fit in one single chunk, instead of spanning 74 rather sparse chunks.
 
 Improving Join Performance when Data is Sparse
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 You can tell SQream DB to reduce the amount of chunks involved, if you know that the filter is going to be quite
 agressive by using the :ref:`HIGH_SELECTIVITY<high_selectivity>` hint described :ref:`above<high_selectivity_data_opt>`.
 This forces the compiler to rechunk the data into fewer chunks.
 To tell SQream DB to rechunk the data, wrap a condition (or several) in the ``HIGH_SELECTIVITY`` hint:
 
-.. code-block:: postgres
+.. code-block:: sql
    :emphasize-lines: 13
    
    -- Without the hint
@@ -691,16 +728,19 @@ To tell SQream DB to rechunk the data, wrap a condition (or several) in the ``HI
          AND EnterpriseID=1150 
          AND MSISDN='9724871140341';
 
-5. Manual Join Reordering
---------------------------------
+Manual Join Reordering
+----------------------
+
 When joining multiple tables, you may wish to change the join order to join the smallest tables first.
 
 Identifying the situation
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
+
 When joining more than two tables, the ``Join`` nodes will be the most time-consuming nodes.
 
 Changing the Join Order
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
+
 Always prefer to join the smallest tables first.
 .. note:: 
    We consider small tables to be tables that only retain a small amount of rows after conditions
@@ -747,5 +787,6 @@ from 27.3 seconds to just 6.4 seconds.
    GROUP BY c_nationkey
 
 Further Reading
-==================
+===============
+
 See our :ref:`sql_best_practices` guide for more information about query optimization and data loading considerations.

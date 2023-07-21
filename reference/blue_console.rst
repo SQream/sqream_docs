@@ -1,8 +1,8 @@
 .. _blue_console:
 
-************************
+************
 BLUE Console
-************************
+************
 
 BLUE has a native client program that provides a command-line interface (CLI) for interacting with your on-line stored data. It allows you to connect to database servers, execute SQL queries and commands, and receive the results in a text-based format.
 
@@ -37,13 +37,16 @@ After entering your access token, you are presented with the **SQL shell**. The 
 
 **SQL shell** control commands:
 
-+-----------------------+----------------------------+
-| Command               | Description                |
-+=======================+============================+
-| ``Ctrl-d``, ``exit;`` | Exit the SQL Shell         |
-+-----------------------+----------------------------+
-| ``^c``                | Abort a statement or query |
-+-----------------------+----------------------------+ 
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Command
+     - Description
+   * - ``Ctrl-d``, ``exit;``
+     - Exit the SQL Shell   
+   * - ``^c`` 
+     - Abort a statement or query
 
 
 Statements and queries are standard SQL, followed by a semicolon ``;``.
@@ -66,8 +69,7 @@ Statements and queries are standard SQL, followed by a semicolon ``;``.
 	  (
 		LOCATION =  'hdfs://hadoop-nn.piedpiper.com/rhendricks/nba/*.parquet'
 	  );
-	
-.. code-block:: none
+
 
 Statement results are usually formatted as a valid CSV, followed by the number of rows and the elapsed time for that statement. 
 
@@ -284,7 +286,7 @@ Operations and Flag References
 Command Line Arguments
 ----------------------
 
-Sqream SQL supports the following command line arguments:
+BLUE SQL supports the following command line arguments:
 
 .. list-table:: 
    :widths: auto
@@ -313,7 +315,7 @@ Sqream SQL supports the following command line arguments:
      - When set, prevents command history from being saved in ``~/.sqream/clientcmdhist``
    * - ``delimiter``
      - ``,``
-     - Specifies the field separator. By default, ``sqream sql`` outputs valid CSVs. Change the delimiter to modify the output to another delimited format (e.g. TSV, PSV). See the section supported record delimiters below for more information.
+     - Specifies the field separator. By default, ``blue sql`` outputs valid CSVs. Change the delimiter to modify the output to another delimited format (e.g. TSV, PSV). See the section supported record delimiters below for more information.
    * - ``access-token``
      - None
      - Provide a security token that grants access to protected resources or operations.
@@ -333,7 +335,7 @@ The supported record delimiters are printable ASCII values (32-126).
 Meta-Commands
 -------------
 
-* Meta-commands in Sqream SQL start with a backslash (\)
+* Meta-commands in BLUE SQL start with a backslash (\)
 
 .. note::
 

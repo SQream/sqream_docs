@@ -1,22 +1,26 @@
 .. _describe_schemas:
 
-*****************
+****************
 DESCRIBE SCHEMAS
-*****************
+****************
+
 The ``DESCRIBE SCHEMAS`` command lets you list information about schemas in your cluster.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
 Syntax
-==========
+======
+
 The following is the syntax for the ``DESCRIBE SCHEMAS`` command:
 
 .. code-block:: postgres
 
    DESCRIBE SCHEMAS [DATABASE <database_name>]
+   DESC SCHEMAS [DATABASE <database_name>]
 
 Parameters
-============
+==========
+
 The following parameters can be used with the ``DESCRIBE SCHEMAS`` command:
 
 .. list-table:: 
@@ -33,7 +37,8 @@ The following parameters can be used with the ``DESCRIBE SCHEMAS`` command:
      - Text
 	 
 Example
-==============
+=======
+
 The following is an example of the ``DESCRIBE SCHEMAS`` command:
 
 .. code-block:: postgres
@@ -41,7 +46,8 @@ The following is an example of the ``DESCRIBE SCHEMAS`` command:
    DESCRIBE SCHEMAS DATABASE master;
    	 
 Output
-=============
+======
+
 Using the ``DESCRIBE SCHEMAS`` command generates the following output:
 
 .. list-table:: 
@@ -72,5 +78,6 @@ The following is an example of the generated output in Studio:
 **Comment** - *Do we currently support rechunker_ignore? Compare screenshot with table above. Also, the "o" in "schema_id" and "rechunker_ignore" are lower case o's, not 0's.*
 
 Permissions
-=============
+===========
+
 Using the ``DESCRIBE SCHEMAS`` command requires ``SUPERUSER`` permissions.

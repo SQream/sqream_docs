@@ -1,22 +1,26 @@
 .. _describe_user_functions:
 
-*****************
+***********************
 DESCRIBE USER FUNCTIONS
-*****************
-The ``DESCRIBE USER FUNCTIONS`` command lets you list all user-defined functions created in a SQream database.
+***********************
+
+The ``DESCRIBE USER FUNCTIONS`` command lets you list all user-defined functions in your database.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
 Syntax
-==========
+======
+
 The following is the syntax for the ``DESCRIBE USER FUNCTIONS`` command:
 
 .. code-block:: postgres
 
    DESCRIBE USER FUNCTIONS [DATABASE <database_name>]
+   DESC USER FUNCTIONS [DATABASE <database_name>]
 
 Parameters
-============
+==========
+
 The following parameters can be used with the ``DESCRIBE USER FUNCTIONS`` command:
 
 .. list-table:: 
@@ -33,7 +37,8 @@ The following parameters can be used with the ``DESCRIBE USER FUNCTIONS`` comman
      - Text
 	 
 Example
-==============
+=======
+
 The following is an example of the ``DESCRIBE USER FUNCTIONS`` command:
 
 .. code-block:: postgres
@@ -41,7 +46,8 @@ The following is an example of the ``DESCRIBE USER FUNCTIONS`` command:
    DESCRIBE USER FUNCTIONS DATABASE master;
 	 
 Output
-=============
+======
+
 Using the ``DESCRIBE USER FUNCTIONS`` command generates the following output:
 
 .. list-table:: 
@@ -76,5 +82,6 @@ The following is an example of the generated output:
    master,0,november,november,4,1980
    
 Permissions
-=============
+===========
+
 Using the ``DESCRIBE USER FUNCTINS`` command requires ``USAGE`` permissions.

@@ -1,8 +1,9 @@
 .. _access_control_password_policy:
 
-**************
+***************
 Password Policy
-**************
+***************
+
 As part of our compliance with GDPR standards SQream relies on a strong password policy when accessing the CLI or Studio, with the following requirements:
 
 * At least eight characters long.

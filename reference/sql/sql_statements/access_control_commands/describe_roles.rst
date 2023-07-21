@@ -4,22 +4,19 @@
 DESCRIBE ROLES
 **************
 
-
 You may use the ``DESCRIBE ROLES`` command to list all roles defined in your system. Since SQream roles refer to both users and their assigned privileges, you will receive a list of users along with the associated name, privileges, login, and a password if it exists.
 
 .. note:: 
 	
 	``DESCRIBE`` commands use CPU to increase usability.
 
-
-
-
 Syntax
 ======
 
 .. code-block:: sql
 
-	DESCRIBE ROLES [LIKE 'pattern'];
+	DESCRIBE ROLES [LIKE 'pattern']
+	DESC ROLES [LIKE 'pattern']
 
 Parameters
 ==========

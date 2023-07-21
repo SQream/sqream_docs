@@ -1,8 +1,9 @@
 .. _converting_and_casting_types:
 
-*************************
+****************************
 Converting and Casting Types
-*************************
+****************************
+
 SQream supports explicit and implicit casting and type conversion. The system may automatically add implicit casts when combining different data types in the same expression. 
 In many cases, while the details related to this are not important, they can affect the results of a query. 
 When necessary, an explicit cast can be used to override the automatic cast added by SQream DB.

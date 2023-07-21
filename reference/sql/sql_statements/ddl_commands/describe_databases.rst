@@ -1,30 +1,36 @@
 .. _describe_databases:
 
-*****************
+******************
 DESCRIBE DATABASES
-*****************
+******************
+
 The ``DESCRIBE DATABASES`` command lets you list information about the databases in your cluster.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
 Syntax
-==========
+======
+
 The following is the syntax for the ``DESCRIBE DATABASES`` command:
 
 .. code-block:: postgres
 
    DESCRIBE DATABASES
+   DESC DATABASES
 
 Parameters
-============
+==========
+
 The ``DESCRIBE DATABASES`` command has no parameters.
 
 Example
-==============
+=======
+
 The ``DESCRIBE_DATABASES`` command has no parameters.
 
 Output
-=============
+======
+
 Using the ``DESCRIBE DATABASES`` command generates the following output:
 
 .. list-table:: 
@@ -53,5 +59,6 @@ The following is an example of the generated output in Studio:
 .. image:: /_static/images/describe_databases.png
 
 Permissions
-=============
+===========
+
 Using the ``DESCRIBE DATABASES`` command requires ``SUPERUSER`` permissions.

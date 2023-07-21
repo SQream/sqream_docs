@@ -1,14 +1,18 @@
 .. _releases:
 
-**********
+*************
 Release Notes
-**********
+*************
 
    
-:ref:`september_2023`
+:ref:`june_2023`
 
-* `New jobs page <https://docs.sqream.com/en/blue/releases/2023/september.html#new-jobs-page>`_
-* `Log in using an Identity Provider (IDP) <https://docs.sqream.com/en/blue/releases/2023/september.html#log-in-using-an-identity-provider-idp>`_
-* `Automatically suspend and resume your BLUE environment <https://docs.sqream.com/en/blue/releases/2023/september.html#automatically-suspend-and-resume-your-blue-environment>`_
-* `Google Cloud Platform marketplace deployment <https://docs.sqream.com/en/blue/releases/2023/september.html#google-cloud-platform-marketplace-deployment>`_
+* `Creating SQL Workflows <https://docs.sqream.com/en/blue/releases/2023/june_2023.html#creating-sql-workflows>`_
+* `Resource Management <https://docs.sqream.com/en/blue/releases/2023/june_2023.html#resource-management>`_
+
+:ref:`may_2023`
+
+* `Log in using an Identity Provider (IDP) <https://docs.sqream.com/en/blue/releases/2023/may_2023.html#log-in-using-an-identity-provider-idp>`_
+* `Automatically suspend and resume your BLUE environment <Resource Management>`_
+* `Google Cloud Platform marketplace deployment <Resource Management>`_
    

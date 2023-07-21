@@ -17,48 +17,70 @@ Data Definition Commands (DDL)
    
    * - Command
      - Usage
-   * - :ref:`ADD_COLUMN<add_column>`
+   * - :ref:`add_column`
      - Add a new column to a table
-   * - :ref:`ALTER_DEFAULT_SCHEMA<alter_default_schema>`
+   * - :ref:`alter_default_schema`
      - Change the default schema for a role
-   * - :ref:`ALTER_TABLE<alter_table>`
+   * - :ref:`alter_table`
      - Change the schema of a table
-   * - :ref:`CLUSTER_BY<cluster_by>`
+   * - :ref:`cluster_by`
      - Change clustering keys in a table
-   * - :ref:`CREATE_DATABASE<create_database>`
+   * - :ref:`create_database`
      - Create a new database
-   * - :ref:`CREATE_FOREIGN_TABLE<create_foreign_table>`
+   * - :ref:`create_foreign_table`
      - Create a new foreign table in the database
-   * - :ref:`CREATE_FUNCTION<create_function>`
+   * - :ref:`create_function`
      - Create a new user defined function in the database
-   * - :ref:`CREATE_SCHEMA<create_schema>`
+   * - :ref:`create_schema`
      - Create a new schema in the database
-   * - :ref:`CREATE_TABLE<create_table>`
-     - Create a new table in the database
-   * - :ref:`CREATE_TABLE_AS<create_table_as>`
+   * - :ref:`create_table_as`
      - Create a new table in the database using results from a select query
-   * - :ref:`CREATE_VIEW<create_view>`
+   * - :ref:`create_view`
      - Create a new view in the database
-   * - :ref:`DESCRIBE_TABLE<describe_tables>`
+   * - :ref:`describe_columns`
+     - Lists information about columns in an internal or external table
+   * - :ref:`describe_configuration`
+     - Shows all configurations set on the session level
+   * - :ref:`describe_databases`
+     - Lists information about the databases in your cluster
+   * - :ref:`describe_pools`
+     - List all of your pools
+   * - :ref:`describe_query`
+     - Displays information about query execution
+   * - :ref:`describe_schemas`
+     - Lists information about schemas in your cluster
+   * - :ref:`describe_tables`
      - List information about tables in your database
-   * - :ref:`DROP_CLUSTERING_KEY<drop_clustering_key>`
+   * - :ref:`describe_tables_extended`
+     - Lists all the tables in your database
+   * - :ref:`describe_user_functions`
+     - Lists all user-defined functions in your database
+   * - :ref:`describe_views`
+     - Creates a list of database views
+   * - :ref:`drop_clustering_key`
      - Drops all clustering keys in a table
-   * - :ref:`DROP_COLUMN<drop_column>`
+   * - :ref:`drop_column`
      - Drop a column from a table
-   * - :ref:`DROP_DATABASE<drop_database>`
+   * - :ref:`drop_database`
      - Drop a database and all of its objects
-   * - :ref:`DROP_FUNCTION<drop_function>`
+   * - :ref:`drop_function`
      - Drop a function
-   * - :ref:`DROP_SCHEMA<drop_schema>`
+   * - :ref:`drop_schema`
      - Drop a schema
-   * - :ref:`DROP_TABLE<drop_table>`
+   * - :ref:`drop_table`
      - Drop a table and its contents from a database
-   * - :ref:`DROP_VIEW<drop_view>`
+   * - :ref:`drop_view`
      - Drop a view
-   * - :ref:`RENAME_COLUMN<rename_column>`
+   * - :ref:`rename_column`
      - Rename a column
-   * - :ref:`RENAME_TABLE<rename_table>`
+   * - :ref:`rename_table`
      - Rename a table
+   * - :ref:`use_database`
+     - Lets you shift between databases within an existing session
+   * - :ref:`use_pool`
+     - Lets you shift between pools within a session
+   * - :ref:`use_schema`
+     - Lets you shift between schemes within an existing session
 
 
 Data Manipulation Commands (DML)
@@ -71,19 +93,11 @@ Data Manipulation Commands (DML)
    
    * - Command
      - Usage
-   * - :ref:`CREATE_TABLE_AS<create_table_as>`
-     - Create a new table in the database using results from a select query
-   * - :ref:`DELETE<delete>`
-     - Delete specific rows from a table
-   * - :ref:`COPY_TO<copy_to>`
+   * - :ref:`copy_to`
      - Export a select query or entire table to CSV files
-   * - :ref:`SELECT<select>`
+   * - :ref:`select`
      - Select rows and column from a table
-   * - :ref:`TRUNCATE<truncate>`
-     - Delete all rows from a table
-   * - :ref:`UPDATE<update>`
-     - Modify the value of certain columns in existing rows without creating a table
-   * - :ref:`VALUES<values>`
+   * - :ref:`values`
      - Return rows containing literal values
 
 Utility Commands
@@ -95,37 +109,39 @@ Utility Commands
    
    * - Command
      - Usage
-   * - :ref:`DROP SAVED QUERY<drop_saved_query>`
+   * - :ref:`describe_locks`
+     - Returns a list of locks from across your cluster
+   * - :ref:`describe_saved_queries_list`
+     - Lists of all of your saved queries		 
+   * - :ref:`describe_saved_query`
+     - Returns the SQL syntax of a specific saved query
+   * - :ref:`describe_session_queries`
+     - Lists queries per session, including queued queries
+   * - :ref:`describe_sessions`
+     - Outputs information about your current session
+   * - :ref:`drop_saved_query`
      - Drops a saved query
-   * - :ref:`EXECUTE SAVED QUERY<execute_saved_query>`
+   * - :ref:`execute_saved_query`
      - Executes a previously saved query
-   * - :ref:`EXPLAIN<explain>`
+   * - :ref:`explain`
      - Returns a static query plan, which can be used to debug query plans
-   * - :ref:`LIST SAVED QUERIES<list_saved_queries>`
-     - Lists previously saved query names, one per row.
-   * - :ref:`RECOMPILE SAVED QUERY<recompile_saved_query>`
+   * - :ref:`recompile_saved_query`
      - Recompiles a saved query that has been invalidated due to a schema change
-   * - :ref:`SELECT GET_LICENSE_INFO<get_license_info>`
+   * - :ref:`get_license_info`
      - View a user's license information
-   * - :ref:`SELECT GET_DDL<get_ddl>`
+   * - :ref:`get_ddl`
      - View the ``CREATE TABLE`` statement for a table
-   * - :ref:`SELECT GET_FUNCTION_DDL<get_function_ddl>`
+   * - :ref:`get_function_ddl`
      - View the ``CREATE FUNCTION`` statement for a UDF
-   * - :ref:`SELECT GET_VIEW_DDL<get_view_ddl>`
+   * - :ref:`get_view_ddl`
      - View the ``CREATE VIEW`` statement for a view
-   * - :ref:`SELECT RECOMPILE_VIEW<recompile_view>`
+   * - :ref:`recompile_view`
      - Recreate a view after schema changes
-   * - :ref:`SELECT DUMP_DATABASE_DDL<dump_database_ddl>`
+   * - :ref:`dump_database_ddl`
      - View the ``CREATE TABLE`` statement for an current database
-   * - :ref:`SHOW CONNECTIONS<show_connections>`
-     - Returns a list of active sessions on the current worker
-   * - :ref:`SHOW LOCKS<show_locks>`
-     - Returns a list of locks from across the cluster
-   * - :ref:`SHOW SAVED QUERY<show_saved_query>`
-     - Returns a single row result containing the saved query string
-   * - :ref:`SHUTDOWN_SERVER<shutdown_server_command>`
+   * - :ref:`shutdown_server_command`
      - Sets your server to finish compiling all active queries before shutting down according to a user-defined time value
-   * - :ref:`STOP STATEMENT<stop_statement>`
+   * - :ref:`stop_statement`
      - Stops or aborts an active statement
 
 Access Control Commands
@@ -144,6 +160,10 @@ The following table shows the Access Control commands:
      - Applies a change to an existing role
    * - :ref:`create_role`
      - Creates a roles, which lets a database administrator control permissions on tables and databases
+   * - :ref:`describe_connect_permissions`
+     - Lists all roles and their database connection privileges
+   * - :ref:`describe_roles`
+     - Lists all roles defined in your system
    * - :ref:`drop_role`
      - Removes roles
    * - :ref:`get_role_permissions`

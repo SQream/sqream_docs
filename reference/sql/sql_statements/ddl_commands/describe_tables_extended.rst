@@ -1,9 +1,8 @@
 .. _describe_tables_extended:
 
-*****************
+************************
 DESCRIBE TABLES EXTENDED
-*****************
-
+************************
 
 The ``DESCRIBE TABLES EXTENDED`` command lets you list all the tables in your database, including information about storage and deleted data. You can define the ``DESCRIBE TABLES EXTENDED`` command as either ``EXTERNAL`` or ``INTERNAL``.
 
@@ -12,15 +11,18 @@ The ``DESCRIBE TABLES EXTENDED`` command lets you list all the tables in your da
 
 
 Syntax
-==========
+======
+
 The following is the syntax for the ``DESCRIBE TABLES EXTENDED`` command:
 
 .. code-block:: postgres
 
    DESCRIBE TABLES [SCHEMA <schema_name>] [DATABASE <database_name>] EXTERNAL | INTERNAL
+   DESC TABLES [SCHEMA <schema_name>] [DATABASE <database_name>] EXTERNAL | INTERNAL
 
 Parameters
-============
+==========
+
 The following parameters can be used with the ``DESCRIBE TABLES EXTENDED`` command:
 
 .. list-table:: 
@@ -38,7 +40,8 @@ The following parameters can be used with the ``DESCRIBE TABLES EXTENDED`` comma
      - Text	 
 	 
 Example
-==============
+=======
+
 The following is an example of an **internal** ``DESCRIBE TABLES EXTENDED`` command:
 
 .. code-block:: postgres
@@ -52,7 +55,8 @@ The following is an example of an **external** ``DESCRIBE TABLES EXTENDED`` comm
    DESCRIBE TABLES DATABASE master SCHEMA public EXTERNAL;
    
 Output
-=============
+======
+
 Using the **internal** ``DESCRIBE_TABLES_EXTENDED`` command generates the following output:
 
 .. list-table:: 
@@ -142,5 +146,6 @@ The following is an example of the generated output for the **external** ``DESCR
    master,3,public,t4,0,2022-05-02 15:25:57
 
 Permissions
-=============
+===========
+
 Using the ``DESCRIBE TABLES EXTENDED`` command requires ``USAGE`` permissions.

@@ -1,25 +1,25 @@
 .. _concurrency_and_scaling_in_sqream:
 
-***************************************
-Concurrency and Scaling in SQream DB
-***************************************
+*******************************
+Concurrency and Scaling in BLUE
+*******************************
 
-A SQream DB cluster can concurrently run one regular statement per worker process. A number of small statements will execute alongside these statements without waiting or blocking anything.
+A BLUE cluster can concurrently run one regular statement per worker process. A number of small statements will execute alongside these statements without waiting or blocking anything.
 
-SQream DB supports ``n`` concurrent statements by having ``n`` workers in a cluster. Each worker uses a fixed slice of a GPU's memory, with usual values are around 8-16GB of GPU memory per worker. This size is ideal for queries running on large data with potentially large row sizes.
+BLUE supports ``n`` concurrent statements by having ``n`` workers in a cluster. Each worker uses a fixed slice of a GPU's memory, with usual values are around 8-16GB of GPU memory per worker. This size is ideal for queries running on large data with potentially large row sizes.
 
 Scaling when data sizes grow
---------------------------------
+----------------------------
 
-For many statements, SQream DB scales linearly when adding more storage and querying on large data sets. It uses very optimised 'brute force' algorithms and implementations, which don't suffer from sudden performance cliffs at larger data sizes.
+For many statements, BLUE scales linearly when adding more storage and querying on large data sets. It uses very optimised 'brute force' algorithms and implementations, which don't suffer from sudden performance cliffs at larger data sizes.
 
 Scaling when queries are queueing
----------------------------------------
+---------------------------------
 
-SQream DB scales well by adding more workers, GPUs, and nodes to support more concurrent statements.
+BLUE scales well by adding more workers, GPUs, and nodes to support more concurrent statements.
 
 What to do when queries are slow
-----------------------------------
+--------------------------------
 
 Adding more workers or GPUs does not boost the performance of a single statement or query. 
 
@@ -31,6 +31,6 @@ Adding additional RAM to nodes, using more GPU memory, and faster CPUs or storag
 
 .. rubric:: Need help?
 
-Analyzing complex workloads can be challenging. SQream's experienced customer support has the experience to advise on these matters to ensure the best experience.
+Analyzing complex workloads can be challenging. BLUE's experienced customer support has the experience to advise on these matters to ensure the best experience.
 
-Visit `SQream's support portal <https://support.sqream.com>`_ for additional support.
+Visit `BLUE support portal <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ for additional support.

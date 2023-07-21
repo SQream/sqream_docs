@@ -5,9 +5,6 @@ COPY TO
 **********************
 The **COPY TO** page includes the following sections:
 
-.. contents:: 
-   :local:
-   :depth: 1
 
 Overview
 ==========
@@ -72,9 +69,6 @@ Elements
 ============
 The following table shows the ``COPY_TO`` elements:
 
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
    
    * - Parameter
      - Description
@@ -103,17 +97,11 @@ Usage Notes
 ===============
 The **Usage Notes** describes the following:
 
-.. contents:: 
-   :local:
-   :depth: 1
 
 Supported Field Delimiters
 ------------------------------
 The **Supported Field Delimiters** section describes the following:
 
-.. contents:: 
-   :local:
-   :depth: 1
 
 Printable ASCII Characters
 ^^^^^^^^^^^^^^^^^^^^^
@@ -413,9 +401,6 @@ Examples
 ===========
 The **Examples** section shows the following examples:
 
-.. contents:: 
-   :local:
-   :depth: 1
 
 Exporting a Table to a CSV File without a HEADER Row
 ------------------------------------

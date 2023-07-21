@@ -1,9 +1,8 @@
 .. _alter_default_permissions:
 
-*****************************
+*************************
 ALTER DEFAULT PERMISSIONS
-*****************************
-
+*************************
 
 The ``ALTER DEFAULT PERMISSIONS`` command lets you grant automatic permissions to future objects.
 
@@ -13,10 +12,12 @@ For more information about access control, see :ref:`Access Control<access_contr
 
 Permissions
 ===========
+
 The ``SUPERUSER`` permission is required to alter default permissions.
 
 Syntax
-=======
+======
+
 The following is the syntax for altering default permissions:
 
 .. code-block:: sql
@@ -47,7 +48,8 @@ The following is the syntax for altering default permissions:
    
 
 Supported Permissions
-=======================
+=====================
+
 The following table describes the supported permissions:
 
 .. list-table:: 
@@ -83,13 +85,12 @@ The following table describes the supported permissions:
      - Allows a user to :ref:`alter tables<alter_table>`, rename columns and tables, etc.
 
 
-
-
 Examples
 ========
    
 Granting Default Table Permissions
 ----------------------------------
+
 This example is based on the roles **r1** and **r2**, created as follows:
 
 .. code-block:: sql
@@ -126,7 +127,8 @@ The following is an example of the output generated from the above queries:
 For more information about default permissions, see :ref:`Default Permissions<catalog_reference_catalog_tables>`.  
    
 Granting Automatic Permissions for Newly Created Schemas
--------------------------------------------------
+--------------------------------------------------------
+
 When the role ``demo`` creates a new schema, roles **u1,u2** are granted ``USAGE`` and ``CREATE`` permissions in the new schema, as shown below:
 
 .. code-block:: sql
@@ -134,7 +136,8 @@ When the role ``demo`` creates a new schema, roles **u1,u2** are granted ``USAGE
    ALTER DEFAULT PERMISSIONS FOR demo FOR SCHEMAS GRANT USAGE, CREATE TO u1,u2;
 
 Granting Automatic Permissions for Newly Created Tables in a Schema
-----------------------------------------------------------------
+-------------------------------------------------------------------
+
 When the role ``demo`` creates a new table in schema ``s1``, roles **u1,u2** are granted ``SELECT`` permissions, as shown below:
 
 .. code-block:: sql
@@ -142,7 +145,8 @@ When the role ``demo`` creates a new table in schema ``s1``, roles **u1,u2** are
    ALTER DEFAULT PERMISSIONS FOR demo IN s1 FOR TABLES GRANT SELECT TO u1,u2;
 
 Revoking Permissions from Newly Created Tables
----------------------------------------------------------------
+----------------------------------------------
+
 Revoking permissions refers to using the ``DROP GRANT`` command, as shown below:
 
 .. code-block:: sql

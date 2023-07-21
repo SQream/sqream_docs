@@ -1,22 +1,22 @@
 .. _left:
 
-**************************
+****
 LEFT
-**************************
+****
 
 Returns the left part of a character string with the specified number of characters.
 
 See also :ref:`right`.
 
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
    LEFT( expr , character_count )
 
 Arguments
-============
+=========
 
 .. list-table:: 
    :widths: auto
@@ -28,21 +28,22 @@ Arguments
      - String expression
    * - ``character_count``
      - The number of characters to be returned. If ``character_count <= 0``, an empty string is returned.
+	 
 Returns
-============
+=======
 
 Returns the same type as the argument supplied.
 
 
 Notes
-=======
+=====
 
 * This function works on ``TEXT`` strings only.
 
 * If the value is NULL, the result is NULL.
 
 Examples
-===========
+========
 
 For these examples, consider the following table and contents:
 
@@ -58,7 +59,7 @@ For these examples, consider the following table and contents:
 
 
 Using ``LEFT``
--------------------------------
+--------------
 
 .. code-block:: psql
 
