@@ -7,9 +7,6 @@ The ``ABORT`` command performs a graceful stop, known as an **abort**, on an act
 
 The **ABORT** page describes the following:
 
-.. contents:: 
-   :local:
-   :depth: 1   
 
 Syntax
 ==========
