@@ -10,11 +10,11 @@ BLUE has a native client program that provides a command-line interface (CLI) fo
 Running BLUE CLI
 ================
 
-BLUE CLI is Java based and may be run on any Java supported platform - use the following link to check supported platforms and download `Java 11 <https://www.oracle.com/java/technologies/downloads/#java11>`_.
+BLUE CLI is Java based and may run on any Java supported platform. Use the following link to check supported platforms and to download `Java 11 <https://www.oracle.com/java/technologies/downloads/#java11>`_.
 
 #. Using the BLUE web interface, generate and copy an access token.
    
-   For instruction on how to generate and copy access tokens, go to the :ref:access_tokens
+   For instruction on how to generate and copy access tokens, go to the :ref:`<access_tokens>`
 
 #. Start the client by browsing your CLI for the location of the ``jdbc-console-*.*.**.jar`` file and execute it as follows:
 
@@ -108,11 +108,10 @@ Output:
 	4 rows
 	time: 0.604 s
 	
-Executing Batch Scripts (-f)
-----------------------------	
+Executing Batch SQL Scripts
+---------------------------	
 
-To run an SQL script, use the ``-f <filename>`` argument.
-For example,
+Use the ``-f <filename>`` argument:
 
 .. code-block:: none
 
@@ -122,12 +121,10 @@ For example,
 
 	Output can be saved to a file by using the ``>`` redirection operator.
 	
-Executing Commands Immediately (-c)
------------------------------------
+Executing Commands Immediately
+------------------------------
 
-To run a statement from the console, use the ``-c <statement>`` argument.
-
-For example,
+Use the ``-c <statement>`` argument:
 
 .. code-block:: none
 
@@ -255,7 +252,7 @@ Assuming a file containing SQL statements (separated by semicolons):
 
 	$ cat some_queries.sql
 	   CREATE TABLE calm_farm_animals
-	  ( id INT IDENTITY(0, 1), name VARCHAR(30)
+	  ( id INT IDENTITY(0, 1), name TEXT(30)
 	  );
 
 	INSERT INTO calm_farm_animals (name)
