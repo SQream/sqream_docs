@@ -24,7 +24,7 @@ Quoted identifiers must follow these rules:
 
 Identifiers are different than **keywords**, which are predefined words reserved with specific meanings in a statement. Some examples of keywords are ``SELECT``, ``CREATE``, and ``WHERE``. Note that keywords **cannot** be used as identifiers.
 
-The following table shows a full list of the reserved keywords:
+SQreamDB reserved keywords:
 
 
      - ``ALL``
