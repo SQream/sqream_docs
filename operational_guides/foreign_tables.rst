@@ -3,6 +3,7 @@
 **************
 Foreign Tables
 **************
+
 Foreign tables can be used to run queries directly on data without inserting it into SQream DB first.
 SQream DB supports read only foreign tables, so you can query from foreign tables, but you cannot insert to them, or run deletes or updates on them.
 
@@ -14,6 +15,7 @@ Although foreign tables can be used without inserting data into SQream DB, one o
    
 Supported Data Formats
 ======================
+
 SQream DB supports foreign tables over:
 
 * Text files (e.g. CSV, PSV, TSV)
@@ -22,6 +24,7 @@ SQream DB supports foreign tables over:
 
 Supported Data Staging
 ======================
+
 SQream can stage data from:
 
 * a local filesystem (e.g. ``/mnt/storage/....``)
@@ -30,10 +33,12 @@ SQream can stage data from:
 
 Using Foreign Tables
 =====================
+
 Use a foreign table to stage data before loading from CSV, Parquet or ORC files.
 
 Planning for Data Staging
 -------------------------
+
 For the following examples, we will want to interact with a CSV file. Here's a peek at the table contents:
   
 .. csv-table:: nba.csv
@@ -45,21 +50,22 @@ The file is stored on :ref:`s3`, at ``s3://sqream-demo-data/nba_players.csv``.
 We will make note of the file structure, to create a matching ``CREATE_EXTERNAL_TABLE`` statement.
 
 Creating a Foreign Table
---------------------------
+------------------------
+
 Based on the source file structure, we we :ref:`create a foreign table<create_external_table>` with the appropriate structure, and point it to the file.
 
 .. code-block:: sql
    
    CREATE FOREIGN TABLE nba
    (
-      Name varchar,
-      Team varchar,
+      Name TEXT,
+      Team TEXT,
       Number tinyint,
-      Position varchar,
+      Position TEXT,
       Age tinyint,
-      Height varchar,
+      Height TEXT,
       Weight real,
-      College varchar,
+      College TEXT,
       Salary float
     )
       USING FORMAT CSV -- Text file
@@ -92,6 +98,7 @@ Let's peek at the data from the foreign table:
 
 Modifying Data from Staging
 ---------------------------
+
 One of the main reasons for staging data is to examine the contents and modify them before loading them.
 Assume we are unhappy with weight being in pounds, because we want to use kilograms instead. We can apply the transformation as part of a query:
 
@@ -117,7 +124,7 @@ Assume we are unhappy with weight being in pounds, because we want to use kilogr
 Now, if we're happy with the results, we can convert the staged foreign table to a standard table
 
 Converting a Foreign Table to a Standard Database Table
----------------------------------------------------------
+-------------------------------------------------------
 
 :ref:`create_table_as` can be used to materialize a foreign table into a regular table.
 
@@ -142,15 +149,17 @@ Converting a Foreign Table to a Standard Database Table
 
 Error Handling and Limitations
 ==============================
+
 * Error handling in foreign tables is limited. Any error that occurs during source data parsing will result in the statement aborting.
 
-* 
-   Foreign tables are logical and do not contain any data, their structure is not verified or enforced until a query uses the table.
-   For example, a CSV with the wrong delimiter may cause a query to fail, even though the table has been created successfully:
+* Foreign tables are logical and do not contain any data, their structure is not verified or enforced until a query uses the table.
+   
+For example, a CSV with the wrong delimiter may cause a query to fail, even though the table has been created successfully:
    
    .. code-block:: sql
       
       t=> SELECT * FROM nba;
       master=> select * from nba;
       Record delimiter mismatch during CSV parsing. User defined line delimiter \n does not match the first delimiter \r\n found in s3://sqream-demo-data/nba.csv
+
 * Since the data for a foreign table is not stored in SQream DB, it can be changed or removed at any time by a foreign process. As a result, the same query can return different results each time it runs against a foreign table. Similarly, a query might fail if the foreign data is moved, removed, or has changed structure.

@@ -166,7 +166,7 @@ Creating a new database and switching over to it without reconnecting:
 	farm=>
 
 
-	farm=> CREATE TABLE animals(id int not null, name varchar(30) not null, is_angry bool not null);
+	farm=> CREATE TABLE animals(id int not null, name TEXT(30) not null, is_angry bool not null);
 	time: 0.011940s
 
 	farm=> INSERT INTO animals values(1,'goat',false);

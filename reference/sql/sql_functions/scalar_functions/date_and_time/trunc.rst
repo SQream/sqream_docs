@@ -1,8 +1,8 @@
 .. _date_trunc:
 
-**************************
+*******************
 Date and Time TRUNC
-**************************
+*******************
 
 Truncates a ``DATE`` or ``DATETIME`` value to a specified resolution.
 
@@ -11,7 +11,7 @@ For example, truncating a ``DATE`` down to the nearest month returns the date of
 .. note:: This function is overloaded. The function :ref:`TRUNC<trunc>` can also round numbers towards zero.
 
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
@@ -29,7 +29,7 @@ Syntax
       | MILLISECOND | MS
 
 Arguments
-============
+=========
 
 .. list-table:: 
    :widths: auto
@@ -44,7 +44,7 @@ Arguments
 
 
 Valid date parts
--------------------
+----------------
 
 .. list-table:: 
    :widths: auto
@@ -82,12 +82,12 @@ Valid date parts
      - Milliseconds (0-999)
 
 Returns
-============
+=======
 
 If no date part is specified, the return type is ``DATETIME``. Otherwise, the return type is the same as the argument supplied.
 
 Notes
-========
+=====
 
 * All date parts work on a ``DATETIME``.
 
@@ -98,13 +98,13 @@ Notes
 * See also :ref:`EOMONTH<eomonth>` to find the last day of the month.
 
 Examples
-===========
+========
 
 For these examples, consider the following table and contents:
 
 .. code-block:: postgres
 
-   CREATE TABLE cool_dates(name VARCHAR(40), d DATE, dt DATETIME);
+   CREATE TABLE cool_dates(name TEXT(40), d DATE, dt DATETIME);
    
    INSERT INTO cool_dates VALUES ('Marty McFly goes back to this time','1955-11-05','1955-11-05 01:21:00.000')
        , ('Marty McFly came from this time', '1985-10-26', '1985-10-26 01:22:00.000')
@@ -114,7 +114,7 @@ For these examples, consider the following table and contents:
 
 
 Set all ``DATE`` columns to ``DATETIME`` at midnight
----------------------------------------------------------
+----------------------------------------------------
 
 .. code-block:: psql
 
@@ -129,7 +129,7 @@ Set all ``DATE`` columns to ``DATETIME`` at midnight
 
 
 Find the first day of the month for dates
-----------------------------------------------
+-----------------------------------------
 
 .. code-block:: psql
 
@@ -144,7 +144,7 @@ Find the first day of the month for dates
 
 
 Calculate number of hours from New Years
--------------------------------------------
+----------------------------------------
 
 Combine ``TRUNC`` with :ref:`DATEDIFF<datediff>` to calculate the number of hours since New Years.
 
