@@ -1,46 +1,35 @@
 .. _sql_data_types_string:
 
-*************************
+******
 String
-*************************
-The ``TEXT`` type is designed for storing text or strings of characters.
+******
 
-.. note:: The data type ``NVARCHAR`` has been deprecated by ``TEXT`` as of version 2020.1.
-
-String Types
-^^^^^^^^^^^^^^^^^^^^^^
-The following table describes the String types:
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Name
-     - Details
-     - Data Size (Not Null, Uncompressed)
-     - Example
-   * - ``TEXT [(n)]``
-     - Varaiable length string - UTF-8 unicode.
-     - Up to ``4*n`` bytes
-     - ``'キウイは楽しい鳥です'``
+``TEXT`` is designed for storing text or strings of characters. SQreamDB blocks non-UTF8 string inputs. 
 
 Length
-^^^^^^^^^
+^^^^^^
+
 When using ``TEXT``, specifying a size is optional. If not specified, the text field carries no constraints. To limit the size of the input, use ``TEXT(n)``, where ``n`` is the permitted number of characters.
 
-If the data exceeds the column length limit on ``INSERT`` or ``COPY`` operations, SQream DB will return an error.
+The following apply to setting the String type length:
+
+* If the data exceeds the column length limit on ``INSERT`` or ``COPY`` operations, SQreamDB will return an error.
+* When casting or converting, the string has to fit in the target. For example, ``'Kiwis are weird birds' :: TEXT(5)`` will return an error. Use ``SUBSTRING`` to truncate the length of the string.
 
 Syntax
-^^^^^^^^
+^^^^^^
+
 String types can be written with standard SQL string literals, which are enclosed with single quotes, such as
 ``'Kiwi bird'``. To include a single quote in the string, use double quotations, such as ``'Kiwi bird''s wings are tiny'``. String literals can also be dollar-quoted with the dollar sign ``$``, such as ``$$Kiwi bird's wings are tiny$$`` is the same as ``'Kiwi bird''s wings are tiny'``.
 
 Size
-^^^^^^
-``TEXT(n)`` can occupy up to *4*n* bytes. However, the size of strings is variable and is compressed by SQream.
+^^^^
+
+``TEXT(n)`` can occupy up to *4*n* bytes. However, the size of strings is variable and is compressed by SQreamDB.
 
 String Examples
-^^^^^^^^^^
+^^^^^^^^^^^^^^^
+
 The following is an example of the String syntax: 
 
 .. code-block:: postgres
@@ -63,7 +52,8 @@ The following is an example of the correct output:
 .. note:: Most clients control the display precision of floating point numbers, and values may appear differently in some clients.
 
 String Casts and Conversions
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The following table shows the possible String value conversions:
 
 .. list-table:: 
