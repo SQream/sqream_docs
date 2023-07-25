@@ -1,8 +1,9 @@
 .. _mode:
 
-**************************
+****
 MODE
-**************************
+****
+
 The **MODE** function returns the most common value in the selected column. If there are no repeating values, or if there is the same frequency of multiple values, this function returns the top value based on the ``ORDER BY`` clause.
 
 The **MODE** function is commonly used with the following functions:
@@ -11,7 +12,8 @@ The **MODE** function is commonly used with the following functions:
 * `PERCENTILE_DISC <https://docs.sqream.com/en/latest/reference/sql/sql_functions/aggregate_functions/percentile_disc.html>`_ function
 
 Syntax
-========
+======
+
 The following is the correct syntax for the ``MODE`` function:
 
 .. code-block:: postgres
@@ -19,7 +21,8 @@ The following is the correct syntax for the ``MODE`` function:
    MODE() WITHIN GROUP (ORDER BY column)   
    
 Example
-========
+=======
+
 The example in this section is based on the ``players`` table below:
 
 .. list-table::

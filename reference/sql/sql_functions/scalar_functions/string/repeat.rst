@@ -1,8 +1,8 @@
 .. _repeat:
 
-**************************
+******
 REPEAT
-**************************
+******
 
 Repeats a string as many times as specified.
 
@@ -10,14 +10,14 @@ Repeats a string as many times as specified.
 
 
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
    REPEAT(expr, character_count)
 
 Arguments
-============
+=========
 
 .. list-table:: 
    :widths: auto
@@ -31,17 +31,17 @@ Arguments
      
 
 Returns
-============
+=======
 
 Returns the same type as the argument supplied.
 
 Notes
-=======
+=====
 
 * When ``character_count`` <= 0, and empty string is returned.
 
 Examples
-===========
+========
 
 For these examples, consider the following table and contents:
 
@@ -56,7 +56,7 @@ For these examples, consider the following table and contents:
       ('Around the Horn');
 
 Repeat the text in customername 2 times:
------------------------------------------
+----------------------------------------
 
 .. code-block:: psql
 
@@ -71,7 +71,7 @@ Repeat the text in customername 2 times:
 
 
 Repeat the string 0 times:
-----------------------------
+--------------------------
 
 .. code-block:: psql
 
@@ -82,7 +82,7 @@ Repeat the string 0 times:
    ''              
 
 Repeat the string 1 times:
-----------------------------
+--------------------------
 
 .. code-block:: psql
 
@@ -94,7 +94,7 @@ Repeat the string 1 times:
    
 
 Repeat the string 3 times:
-----------------------------
+--------------------------
 
 .. code-block:: psql
 
@@ -106,7 +106,7 @@ Repeat the string 3 times:
 
 
 Repeat an empty string 10 times:
-----------------------------
+--------------------------------
 
 .. code-block:: psql
 
@@ -118,7 +118,7 @@ Repeat an empty string 10 times:
    
    
 Repeat a string -3 times:
-----------------------------
+-------------------------
 
 .. code-block:: psql
 
