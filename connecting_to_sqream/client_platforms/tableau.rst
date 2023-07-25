@@ -25,7 +25,7 @@ Setting Up JDBC
 ----------------
 
 #. Download the SQream JDBC Connector :ref:`.jar file <client_drivers>`.
-#. Place the JDBC .jar file in the Tableau driver directory.
+#. Place the JDBC ``.jar`` file in the Tableau driver directory.
 
    Based on your operating system, you may find the Tableau driver directory in one of the following locations:
    
@@ -79,7 +79,7 @@ Connecting to SQream
 	
 #. Select **SQream DB by SQream Technologies**.
 
-   The connection dialog box is displayed.
+   A connection dialog box is displayed.
 
     ::
 	

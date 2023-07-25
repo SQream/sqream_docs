@@ -36,6 +36,7 @@ If you are looking for a tool that is not listed, SQream and our partners can he
    tableau
    talend
    tibco_spotfire
+   denodo
 
 .. image:: /_static/images/connectivity_ecosystem.png
 
