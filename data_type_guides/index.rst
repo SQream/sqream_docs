@@ -3,6 +3,7 @@
 **********
 Data Types
 **********
+
 This section describes the following:
 
 .. toctree::
