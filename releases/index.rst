@@ -4,6 +4,9 @@
 Release Notes
 *************
 
+:ref:`july_2023`
+
+* `Describe Pools command <>`
    
 :ref:`june_2023`
 

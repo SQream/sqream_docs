@@ -4,3 +4,42 @@
 July 2023
 *********
 
+DESCRIBE POOLS Command
+----------------------
+
+July 26, 2023
+
+The ``DESCRIBE POOLS`` :ref:`command<describe_pools>` enables you to list all existing resource pools along with the configuration of each pool. 
+
+The following information is provided:
+
+* Pool name
+* Number of allocated pools
+* Pool parallelism policy
+* Pool suspension policy
+* Automatic suspension and resumption
+* Pool ID
+
+:ref:`Read more <managing_your_resources>`
+
+Multi-Statement Execution
+-------------------------
+
+July 26, 2023
+
+Multi-statement execution is now supported and you may now execute multiple SQL statements using a single SQL script, providing increased efficiency by streamlining the execution process.
+
+New Dashboard
+-------------
+
+July 26, 2023
+
+A brand new dashboard that displays Job action metrics, including:
+
+* Pending jobs
+* running jobs
+* Total jobs
+* Total tasks
+* Successful and failed jobs
+
+You can now easily track and analyze important Job action data, gaining valuable insights to optimize performance and productivity.
