@@ -1,8 +1,8 @@
 .. _char_length:
 
-**************************
+******************************
 CHARACTER_LENGTH / CHAR_LENGTH
-**************************
+******************************
 
 Calculates the number of characters in a string.
 
@@ -11,15 +11,15 @@ Calculates the number of characters in a string.
    * To get the length in bytes, see :ref:`octet_length`.
    
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
-   CHAR_LEN( text_expr ) --> INT
-   CHARACTER_LEN( text_expr ) --> INT
+   CHAR_LENGTH( text_expr ) --> INT
+   CHARACTER_LENGTH( text_expr ) --> INT
 
 Arguments
-============
+=========
 
 .. list-table:: 
    :widths: auto
@@ -31,19 +31,19 @@ Arguments
      - ``TEXT`` expression
 
 Returns
-============
+=======
 
 Return an integer containing the number of characters in the string.
 
 Notes
-=======
+=====
 
 * To get the length in bytes, see :ref:`octet_length`
 
 * If the value is NULL, the result is NULL.
 
 Examples
-===========
+========
 
 For these examples, consider the following table and contents:
 
@@ -56,7 +56,7 @@ For these examples, consider the following table and contents:
       , ('אבגדהוזחטיכלמנסעפצקרשת');
 
 Length in characters and bytes of strings
---------------------------------------------------
+-----------------------------------------
 
 ASCII characters take up 1 byte per character, while Thai takes up 3 bytes and Hebrew takes up 2 bytes.
 
