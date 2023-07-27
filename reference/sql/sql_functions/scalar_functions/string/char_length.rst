@@ -15,8 +15,8 @@ Syntax
 
 .. code-block:: postgres
 
-   CHAR_LEN( text_expr ) --> INT
-   CHARACTER_LEN( text_expr ) --> INT
+   CHAR_LENGTH( text_expr ) --> INT
+   CHARACTER_LENGTH( text_expr ) --> INT
 
 Arguments
 =========
