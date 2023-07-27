@@ -1,24 +1,25 @@
 .. _parquet:
 
-**********************
-Ingesting Data from a Parquet File
-**********************
+*******
+Parquet
+*******
 
-Ingesting Parquet files into SQream is generally useful when you want to store the data permanently and perform frequent queries on it. Ingesting the data can also make it easier to join with other tables in your database. However, if you wish to retain your data on external Parquet files instead of ingesting it into SQream due to it being an open-source column-oriented data storage format, you may also execute :ref:`FOREIGN TABLE<foreign_tables>` queries.
+Ingesting Parquet files into SQreamDB is generally useful when you want to store the data permanently and perform frequent queries on it. Ingesting the data can also make it easier to join with other tables in your database. However, if you wish to retain your data on external Parquet files instead of ingesting it into SQreamDB due to it being an open-source column-oriented data storage format, you may also execute :ref:`FOREIGN TABLE<foreign_tables>` queries.
 
 .. contents:: 
    :local:
    :depth: 1
    
 Preparing Your Parquet Files
-=====================
+============================
+
 Prepare your source Parquet files according to the requirements described in the following table:
 
 .. list-table:: 
    :widths: 40 5 20 20 20 20 5 5 5 5 10
    :header-rows: 1
    
-   * -   SQream Type →
+   * -   SQreamDB Type →
    
           ::
 
@@ -165,17 +166,19 @@ Your statements will succeed even if your Parquet file contains unsupported type
 .. [#f4] Any microseconds will be rounded down to milliseconds.
 
 Making Parquet Files Accessible to Workers
-================================================================
+==========================================
+
 To give workers access to files, every node must have the same view of the storage being used.
 
 * For files hosted on NFS, ensure that the mount is accessible from all servers.
 
-* For HDFS, ensure that SQream servers have access to the HDFS name node with the correct user-id. For more information, see :ref:`hdfs` guide.
+* For HDFS, ensure that SQreamDB servers have access to the HDFS name node with the correct user-id. For more information, see :ref:`hdfs` guide.
 
 * For S3, ensure network access to the S3 endpoint. For more information, see :ref:`s3` guide.
 
 Creating a Table
-===============================================
+================
+
 Before loading data, you must create a table that corresponds to the file structure of the table you wish to insert.
 
 The example in this section is based on the source nba.parquet table shown below:
@@ -207,16 +210,17 @@ The following example shows the correct file structure used for creating a :ref:
       LOCATION =  's3://sqream-demo-data/nba.parquet'
     );
 
-.. tip:: An exact match must exist between the SQream and Parquet types. For unsupported column types, you can set the type to any type and exclude it from subsequent queries.
+.. tip:: An exact match must exist between the SQreamDB and Parquet types. For unsupported column types, you can set the type to any type and exclude it from subsequent queries.
 
 .. note:: The **nba.parquet** file is stored on S3 at ``s3://sqream-demo-data/nba.parquet``.
 
-Ingesting Data into SQream
-==========================
+Ingesting Data into SQreamDB
+============================
    
 Syntax
------------
-You can use the :ref:`create_table_as` statement to load the data into SQream, as shown below:
+------
+
+You can use the :ref:`create_table_as` statement to load the data into SQreamDB, as shown below:
 
 .. code-block:: postgres
    
@@ -224,14 +228,16 @@ You can use the :ref:`create_table_as` statement to load the data into SQream, a
       SELECT * FROM ext_nba;
 
 Examples
-----------------
+--------
+
 
 .. contents:: 
    :local:
    :depth: 1
 
 Omitting Unsupported Column Types
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 When loading data, you can omit columns using the NULL as argument. You can use this argument to omit unsupported columns from queries that access external tables. By omitting them, these columns will not be called and will avoid generating a “type mismatch” error.
 
 In the example below, the ``Position column`` is not supported due its type.
@@ -242,8 +248,9 @@ In the example below, the ``Position column`` is not supported due its type.
       SELECT Name, Team, Number, NULL as Position, Age, Height, Weight, College, Salary FROM ext_nba;
 
 Modifying Data Before Loading
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-One of the main reasons for staging data using the ``EXTERNAL TABLE`` argument is to examine and modify table contents before loading it into SQream.
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+One of the main reasons for staging data using the ``EXTERNAL TABLE`` argument is to examine and modify table contents before loading it into SQreamDB.
 
 For example, we can replace **pounds** with **kilograms** using the ``CREATE TABLE AS`` statement.
 
@@ -257,7 +264,8 @@ In the example below, the ``Position column`` is set to the default ``NULL``.
               ORDER BY weight;
 
 Loading a Table from a Directory of Parquet Files on HDFS
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 The following is an example of loading a table from a directory of Parquet files on HDFS:
 
 .. code-block:: postgres
@@ -273,7 +281,8 @@ The following is an example of loading a table from a directory of Parquet files
    CREATE TABLE users AS SELECT * FROM ext_users;
 
 Loading a Table from a Directory of Parquet Files on S3
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 The following is an example of loading a table from a directory of Parquet files on S3:
 
 .. code-block:: postgres
@@ -292,8 +301,9 @@ The following is an example of loading a table from a directory of Parquet files
 For more configuration option examples, navigate to the :ref:`create_foreign_table` page and see the **Parameters** table.
 
 Best Practices
-============
-Because external tables do not automatically verify the file integrity or structure, SQream recommends manually verifying your table output when ingesting Parquet files into SQream. This lets you determine if your table output is identical to your originally inserted table.
+==============
+
+Because external tables do not automatically verify the file integrity or structure, SQreamDB recommends manually verifying your table output when ingesting Parquet files into SQreamDB. This lets you determine if your table output is identical to your originally inserted table.
 
 The following is an example of the output based on the **nba.parquet** table:
 

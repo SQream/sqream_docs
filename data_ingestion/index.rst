@@ -16,6 +16,6 @@ The **Data Ingestion Sources** page provides information about the following:
    parquet
    orc
    json
-
+   ingesting_from_databases
 
 For information about database tools and interfaces that SQream supports, see :ref:`Third Party Tools <connecting_to_sqream>`.

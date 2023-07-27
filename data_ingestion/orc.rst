@@ -1,18 +1,18 @@
 .. _orc:
 
-**********************
-Ingesting Data from an ORC File
-**********************
+***
+ORC
+***
 
 .. contents:: 
    :local:
    :depth: 1
 
-This guide covers ingesting data from ORC files into SQream DB using :ref:`FOREIGN TABLE<external_tables>`. 
+This guide covers ingesting data from ORC files into SQreamDB using :ref:`FOREIGN TABLE<external_tables>`. 
 
 
 Prepare the files
-=====================
+=================
 
 Prepare the source ORC files, with the following requirements:
 
@@ -21,7 +21,7 @@ Prepare the source ORC files, with the following requirements:
    :header-rows: 1
 
    
-   * -   SQream DB type →
+   * -   SQreamDB type →
    
          ORC source
      - ``BOOL``
@@ -157,20 +157,20 @@ Prepare the source ORC files, with the following requirements:
 
 .. [#f7] Will succeed if all values fit the destination type
 
-Place ORC files where SQream DB workers can access them
-================================================================
+Place ORC files where SQreamDB workers can access them
+======================================================
 
 Any worker may try to access files (unless explicitly speficied with the :ref:`workload_manager`).
-It is important that every node has the same view of the storage being used - meaning, every SQream DB worker should have access to the files.
+It is important that every node has the same view of the storage being used - meaning, every SQreamDB worker should have access to the files.
 
 * For files hosted on NFS, ensure that the mount is accessible from all servers.
 
-* For HDFS, ensure that SQream DB servers can access the HDFS name node with the correct user-id. See our :ref:`hdfs` guide for more information.
+* For HDFS, ensure that SQreamDB servers can access the HDFS name node with the correct user-id. See our :ref:`hdfs` guide for more information.
 
 * For S3, ensure network access to the S3 endpoint. See our :ref:`s3` guide for more information.
 
 Figure out the table structure
-===============================================
+==============================
 
 Prior to loading data, you will need to write out the table structure, so that it matches the file structure.
 
@@ -208,13 +208,13 @@ We will make note of the file structure to create a matching ``CREATE FOREIGN TA
 
 .. tip:: 
 
-   Types in SQream DB must match ORC types according to the table above.
+   Types in SQreamDB must match ORC types according to the table above.
    
    If the column type isn't supported, a possible workaround is to set it to any arbitrary type and then exclude it from subsequent queries.
 
 
 Verify table contents
-====================================
+=====================
 
 External tables do not verify file integrity or structure, so verify that the table definition matches up and contains the correct data.
 
@@ -236,10 +236,10 @@ External tables do not verify file integrity or structure, so verify that the ta
 
 If any errors show up at this stage, verify the structure of the ORC files and match them to the external table structure you created.
 
-Copying data into SQream DB
-===================================
+Copying data into SQreamDB
+==========================
 
-To load the data into SQream DB, use the :ref:`create_table_as` statement:
+To load the data into SQreamDB, use the :ref:`create_table_as` statement:
 
 .. code-block:: postgres
    
@@ -247,7 +247,7 @@ To load the data into SQream DB, use the :ref:`create_table_as` statement:
       SELECT * FROM ext_nba;
 
 Working around unsupported column types
----------------------------------------------
+---------------------------------------
 
 Suppose you only want to load some of the columns - for example, if one of the columns isn't supported.
 
@@ -264,7 +264,7 @@ For this example, assume that the ``Position`` column isn't supported because of
 
 
 Modifying data during the copy process
-------------------------------------------
+--------------------------------------
 
 One of the main reasons for staging data with ``EXTERNAL TABLE`` is to examine the contents and modify them before loading them.
 
@@ -281,13 +281,13 @@ Similar to the previous example, we will also set the ``Position`` column as a d
 
 
 Further ORC loading examples
-=======================================
+============================
 
 :ref:`create_foreign_table` contains several configuration options. See more in :ref:`the CREATE FOREIGN TABLE parameters section<cft_parameters>`.
 
 
 Loading a table from a directory of ORC files on HDFS
-------------------------------------------------------------
+-----------------------------------------------------
 
 .. code-block:: postgres
 
@@ -302,7 +302,7 @@ Loading a table from a directory of ORC files on HDFS
    CREATE TABLE users AS SELECT * FROM ext_users;
 
 Loading a table from a bucket of files on S3
------------------------------------------------
+--------------------------------------------
 
 .. code-block:: postgres
 
