@@ -34,10 +34,6 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
-► **SQLoader** 
-
-The :ref:`SQLoader<ingesting_from_databases>` is a CLI program that enables you to load into SQreamDB data from other databases.
-
 
 
 Known Issues
