@@ -11,7 +11,7 @@ June 01, 2023
 
 **Jobs** is a workflow management tool that enables you to create complex SQL workflows. You can use **Jobs** to create and automate sequences of SQL scripts, enabling them to trigger one another and deliver insights or prepare your data for advanced tasks like data modeling and training. You may execute your jobs manually or schedule them for automatic execution.
 
-:ref:`Read more here <performing_basic_blue_operations>`
+:ref:`Read more <performing_basic_blue_operations>`
 
 Resource Management 
 -------------------
@@ -20,5 +20,5 @@ June 01, 2023
 
 You can optimize the utilization of your resources using the **Resource Pool** panel which enables you to manage your end-of-the-month cost by lowering runtime when your BLUE environment is idle and to enhance cluster utilization by allocating Workers according to specific needs of different departments in your organization, whether it be high concurrency or performance.
 
-:ref:`Read more here <managing_your_resources>`
+:ref:`Read more <managing_your_resources>`
   
