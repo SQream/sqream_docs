@@ -13,7 +13,7 @@ Syntax
 
 The following is the syntax for the ``DESCRIBE TABLES`` command:
 
-.. code-block::
+.. code-block:: sql
 
 	DESCRIBE [RESOURCE] POOLS
 	DESC [RESOURCE] POOLS
@@ -21,14 +21,18 @@ The following is the syntax for the ``DESCRIBE TABLES`` command:
 Examples
 ========
 
-.. code-block::
+.. code-block:: sql
 
 	DESCRIBE RESOURCE POOLS;
    
 Output
 ======
 
+.. code-block:: none
 
+	resource_pool_name   | number_of_workers   | parallelism_policy   | auto_suspend   | auto_suspend_inactivity_period   | auto_resume   | is_default   | pool_id
+	---------------------+---------------------+----------------------+----------------+----------------------------------+---------------+--------------+-------------------------------------
+	SQream               | 3                   | ParallelizeAll       | false          | 120                              | false         | true         | 27e2b27f-115e-4e03-8206-56f930257fc3
 
 Permissions
 ===========
