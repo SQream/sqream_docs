@@ -1,9 +1,8 @@
 .. _installing_and_launching_sqream:
 
-*******************************
+*************************
 Installing and Launching SQream
-*******************************
-
+*************************
 The **Installing and Launching SQream** page includes the following installation guides:
 
 .. toctree::
@@ -12,6 +11,6 @@ The **Installing and Launching SQream** page includes the following installation
 
    recommended_pre-installation_configurations
    installing_sqream_with_binary
-   installing_sqream_with_kubernetes
+   running_sqream_in_a_docker_container
    installing_monit
    launching_sqream_with_monit
