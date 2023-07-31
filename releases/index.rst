@@ -6,7 +6,8 @@ Release Notes
 
 :ref:`july_2023`
 
-* `Describe Pools command <>`
+* Describe Pools command
+* Dashboard landing page
    
 :ref:`june_2023`
 
