@@ -1,11 +1,11 @@
 .. _logging:
 
-***********************
+*******
 Logging
-***********************
+*******
 
 Locating the Log Files
-==========================
+======================
 
 The :ref:`storage cluster<storage_cluster>` contains a ``logs`` directory. Each worker produces a log file in its own directory, which can be identified by the worker's hostname and port.
 
@@ -24,7 +24,7 @@ The worker logs contain information messages, warnings, and errors pertaining to
 * Statement execution statistics
 
 Log Structure and Contents
----------------------------------
+--------------------------
 
 The log is a CSV, with several fields.
 
@@ -192,7 +192,7 @@ The log is a CSV, with several fields.
      - ``"Server shutdown"``
 
 Log-Naming
----------------------------
+----------
 
 Log file name syntax
 
@@ -211,10 +211,10 @@ See the :ref:`log_rotation` below for information about controlling this setting
 
 
 Log Control and Maintenance
-======================================
+===========================
 
 Changing Log Verbosity
---------------------------
+----------------------
 
 A few configuration settings alter the verbosity of the logs:
 
@@ -240,7 +240,7 @@ A few configuration settings alter the verbosity of the logs:
 .. _log_rotation:
 
 Changing Log Rotation
------------------------
+---------------------
 
 A few configuration settings alter the log rotation policy:
 
@@ -253,7 +253,7 @@ A few configuration settings alter the log rotation policy:
      - Default
      - Values
    * - ``useLogMaxFileSize``
-     - Rotate log files once they reach a certain file size. When ``true``, set the ``logMaxFileSizeMB`` accordingly.
+     - Rotate log files once they reach a certain file size. When ``true``, set the ``logMaxFileSizeMB`` accordingly. When ``false`` set the ``logFileRotateTimeFrequency`` accordingly.
      - ``false``
      - ``false`` or ``true``.
    * - ``logMaxFileSizeMB``
@@ -268,7 +268,7 @@ A few configuration settings alter the log rotation policy:
 .. _collecting_logs2:
 
 Collecting Logs from Your Cluster
-====================================
+=================================
 
 Collecting logs from your cluster can be as simple as creating an archive from the ``logs`` subdirectory: ``tar -czvf logs.tgz *.log``.
 
@@ -290,7 +290,7 @@ SQL Syntax
    
 
 Command Line Utility
---------------------------
+--------------------
 
 If you cannot access SQream DB for any reason, you can also use a command line toolto collect the same information:
 
@@ -300,7 +300,7 @@ If you cannot access SQream DB for any reason, you can also use a command line t
 
 
 Parameters
----------------
+----------
 
 .. list-table::
    :widths: auto
@@ -318,7 +318,7 @@ Parameters
          * ``'db_and_log'`` - Collect both log files and metadata database
 
 Example
------------------
+-------
 
 Write an archive to ``/home/rhendricks``, containing log files:
 
@@ -343,10 +343,10 @@ Using the command line utility:
 
 
 Troubleshooting with Logs
-===============================
+=========================
 
 Loading Logs with Foreign Tables
----------------------------------------
+--------------------------------
 
 Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a database administrator can access the logs using the :ref:`external_tables` concept through SQream DB.
 
@@ -379,13 +379,13 @@ Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a databas
      )
    ;
    
-For more information, see `Loading Logs with Foreign Tables <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/copy_from.html>`_.
+For more information, see :ref:`Loading Logs with Foreign Tables <copy_from>`.
 
 
 
 
 Counting Message Types
-------------------------------
+----------------------
 
 .. code-block:: psql
 
@@ -411,7 +411,7 @@ Counting Message Types
               1010 |         5
 
 Finding Fatal Errors
-----------------------
+--------------------
 
 .. code-block:: psql
 
@@ -423,7 +423,7 @@ Finding Fatal Errors
    Internal Runtime Error,open cluster metadata database:IO error: lock /home/rhendricks/sqream_storage/LOCK: Resource temporarily unavailable
 
 Countng Error Events Within a Certain Timeframe
----------------------------------------------------
+-----------------------------------------------
 
 .. code-block:: psql
 
@@ -442,7 +442,7 @@ Countng Error Events Within a Certain Timeframe
 .. _tracing_errors:
 
 Tracing Errors to Find Offending Statements
--------------------------------------------------
+-------------------------------------------
 
 If we know an error occured, but don't know which statement caused it, we can find it using the connection ID and statement ID.
 
