@@ -12,6 +12,8 @@ Each data type has its companion ``ARRAY`` type, such as ``INT[]`` for integers 
 
 You may use the ``ARRAY`` data type with all :ref:`SQreamDB connectors <connecting_to_sqream>`, except for ODBC since the ODBC protocol does not support ``ARRAY``. 
 
+The maximum size of an ``ARRAY``, indicating the number of elements it can hold, is 65535. You have the option to specify the size of an ``ARRAY``, providing a maximum allowed size, while each row can have a different number of elements up to the specified maximum. If the ``ARRAY`` size is not specified, the maximum size is assumed. 
+
 .. seealso:: A full list of :ref:`data types<supported_data_types>` supported by SQreamDB.
 
 Syntax
@@ -23,12 +25,8 @@ Defining an ``ARRAY`` is done by appending the ``[]`` notation to a supported da
 
 	CREATE TABLE <table_name> (<column1> TEXT[], <column2> INT[])
 	
-	INSERT INTO TABLE <table_name> VALUES ARRAY[<'a','b','c'>], ARRAY[<1,2,NULL>]
+	INSERT INTO TABLE <table_name> VALUES (ARRAY['a','b','c'], ARRAY[1,2,NULL])
 
-Size
-====
-
-The maximum size of an ``ARRAY``, indicating the number of elements it can hold, is 65535. You have the option to specify the size of an ``ARRAY``, providing a maximum allowed size, while each row can have a different number of elements up to the specified maximum. If the ``ARRAY`` size is not specified, the maximum size is assumed. 
 
 Supported Operators
 ===================
@@ -51,10 +49,11 @@ Supported Operators
      - ``SELECT (<column_name>[2]) FROM <table_name>`` returns the third element of the specified column  
    * - ``UNNEST``
      - Converts the arrayed elements within a single row into a set of rows
-     - ``SELECT UNNEST (<column_name>) FROM <table_name>``  
+     - ``SELECT UNNEST(<column_name>) FROM <table_name>``  
    * - Concatenate ``||``
      - Converts arrayed elements into one string
-     - ``SELECT (<column_name>) || (<column2_name>) FROM <table_name>``  
+     - * ``SELECT (<column_name>) || (<column2_name>) FROM <table_name>`` 
+       * ``SELECT (<column_name>) || ARRAY[1,2,3] FROM <table_name>``  
    * - ``array_length``
      - Returns the number of arrayed elements within the specified column
      - ``SELECT array_length(<column_name>) FROM <table_name>``  
@@ -69,11 +68,33 @@ Supported Operators
      - ``SELECT array_replace(<column_name>,<value_to_replace>,<replacing_value>) FROM <table_name>;``  
    * - Limiting number of arrayed elements 
      - You may limit the number of arrayed elements within an ``ARRAY``
-     - ``CREATE TABLE <table_name> (<column1> TEXT[]);``  
+     - Limiting the number of arrayed elements to 4: ``CREATE TABLE <table_name> (<column1> TEXT[4]);``	 
    * - Creating different column types
      - You may create a table that has arrayed columns and non-arrayed columns
      - ``CREATE TABLE <table_name> (<column1> TEXT('a','b','c')['d']);`` 
-
+   * - Compression
+     - You may follow SQreamDB :ref:`compression guide <compression>` for compression types and methods
+     - ``CREATE TABLE t (comp_dict INT[] CHECK('CS "dict"');``
+   * - Aggregation
+     - The ``array_agg()`` function arrays groups created using the ``GROUP BY`` clause
+     - ``CREATE TABLE t2 (x INT, y INT);``
+       
+	``SELECT x, array_agg(y) FROM t2 GROUP BY x;``
+   * - Sorting
+     - ``TEXT[]`` elements are considered together as a single text, and comparisons are made based on their lexicographic order. In contrast, for arrays of non-TEXT data types, comparisons are performed on the individual elements of the arrays
+     - ``CREATE TABLE t (x TEXT[]);``
+	 
+	``INSERT INTO t VALUES (ARRAY['1']),(ARRAY['1','22']),(ARRAY['1','3']);``
+	``SELECT x FROM t ORDER BY x;``
+	
+	Output:
+	           
+	['1']      
+	           
+	['1','22'] 
+	           
+	['1','3']
+	
 Examples
 ========
 
@@ -120,8 +141,8 @@ Updating table values:
 	---------------------+------------------+-----------
 	["A","1","2","3"]    | ["4","5","6"]    | [7,8,9,10]
 
-JSON Files
-----------
+Ingesting Arrayed Data from External Files
+------------------------------------------
 
 Consider the following JSON file to be ingested into SQreamDB:
 
@@ -167,41 +188,49 @@ Casting Limitations
 -------------------
 
 Numeric
-~~~~~~~
+^^^^^^^
 
 Numeric data types smaller than ``INT``, such as ``TINYINT``, ``SMALLINT``, and ``BOOL``, must explicitly be cast.
 
 .. code-block:: sql
 
 	CREATE OR REPLACE TABLE my_array (clmn1 tinyint []); 
-	SELECT array_replace(clmn1 , 4::tinyint, 5::tinyint) from my_array;  
+	SELECT array_replace(clmn1 , 4::tinyint, 5::tinyint) FROM my_array;  
 	
 	CREATE OR REPLACE TABLE my_array (clmn1 bool []); 
-	SELECT array_replace(clmn1 , 0::bool, 1::bool) from my_array;
+	SELECT array_replace(clmn1 , 0::bool, 1::bool) FROM my_array;
 	
 TEXT
-~~~~
+^^^^
 
 Casting ``TEXT`` to non-``TEXT`` and non-``TEXT`` to ``TEXT`` data types is not supported.
 	
+.. code-block:: sql
+
+
+	CREATE TABLE t_text (xtext TEXT[]);
+	CREATE TABLE t_int (xint INT[]);
+	INSERT INTO t_int VALUES (array[1,2,3]);
+	INSERT INTO t_text SELECT xint::TEXT[] FROM t_int;
+
 Function Limitations
 --------------------
 
 || (Concatenate)
-~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^
 
 Using the ``||`` (Concatenate) function with two different data types requires explicit casting.
 
 .. code-block:: sql
 
-	SELECT (clmn1, 4::tinyint) || (clmn2, 5::tinyint) from my_array;
+	SELECT (clmn1, 4::tinyint) || (clmn2, 5::tinyint) FROM my_array;
 	
 UNNEST
-~~~~~~
+^^^^^^
 
 It is possible to use the ``UNNEST`` operator within a statement only once.
 
 Window
-~~~~~~
+^^^^^^
 
 Window functions are not supported.
