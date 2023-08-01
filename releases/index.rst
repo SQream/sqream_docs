@@ -4,19 +4,23 @@
 Release Notes
 *************
 
-:ref:`july_2023`
+July 2023
+---------
 
-* Describe Pools command
-* Dashboard landing page
+Introducing the new ``DESCRIBE POOLS`` Command, listing existing resource pools and configurations, like pool name, allocation count, policies, and ID. Boost efficiency with multi-statement execution, executing multiple SQL statements in one script. Explore the new BLUE dashboard with **Job** action metrics, tracking job and task statuses for enhanced performance insights. Follow the link for details.
+
+:ref:`Read More <july_2023>`
    
-:ref:`june_2023`
+June 2023
+---------
 
-* `Creating SQL Workflows <https://docs.sqream.com/en/blue/releases/2023/june_2023.html#creating-sql-workflows>`_
-* `Resource Management <https://docs.sqream.com/en/blue/releases/2023/june_2023.html#resource-management>`_
+Explore the capabilities of **Jobs**, a versatile SQL workflow management tool automating complex sequences of SQL scripts for seamless data preparation and insights delivery. Optimize resource utilization with the **Resource Pool** panel, efficiently managing costs and enhancing cluster performance. Dive into these features for a more productive workflow experience. Follow the link to learn more.
 
-:ref:`may_2023`
+:ref:`Read More <june_2023>`
 
-* `Log in using an Identity Provider (IDP) <https://docs.sqream.com/en/blue/releases/2023/may_2023.html#log-in-using-an-identity-provider-idp>`_
-* `Automatically suspend and resume your BLUE environment <Resource Management>`_
-* `Google Cloud Platform marketplace deployment <Resource Management>`_
+May 2023
+--------
+
+Auth0's powerful capabilities empower BLUE to provide IDP authentication, multi-factor authentication, encryption, and anomaly detection, ensuring robust user data protection and access control. Benefit from a new feature enabling automatic suspension and resumption of your BLUE environment, efficiently managing resources during inactivity. Upon resuming, resource count returns to its pre-suspension value, maintaining accessibility for administrative actions. Additionally, BLUE is now available on the Google Cloud Platform (GCP) Marketplace, streamlining deployment for enhanced flexibility and scalability.
    
+:ref:`Read More <may_2023>`
