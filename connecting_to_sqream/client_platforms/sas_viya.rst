@@ -82,7 +82,7 @@ This section describes how to use SAS Viya Visual Analytics.
 
 **To use SAS Viya Visual Analytics:**
 
-#. Log in to `SAS Viya Visual Analytics <http://192.168.4.63/SASLogon/login>`_ using your credentials:
+#. Log in to SAS Viya Visual Analytics using your credentials:
 
     ::
 
