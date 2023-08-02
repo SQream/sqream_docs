@@ -6,9 +6,7 @@ SQream DB Documentation
 
 .. only:: html
 
-   .. tip::
-      Want to read this offline?
-      `Download the documentation as a single PDF <https://docs.sqream.com/_/downloads/en/latest/pdf/>`_ .
+
 
 .. only:: pdf or latex
    
@@ -83,11 +81,6 @@ SQream DB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tab
 If you couldn't find what you're looking for, we're always happy to help. Visit `SQream's support portal <https://sqream.atlassian.net/servicedesk/>`_ for additional support.
 
 
-.. rubric:: Looking for older versions?
-
-This version of the documentation is for SQream DB Version 2022.1.
-
-If you're looking for an older version of the documentation, versions 1.10 through 2019.2.1 are available at http://previous.sqream.com.
 
 .. toctree::
    :caption: Contents:
