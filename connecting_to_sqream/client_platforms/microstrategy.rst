@@ -123,7 +123,7 @@ Connecting a Data Source
 
          odbc:Driver={SqreamODBCDriver};DSN={SQreamDB ODBC};Server=<Host>;Port=<Port>;Database=<database name>;User=<username>;Password=<password>;Cluster=<boolean>;
 
-      For more information about the available **connection parameters** and other examples, see `Connection Parameters <java_jdbc>`.
+      For more information about the available **connection parameters** and other examples, see :ref:`Connection Parameters <java_jdbc>`.
 
    7. In the **User** and **Password** fields, fill out your user name and password.
 
@@ -131,6 +131,7 @@ Connecting a Data Source
 	   
    8. In the **Data Source Name** field, type **SQreamDB**.
 
+    ::
     ::
 	    
    9. Click **Save**. The SQreamDB that you picked in the Data Source panel is displayed.
