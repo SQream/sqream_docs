@@ -1,14 +1,15 @@
 .. _microstrategy:
 
 
-*************************
-Connect to SQream Using MicroStrategy
-*************************
+*************
+MicroStrategy
+*************
 
 .. _ms_top:
 
 Overview 
----------------
+--------
+
 This document is a Quick Start Guide that describes how to install MicroStrategy and connect a datasource to the MicroStrategy dasbhoard for analysis.
 
 
@@ -20,12 +21,9 @@ The **Connecting to SQream Using MicroStrategy** page describes the following:
    :local:
    
 
-
-
-
-
 What is MicroStrategy?
-================
+======================
+
 MicroStrategy is a Business Intelligence software offering a wide variety of data analytics capabilities. SQream uses the MicroStrategy connector for reading and loading data into SQream.
 
 MicroStrategy provides the following:
@@ -48,13 +46,13 @@ For more information about Microstrategy, see `MicroStrategy <https://www.micros
 
 
 Connecting a Data Source
-=======================
+========================
 
 1. Activate the **MicroStrategy Desktop** app. The app displays the Dossiers panel to the right.
 
     ::
 	
-2. Download the most current version of the `SQream JDBC driver <https://docs.sqream.com/en/latest/guides/client_drivers/index.html#client-drivers>`_.
+2. Download the most current version of the `SQream JDBC driver <https://docs.sqream.com/en/v2022.1/connecting_to_sqream/client_drivers/index.html>`_.
 
     ::
 
@@ -125,7 +123,7 @@ Connecting a Data Source
 
          odbc:Driver={SqreamODBCDriver};DSN={SQreamDB ODBC};Server=<Host>;Port=<Port>;Database=<database name>;User=<username>;Password=<password>;Cluster=<boolean>;
 
-      For more information about the available **connection parameters** and other examples, see `Connection Parameters <https://docs.sqream.com/en/latest/guides/client_drivers/jdbc/index.html#connection-parameters>`_.
+      For more information about the available **connection parameters** and other examples, see :ref:`Connection Parameters <java_jdbc>`.
 
    7. In the **User** and **Password** fields, fill out your user name and password.
 
@@ -133,6 +131,7 @@ Connecting a Data Source
 	   
    8. In the **Data Source Name** field, type **SQreamDB**.
 
+    ::
     ::
 	    
    9. Click **Save**. The SQreamDB that you picked in the Data Source panel is displayed.
@@ -172,7 +171,7 @@ Your populated dashboard is displayed and is ready for data discovery and analyt
 :ref:`Back to Overview <ms_top>`
 
 Supported SQream Drivers
-================
+========================
 
 The following list shows the supported SQream drivers and versions:
 
