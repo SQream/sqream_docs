@@ -80,8 +80,8 @@ When you suspend an environment, its resources are temporarily released, which a
 
 You have the flexibility to manually or automatically suspend and resume each of your pools based on your specific requirements. 
 
-Setting Automatic Pool Suspension and Resumption
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Automatically Suspending and Resuming Pools
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **Suspending**
 
