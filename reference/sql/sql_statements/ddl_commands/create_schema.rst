@@ -4,11 +4,6 @@
 CREATE SCHEMA
 *************
 
-The **CREATE SCHEMA** page describes the following: 
-   
-Overview
-========
-
 ``CREATE SCHEMA`` creates a new schema in an existing database. A schema is a virtual space for storing tables.
 
 The default schema in SQream DB is ``public``.
