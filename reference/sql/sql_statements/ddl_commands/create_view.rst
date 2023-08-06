@@ -1,8 +1,8 @@
 .. _create_view:
 
-*****************
+***********
 CREATE VIEW
-*****************
+***********
 
 ``CREATE VIEW`` creates a new view in an existing database. A view is a virtual table.
 
@@ -12,12 +12,12 @@ CREATE VIEW
 
 
 Permissions
-=============
+===========
 
 The role must have the ``CREATE`` permission at the database level, as well as ``SELECT`` permissions for any tables referenced by the view.
 
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
@@ -37,7 +37,7 @@ Syntax
    
 
 Parameters
-============
+==========
 
 .. list-table:: 
    :widths: auto
@@ -58,10 +58,10 @@ Parameters
 ..   - Create a new view, and overwrite any existing views by the same name. Does not return an error if the view already exists.
 
 Examples
-===========
+========
 
 A simple view
------------------
+-------------
 
 .. code-block:: postgres
 
@@ -71,7 +71,7 @@ A simple view
    SELECT * FROM only_agressive_animals;
 
 Overriding default column names
----------------------------------
+-------------------------------
 
 .. code-block:: postgres
 
