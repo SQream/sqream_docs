@@ -64,6 +64,9 @@ The following table shows the Data Definition commands:
      - Rename a column
    * - :ref:`RENAME_TABLE<rename_table>`
      - Rename a table
+   * - :ref:`RENAME_SCHEMA<rename_schema>`
+     - Rename a schema
+
 
 
 Data Manipulation Commands (DML)
