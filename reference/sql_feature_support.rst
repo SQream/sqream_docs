@@ -1,8 +1,8 @@
 .. _sql_feature_support:
 
-*************************
+*********************
 SQL Feature Checklist
-*************************
+*********************
 
 
 To understand which ANSI SQL and other SQL features SQream DB supports, use the tables below.
@@ -12,7 +12,7 @@ To understand which ANSI SQL and other SQL features SQream DB supports, use the 
    
 
 Data Types and Values
-=========================
+=====================
 
 Read more about :ref:`Yes data types<data_types>`.
 
@@ -65,7 +65,7 @@ Read more about :ref:`Yes data types<data_types>`.
 
 
 Constraints
-===============
+===========
 
 .. list-table:: Constraints
    :widths: auto
@@ -86,15 +86,15 @@ Constraints
 
 
 Transactions
-================
+============
 
 SQream DB treats each statement as an auto-commit transaction. Each transaction is isolated from other transactions with serializable isolation. 
 
-If a statement fails, the entire transaction is cancelled and rolled back. The database is unchanged.
+If a statement fails, the entire transaction is canceled and rolled back. The database is unchanged.
 
 
 Indexes
-============
+=======
 
 SQream DB has a range-index collected on all columns as part of the metadata collection process.
 
@@ -143,8 +143,8 @@ Schema Changes
      - No
      - 
    * - Rename schema
-     - No
-     - 
+     - Yes
+     - :ref:`rename_schema`
    * - Drop schema
      - Yes
      - :ref:`drop_schema`
