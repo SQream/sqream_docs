@@ -5,11 +5,6 @@ CREATE SCHEMA
 *************
 
 The **CREATE SCHEMA** page describes the following: 
-
-
-.. contents:: 
-   :local:
-   :depth: 2
    
 Overview
 ========
