@@ -30,7 +30,7 @@ Data Definition Commands (DDL)
    * - :ref:`create_foreign_table`
      - Create a new foreign table in the database
    * - :ref:`create_function`
-     - Create a new user defined function in the database
+     - Create a new user-defined function in the database
    * - :ref:`create_schema`
      - Create a new schema in the database
    * - :ref:`create_table_as`
@@ -81,6 +81,9 @@ Data Definition Commands (DDL)
      - Lets you shift between pools within a session
    * - :ref:`use_schema`
      - Lets you shift between schemes within an existing session
+   * - :ref:`rename_schema`
+     - Rename a schema
+
 
 
 Data Manipulation Commands (DML)
