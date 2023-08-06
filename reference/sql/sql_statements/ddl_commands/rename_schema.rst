@@ -4,14 +4,14 @@
 RENAME SCHEMA
 *************
  
-``RENAME SCHEMA`` can be used to rename a schema. 
+Renaming schemas is mainly used for improving the clarity and organization of a database by giving schemas more meaningful or concise names. 
 
 .. warning:: Renaming a schema can void existing views that use this schema. See more about :ref:`recompiling views <recompile_view>`.
 
 Permissions
 ===========
 
-The role must have the ``DDL`` permission at the database or table level.
+The role must have the ``DDL`` permission at the database level.
 
 Syntax
 ======
@@ -46,7 +46,6 @@ Parameters
      
 Examples
 ========
-
 
 .. code-block:: postgres
 
