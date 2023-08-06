@@ -1,9 +1,10 @@
 .. _create_schema:
 
-*****************
+*************
 CREATE SCHEMA
-*****************
-The **CREATE SCHEMA** page describes the following:
+*************
+
+The **CREATE SCHEMA** page describes the following: 
 
 
 .. contents:: 
@@ -11,7 +12,7 @@ The **CREATE SCHEMA** page describes the following:
    :depth: 2
    
 Overview
-============
+========
 
 ``CREATE SCHEMA`` creates a new schema in an existing database. A schema is a virtual space for storing tables.
 
@@ -25,15 +26,16 @@ The **CREATE SCHEMA** statement can be used to query tables from different schem
 
    select <schema_name>.table_name.column_name from <schema_name>.table_name
 
-See also: :ref:`drop_schema`, :ref:`alter_default_schema`.
+See also: :ref:`drop_schema`, :ref:`alter_default_schema`, :ref:`rename_schema`.
 
 Permissions
-=============
+===========
 
 The role must have the ``CREATE`` permission at the database level.
 
 Syntax
-==========
+======
+
 The following example shows the correct syntax for creating a schema:
 
 .. code-block:: postgres
@@ -46,7 +48,8 @@ The following example shows the correct syntax for creating a schema:
 
 
 Parameters
-============
+==========
+
 The following table shows the ``schema_name`` parameters:
 
 .. list-table:: 
@@ -59,7 +62,8 @@ The following table shows the ``schema_name`` parameters:
      - The name of the schema to create.
 
 Examples
-===========
+========
+
 This section includes the following examples:
 
 .. contents:: 
@@ -68,7 +72,8 @@ This section includes the following examples:
 
 
 Creating a Schema
---------------------
+-----------------
+
 The following example shows an example of the syntax for creating a schema:
 
 .. code-block:: postgres
@@ -78,3 +83,16 @@ The following example shows an example of the syntax for creating a schema:
    CREATE TABLE staging.users AS SELECT * FROM public.users;
    
    SELECT * FROM staging.users;
+
+Altering the Default Schema for a Role
+--------------------------------------
+
+The following example shows an example of the syntax for altering the default schema for a role:
+
+.. code-block:: postgres
+
+   SELECT * FROM users; -- Refers to public.users
+   
+   ALTER DEFAULT SCHEMA FOR bgilfoyle TO staging;
+   
+   SELECT * FROM users; -- Now refers to staging.users, rather than public.users
