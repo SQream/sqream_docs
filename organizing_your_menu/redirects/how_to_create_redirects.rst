@@ -17,21 +17,21 @@ Redirect Reasons
      - Description
      - Example	
    * - Renamed Versions
-     - All renamed versions must be redirected, whether public or private. All though it is uncommon, version names may change over time. When this happens, URLs containing the old version must be redirected to URLs containing the new version name. In the past, some SQreamDB versions had the letter **v** attached to them. At some point, the letter v was removed, creating 404s. Redirect from old version by including the old version name and using the ``$rest`` keyword. Redirect to the new version by including the new version name.
+     - All renamed versions, whether public or private, should be redirected. While uncommon, version names may change, requiring redirection of URLs from old versions to new ones. In certain cases, past SQreamDB versions with the letter **v** attached encountered 404 errors after the letter was removed. To handle this, use the ``$rest`` keyword to redirect from the old version and include the old version name, and redirect to the new version by including the new version name.
      - Redirect Type: Exact Redirect
 
        From URL: /en/v4.0/$rest
 
        To URL: /en/4.0/	 
    * - Archived Documentation Versions
-     - Archived documentation versions are tagged as **Private** and may not be seen in your Flyout menu. It is very common for old documentation versions to become irrelevant and go offline. When this happens, URLs containing archived versions must be redirected to URLs containing ``latest`` version. Redirect from archived version by including the archived version name and using the ``$rest`` keyword. Redirect to the ``latest`` version by including ``latest``.
+     - Archived documentation versions, labeled as **Private**, do not appear in your Flyout menu. It's typical for outdated documentation to become obsolete and go offline. In such cases, URLs with archived versions should be redirected to URLs containing the ``latest`` version. Redirect from the archived version by incorporating its name and using the ``$rest`` keyword. To direct to the ``latest`` version, include ``latest`` in the URL.
      - Redirect Type: Exact Redirect
 
        From URL: /en/2021.1/$rest
 
        To URL: /en/latest/	 
    * - Path Changes
-     - Non-existing paths must be redirected, whether private or public. SQreamDB documentation used to have the following path: ``/third_party_tools/`` which was replaced by ``/connecting_to_sqream/``. Redirect from version containing broken path by including version name and using the ``$rest`` keyword. Redirect to the same version and include the new path. Remember that all private versions are redirected to the latest version so the following redirect affects all.
+     - Redirects are necessary for both private and public paths that don't exist. Previously, SQreamDB documentation utilized the path ``/third_party_tools/``, which was later changed to ``/connecting_to_sqream/``. To address broken paths in a version, redirect by incorporating the version name and using the ``$rest`` keyword. Redirect to the same version with the updated path. Keep in mind that all private versions are directed to the latest version, thus this redirect applies universally.
      - **Public Version Example**
 
        Redirect Type: Exact Redirect
@@ -48,14 +48,14 @@ Redirect Reasons
 
        To URL: /en/latest/connecting_to_sqream/	 
    * - Deleted Page
-     - Redirecting a specific page which was deleted to a general documentation page.
+     - Specific pages which were deleted must be redirected to a general documentation page.
      - Redirect Type: Page Redirect
 
        From URL: /installation_guides/docker_container.html
 
        To URL: /installation_guides/index.html 
    * - Path Changes and Deleted Page
-     - ``/guides/operations/`` is a path which was removed. Some pages within this path, such as ``configuration`` and ``installing_sqream_with_binary`` were either deleted or relocated under a different path. The path must be redirected using a ``#``.
+     - The path ``/guides/operations/`` has been eliminated, and certain pages within it, like ``configuration`` and ``installing_sqream_with_binary``, have either been deleted or relocated to a new path. The redirection of this path should employ a ``#`` symbol.
      - Redirect Type: Exact Redirect
 
        From URL: /en/2021.2/guides/operations/$rest
