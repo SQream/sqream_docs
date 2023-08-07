@@ -148,9 +148,10 @@ Consider the following JSON file to be ingested into SQreamDB:
 
 .. code-block:: json
 
-	{ "name":"Avery Bradley", "age":25, "position":"PG"}, {years_in_nba":[2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]"}
-	{ "name":"Jae Crowder", "age":25, "position":"PG" }, {years_in_nba":[2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]"}
-	{ "name":"John Holland", "age":27, "position":"SG" }, {years_in_nba":[2017, 2018]"}
+	{"name":"Avery Bradley","age":25,"position":"PG","years_in_nba":[2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021]}
+	{"name":"Jae Crowder","age":25,"position":"PG","years_in_nba":[2012,2013,2014,2015,2016,2017,2018,2019,2020,2021]}
+	{"name":"John Holland","age":27,"position":"SG","years_in_nba":[2017,2018]}
+
 
 Execute the following statement:
 
