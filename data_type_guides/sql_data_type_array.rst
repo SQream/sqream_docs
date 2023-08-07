@@ -144,7 +144,7 @@ Updating table values:
 Ingesting Arrayed Data from External Files
 ------------------------------------------
 
-Consider the following JSON file to be ingested into SQreamDB:
+Consider the following JSON file named ``t``, located under ``/tmp/``:
 
 .. code-block:: json
 
@@ -158,15 +158,17 @@ Execute the following statement:
 .. code-block:: sql
 
 	CREATE FOREIGN TABLE nba
-		  (name text not null),
-		  (age int not null),
-		  (position text not null),
-		  (years_in_nba int[] not null)
-		  
+		   (
+		   name text,
+		   age int,
+		   position text,
+		   years_in_nba int[]
+		   )
+		   
 	  WRAPPER json_fdw
 	  OPTIONS
 	  (
-		location = 'nba.json'
+		location ='/tmp/t.json'
 	  )
 	;
 	
