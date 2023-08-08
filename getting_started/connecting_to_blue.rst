@@ -36,7 +36,7 @@ Data Integration Tools
 Business Intelligence (BI) Tools
 --------------------------------
 
-:ref:`MicroStrategy<microstrategy>`
+:ref:`MicroStrategy<micro_strategy>`
 
 :ref:`Power BI Desktop<power_bi>`
 
