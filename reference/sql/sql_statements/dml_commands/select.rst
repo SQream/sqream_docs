@@ -1,8 +1,8 @@
 .. _select:
 
-**********************
+******
 SELECT
-**********************
+******
 
 ``SELECT`` is the main statement that allows reading and processing of data. It is used to retrieve rows and columns from one or more tables.
 
@@ -14,12 +14,12 @@ When used alone, the statement is known as a "``SELECT`` statement" or "``SELECT
    :local:
 
 Permissions
-=============
+===========
 
 The role must have the ``SELECT`` permission on every table or schema that is referenced by the ``SELECT`` query.
 
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
@@ -87,7 +87,7 @@ Syntax
 
 
 Elements
-============
+========
 
 .. list-table:: 
    :widths: auto
@@ -113,10 +113,10 @@ Elements
      - Concatenates the results of two queries together. ``UNION ALL`` does not remove duplicates.
 
 Notes
-===========
+=====
 
-Query processing
------------------
+Query Processing
+----------------
 
 Queries are processed in a manner equivalent to the following order:
 
@@ -136,8 +136,8 @@ Inside the ``FROM`` clause, the processing occurs in the usual way, from the out
 
 .. _select_lists:
 
-Select lists
-----------------
+Select Lists
+------------
 
 The ``select_list`` is a comma separated list of column names and value expressions.
 
@@ -155,7 +155,7 @@ The ``select_list`` is a comma separated list of column names and value expressi
       SELECT a, SUM(b) FROM t GROUP BY 1 ORDER BY 2 DESC;
 
 Examples
-===========
+========
 
 Assume a table named ``nba``, with the following structure:
 
@@ -183,8 +183,8 @@ Here's a peek at the table contents (:download:`Download nba.csv </_static/sampl
    :header-rows: 1
 
 
-Simple queries
-------------------
+Simple Queries
+--------------
 
 This query will get the Name, Team name, and Age from the NBA table, but only show the first 10 results.
 
@@ -202,8 +202,8 @@ This query will get the Name, Team name, and Age from the NBA table, but only sh
    Terry Rozier,Boston Celtics,22
    Marcus Smart,Boston Celtics,22
 
-Show a count of the rows
----------------------------
+Show Row Count
+--------------
 
 Use ``COUNT(*)`` to retrieve the number of rows in a result.
 
@@ -212,8 +212,8 @@ Use ``COUNT(*)`` to retrieve the number of rows in a result.
    nba=> SELECT COUNT(*) FROM nba;
    457
 
-Get all columns
------------------
+Get All Columns
+---------------
 
 ``*`` is used as shorthand for "all columns".
 
@@ -237,8 +237,8 @@ Get all columns
 
 .. _where:
 
-Filter on conditions
------------------------
+Filter On Conditions
+--------------------
 
 Use the ``WHERE`` clause to filter results.
 
@@ -259,8 +259,8 @@ Use the ``WHERE`` clause to filter results.
    Joel Embiid,22,4626960
    Nerlens Noel,22,3457800
 
-Filter based on a list
-------------------------
+Filter Based On a List
+----------------------
 
 ``WHERE column IN (value_expr in comma separated list)`` matches the column with any value in the list.
 
@@ -277,8 +277,8 @@ Filter based on a list
    Jeff Withey,26,947276,Utah Jazz
 
 
-Select only distinct rows
----------------------------
+Select Only Distinct Rows
+-------------------------
 
 .. code-block:: psql
    
@@ -314,16 +314,16 @@ Select only distinct rows
    Utah Jazz
    Washington Wizards
 
-Count distinct values
------------------------
+Count Distinct Values
+---------------------
 
 .. code-block:: psql
    
    nba=> SELECT COUNT(DISTINCT "Team") FROM nba;
    30
 
-Rename columns with aliases
------------------------------
+Rename Columns With Aliases
+---------------------------
 
 .. code-block:: psql
    
@@ -341,8 +341,8 @@ Rename columns with aliases
    R.J. Hunter   | Boston Celtics |       1148640
    Jonas Jerebko | Boston Celtics |       5000000
 
-Searching with ``LIKE``
--------------------------
+Searching With ``LIKE``
+-----------------------
 
 :ref:`like` allows pattern matching text in the ``WHERE`` clause.
 
@@ -359,8 +359,8 @@ Searching with ``LIKE``
    Allen Crabbe,24,947276,Portland Trail Blazers
    Ed Davis,27,6980802,Portland Trail Blazers
 
-Aggregate functions
-----------------------
+Aggregate Functions
+-------------------
 
 Aggregate functions compute a single result from a column. 
 
@@ -390,8 +390,8 @@ Aggregate functions are often combined with ``GROUP BY``.
    
    A query like ``SELECT "Team",max("Salary") FROM nba`` is not valid, and will result in an error.
 
-Filtering on aggregates
---------------------------
+Filtering on Aggregates
+-----------------------
 
 Filtering on aggregates is done with the ``HAVING`` clause, rather than the ``WHERE`` clause.
 
@@ -410,8 +410,8 @@ Filtering on aggregates is done with the ``HAVING`` clause, rather than the ``WH
 
 .. _order_by:
 
-Sorting results
--------------------
+Sorting Results
+---------------
 
 ``ORDER BY`` takes a comma separated list of ordering specifications - a column followed by ``ASC`` for ascending or ``DESC`` for descending.
 
@@ -450,8 +450,8 @@ Sorting results
       Portland Trail Blazers |        3220121
       Philadelphia 76ers     |        2213778
 
-Sorting with multiple columns
------------------------------------
+Sorting With Multiple Columns
+-----------------------------
 
 Order retrieved rows by multiple columns:
 
@@ -471,8 +471,8 @@ Order retrieved rows by multiple columns:
    Aaron Brooks             | PG       |    161 |  2250000
 
 
-Combining two or more queries
----------------------------------
+Combining Two or More Queries
+-----------------------------
 
 ``UNION ALL`` can be used to combine the results of two or more queries into one result set.
 
@@ -488,17 +488,15 @@ Combining two or more queries
    PG
    PG
 
-Common table expressions (CTE)
---------------------------------
+Common Table Expression
+-----------------------
 
-Common table expressions or CTEs allow a possibly complex subquery to be represented in a short way later on, for improved readability.
-
-It does not affect query performance.
+A Common Table Expression (CTE) is a temporary named result set that can be referenced within a ``SELECT``, ``INSERT``, ``UPDATE``, or ``DELETE`` statement, allowing for more readable and modular queries. CTEs do not affect query performance.
 
 .. code-block:: psql
    
-   nba=> WITH s AS (SELECT "Name" FROM nba WHERE "Salary" > 20000000)
-   .        SELECT * FROM nba AS n, s WHERE n."Name" = s."Name";
+	WITH s AS (SELECT Name FROM nba WHERE Salary > 20000000)
+			SELECT * FROM nba AS n, s WHERE n.Name = s.Name;
    Name            | Team                  | Number | Position | Age | Height | Weight | College      | Salary   | name0          
    ----------------+-----------------------+--------+----------+-----+--------+--------+--------------+----------+----------------
    Carmelo Anthony | New York Knicks       |      7 | SF       |  32 | 6-8    |    240 | Syracuse     | 22875000 | Carmelo Anthony
@@ -510,31 +508,31 @@ It does not affect query performance.
    Kobe Bryant     | Los Angeles Lakers    |     24 | SF       |  37 | 6-6    |    212 |              | 25000000 | Kobe Bryant    
    LeBron James    | Cleveland Cavaliers   |     23 | SF       |  31 | 6-8    |    250 |              | 22970500 | LeBron James   
 
-In this example, the ``WITH`` clause defines the temporary name ``r`` for the subquery which finds salaries over $20 million. The result set becomes a valid table reference in any table expression of the subsequent SELECT clause.
+In this example, the ``WITH`` clause defines the temporary name ``s`` for the subquery which finds salaries over $20 million. The result set becomes a valid table reference in any table expression of the subsequent ``SELECT`` clause.
 
 Nested CTEs
-^^^^^^^^^^^^^^
+^^^^^^^^^^^
 
-SQream DB also supports any amount of nested CTEs, such as this:
+SQreamDB also supports any amount of nested CTEs, such as this:
 
 .. code-block:: postgres
 
    WITH w AS
        (SELECT * FROM
-           (WITH x AS (SELECT * FROM nba) SELECT * FROM x ORDER BY "Salary" DESC))
-     SELECT * FROM w ORDER BY "Weight" DESC;
+           (WITH x AS (SELECT * FROM nba) SELECT * FROM x ORDER BY Salary DESC))
+     SELECT * FROM w ORDER BY Weight DESC;
 
 Reusing CTEs
-^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^
 
-SQream DB supports reusing CTEs several times in a query:
+SQreamDB supports reusing CTEs several times in a query:
 
 .. code-block:: psql
    
-   nba=> WITH
-   .        nba_ct AS (SELECT "Name", "Team" FROM nba WHERE "College"='Connecticut'),
-   .        nba_az AS (SELECT "Name", "Team" FROM nba WHERE "College"='Arizona')
-   .        SELECT * FROM nba_az JOIN nba_ct ON nba_ct."Team" = nba_az."Team";
+   WITH
+   nba_ct AS (SELECT "Name", "Team" FROM nba WHERE "College"='Connecticut'),
+   nba_az AS (SELECT "Name", "Team" FROM nba WHERE "College"='Arizona')
+   SELECT * FROM nba_az JOIN nba_ct ON nba_ct."Team" = nba_az."Team";
    Name            | Team            | name0          | team0          
    ----------------+-----------------+----------------+----------------
    Stanley Johnson | Detroit Pistons | Andre Drummond | Detroit Pistons
