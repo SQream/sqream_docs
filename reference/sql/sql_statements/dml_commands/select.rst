@@ -491,7 +491,7 @@ Combining Two or More Queries
 Common Table Expression
 -----------------------
 
-A Common Table Expression (CTE) is a temporary named result set that can be referenced within a ``SELECT``, ``INSERT``, ``UPDATE``, or ``DELETE`` statement, allowing for more readable and modular queries. CTEs do not affect query performance.
+A Common Table Expression (CTE) is a temporary named result set that can be referenced within a statement, allowing for more readable and modular queries. CTEs do not affect query performance.
 
 .. code-block:: psql
    
