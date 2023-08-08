@@ -23,36 +23,38 @@ Platforms
 Data Integration Tools
 ----------------------
 
-Informatica Cloud Services
+:ref:`Denodo<denodo>`
 
-Pentaho Data Integration
+:ref:`Informatica Cloud Services<informatica>`
 
-Talend
+:ref:`Pentaho Data Integration<pentaho_data_integration>`
 
-SQL Workbench
+:ref:`Talend<talend>`
+
+:ref:`SQL Workbench<connect_to_sql_workbench>`
 
 Business Intelligence (BI) Tools
 --------------------------------
 
-MicroStrategy
+:ref:`MicroStrategy<microstrategy>`
 
-Power BI Desktop
+:ref:`Power BI Desktop<power_bi>`
 
-SAP BusinessObjects
+:ref:`SAP BusinessObjects<sap_businessobjects>`
 
-SAS Viya
+:ref:`SAS Viya<connect_to_sas_viya>`
 
-Tableau
+:ref:`Tableau<tableau>`
 
-TIBCO Spotfire
+:ref:`TIBCO Spotfire<tibco_spotfire>`
 
 Data Analysis and Programming Languages
 ---------------------------------------
 
-PHP
+:ref:`PHP<php>`
 
-R
+:ref:`R<r>`
 
-.. topic:: Additional Connection Methods
+.. topic:: Additional Connection Methods and Tools
 
-   If you wish to use any other connection method which is not currently supported, you may contact our `support team <https://sqream.atlassian.net/servicedesk/>`_, and they'll look into it.
+   If you wish to use any other connection method or tool which is not currently supported, you may contact our `support team <https://sqream.atlassian.net/servicedesk/>`_, and they'll look into it.
