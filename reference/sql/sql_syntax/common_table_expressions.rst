@@ -170,3 +170,27 @@ The :ref:`insert` statement should appear before ``WITH``.
 
 .. code-block:: postgres
 
+	CREATE OR REPLACE TABLE nba_archive (
+    Name TEXT,
+    Team TEXT,
+    Number INTEGER,
+    Position TEXT,
+    Age INTEGER,
+    Height TEXT,
+    Weight INTEGER,
+    College TEXT,
+    Salary INTEGER,
+    name0 TEXT
+	);
+	
+	INSERT INTO nba_archive
+	WITH nba_info AS(
+		SELECT * 
+		FROM nba
+	)
+	SELECT * 
+	FROM nba_info;
+	
+	SELECT * FROM nba_archive ;
+	
+	
