@@ -9,19 +9,21 @@ Users who want to connect to BLUE from their own applications or tools may need 
 To use any of the following connectors, applications, and tools, it is essential that you generate connection :ref:`access tokens<generating_access_tokens>`.
 
 Connectors and Drivers
-======================
+----------------------
 
 :ref:`JDBC<java_jdbc>`
 
 :ref:`ODBC<odbc>`
 
 :ref:`Python<pysqream>`
-   
+
+------------------
+
 Platforms
-=========
+---------
 
 Data Integration Tools
-----------------------
+^^^^^^^^^^^^^^^^^^^^^^
 
 :ref:`Denodo<denodo>`
 
@@ -34,7 +36,7 @@ Data Integration Tools
 :ref:`SQL Workbench<connect_to_sql_workbench>`
 
 Business Intelligence (BI) Tools
---------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 :ref:`MicroStrategy<micro_strategy>`
 
@@ -49,7 +51,7 @@ Business Intelligence (BI) Tools
 :ref:`TIBCO Spotfire<tibco_spotfire>`
 
 Data Analysis and Programming Languages
----------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 :ref:`PHP<php>`
 
