@@ -58,3 +58,9 @@ kbd
 .highlight button.copybtn {
    opacity: 0;
 }
+
+/* CSS rules can be added here */
+
+.red-text {
+    color: red;
+}
