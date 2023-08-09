@@ -23,8 +23,7 @@ Whether your enterprise is already cloud-based or planning to migrate, BLUE opti
 
 --------------------------
 
-Main Features and Capabilities
-------------------------------
+**Main Features and Capabilities**
 
 .. glossary::
 
