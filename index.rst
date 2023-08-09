@@ -22,7 +22,9 @@ A notable capability of BLUE lies in handling data integration tasks, from 2TB t
 Whether your enterprise is already cloud-based or planning to migrate, BLUE optimizes data workflows, capitalizing on the benefits of cloud-based data storage and processing.
 
 
-.. code-block:: sql
+.. code-block:: python
+    :lineons:
+    :caption: Main Features and Capabilities
 
    GPU Optimization Engine
 
