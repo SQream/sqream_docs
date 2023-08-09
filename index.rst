@@ -1,5 +1,13 @@
 .. _index:
 
+.. raw:: html
+
+   <style>
+   .red-text {
+       color: red;
+   }
+   </style>
+
 <span class="red-text">BLUE</span> Documentation
 ==============================================
 
