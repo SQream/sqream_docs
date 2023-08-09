@@ -51,12 +51,12 @@ Main Features and Capabilities:
    :hidden:
 
    getting_started/index
-   reference/index
+   configuration_guides/index
+   operational_guides/index
+   feature_guides/index
    data_type_guides/index
    file_types/index
-   feature_guides/index
-   operational_guides/index
-   configuration_guides/index
+   reference/index
    releases/index
    troubleshooting/index
    glossary
