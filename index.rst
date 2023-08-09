@@ -1,15 +1,19 @@
 .. _index:
 
+.. role:: red
+   :class: red-text
+
 .. raw:: html
 
    <style>
    .red-text {
-       color: red;
+       color: red !important;
    }
    </style>
 
-<span class="red-text">BLUE</span> Documentation
-==============================================
+:red:`BLUE` Documentation
+=========================
+
 
 BLUE is a cloud-based platform designed for enterprises utilizing data lake architectures, aiming to simplify data integration workflows and enable cloud migration. It incorporates patented GPU optimization, parallelism, and Apache Parquet support for efficient data processing. The platform seamlessly integrates with popular open-source workflow tools and employs a robust security architecture to enhance data integrity.
 
