@@ -11,25 +11,17 @@
 <span class="red-text">BLUE</span> Documentation
 ==============================================
 
+BLUE is a cloud-based platform designed for enterprises utilizing data lake architectures, aiming to simplify data integration workflows and enable cloud migration. It incorporates patented GPU optimization, parallelism, and Apache Parquet support for efficient data processing. The platform seamlessly integrates with popular open-source workflow tools and employs a robust security architecture to enhance data integrity.
 
+BLUE caters to businesses engaged in cloud-based data lakes or considering cloud migration, enhancing workflows, data insights, and real-time analysis.
 
+A notable capability of BLUE lies in handling data integration tasks, from 2TB to petabyte scales. This makes it well-suited for swift and effective processing of large data volumes. Additionally, BLUE embraces both datalake house and query engine technologies, empowering businesses to gain comprehensive data insights and real-time analysis, thus expediting decision-making.
 
-tl;dr
-^^^^^^
+Whether your enterprise is already cloud-based or planning to migrate, BLUE optimizes data workflows, capitalizing on the benefits of cloud-based data storage and processing.
 
-BLUE is a cloud-based platform designed for businesses using data lake architectures. It makes it easy to set up new workflows for complex data integration and move your data integration to the cloud. With a patented GPU optimization engine, parallelism, and optimization for Apache Parquet, BLUE helps you process data quickly and efficiently. Plus, it connects seamlessly with your favorite open-source workflow tools and offers a unique architecture that keeps your data secure and eliminates duplication.
+.. dropdown:: GPU Optimization Engine
 
-SELECT *
-^^^^^^^^^
-
-BLUE is a platform designed for enterprises working with cloud-based data lake architectures, or those considering a move to the cloud. The product includes a range of features to streamline workflows, gain deeper insights into data, and perform real-time data analysis.
-
-One key feature of BLUE is its support for data integration use cases that require complex data flows ranging from 2TB to petabyte-scale. This makes it an ideal choice for businesses that need to process large volumes of data quickly and efficiently. Additionally, BLUE includes support for both datalake house and query engine technologies. These features enable businesses to gain a deeper understanding of their data and analyze it in real-time, allowing for faster and more informed decision-making.
-
-Whether your enterprise is already using AWS or GCP, or considering a move to the cloud, BLUE is a valuable tool for optimizing data workflows and maximizing the benefits of cloud-based data storage and processing.
-
-Main Features and Capabilities:
-
+    BLUE's performance relies on a patented GPU acceleration technology that synchronizes all available resources (CPU, GPU, RAM) and utilizes the GPU's processing power for even the most complex analytical tasks.
 
 +------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 | **Feature**                  | **Description**                                                                                                                                                                                                                                                                                                                                 |
