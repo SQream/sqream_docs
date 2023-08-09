@@ -24,9 +24,10 @@ A notable capability of BLUE lies in handling data integration tasks, from 2TB t
 Whether your enterprise is already cloud-based or planning to migrate, BLUE optimizes data workflows, capitalizing on the benefits of cloud-based data storage and processing.
 
 
-```{dropdown} GPU Optimization Engine
-BLUE's performance relies on a patented GPU acceleration technology that synchronizes all available resources (CPU, GPU, RAM) and utilizes the GPU's processing power for even the most complex analytical tasks.
-```
+.. dropdown:: GPU Optimization Engine
+
+   BLUE's performance relies on a patented GPU acceleration technology that synchronizes all available resources (CPU, GPU, RAM) and utilizes the GPU's processing power for even the most complex analytical tasks.
+
 
 
 
