@@ -1,8 +1,8 @@
 .. _operational_guides:
 
-******************
-Operational Guides
-******************
+****************
+Operation Guides
+****************
 
 The **Operational Guides** section describes processes that SQream users can manage to affect the way their system operates, such as creating storage clusters and monitoring query performance.
 
