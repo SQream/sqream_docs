@@ -32,15 +32,21 @@ Logging In Using Auth0
    
 #. Select **Continue** and you will be logged in to BLUE.
 
+------------------
+
 Third-Party Tools
 -----------------
 
 Use the data analysis platform you're used to work with by :ref:`connecting to BLUE<connecting_to_blue>` using Python, JDBC, or ODBC.
 
+------------------
+
 Managing Your Resources
 -----------------------
 
 The :ref:`Resource Pool <managing_your_resources>` panel optimizes resource utilization in your BLUE environment. Reduce runtime during idle periods to manage costs and allocate workers based on department-specific needs for improved cluster utilization. Fine-tune worker allocation to maximize the benefits of your BLUE environment.
+
+------------------
 
 SQL Workflows
 -------------
