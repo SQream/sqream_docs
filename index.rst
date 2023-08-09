@@ -3,7 +3,7 @@
 .. raw:: html
 
 ===========================================
-<font color="red">BLUE</font> Documentation
+BLUE Documentation
 ===========================================
 
 
