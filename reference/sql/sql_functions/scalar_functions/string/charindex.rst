@@ -1,10 +1,11 @@
 .. _charindex:
 
-**************************
+*********
 CHARINDEX
-**************************
+*********
 
-Returns the starting position of a string inside another string.
+``CHARINDEX`` is a 1-based indexing function that returns the starting position of a specified substring within a given string. 
+
 
 See also :ref:`patindex`, :ref:`regexp_instr`.
 
@@ -64,7 +65,7 @@ Using ``CHARINDEX``
 
 .. code-block:: sql
 
-   SELECT CHARINDEX('john', username) FROM users;
+   SELECT CHARINDEX('doe', username) FROM users;
 
 Output:
 
@@ -72,8 +73,8 @@ Output:
 
    charindex|
    ---------+
-   1        |
-   0        |
+   6        |
+   6        |
    0        |
    0        |
 
