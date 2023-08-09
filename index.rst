@@ -1,11 +1,8 @@
 .. _index:
 
-.. role:: red
-   :class: red-text
+<span class="red-text">BLUE</span> Documentation
+==============================================
 
-
-:red:`BLUE` Documentation
-=========================
 
 
 
