@@ -1,12 +1,12 @@
 .. _connecting_to_blue:
 
-==================
-Connecting to BLUE
-==================
+===========
+Integration
+===========
 
 Users who want to connect to BLUE from their own applications or tools may need to use connectors. BLUE supports the most common database tools and interfaces, giving you direct access through a variety of connectors, visualization tools, and utilities. 
 
-To use any of the following connectors, applications, and tools, it is essential that you create dedicated BLUE **Clients** and generate client connection :ref:`access tokens<generating_access_tokens>`.
+To use any of the following connectors, applications, and tools, it is essential that you create dedicated BLUE **Clients** and generate client connection access tokens.
 
 Access Token Management
 -----------------------
@@ -31,8 +31,6 @@ Using connectors and third-party tools requires BLUE clients to be associated wi
    A Client creation pop-up window with your new access token appears.
 	
 #. Copy the access token  or select **Done**.
-
-------------------
 
 Managing Access Tokens
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -60,8 +58,8 @@ You may manage each of your BLUE clients' access tokens separately.
 
 ----------------------
 
-Integrating with BLUE
----------------------
+Connectors, Drivers, and Third-Parties
+--------------------------------------
 
 Connectors and Drivers
 ^^^^^^^^^^^^^^^^^^^^^^
