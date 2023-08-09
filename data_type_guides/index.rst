@@ -1,9 +1,9 @@
 .. _data_type_guides:
 
-*************************
-Data Type Guides
-*************************
-This section describes the following:
+**********
+Data Types
+**********
+
 
 .. toctree::
    :maxdepth: 1
