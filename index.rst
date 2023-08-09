@@ -23,7 +23,7 @@ Whether your enterprise is already cloud-based or planning to migrate, BLUE opti
 
 
 .. code-block:: python
-   :lineons:
+  :lineons:
 
       #GPU Optimization Engine
       BLUE's performance relies on a patented GPU acceleration technology that synchronizes all
