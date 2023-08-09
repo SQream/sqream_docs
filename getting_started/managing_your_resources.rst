@@ -9,7 +9,7 @@ You can optimize the utilization of your resources using the **Resource Pool** p
 All **Resource Pool** operations require a ``ClusterAdmin`` permission.
 
 Managing Cluster
-================
+----------------
 
 Pools offer the ability to effectively manage available resources for various purposes within your BLUE cluster. By default, your cluster includes a single default pool that encompasses all the Workers in the cluster. You have the flexibility to create additional pools to further divide the resources based on your specific business needs, priorities, and concurrency preferences. This allocation of resources allows you to have better control over your business priorities and optimize parallelism, resulting in improved resource utilization and overall system efficiency.
 
@@ -73,8 +73,10 @@ Each pool in the system is associated with a parallelism policy that determines 
    * - Maximum parallelism
      - Enables the execution of a single query using multiple Workers. This allows the query to be divided among all available Workers, significantly reducing the execution time. It fully utilizes the Worker pool and provides the highest level of performance.
 
+------------------
+
 Managing Cost
-=============
+-------------
 
 When you suspend an environment, its resources are temporarily released, which allows billing to be paused for a set duration during which the environment is not expected to be used. If your BLUE environment is suspended, it means that your Workers are not operational, and statements cannot be executed. However, after you resume operation, the resource count will return to its pre-suspension value. It's important to note that your cluster remains accessible, and you can still perform administrative actions.
 
@@ -144,8 +146,10 @@ Manually Suspending and Resuming Pools
    The pool you selected is now highlighted.
 4. Under **Suspension Policy**, select **Activate Now**.
 
+------------------
+
 Managing Pools within a Session
-===============================
+-------------------------------
 
 You can connect to a specific pool using third-party tools. Additionally, you have the ability to list all of your pools and shift between them within your current session as needed.
 
@@ -184,8 +188,6 @@ This command requires ``CONNECT`` permission.
 	
 	In the left-hand side of the ribbon, select a pool from the **Pool** drop-down menu. 
 	
-		
-
 Examples
 ~~~~~~~~
 	
