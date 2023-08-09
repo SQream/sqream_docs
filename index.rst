@@ -3,7 +3,7 @@
 .. role:: red
    :class: red-text
 
-=========================
+
 :red:`BLUE` Documentation
 =========================
 
