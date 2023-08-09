@@ -44,7 +44,7 @@ You may manage each of your BLUE clients' access tokens separately.
      - Description
    * - **Show**
      - Shows your access token in case you need to copy it
-   * - **Disable** // **Enable**
+   * - **Disable** / **Enable**
      - Correspondingly disables BLUE client connection or enables it. May be used for system maintenance
    * - **Delete**
      - Deletes BLUE client. May be used when a client is no longer needed
