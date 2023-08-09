@@ -59,6 +59,8 @@ SQL Workflows
    :glob:
    :hidden:
 
-   connecting_to_blue
-   managing_your_resources
+   managing_your_resources 
    performing_basic_blue_operations
+   connecting_to_blue
+   
+   
