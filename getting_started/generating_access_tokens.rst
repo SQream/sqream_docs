@@ -15,13 +15,13 @@ Using connectors and third-party tools requires BLUE clients to be associated wi
 
 #. Select **Create New Client** and fill in a **Client Name** and a **Client Role**.
 
-	Consider providing a **Client Name** that can be widely understood, such as **BI**, **JDBC**, or **Analysis**.
+   Consider providing a **Client Name** that can be widely understood, such as **BI**, **JDBC**, or **Analysis**.
 	
-	Your newly created BLUE client inherits permissions from the associated **Client Role**.
+   Your newly created BLUE client inherits permissions from the associated **Client Role**.
 
 #. Select **Generate Token**.	
 
-	A Client creation pop-up window with your new access token appears.
+   A Client creation pop-up window with your new access token appears.
 	
 #. Copy the access token  or select **Done**.
 
