@@ -65,15 +65,15 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
 
    getting_started/index
    installation_guides/index
+   architecture/index
+   configuration_guides/index   
+   operational_guides/index   
+   connecting_to_sqream/index   
+   sqream_studio_5.4.7/index
+   feature_guides/index   
    data_ingestion/index
-   connecting_to_sqream/index
    external_storage_platforms/index
    loading_and_unloading_data/index
-   feature_guides/index
-   operational_guides/index
-   sqream_studio_5.4.7/index
-   architecture/index
-   configuration_guides/index
    reference/index
    data_type_guides/index
    releases/index
