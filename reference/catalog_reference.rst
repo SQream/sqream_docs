@@ -1,8 +1,9 @@
 .. _catalog_reference:
 
-*************************************
+***********************
 Catalog Reference Guide
-*************************************
+***********************
+
 The **Catalog Reference Guide** describes the following:
 
 .. toctree::

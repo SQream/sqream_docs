@@ -1,8 +1,9 @@
 .. _catalog_reference_examples:
 
-*************************************
+********
 Examples
-*************************************
+********
+
 The **Examples** page includes the following examples:
 
 .. contents:: 
@@ -10,7 +11,7 @@ The **Examples** page includes the following examples:
    :depth: 1
 
 Listing All Tables in a Database
-----------------------------------
+--------------------------------
 
 .. code-block:: psql
 
@@ -23,7 +24,7 @@ Listing All Tables in a Database
    master        |       27 | public      | jabberwocky    | true            |         8 |                0
 
 Listing All Schemas in a Database
-------------------------------------
+---------------------------------
 
 .. code-block:: psql
    
@@ -35,7 +36,7 @@ Listing All Schemas in a Database
 
 
 Listing Columns and Their Types for a Specific Table
----------------------------------------------------
+----------------------------------------------------
 
 .. code-block:: postgres
 
@@ -44,7 +45,7 @@ Listing Columns and Their Types for a Specific Table
    WHERE table_name='cool_animals';
 
 Listing Delete Predicates
-------------------------
+-------------------------
 
 .. code-block:: postgres
 
@@ -55,7 +56,7 @@ Listing Delete Predicates
 
 
 Listing Saved Queries
------------------------------
+---------------------
 
 .. code-block:: postgres
 

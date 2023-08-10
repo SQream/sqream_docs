@@ -1,8 +1,9 @@
 .. _catalog_reference_schema_information:
 
-*************************************
+*****************************************
 What Information Does the Schema Contain?
-*************************************
+*****************************************
+
 The schema includes tables designated and relevant for both external and internal use:
 
 .. contents:: 
@@ -10,7 +11,8 @@ The schema includes tables designated and relevant for both external and interna
    :depth: 1
    
 External Tables
------------------
+---------------
+
 The following table shows the data objects contained in the ``sqream_catalog`` schema designated for external use:
 
 .. list-table:: Database Objects
@@ -43,7 +45,8 @@ The following table shows the data objects contained in the ``sqream_catalog`` s
      - ``user_defined_functions``
 
 Internal Tables
------------------
+---------------
+
 The following table shows the data objects contained in the ``sqream_catalog`` schema designated for internal use:
 
 .. list-table:: Storage Objects
