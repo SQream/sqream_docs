@@ -1,8 +1,8 @@
 .. _spooling:
 
-********************************
-Configuring the Spooling Feature
-********************************
+**********************
+Spooling Configuration
+**********************
 
 From the SQreamDB Acceleration Studio you can allocate the amount of memory (GB) available to the server for spooling using the :ref:`spoolMemoryGB flag<spool_memory_gb>`. SQreamDB recommends setting the ``spoolMemoryGB`` flag to 90% of the ``limitQueryMemoryGB`` flag. The ``limitQueryMemoryGB`` flag is the total memory you’ve allocated for processing queries.
 
