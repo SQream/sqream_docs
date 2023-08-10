@@ -4,14 +4,14 @@
 Sizing 
 ******
 
-Concurrency and Scaling in SQreamDB
-===================================
+Concurrency
+===========
 
-A SQreamDB cluster can concurrently run one regular statement per worker process. A number of small statements will execute alongside these statements without waiting or blocking anything.
+SQreamDB's concurrency is facilitated through a cluster of workers, allowing multiple statements to be executed simultaneously. The cluster can concurrently run one statement per worker process. Choosing the right number of workers for each SQreamDB cluster is crucial for finding the right balance between performance and concurrency. Assigning too many workers can cause resource issues, such as not having enough RAM, GRAM, CPU cores, or GPU cores.
 
-SQreamDB supports ``n`` concurrent statements by having ``n`` workers in a cluster.
+The minimum resources required per Worker: 
 
-.. list-table:: Minimum Resource Required Per Worker
+.. list-table:: 
    :widths: auto
    :header-rows: 1
    
@@ -35,8 +35,10 @@ SQreamDB supports ``n`` concurrent statements by having ``n`` workers in a clust
      - 8
      - 8
      - 	
+
+The maximum recommended Workers per GPU:
 	 
-.. list-table:: Maximum Workers Per GPU
+.. list-table::
    :widths: auto
    :header-rows: 1
    
@@ -49,15 +51,16 @@ SQreamDB supports ``n`` concurrent statements by having ``n`` workers in a clust
      - 3	
      - 6
 	 
+Scaling
+=======
 
-
-Scaling When Data Sizes Grow
-----------------------------
+When Data Sizes Grow
+--------------------
 
 For many statements, SQreamDB scales linearly when adding more storage and querying on large data sets. It uses optimized 'brute force' algorithms and implementations, which don't suffer from sudden performance cliffs at larger data sizes.
 
-Scaling When Queries Are Queuing
---------------------------------
+When Queries Are Queuing
+------------------------
 
 SQreamDB scales well by adding more workers, GPUs, and nodes to support more concurrent statements.
 
@@ -83,7 +86,7 @@ Example Configurations
 ----------------------
 
 Setting Spool Memory
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 The following is an example of setting ``spoolMemoryGB`` value per-worker for 512GB of RAM and 4 workers:
 
@@ -104,7 +107,7 @@ The following is an example of setting ``spoolMemoryGB`` value per-worker for 51
    }
 
 Recommended Settings
-~~~~~~~~~~~~~~~~~~~~
+^^^^^^^^^^^^^^^^^^^^
 
 The following is an example of the recommended settings for a machine with 512GB of RAM and 4 workers:
 
