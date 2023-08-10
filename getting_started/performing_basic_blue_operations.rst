@@ -33,7 +33,7 @@ Keep in mind that SQL scripts that are saved and uploaded to the **SQL Scripts**
 
 3. In the **Save As** box, type in a name for your SQL script and select **Save**.
 
-.. tip:: When you choose a name for a SQL script, it is advisable to choose a name that accurately reflects the SQL action or purpose.
+.. tip:: When choosing a SQL script name, it is advisable to accurately reflect the SQL action or purpose.
 
 Editing Saved SQL Scripts
 =========================
