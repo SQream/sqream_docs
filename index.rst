@@ -26,9 +26,6 @@ Whether your enterprise is already cloud-based or planning to migrate, BLUE opti
 **Main Features and Capabilities**
 
 .. glossary::
-
-  GPU Optimization Engine
-      BLUE's performance relies on a patented GPU acceleration technology that synchronizes all available resources (CPU, GPU, RAM) and utilizes the GPU's processing power for even the most complex analytical tasks.
    
   GPU Optimization Engine
       BLUE's performance relies on a patented GPU acceleration technology that synchronizes all available resources (CPU, GPU, RAM) and utilizes the GPU's processing power for even the most complex analytical tasks. 
