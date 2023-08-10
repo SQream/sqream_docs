@@ -4,11 +4,11 @@
 System Architecture
 *******************
 
-This topic includes guides that walk an end-user, database administrator, or system architect through the main ideas behind SQream DB.
+The :ref:`internals_architecture` and :ref:`filesystem_and_filesystem_usage` guides serve as SQreamDB system walk-throughs for end-users, database administrators, and system architects. 
 
-While SQream DB has many similarities to other database management systems, it has some unique and additional capabilities.
 
-Explore the guides below for information about SQream DB's architecture.
+
+While SQreamDB has many similarities to other database management systems, it has some unique and additional capabilities.
 
 .. toctree::
    :maxdepth: 2
@@ -16,5 +16,5 @@ Explore the guides below for information about SQream DB's architecture.
    :glob:
    :titlesonly:
 
-   internals_architecture
-   filesystem_and_filesystem_usage
+   
+   
