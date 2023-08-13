@@ -9,6 +9,8 @@ Concurrency and Scaling in SQreamDB
 
 A SQreamDB cluster can execute one statement per worker process while also supporting the concurrent operation of multiple workers. A number of small statements will execute alongside these statements without waiting or blocking anything.
 
+Utility functions that require little resources such as :ref:`show_server_status`, will be executed regardless of load.
+
 .. list-table:: Minimum Resource Required Per Worker
    :widths: auto
    :header-rows: 1
