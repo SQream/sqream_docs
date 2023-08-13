@@ -22,19 +22,19 @@ The following information is provided:
 
 :ref:`Read more <managing_your_resources>`
 
-Multi-Statement Execution
--------------------------
+Multi-Statement Job Execution
+-----------------------------
 
 July 26, 2023
 
-Multi-statement execution is now supported and you may now execute multiple SQL statements using a single SQL script, providing increased efficiency by streamlining the execution process.
+:ref:`Multi-statement job execution<performing_basic_blue_operations>` is now supported and you may now execute multiple SQL statements using a single SQL script, increasing efficiency by streamlining the execution process.
 
 New Dashboard
 -------------
 
 July 26, 2023
 
-A brand new dashboard that displays Job action metrics, including:
+A brand new single-pane-of-glass dashboard landing page that displays your job action metric:
 
 * Pending jobs
 * running jobs
@@ -42,4 +42,4 @@ A brand new dashboard that displays Job action metrics, including:
 * Total tasks
 * Successful and failed jobs
 
-You can now easily track and analyze important Job action data, gaining valuable insights to optimize performance and productivity.
+You can now easily track and analyze important job action data, gaining valuable insights to optimize performance and productivity.
