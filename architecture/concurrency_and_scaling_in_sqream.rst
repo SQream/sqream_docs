@@ -7,7 +7,7 @@ Sizing
 Concurrency and Scaling in SQreamDB
 ===================================
 
-A SQreamDB cluster can concurrently run one regular statement per worker process. A number of small statements will execute alongside these statements without waiting or blocking anything.
+A SQreamDB cluster can execute one statement per worker process while also supporting the concurrent operation of multiple workers. A number of small statements will execute alongside these statements without waiting or blocking anything.
 
 .. list-table:: Minimum Resource Required Per Worker
    :widths: auto
@@ -25,11 +25,11 @@ A SQreamDB cluster can concurrently run one regular statement per worker process
      - 10 cores per 30 Workers
      - 128 per 1T rows (accumulated for all tables)
      - 	10
-   * - UI
+   * - SqreamDB Acceleration Studio
      - 16
      - 16
      - 	50
-   * - Picker
+   * - Server Picker
      - 8
      - 8
      - 	
@@ -38,16 +38,19 @@ A SQreamDB cluster can concurrently run one regular statement per worker process
    :widths: auto
    :header-rows: 1
    
-   * - T4 (16GB)
-     - V100 (32GB)
-     - A100 (40GB) 
-     - A100 (80GB)
+   * - NVIDIA Tesla T4 (16GB)
+     - NVIDIA Tesla V100 (32GB)
+     - NVIDIA Tesla A100 (40GB) 
+     - NVIDIA Tesla A100 (80GB)
    * - 1
      - 2
      - 3	
      - 6
 	 
 
+.. rubric:: The GPU you are using is not on the list?
+
+Visit `SQreamDB Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ for additional information.
 
 Scaling When Data Sizes Grow
 ----------------------------
