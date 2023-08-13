@@ -11,12 +11,14 @@ To use any of the following connectors, applications, and tools, it is essential
 Access Token Management
 -----------------------
 
-Access tokens are used to establish secure connections with connectors and third-party platforms by providing a means of authentication and authorization. They enhance security by ensuring only authorized entities can access the BLUE cluster, offer granular control over permissions, and support token expiration and revocation. Access tokens help avoid sharing sensitive credentials, enable auditing and logging, and promote compatibility with modern integration practices. 
+Access tokens are used to establish secure connections with connectors and third-party platforms by providing a means of authentication and authorization. They enhance security by ensuring only authorized entities can access the BLUE cluster. Access tokens help manage machine-to-machine communication, enable auditing and logging, and promote compatibility with modern integration practices. 
 
 Creating Access Tokens
 ^^^^^^^^^^^^^^^^^^^^^^
 
 Using connectors and third-party tools requires BLUE clients to be associated with access tokens. Once an access token is generated, you may use it to secure the connection between your BLUE client and the respective BLUE cluster or platform, ensuring authenticated access, controlled data interaction, and enhanced security measures in place.
+
+:ref:`Creating roles<create_role>` before generating access tokens is a best practice.
 
 #. Log in to your BLUE interface and navigate to **Settings** > **Access Token Management**.
 
