@@ -56,7 +56,7 @@ You may manage each of your BLUE clients' access tokens separately.
    * - **Delete**
      - Deletes BLUE client. May be used when a client is no longer needed
    * - **Regenerate Access Token**
-     - Regenerates access token. May be used when your access token expires
+     - Regenerates access token. May be used in the event of a compromised token
 
 ----------------------
 
