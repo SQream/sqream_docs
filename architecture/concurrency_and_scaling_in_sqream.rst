@@ -48,7 +48,7 @@ A SQreamDB cluster can execute one statement per worker process while also suppo
      - 6
 	 
 
-.. rubric:: The GPU you are using is not on the list?
+.. tip:: The GPU you're using is not on the list?
 
 Visit `SQreamDB Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ for additional information.
 
