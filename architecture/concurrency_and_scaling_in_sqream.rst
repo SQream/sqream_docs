@@ -9,8 +9,6 @@ Concurrency and Scaling in SQreamDB
 
 A SQreamDB cluster can concurrently run one regular statement per worker process. A number of small statements will execute alongside these statements without waiting or blocking anything.
 
-SQreamDB supports ``n`` concurrent statements by having ``n`` workers in a cluster.
-
 .. list-table:: Minimum Resource Required Per Worker
    :widths: auto
    :header-rows: 1
