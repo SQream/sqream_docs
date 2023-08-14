@@ -234,12 +234,18 @@ Connecting to a default pool:
 Billing
 -------
 
-Gain a precise understanding of credit consumption, cluster utilization, and historical cluster size changes. This knowledge empowers you to estimate expenses, optimize cluster sizing based on usage, and analyze monthly billing trends.
+**BLUE GPU Uptime** (**BGU**) is a BLUE GPU instance measurement unit that is calculated into monthly fees. The BGU monitor provides precise understanding of credit consumption, cluster utilization, and historical cluster size changes. This knowledge empowers you to estimate expenses, optimize cluster sizing based on usage, and analyze monthly billing trends. 
 
-In the sidebar, go to **Settings** > **Billing**.
+To view the BGU monitor, in the side bar go to **Settings** > **Billing**. 
 
+Credit Consumption
+^^^^^^^^^^^^^^^^^^
 
+Cluster Utilization
+^^^^^^^^^^^^^^^^^^^
 
+Cluster Size Changes
+^^^^^^^^^^^^^^^^^^^^
 
 
 
