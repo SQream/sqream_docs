@@ -11,15 +11,15 @@ All **Resource Pool** operations require a ``ClusterAdmin`` permission.
 Cluster Management
 ------------------
 
+Managing a BLUE cluster involves two core aspects: pools and Workers. Pools serve as organized resource compartments, enabling strategic allocation of processing power and memory based on specific needs. Workers, operating within these pools, execute tasks and process data. By adjusting the number of Workers in each pool, users can optimize resource usage, ensuring efficient task execution and effective utilization of the cluster's capabilities.
+
+Pools
+^^^^^
+
 Pools offer the ability to effectively manage available resources for various purposes within your BLUE cluster. By default, your cluster includes a single default pool that encompasses all the Workers in the cluster. You have the flexibility to create additional pools to further divide the resources based on your specific business needs, priorities, and concurrency preferences. This allocation of resources allows you to have better control over your business priorities and optimize parallelism, resulting in improved resource utilization and overall system efficiency.
 
-Resizing Your Cluster
-^^^^^^^^^^^^^^^^^^^^^
-
-
-
 Creating a New Pool
-^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~
 
 When creating new pools, Workers must be assigned to them. The number of Workers allocated to the new pool will be automatically deducted from your default pool.
 
@@ -30,7 +30,7 @@ When creating new pools, Workers must be assigned to them. The number of Workers
    See full list of :ref:`identifier rules<keywords_and_identifiers>`.
 
 Readjusting Existing Pools
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To readjust an existing pool, the pool must be in either an idle or suspended state.
 
@@ -50,8 +50,90 @@ To readjust an existing pool, the pool must be in either an idle or suspended st
    * Select the pool name in the pool's settings panel and rename pool
 6. To delete pool, go to the three-dot menu located in the top right corner of the pool panel and choose **Delete**.
 
-Managing Performance and Concurrency Preferences
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Managing Pools within a Session
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+You can connect to a specific pool using third-party tools. Additionally, you have the ability to list all of your pools and shift between them within your current session as needed.
+
+Syntax
+""""""
+
+The ``DESCRIBE [RESOURCE] POOLS`` is a CPU based SQL command that lists all of your pools. 
+
+This command requires ``CONNECT`` permission.
+
+.. code-block::
+
+	DESCRIBE [RESOURCE] POOLS
+	DESC [RESOURCE] POOLS
+
+The ``USE [RESOURCE] POOL`` command lets you shift between pools within a session. 
+
+This command requires ``CONNECT`` permission.
+
+.. code-block::
+	
+	USE [RESOURCE] POOL <pool_name>
+	
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Description
+   * - ``pool_name``
+     - Specifies the name of a specific pool you wish to shift to within the current session	
+	
+.. topic:: Using the Editor
+
+	You may also shift between pools within a session using the **Editor**. 
+	
+	In the left-hand side of the ribbon, select a pool from the **Pool** drop-down menu. 
+	
+Examples
+""""""""
+	
+Listing all existing pools:
+
+.. code-block::
+
+	DESCRIBE RESOURCE POOLS;
+
+Shifting between pools:
+
+.. code-block::
+
+	USE POOL bi_pool;
+
+Using Third-Party Tools
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Description
+   * - ``pool``
+     - Specifies the name of a specific pool to connect to
+	 
+Examples
+~~~~~~~~
+
+Connecting to a specified pool:
+
+.. code-block::
+
+	sudo java -jar jdbc-console-0.0.88-43.jar --host=myhost.isqream.com --access-token=######### --pool=bi_pool
+
+Connecting to a default pool:
+
+.. code-block::
+
+	sudo java -jar jdbc-console-0.0.88-43.jar --host=myhost.isqream.com --access-token=#########
+
+Performance and Concurrency Preferences
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Each pool in the system is associated with a parallelism policy that determines whether it prioritizes performance or high concurrency. By configuring different pools with distinct parallelism modes, you can optimize resource usage based on the specific needs of various organizational departments or work groups.
 
@@ -83,12 +165,46 @@ Each pool in the system is associated with a parallelism policy that determines 
 Cost Management
 ---------------
 
+Cost management involves optimizing expenses by efficiently adjusting resources, such as cluster size and worker numbers, based on varying workloads, and utilizing features like environment suspension to temporarily halt billing during periods of inactivity.
+
+Resizing Your Cluster
+^^^^^^^^^^^^^^^^^^^^^
+
+Resizing your cluster provides adaptable and cost-effective resource management by enabling the adjustment of worker numbers in response to changing workloads. This flexibility allows you to optimize costs by reducing the cluster size during periods of lower demand, while also enabling dynamic scaling to meet performance needs during peak times. 
+
+Resize may take 10—30 minutes, during which executed queries continue to run. 
+
+#. To resize your cluster, go to **Settings** > **Cluster Resize**.
+
+#. You may choose between one of the following plans:
+
+.. list-table:: Cluster Sizes
+   :widths: auto
+   :header-rows: 1
+
+   * - Cluster Size
+     - Worker Count
+     - Capability
+   * - Small
+     - 1
+     - Experiment with the BLUE interface 	 	
+   * - Medium
+     - 4
+     - Gain parallelism capabilities such as concurrency and shorter processing duration	
+   * - Large
+     - 10
+     - Take advantage of parallelism capabilities such as concurrency, shorter query times and the ability to adjust resource pool sizes to suit various business needs	
+ 	 
+
+Suspending and Resuming Pools
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 When you suspend an environment, its resources are temporarily released, which allows billing to be paused for a set duration during which the environment is not expected to be used. If your BLUE environment is suspended, it means that your Workers are not operational, and statements cannot be executed. However, after you resume operation, the resource count will return to its pre-suspension value. It's important to note that your cluster remains accessible, and you can still perform administrative actions.
 
 You have the flexibility to manually or automatically suspend and resume each of your pools based on your specific requirements. 
 
 Automatically Suspending and Resuming Pools
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Suspending**
 
@@ -114,7 +230,7 @@ Once the automatic resumption is activated, Workers will automatically be resume
 4. To turn off automatic resumption, toggle **Automatically resume workers** off.
 
 Manually Suspending and Resuming Pools
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **Suspending**
 
@@ -151,90 +267,7 @@ Manually Suspending and Resuming Pools
    The pool you selected is now highlighted.
 4. Under **Suspension Policy**, select **Activate Now**.
 
-------------------
-
-Managing Pools within a Session
--------------------------------
-
-You can connect to a specific pool using third-party tools. Additionally, you have the ability to list all of your pools and shift between them within your current session as needed.
-
-Syntax
-^^^^^^
-
-The ``DESCRIBE [RESOURCE] POOLS`` is a CPU based SQL command that lists all of your pools. 
-
-This command requires ``CONNECT`` permission.
-
-.. code-block::
-
-	DESCRIBE [RESOURCE] POOLS
-	DESC [RESOURCE] POOLS
-
-The ``USE [RESOURCE] POOL`` command lets you shift between pools within a session. 
-
-This command requires ``CONNECT`` permission.
-
-.. code-block::
-	
-	USE [RESOURCE] POOL <pool_name>
-	
-.. list-table::
-   :widths: auto
-   :header-rows: 1
-   
-   * - Parameter
-     - Description
-   * - ``pool_name``
-     - Specifies the name of a specific pool you wish to shift to within the current session	
-	
-.. topic:: Using the Editor
-
-	You may also shift between pools within a session using the **Editor**. 
-	
-	In the left-hand side of the ribbon, select a pool from the **Pool** drop-down menu. 
-	
-Examples
-~~~~~~~~
-	
-Listing all existing pools:
-
-.. code-block::
-
-	DESCRIBE RESOURCE POOLS;
-
-Shifting between pools:
-
-.. code-block::
-
-	USE POOL bi_pool;
-
-Connecting Using Third-Party Tools
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: auto
-   :header-rows: 1
-   
-   * - Parameter
-     - Description
-   * - ``pool``
-     - Specifies the name of a specific pool to connect to
-	 
-Examples
-~~~~~~~~
-
-Connecting to a specified pool:
-
-.. code-block::
-
-	sudo java -jar jdbc-console-0.0.88-43.jar --host=myhost.isqream.com --access-token=######### --pool=bi_pool
-
-Connecting to a default pool:
-
-.. code-block::
-
-	sudo java -jar jdbc-console-0.0.88-43.jar --host=myhost.isqream.com --access-token=#########
-	
+-----------------
 	
 Billing
 -------
