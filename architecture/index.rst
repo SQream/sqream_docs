@@ -16,4 +16,5 @@ The :ref:`internals_architecture` and :ref:`filesystem_and_filesystem_usage` gui
 
    internals_architecture
    filesystem_and_filesystem_usage
+   concurrency_and_scaling_in_sqream
    
