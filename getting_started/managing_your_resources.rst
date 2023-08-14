@@ -13,6 +13,11 @@ Cluster Management
 
 Pools offer the ability to effectively manage available resources for various purposes within your BLUE cluster. By default, your cluster includes a single default pool that encompasses all the Workers in the cluster. You have the flexibility to create additional pools to further divide the resources based on your specific business needs, priorities, and concurrency preferences. This allocation of resources allows you to have better control over your business priorities and optimize parallelism, resulting in improved resource utilization and overall system efficiency.
 
+Resizing Your Cluster
+^^^^^^^^^^^^^^^^^^^^^
+
+
+
 Creating a New Pool
 ^^^^^^^^^^^^^^^^^^^
 
@@ -24,13 +29,13 @@ When creating new pools, Workers must be assigned to them. The number of Workers
    
    See full list of :ref:`identifier rules<keywords_and_identifiers>`.
 
-Editing Existing Pools
-^^^^^^^^^^^^^^^^^^^^^^
+Readjusting Existing Pools
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To edit an existing pool, the pool must be in either an idle or suspended state.
+To readjust an existing pool, the pool must be in either an idle or suspended state.
 
 1. In the sidebar, go to **Settings** and select the **Resource Pool** tab.
-2. Select a pool you wish to edit.
+2. Select a pool you wish to readjust.
    
    The pool you selected is now highlighted.
 
