@@ -250,7 +250,7 @@ To view the BGU monitor, in the side bar go to **Settings** > **Billing**.
       Enables you to select BGU usage date range to examine.  
 
   Grand Total Table
-      Sums up the total BGU usage and grand total to be payed for a specific date range.  
+      Sums up the total BGU usage and grand total to be payed in USD for a specific date range.  
 	 
   Filter Menu 
       Enables you to export monitor view into a CSV, CSV (Excel), or Google Sheets file.
