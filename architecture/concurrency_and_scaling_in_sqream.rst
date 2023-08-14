@@ -4,14 +4,12 @@
 Sizing 
 ******
 
-Concurrency
-===========
+Concurrency and Scaling in SQreamDB
+===================================
 
-SQreamDB's concurrency is facilitated through a cluster of workers, allowing multiple statements to be executed simultaneously. The cluster can concurrently run one statement per worker process. Choosing the right number of workers for each SQreamDB cluster is crucial for finding the right balance between performance and concurrency. Assigning too many workers can cause resource issues, such as not having enough RAM, GRAM, CPU cores, or GPU cores.
+A SQreamDB cluster can execute one statement per worker process while also supporting the concurrent operation of multiple workers. Utility functions with minimal resource requirements, such as :ref:`show_server_status`, will be executed regardless of the workload.
 
-The minimum resources required per Worker: 
-
-.. list-table:: 
+.. list-table:: Minimum Resource Required Per Worker
    :widths: auto
    :header-rows: 1
    
@@ -26,41 +24,41 @@ The minimum resources required per Worker:
    * - Metadata Server
      - 10 cores per 30 Workers
      - 128 per 1T rows (accumulated for all tables)
-     - 	10
-   * - UI
+     - 	10 
+   * - SqreamDB Acceleration Studio
      - 16
      - 16
      - 	50
-   * - Picker
+   * - Server Picker
      - 8
      - 8
      - 	
-
-The maximum recommended Workers per GPU:
 	 
-.. list-table::
+.. list-table:: Maximum Workers Per GPU
    :widths: auto
    :header-rows: 1
    
-   * - T4 (16GB)
-     - V100 (32GB)
-     - A100 (40GB) 
-     - A100 (80GB)
+   * - NVIDIA Tesla T4 (16GB)
+     - NVIDIA Tesla V100 (32GB)
+     - NVIDIA Tesla A100 (40GB) 
+     - NVIDIA Tesla A100 (80GB)
    * - 1
      - 2
      - 3	
      - 6
 	 
-Scaling
-=======
 
-When Data Sizes Grow
---------------------
+.. tip:: The GPU you're using is not on the list?
+
+Visit `SQreamDB Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ for additional information.
+
+Scaling When Data Sizes Grow
+----------------------------
 
 For many statements, SQreamDB scales linearly when adding more storage and querying on large data sets. It uses optimized 'brute force' algorithms and implementations, which don't suffer from sudden performance cliffs at larger data sizes.
 
-When Queries Are Queuing
-------------------------
+Scaling When Queries Are Queuing
+--------------------------------
 
 SQreamDB scales well by adding more workers, GPUs, and nodes to support more concurrent statements.
 
@@ -86,7 +84,7 @@ Example Configurations
 ----------------------
 
 Setting Spool Memory
-^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~
 
 The following is an example of setting ``spoolMemoryGB`` value per-worker for 512GB of RAM and 4 workers:
 
@@ -107,7 +105,7 @@ The following is an example of setting ``spoolMemoryGB`` value per-worker for 51
    }
 
 Recommended Settings
-^^^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~~
 
 The following is an example of the recommended settings for a machine with 512GB of RAM and 4 workers:
 
