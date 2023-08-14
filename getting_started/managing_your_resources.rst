@@ -229,3 +229,19 @@ Connecting to a default pool:
 .. code-block::
 
 	sudo java -jar jdbc-console-0.0.88-43.jar --host=myhost.isqream.com --access-token=#########
+	
+	
+Billing
+-------
+
+Gain a precise understanding of credit consumption, cluster utilization, and historical cluster size changes. This knowledge empowers you to estimate expenses, optimize cluster sizing based on usage, and analyze monthly billing trends.
+
+In the sidebar, go to **Settings** > **Billing**.
+
+
+
+
+
+
+
+
