@@ -9,7 +9,9 @@ Concurrency and Scaling in SQreamDB
 
 A SQreamDB cluster can execute one statement per worker process while also supporting the concurrent operation of multiple workers. Utility functions with minimal resource requirements, such as :ref:`show_server_status`, will be executed regardless of the workload.
 
-.. list-table:: Minimum Resource Required Per Worker
+Minimum Resource Required Per Worker:
+
+.. list-table:: 
    :widths: auto
    :header-rows: 1
    
@@ -33,24 +35,27 @@ A SQreamDB cluster can execute one statement per worker process while also suppo
      - 8
      - 8
      - 	
+
+Maximum Workers Per GPU:
 	 
-.. list-table:: Maximum Workers Per GPU
+.. list-table:: 
    :widths: auto
    :header-rows: 1
    
-   * - NVIDIA Tesla T4 (16GB)
-     - NVIDIA Tesla V100 (32GB)
-     - NVIDIA Tesla A100 (40GB) 
-     - NVIDIA Tesla A100 (80GB)
-   * - 1
+   * - GPU
+     - Workers
+   * - NVIDIA Tesla T4 (16GB) 
+     - 1
+   * - NVIDIA Tesla V100 (32GB)
      - 2
-     - 3	
+   * - NVIDIA Tesla A100 (40GB)	
+     - 3
+   * - NVIDIA Tesla A100 (80GB)	
      - 6
 	 
 
-.. tip:: The GPU you're using is not on the list?
 
-Visit `SQreamDB Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ for additional information.
+.. tip:: Your GPU is not on the list? Visit `SQreamDB Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ for additional information.
 
 Scaling When Data Sizes Grow
 ----------------------------
