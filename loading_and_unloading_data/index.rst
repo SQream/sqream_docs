@@ -25,9 +25,9 @@ The **Loading Data** section describes concepts and operations related to import
 
 * Troubleshooting - Describes troubleshooting solutions related to importing data from the following:
 
-  * `SAS Viya <https://docs.sqream.com/en/latest/troubleshooting/sas_viya_related_issues.html>`_
+  * :ref:`SAS Viya <connect_to_sas_viya>`
 
-  * `Tableau <https://docs.sqream.com/en/latest/troubleshooting/tableau_related_issues.html>`_
+  * :ref:`Tableau <tableau>`
   
 The **Unloading Data** section describes concepts and operations related to exporting data from your SQream database:
 
