@@ -17,13 +17,7 @@ The following is the syntax for the ``DESCRIBE CONFIGURATION`` command:
 .. code-block:: postgres
 
    DESCRIBE CONFIGURATION [PARAMETER <parameter>] [LIKE 'pattern']
-   DESC CONFIGURATION [PARAMETER <parameter>] [LIKE 'pattern']
-   
-The ``[LIKE 'pattern']`` is used to define a wildcard pattern containing one or more characters in a string. For example, defining it as ``'%port%'`` will describe all configurations containing the string ``port,`` as in ``portSsl``.
-
-For an example of an output, see the :ref:`Output<output>` section below.
-     
-.. note::  The ``DESCRIBE_CONFIGURATION`` arguments (``CONFIGURATION`` and ``PARAMETER``) can be written in either short (``CONFIG``, ``PARAM``) or long format (``CONFIGURATION``, ``PARAMETER``).
+   DESC CONFIG [PARAM <parameter>] [LIKE 'pattern']
    
 Parameters
 ==========
@@ -34,43 +28,18 @@ The following parameters can be used when switching databases with the ``DESCRIB
    :widths: auto
    :header-rows: 1
    
-   * - Parameter Name
-     - Parameter Value
+   * - Parameter
      - Description
-     - Type
    * - ``PARAMETER``
-     - ``parameter``
      - Describes the specified configuration parameter, listing all parameters if nothing is specified.
-     - Text
-   * - ``LIKE 'pattern'``
-     - ``'pattern'``
-     - Describes all configurations containing the defined string.
-     - Text
+   * - ``LIKE``
+     - The ``LIKE`` operator is used to perform pattern matching within strings.
+   * - ``%``
+     - The ``%`` wildcard is used in conjunction with the ``LIKE`` operator to match any sequence of characters (including none) within a string.
 
-Example
-=======
-
-The following is an example of the ``DESCRIBE CONFIGURATION`` command:
-
-.. code-block:: postgres   
-
-   DESCRIBE CONFIGURATION PARAMETER PORT LIKE '%PORT%';
-
-.. _output:
-	 
 Output
 ======
 
-The **Output** section shows individual output examples of the following arguments:
-
-.. contents:: 
-   :local:
-   :depth: 1
-   
-DESCRIBE CONFIGURATION
-----------------------
-
-Using the ``DESCRIBE CONFIGURATION`` command generates the following output:
 
 .. list-table:: 
    :widths: auto
@@ -108,16 +77,21 @@ Using the ``DESCRIBE CONFIGURATION`` command generates the following output:
      - Displays the description of the flag.
      - Text
      - Configuration file only. This flag can only be set before the daemon starts. It cannot be changed dynamically. Port conflicts will cause the server not to start. If the daemon has started, this was probably set correctly. Connect with a client such as CLI.
-	 
-The following is an example of the ``DESCRIBE CONFIGURATION`` command:
- 
-.. code-block:: postgres   
-	 
-   describe configuration;
- 
-The following is an example of the generated output of the ``DESCRIBE CONFIGURATION`` command:
 
+Example
+=======
+
+.. code-block:: sql
+
+	   DESCRIBE CONFIGURATION;
+ 
 .. code-block:: postgres   
+
+	DESCRIBE CONFIGURATION PARAMETER PORT LIKE '%PORT%';
+
+Output:
+
+.. code-block:: none  
 
    flag_name                         |flag_value                                     |def_flag_value|flag_category|flag_type|data_type|description                                                                                                                                                                                                                                                    |
    ----------------------------------+-----------------------------------------------+--------------+-------------+---------+---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -133,28 +107,25 @@ The following is an example of the ``DESCRIBE CONFIGURATION PARAMETER`` command:
  
 .. code-block:: postgres   
 	 
-   describe config param port;
+	DESCRIBE CONFIGURATION PARAMETER PORT;
    
-The following is an example of the generated output of the ``DESCRIBE CONFIGURATION PARAMETER`` command:
+Output:
 
-.. code-block:: postgres   
+.. code-block:: none  
 
    flag_name|flag_value|def_flag_value|flag_category|flag_type|data_type|description|
    ---------+----------+--------------+-------------+---------+---------+-----------+
    port     |5000      |5000          |RND          |worker   |         |           |
 
-DESCRIBE CONFIGURATION LIKE PATTERN
------------------------------------
 
-The following is an example of the ``DESCRIBE CONFIGURATION LIKE PATTERN`` command:
- 
-.. code-block:: postgres   
+.. code-block:: sql   
 	 
-   describe config like '%port%';
+   DESCRIBE CONFIGURATION LIKE '%port%';
    
-The following is an example of the generated output of the ``DESCRIBE CONFIGURATION LIKE PATTERN`` command:
+Output
 
-.. code-block:: postgres
+.. code-block:: none
+
    flag_name|flag_value|def_flag_value|flag_category|flag_type|data_type|description                                                                                                                                                                                                                                                    |
    ---------+----------+--------------+-------------+---------+---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    port     |5000      |5000          |RND          |worker   |         |                                                                                                                                                                                                                                                               |
