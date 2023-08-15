@@ -4,7 +4,7 @@
 DESCRIBE LOCKS
 **************
 
-The ``DESCRIBE LOCKS`` command replaces the :ref:`show_locks` command. You can use it to return a list of locks from across your cluster.
+Returns a list of locks from across your cluster.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
