@@ -26,7 +26,7 @@ author = 'SQream Documentation'
 
 
 # The full version, including alpha/beta/rc tags
-release = '2022.1.5'
+release = '4.1'
 
 
 
