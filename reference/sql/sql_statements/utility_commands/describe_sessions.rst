@@ -4,7 +4,7 @@
 DESCRIBE SESSIONS
 *****************
 
-The ``DESCRIBE SESSIONS`` command outputs information about your current session. This command replaces the `SHOW_SERVER_STATUS <https://docs.sqream.com/en/latest/reference/sql/sql_functions/system_functions/show_server_status.html>`_ command.
+The ``DESCRIBE SESSIONS`` command returns information about your current session.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
