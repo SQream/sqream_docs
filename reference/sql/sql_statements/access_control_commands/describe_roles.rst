@@ -4,7 +4,7 @@
 DESCRIBE ROLES
 **************
 
-You may use the ``DESCRIBE ROLES`` command to list all roles defined in your system. Since SQream roles refer to both users and their assigned privileges, you will receive a list of users along with the associated name, privileges, login, and a password if it exists.
+You may use the ``DESCRIBE ROLES`` command to list all roles defined in your system. Since BLUE roles refer to both users and their assigned privileges, you will receive a list of users along with the associated name, privileges, login, and password if exists.
 
 .. note:: 
 	
@@ -25,14 +25,12 @@ Parameters
    :widths: auto
    :header-rows: 1
    
-   * - Parameter Name
-     - Parameter Value
+   * - Parameter
      - Description
-     - Type
    * - ``LIKE``
-     - ``pattern``
-     - Optional parameter for filtering by role name using wildcards.
-     - TEXT
+     - The ``LIKE`` operator is used to perform pattern matching within strings.
+   * - ``%``
+     - The ``%`` wildcard is used in conjunction with the ``LIKE`` operator to match any sequence of characters (including none) within a string.
 
 
 Output
