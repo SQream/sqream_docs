@@ -31,6 +31,6 @@ The **Loading Data** section describes concepts and operations related to import
   
 The **Unloading Data** section describes concepts and operations related to exporting data from your SQream database:
 
-* `Overview of unloading data <https://docs.sqream.com/en/latest/operational_guides/external_tables.html>`_ - Describes best practices and considerations for unloading data from SQream to a variety of sources and locations.
+* `Overview of unloading data <https://docs.sqream.com/en/latest/operational_guides/foreign_tables.html>`_ - Describes best practices and considerations for unloading data from SQream to a variety of sources and locations.
 
 * `The COPY TO statement <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/copy_to.html>`_ - Used for unloading data from a SQream database table or query to a file on a filesystem.
