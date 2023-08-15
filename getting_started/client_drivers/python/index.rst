@@ -119,9 +119,10 @@ To validate your Pandas connection to BLUE, run the following script and make su
 	engine = sa.create_engine(conn_str, connect_args=connect_args)
 	conn = engine.connect()
 
-	table_df = pd.read_sql("select * from nba", con=engine)
+	table_df = pd.read_sql("select * from nba", engine)
 	print(table_df)
-
+	conn.close()
+	engine.dispose()
 
 Troubleshooting
 ===============
