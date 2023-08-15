@@ -3,7 +3,7 @@
 ********************
 Configuration Levels
 ********************
- 
+  
 SQream's configuration parameters are based on the following hierarchy:
 
 .. contents:: 
