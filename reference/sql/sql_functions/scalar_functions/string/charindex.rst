@@ -4,7 +4,7 @@
 CHARINDEX
 *********
 
-``CHARINDEX`` is a 1-based indexing function that returns the starting position of a specified substring within a given string. 
+``CHARINDEX`` is a 1-based indexing function (both input and output) that returns the starting position of a specified substring within a given string. 
 
 
 See also :ref:`patindex`, :ref:`regexp_instr`.
@@ -39,25 +39,24 @@ Integer start position of a match, or 0 if no match was found.
 
 If one of the parameters is NULL, then the return value is NULL.
 
+Empty string search returns 0.
+
 Examples
 ========
 
-For these examples, consider the following table and contents:
+For these examples, consider the following table:
 
-.. code-block:: sql
+.. code-block:: none
 
-      CREATE TABLE users (
-          id INT,
-          username TEXT,
-          email TEXT,
-          password TEXT
-      );
-
-      INSERT INTO users (id, username, email, password)
-      VALUES (1, 'john_doe', 'john.doe@example.com', 'password1'),
-             (2, 'jane_doe', 'jane.doe@example.com', 'password2'),
-             (3, 'bob_smith', 'bob.smith@example.com', 'password3'),
-             (4, 'susan_jones', 'susan.jones@example.com', 'password4');
+	id  | username	  | email                   | password	
+	----+-------------+-------------------------+-----------
+	1   | john_doe    | john.doe@example.com    | password1
+	----+-------------+-------------------------+-----------
+	2   | jane_doe    | jane.doe@example.com    | password2
+	----+-------------+-------------------------+-----------
+	3   | bob_smith   | bob.smith@example.com   | password3
+	----+-------------+-------------------------+-----------
+	4   | susan_jones | susan.jones@example.com | password4
 
 
 Using ``CHARINDEX``
