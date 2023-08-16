@@ -278,9 +278,8 @@ You can add and name new tabs for each statement that you need to execute, and S
 
 You can also rename the default tab name by double-clicking it and typing a new name and write multiple statements in tandem in the same tab by separating them with semicolons (``;``).If too many tabs to fit into the Statement Pane are open at the same time, the tab arrows are displayed. You can scroll through the tabs by clicking |icon-left| or |icon-right|, and close tabs by clicking |icon-close|. You can also close all tabs at once by clicking **Close all** located to the right of the tabs.
 
-.. tip:: If this is your first time using SQreamDB, see :ref:`Getting Started <getting_started>`.
 
-
+ 
 .. Keyboard shortcuts
 .. ^^^^^^^^^^^^^^^^^^
 
