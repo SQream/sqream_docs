@@ -26,10 +26,13 @@ Parameters
    :header-rows: 1
    
    * - Parameter
+     - Parameter Value
      - Description
    * - ``LIKE``
+     - ``pattern``
      - The ``LIKE`` operator is used to perform pattern matching within strings.
    * - ``%``
+     -
      - The ``%`` wildcard is used in conjunction with the ``LIKE`` operator to match any sequence of characters (including none) within a string.
 
 

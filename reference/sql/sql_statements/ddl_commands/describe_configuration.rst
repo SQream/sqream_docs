@@ -29,12 +29,16 @@ The following parameters can be used when switching databases with the ``DESCRIB
    :header-rows: 1
    
    * - Parameter
+     - Parameter Value
      - Description
    * - ``PARAMETER``
-     - Describes the specified configuration parameter, listing all parameters if nothing is specified.
+     - ``parameter``
+     - Specifies a particular configuration parameter. If no parameter is specified, it lists all configuration parameters.
    * - ``LIKE``
+     - ``pattern``
      - The ``LIKE`` operator is used to perform pattern matching within strings.
    * - ``%``
+     -
      - The ``%`` wildcard is used in conjunction with the ``LIKE`` operator to match any sequence of characters (including none) within a string.
 
 Output
@@ -51,11 +55,11 @@ Output
      - Example
    * - ``flag_name``
      - Displays the name of the flag.
-     - Text
+     - TEXT
      - portSsl
    * - ``flag_value``
      - Displays the value of the flag.
-     - Numeric
+     - NUMERIC
      - 433
    * - ``def_flag_value``
      - Displays the default value of the flag.
@@ -63,50 +67,26 @@ Output
      - 433
    * - ``flag_category``
      - Displays the category of the flag.
-     - Text
+     - TEXT
      - RND
    * - ``flag_type``
      - Displays the type of the flag.
-     - Text
+     - TEXT
      - worker
    * - ``data_type``
      - Displays the data type.
-     - Text
+     - TEXT
      - 
    * - ``description``
      - Displays the description of the flag.
-     - Text
+     - TEXT
      - Configuration file only. This flag can only be set before the daemon starts. It cannot be changed dynamically. Port conflicts will cause the server not to start. If the daemon has started, this was probably set correctly. Connect with a client such as CLI.
 
 Example
 =======
-
-.. code-block:: sql
-
-	   DESCRIBE CONFIGURATION;
- 
-.. code-block:: postgres   
-
-	DESCRIBE CONFIGURATION PARAMETER PORT LIKE '%PORT%';
-
-Output:
-
-.. code-block:: none  
-
-   flag_name                         |flag_value                                     |def_flag_value|flag_category|flag_type|data_type|description                                                                                                                                                                                                                                                    |
-   ----------------------------------+-----------------------------------------------+--------------+-------------+---------+---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   gpu                               |0                                              |0             |RND          |worker   |         |                                                                                                                                                                                                                                                               |
-   port                              |5000                                           |5000          |RND          |worker   |         |                                                                                                                                                                                                                                                               |
-   portSsl                           |433                                            |433           |RND          |worker   |         |Configuration file only. This flag can only be set before the daemon starts. It cannot be changed dynamically. Port conflicts will cause the server not to start. If the daemon has started, this was probably set correctly. Connect with a client such as Cli|
-   cluster                           |"\/mnt\/sqream\/sqreamdb"                      |              |RND          |worker   |         |                                                                                                                                                                                                                                                               |
-   metadataPath                      |"\/mnt\/sqream\/sqreamdb\/leveldb"             |              |RND          |worker   |         |                                                                                                                                                                                                                                                               |
-DESCRIBE CONFIGURATION PARAMETER
---------------------------------
-
-The following is an example of the ``DESCRIBE CONFIGURATION PARAMETER`` command:
- 
-.. code-block:: postgres   
-	 
+	   
+.. code-block:: sql   
+	   
 	DESCRIBE CONFIGURATION PARAMETER PORT;
    
 Output:
@@ -130,6 +110,24 @@ Output
    ---------+----------+--------------+-------------+---------+---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    port     |5000      |5000          |RND          |worker   |         |                                                                                                                                                                                                                                                               |
    portSsl  |433       |433           |RND          |worker   |         |Configuration file only. This flag can only be set before the daemon starts. It cannot be changed dynamically. Port conflicts will cause the server not to start. If the daemon has started, this was probably set correctly. Connect with a client such as Cli|
+ 
+.. code-block:: sql   
+
+	DESCRIBE CONFIGURATION PARAMETER PORT LIKE '%PORT%';
+
+Output:
+
+.. code-block:: none  
+
+   flag_name                         |flag_value                                     |def_flag_value|flag_category|flag_type|data_type|description                                                                                                                                                                                                                                                    |
+   ----------------------------------+-----------------------------------------------+--------------+-------------+---------+---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+   gpu                               |0                                              |0             |RND          |worker   |         |                                                                                                                                                                                                                                                               |
+   port                              |5000                                           |5000          |RND          |worker   |         |                                                                                                                                                                                                                                                               |
+   portSsl                           |433                                            |433           |RND          |worker   |         |Configuration file only. This flag can only be set before the daemon starts. It cannot be changed dynamically. Port conflicts will cause the server not to start. If the daemon has started, this was probably set correctly. Connect with a client such as Cli|
+   cluster                           |"\/mnt\/sqream\/sqreamdb"                      |              |RND          |worker   |         |                                                                                                                                                                                                                                                               |
+   metadataPath                      |"\/mnt\/sqream\/sqreamdb\/leveldb"             |              |RND          |worker   |         |                                                                                                                                                                                                                                                               |
+	 
+
 
 Permissions
 ===========
