@@ -110,23 +110,6 @@ Output
    ---------+----------+--------------+-------------+---------+---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
    port     |5000      |5000          |RND          |worker   |         |                                                                                                                                                                                                                                                               |
    portSsl  |433       |433           |RND          |worker   |         |Configuration file only. This flag can only be set before the daemon starts. It cannot be changed dynamically. Port conflicts will cause the server not to start. If the daemon has started, this was probably set correctly. Connect with a client such as Cli|
- 
-.. code-block:: sql   
-
-	DESCRIBE CONFIGURATION PARAMETER PORT LIKE '%PORT%';
-
-Output:
-
-.. code-block:: none  
-
-   flag_name                         |flag_value                                     |def_flag_value|flag_category|flag_type|data_type|description                                                                                                                                                                                                                                                    |
-   ----------------------------------+-----------------------------------------------+--------------+-------------+---------+---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   gpu                               |0                                              |0             |RND          |worker   |         |                                                                                                                                                                                                                                                               |
-   port                              |5000                                           |5000          |RND          |worker   |         |                                                                                                                                                                                                                                                               |
-   portSsl                           |433                                            |433           |RND          |worker   |         |Configuration file only. This flag can only be set before the daemon starts. It cannot be changed dynamically. Port conflicts will cause the server not to start. If the daemon has started, this was probably set correctly. Connect with a client such as Cli|
-   cluster                           |"\/mnt\/sqream\/sqreamdb"                      |              |RND          |worker   |         |                                                                                                                                                                                                                                                               |
-   metadataPath                      |"\/mnt\/sqream\/sqreamdb\/leveldb"             |              |RND          |worker   |         |                                                                                                                                                                                                                                                               |
-	 
 
 
 Permissions

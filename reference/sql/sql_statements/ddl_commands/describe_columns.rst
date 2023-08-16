@@ -4,7 +4,7 @@
 DESCRIBE COLUMNS
 ****************
 
-The ``DESCRIBE COLUMNS`` command lets you list information about columns in an internal or external table.
+The ``DESCRIBE COLUMNS`` command lets you list information about table columns.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
@@ -15,44 +15,36 @@ The following is the syntax for the ``DESCRIBE COLUMNS`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE COLUMNS [ SCHEMA <schema_name> ] [ DATABASE  <database_name> ] TABLE <table_name>
-   DESC COLUMNS [ SCHEMA <schema_name> ] [ DATABASE  <database_name> ] TABLE <table_name>
+   DESCRIBE COLUMNS [ SCHEMA <schema_name> ] [ DATABASE  <database_name> ] TABLE <table_name> [LIKE 'column_name']
+   DESC COLUMNS [ SCHEMA <schema_name> ] [ DATABASE  <database_name> ] TABLE <table_name> [LIKE 'column_name']
 
 Parameters
 ==========
-
-The following parameters can be used with the ``DESCRIBE COLUMNS`` command:
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
-   * - Parameter Name
+   * - Parameter
      - Parameter Value
      - Description
-     - Type
    * - ``DATABASE``
      - ``database_name``
      - Optional - The name of the database.
-     - Text
    * - ``SCHEMA``
      - ``schema_name``
      - Optional - The name of the schema.
-     - Text
    * - ``TABLE``
      - ``table_name``
      - The name of the table.
-     - Text
+   * - ``LIKE``
+     - ``column_name``
+     - The ``LIKE`` operator is used to perform pattern matching within strings.
+   * - ``%``
+     -
+     - The ``%`` wildcard is used in conjunction with the ``LIKE`` operator to match any sequence of characters (including none) within a string.
+   
 	 
-Examples
-========
-
-The following is an example of the ``DESCRIBE COLUMNS`` command:
-
-.. code-block:: postgres
-
-   DESCRIBE COLUMNS DATABASE master SCHEMA public TABLE t1;
-   	 
 Output
 ======
 
@@ -68,48 +60,84 @@ Using the ``DESCRIBE COLUMNS`` command generates the following output:
      - Example
    * - ``database_name``
      - Displays the name of the database.
-     - Text
+     - TEXT
      - master
    * - ``schema_name``
      - Displays the name of the schema.
-     - Text
+     - TEXT
      - public
    * - ``table_name``
      - Displays the name of the table.
-     - Text
+     - TEXT
      - cool_animals
    * - ``is_nullable``
      - Displays whether the column can contain ``null`` values.
-     - Text
+     - TEXT
      - false	 
    * - ``table_id``
      - Displays the ID of the table.
-     - Integer
+     - INTEGER
      - 2		 
    * - ``column_name``
      - Displays the name of the column.
-     - Text
+     - TEXT
      - id
    * - ``type_name``
      - Displays the data type of the column.
-     - Text
+     - TEXT
      - INT
    * - ``default_value``
      - Displays the column default value if one exists.
-     - Integer
+     - INTEGER
      - 0
    * - ``created``
      - Displays the table's creation date and timestamp.
-     - Date
+     - DATE
      - 2022-06-09 05:06:6:33	 
    * - ``column_size``
      - Displays the size of the column in bytes.
      - Integer
-     - 4 	 
+     - 4 	
+	 
+Examples
+========
 
-The following is an example of the generated output in Studio:
+The following is an example of the ``DESCRIBE COLUMNS`` command:
 
-.. image:: /_static/images/describe_columns.png
+.. code-block:: sql
+
+	DESCRIBE COLUMNS DATABASE master SCHEMA public TABLE nba;
+   	 
+ 
+Output:
+
+.. code-block:: none
+
+	database_name|schema_name|table_name|is_nullable|column_name|type_name|default_value|created            |column_size|
+	-------------+-----------+----------+-----------+-----------+---------+-------------+-------------------+-----------+
+	master       |public     |nba       |true       |name       |NVARCHAR |             |2023-08-08 06:47:47|0          |
+	master       |public     |nba       |true       |team       |NVARCHAR |             |2023-08-08 06:47:47|0          |
+	master       |public     |nba       |true       |number     |INT      |0            |2023-08-08 06:47:47|4          |
+	master       |public     |nba       |true       |position   |NVARCHAR |             |2023-08-08 06:47:47|0          |
+	master       |public     |nba       |true       |age        |INT      |0            |2023-08-08 06:47:47|4          |
+	master       |public     |nba       |true       |height     |NVARCHAR |             |2023-08-08 06:47:47|0          |
+	master       |public     |nba       |true       |weight     |INT      |0            |2023-08-08 06:47:47|4          |
+	master       |public     |nba       |true       |college    |NVARCHAR |             |2023-08-08 06:47:47|0          |
+	master       |public     |nba       |true       |salary     |INT      |0            |2023-08-08 06:47:47|4          |
+	master       |public     |nba       |true       |name0      |NVARCHAR |             |2023-08-08 06:47:47|0          |
+
+.. code-block:: sql
+
+	DESCRIBE COLUMNS DATABASE master SCHEMA public TABLE nba LIKE '%name%';
+	
+Output:
+
+.. code-block:: none
+
+	database_name|schema_name|table_name|is_nullable|column_name|type_name|default_value|created            |column_size|
+	-------------+-----------+----------+-----------+-----------+---------+-------------+-------------------+-----------+
+	master       |public     |nba       |true       |name       |NVARCHAR |             |2023-08-08 06:47:47|0          |
+	master       |public     |nba       |true       |name0      |NVARCHAR |             |2023-08-08 06:47:47|0          |
 
 Permissions
 ===========

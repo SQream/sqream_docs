@@ -15,18 +15,25 @@ The following is the syntax for the ``DESCRIBE DATABASES`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE DATABASES
-   DESC DATABASES
+   DESCRIBE DATABASES [LIKE 'pattern']
+   DESC DATABASES [LIKE 'pattern']
 
 Parameters
 ==========
 
-The ``DESCRIBE DATABASES`` command has no parameters.
-
-Example
-=======
-
-The ``DESCRIBE_DATABASES`` command has no parameters.
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Parameter Value
+     - Description
+   * - ``LIKE``
+     - ``pattern``
+     - The ``LIKE`` operator is used to perform pattern matching within strings.
+   * - ``%``
+     -
+     - The ``%`` wildcard is used in conjunction with the ``LIKE`` operator to match any sequence of characters (including none) within a string.
 
 Output
 ======
@@ -43,20 +50,47 @@ Using the ``DESCRIBE DATABASES`` command generates the following output:
      - Example
    * - ``database_name``
      - Displays the name of the database.
-     - Text
+     - TEXT
      - master
    * - ``created_on``
      - Displays the date and time when the database was created.
-     - Date
+     - DATE
      - 2022-04-12 15:10:38
    * - ``is_current``
      - Displays the database that you are currently connected to.
-     - Boolean
+     - BOOLEAN
      - 1
 	     
-The following is an example of the generated output in Studio:
+Examples
+========
 
-.. image:: /_static/images/describe_databases.png
+.. code-block:: sql   
+	   
+	DESCRIBE DATABASES;
+
+Output:
+
+.. code-block:: none
+
+	database_name|created_on         |is_current|
+	-------------+-------------------+----------+
+	master       |2023-06-29 19:48:43|true      |
+	student      |2023-08-16 08:57:56|false     |
+	teacher      |2023-08-16 08:58:25|false     |
+	teacher1     |2023-08-16 08:58:45|false     |
+	teacher2     |2023-08-16 08:58:52|false     |
+	
+.. code-block:: sql   
+	   
+	DESCRIBE DATABASES LIKE '%teacher%';
+	
+.. code-block:: none
+	
+	database_name|created_on         |is_current|
+	-------------+-------------------+----------+
+	teacher      |2023-08-16 08:58:25|false     |
+	teacher1     |2023-08-16 08:58:45|false     |
+	teacher2     |2023-08-16 08:58:52|false     |
 
 Permissions
 ===========

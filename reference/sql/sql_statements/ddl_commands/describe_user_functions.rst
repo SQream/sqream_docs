@@ -15,8 +15,8 @@ The following is the syntax for the ``DESCRIBE USER FUNCTIONS`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE USER FUNCTIONS [DATABASE <database_name>]
-   DESC USER FUNCTIONS [DATABASE <database_name>]
+   DESCRIBE USER FUNCTIONS [DATABASE <database_name>] [LIKE 'pattern']
+   DESC USER FUNCTIONS [DATABASE <database_name>] [LIKE 'pattern']
 
 Parameters
 ==========
@@ -27,14 +27,19 @@ The following parameters can be used with the ``DESCRIBE USER FUNCTIONS`` comman
    :widths: auto
    :header-rows: 1
    
-   * - Parameter Name
+   * - Parameter
      - Parameter Value
      - Description
-     - Type
    * - ``DATABASE``
      - ``database_name``
-     - The name of the database containing user-defined functions.
-     - Text
+     - The name of the database containing user-defined functions
+   * - ``LIKE``
+     - ``pattern``
+     - The ``LIKE`` operator is used to perform pattern matching within strings
+   * - ``%``
+     -
+     - The ``%`` wildcard is used in conjunction with the ``LIKE`` operator to match any sequence of characters (including none) within a string
+  
 	 
 Example
 =======
