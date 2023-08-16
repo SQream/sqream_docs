@@ -15,8 +15,8 @@ The following is the syntax for the ``DESCRIBE SCHEMAS`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE SCHEMAS [DATABASE <database_name>]
-   DESC SCHEMAS [DATABASE <database_name>]
+   DESCRIBE SCHEMAS [DATABASE <database_name>] [LIKE 'schema_name']
+   DESC SCHEMAS [DATABASE <database_name>] [LIKE 'schema_name']
 
 Parameters
 ==========
@@ -27,24 +27,23 @@ The following parameters can be used with the ``DESCRIBE SCHEMAS`` command:
    :widths: auto
    :header-rows: 1
    
-   * - Parameter Name
+   * - Parameter
      - Parameter Value
      - Description
-     - Type
    * - ``DATABASE``
      - ``database_name``
-     - The name of the database.
-     - Text
-	 
-Example
-=======
+     - The name of the database to search within
+   * - ``LIKE``
+     - ``pattern``
+     - The ``LIKE`` operator is used to perform pattern matching within strings.
+   * - ``%``
+     -
+     - The ``%`` wildcard is used in conjunction with the ``LIKE`` operator to match any sequence of characters (including none) within a string.
+   
 
-The following is an example of the ``DESCRIBE SCHEMAS`` command:
 
-.. code-block:: postgres
 
-   DESCRIBE SCHEMAS DATABASE master;
-   	 
+	
 Output
 ======
 
@@ -70,12 +69,34 @@ Using the ``DESCRIBE SCHEMAS`` command generates the following output:
      - Displays the schema owner.
      - Text
      - sqream
+	
+Examples
+========
+
+.. code-block:: sql
+
+   DESCRIBE SCHEMAS DATABASE master;
+   	 
+	schema_id|schema_name|schema_owner|
+	---------+-----------+------------+
+	0        |public     |sqream      |
+	1        |staging_new|            |
+	4        |stage      |            |
+	5        |staging_1  |            |
+	6        |staging_2  |            |
      
-The following is an example of the generated output in Studio:
+.. code-block:: sql
 
-.. image:: /_static/images/describe_schemas.png
+	DESCRIBE SCHEMAS DATABASE master LIKE '%stag%';
 
-**Comment** - *Do we currently support rechunker_ignore? Compare screenshot with table above. Also, the "o" in "schema_id" and "rechunker_ignore" are lower case o's, not 0's.*
+.. code-block:: none
+
+	schema_id|schema_name|schema_owner|
+	---------+-----------+------------+
+	1        |staging_new|            |
+	4        |stage      |            |
+	5        |staging_1  |            |
+	6        |staging_2  |            |
 
 Permissions
 ===========
