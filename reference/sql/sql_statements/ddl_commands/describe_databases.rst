@@ -15,8 +15,8 @@ The following is the syntax for the ``DESCRIBE DATABASES`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE DATABASES [LIKE 'pattern']
-   DESC DATABASES [LIKE 'pattern']
+   DESCRIBE DATABASES [LIKE 'database_name']
+   DESC DATABASES [LIKE 'database_name']
 
 Parameters
 ==========
@@ -29,7 +29,7 @@ Parameters
      - Parameter Value
      - Description
    * - ``LIKE``
-     - ``pattern``
+     - ``database_name``
      - The ``LIKE`` operator is used to perform pattern matching within strings.
    * - ``%``
      -
