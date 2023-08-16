@@ -15,8 +15,8 @@ The following is the syntax for the ``DESCRIBE TABLES`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE TABLES[DATABASE database_name.] [SCHEMA schema_name.] [ALL|INTERNAL|EXTERNAL] [LIKE 'table_name']
-   DESC TABLES[DATABASE database_name.] [SCHEMA schema_name.] [ALL|INTERNAL|EXTERNAL] [LIKE 'table_name']
+   DESCRIBE TABLES [ SCHEMA <schema_name> ] [ DATABASE  <database_name> ] [ALL|INTERNAL|EXTERNAL] [LIKE 'table_name']
+   DESC TABLES [ SCHEMA <schema_name> ] [ DATABASE  <database_name> ] [ALL|INTERNAL|EXTERNAL] [LIKE 'table_name']
 
 
 Parameters
@@ -95,7 +95,7 @@ Examples
 
 .. code-block:: postgres
 
-   DESCRIBE TABLES DATABASE master SCHEMA public EXTERNAL;
+   DESCRIBE TABLES SCHEMA public DATABASE master EXTERNAL;
 
 .. code-block:: none
 
@@ -120,7 +120,7 @@ Examples
 
 .. code-block:: postgres
 
-  DESCRIBE TABLES DATABASE master SCHEMA public like '%records%';
+  DESCRIBE TABLES SCHEMA public DATABASE master like '%records%';
   
 .. code-block:: none
 
