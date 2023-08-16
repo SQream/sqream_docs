@@ -15,8 +15,8 @@ The following is the syntax for the ``DESCRIBE USER FUNCTIONS`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE USER FUNCTIONS [DATABASE <database_name>] [LIKE 'pattern']
-   DESC USER FUNCTIONS [DATABASE <database_name>] [LIKE 'pattern']
+   DESCRIBE USER FUNCTIONS [DATABASE <database_name>] [LIKE 'function_name']
+   DESC USER FUNCTIONS [DATABASE <database_name>] [LIKE 'function_name']
 
 Parameters
 ==========
@@ -34,22 +34,12 @@ The following parameters can be used with the ``DESCRIBE USER FUNCTIONS`` comman
      - ``database_name``
      - The name of the database containing user-defined functions
    * - ``LIKE``
-     - ``pattern``
+     - ``function_name``
      - The ``LIKE`` operator is used to perform pattern matching within strings
    * - ``%``
      -
      - The ``%`` wildcard is used in conjunction with the ``LIKE`` operator to match any sequence of characters (including none) within a string
   
-	 
-Example
-=======
-
-The following is an example of the ``DESCRIBE USER FUNCTIONS`` command:
-
-.. code-block:: postgres
-
-   DESCRIBE USER FUNCTIONS DATABASE master;
-	 
 Output
 ======
 
@@ -65,26 +55,46 @@ Using the ``DESCRIBE USER FUNCTIONS`` command generates the following output:
      - Example
    * - ``database_name``
      - Displays the name of the database.
-     - Text
+     - TEXT
      - master
    * - ``function_id``
      - Displays the ID of the function.
-     - Integer
+     - INTEGER
      - 0	 
    * - ``function_name``
      - Displays the name of the function.
-     - Text
+     - TEXT
      - add_months
    * - ``function_body``
      - Displays the syntax of the function.
-     - Text
+     - TEXT
      - select dateadd(month,n,dt);
 
-The following is an example of the generated output:
+	 
+Examples
+========
 
-.. code-block:: postgres
+.. code-block:: sql
 
-   master,0,november,november,4,1980
+	DESCRIBE USER FUNCTIONS DATABASE master;
+	
+.. code-block:: none
+	
+	database_name|function_id|function_name|function_body                                                                                                                                                    |
+	-------------+-----------+-------------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+	master       |0          |str_to_date  |select cast((substring(f,1,4) || '-' || substring(f,5,2) || '-' || substring(f,7,2)) as date);                                                                   |
+	master       |1          |least_sq     |select case          when a <= b then a          when b < a then b          when a is null then b          when b is null then a          else null        end;  |
+	master       |2          |add_months   |select dateadd(month,n,dt);                                                                                                                                      |
+
+.. code-block:: none	
+		
+		DESCRIBE USER FUNCTIONS DATABASE master like '%date%';
+	   
+.. code-block:: none
+
+		database_name|function_id|function_name|function_body                                                                                   |
+		-------------+-----------+-------------+------------------------------------------------------------------------------------------------+
+		master       |0          |str_to_date  |select cast((substring(f,1,4) || '-' || substring(f,5,2) || '-' || substring(f,7,2)) as date);  |
    
 Permissions
 ===========
