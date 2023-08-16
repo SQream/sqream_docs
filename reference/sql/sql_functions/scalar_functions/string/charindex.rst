@@ -59,9 +59,6 @@ For these examples, consider the following table:
 	4   | susan_jones | susan.jones@example.com | password4
 
 
-Using ``CHARINDEX``
--------------------
-
 .. code-block:: sql
 
    SELECT CHARINDEX('doe', username) FROM users;
@@ -76,5 +73,31 @@ Output:
    6        |
    0        |
    0        |
+   
+.. code-block:: sql
 
+	SELECT CHARINDEX('doe', username, 10) FROM users;
 
+Output:
+
+.. code-block:: none
+
+   charindex|
+   ---------+
+   0        |
+   0        |
+   0        |
+   0        |
+
+.. code-block:: sql
+
+	SELECT CHARINDEX('jane_doe', username, -10) FROM users;
+	
+.. code-block:: none
+
+   charindex|
+   ---------+
+   0        |
+   1        |
+   0        |
+   0        |
