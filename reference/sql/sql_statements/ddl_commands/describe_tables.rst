@@ -15,8 +15,8 @@ The following is the syntax for the ``DESCRIBE TABLES`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE TABLES[DATABASE database_name.] [SCHEMA schema_name.] [ALL|INTERNAL|EXTERNAL]
-   DESC TABLES[DATABASE database_name.] [SCHEMA schema_name.] [ALL|INTERNAL|EXTERNAL]
+   DESCRIBE TABLES[DATABASE database_name.] [SCHEMA schema_name.] [ALL|INTERNAL|EXTERNAL] [LIKE 'table_name']
+   DESC TABLES[DATABASE database_name.] [SCHEMA schema_name.] [ALL|INTERNAL|EXTERNAL] [LIKE 'table_name']
 
 
 Parameters
@@ -28,38 +28,26 @@ The following parameters can be used with the ``DESCRIBE TABLES`` command:
    :widths: auto
    :header-rows: 1
    
-   * - Parameter Name
+   * - Parameter
      - Parameter Value
      - Description
-     - Type
    * - ``DATABASE``
      - ``database_name``
-     - The name of the database.
-     - Text
+     - The name of the database to search within
    * - ``SCHEMA``
      - ``schema_name``
-     - The name of the table.
-     - Text
+     - The name of the schema to search within
    * - ``ALL``, ``EXTERNAL``, ``INTERNAL``
-     - ``ALL``, ``EXTERNAL``, or ``INTERNAL``.
+     - 
      - You may define the ``DESCRIBE TABLES`` command to show information related to all tables, external tables, or internal tables. The default value is ``ALL``.
-     - Text	
+   * - ``LIKE``
+     - ``pattern``
+     - The ``LIKE`` operator is used to perform pattern matching within strings.
+   * - ``%``
+     -
+     - The ``%`` wildcard is used in conjunction with the ``LIKE`` operator to match any sequence of characters (including none) within a string.
+
 	 
-Examples
-========
-
-Listing internal tables:
-
-.. code-block:: postgres
-
-   DESCRIBE TABLES DATABASE master SCHEMA public INTERNAL;
-   
-Listing external tables:
-
-.. code-block:: postgres
-   
-   DESCRIBE TABLES DATABASE master SCHEMA public EXTERNAL;
-   
 Output
 ======
 
@@ -75,63 +63,71 @@ When the set to ``ALL``, the ``DESCRIBE_TABLES`` command returns the following p
      - Example
    * - ``database_name``
      - Displays the name of the database.
-     - Text
+     - TEXT
      - master
    * - ``schema_name``
      - Displays the name of the schema.
-     - Text
+     - TEXT
      - public
    * - ``table_name``
      - Displays the name of the table.
-     - Text
+     - TEXT
      - nba	 
    * - ``table_type``
      - Displays whether the table is internal or external.
-     - Text
+     - TEXT
      - Internal	 
    * - ``row_count``
      - Displays the amount of rows in the table.
-     - Integer
+     - INTEGER
      - 914
    * - ``created_on``
      - Displays the table creation timestamp.
-     - Date
+     - DATE
      - 2022-06-14 13:14:45
    * - ``Addtional details``
      - Displays additional table details.
-     - Text
+     - TEXT
      - 
 	 
-Output Examples
-~~~~~~~~~~~~~~~
-
-Listing all tables:
-
+Examples
+========
 
 .. code-block:: postgres
 
-   database_name|schema_name|table_name  |table_type|row_count|created_on         |Additional details                           |
-   -------------+-----------+------------+----------+---------+-------------------+---------------------------------------------+
-   master       |public     |nba         |Internal  |914      |2022-06-14 13:14:45|     		                        |
-   master       |public     |cool_animals|Internal  |5        |2022-06-20 12:09:40|                                             |
-   master       |public     |users	 |External  |         |2022-06-22 15:05:12|Format:parquet, Path:/var/mounts/nfsshare... |		
+   DESCRIBE TABLES DATABASE master SCHEMA public EXTERNAL;
+
+.. code-block:: none
+
+	database_name|schema_name|table_name               |table_type|row_count|created_on         |Additional details                                                                                      |
+	-------------+-----------+-------------------------+----------+---------+-------------------+--------------------------------------------------------------------------------------------------------+
+	master       |public     |AdImpressions            |External  |         |2023-07-05 11:08:48|Format: json, Path: gs://product_sqream/blue_demo/DataSources/ad_impressions.json                       |
+	master       |public     |AdImpressionsCleaned     |External  |         |2023-07-06 06:02:32|Format: parquet, Path: gs://product_sqream/blue_demo/CleanedNValidatedData/adImpressions_cleaned.parquet|
+	master       |public     |applications_gold_ml     |External  |         |2023-08-09 11:15:41|Format: parquet, Path: gs://sqream-blue-fintech-demo/storage/applications_gold_ml/                      |
+	master       |public     |AdImpressionsTransformed |External  |         |2023-07-06 06:04:42|Format: parquet, Path: gs://product_sqream/blue_demo/TransformedData/adImpressions_transformed.parquet  |
+	master       |public     |customer                 |External  |         |2023-08-10 12:09:09|Format: parquet, Path: gs://delivery-poc-us/demo/customer-9.parquet                                     |
+	master       |public     |applications_bronze      |External  |         |2023-08-10 12:10:57|Format: json, Path: gs://sqream-blue-fintech-demo/loan_dataset/json/application_record.json             |
+	master       |public     |credit_records_bronze    |External  |         |2023-08-10 12:13:53|Format: json, Path: gs://sqream-blue-fintech-demo/loan_dataset/json/credit_record.json                  |
+	master       |public     |applications_silver      |External  |         |2023-08-10 12:16:38|Format: parquet, Path: gs://sqream-blue-fintech-demo/storage/applications_silver/*                      |
+	master       |public     |credit_records_silver    |External  |         |2023-08-10 12:16:41|Format: parquet, Path: gs://sqream-blue-fintech-demo/storage/credit_records_silver/*                    |
+	master       |public     |ClickStream              |External  |         |2023-07-06 06:19:26|Format: json, Path: gs://product_sqream/blue_demo/DataSources/clickstream.json                          |
+	master       |public     |ClickStreamCleaned       |External  |         |2023-07-06 06:20:51|Format: parquet, Path: gs://product_sqream/blue_demo/CleanedNValidatedData/clickstream_cleaned.parquet  |
+	master       |public     |ClickStreamTransformed   |External  |         |2023-07-06 06:21:20|Format: parquet, Path: gs://product_sqream/blue_demo/TransformedData/clickstream_transformed.parquet    |
+	master       |public     |ThirdPartyData           |External  |         |2023-07-06 06:22:29|Format: json, Path: gs://product_sqream/blue_demo/DataSources/thirdpartydata.json                       |
+	master       |public     |ThirdPartyDataCleaned    |External  |         |2023-07-06 06:23:10|Format: parquet, Path: gs://product_sqream/blue_demo/CleanedNValidatedData/3rdparty_cleaned.parquet     |
+	master       |public     |ThirdPartyDataTransformed|External  |         |2023-07-06 06:23:50|Format: parquet, Path: gs://product_sqream/blue_demo/TransformedData/3rdparty_transformed.parquet       |
  
-Listing internal tables:
 
 .. code-block:: postgres
 
-   database_name|schema_name|table_name  |table_type|row_count|created_on         |Additional details	                       |
-   -------------+-----------+------------+----------+---------+-------------------+--------------------------------------------+
-   master       |public     |nba         |Internal  |914      |2022-06-14 13:14:45|                                            |
-   master       |public     |cool_animals|Internal  |5        |2022-06-20 12:09:40|                                            |
-   	 
-Listing external tables:
+  DESCRIBE TABLES DATABASE master SCHEMA public like '%records%';
+  
+.. code-block:: none
 
-.. code-block:: postgres
-
-   database_name|schema_name|table_name  |table_type|row_count|created_on          |Additional details                          |
-  --------------+-----------+------------+----------+---------+--------------------+--------------------------------------------+
-   master       |public     |users	 |External  |         |2022-06-22 15:05:12 |Format:parquet, Path:/var/mounts/nfsshare...|
+	database_name|schema_name|table_name           |table_type|row_count|created_on         |Additional details                                                                    |
+	-------------+-----------+---------------------+----------+---------+-------------------+--------------------------------------------------------------------------------------+
+	master       |public     |credit_records_bronze|External  |         |2023-08-10 12:13:53|Format: json, Path: gs://sqream-blue-fintech-demo/loan_dataset/json/credit_record.json|
+	master       |public     |credit_records_silver|External  |         |2023-08-10 12:16:41|Format: parquet, Path: gs://sqream-blue-fintech-demo/storage/credit_records_silver/*  |
 
 Permissions
 ===========
