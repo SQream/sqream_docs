@@ -1,15 +1,15 @@
 .. _sign:
 
-**************************
+****
 SIGN
-**************************
+****
 
 The ``SIGN`` function takes a single argument, which can be any numeric data type such as INTEGER, FLOAT, or DECIMAL, and returns an ``INT`` value of -1, 0, or 1, depending on the sign of the input argument.
 
 
 
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
@@ -29,7 +29,8 @@ Arguments
 
 Return
 ======
-Returns an ``INT`` value. 
+
+Returns an ``INT`` value.
 
 Depending on the sign of the input argument, the return is:
 
@@ -50,7 +51,7 @@ Example
 	
 Output:
 
-.. code-block:: postgres
+.. code-block:: none
 
    sign | sign0 | sign1
    -----+------+-------
