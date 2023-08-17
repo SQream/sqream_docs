@@ -34,8 +34,6 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
-► A new :re:`SQLoader <ingesting_from_databases>` will enable you to load data into SQreamDB from other databases.
-
 ► Access control permissions in SQreamDB have been expanded, allowing roles to now grant and revoke access to other roles for the following:
 
  * VIEWS

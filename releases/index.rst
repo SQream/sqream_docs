@@ -31,6 +31,7 @@ Release Notes
    :glob:
    :hidden:
 
+   whats_new
    4.0_index
    2022.1_index
    2021.2_index
