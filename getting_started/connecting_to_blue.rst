@@ -78,6 +78,8 @@ Data Management, Analysis, and Business Intelligence Tools
 Data Integration Tools
 """"""""""""""""""""""
 
+:ref:`Apache Airflow<apache_airflow>`
+
 :ref:`Denodo<denodo>`
 
 :ref:`Informatica Cloud Services<informatica>`
