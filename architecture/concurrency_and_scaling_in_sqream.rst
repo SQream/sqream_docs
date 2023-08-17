@@ -85,19 +85,21 @@ Adding additional RAM to nodes, using more GPU memory, and faster CPUs or storag
 Spooling Configuration
 ======================
 
-From the SQreamDB Acceleration Studio you can allocate the amount of memory (GB) available to the server for spooling using the :ref:`spoolMemoryGB flag<spool_memory_gb>`. SQreamDB recommends setting the ``spoolMemoryGB`` flag to 90% of the ``limitQueryMemoryGB`` flag. The ``limitQueryMemoryGB`` flag is the total memory you’ve allocated for processing queries.
+:math:`limitQueryMemoryGB=\frac{\text{Total RAM - Internal Operation - metadata Server - Server picker}}{\text{Number of Workers}}`
 
-In addition, the ``limitQueryMemoryGB`` defines how much total system memory is used by each worker.
+:math:`spoolMemoryGB=limitQueryMemoryGB - 50GB`
 
-Note that ``spoolMemoryGB`` must bet set to less than the ``limitQueryMemoryGB``.
+SQreamDB recommends setting the ``spoolMemoryGB`` flag to 90% of the ``limitQueryMemoryGB`` flag. The ``limitQueryMemoryGB`` flag is the total memory you’ve allocated for processing queries. In addition, the ``limitQueryMemoryGB`` defines how much total system memory is used by each worker. Note that ``spoolMemoryGB`` must bet set to less than the ``limitQueryMemoryGB``.
 
-Example Configurations
-----------------------
+Example
+-------
 
 Setting Spool Memory
 ~~~~~~~~~~~~~~~~~~~~
 
-The following is an example of setting ``spoolMemoryGB`` value per-worker for 512GB of RAM and 4 workers:
+The following examples are for 2T of RAM and 9 workers running on 3 A100(40) GPUs:
+
+Configuring the ``limitQueryMemoryGB`` using the Worker configuration file:
 
 .. code-block:: console
      
@@ -110,20 +112,28 @@ The following is an example of setting ``spoolMemoryGB`` value per-worker for 51
        “metadataServerPort”: “3105,
        “port”: 5000,
        “useConfigIP”” true,
-       “limitQueryMemoryGB" : 121,
-       “spoolMemoryGB" : 108
-       “legacyConfigFilePath”: “home/SQream_develop/SqrmRT/utils/json/legacy_congif.json”
+       “limitQueryMemoryGB" : 201,
    }
 
-Recommended Settings
-~~~~~~~~~~~~~~~~~~~~
-
-The following is an example of the recommended settings for a machine with 512GB of RAM and 4 workers:
+Configuring the ``spoolMemoryGB`` using the legacy configuration file:
 
 .. code-block:: console
-     
-   limitQueryMemoryGB - ⌊(512 * 0.95 / 4)⌋ → ~ 486 / 4 → 121
-   spoolMemoryGB - ⌊( 0.9 * limitQueryMemoryGB )⌋ → ⌊( 0.9 * 121 )⌋ → 108
+
+	{
+		"diskSpaceMinFreePercent": 10,
+		"enableLogDebug": false,
+		"insertCompressors": 8,
+		"insertParsers": 8,
+		"isUnavailableNode": false,
+		"logBlackList": "webui",
+		"logDebugLevel": 6,
+		"nodeInfoLoggingSec": 60,
+		"useClientLog": true,
+		"useMetadataServer": true,
+		"spoolMemoryGB": 151,
+		"waitForClientSeconds": 18000,
+		"enablePythonUdfs": true
+	}
    
 .. rubric:: Need help?
 
