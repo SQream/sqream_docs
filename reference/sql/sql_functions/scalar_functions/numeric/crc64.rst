@@ -30,15 +30,15 @@ Returns
 
 Returns a CRC-64 hash of the text input, of type ``BIGINT``.
 
-.. note:: If the input value is NULL, the result is NULL.
+If the input value is ``NULL``, the result is ``NULL``.
 
 Examples
 ========
 
-Calculate a CRC-64 hash of a string
------------------------------------
-
-.. code-block:: psql
+.. code-block:: sql
 
    SELECT CRC64(x) FROM (VALUES ('This is a relatively long text string, that can be converted to a shorter hash' :: text)) as t(x);
-   -8397827068206190216
+ 
+.. code-block:: none
+
+	-8397827068206190216
