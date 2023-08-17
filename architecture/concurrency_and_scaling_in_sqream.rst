@@ -25,7 +25,7 @@ Minimum Resource Required Per Worker:
      - 10	 
    * - Metadata Server
      - 10 cores per 30 Workers
-     - 128 per 1T rows (1M chunks)
+     - 128 per 1T rows (optimally 1M chunks)
      - 	10 
    * - SqreamDB Acceleration Studio
      - 16
@@ -35,11 +35,9 @@ Minimum Resource Required Per Worker:
      - 8
      - 8
      - 	
-   * - Operational statements such as :ref:`copy_to` and :ref:`Clean-Up<delete_guide>`
-     - 
-     - 64
-     -
-  
+
+ 
+Lightweight queries, such as :ref:`copy_to` and :ref:`Clean-Up<delete_guide>` require 64 RAM (GB).	  
 
 Maximum Workers Per GPU:
 	 
@@ -60,6 +58,8 @@ Maximum Workers Per GPU:
    * - NVIDIA Tesla H100 (80GB)	
      - 6
 	 
+
+
 .. tip:: Your GPU is not on the list? Visit `SQreamDB Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ for additional information.
 
 
