@@ -30,7 +30,4 @@ Release Notes
    4.0_index
    2022.1_index
    2021.2_index
-   2021.1_index
-   2020.3_index
-   2020.2
-   2020.1
+ 
