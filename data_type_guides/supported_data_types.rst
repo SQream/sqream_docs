@@ -3,7 +3,8 @@
 *************************
 Supported Data Types
 *************************
-The **Supported Data Types** page describes SQream's supported data types:
+
+The **Supported Data Types** page describes SQreamDB's supported data types:
 
 The following table shows the supported data types.
 
@@ -59,7 +60,7 @@ The following table shows the supported data types.
    * - ``NUMERIC``
      -  38 digits
      - 16 bytes
-     - ``0.123245678901234567890123456789012345678``
+     - ``0.12324567890123456789012345678901234567``
      - ``DECIMAL``
    * - ``DATE``
      - Date
