@@ -10,7 +10,7 @@ This is an alternative way to using the ``savedqueries`` catalog view.
 
 Read more in the :ref:`saved_queries` guide.
 
-See also: ref:`save_query`, :ref:`execute_saved_query`,  ref:`drop_saved_query`,  ref:`show_saved_query`.
+See also: :ref:`save_query`, :ref:`execute_saved_query`, :ref:`drop_saved_query`, :ref:`show_saved_query`
 
 Permissions
 =============
