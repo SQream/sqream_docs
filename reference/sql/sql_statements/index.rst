@@ -33,8 +33,6 @@ Data Definition Commands (DDL)
      - Create a new user-defined function in the database
    * - :ref:`create_schema`
      - Create a new schema in the database
-   * - :ref:`create_table_as`
-     - Create a new table in the database using results from a select query
    * - :ref:`create_view`
      - Create a new view in the database
    * - :ref:`describe_columns`
@@ -141,7 +139,7 @@ Utility Commands
    * - :ref:`recompile_view`
      - Recreate a view after schema changes
    * - :ref:`dump_database_ddl`
-     - View the ``CREATE TABLE`` statement for an current database
+     - View the ``CREATE TABLE`` statement for a current database
    * - :ref:`shutdown_server_command`
      - Sets your server to finish compiling all active queries before shutting down according to a user-defined time value
    * - :ref:`stop_statement`
