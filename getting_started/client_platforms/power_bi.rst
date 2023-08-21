@@ -4,42 +4,32 @@
 BI Desktop
 **********
 
-**Power BI Desktop** lets you connect to SQream and use underlying data as with other data sources in Power BI Desktop.
+**Power BI Desktop** lets you connect to BLUE and use underlying data as with other data sources in Power BI Desktop.
 
-SQream integrates with Power BI Desktop to do the following:
+BLUE integrates with Power BI Desktop to do the following:
 
 * Extract and transform your datasets into usable visual models in approximately one minute.
 
-   ::
-
 * Use **DAX** functions **(Data Analysis Expressions)** to analyze your datasets.
-
-   ::
 
 * Refresh datasets as needed or by using scheduled jobs.
 
-SQream uses Power BI for extracting data sets using the following methods:
+BLUE uses Power BI for extracting data sets using the following methods:
 
-* **Direct query** - Direct queries lets you connect easily with no errors, and refreshes Power BI artifacts, such as graphs and reports, in a considerable amount of time in relation to the time taken for queries to run using the `SQream SQL CLI Reference guide <https://docs.sqream.com/en/v2022.1/reference/cli/sqream_sql.html>`_.
+* **Direct query** - Direct queries lets you connect easily with no errors, and refreshes Power BI artifacts, such as graphs and reports, in a considerable amount of time in relation to the time taken for queries to run using the `BLUE SQL CLI Reference guide <https://docs.sqream.com/en/v2022.1/reference/cli/sqream_sql.html>`_.
 
    ::
 
 * **Import** - Lets you extract datasets from remote databases.
-
-The **Connect to SQream Using Power BI** page describes the following:
-
-.. contents:: 
-   :local:
-   :depth: 1
    
 Prerequisites
 -------------
 
-To connect to SQream, the following must be installed:
+To connect to BLUE, the following must be installed:
 
 * **ODBC data source administrator** - 32 or 64, depending on your operating system. For Windows users, the ODBC data source administrator is embedded within the operating system.
 
-* **SQream driver** - The SQream application required for interacting with the ODBC according to the configuration specified in the ODBC administrator tool.
+* **BLUE driver** - The BLUE application required for interacting with the ODBC according to the configuration specified in the ODBC administrator tool.
 
 Installing Power BI Desktop
 ---------------------------
@@ -97,7 +87,7 @@ Installing Power BI Desktop
       * - Database
         - Provide the name of your database or the schema on your database server.
       * - User
-        - Provide a SQreamdb username.
+        - Provide a BLUE username.
       * - Passwords
         - Provide a password for your user.
 
@@ -114,7 +104,7 @@ Installing Power BI Desktop
 Best Practices for Power BI
 ---------------------------
 
-SQream recommends using Power BI in the following ways for acquiring the best performance metrics:
+BLUE recommends using Power BI in the following ways for acquiring the best performance metrics:
 
 * Creating bar, pie, line, or plot charts when illustrating one or more columns.
 
