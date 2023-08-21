@@ -4,9 +4,6 @@
 BI Desktop
 **********
 
-Overview
-========
-
 **Power BI Desktop** lets you connect to SQream and use underlying data as with other data sources in Power BI Desktop.
 
 SQream integrates with Power BI Desktop to do the following:
@@ -57,11 +54,11 @@ Installing Power BI Desktop
 
    For information about downloading and configuring your ODBC driver, see :ref:`ODBC <odbc>` or contact `SQream Support <https://sqream.atlassian.net/servicedesk/>`_.
    
-#. Navigate to **Windows** > **Documents** and create a folder called **Power BI Desktop Custom Connectors**.
+#. Navigate to **Windows** > **Documents** and create a folder named **Power BI Desktop** with a subfolder named **Custom Connectors**.
 
     ::
 
-#. From the Client Drivers page, download the **PowerQuery.mez** file.
+#. From the Client Drivers page, :ref:`download<client_drivers>` the **PowerQuery.mez** file.
 
     ::
 
