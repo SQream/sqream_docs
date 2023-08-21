@@ -1,11 +1,9 @@
 .. _power_bi:
 
-*************************
-Connecting to SQream Using Power BI Desktop
-*************************
+**********
+BI Desktop
+**********
 
-Overview
-=========
 **Power BI Desktop** lets you connect to SQream and use underlying data as with other data sources in Power BI Desktop.
 
 SQream integrates with Power BI Desktop to do the following:
@@ -35,7 +33,8 @@ The **Connect to SQream Using Power BI** page describes the following:
    :depth: 1
    
 Prerequisites
--------------------
+-------------
+
 To connect to SQream, the following must be installed:
 
 * **ODBC data source administrator** - 32 or 64, depending on your operating system. For Windows users, the ODBC data source administrator is embedded within the operating system.
@@ -43,49 +42,47 @@ To connect to SQream, the following must be installed:
 * **SQream driver** - The SQream application required for interacting with the ODBC according to the configuration specified in the ODBC administrator tool.
 
 Installing Power BI Desktop
--------------------
+---------------------------
+
 **To install Power BI Desktop:**
 
-1. Download `Power BI Desktop 64x <https://powerbi.microsoft.com/en-us/downloads/>`_.
+#. Download `Power BI Desktop 64x <https://powerbi.microsoft.com/en-us/downloads/>`_.
 
     ::
 
-2. Download and configure your ODBC driver.
+#. Download and configure your ODBC driver.
 
-   For more information about configuring your ODBC driver, see `ODBC <https://docs.sqream.com/en/v2022.1/connecting_to_sqream/client_drivers/odbc/index.html>`_.
+   For information about downloading and configuring your ODBC driver, see :ref:`ODBC <odbc>` or contact `SQream Support <https://sqream.atlassian.net/servicedesk/>`_.
    
-3. Navigate to **Windows** > **Documents** and create a folder called **Power BI Desktop Custom Connectors**.
-
-    ::
-	
-4. In the **Power BI Desktop** folder, create a folder called **Custom Connectors**.
-
-
-5. From the Client Drivers page, download the **PowerQuery.mez** file.
+#. Navigate to **Windows** > **Documents** and create a folder named **Power BI Desktop** with a subfolder named **Custom Connectors**.
 
     ::
 
-5. Save the PowerQuery.mez file in the **Custom Connectors** folder you created in Step 3.
+#. From the Client Drivers page, :ref:`download<client_drivers>` the **PowerQuery.mez** file.
 
     ::
 
-6. Open the Power BI application.
+#. Save the PowerQuery.mez file in the **Custom Connectors** folder you created in Step 3.
 
     ::
 
-7. Navigate to **File** > **Options and Settings** > **Option** > **Security** > **Data Extensions**, and select **(Not Recommended) Allow any extension to load without validation or warning**.
+#. Open the Power BI application.
 
     ::
 
-8. Restart the Power BI Desktop application.
+#. Navigate to **File** > **Options and Settings** > **Option** > **Security** > **Data Extensions**, and select **(Not Recommended) Allow any extension to load without validation or warning**.
 
     ::
 
-9. From the **Get Data** menu, select **SQream**.
+#. Restart the Power BI Desktop application.
 
     ::
 
-10. Click **Connect** and provide the information shown in the following table:
+#. From the **Get Data** menu, select **SQream**.
+
+    ::
+
+#. Click **Connect** and provide the information shown in the following table:
     
    .. list-table:: 
       :widths: 6 31
@@ -104,18 +101,19 @@ Installing Power BI Desktop
       * - Passwords
         - Provide a password for your user.
 
-11. Under **Data Connectivity mode**, select **DirectQuery mode**.
+#. Under **Data Connectivity mode**, select **DirectQuery mode**.
 
      ::
 
-12. Click **Connect**.
+#. Click **Connect**.
 
      ::
 
-13. Provide your user name and password and click **Connect**.
+#. Provide your user name and password and click **Connect**.
 
 Best Practices for Power BI
----------------
+---------------------------
+
 SQream recommends using Power BI in the following ways for acquiring the best performance metrics:
 
 * Creating bar, pie, line, or plot charts when illustrating one or more columns.
@@ -128,16 +126,4 @@ SQream recommends using Power BI in the following ways for acquiring the best pe
    
 * Creating a unified view using **PowerQuery** to connect different data sources into a single dashboard.	   
 
-Supported SQream Driver Versions
----------------
-SQream supports the following SQream driver versions: 
 
-* The **PowerQuery Connector** is an additional layer on top of the ODBC. 
-
-    ::
-
-* SQream Driver Installation (ODBC v4.1.1) - Contact your administrator for the link to download ODBC v4.1.1.
-
-Related Information
--------------------
-For more information, see the `Glossary <https://docs.sqream.com/en/v2022.1/glossary.html>`_.
