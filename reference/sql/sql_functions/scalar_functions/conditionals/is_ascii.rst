@@ -55,9 +55,9 @@ IS NULL
 .. code-block:: psql
 
    id | text     | is_ascii
-   ---+----------+----------+---------
-    1 | 行こう    | false
-    2 | 乾杯      | false
-    3 | L'chaim   | true	
+   ---+----------+----------
+    1 | 行こう     | false
+    2 | 乾杯     | false
+    3 | L'chaim  | true	
 
 
