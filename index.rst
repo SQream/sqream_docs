@@ -54,6 +54,7 @@ Whether your enterprise is already cloud-based or planning to migrate, BLUE opti
    :hidden:
 
    getting_started/index
+   cloud_storage_platforms/index
    configuration_guides/index
    operational_guides/index
    feature_guides/index
