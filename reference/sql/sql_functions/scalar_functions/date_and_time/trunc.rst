@@ -8,7 +8,8 @@ Truncates a ``DATE`` or ``DATETIME`` value to a specified resolution.
 
 For example, truncating a ``DATE`` down to the nearest month returns the date of the first day of the month.
 
-.. note:: This function is overloaded. The function :ref:`TRUNC<trunc>` can also round numbers towards zero.
+.. note:: * This function is overloaded. The function :ref:`TRUNC<trunc>` can also round numbers towards zero.
+          * Specifying the ``MILLISECOND`` interval with the ``TRUNC`` function is redundant, as there is nothing smaller than milliseconds. 
 
 Syntax
 ==========
