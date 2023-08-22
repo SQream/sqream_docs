@@ -81,7 +81,7 @@ The following is the syntax for SQream:
 
 .. code-block:: text
 
-   jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>sqream;[<optional parameters>; ...]
+   jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>;[<optional parameters>; ...]
 
 Connection Parameters
 ^^^^^^^^^^^^^^^^^^^^^
@@ -105,13 +105,13 @@ The following table shows the connection string parameters:
      - None
      - Database name to connect to. For example, ``master``
    * - ``username=<username>``
-     - Mandatory
+     - Optional
      - None
-     - Username of a role to use for connection. For example, ``username=rhendricks``
+     - Username of a role to use for connection. For example, ``username=SqreamRole`` SqreamRolePassword2023 
    * - ``password=<password>``
-     - Mandatory
+     - Optional
      - None
-     - Specifies the password of the selected role. For example, ``password=Tr0ub4dor&3``
+     - Specifies the password of the selected role. For example, ``password=SqreamRolePassword2023``
    * - ``service=<service>``
      - Optional
      - ``sqream``
@@ -127,7 +127,7 @@ The following table shows the connection string parameters:
    * - ``<fetchSize>``
      - Optional
      - ``true``
-     - Enables on-demand loading, and defines double buffer size for result. The ``fetchSize`` parameter is rounded according to chunk size. For example, ``fetchSize=1`` loads one row and is rounded to one chunk. If the fetchSize is 100,600, a chunk size of 100,000 loads, and is rounded to, two chunks.
+     - Enables on-demand loading, and defines double buffer size for the result. The ``fetchSize`` parameter is rounded according to chunk size. For example, ``fetchSize=1`` loads one row and is rounded to one chunk. If the ``fetchSize`` is 100,600, a chunk size of 100,000 loads, and is rounded to, two chunks.
    * - ``<insertBuffer>``
      - Optional
      - ``true``
@@ -143,24 +143,24 @@ The following table shows the connection string parameters:
    * - ``<idleconnectiontimeout>``
      - Optional
      - 0
-     - Sets the duration, in seconds, for which a database connection can remain idle before it is terminated. If the parameter is set to its default value, idle connections will not be terminated. The idle connection timer begins counting after the completion of a query execution.
+     - Sets the duration, in seconds, for which a database connection can remain idle before it is terminated. If the parameter is set to its default value, idle connections will not be terminated. The idle connection timer begins counting after the completion of query execution.
 
 Connection String Examples
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following is an example of a SQream cluster with load balancer and no service queues (with SSL):
+The following is an example of a SQream cluster with a load balancer and no service queues (with SSL):
 
 .. code-block:: text
 
    jdbc:Sqream://sqream.mynetwork.co:3108/master;user=rhendricks;password=Tr0ub4dor&3;ssl=true;cluster=true
 
-The following is a minimal example for a local standalone SQream database:
+The following is a minimal example of a local standalone SQream database:
 
 .. code-block:: text 
 
    jdbc:Sqream://127.0.0.1:5000/master;user=rhendricks;password=Tr0ub4dor&3
 
-The following is an example of a SQream cluster with load balancer and a specific service queue named ``etl``, to the database named ``raviga``
+The following is an example of a SQream cluster with a load balancer and a specific service queue named ``etl``, to the database named ``raviga``
 
 .. code-block:: text
 
