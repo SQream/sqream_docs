@@ -111,7 +111,7 @@ The following table shows the connection string parameters:
    * - ``password=<password>``
      - Optional
      - None
-     - Specifies the password of the selected role. For example, ``password=SqreamRolePassword2023 ``
+     - Specifies the password of the selected role. For example, ``password=SqreamRolePassword2023``
    * - ``service=<service>``
      - Optional
      - ``sqream``
