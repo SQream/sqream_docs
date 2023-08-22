@@ -239,5 +239,3 @@ For clustered scale-out installations, SQream relies on NAS storage. For stand-a
 
 SQream recommends using enterprise-grade SAS SSD or NVMe drives. For a 32-user configuration, the number of GPUs should roughly match the number of users. SQream recommends 1 Tesla A100 GPU or H100 per 2 users, for full, uninterrupted dedicated access.
 
-
-.. note:: Non production HW requirements may be found at :ref:`non_production_hardware_guide`
