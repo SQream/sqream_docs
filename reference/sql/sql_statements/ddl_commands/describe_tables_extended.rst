@@ -37,22 +37,10 @@ The following parameters can be used with the ``DESCRIBE TABLES EXTENDED`` comma
      - Text
    * - ``schema_name``
      - The name of the table.
-     - Text	 
-	 
-Example
-=======
-
-The following is an example of an **internal** ``DESCRIBE TABLES EXTENDED`` command:
-
-.. code-block:: postgres
-
-   DESCRIBE TABLES DATABASE master SCHEMA public INTERNAL;
-   
-The following is an example of an **external** ``DESCRIBE TABLES EXTENDED`` command:
-
-.. code-block:: postgres
-   
-   DESCRIBE TABLES DATABASE master SCHEMA public EXTERNAL;
+     - Text	
+   * - ``LIKE``
+     - ``pattern``
+     - The ``LIKE`` operator is used to perform pattern matching within strings. It supports the ``%`` wild card, which is used to match any sequence of characters (including none) within a string.
    
 Output
 ======
@@ -98,8 +86,6 @@ Using the **internal** ``DESCRIBE_TABLES_EXTENDED`` command generates the follow
 
 Using the **external** ``DESCRIBE_TABLES_EXTENDED`` command generates the following output:
 
-master,3,public,t4,0,2022-05-02 15:25:57
-
 .. list-table:: 
    :widths: auto
    :header-rows: 1
@@ -133,17 +119,23 @@ master,3,public,t4,0,2022-05-02 15:25:57
      - Date
      - 2022-05-02 15:25:57	 
 
-The following is an example of the generated output for the **internal** ``DESCRIBE TABLES EXTENDED`` command:
+Examples
+========
+   
+The following is an example of an **external** ``DESCRIBE TABLES EXTENDED`` command:
 
 .. code-block:: postgres
+   
+   DESCRIBE TABLES DATABASE master SCHEMA public EXTERNAL;
 
-   master,0,public,t5,true,1,0
+.. code-block:: none
 
-The following is an example of the generated output for the **external** ``DESCRIBE TABLES EXTENDED`` command:
+	database_name|schema_name|table_name           |table_type|row_count|created_on         |Additional details                                                                    |
+	-------------+-----------+---------------------+----------+---------+-------------------+--------------------------------------------------------------------------------------+
+	master       |public     |credit_records_bronze|External  |         |2023-08-10 12:13:53|Format: json, Path: gs://sqream-blue-fintech-demo/loan_dataset/json/credit_record.json|
+	master       |public     |credit_records_silver|External  |         |2023-08-10 12:16:41|Format: parquet, Path: gs://sqream-blue-fintech-demo/storage/credit_records_silver/*  |
 
-.. code-block:: postgres
 
-   master,3,public,t4,0,2022-05-02 15:25:57
 
 Permissions
 ===========
