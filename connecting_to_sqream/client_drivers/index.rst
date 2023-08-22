@@ -91,6 +91,7 @@ The following are applicable to Windows:
    odbc/index
    dotnet/index
    spark/index
+   php/index
 
 
 
