@@ -291,7 +291,7 @@ The following list shows the best practices when ingesting data from ORC files:
 Type Support and Behavior Notes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You must load ORC files through foreign table. Note that the destination table structure must be identical to the number of columns between the source files.
+You must load ORC files through a foreign table. Note that the destination table structure must be identical to the number of columns between the source files.
 
 For more information, see :ref:`foreign_tables`.
 
@@ -312,7 +312,7 @@ The types should match to some extent within the same "class", as shown in the f
      - ``BIGINT``
      - ``REAL``
      - ``DOUBLE``
-     - Text [#f0]_
+     - ``TEXT``
      - ``DATE``
      - ``DATETIME``
    * - ``boolean``
@@ -426,7 +426,7 @@ The types should match to some extent within the same "class", as shown in the f
      - 
      - Supported
 
-* If an ORC file has an unsupported type like ``binary``, ``list``, ``map``, and ``union``, but the data is not referenced in the table (it does not appear in the :ref:`SELECT` query), the statement will succeed. If the column is referenced, an error will be thrown to the user, explaining that the type is not supported, but the column may be ommited.
+* If an ORC file has an unsupported type like ``binary``, ``list``, ``map``, and ``union``, but the data is not referenced in the table (it does not appear in the :ref:`SELECT` query), the statement will succeed. If the column is referenced, an error will be thrown to the user, explaining that the type is not supported, but the column may be omitted.
 
 
 
@@ -479,8 +479,6 @@ For more information, see the following:
 * :ref:`foreign_tables`
 
 .. rubric:: Footnotes
-
-.. [#f0] Text values include ``TEXT``, ``VARCHAR``, and ``NVARCHAR``
 
 .. [#f2] With UTF8 annotation
 
