@@ -325,7 +325,7 @@ This example shows how to load 10,000 rows of dummy data to an instance of SQrea
 
    .. code-block:: python
 
-      create = 'create or replace table perf (b bool, t tinyint, sm smallint, i int, bi bigint, f real, d double, s varchar(12), ss text, dt date, dtt datetime)'
+      create = 'create or replace table perf (b bool, t tinyint, sm smallint, i int, bi bigint, f real, d double, s text(12), ss text, dt date, dtt datetime)'
       cur.execute(create)
 
 3. Load your data into table using the ``INSERT`` command.
@@ -411,8 +411,8 @@ This section shows how to use the ORM to create and populate tables from Python 
       'employees'
       , metadata 
       , sa.Column('id', sa.Integer)
-      , sa.Column('name', sa.VARCHAR(32))
-      , sa.Column('lastname', sa.VARCHAR(32))
+      , sa.Column('name', sa.TEXT(32))
+      , sa.Column('lastname', sa.TEXT(32))
       , sa.Column('salary', sa.Float)
       )
 
