@@ -6,10 +6,12 @@ File Types Overview
    
 Unsupported Data Types
 -----------------------------
+
 SQream does not support certain features that are supported by other databases, such as ``ARRAY``, ``BLOB``, ``ENUM``, and ``SET``. You must convert these data types before loading them. For example, you can store ``ENUM`` as ``TEXT``.
 
 Best Practices for CSV
 ------------------------------
+
 Text files, such as CSV, rarely conform to `RFC 4180 <https://tools.ietf.org/html/rfc4180>`_ , so you may need to make the following modifications:
 
 * Use ``OFFSET 2`` for files containing header rows.
@@ -30,6 +32,7 @@ Text files, such as CSV, rarely conform to `RFC 4180 <https://tools.ietf.org/htm
 
 Best Practices for Parquet
 --------------------------------
+
 The following list shows the best practices when ingesting data from Parquet files:
 
 * You must load Parquet files through :ref:`foreign_tables`. Note that the destination table structure must be identical to the number of columns between the source files.
@@ -38,6 +41,7 @@ The following list shows the best practices when ingesting data from Parquet fil
 
 Supported Types and Behavior Notes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Unlike the ORC format, the column types should match the data types exactly, as shown in the table below:
 
 .. list-table:: 
@@ -180,7 +184,7 @@ The types should match to some extent within the same "class", as shown in the f
      - ``BIGINT``
      - ``REAL``
      - ``DOUBLE``
-     - Text [#f0]_
+     - ``TEXT``
      - ``DATE``
      - ``DATETIME``
    * - ``boolean``
@@ -339,6 +343,7 @@ The types should match to some extent within the same "class", as shown in the f
 
 Further Reading and Migration Guides
 =======================================
+
 For more information, see the following:
 
 * :ref:`copy_from`
@@ -346,8 +351,6 @@ For more information, see the following:
 * :ref:`foreign_tables`
 
 .. rubric:: Footnotes
-
-.. [#f0] Text values include ``TEXT``, ``VARCHAR``, and ``NVARCHAR``
 
 .. [#f2] With UTF8 annotation
 
