@@ -380,21 +380,6 @@ Flag List
      - boolean
      - ``FALSE``
 
-   * - ``useLegacyStringLiterals`` 
-     - SUPERUSER
-     - Session
-     - Interprets ASCII-only strings as **VARCHAR** instead of **TEXT**. Used to preserve legacy behavior in existing customers.
-     - boolean
-     - ``FALSE``
-
-
-	 
-	 
-
-	 
-
-
-
    * - ``blockNewVarcharObjects`` 
      - SUPERUSER
      - Session
