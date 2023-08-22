@@ -160,11 +160,13 @@ The following table shows the Access Control commands:
    * - :ref:`alter_role`
      - Applies a change to an existing role
    * - :ref:`create_role`
-     - Creates a roles, which lets a database administrator control permissions on tables and databases
+     - Creates a role, which lets a database administrator control permissions on tables and databases
    * - :ref:`describe_connect_permissions`
      - Lists all roles and their database connection privileges
    * - :ref:`describe_roles`
      - Lists all roles defined in your system
+   * - :re:`describe_role_permissions`
+     - Lists all role privileges
    * - :ref:`drop_role`
      - Removes roles
    * - :ref:`get_role_permissions`
