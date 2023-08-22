@@ -104,11 +104,7 @@ The ``[]``, which are frequently used to delimit :ref:`identifiers<keywords_and_
 
 ► ``VARCHAR``
 
-The ``VARCHAR`` data type is deprecated to improve the core functionalities of the platform and to align with the constantly evolving ecosystem requirements.
-
-* Support in the ``VARCHAR`` data type ends at September 30th, 2023.
-* ``VARCHAR`` is no longer supported for new customers, effective from version 2022.1.3.  
-* The ``TEXT`` data type is replacing the ``VARCHAR`` and ``NVARCHAR`` data types.
+With the improvement of the core functionalities of the platform and to align with the constantly evolving ecosystem requirements, the ``VARCHAR`` data type is deprecated and may not be used. The ``TEXT`` data type is replacing the ``VARCHAR`` and ``NVARCHAR`` data types.
 
 Upgrading to v4.4
 -----------------
