@@ -5,7 +5,7 @@ Trino
 *****
 
 
-If you are using Trino for distributed SQL query processing and wish to use it to connect to a SQream, follow these instructions. 
+If you are using Trino for distributed SQL query processing and wish to use it to connect to BLUE, follow these instructions. 
 
 
 .. contents::
@@ -15,7 +15,7 @@ If you are using Trino for distributed SQL query processing and wish to use it t
 Prerequisites
 -------------
 
-To use Trino with SQream, you must have the following installed:
+To use Trino with BLUE, you must have the following installed:
 
 * SQream version 4.1 or later
 * Trino version 403 or later
@@ -34,7 +34,7 @@ Installation
 JDBC
 ~~~~
 
-In case JDBC is not yet configured, follow the `JDBC Client Drivers page <https://docs.sqream.com/en/v2021.1/third_party_tools/client_drivers/jdbc/index.html>`_ for registration and configuration guidance.
+In case JDBC is not yet configured, follow the :ref:`JDBC Client Drivers page<java_jdbc>` for registration and configuration guidance.
 
 
 Trino Connector
@@ -126,14 +126,10 @@ Use the appropriate Trino data type for executing queries. Upon execution, incom
      - ``DATE``
    * - ``TIMESTAMP``
      - ``DATETIME``
-   * - ``VARCHAR(N)``
-     - ``VARCHAR(N)``. 
    * - ``VARCHAR``
      - ``TEXT``
    * - ``DECIMAL(P,S)``
      - ``NUMERIC(P,S)``
-
-.. note:: ``VARCHAR`` is soon to be deprecated and may not be used in SQream DB.
 
 Limitations
 -----------
