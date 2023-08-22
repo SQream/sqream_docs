@@ -4,11 +4,9 @@
 Apache Airflow
 ***************
 
-Apache Airflow is a popular open source orchestration tool. It allows users to write complex workflows composed of multiple kinds of actions and services using DAGs, and to schedule, debug and monitor workflow runs.
+Apache Airflow is a popular open-source orchestration tool. It allows users to write complex workflows composed of multiple kinds of actions and services using Directed Acyclic Graphs (DAGs), and to schedule, debug and monitor workflow runs.
 
-Different kind of actions are represented with specialized Python classes, called “Operators”. Each SaaS database vendor can build one or more customized Operators for performing different DB operations (e.g. execute arbitrary SQL statements, schedule DB job runs etc.).
-
-This package is an Operator for executing SQL statments on SQream Blue using Python connector.
+Different kinds of actions are represented with specialized Python classes, called “Operators”. BLUE can build one or more customized Operators for performing different operations.
 
 Before You Begin
 ================
