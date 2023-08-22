@@ -82,6 +82,7 @@ Using the **internal** ``DESCRIBE_TABLES_EXTENDED`` command generates the follow
    * - ``created_on``
      - Date and time of table creation
      - Datetime
+     - ``2023-08-21 10:54:40``
    * - ``Additional details``
      - 
      - 
