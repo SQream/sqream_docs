@@ -15,3 +15,4 @@ The **Getting Started** page describes the following things you need to start us
    executing_statements_in_sqream
    performing_basic_sqream_operations
    hardware_guide
+   non_production_hardware_guide
