@@ -17,8 +17,8 @@ The following is the syntax for the ``DESCRIBE TABLES EXTENDED`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE TABLES [SCHEMA <schema_name>] [DATABASE <database_name>] EXTERNAL | INTERNAL
-   DESC TABLES [SCHEMA <schema_name>] [DATABASE <database_name>] EXTERNAL | INTERNAL
+   DESCRIBE TABLES EXTENDED [SCHEMA <schema_name>] [DATABASE <database_name>] EXTERNAL | INTERNAL
+   DESC TABLES EXTENDED [SCHEMA <schema_name>] [DATABASE <database_name>] EXTERNAL | INTERNAL
 
 Parameters
 ==========
@@ -56,33 +56,49 @@ Using the **internal** ``DESCRIBE_TABLES_EXTENDED`` command generates the follow
      - Type
      - Example
    * - ``database_name``
-     - Displays the name of the database.
+     - Displays the name of the database
      - Text
      - master
-   * - ``table_id``
-     - Displays the ID of the table.
-     - Integer
-     - 0	 
    * - ``schema_name``
-     - Displays the name of the schema.
+     - Displays the name of the schema
      - Text
      - public
    * - ``table_name``
-     - Displays the name of the table.
+     - Displays the name of the table
      - Text
      - t5
-   * - ``row_count_valid``
-     - Indicates whether the row count is valid or invalid.
+   * - ``table_type``
+     - ``Internal`` or ``External``
      - Boolean
-     - true
-   * - ``row_count_valid``
-     - Displays whether the row count is valid or invalid.
-     - Boolean
-     - 1
+     - ``Internal``
+   * - ``table_id``
+     - Displays the ID of the table
+     - Integer
+     - 0	 
    * - ``row_count``
-     - Displays the amount of rows in the table.
+     - Displays the number of rows in the table
      - Integer
      - 0
+   * - ``created_on``
+     - Date and time of table creation
+     - Datetime
+   * - ``Additional details``
+     - 
+     - 
+     - 
+   * - ``number_of_chunks``
+     - Displays the number of table chunks
+     - Integer
+     - ``21``
+   * - ``number_of_chunks_with_deleted_rows bytes(compressed)``
+     - 
+     - Integer
+     - ``0``
+   * - ``bytes(uncompressed)``
+     - 
+     - Integer
+     - ``15728640``
+
 
 Using the **external** ``DESCRIBE_TABLES_EXTENDED`` command generates the following output:
 
@@ -122,18 +138,19 @@ Using the **external** ``DESCRIBE_TABLES_EXTENDED`` command generates the follow
 Examples
 ========
    
-The following is an example of an **external** ``DESCRIBE TABLES EXTENDED`` command:
+The following is an example of an **internal** ``DESCRIBE TABLES EXTENDED`` command:
 
 .. code-block:: postgres
    
-   DESCRIBE TABLES DATABASE master SCHEMA public EXTERNAL;
+   DESCRIBE TABLES EXTENDED DATABASE master SCHEMA public INTERNAL;
 
 .. code-block:: none
 
-	database_name|schema_name|table_name           |table_type|row_count|created_on         |Additional details                                                                    |
-	-------------+-----------+---------------------+----------+---------+-------------------+--------------------------------------------------------------------------------------+
-	master       |public     |credit_records_bronze|External  |         |2023-08-10 12:13:53|Format: json, Path: gs://sqream-blue-fintech-demo/loan_dataset/json/credit_record.json|
-	master       |public     |credit_records_silver|External  |         |2023-08-10 12:16:41|Format: parquet, Path: gs://sqream-blue-fintech-demo/storage/credit_records_silver/*  |
+database_name |schema_name |table_name |table_type |row_count |created_on          |Additional details |number_of_chunks |number_of_chunks_with_deleted_rows |bytes(compressed) |bytes(uncompressed)
+--------------+------------+-----------+-----------+----------+--------------------+-------------------+-----------------+-----------------------------------+------------------+------------------
+master        |public      |alex       |Internal   |1048576   |2023-08-21 10:54:40 |                   |21               |0                                  |294851            |15728640
+
+
 
 
 
