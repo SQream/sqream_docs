@@ -3,6 +3,7 @@
 *****************************
 Connecting to BLUE Using JDBC
 *****************************
+
 The SQream JDBC driver lets you connect to SQream using many Java applications and tools. This page describes how to write a Java application using the JDBC interface. The JDBC driver requires Java 1.8 or newer.
 
 
@@ -60,7 +61,7 @@ The following table shows the connection string parameters:
    * - ``fetchSize``
      - Optional
      - ``true``
-     - Enables on-demand loading, and defines double buffer size for result. The ``fetchSize`` parameter is rounded according to chunk size. For example, ``fetchSize=1`` loads one row and is rounded to one chunk. If the fetchSize is 100,600, a chunk size of 100,000 loads, and is rounded to, two chunks.
+     - Enables on-demand loading, and defines double buffer size for the result. The ``fetchSize`` parameter is rounded according to chunk size. For example, ``fetchSize=1`` loads one row and is rounded to one chunk. If the ``fetchSize`` is 100,600, a chunk size of 100,000 loads, and is rounded to, two chunks.
    * - ``insertBuffer``
      - Optional
      - ``true``
@@ -77,6 +78,7 @@ The following table shows the connection string parameters:
 
 Sample Java Program
 --------------------
+
 You can download the :download:`JDBC Application Sample File <sample.java>` 
 
 .. literalinclude:: sample.java
