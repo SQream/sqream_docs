@@ -39,10 +39,7 @@ Parameters
      - The name of the table.
    * - ``LIKE``
      - ``column_name``
-     - The ``LIKE`` operator is used to perform pattern matching within strings.
-   * - ``%``
-     -
-     - The ``%`` wildcard is used in conjunction with the ``LIKE`` operator to match any sequence of characters (including none) within a string.
+     - The ``LIKE`` operator is used to perform pattern matching within strings. It supports the ``%`` wild card, which is used to match any sequence of characters (including none) within a string.
    
 	 
 Output
