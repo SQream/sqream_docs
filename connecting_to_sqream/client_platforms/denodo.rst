@@ -52,7 +52,7 @@ Setting Up a Connection to SQreamDB
        -
      * - Database URI
        - The URI that specifies the location and details of the database or data source to be connected
-       - ``jdbc:Sream://192.168.4.93:3108/master;cluster=true`` 
+       - ``jdbc:Sqream://<host_and_port>/<database_name>;[<optional_parameters>; ...]`` 
        -
      * - Transaction isolation
        - The level of isolation used to manage concurrent transactions in the database connection, ensuring data consistency and integrity
