@@ -35,10 +35,7 @@ The following parameters can be used with the ``DESCRIBE USER FUNCTIONS`` comman
      - The name of the database containing user-defined functions
    * - ``LIKE``
      - ``function_name``
-     - The ``LIKE`` operator is used to perform pattern matching within strings
-   * - ``%``
-     -
-     - The ``%`` wildcard is used in conjunction with the ``LIKE`` operator to match any sequence of characters (including none) within a string
+     - The ``LIKE`` operator is used to perform pattern matching within strings. It supports the ``%`` wild card, which is used to match any sequence of characters (including none) within a string.
   
 Output
 ======
