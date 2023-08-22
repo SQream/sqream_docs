@@ -107,7 +107,7 @@ The following table shows the connection string parameters:
    * - ``username=<username>``
      - Optional
      - None
-     - Username of a role to use for connection. For example, ``username=SqreamRole`` SqreamRolePassword2023 
+     - Username of a role to use for connection. For example, ``username=SqreamRole`` 
    * - ``password=<password>``
      - Optional
      - None
