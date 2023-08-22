@@ -146,12 +146,9 @@ The following is an example of an **internal** ``DESCRIBE TABLES EXTENDED`` comm
 
 .. code-block:: none
 
-database_name |schema_name |table_name |table_type |row_count |created_on          |Additional details |number_of_chunks |number_of_chunks_with_deleted_rows |bytes(compressed) |bytes(uncompressed)
---------------+------------+-----------+-----------+----------+--------------------+-------------------+-----------------+-----------------------------------+------------------+------------------
-master        |public      |alex       |Internal   |1048576   |2023-08-21 10:54:40 |                   |21               |0                                  |294851            |15728640
-
-
-
+   database_name |schema_name |table_name |table_type |row_count |created_on          |Additional details |number_of_chunks |number_of_chunks_with_deleted_rows |bytes(compressed) |bytes(uncompressed)
+   --------------+------------+-----------+-----------+----------+--------------------+-------------------+-----------------+-----------------------------------+------------------+------------------
+   master        |public      |alex       |Internal   |1048576   |2023-08-21 10:54:40 |                   |21               |0                                  |294851            |15728640
 
 
 Permissions
