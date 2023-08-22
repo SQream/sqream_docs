@@ -42,10 +42,7 @@ The following parameters can be used with the ``DESCRIBE TABLES`` command:
      - You may define the ``DESCRIBE TABLES`` command to show information related to all tables, external tables, or internal tables. The default value is ``ALL``.
    * - ``LIKE``
      - ``pattern``
-     - The ``LIKE`` operator is used to perform pattern matching within strings.
-   * - ``%``
-     -
-     - The ``%`` wildcard is used in conjunction with the ``LIKE`` operator to match any sequence of characters (including none) within a string.
+     - The ``LIKE`` operator is used to perform pattern matching within strings. It supports the ``%`` wild card, which is used to match any sequence of characters (including none) within a string.
 
 	 
 Output
