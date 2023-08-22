@@ -86,7 +86,7 @@ Examples
    '1997-01-01' -- This is a string
 
 
-The actual data type of the value changes based on context, the format used, and the value itself. In the example below, the first value is interpreted as a ``DATE``, while the second is interpreted as a ``VARCHAR``.
+The actual data type of the value changes based on context, the format used, and the value itself. In the example below, the first value is interpreted as a ``DATE``, while the second is interpreted as a ``TEXT``.
 
 .. code-block:: postgres
 
@@ -103,6 +103,7 @@ This section describes the following types of literals:
 
 Regular String Literals
 -----------------------
+
 In SQL, a **regular string literal** is a sequence of zero or more characters bound by single quotes (``'``):
 
 .. code-block:: postgres
@@ -135,7 +136,8 @@ The following are some examples of regular string literals:
 .. _dollar_quoted_string_literals:
 
 Dollar-Quoted String Literals
------------------------
+-----------------------------
+
 **Dollar-quoted string literals** consist of a dollar sign (``$``), an optional "tag" of zero or more characters, another dollar sign, an arbitrary sequence of characters that make up the string content, a dollar sign, the same tag at the beginning of the dollar quote, and another dollar sign.
 
 
@@ -239,7 +241,6 @@ The following is a syntax reference for typed literals:
        | REAL
        | DATE
        | DATETIME
-       | VARCHAR ( digits )
        | TEXT ( digits )
 
 Examples
