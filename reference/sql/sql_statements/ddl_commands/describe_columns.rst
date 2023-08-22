@@ -115,16 +115,16 @@ Output:
 
 	database_name|schema_name|table_name|is_nullable|column_name|type_name|default_value|created            |column_size|
 	-------------+-----------+----------+-----------+-----------+---------+-------------+-------------------+-----------+
-	master       |public     |nba       |true       |name       |NVARCHAR |             |2023-08-08 06:47:47|0          |
-	master       |public     |nba       |true       |team       |NVARCHAR |             |2023-08-08 06:47:47|0          |
+	master       |public     |nba       |true       |name       |TEXT     |             |2023-08-08 06:47:47|0          |
+	master       |public     |nba       |true       |team       |TEXT     |             |2023-08-08 06:47:47|0          |
 	master       |public     |nba       |true       |number     |INT      |0            |2023-08-08 06:47:47|4          |
-	master       |public     |nba       |true       |position   |NVARCHAR |             |2023-08-08 06:47:47|0          |
+	master       |public     |nba       |true       |position   |TEXT     |             |2023-08-08 06:47:47|0          |
 	master       |public     |nba       |true       |age        |INT      |0            |2023-08-08 06:47:47|4          |
-	master       |public     |nba       |true       |height     |NVARCHAR |             |2023-08-08 06:47:47|0          |
+	master       |public     |nba       |true       |height     |TEXT     |             |2023-08-08 06:47:47|0          |
 	master       |public     |nba       |true       |weight     |INT      |0            |2023-08-08 06:47:47|4          |
-	master       |public     |nba       |true       |college    |NVARCHAR |             |2023-08-08 06:47:47|0          |
+	master       |public     |nba       |true       |college    |TEXT     |             |2023-08-08 06:47:47|0          |
 	master       |public     |nba       |true       |salary     |INT      |0            |2023-08-08 06:47:47|4          |
-	master       |public     |nba       |true       |name0      |NVARCHAR |             |2023-08-08 06:47:47|0          |
+	master       |public     |nba       |true       |name0      |TEXT     |             |2023-08-08 06:47:47|0          |
 
 .. code-block:: sql
 
@@ -136,8 +136,8 @@ Output:
 
 	database_name|schema_name|table_name|is_nullable|column_name|type_name|default_value|created            |column_size|
 	-------------+-----------+----------+-----------+-----------+---------+-------------+-------------------+-----------+
-	master       |public     |nba       |true       |name       |NVARCHAR |             |2023-08-08 06:47:47|0          |
-	master       |public     |nba       |true       |name0      |NVARCHAR |             |2023-08-08 06:47:47|0          |
+	master       |public     |nba       |true       |name       |TEXT     |             |2023-08-08 06:47:47|0          |
+	master       |public     |nba       |true       |name0      |TEXT     |             |2023-08-08 06:47:47|0          |
 
 Permissions
 ===========
