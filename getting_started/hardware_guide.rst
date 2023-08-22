@@ -51,7 +51,7 @@ An average single-node cluster can be a rackmount server or workstation, contain
    * - Onboard storage
      - 
          * 2x 960GB SSD 2.5in hot plug for OS, RAID1
-         * 2x 2TB SSD or NVMe, for temporary spooling, RAID1
+         * 2x 2TB SSD or NVMe, for temporary spooling, RAID0
          * 10x 3.84TB SSD 2.5in Hot plug for storage, RAID6
 
    * - GPU
@@ -96,7 +96,7 @@ The following table shows SQream's recommended hardware specifications:
    * - Onboard storage
      -   
          * 2x 960GB SSD 2.5in hot plug for OS, RAID1
-         * 2x 2TB SSD or NVMe, for temporary spooling, RAID1
+         * 2x 2TB SSD or NVMe, for temporary spooling, RAID0
    * - External Storage
      -   
          * Mellanox Connectx5/6 100G NVIDIA Network Card (if applicable) or other high-speed network card minimum 40G compatible with customer’s infrastructure
@@ -132,7 +132,7 @@ The following table shows SQream's recommended metadata server specifications:
    * - Operating System
      - Red Hat Enterprise Linux v7.9 or CentOS v7.9 or Amazon Linux
 
-.. note:: With a NAS connected over GPFS, Lustre, Weka, or VAST, each SQream worker can read data at up to 5GB/s.
+.. note:: With a NAS connected over GPFS, Lustre, Weka, or VAST, each SQream worker can read data at 5GB/s or more.
 
 SQream Studio Server Example
 ----------------------------
@@ -169,7 +169,7 @@ This section describes the following cluster design considerations:
 
  ::
 
-* Local disk space is required for good temporary spooling performance, particularly when performing intensive operations exceeding the available RAM, such as sorting. SQream recommends an SSD or NVMe drive in RAID 1 configuration with about twice the RAM size available for temporary storage. This can be shared with the operating system drive if necessary.
+* Local disk space is required for good temporary spooling performance, particularly when performing intensive operations exceeding the available RAM, such as sorting. SQream recommends an SSD or NVMe drive in RAID0 configuration with about twice the RAM size available for temporary storage. This can be shared with the operating system drive if necessary.
 
  ::
 
