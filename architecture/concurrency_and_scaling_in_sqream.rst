@@ -24,16 +24,16 @@ Minimum Resource Required Per Worker:
      - 128
      - 10	 
    * - Metadata Server
-     - 10 cores per 30 Workers
-     - 128 per 1T rows (optimally 1M chunks)
+     - 16 cores per 100 Workers
+     - 20 GB RAM for every 1 trillion rows
      - 	10 
    * - SqreamDB Acceleration Studio
      - 16
      - 16
      - 	50
    * - Server Picker
-     - 8
-     - 8
+     - 1
+     - 2
      - 	
 
  
