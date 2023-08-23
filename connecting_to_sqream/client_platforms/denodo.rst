@@ -6,12 +6,13 @@ Denodo Platform
 
 Denodo Platform is a data virtualization solution that enables integration, access, and real-time data delivery from disparate on-premises and cloud-based sources.
 
-Prerequisites
-=============
+Before You Begin
+================
 
 It is essential that you have the following installed:
 
 * Denodo 8.0
+* Java 1.8
 
 Setting Up a Connection to SQreamDB
 ===================================
@@ -73,3 +74,7 @@ Setting Up a Connection to SQreamDB
 	   
 5. To verify your newly created connection, select the **Test connection** button.
 
+Limitation
+==========
+
+When working with table joins involving columns with identical names and exporting a view as a REST service, the query transformation process can introduce ambiguity due to the indistinguishable column identifiers. This ambiguity may result in unresolved column references during query execution, necessitating thoughtful aliasing or disambiguation strategies to ensure accurate results.
