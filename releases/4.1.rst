@@ -17,10 +17,6 @@ New Features
 
  * :ref:`Lightweight Directory Access Protocol (LDAP)<ldap>` management enhancement
  
-	::
-
- * The :ref:`Trino<trino>` ETL tool may now be used for distributed SQL query processing
- 
  	::
 	
  * A new brute-force attack protection mechanism locks out user accounts for 15 minutes following 5 consecutive failed login attempts

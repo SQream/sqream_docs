@@ -25,13 +25,6 @@ The following are applicable to all operating systems:
 
   * `.NET .dll file <https://get.sqream-share.com/share/sIsu8fxv>`_ 
   * :ref:`net`
-
-
-**Trino**:
-
-  * Trino Connector
-  * :ref:`trino`
-  
   
 **Spark**:
 
@@ -84,7 +77,6 @@ The following are applicable to Windows:
    :caption: Client Driver Documentation:
    :titlesonly:
    
-   trino/index
    jdbc/index
    python/index
    nodejs/index
