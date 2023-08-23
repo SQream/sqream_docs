@@ -3,19 +3,16 @@
 **********************
 COPY TO
 **********************
-The **COPY TO** page includes the following sections:
 
+``COPY ... TO`` is a statement that can be used to export data from a BLUE cluster table or query to a file on the filesystem.
 
-Overview
-==========
-``COPY ... TO`` is a statement that can be used to export data from a SQream database table or query to a file on the filesystem.
-
-In general, ``COPY`` moves data between filesystem files and SQream DB tables.
+In general, ``COPY`` moves data between filesystem files and BLUE tables.
 
 .. note:: To copy data from a file to a table, see :ref:`COPY FROM<copy_from>`.
 
 Syntax
 ==========
+
 The following is the correct syntax for using the **COPY TO** statement:
 
 .. code-block:: postgres
@@ -67,8 +64,12 @@ The following is the correct syntax for using the **COPY TO** statement:
 
 Elements
 ============
+
 The following table shows the ``COPY_TO`` elements:
 
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
    
    * - Parameter
      - Description
@@ -79,7 +80,7 @@ The following table shows the ``COPY_TO`` elements:
    * - ``fdw_name``
      - The name of the Foreign Data Wrapper to use. Supported FDWs are ``csv_fdw``, ``orc_fdw``, ``avro_fdw`` or ``parquet_fdw``.
    * - ``LOCATION``
-     - A path on the local filesystem, S3, or HDFS URI. For example, ``/tmp/foo.csv``, ``s3://my-bucket/foo.csv``, or ``hdfs://my-namenode:8020/foo.csv``. The local path must be an absolute path that SQream DB can access.
+     - A path on the local filesystem, S3, or HDFS URI. For example, ``/tmp/foo.csv``, ``s3://my-bucket/foo.csv``, or ``hdfs://my-namenode:8020/foo.csv``. The local path must be an absolute path that BLUE can access.
    * - ``HEADER``
      - The CSV file will contain a header line with the names of each column in the file. This option is allowed only when using CSV format.
    * - ``DELIMITER``
@@ -95,16 +96,19 @@ The following table shows the ``COPY_TO`` elements:
 
 Usage Notes
 ===============
+
 The **Usage Notes** describes the following:
 
 
 Supported Field Delimiters
 ------------------------------
+
 The **Supported Field Delimiters** section describes the following:
 
 
 Printable ASCII Characters
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Any printable ASCII character can be used as a delimiter without special syntax. The default CSV field delimiter is a comma (``,``).
 
 The following table shows the supported printable ASCII characters:
@@ -170,7 +174,8 @@ The following table shows the supported printable ASCII characters:
 +---------------+----------------------+-----------+-----------+---------+------------+---------------+---------------+
 
 Non-Printable ASCII Characters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The following table shows the supported non-printable ASCII characters:
 
 +---------------+---------------------------+-----------+-----------+---------+------------+---------------+---------------+
@@ -246,7 +251,8 @@ For example, ASCII character ``15``, known as "shift in", can be specified using
 .. note:: Delimiters are only applicable to the CSV file format.
 
 Unsupported ASCII Field Delimiters
-------------------------------
+-----------------------------------
+
 The following table shows the unsupported ASCII field delimiters:
 
 +-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
@@ -393,17 +399,20 @@ The following table shows the unsupported ASCII field delimiters:
 
 Date Format
 ---------------
+
 The date format in the output CSV is formatted as ISO 8601 (``2019-12-31 20:30:55.123``), regardless of how it was parsed initially with :ref:`COPY FROM date parsers<copy_date_parsers>`.
 
 For more information on the ``datetime`` format, see :ref:`sql_data_types_date`.
 
 Examples
 ===========
+
 The **Examples** section shows the following examples:
 
 
 Exporting a Table to a CSV File without a HEADER Row
-------------------------------------
+-----------------------------------------------------
+
 The following is an example of exporting a table to a CSV file without a HEADER row:
 
 .. code-block:: psql
@@ -421,7 +430,8 @@ The following is an example of exporting a table to a CSV file without a HEADER 
    Amir Johnson,Boston Celtics,90,PF,29,6-9,240,\N,12000000
 
 Exporting a Table to a CSV with a HEADER Row
------------------------------------------
+----------------------------------------------
+
 The following is an example of exporting a table to a CSV file with a HEADER row:
 
 .. code-block:: psql
@@ -439,7 +449,8 @@ The following is an example of exporting a table to a CSV file with a HEADER row
    Jonas Jerebko,Boston Celtics,8,PF,29,6-10,231,\N,5000000
 
 Exporting a Table to TSV with a HEADER Row
------------------------------------------
+--------------------------------------------
+
 The following is an example of exporting a table to a TSV file with a HEADER row:
 
 .. code-block:: psql
@@ -458,6 +469,7 @@ The following is an example of exporting a table to a TSV file with a HEADER row
 
 Using Non-Printable ASCII Characters as Delimiters
 -------------------------------------------------------
+
 The following is an example of using non-printable ASCII characters as delimiters:
 
 Non-printable characters can be specified using their octal representations, by using the ``E'\000'`` format, where ``000`` is the octal value of the character.
@@ -474,6 +486,7 @@ For example, ASCII character ``15``, known as "shift in", can be specified using
 
 Exporting the Result of a Query to CSV File
 --------------------------------------------
+
 The following is an example of exporting the result of a query to a CSV file:
 
 .. code-block:: psql
@@ -491,6 +504,7 @@ The following is an example of exporting the result of a query to a CSV file:
 
 Saving Files to an Authenticated S3 Bucket
 --------------------------------------------
+
 The following is an example of saving files to an authenticated S3 bucket:
 
 .. code-block:: psql
@@ -499,6 +513,7 @@ The following is an example of saving files to an authenticated S3 bucket:
 
 Saving Files to an HDFS Path
 --------------------------------------------
+
 The following is an example of saving files to an HDFS path:
 
 .. code-block:: psql
@@ -506,7 +521,8 @@ The following is an example of saving files to an HDFS path:
    	COPY (SELECT "Team", AVG("Salary") FROM nba GROUP BY 1) TO WRAPPER csv_fdw OPTIONS (LOCATION = 'hdfs://pp_namenode:8020/nba_export.csv');
 
 Exporting a Table to a Parquet File
-------------------------------
+------------------------------------
+
 The following is an example of exporting a table to a Parquet file:
 
 .. code-block:: psql
@@ -514,7 +530,8 @@ The following is an example of exporting a table to a Parquet file:
 	COPY nba TO WRAPPER parquet_fdw OPTIONS (LOCATION = '/tmp/nba_export.parquet');
 
 Exporting a Query to a Parquet File
---------------------------------
+-------------------------------------
+
 The following is an example of exporting a query to a Parquet file:
 
 .. code-block:: psql
@@ -522,13 +539,26 @@ The following is an example of exporting a query to a Parquet file:
 	COPY (select x,y from t where z=0) TO WRAPPER parquet_fdw OPTIONS (LOCATION = '/tmp/file.parquet');
 
 Exporting a Table to an ORC File
-------------------------------
+---------------------------------
+
 The following is an example of exporting a table to an ORC file:
 
 .. code-block:: psql
    
 	COPY nba TO WRAPPER orc_fdw OPTIONS (LOCATION = '/tmp/nba_export.orc');
 
+Using the ``MAX_FILE_SIZE`` and ``ENFORCE_SINGLE_FILE`` parameters:
+-------------------------------------------------------------------
+
+.. code-block:: psql
+
+	COPY nba TO WRAPPER csv_fdw OPTIONS(
+		max_file_size = '250000000',
+		enforce_single_file = 'true',
+		location = '/tmp/nba_export.parquet'
+	);
+
 Permissions
 =============
+
 The role must have the ``SELECT`` permission on every table or schema that is referenced by the statement.
