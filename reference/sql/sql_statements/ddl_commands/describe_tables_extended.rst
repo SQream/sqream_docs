@@ -45,8 +45,6 @@ The following parameters can be used with the ``DESCRIBE TABLES EXTENDED`` comma
 Output
 ======
 
-Using the **internal** ``DESCRIBE_TABLES_EXTENDED`` command generates the following output:
-
 .. list-table:: 
    :widths: auto
    :header-rows: 1
@@ -151,6 +149,34 @@ The following is an example of an **internal** ``DESCRIBE TABLES EXTENDED`` comm
    --------------+------------+-----------+-----------+----------+--------------------+-------------------+-----------------+-----------------------------------+------------------+------------------
    master        |public      |alex       |Internal   |1048576   |2023-08-21 10:54:40 |                   |21               |0                                  |294851            |15728640
 
+The following is an example of an **external** ``DESCRIBE TABLES EXTENDED`` command:
+
+.. code-block:: postgres
+
+   DESCRIBE TABLES EXTENDED DATABASE master SCHEMA public EXTERNAL;
+
+.. code-block:: none
+
+	database_name|schema_name|table_name               |table_type|row_count|created_on         |Additional details                                                                                      |number_of_chunks|number_of_chunks_with_deleted_rows|bytes(compressed)|bytes(uncompressed)|
+	-------------+-----------+-------------------------+----------+---------+-------------------+--------------------------------------------------------------------------------------------------------+----------------+----------------------------------+-----------------+-------------------+
+	master       |public     |thirdpartydatacleaned    |External  |         |2023-08-22 11:38:53|Format: parquet, Path: gs://product_sqream/blue_demo/CleanedNValidatedData/3rdparty_cleaned.parquet     |                |                                  |                 |                   |
+	master       |public     |thirdpartydata           |External  |         |2023-08-22 11:39:42|Format: json, Path: gs://product_sqream/blue_demo/DataSources/thirdpartydata.json                       |                |                                  |                 |                   |
+	master       |public     |thirdpartydatatransformed|External  |         |2023-08-22 11:41:38|Format: parquet, Path: gs://product_sqream/blue_demo/TransformedData/3rdparty_transformed.parquet       |                |                                  |                 |                   |
+	master       |public     |nba                      |External  |         |2023-08-21 10:58:47|Format: parquet, Path: gs://blue_docs/nba.parquet                                                       |                |                                  |                 |                   |
+
+Using the ``LIKE`` parameter:
+
+.. code-block:: postgres
+
+	DESCRIBE TABLES EXTENDED DATABASE master SCHEMA public EXTERNAL LIKE '%third%';
+	
+.. code-block:: none
+
+	database_name|schema_name|table_name               |table_type|row_count|created_on         |Additional details                                                                                 |number_of_chunks|number_of_chunks_with_deleted_rows|bytes(compressed)|bytes(uncompressed)|
+	-------------+-----------+-------------------------+----------+---------+-------------------+---------------------------------------------------------------------------------------------------+----------------+----------------------------------+-----------------+-------------------+
+	master       |public     |thirdpartydatacleaned    |External  |         |2023-08-22 11:38:53|Format: parquet, Path: gs://product_sqream/blue_demo/CleanedNValidatedData/3rdparty_cleaned.parquet|                |                                  |                 |                   |
+	master       |public     |thirdpartydata           |External  |         |2023-08-22 11:39:42|Format: json, Path: gs://product_sqream/blue_demo/DataSources/thirdpartydata.json                  |                |                                  |                 |                   |
+	master       |public     |thirdpartydatatransformed|External  |         |2023-08-22 11:41:38|Format: parquet, Path: gs://product_sqream/blue_demo/TransformedData/3rdparty_transformed.parquet  |                |                                  |                 |                   |
 
 Permissions
 ===========
