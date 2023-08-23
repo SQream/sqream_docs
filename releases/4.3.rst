@@ -62,11 +62,19 @@ Version 4.3 resolved Issues
 +====================+================================================================================================+
 | SQ-11108           | Slow ``COPY FROM`` statements using ORC files                                                  |
 +--------------------+------------------------------------------------------------------------------------------------+
+| SQ-11804           | Slow metadata optimization                                                                     |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-12721           | ``maxConnectionInactivitySeconds`` flag issue when executing Batch Shell Program ETLs          |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-12799           | Catalog queries may not be terminated                                                          |
++--------------------+------------------------------------------------------------------------------------------------+
 | SQ-13112           | ``GRANT`` query queue issue                                                                    |
 +--------------------+------------------------------------------------------------------------------------------------+
 | SQ-13201           | ``INSERT INTO`` statement error while copying data from non-clustered table to clustered table |
 +--------------------+------------------------------------------------------------------------------------------------+
 | SQ-13210, SQ-13426 | Slow query execution time                                                                      |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-13225           | LoopJoin performance enhancement supports ``=``, ``>``, ``<``, and ``<=`` operators            |
 +--------------------+------------------------------------------------------------------------------------------------+
 | SQ-13322           | Cleanup operation case-sensitivity issue                                                       |
 +--------------------+------------------------------------------------------------------------------------------------+
@@ -74,19 +82,27 @@ Version 4.3 resolved Issues
 +--------------------+------------------------------------------------------------------------------------------------+
 | SQ-13453           | Metadata performance issue                                                                     |
 +--------------------+------------------------------------------------------------------------------------------------+
+| SQ-13460           | ``GRANT ALL ON ALL TABLES`` statement slow compilation time                                    |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-13461           | ``WHERE`` clause filter issue                                                                  |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-13467           | Snapshot issue causes metadata failure                                                         |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-13529           | Pysqream concurrency issue                                                                     |
++--------------------+------------------------------------------------------------------------------------------------+
 | SQ-13566, SQ-13694 | S3 access to bucket failure when using custom endpoint                                         |
 +--------------------+------------------------------------------------------------------------------------------------+
 | SQ-13587           | Large number of worker connections failure                                                     |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-13467           | Snapshot issue causes metadata failure                                                         |
+| SQ-13947           | Unicode character issue when using Tableau                                                     |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-11804           | Slow metadata optimization                                                                     |
+| SQ-14094           | Metadata server error stops workers and query queue                                            |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-13225           | LoopJoin performance enhancement supports ``=``, ``>``, ``<``, and ``<=`` operators            |
+| SQ-14268           | Internal runtime memory issue                                                                  |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-12799           | Catalog queries may not be terminated                                                          |
+| SQ-14724           | Alias issue when executing ``DELETE`` statement                                                |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-12721           | ``maxConnectionInactivitySeconds`` flag issue when executing Batch Shell Program ETLs          |
+| SQ-13387           | Simple query slow compilation time due to metadata size                                        |
 +--------------------+------------------------------------------------------------------------------------------------+
 
 Configuration Adjustments
@@ -122,6 +138,7 @@ The ``VARCHAR`` data type is deprecated to improve the core functionalities of t
 
 Upgrading to v4.3
 -----------------
+
 1. Generate a back-up of the metadata by running the following command:
 
    .. code-block:: console
@@ -155,4 +172,9 @@ There are two methods of granting back access to services:
 
 
   .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
+  
+Version 4.3.1 Rollback To Version 4.0.1
+---------------------------------------
+
+ 
   
