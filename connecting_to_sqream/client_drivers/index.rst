@@ -26,13 +26,6 @@ The following are applicable to all operating systems:
 
   * `.NET .dll file <https://get.sqream-share.com/share/sIsu8fxv>`_ 
   * :ref:`net`
-
-.. _trino:
-
-* **Trino**:
-
-  * `Trino Connector <>`_ 
-  * :ref:`trino`
   
 .. _spark:
   
