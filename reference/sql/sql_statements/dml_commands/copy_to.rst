@@ -19,6 +19,7 @@ In general, ``COPY`` moves data between filesystem files and SQream DB tables. I
 
 Syntax
 ==========
+
 The following is the correct syntax for using the **COPY TO** statement:
 
 .. code-block:: postgres
@@ -70,6 +71,7 @@ The following is the correct syntax for using the **COPY TO** statement:
 
 Elements
 ============
+
 The following table shows the ``COPY_TO`` elements:
 
 .. list-table:: 
@@ -114,7 +116,8 @@ Supported Field Delimiters
    :depth: 1
 
 Printable ASCII Characters
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Any printable ASCII character can be used as a delimiter without special syntax. The default CSV field delimiter is a comma (``,``).
 
 The following table shows the supported printable ASCII characters:
@@ -180,7 +183,8 @@ The following table shows the supported printable ASCII characters:
 +---------------+----------------------+-----------+-----------+---------+------------+---------------+---------------+
 
 Non-Printable ASCII Characters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The following table shows the supported non-printable ASCII characters:
 
 +---------------+---------------------------+-----------+-----------+---------+------------+---------------+---------------+
@@ -256,7 +260,8 @@ For example, ASCII character ``15``, known as "shift in", can be specified using
 .. note:: Delimiters are only applicable to the CSV file format.
 
 Unsupported ASCII Field Delimiters
-------------------------------
+-----------------------------------
+
 The following table shows the unsupported ASCII field delimiters:
 
 +-----------+---------------+------------------------+-----------+---------+------------+---------------+---------------+
@@ -403,6 +408,7 @@ The following table shows the unsupported ASCII field delimiters:
 
 Date Format
 ---------------
+
 The date format in the output CSV is formatted as ISO 8601 (``2019-12-31 20:30:55.123``), regardless of how it was parsed initially with :ref:`COPY FROM date parsers<copy_date_parsers>`.
 
 For more information on the ``datetime`` format, see :ref:`sql_data_types_date`.
@@ -419,6 +425,7 @@ Exporting Data From SQream to External File Tables
 
 Parquet
 ^^^^^^^
+
 The compression algorithm used for exporting data from SQream to Parquet files is Snappy.
 
 Exporting tables to Parquet files:
@@ -551,6 +558,7 @@ The following is an example of saving files to an HDFS path:
 
 Using Non-Printable ASCII Characters as Delimiters
 --------------------------------------------------
+
 The following is an example of using non-printable ASCII characters as delimiters:
 
 Non-printable characters can be specified using their octal representations, by using the ``E'\000'`` format, where ``000`` is the octal value of the character.
@@ -565,6 +573,19 @@ For example, ASCII character ``15``, known as "shift in", can be specified using
    
 	COPY nba TO WRAPPER csv_fdw OPTIONS (LOCATION = '/tmp/nba_export.csv', DELIMITER = E'\011'); -- 011 is a tab character
 
+Using the ``MAX_FILE_SIZE`` and ``ENFORCE_SINGLE_FILE`` parameters:
+-------------------------------------------------------------------
+
+.. code-block:: psql
+
+	COPY nba TO WRAPPER csv_fdw OPTIONS(
+		max_file_size = '250000000',
+		enforce_single_file = 'true',
+		location = '/tmp/nba_export.parquet'
+	);
+
+
 Permissions
 =============
+
 The role must have the ``SELECT`` permission on every table or schema that is referenced by the statement.
