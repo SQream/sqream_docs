@@ -52,6 +52,7 @@ public  class  SampleTest  {
         }
         rs.close(); // Close the result set
         stmt.close(); // Close the statement handle
+        conn.close()
     }
 
 
