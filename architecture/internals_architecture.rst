@@ -7,6 +7,8 @@ Internals and Architecture
 Get to know the SQreamDB key functions and system architecture components and the best practices and customization possibilities.     
 
 .. figure:: /_static/images/sqream_db_internals.png
+   :align: left
+   :width: 75%
    :alt: SQreamDB internals
 
 Key Functions and Components
