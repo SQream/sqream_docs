@@ -10,29 +10,49 @@ SQreamDB is designed to work with most common database tools and interfaces, all
    :align: right
    :width: 800
 
-:ref:`Informatica Cloud Services<informatica>`
+Data Integration Tools
+----------------------
 
-:ref:`microstrategy`
+:ref:`Informatica Cloud Services<informatica>`
 
 :ref:`Pentaho Data Integration<pentaho_data_integration>`
 
-:ref:`PHP<php>`
+:ref:`Talend<talend>`
+
+:ref:`SQL Workbench<connect_to_sql_workbench>`
+
+Business Intelligence (BI) Tools
+--------------------------------
+
+:ref:`MicroStrategy<micro_strategy>`
 
 :ref:`BI Desktop<power_bi>`
-
-:ref:`R<r>`
 
 :ref:`SAP BusinessObjects<sap_businessobjects>`
 
 :ref:`SAS Viya<connect_to_sas_viya>`
 
-:ref:`SQL Workbench<connect_to_sql_workbench>`
-
 :ref:`Tableau<tableau>`
 
-:ref:`Talend<talend>`
-
 :ref:`TUBCO<tibco_spotfire>`
+
+Data Analysis and Programming Languages
+---------------------------------------
+
+:ref:`PHP<php>`
+
+:ref:`R<r>`
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-.. _microstrategy:
+.. _micro_strategy:
 
 
 *************
