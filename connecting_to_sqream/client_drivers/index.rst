@@ -4,11 +4,12 @@
 Client Drivers
 **************
 
-The guides on this page describe how to use the Sqream DB client drivers and client applications with SQream.
+The guides on this page describe how to use the SqreamDB client drivers and client applications.
 
 Client Driver Downloads
 =======================
 
+<<<<<<< Updated upstream
 All Operating Systems 
 ---------------------
 
@@ -69,13 +70,65 @@ The following are applicable to Windows:
 
 
 * **Net driver** - `SQream .Net driver v3.0.2 <https://sq-ftp-public.s3.amazonaws.com/SqreamNet_net48_3.0.2.zip>`_
+=======
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Driver
+     - Download
+     - Docs
+     - Notes
+     - Operating System
+   * - **JDBC**
+     - `sqream-jdbc 4.5.9 <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.9.jar>`_
+     - :ref:`java_jdbc`
+     - Recommended installation via ``mvn``
+     - All
+   * - **.NET**
+     - `.NET .dll file <https://get.sqream-share.com/share/sIsu8fxv>`_ 
+     - :ref:`net`
+     - 
+     - All
+   * - **Spark**
+     - `Spark Connector <https://sq-ftp-public.s3.amazonaws.com/Spark-Sqream-Connector-5.0.0.jar>`_ 
+     - :ref:`spark` 
+     - 
+     - All
+   * - **Python**
+     - `pysqream v3.2.5 <https://github.com/SQream/pysqream/releases/tag/v3.2.5>`_
+     - :ref:`pysqream`
+     - Recommended installation via ``pip``
+     - All
+   * - **Node.JS**
+     - `sqream-v4.2.4 <https://sq-ftp-public.s3.amazonaws.com/sqream-sqreamdb-4.2.4.tgz>`_
+     - :ref:`nodejs`
+     - Recommended installation via ``npm``
+     - All
+   * - **Tableau**
+     - `Tableau Connector <https://sq-ftp-public.s3.amazonaws.com/SQreamDB.taco>`_ 
+     - :ref:`tableau`  
+     - 
+     - All
+   * - **Power BI**
+     - `Power BI PowerQuery Connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_
+     - :ref:`power_bi`
+     - 
+     - All
+   * - **ODBC**
+     - For the **ODBC installer**, please contact your `Sqream representative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_
+     - :ref:`Windows<install_odbc_windows>`, :ref:`Linux<install_odbc_linux>`
+     - 
+     - Windows, Linux
+
+>>>>>>> Stashed changes
 
 
 
 .. toctree::
    :maxdepth: 4
-   :caption: Client Driver Documentation:
    :titlesonly:
+   :hidden:
    
    jdbc/index
    python/index
@@ -90,4 +143,8 @@ The following are applicable to Windows:
 
 .. rubric:: Need help?
 
+<<<<<<< Updated upstream
 If you couldn't find what you're looking for, contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_
+=======
+If you couldn't find what you're looking for, contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_
+>>>>>>> Stashed changes
