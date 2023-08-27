@@ -54,7 +54,7 @@ Client Driver Downloads
      - 
      - All
    * - **ODBC**
-     - For the **ODBC installer**, please contact your `Sqream representative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_
+     - For the **ODBC installer**, please contact your `SQreamDB representative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_
      - :ref:`Windows<install_odbc_windows>`, :ref:`Linux<install_odbc_linux>`
      - 
      - Windows, Linux
