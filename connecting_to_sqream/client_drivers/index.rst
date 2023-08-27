@@ -49,7 +49,7 @@ Client Driver Downloads
      - 
      - All
    * - **Power BI**
-     - `Power BI PowerQuery Connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_
+     - `POWERBI PowerQuery Connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_
      - :ref:`power_bi`
      - 
      - All
