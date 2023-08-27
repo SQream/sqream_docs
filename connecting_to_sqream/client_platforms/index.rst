@@ -4,7 +4,7 @@
 Client Platforms
 ************************************
  
-SQreamDB is designed to work with most common database tools and interfaces, allowing you direct access through a variety of drivers, connectors, visualization tools, and utilities.
+SQreamDB is designed to work with the most common database tools and interfaces, allowing you direct access through a variety of drivers, connectors, visualization tools, and utilities.
 
 .. figure:: /_static/images/connectivity_ecosystem.png
    :align: right
@@ -26,7 +26,7 @@ Business Intelligence (BI) Tools
 
 :ref:`MicroStrategy<micro_strategy>`
 
-:ref:`BI Desktop<power_bi>`
+:ref:`POWERBI DESKTOP<power_bi>`
 
 :ref:`SAP BusinessObjects<sap_businessobjects>`
 
