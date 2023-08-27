@@ -3,6 +3,7 @@
 *************************************
 Catalog Tables
 *************************************
+
 The ``sqream_catalog`` includes the following tables:
 
 .. contents:: 
@@ -13,6 +14,7 @@ The ``sqream_catalog`` includes the following tables:
    
 Clustering Keys
 ----------------
+
 The ``clustering_keys`` data object is used for explicit clustering keys for tables. If you define more than one clustering key, each key is listed in a separate row, and is described in the following table:
 
 .. list-table::
@@ -36,6 +38,7 @@ The ``clustering_keys`` data object is used for explicit clustering keys for tab
 
 Columns
 ----------------
+
 The **Columns** database object shows the following tables:
 
 .. contents:: 
@@ -44,6 +47,7 @@ The **Columns** database object shows the following tables:
    
 Columns
 ***********
+
 The ``column`` data object is used with standard tables and is described in the following table:
 
 .. list-table::
@@ -80,7 +84,8 @@ The ``column`` data object is used with standard tables and is described in the 
      - Shows the timestamp displaying when the column was last altered.
 	 
 External Table Columns
-***********
+************************
+
 The ``external_table_columns`` is used for viewing data from foreign tables.
 
 For more information on foreign tables, see :ref:`CREATE FOREIGN TABLE<create_foreign_table>`.
@@ -89,6 +94,7 @@ For more information on foreign tables, see :ref:`CREATE FOREIGN TABLE<create_fo
 
 Databases
 ----------------
+
 The ``databases`` data object is used for displaying database information, and is described in the following table:
 
 .. list-table::
@@ -116,6 +122,7 @@ The ``databases`` data object is used for displaying database information, and i
 
 Permissions
 ----------------
+
 The ``permissions`` data object is used for displaying permissions information, such as roles (also known as **grantees**), and is described in the following tables:
 
 .. contents:: 
@@ -123,7 +130,8 @@ The ``permissions`` data object is used for displaying permissions information, 
    :depth: 1
    
 Permission Types
-***********
+*****************
+
 The ``permission_types`` object identifies the permission names existing in the database.
 
 The following table describes the ``permission_types`` data object:
@@ -140,7 +148,8 @@ The following table describes the ``permission_types`` data object:
      - Shows the name of the permission type.
    
 Default Permissions
-***********
+********************
+
 The commands included in the **Default Permissions** section describe how to check the following default permissions:
 
 .. contents:: 
@@ -148,7 +157,8 @@ The commands included in the **Default Permissions** section describe how to che
    :depth: 1
 
 Default Table Permissions
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 The ``sqream_catalog.table_default_permissions`` command shows the columns described below:
 
 .. list-table::
@@ -169,7 +179,8 @@ The ``sqream_catalog.table_default_permissions`` command shows the columns descr
      - Shows the type of permission granted.
 	 
 Default Schema Permissions
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 The ``sqream_catalog.schema_default_permissions`` command shows the columns described below:
 
 .. list-table::
@@ -190,7 +201,8 @@ The ``sqream_catalog.schema_default_permissions`` command shows the columns desc
 For an example of using the ``sqream_catalog.table_default_permissions`` command, see `Granting Default Table Permissions <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/access_control_commands/alter_default_permissions.html#granting-default-table-permissions>`_.
 
 Table Permissions
-***********
+******************
+
 The ``table_permissions`` data object identifies all permissions granted to tables. Each role-permission combination displays one row.
 
 The following table describes the ``table_permissions`` data object: 
@@ -211,7 +223,8 @@ The following table describes the ``table_permissions`` data object:
      - Identifies the permission type.
 	 
 Database Permissions
-***********
+*********************
+
 The ``database_permissions`` data object identifies all permissions granted to databases. Each role-permission combination displays one row.
 
 The following table describes the ``database_permissions`` data object: 
@@ -230,7 +243,8 @@ The following table describes the ``database_permissions`` data object:
      - Identifies the permission type.
 	 
 Schema Permissions
-***********
+********************
+
 The ``schema_permissions`` data object identifies all permissions granted to schemas. Each role-permission combination displays one row.
 
 The following table describes the ``schema_permissions`` data object: 
@@ -245,19 +259,23 @@ The following table describes the ``schema_permissions`` data object:
      - Shows the name of the database containing the schema.
    * - ``schema_id``
      - Shows the ID of the schema the permission applies to.
+   * - ``getter_role_type``
+     - Shows the type of role that is granted permissions.
    * - ``role_id``
      - Shows the ID of the role granted permissions.
    * - ``permission_type``
      - Identifies the permission type.	 
 
 UDF Permissions
-***********
+*****************
+
 **Comment** - *No content.*
 
 .. _queries:
 
 Queries
 ----------------
+
 The ``savedqueries`` data object identifies the saved_queries in the database, as shown in the following table:
 
 .. list-table::
@@ -277,6 +295,7 @@ For more information, see :ref:`saved_queries<saved_queries>`.
 	 
 Roles
 ----------------
+
 The ``roles`` data object is used for displaying role information, and is described in the following tables:
 
 .. contents:: 
@@ -285,6 +304,7 @@ The ``roles`` data object is used for displaying role information, and is descri
 
 Roles
 ***********
+
 The ``roles`` data object identifies the roles in the database, as shown in the following table:
 
 .. list-table::
@@ -305,7 +325,8 @@ The ``roles`` data object identifies the roles in the database, as shown in the 
      - Identifies whether the role has a password (``1`` - yes, ``0`` - no).
      
 Role Memberships
-***********
+*******************
+
 The ``roles_memberships`` data object identifies the role memberships in the database, as shown below:
 
 .. list-table::
@@ -327,6 +348,7 @@ The ``roles_memberships`` data object identifies the role memberships in the dat
 
 Schemas
 ----------------
+
 The ``schemas`` data object identifies all the database's schemas, as shown below:
 
 .. list-table::
@@ -348,16 +370,19 @@ The ``schemas`` data object identifies all the database's schemas, as shown belo
 
 Sequences
 ----------------
+
 The ``sequences`` data object is used for displaying identity key information, as shown below:
 
 Identity Key
-***********
+*************
+
 **Comment** - *No content.*
 
 .. _tables:
 
 Tables
 ----------------
+
 The ``tables`` data object is used for displaying table information, and is described in the following tables:
 
 .. contents:: 
@@ -366,6 +391,7 @@ The ``tables`` data object is used for displaying table information, and is desc
 
 Tables
 ***********
+
 The ``tables`` data object identifies proper (**Comment** - *What does "proper" mean?*) SQream tables in the database, as shown in the following table:
 
 .. list-table::
@@ -390,7 +416,8 @@ The ``tables`` data object identifies proper (**Comment** - *What does "proper" 
      - Relevant for internal use.
 	 
 Foreign Tables
-***********
+****************
+
 The ``external_tables`` data object identifies foreign tables in the database, as shown below:
 
 .. list-table::
@@ -416,6 +443,7 @@ The ``external_tables`` data object identifies foreign tables in the database, a
 
 Views
 ----------------
+
 The ``views`` data object is used for displaying views in the database, as shown below:
 
 .. list-table::
@@ -438,7 +466,8 @@ The ``views`` data object is used for displaying views in the database, as shown
 .. _udfs:
 
 User Defined Functions
-----------------
+-----------------------
+
 The ``udf`` data object is used for displaying UDFs in the database, as shown below:
 
 .. list-table::
