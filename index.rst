@@ -73,7 +73,6 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
    feature_guides/index   
    data_ingestion/index
    external_storage_platforms/index
-   loading_and_unloading_data/index
    reference/index
    data_type_guides/index
    releases/index
