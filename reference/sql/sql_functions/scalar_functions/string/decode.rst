@@ -37,14 +37,15 @@ Returns the same type as the argument supplied.
 Example
 =======
 
-.. code-block:: postgres
+.. code-block:: sql
 
 	CREATE TABLE test1 (european_size int not null);
 	INSERT INTO test1 values (8),(9),(10),(11);
 	
 	SELECT european_size,DECODE(european_size,8,40,9,41,10,42,99) from test1;
 	
-		
+.. code-block:: none
+
 	+---------------+---------+
 	|european_size	|decode   |
 	+---------------+---------+
