@@ -36,13 +36,13 @@ Arguments
 Returns
 ============
 
-Return type is dependant on the argument.
+The return type depends on the argument.
 
 * For ``TINYINT``, ``SMALLINT`` and ``INT``, the return type is ``INT``.
 
 * For ``BIGINT``, the return type is ``BIGINT``.
 
-* For ``REAL``, the return type is ``REAL``
+* For ``REAL``, the return type is ``DOUBLE``
 
 * For ``DOUBLE``, rhe return type is ``DOUBLE``
 
