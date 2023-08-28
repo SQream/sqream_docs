@@ -152,6 +152,7 @@ Window frame functions allows a user to perform rolling operations, such as calc
 
 ``PARTITION BY``
 ------------------
+
 The ``PARTITION BY`` clause groups the rows of the query into partitions, which are processed separately by the window function. 
 
 ``PARTITION BY`` works similarly to a query-level ``GROUP BY`` clause, but expressions are always just expressions and cannot be output-column names or numbers. 
@@ -167,10 +168,6 @@ Without ``ORDER BY``, rows are processed in an unspecified order.
 
 Frames 
 -------
-
-
-
-.. note:: Frames and frame exclusions have been tested extensively, but are a complex feature. They are released as a preview in v2020.1 pending longer-term testing.
 
 The ``frame_clause`` specifies the set of rows constituting the window frame, which is a subset of the current partition, for those window functions that act on the frame instead of the whole partition.
 
@@ -207,10 +204,9 @@ Frame Exclusion
 The ``frame_exclusion`` option allows rows around the current row to be excluded from the frame, even if they would be included according to the frame start and frame end options. ``EXCLUDE CURRENT ROW`` excludes the current row from the frame. ``EXCLUDE GROUP`` excludes the current row and its ordering peers from the frame. ``EXCLUDE TIES`` excludes any peers of the current row from the frame, but not the current row itself. ``EXCLUDE NO OTHERS`` simply specifies explicitly the default behavior of not excluding the current row or its peers.
 
 Limitations
-==================
+=================
+
 Window functions do not support the Numeric data type.
-
-
 
 Examples
 ==========
