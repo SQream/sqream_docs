@@ -34,7 +34,7 @@ Business Intelligence (BI) Tools
 
 :ref:`Tableau<tableau>`
 
-:ref:`TIBCO<tibco_spotfire>`
+:ref:`TIBCO Spotfire<tibco_spotfire>`
 
 Data Analysis and Programming Languages
 ---------------------------------------

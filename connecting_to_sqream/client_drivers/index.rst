@@ -67,7 +67,6 @@ Client Driver Downloads
    :titlesonly:
    :hidden:
    
-   trino/index
    jdbc/index
    python/index
    nodejs/index
