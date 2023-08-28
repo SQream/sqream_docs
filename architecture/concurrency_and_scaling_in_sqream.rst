@@ -108,10 +108,10 @@ Configuring the ``limitQueryMemoryGB`` using the Worker configuration file:
        “gpu”:  0,
        “licensePath”: “home/test_user/SQream/tests/license.enc”,
        “machineIP”: “127.0.0.1”,
-       “metadataServerIp”: “127.0.0.1”,
-       “metadataServerPort”: “3105,
+       “metadataServerIp”: 127.0.0.1,
+       “metadataServerPort”: 3105,
        “port”: 5000,
-       “useConfigIP”” true,
+       “useConfigIP”: true,
        “limitQueryMemoryGB" : 201,
    }
 
