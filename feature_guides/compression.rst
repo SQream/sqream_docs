@@ -3,39 +3,36 @@
 ***********************
 Compression
 ***********************
-The **Compression** page describes the following:
+
+SQreamDB uses a variety of compression and encoding methods to optimize query performance and to save disk space.
 
 .. contents:: 
    :local:
    :depth: 1
 
-.. |icon-new_dark_gray_2022.1.1.png| image:: /_static/images/new_dark_gray_2022.1.1.png
-   :align: middle
-   :width: 110
-
-SQream uses a variety of compression and encoding methods to optimize query performance and to save disk space.
-
 Encoding
 =============
+
 **Encoding** is an automatic operation used to convert data into common formats. For example, certain formats are often used for data stored in columnar format, in contrast with data stored in a CSV file, which stores all data in text format.
 
 Encoding enhances performance and reduces data size by using specific data formats and encoding methods. SQream encodes data in a number of ways in accordance with the data type. For example, a **date** is stored as an **integer**, starting with **March 1st 1CE**, which is significantly more efficient than encoding the date as a string. In addition, it offers a wider range than storing it relative to the Unix Epoch. 
 
 Lossless Compression
-==============
+=======================
+
 **Compression** transforms data into a smaller format without sacrificing accuracy, known as **lossless compression**.
 
-After encoding a set of column values, SQream packs the data and compresses it and decompresses it to make it accessible to users. Depending on the compression scheme used, these operations can be performed on the CPU or the GPU. Some users find that GPU compressions provide better performance.
+After encoding a set of column values, SQream packs the data and compresses it and decompresses it to make it accessible to users. Depending on the compression scheme used, these operations can be performed on the CPU or the GPU. Some users find that GPU compression provide better performance.
 
 Automatic Compression
 ------------------------
-By default, SQream automatically compresses every column (see :ref:`Specifying Compression Strategies<specifying_compressions>` below for overriding default compressions). This feature is called **automatic adaptive compression** strategy.
 
-When loading data, SQream DB automatically decides on the compression schemes for specific chunks of data by trying several compression schemes and selecting the one that performs best. SQream DB tries to balance more agressive compressions with the time and CPU/GPU time required to compress and decompress the data.
+By default, SQream automatically compresses every column (see :ref:`Specifying Compression Strategies<specifying_compressions>` below for overriding default compression). This feature is called **automatic adaptive compression** strategy.
+
+When loading data, SQreamDB automatically decides on the compression schemes for specific chunks of data by trying several compression schemes and selecting the one that performs best. SQreamDB tries to balance more aggressive compression with the time and CPU/GPU time required to compress and decompress the data.
 
 Compression Methods
 ------------------------
-
 
 The following table shows the supported compression methods:
 
@@ -56,9 +53,9 @@ The following table shows the supported compression methods:
      - Automatic scheme selection
      - NA
    * - ``DICT``
-     - Integer types, dates and timestamps, short texts
+     - All
      - 
-         Dictionary compression with RLE. For each chunk, SQream DB creates a dictionary of distinct values and stores only their indexes.
+         Dictionary compression with RLE. For each chunk, SQreamDB creates a dictionary of distinct values and stores only their indexes.
          
          Works best for integers and texts shorter than 120 characters, with <10% unique values.
          
@@ -67,7 +64,7 @@ The following table shows the supported compression methods:
          If the data is optionally sorted, this compression will perform even better.
      - GPU
    * - ``P4D``
-     - Integer types, dates and timestamps
+     - ``Integer``, ``dates``, ``timestamps``, and ``float`` types
      - 
          Patched frame-of-reference + Delta 
          
@@ -84,16 +81,44 @@ The following table shows the supported compression methods:
      - CPU
    * - ``RLE``
      - Integer types, dates and timestamps
-     - Run-length encoding. This replaces sequences of values with a single pair. It is best for low cardinality columns that are used to sort data (``ORDER BY``).
+     - Run-Length Encoding. This replaces sequences of values with a single pair. It is best for low cardinality columns that are used to sort data (``ORDER BY``).
      - GPU
    * - ``SEQUENCE``
-     - Integer types
+     - ``Integer``, ``date``, and ``timestamp``
      - Optimized RLE + Delta type for built-in :ref:`identity columns<identity>`. 
      - GPU
    * - ``zlib``
      - All types
      - The **basic_zlib_compressor** and **basic_zlib_decompressor** compress and decompress data in the **ZLIB** format, using **DualUseFilters** for input and output. In general, compression filters are for output, and decompression filters for input.
      - CPU
+   * - ``SPACES``
+     - 
+     - Reduces the storage space required for data by identifying repeating sequences of values and replacing them with a compact representation. This method is particularly effective when there are repetitive patterns in the data.
+     -
+   * - ``DELTA_RLE``
+     - Integer types
+     - Optimized RLE + Delta type for built-in :ref:`identity columns<identity>`. 
+     - CPU
+   * - ``SPADES``
+     - 
+     - An extension of ``SPACES`` compression, optimizing the compression scheme further to handle specific data patterns and types efficiently.
+     -
+   * - ``SPAPPY``
+     - 
+     - Specialized variation of the ``Snappy`` compression algorithm. ``Snappy`` is a fast and efficient compression method that works well with various types of data, offering good compression ratios and decompression speeds.
+     -
+   * - ``SPAZLY``
+     - 
+     - 
+     -
+   * - ``CRLE``
+     - 
+     -
+     -
+   * - ``LZ4_ZIGZAG``
+     - 
+     -
+     -
 	 
 .. note:: Automatic compression does **not** select the ``zlib`` compression method.
 
@@ -101,6 +126,7 @@ The following table shows the supported compression methods:
 
 Specifying Compression Strategies
 ----------------------------------
+
 When you create a table without defining any compression specifications, SQream defaults to automatic adaptive compression (``"default"``). However, you can prevent this by specifying a compression strategy when creating a table.
 
 This section describes the following compression strategies:
@@ -111,6 +137,7 @@ This section describes the following compression strategies:
 
 Explicitly Specifying Automatic Compression
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 When you explicitly specify automatic compression, the following two are equivalent:
 
 .. code-block:: postgres
@@ -131,6 +158,7 @@ In this version, the default compression is specified explicitly:
 
 Forcing No Compression
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 **Forcing no compression** is also known as "flat", and can be used in the event that you want to remove compression entirely on some columns. This may be useful for reducing CPU or GPU resource utilization at the expense of increased I/O.
 
 The following is an example of removing compression:
@@ -144,6 +172,7 @@ The following is an example of removing compression:
 
 Forcing Compression
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 In other cases, you may want to force SQream to use a specific compression scheme based on your knowledge of the data, as shown in the following example:
 
 .. code-block:: postgres
@@ -159,6 +188,7 @@ However, if SQream finds that the given compression method cannot effectively co
 
 Examining Compression Effectiveness
 --------------------------------------
+
 Queries made on the internal metadata catalog can expose how effective the compression is, as well as what compression schemes were selected.
 
 This section describes the following:
@@ -169,6 +199,7 @@ This section describes the following:
 
 Querying the Catalog
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The following is a sample query that can be used to query the catalog:
 
 .. code-block:: postgres
@@ -191,7 +222,8 @@ The following is a sample query that can be used to query the catalog:
                2;
 
 Example Subset from "Ontime" Table			   
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The following is an example (subset) from the ``ontime`` table:
 
 .. code-block:: psql
@@ -283,7 +315,8 @@ The following is an example (subset) from the ``ontime`` table:
    year                      | rle                |          6 |      2065915 |                 317216.08 | default             
 
 Notes on Reading the "Ontime" Table
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The following are some useful notes on reading the "Ontime" table shown above:
 
 #. Higher numbers in the **Compression effectiveness** column represent better compressions. **0** represents a column that has **not been compressed**.
@@ -302,6 +335,7 @@ The following are some useful notes on reading the "Ontime" table shown above:
 
 Best Practices
 ==============================
+
 This section describes the best compression practices:
 
 .. contents:: 
@@ -309,16 +343,19 @@ This section describes the best compression practices:
    :depth: 1
    
 Letting SQream Determine the Best Compression Strategy
-----------------------------------------------------
+-------------------------------------------------------
+
 In general, SQream determines the best compression strategy for most cases. If you decide to override SQream's selected compression strategies, we recommend benchmarking your query and load performance **in addition to** your storage size.
 
 Maximizing the Advantage of Each Compression Scheme
 -------------------------------------------------------
+
 Some compression schemes perform better when data is organized in a specific way. For example, to take advantage of RLE, sorting a column may result in better performance and reduced disk-space and I/O usage.
 Sorting a column partially may also be beneficial. As a rule of thumb, aim for run-lengths of more than 10 consecutive values.
 
 Choosing Data Types that Fit Your Data
 ---------------------------------------
+
 Adapting to the narrowest data type improves query performance while reducing disk space usage. However, smaller data types may compress better than larger types.
 
 For example, SQream recommends using the smallest numeric data type that will accommodate your data. Using ``BIGINT`` for data that fits in ``INT`` or ``SMALLINT`` can use more disk space and memory for query execution. Using ``FLOAT`` to store integers will reduce compression's effectiveness significantly.
