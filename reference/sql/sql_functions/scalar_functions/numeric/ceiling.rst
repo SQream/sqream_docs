@@ -32,7 +32,7 @@ Arguments
 Returns
 ============
 
-When using the ``CEILING`` and ``CEIL`` floating point number scalar functions, ``real`` arguments are automatically cast to ``double`` precision.
+``real`` arguments are automatically cast to ``double`` precision.
 
 
 Notes
