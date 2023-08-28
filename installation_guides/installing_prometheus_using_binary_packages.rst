@@ -2,23 +2,18 @@
 
 .. _install_prometheus_binary_top:
 
-*******************************************
+**********************************************
 Installing Prometheus Using Binary Packages
-*******************************************
+**********************************************
 
-The **Installing Prometheus Using Binary Packages** guide includes the following sections:
+Prometheus is an application used for event monitoring and alerting.
 
 .. contents::
    :local:
    :depth: 1
 
-Overview
-^^^^^^^^
-
-Prometheus is an application used for event monitoring and alerting.
-
 Installing Prometheus
-^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 You must install Prometheus before installing the Dashboard Data Collector.
 
@@ -102,12 +97,12 @@ You must install Prometheus before installing the Dashboard Data Collector.
        $ sudo chown -R prometheus:prometheus /etc/prometheus/consoles
        $ sudo chown -R prometheus:prometheus /etc/prometheus/console_libraries
 
-For more information on installing the Dashboard Data Collector, see `Installing the Dashboard Data Collector <https://docs.sqream.com/en/v2022.1/installation_guides/installing_dashboard_data_collector.html>`_.
+For more information on installing the Dashboard Data Collector, see :ref:`Installing the Dashboard Data Collector<installing_dashboard_data_collector>`.
 
 Back to :ref:`Installing Prometheus Using Binary Packages<install_prometheus_binary_top>`
 
 Configuring Your Prometheus Settings
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 After installing Prometheus you must configure your Prometheus settings. You must perform all Prometheus configurations in the **/etc/prometheus/prometheus.yml** file.
 
@@ -164,7 +159,7 @@ After installing Prometheus you must configure your Prometheus settings. You mus
 Back to :ref:`Installing Prometheus Using Binary Packages<install_prometheus_binary_top>`
 
 Configuring Your Prometheus Service File	  
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 After configuring your Prometheus settings you must configure your Prometheus service file.
 
@@ -221,9 +216,9 @@ After configuring your Prometheus settings you must configure your Prometheus se
 Back to :ref:`Installing Prometheus Using Binary Packages<install_prometheus_binary_top>`
 
 Accessing the Prometheus User Interface
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-After configuring your prometheus service file, you can access the Prometheus user interface.
+After configuring your Prometheus service file, you can access the Prometheus user interface.
 
 You can access the Prometheus user interface by running the following command:
 
@@ -231,14 +226,5 @@ You can access the Prometheus user interface by running the following command:
      
    $ http://<prometheus-ip>:9090/graph
 
-The Prometheus user interface is displayed.
+Once the Prometheus user interface is displayed, go to the **Query** tab and query metrics.
 
-From the **Query** tab you can query metrics, as shown below:
-
-.. list-table::
-   :widths: auto
-   :header-rows: 0
-   
-   * - .. image:: /_static/images/3c9c4e8b-49bd-44a8-9829-81d1772ed962.gif   
-
-Back to :ref:`Installing Prometheus Using Binary Packages<install_prometheus_binary_top>`
