@@ -1,4 +1,4 @@
-.. _internals_architecture:
+.. _internals_architecture: 
 
 ***************************
 Internals and architecture
