@@ -29,9 +29,9 @@ The following are applicable to all operating systems:
   
 .. _spark:
   
-* **Spark**:
+* ** Apache Spark**:
 
-  * `Spark Connector <https://sq-ftp-public.s3.amazonaws.com/Spark-Sqream-Connector-5.0.0.jar>`_ 
+  * `Apache Spark Connector <https://sq-ftp-public.s3.amazonaws.com/Spark-Sqream-Connector-5.0.0.jar>`_ 
   * :ref:`spark`   
 
 .. _python:
@@ -52,15 +52,15 @@ The following are applicable to all operating systems:
 
 * **Tableau**:
 
-  * `Tableau connector <https://sq-ftp-public.s3.amazonaws.com/SQreamDB.taco>`_ - SQream (.taco)
+  * `Tableau Connector <https://sq-ftp-public.s3.amazonaws.com/SQreamDB.taco>`_ - SQream (.taco)
   * :ref:`tableau`
 
   
 .. _powerbi_connector:   
 
-* **Power BI**:
+* **Power BI Desktop**:
 
-  * `Power BI PowerQuery Connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_ - SQream (.mez)
+  * `Power BI Power Query Connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_ - SQream (.mez)
   * :ref:`power_bi`
   
 
@@ -84,7 +84,7 @@ The following are applicable to Windows:
    :caption: Client Driver Documentation:
    :titlesonly:
    
-   trino/index
+
    jdbc/index
    python/index
    nodejs/index
