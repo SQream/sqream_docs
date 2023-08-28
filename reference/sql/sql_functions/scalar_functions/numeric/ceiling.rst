@@ -32,7 +32,7 @@ Arguments
 Returns
 ============
 
-``real`` arguments are automatically cast to ``double`` precision.
+``Real`` arguments are automatically cast to ``double`` precision.
 
 
 Notes
