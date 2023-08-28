@@ -1,8 +1,8 @@
 .. _catalog_reference_catalog_tables:
 
-*************************************
+**************
 Catalog Tables
-*************************************
+**************
 
 The ``sqream_catalog`` includes the following tables:
 
@@ -123,7 +123,7 @@ The ``databases`` data object is used for displaying database information, and i
 Permissions
 ----------------
 
-The ``permissions`` data object is used for displaying permissions information, such as roles (also known as **grantees**), and is described in the following tables:
+The ``permissions`` data object is used for displaying permission information, such as roles (also known as **grantees**), and is described in the following tables:
 
 .. contents:: 
    :local:
@@ -133,8 +133,6 @@ Permission Types
 *****************
 
 The ``permission_types`` object identifies the permission names existing in the database.
-
-The following table describes the ``permission_types`` data object:
 
 .. list-table::
    :widths: 20 180
@@ -198,7 +196,7 @@ The ``sqream_catalog.schema_default_permissions`` command shows the columns desc
    * - ``permission_type``
      - Shows the type of permission granted.
 	 
-For an example of using the ``sqream_catalog.table_default_permissions`` command, see `Granting Default Table Permissions <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/access_control_commands/alter_default_permissions.html#granting-default-table-permissions>`_.
+For an example of using the ``sqream_catalog.table_default_permissions`` command, see :ref:`Granting Default Table Permissions <alter_default_permissions>`.
 
 Table Permissions
 ******************
