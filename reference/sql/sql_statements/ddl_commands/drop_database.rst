@@ -17,7 +17,7 @@ Syntax
 .. code-block:: postgres
 
    drop_database_statement ::=
-       DROP DATABASE database_name
+       DROP DATABASE [ IF EXISTS ] database_name
        ;
 
    database_name ::= identifier
@@ -35,7 +35,9 @@ Parameters
      - Description
    * - ``database_name``
      - The name of the database to drop. This can not be the current database in use.
-
+   * - ``IF EXISTS``
+     - Drop the database if it exists. No error if the database does not exist.
+	 
 Examples
 ===========
 
@@ -61,3 +63,9 @@ The current database in use can't be dropped. Switch to another database first.
    raviga=> \c master
    master=> DROP DATABASE raviga;
    executed
+   
+.. code-block:: sql
+   
+   DROP DATABASE IF EXISTS green_database;
+   
+   Status:  Ended successfully
