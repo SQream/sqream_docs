@@ -15,7 +15,7 @@ Data Integration Tools
 
 :ref:`Informatica Cloud Services<informatica>`
 
-:ref:`Pentaho Data Integration<pentaho_data_integration>`
+:ref:`Pentaho Data Integration and Analytics<pentaho_data_integration>`
 
 :ref:`Talend<talend>`
 
@@ -26,7 +26,7 @@ Business Intelligence (BI) Tools
 
 :ref:`MicroStrategy<micro_strategy>`
 
-:ref:`POWERBI DESKTOP<power_bi>`
+:ref:`Power BI Desktop<power_bi>`
 
 :ref:`SAP BusinessObjects<sap_businessobjects>`
 

@@ -28,8 +28,8 @@ Client Driver Downloads
      - :ref:`net`
      - 
      - All
-   * - **Spark**
-     - `Spark Connector <https://sq-ftp-public.s3.amazonaws.com/Spark-Sqream-Connector-5.0.0.jar>`_ 
+   * - **Apache Spark**
+     - `Apache Spark Connector <https://sq-ftp-public.s3.amazonaws.com/Spark-Sqream-Connector-5.0.0.jar>`_ 
      - :ref:`spark` 
      - 
      - All
@@ -49,7 +49,7 @@ Client Driver Downloads
      - 
      - All
    * - **Power BI**
-     - `POWERBI PowerQuery Connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_
+     - `Power BI Power Query Connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_
      - :ref:`power_bi`
      - 
      - All
