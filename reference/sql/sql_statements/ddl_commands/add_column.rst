@@ -54,13 +54,7 @@ The following parameters can be used for adding a table:
 Usage Notes
 =========== 
 
-The following usage notes apply when adding a column to an existing table:
-
-   * When adding a new column to an existing table, a default (or null constraint) has to be specified, even if the table is empty.
-   
-      ::
-	  
-   * New columns you add to the table cannot be TEXT or contain an IDENTITY.
+When adding an empty column, the default values for that column will be set to ``NULL``.
 
 Examples
 ===========
