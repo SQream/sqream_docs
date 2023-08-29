@@ -14,9 +14,9 @@ The ODBC driver for Windows is provided as a shared library.
 
 This tutorial shows how to install and configure ODBC on Linux.
 
-.. contents:: In this topic:
+.. contents::
    :local:
-   :depth: 2
+   :depth: 1
 
 Prerequisites
 ==============
