@@ -175,8 +175,4 @@ There are two methods of granting back access to services:
 
   .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
   
-Version 4.3.1 Rollback To Version 4.0.1
----------------------------------------
 
- 
-  
