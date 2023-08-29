@@ -733,11 +733,11 @@ Improving Query Performance
    
    .. code-block:: sql
       
-         SELECT AVG(t_b.j :: BIGINT),
-               t_a.country_code
-         FROM t_a
-         JOIN t_b ON (crc64_join(t_a.fk) = crc64_join(t_b.id))
-         GROUP BY t_a.country_code
+	SELECT AVG(t_b.j::BIGINT), t_a.country_code
+	FROM "public"."t_a"
+	JOIN "public"."t_b" ON (CRC64(t_a.fk::TEXT) = CRC64(t_b.id::TEXT))
+	GROUP BY t_a.country_code;
+		 
    The execution below has been shortened, but note the highlighted rows for ``Join``.
    The ``Join`` node went from taking nearly 70 seconds, to just 6.67 seconds for joining 1.5 billion records.
 
