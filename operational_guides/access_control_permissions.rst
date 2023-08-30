@@ -17,9 +17,13 @@ The following table displays the access control permissions:
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``SUPERUSER``      | No permission restrictions on any activity                                                                              |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``CLUSTERADMIN``   | No permission restrictions on any interface-related activity                                                            |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Object/Layer: Database**                                                                                                                   |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``SUPERUSER``      | No permission restrictions on any activity within that database (this does not include modifying roles or permissions)  |
++--------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``CLUSTERADMIN``   | No permission restrictions on any interface-related activity                                                            |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``CONNECT``        | Connect to the database                                                                                                 |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
@@ -70,13 +74,14 @@ GRANT
    GRANT 
 
    { SUPERUSER
+   | CLUSTERADMIN
    | LOGIN 
    | PASSWORD '<password>' 
    } 
    TO <role> [, ...] 
 
    -- Grant permissions at the database level:
-        GRANT {{CREATE | CONNECT| DDL | SUPERUSER | CREATE FUNCTION} [, ...] | ALL [PERMISSIONS]}
+        GRANT {{CREATE | CONNECT| DDL | SUPERUSER | CLUSTERADMIN |CREATE FUNCTION} [, ...] | ALL [PERMISSIONS]}
 
    ON DATABASE <database> [, ...]
    TO <role> [, ...] 
@@ -139,13 +144,14 @@ REVOKE
    -- Revoke permissions at the instance/ storage cluster level:
    REVOKE
    { SUPERUSER
+   | CLUSTERADMIN
    | LOGIN
    | PASSWORD
    }
    FROM <role> [, ...]
             
    -- Revoke permissions at the database level:
-   REVOKE {{CREATE | CONNECT | DDL | SUPERUSER | CREATE FUNCTION}[, ...] |ALL [PERMISSIONS]}
+   REVOKE {{CREATE | CONNECT | DDL | SUPERUSER | CLUSTERADMIN | CREATE FUNCTION}[, ...] |ALL [PERMISSIONS]}
    ON DATABASE <database> [, ...]
    FROM <role> [, ...]
 
@@ -206,6 +212,7 @@ schema statement is run.
      GRANT
         { CREATE FUNCTION
         | SUPERUSER
+        | CLUSTERADMIN
         | CONNECT
         | CREATE
         | USAGE
