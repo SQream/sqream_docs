@@ -128,8 +128,6 @@ Utility Commands
      - Returns a static query plan, which can be used to debug query plans
    * - :ref:`recompile_saved_query`
      - Recompiles a saved query that has been invalidated due to a schema change
-   * - :ref:`get_license_info`
-     - View a user's license information
    * - :ref:`get_ddl`
      - View the ``CREATE TABLE`` statement for a table
    * - :ref:`get_function_ddl`
