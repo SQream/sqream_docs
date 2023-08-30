@@ -195,6 +195,8 @@ The ``sqream_catalog.schema_default_permissions`` command shows the columns desc
      - Shows the role that the permission is granted to.
    * - ``permission_type``
      - Shows the type of permission granted.
+   * - ``getter_role_type``
+     - Shows the type of role that is granted permissions.
 	 
 For an example of using the ``sqream_catalog.table_default_permissions`` command, see :ref:`Granting Default Table Permissions <alter_default_permissions>`.
 
@@ -257,8 +259,6 @@ The following table describes the ``schema_permissions`` data object:
      - Shows the name of the database containing the schema.
    * - ``schema_id``
      - Shows the ID of the schema the permission applies to.
-   * - ``getter_role_type``
-     - Shows the type of role that is granted permissions.
    * - ``role_id``
      - Shows the ID of the role granted permissions.
    * - ``permission_type``
