@@ -163,7 +163,7 @@ The following table shows the Access Control commands:
      - Lists all roles and their database connection privileges
    * - :ref:`describe_roles`
      - Lists all roles defined in your system
-   * - :re:`describe_role_permissions`
+   * - :ref:`describe_role_permissions`
      - Lists all role privileges
    * - :ref:`drop_role`
      - Removes roles
