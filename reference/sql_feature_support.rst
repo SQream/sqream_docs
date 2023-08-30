@@ -6,9 +6,6 @@ SQL Feature Checklist
 
 
 To understand which ANSI SQL and other SQL features SQream DB supports, use the tables below.
-
-.. contents:: In this topic:
-   :local:
    
 
 Data Types and Values
