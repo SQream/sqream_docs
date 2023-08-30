@@ -15,13 +15,13 @@ The following table displays the access control permissions:
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``PASSWORD``       | The password used for logging into the system                                                                           |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``SUPERUSER``      | No permission restrictions on any operation                                                                             |
+| ``SUPERUSER``      | No permission restrictions on any DB-level operations                                                                   |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``CLUSTERADMIN``   | No permission restrictions on any interface-based operations                                                            |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Object/Layer: Database**                                                                                                                   |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``SUPERUSER``      | No permission restrictions on any operation within that database (this does not include modifying roles or permissions) |
+| ``SUPERUSER``      | No permission restrictions on any DB-level operations within the database (excluding role and permission modification)  |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``CLUSTERADMIN``   | No permission restrictions on any interface-based operations                                                            |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
@@ -116,6 +116,8 @@ GRANT
 
    GRANT  LOGIN,superuser  TO  admin;
 
+   GRANT superuser, clusteradmin TO  admin1; 
+
    GRANT  CREATE  FUNCTION  ON  database  master  TO  admin;
 
    GRANT  SELECT  ON  TABLE  admin.table1  TO  userA;
@@ -179,6 +181,8 @@ Examples:
 .. code-block:: postgres
 
    REVOKE  superuser  on  schema  demo  from  userA;
+
+   REVOKE  superuser, clusteradmin FROM admin1;
 
    REVOKE  delete  on  admin.table1  from  userB;
 
