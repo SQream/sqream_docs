@@ -15,15 +15,15 @@ The following table displays the access control permissions:
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``PASSWORD``       | The password used for logging into the system                                                                           |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``SUPERUSER``      | No permission restrictions on any activity                                                                              |
+| ``SUPERUSER``      | No permission restrictions on any operation                                                                             |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``CLUSTERADMIN``   | No permission restrictions on any interface-related activity                                                            |
+| ``CLUSTERADMIN``   | No permission restrictions on any interface-based operations                                                            |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Object/Layer: Database**                                                                                                                   |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``SUPERUSER``      | No permission restrictions on any activity within that database (this does not include modifying roles or permissions)  |
+| ``SUPERUSER``      | No permission restrictions on any operation within that database (this does not include modifying roles or permissions) |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``CLUSTERADMIN``   | No permission restrictions on any interface-related activity                                                            |
+| ``CLUSTERADMIN``   | No permission restrictions on any interface-based operations                                                            |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``CONNECT``        | Connect to the database                                                                                                 |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
