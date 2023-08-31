@@ -4,7 +4,9 @@
 SQL Workflows
 *************
    
-**Jobs** is a workflow management tool that enables you to create complex SQL workflows. You can use **Jobs** to create and automate sequences of SQL scripts, enabling them to trigger one another and deliver insights or prepare your data for advanced tasks like data modeling and training. You may execute your jobs manually or schedule them for automatic execution. 
+**Jobs** is a workflow management tool that enables you to create complex SQL workflows. You can use **Jobs** to create and automate sequences of SQL scripts, enabling them to trigger one another and deliver insights or prepare your data for advanced tasks like data modeling and training. You may execute your jobs manually or schedule them for automatic execution.
+
+If you haven't already enabled the **Jobs** management tool, please follow the :ref:`Creating Clients and Generating Access Tokens<connecting_to_blue>` guide. 
 
 .. list-table:: SQL Workflow Elements
    :widths: auto

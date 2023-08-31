@@ -6,7 +6,7 @@ Integration
 
 Users who wish to use the BLUE :ref:`Jobs<performing_basic_blue_operations>` workflow management tool or establish connections to BLUE from their personal applications or tools are required to employ connectors and obtain authentication access tokens, thereby necessitating the creation of dedicated BLUE **Clients** and the generation of these access tokens to enable the use of Jobs, connectors, applications, and tools in question.
 
-Access tokens are used to establish secure connections with connectors and third-party platforms by providing a means of authentication and authorization. They enhance security by ensuring only authorized entities can access the BLUE cluster. Access tokens help manage machine-to-machine communication, enable auditing and logging, and promote compatibility with modern integration practices. 
+Access tokens, managed via Airflow for authentication and security, are essential for establishing secure links to connectors and external platforms. These tokens serve to authenticate and authorize, enhancing security by permitting only authorized entities to access the BLUE cluster. Their importance lies in facilitating smooth machine-to-machine communication, enabling thorough auditing and logging, and aligning with modern integration practices.
 
 Creating Clients and Generating Access Tokens
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
