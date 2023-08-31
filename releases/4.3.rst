@@ -34,6 +34,8 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
+► A new :ref:`SQLoader <ingesting_from_databases>` will enable you to load data into SQreamDB from other databases.
+
 ► Access control permissions in SQreamDB have been expanded, allowing roles to now grant and revoke access to other roles for the following:
 
  * VIEWS
@@ -174,6 +176,3 @@ There are two methods of granting back access to services:
   .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
   
 
-
- 
-  
