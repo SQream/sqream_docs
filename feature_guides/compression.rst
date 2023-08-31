@@ -114,7 +114,7 @@ The following table shows the supported compression methods:
    * - ``CRLE``
      - 
      -
-     -
+     - CPU
    * - ``LZ4_ZIGZAG``
      - 
      -
