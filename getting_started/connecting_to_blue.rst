@@ -4,17 +4,12 @@
 Integration
 ===========
 
-Users who wish to connect to BLUE from their own applications or tools may need to use connectors. BLUE supports the most common database tools and interfaces, giving you direct access through a variety of connectors, visualization tools, and utilities. 
-
-To use any of the following connectors, applications, and tools, it is essential that you create dedicated BLUE **Clients** and generate client connection access tokens.
-
-Access Token Management
------------------------
+Users who wish to use the BLUE :ref:`Jobs<performing_basic_blue_operations>` workflow management tool or establish connections to BLUE from their personal applications or tools are required to employ connectors and obtain authentication access tokens, thereby necessitating the creation of dedicated BLUE **Clients** and the generation of these access tokens to enable the use of Jobs, connectors, applications, and tools in question.
 
 Access tokens are used to establish secure connections with connectors and third-party platforms by providing a means of authentication and authorization. They enhance security by ensuring only authorized entities can access the BLUE cluster. Access tokens help manage machine-to-machine communication, enable auditing and logging, and promote compatibility with modern integration practices. 
 
-Creating Access Tokens
-^^^^^^^^^^^^^^^^^^^^^^
+Creating Clients and Generating Access Tokens
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Using connectors and third-party tools requires BLUE clients to be associated with access tokens. Once an access token is generated, you may use it to secure the connection between your BLUE client and the respective BLUE cluster or platform, ensuring authenticated access, controlled data interaction, and enhanced security measures in place.
 
@@ -24,7 +19,7 @@ Using connectors and third-party tools requires BLUE clients to be associated wi
 
 #. Select **Create New Client** and fill in a **Client Name** and a **Client Role**.
 
-   Consider providing a **Client Name** that can be widely understood, such as **BI**, **JDBC**, or **Analysis**.
+   Consider providing a **Client Name** that can be widely understood, such as *BI*, *JDBC*, or *Analysis*.
 	
    Your newly created BLUE client inherits permissions from the associated **Client Role**.
 
@@ -32,7 +27,11 @@ Using connectors and third-party tools requires BLUE clients to be associated wi
 
    A Client creation pop-up window with your new access token appears.
 	
-#. Copy the access token  or select **Done**.
+#. Copy the access token or select **Done**.
+
+#. Use the access token within your connector or third-party application or tool configuration.
+
+#. To enable **Jobs**, designate a recently created client or one of your existing clients as a connection for Jobs by choosing it from the Jobs column on under the **Access Token Management** tab.
 
 Managing Access Tokens
 ^^^^^^^^^^^^^^^^^^^^^^
