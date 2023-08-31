@@ -11,9 +11,10 @@ This guide focuses specifically on identifying bottlenecks and possible optimiza
 Performance tuning options for each query are different. You should adapt the recommendations and tips for your own workloads.
 See also our :ref:`sql_best_practices` guide for more information about data loading considerations and other best practices.
 
-.. contents:: In this section:
+.. contents::
    :local:
-   :depths: 1
+   :depth: 1
+
 
 Setting Up the System for Monitoring
 ====================================
@@ -147,8 +148,7 @@ Consider the example show_node_info presented above. The source node with ID #11
 (``CpuDecompress``). If we were to draw this out in a graph, it'd look like this:
 
 .. figure:: /_static/images/show_node_info_graph.png
-
-   :height: 70em
+   :scale: 60 %
    :align: center
    
    This graph explains how the query execution details are arranged in a logical order, from the bottom up.
