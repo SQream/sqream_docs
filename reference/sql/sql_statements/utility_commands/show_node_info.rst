@@ -4,7 +4,7 @@
 SHOW_NODE_INFO
 ********************
 
-``SHOW_NODE_INFO`` returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases.
+``SHOW_NODE_INFO`` returns a snapshot of the current query plan, similarly to the ``EXPLAIN ANALYZE`` function used in other databases.
 
 The snapshot provides information about execution which can be used for monitoring and troubleshooting slow running statements by helping identify long-running execution nodes (components that process data), etc.
 
