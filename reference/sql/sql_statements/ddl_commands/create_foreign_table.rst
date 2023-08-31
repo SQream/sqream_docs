@@ -44,15 +44,16 @@ Syntax
    table_name ::= identifier  
 
    fdw_name ::= 
-       { csv_fdw | orc_fdw | parquet_fdw }
+       { csv_fdw | orc_fdw | parquet_fdw | json_fdw | avro_fdw }
    
    option_def ::= 
    {
-      LOCATION = '{ path_spec }'
-      | DELIMITER = '{ field_delimiter }' -- for CSV only
-      | RECORD_DELIMITER = '{ record_delimiter }' -- for CSV only
-      | AWS_ID '{ AWS ID }'
-      | AWS_SECRET '{ AWS SECRET }'
+      LOCATION = '{ path_spec }',
+      | DELIMITER = '{ field_delimiter }' -- for CSV only,
+      | RECORD_DELIMITER = '{ record_delimiter }', -- for CSV only
+      | AWS_ID '{ AWS ID }',
+      | AWS_SECRET '{ AWS SECRET }',
+      | OFFSET -- for CSV and JSON only
    }
    
    path_spec ::= { local filepath | S3 URI | HDFS URI }
@@ -85,23 +86,25 @@ Parameters
    * - Parameter
      - Description
    * - ``OR REPLACE``
-     - Create a new table, and overwrite any existing table by the same name. Does not return an error if the table already exists. ``CREATE OR REPLACE`` does not check the table contents or structure, only the table name.
+     - Create a new table, and overwrite any existing table by the same name. Does not return an error if the table already exists. ``CREATE OR REPLACE`` does not check the table contents or structure, only the table name
    * - ``schema_name``
-     - The name of the schema in which to create the table.
+     - The name of the schema in which to create the table
    * - ``table_name``
-     - The name of the table to create, which must be unique inside the schema.
+     - The name of the table to create, which must be unique inside the schema
    * - ``column_def``
-     - A comma separated list of column definitions. A minimal column definition includes a name identifier and a datatype. Other column constraints and default values can be added optionally.
+     - A comma separated list of column definitions. A minimal column definition includes a name identifier and a datatype. Other column constraints and default values can be added optionally
    * - ``WRAPPER ...``
-     - Specifies the format of the source files, such as ``parquet_fdw``, ``orc_fdw``, or ``csv_fdw``.
+     - Specifies the format of the source files, such as ``parquet_fdw``, ``orc_fdw``, or ``csv_fdw``
    * - ``LOCATION = ...``
-     - Specifies a path or URI of the source files, such as ``/path/to/*.parquet``.
+     - Specifies a path or URI of the source files, such as ``/path/to/*.parquet``
    * - ``DELIMITER = ...``
-     - Specifies the field delimiter for CSV files. Defaults to ``,``.
+     - Specifies the field delimiter for CSV files. Defaults to ``,``
    * - ``RECORD_DELIMITER = ...``
      - Specifies the record delimiter for CSV files. Defaults to a newline, ``\n``
    * - ``AWS_ID``, ``AWS_SECRET``
      - Credentials for authenticated S3 access
+   * - ``OFFSET``
+     - Used to specify the number of rows to skip from the beginning of the result set
 
 
 Examples
@@ -162,4 +165,20 @@ Materializes a foreign table into a regular table.
 
    CREATE TABLE real_table
     AS SELECT * FROM some_foreign_table;
+	
+Using the ``OFFSET`` Parameter
+--------------------------------
+
+The ``OFFSET`` parameter may be used with Parquet and CSV textual formats. 
+
+.. code-block::
+
+	CREATE FOREIGN TABLE users7
+	  (id INT NOT NULL, name text(30) NOT NULL, email text(50) NOT NULL)
+	WRAPPER parquet_fdw
+	OPTIONS
+	  (
+	    LOCATION =  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet',
+	    OFFSET = 2
+	  );
 
