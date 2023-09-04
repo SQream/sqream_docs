@@ -6,6 +6,7 @@ Simple Scalar SQL UDF's
 
 Syntax
 ~~~~~~~~~~~~
+
 The following example shows the correct syntax for simple scalar SQL UDF's:
 
 
@@ -27,6 +28,7 @@ The following example shows the correct syntax for simple scalar SQL UDF's:
 
 Usage Notes
 ~~~~~~~~~~~~~~
+
 The following usage notes apply when using simple scalar SQL UDF's:
 
 * During this stage, the SQL embedded in the function body must be of the type ``SELECT expr;``. Creating a UDF with invalid SQL, or with valid SQL of any other type, results in an error.
@@ -45,6 +47,7 @@ Because SQL UDF's are one type of supported UDFs, the following Python UDF chara
 
 Restrictions
 ~~~~~~~~~~~~~~~~~~~~~
+
 The following restrictions apply to simple scalar SQL UDF's:
 
 * Simple scalar SQL UDF's cannot currently reference other UDF's.
