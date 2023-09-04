@@ -59,7 +59,7 @@ Installing the Tableau Connector
    * - Tableau Prep Conductor on Tableau Server
      - ``/data/tabsvc/flowprocessor/Connectors``
    * - Tableau Server
-     - ``C:\ProgramData\Tableau\Tableau Server\data\tabsvc\vizqlserver\Connectors``
+     - ``C:\<directory_name>\Tableau\Tableau Server\<directory_name>\Connectors``
 
 3. Restart Tableau Desktop or Tableau server.
 
@@ -83,12 +83,8 @@ Connecting to SQream
 
     ::
 	
-#. In the connection dialog box, fill in the fields and click **Sign In**.
+#. In the connection dialog box, fill in the following fields:
 
-   The connection is established, and the data source page is displayed.
-
-Information about step 4 fields:
-   
   .. list-table:: 
      :widths: 15 38 38
      :header-rows: 1
@@ -97,26 +93,32 @@ Information about step 4 fields:
        - Description
        - Example
      * - Server
-       - Defines the server of the SQream worker.
-       - ``127.0.0.1`` or ``sqream.mynetwork.co``
+       - Defines the SQreamDB worker machine IP. 
+	   
+	  Avoid using the loopback address (127.0.0.1) or "localhost" as a server address since it typically refers to the local machine where Tableau is installed and may create issues and limitations
+       - ``192.162.4.182`` or ``sqream.mynetwork.com``
      * - Port
-       - Defines the TCP port of the SQream worker.
-       - ``3108`` when using a load balancer, or ``5100`` when connecting directly to a worker with SSL.
+       - Defines the TCP port of the SQream worker
+       - ``3108`` when using a load balancer, or ``5100`` when connecting directly to a worker with SSL
      * - Database
-       - Defines the database to establish a connection with.
+       - Defines the database to establish a connection with
        - ``master``
      * - Cluster
-       - Enables (``true``) or disables (``false``) the load balancer. After enabling or disabling the load balance, verify the connection.
+       - Enables (``true``) or disables (``false``) the load balancer. After enabling or disabling the load balance, verify the connection
        - 
      * - Username
-       - Specifies the username of a role to use when connecting.
+       - Specifies the username of a role to use when connecting
        - ``rhendricks``	 
      * - Password
-       - Specifies the password of the selected role.
+       - Specifies the password of the selected role
        - ``Tr0ub4dor&3``
      * - Require SSL 
-       - Sets SSL as a requirement for establishing this connection.
+       - Sets SSL as a requirement for establishing this connection
        - 
 
+5. Click **Sign In**.
 
+   The connection is established, and the data source page is displayed.
+
+   
 
