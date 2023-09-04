@@ -107,7 +107,7 @@ Elements
      - Specifies an alternative quote character. The quote character must be a single, 1-byte printable ASCII character, and the equivalent octal syntax of the copy command can be used. The quote character cannot be contained in the field delimiter, the record delimiter, or the null marker. ``QUOTE`` can be used with ``csv_fdw`` in **COPY FROM** and foreign tables.
    * - ``fdw_name``
      - 
-     - ``csv_fdw``, ``orc_fdw``, or ``parquet_fdw``
+     - ``csv_fdw``, ``orc_fdw``, ``parquet_fdw``, ``json_fdw``, or ``avro_fdw``
      - The name of the Foreign Data Wrapper to use
    * - ``LOCATION``
      - None
@@ -259,20 +259,16 @@ Supported Field Delimiters
 Field delimiters can be one or more characters.
 
 Customizing Quotations Using Alternative Characters
-----------------------------
+-----------------------------------------------------
 
-Customizing Quotations Using Alternative Characters
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-The following is the correct syntax for customizing quotations using alternative characters:
+Syntax:
 
 .. code-block:: postgres
 
-   copy t from wrapper csv_fdw options (location = '/tmp/source_file.csv', quote='@');
-   copy t to wrapper csv_fdw options (location = '/tmp/destination_file.csv', quote='@');
+   COPY t FROM wrapper csv_fdw OPTIONS (location = '/tmp/source_file.csv', quote='@');
+   COPY t TO wrapper csv_fdw OPTIONS (location = '/tmp/destination_file.csv', quote='@');
 
-Customizing Quotations Using Alternative Characters
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Example:
 
 The following is an example of line taken from a CSV when customizing quotations using a character:
 
@@ -284,15 +280,14 @@ The following is an example of line taken from a CSV when customizing quotations
 Customizing Quotations Using ASCII Character Codes
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following is the correct syntax for customizing quotations using ASCII character codes:
+Syntax:
 
 .. code-block:: postgres
 
    copy t from wrapper csv_fdw options (location = '/tmp/source_file.csv', quote=E'\064');
    copy t to wrapper csv_fdw options (location = '/tmp/destination_file.csv', quote=E'\064');
 
-Customizing Quotations Using ASCII Character Codes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Example:
 
 The following is an example of line taken from a CSV when customizing quotations using an ASCII character code:
 
@@ -300,12 +295,10 @@ The following is an example of line taken from a CSV when customizing quotations
 
    Pepsi-"Cola",@Coca-"Cola"@,Sprite,Fanta
 
-
-
 Multi-Character Delimiters
 --------------------------
 
-SQream DB supports multi-character field delimiters, sometimes found in non-standard files.
+SQreamDB supports multi-character field delimiters, sometimes found in non-standard files.
 
 A multi-character delimiter can be specified. For example, ``DELIMITER '%%'``, ``DELIMITER '{~}'``, etc.
 
@@ -378,6 +371,7 @@ Whenever the data canâ€™t be parsed because it is improperly formatted or doesnâ
 When ``ERROR_LOG`` is not used, the ``COPY`` command will stop and roll back the transaction upon the first error.
 
 .. image:: /_static/images/copy_from_rejected_rows.png
+   :width: 50%
 
 
 CSV Support
@@ -472,7 +466,20 @@ Loading a Parquet File
 .. code-block:: postgres
    
    COPY table_name FROM WRAPPER parquet_fdw OPTIONS (location = '/tmp/file.parquet');
+   
+Loading a JSON File
+----------------------
 
+.. code-block:: postgres
+
+	COPY t FROM WRAPPER json_fdw OPTIONS (location = 'somefile.json');
+
+Loading an AVRO File
+----------------------
+
+.. code-block:: postgres
+
+	COPY t FROM WRAPPER fdw_name OPTIONS ([ copy_from_option [, ...] ]);
 
 Loading a Text File with Non-Printable Delimiters
 -------------------------------------------------
@@ -577,12 +584,12 @@ When the source of the files does not match the table structure, tell the ``COPY
 Loading Non-Standard Dates
 ----------------------------------
 
-If files contain dates not formatted as ``ISO8601``, tell ``COPY`` how to parse the column. After parsing, the date will appear as ``ISO8601`` inside SQream DB.
+If files contain dates not formatted as ``ISO8601``, tell ``COPY`` how to parse the column. After parsing, the date will appear as ``ISO8601`` inside SQreamDB.
 
-These are called date parsers. You can find the supported dates in the :ref:`'Supported date parsers' table<copy_date_parsers>` above
+These are called date parsers. You can find the supported dates in the :ref:`'Supported date parsers' table<copy_date_parsers>` above.
 
 In this example, ``date_col1`` and ``date_col2`` in the table are non-standard. ``date_col3`` is mentioned explicitly, but can be left out. Any column that is not specified is assumed to be ``ISO8601``.
 
 .. code-block:: postgres
 
-   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/*.csv', datetime_format = 'DMY');
+   COPY my_table (date_col1, date_col2, date_col3) FROM '/tmp/my_data.csv' WITH CSV HEADER datetime_format 'DMY';
