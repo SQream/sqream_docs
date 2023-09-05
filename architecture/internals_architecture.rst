@@ -17,32 +17,27 @@ Key Functions and Components
 Statement Compiler
 ------------------
 
-The Statement Compiler, developed using Haskell, accepts SQL text and generates optimized statement plans.
+The Statement Compiler, developed using Haskell, accepts SQL text and generates optimized statement execution plans.
 
-Building Blocks
----------------
+Building Blocks (GPU Workers)
+-----------------------------
 
-In SQreamDB, the main workload is carried out by specialized C++/CUDA building blocks intentionally kept devoid of inherent intelligence; they require precise instructions for operation. The task of effectively assembling these components relies largely on the capabilities of the statement compiler.
+In SQreamDB, the main workload is carried out by specialized C++/CUDA building blocks, also known as Workers, which intentionally lack inherent intelligence and require precise instructions for operation. Effectively assembling these components relies largely on the capabilities of the statement compiler.
 
 Storage Layer
 -------------
 
-The storage is split into the metadata layer and an append-only / garbage-collected bulk data layer.
+The storage is split into the metadata layer and an append-only data layer.
 
 Metadata Layer
 ^^^^^^^^^^^^^^
 
-Utilizing RocksDB, the metadata layer incorporates features such as snapshots and atomic writes within the transaction system, while working in conjunction with the append-only bulk data layer to maintain overall data consistency.
+Utilizing RocksDB key/value data store, the metadata layer incorporates features such as snapshots and atomic writes within the transaction system, while working in conjunction with the append-only bulk data layer to maintain overall data consistency.
 
-Bulk Data Layer 
-^^^^^^^^^^^^^^^
+Bulk Data Layer Optimization
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The bulk data layer consists of IO-optimized extents, containing CPU and GPU-efficient chunks, both of which incorporate compression. During small insert operations, less optimized chunks and extents might result, yet the system is intentionally designed to maintain operational efficiency in such scenarios. It achieves this by facilitating background transactional reorganization without disrupting DML operations. By initially writing small chunks via small inserts and subsequently reorganizing them, the system accommodates swift medium-sized insert transactions while enabling rapid querying capabilities.
-
-Columnar Storage
-^^^^^^^^^^^^^^^^
-
-Similar to numerous other analytical database management systems, SQreamDB employs a column store structure for its tables, leveraging the advantages it provides. This approach enhances I/O efficiency and overall performance when dealing with analytic workloads. Furthermore, columns exhibit superior compression properties and are particularly suited for handling bulk data operations.
+SQreamDB harnesses the power of its columnar storage architecture within the bulk data layer for performance optimization. This layer employs IO-optimized extents containing compression-enabled CPU and GPU-efficient chunks. Even during small insert operations, SQreamDB maintains efficiency by generating less optimized chunks and extents as needed. This is achieved through background transactional reorganization that doesn't disrupt Data Manipulation Language (DML) operations. The system initially writes small chunks via small inserts and subsequently reorganizes them, facilitating swift medium-sized insert transactions and rapid queries. This optimization strategy, coupled with SQreamDB's columnar storage, ensures peak performance across diverse data processing tasks.
 
 Concurrency and Admission Control
 ---------------------------------
@@ -54,7 +49,7 @@ Learn more about :ref:`concurrency_and_scaling_in_sqream`.
 Transactions
 ------------
 
-SQreamDB has serializable transactions, with these features:
+SQreamDB has serializable (auto commit) transactions, with these features:
 
 * Serializable, with any kind of statement
 
