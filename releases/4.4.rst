@@ -34,7 +34,7 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
-
+:ref:`denodo` may now be used for data visualization and real-time visualization of various sources.
 
 Known Issues
 ------------
@@ -106,8 +106,8 @@ The ``[]``, which are frequently used to delimit :ref:`identifiers<keywords_and_
 
 With the improvement of the core functionalities of the platform and to align with the constantly evolving ecosystem requirements, the ``VARCHAR`` data type is deprecated and may not be used. The ``TEXT`` data type is replacing the ``VARCHAR`` and ``NVARCHAR`` data types.
 
-Upgrading to v4.4
------------------
+Upgrading to Version 4.4
+-------------------------
 1. Generate a back-up of the metadata by running the following command:
 
    .. code-block:: console
