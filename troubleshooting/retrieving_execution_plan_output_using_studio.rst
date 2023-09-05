@@ -9,6 +9,8 @@ You may use SQreamDB Studio to create a query plan snapshot to be used for monit
 Retrieving Execution Plan Output
 ================================
 
+You can retrieve the execution plan output either after the query execution has completed, in the case of a hanging query, or if you suspect no progress is being made.
+
 1. In the **Result Panel**, select **Execution Details View** |icon-execution-details-view|.
 
 	The **Execution Tree** window opens.
