@@ -24,6 +24,8 @@ Data Integration Tools
 Business Intelligence (BI) Tools
 --------------------------------
 
+:ref:`Denodo<denodo>`
+
 :ref:`MicroStrategy<micro_strategy>`
 
 :ref:`Power BI Desktop<power_bi>`
@@ -44,24 +46,12 @@ Data Analysis and Programming Languages
 :ref:`R<r>`
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 .. toctree::
    :maxdepth: 4
    :titlesonly:
    :hidden:
 
-   trino
+   denodo
    informatica
    microstrategy
    pentaho
@@ -70,10 +60,15 @@ Data Analysis and Programming Languages
    r
    sap_businessobjects
    sas_viya
-   sql_workbench
+   sql_workbench   
    tableau
    talend
-   tibco_spotfire
+   tibco_spotfire   
+   trino
+   
+
+
+
 
 
 

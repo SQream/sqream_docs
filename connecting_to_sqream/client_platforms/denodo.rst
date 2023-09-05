@@ -74,6 +74,8 @@ Setting Up a Connection to SQreamDB
 	   
 5. To verify your newly created connection, select the **Test connection** button.
 
+.. note:: When adding the JDBC driver in Denodo, it's important to note that a restart of Denodo may be required. Additionally, in some cases, the SQream driver may not immediately appear in the list of available JDBC drivers. If you encounter this issue, a simple solution is to reboot the machine and attempt the process again.
+
 Limitation
 ==========
 
