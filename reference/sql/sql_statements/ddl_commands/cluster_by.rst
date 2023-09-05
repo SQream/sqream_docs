@@ -3,22 +3,16 @@
 **********************
 CLUSTER BY
 **********************
+
 The ``CLUSTER BY`` command is used for changing clustering keys in a table.
 
-For more information, see the following:
+For more information, see :ref:`drop_clustering_key`
 
-* :ref:`flexible_data_clustering`
 
-   ::
-
-* :ref:`drop_clustering_key`
-
-   ::
-   
-* :ref:`create_table`
 
 Syntax
 ==========
+
 The following is the correct syntax for the CLUSTER BY command:
 
 .. code-block:: postgres
@@ -44,6 +38,7 @@ The following is the correct syntax for the CLUSTER BY command:
 
 Parameters
 ============
+
 The following table shows the CLUSTER BY parameters:
 
 .. list-table:: 
@@ -65,6 +60,7 @@ The following table shows the CLUSTER BY parameters:
 
 Usage Notes
 =================
+
 Removing clustering keys does not affect existing data.
 
 To force data to re-cluster, the table has to be recreated (i.e. with :ref:`create_table`).
@@ -72,8 +68,8 @@ To force data to re-cluster, the table has to be recreated (i.e. with :ref:`crea
 
 Example
 ===========
-Reclustering a Table
------------------------------------------
+
+
 The following example shows how to recluster a table:
 
 .. code-block:: postgres
@@ -82,4 +78,5 @@ The following example shows how to recluster a table:
 
 Permissions
 =============
+
 The role must have the ``DDL`` permission at the database or table level.

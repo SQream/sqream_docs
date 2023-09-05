@@ -3,18 +3,18 @@
 ********************
 SHUTDOWN SERVER
 ********************
+
 The **SHUTDOWN_SERVER** guide describes the following:
 
-.. contents:: 
-   :local:
-   :depth: 1
 
 Overview
 ===============
+
 SQream's current method for stopping the SQream server is running the ``shutdown_server()`` utility command. Because this command abruptly shuts down the server while executing operations, it has been modified to perform a graceful shutdown by setting it to ``select shutdown_server([is_graceful, [timeout]]);``. This causes the server to wait for any queued statements to complete before shutting down.
 
 How Does it Work?
 ========================
+
 Running the ``SHUTDOWN_SERVER`` command gives you more control over the following:
 
 * Preventing new queries from connecting to the server by:
@@ -39,6 +39,7 @@ Running the ``SHUTDOWN_SERVER`` command gives you more control over the followin
 
 Syntax
 ==========
+
 The following is the syntax for using the ``SHUTDOWN_SERVER`` command:
 
 .. code-block:: postgres
@@ -47,10 +48,12 @@ The following is the syntax for using the ``SHUTDOWN_SERVER`` command:
    
 Returns
 ==========
+
 Running the ``shutdown_server`` command returns no output.
 
 Parameters
 ============
+
 The following table shows the ``shutdown_server`` parameters:
 
 .. list-table:: 
@@ -86,6 +89,7 @@ For more information, see :ref:`shutdown_server`.
 
 Examples
 ===================
+
 This section shows the following examples:
 
 **Example 1 - Activating a Forceful Shutdown**
@@ -110,4 +114,5 @@ The ``timeout`` unit is minutes.
 
 Permissions
 =============
+
 Using the ``shutdown_server`` command requires no special permissions.

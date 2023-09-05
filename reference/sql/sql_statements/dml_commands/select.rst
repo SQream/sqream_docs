@@ -10,8 +10,7 @@ When used alone, the statement is known as a "``SELECT`` statement" or "``SELECT
 
 .. note:: The ``SELECT`` keyword is also used to execute utility functions, such as ``SELECT get_ddl();``. These are covered in their respective locations.
 
-.. contents:: In this topic:
-   :local:
+
 
 Permissions
 =============

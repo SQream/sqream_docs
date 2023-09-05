@@ -77,17 +77,32 @@ Examples
 
 .. code-block:: sql
 
-	DESCRIBE ROLE PERMISSION ROLE NAME public;
+	DESCRIBE ROLE PERMISSIONS ROLE NAME role1;
 
 Output:
   
 .. code-block:: none
 
-	role_id |role_name |Object/Layer  |permission_id |permission_name | superuser |cluster_admin |login
-	--------+----------+--------------+--------------+----------------+-----------+--------------+-----
-	0       |public    |master.public |2000          |Create          |0          |1             |0
-	0       |public    |master.public |2003          |Usage           |0          |1             |0
+	role_id|role_name|Object/Layer |permission_id|permission_name|superuser|cluster_admin|login|
+	-------+---------+-------------+-------------+---------------+---------+-------------+-----+
+	12     |role1    |db1          |1003         |Connect        |0        |0            |0    |
+	0      |public   |db1.public   |2000         |Create         |0        |1            |0    |
+	0      |public   |db1.public   |2003         |Usage          |0        |1            |0    |
+	0      |public   |master.public|2000         |Create         |0        |1            |0    |
+	0      |public   |master.public|2003         |Usage          |0        |1            |0    |
 
+.. code-block:: sql
+
+	DESCRIBE ROLE PERMISSIONS ROLE NAME role1 PERMISSION ID in (2003);
+
+Output:
+  
+.. code-block:: none
+
+	role_id|role_name|Object/Layer |permission_id|permission_name|superuser|cluster_admin|login|
+	-------+---------+-------------+-------------+---------------+---------+-------------+-----+
+	0      |public   |db1.public   |2003         |Usage          |0        |1            |0    |
+	0      |public   |master.public|2003         |Usage          |0        |1            |0    |
 
 Permissions
 ===========

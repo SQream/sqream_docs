@@ -1,16 +1,16 @@
 .. _get_all_roles_global_ddl:
 
-********************
+**************************
 GET_ALL_ROLES_GLOBAL_DDL
-********************
+**************************
+
 The ``GET_ALL_ROLES_GLOBAL_DDL`` statement returns the definition of all global roles in DDL format.
 
-.. contents:: 
-   :local:
-   :depth: 1   
+
 
 Syntax
 ==========
+
 The following is the correct syntax for using the ``GET_ALL_ROLES_GLOBAL_DDL`` statement:
 
 .. code-block:: postgres
@@ -19,6 +19,7 @@ The following is the correct syntax for using the ``GET_ALL_ROLES_GLOBAL_DDL`` s
    
 Example
 ===========
+
 The following is an example of using the ``GET_ALL_ROLES_GLOBAL_DDL`` statement:
 
 .. code-block:: psql
@@ -28,6 +29,7 @@ The following is an example of using the ``GET_ALL_ROLES_GLOBAL_DDL`` statement:
 
 Output
 ==========
+
 The following is an example of the output of the ``GET_ALL_ROLES_GLOBAL_DDL`` statement:
 
 .. code-block:: postgres
@@ -36,6 +38,7 @@ The following is an example of the output of the ``GET_ALL_ROLES_GLOBAL_DDL`` st
 
 Permissions
 =============
+
 Using the ``GET_ALL_ROLES_GLOBAL_DDL`` statement requires no special permissions.
 
 For more information, see the following:
