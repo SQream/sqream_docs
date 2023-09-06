@@ -83,9 +83,9 @@ The following is an example of changing a user password:
 Altering Public Role Permissions
 ------------------------------
 
-The database has a predefined ``PUBLIC`` role that cannot be deleted. Each user role is automatically granted membership in the ``PUBLIC`` role public group, and this membership cannot be revoked. However, you have the capability to adjust the permissions associated with this 'public' role.
+The database has a predefined ``PUBLIC`` role that cannot be deleted. Each user role is automatically granted membership in the ``PUBLIC`` role public group, and this membership cannot be revoked. However, you have the capability to adjust the permissions associated with this ``PUBLIC`` role.
 
-The ``PUBLIC`` role has ``USAGE`` and ``CREATE`` permissions on ``PUBLIC`` schema by default, therefore, new users can :ref:`insert`, :ref:`delete`, :ref:`select`, :ref:`UPDATE` and ``CREATE`` (:ref:`databases<create_database>`, :ref:`schemas<create_schema>`, :ref:`roles<create_role>`, :ref:`functions<create_function>`, :ref:`views<create_view>`, and :ref:`tables<create_table>`) from objects in the ``PUBLIC`` schema.
+The ``PUBLIC`` role has ``USAGE`` and ``CREATE`` permissions on ``PUBLIC`` schema by default, therefore, newly created user roles are granted ``CREATE`` (:ref:`databases<create_database>`, :ref:`schemas<create_schema>`, :ref:`roles<create_role>`, :ref:`functions<create_function>`, :ref:`views<create_view>`, and :ref:`tables<create_table>`) on the public schema. Other permissions, such as :ref:`insert`, :ref:`delete`, :ref:`select`, and :ref:`update` on objects in the public schema are not automatically granted. 
 
 
 Altering Role Membership (Groups)
