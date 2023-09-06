@@ -3,6 +3,7 @@
 ***********************
 Hardware Guide
 ***********************
+
 The **Hardware Guide** describes the SQream reference architecture, emphasizing the benefits to the technical audience, and provides guidance for end-users on selecting the right configuration for a SQream installation.
 
 .. rubric:: Need help?
@@ -13,11 +14,12 @@ Visit `SQream's support portal <https://sqream.atlassian.net/servicedesk/custome
 
 A SQream Cluster
 ============================
+
 SQream recommends rackmount servers by server manufacturers Dell, Lenovo, HP, Cisco, Supermicro, IBM, and others.
 
 A typical SQream cluster includes one or more nodes, consisting of
 
-* Two-socket enterprise processors, like the Intel® Xeon® Gold processor family or an IBM® POWER9 processors, providing the high performance required for compute-bound database workloads.
+* Two-socket enterprise processors, like the Intel® Xeon® Gold processor family or an IBM® POWER9 processor, provide the high performance required for compute-bound database workloads.
 
    ::
 
@@ -25,10 +27,11 @@ A typical SQream cluster includes one or more nodes, consisting of
 
    ::
 
-* High density chassis design, offering between 2 and 4 GPUs in a 1U, 2U, or 3U package, for best-in-class performance per cm\ :sup:`2`.
+* High-density chassis design, offering between 2 and 4 GPUs in a 1U, 2U, or 3U package, for best-in-class performance per cm\ :sup:`2`.
 
 Single-Node Cluster Example
 -----------------------------------
+
 A single-node SQream cluster can handle between 1 and 8 concurrent users, with up to 1PB of data storage (when connected via NAS).
 
 An average single-node cluster can be a rackmount server or workstation, containing the following components:
@@ -64,6 +67,7 @@ If a NAS is used, the 14x SSD drives can be omitted, but SQream recommends 2TB o
 
 Multi-Node Cluster Examples
 -----------------------------------
+
 Multi-node clusters can handle any number of concurrent users. A typical SQream cluster relies on a minimum of two GPU-enabled servers and shared storage connected over a network fabric, such as InfiniBand EDR, 40GbE, or 100GbE.
 
 The **Multi-Node Cluster Examples** section describes the following specifications: 
@@ -74,6 +78,7 @@ The **Multi-Node Cluster Examples** section describes the following specificatio
    
 Hardware Specifications
 ~~~~~~~~~~~~~~~~~~~~~~~~~
+
 The following table shows SQream's recommended hardware specifications:
 
 .. list-table::
@@ -102,7 +107,8 @@ The following table shows SQream's recommended hardware specifications:
      - Red Hat Enterprise Linux v7.x or CentOS v7.x or Amazon Linux
 	 
 Metadata Specifications
-~~~~~~~~~~~~~~~~~~~~~~~~~	 
+~~~~~~~~~~~~~~~~~~~~~~~~~	
+
 The following table shows SQream's recommended metadata server specifications:
 
 .. list-table::
@@ -130,6 +136,7 @@ The following table shows SQream's recommended metadata server specifications:
 
 SQream Studio Server Example
 -----------------------------------
+
 The following table shows SQream's recommended Studio server specifications:
 
 .. list-table::
@@ -151,9 +158,10 @@ The following table shows SQream's recommended Studio server specifications:
 
 Cluster Design Considerations
 ====================================
+
 This section describes the following cluster design considerations:
 
-* In a SQream installation, the storage and compute are logically separated. While they may reside on the same machine in a standalone installation, they may also reside on different hosts, providing additional flexibility and scalability.
+* In a SQream installation, the storage and computing are logically separated. While they may reside on the same machine in a standalone installation, they may also reside on different hosts, providing additional flexibility and scalability.
 
  ::
 
@@ -169,6 +177,7 @@ This section describes the following cluster design considerations:
 
 Balancing Cost and Performance
 --------------------------------
+
 Prior to designing and deploying a SQream cluster, a number of important factors must be considered. 
 
 The **Balancing Cost and Performance** section provides a breakdown of deployment details to ensure that this installation exceeds or meets the stated requirements. The rationale provided includes the necessary information for modifying configurations to suit the customer use-case scenario, as shown in the following table:
@@ -196,31 +205,37 @@ The **Balancing Cost and Performance** section provides a breakdown of deploymen
 
 CPU Compute
 -------------
+
 SQream relies on multi-core Intel Gold Xeon processors or IBM POWER9 processors, and recommends a dual-socket machine populated with CPUs with 18C/36HT or better. While a higher core count may not necessarily affect query performance, more cores will enable higher concurrency and better load performance.
 
 GPU Compute and RAM
 -------------------------
+
 The NVIDIA Tesla range of high-throughput GPU accelerators provides the best performance for enterprise environments. Most cards have ECC memory, which is crucial for delivering correct results every time. SQream recommends the NVIDIA Tesla V100 32GB or NVIDIA Tesla A100 40GB GPU for best performance and highest concurrent user support.
 
 GPU RAM, sometimes called GRAM or VRAM, is used for processing queries. It is possible to select GPUs with less RAM, like the NVIDIA Tesla V100 16GB or P100 16GB, or T4 16GB. However, the smaller GPU RAM results in reduced concurrency, as the GPU RAM is used extensively in operations like JOINs, ORDER BY, GROUP BY, and all SQL transforms.
 
 RAM
 --------
+
 SQream requires using **Error-Correcting Code memory (ECC)**, standard on most enterprise servers. Large amounts of memory are required for improved performance for heavy external operations, such as sorting and joining.
 
 SQream recommends at least 256GB of RAM per GPU on your machine. 
 
 Operating System
 ---------------------
+
 SQream can run on the following 64-bit Linux operating systems:
 
    * Red Hat Enterprise Linux (RHEL) v7
    * CentOS v7
+   * IBM Red Hat 7.6
    * Amazon Linux 2018.03
    * Other Linux distributions may be supported via nvidia-docker
 
 Storage
 -----------
+
 For clustered scale-out installations, SQream relies on NAS/SAN storage. For stand-alone installations, SQream relies on redundant disk configurations, such as RAID 5, 6, or 10. These RAID configurations replicate blocks of data between disks to avoid data loss or system unavailability. 
 
 SQream recommends using enterprise-grade SAS SSD or NVMe drives. For a 32-user configuration, the number of GPUs should roughly match the number of users. SQream recommends 1 Tesla V100 or A100 GPU per 2 users, for full, uninterrupted dedicated access.
