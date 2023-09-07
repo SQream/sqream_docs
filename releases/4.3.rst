@@ -16,8 +16,8 @@ Compatibility Matrix
 +-------------------------+------------------------------------------------------------------------+
 | System Requirement      | Details                                                                |
 +=========================+========================================================================+
-| Supported OS            | * CentOS / REHL - 7.6 - 7.9                                            |
-|                         | * IBM RedHat 7.6                                                       |
+| Supported OS            | * CentOS - 7.x                                                         |
+|                         | * RHEL - 7.x                                                           |
 +-------------------------+------------------------------------------------------------------------+
 | Supported Nvidia driver | CUDA version from 10.1 up to 11.4.3                                    |
 +-------------------------+------------------------------------------------------------------------+
@@ -119,6 +119,10 @@ Visit :ref:`s3` to learn more about how and when you should use these two new pa
 
 Deprecated Features
 -------------------
+
+► **CentOS Linux 7.x**
+
+As of June 2024, CentOS Linux 7.x will reach its End of Life. This announcement provides a one-year advance notice for our users to plan for this change. We recommend users to explore migration or upgrade options to maintain ongoing support and security beyond this date.
 
 ► ``INT96``
 
