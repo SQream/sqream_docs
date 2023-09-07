@@ -10,7 +10,7 @@ Get to know the SQreamDB key functions and system architecture components and th
    :align: left
    :width: 75%
    :alt: SQreamDB internals
-
+ 
 Key Functions and Components
 ============================
 
