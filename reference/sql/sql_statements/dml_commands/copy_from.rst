@@ -531,7 +531,25 @@ Loading a File from a Public S3 Bucket
 
 .. code-block:: postgres
 
-   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = 's3://sqream-demo-data/file.csv', delimiter = '\r\n', offset = 2);         
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = 's3://sqream-demo-data/file.csv', delimiter = '\r\n', offset = 2);       
+
+Loading a File From a Google Cloud Platform Bucket
+----------------------------------------------------
+
+To access a Google Cloud Platform (GCP) Bucket it is required that your environment be authorized.
+
+.. code-block::
+
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = 'gs://<gcs path>/<gcs_bucket>/*');    
+
+Loading a File From Azure 
+----------------------------------
+
+To access Azure it is required that your environment be authorized.
+
+.. code-block::
+
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS(location = 'azure://sqreamrole.core.windows.net/sqream-demo-data/file.csv');
 
 Loading Files from an Authenticated S3 Bucket
 ---------------------------------------------------
