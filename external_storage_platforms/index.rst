@@ -9,9 +9,11 @@ SQream supports the following external storage platforms:
    :maxdepth: 1
    :titlesonly:
 
+   azure
+   hdfs
    s3
    
-   hdfs
+
    
 For more information, see the following:
 
