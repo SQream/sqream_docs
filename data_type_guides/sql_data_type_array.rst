@@ -69,9 +69,6 @@ Supported Operators
    * - Limiting number of arrayed elements 
      - You may limit the number of arrayed elements within an ``ARRAY``
      - Limiting the number of arrayed elements to 4: ``CREATE TABLE <table_name> (<column1> TEXT[4]);``	 
-   * - Creating different column types
-     - You may create a table that has arrayed columns and non-arrayed columns
-     - ``CREATE TABLE <table_name> (<column1> TEXT('a','b','c')['d']);`` 
    * - Compression
      - You may follow SQreamDB :ref:`compression guide <compression>` for compression types and methods
      - ``CREATE TABLE t (comp_dict INT[] CHECK('CS "dict"');``
@@ -105,7 +102,7 @@ Creating a table with arrayed columns:
 
 .. code-block:: sql
 
-	CREATE TABLE my_array (clmn1 TEXT[], clmn2 TEXT[], clmn3 INT[]);
+	CREATE TABLE my_array (clmn1 TEXT[], clmn2 TEXT[], clmn3 INT[], clmn4 NUMERIC(38,20)[]);
 	
 Inserting arrayed values into a table:
 
