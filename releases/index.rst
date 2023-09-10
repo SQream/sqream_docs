@@ -4,6 +4,13 @@
 Release Notes
 *************
 
+September 2033
+---------------
+
+A new Resource Availability Status and Jobs authentication enhancement.
+
+:ref:`Read More <september_2023>`
+
 July 2023
 ---------
 
