@@ -38,13 +38,6 @@ You may now easily :ref:`resize<managing_your_resources>` your BLUE cluster to b
      - 10
      - Gain parallelism capabilities such as concurrency, shorter query times, and the ability to adjust resource pool sizes to suit various business needs
 
-.. hidden::
-
-Jobs Authentication
-^^^^^^^^^^^^^^^^^^^^
-The BLUE :ref:`Jobs<performing_basic_blue_operations>` workflow management tool has been added an authentication layer that requires you to generate an access token and define a **Blue Jobs** connection.
-
-.. visible::
 
 Resolved Issues
 -----------------
