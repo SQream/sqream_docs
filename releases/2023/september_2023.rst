@@ -22,6 +22,8 @@ Jobs Authentication
 ^^^^^^^^^^^^^^^^^^^^
 The BLUE :ref:`Jobs<performing_basic_blue_operations>` workflow management tool has been added an authentication layer that requires you to generate an access token and define a **Blue Jobs** connection.
 
+.. visible::
+
 Resolved Issues
 -----------------
 
