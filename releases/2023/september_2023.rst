@@ -10,7 +10,7 @@ New Features
 Resource Availability Status
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Easily follow the number of Workers available for new queries at a glance with the **Resource Availability Status** located at the top of the page. 
+Follow the number of Workers available for new queries at a glance with the **Resource Availability Status** located at the top of the page. 
 
 * The status shows the number of Workers that are currently working on executed queries, out of your total Worker sum
 * A green dot at the left of the bar indicates that your cluster is active with one or more Workers up and running, while a red dot indicates that your cluster is suspended
