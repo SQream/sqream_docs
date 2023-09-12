@@ -21,6 +21,17 @@ The following is an example of the general GCP syntax:
 Granting GCP access
 ====================
 
+Before You Begin
+----------------
+
+It is essential that you have a GCP service account string.
+
+String example:
+
+.. code-block::
+
+	sample_service_account@sample_project.iam.gserviceaccount.com
+
 #. In your Google Cloud console, go to **Select a project** and select the desired project.
 
 #. From the **PRODUCTS** menu, select **Cloud Storage** > **Buckets**.
@@ -31,17 +42,13 @@ Granting GCP access
 
 #. Go to **PERMISSIONS** and select **GRANT ACCESS**.
 
-#. Under **Add principals**, in the **New principals** box, paste the following string:
+#. Under **Add principals**, in the **New principals** box, paste your service account string.
 
-.. code-block::
+#. Under **Assign roles**, in the **Select a role** box, select **Storage Admin**.
 
-	sample_service_account@sample_project.iam.gserviceaccount.com
+#. Select **ADD ANOTHER ROLE** and in the newly created **Select a role** box, select **Storage Object Admin**.
 
-7. Under **Assign roles**, in the **Select a role** box, select **Storage Admin**.
-
-8. Select **ADD ANOTHER ROLE** and in the newly created **Select a role** box, select **Storage Object Admin**.
-
-9. Select **SAVE**.
+#. Select **SAVE**.
 
 .. note::
 
