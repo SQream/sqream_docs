@@ -7,7 +7,7 @@ Release Notes
 September 2033
 ---------------
 
-A new Resource Availability Status and Jobs authentication enhancement.
+Quickly check Worker availability with the Resource Availability Status, distinguish active clusters from suspended ones, and resize your BLUE cluster as needed for enhanced parallelism. The AUDITLOG command now offers insights into essential client actions, including system events and resource management.
 
 :ref:`Read More <september_2023>`
 
