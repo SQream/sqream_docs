@@ -9,27 +9,34 @@ Ingesting data using Google Cloud Platform (GCP) requires configuring Google Clo
 Granting GCP access
 ===================
 
-1. In your Google Cloud console, go to **Select a project** and select the desired project.
+Before You Begin
+----------------
 
-2. From the **PRODUCTS** menu, select **Cloud Storage** > **Buckets**.
+It is essential that you have a GCP service account string.
 
-3. Select the bucket you wish to configure; or create a new bucket by selecting **CREATE** and following the **Create a bucket** procedure, and select the newly created bucket.
+String example:
 
-4. Select **UPLOAD FILES** and upload the data files you wish BLUE to ingest.
+.. code-block::
 
-5. Go to **PERMISSIONS** and select **GRANT ACCESS**.
+	sample_service_account@sample_project.iam.gserviceaccount.com
 
-6. Under **Add principals**, in the **New principals** box, paste the following string:
+#. In your Google Cloud console, go to **Select a project** and select the desired project.
 
-		.. code-block:: postgres
+#. From the **PRODUCTS** menu, select **Cloud Storage** > **Buckets**.
 
-		   sample_service_account@sample_project.iam.gserviceaccount.com
-   
-7. Under **Assign roles**, in the **Select a role** box, select **Storage Admin**.
+#. Select the bucket you wish to configure; or create a new bucket by selecting **CREATE** and following the **Create a bucket** procedure, and select the newly created bucket.
 
-8. Select **ADD ANOTHER ROLE** and in the newly created **Select a role** box, select **Storage Object Admin**.
+#. Select **UPLOAD FILES** and upload the data files you wish SQreamDB to ingest.
 
-9. Select **SAVE**
+#. Go to **PERMISSIONS** and select **GRANT ACCESS**.
+
+#. Under **Add principals**, in the **New principals** box, paste your service account string.
+
+#. Under **Assign roles**, in the **Select a role** box, select **Storage Admin**.
+
+#. Select **ADD ANOTHER ROLE** and in the newly created **Select a role** box, select **Storage Object Admin**.
+
+#. Select **SAVE**.
 
 
 
