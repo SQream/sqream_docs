@@ -4,20 +4,18 @@
 Saved Queries
 ***********************
 
-
-
 Using the ``save_query`` command will both generate and save an execution plan. This allows you to save time when running frequently used complex queries.
 
 Note that the saved execution plan is tightly coupled with the structure of its underlying tables, which means that if one or more of the objects mentioned in the query is modified, the saved query must be re-created.
 
 
 How saved queries work
-==========================
+=======================
 
 Saved queries are compiled when they are created. When a saved query is run, this query plan is used instead of compiling a query plan at query time.
 
 Parameters support
-===========================
+-----------------------
 
 Query parameters can be used as substitutes for constants expressions in queries.
 
@@ -30,36 +28,15 @@ Creating a saved query
 
 A saved query is created using the :ref:`save_query` utility command.
 
-Saving a simple query
----------------------------
-
 .. code-block:: psql
 
    t=> SELECT SAVE_QUERY('select_all','SELECT * FROM nba');
    executed
 
-Saving a parametrized query
-------------------------------------------
-
-Use parameters to replace them later at execution time. 
-
-
-
-.. code-block:: psql
-
-   t=> SELECT SAVE_QUERY('select_by_weight_and_team','SELECT * FROM nba WHERE Weight > ? AND Team = ?');
-   executed
-
-.. TODO tip Use dollar quoting (`$$`) to avoid escaping strings.
-.. this makes no sense unless you have a query which would otherwise need escaping
-..   t=> SELECT SAVE_QUERY('select_by_weight_and_team',$$SELECT * FROM nba WHERE Weight > ? AND Team = ?$$);
-..   executed
-
-
 Executing saved queries
 =======================
 
-Executing a saved query requires calling it by it's name in a :ref:`execute_saved_query` statement. A saved query with no parameter is called without parameters.
+Executing a saved query requires calling it by it's name using a :ref:`execute_saved_query` statement. A saved query with no parameters is called without parameters.
 
 .. code-block:: psql
 
@@ -128,3 +105,16 @@ When you're done with a saved query, or would like to replace it with another, y
    saved_query              
    -------------------------
    select_by_weight         
+   
+Prepared Statements
+====================
+
+Prepared statements, also known as parameterized queries, enable the usage of parameters which may be replaced by actual values when executing the query. They are are created and managed in application code, primarily to optimize query execution, enhance security, and allow for the reuse of query templates with different parameter values. 
+
+Saving a Prepared Statement
+===============================
+
+.. code-block:: psql
+
+   t=> SELECT SAVE_QUERY('select_by_weight_and_team','SELECT * FROM nba WHERE Weight > ? AND Team = ?');
+   executed
