@@ -38,6 +38,16 @@ You may now easily :ref:`resize<managing_your_resources>` your BLUE cluster to b
      - 10
      - Gain parallelism capabilities such as concurrency, shorter query times, and the ability to adjust resource pool sizes to suit various business needs
 
+Additional Client Action Audits
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+When executing the :ref:`AUDITLOG<audit_log>` command, you may now investigate the following client actions:
+
+* System shutdown, suspension, and resumption
+* Cluster resize
+* Newly created and deleted resource pool 
+* Newly created and deleted Jobs and Tasks
+* Newly created and deleted Directed Acyclic Graphs (DAGs)
 
 Resolved Issues
 -----------------
