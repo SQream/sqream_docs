@@ -1,4 +1,4 @@
-.. _deferred gather:
+.. _deferred_gather:
 
 ***************
 Deferred Gather
