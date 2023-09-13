@@ -88,8 +88,7 @@ The following table shows the supported compression methods:
      - Optimized RLE + Delta type for built-in :ref:`identity columns<identity>`. 
      - GPU
 
-	 
-.. note:: Automatic compression does **not** select the ``zlib`` compression method.
+	
 
 .. _specifying_compressions:
 
