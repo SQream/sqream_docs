@@ -1,9 +1,12 @@
 .. _keywords_and_identifiers:
 
-***********
+************************
+Identifiers and Keywords
+************************
+
 Identifiers
-***********
- 
+===========
+
 **Identifiers** are names given to SQL entities, such as tables, columns, databases, and variables. Identifiers must be unique so that entities can be correctly identified during the execution of a program. Identifiers can also be used to change a column name in the result (column alias) in a  ``SELECT`` statement. Identifiers can be either quoted or unquoted and a maximum 128 characters long.
 
 Identifiers are sometimes referred to as "names".
@@ -22,54 +25,54 @@ Quoted identifiers must follow these rules:
 * May contain any ASCII character except ``@``, ``$`` or ``"``.
 * Must be case-sensitive and referenced with double quotes (``"``)
 
+Examples
+--------
+
+Creating quoted and unquoted identifiers:
+
+.. code-block:: sql
+
+	CREATE ROLE "developer"; --quoted identifiers preserves case - will create "developer"
+	CREATE ROLE "Developer"; --quoted identifiers preserves case - will create "Developer"
+	CREATE ROLE Developer;   --unquoted identifiers ignores case - will create "developer"
+
+Valid and invalid use of identifiers:
+
+.. code-block:: sql
+
+	-- these are all valid examples when quoted:
+	
+	CREATE SCHEMA "my schema";
+	CREATE SCHEMA "123schema";
+	
+	-- but are invalid when unquoted:
+	
+	CREATE SCHEMA my schema; --invalid
+	CREATE SCHEMA 123schema; --invalid
+	
+	-- Use of invalid characters:
+	
+	CREATE SCHEMA "my schema@master";
+	
+	Status:  Ended with errorError preparing statement: Unsupported character '@'  in identifier: "my schema@master"
+	Quoted identifiers cannot contain the character '@'.
+	Quoted identifiers may contain any ASCII character with code between 32 and 126 except for:
+	- @
+	- $
+	- "
+	
+	
+Keywords
+========
+
 Identifiers are different than **keywords**, which are predefined words reserved with specific meanings in a statement. Some examples of keywords are ``SELECT``, ``CREATE``, and ``WHERE``. Note that keywords **cannot** be used as identifiers.
 
-The following table shows a full list of the reserved keywords:
+SQreamDB reserved keywords:
 
-+-------------------------------------------------------------------------------------------------+
-| **Keywords**                                                                                    |
-+-------------------+---------------------+--------------------+------------------+---------------+
-| **A - C**         | **C - G**           | **H - N**          | **N - S**        | **S - W**     |
-+-------------------+---------------------+--------------------+------------------+---------------+
-| ``ALL``           | ``CURRENT_CATALOG`` | ``HASH``           | ``NOT``          | ``SIMILAR``   |
-+-------------------+---------------------+--------------------+------------------+---------------+
-| ``ANALYSE``       | ``CURRENT_ROLE``    | ``HAVING``         | ``NOTNULL``      | ``SOME``      |
-+-------------------+---------------------+--------------------+------------------+---------------+
-| ``ANALYZE``       | ``CURRENT_TIME``    | ``ILIKE``          | ``NULL``         | ``SYMMETRIC`` |
-+-------------------+---------------------+--------------------+------------------+---------------+
-| ``AND``           | ``CURRENT_USER``    | ``IN``             | ``OFFSET``       | ``TABLE``     |
-+-------------------+---------------------+--------------------+------------------+---------------+
-| ``ANY``           | ``DEFAULT``         | ``INITIALLY``      | ``ON``           | ``THEN``      |
-+-------------------+---------------------+--------------------+------------------+---------------+
-| ``ARRAY``         | ``DEFERRABLE``      | ``INNER``          | ``ONLY``         | ``TO``        |
-+-------------------+---------------------+--------------------+------------------+---------------+
-| ``AS``            | ``DESC``            | ``INTERSECT``      | ``OPTION``       | ``TRAILING``  |
-+-------------------+---------------------+--------------------+------------------+---------------+
-| ``ASC``           | ``DISTINCT``        | ``INTO``           | ``OR``           | ``TRAN``      |
-+-------------------+---------------------+--------------------+------------------+---------------+
-| ``AUTHORIZATION`` | ``DO``              | ``IS``             | ``ORDER``        | ``TRUE``      |
-+-------------------+---------------------+--------------------+------------------+---------------+
-| ``BINARY``        | ``ELSE``            | ``ISNULL``         | ``OUTER``        | ``UNION``     |
-+-------------------+---------------------+--------------------+------------------+---------------+
-| ``BIGINT``        | ``END``             | ``JOIN``           | ``OVER``         | ``UNIQUE``    |
-+-------------------+---------------------+--------------------+------------------+---------------+
-| ``BOTH``          | ``EXCEPT``          | ``LEADING``        | ``OVERLAPS``     | ``USER``      |
-+-------------------+---------------------+--------------------+------------------+---------------+
-| ``CASE``          | ``FALSE``           | ``LEFT``           | ``PLACING``      | ``USING``     |
-+-------------------+---------------------+--------------------+------------------+---------------+
-| ``CAST``          | ``FETCH``           | ``LIKE``           | ``PRIMARY``      | ``VARIADIC``  |
-+-------------------+---------------------+--------------------+------------------+---------------+
-| ``CHECK``         | ``FOR``             | ``LIMIT``          | ``REFERENCES``   | ``VERBOSE``   |
-+-------------------+---------------------+--------------------+------------------+---------------+
-| ``COLLATE``       | ``FREEZE``          | ``LOCALTIME``      | ``RETURNING``    | ``WHEN``      |
-+-------------------+---------------------+--------------------+------------------+---------------+
-| ``COLUMN``        | ``FROM``            | ``LOCALTIMESTAMP`` | ``RIGHT``        | ``WHERE``     |
-+-------------------+---------------------+--------------------+------------------+---------------+
-| ``CONCURRENTLY``  | ``FULL``            | ``LOOP``           | ``RLIKE``        | ``WINDOW``    |
-+-------------------+---------------------+--------------------+------------------+---------------+ 
-| ``CONSTRAINT``    | ``FUNCTION``        | ``MERGE``          | ``SELECT``       | ``WITH``      |
-+-------------------+---------------------+--------------------+------------------+               | 
-| ``CREATE``        | ``GRANT``           | ``NATURAL``        | ``SESSION_USER`` |               |  
-+-------------------+---------------------+--------------------+------------------+               |
-| ``CROSS``         | ``GROUP``           |                    |                  |               |
-+-------------------+---------------------+--------------------+------------------+---------------+
+
+``ALL`` | ``ANALYSE`` | ``ANALYZE`` | ``AND`` | ``ANY`` | ``ARRAY`` | ``AS`` | ``ASC`` | ``AUTHORIZATION`` | ``BINARY`` | ``BIGINT`` | ``BOTH`` | ``CASE`` | ``CAST`` | ``CHECK`` | ``COLLATE`` | ``COLUMN`` | ``COMMENT`` | ``CONCURRENTLY`` | ``CONSTRAINT`` | ``CREATE`` | ``CROSS`` | ``CURRENT_CATALOG`` | ``CURRENT_ROLE`` | ``CURRENT_TIME`` | ``CURRENT_USER`` | ``DEFAULT`` | ``DEFERRABLE`` | ``DESC`` | ``DISTINCT`` | ``DO`` | ``ELSE`` | ``END`` | ``EXCEPT`` | ``FALSE`` | ``FETCH`` | ``FOR`` | ``FREEZE`` | ``FROM`` | ``FULL`` | ``FUNCTION`` | ``GRANT`` | ``GROUP`` | ``HASH`` | ``HAVING`` | ``ILIKE`` | ``IN`` | ``INITIALLY`` | ``INNER`` | ``INTERSECT`` | ``INTO`` | ``IS`` | ``ISNULL`` | ``JOIN`` | ``KEY`` | ``LEADING`` | ``LEFT`` | ``LIKE`` | ``LIMIT`` | ``LOCALTIME`` | ``LOCALTIMESTAMP`` | ``LOOP`` | ``MERGE`` | ``NATURAL`` | ``NOT`` | ``NOTNULL`` | ``NULL`` | ``OFF`` | ``OFFSET`` | ``OFFSETS`` | ``ON`` | ``ONLY`` | ``OPTION`` | ``OR`` | ``ORDER`` | ``OUTER`` | ``OVER`` | ``OVERLAPS`` | ``PERCENT`` | ``PLACING`` | ``PRIMARY`` | ``PRECISION`` | ``PROC`` | ``PROCEDURE`` | ``REFERENCES`` | ``RETURNING`` | ``RIGHT`` | ``RLIKE`` | ``RULE`` | ``SCHEMA`` | ``SELECT`` | ``SESSION_USER`` | ``SET`` | ``SIMILAR`` | ``SOME`` | ``STATISTICS`` | ``SYMMETRIC`` | ``TABLE`` | ``THEN`` | ``TO`` | ``TOP`` | ``TRAILING`` | ``TRAN`` | ``TRUE`` | ``UNION`` | ``UNIQUE`` | ``USER`` | ``USING`` | ``VARIADIC`` | ``VERBOSE`` | ``WHEN`` | ``WHERE`` | ``WINDOW`` | ``WITH`` | 
+
+
+ 
+ 
+ 
