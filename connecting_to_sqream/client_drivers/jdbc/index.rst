@@ -166,7 +166,7 @@ The following is an example of a SQream cluster with a load balancer and a speci
 
    jdbc:Sqream://sqream.mynetwork.co:3108/raviga;user=rhendricks;password=Tr0ub4dor&3;cluster=true;service=etl
 
-Sample Java Program
+Java Program Sample
 --------------------
 
 You can download the :download:`JDBC Application Sample File <sample.java>` below by right-clicking and saving it to your computer.
@@ -174,4 +174,28 @@ You can download the :download:`JDBC Application Sample File <sample.java>` belo
 .. literalinclude:: sample.java
     :language: java
     :caption: JDBC Application Sample
+    :linenos:
+
+Prepared Statements
+====================
+
+Prepared statements, also known as parameterized queries, are a feature of JDBC that enable the use of parameters to optimize query execution, enhance security, and enable query template reuse with different parameter values in Java applications.
+
+Saving a Prepared Statement
+----------------------------
+
+.. code-block:: psql
+
+   t=> SELECT SAVE_QUERY('select_by_weight_and_team','SELECT * FROM nba WHERE Weight > ? AND Team = ?');
+   
+Prepared Statement Sample
+--------------------------- 
+
+The following is a Java code snippet employing a JDBC prepared statement object to ingest a batch of one million records into SQreamDB.
+   
+You may download the :download:`Prepared statement <samplepreparedstatement.java>` by right-clicking and saving it to your computer.
+
+.. literalinclude:: samplePreparedStatement.java
+    :language: java
+    :caption: Prepared Statement Sample
     :linenos:

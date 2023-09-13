@@ -109,7 +109,7 @@ When you're done with a saved query, or would like to replace it with another, y
 Prepared Statements
 ====================
 
-Prepared statements, also known as parameterized queries, enable the usage of parameters which may be replaced by actual values when executing the query. They are are created and managed in application code, primarily to optimize query execution, enhance security, and allow for the reuse of query templates with different parameter values. 
+Prepared statements, also known as parameterized queries, enable the usage of parameters which may be replaced by actual values when executing the query. They are created and managed in application code, primarily to optimize query execution, enhance security, and allow for the reuse of query templates with different parameter values. 
 
 Saving a Prepared Statement
 ----------------------------
@@ -117,5 +117,5 @@ Saving a Prepared Statement
 .. code-block:: psql
 
    t=> SELECT SAVE_QUERY('select_by_weight_and_team','SELECT * FROM nba WHERE Weight > ? AND Team = ?');
-   executed
+
    
