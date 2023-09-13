@@ -87,38 +87,7 @@ The following table shows the supported compression methods:
      - ``Integer``, ``date``, and ``timestamp``
      - Optimized RLE + Delta type for built-in :ref:`identity columns<identity>`. 
      - GPU
-   * - ``zlib``
-     - All types
-     - The **basic_zlib_compressor** and **basic_zlib_decompressor** compress and decompress data in the **ZLIB** format, using **DualUseFilters** for input and output. In general, compression filters are for output, and decompression filters for input.
-     - CPU
-   * - ``SPACES``
-     - All types
-     - Reduces the storage space required for data by identifying repeating sequences of values and replacing them with a compact representation. This method is particularly effective when there are repetitive patterns in the data.
-     - CPU
-   * - ``DELTA_RLE``
-     - Integer types
-     - Optimized RLE + Delta type for built-in :ref:`identity columns<identity>`. 
-     - CPU
-   * - ``SPADES``
-     - All types
-     - An extension of ``SPACES`` compression, optimizing the compression scheme further to handle specific data patterns and types efficiently.
-     - CPU
-   * - ``SPAPPY``
-     - All types
-     - Specialized variation of the ``Snappy`` compression algorithm. ``Snappy`` is a fast and efficient compression method that works well with various types of data, offering good compression ratios and decompression speeds.
-     - CPU
-   * - ``SPAZLY``
-     - All types
-     - An encryption method involving the transformation of plaintext characters into a jumbled or disorderly arrangement
-     - CPU
-   * - ``CRLE``
-     - All types
-     - An encryption process involving the compression and run-length encoding of data to secure it
-     - CPU
-   * - ``LZ4_ZIGZAG``
-     - All types
-     - An encryption approach combining LZ4 compression with a zigzag pattern
-     - CPU
+
 	 
 .. note:: Automatic compression does **not** select the ``zlib`` compression method.
 
