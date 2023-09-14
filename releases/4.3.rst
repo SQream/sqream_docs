@@ -171,20 +171,20 @@ Upgrading to v4.3
 
       $ ./upgrade_storage <levelDB path>
 	
-7. Version 4.3 introduces a service permission feature that enables superusers to grant and revoke role access to services. However, when upgrading from version 4.2 or earlier to version 4.3 or later, this feature initializes access to services and catalog tables, causing existing roles to lose their access to both services and catalog tables. 
+7. Version 4.3 introduces a service permission feature that enables superusers to grant and revoke role access to services. However, when upgrading from version 4.2 or earlier to version 4.3 or later, this feature initializes access to services and to catalog tables, causing existing roles to lose their access to services, catalog tables and consequently also to the UI (Catalog tables may also be used to determine user access rights and privileges. The UI can integrate with these permissions to control what actions users are allowed to perform in the database.). 
 
 There are two methods of granting back access to services:
 
    * Grant access to all services for all roles using the :ref:`grant_usage_on_service_to_all_roles` utility function
    * Selectively grant or revoke access to services by following the :ref:`access permission guide<access_control_permissions>`
 
-8. To re-enable catalog and UI access, you may either grant access to all system roles using your ``public`` role:
+To grant back access to catalog tables and the UI, you may either grant access to all system roles, using your ``public`` role:
 
 .. code-block::
 
 	GRANT ALL PERMISSIONS ON CATALOG <catalog_name> TO public;
 	
-Or individually grant access to roles:
+Or individually grant access to selected roles:
 
 .. code-block::
 
