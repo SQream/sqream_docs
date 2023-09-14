@@ -14,9 +14,9 @@ BLUE CLI is Java based and may run on any Java supported platform. Use the follo
 
 #. Using the BLUE web interface, generate and copy an access token.
    
-   For instruction on how to generate and copy access tokens, go to the :ref:`<access_tokens>`
+   For instruction on how to generate and copy access tokens, go to :ref:`connecting_to_blue`.
 
-#. Start the client by browsing your CLI for the location of the ``jdbc-console-*.*.**.jar`` file and execute it as follows:
+#. Start the client by browsing for the location of the jdbc-console .jar file and executing it as follows:
 
 .. code-block:: none
 
