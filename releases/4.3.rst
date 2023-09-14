@@ -178,7 +178,19 @@ There are two methods of granting back access to services:
    * Grant access to all services for all roles using the :ref:`grant_usage_on_service_to_all_roles` utility function
    * Selectively grant or revoke access to services by following the :ref:`access permission guide<access_control_permissions>`
 
+8. To re-enable catalog and UI access, you may either grant access to all system roles using your ``public`` role:
 
-  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
+.. code-block::
+
+	GRANT ALL PERMISSIONS ON CATALOG <catalog_name> TO public;
+	
+Or individually grant access to roles:
+
+.. code-block::
+
+	GRANT ALL PERMISSIONS ON CATALOG <catalog_name> TO <role_name>;
+	
+
+.. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
   
 
