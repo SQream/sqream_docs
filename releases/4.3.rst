@@ -124,6 +124,8 @@ Deprecated Features
 
 As of June 2024, CentOS Linux 7.x will reach its End of Life. This announcement provides a one-year advance notice for our users to plan for this change. We recommend users to explore migration or upgrade options to maintain ongoing support and security beyond this date.
 
+**CentOS Linux 8.x** is now officially supported.
+
 ► ``INT96``
 
 Due to Parquet's lack of support of the ``INT96`` data type, SQream has decided to deprecate this data type.
@@ -169,14 +171,25 @@ Upgrading to v4.3
 
       $ ./upgrade_storage <levelDB path>
 	
-7. Version 4.3 introduces a service permission feature that enables superusers to grant and revoke role access to services. However, when upgrading from version 4.2 or earlier to version 4.3 or later, this feature initializes access to services, causing existing roles to lose their access to services. 
+7. Version 4.3 introduces a service permission feature that enables superusers to grant and revoke role access to services. However, when upgrading from version 4.2 or earlier to version 4.3 or later, this feature initializes access to services and to catalog tables, causing existing roles to lose their access to services, catalog tables and consequently also to the UI (Catalog tables may also be used to determine user access rights and privileges. The UI can integrate with these permissions to control what actions users are allowed to perform in the database.). 
 
 There are two methods of granting back access to services:
 
    * Grant access to all services for all roles using the :ref:`grant_usage_on_service_to_all_roles` utility function
    * Selectively grant or revoke access to services by following the :ref:`access permission guide<access_control_permissions>`
 
+To grant back access to catalog tables and the UI, you may either grant access to all system roles, using your ``public`` role:
 
-  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
+.. code-block::
+
+	GRANT ALL PERMISSIONS ON CATALOG <catalog_name> TO public;
+	
+Or individually grant access to selected roles:
+
+.. code-block::
+
+	GRANT ALL PERMISSIONS ON CATALOG <catalog_name> TO <role_name>;
+	
+.. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
   
 
