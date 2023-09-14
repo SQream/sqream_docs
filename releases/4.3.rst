@@ -171,7 +171,7 @@ Upgrading to v4.3
 
       $ ./upgrade_storage <levelDB path>
 	
-7. Version 4.3 introduces a service permission feature that enables superusers to grant and revoke role access to services. However, when upgrading from version 4.2 or earlier to version 4.3 or later, this feature initializes access to services, causing existing roles to lose their access to services. 
+7. Version 4.3 introduces a service permission feature that enables superusers to grant and revoke role access to services. However, when upgrading from version 4.2 or earlier to version 4.3 or later, this feature initializes access to services and catalog tables, causing existing roles to lose their access to both services and catalog tables. 
 
 There are two methods of granting back access to services:
 
