@@ -62,49 +62,44 @@ Queries from management uses any available worker.
 Creating the Configuration
 -----------------------------------
 
-The persistent configuration for this set-up is listed in the four configuration files shown below.
+.. code-block:: json
 
-Each worker gets a comma-separated list of service queues that it subscribes to. These services are specified in the ``initialSubscribedServices`` attribute.
+
+	{
+	  "cluster": "/home/rhendricks/raviga_database",
+	  "cudaMemQuota": 25,
+	  "gpu": 0,
+	  "maxConnectionInactivitySeconds": 120,
+	  "legacyConfigFilePath": "tzah_legacy.json",
+	  "licensePath": "/home/sqream/.sqream/license.enc",
+	  "metadataServerIp": "192.168.0.103",
+	  "limitQueryMemoryGB": 250,
+	  "machineIP": "192.168.0.103",
+	  "metadataServerPort": 3105,
+	  "port": 5000,
+	  "useConfigIP": true
+	}
 
 .. code-block:: json
-   :caption: Worker #1
-   :emphasize-lines: 7
+   :caption: Legacy File
 
-   {
-       "compileFlags": {
-       },
-       "runtimeFlags": {
-       },
-       "runtimeGlobalFlags": {
-          "initialSubscribedServices" : "etl,management"
-       },
-       "server": {
-           "gpu": 0,
-           "port": 5000,
-           "cluster": "/home/rhendricks/raviga_database",
-           "licensePath": "/home/sqream/.sqream/license.enc"
-       }
-   }
 
-.. code-block:: json
-   :caption: Workers #2, #3, #4
-   :emphasize-lines: 7
-
-   {
-       "compileFlags": {
-       },
-       "runtimeFlags": {
-       },
-       "runtimeGlobalFlags": {
-          "initialSubscribedServices" : "query,management"
-       },
-       "server": {
-           "gpu": 1,
-           "port": 5001,
-           "cluster": "/home/rhendricks/raviga_database",
-           "licensePath": "/home/sqream/.sqream/license.enc"
-       }
-   }
+	{
+	  "debugNetworkSession": false,
+	  "developerMode": true,
+	  "diskSpaceMinFreePercent": 1,
+	  "maxNumAutoCompressedChunksThreshold" : 1,
+	  "insertMergeRowsThreshold":40000000,
+	  "insertCompressors": 8,
+	  "insertParsers": 8,
+	  "nodeInfoLoggingSec": 60,
+	  "reextentUse": true,
+	  "separatedGatherThreads": 16,
+	  "showFullExceptionInfo": true,
+	  "spoolMemoryGB":200,
+	  "useClientLog": true,
+	  "useMetadataServer":true
+	}
 
 .. tip:: You can create this configuration temporarily (for the current session only) by using the :ref:`subscribe_service` and :ref:`unsubscribe_service` statements.
 
