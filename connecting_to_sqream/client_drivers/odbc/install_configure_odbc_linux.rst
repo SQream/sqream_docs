@@ -252,6 +252,6 @@ ODBC DSN Parameters
 Limitations
 ===============
 
-Please note that ODBC does not support the use of ARRAY data types. If your database schema includes ARRAY columns, you may encounter compatibility issues when using ODBC to connect to the database.
+Please note that the SQreamDB ODBC connector does not support the use of ARRAY data types. If your database schema includes ARRAY columns, you may encounter compatibility issues when using ODBC to connect to the database.
 
 
