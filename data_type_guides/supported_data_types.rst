@@ -4,6 +4,13 @@
 Supported Data Types
 ********************
 
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :hidden:
+   
+   sql_data_type_array
+
 The following table shows the supported data types.
 
 .. list-table::
