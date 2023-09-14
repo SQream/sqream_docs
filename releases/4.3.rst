@@ -190,7 +190,6 @@ Or individually grant access to roles:
 
 	GRANT ALL PERMISSIONS ON CATALOG <catalog_name> TO <role_name>;
 	
-
 .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
   
 
