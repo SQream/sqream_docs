@@ -139,3 +139,8 @@ You can download the :download:`.NET Application Sample File <sample.cs>` below 
     :language: C#
     :caption: .NET Application Sample
     :linenos:
+
+Limitations
+===============
+
+Please note that .NET does not support the use of ARRAY data types. If your database schema includes ARRAY columns, you may encounter compatibility issues when using .NET to connect to the database.

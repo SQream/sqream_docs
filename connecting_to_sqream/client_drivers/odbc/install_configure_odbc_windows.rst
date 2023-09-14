@@ -132,3 +132,8 @@ After installing the ODBC driver, you may experience the following error:
    (c:\Program Files\SQream Technologies\ODBC Driver\sqreamOdbc64.dll)
 
 This is an issue with the Visual Studio Redistributable packages. Verify you've correctly installed them, as described in the :ref:`Visual Studio 2015 Redistributables <vcredist>` section above.
+
+Limitations
+===============
+
+Please note that ODBC does not support the use of ARRAY data types. If your database schema includes ARRAY columns, you may encounter compatibility issues when using ODBC to connect to the database.

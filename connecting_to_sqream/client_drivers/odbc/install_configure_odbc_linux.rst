@@ -249,5 +249,9 @@ ODBC DSN Parameters
             * 5 = Debug tracing
             * 6 = Detailed tracing
 
+Limitations
+===============
+
+Please note that ODBC does not support the use of ARRAY data types. If your database schema includes ARRAY columns, you may encounter compatibility issues when using ODBC to connect to the database.
 
 

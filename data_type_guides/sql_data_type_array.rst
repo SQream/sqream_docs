@@ -199,7 +199,15 @@ Result:
 Limitations
 ===========
 
-Casting Limitations
+Connectors
+------------
+
+Limitations
+===============
+
+Please note that the SQreamDB ODBC and .NET connectors do not support the use of ARRAY data types. If your database schema includes ARRAY columns, you may encounter compatibility issues when using these connectors.
+
+Casting 
 -------------------
 
 Numeric
@@ -228,7 +236,7 @@ Casting ``TEXT`` to non-``TEXT`` and non-``TEXT`` to ``TEXT`` data types is not 
 	INSERT INTO t_int VALUES (array[1,2,3]);
 	INSERT INTO t_text SELECT xint::TEXT[] FROM t_int;
 
-Function Limitations
+Function
 --------------------
 
 || (Concatenate)
@@ -249,3 +257,4 @@ Window
 ^^^^^^
 
 Window functions are not supported.
+
