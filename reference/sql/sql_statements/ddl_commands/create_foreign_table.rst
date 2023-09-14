@@ -52,6 +52,8 @@ Syntax
       | DELIMITER = '{ field_delimiter }' -- for CSV only,
       | RECORD_DELIMITER = '{ record_delimiter }', -- for CSV only
       | AWS_ID '{ AWS ID }',
+      | CONTINUE_ON_ERROR = { true | false }
+      | ERROR_COUNT = '{ error count }'
       | AWS_SECRET '{ AWS SECRET }',
       | OFFSET -- for CSV and JSON only
    }
@@ -105,6 +107,11 @@ Parameters
      - Credentials for authenticated S3 access
    * - ``OFFSET``
      - Used to specify the number of rows to skip from the beginning of the result set
+   * - ``CONTINUE_ON_ERROR``
+     - Specifies if errors should be ignored or skipped. When set to ``true``, the transaction will continue despite rejected data. This parameter should be set together with ``ERROR_COUNT`` When reading multiple files, if an entire file can’t be opened it will be skipped. Default value: ``false``. Value range: ``true`` or ``false``.
+   * - ``ERROR_COUNT``
+     - Specifies the threshold for the maximum number of faulty records that will be ignored. This setting must be used in conjunction with ``CONTINUE_ON_ERROR``. Default value: ``unlimited``. Value range: 1 to 2147483647.
+	 
 
 
 Examples
@@ -182,3 +189,18 @@ The ``OFFSET`` parameter may be used with Parquet and CSV textual formats.
 	    OFFSET = 2
 	  );
 
+Using the ``CONTINUE_ON_ERROR`` and ``ERROR_COUNT`` Parameters
+----------------------------------------------------------------
+
+.. code-block::
+
+	CREATE OR REPLACE FOREIGN TABLE cool_animalz
+	  (id INT NOT NULL, name text(30) NOT NULL, weight FLOAT NOT NULL)
+	WRAPPER csv_fdw
+	OPTIONS
+	  ( LOCATION = '/home/rhendricks/cool_animals.csv',
+		DELIMITER = '\t',
+		continue_on_error = true,
+		ERROR_COUNT = 3
+	  )
+	 ;
