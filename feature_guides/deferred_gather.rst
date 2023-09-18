@@ -20,7 +20,7 @@ The following example illustrates how the Deferred Gather optimization reduces e
 
 .. code-block::
 
-	CREATE TABLE a (x int ,y int);
+	CREATE TABLE a (x int,y int);
 	CREATE TABLE b (x int,y int);
 
 .. code-block::
