@@ -133,7 +133,7 @@ Elements
      - No error log
      - 
      -  
-         When used, the ``COPY`` process will write error information from unparsable rows to the file specified by this parameter. 
+         When used, the ``COPY`` process will write error information from unparsable rows to the file specified by this parameter. ``ERROR_LOG`` requires ``CONTINUE_ON_ERROR`` to be set to ``true``
          
          * If an existing file path is specified, it will be overwritten.
          
@@ -547,20 +547,26 @@ Saving Rejected Rows to a File
 
 .. code-block:: postgres
 
-   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.csv', 
-												                        ,continue_on_error  = true 
-                                                ,error_log  = '/temp/load_error.log'
-                                                );         
+	COPY table_name FROM WRAPPER csv_fdw 
+			OPTIONS 
+			(
+			location = '/tmp/file.csv' 
+			,continue_on_error  = true 
+			,error_log  = '/temp/load_error.log'
+			);         
 
 .. code-block:: postgres
 
-    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.psv'
-												                         ,delimiter '|'
-                                                 ,error_log = '/temp/load_error.log' -- Save error log
-                                                 ,rejected_data = '/temp/load_rejected.log' -- Only save rejected rows
-                                                 ,limit = 100 -- Only load 100 rows
-                                                 ,error_count = 5 -- Stop the load if 5 errors reached
-                                                 );         
+	COPY table_name FROM WRAPPER csv_fdw 
+			OPTIONS
+			(
+			location = '/tmp/file.psv'
+			,delimiter '|'
+			,error_log = '/temp/load_error.log' -- Save error log
+			,rejected_data = '/temp/load_rejected.log' -- Only save rejected rows
+			,limit = 100 -- Only load 100 rows
+			,error_count = 5 -- Stop the load if 5 errors reached
+			);         
 
 
 Loading CSV Files from a Set of Directories
