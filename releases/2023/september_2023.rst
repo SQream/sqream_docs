@@ -12,7 +12,7 @@ Resource Availability Status
 
 Follow the number of Workers available for new queries at a glance with the **Resource Availability Status** located at the top of the page. 
 
-* The status shows the number of Workers that are currently working on executed queries, out of your total Worker sum
+* The status shows how many Workers are available out of your total number of Workers
 * A green dot at the left of the bar indicates that your cluster is active with one or more Workers up and running, while a red dot indicates that your cluster is suspended
 * Hovering over the status bar reveals information about your cluster, including your current cluster size, the number of Workers allocated to each of your resource pools, and which of your pools are currently active
 
@@ -45,9 +45,9 @@ When executing the :ref:`AUDITLOG<audit_log>` command, you may now investigate t
 
 * System shutdown, suspension, and resumption
 * Cluster resize
-* Newly created and deleted resource pool 
+* Newly created and deleted resource pools 
 * Newly created and deleted Jobs and Tasks
-* Newly created and deleted Directed Acyclic Graphs (DAGs)
+* Newly created, deleted, and edited Jobs
 
 Resolved Issues
 -----------------
