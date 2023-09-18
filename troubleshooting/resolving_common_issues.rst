@@ -28,7 +28,7 @@ Verify that:
 Query Performance
 -----------------
 
-Query performance can be influenced by various factors, including complex queries involving subqueries and joins, large data volumes, and network latency. To improve performance, refer to the :ref:`sql_best_practices` guide to learn how to optimize queries and table structures, and make sure that: 
+Query performance can be influenced by various factors, including complex queries involving subqueries and joins, large data volumes, and network latency. To improve performance, refer to the :ref:`sql_best_practices` guide to learn how to optimize queries and table structure, and make sure that: 
 
 * Table indexes are properly configured
 
@@ -38,6 +38,7 @@ Query performance can be influenced by various factors, including complex querie
 
 * The database schema is properly designed 
 
+Alternatively, you may also :ref:`retrieve the query execution plan output<retrieving_execution_plan_output_using_studio>` using your Workbench.
 
 Query Behavior
 --------------

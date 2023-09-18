@@ -27,6 +27,7 @@ When possible, please attach as many of the following:
 * DDL and queries that reproduce the issue
 * :ref:`Log files<logging>`
 * Screen captures if relevant
+* :ref:`Execution plan output<retrieving_execution_plan_output_using_studio>`
 
 How BLUE Debugs Issues
 ======================

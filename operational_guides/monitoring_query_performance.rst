@@ -95,10 +95,7 @@ Using the ``DESCRIBE QUERY`` Command
 
 The :ref:`describe_query` command returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases.
 
-The :ref:`describe_query` result, just like the periodically-logged execution plans described above, are an at-the-moment 
-
-view of the compiler's execution plan and runtime statistics for the specified statement.
-To inspect a currently running statement, execute the ``show_node_info`` utility function in a SQL client like :ref:`sqream sql<sqream_sql_cli_reference>`, the :ref:`SQream Studio Editor<studio_editor>`, or any other :ref:`third party SQL terminal<third_party_tools>`.
+The :ref:`describe_query` result, just like the periodically-logged execution plans described above, are an at-the-moment view of the compiler's execution plan and runtime statistics for the specified statement.
 
 The following is an example of a query inspecting a statement with a statement ID of **7**:
 
@@ -109,6 +106,8 @@ The following is an example of a query inspecting a statement with a statement I
 The following image shows the output of the above query:
    
 .. image:: /_static/images/monitoring_describe_query.png   
+
+Alternatively, you may also :ref:`retrieve the query execution plan output<retrieving_execution_plan_output_using_studio>` using your Workbench.
 
 Understanding the Query Execution Plan Output
 =============================================
