@@ -1,15 +1,15 @@
 .. _information_for_support:
 
-*******************************************
+****************************************
 Gathering Information for SQream Support
-*******************************************
+****************************************
 
 .. contents:: 
    :local:
    :depth: 1
 
 Getting Support and Reporting Bugs
-=======================================
+==================================
 
 When contacting `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_, we recommend reporting the following information:
 
@@ -23,12 +23,13 @@ When possible, please attach as many of the following:
 * DDL and queries that reproduce the issue
 * :ref:`Log files<logging>`
 * Screen captures if relevant
+* :ref:`Execution plan output<retrieving_execution_plan_output_using_studio>`
 
 How SQream Debugs Issues
-===================================
+========================
 
 Reproduce
---------------
+---------
 
 If we are able to easily reproduce your issue in our testing lab, this greatly improves the speed at which we can fix it.
 
@@ -43,7 +44,7 @@ Reproducing an issue consists of understanding:
 See the :ref:`reproducible_statement` section ahead for information about collecting a full reproducible example.
 
 Logs
---------
+----
 
 The logs produced by SQream DB contain a lot of information that may be useful for debugging.
 
@@ -53,7 +54,7 @@ See the :ref:`collecting_logs` section ahead for information about collecting a 
 
 
 Fix
----------
+---
 
 Once we have a fix, this can be issued as a hotfix to an existing version, or as part of a bigger major release.
 
@@ -62,14 +63,14 @@ Your SQream account manager will keep you up-to-date about the status of the iss
 .. _reproducible_statement:
 
 Collecting a Reproducible Example of a Problematic Statement
-===============================================================
+============================================================
 
 SQream DB contains an SQL utility that can help SQream support reproduce a problem with a query or statement.
 
 This utility compiles and executes a statement, and collects the relevant data in a small database which can be used to recreate and investigate the issue.
 
 SQL Syntax
----------------
+----------
 
 .. code-block:: postgres
    
@@ -81,7 +82,7 @@ SQL Syntax
       
 
 Parameters
----------------
+----------
 
 .. list-table::
    :widths: auto
@@ -95,7 +96,7 @@ Parameters
      - Statements to analyze.
 
 Example
------------
+-------
 
 .. code-block:: postgres
 
@@ -104,14 +105,14 @@ Example
 .. _collecting_logs:
 
 Collecting Logs and Metadata Database
-=============================================
+=====================================
 
 SQream DB comes bundled with a data collection utility and an SQL utility intended for collecting logs and additional information that can help SQream support drill down into possible issues.
 
 See more information in the :ref:`Collect logs from your cluster<collecting_logs2>` section of the :ref:`logging` guide.
 
 Examples
------------------
+--------
 
 Write an archive to ``/home/rhendricks``, containing log files:
 
@@ -129,7 +130,7 @@ Write an archive to ``/home/rhendricks``, containing log files and metadata data
    
 
 Using the Command Line Utility:
-=============================================
+===============================
 
 .. code-block:: console
    
