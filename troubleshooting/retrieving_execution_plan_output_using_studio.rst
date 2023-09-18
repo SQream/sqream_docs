@@ -4,7 +4,7 @@
 Retrieving Execution Plan Output Using SQreamDB Studio 
 *******************************************************
 
-You may use SQreamDB Studio to create a query plan snapshot to be used for monitoring and troubleshooting slow running statements and for identifying long-running execution nodes (components that process data), that may cause performance issues.
+You may use SQreamDB Studio to create a query plan snapshot to be used for monitoring and troubleshooting slow running statements and for identifying long-running execution Workers (components that process data), that may cause performance issues.
 
 Retrieving Execution Plan Output
 ================================
