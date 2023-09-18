@@ -89,14 +89,14 @@ Visit :ref:`s3` to learn more about how and when you should use these two new pa
 * ``AwsEndpointOverride``
 * ``AwsObjectAccessStyle``
 
-Deprecated Features
+Deprecations
 -------------------
 
 ► **CentOS Linux 7.x**
 
-As of June 2024, CentOS Linux 7.x will reach its End of Life. This announcement provides a one-year advance notice for our users to plan for this change. Due to the fact that CentOS will no longer support production deployments, we recommend users to explore migration to the Red Hat Enterprise Linux (RHEL) commercial Linux distribution developed by Red Hat.
-
-**CentOS Linux 8.x** is now officially supported.
+* As of June 2024, CentOS Linux 7.x will reach its End of Life and will not be supported by SQreamDB. This announcement provides a one-year advance notice for our users to plan for this change. We recommend users to explore migration or upgrade options to maintain ongoing support and security beyond this date. 
+* All new SQreamDB installations must use CentOS 8.X as the required operating system platform. 
+* **CentOS Linux 8.x** is now officially supported.
 
 ► ``INT96``
 
