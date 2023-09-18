@@ -14,7 +14,7 @@ How saved queries work
 
 Saved queries are compiled when they are created. When a saved query is run, this query plan is used instead of compiling a query plan at query time.
 
-Parameters support
+Parameter support
 -----------------------
 
 Query parameters can be used as substitutes for constants expressions in queries.

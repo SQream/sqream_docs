@@ -180,13 +180,6 @@ Prepared Statements
 ====================
 
 Prepared statements, also known as parameterized queries, are a feature of JDBC that enable the use of parameters to optimize query execution, enhance security, and enable query template reuse with different parameter values in Java applications.
-
-Saving a Prepared Statement
-----------------------------
-
-.. code-block:: psql
-
-   t=> SELECT SAVE_QUERY('select_by_weight_and_team','SELECT * FROM nba WHERE Weight > ? AND Team = ?');
    
 Prepared Statement Sample
 --------------------------- 
