@@ -117,8 +117,8 @@ Using the ``SHOW_NODE_INFO`` Command
 The :ref:`show_node_info` command returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases.
 The :ref:`show_node_info` result, just like the periodically-logged execution plans described above, are an at-the-moment 
 view of the compiler's execution plan and runtime statistics for the specified statement.
-To inspect a currently running statement, execute the ``show_node_info`` utility function in a SQL client like
- :ref:`sqream sql<sqream_sql_cli_reference>`, the :ref:`SQream Studio Editor<studio_editor>`, or any other :ref:`third party SQL terminal<third_party_tools>`.
+To inspect a currently running statement, execute the ``show_node_info`` utility function in a SQL client like :ref:`sqream sql<sqream_sql_cli_reference>`, the :ref:`SQream Studio Editor<studio_editor>`, or any other :ref:`third party SQL terminal<third_party_tools>`.
+
 In this example, we inspect a statement with statement ID of 176. The command looks like this:
 
 .. code-block:: sql
@@ -137,6 +137,8 @@ In this example, we inspect a statement with statement ID of 176. The command lo
        176 |       9 | Rechunk            |  457 |      1 |               457 | 2019-12-25 23:53:13 |              8 |      |       |            |       0
        176 |      10 | CpuDecompress      |  457 |      1 |               457 | 2019-12-25 23:53:13 |              9 |      |       |            |       0
        176 |      11 | ReadTable          |  457 |      1 |               457 | 2019-12-25 23:53:13 |             10 | 4MB  |       | public.nba |  0.0004
+
+Alternatively, you may also :ref:`retrieve the query execution plan output<retrieving_execution_plan_output_using_studio>` using SQreamDB Studio, and contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_. 
 
 Understanding the Query Execution Plan Output
 =============================================
