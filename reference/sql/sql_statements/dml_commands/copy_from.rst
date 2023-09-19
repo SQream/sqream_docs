@@ -102,9 +102,9 @@ Elements
      - 
      - Table to copy data into
    * - ``QUOTE``
-     - "
+     - ``"``
      - 
-     - Specifies an alternative quote character. The quote character must be a single, 1-byte printable ASCII character, and the equivalent octal syntax of the copy command can be used. The quote character cannot be contained in the field delimiter, the record delimiter, or the null marker. ``QUOTE`` can be used with ``csv_fdw`` in **COPY FROM** and foreign tables.
+     - Specifies an alternative quote character. The quote character must be a single, 1-byte printable ASCII character, and the equivalent octal syntax of the copy command can be used. The quote character cannot be contained in the field delimiter, the record delimiter, or the null marker. ``QUOTE`` can be used with ``csv_fdw`` in ``COPY FROM`` and foreign tables. The following characters cannot be an alternative quote character: ``"-.:\\0123456789abcdefghijklmnopqrstuvwxyzN"``
    * - ``fdw_name``
      - 
      - ``csv_fdw``, ``orc_fdw``, ``parquet_fdw``, ``json_fdw``, or ``avro_fdw``
@@ -531,7 +531,25 @@ Loading a File from a Public S3 Bucket
 
 .. code-block:: postgres
 
-   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = 's3://sqream-demo-data/file.csv', delimiter = '\r\n', offset = 2);         
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = 's3://sqream-demo-data/file.csv', delimiter = '\r\n', offset = 2);       
+
+Loading a File From a Google Cloud Platform Bucket
+----------------------------------------------------
+
+To access a Google Cloud Platform (GCP) Bucket it is required that your environment be authorized.
+
+.. code-block::
+
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = 'gs://<gcs path>/<gcs_bucket>/*');    
+
+Loading a File From Azure 
+----------------------------------
+
+To access Azure it is required that your environment be authorized.
+
+.. code-block::
+
+   COPY table_name FROM WRAPPER csv_fdw OPTIONS(location = 'azure://sqreamrole.core.windows.net/sqream-demo-data/file.csv');
 
 Loading Files from an Authenticated S3 Bucket
 ---------------------------------------------------
