@@ -53,7 +53,7 @@ Statements and queries are standard SQL, followed by a semicolon ``;``.
 
 .. code-block:: none
  
-	CREATE FOREIGN TABLE nba (
+	master=> CREATE FOREIGN TABLE "public"."nba" (
 	  player_name TEXT,
 	  team_name TEXT,
 	  jersey_number INT,
@@ -63,11 +63,12 @@ Statements and queries are standard SQL, followed by a semicolon ``;``.
 	  weight INT,
 	  college TEXT,
 	  salary INT
-	  )
-	WRAPPER parquet_fdw
+	)
+	WRAPPER
+	  parquet_fdw
 	OPTIONS
 	  (
-		LOCATION =  'hdfs://hadoop-nn.piedpiper.com/rhendricks/nba/*.parquet'
+	    LOCATION = 'gs://product_sqream/Documentation/nba.csv'
 	  );
 
 
@@ -159,27 +160,30 @@ Creating a new database and switching over to it without reconnecting:
 	Interactive client mode
 	To quit, use ^D or \q.
 
-	master=> CREATE DATABASE farm;
+	master=> CREATE OR REPLACE FOREIGN TABLE nba_extended (
+	Name TEXT,
+	Team TEXT,
+	Number INTEGER,
+	Position TEXT,
+	Age INTEGER,
+	Height TEXT,
+	Weight INTEGER,
+	College TEXT,
+	Salary INTEGER,
+	name0 TEXT
+	)
+	wrapper
+	csv_fdw
+	options
+	(
+	location = 'gs://product_sqream/Documentation/.csv',
+		    continue_on_error = 'False'
+	);
+
+	master=>   COPY (SELECT * FROM nba) TO WRAPPER csv_fdw  OPTIONS (LOCATION = '/tmp/nba_extended.csv');
 	time: 0.003811s
 	
-	master=> \c farm
-	farm=>
 
-
-	farm=> CREATE TABLE animals(id int not null, name TEXT(30) not null, is_angry bool not null);
-	time: 0.011940s
-
-	farm=> INSERT INTO animals values(1,'goat',false);
-	time: 0.000405s
-
-	farm=> INSERT INTO animals values(4,'bull',true) ;
-	time: 0.049338s
-
-	farm=> SELECT * FROM animals;
-	1,goat,false
-	4,bull,true
-	2 rows
-	time: 0.029299s
 	
 Executing SQL Statements from the Command Line
 ----------------------------------------------
