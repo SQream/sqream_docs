@@ -4,16 +4,20 @@
 Server Picker
 *************************
 
-SQream DB's load balancer is called ``server_picker``.
-
-This page serves as a reference for the options and parameters.
+SQreamDB's load balancer is called ``server_picker``.
 
 Positional command line arguments
 ===================================
 
+Syntax
+-------
+
 .. code-block:: console
 
    $ server_picker [ <Metadata server address> <Metadata server port> [ <TCP listen port> [ <SSL listen port> ] ]
+
+Parameters
+------------
 
 .. list-table:: 
    :widths: auto
@@ -34,6 +38,22 @@ Positional command line arguments
    * - ``SSL listen port``
      - ``3109``
      - SSL port for server picker to listen on
+   * - ``server picker services``
+     - All services, unless specified otherwise
+     - Defines which Worker will accept a specific service compilation job. Accepts 1 or more services separated using a comma
+   * - ``refresh_interval``
+     - 15 seconds
+     - Examines worker availability based on the specified time interval
+   * - ``logging configuration file``
+     - 
+     - Controls the format and destination of log output
+
+Example
+---------
+
+.. code-block:: console
+
+   $ server_picker 127.0.0.1 3105 3118 3119 sqream23, sqream0 metadata_log_properties
 
 Starting server picker
 ============================
