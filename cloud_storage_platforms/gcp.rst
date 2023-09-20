@@ -1,7 +1,7 @@
 .. _gcp:
 
 ******************************************
-Ingesting Data Using Google Cloud Platform
+Google Cloud Platform
 ******************************************
 
 Ingesting data using Google Cloud Platform (GCP) requires configuring Google Cloud Storage (GCS) bucket access. You may configure BLUE to separate source and destination by granting read access to one bucket and write access to a different bucket. Such separation requires that each bucket be individually configured.    
