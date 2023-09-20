@@ -1,7 +1,7 @@
 .. _s3:
 
 ******************************
-Ingesting Data Using Amazon S3
+Amazon Web Services
 ******************************
 
 SQream uses a native S3 connector for ingesting data. File names may contain wildcard characters, and the files can be in CSV or columnar format, such as Parquet and ORC.
