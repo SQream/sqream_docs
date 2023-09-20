@@ -14,7 +14,7 @@ Syntax
 
 .. code-block:: console
 
-   $ server_picker [ <Metadata server address> <Metadata server port> [ <TCP listen port> [ <SSL listen port> ] ]
+   $ server_picker [ <Metadata server address> <Metadata server port> ] [ <TCP listen port> ] [ <SSL listen port> ] [ <server picker services> ] [ <refresh_interval> ] [ <logging configuration file> ]
 
 Parameters
 ------------
@@ -40,12 +40,12 @@ Parameters
      - SSL port for server picker to listen on
    * - ``server picker services``
      - All services, unless specified otherwise
-     - Defines which Worker will accept a specific service compilation job. Accepts 1 or more services separated using a comma
+     - Defines which Worker will accept compilation jobs according to services. Accepts 1 or more services separated using a comma
    * - ``refresh_interval``
      - 15 seconds
      - Examines worker availability based on the specified time interval
    * - ``logging configuration file``
-     - 
+     - ``log4`` logging to default log path(/tmp/logs)
      - Controls the format and destination of log output
 
 Example
