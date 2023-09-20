@@ -148,8 +148,6 @@ Examples
 Executing Statements in an Interactive Shell
 --------------------------------------------
 
-Note that all SQL commands end with a semicolon.
-
 Creating a new database and switching over to it without reconnecting:
 
 .. code-block:: none
@@ -160,7 +158,13 @@ Creating a new database and switching over to it without reconnecting:
 	Interactive client mode
 	To quit, use ^D or \q.
 
-	master=> CREATE OR REPLACE FOREIGN TABLE nba_extended (
+	master=> CREATE DATABASE basketball;
+	Done
+	time: 0.59 s
+
+	master=> \c basketball
+
+	basketball=> CREATE OR REPLACE FOREIGN TABLE nba_extended (
 	Name TEXT,
 	Team TEXT,
 	Number INTEGER,
@@ -180,9 +184,10 @@ Creating a new database and switching over to it without reconnecting:
 		    continue_on_error = 'False'
 	);
 
-	master=>   COPY (SELECT * FROM nba) TO WRAPPER csv_fdw  OPTIONS (LOCATION = '/tmp/nba_extended.csv');
+	basketball=>   COPY (SELECT * FROM nba) TO WRAPPER csv_fdw  OPTIONS (LOCATION = '/tmp/nba_extended.csv');
 	time: 0.003811s
-	
+
+
 
 	
 Executing SQL Statements from the Command Line
