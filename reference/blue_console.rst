@@ -12,21 +12,25 @@ Running BLUE CLI
 
 BLUE CLI is Java based and may run on any Java supported platform. Use the following link to check supported platforms and to download `Java 11 <https://www.oracle.com/java/technologies/downloads/#java11>`_.
 
-#. Using the BLUE web interface, generate and copy an access token.
+#. Use the BLUE web interface to generate and an access token and copy it.
    
    For instruction on how to generate and copy access tokens, go to :ref:`connecting_to_blue`.
 
-#. Start the client by browsing for the location of the jdbc-console JAR file and executing it as follows:
+#. Use the following syntax to start the client:
 
 .. code-block:: none
 
 	$ sudo java -jar jdbc-console-*.*.**.jar --host=<BLUE cluster FQDN> --access-token=<access-token>
+
+Output:
 	
-	Output:
+.. code-block:: none
+
 	
 	Welcome to JDBC console, SQream DB version 2.0.0
 	To quit use ^d or exit; to abort ^c
-	Connection URL: jdbc:Sqream://java3-sqream.isqream.com:443/master;accesstoken=##########
+	Connection URL: jdbc:Sqream://java3-sqream.isqream.com:443/master;accesstoken=##########;pool=Default
+	master=>
 	
 
 
@@ -35,7 +39,7 @@ Running Commands Interactively (SQL Shell)
 
 After entering your access token, you are presented with the **SQL shell**. The database name shown means you are now ready to run statements and queries. 
 
-**SQL shell** control commands:
+Common **SQL shell** control commands:
 
 .. list-table::
    :widths: auto
@@ -53,26 +57,28 @@ Statements and queries are standard SQL, followed by a semicolon ``;``.
 
 .. code-block:: none
  
-	master=> CREATE FOREIGN TABLE "public"."nba" (
-	  player_name TEXT,
-	  team_name TEXT,
-	  jersey_number INT,
-	  position TEXT,
-	  age INT,
-	  height TEXT,
-	  weight INT,
-	  college TEXT,
-	  salary INT
-	)
-	WRAPPER
-	  parquet_fdw
-	OPTIONS
-	  (
-	    LOCATION = 'gs://product_sqream/Documentation/nba.csv'
-	  );
+	master=> CREATE OR REPLACE FOREIGN TABLE "public"."nba" 
+
+			(
+				  Name TEXT,
+				  Team TEXT,
+				  Number INT,
+				  Position TEXT,
+				  Age INT,
+				  Height TEXT,
+				  Weight INT,
+				  College TEXT,
+				  Salary INT
+			)
+				WRAPPER
+				  csv_fdw
+				OPTIONS
+				  (
+					LOCATION = 'gs://product_sqream/Documentation/nba.csv', OFFSET = 2
+				  );
 
 
-Statement results are usually formatted as a valid CSV, followed by the number of rows and the elapsed time for that statement. 
+Statement results are usually formatted as a valid CSV, followed by the number of rows and the statement elapsed time. 
 
 ``NULL`` values are represented as ``\N``.
 
@@ -87,7 +93,7 @@ Statement results are usually formatted as a valid CSV, followed by the number o
 	5 rows
 	time: 0.001185s
 
-When writing long statements and queries, it may be beneficial to use line-breaks.
+You may use line-breaks for writing long statements and queries.
 
 .. code-block:: none
 
@@ -98,16 +104,6 @@ When writing long statements and queries, it may be beneficial to use line-break
 	LIMIT 5
 	;
 
-Output:
-
-.. code-block:: none
-
-	27,\N
-	22,1148640
-	29,5000000
-	25,7263227
-	4 rows
-	time: 0.604 s
 	
 Executing Batch SQL Scripts
 ---------------------------	
