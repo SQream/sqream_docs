@@ -7,10 +7,10 @@ BLUE Console
 BLUE has a native client program that provides a command-line interface (CLI) for interacting with your cloud stored data. It allows you to connect to database servers, execute SQL queries and commands, and receive the results in a text-based format.
 
 
-Running BLUE CLI
-================
+Running BLUE Console
+=====================
 
-BLUE CLI is Java based and may run on any Java supported platform. Use the following link to check supported platforms and to download `Java 11 <https://www.oracle.com/java/technologies/downloads/#java11>`_.
+BLUE console is Java based and may run on any Java supported platform. Use the following link to check supported platforms and to download `Java 11 <https://www.oracle.com/java/technologies/downloads/#java11>`_.
 
 #. Use the BLUE web interface to generate and an access token and copy it.
    
@@ -34,12 +34,12 @@ Output:
 	
 
 
-Running Commands Interactively (SQL Shell)
+Running Commands 
 ------------------------------------------
 
-After entering your access token, you are presented with the **SQL shell**. The database name shown means you are now ready to run statements and queries. 
+After entering your access token, you are presented with the BLUE console. The database name shown means you are now ready to run statements and queries. 
 
-Common **SQL shell** control commands:
+Common console control commands:
 
 .. list-table::
    :widths: auto
@@ -48,7 +48,7 @@ Common **SQL shell** control commands:
    * - Command
      - Description
    * - ``Ctrl-d``, ``exit;``
-     - Exit the SQL Shell   
+     - Exit console and back to the CLI   
    * - ``^c`` 
      - Abort a statement or query
 
@@ -57,25 +57,26 @@ Statements and queries are standard SQL, followed by a semicolon ``;``.
 
 .. code-block:: none
  
-	master=> CREATE OR REPLACE FOREIGN TABLE "public"."nba" 
-
-			(
-				  Name TEXT,
-				  Team TEXT,
-				  Number INT,
-				  Position TEXT,
-				  Age INT,
-				  Height TEXT,
-				  Weight INT,
-				  College TEXT,
-				  Salary INT
-			)
-				WRAPPER
-				  csv_fdw
-				OPTIONS
-				  (
-					LOCATION = 'gs://product_sqream/Documentation/nba.csv', OFFSET = 2
-				  );
+	master=> CREATE OR REPLACE FOREIGN TABLE "public"."nba"
+	(
+	  Name TEXT,
+	  Team TEXT,
+	  Number INT,
+	  Position TEXT,
+	  Age INT,
+	  Height TEXT,
+	  Weight INT,
+	  College TEXT,
+	  Salary INT
+	)
+	WRAPPER
+	  json_fdw
+	OPTIONS
+	  (
+	LOCATION = 'gs://product_sqream/Documentation/nba.json'
+	  );
+	Done
+	time: 5.284 s
 
 
 Statement results are usually formatted as a valid CSV, followed by the number of rows and the statement elapsed time. 
@@ -85,13 +86,13 @@ Statement results are usually formatted as a valid CSV, followed by the number o
 .. code-block:: none
 
 	master=> SELECT TOP 5 * FROM nba;
-	Avery Bradley           ,Boston Celtics        ,0,PG,25,6-2 ,180,Texas                ,7730337
-	Jae Crowder             ,Boston Celtics        ,99,SF,25,6-6 ,235,Marquette            ,6796117
-	John Holland            ,Boston Celtics        ,30,SG,27,6-5 ,205,Boston University    ,\N
-	R.J. Hunter             ,Boston Celtics        ,28,SG,22,6-5 ,185,Georgia State        ,1148640
-	Jonas Jerebko           ,Boston Celtics        ,8,PF,29,6-10,231,\N,5000000
+	Avery Bradley,Boston Celtics,0,PG,25,2-Jun,180,Texas,7730337
+	Jae Crowder,Boston Celtics,99,SF,25,6-Jun,235,Marquette,6796117
+	John Holland,Boston Celtics,30,SG,27,5-Jun,205,Boston University,\N
+	R.J. Hunter,Boston Celtics,28,SG,22,5-Jun,185,Georgia State,1148640
+	Jonas Jerebko,Boston Celtics,8,PF,29,10-Jun,231,\N,5000000
 	5 rows
-	time: 0.001185s
+	time: 3.579 s
 
 You may use line-breaks for writing long statements and queries.
 
@@ -118,41 +119,47 @@ Use the ``-f <filename>`` argument:
 
 	Output can be saved to a file by using the ``>`` redirection operator.
 	
-Executing Commands Immediately
-------------------------------
+Executing On-The-Go Commands
+--------------------------------------------
 
-Use the ``-c <statement>`` argument:
+The ``-c <statement>`` option can be used to execute on-the-go commands seemingly without exiting the command-line interface (CLI). This can be useful when you need to run scheduled queries or promptly save query results to a local file.
 
 .. code-block:: none
 
-	$ java -jar jdbc-console-0.0.92-48.jar --host=product.isqream.com --access-token=########## -d master -c "SELECT TOP 5 * FROM nba;"
-	Avery Bradley           ,Boston Celtics        ,0,PG,25,6-2 ,180,Texas                ,7730337
-	Jae Crowder             ,Boston Celtics        ,99,SF,25,6-6 ,235,Marquette            ,6796117
-	John Holland            ,Boston Celtics        ,30,SG,27,6-5 ,205,Boston University    ,\N
-	R.J. Hunter             ,Boston Celtics        ,28,SG,22,6-5 ,185,Georgia State        ,1148640
-	Jonas Jerebko           ,Boston Celtics        ,8,PF,29,6-10,231,\N,5000000
+	java -jar jdbc-console-0.0.94-55.jar --host=product1-sqream.isqream.com --access-token=############# -d master -c "SELECT TOP 5* FROM nba;"
+	Welcome to JDBC console, SQream DB version 2.0.0
+	To quit use ^d or exit; to abort ^c
+	Connection URL: jdbc:Sqream://product1-sqream.isqream.com:443/master;accesstoken=#############;pool=Default
+	SELECT TOP 5* FROM nba;
+	Avery Bradley,Boston Celtics,0,PG,25,2-Jun,180,Texas,7730337
+	Jae Crowder,Boston Celtics,99,SF,25,6-Jun,235,Marquette,6796117
+	John Holland,Boston Celtics,30,SG,27,5-Jun,205,Boston University,\N
+	R.J. Hunter,Boston Celtics,28,SG,22,5-Jun,185,Georgia State,1148640
+	Jonas Jerebko,Boston Celtics,8,PF,29,10-Jun,231,\N,5000000
 	5 rows
-	time: 0.202618s
+	time: 2.976 s
+	closing session...
 
-.. tip::
+Remove the timing and row count by passing the ``--results-only`` parameter.
 
-	Remove the timing and row count by passing the ``--results-only`` parameter.
+.. code-block:: none
+
+	java -jar jdbc-console-0.0.94-55.jar --host=product1-sqream.isqream.com --access-token=#############--results-only -d master -c "SELECT TOP 5* FROM nba;"
+	Avery Bradley,Boston Celtics,0,PG,25,2-Jun,180,Texas,7730337
+	Jae Crowder,Boston Celtics,99,SF,25,6-Jun,235,Marquette,6796117
+	John Holland,Boston Celtics,30,SG,27,5-Jun,205,Boston University,\N
+	R.J. Hunter,Boston Celtics,28,SG,22,5-Jun,185,Georgia State,1148640
+	Jonas Jerebko,Boston Celtics,8,PF,29,10-Jun,231,\N,5000000
 
 Examples
 ========
 
-Executing Statements in an Interactive Shell
---------------------------------------------
+Executing Statements
+----------------------
 
-Creating a new database and switching over to it without reconnecting:
+Creating a new database and switching over to it:
 
 .. code-block:: none
-
-	$ java -jar jdbc-console-0.0.92-48.jar --host=product.isqream.com --access-token=########## -d master
-
-
-	Interactive client mode
-	To quit, use ^D or \q.
 
 	master=> CREATE DATABASE basketball;
 	Done
@@ -176,17 +183,17 @@ Creating a new database and switching over to it without reconnecting:
 	csv_fdw
 	options
 	(
-	location = 'gs://product_sqream/Documentation/.csv',
+	location = 'gs://product_sqream/Documentation/.json',
 		    continue_on_error = 'False'
 	);
 
-	basketball=>   COPY (SELECT * FROM nba) TO WRAPPER csv_fdw  OPTIONS (LOCATION = '/tmp/nba_extended.csv');
+	basketball=>   COPY (SELECT * FROM nba) TO WRAPPER json_fdw  OPTIONS (LOCATION = '/tmp/nba_extended.json');
 	time: 0.003811s
 
 
 
 	
-Executing SQL Statements from the Command Line
+Executing SQL Statements 
 ----------------------------------------------
 
 .. code-block:: none
