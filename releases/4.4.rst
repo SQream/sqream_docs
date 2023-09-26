@@ -23,11 +23,11 @@ Compatibility Matrix
 +-------------------------+------------------------------------------------------------------------+
 | Storage version         |   49                                                                   |
 +-------------------------+------------------------------------------------------------------------+
-| Driver compatibility    | * JDBC 4.5.8                                                           |
+| Driver compatibility    | * JDBC 5.0.0                                                           |
 |                         | * ODBC 4.4.4                                                           | 
 |                         | * NodeJS                                                               |
 |                         | * .NET 3.0.2                                                           |
-|                         | * Pysqream 3.2.5                                                       |
+|                         | * Pysqream 5.0.0                                                       |
 |                         | * Spark                                                                |
 +-------------------------+------------------------------------------------------------------------+
 
@@ -35,6 +35,19 @@ New Features and Enhancements
 -----------------------------
 
 :ref:`denodo` may now be used for data visualization and real-time visualization of various sources.
+
+Newly Released Connector Drivers
+---------------------------------
+
+► **Pysqream 5.0.0**
+
+* `tar.file <https://github.com/SQream/pysqream/releases/tag/v5.0.0>`_
+* :ref:`Documentation<pysqream>`
+
+► **JDBC 5.0.0**
+
+* `jar.file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-5.0.0.jar>`_
+* :ref:`Documentation<java_jdbc>`
 
 Known Issues
 ------------
