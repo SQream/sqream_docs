@@ -19,7 +19,7 @@ Client Driver Downloads
      - Notes
      - Operating System
    * - **JDBC**
-     - `sqream-jdbc 4.5.9 <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-4.5.9.jar>`_
+     - `sqream-jdbc 5.0.0 <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-5.0.0.jar>`_
      - :ref:`java_jdbc`
      - Recommended installation via ``mvn``
      - All
@@ -34,7 +34,7 @@ Client Driver Downloads
      - 
      - All
    * - **Python**
-     - `pysqream v3.2.5 <https://github.com/SQream/pysqream/releases/tag/v3.2.5>`_
+     - `pysqream v5.0.0 <https://github.com/SQream/pysqream/releases/tag/v5.0.0>`_
      - :ref:`pysqream`
      - Recommended installation via ``pip``
      - All
