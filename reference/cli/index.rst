@@ -50,7 +50,6 @@ This topic contains the reference for these programs, as well as flags and confi
    metadata_server
    sqreamd
    sqream_console
-   sqream_installer
    server_picker
    sqream_storage
    sqream sql<sqream_sql>
