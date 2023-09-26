@@ -19,7 +19,7 @@ Follow the number of Workers available for new queries at a glance with the **Re
 Cluster Resize
 ^^^^^^^^^^^^^^
 
-You may now easily :ref:`resize<managing_your_resources>` your BLUE cluster to be either:
+You may now easily :ref:`resize<managing_your_resources>` your BLUE cluster to be small, medium, or large. This means you can adjust the number of Workers you use as needed and according to workload changes to optimize costs during low demand and scale dynamically for peak performance.
 
 .. list-table:: 
    :widths: auto

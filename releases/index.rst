@@ -4,7 +4,12 @@
 Release Notes
 *************
 
-September 2033
+October 2023
+---------------
+
+:ref:`Read More <october_2023>`
+
+September 2023
 ---------------
 
 Quickly check Worker availability with the Resource Availability Status, distinguish active clusters from suspended ones, and resize your BLUE cluster as needed for enhanced parallelism. The ``AUDITLOG`` command now offers insights into essential client actions, including system events and resource management.
