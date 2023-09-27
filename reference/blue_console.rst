@@ -31,7 +31,7 @@ Output:
 	master=>
 
 First Steps 
------------------
+============
 
 After entering your access token, you are presented with the BLUE console. The database name shown means you are now ready to run statements and queries. 
 
@@ -81,8 +81,6 @@ Operations and Flag References
 
 Command Line Arguments
 ----------------------
-
-BLUE SQL supports the following command line arguments:
 
 .. list-table:: 
    :widths: auto
@@ -137,34 +135,30 @@ Record Delimiters
 Meta-Commands
 -------------
 
-* Meta-commands in BLUE SQL start with a backslash (\)
-
-.. note::
-
-	Meta commands do not end with a semicolon.
+Meta-commands in BLUE SQL start with a backslash (\\) and do not require ``:`` at the end for execution.
 	
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
    * - Command
-     - Example
      - Description
+     - Example
    * - ``^c``
-     - 
      - Abort the currently running statement 
+     - ``\^c``
    * - ``^d`` or ``exit``
-     - ``master=> exit;``
      - Quit the client. (Same as ``Ctrl-d``)
-   * - ``\c <database> or \connect <database>``
-     - ``master=> \c fox`` 
-       ``fox=>``
+     - ``master=> \exit;``
+   * - ``\c <database>`` or ``\connect <database>``
      - Changes the current connection to an alternate database
+     - ``master=> \c basketball`` 
+       ``basketball=>``
 	 
 Moving Around the Command Line
 ==============================
 
-Note: below shortcuts are only supported for Linux environments 
+The below shortcuts are only supported for Linux environments 
 
 .. list-table:: 
    :widths: auto
@@ -204,7 +198,6 @@ Note: below shortcuts are only supported for Linux environments
      - Deletes characters located before the cursor.
    * - ``Ctrl-t``
      - Swaps a character at the cursor with the previous character.
-
 	 
 Searching
 ---------
