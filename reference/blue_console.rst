@@ -89,34 +89,34 @@ Arguments
    * - Argument
      - Default
      - Description
-   * - ``-c`` or ``command``
+   * - ``-c`` or ``--command``
      - None
-     - Changes the mode of operation to single-command, non-interactive. Use this argument to run a statement and immediately exit.
+     - Changes the mode of operation to single-command, non-interactive. Use this argument to run a statement and immediately exit the database.
    * - ``-f`` or ``--file``
      - None
      - Changes the mode of operation to multi-command, non-interactive. Use this argument to run a sequence of statements from an external file and immediately exit.
    * - ``--host``
      - 
      - Fully Qualified Domain Name (FQDN) address of the Blue server to connect to
-   * - ``--databasename`` or ``-d``
+   * - ``-d`` or ``--databasename``
      - None
      - Specifies the database name for queries and statements in this session.
-   * - ``results-only``
+   * - ``--results-only``
      - False
      - Outputs results only, without timing information and row counts
-   * - ``no-history``
+   * - ``--no-history``
      - False
      - When set, prevents command history from being saved in ``~/.sqream/clientcmdhist``
-   * - ``delimiter``
+   * - ``--delimiter``
      - ``,``
-     - Specifies the field separator. By default, ``blue sql`` outputs valid CSVs. Change the delimiter to modify the output to another delimited format (e.g. TSV, PSV). See the section supported record delimiters below for more information.
-   * - ``access-token``
+     - Specifies the field separator. By default, ``blue sql`` outputs valid CSVs. Change the delimiter to modify the output to another delimited format (e.g. TSV, PSV).
+   * - ``--access-token``
      - None
      - Provide a security token that grants access to protected resources or operations.
 
 .. tip::
 
-	For the full list of arguments, run ``$  java -jar jdbc-console-*.*.**.jar  --help``.
+	For the full list of arguments, run ``$  java -jar jdbc-console-0.0.94-55.jar --host=product.isqream.com --access-token=########## --help``.
 	
 Record Delimiters
 ---------------------------
@@ -225,27 +225,14 @@ Searching Command Line History
 Examples
 ========
 
-Executing Batch SQL Scripts
----------------------------	
-
-Use the ``-f <filename>`` argument:
-
-.. code-block:: none
-
-	$ java -jar jdbc-console-0.0.92-48.jar --host=product.isqream.com --access-token=########## -f=script.sql
-	 
-.. tip::
-
-	Output can be saved to a file by using the ``>`` redirection operator.
-	
-Executing On-The-Go Commands
+Executing "On-The-Go" Commands
 --------------------------------------------
 
-The ``-c <statement>`` option can be used to execute on-the-go commands seemingly without exiting the command-line interface (CLI). This can be useful when you need to run scheduled queries or promptly save query results to a local file.
+Use the ``--c`` or ``--command`` option to execute a statement and exit the database. This can be useful when you need to run scheduled queries or create a local file out of query results.
 
 .. code-block:: none
 
-	java -jar jdbc-console-0.0.94-55.jar --host=product1-sqream.isqream.com --access-token=############# -d master -c "SELECT TOP 5* FROM nba;"
+	java -jar jdbc-console-0.0.94-55.jar --host=product1-sqream.isqream.com --access-token=############# -d master -c "SELECT TOP 5 * FROM nba;"
 	Welcome to JDBC console, SQream DB version 2.0.0
 	To quit use ^d or exit; to abort ^c
 	Connection URL: jdbc:Sqream://product1-sqream.isqream.com:443/master;accesstoken=#############;pool=Default
@@ -263,17 +250,30 @@ Remove the timing and row count by passing the ``--results-only`` parameter.
 
 .. code-block:: none
 
-	java -jar jdbc-console-0.0.94-55.jar --host=product1-sqream.isqream.com --access-token=#############--results-only -d master -c "SELECT TOP 5* FROM nba;"
+	java -jar jdbc-console-0.0.94-55.jar --host=product1-sqream.isqream.com --access-token=############# --results-only -d master -c "SELECT TOP 5* FROM nba;"
 	Avery Bradley,Boston Celtics,0,PG,25,2-Jun,180,Texas,7730337
 	Jae Crowder,Boston Celtics,99,SF,25,6-Jun,235,Marquette,6796117
 	John Holland,Boston Celtics,30,SG,27,5-Jun,205,Boston University,\N
 	R.J. Hunter,Boston Celtics,28,SG,22,5-Jun,185,Georgia State,1148640
 	Jonas Jerebko,Boston Celtics,8,PF,29,10-Jun,231,\N,5000000
 
+Executing Batch SQL Scripts
+---------------------------	
+
+Use the ``-f <filename>`` argument:
+
+.. code-block:: none
+
+	$ java -jar jdbc-console-0.0.94-55.jar --host=product.isqream.com --access-token=########## -f=example_script.sql
+	 
+.. tip::
+
+	Output can be saved to a file by using the ``>`` redirection operator.
+
 Executing Statements
 ----------------------
 
-Creating a new database and switching over to it:
+Creating a new database and use the ``\c`` option to switch over to it:
 
 .. code-block:: none
 
@@ -283,74 +283,15 @@ Creating a new database and switching over to it:
 
 	master=> \c basketball
 
-	basketball=> CREATE OR REPLACE FOREIGN TABLE nba_extended (
-	Name TEXT,
-	Team TEXT,
-	Number INTEGER,
-	Position TEXT,
-	Age INTEGER,
-	Height TEXT,
-	Weight INTEGER,
-	College TEXT,
-	Salary INTEGER,
-	name0 TEXT
-	)
-	wrapper
-	csv_fdw
-	options
-	(
-	location = 'gs://product_sqream/Documentation/.json',
-		    continue_on_error = 'False'
-	);
-
-	basketball=>   COPY (SELECT * FROM nba) TO WRAPPER json_fdw  OPTIONS (LOCATION = '/tmp/nba_extended.json');
-	time: 0.003811s
-
-
-
-	
-Executing SQL Statements 
-----------------------------------------------
-
-.. code-block:: none
-
-	$ java -jar jdbc-console-0.0.92-48.jar --host=product.isqream.com --access-token=########## -d farm -c "SELECT * FROM animals WHERE is_angry = true;"
-	
-Output:
-	
-.. code-block:: none
-
-	4,bull,true
-	1 row
-	time: 0.095941s
-	
-Controlling the Client Output
------------------------------
-
-Two parameters control the client result display:
-
-+-----------------------+---------------------------------------------------+
-| Parameter             | Description                                       |
-+=======================+===================================================+
-| ``--results-only``    | Removes row counts and timing information         |
-+-----------------------+---------------------------------------------------+
-| ``--delimiter``       | Changes the record delimiter                      |
-+-----------------------+---------------------------------------------------+
-
 Exporting SQL Query Results to CSV
 ----------------------------------
 
-Using the ``--results-only`` flag removes the row counts and timing.
+Use the ``--results-only`` flag to remove the row counts and timing.
 
 .. code-block:: none
 
-	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
-	 --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals" --results-only > file.csv
+	$ java -jar jdbc-console-0.0.94-55.jar --host=product.isqream.com --access-token=########## -d master -c "SELECT * FROM aba" --results-only > file.csv
 	$ cat file.csv
-	1,goat                          ,0
-	2,sow                           ,0
-	3,chicken                       ,0
-	4,bull                          ,1
 	
 Changing a CSV to a TSV
 -----------------------
@@ -363,13 +304,8 @@ The ``--delimiter`` parameter accepts any printable character.
 
 .. code-block:: none
 
-	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
-	 --port=3105 --clustered --username=oldmcd -d farm -c "SELECT * FROM animals" --delimiter '  ' > file.tsv
+	$ java -jar jdbc-console-0.0.94-55.jar --host=product.isqream.com --access-token=########## -d farm -c "SELECT * FROM animals" --delimiter '  ' > file.tsv
 	$ cat file.tsv
-	1  goat                             0
-	2  sow                              0
-	3  chicken                          0
-	4  bull                             1
 
 Executing a Series of Statements From a File
 -------------------------------------------- 
@@ -387,20 +323,19 @@ Assuming a file containing SQL statements (separated by semicolons):
 	  SELECT name FROM   animals WHERE  is_angry = false;
 
 
-	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
-	 --port=3105 --clustered --username=oldmcd -d farm -f some_queries.sql
+	$ java -jar jdbc-console-0.0.94-55.jar --host=product.isqream.com --access-token=########## -d farm -f some_queries.sql
 	executed
 	time: 0.018289s
 	executed
 	time: 0.090697s
 
-Connecting Using Environment Variables in Linux environments
+Connecting Using Variables in Linux Environments
 ------------------------------------------------------------
+
+You can save connection parameters as environment variables:
 
 .. code-block:: none
 
-	You can save connection parameters as environment variables:
 	$ export SQREAM_USER=sqream;
 	$ export SQREAM_DATABASE=farm;
-	$ java -jar jdbc-console-*.*.**.jar --host=[SQream cluster IP address]
-	 --port=3105 --clustered --username=$SQREAM_USER -d $SQREAM_DATABASE
+	$ java -jar jdbc-console-*.*.**.jar --0.0.94-55.jar --host=product.isqream.com --access-token=########## --username=$SQREAM_USER -d $SQREAM_DATABASE
