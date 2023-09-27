@@ -7,7 +7,7 @@ Release Notes
 October 2023
 ---------------
 
-You can now schedule jobs with greater precision, choosing hourly or minute-based execution for SQL workflows. Regarding security, our recent penetration test successfully addressed all SOC2 findings, strengthening our security measures. We've also introduced character limits within JSON scripts for Job and task names and descriptions to enhance system security.
+You can now schedule jobs with greater precision, choosing hourly or minute-based execution for SQL workflows. Regarding security, our recent penetration test successfully addressed all SOC2 Type 2 findings, strengthening our security measures. We've also introduced character limits within JSON scripts for Job and task names and descriptions to enhance system security.
 
 :ref:`Read More <october_2023>`
 
