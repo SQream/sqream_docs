@@ -12,7 +12,6 @@ The **Feature Guides** section describes background processes that SQreamDB uses
 
    automatic_foreign_table_ddl_resolution
    query_healer
-   data_encryption
    compression
    python_functions
    workload_manager
