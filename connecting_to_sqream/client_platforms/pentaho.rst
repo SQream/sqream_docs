@@ -42,8 +42,6 @@ After installing Pentaho you must install and set up the JDBC driver. This secti
 
 You can install the driver by copying and pasting the SQream JDBC .jar file into your **<directory>/design-tools/data-integration/lib** directory. 
 
-**NOTE:** Contact your SQream license account manager for the JDBC .jar file.
-
 :ref:`Back to Overview <pentaho_top>`
 
 .. _create_transformation:
