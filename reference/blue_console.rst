@@ -76,11 +76,11 @@ Statement results are usually formatted as a valid CSV, followed by the number o
 	5 rows
 	time: 3.579 s
 
-Operations and Flag References
+Operator References
 ==============================
 
-Command Line Arguments
-----------------------
+Arguments
+------------
 
 .. list-table:: 
    :widths: auto
@@ -135,7 +135,7 @@ Record Delimiters
 Meta-Commands
 -------------
 
-Meta-commands in BLUE SQL start with a backslash (\\) and do not require ``:`` at the end for execution.
+Meta-commands in BLUE SQL start with a backslash (\\) and do not require ``;`` at the end for execution.
 	
 .. list-table:: 
    :widths: auto
@@ -155,10 +155,15 @@ Meta-commands in BLUE SQL start with a backslash (\\) and do not require ``:`` a
      - ``master=> \c basketball`` 
        ``basketball=>``
 	 
-Moving Around the Command Line
+Keyboard Shortcuts
 ==============================
 
-The below shortcuts are only supported for Linux environments 
+Keyboard shortcuts provide efficient ways to navigate and manipulate text on the command line, improving productivity and ease of use.
+
+Navigating
+------------
+
+The below shortcuts are only supported for Linux environments. 
 
 .. list-table:: 
    :widths: auto
@@ -171,7 +176,7 @@ The below shortcuts are only supported for Linux environments
    * - ``Ctrl-e``
      - Goes to the end of the command line.
    * - ``Ctrl-u``
-     - Deletes from cursor to the beginning of the command line.
+     - Deletes from the cursor to the beginning of the command line.
    * - ``Ctrl-k``
      - Deletes from the cursor to the end of the command line.
    * - ``Ctrl-w``
@@ -181,11 +186,11 @@ The below shortcuts are only supported for Linux environments
    * - ``Alt-b``
      - Moves back one word (or goes to the beginning of the word where the cursor is).
    * - ``Alt-f``
-     - Moves forward one word (or goes to the end of word the cursor is).
+     - Moves forward one word (or goes to the end of the word the cursor is).
    * - ``Alt-d``
      - Deletes to the end of a word starting at the cursor. Deletes the whole word if the cursor is at the beginning of that word.
    * - ``Alt-c``
-     - Capitalizes letters in a word starting at the cursor. Capitalizes the whole word if the cursor is at the beginning of that word.
+     - Capitalizes letters in a word starting at the cursor. Capitalize the whole word if the cursor is at the beginning of that word.
    * - ``Alt-u``
      - Capitalizes from the cursor to the end of the word.
    * - ``Alt-l``
@@ -199,8 +204,8 @@ The below shortcuts are only supported for Linux environments
    * - ``Ctrl-t``
      - Swaps a character at the cursor with the previous character.
 	 
-Searching
----------
+Searching Command Line History
+--------------------------------
 
 .. list-table:: 
    :widths: auto
