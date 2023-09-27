@@ -118,15 +118,21 @@ BLUE SQL supports the following command line arguments:
 
 .. tip::
 
-	Run ``$  java -jar jdbc-console-*.*.**.jar  --help`` to see a full list of arguments.
+	For the full list of arguments, run ``$  java -jar jdbc-console-*.*.**.jar  --help``.
 	
-Supported Record Delimiters
+Record Delimiters
 ---------------------------
 
-The supported record delimiters are printable ASCII values (32-126).
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
 
-* Recommended delimiters for use are: ``,``, ``|``, tab character.
-* The following characters are **not supported**: ``\, N, -, :, ", \n, \r, .,`` lower-case latin letters, digits (0-9)
+   * - Supported Record Delimiters
+     - Non-Supported Delimiters 
+     - Recommended Delimiters
+   * - Printable ASCII values (32-126)
+     - ``\``, ``N``, ``-``, ``:``, ``"``, ``\n``, ``\r``, ``.``, lower-case Latin letters, digits (0-9)
+     - ``,``, ``|``, ``tab`` character
 
 Meta-Commands
 -------------
