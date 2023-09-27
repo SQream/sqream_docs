@@ -18,7 +18,7 @@ Security Enhancements
 SOC2
 ^^^^^
 
-We are pleased to announce the successful completion of our recent penetration test, and all System and Organization Controls (SOC2) type 2 related findings have been addressed to enhance our security measures.
+We are pleased to announce the successful completion of our recent penetration test, and all System and Organization Controls (SOC2) Type 2 related findings have been addressed to enhance our security measures.
 
 JSON Scripts
 ^^^^^^^^^^^^^
