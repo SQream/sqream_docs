@@ -13,7 +13,6 @@ This section describes the following features:
 
    automatic_foreign_table_ddl_resolution
    query_healer
-   data_encryption
    compression
    python_functions
    workload_manager
