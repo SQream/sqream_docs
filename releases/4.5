@@ -1,10 +1,10 @@
-.. _4.4:
+.. _4.5:
 
 *****************
-Release Notes 4.4
+Release Notes 4.5
 *****************
 
-The 4.4 release notes were released on September 28th, 2023
+The 4.5 release notes were released on XXXXXXXXXXX
 
 .. contents:: 
    :local:
@@ -65,34 +65,58 @@ Version 4.4 resolved Issues
 +--------------------+------------------------------------------------------------------------------------------------+
 | **SQ No.**         | **Description**                                                                                |
 +====================+================================================================================================+
-| SQ-12965           | ``ReadParquet`` chunk producer issue                                                           | 
+| SQ-11108           | Slow ``COPY FROM`` statements using ORC files                                                  |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-13461           | ``LEFT JOIN`` in the ``WHERE`` clause with different date values results in missing filters    |
+| SQ-11804           | Slow metadata optimization                                                                     |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-13772           | Foreign table ``JOIN`` operation issue                                                         |
+| SQ-12721           | ``maxConnectionInactivitySeconds`` flag issue when executing Batch Shell Program ETLs          |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-13805           | Different table structures provide different query times when using Parquet files              |
+| SQ-12799           | Catalog queries may not be terminated                                                          |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-13947           | Unicode character issue when using Tableau                                                     |
+| SQ-12965           |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-13954           | Runtime error when granting role multiple permissions using the web interface                  |
+| SQ-13112           | ``GRANT`` query queue issue                                                                    |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-13971           | Parquet file data loading issue when columns contain over 100,000 digits                       |
+| SQ-13201           | ``INSERT INTO`` statement error while copying data from non-clustered table to clustered table |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-14136           | Query deceleration due to metadata server issue                                                |
+| SQ-13210, SQ-13426 | Slow query execution time                                                                      |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-14268           | ``TEXT`` column length calculation CUDA memory issue                                           |
+| SQ-13225           | LoopJoin performance enhancement supports ``=``, ``>``, ``<``, and ``<=`` operators            |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-14399           | Figment snapshot recognition issue                                                             |
+| SQ-13322           | Cleanup operation case-sensitivity issue                                                       |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-14400           | Healer configuration flag unavailability                                                       |
+| SQ-13401           | The JDBC driver causes the log summery of ``INSERT`` statements to fail                        |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-14556           | Object store path issue when using S3 API                                                      |
+| SQ-13453           | Metadata performance issue                                                                     |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-14724           | Aliases error when using ``DELETE`` statement                                                  |
+| SQ-13461           |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-15074           | Web interface login issue for non-``SUPERUSER`` roles                                          |
+| SQ-13467           | Snapshot issue causes metadata failure                                                         |
 +--------------------+------------------------------------------------------------------------------------------------+
+| SQ-13566, SQ-13694 | S3 access to bucket failure when using custom endpoint                                         |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-13587           | Large number of worker connections failure                                                     |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-13772           |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-13805           |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-13947           |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-13954           |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-13971           |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-14094           |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-14136           |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-14268
+| SQ-14399
+| SQ-14400
+| SQ-14556
+| SQ-14724
+| SQ-15074
 
 
 
@@ -105,8 +129,6 @@ Visit :ref:`s3` to learn more about how and when you should use these two new pa
 
 * ``AwsEndpointOverride``
 * ``AwsObjectAccessStyle``
-
-► New :ref:`server_picker_cli_reference` parameters enable you to direct services to specific Workers and examine Worker availability.
 
 Deprecations
 -------------------
