@@ -4,9 +4,14 @@
 Release Notes
 *************
 
+:ref:`Version 4.4 - September 28, 2023<4.4>`
+
+* `Enhancing storage efficiency and performance with the newly supported ARRAY data type <https://docs.sqream.com/en/latest/releases/4.4.html#new-features-and-enhancements>`_
+* `New integration with Denodo Platform <https://docs.sqream.com/en/latest/releases/4.4.html#new-features-and-enhancements>`_
+
 :ref:`Version 4.3 - June 11, 2023<4.3>`
 
-* `Access Control Permissions Expansion <https://docs.sqream.com/en/latest/releases/4.3.html#new-features-and-enhancements>`_
+* `Access Control Permission Expansion <https://docs.sqream.com/en/latest/releases/4.3.html#new-features-and-enhancements>`_
 * `New AWS S3 Access Configurations <https://docs.sqream.com/en/latest/releases/4.3.html#configuration-adjustments>`_
 
 :ref:`Version 4.2 - April 23, 2023<4.2>`
