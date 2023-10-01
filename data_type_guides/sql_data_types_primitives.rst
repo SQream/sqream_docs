@@ -1,4 +1,4 @@
-.. _sql_data_type_primitives:
+.. _sql_data_types_primitives:
 
 ********************
 Primitive Data Types
