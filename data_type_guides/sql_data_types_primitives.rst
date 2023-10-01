@@ -4,6 +4,8 @@
 Primitive Data Types
 ********************
 
+SQreamDB compresses all columns and types. The data size noted is the maximum data size allocation for uncompressed data.
+
 .. list-table::
    :widths: 20 15 20 30 20
    :header-rows: 1
