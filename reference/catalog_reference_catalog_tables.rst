@@ -364,18 +364,6 @@ The ``schemas`` data object identifies all the database's schemas, as shown belo
    * - ``rechunker_ignore``
      - Reserved for internal use.
 
-.. _sequences:
-
-Sequences
-----------------
-
-The ``sequences`` data object is used for displaying identity key information, as shown below:
-
-Identity Key
-*************
-
-**Comment** - *No content.*
-
 .. _tables:
 
 Tables
