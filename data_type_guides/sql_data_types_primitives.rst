@@ -1,3 +1,9 @@
+.. _sql_data_type_primitives:
+
+********************
+Primitive Data Types
+********************
+
 .. list-table::
    :widths: 20 15 20 30 20
    :header-rows: 1
