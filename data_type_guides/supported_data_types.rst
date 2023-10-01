@@ -11,7 +11,7 @@ Supported Data Types
    
    sql_data_type_array
 
-The following table shows the supported data types.
+SQream compresses all columns and types. The data size noted is the maximum data size allocation for uncompressed data.
 
 .. list-table::
    :widths: 20 15 20 30 20
@@ -82,5 +82,3 @@ The following table shows the supported data types.
      - Variable
      - ``[1,2,3]``
      -  NA
-
-.. note:: SQream compresses all columns and types. The data size noted is the maximum data size allocation for uncompressed data.
