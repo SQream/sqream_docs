@@ -68,8 +68,4 @@ Primitive Data Types
      - 8 bytes
      - ``'1955-11-05 01:24:00.000'``
      -  ``TIMESTAMP``, ``DATETIME2``
-   * - ``ARRAY``
-     - Array of values
-     - Variable
-     - ``[1,2,3]``
-     -  NA
+
