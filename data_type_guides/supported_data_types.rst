@@ -6,7 +6,7 @@ Supported Data Types
 
 
 
-SQream compresses all columns and types. The data size noted is the maximum data size allocation for uncompressed data.
+SQreamDB compresses all columns and types. The data size noted is the maximum data size allocation for uncompressed data.
 
 .. toctree::
    :maxdepth: 1
