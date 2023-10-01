@@ -56,8 +56,6 @@ Known Issues
 
 * :ref:`Percentile<percentile_disc>` is not supported for :ref:`Window Functions<window_functions>`.
 
-* Performance degradation when using ``VARCHAR`` partition key in a :ref:`Window Functions<window_functions>` expression
-
 
 Version 4.4 resolved Issues
 ---------------------------
@@ -114,8 +112,8 @@ Deprecations
 ► **CentOS Linux 7.x**
 
 * As of June 2024, CentOS Linux 7.x will reach its End of Life and will not be supported by SQreamDB. This announcement provides a one-year advance notice for our users to plan for this change. We recommend users to explore migration or upgrade options to maintain ongoing support and security beyond this date. 
-* All new SQreamDB installations must use CentOS 8.X as the required operating system platform. 
-* **CentOS Linux 8.x** is now officially supported.
+* All new SQreamDB installations must use RHEL 8.X as the required operating system platform. 
+* **RHEL 8.x** is now officially supported.
 
 ► ``INT96``
 
