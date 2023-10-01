@@ -33,8 +33,6 @@ The following table shows the data objects contained in the ``sqream_catalog`` s
      - ``roles``, ``roles_memeberships``
    * - :ref:`Schemas<schemas>`
      - ``schemas``
-   * - :ref:`Sequences<sequences>`
-     - ``identity_key``
    * - :ref:`Tables<tables>`
      - ``tables``, ``external_tables``
    * - :ref:`Views<views>`
