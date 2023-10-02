@@ -9,7 +9,7 @@ Users who wish to use the BLUE :ref:`Jobs<performing_basic_blue_operations>` wor
 Access tokens are essential for establishing secure links to connectors and external platforms. These tokens serve to authenticate, enhancing security by permitting only authorized entities to access the BLUE cluster. Their importance lies in facilitating smooth machine-to-machine communication, enabling thorough auditing and logging, and aligning with modern integration practices.
 
 Creating Clients and Generating Access Tokens
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------------------------------
 
 Using connectors and third-party tools requires BLUE clients to be associated with access tokens. Once an access token is generated, you may use it to secure the connection between your BLUE client and the respective BLUE cluster or platform, ensuring authenticated access, controlled data interaction, and enhanced security measures in place.
 
@@ -34,7 +34,7 @@ Using connectors and third-party tools requires BLUE clients to be associated wi
 #. To enable **Jobs**, designate a recently created client or one of your existing clients as a connection for Jobs by choosing it from the Jobs column on under the **Access Token Management** tab.
 
 Managing Access Tokens
-^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------
 
 You may manage each of your BLUE clients' access tokens separately. 
 
