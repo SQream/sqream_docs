@@ -66,4 +66,4 @@ Monthly data reads:
 Permissions
 =============
 
-Using the ``get_total_chunks_size`` command requires no special permissions.
+Using the ``SELECT data_read_metrics`` command requires ``SUPERUSER`` permissions.

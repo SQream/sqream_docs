@@ -98,7 +98,6 @@ GRANT Syntax
 
 	-- Grant permissions at the instance/ storage cluster level:
 	GRANT 
-
 	{ SUPERUSER
 	| LOGIN 
 	| PASSWORD '<password>' 
@@ -106,33 +105,81 @@ GRANT Syntax
 	TO <role> [, ...] 
 
 	-- Grant permissions at the database level:
-	GRANT {{CREATE | CONNECT| DDL | SUPERUSER | CREATE FUNCTION} [, ...] | ALL [PERMISSIONS]}
-
+	GRANT
+	{
+	{ CREATE 
+	| CONNECT
+	| DDL 
+	| SUPERUSER 
+	| CREATE FUNCTION} [, ...] 
+	| ALL [PERMISSIONS]
+	}
 	ON DATABASE <database> [, ...]
 	TO <role> [, ...] 
 
 	-- Grant permissions at the schema level: 
-	GRANT {{ CREATE | DDL | USAGE | SUPERUSER } [, ...] | ALL [ 
-	PERMISSIONS ]} 
+	GRANT 
+	{
+	{ CREATE 
+	| DDL 
+	| USAGE 
+	| SUPERUSER} [, ...] 
+	| ALL [PERMISSIONS]
+	} 
 	ON SCHEMA <schema> [, ...] 
 	TO <role> [, ...] 
 		   
 	-- Grant permissions at the object level: 
-	GRANT {{SELECT | INSERT | DELETE | DDL | UPDATE } [, ...] | ALL [PERMISSIONS]}
-	ON { TABLE <table_name> [, ...] | ALL TABLES IN SCHEMA <schema_name> [, ...] | VIEW <view_name> [, ...] | ALL VIEWS IN SCHEMA <schema_name> [, ...] | FOREIGN TABLE <table_name> [, ...] | ALL FOREIGN TABLE IN SCHEMA <schema_name> [, ...] | CATALOG <catalog_name> [, ...] }
+	GRANT
+	{
+	{ SELECT 
+	| INSERT 
+	| DELETE 
+	| DDL 
+	| UPDATE } [, ...] 
+	| ALL [PERMISSIONS]
+	}
+	ON 
+	{ 
+	  TABLE <table_name> [, ...] 
+	| ALL TABLES IN SCHEMA <schema_name> [, ...] 
+	| VIEW <schema_name.view_name> [, ...] 
+	| ALL VIEWS IN SCHEMA <schema_name> [, ...] 
+	| FOREIGN TABLE <table_name> [, ...] 
+	| ALL FOREIGN TABLE IN SCHEMA <schema_name> [, ...] 
+	| CATALOG <catalog_name> [, ...]
+	}
 	TO <role> [, ...];
 
 	-- Grant execute function permission: 
-	GRANT {ALL | EXECUTE | DDL} ON FUNCTION function_name 
+	GRANT 
+	{ ALL 
+	| EXECUTE 
+	| DDL
+	} 
+	ON FUNCTION function_name 
 	TO role; 
 	   
 	-- Grant permissions at the column level:
-	GRANT {{SELECT | DDL } [, ...] | ALL [PERMISSIONS]}
-	ON { COLUMN <column_name> [, ...] | ALL COLUMNS IN TABLE <table_name> [, ...] | ALL COLUMNS IN FOREIGN TABLE <foreign_table_name> [, ...] | ALL COLUMNS IN VIEW <view_name> [, ...] | ALL COLUMNS IN CATALOG <catalog_name> [, ...]}
+	GRANT 
+	{
+	{ SELECT 
+	| DDL } [, ...] 
+	| ALL [PERMISSIONS]
+	}
+	ON { COLUMN <column_name> [, ...] 
+	| ALL COLUMNS IN TABLE <table_name> [, ...] 
+	| ALL COLUMNS IN FOREIGN TABLE <foreign_table_name> [, ...] 
+	| ALL COLUMNS IN VIEW <view_name> [, ...] 
+	| ALL COLUMNS IN CATALOG <catalog_name> [, ...]
+	}
 	TO <role> [, ...];
 
 	-- Grant permissions at the Service level:
-	GRANT {{USAGE} [PERMISSIONS]}
+	GRANT 
+	{
+	{ USAGE } [PERMISSIONS]
+	}
 	ON { SERVICE <service_name> }
 	TO <role> [, ...]
 

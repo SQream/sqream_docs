@@ -63,4 +63,4 @@ Monthly GPU usage:
 Permissions
 =============
 
-Using the ``SELECT gpu_metrics`` command requires no special permissions.
+Using the ``SELECT gpu_metrics`` command requires ``SUPERUSER`` permissions.
