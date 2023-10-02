@@ -8,10 +8,9 @@ sqream-console
 
 The console itself is a dockerized application.
 
-This page serves as a reference for the options and parameters.
-
-.. contents:: In this topic:
+.. contents::
    :local:
+   :depth: 1
 
 Starting the console
 ======================

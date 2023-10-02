@@ -1,13 +1,10 @@
 .. _get_total_chunks_size:
 
-********************
+**********************
 GET TOTAL CHUNKS SIZE
-********************
-The ``get_total_chunks_size`` function returns the total size of all data chunks saved in the system in both compressed and uncompressed formats.
+**********************
 
-.. contents:: 
-   :local:
-   :depth: 1   
+The ``get_total_chunks_size`` function returns the total size of all data chunks saved in the system in both compressed and uncompressed formats.
 
 Syntax
 ==========
@@ -18,6 +15,7 @@ Syntax
 
 Parameters
 ============
+
 The following table shows the ``SELECT get_total_chunks_size`` parameters:
 
 .. list-table:: 
@@ -51,7 +49,7 @@ Output
 ==========
 
 
-.. code-block:: postgres
+.. code-block:: console
 
    compression-type         | value                          | size  | 
    -------------------------+--------------------------------+-------+
