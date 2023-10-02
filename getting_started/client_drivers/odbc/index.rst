@@ -15,7 +15,7 @@ Connection String Syntax
 
 .. code-block:: java
 
-   odbc:Sqream://<host and port>/<database name>;--access-token=<access-token>;[<optional parameters>; ...]
+   odbc:Sqream://<host and port>/<database name>;--access-token=<YourToken>;[<optional parameters>; ...]
 
 Connection Parameters
 ---------------------
@@ -37,10 +37,10 @@ The following table shows the connection string parameters:
      - Mandatory
      - None
      - Database name to connect to. For example, ``master``
-   * - ``access token=<access token>``
+   * - ``access token=<YourToken>``
      - Mandatory
      - None
-     - The generated access token when creating a new client in the **Access Token Management** section, under :ref:`Settings<>`. 
+     - A BLUE client access token 
    * - ``service=<service>``
      - Optional
      - ``sqream``

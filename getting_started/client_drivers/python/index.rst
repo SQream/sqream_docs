@@ -4,7 +4,7 @@
 Connecting to BLUE Using Python
 ===============================
 
-The SQream Python connector is a set of packages that allows Python programs to connect to BLUE.
+The BLUE Python connector is a set of packages that allows Python programs to connect to BLUE.
 
 * ``pysqream-blue`` is a pure Python connector. It can be installed with ``pip`` on any operating system, including Linux, Windows, and macOS.
 
@@ -17,7 +17,7 @@ The connector supports Python 3.9.x. The base ``pysqream-blue`` package conforms
 It is essential that you have:
 
 * Python 3.9x
-* BLUE connection access token
+* BLUE access token
 
 Installing the Python Connector
 ===============================
@@ -95,7 +95,7 @@ To validate your SQLAlchemy connection to BLUE, run the following script and mak
 	engine = sa.create_engine(conn_str, connect_args=connect_args)
 	conn = engine.connect()
 
-	res = conn.execute("select * from nba").fetchall()
+	res = conn.execute("SELECT * FROM nba").fetchall()
 	print(res)
 
 Pandas
@@ -119,7 +119,7 @@ To validate your Pandas connection to BLUE, run the following script and make su
 	engine = sa.create_engine(conn_str, connect_args=connect_args)
 	conn = engine.connect()
 
-	table_df = pd.read_sql("select * from nba", engine)
+	table_df = pd.read_sql("SELECT * FROM nba", engine)
 	print(table_df)
 	conn.close()
 	engine.dispose()

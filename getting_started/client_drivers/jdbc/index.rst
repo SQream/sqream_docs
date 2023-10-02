@@ -25,7 +25,7 @@ URL Template:
 
 .. code-block:: Java
 
-   jdbc:Sqream://{host}:{port}/{database};accessToken=<access-token>;[<optional parameters>; ...]
+   jdbc:Sqream://{host}:{port}/{database};accessToken=<YourToken>;[<optional parameters>; ...]
    
 JDBC driver class name:
 
@@ -57,23 +57,23 @@ The following table shows the connection string parameters:
    * - ``accessToken``
      - Mandatory
      - None
-     - The generated access token when creating a new client in the **Access Token Management** section, under :ref:`Settings<>`. 
+     - A BLUE client access token 
    * - ``fetchSize``
      - Optional
      - ``true``
-     - Enables on-demand loading, and defines double buffer size for the result. The ``fetchSize`` parameter is rounded according to chunk size. For example, ``fetchSize=1`` loads one row and is rounded to one chunk. If the ``fetchSize`` is 100,600, a chunk size of 100,000 loads, and is rounded to, two chunks.
+     - Enables on-demand loading, and defines double buffer size for the result. The ``fetchSize`` parameter is rounded according to chunk size. For example, ``fetchSize=1`` loads one row and is rounded to one chunk. If the ``fetchSize`` is 100,600, a chunk size of 100,000 loads, and is rounded to, two chunks
    * - ``insertBuffer``
      - Optional
      - ``true``
-     -  Defines the bytes size for inserting a buffer before flushing data to the server. Clients running a parameterized insert (network insert) can define the amount of data to collect before flushing the buffer.
+     -  Defines the bytes size for inserting a buffer before flushing data to the server. Clients running a parameterized insert (network insert) can define the amount of data to collect before flushing the buffer
    * - ``loggerLevel``
      - Optional
      - ``true``
-     -  Defines the logger level as either ``debug`` or ``trace``.
+     -  Defines the logger level as either ``debug`` or ``trace``
    * - ``logFile``
      - Optional
      - ``true``
-     -  Enables the file appender and defines the file name. The file name can be set as either the file name or the file path.
+     -  Enables the file appender and defines the file name. The file name can be set as either the file name or the file path
 
 
 Sample Java Program
