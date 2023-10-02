@@ -270,10 +270,10 @@ Use the ``-f <filename>`` argument:
 
 	Output can be saved to a file by using the ``>`` redirection operator.
 
-Executing Statements
-----------------------
+Navigating Between Databases
+-----------------------------
 
-Creating a new database and use the ``\c`` option to switch over to it:
+Creating a new database and using the ``\c`` option to switch over to it:
 
 .. code-block:: none
 
