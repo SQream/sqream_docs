@@ -5,9 +5,7 @@
 ***********************
 Installing Studio on a Stand-Alone Server
 ***********************
-A stand-alone server is a server that does not run SQream based on binary files or Kubernetes.
-
-The Installing Studio on a Stand-Alone Server guide includes the following sections:
+A stand-alone server is a server that does not run SQreamDB based on binary files.
 
 .. contents::
    :local:
