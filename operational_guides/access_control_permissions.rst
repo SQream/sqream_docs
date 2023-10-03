@@ -98,21 +98,22 @@ GRANT Syntax
 
 	-- Grant permissions at the instance/ storage cluster level:
 	GRANT 
-	{ SUPERUSER
-	| LOGIN 
-	| PASSWORD '<password>' 
+	{ 
+	  SUPERUSER
+	  | LOGIN 
+	  | PASSWORD '<password>' 
 	} 
 	TO <role> [, ...] 
 
 	-- Grant permissions at the database level:
 	GRANT
 	{
-	{ CREATE 
-	| CONNECT
-	| DDL 
-	| SUPERUSER 
-	| CREATE FUNCTION} [, ...] 
-	| ALL [PERMISSIONS]
+	  { CREATE 
+	  | CONNECT
+	  | DDL 
+	  | SUPERUSER 
+	  | CREATE FUNCTION } [, ...] 
+	  | ALL [PERMISSIONS]
 	}
 	ON DATABASE <database> [, ...]
 	TO <role> [, ...] 
@@ -120,11 +121,11 @@ GRANT Syntax
 	-- Grant permissions at the schema level: 
 	GRANT 
 	{
-	{ CREATE 
-	| DDL 
-	| USAGE 
-	| SUPERUSER} [, ...] 
-	| ALL [PERMISSIONS]
+	  { CREATE 
+	  | DDL 
+	  | USAGE 
+	  | SUPERUSER } [, ...] 
+	  | ALL [PERMISSIONS]
 	} 
 	ON SCHEMA <schema> [, ...] 
 	TO <role> [, ...] 
@@ -132,30 +133,31 @@ GRANT Syntax
 	-- Grant permissions at the object level: 
 	GRANT
 	{
-	{ SELECT 
-	| INSERT 
-	| DELETE 
-	| DDL 
-	| UPDATE } [, ...] 
-	| ALL [PERMISSIONS]
+	  { SELECT 
+	  | INSERT 
+	  | DELETE 
+	  | DDL 
+	  | UPDATE } [, ...] 
+	  | ALL [PERMISSIONS]
 	}
 	ON 
 	{ 
 	  TABLE <table_name> [, ...] 
-	| ALL TABLES IN SCHEMA <schema_name> [, ...] 
-	| VIEW <schema_name.view_name> [, ...] 
-	| ALL VIEWS IN SCHEMA <schema_name> [, ...] 
-	| FOREIGN TABLE <table_name> [, ...] 
-	| ALL FOREIGN TABLE IN SCHEMA <schema_name> [, ...] 
-	| CATALOG <catalog_name> [, ...]
+	  | ALL TABLES IN SCHEMA <schema_name> [, ...] 
+	  | VIEW <schema_name.view_name> [, ...] 
+	  | ALL VIEWS IN SCHEMA <schema_name> [, ...] 
+	  | FOREIGN TABLE <table_name> [, ...] 
+	  | ALL FOREIGN TABLE IN SCHEMA <schema_name> [, ...] 
+	  | CATALOG <catalog_name> [, ...]
 	}
 	TO <role> [, ...];
 
 	-- Grant execute function permission: 
 	GRANT 
-	{ ALL 
-	| EXECUTE 
-	| DDL
+	{ 
+	  ALL 
+	  | EXECUTE 
+	  | DDL
 	} 
 	ON FUNCTION function_name 
 	TO role; 
@@ -163,15 +165,17 @@ GRANT Syntax
 	-- Grant permissions at the column level:
 	GRANT 
 	{
-	{ SELECT 
-	| DDL } [, ...] 
-	| ALL [PERMISSIONS]
+	  { SELECT 
+	  | DDL } [, ...] 
+	  | ALL [PERMISSIONS]
 	}
-	ON { COLUMN <column_name> [, ...] 
-	| ALL COLUMNS IN TABLE <table_name> [, ...] 
-	| ALL COLUMNS IN FOREIGN TABLE <foreign_table_name> [, ...] 
-	| ALL COLUMNS IN VIEW <view_name> [, ...] 
-	| ALL COLUMNS IN CATALOG <catalog_name> [, ...]
+	ON 
+	{ 
+	  COLUMN <column_name> [, ...] 
+	  | ALL COLUMNS IN TABLE <schema_name.table_name> [, ...] 
+	  | ALL COLUMNS IN FOREIGN TABLE <foreign_table_name> [, ...] 
+	  | ALL COLUMNS IN VIEW <schema_name.view_name> [, ...] 
+	  | ALL COLUMNS IN CATALOG <catalog_name> [, ...]
 	}
 	TO <role> [, ...];
 
@@ -201,35 +205,83 @@ REVOKE Syntax
 
 	-- Revoke permissions at the instance/ storage cluster level:
 	REVOKE
-	{ SUPERUSER
-	| LOGIN
-	| PASSWORD
+	{ 
+	  SUPERUSER
+	  | LOGIN
+	  | PASSWORD
 	}
 	FROM <role> [, ...]
 				
 	-- Revoke permissions at the database level:
-	REVOKE {{CREATE | CONNECT | DDL | SUPERUSER | CREATE FUNCTION}[, ...] |ALL [PERMISSIONS]}
+	REVOKE 
+	{
+	  { CREATE 
+	  | CONNECT 
+	  | DDL 
+	  | SUPERUSER 
+	  | CREATE FUNCTION }[, ...] 
+	  | ALL [PERMISSIONS]
+	}
 	ON DATABASE <database> [, ...]
 	FROM <role> [, ...]
 
 	-- Revoke permissions at the schema level:
-	REVOKE { { CREATE | DDL | USAGE | SUPERUSER } [, ...] | ALL [PERMISSIONS]}
+	REVOKE 
+	{ 
+	  { CREATE 
+	  | DDL 
+	  | USAGE 
+	  | SUPERUSER } [, ...] 
+	  | ALL [PERMISSIONS]
+	}
 	ON SCHEMA <schema> [, ...]
 	FROM <role> [, ...]
 				
 	-- Revoke permissions at the object level:
-	REVOKE { { SELECT | INSERT | DELETE | DDL | UPDATE } [, ...] | ALL }
-	ON { [ TABLE ] <table_name> [, ...] | ALL TABLES IN SCHEMA <schema_name> [, ...] | VIEW <view_name> [, ...] | ALL VIEWS IN SCHEMA <schema_name> [, ...] | FOREIGN TABLE <table_name> [, ...] | ALL FOREIGN TABLES IN SCHEMA <schema_name> [, ...] | CATALOG <catalog_name> [, ...] }
+	REVOKE 
+	{ 
+	  { SELECT 
+	  | INSERT 
+	  | DELETE 
+	  | DDL 
+	  | UPDATE } [, ...] 
+	  | ALL 
+	}
+	ON 
+	{ 
+	  [ TABLE ] <table_name> [, ...] 
+	  | ALL TABLES IN SCHEMA <schema_name> [, ...] 
+	  | VIEW <schema_name.view_name> [, ...] 
+	  | ALL VIEWS IN SCHEMA <schema_name> [, ...] 
+	  | FOREIGN TABLE <table_name> [, ...] 
+	  | ALL FOREIGN TABLES IN SCHEMA <schema_name> [, ...] 
+	  | CATALOG <catalog_name> [, ...] 
+	}
 	FROM <role> [, ...];
 				
 	-- Revoke permissions at the column level:
-	REVOKE {{SELECT | DDL } [, ...] | ALL [PERMISSIONS]}
-	ON { COLUMN <column_name> [, ...] | ALL COLUMNS IN TABLE <table_name> [, ...] | ALL COLUMNS IN FOREIGN TABLE <foreign_table_name> [, ...] | ALL COLUMNS IN VIEW <view_name> [, ...] | ALL COLUMNS IN CATALOG <catalog_name> [, ...]}
+	REVOKE 
+	{
+	  { SELECT 
+	  | DDL } [, ...] 
+	  | ALL [PERMISSIONS]}
+	ON 
+	{ 
+	  COLUMN <column_name> [, ...] 
+	  | ALL COLUMNS IN TABLE <schema_name.table_name> [, ...] 
+	  | ALL COLUMNS IN FOREIGN TABLE <schema_name.foreign_table_name> [, ...] 
+	  | ALL COLUMNS IN VIEW <schema_name.view_name> [, ...] 
+	  | ALL COLUMNS IN CATALOG <catalog_name> [, ...]
+	}
 	FROM <role> [, ...];
 
 		
 	-- Revoke permissions at the service level:
-	REVOKE {{USAGE} [, ...] | ALL [PERMISSIONS]}
+	REVOKE 
+	{
+	  { USAGE } [, ...] 
+	  | ALL [PERMISSIONS] 
+	}
 	ON { SERVICE <service_name> }
 	FROM <role> [, ...]
 		
@@ -255,9 +307,18 @@ schema statement is run.
 .. code-block:: postgres
 
 	ALTER DEFAULT PERMISSIONS FOR target_role_name
-		 [IN schema_name, ...]
-		 FOR { SCHEMAS | TABLES | FOREIGN TABLE | VIEWS | COLUMN | SERVICES | CATALOG }
-		 { grant_clause | DROP grant_clause}
+      [IN schema_name, ...]
+      FOR { 
+	        SCHEMAS 
+			| TABLES 
+			| FOREIGN TABLE 
+			| VIEWS 
+			| COLUMN 
+			| SERVICES 
+			| CATALOG
+         }
+		 { grant_clause 
+		 | DROP grant_clause }
 		 TO ROLE { role_name | public };
 
    grant_clause ::=
@@ -304,7 +365,7 @@ Grant permissions on specific objects (table, view, foreign table, or catalog) t
 
 .. code-block:: postgres
 
-	GRANT SELECT, INSERT, DELETE, DDL, UPDATE ON TABLE table_name TO role_name;
+	GRANT SELECT, INSERT, DELETE, DDL, UPDATE ON TABLE table_name IN SCHEMA schema_name TO role_name;
 
 Grant execute function permission to a role:
 
@@ -316,7 +377,7 @@ Grant column-level permissions to a role:
 
 .. code-block:: postgres
 
-	GRANT SELECT, DDL ON COLUMN column_name TO role_name;
+	GRANT SELECT, DDL ON COLUMN column_name IN TABLE schema_name.table_name TO role_name;
 
 Grant usage permissions on a service to a role:
 
@@ -350,42 +411,42 @@ Revoke specific permissions on a database from a role:
 
 .. code-block:: postgres
 
-	REVOKE CREATE, CONNECT, DDL, SUPERUSER, CREATE FUNCTION FROM role_name;
+	REVOKE CREATE, CONNECT, DDL, SUPERUSER, CREATE FUNCTION ON DATABASE <database_name> FROM role_name;
 
 Revoke permissions on a schema from a role:
 
 .. code-block:: postgres
 
-	REVOKE CREATE, DDL, USAGE, SUPERUSER FROM role_name;
+	REVOKE CREATE, DDL, USAGE, SUPERUSER ON SCHEMA <schema_name> FROM role_name;
 
 Revoke permissions on specific objects (table, view, foreign table, or catalog) from a role:
 
 .. code-block:: postgres
 
-	REVOKE SELECT, INSERT, DELETE, DDL, UPDATE FROM TABLE table_name;
+	REVOKE SELECT, INSERT, DELETE, DDL, UPDATE ON TABLE schema_name.table_name FROM role_name;
 
 Revoke column-level permissions from a role:
 
 .. code-block:: postgres
 
-	REVOKE SELECT, DDL FROM COLUMN column_name;
+	REVOKE SELECT, DDL FROM COLUMN column_name IN TABLE <schema_name.table_name> FROM role_name;
 
 Revoke usage permissions on a service from a role:
 
 .. code-block:: postgres
 
-	REVOKE USAGE FROM SERVICE service_name;
+	REVOKE USAGE ON SERVICE service_name FROM role_name;
 
 Remove access to permissions in role1 by role2:
 
 .. code-block:: postgres
 
-	REVOKE role1 FROM role2 WITH ADMIN OPTION;
+	REVOKE role1 FROM role2 ;
 
 Remove permissions to grant role1 to additional roles from role2:
 
 .. code-block:: postgres
 
-	REVOKE role1 FROM role2 WITH ADMIN OPTION;
+	REVOKE role1 FROM role2 ;
 
 
