@@ -13,23 +13,25 @@ The 4.4 release notes were released on September 28th, 2023
 Compatibility Matrix
 --------------------
  
-+-------------------------+------------------------------------------------------------------------+
-| System Requirement      | Details                                                                |
-+=========================+========================================================================+
-| Supported OS            | * CentOS - 7.x                                                         |
-|                         | * RHEL - 7.x / 8.x                                                     |
-+-------------------------+------------------------------------------------------------------------+
-| supported Nvidia driver | CUDA version from 10.1 up to 11.4.3                                    |
-+-------------------------+------------------------------------------------------------------------+
-| Storage version         |   49                                                                   |
-+-------------------------+------------------------------------------------------------------------+
-| Driver compatibility    | * JDBC 5.0.0                                                           |
-|                         | * ODBC 4.4.4                                                           | 
-|                         | * NodeJS                                                               |
-|                         | * .NET 3.0.2                                                           |
-|                         | * Pysqream 5.0.0                                                       |
-|                         | * Spark                                                                |
-+-------------------------+------------------------------------------------------------------------+
++---------------------------------+------------------------------------------------------------------------+
+| System Requirement              | Details                                                                |
++=================================+========================================================================+
+| Supported OS                    | * CentOS - 7.x                                                         |
+|                                 | * RHEL - 7.x / 8.x                                                     |
++---------------------------------+------------------------------------------------------------------------+
+| supported Nvidia driver         | CUDA version from 10.1 up to 11.4.3                                    |
++---------------------------------+------------------------------------------------------------------------+
+| Storage version                 |   49                                                                   |
++---------------------------------+------------------------------------------------------------------------+
+| Driver compatibility            | * JDBC 5.0.0                                                           |
+|                                 | * ODBC 4.4.4                                                           | 
+|                                 | * NodeJS                                                               |
+|                                 | * .NET 3.0.2                                                           |
+|                                 | * Pysqream 5.0.0                                                       |
+|                                 | * Spark                                                                |
++---------------------------------+------------------------------------------------------------------------+
+| SQream Acceleration Studio      | Version 5.6.0                                                          |
++---------------------------------+------------------------------------------------------------------------+
 
 New Features and Enhancements
 -----------------------------
@@ -37,6 +39,10 @@ New Features and Enhancements
 ► The newly supported :ref:`sql_data_type_array` data type enables you to simplify queries and optimize space utilization.
 
 ► :ref:`denodo` may now be used for real-time data visualization of various sources.
+
+► Introducing :ref:`select_data_read_metrics` utility function, facilitating easy monitoring of cluster data read within specified timeframes, ensuring adherence to license limits.
+
+► New :ref:`select_gpu_metrics` utility function now available, providing insights into cluster GPU usage over defined periods, crucial for maintaining compliance with license limits.
 
 Newly Released Connector Drivers
 ---------------------------------
