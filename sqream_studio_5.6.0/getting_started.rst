@@ -1,15 +1,17 @@
 .. _getting_started:
 
-****************************
-Getting Started with SQream Acceleration Studio 5.4.7
-****************************
+*******************************************************
+Getting Started with SQream Acceleration Studio 5.6.0
+*******************************************************
+
 Setting Up and Starting Studio
 ------------------------------
 
 When starting Studio, it listens on the local machine on port 8080.
 
 Logging In to Studio
----------------
+---------------------
+
 **To log in to SQream Studio:**
 
 1. Open a browser to the host on **port 8080**.
@@ -25,7 +27,8 @@ Logging In to Studio
    When you sign in, the License Warning is displayed.
    
 Navigating Studio's Main Features
--------------
+---------------------------------------
+
 When you log in, you are automatically taken to the **Editor** screen. The Studio's main functions are displayed in the **Navigation** pane on the left side of the screen.
 
 From here you can navigate between the main areas of the Studio:
@@ -57,6 +60,3 @@ By clicking the user icon, you can also use it for logging out and viewing the f
 * License storage capacity
 * Log out
 
-.. _back_to_dashboard_5.4.7:
-
-.. _studio_dashboard_5.4.7:
