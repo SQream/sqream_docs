@@ -17,7 +17,6 @@ See also :ref:`revoke`, :ref:`create_role`.
 
 Syntax
 ==========
-The following is the syntax for the ``GRANT` statement:
 
 .. code-block:: postgres
 
@@ -101,6 +100,7 @@ The following is the syntax for the ``GRANT` statement:
 
 Parameters
 ============
+
 The following table describes the ``GRANT`` parameters:
 
 .. list-table:: 
@@ -125,6 +125,7 @@ The following table describes the ``GRANT`` parameters:
 
 Supported Permissions
 =======================
+
 The following table describes the supported permissions:
 
 .. list-table:: 
@@ -182,6 +183,7 @@ The following table describes the supported permissions:
 
 Examples
 ===========
+
 This section includes the following examples:
 
 .. contents:: 
@@ -190,6 +192,7 @@ This section includes the following examples:
 
 Creating a User Role with Log-in Permissions
 ----------------------------------------------
+
 The following example shows how to convert a role to a user by granting password and log-in permissions:
 
 .. code-block:: postgres
@@ -201,6 +204,7 @@ The following example shows how to convert a role to a user by granting password
 
 Promoting a User to a Superuser
 -------------------------------------
+
 The following is the syntax for promoting a user to a superuser:
 
 .. code-block:: postgres
@@ -213,6 +217,7 @@ The following is the syntax for promoting a user to a superuser:
 
 Creating a New Role for a Group of Users
 --------------------------------------------
+
 The following example shows how to create a new role for a group of users:
 
 .. code-block:: postgres
@@ -229,6 +234,7 @@ The following example shows how to create a new role for a group of users:
 
 Granting with Admin Option
 ------------------------------
+
 If ``WITH ADMIN OPTION`` is specified, the role with the **admin** option can grant membership in the role to others and revoke membership, as shown below:
 
 .. code-block:: postgres
@@ -240,6 +246,7 @@ If ``WITH ADMIN OPTION`` is specified, the role with the **admin** option can gr
 
 Changing Password for User Role
 --------------------------------------
+
 The following is an example of changing a password for a user role. This is done by granting the user a new password:
 
 .. code-block:: postgres
@@ -250,4 +257,5 @@ The following is an example of changing a password for a user role. This is done
 
 Permissions
 =============
+
 To grant permissions, the current role must have the ``SUPERUSER`` permission, or have the ``ADMIN OPTION``.
