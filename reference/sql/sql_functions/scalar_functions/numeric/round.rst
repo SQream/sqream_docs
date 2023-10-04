@@ -4,7 +4,9 @@
 ROUND
 **********
 
-Rounds a numeric expression to the nearest precision.
+Rounds a numeric expression to the nearest precision. 
+
+Supported data types: ``INT``, ``TINYINT``, ``SMALLINT``, ``BIGINT``, ``REAL``, ``DOUBLE``, ``NUMERIC``
 
 See also :ref:`ceiling`, :ref:`floor`.
 
@@ -32,7 +34,7 @@ Arguments
 Returns
 ============
 
-When using the ``ROUND`` floating point number scalar function, ``real`` arguments are automatically cast to ``double`` precision.
+``REAL`` arguments are automatically cast to double precision, while all other supported data types retain the supplied data type.
 
 Notes
 =======
