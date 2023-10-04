@@ -306,35 +306,35 @@ schema statement is run.
 
 .. code-block:: postgres
 
-	ALTER DEFAULT PERMISSIONS FOR target_role_name
-      [IN schema_name, ...]
-      FOR { 
-	        SCHEMAS 
-			| TABLES 
-			| FOREIGN TABLE 
-			| VIEWS 
-			| COLUMN 
-			| SERVICES 
-			| CATALOG
+     ALTER DEFAULT PERMISSIONS FOR target_role_name
+     [IN schema_name, ...]
+     FOR { 
+          SCHEMAS 
+          | TABLES 
+          | FOREIGN TABLE 
+          | VIEWS 
+          | COLUMN 
+          | SERVICES 
+          | CATALOG
          }
-		 { grant_clause 
-		 | DROP grant_clause }
-		 TO ROLE { role_name | public };
+          { grant_clause 
+          | DROP grant_clause }
+          TO ROLE { role_name | public };
 
-   grant_clause ::=
+     grant_clause ::=
      GRANT
         { CREATE FUNCTION
-        | SUPERUSER
-        | CONNECT
-        | CREATE
-        | USAGE
-        | SELECT
-        | INSERT
-        | DELETE
-        | DDL
-        | UPDATE
-        | EXECUTE
-        | ALL
+         | SUPERUSER
+         | CONNECT
+         | CREATE
+         | USAGE
+         | SELECT
+         | INSERT
+         | DELETE
+         | DDL
+         | UPDATE
+         | EXECUTE
+         | ALL
         }
 		
 Examples
