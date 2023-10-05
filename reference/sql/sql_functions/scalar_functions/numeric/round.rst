@@ -1,10 +1,12 @@
 .. _round:
 
-**************************
+**********
 ROUND
-**************************
+**********
 
-Rounds a numeric expression to the nearest precision.
+Rounds a numeric expression to the nearest precision. 
+
+Supported data types: ``INT``, ``TINYINT``, ``SMALLINT``, ``BIGINT``, ``REAL``, ``DOUBLE``, ``NUMERIC``.
 
 See also :ref:`ceiling`, :ref:`floor`.
 
@@ -32,12 +34,12 @@ Arguments
 Returns
 ============
 
-When using the ``ROUND`` floating point number scalar function, ``real`` arguments are automatically cast to ``double`` precision.
+``REAL`` arguments are automatically cast to double precision, while all other supported data types retain the supplied data type.
 
 Notes
 =======
 
-* If the input value is NULL, the result is NULL.
+If the input value is ``NULL``, the result is ``NULL``.
 
 Examples
 ===========
@@ -47,7 +49,7 @@ Rounding to the nearest integer
 
 .. code-block:: psql
 
-   numbers=> SELECT ROUND(x) FROM (VALUES (0.0001), (PI()), (-2.718281), (500.1234), (0.5), (1.5)) as t(x);
+   SELECT ROUND(x) FROM (VALUES (0.0001), (PI()), (-2.718281), (500.1234), (0.5), (1.5)) as t(x);
    round
    ------
        0
@@ -62,7 +64,7 @@ Rounding to 2 digits after the decimal point
 
 .. code-block:: psql
 
-   numbers=> SELECT ROUND(x,2) FROM (VALUES (0.0001), (PI()), (-2.718281), (500.1234)) as t(x);
+   SELECT ROUND(x,2) FROM (VALUES (0.0001), (PI()), (-2.718281), (500.1234)) as t(x);
    round 
    -------
         0
@@ -75,7 +77,7 @@ Rounding to 2 digits after the decimal point
 
 .. code-block:: psql
 
-   numbers=> SELECT FLOOR(x), CEIL(x), ROUND(x) 
+   SELECT FLOOR(x), CEIL(x), ROUND(x) 
    .      FROM (VALUES (0.0001), (-0.0001)
    .           , (PI()), (-2.718281), (500.1234)) as t(x);
    floor | ceil | round
