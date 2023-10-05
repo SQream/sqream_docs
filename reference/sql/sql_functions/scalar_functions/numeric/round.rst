@@ -6,7 +6,7 @@ ROUND
 
 Rounds a numeric expression to the nearest precision. 
 
-Supported data types: ``INT``, ``TINYINT``, ``SMALLINT``, ``BIGINT``, ``REAL``, ``DOUBLE``, ``NUMERIC``
+Supported data types: ``INT``, ``TINYINT``, ``SMALLINT``, ``BIGINT``, ``REAL``, ``DOUBLE``, ``NUMERIC``.
 
 See also :ref:`ceiling`, :ref:`floor`.
 
