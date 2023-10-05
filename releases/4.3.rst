@@ -50,6 +50,11 @@ To learn more about how and when you should use this new capability, visit :ref:
 
 ► RocksDB's metadata scale-up improvements have been implemented.
 
+SQreamDB Studio Updates and Improvements
+-----------------------------------------
+
+SQream Studio version 5.6.0 has been released.
+
 Known Issues
 ------------
 

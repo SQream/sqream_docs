@@ -30,7 +30,7 @@ Compatibility Matrix
 |                                 | * Pysqream 5.0.0                                                       |
 |                                 | * Spark                                                                |
 +---------------------------------+------------------------------------------------------------------------+
-| SQream Acceleration Studio      | Version 5.6.0                                                          |
+| SQream Acceleration Studio      | Version 5.7.0                                                          |
 +---------------------------------+------------------------------------------------------------------------+
 
 New Features and Enhancements
@@ -56,6 +56,11 @@ Newly Released Connector Drivers
 
 * `jar.file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-5.0.0.jar>`_
 * :ref:`Documentation<java_jdbc>`
+
+SQreamDB Studio Updates and Improvements
+-----------------------------------------
+
+SQream Studio version 5.7.0 has been released.
 
 Known Issues
 ------------
