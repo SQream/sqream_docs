@@ -82,9 +82,9 @@ Syntax
        
                   
       -- Remove permissions between roles by revoking role membership: 
-      | REVOKE role_name [, ...] 
+      | REVOKE [ WITH ADMIN OPTION ] role_name [, ...] 
          FROM role_name_2
-         [ WITH ADMIN OPTION ]
+         
 
       ;
 

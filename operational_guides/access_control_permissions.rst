@@ -193,7 +193,7 @@ GRANT Syntax
 
 	-- Also allows the role2 to grant role1 to other roles:
 	GRANT <role1> [, ...] 
-	TO <role2> 
+	TO <role2> [,...] [WITH ADMIN OPTION]
 	
 
 REVOKE Syntax
@@ -286,10 +286,12 @@ REVOKE Syntax
 	FROM <role> [, ...]
 		
 	-- Removes access to permissions in role1 by role 2
-	REVOKE <role1> [, ...] FROM <role2> [, ...] 
+	REVOKE [ADMIN OPTION FOR] <role1> [, ...] 
+	FROM <role2> [, ...] 
 
 	-- Removes permissions to grant role1 to additional roles from role2
-	REVOKE <role1> [, ...] FROM <role2> [, ...] 
+	REVOKE [ADMIN OPTION FOR] <role1> [, ...] 
+	FROM <role2> [, ...] 
 
 Altering Default Permissions
 ============================
@@ -447,6 +449,6 @@ Remove permissions to grant role1 to additional roles from role2:
 
 .. code-block:: postgres
 
-	REVOKE role1 FROM role2 ;
+	REVOKE ADMIN OPTION FOR role1 FROM role2 ;
 
 
