@@ -1,7 +1,7 @@
 .. _getting_started:
 
 ******************************************************
-Getting Started with SQream Acceleration Studio 5.6.0
+Getting Started with SQream Acceleration Studio 5.7.0
 ******************************************************
 
 Setting Up and Starting Studio
