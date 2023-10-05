@@ -71,7 +71,7 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
    loading_and_unloading_data/index
    feature_guides/index
    operational_guides/index
-   sqream_studio_5.6.0/index
+   sqream_studio_5.7.0/index
    architecture/index
    configuration_guides/index
    reference/index
