@@ -4,8 +4,6 @@
 4.0 Release Notes
 *****************
 
-
-
 .. contents:: 
    :local:
    :depth: 1

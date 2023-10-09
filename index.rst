@@ -65,6 +65,7 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
 
    getting_started/index
    installation_guides/index
+   upgrade_guide/index
    data_ingestion/index
    connecting_to_sqream/index
    external_storage_platforms/index
