@@ -6,8 +6,8 @@ Upgrade Guide
 
 
 
-Version 2022.1.7
-----------------------
+Upgrading to Version 2022.1.7
+------------------------------
 
 Version 2022.1.7 uses storage version 43. If you're using an older storage version, you need to upgrade to the latest one using the :ref:`Upgrading SQreamDB Version<installing_sqream_with_binary>` guide.
 
@@ -38,8 +38,8 @@ Upgrade Procedure
 
       $ ./upgrade_storage <RocksDB path>
 
-Upgrading to v2022.1.6
-----------------------
+Upgrading to Version 2022.1.6
+---------------------------------
 
 Version 2022.1.6 uses storage version 42. If you're using an older storage version, you need to upgrade to the latest one using the :ref:`Upgrading SQreamDB Version<installing_sqream_with_binary>` guide.
 
@@ -70,8 +70,8 @@ Upgrade Procedure
 
       $ ./upgrade_storage <RocksDB path>
 
-Version 2022.1.5
-----------------------
+Upgrading to Version 2022.1.5
+-------------------------------
 
 Version 2022.1.5 uses storage version 42. If you're using an older storage version, you need to upgrade to the latest one using the :ref:`Upgrading SQreamDB Version<installing_sqream_with_binary>` guide.
 
@@ -102,8 +102,8 @@ Upgrade Procedure
 
       $ ./upgrade_storage <RocksDB path>
 
-Version 2022.1.4
-----------------------
+Upgrading to Version 2022.1.4
+------------------------------
 
 Version 2022.1.4 uses storage version 42. If you're using an older storage version, you need to upgrade to the latest one using the :ref:`Upgrading SQreamDB Version<installing_sqream_with_binary>` guide.
 
@@ -134,8 +134,8 @@ Upgrade Procedure
 
       $ ./upgrade_storage <levelDB path>
 
-Version 2022.1.3
-----------------------
+Upgrading to Version 2022.1.3
+---------------------------------
 
 Version 2022.1.3 uses storage version 42. If you're using an older storage version, you need to upgrade to the latest one using the :ref:`Upgrading SQreamDB Version<installing_sqream_with_binary>` guide.
 
@@ -168,8 +168,8 @@ Upgrade Procedure
 
       $ ./upgrade_storage <levelDB path>
 
-Version 2022.1.2
-----------------------
+Upgrading to Version 2022.1.2
+-------------------------------
 
 Version 2022.1.2 uses storage version 41. If you're using an older storage version, you need to upgrade to the latest one using the :ref:`Upgrading SQreamDB Version<installing_sqream_with_binary>` guide.
 
@@ -200,8 +200,8 @@ Upgrade Procedure
 
       $ ./upgrade_storage <levelDB path>
 
-Version 2022.1.1
-----------------------
+Upgrading to Version 2022.1.1
+------------------------------
 
 Operation and Configuration Changes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -239,8 +239,8 @@ Upgrade Procedure
 
       $ ./upgrade_storage <levelDB path>
   
-Version 2022.1
------------------------
+Upgrading to Version 2022.1
+-----------------------------
 
 Operation and Configuration Changes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
