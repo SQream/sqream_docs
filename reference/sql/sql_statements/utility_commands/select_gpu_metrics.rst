@@ -11,7 +11,7 @@ An empty result indicates no usage deviation during the specified time. If the G
 Syntax
 ==========
 
-.. code-block:: postgres
+.. code-block:: console
 
 	SELECT gpu_metrics(['monthly'] | ['daily'], <'start-date'>, <'end-date'>)
 

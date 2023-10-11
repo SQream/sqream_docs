@@ -11,7 +11,7 @@ The data read result is presented in this format: Year-Month-Day, showcasing dat
 Syntax
 ==========
 
-.. code-block:: postgres
+.. code-block:: console
 
 	SELECT data_read_metrics(['monthly'] | ['daily'], <'start-date'>, <'end-date'>)
 
