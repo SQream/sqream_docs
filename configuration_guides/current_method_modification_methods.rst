@@ -15,18 +15,18 @@ You can modify your configuration using the **worker configuration file (config.
 
 The following is an example of a worker configuration file:
 
-.. code-block:: postgres
+.. code-block:: json
    
    {
-       “cluster”: “/home/test_user/sqream_testing_temp/sqreamdb”,
-       “gpu”:  0,
-       “licensePath”: “home/test_user/SQream/tests/license.enc”,
-       “machineIP”: “127.0.0.1”,
-       “metadataServerIp”: “127.0.0.1”,
-       “metadataServerPort”: “3105,
-       “port”: 5000,
-       “useConfigIP”” true,
-       “legacyConfigFilePath”: “home/SQream_develop/SqrmRT/utils/json/legacy_congif.json”
+       "cluster": "/home/test_user/sqream_testing_temp/sqreamdb",
+       "gpu":  0,
+       "licensePath": "home/test_user/SQream/tests/license.enc",
+       "machineIP": "127.0.0.1",
+       "metadataServerIp": "127.0.0.1",
+       "metadataServerPort": 3105,
+       "port": 5000,
+       "useConfigIP": true,
+       "legacyConfigFilePath": "home/SQream_develop/SqrmRT/utils/json/legacy_congif.json"
    }
 
 You can access the legacy configuration file from the ``legacyConfigFilePath`` parameter shown above. If all (or most) of your workers require the same flag settings, you can set the ``legacyConfigFilePath`` attribute to the same legacy file.
@@ -39,12 +39,13 @@ The Legacy configuration file provides access to the read/write flags used in SQ
 
 The following is an example of the legacy configuration file:
 
-.. code-block:: postgres
+.. code-block:: json
    
    {
-      “developerMode”: true,
-      “reextentUse”: false,
-      “useClientLog”: true,
-      “useMetadataServer”” false
+      "developerMode": true,
+      "reextentUse": false,
+      "useClientLog": true,
+      "useMetadataServer": false
    }
+   
 For more information on using the previous configuration method, see :ref:`previous_configuration_method`.
