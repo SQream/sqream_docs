@@ -1,38 +1,37 @@
 .. _current_method_modification_methods:
 
 **************************
-System Configuration Methods
+Modification Methods
 **************************
- 
-For optimal performance, it is recommended that all SQream workers be similarly configured. To facilitate this, we provide a **worker configuration file** which allows users to make persistent cross-system changes that will be applied to all workers. However, for some operations it might be preferable to configure some workers differently from others. In such cases, the "legacy configuration file" can be used to configure specific workers within a cluster differently.
+SQream provides two different ways to modify your configurations. The current method is based on hierarchical configuration as described above. This method is based on making modifications on the **worker configuration file**, while you can still make modifications using the previous method using the **legacy configuration file**, both described below:
 
 .. contents:: 
    :local:
    :depth: 1
 
-Modifying Configurations Using the Worker Configuration File
+Modifying Your Configuration Using the Worker Configuration File
 -------------------
 You can modify your configuration using the **worker configuration file (config.json)**. Changes that you make to worker configuration files are persistent. Note that you can only set the attributes in your worker configuration file **before** initializing your SQream worker, and while your worker is active these attributes are read-only.
 
 The following is an example of a worker configuration file:
 
-.. code-block:: postgres
+.. code-block:: json
    
    {
-       “cluster”: “/home/test_user/sqream_testing_temp/sqreamdb”,
-       “gpu”:  0,
-       “licensePath”: “home/test_user/SQream/tests/license.enc”,
-       “machineIP”: “127.0.0.1”,
-       “metadataServerIp”: “127.0.0.1”,
-       “metadataServerPort”: “3105,
-       “port”: 5000,
-       “useConfigIP”” true,
-       “legacyConfigFilePath”: “home/SQream_develop/SqrmRT/utils/json/legacy_congif.json”
+       "cluster": "/home/test_user/sqream_testing_temp/sqreamdb",
+       "gpu":  0,
+       "licensePath": "home/test_user/SQream/tests/license.enc",
+       "machineIP": "127.0.0.1",
+       "metadataServerIp": "127.0.0.1",
+       "metadataServerPort": 3105,
+       "port": 5000,
+       "useConfigIP": true,
+       "legacyConfigFilePath": "home/SQream_develop/SqrmRT/utils/json/legacy_congif.json"
    }
 
 You can access the legacy configuration file from the ``legacyConfigFilePath`` parameter shown above. If all (or most) of your workers require the same flag settings, you can set the ``legacyConfigFilePath`` attribute to the same legacy file.
 
-Modifying Configurations Using a Legacy Configuration File
+Modifying Your Configuration Using a Legacy Configuration File
 ---------------------
 You can modify your configuration using a legacy configuration file.
 
@@ -40,40 +39,13 @@ The Legacy configuration file provides access to the read/write flags used in SQ
 
 The following is an example of the legacy configuration file:
 
-.. code-block:: postgres
+.. code-block:: json
    
    {
-      “developerMode”: true,
-      “reextentUse”: false,
-      “useClientLog”: true,
-      “useMetadataServer”” false
+      "developerMode": true,
+      "reextentUse": false,
+      "useClientLog": true,
+      "useMetadataServer": false
    }
+   
 For more information on using the previous configuration method, see :ref:`previous_configuration_method`.
-
-Reviewing Current System Configurations
----------------------------------------
-
-To obtain a comprehensive list of flags with their value, default value, scope, and description, execute the following command:
-
-.. code-block:: postgres
-	
-	SELECT * FROM sqream_catalog.parameters;
-	
-To obtain a comprehensive list of all configuration flags with their value, developer mode attribute, category and type, execute the following command:
-
-.. code-block:: postgres
-
-	SELECT show_conf();
-	
-To obtain a comprehensive list of all configuration flags with their value, developer mode attribute, category, type, description, usage, data type, default value, and range, execute the following command:
-	
-.. code-block:: postgres
-
-	SELECT show_conf_extended();
-	
-To see flags that are stored in your metadata, execute the following commands:
-
-.. code-block:: postgres
-
-	SELECT show_md_flag('all');
-	SELECT show_md_flag('<flag_name>');
