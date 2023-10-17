@@ -1,7 +1,7 @@
 .. _cross_database_query:
 
 ***************************
-Cross Database Query
+Cross-Database Query
 ***************************
 
 Cross-database queries allow the retrieval and manipulation of data from different databases within a single SQL statement or transaction. This capability is crucial when information relevant to a query spans multiple databases. By specifying the database context and employing fully qualified object names, such as database.schema.table, it becomes possible to seamlessly integrate and analyze data distributed across diverse databases.
@@ -11,13 +11,114 @@ Syntax
 
 .. code-block:: sql
 
-	SELECT <column_name2> [,column_name_2] [, ...]
-	FROM <database_name>.<schema_name>.<table_name> AS <table_name>
-	JOIN <database_name>.<schema_name>.<table_name> AS <table_name>
-	ON <database_name>.<schema_name>.<table_name>.<column_name> = <database_name>.<schema_name>.<table_name>.<column_name>
-	[ WHERE <condition> ]
-	[ AND <condition2> ]
+	-- SELECT statement
+	SELECT 
+		<column_name1>,
+		<column_name2>,
+		...
+	FROM 
+		<database_name>.<schema_name>.<table_name> AS <alias1>
+	JOIN 
+		<database_name>.<schema_name>.<table_name> AS <alias2>
+	ON 
+		<alias1>.<join_column> = <alias2>.<join_column>
+	WHERE 
+		<condition1>
+		AND <condition2>
+
+	-- CREATE TABLE statement
+	CREATE TABLE 
+		<database_name>.<schema_name>.<table_name> (
+			<column_name1> <data_type1>,
+			<column_name2> <data_type2>,
+			...
+		)
+
+	-- CREATE FOREIGN TABLE statement
+	CREATE FOREIGN TABLE 
+		<foreign_schema_name>.<foreign_table_name> (
+			<column_name1> <data_type1>,
+			<column_name2> <data_type2>,
+			...
+		)
+	SERVER <foreign_server_name>
+	OPTIONS (
+		<option_name1> '<option_value1>',
+		<option_name2> '<option_value2>'
+	)
+
+	-- ALTER TABLE statement
+	ALTER TABLE 
+		<database_name>.<schema_name>.<table_name>
+	ADD COLUMN 
+		<new_column_name> <new_column_data_type>
+
+	-- CREATE VIEW statement
+	CREATE VIEW 
+		<database_name>.<schema_name>.<view_name> (<column_name1>, <column_name2>, ...)
+	AS 
+		SELECT 
+			<alias1>.<column_name1>,
+			<alias1>.<column_name2>,
+			...
+		FROM 
+			<database_name1>.<schema_name1>.<table_name1> AS <alias1>
+		JOIN 
+			<database_name2>.<schema_name2>.<table_name2> AS <alias2>
+		ON 
+			<alias1>.<join_column> = <alias2>.<join_column>
+		WHERE 
+			<condition1>
+			AND <condition2>
+
+	-- INSERT INTO statement
+	INSERT INTO 
+		<database_name>.<schema_name>.<table_name> (<column_name1>, <column_name2>, ...)
+	VALUES 
+		(<value1>, <value2>, ...)
+
+	-- UPDATE statement
+	UPDATE 
+		<database_name>.<schema_name>.<table_name>
+	SET 
+		<column_name1> = <new_value1>,
+		<column_name2> = <new_value2>
+	WHERE 
+		<condition>
+
+	-- DELETE statement
+	DELETE FROM 
+		<database_name>.<schema_name>.<table_name>
+	WHERE 
+		<condition>
+
+	-- TRUNCATE TABLE statement
+	TRUNCATE TABLE 
+		<database_name>.<schema_name>.<table_name>
+
+	-- DROP TABLE statement
+	DROP TABLE 
+		<database_name>.<schema_name>.<table_name>
+
+	-- ALTER DEFAULT SCHEMA statement
+	ALTER USER 
+		<user_name>
+	SET SCHEMA 
+		<new_default_schema>
+
+	-- DROP SCHEMA statement
+	DROP SCHEMA 
+		<schema_name>
+
+
+	-- DROP DATABASE statement
+	DROP DATABASE 
+		<database_name>
+
+
 		
+
+	
 Parameters
 ===========
 
@@ -82,3 +183,9 @@ Querying data from three tables in different databases:
 	JOIN database3.schema3.table3 t3
 	ON t2.id = t3.id
 	WHERE t1.date >= '2022-01-01' AND t2.status = 'active' AND t3.quantity > 10;
+	
+Set default schema:
+
+.. code-block:: sql
+
+ALTER DEFAULT SCHEMA 
