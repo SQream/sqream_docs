@@ -11,22 +11,12 @@ Syntax
 
 .. code-block:: sql
 
-	SELECT 
-		<column_name2> [,column_name_2] [, ...]
-	FROM 
-		<database_name>.<schema_name>.<table_name>
-	AS
-		<table_name>
-	JOIN 
-		<database_name>.<schema_name>.<table_name>
-	AS
-		<table_name>
-	ON	
-	<database_name>.<schema_name>.<table_name>.<column_name> = <database_name>.<schema_name>.<table_name>.<column_name>
-	WHERE 
-		<condition>
-	AND
-		<condition2>
+	SELECT <column_name2> [,column_name_2] [, ...]
+	FROM <database_name>.<schema_name>.<table_name> AS <table_name>
+	JOIN <database_name>.<schema_name>.<table_name> AS <table_name>
+	ON <database_name>.<schema_name>.<table_name>.<column_name> = <database_name>.<schema_name>.<table_name>.<column_name>
+	[ WHERE <condition> ]
+	[ AND <condition2> ]
 		
 Parameters
 ===========
