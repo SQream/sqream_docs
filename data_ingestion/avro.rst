@@ -4,23 +4,16 @@
 Avro
 ****
 
-The **Ingesting Data from Avro** page describes ingesting data from Avro into SQream and includes the following:
-
-
+**Avro** is a well-known data serialization system that relies on schemas. Due to its flexibility as an efficient data storage method, SQream supports the Avro binary data format as an alternative to JSON. Avro files are represented using the **Object Container File** format, in which the Avro schema is encoded alongside binary data. Multiple files loaded in the same transaction are serialized using the same schema. If they are not serialized using the same schema, an error message is displayed. SQream uses the **.avro** extension for ingested Avro files.
 
 .. contents:: 
    :local:
    :depth: 1
-   
-Overview
-========
-
-**Avro** is a well-known data serialization system that relies on schemas. Due to its flexibility as an efficient data storage method, SQream supports the Avro binary data format as an alternative to JSON. Avro files are represented using the **Object Container File** format, in which the Avro schema is encoded alongside binary data. Multiple files loaded in the same transaction are serialized using the same schema. If they are not serialized using the same schema, an error message is displayed. SQream uses the **.avro** extension for ingested Avro files.
 
 Making Avro Files Accessible to Workers
 =======================================
 
-To give workers access to files every node must have the same view of the storage being used.
+To give workers access to files, every node must have the same view of the storage being used.
 
 The following apply for Avro files to be accessible to workers:
 
@@ -225,8 +218,6 @@ When mapping objects to rows, each Avro object or message must contain one ``rec
 Ingesting Data into SQream
 ==========================
 
-This section includes the following:
-
 .. contents:: 
    :local:
    :depth: 1
@@ -292,7 +283,7 @@ The following table shows the Avro parameter:
 Best Practices
 ==============
 
-Because external tables do not automatically verify the file integrity or structure, SQream recommends manually verifying your table output when ingesting Avro files into SQream. This lets you determine if your table output is identical to your originally inserted table.
+Because foreign tables do not automatically verify the file integrity or structure, SQream recommends manually verifying your table output when ingesting Avro files into SQream. This lets you determine if your table output is identical to your originally inserted table.
 
 The following is an example of the output based on the **nba.avro** table:
 
@@ -312,7 +303,7 @@ The following is an example of the output based on the **nba.avro** table:
    Terry Rozier  | Boston Celtics |     12 | PG       |  22 | 6-2    |    190 | Louisville        |  1824360
    Marcus Smart  | Boston Celtics |     36 | PG       |  22 | 6-4    |    220 | Oklahoma State    |  3431040
 
-.. note:: If your table output has errors, verify that the structure of the Avro files correctly corresponds to the external table structure that you created.
+.. note:: If your table output has errors, verify that the structure of the Avro files correctly corresponds to the foreign table structure that you created.
 
 .. _additional_examples:
 
@@ -328,7 +319,7 @@ This section includes the following additional examples of loading data into SQr
 Omitting Unsupported Column Types
 ---------------------------------
 
-When loading data, you can omit columns using the ``NULL as`` argument. You can use this argument to omit unsupported columns from queries that access external tables. By omitting them, these columns will not be called and will avoid generating a "type mismatch" error.
+When loading data, you can omit columns using the ``NULL as`` argument. You can use this argument to omit unsupported columns from queries that access foreign tables. By omitting them, these columns will not be called and will avoid generating a "type mismatch" error.
 
 In the example below, the ``Position`` column is not supported due its type.
 
@@ -340,7 +331,7 @@ In the example below, the ``Position`` column is not supported due its type.
 Modifying Data Before Loading
 -----------------------------
 
-One of the main reasons for staging data using the ``EXTERNAL TABLE`` argument is to examine and modify table contents before loading it into SQream.
+One of the main reasons for staging data using the ``FOREIGN TABLE`` argument is to examine and modify table contents before loading it into SQream.
 
 For example, we can replace pounds with kilograms using the :ref:`create_table_as` statement
 
@@ -348,7 +339,7 @@ In the example below, the ``Position`` column is set to the default ``NULL``.
 
 .. code-block:: postgres
    
-   CREATE TABLE nba AS 
+   CREATE FOREIGN TABLE nba AS 
       SELECT name, team, number, NULL as Position, age, height, (weight / 2.205) as weight, college, salary 
               FROM ext_nba
               ORDER BY weight;
