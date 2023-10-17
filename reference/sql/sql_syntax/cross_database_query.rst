@@ -110,7 +110,6 @@ Syntax
 	DROP SCHEMA 
 		<schema_name>
 
-
 	-- DROP DATABASE statement
 	DROP DATABASE 
 		<database_name>
