@@ -86,7 +86,6 @@ Creating the Configuration
 
 	{
 	  "debugNetworkSession": false,
-	  "developerMode": true,
 	  "diskSpaceMinFreePercent": 1,
 	  "maxNumAutoCompressedChunksThreshold" : 1,
 	  "insertMergeRowsThreshold":40000000,
