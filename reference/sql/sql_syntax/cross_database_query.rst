@@ -6,6 +6,9 @@ Cross-Database Query
 
 Cross-database queries allow the retrieval and manipulation of data from different databases within a single SQL statement or transaction. This capability is crucial when information relevant to a query spans multiple databases. By specifying the database context and employing fully qualified object names, such as database.schema.table, it becomes possible to seamlessly integrate and analyze data distributed across diverse databases.
 
+To ensure optimal performance, it is advised to refrain from querying more than 10 databases in a single query.
+
+
 Syntax
 ==========
 
@@ -170,9 +173,4 @@ Querying data from three tables in different databases:
 	JOIN database3.schema3.table3 t3
 	ON t2.id = t3.id
 	WHERE t1.date >= '2022-01-01' AND t2.status = 'active' AND t3.quantity > 10;
-	
-Set default schema:
 
-.. code-block:: sql
-
-ALTER DEFAULT SCHEMA 
