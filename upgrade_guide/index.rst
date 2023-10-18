@@ -19,10 +19,12 @@ Upgrade Procedure
    .. code-block:: console
 
       $ select backup_metadata('out_path');
+
+   SQream runs the Garbage Collector and creates a clean backup tarball package.
 	  
    SQream recommends storing the generated back-up locally in case needed.
    
-   SQream runs the Garbage Collector and creates a clean backup tarball package.
+
    
 2. Shut down all SQream services.
 
