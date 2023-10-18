@@ -12,6 +12,7 @@ Syntax
 .. code-block:: sql
 
 	-- SELECT statement
+
 	SELECT 
 		<column_name1>,
 		<column_name2>,
@@ -27,6 +28,7 @@ Syntax
 		AND <condition2>
 
 	-- CREATE TABLE statement
+
 	CREATE TABLE 
 		<database_name>.<schema_name>.<table_name> (
 			<column_name1> <data_type1>,
@@ -35,25 +37,23 @@ Syntax
 		)
 
 	-- CREATE FOREIGN TABLE statement
+
 	CREATE FOREIGN TABLE 
-		<foreign_schema_name>.<foreign_table_name> (
+		<foreign_database_name>.<foreign_schema_name>.<foreign_table_name> (
 			<column_name1> <data_type1>,
 			<column_name2> <data_type2>,
 			...
-		)
-	SERVER <foreign_server_name>
-	OPTIONS (
-		<option_name1> '<option_value1>',
-		<option_name2> '<option_value2>'
-	)
+			)
 
 	-- ALTER TABLE statement
+
 	ALTER TABLE 
 		<database_name>.<schema_name>.<table_name>
 	ADD COLUMN 
 		<new_column_name> <new_column_data_type>
 
 	-- CREATE VIEW statement
+
 	CREATE VIEW 
 		<database_name>.<schema_name>.<view_name> (<column_name1>, <column_name2>, ...)
 	AS 
@@ -72,12 +72,14 @@ Syntax
 			AND <condition2>
 
 	-- INSERT INTO statement
+
 	INSERT INTO 
 		<database_name>.<schema_name>.<table_name> (<column_name1>, <column_name2>, ...)
 	VALUES 
 		(<value1>, <value2>, ...)
 
 	-- UPDATE statement
+
 	UPDATE 
 		<database_name>.<schema_name>.<table_name>
 	SET 
@@ -87,37 +89,23 @@ Syntax
 		<condition>
 
 	-- DELETE statement
+
 	DELETE FROM 
 		<database_name>.<schema_name>.<table_name>
 	WHERE 
 		<condition>
 
 	-- TRUNCATE TABLE statement
+
 	TRUNCATE TABLE 
 		<database_name>.<schema_name>.<table_name>
 
 	-- DROP TABLE statement
+
 	DROP TABLE 
 		<database_name>.<schema_name>.<table_name>
 
-	-- ALTER DEFAULT SCHEMA statement
-	ALTER USER 
-		<user_name>
-	SET SCHEMA 
-		<new_default_schema>
 
-	-- DROP SCHEMA statement
-	DROP SCHEMA 
-		<schema_name>
-
-	-- DROP DATABASE statement
-	DROP DATABASE 
-		<database_name>
-
-
-		
-
-	
 Parameters
 ===========
 
