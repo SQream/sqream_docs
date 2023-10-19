@@ -20,83 +20,117 @@ Syntax
 
 .. code-block:: postgres
 
-   grant_statement ::=
-      { 
-      -- Grant permissions at the cluster level:
-      GRANT 
-         { SUPERUSER
-         | LOGIN 
-         | PASSWORD 'password' 
-         } 
-         TO role_name [, ...] 
-      
-      -- Grant permissions at the database level:
-      | GRANT
-         {
-            { CREATE
-            | CONNECT
-            | DDL
-            | SUPERUSER
-            | CREATE FUNCTION
-            } [, ...] 
-         | ALL [PERMISSIONS]
-         }  
-         ON DATABASE database_name [, ...]
-         TO role_name [, ...] 
-      
-      -- Grant permissions at the schema level: 
-      | GRANT 
-         {
-            { CREATE 
-            | DDL 
-            | USAGE 
-            | SUPERUSER 
-            } [, ...]
-         | ALL [PERMISSIONS ]
-         } 
-         ON SCHEMA schema_name [, ...] 
-         TO role_name [, ...]
-      
-      -- Grant permissions at the object level: 
-      | GRANT 
-         {
-            { SELECT 
-            | INSERT 
-            | DELETE 
-            | DDL 
-            } [, ...]
-         | ALL [PERMISSIONS]
-         }
-         ON { TABLE table_name [, ...] | ALL TABLES IN SCHEMA schema_name [, ...]} 
-         TO role_name [, ...]
-      
-                  
-      -- Grant execute function permission: 
-      | GRANT 
-         { ALL 
-         | EXECUTE 
-         | DDL
-         } 
-         ON FUNCTION function_name 
-         TO role_name [, ...]
-       
-                  
-      -- Pass permissions between roles by granting one role to another: 
-      | GRANT role_name [, ...] 
-         TO role_name_2 [, ...] 
-         [ WITH ADMIN OPTION ]
+	-- Grant permissions at the instance/ storage cluster level:
+	GRANT 
+	{ 
+	  SUPERUSER
+	  | LOGIN 
+	  | PASSWORD '<password>' 
+	} 
+	TO <role> [, ...] 
 
-      ;
+	-- Grant permissions at the database level:
+	GRANT
+	{
+	  { CREATE 
+	  | CONNECT
+	  | DDL 
+	  | SUPERUSER 
+	  | CREATE FUNCTION } [, ...] 
+	  | ALL [PERMISSIONS]
+	}
+	ON DATABASE <database> [, ...]
+	TO <role> [, ...] 
 
-   role_name ::= identifier  
-   
-   role_name2 ::= identifier  
-   
-   database_name ::= identifier
-   
-   table_name ::= identifier
-   
-   schema_name ::= identifier
+	-- Grant permissions at the schema level: 
+	GRANT 
+	{
+	  { CREATE 
+	  | DDL 
+	  | USAGE 
+	  | SUPERUSER } [, ...] 
+	  | ALL [PERMISSIONS]
+	} 
+	ON SCHEMA <schema> [, ...] 
+	TO <role> [, ...] 
+		   
+	-- Grant permissions at the object level: 
+	GRANT
+	{
+	  { SELECT 
+	  | INSERT 
+	  | DELETE 
+	  | DDL 
+	  | UPDATE } [, ...] 
+	  | ALL [PERMISSIONS]
+	}
+	ON 
+	{ 
+	  TABLE <table_name> [, ...] 
+	  | ALL TABLES IN SCHEMA <schema_name> [, ...] 
+	  | VIEW <schema_name.view_name> [, ...] 
+	  | ALL VIEWS IN SCHEMA <schema_name> [, ...] 
+	  | FOREIGN TABLE <table_name> [, ...] 
+	  | ALL FOREIGN TABLES IN SCHEMA <schema_name> [, ...] 
+	}
+	TO <role> [, ...]
+
+	GRANT
+	{
+	  { SELECT 
+	  | INSERT 
+	  | DELETE 
+	  | UPDATE } [, ...] 
+	  | ALL [PERMISSIONS]
+	}
+	ON 
+	{ 
+	  | CATALOG <catalog_name> [, ...]
+	}
+	TO <role> [, ...]
+
+	-- Grant execute function permission: 
+	GRANT 
+	{ 
+	  ALL 
+	  | EXECUTE 
+	  | DDL
+	} 
+	ON FUNCTION function_name 
+	TO role; 
+	   
+	-- Grant permissions at the column level:
+	GRANT 
+	{
+	  { SELECT 
+	  | DDL } [, ...] 
+	  | ALL [PERMISSIONS]
+	}
+	ON 
+	{ 
+	  COLUMN <column_name> [,<column_name_2>] IN TABLE <table_name> [,<table_name2>] 
+	  | COLUMN <column_name> [,<column_name_2>] IN FOREIGN TABLE <table_name> [,<table_name2>]
+	  | ALL COLUMNS IN TABLE <schema_name.table_name> [, ...] 
+	  | ALL COLUMNS IN FOREIGN TABLE <foreign_table_name> [, ...] 
+	}
+	TO <role> [, ...]
+
+	-- Grant permissions at the Service level:
+	GRANT 
+	{
+	{ USAGE } [PERMISSIONS]
+	}
+	ON { SERVICE <service_name> }
+	TO <role> [, ...]
+
+	-- Allows role2 to use permissions granted to role1
+	GRANT <role1> [, ...] 
+	TO <role2> 
+
+	-- Also allows the role2 to grant role1 to other roles:
+	GRANT <role1> [, ...] 
+	TO <role2> [,...] [WITH ADMIN OPTION]
+
 
 Parameters
 ============
@@ -111,7 +145,7 @@ The following table describes the ``GRANT`` parameters:
      - Description
    * - ``role_name``
      - The name of the role to grant permissions to
-   * - ``table_name``, ``database_name``, ``schema_name``, ``function_name``
+   * - ``table_name``, ``database_name``, ``schema_name``, ``function_name``, ``catalog_name``, ``column_name``, ``service_name``
      - Object to grant permissions on.
    * - ``WITH ADMIN OPTION``
      - 
