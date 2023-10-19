@@ -131,6 +131,10 @@ The following table shows the Utility commands:
      - Shows the total size of all data chunks saved in the system in both compressed and uncompressed formats
    * - :ref:`SELECT GET_VIEW_DDL<get_view_ddl>`
      - View the ``CREATE VIEW`` statement for a view
+   * - :ref:`SELECT DATA_READ_METRICS<select_data_read_metrics>`
+     - Monitor license quota usage by reviewing monthly or daily data read usage 
+   * - :ref:`SELECT GPU_METRICS<select_gpu_metrics>`
+     - Monitor license quota usage by reviewing monthly or daily GPU usage 
    * - :ref:`SELECT RECOMPILE_VIEW<recompile_view>`
      - Recreate a view after schema changes
    * - :ref:`SELECT DUMP_DATABASE_DDL<dump_database_ddl>`
