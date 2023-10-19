@@ -11,7 +11,7 @@ The data read result is presented in this format: Year-Month-Day, showcasing dat
 Syntax
 ==========
 
-.. code-block:: console
+.. code-block:: sql
 
 	SELECT data_read_metrics(['monthly'] | ['daily'], <'start-date'>, <'end-date'>)
 
@@ -35,33 +35,59 @@ Parameters
      - Mandatory
      -  The ending date for the data retrieval period
 
+Output
+============
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Description
+   * - ``date``
+     - Date of data read
+   * - ``actual_data_read``
+     - Total data read within the specified date
+   * - ``data_read_limit_license_value``
+     - Data read quota limit as per license plan
+	 
+	 
 Examples
 ===========
 
 Daily data reads are cumulative. For a comprehensive view of your data read usage, execute a monthly data read.
    
+.. code-block:: postgres
+
+	SELECT data_read_metrics('daily','2023-05-01', '2023-05-05);
+	
+Output:
+
 .. code-block:: console
 
-	master=> SELECT data_read_metrics('daily','2023-05-01', '2023-05-05);
-	2023-May-01, 20GB, 5000GB
-	2023-May-02, 50GB, 5000GB
-	2023-May-03, 10GB, 5000GB
-	2023-May-04, 5GB, 5000GB
-	2023-May-05, 4GB, 5000GB
-	2 rows
-	time: 0.103436s
-
+	date        | actual_data_read   | data_read_limit_license_value
+	------------+--------------------+------------------------------
+	2023-May-01 | 20GB               | 5000GB
+	2023-May-02 | 50GB               | 5000GB
+	2023-May-03 | 10GB               | 5000GB
+	2023-May-04 | 5GB                | 5000GB
+	2023-May-05 | 4GB                | 5000GB
+	
+	
 Monthly data reads:
 
+.. code-block:: postgres
+
+	SELECT data_read_metrics('monthly','2023-05-15', '2023-06-05);
+	
+Output:
+
 .. code-block:: console
-
-	master=> SELECT data_read_metrics('monthly','2023-05-15', '2023-06-05);
-	2023 May, 20GB, 5000GB
-	2023 June, 50GB, 5000GB
-	2 rows
-	time: 0.103436s
-   
-
+	
+	date        | actual_data_read   | data_read_limit_license_value
+	------------+--------------------+------------------------------
+	2023 May,   | 20GB               | 5000GB
+	2023 June   | 50GB               | 5000GB
 	
 Permissions
 =============

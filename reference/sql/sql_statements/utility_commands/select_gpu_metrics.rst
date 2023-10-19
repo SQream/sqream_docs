@@ -11,7 +11,7 @@ An empty result indicates no usage deviation during the specified time. If the G
 Syntax
 ==========
 
-.. code-block:: console
+.. code-block:: sql
 
 	SELECT gpu_metrics(['monthly'] | ['daily'], <'start-date'>, <'end-date'>)
 
@@ -35,30 +35,56 @@ Parameters
      - Mandatory
      -  The ending date for the data retrieval period
 
+Output
+============
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Description
+   * - ``date``
+     - Date and time of highest GPU usage deviation
+   * - ``actual_number_of_gpus``
+     - GPU usage deviation
+   * - ``data_read_limit_license_value``
+     - GPU quota limit as per license plan
+
 Examples
 ===========
 
 Daily GPU usage:
    
+.. code-block:: postgres
+
+	SELECT gpu_metrics('daily','2023-05-01', '2023-05-05);
+
+Output
+
 .. code-block:: console
 
-	master=> SELECT gpu_metrics('daily','2023-05-01', '2023-05-05);
-	2023-May-01, 2,1
-	2023-May-02, 3,1
-	2023-May-03, 3,1
-	2 rows
-	time: 0.103436s
+	 date         | actual_number_of_gpus   | data_read_limit_license_value
+	--------------+-------------------------+---------------------------------
+	 2023-May-01  | 2                       | 1
+	 2023-May-02  | 3                       | 1
+	 2023-May-03  | 3                       | 1
+	
 
 Monthly GPU usage:
 
+.. code-block:: sql
+
+	SELECT gpu_metrics('monthly', '2023-04-01', '2023-06-05');
+	
+Output
+
 .. code-block:: console
 
-	master=> SELECT gpu_metrics('monthly', '2023-04-01', '2023-06-05');
-	2023 Apr, 2,1
-	1 rows
-	time: 0.155396s
-   
-
+	 date         | actual_number_of_gpus   | data_read_limit_license_value
+	--------------+-------------------------+---------------------------------
+	 2023 Apr     | 2                       | 1
+	
 
 Permissions
 =============
