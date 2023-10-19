@@ -22,35 +22,38 @@ The ``SUPERUSER`` permission is required to alter default permissions.
 Syntax
 ======
 
-The following is the syntax for altering default permissions:
-
 .. code-block:: postgres
 
-   alter_default_permissions_statement ::=
-         ALTER DEFAULT PERMISSIONS FOR { target_role_name | ALL ROLES }
-         [IN schema_name, ...] 
-         FOR { TABLES | SCHEMAS }
-         { grant_clause [, ...] | DROP grant_clause[, ...]} 
-         TO { role_name [, ...] | public };
-   
-   grant_clause ::= 
-      GRANT 
-         { SUPERUSER
+     ALTER DEFAULT PERMISSIONS FOR target_role_name
+     [IN schema_name, ...]
+     FOR { 
+          SCHEMAS 
+          | TABLES 
+          | FOREIGN TABLE 
+          | VIEWS 
+          | COLUMNS 
+          | SAVED_QUERIES
+         }
+          { grant_clause 
+          | DROP grant_clause }
+          TO ROLE { role_name | public 
+		 }
+
+     grant_clause ::=
+     GRANT
+        { CREATE FUNCTION
+         | SUPERUSER
+         | CONNECT
          | CREATE
          | USAGE
          | SELECT
          | INSERT
-         | UPDATE
          | DELETE
          | DDL
+         | UPDATE
+         | EXECUTE
          | ALL
-         } [, ...]
-
-   target_role_name ::= identifier 
-   
-   role_name ::= identifier 
-   
-   schema_name ::= identifier
+        }
    
 
 Supported Permissions
