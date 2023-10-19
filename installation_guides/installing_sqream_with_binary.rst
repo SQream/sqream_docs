@@ -3,6 +3,7 @@
 *********************************************
 Installing SQream Using Binary Packages
 *********************************************
+
 This procedure describes how to install SQream using Binary packages and must be done on all servers.
 
 **To install SQream using Binary packages:**
@@ -170,12 +171,9 @@ It would be same on server running metadataserver and different on other server 
 If you have an HDFS environment, see :ref:`Configuring an HDFS Environment for the User sqream <hdfs>`.
 
 
-
-
-
-
 Upgrading SQream Version
 -------------------------
+
 Upgrading your SQream version requires stopping all running services while you manually upgrade SQream.
 
 **To upgrade your version of SQream:**

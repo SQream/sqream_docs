@@ -4,11 +4,11 @@
 Permissions
 **************
 
-SQreamDB’s primary permission object is a role. The role operates in a dual capacity as both a user and a group. In its user role, it may execute operations like creating tables, querying data, and administering the database, depending on its permissions. The role’s group attribute allows it to extend its permissions to roles defined as its group members. Information about permissions for all roles is stored in the metadata.
+SQreamDB’s primary permission object is a role. The role operates in a dual capacity as both a user and a group. As a user, a role may have permissions to execute operations like creating tables, querying data, and administering the database. The group attribute may be thought of as a membership. As a group, a role may extend its permissions to other roles defined as its group members. This becomes handy when privileged roles wish to extend their permissions and grant multiple permissions to multiple roles. The information about all system role permissions is stored in the metadata.
 
-There are two main types of permissions: global and object-level. Global permissions belong to ``SUPERUSER`` roles, allowing unrestricted access to all system and database activities. Object-level permissions apply to non-``SUPERUSER`` roles and can be assigned to databases, schemas, tables, functions, views, foreign tables, columns, catalogs, and services.
+There are two types of permissions: global and object-level. Global permissions belong to ``SUPERUSER`` roles, allowing unrestricted access to all system and database activities. Object-level permissions apply to non-``SUPERUSER`` roles and can be assigned to databases, schemas, tables, functions, views, foreign tables, columns, catalogs, and services.
 
-The following tables describe the required permissions for performing and executing operations on various SQreamDB objects.
+The following table describe the required permissions for performing and executing operations on various SQreamDB objects.
  
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Permission**       | **Description**                                                                                                         |
@@ -31,17 +31,11 @@ The following tables describe the required permissions for performing and execut
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``CREATE FUNCTION``  | Create and drop functions                                                                                               |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``DDL``              | Drop and alter database                                                                                                 |
-+----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Schema**                                                                                                                                     |
-+----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``SUPERUSER``        | No permission restrictions on any activity within that schema                                                           |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``USAGE``            | Grants access to schema objects                                                                                         |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``CREATE``           | Create tables in the schema                                                                                             |
-+----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``DDL``              | Drop and alter schema                                                                                                   |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Table**                                                                                                                                      |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
@@ -53,7 +47,7 @@ The following tables describe the required permissions for performing and execut
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``DELETE``           | :ref:`delete` and :ref:`truncate` on the table                                                                          |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``DDL``              | Drop and alter table                                                                                                    |
+| ``DDL``              | Drop and alter on the table                                                                                             |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``ALL``              | All the table permissions                                                                                               |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
@@ -61,7 +55,7 @@ The following tables describe the required permissions for performing and execut
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``EXECUTE``          | Use the function                                                                                                        |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``DDL``              | Drop and alter function                                                                                                 |   
+| ``DDL``              | Drop and alter on the function                                                                                          |   
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``ALL``              | All function permissions                                                                                                |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
@@ -92,11 +86,13 @@ The following tables describe the required permissions for performing and execut
 | ``USAGE``            | Using a specific service                                                                                                |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 
+Syntax
+======
 
-GRANT Syntax
-============
+Permissions may be granted or revoked using the following syntax.
 
-:ref:`grant` gives permissions to a role.
+GRANT
+------
 
 .. code-block:: postgres
 
@@ -153,7 +149,7 @@ GRANT Syntax
 	  | FOREIGN TABLE <table_name> [, ...] 
 	  | ALL FOREIGN TABLES IN SCHEMA <schema_name> [, ...] 
 	}
-	TO <role> [, ...];
+	TO <role> [, ...]
 
 	GRANT
 	{
@@ -167,7 +163,7 @@ GRANT Syntax
 	{ 
 	  | CATALOG <catalog_name> [, ...]
 	}
-	TO <role> [, ...];
+	TO <role> [, ...]
 
 	-- Grant execute function permission: 
 	GRANT 
@@ -183,8 +179,6 @@ GRANT Syntax
 	GRANT 
 	{
 	  { SELECT 
-	  | INSERT
-	  | UPDATE
 	  | DDL } [, ...] 
 	  | ALL [PERMISSIONS]
 	}
@@ -195,12 +189,12 @@ GRANT Syntax
 	  | ALL COLUMNS IN TABLE <schema_name.table_name> [, ...] 
 	  | ALL COLUMNS IN FOREIGN TABLE <foreign_table_name> [, ...] 
 	}
-	TO <role> [, ...];
+	TO <role> [, ...]
 
 	-- Grant permissions at the Service level:
 	GRANT 
 	{
-	{ USAGE }
+	{ USAGE } [PERMISSIONS]
 	}
 	ON { SERVICE <service_name> }
 	TO <role> [, ...]
@@ -214,10 +208,8 @@ GRANT Syntax
 	TO <role2> [,...] [WITH ADMIN OPTION]
 	
 
-REVOKE Syntax
-=============
-
-:ref:`revoke` removes permissions from a role.
+REVOKE
+-------
 
 .. code-block:: postgres
 
@@ -274,7 +266,7 @@ REVOKE Syntax
 	  | FOREIGN TABLE <table_name> [, ...] 
 	  | ALL FOREIGN TABLES IN SCHEMA <schema_name> [, ...] 
 	}
-	FROM <role> [, ...];
+	FROM <role> [, ...]
 
 	REVOKE 
 	{ 
@@ -288,14 +280,12 @@ REVOKE Syntax
 	{ 
 	  | CATALOG <catalog_name> [, ...] 
 	}
-	FROM <role> [, ...];
+	FROM <role> [, ...]
 				
 	-- Revoke permissions at the column level:
 	REVOKE 
 	{
 	  { SELECT 
-	  | INSERT
-	  | UPDATE
 	  | DDL } [, ...] 
 	  | ALL [PERMISSIONS]}
 	ON 
@@ -304,9 +294,8 @@ REVOKE Syntax
 	  | ALL COLUMNS IN TABLE <schema_name.table_name> [, ...] 
 	  | ALL COLUMNS IN FOREIGN TABLE <schema_name.foreign_table_name> [, ...] 
 	}
-	FROM <role> [, ...];
+	FROM <role> [, ...]
 
-		
 	-- Revoke permissions at the service level:
 	REVOKE 
 	{
@@ -325,7 +314,7 @@ REVOKE Syntax
 	FROM <role2> [, ...] 
 
 Altering Default Permissions
-============================
+-----------------------------
 
 The default permissions system (See :ref:`alter_default_permissions`) 
 can be used to automatically grant permissions to newly 
@@ -351,7 +340,8 @@ schema statement is run.
          }
           { grant_clause 
           | DROP grant_clause }
-          TO ROLE { role_name | public };
+          TO ROLE { role_name | public 
+		 }
 
      grant_clause ::=
      GRANT
@@ -372,12 +362,12 @@ schema statement is run.
 Examples
 ========
 
-GRANT Examples
+GRANT
 --------------
 
 Grant superuser privileges and login capability to a role:
 
-.. code-block:: postgres
+.. code-block:: sql
 
 	GRANT SUPERUSER, LOGIN TO role_name;
 	
@@ -409,7 +399,7 @@ Grant column-level permissions to a role:
 
 .. code-block:: postgres
 
-	GRANT SELECT, INSERT, UPDATE, DDL ON COLUMN column_name IN TABLE schema_name.table_name TO role_name;
+	GRANT SELECT, DDL ON COLUMN column_name IN TABLE schema_name.table_name TO role_name;
 
 Grant usage permissions on a service to a role:
 
@@ -430,7 +420,7 @@ Grant role2 the ability to grant role1 to other roles:
 	GRANT role1 TO role2 WITH ADMIN OPTION;
 
 
-REVOKE Examples
+REVOKE
 ---------------
 
 Revoke superuser privileges or login capability from a role:

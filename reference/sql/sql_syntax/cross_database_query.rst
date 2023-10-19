@@ -4,7 +4,7 @@
 Cross-Database Query
 ***************************
 
-Cross-database queries allow the retrieval and manipulation of data from different databases within a single SQL statement or transaction. This capability is crucial when information relevant to a query spans multiple databases. By specifying the database context and employing fully qualified object names, such as database.schema.table, it becomes possible to seamlessly integrate and analyze data distributed across diverse databases.
+Cross-database queries allow the retrieval and manipulation of data from different databases within a single SQreamDB cluster, through the execution of a single SQL statement or transaction. This capability is crucial when information relevant to a query spans multiple databases. By specifying the database context and employing fully qualified object names, such as database.schema.table, it becomes possible to seamlessly integrate and analyze data distributed across diverse databases.
 
 To ensure optimal performance, it is advised to refrain from querying more than 10 databases in a single query.
 
@@ -42,7 +42,7 @@ Syntax
 	-- CREATE FOREIGN TABLE statement
 
 	CREATE FOREIGN TABLE 
-		<foreign_database_name>.<foreign_schema_name>.<foreign_table_name> (
+		<database_name>.<schema_name>.<table_name> (
 			<column_name1> <data_type1>,
 			<column_name2> <data_type2>,
 			...
@@ -119,15 +119,15 @@ Parameters
    * - Parameter
      - Description
    * - ``column_name``
-     - The column to perform a ``JOIN`` operation on
+     - The name of a specific column to read or write data from
    * - ``database_name``
-     - The SQreamDB database to perform a ``JOIN`` operation on
+     - The name of a specific database to read or write data from
    * - ``schema_name``
-     - The schema name of the database to perform a ``JOIN`` operation on
+     - The name of a specific schema to read or write data within
    * - ``table_name`` 
-     - The table to perform a ``JOIN`` operation on
+     - The name of a specific table to read or write data from
    * - ``condition``
-     - The condition for performing a ``JOIN`` operation
+     - The condition for performing a specific operation
 	 
 Examples
 =========
