@@ -10,9 +10,6 @@ SQream supports both Tableau Desktop and Tableau Server on Windows, MacOS, and L
 
 For more information on SQream's integration with Tableau, see `Tableau Connectors <https://extensiongallery.tableau.com/connectors?version=2019.4>`_.
 
-.. contents::
-   :local:
-   :depth: 1
 
 Prerequisites
 -------------

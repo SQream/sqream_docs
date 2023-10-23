@@ -4,13 +4,6 @@
 CREATE FOREIGN TABLE
 ***********************
 
-.. note:: 
-   
-   Starting with SQream DB v2020.2, external tables have been renamed to foreign tables, and use a more flexible foreign data wrapper concept.
-   
-   Upgrading to a new version of SQream DB converts existing external tables automatically. 
-
-
 ``CREATE FOREIGN TABLE`` creates a new foreign table in an existing database.
 
 See more in the :ref:`Foreign tables guide<external_tables>`.

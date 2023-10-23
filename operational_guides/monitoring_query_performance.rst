@@ -232,7 +232,7 @@ Commonly Seen Nodes
      - Reads data from a standard table stored on disk
    * - ``Rechunk``
      - 
-     - Reorganize multiple small :ref:`chunks<chunks_and_extents>` into a full chunk. Commonly found after joins and when :ref:`HIGH_SELECTIVITY<high_selectivity>` is used
+     - Reorganize multiple small :ref:`chunks<chunks_and_extents>` into a full chunk. Commonly found after ``JOIN`` operations 
    * - ``Reduce``
      - GPU
      - A reduction operation, such as a ``GROUP BY``
@@ -419,7 +419,7 @@ Identifying the Offending Nodes
         JOIN nation n2 ON s_nationkey = n2.n_nationkey
       WHERE r_name = 'AMERICA'
       AND   o_orderdate BETWEEN '1995-01-01' AND '1996-12-31'
-      AND   high_selectivity(p_type = 'ECONOMY BURNISHED NICKEL');
+	  ;
 #. 
    
    Observe the execution information by using the foreign table, or use ``show_node_info``
@@ -503,8 +503,7 @@ For example:
               JOIN nation n2 ON s_nationkey = n2.n_nationkey
             WHERE r_name = 'AMERICA'
             AND   lineitem.l_quantity = 3
-            AND   o_orderdate BETWEEN '1995-01-01' AND '1996-12-31'
-            AND   high_selectivity(p_type = 'ECONOMY BURNISHED NICKEL')) AS all_nations
+            AND   o_orderdate BETWEEN '1995-01-01' AND '1996-12-31') AS all_nations
       GROUP BY o_year
       ORDER BY o_year;
 #. 
@@ -579,8 +578,7 @@ For example:
               JOIN nation n2 ON s_nationkey = n2.n_nationkey
             WHERE r_name = 'AMERICA'
             AND   lineitem.l_orderkey > 4500000
-            AND   o_orderdate BETWEEN '1995-01-01' AND '1996-12-31'
-            AND   high_selectivity(p_type = 'ECONOMY BURNISHED NICKEL')) AS all_nations
+            AND   o_orderdate BETWEEN '1995-01-01' AND '1996-12-31') AS all_nations
       GROUP BY o_year
       ORDER BY o_year;
 
@@ -617,17 +615,6 @@ Common Solutions for Improving Filtering
 * Use :ref:`clustering keys and naturally ordered data<data_clustering>` in your filters.
 * Avoid full table scans when possible
 
-High Selectivity Data
----------------------
-
-Selectivity is the ratio of cardinality to the number of records of a chunk. We define selectivity as :math:`\frac{\text{Distinct values}}{\text{Total number of records in a chunk}}`
-SQream DB has a hint called ``HIGH_SELECTIVITY``, which is a function you can wrap a condition in.
-The hint signals to SQream DB that the result of the condition will be very sparse, and that it should attempt to rechunk
-the results into fewer, fuller chunks.
-.. note::
-   SQream DB doesn't do this automatically because it adds a significant overhead on naturally ordered and
-   well-clustered data, which is the more common scenario.
-
 Identifying the Situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -649,14 +636,6 @@ Consider this execution plan:
 The table was read entirely - 77 million rows into 74 chunks.
 The filter node reduced the output to just 18,160 relevant rows, but they're distributed across the original 74 chunks.
 All of these rows could fit in one single chunk, instead of spanning 74 rather sparse chunks.
-
-Improving Performance with High Selectivity Hints
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-* 
-   Use when there's a ``WHERE`` condition on an :ref:`unclustered column<data_clustering>`, and when you expect the filter
-   to cut out more than 60% of the result set.
-* Use when the data is uniformly distributed or random
 
 Performance of unsorted data in joins
 -------------------------------------
@@ -699,33 +678,6 @@ Pay special attention to the volume of data removed by the ``Filter`` node.
 The table was read entirely - 77 million rows into 74 chunks.
 The filter node reduced the output to just 18,160 relevant rows, but they're distributed across the original 74 chunks.
 All of these rows could fit in one single chunk, instead of spanning 74 rather sparse chunks.
-
-Improving Join Performance when Data is Sparse
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-You can tell SQream DB to reduce the amount of chunks involved, if you know that the filter is going to be quite
-agressive by using the :ref:`HIGH_SELECTIVITY<high_selectivity>` hint described :ref:`above<high_selectivity_data_opt>`.
-This forces the compiler to rechunk the data into fewer chunks.
-To tell SQream DB to rechunk the data, wrap a condition (or several) in the ``HIGH_SELECTIVITY`` hint:
-
-.. code-block:: sql
-   :emphasize-lines: 13
-   
-   -- Without the hint
-   SELECT *
-   FROM cdrs
-   WHERE 
-         RequestReceiveTime BETWEEN '2018-01-01 00:00:00.000' AND '2018-08-31 23:59:59.999' 
-         AND EnterpriseID=1150 
-         AND MSISDN='9724871140341';
-   
-   -- With the hint
-   SELECT *
-   FROM cdrs
-   WHERE 
-         HIGH_SELECTIVITY(RequestReceiveTime BETWEEN '2018-01-01 00:00:00.000' AND '2018-08-31 23:59:59.999')
-         AND EnterpriseID=1150 
-         AND MSISDN='9724871140341';
 
 Manual Join Reordering
 ----------------------
