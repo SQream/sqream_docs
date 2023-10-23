@@ -18,7 +18,6 @@ BLUE uses Power BI for extracting data sets using the following methods:
 
 * **Direct query** - Direct queries lets you connect easily with no errors, and refreshes Power BI artifacts, such as graphs and reports, in a considerable amount of time in relation to the time taken for queries to run using the `BLUE SQL CLI Reference guide <https://docs.sqream.com/en/v2022.1/reference/cli/sqream_sql.html>`_.
 
-   ::
 
 * **Import** - Lets you extract datasets from remote databases.
    
@@ -38,7 +37,7 @@ Installing Power BI Desktop
 
 #. Download `Power BI Desktop 64x <https://powerbi.microsoft.com/en-us/downloads/>`_.
 
-    ::
+
 
 #. Download and configure your ODBC driver.
 
@@ -46,31 +45,31 @@ Installing Power BI Desktop
    
 #. Navigate to **Windows** > **Documents** and create a folder named **Power BI Desktop** with a subfolder named **Custom Connectors**.
 
-    ::
+
 
 #. From the Client Drivers page, :ref:`download<client_drivers>` the **PowerQuery.mez** file.
 
-    ::
+
 
 #. Save the PowerQuery.mez file in the **Custom Connectors** folder you created in Step 3.
 
-    ::
+
 
 #. Open the Power BI application.
 
-    ::
+
 
 #. Navigate to **File** > **Options and Settings** > **Option** > **Security** > **Data Extensions**, and select **(Not Recommended) Allow any extension to load without validation or warning**.
 
-    ::
+
 
 #. Restart the Power BI Desktop application.
 
-    ::
+
 
 #. From the **Get Data** menu, select **SQream**.
 
-    ::
+
 
 #. Click **Connect** and provide the information shown in the following table:
     
@@ -93,11 +92,11 @@ Installing Power BI Desktop
 
 #. Under **Data Connectivity mode**, select **DirectQuery mode**.
 
-     ::
+
 
 #. Click **Connect**.
 
-     ::
+
 
 #. Provide your user name and password and click **Connect**.
 
@@ -108,11 +107,11 @@ BLUE recommends using Power BI in the following ways for acquiring the best perf
 
 * Creating bar, pie, line, or plot charts when illustrating one or more columns.
 
-   ::
+
    
 * Displaying trends and statuses using visual models.
 
-   ::
+
    
 * Creating a unified view using **PowerQuery** to connect different data sources into a single dashboard.	   
 

@@ -3,22 +3,10 @@
 ************************
 Pentaho Data Integration
 ************************
-.. _pentaho_top:
-
-Overview
-========
 
 This document is a Quick Start Guide that describes how to install Pentaho, create a transformation, and define your output. 
 
 The Connecting to SQream Using Pentaho page describes the following:
-
-* :ref:`Installing Pentaho <install_pentaho>`
-* :ref:`Installing and setting up the JDBC driver <install_set_up_jdbc_driver>`
-* :ref:`Creating a transformation <create_transformation>`
-* :ref:`Defining your output <define_output>`
-* :ref:`Importing your data <import_data>`
-
-.. _install_pentaho:
 
 Installing Pentaho
 ~~~~~~~~~~~~~~~~~~
@@ -31,9 +19,6 @@ The **Pentaho Community Edition (CE) Installation Guide** describes how to do th
 * Installing the **JRE (Java Runtime Environment)** and **JDK (Java Development Kit)**.
 * Setting up the JRE and JDK environment variables for PDI.
 
-:ref:`Back to Overview <pentaho_top>`
-
-.. _install_set_up_jdbc_driver:
 
 Installing and Setting Up the JDBC Driver
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -44,9 +29,6 @@ You can install the driver by copying and pasting the SQream JDBC .jar file into
 
 **NOTE:** Contact your SQream license account manager for the JDBC .jar file.
 
-:ref:`Back to Overview <pentaho_top>`
-
-.. _create_transformation:
 
 Creating a Transformation
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -57,7 +39,7 @@ After installing Pentaho you can create a transformation.
 
 1. Use the CLI to open the PDI client for your operating system (Windows):
    
-  .. code-block:: console
+.. code-block:: console
      
      $ spoon.bat
 
@@ -114,10 +96,6 @@ After installing Pentaho you can create a transformation.
 ::
 
 15. Click **OK** in the **CSV file input** window.
-
-:ref:`Back to Overview <pentaho_top>`
-
-.. _define_output:
 
 Defining Your Output
 --------------------
@@ -177,10 +155,6 @@ After creating your transformation you must define your output.
 
 	 
 6. Click **OK** in the window above, in the Database Connection window, and Table Output window.
-
-:ref:`Back to Overview <pentaho_top>`
-
-.. _import_data:
 
 Importing Data
 --------------
@@ -248,4 +222,3 @@ For more information about backing up users, permissions, or schedules, see `Bac
 
     The **Execution Results** are displayed.
  
-:ref:`Back to Overview <pentaho_top>`

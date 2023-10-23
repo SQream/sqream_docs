@@ -8,8 +8,7 @@ You can use SQL Workbench to interact with a SQream DB cluster. SQL Workbench/J 
 
 This tutorial is a guide that will show you how to connect SQL Workbench to SQream DB.
 
-.. contents:: In this topic:
-   :local:
+
 
 Installing SQL Workbench with the SQream Installer
 ==================================================
@@ -132,7 +131,7 @@ If you installed SQL Workbench manually, you can set a customization to help SQL
    
 #. Add the following line at the end of the file:
    
-   .. code-block:: text
+.. code-block:: text
       
       workbench.db.sqreamdb.schema.retrieve.change.catalog=true
 

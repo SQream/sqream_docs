@@ -4,14 +4,7 @@
 PHP
 ***
 
-Overview
-========
-
-PHP is an open source scripting language that executes scripts on servers. The **Connect to PHP** page explains how to connect to a SQream cluster, and describes the following:
-
-.. contents:: 
-   :local:
-   :depth: 1
+PHP is an open source scripting language that executes scripts on servers.
    
 Installing PHP
 --------------
@@ -20,11 +13,9 @@ Installing PHP
 
 1. Download the JDBC driver installer from the `SQream Drivers page <https://docs.sqream.com/en/v2022.1/connecting_to_sqream/client_drivers/index.html>`_.
 
-    ::
 
 2. Create a DSN.
 
-    ::
 	
 3. Install the **uODBC** extension for your PHP installation.
 
@@ -37,7 +28,6 @@ You can configure PHP in one of the following ways:
    
 * When compiling, configure PHP to enable uODBC using ``./configure --with-pdo-odbc=unixODBC,/usr/local``.
 
-   ::
    
 * Install ``php-odbc`` and ``php-pdo`` along with PHP using your distribution package manager. SQream recommends a minimum of version 7.1 for the best results.
 
@@ -45,11 +35,11 @@ You can configure PHP in one of the following ways:
 
           * Increasing the **php.ini** default setting, such as the *odbc.defaultlrl* to **10000**.
 
-		     ::
+
 			 
           * Setting the size limitation in your code before making your connection using **ini_set("odbc.defaultlrl", "10000");**.
 
-		     ::
+
 			 
           * Setting the size limitation in your code before fetchng your result using **odbc_longreadlen($result, "10000");**.
 

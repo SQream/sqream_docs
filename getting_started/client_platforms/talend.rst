@@ -3,17 +3,9 @@
 ******
 Talend
 ******
-
-Overview
-========
  
 This page describes how to use Talend to interact with a SQream cluster. The Talend connector is used for reading data from a SQream cluster and loading data into SQream. In addition, this page provides a viability report on Talend's comparability with SQream for stakeholders.
 
-The **Connecting to SQream Using Talend** describes the following:
-
-.. contents::
-   :local:
-   :depth: 1
 
 Creating a New Metadata JDBC DB Connection
 ------------------------------------------
@@ -22,15 +14,15 @@ Creating a New Metadata JDBC DB Connection
 
 1. In the **Repository** panel, nagivate to **Metadata** and right-click **Db connections**.
 
-    ::
+
 	
 2. Select **Create connection**.
 
-    ::
+
 	
 3. In the **Name** field, type a name.
 
-    ::
+
 
    Note that the name cannot contain spaces.
 
@@ -38,11 +30,11 @@ Creating a New Metadata JDBC DB Connection
 
    Note that you cannot continue to the next step until you define both a Name and a Purpose.
 
-    ::
+
 
 5. In the **DB Type** field, select **JDBC**.
 
-    ::
+
 
 6. In the **JDBC URL** field, type the relevant connection string.
 
@@ -58,7 +50,7 @@ Creating a New Metadata JDBC DB Connection
 
 9. From the Module window, select **Artifact repository(local m2/nexus)** and select **Install a new module**.
 
-    ::
+
 
 10. Click the ellipsis.
 
@@ -66,11 +58,11 @@ Creating a New Metadata JDBC DB Connection
 
 11. Navigate to a **JDBC jar file** (such as **sqream-jdbc-4.5.3.jar**)and click **Open**.
 
-     ::
+
 
 12. Click **Detect the module install status**.
 
-     ::
+
 
 13. Click **OK**.
 
@@ -78,7 +70,7 @@ Creating a New Metadata JDBC DB Connection
 
 14. Click **Select class name**.
 
-     ::
+
 
 15. Click **Test connection**.
 
@@ -88,11 +80,11 @@ Creating a New Metadata JDBC DB Connection
 
     * Use your new metadata connection.
 	
-	   ::
+
 	   
     * Drag it to the **job** screen.
 	
-	   ::
+
 	   
     * Build Talend components.
  
@@ -105,7 +97,7 @@ The following list shows the supported SQream drivers and versions:
 
 * **JDBC** - Version 4.3.3 and higher.
 
-   ::
+
    
 * **ODBC** - Version 4.0.0. This version requires a Bridge to connect. For more information on the required Bridge, see `Connecting Talend on Windows to an ODBC Database <https://www.easysoft.com/blog/talend.html>`_.
 
@@ -116,7 +108,7 @@ Talend Cloud connectors let you create reusable connections with a wide variety 
 
 * **Connections:** Connections are environments or systems for storing datasets, including databases, file systems, distributed systems and platforms. Because these systems are reusable, you only need to establish connectivity with them once.
 
-   ::
+
 
 * **Datasets:** Datasets include database tables, file names, topics (Kafka), queues (JMS) and file paths (HDFS). For more information on the complete list of connectors and datasets that Talend supports, see `Introducing Talend Connectors <https://help.talend.com/r/vqIZei8ynfi_BaDCg3d~_g/M0qzU1kTnL0bPou7OuxJfw>`_.
 

@@ -4,26 +4,10 @@
 SAS Viya
 ********
 
-Overview
-========
-
 SAS Viya is a cloud-enabled analytics engine used for producing useful insights. The **Connect to SQream Using SAS Viya** page describes how to connect to SAS Viya, and describes the following:
-
-.. contents:: 
-   :local:
-   :depth: 1
 
 Installing SAS Viya
 -------------------
-
-The **Installing SAS Viya** section describes the following:
-
-.. contents:: 
-   :local:
-   :depth: 1 
-
-Downloading SAS Viya
-~~~~~~~~~~~~~~~~~~~~
 
 Integrating with SQream has been tested with SAS Viya v.03.05 and newer.
 
@@ -38,7 +22,6 @@ The SQream JDBC driver is required for establishing a connection between SAS Viy
 
 #. Download the `JDBC driver <https://docs.sqream.com/en/v2022.1/connecting_to_sqream/client_drivers/jdbc/index.html>`_.
 
-    ::
 
 #. Unzip the JDBC driver into a location on the SAS Viya server.
    
@@ -53,11 +36,11 @@ After installing the JDBC driver, you must configure the JDBC driver from the SA
 
 #. Sign in to the SAS Studio.
 
-    ::
+
 
 #. From the **New** menu, click **SAS Program**.
    
-    ::
+
 	
 #. Configure the SQream JDBC connector by adding the following rows:
 
@@ -68,51 +51,41 @@ For more information about writing a connection string, see **Connect to SQream 
 
 Operating SAS Viya
 ------------------
- 
-The **Operating SAS Viya** section describes the following:
 
-.. contents:: 
-   :local:
-   :depth: 1
-   
-Using SAS Viya Visual Analytics
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-This section describes how to use SAS Viya Visual Analytics.
 
 **To use SAS Viya Visual Analytics:**
 
 #. Log in to SAS Viya Visual Analytics using your credentials:
 
-    ::
+
 
 2. Click **New Report**.
 
-    ::
+
 
 3. Click **Data**.
 
-    ::
+
 
 4. Click **Data Sources**.
 
-    ::
+
 
 5. Click the **Connect** icon.
 
-    ::
+
 
 6. From the **Type** menu, select **Database**.
 
-    ::
+
 
 7. Provide the required information and select **Persist this connection beyond the current session**.
 
-    ::
+
 
 8. Click **Advanced** and provide the required information.
 
-    ::
+
 
 9. Add the following additional parameters by clicking **Add Parameters**:
 
@@ -135,8 +108,6 @@ This section describes how to use SAS Viya Visual Analytics.
    
 10. Click **Test Connection**.
 
-     ::
-
 11. If the connection is successful, click **Save**.
 
 If your connection is not successful, see :ref:`troubleshooting_sas_viya` below.
@@ -148,10 +119,6 @@ Troubleshooting SAS Viya
 
 The **Best Practices and Troubleshooting** section describes the following best practices and troubleshooting procedures when connecting to SQream using SAS Viya:
 
-.. contents:: 
-   :local:
-   :depth: 1
-
 Inserting Only Required Data
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -159,7 +126,7 @@ When using SAS Viya, SQream recommends using only data that you need, as describ
 
 * Insert only the data sources you need into SAS Viya, excluding tables that don’t require analysis.
 
-    ::
+
 
 * To increase query performance, add filters before analyzing. Every modification you make while analyzing data queries the SQream database, sometimes several times. Adding filters to the datasource before exploring limits the amount of data analyzed and increases query performance.
 
@@ -181,11 +148,9 @@ In some cases, SAS Viya cannot locate the SQream JDBC driver, generating the fol
 
 1. Verify that you have placed the JDBC driver in a directory that SAS Viya can access.
 
-    ::
 
 2. Verify that the classpath in your SAS program is correct, and that SAS Viya can access the file that it references.
 
-    ::
 
 3. Restart SAS Viya.
 
