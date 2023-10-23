@@ -80,7 +80,7 @@ The following table shows the supported compression methods:
      - General purpose compression, used for texts
      - CPU
    * - ``RLE``
-     - Integer types, dates and timestamps
+     - ``integer`` types, ``dates``, ``timestamps``, and ``text``
      - Run-Length Encoding. This replaces sequences of values with a single pair. It is best for low cardinality columns that are used to sort data (``ORDER BY``).
      - GPU
    * - ``SEQUENCE``
