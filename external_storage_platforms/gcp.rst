@@ -7,18 +7,16 @@ Google Cloud Platform
 Ingesting data using Google Cloud Platform (GCP) requires configuring Google Cloud Storage (GCS) bucket access. You may configure SQreamDB to separate source and destination by granting read access to one bucket and write access to a different bucket. Such separation requires that each bucket be individually configured.
 
 
-Google Cloud Platform URI Format
+GCP Bucket File Location
 =================================
 
-Specify a location for a file (or files) when using :ref:`copy_from` or :ref:`foreign_tables`.
+GCP syntax to be used for specifying a single or multiple file location within a GCP bucket:
 
-The following is an example of the general GCP syntax:
-
-.. code-block:: console
+.. code-block:: sql
  
 	gs://<gcs path>/<gcs_bucket>/
    
-Granting GCP access
+GCP Access
 ====================
 
 Before You Begin
@@ -31,6 +29,9 @@ String example:
 .. code-block::
 
 	sample_service_account@sample_project.iam.gserviceaccount.com
+
+Granting GCP Access
+---------------------
 
 #. In your Google Cloud console, go to **Select a project** and select the desired project.
 
@@ -54,10 +55,53 @@ String example:
 
 	Optimize access time to your data by configuring the location of your bucket according to `Google Cloud location considerations <https://cloud.google.com/storage/docs/locations#location-r>`_.
    
-Example
+   
+   
+Examples
 ============
 
-.. code-block::
+Using the ``COPY FROM`` command:
 
-	COPY table_name FROM WRAPPER csv_fdw OPTIONS(location = 'gs://mybucket/sqream-demo-data/file.csv');
+.. code-block:: sql
+
+	CREATE TABLE nba
+	  (
+	    name     TEXT,
+	    team     TEXT,
+	    number   TEXT,
+	    position TEXT,
+	    age      TEXT,
+	    height   TEXT,
+	    weight   TEXT,
+	    college  TEXT,
+	    salary   TEXT
+	  ); 
+
+.. code-block:: sql
+
+	COPY nba FROM
+	WRAPPER csv_fdw
+	OPTIONS(location = 'gs://blue_docs/nba.csv');
+	
+Using the ``CREATE FOREIGN TABLE`` command:
+
+.. code-block:: sql
+
+	CREATE FOREIGN TABLE nba
+	(
+	  Name       TEXT,
+	  Team       TEXT,
+	  Number     TEXT,
+	  Position   TEXT,
+	  Age        TEXT,
+	  Height     TEXT,
+	  Weight     TEXT,
+	  College    TEXT,
+	  Salary     TEXT
+	 )
+	 WRAPPER csv_fdw
+	 OPTIONS
+	 (
+	   LOCATION =  'gs://blue_docs/nba.csv'
+	 );
     

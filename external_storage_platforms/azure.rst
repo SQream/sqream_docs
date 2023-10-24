@@ -1,33 +1,26 @@
 .. _azure:
 
 ***********************
-Azure
+Azure Blob Storage
 ***********************
 
+Azure Blob Storage (ABS) is a scalable object storage solution within Microsoft Azure, designed to store and manage vast amounts of unstructured data.
 
-.. contents::
-   :local:
-   :depth: 1
+ABS Bucket File Location
+=================================
 
+ABS syntax to be used for specifying a single or multiple file location within an ABS bucket:
 
-Azure URI Format
-=================
-
-Specify a location for a file (or files) when using :ref:`copy_from` or :ref:`foreign_tables`.
-
-The following is an example of the general Azure syntax:
-
-.. code-block:: console
+.. code-block:: sql
  
 	azure://accountname.core.windows.net/path
-
 
 Connection String
 ===================
 
 Connection String Example:
 
-.. code-block::
+.. code-block:: json
 
 	"DefaultEndpointsProtocol=https;AccountName=myaccount101;AccountKey=#######################################==;EndpointSuffix=core.windows.net"
 
@@ -50,7 +43,7 @@ Use the following parameters within your SQreamDB legacy configuration file for 
 
 
    
-Example
+Examples
 ============
 
 .. code-block::

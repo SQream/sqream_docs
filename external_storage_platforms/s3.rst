@@ -4,23 +4,26 @@
 Amazon Web Services
 ***********************
 
-SQreamDB uses a native Amazon Simple Storage Services (S3) connector for inserting data. The ``s3://`` URI specifies an external file path to an S3 bucket. File names may contain wildcard characters, and the files can be in CSV or columnar format, such as Parquet and ORC.
+SQreamDB uses a native Amazon Simple Storage Services (S3) connector for inserting data.
    
-S3 URI Format
-=============
+S3 Bucket File Location
+========================
 
-With S3, specify a location for a file (or files) when using :ref:`copy_from` or :ref:`foreign_tables`.
-
-The following is an example of the general S3 syntax:
+S3 syntax to be used for specifying a single or multiple file location within an S3 bucket:
 
 .. code-block:: console
  
    s3://bucket_name/path   
    
-Granting Access to S3 
+S3 Access 
 ======================
 
 A best practice for granting access to AWS S3 is by creating an `Identity and Access Management (IAM) <https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-started.html>`_ user account. If creating an IAM user account is not possible, you may follow AWS guidelines for `using the global configuration object <https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/global-config-object.html>`_ and setting an `AWS region <https://docs.aws.amazon.com/sdk-for-javascript/v2/developer-guide/setting-region.html>`_.
+
+Authentication
+==============
+
+After being granted access to an S3 bucket, you'll be able to execute statements using the ``AWS ID`` and ``AWS SECRET`` parameters for authentication.
 
 Connecting to S3 Using SQreamDB Legacy Configuration File
 =========================================================
@@ -58,22 +61,17 @@ You may use the following parameters within your SQreamDB legacy configuration f
 			  "AwsObjectAccessStyle": "path"
 			}
 
-Authentication
-==============
 
-SQreamDB supports ``AWS ID`` and ``AWS SECRET`` authentication. These should be specified when executing a statement.
 
 Examples
 ========
-
-Use a foreign table to stage data from S3 before loading from CSV, Parquet, or ORC files.
 
 Creating a Foreign Table
 ------------------------
 
 Based on the source file's structure, you can create a foreign table with the appropriate structure, and point it to your file as shown in the following example:
 
-.. code-block:: postgres
+.. code-block:: sql
    
    CREATE FOREIGN TABLE nba
    (
@@ -96,11 +94,6 @@ Based on the source file's structure, you can create a foreign table with the ap
     ;
 
 In the example above the file format is CSV, and it is stored as an S3 object. If the path is on HDFS, you must change the URI accordingly. Note that the record delimiter is a DOS newline (``\r\n``).
-
-For more information, see the following:
-
-* :ref:`Creating a foreign table<create_foreign_table>`
-* :ref:`hdfs`
 
 Querying Foreign Tables
 -----------------------
