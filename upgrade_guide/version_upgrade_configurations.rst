@@ -4,6 +4,8 @@
 Version History and Configuration Changes
 ******************************************
 
+	   
+	   
 .. list-table::
    :widths: auto
    :header-rows: 1
@@ -11,6 +13,33 @@ Version History and Configuration Changes
    * - SQreamDB Version
      - Storage Version
      - Configurations and Changes
+   * - 4.4
+     - 49
+     - 
+   * - 4.3
+     - 49
+     - 
+   * - 4.2
+     - 46
+     - New Releases:
+	   * Pysqream 3.2.5 Connector is released
+	   
+	   * ODBC 4.4.4 Connector is released
+	   
+	   * JDBC 4.5.8 Connector is released
+	   
+	   * Apache Spark 5.0.0 Connector is released
+	   
+	   * The ``INT96`` data type is deprecated
+   * - 4.1
+     - 45
+     - New Releases:
+	   * JDBC 4.5.7 Connector
+	   
+	   * SQream Studio v5.5.4
+   * - 4.0
+     - 45
+     - None
    * - 2022.1.7
      - 43
      - None
@@ -25,7 +54,7 @@ Version History and Configuration Changes
      - None
    * - 2022.1.3
      - 42
-     - In SQream version 2022.1.3 the ``VARCHAR`` data type has been deprecated and replaced with ``TEXT``.
+     - The ``VARCHAR`` data type has been deprecated and replaced with ``TEXT``.
    * - 2022.1.2
      - 41
      - None
