@@ -1,10 +1,10 @@
 .. _unsubscribe_service :
 
 ********************
-UNSUBSCRIBE_SERVICE
+UNSUBSCRIBE SERVICE
 ********************
 
-``UNSUBSCRIBE_SERVICE`` unsubscribes a worker from a service queue for the duration of the connected session.
+``UNSUBSCRIBE SERVICE`` unsubscribes a worker from a service queue for the duration of the connected session.
 
 .. note:: If you haven't already, read the :ref:`Workload manager guide<workload_manager>`.
 

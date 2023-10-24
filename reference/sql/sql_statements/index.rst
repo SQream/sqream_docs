@@ -24,47 +24,47 @@ The following table shows the Data Definition commands:
    
    * - Command
      - Usage
-   * - :ref:`ADD_COLUMN<add_column>`
+   * - :ref:`ADD COLUMN<add_column>`
      - Add a new column to a table
-   * - :ref:`ALTER_DEFAULT_SCHEMA<alter_default_schema>`
+   * - :ref:`ALTER DEFAULT SCHEMA<alter_default_schema>`
      - Change the default schema for a role
-   * - :ref:`ALTER_TABLE<alter_table>`
+   * - :ref:`ALTER TABLE<alter_table>`
      - Change the schema of a table
-   * - :ref:`CLUSTER_BY<cluster_by>`
+   * - :ref:`CLUSTER BY<cluster_by>`
      - Change clustering keys in a table
-   * - :ref:`CREATE_DATABASE<create_database>`
+   * - :ref:`CREATE DATABASE<create_database>`
      - Create a new database
-   * - :ref:`CREATE_FOREIGN_TABLE<create_foreign_table>`
+   * - :ref:`CREATE FOREIGN TABLE<create_foreign_table>`
      - Create a new foreign table in the database
-   * - :ref:`CREATE_FUNCTION<create_function>`
+   * - :ref:`CREATE FUNCTION<create_function>`
      - Create a new user defined function in the database
-   * - :ref:`CREATE_SCHEMA<create_schema>`
+   * - :ref:`CREATE SCHEMA<create_schema>`
      - Create a new schema in the database
-   * - :ref:`CREATE_TABLE<create_table>`
+   * - :ref:`CREATE TABLE<create_table>`
      - Create a new table in the database
-   * - :ref:`CREATE_TABLE_AS<create_table_as>`
+   * - :ref:`CREATE TABLE AS<create_table_as>`
      - Create a new table in the database using results from a select query
-   * - :ref:`CREATE_VIEW<create_view>`
+   * - :ref:`CREATE VIEW<create_view>`
      - Create a new view in the database
-   * - :ref:`DROP_CLUSTERING_KEY<drop_clustering_key>`
+   * - :ref:`DROP CLUSTERING KEY<drop_clustering_key>`
      - Drops all clustering keys in a table
-   * - :ref:`DROP_COLUMN<drop_column>`
+   * - :ref:`DROP COLUMN<drop_column>`
      - Drop a column from a table
-   * - :ref:`DROP_DATABASE<drop_database>`
+   * - :ref:`DROP DATABASE<drop_database>`
      - Drop a database and all of its objects
-   * - :ref:`DROP_FUNCTION<drop_function>`
+   * - :ref:`DROP FUNCTION<drop_function>`
      - Drop a function
-   * - :ref:`DROP_SCHEMA<drop_schema>`
+   * - :ref:`DROP SCHEMA<drop_schema>`
      - Drop a schema
-   * - :ref:`DROP_TABLE<drop_table>`
+   * - :ref:`DROP TABLE<drop_table>`
      - Drop a table and its contents from a database
-   * - :ref:`DROP_VIEW<drop_view>`
+   * - :ref:`DROP VIEW<drop_view>`
      - Drop a view
-   * - :ref:`RENAME_COLUMN<rename_column>`
+   * - :ref:`RENAME COLUMN<rename_column>`
      - Rename a column
-   * - :ref:`RENAME_TABLE<rename_table>`
+   * - :ref:`RENAME TABLE<rename_table>`
      - Rename a table
-   * - :ref:`RENAME_SCHEMA<rename_schema>`
+   * - :ref:`RENAME SCHEMA<rename_schema>`
      - Rename a schema
 
 
@@ -80,13 +80,13 @@ The following table shows the Data Manipulation commands:
    
    * - Command
      - Usage
-   * - :ref:`CREATE_TABLE_AS<create_table_as>`
+   * - :ref:`CREATE TABLE AS<create_table_as>`
      - Create a new table in the database using results from a select query
    * - :ref:`DELETE<delete>`
      - Delete specific rows from a table
-   * - :ref:`COPY_FROM<copy_from>`
+   * - :ref:`COPY FROM<copy_from>`
      - Bulk load CSV data into an existing table
-   * - :ref:`COPY_TO<copy_to>`
+   * - :ref:`COPY TO<copy_to>`
      - Export a select query or entire table to CSV files
    * - :ref:`INSERT<insert>`
      - Insert rows into a table
@@ -121,23 +121,23 @@ The following table shows the Utility commands:
      - Lists previously saved query names, one per row.
    * - :ref:`RECOMPILE SAVED QUERY<recompile_saved_query>`
      - Recompiles a saved query that has been invalidated due to a schema change
-   * - :ref:`SELECT GET_LICENSE_INFO<get_license_info>`
+   * - :ref:`SELECT GET LICENSE INFO<get_license_info>`
      - View a user's license information
-   * - :ref:`SELECT GET_DDL<get_ddl>`
+   * - :ref:`SELECT GET DDL<get_ddl>`
      - View the ``CREATE TABLE`` statement for a table
-   * - :ref:`SELECT GET_FUNCTION_DDL<get_function_ddl>`
+   * - :ref:`SELECT GET FUNCTION DDL<get_function_ddl>`
      - View the ``CREATE FUNCTION`` statement for a UDF
-   * - :ref:`SELECT GET_TOTAL_CHUNKS_SIZE<get_total_chunks_size>`
+   * - :ref:`SELECT GET TOTAL CHUNKS SIZE<get_total_chunks_size>`
      - Shows the total size of all data chunks saved in the system in both compressed and uncompressed formats
-   * - :ref:`SELECT GET_VIEW_DDL<get_view_ddl>`
+   * - :ref:`SELECT GET VIEW DDL<get_view_ddl>`
      - View the ``CREATE VIEW`` statement for a view
-   * - :ref:`SELECT DATA_READ_METRICS<select_data_read_metrics>`
+   * - :ref:`SELECT DATA READ METRICS<select_data_read_metrics>`
      - Monitor license quota usage by reviewing monthly or daily data read usage 
-   * - :ref:`SELECT GPU_METRICS<select_gpu_metrics>`
+   * - :ref:`SELECT GPU METRICS<select_gpu_metrics>`
      - Monitor license quota usage by reviewing monthly or daily GPU usage 
-   * - :ref:`SELECT RECOMPILE_VIEW<recompile_view>`
+   * - :ref:`SELECT RECOMPILE VIEW<recompile_view>`
      - Recreate a view after schema changes
-   * - :ref:`SELECT DUMP_DATABASE_DDL<dump_database_ddl>`
+   * - :ref:`SELECT DUMP DATABASE DDL<dump_database_ddl>`
      - View the ``CREATE TABLE`` statement for an current database
    * - :ref:`SHOW CONNECTIONS<show_connections>`
      - Returns a list of active sessions on the current worker
@@ -151,18 +151,11 @@ The following table shows the Utility commands:
      - Returns a list of active sessions across the cluster
    * - :ref:`SHOW VERSION<show_version>`
      - Returns the system version for SQream DB
-   * - :ref:`SHUTDOWN_SERVER<shutdown_server_command>`
+   * - :ref:`SHUTDOWN SERVER<shutdown_server_command>`
      - Sets your server to finish compiling all active queries before shutting down according to a user-defined time value
    * - :ref:`STOP STATEMENT<stop_statement>`
      - Stops or aborts an active statement
 
-.. |icon-new_2022.1| image:: /_static/images/new_2022.1.png
-   :align: middle
-   :width: 110
-
-.. |icon-New_Dark_Gray| image:: /_static/images/New_Dark_Gray.png
-   :align: middle
-   :width: 110
 
 Workload Management
 ======================
@@ -213,7 +206,7 @@ The following table shows the Access Control commands:
      - Returns a list of permissions required to run a statement or query
    * - :ref:`grant`
      - Grant permissions to a role
-   * - :ref:`GRANT_USAGE_ON_SERVICE_TO_ALL_ROLES`
+   * - :ref:`GRANT USAGE ON SERVICE TO ALL ROLES`
      - Grant service usage permissions
    * - :ref:`revoke`
      - Revoke permissions from a role

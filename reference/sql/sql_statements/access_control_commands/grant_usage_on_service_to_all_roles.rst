@@ -1,10 +1,10 @@
 .. _grant_usage_on_service_to_all_roles:
 
 ***********************************
-GRANT_USAGE_ON_SERVICE_TO_ALL_ROLES
+GRANT USAGE ON SERVICE TO ALL ROLES
 ***********************************
 
-The ``grant_usage_on_service_to_all_roles`` utility function enables a ``SUPERUSER`` to grant access to services for other system roles.
+The ``GRANT USAGE ON SERVICE TO ALL ROLES`` utility function enables a ``SUPERUSER`` to grant access to services for other system roles.
 
 You may use it to perform one of the following options:
 

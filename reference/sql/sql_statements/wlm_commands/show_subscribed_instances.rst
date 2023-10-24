@@ -1,10 +1,10 @@
 .. _show_subscribed_instances :
 
 ***************************
-SHOW_SUBSCRIBED_INSTANCES
+SHOW SUBSCRIBED INSTANCES
 ***************************
 
-``SHOW_SUBSCRIBED_INSTANCES`` lists the cluster workers and their service queues.
+``SHOW SUBSCRIBED INSTANCES`` lists the cluster workers and their service queues.
 
 .. note:: If you haven't already, read the :ref:`Workload manager guide<workload_manager>`.
 

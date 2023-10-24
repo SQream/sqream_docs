@@ -1,9 +1,10 @@
 .. _get_all_roles_database_ddl:
 
 **************************
-GET_ALL_ROLES_DATABASE_DDL
+GET ALL ROLES DATABASE DDL
 **************************
-The ``GET_ALL_ROLES_DATABASE_DDL`` statement returns the definition of all role databases in DDL format.
+
+The ``GET ALL ROLES DATABASE DDL`` statement returns the definition of all role databases in DDL format.
 
 .. contents:: 
    :local:
@@ -11,7 +12,6 @@ The ``GET_ALL_ROLES_DATABASE_DDL`` statement returns the definition of all role 
 
 Syntax
 ==========
-The following is the correct syntax for using the ``GET_ALL_ROLES_DATABASE_DDL`` statement:
 
 .. code-block:: postgres
 
@@ -19,7 +19,6 @@ The following is the correct syntax for using the ``GET_ALL_ROLES_DATABASE_DDL``
 
 Example
 ===========
-The following is an example of using the ``GET_ALL_ROLES_DATABASE_DDL`` statement:
 
 .. code-block:: psql
 
@@ -35,7 +34,7 @@ The following is an example of the output of the ``GET_ALL_ROLES_DATABASE_DDL`` 
 
 Permissions
 =============
-Using the ``GET_ALL_ROLES_DATABASE_DDL`` statement requires no special permissions.
+Using the ``GET ALL ROLES DATABASE DDL`` statement requires no special permissions.
 
 For more information, see the following:
 

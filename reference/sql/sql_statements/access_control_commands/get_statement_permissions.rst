@@ -1,10 +1,10 @@
 .. _get_statement_permissions:
 
 ****************************
-GET_STATEMENT_PERMISSIONS
+GET STATEMENT PERMISSIONS
 ****************************
 
-``GET_STATEMENT_PERMISSIONS`` analyzes an SQL statement and returns a list of permissions required to execute it.
+``GET STATEMENT PERMISSIONS`` analyzes an SQL statement and returns a list of permissions required to execute it.
 
 Use this function to understand the permissions required, before :ref:`granting<grant>` them to a specific role.
 
@@ -15,7 +15,7 @@ See also :ref:`grant`, :ref:`create_role`.
 Permissions
 =============
 
-No special permissions are required to run ``GET_STATEMENT_PERMISSIONS``.
+No special permissions required.
 
 Syntax
 ==========
