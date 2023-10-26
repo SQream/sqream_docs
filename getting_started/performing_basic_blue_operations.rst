@@ -109,8 +109,8 @@ If you are working on a job over a period of time or if you have started composi
 6. You may now close the webpage you are working on and the job will be automatically saved under **Jobs** > **Drafts**.
 7. To edit a job that is saved to **Drafts**, hover over a job that you created, and from the three-dot menu on the right-hand side choose **Edit Job**.
 
-Utilizing Existing Jobs
-=======================
+Building Upon Existing Jobs
+=============================
 
 To optimize your time and effort, you have the option to create a new job based on existing jobs from other users. This feature proves helpful when there are elements within an existing job that you require for your own job but with some modifications or additional components.
 
@@ -122,10 +122,9 @@ To optimize your time and effort, you have the option to create a new job based 
 Monitoring Executed Jobs
 ========================
 
-You may monitor all executed jobs, verify query execution success, and investigate failed queries.
+The **History** tab is where you can see when was the last time your Job was executed, when's the next time it will be executed and the execution status.
 
-1. In the sidebar, go to **Jobs** > **History**.
-2. Hover over and select the job you wish to investigate.
+Job status may be one of four options:
 
 .. list-table:: Job Status
    :widths: auto
@@ -141,7 +140,15 @@ You may monitor all executed jobs, verify query execution success, and investiga
      - Your job is currently running
    * - Pending
      - You job will be executed as soon as a Worker becomes available
-	 
+
+Failed Jobs
+------------ 
+
+1. To investigate failed Jobs, in the sidebar, go to **Jobs** and select the **History** tab.
+2. Select the job you wish to investigate.
+
+   A drop-down table opens, revealing one of four options for each task: 
+
 .. list-table:: Task Status
    :widths: auto
    :header-rows: 1
@@ -156,7 +163,11 @@ You may monitor all executed jobs, verify query execution success, and investiga
      - Task is currently running
    * - Pending
      - Task will be executed as soon as a Worker becomes available
-	 
+
+3. To retrieve a failed task log, click on the **Failed** button.  
+
+   A pop-up error log opens, depicting error details.                                         
+
 Deleting Jobs
 =============
 
@@ -164,4 +175,9 @@ You may only delete jobs created by you.
 
 1. In the sidebar, go to **Jobs** and then either **All Jobs** or **Drafts**.
 2. Hover over the job you wish to delete and from the three-dot menu choose **Delete**.
+
+Troubleshooting
+================
+
+
 
