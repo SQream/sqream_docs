@@ -18,8 +18,6 @@ SQreamDB supports SQL from the ANSI 92 syntax.
      - Literals are fixed values representing specific data types, such as numbers or strings, used directly in SQL statements.
    * - :ref:`scalar_expressions`
      - Scalar expressions are single-value computations that operate on one or more values to produce a single result.
-   * - :ref:`cross_database_query`  
-     - Cross-database queries involve accessing and manipulating data from multiple databases within a single SQL statement or operation.
    * - :ref:`joins`
      - Joins combine rows from two or more tables based on a related column to retrieve data from multiple sources in a single result set.
    * - :ref:`common_table_expressions`
