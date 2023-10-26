@@ -1,7 +1,7 @@
 .. _version_upgrade_configurations:
 
 ******************************************
-Version History and Configuration Changes
+Upgrade-Related Configuration Changes
 ******************************************
 
 	   
