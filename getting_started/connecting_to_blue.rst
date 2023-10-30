@@ -31,7 +31,7 @@ Using connectors and third-party tools requires BLUE clients to be associated wi
 
 #. Use the access token within your connector or third-party application or tool configuration.
 
-#. To enable **Jobs**, designate a recently created client or one of your existing clients as a connection for Jobs by choosing it from the Jobs column on under the **Access Token Management** tab.
+#. To enable **Jobs**, designate a recently created client or one of your existing clients as a connection for Jobs by choosing it from the Jobs column, under the **Access Token Management** tab.
 
 Managing Access Tokens
 -------------------------------
