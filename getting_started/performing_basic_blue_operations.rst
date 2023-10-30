@@ -26,13 +26,13 @@ Creating a Job
 
    The newly created job page opens.
    
-3. In the upper left-hand corner, type in the task name and description.
+3. In the upper left corner, type in the task name and description.
 4. Drag a script from the **SQL Scripts** menu to the **Drag SQL** box of the task.
 
    Tasks are always shown in the **Preview** window.
 
 5. To create a sequel task, select the ``+`` button located under the last task in the **Preview** window.
-6. After having added all required SQL scripts, it is essential that you save the job by selecting the **Save Job** button located in the upper right-hand corner.
+6. After having added all required SQL scripts, select the **Save Job** button located in the upper right corner.
 7. You may choose one of the following options:
 
 * **Save to Jobs**
@@ -57,8 +57,8 @@ Jobs are composed of multiple tasks. Each task is associated with a single SQL s
 
 Keep in mind that SQL scripts that are saved and uploaded to the **SQL Scripts** list will be executed using your master database and public schema by default. To have your SQL scripts use other database and/or schema and/or resource pool, you may use the :ref:`use_database`, :ref:`use_schema`, and :ref:`use_pool` commands within your script. 
 
-1. In the sidebar, go to **Editor** and create a SQL script.
-2. On the right-hand side of the ribbon, select **Upload**.
+1. In the sidebar, go to **Workbench** and create a SQL script.
+2. On the right side of the ribbon, select **Upload**.
 
    The **SQL Catalogue** window opens.
 
@@ -70,37 +70,37 @@ Keep in mind that SQL scripts that are saved and uploaded to the **SQL Scripts**
 Changes to Jobs
 ================
 
-You may wish to make changes to one or more Job and/or SQL scripts for maintenance or just general improvement. Follow the next 2 items to learn how to edit pre-saved SQL scripts and existing Jobs.  
+You may wish to make changes to one or more Job and/or SQL script for maintenance or just general improvement. Follow the next 2 items to learn how to edit pre-saved SQL scripts and existing Jobs.  
 
 Editing Saved SQL Scripts
 ---------------------------
 
-1. In the sidebar, go to **Editor**.
-2. On the right-hand side of the ribbon, select **Download**.
+1. In the sidebar, go to **Workbench**.
+2. On the right side of the ribbon, select **Download**.
 
    The SQL **Catalogue** window opens.
    
 3. Select the script you wish to edit by either typing in the script name in the **File Name** box or select the script from the script menu.
 4. Select **Open**.
 
-   The SQL script is displayed in the **Editor**.
+   The SQL script is displayed in the **Workbench**.
 
 5. Edit the script.
-6. On the right-hand side of the ribbon, select **Upload**.
+6. On the right side of the ribbon, select **Upload**.
 
    The **SQL Catalogue** window opens. 
    
 7. Name the script you wish to save by either typing in the script name in the **Save As** box or select the script from the script menu.
 
-Building Upon Existing Jobs
+Utilizing Existing Jobs
 ----------------------------
 
-To optimize your time and effort, you have the option to create a new job based on existing jobs from other users. This feature proves helpful when there are elements within an existing job that you require for your own job but with some modifications or additional components.
+You have the option to utilize other users' jobs to optimizes your time and effort. This is done by duplicating existing Jobs and using the duplication as the grounds to build upon your own Job. 
 
 1. In the sidebar, go to **Jobs** > **All Jobs**.
 2. Hover over the job you wish to utilize and from the three-dot menu choose **Duplicate Job**.
 
-   The duplication is automatically saved to the **Drafts** tab under the same name as the original job with a time-stamp addition ``yyyy-mm-dd hh:mm:ss``.
+   The duplication is automatically saved to the **Drafts** tab under the same name as the original job with an addition of a time-stamp.
 
 Drafting Jobs
 ---------------
@@ -112,14 +112,14 @@ If you are working on a job over a period of time or if you have started composi
 
    The newly created job page opens.
    
-3. In the upper left-hand corner, type in the task name and description.
+3. In the upper left corner, type in the task name and description.
 4. Drag a script from the **SQL Scripts** menu to the **Drag SQL** box of the task.
 
    Tasks are always shown in the **Preview** window.
 
 5. To create a sequel task, select the ``+`` button located under the last task in the **Preview** window.
 6. You may now close the webpage you are working on and the job will be automatically saved under **Jobs** > **Drafts**.
-7. To edit a job that is saved to **Drafts**, hover over a job that you created, and from the three-dot menu on the right-hand side choose **Edit Job**.
+7. To edit a job that is saved to **Drafts**, hover over a job that you created, and from the three-dot menu choose **Edit Job**.
 
 Monitoring Jobs
 ================
