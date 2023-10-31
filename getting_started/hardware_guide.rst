@@ -45,7 +45,7 @@ An average single-node cluster can be a rackmount server or workstation, contain
    * - Server
      - Dell R750, Dell R940xa, HP ProLiant DL380 Gen10 or similar (Intel only)
    * - Processor
-     - 2x Intel Xeon Gold 6240 (18C/36HT) 2.6GHz or similar
+     - 2x Intel Xeon Gold 6348 (28C/56HT) 3.5GHz or similar
    * - RAM
      - 1.5 TB
    * - Onboard storage
@@ -90,7 +90,7 @@ The following table shows SQream's recommended hardware specifications:
    * - Server
      - Dell R750, Dell R940xa, HP ProLiant DL380 Gen10 or similar (Intel only)
    * - Processor
-     - 2x Intel Xeon Gold 6240 (18C/36HT) 2.6GHz or similar
+     - 2x Intel Xeon Gold 6348 (28C/56HT) 3.5GHz or similar
    * - RAM
      - 2 TB
    * - Onboard storage
