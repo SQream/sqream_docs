@@ -4,19 +4,34 @@
 SQL Workflows
 *************
    
-Managing complex SQL workflows is often necessary. This involves creating and automating sequences of SQL scripts to trigger one another smoothly, crucial for delivering insights and preparing data for tasks like data modeling and training. The **Jobs** workflow management tool addresses this demand, allowing manual execution or scheduled automatic runs of SQL workflows. 
+SQL workflows play a pivotal role in data preparation, modeling, and training. Managing intricate SQL workflows requires the orchestration of sequences in which SQL script dependencies trigger one another. The **Jobs** workflow management tool caters to this need, enabling both manual and scheduled automatic runs of SQL workflows.
 
 What are Jobs
 ===================
 
-Apart from writing and running queries, BLUE offers the Jobs platform for creating sets of automated SQL workflows. Each set, called a Job, consists of several SQL scripts. Picture a Job as your main strategy and the SQL scripts as the individual steps needed to carry it out.
+A Job is an automated set of SQL scripts that form a workflow. Think of a Job as your main strategy and the SQL scripts as the individual steps needed to carry it out. Each individual SQL script is represented by a single **Task**.
 
-To secure your strategy from unauthorized access, the Jobs feature needs its own access-token protected connection, which is straightforward to set up. If you haven't configured a secure connection yet, check out the :ref:`connecting_to_blue` guide for step-by-step instructions.
+.. list-table:: Workflow Concepts
+   :widths: auto
+   :header-rows: 1
 
-New Jobs
-=================
+   * - Element
+     - Description
+   * - SQL Script
+     - A list of saved and ready-to-use SQL scripts. When you choose a name for a SQL script, it is advisable to choose a name that accurately reflects the SQL action or purpose. Saved SQL scripts may be managed using the `Workbench <https://docs.sqream.com/en/blue/getting_started/performing_basic_blue_operations.html#editing-saved-sql-scripts>`_.
+   * - Task
+     - A step within a serial operation that forms a job. 
+   * - Job
+     - Composed of multiple tasks that are executed in a specific sequence.
 
-Jobs are composed of multiple tasks that are executed in a specific sequence. Each individual **Task** represents a single SQL script. As jobs are sequential operations, it is important to order the tasks in a way that makes sense. You have the flexibility to choose between executing jobs manually or scheduling them for automatic execution.
+New Job
+========
+
+Authentication
+---------------
+
+The Jobs feature requires its own access-token protected connection, which is a simple setup. If you haven't configured a secure connection yet, check out the :ref:`connecting_to_blue` guide for step-by-step instructions.
+
 
 Creating a Job
 ---------------
@@ -50,7 +65,7 @@ Creating a Job
      - You may set the date and time of day for the job to be executed for the first time by setting **Date** and **Time**. Additionally, you may set the job to be executed repeatedly by setting it to **Repeat Every** certain number of days. Your job will be saved under **Jobs** > **All Jobs**. The job **Status** will show **Pending**.
 
 
-Saving SQL Scripts to Jobs
+Saving SQL Scripts as Tasks
 ----------------------------
 
 Jobs are composed of multiple tasks. Each task is associated with a single SQL script. To create tasks, you need to have SQL scripts prepared and ready to be used. After having created and saved a SQL script, it will automatically appear on the **SQL Scripts** list that is used for creating jobs.
@@ -67,12 +82,12 @@ Keep in mind that SQL scripts that are saved and uploaded to the **SQL Scripts**
 .. tip:: When choosing a SQL script name, it is advisable to accurately reflect the SQL action or purpose.
 
 
-Changes to Jobs
+Job Edit
 ================
 
-You may wish to make changes to one or more Job and/or SQL script for maintenance or just general improvement. Follow the next 2 items to learn how to edit pre-saved SQL scripts and existing Jobs.  
+Whether it's for maintenance or general enhancements, you can edit existing Jobs and Tasks, provided that the Job is not currently running.
 
-Editing Saved SQL Scripts
+Editing Tasks
 ---------------------------
 
 1. In the sidebar, go to **Workbench**.
@@ -105,7 +120,7 @@ You have the option to utilize other users' jobs to optimizes your time and effo
 Drafting Jobs
 ---------------
 
-If you are working on a job over a period of time or if you have started composing a job but haven't finished it, you have the option to save it as a draft. In case you didn't save the job and navigated to another page, the job will be automatically saved under **Jobs** > **Drafts**. It's important to note that you can only edit jobs saved in the **Drafts** section if you were the one who created them.
+Whether you're actively working on a job for an extended duration or have initiated the composition without completion, you can choose to save it as a draft. If you navigate away without saving the job manually, it will be automatically preserved in the **Jobs** > **Drafts** section. Only the creator of a draft can edit jobs saved in the **Drafts** section.
 
 1. In the sidebar, go to **Jobs**.
 2. Select the **Create New Job** button, enter job name, and select **Save**.
@@ -124,7 +139,7 @@ If you are working on a job over a period of time or if you have started composi
 Monitoring Jobs
 ================
 
-The **History** tab is where you can see when was the last time your Job was executed, when's the next time it will be executed and the execution status.
+The **History** tab is your go-to for checking the last execution time, the next scheduled execution, and the current status of your Job.
 
 Job status may be one of four options:
 
@@ -173,7 +188,7 @@ Failed Jobs
 Deleting Jobs
 =============
 
-You may only delete jobs created by you.
+You may only delete jobs owned by you.
 
 1. In the sidebar, go to **Jobs** and then either **All Jobs** or **Drafts**.
 2. Hover over the job you wish to delete and from the three-dot menu choose **Delete**.
@@ -182,15 +197,3 @@ You may only delete jobs created by you.
 
 
 
-.. list-table:: SQL Workflow Elements
-   :widths: auto
-   :header-rows: 1
-
-   * - Element
-     - Description
-   * - SQL Script
-     - A list of saved and ready-to-use SQL scripts. When you choose a name for a SQL script, it is advisable to choose a name that accurately reflects the SQL action or purpose. Saved SQL scripts may be managed using the `Workbench <https://docs.sqream.com/en/blue/getting_started/performing_basic_blue_operations.html#editing-saved-sql-scripts>`_.
-   * - Task
-     - A step within a serial operation that forms a job. 
-   * - Job
-     - Composed of multiple tasks that are executed in a specific sequence.
