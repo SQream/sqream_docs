@@ -78,7 +78,7 @@ The ``DEFAULT`` value constraint specifies a value to use if one is not defined 
 
 The default value may be a literal or NULL.
 
-.. note:: The ``DEFAULT`` constraint only applies if the column does not have a value specified in the :ref:`insert` or :ref:`copy_from` statement. You can still insert a ``NULL`` into an nullable column by explicitly inserting ``NULL``. For example, ``INSERT INTO cool_animals VALUES (1, 'Gnu', NULL)``.
+.. note:: The ``DEFAULT`` constraint only applies if the column does not have a value specified in the :ref:`insert` or :ref:`copy_from` statement. You can still insert a ``NULL`` into a nullable column by explicitly inserting ``NULL``. For example, ``INSERT INTO cool_animals VALUES (1, 'Gnu', NULL)``.
 
 Syntax
 ---------
@@ -95,7 +95,9 @@ The following is the correct syntax for using the **DEFAULT** value constraints:
 
    default ::=
        DEFAULT default_value
-       | IDENTITY [ ( start_with [ , increment_by ] ) ]
+       | IDENTITY [ ( start_with [ , increment_by ] ) ] [ check_specification ]
+       | check_specification [ IDENTITY [ ( start_with [ , increment_by ] ) ]
+
    
    check_specification ::= 
       CHECK( 'CS compression_spec' )
