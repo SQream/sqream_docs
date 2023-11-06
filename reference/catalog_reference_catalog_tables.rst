@@ -264,10 +264,6 @@ The following table describes the ``schema_permissions`` data object:
    * - ``permission_type``
      - Identifies the permission type.	 
 
-UDF Permissions
-*****************
-
-**Comment** - *No content.*
 
 .. _queries:
 
