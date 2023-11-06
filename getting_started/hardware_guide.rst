@@ -55,7 +55,10 @@ An average single-node cluster can be a rackmount server or workstation, contain
          * 10x 3.84TB SSD 2.5in Hot plug for storage, RAID6
 
    * - GPU
-     - NVIDIA 2x A100 or H100
+     - 
+        * NVIDIA 2x A100 or H100
+        * NVIDIA 2x L40S
+
    * - Operating System
      - Red Hat Enterprise Linux v7.9 or CentOS v7.9 or Amazon Linux
 
@@ -102,7 +105,7 @@ The following table shows SQream's recommended hardware specifications:
          * Mellanox Connectx5/6 100G NVIDIA Network Card (if applicable) or other high-speed network card minimum 40G compatible with customer’s infrastructure
          * 50 TB (NAS connected over GPFS, Lustre, Weka, or VAST) GPFS recommended
    * - GPU
-     - NVIDIA 2x A100 or H100
+     - NVIDIA 2x A100, H100, or L40S
    * - Operating System
      - Red Hat Enterprise Linux v7.9 or CentOS v7.9 or Amazon Linux
 	 
@@ -237,5 +240,5 @@ Storage
 
 For clustered scale-out installations, SQream relies on NAS storage. For stand-alone installations, SQream relies on redundant disk configurations, such as RAID 5, 6, or 10. These RAID configurations replicate blocks of data between disks to avoid data loss or system unavailability. 
 
-SQream recommends using enterprise-grade SAS SSD or NVMe drives. For a 32-user configuration, the number of GPUs should roughly match the number of users. SQream recommends 1 Tesla A100 GPU or H100 per 2 users, for full, uninterrupted dedicated access.
+SQream recommends using enterprise-grade SAS SSD or NVMe drives. For a 32-user configuration, the number of GPUs should roughly match the number of users. SQream recommends 1 Tesla A100 / H100 or L40S GPU per 2 users, for full, uninterrupted dedicated access.
 
