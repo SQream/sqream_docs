@@ -37,4 +37,4 @@ Output
 Permissions
 ===========
 
-The ``DESCRIBE PPOLS`` command requires ``CONNECT`` permission.
+The ``DESCRIBE POOLS`` command requires ``CONNECT`` permission.
