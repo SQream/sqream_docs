@@ -54,7 +54,7 @@ SQreamDB compresses all columns and types. The data size noted is the maximum da
      - Variable length string - UTF-8 unicode
      - Up to ``4`` bytes
      - ``'Kiwis have tiny wings, but cannot fly.'``
-     - ``CHAR VARYING``, ``CHAR``, ``CHARACTER VARYING``, ``CHARACTER``, ``NATIONAL CHARACTER VARYING``, ``NATIONAL CHARACTER``, ``NCHAR VARYING``, ``NCHAR``, ``NATIONAL CHAR``, ``NATIONAL CHAR VARYING``
+     - ``CHAR VARYING``, ``CHAR``, ``CHARACTER VARYING``, ``CHARACTER``, ``NATIONAL CHARACTER VARYING``, ``NATIONAL CHARACTER``, ``NCHAR VARYING``, ``NCHAR``, ``NATIONAL CHAR``, ``NATIONAL CHAR VARYING``, ``NVARCHAR``
    * - ``NUMERIC``
      -  38 digits
      - 16 bytes
