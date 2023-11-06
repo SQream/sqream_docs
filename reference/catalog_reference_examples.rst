@@ -4,8 +4,6 @@
 Examples
 ********
 
-The **Examples** page includes the following examples:
-
 .. contents:: 
    :local:
    :depth: 1
@@ -62,4 +60,3 @@ Listing Saved Queries
 
    SELECT * FROM sqream_catalog.savedqueries;
    
-For more information, see  :ref:`saved_queries`.
