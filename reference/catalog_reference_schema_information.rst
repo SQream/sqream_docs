@@ -4,19 +4,13 @@
 What Information Does the Schema Contain?
 *****************************************
 
-The schema includes tables designated and relevant for both external and internal use:
-
-.. contents:: 
-   :local:
-   :depth: 1
+The schema contains data management tables with information about structure and management of database elements, including tables, schemas, queries, and permissions, and physical storage and organization of data tables of extents, chunk columns, chunks, and delete predicates.
    
-External Tables
----------------
+Database Management Tables
+---------------------------
 
-The following table shows the data objects contained in the ``sqream_catalog`` schema designated for external use:
-
-.. list-table:: Database Objects
-   :widths: 20 180
+.. list-table::
+   :widths: auto
    :header-rows: 1
    
    * - Database Object
@@ -42,22 +36,20 @@ The following table shows the data objects contained in the ``sqream_catalog`` s
    * - :ref:`User Defined Functions<udfs>`
      - ``user_defined_functions``
 
-Internal Tables
----------------
+Data Storage and Organization Tables
+---------------------------------------
 
-The following table shows the data objects contained in the ``sqream_catalog`` schema designated for internal use:
-
-.. list-table:: Storage Objects
-   :widths: 20 180
+.. list-table:: 
+   :widths: auto
    :header-rows: 1
    
    * - Database Object
      - Table
    * - Extents
-     - Shows ``extents``.
+     - Shows ``extents``
    * - Chunk columns
-     - Shows ``chunks_columns``.
+     - Shows ``chunks_columns``
    * - Chunks
-     - Shows ``chunks``.
+     - Shows ``chunks``
    * - Delete predicates
-     - Shows ``delete_predicates``. For more information, see :ref:`Deleting Data<delete_guide>`.
+     - Shows ``delete_predicates``. For more information, see :ref:`Deleting Data<delete_guide>`

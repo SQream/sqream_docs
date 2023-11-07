@@ -118,6 +118,32 @@ The ``databases`` data object is used for displaying database information, and i
    * - ``compression_chunk_size_threshold``
      - Reserved for internal use.
 
+.. _parameters:
+
+Parameters
+-------------
+
+The ``parameters`` object is used for displaying all flags, providing the scope (default, cluster and session), description, default value and actual value. 
+
+.. list-table::
+   :widths: 20 180
+   :header-rows: 1
+   
+   * - Column
+     - Description
+   * - ``flag_name``
+     - Shows the flag name
+   * - ``value``
+     - Shows the current flag configured value
+   * - ``default_value``
+     - Shows the flag default value
+   * - ``scope``
+     - Shows whether flag configuration is session-based or cluster-based  
+   * - ``description``
+     - Describes the purpose of the flag
+	 
+	
+
 .. _permissions:
 
 Permissions
