@@ -2,7 +2,7 @@
 
 ********
 Examples
-********
+******** 
 
 .. contents:: 
    :local:
