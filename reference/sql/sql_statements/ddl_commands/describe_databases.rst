@@ -92,4 +92,4 @@ Output:
 Permissions
 ===========
 
-Using the ``DESCRIBE DATABASES`` command requires ``SUPERUSER`` permissions.
+This command requires ``CONNECT`` permission on the database level.

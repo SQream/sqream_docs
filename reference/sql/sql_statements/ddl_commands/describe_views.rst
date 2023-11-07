@@ -119,4 +119,4 @@ The following is an example of the ``DESCRIBE VIEWS LIKE`` command output:
 Permissions
 ===========
 
-The role must have the ``USAGE`` permission.
+This command requires ``USAGE`` permission on the schema level.

@@ -107,4 +107,4 @@ Output:
 Permissions
 ===========
 
-This command requires a ``SUPERUSER`` permission.
+This command requires ``SUPERUSER`` permission, except when a role queries its own permissions.

@@ -129,4 +129,4 @@ Examples
 Permissions
 ===========
 
-Using the ``DESCRIBE TABLES`` command requires ``USAGE`` permissions.
+This command requires ``USAGE`` permission on the schema level.

@@ -181,4 +181,4 @@ Using the ``LIKE`` parameter:
 Permissions
 ===========
 
-Using the ``DESCRIBE TABLES EXTENDED`` command requires ``USAGE`` permissions.
+This command requires ``USAGE`` permission on the schema level.

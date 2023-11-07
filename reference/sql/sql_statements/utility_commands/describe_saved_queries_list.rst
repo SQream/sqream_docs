@@ -99,4 +99,4 @@ The following is an example of the ``DESCRIBE SAVED QUERIES LIST LIKE`` command 
 Permissions
 ===========
 
-The role must have the ``CONNECT`` permission.
+This command requires ``SUPERUSER`` permission, except when a role queries its own saved queries.

@@ -95,4 +95,4 @@ Examples
 Permissions
 ===========
 
-Using the ``DESCRIBE SCHEMAS`` command requires ``SUPERUSER`` permissions.
+This command requires ``CONNECT`` permission on the database level.

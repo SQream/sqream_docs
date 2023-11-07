@@ -96,4 +96,4 @@ Examples
 Permissions
 ===========
 
-Using the ``DESCRIBE USER FUNCTINS`` command requires ``USAGE`` permissions.
+This command requires ``USAGE`` permission on the schema level.

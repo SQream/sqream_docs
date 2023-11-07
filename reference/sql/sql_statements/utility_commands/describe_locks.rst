@@ -54,4 +54,4 @@ Using the **DESCRIBE CLUSTER STATUS** command generates the following output:
 Permissions
 ===========
 
-Using the ``DESCRIBE LOCKS`` command requires ``SUPERUSER`` permissions.
+This command requires a ``SUPERUSER`` permission.

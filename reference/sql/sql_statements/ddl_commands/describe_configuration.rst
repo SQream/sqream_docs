@@ -112,4 +112,4 @@ Output
 Permissions
 ===========
 
-Using the ``DESCRIBE CONFIGURATION`` command requires ``SUPERUSER`` permissions.
+This command requires a ``SUPERUSER`` permission.

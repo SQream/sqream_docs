@@ -139,4 +139,4 @@ Output:
 Permissions
 ===========
 
-Using the ``DESCRIBE COLUMNS`` command requires ``USAGE`` permissions.
+This command requires ``USAGE`` permission on the schema level.
