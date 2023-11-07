@@ -89,7 +89,7 @@ Spooling Configuration
 
 :math:`spoolMemoryGB=limitQueryMemoryGB - 50GB`
 
-SQreamDB recommends setting the ``spoolMemoryGB`` flag to 90% of the ``limitQueryMemoryGB`` flag. The ``limitQueryMemoryGB`` flag is the total memory you’ve allocated for processing queries. In addition, the ``limitQueryMemoryGB`` defines how much total system memory is used by each worker. Note that ``spoolMemoryGB`` must bet set to less than the ``limitQueryMemoryGB``.
+The ``limitQueryMemoryGB`` flag is the total memory you’ve allocated for processing queries. In addition, the ``limitQueryMemoryGB`` defines how much total system memory is used by each worker. Note that ``spoolMemoryGB`` must bet set to less than the ``limitQueryMemoryGB``.
 
 Example
 -------
@@ -97,7 +97,7 @@ Example
 Setting Spool Memory
 ~~~~~~~~~~~~~~~~~~~~
 
-The following examples are for 2T of RAM and 9 workers running on 3 A100(40) GPUs:
+The provided examples assume a configuration with 2T of RAM, 8 workers running on 2 A100(80GB) GPUs, with 200 GB allocated for Internal Operations, Metadata Server, Server Picker, and UI.
 
 Configuring the ``limitQueryMemoryGB`` using the Worker configuration file:
 
@@ -112,7 +112,7 @@ Configuring the ``limitQueryMemoryGB`` using the Worker configuration file:
        “metadataServerPort”: 3105,
        “port”: 5000,
        “useConfigIP”: true,
-       “limitQueryMemoryGB" : 201,
+       “limitQueryMemoryGB" : 225,
    }
 
 Configuring the ``spoolMemoryGB`` using the legacy configuration file:
@@ -130,7 +130,7 @@ Configuring the ``spoolMemoryGB`` using the legacy configuration file:
 		"nodeInfoLoggingSec": 60,
 		"useClientLog": true,
 		"useMetadataServer": true,
-		"spoolMemoryGB": 151,
+		"spoolMemoryGB": 175,
 		"waitForClientSeconds": 18000,
 		"enablePythonUdfs": true
 	}
