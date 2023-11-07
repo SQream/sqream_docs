@@ -87,6 +87,8 @@ In each JSON file, the following parameters **must be updated**:
 * port
 * ssl_port
 
+See how to :ref:`configure <spooling>` the Spool Memory.
+
 Note the following:
 
 * The value of the **metadataServerIp** parameter must point to the IP that the metadata is running on.

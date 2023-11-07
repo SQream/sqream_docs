@@ -82,6 +82,8 @@ To boost the performance of a single statement, start by examining the :ref:`bes
 
 Adding additional RAM to nodes, using more GPU memory, and faster CPUs or storage can also sometimes help.
 
+.. _spooling:
+
 Spooling Configuration
 ======================
 
