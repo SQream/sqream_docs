@@ -125,11 +125,17 @@ The Python drivers are updated periodically. To upgrade an existing pysqream ins
 
 SQLAlchemy
 ==========
+
 SQLAlchemy is an Object-Relational Mapper (ORM) for Python. When you install the SQream dialect (``pysqream-sqlalchemy``) you can use frameworks such as Pandas, TensorFlow, and Alembic to query SQream directly.
 
 .. contents:: 
    :local:
    :depth: 1
+
+* SQLalchemy version 1.4.46
+* Currently supports Pysqream 3.2.5
+
+
 
 Creating a Standard Connection
 ------------------------------
@@ -177,7 +183,7 @@ Creating a Standard Connection
 Pulling a Table into Pandas
 ---------------------------
 
-The following example shows how to pull a table in Pandas. This examples uses the URL method to create the connection string:
+The following example shows how to pull a table in Pandas. This example uses the URL method to create the connection string:
 
 .. code-block:: python
 
