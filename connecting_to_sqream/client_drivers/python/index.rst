@@ -151,7 +151,7 @@ Creating a Standard Connection
    * - ``password``
      - Specifies the password of the selected role
    * - ``host``
-     - Specifies the host name
+     - Specifies the hostname
    * - ``port``
      - Specifies the port number
    * - ``port_ssl``
