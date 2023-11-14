@@ -1,7 +1,7 @@
 .. _september_2023:
 
 ******************
-September 2023
+September
 ******************
 
 New Features

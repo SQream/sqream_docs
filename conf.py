@@ -35,7 +35,8 @@ html_title = "your custom sidebar title"
 # ones.
 extensions = [
     'notfound.extension', # 404 handling
-    'sphinx_copybutton'
+    'sphinx_copybutton' ,
+    'sphinx_inline_tabs'
 ]
 
 # Mark 'index' as the main page
@@ -102,6 +103,10 @@ html_theme_options = {
    , "sidebar_hide_name": True
    , "footer_icons": 'None'
    , "rst-versions": False
+   , "light_css_variables": {
+        "font-stack": "Arial, sans-serif",
+        "font-stack--monospace": "Courier, monospace",
+    }
 }
    
 

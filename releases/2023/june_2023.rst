@@ -1,7 +1,7 @@
 .. _june_2023:
 
 *********
-June 2023
+June
 *********
 
 Creating SQL Workflows

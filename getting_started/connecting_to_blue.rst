@@ -62,55 +62,47 @@ You may manage each of your BLUE clients' access tokens separately.
 Connectors, Drivers, and Third-Parties
 --------------------------------------
 
-Connectors and Drivers
-^^^^^^^^^^^^^^^^^^^^^^
+BLUE offers seamless integration with third-party tools, BI tools, and analysis tools, ensuring efficient data flow for advanced utilization. Verified compatibility exists with the following tools: 
 
-:ref:`JDBC<java_jdbc>`
+.. tab:: Connectors and Drivers
 
-:ref:`ODBC<odbc>`
+    :ref:`JDBC<java_jdbc>`
 
-:ref:`Python<pysqream>`
+    :ref:`ODBC<odbc>`
 
-Data Management, Analysis, and Business Intelligence Tools
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    :ref:`Python<pysqream>`
 
-Data Integration Tools
-""""""""""""""""""""""
+.. tab:: Integration Tools
 
-:ref:`Apache Airflow<apache_airflow>`
+    :ref:`Apache Airflow<apache_airflow>`
 
-:ref:`Denodo<denodo>`
+    :ref:`Denodo<denodo>`
 
-:ref:`Informatica Cloud Services<informatica>`
+    :ref:`Informatica Cloud Services<informatica>`
 
-:ref:`Pentaho Data Integration<pentaho_data_integration>`
+    :ref:`Pentaho Data Integration<pentaho_data_integration>`
 
-:ref:`Talend<talend>`
+    :ref:`Talend<talend>`
 
-:ref:`SQL Workbench<connect_to_sql_workbench>`
+    :ref:`SQL Workbench<connect_to_sql_workbench>`
+	
+.. tab:: BI Tools
 
-Business Intelligence (BI) Tools
-""""""""""""""""""""""""""""""""
+    :ref:`MicroStrategy<micro_strategy>`
 
-:ref:`MicroStrategy<micro_strategy>`
+    :ref:`Power BI Desktop<power_bi>`
 
-:ref:`Power BI Desktop<power_bi>`
+    :ref:`SAP BusinessObjects<sap_businessobjects>`
 
-:ref:`SAP BusinessObjects<sap_businessobjects>`
+    :ref:`SAS Viya<connect_to_sas_viya>`
 
-:ref:`SAS Viya<connect_to_sas_viya>`
+    :ref:`Tableau<tableau>`
 
-:ref:`Tableau<tableau>`
+    :ref:`TIBCO Spotfire<tibco_spotfire>`
 
-:ref:`TIBCO Spotfire<tibco_spotfire>`
+.. tab:: Analysis and Programming Languages
 
-Data Analysis and Programming Languages
-"""""""""""""""""""""""""""""""""""""""
+    :ref:`PHP<php>`
 
-:ref:`PHP<php>`
+    :ref:`R<r>`
 
-:ref:`R<r>`
-
-.. topic:: Additional Connection Methods and Tools
-
-   If you wish to use any other connection method or tool which is not currently supported, you may contact our `support team <https://sqream.atlassian.net/servicedesk/>`_, and they'll look into it.

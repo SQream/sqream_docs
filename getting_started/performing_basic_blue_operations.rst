@@ -11,19 +11,6 @@ What are Jobs
 
 A Job is an automated set of SQL scripts that form a workflow. Think of a Job as your main strategy and the SQL scripts as the individual steps needed to carry it out. Each individual SQL script is represented by a single **Task**.
 
-.. list-table:: Workflow Concepts
-   :widths: auto
-   :header-rows: 1
-
-   * - Element
-     - Description
-   * - SQL Script
-     - A list of saved and ready-to-use SQL scripts. When you choose a name for a SQL script, it is advisable to choose a name that accurately reflects the SQL action or purpose. Saved SQL scripts may be managed using the `Workbench <https://docs.sqream.com/en/blue/getting_started/performing_basic_blue_operations.html#editing-saved-sql-scripts>`_.
-   * - Task
-     - A step within a serial operation that forms a job. 
-   * - Job
-     - Composed of multiple tasks that are executed in a specific sequence.
-
 New Job
 ========
 
@@ -32,37 +19,33 @@ Authentication
 
 The Jobs feature requires its own access-token protected connection, which is a simple setup. If you haven't configured a secure connection yet, check out the :ref:`connecting_to_blue` guide for step-by-step instructions.
 
-
 Creating a Job
 ---------------
 
 1. In the sidebar go to **Jobs**.
 2. Select the **Create New Job** button, enter job name, and select **Save**.
 
-   The newly created job page opens.
+   The Job **Preview** opens.
    
 3. In the upper left corner, type in the task name and description.
 4. Drag a script from the **SQL Scripts** menu to the **Drag SQL** box of the task.
 
    Tasks are always shown in the **Preview** window.
 
-5. To create a sequel task, select the ``+`` button located under the last task in the **Preview** window.
-6. After having added all required SQL scripts, select the **Save Job** button located in the upper right corner.
+5. To create a task, select the |add_task| located under the last task in the **Preview** window.
+6. After having added all scripts, select the **Save Job** button located in the upper right corner.
 7. You may choose one of the following options:
 
-* **Save to Jobs**
-* **Schedule Job**
-
-.. list-table:: Save Job Options
+.. list-table::
    :widths: auto
    :header-rows: 1
 
    * - Option
      - Description
    * - Save to Jobs
-     - Your job will be saved under **Jobs** > **All Jobs**. You will be able to manually execute the job by hovering over the job list and selecting the ``►`` button. After having selected ``►``, the job **Status** will show **Running**.  
+     - Your job is saved under **Jobs** > **All Jobs**. You are able to manually execute the job by hovering over it and selecting |play_job|.  
    * - Schedule Job
-     - You may set the date and time of day for the job to be executed for the first time by setting **Date** and **Time**. Additionally, you may set the job to be executed repeatedly by setting it to **Repeat Every** certain number of days. Your job will be saved under **Jobs** > **All Jobs**. The job **Status** will show **Pending**.
+     - You may set the date and time of day for the job to be executed for the first time by setting **Date** and **Time**. Additionally, you may set the job to be executed repeatedly by setting it to **Repeat Every** certain number of days. Your job is saved under **Jobs** > **All Jobs**. The |scheduled_job| indicates Scheduled Jobs.
 
 
 Saving SQL Scripts as Tasks
@@ -81,11 +64,45 @@ Keep in mind that SQL scripts that are saved and uploaded to the **SQL Scripts**
 
 .. tip:: When choosing a SQL script name, it is advisable to accurately reflect the SQL action or purpose.
 
+Drafting Jobs
+==============
 
-Job Edit
-================
+Whether you're actively working on a job for an extended duration or have initiated the composition without completion, you can choose to save it as a draft. If you navigate away without saving the job manually, it will be automatically preserved in the **Jobs** > **Drafts** section. Only the creator of a draft can edit jobs saved in the **Drafts** section.
 
-Whether it's for maintenance or general enhancements, you can edit existing Jobs and Tasks, provided that the Job is not currently running.
+1. In the sidebar, go to **Jobs**.
+2. Select the **Create New Job** button, enter job name, and select **Save**.
+
+   The newly created job page opens.
+   
+3. In the upper left corner, type in the task name and description.
+4. Drag a script from the **SQL Scripts** menu to the **Drag SQL** box of the task.
+
+   Tasks are always shown in the **Preview** window.
+
+5. To create a task, select the |add_task| located under the last task in the **Preview** window.
+6. You may now close the webpage you are working on and the job will be automatically saved under **Jobs** > **Drafts**.
+7. To edit a job that is saved to **Drafts**, hover over a job that you created, and from the |three_dot_job| menu choose **Edit Job**.
+
+Managing Existing Jobs
+=======================
+
+Whether it's for maintenance or general enhancements, you can manage and edit Jobs and Tasks, provided that the Job is not currently running.
+
+Editing a Job
+---------------
+
+1. In the sidebar, go to **Jobs** and then either **All Jobs** or **Drafts**.
+2. Hover over the job you wish to edit and from the |three_dot_job| menu choose **Edit Job**.
+
+   The Job **Preview** opens.
+   
+3. You may now:
+
+* Delete a task by hovering over it and choosing |delete_task| 
+* Change the task script by hovering over it, choosing |delete_script|, and dragging a new script
+* Rename Job
+* Rename tasks
+* Add or edit task description
 
 Editing Tasks
 ---------------------------
@@ -107,34 +124,61 @@ Editing Tasks
    
 7. Name the script you wish to save by either typing in the script name in the **Save As** box or select the script from the script menu.
 
+Deleting Jobs
+--------------
+
+You may only delete jobs owned by you.
+
+1. In the sidebar, go to **Jobs** and then either **All Jobs** or **Drafts**.
+2. Hover over the job you wish to delete and from the |three_dot_job| menu choose **Delete**.
+
 Utilizing Existing Jobs
 ----------------------------
 
-You have the option to utilize other users' jobs to optimizes your time and effort. This is done by duplicating existing Jobs and using the duplication as the grounds to build upon your own Job. 
+You have the option to utilize other users' jobs to optimize your time and effort. This is done by duplicating existing Jobs and using the duplication as the grounds to build upon your own Job. 
 
 1. In the sidebar, go to **Jobs** > **All Jobs**.
-2. Hover over the job you wish to utilize and from the three-dot menu choose **Duplicate Job**.
+2. Hover over the job you wish to utilize and from the |three_dot_job| menu choose **Duplicate Job**.
 
    The duplication is automatically saved to the **Drafts** tab under the same name as the original job with an addition of a time-stamp.
 
-Drafting Jobs
----------------
+.. _sharing_jobs:
 
-Whether you're actively working on a job for an extended duration or have initiated the composition without completion, you can choose to save it as a draft. If you navigate away without saving the job manually, it will be automatically preserved in the **Jobs** > **Drafts** section. Only the creator of a draft can edit jobs saved in the **Drafts** section.
+Sharing Jobs 
+----------------
 
-1. In the sidebar, go to **Jobs**.
-2. Select the **Create New Job** button, enter job name, and select **Save**.
+1. In the sidebar, go to **Jobs** > **All Jobs**.
 
-   The newly created job page opens.
+2. To share a Job with specific users:
+
+   a. Hover over the job you wish to share and from the |three_dot_job| menu choose **Share Job**.
+
+      The **Share Job** window opens.
    
-3. In the upper left corner, type in the task name and description.
-4. Drag a script from the **SQL Scripts** menu to the **Drag SQL** box of the task.
+   b. In the search box, type the name or email of the user you want to share your Job with and select **Share**.
 
-   Tasks are always shown in the **Preview** window.
+      The user you shared your Job with is now able to delete, duplicate, and share this Job.
+   
+3. To share a Job with all users:
 
-5. To create a sequel task, select the ``+`` button located under the last task in the **Preview** window.
-6. You may now close the webpage you are working on and the job will be automatically saved under **Jobs** > **Drafts**.
-7. To edit a job that is saved to **Drafts**, hover over a job that you created, and from the three-dot menu choose **Edit Job**.
+   a. Make your Job public by hovering over it and select |locked_lock|.
+
+      The lock icon changes to |open_lock|, indicating your Job is now public.
+	  
+   b. To make your Job private again, select |open_lock|.
+   
+Changing Job Ownership
+-----------------------
+
+1. In the sidebar, go to **Jobs** > **All Jobs**.
+
+2. Hover over the job which ownership you wish to change and from the |three_dot_job| menu choose **Change Job Owner**.
+
+   The **Change job owner** window opens.
+   
+3. In the search box, type the name or email of the user you want to grant ownership to and select **Change**.
+
+   The new owner is granted Job ownership privileges while you are remained with shared job privileges.
 
 Monitoring Jobs
 ================
@@ -185,15 +229,31 @@ Failed Jobs
 
    A pop-up error log opens, depicting error details.                                         
 
-Deleting Jobs
-=============
-
-You may only delete jobs owned by you.
-
-1. In the sidebar, go to **Jobs** and then either **All Jobs** or **Drafts**.
-2. Hover over the job you wish to delete and from the three-dot menu choose **Delete**.
 
 
+.. |scheduled_job| image:: /_static/images/jobs/scheduled_job.png
+   :align: middle
 
+.. |delete_script| image:: /_static/images/jobs/delete_script.png
+   :align: middle
+   
+.. |add_task| image:: /_static/images/jobs/add_task.png
+   :align: middle
+   
+.. |scheduled_task| image:: /_static/images/jobs/scheduled_task.png
+   :align: middle
+   
+.. |delete_task| image:: /_static/images/jobs/delete_task.png
+   :align: middle
 
+.. |three_dot_job| image:: /_static/images/jobs/three_dot_job.png
+   :align: middle
 
+.. |locked_lock| image:: /_static/images/jobs/locked_lock.png
+   :align: middle
+
+.. |open_lock| image:: /_static/images/jobs/open_lock.png
+   :align: middle
+
+.. |play_job| image:: /_static/images/jobs/play_job.png
+   :align: middle   

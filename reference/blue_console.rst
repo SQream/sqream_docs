@@ -113,6 +113,9 @@ Arguments
    * - ``--access-token``
      - None
      - Provide a security token that grants access to protected resources or operations.
+   * - ``--table-view``
+     - ``true``
+     - Presents query results in a table view format complete with column headers. 
 
 .. tip::
 
@@ -237,11 +240,13 @@ Use the ``--c`` or ``--command`` option to execute a statement and exit the data
 	To quit use ^d or exit; to abort ^c
 	Connection URL: jdbc:Sqream://product1-sqream.isqream.com:443/master;accesstoken=#############;pool=Default
 	SELECT TOP 5* FROM nba;
-	Avery Bradley,Boston Celtics,0,PG,25,2-Jun,180,Texas,7730337
-	Jae Crowder,Boston Celtics,99,SF,25,6-Jun,235,Marquette,6796117
-	John Holland,Boston Celtics,30,SG,27,5-Jun,205,Boston University,\N
-	R.J. Hunter,Boston Celtics,28,SG,22,5-Jun,185,Georgia State,1148640
-	Jonas Jerebko,Boston Celtics,8,PF,29,10-Jun,231,\N,5000000
+	| Name            | Team              | Number | Position | Age | Birthday | Weight | College            | Salary   |
+	|-----------------|-------------------|--------|----------|-----|----------|--------|--------------------|----------|
+	| Avery Bradley   | Boston Celtics    | 0      | PG       | 25  | 2-Jun    | 180    | Texas              | 7730337  |
+	| Jae Crowder     | Boston Celtics    | 99     | SF       | 25  | 6-Jun    | 235    | Marquette          | 6796117  |
+	| John Holland    | Boston Celtics    | 30     | SG       | 27  | 5-Jun    | 205    | Boston University  | \N       |
+	| R.J. Hunter     | Boston Celtics    | 28     | SG       | 22  | 5-Jun    | 185    | Georgia State      | 1148640  |
+	| Jonas Jerebko   | Boston Celtics    | 8      | PF       | 29  | 10-Jun   | 231    | \N                 | 5000000  |
 	5 rows
 	time: 2.976 s
 	closing session...
@@ -251,11 +256,14 @@ Remove the timing and row count by passing the ``--results-only`` parameter.
 .. code-block:: none
 
 	java -jar jdbc-console-0.0.94-55.jar --host=product1-sqream.isqream.com --access-token=############# --results-only -d master -c "SELECT TOP 5* FROM nba;"
-	Avery Bradley,Boston Celtics,0,PG,25,2-Jun,180,Texas,7730337
-	Jae Crowder,Boston Celtics,99,SF,25,6-Jun,235,Marquette,6796117
-	John Holland,Boston Celtics,30,SG,27,5-Jun,205,Boston University,\N
-	R.J. Hunter,Boston Celtics,28,SG,22,5-Jun,185,Georgia State,1148640
-	Jonas Jerebko,Boston Celtics,8,PF,29,10-Jun,231,\N,5000000
+	| Name            | Team              | Number | Position | Age | Birthday | Weight | College            | Salary   |
+	|-----------------|-------------------|--------|----------|-----|----------|--------|--------------------|----------|
+	| Avery Bradley   | Boston Celtics    | 0      | PG       | 25  | 2-Jun    | 180    | Texas              | 7730337  |
+	| Jae Crowder     | Boston Celtics    | 99     | SF       | 25  | 6-Jun    | 235    | Marquette          | 6796117  |
+	| John Holland    | Boston Celtics    | 30     | SG       | 27  | 5-Jun    | 205    | Boston University  | \N       |
+	| R.J. Hunter     | Boston Celtics    | 28     | SG       | 22  | 5-Jun    | 185    | Georgia State      | 1148640  |
+	| Jonas Jerebko   | Boston Celtics    | 8      | PF       | 29  | 10-Jun   | 231    | \N                 | 5000000  |
+
 
 Executing Batch SQL Scripts
 ---------------------------	
