@@ -67,7 +67,7 @@ html_theme = "furo"
 html_static_path = ['_static/images']
 
 favicons = [
-    "_static/images/favicon_01.png"
+    "_static/images/Favicon_01.svg"
 ]
 
 html_css_files = [
