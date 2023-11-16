@@ -11,7 +11,7 @@ Retrieving Execution Plan Output
 
 You can retrieve the execution plan output either after the query execution has completed, in the case of a hanging query, or if you suspect no progress is being made.
 
-1. In the **Result Panel**, select **Execution Details View** |icon-execution-details-view|.
+1. In the **Result Panel**, select **Execution Details View**.
 
 	The **Execution Tree** window opens.
 
@@ -24,4 +24,4 @@ You can retrieve the execution plan output either after the query execution has 
    
 3. Save the execution plan on your local machine.
 
-The information may be analyzed by :ref:`monitoring_query_performance` or with help from `SQreamDB Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
+You can analyze this information using :ref:`monitoring_query_performance` or with assistance from `SQreamDB Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
