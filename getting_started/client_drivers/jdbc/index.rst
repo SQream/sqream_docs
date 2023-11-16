@@ -19,6 +19,7 @@ Connecting to SQream Using a JDBC Application
 
 Connection String
 -----------------
+
 JDBC drivers rely on a connection string.
 
 URL Template:
