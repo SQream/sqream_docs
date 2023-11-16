@@ -4,9 +4,9 @@
 Foreign Tables
 ***********************
 Foreign tables can be used to run queries directly on data without inserting it into SQream DB first.
-SQream DB supports read only foreign tables, so you can query from foreign tables, but you cannot insert to them, or run deletes or updates on them.
+SQream DB supports read-only foreign tables so that you can query from foreign tables, but you cannot insert to them, or run deletes or updates on them.
 
-Running queries directly on external data is most effectively used for things like one off querying. If you will be repeatedly querying data, the performance will usually be better if you insert the data into SQream DB first.
+Running queries directly on foreign data is most effectively used for one-off querying. If you are repeatedly querying data, the performance will usually be better if you insert the data into SQream DB first.
 
 Although foreign tables can be used without inserting data into SQream DB, one of their main use cases is to help with the insertion process. An insert select statement on a foreign table can be used to insert data into SQream using the full power of the query engine to perform ETL.
 
@@ -35,12 +35,8 @@ Use a foreign table to stage data before loading from CSV, Parquet or ORC files.
 
 Planning for Data Staging
 --------------------------------
-For the following examples, we will want to interact with a CSV file. Here's a peek at the table contents:
-  
-.. csv-table:: nba.csv
-   :file: nba-t10.csv
-   :widths: auto
-   :header-rows: 1
+
+For the following examples, we will interact with a CSV file.
 
 The file is stored on :ref:`s3`, at ``s3://sqream-demo-data/nba_players.csv``.
 We will make note of the file structure, to create a matching ``CREATE_EXTERNAL_TABLE`` statement.
@@ -94,8 +90,8 @@ Let's peek at the data from the foreign table:
 
 Modifying Data from Staging
 -------------------------------
-One of the main reasons for staging data is to examine the contents and modify them before loading them.
-Assume we are unhappy with weight being in pounds, because we want to use kilograms instead. We can apply the transformation as part of a query:
+One of the main reasons for staging data is to examine the content and modify it before loading.
+Assume we are unhappy with weight being in pounds because we want to use kilograms instead. We can apply the transformation as part of a query:
 
 .. code-block:: psql
    
