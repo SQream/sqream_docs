@@ -74,7 +74,7 @@ html_css_files = [
     'css/custom.css', # Relative to the _static path
 ]
 
-html_logo = '_static/images'
+html_logo = '_static/images/favicon_01.png'
 
 # If true, sectionauthor and moduleauthor directives will be shown in the
 # output. They are ignored by default.
