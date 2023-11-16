@@ -23,7 +23,7 @@ copyright = '2023 SQream'
 author = 'SQream Documentation'
 
 
-html_title = "your custom sidebar title"
+html_title = "BLUE"
 
 
 
