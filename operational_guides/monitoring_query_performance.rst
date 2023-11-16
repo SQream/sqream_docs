@@ -5,7 +5,7 @@ Monitoring Query Performance
 ****************************
 
 When analyzing options for query tuning, the first step is to analyze the query plan and execution. 
-The query plan and execution details explains how SQream DB processes a query and where time is spent.
+The query plan and execution details explain how SQream DB processes a query and where time is spent.
 This document details how to analyze query performance with execution plans.
 This guide focuses specifically on identifying bottlenecks and possible optimization techniques to improve query performance.
 Performance tuning options for each query are different. You should adapt the recommendations and tips for your own workloads.
@@ -15,7 +15,7 @@ See also our :ref:`sql_best_practices` guide for more information about data loa
 Setting Up the System for Monitoring
 ====================================
 
-SQream logs all executed statements and their execution details. Because this data in five second intervals, you can view it while a statement is executing, or historically.
+SQream logs all executed statements and their execution details. This data is logged in five second intervals, allowing you to view it both while a statement is executing, and historically.
 
 For more information about setting up your system for monitoring, see the following:
 

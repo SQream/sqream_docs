@@ -56,10 +56,6 @@ Examples
 
 This section includes the following examples:
 
-.. contents:: 
-   :local:
-   :depth: 1
-
 
 Creating a Schema
 -----------------

@@ -5,7 +5,7 @@ DESCRIBE SESSION QUERIES
 ************************
 
 The ``DESCRIBE SESSION QUERIES`` command outputs a list of queries per session, including queued queries.
-A session is opened per connection or per tab.
+A session is opened per connection or per Workbench tab.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
