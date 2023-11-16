@@ -11,7 +11,7 @@ Before You Begin
 ================
 
 * The BLUE JDBC driver requires Java 1.8 or newer
-* Download the BLUE JDBC driver :ref:`here<client_drivers>` 
+* Download the BLUE JDBC driver
 * We recommend using Oracle Java or OpenJDK
 
 Connecting to SQream Using a JDBC Application
