@@ -23,7 +23,7 @@ copyright = '2023 SQream'
 author = 'SQream Documentation'
 
 
-html_title = "BLUE"
+html_title = "BLUE Documentation"
 
 
 
