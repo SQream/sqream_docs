@@ -95,7 +95,7 @@ Modifying Data from Staging
 ---------------------------
 
 One of the main reasons for staging data is to examine the content and modify it before loading.
-Assume we are unhappy with weight being in pounds, because we want to use kilograms instead. We can apply the transformation as part of a query:
+Assume we are unhappy with weight being in pounds because we want to use kilograms instead. We can apply the transformation as part of a query:
 
 .. code-block:: sql
    
