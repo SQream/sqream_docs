@@ -58,7 +58,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # a list of builtin themes.
 #
 html_theme = "furo"
-  
+html_favicon = "_static/images/Favicon_01.svg"
 
 
 # Add any paths that contain custom static files (such as style sheets) here,
