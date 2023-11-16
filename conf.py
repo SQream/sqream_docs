@@ -39,7 +39,7 @@ extensions = [
     'sphinx_inline_tabs',
     'sphinx-favicon'
 ]
-
+ 
 # Mark 'index' as the main page
 master_doc = 'index'
 
