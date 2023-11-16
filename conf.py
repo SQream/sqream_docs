@@ -37,7 +37,8 @@ release = '4.5'
 # ones.
 extensions = [
     'sphinx_rtd_theme'
-    ,'notfound.extension' # 404 handling
+    ,'notfound.extension'    # 404 handling
+    ,'sphinx_favicon'
 ]
 
 # Mark 'index' as the main page
