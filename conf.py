@@ -36,7 +36,8 @@ html_title = "BLUE"
 extensions = [
     'notfound.extension', # 404 handling
     'sphinx_copybutton' ,
-    'sphinx_inline_tabs'
+    'sphinx_inline_tabs',
+    'sphinx-favicon'
 ]
 
 # Mark 'index' as the main page
@@ -64,6 +65,10 @@ html_theme = "furo"
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+favicons = [
+    "Favicon_01.png"
+]
 
 html_css_files = [
     'css/custom.css', # Relative to the _static path
