@@ -10,7 +10,7 @@ New Features and Enhancements
 Apache Calcite Compiler
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-BLUE now uses the Apache Calcite framework, leveraging its SQL parser and validator to ensure accurate interpretation and validation of SQL queries. With its robust relational algebra representation, Calcite internally transforms queries into a structured algebraic form, enhancing the efficiency of query optimization and plan manipulation within BLUE. The incorporation of Calcite's cost-based optimizer, known as the "Planner," empowers BLUE to make informed decisions based on statistical insights, optimizing query performance by selecting the most efficient execution strategies.
+BLUE now uses the Apache Calcite framework, leveraging its SQL parser and validator to ensure accurate interpretation and validation of SQL queries. With its robust relational algebra representation, Calcite internally transforms queries into a structured algebraic form, enhancing the efficiency of query optimization and plan manipulation within BLUE.
 
 Sharing Jobs
 ^^^^^^^^^^^^^
