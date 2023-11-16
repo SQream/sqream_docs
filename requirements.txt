@@ -7,4 +7,5 @@ urllib3<=2.0.0
 openssl-python>=0.1.1
 sphinx-notfound-page
 Pygments>=2.4.0
+sphinx-favicon>=1.0.1
 pdftex
