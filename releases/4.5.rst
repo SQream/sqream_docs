@@ -38,7 +38,9 @@ New Features and Enhancements
 
 ► :ref:`Health-Check Monitor<>`
 
-► 
+► :ref:`Query Timeout Per Service<>`
+
+► :ref:```JOIN`` Performance Enhancements<>`
 
 Known Issues
 ------------
@@ -56,20 +58,12 @@ Version 4.5 resolved Issues
 +====================+================================================================================================+
 | SQ-11523           | Saved query ``datetime`` internal runtime issue                                                |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-14292           | 
+| SQ-14292           |                                                                                                |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-14869           |                                                                                                |
 +--------------------+------------------------------------------------------------------------------------------------+
 | SQ-15074           | Non-``SUPERUSER`` UI access issue                                                              |
 +--------------------+------------------------------------------------------------------------------------------------+
-
-Configuration Adjustments
--------------------------
-
-► You may now configure the object access style and your endpoint URL with Virtual Private Cloud (VPC) when using AWS S3. 
-
-Visit :ref:`s3` to learn more about how and when you should use these two new parameters:
-
-* ``AwsEndpointOverride``
-* ``AwsObjectAccessStyle``
 
 Deprecations
 -------------------
@@ -82,6 +76,7 @@ Deprecations
 
 Upgrading to Version 4.5
 -------------------------
+
 1. Generate a back-up of the metadata by running the following command:
 
    .. code-block:: console
