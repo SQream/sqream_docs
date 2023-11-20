@@ -10,6 +10,7 @@ ALTER DEFAULT PERMISSIONS
 
 Overview
 =============
+
 The ``ALTER DEFAULT PERMISSIONS`` command lets you grant automatic permissions to future objects.
 
 By default, users do not have ``SELECT`` permissions on tables created by other users. Database administrators can grant access to other users by modifying the target role default permissions.
@@ -18,16 +19,18 @@ For more information about access control, see :ref:`Access Control<access_contr
 
 Permissions
 =============
+
 The ``SUPERUSER`` permission is required to alter default permissions.
 
 Syntax
 ==========
+
 The following is the syntax for altering default permissions:
 
 .. code-block:: postgres
 
    alter_default_permissions_statement ::=
-         ALTER DEFAULT PERMISSIONS FOR { target_role_name | ALL ROLES }
+         ALTER DEFAULT PERMISSIONS FOR { modifying_role | ALL ROLES }
          [IN schema_name, ...] 
          FOR { TABLES | SCHEMAS }
          { grant_clause [, ...] | DROP grant_clause[, ...]} 
@@ -55,6 +58,7 @@ The following is the syntax for altering default permissions:
 
 Supported Permissions
 =======================
+
 The following table describes the supported permissions:
 
 .. list-table:: 
