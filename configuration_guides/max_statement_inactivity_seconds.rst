@@ -4,7 +4,7 @@
 MAX STATEMENT INACTIVITY SECONDS
 ********************************
 
-The ``maxConnectionInactivitySeconds`` determines the maximum period of session idleness, after which the connection is terminated.
+The ``maxStatementInactivitySeconds`` determines the maximum period of session idleness, after which the connection is terminated.
 
 * **Data type** - size_t
 * **Default value** - ``5*60*60 seconds (18000)``
