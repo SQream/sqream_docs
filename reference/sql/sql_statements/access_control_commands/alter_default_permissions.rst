@@ -23,7 +23,7 @@ The following is the syntax for altering default permissions:
 .. code-block:: sql
 
    alter_default_permissions_statement ::=
-         ALTER DEFAULT PERMISSIONS FOR { target_role_name | ALL ROLES }
+         ALTER DEFAULT PERMISSIONS FOR { modifying_role | ALL ROLES }
          [IN schema_name, ...] 
          FOR { TABLES | SCHEMAS }
          { grant_clause [, ...] | DROP grant_clause[, ...]} 
@@ -40,7 +40,7 @@ The following is the syntax for altering default permissions:
          | ALL
          } [, ...]
 
-   target_role_name ::= identifier 
+   modifying_role ::= identifier 
    
    role_name ::= identifier 
    
