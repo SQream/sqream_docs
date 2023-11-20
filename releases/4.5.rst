@@ -34,9 +34,9 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
-► The newly supported :ref:`sql_data_type_array` data type enables you to simplify queries and optimize space utilization.
+► :ref:`Health-Check Monitor<>`
 
-► :ref:`denodo` may now be used for real-time data visualization of various sources.
+► 
 
 Newly Released Connector Drivers
 ---------------------------------
@@ -69,14 +69,8 @@ Version 4.4 resolved Issues
 +--------------------+------------------------------------------------------------------------------------------------+
 | SQ-14292           | 
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-15074           |
+| SQ-15074           | Non-``SUPERUSER`` UI access issue                                                              |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-15547           |
-+--------------------+------------------------------------------------------------------------------------------------+
-
-
-
-
 
 Configuration Adjustments
 -------------------------
