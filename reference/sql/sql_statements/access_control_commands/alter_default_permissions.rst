@@ -49,7 +49,7 @@ The following is the syntax for altering default permissions:
          | ALL
          } [, ...]
 
-   target_role_name ::= identifier 
+   modifying_role ::= identifier 
    
    role_name ::= identifier 
    
