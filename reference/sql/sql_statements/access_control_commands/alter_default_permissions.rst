@@ -24,7 +24,7 @@ Syntax
 
 .. code-block:: postgres
 
-     ALTER DEFAULT PERMISSIONS FOR target_role_name
+     ALTER DEFAULT PERMISSIONS FOR modifying_role
      [IN schema_name, ...]
      FOR { 
           SCHEMAS 
