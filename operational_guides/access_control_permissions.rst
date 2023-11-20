@@ -195,7 +195,7 @@ schema statement is run.
 .. code-block:: postgres
 
 
-   ALTER DEFAULT PERMISSIONS FOR target_role_name
+   ALTER DEFAULT PERMISSIONS FOR modifying_role
         [IN schema_name, ...]
         FOR { TABLES | SCHEMAS }
         { grant_clause | DROP grant_clause}
