@@ -83,8 +83,6 @@ BLUE offers seamless integration with third-party tools, BI tools, and analysis 
     :ref:`Pentaho Data Integration<pentaho_data_integration>`
 
     :ref:`Talend<talend>`
-
-    :ref:`SQL Workbench<connect_to_sql_workbench>`
 	
 .. tab:: BI Tools
 
