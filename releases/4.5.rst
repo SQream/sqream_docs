@@ -36,11 +36,11 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
-► :ref:`Health-Check Monitor<>`
+► :ref:`Health-Check Monitor<select_health_check_monitoring>`
 
 ► :ref:`Query Timeout Per Service<>`
 
-► :ref:```JOIN`` Performance Enhancements<>`
+► ``JOIN`` Performance Enhancements
 
 Known Issues
 ------------

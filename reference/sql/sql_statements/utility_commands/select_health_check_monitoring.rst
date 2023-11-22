@@ -6,20 +6,19 @@ SELECT HEALTH CHECK MONITORING
 
 The ``SELECT health_check_monitoring`` command allows system administrators to oversee the health of the database by monitoring the following categories:
 
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
+.. glossary::
    
-   * - Category
-     - Description
-   * - ``storage``
-     - 
-   * - ``metadata_stats``
-     -	 
-   * - ``license``
-     - 
-   * - ``self_healing``
-     - 
+	storage
+		Offers insights into cluster storage chunks and their fragmentation, indicating irrelevant files to prevent bottlenecks during table readings.
+
+	metadata_stats
+		Provides information on Worker and metadata reactivity. Regular monitoring identifies system performance during peak loads, revealing potential concurrent issues. 
+
+	license
+		Gives details on the customer's license, including storage capacity and restrictions. Proactively alerts before reaching limitations for timely action.
+	
+	self_healing
+		Supplies ETL and load details, monitors query execution flow, tracks Workers per service, identifies idle Workers, and detects issues like stuck snapshots. Essential for regular monitoring, providing clear insights during the RCA process for optimal resource allocation.
 	 
 Syntax
 ==========
