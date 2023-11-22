@@ -128,6 +128,11 @@ SQLAlchemy
 
 SQLAlchemy is an Object-Relational Mapper (ORM) for Python. When you install the SQream dialect (``pysqream-sqlalchemy``) you can use frameworks such as Pandas, TensorFlow, and Alembic to query SQream directly.
 
+Limitation
+-----------
+
+Please note that SQLAlchemy does not support the ``ARRAY`` data type.
+
 .. contents:: 
    :local:
    :depth: 1

@@ -16,6 +16,11 @@ The maximum size of an ``ARRAY``, indicating the number of elements it can hold,
 
 .. seealso:: A full list of :ref:`data types<supported_data_types>` supported by SQreamDB.
 
+Limitation
+-------------
+
+Please note that SQLAlchemy does not support the ``ARRAY`` data type.
+
 Syntax
 ======
 
