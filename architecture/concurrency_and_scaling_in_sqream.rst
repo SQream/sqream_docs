@@ -47,17 +47,17 @@ Maximum Workers Per GPU:
    
    * - GPU
      - Workers
-   * - NVIDIA Tesla T4 (16GB) 
+   * - NVIDIA Turing T4 (16GB) 
      - 1
-   * - NVIDIA Tesla V100 (32GB)
+   * - NVIDIA Volta V100 (32GB)
      - 2
-   * - NVIDIA Tesla A100 (40GB)	
+   * - NVIDIA Ampere A100 (40GB)	
      - 3
-   * - NVIDIA Tesla A100 (80GB)	
+   * - NVIDIA Ampere A100 (80GB)	
      - 6
-   * - NVIDIA Tesla H100 (80GB)	
+   * - NVIDIA Hopper H100 (80GB)	
      - 6
-   * - L40S (48GB)
+   * - L40S Ada Lovelace (48GB)
      - 4
 	 
 
