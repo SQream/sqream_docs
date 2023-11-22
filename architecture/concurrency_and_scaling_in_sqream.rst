@@ -57,6 +57,8 @@ Maximum Workers Per GPU:
      - 6
    * - NVIDIA Tesla H100 (80GB)	
      - 6
+   * - L40S (48GB)
+     - 4
 	 
 
 
