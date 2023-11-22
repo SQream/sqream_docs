@@ -135,6 +135,8 @@ The following table shows the Utility commands:
      - Monitor license quota usage by reviewing monthly or daily data read usage 
    * - :ref:`SELECT GPU METRICS<select_gpu_metrics>`
      - Monitor license quota usage by reviewing monthly or daily GPU usage 
+   * - :ref:`SELECT HEALTH CHECK MONITORING<select_health_check_monitoring>`
+     - Returns system health monitoring logs
    * - :ref:`SELECT RECOMPILE VIEW<recompile_view>`
      - Recreate a view after schema changes
    * - :ref:`SELECT DUMP DATABASE DDL<dump_database_ddl>`
