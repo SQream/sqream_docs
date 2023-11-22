@@ -11,5 +11,4 @@ The **Configuration Guides** page describes the following configuration informat
    :glob:
 
    configuring_sqream
-   spooling
    ldap
