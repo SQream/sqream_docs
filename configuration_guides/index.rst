@@ -1,8 +1,8 @@
 .. _configuration_guides:
 
-********************
+*************************
 Configuration Guides
-********************
+*************************
 
 The **Configuration Guides** page describes the following configuration information:
 
@@ -11,7 +11,4 @@ The **Configuration Guides** page describes the following configuration informat
    :glob:
 
    configuring_sqream
-   configuration_flags
-   spooling
    ldap
-   previous_configuration_method

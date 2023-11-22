@@ -7,7 +7,7 @@ Sizing
 Concurrency and Scaling in SQreamDB
 ===================================
 
-A SQreamDB cluster can execute one statement per worker process while also supporting the concurrent operation of multiple workers. Utility functions with minimal resource requirements, such as :ref:`show_server_status`, will be executed regardless of the workload.
+A SQreamDB cluster can execute one statement per worker process while also supporting the concurrent operation of multiple workers. Utility functions with minimal resource requirements, such as :ref:`show_server_status`, :ref:`show_locks`, and :ref:`show_node_info` will be executed regardless of the workload.
 
 Minimum Resource Required Per Worker:
 
@@ -47,16 +47,18 @@ Maximum Workers Per GPU:
    
    * - GPU
      - Workers
-   * - NVIDIA Tesla T4 (16GB) 
+   * - NVIDIA Turing T4 (16GB) 
      - 1
-   * - NVIDIA Tesla V100 (32GB)
+   * - NVIDIA Volta V100 (32GB)
      - 2
-   * - NVIDIA Tesla A100 (40GB)	
+   * - NVIDIA Ampere A100 (40GB)	
      - 3
-   * - NVIDIA Tesla A100 (80GB)	
+   * - NVIDIA Ampere A100 (80GB)	
      - 6
-   * - NVIDIA Tesla H100 (80GB)	
+   * - NVIDIA Hopper H100 (80GB)	
      - 6
+   * - L40S Ada Lovelace (48GB)
+     - 4
 	 
 
 
@@ -82,6 +84,8 @@ To boost the performance of a single statement, start by examining the :ref:`bes
 
 Adding additional RAM to nodes, using more GPU memory, and faster CPUs or storage can also sometimes help.
 
+.. _spooling:
+
 Spooling Configuration
 ======================
 
@@ -89,7 +93,7 @@ Spooling Configuration
 
 :math:`spoolMemoryGB=limitQueryMemoryGB - 50GB`
 
-SQreamDB recommends setting the ``spoolMemoryGB`` flag to 90% of the ``limitQueryMemoryGB`` flag. The ``limitQueryMemoryGB`` flag is the total memory you’ve allocated for processing queries. In addition, the ``limitQueryMemoryGB`` defines how much total system memory is used by each worker. Note that ``spoolMemoryGB`` must bet set to less than the ``limitQueryMemoryGB``.
+The ``limitQueryMemoryGB`` flag is the total memory you’ve allocated for processing queries. In addition, the ``limitQueryMemoryGB`` defines how much total system memory is used by each worker. Note that ``spoolMemoryGB`` must bet set to less than the ``limitQueryMemoryGB``.
 
 Example
 -------
@@ -97,7 +101,7 @@ Example
 Setting Spool Memory
 ~~~~~~~~~~~~~~~~~~~~
 
-The following examples are for 2T of RAM and 9 workers running on 3 A100(40) GPUs:
+The provided examples assume a configuration with 2T of RAM, 8 workers running on 2 A100(80GB) GPUs, with 200 GB allocated for Internal Operations, Metadata Server, Server Picker, and UI.
 
 Configuring the ``limitQueryMemoryGB`` using the Worker configuration file:
 
@@ -112,7 +116,7 @@ Configuring the ``limitQueryMemoryGB`` using the Worker configuration file:
        “metadataServerPort”: 3105,
        “port”: 5000,
        “useConfigIP”: true,
-       “limitQueryMemoryGB" : 201,
+       “limitQueryMemoryGB" : 225,
    }
 
 Configuring the ``spoolMemoryGB`` using the legacy configuration file:
@@ -130,7 +134,7 @@ Configuring the ``spoolMemoryGB`` using the legacy configuration file:
 		"nodeInfoLoggingSec": 60,
 		"useClientLog": true,
 		"useMetadataServer": true,
-		"spoolMemoryGB": 151,
+		"spoolMemoryGB": 175,
 		"waitForClientSeconds": 18000,
 		"enablePythonUdfs": true
 	}
