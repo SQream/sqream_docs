@@ -1,29 +1,29 @@
 .. _filesystem_and_filesystem_usage:
 
-*******************************
-Filesystem and usage
-*******************************
+********************
+Filesystem and Usage
+********************
 
-SQream DB writes and reads data from disk.
+SQreamDB writes and reads data from disk.
 
-The SQream DB storage directory, sometimes refered to as a **storage cluster** is a collection of database objects, metadata database, and logs.
+The SQreamDB storage directory, sometimes referred to as a **storage cluster** is a collection of database objects, metadata database, and logs.
 
-Each SQream DB worker and the metadata server must have access to the storage cluster in order to function properly.
+Each SQreamDB worker and the metadata server must have access to the storage cluster in order to function properly.
 
 .. _storage_cluster:
 
 Directory organization
-============================
+======================
 
 .. figure:: /_static/images/storage_organization.png
 
-The **cluster root** is the directory in which all data for SQream DB is stored.
+The **cluster root** is the directory in which all data for SQreamDB is stored.
 
-.. contents:: SQream DB storage cluster directories
+.. contents:: SQreamDB storage cluster directories
    :local:
 
 ``databases``
-----------------
+-------------
 
 The databases directory houses all of the actual data in tables and columns.
 
@@ -64,26 +64,26 @@ Each column directory will contain extents, which are collections of chunks.
 .. figure:: /_static/images/chunks_and_extents.png
 
 ``metadata`` or ``rocksdb``
-----------------------------
+---------------------------
 
-SQream DB's metadata is an embedded key-value store, based on RocksDB. RocksDB helps SQream DB ensure efficient storage for keys, handle atomic writes, snapshots, durability, and automatic recovery.
+SQreamDB's metadata is an embedded key-value store, based on RocksDB. RocksDB helps SQreamDB ensure efficient storage for keys, handle atomic writes, snapshots, durability, and automatic recovery.
 
 The metadata is where all database objects are stored, including roles, permissions, database and table structures, chunk mappings, and more.
 
 ``temp``
-----------------
+--------
 
-The ``temp`` directory is where SQream DB writes temporary data.
+The ``temp`` directory is where SQreamDB writes temporary data.
 
-The directory to which SQream DB writes temporary data can be changed to any other directory on the filesystem. SQream recommends remapping this directory to a fast local storage to get better performance when executing intensive larger-than-RAM operations like sorting. SQream recommends an SSD or NVMe drive, in mirrored RAID 1 configuration.
+The directory to which SQreamDB writes temporary data can be changed to any other directory on the filesystem. SQreamDB recommends remapping this directory to a fast local storage to get better performance when executing intensive larger-than-RAM operations like sorting. SQreamDB recommends an SSD or NVMe drive, in mirrored RAID 1 configuration.
 
 If desired, the ``temp`` folder can be redirected to a local disk for improved performance, by setting the ``tempPath`` setting in the :ref:`configuration<configuration>` file.
 
 
 ``logs``
-----------------
+--------
 
-The logs directory contains logs produced by SQream DB.
+The logs directory contains logs produced by SQreamDB.
 
 See more about the logs in the :ref:`logging` guide.
 
