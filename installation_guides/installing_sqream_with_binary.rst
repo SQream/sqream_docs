@@ -87,7 +87,7 @@ In each JSON file, the following parameters **must be updated**:
 * port
 * ssl_port
 
-See how to :ref:`configure <spooling>` the Spool Memory.
+See how to :ref:`configure <spooling>` the Spool Memory and Limit Query Memory.
 
 Note the following:
 
