@@ -73,14 +73,13 @@ Use this method if you have never used ODBC on your machine before. If you have 
    
    .. code-block:: console
       
-      $ mkdir -p sqream_odbc64
-      $ tar xf sqream_2019.2.1_odbc_3.0.0_x86_64_linux.tar.gz -C sqream_odbc64
+      $ tar xf sqream_xxxxxxxxxxxxx.tar.gz -C sqream_odbc64
 
 #. Run the first-time installer. The installer will create an editable DSN.
    
    .. code-block:: console
       
-      $ cd sqream_odbc64
+      $ cd sqream_odbc_installer
       ./odbc_install.sh --install
       
 
