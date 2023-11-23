@@ -17,38 +17,17 @@ Here, you can discover details on configuring the monitoring for each of the fou
 Before You Begin
 ==================
 
-Download the Health-Check Monitor :download:`input.json configuration file </_static/samples/input.json>` and save it anywhere you want.
+* Download the Health-Check Monitor :download:`input.json </_static/samples/input.json>` configuration file and save it anywhere you want.
+* Using the ``SELECT health_check_monitoring`` command requires ``SUPERUSER`` permissions.
 
-Syntax
-==========
+Setup
+======
 
-.. code-block:: sql
+There are two types of Health-Check Monitor metrics. The first type, valid-range metrics, may be reconfigured by adjusting the lowest threshold, the highest threshold, or both. The second type of metric is non-configurable, as it returns existing system information instead of measuring resource usage. 
 
-	SELECT health_check_monitoring('<category>', '<input_file>', '<export_path>')
+The Health-Check Monitor configuration file is pre-configured with best practices, but you have the flexibility to customize any default metric values based on your preferences. All metrics presented below are defined with valid ranges, so any value outside the range triggers a warning. 
 
-Parameters
------------
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Parameter
-     - Description
-   * - ``category``
-     - Specifies the system domain for which to get health information about. The 4 categories are: ``storage``, ``metadata_stats``, ``license``, and ``self_healing``
-   * - ``input_file``
-     - The path to the specific configuration file of the *category* you wish to get information about
-   * - ``export_path``
-     - The path to the directory you wish to have your monitoring log file to extracted to
-
-Configuration File
-===================
-
-
-The Health-Check Monitor configuration file comes pre-configured with best practices, but you have the flexibility to customize any default metric values based on your preferences. All metrics presented below are defined with valid ranges, so any value outside the range triggers a warning. 
-
-You can set both highest and lowest thresholds for metrics, or choose to configure only one. Note that configuring only one threshold will make the Health-Check Monitor assume the other threshold is set to *infinity*. 
+You can set both highest and lowest thresholds, or choose to configure only one. Note that configuring only one threshold will make the Health-Check Monitor assume the ignored threshold is set to *infinity*. 
 
 Default Metric Values
 ----------------------
@@ -113,8 +92,32 @@ Default Metric Values
 	   }
 	}
 
-Log File
-=========
+General Syntax
+===============
+
+.. code-block:: sql
+
+	SELECT health_check_monitoring('<category>', '<input_file>', '<export_path>')
+
+Parameters
+-----------
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Description
+   * - ``category``
+     - Specifies the system domain for which to get health information about. The 4 categories are: ``storage``, ``metadata_stats``, ``license``, and ``self_healing``
+   * - ``input_file``
+     - The path to the specific configuration file of the *category* you wish to get information about
+   * - ``export_path``
+     - The path to the directory you wish to have your monitoring log file to extracted to
+
+
+Logs
+=====
 
 Some of the metrics, such as ``percentageStorageCapacity`` and ``daysForLicenseExpire`` require valid range configuration. Valid range metrics will show one of three different metric statuses in the log file: ``info``, ``warning``, or ``none``.
 
@@ -134,6 +137,8 @@ Some of the metrics, such as ``percentageStorageCapacity`` and ``daysForLicenseE
 Category Specifications
 ========================
 
+
+
 Storage
 --------
 
@@ -146,7 +151,16 @@ Execution Example
 
 .. code-block:: sql
 
-	SELECT health_check_monitoring('storage', '', '')
+	SELECT health_check_monitoring('storage', 'path/to/my/input.json', 'path/to/where/i/save/logs')
+
+Execution Example With Filtering
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You may filter storage information retrieval by database, schema, table, or all three.  
+
+.. code-block:: sql
+
+	SELECT health_check_monitoring('storage', 'master', 'schema1', 'table1', 'path/to/my/input.json', 'path/to/where/i/save/logs')
 
 Metrics
 ^^^^^^^^
@@ -167,6 +181,13 @@ Metrics
      - ``totalNumberOfFragmentedChunks``
      - 
      - 
+
+Execution Example
+^^^^^^^^^^^^^^^^^^
+
+.. code-block:: sql
+
+	SELECT health_check_monitoring('storage', 'path/to/my/input.json', 'path/to/where/i/save/logs')
 
 Output
 ^^^^^^^^^
@@ -198,6 +219,25 @@ Metadata Statistics
 
 Provides information on Worker and metadata reactivity. Regular monitoring allows for the identification of the system's performance during peak loads, indicating periods of heavy system load. This insight can be invaluable for uncovering potential concurrent issues.
 
+Metrics
+^^^^^^^^
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Metric
+     - Configuration Flag
+     - Default Value
+     - Description
+
+Example
+^^^^^^^^^
+
+.. code-block:: sql
+
+	SELECT health_check_monitoring('metadata_stats', 'path/to/my/input.json', 'path/to/where/i/save/logs')
+
 Output
 ^^^^^^^^^
 
@@ -207,24 +247,46 @@ Output
    
    * - Parameter
      - Description
-   * -
-     -
-   
-
+   * - ``metric_time``
+     - 
+   * - ``metric_category``
+     - 
+   * - ``metric_name``
+     - 
+   * - ``metric_description``
+     - 	 
+   * - ``metric_value``
+     - 
+   * - ``metric_validation_status``
+     - 
+   * - ``response_time_sec``
+     -  
 	 
-	 
-Example
-^^^^^^^^^
-
-.. code-block:: sql
-
-	SELECT health_check_monitoring('metadata_stats', '', '')
 
 License
 --------
 
 Provides details about the customer's license, including database storage capacity and licensing restrictions. Proactively alerts the customer before reaching license limitations, ensuring awareness and timely action.
 
+Metrics
+^^^^^^^^
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Metric
+     - Configuration Flag
+     - Default Value
+     - Description
+
+Example
+^^^^^^^^^
+
+.. code-block:: sql
+
+	SELECT health_check_monitoring('license', 'path/to/my/input.json', 'path/to/where/i/save/logs')
+
 Output
 ^^^^^^^^^
 
@@ -234,23 +296,46 @@ Output
    
    * - Parameter
      - Description
-   * -
-     -
-
+   * - ``metric_time``
+     - 
+   * - ``metric_category``
+     - 
+   * - ``metric_name``
+     - 
+   * - ``metric_description``
+     - 	 
+   * - ``metric_value``
+     - 
+   * - ``metric_validation_status``
+     - 
+   * - ``response_time_sec``
+     - 
 	 
-	 
-Example
-^^^^^^^^^
 
-.. code-block:: sql
-
-	SELECT health_check_monitoring('license', '', '')
 
 self_healing
 --------------
 
-
 Supplies details on customer ETLs and loads, monitors the execution flow of queries over time, tracks the number of Workers per service, identifies idle Workers, and detects potential issues such as stuck snapshots. It is imperative to regularly monitor this data. During the Root Cause Analysis (RCA) process, it provides a clear understanding of executed operations at specific times, offering customers guidance on optimal resource allocation, particularly in terms of workers per service.
+
+Metrics
+^^^^^^^^
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Metric
+     - Configuration Flag
+     - Default Value
+     - Description
+
+Example
+^^^^^^^^^
+
+.. code-block:: sql
+
+	SELECT health_check_monitoring('self_healing', 'path/to/my/input.json', 'path/to/where/i/save/logs')
 
 Output
 ^^^^^^^^^
@@ -261,21 +346,20 @@ Output
    
    * - Parameter
      - Description
-   * -
-     -
+   * - ``metric_time``
+     - 
+   * - ``metric_category``
+     - 
+   * - ``metric_name``
+     - 
+   * - ``metric_description``
+     - 	 
+   * - ``metric_value``
+     - 
+   * - ``metric_validation_status``
+     - 
+   * - ``response_time_sec``
+     - 
 
-	 
-	 
-Example
-^^^^^^^^^
-
-.. code-block:: sql
-
-	SELECT health_check_monitoring('self_healing', '', '')
 
 
-
-Permissions
-=============
-
-Using the ``SELECT health_check_monitoring`` command requires ``SUPERUSER`` permissions.
