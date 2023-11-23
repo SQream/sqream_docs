@@ -1,19 +1,24 @@
 .. _select_health_check_monitoring:
 
 *******************************
-SELECT HEALTH CHECK MONITORING
+HEALTH CHECK MONITORING
 *******************************
 
 The ``SELECT health_check_monitoring`` command empowers system administrators to comprehensively monitor the database's health across multiple *categories*. 
 
 In the ``storage`` domain, it provides insights into cluster storage chunks and their fragmentation, helping prevent bottlenecks during table readings by identifying irrelevant files. The ``metadata_stats`` category offers information on Worker and metadata reactivity, enabling the identification of system performance during peak loads and the revelation of potential concurrent issues. Addressing licensing concerns, the command gives details on the customer's ``license``, including storage capacity and restrictions, and proactively alerts administrators before reaching limitations. Lastly, under ``self_healing``, it supplies essential details on ETL and load processes, monitors query execution flow, tracks Workers per service, identifies idle Workers, and detects issues like stuck snapshots—crucial for regular monitoring and offering clear insights during the Root Cause Analysis (RCA) process for optimal resource allocation.
 
-Here you can find information about how to configure and execute each of the 4 monitoring categories.   
-	 
+Here, you can discover details on configuring the monitoring for each of the four categories, along with instructions on how to access and interpret the log files for each category.
+
 .. contents::
    :local:
-   :depth: 2
-	 
+   :depth: 1
+	
+Before You Begin
+==================
+
+Download the Health-Check Monitor :download:`input.json configuration file </_static/samples/input.json>` and save it anywhere you want.
+
 Syntax
 ==========
 
@@ -22,31 +27,28 @@ Syntax
 	SELECT health_check_monitoring('<category>', '<input_file>', '<export_path>')
 
 Parameters
-============
+-----------
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
    * - Parameter
-     - State
      - Description
    * - ``category``
-     - Mandatory
      - Specifies the system domain for which to get health information about. The 4 categories are: ``storage``, ``metadata_stats``, ``license``, and ``self_healing``
    * - ``input_file``
-     - Mandatory
      - The path to the specific configuration file of the *category* you wish to get information about
    * - ``export_path``
-     - Mandatory
      - The path to the directory you wish to have your monitoring log file to extracted to
 
 Configuration File
 ===================
 
-The Health-Check Monitor has a default configuration file. To reconfigure any of the default metric values, navigate to the ``input.json`` file located under... and modify according to your personal preferences.
 
-Some of the metrics, such as ``percentageStorageCapacity`` and ``daysForLicenseExpire`` require valid range configuration. Keep in mind that your default configuration file is best-practice configured. 
+The Health-Check Monitor configuration file comes pre-configured with best practices, but you have the flexibility to customize any default metric values based on your preferences. All metrics presented below are defined with valid ranges, so any value outside the range triggers a warning. 
+
+You can set both highest and lowest thresholds for metrics, or choose to configure only one. Note that configuring only one threshold will make the Health-Check Monitor assume the other threshold is set to *infinity*. 
 
 Default Metric Values
 ----------------------
