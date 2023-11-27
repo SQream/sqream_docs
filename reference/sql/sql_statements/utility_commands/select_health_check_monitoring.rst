@@ -135,7 +135,7 @@ After executing the ``SELECT health_check_monitoring`` command, both a system he
    * - ``metric_value``
      - The value of the specific metric
    * - ``metric_validation_status``
-     - One of three statuses: ``info``, metric value is within its defined valid range, ``none``, the metric provides information about the system and has no valid range, and ``warning``, metric deviates from its defined valid range
+     - One of three statuses: ``info``, metric value is within its defined valid range, ``none``, the metric provides information about the system and has no valid range, and ``warn``, metric deviates from its defined valid range
    * - ``response_time_sec``
      - 
 
@@ -148,6 +148,16 @@ Storage
 --------
 
 Provides insights into cluster storage chunks and their fragmentation process. Offers an indication of irrelevant storage files in the cluster, preventing potential bottlenecks in chunk iteration during table readings in advance.
+
+.. code-block:: sql
+
+	SELECT health_check_monitoring('storage', 'path/to/my/input.json', 'path/to/where/i/save/logs')
+
+When monitoring your storage health, you may also filter information retrieval by database, schema, table, or all three.  
+
+.. code-block:: sql
+
+	SELECT health_check_monitoring('storage', 'master', 'schema1', 'table1', 'path/to/my/input.json', 'path/to/where/i/save/logs')
 
 .. list-table:: Metrics
    :widths: auto
@@ -171,10 +181,11 @@ Metadata Statistics
 
 Provides information on Worker and metadata reactivity. Regular monitoring allows for the identification of the system's performance during peak loads, indicating periods of heavy system load. This insight can be invaluable for uncovering potential concurrent issues.
 
-Metrics
-^^^^^^^^
+.. code-block:: sql
 
-.. list-table:: 
+	SELECT health_check_monitoring('metadata_stats', 'path/to/my/input.json', 'path/to/where/i/save/logs')
+
+.. list-table:: Metrics
    :widths: auto
    :header-rows: 1
    
@@ -215,23 +226,16 @@ Metrics
      - ``"from":0, "to":1000``
      -
 
-Execution Example
-^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: sql
-
-	SELECT health_check_monitoring('metadata_stats', 'path/to/my/input.json', 'path/to/where/i/save/logs')
-	 
-
 License
 --------
 
 Provides details about the customer's license, including database storage capacity and licensing restrictions. Proactively alerts the customer before reaching license limitations, ensuring awareness and timely action.
 
-Metrics
-^^^^^^^^
+.. code-block:: sql
 
-.. list-table:: 
+	SELECT health_check_monitoring('license', 'path/to/my/input.json', 'path/to/where/i/save/logs')
+
+.. list-table:: Metrics
    :widths: auto
    :header-rows: 1
    
@@ -256,23 +260,17 @@ Metrics
      - ``"from":60``
      -
 
-Execution Example
-^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: sql
-
-	SELECT health_check_monitoring('license', 'path/to/my/input.json', 'path/to/where/i/save/logs')
-	 
-
 self_healing
 --------------
 
 Supplies details on customer ETLs and loads, monitors the execution flow of queries over time, tracks the number of Workers per service, identifies idle Workers, and detects potential issues such as stuck snapshots. It is imperative to regularly monitor this data. During the Root Cause Analysis (RCA) process, it provides a clear understanding of executed operations at specific times, offering customers guidance on optimal resource allocation, particularly in terms of workers per service.
 
-Metrics
-^^^^^^^^
+.. code-block:: sql
 
-.. list-table:: 
+	SELECT health_check_monitoring('self_healing', 'path/to/my/input.json', 'path/to/where/i/save/logs')
+
+
+.. list-table:: Metrics
    :widths: auto
    :header-rows: 1
    
@@ -293,25 +291,4 @@ Metrics
      - ``"from":0, "to":2``
      -
 
-Execution Example
-^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: sql
-
-	SELECT health_check_monitoring('self_healing', 'path/to/my/input.json', 'path/to/where/i/save/logs')
-
-Examples
-=========
-
-Storage
-^^^^^^^^
-
-.. code-block:: sql
-
-	SELECT health_check_monitoring('storage', 'path/to/my/input.json', 'path/to/where/i/save/logs')
-
-You may also filter storage information retrieval by database, schema, table, or all three.  
-
-.. code-block:: sql
-
-	SELECT health_check_monitoring('storage', 'master', 'schema1', 'table1', 'path/to/my/input.json', 'path/to/where/i/save/logs')
