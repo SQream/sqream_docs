@@ -833,20 +833,21 @@ Installing the CUDA driver from the Repository is the recommended installation m
    Installing the CUDA depedendencies from the **epel** repository is only required for installing **runfile**.
 
 3. Download and install the required local repository:
-
-   * **Intel - CUDA 10.1 for RHEL7**:
-
-      .. code-block:: console
-
-         $ wget http://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
-         $ sudo yum localinstall cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.x86_64.rpm
 		 
-   * **Intel - 11.4.3 repository**:
+   * **Intel - 11.4.3 repository for RHEL7**:
 
       .. code-block:: console
 
          $ wget https://developer.download.nvidia.com/compute/cuda/11.4.3/local_installers/cuda-repo-rhel7-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
          $ sudo yum localinstall cuda-repo-rhel7-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
+		 
+   * **Intel - CUDA 12.2 for RHEL8**:
+
+      .. code-block:: console
+
+         $ wget https://developer.download.nvidia.com/compute/cuda/12.2.0/local_installers/cuda-repo-rhel8-12-2-local-12.2.0_535.54.03-1.x86_64.rpm
+
+         $ sudo rpm -i cuda-repo-rhel8-12-2-local-12.2.0_535.54.03-1.x86_64.rpm
 
    * **IBM Power9 - CUDA 10.1 for RHEL7**:
 
