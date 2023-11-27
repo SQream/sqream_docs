@@ -1,7 +1,7 @@
 .. _select_health_check_monitoring:
 
 *******************************
-HEALTH CHECK MONITORING
+HEALTH-CHECK MONITORING
 *******************************
 
 The ``SELECT health_check_monitoring`` command empowers system administrators to comprehensively monitor the database's health across multiple *categories*. 
@@ -12,22 +12,20 @@ Here, you can discover details on configuring the monitoring for each of the fou
 
 .. contents::
    :local:
-   :depth: 1
+   :depth: 2
 	
 Before You Begin
 ==================
 
 * Download the Health-Check Monitor :download:`input.json </_static/samples/input.json>` configuration file and save it anywhere you want.
-* Using the ``SELECT health_check_monitoring`` command requires ``SUPERUSER`` permissions.
+* The ``SELECT health_check_monitoring`` command requires ``SUPERUSER`` permissions.
 
-Setup
-======
+Configuration
+--------------
 
-There are two types of Health-Check Monitor metrics. The first type, valid-range metrics, may be reconfigured by adjusting the lowest threshold, the highest threshold, or both. The second type of metric is non-configurable, as it returns existing system information instead of measuring resource usage. 
+There are two types of Health-Check Monitor metrics: one is configurable, and the second is non-configurable. Non-configurable metrics provide information about the system, such as total storage capacity measured in Gigabytes. Configurable metrics are set with low, high, or both thresholds within a valid range to be reported in case of deviation. For example, this could include the number of days remaining on your SQreamDB license.
 
-The Health-Check Monitor configuration file is pre-configured with best practices, but you have the flexibility to customize any default metric values based on your preferences. All metrics presented below are defined with valid ranges, so any value outside the range triggers a warning. 
-
-You can set both highest and lowest thresholds, or choose to configure only one. Note that configuring only one threshold will make the Health-Check Monitor assume the ignored threshold is set to *infinity*. 
+The Health-Check Monitor configuration file comes pre-configured with best practices. However, as mentioned before, you have the flexibility to customize any default metric values based on your preferences. All metrics presented below are defined with valid ranges, so any value outside the range triggers a warning. It's important to note that configuring only one threshold will make the Health-Check Monitor assume the ignored threshold is set to *infinity*.
 
 Default Metric Values
 ----------------------
@@ -95,49 +93,56 @@ Default Metric Values
 General Syntax
 ===============
 
-.. code-block:: sql
+.. code-block:: postgres
 
 	SELECT health_check_monitoring('<category>', '<input_file>', '<export_path>')
+	
+	category :: = { storage | metadata_stats | license | self_healing }
 
-Parameters
------------
-
-.. list-table:: 
+.. list-table:: Parameters
    :widths: auto
    :header-rows: 1
    
    * - Parameter
      - Description
    * - ``category``
-     - Specifies the system domain for which to get health information about. The 4 categories are: ``storage``, ``metadata_stats``, ``license``, and ``self_healing``
+     - Specifies the system domain for which health information is to be retrieved.
    * - ``input_file``
-     - The path to the specific configuration file of the *category* you wish to get information about
+     - Specifies the path to the configuration file of the designated *category* for which you want to obtain information.
    * - ``export_path``
-     - The path to the directory you wish to have your monitoring log file to extracted to
+     - Specifies the directory path where you want the monitoring log file to be extracted.
 
 
-Logs
-=====
+Health-Check Logs
+===================
 
-Some of the metrics, such as ``percentageStorageCapacity`` and ``daysForLicenseExpire`` require valid range configuration. Valid range metrics will show one of three different metric statuses in the log file: ``info``, ``warning``, or ``none``.
+After executing the ``SELECT health_check_monitoring`` command, a system health-check log file is generated and saved in the specified directory. Simultaneously, a result set is displayed in the result pane, showcasing the following output:
 
-.. list-table:: 
+.. list-table:: Log Output
    :widths: auto
    :header-rows: 1
-   
-   * - Metric Status
+
+   * - Metric
      - Description
-   * - ``info``
-     - If the metric falls within the valid range, the metric status will be logged as ``info``
-   * - ``warning``
-     -  If the metric exceeds the valid range, the metric status will be logged as ``warning``
-   * - ``none``
-     - If the metric does not have a valid range, the metric status will be logged as ``none``
+   * - ``metric_time``
+     - The time when the specific metric was checked
+   * - ``metric_category``
+     - The system domain for which health information is retrieved
+   * - ``metric_name``
+     - 
+   * - ``metric_description``
+     - 	 
+   * - ``metric_value``
+     - The value of the specific metric
+   * - ``metric_validation_status``
+     - One of three statuses: ``info``, metric value is within its defined valid range, ``none``, the metric provides information about the system and has no valid range, and ``warning``, metric deviates from its defined valid range
+   * - ``response_time_sec``
+     - 
 
-Category Specifications
-========================
+When examining your Health-Check log through the result pane, in addition to the metric output log, your initial valid range configuration is displayed along with the location of your exported log file. 
 
-
+Health-Check Category Specifications
+========================================
 
 Storage
 --------
