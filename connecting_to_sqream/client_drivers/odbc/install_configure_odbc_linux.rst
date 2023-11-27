@@ -60,7 +60,7 @@ Install unixODBC on Ubuntu
 
 .. code-block:: console
 
-   $ sudo apt-get install unixodbc unixodbc-dev
+   $ sudo apt-get install odbcinst1debian2 libodbc1 odbcinst unixodbc
 
 
 Install the ODBC driver with a script
@@ -74,7 +74,7 @@ Use this method if you have never used ODBC on your machine before. If you have 
    .. code-block:: console
       
       $ mkdir -p sqream_odbc64
-      $ tar xf sqream_2019.2.1_odbc_3.0.0_x86_64_linux.tar.gz -C sqream_odbc64
+      $ tar -xf sqream_odbc_vX.Y_x86_64_linux.tar.gz  --strip-components=1  -C sqream_odbc64/
 
 #. Run the first-time installer. The installer will create an editable DSN.
    
