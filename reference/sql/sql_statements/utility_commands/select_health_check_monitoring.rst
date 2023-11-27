@@ -25,10 +25,10 @@ Configuration
 
 There are two types of Health-Check Monitor metrics: one is configurable, and the second is non-configurable. Non-configurable metrics provide information about the system, such as total storage capacity measured in Gigabytes. Configurable metrics are set with low, high, or both thresholds within a valid range to be reported in case of deviation. For example, this could include the number of days remaining on your SQreamDB license.
 
-The Health-Check Monitor configuration file comes pre-configured with best practices. However, as mentioned before, you have the flexibility to customize any default metric values based on your preferences. All metrics presented below are defined with valid ranges, so any value outside the range triggers a warning. It's important to note that configuring only one threshold will make the Health-Check Monitor assume the ignored threshold is set to *infinity*.
-
 Default Metric Values
 ----------------------
+
+The Health-Check Monitor configuration file comes pre-configured with best practices. However, as mentioned before, you have the flexibility to customize any default metric values based on your preferences. All metrics presented below are defined with valid ranges, so any value outside the range triggers a warning. It's important to note that configuring only one threshold will make the Health-Check Monitor assume the ignored threshold is set to *infinity*.
 
 .. code-block:: json
 
@@ -149,23 +149,7 @@ Storage
 
 Provides insights into cluster storage chunks and their fragmentation process. Offers an indication of irrelevant storage files in the cluster, preventing potential bottlenecks in chunk iteration during table readings in advance.
 
-Execution Example
-^^^^^^^^^^^^^^^^^^
-
-.. code-block:: sql
-
-	SELECT health_check_monitoring('storage', 'path/to/my/input.json', 'path/to/where/i/save/logs')
-
-You may also filter storage information retrieval by database, schema, table, or all three.  
-
-.. code-block:: sql
-
-	SELECT health_check_monitoring('storage', 'master', 'schema1', 'table1', 'path/to/my/input.json', 'path/to/where/i/save/logs')
-
-Metrics
-^^^^^^^^
-
-.. list-table:: 
+.. list-table:: Metrics
    :widths: auto
    :header-rows: 1
    
@@ -316,3 +300,18 @@ Execution Example
 
 	SELECT health_check_monitoring('self_healing', 'path/to/my/input.json', 'path/to/where/i/save/logs')
 
+Examples
+=========
+
+Storage
+^^^^^^^^
+
+.. code-block:: sql
+
+	SELECT health_check_monitoring('storage', 'path/to/my/input.json', 'path/to/where/i/save/logs')
+
+You may also filter storage information retrieval by database, schema, table, or all three.  
+
+.. code-block:: sql
+
+	SELECT health_check_monitoring('storage', 'master', 'schema1', 'table1', 'path/to/my/input.json', 'path/to/where/i/save/logs')
