@@ -89,7 +89,7 @@ If any doubt arises, consult the documentation for your server or your hardware 
 Installing the Operating System
 ===================================================	 
 
-Once the BIOS settings have been set, you must install the operating system. Either the CentOS (versions 7.6-7.9) or RHEL (versions 7.6-7.9) must be installed before installing the SQream database, by either the customer or a SQream representative.
+Once the BIOS settings have been set, you must install the operating system. Either the CentOS (versions 7.6-7.9) or RHEL (versions 7.x-8.x) must be installed before installing the SQream database, by either the customer or a SQream representative.
 
 **To install the operating system:**
 
