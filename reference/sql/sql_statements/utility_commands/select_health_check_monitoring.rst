@@ -116,7 +116,7 @@ General Syntax
 Health-Check Logs
 ===================
 
-After executing the ``SELECT health_check_monitoring`` command, a system health-check log file is generated and saved in the specified directory. Simultaneously, a result set is displayed in the result pane, showcasing the following output:
+After executing the ``SELECT health_check_monitoring`` command, both a system health-check log file and a result set are generated. The log file is saved in the specified directory, and the result set is displayed in the result pane, both showcasing the following output:
 
 .. list-table:: Log Output
    :widths: auto
@@ -139,7 +139,7 @@ After executing the ``SELECT health_check_monitoring`` command, a system health-
    * - ``response_time_sec``
      - 
 
-When examining your Health-Check log through the result pane, in addition to the metric output log, your initial valid range configuration is displayed along with the location of your exported log file. 
+Besides presenting the metric outputs, the result pane also showcases your initial metric range configuration and provides the location of your exported log file.
 
 Health-Check Category Specifications
 ========================================
@@ -149,8 +149,6 @@ Storage
 
 Provides insights into cluster storage chunks and their fragmentation process. Offers an indication of irrelevant storage files in the cluster, preventing potential bottlenecks in chunk iteration during table readings in advance.
 
-You may filter ``storage`` health-check by database, schema, and table.
-
 Execution Example
 ^^^^^^^^^^^^^^^^^^
 
@@ -158,10 +156,7 @@ Execution Example
 
 	SELECT health_check_monitoring('storage', 'path/to/my/input.json', 'path/to/where/i/save/logs')
 
-Execution Example With Filtering
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-You may filter storage information retrieval by database, schema, table, or all three.  
+You may also filter storage information retrieval by database, schema, table, or all three.  
 
 .. code-block:: sql
 
@@ -184,41 +179,9 @@ Metrics
      - 
    * - ``No. fragmented chunks``
      - ``totalNumberOfFragmentedChunks``
-     - 
-     - 
-
-Execution Example
-^^^^^^^^^^^^^^^^^^
-
-.. code-block:: sql
-
-	SELECT health_check_monitoring('storage', 'path/to/my/input.json', 'path/to/where/i/save/logs')
-
-Output
-^^^^^^^^^
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Parameter
-     - Description
-   * - ``metric_time``
-     - 
-   * - ``metric_category``
-     - 
-   * - ``metric_name``
-     - 
-   * - ``metric_description``
-     - 	 
-   * - ``metric_value``
-     - 
-   * - ``metric_validation_status``
-     - 
-   * - ``response_time_sec``
+     - ``"from":0, "to":100``
      - 
 
-	 
 Metadata Statistics
 --------------------
 
@@ -235,37 +198,45 @@ Metrics
      - Configuration Flag
      - Default Value
      - Description
+   * - ``NodeHeartbeatMsg``
+     - ``nodeHeartbeatMsgMaxResponseTimeMS``
+     - ``"from":0, "to":1000``
+     -
+   * - ``NodeHeartbeatMsg``
+     - ``nodeHeartbeatMsgVariance``
+     - ``"from":0, "to":1000``
+     -
+   * - ``CheckLocksMsg``
+     - ``checkLocksMsgMaxResponseTimeMS``
+     - ``"from":0, "to":1000``
+     -
+   * - ``CheckLocksMsg``
+     - ``checkLocksMsgVariance``
+     - ``"from":0, "to":1000``
+     -
+   * - ``KeysAndValuesNMsg``
+     - ``keysAndValuesNMaxResponseTimeMS``
+     - ``"from":0, "to":1000``
+     -
+   * - ``KeysAndValuesNMsg``
+     - ``keysAndValuesNVariance``
+     - ``"from":0, "to":1000``
+     -
+   * - ``KeysWithPrefixMsg``
+     - ``keysWithPrefixMsgMaxResponseTimeMS``
+     - ``"from":0, "to":1000``
+     -
+   * - ``KeysWithPrefixMsg``
+     - ``keysWithPrefixMsgVariance``
+     - ``"from":0, "to":1000``
+     -
 
-Example
-^^^^^^^^^
+Execution Example
+^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: sql
 
 	SELECT health_check_monitoring('metadata_stats', 'path/to/my/input.json', 'path/to/where/i/save/logs')
-
-Output
-^^^^^^^^^
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Parameter
-     - Description
-   * - ``metric_time``
-     - 
-   * - ``metric_category``
-     - 
-   * - ``metric_name``
-     - 
-   * - ``metric_description``
-     - 	 
-   * - ``metric_value``
-     - 
-   * - ``metric_validation_status``
-     - 
-   * - ``response_time_sec``
-     -  
 	 
 
 License
@@ -284,39 +255,30 @@ Metrics
      - Configuration Flag
      - Default Value
      - Description
+   * - ``Total storage capacity``
+     - NA
+     - NA
+     -
+   * - ``Used storage capacity``
+     - NA
+     - NA
+     -
+   * - ``% of used storage capacity``
+     - ``percentageStorageCapacity``
+     - ``"from":0, "to":0.9``
+     -
+   * - ``License expiration date``
+     - ``daysForLicenseExpire``
+     - ``"from":60``
+     -
 
-Example
-^^^^^^^^^
+Execution Example
+^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: sql
 
 	SELECT health_check_monitoring('license', 'path/to/my/input.json', 'path/to/where/i/save/logs')
-
-Output
-^^^^^^^^^
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Parameter
-     - Description
-   * - ``metric_time``
-     - 
-   * - ``metric_category``
-     - 
-   * - ``metric_name``
-     - 
-   * - ``metric_description``
-     - 	 
-   * - ``metric_value``
-     - 
-   * - ``metric_validation_status``
-     - 
-   * - ``response_time_sec``
-     - 
 	 
-
 
 self_healing
 --------------
@@ -334,37 +296,23 @@ Metrics
      - Configuration Flag
      - Default Value
      - Description
+   * - ``Queries in queue``
+     - ``queriesInQueue``
+     - ``"from":0, "to":100``
+     -
+   * - ``Available workers per service``
+     - ``availableWorkers``
+     - ``"from":0, "to":5``
+     -
+   * - ``Stuck snapshots``
+     - ``stuckSnapshots``
+     - ``"from":0, "to":2``
+     -
 
-Example
-^^^^^^^^^
+Execution Example
+^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: sql
 
 	SELECT health_check_monitoring('self_healing', 'path/to/my/input.json', 'path/to/where/i/save/logs')
-
-Output
-^^^^^^^^^
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Parameter
-     - Description
-   * - ``metric_time``
-     - 
-   * - ``metric_category``
-     - 
-   * - ``metric_name``
-     - 
-   * - ``metric_description``
-     - 	 
-   * - ``metric_value``
-     - 
-   * - ``metric_validation_status``
-     - 
-   * - ``response_time_sec``
-     - 
-
-
 
