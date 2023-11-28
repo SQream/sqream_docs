@@ -116,7 +116,7 @@ General Syntax
 Health-Check Logs
 ===================
 
-After executing the ``SELECT health_check_monitoring`` command, both a system health-check log file and a result set are generated. The log file is saved in the specified directory, and the result set is displayed in the result pane, both showcasing the following output:
+After executing the ``SELECT health_check_monitoring`` command, both a system health-check log file and a result set are generated. The log file is saved in the specified directory, and the result set is displayed in your CLI, both showcasing the following output:
 
 .. list-table:: Log Output
    :widths: auto
@@ -127,7 +127,7 @@ After executing the ``SELECT health_check_monitoring`` command, both a system he
    * - ``metric_time``
      - The time when the specific metric was checked
    * - ``metric_category``
-     - The system domain for which health information is retrieved
+     - The system domain for which health information is retrieved; either ``storage``, ``metadata_stats``, ``license``, or ``self_healing``
    * - ``metric_name``
      - 
    * - ``metric_description``
@@ -137,9 +137,11 @@ After executing the ``SELECT health_check_monitoring`` command, both a system he
    * - ``metric_validation_status``
      - One of three statuses: ``info``, metric value is within its defined valid range, ``none``, the metric provides information about the system and has no valid range, and ``warn``, metric deviates from its defined valid range
    * - ``response_time_sec``
-     - 
+     - Indicates the time taken to gather information for a specific metric. This is helpful for timing a health-check executions
 
-Besides presenting the metric outputs, the result pane also showcases your initial metric range configuration and provides the location of your exported log file.
+When reading your health-check log through the CLI, besides presenting the metric outputs, it also showcases your initial metric range configuration and the location of your exported log file.
+
+For each of the four Health-Check Monitor *categories*, a separated log file and result set are generated.  
 
 Health-Check Category Specifications
 ========================================
@@ -159,7 +161,7 @@ When monitoring your storage health, you may also filter information retrieval b
 
 	SELECT health_check_monitoring('storage', 'master', 'schema1', 'table1', 'path/to/my/input.json', 'path/to/where/i/save/logs')
 
-.. list-table:: Metrics
+.. list-table:: Storage Metrics
    :widths: auto
    :header-rows: 1
    
@@ -170,7 +172,7 @@ When monitoring your storage health, you may also filter information retrieval b
    * - ``No. storage chunks``
      - NA
      - NA
-     - 
+     - Chunk status; either ``clean``, `` mixed``, or ``deleted``. Helps in understanding why reading from a tale might be slow. ``clean`` means that read table is clean of temporarily held deleted data. ``mixed`` means that the read table holds data that was deleted but not yet cleaned up (the process of physically removing deleted data), and ``deleted`` means that the table read was cleaned-up. This is helpful for analyzing your deletion and cleaned-up habits and is extremely clear when using visualization tools. 
    * - ``No. fragmented chunks``
      - ``totalNumberOfFragmentedChunks``
      - ``"from":0, "to":100``
@@ -185,7 +187,7 @@ Provides information on Worker and metadata reactivity. Regular monitoring allow
 
 	SELECT health_check_monitoring('metadata_stats', 'path/to/my/input.json', 'path/to/where/i/save/logs')
 
-.. list-table:: Metrics
+.. list-table:: Metadata Statistics Metrics
    :widths: auto
    :header-rows: 1
    
@@ -196,31 +198,31 @@ Provides information on Worker and metadata reactivity. Regular monitoring allow
    * - ``NodeHeartbeatMsg``
      - ``nodeHeartbeatMsgMaxResponseTimeMS``
      - ``"from":0, "to":1000``
-     -
+     - Either ``max response time`` or ``variance``. ``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time
    * - ``NodeHeartbeatMsg``
      - ``nodeHeartbeatMsgVariance``
      - ``"from":0, "to":1000``
-     -
+     - Either ``max response time`` or ``variance``. ``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time
    * - ``CheckLocksMsg``
      - ``checkLocksMsgMaxResponseTimeMS``
      - ``"from":0, "to":1000``
-     -
+     - Either ``max response time`` or ``variance``. ``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time
    * - ``CheckLocksMsg``
      - ``checkLocksMsgVariance``
      - ``"from":0, "to":1000``
-     -
+     - Either ``max response time`` or ``variance``. ``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time
    * - ``KeysAndValuesNMsg``
      - ``keysAndValuesNMaxResponseTimeMS``
      - ``"from":0, "to":1000``
-     -
+     - Either ``max response time`` or ``variance``. ``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time
    * - ``KeysAndValuesNMsg``
      - ``keysAndValuesNVariance``
      - ``"from":0, "to":1000``
-     -
+     - Either ``max response time`` or ``variance``. ``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time
    * - ``KeysWithPrefixMsg``
      - ``keysWithPrefixMsgMaxResponseTimeMS``
      - ``"from":0, "to":1000``
-     -
+     - Either ``max response time`` or ``variance``. ``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time
    * - ``KeysWithPrefixMsg``
      - ``keysWithPrefixMsgVariance``
      - ``"from":0, "to":1000``
@@ -235,7 +237,7 @@ Provides details about the customer's license, including database storage capaci
 
 	SELECT health_check_monitoring('license', 'path/to/my/input.json', 'path/to/where/i/save/logs')
 
-.. list-table:: Metrics
+.. list-table:: License Metrics
    :widths: auto
    :header-rows: 1
    
@@ -270,7 +272,7 @@ Supplies details on customer ETLs and loads, monitors the execution flow of quer
 	SELECT health_check_monitoring('self_healing', 'path/to/my/input.json', 'path/to/where/i/save/logs')
 
 
-.. list-table:: Metrics
+.. list-table:: self_healing Metrics
    :widths: auto
    :header-rows: 1
    
