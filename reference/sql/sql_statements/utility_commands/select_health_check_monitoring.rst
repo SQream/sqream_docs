@@ -116,7 +116,7 @@ General Syntax
 Health-Check Logs
 ===================
 
-After executing the ``SELECT health_check_monitoring`` command, both a health-check log file and a result set are generated. When reading your health-check log through the CLI, in addition to the metric outputs, it also showcases your initial metric range configuration and the location of your exported log file. It's important to note that logs are separately generated for each of the four Health-Check Monitor *categories*. 
+After executing the ``SELECT health_check_monitoring`` command, both a health-check log file and a CLI result set are generated. When reading your health-check log through the CLI, in addition to the metric outputs, it also showcases your initial metric range configuration and the location of your exported log file. It's important to note that logs are separately generated for each of the four Health-Check Monitor *categories*. 
 
 The log file and the result set both showcase the following output:
 
