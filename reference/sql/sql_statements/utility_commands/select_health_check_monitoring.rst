@@ -116,7 +116,9 @@ General Syntax
 Health-Check Logs
 ===================
 
-After executing the ``SELECT health_check_monitoring`` command, both a system health-check log file and a result set are generated. The log file is saved in the specified directory, and the result set is displayed in your CLI, both showcasing the following output:
+After executing the ``SELECT health_check_monitoring`` command, both a health-check log file and a result set are generated. When reading your health-check log through the CLI, in addition to the metric outputs, it also showcases your initial metric range configuration and the location of your exported log file. It's important to note that logs are separately generated for each of the four Health-Check Monitor *categories*. 
+
+The log file and the result set both showcase the following output:
 
 .. list-table:: Log Output
    :widths: auto
@@ -137,11 +139,7 @@ After executing the ``SELECT health_check_monitoring`` command, both a system he
    * - ``metric_validation_status``
      - One of three statuses: ``info``, metric value is within its defined valid range, ``none``, the metric provides information about the system and has no valid range, and ``warn``, metric deviates from its defined valid range
    * - ``response_time_sec``
-     - Indicates the time taken to gather information for a specific metric. This is helpful for timing a health-check executions
-
-When reading your health-check log through the CLI, besides presenting the metric outputs, it also showcases your initial metric range configuration and the location of your exported log file.
-
-For each of the four Health-Check Monitor *categories*, a separated log file and result set are generated.  
+     - Indicates the time taken to gather information for a specific metric. This is helpful for timing a health-check executions 
 
 Health-Check Category Specifications
 ========================================
@@ -176,7 +174,7 @@ When monitoring your storage health, you may also filter information retrieval b
    * - ``No. fragmented chunks``
      - ``totalNumberOfFragmentedChunks``
      - ``"from":0, "to":100``
-     - 
+     - Defines 
 
 Metadata Statistics
 --------------------
