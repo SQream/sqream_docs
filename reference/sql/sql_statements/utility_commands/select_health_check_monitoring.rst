@@ -185,6 +185,8 @@ Provides information on Worker and metadata reactivity. Regular monitoring allow
 
 	SELECT health_check_monitoring('metadata_stats', 'path/to/my/input.json', 'path/to/where/i/save/logs')
 
+``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time.
+
 .. list-table:: Metadata Statistics Metrics
    :widths: auto
    :header-rows: 1
@@ -196,35 +198,35 @@ Provides information on Worker and metadata reactivity. Regular monitoring allow
    * - ``NodeHeartbeatMsg``
      - ``nodeHeartbeatMsgMaxResponseTimeMS``
      - ``"from":0, "to":1000``
-     - ``max response time`` indicates the peak time for the monitored *category*
+     - 
    * - ``NodeHeartbeatMsg``
      - ``nodeHeartbeatMsgVariance``
      - ``"from":0, "to":1000``
-     - ``variance`` represents the standard deviation between the peak time and the monitoring time
+     - 
    * - ``CheckLocksMsg``
      - ``checkLocksMsgMaxResponseTimeMS``
      - ``"from":0, "to":1000``
-     - ``max response time`` indicates the peak time for the monitored *category*
+     - 
    * - ``CheckLocksMsg``
      - ``checkLocksMsgVariance``
      - ``"from":0, "to":1000``
-     - ``variance`` represents the standard deviation between the peak time and the monitoring time
+     - 
    * - ``KeysAndValuesNMsg``
      - ``keysAndValuesNMaxResponseTimeMS``
      - ``"from":0, "to":1000``
-     - ``max response time`` indicates the peak time for the monitored *category*
+     - 
    * - ``KeysAndValuesNMsg``
      - ``keysAndValuesNVariance``
      - ``"from":0, "to":1000``
-     - ``variance`` represents the standard deviation between the peak time and the monitoring time
+     - 
    * - ``KeysWithPrefixMsg``
      - ``keysWithPrefixMsgMaxResponseTimeMS``
      - ``"from":0, "to":1000``
-     - ``max response time`` indicates the peak time for the monitored *category*
+     - 
    * - ``KeysWithPrefixMsg``
      - ``keysWithPrefixMsgVariance``
      - ``"from":0, "to":1000``
-     - ``variance`` represents the standard deviation between the peak time and the monitoring time
+     - 
 
 License
 --------
@@ -246,19 +248,19 @@ Provides details about the customer's license, including database storage capaci
    * - ``Total storage capacity``
      - NA
      - NA
-     -
+     - Indicates your licensed storage capacity, outlining the permissible limit for your usage
    * - ``Used storage capacity``
      - NA
      - NA
-     -
+     - Indicates current storage utilization
    * - ``% of used storage capacity``
      - ``percentageStorageCapacity``
      - ``"from":0, "to":0.9``
-     -
+     - Indicates current storage utilization percentage
    * - ``License expiration date``
      - ``daysForLicenseExpire``
      - ``"from":60``
-     -
+     - Indicates how many days until your license expires
 
 self_healing
 --------------
@@ -281,14 +283,14 @@ Supplies details on customer ETLs and loads, monitors the execution flow of quer
    * - ``Queries in queue``
      - ``queriesInQueue``
      - ``"from":0, "to":100``
-     -
+     - Indicates the number of currently queued queries
    * - ``Available workers per service``
      - ``availableWorkers``
      - ``"from":0, "to":5``
-     -
+     - Indicates the number of unused Workers per service
    * - ``Stuck snapshots``
      - ``stuckSnapshots``
      - ``"from":0, "to":2``
-     -
+     - Indicates the number of currently stuck snapshots
 
 
