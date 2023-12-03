@@ -116,11 +116,11 @@ General Syntax
 Health-Check Logs
 ===================
 
-After executing the ``SELECT health_check_monitoring`` command, both a health-check log file and a CLI result set are generated. When reading your health-check log through the CLI, in addition to the metric outputs, it also showcases your initial metric range configuration and the location of your exported log file. It's important to note that logs are separately generated for each of the four Health-Check Monitor *categories*. 
+After executing the ``SELECT health_check_monitoring`` command, both a health-check log file and a CLI result set are generated. When reading your health-check log through the CLI, in addition to the metric values, it also showcases your initially set metric range configuration and the location of your exported log file. It's important to note that logs are separately generated for each of the four Health-Check Monitor *categories*. 
 
-The log file and the result set both showcase the following output:
+The log file and the result set both output the following metrics:
 
-.. list-table:: Log Output
+.. list-table:: Log Metrics
    :widths: auto
    :header-rows: 1
 
@@ -170,11 +170,11 @@ When monitoring your storage health, you may also filter information retrieval b
    * - ``No. storage chunks``
      - NA
      - NA
-     - Chunk status; either ``clean``, `` mixed``, or ``deleted``. Helps in understanding why reading from a tale might be slow. ``clean`` means that read table is clean of temporarily held deleted data. ``mixed`` means that the read table holds data that was deleted but not yet cleaned up (the process of physically removing deleted data), and ``deleted`` means that the table read was cleaned-up. This is helpful for analyzing your deletion and cleaned-up habits and is extremely clear when using visualization tools. 
+     - Chunk status; categorized as either ``clean``, ``mixed``, or ``deleted``. This classification aids in comprehending potential slowdowns when reading from a table. ``Clean`` indicates that your table is free of physically lingering deleted data. ``Mixed`` suggests that your table contains data marked for deletion but not yet purged (awaiting the removal of deleted data). Meanwhile, ``deleted`` signifies that the table has undergone the cleanup process. This categorization proves valuable for scrutinizing deletion and clean-up practices, particularly when visualizing data through dedicated tools 
    * - ``No. fragmented chunks``
      - ``totalNumberOfFragmentedChunks``
      - ``"from":0, "to":100``
-     - Defines 
+     - Defines the number of fragmented chunks
 
 Metadata Statistics
 --------------------
