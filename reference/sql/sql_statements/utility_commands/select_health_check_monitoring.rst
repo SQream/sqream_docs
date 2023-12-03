@@ -116,7 +116,7 @@ General Syntax
 Health-Check Logs
 ===================
 
-After executing the ``SELECT health_check_monitoring`` command, both a health-check log file and a CLI result set are generated. When reading your health-check log through the CLI, in addition to the metric values, it also showcases your initially set metric range configuration and the location of your exported log file. It's important to note that logs are separately generated for each of the four Health-Check Monitor *categories*. 
+After executing the ``SELECT health_check_monitoring`` command, a health-check log file and a CLI result set are generated. When reading your health-check log through the CLI, in addition to the metric values, it also showcases your initially set metric range configuration and the location of your exported log file. It's important to note that logs are separately generated for each of the four Health-Check Monitor *categories*. 
 
 The log file and the result set both output the following metrics:
 
@@ -139,7 +139,7 @@ The log file and the result set both output the following metrics:
    * - ``metric_validation_status``
      - One of three statuses: ``info``, metric value is within its defined valid range, ``none``, the metric provides information about the system and has no valid range, and ``warn``, metric deviates from its defined valid range
    * - ``response_time_sec``
-     - Indicates the time taken to gather information for a specific metric. This is helpful for timing a health-check executions 
+     - Indicates the time taken to gather information for a specific metric. This is helpful for timing health-check executions 
 
 Health-Check Category Specifications
 ========================================
@@ -196,35 +196,35 @@ Provides information on Worker and metadata reactivity. Regular monitoring allow
    * - ``NodeHeartbeatMsg``
      - ``nodeHeartbeatMsgMaxResponseTimeMS``
      - ``"from":0, "to":1000``
-     - Either ``max response time`` or ``variance``. ``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time
+     - ``max response time`` indicates the peak time for the monitored *category*
    * - ``NodeHeartbeatMsg``
      - ``nodeHeartbeatMsgVariance``
      - ``"from":0, "to":1000``
-     - Either ``max response time`` or ``variance``. ``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time
+     - ``variance`` represents the standard deviation between the peak time and the monitoring time
    * - ``CheckLocksMsg``
      - ``checkLocksMsgMaxResponseTimeMS``
      - ``"from":0, "to":1000``
-     - Either ``max response time`` or ``variance``. ``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time
+     - ``max response time`` indicates the peak time for the monitored *category*
    * - ``CheckLocksMsg``
      - ``checkLocksMsgVariance``
      - ``"from":0, "to":1000``
-     - Either ``max response time`` or ``variance``. ``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time
+     - ``variance`` represents the standard deviation between the peak time and the monitoring time
    * - ``KeysAndValuesNMsg``
      - ``keysAndValuesNMaxResponseTimeMS``
      - ``"from":0, "to":1000``
-     - Either ``max response time`` or ``variance``. ``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time
+     - ``max response time`` indicates the peak time for the monitored *category*
    * - ``KeysAndValuesNMsg``
      - ``keysAndValuesNVariance``
      - ``"from":0, "to":1000``
-     - Either ``max response time`` or ``variance``. ``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time
+     - ``variance`` represents the standard deviation between the peak time and the monitoring time
    * - ``KeysWithPrefixMsg``
      - ``keysWithPrefixMsgMaxResponseTimeMS``
      - ``"from":0, "to":1000``
-     - Either ``max response time`` or ``variance``. ``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time
+     - ``max response time`` indicates the peak time for the monitored *category*
    * - ``KeysWithPrefixMsg``
      - ``keysWithPrefixMsgVariance``
      - ``"from":0, "to":1000``
-     -
+     - ``variance`` represents the standard deviation between the peak time and the monitoring time
 
 License
 --------
