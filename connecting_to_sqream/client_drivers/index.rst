@@ -23,7 +23,7 @@ Client Driver Downloads
      - :ref:`java_jdbc`
      - Recommended installation via ``mvn``
      - All
-   * - **.NET**
+   * - **SQreamNet**
      - `.NET .dll file <https://get.sqream-share.com/share/sIsu8fxv>`_ 
      - :ref:`net`
      - 
