@@ -48,6 +48,11 @@ It is worth noting that the worker configuration file is not subject to frequent
      - Enables you to manually set the reported IP.
      - string
      - ``127.0.0.1``	
+   * - ``maxConnections``
+     - SUPERUSER
+     - Defines the maximum allowed connections per Worker.
+     - bigint
+     - ``1000``	
    * - ``metadataServerPort``
      - SUPERUSER
      - Sets the port used to connect to the metadata server. SQream recommends using port ranges above 1024 because ports below 1024 are usually reserved, although there are no strict limitations. You can use any positive number (1 - 65535) while setting this flag.
