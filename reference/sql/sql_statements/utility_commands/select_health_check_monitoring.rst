@@ -6,7 +6,7 @@ HEALTH-CHECK MONITORING
 
 The ``SELECT health_check_monitoring`` command empowers system administrators to comprehensively monitor the database's health across multiple *categories*. 
 
-In the ``storage`` domain, it provides insights into cluster storage chunks and their fragmentation, helping prevent bottlenecks during table readings by identifying irrelevant files. The ``metadata_stats`` category offers information on Worker and metadata reactivity, enabling the identification of system performance during peak loads and the revelation of potential concurrent issues. Addressing licensing concerns, the command gives details on the customer's ``license``, including storage capacity and restrictions, and proactively alerts administrators before reaching limitations. Lastly, under ``self_healing``, it supplies essential details on ETL and load processes, monitors query execution flow, tracks Workers per service, identifies idle Workers, and detects issues like stuck snapshots—crucial for regular monitoring and offering clear insights during the Root Cause Analysis (RCA) process for optimal resource allocation.
+In the ``storage`` domain, it provides insights into cluster storage chunks and their fragmentation, helping to prevent table reading bottlenecks by alerting in the case of a fragmentation scenario. Additionally, it gives indications per table on when to trigger cleanup executions (to free up storage and improve reading performance). The ``metadata_stats`` category offers information on Worker and metadata reactivity, enabling the identification of system performance during peak loads and the revelation of potential concurrent issues. Addressing licensing concerns, the command gives details on the customer's ``license``, including storage capacity and restrictions, and proactively alerts administrators before reaching limitations. Lastly, under ``self_healing``, it supplies essential details on ETL and load processes, monitors query execution flow, tracks Workers per service, identifies idle Workers, and detects issues like stuck snapshots—crucial for regular monitoring and offering clear insights during the Root Cause Analysis (RCA) process for optimal resource allocation.
 
 Here, you can discover details on configuring the monitoring for each of the four categories, along with instructions on how to access and interpret the log files for each category.
 
@@ -151,7 +151,7 @@ Provides insights into cluster storage chunks and their fragmentation process. O
 
 .. code-block:: sql
 
-	SELECT health_check_monitoring('storage', 'path/to/my/input.json', 'path/to/where/i/save/logs')
+	SELECT health_check_monitoring('storage', 'path/to/my/input.json', 'directory/where/i/save/logs')
 
 When monitoring your storage health, you may also filter information retrieval by database, schema, table, or all three.  
 
@@ -183,7 +183,7 @@ Provides information on Worker and metadata reactivity. Regular monitoring allow
 
 .. code-block:: sql
 
-	SELECT health_check_monitoring('metadata_stats', 'path/to/my/input.json', 'path/to/where/i/save/logs')
+	SELECT health_check_monitoring('metadata_stats', 'path/to/my/input.json', 'directory/where/i/save/logs')
 
 ``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time.
 
@@ -235,7 +235,7 @@ Provides details about the customer's license, including database storage capaci
 
 .. code-block:: sql
 
-	SELECT health_check_monitoring('license', 'path/to/my/input.json', 'path/to/where/i/save/logs')
+	SELECT health_check_monitoring('license', 'path/to/my/input.json', 'directory/where/i/save/logs')
 
 .. list-table:: License Metrics
    :widths: auto
@@ -265,11 +265,13 @@ Provides details about the customer's license, including database storage capaci
 self_healing
 --------------
 
-Supplies details on customer ETLs and loads, monitors the execution flow of queries over time, tracks the number of Workers per service, identifies idle Workers, and detects potential issues such as stuck snapshots. It is imperative to regularly monitor this data. During the Root Cause Analysis (RCA) process, it provides a clear understanding of executed operations at specific times, offering customers guidance on optimal resource allocation, particularly in terms of workers per service.
+Supplies details on customer ETLs and loads, monitors the execution flow of queries over time, tracks the number of Workers per service, identifies idle Workers, and detects potential issues such as stuck snapshots. It is imperative to regularly monitor this data. During the Root Cause Analysis (RCA) process, it provides a clear understanding of executed operations at specific times, offering customers guidance on optimal resource allocation, particularly in terms of Workers per service.
+
+Monitoring ``self_healing`` frequently is a best practice to maximize its value.
 
 .. code-block:: sql
 
-	SELECT health_check_monitoring('self_healing', 'path/to/my/input.json', 'path/to/where/i/save/logs')
+	SELECT health_check_monitoring('self_healing', 'path/to/my/input.json', 'directory/where/i/save/logs')
 
 
 .. list-table:: self_healing Metrics
