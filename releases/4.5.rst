@@ -36,7 +36,7 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
-► :ref:`Health-Check Monitor<select_health_check_monitoring>`
+► A new :ref:`Health-Check Monitor<select_health_check_monitoring>` utility command that allows administrators to monitor the database health
 
 ► :ref:`Query Timeout Per Service<>`
 
