@@ -40,7 +40,7 @@ New Features and Enhancements
 
 ► :ref:`Query Timeout Per Service<>`
 
-► Optimized ``JOIN`` operation for improved performance with large tables 
+► Optimized ``JOIN`` operation for improved performance with large tables
 
 Known Issues
 ------------
