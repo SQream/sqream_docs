@@ -24,7 +24,7 @@ Client Driver Downloads
      - Recommended installation via ``mvn``
      - All
    * - **SQreamNet**
-     - `.NET .dll file <https://get.sqream-share.com/share/sIsu8fxv>`_ 
+     - `.NET .dll file <https://sq-ftp-public.s3.amazonaws.com/SqreamNet6.0_v5.0.0.zip>`_ 
      - :ref:`net`
      - 
      - All
