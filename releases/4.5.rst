@@ -4,7 +4,7 @@
 Release Notes 4.5
 *****************
 
-The 4.5 release notes were released on XXXXXXXXXXX
+The 4.5 release notes were released on December XXth, 2023
 
 .. contents:: 
    :local:
@@ -26,7 +26,7 @@ Compatibility Matrix
 | Driver compatibility            | * JDBC 5.0.0                                                           |
 |                                 | * ODBC 4.4.4                                                           | 
 |                                 | * NodeJS                                                               |
-|                                 | * .NET 3.0.2                                                           |
+|                                 | * .NET 5.0.0                                                           |
 |                                 | * Pysqream 5.0.0                                                       |
 |                                 | * Spark                                                                |
 +---------------------------------+------------------------------------------------------------------------+
@@ -40,7 +40,7 @@ New Features and Enhancements
 
 ► :ref:`Query Timeout Per Service<>`
 
-► ``JOIN`` Performance Enhancements
+► Optimized ``JOIN`` operation for improved performance with large tables 
 
 Known Issues
 ------------
@@ -56,13 +56,13 @@ Version 4.5 resolved Issues
 +--------------------+------------------------------------------------------------------------------------------------+
 | **SQ No.**         | **Description**                                                                                |
 +====================+================================================================================================+
-| SQ-11523           | Saved query ``datetime`` internal runtime issue                                                |
+| SQ-11523           | Resolved internal runtime issue affecting the ``datetime`` saved query                         |
 +--------------------+------------------------------------------------------------------------------------------------+
 | SQ-14292           |                                                                                                |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-14869           |                                                                                                |
+| SQ-14869           | Optimized compilation time for improved performance with large metadata                        |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-15074           | Non-``SUPERUSER`` UI access issue                                                              |
+| SQ-15074           | Addressed UI access issue for non-``SUPERUSER`` roles                                          |
 +--------------------+------------------------------------------------------------------------------------------------+
 
 Deprecations
