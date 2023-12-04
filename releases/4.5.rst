@@ -4,7 +4,7 @@
 Release Notes 4.5
 *****************
 
-The 4.5 release notes were released on December XXth, 2023
+The 4.5 release notes were released on December 5th, 2023
 
 .. contents:: 
    :local:
