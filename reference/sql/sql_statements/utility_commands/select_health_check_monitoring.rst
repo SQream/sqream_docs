@@ -185,7 +185,7 @@ Provides information on Worker and metadata reactivity. Regular monitoring allow
 
 	SELECT health_check_monitoring('metadata_stats', 'path/to/my/input.json', 'directory/where/i/save/logs')
 
-``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time.
+
 
 .. list-table:: Metadata Statistics Metrics
    :widths: auto
@@ -196,37 +196,22 @@ Provides information on Worker and metadata reactivity. Regular monitoring allow
      - Default Value
      - Description
    * - ``NodeHeartbeatMsg``
-     - ``nodeHeartbeatMsgMaxResponseTimeMS``
+     - ``nodeHeartbeatMsgMaxResponseTimeMS``, ``nodeHeartbeatMsgVariance``
      - ``"from":0, "to":1000``
-     - 
-   * - ``NodeHeartbeatMsg``
-     - ``nodeHeartbeatMsgVariance``
-     - ``"from":0, "to":1000``
-     - 
+     - Ensures worker vitality through metadata pings. ``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time.	 
    * - ``CheckLocksMsg``
-     - ``checkLocksMsgMaxResponseTimeMS``
+     - ``checkLocksMsgMaxResponseTimeMS``, ``checkLocksMsgVariance``
      - ``"from":0, "to":1000``
-     - 
-   * - ``CheckLocksMsg``
-     - ``checkLocksMsgVariance``
-     - ``"from":0, "to":1000``
-     - 
+     - Provides details on current locks at the metadata to determine the feasibility of executing the statement. ``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time.	 
    * - ``KeysAndValuesNMsg``
-     - ``keysAndValuesNMaxResponseTimeMS``
+     - ``keysAndValuesNMaxResponseTimeMS``, ``keysAndValuesNVariance``
      - ``"from":0, "to":1000``
-     - 
-   * - ``KeysAndValuesNMsg``
-     - ``keysAndValuesNVariance``
-     - ``"from":0, "to":1000``
-     - 
+     - Iterates through metadata keys and values. ``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time.	 
    * - ``KeysWithPrefixMsg``
-     - ``keysWithPrefixMsgMaxResponseTimeMS``
+     - ``keysWithPrefixMsgMaxResponseTimeMS``, ``keysWithPrefixMsgVariance``
      - ``"from":0, "to":1000``
-     - 
-   * - ``KeysWithPrefixMsg``
-     - ``keysWithPrefixMsgVariance``
-     - ``"from":0, "to":1000``
-     - 
+     - Iterates through metadata keys and values with a specific prefix. ``max response time`` indicates the peak time for the monitored *category*, while ``variance`` represents the standard deviation between the peak time and the monitoring time.
+
 
 License
 --------
