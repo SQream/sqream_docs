@@ -45,7 +45,7 @@ New Features and Enhancements
 Known Issues
 ------------
 
-* :ref:`Percentile<percentile_disc>` is not supported for :ref:`Window Functions<window_functions>`.
+* :ref:`Percentile<percentile_disc>` is not supported for :ref:`Window Functions<window_functions>`
 
 
 Version 4.5 resolved Issues
