@@ -113,33 +113,41 @@ General Syntax
      - Specifies the directory path where you want the monitoring log file to be extracted.
 
 
-Health-Check Logs
-===================
+Health-Check Log Structure
+=============================
 
 After executing the ``SELECT health_check_monitoring`` command, a health-check log file and a CLI result set are generated. When reading your health-check log through the CLI, in addition to the metric values, it also showcases your initially set metric range configuration and the location of your exported log file. It's important to note that logs are separately generated for each of the four Health-Check Monitor *categories*. 
 
-The log file and the result set both output the following metrics:
+The log file and the result set both output the following information:
 
-.. list-table:: Log Metrics
+.. list-table:: Log Output
    :widths: auto
    :header-rows: 1
 
-   * - Metric
+   * - Log Column Name
      - Description
    * - ``metric_time``
      - The time when the specific metric was checked
    * - ``metric_category``
      - The system domain for which health information is retrieved; either ``storage``, ``metadata_stats``, ``license``, or ``self_healing``
    * - ``metric_name``
-     - 
+     - The specific metric that is being evaluated
    * - ``metric_description``
-     - 	 
+     - For metrics that need a detailed analysis breakdown, this column will showcase the breakdown alongside any additional information 	 
    * - ``metric_value``
      - The value of the specific metric
    * - ``metric_validation_status``
-     - One of three statuses: ``info``, metric value is within its defined valid range, ``none``, the metric provides information about the system and has no valid range, and ``warn``, metric deviates from its defined valid range
+     - One of three statuses: 
+	 * :green:`info`, metric value is within its defined valid range
+	 * none, the metric provides information about the system and has no valid range 
+	 * :red:`warn`, metric deviates from its defined valid range
    * - ``response_time_sec``
      - Indicates the time taken to gather information for a specific metric. This is helpful for timing health-check executions 
+
+Handling Warnings
+-------------------
+
+
 
 Health-Check Category Specifications
 ========================================
