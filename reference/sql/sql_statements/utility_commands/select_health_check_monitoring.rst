@@ -149,6 +149,8 @@ Storage
 
 Provides insights into cluster storage chunks and their fragmentation process. Offers an indication of irrelevant storage files in the cluster, preventing potential bottlenecks in chunk iteration during table readings in advance.
 
+``storage`` monitoring has a lengthy execution time, necessitating low-frequency checks to prevent undue strain on your environment.
+
 .. code-block:: sql
 
 	SELECT health_check_monitoring('storage', 'path/to/my/input.json', 'directory/where/i/save/logs')
@@ -157,6 +159,10 @@ When monitoring your storage health, you may also filter information retrieval b
 
 .. code-block:: sql
 
+	SELECT health_check_monitoring('storage', 'master', 'path/to/my/input.json', 'path/to/where/i/save/logs')
+	
+	SELECT health_check_monitoring('storage', 'master', 'schema1', 'path/to/my/input.json', 'path/to/where/i/save/logs')	
+	
 	SELECT health_check_monitoring('storage', 'master', 'schema1', 'table1', 'path/to/my/input.json', 'path/to/where/i/save/logs')
 
 .. list-table:: Storage Metrics
@@ -184,8 +190,6 @@ Provides information on Worker and metadata reactivity. Regular monitoring allow
 .. code-block:: sql
 
 	SELECT health_check_monitoring('metadata_stats', 'path/to/my/input.json', 'directory/where/i/save/logs')
-
-
 
 .. list-table:: Metadata Statistics Metrics
    :widths: auto
