@@ -36,9 +36,9 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
-► Introducing a new :ref:`Health-Check Monitor<select_health_check_monitoring>` utility command empowers administrators to oversee the database's health. This command serves as a valuable tool for real-time monitoring, enabling administrators to assess and ensure the optimal health and performance of the database
+► Introducing a new :ref:`Health-Check Monitor<select_health_check_monitoring>` utility command empowers administrators to oversee the database's health. This command serves as a valuable tool for monitoring, enabling administrators to assess and ensure the optimal health and performance of the database
 
-► A new :ref:`Query Timeout Per Service<query_timeout_minutes>` cluster flag that is designed to identify queries that are stuck, having exceeded the specified time limit. Once the flag value is reached, the query automatically stops
+► A new :ref:`Query Timeout<query_timeout_minutes>` session flag designed to identify queries that have exceeded a specified time limit. Once the flag value is reached, the query automatically stops
 
 ► Optimized ``JOIN`` operation for improved performance with large tables
 
@@ -46,8 +46,6 @@ Known Issues
 ------------
 
 * :ref:`Percentile<percentile_disc>` is not supported for :ref:`Window Functions<window_functions>`.
-
-* Performance degradation when using ``VARCHAR`` partition key in a :ref:`Window Functions<window_functions>` expression
 
 
 Version 4.5 resolved Issues
