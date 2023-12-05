@@ -1,5 +1,23 @@
 .. _select_health_check_monitoring:
 
+.. role:: red
+   :class: red-text
+   
+.. role:: green
+   :class: green-text
+
+.. raw:: html
+
+   <style>
+   .red-text {
+       color: red !important;
+   }
+   
+   .green-text {
+       color: green !important;
+   }
+   </style>
+
 *******************************
 HEALTH-CHECK MONITORING
 *******************************
@@ -147,7 +165,39 @@ The log file and the result set both output the following information:
 Handling Warnings
 -------------------
 
+Upon reviewing your log output, you'll observe that the ``metric_validation_status`` column reflects one of three potential statuses: :green:`info`, none, or :red:`warn`. This section offers guidance on effectively managing warnings whenever a :red:`warn` status is encountered.
 
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+
+   * - Health-Check Category
+     - Metric Name
+     - How to Handle :red:`warn`
+   * - Storage
+     - ``No. fragmented chunks``
+     - Recreating the table for triggering defragmentation
+   * - Metadata Statistics
+     - ``NodeHeartbeatMsg``, ``CheckLocksMsg``, ``KeysAndValuesNMsg``, ``KeysWithPrefixMsg``
+     - Gather your metadata statistics by executing the following commands and send the information to `SQreamDB Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_:
+	 
+       .. code-block:: sql
+	   
+          SELECT export_leveldb_stats('<EXPORT_FILE_PATH>');
+          SELECT export_statement_queue_stats('<EXPORT_FILE_PATH>');
+          SELECT export_conn_stats('<EXPORT_FILE_PATH>'); 	      
+   * - License
+     - ``% of used storage capacity``, ``License expiration date``
+     - Contact `SQreamDB Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ for license expansion	
+   * - Self Healing
+     - ``Queries in queue``
+     - To prevent bottlenecks in the service, reallocate service Workers. Distributing or reallocating service Workers strategically can help optimize performance and mitigate potential bottlenecks. Learn more about :ref:`Worker allocation<workload_manager>`	
+   * - Self Healing
+     - ``Available workers per service``
+     - Efficiently utilize resources by reallocating idle workers to a busier service. This approach optimizes resource consumption and helps balance the workload across services.	Learn more about :ref:`Worker allocation<workload_manager>`	
+   * - Self Healing
+     - ``Stuck snapshots``
+     - The Healer is designed to autonomously address stuck snapshots based on its configured timeout. The session flag, :ref:`healerDetectionFrequencySeconds<healer_detection_frequency_seconds>`, determines when the Healer detects and takes corrective actions for stuck snapshots. To manually address a situation, execute a :ref:`graceful shutdown<shutdown_server_command>` of the statement's Worker  		 
 
 Health-Check Category Specifications
 ========================================
