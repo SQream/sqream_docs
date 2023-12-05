@@ -36,9 +36,9 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
-► A new :ref:`Health-Check Monitor<select_health_check_monitoring>` utility command that allows administrators to monitor the database health
+► Introducing a new :ref:`Health-Check Monitor<select_health_check_monitoring>` utility command empowers administrators to oversee the database's health. This command serves as a valuable tool for real-time monitoring, enabling administrators to assess and ensure the optimal health and performance of the database
 
-► A new :ref:`Query Timeout Per Service<>` cluster flag that is designed to identify queries that are stuck, having exceeded the specified time limit. Once the flag value is reached, the query automatically stops.
+► A new :ref:`Query Timeout Per Service<query_timeout_minutes>` cluster flag that is designed to identify queries that are stuck, having exceeded the specified time limit. Once the flag value is reached, the query automatically stops
 
 ► Optimized ``JOIN`` operation for improved performance with large tables
 
