@@ -412,29 +412,6 @@ Installing NodeJS on CentOS
    .. code-block:: console
 
       $ sudo npm install pm2 -g
-
-Installing NodeJS on Ubuntu
---------------------------------
-
-**To install the node.js file on Ubuntu:**
-  
-1. Download the `setup_12.x file <https://deb.nodesource.com/setup_12.x>`__ as a root user logged in shell:
-
-   .. code-block:: console
-
-      $ curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
-  
-2. Install the node.js file:
-
-   .. code-block:: console
-
-      $ sudo apt-get install -y nodejs  
-  
-3. Install npm and make it available for all users:
-
-   .. code-block:: console
-
-      $ sudo npm install pm2 -g
 	  
 Installing NodeJS Offline
 -------------------------------
@@ -484,9 +461,7 @@ Installing NodeJS Offline
       $ node --version
 	  
 Installing the pm2 Service Offline
--------------------------------------------
-
-**To install the pm2 Service Offline**
+------------------------------------
 
 1. On a machine with internet access, install the following:
 
@@ -498,30 +473,30 @@ Installing the pm2 Service Offline
 
    .. code-block:: console
 
-      $ cd /usr/local/node-v12.13.0-linux-x64/lib/node_modules
+      $ cd /usr/local/node-v14.21.3-linux-x64/lib/node_modules
       $ tar -czvf pm2_x86.tar.gz pm2
 
-3. Copy the **pm2_x86.tar.gz** file to a server without access to the internet and extract it.
+3. Copy the ``pm2_x86.tar.gz`` file to a server without access to the internet and extract it.
 
     ::
 
-4. Move the **pm2** folder to the */usr/local/node-v12.13.0-linux-x64/lib/node_modules* directory:
+4. Move the ``pm2`` folder to the ``/usr/local/node-v14.21.3-linux-x64/lib/node_modules`` directory:
 
    .. code-block:: console
 
-      $ sudo mv pm2 /usr/local/node-v12.13.0-linux-x64/lib/node_modules
+      $ sudo mv pm2 /usr/local/node-v14.21.3-linux-x64/lib/node_modules
 	  
-5. Navigate back to the */usr/bin* directory:
+5. Navigate back to the ``/usr/bin`` directory:
 
    .. code-block:: console
 
       $ cd /usr/bin again
 
-6.  Create a symbolink to the **pm2** service:
+6.  Create a symbolink to the ``pm2`` service:
 
    .. code-block:: console
 
-      $ sudo ln -s /usr/local/node-v12.22.3-linux-x64/lib/node_modules/pm2/bin/pm2 pm2
+      $ sudo ln -s /usr/local/node-v14.21.3-linux-x64/lib/node_modules/pm2/bin/pm2 pm2
 
 7. Verify that installation was successful:
 
@@ -529,7 +504,7 @@ Installing the pm2 Service Offline
 
       $ pm2 list
 
-  .. note:: This must be done as a **sqream** user, and not as a **sudo** user.
+  .. note:: The following step must be done as a ``sqream`` user, and not as a ``sudo`` user.
 
 8.  Verify that the node version is correct:
 
@@ -813,12 +788,6 @@ CUDA Driver Prerequisites
 
         $ sudo yum install -y gcc
 
-   * On Ubuntu: 
-
-     .. code-block:: console
-
-        $ sudo apt-get install gcc
-
 Updating the Kernel Headers  
 --------------------------------
 
@@ -832,12 +801,6 @@ Updating the Kernel Headers
 
         $ sudo yum install kernel-devel-$(uname -r) kernel-headers-$(uname -r)
 		  
-   * On Ubuntu:
-   
-     .. code-block:: console
-
-        $ sudo apt-get install linux-headers-$(uname -r)
-		  
 2. Install **wget** one of the following operating systems:
 
    * On RHEL/CentOS:
@@ -845,12 +808,6 @@ Updating the Kernel Headers
      .. code-block:: console
 
         $ sudo yum install wget
-		  
-   * On Ubuntu:   
-		  
-     .. code-block:: console
-
-        $ sudo apt-get install wget
 		  		  
 Disabling Nouveau  
 --------------------------------
