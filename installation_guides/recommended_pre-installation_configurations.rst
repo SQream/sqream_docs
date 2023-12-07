@@ -128,31 +128,29 @@ The root user is created and the OS shell is booted up.
 Configuring the Operating System
 ===================================================
 
-Once you've installed your operation system, you can configure it. When configuring the operating system, several basic settings related to creating a new server are required. Configuring these as part of your basic set-up increases your server's security and usability. 
+When configuring the operating system, several basic settings related to creating a new server are required. Configuring these as part of your basic set-up increases your server's security and usability. 
 
 Logging In to the Server
 --------------------------------
 
-You can log in to the server using the server's IP address and password for the **root** user. The server's IP address and **root** user were created while installing the operating system above.
+You can log in to the server using the server's IP address and password for the **root** user. The server's IP address and **root** user were created during the installation of the operating system.
 
-Automatically Creating a SQream User
-------------------------------------
+Automatically Creating a ``sqream`` User
+------------------------------------------
 
-**To automatically create a SQream user:**
-
-#. If a SQream user was created during installation, verify that the same ID is used on every server:
+#. If a ``sqream`` user was created during installation, verify that the same ID is used on every server:
 
    .. code-block:: console
 
       $ sudo id sqream
   
-  The ID **1000** is used on each server in the following example:
+  The ID **1000** is used on each server, as in the following example:
     
   .. code-block:: console
 
      $ uid=1000(sqream) gid=1000(sqream) groups=1000(sqream)
    
-2. If the ID's are different, delete the SQream user and SQream group from both servers:
+2. If the ID's are different, delete the ``sqream`` user and ``sqream`` group from both servers:
 
    .. code-block:: console
 
@@ -164,36 +162,46 @@ Automatically Creating a SQream User
 
       $ sudo rm /var/spool/mail/sqream
 
-Manually Creating a SQream User
---------------------------------
+Manually Creating a ``sqream`` User
+------------------------------------
 
-**To manually create a SQream user:**
-
-SQream enables you to manually create users. This section shows you how to manually create a user with the UID **1111**. You cannot manually create during the operating system installation procedure.
+SQreamDB enables you to manually create users. This section shows you how to manually create a user with the UID **1111**. You cannot manually create users during the operating system installation procedure.
    
-1. Add a user with an identical UID on all cluster nodes:
+#. Verify that a **1111** UID does not already exists:  
+   
+   .. code-block::
+   
+      $ cat /etc/passwd |grep 1111
+	  
+#. Verify that a **1111** GID does not already exists:  
+   
+   .. code-block::
+   
+      $ cat /etc/group |grep 1111
+   
+#. Add a user with an identical UID on all cluster nodes:
 
    .. code-block:: console
 
       $ useradd -u 1111 sqream
    
-2. Add the user **sqream** to the **wheel** group.
+#. Add the user ``sqream`` to the ``wheel`` group.
 
    .. code-block:: console
 
       $ sudo usermod -aG wheel sqream
    
-   You can remove the SQream user from the **wheel** group when the installation and configuration are complete:
+   You can remove the ``sqream`` user from the ``wheel`` group when the installation and configuration are complete:
 
    .. code-block:: console
 
       $ passwd sqream
    
-3. Log out and log back in as **sqream**.
+#. Log out and log back in as ``sqream``.
 
-  .. note:: If you deleted the **sqream** user and recreated it with different ID, to avoid permission errors, you must change its ownership to /home/sqream.
+  .. note:: If you deleted the ``sqream`` user and recreated it with different ID, to avoid permission errors, you must change its ownership to ``/home/sqream``.
 
-4. Change the **sqream** user's ownership to /home/sqream:
+6. Change the ``sqream`` user's ownership to ``/home/sqream``:
 
    .. code-block:: console
 
@@ -202,9 +210,7 @@ SQream enables you to manually create users. This section shows you how to manua
 Setting Up A Locale
 --------------------------------
 
-SQream enables you to set up a locale. In this example, the locale used is your own location.
-
-**To set up a locale:**   
+SQreamDB enables you to set up a locale. In this example, the locale used is your own location.
 
 1. Set the language of the locale:
 
@@ -218,28 +224,75 @@ SQream enables you to set up a locale. In this example, the locale used is your 
 
       $ sudo timedatectl set-timezone Asia/Jerusalem
 
-If needed, you can run the **timedatectl list-timezones** command to see your current time-zone.
+If needed, you can run the ``timedatectl list-timezones`` command to see your current time-zone.
   
    
-Installing the Required Packages
---------------------------------
+Installing Required Software 
+---------------------------------
+   
+**Installing EPEL Repository:**
 
-You can install the required packages by running the following command:
+**CentOS7/RHEL8**
 
 .. code-block:: console
 
-   $ sudo yum install ntp pciutils monit zlib-devel openssl-devel kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc net-tools wget jq
-  
+   $ sudo yum install epel-release  
    
-Installing the Recommended Tools
---------------------------------
-
-You can install the recommended tools by running the following command:
+**RHEL7**
 
 .. code-block:: console
 
-   $ sudo yum install bash-completion.noarch vim-enhanced vim-common net-tools iotop htop psmisc screen xfsprogs wget yum-utils deltarpm dos2unix   
-   
+   $ sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+**RHEL8**   
+
+.. code-block:: console
+
+	$ sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+
+**Enabling Additional Red Hat Repositories:**
+
+**RHEL7**
+
+.. code-block:: console
+
+	$ sudo subscription-manager repos --enable rhel-7-server-optional-rpms
+	
+**RHEL8**  
+
+.. code-block:: console
+
+	$ sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+	$ sudo subscription-manager repos --enable rhel-8-for-x86_64-appstream-rpms
+	$ sudo subscription-manager repos --enable rhel-8-for-x86_64-baseos-rpms
+
+**Installing Required Packages:**
+
+**RHEL7/CentOS7**
+
+.. code-block:: console
+
+	$ sudo yum install ntp pciutils monit zlib-devel openssl-devel kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc net-tools wget jq libffi-devel gdbm-devel tk-devel xz-devel sqlite-devel readline-devel bzip2-devel ncurses-devel zlib-devel
+
+**RHEL8**
+
+.. code-block:: console
+
+	$ sudo dnf install chrony pciutils monit zlib-devel openssl-devel kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc net-tools wget jq libffi-devel xz-devel ncurses-compat-libs libnsl gdbm-devel tk-devel sqlite-devel readline-devel texinfo 
+
+**Installing Recommended Tools:**
+
+**RHEL7/CentOS7**
+
+.. code-block:: console
+
+	$ sudo yum install bash-completion.noarch vim-enhanced vim-common net-tools iotop htop psmisc screen xfsprogs wget yum-utils deltarpm dos2unix
+
+**RHEL8**
+
+.. code-block:: console
+
+	$ sudo dnf install bash-completion.noarch vim-enhanced vim-common net-tools iotop htop psmisc screen xfsprogs wget yum-utils dos2unix
 
 Installing Python 3.6.7
 --------------------------------
