@@ -437,7 +437,7 @@ Installing NodeJS on Ubuntu
       $ sudo npm install pm2 -g
 	  
 Installing NodeJS Offline
--------------------------------------------
+-------------------------------
 
 **To install NodeJS Offline**
 
@@ -445,13 +445,13 @@ Installing NodeJS Offline
 
    .. code-block:: console
 
-      $ wget https://nodejs.org/dist/v12.13.0/node-v12.13.0-linux-x64.tar.xz
+      $ wget https://nodejs.org/dist/latest-v14.x/node-v14.21.3-linux-x64.tar.xz
 	  
-2. Move the node-v12.13.0-linux-x64 file to the */usr/local* directory.
+2. Move the node-v14.21.3-linux-x64 file to the */usr/local* directory.
 
    .. code-block:: console
 
-      $ sudo mv node-v12.13.0-linux-x64  /usr/local
+      $ sudo mv  node-v14.21.3-linux-x64 /usr/local
 
 3. Navigate to the */usr/bin/* directory:
 
@@ -459,23 +459,23 @@ Installing NodeJS Offline
 
       $ cd /usr/bin
 	  
-4. Create a symbolic link to the */local/node-v12.13.0-linux-x64/bin/node node* directory:
+4. Create a symbolic link to the */local/node-v14.21.3-linux-x64/bin/node node* directory:
 
    .. code-block:: console
 
-      $ sudo ln -s ../local/node-v12.13.0-linux-x64/bin/node node
+      $ sudo ln -s ../local/node-v14.21.3-linux-x64/bin/node node
 	  
-5. Create a symbolic link to the */local/node-v12.13.0-linux-x64/bin/npm npm* directory:
+5. Create a symbolic link to the */local/node-v14.21.3-linux-x64/bin/npm npm* directory:
 
    .. code-block:: console
 
-      $ sudo ln -s ../local/node-v12.13.0-linux-x64/bin/npm npm
+      $ sudo ln -s ../local/node-v14.21.3-linux-x64/bin/npm npm
 	  
-6. Create a symbolic link to the */local/node-v12.13.0-linux-x64/bin/npx npx* directory:
+6. Create a symbolic link to the */local/node-v14.21.3-linux-x64/bin/npx npx* directory:
 
    .. code-block:: console
 
-      $ sudo ln -s ../local/node-v12.13.0-linux-x64/bin/npx npx
+      $ sudo ln -s ../local/node-v14.21.3-linux-x64/bin/npx npx
 
 7. Verify that the node versions for the above are correct:
 
