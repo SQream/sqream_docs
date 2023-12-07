@@ -387,8 +387,6 @@ For SQreamDB version 4.4 or newer, install Python 3.9.13.
 Installing NodeJS on CentOS 
 --------------------------------
 
-**To install the node.js on CentOS:**
-
 1. Download the `setup_12.x file <https://rpm.nodesource.com/setup_12.x>`__ as a root user logged in shell:
 
    .. code-block:: console
@@ -415,8 +413,6 @@ Installing NodeJS on CentOS
 	  
 Installing NodeJS Offline
 -------------------------------
-
-**To install NodeJS Offline**
 
 1. Download the NodeJS source code tarball file from the following URL into the **/home/sqream** directory:
 
@@ -513,13 +509,9 @@ Installing the pm2 Service Offline
       $ node -v
   
 Configuring the Network Time Protocol
-------------------------------------------- 
-
-This section describes how to configure your **Network Time Protocol (NTP)**.
-
-If you don't have internet access, see `Configure NTP Client to Synchronize with NTP Server <https://www.thegeekstuff.com/2014/06/linux-ntp-server-client/>`__.
-
-**To configure your NTP:**
+--------------------------------------
+  
+This Network Time Protocol (NTP) configuration is intended for use on systems running RHEL7 and CentOS7 exclusively.
   
 1. Install the NTP file.
 
@@ -544,21 +536,21 @@ If you don't have internet access, see `Configure NTP Client to Synchronize with
    .. code-block:: console
 
       $ sudo ntpq -p
+	  
+If you don't have internet access, see `Configure NTP Client to Synchronize with NTP Server <https://www.thegeekstuff.com/2014/06/linux-ntp-server-client/>`__.
   
 Configuring the Network Time Protocol Server
 --------------------------------------------
 
-If your organization has an NTP server, you can configure it.
+If your organization has a Network Time Protocol (NTP) server, configure it by adding records to ``/etc/ntpd.conf``, reloading the service, and checking that synchronization is enabled.
 
-**To configure your NTP server:**
-
-1. Output your NTP server address and append ``/etc/ntpd.conf`` to the outuput.
+1. Output your NTP server address and append ``/etc/ntpd.conf`` to the output:
 
    .. code-block:: console
 
       $ echo -e "\nserver <your NTP server address>\n" | sudo tee -a /etc/ntp.conf
 
-2. Restart the service.
+2. Restart the service:
 
    .. code-block:: console
 
@@ -588,9 +580,30 @@ If your organization has an NTP server, you can configure it.
     Next DST change: DST ends (the clock jumps one hour backwards) at
                      Sun 2019-11-03 01:59:59 EDT
                      Sun 2019-11-03 01:00:00 EST 
-					 
-Configuring the Server to Boot Without the UI
----------------------------------------------
+					
+Configuring Chrony for RHEL8 Only
+----------------------------------
+
+#. Start the Chrony service:
+
+..code-block::
+
+	$ sudo systemctl start chronyd
+	
+#. Enable the Chrony service to start automatically at boot time:
+
+..code-block::
+
+	$ sudo systemctl enable chronyd
+	
+#. Check the status of the Chrony service:
+
+..code-block::
+
+	$ sudo systemctl status chronyd
+		
+Configuring the Server to Boot Without Linux the UI
+----------------------------------------------------
 
 You can configure your server to boot without a UI in cases when it is not required (recommended) by running the following command:					 
 
@@ -603,7 +616,7 @@ Running this command activates the **NO-UI** server mode.
 Configuring the Security Limits
 --------------------------------
 
-The security limits refers to the number of open files, processes, etc.
+The security limits refer to the number of open files, processes, etc.
 
 You can configure the security limits by running the **echo -e** command as a root user logged in shell:
 
@@ -613,12 +626,10 @@ You can configure the security limits by running the **echo -e** command as a ro
 
 .. code-block:: console
 
-  $ echo -e "sqream soft nproc 1000000\nsqream hard nproc 1000000\nsqream soft nofile 1000000\nsqream hard nofile 1000000\nsqream soft core unlimited\nsqream hard core unlimited" >> /etc/security/limits.conf
+  $ echo -e "sqream soft nproc 1000000\nsqream hard nproc 1000000\nsqream soft nofile 1000000\nsqream hard nofile 1000000\nroot soft nproc 1000000\nroot hard nproc 1000000\nroot soft nofile 1000000\nroot hard nofile 1000000\nsqream soft core unlimited\nsqream hard core unlimited" >> /etc/security/limits.conf
   
 Configuring the Kernel Parameters
 ---------------------------------
-
-**To configure the kernel parameters:**
 
 1. Insert a new line after each kernel parameter:
 
@@ -626,15 +637,13 @@ Configuring the Kernel Parameters
 
       $ echo -e "vm.dirty_background_ratio = 5 \n vm.dirty_ratio = 10 \n vm.swappiness = 10 \n vm.vfs_cache_pressure = 200 \n vm.zone_reclaim_mode = 0 \n" >> /etc/sysctl.conf
   
-  .. note:: In the past, the **vm.zone_reclaim_mode** parameter was set to **7.** In the latest Sqream version, the vm.zone_reclaim_mode parameter must be set to **0**. If it is not set to **0**, when a numa node runs out of memory, the system will get stuck and will be unable to pull memory from other numa nodes.
-  
-2. Check the maximum value of the **fs.file**. 
+2. Check the maximum value of the ``fs.file``. 
 
    .. code-block:: console
 
       $ sysctl -n fs.file-max
 
-3. If the maximum value of the **fs.file** is smaller than **2097152**, run the following command:
+3. If the maximum value of the ``fs.file`` is smaller than ``2097152``, run the following command:
 
    .. code-block:: console
 
@@ -653,11 +662,9 @@ Configuring the Kernel Parameters
       $ sudo reboot
 
 Configuring the Firewall
---------------------------------
+--------------------------
 
-The example in this section shows the open ports for four sqreamd sessions. If more than four are required, open the required ports as needed. Port 8080 in the example below is a new UI port.
-
-**To configure the firewall:**
+The example in this section shows the open ports for four ``sqreamd`` sessions. If more than four are required, open the required ports as needed. Port 8080 in the example below is a new UI port.
 
 1. Start the service and enable FirewallID on boot:
 
@@ -692,26 +699,27 @@ The example in this section shows the open ports for four sqreamd sessions. If m
   
    .. code-block:: console
 
+      $ sudo systemctl stop firewalld
       $ sudo systemctl disable firewalld  
   
-Disabling selinux
---------------------------------
+Disabling SELinux
+-------------------
 
-**To disable selinux:**
+Disabling SELinux is a recommended action.
 
-1. Show the status of **selinux**:
+1. Show the status of ``selinux``:
 
    .. code-block:: console
 
       $ sudo sestatus
 
-2. If the output is not **disabled**, edit the **/etc/selinux/config** file: 
+2. If the output is not ``disabled``, edit the ``/etc/selinux/config`` file: 
 
    .. code-block:: console
 
       $ sudo vim /etc/selinux/config
   
-3. Change **SELINUX=enforcing** to **SELINUX=disabled**.
+3. Change ``SELINUX=enforcing`` to ``SELINUX=disabled``:
   
    The above changes will only take effect after rebooting the server.
 
@@ -721,12 +729,10 @@ Disabling selinux
 
      $ sudo setenforce 0
 
-Configuring the /etc/hosts File
---------------------------------
+Configuring the ``/etc/hosts`` File
+------------------------------------
 
-**To configure the /etc/hosts file:**
-
-1. Edit the **/etc/hosts** file:
+1. Edit the ``/etc/hosts`` file:
 
    .. code-block:: console
 
@@ -741,9 +747,7 @@ Configuring the /etc/hosts File
       $ <server2 ip>	<server_name>
     
 Configuring the DNS
---------------------------------
-
-**To configure the DNS:**
+--------------------
 
 1. Run the **ifconfig** commasnd to check your NIC name. In the following example, **eth0** is the NIC name:
 
@@ -759,14 +763,14 @@ Configuring the DNS
       $ DNS2="8.8.8.8"
 
 Installing the Nvidia CUDA Driver
-===================================================
+==================================
 
 After configuring your operating system, you must install the Nvidia CUDA driver.
 
   .. warning:: If your UI runs on the server, the server must be stopped before installing the CUDA drivers.
 
 CUDA Driver Prerequisites  
---------------------------------
+---------------------------
 
 1. Verify that the NVIDIA card has been installed and is detected by the system:
 
@@ -774,47 +778,45 @@ CUDA Driver Prerequisites
 
       $ lspci | grep -i nvidia
   
-2. Check which version of gcc has been installed:
+2. Check which version of ``gcc`` has been installed:
 
    .. code-block:: console
 
       $ gcc --version
   
-3. If gcc has not been installed, install it for one of the following operating systems:
-
-   * On RHEL/CentOS: 
+3. If ``gcc`` has not been installed, install it for RHEL or CentOS:
 
      .. code-block:: console
 
         $ sudo yum install -y gcc
 
 Updating the Kernel Headers  
---------------------------------
+-----------------------------
 
-**To update the kernel headers:**
-
-1. Update the kernel headers on one of the following operating systems:
-
-   * On RHEL/CentOS:
+1. Update the kernel headers on RHEL or CentOS:
 
      .. code-block:: console
 
         $ sudo yum install kernel-devel-$(uname -r) kernel-headers-$(uname -r)
 		  
+2. Make sure kernel-devel and kernel-headers match installed kernel:
+		  
+     .. code-block:: console
+	 
+		$ uname -r
+		$ rpm -qa |grep kernel-devel-$(uname -r)
+		$ rpm -qa |grep kernel-headers-$(uname -r) 
+		  
 2. Install **wget** one of the following operating systems:
-
-   * On RHEL/CentOS:
    
      .. code-block:: console
 
         $ sudo yum install wget
 		  		  
 Disabling Nouveau  
---------------------------------
+------------------
 
-You can disable Nouveau, which is the default driver.
-
-**To disable Nouveau:**
+You can disable Nouveau, which is the default operating system driver.
 
 1. Check if the Nouveau driver has been loaded:
 
@@ -833,28 +835,24 @@ You can disable Nouveau, which is the default driver.
         options nouveau modeset=0
         EOF 
  
-3. Regenerate the kernel **initramfs** directory set:
+3. Regenerate the kernel ``initramfs`` directory set:
 
-  1. Modify the **initramfs** directory set:
+  a. Modify the ``initramfs`` directory set:
   
      .. code-block:: console
 
         $ sudo dracut --force
 	
-  2. Reboot the server:
+  b. Reboot the server:
 
      .. code-block:: console
 
         $ sudo reboot
 
 Installing the CUDA Driver
---------------------------------
-
-This section describes how to install the CUDA driver.  
+----------------------------
   
-.. note:: The version of the driver installed on the customer's server must be equal or higher than the driver included in the Sqream release package. Contact a Sqream customer service representative to identify the correct version to install.
-
-The **Installing the CUDA Driver** section describes the following:
+The version of the driver installed on the customer's server must be equal or higher than the driver included in the SqreamDB release package. Contact a `SqreamDB support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ to identify the correct version to install.
 
 .. contents:: 
    :local:
@@ -865,17 +863,23 @@ Installing the CUDA Driver from the Repository
 
 Installing the CUDA driver from the Repository is the recommended installation method.
 
-.. warning:: For A100 GPU and other A series GPUs, you must install the **cuda 11.4.3 driver**. The version of the driver installed on the customer server must be equal to or higher than the one used to build the SQream package. For questions related to which driver to install, contact SQream Customer Support.
+For A100 GPU and other A series GPUs, you must install the **cuda 11.4.3 driver**. The version of the driver installed on the customer server must be equal to or higher than the one used to build the SQreamDB package. For questions related to which driver to install, contact `SqreamDB support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
 
-**To install the CUDA driver from the Repository:**
+**To install the CUDA driver from the Repository (recommended):**
 
 1. Install the CUDA dependencies for one of the following operating systems:
 
-   * For RHEL:
+   * For RHEL7:
 
      .. code-block:: console
 
         $ sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+   * For RHEL8:
+
+     .. code-block:: console
+
+        $ sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 
    * For CentOS:
 
@@ -883,37 +887,53 @@ Installing the CUDA driver from the Repository is the recommended installation m
 
         $ sudo yum install epel-release
 	
-2. Install the CUDA dependencies from the **epel** repository:
+2. (Optional) Install the CUDA dependencies from the ``epel`` repository:
 
    .. code-block:: console
 
       $ sudo yum install dkms libvdpau
 
-   Installing the CUDA depedendencies from the **epel** repository is only required for installing **runfile**.
+   Installing the CUDA depedendencies from the ``epel`` repository is only required for installing ``runfile``.
 
 3. Download and install the required local repository:
 		 
-   * **Intel - 11.4.3 repository for RHEL7**:
-
-      .. code-block:: console
-
-         $ wget https://developer.download.nvidia.com/compute/cuda/11.4.3/local_installers/cuda-repo-rhel7-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
-         $ sudo yum localinstall cuda-repo-rhel7-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
+	* **CentOS7/RHEL7 cuda 11.4.3 repository (INTEL) installation (Required for A-Series GPU models):**	 
 		 
-   * **Intel - CUDA 12.2 for RHEL8**:
+	  .. code-block:: console
+
+		 $ wget https://developer.download.nvidia.com/compute/cuda/11.4.3/local_installers/cuda-repo-rhel7-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
+		 $ sudo yum localinstall cuda-repo-rhel7-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
+		 
+	  .. code-block:: console
+	  
+		 $ sudo yum clean all
+		 $ sudo yum -y install nvidia-driver-latest-dkms
+		 
+   * **RHEL8.6 cuda 11.4.3 repository (INTEL) installation (Required for A-Series GPU models):**
+
+	  .. code-block:: console
+	  
+		 $ wget https://developer.download.nvidia.com/compute/cuda/11.4.3/local_installers/cuda-repo-rhel8-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
+		 $ sudo dnf localinstall cuda-repo-rhel8-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
+
+   * **RHEL8.8 cuda 12.2.1 repository ( INTEL ) installation ( Required for H/L Series GPU models ):**
+
+	  .. code-block:: console
+	  
+		 $ wget https://developer.download.nvidia.com/compute/cuda/12.2.1/local_installers/cuda-repo-rhel8-12-2-local-12.2.1_535.86.10-1.x86_64.rpm
+		 $ sudo dnf localinstall cuda-repo-rhel8-12-2-local-12.2.1_535.86.10-1.x86_64.rpm
+		 
+	  .. code-block:: console
+	  
+		 $ sudo dnf clean all
+		 $ sudo dnf -y module install nvidia-driver:latest-dkms	  
+
+   * **IBM Power9 - CUDA 10.1 for RHEL7:**
 
       .. code-block:: console
 
-         $ wget https://developer.download.nvidia.com/compute/cuda/12.2.0/local_installers/cuda-repo-rhel8-12-2-local-12.2.0_535.54.03-1.x86_64.rpm
-
-         $ sudo rpm -i cuda-repo-rhel8-12-2-local-12.2.0_535.54.03-1.x86_64.rpm
-
-   * **IBM Power9 - CUDA 10.1 for RHEL7**:
-
-      .. code-block:: console
-
-         $ wget https://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
-         $ sudo yum localinstall cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
+		$ wget https://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
+		$ sudo yum localinstall cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
 		 
 
 4. Install the CUDA drivers:
