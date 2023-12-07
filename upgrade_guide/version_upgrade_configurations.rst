@@ -15,10 +15,15 @@ Upgrade-Related Configuration Changes
      - Configurations and Changes
    * - 4.4
      - 49
-     - 
+     - New Releases:
+	   * Pysqream 5.0.0 Connector is released
+	   
+	   * JDBC 5.0.0 Connector is released
    * - 4.3
      - 49
-     - 
+     - Configuration:
+	   * Two new :ref:`AWS S3<s3>` object access style and endpoint URL with Virtual Private Cloud (VPC) configuration flags: ``AwsEndpointOverride``, ``AwsObjectAccessStyle``
+	   * **REHL 8.x** is now officially supported
    * - 4.2
      - 46
      - New Releases:
@@ -31,6 +36,10 @@ Upgrade-Related Configuration Changes
 	   * Apache Spark 5.0.0 Connector is released
 	   
 	   * The ``INT96`` data type is deprecated
+	   
+	   Configuration:
+	   
+	   * :ref:`Access control permissions<access_control_permissions>` in SQreamDB have been expanded. Learn how to reconfigure access control permissions when :ref:`upgrading from version 4.2<upgrade_to_4.3>` 
    * - 4.1
      - 45
      - New Releases:
