@@ -4,18 +4,16 @@
 Recommended Pre-Installation Configuration
 *********************************************
 
-Before :ref:`installing SQream DB<installing_sqream_db_docker>`, SQream recommends you to tune your system for better performance and stability.
-
-This page provides recommendations for production deployments of SQream and describes the following:
+Before installing SQreamDB, it is recommended that you to tune your system for better performance and stability.
 
 .. contents:: 
    :local:
    :depth: 1
 
-Recommended BIOS Settings
-==========================
+Recommended Basic Input/Output System Settings
+===============================================
 
-The first step when setting your pre-installation configurations is to use the recommended BIOS settings.
+The first step when setting your pre-installation configurations is to use the recommended basic input/output system (BIOS) settings.
 
 The BIOS settings may have a variety of names, or may not exist on your system. Each system vendor has a different set of settings and variables. It is safe to skip any and all of the configuration steps, but this may impact performance.
 
@@ -89,13 +87,19 @@ If any doubt arises, consult the documentation for your server or your hardware 
 Installing the Operating System
 ===================================================	 
 
-Once the BIOS settings have been set, you must install the operating system. Either the CentOS (versions 7.6-7.9) or RHEL (versions 7.x-8.x) must be installed before installing the SQream database, by either the customer or a SQream representative.
+Before You Begin
+-------------------
+
+* Your system must have at least 200 gigabytes of free space on the root directory.
+
+* You must have external shared storage provided by systems like General Parallel File System (GPFS), Weka, or VAST.
+
+Once the BIOS settings have been set, you must install the operating system. Either CentOS 7.9 or RHEL 7.9-8.8 must be installed before installing the SQreamDB database, by either the customer or a SQream representative. Verify the exact RHEL7/RHEL8 version with Storage vendor to avoid drivers incompatibility.
 
 **To install the operating system:**
 
 #. Select a language (English recommended).
-#. From **Software Selection**, select **Minimal**.
-#. Select the **Development Tools** group checkbox.
+#. From **Software Selection**, select **Minimal** and check the **Development Tools** group checkbox.
 #. Continue the installation.
 #. Set up the necessary drives and users as per the installation process.
 
@@ -124,7 +128,7 @@ The root user is created and the OS shell is booted up.
 Configuring the Operating System
 ===================================================
 
-Once you've installted your operation system, you can configure it. When configuring the operating system, several basic settings related to creating a new server are required. Configuring these as part of your basic set-up increases your server's security and usability. 
+Once you've installed your operation system, you can configure it. When configuring the operating system, several basic settings related to creating a new server are required. Configuring these as part of your basic set-up increases your server's security and usability. 
 
 Logging In to the Server
 --------------------------------
