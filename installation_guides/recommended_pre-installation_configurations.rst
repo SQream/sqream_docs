@@ -769,7 +769,7 @@ After configuring your operating system, you must install the Nvidia CUDA driver
 
   .. warning:: If your UI runs on the server, the server must be stopped before installing the CUDA drivers.
 
-CUDA Driver Prerequisites  
+Before You Begin 
 ---------------------------
 
 1. Verify that the NVIDIA card has been installed and is detected by the system:
@@ -778,7 +778,7 @@ CUDA Driver Prerequisites
 
       $ lspci | grep -i nvidia
   
-2. Check which version of ``gcc`` has been installed:
+2. Verify that ``gcc`` has been installed:
 
    .. code-block:: console
 
@@ -824,9 +824,9 @@ You can disable Nouveau, which is the default operating system driver.
 
       $ lsmod | grep nouveau
 
-   If the Nouveau driver has been loaded, the command above generates output.
+   If the Nouveau driver has been loaded, the command above generates output. If the Nouveau driver has not been loaded, you may skip step 2 and 3.
 
-2. Blacklist the Nouveau drivers to disable them:
+2. Blacklist the Nouveau driver to disable it:
 
    .. code-block:: console
 
@@ -852,7 +852,7 @@ You can disable Nouveau, which is the default operating system driver.
 Installing the CUDA Driver
 ----------------------------
   
-The version of the driver installed on the customer's server must be equal or higher than the driver included in the SqreamDB release package. Contact a `SqreamDB support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ to identify the correct version to install.
+For A100 GPU and other A series GPUs, you must install the **cuda 11.4.3 driver**. The version of the driver installed on the customer server must be equal to or higher than the one used to build the SQreamDB package. For questions related to which driver to install, contact `SqreamDB support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
 
 .. contents:: 
    :local:
@@ -862,10 +862,6 @@ Installing the CUDA Driver from the Repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Installing the CUDA driver from the Repository is the recommended installation method.
-
-For A100 GPU and other A series GPUs, you must install the **cuda 11.4.3 driver**. The version of the driver installed on the customer server must be equal to or higher than the one used to build the SQreamDB package. For questions related to which driver to install, contact `SqreamDB support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
-
-**To install the CUDA driver from the Repository (recommended):**
 
 1. Install the CUDA dependencies for one of the following operating systems:
 
@@ -956,23 +952,28 @@ For A100 GPU and other A series GPUs, you must install the **cuda 11.4.3 driver*
 
       $ nvidia-smi
 	  
-.. note:: If you do not have access to internet, you can set up a local repository offline. 
+6. Enable NVIDIA-persistenced mode:
 
-You can prepare the CUDA driver offline from a server connected to the CUDA repo by running the following commands as a *root* user:
+   .. code-block:: console
+
+      $ sudo systemctl start nvidia-persistenced
+      $ sudo systemctl enable nvidia-persistenced
+
+You can prepare the CUDA driver offline from a server connected to the CUDA repo by running the following commands as a ``root`` user:
 	  
-6. Query all the packages installed in your system, and verify that cuda-repo has been installed:
+7. Query all the packages installed in your system, and verify that cuda-repo has been installed:
 
    .. code-block:: console
 
       $ rpm -qa |grep cuda-repo
 
-7. Navigate to the correct repository:
+8. Navigate to the correct repository:
 
    .. code-block:: console
 
       $ cd /etc/yum.repos.d/
 
-8. List in long format and print lines matching a pattern for the cuda file:
+9. List in long format and print lines matching a pattern for the cuda file:
 
    .. code-block:: console
 
@@ -984,7 +985,7 @@ You can prepare the CUDA driver offline from a server connected to the CUDA repo
 
       $ cuda-10-1-local.repo
 
-9. Edit the **/etc/yum.repos.d/cuda-10-1-local.repo** file:
+10. Edit the **/etc/yum.repos.d/cuda-10-1-local.repo** file:
 
    .. code-block:: console
 
@@ -996,19 +997,19 @@ You can prepare the CUDA driver offline from a server connected to the CUDA repo
 
       $ name=cuda-10-1-local
    
-10. Clone the repository to a location where it can be copied from:
+11. Clone the repository to a location where it can be copied from:
 
    .. code-block:: console
 
       $ reposync -g -l -m --repoid=cuda-10-1-local --download_path=/var/cuda-repo-10.1-local
 
-11. Copy the repository to the installation server and create the repository:
+12. Copy the repository to the installation server and create the repository:
 
    .. code-block:: console
 
       $ createrepo -g comps.xml /var/cuda-repo-10.1-local
 
-12. Add a repo configuration file in **/etc/yum.repos.d/** by editing the **/etc/yum.repos.d/cuda-10.1-local.repo** repository:
+13. Add a repo configuration file in **/etc/yum.repos.d/** by editing the **/etc/yum.repos.d/cuda-10.1-local.repo** repository:
  
    .. code-block:: console
 
@@ -1019,7 +1020,7 @@ You can prepare the CUDA driver offline from a server connected to the CUDA repo
       $ gpgcheck=1
       $ gpgkey=file:///var/cuda-repo-10-1-local/7fa2af80.pub   
    
-13. Install the CUDA drivers by installing the most current DKMS (Dynamic Kernel Module Support) NVIDIA driver as a root user logged in shell:
+14. Install the CUDA drivers by installing the most current DKMS (Dynamic Kernel Module Support) NVIDIA driver as a root user logged in shell:
   
    .. code-block:: console
 
