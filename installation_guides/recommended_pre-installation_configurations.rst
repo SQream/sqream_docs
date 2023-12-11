@@ -32,7 +32,7 @@ If any doubt arises, consult the documentation for your server or your hardware 
    * - **All drives**
      - **Connected and displayed on RAID interface**
      - Prerequisite for cluster or OS installation.
-   * - **RAID volumes.**
+   * - **RAID volumes**
      - **Configured according to project guidelines. Must be rebooted to take effect.**
      - Clustered to increase logical volume and provide redundancy.
    * - **Fan speed Thermal Configuration.**
