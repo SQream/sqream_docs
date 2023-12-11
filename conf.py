@@ -20,13 +20,13 @@ import sphinx_rtd_theme
 
 # -- Project information -----------------------------------------------------
 
-project = 'SQream DB'
-copyright = '2023 SQream'
-author = 'SQream Documentation'
+project = 'SQreamDB'
+copyright = '2023 SQreamDB'
+author = 'SQreamDB Documentation'
 
 
 # The full version, including alpha/beta/rc tags
-release = '4.5'
+release = '4.6'
 
 
 
