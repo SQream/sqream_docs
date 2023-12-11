@@ -28,7 +28,7 @@ If any doubt arises, consult the documentation for your server or your hardware 
      - Rationale
    * - **Management console access**
      - **Connected**
-     - Connection to OOB required to preserve continuous network uptime.
+     - Connection to Out-of-band (OOB) required to preserve continuous network uptime.
    * - **All drives**
      - **Connected and displayed on RAID interface**
      - Prerequisite for cluster or OS installation.
@@ -73,7 +73,7 @@ If any doubt arises, consult the documentation for your server or your hardware 
      - Setting a higher voltage for DIMMs may increase performance.		 
    * - **Memory Operating Mode**
      - **Optimizer Mode**, **Disable Node Interleaving**, **Auto Memory Operating Voltage**
-     - Memory Operating Mode is tuned for performance in **Optimizer** mode. Other modes may improve reliability, but reduce performance. **Node Interleaving** should be disabled because enabling it interleaves the memory between memory nodes, which harms NUMA-aware applications such as SQream DB.	 
+     - Memory Operating Mode is tuned for performance in **Optimizer** mode. Other modes may improve reliability, but reduce performance. **Node Interleaving** should be disabled because enabling it interleaves the memory between memory nodes, which harms NUMA-aware applications such as SQreamDB.	 
    * - **HPe**: **Memory power savings mode**
      - **Maximum performance**
      - This setting configures several memory parameters to optimize the performance of memory sub-systems. The default setting is **Balanced**.	 
@@ -85,7 +85,7 @@ If any doubt arises, consult the documentation for your server or your hardware 
      - QPI (QuickPath Interconnect) Snoop lets you configure different Snoop modes that impact the QPI interconnect. Changing this setting may improve the performance of certain workloads. The default setting of **Home Snoop** provides high memory bandwidth in an average NUMA environment. **Cluster on Die** may provide increased memory bandwidth in highly optimized NUMA workloads. **Early Snoop** may decrease memory latency, but may result in lower overall bandwidth compared to other modes.
 	 
 Installing the Operating System
-===================================================	 
+================================ 
 
 Before You Begin
 -------------------
@@ -94,7 +94,9 @@ Before You Begin
 
 * You must have external shared storage provided by systems like General Parallel File System (GPFS), Weka, or VAST.
 
-Once the BIOS settings have been set, you must install the operating system. Either CentOS 7.9 or RHEL 7.9-8.8 must be installed before installing the SQreamDB database, by either the customer or a SQream representative. Verify the exact RHEL7/RHEL8 version with Storage vendor to avoid drivers incompatibility.
+* Once the BIOS settings have been set, you must install the operating system. Either CentOS 7.9 or RHEL 7.9-8.8 must be installed before installing the SQreamDB database, by either the customer or a SQreamDB representative. 
+
+* Verify the exact RHEL7/RHEL8 version with Storage vendor to avoid driver incompatibility.
 
 **To install the operating system:**
 
@@ -762,10 +764,10 @@ Configuring the DNS
       $ DNS1="4.4.4.4"
       $ DNS2="8.8.8.8"
 
-Installing the Nvidia CUDA Driver
+Installing the NVIDIA CUDA Driver
 ==================================
 
-After configuring your operating system, you must install the Nvidia CUDA driver.
+After configuring your operating system, you must install the NVIDIA CUDA driver.
 
   .. warning:: If your UI runs on the server, the server must be stopped before installing the CUDA drivers.
 
@@ -852,7 +854,7 @@ You can disable Nouveau, which is the default operating system driver.
 Installing the CUDA Driver
 ----------------------------
   
-For A100 GPU and other A series GPUs, you must install the **cuda 11.4.3 driver**. The version of the driver installed on the customer server must be equal to or higher than the one used to build the SQreamDB package. For questions related to which driver to install, contact `SqreamDB support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
+For A100 GPU and other A series GPUs, you must install the **CUDA 11.4.3 driver**. The version of the driver installed on the customer server must be equal to or higher than the one used to build the SQreamDB package. For questions related to which driver to install, contact `SqreamDB support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
 
 .. contents:: 
    :local:
@@ -893,7 +895,7 @@ Installing the CUDA driver from the Repository is the recommended installation m
 
 3. Download and install the required local repository:
 		 
-	* **CentOS7/RHEL7 cuda 11.4.3 repository (INTEL) installation (Required for A-Series GPU models):**	 
+	* **CentOS7/RHEL7 CUDA 11.4.3 repository (INTEL) installation (Required for A-Series GPU models):**	 
 		 
 	  .. code-block:: console
 
@@ -905,14 +907,14 @@ Installing the CUDA driver from the Repository is the recommended installation m
 		 $ sudo yum clean all
 		 $ sudo yum -y install nvidia-driver-latest-dkms
 		 
-   * **RHEL8.6 cuda 11.4.3 repository (INTEL) installation (Required for A-Series GPU models):**
+   * **RHEL8.6 CUDA 11.4.3 repository (INTEL) installation (Required for A-Series GPU models):**
 
 	  .. code-block:: console
 	  
 		 $ wget https://developer.download.nvidia.com/compute/cuda/11.4.3/local_installers/cuda-repo-rhel8-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
 		 $ sudo dnf localinstall cuda-repo-rhel8-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
 
-   * **RHEL8.8 cuda 12.2.1 repository ( INTEL ) installation ( Required for H/L Series GPU models ):**
+   * **RHEL8.8 CUDA 12.2.1 repository ( INTEL ) installation ( Required for H/L Series GPU models ):**
 
 	  .. code-block:: console
 	  
@@ -961,7 +963,7 @@ Installing the CUDA driver from the Repository is the recommended installation m
 
 You can prepare the CUDA driver offline from a server connected to the CUDA repo by running the following commands as a ``root`` user:
 	  
-7. Query all the packages installed in your system, and verify that cuda-repo has been installed:
+7. Query all the packages installed in your system, and verify that ``cuda-repo`` has been installed:
 
    .. code-block:: console
 
@@ -973,7 +975,7 @@ You can prepare the CUDA driver offline from a server connected to the CUDA repo
 
       $ cd /etc/yum.repos.d/
 
-9. List in long format and print lines matching a pattern for the cuda file:
+9. List in long format and print lines matching a pattern for the CUDA file:
 
    .. code-block:: console
 
@@ -985,7 +987,7 @@ You can prepare the CUDA driver offline from a server connected to the CUDA repo
 
       $ cuda-10-1-local.repo
 
-10. Edit the **/etc/yum.repos.d/cuda-10-1-local.repo** file:
+10. Edit the ``/etc/yum.repos.d/cuda-10-1-local.repo`` file:
 
    .. code-block:: console
 
@@ -1009,7 +1011,7 @@ You can prepare the CUDA driver offline from a server connected to the CUDA repo
 
       $ createrepo -g comps.xml /var/cuda-repo-10.1-local
 
-13. Add a repo configuration file in **/etc/yum.repos.d/** by editing the **/etc/yum.repos.d/cuda-10.1-local.repo** repository:
+13. Add a repo configuration file in ``/etc/yum.repos.d/`` by editing the ``/etc/yum.repos.d/cuda-10.1-local.repo`` repository:
  
    .. code-block:: console
 
@@ -1020,18 +1022,19 @@ You can prepare the CUDA driver offline from a server connected to the CUDA repo
       $ gpgcheck=1
       $ gpgkey=file:///var/cuda-repo-10-1-local/7fa2af80.pub   
    
-14. Install the CUDA drivers by installing the most current DKMS (Dynamic Kernel Module Support) NVIDIA driver as a root user logged in shell:
+14. Install the CUDA drivers by installing the most current Dynamic Kernel Module Support (DKMS) NVIDIA driver as a root user logged in shell:
   
    .. code-block:: console
 
+      $ sudo bash
       $ sudo yum -y install nvidia-driver-latest-dkms
+	  
+15. If you are installing the CUDA driver on IBM Power9, please follow the `NVIDIA documentation <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`_ for additionally required steps.
 	  
 Tuning Up NVIDIA Performance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This section describes how to tune up NVIDIA performance.
-
-.. note::  The procedures in this section are relevant to Intel only.	
+The procedures in this section are relevant to Intel only.	
 	
 .. contents:: 
    :local:
@@ -1199,22 +1202,18 @@ The server is ready for the SQream software installation.
        $ open files (-n) 1000000
 	  
 Enabling Core Dumps
-===================================================
+====================
 
-After installing the Nvidia CUDA driver, you can enable your core dumps. While SQream recommends enabling your core dumps, it is optional.
-
-The **Enabling Core Dumps** section describes the following:
+After installing the NVIDIA CUDA driver, you can enable your core dumps. While this procedure is optional, SQreamDB recommends that core dumps be enabled. Note that the default ``abrt`` format is not ``gdb`` compatible, and that for SQreamDB to be able to analyze your core dumps, they must be ``gdb`` compatible.
 
 .. contents:: 
    :local:
    :depth: 1
 
-Checking the abrtd Status
----------------------------------------------------
+Checking the ``abrtd`` Status
+----------------------------
 
-**To check the abrtd status:**
-
-1. Check if **abrtd** is running:
+1. Check if ``abrtd`` is running:
 
    .. code-block:: console
 
@@ -1232,9 +1231,7 @@ Checking the abrtd Status
       $ sudo chkconfig abrtd off
 
 Setting the Limits
----------------------------------------------------
-
-**To set the limits:**  
+--------------------
 	  
 1. Set the limits:
 
@@ -1242,27 +1239,27 @@ Setting the Limits
 
       $ ulimit -c
 	  
-2. If the output is **0**, add the following lines to the **limits.conf** file (/etc/security):	  
+2. If the output is ``0``, add the following lines to the ``/etc/security/limits.conf`` file:	  
 	  
    .. code-block:: console
 
       $ *          soft     core           unlimited
       $ *          hard     core           unlimited	  
 	  
-3. Log out and log in to apply the limit changes.	
+3. To apply the limit changes, log out and log back in.	
 
 Creating the Core Dumps Directory
----------------------------------------------------
+-----------------------------------
 
-**To set the core dumps directory:** 
+Because the core dump file may be the size of total RAM on the server, verify that you have sufficient disk space. In the example above, the core dump is configured to the ``/tmp/core_dumps`` directory. If necessary, replace path according to your own environment and disk space.
 
-1. Make the **/tmp/core_dumps** directory:
+1. Make the ``/tmp/core_dumps`` directory:
 
    .. code-block:: console
 
       $ mkdir /tmp/core_dumps
 
-2. Set the ownership of the **/tmp/core_dumps** directory:
+2. Set the ownership of the ``/tmp/core_dumps`` directory:
 
    .. code-block:: console
 
@@ -1273,15 +1270,12 @@ Creating the Core Dumps Directory
    .. code-block:: console
 
       $ sudo chmod -R 777 /tmp/core_dumps
-	  
-.. warning:: Because the core dump file may be the size of total RAM on the server, verify that you have sufficient disk space. In the example above, the core dump is configured to the */tmp/core_dumps* directory. You must replace path according to your own environment and disk space.	  
+	 	  
 
-Setting the Output Directory of the /etc/sysctl.conf File 
------------------------------------------------------------------
+Setting the Output Directory of the ``/etc/sysctl.conf`` File 
+-------------------------------------------------------------
 
-**To set the output directory of the /etc/sysctl.conf file:** 
-
-1. Edit the **/etc/sysctl.conf** file:
+1. Open the ``/etc/sysctl.conf`` file in the Vim text editor:
 
    .. code-block:: console
 
@@ -1292,7 +1286,7 @@ Setting the Output Directory of the /etc/sysctl.conf File
    .. code-block:: console
 
       $ kernel.core_uses_pid = 1
-      $ kernel.core_pattern = /<tmp/core_dumps>/core-%e-%s-%u-%g-%p-%t
+      $ kernel.core_pattern = /tmp/core_dumps/core-%e-%s-%u-%g-%p-%t
       $ fs.suid_dumpable = 2
 
 3. To apply the changes without rebooting the server, run the following:
@@ -1313,35 +1307,46 @@ Setting the Output Directory of the /etc/sysctl.conf File
 
      $ /tmp/core_dumps/core-%e-%s-%u-%g-%p-%t	  
 	  
-5. Verify that the core dumping works:	  
-	  
-  .. code-block:: console
-
-     $ select abort_server();
-	  
 Verifying that the Core Dumps Work 
 ---------------------------------------------------	
 
-You can verify that the core dumps work only after installing and running SQream. This causes the server to crash and a new core.xxx file to be included in the folder that is written in **/etc/sysctl.conf**
+You can verify that the core dumps work only after installing and running SQreamDB. This causes the server to crash and a new ``core.xxx`` file to be included in the folder that is written in ``/etc/sysctl.conf``.
 
-**To verify that the core dumps work:**
-
-1. Stop and restart all SQream services.
+1. Stop and restart all SQreamDB services.
 
     ::
 
-2. Connect to SQream with ClientCmd and run the following command:
+2. Connect to SQreamDB with ClientCmd and run the following command:
 
   .. code-block:: console
 
      $ select abort_server();
    
+Verify Your SQreamDb Installation
+------------------------------------
+
+.. code-block:: console
+
+	cat /etc/os-release  #check OS release
+
+	id sqream       #make sure sqream user exists and has same id on all cluster members servers.
+
+	mount           #please verify that the storage is mounted
+
+	nvidia-smi      #make sure driver is insalled properly
+
+	sysctl -n fs.file-max   #should be more or equalto  2097152
+
+	ulimit -c -u -n (run this command as user sqream)
+	Desired output:
+	core file size (blocks, -c) unlimited
+	max user processes (-u) 1000000
+	open files (-n) 1000000
+   
 Troubleshooting Core Dumping 
----------------------------------------------------	
+------------------------------
 
 This section describes the troubleshooting procedure to be followed if all parameters have been configured correctly, but the cores have not been created.
-
-**To troubleshoot core dumping:**
 
 1. Reboot the server.
 
@@ -1351,7 +1356,7 @@ This section describes the troubleshooting procedure to be followed if all param
 
    .. code-block:: console
 
-      $ sudo chmod -R 777 /tmp/core_dumps   
+      $ sudo chmod -R 777 /tmp/core_dumps  
    
 3. Verify that the limits have been set correctly:
 
@@ -1366,29 +1371,29 @@ This section describes the troubleshooting procedure to be followed if all param
       $ core file size          (blocks, -c) unlimited
       $ open files                      (-n) 1000000	  
 
-4. If all parameters have been configured correctly, but running **ulimit -c** outputs **0**, run the following:
+4. If all parameters have been configured correctly, but running ``ulimit -c`` outputs ``0``, run the following:
 
    .. code-block:: console
 
       $ sudo vim /etc/profile
 
-5. Search for line and tag it with the **hash** symbol:
+5. Search for line and tag it with the ``hash`` symbol:
 
    .. code-block:: console
 
       $ ulimit -S -c 0 > /dev/null 2>&1
 
-6. Log out and log in.
+6. Log out and log back in.
 
     ::
 
-7. Run the ulimit -c command:
+7. Run the ``ulimit -c`` command:
 
    .. code-block:: console
 
       $ ulimit -c command	  
 
-8. If the line is not found in **/etc/profile** directory, do the following:	  
+8. If the line is not found in ``/etc/profile`` directory, do the following:	  
 	  
    a. Run the following command:
 
@@ -1402,4 +1407,4 @@ This section describes the troubleshooting procedure to be followed if all param
 
          $ ulimit -S -c ${DAEMON_COREFILE_LIMIT:-0} >/dev/null 2>&1
 
-   c. If the line is found, tag it with the **hash** symbol and reboot the server.
+   c. If the line is found, tag it with the ``hash`` symbol and reboot the server.
