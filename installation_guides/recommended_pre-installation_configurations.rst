@@ -137,18 +137,18 @@ When configuring the operating system, several basic settings related to creatin
 Creating a ``sqream`` User
 ----------------------------
 
-The ``sqream`` user must have the same UID and GID on all servers in your cluster.
+**The sqream user must have the same UID and GID across all servers in your cluster.**
 
-In case user IDs are not the same, and no important data resides under ``/home/sqream``, a best practice is deleting the ``sqream`` user and sqream group from both servers and create new ones with the same ID, as suggested in the following example:
+If the ``sqream`` user does not have the same UID and GID across all servers and there is no critical data stored under ``/home/sqream``, it is recommended to delete the ``sqream`` user and sqream group from your servers. Subsequently, create new ones with the same ID, using the following command:
 
    .. code-block:: console
 
       sudo userdel sqream
       sudo rm /var/spool/mail/sqream
    
-Before adding a user with a specific UID and GID, it is imperative to verify that these IDs do not already exist.
+Before adding a user with a specific UID and GID, it is crucial to verify that such Ids do not already exist.
 
-Follow these steps to create a ``sqream`` user. Keep in mind that ``1111`` is a UID example.
+The steps below guide you on creating a ``sqream`` user with an exemplary ID of ``1111``.
    
 1. Verify that a ``1111`` UID does not already exists:  
    
@@ -168,7 +168,7 @@ Follow these steps to create a ``sqream`` user. Keep in mind that ``1111`` is a 
 
       useradd -u 1111 sqream
    
-4. Add the user ``sqream`` to the ``wheel`` group.
+4. Add a ``sqream`` user to the ``wheel`` group.
 
    .. code-block:: console
 
@@ -182,9 +182,7 @@ Follow these steps to create a ``sqream`` user. Keep in mind that ``1111`` is a 
    
 5. Log out and log back in as ``sqream``.
 
-.. note:: If you deleted the ``sqream`` user and recreated it with different ID, to avoid permission errors, you must change its ownership to ``/home/sqream``.
-
-6. Change the ``sqream`` user's ownership to ``/home/sqream``:
+6. If you deleted the ``sqream`` user and recreated it to have a new ID, you must change its ownership to ``/home/sqream`` in order to avoid permission errors.
 
    .. code-block:: console
 
@@ -193,7 +191,7 @@ Follow these steps to create a ``sqream`` user. Keep in mind that ``1111`` is a 
 Setting Up A Locale
 -----------------------
 
-SQreamDB enables you to set up a locale. In this example, the locale used is your own location.
+SQreamDB enables you to set up a locale using your own location. To find out your current time-zone, run the ``timedatectl list-timezones`` command.
 
 1. Set the language of the locale:
 
@@ -206,14 +204,16 @@ SQreamDB enables you to set up a locale. In this example, the locale used is you
    .. code-block:: console
 
       sudo timedatectl set-timezone Asia/Jerusalem
-
-If needed, you can run the ``timedatectl list-timezones`` command to see your current time-zone.
-  
    
 Installing Required Software 
 ---------------------------------
-   
-**Installing EPEL Repository:**
+
+.. contents:: 
+   :local:
+   :depth: 1
+
+Installing EPEL Repository
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **CentOS7/RHEL8**
 
@@ -233,9 +233,10 @@ Installing Required Software
 
       sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 
-Do not miss the below step or you will fail to install some mandatory required packages later!
+Enabling Additional Red Hat Repositories
+"""""""""""""""""""""""""""""""""""""""""
 
-**Enabling Additional Red Hat Repositories:**
+Enabling additional Red Hat repositories is essential to install the required packages in the subsequent procedures.
 
 **RHEL7**
 
@@ -251,7 +252,8 @@ Do not miss the below step or you will fail to install some mandatory required p
       sudo subscription-manager repos --enable rhel-8-for-x86_64-appstream-rpms
       sudo subscription-manager repos --enable rhel-8-for-x86_64-baseos-rpms
 
-**Installing Required Packages:**
+Installing Required Packages
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **RHEL7/CentOS7**
 
@@ -265,7 +267,8 @@ Do not miss the below step or you will fail to install some mandatory required p
 
       sudo dnf install chrony pciutils monit zlib-devel openssl-devel kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc net-tools wget jq libffi-devel xz-devel ncurses-compat-libs libnsl gdbm-devel tk-devel sqlite-devel readline-devel texinfo 
 
-**Installing Recommended Tools:**
+Installing Recommended Tools
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **RHEL7/CentOS7**
 
@@ -279,11 +282,12 @@ Do not miss the below step or you will fail to install some mandatory required p
 
       sudo dnf install bash-completion.noarch vim-enhanced vim-common net-tools iotop htop psmisc screen xfsprogs wget yum-utils dos2unix
 
-**Installing Python:**
+Installing Python
+^^^^^^^^^^^^^^^^^^^
 
 **For SQreamDb version 4.3 or older, install Python 3.6.7.**
 
-1. Download the Python 3.6.7 source code tarball file from the following URL into the **/home/sqream** directory:
+1. Download the Python 3.6.7 source code tarball file from the following URL into the ``/home/sqream`` directory:
 
    .. code-block:: console
 
@@ -301,7 +305,7 @@ Do not miss the below step or you will fail to install some mandatory required p
 
       cd Python-3.6.7
   
-4. Run the **./configure** script:
+4. Run the ``./configure`` script:
 
    .. code-block:: console
 
@@ -327,7 +331,7 @@ Do not miss the below step or you will fail to install some mandatory required p
 	  
 **For SQreamDB version 4.4 or newer, install Python 3.9.13.**
   
-1. Download the Python 3.9.13 source code tarball file from the following URL into the **/home/sqream** directory:
+1. Download the Python 3.9.13 source code tarball file from the following URL into the ``/home/sqream`` directory:
 
    .. code-block:: console
 
@@ -345,7 +349,7 @@ Do not miss the below step or you will fail to install some mandatory required p
 
       cd Python-3.9.13
   
-4. Run the **./configure** script:
+4. Run the ``./configure`` script:
 
    .. code-block:: console
 
@@ -369,40 +373,12 @@ Do not miss the below step or you will fail to install some mandatory required p
 
       python3 --version
   
-Installing NodeJS on CentOS 
---------------------------------
+Installing NodeJS 
+^^^^^^^^^^^^^^^^^^
 
-NodeJS required only In case when UI runs on the same server as SqreamDB
-If not, skip this step.
+NodeJS is necessary only when the UI runs on the same server as SqreamDB. If not, you can skip this step.
 
-1. Download the `setup_12.x file <https://rpm.nodesource.com/setup_12.x>`__ as a root user logged in shell:
-
-   .. code-block:: console
-
-      curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
-  
-2. Clear the YUM cache and update the local metadata:
-
-   .. code-block:: console
-
-      sudo yum clean all && sudo yum makecache fast
-  
-3. Install the **node.js** file:
-
-   .. code-block:: console
-
-      sudo yum install -y nodejs
-	  
-4. Install npm and make it available for all users:
-
-   .. code-block:: console
-
-      sudo npm install pm2 -g
-	  
-Installing NodeJS Offline
--------------------------------
-
-1. Download the NodeJS source code tarball file from the following URL into the **/home/sqream** directory:
+1. Download the NodeJS source code tarball file from the following URL into the ``/home/sqream`` directory:
 
    .. code-block:: console
 
@@ -412,102 +388,93 @@ Installing NodeJS Offline
 
    .. code-block:: console
 
-      sudo mv  node-v14.21.3-linux-x64 /usr/local
-
-3. Navigate to the */usr/bin/* directory:
+      sudo mv  node-v14.21.3-linux-x64 /usr/local  
+	  
+3. Navigate to the ``/usr/bin/`` directory:
 
    .. code-block:: console
 
-      cd /usr/bin
+      cd /usr/bin 
 	  
-4. Create a symbolic link to the */local/node-v14.21.3-linux-x64/bin/node node* directory:
+4. Create a symbolic link to the ``/local/node-v14.21.3-linux-x64/bin/node node`` directory:
 
    .. code-block:: console
 
       sudo ln -s ../local/node-v14.21.3-linux-x64/bin/node node
 	  
-5. Create a symbolic link to the */local/node-v14.21.3-linux-x64/bin/npm npm* directory:
+5. Create a symbolic link to the ``/local/node-v14.21.3-linux-x64/bin/npm npm`` directory:
 
    .. code-block:: console
 
-      sudo ln -s ../local/node-v14.21.3-linux-x64/bin/npm npm
+      sudo ln -s ../local/node-v14.21.3-linux-x64/bin/npm npm 
 	  
-6. Create a symbolic link to the */local/node-v14.21.3-linux-x64/bin/npx npx* directory:
+6. Create a symbolic link to the ``/local/node-v14.21.3-linux-x64/bin/npx npx`` directory:
 
    .. code-block:: console
 
-      sudo ln -s ../local/node-v14.21.3-linux-x64/bin/npx npx
-
-7. Verify that the node versions for the above are correct:
-
-   .. code-block:: console
-
-      node --version
+      sudo ln -s ../local/node-v14.21.3-linux-x64/bin/npx npx	  
 	  
-8. To install the ``pm2`` process management:
+7. Install the ``pm2`` process management:
 
    .. code-block:: console
    
       sudo npm install pm2 -g
-	  
-If sudo npm install pm2 -g fails, install pm2 offline:	  
-	  
-Installing the pm2 Service Offline
-------------------------------------
-
-1. On a machine with internet access, install the following:
+  
+8. If installing the ``pm2`` process management fails, install it offline:	 
+  
+  a. On a machine with internet access, install the following:
 
    * nodejs
    * npm
    * pm2
+   
+  b. Extract the pm2 module to the correct directory:   
 
-2. Extract the pm2 module to the correct directory:   
+     .. code-block:: console
 
-   .. code-block:: console
-
-      cd /usr/local/node-v14.21.3-linux-x64/lib/node_modules
-      tar -czvf pm2_x86.tar.gz pm2
-
-3. Copy the ``pm2_x86.tar.gz`` file to a server without access to the internet and extract it.
-
+        cd /usr/local/node-v14.21.3-linux-x64/lib/node_modules
+        tar -czvf pm2_x86.tar.gz pm2
+		
+  c. Copy the ``pm2_x86.tar.gz`` file to a server without access to the internet and extract it.
+  
     ::
+  
+  d. Move the ``pm2`` folder to the ``/usr/local/node-v14.21.3-linux-x64/lib/node_modules`` directory:
 
-4. Move the ``pm2`` folder to the ``/usr/local/node-v14.21.3-linux-x64/lib/node_modules`` directory:
+     .. code-block:: console
 
-   .. code-block:: console
+        sudo mv pm2 /usr/local/node-v14.21.3-linux-x64/lib/node_modules
 
-      sudo mv pm2 /usr/local/node-v14.21.3-linux-x64/lib/node_modules
-	  
-5. Navigate back to the ``/usr/bin`` directory:
+  e. Navigate back to the ``/usr/bin`` directory:
 
-   .. code-block:: console
+     .. code-block:: console
 
-      cd /usr/bin
+        cd /usr/bin
 
-6.  Create a symbolink to the ``pm2`` service:
+  f. Create a symbolink to the ``pm2`` service:
 
-   .. code-block:: console
+     .. code-block:: console
 
-      sudo ln -s /usr/local/node-v14.21.3-linux-x64/lib/node_modules/pm2/bin/pm2 pm2
+        sudo ln -s /usr/local/node-v14.21.3-linux-x64/lib/node_modules/pm2/bin/pm2 pm2
 
-7. Verify that installation was successful:
+  g. Verify that installation was successful without using ``sudo``:
 
-   .. code-block:: console
+     .. code-block:: console
 
-      pm2 list
+        pm2 list
+  
+  h. Verify that the node versions for the above are correct:
 
-  .. note:: The following step must be done as a ``sqream`` user, and not as a ``sudo`` user.
+     .. code-block:: console
 
-8.  Verify that the node version is correct:
-
-   .. code-block:: console
-
-      node -v
+        node --version
   
 Configuring the Network Time Protocol
 --------------------------------------
   
 This Network Time Protocol (NTP) configuration is intended for use on systems running RHEL7 and CentOS7 exclusively.
+
+If you don't have internet access, see `Configure NTP Client to Synchronize with NTP Server <https://www.thegeekstuff.com/2014/06/linux-ntp-server-client/>`__.
   
 1. Install the NTP file.
 
@@ -532,8 +499,6 @@ This Network Time Protocol (NTP) configuration is intended for use on systems ru
    .. code-block:: console
 
       sudo ntpq -p
-	  
-If you don't have internet access, see `Configure NTP Client to Synchronize with NTP Server <https://www.thegeekstuff.com/2014/06/linux-ntp-server-client/>`__.
   
 Configuring the Network Time Protocol Server
 --------------------------------------------
@@ -631,7 +596,7 @@ Configuring the Kernel Parameters
 
       echo -e "vm.dirty_background_ratio = 5 \n vm.dirty_ratio = 10 \n vm.swappiness = 10 \n vm.vfs_cache_pressure = 200 \n vm.zone_reclaim_mode = 0 \n" >> /etc/sysctl.conf
   
-2. Check the maximum value of the ``fs.file``. 
+2. Check the maximum value of the ``fs.file``: 
 
    .. code-block:: console
 
@@ -660,19 +625,32 @@ Configuring the Firewall
 
 The example in this section shows the open ports for four ``sqreamd`` sessions. If more than four are required, open the required ports as needed. Port 8080 in the example below is a new UI port.
 
-Required ports:
+The ports listed below are required, and the same logic applies to all additional SQreamDB Worker ports.
 
-8080 - UI port
-443   - UI over HTTPS ( requires nginx installation )
-3105 - SqreamDB metadataserver service
-3108 - SqreamDB serverpicker service
-3109 - SqreamDB serverpicker service over ssl
-5000 - SqreamDB first worker default port
-5100 - SqreamDB first worker over ssl default port
-5001 - SqreamDB second worker default port
-5101 - SqreamDB second worker over ssl default port
-
-Same logic applies to all additional SQreamDB Worker ports.
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Port
+     - Use
+   * - 8080
+     - UI port
+   * - 443
+     - UI over HTTPS ( requires nginx installation )
+   * - 3105
+     - SqreamDB metadataserver service
+   * - 3108
+     - SqreamDB serverpicker service
+   * - 3109
+     - SqreamDB serverpicker service over ssl
+   * - 5000
+     - SqreamDB first worker default port
+   * - 5100
+     - SqreamDB first worker over ssl default port
+   * - 5001
+     - SqreamDB second worker default port
+   * - 5101
+     - SqreamDB second worker over ssl default port
 
 1. Start the service and enable FirewallID on boot:
 
@@ -753,17 +731,16 @@ Configuring the ``/etc/hosts`` File
       127.0.0.1	localhost
       <server1 ip>	<server_name>
       <server2 ip>	<server_name>
-   
 
 Installing the NVIDIA CUDA Driver
 ==================================
 
 After configuring your operating system, you must install the NVIDIA CUDA driver.
 
-  .. warning:: If your Linux GUI runs on the server, it must be stopped before installing the CUDA drivers.
+.. warning:: If your Linux GUI runs on the server, it must be stopped before installing the CUDA drivers.
 
 Before You Begin 
----------------------------
+^^^^^^^^^^^^^^^^^
 
 1. Verify that the NVIDIA card has been installed and is detected by the system:
 
@@ -784,7 +761,7 @@ Before You Begin
         sudo yum install -y gcc
 
 Updating the Kernel Headers  
------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 1. Update the kernel headers on RHEL or CentOS:
 
@@ -801,7 +778,7 @@ Updating the Kernel Headers
       rpm -qa |grep kernel-headers-$(uname -r) 
 		  		  
 Disabling Nouveau  
-------------------
+^^^^^^^^^^^^^^^^^^^
 
 Disable Nouveau, which is the default operating system driver.
 
@@ -839,17 +816,19 @@ Disable Nouveau, which is the default operating system driver.
 Installing the CUDA Driver
 ----------------------------
   
-For A100 GPU and other A series GPUs, you must install the **CUDA 11.4.3 driver**.
-
-For H100 GPU ( and other H series ) cuda minimum 11.8 should be installed!
-For L40S GPU ( and other L series ) cuda minimum 12.0 should be installed!
-Our current recommendation cuda 12.2.1
-
-For questions related to which driver to install, contact `SqreamDB support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
-
 .. contents:: 
    :local:
    :depth: 1
+  
+The current recommendation is for CUDA 12.2.1.
+  
+For A100 GPU and other A series GPUs, you must install the **CUDA 11.4.3 driver**.
+
+For H100 GPU and other H series GPUs, you must install the **CUDA 11.8 driver** or a later version.
+
+For L40S GPU and other L series GPUs, you must install the **CUDA 12.0 driver** or a later version.
+
+For questions related to which driver to install, contact `SqreamDB support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
 
 Installing the CUDA Driver from the Repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -898,14 +877,14 @@ Installing the CUDA driver from the Repository is the recommended installation m
 		 sudo yum clean all
 		 sudo yum -y install nvidia-driver-latest-dkms
 		 
-   * **RHEL8.6 CUDA 11.4.3 repository (INTEL) installation (Required for A-Series GPU models):**
+    * **RHEL8.6 CUDA 11.4.3 repository (INTEL) installation (Required for A-Series GPU models):**
 
 	  .. code-block:: console
 	  
 		 wget https://developer.download.nvidia.com/compute/cuda/11.4.3/local_installers/cuda-repo-rhel8-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
 		 sudo dnf localinstall cuda-repo-rhel8-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
 
-   * **RHEL8.8 CUDA 12.2.1 repository ( INTEL ) installation ( Required for H/L Series GPU models ):**
+    * **RHEL8.8 CUDA 12.2.1 repository ( INTEL ) installation ( Required for H/L Series GPU models ):**
 
 	  .. code-block:: console
 	  
@@ -919,7 +898,7 @@ Installing the CUDA driver from the Repository is the recommended installation m
 
 Power9 with V100 GPUs supports only cuda 10.1 driver on RHEL7
 
-   * **IBM Power9 - CUDA 10.1 for RHEL7:**
+    * **IBM Power9 - CUDA 10.1 for RHEL7:**
 
       .. code-block:: console
 
