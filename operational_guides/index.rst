@@ -18,6 +18,7 @@ This section summarizes the following operational guides:
    foreign_tables
    delete_guide
    logging
+   query_split
    monitoring_query_performance
    security
    saved_queries

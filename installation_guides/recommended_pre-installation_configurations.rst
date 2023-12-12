@@ -1,7 +1,7 @@
 .. _recommended_pre-installation_configurations:
 
 *********************************************
-Recommended Pre-Installation Configuration
+Pre-Installation Configuration
 *********************************************
 
 Before installing SQreamDB, it is recommended that you to tune your system for better performance and stability.
@@ -90,127 +90,108 @@ Installing the Operating System
 Before You Begin
 -------------------
 
-* Your system must have at least 200 gigabytes of free space on the root directory.
+* Your system must have at least 200 gigabytes of free space on the root ``/`` mount.
 
-* You must have external shared storage provided by systems like General Parallel File System (GPFS), Weka, or VAST.
+* For a multi-node cluster, you must have external shared storage provided by systems like General Parallel File System (GPFS), Weka, or VAST.
 
-* Once the BIOS settings have been set, you must install the operating system. Either CentOS 7.9 or RHEL 7.9-8.8 must be installed before installing the SQreamDB database, by either the customer or a SQreamDB representative. 
+* Once the BIOS settings have been set, you must install the operating system.
 
-* Verify the exact RHEL7/RHEL8 version with Storage vendor to avoid driver incompatibility.
+* A typical SQreamDB installation requires RHEL7.9/CentOS 7.9 or RHEL8.X (RHEL8.8 recommended)
 
-**To install the operating system:**
+* Verify the exact RHEL7/RHEL8 version with your storage vendor to avoid driver incompatibility.
+
+Installation
+----------------
 
 #. Select a language (English recommended).
 #. From **Software Selection**, select **Minimal** and check the **Development Tools** group checkbox.
+
+   Selecting the **Development Tools** group installs the following tools:
+
+	* autoconf
+	* automake
+	* binutils
+	* bison
+	* flex
+	* gcc
+	* gcc-c++
+	* gettext
+	* libtool
+	* make
+	* patch
+	* pkgconfig
+	* redhat-rpm-config
+	* rpm-build
+	* rpm-sign
+
 #. Continue the installation.
 #. Set up the necessary drives and users as per the installation process.
 
-   Using Debugging Tools is recommended for future problem-solving if necessary.
-
-Selecting the **Development Tools** group installs the following tools:
-
-  * autoconf
-  * automake
-  * binutils
-  * bison
-  * flex
-  * gcc
-  * gcc-c++
-  * gettext
-  * libtool
-  * make
-  * patch
-  * pkgconfig
-  * redhat-rpm-config
-  * rpm-build
-  * rpm-sign
-
-The root user is created and the OS shell is booted up.  
+   The OS shell is booted up.
 
 Configuring the Operating System
-===================================================
+==================================
 
-When configuring the operating system, several basic settings related to creating a new server are required. Configuring these as part of your basic set-up increases your server's security and usability. 
+When configuring the operating system, several basic settings related to creating a new server are required. Configuring these as part of your basic set-up increases your server's security and usability.
 
-Logging In to the Server
---------------------------------
+Creating a ``sqream`` User
+----------------------------
 
-You can log in to the server using the server's IP address and password for the **root** user. The server's IP address and **root** user were created during the installation of the operating system.
+The ``sqream`` user must have the same UID and GID on all servers in your cluster.
 
-Automatically Creating a ``sqream`` User
-------------------------------------------
+In case user IDs are not the same, and no important data resides under ``/home/sqream``, a best practice is deleting the ``sqream`` user and sqream group from both servers and create new ones with the same ID, as suggested in the following example:
 
-#. If a ``sqream`` user was created during installation, verify that the same ID is used on every server:
+.. code-block:: console
 
-   .. code-block:: console
-
-      $ sudo id sqream
-  
-  The ID **1000** is used on each server, as in the following example:
-    
-  .. code-block:: console
-
-     $ uid=1000(sqream) gid=1000(sqream) groups=1000(sqream)
+	sudo userdel sqream
+	sudo rm /var/spool/mail/sqream
    
-2. If the ID's are different, delete the ``sqream`` user and ``sqream`` group from both servers:
+Before adding a user with a specific UID and GID, it is imperative to verify that these IDs do not already exist.
 
-   .. code-block:: console
-
-      $ sudo userdel sqream
+Follow these steps to create a ``sqream`` user. Keep in mind that ``1111`` is a UID example.
    
-3. Recreate it using the same ID:
+1. Verify that a ``1111`` UID does not already exists:  
    
    .. code-block:: console
-
-      $ sudo rm /var/spool/mail/sqream
-
-Manually Creating a ``sqream`` User
-------------------------------------
-
-SQreamDB enables you to manually create users. This section shows you how to manually create a user with the UID **1111**. You cannot manually create users during the operating system installation procedure.
    
-#. Verify that a **1111** UID does not already exists:  
-   
-   .. code-block::
-   
-      $ cat /etc/passwd |grep 1111
+      cat /etc/passwd |grep 1111
 	  
-#. Verify that a **1111** GID does not already exists:  
+2. Verify that a ``1111`` GID does not already exists:  
    
-   .. code-block::
+   .. code-block:: console
    
-      $ cat /etc/group |grep 1111
+      cat /etc/group |grep 1111
    
-#. Add a user with an identical UID on all cluster nodes:
+3. Add a user with an identical UID on all cluster nodes:
 
    .. code-block:: console
 
-      $ useradd -u 1111 sqream
+      useradd -u 1111 sqream
    
-#. Add the user ``sqream`` to the ``wheel`` group.
+4. Add the user ``sqream`` to the ``wheel`` group.
 
    .. code-block:: console
 
-      $ sudo usermod -aG wheel sqream
+      sudo usermod -aG wheel sqream
    
    You can remove the ``sqream`` user from the ``wheel`` group when the installation and configuration are complete:
 
    .. code-block:: console
 
-      $ passwd sqream
+      passwd sqream
    
-#. Log out and log back in as ``sqream``.
+5. Log out and log back in as ``sqream``.
 
-  .. note:: If you deleted the ``sqream`` user and recreated it with different ID, to avoid permission errors, you must change its ownership to ``/home/sqream``.
+.. note:: If you deleted the ``sqream`` user and recreated it with different ID, to avoid permission errors, you must change its ownership to ``/home/sqream``.
 
 6. Change the ``sqream`` user's ownership to ``/home/sqream``:
 
    .. code-block:: console
 
-      $ sudo chown -R sqream:sqream /home/sqream
+      sudo chown -R sqream:sqream /home/sqream
    
 Setting Up A Locale
---------------------------------
+-----------------------
 
 SQreamDB enables you to set up a locale. In this example, the locale used is your own location.
 
@@ -251,6 +232,8 @@ Installing Required Software
 .. code-block:: console
 
 	$ sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+
+Do not miss the below step or you will fail to install some mandatory required packages later!
 
 **Enabling Additional Red Hat Repositories:**
 
@@ -298,7 +281,7 @@ Installing Required Software
 
 **Installing Python:**
 
-For SQreamDb version 4.3 or older, install Python 3.6.7.
+**For SQreamDb version 4.3 or older, install Python 3.6.7.**
 
 1. Download the Python 3.6.7 source code tarball file from the following URL into the **/home/sqream** directory:
 
@@ -322,7 +305,7 @@ For SQreamDb version 4.3 or older, install Python 3.6.7.
 
    .. code-block:: console
 
-      $ ./configure
+      $ ./configure --enable-loadable-sqlite-extensions
    
 5. Build the software:
 
@@ -340,9 +323,9 @@ For SQreamDb version 4.3 or older, install Python 3.6.7.
 
    .. code-block:: console
 
-      $ python3
+      $ python3 --version
 	  
-For SQreamDB version 4.4 or newer, install Python 3.9.13.
+**For SQreamDB version 4.4 or newer, install Python 3.9.13.**
   
 1. Download the Python 3.9.13 source code tarball file from the following URL into the **/home/sqream** directory:
 
@@ -366,7 +349,7 @@ For SQreamDB version 4.4 or newer, install Python 3.9.13.
 
    .. code-block:: console
 
-      $ ./configure
+      $ ./configure --enable-loadable-sqlite-extensions
    
 5. Build the software:
 
@@ -384,10 +367,13 @@ For SQreamDB version 4.4 or newer, install Python 3.9.13.
 
    .. code-block:: console
 
-      $ python3
+      $ python3 --version
   
 Installing NodeJS on CentOS 
 --------------------------------
+
+NodeJS required only In case when UI runs on the same server as SqreamDB
+If not, skip this step.
 
 1. Download the `setup_12.x file <https://rpm.nodesource.com/setup_12.x>`__ as a root user logged in shell:
 
@@ -458,6 +444,14 @@ Installing NodeJS Offline
 
       $ node --version
 	  
+8. To install the ``pm2`` process management:
+
+   .. code-block:: console
+   
+       sudo npm install pm2 -g
+	  
+If sudo npm install pm2 -g fails, install pm2 offline:	  
+	  
 Installing the pm2 Service Offline
 ------------------------------------
 
@@ -488,7 +482,7 @@ Installing the pm2 Service Offline
 
    .. code-block:: console
 
-      $ cd /usr/bin again
+      $ cd /usr/bin
 
 6.  Create a symbolink to the ``pm2`` service:
 
@@ -588,26 +582,26 @@ Configuring Chrony for RHEL8 Only
 
 #. Start the Chrony service:
 
-..code-block::
+.. code-block:: console
 
 	$ sudo systemctl start chronyd
 	
 #. Enable the Chrony service to start automatically at boot time:
 
-..code-block::
+.. code-block::
 
 	$ sudo systemctl enable chronyd
 	
 #. Check the status of the Chrony service:
 
-..code-block::
+.. code-block::
 
 	$ sudo systemctl status chronyd
 		
 Configuring the Server to Boot Without Linux the UI
 ----------------------------------------------------
 
-You can configure your server to boot without a UI in cases when it is not required (recommended) by running the following command:					 
+We recommend that you configure your server to boot without a Linux GUI by running the following command:					 
 
 .. code-block:: console
 
@@ -619,8 +613,6 @@ Configuring the Security Limits
 --------------------------------
 
 The security limits refer to the number of open files, processes, etc.
-
-You can configure the security limits by running the **echo -e** command as a root user logged in shell:
 
 .. code-block:: console
 
@@ -645,7 +637,7 @@ Configuring the Kernel Parameters
 
       $ sysctl -n fs.file-max
 
-3. If the maximum value of the ``fs.file`` is smaller than ``2097152``, run the following command:
+3. **Only** if the maximum value of the ``fs.file`` is smaller than ``2097152``, run the following command:
 
    .. code-block:: console
 
@@ -667,6 +659,20 @@ Configuring the Firewall
 --------------------------
 
 The example in this section shows the open ports for four ``sqreamd`` sessions. If more than four are required, open the required ports as needed. Port 8080 in the example below is a new UI port.
+
+Required ports:
+
+8080 - UI port
+443   - UI over HTTPS ( requires nginx installation )
+3105 - SqreamDB metadataserver service
+3108 - SqreamDB serverpicker service
+3109 - SqreamDB serverpicker service over ssl
+5000 - SqreamDB first worker default port
+5100 - SqreamDB first worker over ssl default port
+5001 - SqreamDB second worker default port
+5101 - SqreamDB second worker over ssl default port
+
+Same logic applies to all additional SQreamDB Worker ports.
 
 1. Start the service and enable FirewallID on boot:
 
@@ -747,29 +753,14 @@ Configuring the ``/etc/hosts`` File
       $ 127.0.0.1	localhost
       $ <server1 ip>	<server_name>
       $ <server2 ip>	<server_name>
-    
-Configuring the DNS
---------------------
-
-1. Run the **ifconfig** commasnd to check your NIC name. In the following example, **eth0** is the NIC name:
-
-   .. code-block:: console
-
-      $ sudo vim /etc/sysconfig/network-scripts/ifcfg-eth0 
-
-2. Replace the DNS lines from the example above with your own DNS addresses :
-
-   .. code-block:: console
-
-      $ DNS1="4.4.4.4"
-      $ DNS2="8.8.8.8"
+   
 
 Installing the NVIDIA CUDA Driver
 ==================================
 
 After configuring your operating system, you must install the NVIDIA CUDA driver.
 
-  .. warning:: If your UI runs on the server, the server must be stopped before installing the CUDA drivers.
+  .. warning:: If your Linux GUI runs on the server, it must be stopped before installing the CUDA drivers.
 
 Before You Begin 
 ---------------------------
@@ -808,17 +799,11 @@ Updating the Kernel Headers
 		$ uname -r
 		$ rpm -qa |grep kernel-devel-$(uname -r)
 		$ rpm -qa |grep kernel-headers-$(uname -r) 
-		  
-2. Install **wget** one of the following operating systems:
-   
-     .. code-block:: console
-
-        $ sudo yum install wget
 		  		  
 Disabling Nouveau  
 ------------------
 
-You can disable Nouveau, which is the default operating system driver.
+Disable Nouveau, which is the default operating system driver.
 
 1. Check if the Nouveau driver has been loaded:
 
@@ -854,7 +839,13 @@ You can disable Nouveau, which is the default operating system driver.
 Installing the CUDA Driver
 ----------------------------
   
-For A100 GPU and other A series GPUs, you must install the **CUDA 11.4.3 driver**. The version of the driver installed on the customer server must be equal to or higher than the one used to build the SQreamDB package. For questions related to which driver to install, contact `SqreamDB support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
+For A100 GPU and other A series GPUs, you must install the **CUDA 11.4.3 driver**.
+
+For H100 GPU ( and other H series ) cuda minimum 11.8 should be installed!
+For L40S GPU ( and other L series ) cuda minimum 12.0 should be installed!
+Our current recommendation cuda 12.2.1
+
+For questions related to which driver to install, contact `SqreamDB support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
 
 .. contents:: 
    :local:
@@ -926,113 +917,19 @@ Installing the CUDA driver from the Repository is the recommended installation m
 		 $ sudo dnf clean all
 		 $ sudo dnf -y module install nvidia-driver:latest-dkms	  
 
+Power9 with V100 GPUs supports only cuda 10.1 driver on RHEL7
+
    * **IBM Power9 - CUDA 10.1 for RHEL7:**
 
       .. code-block:: console
 
 		$ wget https://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
 		$ sudo yum localinstall cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
-		 
-
-4. Install the CUDA drivers:
-
-   a. Clear the YUM cache:
-  
-      .. code-block:: console
-
-         $ sudo yum clean all
 	  
-   b. Install the most current DKMS (Dynamic Kernel Module Support) NVIDIA driver:
-  
-      .. code-block:: console
-
-         $ sudo yum -y install nvidia-driver-latest-dkms
-
-5. Verify that the installation was successful:
-
-   .. code-block:: console
-
-      $ nvidia-smi
-	  
-6. Enable NVIDIA-persistenced mode:
-
-   .. code-block:: console
-
-      $ sudo systemctl start nvidia-persistenced
-      $ sudo systemctl enable nvidia-persistenced
-
-You can prepare the CUDA driver offline from a server connected to the CUDA repo by running the following commands as a ``root`` user:
-	  
-7. Query all the packages installed in your system, and verify that ``cuda-repo`` has been installed:
-
-   .. code-block:: console
-
-      $ rpm -qa |grep cuda-repo
-
-8. Navigate to the correct repository:
-
-   .. code-block:: console
-
-      $ cd /etc/yum.repos.d/
-
-9. List in long format and print lines matching a pattern for the CUDA file:
-
-   .. code-block:: console
-
-      $ ls -l |grep cuda
-
-   The following is an example of the correct output:
-
-   .. code-block:: console
-
-      $ cuda-10-1-local.repo
-
-10. Edit the ``/etc/yum.repos.d/cuda-10-1-local.repo`` file:
-
-   .. code-block:: console
-
-      $ vim /etc/yum.repos.d/cuda-10-1-local.repo
-
-   The following is an example of the correct output:
-
-   .. code-block:: console
-
-      $ name=cuda-10-1-local
-   
-11. Clone the repository to a location where it can be copied from:
-
-   .. code-block:: console
-
-      $ reposync -g -l -m --repoid=cuda-10-1-local --download_path=/var/cuda-repo-10.1-local
-
-12. Copy the repository to the installation server and create the repository:
-
-   .. code-block:: console
-
-      $ createrepo -g comps.xml /var/cuda-repo-10.1-local
-
-13. Add a repo configuration file in ``/etc/yum.repos.d/`` by editing the ``/etc/yum.repos.d/cuda-10.1-local.repo`` repository:
- 
-   .. code-block:: console
-
-      $ [cuda-10.1-local]
-      $ name=cuda-10.1-local
-      $ baseurl=file:///var/cuda-repo-10.1-local
-      $ enabled=1
-      $ gpgcheck=1
-      $ gpgkey=file:///var/cuda-repo-10-1-local/7fa2af80.pub   
-   
-14. Install the CUDA drivers by installing the most current Dynamic Kernel Module Support (DKMS) NVIDIA driver as a root user logged in shell:
-  
-   .. code-block:: console
-
-      $ sudo bash
-      $ sudo yum -y install nvidia-driver-latest-dkms
-	  
-15. If you are installing the CUDA driver on IBM Power9, please follow the `NVIDIA documentation <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`_ for additionally required steps.
+If you are installing the CUDA driver on IBM Power9, please follow the `NVIDIA documentation <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`_ for additionally required steps.
 	  
 Tuning Up NVIDIA Performance
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The procedures in this section are relevant to Intel only.	
 	
