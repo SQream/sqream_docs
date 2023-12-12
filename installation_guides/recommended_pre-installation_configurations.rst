@@ -141,10 +141,10 @@ The ``sqream`` user must have the same UID and GID on all servers in your cluste
 
 In case user IDs are not the same, and no important data resides under ``/home/sqream``, a best practice is deleting the ``sqream`` user and sqream group from both servers and create new ones with the same ID, as suggested in the following example:
 
-.. code-block:: console
+   .. code-block:: console
 
-	sudo userdel sqream
-	sudo rm /var/spool/mail/sqream
+      sudo userdel sqream
+      sudo rm /var/spool/mail/sqream
    
 Before adding a user with a specific UID and GID, it is imperative to verify that these IDs do not already exist.
 
@@ -199,13 +199,13 @@ SQreamDB enables you to set up a locale. In this example, the locale used is you
 
    .. code-block:: console
 
-      $ sudo localectl set-locale LANG=en_US.UTF-8
+      sudo localectl set-locale LANG=en_US.UTF-8
 
 2. Set the time stamp (time and date) of the locale:
 
    .. code-block:: console
 
-      $ sudo timedatectl set-timezone Asia/Jerusalem
+      sudo timedatectl set-timezone Asia/Jerusalem
 
 If needed, you can run the ``timedatectl list-timezones`` command to see your current time-zone.
   
@@ -217,21 +217,21 @@ Installing Required Software
 
 **CentOS7/RHEL8**
 
-.. code-block:: console
+   .. code-block:: console
 
-   $ sudo yum install epel-release  
+      sudo yum install epel-release  
    
 **RHEL7**
 
-.. code-block:: console
+   .. code-block:: console
 
-   $ sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+      sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
 **RHEL8**   
 
-.. code-block:: console
+   .. code-block:: console
 
-	$ sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+      sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 
 Do not miss the below step or you will fail to install some mandatory required packages later!
 
@@ -239,45 +239,45 @@ Do not miss the below step or you will fail to install some mandatory required p
 
 **RHEL7**
 
-.. code-block:: console
+   .. code-block:: console
 
-	$ sudo subscription-manager repos --enable rhel-7-server-optional-rpms
+      sudo subscription-manager repos --enable rhel-7-server-optional-rpms
 	
 **RHEL8**  
 
-.. code-block:: console
+   .. code-block:: console
 
-	$ sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
-	$ sudo subscription-manager repos --enable rhel-8-for-x86_64-appstream-rpms
-	$ sudo subscription-manager repos --enable rhel-8-for-x86_64-baseos-rpms
+      sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
+      sudo subscription-manager repos --enable rhel-8-for-x86_64-appstream-rpms
+      sudo subscription-manager repos --enable rhel-8-for-x86_64-baseos-rpms
 
 **Installing Required Packages:**
 
 **RHEL7/CentOS7**
 
-.. code-block:: console
+   .. code-block:: console
 
-	$ sudo yum install ntp pciutils monit zlib-devel openssl-devel kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc net-tools wget jq libffi-devel gdbm-devel tk-devel xz-devel sqlite-devel readline-devel bzip2-devel ncurses-devel zlib-devel
+      sudo yum install ntp pciutils monit zlib-devel openssl-devel kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc net-tools wget jq libffi-devel gdbm-devel tk-devel xz-devel sqlite-devel readline-devel bzip2-devel ncurses-devel zlib-devel
 
 **RHEL8**
 
-.. code-block:: console
+   .. code-block:: console
 
-	$ sudo dnf install chrony pciutils monit zlib-devel openssl-devel kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc net-tools wget jq libffi-devel xz-devel ncurses-compat-libs libnsl gdbm-devel tk-devel sqlite-devel readline-devel texinfo 
+      sudo dnf install chrony pciutils monit zlib-devel openssl-devel kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc net-tools wget jq libffi-devel xz-devel ncurses-compat-libs libnsl gdbm-devel tk-devel sqlite-devel readline-devel texinfo 
 
 **Installing Recommended Tools:**
 
 **RHEL7/CentOS7**
 
-.. code-block:: console
+   .. code-block:: console
 
-	$ sudo yum install bash-completion.noarch vim-enhanced vim-common net-tools iotop htop psmisc screen xfsprogs wget yum-utils deltarpm dos2unix
+      sudo yum install bash-completion.noarch vim-enhanced vim-common net-tools iotop htop psmisc screen xfsprogs wget yum-utils deltarpm dos2unix
 
 **RHEL8**
 
-.. code-block:: console
+   .. code-block:: console
 
-	$ sudo dnf install bash-completion.noarch vim-enhanced vim-common net-tools iotop htop psmisc screen xfsprogs wget yum-utils dos2unix
+      sudo dnf install bash-completion.noarch vim-enhanced vim-common net-tools iotop htop psmisc screen xfsprogs wget yum-utils dos2unix
 
 **Installing Python:**
 
@@ -287,43 +287,43 @@ Do not miss the below step or you will fail to install some mandatory required p
 
    .. code-block:: console
 
-      $ wget https://www.python.org/ftp/python/3.6.7/Python-3.6.7.tar.xz
+      wget https://www.python.org/ftp/python/3.6.7/Python-3.6.7.tar.xz
    
 2. Extract the Python 3.6.7 source code into your current directory:
 
    .. code-block:: console
 
-      $ tar -xf Python-3.6.7.tar.xz
+      tar -xf Python-3.6.7.tar.xz
    
 3. Navigate to the Python 3.6.7 directory:
 
    .. code-block:: console
 
-      $ cd Python-3.6.7
+      cd Python-3.6.7
   
 4. Run the **./configure** script:
 
    .. code-block:: console
 
-      $ ./configure --enable-loadable-sqlite-extensions
+      ./configure --enable-loadable-sqlite-extensions
    
 5. Build the software:
 
    .. code-block:: console
 
-      $ make -j30
+      make -j30
   
 6. Install the software:
 
    .. code-block:: console
 
-      $ sudo make install
+      sudo make install
   
 7. Verify that Python 3.6.7 has been installed:
 
    .. code-block:: console
 
-      $ python3 --version
+      python3 --version
 	  
 **For SQreamDB version 4.4 or newer, install Python 3.9.13.**
   
@@ -331,43 +331,43 @@ Do not miss the below step or you will fail to install some mandatory required p
 
    .. code-block:: console
 
-      $ wget https://www.python.org/ftp/python/3.9.13/Python-3.9.13.tar.xz
+      wget https://www.python.org/ftp/python/3.9.13/Python-3.9.13.tar.xz
    
 2. Extract the Python 3.9.13 source code into your current directory:
 
    .. code-block:: console
 
-      $ tar -xf Python-3.9.13.tar.xz
+      tar -xf Python-3.9.13.tar.xz
    
 3. Navigate to the Python 3.9.13 directory:
 
    .. code-block:: console
 
-      $ cd Python-3.9.13
+      cd Python-3.9.13
   
 4. Run the **./configure** script:
 
    .. code-block:: console
 
-      $ ./configure --enable-loadable-sqlite-extensions
+      ./configure --enable-loadable-sqlite-extensions
    
 5. Build the software:
 
    .. code-block:: console
 
-      $ make -j30
+      make -j30
   
 6. Install the software:
 
    .. code-block:: console
 
-      $ sudo make install
+      sudo make install
   
 7. Verify that Python 3.9.13 has been installed:
 
    .. code-block:: console
 
-      $ python3 --version
+      python3 --version
   
 Installing NodeJS on CentOS 
 --------------------------------
@@ -379,25 +379,25 @@ If not, skip this step.
 
    .. code-block:: console
 
-      $ curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
+      curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
   
 2. Clear the YUM cache and update the local metadata:
 
    .. code-block:: console
 
-      $ sudo yum clean all && sudo yum makecache fast
+      sudo yum clean all && sudo yum makecache fast
   
 3. Install the **node.js** file:
 
    .. code-block:: console
 
-      $ sudo yum install -y nodejs
+      sudo yum install -y nodejs
 	  
 4. Install npm and make it available for all users:
 
    .. code-block:: console
 
-      $ sudo npm install pm2 -g
+      sudo npm install pm2 -g
 	  
 Installing NodeJS Offline
 -------------------------------
@@ -406,49 +406,49 @@ Installing NodeJS Offline
 
    .. code-block:: console
 
-      $ wget https://nodejs.org/dist/latest-v14.x/node-v14.21.3-linux-x64.tar.xz
+      wget https://nodejs.org/dist/latest-v14.x/node-v14.21.3-linux-x64.tar.xz
 	  
 2. Move the node-v14.21.3-linux-x64 file to the */usr/local* directory.
 
    .. code-block:: console
 
-      $ sudo mv  node-v14.21.3-linux-x64 /usr/local
+      sudo mv  node-v14.21.3-linux-x64 /usr/local
 
 3. Navigate to the */usr/bin/* directory:
 
    .. code-block:: console
 
-      $ cd /usr/bin
+      cd /usr/bin
 	  
 4. Create a symbolic link to the */local/node-v14.21.3-linux-x64/bin/node node* directory:
 
    .. code-block:: console
 
-      $ sudo ln -s ../local/node-v14.21.3-linux-x64/bin/node node
+      sudo ln -s ../local/node-v14.21.3-linux-x64/bin/node node
 	  
 5. Create a symbolic link to the */local/node-v14.21.3-linux-x64/bin/npm npm* directory:
 
    .. code-block:: console
 
-      $ sudo ln -s ../local/node-v14.21.3-linux-x64/bin/npm npm
+      sudo ln -s ../local/node-v14.21.3-linux-x64/bin/npm npm
 	  
 6. Create a symbolic link to the */local/node-v14.21.3-linux-x64/bin/npx npx* directory:
 
    .. code-block:: console
 
-      $ sudo ln -s ../local/node-v14.21.3-linux-x64/bin/npx npx
+      sudo ln -s ../local/node-v14.21.3-linux-x64/bin/npx npx
 
 7. Verify that the node versions for the above are correct:
 
    .. code-block:: console
 
-      $ node --version
+      node --version
 	  
 8. To install the ``pm2`` process management:
 
    .. code-block:: console
    
-       sudo npm install pm2 -g
+      sudo npm install pm2 -g
 	  
 If sudo npm install pm2 -g fails, install pm2 offline:	  
 	  
@@ -465,8 +465,8 @@ Installing the pm2 Service Offline
 
    .. code-block:: console
 
-      $ cd /usr/local/node-v14.21.3-linux-x64/lib/node_modules
-      $ tar -czvf pm2_x86.tar.gz pm2
+      cd /usr/local/node-v14.21.3-linux-x64/lib/node_modules
+      tar -czvf pm2_x86.tar.gz pm2
 
 3. Copy the ``pm2_x86.tar.gz`` file to a server without access to the internet and extract it.
 
@@ -476,25 +476,25 @@ Installing the pm2 Service Offline
 
    .. code-block:: console
 
-      $ sudo mv pm2 /usr/local/node-v14.21.3-linux-x64/lib/node_modules
+      sudo mv pm2 /usr/local/node-v14.21.3-linux-x64/lib/node_modules
 	  
 5. Navigate back to the ``/usr/bin`` directory:
 
    .. code-block:: console
 
-      $ cd /usr/bin
+      cd /usr/bin
 
 6.  Create a symbolink to the ``pm2`` service:
 
    .. code-block:: console
 
-      $ sudo ln -s /usr/local/node-v14.21.3-linux-x64/lib/node_modules/pm2/bin/pm2 pm2
+      sudo ln -s /usr/local/node-v14.21.3-linux-x64/lib/node_modules/pm2/bin/pm2 pm2
 
 7. Verify that installation was successful:
 
    .. code-block:: console
 
-      $ pm2 list
+      pm2 list
 
   .. note:: The following step must be done as a ``sqream`` user, and not as a ``sudo`` user.
 
@@ -502,7 +502,7 @@ Installing the pm2 Service Offline
 
    .. code-block:: console
 
-      $ node -v
+      node -v
   
 Configuring the Network Time Protocol
 --------------------------------------
@@ -513,25 +513,25 @@ This Network Time Protocol (NTP) configuration is intended for use on systems ru
 
    .. code-block:: console
 
-      $ sudo yum install ntp
+      sudo yum install ntp
   
 2. Enable the **ntpd** program.
 
    .. code-block:: console
 
-      $ sudo systemctl enable ntpd
+      sudo systemctl enable ntpd
   
 3. Start the **ntdp** program.
 
    .. code-block:: console
 
-      $ sudo systemctl start ntpd
+      sudo systemctl start ntpd
   
 4. Print a list of peers known to the server and a summary of their states.   
   
    .. code-block:: console
 
-      $ sudo ntpq -p
+      sudo ntpq -p
 	  
 If you don't have internet access, see `Configure NTP Client to Synchronize with NTP Server <https://www.thegeekstuff.com/2014/06/linux-ntp-server-client/>`__.
   
@@ -544,25 +544,25 @@ If your organization has a Network Time Protocol (NTP) server, configure it by a
 
    .. code-block:: console
 
-      $ echo -e "\nserver <your NTP server address>\n" | sudo tee -a /etc/ntp.conf
+      echo -e "\nserver <your NTP server address>\n" | sudo tee -a /etc/ntp.conf
 
 2. Restart the service:
 
    .. code-block:: console
 
-      $ sudo systemctl restart ntpd
+      sudo systemctl restart ntpd
 
 3. Check that synchronization is enabled:
 
    .. code-block:: console
 
-      $ sudo timedatectl
+      sudo timedatectl
   
    Checking that synchronization is enabled generates the following output:
 
    .. code-block:: console
 
-      $ Local time: Sat 2019-10-12 17:26:13 EDT
+      Local time: Sat 2019-10-12 17:26:13 EDT
      Universal time: Sat 2019-10-12 21:26:13 UTC
            RTC time: Sat 2019-10-12 21:26:13
           Time zone: America/New_York (EDT, -0400)
@@ -582,30 +582,30 @@ Configuring Chrony for RHEL8 Only
 
 #. Start the Chrony service:
 
-.. code-block:: console
+   .. code-block:: console
 
-	$ sudo systemctl start chronyd
+      sudo systemctl start chronyd
 	
 #. Enable the Chrony service to start automatically at boot time:
 
-.. code-block::
+   .. code-block::
 
-	$ sudo systemctl enable chronyd
+      sudo systemctl enable chronyd
 	
 #. Check the status of the Chrony service:
 
-.. code-block::
+   .. code-block::
 
-	$ sudo systemctl status chronyd
+      sudo systemctl status chronyd
 		
 Configuring the Server to Boot Without Linux the UI
 ----------------------------------------------------
 
 We recommend that you configure your server to boot without a Linux GUI by running the following command:					 
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ sudo systemctl set-default multi-user.target	
+      sudo systemctl set-default multi-user.target	
 
 Running this command activates the **NO-UI** server mode.
 
@@ -614,13 +614,13 @@ Configuring the Security Limits
 
 The security limits refer to the number of open files, processes, etc.
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ sudo bash
+      sudo bash
 
-.. code-block:: console
+   .. code-block:: console
 
-  $ echo -e "sqream soft nproc 1000000\nsqream hard nproc 1000000\nsqream soft nofile 1000000\nsqream hard nofile 1000000\nroot soft nproc 1000000\nroot hard nproc 1000000\nroot soft nofile 1000000\nroot hard nofile 1000000\nsqream soft core unlimited\nsqream hard core unlimited" >> /etc/security/limits.conf
+      echo -e "sqream soft nproc 1000000\nsqream hard nproc 1000000\nsqream soft nofile 1000000\nsqream hard nofile 1000000\nroot soft nproc 1000000\nroot hard nproc 1000000\nroot soft nofile 1000000\nroot hard nofile 1000000\nsqream soft core unlimited\nsqream hard core unlimited" >> /etc/security/limits.conf
   
 Configuring the Kernel Parameters
 ---------------------------------
@@ -629,31 +629,31 @@ Configuring the Kernel Parameters
 
    .. code-block:: console
 
-      $ echo -e "vm.dirty_background_ratio = 5 \n vm.dirty_ratio = 10 \n vm.swappiness = 10 \n vm.vfs_cache_pressure = 200 \n vm.zone_reclaim_mode = 0 \n" >> /etc/sysctl.conf
+      echo -e "vm.dirty_background_ratio = 5 \n vm.dirty_ratio = 10 \n vm.swappiness = 10 \n vm.vfs_cache_pressure = 200 \n vm.zone_reclaim_mode = 0 \n" >> /etc/sysctl.conf
   
 2. Check the maximum value of the ``fs.file``. 
 
    .. code-block:: console
 
-      $ sysctl -n fs.file-max
+      sysctl -n fs.file-max
 
 3. **Only** if the maximum value of the ``fs.file`` is smaller than ``2097152``, run the following command:
 
    .. code-block:: console
 
-      $ echo "fs.file-max=2097152" >> /etc/sysctl.conf
+      echo "fs.file-max=2097152" >> /etc/sysctl.conf
    
 4. Run the following command:
 
    .. code-block:: console
 
-      $ sudo echo “net.ipv4.ip_forward = 1” >> /etc/sysctl.conf
+      sudo echo “net.ipv4.ip_forward = 1” >> /etc/sysctl.conf
 
 5. Reboot your system:
 
    .. code-block:: console
 
-      $ sudo reboot
+      sudo reboot
 
 Configuring the Firewall
 --------------------------
@@ -678,37 +678,37 @@ Same logic applies to all additional SQreamDB Worker ports.
 
    .. code-block:: console
 
-      $ systemctl start firewalld
+      systemctl start firewalld
   
 2. Add the following ports to the permanent firewall:
 
    .. code-block:: console
 
-      $ firewall-cmd --zone=public --permanent --add-port=8080/tcp
-      $ firewall-cmd --zone=public --permanent --add-port=3105/tcp
-      $ firewall-cmd --zone=public --permanent --add-port=3108/tcp
-      $ firewall-cmd --zone=public --permanent --add-port=5000-5003/tcp
-      $ firewall-cmd --zone=public --permanent --add-port=5100-5103/tcp
-      $ firewall-cmd --permanent --list-all
+      firewall-cmd --zone=public --permanent --add-port=8080/tcp
+      firewall-cmd --zone=public --permanent --add-port=3105/tcp
+      firewall-cmd --zone=public --permanent --add-port=3108/tcp
+      firewall-cmd --zone=public --permanent --add-port=5000-5003/tcp
+      firewall-cmd --zone=public --permanent --add-port=5100-5103/tcp
+      firewall-cmd --permanent --list-all
 
 3. Reload the firewall:
 
    .. code-block:: console
 
-      $ firewall-cmd --reload
+      firewall-cmd --reload
 
 4. Enable FirewallID on boot:
 
    .. code-block:: console
 
-      $ systemctl enable firewalld 
+      systemctl enable firewalld 
 
    If you do not need the firewall, you can disable it:
   
    .. code-block:: console
 
-      $ sudo systemctl stop firewalld
-      $ sudo systemctl disable firewalld  
+      sudo systemctl stop firewalld
+      sudo systemctl disable firewalld  
   
 Disabling SELinux
 -------------------
@@ -719,13 +719,13 @@ Disabling SELinux is a recommended action.
 
    .. code-block:: console
 
-      $ sudo sestatus
+      sudo sestatus
 
 2. If the output is not ``disabled``, edit the ``/etc/selinux/config`` file: 
 
    .. code-block:: console
 
-      $ sudo vim /etc/selinux/config
+      sudo vim /etc/selinux/config
   
 3. Change ``SELINUX=enforcing`` to ``SELINUX=disabled``:
   
@@ -735,7 +735,7 @@ Disabling SELinux is a recommended action.
 
    .. code-block:: console
 
-     $ sudo setenforce 0
+      sudo setenforce 0
 
 Configuring the ``/etc/hosts`` File
 ------------------------------------
@@ -744,15 +744,15 @@ Configuring the ``/etc/hosts`` File
 
    .. code-block:: console
 
-      $ sudo vim /etc/hosts
+      sudo vim /etc/hosts
 
 2. Call your local host:
 
    .. code-block:: console
 
-      $ 127.0.0.1	localhost
-      $ <server1 ip>	<server_name>
-      $ <server2 ip>	<server_name>
+      127.0.0.1	localhost
+      <server1 ip>	<server_name>
+      <server2 ip>	<server_name>
    
 
 Installing the NVIDIA CUDA Driver
@@ -769,36 +769,36 @@ Before You Begin
 
    .. code-block:: console
 
-      $ lspci | grep -i nvidia
+      lspci | grep -i nvidia
   
 2. Verify that ``gcc`` has been installed:
 
    .. code-block:: console
 
-      $ gcc --version
+      gcc --version
   
 3. If ``gcc`` has not been installed, install it for RHEL or CentOS:
 
-     .. code-block:: console
+   .. code-block:: console
 
-        $ sudo yum install -y gcc
+        sudo yum install -y gcc
 
 Updating the Kernel Headers  
 -----------------------------
 
 1. Update the kernel headers on RHEL or CentOS:
 
-     .. code-block:: console
+   .. code-block:: console
 
-        $ sudo yum install kernel-devel-$(uname -r) kernel-headers-$(uname -r)
+      sudo yum install kernel-devel-$(uname -r) kernel-headers-$(uname -r)
 		  
 2. Make sure kernel-devel and kernel-headers match installed kernel:
 		  
-     .. code-block:: console
+   .. code-block:: console
 	 
-		$ uname -r
-		$ rpm -qa |grep kernel-devel-$(uname -r)
-		$ rpm -qa |grep kernel-headers-$(uname -r) 
+      uname -r
+      rpm -qa |grep kernel-devel-$(uname -r)
+      rpm -qa |grep kernel-headers-$(uname -r) 
 		  		  
 Disabling Nouveau  
 ------------------
@@ -809,7 +809,7 @@ Disable Nouveau, which is the default operating system driver.
 
    .. code-block:: console
 
-      $ lsmod | grep nouveau
+      lsmod | grep nouveau
 
    If the Nouveau driver has been loaded, the command above generates output. If the Nouveau driver has not been loaded, you may skip step 2 and 3.
 
@@ -817,10 +817,10 @@ Disable Nouveau, which is the default operating system driver.
 
    .. code-block:: console
 
-      $ cat <<EOF | sudo tee /etc/modprobe.d/blacklist-nouveau.conf
-        blacklist nouveau
-        options nouveau modeset=0
-        EOF 
+      cat <<EOF | sudo tee /etc/modprobe.d/blacklist-nouveau.conf
+      blacklist nouveau
+      options nouveau modeset=0
+      EOF 
  
 3. Regenerate the kernel ``initramfs`` directory set:
 
@@ -828,13 +828,13 @@ Disable Nouveau, which is the default operating system driver.
   
      .. code-block:: console
 
-        $ sudo dracut --force
+        sudo dracut --force
 	
   b. Reboot the server:
 
      .. code-block:: console
 
-        $ sudo reboot
+        sudo reboot
 
 Installing the CUDA Driver
 ----------------------------
@@ -862,25 +862,25 @@ Installing the CUDA driver from the Repository is the recommended installation m
 
      .. code-block:: console
 
-        $ sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+        sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 
    * For RHEL8:
 
      .. code-block:: console
 
-        $ sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
+        sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
 
    * For CentOS:
 
      .. code-block:: console
 
-        $ sudo yum install epel-release
+        sudo yum install epel-release
 	
 2. (Optional) Install the CUDA dependencies from the ``epel`` repository:
 
    .. code-block:: console
 
-      $ sudo yum install dkms libvdpau
+      sudo yum install dkms libvdpau
 
    Installing the CUDA depedendencies from the ``epel`` repository is only required for installing ``runfile``.
 
@@ -890,32 +890,32 @@ Installing the CUDA driver from the Repository is the recommended installation m
 		 
 	  .. code-block:: console
 
-		 $ wget https://developer.download.nvidia.com/compute/cuda/11.4.3/local_installers/cuda-repo-rhel7-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
-		 $ sudo yum localinstall cuda-repo-rhel7-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
+		 wget https://developer.download.nvidia.com/compute/cuda/11.4.3/local_installers/cuda-repo-rhel7-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
+		 sudo yum localinstall cuda-repo-rhel7-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
 		 
 	  .. code-block:: console
 	  
-		 $ sudo yum clean all
-		 $ sudo yum -y install nvidia-driver-latest-dkms
+		 sudo yum clean all
+		 sudo yum -y install nvidia-driver-latest-dkms
 		 
    * **RHEL8.6 CUDA 11.4.3 repository (INTEL) installation (Required for A-Series GPU models):**
 
 	  .. code-block:: console
 	  
-		 $ wget https://developer.download.nvidia.com/compute/cuda/11.4.3/local_installers/cuda-repo-rhel8-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
-		 $ sudo dnf localinstall cuda-repo-rhel8-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
+		 wget https://developer.download.nvidia.com/compute/cuda/11.4.3/local_installers/cuda-repo-rhel8-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
+		 sudo dnf localinstall cuda-repo-rhel8-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
 
    * **RHEL8.8 CUDA 12.2.1 repository ( INTEL ) installation ( Required for H/L Series GPU models ):**
 
 	  .. code-block:: console
 	  
-		 $ wget https://developer.download.nvidia.com/compute/cuda/12.2.1/local_installers/cuda-repo-rhel8-12-2-local-12.2.1_535.86.10-1.x86_64.rpm
-		 $ sudo dnf localinstall cuda-repo-rhel8-12-2-local-12.2.1_535.86.10-1.x86_64.rpm
+		 wget https://developer.download.nvidia.com/compute/cuda/12.2.1/local_installers/cuda-repo-rhel8-12-2-local-12.2.1_535.86.10-1.x86_64.rpm
+		 sudo dnf localinstall cuda-repo-rhel8-12-2-local-12.2.1_535.86.10-1.x86_64.rpm
 		 
 	  .. code-block:: console
 	  
-		 $ sudo dnf clean all
-		 $ sudo dnf -y module install nvidia-driver:latest-dkms	  
+		 sudo dnf clean all
+		 sudo dnf -y module install nvidia-driver:latest-dkms	  
 
 Power9 with V100 GPUs supports only cuda 10.1 driver on RHEL7
 
@@ -923,8 +923,8 @@ Power9 with V100 GPUs supports only cuda 10.1 driver on RHEL7
 
       .. code-block:: console
 
-		$ wget https://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
-		$ sudo yum localinstall cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
+		wget https://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
+		sudo yum localinstall cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
 	  
 If you are installing the CUDA driver on IBM Power9, please follow the `NVIDIA documentation <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`_ for additionally required steps.
 	  
@@ -1044,7 +1044,7 @@ Checking the ``abrtd`` Status
 
    .. code-block:: console
 
-      $ sudo ps -ef |grep abrt
+      sudo ps -ef |grep abrt
 
 2. If **abrtd** is running, stop it:	  
 	  
@@ -1059,14 +1059,14 @@ Setting the Limits
 
    .. code-block:: console
 
-      $ ulimit -c
+      ulimit -c
 	  
 2. If the output is ``0``, add the following lines to the ``/etc/security/limits.conf`` file:	  
 	  
    .. code-block:: console
 
-      $ *          soft     core           unlimited
-      $ *          hard     core           unlimited	  
+      *          soft     core           unlimited
+      *          hard     core           unlimited	  
 	  
 3. To apply the limit changes, log out and log back in.	
 
