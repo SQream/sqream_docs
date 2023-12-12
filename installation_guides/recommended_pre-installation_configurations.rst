@@ -938,15 +938,13 @@ The procedures in this section are relevant to Intel only.
    :depth: 1
 
 To Tune Up NVIDIA Performance when Driver Installed from the Repository
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   
-**To tune up NVIDIA performance when the driver was installed from the repository:**
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. Check the service status:
 
    .. code-block:: console
 
-      $ sudo systemctl status nvidia-persistenced
+      sudo systemctl status nvidia-persistenced
 		 
    If the service exists, it will be stopped be default.
 
@@ -954,57 +952,48 @@ To Tune Up NVIDIA Performance when Driver Installed from the Repository
 
    .. code-block:: console
 
-      $ sudo systemctl start nvidia-persistenced
+      sudo systemctl start nvidia-persistenced
 		 
 3. Verify that no errors have occurred:
 
    .. code-block:: console
 
-      $ sudo systemctl status nvidia-persistenced
+      sudo systemctl status nvidia-persistenced
 		 
 4. Enable the service to start up on boot:   
 
    .. code-block:: console
 
-      $ sudo systemctl enable nvidia-persistenced
+      sudo systemctl enable nvidia-persistenced
 	  
 5. For **H100/A100**, add the following lines:
 
    .. code-block:: console
 
-      $ nvidia-persistenced
-		 
-   .. note::  The following are mandatory for IBM:
-	  
-              .. code-block:: console
-
-                 $ sudo systemctl start nvidia-persistenced
-                 $ sudo systemctl enable nvidia-persistenced
+      nvidia-persistenced
 		 
 6. Reboot the server and run the **NVIDIA System Management Interface (NVIDIA SMI)**:
 
    .. code-block:: console
 
-      $ nvidia-smi
+      nvidia-smi
 	  
 .. note::  Setting up the NVIDIA POWER9 CUDA driver includes additional set-up requirements. The NVIDIA POWER9 CUDA driver will not function properly if the additional set-up requirements are not followed. See `POWER9 Setup <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`__ for the additional set-up requirements.
 		
 To Tune Up NVIDIA Performance when Driver Installed from the Runfile
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
 
-**To tune up NVIDIA performance when the driver was installed from the runfile:**		
-
-1. Change the permissions on the **rc.local** file to **executable**:
+1. Change the permissions on the ``rc.local`` file to ``executable``:
 
      .. code-block:: console
 
-        $ sudo chmod +x /etc/rc.local	  
+        sudo chmod +x /etc/rc.local	  
 	  
-2. Edit the **/etc/yum.repos.d/cuda-10-1-local.repo** file:
+2. Edit the ``/etc/yum.repos.d/cuda-10-1-local.repo`` file:
 
      .. code-block:: console
 
-        $ sudo vim /etc/rc.local		 
+        sudo vim /etc/rc.local		 
 		 
 3. Add the following lines:
 
@@ -1012,96 +1001,37 @@ To Tune Up NVIDIA Performance when Driver Installed from the Runfile
 
       .. code-block:: console
 
-         $ nvidia-persistenced
+        nvidia-persistenced
 
    * **For IBM (mandatory)**:
 	  
       .. code-block:: console
 
-         $ sudo systemctl start nvidia-persistenced
-         $ sudo systemctl enable nvidia-persistenced
+        sudo systemctl start nvidia-persistenced
+        sudo systemctl enable nvidia-persistenced
 		   
    * **For K80**:
 	  
       .. code-block:: console
 
-         $ nvidia-persistenced
-         $ nvidia-smi -pm 1
-         $ nvidia-smi -acp 0
-         $ nvidia-smi --auto-boost-permission=0
-         $ nvidia-smi --auto-boost-default=0
+        nvidia-persistenced
+        nvidia-smi -pm 1
+        nvidia-smi -acp 0
+        nvidia-smi --auto-boost-permission=0
+        nvidia-smi --auto-boost-default=0
 
-4. Reboot the server and run the **NVIDIA System Management Interface (NVIDIA SMI)**:
+4. Reboot the server and run the ``NVIDIA System Management Interface (NVIDIA SMI)``:
 
    .. code-block:: console
 
-      $ nvidia-smi
+        nvidia-smi
 	  
 .. note::  Setting up the NVIDIA POWER9 CUDA driver includes additional set-up requirements. The NVIDIA POWER9 CUDA driver will not function properly if the additional set-up requirements are not followed. See `POWER9 Setup <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`__ for the additional set-up requirements.
-
-Disabling Automatic Bug Reporting Tools
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-**To disable automatic bug reporting tools:**
-
-1. Run the following **abort** commands:
-
-   .. code-block:: console
-
-      $ for i in abrt-ccpp.service abrtd.service abrt-oops.service abrt-pstoreoops.service abrt-vmcore.service abrt-xorg.service ; do sudo systemctl disable $i; sudo systemctl stop $i; done
-
-The server is ready for the SQream software installation.
-
-2. Run the following checks:
-
-   a. Check the OS release:
-   
-      .. code-block:: console
-	  
-         $ cat /etc/os-release
-	  
-   b. Verify that a SQream user exists and has the same ID on all cluster member services:
-   
-      .. code-block:: console
-	  
-         $ id sqream
-		 
-   c. Verify that the storage is mounted:
-   
-      .. code-block:: console
-	  
-         $ mount
-		 
-   d. Verify that the driver has been installed correctly:
-   
-      .. code-block:: console
-	  
-         $ nvidia-smi
-		 
-   e. Check the maximum value of the **fs.file**: 
-
-      .. code-block:: console
-
-         $ sysctl -n fs.file-max
-		 	 
-   f. Run the following command as a SQream user:
-		 
-      .. code-block:: console
-
-         $ ulimit -c -u -n	
-		 
-    The following shows the desired output:
-
-    .. code-block:: console
-
-       $ core file size (blocks, -c) unlimited
-       $ max user processes (-u) 1000000
-       $ open files (-n) 1000000
-	  
+  
 Enabling Core Dumps
 ====================
 
-After installing the NVIDIA CUDA driver, you can enable your core dumps. While this procedure is optional, SQreamDB recommends that core dumps be enabled. Note that the default ``abrt`` format is not ``gdb`` compatible, and that for SQreamDB to be able to analyze your core dumps, they must be ``gdb`` compatible.
+While this procedure is optional, SQreamDB recommends that core dumps be enabled. Note that the default ``abrt`` format is not ``gdb`` compatible, and that for SQreamDB support to be able to analyze your core dumps, they must be ``gdb`` compatible.
 
 .. contents:: 
    :local:
@@ -1120,12 +1050,7 @@ Checking the ``abrtd`` Status
 	  
    .. code-block:: console
 
-      $ sudo service abrtd stop
-      $ sudo chkconfig abrt-ccpp off
-      $ sudo chkconfig abrt-oops off
-      $ sudo chkconfig abrt-vmcore off
-      $ sudo chkconfig abrt-xorg off
-      $ sudo chkconfig abrtd off
+      for i in abrt-ccpp.service abrtd.service abrt-oops.service abrt-pstoreoops.service abrt-vmcore.service abrt-xorg.service ; do sudo systemctl disable $i; sudo systemctl stop $i; done
 
 Setting the Limits
 --------------------
@@ -1145,7 +1070,7 @@ Setting the Limits
 	  
 3. To apply the limit changes, log out and log back in.	
 
-Creating the Core Dumps Directory
+Creating the Core Dump Directory
 -----------------------------------
 
 Because the core dump file may be the size of total RAM on the server, verify that you have sufficient disk space. In the example above, the core dump is configured to the ``/tmp/core_dumps`` directory. If necessary, replace path according to your own environment and disk space.
@@ -1154,55 +1079,55 @@ Because the core dump file may be the size of total RAM on the server, verify th
 
    .. code-block:: console
 
-      $ mkdir /tmp/core_dumps
+      mkdir /tmp/core_dumps
 
 2. Set the ownership of the ``/tmp/core_dumps`` directory:
 
    .. code-block:: console
 
-      $ sudo chown sqream.sqream /tmp/core_dumps
+      sudo chown sqream.sqream /tmp/core_dumps
   
 3. Grant read, write, and execute permissions to all users:
 
    .. code-block:: console
 
-      $ sudo chmod -R 777 /tmp/core_dumps
+      sudo chmod -R 777 /tmp/core_dumps
 	 	  
 
-Setting the Output Directory of the ``/etc/sysctl.conf`` File 
+Setting the Output Directory on the ``/etc/sysctl.conf`` File 
 -------------------------------------------------------------
 
 1. Open the ``/etc/sysctl.conf`` file in the Vim text editor:
 
    .. code-block:: console
 
-      $ sudo vim /etc/sysctl.conf
+      sudo vim /etc/sysctl.conf
 
 2. Add the following to the bottom of the file:
 
    .. code-block:: console
 
-      $ kernel.core_uses_pid = 1
-      $ kernel.core_pattern = /tmp/core_dumps/core-%e-%s-%u-%g-%p-%t
-      $ fs.suid_dumpable = 2
+      kernel.core_uses_pid = 1
+      kernel.core_pattern = /tmp/core_dumps/core-%e-%s-%u-%g-%p-%t
+      fs.suid_dumpable = 2
 
 3. To apply the changes without rebooting the server, run the following:
 	  
   .. code-block:: console
 
-     $ sudo sysctl -p
+     sudo sysctl -p
 
 4. Check that the core output directory points to the following:
 
   .. code-block:: console
 
-     $ sudo cat /proc/sys/kernel/core_pattern
+     sudo cat /proc/sys/kernel/core_pattern
 	  
   The following shows the correct generated output:
 	  
   .. code-block:: console
 
-     $ /tmp/core_dumps/core-%e-%s-%u-%g-%p-%t	  
+     /tmp/core_dumps/core-%e-%s-%u-%g-%p-%t	  
 	  
 Verifying that the Core Dumps Work 
 ---------------------------------------------------	
@@ -1217,28 +1142,45 @@ You can verify that the core dumps work only after installing and running SQream
 
   .. code-block:: console
 
-     $ select abort_server();
+      select abort_server();
    
-Verify Your SQreamDb Installation
+Verify Your SQreamDB Installation
 ------------------------------------
 
-.. code-block:: console
+1. Verify that the ``sqream`` user exists and has the same ID on all cluster servers.
 
-	cat /etc/os-release  #check OS release
+  .. code-block:: console
 
-	id sqream       #make sure sqream user exists and has same id on all cluster members servers.
+      id sqream       
 
-	mount           #please verify that the storage is mounted
+2. please verify that the storage is mounted on all cluster servers.
 
-	nvidia-smi      #make sure driver is insalled properly
+   .. code-block:: console
 
-	sysctl -n fs.file-max   #should be more or equalto  2097152
+      mount           
 
-	ulimit -c -u -n (run this command as user sqream)
-	Desired output:
-	core file size (blocks, -c) unlimited
-	max user processes (-u) 1000000
-	open files (-n) 1000000
+3. make sure that the driver is properly installed.
+
+   .. code-block:: console
+
+      nvidia-smi      
+
+4. Verify that the kernel file-handles allocation is greater than or equal to ``2097152``:
+
+   .. code-block:: console
+
+      sysctl -n fs.file-max   
+
+5. Verify limits (run this command as a ``sqream`` user):
+
+   .. code-block:: console
+
+      ulimit -c -u -n 
+	
+      Desired output:
+      core file size (blocks, -c) unlimited
+      max user processes (-u) 1000000
+      open files (-n) 1000000
    
 Troubleshooting Core Dumping 
 ------------------------------
@@ -1253,32 +1195,31 @@ This section describes the troubleshooting procedure to be followed if all param
 
    .. code-block:: console
 
-      $ sudo chmod -R 777 /tmp/core_dumps  
+      sudo chmod -R 777 /tmp/core_dumps  
    
 3. Verify that the limits have been set correctly:
 
    .. code-block:: console
 
-      $ ulimit -c
+      ulimit -c
 
    If all parameters have been configured correctly, the correct output is:
 
    .. code-block:: console
 
-      $ core file size          (blocks, -c) unlimited
-      $ open files                      (-n) 1000000	  
+      core file size          (blocks, -c) unlimited
 
 4. If all parameters have been configured correctly, but running ``ulimit -c`` outputs ``0``, run the following:
 
    .. code-block:: console
 
-      $ sudo vim /etc/profile
+      sudo vim /etc/profile
 
-5. Search for line and tag it with the ``hash`` symbol:
+5. Search for the following line and disable it using the ``#`` symbol:
 
    .. code-block:: console
 
-      $ ulimit -S -c 0 > /dev/null 2>&1
+      ulimit -S -c 0 > /dev/null 2>&1
 
 6. Log out and log back in.
 
@@ -1288,20 +1229,18 @@ This section describes the troubleshooting procedure to be followed if all param
 
    .. code-block:: console
 
-      $ ulimit -c command	  
+      ulimit -a 	  
 
-8. If the line is not found in ``/etc/profile`` directory, do the following:	  
+8. If the line is not found in ``/etc/profile``, do the following:	  
 	  
    a. Run the following command:
 
       .. code-block:: console
 
-         $ sudo vim /etc/init.d/functions
+         sudo vim /etc/init.d/functions
 
-   b. Search for the following:
+   b. Search for the following line disable it using the ``#`` symbol and reboot the server.
    
       .. code-block:: console
 
-         $ ulimit -S -c ${DAEMON_COREFILE_LIMIT:-0} >/dev/null 2>&1
-
-   c. If the line is found, tag it with the ``hash`` symbol and reboot the server.
+         ulimit -S -c ${DAEMON_COREFILE_LIMIT:-0} >/dev/null 2>&1
