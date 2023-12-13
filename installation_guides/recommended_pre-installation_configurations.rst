@@ -607,18 +607,6 @@ Configuring the Kernel Parameters
    .. code-block:: console
 
       echo "fs.file-max=2097152" >> /etc/sysctl.conf
-   
-4. Run the following command:
-
-   .. code-block:: console
-
-      sudo echo “net.ipv4.ip_forward = 1” >> /etc/sysctl.conf
-
-5. Reboot your system:
-
-   .. code-block:: console
-
-      sudo reboot
 
 Configuring the Firewall
 --------------------------
