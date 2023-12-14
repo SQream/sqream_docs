@@ -20,13 +20,18 @@ Creating an empty table with an identical DDL of what would have been the result
 
 .. code-block:: sql
 
-	CREATE TABLE <final_result_table> AS (
-	SELECT <column_to_split_by> [,...]
-	FROM <my_table>
-	WHERE (<false_filter>)
+	CREATE TABLE <final_result_table> 
+	AS 
+	(
+	  SELECT 
+	    <column_to_split_by> [,...]
+	  FROM 
+	    <my_table>
+	  WHERE
+	    <false_filter>
 	);
 	
-	-- A false_filter example: (1=2)
+	-- A false_filter example: 1=2
 	
 	
 Using the ``@@SetResult`` Operator to Create a ``minMax`` Variable
@@ -38,7 +43,8 @@ The ``minMax`` variable is used to define minimum and maximum values of ``INTEGE
 	
 	@@SetResult minMax
 	SELECT min(<integer_column>) AS min, max(<integer_column>) AS max 
-	FROM <my_table>
+	FROM 
+	  <my_table>
 	[WHERE <condition>]
 	;
 	
@@ -55,11 +61,14 @@ Using the ``@@SplitQueryByNumber`` operator to create an ``instances`` variable.
 	
 	@@SplitQueryByNumber instances = <number of instances>, from = minMax[0].min, to = minMax[0].max
 	INSERT INTO <final_result_table>
-	SELECT <column_to_split_by> [,...]
-	FROM <my_table>
-	WHERE <column_to_split_by> between ${from} and ${to}
-	)
-	;
+	(
+	  SELECT 
+	    <column_to_split_by> [,...]
+	  FROM
+	    <my_table>
+	  WHERE
+	  <column_to_split_by> between ${from} and ${to}
+	);
 	
 **Splitting a query using a DATE column:**
 	
@@ -69,11 +78,14 @@ Using the ``@@SplitQueryByDate`` operator to create an ``instances`` variable.
 	
 	@@SplitQueryByDate instances = <number of instances>, from = minMax[0].min, to = minMax[0].max
 	INSERT INTO <final_result_table>
-	SELECT <column_to_split_by> [,...]
-	FROM <my_table>
-	WHERE <column_to_split_by> between ${from} and ${to}
-	)
-	;
+	(
+	  SELECT
+	    <column_to_split_by> [,...]
+	  FROM 
+	    <my_table>
+	  WHERE 
+	    <column_to_split_by> between ${from} and ${to}
+	);
 	
 **Splitting a query using a DATETIME column:**
 	
@@ -83,11 +95,13 @@ Using the ``@@SplitQueryByDateTime`` operator to create an ``instances`` variabl
 	
 	@@SplitQueryByDateTime instances = <number of instances>, from = minMax[0].min, to = minMax[0].max
 	INSERT INTO <final_result_table>
-	SELECT <column_to_split_by> [,...]
-	FROM <my_table>
-	WHERE <column_to_split_by> between ${from} and ${to}
-	)
-	;
+	(
+	  SELECT 
+	    <column_to_split_by> [,...]
+	  FROM 
+	    <my_table>
+	  WHERE <column_to_split_by> between ${from} and ${to}
+	);
 	
 Outputting the Results of Our 4 Small Queries
 -----------------------------------------------
@@ -99,20 +113,24 @@ Executing a query that collects the results of all 4 small queries into our empt
 	-- Basic execution for queries which do not use aggregations:
 	
 	SELECT * 
-	FROM <final_result_table>
+	FROM 
+	  <final_result_table>
 	;
 	
 	-- Execution for queries which use aggregations:
 	
 	SELECT 
-		<column1>, [,...],
-		[SUM([DISTINCT] expr) AS <sum_column>], 
-		[SUM(count_column) AS <sum_count_column>],
-		[SUM(avg_column1) / SUM(avg_column2) AS <avg_column>]
-	FROM <final_result_table>
-	GROUP BY <column1>, <column2> [,...]
-	ORDER BY SUM(<column4>)
-	);
+	  <column1>, [,...],
+	  [SUM([DISTINCT] expr) AS <sum_column>], 
+	  [SUM(count_column) AS <sum_count_column>],
+	  [SUM(avg_column1) / SUM(avg_column2) AS <avg_column>]
+	FROM 
+	  <final_result_table>
+	GROUP BY 
+	  <column1>, <column2> [,...]
+	ORDER BY 
+	  <column4>
+	;
 	
 	-- Do not use a WHERE clause
 
@@ -129,66 +147,66 @@ Use the following table to create your first query split:
 .. code-block:: sql
 
 	CREATE TABLE MyTable (
-		id INT,
-		name TEXT NOT NULL,
-		age INT,
-		salary INT,
-		quantity INT 
-	);
+	  id INT,
+	  name TEXT NOT NULL,
+	  age INT,
+	  salary INT,
+	  quantity INT 
+	  );
 
 	-- Inserting data into the table
 	INSERT INTO MyTable (id, name, age, salary, quantity)
 	VALUES
-		(1, 'John', 25, 50000, 10),
-		(2, 'Jane', 30, 60000, 20),
-		(3, 'Bob', 28, 55000, 15),
-		(4, 'Emily', 35, 70000, 18),
-		(5, 'David', 32, 62000, 22),
-		(6, 'Sarah', 27, 52000, 12),
-		(7, 'Michael', 40, 75000, 17),
-		(8, 'Olivia', 22, 48000, 25),
-		(9, 'William', 31, 58000, 14),
-		(10, 'Sophia', 29, 56000, 19),
-		(11, 'Liam', 26, 51000, 13),
-		(12, 'Emma', 33, 64000, 16),
-		(13, 'Daniel', 24, 49000, 23),
-		(14, 'Ava', 37, 69000, 21),
-		(15, 'Matthew', 23, 47000, 28),
-		(16, 'Ella', 34, 67000, 24),
-		(17, 'James', 28, 55000, 11),
-		(18, 'Grace', 39, 72000, 26),
-		(19, 'Benjamin', 30, 60000, 18),
-		(20, 'Chloe', 25, 50000, 14),
-		(21, 'Logan', 38, 71000, 20),
-		(22, 'Mia', 27, 52000, 16),
-		(23, 'Christopher', 32, 62000, 22),
-		(24, 'Aiden', 29, 56000, 19),
-		(25, 'Lily', 36, 68000, 15),
-		(26, 'Jackson', 31, 58000, 23),
-		(27, 'Harper', 24, 49000, 12),
-		(28, 'Ethan', 35, 70000, 17),
-		(29, 'Isabella', 22, 48000, 25),
-		(30, 'Carter', 37, 69000, 14),
-		(31, 'Amelia', 26, 51000, 21),
-		(32, 'Lucas', 33, 64000, 19),
-		(33, 'Abigail', 28, 55000, 16),
-		(34, 'Mason', 39, 72000, 18),
-		(35, 'Evelyn', 30, 60000, 25),
-		(36, 'Alexander', 23, 47000, 13),
-		(37, 'Addison', 34, 67000, 22),
-		(38, 'Henry', 25, 50000, 20),
-		(39, 'Avery', 36, 68000, 15),
-		(40, 'Sebastian', 29, 56000, 24),
-		(41, 'Layla', 31, 58000, 11),
-		(42, 'Wyatt', 38, 71000, 26),
-		(43, 'Nora', 27, 52000, 19),
-		(44, 'Grayson', 32, 62000, 17),
-		(45, 'Scarlett', 24, 49000, 14),
-		(46, 'Gabriel', 35, 70000, 23),
-		(47, 'Hannah', 22, 48000, 16),
-		(48, 'Eli', 37, 69000, 25),
-		(49, 'Paisley', 28, 55000, 18),
-		(50, 'Owen', 33, 64000, 12);
+	  (1, 'John', 25, 50000, 10),
+	  (2, 'Jane', 30, 60000, 20),
+	  (3, 'Bob', 28, 55000, 15),
+	  (4, 'Emily', 35, 70000, 18),
+	  (5, 'David', 32, 62000, 22),
+	  (6, 'Sarah', 27, 52000, 12),
+	  (7, 'Michael', 40, 75000, 17),
+	  (8, 'Olivia', 22, 48000, 25),
+	  (9, 'William', 31, 58000, 14),
+	  (10, 'Sophia', 29, 56000, 19),
+	  (11, 'Liam', 26, 51000, 13),
+	  (12, 'Emma', 33, 64000, 16),
+	  (13, 'Daniel', 24, 49000, 23),
+	  (14, 'Ava', 37, 69000, 21),
+	  (15, 'Matthew', 23, 47000, 28),
+	  (16, 'Ella', 34, 67000, 24),
+	  (17, 'James', 28, 55000, 11),
+	  (18, 'Grace', 39, 72000, 26),
+	  (19, 'Benjamin', 30, 60000, 18),
+	  (20, 'Chloe', 25, 50000, 14),
+	  (21, 'Logan', 38, 71000, 20),
+	  (22, 'Mia', 27, 52000, 16),
+	  (23, 'Christopher', 32, 62000, 22),
+	  (24, 'Aiden', 29, 56000, 19),
+	  (25, 'Lily', 36, 68000, 15),
+	  (26, 'Jackson', 31, 58000, 23),
+	  (27, 'Harper', 24, 49000, 12),
+	  (28, 'Ethan', 35, 70000, 17),
+	  (29, 'Isabella', 22, 48000, 25),
+	  (30, 'Carter', 37, 69000, 14),
+	  (31, 'Amelia', 26, 51000, 21),
+	  (32, 'Lucas', 33, 64000, 19),
+	  (33, 'Abigail', 28, 55000, 16),
+	  (34, 'Mason', 39, 72000, 18),
+	  (35, 'Evelyn', 30, 60000, 25),
+	  (36, 'Alexander', 23, 47000, 13),
+	  (37, 'Addison', 34, 67000, 22),
+	  (38, 'Henry', 25, 50000, 20),
+	  (39, 'Avery', 36, 68000, 15),
+	  (40, 'Sebastian', 29, 56000, 24),
+	  (41, 'Layla', 31, 58000, 11),
+	  (42, 'Wyatt', 38, 71000, 26),
+	  (43, 'Nora', 27, 52000, 19),
+	  (44, 'Grayson', 32, 62000, 17),
+	  (45, 'Scarlett', 24, 49000, 14),
+	  (46, 'Gabriel', 35, 70000, 23),
+	  (47, 'Hannah', 22, 48000, 16),
+	  (48, 'Eli', 37, 69000, 25),
+	  (49, 'Paisley', 28, 55000, 18),
+	  (50, 'Owen', 33, 64000, 12);
 
 Create a complex query:
 
@@ -251,23 +269,23 @@ Create a Split Query:
 	@@SplitQueryByNumber instances = 4, from = minMax[0].min, to = minMax[0].max
 	INSERT INTO FinalResult
 	(
-		SELECT
-		  age,
-		  COUNT(*) AS total_people,
-		  AVG(salary) AS avg_salary,
-		  SUM(quantity) AS total_quantity,
-		  SUM(CASE WHEN quantity > 20 THEN 1 ELSE 0 END) AS high_quantity_count,
-		  SUM(CASE WHEN age BETWEEN 25 AND 30 THEN salary ELSE 0 END) AS total_salary_age_25_30
-		FROM
-		  MyTable
-		WHERE
-		id between ${from} and ${to}
-		  AND salary > 55000
-		GROUP BY
-		  age
-		ORDER BY
-		  age
-	);
+	SELECT
+	  age,
+	  COUNT(*) AS total_people,
+	  AVG(salary) AS avg_salary,
+	  SUM(quantity) AS total_quantity,
+	  SUM(CASE WHEN quantity > 20 THEN 1 ELSE 0 END) AS high_quantity_count,
+	  SUM(CASE WHEN age BETWEEN 25 AND 30 THEN salary ELSE 0 END) AS total_salary_age_25_30
+	FROM
+	  MyTable
+	WHERE
+	  id between ${from} and ${to}
+	  AND salary > 55000
+	GROUP BY
+	  age
+	ORDER BY
+	  age
+	  );
 	
 Create a script to collect all of the results into the empty result-set table:
 
