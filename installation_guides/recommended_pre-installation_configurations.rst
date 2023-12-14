@@ -563,7 +563,7 @@ Configuring Chrony for RHEL8 Only
 
       sudo systemctl status chronyd
 		
-Configuring the Server to Boot Without Linux the UI
+Configuring the Server to Boot Without Linux GUI
 ----------------------------------------------------
 
 We recommend that you configure your server to boot without a Linux GUI by running the following command:					 
@@ -853,14 +853,14 @@ Installing the CUDA driver from the Repository is the recommended installation m
 
 3. Download and install the required local repository:
 		 
-	* **CentOS7/RHEL7 CUDA 11.4.3 repository (INTEL) installation (Required for A-Series GPU models):**	 
+    * **CentOS7/RHEL7 CUDA 11.4.3 repository (INTEL) installation (Required for A-Series GPU models):**	 
 		 
-	  .. code-block:: console
+      .. code-block:: console
 
 		 wget https://developer.download.nvidia.com/compute/cuda/11.4.3/local_installers/cuda-repo-rhel7-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
 		 sudo yum localinstall cuda-repo-rhel7-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
 		 
-	  .. code-block:: console
+      .. code-block:: console
 	  
 		 sudo yum clean all
 		 sudo yum -y install nvidia-driver-latest-dkms
@@ -898,14 +898,16 @@ If you are installing the CUDA driver on IBM Power9, please follow the `NVIDIA d
 Tuning Up NVIDIA Performance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The procedures in this section are relevant to Intel only.	
+The following procedures exclusively relate to Intel.	
 	
 .. contents:: 
    :local:
    :depth: 1
-
-To Tune Up NVIDIA Performance when Driver Installed from the Repository
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	
+.. note::  Setting up the NVIDIA POWER9 CUDA driver includes additional set-up requirements. The NVIDIA POWER9 CUDA driver will not function properly if the additional set-up requirements are not followed. See `POWER9 Setup <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`__ for the additional set-up requirements.
+	
+Tune Up NVIDIA Performance when Driver Installed from the Repository
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 1. Check the service status:
 
@@ -913,7 +915,7 @@ To Tune Up NVIDIA Performance when Driver Installed from the Repository
 
       sudo systemctl status nvidia-persistenced
 		 
-   If the service exists, it will be stopped be default.
+   If the service exists, it will be stopped by default.
 
 2. Start the service:
 
@@ -945,10 +947,10 @@ To Tune Up NVIDIA Performance when Driver Installed from the Repository
 
       nvidia-smi
 	  
-.. note::  Setting up the NVIDIA POWER9 CUDA driver includes additional set-up requirements. The NVIDIA POWER9 CUDA driver will not function properly if the additional set-up requirements are not followed. See `POWER9 Setup <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`__ for the additional set-up requirements.
+
 		
-To Tune Up NVIDIA Performance when Driver Installed from the Runfile
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~	
+Tune Up NVIDIA Performance when Driver Installed from the Runfile
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 1. Change the permissions on the ``rc.local`` file to ``executable``:
 
@@ -993,7 +995,7 @@ To Tune Up NVIDIA Performance when Driver Installed from the Runfile
 
         nvidia-smi
 	  
-.. note::  Setting up the NVIDIA POWER9 CUDA driver includes additional set-up requirements. The NVIDIA POWER9 CUDA driver will not function properly if the additional set-up requirements are not followed. See `POWER9 Setup <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`__ for the additional set-up requirements.
+
   
 Enabling Core Dumps
 ====================
