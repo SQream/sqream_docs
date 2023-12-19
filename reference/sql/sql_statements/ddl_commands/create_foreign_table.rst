@@ -4,22 +4,9 @@
 CREATE FOREIGN TABLE
 ***********************
 
-.. note:: 
-   
-   Starting with SQream DB v2020.2, external tables have been renamed to foreign tables, and use a more flexible foreign data wrapper concept. 
-   
-   Upgrading to a new version of SQream DB converts existing external tables automatically. 
-
-
 ``CREATE FOREIGN TABLE`` creates a new foreign table in an existing database.
 
-See more in the :ref:`Foreign tables guide<external_tables>`.
-
-.. tip::
-
-   * Data in a foreign table can change if the sources change, and frequent access to remote files may harm performance.
-
-   * To create a regular table, see :ref:`CREATE TABLE <create_table>`
+Changes in the source data can result in corresponding modifications to the content of a foreign table. Consistent access to remote files might impact performance.
 
 Permissions
 =============
@@ -44,15 +31,18 @@ Syntax
    table_name ::= identifier  
 
    fdw_name ::= 
-       { csv_fdw | orc_fdw | parquet_fdw }
+       { csv_fdw | orc_fdw | parquet_fdw | json_fdw | avro_fdw }
    
    option_def ::= 
    {
-      LOCATION = '{ path_spec }'
-      | DELIMITER = '{ field_delimiter }' -- for CSV only
-      | RECORD_DELIMITER = '{ record_delimiter }' -- for CSV only
-      | AWS_ID '{ AWS ID }'
-      | AWS_SECRET '{ AWS SECRET }'
+      LOCATION = '{ path_spec }',
+      | DELIMITER = '{ field_delimiter }' -- for CSV only,
+      | RECORD_DELIMITER = '{ record_delimiter }', -- for CSV only
+      | AWS_ID '{ AWS ID }',
+      | CONTINUE_ON_ERROR = { true | false }
+      | ERROR_COUNT = '{ error count }'
+      | AWS_SECRET '{ AWS SECRET }',
+      | OFFSET -- for CSV and JSON only
    }
    
    path_spec ::= { local filepath | S3 URI | HDFS URI }
@@ -85,23 +75,30 @@ Parameters
    * - Parameter
      - Description
    * - ``OR REPLACE``
-     - Create a new table, and overwrite any existing table by the same name. Does not return an error if the table already exists. ``CREATE OR REPLACE`` does not check the table contents or structure, only the table name.
+     - Create a new table, and overwrite any existing table by the same name. Does not return an error if the table already exists. ``CREATE OR REPLACE`` does not check the table contents or structure, only the table name
    * - ``schema_name``
-     - The name of the schema in which to create the table.
+     - The name of the schema in which to create the table
    * - ``table_name``
-     - The name of the table to create, which must be unique inside the schema.
+     - The name of the table to create, which must be unique inside the schema
    * - ``column_def``
-     - A comma separated list of column definitions. A minimal column definition includes a name identifier and a datatype. Other column constraints and default values can be added optionally.
+     - A comma separated list of column definitions. A minimal column definition includes a name identifier and a datatype. Other column constraints and default values can be added optionally
    * - ``WRAPPER ...``
-     - Specifies the format of the source files, such as ``parquet_fdw``, ``orc_fdw``, or ``csv_fdw``.
+     - Specifies the format of the source files, such as ``parquet_fdw``, ``orc_fdw``, or ``csv_fdw``
    * - ``LOCATION = ...``
-     - Specifies a path or URI of the source files, such as ``/path/to/*.parquet``.
+     - Specifies a path or URI of the source files, such as ``/path/to/*.parquet``
    * - ``DELIMITER = ...``
-     - Specifies the field delimiter for CSV files. Defaults to ``,``.
+     - Specifies the field delimiter for CSV files. Defaults to ``,``
    * - ``RECORD_DELIMITER = ...``
      - Specifies the record delimiter for CSV files. Defaults to a newline, ``\n``
    * - ``AWS_ID``, ``AWS_SECRET``
      - Credentials for authenticated S3 access
+   * - ``OFFSET``
+     - Used to specify the number of rows to skip from the beginning of the result set
+   * - ``CONTINUE_ON_ERROR``
+     - Specifies if errors should be ignored or skipped. When set to ``true``, the transaction continues despite rejected data and rows containing partially faulty data are skipped entirely. This parameter should be set together with ``ERROR_COUNT``. When reading multiple files, if an entire file can’t be opened it will be skipped. Default value: ``false``. Value range: ``true`` or ``false``.
+   * - ``ERROR_COUNT``
+     - Specifies the threshold for the maximum number of faulty records that will be ignored. This setting must be used in conjunction with ``CONTINUE_ON_ERROR``. Default value: ``unlimited``. Value range: 1 to 2147483647.
+	 
 
 
 Examples
@@ -162,4 +159,35 @@ Materializes a foreign table into a regular table.
 
    CREATE TABLE real_table
     AS SELECT * FROM some_foreign_table;
+	
+Using the ``OFFSET`` Parameter
+--------------------------------
 
+The ``OFFSET`` parameter may be used with Parquet and CSV textual formats. 
+
+.. code-block::
+
+	CREATE FOREIGN TABLE users7
+	  (id INT NOT NULL, name text(30) NOT NULL, email text(50) NOT NULL)
+	WRAPPER parquet_fdw
+	OPTIONS
+	  (
+	    LOCATION =  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet',
+	    OFFSET = 2
+	  );
+
+Using the ``CONTINUE_ON_ERROR`` and ``ERROR_COUNT`` Parameters
+----------------------------------------------------------------
+
+.. code-block::
+
+	CREATE OR REPLACE FOREIGN TABLE cool_animalz
+	  (id INT NOT NULL, name text(30) NOT NULL, weight FLOAT NOT NULL)
+	WRAPPER csv_fdw
+	OPTIONS
+	  ( LOCATION = '/home/rhendricks/cool_animals.csv',
+		DELIMITER = '\t',
+		continue_on_error = true,
+		ERROR_COUNT = 3
+	  )
+	 ;
