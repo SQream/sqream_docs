@@ -6,7 +6,7 @@ CREATE FOREIGN TABLE
 
 ``CREATE FOREIGN TABLE`` creates a new foreign table in an existing database.
 
-See more in the :ref:`Foreign tables guide<external_tables>`.
+See more in the :ref:`Foreign tables guide<foreign_tables>`.
 
 .. tip::
 
