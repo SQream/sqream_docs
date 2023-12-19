@@ -95,7 +95,7 @@ Parameters
    * - ``OFFSET``
      - Used to specify the number of rows to skip from the beginning of the result set
    * - ``CONTINUE_ON_ERROR``
-     - Specifies if errors should be ignored or skipped. When set to ``true``, the transaction will continue despite rejected data. This parameter should be set together with ``ERROR_COUNT`` When reading multiple files, if an entire file can’t be opened it will be skipped. Default value: ``false``. Value range: ``true`` or ``false``.
+     - Specifies if errors should be ignored or skipped. When set to ``true``, the transaction continues despite rejected data and rows containing partially faulty data are skipped entirely. This parameter should be set together with ``ERROR_COUNT``. When reading multiple files, if an entire file can’t be opened it will be skipped. Default value: ``false``. Value range: ``true`` or ``false``.
    * - ``ERROR_COUNT``
      - Specifies the threshold for the maximum number of faulty records that will be ignored. This setting must be used in conjunction with ``CONTINUE_ON_ERROR``. Default value: ``unlimited``. Value range: 1 to 2147483647.
 	 
