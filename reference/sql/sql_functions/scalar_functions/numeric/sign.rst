@@ -4,7 +4,7 @@
 SIGN
 ****
 
-The ``SIGN`` function takes a single argument, which can be any numeric data type such as INTEGER, FLOAT, or DECIMAL, and returns an ``INT`` value of -1, 0, or 1, depending on the sign of the input argument.
+The ``SIGN`` function takes a single argument, which can be any numeric data type such as INTEGER, FLOAT, or DECIMAL, and returns a value of -1, 0, or 1, depending on the sign of the input argument.
 
 
 
@@ -30,7 +30,7 @@ Arguments
 Return
 ======
 
-Returns an ``INT`` value.
+The ``SIGN`` function returns the same data type as inserted, with the exception of ``REAL``, which is converted to ``DOUBLE``.
 
 Depending on the sign of the input argument, the return is:
 
