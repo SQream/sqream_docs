@@ -1,18 +1,123 @@
 .. _python_functions:
 
 *************************************
-Python UDF (User-Defined Functions)
+Python User-Defined Functions
 *************************************
 
-User-defined functions (UDFs) are a feature that extends SQream DB's built in SQL functionality. SQream DB's Python UDFs allow developers to create new functionality in SQL by writing the lower-level language implementation in Python. 
+User-Defined Functions (UDFs) offer streamlined statements, enabling the creation of a function once, storing it in the database, and calling it multiple times within a statement. Additionally, UDFs can be shared among roles, created by a database administrator and utilized by others. Furthermore, they contribute to code simplicity by allowing independent modifications in SQream DB without altering program source code.
 
-.. note:: Starting v2022.1.4, Python UDF are disabled by default in order to enhance product security. Use the ``enablePythonUdfs`` configuration flag in order to enable Python UDF.
+To enable UDFs, in your :ref:`legacy configuration file<current_method_modification_methods>`, set the ``enablePythonUdfs`` configuration flag to ``true``.
 
-.. contents:: In this topic:
+.. contents::
    :local:
+   :depth: 1
 
-A simple example
-=====================
+Before You Begin
+=================
+
+* Ensure you have Python 3.6.7 or newer installed
+
+* Enable UDFs by setting the ``enablePythonUdfs`` configuration flag to ``true`` in your :ref:`legacy configuration file<current_method_modification_methods>`
+
+SQreamDB's UDF Support
+=============================
+
+Scalar Functions
+---------------------
+
+SQreamDB's UDFs are scalar functions. This means that the UDF returns a single data value of the type defined in the ``RETURNS`` clause. For an inline scalar function, the returned scalar value is the result of a single statement.
+
+Python
+---------
+
+Python is installed alongside SQreamDB, for use exclusively by SQreamDB. You may have a different version of Python installed on your server.
+
+To find which version of Python is installed for use by SQreamDB, create and run this UDF:
+
+.. code-block:: psql
+   
+   master=> CREATE OR REPLACE FUNCTION py_version()
+   .  RETURNS text
+   .  AS $$
+   . import sys
+   . return ("Python version: " + sys.version + ". Path: " + sys.base_exec_prefix)
+   .  $$ LANGUAGE PYTHON;
+   executed
+   master=> SELECT py_version();
+   py_version                                                                           
+   -------------------------------------------------------------------------------------
+   Python version: 3.6.7 (default, Jul 22 2019, 11:03:54) [GCC 5.4.0].
+   Path: /opt/sqream/python-3.6.7-5.4.0
+
+Using Modules
+---------------------
+
+To import a Python module, use the standard ``import`` syntax in the first lines of the user-defined function.
+
+Working with Existing UDFs
+===========================
+
+Finding Existing UDFs in the Catalog
+----------------------------------------
+
+The ``user_defined_functions`` catalog view contains function information.
+
+Here's how you'd list all UDFs in the system:
+
+.. code-block:: psql
+   
+   master=> SELECT * FROM sqream_catalog.user_defined_functions;
+   database_name | function_id | function_name
+   --------------+-------------+--------------
+   master        |           1 | my_upper  
+
+
+Getting Function DDL
+----------------------
+
+.. code-block:: psql
+
+   master=> SELECT GET_FUNCTION_DDL('my_upper');
+   ddl                                                 
+   ----------------------------------------------------
+   create function "my_upper" (x1 text) returns text as
+   $$  
+      return x1.upper()
+   $$
+   language python volatile;
+
+See :ref:`get_function_ddl` for more information.
+
+Handling Errors
+-----------------
+
+In UDFs, any error that occurs causes the execution of the function to stop. This in turn causes the statement that invoked the function to be canceled.
+
+Permissions and Sharing
+============================
+
+To create a UDF, the creator needs the ``CREATE FUNCTION`` permission at the database level.
+
+For example, to grant ``CREATE FUNCTION`` to a non-superuser role:
+
+.. code-block:: postgres
+   
+   GRANT CREATE FUNCTION ON DATABASE master TO role1;
+
+To execute a UDF, the role needs the ``EXECUTE FUNCTION`` permission for every function. 
+
+For example, to grant the permission to the ``r_bi_users`` role group, run:
+
+.. code-block:: postgres
+   
+   GRANT EXECUTE ON FUNCTION my_upper TO r_bi_users;
+
+.. note:: Functions are stored for each database, outside of any schema.
+
+See more information about permissions in the :ref:`Access control guide<access_control>`.
+
+Example
+=========
 
 Most databases have an :ref:`UPPER` function, including SQream DB. However, assume that this function is missing for the sake of this example.
 
@@ -63,116 +168,10 @@ For example:
    Beware the Jubjub bird, and shun                 | BEWARE THE JUBJUB BIRD, AND SHUN                
          The frumious Bandersnatch!"                |       THE FRUMIOUS BANDERSNATCH!"               
 
-Why use UDFs?
-=====================
-
-* They allow simpler statements - You can create the function once, store it in the database, and call it any number of times in a statement.
-
-* They can be shared - UDFs can be created by a database administrator, and then used by other roles.
-
-* They can simplify downstream code - UDFs can be modified in SQream DB independently of program source code.
-
-SQream DB's UDF support
-=============================
-
-Scalar functions
----------------------
-
-SQream DB's UDFs are scalar functions. This means that the UDF returns a single data value of the type defined in the ``RETURNS`` clause. For an inline scalar function, the returned scalar value is the result of a single statement.
-
-Python
--------------------
-
-At this time, SQream DB's UDFs are supported for Python.
-
-Python 3.6.7 is installed alongside SQream DB, for use exclusively by SQream DB.
-You may have a different version of Python installed on your server.
-
-To find which version of Python is installed for use by SQream DB, create and run this UDF:
-
-.. code-block:: psql
-   
-   master=> CREATE OR REPLACE FUNCTION py_version()
-   .  RETURNS text
-   .  AS $$
-   . import sys
-   . return ("Python version: " + sys.version + ". Path: " + sys.base_exec_prefix)
-   .  $$ LANGUAGE PYTHON;
-   executed
-   master=> SELECT py_version();
-   py_version                                                                           
-   -------------------------------------------------------------------------------------
-   Python version: 3.6.7 (default, Jul 22 2019, 11:03:54) [GCC 5.4.0].
-   Path: /opt/sqream/python-3.6.7-5.4.0
-
-Using modules
----------------------
-
-To import a Python module, use the standard ``import`` syntax in the first lines of the user-defined function.
 
 
-Finding existing UDFs in the catalog
-========================================
-
-The ``user_defined_functions`` catalog view contains function information.
-
-Here's how you'd list all UDFs in the system:
-
-.. code-block:: psql
-   
-   master=> SELECT * FROM sqream_catalog.user_defined_functions;
-   database_name | function_id | function_name
-   --------------+-------------+--------------
-   master        |           1 | my_upper  
-
-
-Getting the DDL for a function
-=====================================
-
-.. code-block:: psql
-
-   master=> SELECT GET_FUNCTION_DDL('my_upper');
-   ddl                                                 
-   ----------------------------------------------------
-   create function "my_upper" (x1 text) returns text as
-   $$  
-      return x1.upper()
-   $$
-   language python volatile;
-
-See :ref:`get_function_ddl` for more information.
-
-Error handling
-=====================
-
-In UDFs, any error that occurs causes the execution of the function to stop. This in turn causes the statement that invoked the function to be canceled.
-
-Permissions and sharing
-============================
-
-To create a UDF, the creator needs the ``CREATE FUNCTION`` permission at the database level.
-
-For example, to grant ``CREATE FUNCTION`` to a non-superuser role:
-
-.. code-block:: postgres
-   
-   GRANT CREATE FUNCTION ON DATABASE master TO mjordan;
-
-To execute a UDF, the role needs the ``EXECUTE FUNCTION`` permission for every function. 
-
-For example, to grant the permission to the ``r_bi_users`` role group, run:
-
-.. code-block:: postgres
-   
-   GRANT EXECUTE ON FUNCTION my_upper TO r_bi_users;
-
-.. note:: Functions are stored for each database, outside of any schema.
-
-See more information about permissions in the :ref:`Access control guide<access_control>`.
-
-
-Best practices
-=====================
+Best Practices
+===============
 
 Although user-defined functions add flexibility, they may have some performance drawbacks. They are not usually a replacement for subqueries or views.
 
