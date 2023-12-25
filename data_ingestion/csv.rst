@@ -11,6 +11,18 @@ This guide covers ingesting data from CSV files into SQream DB using the :ref:`c
    :local:
    :depth: 1
 
+Foreign Data Wrapper Prerequisites
+===================================
+
+Before proceeding, ensure the following Foreign Data Wrapper (FDW) prerequisites:
+
+* **File Existence:** Verify that the file you are ingesting data from exists at the specified path.
+
+* **Path Accuracy:** Confirm that all path elements are present and correctly spelled. Any inaccuracies may lead to data retrieval issues.
+* **Bucket Access Permissions:** Ensure that you have the necessary access permissions to the bucket from which you are ingesting data. Lack of permissions can hinder the data retrieval process.
+
+* **Wildcard Accuracy:** If using wildcards, double-check their spelling and configuration. Misconfigured wildcards may result in unintended data ingestion.
+
 Prepare CSVs
 ============
 
