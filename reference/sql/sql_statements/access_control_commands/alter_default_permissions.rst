@@ -29,7 +29,7 @@ Syntax
      FOR { 
           SCHEMAS 
           | TABLES 
-          | FOREIGN TABLE 
+          | FOREIGN TABLES 
           | VIEWS 
           | COLUMNS 
           | SAVED_QUERIES
