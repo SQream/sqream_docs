@@ -4,7 +4,9 @@
 Query Split
 ****************************
 
-The split query operation optimizes long-running queries by executing them in parallel on different GPUs, thereby reducing overall run time. It's crucial to note that not every query may benefit from this approach, as the splitting mechanism introduces some overhead runtime. Additionally, it's emphasized that splitting can only be performed in the UI, leveraging Meta-scripting, a feature currently exclusive to the UI environment. 
+The split query operation optimizes long-running queries by executing them in parallel on different GPUs, reducing overall runtime. This involves breaking down a complex query into parallel executions on small data subsets. To ensure an ordered result set aligned with the original complex query, two prerequisites are essential. First, create an empty table mirroring the original result set's structure. Second, define the ``@@SetResult`` operator to split the query using an ``INTEGER``, ``DATE``, or ``DATETIME`` column, as these types are compatible with the operator's ``min`` and ``max`` variables.   
+
+Splitting is exclusive to the UI, utilizing Meta-scripting, a unique UI feature. Keep in mind that not all queries benefit, as this method introduces overhead runtime. 
 
 .. contents::
    :local:
@@ -13,10 +15,7 @@ The split query operation optimizes long-running queries by executing them in pa
 Syntax
 ========
 
-Creating an Empty Table That is Based on the Query We Wish to Split
-----------------------------------------------------------------------
-
-Creating an empty table with an identical DDL of what would have been the result set table if we were to run the query we wish to split into 4 small queries. This empty table would eventually hold the results of all 4 small queries.
+Creating an empty table mirroring the original query result set's structure using the same DDL: 
 
 .. code-block:: sql
 
@@ -29,16 +28,12 @@ Creating an empty table with an identical DDL of what would have been the result
 	    <my_table>
 	  WHERE
 	    <false_filter>
-	);
+	)
 	
 	-- A false_filter example: 1=2
 	
-	
-Using the ``@@SetResult`` Operator to Create a ``minMax`` Variable
---------------------------------------------------------------------
+Defining the ``@@setresult`` operator to split the original query using an ``INTEGER``, ``DATE``, or ``DATETIME`` column with ``min`` and ``max`` variables.
 
-The ``minMax`` variable is used to define minimum and maximum values of ``INTEGER``, ``DATE``, ``DATETIME`` or Identity columns by which we can split our query.
-	
 .. code-block:: sql
 	
 	@@SetResult minMax
@@ -46,16 +41,11 @@ The ``minMax`` variable is used to define minimum and maximum values of ``INTEGE
 	FROM 
 	  <my_table>
 	[WHERE <condition>]
-	;
+
+
+Defining the operator that determines the number of instances (splits) based on the data type of the column by which the query is split:
 	
-Splitting the Query	
-----------------------
-	
-Deciding by which column to split your query by. Columns to split by can only be of ``INTEGER``, ``DATE``, or ``DATETIME`` data types, or otherwise, an Identity column. 
-	
-**Splitting a query using an INTEGER column:**
-	
-Using the ``@@SplitQueryByNumber`` operator to create an ``instances`` variable.
+* **INTEGER column:** use the ``@@SplitQueryByNumber`` operator
 	
 .. code-block:: sql
 	
@@ -68,11 +58,9 @@ Using the ``@@SplitQueryByNumber`` operator to create an ``instances`` variable.
 	    <my_table>
 	  WHERE
 	  <column_to_split_by> between ${from} and ${to}
-	);
+	)
 	
-**Splitting a query using a DATE column:**
-	
-Using the ``@@SplitQueryByDate`` operator to create an ``instances`` variable.
+* **DATE column:** use the ``@@SplitQueryByDate`` operator
 
 .. code-block:: sql
 	
@@ -85,11 +73,9 @@ Using the ``@@SplitQueryByDate`` operator to create an ``instances`` variable.
 	    <my_table>
 	  WHERE 
 	    <column_to_split_by> between ${from} and ${to}
-	);
+	)
 	
-**Splitting a query using a DATETIME column:**
-	
-Using the ``@@SplitQueryByDateTime`` operator to create an ``instances`` variable.
+* **DATETIME column:** use the ``@@SplitQueryByDateTime`` operator
 
 .. code-block:: sql
 	
@@ -101,12 +87,9 @@ Using the ``@@SplitQueryByDateTime`` operator to create an ``instances`` variabl
 	  FROM 
 	    <my_table>
 	  WHERE <column_to_split_by> between ${from} and ${to}
-	);
+	)
 	
-Outputting the Results of Our 4 Small Queries
------------------------------------------------
-
-Executing a query that collects the results of all 4 small queries into our empty table.
+Outputting the results of your small queries by running a query that gathers the results of all small queries into the initially created empty table.
 
 .. code-block:: sql
 
@@ -130,19 +113,13 @@ Executing a query that collects the results of all 4 small queries into our empt
 	  <column1>, <column2> [,...]
 	ORDER BY 
 	  <column4>
-	;
 	
 	-- Do not use a WHERE clause
 
-Query Split Operation
-=========================
+Example
+========
 
-The execution of the query split operation is fairly simple. After having created an empty result-set table, the ``minMax`` variable, the query split script, and the script that outputs all results into the result-set table, all you have to do is copy and paste all of the scripts into one tab, and run them 
-
-Creating the Required Scripts for Splitting a Query
-----------------------------------------------------
-
-Use the following table to create your first query split:
+To split your first query, create the following table and insert data into it:
 
 .. code-block:: sql
 
@@ -208,122 +185,118 @@ Use the following table to create your first query split:
 	  (49, 'Paisley', 28, 55000, 18),
 	  (50, 'Owen', 33, 64000, 12);
 
-Create a complex query:
+Next, we'll split the following query:
 
-.. code-block:: sql
+	.. code-block:: sql
 
-	SELECT
-	  age,
-	  COUNT(*) AS total_people,
-	  AVG(salary) AS avg_salary,
-	  SUM(quantity) AS total_quantity,
-	  SUM(CASE WHEN quantity > 20 THEN 1 ELSE 0 END) AS high_quantity_count,
-	  SUM(CASE WHEN age BETWEEN 25 AND 30 THEN salary ELSE 0 END) AS total_salary_age_25_30
-	FROM
-	  MyTable
-	WHERE
-	  salary > 55000
-	GROUP BY
-	  age
-	ORDER BY
-	  age;
-	  
-Create an empty table with the DDL of your final result-set table, using a false filter under the ``WHERE`` clause.
+		SELECT
+		  age,
+		  COUNT(*) AS total_people,
+		  AVG(salary) AS avg_salary,
+		  SUM(quantity) AS total_quantity,
+		  SUM(CASE WHEN quantity > 20 THEN 1 ELSE 0 END) AS high_quantity_count,
+		  SUM(CASE WHEN age BETWEEN 25 AND 30 THEN salary ELSE 0 END) AS total_salary_age_25_30
+		FROM
+		  MyTable
+		WHERE
+		  salary > 55000
+		GROUP BY
+		  age
+		ORDER BY
+		  age;
 
-.. code-block:: sql
+1. Prepare the following:
 
-	CREATE OR TABLE FinalResult
-	AS
-	(
-	  SELECT
-	  age,
-	  COUNT(*) AS total_people,
-	  AVG(salary) AS avg_salary,
-	  SUM(quantity) AS total_quantity,
-	  SUM(CASE WHEN quantity > 20 THEN 1 ELSE 0 END) AS high_quantity_count,
-	  SUM(CASE WHEN age BETWEEN 25 AND 30 THEN salary ELSE 0 END) AS total_salary_age_25_30
-	FROM
-	  MyTable
-	WHERE
-	  1=0
-	  AND salary > 55000
-	GROUP BY
-	  age
-	ORDER BY
-	  age
-	  );
-	  
-Use the ``@@SetResult`` operator to create a ``minMax`` variable:
-
-.. code-block:: sql
-
-	@@ SetResult minMax
-	SELECT min(id) as min, max(id) as max 
-	FROM mytable
-	;
-
-Create a Split Query:
-
-.. code-block:: sql
-
-	@@SplitQueryByNumber instances = 4, from = minMax[0].min, to = minMax[0].max
-	INSERT INTO FinalResult
-	(
-	SELECT
-	  age,
-	  COUNT(*) AS total_people,
-	  AVG(salary) AS avg_salary,
-	  SUM(quantity) AS total_quantity,
-	  SUM(CASE WHEN quantity > 20 THEN 1 ELSE 0 END) AS high_quantity_count,
-	  SUM(CASE WHEN age BETWEEN 25 AND 30 THEN salary ELSE 0 END) AS total_salary_age_25_30
-	FROM
-	  MyTable
-	WHERE
-	  id between ${from} and ${to}
-	  AND salary > 55000
-	GROUP BY
-	  age
-	ORDER BY
-	  age
-	  );
+ a. An empty table mirroring the original query result set’s structure with the same DDL, using a false filter under the ``WHERE`` clause:
 	
-Create a script to collect all of the results into the empty result-set table:
+	.. code-block:: sql
 
-.. code-block:: sql
+		CREATE OR TABLE FinalResult
+		AS
+		(
+		  SELECT
+		  age,
+		  COUNT(*) AS total_people,
+		  AVG(salary) AS avg_salary,
+		  SUM(quantity) AS total_quantity,
+		  SUM(CASE WHEN quantity > 20 THEN 1 ELSE 0 END) AS high_quantity_count,
+		  SUM(CASE WHEN age BETWEEN 25 AND 30 THEN salary ELSE 0 END) AS total_salary_age_25_30
+		FROM
+		  MyTable
+		WHERE
+		  1=0
+		  AND salary > 55000
+		GROUP BY
+		  age
+		ORDER BY
+		  age
+		  );		
+		
+   An empty table named ``FinalResult`` is created.	
+	
+ b. The ``@@setresult`` operator to split the original query:
+	
+	.. code-block:: sql
 
-	SELECT
-	  age,
-	  SUM(total_people) AS total_people,
-	  SUM(avg_salary) / SUM(avg_salary) AS avg_salary,
-	  SUM(total_quantity) AS total_quantity,
-	  SUM(high_quantity_count) AS high_quantity_count,
-	  SUM(total_salary_age_25_30) AS total_salary_age_25_30
-	FROM
-	  FinalResult
-	GROUP BY
-	  age
-	ORDER BY
-	  age
-	  ;
+		@@ SetResult minMax
+		SELECT min(id) as min, max(id) as max 
+		FROM mytable
+		;
 
-Executing the Query Split
----------------------------
+ c. The operator that determines the number of instances (splits) of your query, based on an ``INTEGER`` column:
 
-#. Open a new tab in your Editor.
+	.. code-block:: sql
 
-#. Paste the original query you wish to split and put a ``;`` at the end.
+		@@SplitQueryByNumber instances = 4, from = minMax[0].min, to = minMax[0].max
+		INSERT INTO FinalResult
+		(
+		SELECT
+		  age,
+		  COUNT(*) AS total_people,
+		  AVG(salary) AS avg_salary,
+		  SUM(quantity) AS total_quantity,
+		  SUM(CASE WHEN quantity > 20 THEN 1 ELSE 0 END) AS high_quantity_count,
+		  SUM(CASE WHEN age BETWEEN 25 AND 30 THEN salary ELSE 0 END) AS total_salary_age_25_30
+		FROM
+		  MyTable
+		WHERE
+		  id between ${from} and ${to}
+		  AND salary > 55000
+		GROUP BY
+		  age
+		ORDER BY
+		  age
+		  );
+	
+ d. A query that gathers the results of all small queries into the initially created empty table:
 
-#. Paste the script for creating an empty table and put a ``;`` at the end.
+	.. code-block:: sql
 
-#. Paste the script for creating a ``minMax`` variable and put a ``;`` at the end.
+		SELECT
+		  age,
+		  SUM(total_people) AS total_people,
+		  SUM(avg_salary) / SUM(avg_salary) AS avg_salary,
+		  SUM(total_quantity) AS total_quantity,
+		  SUM(high_quantity_count) AS high_quantity_count,
+		  SUM(total_salary_age_25_30) AS total_salary_age_25_30
+		FROM
+		  FinalResult
+		GROUP BY
+		  age
+		ORDER BY
+		  age
+		  ;
 
-#. Paste the script for splitting your query and put a ``;`` at the end.
+2. Paste ALL five scripts into one Editor tab.
 
-#. Paste the script for collecting the results of your small queries into the empty table and put a ``;`` at the end.
+3. Ensure that each script ends with its own ``;``.
 
-#. In the UI toolbar, verify that the query **Execution** button is set to **All**.
+4. Ensure that the **Execute** button is set to **All**.
 
-#. Select **Execute**.
+5. Select the **Execute** button.
 
-.. code-block:: sql
+   All five scripts are executed, resulting in the splitting of the initial query and a final result set.
+
+Best Practices
+================
 
