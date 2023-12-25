@@ -6,9 +6,20 @@ Avro
 
 **Avro** is a well-known data serialization system that relies on schemas. Due to its flexibility as an efficient data storage method, BLUE supports the Avro binary data format as an alternative to JSON. Avro files are represented using the **Object Container File** format, in which the Avro schema is encoded alongside binary data. Multiple files loaded in the same transaction are serialized using the same schema. If they are not serialized using the same schema, an error message is displayed. BLUE uses the **.avro** extension for ingested Avro files.
 
+Foreign Data Wrapper Prerequisites
+===================================
+
+Before proceeding, ensure the following Foreign Data Wrapper (FDW) prerequisites:
+
+* **File Existence:** Verify that the file you are ingesting data from exists at the specified path.
+
+* **Path Accuracy:** Confirm that all path elements are present and correctly spelled. Any inaccuracies may lead to data retrieval issues.
+* **Bucket Access Permissions:** Ensure that you have the necessary access permissions to the bucket from which you are ingesting data. Lack of permissions can hinder the data retrieval process.
+
+* **Wildcard Accuracy:** If using wildcards, double-check their spelling and configuration. Misconfigured wildcards may result in unintended data ingestion.
 
 Preparing Your Foreign Table
-===============
+===============================
 
 Before loading data, you must build the ``CREATE FOREIGN TABLE`` to correspond with the file structure of the inserted table.
 

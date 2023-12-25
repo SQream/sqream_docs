@@ -6,6 +6,18 @@ Parquet
 
 BLUE supports ingesting data into BLUE from Parquet files. However, because it is an open-source column-oriented data storage format, you may want to retain your data on foreign Parquet files instead of ingesting it into BLUE. BLUE supports executing queries on foreign Parquet files.
 
+Foreign Data Wrapper Prerequisites
+===================================
+
+Before proceeding, ensure the following Foreign Data Wrapper (FDW) prerequisites:
+
+* **File Existence:** Verify that the file you are ingesting data from exists at the specified path.
+
+* **Path Accuracy:** Confirm that all path elements are present and correctly spelled. Any inaccuracies may lead to data retrieval issues.
+* **Bucket Access Permissions:** Ensure that you have the necessary access permissions to the bucket from which you are ingesting data. Lack of permissions can hinder the data retrieval process.
+
+* **Wildcard Accuracy:** If using wildcards, double-check their spelling and configuration. Misconfigured wildcards may result in unintended data ingestion.
+
 Preparing Your Parquet Files
 =====================
 Prepare your source Parquet files according to the requirements described in the following table:
