@@ -4,6 +4,13 @@
 Release Notes
 *************
 
+December
+---------
+
+Now, through the UI, you can terminate executed jobs, especially useful in cases of delays or resource consumption. It's beneficial when a job awaits a resource held by another job or different cluster users, preventing issues during execution. Additionally, users can seamlessly transfer existing jobs between clusters, crucial for data teams looking to expedite data movement tasks. The integration of Python scripts into database operations enhances automation, allowing users to schedule and execute routine tasks efficiently, reducing manual effort and minimizing errors. Python's scripting flexibility enables agile development, fostering an iterative and responsive approach to database job creation.
+
+:ref:`Read More <december_2023>`
+
 November
 --------------
 
@@ -49,8 +56,9 @@ Auth0's powerful capabilities empower BLUE to provide IDP authentication, multi-
 .. toctree::
    :maxdepth: 1
    :glob:
+   :hidden:
 
-
+   2023/december_2023
    2023/november_2023
    2023/october_2023
    2023/september_2023

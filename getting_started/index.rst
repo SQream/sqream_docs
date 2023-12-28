@@ -51,7 +51,7 @@ The :ref:`Resource Pool <managing_your_resources>` panel optimizes resource util
 SQL Workflows
 -------------
 
-**Jobs** is a SQL :ref:`workflow tool <performing_basic_blue_operations>` for creating complex workflows. It automates sequences of SQL scripts, triggering them to deliver insights or prepare data for advanced tasks like modeling and training. Execute jobs manually or schedule them for automatic execution.
+**Jobs** is a SQL and Python :ref:`workflow tool <performing_basic_blue_operations>` for creating complex workflows. It automates sequences of SQL and Python scripts, triggering them to deliver insights or prepare data for advanced tasks like modeling and training. Execute jobs manually or schedule them for automatic execution.
 
 
 .. toctree::
