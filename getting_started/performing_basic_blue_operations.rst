@@ -9,7 +9,7 @@ Workflows play a pivotal role in data preparation, modeling, and training. Manag
 What are Jobs
 ===================
 
-A Job is an automated set of SQL and Python scripts that form a workflow. Think of a Job as your main strategy and the scripts as the individual steps needed to carry it out. Each individual script is represented by a single **Task**.
+A Job is an automated set of SQL and Python scripts that form a workflow. Think of a Job as your main strategy and the scripts as the individual steps needed to carry it out. Each script is represented by a single **Task**.
 
 New Job
 ========
@@ -27,6 +27,7 @@ Creating a Job
 **Please Note**
 
 * Python scripts must be Python 3.9.17 compatible. 
+* If you are missing Python libraries, please contact `SQreamDB Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ for assistance.
 
 1. In the sidebar go to **Jobs**.
 2. Select the **Create New Job** button, enter Job name, and select **Save**.
