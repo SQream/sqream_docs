@@ -167,7 +167,9 @@ Sharing Jobs
 Importing and Exporting Jobs
 -----------------------------
 
-The seamless import and export capability for existing jobs between clusters or environments empowers you to transfer them without the need for recreation. Jobs are exported and imported in JSON format.
+The import and export capability for existing Jobs between BLUE clusters or BLUE environments empowers you to transfer them without the need for recreating the Job's execution tree. Please be aware that in addition to importing and exporting a Job, you need to verify that the required Task scripts and DDLs exist in the target BLUE cluster or Environment. 
+
+Jobs are exported and imported in JSON format.
 
 **Importing**
 
