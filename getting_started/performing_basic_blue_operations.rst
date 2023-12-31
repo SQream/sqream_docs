@@ -206,10 +206,12 @@ Changing Job Ownership
 
    The new owner is granted Job ownership privileges while you are remained with shared Job privileges.
 
+.. _terminating_a_running_job:
+
 Terminating a Running Job
 --------------------------
 
-You may only stop Jobs owned by you. Please be aware that once successfully executed before you stopped the Job, DML statements have already made the changes to the tables and database.
+Please be aware that once successfully executed before you stopped the Job, DML statements have already made the changes to the tables and database.
 
 1. In the sidebar, go to **Jobs** > **All Jobs**.
 2. Hover over the Job you wish to stop and select |stop_job|. 
@@ -223,8 +225,6 @@ You may only delete Jobs owned by you.
 
 1. In the sidebar, go to **Jobs** and then either **All Jobs** or **Drafts**.
 2. Hover over the Job you wish to delete and from the |three_dot_job| menu choose **Delete**.
-
-.. _terminating_a_running_job:
 
 Monitoring Jobs
 ================
