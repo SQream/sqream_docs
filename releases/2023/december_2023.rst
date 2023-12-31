@@ -14,7 +14,7 @@ See :ref:`Job termination<terminating_a_running_job>` using the UI.
 Importing and Exporting Jobs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Users often encounter the need to transfer existing Jobs seamlessly between clusters or environments without the necessity of recreating them. This is particularly crucial for data teams aiming to capitalize on successful Jobs across various environments, enabling them to expedite data movement tasks efficiently.
+Users often encounter the need to transfer existing Jobs seamlessly between BLUE clusters or BLUE environments without the necessity of recreating them. This is particularly crucial for data teams aiming to capitalize on successful Jobs across various environments, enabling them to expedite data movement tasks efficiently. Jobs are exported and imported in JSON format.
 
 See how to :ref:`import and export<importing_and_exporting_jobs>` Jobs.
 
