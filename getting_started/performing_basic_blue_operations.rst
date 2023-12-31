@@ -24,6 +24,10 @@ The Jobs feature requires its own access-token protected connection, which is a 
 Creating a Job
 ---------------
 
+**Please Note**
+
+* Python scripts must be Python 3.9.17 compatible. 
+
 1. In the sidebar go to **Jobs**.
 2. Select the **Create New Job** button, enter Job name, and select **Save**.
 
@@ -32,7 +36,7 @@ Creating a Job
 3. In the upper left corner, type in the task name and description.
 4. Drag a SQL or Python script from the **Scripts** menu to the **Drag Script** box of the task.
 
-   Ensure that scripts are saved under your bucket's parent directory; otherwise, it will not appear in the menu.
+   Ensure that scripts are saved under your bucket's parent directory; otherwise, they will not appear in the menu.
 
 5. To create a new task, select |add_task| located under the last task in the **Preview** window.
 6. After having created all tasks, select the **Save Job** button located in the upper right corner and choose one of the following options:
@@ -44,7 +48,7 @@ Creating a Job
    * - Option
      - Description
    * - Save to Jobs
-     - Your Job is saved under **Jobs** > **All Jobs**. You are able to manually execute the Job by hovering over it and selecting |play_job|.  
+     - Your Job is saved under **Jobs** > **All Jobs**. You can manually execute the Job by hovering over it and selecting |play_job|.  
    * - Schedule Job
      - You may set the date and time of day for the Job to be executed for the first time by setting **Date** and **Time**. Additionally, you may set the Job to be executed repeatedly by setting it to **Repeat Every** certain number of days. Your Job is saved under **Jobs** > **All Jobs**. The |scheduled_job| indicates Scheduled Jobs.
 
@@ -52,9 +56,15 @@ Creating a Job
 Working with SQL and Python Scripts
 -----------------------------------
 
-Jobs are composed of multiple tasks. Each task is associated with a single SQL or Python script. To create tasks, you need to have scripts prepared and ready to be used. For SQL scripts, after having created and saved a script, it will automatically appear on the **Scripts** list that is used for creating Jobs. You cannot create Python scripts using the Workbench. Python scripts may only be uploaded from your bucket. 
+Jobs are composed of multiple tasks. Each task is associated with a single SQL or Python script. To create tasks, you must have scripts prepared and ready to use. Keep in mind that scripts that are saved and uploaded to the **Scripts** list will be executed using your master database and public schema by default. To have your scripts use other databases and/or schema and/or resource pool, you may use the :ref:`use_database`, :ref:`use_schema`, and :ref:`use_pool` commands within your script. 
 
-Keep in mind that scripts that are saved and uploaded to the **Scripts** list will be executed using your master database and public schema by default. To have your scripts use other database and/or schema and/or resource pool, you may use the :ref:`use_database`, :ref:`use_schema`, and :ref:`use_pool` commands within your script. 
+**For Python Scripts**
+
+You cannot create Python scripts using the Workbench and they may only be uploaded from your bucket. Scripts must be Python 3.9.17 compatible. 
+
+**For SQL Scripts** 
+
+After having created and saved a script, it will automatically appear on the **Scripts** list that is used for creating Jobs.
 
 1. In the sidebar, go to **Workbench** and create a SQL script.
 2. On the right side of the ribbon, select **Upload**.
