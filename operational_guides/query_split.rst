@@ -32,16 +32,24 @@ Creating an empty table mirroring the original query result set's structure usin
 	
 	-- A false_filter example: 1=2
 	
-Defining the ``@@setresult`` operator to split the original query using an ``INTEGER``, ``DATE``, or ``DATETIME`` column with ``min`` and ``max`` variables.
+Defining the ``@@setresult`` operator to split the original query using an ``INTEGER``, ``DATE``, or ``DATETIME`` column with ``min`` and ``max`` variables. If the column you're splitting by is used in a ``WHERE`` clause in the original query, use a ``WHERE`` clause when setting the ``SetResult`` operator as well.
 
 .. code-block:: sql
 	
 	@@SetResult minMax
-	SELECT min(<integer_column>) AS min, max(<integer_column>) AS max 
+	SELECT 
+	  MIN(<column>) AS min, 
+	  MAX(<column>) AS max 
 	FROM 
 	  <my_table>
-	[WHERE <condition>]
-
+	[WHERE 
+	  <column> BETWEEN
+	   -- Integer Range:
+	   1 AND 100 
+	   | -- Date Range:
+	   '2022-01-01' AND '2022-12-31' 
+	   | -- DateTime Range:
+	   '2022-01-01 01:24:00:000' AND '2022-12-31 08:51:24:000'] 
 
 Defining the operator that determines the number of instances (splits) based on the data type of the column by which the query is split:
 	
@@ -57,7 +65,7 @@ Defining the operator that determines the number of instances (splits) based on 
 	  FROM
 	    <my_table>
 	  WHERE
-	  <column_to_split_by> between ${from} and ${to}
+	  <column_to_split_by> BETWEEN ${from} and ${to}
 	)
 	
 * **DATE column:** use the ``@@SplitQueryByDate`` operator
@@ -72,7 +80,7 @@ Defining the operator that determines the number of instances (splits) based on 
 	  FROM 
 	    <my_table>
 	  WHERE 
-	    <column_to_split_by> between ${from} and ${to}
+	    <column_to_split_by> BETWEEN ${from} and ${to}
 	)
 	
 * **DATETIME column:** use the ``@@SplitQueryByDateTime`` operator
@@ -86,7 +94,7 @@ Defining the operator that determines the number of instances (splits) based on 
 	    <column_to_split_by> [,...]
 	  FROM 
 	    <my_table>
-	  WHERE <column_to_split_by> between ${from} and ${to}
+	  WHERE <column_to_split_by> BETWEEN ${from} and ${to}
 	)
 	
 Outputting the results of your small queries by running a query that gathers the results of all small queries into the initially created empty table.
@@ -308,3 +316,77 @@ Splitting the Query
 Best Practices
 ================
 
+General
+--------
+
+* When incorporating the ``LIMIT`` clause or any aggregate function in your query, split the query based only on a ``GROUP BY`` column. If no relevant columns are present in the ``GROUP BY`` clause, the query might not be suitable for splitting. If you are not using aggregations, it's best to split the query using a column that appears in the a ``WHERE`` or ``JOIN`` clause.
+
+* When using the ``JOIN`` key, it is usually better to use the key of the smaller table.
+
+* For simple queries involving just one table, splitting is unlikely to enhance performance.
+
+Choosing a Column to Split by
+------------------------------
+
+The column you split by must be sorted or mostly sorted. Meaning, that even if the column values may not be perfectly ordered, they still follow a general sequence or trend.
+	
+Aggregation Best Practices
+--------------------------
+
+Aggregation functions, or special functions need to have adjustments in the query that gathers the results of all instances (splits) into the empty table:
+
+* ``COUNT`` becomes ``SUM``
+
+* ``AVERAGE`` is split into two columns in the split query and then merged as ``AVERAGE`` in the output query
+
+
+Special functions should be split into different columns as well - **What special functions?**
+
+Date as Number best practices
+-------------------------------
+
+When date is stored as number, using the number of workers as the instances number may not result in the expected way.
+e.g. if date run from 20210101 to 20210630 splitting to 8 will result in 6 relevant splits, as SQream only checks min and max and splits accordingly (20210630-20210101)/8. we get an instance of empty data with dates ranging from 20210432 to 20210499 (not really dates, but real numbers).
+In this case, we need to adjust the number of instance to get the right size splits. In the above example we need to split to 64, and each worker will run 3 splits with actual data.
+
+Using the ``SetResult``
+-------------------------
+
+When the column you split by is used in a ``WHERE`` clause in the original query, add it with the ``WHERE`` clause when you set the ``SetResult`` operator.
+
+.. code-block::
+
+	@@ SetResult minMax
+	SELECT min(ship_dates) AS min, max(ship_dates) AS max FROM shipments
+	/*optional - WHERE ship_dates BETWEEN '1995-01-01' AND '1996-01-01'*/
+	;
+	
+Include?
+-----------
+
+* Setting the column boundaries for the split - This is an optional query, but very useful, and can only be optional if you know in advance the boundaries.
+
+* The query that outputs the results from the table we created in the first query - This is an optional query, but most use cases will require have it and if we created the first query and used INSERT INTO in the splitting we have to use it.
+	
+* Limit and group by together, can significantly reduce runtime.
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
