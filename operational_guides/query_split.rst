@@ -208,6 +208,8 @@ Next, we'll split the following query:
 1. Prepare the following:
 
  a. An empty table mirroring the original query result set’s structure with the same DDL, using a false filter under the ``WHERE`` clause:
+ 
+    An empty table named ``FinalResult`` is created.	
 	
 	.. code-block:: sql
 
@@ -232,7 +234,7 @@ Next, we'll split the following query:
 		  age
 		  );		
 		
-   An empty table named ``FinalResult`` is created.	
+
 	
  b. The ``@@setresult`` operator to split the original query:
 	
