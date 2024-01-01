@@ -119,6 +119,13 @@ Outputting the results of your small queries by running a query that gathers the
 Example
 ========
 
+.. contents::
+   :local:
+   :depth: 1
+
+Creating a Sample Table and Query
+----------------------------------
+
 To split your first query, create the following table and insert data into it:
 
 .. code-block:: sql
@@ -187,117 +194,116 @@ To split your first query, create the following table and insert data into it:
 
 Next, we'll split the following query:
 
-	.. code-block:: sql
+.. code-block:: sql
 
-		SELECT
-		  age,
-		  COUNT(*) AS total_people,
-		  AVG(salary) AS avg_salary,
-		  SUM(quantity) AS total_quantity,
-		  SUM(CASE WHEN quantity > 20 THEN 1 ELSE 0 END) AS high_quantity_count,
-		  SUM(CASE WHEN age BETWEEN 25 AND 30 THEN salary ELSE 0 END) AS total_salary_age_25_30
-		FROM
-		  MyTable
-		WHERE
-		  salary > 55000
-		GROUP BY
-		  age
-		ORDER BY
-		  age;
+	SELECT
+	  age,
+	  COUNT(*) AS total_people,
+	  AVG(salary) AS avg_salary,
+	  SUM(quantity) AS total_quantity,
+	  SUM(CASE WHEN quantity > 20 THEN 1 ELSE 0 END) AS high_quantity_count,
+	  SUM(CASE WHEN age BETWEEN 25 AND 30 THEN salary ELSE 0 END) AS total_salary_age_25_30
+	FROM
+	  MyTable
+	WHERE
+	  salary > 55000
+	GROUP BY
+	  age
+	ORDER BY
+	  age;
 
-1. Prepare the following:
+Splitting the Query
+--------------------
 
- a. An empty table mirroring the original query result set’s structure with the same DDL, using a false filter under the ``WHERE`` clause:
+1. Prepare an empty table mirroring the original query result set’s structure with the same DDL, using a false filter under the ``WHERE`` clause.
  
-    An empty table named ``FinalResult`` is created.	
+   An **empty** table named ``FinalResult`` is created.	
 	
-	.. code-block:: sql
+.. code-block:: sql
 
-		CREATE OR TABLE FinalResult
-		AS
-		(
-		  SELECT
-		  age,
-		  COUNT(*) AS total_people,
-		  AVG(salary) AS avg_salary,
-		  SUM(quantity) AS total_quantity,
-		  SUM(CASE WHEN quantity > 20 THEN 1 ELSE 0 END) AS high_quantity_count,
-		  SUM(CASE WHEN age BETWEEN 25 AND 30 THEN salary ELSE 0 END) AS total_salary_age_25_30
-		FROM
-		  MyTable
-		WHERE
-		  1=0
-		  AND salary > 55000
-		GROUP BY
-		  age
-		ORDER BY
-		  age
-		  );		
+	CREATE OR TABLE FinalResult
+	AS
+	(
+	  SELECT
+	  age,
+	  COUNT(*) AS total_people,
+	  AVG(salary) AS avg_salary,
+	  SUM(quantity) AS total_quantity,
+	  SUM(CASE WHEN quantity > 20 THEN 1 ELSE 0 END) AS high_quantity_count,
+	  SUM(CASE WHEN age BETWEEN 25 AND 30 THEN salary ELSE 0 END) AS total_salary_age_25_30
+	FROM
+	  MyTable
+	WHERE
+	  1=0
+	  AND salary > 55000
+	GROUP BY
+	  age
+	ORDER BY
+	  age
+	  );		
 		
-
+2. Set the ``@@setresult`` operator to split the original query using ``min`` and ``max`` variables.
 	
- b. The ``@@setresult`` operator to split the original query:
+.. code-block:: sql
+
+	@@ SetResult minMax
+	SELECT min(id) as min, max(id) as max 
+	FROM mytable
+	;
+
+3. Set the ``@@SplitQueryByNumber`` operator with the number of instances (splits) of your query (here based on an ``INTEGER`` column), and set the ``between ${from} and ${to}`` clause with the name of the column by which you wish to split your query (here the query is split by the ``id`` column.
+
+.. code-block:: sql
+
+	@@SplitQueryByNumber instances = 4, from = minMax[0].min, to = minMax[0].max
+	INSERT INTO FinalResult
+	(
+	SELECT
+	  age,
+	  COUNT(*) AS total_people,
+	  AVG(salary) AS avg_salary,
+	  SUM(quantity) AS total_quantity,
+	  SUM(CASE WHEN quantity > 20 THEN 1 ELSE 0 END) AS high_quantity_count,
+	  SUM(CASE WHEN age BETWEEN 25 AND 30 THEN salary ELSE 0 END) AS total_salary_age_25_30
+	FROM
+	  MyTable
+	WHERE
+	  id between ${from} and ${to}
+	  AND salary > 55000
+	GROUP BY
+	  age
+	ORDER BY
+	  age
+	  );
 	
-	.. code-block:: sql
+4. Create a query that gathers the results of all instances (splits) into the empty table you created in step 1.
 
-		@@ SetResult minMax
-		SELECT min(id) as min, max(id) as max 
-		FROM mytable
-		;
+.. code-block:: sql
 
- c. The operator that determines the number of instances (splits) of your query, based on an ``INTEGER`` column:
+	SELECT
+	  age,
+	  SUM(total_people) AS total_people,
+	  SUM(avg_salary) / SUM(avg_salary) AS avg_salary,
+	  SUM(total_quantity) AS total_quantity,
+	  SUM(high_quantity_count) AS high_quantity_count,
+	  SUM(total_salary_age_25_30) AS total_salary_age_25_30
+	FROM
+	  FinalResult
+	GROUP BY
+	  age
+	ORDER BY
+	  age
+	  ;
 
-	.. code-block:: sql
+5. Arrange ALL five sequential scripts on one Editor tab.
 
-		@@SplitQueryByNumber instances = 4, from = minMax[0].min, to = minMax[0].max
-		INSERT INTO FinalResult
-		(
-		SELECT
-		  age,
-		  COUNT(*) AS total_people,
-		  AVG(salary) AS avg_salary,
-		  SUM(quantity) AS total_quantity,
-		  SUM(CASE WHEN quantity > 20 THEN 1 ELSE 0 END) AS high_quantity_count,
-		  SUM(CASE WHEN age BETWEEN 25 AND 30 THEN salary ELSE 0 END) AS total_salary_age_25_30
-		FROM
-		  MyTable
-		WHERE
-		  id between ${from} and ${to}
-		  AND salary > 55000
-		GROUP BY
-		  age
-		ORDER BY
-		  age
-		  );
-	
- d. A query that gathers the results of all small queries into the initially created empty table:
+6. Ensure that EACH script ends with a ``;``.
 
-	.. code-block:: sql
+7. Ensure that the **Execute** button is set to **All** so that all five queries are consecutively executed. 
 
-		SELECT
-		  age,
-		  SUM(total_people) AS total_people,
-		  SUM(avg_salary) / SUM(avg_salary) AS avg_salary,
-		  SUM(total_quantity) AS total_quantity,
-		  SUM(high_quantity_count) AS high_quantity_count,
-		  SUM(total_salary_age_25_30) AS total_salary_age_25_30
-		FROM
-		  FinalResult
-		GROUP BY
-		  age
-		ORDER BY
-		  age
-		  ;
+8. Select the **Execute** button.
 
-2. Paste ALL five scripts into one Editor tab.
-
-3. Ensure that each script ends with its own ``;``.
-
-4. Ensure that the **Execute** button is set to **All**.
-
-5. Select the **Execute** button.
-
-   All five scripts are executed, resulting in the splitting of the initial query and a final result set.
+   All five scripts are executed, resulting in the splitting of the initial query and a table containing the final result set.
 
 Best Practices
 ================
