@@ -34,7 +34,7 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
-► 
+► You may now retrieve and manipulate data from different databases within a single SQreamDB cluster through the execution of a single SQL statement using the :ref:`Cross-Database<cross_database_query>` syntax.
 
 Known Issues
 ------------
@@ -55,12 +55,11 @@ Version 4.6 resolved Issues
 +--------------------+------------------------------------------------------------------------------------------------+
 | SQ-13057           | Fixed ``DOUBLE`` casting into ``TEXT`` issue                                                   |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-15691           | 
+| SQ-15691           | Fixed ``TEXT`` casting into ``DOUBLE`` and ``NUMERIC`` issue when using scientific notation    |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-15828           |
+| SQ-15828           | Fixed slow query runtime due to ``VIEW`` unexpected behavior                                   |
 +--------------------+------------------------------------------------------------------------------------------------+
-| SQ-16044           |
-+--------------------+------------------------------------------------------------------------------------------------+
+
 
 Deprecations
 -------------------
