@@ -62,7 +62,7 @@ The ``DESCRIBE [RESOURCE] POOLS`` is a CPU based SQL command that lists all of y
 
 This command requires ``CONNECT`` permission.
 
-.. code-block::
+.. code-block:: sql
 
 	DESCRIBE [RESOURCE] POOLS
 	DESC [RESOURCE] POOLS
@@ -71,7 +71,7 @@ The ``USE [RESOURCE] POOL`` command lets you shift between pools within a sessio
 
 This command requires ``CONNECT`` permission.
 
-.. code-block::
+.. code-block:: sql
 	
 	USE [RESOURCE] POOL <pool_name>
 	
@@ -95,13 +95,13 @@ Examples
 	
 Listing all existing pools:
 
-.. code-block::
+.. code-block:: sql
 
 	DESCRIBE RESOURCE POOLS;
 
 Shifting between pools:
 
-.. code-block::
+.. code-block:: sql
 
 	USE POOL bi_pool;
 
@@ -122,13 +122,13 @@ Examples
 
 Connecting to a specified pool:
 
-.. code-block::
+.. code-block:: sql
 
 	sudo java -jar jdbc-console-0.0.88-43.jar --host=myhost.isqream.com --access-token=######### --pool=bi_pool
 
 Connecting to a default pool:
 
-.. code-block::
+.. code-block:: sql
 
 	sudo java -jar jdbc-console-0.0.88-43.jar --host=myhost.isqream.com --access-token=#########
 
@@ -251,11 +251,11 @@ Manually Suspending and Resuming Pools
    * - Suspension Policy
      - Description
    * - Brute force
-     - All workers are immediately suspended and all running statements are aborted
+     - Workers are immediately suspended and all running statements are aborted
    * - Graceful shutdown
-     - Suspension of all workers will occur only after completion of all running statements
+     - Workers are suspended only after completion of all running statements
    * - Graceful shutdown and pending requests
-     - Suspension of workers will occur only after completion of all running statements and execution of all queued statements
+     - Workers are suspended only after completion of all running and queued statements
 
 4. select **Suspend Now**.
 
