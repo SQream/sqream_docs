@@ -36,7 +36,7 @@ Flag List
      - Cluster / Session
      - Description
      - Data Type
-     - Default Value
+     - Default Value and Value Range
    * - ``binSizes`` 
      - SUPERUSER
      - Session
@@ -302,6 +302,12 @@ Flag List
      - Prevents a query from processing more memory than the defined value.
      - uint
      - ``100000``
+   * - ``queueTimeoutMinutes``
+     - Anyone
+     - Session 
+     - Terminates queries that have exceeded a predefined time limit in the queue.
+     - integer
+     - Default value: 0. Minimum values: 1 minute. Maximum value: 4320 minutes (72 hours) 
    * - ``QueryTimeoutMinutes``
      - Anyone
      - Session

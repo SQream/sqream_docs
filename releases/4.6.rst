@@ -36,6 +36,12 @@ New Features and Enhancements
 
 ► You may now retrieve and manipulate data from different databases within a single SQreamDB cluster through the execution of a single SQL statement using the :ref:`Cross-Database<cross_database_query>` syntax.
 
+► Enhance your :ref:`COPY FROM<copy_from>` operations with the new ``DELETE_SOURCE_ON_SUCCESS`` parameter, which automatically deletes the source file being copied into SQreamDB. This not only saves time and effort in cleaning cloud storage but also helps conserve storage space.
+
+► Cast data types seamlessly with the new :ref:`IsCastable<is_castable>` function. This function allows you to check whether a cast operation is possible or supported for a given column and data type and provides an alternative when an exception occurs when used within a ``CASE`` statement.
+
+► Enable automatic termination of queries that exceed a pre-defined time limit in the queue. The introduction of the :ref:`queueTimeoutMinutes flag<current_method_configuration_levels>` flag empowers you to set time constraints for queries in the queue, ranging from a few minutes to a maximum of 72 hours.
+
 Known Issues
 ------------
 
@@ -75,7 +81,7 @@ Upgrading to Version 4.6
 
    .. code-block:: console
 
-      $ select backup_metadata('out_path');
+      select backup_metadata('out_path');
 	  
    .. tip:: SQreamDB recommends storing the generated back-up locally in case needed.
    
@@ -93,7 +99,7 @@ Upgrading to Version 4.6
 
    .. code-block:: console
 
-      $ ./upgrade_storage <levelDB path>
+      ./upgrade_storage <levelDB path>
 	
 7. Version 4.4 introduces a service permission feature that enables superusers to grant and revoke role access to services. However, when upgrading from version 4.2 or earlier to version 4.4 or later, this feature initializes access to services, causing existing roles to lose their access to services. 
 

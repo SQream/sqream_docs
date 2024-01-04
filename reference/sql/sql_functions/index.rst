@@ -13,7 +13,8 @@ Summary of Functions
    :local:
 
 Built-In Scalar Functions
--------------------
+--------------------------
+
 For more information about built-in scalar functions, see :ref:`scalar_functions`.
 
 Bitwise Operations
@@ -42,6 +43,7 @@ The following table shows the **bitwise operations** functions:
 
 Conditionals
 ^^^^^^^^^^^^^^
+
 The following table shows the **conditionals** functions:
 
 .. list-table:: 
@@ -67,6 +69,7 @@ The following table shows the **conditionals** functions:
 
 Conversion
 ^^^^^^^^^^^^
+
 The following table shows the **conversion** functions:
 
 .. list-table:: 
@@ -83,9 +86,12 @@ The following table shows the **conversion** functions:
      - Converts a ``DATE`` or ``DATETIME`` to a UNIX Timestamp
    * - :ref:`chr`
      - Returns the ASCII character representation of the supplied integer
+   * - :ref:`is_castable`
+     - Checks whether a cast operation is possible or supported for a given column and data type and provides an alternative when there is an exception
 
 Date and Time
 ^^^^^^^^^^^^^^^^
+
 The following table shows the **date and time** functions:
 
 .. list-table:: 
@@ -119,6 +125,7 @@ The following table shows the **date and time** functions:
 
 Numeric
 ^^^^^^^^^^^
+
 The following table shows the **arithmetic operators**:
 
 .. list-table:: Arithmetic Operators
@@ -209,6 +216,7 @@ The following table shows the **arithmetic operator** functions:
 
 Strings
 ^^^^^^^^^^^
+
 The following table shows the **string** functions:
 
 .. list-table:: 
@@ -273,12 +281,14 @@ The following table shows the **string** functions:
      - Returns an ``INT`` value representing the ASCII code of the leftmost character in a string
 
 User-Defined Scalar Functions
----------------------
+------------------------------
+
 For more information about user-defined scalar functions, see :ref:`scalar_sql_udf`.
 
 
 Aggregate Functions
 ---------------------
+
 The following table shows the **aggregate** functions:
 
 .. list-table:: 
@@ -329,6 +339,7 @@ For more information about aggregate functions, see :ref:`aggregate_functions`.
 
 Window Functions
 -------------------
+
 The following table shows the **window** functions:
 
 .. list-table:: 
@@ -368,6 +379,7 @@ For more information about window functions, see :ref:`window_functions`.
 
 Workload Management Functions
 ---------------------------------
+
 The following table shows the **workload management** functions:
 
 .. list-table:: 

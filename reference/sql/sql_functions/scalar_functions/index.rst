@@ -1,8 +1,9 @@
 .. _scalar_functions:
 
-****************
+***************************
 Built-In Scalar Functions
-****************
+***************************
+
 The **Built-In Scalar Functions** page describes functions that return one value per call:
 
 .. hlist::

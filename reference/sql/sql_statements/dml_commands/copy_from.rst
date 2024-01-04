@@ -60,6 +60,8 @@ Syntax
       | AWS_ID = '{ AWS ID }'
       
       | AWS_SECRET = '{ AWS Secret }'
+	  
+      | DELETE_SOURCE_ON_SUCCESS = { true | false }
 
   offset ::= positive integer
 
@@ -155,7 +157,7 @@ Elements
 
    * - ``CONTINUE_ON_ERROR``
      - ``false``
-     - true, false
+     - ``true`` | ``false``
      - 
          Specifies if errors should be ignored or skipped. When set to ``true``, the transaction will continue despite rejected data.
          
@@ -176,6 +178,10 @@ Elements
      - None
      - 
      - Specifies the authentication details for secured S3 buckets
+   * - ``DELETE_SOURCE_ON_SUCCESS``
+     - ``false``
+     - ``true`` | ``false``
+     - When set to ``true``, the target path's source file or folder is deleted after ``COPY FROM`` has successfully completed. This parameter cannot be executed concurrently with the ``ERROR_COUNT`` and ``LIMIT`` parameters.
 
 .. _copy_date_parsers:
 
