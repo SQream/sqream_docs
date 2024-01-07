@@ -30,8 +30,8 @@ SQream supports loading files from the following formats:
 * Text - CSV, TSV, and PSV
 * Parquet
 * ORC
-*Avro
-*JSON
+* Avro
+* JSON
 
 For more information, see the following:
 
