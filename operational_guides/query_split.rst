@@ -349,15 +349,6 @@ When date is stored as number, using the number of workers as the instances numb
 e.g. if date run from 20210101 to 20210630 splitting to 8 will result in 6 relevant splits, as SQream only checks min and max and splits accordingly (20210630-20210101)/8. we get an instance of empty data with dates ranging from 20210432 to 20210499 (not really dates, but real numbers).
 In this case, we need to adjust the number of instance to get the right size splits. In the above example we need to split to 64, and each worker will run 3 splits with actual data.
 	
-Include?
------------
-
-* Setting the column boundaries for the split - This is an optional query, but very useful, and can only be optional if you know in advance the boundaries.
-
-* The query that outputs the results from the table we created in the first query - This is an optional query, but most use cases will require have it and if we created the first query and used INSERT INTO in the splitting we have to use it.
-	
-* Limit and group by together, can significantly reduce runtime.
-	
 	
 	
 	
