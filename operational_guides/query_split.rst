@@ -1,8 +1,8 @@
 .. _query_split:
 
-****************************
+************
 Query Split
-****************************
+************
 
 The split query operation optimizes long-running queries by executing them in parallel on different GPUs, reducing overall runtime. This involves breaking down a complex query into parallel executions on small data subsets. To ensure an ordered result set aligned with the original complex query, two prerequisites are essential. First, create an empty table mirroring the original result set's structure. Second, define the ``@@SetResult`` operator to split the query using an ``INTEGER``, ``DATE``, or ``DATETIME`` column, as these types are compatible with the operator's ``min`` and ``max`` variables.   
 
@@ -47,9 +47,9 @@ Defining the ``@@setresult`` operator to split the original query using an ``INT
 	   -- Integer Range:
 	   1 AND 100 
 	   | -- Date Range:
-	   '2022-01-01' AND '2022-12-31' 
+	   'yyyy-mm-dd' AND 'yyyy-mm-dd' 
 	   | -- DateTime Range:
-	   '2022-01-01 01:24:00:000' AND '2022-12-31 08:51:24:000'] 
+	   'yyyy-mm-dd hh:mm:ss:SSS' AND 'yyyy-mm-dd hh:mm:ss:SSS']
 
 Defining the operator that determines the number of instances (splits) based on the data type of the column by which the query is split:
 	
@@ -80,7 +80,7 @@ Defining the operator that determines the number of instances (splits) based on 
 	  FROM 
 	    <my_table>
 	  WHERE 
-	    <column_to_split_by> BETWEEN ${from} and ${to}
+	    <column_to_split_by> BETWEEN '${from}' and '${to}'
 	)
 	
 * **DATETIME column:** use the ``@@SplitQueryByDateTime`` operator
@@ -348,18 +348,6 @@ Date as Number best practices
 When date is stored as number, using the number of workers as the instances number may not result in the expected way.
 e.g. if date run from 20210101 to 20210630 splitting to 8 will result in 6 relevant splits, as SQream only checks min and max and splits accordingly (20210630-20210101)/8. we get an instance of empty data with dates ranging from 20210432 to 20210499 (not really dates, but real numbers).
 In this case, we need to adjust the number of instance to get the right size splits. In the above example we need to split to 64, and each worker will run 3 splits with actual data.
-
-Using the ``SetResult``
--------------------------
-
-When the column you split by is used in a ``WHERE`` clause in the original query, add it with the ``WHERE`` clause when you set the ``SetResult`` operator.
-
-.. code-block::
-
-	@@ SetResult minMax
-	SELECT min(ship_dates) AS min, max(ship_dates) AS max FROM shipments
-	/*optional - WHERE ship_dates BETWEEN '1995-01-01' AND '1996-01-01'*/
-	;
 	
 Include?
 -----------
