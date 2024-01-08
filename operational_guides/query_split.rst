@@ -276,10 +276,15 @@ Splitting the Query
 	ORDER BY
 	  age
 	  );
-	  
-	-- SELECT * FROM FinalResult ;  
 	
-4. Create a query that gathers the results of all instances (splits) into the empty table you created in step 1.
+4. Gather the results of your query.
+
+.. code-block:: sql
+
+	SELECT * FROM FinalResult ;  
+
+If we were to split the query 
+Create a query that gathers the results of all instances (splits) into the empty table you created in step 1.
 
 .. code-block:: sql
 
@@ -319,8 +324,6 @@ General
 * If you are not using aggregations, it's best to split the query using a column that appears in the a ``WHERE`` or ``JOIN`` clause.
 
 * When using the ``JOIN`` key, it is usually better to use the key of the smaller table.
-
-* For simple queries involving just one table, splitting is unlikely to enhance performance.
 
 Choosing a Column to Split by
 ------------------------------
