@@ -303,15 +303,15 @@ Create a query that gathers the results of all instances (splits) into the empty
 	  age
 	  ;
 
-5. Arrange ALL five sequential scripts on one Editor tab.
+5. Arrange ALL sequential scripts on one Editor tab.
 
 6. Ensure that EACH script ends with a ``;``.
 
-7. Ensure that the **Execute** button is set to **All** so that all five queries are consecutively executed. 
+7. Ensure that the **Execute** button is set to **All** so that all queries are consecutively executed. 
 
 8. Select the **Execute** button.
 
-   All five scripts are executed, resulting in the splitting of the initial query and a table containing the final result set.
+   All scripts are executed, resulting in the splitting of the initial query and a table containing the final result set.
 
 Best Practices
 ================
