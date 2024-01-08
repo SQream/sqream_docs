@@ -4,7 +4,7 @@
 Query Split
 ************
 
-The split query operation optimizes long-running queries by executing them in parallel on different GPUs, reducing overall runtime. This involves breaking down a complex query into parallel executions on small data subsets. To ensure an ordered result set aligned with the original complex query, two prerequisites are essential. First, create an empty table mirroring the original result set's structure. Second, define the ``@@SetResult`` operator to split the query using an ``INTEGER``, ``DATE``, or ``DATETIME`` column, as these types are compatible with the operator's ``min`` and ``max`` variables.   
+The split query operation optimizes long-running queries by executing them in parallel on different GPUs and/or Workers, reducing overall runtime. This involves breaking down a complex query into parallel executions on small data subsets. To ensure an ordered result set aligned with the original complex query, two prerequisites are essential. First, create an empty table mirroring the original result set's structure. Second, define the ``@@SetResult`` operator to split the query using an ``INTEGER``, ``DATE``, or ``DATETIME`` column, as these types are compatible with the operator's ``min`` and ``max`` variables.   
 
 Splitting is exclusive to the UI, utilizing Meta-scripting, a unique UI feature. Keep in mind that not all queries benefit, as this method introduces overhead runtime. 
 
