@@ -17,9 +17,11 @@ Supported Data Formats
 =====================================
 SQream DB supports foreign tables over:
 
-* Text files (e.g. CSV, PSV, TSV)
-* ORC
+* Text - CSV, TSV, and PSV
 * Parquet
+* ORC
+* Avro
+* JSON
 
 Supported Data Staging
 ============================================
@@ -59,10 +61,12 @@ Based on the source file structure, we :ref:`create a foreign table<create_exter
       College varchar,
       Salary float
     )
-      USING FORMAT CSV -- Text file
-      WITH  PATH  's3://sqream-demo-data/nba_players.csv' 
-      RECORD DELIMITER '\r\n'; -- DOS delimited file
-
+      WRAPPER csv_fdw
+      OPTIONS
+        ( LOCATION = 's3://sqream-demo-data/nba_players.csv', 
+          DELIMITER = '\r\n' -- DOS delimited file
+        );
+		
 The file format in this case is CSV, and it is stored as an :ref:`s3` object (if the path is on :ref:`hdfs`, change the URI accordingly).
 
 We also took note that the record delimiter was a DOS newline (``\r\n``).
