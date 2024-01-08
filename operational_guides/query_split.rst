@@ -348,7 +348,6 @@ Aggregation functions, or special functions need to have adjustments in the quer
  * Variance functions
  * Standard deviation functions
 
-
 Date as Number best practices
 -------------------------------
 
