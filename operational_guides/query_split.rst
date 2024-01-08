@@ -88,18 +88,20 @@ Defining the operator that determines the number of instances (splits) based on 
 	  WHERE <column_to_split_by> BETWEEN '${from}' and '${to}'
 	)
 	
-Outputting the results of your small queries by running a query that gathers the results of all small queries into the initially created empty table.
+Gathering results:
 
 .. code-block:: sql
-
-	-- Basic execution for queries which do not use aggregations:
+	
+	-- Gathering results for queries without aggregations:
 	
 	SELECT * 
 	FROM 
 	  <final_result_table>
 	;
 	
-	-- Execution for queries which use aggregations:
+	-- Gathering results for queries with aggregations and/or AVERAGE statement:
+	
+	- AVERAGE:
 	
 	SELECT 
 	  <column1>, [,...],
