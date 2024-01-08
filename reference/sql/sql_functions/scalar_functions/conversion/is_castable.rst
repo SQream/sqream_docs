@@ -11,11 +11,10 @@ Syntax
 
 .. code-block:: sql
 
-	-- Checks if a cast is supported
+	-- Checking if a cast is supported for literal value:
 
 	SELECT 
 	   IsCastable(
-	   <column_name>,
 	    BOOL 
 	    | TINYINT
 	    | SMALLINT
@@ -23,15 +22,50 @@ Syntax
 	    | BIGINT
 	    | REAL
 	    | DOUBLE
+		| FLOAT
 	    | TEXT
 	    | NUMERIC
 	    | DATE
 	    | DATETIME
-	    ) 
+		| ARRAY
+		, BOOL 
+	      | TINYINT
+	      | SMALLINT
+	      | INT
+	      | BIGINT
+	      | REAL
+	      | DOUBLE
+		  | FLOAT
+	      | TEXT
+	      | NUMERIC
+	      | DATE
+	      | DATETIME
+		  | ARRAY
+		) 
+		
+	-- Checking if cast is supported for columns:
+		
+	SELECT
+	   IsCastable(
+	    <column_name>,
+		BOOL 
+	    | TINYINT
+	    | SMALLINT
+	    | INT
+	    | BIGINT
+	    | REAL
+	    | DOUBLE
+		| FLOAT
+	    | TEXT
+	    | NUMERIC
+	    | DATE
+	    | DATETIME
+		| ARRAY
+		)
 	FROM 
 	<table_name>;
 	
-	-- Returns query result set
+	-- Returns query result set 
 	
 	SELECT 
 	  <colum_mame>,
@@ -73,8 +107,8 @@ Return
 
 ``IsCastable`` returns:
 
-* ``true`` when the cast is supported
-* ``false`` if the cast is not supported
+* 1 when the cast is supported
+* 0 if the cast is not supported
 * Your query result set if used within a ``CASE`` statement
 
 Example
