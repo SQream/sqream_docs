@@ -23,14 +23,11 @@ Creating an empty table mirroring the original query result set's structure usin
 	AS 
 	(
 	  SELECT 
-	    <column_to_split_by> [,...]
-	  FROM 
-	    <my_table>
+	   -- Original query..
 	  WHERE
 	    <false_filter>
 	)
-	
-	-- A false_filter example: 1=2
+	   -- A false_filter example: 1=2
 	
 Defining the ``@@setresult`` operator to split the original query using an ``INTEGER``, ``DATE``, or ``DATETIME`` column with ``min`` and ``max`` variables. If the column you're splitting by is used in a ``WHERE`` clause in the original query, use a ``WHERE`` clause when setting the ``SetResult`` operator as well.
 
@@ -60,12 +57,10 @@ Defining the operator that determines the number of instances (splits) based on 
 	@@SplitQueryByNumber instances = <number of instances>, from = minMax[0].min, to = minMax[0].max
 	INSERT INTO <final_result_table>
 	(
-	  SELECT 
-	    <column_to_split_by> [,...]
-	  FROM
-	    <my_table>
-	  WHERE
-	  <column_to_split_by> BETWEEN ${from} and ${to}
+	  SELECT
+	   -- Original query..
+	  WHERE 
+	    <column_to_split_by> BETWEEN '${from}' and '${to}'
 	)
 	
 * **DATE column:** use the ``@@SplitQueryByDate`` operator
@@ -76,9 +71,7 @@ Defining the operator that determines the number of instances (splits) based on 
 	INSERT INTO <final_result_table>
 	(
 	  SELECT
-	    <column_to_split_by> [,...]
-	  FROM 
-	    <my_table>
+	   -- Original query..
 	  WHERE 
 	    <column_to_split_by> BETWEEN '${from}' and '${to}'
 	)
@@ -91,10 +84,8 @@ Defining the operator that determines the number of instances (splits) based on 
 	INSERT INTO <final_result_table>
 	(
 	  SELECT 
-	    <column_to_split_by> [,...]
-	  FROM 
-	    <my_table>
-	  WHERE <column_to_split_by> BETWEEN ${from} and ${to}
+	   -- Original query..
+	  WHERE <column_to_split_by> BETWEEN '${from}' and '${to}'
 	)
 	
 Outputting the results of your small queries by running a query that gathers the results of all small queries into the initially created empty table.
@@ -256,7 +247,7 @@ Splitting the Query
 .. code-block:: sql
 
 	@@ SetResult minMax
-	SELECT min(id) as min, max(id) as max 
+	SELECT min(age) as min, max(age) as max 
 	FROM mytable
 	;
 
@@ -278,13 +269,15 @@ Splitting the Query
 	FROM
 	  MyTable
 	WHERE
-	  id between ${from} and ${to}
+	  age between ${from} and ${to}
 	  AND salary > 55000
 	GROUP BY
 	  age
 	ORDER BY
 	  age
 	  );
+	  
+	-- SELECT * FROM FinalResult ;  
 	
 4. Create a query that gathers the results of all instances (splits) into the empty table you created in step 1.
 
