@@ -3,6 +3,7 @@
 ***********************
 Foreign Tables
 ***********************
+
 Foreign tables can be used to run queries directly on data without inserting it into SQream DB first.
 SQream DB supports read-only foreign tables so that you can query from foreign tables, but you cannot insert to them, or run deletes or updates on them.
 
@@ -12,9 +13,11 @@ Although foreign tables can be used without inserting data into SQream DB, one o
 
 .. contents:: In this topic:
    :local:
+   :depth: 1
    
 Supported Data Formats
 =====================================
+
 SQream DB supports foreign tables over:
 
 * Text - CSV, TSV, and PSV
@@ -25,6 +28,7 @@ SQream DB supports foreign tables over:
 
 Supported Data Staging
 ============================================
+
 SQream can stage data from:
 
 * a local filesystem (e.g. ``/mnt/storage/....``)
@@ -33,6 +37,7 @@ SQream can stage data from:
 
 Using Foreign Tables
 ==============================================
+
 Use a foreign table to stage data before loading from CSV, Parquet or ORC files.
 
 Planning for Data Staging
@@ -45,6 +50,7 @@ We will make note of the file structure, to create a matching ``CREATE_EXTERNAL_
 
 Creating a Foreign Table
 -----------------------------
+
 Based on the source file structure, we :ref:`create a foreign table<create_external_table>` with the appropriate structure, and point it to the file.
 
 .. code-block:: postgres
@@ -94,6 +100,7 @@ Let's peek at the data from the foreign table:
 
 Modifying Data from Staging
 -------------------------------
+
 One of the main reasons for staging data is to examine the content and modify it before loading.
 Assume we are unhappy with weight being in pounds because we want to use kilograms instead. We can apply the transformation as part of a query:
 
@@ -144,6 +151,7 @@ Converting a Foreign Table to a Standard Database Table
 
 Error Handling and Limitations
 ==================================
+
 * Error handling in foreign tables is limited. Any error that occurs during source data parsing will result in the statement aborting.
 
 * 
