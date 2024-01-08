@@ -229,13 +229,14 @@ Splitting the Query
 	
 .. code-block:: sql
 
-	CREATE OR TABLE FinalResult
+	CREATE OR REPLACE TABLE FinalResult
 	AS
 	(
 	  SELECT
 	  age,
 	  COUNT(*) AS total_people,
-	  AVG(salary) AS avg_salary,
+	  SUM(salary) AS avg_salary,
+	  COUNT(salary) AS avg_salary2,
 	  SUM(quantity) AS total_quantity,
 	  SUM(CASE WHEN quantity > 20 THEN 1 ELSE 0 END) AS high_quantity_count,
 	  SUM(CASE WHEN age BETWEEN 25 AND 30 THEN salary ELSE 0 END) AS total_salary_age_25_30
@@ -269,7 +270,8 @@ Splitting the Query
 	SELECT
 	  age,
 	  COUNT(*) AS total_people,
-	  AVG(salary) AS avg_salary,
+	  SUM(salary) AS avg_salary,
+	  COUNT(salary) AS avg_salary2,
 	  SUM(quantity) AS total_quantity,
 	  SUM(CASE WHEN quantity > 20 THEN 1 ELSE 0 END) AS high_quantity_count,
 	  SUM(CASE WHEN age BETWEEN 25 AND 30 THEN salary ELSE 0 END) AS total_salary_age_25_30
@@ -291,7 +293,7 @@ Splitting the Query
 	SELECT
 	  age,
 	  SUM(total_people) AS total_people,
-	  SUM(avg_salary) / SUM(avg_salary) AS avg_salary,
+	  SUM(avg_salary) / SUM(avg_salary2) AS avg_salary,
 	  SUM(total_quantity) AS total_quantity,
 	  SUM(high_quantity_count) AS high_quantity_count,
 	  SUM(total_salary_age_25_30) AS total_salary_age_25_30
@@ -319,7 +321,9 @@ Best Practices
 General
 --------
 
-* When incorporating the ``LIMIT`` clause or any aggregate function in your query, split the query based only on a ``GROUP BY`` column. If no relevant columns are present in the ``GROUP BY`` clause, the query might not be suitable for splitting. If you are not using aggregations, it's best to split the query using a column that appears in the a ``WHERE`` or ``JOIN`` clause.
+* When incorporating the ``LIMIT`` clause or any aggregate function in your query, split the query based only on a ``GROUP BY`` column. If no relevant columns are present in the ``GROUP BY`` clause, the query might not be suitable for splitting. 
+
+* If you are not using aggregations, it's best to split the query using a column that appears in the a ``WHERE`` or ``JOIN`` clause.
 
 * When using the ``JOIN`` key, it is usually better to use the key of the smaller table.
 
@@ -337,10 +341,13 @@ Aggregation functions, or special functions need to have adjustments in the quer
 
 * ``COUNT`` becomes ``SUM``
 
-* ``AVERAGE`` is split into two columns in the split query and then merged as ``AVERAGE`` in the output query
+* The following statement and functions are split into two columns in the query split and then merged to be executed as one statement or function in the final query:
 
+ * ``AVERAGE``
+ * User defined functions
+ * Variance functions
+ * Standard deviation functions
 
-Special functions should be split into different columns as well - **What special functions?**
 
 Date as Number best practices
 -------------------------------
