@@ -42,6 +42,8 @@ New Features and Enhancements
 
 ► Enable automatic termination of queries that exceed a pre-defined time limit in the queue. The introduction of the :ref:`queueTimeoutMinutes flag<current_method_configuration_levels>` flag empowers you to set time constraints for queries in the queue, ranging from a few minutes to a maximum of 72 hours.
 
+► You may now set your :ref:`Server Picker<server_picker_cli_reference>` more easily using non-positional arguments.
+
 Known Issues
 ------------
 
