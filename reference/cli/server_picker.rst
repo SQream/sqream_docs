@@ -14,7 +14,7 @@ Syntax
 
 .. code-block:: console
 
-   $ server_picker [ <Metadata server address> <Metadata server port> ] [ <TCP listen port> ] [ <SSL listen port> ] [ <server picker services> ] [ <refresh_interval> ] [ <logging configuration file> ]
+	server_picker [ <Metadata server address> <Metadata server port> ] [ <TCP listen port> ] [ <SSL listen port> ] [ <server picker services> ] [ <refresh_interval> ] [ <logging configuration file> ]
 
 Parameters
 ------------
@@ -26,34 +26,37 @@ Parameters
    * - Argument
      - Default
      - Description
-   * - ``Metadata server address``
-     - 
-     - IP or hostname to an active :ref:`metadata server<metadata_server_cli_reference>`
-   * - ``Metadata server port``
-     - 
-     - TCP port to an active  :ref:`metadata server<metadata_server_cli_reference>`
-   * - ``TCP listen port``
+   * - ``--metadata_server_port``
+     - ``3105``
+     - The metadata server listening port
+   * - ``--metadata_server_ip``
+     - ``127.0.0.1``
+     - The metadata server IP
+   * - ``--port``
      - ``3108``
-     - TCP port for server picker to listen on
-   * - ``SSL listen port``
+     - The server picker port
+   * - ``--ssl_port``
      - ``3109``
-     - SSL port for server picker to listen on
-   * - ``server picker services``
-     - All services, unless specified otherwise
-     - Defines which Worker will accept compilation jobs according to services. Accepts 1 or more services separated using a comma
-   * - ``refresh_interval``
-     - 15 seconds
-     - Examines worker availability based on the specified time interval
-   * - ``logging configuration file``
-     - ``log4`` logging to default log path(/tmp/logs)
-     - Controls the format and destination of log output
-
+     - The server picker ssl port
+   * - ``--log4_config``
+     - ``/home/sqream/sqream3/etc/server_picker_log_properties``
+     - The server picker log4 configuration file to use
+   * - ``--refresh_interval``
+     - ``15``
+     - Refresh interval time to check available nodes
+   * - ``--services``
+     - None
+     -  Lists services separated by comma
+   * - ``--help``
+     - None
+     - Used to display a help message or documentation for a particular program or command
+	 
 Example
 ---------
 
 .. code-block:: console
 
-   $ server_picker 127.0.0.1 3105 3118 3119 sqream23, sqream0 metadata_log_properties
+	server_picker 127.0.0.1 3105 3118 3119 sqream23, sqream0 metadata_log_properties
 
 Starting server picker
 ============================
@@ -67,8 +70,8 @@ Assuming we have a :ref:`metadata server<metadata_server_cli_reference>` listeni
 
 .. code-block:: console
 
-   $ nohup server_picker 127.0.0.1 3105 &
-   $ SP_PID=$!
+	nohup server_picker 127.0.0.1 3105 &
+	SP_PID=$!
 
 Using ``nohup`` and ``&`` sends server picker to run in the background.
 
@@ -79,8 +82,8 @@ Tell server picker to listen on port 2255 for unsecured connections, and port 22
 
 .. code-block:: console
 
-   $ nohup server_picker 127.0.0.1 3105 2255 2266 &
-   $ SP_PID=$!
+	nohup server_picker 127.0.0.1 3105 2255 2266 &
+	SP_PID=$!
 
 Using ``nohup`` and ``&`` sends server picker to run in the background.
 
@@ -89,6 +92,6 @@ Stopping server picker
 
 .. code-block:: console
 
-   $ kill -9 $SP_PID
+	kill -9 $SP_PID
 
 .. tip:: It is safe to stop any SQream DB component at any time using ``kill``. No partial data or data corruption should occur when using this method to stop the process.
