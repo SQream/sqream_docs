@@ -8,8 +8,6 @@ SQream DB's cluster manager/coordinator is called ``metadata_server``.
 
 In general, you should not need to run ``metadata_server`` manually, but it is sometimes useful for testing. 
 
-This page serves as a reference for the options and parameters.
-
 Command Line Arguments
 ==================================
 
