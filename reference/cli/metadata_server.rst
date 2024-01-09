@@ -10,7 +10,7 @@ In general, you should not need to run ``metadata_server`` manually, but it is s
 
 This page serves as a reference for the options and parameters.
 
-Positional Command Line Arguments
+Command Line Arguments
 ==================================
 
 .. list-table:: 
@@ -25,7 +25,7 @@ Positional Command Line Arguments
      - The configuration file to use
    * - ``--port``
      - ``3105``
-     - The metadata_server listening port	 
+     - The metadata server listening port	 
    * - ``--log_path``
      - ``./metadata_server_log``
      - The ``metadata_server`` log file output contains information about the activities and events related to the metadata server of a system.
