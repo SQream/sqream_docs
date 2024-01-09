@@ -6,15 +6,8 @@ Server Picker
 
 SQreamDB's load balancer is called ``server_picker``.
 
-Positional command line arguments
-===================================
-
-Syntax
--------
-
-.. code-block:: console
-
-	server_picker [ <Metadata server address> <Metadata server port> ] [ <TCP listen port> ] [ <SSL listen port> ] [ <server picker services> ] [ <refresh_interval> ] [ <logging configuration file> ]
+Command Line Arguments
+========================
 
 Parameters
 ------------
@@ -56,7 +49,7 @@ Example
 
 .. code-block:: console
 
-	server_picker 127.0.0.1 3105 3118 3119 sqream23, sqream0 metadata_log_properties
+	server_picker --metadata_ip=127.0.0.1 --metadata_server_port=3105 --port=3118 --ssl_port=3119 --services=sqream23,sqream0 --log4_config=/home/sqream/metadata_log_properties --refresh_interval=10
 
 Starting server picker
 ============================
@@ -70,7 +63,7 @@ Assuming we have a :ref:`metadata server<metadata_server_cli_reference>` listeni
 
 .. code-block:: console
 
-	nohup server_picker 127.0.0.1 3105 &
+	nohup server_picker --metadata_server_ip=127.0.0.1 metadata_server_port=3105 &
 	SP_PID=$!
 
 Using ``nohup`` and ``&`` sends server picker to run in the background.
@@ -82,7 +75,7 @@ Tell server picker to listen on port 2255 for unsecured connections, and port 22
 
 .. code-block:: console
 
-	nohup server_picker 127.0.0.1 3105 2255 2266 &
+	nohup server_picker --metadata_server_ip=127.0.0.1 --metadata_server_port=3105 --port=2255 --ssl_port=2266 &
 	SP_PID=$!
 
 Using ``nohup`` and ``&`` sends server picker to run in the background.
