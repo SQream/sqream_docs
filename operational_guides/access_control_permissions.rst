@@ -296,21 +296,32 @@ REVOKE
 	-- Revoke permissions at the function execution level:
 	REVOKE
 	{
-				
+	  All
+	  | EXECUTE
+	  | DDL
+	}
+	ON FUNCTION <function_name>
+	FROM <role>  [, ...]
+	
 	-- Revoke permissions at the column level:
 	REVOKE 
 	{
-	  { SELECT 
+	  SELECT 
 	  | DDL } [, ...] 
-	  | ALL [PERMISSIONS]}
+	  | ALL [PERMISSIONS]
 	ON 
 	{ 
-	  COLUMN <column_name> [,<column_name_2>] IN TABLE <table_name> [,<table_name2>] | COLUMN <column_name> [,<column_name_2>] IN FOREIGN TABLE <table_name> [,<table_name2>]
-	  | ALL COLUMNS IN TABLE <schema_name.table_name> [, ...] 
-	  | ALL COLUMNS IN FOREIGN TABLE <schema_name.foreign_table_name> [, ...] 
+	  COLUMN <column_name> [, ...] 
+	  | ALL COLUMNS 
 	}
+	IN
+	{
+	  TABLE <table_name> [, ...]
+	  | FOREIGN TABLE <foreign_table_name> [, ...]
+	  | VIEW <view_name> [, ...]
+	  | CATALOG <catalog_name> [, ...] }
 	FROM <role> [, ...]
-
+	
 	-- Revoke permissions at the service level:
 	REVOKE 
 	{
@@ -344,13 +355,15 @@ schema statement is run.
 .. code-block:: postgres
 
      ALTER DEFAULT PERMISSIONS FOR modifying_role
-     [IN schema_name, ...]
+     [IN schema_name [, ...]
      FOR { 
           SCHEMAS 
           | TABLES 
           | FOREIGN TABLES 
           | VIEWS 
           | COLUMNS 
+		  | CATALOGS
+		  | SERVICES
           | SAVED_QUERIES
          }
           { grant_clause 
