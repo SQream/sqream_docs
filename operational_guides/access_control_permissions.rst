@@ -31,11 +31,15 @@ The following table describe the required permissions for performing and executi
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``CREATE FUNCTION``  | Create and drop functions                                                                                               |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``ALL``              | All database permissions except for a SUPERUSER permission                                                              |
++----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Schema**                                                                                                                                     |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``USAGE``            | Grants access to schema objects                                                                                         |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``CREATE``           | Create tables in the schema                                                                                             |
++----------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``ALL``              | All schema permissions                                                                                                  |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Table**                                                                                                                                      |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
@@ -49,7 +53,7 @@ The following table describe the required permissions for performing and executi
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``DDL``              | Drop and alter on the table                                                                                             |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``ALL``              | All the table permissions                                                                                               |
+| ``ALL``              | All table permissions                                                                                                   |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Function**                                                                                                                                   |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
@@ -71,19 +75,27 @@ The following table describe the required permissions for performing and executi
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``DDL``              | Foreign table DDL operations                                                                                            |   
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``ALL``              | All foreign table permissions                                                                                           |
++----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Column**                                                                                                                                     |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``SELECT``           | Select from catalog                                                                                                     |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``DDL``              | Column DDL operations                                                                                                   |   
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``ALL``              | All column permissions                                                                                                  |
++----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Catalog**                                                                                                                                    |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``SELECT``           | Select from catalog                                                                                                     | 
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``ALL``              | All catalog permissions                                                                                                 |
++----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Services**                                                                                                                                   |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``USAGE``            | Using a specific service                                                                                                |
++----------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``ALL``              | All services permissions                                                                                                |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 
 Syntax
@@ -96,7 +108,7 @@ GRANT
 
 .. code-block:: postgres
 
-	-- Grant permissions at the instance/ storage cluster level:
+	-- Grant permissions to all databases:
 	GRANT 
 	{ 
 	  SUPERUSER
@@ -108,38 +120,35 @@ GRANT
 	-- Grant permissions at the database level:
 	GRANT
 	{
-	  { CREATE 
+	  CREATE 
 	  | CONNECT
 	  | DDL 
 	  | SUPERUSER 
 	  | CREATE FUNCTION } [, ...] 
 	  | ALL [PERMISSIONS]
-	}
 	ON DATABASE <database> [, ...]
 	TO <role> [, ...] 
 
 	-- Grant permissions at the schema level: 
 	GRANT 
 	{
-	  { CREATE 
+	  CREATE 
 	  | DDL 
 	  | USAGE 
 	  | SUPERUSER } [, ...] 
-	  | ALL [PERMISSIONS]
-	} 
+	  | ALL [PERMISSIONS] 
 	ON SCHEMA <schema> [, ...] 
 	TO <role> [, ...] 
 		   
 	-- Grant permissions at the object level: 
 	GRANT
 	{
-	  { SELECT 
+	  SELECT 
 	  | INSERT 
 	  | DELETE 
 	  | DDL 
 	  | UPDATE } [, ...] 
 	  | ALL [PERMISSIONS]
-	}
 	ON 
 	{ 
 	  TABLE <table_name> [, ...] 
@@ -151,28 +160,28 @@ GRANT
 	}
 	TO <role> [, ...]
 
+	-- Grant permissions at the catalog level: 
 	GRANT
 	{
-	  { SELECT 
+	  SELECT 
 	  | INSERT 
 	  | DELETE 
 	  | UPDATE } [, ...] 
 	  | ALL [PERMISSIONS]
-	}
 	ON 
 	{ 
-	  | CATALOG <catalog_name> [, ...]
+	  CATALOG <catalog_name> [, ...]
 	}
 	TO <role> [, ...]
 
-	-- Grant execute function permission: 
+	-- Grant function execution permission: 
 	GRANT 
 	{ 
 	  ALL 
 	  | EXECUTE 
 	  | DDL
 	} 
-	ON FUNCTION function_name 
+	ON FUNCTION <function_name> 
 	TO role; 
 	   
 	-- Grant permissions at the column level:
@@ -184,10 +193,14 @@ GRANT
 	}
 	ON 
 	{ 
-	  COLUMN <column_name> [,<column_name_2>] IN TABLE <table_name> [,<table_name2>] 
-	  | COLUMN <column_name> [,<column_name_2>] IN FOREIGN TABLE <table_name> [,<table_name2>]
-	  | ALL COLUMNS IN TABLE <schema_name.table_name> [, ...] 
-	  | ALL COLUMNS IN FOREIGN TABLE <foreign_table_name> [, ...] 
+	  COLUMN <column_name> [, ...] 
+	  | ALL COLUMNS }
+	IN 
+	{
+	  TABLE <table_name> [, ...] 
+	  | FOREIGN TABLE <foreign_table_name> [, ...] 
+	  | VIEW <view_name> [, ...] 
+	  | CATALOG <catalog_name> [, ...]
 	}
 	TO <role> [, ...]
 
@@ -213,7 +226,7 @@ REVOKE
 
 .. code-block:: postgres
 
-	-- Revoke permissions at the instance/ storage cluster level:
+	-- Revoke permissions from all databases:
 	REVOKE
 	{ 
 	  SUPERUSER
@@ -225,62 +238,64 @@ REVOKE
 	-- Revoke permissions at the database level:
 	REVOKE 
 	{
-	  { CREATE 
+	  CREATE 
 	  | CONNECT 
 	  | DDL 
 	  | SUPERUSER 
-	  | CREATE FUNCTION }[, ...] 
+	  | CREATE FUNCTION } [, ...] 
 	  | ALL [PERMISSIONS]
-	}
-	ON DATABASE <database> [, ...]
+	ON DATABASE <database_name> [, ...]
 	FROM <role> [, ...]
 
 	-- Revoke permissions at the schema level:
 	REVOKE 
 	{ 
-	  { CREATE 
+	  CREATE 
 	  | DDL 
 	  | USAGE 
 	  | SUPERUSER } [, ...] 
 	  | ALL [PERMISSIONS]
-	}
-	ON SCHEMA <schema> [, ...]
+	ON SCHEMA <schema_name> [, ...]
 	FROM <role> [, ...]
 				
 	-- Revoke permissions at the object level:
 	REVOKE 
 	{ 
-	  { SELECT 
+	  SELECT 
 	  | INSERT 
 	  | DELETE 
 	  | DDL 
 	  | UPDATE } [, ...] 
-	  | ALL 
-	}
+	  | ALL [PERMISSIONS]
 	ON 
 	{ 
-	  [ TABLE ] <table_name> [, ...] 
-	  | ALL TABLES IN SCHEMA <schema_name> [, ...] 
+	  TABLE <table_name> [, ...] 
+	  | ALL TABLES [, ...] 
 	  | VIEW <schema_name.view_name> [, ...] 
-	  | ALL VIEWS IN SCHEMA <schema_name> [, ...] 
+	  | ALL VIEWS [, ...]
 	  | FOREIGN TABLE <table_name> [, ...] 
-	  | ALL FOREIGN TABLES IN SCHEMA <schema_name> [, ...] 
+	  | ALL FOREIGN TABLES [, ...] 
+	IN SCHEMA <schema_name> [, ...]
 	}
 	FROM <role> [, ...]
 
+	-- Revoke permissions at the catalog level:
 	REVOKE 
 	{ 
-	  { SELECT 
+	  SELECT 
 	  | INSERT 
 	  | DELETE 
 	  | UPDATE } [, ...] 
-	  | ALL 
-	}
+	  | ALL [PERMISSIONS]
 	ON 
 	{ 
-	  | CATALOG <catalog_name> [, ...] 
+	  CATALOG <catalog_name> [, ...] 
 	}
 	FROM <role> [, ...]
+				
+	-- Revoke permissions at the function execution level:
+	REVOKE
+	{
 				
 	-- Revoke permissions at the column level:
 	REVOKE 
