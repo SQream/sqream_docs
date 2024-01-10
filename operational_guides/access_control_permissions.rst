@@ -6,7 +6,7 @@ Permissions
 
 SQreamDB’s primary permission object is a role. The role operates in a dual capacity as both a user and a group. As a user, a role may have permissions to execute operations like creating tables, querying data, and administering the database. The group attribute may be thought of as a membership. As a group, a role may extend its permissions to other roles defined as its group members. This becomes handy when privileged roles wish to extend their permissions and grant multiple permissions to multiple roles. The information about all system role permissions is stored in the metadata.
 
-There are two types of permissions: global and object-level. Global permissions belong to ``SUPERUSER`` roles, allowing unrestricted access to all system and database activities. Object-level permissions apply to non-``SUPERUSER`` roles and can be assigned to databases, schemas, tables, functions, views, foreign tables, columns, catalogs, and services.
+There are two types of permissions: global and object-level. Global permissions belong to ``SUPERUSER`` roles, allowing unrestricted access to all system and database activities. Object-level permissions apply to non-``SUPERUSER`` roles and can be assigned to databases, schemas, tables, functions, views, foreign tables, catalogs, and services.
 
 The following table describe the required permissions for performing and executing operations on various SQreamDB objects.
  
@@ -76,14 +76,6 @@ The following table describe the required permissions for performing and executi
 | ``DDL``              | Foreign table DDL operations                                                                                            |   
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``ALL``              | All foreign table permissions                                                                                           |
-+----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| **Column**                                                                                                                                     |
-+----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``SELECT``           | Select from catalog                                                                                                     |
-+----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``DDL``              | Column DDL operations                                                                                                   |   
-+----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``ALL``              | All column permissions                                                                                                  |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Catalog**                                                                                                                                    |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
@@ -183,26 +175,6 @@ GRANT
 	} 
 	ON FUNCTION <function_name> 
 	TO role; 
-	   
-	-- Grant permissions at the column level:
-	GRANT 
-	{
-	  { SELECT 
-	  | DDL } [, ...] 
-	  | ALL [PERMISSIONS]
-	}
-	ON 
-	{ 
-	  COLUMN <column_name> [, ...] 
-	  | ALL COLUMNS }
-	IN 
-	{
-	  TABLE <table_name> [, ...] 
-	  | FOREIGN TABLE <foreign_table_name> [, ...] 
-	  | VIEW <view_name> [, ...] 
-	  | CATALOG <catalog_name> [, ...]
-	}
-	TO <role> [, ...]
 
 	-- Grant permissions at the Service level:
 	GRANT 
@@ -303,25 +275,6 @@ REVOKE
 	ON FUNCTION <function_name>
 	FROM <role>  [, ...]
 	
-	-- Revoke permissions at the column level:
-	REVOKE 
-	{
-	  SELECT 
-	  | DDL } [, ...] 
-	  | ALL [PERMISSIONS]
-	ON 
-	{ 
-	  COLUMN <column_name> [, ...] 
-	  | ALL COLUMNS 
-	}
-	IN
-	{
-	  TABLE <table_name> [, ...]
-	  | FOREIGN TABLE <foreign_table_name> [, ...]
-	  | VIEW <view_name> [, ...]
-	  | CATALOG <catalog_name> [, ...] }
-	FROM <role> [, ...]
-	
 	-- Revoke permissions at the service level:
 	REVOKE 
 	{
@@ -361,9 +314,8 @@ schema statement is run.
           | TABLES 
           | FOREIGN TABLES 
           | VIEWS 
-          | COLUMNS 
-		  | CATALOGS
-		  | SERVICES
+	  | CATALOGS
+	  | SERVICES
           | SAVED_QUERIES
          }
           { grant_clause 
@@ -423,12 +375,6 @@ Grant execute function permission to a role:
 
 	GRANT EXECUTE ON FUNCTION function_name TO role_name;
 
-Grant column-level permissions to a role:
-
-.. code-block:: postgres
-
-	GRANT SELECT, DDL ON COLUMN column_name IN TABLE schema_name.table_name TO role_name;
-
 Grant usage permissions on a service to a role:
 
 .. code-block:: postgres
@@ -474,12 +420,6 @@ Revoke permissions on specific objects (table, view, foreign table, or catalog) 
 .. code-block:: postgres
 
 	REVOKE SELECT, INSERT, DELETE, DDL, UPDATE ON TABLE schema_name.table_name FROM role_name;
-
-Revoke column-level permissions from a role:
-
-.. code-block:: postgres
-
-	REVOKE SELECT, DDL FROM COLUMN column_name IN TABLE schema_name.table_name FROM role_name;
 
 Revoke usage permissions on a service from a role:
 
