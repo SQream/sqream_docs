@@ -99,7 +99,7 @@ Using the ``DESCRIBE SESSION QUERIES`` command generates the following output:
      - ``18``	 
    * - ``execution_time``
      - The execution time (milliseconds)
-     - Integer  
+     - Integer   
      - ``0``	 
    * - ``total_compute_time``
      - The total compute time during which the system actively engaged (milliseconds)
