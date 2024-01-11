@@ -47,9 +47,9 @@ Database Management Tables
    * - :ref:`Permissions<permissions>`
      - ``table_permissions``, ``database_permissions``, ``schema_permissions``, ``permission_types``, ``udf_permissions``, ``sqream_catalog.table_default_permissions``
    * - :ref:`Queries<queries>`
-     - ``saved_queries``
+     - ``savedqueries``
    * - :ref:`Roles<roles>`
-     - ``roles``, ``roles_memeberships``
+     - ``roles``, ``role_memberships``
    * - :ref:`Schemas<schemas>`
      - ``schemas``
    * - :ref:`Tables<tables>`
