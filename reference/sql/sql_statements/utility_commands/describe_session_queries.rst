@@ -87,43 +87,43 @@ Using the ``DESCRIBE SESSION QUERIES`` command generates the following output:
      - ``2024-01-09T10:37:04 ``	 
    * - ``duration``
      - Query duration time
-     - 
+     - Integer
      - ``64``	 
    * - ``time_in_queue``
      - Query time in queue (milliseconds)
-     - 
+     - Integer
      - ``0``	 
    * - ``compilation_time``
      - Query compilation time (milliseconds)
-     - 
+     - Integer
      - ``18``	 
    * - ``execution_time``
      - The execution time (milliseconds)
-     - 
+     - Integer 
      - ``0``	 
    * - ``total_compute_time``
      - The total compute time during which the system actively engaged (milliseconds)
-     - 
+     - Integer
      - ``0``	 
    * - ``rows_read``
      - The number of rows read by the query
-     - 
+     - Integer
      - ``1456``	 
    * - ``rows produced``
      - The number of rows returned by the query 
-     - 
+     - Integer
      - ``65``	 
    * - ``data produced``
      - The amount of data produced by the query (MegaBytes)
-     - 
+     - Integer
      - ``813``	 
    * - ``data_read_compressed``
      - 
-     - 
+     - Integer
      - ``0``	 
    * - ``data_read_uncompressed``
      - 
-     - 
+     - Integer
      - ``0``	 
    * - ``client_info``
      - Displays information about the client
@@ -131,7 +131,7 @@ Using the ``DESCRIBE SESSION QUERIES`` command generates the following output:
      - ``SQream JDBC v0.1.33`` 
    * - ``query_error``
      - The reason for query failure
-     - 
+     - Text
      - ``Error in compilation process: : Wrapped CalciteException Cause: org.apache.calcite.sql.validate.SqlValidatorException: Object 'master.public.talia' not found``	 
 
 Example

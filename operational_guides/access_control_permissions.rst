@@ -87,7 +87,7 @@ GRANT
    TO <role> [, ...] 
 
    -- Grant permissions at the schema level: 
-   GRANT {{ CREATE | DDL | USAGE | SUPERUSER } [, ...] | ALL [ 
+   GRANT {{ CREATE | USAGE | SUPERUSER } [, ...] | ALL [ 
    PERMISSIONS ]} 
    ON SCHEMA <schema> [, ...] 
    TO <role> [, ...] 
@@ -158,7 +158,7 @@ REVOKE
    FROM <role> [, ...]
 
    -- Revoke permissions at the schema level:
-   REVOKE { { CREATE | DDL | USAGE | SUPERUSER } [, ...] | ALL [PERMISSIONS]}
+   REVOKE { { CREATE | USAGE | SUPERUSER } [, ...] | ALL [PERMISSIONS]}
    ON SCHEMA <schema> [, ...]
    FROM <role> [, ...]
             
@@ -201,7 +201,7 @@ A default permissions rule looks for a schema being created, or a
 table (possibly by schema), and is table to grant any permission to
 that object to any role. This happens when the create table or create
 schema statement is run.
-
+ 
 
 .. code-block:: postgres
 

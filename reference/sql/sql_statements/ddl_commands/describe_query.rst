@@ -43,7 +43,7 @@ The following parameters can be used when switching databases with the **DESCRIB
 	 
 Output
 ======
-
+ 
 Using the ``DESCRIBE QUERY`` command generates the following output:
 
 .. list-table:: 
