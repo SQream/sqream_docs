@@ -125,7 +125,6 @@ GRANT
 	GRANT 
 	{
 	  CREATE 
-	  | DDL 
 	  | USAGE 
 	  | SUPERUSER } [, ...] 
 	  | ALL [PERMISSIONS] 
@@ -223,7 +222,6 @@ REVOKE
 	REVOKE 
 	{ 
 	  CREATE 
-	  | DDL 
 	  | USAGE 
 	  | SUPERUSER } [, ...] 
 	  | ALL [PERMISSIONS]
@@ -361,7 +359,7 @@ Grant various permissions on a schema to a role:
 
 .. code-block:: postgres
 
-	GRANT CREATE, DDL, USAGE, SUPERUSER ON SCHEMA schema_name TO role_name;
+	GRANT CREATE, USAGE, SUPERUSER ON SCHEMA schema_name TO role_name;
 	
 Grant permissions on specific objects (table, view, foreign table, or catalog) to a role:
 
@@ -413,7 +411,7 @@ Revoke permissions on a schema from a role:
 
 .. code-block:: postgres
 
-	REVOKE CREATE, DDL, USAGE, SUPERUSER ON SCHEMA schema_name FROM role_name;
+	REVOKE CREATE, USAGE, SUPERUSER ON SCHEMA schema_name FROM role_name;
 
 Revoke permissions on specific objects (table, view, foreign table, or catalog) from a role:
 
