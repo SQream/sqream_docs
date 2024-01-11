@@ -11,7 +11,7 @@ The ``DESCRIBE [RESOURCE] POOLS`` lists all of your pools.
 Syntax
 ======
 
-The following is the syntax for the ``DESCRIBE TABLES`` command:
+The following is the syntax for the ``DESCRIBE POOLS`` command:
 
 .. code-block:: sql
 
