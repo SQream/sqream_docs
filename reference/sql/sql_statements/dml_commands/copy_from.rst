@@ -181,7 +181,7 @@ Elements
    * - ``DELETE_SOURCE_ON_SUCCESS``
      - ``false``
      - ``true`` | ``false``
-     - When set to ``true``, the target path's source file or folder is deleted after ``COPY FROM`` has successfully completed. This parameter cannot be executed concurrently with the ``OFFSET``, ``ERROR_LOG``, ``REJECTED_DATA``, ``ERROR_COUNT`` and ``LIMIT`` parameters. This parameter is supported for AWS, HADOOP, and GCP. You may only use this parameter with files you have permission to delete. 
+     - When set to ``true``, the target path's source file or folder is deleted after ``COPY FROM`` has successfully completed. This parameter cannot be executed concurrently with the ``OFFSET``, ``ERROR_LOG``, ``REJECTED_DATA``, ``ERROR_COUNT`` and ``LIMIT`` parameters. This parameter is supported for AWS, HADOOP, and GCP. Setting the parameter to "true" will restrict users without delete permissions on their operating system from executing the "COPY FROM" command.
 
 .. _copy_date_parsers:
 
@@ -522,6 +522,19 @@ Use ``OFFSET`` to skip rows.
 .. code-block:: postgres
 
    COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.psv', delimiter = '|', offset = 2);      
+
+Loading Files Using ``DELETE_SOURCE_ON_SUCCESS``
+-------------------------------------------------
+
+.. code-block:: sql
+
+	-- Single file:
+
+	COPY t FROM WRAPPER json_fdw OPTIONS (location = '/tmp/wrappers/t.json', DELETE_SOURCE_ON_SUCCESS = true);
+
+	-- Multiple files:
+
+	COPY t FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/wrappers/group*.csv', DELETE_SOURCE_ON_SUCCESS = true);
 
 Loading Files Formatted for Windows (``\r\n``)
 ---------------------------------------------------
