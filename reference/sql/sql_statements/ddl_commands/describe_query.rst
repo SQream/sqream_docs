@@ -4,7 +4,6 @@
 DESCRIBE QUERY
 **************
 
-
 Displays information about query execution for monitoring and troubleshooting purposes.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
@@ -59,6 +58,10 @@ Using the ``DESCRIBE QUERY`` command generates the following output:
      - Displays the ID of the query.
      - Text
      - b6173e04-6e2a-4266-bef0-6fc9b8ffc097:3
+   * - ``rtc_time``
+     - Total Run-Time Container duration 
+     - 
+     - ``sqream-worker-0-6568c76b78-jlq9k``
    * - ``node_id``
      - Displays the ID of the node.
      - Integer
