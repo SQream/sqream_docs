@@ -15,8 +15,8 @@ The following is the syntax for the ``DESCRIBE VIEWS`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE VIEWS [ SCHEMA <schema_name> ] [ DATABASE <database_name>] [ LIKE '<pattern>' ]
-   DESC VIEWS [ SCHEMA <schema_name> ] [ DATABASE <database_name>] [ LIKE '<pattern>' ]
+   DESCRIBE VIEWS [ DATABASE  <database_name> ] [ SCHEMA <schema_name> ] [ LIKE '<pattern>' ]
+   DESC VIEWS [ DATABASE  <database_name> ] [ SCHEMA <schema_name> ] [ LIKE '<pattern>' ]
 
 Parameters
 ==========
@@ -87,8 +87,6 @@ The following is the syntax for the ``DESCRIBE VIEWS`` command:
 .. code-block:: postgres
 
 		DESCRIBE VIEWS;
-
-
 	 
 The following is an example of the ``DESCRIBE VIEWS`` command output:
 
@@ -104,9 +102,7 @@ The following is the syntax for the ``DESCRIBE VIEWS LIKE`` command:
 .. code-block:: postgres
 
 		DESCRIBE VIEWS LIKE 'only%';
-
-
-	 
+ 
 The following is an example of the ``DESCRIBE VIEWS LIKE`` command output:
 
 .. code-block:: postgres

@@ -17,8 +17,8 @@ The following is the syntax for the ``DESCRIBE TABLES EXTENDED`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE TABLES EXTENDED [SCHEMA <schema_name>] [DATABASE <database_name>] EXTERNAL | INTERNAL
-   DESC TABLES EXTENDED [SCHEMA <schema_name>] [DATABASE <database_name>] EXTERNAL | INTERNAL
+   DESCRIBE TABLES EXTENDED [ DATABASE  <database_name> ] [ SCHEMA <schema_name> ] EXTERNAL | INTERNAL
+   DESC TABLES EXTENDED [ DATABASE  <database_name> ] [ SCHEMA <schema_name> ] EXTERNAL | INTERNAL
 
 Parameters
 ==========
