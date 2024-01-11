@@ -22,34 +22,45 @@ Parameters
 ==========
 
 ``DESCRIBE LOCKS`` command has no input parameters.
-
+ 
     
 Output
 ======
 
-Using the **DESCRIBE CLUSTER STATUS** command generates the following output:
-
-+-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Column                | Type      | Comments                                                                                                                                                        |
-+=======================+===========+=================================================================================================================================================================+
-| statement_id          | Text      | Displays the statement ID that caused the lock.                                                                                                                 |
-+-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| username              | Text      | Displays the the user that executed the statement.                                                                                                              |
-+-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| server		        | Text      | Displays the the server name                                                                                                                                    |
-+-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| port  		        | Text      | Displays the the port number                                                                                                                                    |
-+-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| locked_object         | Text      | Displays the the full qualified name of the object being locked, separated with $ (e.g. table$t$public$nba2 for table nba2 in schema public, in database t).    |
-+-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| lockmode              | Text      | Displays the the locking mode (inclusive or exclusive).                                                                                                         |
-+-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| statement_start_time  | Datetime  | Displays the timestamp the statement started.                                                                                                                   |
-+-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+ 
-| lock_start_time       | Datetime  | Displays the timestamp the lock was obtained.                                                                                                                   |
-+-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| statement_string      | Text      | The SQL syntax that triggered this lock.                                                                                                                        |
-+-----------------------+-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Column
+     - Type
+     - Comments
+   * - ``statement_id``
+     - ``TEXT``
+     - Displays the statement ID that caused the lock 
+   * - ``username``
+     - ``TEXT``
+     - Displays the the user that executed the statement
+   * - ``server``
+     - ``TEXT``
+     - Displays the the server name 
+   * - ``port``
+     - ``TEXT``
+     - Displays the the port number  
+   * - ``locked_object``
+     - ``TEXT``
+     - Displays the the full qualified name of the object being locked, separated with ``$``, e.g. ``table$t$public$nba2`` for table nba2 in schema public, in database t
+   * - ``lockmode``
+     - ``TEXT``
+     - Displays the the locking mode (inclusive or exclusive) 
+   * - ``statement_start_time``
+     - ``DATETIME``
+     - Displays the timestamp the statement started 
+   * - ``lock_start_time``
+     - ``DATETIME``
+     - Displays the timestamp the lock was obtained
+   * - ``statement_string``
+     - ``TEXT``
+     - The SQL syntax that triggered this lock
 
 Permissions
 ===========
