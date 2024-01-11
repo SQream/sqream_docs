@@ -202,7 +202,7 @@ table (possibly by schema), and is table to grant any permission to
 that object to any role. This happens when the create table or create
 schema statement is run.
  
-
+ 
 .. code-block:: postgres
 
 
