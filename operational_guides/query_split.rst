@@ -253,7 +253,7 @@ Splitting the Query
 	FROM mytable
 	;
 
-3. Set the ``@@SplitQueryByNumber`` operator with the number of instances (splits) of your query (here based on an ``INTEGER`` column), and set the ``between ${from} and ${to}`` clause with the name of the column by which you wish to split your query (here the query is split by the ``id`` column.
+3. Set the ``@@SplitQueryByNumber`` operator with the number of instances (splits) of your query (here based on an ``INTEGER`` column), and set the ``between ${from} and ${to}`` clause with the name of the column by which you wish to split your query (here the query is split by the ``age`` column.
 
 .. code-block:: sql
 
