@@ -4,7 +4,7 @@
 DESCRIBE SESSIONS
 *****************
 
-The ``DESCRIBE SESSIONS`` command returns information about your current session.
+The ``DESCRIBE SESSIONS`` command returns information about a user's current session.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
