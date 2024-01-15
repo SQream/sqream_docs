@@ -4,9 +4,7 @@
 Modification Methods
 **************************
 
-.. contents:: 
-   :local:
-   :depth: 1
+.. _modifying_your_configuration_using_the_worker_configuration_file:
 
 Modifying Your Configuration Using the Worker Configuration File
 ----------------------------------------------------------------------------
@@ -30,6 +28,8 @@ The following is an example of a worker configuration file:
    }
 
 You can access the legacy configuration file from the ``legacyConfigFilePath`` parameter shown above. If all (or most) of your workers require the same flag settings, you can set the ``legacyConfigFilePath`` attribute to the same legacy file.
+
+.. _modifying_your_configuration_using_a_legacy_configuration_file:
 
 Modifying Your Configuration Using a Legacy Configuration File
 ------------------------------------------------------------------------------
