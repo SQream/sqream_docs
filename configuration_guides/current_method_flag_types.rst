@@ -4,7 +4,7 @@
 Workers
 *******
 
-Workers can be individually configured using a worker configuration file, which allows for persistent modifications to be made. Persistent modification refers to changes made to a system or component that are saved and retained even after the system is restarted or shut down, allowing the modifications to persist over time. 
+Workers can be individually configured using the :ref:`worker configuration file<modifying_your_configuration_using_the_worker_configuration_file>`, which allows for persistent modifications to be made. Persistent modification refers to changes made to a system or component that are saved and retained even after the system is restarted or shut down, allowing the modifications to persist over time. 
 
 It is worth noting that the worker configuration file is not subject to frequent changes on a daily basis, providing stability to the system's configuration.
 
