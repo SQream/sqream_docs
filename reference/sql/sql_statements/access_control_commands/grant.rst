@@ -26,9 +26,7 @@ The following is the syntax for the ``GRANT` statement:
       -- Grant permissions at the cluster level:
       GRANT 
          { SUPERUSER
-         | LOGIN 
-         | PASSWORD 'password' 
-         } 
+         | LOGIN          } 
          TO role_name [, ...] 
       
       -- Grant permissions at the database level:
@@ -136,10 +134,7 @@ The following table describes the supported permissions:
      - Description
    * - ``LOGIN``
      - Cluster
-     - Login permissions (with a password) allows a role to be a user and login to a database
-   * - ``PASSWORD``
-     - Cluster
-     - Sets the password for a user role
+     - Login permissions allows a role to be a user and login to a database
    * - ``CREATE FUNCTION``
      - Database
      - Allows a user to :ref:`create a Python UDF<create_function>`
@@ -190,14 +185,14 @@ This section includes the following examples:
 
 Creating a User Role with Log-in Permissions
 ----------------------------------------------
-The following example shows how to convert a role to a user by granting password and log-in permissions:
+The following example shows how to convert a role to a user by granting login permissions:
 
 .. code-block:: postgres
 
    CREATE ROLE new_role;
    GRANT LOGIN to new_role;
-   GRANT PASSWORD 'Tr0ub4dor&3' to new_role;
    GRANT CONNECT ON DATABASE master to new_role; -- Repeat for other desired databases
+
 
 Promoting a User to a Superuser
 -------------------------------------
@@ -217,7 +212,7 @@ The following example shows how to create a new role for a group of users:
 
 .. code-block:: postgres
    
-   -- Create new users (we will grant them passwords and logins later)
+   -- Create new users 
    CREATE ROLE dba_user1;
    CREATE ROLE dba_user2;
    CREATE ROLE dba_user3;
@@ -237,16 +232,6 @@ If ``WITH ADMIN OPTION`` is specified, the role with the **admin** option can gr
    -- permissions to other users.
    
    GRANT r_database_architect TO dba_user1 WITH ADMIN OPTION;
-
-Changing Password for User Role
---------------------------------------
-The following is an example of changing a password for a user role. This is done by granting the user a new password:
-
-.. code-block:: postgres
-
-   GRANT  PASSWORD  'new_password'  TO  rhendricks;  
-
-.. note:: Granting a new password overrides any previous password. Changing the password while the role has an active running statement does not affect that statement, but will affect subsequent statements.
 
 Permissions
 =============

@@ -4,7 +4,7 @@
 DESCRIBE ROLE PERMISSIONS
 *************************
 
-You may use the ``DESCRIBE ROLE PERMISSIONS`` command to list all roles defined in your system. Since BLUE roles refer to both users and their assigned privileges, you will receive a list of users along with the associated name, privileges, login, and password if exists.
+You may use the ``DESCRIBE ROLE PERMISSIONS`` command to list all roles defined in your system. Since BLUE roles refer to both users and their assigned privileges, you will receive a list of users along with the associated name, privileges, and login if exists.
 
 .. note:: 
 	

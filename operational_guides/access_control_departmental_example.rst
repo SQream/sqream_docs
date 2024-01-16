@@ -1,8 +1,8 @@
 .. _access_control_departmental_example:
 
-**************
+********************
 Departmental Example
-**************
+********************
 
 You work in a company with several departments.
 
@@ -118,13 +118,11 @@ After the group roles have been created, you can now create user roles for each 
    
    CREATE  ROLE  ecodd;
    GRANT  LOGIN  TO  ecodd;
-   GRANT  PASSWORD  'ecodds_secret_password'  TO ecodd;
    GRANT  CONNECT  ON  DATABASE  my_database  TO  ecodd;
    GRANT my_schema_database_designers TO ecodd;
 
    CREATE  ROLE  ebachmann;
    GRANT  LOGIN  TO  ebachmann;
-   GRANT  PASSWORD  'another_secret_password'  TO ebachmann;
    GRANT  CONNECT  ON  DATABASE  my_database  TO  ebachmann;
    GRANT my_database_designers TO ebachmann;
 
@@ -136,19 +134,16 @@ After the group roles have been created, you can now create user roles for each 
    
    CREATE  ROLE  jbarker;
    GRANT  LOGIN  TO  jbarker;
-   GRANT  PASSWORD  'action_jack'  TO jbarker;
    GRANT  CONNECT  ON  DATABASE  my_database  TO  jbarker;
    GRANT my_schema_readers TO jbarker;
    
    CREATE  ROLE  lbream;
    GRANT  LOGIN  TO  lbream;
-   GRANT  PASSWORD  'artichoke123'  TO lbream;
    GRANT  CONNECT  ON  DATABASE  my_database  TO  lbream;
    GRANT my_schema_readers TO lbream;
    
    CREATE  ROLE  pgregory;
    GRANT  LOGIN  TO  pgregory;
-   GRANT  PASSWORD  'c1ca6a'  TO pgregory;
    GRANT  CONNECT  ON  DATABASE  my_database  TO  pgregory;
    GRANT my_schema_readers TO pgregory;
 
@@ -156,21 +151,9 @@ After the group roles have been created, you can now create user roles for each 
 
    CREATE  ROLE  hoover;
    GRANT  LOGIN  TO  hoover;
-   GRANT  PASSWORD  'mintchip'  TO hoover;
    GRANT  CONNECT  ON  DATABASE  my_database  TO  hoover;
    GRANT my_schema_security_officers TO hoover;
 
-
-.. todo:
-   create some example users
-   show that they have the right permission
-   try out the with admin option. we can't really do a security officer because
-   only superusers can create users and logins. see what can be done
-   need 1-2 users in each group, for at least 2 schemas/departments
-   this example will be very big just to show what this setup can do ...
-   example: a security officer for a department which will only have
-     read only access to a schema can only get that with admin option
-     access granted to them
 
 After this setup:
 

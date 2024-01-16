@@ -26,7 +26,6 @@ Syntax
       REVOKE 
          { SUPERUSER
          | LOGIN 
-         | PASSWORD 'password' 
          } 
          FROM role_name [, ...] 
       

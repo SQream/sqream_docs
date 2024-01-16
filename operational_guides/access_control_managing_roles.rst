@@ -4,7 +4,7 @@
 Managing Roles
 **************
 
-Roles are used for both users and groups, and are global across all databases in the SQream cluster. For a ``ROLE`` to be used as a user, it requires a password and log-in and connect permissions to the relevant databases.
+Roles are used for both users and groups, and are global across all databases in the BLUE cluster. For a ``ROLE`` to be used as a user, it requires log-in and connect permissions to the relevant databases.
 
 The Managing Roles section describes the following role-related operations:
 
@@ -12,16 +12,15 @@ The Managing Roles section describes the following role-related operations:
 Creating New Roles (Users)
 --------------------------
 
-A user role logging in to the database requires ``LOGIN`` permissions and as a password.
+A user role logging in to the database requires ``LOGIN`` permissions.
 
 The following is the syntax for creating a new role:
 
 .. code-block:: postgres
                 
    CREATE ROLE <role_name> ;
-   GRANT LOGIN to <role_name> ;
-   GRANT PASSWORD <'new_password'> to <role_name> ;
-   GRANT CONNECT ON DATABASE <database_name> to <role_name> ;
+   GRANT LOGIN TO <role_name>;
+   GRANT CONNECT ON DATABASE <database_name> TO <role_name> ;
 
 The following is an example of creating a new role:
 
@@ -29,8 +28,7 @@ The following is an example of creating a new role:
 
    CREATE  ROLE  new_role_name  ;  
    GRANT  LOGIN  TO  new_role_name;  
-   GRANT  PASSWORD  'my_password' to new_role_name;  
-   GRANT  CONNECT  ON  DATABASE  master to new_role_name;
+   GRANT  CONNECT  ON  DATABASE  master TO new_role_name;
 
 A database role may have a number of permissions that define what tasks it can perform, which are  assigned using the :ref:`grant` command.
 
@@ -64,19 +62,6 @@ The following is an example of altering a user name:
 
    ALTER ROLE admin_role RENAME TO copy_role ;
 
-Changing a User Password
-------------------------
-
-You can change a user role's password by granting the user a new password.
-
-The following is an example of changing a user password:
-
-.. code-block:: postgres
-
-   GRANT  PASSWORD  <'new_password'>  TO  rhendricks;  
-
-.. note:: Granting a new password overrides any previous password. Changing the password while the role has an active running statement does not affect that statement, but will affect subsequent statements.
-
 Altering Public Role Permissions
 --------------------------------
 
@@ -88,9 +73,9 @@ The ``PUBLIC`` role has ``USAGE`` and ``CREATE`` permissions on ``PUBLIC`` schem
 Altering Role Membership (Groups)
 ---------------------------------
 
-Many database administrators find it useful to group user roles together. By grouping users, permissions can be granted to, or revoked from a group with one command. In SQream DB, this is done by creating a group role, granting permissions to it, and then assigning users to that group role.
+Many database administrators find it useful to group user roles together. By grouping users, permissions can be granted to, or revoked from a group with one command. In BLUE, this is done by creating a group role, granting permissions to it, and then assigning users to that group role.
 
-To use a role purely as a group, omit granting it ``LOGIN`` and ``PASSWORD`` permissions.
+To use a role purely as a group, omit granting it ``LOGIN`` permissions.
  
 The ``CONNECT`` permission can be given directly to user roles, and/or to the groups they are part of.
 

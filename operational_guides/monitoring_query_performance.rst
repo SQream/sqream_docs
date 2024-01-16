@@ -4,12 +4,9 @@
 Monitoring Query Performance
 ****************************
 
-When analyzing options for query tuning, the first step is to analyze the query plan and execution. 
-The query plan and execution details explain how SQream DB processes a query and where time is spent.
-This document details how to analyze query performance with execution plans.
-This guide focuses specifically on identifying bottlenecks and possible optimization techniques to improve query performance.
-Performance tuning options for each query are different. You should adapt the recommendations and tips for your own workloads.
-See also our :ref:`sql_best_practices` guide for more information about data loading considerations and other best practices.
+This document aims to provide guidance on analyzing query performance through the examination of execution plans. The emphasis is on pinpointing bottlenecks and exploring potential optimization techniques to enhance overall query performance. When delving into query tuning options, the initial step involves a comprehensive analysis of the query plan and execution. The query plan and execution details provide insights into how BLUE processes a query and where the majority of processing time is allocated. 
+
+It's crucial to recognize that performance tuning options vary for each query. Recommendations and tips should be tailored to suit the specifics of individual workloads. Additionally, referring to our :ref:`sql_best_practices` guide is advisable for a deeper understanding of considerations related to data loading and other best practices.
 
 
 Setting Up the System for Monitoring
