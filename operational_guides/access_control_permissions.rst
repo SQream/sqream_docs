@@ -13,8 +13,6 @@ The following table displays the access control permissions:
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``LOGIN``          | Use role to log into the system (the role also needs connect permission on the database it is connecting to)            |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``PASSWORD``       | The password used for logging into the system                                                                           |
-+--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``SUPERUSER``      | No permission restrictions on any DB-level operations                                                                   |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``CLUSTERADMIN``   | No permission restrictions on any interface-based operations                                                            |
@@ -75,9 +73,7 @@ GRANT
 
    { SUPERUSER
    | CLUSTERADMIN
-   | LOGIN 
-   | PASSWORD '<password>' 
-   } 
+   | LOGIN    } 
    TO <role> [, ...] 
 
    -- Grant permissions at the database level:
@@ -148,7 +144,6 @@ REVOKE
    { SUPERUSER
    | CLUSTERADMIN
    | LOGIN
-   | PASSWORD
    }
    FROM <role> [, ...]
             

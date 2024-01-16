@@ -1,7 +1,7 @@
 .. _get_statement_permissions:
 
 ****************************
-GET_STATEMENT_PERMISSIONS
+GET STATEMENT PERMISSIONS
 ****************************
 
 ``GET_STATEMENT_PERMISSIONS`` analyzes an SQL statement and returns a list of permissions required to execute it.
@@ -69,10 +69,7 @@ The following table describes the supported permissions:
      - Description
    * - ``LOGIN``
      - Cluster
-     - Login permissions (with a password) allows a role to be a user and login to a database
-   * - ``PASSWORD``
-     - Cluster
-     - Sets the password for a user role
+     - Login permissions allows a role to be a user and login to a database
    * - ``CREATE FUNCTION``
      - Database
      - Allows a user to :ref:`create a Python UDF<create_function>`
@@ -117,9 +114,10 @@ Examples
 Getting permission details for a simple statement
 ----------------------------------------------------
 
-.. code-block:: psql
+.. code-block:: sql
    
-   t=> SELECT GET_STATEMENT_PERMISSIONS('SELECT * from nba');
+   SELECT GET_STATEMENT_PERMISSIONS('SELECT * from nba');
+
    permission_type | object_type | object_name
    ----------------+-------------+-------------------
    SELECT          | table       | master.public.nba
@@ -130,9 +128,10 @@ Getting permission details for a DDL statement
 
 .. tip:: Use dollar quoting (``$$``) to avoid escaping a statement
 
-.. code-block:: psql
+.. code-block:: sql
    
-   t=> SELECT GET_STATEMENT_PERMISSIONS($$ALTER TABLE nba RENAME COLUMN "Weight" TO "Mass"$$);
+   SELECT GET_STATEMENT_PERMISSIONS($$ALTER TABLE nba RENAME COLUMN "Weight" TO "Mass"$$);
+   
    permission_type | object_type | object_name
    ----------------+-------------+-------------------
    DDL             | table       | master.public.nba

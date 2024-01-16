@@ -12,7 +12,7 @@ Access control refers to the following basic concepts:
 
 * **Role** - A role can be a user, a group, or both. Roles can own database objects (such as tables) and can assign permissions on those objects to other roles. Roles can be members of other roles, meaning a user role can inherit permissions from its parent role.
    
-* **Authentication** - Verifies the identity of the role. User roles have usernames (or **role names**) and passwords.
+* **Authentication** - Verifies the identity of the role. User roles have usernames (or **role names**) and are granted ``LOGIN`` permission.
  
 * **Authorization** - Checks that a role has permissions to perform a particular operation, such as the :ref:`grant` command.
 
@@ -22,8 +22,6 @@ Access control refers to the following basic concepts:
 
 More Under Access Control
 -------------------------
-
-:ref:`access_control_password_policy`
 
 :ref:`access_control_managing_roles`
 

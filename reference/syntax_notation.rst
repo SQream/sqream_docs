@@ -35,10 +35,10 @@ Syntax Notation
       - ``GRANT LOGIN TO <role1> [, ...]``
     * - ``|``
       - The vertical bar is used to indicate a choice or alternative between different options. It signifies that only one option should be selected from the given set of possibilities.
-      - ``GRANT { SUPERUSER | LOGIN | PASSWORD '<password>' } TO <role>``
+      - ``GRANT { SUPERUSER | LOGIN } TO <role>``
     * - ``{}``
       - The curly brackets are used to group options or parameters together. They indicate that the elements inside the brackets are choices, and you can select only one of them
-      - ``GRANT { SUPERUSER | LOGIN | PASSWORD '<password>' } TO <role>``
+      - ``GRANT { SUPERUSER | LOGIN } TO <role>``
 	    
 	  
 

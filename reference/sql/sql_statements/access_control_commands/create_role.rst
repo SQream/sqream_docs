@@ -6,7 +6,7 @@ CREATE ROLE
 
 ``CREATE ROLE`` creates roles which can be assigned permissions.
 
-A ``ROLE`` can be used as a ``USER`` if it has been granted a password and login permissions.
+A ``ROLE`` can be used as a ``USER`` if it has been granted login permissions.
 
 Learn more about the permission system in the :ref:`access control guide<access_control>`.
 
@@ -42,7 +42,7 @@ Parameters
 Notes
 ==========
 
-SQream recommend that role names should follow these rules:
+BLUE recommend that role names should follow these rules:
 
 * Are case-insensitive
 
@@ -58,7 +58,7 @@ SQream recommend that role names should follow these rules:
 
 * Roles must be unique across the cluster.
 
-* Roles cannot log in by default. They do not have a password or login permissions until granted.
+* Roles cannot log in by default. They do not have login permissions until granted.
 
 Examples
 ===========
@@ -74,13 +74,13 @@ Creating a role with no permissions
 Creating a user role
 -------------------------
 
-A user role has permissions to login, and has a password.
+A user role has permissions to login.
 
 .. code-block:: postgres
 
    CREATE ROLE new_role;
    GRANT LOGIN to new_role;
-   GRANT PASSWORD 'passw0rd' to new_role;
    GRANT CONNECT ON DATABASE master to new_role; -- Repeat for all desired databases
-   GRANT USAGE ON SERVICE sqream TO new_role;
    GRANT ALL ON SCHEMA public; -- It is advisable to grant permissions on at least one schema
+
+
