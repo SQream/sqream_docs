@@ -59,7 +59,7 @@ The following Spark connection properties are supported by SQream:
      - 0
      - The maximum time in seconds for a JDBC query to execute before timing out.
    * - ``fetchsize``
-     - 1
+     - 0
      - The number of rows to fetch in a single JDBC fetch operation.
    * - ``batchsize``
      - 1000000
