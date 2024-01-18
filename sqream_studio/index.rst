@@ -11,7 +11,6 @@ The SQreamDB Acceleration Studio 5.8.0 is a web-based client for use with SQream
    :glob:
 
    getting_started
-   monitoring_workers_and_services_from_the_dashboard
    executing_statements_and_running_queries_from_the_editor
    viewing_logs
    creating_assigning_and_managing_roles_and_permissions
