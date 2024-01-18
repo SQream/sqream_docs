@@ -14,13 +14,11 @@ The role must have the ``DDL`` permission at the database level.
 Syntax
 ==========
 
-.. code-block:: postgres
+.. code-block:: sql
 
-   drop_database_statement ::=
-       DROP DATABASE database_name
-       ;
+	DROP DATABASE database_name
 
-   database_name ::= identifier
+	database_name ::= identifier
 
 
 
@@ -39,25 +37,8 @@ Parameters
 Examples
 ===========
 
-Dropping a database and all of its objects
----------------------------------------------
+Dropping a database and all of its objects:
 
-.. code-block:: psql
+.. code-block:: sql
 
-   master=> DROP DATABASE raviga;
-   executed
-
-
-Dropping the current database
---------------------------------
-
-The current database in use can't be dropped. Switch to another database first.
-
-.. code-block:: psql
-
-   raviga=> DROP DATABASE raviga;
-   Current open database 'raviga' cannot be dropped.
-   
-   raviga=> \c master
-   master=> DROP DATABASE raviga;
-   executed
+	DROP DATABASE raviga;

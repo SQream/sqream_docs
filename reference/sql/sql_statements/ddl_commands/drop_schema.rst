@@ -20,13 +20,11 @@ The role must have the ``DDL`` permission at the database level.
 Syntax
 ==========
 
-.. code-block:: postgres
+.. code-block:: sql
 
-   drop_schema_statement ::=
-       DROP SCHEMA schema_name
-       ;
+	DROP SCHEMA <schema_name>
 
-   schema_name ::= identifier  
+	schema_name ::= identifier  
 
 
 Parameters
@@ -44,34 +42,30 @@ Parameters
 Examples
 ===========
 
-Dropping a schema
----------------------------------------------
+Dropping a schema:
 
-.. code-block:: postgres
+.. code-block:: sql
 
-   DROP SCHEMA test;
+	DROP SCHEMA sales;
 
-Dropping a schema if it's not empty
-----------------------------------------------
+Dropping a schema if it's not empty:
 
-If a schema contains several tables, SQream DB will alert you that these tables need to be dropped first.
+If a schema contains several tables, BLUE will alert you that these tables need to be dropped first. This prevents accidental dropping of full schemas.
 
-This prevents accidental dropping of full schemas.
-
-.. code-block:: psql
+.. code-block:: sql
    
-   t=> DROP SCHEMA test;
-   Schema 'test' contains the following objects:
-   Tables - 'test.foo' , 'test.bar'
-   Please drop its content and then try again.
+	DROP SCHEMA sales;
+	Schema 'sales' contains the following objects:
+	Tables - 'sales.foo' , 'sales.bar'
+	Please drop its content and then try again.
    
 To drop the schema, drop the schema's tables first, and then drop the schema:
 
-.. code-block:: psql
+.. code-block:: sql
    
-   t=> DROP TABLE test.foo;
-   executed
-   t=> DROP TABLE test.bar;
-   executed
-   t=> DROP SCHEMA test;
-   executed
+	DROP TABLE sales.foo;
+
+	DROP TABLE sales.bar;
+
+	DROP SCHEMA sales;
+

@@ -19,13 +19,11 @@ The role must have the ``DDL`` permission at the database or table level.
 Syntax
 ==========
 
-.. code-block:: postgres
+.. code-block:: sql
 
-   alter_table_rename_table_statement ::=
-       ALTER TABLE [schema_name.]table_name DROP CLUSTERING KEY
-       ;
+	ALTER TABLE [schema_name.]table_name DROP CLUSTERING KEY
 
-   table_name ::= identifier
+	table_name ::= identifier
 
 Parameters
 ============
@@ -54,10 +52,7 @@ To force data to re-cluster, the table has to be recreated (i.e. with :ref:`crea
 Examples
 ===========
 
-Dropping clustering keys in a table
------------------------------------------
-
-.. code-block:: postgres
+.. code-block:: sql
 
    ALTER TABLE public.users DROP CLUSTERING KEY
 

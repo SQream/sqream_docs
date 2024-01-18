@@ -1,7 +1,7 @@
-.. _tableau:
+.. _dbeaver:
 
 *******
-Tableau
+DBeaver
 *******
 
 SQream's Tableau connector, based on standard JDBC, enables storing and fast querying large volumes of data. This connector is useful for users who want to integrate and analyze data from various sources within the Tableau platform. With the Tableau connector, users can easily connect to databases and cloud applications and perform high-speed queries on large datasets. Additionally, the connector allows for seamless integration with Tableau, enabling users to visualize their data.

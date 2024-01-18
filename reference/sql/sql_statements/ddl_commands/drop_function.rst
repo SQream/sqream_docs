@@ -16,11 +16,9 @@ Syntax
 
 .. code-block:: postgres
 
-   drop_function_statement ::=
-       DROP FUNCTION [ IF EXISTS ] function_name();
-       ;
+	DROP FUNCTION [ IF EXISTS ] function_name()
 
-   function_name ::= identifier
+	function_name ::= identifier
    
 
 
@@ -41,26 +39,10 @@ Parameters
 Examples
 ===========
 
-Dropping a function
----------------------------------------------
+Dropping a function:
 
-.. code-block:: postgres
+.. code-block:: sql
 
    DROP FUNCTION my_distance();
 
-
-Dropping a function (always succeeds)
--------------------------------------
-
-.. code-block:: psql
-
-   farm=> DROP FUNCTION my_distance();
-   executed
-   
-   farm=> DROP FUNCTION my_distance();
-   Function 'my_distance' not found
-   
-   -- This will succeed, even though the function does not exist
-   farm=> DROP FUNCTION IF EXISTS my_distance();
-   executed
    

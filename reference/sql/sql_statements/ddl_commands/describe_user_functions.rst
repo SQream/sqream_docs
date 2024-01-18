@@ -83,7 +83,7 @@ Examples
 	master       |1          |least_sq     |select case          when a <= b then a          when b < a then b          when a is null then b          when b is null then a          else null        end;  |
 	master       |2          |add_months   |select dateadd(month,n,dt);                                                                                                                                      |
 
-.. code-block:: none	
+.. code-block:: sql	
 		
 		DESCRIBE USER FUNCTIONS DATABASE master like '%date%';
 	   
