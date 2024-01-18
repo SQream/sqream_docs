@@ -118,11 +118,11 @@ Using the ``DESCRIBE SESSION QUERIES`` command generates the following output:
      - Integer
      - ``813``	 
    * - ``data_read_compressed``
-     - 
+     - The amount of compresses read data
      - Integer
      - ``0``	 
    * - ``data_read_uncompressed``
-     - 
+     - The amount of uncompressed read data
      - Integer
      - ``0``	 
    * - ``client_info``
