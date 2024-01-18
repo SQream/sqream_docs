@@ -1,43 +1,38 @@
 .. _spark:
 
-*************************
-Using Spark With SQream
-*************************
-
+*****
+Spark
+*****
 
 The Spark connector enables reading and writing data to and from SQreamDB and may be used for large-scale data processing.
-
 
 .. contents::
    :local:
    :depth: 1
 
-Installation and Configuration
-------------------------------
-
 Before You Begin
-~~~~~~~~~~~~~~~~
+=================
 
-To use Spark with SQream, it is essential that you have the following installed:
+To use Spark with SQreamDB, it is essential that you have the following installed:
 
-* SQream version 2022.1.8 or later
+* SQreamDB version 2022.1.8 or later
 * Spark version 3.3.1 or later
-* `SQream Spark Connector 5.0.0 <https://sq-ftp-public.s3.amazonaws.com/Spark-Sqream-Connector-5.0.0.jar>`_ 
+* `SQreamDB Spark Connector 5.0.0 <https://sq-ftp-public.s3.amazonaws.com/Spark-Sqream-Connector-5.0.0.jar>`_ 
 * :ref:`JDBC<jdbc>` version 4.5.6 or later
 
-Connector Configuration
-~~~~~~~~~~~~~~~~~~~~~~~
+Configuration
+=============
 
-The Spark JDBC connection properties allow users to configure connections between Spark and databases. These properties enable database access, query execution, and result retrieval, as well as authentication, encryption, and connection pooling.
+The Spark JDBC connection properties empower you to customize your Spark connection. These properties facilitate various aspects, including database access, query execution, and result retrieval. Additionally, they provide options for authentication, encryption, and connection pooling.
 
-The following Spark connection properties are supported by SQream: 
+The following Spark connection properties are supported by SQreamDB: 
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
    
-   * - Item
+   * - Parameter
      - Default
      - Description
    * - ``url``
@@ -101,77 +96,75 @@ The following Spark connection properties are supported by SQream:
      - ``false``
      - A shorthand for specifying connection properties in the JDBC data source.
 	 	
+Connecting Spark to SQreamDB
+----------------------------
 
-
-Connecting Spark to SQream
---------------------------
-
-The SQream-Spark Connector enables inserting DataFrames into SQream tables and exporting tables or queries as DataFrames for use with Spark. DataFrames are Spark objects used for transferring data from one data source to another.
+DataFrames, as Spark objects, play a crucial role in transferring data between different sources. The SQreamDB-Spark Connector facilitates the seamless integration of DataFrames, allowing the insertion of DataFrames into SQreamDB tables. Furthermore, it enables the export of tables or queries as DataFrames, providing compatibility with Spark for versatile data processing.
 
 1. To open the Spark Shell, run the following command under the ``Spark/bin`` directory:
 
-.. code-block:: postgres
+.. code-block:: console
 
-		./spark-shell --driver-class-path {driver path}  --jars {Spark-Sqream-Connector.jar path}
+	./spark-shell --driver-class-path {driver path}  --jars {Spark-Sqream-Connector.jar path}
+		
+		
+	//Example:
 
+	./spark-shell --driver-class-path /home/sqream/sqream-jdbc-4.5.6.jar  --jars Spark-Sqream-Connector-1.0.jar
 
-Example:
+2. To create a SQreamDB session, run the following commands in the Spark Shell:
 
-.. code-block:: postgres
-
-		./spark-shell --driver-class-path /home/sqream/sqream-jdbc-4.5.6.jar  --jars Spark-Sqream-Connector-1.0.jar
-
-2. To create a SQream session, run the following commands in the Spark Shell:
-
-.. code-block:: postgres
+.. code-block:: console
 	
 	import scala.collection.JavaConverters.mapAsJavaMapConverter
 	val config = Map("spark.master"->"local").asJava
 	import com.sqream.driver.SqreamSession;
 	val sqreamSession=SqreamSession.getSession(config)
 	
-
-Transferring Data From SQream to Spark
---------------------------------------
+Transferring Data
+===================
+  
+Transferring Data From SQreamDB to Spark
+------------------------------------------
 
 1. Create a mapping of Spark options:
 
-.. code-block:: postgres
+.. code-block:: console
 
 	val options = Map("query"->"select * from <table_name>", "url"->"jdbc:<jdbc_path>/master;user=<username>;password=<password>;cluster=false").asJava
 
 2. Create a Spark DataFrame:
 
-.. code-block:: postgres
+.. code-block:: console
 
 	val df=sqreamSession.read(options)
 
-Transferring Data From Spark to SQream
---------------------------------------
+Transferring Data From Spark to SQreamDB
+------------------------------------------
 
 1. Create a mapping of Spark options, using the ``dbtable`` Spark option (``query`` is not allowed for writing): 
 
-.. code-block:: postgres
+.. code-block:: console
 
 	val options = Map("dbtable"-> <table_name>", "url"->"jdbc:<jdbc_path>/master;user=<username>;password=<password>;cluster=false").asJava
 
 2. Create a Spark DataFrame:
 
-.. code-block:: postgres
+.. code-block:: console
 
 	import org.apache.spark.sql.SaveMode
 	val df=sqreamSession.write(df, options, SaveMode.Overwrite)
 
-Supported Data Types and Mapping
---------------------------------
+Data Types and Mapping
+========================
 
-SQream data types mapped to Spark 
+SQreamDB data types mapped to Spark 
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
-   * - SQream
+   * - SQreamDB
      - Spark
    * - ``BIGINT``
      - ``LONGINT``
@@ -194,14 +187,14 @@ SQream data types mapped to Spark
    * - ``DATETIME``
      - ``TimestampType``
 	 
-Spark data types mapped to SQream 
+Spark data types mapped to SQreamDB 
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
    * - Spark
-     - SQream
+     - SQreamDB
    * - ``BooleanType``
      - ``BOOL``
    * - ``ByteType``
@@ -227,11 +220,11 @@ Spark data types mapped to SQream
 	 
 
 Example
--------
+========
 	  
 JAVA
-
-.. code-block:: postgres
+ 
+.. code-block:: java
 
 	import com.sqream.driver.SqreamSession;
 	import org.apache.spark.sql.Dataset;
@@ -245,24 +238,37 @@ JAVA
 			HashMap<String, String> config = new HashMap<>();
 			//spark configuration
 			//optional configuration here: https://spark.apache.org/docs/latest/configuration.html
-			config.put("spark.master", "local");
+			config.put("spark.master", "spark://localhost:7077");
+			config.put("spark.dynamicAllocation.enabled", "false");
+
+			config.put("spark.driver.port", "7077");
+			config.put("spark.driver.host", "192.168.0.157");
+			config.put("spark.driver.bindAddress", "192.168.0.157");
+
 			SqreamSession sqreamSession = SqreamSession.getSession(config);
 
 			//spark properties
 			//optional properties here: https://spark.apache.org/docs/latest/sql-data-sources-jdbc.html
 			HashMap<String, String> props = new HashMap<>();
 
-			props.put("url", "jdbc:Sqream://192.168.4.51:5000/master;user=sqream;password=sqream;cluster=false;logfile=logsFiles.txt;loggerlevel=DEBUG");
-			props.put("dbtable", "test");
+			props.put("url", "jdbc:Sqream://192.168.0.157:3108/master;user=sqream;password=1234;cluster=true;");
+
+			//spark partition//
+			props.put("dbtable", "public.test_table");
+			props.put("partitionColumn","sr_date_sk");
+			props.put("numPartitions","2");
+			props.put("lowerBound","2450820");
+			props.put("upperBound","2452822");
+
 
 			/*Read from sqream table*/
 			Dataset<Row> dataFrame = sqreamSession.read(props);
+			dataFrame.show();/*By default, show() displays only the first 20 rows of the DataFrame. 
+			This can be insufficient when working with large datasets. You can customize the number of rows displayed by passing an argument to show(n).*//
 
-			/*Added to sqream table*/
-			sqreamSession.write(dataFrame, props);
-			sqreamSession.write(dataFrame, props, SaveMode.Overwrite);
-			
+
+			/*Add to sqream table*/
+			sqreamSession.write(dataFrame, props, SaveMode.Append);
 
 		}
 	}
-	  
