@@ -223,7 +223,7 @@ Example
 ========
 	  
 JAVA
-
+ 
 .. code-block:: java
 
 	import com.sqream.driver.SqreamSession;
