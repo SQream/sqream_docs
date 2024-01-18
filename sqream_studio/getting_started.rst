@@ -39,8 +39,6 @@ From here you can navigate between the main areas of the Studio:
    
    * - Element
      - Description
-   * - :ref:`Dashboard<monitoring_workers_and_services_from_the_dashboard>`
-     - Lets you monitor system health and manage queues and workers.
    * - :ref:`Editor<executing_statements_and_running_queries_from_the_editor>`
      - Lets you select databases, perform statement operations, and write and execute queries.   
    * - :ref:`Logs<viewing_logs>`
