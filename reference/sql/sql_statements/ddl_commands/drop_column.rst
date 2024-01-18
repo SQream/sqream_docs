@@ -14,17 +14,16 @@ The role must have the ``DDL`` permission at the database or table level.
 Syntax
 ==========
 
-.. code-block:: postgres
+.. code-block:: sql
 
-   alter_table_drop_column_statement ::=
-       ALTER TABLE [schema_name.]table_name DROP COLUMN column_name
-       ;
+	ALTER TABLE [schema_name.]table_name DROP COLUMN column_name
 
-   table_name ::= identifier
-   
-   schema_name ::= identifier
-   
-   column_name ::= identifier
+
+	table_name ::= identifier
+	   
+	schema_name ::= identifier
+	   
+	column_name ::= identifier
 
 
 
@@ -47,17 +46,14 @@ Parameters
 Examples
 ===========
 
-Removing a column
------------------------------------------
+Removing a column:
 
-.. code-block:: postgres
+.. code-block:: sql
 
-   -- Remove the 'weight' column
    ALTER TABLE users DROP COLUMN weight;
 
-Removing a column with a quoted identifier name
-----------------------------------------------------
+Removing a column with a quoted identifier name:
 
-.. code-block:: postgres
+.. code-block:: sql
 
    ALTER TABLE users DROP COLUMN "Weight in kilograms";

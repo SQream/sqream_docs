@@ -69,8 +69,10 @@ Examples
 
 .. code-block:: sql
 
-   DESCRIBE SCHEMAS DATABASE master;
+	DESCRIBE SCHEMAS DATABASE master;
    	 
+.. code-block:: none
+	 
 	schema_id|schema_name|schema_owner|
 	---------+-----------+------------+
 	0        |public     |sqream      |

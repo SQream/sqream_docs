@@ -130,7 +130,7 @@ The following is an example of the ``DESCRIBE QUERY`` command:
    
 The following is an example of the ``DESCRIBE QUERY`` command output:
 
- .. code-block:: console
+.. code-block:: none
    
 	query_id                              |rtc_name                        |node_id|parent_id|node_type     |elapsed_time|total_compute_time|total_waiting_time|rows_produced|chunks_produced|data_read|data_written|output   |additional_info    |time               |status|
 	--------------------------------------+--------------------------------+-------+---------+--------------+------------+------------------+------------------+-------------+---------------+---------+------------+---------+-------------------+-------------------+------+

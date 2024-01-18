@@ -3,10 +3,12 @@
 **********************
 ADD COLUMN
 **********************
+
 The ``ADD COLUMN`` command is used to add columns to an existing table.
 
 Syntax
 ==========
+
 The following is the correct syntax for adding a column to an existing table:
 
 .. code-block:: postgres
@@ -31,6 +33,7 @@ The following is the correct syntax for adding a column to an existing table:
 
 Parameters
 ============
+
 The following parameters can be used for adding a table:
 
 .. list-table:: 
@@ -50,24 +53,21 @@ The following parameters can be used for adding a table:
    
 Usage Notes
 =========== 
+
 The following usage notes apply when adding a column to an existing table:
 
-   * When adding a new column to an existing table, a default (or null constraint) has to be specified, even if the table is empty.
+* When adding a new column to an existing table, a default (or null constraint) has to be specified, even if the table is empty.
    
-      ::
-	  
-   * New columns you add to the table cannot be TEXT or contain an IDENTITY.
+* New columns you add to the table cannot be TEXT or contain an IDENTITY.
 
 Examples
 ===========
-The **Examples** section includes the following examples:
 
-.. contents:: 
-   :local:
-   :depth: 1
+The **Examples** section includes the following examples:
    
 Adding a Simple Column with a Default Value
------------------------------------------
+--------------------------------------------
+
 This example shows how to add a simple column with a default value:
 
 .. code-block:: postgres
@@ -77,6 +77,7 @@ This example shows how to add a simple column with a default value:
 
 Adding Several Columns in One Command
 -------------------------------------------
+
 This example shows how to add several columns in one command:
 
 .. code-block:: postgres
@@ -87,4 +88,5 @@ This example shows how to add several columns in one command:
 
 Permissions
 =============
+
 The role must have the ``DDL`` permission at the database or table level.
