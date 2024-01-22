@@ -296,7 +296,7 @@ The following table describes the ``schema_permissions`` data object:
 Queries
 ----------------
 
-The ``savedqueries`` data object identifies the saved_queries in the database, as shown in the following table:
+The ``savedqueries`` data object identifies the saved queries in the database, as shown in the following table:
 
 .. list-table::
    :widths: 20 180
@@ -309,7 +309,7 @@ The ``savedqueries`` data object identifies the saved_queries in the database, a
    * - ``num_parameters``
      - Shows the number of parameters to be replaced at run-time.
 
-For more information, see :ref:`saved_queries<saved_queries>`.
+For more information, see :ref:`Saved Queries<saved_queries>`.
 
 .. _roles:
 	 

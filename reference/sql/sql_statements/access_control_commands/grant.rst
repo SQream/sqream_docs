@@ -122,6 +122,15 @@ Syntax
 	}
 	ON { SERVICE <service_name> }
 	TO <role> [, ...]
+	
+	-- Grant permissions at the Saved Query level:
+	GRANT {
+	{ SELECT 
+	| DDL 
+	| USAGE } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON SAVED QUERY <saved_query_name> [, ...]
+	TO <role> [, ...]
 
 	-- Allows role2 to use permissions granted to role1
 	GRANT <role1> [, ...] 
@@ -145,7 +154,7 @@ The following table describes the ``GRANT`` parameters:
      - Description
    * - ``role_name``
      - The name of the role to grant permissions to
-   * - ``table_name``, ``database_name``, ``schema_name``, ``function_name``, ``catalog_name``, ``column_name``, ``service_name``
+   * - ``table_name``, ``database_name``, ``schema_name``, ``function_name``, ``catalog_name``, ``column_name``, ``service_name``, ``saved_query_name``
      - Object to grant permissions on.
    * - ``WITH ADMIN OPTION``
      - 
@@ -188,10 +197,10 @@ The following table describes the supported permissions:
      - Database, Schema, Table
      - For a role to create and manage objects, it needs the ``CREATE`` and ``USAGE`` permissions at the respective level
    * - ``USAGE``
-     - Schema
+     - Schema, Saved Query, Services
      - For a role to see tables in a schema, it needs the ``USAGE`` permissions
    * - ``SELECT``
-     - Table
+     - Table, Saved Query, View, Catalog, Foreign Table
      - Allows a user to run :ref:`select` queries on table contents
    * - ``INSERT``
      - Table
@@ -203,13 +212,13 @@ The following table describes the supported permissions:
      - Table
      - Allows a user to run :ref:`delete`, :ref:`truncate` statements to delete data from a table
    * - ``DDL``
-     - Database, Schema, Table, Function
+     - Database, Schema, Table, Function, Saved Query, View, Foreign Table
      - Allows a user to :ref:`alter tables<alter_table>`, rename columns and tables, etc.
    * - ``EXECUTE``
      - Function
      - Allows a user to execute UDFs
    * - ``ALL``
-     - Cluster, Database, Schema, Table, Function
+     - Cluster, Database, Schema, Table, Function, Saved Query, Services, Catalog, Foreign Table
      - All of the above permissions at the respective level
 
 .. end include

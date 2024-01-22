@@ -44,6 +44,8 @@ New Features and Enhancements
 
 ► You may now set your :ref:`Server Picker<server_picker_cli_reference>` more easily using non-positional arguments.
 
+► We enhanced our :ref:`Saved Query<saved_queries>` permissions, ensuring that your saved queries are accessible and can be executed and reviewed exclusively by authorized users.
+
 Known Issues
 ------------
 

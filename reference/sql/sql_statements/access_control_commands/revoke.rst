@@ -111,6 +111,15 @@ Syntax
 	}
 	ON { SERVICE <service_name> }
 	FROM <role> [, ...]
+	
+	-- Revoke permissions at the Saved Query level:
+	REVOKE { 
+	{ SELECT 
+	| DDL 
+	| USAGE } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON SAVED QUERY <saved_query_name> [, ...]
+	FROM <role> [, ...]
 		
 	-- Removes access to permissions in role1 by role 2
 	REVOKE [ADMIN OPTION FOR] <role1> [, ...] 
@@ -131,7 +140,7 @@ Parameters
      - Description
    * - ``role_name``
      - The name of the role to revoke permissions from
-   * - ``table_name``, ``database_name``, ``schema_name``, ``function_name``, ``catalog_name``, ``column_name``, ``service_name``
+   * - ``table_name``, ``database_name``, ``schema_name``, ``function_name``, ``catalog_name``, ``column_name``, ``service_name``, ``saved_query_name``
      - Object to revoke permissions from
    * - ``WITH ADMIN OPTION``
      - 

@@ -89,6 +89,16 @@ The following table describe the required permissions for performing and executi
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``ALL``              | All services permissions                                                                                                |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
+| **Saved Query**                                                                                                                                |
++----------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``SELECT``           | Executing saved query statements and utility functions                                                                  |
++----------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``DDL``              | Saved query DDL operations                                                                                              |   
++----------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``USAGE``            | Grants access to saved query objects                                                                                    |
++----------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``ALL``              | All saved query permissions                                                                                             |
++----------------------+-------------------------------------------------------------------------------------------------------------------------+
 
 Syntax
 ======
@@ -181,6 +191,15 @@ GRANT
 	{ USAGE } [PERMISSIONS]
 	}
 	ON { SERVICE <service_name> }
+	TO <role> [, ...]
+	
+	-- Grant permissions at the Saved Query level:
+	GRANT {
+	{ SELECT 
+	| DDL 
+	| USAGE } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON SAVED QUERY <saved_query_name> [, ...]
 	TO <role> [, ...]
 
 	-- Allows role2 to use permissions granted to role1
@@ -281,6 +300,15 @@ REVOKE
 	}
 	ON { SERVICE <service_name> }
 	FROM <role> [, ...]
+	
+	-- Revoke permissions at the Saved Query level:
+	REVOKE { 
+	{ SELECT 
+	| DDL 
+	| USAGE } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON SAVED QUERY <saved_query_name> [, ...]
+	FROM <role> [, ...]
 		
 	-- Removes access to permissions in role1 by role 2
 	REVOKE [ADMIN OPTION FOR] <role1> [, ...] 
@@ -312,8 +340,8 @@ schema statement is run.
           | TABLES 
           | FOREIGN TABLES 
           | VIEWS 
-	  | CATALOGS
-	  | SERVICES
+          | CATALOGS
+          | SERVICES
           | SAVED_QUERIES
          }
           { grant_clause 

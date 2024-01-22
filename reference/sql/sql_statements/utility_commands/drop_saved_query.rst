@@ -1,28 +1,22 @@
 .. _drop_saved_query:
 
 ********************
-DROP_SAVED_QUERY
+DROP SAVED QUERY
 ********************
 
-``DROP_SAVED_QUERY`` drops a :ref:`previously saved query<save_query>`.
+``DROP_SAVED_QUERY`` drops a previously :ref:`saved query<save_query>`.
 
 Read more in the :ref:`saved_queries<saved_queries>` guide.
 
 See also: :ref:`save_query`, :ref:`execute_saved_query`, :ref:`show_saved_query`, :ref:`list_saved_queries`.
 
-Permissions
-=============
-
-Dropping a saved query requires no special permissions.
-
 Syntax
 ==========
 
-.. code-block:: postgres
+.. code-block:: sql
 
    drop_saved_query_statement ::=
        SELECT DROP_SAVED_QUERY(saved_query_name)
-       ;
 
    saved_query_name ::= string_literal
 
@@ -49,7 +43,12 @@ Examples
 Dropping a previously saved query
 ---------------------------------------
 
-.. code-block:: psql
+.. code-block:: sql
 
-   t=> SELECT DROP_SAVED_QUERY('select_all');
-   executed
+   SELECT DROP_SAVED_QUERY('select_all');
+
+
+Permissions
+=============
+
+Dropping a saved query requires ``DDL`` permissions on the saved query and ``SELECT`` permissions to access the tables referenced in the query.
