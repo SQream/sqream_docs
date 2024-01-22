@@ -4,52 +4,66 @@
 Modification Methods
 **************************
 
-.. contents:: 
-   :local:
-   :depth: 1
-
 .. _modifying_your_configuration_using_the_worker_configuration_file:
 
-Modifying Your Configuration Using the Worker Configuration File
-----------------------------------------------------------------------------
+Worker Configuration File
+--------------------------
 
 You can modify your configuration using the **worker configuration file (config.json)**. Changes that you make to worker configuration files are persistent. Note that you can only set the attributes in your worker configuration file **before** initializing your SQream worker, and while your worker is active these attributes are read-only.
 
-The following is an example of a worker configuration file:
+The following is an example of the default worker configuration file:
 
 .. code-block:: json
    
    {
-       "cluster": "/home/test_user/sqream_testing_temp/sqreamdb",
-       "gpu":  0,
-       "licensePath": "home/test_user/SQream/tests/license.enc",
-       "machineIP": "127.0.0.1",
-       "metadataServerIp": "127.0.0.1",
-       "metadataServerPort": 3105,
-       "port": 5000,
-       "useConfigIP": true,
-       "legacyConfigFilePath": "home/SQream_develop/SqrmRT/utils/json/legacy_congif.json"
+    "cluster": "/home/sqream/sqream_storage",
+    "cudaMemQuota": 96,
+    "gpu": 0,
+    "cpu": -1,
+    "legacyConfigFilePath": "sqream_config_legacy.json",
+    "licensePath": "/etc/sqream/license.enc",
+    "limitQueryMemoryGB": 30,
+    "parquetReaderThreads" : 8,
+    "machineIP": "127.0.0.1",
+    "metadataServerIp": "127.0.0.1",
+    "metadataServerPort": 3105,
+    "port": 5000,
+    "instanceId": "sqream_0_1",
+    "portSsl": 5100,
+    "initialSubscribedServices": "sqream",
+    "useConfigIP": true
    }
 
 You can access the legacy configuration file from the ``legacyConfigFilePath`` parameter shown above. If all (or most) of your workers require the same flag settings, you can set the ``legacyConfigFilePath`` attribute to the same legacy file.
 
 .. _modifying_your_configuration_using_a_legacy_configuration_file:
 
-Modifying Your Configuration Using a Legacy Configuration File
-------------------------------------------------------------------------------
+Cluster and Session Configuration File
+--------------------------------------
 
 You can modify your configuration using a legacy configuration file.
 
 The Legacy configuration file provides access to the read/write flags. A link to this file is provided in the **legacyConfigFilePath** parameter in the worker configuration file.
 
-The following is an example of the legacy configuration file:
+The following is an example of the default cluster and session configuration file:
 
 .. code-block:: json
    
    {
-      "developerMode": true,
-      "reextentUse": false,
-      "useClientLog": true,
-      "useMetadataServer": false,
-      "enablePythonUdfs": true
+    "diskSpaceMinFreePercent": 1,
+    "DefaultPathToLogs": "/home/sqream/sqream_storage/tmp_logs/",
+    "enableLogDebug": false,
+    "insertCompressors": 8,
+    "insertParsers": 8,
+    "isUnavailableNode": false,
+    "logBlackList": "webui",
+    "logDebugLevel": 6,
+    "nodeInfoLoggingSec": 60,
+    "useClientLog": true,
+    "useMetadataServer": true,
+    "spoolMemoryGB": 28,
+    "useLogMaxFileSize": false,
+    "logMaxFileSizeMB": 20,
+    "logFileRotateTimeFrequency": "daily",
+    "waitForClientSeconds": 18000
    }
