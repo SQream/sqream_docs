@@ -20,106 +20,96 @@ Syntax
 
 .. code-block:: postgres
 
-	-- Revoke permissions at the instance/ storage cluster level:
-	REVOKE
-	{ 
-	  SUPERUSER
-	  | LOGIN
-	  | PASSWORD
-	}
+	-- Revoke permissions from all databases:
+	REVOKE {
+	SUPERUSER 
+	| LOGIN 
+	| PASSWORD '<password>' }
 	FROM <role> [, ...]
-				
+
 	-- Revoke permissions at the database level:
-	REVOKE 
-	{
-	  { CREATE 
-	  | CONNECT 
-	  | DDL 
-	  | SUPERUSER 
-	  | CREATE FUNCTION }[, ...] 
-	  | ALL [PERMISSIONS]
-	}
+	REVOKE {
+	CREATE 
+	| CONNECT 
+	| DDL 
+	| SUPERUSER 
+	| CREATE FUNCTION } [, ...] 
+	| ALL [PERMISSIONS]
 	ON DATABASE <database> [, ...]
 	FROM <role> [, ...]
 
-	-- Revoke permissions at the schema level:
-	REVOKE 
-	{ 
-	  { CREATE 
-	  | DDL 
-	  | USAGE 
-	  | SUPERUSER } [, ...] 
-	  | ALL [PERMISSIONS]
-	}
+	-- Revoke permissions at the schema level: 
+	REVOKE { 
+	CREATE 
+	| DDL 
+	| USAGE 
+	| SUPERUSER } [, ...] 
+	| ALL [PERMISSIONS]
 	ON SCHEMA <schema> [, ...]
 	FROM <role> [, ...]
-				
-	-- Revoke permissions at the object level:
-	REVOKE 
-	{ 
-	  { SELECT 
-	  | INSERT 
-	  | DELETE 
-	  | DDL 
-	  | UPDATE } [, ...] 
-	  | ALL 
-	}
-	ON 
-	{ 
-	  [ TABLE ] <table_name> [, ...] 
-	  | ALL TABLES IN SCHEMA <schema_name> [, ...] 
-	  | VIEW <schema_name.view_name> [, ...] 
-	  | ALL VIEWS IN SCHEMA <schema_name> [, ...] 
-	  | FOREIGN TABLE <table_name> [, ...] 
-	  | ALL FOREIGN TABLES IN SCHEMA <schema_name> [, ...] 
-	}
-	FROM <role> [, ...]
-
-	REVOKE 
-	{ 
-	  { SELECT 
-	  | INSERT 
-	  | DELETE 
-	  | UPDATE } [, ...] 
-	  | ALL 
-	}
-	ON 
-	{ 
-	  | CATALOG <catalog_name> [, ...] 
-	}
-	FROM <role> [, ...]
-				
-	-- Revoke permissions at the column level:
-	REVOKE 
-	{
-	  { SELECT 
-	  | DDL } [, ...] 
-	  | ALL [PERMISSIONS]}
-	ON 
-	{ 
-	  COLUMN <column_name> [,<column_name_2>] IN TABLE <table_name> [,<table_name2>] | COLUMN <column_name> [,<column_name_2>] IN FOREIGN TABLE <table_name> [,<table_name2>]
-	  | ALL COLUMNS IN TABLE <schema_name.table_name> [, ...] 
-	  | ALL COLUMNS IN FOREIGN TABLE <schema_name.foreign_table_name> [, ...] 
-	}
-	FROM <role> [, ...]
-
-	-- Revoke permissions at the service level:
-	REVOKE 
-	{
-	  { USAGE } [, ...] 
-	  | ALL [PERMISSIONS] 
-	}
-	ON { SERVICE <service_name> }
-	FROM <role> [, ...]
-	
-	-- Revoke permissions at the Saved Query level:
+		   
+	-- Revoke permissions at the object level: 
 	REVOKE { 
-	{ SELECT 
+	SELECT 
+	| INSERT 
+	| DELETE 
 	| DDL 
-	| USAGE } [, ...] 
-	| ALL [PERMISSIONS] }
-	ON SAVED QUERY <saved_query_name> [, ...]
+	| UPDATE } [, ...] 
+	| ALL [PERMISSIONS]
+	ON {TABLE <table_name> [, ...] 
+	| ALL TABLES IN SCHEMA <schema_name> [, ...]}
 	FROM <role> [, ...]
+
+	-- Revoke permissions at the catalog level: 
+	REVOKE {
+	{SELECT } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { CATALOG <catalog_name> [, ...] }
+	FROM <role> [, ...]
+
+	-- Revoke permissions on the foreign table level:
+	
+	REVOKE { 
+	{SELECT 
+	| DDL } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { FOREIGN TABLE <table_name> [, ...] 
+	| ALL FOREIGN TABLE IN SCHEMA <schema_name> [, ...]}
+	FROM <role> [, ...]
+
+	-- Revoke function execution permission: 
+	REVOKE { 
+	ALL 
+	| EXECUTE 
+	| DDL } 
+	ON FUNCTION <function_name>
+	FROM <role>
+
+	-- Revoke permissions on the view level
+	REVOKE {
+	{SELECT 
+	| DDL } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { VIEW <view_name> [, ...] 
+	| ALL VIEWS IN SCHEMA <schema_name> [, ...]}
+	FROM <role> [, ...]
+
+	-- Revoke permissions at the Service level:
+	REVOKE {
+	{USAGE} [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { SERVICE <service_name> [, ...] 
+	| ALL SERVICES IN SYSTEM }
+	FROM <role> [, ...]
+		
+	-- Revoke saved query permissions
+	REVOKE
+	SELECT 
+	| DDL
+	| USAGE
+	| ALL
+	ON SAVED QUERY <saved_query> [,...]
+	FROM <role> [,...]
 		
 	-- Removes access to permissions in role1 by role 2
 	REVOKE [ADMIN OPTION FOR] <role1> [, ...] 

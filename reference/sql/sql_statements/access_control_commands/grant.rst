@@ -20,117 +20,96 @@ Syntax
 
 .. code-block:: postgres
 
-	-- Grant permissions at the instance/ storage cluster level:
-	GRANT 
-	{ 
-	  SUPERUSER
-	  | LOGIN 
-	  | PASSWORD '<password>' 
-	} 
-	TO <role> [, ...] 
+	-- Grant permissions to all databases:
+	GRANT {
+	SUPERUSER 
+	| LOGIN 
+	| PASSWORD '<password>' }
+	TO <role> [, ...]
 
 	-- Grant permissions at the database level:
-	GRANT
-	{
-	  { CREATE 
-	  | CONNECT
-	  | DDL 
-	  | SUPERUSER 
-	  | CREATE FUNCTION } [, ...] 
-	  | ALL [PERMISSIONS]
-	}
+	GRANT {
+	CREATE 
+	| CONNECT 
+	| DDL 
+	| SUPERUSER 
+	| CREATE FUNCTION } [, ...] 
+	| ALL [PERMISSIONS]
 	ON DATABASE <database> [, ...]
-	TO <role> [, ...] 
+	TO <role> [, ...]
 
 	-- Grant permissions at the schema level: 
-	GRANT 
-	{
-	  { CREATE 
-	  | DDL 
-	  | USAGE 
-	  | SUPERUSER } [, ...] 
-	  | ALL [PERMISSIONS]
-	} 
-	ON SCHEMA <schema> [, ...] 
-	TO <role> [, ...] 
+	GRANT { 
+	CREATE 
+	| DDL 
+	| USAGE 
+	| SUPERUSER } [, ...] 
+	| ALL [PERMISSIONS]
+	ON SCHEMA <schema> [, ...]
+	TO <role> [, ...]
 		   
 	-- Grant permissions at the object level: 
-	GRANT
-	{
-	  { SELECT 
-	  | INSERT 
-	  | DELETE 
-	  | DDL 
-	  | UPDATE } [, ...] 
-	  | ALL [PERMISSIONS]
-	}
-	ON 
-	{ 
-	  TABLE <table_name> [, ...] 
-	  | ALL TABLES IN SCHEMA <schema_name> [, ...] 
-	  | VIEW <schema_name.view_name> [, ...] 
-	  | ALL VIEWS IN SCHEMA <schema_name> [, ...] 
-	  | FOREIGN TABLE <table_name> [, ...] 
-	  | ALL FOREIGN TABLES IN SCHEMA <schema_name> [, ...] 
-	}
+	GRANT { 
+	SELECT 
+	| INSERT 
+	| DELETE 
+	| DDL 
+	| UPDATE } [, ...] 
+	| ALL [PERMISSIONS]
+	ON {TABLE <table_name> [, ...] 
+	| ALL TABLES IN SCHEMA <schema_name> [, ...]}
 	TO <role> [, ...]
 
-	GRANT
-	{
-	  { SELECT 
-	  | INSERT 
-	  | DELETE 
-	  | UPDATE } [, ...] 
-	  | ALL [PERMISSIONS]
-	}
-	ON 
-	{ 
-	  | CATALOG <catalog_name> [, ...]
-	}
+	-- Grant permissions at the catalog level: 
+	GRANT {
+	{SELECT } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { CATALOG <catalog_name> [, ...] }
 	TO <role> [, ...]
 
-	-- Grant execute function permission: 
-	GRANT 
-	{ 
-	  ALL 
-	  | EXECUTE 
-	  | DDL
-	} 
-	ON FUNCTION function_name 
-	TO role; 
-	   
-	-- Grant permissions at the column level:
-	GRANT 
-	{
-	  { SELECT 
-	  | DDL } [, ...] 
-	  | ALL [PERMISSIONS]
-	}
-	ON 
-	{ 
-	  COLUMN <column_name> [,<column_name_2>] IN TABLE <table_name> [,<table_name2>] 
-	  | COLUMN <column_name> [,<column_name_2>] IN FOREIGN TABLE <table_name> [,<table_name2>]
-	  | ALL COLUMNS IN TABLE <schema_name.table_name> [, ...] 
-	  | ALL COLUMNS IN FOREIGN TABLE <foreign_table_name> [, ...] 
-	}
+	-- Grant permissions on the foreign table level:
+	
+	GRANT { 
+	{SELECT 
+	| DDL } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { FOREIGN TABLE <table_name> [, ...] 
+	| ALL FOREIGN TABLE IN SCHEMA <schema_name> [, ...]}
+	TO <role> [, ...]
+
+	-- Grant function execution permission: 
+	GRANT { 
+	ALL 
+	| EXECUTE 
+	| DDL } 
+	ON FUNCTION <function_name>
+	TO <role>
+
+	-- Grant permissions on the view level
+	GRANT {
+	{SELECT 
+	| DDL } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { VIEW <view_name> [, ...] 
+	| ALL VIEWS IN SCHEMA <schema_name> [, ...]}
 	TO <role> [, ...]
 
 	-- Grant permissions at the Service level:
-	GRANT 
-	{
-	{ USAGE } [PERMISSIONS]
-	}
-	ON { SERVICE <service_name> }
+	GRANT {
+	{USAGE} [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { SERVICE <service_name> [, ...] 
+	| ALL SERVICES IN SYSTEM }
 	TO <role> [, ...]
 	
-	-- Grant permissions at the Saved Query level:
-	GRANT {
-	{ SELECT 
-	| DDL 
-	| USAGE } [, ...] 
-	| ALL [PERMISSIONS] }
-	ON SAVED QUERY <saved_query_name> [, ...]
-	TO <role> [, ...]
+	-- Grant saved query permissions
+	GRANT
+	SELECT 
+	| DDL
+	| USAGE
+	| ALL
+	ON SAVED QUERY <saved_query> [,...]
+	TO <role> [,...]
 
 	-- Allows role2 to use permissions granted to role1
 	GRANT <role1> [, ...] 

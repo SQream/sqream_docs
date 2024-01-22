@@ -29,7 +29,9 @@ The following table describe the required permissions for performing and executi
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``CREATE``           | Create schemas in the database                                                                                          |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``CREATE FUNCTION``  | Create and drop functions                                                                                               |
+| ``CREATEFUNCTION``   | Create and drop functions                                                                                               |
++----------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``DDL``              | Drop and alter tables within the database                                                                               |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``ALL``              | All database permissions except for a SUPERUSER permission                                                              |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
@@ -38,6 +40,10 @@ The following table describe the required permissions for performing and executi
 | ``USAGE``            | Grants access to schema objects                                                                                         |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``CREATE``           | Create tables in the schema                                                                                             |
++----------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``SUPERUSER``        | No permission restrictions on any activity within the schema (this does not include modifying roles or permissions)     |
++----------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``DDL``              | Drop and alter tables within the schema                                                                                 |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``ALL``              | All schema permissions                                                                                                  |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
@@ -68,6 +74,8 @@ The following table describe the required permissions for performing and executi
 | ``SELECT``           | Select from view                                                                                                        |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``DDL``              | DDL operations of view results                                                                                          |   
++----------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``ALL``              | All views permissions                                                                                                   |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Foreign Table**                                                                                                                              |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
@@ -111,96 +119,95 @@ GRANT
 .. code-block:: postgres
 
 	-- Grant permissions to all databases:
-	GRANT 
-	{ 
-	  SUPERUSER
-	  | LOGIN 
-	  | PASSWORD '<password>' 
-	} 
-	TO <role> [, ...] 
+	GRANT {
+	SUPERUSER 
+	| LOGIN 
+	| PASSWORD '<password>' }
+	TO <role> [, ...]
 
 	-- Grant permissions at the database level:
-	GRANT
-	{
-	  CREATE 
-	  | CONNECT
-	  | DDL 
-	  | SUPERUSER 
-	  | CREATE FUNCTION } [, ...] 
-	  | ALL [PERMISSIONS]
+	GRANT {
+	CREATE 
+	| CONNECT 
+	| DDL 
+	| SUPERUSER 
+	| CREATE FUNCTION } [, ...] 
+	| ALL [PERMISSIONS]
 	ON DATABASE <database> [, ...]
-	TO <role> [, ...] 
+	TO <role> [, ...]
 
 	-- Grant permissions at the schema level: 
-	GRANT 
-	{
-	  CREATE 
-	  | USAGE 
-	  | SUPERUSER } [, ...] 
-	  | ALL [PERMISSIONS] 
-	ON SCHEMA <schema> [, ...] 
-	TO <role> [, ...] 
+	GRANT { 
+	CREATE 
+	| DDL 
+	| USAGE 
+	| SUPERUSER } [, ...] 
+	| ALL [PERMISSIONS]
+	ON SCHEMA <schema> [, ...]
+	TO <role> [, ...]
 		   
 	-- Grant permissions at the object level: 
-	GRANT
-	{
-	  SELECT 
-	  | INSERT 
-	  | DELETE 
-	  | DDL 
-	  | UPDATE } [, ...] 
-	  | ALL [PERMISSIONS]
-	ON 
-	{ 
-	  TABLE <table_name> [, ...] 
-	  | ALL TABLES IN SCHEMA <schema_name> [, ...] 
-	  | VIEW <schema_name.view_name> [, ...] 
-	  | ALL VIEWS IN SCHEMA <schema_name> [, ...] 
-	  | FOREIGN TABLE <table_name> [, ...] 
-	  | ALL FOREIGN TABLES IN SCHEMA <schema_name> [, ...] 
-	}
+	GRANT { 
+	SELECT 
+	| INSERT 
+	| DELETE 
+	| DDL 
+	| UPDATE } [, ...] 
+	| ALL [PERMISSIONS]
+	ON {TABLE <table_name> [, ...] 
+	| ALL TABLES IN SCHEMA <schema_name> [, ...]}
 	TO <role> [, ...]
 
 	-- Grant permissions at the catalog level: 
-	GRANT
-	{
-	  SELECT 
-	  | INSERT 
-	  | DELETE 
-	  | UPDATE } [, ...] 
-	  | ALL [PERMISSIONS]
-	ON 
-	{ 
-	  CATALOG <catalog_name> [, ...]
-	}
+	GRANT {
+	{SELECT } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { CATALOG <catalog_name> [, ...] }
+	TO <role> [, ...]
+
+	-- Grant permissions on the foreign table level:
+	
+	GRANT { 
+	{SELECT 
+	| DDL } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { FOREIGN TABLE <table_name> [, ...] 
+	| ALL FOREIGN TABLE IN SCHEMA <schema_name> [, ...]}
 	TO <role> [, ...]
 
 	-- Grant function execution permission: 
-	GRANT 
-	{ 
-	  ALL 
-	  | EXECUTE 
-	  | DDL
-	} 
-	ON FUNCTION <function_name> 
-	TO role; 
+	GRANT { 
+	ALL 
+	| EXECUTE 
+	| DDL } 
+	ON FUNCTION <function_name>
+	TO <role>
+
+	-- Grant permissions on the view level
+	GRANT {
+	{SELECT 
+	| DDL } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { VIEW <view_name> [, ...] 
+	| ALL VIEWS IN SCHEMA <schema_name> [, ...]}
+	TO <role> [, ...]
 
 	-- Grant permissions at the Service level:
-	GRANT 
-	{
-	{ USAGE } [PERMISSIONS]
-	}
-	ON { SERVICE <service_name> }
+	GRANT {
+	{USAGE} [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { SERVICE <service_name> [, ...] 
+	| ALL SERVICES IN SYSTEM }
 	TO <role> [, ...]
 	
-	-- Grant permissions at the Saved Query level:
-	GRANT {
-	{ SELECT 
-	| DDL 
-	| USAGE } [, ...] 
-	| ALL [PERMISSIONS] }
-	ON SAVED QUERY <saved_query_name> [, ...]
-	TO <role> [, ...]
+	-- Grant saved query permissions
+	GRANT
+	SELECT 
+	| DDL
+	| USAGE
+	| ALL
+	ON SAVED QUERY <saved_query> [,...]
+	TO <role> [,...]
 
 	-- Allows role2 to use permissions granted to role1
 	GRANT <role1> [, ...] 
@@ -217,98 +224,95 @@ REVOKE
 .. code-block:: postgres
 
 	-- Revoke permissions from all databases:
-	REVOKE
-	{ 
-	  SUPERUSER
-	  | LOGIN
-	  | PASSWORD
-	}
+	REVOKE {
+	SUPERUSER 
+	| LOGIN 
+	| PASSWORD '<password>' }
 	FROM <role> [, ...]
-				
+
 	-- Revoke permissions at the database level:
-	REVOKE 
-	{
-	  CREATE 
-	  | CONNECT 
-	  | DDL 
-	  | SUPERUSER 
-	  | CREATE FUNCTION } [, ...] 
-	  | ALL [PERMISSIONS]
-	ON DATABASE <database_name> [, ...]
-	FROM <role> [, ...]
-
-	-- Revoke permissions at the schema level:
-	REVOKE 
-	{ 
-	  CREATE 
-	  | USAGE 
-	  | SUPERUSER } [, ...] 
-	  | ALL [PERMISSIONS]
-	ON SCHEMA <schema_name> [, ...]
-	FROM <role> [, ...]
-				
-	-- Revoke permissions at the object level:
-	REVOKE 
-	{ 
-	  SELECT 
-	  | INSERT 
-	  | DELETE 
-	  | DDL 
-	  | UPDATE } [, ...] 
-	  | ALL [PERMISSIONS]
-	ON 
-	{ 
-	  TABLE <table_name> [, ...] 
-	  | ALL TABLES [, ...] 
-	  | VIEW <schema_name.view_name> [, ...] 
-	  | ALL VIEWS [, ...]
-	  | FOREIGN TABLE <table_name> [, ...] 
-	  | ALL FOREIGN TABLES [, ...] 
-	IN SCHEMA <schema_name> [, ...]
-	}
-	FROM <role> [, ...]
-
-	-- Revoke permissions at the catalog level:
-	REVOKE 
-	{ 
-	  SELECT 
-	  | INSERT 
-	  | DELETE 
-	  | UPDATE } [, ...] 
-	  | ALL [PERMISSIONS]
-	ON 
-	{ 
-	  CATALOG <catalog_name> [, ...] 
-	}
-	FROM <role> [, ...]
-				
-	-- Revoke permissions at the function execution level:
-	REVOKE
-	{
-	  All
-	  | EXECUTE
-	  | DDL
-	}
-	ON FUNCTION <function_name>
-	FROM <role>  [, ...]
-	
-	-- Revoke permissions at the service level:
-	REVOKE 
-	{
-	  { USAGE } [, ...] 
-	  | ALL [PERMISSIONS] 
-	}
-	ON { SERVICE <service_name> }
-	FROM <role> [, ...]
-	
-	-- Revoke permissions at the Saved Query level:
-	REVOKE { 
-	{ SELECT 
+	REVOKE {
+	CREATE 
+	| CONNECT 
 	| DDL 
-	| USAGE } [, ...] 
-	| ALL [PERMISSIONS] }
-	ON SAVED QUERY <saved_query_name> [, ...]
+	| SUPERUSER 
+	| CREATE FUNCTION } [, ...] 
+	| ALL [PERMISSIONS]
+	ON DATABASE <database> [, ...]
 	FROM <role> [, ...]
+
+	-- Revoke permissions at the schema level: 
+	REVOKE { 
+	CREATE 
+	| DDL 
+	| USAGE 
+	| SUPERUSER } [, ...] 
+	| ALL [PERMISSIONS]
+	ON SCHEMA <schema> [, ...]
+	FROM <role> [, ...]
+		   
+	-- Revoke permissions at the object level: 
+	REVOKE { 
+	SELECT 
+	| INSERT 
+	| DELETE 
+	| DDL 
+	| UPDATE } [, ...] 
+	| ALL [PERMISSIONS]
+	ON {TABLE <table_name> [, ...] 
+	| ALL TABLES IN SCHEMA <schema_name> [, ...]}
+	FROM <role> [, ...]
+
+	-- Revoke permissions at the catalog level: 
+	REVOKE {
+	{SELECT } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { CATALOG <catalog_name> [, ...] }
+	FROM <role> [, ...]
+
+	-- Revoke permissions on the foreign table level:
+	
+	REVOKE { 
+	{SELECT 
+	| DDL } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { FOREIGN TABLE <table_name> [, ...] 
+	| ALL FOREIGN TABLE IN SCHEMA <schema_name> [, ...]}
+	FROM <role> [, ...]
+
+	-- Revoke function execution permission: 
+	REVOKE { 
+	ALL 
+	| EXECUTE 
+	| DDL } 
+	ON FUNCTION <function_name>
+	FROM <role>
+
+	-- Revoke permissions on the view level
+	REVOKE {
+	{SELECT 
+	| DDL } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { VIEW <view_name> [, ...] 
+	| ALL VIEWS IN SCHEMA <schema_name> [, ...]}
+	FROM <role> [, ...]
+
+	-- Revoke permissions at the Service level:
+	REVOKE {
+	{USAGE} [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { SERVICE <service_name> [, ...] 
+	| ALL SERVICES IN SYSTEM }
+	FROM <role> [, ...]
+		
+	-- Revoke saved query permissions
+	REVOKE
+	SELECT 
+	| DDL
+	| USAGE
+	| ALL
+	ON SAVED QUERY <saved_query> [,...]
+	FROM <role> [,...]
 		
 	-- Removes access to permissions in role1 by role 2
 	REVOKE [ADMIN OPTION FOR] <role1> [, ...] 
@@ -334,7 +338,7 @@ schema statement is run.
 .. code-block:: postgres
 
      ALTER DEFAULT PERMISSIONS FOR modifying_role
-     [IN schema_name [, ...]
+     [IN <schema_name> [, ...]
      FOR { 
           SCHEMAS 
           | TABLES 
