@@ -4,7 +4,6 @@
 DESCRIBE CONNECT PERMISSIONS
 ****************************
 
-
 The ``DESCRIBE CONNECT PERMISSIONS`` statement lists all roles and their database connection privileges.
 
 .. note:: 
