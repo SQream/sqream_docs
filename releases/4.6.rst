@@ -46,6 +46,8 @@ New Features and Enhancements
 
 ► We enhanced our :ref:`Saved Query<saved_queries>` permissions, ensuring that your saved queries are accessible and can be executed and reviewed exclusively by authorized users.
 
+► 
+
 Known Issues
 ------------
 
