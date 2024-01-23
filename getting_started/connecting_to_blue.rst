@@ -75,6 +75,8 @@ BLUE offers seamless integration with third-party tools, BI tools, and analysis 
 .. tab:: Integration Tools
 
     :ref:`Apache Airflow<apache_airflow>`
+	
+    :ref:`DBeaver<dbeaver>`
 
     :ref:`Denodo<denodo>`
 
