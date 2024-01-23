@@ -16,8 +16,7 @@ The following is the syntax for the ``DESCRIBE CONFIGURATION`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE CONFIGURATION [PARAMETER <parameter>] [LIKE 'pattern']
-   DESC CONFIG [PARAM <parameter>] [LIKE 'pattern']
+   DESC[RIBE] CONFIGURATION [PARAMETER <parameter>] [LIKE 'pattern']
    
 Parameters
 ==========

@@ -15,8 +15,7 @@ The following is the syntax for the ``DESCRIBE POOLS`` command:
 
 .. code-block:: sql
 
-	DESCRIBE [RESOURCE] POOLS
-	DESC [RESOURCE] POOLS
+	DESC[RIBE] [RESOURCE] POOLS
 	 
 Examples
 ========

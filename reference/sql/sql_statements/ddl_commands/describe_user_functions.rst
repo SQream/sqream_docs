@@ -15,8 +15,7 @@ The following is the syntax for the ``DESCRIBE USER FUNCTIONS`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE USER FUNCTIONS [DATABASE <database_name>] [LIKE 'function_name']
-   DESC USER FUNCTIONS [DATABASE <database_name>] [LIKE 'function_name']
+   DESC[RIBE] USER FUNCTIONS [DATABASE <database_name>] [LIKE 'function_name']
 
 Parameters
 ==========

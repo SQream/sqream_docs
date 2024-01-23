@@ -15,8 +15,7 @@ Syntax
 
 .. code-block:: sql
 
-	DESCRIBE ROLE PERMISSIONS ROLE NAME <role_name> [PERMISSION ID in (<permission id 1>,...,<permission id N>)];
-	DESC ROLE PERMISSIONS ROLE NAME <role name> [PERMISSION ID in (<permission id 1>,...,<permission id N>)];
+	DESC[RIBE] ROLE PERMISSIONS ROLE NAME <role_name> [PERMISSION ID in (<permission id 1> [,...])];
 
 Parameters
 ==========
