@@ -15,8 +15,7 @@ Syntax
 
 .. code-block:: sql
 
-	DESCRIBE ROLES [LIKE 'pattern']
-	DESC ROLES [LIKE 'pattern']
+	DESC[RIBE] ROLES [LIKE 'pattern']
 
 Parameters
 ==========

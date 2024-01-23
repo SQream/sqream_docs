@@ -15,8 +15,7 @@ The following is the syntax for the ``DESCRIBE SAVED QUERIES LIST`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE SAVED QUERIES LIST [ DATABASE <database_name>] [ LIKE '<pattern>' ]
-   DESC SAVED QUERIES LIST [ DATABASE <database_name>] [ LIKE '<pattern>' ]
+   DESC[RIBE] SAVED QUERIES LIST [ DATABASE <database_name>] [ LIKE '<pattern>' ]
    
 Parameters
 ==========

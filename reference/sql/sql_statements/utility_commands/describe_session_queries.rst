@@ -16,8 +16,7 @@ The following is the syntax for the ``DESCRIBE SESSION QUERIES`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE SESSION QUERIES  [SESSION ID <session-id>] 
-   DESC SESSION QUERIES  [SESSION ID <session-id>] 
+   DESC[RIBE] SESSION QUERIES  [SESSION ID <session-id>] 
 
 Parameters
 ==========

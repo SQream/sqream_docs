@@ -15,8 +15,7 @@ The following is the syntax for the ``DESCRIBE SCHEMAS`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE SCHEMAS [DATABASE <database_name>] [LIKE 'schema_name']
-   DESC SCHEMAS [DATABASE <database_name>] [LIKE 'schema_name']
+   DESC[RIBE] SCHEMAS [DATABASE <database_name>] [LIKE 'schema_name']
 
 Parameters
 ==========

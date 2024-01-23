@@ -13,10 +13,9 @@ Syntax
 
 The following is the syntax for the ``DESCRIBE QUERY`` command:
 
-.. code-block:: postgres
+.. code-block:: sql
 
-   DESCRIBE QUERY [SESSION ID <session-id>] QUERY ID <query-id>
-   DESC QUERY [SESSION ID <session-id>] QUERY ID <query-id>
+   DESC[RIBE] QUERY [SESSION ID <session-id>] QUERY ID <query-id>
    
 Parameters
 ==========

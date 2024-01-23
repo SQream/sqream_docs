@@ -15,9 +15,7 @@ Syntax
 
 .. code-block:: sql
 
-	DESCRIBE CONNECT PERMISSIONS [DATABASE <database_name>] [ROLE ID in (<role_id 1>,...,<role_id N>)] [PERMISSION ID in (<permission_id 1>,...,<permission_id N>)]
-	
-	DESC CONNECT PERMISSIONS [DATABASE <database_name>] [ROLE ID in (<role_id 1>,...,<role_id N>)] [PERMISSION ID in (<permission_id 1>,...,<permission_id N>)]
+	DESC[RIBE] CONNECT PERMISSIONS [DATABASE <database_name>] [ROLE ID IN (<role_id 1> [,...])] [PERMISSION ID IN (<permission_id 1> [,...])]
 
 Parameters
 ==========
@@ -76,9 +74,6 @@ Output
 Examples
 ========
 
-Executing ``DESCRIBE CONNECT PERMISSIONS``
-------------------------------------------
-
 .. code-block:: sql
 
 	DESCRIBE CONNECT PERMISSIONS;
@@ -89,8 +84,8 @@ Output:
 
 	role_id|role_name              |database_name|permission_id|superuser|clusteradmin|
 	-------+-----------------------+-------------+-------------+---------+------------+
-	1      |sqream                 |farm         |1002         |1        |0           |
-	1      |sqream                 |farm         |1003         |1        |0           |
+	1      |sqream                 |master       |1002         |1        |0           |
+	1      |sqream                 |master       |1003         |1        |0           |
 	2      |someone@blue.com       |master       |1003         |1        |1           |
 	4      |anothersomeone@blue.com|master       |1003         |1        |0           |
 	6      |triceratop@blue.com    |master       |1003         |1        |1           |

@@ -15,8 +15,7 @@ The following is the syntax for the ``DESCRIBE DATABASES`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE DATABASES [LIKE 'database_name']
-   DESC DATABASES [LIKE 'database_name']
+   DESC[RIBE] DATABASES [LIKE 'database_name']
 
 Parameters
 ==========

@@ -15,8 +15,7 @@ The following is the syntax for the ``DESCRIBE VIEWS`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE VIEWS [ DATABASE  <database_name> ] [ SCHEMA <schema_name> ] [ LIKE '<pattern>' ]
-   DESC VIEWS [ DATABASE  <database_name> ] [ SCHEMA <schema_name> ] [ LIKE '<pattern>' ]
+   DESC[RIBE] VIEWS [ DATABASE  <database_name> ] [ SCHEMA <schema_name> ] [ LIKE '<pattern>' ]
 
 Parameters
 ==========
