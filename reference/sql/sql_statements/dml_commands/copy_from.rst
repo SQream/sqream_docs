@@ -181,7 +181,7 @@ Elements
    * - ``DELETE_SOURCE_ON_SUCCESS``
      - ``false``
      - ``true`` | ``false``
-     - When set to ``true``, the target path's source file or folder is deleted after ``COPY FROM`` has successfully completed. This parameter cannot be executed concurrently with the ``OFFSET``, ``ERROR_LOG``, ``REJECTED_DATA``, ``ERROR_COUNT`` and ``LIMIT`` parameters. This parameter is supported for AWS, HADOOP, and GCP. Setting the parameter to "true" will restrict users without delete permissions on their operating system from executing the "COPY FROM" command.
+     - When set to ``true``, the source file or files associated with the target path will be deleted after a successful completion of the ``COPY FROM`` operation. File deletion will not occur in the case of unsuccessful ``COPY FROM`` operations, such as when a user lacks delete permissions on their operating system. It's important to note that this parameter cannot be used concurrently with the ``OFFSET``, ``ERROR_LOG``, ``REJECTED_DATA``, ``ERROR_COUNT``, and ``LIMIT`` parameters. This parameter is supported for S3, HDFS, and GCP Object Storage.
 
 .. _copy_date_parsers:
 

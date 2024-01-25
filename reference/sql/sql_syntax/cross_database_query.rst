@@ -164,3 +164,8 @@ Querying data from three tables in different databases:
 	ON t2.id = t3.id
 	WHERE t1.date >= '2022-01-01' AND t2.status = 'active' AND t3.quantity > 10;
 
+Limitation
+==========
+
+The cross-database syntax is not supported for querying SQreamDB's logical schema, ``sqream_catalog``.
+

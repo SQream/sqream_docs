@@ -38,11 +38,11 @@ New Features and Enhancements
 
 ► Enhance your :ref:`COPY FROM<copy_from>` operations with the new ``DELETE_SOURCE_ON_SUCCESS`` parameter, which automatically deletes the source file being copied into SQreamDB. This not only saves time and effort in cleaning cloud storage but also helps conserve storage space.
 
-► Cast data types seamlessly with the new :ref:`IsCastable<is_castable>` function. This function allows you to check whether a cast operation is possible or supported for a given column and data type and provides an alternative when an exception occurs when used within a ``CASE`` statement.
+► Safely cast data types with the new :ref:`IsCastable<is_castable>` function. This function allows you to check whether a cast operation is possible or supported for a given column and data type and provides an alternative when an exception occurs when used within a ``CASE`` statement.
 
 ► Enable automatic termination of queries that exceed a pre-defined time limit in the queue. The introduction of the :ref:`queueTimeoutMinutes flag<current_method_configuration_levels>` flag empowers you to set time constraints for queries in the queue, ranging from a few minutes to a maximum of 72 hours.
 
-► You may now set your :ref:`Server Picker<server_picker_cli_reference>` more easily using non-positional arguments.
+► You may now set your :ref:`Server Picker<server_picker_cli_reference>` more easily using keyword arguments.
 
 ► We enhanced our :ref:`Saved Query<saved_queries>` permissions, ensuring that your saved queries are accessible and can be executed and reviewed exclusively by authorized users.
 

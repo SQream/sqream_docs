@@ -1,10 +1,10 @@
 .. _is_castable:
 
 ************
-IS CUSTABLE
+IS CASTABLE
 ************
 
-The ``IsCastable`` function checks whether a cast operation is possible or supported for the given column and data type. If the cast is not supported, the ``CASE`` statement handles the exception by providing an alternative.
+The ``IsCastable`` function checks whether a data type cast operation is supported for any given rows. If the cast is not supported, the ``CASE`` statement handles the exception by providing an alternative.
 
 Syntax
 ======

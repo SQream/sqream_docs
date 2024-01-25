@@ -319,6 +319,6 @@ Flag List
    * - ``QueryTimeoutMinutes``
      - Anyone
      - Session
-     - When set to 1—4320 minutes(72 hours), the flag is designed to identify queries that are stuck, having exceeded the specified time limit. Once the flag value is reached, the query automatically stops.
+     - The flag is intended to identify and address situations where queries have been in the queue for extended durations, suggesting potential irrelevance or a need for unavailable resources. If a query surpasses the defined time limit, which ranges from ``1`` to ``4320`` minutes (72 hours), the system automatically terminates the query.
      - integer
      - ``0`` (no query timeout)
