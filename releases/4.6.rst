@@ -21,7 +21,7 @@ Compatibility Matrix
 +-------------------------+------------------------------------------------------------------------+
 | supported Nvidia driver | CUDA version from 10.1 up to 11.4.3                                    |
 +-------------------------+------------------------------------------------------------------------+
-| Storage version         |   49                                                                   |
+| Storage version         |   51                                                                   |
 +-------------------------+------------------------------------------------------------------------+
 | Driver compatibility    | * JDBC 5.0.0                                                           |
 |                         | * ODBC 4.4.4                                                           | 
@@ -45,8 +45,6 @@ New Features and Enhancements
 ► You may now set your :ref:`Server Picker<server_picker_cli_reference>` more easily using keyword arguments.
 
 ► We enhanced our :ref:`Saved Query<saved_queries>` permissions, ensuring that your saved queries are accessible and can be executed and reviewed exclusively by authorized users.
-
-► 
 
 Known Issues
 ------------
