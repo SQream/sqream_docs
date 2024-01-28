@@ -4,6 +4,11 @@
 Release Notes
 *************
 
+:ref:` Version 4.6 - February xxxx, 2024<4.6>`
+
+* Execute a single SQL statement across your SQreamDB cluster using the new :ref:`Cross-Database<cross_database_query>` syntax.
+* Safely cast data types with the new :ref:`IsCastable<is_castable>` function.
+
 :ref:`Version 4.5 - December 5, 2023<4.5>`
 
 * Introducing a new :ref:`Health-Check Monitor<select_health_check_monitoring>` utility command empowers administrators to oversee the database's health. This command serves as a valuable tool for monitoring, enabling administrators to assess and ensure the optimal health and performance of the database
