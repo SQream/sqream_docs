@@ -56,7 +56,7 @@ An average single-node cluster can be a rackmount server or workstation, contain
 
    * - GPU
      - 
-        NVIDIA 2x A100ת, H100, or L40S
+        NVIDIA 2x A00ת, H100, or L40S
 		
    * - Operating System
      - Red Hat Enterprise Linux v7.9 or CentOS v7.9 or Amazon Linux
