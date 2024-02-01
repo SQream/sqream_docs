@@ -14,4 +14,4 @@ The workflow for troubleshooting locks is:
 
 .. code-block:: sql
 
-	SELECT STOP_STATEMENT(287);
+	SELECT STOP_STATEMENT(2484923);
