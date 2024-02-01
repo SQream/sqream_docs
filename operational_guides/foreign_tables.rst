@@ -51,21 +51,24 @@ Based on the source file structure, we :ref:`create a foreign table<create_exter
 
 .. code-block:: sql
    
-   CREATE FOREIGN TABLE nba
-   (
-      Name TEXT,
-      Team TEXT,
-      Number tinyint,
-      Position TEXT,
-      Age tinyint,
-      Height TEXT,
-      Weight real,
-      College TEXT,
-      Salary float
-    )
-      USING FORMAT CSV -- Text file
-      WITH  PATH  's3://sqream-demo-data/nba_players.csv' 
-      RECORD DELIMITER '\r\n'; -- DOS delimited file
+	CREATE FOREIGN TABLE nba
+	(
+	 Name TEXT,
+	 Team TEXT,
+	 Number tinyint,
+	 Position TEXT,
+	 Age tinyint,
+	 Height TEXT,
+	 Weight real,
+	 College TEXT,
+	 Salary float
+	)
+	WRAPPER csv_fdw -- Text file
+	OPTIONS
+	(
+	 LOCATION =  's3://sqream-demo-data/nba_players.csv', 
+	 RECORD DELIMITER '\r\n'; -- DOS delimited file
+	);
 
 The file format in this case is CSV, and it is stored as an :ref:`s3` object (if the path is on :ref:`hdfs`, change the URI accordingly).
 We also took note that the record delimiter was a DOS newline (``\r\n``).
@@ -77,7 +80,7 @@ Let's peek at the data from the foreign table:
 
 .. code-block:: sql
    
-   t=> SELECT * FROM nba LIMIT 10;
+   SELECT * FROM nba LIMIT 10;
    name          | team           | number | position | age | height | weight | college           | salary  
    --------------+----------------+--------+----------+-----+--------+--------+-------------------+---------
    Avery Bradley | Boston Celtics |      0 | PG       |  25 | 6-2    |    180 | Texas             |  7730337
@@ -99,22 +102,33 @@ Assume we are unhappy with weight being in pounds because we want to use kilogra
 
 .. code-block:: sql
    
-   t=> SELECT name, team, number, position, age, height, (weight / 2.205) as weight, college, salary 
-   .          FROM nba
-   .          ORDER BY weight;
+	SELECT 
+	 name, 
+	 team, 
+	 number,
+	 position, 
+	 age, 
+	 height, (weight / 2.205) as weight, 
+	 college, salary 
+	FROM nba
+	ORDER BY weight;
 
-   name                     | team                   | number | position | age | height | weight   | college               | salary  
-   -------------------------+------------------------+--------+----------+-----+--------+----------+-----------------------+---------
-   Nikola Pekovic           | Minnesota Timberwolves |     14 | C        |  30 | 6-11   |  139.229 |                       | 12100000
-   Boban Marjanovic         | San Antonio Spurs      |     40 | C        |  27 | 7-3    | 131.5193 |                       |  1200000
-   Al Jefferson             | Charlotte Hornets      |     25 | C        |  31 | 6-10   | 131.0658 |                       | 13500000
-   Jusuf Nurkic             | Denver Nuggets         |     23 | C        |  21 | 7-0    | 126.9841 |                       |  1842000
-   Andre Drummond           | Detroit Pistons        |      0 | C        |  22 | 6-11   | 126.5306 | Connecticut           |  3272091
-   Kevin Seraphin           | New York Knicks        |      1 | C        |  26 | 6-10   | 126.0771 |                       |  2814000
-   Brook Lopez              | Brooklyn Nets          |     11 | C        |  28 | 7-0    | 124.7166 | Stanford              | 19689000
-   Jahlil Okafor            | Philadelphia 76ers     |      8 | C        |  20 | 6-11   | 124.7166 | Duke                  |  4582680
-   Cristiano Felicio        | Chicago Bulls          |      6 | PF       |  23 | 6-10   | 124.7166 |                       |   525093
-   [...]
+Output:
+
+.. code-block:: none
+
+	name                     | team                   | number | position | age | height | weight   | college               | salary  
+	-------------------------+------------------------+--------+----------+-----+--------+----------+-----------------------+---------
+	Nikola Pekovic           | Minnesota Timberwolves |     14 | C        |  30 | 6-11   |  139.229 |                       | 12100000
+	Boban Marjanovic         | San Antonio Spurs      |     40 | C        |  27 | 7-3    | 131.5193 |                       |  1200000
+	Al Jefferson             | Charlotte Hornets      |     25 | C        |  31 | 6-10   | 131.0658 |                       | 13500000
+	Jusuf Nurkic             | Denver Nuggets         |     23 | C        |  21 | 7-0    | 126.9841 |                       |  1842000
+	Andre Drummond           | Detroit Pistons        |      0 | C        |  22 | 6-11   | 126.5306 | Connecticut           |  3272091
+	Kevin Seraphin           | New York Knicks        |      1 | C        |  26 | 6-10   | 126.0771 |                       |  2814000
+	Brook Lopez              | Brooklyn Nets          |     11 | C        |  28 | 7-0    | 124.7166 | Stanford              | 19689000
+	Jahlil Okafor            | Philadelphia 76ers     |      8 | C        |  20 | 6-11   | 124.7166 | Duke                  |  4582680
+	Cristiano Felicio        | Chicago Bulls          |      6 | PF       |  23 | 6-10   | 124.7166 |                       |   525093
+	[...]
 
 Now, if we're happy with the results, we can convert the staged foreign table to a standard table
 
@@ -127,20 +141,32 @@ Converting a Foreign Table to a Standard Database Table
 
 .. code-block:: sql
    
-   t=> CREATE TABLE real_nba AS 
-   .    SELECT name, team, number, position, age, height, (weight / 2.205) as weight, college, salary 
-   .            FROM nba
-   .            ORDER BY weight;
-   executed
-   t=> SELECT * FROM real_nba LIMIT 5;
+	CREATE TABLE real_nba AS 
+	SELECT 
+	 name, 
+	 team, 
+	 number, 
+	 position, 
+	 age, 
+	 height, 
+	(weight / 2.205) AS weight, 
+	 college, salary 
+	FROM nba
+	ORDER BY weight;
 
-   name             | team                   | number | position | age | height | weight   | college     | salary  
-   -----------------+------------------------+--------+----------+-----+--------+----------+-------------+---------
-   Nikola Pekovic   | Minnesota Timberwolves |     14 | C        |  30 | 6-11   |  139.229 |             | 12100000
-   Boban Marjanovic | San Antonio Spurs      |     40 | C        |  27 | 7-3    | 131.5193 |             |  1200000
-   Al Jefferson     | Charlotte Hornets      |     25 | C        |  31 | 6-10   | 131.0658 |             | 13500000
-   Jusuf Nurkic     | Denver Nuggets         |     23 | C        |  21 | 7-0    | 126.9841 |             |  1842000
-   Andre Drummond   | Detroit Pistons        |      0 | C        |  22 | 6-11   | 126.5306 | Connecticut |  3272091
+	SELECT * FROM real_nba LIMIT 5;
+
+Output:
+
+.. code-block:: none
+
+	name             | team                   | number | position | age | height | weight   | college     | salary  
+	-----------------+------------------------+--------+----------+-----+--------+----------+-------------+---------
+	Nikola Pekovic   | Minnesota Timberwolves |     14 | C        |  30 | 6-11   |  139.229 |             | 12100000
+	Boban Marjanovic | San Antonio Spurs      |     40 | C        |  27 | 7-3    | 131.5193 |             |  1200000
+	Al Jefferson     | Charlotte Hornets      |     25 | C        |  31 | 6-10   | 131.0658 |             | 13500000
+	Jusuf Nurkic     | Denver Nuggets         |     23 | C        |  21 | 7-0    | 126.9841 |             |  1842000
+	Andre Drummond   | Detroit Pistons        |      0 | C        |  22 | 6-11   | 126.5306 | Connecticut |  3272091
 
 Error Handling and Limitations
 ==============================
@@ -151,10 +177,10 @@ Error Handling and Limitations
    
 For example, a CSV with the wrong delimiter may cause a query to fail, even though the table has been created successfully:
    
-   .. code-block:: sql
+.. code-block:: sql
       
-      t=> SELECT * FROM nba;
-      master=> select * from nba;
-      Record delimiter mismatch during CSV parsing. User defined line delimiter \n does not match the first delimiter \r\n found in s3://sqream-demo-data/nba.csv
+	SELECT * FROM nba;
+	select * from nba;
+	Record delimiter mismatch during CSV parsing. User defined line delimiter \n does not match the first delimiter \r\n found in s3://sqream-demo-data/nba.csv
 
 * Since the data for a foreign table is not stored in SQream DB, it can be changed or removed at any time by a foreign process. As a result, the same query can return different results each time it runs against a foreign table. Similarly, a query might fail if the foreign data is moved, removed, or has changed structure.
