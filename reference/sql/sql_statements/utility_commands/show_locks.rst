@@ -9,7 +9,7 @@ SHOW_LOCKS
 Read more about locks in :ref:`concurrency_and_locks`.
 
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
@@ -51,10 +51,10 @@ Examples
 Using ``SHOW_LOCKS`` to see active locks
 ---------------------------------------------------
 
-In this example, we create a table based on results (:ref:`create_table_as`), but we are also effectively dropping the previous table (by using ``OR REPLACE``). Thus, SQream DB applies locks during the table creation process to prevent the table from being altered during it's creation.
+In this example, we create a table based on results (:ref:`create_table_as`), but we are also effectively dropping the previous table (by using ``OR REPLACE``). Thus, SQreamDB applies locks during the table creation process to prevent the table from being altered during it's creation.
 
 
-.. code-block:: psql
+.. code-block:: postgres
 
 	SELECT SHOW_LOCKS();
 	
