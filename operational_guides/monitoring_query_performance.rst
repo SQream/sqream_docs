@@ -98,11 +98,64 @@ The following is an example of a query inspecting a statement with a statement I
 
 .. code-block:: sql
    
-   t=> DESCRIBE QUERY session id 'eac756b3-f31e-4eca-b35a-38b18e606d92' query id 7;
+   DESCRIBE QUERY SESSION ID '6a4d1389-0330-4d54-9d52-439ff0b4c74c' QUERY ID 9;
    
-The following image shows the output of the above query:
+Output:
+
+.. code-block:: none
+
+	query_id                              |rtc_name                        |node_id|parent_id|node_type     |elapsed_time|total_compute_time|total_waiting_time|rows_produced|chunks_produced|data_read|data_written|output   |additional_info    |time               |status|
+	--------------------------------------+--------------------------------+-------+---------+--------------+------------+------------------+------------------+-------------+---------------+---------+------------+---------+-------------------+-------------------+------+
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-xh6tx|1      |-1       |CloudRSend    |4.333333333 |4.333333333       |0                 |4613734      |13             |0        |0           |197467814| (single)          |2023-01-01 11:08:22|1     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-f6ps7|1      |-1       |CloudRSend    |0           |0                 |0                 |0            |0              |0        |0           |0        | (single)          |2023-01-01 11:08:22|-1    |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-rcpgn|1      |-1       |CloudRSend    |0           |0                 |0                 |0            |0              |0        |0           |0        | (single)          |2023-01-01 11:08:22|-1    |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-xh6tx|2      |1        |Rechunk       |0.001536630 |0.001536630       |0                 |4613734      |13             |0        |0           |119957084|                   |2023-01-01 11:08:22|1     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-f6ps7|2      |1        |Rechunk       |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-rcpgn|2      |1        |Rechunk       |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-xh6tx|3      |2        |ReorderInput  |0.001182357 |0.001182357       |0                 |4613734      |13             |0        |0           |119957084|                   |2023-01-01 11:08:22|1     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-f6ps7|3      |2        |ReorderInput  |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-rcpgn|3      |2        |ReorderInput  |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-xh6tx|4      |3        |DeferredGather|0.032412838 |0.032412838       |0                 |4613734      |13             |0        |0           |138412020|                   |2023-01-01 11:08:22|1     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-rcpgn|4      |3        |DeferredGather|0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-f6ps7|4      |3        |DeferredGather|0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-xh6tx|5      |4        |ReorderInput  |0.001415770 |0.001415770       |0                 |5033164      |14             |0        |0           |58117572 |                   |2023-01-01 11:08:22|1     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-rcpgn|5      |4        |ReorderInput  |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-f6ps7|5      |4        |ReorderInput  |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-rcpgn|6      |5        |GpuToCpu      |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-xh6tx|6      |5        |GpuToCpu      |0.006428069 |0.006428069       |0                 |5033164      |14             |0        |0           |45298476 |                   |2023-01-01 11:08:22|1     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-f6ps7|6      |5        |GpuToCpu      |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-xh6tx|7      |6        |ReorderInput  |0.001485682 |0.001485682       |0                 |5033164      |14             |0        |0           |45298476 |                   |2023-01-01 11:08:22|1     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-rcpgn|7      |6        |ReorderInput  |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-f6ps7|7      |6        |ReorderInput  |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-rcpgn|8      |7        |Filter        |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-xh6tx|8      |7        |Filter        |0.004193985 |0.004193985       |0                 |5033164      |14             |0        |0           |50331640 |                   |2023-01-01 11:08:22|1     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-f6ps7|8      |7        |Filter        |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-xh6tx|9      |8        |GpuTransform  |0.003437200 |0.003437200       |0                 |12582910     |14             |0        |0           |125829100|                   |2023-01-01 11:08:22|1     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-f6ps7|9      |8        |GpuTransform  |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-rcpgn|9      |8        |GpuTransform  |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-f6ps7|10     |9        |GpuDecompress |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-rcpgn|10     |9        |GpuDecompress |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-xh6tx|10     |9        |GpuDecompress |0.005545857 |0.005545857       |0                 |12582910     |14             |0        |0           |113246190|                   |2023-01-01 11:08:22|1     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-f6ps7|11     |10       |GpuTransform  |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-rcpgn|11     |10       |GpuTransform  |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-xh6tx|11     |10       |GpuTransform  |0.002736228 |0.002736228       |0                 |12582910     |14             |0        |0           |55165840 |                   |2023-01-01 11:08:22|1     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-f6ps7|12     |11       |CpuToGpu      |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-rcpgn|12     |11       |CpuToGpu      |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-xh6tx|12     |11       |CpuToGpu      |0.002053339 |0.002053339       |0                 |12582910     |14             |0        |0           |4834200  |                   |2023-01-01 11:08:22|1     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-f6ps7|13     |12       |ReorderInput  |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-rcpgn|13     |12       |ReorderInput  |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-xh6tx|13     |12       |ReorderInput  |0.001914057 |0.001914057       |0                 |12582910     |14             |0        |0           |4834200  |                   |2023-01-01 11:08:22|1     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-f6ps7|14     |13       |Rechunk       |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-rcpgn|14     |13       |Rechunk       |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-xh6tx|14     |13       |Rechunk       |0.002404408 |0.002404408       |0                 |12582910     |14             |0        |0           |17653296 |                   |2023-01-01 11:08:22|1     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-f6ps7|15     |14       |CpuDecompress |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-rcpgn|15     |14       |CpuDecompress |0           |0                 |0                 |0            |0              |0        |0           |0        |                   |2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-xh6tx|15     |14       |CpuDecompress |0.001846970 |0.001846970       |0                 |12582910     |14             |0        |0           |17653296 |                   |2023-01-01 11:08:22|1     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-f6ps7|16     |15       |ReadTable     |0           |0                 |0                 |0            |0              |0        |0           |0        |public.cool_animals|2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-rcpgn|16     |15       |ReadTable     |0           |0                 |0                 |0            |0              |0        |0           |0        |public.cool_animals|2023-01-01 11:08:22|2     |
+	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-xh6tx|16     |15       |ReadTable     |0.011688731 |0.011688731       |0                 |12582910     |14             |34384215 |0           |17653296 |public.cool_animals|2023-01-01 11:08:22|1     |
    
-.. image:: /_static/images/monitoring_describe_query.png   
+
 
 Alternatively, you may also :ref:`retrieve the query execution plan output<retrieving_execution_plan_output_using_studio>` using your Workbench.
 
@@ -325,7 +378,7 @@ Identifying the Offending Nodes
    
       :emphasize-lines: 33,35,37,39
    
-      t=> SELECT message FROM logs WHERE message_type_id = 200 LIMIT 1;
+      SELECT message FROM logs WHERE message_type_id = 200 LIMIT 1;
       message                                                                                  
       -----------------------------------------------------------------------------------------
       SELECT o_year,                                                                           
@@ -417,7 +470,7 @@ Identifying the Offending Nodes
       WHERE r_name = 'AMERICA'
       AND   o_orderdate BETWEEN '1995-01-01' AND '1996-12-31'
 	  ;
-#. 
+2. 
    
    Observe the execution information by using the foreign table, or use ``show_node_info``
    
@@ -429,7 +482,7 @@ Identifying the Offending Nodes
    
       :emphasize-lines: 7,9,11
    
-      t=> SELECT show_node_info(494);
+      SELECT show_node_info(494);
       stmt_id | node_id | node_type            | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read    | write | comment         | timeSum
       --------+---------+----------------------+-----------+--------+-------------------+---------------------+----------------+---------+-------+-----------------+--------
           494 |       1 | PushToNetworkQueue   |    242615 |      1 |            242615 | 2020-09-04 19:07:55 |             -1 |         |       |                 |    0.36
@@ -449,7 +502,7 @@ Identifying the Offending Nodes
 #. Modify the statement to see the difference
    Altering the select clause to be more restrictive will reduce the deferred gather time back to a few milliseconds.
    
-   .. code-block:: postgres
+   .. code-block:: sql
       
       SELECT DATEPART(year, o_orderdate) AS o_year,
              l_extendedprice * (1 - l_discount / 100.0) as volume,
@@ -513,7 +566,7 @@ For example:
       :linenos:
       :emphasize-lines: 9,17,19,27
    
-      t=> SELECT show_node_info(559);
+      SELECT show_node_info(559);
 	  
    .. code-block:: none	  
 	  
@@ -583,7 +636,7 @@ For example:
       :linenos:
       :emphasize-lines: 5,13
       
-      t=> SELECT show_node_info(586);
+      SELECT show_node_info(586);
 	  
    .. code-block:: none	  
 	  
@@ -620,7 +673,7 @@ Consider this execution plan:
 
 .. code-block:: psql
    
-   t=> select show_node_info(30);
+   SELECT show_node_info(30);
    
 .. code-block:: none
 
@@ -651,7 +704,7 @@ Consider this execution plan:
 .. code-block:: sql
    :emphasize-lines: 6,11
    
-   t=> select show_node_info(30);
+   SELECT show_node_info(30);
    
 .. code-block:: none
 

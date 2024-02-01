@@ -180,4 +180,4 @@ Using the ``LIKE`` parameter:
 Permissions
 ===========
 
-This command requires ``USAGE`` permission on the schema level.
+This command requires a ``CONNECT`` permission on the database level and a ``USAGE`` permission on the schema level.
