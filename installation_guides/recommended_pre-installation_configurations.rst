@@ -382,13 +382,14 @@ NodeJS is necessary only when the UI runs on the same server as SqreamDB. If not
 
    .. code-block:: console
 
-      wget https://nodejs.org/dist/latest-v14.x/node-v14.21.3-linux-x64.tar.xz
+      wget https://nodejs.org/dist/v16.20.0/node-v16.20.0-linux-x64.tar.xz
+      tar -xf node-v16.20.0-linux-x64.tar.xz
 	  
-2. Move the node-v14.21.3-linux-x64 file to the */usr/local* directory.
+2. Move the node-v16.20.0-linux-x64 file to the */usr/local* directory.
 
    .. code-block:: console
 
-      sudo mv  node-v14.21.3-linux-x64 /usr/local  
+      sudo mv  node-v16.20.0-linux-x64 /usr/local  
 	  
 3. Navigate to the ``/usr/bin/`` directory:
 
@@ -396,23 +397,23 @@ NodeJS is necessary only when the UI runs on the same server as SqreamDB. If not
 
       cd /usr/bin 
 	  
-4. Create a symbolic link to the ``/local/node-v14.21.3-linux-x64/bin/node node`` directory:
+4. Create a symbolic link to the ``/local/node-v16.20.0-linux-x64/bin/node node`` directory:
 
    .. code-block:: console
 
-      sudo ln -s ../local/node-v14.21.3-linux-x64/bin/node node
+      sudo ln -s ../local/node-v16.20.0-linux-x64//bin/node node
 	  
-5. Create a symbolic link to the ``/local/node-v14.21.3-linux-x64/bin/npm npm`` directory:
+5. Create a symbolic link to the ``/local/node-v16.20.0-linux-x64/bin/npm npm`` directory:
 
    .. code-block:: console
 
-      sudo ln -s ../local/node-v14.21.3-linux-x64/bin/npm npm 
+      sudo ln -s ../local/node-v16.20.0-linux-x64/bin/npm npm 
 	  
-6. Create a symbolic link to the ``/local/node-v14.21.3-linux-x64/bin/npx npx`` directory:
+6. Create a symbolic link to the ``/local/node-v16.20.0-linux-x64/bin/npx npx`` directory:
 
    .. code-block:: console
 
-      sudo ln -s ../local/node-v14.21.3-linux-x64/bin/npx npx	  
+      sudo ln -s ../local/node-v16.20.0-linux-x64/bin/npx npx	  
 	  
 7. Install the ``pm2`` process management:
 
@@ -432,18 +433,18 @@ NodeJS is necessary only when the UI runs on the same server as SqreamDB. If not
 
      .. code-block:: console
 
-        cd /usr/local/node-v14.21.3-linux-x64/lib/node_modules
+        cd /usr/local/node-v16.20.0-linux-x64/lib/node_modules
         tar -czvf pm2_x86.tar.gz pm2
 		
   c. Copy the ``pm2_x86.tar.gz`` file to a server without access to the internet and extract it.
   
     ::
   
-  d. Move the ``pm2`` folder to the ``/usr/local/node-v14.21.3-linux-x64/lib/node_modules`` directory:
+  d. Move the ``pm2`` folder to the ``/usr/local/node-v16.20.0-linux-x64/lib/node_modules`` directory:
 
      .. code-block:: console
 
-        sudo mv pm2 /usr/local/node-v14.21.3-linux-x64/lib/node_modules
+        sudo mv pm2 /usr/local/node-v16.20.0-linux-x64/lib/node_modules
 
   e. Navigate back to the ``/usr/bin`` directory:
 
@@ -455,7 +456,7 @@ NodeJS is necessary only when the UI runs on the same server as SqreamDB. If not
 
      .. code-block:: console
 
-        sudo ln -s /usr/local/node-v14.21.3-linux-x64/lib/node_modules/pm2/bin/pm2 pm2
+        sudo ln -s /usr/local/node-v16.20.0-linux-x64/lib/node_modules/pm2/bin/pm2 pm2
 
   g. Verify that installation was successful without using ``sudo``:
 
@@ -897,7 +898,7 @@ If you are installing the CUDA driver on IBM Power9, please follow the `NVIDIA d
 	  
 Tuning Up NVIDIA Performance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- 
+
 The following procedures exclusively relate to Intel.	
 	
 .. contents:: 
