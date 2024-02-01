@@ -16,12 +16,6 @@ The following is the syntax for the ``DESCRIBE LOCKS`` command:
 .. code-block:: postgres
 
    DESC[RIBE] LOCKS
-   
-Parameters
-==========
-
-``DESCRIBE LOCKS`` command has no input parameters.
- 
     
 Output
 ======
