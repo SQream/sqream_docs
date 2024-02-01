@@ -4,21 +4,17 @@
 Connecting to BLUE Using JDBC
 *****************************
 
-The SQream JDBC driver lets you connect to SQream using many Java applications and tools. This page describes how to write a Java application using the JDBC interface. The JDBC driver requires Java 1.8 or newer.
-
+The BLUE JDBC driver lets you connect to BLUE using many Java applications and tools.
 
 Before You Begin
 ================
 
 * The BLUE JDBC driver requires Java 1.8 or newer
-* Download the BLUE JDBC driver `here <http://nexus.sq.l:18081/repository/maven-releases/com/sqream/sqream-jdbc/0.1.65/sqream-jdbc-0.1.65.jar>`_
+* Download the BLUE JDBC driver `here <https://sq-ftp-public.s3.amazonaws.com/sqream-blue-jdbc-0.1.67.jar>`_
 * We recommend using Oracle Java or OpenJDK
 
-Connecting to SQream Using a JDBC Application
-==============================================
-
 Connection String
------------------
+=================
 
 JDBC drivers rely on a connection string.
 
@@ -78,7 +74,7 @@ The following table shows the connection string parameters:
 
 
 Sample Java Program
---------------------
+===================
 
 You can download the :download:`JDBC Application Sample File <sample.java>` 
 
