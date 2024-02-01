@@ -383,7 +383,7 @@ NodeJS is necessary only when the UI runs on the same server as SqreamDB. If not
    .. code-block:: console
 
       wget https://nodejs.org/dist/v16.20.0/node-v16.20.0-linux-x64.tar.xz
-	  tar -xf node-v16.20.0-linux-x64.tar.xz
+      tar -xf node-v16.20.0-linux-x64.tar.xz
 	  
 2. Move the node-v16.20.0-linux-x64 file to the */usr/local* directory.
 
