@@ -810,11 +810,11 @@ Installing the CUDA Driver
   
 The current recommendation is for CUDA 12.2.1.
   
-For A100 GPU and other A series GPUs, you must install the **CUDA 11.4.3 driver**.
+For A100 GPU and other A series GPUs, you must install CUDA driver **11.4.3** or a later version.
 
-For H100 GPU and other H series GPUs, you must install the **CUDA 11.8 driver** or a later version.
+For H100 GPU and other H series GPUs, you must install CUDA driver **11.8** or a later version.
 
-For L40S GPU and other L series GPUs, you must install the **CUDA 12.0 driver** or a later version.
+For L40S GPU and other L series GPUs, you must install CUDA driver **12.0** or a later version.
 
 For questions related to which driver to install, contact `SqreamDB support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
 
