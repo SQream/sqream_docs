@@ -63,10 +63,7 @@ Output
      - Validates whether or not role has login privileges. Enabled for actual users
      - BOOL
      - 1
-   * - ``has_password``
-     - Validates whether or not role has a password.
-     - BOOL
-     - 0
+
 
 Examples
 ========
@@ -84,12 +81,12 @@ Output:
 
 .. code-block:: none
 
-	id|name     |superuser|clusteradmin|login|has_password|
-	--+---------+---------+------------+-----+------------+
-	0 |public   |0        |0           |0    |0           |
-	1 |sqream   |1        |0           |1    |1           |
-	2 |new_role1|0        |1           |1    |1           |
-	3 |new_role2|0        |0           |1    |1           |
+	id|name     |superuser|clusteradmin|login|
+	--+---------+---------+------------+-----+
+	0 |public   |0        |0           |0    |
+	1 |sqream   |1        |0           |1    |
+	2 |new_role1|0        |1           |1    |
+	3 |new_role2|0        |0           |1    |
 
 Executing ``DESCRIBE ROLES LIKE``
 ---------------------------------
@@ -104,10 +101,10 @@ Output:
 
 .. code-block:: none
 
-    id|name     |superuser|clusteradmin|login|has_password|
-    --+---------+---------+------------+-----+------------+
-    2 |new_role1|0        |1           |1    |1           |
-    3 |new_role2|0        |0           |1    |1           |
+    id|name     |superuser|clusteradmin|login|
+    --+---------+---------+------------+-----+
+    2 |new_role1|0        |1           |1    |
+    3 |new_role2|0        |0           |1    |
 
 
 Permissions
