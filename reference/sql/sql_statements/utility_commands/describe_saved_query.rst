@@ -19,6 +19,8 @@ The following is the syntax for the ``DESCRIBE SAVED QUERY`` command:
 
    DESC[RIBE] SAVED QUERY [ DATABASE <database_name>] NAME <saved_query_name>
    
+   saved_query_name ::= identifier
+   
 Parameters
 ==========
 
@@ -58,18 +60,19 @@ Using the ``DESCRIBE SAVED QUERY`` command generates the following output:
    * - ``sql``
      - The SQL syntax of the selected saved query
      - TEXT
-     - “SELECT * FROM nba”
+     - ``SELECT * FROM nba``
 
-The following is the syntax for the ``DESCRIBE SAVED QUERY`` command:
+Example
+=======
 
 .. code-block:: postgres
 
-   DESCRIBE SAVED QUERY database master NAME 'select_all';
+   DESCRIBE SAVED QUERY DATABASE master NAME "SelectAll";
    
    
 The following is an example of the ``DESCRIBE SAVED QUERY`` command output:
 
-.. code-block:: postgres
+.. code-block:: none
 
 	sql              
 	-----------------
