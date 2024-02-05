@@ -59,7 +59,7 @@ Client Driver Downloads
      - 
      - All
    * - **Trino**
-     - `Trino Connector <>`_
+     - `Trino Connector <https://sq-ftp-public.s3.amazonaws.com/trino-server-402.tar.gz>`_
      - :ref:`trino`
      -
      - All

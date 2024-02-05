@@ -18,7 +18,7 @@ It is essential you have the following installed:
 
 * SQreamDB version 4.1 or later
 * Trino version 403 or later
-* :ref:`Trino Connector<>`_
+* `Trino Connector <https://sq-ftp-public.s3.amazonaws.com/trino-server-402.tar.gz>`_
 * :ref:`JDBC<java_jdbc>` version 4.5.6 or later
 
 Installation
