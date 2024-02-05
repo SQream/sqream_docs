@@ -292,7 +292,7 @@ SQL Syntax
 Command Line Utility
 --------------------
 
-If you cannot access SQream DB for any reason, you can also use a command line toolto collect the same information:
+If you cannot access SQream DB for any reason, you can also use a command line tool to collect the same information:
 
 .. code-block:: console
    
