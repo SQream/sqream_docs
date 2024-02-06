@@ -285,7 +285,7 @@ The following is an example of changing a password for a user role. This is done
 
 .. code-block:: postgres
 
-   GRANT  PASSWORD  'new_password'  TO  rhendricks;  
+   GRANT  PASSWORD  'Passw0rd!'  TO  rhendricks;  
 
 .. note:: Granting a new password overrides any previous password. Changing the password while the role has an active running statement does not affect that statement, but will affect subsequent statements.
 
