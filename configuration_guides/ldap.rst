@@ -13,8 +13,9 @@ Before integrating SQream with LDAP consider the following:
 
 * If SQream DB has been installed and LDAP has not yet been integrated with SQream, it is best practice to ensure that the newly created LDAP user names are consistent with existing SQream role names. Previously existing SQream roles that were mistakenly not configured in LDAP or that have names which are different than in LDAP, will be recreated in SQream as roles that cannot log in, have no permissions, and have no default schema.
 
-.. contents:: In this topic:
+.. contents::
    :local:
+   :depth: 1
 
 Before You Begin
 ================
@@ -31,8 +32,6 @@ Configuring SQream roles
 ========================
 
 Follow this procedure if you already have LDAP configured for your environment.
-
-**Procedure**
 
 1. Create a new role:
 	
@@ -58,8 +57,9 @@ You may also wish to :ref:`rename SQream roles<rename_role>` so that they are co
 Configuring LDAP Authentication
 ===============================
 
-.. contents:: In this topic:
+.. contents::
    :local:
+   :depth: 1
 
 Configuration Methods
 ---------------------
