@@ -32,7 +32,7 @@ The following is an example of creating a new role:
 
    CREATE  ROLE  new_role_name  ;  
    GRANT  LOGIN  TO  new_role_name;  
-   GRANT  PASSWORD  'my_password' to new_role_name;  
+   GRANT  PASSWORD  'Passw0rd!' to new_role_name;  
    GRANT  CONNECT  ON  DATABASE  master to new_role_name;
 
 A database role may have a number of permissions that define what tasks it can perform, which are  assigned using the :ref:`grant` command.
@@ -81,7 +81,7 @@ The following is an example of changing a user password:
 .. note:: Granting a new password overrides any previous password. Changing the password while the role has an active running statement does not affect that statement, but will affect subsequent statements.
 
 Altering Public Role Permissions
-------------------------------
+---------------------------------
 
 The database has a predefined ``PUBLIC`` role that cannot be deleted. Each user role is automatically granted membership in the ``PUBLIC`` role public group, and this membership cannot be revoked. However, you have the capability to adjust the permissions associated with this ``PUBLIC`` role.
 
@@ -89,7 +89,7 @@ The ``PUBLIC`` role has ``USAGE`` and ``CREATE`` permissions on ``PUBLIC`` schem
 
 
 Altering Role Membership (Groups)
-------------------------------
+---------------------------------
 
 Many database administrators find it useful to group user roles together. By grouping users, permissions can be granted to, or revoked from a group with one command. In SQream DB, this is done by creating a group role, granting permissions to it, and then assigning users to that group role.
 
