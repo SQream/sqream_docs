@@ -15,7 +15,7 @@ The following is the syntax for the ``DESCRIBE QUERY`` command:
 
 .. code-block:: sql
 
-   DESC[RIBE] QUERY [SESSION ID <session-id>] QUERY ID <query-id>
+   DESC[RIBE] QUERY [SESSION ID <'session-id'>] QUERY ID <'query-id'>
    
 Parameters
 ==========
@@ -125,7 +125,7 @@ The following is an example of the ``DESCRIBE QUERY`` command:
 
 .. code-block:: postgres
 
-   DESCRIBE QUERY SESSION ID '6a4d1389-0330-4d54-9d52-439ff0b4c74c' QUERY ID 9;
+   DESCRIBE QUERY SESSION ID '6a4d1389-0330-4d54-9d52-439ff0b4c74c' QUERY ID '9';
    
 The following is an example of the ``DESCRIBE QUERY`` command output:
 

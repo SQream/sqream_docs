@@ -8,97 +8,16 @@ This document aims to provide guidance on analyzing query performance through th
 
 It's crucial to recognize that performance tuning options vary for each query. Recommendations and tips should be tailored to suit the specifics of individual workloads. Additionally, referring to our :ref:`sql_best_practices` guide is advisable for a deeper understanding of considerations related to data loading and other best practices.
 
-
-Setting Up the System for Monitoring
-====================================
-
-SQream logs all executed statements and their execution details. This data is logged in five second intervals, allowing you to view it both while a statement is executing, and historically.
-
-For more information about setting up your system for monitoring, see the following:
-
-* Get a list of queries executed per session - :ref:`DESCRIBE SESSION QUERIES<describe_session_queries>`.
-   
-* See more details about the query execution process for troubleshooting purposes - :ref:`DESCRIBE_QUERY<describe_query>`.
-
-Reading Execution Plans with a Foreign Table
---------------------------------------------
-
-First, create a foreign table for the logs.
-
-.. code-block:: sql
-
-   CREATE FOREIGN TABLE logs 
-   (
-     start_marker      TEXT,
-     row_id            BIGINT,
-     timestamp         DATETIME,
-     message_level     TEXT,
-     thread_id         TEXT,
-     worker_hostname   TEXT,
-     worker_port       INT,
-     connection_id     INT,
-     database_name     TEXT,
-     user_name         TEXT,
-     statement_id      INT,
-     service_name      TEXT,
-     message_type_id   INT,
-     message           TEXT,
-     end_message       TEXT
-   )
-   WRAPPER csv_fdw
-   OPTIONS
-     (
-        LOCATION = '/home/rhendricks/sqream_storage/logs/**/sqream*.log',
-        DELIMITER = '|'
-     )
-   ;
-Once you've defined the foreign table, you can run queries to observe the previously logged execution plans.
-This is recommended over looking at the raw logs.
-
-.. code-block:: sql
-
-   t=> SELECT message
-   .     FROM logs
-   .     WHERE message_type_id = 200
-   .     AND timestamp BETWEEN '2020-06-11' AND '2020-06-13';
-   
-   
-   message                                                                                                                          
-   ---------------------------------------------------------------------------------------------------------------------------------
-   SELECT *,coalesce((depdelay > 15),false) AS isdepdelayed FROM ontime WHERE year IN (2005, 2006, 2007, 2008, 2009, 2010)
-    : 
-    : 1,PushToNetworkQueue  ,10354468,10,1035446,2020-06-12 20:41:42,-1,,,,13.55
-    : 2,Rechunk             ,10354468,10,1035446,2020-06-12 20:41:42,1,,,,0.10
-    : 3,ReorderInput        ,10354468,10,1035446,2020-06-12 20:41:42,2,,,,0.00
-    : 4,DeferredGather      ,10354468,10,1035446,2020-06-12 20:41:42,3,,,,1.23
-    : 5,ReorderInput        ,10354468,10,1035446,2020-06-12 20:41:41,4,,,,0.01
-    : 6,GpuToCpu            ,10354468,10,1035446,2020-06-12 20:41:41,5,,,,0.07
-    : 7,GpuTransform        ,10354468,10,1035446,2020-06-12 20:41:41,6,,,,0.02
-    : 8,ReorderInput        ,10354468,10,1035446,2020-06-12 20:41:41,7,,,,0.00
-    : 9,Filter              ,10354468,10,1035446,2020-06-12 20:41:41,8,,,,0.07
-    : 10,GpuTransform        ,10485760,10,1048576,2020-06-12 20:41:41,9,,,,0.07
-    : 11,GpuDecompress       ,10485760,10,1048576,2020-06-12 20:41:41,10,,,,0.03
-    : 12,GpuTransform        ,10485760,10,1048576,2020-06-12 20:41:41,11,,,,0.22
-    : 13,CpuToGpu            ,10485760,10,1048576,2020-06-12 20:41:41,12,,,,0.76
-    : 14,ReorderInput        ,10485760,10,1048576,2020-06-12 20:41:40,13,,,,0.11
-    : 15,Rechunk             ,10485760,10,1048576,2020-06-12 20:41:40,14,,,,5.58
-    : 16,CpuDecompress       ,10485760,10,1048576,2020-06-12 20:41:34,15,,,,0.04
-    : 17,ReadTable           ,10485760,10,1048576,2020-06-12 20:41:34,16,832MB,,public.ontime,0.55
-
-
-
 Using the ``DESCRIBE QUERY`` Command
 ====================================
 
-The :ref:`describe_query` command returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases.
+The :ref:`DESCRIBE QUERY<describe_query>` command provides an instantaneous overview of the current query plan by presenting a real-time depiction of the compiler's execution strategy and performance metrics for the designated query.
 
-The :ref:`describe_query` result, just like the periodically-logged execution plans described above, are an at-the-moment view of the compiler's execution plan and runtime statistics for the specified statement.
-
-The following is an example of a query inspecting a statement with a statement ID of **7**:
+For example:
 
 .. code-block:: sql
    
-   DESCRIBE QUERY SESSION ID '6a4d1389-0330-4d54-9d52-439ff0b4c74c' QUERY ID 9;
+   DESCRIBE QUERY SESSION ID '6a4d1389-0330-4d54-9d52-439ff0b4c74c' QUERY ID '9';
    
 Output:
 
@@ -156,7 +75,6 @@ Output:
 	6a4d1389-0330-4d54-9d52-439ff0b4c74c:9|sqream-worker-0-58f59bcc96-xh6tx|16     |15       |ReadTable     |0.011688731 |0.011688731       |0                 |12582910     |14             |34384215 |0           |17653296 |public.cool_animals|2023-01-01 11:08:22|1     |
    
 
-
 Alternatively, you may also :ref:`retrieve the query execution plan output<retrieving_execution_plan_output_using_studio>` using your Workbench.
 
 Understanding the Query Execution Plan Output
@@ -171,8 +89,7 @@ Consider the example show_node_info presented above. The source node with ID **#
 The last node, also called the sink, has a parent node ID of **-1**, meaning it has no parent. This is typically a node that sends data over the network or into a table.
    
    
-.. 
-   source for the graph above, in graphviz
+.. code-block::
    
    digraph G {
    rankdir=tb;
@@ -206,15 +123,9 @@ The last node, also called the sink, has a parent node ID of **-1**, meaning it 
      ReadTable [shape=house, style=filled, fillcolor=SeaGreen4];
          
    }
+   
 When using :ref:`describe_query`, a tabular representation of the currently running statement execution is presented.
 See the examples below to understand how the query execution plan is instrumental in identifying bottlenecks and optimizing long-running statements.
-
-Information Presented in the Execution Plan
--------------------------------------------
-
-.. include:: /reference/sql/sql_statements/monitoring_commands/show_node_info.rst
-   :start-line: 47
-   :end-line: 78
 
 Commonly Seen Nodes
 -------------------
@@ -328,27 +239,14 @@ Examples
 In general, looking at the top three longest running nodes (as is detailed in the ``timeSum`` column) can indicate the biggest bottlenecks.
 In the following examples you will learn how to identify and solve some common issues.
 
-
-Spooling to Disk
-----------------
-
-When there is not enough RAM to process a statement, SQream DB will spill over data to the ``temp`` folder in the storage disk.
-While this ensures that a statement can always finish processing, it can slow down the processing significantly.
-It's worth identifying these statements, to figure out if the cluster is configured correctly, as well as potentially reduce
-the statement size. 
-You can identify a statement that spools to disk by looking at the ``write`` column in the execution details.
-A node that spools will have a value, shown in megabytes in the ``write`` column.
-Common nodes that write spools include ``Join`` or ``LoopJoin``.
-
 Identifying the Offending Nodes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------------
 
-#. 
-   Run a query.
+1. Run a query.
      
-   For example, a query from the TPC-H benchmark:
+For example, a query from the TPC-H benchmark:
 
-   .. code-block:: postgres
+.. code-block:: postgres
       
       SELECT o_year,
              SUM(CASE WHEN nation = 'BRAZIL' THEN volume ELSE 0 END) / SUM(volume) AS mkt_share
@@ -366,17 +264,14 @@ Identifying the Offending Nodes
             WHERE o_orderdate BETWEEN '1995-01-01' AND '1996-12-31') AS all_nations
       GROUP BY o_year
       ORDER BY o_year;
-#. 
-   
-   Observe the execution information by using the foreign table, or use ``show_node_info``
+
+2. Observe the execution information by using the foreign table, or use ``DESCRIBE QUERY``.
    
    This statement is made up of 199 nodes, starting from a ``ReadTable``, and finishes by returning only 2 results to the client.
    
    The execution below has been shortened, but note the highlighted rows for ``LoopJoin``:
    
 .. code-block:: sql
-   
-      :emphasize-lines: 33,35,37,39
    
       SELECT message FROM logs WHERE message_type_id = 200 LIMIT 1;
       message                                                                                  
@@ -419,21 +314,6 @@ Identifying the Offending Nodes
        : 150,LoopJoin            ,182369485,10,18236948,2020-09-04 18:31:47,149,12860MB,12860MB,inner,23.62
        [...]
        : 199,ReadTable           ,20000000,1,20000000,2020-09-04 18:30:33,198,0MB,,public.part,0.83
-   Because of the relatively low amount of RAM in the machine and because the data set is rather large at around 10TB, SQream DB needs to spool.  
-   
-   The total spool used by this query is around 20GB (1915MB + 2191MB + 3064MB + 12860MB).
-
-Common Solutions for Reducing Spool
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-* 
-   Increase the amount of spool memory available for the workers, as a proportion of the maximum statement memory.
-   When the amount of spool memory is increased, SQream DB may not need to write to disk.
-   
-   This setting is called ``spoolMemoryGB``. Refer to the :ref:`configuration` guide.
-* 
-   Reduce the amount of **workers** per host, and increase the amount of spool available to the (now reduced amount of) active workers.
-   This may reduce the amount of concurrent statements, but will improve performance for heavy statements.
    
 Queries with Large Result Sets
 ------------------------------
@@ -444,8 +324,7 @@ This gathering occurs when the result set is assembled, in preparation for sendi
 Identifying the Offending Nodes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-#. 
-   Run a query.
+1. Run a query.
      
    For example, a modified query from the TPC-H benchmark:
 
@@ -470,9 +349,8 @@ Identifying the Offending Nodes
       WHERE r_name = 'AMERICA'
       AND   o_orderdate BETWEEN '1995-01-01' AND '1996-12-31'
 	  ;
-2. 
-   
-   Observe the execution information by using the foreign table, or use ``show_node_info``
+
+2. Observe the execution information by using the foreign table, or use ``DESCRIBE QUERY``
    
    This statement is made up of 221 nodes, containing 8 ``ReadTable`` nodes, and finishes by returning billions of results to the client.
    
@@ -480,9 +358,12 @@ Identifying the Offending Nodes
    
 .. code-block:: sql
    
-      :emphasize-lines: 7,9,11
-   
-      SELECT show_node_info(494);
+    SELECT show_node_info(494);
+	
+Output:
+
+.. code-block:: none
+	
       stmt_id | node_id | node_type            | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read    | write | comment         | timeSum
       --------+---------+----------------------+-----------+--------+-------------------+---------------------+----------------+---------+-------+-----------------+--------
           494 |       1 | PushToNetworkQueue   |    242615 |      1 |            242615 | 2020-09-04 19:07:55 |             -1 |         |       |                 |    0.36
@@ -496,42 +377,42 @@ Identifying the Offending Nodes
           [...]
           494 |     221 | ReadTable            |  20000000 |     20 |           1000000 | 2020-09-04 19:07:01 |            220 | 20MB    |       | public.part     |     0.1
   
-   When you see ``DeferredGather`` operations taking more than a few seconds, that's a sign that you're selecting too much data.
-   In this case, the DeferredGather with node ID 166 took over 21 seconds.
+When you see ``DeferredGather`` operations taking more than a few seconds, that's a sign that you're selecting too much data.
+
+In this case, the DeferredGather with node ID 166 took over 21 seconds.
    
-#. Modify the statement to see the difference
+3. Modify the statement to see the difference
    Altering the select clause to be more restrictive will reduce the deferred gather time back to a few milliseconds.
    
-   .. code-block:: sql
+.. code-block:: sql
       
-      SELECT DATEPART(year, o_orderdate) AS o_year,
-             l_extendedprice * (1 - l_discount / 100.0) as volume,
-             n2.n_name as nation
-      FROM ...
+   SELECT DATEPART(year, o_orderdate) AS o_year,
+          l_extendedprice * (1 - l_discount / 100.0) as volume,
+          n2.n_name as nation
+   FROM ...
 
 Common Solutions for Reducing Gather Time
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Reduce the effect of the preparation time. Avoid selecting unnecessary columns (``SELECT * FROM...``), or reduce the result set size by using more filters.
-.. ``
+Reduce the effect of the preparation time. Avoid selecting unnecessary columns (``SELECT * FROM...``), or reduce the result set size by using more filters.
 
 Inefficient Filtering
 ---------------------
 
-When running statements, SQream DB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
-If statements do not include efficient filtering, SQream DB will read a lot of data off disk.
-In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line,
-it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
+When running statements, BLUE tries to avoid reading data that is not needed for the statement by skipping chunks.
+
+If statements do not include efficient filtering, BLUE will read a lot of data off disk.
+In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line, it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
 
 Identifying the Situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We consider the filtering to be inefficient when the ``Filter`` node shows that the number of rows processed is less
 than a third of the rows passed into it by the ``ReadTable`` node.
+
 For example:
 
-#. 
-   Run a query.
+1. Run a query.
      
    In this example, we execute a modified query from the TPC-H benchmark.
    Our ``lineitem`` table contains 600,037,902 rows.
@@ -556,15 +437,12 @@ For example:
             AND   o_orderdate BETWEEN '1995-01-01' AND '1996-12-31') AS all_nations
       GROUP BY o_year
       ORDER BY o_year;
-#. 
+
+2. Observe the execution information by using the foreign table, or use ``DESCRIBE QUERY``
    
-   Observe the execution information by using the foreign table, or use ``show_node_info``
-   
-   The execution below has been shortened, but note the highlighted rows for ``ReadTable`` and ``Filter``:
+   The execution below has been shortened.
    
    .. code-block:: psql
-      :linenos:
-      :emphasize-lines: 9,17,19,27
    
       SELECT show_node_info(559);
 	  
@@ -607,8 +485,8 @@ For example:
       on line 27 was 20,000,000 rows.  This means that it has filtered out >99% (:math:`1 - \dfrac{133241}{20000000} = 99.4\%`)
       of the data, but the entire table was read. However, this table is small enough that we can ignore it.
    
-#. Modify the statement to see the difference
-   Altering the statement to have a ``WHERE`` condition on the clustered ``l_orderkey`` column of the ``lineitem`` table will help SQream DB skip reading the data.
+3. Modify the statement to see the difference
+   Altering the statement to have a ``WHERE`` condition on the clustered ``l_orderkey`` column of the ``lineitem`` table will help BLUE skip reading the data.
    
    .. code-block:: sql
       :emphasize-lines: 15
@@ -683,6 +561,7 @@ Consider this execution plan:
         30 |      38 | Filter            |     18160 |     74 |               245 | 2020-09-10 12:17:09 |             37 |       |       |            |   0.012
    [...]
         30 |      44 | ReadTable         |  77000000 |     74 |           1040540 | 2020-09-10 12:17:09 |             43 | 277MB |       | public.dim |   0.058
+
 The table was read entirely - 77 million rows into 74 chunks.
 The filter node reduced the output to just 18,160 relevant rows, but they're distributed across the original 74 chunks.
 All of these rows could fit in one single chunk, instead of spanning 74 rather sparse chunks.
@@ -702,11 +581,12 @@ In this case, we're also interested in the number of chunks produced by these no
 Consider this execution plan:
 
 .. code-block:: sql
-   :emphasize-lines: 6,11
+
    
    SELECT show_node_info(30);
    
 .. code-block:: none
+   :emphasize-lines: 6,11
 
    stmt_id | node_id | node_type         | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment    | timeSum
    --------+---------+-------------------+-----------+--------+-------------------+---------------------+----------------+-------+-------+------------+--------
@@ -722,6 +602,7 @@ Consider this execution plan:
         30 |      38 | Filter            |     18160 |     74 |               245 | 2020-09-10 12:17:09 |             37 |       |       |            |   0.012
    [...]
         30 |      44 | ReadTable         |  77000000 |     74 |           1040540 | 2020-09-10 12:17:09 |             43 | 277MB |       | public.dim |   0.058
+
 * ``Join`` is the node that matches rows from both table relations.
 * ``DeferredGather`` gathers the required column chunks to decompress
 Pay special attention to the volume of data removed by the ``Filter`` node.
@@ -743,9 +624,12 @@ Changing the Join Order
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 Always prefer to join the smallest tables first.
+
 .. note:: 
+   
    We consider small tables to be tables that only retain a small amount of rows after conditions
    are applied. This bears no direct relation to the amount of total rows in the table.
+
 Changing the join order can reduce the query runtime significantly. In the examples below, we reduce the time
 from 27.3 seconds to just 6.4 seconds.
 
