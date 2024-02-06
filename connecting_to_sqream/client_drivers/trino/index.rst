@@ -18,7 +18,7 @@ It is essential you have the following installed:
 
 * SQreamDB version 4.1 or later
 * Trino version 403 or later
-* `Trino Connector <https://sq-ftp-public.s3.amazonaws.com/trino-server-402.tar.gz>`_
+* `Trino Connector <https://sq-ftp-public.s3.amazonaws.com/trino-server-402.tar>`_
 * :ref:`JDBC<java_jdbc>` version 4.5.6 or later
 
 Installation
@@ -28,17 +28,7 @@ The Trino Connector must be installed on each cluster node dedicated to Trino.
 
 1. Create a dedicated directory for the Trino Connector.
 
-2. Download the Trino Connector and extract the content of the ZIP file to the dedicated directory, as shown in the example:
-
-.. code-block:: 
-
-	trino-server/
-	└── plugin
-		└── sqream
-			├── sqream-jdbc.jar
-			├── trino-sqream-services.jar
-			├── trino-sqream-SNAPSHOT.jar
-			└── all dependencies
+2. Download the Trino Connector and extract the content of the ZIP file to the dedicated directory.
 
 Connecting to SQreamDB
 ======================
