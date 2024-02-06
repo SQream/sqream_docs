@@ -45,7 +45,7 @@ First, create a foreign table for the logs.
      message           TEXT,
      end_message       TEXT
    )
-   WRAPPER cdv_fdw
+   WRAPPER csv_fdw
    OPTIONS
      (
         LOCATION = '/home/rhendricks/sqream_storage/logs/**/sqream*.log',
