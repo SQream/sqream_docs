@@ -80,7 +80,7 @@ A user role has permissions to login, and has a password.
 
    CREATE ROLE new_role;
    GRANT LOGIN to new_role;
-   GRANT PASSWORD 'passw0rd' to new_role;
+   GRANT PASSWORD 'Passw0rd!' to new_role;
    GRANT CONNECT ON DATABASE master to new_role; -- Repeat for all desired databases
    GRANT USAGE ON SERVICE sqream TO new_role;
    GRANT ALL ON SCHEMA public; -- It is advisable to grant permissions on at least one schema
