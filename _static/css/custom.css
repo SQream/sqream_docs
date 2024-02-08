@@ -71,3 +71,33 @@ html_theme_options = {
         "font-stack--monospace": "Courier, monospace",
     },
 }
+
+.sidebar-drawer {
+	width: calc(40% - 26em);
+}
+
+.content {
+	width: 45vw;
+	padding: 1px 8em;
+	
+}
+
+h1 {
+	font-size: 2.25em;
+}
+
+h2 {
+	font-size: 1.875em;
+}
+
+h3 {
+	font-size: 1.5em;
+}
+
+h4 {
+	font-size: 1em;
+}
+
+h5 {
+	font-size: 0.8em;
+}
