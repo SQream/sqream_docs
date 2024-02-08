@@ -18,19 +18,29 @@ Client Driver Downloads
      - Docs
      - Notes
      - Operating System
+   * - **Apache Spark**
+     - `Apache Spark Connector <https://sq-ftp-public.s3.amazonaws.com/Spark-Sqream-Connector-5.0.0.jar>`_ 
+     - :ref:`spark` 
+     - 
+     - All
    * - **JDBC**
      - `sqream-jdbc 5.0.0 <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-5.0.0.jar>`_
      - :ref:`java_jdbc`
      - Recommended installation via ``mvn``
      - All
-   * - **SQreamNet**
-     - `.NET .dll file <https://sq-ftp-public.s3.amazonaws.com/SqreamNet6.0_v5.0.0.zip>`_ 
-     - :ref:`net`
-     - 
+   * - **Node.JS**
+     - `sqream-v4.2.4 <https://sq-ftp-public.s3.amazonaws.com/sqream-sqreamdb-4.2.4.tgz>`_
+     - :ref:`nodejs`
+     - Recommended installation via ``npm``
      - All
-   * - **Apache Spark**
-     - `Apache Spark Connector <https://sq-ftp-public.s3.amazonaws.com/Spark-Sqream-Connector-5.0.0.jar>`_ 
-     - :ref:`spark` 
+   * - **ODBC**
+     - For the **ODBC installer**, please contact your `SQreamDB representative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_
+     - :ref:`Windows<install_odbc_windows>`, :ref:`Linux<install_odbc_linux>`
+     - 
+     - Windows, Linux
+   * - **Power BI**
+     - `Power BI Power Query Connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_
+     - :ref:`power_bi`
      - 
      - All
    * - **Python**
@@ -38,26 +48,22 @@ Client Driver Downloads
      - :ref:`pysqream`
      - Recommended installation via ``pip``
      - All
-   * - **Node.JS**
-     - `sqream-v4.2.4 <https://sq-ftp-public.s3.amazonaws.com/sqream-sqreamdb-4.2.4.tgz>`_
-     - :ref:`nodejs`
-     - Recommended installation via ``npm``
+   * - **SQreamNet**
+     - `.NET .dll file <https://sq-ftp-public.s3.amazonaws.com/SqreamNet6.0_v5.0.0.zip>`_ 
+     - :ref:`net`
+     - 
      - All
    * - **Tableau**
      - `Tableau Connector <https://sq-ftp-public.s3.amazonaws.com/SQreamDB.taco>`_ 
      - :ref:`tableau`  
      - 
      - All
-   * - **Power BI**
-     - `Power BI Power Query Connector <https://sq-ftp-public.s3.amazonaws.com/SqlODBC__v1.0.mez>`_
-     - :ref:`power_bi`
-     - 
+   * - **Trino**
+     - `Trino Connector <https://sq-ftp-public.s3.amazonaws.com/trino-server-402.tar>`_
+     - :ref:`trino`
+     -
      - All
-   * - **ODBC**
-     - For the **ODBC installer**, please contact your `SQreamDB representative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_
-     - :ref:`Windows<install_odbc_windows>`, :ref:`Linux<install_odbc_linux>`
-     - 
-     - Windows, Linux
+
 
 
 
