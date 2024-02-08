@@ -71,3 +71,7 @@ html_theme_options = {
         "font-stack--monospace": "Courier, monospace",
     },
 }
+
+.sidebar-drawer {
+    width: none !important; 
+}
