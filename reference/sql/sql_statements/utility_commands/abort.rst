@@ -14,7 +14,7 @@ Syntax
 
 .. code-block:: sql
 
-   ABORT( <session_id> , <query_id>)
+   ABORT( <'session_id'> , <'query_id'>)
 
 Parameters
 ============
