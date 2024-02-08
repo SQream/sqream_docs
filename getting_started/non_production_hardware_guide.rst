@@ -3,6 +3,7 @@
 ***************************************
 Staging and Development Hardware Guide
 ***************************************
+
 The **Staging and Development Hardware Guide** describes the SQream recommended HW for development, staging and or QA desktop and servers.
 
 .. warning:: The HW specification in this page are not intended for production use!

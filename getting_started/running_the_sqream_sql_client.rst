@@ -1,8 +1,9 @@
 .. _running_the_sqream_sql_client:
 
-****************************
+*****************************
 Running the SQream SQL Client
-****************************
+*****************************
+
 The following example shows how to run the SQream SQL client:
 
 .. code-block:: psql
@@ -12,8 +13,7 @@ The following example shows how to run the SQream SQL client:
    
    Interactive client mode
    To quit, use ^D or \q.
-   
-   master=> _
+  
 
 Running the SQream SQL client prompts you to provide your password. Use the username and password that you have set up, or your DBA has provided.
   

@@ -3,6 +3,7 @@
 ****************************
 Querying Data
 ****************************
+
 One of the most basic operations when using SQream is querying data.
 
 To begin familiarizing yourself with querying data, you can create the following table using the ``CREATE TABLE`` statement:
@@ -38,7 +39,8 @@ The above query gets the following from the table above, limited to showing the 
 
 .. code-block:: psql
    
-   nba=> SELECT Name, Team, Age FROM nba LIMIT 10;
+   SELECT Name, Team, Age FROM nba LIMIT 10;
+   
    Avery Bradley,Boston Celtics,25
    Jae Crowder,Boston Celtics,25
    John Holland,Boston Celtics,27

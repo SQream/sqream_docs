@@ -2,12 +2,13 @@
 
 
 
-***********************
+***************************************
 Installing the Dashboard Data Collector
-***********************
+***************************************
 
 Installing the Dashboard Data Collector
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 After accessing the Prometheus user interface, you can install the **Dashboard Data Collector**. You must install the Dashboard Data Collector to enable the Dashboard in Studio.
 
 .. note:: Before installing the Dashboard Data collector, verify that Prometheus has been installed and configured for the cluster.

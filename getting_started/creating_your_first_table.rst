@@ -3,6 +3,7 @@
 ****************************
 Creating Your First Table
 ****************************
+
 The **Creating Your First Table** section describes the following:
 
 * :ref:`Creating a table<creating_a_table>`

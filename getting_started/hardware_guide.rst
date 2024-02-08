@@ -12,8 +12,12 @@ This page is intended as a "reference" to suggested hardware. However, different
 
 Visit `SQreamDB's support portal <https://sqream.atlassian.net/servicedesk/customer/portals>`_ for additional support.
 
-A SQreamDB Cluster
-==================
+.. contents:: 
+   :local:
+
+
+Cluster Architectures
+=====================
 
 SQreamDB recommends rackmount servers by server manufacturers Dell, Lenovo, HP, Cisco, Supermicro, IBM, and others.
 

@@ -1,8 +1,9 @@
 .. _performing_basic_sqream_operations:
 
-****************************
+**********************************
 Performing Basic SQream Operations
-****************************
+**********************************
+
 After installing SQream you can perform the operations described on this page:
 
 .. toctree::

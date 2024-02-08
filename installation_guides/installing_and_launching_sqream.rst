@@ -1,9 +1,10 @@
 .. _installing_and_launching_sqream:
 
-*************************
-Installing and Launching SQream
-*************************
-The **Installing and Launching SQream** page includes the following installation guides:
+*********************************
+Installing and Launching SQreamDB
+*********************************
+
+The **Installing and Launching SQreamDB** page includes the following installation guides:
 
 .. toctree::
    :maxdepth: 1

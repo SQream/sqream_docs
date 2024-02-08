@@ -3,6 +3,7 @@
 ****************************
 Creating a Database
 ****************************
+
 Once you've installed SQream you can create a database.
 
 **To create a database:**

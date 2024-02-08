@@ -1,8 +1,9 @@
 .. _saving_query_results_to_a_csv_or_psv_file:
 
-****************************
+*****************************************
 Saving Query Results to a CSV or PSV File
-****************************
+*****************************************
+
 You can save query results to a CSV or PSV file using the ``sqream sql`` command from a CLI client. This saves your query results to the selected delimited file format, as shown in the following example:
 
 .. code-block:: console

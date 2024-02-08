@@ -3,6 +3,7 @@
 ****************************
 Deleting Rows
 ****************************
+
 The **Deleting Rows** section describes the following:
 
 * :ref:`Deleting selected rows<deleting_selected_rows>`
@@ -16,17 +17,16 @@ You can delete rows in a table selectively using the ``DELETE`` command. You mus
 
 .. code-block:: psql
 
-   test=> DELETE FROM cool_animals WHERE weight is null;
+   DELETE FROM cool_animals WHERE weight is null;
    
    executed
-   master=> SELECT  * FROM cool_animals;
+   SELECT  * FROM cool_animals;
    1,Dog                 ,7
    2,Possum              ,3
    3,Cat                 ,5
    4,Elephant            ,6500
    5,Rhinoceros          ,2100
 
-   5 rows
 
 .. _deleting_all_rows:
 
@@ -36,9 +36,8 @@ You can delete all rows in a table using the ``TRUNCATE`` command followed by th
 
 .. code-block:: psql
 
-   test=> TRUNCATE TABLE cool_animals;
-   
-   executed
+   TRUNCATE TABLE cool_animals;
+  
 
 .. note:: While :ref:`truncate` deletes data from disk immediately, :ref:`delete` does not physically remove the deleted rows.
 
