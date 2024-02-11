@@ -14,13 +14,13 @@ Upgrade-Related Configuration Changes
      - Storage Version
      - Configurations and Changes
    * - 4.4
-     - 49
+     - 50
      - New Releases:
 	   * Pysqream 5.0.0 Connector is released
 	   
 	   * JDBC 5.0.0 Connector is released
    * - 4.3
-     - 49
+     - 50
      - Configuration:
 	   * Two new :ref:`AWS S3<s3>` object access style and endpoint URL with Virtual Private Cloud (VPC) configuration flags: ``AwsEndpointOverride``, ``AwsObjectAccessStyle``
 	   * **REHL 8.x** is now officially supported
