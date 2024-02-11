@@ -13,6 +13,9 @@ Upgrade-Related Configuration Changes
    * - SQreamDB Version
      - Storage Version
      - Configurations and Changes
+   * - 4.5
+     - 50
+     - None
    * - 4.4
      - 50
      - New Releases:
