@@ -15,7 +15,7 @@ See :ref:`DESCRIBE SESSIONS<describe_sessions>`
 
 
 New Filtering for ``DESCRIBE SESSIONS`` and ``AUDITLOG``
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The new ``INITIATED BY`` filter, which facilitates access to information about the source triggering the queries proves particularly useful for examining queries initiated either by users or by the system exclusively.
 
