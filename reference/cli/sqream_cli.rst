@@ -1,7 +1,7 @@
-.. _sqream_console_cli_reference:
+.. _sqream_cli:
 
 *********************************
-sqream Linux console
+SQreamDB CLI
 *********************************
 
 ``sqream-console`` is an interactive shell designed to help manage a dockerized SQream DB installation.
