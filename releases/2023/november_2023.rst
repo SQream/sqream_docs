@@ -1,7 +1,7 @@
 .. _november_2023:
 
 ******************
-November
+November 2023
 ******************
 
 New Features and Enhancements
