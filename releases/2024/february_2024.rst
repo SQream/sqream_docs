@@ -11,7 +11,7 @@ February 2024
 The ``DESCRIBE SESSION QUERIES`` command provides an output listing running and queued queries per session, including details such as the executing role, execution time, duration, and client information. A new column, ``pool_name``, has been introduced to indicate the resource pool used for executing the monitored queries.
 
 
-See :ref:`DESCRIBE SESSIONS<describe_sessions>`
+See :ref:`DESCRIBE SESSION QUERIES<describe_session_queries>`
 
 
 New Filtering for ``DESCRIBE SESSIONS`` and ``AUDITLOG``

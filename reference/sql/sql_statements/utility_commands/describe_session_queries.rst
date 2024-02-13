@@ -33,8 +33,8 @@ The following parameters can be used with the ``DESCRIBE SESSION QUERIES`` comma
      - Type
    * - ``SESSION ID``
      - ``session_id``
-     - The session ID of the query.
-     - Text
+     - The session ID of the query
+     - ``TEXT``
 	 
 .. note:: The ``SESSION_ID`` parameter is optional. If you do not specify a session ID, SQream uses the session ID of the current session.
 	 
@@ -54,87 +54,87 @@ Using the ``DESCRIBE SESSION QUERIES`` command generates the following output:
      - Example
    * - ``query_id``
      - Displays the query ID
-     - Text
+     - ``TEXT``
      - ``b6173e04-6e2a-4266-bef0-6fc9b8ffc097:3``
    * - ``query_status``
      - Displays the query status
-     - Text
+     - ``TEXT``
      - ``EXECUTION_FAILED``
    * - ``query_type``
      - Displays the query type
-     - Text
+     - ``TEXT``
      - ``SELECT``
    * - ``sql_text``
      - Selects the defined SQL text from the specified table
-     - Text
+     - ``TEXT``
      - ``SELECT * FROM t1``
    * - ``role``
      - The role who executed the query
-     - Text
+     - ``TEXT``
      - ``sqream``	 
    * - ``session_id``
      - Selects the session ID
-     - Text
+     - ``TEXT``
      - ``b6173e04-6e2a-4266-bef0-6fc9b8ffc097``
    * - ``start_time``
      - Displays query execution date and time
-     - Datetime
+     - ``DATETIME``
      - ``2022-05-02T15:32:49``
    * - ``end_time``
      - Displays query end date and time
-     - Datetime
-     - ``2024-01-09T10:37:04 ``	 
+     - ``DATETIME``
+     - ``2024-01-09T10:37:04``	 
    * - ``duration``
      - Query duration time
-     - Integer
+     - ``INTEGER``
      - ``64``	 
    * - ``time_in_queue``
      - Query time in queue (milliseconds)
-     - Integer
+     - ``INTEGER``
      - ``0``	 
    * - ``compilation_time``
      - Query compilation time (milliseconds)
-     - Integer
+     - ``INTEGER``
      - ``18``	 
    * - ``execution_time``
      - The execution time (milliseconds)
-     - Integer   
+     - ``INTEGER``   
      - ``0``	 
    * - ``total_compute_time``
      - The total compute time during which the system actively engaged (milliseconds)
-     - Integer
+     - ``INTEGER``
      - ``0``	 
    * - ``rows_read``
      - The number of rows read by the query
-     - Integer
+     - ``INTEGER``
      - ``1456``	 
    * - ``rows produced``
      - The number of rows returned by the query 
-     - Integer
+     - ``INTEGER``
      - ``65``	 
    * - ``data produced``
      - The amount of data produced by the query (MegaBytes)
-     - Integer
+     - ``INTEGER``
      - ``813``	 
    * - ``data_read_compressed``
      - The amount of compresses read data
-     - Integer
+     - ``INTEGER``
      - ``0``	 
    * - ``data_read_uncompressed``
      - The amount of uncompressed read data
-     - Integer
+     - ``INTEGER``
      - ``0``	 
    * - ``client_info``
      - Displays information about the client
-     - Type
+     - ``TEXT``
      - ``SQream JDBC v0.1.33`` 
    * - ``query_error``
      - The reason for query failure
-     - Text
+     - ``TEXT``
      - ``Error in compilation process: : Wrapped CalciteException Cause: org.apache.calcite.sql.validate.SqlValidatorException: Object 'master.public.talia' not found``
    * - ``pool_name``
      - The resource pool used for executing the statement
-     - Text
+     - ``TEXT``
      - ``BI``	 	 
 
 Example
