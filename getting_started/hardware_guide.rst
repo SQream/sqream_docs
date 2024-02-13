@@ -97,6 +97,10 @@ The following table shows SQreamDB's recommended hardware specifications:
      -   
          * 2x 960GB SSD 2.5in hot plug for OS, RAID1
          * 2x 2TB SSD or NVMe, for temporary spooling, RAID0
+   * - Network Card (Storage)
+     - 2x Mellanox ConnectX-6 Single Port HDR VPI InfiniBand Adapter cards at 100GbE or similar.
+   * - Network Card (Client)
+     - 2x 1 GbE cards or similar   
    * - External Storage
      -   
          * Mellanox Connectx5/6 100G NVIDIA Network Card (if applicable) or other high-speed network card minimum 40G compatible with customer’s infrastructure
