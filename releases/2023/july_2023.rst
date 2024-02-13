@@ -1,7 +1,7 @@
 .. _july_2023:
 
 *********
-July
+July 2023
 *********
 
 DESCRIBE POOLS Command

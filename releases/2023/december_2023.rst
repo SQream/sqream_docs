@@ -1,7 +1,7 @@
 .. _december_2023:
 
 ******************
-December
+December 2023
 ******************
 
 Job Execution Termination
