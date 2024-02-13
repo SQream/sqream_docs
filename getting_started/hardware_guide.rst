@@ -14,6 +14,7 @@ Visit `SQreamDB's support portal <https://sqream.atlassian.net/servicedesk/custo
 
 .. contents:: 
    :local:
+   :depth: 2
 
 
 Cluster Architectures
@@ -21,7 +22,7 @@ Cluster Architectures
 
 SQreamDB recommends rackmount servers by server manufacturers Dell, Lenovo, HP, Cisco, Supermicro, IBM, and others.
 
-A typical SQreamDB cluster includes one or more nodes, consisting of
+A typical SQreamDB cluster includes one or more nodes, consisting of:
 
 * Two-socket enterprise processors, such as Intel® Xeon® Gold processors or the IBM® POWER9 processors, providing the high performance required for compute-bound database workloads.
 
@@ -33,7 +34,7 @@ A typical SQreamDB cluster includes one or more nodes, consisting of
 
 * High density chassis design, offering between 2 and 4 GPUs in a 1U, 2U, or 3U package, for best-in-class performance per cm\ :sup:`2`.
 
-Single-Node Cluster Example
+Single-Node Cluster
 ---------------------------
 
 A single-node SQreamDB cluster can handle between 1 and 8 concurrent users, with up to 1PB of data storage (when connected via NAS).
@@ -71,7 +72,7 @@ In this system configuration, SQreamDB can store about 100TB of raw data (assumi
 
 If a NAS is used, the 10x SSD drives can be omitted, but SQreamDB recommends 2TB of local spool space on SSD or NVMe drives.
 
-Multi-Node Cluster Examples
+Multi-Node Cluster
 ---------------------------
 
 Multi-node clusters can handle any number of concurrent users. A typical SQreamDB cluster relies on a minimum of two GPU-enabled servers and shared storage connected over a network fabric, such as InfiniBand EDR, 40GbE, or 100GbE.
@@ -138,7 +139,7 @@ The following table shows SQreamDB's recommended metadata server specifications:
 
 .. note:: With a NAS connected over GPFS, Lustre, Weka, or VAST, each SQreamDB worker can read data at 5GB/s or more.
 
-SQreamDB Studio Server Example
+SQreamDB Studio Server
 ------------------------------
 
 The following table shows SQreamDB's recommended Studio server specifications:
