@@ -11,3 +11,4 @@ sphinx-copybutton>=0.5.2
 furo>=2023.3.27
 sphinx-inline-tabs>=2023.4.21
 sphinx-favicon>=1.0.1
+sphinxemoji.sphinxemoji>=0.2.0
