@@ -33,19 +33,19 @@ The following parameters can be used with the ``DESCRIBE SESSIONS`` command:
    * - ``USER``
      - ``user_name``
      - Optional parameter for filtering by username
-     - TEXT
+     - ``TEXT``
    * - ``TIMEFRAME FROM``  
      - ``start_date_time``
      - Optional parameter for filtering based on time frame (must be used in combination with ``TO``)
-     - DATETIME
+     - ``DATETIME``
    * - ``TIMEFRAME TO``  
      - ``end_date_time``
      - Optional parameter for filtering by time frame (must be used in combination with ``FROM``)
-     - DATETIME
+     - ``DATETIME``
    * - ``INITIATED BY``
      - ``ALL``, ``External``, ``Blue_UI_User``, ``Blue_UI_System``, ``CLI``, ``Jobs``, and/or ``Statistics``. Default is: ``Blue_UI_User``, ``CLI``, and ``External``
      - Optional parameter for filtering based on the source that triggered the query
-     - TEXT	 
+     - ``TEXT``	 
 	 
 	 
 Output
@@ -63,28 +63,32 @@ Using the ``DESCRIBE SESSIONS`` command generates the following output:
      - Example
    * - ``start_time``
      - Displays the start time of the session.
-     - Date
-     - 12-06-2022 06:16:56
+     - ``DATE``
+     - ``12-06-2022 06:16:56``
    * - ``database``
      - Displays the name of the database.
-     - Text
-     - master
+     - ``TEXT``
+     - ``master``
    * - ``source_ip``
      - Displays the IP address of the client connected to SQream.
-     - Integer
-     - 10.212.134.4	 
+     - ``INTEGER``
+     - ``10.212.134.4``	 
    * - ``client``
      - Displays the name and version of the client.
-     - Text
-     - SQream JDBC v0.1.33
+     - ``TEXT``
+     - ``SQream JDBC v0.1.33``
    * - ``status``
      - Displays the status of the client.
-     - Text
-     - Active
+     - ``TEXT``
+     - ``Active``
    * - ``session_id``
      - Displays the session ID.
-     - Text
-     - efd226bb-cc57-4d41-8ff9-c9300830c571
+     - ``TEXT``
+     - ``efd226bb-cc57-4d41-8ff9-c9300830c571``
+   * - ``InitiatedBy``
+     - Displays the source that triggered the query
+     - ``TEXT``
+     - ``CLI``
 	 
 Examples
 ========

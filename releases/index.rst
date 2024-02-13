@@ -7,7 +7,7 @@ Release Notes
 :ref:`February 2024 <february_2024>`
 
 * The ``DESCRIBE SESSION QUERIES`` command now provides the name of the resource pool used with each query execution.
-* A new filter enables you to focus on either user or system initiated queries when monitoring your daily workflows using the ``DESCRIBE SESSIONS`` and ``AUDITLOG`` commands.  
+* With a new filter, you can now choose to concentrate on either user-initiated or system-initiated operations when monitoring your daily workflows through the ``DESCRIBE SESSIONS`` and ``AUDITLOG`` commands.
 
 :ref:`December 2023 <december_2023>`
 
