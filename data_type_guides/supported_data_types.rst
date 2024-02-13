@@ -3,9 +3,10 @@
 *************************
 Supported Data Types
 *************************
-The **Supported Data Types** page describes SQream's supported data types:
 
-The following table shows the supported data types.
+BLUE compresses all columns and types. The data size noted is the maximum data size allocation for uncompressed data.
+
+The following table shows the data types supported by BLUE:
 
 .. list-table::
    :widths: 20 15 20 30 20
@@ -59,7 +60,7 @@ The following table shows the supported data types.
    * - ``NUMERIC``
      -  38 digits
      - 16 bytes
-     - ``0.123245678901234567890123456789012345678``
+     - ``0.12324567890123456789012345678901234567``
      - ``DECIMAL``
    * - ``DATE``
      - Date
@@ -71,5 +72,3 @@ The following table shows the supported data types.
      - 8 bytes
      - ``'1955-11-05 01:24:00.000'``
      -  ``TIMESTAMP``, ``DATETIME2``
-
-.. note:: SQream compresses all columns and types. The data size noted is the maximum data size allocation for uncompressed data.

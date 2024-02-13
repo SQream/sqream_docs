@@ -3,13 +3,13 @@
 *************************
 Integer
 *************************
+
 Integer data types are designed to store whole numbers.
 
 For more information about identity sequences (sometimes called auto-increment or auto-numbers), see :ref:`identity`.
 
 Integer Types
 ^^^^^^^^^^^^^^^^^^^
-The following table describes the Integer types.
 
 .. list-table:: 
    :widths: auto
@@ -48,10 +48,11 @@ The following table describes the Integer data type.
      - Integer types range between 1, 2, 4, and 8 bytes - but resulting average data sizes could be lower after compression.
 
 Integer Examples
-^^^^^^^^^^
+^^^^^^^^^^^^^^^^
+
 The following is an example of the Integer syntax:
 
-.. code-block:: postgres
+.. code-block:: sql
    
    CREATE TABLE cool_numbers (a INT NOT NULL, b TINYINT, c SMALLINT, d BIGINT);
    
@@ -67,7 +68,7 @@ The following is an example of the correct output:
    -5,127,32000,45000000000
 
 Integer Casts and Conversions
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following table shows the possible Integer value conversions:
 

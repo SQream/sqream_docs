@@ -3,6 +3,7 @@
 *************************
 Numeric
 *************************
+
 The **Numeric** data type (also known as **Decimal**) is recommended for values that tend to occur as exact decimals, such as in Finance. While Numeric has a fixed precision of ``38``, higher than ``REAL`` (``9``) or ``DOUBLE`` (``17``), it runs calculations more slowly. For operations that require faster performance, using :ref:`Floating Point <floating_point>` is recommended.
 
 The correct syntax for Numeric is ``numeric(p, s)``), where ``p`` is the total number of digits (``38`` maximum), and ``s`` is the total number of decimal digits. If no parameters are specified, Numeric defaults to ``numeric(38, 0)``.
@@ -10,9 +11,7 @@ The correct syntax for Numeric is ``numeric(p, s)``), where ``p`` is the total n
 Numeric Examples
 ^^^^^^^^^^
 
-The following is an example of the Numeric syntax:
-
-.. code-block:: postgres
+.. code-block:: sql
 
    CREATE OR REPLACE table t(x numeric(20, 10), y numeric(38, 38));
    INSERT INTO t VALUES(1234567890.1234567890, 0.123245678901234567890123456789012345678);
@@ -33,6 +32,6 @@ The following table shows information relevant to the Numeric data type:
 
 Numeric supports the following operations:
 
-   * All join types.
-   * All aggregation types (not including Window functions).
-   * Scalar functions (not including some trigonometric and logarithmic functions).
+* All join types.
+* All aggregation types (not including Window functions).
+* Scalar functions (not including some trigonometric and logarithmic functions).

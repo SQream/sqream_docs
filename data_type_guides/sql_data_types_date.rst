@@ -3,11 +3,13 @@
 *************************
 Date
 *************************
+
 ``DATE`` is a type designed for storing year, month, and day. ``DATETIME`` is a type designed for storing year, month, day, hour, minute, seconds, and milliseconds in UTC with 1 millisecond precision.
 
 
 Date Types
 ^^^^^^^^^^^^^^^^^^^^^^
+
 The following table describes the Date types:
 
 .. list-table:: Date Types
