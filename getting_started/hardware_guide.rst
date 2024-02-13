@@ -35,7 +35,7 @@ A typical SQreamDB cluster includes one or more nodes, consisting of:
 * High density chassis design, offering between 2 and 4 GPUs in a 1U, 2U, or 3U package, for best-in-class performance per cm\ :sup:`2`.
 
 Single-Node Cluster
----------------------------
+-------------------
 
 A single-node SQreamDB cluster can handle between 1 and 8 concurrent users, with up to 1PB of data storage (when connected via NAS).
 
@@ -73,18 +73,11 @@ In this system configuration, SQreamDB can store about 100TB of raw data (assumi
 If a NAS is used, the 10x SSD drives can be omitted, but SQreamDB recommends 2TB of local spool space on SSD or NVMe drives.
 
 Multi-Node Cluster
----------------------------
+------------------
 
 Multi-node clusters can handle any number of concurrent users. A typical SQreamDB cluster relies on a minimum of two GPU-enabled servers and shared storage connected over a network fabric, such as InfiniBand EDR, 40GbE, or 100GbE.
 
 The **Multi-Node Cluster Examples** section describes the following specifications: 
-
-.. contents:: 
-   :local:
-   :depth: 1
-   
-Hardware Specifications
-~~~~~~~~~~~~~~~~~~~~~~~
 
 The following table shows SQreamDB's recommended hardware specifications:
 
@@ -113,8 +106,8 @@ The following table shows SQreamDB's recommended hardware specifications:
    * - Operating System
      - Red Hat Enterprise Linux v7.9 or CentOS v7.9 or Amazon Linux
 	 
-Metadata Specifications
-~~~~~~~~~~~~~~~~~~~~~~~
+Metadata Server
+---------------
 	 
 The following table shows SQreamDB's recommended metadata server specifications:
 
@@ -124,6 +117,8 @@ The following table shows SQreamDB's recommended metadata server specifications:
    
    * - Component
      - Type
+   * - Server
+     - 
    * - Processors
      - 2x Intel Xeon Gold 6342 2.8 Ghz 24C processors or similar
    * - RAM
@@ -140,7 +135,7 @@ The following table shows SQreamDB's recommended metadata server specifications:
 .. note:: With a NAS connected over GPFS, Lustre, Weka, or VAST, each SQreamDB worker can read data at 5GB/s or more.
 
 SQreamDB Studio Server
-------------------------------
+----------------------
 
 The following table shows SQreamDB's recommended Studio server specifications:
 
