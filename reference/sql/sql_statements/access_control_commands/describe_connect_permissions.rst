@@ -96,7 +96,7 @@ Using optional parameters
 
 .. code-block:: sql
 
-	DESCRIBE CONNECT PERMISSIONS DATABASE master ROLE ID in (1,2,3) PERMISSION ID in (1002,1003);
+	DESCRIBE CONNECT PERMISSIONS DATABASE products ROLE ID in (1,2,3) PERMISSION ID in (1002,1003);
 
 Output:
 
@@ -104,7 +104,7 @@ Output:
 
 	role_id|role_name        |database_name|permission_id|superuser|clusteradmin|
 	-------+-----------------+-------------+-------------+---------+------------+
-	2      |someone@blue.com |master       |1003         |1        |1           |
+	2      |someone@blue.com |products     |1003         |1        |1           |
 	
 	
 Permissions
