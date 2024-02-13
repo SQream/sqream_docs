@@ -37,7 +37,8 @@ extensions = [
     'notfound.extension', # 404 handling
     'sphinx_copybutton' ,
     'sphinx_inline_tabs',
-    'sphinx_favicon'
+    'sphinx_favicon',
+    'sphinxemoji.sphinxemoji'
 ]
  
 # Mark 'index' as the main page

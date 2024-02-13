@@ -30,8 +30,6 @@ Size
 String Examples
 ^^^^^^^^^^^^^^^
 
-The following is an example of the String syntax: 
-
 .. code-block:: postgres
    
    CREATE TABLE cool_strings (a TEXT NOT NULL, b TEXT);
