@@ -4,7 +4,7 @@
 Release Notes 4.6
 *****************
 
-The 4.6 release notes were released on January XXX, 2023
+The 4.6 release notes were released on February 19, 2024
 
 .. contents:: 
    :local:
