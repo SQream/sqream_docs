@@ -1,20 +1,17 @@
 .. _repeat:
 
-**************************
+******
 REPEAT
-**************************
+******
 
-Repeats a string as many times as specified.
-
-.. warning:: This function works ONLY with ``TEXT`` data type.
-
+The ``REPEAT`` function repeats an input string expression as many times as specified.
 
 Syntax
 ==========
 
-.. code-block:: postgres
+.. code-block:: sql
 
-   REPEAT(expr, character_count)
+   REPEAT('expr', n)
 
 Arguments
 ============
@@ -25,105 +22,76 @@ Arguments
    
    * - Parameter
      - Description
-   * - ``expr``
-     - String expression
-   * - ``character_count``
+   * - ``'expr'``
+     - A ``TEXT`` expression
+   * - ``n``
+     - An ``INTEGER`` expression specifying the number of repetitions for the string expression
      
 
-Returns
-============
+Return
+======
 
-Returns the same type as the argument supplied.
-
-Notes
-=======
-
-* When ``character_count`` <= 0, and empty string is returned.
+* Returns a ``TEXT`` string.
+* When ``n`` <= 0, and empty string is returned.
 
 Examples
-===========
+========
 
-For these examples, consider the following table and contents:
+For these example, consider the following table:
 
-.. code-block:: postgres
+.. code-block:: sql
 
-   CREATE TABLE customer(customername TEXT));
+	CREATE TABLE customer(customername TEXT);
 
-   INSERT INTO customer VALUES 
-      ('Alfreds Futterkiste'), 
-      ('Ana Trujillo Emparedados y helados'),
-      ('Antonio Moreno Taquería'),
-      ('Around the Horn');
+	INSERT INTO customer VALUES 
+	 ('Alfreds Futterkiste'), 
+	 ('Ana Trujillo Emparedados y helados'),
+	 ('Antonio Moreno Taquería'),
+	 ('Around the Horn');
 
-Repeat the text in customername 2 times:
------------------------------------------
+Repeating Content of a Table Column
+-----------------------------------
 
-.. code-block:: psql
+.. code-block:: sql
 
-   t=> SELECT REPEAT(customername, 2) FROM customers;
+	SELECT REPEAT(customername, 2) FROM customer;
    
-   repeat                   
-   --------------------------
-   Alfreds FutterkisteAlfreds Futterkiste
-   Ana Trujillo Emparedados y heladosAna Trujillo Emparedados y helados
-   Antonio Moreno TaqueríaAntonio Moreno Taquería
-   Around the HornAround the Horn
+	repeat                   
+	--------------------------------------------------------------------
+	Alfreds FutterkisteAlfreds Futterkiste
+	Ana Trujillo Emparedados y heladosAna Trujillo Emparedados y helados
+	Antonio Moreno TaqueríaAntonio Moreno Taquería
+	Around the HornAround the Horn
+
+Repeating a String
+------------------
+
+.. code-block:: sql
+
+	SELECT REPEAT('abc', 3);
+	   
+	repeat                                        
+	---------
+	abcabcabc  
 
 
-Repeat the string 0 times:
-----------------------------
+Repeating a String 0 Times
+--------------------------
 
-.. code-block:: psql
+.. code-block:: sql
 
-   t=> SELECT REPEAT('abc', 0);
-   
-   repeat                                        
-   -----------------------------------------------
-   ''              
+	SELECT REPEAT('abc', 0);
+	   
+	repeat                                        
+	------      
 
-Repeat the string 1 times:
-----------------------------
+Repeating an Empty String
+-------------------------
 
-.. code-block:: psql
+.. code-block:: sql
 
-   t=> SELECT REPEAT('abc', 1);
-   
-   repeat                                        
-   -----------------------------------------------
-   'abc'         
-   
-
-Repeat the string 3 times:
-----------------------------
-
-.. code-block:: psql
-
-   t=> SELECT REPEAT('a', 3);
-   
-   repeat                                        
-   -----------------------------------------------
-   'aaa'  
-
-
-Repeat an empty string 10 times:
-----------------------------
-
-.. code-block:: psql
-
-   t=> SELECT REPEAT('', 10);
-   
-   repeat                                        
-   -----------------------------------------------
-   ''        
-   
-   
-Repeat a string -3 times:
-----------------------------
-
-.. code-block:: psql
-
-   t=> SELECT REPEAT('abc', -3);
-   
-   repeat                                        
-   -----------------------------------------------
-   ''         
+	SELECT REPEAT('', 3);
+	   
+	repeat                                        
+	------
+           
