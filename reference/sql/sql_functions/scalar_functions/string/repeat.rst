@@ -3,7 +3,7 @@
 ******
 REPEAT
 ******
-
+ 
 The ``REPEAT`` function repeats an input string expression as many times as specified.
 
 Syntax
@@ -32,7 +32,8 @@ Return
 ======
 
 * Returns a ``TEXT`` string.
-* When ``n`` <= 0, and empty string is returned.
+* When ``n`` = 0, and empty string is returned.
+* When ``n`` < 0, an error is thrown.
 
 Examples
 ========
