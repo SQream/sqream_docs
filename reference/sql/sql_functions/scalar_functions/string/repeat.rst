@@ -3,7 +3,7 @@
 ******
 REPEAT
 ******
-
+ 
 The ``REPEAT`` function repeats an input string expression as many times as specified.
 
 Syntax
