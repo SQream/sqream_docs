@@ -25,7 +25,7 @@
 
 /* Existing CSS rules */
 
-div[data-toggle="rst-versions"] {
+div[id="furo-readthedocs-versions"] {
     display: none !important;
 }
 
