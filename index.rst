@@ -18,7 +18,7 @@
 BLUE is a cloud-based platform designed for enterprises utilizing data lake architectures, aiming to simplify data integration workflows and enable cloud migration. It incorporates patented GPU optimization, parallelism, and Apache Parquet support for efficient data processing. The platform seamlessly integrates with popular open-source workflow tools and employs a robust security architecture to enhance data integrity.
 
 A notable capability of BLUE lies in handling data integration tasks, from 2TB to petabyte scales. This makes it well-suited for swift and effective processing of large data volumes. Additionally, BLUE embraces both data lakehouse and query engine technologies, empowering businesses to gain comprehensive data insights and real-time analysis, thus expediting decision-making.
-
+ 
 Whether your enterprise is already cloud-based or planning to migrate, BLUE optimizes data workflows, capitalizing on the benefits of cloud-based data storage and processing.
 
 --------------------------
