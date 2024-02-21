@@ -17,10 +17,17 @@
    }
 }
 
+/* Hack level >4 ToC issues */
+.wy-menu-vertical li.toctree-l3 li.toctree-l4 li.toctree-l5                                                         > a { padding-left:  7em; background: #ddd; }
+.wy-menu-vertical li.toctree-l3 li.toctree-l4 li.toctree-l5 li.toctree-l6                                           > a { padding-left:  8em; background: #ccc; }
+.wy-menu-vertical li.toctree-l3 li.toctree-l4 li.toctree-l5 li.toctree-l6 li.toctree-l7                             > a { padding-left:  9em; background: #bbb; }
+.wy-menu-vertical li.toctree-l3 li.toctree-l4 li.toctree-l5 li.toctree-l6 li.toctree-l7 li.toctree-l8               > a { padding-left: 10em; background: #aaa; }
 
 /* Existing CSS rules */
 
-
+div[id="furo-readthedocs-versions"] {
+    display: none !important;
+}
 
 #furo-readthedocs-versions {
     display: none !important;
@@ -72,31 +79,31 @@ html_theme_options = {
 }
 
 .sidebar-drawer {
-	width: calc(20% - 10em);
+    width: calc(20% - 10em);
 }
 
 .content {
-	width: 45vw;
-	padding: 1px 8em;
-	
+    width: 45vw;
+    padding: 1px 8em;
+    
 }
 
 h1 {
-	font-size: 2.25em;
+    font-size: 2.25em;
 }
 
 h2 {
-	font-size: 1.875em;
+    font-size: 1.875em;
 }
 
 h3 {
-	font-size: 1.5em;
+    font-size: 1.5em;
 }
 
 h4 {
-	font-size: 1em;
+    font-size: 1em;
 }
 
 h5 {
-	font-size: 0.8em;
+    font-size: 0.8em;
 }
