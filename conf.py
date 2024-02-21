@@ -93,11 +93,6 @@ html_show_copyright = True
 html_sidebars = {}
 
 
-# Pygments
-
-
-pygments_style = "monokai"
-
 # furo theme specifics
 
 html_theme_options = {
