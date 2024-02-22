@@ -115,8 +115,6 @@ html_theme_options = {
 
 
 
-
-
 latex_engine = 'xelatex'
 
 latex_elements = {
