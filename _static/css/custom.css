@@ -24,7 +24,7 @@
 
 
 div.rst-other-versions {
-    display: none;
+    display: none !important;
 }
 
 
