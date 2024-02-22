@@ -22,7 +22,7 @@
 
 /* Hide the flyout menu */
 
-#furo-readthedocs-versions {
+.rst-versions {
     display: none !important;
 }
 
