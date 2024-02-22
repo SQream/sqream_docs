@@ -1,9 +1,5 @@
 .. _index:
 
-.. raw:: html
-
-   <script src="_static/disable_flyout_menu.js"></script>
-
 
 .. role:: red
    :class: red-text
