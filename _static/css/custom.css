@@ -22,13 +22,11 @@
 
 /* Hide the flyout menu */
 
-.rst-versions {
-    display: none !important;
+
+div.rst-other-versions {
+    display: none;
 }
 
-div[id="furo-readthedocs-versions"] {
-    display: none !important;
-}
 
 .rst-content code.literal {
    color: inherit;
