@@ -18,9 +18,12 @@
 }
 
 
-/* Existing CSS rules */
+//* Existing CSS rules *//
 
-
+/* Hide the flyout menu */
+.rst-versions {
+    display: none !important;
+}
 
 
 .rst-content code.literal {
