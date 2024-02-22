@@ -106,13 +106,14 @@ html_theme_options = {
    , 'light_logo': 'images/SQream_logo_bright_mode.png'
    , "sidebar_hide_name": True
    , "footer_icons": 'None'
-   'navigation_with_keys': False,
    , "light_css_variables": {
         "font-stack": "Arial, sans-serif",
         "font-stack--monospace": "Courier, monospace",
     }
 }
    
+
+
 
 
 
