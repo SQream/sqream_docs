@@ -26,6 +26,9 @@
     display: none !important;
 }
 
+div[id="furo-readthedocs-versions"] {
+    display: none !important;
+}
 
 .rst-content code.literal {
    color: inherit;
