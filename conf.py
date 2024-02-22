@@ -24,7 +24,7 @@ author = 'SQream Documentation'
 
 
 html_title = "BLUE Documentation"
-
+html_style = 'css/custom.css'
 sphinxemoji_style = 'twemoji'
 
 
