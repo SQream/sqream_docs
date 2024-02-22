@@ -130,3 +130,7 @@ latex_elements = {
 #rst_epilog = """
 #.. |latest_version| replace:: v{}
 #""".format(base_version)
+
+
+def setup(app):
+    app.add_css_file('custom.css')
