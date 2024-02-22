@@ -11,4 +11,4 @@ furo>=2024.1.29
 sphinx-inline-tabs>=2023.4.21
 sphinx-favicon>=1.0.1
 sphinxemoji>=0.2.0
-0.20.1>=docutils
+0.20.1==docutils
