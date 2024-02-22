@@ -18,10 +18,11 @@
 }
 
 
-//* Existing CSS rules *//
+//* CSS rules *//
 
 /* Hide the flyout menu */
-.rst-versions {
+
+#furo-readthedocs-versions {
     display: none !important;
 }
 
