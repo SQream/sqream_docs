@@ -25,7 +25,7 @@ Syntax Notation
       - Used to compare values or expressions and determine their relationship or equality within SQL statements. See full list :ref:`here<scalar_expressions>`
       - ``=>``
     * - ``""``
-      - Double quotes are used to enclose identifiers that contain special characters or reserved keywords
+      - Double quotes are used to enclose identifiers that contain special characters and reserved keywords. Unquoted identifiers are case-insensitive. When identifiers are enclosed in double quotes, they become case-sensitive.
       - ``SELECT * FROM "order";``
     * - ``<>``
       - Angle brackets are used to represent placeholders or user-defined elements in SQL statements
