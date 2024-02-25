@@ -104,6 +104,12 @@ Flag List
      - Sets the pad device memory allocations with safety buffers to catch out-of-bounds writes.
      - boolean
      - ``FALSE``
+   * - ``clientReconnectionTimeout``
+     - Anyone
+     - Cluster
+     - Reconnection time out for the system in seconds.
+     - Integer
+     - ``30``
    * - ``compilerGetsOnlyUFs`` 
      - SUPERUSER
      - Session
