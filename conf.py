@@ -19,12 +19,12 @@
 # -- Project information -----------------------------------------------------
 
 project = 'SQream Blue'
-copyright = '2023 SQream'
+copyright = '2024 SQream'
 author = 'SQream Documentation'
 
 
 html_title = "BLUE Documentation"
-html_style = 'css/custom.css'
+
 sphinxemoji_style = 'twemoji'
 
 
@@ -93,25 +93,27 @@ html_show_copyright = True
 html_sidebars = {}
 
 
+
+
 # furo theme specifics
 
 html_theme_options = {
-    'logo_only': True,  # Hide "SQream Blue" title and only show logo
-    'display_version': False,  # Display version at the top
-    'navigation_depth': -1,
-    'collapse_navigation': False,
-    'titles_only': True,
-    'top_of_page_button': 'None',
-    'dark_logo': 'images/SQream_logo_dark_mode.png',
-    'light_logo': 'images/SQream_logo_bright_mode.png',
-    "sidebar_hide_name": True,
-    "footer_icons": 'None',
-    "light_css_variables": {
+   'logo_only': True # Hide "SQream Blue" title and only show logo
+   , 'display_version': False # Display version at the top
+   , 'navigation_depth': -1
+   , 'collapse_navigation': False
+   , 'titles_only': True
+   , 'top_of_page_button': 'None'
+   , 'dark_logo': 'images/SQream_logo_dark_mode.png'
+   , 'light_logo': 'images/SQream_logo_bright_mode.png'
+   , "sidebar_hide_name": True
+   , "footer_icons": 'None'
+   , "rst-versions": False
+   , "light_css_variables": {
         "font-stack": "Arial, sans-serif",
         "font-stack--monospace": "Courier, monospace",
     }
 }
-
    
 
 
@@ -130,7 +132,3 @@ latex_elements = {
 #rst_epilog = """
 #.. |latest_version| replace:: v{}
 #""".format(base_version)
-
-
-def setup(app):
-    app.add_css_file('custom.css')
