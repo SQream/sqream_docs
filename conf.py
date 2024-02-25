@@ -72,7 +72,7 @@ favicons = [
 ]
 
 html_css_files = [
-    'css/custom.css', # Relative to the _static path
+    'custom.css', # Relative to the _static path
 ]
 
 html_logo = '_static'
