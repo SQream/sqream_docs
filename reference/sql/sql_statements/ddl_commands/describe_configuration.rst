@@ -16,7 +16,7 @@ The following is the syntax for the ``DESCRIBE CONFIGURATION`` command:
 
 .. code-block:: postgres
 
-   DESC[RIBE] CONFIGURATION [PARAMETER <parameter>] [LIKE 'pattern']
+   DESC[RIBE] CONFIGURATION [PARAMETER <"parameter">] [LIKE 'pattern']
    
 Parameters
 ==========
@@ -83,15 +83,15 @@ Example
 	   
 .. code-block:: sql   
 	   
-	DESCRIBE CONFIGURATION PARAMETER PORT;
+	DESCRIBE CONFIGURATION PARAMETER "useGrpcCompiler";
    
 Output:
 
 .. code-block:: none  
 
-   flag_name|flag_value|def_flag_value|flag_category|flag_type|data_type|description|
-   ---------+----------+--------------+-------------+---------+---------+-----------+
-   port     |5000      |5000          |RND          |worker   |         |           |
+   flag_name           |flag_value|def_flag_value|flag_category|flag_type|data_type|description|
+   --------------------+----------+--------------+-------------+---------+---------+-----------+
+   useGrpcCompiler     |false     |false         |RND          |regular  |         |           |
 
 
 .. code-block:: sql   
