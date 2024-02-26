@@ -54,7 +54,10 @@ div[data-toggle="rst-versions"] {
     color: #DB7F4A;
 }
 
-
+.highlight .p {
+    color: #DB7F4A;
+    font-weight: bold;
+}
 
 
 .rst-content code.literal {
