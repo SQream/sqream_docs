@@ -13,6 +13,5 @@ Get to know the BLUE console and other features, and learn how to run statements
 
    blue_console
    sql_feature_support
-   python_api_reference_guide
    sql/index
    syntax_notation

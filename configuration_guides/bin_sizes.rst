@@ -3,6 +3,7 @@
 *************************
 Setting Bin Size
 *************************
+
 The ``binSizes`` flag sets the custom bin size in the cache to enable high granularity over bin control.
 
 The following describes the ``binSizes`` flag:
