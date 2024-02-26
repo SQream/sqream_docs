@@ -1,19 +1,22 @@
 .. _literals:
 
 ***************************
-Literals
+Literal Strings
 ***************************
-
 
 Literals represent constant values.
 
-SQream DB contains the following types of literals:
+BLUE contains the following types of literals:
 
-* :ref:`Numeric literals<numeric_literals>` - define numbers such as ``1.3``, ``-5``
-* :ref:`String literals<string_literals>` - define text values like ``'Foxes are cool'``, ``'1997-01-01'``
-* :ref:`Typed literals<typed_literals>` - define values with explicit types like ``(3.0 :: float)``
-* :ref:`Boolean literals<boolean_literals>` - define values that include ``true`` and ``false``
-* :ref:`Other constants<constants>` - predefined values like ``NULL`` or ``TRUE``
+:ref:`Numeric literals<numeric_literals>` - define numbers such as ``1.3``, ``-5``
+
+:ref:`String literals<string_literals>` - define text values like ``'Foxes are cool'``, ``'1997-01-01'``
+
+:ref:`Typed literals<typed_literals>` - define values with explicit types like ``(3.0 :: float)``
+
+:ref:`Boolean literals<boolean_literals>` - define values that include ``true`` and ``false``
+
+:ref:`Other constants<constants>` - predefined values like ``NULL`` or ``TRUE``
 
 .. _numeric_literals:
 
@@ -22,7 +25,7 @@ Numeric Literals
 
 **Numeric literals** can be expressed as follows:
 
-.. code-block:: postgres
+.. code-block:: sql
 
    number_literal ::=
       [+-] digits
@@ -34,7 +37,7 @@ Numeric Literals
 Examples
 ------------
 
-.. code-block:: postgres
+.. code-block:: sql
 
    1234
 
@@ -55,7 +58,7 @@ Examples
 .. note:: 
    The actual data type of the value changes based on context, the format used, and the value itself.
    For example, any number containing the decimal point will be considered ``FLOAT`` by default.
-   Any whole number will considered ``INT``, unless the value is larger than the :ref:`maximum value<data_types>`, in which case the type will become a ``BIGINT``.
+   Any whole number will be considered ``INT``, unless the value is larger than the :ref:`maximum value<supported_data_types>`, in which case the type will become a ``BIGINT``.
 
 .. note:: 
    A numeric literal that contains neither a decimal point nor an exponent is considered ``INT`` by default if its value fits in type ``INT`` (32 bits). If not, it is considered ``BIGINT`` by default if its value fits in type ``BIGINT`` (64 bits). If neither are true, it is considered ``FLOAT``. Literals that contain decimal points and/or exponents are always considered ``FLOAT``.
@@ -75,7 +78,7 @@ String literals are surrounded by single quotes (``'``) or dollars (``$$``)
 Examples
 ------------
 
-.. code-block:: postgres
+.. code-block:: sql
    
    'This is an example of a string'
    
@@ -88,7 +91,7 @@ Examples
 
 The actual data type of the value changes based on context, the format used, and the value itself. In the example below, the first value is interpreted as a ``DATE``, while the second is interpreted as a ``TEXT``.
 
-.. code-block:: postgres
+.. code-block:: sql
 
    INSERT INTO cool_dates(date_col, reason) VALUES ('1955-11-05', 'Doc Brown discovers flux capacitor');
    
@@ -103,15 +106,16 @@ This section describes the following types of literals:
 
 Regular String Literals
 -----------------------
+
 In SQL, a **regular string literal** is a sequence of zero or more characters bound by single quotes (``'``):
 
-.. code-block:: postgres
+.. code-block:: sql
 
    'This is a string'.
    
 You can include a single-quote character in a string literal with two consecutive single quotes (``''``):
 
-.. code-block:: postgres
+.. code-block:: sql
 
    'Dianne''s horse'.
 
@@ -122,7 +126,7 @@ Examples
 
 The following are some examples of regular string literals:
 
-.. code-block:: postgres
+.. code-block:: sql
 
    '123'
 
@@ -135,7 +139,8 @@ The following are some examples of regular string literals:
 .. _dollar_quoted_string_literals:
 
 Dollar-Quoted String Literals
------------------------
+-----------------------------
+
 **Dollar-quoted string literals** consist of a dollar sign (``$``), an optional "tag" of zero or more characters, another dollar sign, an arbitrary sequence of characters that make up the string content, a dollar sign, the same tag at the beginning of the dollar quote, and another dollar sign.
 
 
@@ -144,7 +149,7 @@ Examples
 
 For example, below are two different ways to specify the string ``Dianne's horse`` using dollar-quoted string literals:
 
-.. code-block:: postgres
+.. code-block:: sql
 
    $$Dianne's horse$$
    $<tag>$Dianne's horse$<tag>$
@@ -161,11 +166,12 @@ A dollar-quoted string that follows a keyword or identifier must be separated fr
 
 Escaped String Literals
 -----------------------
+
 Because regular string literals do not support inserting special characters (such as new lines), the **escaped string literals** syntax was added to support inserting special characters with an escaping syntax.
 
 In addition to being enclosed by single quotes (e.g. 'abc'), escaped string literals are preceded by a capital ``E``.
 
-.. code-block:: postgres
+.. code-block:: sql
 
    E'abc'
 
@@ -203,21 +209,22 @@ Typed Literals
 
 **Typed literals** allow you to create any data type using either of the following syntaxes:
 
-.. code-block:: postgres
+.. code-block:: sql
    
    CAST(literal AS type_name)
 
-.. code-block:: postgres
+.. code-block:: sql
 
    literal :: type_name
 
-See also :ref:`cast` for more information about supported casts.
+See also :ref:`sql_data_types_string` for more information about supported casts.
 
 Syntax Reference
 -------------------
+
 The following is a syntax reference for typed literals:
 
-.. code-block:: postgres
+.. code-block:: sql
    
    typed_literal ::=
          cast(literal AS type_name)
@@ -244,7 +251,7 @@ The following is a syntax reference for typed literals:
 Examples
 ----------
 
-.. code-block:: postgres
+.. code-block:: sql
    
    '1955-11-05' :: date
    
@@ -258,12 +265,13 @@ Examples
    
 Boolean Literals
 ===================
+
 **Boolean literals** include the keywords ``true`` or ``false``.
 
 Example
 ----------
 
-.. code-block:: postgres
+.. code-block:: sql
 
    INSERT INTO animals VALUES ('fox',true), ('cat',true), ('kiwi',false);
 

@@ -40,8 +40,8 @@ Parameters
      - ``permission_id``
      - Enables filtering by one or more permission IDs
      - ``INT``
-
-
+	 
+	 
 Output
 ======
 

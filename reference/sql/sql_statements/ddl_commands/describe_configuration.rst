@@ -18,25 +18,30 @@ Syntax
 Parameters
 ==========
 
-The following parameters can be used when switching databases with the ``DESCRIBE CONFIGURATION`` command:
-
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
    * - Parameter
-     - Type
-     - Description
+     - Value
+     - Parameter Type
      - Example	 
+     - Description
    * - ``PARAMETER``
+     - ``parameter``
      - Identifier
-     - Specifies a particular configuration parameter. If no parameter is specified, it lists all configuration parameters.
      - ``"useGrpcCompiler"``	 
+     - Specifies a particular configuration parameter. If no parameter is specified, it lists all configuration parameters.
    * - ``LIKE``
+     - ``pattern``
      - String literal
-     - The ``LIKE`` operator is used to perform pattern matching within strings. It supports the ``%`` wild card, which is used to match any sequence of characters (including none) within a string.
      - ``'%port%'``	
+     - The ``LIKE`` operator is used to perform pattern matching within strings. It supports the ``%`` wild card, which is used to match any sequence of characters (including none) within a string.
 
+Usage Notes
+===========
+
+When using the ``PARAMETER`` keyword, ensure that the configuration parameter identifier is enclosed within double quotes. It's important to note that the identifier is case-sensitive, meaning that the capitalization of letters in the identifier must match exactly for accurate referencing.
 
 Output
 ======

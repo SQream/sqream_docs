@@ -13,9 +13,13 @@ Syntax
 
 The following is the syntax for the ``DESCRIBE SESSIONS`` command:
 
-.. code-block:: postgres
+.. code-block:: sql
 
-   DESC[RIBE] SESSIONS [ USER '<user_name>' ][ TIMEFRAME FROM '<start_date_time>' TO '<end_date_time>' ][ INITIATED BY ( ALL | { External | Blue_UI_User | Blue_UI_System | CLI | Jobs | Statistics } ) ]
+	DESC[RIBE] SESSIONS 
+	[ USER '<user_name>' ] 
+	[ TIMEFRAME FROM '<start_date_time>' TO '<end_date_time>' ] 
+	[ INITIATED BY ( ALL | { External | Blue_UI_User | Blue_UI_System | CLI | Jobs | Statistics } ) ]
+
 
 Parameters
 ==========
@@ -26,32 +30,30 @@ The following parameters can be used with the ``DESCRIBE SESSIONS`` command:
    :widths: auto
    :header-rows: 1
    
-   * - Parameter Name
-     - Parameter Value
-     - Description
+   * - Parameter
      - Type
+     - Description
+     - Example
    * - ``USER``
-     - ``user_name``
+     - String literal
      - Optional parameter for filtering by username
-     - ``TEXT``
+     - ``role1``
    * - ``TIMEFRAME FROM``  
-     - ``start_date_time``
+     - String literal
      - Optional parameter for filtering based on time frame (must be used in combination with ``TO``)
-     - ``DATETIME``
+     - ``'2024-02-26 14:30:45'``
    * - ``TIMEFRAME TO``  
      - ``end_date_time``
      - Optional parameter for filtering by time frame (must be used in combination with ``FROM``)
-     - ``DATETIME``
+     - ``'2024-02-26 19:30:00'``
    * - ``INITIATED BY``
-     - ``ALL``, ``External``, ``Blue_UI_User``, ``Blue_UI_System``, ``CLI``, ``Jobs``, and/or ``Statistics``. Default is: ``Blue_UI_User``, ``CLI``, and ``External``
+     - String literal
      - Optional parameter for filtering based on the source that triggered the query
      - ``TEXT``	 
 	 
 	 
 Output
 ======
-
-Using the ``DESCRIBE SESSIONS`` command generates the following output:
 
 .. list-table:: 
    :widths: auto
@@ -95,7 +97,7 @@ Examples
 
 The following is an example of the ``DESCRIBE SESSIONS`` command:
 
-.. code-block:: postgres
+.. code-block:: sql
 
    DESCRIBE SESSIONS;
    	 
@@ -119,7 +121,7 @@ Output:
 
 The following is an example of the ``DESCRIBE SESSIONS`` command filtering a specific time frame:
 
-.. code-block:: postgres
+.. code-block:: sql
 
    DESCRIBE SESSIONS TIMEFRAME FROM '2022-09-19 10:00:00' TO '2022-09-19 16:00:00';
    

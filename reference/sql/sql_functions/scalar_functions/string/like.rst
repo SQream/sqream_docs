@@ -15,7 +15,7 @@ Syntax
 
 .. code-block:: postgres
 
-   string_expr [ NOT ] LIKE string_test_expr
+   string_expr [ NOT ] LIKE 'string_test_expr'
 
 Arguments
 ============
@@ -107,7 +107,8 @@ Match the beginning of a string
 
 .. code-block:: psql
    
-   nba=> SELECT "Name","Age","Salary","Team" FROM nba WHERE "Team" LIKE 'Portland%' LIMIT 5;
+   SELECT "Name","Age","Salary","Team" FROM nba WHERE "Team" LIKE 'Portland%' LIMIT 5;
+   
    Name            | Age | Salary  | Team                  
    ----------------+-----+---------+-----------------------
    Cliff Alexander |  20 |  525093 | Portland Trail Blazers
