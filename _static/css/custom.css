@@ -29,6 +29,10 @@ div[data-toggle="rst-versions"] {
     display: none !important;
 }
 
+.highlight .go {
+    color: #000000;
+    font-style: normal;
+}
 
 .rst-content code.literal {
    color: inherit;
