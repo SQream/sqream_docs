@@ -4,19 +4,16 @@
 DESCRIBE CONFIGURATION
 **********************
 
-The ``DESCRIBE CONFIGURATION`` command is used for showing all configurations set on the session level using the ``SET`` command. Closing a session restores all configurations to their default settings.
+The ``DESCRIBE CONFIGURATION`` command is used for showing all session level configurations. Closing a session restores all configurations to their default settings.
 
-.. note:: The ``DESCRIBE CONFIGURATION`` command replaces the ``SHOW_CONF`` command. 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
 Syntax
 ======
 
-The following is the syntax for the ``DESCRIBE CONFIGURATION`` command:
+.. code-block:: sql
 
-.. code-block:: postgres
-
-   DESC[RIBE] CONFIGURATION [PARAMETER <"parameter">] [LIKE 'pattern']
+   DESC[RIBE] CONFIGURATION [PARAMETER <"parameter">] [LIKE <'pattern'>]
    
 Parameters
 ==========
@@ -28,13 +25,16 @@ The following parameters can be used when switching databases with the ``DESCRIB
    :header-rows: 1
    
    * - Parameter
-     - Parameter Value
+     - Parameter Type
+     - Example	 
      - Description
    * - ``PARAMETER``
-     - ``parameter``
+     - Identifier
+     - ``"useGrpcCompiler"``	 
      - Specifies a particular configuration parameter. If no parameter is specified, it lists all configuration parameters.
    * - ``LIKE``
-     - ``pattern``
+     - String literal
+     - ``'%port%'``	
      - The ``LIKE`` operator is used to perform pattern matching within strings. It supports the ``%`` wild card, which is used to match any sequence of characters (including none) within a string.
 
 Output
@@ -51,31 +51,31 @@ Output
      - Example
    * - ``flag_name``
      - Displays the name of the flag.
-     - TEXT
+     - ``TEXT``
      - portSsl
    * - ``flag_value``
      - Displays the value of the flag.
-     - NUMERIC
+     - ``NUMERIC``
      - 433
    * - ``def_flag_value``
      - Displays the default value of the flag.
-     - Numeric
+     - ``NUMERIC``
      - 433
    * - ``flag_category``
      - Displays the category of the flag.
-     - TEXT
+     - ``TEXT``
      - RND
    * - ``flag_type``
      - Displays the type of the flag.
-     - TEXT
+     - ``TEXT``
      - worker
    * - ``data_type``
      - Displays the data type.
-     - TEXT
+     - ``TEXT``
      - 
    * - ``description``
      - Displays the description of the flag.
-     - TEXT
+     - ``TEXT``
      - Configuration file only. This flag can only be set before the daemon starts. It cannot be changed dynamically. Port conflicts will cause the server not to start. If the daemon has started, this was probably set correctly. Connect with a client such as CLI.
 
 Example
