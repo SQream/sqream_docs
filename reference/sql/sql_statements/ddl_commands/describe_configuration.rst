@@ -25,17 +25,18 @@ The following parameters can be used when switching databases with the ``DESCRIB
    :header-rows: 1
    
    * - Parameter
-     - Parameter Type
-     - Example	 
+     - Type
      - Description
+     - Example	 
    * - ``PARAMETER``
      - Identifier
-     - ``"useGrpcCompiler"``	 
      - Specifies a particular configuration parameter. If no parameter is specified, it lists all configuration parameters.
+     - ``"useGrpcCompiler"``	 
    * - ``LIKE``
      - String literal
-     - ``'%port%'``	
      - The ``LIKE`` operator is used to perform pattern matching within strings. It supports the ``%`` wild card, which is used to match any sequence of characters (including none) within a string.
+     - ``'%port%'``	
+
 
 Output
 ======
@@ -47,7 +48,7 @@ Output
    
    * - Parameter
      - Description
-     - Type
+     - Data Type
      - Example
    * - ``flag_name``
      - Displays the name of the flag.
