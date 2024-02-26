@@ -59,6 +59,7 @@ div[data-toggle="rst-versions"] {
     font-weight: bold;
 }
 
+/* End Syntax highlighting */
 
 .rst-content code.literal {
    color: inherit;
