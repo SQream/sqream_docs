@@ -17,12 +17,7 @@ You can retrieve the execution plan output either after the query execution has 
 
    The **Execution Tree** window opens.
 
-.. |icon-execution-details-view| image:: /_static/images/studio_icon_execution_details_view.png
-
 2. From the upper-right corner, select the |icon-download| to download a CSV execution plan table.
-
-.. |icon-download| image:: /_static/images/studio_icon_download.png
-   :align: middle
    
 3. Save the execution plan on your local machine.
 
