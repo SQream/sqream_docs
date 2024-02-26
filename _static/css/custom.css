@@ -75,7 +75,7 @@ html_theme_options = {
 }
 
 .sidebar-drawer {
-	width: calc(20% - 10em);
+	width: none !important;
 }
 
 .content {
