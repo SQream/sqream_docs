@@ -29,10 +29,33 @@ div[data-toggle="rst-versions"] {
     display: none !important;
 }
 
+/* Syntax highlighting */
+
 .highlight .go {
     color: #000000;
     font-style: normal;
 }
+
+.highlight .k {
+    color: #550CC7;
+    font-weight: bold;
+}
+
+.highlight .ss {
+    color: #18814E;
+}
+
+.highlight .o {
+    color: #DB7F4A;
+    font-weight: bold;
+}
+
+.highlight .nx {
+    color: #DB7F4A;
+}
+
+
+
 
 .rst-content code.literal {
    color: inherit;
