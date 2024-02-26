@@ -72,17 +72,13 @@ html_theme_options = {
     },
 }
 
-}
+
 
 .sidebar-drawer {
-	width: unset !important;
+	width: calc(20% - 18.5em);
 }
-
-.content {
-	width: 45vw;
-	padding: 1px 8em;
 	
-}
+
 
 h1 {
 	font-size: 2.25em;
