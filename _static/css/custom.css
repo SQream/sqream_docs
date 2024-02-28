@@ -31,51 +31,7 @@ div[data-toggle="rst-versions"] {
 
 /* Syntax highlighting */
 
-.highlight .go {
-    color: #000000;
-	font-family: Arial;
-    font-style: normal;
-}
 
-.highlight .k {
-    color: #550CC7;
-	font-family: Arial;
-    font-weight: bold;
-}
-
-.highlight .ss {
-    color: #18814E;
-	font-family: Arial;
-}
-
-.highlight .o {
-    color: #18814E;
-    font-weight: bold;
-	font-family: Arial;
-}
-
-.highlight .nx {
-    color: #DB7F4A;
-	font-family: Arial;
-}
-
-.highlight .p {
-    color: #DB7F4A;
-    font-weight: bold;
-	font-family: Arial;
-}
-
-.highlight .n {
-    color: #18814E;
-	font-family: Arial;
-    font-weight: bold;
-}
-
-.highlight .nb {
-    color: #550CC7;
-	font-family: Arial;
-    font-weight: bold;
-}
 
 /* End Syntax highlighting */
 
