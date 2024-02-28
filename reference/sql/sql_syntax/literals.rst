@@ -1,7 +1,7 @@
 .. _literals:
 
 ***************************
-Literal Strings
+String Literals 
 ***************************
 
 Literals represent constant values.

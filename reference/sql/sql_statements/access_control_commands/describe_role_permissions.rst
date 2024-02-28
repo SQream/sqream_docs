@@ -15,7 +15,7 @@ Syntax
 
 .. code-block:: sql
 
-	DESC[RIBE] ROLE PERMISSIONS ROLE NAME <role_name> [PERMISSION ID in (<permission id 1> [,...])];
+	DESC[RIBE] ROLE PERMISSIONS ROLE NAME <role_name> [PERMISSION ID in (<permission id 1> [,...])]
 
 Parameters
 ==========
@@ -28,10 +28,10 @@ Parameters
      - Parameter Value
      - Description
    * - ``ROLE NAME``
-     - ``role_name``
+     - :ref:`Identifier<keywords_and_identifiers>` 
      - A mandatory parameter that specifies the role of which to list privileges
    * - ``PERMISSION ID``
-     - ``permission_id``
+     - :ref:`Identifier<keywords_and_identifiers>` 
      - An optional parameter that filters results by specific permission or permissions ID 
   
 Output
@@ -42,32 +42,32 @@ Output
    :header-rows: 1
    
    * - Parameter
-     - Description
      - Type
+     - Description
    * - ``Role ID``
-     - Role ID
      - ``INT``, ``SMALLINT``
+     - The ID of a specific role
    * - ``Role Name``
-     - Role name
      - ``TEXT``
+     - The name of a specific role
    * - ``Object/Layer``
      - ``TEXT``
      - Describes role permissions on the Database/Schema/Table/Function level
    * - ``Permission ID``
-     - The specific permission's ID
      - ``INT``, ``SMALLINT``
+     - The specific permission's ID
    * - ``Permission Name``
-     - The specific permission's name
      - ``TEXT``
+     - The specific permission's name
    * - ``Superuser``
+     - ``BOOLEAN``
      - Validates whether or not role is a ``SUPERUSER``
-     - ``BOOL``
    * - ``Cluster Admin``
+     - ``BOOLEAN``
      - Validates whether or not role is a ``clusteradmin``
-     - ``BOOL``
    * - ``Login``
+     - ``BOOLEAN``
      - Validates whether or not the role has login privileges. Enabled for actual users
-     - ``BOOL``
 
 
 
@@ -77,10 +77,6 @@ Examples
 .. code-block:: sql
 
 	DESCRIBE ROLE PERMISSIONS ROLE NAME role1;
-
-Output:
-  
-.. code-block:: none
 
 	role_id|role_name|Object/Layer |permission_id|permission_name|superuser|cluster_admin|login|
 	-------+---------+-------------+-------------+---------------+---------+-------------+-----+
@@ -93,10 +89,6 @@ Output:
 .. code-block:: sql
 
 	DESCRIBE ROLE PERMISSIONS ROLE NAME role1 PERMISSION ID in (2003);
-
-Output:
-  
-.. code-block:: none
 
 	role_id|role_name|Object/Layer |permission_id|permission_name|superuser|cluster_admin|login|
 	-------+---------+-------------+-------------+---------------+---------+-------------+-----+

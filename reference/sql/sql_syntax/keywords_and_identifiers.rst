@@ -23,7 +23,7 @@ Quoted identifiers must follow these rules:
 
 * Must be enclosed with double quotes (``"``)
 * May contain any ASCII character except ``@``, ``$`` or ``"``
-* Must be case-sensitive and referenced with double quotes (``"``)
+* Must be case-sensitive
 
 Examples
 --------

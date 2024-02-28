@@ -11,36 +11,30 @@ The ``DESCRIBE SCHEMAS`` command lets you list information about schemas in your
 Syntax
 ======
 
-The following is the syntax for the ``DESCRIBE SCHEMAS`` command:
+.. code-block:: sql
 
-.. code-block:: postgres
-
-   DESC[RIBE] SCHEMAS [DATABASE <database_name>] [LIKE 'schema_name']
+   DESC[RIBE] SCHEMAS [DATABASE <database_name>] [LIKE 'pattern']
 
 Parameters
 ==========
-
-The following parameters can be used with the ``DESCRIBE SCHEMAS`` command:
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
    * - Parameter
-     - Parameter Value
+     - Parameter Type
      - Description
    * - ``DATABASE``
-     - ``database_name``
-     - The name of the database to search within
+     - :ref:`Identifier<keywords_and_identifiers>` 
+     - Filters by a specific database
    * - ``LIKE``
-     - ``pattern``
-     - The ``LIKE`` operator is used to perform pattern matching within strings. It supports the ``%`` wild card, which is used to match any sequence of characters (including none) within a string.
+     - :ref:`STRING literal<literals>`	
+     - String pattern to match
    
 	
 Output
 ======
-
-Using the ``DESCRIBE SCHEMAS`` command generates the following output:
 
 .. list-table:: 
    :widths: auto
@@ -49,19 +43,15 @@ Using the ``DESCRIBE SCHEMAS`` command generates the following output:
    * - Parameter
      - Description
      - Type
-     - Example
    * - ``schema_id``
-     - Displays the schema ID.
-     - Integer
-     - 0
+     - Displays the schema ID
+     - ``INTEGER``
    * - ``schema_name``
-     - Displays the schema name.
-     - Text
-     - public
+     - Displays the schema name
+     - ``TEXT``
    * - ``schema_owner``
-     - Displays the schema owner.
-     - Text
-     - sqream
+     - Displays the schema owner
+     - ``TEXT``
 	
 Examples
 ========
@@ -69,8 +59,6 @@ Examples
 .. code-block:: sql
 
 	DESCRIBE SCHEMAS DATABASE master;
-   	 
-.. code-block:: none
 	 
 	schema_id|schema_name|schema_owner|
 	---------+-----------+------------+
@@ -83,8 +71,6 @@ Examples
 .. code-block:: sql
 
 	DESCRIBE SCHEMAS DATABASE master LIKE '%stag%';
-
-.. code-block:: none
 
 	schema_id|schema_name|schema_owner|
 	---------+-----------+------------+

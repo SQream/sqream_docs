@@ -11,88 +11,72 @@ The ``DESCRIBE TABLES`` command lets you list information about tables in your d
 Syntax
 ======
 
-The following is the syntax for the ``DESCRIBE TABLES`` command:
-
-.. code-block:: postgres
+.. code-block:: sql
 
    DESC[RIBE] TABLES [ DATABASE  <database_name> ] [ SCHEMA <schema_name> ] [ALL | INTERNAL | EXTERNAL] [LIKE 'table_name']
 
 Parameters
 ==========
 
-The following parameters can be used with the ``DESCRIBE TABLES`` command:
-
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
    * - Parameter
-     - Parameter Value
+     - Parameter Type
      - Description
    * - ``DATABASE``
-     - ``database_name``
+     - :ref:`Identifier<keywords_and_identifiers>` 
      - The name of the database to search within
    * - ``SCHEMA``
-     - ``schema_name``
+     - :ref:`Identifier<keywords_and_identifiers>` 
      - The name of the schema to search within
    * - ``ALL``, ``EXTERNAL``, ``INTERNAL``
      - 
-     - You may define the ``DESCRIBE TABLES`` command to show information related to all tables, external tables, or internal tables. The default value is ``ALL``.
+     - You may define the ``DESCRIBE TABLES`` command to show information related to all tables, external tables, or internal tables. The default value is ``ALL``
    * - ``LIKE``
-     - ``pattern``
-     - The ``LIKE`` operator is used to perform pattern matching within strings. It supports the ``%`` wild card, which is used to match any sequence of characters (including none) within a string.
+     - :ref:`STRING literal<literals>`	
+     - String pattern to match
 
 	 
 Output
 ======
 
-When the set to ``ALL``, the ``DESCRIBE_TABLES`` command returns the following parameters:
-
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
    * - Parameter
-     - Description
      - Type
-     - Example
+     - Description
    * - ``database_name``
-     - Displays the name of the database.
-     - TEXT
-     - master
+     - ``TEXT``
+     - Displays the name of the database
    * - ``schema_name``
-     - Displays the name of the schema.
-     - TEXT
-     - public
+     - ``TEXT``
+     - Displays the name of the schema
    * - ``table_name``
-     - Displays the name of the table.
-     - TEXT
-     - nba	 
+     - ``TEXT``
+     - Displays the name of the table
    * - ``table_type``
-     - Displays whether the table is internal or external.
-     - TEXT
-     - Internal	 
+     - ``TEXT``
+     - Displays whether the table is internal or external
    * - ``row_count``
-     - Displays the amount of rows in the table.
-     - INTEGER
-     - 914
+     - ``INTEGER``
+     - Displays the amount of rows in the table
    * - ``created_on``
-     - Displays the table creation timestamp.
-     - DATE
-     - 2022-06-14 13:14:45
+     - ``DATE``	
+     - Displays the table creation timestamp
    * - ``Addtional details``
-     - Displays additional table details.
-     - TEXT
-     - 
+     - ``TEXT``
+     - Displays additional table details
 	 
 Examples
 ========
 
-.. code-block:: postgres
+.. code-block:: sql
 
-   DESCRIBE TABLES DATABASE master SCHEMA public EXTERNAL;
-
-.. code-block:: none
+	DESCRIBE TABLES DATABASE master SCHEMA public EXTERNAL;
 
 	database_name|schema_name|table_name               |table_type|row_count|created_on         |Additional details                                                                                      |
 	-------------+-----------+-------------------------+----------+---------+-------------------+--------------------------------------------------------------------------------------------------------+
@@ -113,11 +97,9 @@ Examples
 	master       |public     |ThirdPartyDataTransformed|External  |         |2023-07-06 06:23:50|Format: parquet, Path: gs://product_sqream/blue_demo/TransformedData/3rdparty_transformed.parquet       |
  
 
-.. code-block:: postgres
+.. code-block:: sql
 
-  DESCRIBE TABLES DATABASE master SCHEMA public like '%records%';
-  
-.. code-block:: none
+	DESCRIBE TABLES DATABASE master SCHEMA public like '%records%';
 
 	database_name|schema_name|table_name           |table_type|row_count|created_on         |Additional details                                                                    |
 	-------------+-----------+---------------------+----------+---------+-------------------+--------------------------------------------------------------------------------------+

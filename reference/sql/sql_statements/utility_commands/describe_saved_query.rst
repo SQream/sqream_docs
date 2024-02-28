@@ -13,66 +13,47 @@ The ``DESCRIBE SAVED QUERY`` command returns the SQL syntax of a specific saved 
 Syntax
 ======
 
-The following is the syntax for the ``DESCRIBE SAVED QUERY`` command:
+.. code-block:: sql
 
-.. code-block:: postgres
-
-   DESC[RIBE] SAVED QUERY [ DATABASE <database_name>] NAME <saved_query_name>
-   
-   saved_query_name ::= identifier
+   DESC[RIBE] SAVED QUERY [ DATABASE <database_name>] NAME <"saved_query_name">
    
 Parameters
 ==========
-
-The following parameters can be used with the ``DESCRIBE SAVED QUERY`` command:
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Parameter Name
-     - Parameter Value
-     - Description
-     - Type
-   * - ``DATABASE``
-     - ``database_name``
-     - Optional parameter for specifying the name of the database to use, if not specified current database will be used
-     - TEXT
-   * - ``NAME``
-     - ``Saved query name``
-     - Mandatory parameter for specifying the saved query name - note that this must be an exact match
-     - TEXT
-	 
-	 
-Output
-======
-
-Using the ``DESCRIBE SAVED QUERY`` command generates the following output:
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
    * - Parameter
+     - Parameter Type
      - Description
-     - Type
-     - Example
+   * - ``DATABASE``
+     - :ref:`Identifier<keywords_and_identifiers>` 
+     - Filters by a specific database
+   * - ``NAME``
+     - :ref:`Identifier<keywords_and_identifiers>` 
+     - The name of the saved query
+ 
+Output
+======
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Data Type
+     - Description
    * - ``sql``
+     - ``TEXT``
      - The SQL syntax of the selected saved query
-     - TEXT
-     - ``SELECT * FROM nba``
 
 Example
 =======
 
-.. code-block:: postgres
+.. code-block:: sql
 
-   DESCRIBE SAVED QUERY DATABASE master NAME "SelectAll";
-   
-   
-The following is an example of the ``DESCRIBE SAVED QUERY`` command output:
-
-.. code-block:: none
+	DESCRIBE SAVED QUERY DATABASE master NAME "SelectAll";
 
 	sql              
 	-----------------

@@ -13,7 +13,7 @@ Syntax
 
 .. code-block:: sql
 
-   DESC[RIBE] CONFIGURATION [PARAMETER <"parameter">] [LIKE <'pattern'>]
+   DESC[RIBE] CONFIGURATION [PARAMETER <"configuration_parameter">] [LIKE <'pattern'>]
    
 Parameters
 ==========
@@ -23,25 +23,15 @@ Parameters
    :header-rows: 1
    
    * - Parameter
-     - Value
-     - Parameter Type
-     - Example	 
+     - Parameter Type 
      - Description
    * - ``PARAMETER``
-     - ``parameter``
-     - Identifier
-     - ``"useGrpcCompiler"``	 
-     - Specifies a particular configuration parameter. If no parameter is specified, it lists all configuration parameters.
+     - :ref:`Identifier<keywords_and_identifiers>` 
+     - One configuration parameter. If none specified, it lists all configuration parameters
    * - ``LIKE``
-     - ``pattern``
-     - String literal
-     - ``'%port%'``	
-     - The ``LIKE`` operator is used to perform pattern matching within strings. It supports the ``%`` wild card, which is used to match any sequence of characters (including none) within a string.
+     - :ref:`STRING literal<literals>`	
+     - String pattern to match
 
-Usage Notes
-===========
-
-When using the ``PARAMETER`` keyword, ensure that the configuration parameter identifier is enclosed within double quotes. It's important to note that the identifier is case-sensitive, meaning that the capitalization of letters in the identifier must match exactly for accurate referencing.
 
 Output
 ======
@@ -52,37 +42,29 @@ Output
    :header-rows: 1
    
    * - Parameter
-     - Description
      - Data Type
-     - Example
+     - Description
    * - ``flag_name``
+     - ``TEXT``
      - Displays the name of the flag.
-     - ``TEXT``
-     - portSsl
    * - ``flag_value``
+     - ``NUMERIC``
      - Displays the value of the flag.
-     - ``NUMERIC``
-     - 433
    * - ``def_flag_value``
-     - Displays the default value of the flag.
      - ``NUMERIC``
-     - 433
+     - Displays the default value of the flag.
    * - ``flag_category``
+     - ``TEXT``
      - Displays the category of the flag.
-     - ``TEXT``
-     - RND
    * - ``flag_type``
+     - ``TEXT``
      - Displays the type of the flag.
-     - ``TEXT``
-     - worker
    * - ``data_type``
+     - ``TEXT``
      - Displays the data type.
-     - ``TEXT``
-     - 
    * - ``description``
-     - Displays the description of the flag.
      - ``TEXT``
-     - Configuration file only. This flag can only be set before the daemon starts. It cannot be changed dynamically. Port conflicts will cause the server not to start. If the daemon has started, this was probably set correctly. Connect with a client such as CLI.
+     - Displays the description of the flag.
 
 Example
 =======
@@ -90,28 +72,20 @@ Example
 .. code-block:: sql   
 	   
 	DESCRIBE CONFIGURATION PARAMETER "useGrpcCompiler";
-   
-Output:
 
-.. code-block:: none  
-
-   flag_name           |flag_value|def_flag_value|flag_category|flag_type|data_type|description|
-   --------------------+----------+--------------+-------------+---------+---------+-----------+
-   useGrpcCompiler     |false     |false         |RND          |regular  |         |           |
+	flag_name           |flag_value|def_flag_value|flag_category|flag_type|data_type|description|
+	--------------------+----------+--------------+-------------+---------+---------+-----------+
+	useGrpcCompiler     |false     |false         |RND          |regular  |         |           |
 
 
 .. code-block:: sql   
 	 
-   DESCRIBE CONFIGURATION LIKE '%port%';
-   
-Output
+	DESCRIBE CONFIGURATION LIKE '%port%';
 
-.. code-block:: none
-
-   flag_name|flag_value|def_flag_value|flag_category|flag_type|data_type|description                                                                                                                                                                                                                                                    |
-   ---------+----------+--------------+-------------+---------+---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-   port     |5000      |5000          |RND          |worker   |         |                                                                                                                                                                                                                                                               |
-   portSsl  |433       |433           |RND          |worker   |         |Configuration file only. This flag can only be set before the daemon starts. It cannot be changed dynamically. Port conflicts will cause the server not to start. If the daemon has started, this was probably set correctly. Connect with a client such as Cli|
+	flag_name|flag_value|def_flag_value|flag_category|flag_type|data_type|description                                                                                                                                                                                                                                                    |
+	---------+----------+--------------+-------------+---------+---------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+	port     |5000      |5000          |RND          |worker   |         |                                                                                                                                                                                                                                                               |
+	portSsl  |433       |433           |RND          |worker   |         |Configuration file only. This flag can only be set before the daemon starts. It cannot be changed dynamically. Port conflicts will cause the server not to start. If the daemon has started, this was probably set correctly. Connect with a client such as Cli|
 
 
 Permissions

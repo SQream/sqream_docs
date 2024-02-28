@@ -15,7 +15,7 @@ Syntax
 
 .. code-block:: sql
 
-	DESC[RIBE] CONNECT PERMISSIONS [DATABASE <database_name>] [ROLE ID IN (<role_id 1> [,...])] [PERMISSION ID IN (<permission_id 1> [,...])]
+	DESC[RIBE] CONNECT PERMISSIONS [DATABASE <database_name>] [ROLE ID IN (<role_id> [,...])] [PERMISSION ID IN (<permission_id> [,...])]
 
 Parameters
 ==========
@@ -24,22 +24,18 @@ Parameters
    :widths: auto
    :header-rows: 1
    
-   * - Parameter Name
-     - Parameter Value
+   * - Parameter
+     - Parameter Type
      - Description
-     - Type
    * - ``DATABASE``
-     - ``database_name``
-     - Enables filtering results by a specific database
-     - ``TEXT``
+     - :ref:`Identifier<keywords_and_identifiers>` 
+     - Filters by a specific database
    * - ``ROLE ID``
-     - ``role_id``
-     - Enables filtering by one or more role IDs
-     - ``INT``
+     - :ref:`NUMBER<sql_data_types_numeric>` 
+     - Filters by one or more role IDs
    * - ``PERMISSION ID``
-     - ``permission_id``
-     - Enables filtering by one or more permission IDs
-     - ``INT``
+     - :ref:`NUMBER<sql_data_types_numeric>` 
+     - Filters by one or more permission IDs
 	 
 	 
 Output
@@ -50,26 +46,26 @@ Output
    :header-rows: 1
    
    * - Parameter
+     - Data Type
      - Description
-     - Type
    * - ``role_id``
+     - ``INT``
      - The ID of a specific role
-     - ``INT``
    * - ``role_name``
+     - ``TEXT``
      - The name of a specific role
-     - ``TEXT``
    * - ``database_name``
-     - Database name
      - ``TEXT``
+     - Database name
    * - ``permission_id``
-     - Permission ID
      - ``INT``
+     - The specific permission's ID
    * - ``superuser``
+     - ``BOOLEAN``
      - Identifies whether or not a role has ``SUPERUSER`` permissions, with ``1`` indicating ``SUPERUSER`` status and ``0`` indicating regular system user
-     - ``BOOL``
    * - ``clusteradmin``
+     - ``BOOLEAN``
      - Identifies whether or not a role is a ``clusteradmin`` , with ``1`` indicating ``clusteradmin`` status and ``0`` indicating non-clusteradmin user
-     - ``BOOL``
 
 Examples
 ========
@@ -77,10 +73,6 @@ Examples
 .. code-block:: sql
 
 	DESCRIBE CONNECT PERMISSIONS;
-
-Output:
-
-.. code-block:: none
 
 	role_id|role_name              |database_name|permission_id|superuser|clusteradmin|
 	-------+-----------------------+-------------+-------------+---------+------------+
@@ -97,10 +89,6 @@ Using optional parameters
 .. code-block:: sql
 
 	DESCRIBE CONNECT PERMISSIONS DATABASE products ROLE ID in (1,2,3) PERMISSION ID in (1002,1003);
-
-Output:
-
-.. code-block:: none
 
 	role_id|role_name        |database_name|permission_id|superuser|clusteradmin|
 	-------+-----------------+-------------+-------------+---------+------------+

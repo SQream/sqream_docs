@@ -28,8 +28,8 @@ Parameters
      - Parameter Value
      - Description
    * - ``LIKE``
-     - ``pattern``
-     - The ``LIKE`` operator is used to perform pattern matching within strings. It supports the ``%`` wild card, which is used to match any sequence of characters (including none) within a string.
+     - :ref:`STRING literal<literals>`	
+     - String pattern to match
 
 
 Output
@@ -40,29 +40,23 @@ Output
    :header-rows: 1
    
    * - Parameter
+     - Data Type
      - Description
-     - Type
-     - Example
    * - ``id``
-     - Role id
-     - INT
-     - 1
+     - ``INT``
+     - The ID of a specific role
    * - ``name``
-     - Role name
-     - TEXT
-     - new_role1
+     - ``TEXT``
+     - The name of a specific role
    * - ``superuser``
-     - Validates whether or not role is a ``SUPERUSER``
-     - BOOL
-     - 0
+     - ``BOOLEAN``
+     - Identifies whether or not a role has ``SUPERUSER`` permissions, with ``1`` indicating ``SUPERUSER`` status and ``0`` indicating regular system user
    * - ``clusteradmin``
-     - Validates whether or not role is a ``clusteradmin``
-     - BOOL
-     - 0
+     - ``BOOLEAN``
+     - Identifies whether or not a role is a ``clusteradmin`` , with ``1`` indicating ``clusteradmin`` status and ``0`` indicating non-clusteradmin user
    * - ``login``
+     - ``BOOLEAN``
      - Validates whether or not role has login privileges. Enabled for actual users
-     - BOOL
-     - 1
 
 
 Examples
@@ -74,12 +68,6 @@ Executing ``DESCRIBE ROLES``
 .. code-block:: postgres
 
 	DESCRIBE ROLES;
-
-
-Output:
-
-
-.. code-block:: none
 
 	id|name     |superuser|clusteradmin|login|
 	--+---------+---------+------------+-----+
@@ -95,16 +83,10 @@ Executing ``DESCRIBE ROLES LIKE``
 
 	DESCRIBE ROLES LIKE 'ne%';
 
-
-Output:
-
-
-.. code-block:: none
-
-    id|name     |superuser|clusteradmin|login|
-    --+---------+---------+------------+-----+
-    2 |new_role1|0        |1           |1    |
-    3 |new_role2|0        |0           |1    |
+	id|name     |superuser|clusteradmin|login|
+	--+---------+---------+------------+-----+
+	2 |new_role1|0        |1           |1    |
+	3 |new_role2|0        |0           |1    |
 
 
 Permissions

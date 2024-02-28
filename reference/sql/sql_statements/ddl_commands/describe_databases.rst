@@ -11,11 +11,9 @@ The ``DESCRIBE DATABASES`` command lets you list information about the databases
 Syntax
 ======
 
-The following is the syntax for the ``DESCRIBE DATABASES`` command:
+.. code-block:: sql
 
-.. code-block:: postgres
-
-   DESC[RIBE] DATABASES [LIKE 'database_name']
+   DESC[RIBE] DATABASES [LIKE 'pattern']
 
 Parameters
 ==========
@@ -25,37 +23,31 @@ Parameters
    :header-rows: 1
    
    * - Parameter
-     - Parameter Value
+     - Parameter Type
      - Description
    * - ``LIKE``
-     - ``database_name``
-     - The ``LIKE`` operator is used to perform pattern matching within strings. It supports the ``%`` wild card, which is used to match any sequence of characters (including none) within a string.
+     - :ref:`STRING literal<literals>`	
+     - String pattern to match
 
 Output
 ======
-
-Using the ``DESCRIBE DATABASES`` command generates the following output:
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
    * - Parameter
+     - Data Type
      - Description
-     - Type
-     - Example
    * - ``database_name``
-     - Displays the name of the database.
-     - TEXT
-     - master
+     - ``TEXT``
+     - Displays the name of the database
    * - ``created_on``
-     - Displays the date and time when the database was created.
-     - DATE
-     - 2022-04-12 15:10:38
+     - ``DATE``
+     - Displays the date and time when the database was created
    * - ``is_current``
-     - Displays the database that you are currently connected to.
-     - BOOLEAN
-     - 1
+     - ``BOOLEAN``
+     - Displays the database that you are currently connected to
 	     
 Examples
 ========
@@ -63,10 +55,6 @@ Examples
 .. code-block:: sql   
 	   
 	DESCRIBE DATABASES;
-
-Output:
-
-.. code-block:: none
 
 	database_name|created_on         |is_current|
 	-------------+-------------------+----------+
@@ -79,8 +67,6 @@ Output:
 .. code-block:: sql   
 	   
 	DESCRIBE DATABASES LIKE '%teacher%';
-	
-.. code-block:: none
 	
 	database_name|created_on         |is_current|
 	-------------+-------------------+----------+

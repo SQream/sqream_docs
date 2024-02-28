@@ -11,11 +11,9 @@ The ``DESCRIBE COLUMNS`` command lets you list information about table columns.
 Syntax
 ======
 
-The following is the syntax for the ``DESCRIBE COLUMNS`` command:
-
 .. code-block:: postgres
 
-   DESC[RIBE] COLUMNS [ DATABASE  <database_name> ] [ SCHEMA <schema_name> ] TABLE <table_name> [LIKE 'column_name']
+   DESC[RIBE] COLUMNS [ DATABASE  <database_name> ] [ SCHEMA <schema_name> ] TABLE <table_name> [LIKE 'pattern']
 
 Parameters
 ==========
@@ -25,20 +23,20 @@ Parameters
    :header-rows: 1
    
    * - Parameter
-     - Parameter Value
+     - Parameter Type
      - Description
    * - ``DATABASE``
-     - ``database_name``
-     - Optional - The name of the database.
+     - :ref:`Identifier<keywords_and_identifiers>` 
+     - Filters by a specific database
    * - ``SCHEMA``
-     - ``schema_name``
-     - Optional - The name of the schema.
+     - :ref:`Identifier<keywords_and_identifiers>` 
+     - Filters by a specific schema
    * - ``TABLE``
-     - ``table_name``
-     - The name of the table.
+     - :ref:`Identifier<keywords_and_identifiers>` 
+     - Identifies the specific table for which you want to retrieve column descriptions
    * - ``LIKE``
-     - ``column_name``
-     - The ``LIKE`` operator is used to perform pattern matching within strings. It supports the ``%`` wild card, which is used to match any sequence of characters (including none) within a string.
+     - :ref:`STRING literal<literals>`	
+     - String pattern to match
    
 	 
 Output
@@ -51,63 +49,45 @@ Using the ``DESCRIBE COLUMNS`` command generates the following output:
    :header-rows: 1
    
    * - Parameter
+     - Data Type
      - Description
-     - Type
-     - Example
    * - ``database_name``
-     - Displays the name of the database.
-     - TEXT
-     - master
+     - ``TEXT``
+     - Displays the name of the database
    * - ``schema_name``
-     - Displays the name of the schema.
-     - TEXT
-     - public
+     - ``TEXT``
+     - Displays the name of the schema
    * - ``table_name``
-     - Displays the name of the table.
-     - TEXT
-     - cool_animals
+     - ``TEXT``
+     - Displays the name of the table
    * - ``is_nullable``
-     - Displays whether the column can contain ``null`` values.
-     - TEXT
-     - false	 
+     - ``TEXT`` 
+     - Displays whether the column can contain ``null`` values
    * - ``table_id``
-     - Displays the ID of the table.
-     - INTEGER
-     - 2		 
+     - ``INTEGER``
+     - Displays the ID of the table 
    * - ``column_name``
-     - Displays the name of the column.
-     - TEXT
-     - id
+     - ``TEXT``
+     - Displays the name of the column
    * - ``type_name``
-     - Displays the data type of the column.
-     - TEXT
-     - INT
+     - ``TEXT``
+     - Displays the data type of the column
    * - ``default_value``
-     - Displays the column default value if one exists.
-     - INTEGER
-     - 0
+     - ``INTEGER``
+     - Displays the column default value if one exists
    * - ``created``
-     - Displays the table's creation date and timestamp.
-     - DATE
-     - 2022-06-09 05:06:6:33	 
+     - ``DATE``
+     - Displays the table's creation date and timestamp
    * - ``column_size``
-     - Displays the size of the column in bytes.
-     - Integer
-     - 4 	
+     - ``INTEGER``	
+     - Displays the size of the column in bytes
 	 
 Examples
 ========
 
-The following is an example of the ``DESCRIBE COLUMNS`` command:
-
 .. code-block:: sql
 
 	DESCRIBE COLUMNS DATABASE master SCHEMA public TABLE nba;
-   	 
- 
-Output:
-
-.. code-block:: none
 
 	database_name|schema_name|table_name|is_nullable|column_name|type_name|default_value|created            |column_size|
 	-------------+-----------+----------+-----------+-----------+---------+-------------+-------------------+-----------+
@@ -125,10 +105,6 @@ Output:
 .. code-block:: sql
 
 	DESCRIBE COLUMNS DATABASE master SCHEMA public TABLE nba LIKE '%name%';
-	
-Output:
-
-.. code-block:: none
 
 	database_name|schema_name|table_name|is_nullable|column_name|type_name|default_value|created            |column_size|
 	-------------+-----------+----------+-----------+-----------+---------+-------------+-------------------+-----------+

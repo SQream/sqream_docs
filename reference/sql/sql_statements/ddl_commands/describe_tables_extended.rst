@@ -7,154 +7,127 @@ DESCRIBE TABLES EXTENDED
 The ``DESCRIBE TABLES EXTENDED`` command lets you list all the tables in your database, including information about storage and deleted data. You can define the ``DESCRIBE TABLES EXTENDED`` command as either ``EXTERNAL`` or ``INTERNAL``.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
-.. note::  The **DESCRIBE TABLES EXTENDED** command is not relevant to Alpha, and will be implemented in Beta.
-
 
 Syntax
 ======
 
-The following is the syntax for the ``DESCRIBE TABLES EXTENDED`` command:
+.. code-block:: sql
 
-.. code-block:: postgres
-
-   DESC[RIBE] TABLES EXTENDED [ DATABASE  <database_name> ] [ SCHEMA <schema_name> ] EXTERNAL | INTERNAL
+   DESC[RIBE] TABLES EXTENDED [ DATABASE  <database_name> ] [ SCHEMA <schema_name> ] EXTERNAL | INTERNAL [LIKE 'table_name']
 
 Parameters
 ==========
 
-The following parameters can be used with the ``DESCRIBE TABLES EXTENDED`` command:
-
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
    * - Parameter
-     - Description
      - Type
-   * - ``database_name``
-     - The name of the database.
-     - Text
-   * - ``schema_name``
-     - The name of the table.
-     - Text	
+     - Description
+   * - ``DATABASE``
+     - :ref:`Identifier<keywords_and_identifiers>` 
+     - The name of the database to search within
+   * - ``SCHEMA``
+     - :ref:`Identifier<keywords_and_identifiers>` 
+     - The name of the schema to search within
+   * - ``EXTERNAL``, ``INTERNAL``
+     - 
+     - You may define the ``DESCRIBE TABLES`` command to show information related to all tables, external tables, or internal tables. The default value is ``ALL``
    * - ``LIKE``
-     - ``pattern``
-     - The ``LIKE`` operator is used to perform pattern matching within strings. It supports the ``%`` wild card, which is used to match any sequence of characters (including none) within a string.
+     - :ref:`STRING literal<literals>`	
+     - String pattern to match
    
 Output
 ======
 
+Using ``INTERNAL`` with the ``DESCRIBE_TABLES_EXTENDED`` command generates the following output:
+
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
    * - Parameter
+     - Data Type
      - Description
-     - Type
-     - Example
    * - ``database_name``
+     - ``TEXT``
      - Displays the name of the database
-     - Text
-     - master
    * - ``schema_name``
+     - ``TEXT``
      - Displays the name of the schema
-     - Text
-     - public
    * - ``table_name``
+     - ``TEXT``
      - Displays the name of the table
-     - Text
-     - t5
    * - ``table_type``
+     - ``BOOLEAN``
      - ``Internal`` or ``External``
-     - Boolean
-     - ``Internal``
-   * - ``table_id``
-     - Displays the ID of the table
-     - Integer
-     - 0	 
    * - ``row_count``
+     - ``INTEGER``
      - Displays the number of rows in the table
-     - Integer
-     - 0
    * - ``created_on``
+     - ``DATETIME``
      - Date and time of table creation
-     - Datetime
-     - ``2023-08-21 10:54:40``
    * - ``Additional details``
-     - 
-     - 
+     - ``TEXT``
      - 
    * - ``number_of_chunks``
+     - ``INTEGER``
      - Displays the number of table chunks
-     - Integer
-     - ``21``
-   * - ``number_of_chunks_with_deleted_rows bytes(compressed)``
+   * - ``number_of_chunks_with_deleted_rows``
+     - ``INTEGER``
+     - Displays the number of table chunks with deleted rows
+   * - ``bytes(compressed)``
+     - ``INTEGER``
      - 
-     - Integer
-     - ``0``
    * - ``bytes(uncompressed)``
+     - ``INTEGER``
      - 
-     - Integer
-     - ``15728640``
 
 
-Using the **external** ``DESCRIBE_TABLES_EXTENDED`` command generates the following output:
+Using ``EXTERNAL`` with the ``DESCRIBE_TABLES_EXTENDED`` command generates the following output:
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
    * - Parameter
+     - Data Type
      - Description
-     - Type
-     - Example
    * - ``database_name``
-     - Displays the name of the database.
-     - Text
-     - master
+     - ``TEXT``
+     - Displays the name of the database
    * - ``table_id``
-     - Displays the ID of the table.
-     - Integer
-     - 3	 
+     - ``INTEGER`` 
+     - Displays the ID of the table
    * - ``schema_name``
-     - Displays the name of the schema.
-     - Text	
-     - public
+     - ``TEXT``	
+     - Displays the name of the schema
    * - ``table_name``
-     - Displays the name of the table.
-     - Text
-     - t4	 
+     - ``TEXT`` 
+     - Displays the name of the table
    * - ``format``
-     - Indicates whether the table is formatted or not.
-     - Boolean
-     - 0	 
+     - ``BOOLEAN`` 
+     - Indicates whether the table is formatted or not
    * - ``created``
-     - Displays the table's creation date and timestamp.
-     - Date
-     - 2022-05-02 15:25:57	 
+     - ``DATE`` 
+     - Displays the table's creation date and timestamp
+
 
 Examples
 ========
+
+.. code-block:: sql
    
-The following is an example of an **internal** ``DESCRIBE TABLES EXTENDED`` command:
+	DESCRIBE TABLES EXTENDED DATABASE master SCHEMA public INTERNAL;
 
-.. code-block:: postgres
-   
-   DESCRIBE TABLES EXTENDED DATABASE master SCHEMA public INTERNAL;
+	database_name |schema_name |table_name |table_type |row_count |created_on          |Additional details |number_of_chunks |number_of_chunks_with_deleted_rows |bytes(compressed) |bytes(uncompressed)
+	--------------+------------+-----------+-----------+----------+--------------------+-------------------+-----------------+-----------------------------------+------------------+------------------
+	master        |public      |alex       |Internal   |1048576   |2023-08-21 10:54:40 |                   |21               |0                                  |294851            |15728640
 
-.. code-block:: none
+.. code-block:: sql
 
-   database_name |schema_name |table_name |table_type |row_count |created_on          |Additional details |number_of_chunks |number_of_chunks_with_deleted_rows |bytes(compressed) |bytes(uncompressed)
-   --------------+------------+-----------+-----------+----------+--------------------+-------------------+-----------------+-----------------------------------+------------------+------------------
-   master        |public      |alex       |Internal   |1048576   |2023-08-21 10:54:40 |                   |21               |0                                  |294851            |15728640
-
-The following is an example of an **external** ``DESCRIBE TABLES EXTENDED`` command:
-
-.. code-block:: postgres
-
-   DESCRIBE TABLES EXTENDED DATABASE master SCHEMA public EXTERNAL;
-
-.. code-block:: none
+	DESCRIBE TABLES EXTENDED DATABASE master SCHEMA public EXTERNAL;
 
 	database_name|schema_name|table_name               |table_type|row_count|created_on         |Additional details                                                                                      |number_of_chunks|number_of_chunks_with_deleted_rows|bytes(compressed)|bytes(uncompressed)|
 	-------------+-----------+-------------------------+----------+---------+-------------------+--------------------------------------------------------------------------------------------------------+----------------+----------------------------------+-----------------+-------------------+
@@ -163,13 +136,9 @@ The following is an example of an **external** ``DESCRIBE TABLES EXTENDED`` comm
 	master       |public     |thirdpartydatatransformed|External  |         |2023-08-22 11:41:38|Format: parquet, Path: gs://product_sqream/blue_demo/TransformedData/3rdparty_transformed.parquet       |                |                                  |                 |                   |
 	master       |public     |nba                      |External  |         |2023-08-21 10:58:47|Format: parquet, Path: gs://blue_docs/nba.parquet                                                       |                |                                  |                 |                   |
 
-Using the ``LIKE`` parameter:
-
-.. code-block:: postgres
+.. code-block:: sql
 
 	DESCRIBE TABLES EXTENDED DATABASE master SCHEMA public EXTERNAL LIKE '%third%';
-	
-.. code-block:: none
 
 	database_name|schema_name|table_name               |table_type|row_count|created_on         |Additional details                                                                                 |number_of_chunks|number_of_chunks_with_deleted_rows|bytes(compressed)|bytes(uncompressed)|
 	-------------+-----------+-------------------------+----------+---------+-------------------+---------------------------------------------------------------------------------------------------+----------------+----------------------------------+-----------------+-------------------+

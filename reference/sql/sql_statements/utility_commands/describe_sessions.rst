@@ -24,32 +24,25 @@ The following is the syntax for the ``DESCRIBE SESSIONS`` command:
 Parameters
 ==========
 
-The following parameters can be used with the ``DESCRIBE SESSIONS`` command:
-
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
    * - Parameter
-     - Type
+     - Parameter Type
      - Description
-     - Example
    * - ``USER``
-     - String literal
+     - :ref:`STRING literal<literals>`	
      - Optional parameter for filtering by username
-     - ``role1``
    * - ``TIMEFRAME FROM``  
-     - String literal
+     - :ref:`STRING literal<literals>`	
      - Optional parameter for filtering based on time frame (must be used in combination with ``TO``)
-     - ``'2024-02-26 14:30:45'``
    * - ``TIMEFRAME TO``  
-     - ``end_date_time``
+     - :ref:`DATETIME<supported_data_types>`
      - Optional parameter for filtering by time frame (must be used in combination with ``FROM``)
-     - ``'2024-02-26 19:30:00'``
    * - ``INITIATED BY``
-     - String literal
-     - Optional parameter for filtering based on the source that triggered the query
-     - ``TEXT``	 
+     - :ref:`STRING literal<literals>`	
+     - Optional parameter for filtering based on the source that triggered the query 
 	 
 	 
 Output
@@ -60,50 +53,36 @@ Output
    :header-rows: 1
    
    * - Parameter
+     - Data Type
      - Description
-     - Type
-     - Example
    * - ``start_time``
-     - Displays the start time of the session.
      - ``DATE``
-     - ``12-06-2022 06:16:56``
+     - Displays the start time of the session
    * - ``database``
-     - Displays the name of the database.
      - ``TEXT``
-     - ``master``
+     - Displays the name of the database
    * - ``source_ip``
-     - Displays the IP address of the client connected to SQream.
      - ``INTEGER``
-     - ``10.212.134.4``	 
+     - Displays the IP address of the client connected to BLUE
    * - ``client``
-     - Displays the name and version of the client.
      - ``TEXT``
-     - ``SQream JDBC v0.1.33``
+     - Displays the name and version of the client
    * - ``status``
-     - Displays the status of the client.
      - ``TEXT``
-     - ``Active``
+     - Displays the status of the client
    * - ``session_id``
-     - Displays the session ID.
      - ``TEXT``
-     - ``efd226bb-cc57-4d41-8ff9-c9300830c571``
+     - Displays the session ID
    * - ``InitiatedBy``
-     - Displays the source that triggered the query
      - ``TEXT``
-     - ``CLI``
+     - Displays the source that triggered the query
 	 
 Examples
 ========
 
-The following is an example of the ``DESCRIBE SESSIONS`` command:
-
 .. code-block:: sql
 
-   DESCRIBE SESSIONS;
-   	 
-Output:
-
-.. code-block:: none
+	DESCRIBE SESSIONS;
 	 
 	+---------------------+----------------------+-----------+-------+----------------+----------------------+---------+-------------------+---------------------------------------+------------+------------+
 	| start_time          | end_time             | database  | role  | source_ip      | client               | status  | rejection_reason  | session_id                            | username   |InitiatedBy |
@@ -119,15 +98,9 @@ Output:
 	| 2022-09-20 5:19:25  | 0000-00-00 00:00:00  | master    | N/A   | 10.233.84.4    | SQream Node.js       | Active  | N/A               | ca5b1c86-a696-49f9-bc72-6fff76691799  | sqream     |Blue_UI_User|
 	+---------------------+----------------------+-----------+-------+----------------+----------------------+---------+-------------------+---------------------------------------+------------+------------+
 
-The following is an example of the ``DESCRIBE SESSIONS`` command filtering a specific time frame:
-
 .. code-block:: sql
 
-   DESCRIBE SESSIONS TIMEFRAME FROM '2022-09-19 10:00:00' TO '2022-09-19 16:00:00';
-   
-Output:
-
-.. code-block:: none
+	DESCRIBE SESSIONS TIMEFRAME FROM '2022-09-19 10:00:00' TO '2022-09-19 16:00:00';
 
 	+----------------------+----------------------+-----------+-------+---------------+----------------------+---------+-------------------+---------------------------------------+------------+------------+
 	| start_time           | end_time             | database  | role  | source_ip     | client               | status  | rejection_reason  | session_id                            | username   |InitiatedBy |

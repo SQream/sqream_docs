@@ -12,37 +12,26 @@ A session is opened per connection or per Workbench tab.
 Syntax
 ======
 
-The following is the syntax for the ``DESCRIBE SESSION QUERIES`` command:
+.. code-block:: sql
 
-.. code-block:: postgres
-
-   DESC[RIBE] SESSION QUERIES  [SESSION ID '<session-id>'] 
+   DESC[RIBE] SESSION QUERIES  [SESSION ID <'session-id'>] 
 
 Parameters
 ==========
-
-The following parameters can be used with the ``DESCRIBE SESSION QUERIES`` command:
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
-   * - Parameter Name
-     - Parameter Value
+   * - Parameter
+     - Parameter Type
      - Description
-     - Type
    * - ``SESSION ID``
-     - ``session_id``
-     - The session ID of the query
-     - ``TEXT``
+     - :ref:`STRING literal<literals>`	
+     - The session ID of the query. If not specified the current session ID is provided
 	 
-.. note:: The ``SESSION_ID`` parameter is optional. If you do not specify a session ID, SQream uses the session ID of the current session.
-	 
-   	 
 Output
 ======
-
-Using the ``DESCRIBE SESSION QUERIES`` command generates the following output:
 
 .. list-table:: 
    :widths: auto
@@ -51,102 +40,76 @@ Using the ``DESCRIBE SESSION QUERIES`` command generates the following output:
    * - Parameter
      - Description
      - Type
-     - Example
    * - ``query_id``
+     - ``TEXT``
      - Displays the query ID
-     - ``TEXT``
-     - ``b6173e04-6e2a-4266-bef0-6fc9b8ffc097:3``
    * - ``query_status``
+     - ``TEXT``
      - Displays the query status
-     - ``TEXT``
-     - ``EXECUTION_FAILED``
    * - ``query_type``
+     - ``TEXT``
      - Displays the query type
-     - ``TEXT``
-     - ``SELECT``
    * - ``sql_text``
+     - ``TEXT``
      - Selects the defined SQL text from the specified table
-     - ``TEXT``
-     - ``SELECT * FROM t1``
    * - ``role``
-     - The role who executed the query
      - ``TEXT``
-     - ``sqream``	 
+     - The role who executed the query	 
    * - ``session_id``
+     - ``TEXT``
      - Selects the session ID
-     - ``TEXT``
-     - ``b6173e04-6e2a-4266-bef0-6fc9b8ffc097``
    * - ``start_time``
+     - ``DATETIME``
      - Displays query execution date and time
-     - ``DATETIME``
-     - ``2022-05-02T15:32:49``
    * - ``end_time``
-     - Displays query end date and time
      - ``DATETIME``
-     - ``2024-01-09T10:37:04``	 
+     - Displays query end date and time	 
    * - ``duration``
+     - ``INTEGER``
      - Query duration time
-     - ``INTEGER``
-     - ``64``	 
    * - ``time_in_queue``
+     - ``INTEGER``
      - Query time in queue (milliseconds)
-     - ``INTEGER``
-     - ``0``	 
    * - ``compilation_time``
+     - ``INTEGER``
      - Query compilation time (milliseconds)
-     - ``INTEGER``
-     - ``18``	 
    * - ``execution_time``
+     - ``INTEGER``    
      - The execution time (milliseconds)
-     - ``INTEGER``   
-     - ``0``	 
    * - ``total_compute_time``
+     - ``INTEGER``	 
      - The total compute time during which the system actively engaged (milliseconds)
-     - ``INTEGER``
-     - ``0``	 
    * - ``rows_read``
-     - The number of rows read by the query
-     - ``INTEGER``
-     - ``1456``	 
+     - ``INTEGER``	
+     - The number of rows read by the query	 
    * - ``rows produced``
+     - ``INTEGER`` 
      - The number of rows returned by the query 
-     - ``INTEGER``
-     - ``65``	 
    * - ``data produced``
+     - ``INTEGER``	 
      - The amount of data produced by the query (MegaBytes)
-     - ``INTEGER``
-     - ``813``	 
    * - ``data_read_compressed``
+     - ``INTEGER`` 
      - The amount of compresses read data
-     - ``INTEGER``
-     - ``0``	 
    * - ``data_read_uncompressed``
+     - ``INTEGER``	 
      - The amount of uncompressed read data
-     - ``INTEGER``
-     - ``0``	 
    * - ``client_info``
+     - ``TEXT``
      - Displays information about the client
-     - ``TEXT``
-     - ``SQream JDBC v0.1.33`` 
    * - ``query_error``
+     - ``TEXT``
      - The reason for query failure
-     - ``TEXT``
-     - ``Error in compilation process: : Wrapped CalciteException Cause: org.apache.calcite.sql.validate.SqlValidatorException: Object 'master.public.talia' not found``
    * - ``pool_name``
+     - ``TEXT``	 
      - The resource pool used for executing the statement
-     - ``TEXT``
-     - ``BI``	 	 
 
 Example
 =======
 
-The following is an example of the ``DESCRIBE SESSIONS`` command:
-
 .. code-block:: sql
 
-   DESCRIBE SESSION QUERIES SESSION ID  '683256f5-66b7-4d8c-b1a2-456dddcb6dee';
-   
-.. code-block:: none
+	DESCRIBE SESSION QUERIES SESSION ID  '683256f5-66b7-4d8c-b1a2-456dddcb6dee';
 
 	+--------+------------+----------+-----------------------------------------------------+---------------------+------------------------------------+-------------------+-------------------+--------+-------------+----------------+--------------+--------------------------------------------------------+---------+-------------+-------------+--------------------+----------------------+--------------+-----------+---------+
 	|query_id|query_status|query_type|sql_text                                             |role                 |session_id                          |start_time         |end_time           |duration|time_in_queue|compilation_time|execution_time|total_compute_time                                      |rows_read|rows produced|data produced|data_read_compressed|data_read_uncompressed|client_info   |query_error|pool_name|

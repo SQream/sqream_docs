@@ -11,39 +11,30 @@ The ``DESCRIBE SAVED QUERIES LIST`` command creates a list of all of your saved 
 Syntax
 ======
 
-The following is the syntax for the ``DESCRIBE SAVED QUERIES LIST`` command:
-
-.. code-block:: postgres
+.. code-block:: sql
 
    DESC[RIBE] SAVED QUERIES LIST [ DATABASE <database_name>] [ LIKE '<pattern>' ]
    
 Parameters
 ==========
 
-The following parameters can be used with the ``DESCRIBE SAVED QUERIES LIST`` command:
-
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
-   * - Parameter Name
-     - Parameter Value
+   * - Parameter
+     - Parameter Type
      - Description
-     - Type
    * - ``DATABASE``
-     - ``database_name``
-     - Optional parameter for specifying the name of the database to use, if not specified current database will be used
-     - TEXT
+     - :ref:`Identifier<keywords_and_identifiers>` 
+     - Filters by a specific database
    * - ``LIKE``
-     - ``pattern``
-     - Optional parameter for filtering by saved query name using wildcards 
-     - TEXT
+     - :ref:`STRING literal<literals>`	
+     - String pattern to match
 	 
 	 
 Output
 ======
-
-Using the ``DESCRIBE SAVED QUERIES LIST`` command generates the following output:
 
 .. list-table:: 
    :widths: auto
@@ -51,43 +42,27 @@ Using the ``DESCRIBE SAVED QUERIES LIST`` command generates the following output
    
    * - Parameter
      - Description
-     - Type
-     - Example
+     - Data Type
    * - ``save_query_name``
      - Name of the saved query
-     - TEXT
-     - “select_all”
+     - ``TEXT``
 
 
 Examples
 ========
 
-The following is the syntax for the ``DESCRIBE SAVED QUERIES LIST`` command:
+.. code-block:: sql
 
-.. code-block:: postgres
+	DESCRIBE SAVED QUERIES LIST;
 
-		DESCRIBE SAVED QUERIES LIST;
+	save_query_name   |
+	------------------+
+	cool_heavy_animals|
+	select_all        |
 
-The following is an example of the ``DESCRIBE SAVED QUERIES LIST`` command output:
+.. code-block:: sql
 
-.. code-block:: postgres
-
-		save_query_name   |
-		------------------+
-		cool_heavy_animals|
-		select_all        |
-
-
-The following is the syntax for the ``DESCRIBE SAVED QUERIES LIST LIKE`` command with a database specification:
-
-.. code-block:: postgres
-
-   DESCRIBE SAVED QUERIES LIST database master LIKE 'select%';
-   
-   
-The following is an example of the ``DESCRIBE SAVED QUERIES LIST LIKE`` command output:
-
-.. code-block:: postgres
+	DESCRIBE SAVED QUERIES LIST database master LIKE 'select%';
 
 	save_query_name|
 	---------------+
