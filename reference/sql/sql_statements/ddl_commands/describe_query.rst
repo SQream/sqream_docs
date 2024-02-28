@@ -95,7 +95,7 @@ Output
 Example
 =======
 
-.. code-block:: sql
+.. code-block:: postgress
 
 	DESCRIBE QUERY SESSION ID '6a4d1389-0330-4d54-9d52-439ff0b4c74c' QUERY ID '9';
    
