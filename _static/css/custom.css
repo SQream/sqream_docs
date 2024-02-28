@@ -65,6 +65,11 @@ div[data-toggle="rst-versions"] {
 	font-family: Arial;
 }
 
+.highlight .n {
+    color: #18814E;
+	font-family: Arial;
+}
+
 /* End Syntax highlighting */
 
 .rst-content code.literal {
