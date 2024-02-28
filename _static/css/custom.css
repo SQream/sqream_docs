@@ -33,6 +33,7 @@ div[data-toggle="rst-versions"] {
 
 .highlight .go {
     color: #000000;
+	font-family: Arial;
     font-style: normal;
 }
 
@@ -44,20 +45,24 @@ div[data-toggle="rst-versions"] {
 
 .highlight .ss {
     color: #18814E;
+	font-family: Arial;
 }
 
 .highlight .o {
     color: #18814E;
     font-weight: bold;
+	font-family: Arial;
 }
 
 .highlight .nx {
     color: #DB7F4A;
+	font-family: Arial;
 }
 
 .highlight .p {
     color: #DB7F4A;
     font-weight: bold;
+	font-family: Arial;
 }
 
 /* End Syntax highlighting */
