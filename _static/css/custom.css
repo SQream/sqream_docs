@@ -68,6 +68,7 @@ div[data-toggle="rst-versions"] {
 .highlight .n {
     color: #18814E;
 	font-family: Arial;
+    font-weight: bold;
 }
 
 .highlight .nb {
