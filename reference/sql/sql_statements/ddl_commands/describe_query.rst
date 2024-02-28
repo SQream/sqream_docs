@@ -11,7 +11,7 @@ Displays information about query execution for monitoring and troubleshooting pu
 Syntax
 ======
 
-.. code-block:: sql
+.. code-block:: postgress
 
    DESC[RIBE] QUERY [SESSION ID <'session-id'>] QUERY ID <'query-id'>
    

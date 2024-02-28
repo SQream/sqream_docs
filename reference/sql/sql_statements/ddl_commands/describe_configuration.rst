@@ -27,7 +27,7 @@ Parameters
      - Description
    * - ``PARAMETER``
      - :ref:`Identifier<keywords_and_identifiers>` 
-     - One configuration parameter. If none specified, it lists all configuration parameters
+     - Filters by configuration parameter. If none specified, it lists all configuration parameters
    * - ``LIKE``
      - :ref:`STRING literal<literals>`	
      - String pattern to match
