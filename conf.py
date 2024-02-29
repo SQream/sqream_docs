@@ -75,7 +75,8 @@ html_css_files = [
     'css/custom.css', # Relative to the _static path
 ]
 
-
+# The name of the Pygments (syntax highlighting) style to use.
+pygments_style = 'solarized-light'
 
 html_logo = '_static'
 
@@ -111,7 +112,6 @@ html_theme_options = {
    , "sidebar_hide_name": True
    , "footer_icons": 'None'
    , "rst-versions": False
-   , 'pygments_style': 'solarized-light'
    , "light_css_variables": {
         "font-stack": "Arial, sans-serif",
         "font-stack--monospace": "Courier, monospace",
