@@ -1,24 +1,29 @@
 .. _like:
 
-**************************
+****
 LIKE
-**************************
+****
 
-Tests if a string matches a given pattern.
+The ``LIKE`` operator retrieves rows containing fields that correspond to specified segments of character strings and tests if a string matches a given pattern. It employs wildcards to enable users to match fields containing specific letters.
 
-``LIKE`` and :ref:`rlike` are similar. ``LIKE`` uses SQL patterns, whereas :ref:`rlike` uses POSIX regular expressions.
+While ``LIKE`` uses SQL patterns, :ref:`rlike` uses POSIX regular expressions.
 
-See also: :ref:`rlike`, :ref:`regexp_count`, :ref:`regexp_instr`, :ref:`regexp_substr`, :ref:`isprefixof`.
+See also: :ref:`regexp_count`, :ref:`regexp_instr`, :ref:`regexp_substr`, :ref:`isprefixof`
 
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
-   string_expr [ NOT ] LIKE 'string_test_expr'
+   <string_expr> [ NOT ] LIKE <'pattern'>
+
+   SELECT <expr>
+   FROM <table_name>
+   WHERE <column_name> LIKE <'pattern'>
+
 
 Arguments
-============
+=========
 
 .. list-table:: 
    :widths: auto
@@ -28,16 +33,15 @@ Arguments
      - Description
    * - ``string_expr``
      - String to test
-   * - ``string_test_expr``
+   * - ``pattern``
      - Test pattern
 
-Test patterns
-==============
+Test Patterns
+=============
 
 .. list-table::
    :widths: auto
    :header-rows: 1
-   
    
    * - Pattern
      - Description
@@ -56,53 +60,24 @@ Test patterns
    * - ``[abcC-F]``
      - match ``a`` ``b`` ``c`` or any character between ``C`` and ``F``
 
-* 
-   ``\`` (backslash) - escape character
-   
-   Using a backslash (``\``) indicates that the wildcard is interpreted as a regular character and not as a wildcard. 
-   
 Returns
-============
+=======
 
 ``TRUE`` if the test string matches the pattern, or ``FALSE`` otherwise.
 
-Notes
-=======
-
-* The test pattern must be literal string. If matching just the beginning of the string, use :ref:`isprefixof` which supports column references.
-* Starting with version 2020.3.1, Column references or complex expressions are also supported.
-
-* If the value is NULL, the result is NULL.
-
-Examples
+Usage Notes
 ===========
 
-For these examples, assume a table named ``nba``, with the following structure:
+* The test pattern must be a literal string. If matching just the beginning of the string, use :ref:`isprefixof` which supports column references.
 
-.. code-block:: postgres
-   
-   CREATE TABLE nba
-   (
-      Name text(40),
-      Team text(40),
-      Number tinyint,
-      Position text(2),
-      Age tinyint,
-      Height text(4),
-      Weight real,
-      College text(40),
-      Salary float
-    );
+* If the value is ``NULL``, the result is ``NULL``.
 
+* Using the backslash (``\``) escape character indicates that the wildcard is interpreted as a regular character and not as a wildcard. 
 
-Here's a peek at the table contents (:download:`Download nba.csv </_static/samples/nba.csv>`):
+Examples
+========
 
-.. csv-table:: nba.csv
-   :file: nba-t10.csv
-   :widths: auto
-   :header-rows: 1
-
-Match the beginning of a string
+Matching the Beginning of a String
 ----------------------------------
 
 .. code-block:: psql
@@ -125,25 +100,25 @@ Match the beginning of a string
    
       SELECT "Name","Age","Salary","Team" FROM nba WHERE ISPREFIXOF('Portland',"Team") LIMIT 5;
 
-Match a wildcard character by escaping
---------------------------------------------
-
-To match a wildcard, escape it with a backslash escape character:
+Matching a Wildcard Character by Escaping
+-----------------------------------------
 
 .. code-block:: psql
    
-   nba=> SELECT "Name" FROM nba WHERE "Name" LIKE '%\_%';
+   SELECT "Name" FROM nba WHERE "Name" LIKE '%\_%';
+
    Name            | Age | Salary  | Team                  
    ----------------+-----+---------+-----------------------
    R.J._Hunter     |  22 | 1148640 | Boston Celtics
 
 
-Negate with ``NOT``
-----------------------------------
+Using the ``NOT`` Operator
+--------------------------
 
 .. code-block:: psql
    
-   nba=> SELECT "Name","Age","Salary","Team" FROM nba WHERE "Team" NOT LIKE 'Portland%' LIMIT 5;
+   SELECT "Name","Age","Salary","Team" FROM nba WHERE "Team" NOT LIKE 'Portland%' LIMIT 5;
+
    Name          | Age | Salary  | Team          
    --------------+-----+---------+---------------
    Avery Bradley |  25 | 7730337 | Boston Celtics
@@ -153,12 +128,13 @@ Negate with ``NOT``
    Jonas Jerebko |  29 | 5000000 | Boston Celtics
 
 
-Match the middle of a string
-------------------------------
+Matching the Middle of a String
+-------------------------------
 
 .. code-block:: psql
    
-   nba=> SELECT "Name","Age","Salary","Team" FROM nba WHERE "Team" LIKE '%zz%' LIMIT 5;
+   SELECT "Name","Age","Salary","Team" FROM nba WHERE "Team" LIKE '%zz%' LIMIT 5;
+
    Name           | Age | Salary  | Team             
    ---------------+-----+---------+------------------
    Jordan Adams   |  21 | 1404600 | Memphis Grizzlies
@@ -167,12 +143,13 @@ Match the middle of a string
    Matt Barnes    |  36 | 3542500 | Memphis Grizzlies
    Vince Carter   |  39 | 4088019 | Memphis Grizzlies
 
-Find players with a middle name or suffix
+Wildcard Searching for Multi-Component Values
 ---------------------------------------------
 
 .. code-block:: psql
    
-   nba=> SELECT "Name","Age","Salary","Team" FROM nba WHERE "Name" LIKE '% % %';
+   SELECT "Name","Age","Salary","Team" FROM nba WHERE "Name" LIKE '% % %';
+
    Name                     | Age | Salary  | Team                 
    -------------------------+-----+---------+----------------------
    James Michael McAdoo     |  23 |  845059 | Golden State Warriors
@@ -187,43 +164,42 @@ Find players with a middle name or suffix
    Otto Porter Jr.          |  23 | 4662960 | Washington Wizards   
    
    
-Find NON-LITERAL patterns 
----------------------------------------------
+Finding NON-LITERAL Patterns 
+----------------------------
 
 .. code-block:: psql   
    
-   nba=> CREATE TABLE t(x int not null, y text not null, z text not null);
-   nba=> INSERT INTO t VALUES (1,'abc','a'),(2,'abcd','bc');
+   CREATE TABLE t(x int NOT NULL, y TEXT NOT NULL, z TEXT NOT NULL);
+   INSERT INTO t VALUES (1,'abc','a'),(2,'abcd','bc');
 
-Select rows in which z is a prefix of y:
--------------------------------------------------
+Filtering Records Based on Prefix Match
+---------------------------------------
 .. code-block:: psql   
    
-   nba=> SELECT * FROM t WHERE y LIKE z || '%';
+   SELECT * FROM t WHERE y LIKE z || '%';
    
    x |  y  | z
    -------------
    1 | abc | a
 
-Select rows in which y contains z as a substring:
---------------------------------------------------
+Filtering Records Based on Prefix Match Using Concatenation
+-----------------------------------------------------------
 .. code-block:: psql   
    
-   nba=> SELECT * FROM t WHERE y LIKE z || '%';
+   SELECT * FROM t WHERE y LIKE z || '%';
 
    x |  y   | z
    --------------
    1 | abc  | a
    2 | abcd | bc
    
-
-Values that contain wildcards as well:
----------------------------------------
+Pattern Matching Evaluation Using Queries
+-----------------------------------------
 .. code-block:: psql   
 
-   nba=> CREATE TABLE patterns(x text not null);
-   nba=> INSERT INTO patterns values ('%'),('a%'),('%a');
-   nba=> SELECT x, 'abc' LIKE x FROM patterns; 
+   CREATE TABLE patterns(x text not null);
+   INSERT INTO patterns VALUES ('%'),('a%'),('%a');
+   SELECT x, 'abc' LIKE x FROM patterns; 
    
    x  |  ?column?
    --------------
