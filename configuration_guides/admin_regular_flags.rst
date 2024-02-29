@@ -1,8 +1,9 @@
 .. _admin_regular_flags:
 
-*************************
+****************************
 Regular Administration Flags
-*************************
+****************************
+
 The **Regular Administration Flags** page describes **Regular** modification type flags, which can be modified by administrators on a session and cluster basis using the ``ALTER SYSTEM SET`` command:
 
 * `Setting Bin Size <https://docs.sqream.com/en/latest/configuration_guides/bin_sizes.html>`_
