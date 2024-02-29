@@ -75,6 +75,8 @@ html_css_files = [
     'css/custom.css', # Relative to the _static path
 ]
 
+
+
 html_logo = '_static'
 
 # If true, sectionauthor and moduleauthor directives will be shown in the
@@ -109,6 +111,7 @@ html_theme_options = {
    , "sidebar_hide_name": True
    , "footer_icons": 'None'
    , "rst-versions": False
+   , 'pygments_style': 'solarized-light'
    , "light_css_variables": {
         "font-stack": "Arial, sans-serif",
         "font-stack--monospace": "Courier, monospace",
