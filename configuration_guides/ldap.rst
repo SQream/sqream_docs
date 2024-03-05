@@ -298,7 +298,7 @@ User has value of elonm for attribute ``sAMAccountName``.
 	
 	ALTER SYSTEM SET ldapConnTimeoutSec = 30;
 	
-	ALTER SYSTEM SET ldapSearchFilter =  "(memberOf=CN=SqreamGroup,CN=Builtin,DC=sqream,DC=loc)(memberOf=CN=Admins,CN=Builtin,DC=sqream,DC=loc)"
+	ALTER SYSTEM SET ldapSearchFilter =  "(memberOf=CN=SqreamGroup,CN=Builtin,DC=sqream,DC=loc)(memberOf=CN=Admins,CN=Builtin,DC=sqream,DC=loc)";
 	
 	
 Logging in will be possible using the username elonm using sqream client  
