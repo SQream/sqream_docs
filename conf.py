@@ -66,9 +66,6 @@ html_favicon = "_static/images/faviconSQ.png"
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
-favicons = [
-    "_static/images/faviconSQ.png"
-]
 
 html_css_files = [
     'css/custom.css', # Relative to the _static path

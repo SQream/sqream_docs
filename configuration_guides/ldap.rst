@@ -17,17 +17,6 @@ Before integrating SQream with LDAP consider the following:
    :local:
    :depth: 1
 
-Before You Begin
-================
-
-Enable self-signed certificates for OpenLDAP by adding the following line to the ``ldap.conf`` configuration file:
-
-.. code-block:: postgres	
-
-	``TLS_REQCERT allow``
-
-
-
 Configuring SQream roles
 ========================
 
@@ -94,19 +83,19 @@ To enable basic LDAP authentication, configure the following cluster flag attrib
    * - Attribute
      - Description
    * - ``authenticationMethod``
-     - Configure an authentication method: ``sqream`` or ``ldap``. To configure LDAP authentication, choose ``ldap``. 	 
+     - Configure an authentication method: ``sqream`` or ``ldap``. To configure LDAP authentication, choose ``ldap``
    * - ``ldapIpAddress``
-     - Configure the IP address or the Fully Qualified Domain Name (FQDN) of your LDAP server and select a protocol: ``ldap`` or ``ldaps``. Sqream recommends using the encrypted ``ldaps`` protocol.
+     - Configure the IP address or the Fully Qualified Domain Name (FQDN) of your LDAP server and select a protocol: ``ldap`` or ``ldaps``. Sqream recommends using the encrypted ``ldaps`` protocol
    * - ``ldapConnTimeoutSec``
-     - Configure the LDAP connection timeout threshold (seconds). Default = 30 seconds.
+     - Configure the LDAP connection timeout threshold (seconds). Default = 30 seconds
    * - ``ldapPort``
      - LDAP server port number.
    * - ``ldapAdvancedMode``
-     - Configure either basic or advanced authentication method. Default = ``false``.
+     - Configure either basic or advanced authentication method. Default = ``false``
    * - ``ldapPrefix``
-     - String to prefix to the user name when forming the DN to bind as, when doing simple bind authentication.
+     - String to prefix to the user name when forming the DN to bind as, when doing simple bind authentication
    * - ``ldapSuffix``
-     - String to append to the user name when forming the DN to bind as, when doing simple bind authentication.
+     - String to append to the user name when forming the DN to bind as, when doing simple bind authentication
 
 
 Basic Method Configuration
@@ -192,23 +181,25 @@ To enable advanced LDAP authentication, configure the following cluster flag att
    * - Attribute
      - Description
    * - ``authenticationMethod``
-     - Configure an authentication method: ``sqream`` or ``ldap``. To configure LDAP authentication, choose ``ldap``.
+     - Configure an authentication method: ``sqream`` or ``ldap``. To configure LDAP authentication, choose ``ldap``
    * - ``ldapIpAddress``
-     - Configure the IP address or the Fully Qualified Domain Name (FQDN) of your LDAP server and select a protocol: ``ldap`` or ``ldaps``. Sqream recommends using the encrypted ``ldaps`` protocol.
+     - Configure the IP address or the Fully Qualified Domain Name (FQDN) of your LDAP server and select a protocol: ``ldap`` or ``ldaps``. Sqream recommends using the encrypted ``ldaps`` protocol
    * - ``ldapConnTimeoutSec``
-     - Configure the LDAP connection timeout threshold (seconds). Default = 30 seconds.
+     - Configure the LDAP connection timeout threshold (seconds). Default = 30 seconds
    * - ``ldapPort``
-     - LDAP server port number.
+     - LDAP server port number
    * - ``ldapAdvancedMode``
-     - Set ``ldapAdvancedMode`` = ``true``.
+     - Set ``ldapAdvancedMode`` = ``true``
    * - ``ldapBaseDn``
-     - Root DN to begin the search for the user in, when doing advanced authentication.
+     - Root DN to begin the search for the user in, when doing advanced authentication
    * - ``ldapBindDn``
-     - DN of user with which to bind to the directory to perform the search when doing search + bind authentication.
+     - DN of user with which to bind to the directory to perform the search when doing search + bind authentication
    * - ``ldapBindDnPassword``
-     - Password for user with which to bind to the directory to perform the search when doing search + bind authentication.
+     - Password for user with which to bind to the directory to perform the search when doing search + bind authentication
    * - ``ldapSearchAttribute``
-     - Attribute to match against the user name in the search when doing search + bind authentication. If no attribute is specified, ``the uid`` attribute will be used.
+     - Attribute to match against the user name in the search when doing search + bind authentication. If no attribute is specified, ``the uid`` attribute will be used
+   * - ``ldapSearchFilter``
+     - Filters ``ldapAdvancedMode`` authentication
 
 Advanced Method Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -306,6 +297,8 @@ User has value of elonm for attribute ``sAMAccountName``.
 	ALTER SYSTEM SET ldapSearchAttribute = 'sAMAccountName';
 	
 	ALTER SYSTEM SET ldapConnTimeoutSec = 30;
+	
+	ALTER SYSTEM SET ldapSearchFilter =  "(memberOf=CN=SqreamGroup,CN=Builtin,DC=sqream,DC=loc)(memberOf=CN=Admins,CN=Builtin,DC=sqream,DC=loc)"
 	
 	
 Logging in will be possible using the username elonm using sqream client  
