@@ -3,6 +3,7 @@
 **********************************
 Working with External Data
 **********************************
+
 SQream supports the following external data sources:
 
 .. toctree::
@@ -15,7 +16,7 @@ SQream supports the following external data sources:
    
 For more information, see the following:
 
-* :ref:`external_tables`
+* :ref:`foreign_tables`
 
    ::
    
