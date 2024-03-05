@@ -249,20 +249,26 @@ Only roles with admin privileges and higher may enable LDAP Authentication.
 .. code-block:: postgres	
 
 	ALTER SYSTEM SET ldapSearchAttribute = '<search_attribute>';
+	
+8. To set the ``ldapSearchFilter`` attribute (Optional), run: 
 
-8.  To set the ``ldapPort`` attribute (Optional), run:
+.. code-block:: postgres	
+
+	ALTER SYSTEM SET ldapSearchFilter = '(<attribute>=<value>)(<attribute2>=<value2>)(…)';
+
+9. To set the ``ldapPort`` attribute (Optional), run:
 
 .. code-block:: postgres
 
 	ALTER SYSTEM SET ldapPort = <port_number>
 	
-9. To set the ``ldapConnTimeoutSec`` attribute (Optional), run:
+10. To set the ``ldapConnTimeoutSec`` attribute (Optional), run:
 
 .. code-block:: postgres
 
 	ALTER SYSTEM SET ldapConnTimeoutSec = <15>;
 
-10. Restart all sqreamd servers. 
+11. Restart all sqreamd servers. 
 
 Example
 ~~~~~~~
