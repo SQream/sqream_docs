@@ -199,7 +199,7 @@ To enable advanced LDAP authentication, configure the following cluster flag att
    * - ``ldapSearchAttribute``
      - Attribute to match against the user name in the search when doing search + bind authentication. If no attribute is specified, ``the uid`` attribute will be used
    * - ``ldapSearchFilter``
-     - Filters ``ldapAdvancedMode`` authentication
+     - Filters ``ldapAdvancedMode`` authentication. ``ALTER SYSTEM SET ldapSearchFilter = '(<attribute>=<value>)(<attribute2>=<value2>)(…)';``
 
 Advanced Method Configuration
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
