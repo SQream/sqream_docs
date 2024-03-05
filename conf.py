@@ -21,7 +21,7 @@ import sphinx_rtd_theme
 # -- Project information -----------------------------------------------------
 
 project = 'SQreamDB'
-copyright = '2023 SQreamDB'
+copyright = '2024 SQreamDB'
 author = 'SQreamDB Documentation'
 
 
