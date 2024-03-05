@@ -5,7 +5,7 @@ SQreamDB Documentation
 *************************
 
 
-SQreamDB is a columnar analytic SQL database management system. SQreamDB supports regular SQL including :ref:`a substantial amount of ANSI SQL<sql_feature_support>`, uses :ref:`serializable transactions<transactions>`, and :ref:`scales horizontally<concurrency_and_scaling_in_sqream>` for concurrent statements. Even a :ref:`basic SQreamDB machine<hardware_guide>` can support tens to hundreds of terabytes of data. SQreamDB easily plugs in to third-party tools like :ref:`Tableau<connect_to_tableau>` comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc>`, :ref:`ODBC<odbc>`, and :ref:`Python DB-API<pysqream>`.
+SQreamDB is a columnar analytic SQL database management system. SQreamDB supports regular SQL including :ref:`a substantial amount of ANSI SQL<sql_feature_support>`, uses :ref:`serializable transactions<transactions>`, and :ref:`scales horizontally<concurrency_and_scaling_in_sqream>` for concurrent statements. Even a :ref:`basic SQreamDB machine<hardware_guide>` can support tens to hundreds of terabytes of data. SQreamDB easily plugs in to third-party tools like :ref:`Tableau<tableau>` comes with standard SQL client drivers, including :ref:`JDBC<java_jdbc>`, :ref:`ODBC<odbc>`, and :ref:`Python DB-API<pysqream>`.
 
 
 +-------------------------------------------------------------+------------------------------------------------------------------------------------------------------------------------------------------+
