@@ -29,6 +29,7 @@ Compatibility Matrix
 |                         | * .NET 3.0.2                                                           |
 |                         | * Pysqream 5.0.0                                                       |
 |                         | * Spark 5.0.0                                                          |
+|                         | * SQLoader 7.12 (compatible with v4.6.1 or later)                      |
 +-------------------------+------------------------------------------------------------------------+
 
 New Features and Enhancements
