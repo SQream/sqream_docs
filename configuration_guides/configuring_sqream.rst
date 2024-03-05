@@ -3,6 +3,7 @@
 *************************
 Configuring SQream
 *************************
+
 The **Configuring SQream** page describes the following configuration topics:
 
 .. toctree::
