@@ -38,7 +38,6 @@ release = '4.7'
 extensions = [
     'sphinx_rtd_theme'
     ,'notfound.extension'    # 404 handling
-    ,'sphinx_favicon'
 ]
 
 # Mark 'index' as the main page
@@ -59,7 +58,6 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # a list of builtin themes.
 #
 html_theme = 'sphinx_rtd_theme'
-html_favicon = "_static/images/faviconSQ.png"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
