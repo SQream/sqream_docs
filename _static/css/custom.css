@@ -29,6 +29,14 @@ div[data-toggle="rst-versions"] {
     display: none !important;
 }
 
+/* Syntax highlighting */
+
+.highlight .go {
+    color: #000000;
+    font-style: normal;
+}
+
+/* End Syntax highlighting */
 
 .rst-content code.literal {
    color: inherit;
@@ -72,16 +80,15 @@ html_theme_options = {
     },
 }
 
-}
+
 
 .sidebar-drawer {
-	width: calc(20% - 10em);
+	width: calc(40% - 18.5em);
 }
-
-.content {
-	width: 45vw;
-	padding: 1px 8em;
 	
+.content {
+	padding: 0 5em;
+	width: 50em;
 }
 
 h1 {
