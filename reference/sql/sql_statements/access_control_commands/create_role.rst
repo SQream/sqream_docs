@@ -83,4 +83,4 @@ A user role has permissions to login, and has a password.
    GRANT PASSWORD 'Passw0rd!' to new_role;
    GRANT CONNECT ON DATABASE master to new_role; -- Repeat for all desired databases
    GRANT USAGE ON SERVICE sqream TO new_role;
-   GRANT ALL ON SCHEMA public; -- It is advisable to grant permissions on at least one schema
+   GRANT ALL ON SCHEMA public TO new_role; -- It is advisable to grant permissions on at least one schema
