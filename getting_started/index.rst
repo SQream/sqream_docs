@@ -9,10 +9,24 @@ The Getting Started guide provides an overview of the key steps to begin using B
 Login
 -----
 
-By leveraging Auth0, BLUE enables not only IDP authentication, but also multi-factor authentication, encryption, and anomaly detection to protect user data and prevent unauthorized access. 
+By leveraging Auth0, BLUE enables:
 
-Logging In Using Identity Provider
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+* IDP authentication
+* Multi-Factor Authentication
+* Encryption
+* Anomaly detection protecting data and preventing unauthorized access 
+
+Auth0
+^^^^^
+
+#. Check your email for an Auth0 invite from your administrator to join BLUE and select **ACCEPT INVITATION**.
+
+   An invitation window opens.
+   
+#. Select **Continue** and you will be logged in to BLUE.
+
+Identity Providers
+^^^^^^^^^^^^^^^^^^
 
 #. Follow the BLUE URL provided by your admin. 
 
@@ -23,35 +37,23 @@ Logging In Using Identity Provider
 
 From your second login onward, you will be automatically redirected to the BLUE interface.
 
-Logging In Using Auth0
-^^^^^^^^^^^^^^^^^^^^^^
-
-#. Check your email for an Auth0 invite from your administrator to join BLUE and select **ACCEPT INVITATION**.
-
-   An invitation window opens.
-   
-#. Select **Continue** and you will be logged in to BLUE.
-
-------------------
 
 Third-Party Tools
 -----------------
 
-Use the data analysis platform you're used to work with by :ref:`connecting to BLUE<connecting_to_blue>` using Python, JDBC, or ODBC.
+:ref:`Connect<connecting_to_blue>` your favorite data analysis platforms and BI tools using Python, JDBC, or ODBC.
 
-------------------
 
-Managing Your Resources
+Manage Your Resources
 -----------------------
 
-The :ref:`Resource Pool <managing_your_resources>` panel optimizes resource utilization in your BLUE environment. Reduce runtime during idle periods to manage costs and allocate workers based on department-specific needs for improved cluster utilization. Fine-tune worker allocation to maximize the benefits of your BLUE environment.
+:ref:`Manage your resources <managing_your_resources>` and reduce runtime during idle periods for better costs. Allocate workers based on department-specific needs for improved cluster utilization.
 
-------------------
 
 SQL Workflows
 -------------
 
-**Jobs** is a SQL and Python :ref:`workflow tool <performing_basic_blue_operations>` for creating complex workflows. It automates sequences of SQL and Python scripts, triggering them to deliver insights or prepare data for advanced tasks like modeling and training. Execute jobs manually or schedule them for automatic execution.
+**Jobs** is a SQL and Python :ref:`workflow tool <performing_basic_blue_operations>` for creating complex workflows. It automates sequences of SQL and Python scripts, triggering them to deliver insights or prepare data for advanced tasks such as data modeling and training.
 
 
 .. toctree::
