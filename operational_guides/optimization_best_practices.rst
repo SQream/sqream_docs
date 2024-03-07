@@ -8,7 +8,9 @@ This topic explains some best practices of working with SQreamDB.
 
 See also our :ref:`monitoring_query_performance` guide for more information.
 
+.. contents::
    :local:
+   :depth: 1
 
 .. _table_design_best_practices:
 
@@ -66,7 +68,7 @@ Data sorting is an important factor in minimizing storage size and improving que
 
 * Where possible, sort columns with the lowest cardinality first. Avoid sorting ``TEXT`` columns with lengths exceeding 50 characters.
 
-* For longer-running queries that run on a regular basis, performance can be improved by sorting data based on the ``WHERE`` and ``GROUP BY`` parameters. Data can be sorted during insert by using :ref:`external_tables` or by using :ref:`create_table_as`.
+* For longer-running queries that run on a regular basis, performance can be improved by sorting data based on the ``WHERE`` and ``GROUP BY`` parameters. Data can be sorted during insert by using :ref:`foreign_tables` or by using :ref:`create_table_as`.
 
 .. _query_best_practices:
 
@@ -146,7 +148,7 @@ SQreamDB has a hint function called ``HIGH_SELECTIVITY``, which is a function yo
 The hint signals to SQreamDB that the result of the condition will be very sparse, and that it should attempt to rechunk
 the results into fewer, fuller chunks.
 
-Use the high selectivity hint when you expect a predicate to filter out most values. For example, when the data is dispersed over lots of chunks (meaning that the data is :ref:`not well-clustered<data_clustering>`).
+Use the high selectivity hint when you expect a predicate to filter out most values. For example, when the data is dispersed over lots of chunks (meaning that the data is :ref:`not well-clustered<cluster_by>`).
 
 For example,
 
