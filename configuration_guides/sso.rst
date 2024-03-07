@@ -1,8 +1,8 @@
 .. _sso:
 
-*************
-Ping Identity
-*************
+**************
+Single Sign-On
+**************
 
 
 .. contents::
@@ -18,7 +18,7 @@ It is essential you have the following installed:
 * There should be an NGINX (or similar) service installed on your Acceleration Studio machine, which will serve as a reverse proxy. This service will accept HTTPS traffic from external sources and communicate with Studio via HTTP internally
    
 Setting Ping Identity
-=============================
+=====================
    
 Log in to your Ping Identity account, create a **Single Page** application, and set the following:
 
@@ -49,19 +49,23 @@ Logoff:
 Setting SQreamDB Acceleration Studio
 ==========================================================
  
-1. To set PingOne as your SSO, use either of the following methods: 
+1. Set :ref:`ldap` as your authentication management service.
+
+   The ``authenticationMethod`` flag value should be ``ldap``
+
+  .. code-block::
+	
+	"authenticationMethod": "ldap"   
+ 
+2. 
+
+To set PingOne as your SSO, use either of the following methods: 
  
    * Manually paste the authentication URL to your ``sqrea_admin_config.json`` file (recommended method)
 
    * Set the authentication URL during an Acceleration Studio installation process by pasting the authentication URL in the questionnaire that follows the ``npm run setup`` command
 
-2. In your ``sqream_legacy.json`` file, make the following adjustments:
-	
-  * Change the ``authenticationMethod`` flag value from ``sqream`` to ``ldap``
-
-  .. code-block::
-	
-	"authenticationMethod": "ldap"
+3. In your ``sqream_legacy.json`` file, make the following adjustments:
 
   * Add the ``pingoneValidateUrl`` flag along with the ______ URL
  
@@ -69,6 +73,6 @@ Setting SQreamDB Acceleration Studio
    
 	"pingoneValidateUrl": "https://auth.pingone.eu/9db5d1c6-6dd6-4e40-b939-e0e4209e0ac5/as/userinfo"
 	
-3. Restart SQreamDB.
-4. Restart SQreamDB Acceleration Studio.
+4. Restart SQreamDB.
+5. Restart SQreamDB Acceleration Studio.
 
