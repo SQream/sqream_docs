@@ -1,10 +1,8 @@
 .. _sso:
 
-Ping Identity Single Sign-On
-============================
-
-
-
+*************
+Ping Identity
+*************
 
 
 .. contents::
@@ -22,21 +20,21 @@ It is essential you have the following installed:
 Setting Ping Identity
 =============================
    
-1. Log in to your Ping Identity account and create a **Single Page** application.
+Log in to your Ping Identity account, create a **Single Page** application, and set the following:
 
-2. Under **Application** > **YourAccount**, set the following:
+1. Under **Application** > **YourAccount**, set the following:
 
    * **Policies** > **DaVinci** > **PingOne**, set **Sign On and Registration**
 
    * **Resources**, set **openid**, **profile**, **P1:read:user**, **P1:verify:user**
 	
-3. Under **Application** > **YourAccount** > **Configuration**, create the following URLs:
+2. Under **Application** > **YourAccount** > **Configuration**, create the following URLs:
 
    * **URLs** > Copy Authorization URL
 
    * Redirect URIs 
 
-4. Under **Application** > **YourAccount**, copy Client ID and replace it in the following string: => This is 2nd part of the final URL.
+3. Under **Application** > **YourAccount**, copy Client ID and replace it in the following string: => This is 2nd part of the final URL.
 
 ``?client_id=e5636823-fb99-4d38-bbd1-6a46175eddab&redirect_uri=https://ivans.sq.l/login&response_type=token&scope=openid profile p1:read:user (Please note that the whole string must be copied)``
 
@@ -51,14 +49,26 @@ Logoff:
 Setting SQreamDB Acceleration Studio
 ==========================================================
  
-1. Set PingOne SSO authentication using either of the following methods: 
+1. To set PingOne as your SSO, use either of the following methods: 
  
-   * The **recommended** method is to manually paste the authentication URL to your ``sqrea_admin_config.json`` file.
+   * Manually paste the authentication URL to your ``sqrea_admin_config.json`` file (recommended method)
 
-   * Alternatively, you may set the authentication URL during the SQreamDB Acceleration Studio installation process, after having ran the ``npm run setup`` command, by pasting the authentication URL in the questionnaire.
+   * Set the authentication URL during an Acceleration Studio installation process by pasting the authentication URL in the questionnaire that follows the ``npm run setup`` command
 
-2. In your ``sqream_legacy.json``, change ``"authenticationMethod": "sqream"`` to ``"authenticationMethod": "ldap"`` and add the ``pingoneValidateUrl`` flag along with the ______ URL: ``"pingoneValidateUrl": "https://auth.pingone.eu/9db5d1c6-6dd6-4e40-b939-e0e4209e0ac5/as/userinfo"``
+2. In your ``sqream_legacy.json`` file, make the following adjustments:
+	
+  * Change the ``authenticationMethod`` flag value from ``sqream`` to ``ldap``
 
-5. Restart SQreamDB.
-6. Restart SQreamDB Acceleration Studio.
+  .. code-block::
+	
+	"authenticationMethod": "ldap"
+
+  * Add the ``pingoneValidateUrl`` flag along with the ______ URL
+ 
+  .. code-block::
+   
+	"pingoneValidateUrl": "https://auth.pingone.eu/9db5d1c6-6dd6-4e40-b939-e0e4209e0ac5/as/userinfo"
+	
+3. Restart SQreamDB.
+4. Restart SQreamDB Acceleration Studio.
 
