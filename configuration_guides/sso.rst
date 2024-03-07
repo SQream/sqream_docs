@@ -4,6 +4,7 @@
 Single Sign-On
 **************
 
+Configuring Single Sign-On (SSO) by integrating with an identity provider (IdP) to allow users to authenticate once and seamlessly access SQreamDB as one of multiple services. 
 
 .. contents::
    :local:
@@ -16,35 +17,6 @@ It is essential you have the following installed:
 
 * SQreamDB Acceleration Studio v5.9.0 
 * There should be an NGINX (or similar) service installed on your Acceleration Studio machine, which will serve as a reverse proxy. This service will accept HTTPS traffic from external sources and communicate with Studio via HTTP internally
-   
-Setting Ping Identity
-=====================
-   
-Log in to your Ping Identity account, create a **Single Page** application, and set the following:
-
-1. Under **Application** > **YourAccount**, set the following:
-
-   * **Policies** > **DaVinci** > **PingOne**, set **Sign On and Registration**
-
-   * **Resources**, set **openid**, **profile**, **P1:read:user**, **P1:verify:user**
-	
-2. Under **Application** > **YourAccount** > **Configuration**, create the following URLs:
-
-   * **URLs** > Copy Authorization URL
-
-   * Redirect URIs 
-
-3. Under **Application** > **YourAccount**, copy Client ID and replace it in the following string: => This is 2nd part of the final URL.
-
-``?client_id=e5636823-fb99-4d38-bbd1-6a46175eddab&redirect_uri=https://ivans.sq.l/login&response_type=token&scope=openid profile p1:read:user (Please note that the whole string must be copied)``
-
-Connect both parts in a following manner:
-
-``https://auth.pingone.eu/9db5d1c6-6dd6-4e40-b939-e0e4209e0ac5/as/authorize?client_id=e5636823-fb99-4d38-bbd1-6a46175eddab&redirect_uri=https://ivans.sq.l/login&response_type=token&scope=openid profile p1:read:user``
-
-Logoff:
-
-``https://auth.pingone.eu/9db5d1c6-6dd6-4e40-b939-e0e4209e0ac5/as/signoff``
 
 Setting SQreamDB Acceleration Studio
 ==========================================================
@@ -57,17 +29,15 @@ Setting SQreamDB Acceleration Studio
 	
 	"authenticationMethod": "ldap"   
  
-2. 
-
-To set PingOne as your SSO, use either of the following methods: 
+2. Set Acceleration Studio to use SSO by choosing one of the following methods: 
  
-   * Manually paste the authentication URL to your ``sqrea_admin_config.json`` file (recommended method)
+   * Manually paste your IdP URL to your ``sqream_admin_config.json`` file (recommended method)
 
-   * Set the authentication URL during an Acceleration Studio installation process by pasting the authentication URL in the questionnaire that follows the ``npm run setup`` command
+   * Set the IdP URL during an Acceleration Studio installation process by pasting it to the questionnaire prompted following the ``npm run setup`` command
 
-3. In your ``sqream_legacy.json`` file, make the following adjustments:
+3. In your ``sqream_legacy.json`` file, add the ``pingoneValidateUrl`` flag with the IdP URL.
 
-  * Add the ``pingoneValidateUrl`` flag along with the ______ URL
+   Example:
  
   .. code-block::
    

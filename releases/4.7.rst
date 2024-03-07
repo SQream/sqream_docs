@@ -1,0 +1,120 @@
+.. _4.7:
+
+*****************
+Release Notes 4.7
+*****************
+
+The 4.7 release notes were released on XXXXX, 2024
+
+.. contents:: 
+   :local:
+   :depth: 1      
+
+Compatibility Matrix
+--------------------
+ 
++-------------------------+------------------------------------------------------------------------+
+| System Requirement      | Details                                                                |
++=========================+========================================================================+
+| Supported OS            | * CentOS - 7.x                                                         |
+|                         | * RHEL - 7.x / 8.x                                                     |
++-------------------------+------------------------------------------------------------------------+
+| supported Nvidia driver | CUDA version from 10.1 up to 11.4.3                                    |
++-------------------------+------------------------------------------------------------------------+
+| Storage version         |   51                                                                   |
++-------------------------+------------------------------------------------------------------------+
+| Driver compatibility    | * JDBC 5.1.0                                                           |
+|                         | * ODBC 4.4.4                                                           | 
+|                         | * NodeJS                                                               |
+|                         | * .NET 3.0.2                                                           |
+|                         | * Pysqream 5.0.0                                                       |
+|                         | * Spark 5.0.0                                                          |
+|                         | * SQLoader 7.12 (compatible with v4.6.1 or later)                      |
++-------------------------+------------------------------------------------------------------------+
+
+New Features and Enhancements
+-----------------------------
+
+
+
+Known Issues
+------------
+
+* :ref:`Percentile<percentile_disc>` is not supported for :ref:`Window Functions<window_functions>`
+
+Version 4.7 resolved Issues
+---------------------------
+
++--------------------+------------------------------------------------------------------------------------------------+
+| **SQ No.**         | **Description**                                                                                |
++====================+================================================================================================+
+| SQ-16727           |                             |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-16592           |                             |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-16534           |                             |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-16531           |                             |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-16397           |                             |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-16038           |                             |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-16003           |                             |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-15947           |                             |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-15690           |                             |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-15570           |                             |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-14398           |                             |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-13621           |                             |
++--------------------+------------------------------------------------------------------------------------------------+
+
+
+Deprecations
+-------------------
+
+► **CentOS Linux 7.x**
+
+* As of June 2024, CentOS Linux 7.x will reach its End of Life and will not be supported by SQreamDB. This announcement provides a one-year advance notice for our users to plan for this change. We recommend users to explore migration or upgrade options to maintain ongoing support and security beyond this date. 
+
+Upgrading to Version 4.7
+-------------------------
+
+1. Generate a back-up of the metadata by running the following command:
+
+   .. code-block:: console
+
+      select backup_metadata('out_path');
+	  
+   .. tip:: SQreamDB recommends storing the generated back-up locally in case needed.
+   
+   SQreamDB runs the Garbage Collector and creates a clean backup tarball package.
+   
+2. Shut down all SQreamDB services.
+
+3. Copy the recently created back-up file.
+
+4. Replace your current metadata with the metadata you stored in the back-up file.
+
+5. Navigate to the new SQreamDB package bin folder.
+
+6. Run the following command:
+
+   .. code-block:: console
+
+      ./upgrade_storage <levelDB path>
+	
+7. Version 4.4 introduces a service permission feature that enables superusers to grant and revoke role access to services. However, when upgrading from version 4.2 or earlier to version 4.4 or later, this feature initializes access to services, causing existing roles to lose their access to services. 
+
+There are two methods of granting back access to services:
+
+   * Grant access to all services for all roles using the :ref:`grant_usage_on_service_to_all_roles` utility function
+   * Selectively grant or revoke access to services by following the :ref:`access permission guide<access_control_permissions>`
+
+
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQreamDB Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
+  
