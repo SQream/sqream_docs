@@ -12,16 +12,11 @@ SQream supports the following external data sources:
 
    s3
    hdfs
-   mounting_an_nfs_shared_drive
    
 For more information, see the following:
 
-* :ref:`foreign_tables`
-
-   ::
+:ref:`foreign_tables`
    
-* :ref:`copy_from`
-
-   ::
+:ref:`copy_from`
    
-* :ref:`copy_to`
+:ref:`copy_to`

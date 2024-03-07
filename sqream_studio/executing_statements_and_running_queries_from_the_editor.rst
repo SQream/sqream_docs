@@ -49,11 +49,7 @@ You can access the following from the Toolbar pane:
 
 * **Database dropdown list** - select a database that you want to run statements on.
 
-    ::
-
 * **Service dropdown list** - select a service that you want to run statements on. The options in the service dropdown menu depend on the database you select from the **Database** dropdown list.
-
-    ::
 
 * **Execute** - lets you set which statements to execute. The **Execute** button toggles between **Execute** and **Stop**, and can be used to stop an active statement before it completes:
 
@@ -63,23 +59,14 @@ You can access the following from the Toolbar pane:
    
 * **Format SQL** - Lets you reformat and reindent statements.
 
-    ::
-
 * **Download query** - Lets you download query text to your computer.
 
-    ::
-
 * **Open query** - Lets you upload query text from your computer.
-
-    ::
 
 * **Max Rows** - By default, the Editor fetches only the first 10,000 rows. You can modify this number by selecting an option from the **Max Rows** dropdown list. Note that setting a higher number may slow down your browser if the result is very large. This number is limited to 100,000 results. To see a higher number, you can save the results in a file or a table using the :ref:`create_table_as` command.
 
 
 For more information on stopping active statements, see the :ref:`STOP_STATEMENT<stop_statement>` command.
-
-
-
 
 .. _studio_editor_db_tree:
 
@@ -93,11 +80,7 @@ The database object functions are used to perform the following:
 
 * The **SELECT** statement - copies the selected table's **columns** into the Statement panel as ``SELECT`` parameters.  
 
-   ::
-
 * The **copy** feature |icon-copy| - copies the selected table's **name** into the Statement panel. 
-
-   ::
 
 * The **additional operations** |icon-dots| - displays the following additional options:
   
@@ -117,9 +100,6 @@ The database object functions are used to perform the following:
 .. |icon-select| image:: /_static/images/studio_icon_select.png
    :align: middle
 
-.. |icon-dots| image:: /_static/images/studio_icon_dots.png
-   :align: middle
-
 .. |icon-filter| image:: /_static/images/studio_icon_filter.png
    :align: middle
 
@@ -127,9 +107,6 @@ The database object functions are used to perform the following:
    :align: middle
 
 .. |icon-run-optimizer| image:: /_static/images/studio_icon_run_optimizer.png
-   :align: middle
-
-.. |icon-generate-create-statement| image:: /_static/images/studio_icon_generate_create_statement.png
    :align: middle
 
 .. |icon-plus| image:: /_static/images/studio_icon_plus.png
@@ -236,8 +213,6 @@ Executing Pre-Defined Queries from the System Queries Panel
 The **System Queries** panel lets you execute predefined queries and includes the following system query types:
 
 * **Catalog queries** - Used for analyzing table compression rates, users and permissions, etc.
-    
-	::
 	
 * **Admin queries** - Queries useful for SQreamDB database management.
 

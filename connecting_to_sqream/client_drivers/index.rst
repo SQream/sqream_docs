@@ -73,12 +73,13 @@ Client Driver Downloads
    :titlesonly:
    :hidden:
    
+   dotnet/index   
    jdbc/index
-   python/index
    nodejs/index
    odbc/index
-   dotnet/index
+   python/index
    spark/index
+   trino/index
 
 
 

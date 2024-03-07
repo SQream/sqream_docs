@@ -24,7 +24,5 @@ This section summarizes the following operational guides:
    security
    saved_queries
    seeing_system_objects_as_ddl
-   configuration
    optimization_best_practices
-   hardware_guide
  

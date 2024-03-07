@@ -64,7 +64,7 @@ Data Analysis and Programming Languages
    tableau
    talend
    tibco_spotfire   
-   trino
+
    
 
 

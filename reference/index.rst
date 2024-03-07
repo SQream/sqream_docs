@@ -15,4 +15,3 @@ The **Reference Guides** section provides reference for using SQream DB's interf
    catalog_reference
    cli/index
    sql_feature_support
-   xxconfiguration
