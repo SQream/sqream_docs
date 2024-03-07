@@ -45,18 +45,18 @@ Setting Up the Class Path
 
 To use the driver, you must include the JAR named ``sqream-jdbc-<version>.jar`` in the class path, either by inserting it in the ``CLASSPATH`` environment variable, or by using flags on the relevant Java command line.
 
-For example, if the JDBC driver has been unzipped to ``/home/sqream/sqream-jdbc-5.0.0.jar``, the following command is used to run application:
+For example, if the JDBC driver has been unzipped to ``/home/sqream/sqream-jdbc-5.1.0.jar``, the following command is used to run application:
 
 .. code-block:: console
 
-   $ export CLASSPATH=/home/sqream/sqream-jdbc-5.0.0.jar:$CLASSPATH
+   $ export CLASSPATH=/home/sqream/sqream-jdbc-5.1.0.jar:$CLASSPATH
    $ java my_java_app
 
 Alternatively, you can pass ``-classpath`` to the Java executable file:
 
 .. code-block:: console
 
-   $ java -classpath .:/home/sqream/sqream-jdbc-5.0.0.jar my_java_app
+   $ java -classpath .:/home/sqream/sqream-jdbc-5.1.0.jar my_java_app
 
 Connecting to SQream Using a JDBC Application
 =============================================
