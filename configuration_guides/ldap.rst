@@ -1,8 +1,8 @@
 .. _ldap:
 
-*************************************
-Configuring LDAP authentication
-*************************************
+********************
+LDAP
+********************
 
 
 Lightweight Directory Access Protocol (LDAP) is an authentication management service used with Microsoft Active Directory and other directory services. Once LDAP authentication has been configured for SQream, authorization for all existing and newly added roles must be handled by the LDAP server, except for the initial system deployment ``sqream`` role, which was immediately given full control permissions when SQream was initially deployed. 
