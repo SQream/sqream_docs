@@ -128,18 +128,23 @@ SQLAlchemy
 
 SQLAlchemy is an Object-Relational Mapper (ORM) for Python. When you install the SQream dialect (``pysqream-sqlalchemy``) you can use frameworks such as Pandas, TensorFlow, and Alembic to query SQream directly.
 
-Limitation
------------
-
-Please note that SQLAlchemy does not support the ``ARRAY`` data type.
-
 .. contents:: 
    :local:
    :depth: 1
 
-* SQLalchemy version 1.4.46
-* Currently supports Pysqream 3.2.5
+Before You Begin
+----------------
 
+Pysqream supports the following SQLalchemy versions:
+
+* SQLalchemy version 2.0.27 (recommended)
+* SQLalchemy version 1.4.46
+
+Limitations
+-----------
+
+* Supports `Pysqream 3.2.5 <https://pypi.org/project/pysqream/3.2.5/>`_
+* Does not support the ``ARRAY`` data type
 
 
 Creating a Standard Connection
@@ -171,18 +176,20 @@ Creating a Standard Connection
 
 .. code-block:: python
 
-	import sqlalchemy as sa
+   import sqlalchemy as sa
+   from sqlalchemy.engine.url import URL
 
-	from sqlalchemy.engine.url import URL
 
-	engine_url = URL('sqream'
-			, username='<user_name>'
-			, password='<password>'
-			, host='<host_name>'
-			, port=<port_number>
-			, port_ssl=<port_ssl>
-			, database='<database_name>')
-	engine = sa.create_engine(engine_url,connect_args={"clustered": False, "service": "<service_name>"})
+   engine_url = sa.engine.url.URL('sqream',
+                                  username='<user_name>',
+                                  password='<password>',
+                                  host='<host_name>',
+                                  port=<port_number>,
+                                  port_ssl=<port_ssl>,
+                                  database='<database_name>')
+                    
+   engine = sa.create_engine(engine_url,connect_args={"clustered": False, "service": "<service_name>"})
+   session = orm.sessionmaker(bind=engine)()
 				 
 
 Pulling a Table into Pandas
@@ -193,21 +200,19 @@ The following example shows how to pull a table in Pandas. This example uses the
 .. code-block:: python
 
    import sqlalchemy as sa
-   
-   from sqlalchemy.engine.url import URL
-   
    import pandas as pd
+   from sqlalchemy.engine.url import URL
 
 
-	engine_url = URL('sqream'
-		, username='sqream'
-		, password='12345'
-		, host='127.0.0.1'
-		, port=3108
-		, database='master')
-	engine = sa.create_engine(engine_url,connect_args={"clustered": True, "service": "admin"})
-	   
-	table_df = pd.read_sql("select * from nba", con=engine)
+   engine_url = sa.engine.url.URL('sqream',
+                                  username='sqream',
+                                  password='12345',
+                                  host='127.0.0.1',
+                                  port=3108,
+                                  database='master')
+                                       
+   engine = sa.create_engine(engine_url,connect_args={"clustered": True, "service": "admin"})
+   table_df = pd.read_sql("select * from nba", con=engine)
 
 API
 ===
@@ -230,9 +235,14 @@ As before, you must import the library and create a :py:meth:`~Connection`, foll
 .. code-block:: python
    
    import pysqream
-   con = pysqream.connect(host='127.0.0.1', port=3108, database='master'
-                      , username='rhendricks', password='Tr0ub4dor&3'
-                      , clustered=True)
+
+
+   con = pysqream.connect(host='127.0.0.1', 
+                          port=3108, 
+                          database='master',
+                          username='rhendricks',
+                          password='Tr0ub4dor&3',
+                          clustered=True)
 
    cur = con.cursor() # Create a new cursor
    # The select statement:
@@ -292,18 +302,22 @@ When you execute a statement, the connection object also contains metadata about
 
 The metadata is stored in the :py:attr:`Connection.description` object of the cursor:
 
-.. code-block:: pycon
+.. code-block:: python
    
-   >>> import pysqream
-   >>> con = pysqream.connect(host='127.0.0.1', port=3108, database='master'
-   ...                , username='rhendricks', password='Tr0ub4dor&3'
-   ...                , clustered=True)
-   >>> cur = con.cursor()
-   >>> statement = 'SELECT * FROM nba'
-   >>> cur.execute(statement)
-   <pysqream.dbapi.Connection object at 0x000002EA952139B0>
-   >>> print(cur.description)
-   [('Name', 'STRING', 24, 24, None, None, True), ('Team', 'STRING', 22, 22, None, None, True), ('Number', 'NUMBER', 1, 1, None, None, True), ('Position', 'STRING', 2, 2, None, None, True), ('Age (as of 2018)', 'NUMBER', 1, 1, None, None, True), ('Height', 'STRING', 4, 4, None, None, True), ('Weight', 'NUMBER', 2, 2, None, None, True), ('College', 'STRING', 21, 21, None, None, True), ('Salary', 'NUMBER', 4, 4, None, None, True)]
+   import pysqream
+
+
+   con = pysqream.connect(host='127.0.0.1', 
+                          port=3108, 
+                          database='master', 
+                          username='rhendricks', 
+                          password='Tr0ub4dor&3',
+                          clustered=True)
+   cur = con.cursor()
+   statement = 'SELECT * FROM nba'
+   cur.execute(statement)
+   print(cur.description)
+   # [('Name', 'STRING', 24, 24, None, None, True), ('Team', 'STRING', 22, 22, None, None, True), ('Number', 'NUMBER', 1, 1, None, None, True), ('Position', 'STRING', 2, 2, None, None, True), ('Age (as of 2018)', 'NUMBER', 1, 1, None, None, True), ('Height', 'STRING', 4, 4, None, None, True), ('Weight', 'NUMBER', 2, 2, None, None, True), ('College', 'STRING', 21, 21, None, None, True), ('Salary', 'NUMBER', 4, 4, None, None, True)]
 
 You can fetch a list of column names by iterating over the ``description`` list:
    
@@ -327,10 +341,15 @@ This example shows how to load 10,000 rows of dummy data to an instance of SQrea
       from datetime import date, datetime
       from time import time
 
-      con = pysqream.connect(host='127.0.0.1', port=3108, database='master'
-                         , username='rhendricks', password='Tr0ub4dor&3'
-                         , clustered=True)
-						 , cur = con.cursor()
+
+      con = pysqream.connect(host='127.0.0.1', 
+                             port=3108, 
+                             database='master',
+                             username='rhendricks', 
+                             password='Tr0ub4dor&3',
+                             clustered=True)
+                             
+      cur = con.cursor()
 						 
 2. Create a table for loading:
 
@@ -339,11 +358,15 @@ This example shows how to load 10,000 rows of dummy data to an instance of SQrea
       create = 'create or replace table perf (b bool, t tinyint, sm smallint, i int, bi bigint, f real, d double, s text(12), ss text, dt date, dtt datetime)'
       cur.execute(create)
 
-3. Load your data into table using the ``INSERT`` command.
+3. Create a session:
 
-    ::
+   .. code-block:: python
 
-4. Create dummy data matching the table you created:
+     session = orm.sessionmaker(bind=engine)()
+
+4. Load your data into table using the ``INSERT`` command.
+
+5. Create dummy data matching the table you created:
 
    .. code-block:: python
 
@@ -351,7 +374,7 @@ This example shows how to load 10,000 rows of dummy data to an instance of SQrea
       
       row_count = 10**4
 
-5. Get a new cursor:
+6. Get a new cursor:
 
    .. code-block:: python
 
@@ -360,13 +383,13 @@ This example shows how to load 10,000 rows of dummy data to an instance of SQrea
       cur.executemany(insert, [data] * row_count)
       print (f"Total insert time for {row_count} rows: {time() - start} seconds")
 
-6. Close this cursor:
+7. Close this cursor:
 
    .. code-block:: python
 
       cur.close()
    
-7. Verify that the data was inserted correctly:
+8. Verify that the data was inserted correctly:
 
    .. code-block:: python
 
@@ -375,13 +398,13 @@ This example shows how to load 10,000 rows of dummy data to an instance of SQrea
       result = cur.fetchall() # `fetchall` collects the entire data set
       print (f"Count of inserted rows: {result[0][0]}")
 
-8. Close the cursor:
+9. Close the cursor:
 
    .. code-block:: python
 
        cur.close()
    
-9. Close the connection:
+10. Close the connection:
 
    .. code-block:: python
 
@@ -419,12 +442,12 @@ This section shows how to use the ORM to create and populate tables from Python 
    .. code-block:: python
    
       employees = sa.Table(
-      'employees'
-      , metadata 
-      , sa.Column('id', sa.Integer)
-      , sa.Column('name', sa.TEXT(32))
-      , sa.Column('lastname', sa.TEXT(32))
-      , sa.Column('salary', sa.Float)
+          'employees',
+          metadata,
+          sa.Column('id', sa.Integer),
+          sa.Column('name', sa.TEXT(32)),
+          sa.Column('lastname', sa.TEXT(32)),
+          sa.Column('salary', sa.Float)
       )
 
    The ``create_all()`` function uses the SQream engine object.
@@ -436,17 +459,14 @@ This section shows how to use the ORM to create and populate tables from Python 
       metadata.create_all(engine)
    
 5. Populate your table.
-
-    ::
    
 6. Build the data rows:
 
    .. code-block:: python
 
-      insert_data = [ {'id': 1, 'name': 'Richard','lastname': 'Hendricks',   'salary': 12000.75}
-                     ,{'id': 3,  'name': 'Bertram', 'lastname': 'Gilfoyle', 'salary': 8400.0}
-                     ,{'id': 8,  'name': 'Donald', 'lastname': 'Dunn', 'salary': 6500.40}
-                    ]
+      insert_data = [ {'id': 1, 'name': 'Richard','lastname': 'Hendricks',   'salary': 12000.75},
+                      {'id': 3,  'name': 'Bertram', 'lastname': 'Gilfoyle', 'salary': 8400.0},
+                      {'id': 8,  'name': 'Donald', 'lastname': 'Dunn', 'salary': 6500.40}]
 
 7. Build the ``INSERT`` command:
    
@@ -458,6 +478,6 @@ This section shows how to use the ORM to create and populate tables from Python 
 
    .. code-block:: python
 
-      result = engine.execute(ins)
+      result = session.execute(ins)
 
 For more information, see the :ref:`python_api_reference_guide`.
