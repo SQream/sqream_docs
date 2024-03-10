@@ -1,8 +1,8 @@
 .. _literals:
 
-***************************
+*********
 Literals
-***************************
+*********
 
 
 Literals represent constant values.
@@ -213,7 +213,7 @@ Typed Literals
 
    literal :: type_name
 
-See also :ref:`cast` for more information about supported casts.
+See also :ref:`supported_casts` for more information about supported casts.
 
 Syntax Reference
 -------------------
