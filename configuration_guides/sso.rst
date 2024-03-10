@@ -4,7 +4,7 @@
 Single Sign-On
 **************
 
-Configuring Single Sign-On (SSO) by integrating with an identity provider (IdP) to allow users to authenticate once and seamlessly access SQreamDB as one of multiple services. 
+Here you can learn how to configure a SSO login for SQreamDB Acceleration Studio by integrating with an identity provider (IdP). A SSO authentication allows users to authenticate once and then seamlessly access SQreamDB as one of multiple services. 
 
 .. contents::
    :local:
