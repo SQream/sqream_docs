@@ -122,7 +122,6 @@ The Python drivers are updated periodically. To upgrade an existing pysqream ins
    $ pip3.9 install pysqream pysqream-sqlalchemy -U
 
 
-
 SQLAlchemy
 ==========
 
