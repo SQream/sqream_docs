@@ -27,8 +27,6 @@ The following table displays the access control permissions:
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``CREATE``         | Create schemas in the database                                                                                          |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``CREATE FUNCTION``| Create and drop functions                                                                                               |
-+--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Object/Layer: Schema**                                                                                                                     |
 +--------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``USAGE``          | Grants access to schema objects                                                                                         |
@@ -77,7 +75,7 @@ GRANT
    TO <role> [, ...] 
 
    -- Grant permissions at the database level:
-        GRANT {{CREATE | CONNECT| DDL | SUPERUSER | CLUSTERADMIN |CREATE FUNCTION} [, ...] | ALL [PERMISSIONS]}
+        GRANT {{CREATE | CONNECT| DDL | SUPERUSER | CLUSTERADMIN} [, ...] | ALL [PERMISSIONS]}
 
    ON DATABASE <database> [, ...]
    TO <role> [, ...] 
@@ -114,8 +112,6 @@ GRANT
 
    GRANT superuser, clusteradmin TO  admin1; 
 
-   GRANT  CREATE  FUNCTION  ON  database  master  TO  admin;
-
    GRANT  SELECT  ON  TABLE  admin.table1  TO  userA;
 
    GRANT  EXECUTE  ON  FUNCTION  my_function  TO  userA;
@@ -148,7 +144,7 @@ REVOKE
    FROM <role> [, ...]
             
    -- Revoke permissions at the database level:
-   REVOKE {{CREATE | CONNECT | DDL | SUPERUSER | CLUSTERADMIN | CREATE FUNCTION}[, ...] |ALL [PERMISSIONS]}
+   REVOKE {{CREATE | CONNECT | DDL | SUPERUSER | CLUSTERADMIN}[, ...] |ALL [PERMISSIONS]}
    ON DATABASE <database> [, ...]
    FROM <role> [, ...]
 
@@ -183,8 +179,6 @@ Examples:
 
    REVOKE  login  from  role_test;
 
-   REVOKE  CREATE  FUNCTION  FROM  admin;
-
 Default permissions
 -------------------
 
@@ -209,8 +203,7 @@ schema statement is run.
 
    grant_clause ::=
      GRANT
-        { CREATE FUNCTION
-        | SUPERUSER
+        { SUPERUSER
         | CLUSTERADMIN
         | CONNECT
         | CREATE
