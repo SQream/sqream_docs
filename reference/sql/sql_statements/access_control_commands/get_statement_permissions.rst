@@ -70,6 +70,9 @@ The following table describes the supported permissions:
    * - ``LOGIN``
      - Cluster
      - Login permissions allows a role to be a user and login to a database
+   * - ``CREATE FUNCTION``
+     - Database
+     - Allows a user to :ref:`create a Python UDF<create_function>`
    * - ``SUPERUSER``
      - Cluster, Database, Schema
      - The most privileged role, with full control over a cluster, database, or schema

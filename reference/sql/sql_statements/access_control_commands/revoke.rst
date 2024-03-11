@@ -36,6 +36,7 @@ Syntax
             | CONNECT
             | DDL
             | SUPERUSER
+            | CREATE FUNCTION
             } [, ...] 
          | ALL [PERMISSIONS]
          }  

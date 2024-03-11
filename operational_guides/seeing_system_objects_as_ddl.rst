@@ -100,7 +100,18 @@ Getting the DDL for a function
 .. code-block:: psql
 
    master=> SELECT GET_FUNCTION_DDL('my_distance');
-
+   create function "my_distance" (x1 float,
+                               y1 float,
+                               x2 float,
+                               y2 float) returns float as
+      $$  
+      import  math  
+      if  y1  <  x1:  
+          return  0.0  
+      else:  
+          return  math.sqrt((y2  -  y1)  **  2  +  (x2  -  x1)  **  2)  
+      $$
+      language python volatile;
 
 Exporting function DDL to a file
 ------------------------------------
