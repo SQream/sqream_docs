@@ -47,6 +47,8 @@ New Features and Enhancements
 
 ► We enhanced our :ref:`Saved Query<saved_queries>` permissions, ensuring that your saved queries are accessible and can be executed and reviewed exclusively by authorized users.
 
+► Our :ref:`Pysqream<sqlalchemy>` connector now support SQLAlchemy version 2.0.27.
+
 Known Issues
 ------------
 
