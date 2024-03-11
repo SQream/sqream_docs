@@ -14,7 +14,8 @@ The **CREATE SCHEMA** statement can be used to query tables from different schem
 
 .. code-block:: postgres
 
-   select <schema_name>.table_name.column_name from <schema_name>.table_name
+   SELECT <schema_name>.table_name.column_name 
+   FROM <schema_name>.table_name
 
 See also: :ref:`drop_schema`, :ref:`alter_default_schema`, :ref:`rename_schema`.
 
@@ -30,11 +31,11 @@ The following example shows the correct syntax for creating a schema:
 
 .. code-block:: postgres
 
-   create_schema_statement ::=
-       CREATE SCHEMA schema_name
-       ;
+	CREATE SCHEMA [database_name.]schema_name
 
-   schema_name ::= identifier  
+
+	schema_name ::= identifier
+	database_name ::= identifier
 
 
 Parameters
