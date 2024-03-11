@@ -105,7 +105,7 @@ The provided examples assume a configuration with 2T of RAM, 8 workers running o
 
 Configuring the ``limitQueryMemoryGB`` using the Worker configuration file:
 
-.. code-block:: console
+.. code-block:: json
      
    {
        “cluster”: “/home/test_user/sqream_testing_temp/sqreamdb”,
@@ -121,7 +121,7 @@ Configuring the ``limitQueryMemoryGB`` using the Worker configuration file:
 
 Configuring the ``spoolMemoryGB`` using the legacy configuration file:
 
-.. code-block:: console
+.. code-block:: json
 
 	{
 		"diskSpaceMinFreePercent": 10,
