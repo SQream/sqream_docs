@@ -122,7 +122,7 @@ The following table shows SQreamDB's recommended metadata server specifications:
    * - Component
      - Type
    * - Server
-     - 
+     - Dell R750, Dell R940xa, HP ProLiant DL380 Gen10 or similar (Intel only)
    * - Processors
      - 2x Intel Xeon Gold 6342 2.8 Ghz 24C processors or similar
    * - RAM
