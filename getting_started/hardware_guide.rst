@@ -12,12 +12,17 @@ This page is intended as a "reference" to suggested hardware. However, different
 
 Visit `SQreamDB's support portal <https://sqream.atlassian.net/servicedesk/customer/portals>`_ for additional support.
 
-A SQreamDB Cluster
-==================
+.. contents:: 
+   :local:
+   :depth: 2
+
+
+Cluster Architectures
+=====================
 
 SQreamDB recommends rackmount servers by server manufacturers Dell, Lenovo, HP, Cisco, Supermicro, IBM, and others.
 
-A typical SQreamDB cluster includes one or more nodes, consisting of
+A typical SQreamDB cluster includes one or more nodes, consisting of:
 
 * Two-socket enterprise processors, such as Intel® Xeon® Gold processors or the IBM® POWER9 processors, providing the high performance required for compute-bound database workloads.
 
@@ -29,8 +34,8 @@ A typical SQreamDB cluster includes one or more nodes, consisting of
 
 * High density chassis design, offering between 2 and 4 GPUs in a 1U, 2U, or 3U package, for best-in-class performance per cm\ :sup:`2`.
 
-Single-Node Cluster Example
----------------------------
+Single-Node Cluster
+-------------------
 
 A single-node SQreamDB cluster can handle between 1 and 8 concurrent users, with up to 1PB of data storage (when connected via NAS).
 
@@ -59,7 +64,7 @@ An average single-node cluster can be a rackmount server or workstation, contain
         NVIDIA 2x A100, H100, or L40S
 		
    * - Operating System
-     - Red Hat Enterprise Linux v7.9 or CentOS v7.9 or Amazon Linux
+     - Red Hat Enterprise Linux v8.8 or Amazon Linux
 
 .. note:: If you are using internal storage, your volumes must be formatted as xfs.
 
@@ -67,19 +72,12 @@ In this system configuration, SQreamDB can store about 100TB of raw data (assumi
 
 If a NAS is used, the 10x SSD drives can be omitted, but SQreamDB recommends 2TB of local spool space on SSD or NVMe drives.
 
-Multi-Node Cluster Examples
----------------------------
+Multi-Node Cluster
+------------------
 
 Multi-node clusters can handle any number of concurrent users. A typical SQreamDB cluster relies on a minimum of two GPU-enabled servers and shared storage connected over a network fabric, such as InfiniBand EDR, 40GbE, or 100GbE.
 
 The **Multi-Node Cluster Examples** section describes the following specifications: 
-
-.. contents:: 
-   :local:
-   :depth: 1
-   
-Hardware Specifications
-~~~~~~~~~~~~~~~~~~~~~~~
 
 The following table shows SQreamDB's recommended hardware specifications:
 
@@ -99,6 +97,10 @@ The following table shows SQreamDB's recommended hardware specifications:
      -   
          * 2x 960GB SSD 2.5in hot plug for OS, RAID1
          * 2x 2TB SSD or NVMe, for temporary spooling, RAID0
+   * - Network Card (Storage)
+     - 2x Mellanox ConnectX-6 Single Port HDR VPI InfiniBand Adapter cards at 100GbE or similar.
+   * - Network Card (Client)
+     - 2x 1 GbE cards or similar   
    * - External Storage
      -   
          * Mellanox Connectx5/6 100G NVIDIA Network Card (if applicable) or other high-speed network card minimum 40G compatible with customer’s infrastructure
@@ -106,10 +108,10 @@ The following table shows SQreamDB's recommended hardware specifications:
    * - GPU
      - NVIDIA 2x A100, H100, or L40S
    * - Operating System
-     - Red Hat Enterprise Linux v7.9 or CentOS v7.9 or Amazon Linux
+     - Red Hat Enterprise Linux v8.8 or Amazon Linux
 	 
-Metadata Specifications
-~~~~~~~~~~~~~~~~~~~~~~~
+Metadata Server
+---------------
 	 
 The following table shows SQreamDB's recommended metadata server specifications:
 
@@ -119,6 +121,8 @@ The following table shows SQreamDB's recommended metadata server specifications:
    
    * - Component
      - Type
+   * - Server
+     - Dell R750, Dell R940xa, HP ProLiant DL380 Gen10 or similar (Intel only)
    * - Processors
      - 2x Intel Xeon Gold 6342 2.8 Ghz 24C processors or similar
    * - RAM
@@ -130,12 +134,12 @@ The following table shows SQreamDB's recommended metadata server specifications:
    * - Network Card (Client)
      - 2x 1 GbE cards or similar
    * - Operating System
-     - Red Hat Enterprise Linux v7.9 or CentOS v7.9 or Amazon Linux
+     - Red Hat Enterprise Linux v8.8 or Amazon Linux
 
 .. note:: With a NAS connected over GPFS, Lustre, Weka, or VAST, each SQreamDB worker can read data at 5GB/s or more.
 
-SQreamDB Studio Server Example
-------------------------------
+SQreamDB Studio Server
+----------------------
 
 The following table shows SQreamDB's recommended Studio server specifications:
 
