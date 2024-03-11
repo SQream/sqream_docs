@@ -9,22 +9,21 @@ Syntax
 
 The following example shows the correct syntax for simple scalar SQL UDF's:
 
+.. code-block:: console
 
-   .. code-block:: console
-
-      $ create_function_statement ::=
-      $     CREATE [ OR REPLACE ] FUNCTION function_name (argument_list)
-      $     RETURNS return_type
-      $     AS $$
-      $     { function_body }
-      $     $$ LANGUAGE SQL
-      $     ;
-      $ 
-      $ function_name ::= identifier
-      $ argument_list :: = { value_name type_name [, ...] }
-      $ value_name ::= identifier
-      $ return_type ::= type_name
-      $ function_body ::= A valid SQL statement
+	$ create_function_statement ::=
+	$     CREATE [ OR REPLACE ] FUNCTION function_name (argument_list)
+	$     RETURNS return_type
+	$     AS $$
+	$     { function_body }
+	$     $$ LANGUAGE SQL
+	$     ;
+	$ 
+	$ function_name ::= identifier
+	$ argument_list :: = { value_name type_name [, ...] }
+	$ value_name ::= identifier
+	$ return_type ::= type_name
+	$ function_body ::= A valid SQL statement
 
 Usage Notes
 ~~~~~~~~~~~
