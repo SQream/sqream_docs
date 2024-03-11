@@ -17,36 +17,36 @@ It is essential you have the following installed:
 
 * SQreamDB Acceleration Studio v5.9.0 
 * There should be an NGINX (or similar) service installed on your Acceleration Studio machine, which will serve as a reverse proxy. This service will accept HTTPS traffic from external sources and communicate with Studio via HTTP internally
+* You have :ref:`ldap` set as your authentication management service.
 
 Setting SQreamDB Acceleration Studio
 ====================================
  
-1. Set :ref:`ldap` to be your authentication management service.
+#. In your ``sqream_legacy.json`` file, add the ``SSOValidateUrl`` flag with your IdP URL.
 
-   The ``authenticationMethod`` flag value should be ``ldap``
-
-   .. code-block:: json
-	
-	"authenticationMethod": "ldap"   
- 
-2. In your ``sqream_legacy.json`` file, add the following flags:
-
-   * ``SSOValidateUrl`` flag with the IdP URL
-   * ``mfaLogoutUrl`` flag with the logout URL
-   
    Example:
  
    .. code-block:: json
 	
 	"SSOValidateUrl": "https://auth.pingone.eu/9db5d1c6-6dd6-4e40-b939-e0e4209e0ac5/as/userinfo"
-	"mfaLogoutUrl":   "https://auth.pingone.eu/9db5d1c6-6dd6-4e40-b939-e0e4209e0ac5/as/signoff"
  
-3. Set Acceleration Studio to use SSO by manually pasting your IdP URL to your ``sqream_admin_config.json`` file.
+#. Set Acceleration Studio to use SSO by adding the following flags to your ``sqream_admin_config.json`` file:
 
-   Alternatively, you can set the IdP URL during an Acceleration Studio installation process by pasting it to the questionnaire prompted following the ``npm run setup`` command, but this approach is less recommended.
+   * ``mfaRedirectUrl`` flag with your redirect URL
+   * ``mfaLogoutUrl`` flag with your logout URL
 
+   Example:
+ 
+   .. code-block:: json
+   
+	"mfaRedirectUrl": "https://auth.pingone.eu/9db5d1c6-6dd6-4e40-b939-e0e4209e0ac5/as/authorize?client_id=e5636823-fb99-4d38-bbd1-6a46175eddab&redirect_uri=https://ivans.sq.l/login&response_type=token&scope=openid profile p1:read:user",
+	"mfaLogoutUrl": "https://auth.pingone.eu/9db5d1c6-6dd6-4e40-b939-e0e4209e0ac5/as/signoff"
 
-	
-4. Restart SQreamDB.
-5. Restart SQreamDB Acceleration Studio.
+  If Acceleration Studio is not yet installed, you can set both URLs during its installation process.
+   
+
+	   
+#. Restart SQreamDB.
+
+#. Restart SQreamDB Acceleration Studio.
 
