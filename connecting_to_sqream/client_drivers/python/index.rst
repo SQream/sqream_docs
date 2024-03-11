@@ -131,14 +131,6 @@ SQLAlchemy is an Object-Relational Mapper (ORM) for Python. When you install the
    :local:
    :depth: 1
 
-Before You Begin
-----------------
-
-Pysqream supports the following SQLalchemy versions:
-
-* SQLalchemy version 2.0.27 (recommended)
-* SQLalchemy version 1.4.46
-
 Limitations
 -----------
 
