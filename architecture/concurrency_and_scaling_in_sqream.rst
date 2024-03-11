@@ -105,23 +105,23 @@ The provided examples assume a configuration with 2T of RAM, 8 workers running o
 
 Configuring the ``limitQueryMemoryGB`` using the Worker configuration file:
 
-.. code-block:: console
+.. code-block:: json
      
    {
-       “cluster”: “/home/test_user/sqream_testing_temp/sqreamdb”,
-       “gpu”:  0,
-       “licensePath”: “home/test_user/SQream/tests/license.enc”,
-       “machineIP”: “127.0.0.1”,
-       “metadataServerIp”: 127.0.0.1,
-       “metadataServerPort”: 3105,
-       “port”: 5000,
-       “useConfigIP”: true,
-       “limitQueryMemoryGB" : 225,
+       "cluster": "/home/test_user/sqream_testing_temp/sqreamdb",
+       "gpu":  0,
+       "licensePath": "home/test_user/SQream/tests/license.enc",
+       "machineIP": "127.0.0.1",
+       "metadataServerIp": 127.0.0.1,
+       "metadataServerPort": 3105,
+       "port": 5000,
+       "useConfigIP": true,
+       "limitQueryMemoryGB" : 225,
    }
 
 Configuring the ``spoolMemoryGB`` using the legacy configuration file:
 
-.. code-block:: console
+.. code-block:: json
 
 	{
 		"diskSpaceMinFreePercent": 10,
