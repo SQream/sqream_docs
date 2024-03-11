@@ -110,7 +110,7 @@ Installing via PIP without an internet connection
 	#Install all packages with --no-index --find-links .
 	python3 -m pip install *.whl -U --no-index --find-links .
 	python3.9 -m pip install pysqream-5.0.0.zip -U --no-index --find-links .
-	python3.9 -m pip install pysqream-sqlalchemy-0.8.zip  -U --no-index --find-links .
+	python3.9 -m pip install pysqream-sqlalchemy-1.0.zip  -U --no-index --find-links .
 
 Upgrading an Existing Installation
 ----------------------------------
@@ -121,6 +121,7 @@ The Python drivers are updated periodically. To upgrade an existing pysqream ins
    
    $ pip3.9 install pysqream pysqream-sqlalchemy -U
 
+.. _sqlalchemy:
 
 SQLAlchemy
 ==========
