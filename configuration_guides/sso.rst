@@ -25,7 +25,7 @@ Setting SQreamDB Acceleration Studio
 
    The ``authenticationMethod`` flag value should be ``ldap``
 
-  .. code-block:: json
+   .. code-block:: json
 	
 	"authenticationMethod": "ldap"   
  
@@ -36,8 +36,8 @@ Setting SQreamDB Acceleration Studio
    
    Example:
  
-  .. code-block:: json
-   
+   .. code-block:: json
+	
 	"SSOValidateUrl": "https://auth.pingone.eu/9db5d1c6-6dd6-4e40-b939-e0e4209e0ac5/as/userinfo"
 	"mfaLogoutUrl":   "https://auth.pingone.eu/9db5d1c6-6dd6-4e40-b939-e0e4209e0ac5/as/signoff"
  
