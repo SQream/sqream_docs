@@ -1,8 +1,8 @@
 .. _identifying_configuration_issues:
 
-***********************
+********************************
 Identifying Configuration Issues
-***********************
+********************************
 
 The **Troubleshooting Common Issues** page describes how to troubleshoot the following common issues:
 
