@@ -1,8 +1,8 @@
 .. _create_table:
 
-*****************
+************
 CREATE TABLE
-*****************
+************
 
 The ``CREATE TABLE`` statement is used to create a new table in an existing database.
 
@@ -10,21 +10,24 @@ The ``CREATE TABLE`` statement is used to create a new table in an existing data
    * To create a table based on the result of a select query, see :ref:`CREATE TABLE AS <create_table_as>`.
    * To create a table based on files like Parquet and ORC, see :ref:`CREATE FOREIGN TABLE <create_foreign_table>`
 
-
+.. contents:: 
+   :local:
+   :depth: 1      
 
 Syntax
-==========
+======
 
 The following is the correct syntax for creating a table:
 
 .. code-block:: postgres
 
    create_table_statement ::=
-       CREATE [ OR REPLACE ] TABLE [schema_name.]table_name (
-           { column_def [, ...] }
-       )
-       [ CLUSTER BY { column_name [, ...] } ]
-       ;
+       CREATE [ OR REPLACE ] TABLE [<schema_name>.]<table_name> 
+	   {
+	    (<column_def> [, ...] [{NULL | NOT NULL}]
+	    | LIKE <source_table> [INCLUDE PERMISSIONS]
+	   }
+	   [ CLUSTER BY <column_name> [, ...] ]
 
    schema_name ::= identifier  
 
@@ -33,9 +36,7 @@ The following is the correct syntax for creating a table:
    column_def :: = { column_name type_name [ default ] [ column_constraint ] }
 
    column_name ::= identifier
-   
-   column_constraint ::=
-       { NOT NULL | NULL }
+  
    
    default ::=
        DEFAULT default_value
@@ -71,14 +72,19 @@ The following parameters can be used when creating a table:
 	 
 .. _default_values:
 
+Usage Notes
+===========
+
+When using ``CREATE TABLE... LIKE``, the permissions from the source table are inherited by the newly created table. To add extra permissions to the new table, you can utilize the ``INCLUDE PERMISSIONS`` clause.
+
 Default Value Constraints
 ===========================
 
-The ``DEFAULT`` value constraint specifies a value to use if one is not defined in an :ref:`insert` or :ref:`copy_from` statement. 
+The ``DEFAULT`` value constraint specifies a default value to use if none is provided in an :ref:`insert` or :ref:`copy_from` statement. This value can be a literal or ``NULL``. It's worth noting that even for nullable columns, you can still explicitly insert a ``NULL`` value using the ``NULL`` keyword, as demonstrated in the example:
 
-The default value may be a literal or NULL.
+.. code-block:: postgres
 
-.. note:: The ``DEFAULT`` constraint only applies if the column does not have a value specified in the :ref:`insert` or :ref:`copy_from` statement. You can still insert a ``NULL`` into a nullable column by explicitly inserting ``NULL``. For example, ``INSERT INTO cool_animals VALUES (1, 'Gnu', NULL)``.
+	INSERT INTO cool_animals VALUES (1, 'Gnu', NULL)
 
 Syntax
 ---------
@@ -229,10 +235,10 @@ The following is the correct syntax for duplicating the column structure of an e
 
 .. code-block:: postgres
 
-   CREATE [OR REPLACE] TABLE table_name
+   CREATE [OR REPLACE] TABLE <table_name>
    {
-     (column_name column_type [{NULL | NOT NULL}] [,...])
-     | LIKE source_table_name
+     (<column_name> <column_type> [{NULL | NOT NULL}] [,...])
+     | LIKE <source_table_name> [INCLUDE PERMISSIONS]
    }
    [CLUSTER BY ...]
    ;
@@ -308,4 +314,4 @@ The following table describes which properties are copied from the target table 
 Permissions
 =============
 
-The role must have the ``CREATE`` permission at the schema level.
+``CREATE TABLE`` requires ``CREATE`` permission at the schema level.
