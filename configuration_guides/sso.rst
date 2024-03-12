@@ -22,13 +22,13 @@ It is essential you have the following installed:
 Setting SQreamDB Acceleration Studio
 ====================================
  
-#. In your ``sqream_legacy.json`` file, add the ``SSOValidateUrl`` flag with your IdP URL.
+#. In your ``sqream_legacy.json`` file, add the ``ssoValidateUrl`` flag with your IdP URL.
 
    Example:
  
    .. code-block:: json
 	
-	"SSOValidateUrl": "https://auth.pingone.eu/9db5d1c6-6dd6-4e40-b939-e0e4209e0ac5/as/userinfo"
+	"ssoValidateUrl": "https://auth.pingone.eu/9db5d1c6-6dd6-4e40-b939-e0e4209e0ac5/as/userinfo"
  
 #. Set Acceleration Studio to use SSO by adding the following flags to your ``sqream_admin_config.json`` file:
 
