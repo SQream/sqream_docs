@@ -13,11 +13,11 @@ Retrieving Execution Plan Output
 
 You can retrieve the execution plan output either after the query execution has completed, in the case of a hanging query, or if you suspect no progress is being made.
 
-1. In the **Result Panel**, select **Execution Details View**.
+1. In the **Result Panel**, select |icon-execution-details-view|.
 
    The **Execution Tree** window opens.
 
-2. From the upper-right corner, select the |icon-download| to download a CSV execution plan table.
+2. From the upper-right corner, select |icon-download| to download a CSV execution plan table.
    
 3. Save the execution plan on your local machine.
 

@@ -79,7 +79,7 @@ html_css_files = [
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'solarized-light'
 
-html_logo = '_static'
+
 
 # If true, sectionauthor and moduleauthor directives will be shown in the
 # output. They are ignored by default.
