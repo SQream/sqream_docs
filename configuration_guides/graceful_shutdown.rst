@@ -1,8 +1,9 @@
 .. _graceful_shutdown:
 
-*************************
+************************************
 Setting the Graceful Server Shutdown
-*************************
+************************************
+
 The ``defaultGracefulShutdownTimeoutMinutes`` flag is used for setting the amount of time to pass before SQream performs a graceful server shutdown.
 
 The following describes the ``defaultGracefulShutdownTimeoutMinutes`` flag: 
