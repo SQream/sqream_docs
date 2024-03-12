@@ -323,7 +323,8 @@ For example, ASCII character ``15``, known as "shift in", can be specified using
 .. _capturing_rejected_rows:
 
 Unsupported Field Delimiters
-==========================
+============================
+
 The following ASCII field delimiters (octal range 001 - 176) are not supported:
 
 +---------------+-------------+------------+---------------+-------------+------------+---------------+-------------+------------+
@@ -401,7 +402,7 @@ All CSV files should be prepared according to these recommendations:
    Other modes of escaping are not supported (e.g. ``1,"What are \"birds\"?"`` is not a valid way of escaping CSV values).
 
 Marking Null Markers
----------------
+--------------------
 
 ``NULL`` values can be marked in two ways in the CSV:
 
@@ -430,7 +431,7 @@ Skipping Faulty Rows
 
 
 Skipping a Maximum of 100 Faulty Rows
------------------------------------
+-------------------------------------
 
 .. code-block:: postgres
    
@@ -491,7 +492,7 @@ In the file below, the separator is ``DC1``, which is represented by ASCII 17 de
    COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', delimiter = E'\021');   
 
 Loading a Text File with Multi-Character Delimiters
---------------------------------------------------
+---------------------------------------------------
 
 In the file below, the separator is ``^|``.
 
@@ -588,7 +589,7 @@ Saving Rejected Rows to a File
 
 
 Loading CSV Files from a Set of Directories
-------------------------------------------
+-------------------------------------------
 
 .. code-block:: postgres
 
