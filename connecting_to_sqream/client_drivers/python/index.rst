@@ -472,4 +472,3 @@ This section shows how to use the ORM to create and populate tables from Python 
 
       result = session.execute(ins)
 
-For more information, see the :ref:`python_api_reference_guide`.
