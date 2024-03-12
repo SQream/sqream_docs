@@ -12,6 +12,5 @@ This section describes the following features:
    :maxdepth: 1
    :titlesonly:
 
-   python_functions
    concurrency_and_locks
    concurrency_and_scaling_in_sqream
