@@ -6,8 +6,6 @@ CREATE FUNCTION
 
 ``CREATE FUNCTION`` creates a new user-defined function (UDF) in an existing database.
 
-See more in our :ref:`Python UDF (user-defined functions)<python_functions>` guide.
-
 Permissions
 =============
 
@@ -23,7 +21,7 @@ Syntax
        RETURNS return_type
        AS $$
        { function_body }
-       $$ LANGUAGE python
+       $$ LANGUAGE SQL
        ;
 
    function_name ::= identifier  
@@ -34,7 +32,7 @@ Syntax
    
    return_type ::= type_name
    
-   function_body ::= Valid Python code
+   function_body ::= Valid SQL code
 
 Parameters
 ============
@@ -54,50 +52,23 @@ Parameters
    * - ``return_type``
      - The SQL datatype of the return value, such as ``INT``, ``TEXT``, etc.
    * - ``function_body``
-     - Python code, dollar-quoted (``$$``). 
+     - SQL code, dollar-quoted (``$$``). 
 
 Examples
 ===========
 
 Calculate distance between two points
---------------------------------------
 
 .. code-block:: postgres
 
-   CREATE OR REPLACE FUNCTION my_distance (x1 float, y1 float, x2 float, y2 float) 
-     RETURNS FLOAT
-     AS $$  
-   import  math
-   if  y1  <  x1:  
-       return  0.0  
-   else:
-       return  math.sqrt((y2  -  y1)  **  2  +  (x2  -  x1)  **  2)
-   $$ LANGUAGE PYTHON;
-
-   -- Usage:
-   SELECT  city, my_location, my_distance(x1,y1,x2,y2)  from  cities;
+	CREATE OR REPLACE FUNCTION my_distance(x1 FLOAT, y1 FLOAT, x2 FLOAT, y2 FLOAT) 
+	RETURNS FLOAT AS $$
+	SELECT CASE
+		WHEN y1 < x1 THEN 0.0
+		ELSE SQRT(POWER(y2 - y1, 2) + POWER(x2 - x1, 2))
+	END;
+	$$ LANGUAGE sql;
 
 
-Calling files from other locations
----------------------------------------
-
-.. code-block:: postgres
-
-   -- Our script my_code.py is in ~/my_python_stuff
-   
-   CREATE FUNCTION write_log()
-     RETURNS INT 
-     AS $$ 
-   import sys
-   sys.path.append("/home/user/my_python_stuff")  
-   
-   import my_code as f
-   
-   f.main()
-   
-   return 1
-   
-   $$ LANGUAGE PYTHON;  
-
-   -- Usage:  
-   SELECT write_log();
+	-- Usage:
+	SELECT my_distance(1.0, 2.0, 4.0, 6.0);

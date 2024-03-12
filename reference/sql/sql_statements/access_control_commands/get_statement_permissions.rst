@@ -10,25 +10,19 @@ Use this function to understand the permissions required, before :ref:`granting<
 
 Learn more about the permission system in the :ref:`access control guide<access_control>`.
 
-See also :ref:`grant`, :ref:`create_role`.
 
-Permissions
-=============
-
-No special permissions are required to run ``GET_STATEMENT_PERMISSIONS``.
 
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
    get_statement_permissions_statement ::=
        SELECT GET_STATEMENT_PERMISSIONS(query_stmt)
-       ;
    
 
-Parameters
-============
+Parameter
+=========
 
 .. list-table:: 
    :widths: auto
@@ -47,7 +41,7 @@ This utility returns details of the required permissions to run the statement.
 
 If the statement requires no special permissions, the utility returns an empty result set.
 
-.. list-table:: Result columns
+.. list-table::
    :widths: auto
    :header-rows: 1
    
@@ -72,7 +66,7 @@ The following table describes the supported permissions:
      - Login permissions allows a role to be a user and login to a database
    * - ``CREATE FUNCTION``
      - Database
-     - Allows a user to :ref:`create a Python UDF<create_function>`
+     - Allows a user to :ref:`create UDFs<create_function>`
    * - ``SUPERUSER``
      - Cluster, Database, Schema
      - The most privileged role, with full control over a cluster, database, or schema
@@ -111,10 +105,9 @@ The following table describes the supported permissions:
 Examples
 ===========
 
-Getting permission details for a simple statement
-----------------------------------------------------
+Getting permission details for a simple statement:
 
-.. code-block:: sql
+.. code-block:: postgres
    
    SELECT GET_STATEMENT_PERMISSIONS('SELECT * from nba');
 
@@ -123,12 +116,11 @@ Getting permission details for a simple statement
    SELECT          | table       | master.public.nba
    USAGE           | schema      | master.public
 
-Getting permission details for a DDL statement
-----------------------------------------------------
+Getting permission details for a DDL statement:
 
 .. tip:: Use dollar quoting (``$$``) to avoid escaping a statement
 
-.. code-block:: sql
+.. code-block:: postgres
    
    SELECT GET_STATEMENT_PERMISSIONS($$ALTER TABLE nba RENAME COLUMN "Weight" TO "Mass"$$);
    
@@ -136,3 +128,10 @@ Getting permission details for a DDL statement
    ----------------+-------------+-------------------
    DDL             | table       | master.public.nba
    USAGE           | schema      | master.public
+
+Permissions
+=============
+
+No special permissions are required to run ``GET_STATEMENT_PERMISSIONS``.
+
+For more information, see :ref:`grant`, :ref:`create_role`

@@ -137,7 +137,7 @@ The following table describes the supported permissions:
      - Login permissions allows a role to be a user and login to a database
    * - ``CREATE FUNCTION``
      - Database
-     - Allows a user to :ref:`create a Python UDF<create_function>`
+     - Allows a user to :ref:`create UDFs<create_function>`
    * - ``SUPERUSER``
      - Cluster, Database, Schema
      - The most privileged role, with full control over a cluster, database, or schema
@@ -179,9 +179,6 @@ Examples
 ===========
 This section includes the following examples:
 
-.. contents:: 
-   :local:
-   :depth: 1
 
 Creating a User Role with Log-in Permissions
 ----------------------------------------------
