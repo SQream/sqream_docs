@@ -25,12 +25,8 @@ Prerequisites
 The SQream JDBC driver requires Java 1.8 or newer, and SQream recommends using Oracle Java or OpenJDK.:
 
 * **Oracle Java** - Download and install `Java 8 <https://www.java.com/en/download/manual.jsp>`_ from Oracle for your platform.
-
-   ::
    
 * **OpenJDK** - Install `OpenJDK <https://openjdk.java.net/install/>`_
-
-   ::
    
 * **Windows** - SQream recommends installing `Zulu 8 <https://www.azul.com/downloads/zulu-community/?&version=java-8-lts&architecture=x86-64-bit&package=jdk>`_
 
