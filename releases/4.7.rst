@@ -35,7 +35,11 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
-Single Sign-On
+► Sing in to SQreamDB Acceleration Studio using your universal :ref:`Single Sign-On (SSO)<sso>` provider authentication. 
+
+► The ``clientReconnectionTimeout`` configuration flag is now classified as a cluster configuration flag. :ref:`Cluster flags<current_method_configuration_levels>`, as opposed to session flags, apply to your entire cluster and are persistent; meaning that once configured with a certain value, the value you set is retained even after the system is restarted or shut down.  
+
+The ``clientReconnectionTimeout`` configuration flag has been reclassified as a cluster configuration flag. Unlike session flags, cluster flags apply to the entire cluster and persist across system restarts or shutdowns, retaining the configured value. Learn more about :ref:`SQreamDB configuration flags<current_method_configuration_levels>`
 
 
 Known Issues
