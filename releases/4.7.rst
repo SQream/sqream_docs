@@ -37,9 +37,13 @@ New Features and Enhancements
 
 ► Sing in to SQreamDB Acceleration Studio using your universal :ref:`Single Sign-On (SSO)<sso>` provider authentication. 
 
-► The ``clientReconnectionTimeout`` configuration flag is now classified as a cluster configuration flag. :ref:`Cluster flags<current_method_configuration_levels>`, as opposed to session flags, apply to your entire cluster and are persistent; meaning that once configured with a certain value, the value you set is retained even after the system is restarted or shut down.  
+► The ``clientReconnectionTimeout`` configuration flag has been reclassified as a cluster configuration flag. Unlike session flags, cluster flags apply to the entire cluster and persist across system restarts or shutdowns, retaining the configured value. Learn more about :ref:`SQreamDB configuration flags<current_method_configuration_levels>`
 
-The ``clientReconnectionTimeout`` configuration flag has been reclassified as a cluster configuration flag. Unlike session flags, cluster flags apply to the entire cluster and persist across system restarts or shutdowns, retaining the configured value. Learn more about :ref:`SQreamDB configuration flags<current_method_configuration_levels>`
+► JDBC enhancements have been implemented to facilitate the retrieval of the record count for the updated number of rows during ``INSERT`` and ``DELETE`` operations when connecting to a third-party platform via JDBC. Use the SQreamDB JDBC connector as usual; the sole distinction is in the ability to now observe the updated number of rows.
+
+► Multi-platform CLI 
+
+
 
 
 Known Issues
@@ -61,7 +65,7 @@ Version 4.7 resolved Issues
 +--------------------+---------------------------------------------------------------------------------------------------------------------+
 | SQ-16038           | Fixed ``CREATE TABLE.. LIKE`` permission heritage issue                                                             |
 +--------------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-15690           |                                                                                                                     |
+| SQ-15690           | **Not fixed yet** - JDBC connector connectivity issue resulting in stuck queries                                    |
 +--------------------+---------------------------------------------------------------------------------------------------------------------+
 
 

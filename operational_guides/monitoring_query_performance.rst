@@ -5,7 +5,7 @@ Monitoring Query Performance
 ****************************
 
 When analyzing options for query tuning, the first step is to analyze the query plan and execution. 
-The query plan and execution details explain how SQream DB processes a query and where time is spent.
+The query plan and execution details explain how SQreamDB processes a query and where time is spent.
 This document details how to analyze query performance with execution plans.
 This guide focuses specifically on identifying bottlenecks and possible optimization techniques to improve query performance.
 Performance tuning options for each query are different. You should adapt the recommendations and tips for your own workloads.
@@ -19,7 +19,7 @@ See also our :ref:`sql_best_practices` guide for more information about data loa
 Setting Up the System for Monitoring
 ====================================
 
-By default, SQream DB logs execution details for every statement that runs for more than 60 seconds.
+By default, SQreamDB logs execution details for every statement that runs for more than 60 seconds.
 If you want to see the execution details for a currently running statement, see :ref:`using_show_node_info` below.
 
 Adjusting the Logging Frequency
@@ -28,7 +28,7 @@ Adjusting the Logging Frequency
 To adjust the frequency of logging for statements, you may want to reduce the interval from 60 seconds down to, 
 say, 5 or 10 seconds. Modify the configuration files and set the ``nodeInfoLoggingSec`` parameter as you see fit:
 
-.. code-block::  sql
+.. code-block::  console
 
    :emphasize-lines: 7
    
@@ -43,7 +43,7 @@ say, 5 or 10 seconds. Modify the configuration files and set the ``nodeInfoLoggi
       "server":{ 
       }
    }
-After restarting the SQream DB cluster, the execution plan details will be logged to the :ref:`standard SQream DB logs directory<logging>`, as a message of type ``200``.
+After restarting the SQreamDB cluster, the execution plan details will be logged to the :ref:`standard SQreamDB logs directory<logging>`, as a message of type ``200``.
 You can see these messages with a text viewer or with queries on the log :ref:`foreign_tables`.
 
 Reading Execution Plans with a Foreign Table
@@ -51,7 +51,7 @@ Reading Execution Plans with a Foreign Table
 
 First, create a foreign table for the logs
 
-.. code-block:: sql
+.. code-block:: postgres
 
    CREATE FOREIGN TABLE logs 
    (
@@ -81,7 +81,7 @@ First, create a foreign table for the logs
 Once you've defined the foreign table, you can run queries to observe the previously logged execution plans.
 This is recommended over looking at the raw logs.
 
-.. code-block:: sql
+.. code-block:: postgres
 
    t=> SELECT message
    .     FROM logs
@@ -121,7 +121,7 @@ To inspect a currently running statement, execute the ``show_node_info`` utility
 
 In this example, we inspect a statement with statement ID of 176. The command looks like this:
 
-.. code-block:: sql
+.. code-block:: postgres
    
    t=> SELECT SHOW_NODE_INFO(176);
    stmt_id | node_id | node_type          | rows | chunks | avg_rows_in_chunk | time                | parent_node_id | read | write | comment    | timeSum
@@ -323,7 +323,7 @@ In the following examples you will learn how to identify and solve some common i
 Spooling to Disk
 ----------------
 
-When there is not enough RAM to process a statement, SQream DB will spill over data to the ``temp`` folder in the storage disk.
+When there is not enough RAM to process a statement, SQreamDB will spill over data to the ``temp`` folder in the storage disk.
 While this ensures that a statement can always finish processing, it can slow down the processing significantly.
 It's worth identifying these statements, to figure out if the cluster is configured correctly, as well as potentially reduce
 the statement size. 
@@ -339,7 +339,7 @@ Identifying the Offending Nodes
      
    For example, a query from the TPC-H benchmark:
 
-   .. code-block:: sql
+   .. code-block:: postgres
       
       SELECT o_year,
              SUM(CASE WHEN nation = 'BRAZIL' THEN volume ELSE 0 END) / SUM(volume) AS mkt_share
@@ -365,7 +365,7 @@ Identifying the Offending Nodes
    
    The execution below has been shortened, but note the highlighted rows for ``LoopJoin``:
    
-   .. code-block:: sql
+   .. code-block:: postgres
    
       :emphasize-lines: 33,35,37,39
    
@@ -410,7 +410,7 @@ Identifying the Offending Nodes
        : 150,LoopJoin            ,182369485,10,18236948,2020-09-04 18:31:47,149,12860MB,12860MB,inner,23.62
        [...]
        : 199,ReadTable           ,20000000,1,20000000,2020-09-04 18:30:33,198,0MB,,public.part,0.83
-   Because of the relatively low amount of RAM in the machine and because the data set is rather large at around 10TB, SQream DB needs to spool.  
+   Because of the relatively low amount of RAM in the machine and because the data set is rather large at around 10TB, SQreamDB needs to spool.  
    
    The total spool used by this query is around 20GB (1915MB + 2191MB + 3064MB + 12860MB).
 
@@ -419,7 +419,7 @@ Common Solutions for Reducing Spool
 
 * 
    Increase the amount of spool memory available for the workers, as a proportion of the maximum statement memory.
-   When the amount of spool memory is increased, SQream DB may not need to write to disk.
+   When the amount of spool memory is increased, SQreamDB may not need to write to disk.
    
    This setting is called ``spoolMemoryGB``. Refer to the :ref:`configuration` guide.
 * 
@@ -440,7 +440,7 @@ Identifying the Offending Nodes
      
    For example, a modified query from the TPC-H benchmark:
 
-   .. code-block:: sql
+   .. code-block:: postgres
       
       SELECT s.*,
              l.*,
@@ -469,7 +469,7 @@ Identifying the Offending Nodes
    
    The execution below has been shortened, but note the highlighted rows for ``DeferredGather``:
    
-   .. code-block:: sql
+   .. code-block:: postgres
    
       :emphasize-lines: 7,9,11
    
@@ -493,7 +493,7 @@ Identifying the Offending Nodes
 #. Modify the statement to see the difference
    Altering the select clause to be more restrictive will reduce the deferred gather time back to a few milliseconds.
    
-   .. code-block:: sql
+   .. code-block:: postgres
       
       SELECT DATEPART(year, o_orderdate) AS o_year,
              l_extendedprice * (1 - l_discount / 100.0) as volume,
@@ -509,8 +509,8 @@ Common Solutions for Reducing Gather Time
 Inefficient Filtering
 ---------------------
 
-When running statements, SQream DB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
-If statements do not include efficient filtering, SQream DB will read a lot of data off disk.
+When running statements, SQreamDB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
+If statements do not include efficient filtering, SQreamDB will read a lot of data off disk.
 In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line,
 it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
 
@@ -526,7 +526,7 @@ For example:
    In this example, we execute a modified query from the TPC-H benchmark.
    Our ``lineitem`` table contains 600,037,902 rows.
 
-   .. code-block:: sql
+   .. code-block:: postgres
       
       SELECT o_year,
              SUM(CASE WHEN nation = 'BRAZIL' THEN volume ELSE 0 END) / SUM(volume) AS mkt_share
@@ -553,7 +553,7 @@ For example:
    
    The execution below has been shortened, but note the highlighted rows for ``ReadTable`` and ``Filter``:
    
-   .. code-block:: sql
+   .. code-block:: postgres
    
       :linenos:
       :emphasize-lines: 9,17,19,27
@@ -597,9 +597,9 @@ For example:
       of the data, but the entire table was read. However, this table is small enough that we can ignore it.
    
 #. Modify the statement to see the difference
-   Altering the statement to have a ``WHERE`` condition on the clustered ``l_orderkey`` column of the ``lineitem`` table will help SQream DB skip reading the data.
+   Altering the statement to have a ``WHERE`` condition on the clustered ``l_orderkey`` column of the ``lineitem`` table will help SQreamDB skip reading the data.
    
-   .. code-block:: sql
+   .. code-block:: postgres
    
       :emphasize-lines: 15
       
@@ -623,7 +623,7 @@ For example:
       GROUP BY o_year
       ORDER BY o_year;
 
-   .. code-block:: sql
+   .. code-block:: postgres
    
       :linenos:
       :emphasize-lines: 5,13
@@ -665,7 +665,7 @@ Identifying the Situation
 When a join is inefficient, you may note that a query spends a lot of time on the ``Join`` node.
 For example, consider these two table structures:
    
-.. code-block:: sql
+.. code-block:: postgres
 
    CREATE TABLE t_a 
    (
@@ -687,7 +687,7 @@ For example, consider these two table structures:
      
    In this example, we will join ``t_a.fk`` with ``t_b.id``, both of which are ``TEXT(50)``.
    
-   .. code-block:: sql
+   .. code-block:: postgres
       
       SELECT AVG(t_b.j :: BIGINT),
              t_a.country_code
@@ -702,7 +702,7 @@ For example, consider these two table structures:
    The ``Join`` node is by far the most time-consuming part of this statement - clocking in at 69.7 seconds
    joining 1.5 billion records.
    
-   .. code-block:: sql
+   .. code-block:: postgres
    
       :linenos:
       :emphasize-lines: 8
@@ -733,7 +733,7 @@ Improving Query Performance
    
    For example:
    
-   .. code-block:: sql
+   .. code-block:: postgres
       
 	SELECT AVG(t_b.j::BIGINT), t_a.country_code
 	FROM "public"."t_a"
@@ -743,7 +743,7 @@ Improving Query Performance
    The execution below has been shortened, but note the highlighted rows for ``Join``.
    The ``Join`` node went from taking nearly 70 seconds, to just 6.67 seconds for joining 1.5 billion records.
 
-   .. code-block:: sql
+   .. code-block:: postgres
    
       :linenos:
       :emphasize-lines: 8
@@ -768,7 +768,7 @@ Improving Query Performance
 Sorting on big ``TEXT`` fields
 ------------------------------
 
-In general, SQream DB automatically inserts a ``Sort`` node which arranges the data prior to reductions and aggregations.
+In general, SQreamDB automatically inserts a ``Sort`` node which arranges the data prior to reductions and aggregations.
 When running a ``GROUP BY`` on large ``TEXT`` fields, you may see nodes for ``Sort`` and ``Reduce`` taking a long time.
 
 Identifying the Situation
@@ -783,7 +783,7 @@ For example:
    
    Our ``t_inefficient`` table contains 60,000,000 rows, and the structure is simple, but with an oversized ``country_code`` column:
    
-   .. code-block:: sql
+   .. code-block:: postgres
    
       :emphasize-lines: 5
    
@@ -798,7 +798,7 @@ For example:
    
    We will run a query, and inspect it's execution details:
    
-   .. code-block:: psql
+   .. code-block:: postgres
       
       t=> SELECT country_code,
       .          SUM(amt)
@@ -815,7 +815,7 @@ For example:
       [...]
       
    
-   .. code-block:: sql
+   .. code-block:: postgres
    
       :emphasize-lines: 8,9
       
@@ -837,7 +837,7 @@ For example:
 
 #. We can look to see if there's any shrinking we can do on the ``GROUP BY`` key
    
-   .. code-block:: sql
+   .. code-block:: postgres
       
       t=> SELECT MAX(LEN(country_code)) FROM t_inefficient;
       max
@@ -847,7 +847,7 @@ For example:
 #. 
    We can recreate the table with a more restrictive ``TEXT(3)``, and can examine the difference in performance:
    
-   .. code-block:: sql
+   .. code-block:: postgres
    
       t=> CREATE TABLE t_efficient 
       .     AS SELECT i,
@@ -888,11 +888,11 @@ High Selectivity Data
 ---------------------
 
 Selectivity is the ratio of cardinality to the number of records of a chunk. We define selectivity as :math:`\frac{\text{Distinct values}}{\text{Total number of records in a chunk}}`
-SQream DB has a hint called ``HIGH_SELECTIVITY``, which is a function you can wrap a condition in.
-The hint signals to SQream DB that the result of the condition will be very sparse, and that it should attempt to rechunk
+SQreamDB has a hint called ``HIGH_SELECTIVITY``, which is a function you can wrap a condition in.
+The hint signals to SQreamDB that the result of the condition will be very sparse, and that it should attempt to rechunk
 the results into fewer, fuller chunks.
 .. note::
-   SQream DB doesn't do this automatically because it adds a significant overhead on naturally ordered and
+   SQreamDB doesn't do this automatically because it adds a significant overhead on naturally ordered and
    well-clustered data, which is the more common scenario.
 
 Identifying the Situation
@@ -901,7 +901,7 @@ Identifying the Situation
 This is easily identifiable - when the amount of average of rows in a chunk is small, following a ``Filter`` operation.
 Consider this execution plan:
 
-.. code-block:: sql
+.. code-block:: postgres
    
    t=> select show_node_info(30);
    stmt_id | node_id | node_type         | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment    | timeSum
@@ -935,7 +935,7 @@ In this case, we're also interested in the number of chunks produced by these no
 
 Consider this execution plan:
 
-.. code-block:: sql
+.. code-block:: postgres
 
    :emphasize-lines: 6,11
    
@@ -964,12 +964,12 @@ All of these rows could fit in one single chunk, instead of spanning 74 rather s
 Improving Join Performance when Data is Sparse
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can tell SQream DB to reduce the amount of chunks involved, if you know that the filter is going to be quite
+You can tell SQreamDB to reduce the amount of chunks involved, if you know that the filter is going to be quite
 agressive by using the :ref:`HIGH_SELECTIVITY<high_selectivity>` hint described :ref:`above<high_selectivity_data_opt>`.
 This forces the compiler to rechunk the data into fewer chunks.
-To tell SQream DB to rechunk the data, wrap a condition (or several) in the ``HIGH_SELECTIVITY`` hint:
+To tell SQreamDB to rechunk the data, wrap a condition (or several) in the ``HIGH_SELECTIVITY`` hint:
 
-.. code-block:: sql
+.. code-block:: postgres
 
    :emphasize-lines: 13
    
@@ -1009,7 +1009,7 @@ Always prefer to join the smallest tables first.
 Changing the join order can reduce the query runtime significantly. In the examples below, we reduce the time
 from 27.3 seconds to just 6.4 seconds.
 
-.. code-block:: sql
+.. code-block:: postgres
 
    :caption: Original query
    
@@ -1029,7 +1029,7 @@ from 27.3 seconds to just 6.4 seconds.
          AND   l_shipdate <= dateadd(DAY,122,'1994-01-01')
    GROUP BY c_nationkey
 
-.. code-block:: sql
+.. code-block:: postgres
 
    :caption: Modified query with improved join order
    

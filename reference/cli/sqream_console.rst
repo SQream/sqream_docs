@@ -1,10 +1,10 @@
 .. _sqream_console_cli_reference:
 
 *********************************
-sqream Linux console
+SqreamDB Console
 *********************************
 
-``sqream-console`` is an interactive shell designed to help manage a dockerized SQream DB installation.
+``sqream-console`` is an interactive shell designed to help manage a dockerized SQreamDB installation.
 
 The console itself is a dockerized application.
 
@@ -15,7 +15,7 @@ The console itself is a dockerized application.
 Starting the console
 ======================
 
-``sqream-console`` can be found in your SQream DB installation, under the name ``sqream-console``.
+``sqream-console`` can be found in your SQreamDB installation, under the name ``sqream-console``.
 
 Start the console by executing it from the shell
 

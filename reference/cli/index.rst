@@ -49,6 +49,7 @@ This topic contains the reference for these programs, as well as flags and confi
    
    metadata_server
    sqreamd
+   multi_platform_cli
    sqream_console
    server_picker
    sqream_storage
