@@ -12,6 +12,11 @@ After creating a second ``SUPERUSER`` role, remove or change the default credent
 
 No database user should ever use the default ``SUPERUSER`` role in a production environment.
 
+Creating a ``CLUSTERADMIN``
+---------------------------
+
+Since there's no out-of-the-box ``CLUSTERADMIN``, it is recommended that upon deployment you grant ``CLUSTERADMIN`` permissions to at least one role. With that said, it is best practice to limit ``CLUSTERADMIN`` permissions to a selected number of roles.  
+
 Create distinct user roles
 --------------------------
 
@@ -26,20 +31,9 @@ Limit ``SUPERUSER`` access
 
 Limit users who have the ``SUPERUSER`` role.
 
-A superuser role bypasses all permissions checks. Only system administrators should have ``SUPERUSER`` roles. See our :ref:`access_control` guide for more information.
+A superuser role bypasses all permission checks. Only system administrators should have ``SUPERUSER`` roles. See our :ref:`access_control` guide for more information.
 
-Use TLS/SSL when possible
--------------------------
 
-BLUE's protocol implements client/server TLS security (even though it is called SSL).
-
-All BLUE connectors and drivers support transport encryption. Ensure that each connection uses SSL and the correct access port for the BLUE cluster:
-
-* The load balancer (``server_picker``) is often started with the secure port at an offset of 1 from the original port (e.g. port 3108 for the unsecured connection and port 3109 for the secured connection).
-
-* A BLUE worker is often started with the secure port enabled at an offset of 100 from the original port (e.g. port 5000 for the unsecured connection and port 5100 for the secured connection).
-
-Refer to each :ref:`client driver<client_drivers>` for instructions on enabling TLS/SSL.
 
 
 
