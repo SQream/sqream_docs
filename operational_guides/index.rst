@@ -17,5 +17,4 @@ This section summarizes the following operational guides:
    foreign_tables
    monitoring_query_performance
    security
-   seeing_system_objects_as_ddl
    optimization_best_practices
