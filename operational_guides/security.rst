@@ -15,7 +15,7 @@ No database user should ever use the default ``SUPERUSER`` role in a production 
 Creating a ``CLUSTERADMIN``
 ---------------------------
 
-Since there's no out-of-the-box ``CLUSTERADMIN``, it is recommended that upon deployment you grant ``CLUSTERADMIN`` permissions to at least one role. With that said, it is best practice to limit ``CLUSTERADMIN`` permissions to a selected number of roles.  
+Since there's no out-of-the-box ``CLUSTERADMIN``, it is advisable that during the initial deployment of BLUE, you assign ``CLUSTERADMIN`` permissions to at least one role. With that said, it is best practice to restrict ``CLUSTERADMIN`` permissions to a specific set of roles.
 
 Create distinct user roles
 --------------------------
