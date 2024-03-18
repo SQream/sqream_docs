@@ -177,7 +177,7 @@ The database object functions are used to perform the following:
    * - Drop table statement
      - Generates a ``DROP`` statement for the selected object in the editing area.
    * - Table DDL
-     - Generates a DDL statement for the selected object in the editing area. To get the entire database DDL, click the |icon-ddl-edit| icon next to the database name in the tree root. See :ref:`Seeing System Objects as DDL <seeing_system_objects_as_ddl>`.
+     - Generates a DDL statement for the selected object in the editing area. To get the entire database DDL, click the |icon-ddl-edit| icon next to the database name in the tree root.
    * - DDL Optimizer
      - The :ref:`DDL Optimizer<executing_statements_and_running_queries_from_the_editor>`  lets you analyze database tables and recommends possible optimizations.
 
