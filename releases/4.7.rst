@@ -61,14 +61,14 @@ New Features and Enhancements
   .. code-block:: json 
 
 	{
-	"logPath": "home/logs/my_logs" 
+	"logPath": "<home/logs/my_logs>" 
 	}
 	
 * Using the CLI:
 
   .. code-block:: console
 
-	./metadata_server --log_path=home/logs/my_logs
+	./metadata_server --log_path=<home/logs/my_logs>
 	
 :ref:`server_picker_cli_reference`
 
@@ -76,7 +76,7 @@ New Features and Enhancements
 
   .. code-block:: console
 
-	./server_picker --log_path=home/logs/my_logs
+	./server_picker --log_path=<home/logs/my_logs>
 
 :ref:`Worker<current_method_modification_methods>`
 
@@ -85,7 +85,7 @@ New Features and Enhancements
   .. code-block:: json
 
 	{
-	"DefaultPathToLogs": "home/logs/my_logs"
+	"DefaultPathToLogs": "<home/logs/my_logs>"
 	}
 
 

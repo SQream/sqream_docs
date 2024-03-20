@@ -25,7 +25,7 @@ Command Line Arguments
      - ``3105``
      - The metadata server listening port	 
    * - ``--log_path``
-     - ``./metadata_server_log``
+     - ``./metadata_server_logs``
      - The ``metadata_server`` log file output contains information about the activities and events related to the metadata server of a system.
    * - ``--log4_config``
      - None
@@ -39,6 +39,7 @@ Command Line Arguments
    * - ``--help``
      - None
      - Used to display a help message or documentation for a particular program or command.
+
 	 
 
 Starting metadata server
