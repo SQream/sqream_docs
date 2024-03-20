@@ -1,15 +1,15 @@
 .. _metadata_server_cli_reference:
 
-*************************
+***************
 metadata_server
-*************************
+***************
 
 SQream DB's cluster manager/coordinator is called ``metadata_server``.
 
 In general, you should not need to run ``metadata_server`` manually, but it is sometimes useful for testing. 
 
 Command Line Arguments
-==================================
+======================
 
 .. list-table:: 
    :widths: 2 3 5 
@@ -42,10 +42,10 @@ Command Line Arguments
 	 
 
 Starting metadata server
-============================
+========================
 
 Starting temporarily
----------------------
+--------------------
 
 .. code-block:: console
 
@@ -59,7 +59,7 @@ Using ``nohup`` and ``&`` sends metadata server to run in the background.
    * The default listening port is 3105
 
 Starting temporarily with non-default port
-------------------------------------------------
+------------------------------------------
 
 To use a non-default port, specify the logging path as well.
 
@@ -75,7 +75,7 @@ Using ``nohup`` and ``&`` sends metadata server to run in the background.
    * The listening port is 9241
    
 Stopping metadata server
-----------------------------
+------------------------
 
 To stop metadata server:
 

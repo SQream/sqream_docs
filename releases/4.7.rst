@@ -4,7 +4,7 @@
 Release Notes 4.7
 *****************
 
-The 4.7 release notes were released on XXXXX, 2024
+The 4.7 release notes were released on March XX, 2024
 
 .. contents:: 
    :local:
@@ -51,6 +51,43 @@ New Features and Enhancements
 * :ref:`is_view_exists`
 
 ► Multi-platform CLI 
+
+► You now have the option to choose the location for your ``metadata_server``, ``server_picker``, and Worker log files. In previous SQreamDB versions, the location of your log files was predetermined and hard-coded.
+
+:ref:`metadata_server_cli_reference`
+
+* Using the ``metadata_server_config.json`` file:
+
+  .. code-block:: json 
+
+	{
+	"logPath": "home/logs/my_logs" 
+	}
+	
+* Using the CLI:
+
+  .. code-block:: console
+
+	./metadata_server --log_path=home/logs/my_logs
+	
+:ref:`server_picker_cli_reference`
+
+  Using the CLI:
+
+  .. code-block:: console
+
+	./server_picker --log_path=home/logs/my_logs
+
+:ref:`Worker<current_method_modification_methods>`
+
+  Using the ``sqream_config_legacy.json``:
+
+  .. code-block:: json
+
+	{
+	"DefaultPathToLogs": "home/logs/my_logs"
+	}
+
 
 
 

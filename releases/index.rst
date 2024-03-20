@@ -4,6 +4,11 @@
 Release Notes
 *************
 
+:ref:`Version 4.7 - March XX, 2024<4.7>`
+
+* 
+* 
+
 :ref:`Version 4.6 - February 19, 2024<4.6>`
 
 * Execute a single SQL statement across your SQreamDB cluster using the new :ref:`Cross-Database<cross_database_query>` syntax.
