@@ -43,6 +43,13 @@ New Features and Enhancements
 
 ► SQreamDB operates with utmost efficiency when processing tables containing large data chunks. Introducing a new :ref:`rechunk` utility function, it simplifies the management of tables with small data chunks. This feature enables users to merge small data chunks into larger ones and simultaneously eliminating any deleted records present.
 
+► The ``TOP`` clause can now take a **subtraction** arithmetic operator when used in a :ref:`select` statement. 
+
+► Two new conditional functions that shorten complex query runtime by checking for the existence of tables and views within the specified schema:
+
+* :ref:`is_table_exists`
+* :ref:`is_view_exists`
+
 ► Multi-platform CLI 
 
 

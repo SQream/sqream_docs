@@ -66,6 +66,10 @@ The following table shows the **conditionals** functions:
      - Test a ``TEXT`` for ASCII-only characters
    * - :ref:`is_null`
      - Check for ``NULL`` [ or non-``NULL`` ] values
+   * - :ref:`is_table_exists`
+     - Checks if the mentioned table exists in the mentioned schema 
+   * - :ref:`is_view_exists`
+     - Checks if the mentioned view exists in the mentioned schema 
 
 Conversion
 ^^^^^^^^^^^^

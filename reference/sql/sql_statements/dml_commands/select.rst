@@ -12,6 +12,7 @@ When used alone, the statement is known as a "``SELECT`` statement" or "``SELECT
 
 .. contents:: In this topic:
    :local:
+   :depth: 1
 
 Permissions
 ===========
@@ -111,6 +112,8 @@ Elements
      - Restricts the operation to only retrieve the first ``num_rows`` rows.
    * - ``UNION ALL``
      - Concatenates the results of two queries together. ``UNION ALL`` does not remove duplicates.
+   * - ``TOP``
+     - Limits the number of rows returned by a query. The ``TOP`` clause takes a numeric expression and a **subtraction** :ref:`arithmetic operator<arithmetic_operators>` ``TOP(a-b)``.  
 
 Notes
 =====
