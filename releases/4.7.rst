@@ -52,6 +52,8 @@ New Features and Enhancements
 
 ► Multi-platform CLI 
 
+► 
+
 ► You now have the option to choose the location for your ``metadata_server``, ``server_picker``, and Worker log files. In previous SQreamDB versions, the location of your log files was predetermined and hard-coded.
 
 :ref:`metadata_server_cli_reference`

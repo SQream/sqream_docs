@@ -11,7 +11,7 @@ Syntax
 
 .. code-block:: postgres
 
-   SELECT is_view_exists(<'schema_name'>, <'table_name'>)
+   SELECT is_view_exists(<'schema_name'>, <'view_name'>)
    
 
 Arguments
