@@ -54,6 +54,10 @@ New Features and Enhancements
 
 ► 
 
+Flag: ``ldapGetAttributeList`` - Declare in a list format which LDAP attributes are required to be seen for each role in MD.
+
+Utility function: ``SELECT ldap_get_attr()`` - Shows required attributes mentioned in ``ldapGetAttributeList`` per MD role.
+
 ► You now have the option to choose the location for your ``metadata_server``, ``server_picker``, and Worker log files. In previous SQreamDB versions, the location of your log files was predetermined and hard-coded.
 
 :ref:`metadata_server_cli_reference`
