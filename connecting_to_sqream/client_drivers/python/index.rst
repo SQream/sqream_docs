@@ -181,7 +181,7 @@ Creating a Standard Connection
                                   database='<database_name>')
                     
    engine = sa.create_engine(engine_url,connect_args={"clustered": False, "service": "<service_name>"})
-   session = orm.sessionmaker(bind=engine)()
+
 				 
 
 Pulling a Table into Pandas
