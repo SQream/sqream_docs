@@ -33,14 +33,14 @@ Basic Method
 
 A traditional approach to authentication in which the user provides a username and password combination to authenticate with the LDAP server. In this approach, all users are given access to SQream.
 
-Flag Attributes
-^^^^^^^^^^^^^^^
+Flags
+^^^^^
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
-   * - Attribute
+   * - Flag
      - Description
    * - ``authenticationMethod``
      - Configure an authentication method: ``sqream`` or ``ldap``. To configure LDAP authentication, choose ``ldap``
@@ -63,37 +63,37 @@ Basic Method Configuration
 
 Only roles with admin privileges or higher may enable LDAP Authentication. 
 
-1. Set the ``authenticationMethod`` attribute:
+1. Set the ``authenticationMethod`` flag:
 
    .. code-block:: postgres
 
 	ALTER SYSTEM SET authenticationMethod = 'ldap';
 	
-2. Set the ``ldapIpAddress`` attribute: 
+2. Set the ``ldapIpAddress`` flag: 
 
    .. code-block:: postgres
 
 	ALTER SYSTEM SET ldapIpAddress = '<ldaps://...>';
 	
-3. Set the ``ldapPrefix`` attribute:
+3. Set the ``ldapPrefix`` flag:
 
    .. code-block:: postgres
 
 	ALTER SYSTEM SET ldapPrefix = '<DN_binding_string_prefix>=';
 	
-4. Set the ``ldapSuffix`` attribute:
+4. Set the ``ldapSuffix`` flag:
 
    .. code-block:: postgres
 
 	ALTER SYSTEM SET ldapSuffix  = '<DN_binding_string_suffix>';
 
-5.  To set the ``ldapPort`` attribute (Optional), run:
+5.  To set the ``ldapPort`` flag (optional), run:
 
     .. code-block:: postgres
 
 	ALTER SYSTEM SET ldapPort = <port_number>
 	
-6. To set the ``ldapConnTimeoutSec`` attribute (Optional), run:
+6. To set the ``ldapConnTimeoutSec`` flag (optional), run:
 
    .. code-block:: postgres
 
@@ -129,14 +129,14 @@ Advanced Method
 
 This method lets users be grouped into categories. Each category can then be given or denied access to SQreamDB, giving administrators control over access.
 
-Flag Attributes
-^^^^^^^^^^^^^^^
+Flags
+^^^^^
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
-   * - Attribute
+   * - Flag
      - Description
    * - ``authenticationMethod``
      - Configure an authentication method: ``sqream`` or ``ldap``. To configure LDAP authentication, choose ``ldap``
@@ -158,6 +158,8 @@ Flag Attributes
      - Attribute to match against the user name in the search when doing search + bind authentication. If no attribute is specified, ``the uid`` attribute will be used
    * - ``ldapSearchFilter``
      - Filters ``ldapAdvancedMode`` authentication. ``ALTER SYSTEM SET ldapSearchFilter = '(<attribute>=<value>)(<attribute2>=<value2>)(…)';``
+   * - ``ldapGetAttributeList``
+     - Enables you to include LDAP user attributes, as they appear in LDAP, in your SQreamDB metadata. After having set this flag, you may execute the :ref:`ldap_get_attr` utility function which will show you the attribute values associated with each SQreamDB role.
 
 
 Preparing LDAP Users
@@ -201,67 +203,75 @@ Advanced Method Configuration
 
 Only roles with admin privileges and higher may enable LDAP Authentication. 
 
-1. Set the ``authenticationMethod`` attribute:
+1. Set the ``authenticationMethod`` flag:
 
    .. code-block:: postgres
 
 	ALTER SYSTEM SET authenticationMethod = 'ldap';
 
-2. Set the ``ldapAdvancedMode`` attribute:
+2. Set the ``ldapAdvancedMode`` flag:
 
    .. code-block:: postgres
 	
 	ALTER SYSTEM SET ldapAdvancedMode = true;
 
-3. Set the ``ldapIpAddress`` attribute: 
+3. Set the ``ldapIpAddress`` flag: 
 
    .. code-block:: postgres
 
 	ALTER SYSTEM SET ldapIpAddress = '<ldaps://<IpAddress>';
 
-4. Set the ``ldapBindDn`` attribute: 
+4. Set the ``ldapBindDn`` flag: 
 
    .. code-block:: postgres
 
 	ALTER SYSTEM SET ldapBindDn = <binding_user_DN>;
 
-5. Set the ``ldapBindDnPassword`` attribute: 
+5. Set the ``ldapBindDnPassword`` flag: 
 
    .. code-block:: postgres
 
 	ALTER SYSTEM SET ldapBindDnPassword = '<binding_user_password>';
 	
-6. Set the ``ldapBaseDn`` attribute: 
+6. Set the ``ldapBaseDn`` flag: 
 
    .. code-block:: postgres	
 
 	ALTER SYSTEM SET ldapBaseDn = '<search_root_DN>';
 	
-7. Set the ``ldapSearchAttribute`` attribute: 
+7. Set the ``ldapSearchAttribute`` flag: 
 
    .. code-block:: postgres	
 
 	ALTER SYSTEM SET ldapSearchAttribute = '<search_attribute>';
 	
-8. To set the ``ldapSearchFilter`` attribute (Optional), run: 
+8. To set the ``ldapSearchFilter`` flag (optional), run: 
 
    .. code-block:: postgres	
 
-	ALTER SYSTEM SET ldapSearchFilter = '(<attribute>=<value>)(<attribute2>=<value2>)(…)';
+	ALTER SYSTEM SET ldapSearchFilter = '(<attribute>=<value>)(<attribute2>=<value2>)[...]';
 
-9. To set the ``ldapPort`` attribute (Optional), run:
+9. To set the ``ldapPort`` flag (optional), run:
 
    .. code-block:: postgres
 
 	ALTER SYSTEM SET ldapPort = <port_number>
 	
-10. To set the ``ldapConnTimeoutSec`` attribute (Optional), run:
+10. To set the ``ldapConnTimeoutSec`` flag (optional), run:
 
    .. code-block:: postgres
 
 	ALTER SYSTEM SET ldapConnTimeoutSec = <15>;
+	
+11. To set the ``ldapGetAttributeList`` flag (optional), run:
 
-11. Restart all sqreamd servers. 
+   .. code-block:: postgres
+
+	ALTER SYSTEM SET ldapGetAttributeList = <'ldap_attribute1'>,<'ldap_attribute2'>,<'ldap_attribute3'>,[,...];
+	
+   a. To see the LDAP user attributes associated with SQreamDB roles in your metadata, execute the :ref:`ldap_get_attr` utility function.
+
+12. Restart all sqreamd servers. 
 
 Example
 ^^^^^^^

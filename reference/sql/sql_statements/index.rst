@@ -126,7 +126,7 @@ The following table shows the Utility commands:
    * - :ref:`GET DDL<get_ddl>`
      - View the ``CREATE TABLE`` statement for a table
    * - :ref:`GET FUNCTION DDL<get_function_ddl>`
-     - View the ``CREATE FUNCTION`` statement for a UDF	 
+     - View the ``CREATE FUNCTION`` statement for a UDF
    * - :ref:`GET LICENSE INFO<get_license_info>`
      - View a user's license information
    * - :ref:`GPU METRICS<select_gpu_metrics>`
@@ -136,11 +136,13 @@ The following table shows the Utility commands:
    * - :ref:`GET VIEW DDL<get_view_ddl>`
      - View the ``CREATE VIEW`` statement for a view 
    * - :ref:`HEALTH CHECK MONITORING<select_health_check_monitoring>`
-     - Returns system health monitoring logs	 
+     - Returns system health monitoring logs
+   * - :ref:`LDAP GET ATTR<ldap_get_attr>`
+     - Enables you to specify the LDAP attributes you want the SQreamDB role catalog table to show   
    * - :ref:`LIST SAVED QUERIES<list_saved_queries>`
-     - Lists previously saved query names, one per row.
+     - Lists previously saved query names, one per row
    * - :ref:`RECHUNK<rechunk>`
-     -  
+     - Enables you to merge small data chunks into larger ones 
    * - :ref:`RECOMPILE SAVED QUERY<recompile_saved_query>`
      - Recompiles a saved query that has been invalidated due to a schema change
    * - :ref:`RECOMPILE VIEW<recompile_view>`

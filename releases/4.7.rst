@@ -50,13 +50,9 @@ New Features and Enhancements
 * :ref:`is_table_exists`
 * :ref:`is_view_exists`
 
+► A new :ref:`ldap` configuration flag allows including LDAP user attributes in your SQreamDB metadata by associating these attributes with SQreamDB roles.  
+
 ► Multi-platform CLI 
-
-► 
-
-Flag: ``ldapGetAttributeList`` - Declare in a list format which LDAP attributes are required to be seen for each role in MD.
-
-Utility function: ``SELECT ldap_get_attr()`` - Shows required attributes mentioned in ``ldapGetAttributeList`` per MD role.
 
 ► You now have the option to choose the location for your ``metadata_server``, ``server_picker``, and Worker log files. In previous SQreamDB versions, the location of your log files was predetermined and hard-coded.
 
