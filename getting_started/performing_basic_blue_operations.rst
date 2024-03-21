@@ -27,7 +27,7 @@ Creating a Job
 **Before You Begin**
 
 * Python scripts must be Python 3.9.17 compatible. 
-* If you are missing Python libraries, please contact `SQreamDB Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ for assistance.
+* If you are missing Python libraries, please contact BLUE support at `blue_support@sqreamtech.com <blue_support@sqreamtech.com>`_ for assistance.
 * Once you've set up a new job, it may take a few minutes for the job to become available for you to run.
 
 1. In the sidebar go to **Jobs**.

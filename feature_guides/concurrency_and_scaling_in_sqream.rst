@@ -33,4 +33,4 @@ Adding additional RAM to nodes, using more GPU memory, and faster CPUs or storag
 
 Analyzing complex workloads can be challenging. BLUE's experienced customer support has the experience to advise on these matters to ensure the best experience.
 
-Visit `BLUE support portal <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ for additional support.
+Contact BLUE support at `blue_support@sqreamtech.com <blue_support@sqreamtech.com>`_

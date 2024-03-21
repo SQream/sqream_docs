@@ -10,7 +10,7 @@ Gathering Information for BLUE Support
 
 .. what about bug reports
 
-`BLUE Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ is ready to answer any questions, and help solve any issues with BLUE DB.
+Contact BLUE support at `blue_support@sqreamtech.com <blue_support@sqreamtech.com>`_ for any question.
 
 Getting Support and Reporting Bugs
 ==================================

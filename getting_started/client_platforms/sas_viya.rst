@@ -20,7 +20,7 @@ The SQream JDBC driver is required for establishing a connection between SAS Viy
 
 **To install the JDBC driver:**
 
-#. Download the `JDBC driver <https://docs.sqream.com/en/v2022.1/connecting_to_sqream/client_drivers/jdbc/index.html>`_.
+#. Download the :ref:`JDBC driver<java_jdbc>`.
 
 
 #. Unzip the JDBC driver into a location on the SAS Viya server.
@@ -154,7 +154,7 @@ In some cases, SAS Viya cannot locate the SQream JDBC driver, generating the fol
 
 3. Restart SAS Viya.
 
-For more troubleshooting assistance, see the `SQream Support Portal <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
+Contact BLUE support at `blue_support@sqreamtech.com <blue_support@sqreamtech.com>`_
 
 Supporting TEXT
 ~~~~~~~~~~~~~~~
