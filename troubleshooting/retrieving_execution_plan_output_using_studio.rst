@@ -21,7 +21,7 @@ You can retrieve the execution plan output either after the query execution has 
    
 3. Save the execution plan on your local machine.
 
-You can analyze this information using :ref:`monitoring_query_performance` or with assistance from `SQreamDB Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
+You can analyze this information using :ref:`monitoring_query_performance` or with assistance from BLUE support at `blue_support@sqreamtech.com <blue_support@sqreamtech.com>`_
 
 
 

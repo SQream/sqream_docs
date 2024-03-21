@@ -10,5 +10,5 @@ Use the **Search docs** bar, or use the navigation sidebar to find what you're l
 
 If you couldn't find what you're looking for, we're always happy to help. 
 
-Visit the `SQreamDB support portal <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ for additional help.
+Contact BLUE support at `blue_support@sqreamtech.com <blue_support@sqreamtech.com>`_
 
