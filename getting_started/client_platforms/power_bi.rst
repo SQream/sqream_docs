@@ -41,7 +41,7 @@ Installing Power BI Desktop
 
 #. Download and configure your ODBC driver.
 
-   For information about downloading and configuring your ODBC driver, see :ref:`ODBC <odbc>` or contact `SQream Support <https://sqream.atlassian.net/servicedesk/>`_.
+   For information about downloading and configuring your ODBC driver, see :ref:`ODBC <odbc>` or contact BLUE support at `blue_support@sqreamtech.com <blue_support@sqreamtech.com>`_
    
 #. Navigate to **Windows** > **Documents** and create a folder named **Power BI Desktop** with a subfolder named **Custom Connectors**.
 
