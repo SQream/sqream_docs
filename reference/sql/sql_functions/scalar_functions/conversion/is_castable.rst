@@ -22,12 +22,12 @@ Syntax
 	    | BIGINT
 	    | REAL
 	    | DOUBLE
-		| FLOAT
+	    | FLOAT
 	    | TEXT
 	    | NUMERIC
 	    | DATE
 	    | DATETIME
-		| ARRAY
+	    | ARRAY
 		, BOOL 
 	      | TINYINT
 	      | SMALLINT
@@ -35,12 +35,12 @@ Syntax
 	      | BIGINT
 	      | REAL
 	      | DOUBLE
-		  | FLOAT
+	      | FLOAT
 	      | TEXT
 	      | NUMERIC
 	      | DATE
 	      | DATETIME
-		  | ARRAY
+	      | ARRAY
 		) 
 		
 	-- Checking if cast is supported for columns:
@@ -55,12 +55,12 @@ Syntax
 	    | BIGINT
 	    | REAL
 	    | DOUBLE
-		| FLOAT
+	    | FLOAT
 	    | TEXT
 	    | NUMERIC
 	    | DATE
 	    | DATETIME
-		| ARRAY
+	    | ARRAY
 		)
 	FROM 
 	<table_name>;
