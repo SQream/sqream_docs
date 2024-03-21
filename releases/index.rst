@@ -8,6 +8,7 @@ Release Notes
 
 * The ``DESCRIBE SESSION QUERIES`` command now provides the name of the resource pool used with each query execution.
 * With a new filter, you can now choose to concentrate on either user-initiated or system-initiated operations when monitoring your daily workflows through the ``DESCRIBE SESSIONS`` and ``AUDITLOG`` commands.
+* Use the new ``IsCastable`` function to safely check if a cast operation is supported for a given column and data type, providing an alternative within a ``CASE`` statement when an exception occurs.
 
 :ref:`December 2023 <december_2023>`
 

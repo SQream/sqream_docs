@@ -74,6 +74,8 @@ Conversion Functions
      - Converts a ``DATE`` or ``DATETIME`` to a UNIX Timestamp
    * - :ref:`chr`
      - Returns the ASCII character representation of the supplied integer
+   * - :ref:`is_castable`
+     - Checks whether a cast operation is possible or supported for a given column and data type and provides an alternative when there is an exception
 
 Date and Time Functions
 ^^^^^^^^^^^^^^^^^^^^^^^

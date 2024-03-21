@@ -21,3 +21,8 @@ The new ``INITIATED BY`` filter, which facilitates access to information about t
 
 See :ref:`DESCRIBE SESSIONS<describe_sessions>` and :ref:`AUDIT LOG<audit_log>`
 
+Data Types Cast Operation Enhancement
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Safely cast data types with the new :ref:`is_castable` function. This function allows you to check whether a cast operation is possible or supported for a given column and data type and provides an alternative when an exception occurs when used within a CASE statement.
+
