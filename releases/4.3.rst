@@ -62,6 +62,8 @@ Known Issues
 
 * Performance degradation when using ``VARCHAR`` partition key in a :ref:`Window Functions<window_functions>` expression
 
+* In SQreamDB minor versions 4.3.9 and 4.3.10, granting permissions through the Acceleration Studio might result in an error, even though the permission has been successfully granted.
+
 
 Version 4.3 resolved Issues
 ---------------------------
