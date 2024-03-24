@@ -16,14 +16,14 @@ Locking Modes
 BLUE has two kinds of locks:
 
 * 
-   ``exclusive`` - this lock mode prevents the resource from being modified by other statements
+   ``exclusive`` - this lock mode prevents the resource from being modified by other statements.
    
    This lock tells other statements that they'll have to wait in order to change an object.
    
-   DDL operations are always exclusive. They block other DDL operations, and update DML operations (insert).
+   DDL operations are always exclusive. They block other DDL operations, and update DML operations such as ``INSERT``.
 
 * 
-   ``inclusive`` - For insert operations, an inclusive lock is obtained on a specific object. This prevents other statements from obtaining an exclusive lock on the object.
+   ``inclusive`` - For ``INSERT`` operations, an inclusive lock is obtained on a specific object. This prevents other statements from obtaining an exclusive lock on the object.
    
    This lock allows other statements to insert or delete data from a table, but they'll have to wait in order to run DDL.
 
@@ -36,16 +36,16 @@ When are Locks Obtained?
    :stub-columns: 1
 
    * - Operation
-     - :ref:`select`
-     - :ref:`insert`
-     - :ref:`delete`, :ref:`truncate`
+     - :ref:`describe_locks`
+     - :ref:`INSERT`
+     - :ref:`DELETE`, :ref:`TRUNCATE`
      - DDL
-   * - :ref:`select`
+   * - :ref:`describe_locks`
      - Concurrent
      - Concurrent
      - Concurrent
      - Concurrent
-   * - :ref:`delete`
+   * - :ref:`DELETE`
      - Concurrent
      - Concurrent
      - Wait
@@ -64,25 +64,19 @@ Monitoring Locks
 
 Monitoring locks across the cluster can be useful when transaction contention takes place, and statements appear "stuck" while waiting for a previous statement to release locks.
 
-The utility :ref:`show_locks` can be used to see the active locks.
-
-In this example, we create a table based on results (:ref:`create_table_as`), but we are also effectively dropping the previous table (by using ``OR REPLACE`` which also :ref:`drops the table<drop_table>`). Thus, BLUE applies locks during the table creation process to prevent the table from being altered during it's creation.
+The utility :ref:`describe_locks` can be used to see the active locks.
 
 
 .. code-block:: sql
 
-	SELECT SHOW_LOCKS();
+  DESCRIBE_LOCKS();
    
 Output:
 
 .. code-block:: sql
 
-   statement_id | statement_string                                                                                | username | server       | port | locked_object                   | lockmode  | statement_start_time | lock_start_time    
-   -------------+-------------------------------------------------------------------------------------------------+----------+--------------+------+---------------------------------+-----------+----------------------+--------------------
-   287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | database$t                      | Inclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
-   287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | globalpermission$               | Exclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
-   287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | schema$t$public                 | Inclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
-   287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | table$t$public$nba2$Insert      | Exclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
-   287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | table$t$public$nba2$Update      | Exclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
+  statement_id|username|server      |port|locked_object|lock_mode|statement_start_time|lock_start_time     |statement_string                                                                               |
+  ------------+--------+------------+----+-------------+---------+--------------------+--------------------+-----------------------------------------------------------------------------------------------+
+  287         |sqream  |192.168.1.91|5000|database$t   |Inclusive| 2019-12-26 00:03:30| 2019-12-26 00:03:30|CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1;|
 
 For more information on troubleshooting lock related issues, see :ref:`lock_related_issues`.
