@@ -47,15 +47,6 @@ Reproducing an issue consists of understanding:
 
 See the :ref:`reproducible_statement` section ahead for information about collecting a full reproducible example.
 
-Logs
-----
-
-The logs produced by BLUE contain a lot of information that may be useful for debugging.
-
-Look for :ref:`error messages in the log and the offending statements<tracing_errors>`. SQream's support staff are experienced in correlating logs to workloads, and finding possible problems.
-
-See the :ref:`collecting_logs` section ahead for information about collecting a set of logs that can be analyzed by BLUE support.
-
 
 Fix
 ---
@@ -107,35 +98,3 @@ Example
    SELECT EXPORT_REPRODUCIBLE_SAMPLE('/home/rhendricks', 'SELECT * FROM t', $$SELECT "Name", "Team" FROM nba$$);
 
 .. _collecting_logs:
-
-Collecting Logs and Metadata Database
-=====================================
-
-BLUE comes bundled with a data collection utility and an SQL utility intended for collecting logs and additional information that can help BLUE support drill down into possible issues.
-
-See more information in the :ref:`Collect logs from your cluster<collecting_logs2>` section of the :ref:`logging` guide.
-
-Examples
---------
-
-Write an archive to ``/home/rhendricks``, containing log files:
-
-.. code-block:: postgres
-   
-   SELECT REPORT_COLLECTION('/home/rhendricks', 'log')
-   ;
-
-Write an archive to ``/home/rhendricks``, containing log files and metadata database:
-
-.. code-block:: postgres
-   
-   SELECT REPORT_COLLECTION('/home/rhendricks', 'db_and_log')
-   ;
-   
-
-Using the Command Line Utility:
-===============================
-
-.. code-block:: console
-   
-   $ ./bin/report_collection /home/rhendricks/sqream_storage /home/rhendricks db_and_log

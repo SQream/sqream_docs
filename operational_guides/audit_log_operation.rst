@@ -7,6 +7,7 @@ An **Audit Log**, also known as an audit trail, is a record of system events, su
 
 The Audit Log feature can be queried and analyzed using the ``AUDIT_LOG`` command. Some common uses of the auditlog command are viewing executed SQL statements and login and logout events. SQream's default data retention policy is set to one year.
 
-For more information about our data retention policy, please contact a `SQream customer support representative <https://sqream.atlassian.net/servicedesk/customer/portal/2>`_.
+For more information about our data retention policy, please contact BLUE support at `blue_support@sqreamtech.com <blue_support@sqreamtech.com>`_  
+
 
 For more information about the ``AUDIT_LOG`` command, see :ref:`audit_log`.

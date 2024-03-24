@@ -18,3 +18,4 @@ This section summarizes the following operational guides:
    monitoring_query_performance
    security
    optimization_best_practices
+   audit_log_operation
