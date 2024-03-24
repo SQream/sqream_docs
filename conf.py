@@ -76,7 +76,8 @@ html_css_files = [
     'css/custom.css', # Relative to the _static path
 ]
 
-
+# The name of the Pygments (syntax highlighting) style to use.
+pygments_style = 'solarized-light'
 
 
 
