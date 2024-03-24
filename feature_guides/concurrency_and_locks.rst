@@ -67,13 +67,13 @@ Monitoring locks across the cluster can be useful when transaction contention ta
 The utility :ref:`describe_locks` can be used to see the active locks.
 
 
-.. code-block:: sql
+.. code-block:: postgres
 
   DESCRIBE_LOCKS();
    
 Output:
 
-.. code-block:: sql
+.. code-block:: postgres
 
   statement_id|username|server      |port|locked_object|lock_mode|statement_start_time|lock_start_time     |statement_string                                                                               |
   ------------+--------+------------+----+-------------+---------+--------------------+--------------------+-----------------------------------------------------------------------------------------------+
