@@ -196,6 +196,8 @@ Resize may take 10—30 minutes, during which executed queries continue to run.
      - Take advantage of parallelism capabilities such as concurrency, shorter query times and the ability to adjust resource pool sizes to suit various business needs	
  	 
 
+.. _suspending_and_resuming_pools:
+
 Suspending and Resuming Pools
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
