@@ -16,37 +16,36 @@ Slow queries may be the result of various factors, including inefficient query p
 		
 		If all queries are slow, continue to step 2.
 
-	**Step 3: Check that all workers are up (web interface)**
+	**Step 2: Check that all workers are up (web interface)**
 	
 		#. Check the BLUE web interface upper ribbon for inactive Workers. 
          
 		#. If not all Workers are up, ask a ``clusteradmin`` to :ref:`resume suspended Workers<suspending_and_resuming_pools>`.
          
-		If all workers are up, continue to step 4.
+		If all workers are up, continue to step 3.
 
-	**Step 5: Check if the session workload is balanced across all workers**
+	**Step 4: Check for sufficient number of Workers(web interface)**
 
-		#. Run the same query several times and check that it appears across multiple workers (use ``SELECT show_server_status()`` to monitor)
-		#. If some workers have a heavier workload, check the service queue usage. Refer to the :ref:`workload_manager` guide.
+		#. Run the :ref:`describe_pools` command to see if you should reallocate Workers according to each pool workload.
+		#. If you do not have enough Workers, consider :ref:`resizing your cluster<resizing_your_cluster>`. 
          
-		If the workload is balanced, continue to step 6.
+		If the workload is balanced, continue to step 5.
 
-	**Step 6: Check if there are long running statements**
+	**Step 5: Check if there are long running statements**
 
-		#. Identify any currently running statements using the :ref:`describe_session_queries` utility command. 
-		#. If there are more statements than available resources, some statements may be in an ``In queue`` mode.
+		#. Identify any currently running statements, using the :ref:`describe_session_queries` utility command. 
+		   
+		   If there are more statements than available resources, some statements may be in an ``In queue`` mode.
 		#. If there is a statement that has been running for too long and is blocking the queue, consider stopping it using the :ref:`abort` utility command.
 				 
 		If the statement does not stop correctly, contact BLUE support at `blue_support@sqreamtech.com <blue_support@sqreamtech.com>`_.
 				 
-		If there are no long running statements or this does not help, continue to step 7.
+		If there are no long running statements or this does not help, continue to step 6.
 
-	**Step 7: Check if there are active locks**
+	**Step 6: Check if there are active locks**
 
 		#. Use :ref:`describe_locks` utility command to list any outstanding locks.
 		#. If a statement is locking some objects, consider waiting for that statement to end or stopping it.
 		#. If after a statement is completed the locks don't free up, refer to the :ref:`concurrency_and_locks` guide.
-				 
-		If performance does not improve after the locks are released, continue to step 8.
 				 
 If performance does not improve, contact BLUE support at `blue_support@sqreamtech.com <blue_support@sqreamtech.com>`_.
