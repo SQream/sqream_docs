@@ -15,12 +15,6 @@ Slow queries may be the result of various factors, including inefficient query p
 		If a query isn't performing as you expect, follow the :ref:`Query best practices<query_best_practices>` section of the :ref:`sql_best_practices` guide.
 		
 		If all queries are slow, continue to step 2.
-	
-	**Step 2: All queries on a specific table are slow**
-	
-		If all queries on a specific table aren't performing as you expect, follow the :ref:`Table design best practices<table_design_best_practices>` part of the :ref:`sql_best_practices` guide.
-         
-		If the problem spans all tables, continue to step 3.
 
 	**Step 3: Check that all workers are up (web interface)**
 	
@@ -30,15 +24,7 @@ Slow queries may be the result of various factors, including inefficient query p
          
 		If all workers are up, continue to step 4.
 
-	**Step 4: Check that all workers are performing well**
-
-		#. Identify if a specific worker is slower than others by running the same query on different workers. (e.g. by connecting directly to the worker or through a service queue)
-		#. If a specific worker is slower than others, investigate performance issues on the host using standard monitoring tools (e.g. ``top``).
-		#. Restart SQream DB workers on the problematic host.
-				 
-		If all workers are performing well, continue to step 5.
-
-	**Step 5: Check if the workload is balanced across all workers**
+	**Step 5: Check if the session workload is balanced across all workers**
 
 		#. Run the same query several times and check that it appears across multiple workers (use ``SELECT show_server_status()`` to monitor)
 		#. If some workers have a heavier workload, check the service queue usage. Refer to the :ref:`workload_manager` guide.
