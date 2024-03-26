@@ -17,8 +17,6 @@ The ``CREATE TABLE`` statement is used to create a new table in an existing data
 Syntax
 ======
 
-The following is the correct syntax for creating a table:
-
 .. code-block:: postgres
 
    create_table_statement ::=
@@ -68,29 +66,30 @@ The following parameters can be used when creating a table:
          See :ref:`cluster_by` for more information.
    * - ``LIKE``
      - Duplicates the column structure of an existing table.
-	 
-	 
-.. _default_values:
 
 Usage Notes
 ===========
 
 When using ``CREATE TABLE... LIKE``, the permissions from the source table are inherited by the newly created table. To add extra permissions to the new table, you can utilize the ``INCLUDE PERMISSIONS`` clause.
 
+.. _default_values:
+
 Default Value Constraints
-===========================
+=========================
 
 The ``DEFAULT`` value constraint specifies a default value to use if none is provided in an :ref:`insert` or :ref:`copy_from` statement. This value can be a literal or ``NULL``. It's worth noting that even for nullable columns, you can still explicitly insert a ``NULL`` value using the ``NULL`` keyword, as demonstrated in the example:
 
 .. code-block:: postgres
 
-	INSERT INTO cool_animals VALUES (1, 'Gnu', NULL)
+	INSERT INTO
+	  cool_animals
+	VALUES
+	  (1, 'Gnu', NULL);
 
 Syntax
----------
+------
 
 The following is the correct syntax for using the **DEFAULT** value constraints:
-
 
 .. code-block:: postgres
 
@@ -115,7 +114,7 @@ The following is the correct syntax for using the **DEFAULT** value constraints:
 .. _identity:
 
 Identity
------------------------
+--------
 
 The ``Identity`` (or sequence) columns can be used for generating key values. Some databases call this ``AUTOINCREMENT``.
 
@@ -138,9 +137,7 @@ The following table describes the identity parameters:
      - Incremental value that is added to the identity value of the previous row that was loaded.
 
 Examples
-===========
-
-This section includes the following examples:
+========
 
 .. contents:: 
    :local:
@@ -148,8 +145,6 @@ This section includes the following examples:
 
 Creating a Standard Table
 --------------------------
-
-The following is an example of the syntax used to create a standard table:
 
 .. code-block:: postgres
 
@@ -161,10 +156,7 @@ The following is an example of the syntax used to create a standard table:
    );
 
 Creating a Table with Default Value Constraints for Some Columns
---------------------------------------------------------------------
-
-The following is an example of the syntax used to create a table with default value constraints for some columns:
-
+----------------------------------------------------------------
 
 .. code-block:: postgres
 
@@ -178,10 +170,7 @@ The following is an example of the syntax used to create a table with default va
 .. note:: The nullable/non-nullable constraint appears at the end, after the default option
 
 Creating a Table with an Identity Column
----------------------------------------------------
-
-The following is an example of the syntax used to create a table with an identity (auto-increment) column:
-
+----------------------------------------
 
 .. code-block:: postgres
 
@@ -193,25 +182,27 @@ The following is an example of the syntax used to create a table with an identit
 
 .. note:: Identity does not enforce the uniqueness of values. The identity value can be bypassed by specifying it in an :ref:`insert` command.
 
-Creating a Table from a SELECT Query
------------------------------------------
-
-The following is an example of the syntax used to create a table from a SELECT query:
+Creating a Table from a ``SELECT`` Query
+----------------------------------------
 
 .. code-block:: postgres
    
-   CREATE TABLE users_uk AS SELECT * FROM users WHERE country = 'United Kingdom';
+	CREATE TABLE
+	  users_uk AS
+	SELECT
+	  *
+	FROM
+	  users
+	WHERE
+	  country = 'United Kingdom';
    
-For more information on creating a new table from the results of a SELECT query, see :ref:`CREATE TABLE AS <create_table_as>`.
+For more information on creating a new table from the results of a ``SELECT`` query, see :ref:`CREATE TABLE AS <create_table_as>`.
 
 Creating a Table with a Clustering Key
-----------------------------------------------
+--------------------------------------
 
-When data in a table is stored in a sorted order, the sorted columns are considered clustered. Good clustering can have a significant positive impact on performance.
 
-In the following example, we expect the ``start_date`` column to be naturally clustered, as new users sign up and get a newer start date.
-
-When the clustering key is set, if the incoming data isn’t naturally clustered, it will be clustered by SQream DB during insert or bulk load.
+When data within a table is organized in a sorted manner, the columns responsible for this sorting are termed as clustered. Effective clustering can greatly enhance performance. For instance, in the scenario provided, the ``start_date`` column is anticipated to naturally cluster due to the continuous influx of new users and their corresponding start dates. However, in cases where the clustering of incoming data isn't inherent, SQreamDB will automatically cluster it during insertion or bulk loading processes once the clustering key is set.
 
 The following is an example of the syntax used to create a table with a clustering key:
 
@@ -226,10 +217,10 @@ The following is an example of the syntax used to create a table with a clusteri
 For more information on data clustering, see :ref:`cluster_by`.
    
 Duplicating the Column Structure of an Existing Table
-------------------------------------------------------------
+-----------------------------------------------------
 
 Syntax
-************
+******
 
 The following is the correct syntax for duplicating the column structure of an existing table:
 
@@ -244,7 +235,7 @@ The following is the correct syntax for duplicating the column structure of an e
    ;
 
 Examples
-**************
+********
 
 This section includes the following examples of duplicating the column structure of an existing table using the ``LIKE`` clause:
 
@@ -253,7 +244,7 @@ This section includes the following examples of duplicating the column structure
    :depth: 3
 
 Creating a Table Using an Explicit Column List
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The following is an example of creating a table using an explicit column list:
 
@@ -262,7 +253,7 @@ The following is an example of creating a table using an explicit column list:
    CREATE TABLE t1(x int default 0 not null, y text(10) null);
    
 Creating a Second Table Based on the Structure of Another Table
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Either of the following examples can be used to create a second table based on the structure of another table.
 
