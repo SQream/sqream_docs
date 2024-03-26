@@ -16,11 +16,6 @@ The maximum size of an ``ARRAY``, indicating the number of elements it can hold,
 
 .. seealso:: A full list of :ref:`data types<supported_data_types>` supported by SQreamDB.
 
-Limitation
--------------
-
-Please note that SQLAlchemy does not support the ``ARRAY`` data type.
-
 Syntax
 ======
 
@@ -28,9 +23,13 @@ Defining an ``ARRAY`` is done by appending the ``[]`` notation to a supported da
 
 .. code-block:: sql
 
-	CREATE TABLE <table_name> (<column1> TEXT[], <column2> INT[])
+	CREATE TABLE
+	 < table_name > (< column1 > TEXT [], < column2 > INT [])
 	
-	INSERT INTO TABLE <table_name> VALUES (ARRAY['a','b','c'], ARRAY[1,2,NULL])
+	INSERT INTO
+	  TABLE < table_name >
+	VALUES
+	  (ARRAY ['a','b','c'], ARRAY [1,2,NULL])
 
 
 Supported Operators
@@ -100,6 +99,10 @@ Supported Operators
 Examples
 ========
 
+.. contents:: 
+   :local:
+   :depth: 1
+
 ``ARRAY`` Statements
 --------------------
 
@@ -107,19 +110,33 @@ Creating a table with arrayed columns:
 
 .. code-block:: sql
 
-	CREATE TABLE my_array (clmn1 TEXT[], clmn2 TEXT[], clmn3 INT[], clmn4 NUMERIC(38,20)[]);
+	CREATE TABLE
+	  my_array (
+	    clmn1 TEXT [],
+	    clmn2 TEXT [],
+	    clmn3 INT [],
+	    clmn4 NUMERIC(38, 20) []
+	  );
 	
 Inserting arrayed values into a table:
 
 .. code-block:: sql
 	
-	INSERT INTO my_array VALUES (ARRAY['1','2','3'], ARRAY['4','5','6'], ARRAY[7,8,9,10]);
+	INSERT INTO
+	  my_array
+	VALUES
+	  (
+	    ARRAY ['1','2','3'],
+	    ARRAY ['4','5','6'],
+	    ARRAY [7,8,9,10]
+	  );
 	
 Converting arrayed elements into a set of rows:
 
 .. code-block:: sql
 	
-	SELECT UNNEST(ARRAY['1','2','3'], ARRAY['4','5','6']);
+	SELECT
+	  UNNEST(ARRAY ['1','2','3'], ARRAY ['4','5','6']);
 
 .. code-block:: console
 	
@@ -133,9 +150,15 @@ Updating table values:
 
 .. code-block:: sql
 	
-	UPDATE my_array SET clmn1[0] = 'A';
+	UPDATE
+	  my_array
+	SET
+	  clmn1 [0] = 'A';
 	
-	SELECT * FROM my_array;
+	SELECT
+	  *
+	FROM
+	  my_array;
 	
 .. code-block:: console
 
@@ -150,48 +173,70 @@ Consider the following JSON file named ``t``, located under ``/tmp/``:
 
 .. code-block:: json
 
-	[{
-			"name": "Avery Bradley",
-			"age": 25,
-			"position": "PG",
-			"years_in_nba": [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
-		},
-		{
-			"name": "Jae Crowder",
-			"age": 25,
-			"position": "PG",
-			"years_in_nba": [2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021]
-		},
-		{
-			"name": "John Holland",
-			"age": 27,
-			"position": "SG",
-			"years_in_nba": [2017, 2018]
-		}
-	]
+
+    {
+        "name": "Avery Bradley",
+        "age": 25,
+        "position": "PG",
+        "years_in_nba": [
+            2010,
+            2011,
+            2012,
+            2013,
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021
+        ]
+    },
+    {
+        "name": "Jae Crowder",
+        "age": 25,
+        "position": "PG",
+        "years_in_nba": [
+            2012,
+            2013,
+            2014,
+            2015,
+            2016,
+            2017,
+            2018,
+            2019,
+            2020,
+            2021
+        ]
+    },
+    {
+        "name": "John Holland",
+        "age": 27,
+        "position": "SG",
+        "years_in_nba": [
+            2017,
+            2018
+        ]
+    }
+]
 
 Execute the following statement:
 
 .. code-block:: sql
 
-	CREATE FOREIGN TABLE nba
-		   (
-		   name text,
-		   age int,
-		   position text,
-		   years_in_nba int[]
-		   )
-		   
-	  WRAPPER json_fdw
-	  OPTIONS
-	  (
-		location ='/tmp/t.json'
-	  )
-	;
+	CREATE FOREIGN TABLE nba (name text, age int, position text, years_in_nba int [])
+	WRAPPER
+	  json_fdw
+	OPTIONS
+	  (location = '/tmp/t.json');
 	
-	SELECT * FROM nba;
+	SELECT
+	  *
+	FROM
+	  nba;
 	
-Result:
+Output:
 
 .. code-block:: console
 
@@ -204,19 +249,11 @@ Result:
 Limitations
 ===========
 
-Connectors
-------------
-
-Limitations
-===============
-
-Please note that the SQreamDB ODBC and .NET connectors do not support the use of ARRAY data types. If your database schema includes ARRAY columns, you may encounter compatibility issues when using these connectors.
-
-Casting 
+Casting Limitations
 -------------------
 
-Numeric
-^^^^^^^
+``NUMERIC``
+"""""""""""
 
 Numeric data types smaller than ``INT``, such as ``TINYINT``, ``SMALLINT``, and ``BOOL``, must explicitly be cast.
 
@@ -228,8 +265,8 @@ Numeric data types smaller than ``INT``, such as ``TINYINT``, ``SMALLINT``, and 
 	CREATE OR REPLACE TABLE my_array (clmn1 bool []); 
 	SELECT array_replace(clmn1 , 0::bool, 1::bool) FROM my_array;
 	
-TEXT
-^^^^
+``TEXT``
+""""""""
 
 Casting ``TEXT`` to non-``TEXT`` and non-``TEXT`` to ``TEXT`` data types is not supported.
 	
@@ -241,11 +278,24 @@ Casting ``TEXT`` to non-``TEXT`` and non-``TEXT`` to ``TEXT`` data types is not 
 	INSERT INTO t_int VALUES (array[1,2,3]);
 	INSERT INTO t_text SELECT xint::TEXT[] FROM t_int;
 
-Function
---------------------
+Connectors
+----------
 
-|| (Concatenate)
-^^^^^^^^^^^^^^^^
+``.NET`` and ``ODBC``
+"""""""""""""""""""""
+
+Please note that the SQreamDB ODBC and .NET connectors do not support the use of ARRAY data types. If your database schema includes ARRAY columns, you may encounter compatibility issues when using these connectors.
+
+``Pysqream``
+""""""""""""
+
+Please note that SQLAlchemy does not support the ``ARRAY`` data type.
+
+Functions
+---------
+
+``|| (Concatenate)``
+""""""""""""""""""""
 
 Using the ``||`` (Concatenate) function with two different data types requires explicit casting.
 
@@ -253,13 +303,13 @@ Using the ``||`` (Concatenate) function with two different data types requires e
 
 	SELECT (clmn1, 4::tinyint) || (clmn2, 5::tinyint) FROM my_array;
 	
-UNNEST
-^^^^^^
+``UNNEST``
+""""""""""
 
 It is possible to use the ``UNNEST`` operator within a statement only once.
 
 Window
-^^^^^^
+""""""
 
 Window functions are not supported.
 
