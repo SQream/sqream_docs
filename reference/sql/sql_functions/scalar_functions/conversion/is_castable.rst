@@ -4,7 +4,11 @@
 IS CASTABLE
 ************
 
-The ``IsCastable`` function checks whether a data type cast operation is supported for any given rows. If the cast is not supported, the ``CASE`` statement handles the exception by providing an alternative.
+The ``IsCastable`` function checks whether a data type cast operation is supported for any given row. If the cast is not supported, the ``CASE`` statement handles the exception by providing an alternative.
+
+.. tip::
+
+	See BLUE :ref:`supported casts table <supported_casts>`
 
 Syntax
 ======
