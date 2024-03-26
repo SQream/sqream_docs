@@ -30,8 +30,10 @@ SQream supports the following three data conversion types:
 Supported Casts
 ---------------
 
+The listed table of supported casts also applies to the :ref:`sql_data_type_array` data type. For instance, you can cast a ``NUMERIC[]`` array to a ``TEXT[]`` array.
+
 +----------------------------------------------+-----------+----------------------------------------------+-----------------+--------------+------------------------+-----------------------+
-|                                              | **BOOL**  | **TINYINT**/**SMALLINT**/**INT**/**BIGINT**  | **REAL/FLOAT**  | **NUMERIC**  | **DATE**/**DATETIME**  | **VARCHAR**/**TEXT**  |
+| **FROM / TO**                                | **BOOL**  | **TINYINT**/**SMALLINT**/**INT**/**BIGINT**  | **REAL/FLOAT**  | **NUMERIC**  | **DATE**/**DATETIME**  | **VARCHAR**/**TEXT**  |
 +==============================================+===========+==============================================+=================+==============+========================+=======================+
 | **BOOL**                                     | N/A       | ✓                                            | ✗               | ✗            | ✗                      | ✓                     |
 +----------------------------------------------+-----------+----------------------------------------------+-----------------+--------------+------------------------+-----------------------+
