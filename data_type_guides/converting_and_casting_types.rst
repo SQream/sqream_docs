@@ -22,22 +22,61 @@ BLUE supports the following three data conversion types:
   
 * See the :ref:`SQL functions reference <sql_functions>` for additional functions that convert from a specific value which is not an SQL type, such as :ref:`from_unixts`, etc.
 
+.. _supported_casts:
 
 Supported Casts
 ---------------
 
-+----------------------------------------------+----------------------+----------------------------------------------+----------------------+----------------------+------------------------+-----------------------+
-|                                              | **BOOL**             | **TINYINT**/**SMALLINT**/**INT**/**BIGINT**  | **REAL/FLOAT**       | **NUMERIC**          | **DATE**/**DATETIME**  | **VARCHAR**/**TEXT**  |
-+==============================================+======================+==============================================+======================+======================+========================+=======================+
-| **BOOL**                                     | N/A                  | |:white_check_mark:|                         | |:no_entry:|         | |:no_entry:|         | |:no_entry:|           | |:white_check_mark:|  |
-+----------------------------------------------+----------------------+----------------------------------------------+----------------------+----------------------+------------------------+-----------------------+
-| **TINYINT**/**SMALLINT**/**INT**/**BIGINT**  | |:white_check_mark:| | N/A                                          | |:white_check_mark:| | |:white_check_mark:| | |:no_entry:|           | |:white_check_mark:|  |
-+----------------------------------------------+----------------------+----------------------------------------------+----------------------+----------------------+------------------------+-----------------------+
-| **REAL/FLOAT**                               | |:no_entry:|         | |:white_check_mark:|                         | N/A                  | |:white_check_mark:| | |:no_entry:|           | |:white_check_mark:|  |
-+----------------------------------------------+----------------------+----------------------------------------------+----------------------+----------------------+------------------------+-----------------------+
-| **NUMERIC**                                  | |:no_entry:|         | |:white_check_mark:|                         | |:white_check_mark:| | |:white_check_mark:| | |:no_entry:|           | |:white_check_mark:|  |
-+----------------------------------------------+----------------------+----------------------------------------------+----------------------+----------------------+------------------------+-----------------------+
-| **DATE**/**DATETIME**                        | |:no_entry:|         | |:no_entry:|                                 | |:no_entry:|         | |:no_entry:|         | N/A                    | |:white_check_mark:|  |
-+----------------------------------------------+----------------------+----------------------------------------------+----------------------+----------------------+------------------------+-----------------------+
-| **VARCHAR**/**TEXT**                         | |:white_check_mark:| | |:white_check_mark:|                         | |:white_check_mark:| | |:white_check_mark:| | |:white_check_mark:|   | N/A                   |
-+----------------------------------------------+----------------------+----------------------------------------------+----------------------+----------------------+------------------------+-----------------------+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - **TO/FROM**
+     - **BOOL**
+     - **TINYINT**/**SMALLINT**/**INT**/**BIGINT**	
+     - **REAL/FLOAT**
+     - **NUMERIC**
+     - **DATE**/**DATETIME**
+     - **VARCHAR**/**TEXT**
+   * - **BOOL**
+     - N/A
+     - |:white_check_mark:|
+     - |:no_entry:|
+     - |:no_entry:|
+     - |:no_entry:|
+     - |:white_check_mark:|
+   * - **TINYINT**/**SMALLINT**/**INT**/**BIGINT**
+     - |:white_check_mark:|
+     - N/A
+     - |:white_check_mark:|
+     - |:white_check_mark:|
+     - |:no_entry:|
+     - |:white_check_mark:|
+   * - **REAL/FLOAT**
+     - |:no_entry:|
+     - |:white_check_mark:|
+     - N/A
+     - |:white_check_mark:|
+     - |:no_entry:|
+     - |:white_check_mark:|
+   * - **NUMERIC**
+     - |:no_entry:|
+     - |:white_check_mark:|
+     - |:white_check_mark:|
+     - |:white_check_mark:|
+     - |:no_entry:|
+     - |:white_check_mark:|
+   * - **DATE**/**DATETIME**
+     - |:no_entry:|
+     - |:no_entry:|
+     - |:no_entry:|
+     - |:no_entry:|
+     - N/A
+     - |:white_check_mark:|
+   * - **VARCHAR**/**TEXT**
+     - |:white_check_mark:|
+     - |:white_check_mark:|
+     - |:white_check_mark:|
+     - |:white_check_mark:|
+     - |:white_check_mark:|
+     - N/A
