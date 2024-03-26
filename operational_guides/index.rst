@@ -16,6 +16,5 @@ This section summarizes the following operational guides:
    access_control
    foreign_tables
    monitoring_query_performance
-   security
    optimization_best_practices
    audit_log_operation
