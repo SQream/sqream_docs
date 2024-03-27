@@ -11,6 +11,49 @@ What are Jobs
 
 A Job is an automated set of SQL and Python scripts that form a workflow. Think of a Job as your main strategy and the scripts as the individual steps needed to carry it out. Each script is represented by a single **Task**.
 
+     - |:white_check_mark:|
+     - |:no_entry:|
+
+.. list-table:: Job Permissions
+   :widths: auto
+   :header-rows: 1
+   
+   * - Action
+     - Job Owner
+     - User a Job is Shared With
+     - View Private / Public Job
+     - Make Private / Public
+   * - Edit
+     - |:white_check_mark:|
+     - |:no_entry:|
+     - 
+     - 
+   * - Delete
+     - |:white_check_mark:|
+     - 	 
+     - 
+     - 
+   * - Duplicate
+     - |:white_check_mark:|
+     - 
+     - 
+     - 
+   * - Share
+     - |:white_check_mark:|
+     - 
+     - 
+     - 
+   * - Change Ownership
+     - |:white_check_mark:|
+     - |:no_entry:|
+     - 
+     - 
+   * - Export
+     - |:white_check_mark:|
+     - 
+     - 
+     - 
+
 New Job
 ========
 
