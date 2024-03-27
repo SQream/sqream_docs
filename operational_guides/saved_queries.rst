@@ -16,16 +16,16 @@ Saved queries related syntax:
 .. code-block:: sql
 
 	-- Saving a query
-	SELECT SAVE_QUERY(saved_query_name, parameterized_query_string)
+	SELECT SAVE_QUERY(<"saved_query_name">, '<parameterized_query_string>')
 	
 	-- Showing a saved query
-	SELECT SHOW_SAVED_QUERY(saved_query_name)
+	DESCRIBE SAVED QUERY NAME <"saved_query_name">
 
 	-- Listing saved queries 
-	SELECT LIST_SAVED_QUERIES()
+	DESCRIBE SAVED QUERIES LIST
 		   
 	-- Executing a saved query	   
-	SELECT EXECUTE_SAVED_QUERY(saved_query_name, [ , argument [ , ... ] ] )
+	SELECT EXECUTE_SAVED_QUERY("<saved_query_name>")
 	   
 	-- Dropping a saved query
 	SELECT DROP_SAVED_QUERY(saved_query_name)
