@@ -136,6 +136,11 @@ Handing Extended Errors
 While you can use foreign tables to load CSVs, the ``COPY FROM`` statement provides more fine-grained error handling options and extended support for non-standard CSVs with multi-character delimiters, alternate timestamp formats, and more.
 
 For more information, see :ref:`foreign tables<foreign_tables>`.
+  
+Foreign Data Wrapper Best Practice
+==================================
+
+A recommended approach when working with :ref:`foreign_tables` and Foreign Data Wrapper (FDW) is storing files belonging to distinct file families and files with similar schemas in separate folders.
 
 Best Practices for CSV
 ----------------------
