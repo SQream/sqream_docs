@@ -6,6 +6,8 @@ DESCRIBE SAVED QUERIES LIST
 
 The ``DESCRIBE SAVED QUERIES LIST`` command creates a list of all of your saved queries.
 
+See also: :ref:`save_query`, :ref:`execute_saved_query`, :ref:`drop_saved_query`, :ref:`recompile_saved_query`, and :ref:`describe_saved_query`
+
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
 Syntax

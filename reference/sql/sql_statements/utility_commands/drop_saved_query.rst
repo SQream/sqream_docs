@@ -1,14 +1,14 @@
 .. _drop_saved_query:
 
 ********************
-DROP_SAVED_QUERY
+DROP SAVED QUERY
 ********************
 
 ``DROP_SAVED_QUERY`` drops a :ref:`previously saved query<save_query>`.
 
 Read more in the :ref:`saved_queries<saved_queries>` guide.
 
-See also: ref:`save_query`, :ref:`execute_saved_query`,  ref:`show_saved_query`,  ref:`list_saved_queries`.
+See also: :ref:`save_query`, :ref:`execute_saved_query`, :ref:`describe_saved_query`, :ref:`recompile_saved_query`, and :ref:`describe_saved_queries_list`.
 
 Permissions
 =============

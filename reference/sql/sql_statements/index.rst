@@ -142,6 +142,8 @@ Utility Commands
      - Sets your server to finish compiling all active queries before shutting down according to a user-defined time value
    * - :ref:`stop_statement`
      - Stops or aborts an active statement
+   * - :ref:`save_query`
+     - Saves query execution plan
 
 Access Control Commands
 =======================
