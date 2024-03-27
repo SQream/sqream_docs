@@ -31,7 +31,7 @@ Syntax
 
    copy_to_option ::= 
 
-      LOCATION = { filename | S3 URI | HDFS URI | GCP URI }   
+      LOCATION = { S3 URI | HDFS URI | GCP URI }   
       
       | DELIMITER = '<delimiter>'
       
@@ -89,8 +89,7 @@ Elements
 	* S3: ``s3://sqream-docs/nba.csv``
 	
 	* HDFS: ``hdfs://my-namenode:8020/foo.csv``
-	
-	* Local file path: ``/tmp/nba.csv`` (the local path must be an absolute path that BLUE can access)
+
    * - ``HEADER``
      - Supported only for CSV. The CSV file will contain the file column header rows
    * - ``DELIMITER``
@@ -508,182 +507,6 @@ Using the ``MAX_FILE_SIZE`` and ``ENFORCE_SINGLE_FILE`` parameters
 	    MAX_FILE_SIZE = '250000000',
 	    ENFORCE_SINGLE_FILE = 'true',
 	    LOCATION = 's3://sqream-docs/nba.csv'
-	  );
-
-Exporting Data to External Tables
----------------------------------
-
-Parquet
-^^^^^^^
-
-The compression algorithm used for exporting data from BLUE to Parquet files is Snappy.
-
-Exporting tables to Parquet files:
-
-.. code-block:: psql
-   
-	COPY 
-	  nba TO 
-	WRAPPER 
-	  parquet_fdw 
-	OPTIONS 
-	  (
-	    LOCATION = '/tmp/nba.parquet'
-	  );
-
-Exporting query results to Parquet files:
-
-.. code-block:: psql
-
-	COPY
-	  (
-	    SELECT
-	      name
-	    FROM
-	      nba
-	    WHERE
-	      salary < 1148640
-	  ) TO
-	WRAPPER
-	  parquet_fdw
-	OPTIONS
-	  (LOCATION = '/tmp/nba_salary.parquet');
-
-ORC
-^^^
-
-The compression algorithm used for exporting data from BLUE to ORC files is ZLIB.
-
-Exporting tables to ORC files:
-
-.. code-block:: psql
-   
-	COPY
-	  nba TO
-	WRAPPER
-	  orc_fdw
-	OPTIONS
-	  (LOCATION = '/tmp/nba.orc');
-	
-Exporting query results to ORC files:
-
-.. code-block:: psql
-	
-	COPY
-	  (
-	    SELECT
-	      name
-	    FROM
-	      nba
-	    WHERE
-	      salary < 1148640
-	  ) TO
-	WRAPPER
-	  orc_fdw
-	OPTIONS
-	  (LOCATION = '/tmp/nba_salary.orc');
-
-AVRO
-^^^^
-
-The compression algorithm used for exporting data from BLUE to Parquet files is Snappy.
-
-Exporting tables to AVRO files:
-
-.. code-block:: psql
-   
-	COPY 
-	  nba TO 
-	WRAPPER 
-	  avro_fdw 
-	OPTIONS 
-	(LOCATION = '/tmp/nba.avro');
-	
-Exporting query results to AVRO files:
-
-.. code-block:: psql
-	
-	COPY 
-	  (
-	    SELECT 
-	      name 
-	    FROM 
-	      nba 
-	    WHERE 
-	      salary < 1148640
-	  ) TO 
-	WRAPPER 
-	  avro_fdw 
-	OPTIONS (LOCATION = '/tmp/nba_salary.avro');
-
-CSV
-^^^
-
-Exporting a table to a CSV file without a HEADER row:
-
-.. code-block:: psql
-   
-	COPY
-	  nba TO 
-	WRAPPER 
-	  csv_fdw 
-	OPTIONS 
-	  (
-	    LOCATION = '/tmp/nba.csv', 
-	    DELIMITER = ',', 
-	    HEADER = false
-	  );
-
-Exporting a table to a CSV file with a HEADER row:
-
-.. code-block:: psql
-   
-	COPY 
-	  nba TO 
-	WRAPPER 
-	  csv_fdw 
-	OPTIONS 
-	  (
-	    LOCATION = '/tmp/nba.csv', 
-	    DELIMITER = ',', 
-	    HEADER = true
-	  );
-   
-Exporting the result of a query to a CSV file:
-
-.. code-block:: psql
-   
-	COPY
-	  (
-	    SELECT
-	      Team,
-	      AVG(Salary)
-	    FROM
-	      nba
-	    GROUP BY
-	      1
-	  ) TO
-	WRAPPER
-	  csv_fdw
-	OPTIONS
-	  (LOCATION = '/tmp/nba.csv');
-
-TSV
-^^^
-
-Exporting a table to a TSV file with a HEADER row:
-
-.. code-block:: psql
-   
-	COPY
-	  nba TO 
-	WRAPPER 
-	  csv_fdw 
-	OPTIONS 
-	  (
-	    LOCATION = '/tmp/nba_export.csv', 
-	    DELIMITER = '\t', 
-	    HEADER = true
 	  );
 
 Permissions
