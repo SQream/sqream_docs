@@ -92,7 +92,7 @@ Whether you're actively working on a Job for an extended duration or have initia
 3. In the upper left corner, type in the task name and description.
 4. Drag a script from the **Scripts** menu to the **Drag Script** box of the task.
 
-    Ensure that your script is saved under your bucket parent directory or it will not show in the menu.
+   Ensure that your script is saved under your bucket parent directory or it will not show in the menu.
 
 5. To create a task, select the |add_task| located under the last task in the **Preview** window.
 6. You may now close the webpage you are working on and the Job will be automatically saved under **Jobs** > **Drafts**.

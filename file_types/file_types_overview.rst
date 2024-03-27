@@ -1,16 +1,16 @@
 .. _file_types_overview:
 
-***************************
-File Types Overview
-***************************
-   
-Unsupported Data Types
------------------------------
+**************
+Best Practices
+**************
+  
+Foreign Data Wrapper Best Practice
+==================================
 
-SQream does not support certain features that are supported by other databases, such as ``ARRAY``, ``BLOB``, ``ENUM``, and ``SET``. You must convert these data types before loading them. For example, you can store ``ENUM`` as ``TEXT``.
+A recommended approach when working with :ref:`foreign_tables` and Foreign Data Wrapper (FDW) involves storing files belonging to distinct file families in separate folders.
 
 Best Practices for CSV
-------------------------------
+======================
 
 Text files, such as CSV, rarely conform to `RFC 4180 <https://tools.ietf.org/html/rfc4180>`_ , so you may need to make the following modifications:
 
@@ -31,13 +31,13 @@ Text files, such as CSV, rarely conform to `RFC 4180 <https://tools.ietf.org/htm
 * Field delimiters do not have to be a displayable ASCII character. For all supported field delimiters, see :ref:`field_delimiters`.
 
 Best Practices for Parquet
---------------------------------
+==========================
 
 The following list shows the best practices when ingesting data from Parquet files:
 
 * You must load Parquet files through :ref:`foreign_tables`. Note that the destination table structure must be identical to the number of columns between the source files.
 
-* Parquet files support **predicate pushdown**. When a query is issued over Parquet files, SQream uses row-group metadata to determine which row-groups in a file must be read for a particular query and the row indexes can narrow the search to a particular set of rows.
+* Parquet files support **predicate pushdown**. When a query is issued over Parquet files, BLUE uses row-group metadata to determine which row-groups in a file must be read for a particular query and the row indexes can narrow the search to a particular set of rows.
 
 Supported Types and Behavior Notes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -49,7 +49,7 @@ Unlike the ORC format, the column types should match the data types exactly, as 
    :header-rows: 1
    :stub-columns: 1
    
-   * -   SQream DB type →
+   * -   BLUE type →
    
          Parquet source
      - ``BOOL``
@@ -59,7 +59,7 @@ Unlike the ORC format, the column types should match the data types exactly, as 
      - ``BIGINT``
      - ``REAL``
      - ``DOUBLE``
-     - Text [#f0]_
+     - ``TEXT``
      - ``DATE``
      - ``DATETIME``
    * - ``BOOLEAN``
@@ -154,15 +154,17 @@ Unlike the ORC format, the column types should match the data types exactly, as 
 If a Parquet file has an unsupported type, such as ``enum``, ``uuid``, ``time``, ``json``, ``bson``, ``lists``, ``maps``, but the table does not reference this data (i.e., the data does not appear in the :ref:`SELECT` query), the statement will succeed. If the table **does** reference a column, an error will be displayed explaining that the type is not supported, but the column may be omitted.
 
 Best Practices for ORC
---------------------------------
+======================
+
 The following list shows the best practices when ingesting data from ORC files:
 
 * You must load ORC files through :ref:`foreign_tables`. Note that the destination table structure must be identical to the number of columns between the source files.
 
-* ORC files support **predicate pushdown**. When a query is issued over ORC files, SQream uses ORC metadata to determine which stripes in a file need to be read for a particular query and the row indexes can narrow the search to a particular set of 10,000 rows.
+* ORC files support **predicate pushdown**. When a query is issued over ORC files, BLUE uses ORC metadata to determine which stripes in a file need to be read for a particular query and the row indexes can narrow the search to a particular set of 10,000 rows.
 
 Type Support and Behavior Notes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+-------------------------------
+
 You must load ORC files through foreign table. Note that the destination table structure must be identical to the number of columns between the source files.
 
 For more information, see :ref:`foreign_tables`.
@@ -174,7 +176,7 @@ The types should match to some extent within the same "class", as shown in the f
    :header-rows: 1
    :stub-columns: 1
    
-   * -   SQream DB Type →
+   * -   BLUE Type →
    
          ORC Source
      - ``BOOL``
@@ -342,7 +344,7 @@ The types should match to some extent within the same "class", as shown in the f
    try to combine sensibly with the external table stuff
 
 Further Reading and Migration Guides
-=======================================
+====================================
 
 For more information, see the following:
 
@@ -363,3 +365,9 @@ For more information, see the following:
 .. [#f6] Will succeed if all values are 0, 1
 
 .. [#f7] Will succeed if all values fit the destination type
+
+
+Unsupported Data Types
+======================
+
+BLUE does not support certain features that are supported by other databases, such as ``BLOB``, ``ENUM``, and ``SET``. You must convert these data types before loading them. For example, you can store ``ENUM`` as ``TEXT``.
