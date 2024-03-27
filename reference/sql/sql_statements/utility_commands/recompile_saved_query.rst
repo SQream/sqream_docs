@@ -1,12 +1,14 @@
 .. _recompile_saved_query:
 
 **************************
-RECOMPILE_SAVED_QUERY
+RECOMPILE SAVED QUERY
 **************************
 
 ``RECOMPILE_SAVED_QUERY`` recompiles a saved query that has been invalidated due to a schema change.
 
 Read more in the :ref:`saved_queries<saved_queries>` guide.
+
+See also: :ref:`save_query`, :ref:`execute_saved_query`, :ref:`drop_saved_query`, :ref:`describe_saved_query`, and :ref:`describe_saved_queries_list`
 
 Permissions
 =============
@@ -49,9 +51,9 @@ Recreating a query that has been invalidated
 
 .. code-block:: psql
 
-   t=> SELECT SAVE_QUERY('select_by_weight_and_team',$$SELECT * FROM nba WHERE Weight > ? AND Team = ?$$);
-   executed
-   t=> SELECT EXECUTE_SAVED_QUERY('select_by_weight_and_team', 240, 'Toronto Raptors');
+   SELECT SAVE_QUERY('select_by_weight_and_team',$$SELECT * FROM nba WHERE Weight > ? AND Team = ?$$);
+
+   SELECT EXECUTE_SAVED_QUERY('select_by_weight_and_team', 240, 'Toronto Raptors');
    Name              | Team            | Number | Position | Age | Height | Weight | College     | Salary 
    ------------------+-----------------+--------+----------+-----+--------+--------+-------------+--------
    Bismack Biyombo   | Toronto Raptors |      8 | C        |  23 | 6-9    |    245 |             | 2814000
@@ -64,14 +66,14 @@ To invalidate the original saved query, we will change the schema without affect
 
 .. code-block:: psql
 
-   t=> ALTER TABLE nba RENAME COLUMN age to "Age (as of 2015)";
-   executed
+   ALTER TABLE nba RENAME COLUMN age to "Age (as of 2015)";
+
 
 However, because the query was compiled previously, this change invalidates the query and causes it to fail:
 
 .. code-block:: psql
 
-   t=> SELECT EXECUTE_SAVED_QUERY('select_by_weight_and_team', 240, 'Toronto Raptors');
+   SELECT EXECUTE_SAVED_QUERY('select_by_weight_and_team', 240, 'Toronto Raptors');
    Error: column not found {Age@null}
    column not found {Age@null}
 
@@ -79,9 +81,9 @@ Recompiling the query will fix this issue
 
 .. code-block:: psql
    
-   t=> SELECT RECOMPILE_SAVED_QUERY('select_by_weight_and_team');
-   executed
-   t=> SELECT EXECUTE_SAVED_QUERY('select_by_weight_and_team', 240, 'Toronto Raptors');
+   SELECT RECOMPILE_SAVED_QUERY('select_by_weight_and_team');
+
+   SELECT EXECUTE_SAVED_QUERY('select_by_weight_and_team', 240, 'Toronto Raptors');
    Name              | Team            | Number | Position | Age (as of 2015) | Height | Weight | College     | Salary 
    ------------------+-----------------+--------+----------+------------------+--------+--------+-------------+--------
    Bismack Biyombo   | Toronto Raptors |      8 | C        |               23 | 6-9    |    245 |             | 2814000

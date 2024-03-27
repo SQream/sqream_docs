@@ -4,7 +4,7 @@
 Optimization and Best Practices
 **********************************
 
-This topic explains some best practices of working with SQream DB.
+This topic explains some best practices of working with BLUE.
 
 See also our :ref:`monitoring_query_performance` guide for more information.
 
@@ -17,12 +17,12 @@ This section describes best practices and guidelines for designing tables.
 Use date and datetime types for columns
 -----------------------------------------
 
-When creating tables with dates or timestamps, using the purpose-built ``DATE`` and ``DATETIME`` types over integer types or ``TEXT`` will bring performance and storage footprint improvements, and in many cases huge performance improvements (as well as data integrity benefits). SQream DB stores dates and datetimes very efficiently and can strongly optimize queries using these specific types.
+When creating tables with dates or timestamps, using the purpose-built ``DATE`` and ``DATETIME`` types over integer types or ``TEXT`` will bring performance and storage footprint improvements, and in many cases huge performance improvements (as well as data integrity benefits). BLUE stores dates and datetimes very efficiently and can strongly optimize queries using these specific types.
 
 Don't flatten or denormalize data
 -----------------------------------
 
-SQream DB executes JOIN operations very effectively. It is almost always better to JOIN tables at query-time rather than flatten/denormalize your tables.
+BLUE executes JOIN operations very effectively. It is almost always better to JOIN tables at query-time rather than flatten/denormalize your tables.
 
 This will also reduce storage size and reduce row-lengths.
 
@@ -31,7 +31,7 @@ We highly suggest using ``INT`` or ``BIGINT`` as join keys, rather than a text/s
 Convert foreign tables to native tables
 -------------------------------------------
 
-SQream DB's native storage is heavily optimized for analytic workloads. It is always faster for querying than other formats, even columnar ones such as Parquet. It also enables the use of additional metadata to help speed up queries, in some cases by many orders of magnitude.
+BLUE's native storage is heavily optimized for analytic workloads. It is always faster for querying than other formats, even columnar ones such as Parquet. It also enables the use of additional metadata to help speed up queries, in some cases by many orders of magnitude.
 
 You can improve the performance of all operations by converting :ref:`foreign tables<foreign_tables>` into native tables by using the :ref:`create_table_as` syntax.
 
@@ -62,7 +62,7 @@ Sorting
 
 Data sorting is an important factor in minimizing storage size and improving query performance.
 
-* Minimizing storage saves on physical resources and increases performance by reducing overall disk I/O. Prioritize the sorting of low-cardinality columns. This reduces the number of chunks and extents that SQream DB reads during query execution.
+* Minimizing storage saves on physical resources and increases performance by reducing overall disk I/O. Prioritize the sorting of low-cardinality columns. This reduces the number of chunks and extents that BLUE reads during query execution.
 
 * Where possible, sort columns with the lowest cardinality first. Avoid sorting ``TEXT`` columns with lengths exceeding 50 characters.
 
@@ -106,7 +106,7 @@ Can be rewritten as
 Prefer the ANSI JOIN
 --------------------
 
-SQream DB prefers the ANSI JOIN syntax.
+BLUE prefers the ANSI JOIN syntax.
 In some cases, the ANSI JOIN performs better than the non-ANSI variety.
 
 For example, this ANSI JOIN example will perform better:
@@ -149,7 +149,7 @@ For example
 Prefer ``COUNT(*)`` and ``COUNT`` on non-nullable columns
 ---------------------------------------------------------
 
-SQream DB optimizes ``COUNT(*)`` queries very strongly. This also applies to ``COUNT(column_name)`` on non-nullable columns. Using ``COUNT(column_name)`` on a nullable column will operate quickly, but much slower than the previous variations.
+BLUE optimizes ``COUNT(*)`` queries very strongly. This also applies to ``COUNT(column_name)`` on non-nullable columns. Using ``COUNT(column_name)`` on a nullable column will operate quickly, but much slower than the previous variations.
 
 
 Return only required columns
@@ -158,12 +158,12 @@ Return only required columns
 Returning only the columns you need to client programs can improve overall query performance.
 This also reduces the overall result set, which can improve performance in third-party tools.
 
-SQream is able to optimize out unneeded columns very strongly due to its columnar storage.
+BLUE is able to optimize out unneeded columns very strongly due to its columnar storage.
 
 Use saved queries to reduce recurring compilation time
 -------------------------------------------------------
 
-:ref:`saved_queries` are compiled when they are created. The query plan is saved in SQream DB's metadata for later re-use.
+:ref:`saved_queries` are compiled when they are created. The query plan is saved in BLUE's metadata for later re-use.
 
 Because the query plan is saved, they can be used to reduce compilation overhead, especially with very complex queries, such as queries with lots of values in an :ref:`IN` predicate.
 
@@ -209,7 +209,7 @@ Allow and use natural sorting on data
 
 Very often, tabular data is already naturally ordered along a dimension such as a timestamp or area.
 
-This natural order is a major factor for query performance later on, as data that is naturally sorted can be more easily compressed and analyzed with SQream DB's metadata collection.
+This natural order is a major factor for query performance later on, as data that is naturally sorted can be more easily compressed and analyzed with BLUE's metadata collection.
 
 For example, when data is sorted by timestamp, filtering on this timestamp is more effective than filtering on an unordered column.
 
