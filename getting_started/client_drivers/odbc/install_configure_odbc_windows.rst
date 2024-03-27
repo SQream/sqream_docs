@@ -8,10 +8,6 @@ The ODBC driver for Windows is provided as a self-contained installer.
 
 This tutorial shows you how to install and configure ODBC on Windows.
 
-.. contents:: In this topic:
-   :local:
-   :depth: 2
-
 Installing the ODBC Driver
 ==================================
 

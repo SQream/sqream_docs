@@ -4,12 +4,6 @@
 Install and configure ODBC on Linux
 ****************************************
 
-.. toctree::
-   :maxdepth: 1
-   :titlesonly:
-   :hidden:
-
-
 The ODBC driver for Windows is provided as a shared library.
 
 This tutorial shows how to install and configure ODBC on Linux.
@@ -44,9 +38,7 @@ Verify unixODBC is installed by running:
 
 Take note of the location of ``.odbc.ini`` and ``.odbcinst.ini``. In this case, ``/etc``. If ``odbcinst`` is not installed, follow the instructions for your platform below:
 
-.. contents:: Install unixODBC on:
-   :local:
-   :depth: 1
+
 
 Install unixODBC on RHEL 7 / CentOS 7
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
