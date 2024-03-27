@@ -137,6 +137,11 @@ While you can use foreign tables to load CSVs, the ``COPY FROM`` statement provi
 
 For more information, see :ref:`foreign tables<foreign_tables>`.
 
+Foreign Data Wrapper Best Practice
+==================================
+
+A recommended approach when working with :ref:`foreign_tables` and Foreign Data Wrapper (FDW) is storing files belonging to distinct file families and files with similar schemas in separate folders.
+
 Best Practices for CSV
 ----------------------
 
