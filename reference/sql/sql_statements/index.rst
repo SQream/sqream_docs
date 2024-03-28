@@ -110,6 +110,8 @@ Utility Commands
    
    * - Command
      - Usage
+   * - :ref:`abort`
+     - Performs a graceful stop, known as an abort, on an active statement
    * - :ref:`describe_locks`
      - Returns a list of locks from across your cluster
    * - :ref:`describe_saved_queries_list`
@@ -140,8 +142,6 @@ Utility Commands
      - View the ``CREATE TABLE`` statement for a current database
    * - :ref:`shutdown_server_command`
      - Sets your server to finish compiling all active queries before shutting down according to a user-defined time value
-   * - :ref:`stop_statement`
-     - Stops or aborts an active statement
    * - :ref:`save_query`
      - Saves query execution plan
 
