@@ -18,7 +18,7 @@ Before proceeding, ensure the following Foreign Data Wrapper (FDW) prerequisites
 
 * **Wildcard Accuracy:** If using wildcards, double-check their spelling and configuration. Misconfigured wildcards may result in unintended data ingestion.
 
-Figure out the table structure
+Figure Out The Table Structure
 ==============================
 
 Prior to loading data, you will need to write out the table structure, so that it matches the file structure.
@@ -39,8 +39,8 @@ For example, to import the data from ``nba.csv``, we will first look at the file
 * The file is stored on S3, at ``s3://sqream-demo-data/nba.csv``.
 
 
-Bulk load the data with COPY FROM
-====================================
+Bulk Load The Data With COPY FROM
+=================================
 
 The CSV is a standard CSV, but with two differences from BLUE defaults:
 
@@ -50,49 +50,93 @@ The CSV is a standard CSV, but with two differences from BLUE defaults:
 
 .. code-block:: postgres
    
-   COPY nba
-      FROM 's3://sqream-demo-data/nba.csv'
-      WITH RECORD DELIMITER '\r\n'
-           OFFSET 2;
-
-
+	COPY
+	  nba
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv',
+	    RECORD_DELIMITER = '\r\n',
+	    OFFSET = 2;
+	);
+	
 Repeat steps 3 and 4 for every CSV file you want to import.
 
 
-Loading a PSV (pipe separated value) file
--------------------------------------------
+Loading A PSV (Pipe Separated Value) File
+-----------------------------------------
 
 .. code-block:: postgres
    
-   COPY table_name FROM '/home/rhendricks/file.psv' WITH DELIMITER '|';
+	COPY
+	  nba
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv',
+	    DELIMITER = '|'
+	);
 
-Loading a TSV (tab separated value) file
--------------------------------------------
+
+Loading A TSV (Tab Separated Value) File
+----------------------------------------
 
 .. code-block:: postgres
    
-   COPY table_name FROM '/home/rhendricks/file.tsv' WITH DELIMITER '\t';
+	COPY
+	  nba 
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv',
+	    DELIMITER = '\t';
+	);	
 
-Loading a text file with non-printable delimiter
------------------------------------------------------
+Loading A Text File With Non-Printable Delimiter
+------------------------------------------------
 
 In the file below, the separator is ``DC1``, which is represented by ASCII 17 decimal or 021 octal.
 
 .. code-block:: postgres
    
-   COPY table_name FROM 'file.txt' WITH DELIMITER E'\021';
+	COPY 
+	  nba 
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv',
+	    DELIMITER = E'\021'
+	);
 
-Loading a text file with multi-character delimiters
------------------------------------------------------
+Loading A Text File With Multi-Character Delimiters
+---------------------------------------------------
 
 In the file below, the separator is ``'|``.
 
 .. code-block:: postgres
    
-   COPY table_name FROM 'file.txt' WITH DELIMITER '''|';
+	COPY 
+	  nba 
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv',
+	    DELIMITER = '''|'
+	);
+  
 
-Loading files with a header row
------------------------------------
+Loading Files With A Header Row
+-------------------------------
 
 Use ``OFFSET`` to skip rows.
 
@@ -100,20 +144,39 @@ Use ``OFFSET`` to skip rows.
 
 .. code-block:: postgres
 
-   COPY  table_name FROM 'filename.psv' WITH DELIMITER '|' OFFSET  2;
+	COPY 
+	  nba 
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv',
+	    DELIMITER = '|',
+	    OFFSET  2
+	);
 
 .. _changing_record_delimiter:
 
-Loading files formatted for Windows (``\r\n``)
----------------------------------------------------
+Loading Files Formatted For Windows (``\r\n``)
+----------------------------------------------
 
 .. code-block:: postgres
 
-   COPY table_name FROM 'filename.psv' WITH DELIMITER '|' RECORD DELIMITER '\r\n';
+	COPY 
+	  nba 
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv',
+	    DELIMITER = '|',
+	    RECORD_DELIMITER = '\r\n'
+	);
 
-
-Loading non-standard dates
-----------------------------------
+Loading Non-Standard Dates
+--------------------------
 
 If files contain dates not formatted as ``ISO8601``, tell ``COPY`` how to parse the column. After parsing, the date will appear as ``ISO8601`` inside BLUE.
 
@@ -121,6 +184,15 @@ In this example, ``date_col1`` and ``date_col2`` in the table are non-standard. 
 
 .. code-block:: postgres
 
-   COPY table_name FROM '/path/to/files/*.csv' WITH PARSERS 'date_col1=YMD,date_col2=MDY,date_col3=default';
+	COPY 
+	  nba 
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv',
+	    DATETIME_FORMAT = 'date_col1=YMD,date_col2=MDY,date_col3=default'
+	);
 
 .. tip:: The full list of supported date formats can be found under the :ref:`Supported date formats section<copy_date_parsers>` of the :ref:`copy_from` reference.
