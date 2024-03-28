@@ -204,23 +204,21 @@ The following example shows the correct file structure used for creating a :ref:
 
 .. code-block:: postgres
    
-   CREATE FOREIGN TABLE ext_nba
-   (
-        Name       TEXT(40),
-        Team       TEXT(40),
-        Number     BIGINT,
-        Position   TEXT(2),
-        Age        BIGINT,
-        Height     TEXT(4),
-        Weight     BIGINT,
-        College    TEXT(40),
-        Salary     FLOAT
-    )
-    WRAPPER parquet_fdw
-    OPTIONS
-    (
-      LOCATION =  's3://sqream-demo-data/nba.parquet'
-    );
+	CREATE FOREIGN TABLE ext_nba (
+	  Name TEXT(40),
+	  Team TEXT(40),
+	  Number BIGINT,
+	  Position TEXT(2),
+	  Age BIGINT,
+	  Height TEXT(4),
+	  Weight BIGINT,
+	  College TEXT(40),
+	  Salary FLOAT
+	)
+	WRAPPER
+	  parquet_fdw
+	OPTIONS
+	  (LOCATION = 's3://sqream-docs/nba.parquet');
 
 .. tip:: An exact match must exist between the SQream and Parquet types. For unsupported column types, you can set the type to any type and exclude it from subsequent queries.
 
@@ -236,8 +234,12 @@ You can use the :ref:`create_table_as` statement to load the data into SQream, a
 
 .. code-block:: postgres
    
-   CREATE TABLE nba AS
-      SELECT * FROM ext_nba;
+	CREATE TABLE
+	  nba AS
+	SELECT
+	  *
+	FROM
+	  ext_nba;
 
 Examples
 --------
@@ -255,8 +257,20 @@ In the example below, the ``Position column`` is not supported due its type.
 
 .. code-block:: postgres
    
-   CREATE TABLE nba AS
-      SELECT Name, Team, Number, NULL as Position, Age, Height, Weight, College, Salary FROM ext_nba;
+	CREATE TABLE
+	  nba AS
+	SELECT
+	  Name,
+	  Team,
+	  Number,
+	  NULL as Position,
+	  Age,
+	  Height,
+	  Weight,
+	  College,
+	  Salary
+	FROM
+	  ext_nba;
 
 Modifying Data Before Loading
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -268,10 +282,22 @@ In the example below, the ``Position column`` is set to the default ``NULL``.
 
 .. code-block:: postgres
    
-   CREATE TABLE nba AS 
-      SELECT name, team, number, NULL as position, age, height, (weight / 2.205) as weight, college, salary 
-              FROM ext_nba
-              ORDER BY weight;
+	CREATE TABLE
+	  nba AS
+	SELECT
+	  name,
+	  team,
+	  number,
+	  NULL as position,
+	  age,
+	  height,
+	  (weight / 2.205) as weight,
+	  college,
+	  salary
+	FROM
+	  ext_nba
+	ORDER BY
+	  weight;
 
 Loading a Table from a Directory of Parquet Files on HDFS
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -280,15 +306,24 @@ The following is an example of loading a table from a directory of Parquet files
 
 .. code-block:: postgres
 
-   CREATE FOREIGN TABLE ext_users
-     (id INT NOT NULL, name TEXT(30) NOT NULL, email TEXT(50) NOT NULL)  
-   WRAPPER parquet_fdw
-   OPTIONS
-     (
-        LOCATION =  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet'
-     );
-   
-   CREATE TABLE users AS SELECT * FROM ext_users;
+	CREATE FOREIGN TABLE ext_users (
+	  id INT NOT NULL,
+	  name TEXT(30) NOT NULL,
+	  email TEXT(50) NOT NULL
+	)
+	WRAPPER
+	  parquet_fdw
+	OPTIONS
+	  (
+	    LOCATION = 'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet'
+	  );
+
+	CREATE TABLE
+	  users AS
+	SELECT
+	  *
+	FROM
+	  ext_users;
 
 Loading a Table from a Directory of Parquet Files on S3
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -297,16 +332,26 @@ The following is an example of loading a table from a directory of Parquet files
 
 .. code-block:: postgres
 
-   CREATE FOREIGN TABLE ext_users
-     (id INT NOT NULL, name TEXT(30) NOT NULL, email TEXT(50) NOT NULL)  
-   WRAPPER parquet_fdw
-   OPTIONS
-     ( LOCATION = 's3://pp-secret-bucket/users/*.parquet',
-       AWS_ID = 'our_aws_id',
-       AWS_SECRET = 'our_aws_secret'
-      );
-   
-   CREATE TABLE users AS SELECT * FROM ext_users;
+	CREATE FOREIGN TABLE ext_users (
+	  id INT NOT NULL,
+	  name TEXT(30) NOT NULL,
+	  email TEXT(50) NOT NULL
+	)
+	WRAPPER
+	  parquet_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://sqream-docs/users/*.parquet',
+	    AWS_ID = 'our_aws_id',
+	    AWS_SECRET = 'our_aws_secret'
+	  );
+
+	CREATE TABLE
+	  users AS
+	SELECT
+	  *
+	FROM
+	  ext_users;
 
 For more configuration option examples, navigate to the :ref:`create_foreign_table` page and see the **Parameters** table.
 
@@ -319,18 +364,19 @@ The following is an example of the output based on the **nba.parquet** table:
 
 .. code-block:: psql
    
-   t=> SELECT * FROM ext_nba LIMIT 10;
-   Name          | Team           | Number | Position | Age | Height | Weight | College           | Salary  
-   --------------+----------------+--------+----------+-----+--------+--------+-------------------+---------
-   Avery Bradley | Boston Celtics |      0 | PG       |  25 | 6-2    |    180 | Texas             |  7730337
-   Jae Crowder   | Boston Celtics |     99 | SF       |  25 | 6-6    |    235 | Marquette         |  6796117
-   John Holland  | Boston Celtics |     30 | SG       |  27 | 6-5    |    205 | Boston University |         
-   R.J. Hunter   | Boston Celtics |     28 | SG       |  22 | 6-5    |    185 | Georgia State     |  1148640
-   Jonas Jerebko | Boston Celtics |      8 | PF       |  29 | 6-10   |    231 |                   |  5000000
-   Amir Johnson  | Boston Celtics |     90 | PF       |  29 | 6-9    |    240 |                   | 12000000
-   Jordan Mickey | Boston Celtics |     55 | PF       |  21 | 6-8    |    235 | LSU               |  1170960
-   Kelly Olynyk  | Boston Celtics |     41 | C        |  25 | 7-0    |    238 | Gonzaga           |  2165160
-   Terry Rozier  | Boston Celtics |     12 | PG       |  22 | 6-2    |    190 | Louisville        |  1824360
-   Marcus Smart  | Boston Celtics |     36 | PG       |  22 | 6-4    |    220 | Oklahoma State    |  3431040
+	SELECT * FROM ext_nba LIMIT 10;
+	
+	Name          | Team           | Number | Position | Age | Height | Weight | College           | Salary  
+	--------------+----------------+--------+----------+-----+--------+--------+-------------------+---------
+	Avery Bradley | Boston Celtics |      0 | PG       |  25 | 6-2    |    180 | Texas             |  7730337
+	Jae Crowder   | Boston Celtics |     99 | SF       |  25 | 6-6    |    235 | Marquette         |  6796117
+	John Holland  | Boston Celtics |     30 | SG       |  27 | 6-5    |    205 | Boston University |         
+	R.J. Hunter   | Boston Celtics |     28 | SG       |  22 | 6-5    |    185 | Georgia State     |  1148640
+	Jonas Jerebko | Boston Celtics |      8 | PF       |  29 | 6-10   |    231 |                   |  5000000
+	Amir Johnson  | Boston Celtics |     90 | PF       |  29 | 6-9    |    240 |                   | 12000000
+	Jordan Mickey | Boston Celtics |     55 | PF       |  21 | 6-8    |    235 | LSU               |  1170960
+	Kelly Olynyk  | Boston Celtics |     41 | C        |  25 | 7-0    |    238 | Gonzaga           |  2165160
+	Terry Rozier  | Boston Celtics |     12 | PG       |  22 | 6-2    |    190 | Louisville        |  1824360
+	Marcus Smart  | Boston Celtics |     36 | PG       |  22 | 6-4    |    220 | Oklahoma State    |  3431040
 
 .. note:: If your table output has errors, verify that the structure of the Parquet files correctly corresponds to the external table structure that you created.
