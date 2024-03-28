@@ -94,18 +94,18 @@ We will make note of the file structure to create a matching ``CREATE TABLE`` st
 
 .. code-block:: postgres
    
-   CREATE TABLE nba
-   (
-      Name text(40),
-      Team text(40),
-      Number tinyint,
-      Position text(2),
-      Age tinyint,
-      Height text(4),
-      Weight real,
-      College text(40),
-      Salary float
-    );
+	CREATE TABLE
+	  nba (
+		Name text(40),
+		Team text(40),
+		Number tinyint,
+		Position text(2),
+		Age tinyint,
+		Height text(4),
+		Weight real,
+		College text(40),
+		Salary float
+	  );
 
 
 Bulk load the data with COPY FROM
@@ -118,28 +118,34 @@ The CSV is a standard CSV, but with two differences from SQream DB defaults:
 * The first row of the file is a header containing column names, which we'll want to skip.
 
 .. code-block:: postgres
-   
-   COPY nba
-      FROM 's3://sqream-demo-data/nba.csv'
-      WITH RECORD DELIMITER '\r\n'
-           OFFSET 2;
+
+	COPY
+	  nba
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv',
+	    RECORD_DELIMITER = '\r\n',
+	    OFFSET = 2;
+	);
 
 
 Repeat steps 3 and 4 for every CSV file you want to import.
 
 
-Loading different types of CSV files
-====================================
-
-:ref:`copy_from` contains several configuration options. See more in :ref:`the COPY FROM elements section<copy_from_config_options>`.
-
-
-Loading a standard CSV file from a local filesystem
+Loading a standard CSV File From a Local Filesystem
 ---------------------------------------------------
 
 .. code-block:: postgres
    
-   COPY table_name FROM '/home/rhendricks/file.csv';
+	COPY
+	  table_name 
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS (LOCATION = '/home/rhendricks/file.csv');
 
 
 Loading a PSV (pipe separated value) file
@@ -147,14 +153,32 @@ Loading a PSV (pipe separated value) file
 
 .. code-block:: postgres
    
-   COPY table_name FROM '/home/rhendricks/file.psv' WITH DELIMITER '|';
+	COPY
+	  nba
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv',
+	    DELIMITER = '|'
+	);
 
 Loading a TSV (tab separated value) file
 ----------------------------------------
 
 .. code-block:: postgres
    
-   COPY table_name FROM '/home/rhendricks/file.tsv' WITH DELIMITER '\t';
+	COPY
+	  nba
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv',
+	    DELIMITER = '\t';
+	);
 
 Loading a text file with non-printable delimiter
 ------------------------------------------------
@@ -163,18 +187,36 @@ In the file below, the separator is ``DC1``, which is represented by ASCII 17 de
 
 .. code-block:: postgres
    
-   COPY table_name FROM 'file.txt' WITH DELIMITER E'\021';
+	COPY
+	  nba
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv',
+	    DELIMITER = E'\021'
+	);
 
-Loading a text file with multi-character delimiters
+Loading a Text File With Multi-Character Delimiters
 ---------------------------------------------------
 
 In the file below, the separator is ``'|``.
 
 .. code-block:: postgres
    
-   COPY table_name FROM 'file.txt' WITH DELIMITER '''|';
+	COPY
+	  nba
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv',
+	    DELIMITER = '''|'
+	);
 
-Loading files with a header row
+Loading Files With a Header Row
 -------------------------------
 
 Use ``OFFSET`` to skip rows.
@@ -183,32 +225,74 @@ Use ``OFFSET`` to skip rows.
 
 .. code-block:: postgres
 
-   COPY  table_name FROM 'filename.psv' WITH DELIMITER '|' OFFSET  2;
+	COPY
+	  nba
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv',
+	    DELIMITER = '|',
+	    OFFSET  2
+	);
 
 .. _changing_record_delimiter:
 
-Loading files formatted for Windows (``\r\n``)
+Loading Files Formatted for Windows (``\r\n``)
 ----------------------------------------------
 
 .. code-block:: postgres
 
-   COPY table_name FROM 'filename.psv' WITH DELIMITER '|' RECORD DELIMITER '\r\n';
+	COPY
+	  nba
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv',
+	    DELIMITER = '|',
+	    RECORD_DELIMITER = '\r\n'
+	);
 
-Loading a file from a public S3 bucket
+Loading a File From a Public S3 Bucket
 --------------------------------------
 
 .. note:: The bucket must be publicly available and objects can be listed
 
 .. code-block:: postgres
 
-   COPY nba FROM 's3://sqream-demo-data/nba.csv' WITH OFFSET 2 RECORD DELIMITER '\r\n';
+	COPY
+	  nba
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv',
+	    OFFSET = 2,
+	    RECORD_DELIMITER = '\r\n'
+	);
 
 Loading files from an authenticated S3 bucket
 ---------------------------------------------
 
 .. code-block:: postgres
 
-   COPY nba FROM 's3://secret-bucket/*.csv' WITH OFFSET 2 RECORD DELIMITER '\r\n' AWS_ID '12345678' AWS_SECRET 'super_secretive_secret';
+	COPY
+	  nba
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv',
+	    OFFSET = 2,
+	    RECORD_DELIMITER = '\r\n',
+	    AWS_ID = '12345678', 
+	    AWS_SECRET = 'super_secretive_secret'
+	);
 
 .. _hdfs_copy_from_example:
 
@@ -217,8 +301,17 @@ Loading files from an HDFS storage
 
 .. code-block:: postgres
 
-   COPY nba FROM 'hdfs://hadoop-nn.piedpiper.com/rhendricks/*.csv' WITH OFFSET 2 RECORD DELIMITER '\r\n';
-
+	COPY
+	  nba
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = 'hdfs://hadoop-nn.piedpiper.com/rhendricks/*.csv', 
+	    OFFSET = 2,
+	    RECORD DELIMITER = '\r\n'
+	);
 
 Saving rejected rows to a file
 ------------------------------
@@ -227,24 +320,41 @@ See :ref:`capturing_rejected_rows` for more information about the error handling
 
 .. code-block:: postgres
 
-	COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.psv'
-                ,delimiter = '|'
-				,continue_on_error = True
-                ,error_log = '/temp/load_error.log' -- Save error log
-                ,rejected_data = '/temp/load_rejected.log' -- Only save rejected rows
-                );
-
+	COPY
+	  t
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = '/tmp/file.psv',
+	    DELIMITER = '|',
+	    CONTINUE_ON_ERROR = True,
+	    ERROR_LOG = '/temp/load_error.log' -- Save error log,
+	    REJECTED_DATA = '/temp/load_rejected.log' -- Only save rejected rows
+	  );
 
 Stopping the load if a certain amount of rows were rejected
 -----------------------------------------------------------
 
 .. code-block:: postgres
 
-   COPY  table_name  FROM  'filename.csv'   WITH  delimiter  '|'  
-                ERROR_LOG  '/temp/load_err.log' -- Save error log
-                OFFSET 2 -- skip header row
-                LIMIT  100 -- Only load 100 rows
-                STOP AFTER 5 ERRORS; -- Stop the load if 5 errors reached
+	COPY
+	  table
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION =  'filename.csv',
+	    DELIMITER = '|',
+	    ERROR_LOG = '/temp/load_err.log', -- Save error log
+	    OFFSET = 2 -- skip header row
+	)
+	LIMIT 100 -- Only load 100 rows
+	STOP AFTER 5 ERRORS;
+
+	-- Stop the load if 5 errors reached;
 
 Load CSV files from a set of directories
 ----------------------------------------
@@ -253,7 +363,15 @@ Use glob patterns (wildcards) to load multiple files to one table.
 
 .. code-block:: postgres
 
-   COPY table_name  from  '/path/to/files/2019_08_*/*.csv';
+	COPY
+	  table  
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION =  '/path/to/files/2019_08_*/*.csv'
+	);
 
 
 Rearrange destination columns
@@ -263,7 +381,15 @@ When the source of the files does not match the table structure, tell the ``COPY
 
 .. code-block:: postgres
 
-   COPY table_name (fifth, first, third) FROM '/path/to/files/*.csv';
+	COPY
+	  table (fifth, first, third)
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION =  '/path/to/files/*.csv'
+	);
 
 .. note:: Any column not specified will revert to its default value or ``NULL`` value if nullable
 
@@ -276,6 +402,15 @@ In this example, ``date_col1`` and ``date_col2`` in the table are non-standard. 
 
 .. code-block:: postgres
 
-   COPY table_name FROM '/path/to/files/*.csv' WITH PARSERS 'date_col1=YMD,date_col2=MDY,date_col3=default';
+	COPY
+	  nba
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv',
+	    DATETIME_FORMAT = 'date_col1=YMD,date_col2=MDY,date_col3=default'
+	);
 
 .. tip:: The full list of supported date formats can be found under the :ref:`Supported date formats section<copy_date_parsers>` of the :ref:`copy_from` reference.
