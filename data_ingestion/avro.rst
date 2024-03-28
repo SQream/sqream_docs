@@ -11,7 +11,7 @@ Avro
    :depth: 1
 
 Foreign Data Wrapper Prerequisites
-===================================
+==================================
 
 Before proceeding, ensure the following Foreign Data Wrapper (FDW) prerequisites:
 
@@ -62,24 +62,21 @@ The following example shows the correct file structure used to create the ``CREA
 
 .. code-block:: postgres
    
-   CREATE TABLE ext_nba
-   (
-
-        Name       TEXT(40),
-        Team       TEXT(40),
-        Number     BIGINT,
-        Position   TEXT(2),
-        Age        BIGINT,
-        Height     TEXT(4),
-        Weight     BIGINT,
-        College    TEXT(40),
-        Salary     FLOAT
-    )
-    WRAPPER avro_fdw
-    OPTIONS
-    (
-      LOCATION =  's3://sqream-demo-data/nba.avro'
-    );
+	CREATE TABLE nba (
+	  name TEXT(40),
+	  team TEXT(40),
+	  number BIGINT,
+	  position TEXT(2),
+	  age BIGINT,
+	  height TEXT(4),
+	  weight BIGINT,
+	  college TEXT(40),
+	  salary FLOAT
+	)
+	WRAPPER
+	  avro_fdw
+	OPTIONS
+	  (LOCATION = 's3://sqream-docs/nba.avro');
 
 .. tip:: 
 
@@ -103,24 +100,21 @@ The following example shows the correct file structure used to create the ``CREA
 
 .. code-block:: postgres
    
-   CREATE FOREIGN TABLE ext_nba
-   (
-
-        Name       TEXT(40),
-        Team       TEXT(40),
-        Number     BIGINT,
-        Position   TEXT(2),
-        Age        BIGINT,
-        Height     TEXT(4),
-        Weight     BIGINT,
-        College    TEXT(40),
-        Salary     FLOAT
-    )
-    WRAPPER avro_fdw
-    OPTIONS
-    (
-      LOCATION =  's3://sqream-demo-data/nba.avro'
-    );
+	CREATE FOREIGN TABLE nba (
+	  name TEXT(40),
+	  team TEXT(40),
+	  number BIGINT,
+	  position TEXT(2),
+	  age BIGINT,
+	  height TEXT(4),
+	  weight BIGINT,
+	  college TEXT(40),
+	  salary FLOAT
+	)
+	WRAPPER
+	  avro_fdw
+	OPTIONS
+	  (LOCATION = 's3://sqream-docs/nba.avro');
 
 .. tip:: 
 
@@ -241,9 +235,11 @@ Before ingesting data into SQream from an Avro file, you must create a table usi
 
 .. code-block:: postgres
    
-   COPY [schema name.]table_name
-     FROM WRAPPER fdw_name
-   ;
+	COPY
+	  [<schema name>.] <table_name>
+	FROM
+	WRAPPER
+	  fdw_<name>;
 	  
 After creating a table you can ingest data from an Avro file into SQream using the following syntax:
 
@@ -258,13 +254,13 @@ The following is an example of creating a table:
 
 .. code-block:: postgres
    
-   COPY t
-     FROM WRAPPER fdw_name
-     OPTIONS
-     (
-       [ copy_from_option [, ...] ]
-     )
-   ;
+	COPY
+	  < table_name >
+	FROM
+	WRAPPER
+	  fdw_name
+	OPTIONS
+	  ([ <copy_from_option> [, ...] ]);
 
 The following is an example of loading data from an Avro file into SQream:
 
@@ -273,7 +269,7 @@ The following is an example of loading data from an Avro file into SQream:
     WRAPPER avro_fdw
     OPTIONS
     (
-      LOCATION =  's3://sqream-demo-data/nba.avro'
+      LOCATION =  's3://sqream-docs/nba.avro'
     );
 	  
 For more examples, see :ref:`additional_examples`.
@@ -301,19 +297,20 @@ The following is an example of the output based on the **nba.avro** table:
 
 .. code-block:: psql
    
-   t=> SELECT * FROM ext_nba LIMIT 10;
-   Name          | Team           | Number | Position | Age | Height | Weight | College           | Salary  
-   --------------+----------------+--------+----------+-----+--------+--------+-------------------+---------
-   Avery Bradley | Boston Celtics |      0 | PG       |  25 | 6-2    |    180 | Texas             |  7730337
-   Jae Crowder   | Boston Celtics |     99 | SF       |  25 | 6-6    |    235 | Marquette         |  6796117
-   John Holland  | Boston Celtics |     30 | SG       |  27 | 6-5    |    205 | Boston University |         
-   R.J. Hunter   | Boston Celtics |     28 | SG       |  22 | 6-5    |    185 | Georgia State     |  1148640
-   Jonas Jerebko | Boston Celtics |      8 | PF       |  29 | 6-10   |    231 |                   |  5000000
-   Amir Johnson  | Boston Celtics |     90 | PF       |  29 | 6-9    |    240 |                   | 12000000
-   Jordan Mickey | Boston Celtics |     55 | PF       |  21 | 6-8    |    235 | LSU               |  1170960
-   Kelly Olynyk  | Boston Celtics |     41 | C        |  25 | 7-0    |    238 | Gonzaga           |  2165160
-   Terry Rozier  | Boston Celtics |     12 | PG       |  22 | 6-2    |    190 | Louisville        |  1824360
-   Marcus Smart  | Boston Celtics |     36 | PG       |  22 | 6-4    |    220 | Oklahoma State    |  3431040
+	SELECT * FROM ext_nba LIMIT 10;
+	
+	Name          | Team           | Number | Position | Age | Height | Weight | College           | Salary  
+	--------------+----------------+--------+----------+-----+--------+--------+-------------------+---------
+	Avery Bradley | Boston Celtics |      0 | PG       |  25 | 6-2    |    180 | Texas             |  7730337
+	Jae Crowder   | Boston Celtics |     99 | SF       |  25 | 6-6    |    235 | Marquette         |  6796117
+	John Holland  | Boston Celtics |     30 | SG       |  27 | 6-5    |    205 | Boston University |         
+	R.J. Hunter   | Boston Celtics |     28 | SG       |  22 | 6-5    |    185 | Georgia State     |  1148640
+	Jonas Jerebko | Boston Celtics |      8 | PF       |  29 | 6-10   |    231 |                   |  5000000
+	Amir Johnson  | Boston Celtics |     90 | PF       |  29 | 6-9    |    240 |                   | 12000000
+	Jordan Mickey | Boston Celtics |     55 | PF       |  21 | 6-8    |    235 | LSU               |  1170960
+	Kelly Olynyk  | Boston Celtics |     41 | C        |  25 | 7-0    |    238 | Gonzaga           |  2165160
+	Terry Rozier  | Boston Celtics |     12 | PG       |  22 | 6-2    |    190 | Louisville        |  1824360
+	Marcus Smart  | Boston Celtics |     36 | PG       |  22 | 6-4    |    220 | Oklahoma State    |  3431040
 
 .. note:: If your table output has errors, verify that the structure of the Avro files correctly corresponds to the foreign table structure that you created.
 
@@ -337,8 +334,20 @@ In the example below, the ``Position`` column is not supported due its type.
 
 .. code-block:: postgres
    
-   CREATE TABLE nba AS
-      SELECT Name, Team, Number, NULL as Position, Age, Height, Weight, College, Salary FROM ext_nba;   
+	CREATE TABLE
+	  nba AS
+	SELECT
+	  Name,
+	  Team,
+	  Number,
+	  NULL as Position,
+	  Age,
+	  Height,
+	  Weight,
+	  College,
+	  Salary
+	FROM
+	  ext_nba;
 
 Modifying Data Before Loading
 -----------------------------
@@ -351,10 +360,21 @@ In the example below, the ``Position`` column is set to the default ``NULL``.
 
 .. code-block:: postgres
    
-   CREATE FOREIGN TABLE nba AS 
-      SELECT name, team, number, NULL as Position, age, height, (weight / 2.205) as weight, college, salary 
-              FROM ext_nba
-              ORDER BY weight;
+	CREATE FOREIGN TABLE nba AS
+	SELECT
+	  name,
+	  team,
+	  number,
+	  NULL as Position,
+	  age,
+	  height,
+	  (weight / 2.205) as weight,
+	  college,
+	  salary
+	FROM
+	  ext_nba
+	ORDER BY
+	  weight;
 
 Loading a Table from a Directory of Avro Files on HDFS
 ------------------------------------------------------
@@ -363,15 +383,24 @@ The following is an example of loading a table from a directory of Avro files on
 
 .. code-block:: postgres
 
-   CREATE FOREIGN TABLE ext_users
-     (id INT NOT NULL, name TEXT(30) NOT NULL, email TEXT(50) NOT NULL)  
-   WRAPPER avro_fdw
-   OPTIONS
-     (
-        LOCATION =  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.avro'
-     );
+	CREATE FOREIGN TABLE ext_users (
+	  id INT NOT NULL,
+	  name TEXT(30) NOT NULL,
+	  email TEXT(50) NOT NULL
+	)
+	WRAPPER
+	  avro_fdw
+	OPTIONS
+	  (
+	    LOCATION = 'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.avro'
+	  );
    
-   CREATE TABLE users AS SELECT * FROM ext_users;
+	CREATE TABLE
+	  users AS 
+	SELECT
+	  * 
+	FROM
+	  ext_users;
 
 For more configuration option examples, navigate to the :ref:`create_foreign_table` page and see the **Parameters** table.
 
@@ -382,13 +411,26 @@ The following is an example of loading a table from a directory of Avro files on
 
 .. code-block:: postgres
 
-   CREATE FOREIGN TABLE ext_users
-     (id INT NOT NULL, name TEXT(30) NOT NULL, email TEXT(50) NOT NULL)  
-   WRAPPER avro_fdw
-   OPTIONS
-     ( LOCATION = 's3://pp-secret-bucket/users/*.avro',
-       AWS_ID = 'our_aws_id',
-       AWS_SECRET = 'our_aws_secret'
-      );
+	CREATE FOREIGN TABLE ext_users (
+	  id INT NOT NULL,
+	  name TEXT(30) NOT NULL,
+	  email TEXT(50) NOT NULL
+	)
+	WRAPPER
+	  avro_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3:/sqream-docs/users/*.avro',
+	    AWS_ID = 'our_aws_id',
+	    AWS_SECRET = 'our_aws_secret'
+	  );
    
-   CREATE TABLE users AS SELECT * FROM ext_users;
+   
+	CREATE TABLE
+	  users AS
+	SELECT
+	  *
+	FROM
+	  ext_users;
+   
+   
