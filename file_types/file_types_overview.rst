@@ -7,7 +7,7 @@ Best Practices
 Foreign Data Wrapper Best Practice
 ==================================
 
-A recommended approach when working with :ref:`foreign_tables` and Foreign Data Wrapper (FDW) involves storing files belonging to distinct file families in separate folders.
+A recommended approach when working with :ref:`foreign_tables` and Foreign Data Wrapper (FDW) is storing files belonging to distinct file families and files with similar schemas in separate folders.
 
 Best Practices for CSV
 ======================
