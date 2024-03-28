@@ -11,24 +11,31 @@ Running BLUE Console
 
 BLUE console is Java-based and may run on any Java-supported platform. Use the following link to check supported platforms and to download `Java 11 <https://www.oracle.com/java/technologies/downloads/#java11>`_.
 
-#. Use the BLUE web interface to generate and an access token and copy it.
+#. Use the BLUE web interface to generate an access token and copy it.
    
    For instructions on how to generate and copy access tokens, go to :ref:`connecting_to_blue`.
 
-#. Use the following syntax to start the client:
+#. To start the client, run the following command:
 
 .. code-block:: none
 
-	$ sudo java -jar jdbc-console-*.*.**.jar --host=<BLUE cluster FQDN> --access-token=<access-token>
+	java -jar jdbc-console-0.1.3-69.jar --host=<BLUE cluster FQDN> --access-token=cHczWjlIWHk2****
 
 Output:
 	
 .. code-block:: none
 
-	Welcome to JDBC console, SQream DB version 2.0.0
+	Welcome to JDBC console version jdbc-console-0.1.3-69
 	To quit use ^d or exit; to abort ^c
-	Connection URL: jdbc:Sqream://<BLUE cluster FQDN>:443/master;accesstoken=##########;pool=Default
+	Connection URL: jdbc:Sqream://<BLUE cluster FQDN>:443/master;accesstoken=cHczWjlIWHk2****;pool=Default;source=CLI
 	master=>
+	
+#. To view a full list of arguments before starting the client, run the following command:
+
+.. code-block:: none
+
+	java -jar jdbc-console-0.1.3-69.jar --host=<BLUE cluster FQDN> --access-token=cHczWjlIWHk2**** --help
+
 
 First Steps 
 ============
@@ -118,10 +125,6 @@ Arguments
    * - ``--table-view``
      - ``true``
      - Presents query results in a table view format complete with column headers. 
-
-.. tip::
-
-	For the full list of arguments, run ``$  java -jar jdbc-console-0.0.94-55.jar --host=product.isqream.com --access-token=########## --help``.
 	
 Record Delimiters
 ---------------------------
@@ -237,10 +240,10 @@ Use the ``--c`` or ``--command`` option to execute a statement and exit the data
 
 .. code-block:: none
 
-	java -jar jdbc-console-0.0.94-55.jar --host=product1-sqream.isqream.com --access-token=############# -d master -c "SELECT TOP 5 * FROM nba;"
-	Welcome to JDBC console, SQream DB version 2.0.0
+	java -jar jdbc-console-0.1.3-69.jar --host=product1-sqream.isqream.com --access-token=############# -d master -c "SELECT TOP 5 * FROM nba;"
+	Welcome to JDBC console version jdbc-console-0.1.3-69
 	To quit use ^d or exit; to abort ^c
-	Connection URL: jdbc:Sqream://product1-sqream.isqream.com:443/master;accesstoken=#############;pool=Default
+	Connection URL: jdbc:Sqream://<BLUE cluster FQDN>:443/master;accesstoken=cHczWjlIWHk2****;pool=Default;source=CLI
 	SELECT TOP 5* FROM nba;
 	| Name            | Team              | Number | Position | Age | Birthday | Weight | College            | Salary   |
 	|-----------------|-------------------|--------|----------|-----|----------|--------|--------------------|----------|
@@ -257,7 +260,7 @@ Remove the timing and row count by passing the ``--results-only`` parameter.
 
 .. code-block:: none
 
-	java -jar jdbc-console-0.0.94-55.jar --host=product1-sqream.isqream.com --access-token=############# --results-only -d master -c "SELECT TOP 5* FROM nba;"
+	java -jar jdbc-console-0.1.3-69.jar --host=product1-sqream.isqream.com --access-token=############# --results-only -d master -c "SELECT TOP 5* FROM nba;"
 	| Name            | Team              | Number | Position | Age | Birthday | Weight | College            | Salary   |
 	|-----------------|-------------------|--------|----------|-----|----------|--------|--------------------|----------|
 	| Avery Bradley   | Boston Celtics    | 0      | PG       | 25  | 2-Jun    | 180    | Texas              | 7730337  |
@@ -274,7 +277,7 @@ Use the ``-f <filename>`` argument:
 
 .. code-block:: none
 
-	$ java -jar jdbc-console-0.0.94-55.jar --host=product.isqream.com --access-token=########## -f=example_script.sql
+	$ java -jar jdbc-console-0.1.3-69.jar --host=product.isqream.com --access-token=########## -f=example_script.sql
 	 
 .. tip::
 
@@ -300,8 +303,8 @@ Use the ``--results-only`` flag to remove the row counts and timing.
 
 .. code-block:: none
 
-	$ java -jar jdbc-console-0.0.94-55.jar --host=product.isqream.com --access-token=########## -d master -c "SELECT * FROM aba" --results-only > file.csv
-	$ cat file.csv
+	java -jar jdbc-console-0.1.3-69.jar --host=product.isqream.com --access-token=########## -d master -c "SELECT * FROM aba" --results-only > file.csv
+	cat file.csv
 	
 Changing a CSV to a TSV
 -----------------------
@@ -314,8 +317,8 @@ The ``--delimiter`` parameter accepts any printable character.
 
 .. code-block:: none
 
-	$ java -jar jdbc-console-0.0.94-55.jar --host=product.isqream.com --access-token=########## -d farm -c "SELECT * FROM animals" --delimiter '  ' > file.tsv
-	$ cat file.tsv
+	java -jar jdbc-console-0.1.3-69.jar.jar --host=product.isqream.com --access-token=########## -d farm -c "SELECT * FROM animals" --delimiter '  ' > file.tsv
+	cat file.tsv
 
 Executing a Series of Statements From a File
 -------------------------------------------- 
@@ -324,16 +327,16 @@ Assuming a file containing SQL statements (separated by semicolons):
 
 .. code-block:: none
 
-	$ cat some_queries.sql
-	   CREATE TABLE calm_farm_animals
-	  ( id INT IDENTITY(0, 1), name TEXT(30)
-	  );
+	cat some_queries.sql
+	 CREATE TABLE calm_farm_animals
+	( id INT IDENTITY(0, 1), name TEXT(30)
+	);
 
 	INSERT INTO calm_farm_animals (name)
 	  SELECT name FROM   animals WHERE  is_angry = false;
 
 
-	$ java -jar jdbc-console-0.0.94-55.jar --host=product.isqream.com --access-token=########## -d farm -f some_queries.sql
+	java -jar jdbc-console-0.1.3-69.jar --host=product.isqream.com --access-token=########## -d farm -f some_queries.sql
 	executed
 	time: 0.018289s
 	executed
@@ -346,6 +349,6 @@ You can save connection parameters as environment variables:
 
 .. code-block:: none
 
-	$ export SQREAM_USER=sqream;
-	$ export SQREAM_DATABASE=farm;
-	$ java -jar jdbc-console-*.*.**.jar --0.0.94-55.jar --host=product.isqream.com --access-token=########## --username=$SQREAM_USER -d $SQREAM_DATABASE
+	export SQREAM_USER=sqream;
+	export SQREAM_DATABASE=farm;
+	java -jar jdbc-console-0.1.3-69.jar --0.1.3-69.jar --host=product.isqream.com --access-token=########## --username=$SQREAM_USER -d $SQREAM_DATABASE
