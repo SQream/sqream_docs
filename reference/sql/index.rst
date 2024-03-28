@@ -4,7 +4,7 @@
 SQL Statements and Syntax
 ***************************
 
-This section provides reference for using SQream DB's SQL statements - :ref:`DDL commands<ddl_commands>`, :ref:`DML commands<dml_commands>` and :ref:`SQL query syntax<sql_syntax>`.
+This section provides reference for using BLUE SQL statements.
 
 .. toctree::
    :maxdepth: 1
