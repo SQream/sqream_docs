@@ -4,8 +4,6 @@
 Troubleshooting
 ***********************
 
-The **Troubleshooting** page describes solutions to the following issues:
-
 .. toctree::
    :maxdepth: 1
    :glob:
@@ -15,3 +13,4 @@ The **Troubleshooting** page describes solutions to the following issues:
    lock_related_issues
    information_for_support
    retrieving_execution_plan_output_using_studio
+   support_team_access
