@@ -12,9 +12,22 @@ A session is opened per connection or per Workbench tab.
 Syntax
 ======
 
-.. code-block:: sql
+.. code-block:: postgres
 
-   DESC[RIBE] SESSION QUERIES  [SESSION ID <'session-id'>] 
+  DESC[RIBE] SESSION QUERIES [SESSION ID '<sessionId>' | ALL] [STATUS IN (
+   { QUEUED,
+   | EXECUTING,
+   | EXECUTION_SUCCEED,
+   | EXECUTION_FAILED,
+   | CLOSED,
+   | COMPILATION_FAILED,
+   | ABORTED,
+   | FETCHING_RESULTS,
+   | COMPILING,
+   | COMPLETE }
+   )]
+
+
 
 Parameters
 ==========
@@ -29,6 +42,12 @@ Parameters
    * - ``SESSION ID``
      - :ref:`STRING literal<literals>`	
      - The session ID of the query. If not specified the current session ID is provided
+   * - ``ALL``
+     - 
+     - Lists all current sessions. This parameter requires ``SUPERUSER`` permissions
+   * - ``STATUS IN``
+     - 
+     - Filters by statement status
 	 
 Output
 ======
@@ -107,9 +126,13 @@ Output
 Example
 =======
 
-.. code-block:: sql
+.. code-block:: postgres
 
 	DESCRIBE SESSION QUERIES SESSION ID  '683256f5-66b7-4d8c-b1a2-456dddcb6dee';
+
+Output:
+
+.. code-block:: none
 
 	+--------+------------+----------+-----------------------------------------------------+---------------------+------------------------------------+-------------------+-------------------+--------+-------------+----------------+--------------+--------------------------------------------------------+---------+-------------+-------------+--------------------+----------------------+--------------+-----------+---------+
 	|query_id|query_status|query_type|sql_text                                             |role                 |session_id                          |start_time         |end_time           |duration|time_in_queue|compilation_time|execution_time|total_compute_time                                      |rows_read|rows produced|data produced|data_read_compressed|data_read_uncompressed|client_info   |query_error|pool_name|
@@ -133,7 +156,7 @@ To list the **Jobs** session queries:
 1. Go to **Settings** > **Access Token Management** and locate the **Jobs** connection **Client Role**.
 2. Run the ``DESCRIBE SESSION`` statement using the ``USER`` parameter and the retrieved client role:
 
-.. code-block::
+.. code-block:: postgres
 
 	DESCRIBE SESSIONS USER "<jobs_client_role>";
 	

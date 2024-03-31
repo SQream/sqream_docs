@@ -18,4 +18,10 @@ Allowing Access for BLUE Support Team
 Disabling Access for BLUE Support Team
 ======================================
 
-Once the support team has completed their troubleshooting or investigation, toggle **Enable support team access for** off.
+Once the support team has completed their troubleshooting or investigation, you may either:
+
+* Toggle **Enable support team access for** off 
+
+* Allow the enabled timeframe for support access to expire
+
+
