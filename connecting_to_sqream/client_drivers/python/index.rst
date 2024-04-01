@@ -330,6 +330,7 @@ This example shows how to load 10,000 rows of dummy data to an instance of SQrea
    .. code-block:: python
    
       import pysqream
+	  import sqlalchemy.orm as orm
       from datetime import date, datetime
       from time import time
 
