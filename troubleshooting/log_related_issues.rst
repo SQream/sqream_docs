@@ -3,6 +3,7 @@
 ***********************
 Log Related Issues
 ***********************
+
 The **Log Related Issues** page describes how to resolve the following common issues:
 
 .. toctree::
@@ -12,7 +13,8 @@ The **Log Related Issues** page describes how to resolve the following common is
 
 Loading Logs with Foreign Tables
 ---------------------------------------
-Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a database administrator can access the logs using the :ref:`external_tables` concept through SQream DB.
+
+Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a database administrator can access the logs using the :ref:`foreign_tables` concept through SQream DB.
 
 .. code-block:: postgres
 
