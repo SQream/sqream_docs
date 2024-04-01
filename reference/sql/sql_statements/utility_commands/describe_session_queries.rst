@@ -70,13 +70,13 @@ Output
      - Displays the query type
    * - ``sql_text``
      - ``TEXT``
-     - Selects the defined SQL text from the specified table
+     - Displays the defined SQL text from the specified query
    * - ``role``
      - ``TEXT``
      - The role who executed the query	 
    * - ``session_id``
      - ``TEXT``
-     - Selects the session ID
+     - Displays the session ID
    * - ``start_time``
      - ``DATETIME``
      - Displays query execution date and time
@@ -85,7 +85,7 @@ Output
      - Displays query end date and time	 
    * - ``duration``
      - ``INTEGER``
-     - Query duration time
+     - Query duration time (milliseconds)
    * - ``time_in_queue``
      - ``INTEGER``
      - Query time in queue (milliseconds)
@@ -97,7 +97,7 @@ Output
      - The execution time (milliseconds)
    * - ``total_compute_time``
      - ``INTEGER``	 
-     - The total compute time during which the system actively engaged (milliseconds)
+     - The total compute time is the period when the system is actively working, measured in milliseconds. If multiple workers are handling a query, the compute time might be longer than the time it takes to execute the query
    * - ``rows_read``
      - ``INTEGER``	
      - The number of rows read by the query	 
@@ -106,16 +106,16 @@ Output
      - The number of rows returned by the query 
    * - ``data produced``
      - ``INTEGER``	 
-     - The amount of data produced by the query (MegaBytes)
+     - The data size produced by the query (MegaBytes)
    * - ``data_read_compressed``
      - ``INTEGER`` 
-     - The amount of compresses read data
+     - The size of compressed read data (MegaBytes)
    * - ``data_read_uncompressed``
      - ``INTEGER``	 
-     - The amount of uncompressed read data
+     - The size of uncompressed read data (MegaBytes)
    * - ``client_info``
      - ``TEXT``
-     - Displays information about the client
+     - Displays information about the client driver type and version
    * - ``query_error``
      - ``TEXT``
      - The reason for query failure
