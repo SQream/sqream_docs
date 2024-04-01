@@ -12,37 +12,45 @@ A session is opened per connection or per Workbench tab.
 Syntax
 ======
 
-The following is the syntax for the ``DESCRIBE SESSION QUERIES`` command:
-
 .. code-block:: postgres
 
-   DESC[RIBE] SESSION QUERIES  [SESSION ID '<session-id>'] 
+  DESC[RIBE] SESSION QUERIES [SESSION ID '<sessionId>' | ALL] [STATUS IN (
+   { QUEUED,
+   | EXECUTING,
+   | EXECUTION_SUCCEED,
+   | EXECUTION_FAILED,
+   | CLOSED,
+   | COMPILATION_FAILED,
+   | ABORTED,
+   | FETCHING_RESULTS,
+   | COMPILING,
+   | COMPLETE }
+   )]
+
+
 
 Parameters
 ==========
-
-The following parameters can be used with the ``DESCRIBE SESSION QUERIES`` command:
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
-   * - Parameter Name
-     - Parameter Value
+   * - Parameter
+     - Parameter Type
      - Description
-     - Type
    * - ``SESSION ID``
-     - ``session_id``
-     - The session ID of the query
-     - ``TEXT``
+     - :ref:`STRING literal<literals>`	
+     - The session ID of the query. If not specified the current session ID is provided
+   * - ``ALL``
+     - 
+     - Lists all current sessions. This parameter requires ``SUPERUSER`` permissions
+   * - ``STATUS IN``
+     - 
+     - Filters by statement status
 	 
-.. note:: The ``SESSION_ID`` parameter is optional. If you do not specify a session ID, SQream uses the session ID of the current session.
-	 
-   	 
 Output
 ======
-
-Using the ``DESCRIBE SESSION QUERIES`` command generates the following output:
 
 .. list-table:: 
    :widths: auto
@@ -51,101 +59,79 @@ Using the ``DESCRIBE SESSION QUERIES`` command generates the following output:
    * - Parameter
      - Description
      - Type
-     - Example
    * - ``query_id``
+     - ``TEXT``
      - Displays the query ID
-     - ``TEXT``
-     - ``b6173e04-6e2a-4266-bef0-6fc9b8ffc097:3``
    * - ``query_status``
+     - ``TEXT``
      - Displays the query status
-     - ``TEXT``
-     - ``EXECUTION_FAILED``
    * - ``query_type``
+     - ``TEXT``
      - Displays the query type
-     - ``TEXT``
-     - ``SELECT``
    * - ``sql_text``
-     - Selects the defined SQL text from the specified table
      - ``TEXT``
-     - ``SELECT * FROM t1``
+     - Displays the defined SQL text from the specified query
    * - ``role``
-     - The role who executed the query
      - ``TEXT``
-     - ``sqream``	 
+     - The role who executed the query	 
    * - ``session_id``
-     - Selects the session ID
      - ``TEXT``
-     - ``b6173e04-6e2a-4266-bef0-6fc9b8ffc097``
+     - Displays the session ID
    * - ``start_time``
+     - ``DATETIME``
      - Displays query execution date and time
-     - ``DATETIME``
-     - ``2022-05-02T15:32:49``
    * - ``end_time``
-     - Displays query end date and time
      - ``DATETIME``
-     - ``2024-01-09T10:37:04``	 
+     - Displays query end date and time	 
    * - ``duration``
-     - Query duration time
      - ``INTEGER``
-     - ``64``	 
+     - Query duration time (milliseconds)
    * - ``time_in_queue``
+     - ``INTEGER``
      - Query time in queue (milliseconds)
-     - ``INTEGER``
-     - ``0``	 
    * - ``compilation_time``
+     - ``INTEGER``
      - Query compilation time (milliseconds)
-     - ``INTEGER``
-     - ``18``	 
    * - ``execution_time``
+     - ``INTEGER``    
      - The execution time (milliseconds)
-     - ``INTEGER``   
-     - ``0``	 
    * - ``total_compute_time``
-     - The total compute time during which the system actively engaged (milliseconds)
-     - ``INTEGER``
-     - ``0``	 
+     - ``INTEGER``	 
+     - The total compute time is the period when the system is actively working, measured in milliseconds. If multiple workers are handling a query, the compute time might be longer than the time it takes to execute the query
    * - ``rows_read``
-     - The number of rows read by the query
-     - ``INTEGER``
-     - ``1456``	 
+     - ``INTEGER``	
+     - The number of rows read by the query	 
    * - ``rows produced``
+     - ``INTEGER`` 
      - The number of rows returned by the query 
-     - ``INTEGER``
-     - ``65``	 
    * - ``data produced``
-     - The amount of data produced by the query (MegaBytes)
-     - ``INTEGER``
-     - ``813``	 
+     - ``INTEGER``	 
+     - The data size produced by the query (MegaBytes)
    * - ``data_read_compressed``
-     - The amount of compresses read data
-     - ``INTEGER``
-     - ``0``	 
+     - ``INTEGER`` 
+     - The size of compressed read data (MegaBytes)
    * - ``data_read_uncompressed``
-     - The amount of uncompressed read data
-     - ``INTEGER``
-     - ``0``	 
+     - ``INTEGER``	 
+     - The size of uncompressed read data (MegaBytes)
    * - ``client_info``
-     - Displays information about the client
      - ``TEXT``
-     - ``SQream JDBC v0.1.33`` 
+     - Displays information about the client driver type and version
    * - ``query_error``
+     - ``TEXT``
      - The reason for query failure
-     - ``TEXT``
-     - ``Error in compilation process: : Wrapped CalciteException Cause: org.apache.calcite.sql.validate.SqlValidatorException: Object 'master.public.talia' not found``
    * - ``pool_name``
+     - ``TEXT``	 
      - The resource pool used for executing the statement
-     - ``TEXT``
-     - ``BI``	 	 
 
 Example
 =======
 
-The following is an example of the ``DESCRIBE SESSIONS`` command:
+.. code-block:: postgres
 
-.. code-block:: sql
+	DESCRIBE SESSION QUERIES SESSION ID  '683256f5-66b7-4d8c-b1a2-456dddcb6dee';
 
-   DESCRIBE SESSION QUERIES SESSION ID  '683256f5-66b7-4d8c-b1a2-456dddcb6dee';
-   
+Output:
+
 .. code-block:: none
 
 	+--------+------------+----------+-----------------------------------------------------+---------------------+------------------------------------+-------------------+-------------------+--------+-------------+----------------+--------------+--------------------------------------------------------+---------+-------------+-------------+--------------------+----------------------+--------------+-----------+---------+
@@ -170,7 +156,7 @@ To list the **Jobs** session queries:
 1. Go to **Settings** > **Access Token Management** and locate the **Jobs** connection **Client Role**.
 2. Run the ``DESCRIBE SESSION`` statement using the ``USER`` parameter and the retrieved client role:
 
-.. code-block::
+.. code-block:: postgres
 
 	DESCRIBE SESSIONS USER "<jobs_client_role>";
 	

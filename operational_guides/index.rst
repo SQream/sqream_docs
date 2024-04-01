@@ -14,8 +14,9 @@ This section summarizes the following operational guides:
    :titlesonly:
 
    access_control
-   foreign_tables
    saved_queries
+   audit_log_operation
+   monitoring_dashboard
    monitoring_query_performance
    optimization_best_practices
-   audit_log_operation
+   

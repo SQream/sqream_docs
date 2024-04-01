@@ -14,4 +14,6 @@ Get to know the BLUE console and other features, and learn how to run statements
    blue_console
    sql_feature_support
    sql/index
+   foreign_tables
    syntax_notation
+   
