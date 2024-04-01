@@ -4,6 +4,17 @@
 Release Notes
 *************
 
+:ref:`March 2024 <march_2024>`
+
+* Introducing new **Dashboard** charts for monitoring and responding to system changes:
+
+  * Worker Loads
+  * Queued Statements
+  * Jobs
+  * Tasks 
+* We've improved the ``DESCRIBE SESSION QUERIES`` command, allowing ``SUPERUSER`` roles to investigate multiple sessions.
+* You now have the ability to grant temporary access to a BLUE support team member. This feature is beneficial for having our support team validate usage and perform checks on your specific environment. 
+
 :ref:`February 2024 <february_2024>`
 
 * The ``DESCRIBE SESSION QUERIES`` command now provides the name of the resource pool used with each query execution.
