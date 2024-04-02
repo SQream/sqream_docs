@@ -33,6 +33,10 @@ Data Definition Commands (DDL)
      - Create a new user-defined function in the database
    * - :ref:`create_schema`
      - Create a new schema in the database
+   * - :ref:`create_table`
+     - Create a new table in the database
+   * - :ref:`create_table_as`
+     - Create a new table in the database using results from a select query
    * - :ref:`create_view`
      - Create a new view in the database
    * - :ref:`describe_columns`
@@ -96,8 +100,12 @@ Data Manipulation Commands (DML)
      - Usage
    * - :ref:`copy_to`
      - Export a select query or entire table to CSV files
+   * - :ref:`insert`
+     - Inserts rows into a table
    * - :ref:`select`
      - Select rows and column from a table
+   * - :ref:`update`
+     - Modify the value of certain columns in existing rows without creating a table
    * - :ref:`values`
      - Return rows containing literal values
 
