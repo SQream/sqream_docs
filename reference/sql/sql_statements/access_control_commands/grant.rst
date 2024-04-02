@@ -1,8 +1,8 @@
 .. _grant:
 
-*****************
+*****
 GRANT
-*****************
+*****
 
 The ``GRANT`` statement adds permissions for a role. It allows for setting permissions to databases, schemas, and tables.
 
@@ -16,8 +16,9 @@ Learn more about the permission system in the :ref:`access control guide<access_
 See also :ref:`revoke`, :ref:`create_role`.
 
 Syntax
-==========
-The following is the syntax for the ``GRANT` statement:
+======
+
+The following is the syntax for the ``GRANT`` statement:
 
 .. code-block:: postgres
 
@@ -98,7 +99,8 @@ The following is the syntax for the ``GRANT` statement:
    schema_name ::= identifier
 
 Parameters
-============
+==========
+
 The following table describes the ``GRANT`` parameters:
 
 .. list-table:: 
@@ -122,7 +124,8 @@ The following table describes the ``GRANT`` parameters:
 .. include from here
 
 Supported Permissions
-=======================
+=====================
+
 The following table describes the supported permissions:
 
 .. list-table:: 
@@ -176,12 +179,14 @@ The following table describes the supported permissions:
 
 
 Examples
-===========
+========
+
 This section includes the following examples:
 
 
 Creating a User Role with Log-in Permissions
-----------------------------------------------
+--------------------------------------------
+
 The following example shows how to convert a role to a user by granting login permissions:
 
 .. code-block:: postgres
@@ -192,7 +197,8 @@ The following example shows how to convert a role to a user by granting login pe
 
 
 Promoting a User to a Superuser
--------------------------------------
+-------------------------------
+
 The following is the syntax for promoting a user to a superuser:
 
 .. code-block:: postgres
@@ -204,7 +210,8 @@ The following is the syntax for promoting a user to a superuser:
    GRANT SUPERUSER ON DATABASE my_database TO new_role;
 
 Creating a New Role for a Group of Users
---------------------------------------------
+----------------------------------------
+
 The following example shows how to create a new role for a group of users:
 
 .. code-block:: postgres
@@ -220,7 +227,8 @@ The following example shows how to create a new role for a group of users:
    GRANT r_database_architect TO dba_user3;
 
 Granting with Admin Option
-------------------------------
+--------------------------
+
 If ``WITH ADMIN OPTION`` is specified, the role with the **admin** option can grant membership in the role to others and revoke membership, as shown below:
 
 .. code-block:: postgres
@@ -231,5 +239,6 @@ If ``WITH ADMIN OPTION`` is specified, the role with the **admin** option can gr
    GRANT r_database_architect TO dba_user1 WITH ADMIN OPTION;
 
 Permissions
-=============
+===========
+
 To grant permissions, the current role must have the ``SUPERUSER`` permission, or have the ``ADMIN OPTION``.

@@ -1,8 +1,9 @@
 .. _get_role_database_ddl:
 
-********************
+*********************
 GET_ROLE_DATABASE_DDL
-********************
+*********************
+
 The ``GET_ROLE_DATABASE_DDL`` statement returns the definition of a role's database in DDL format.
 
 The ``GET_ROLE_DATABASE_DDL`` page describes the following:
@@ -10,7 +11,7 @@ The ``GET_ROLE_DATABASE_DDL`` page describes the following:
 
 
 Syntax
-==========
+======
 
 The following is the correct syntax for using the ``GET_ROLE_DATABASE_DDL`` statement:
 
@@ -21,7 +22,7 @@ The following is the correct syntax for using the ``GET_ROLE_DATABASE_DDL`` stat
 
 
 Parameters
-============
+==========
 
 The following table shows the ``GET_ROLE_DATABASE_DDL`` parameters:
 
@@ -35,7 +36,7 @@ The following table shows the ``GET_ROLE_DATABASE_DDL`` parameters:
      - The definition of the database role in DDL format.
    
 Output
-==========
+======
 
 The following is an example of the output of the ``GET_ROLE_DATABASE_DDL`` statement:
 
@@ -45,7 +46,7 @@ The following is an example of the output of the ``GET_ROLE_DATABASE_DDL`` state
 
 
 Example
-===========
+=======
 
 The following is an example of using the ``GET_ROLE_DATABASE_DDL`` statement:
 
@@ -54,7 +55,7 @@ The following is an example of using the ``GET_ROLE_DATABASE_DDL`` statement:
    select get_role_database_ddl('public');
    
 Permissions
-=============
+===========
 
 Using the ``GET_ROLE_DATABASE_DDL`` statement requires no special permissions.
 

@@ -1,8 +1,9 @@
 .. _get_extents_file_list_for_chunk:
 
-********************
+**************************
 GET_EXTENTS_FILE_FOR_CHUNK
-********************
+**************************
+
 The ``GET_EXTENTS_FILE_FOR_CHUNK`` |icon-new_2022.1| command points to all files that contain data related to a specific chunk. This command is used for debugging purposes.
 
 .. |icon-new_2022.1| image:: /_static/images/new_2022.1.png
@@ -16,7 +17,8 @@ This reference page includes the following information:
    :depth: 1
 
 Syntax
-==========
+======
+
 The following is the syntax for the ``GET_EXTENTS_FILE_FOR_CHUNK`` command:
 
 .. code-block:: postgres
@@ -25,7 +27,8 @@ The following is the syntax for the ``GET_EXTENTS_FILE_FOR_CHUNK`` command:
         "table_id, chunk_id);"
 		
 Parameters
-============
+==========
+
 The following table shows the ``GET_EXTENTS_FILE_FOR_CHUNK`` parameters:
 
 .. list-table:: 
@@ -42,7 +45,8 @@ The following table shows the ``GET_EXTENTS_FILE_FOR_CHUNK`` parameters:
      - The ID of the chunk.	 
 
 Example
-===========
+=======
+
 The following is an example of the ``GET_EXTENTS_FILE_FOR_CHUNK`` command:
 
 .. code-block:: postgres
@@ -50,7 +54,8 @@ The following is an example of the ``GET_EXTENTS_FILE_FOR_CHUNK`` command:
    master=> select get_extents_file_list_for_chunk('master', 0, 3);
 	 
 Output
-==========
+======
+
 The following table describes the output generated from the ``GET_EXTENTS_FILE_FOR_CHUNK`` command:
 
 .. list-table:: 
@@ -103,5 +108,6 @@ The following is an example of the output generated from the ``GET_EXTENTS_FILE_
    master,public.t_1,0,4,3,/home/sqream_testing_temp/sqreamdb/databases/master/tables
    
 Permissions
-=============
+===========
+
 The ``GET_EXTENTS_FILE_FOR_CHUNK`` requires no special permissions.
