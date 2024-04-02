@@ -1,8 +1,9 @@
 .. _get_metadata_chunk_key:
 
-********************
+**********************
 GET_METADATA_CHUNK_KEY
-********************
+**********************
+
 The ``GET_METADATA_CHUNK_KEY`` |icon-new_2022.1| command returns specific metadata key values for user-specified chunks.
 
 .. |icon-new_2022.1| image:: /_static/images/new_2022.1.png
@@ -16,7 +17,8 @@ This reference page includes the following information:
    :depth: 1
 
 Syntax
-==========
+======
+
 The following is the syntax for the ``GET_METADATA_CHUNK_KEY`` command:
 
 .. code-block:: postgres
@@ -24,7 +26,8 @@ The following is the syntax for the ``GET_METADATA_CHUNK_KEY`` command:
    get_metadata_chunk_key(database_name, table_id, chunk_id);
 
 Parameters
-============
+==========
+
 The following table shows the ``GET_METADATA_CHUNK_KEY`` parameters:
 
 .. list-table:: 
@@ -41,7 +44,8 @@ The following table shows the ``GET_METADATA_CHUNK_KEY`` parameters:
      - The ID of the chunk.
 
 Example
-===========
+=======
+
 The following is an example of the ``GET_METADATA_CHUNK_KEY`` command:
 
 .. code-block:: postgres
@@ -49,7 +53,8 @@ The following is an example of the ``GET_METADATA_CHUNK_KEY`` command:
    master=> select get_metadata_chunk_key('master', 0, 1);
 
 Output
-==========
+======
+
 The following table describes the output generated from the ``GET_METADATA_CHUNK_KEY`` command:
 
 .. list-table:: 
@@ -147,5 +152,6 @@ The following is an example of the output generated from the ``GET_METADATA_CHUN
    master,0,4,1,chunk_state::clean,1,0,16,16,flat,0,0,abc,dfg,0x7f722ffb7c60,0x7f722ffb7c70,1
    
 Permissions
-=============
+===========
+
 The ``GET_METADATA_CHUNK_KEY`` requires no special permissions.
