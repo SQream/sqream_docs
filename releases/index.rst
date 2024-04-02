@@ -4,10 +4,6 @@
 Release Notes
 *************
 
-:ref:`April 2024 <april_2024>`
-
-* We've improved the ``DESCRIBE SESSION QUERIES`` command, allowing ``SUPERUSER`` roles to investigate multiple sessions.
-
 :ref:`March 2024 <march_2024>`
 
 * Introducing new **Dashboard** charts for monitoring and responding to system changes:
