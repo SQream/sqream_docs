@@ -34,15 +34,13 @@ Tabular Data with VALUES
 
 .. code-block:: postgres
 
-   VALUES (1,2,3,4), (5,6,7,8), (9,10,11,12);
+	VALUES (1,2,3,4), (5,6,7,8), (9,10,11,12);
 
-Output:
-
-.. code-block:: none
-
-   1,2,3,4
-   5,6,7,8
-   9,10,11,12
+	clmn1 |clmn2 |clmn3 |clmn4  
+	------+------+------+-----
+	1     | 2    | 3    | 4       
+	5     | 6    | 7    | 8  
+	9     | 10   | 11   | 12  
 
 Using VALUES in a ``SELECT`` Query
 ----------------------------------
@@ -51,37 +49,35 @@ To use VALUES in a select query, assign a :ref:`name<identifiers>` to the ``VALU
 
 .. code-block:: postgres
 
-   SELECT
-     t.*
-   FROM
-     (
-       VALUES
-         (1, 2, 3, 'a'),
-         (5, 6, 7, 'b'),
-         (9, 10, 11, 'c')
-     ) AS t;
+	SELECT
+	 t.*
+	FROM
+	(
+	 VALUES
+	  (1, 2, 3, 'a'),
+	  (5, 6, 7, 'b'),
+	  (9, 10, 11, 'c')
+	) AS t;
 
-Output:
-
-.. code-block:: none
-
-   1,2,3,a
-   5,6,7,b
-   9,10,11,c
+	clmn1 |clmn2 |clmn3 |clmn4  
+	------+------+------+-----
+	1     | 2    | 3    | a       
+	5     | 6    | 7    | b  
+	9     | 10   | 11   | c  
 
 You can also use this to rename the columns
 
 .. code-block:: postgres
 
-   SELECT
-     t.*
-   FROM
-     (
-       VALUES
-         (1, 2, 3, 'a'),
-         (5, 6, 7, 'b'),
-         (9, 10, 11, 'c')
-     ) AS t(a, b, c, d);
+	SELECT
+	  t.*
+	FROM
+	 (
+	  VALUES
+	   (1, 2, 3, 'a'),
+	   (5, 6, 7, 'b'),
+	   (9, 10, 11, 'c')
+	 ) AS t(a, b, c, d);
 
 
 Creating a Table Using ``VALUES``
@@ -91,19 +87,19 @@ Use ``AS`` to assign names to columns
 
 .. code-block:: postgres
 
-   CREATE TABLE
-     cool_animals AS (
-       SELECTt.*
-       FROM
-   (
-      VALUES
-      (1, 'dog'),
-      (2, 'cat'),
-      (3, 'horse'),
-      (4, 'hippopotamus')
-   )  
-      AS t(id, name)
-     );
+	CREATE TABLE
+	  cool_animals AS (
+	   SELECTt.*
+	   FROM
+	(
+	  VALUES
+	  (1, 'dog'),
+	  (2, 'cat'),
+	  (3, 'horse'),
+	  (4, 'hippopotamus')
+	)  
+	  AS t(id, name)
+	  );
 
 Permissions
 ===========
