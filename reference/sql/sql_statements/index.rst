@@ -98,6 +98,8 @@ Data Manipulation Commands (DML)
    
    * - Command
      - Usage
+   * - :ref:`copy_from`
+     - Bulk load data into an existing table from different file formats
    * - :ref:`copy_to`
      - Export a select query or entire table to CSV files
    * - :ref:`insert`
