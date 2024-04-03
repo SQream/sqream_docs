@@ -14,6 +14,9 @@ You can rectify this by casting the value to a larger data type, as shown below:
 
    SUM(some_int_column :: BIGINT)
 
+Conversion Methods
+==================
+
 BLUE supports the following data conversion methods:
 
 * ``CAST(<value> AS <data type>)``, to convert a value from one type to another. 
@@ -41,7 +44,7 @@ BLUE supports the following data conversion methods:
 .. _supported_casts:
 
 Supported Casts
----------------
+===============
 
 .. list-table::
    :widths: auto
@@ -97,11 +100,14 @@ Supported Casts
      - |:white_check_mark:|
      - N/A
 	 
-.. note:: Conversions between certain data types may be value-dependent, as the outcome can vary based on the specific values being converted and their compatibility with the target data type's range or precision.
+Value Dependent Conversions
+---------------------------
 
-  For example:
+Conversions between certain data types may be value-dependent, as the outcome can vary based on the specific values being converted and their compatibility with the target data type's range or precision.
 
-  .. code-block:: postgres
+For example:
+
+.. code-block:: postgres
 
 	CREATE OR REPLACE TABLE t(xint INT, xtext TEXT);
 	INSERT INTO t VALUES(1234567, 'abc');
