@@ -11,11 +11,11 @@ Syntax
 
 .. code-block:: postgres
 
-   COPY [ schema name. ]"<table_name>"
-     FROM WRAPPER fdw_name
+   COPY [ "<schema_name>". ]"<table_name>"
+     FROM WRAPPER <fdw_name>
      OPTIONS 
      (
-       [ copy_from_option [, ...] ]
+       [ <copy_from_option> [, ...] ]
      )
 
    copy_from_option ::= 
@@ -64,13 +64,6 @@ Syntax
 
   AWS Secret ::= string
 
-.. note:: 
-
-   Some options are applicable to CSVs only.
-
-   These include:
-   ``OFFSET``, ``LIMIT``, ``DELIMITER``, ``RECORD_DELIMITER``, ``REJECTED_DATA``, ``DATETIME_FORMAT``
-
 .. _copy_from_config_options:
 
 Elements
@@ -99,23 +92,23 @@ Elements
    * - ``LOCATION``
      - None
      -
-     - A path on the local filesystem, S3, or HDFS URI. For example, ``/tmp/foo.csv``, ``s3://my-bucket/foo.csv``, or ``hdfs://my-namenode:8020/foo.csv``. The local path must be an absolute path that SQream DB can access. Wildcards are premitted in this field.
+     - A path to S3, or HDFS URI. For example: ``s3://my-bucket/foo.csv``, or ``hdfs://my-namenode:8020/foo.csv``. Wildcards are premitted in this field.
    * - ``OFFSET``
      - ``1``
-     - >1, but no more than the number of lines in the first file
-     - The row number to start with. The first row is ``1``.
+     - >1, but no more than the number of lines in the first file. 
+     - The row number to start with. The first row is ``1``. Applicable to CSVs only
    * - ``LIMIT``
      - unlimited
      - 1 to 2147483647.
-     - When specified, tells SQream DB to stop loading after the specified number of rows. Unlimited if unset.
+     - When specified, tells SQream DB to stop loading after the specified number of rows. Unlimited if unset. Applicable to CSVs only
    * - ``DELIMITER``
      - ``','``
      - Almost any ASCII character, :ref:`See field delimiters section below<field_delimiters>`
-     - Specifies the field terminator - the character (or characters) that separates fields or columns within each row of the file.
+     - Specifies the field terminator - the character (or characters) that separates fields or columns within each row of the file. Applicable to CSVs only
    * - ``RECORD_DELIMITER``
      - ``\n`` (UNIX style newline)
      - ``\n``, ``\r\n``, ``\r``
-     - Specifies the row terminator - the character that separates lines or rows, also known as a new line separator.
+     - Specifies the row terminator - the character that separates lines or rows, also known as a new line separator. Applicable to CSVs only
    * - ``ERROR_LOG``
      - No error log
      - 
@@ -127,6 +120,8 @@ Elements
          * Specifying the same file for ``ERROR_LOG`` and ``REJECTED_DATA`` is not allowed and will result in error.
          
          * Specifing an error log when creating a foreign table will write a new error log for every query on the foreign table.
+		 
+		 * Applicable to CSVs only
 
    * - ``REJECTED_DATA``
      - Inactive
@@ -158,7 +153,7 @@ Elements
    * - ``DATETIME_FORMAT``
      - ISO8601 for all columns
      - :ref:`See table below<copy_date_parsers>`
-     - Allows specifying a non-default date formats for specific columns
+     - Allows specifying a non-default date formats for specific columns. Applicable to CSVs only
    * - ``AWS_ID``, ``AWS_SECRET``
      - None
      - 
@@ -168,133 +163,18 @@ Elements
      - ``true`` | ``false``
      - When set to ``true``, the source file or files associated with the target path will be deleted after a successful completion of the ``COPY FROM`` operation. File deletion will not occur in the case of unsuccessful ``COPY FROM`` operations, such as when a user lacks delete permissions on their operating system. It's important to note that this parameter cannot be used concurrently with the ``OFFSET``, ``ERROR_LOG``, ``REJECTED_DATA``, ``ERROR_COUNT``, and ``LIMIT`` parameters. This parameter is supported for S3, HDFS, and GCP Object Storage.
 
-.. _copy_date_parsers:
-
-Supported Date Formats
-=========================
-
-.. list-table:: Supported date parsers
-   :widths: auto
-   :header-rows: 1
-   
-   * - Name
-     - Pattern
-     - Examples
-   * - ``ISO8601``, ``DEFAULT``
-     - ``YYYY-MM-DD [hh:mm:ss[.SSS]]``
-     - ``2017-12-31 11:12:13.456``, ``2018-11-02 11:05:00``, ``2019-04-04``
-   * - ``ISO8601C``
-     - ``YYYY-MM-DD [hh:mm:ss[:SSS]]``
-     - ``2017-12-31 11:12:13:456``
-   * - ``DMY``
-     - ``DD/MM/YYYY [hh:mm:ss[.SSS]]``
-     - ``31/12/2017 11:12:13.123``
-   * - ``YMD``
-     - ``YYYY/MM/DD [hh:mm:ss[.SSS]]``
-     - ``2017/12/31 11:12:13.678``
-   * - ``MDY``
-     - ``MM/DD/YYYY [hh:mm:ss[.SSS]]``
-     - ``12/31/2017 11:12:13.456``
-   * - ``YYYYMMDD``
-     - ``YYYYMMDD[hh[mm[ss[SSS]]]]``
-     - ``20171231111213456``
-   * - ``YYYY-M-D``
-     - ``YYYY-M-D[ h:m[:s[.S]]]``
-     - ``2017-9-10 10:7:21.1`` (optional leading zeroes)
-   * - ``YYYY/M/D``
-     - ``YYYY/M/D[ h:m[:s[.S]]]``
-     - ``2017/9/10 10:7:21.1`` (optional leading zeroes)
-   * - ``DD-mon-YYYY``
-     - ``DD-mon-YYYY[ hh:mm[:ss[.SSS]]]``
-     - ``31-Dec-2017 11:12:13.456``
-   * - ``YYYY-mon-DD``
-     - ``YYYY-mon-DD[ hh:mm[:ss[.SSS]]]``
-     - ``2017-Dec-31 11:12:13.456``
-
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Pattern
-     - Description
-   * - ``YYYY``
-     - four digit year representation (0000-9999)
-   * - ``MM``
-     - two digit month representation (01-12)
-   * - ``DD``
-     - two digit day of month representation (01-31)
-   * - ``m``
-     - short month representation (Jan-Dec)
-   * - ``a``
-     - short day of week representation (Sun-Sat).
-   * - ``hh``
-     - two digit 24 hour representation (00-23)
-   * - ``h``
-     - two digit 12 hour representation (00-12)
-   * - ``P``
-     - uppercase AM/PM representation
-   * - ``mm``
-     - two digit minute representation (00-59)
-   * - ``ss``
-     - two digit seconds representation (00-59)
-   * - ``SSS``
-     - 3 digits fraction representation for milliseconds (000-999)
-
-.. note:: These date patterns are not the same as date parts used in the :ref:`datepart` function.
 
 .. _field_delimiters:
 
-Supported Field Delimiters
-==========================
+Field Delimiters
+================
 
 Field delimiters can be one or more characters.
 
-Customizing Quotations Using Alternative Characters
------------------------------------------------------
-
-Syntax:
-
-.. code-block:: postgres
-
-   COPY t FROM wrapper csv_fdw OPTIONS (location = '/tmp/source_file.csv', quote='@');
-   COPY t TO wrapper csv_fdw OPTIONS (location = '/tmp/destination_file.csv', quote='@');
-
-Example:
-
-The following is an example of line taken from a CSV when customizing quotations using a character:
-
-.. code-block:: postgres
-
-   Pepsi-"Cola",@Coca-"Cola"@,Sprite,Fanta
 
 
-Customizing Quotations Using ASCII Character Codes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-Syntax:
-
-.. code-block:: postgres
-
-   copy t from wrapper csv_fdw options (location = '/tmp/source_file.csv', quote=E'\064');
-   copy t to wrapper csv_fdw options (location = '/tmp/destination_file.csv', quote=E'\064');
-
-Example:
-
-The following is an example of line taken from a CSV when customizing quotations using an ASCII character code:
-
-.. code-block:: postgres
-
-   Pepsi-"Cola",@Coca-"Cola"@,Sprite,Fanta
-
-Multi-Character Delimiters
+Printable ASCII Characters
 --------------------------
-
-SQreamDB supports multi-character field delimiters, sometimes found in non-standard files.
-
-A multi-character delimiter can be specified. For example, ``DELIMITER '%%'``, ``DELIMITER '{~}'``, etc.
-
-Printable Characters
---------------------
 
 Any printable ASCII character (or characters) can be used as a delimiter without special syntax. The default CSV field delimiter is a comma (``,``).
 
@@ -302,8 +182,8 @@ A printable character is any ASCII character in the range 32 - 126.
 
 :ref:`Literal quoting rules<string_literals>` apply with delimiters. For example, to use ``'`` as a field delimiter, use ``DELIMITER ''''``
 
-Non-Printable Characters
-------------------------
+Non-Printable ASCII Characters
+------------------------------
 
 A non-printable character (1 - 31, 127) can be used in its octal form. 
 
@@ -313,8 +193,8 @@ For example, ASCII character ``15``, known as "shift in", can be specified using
 
 .. _capturing_rejected_rows:
 
-Unsupported Field Delimiters
-============================
+Unsupported ASCII Field Delimiters
+----------------------------------
 
 The following ASCII field delimiters (octal range 001 - 176) are not supported:
 
@@ -401,6 +281,81 @@ Marking Null Markers
 * An empty field delimited by the field delimiter. For example, ``col1,,col3``
 
 .. note:: If a text field is quoted but contains no content (``""``) it is considered an empty text field. It is not considered ``NULL``.
+
+.. _copy_date_parsers:
+
+Supported Date Formats
+======================
+
+.. list-table:: Supported date parsers
+   :widths: auto
+   :header-rows: 1
+   
+   * - Name
+     - Pattern
+     - Examples
+   * - ``ISO8601``, ``DEFAULT``
+     - ``YYYY-MM-DD [hh:mm:ss[.SSS]]``
+     - ``2017-12-31 11:12:13.456``, ``2018-11-02 11:05:00``, ``2019-04-04``
+   * - ``ISO8601C``
+     - ``YYYY-MM-DD [hh:mm:ss[:SSS]]``
+     - ``2017-12-31 11:12:13:456``
+   * - ``DMY``
+     - ``DD/MM/YYYY [hh:mm:ss[.SSS]]``
+     - ``31/12/2017 11:12:13.123``
+   * - ``YMD``
+     - ``YYYY/MM/DD [hh:mm:ss[.SSS]]``
+     - ``2017/12/31 11:12:13.678``
+   * - ``MDY``
+     - ``MM/DD/YYYY [hh:mm:ss[.SSS]]``
+     - ``12/31/2017 11:12:13.456``
+   * - ``YYYYMMDD``
+     - ``YYYYMMDD[hh[mm[ss[SSS]]]]``
+     - ``20171231111213456``
+   * - ``YYYY-M-D``
+     - ``YYYY-M-D[ h:m[:s[.S]]]``
+     - ``2017-9-10 10:7:21.1`` (optional leading zeroes)
+   * - ``YYYY/M/D``
+     - ``YYYY/M/D[ h:m[:s[.S]]]``
+     - ``2017/9/10 10:7:21.1`` (optional leading zeroes)
+   * - ``DD-mon-YYYY``
+     - ``DD-mon-YYYY[ hh:mm[:ss[.SSS]]]``
+     - ``31-Dec-2017 11:12:13.456``
+   * - ``YYYY-mon-DD``
+     - ``YYYY-mon-DD[ hh:mm[:ss[.SSS]]]``
+     - ``2017-Dec-31 11:12:13.456``
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Pattern
+     - Description
+   * - ``YYYY``
+     - four digit year representation (0000-9999)
+   * - ``MM``
+     - two digit month representation (01-12)
+   * - ``DD``
+     - two digit day of month representation (01-31)
+   * - ``m``
+     - short month representation (Jan-Dec)
+   * - ``a``
+     - short day of week representation (Sun-Sat).
+   * - ``hh``
+     - two digit 24 hour representation (00-23)
+   * - ``h``
+     - two digit 12 hour representation (00-12)
+   * - ``P``
+     - uppercase AM/PM representation
+   * - ``mm``
+     - two digit minute representation (00-59)
+   * - ``ss``
+     - two digit seconds representation (00-59)
+   * - ``SSS``
+     - 3 digits fraction representation for milliseconds (000-999)
+
+.. note:: These date patterns are not the same as date parts used in the :ref:`datepart` function.
+
 
 Examples
 ========
@@ -622,6 +577,65 @@ In this example, ``date_col1`` and ``date_col2`` in the table are non-standard. 
 .. code-block:: postgres
 
    COPY my_table (date_col1, date_col2, date_col3) FROM '/tmp/my_data.csv' WITH CSV HEADER datetime_format 'DMY';
+   
+Customizing Quotations Using Alternative Characters
+---------------------------------------------------
+
+.. code-block:: postgres
+
+	COPY
+	  t FROM 
+	WRAPPER 
+	  csv_fdw 
+	OPTIONS 
+	  (
+	   LOCATION = 's3://sqream-docs/nba.csv', 
+	   QUOTE='@'
+	  );
+
+Customizing Quotations Using ASCII Character Codes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. code-block:: postgres
+
+	COPY 
+	  t FROM 
+	WRAPPER 
+	  csv_fdw 
+	OPTIONS 
+	  (
+	   LOCATION = 's3://sqream-docs/nba.csv', 
+	   QUOTE=E'\064'
+	  );
+
+Multi-Character Delimiters
+--------------------------
+
+Multi-character field delimiters, sometimes found in non-standard files, are supported.
+
+.. code-block:: postgres
+
+	-- Setting %% as a delimiter
+	COPY 
+	  t FROM 
+	WRAPPER 
+	  csv_fdw 
+	OPTIONS 
+	  (
+	   LOCATION = 's3://sqream-docs/nba.csv', 
+	   DELIMITER = '%%'
+	   );
+
+	-- Setting {~} as a delimiter
+	COPY 
+	  t FROM 
+	WRAPPER 
+	  csv_fdw 
+	OPTIONS 
+	  (
+	   LOCATION = 's3://sqream-docs/nba.csv', 
+	   DELIMITER = '{~}'
+	  );
    
 Permissions
 ===========
