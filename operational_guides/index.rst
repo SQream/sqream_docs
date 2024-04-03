@@ -19,4 +19,5 @@ This section summarizes the following operational guides:
    monitoring_dashboard
    monitoring_query_performance
    optimization_best_practices
+   delete_guide
    
