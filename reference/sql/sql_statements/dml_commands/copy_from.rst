@@ -360,59 +360,65 @@ Supported Date Formats
 Examples
 ========
 
-Loading a Standard CSV File
----------------------------
-
-.. code-block:: postgres
-   
-   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.csv');
-
-
 Skipping Faulty Rows
 --------------------
 
 .. code-block:: postgres
    
-   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.csv', continue_on_error = true);
+	COPY
+	  new_nba
+	FROM
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv',
+	    CONTINUE_ON_ERROR = true
+	  );
+
+	-- Skipping a maximum of 100 faulty rows
+   
+	COPY 
+	  new_nba 
+	FROM 
+	WRAPPER 
+	  csv_fdw 
+	OPTIONS 
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv', 
+	    CONTINUE_ON_ERROR = true, 
+	    ERROR_COUNT = 100
+	  );
 
 
-Skipping a Maximum of 100 Faulty Rows
--------------------------------------
+Loading a Pipe and Tab Separated Value Files
+--------------------------------------------
 
 .. code-block:: postgres
    
-   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.csv', continue_on_error = true, error_count = 100);
+	-- Pipe separated
+	COPY
+	  new_nba 
+	FROM 
+	WRAPPER 
+	  csv_fdw 
+	OPTIONS 
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv',
+	    DELIMITER = '|'
+	  );
 
-
-Loading a Pipe Separated Value (PSV) File
--------------------------------------------
-
-.. code-block:: postgres
-   
-   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.psv', delimiter = '|');
-
-Loading a Tab Separated Value (TSV) File
--------------------------------------------
-
-.. code-block:: postgres
-   
-   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.tsv', delimiter = '\t');
-   
-
-Loading an ORC File
--------------------
-
-.. code-block:: postgres
-   
-   COPY table_name FROM WRAPPER orc_fdw OPTIONS (location = '/tmp/file.orc');
-
-
-Loading a Parquet File
-----------------------
-
-.. code-block:: postgres
-   
-   COPY table_name FROM WRAPPER parquet_fdw OPTIONS (location = '/tmp/file.parquet');
+	-- Tab separated
+	COPY
+	  new_nba 
+	FROM 
+	WRAPPER 
+	  csv_fdw 
+	OPTIONS 
+	  (
+	    LOCATION = 's3://sqream-docs/nba.csv', 
+	    DELIMITER = '\t'
+	  );
    
 Loading a JSON File
 ----------------------
@@ -420,13 +426,6 @@ Loading a JSON File
 .. code-block:: postgres
 
 	COPY t FROM WRAPPER json_fdw OPTIONS (location = 'somefile.json');
-
-Loading an AVRO File
-----------------------
-
-.. code-block:: postgres
-
-	COPY t FROM WRAPPER fdw_name OPTIONS ([ copy_from_option [, ...] ]);
 
 Loading a Text File with Non-Printable Delimiters
 -------------------------------------------------
