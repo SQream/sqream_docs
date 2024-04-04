@@ -87,7 +87,6 @@ Data Definition Commands (DDL)
      - Rename a schema
 
 
-
 Data Manipulation Commands (DML)
 ================================
 
