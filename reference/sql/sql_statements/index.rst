@@ -209,7 +209,7 @@ The following table shows the Access Control commands:
      - Returns a list of permissions required to run a statement or query
    * - :ref:`grant`
      - Grant permissions to a role
-   * - :ref:`GRANT_USAGE_ON_SERVICE_TO_ALL_ROLES`
+   * - :ref:`grant_usage_on_service_to_all_roles`
      - Grant service usage permissions
    * - :ref:`revoke`
      - Revoke permissions from a role
