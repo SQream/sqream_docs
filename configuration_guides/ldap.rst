@@ -201,17 +201,13 @@ Advanced Method Configuration
 
 Only roles with admin privileges and higher may enable LDAP Authentication. 
 
-1. Set your LDAP password 
-
-Configure an LDAP admin password (a kind of out-of-the-box LDAP admin user, no REVOKE or GRANT, etc'..) :
+1. Configure your LDAP server bind password to be stored in SQreamDB metadata:
 
    .. code-block:: postgres
    
 	GRANT PASSWORD <'binding_user_password'> TO ldap_bind_dn_admin_password;
 	
-  This password is your LDAP server password.
-  
-  This password is encrypted in your SQreamDB metadata. 
+  This action emulates the execution of a ``GRANT`` command, but it's solely necessary for configuring the password. Note that ``ldap_bind_dn_admin_password`` is not an actual SQreamDB role. This password is encrypted within your SQreamDB metadata.
 
 2. Set the ``authenticationMethod`` flag:
 
