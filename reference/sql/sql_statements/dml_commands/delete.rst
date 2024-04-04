@@ -226,5 +226,3 @@ Permissions
 =============
 
 To execute the ``DELETE`` statement, the ``DELETE`` and ``SELECT`` permissions must be assigned to the role at the table level.
-
-For more information about assigning permissions to roles, see `Creating, Assigning, and Managing Roles and Permissions <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.0.html#creating-assigning-and-managing-roles-and-permissions>`_.
