@@ -152,8 +152,6 @@ Flags
      - Root DN to begin the search for the user in, when doing advanced authentication
    * - ``ldapBindDn``
      - DN of user with which to bind to the directory to perform the search when doing search + bind authentication
-   * - ``ldapBindDnPassword``
-     - Password for user with which to bind to the directory to perform the search when doing search + bind authentication
    * - ``ldapSearchAttribute``
      - Attribute to match against the user name in the search when doing search + bind authentication. If no attribute is specified, ``the uid`` attribute will be used
    * - ``ldapSearchFilter``
@@ -203,35 +201,41 @@ Advanced Method Configuration
 
 Only roles with admin privileges and higher may enable LDAP Authentication. 
 
-1. Set the ``authenticationMethod`` flag:
+1. Set your LDAP password 
+
+Configure an LDAP admin password (a kind of out-of-the-box LDAP admin user, no REVOKE or GRANT, etc'..) :
+
+   .. code-block:: postgres
+   
+	GRANT PASSWORD <'binding_user_password'> TO ldap_bind_dn_admin_password;
+	
+  This password is your LDAP server password.
+  
+  This password is encrypted in your SQreamDB metadata. 
+
+2. Set the ``authenticationMethod`` flag:
 
    .. code-block:: postgres
 
 	ALTER SYSTEM SET authenticationMethod = 'ldap';
 
-2. Set the ``ldapAdvancedMode`` flag:
+3. Set the ``ldapAdvancedMode`` flag:
 
    .. code-block:: postgres
 	
 	ALTER SYSTEM SET ldapAdvancedMode = true;
 
-3. Set the ``ldapIpAddress`` flag: 
+4. Set the ``ldapIpAddress`` flag: 
 
    .. code-block:: postgres
 
 	ALTER SYSTEM SET ldapIpAddress = '<ldaps://<IpAddress>';
 
-4. Set the ``ldapBindDn`` flag: 
+5. Set the ``ldapBindDn`` flag: 
 
    .. code-block:: postgres
 
 	ALTER SYSTEM SET ldapBindDn = <binding_user_DN>;
-
-5. Set the ``ldapBindDnPassword`` flag: 
-
-   .. code-block:: postgres
-
-	ALTER SYSTEM SET ldapBindDnPassword = '<binding_user_password>';
 	
 6. Set the ``ldapBaseDn`` flag: 
 
@@ -289,6 +293,8 @@ User has value of elonm for attribute ``sAMAccountName``.
 
 .. code-block:: postgres
 
+	GRANT PASSWORD 'LdapPassword12#4%' TO ldap_bind_dn_admin_password;
+
 	ALTER SYSTEM SET authenticationMethod = 'ldap';
 	
 	ALTER SYSTEM SET ldapAdvancedMode = true;
@@ -298,8 +304,6 @@ User has value of elonm for attribute ``sAMAccountName``.
 	ALTER SYSTEM SET ldapPort = 5000
 
 	ALTER SYSTEM SET ldapBindDn = 'CN=LDAP admin,OU=network admin,DC=sqream,DC=loc';
-
-	ALTER SYSTEM SET ldapBindDnPassword = 'sqream123';
 
 	ALTER SYSTEM SET ldapBaseDn = 'OU=Sqream Users,DC=sqream,DC=loc';
 	
