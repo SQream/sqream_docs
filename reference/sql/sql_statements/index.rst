@@ -108,6 +108,8 @@ Data Manipulation Commands (DML)
      - Inserts rows into a table
    * - :ref:`select`
      - Select rows and column from a table
+   * - :ref:`truncate`
+     - Delete all rows from a table
    * - :ref:`update`
      - Modify the value of certain columns in existing rows without creating a table
    * - :ref:`values`
