@@ -261,16 +261,15 @@ All CSV files should be prepared according to these recommendations:
 
 * Fields are optionally enclosed by double-quotes, or mandatory quoted if they contain one of the following characters:
 
-   * The record delimiter or field delimiter
+  * The record delimiter or field delimiter
 
-   * A double quote character
+  * A double quote character
 
-   * A newline
+  * A newline
 
-* 
-   If a field is quoted, any double quote that appears must be double-quoted (similar to the :ref:`string literals quoting rules<string_literals>`. For example, to encode ``What are "birds"?``, the field should appear as ``"What are ""birds""?"``.
+* If a field is quoted, any double quote that appears must be double-quoted (similar to the :ref:`string literals quoting rules<string_literals>`. For example, to encode ``What are "birds"?``, the field should appear as ``"What are ""birds""?"``.
    
-   Other modes of escaping are not supported (e.g. ``1,"What are \"birds\"?"`` is not a valid way of escaping CSV values).
+  Other modes of escaping are not supported (e.g. ``1,"What are \"birds\"?"`` is not a valid way of escaping CSV values).
 
 Marking Null Markers
 --------------------
@@ -420,12 +419,51 @@ Loading a Pipe and Tab Separated Value Files
 	    DELIMITER = '\t'
 	  );
    
-Loading a JSON File
-----------------------
+Ingesting Data from different File Formats
+------------------------------------------
+
+This example demonstrates data ingestion from a JSON file format, which can be adapted for all file formats supported by BLUE. You can achieve this by adjusting the data wrapper and file name extension to match the relevant file format.
 
 .. code-block:: postgres
 
-	COPY t FROM WRAPPER json_fdw OPTIONS (location = 'somefile.json');
+  COPY 
+    new_nba 
+  FROM 
+  WRAPPER 
+    json_fdw 
+  OPTIONS 
+    (LOCATION = 's3://sqream-docs/nba.json');
+
+Loading Data from Cloud Storage
+-------------------------------
+
+This example demonstrates data ingestion from S3, which can be adapted for all cloud storage platforms supported by BLUE. You can achieve this by adjusting the ``LOCATION`` parameter with the relevant platform bucket and file URI.
+
+.. code-block:: postgres 
+
+  COPY 
+    new_nba 
+  FROM 
+  WRAPPER 
+    csv_fdw 
+  OPTIONS (LOCATION = 's3://sqream-docs/nba.csv');       
+
+Using Credentials
+-----------------
+
+.. code-block:: postgres
+
+  COPY 
+    new_nba 
+  FROM 
+  WRAPPER 
+    json_fdw 
+  OPTIONS 
+    (
+     LOCATION = 's3://sqream-docs/nba.json',
+     AWS_ID = '12345678', 
+     AWS_SECRET = 'super_secretive_secret'
+    );
 
 Loading a Text File with Non-Printable Delimiters
 -------------------------------------------------
@@ -434,26 +472,49 @@ In the file below, the separator is ``DC1``, which is represented by ASCII 17 de
 
 .. code-block:: postgres
    
-   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', delimiter = E'\021');   
+  COPY
+    new_nba
+  FROM
+  WRAPPER
+    psv_fdw
+  OPTIONS
+    (
+     LOCATION = 's3://sqream-docs/nba.psv', 
+     DELIMITER = E '\021'
+    );   
 
 Loading a Text File with Multi-Character Delimiters
 ---------------------------------------------------
 
-In the file below, the separator is ``^|``.
-
 .. code-block:: postgres
    
-   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', delimiter = '^|');   
+  -- In the file below, the separator is ^|
 
-In the file below, the separator is ``'|``. The quote character has to be repeated, as per the :ref:`literal quoting rules<string_literals>`.
+  COPY 
+    new_nba 
+  FROM 
+  WRAPPER psv_fdw 
+  OPTIONS 
+    (
+     LOCATION = 's3://sqream-docs/nba.psv', 
+     DELIMITER = '^|'
+    );   
 
-.. code-block:: postgres
+  -- In the file below, the separator is ``'|``. The quote character has to be repeated
    
-   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = '/tmp/file.txt', delimiter = ''''|');
+  COPY 
+    new_nba 
+  FROM 
+  WRAPPER psv_fdw 
+  OPTIONS 
+    (
+     LOCATION = 's3://sqream-docs/nba.psv', 
+     DELIMITER = ''''|'
+    );
    
 
-Loading Files with a Header Row
--------------------------------
+Dealing with a Header Rows
+--------------------------
 
 Use ``OFFSET`` to skip rows.
 
@@ -461,97 +522,82 @@ Use ``OFFSET`` to skip rows.
 
 .. code-block:: postgres
 
-   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.psv', delimiter = '|', offset = 2);      
+  COPY 
+    new_nba 
+  FROM 
+  WRAPPER 
+    json_fdw 
+  OPTIONS 
+    (
+     LOCATION = 's3://sqream-docs/nba.json', 
+     DELIMITER = '|', 
+     OFFSET = 2
+    );      
 
-Loading Files Using ``DELETE_SOURCE_ON_SUCCESS``
--------------------------------------------------
+Using the ``DELETE_SOURCE_ON_SUCCESS`` Parameter
+------------------------------------------------
 
 .. code-block:: sql
 
-	-- Single file:
+  -- Single file:
 
-	COPY t FROM WRAPPER json_fdw OPTIONS (location = '/tmp/wrappers/t.json', DELETE_SOURCE_ON_SUCCESS = true);
+  COPY 
+    new_nba 
+  FROM 
+  WRAPPER 
+    json_fdw 
+  OPTIONS 
+    (
+     LOCATION = 's3://sqream-docs/nba.json',
+     DELETE_SOURCE_ON_SUCCESS = true
+    ); 
 
-	-- Multiple files:
+  -- Multiple files:
 
-	COPY t FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/wrappers/group*.csv', DELETE_SOURCE_ON_SUCCESS = true);
-
-Loading Files Formatted for Windows (``\r\n``)
----------------------------------------------------
-
-.. code-block:: postgres
-
-   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/file.psv', delimiter = '\r\n');         
-
-Loading a File from a Public S3 Bucket
-------------------------------------------
-
-.. note:: The bucket must be publicly available and objects can be listed
-
-.. code-block:: postgres
-
-   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = 's3://sqream-demo-data/file.csv', delimiter = '\r\n', offset = 2);       
-
-Loading a File From a Google Cloud Platform Bucket
-----------------------------------------------------
-
-To access a Google Cloud Platform (GCP) Bucket it is required that your environment be authorized.
-
-.. code-block::
-
-   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = 'gs://<gcs path>/<gcs_bucket>/*');    
-
-Loading a File From Azure 
-----------------------------------
-
-To access Azure it is required that your environment be authorized.
-
-.. code-block::
-
-   COPY table_name FROM WRAPPER csv_fdw OPTIONS(location = 'azure://sqreamrole.core.windows.net/sqream-demo-data/file.csv');
-
-Loading Files from an Authenticated S3 Bucket
----------------------------------------------------
-
-.. code-block:: postgres
-
-   COPY table_name FROM WRAPPER psv_fdw OPTIONS (location = 's3://secret-bucket/*.csv', DELIMITER = '\r\n', OFFSET = 2, AWS_ID = '12345678', AWS_SECRET = 'super_secretive_secret');
+	COPY 
+    new_nba 
+  FROM 
+  WRAPPER 
+    json_fdw 
+  OPTIONS 
+    (
+     LOCATION = 's3://sqream-docs/nba*.json', 
+     DELETE_SOURCE_ON_SUCCESS = true
+    );       
    
 Saving Rejected Rows to a File
 ----------------------------------
 
-.. note:: When loading multiple files (e.g. with wildcards), this error threshold is for the entire transaction.
+When loading multiple files (e.g. with wildcards), this error threshold is for the entire transaction.
 
 .. code-block:: postgres
 
-	COPY table_name FROM WRAPPER csv_fdw 
-			OPTIONS 
-			(
-			location = '/tmp/file.csv' 
-			,continue_on_error  = true 
-			,error_log  = '/temp/load_error.log'
-			);         
+  COPY
+    new_nba
+  FROM
+  WRAPPER
+    csv_fdw
+  OPTIONS
+    (
+      LOCATION = 's3://sqream-docs/nba.csv',
+      CONTINUE_ON_ERROR = true,
+      ERROR_LOG = 's3://sqream-docs/log.csv'
+    );         
 
-.. code-block:: postgres
-
-	COPY table_name FROM WRAPPER csv_fdw 
-			OPTIONS
-			(
-			location = '/tmp/file.psv'
-			,delimiter '|'
-			,error_log = '/temp/load_error.log' -- Save error log
-			,rejected_data = '/temp/load_rejected.log' -- Only save rejected rows
-			,limit = 100 -- Only load 100 rows
-			,error_count = 5 -- Stop the load if 5 errors reached
-			);         
-
-
-Loading CSV Files from a Set of Directories
--------------------------------------------
-
-.. code-block:: postgres
-
-   COPY table_name FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/2019_08_*/*.csv');
+  COPY
+    new_nba
+  FROM
+  WRAPPER
+    csv_fdw
+  OPTIONS
+    (
+      LOCATION = 's3://sqream-docs/nba.csv',
+      DELIMITER = '|',
+      ERROR_LOG = 's3://sqream-docs/log.csv' -- Save error log,
+      REJECTED_DATA = 's3://sqream-docs/load_rejected.log', -- Only save rejected rows
+      LIMIT = 100, -- Only load 100 rows
+      ERROR_COUNT = 5 -- Stop the load if 5 errors reached
+    );          
 
 Rearranging Destination Columns
 ---------------------------------
@@ -560,14 +606,20 @@ When the source of the files does not match the table structure, tell the ``COPY
 
 .. code-block:: postgres
 
-   COPY table_name (fifth, first, third) FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/*.csv');
+  COPY
+    new_nba (fifth, first, third)
+  FROM
+  WRAPPER
+    csv_fdw
+  OPTIONS
+    (LOCATION = 's3://sqream-docs/nba.csv');
 
 .. note:: Any column not specified will revert to its default value or ``NULL`` value if nullable
 
 Loading Non-Standard Dates
 ----------------------------------
 
-If files contain dates not formatted as ``ISO8601``, tell ``COPY`` how to parse the column. After parsing, the date will appear as ``ISO8601`` inside SQreamDB.
+If files contain dates not formatted as ``ISO8601``, tell ``COPY`` how to parse the column. After parsing, the date will appear as ``ISO8601`` inside BLUE.
 
 These are called date parsers. You can find the supported dates in the :ref:`'Supported date parsers' table<copy_date_parsers>` above.
 
@@ -575,7 +627,16 @@ In this example, ``date_col1`` and ``date_col2`` in the table are non-standard. 
 
 .. code-block:: postgres
 
-   COPY my_table (date_col1, date_col2, date_col3) FROM '/tmp/my_data.csv' WITH CSV HEADER datetime_format 'DMY';
+  COPY
+    new_nba (date_col1, date_col2, date_col3)
+  FROM
+  WRAPPER
+    csv_fdw
+  OPTIONS
+    (
+     LOCATION = 's3://sqream-docs/nba.csv',
+     DATETIME_FORMAT = 'DMY'
+    );
    
 Customizing Quotations Using Alternative Characters
 ---------------------------------------------------
