@@ -23,6 +23,11 @@ Client Driver Downloads
      - :ref:`spark` 
      - 
      - All
+   * - **Dataiku**
+     - Plugin Git repository: ``git@github.com:SQream/dataiku_plugin.git``
+     - :ref:`dataiku`
+     -
+     - All
    * - **JDBC**
      - `sqream-jdbc 5.2.0 <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-5.2.0.jar>`_
      - :ref:`java_jdbc`
@@ -68,17 +73,20 @@ Client Driver Downloads
 
 
 
+
 .. toctree::
    :maxdepth: 4
    :titlesonly:
    :hidden:
    
+   dotnet/index
+   dataiku/index   
    jdbc/index
-   python/index
    nodejs/index
    odbc/index
-   dotnet/index
+   python/index
    spark/index
+   trino/index
 
 
 
