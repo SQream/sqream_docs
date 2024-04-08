@@ -25,6 +25,9 @@ Usage Notes
    **Column names**
 
       Column names of the result table are auto-generated. To rename the column, add an ``AS`` clause.
+	  
+	**Aggregations**
+		Aggregations (e.g., ``SUM``, ``COUNT``) cannot be directly used in the ``VALUES`` clause.
 
 Examples
 ========
