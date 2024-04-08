@@ -5,7 +5,7 @@ Monitoring Query Performance
 ****************************
 
 When analyzing options for query tuning, the first step is to analyze the query plan and execution. 
-The query plan and execution details explain how SQream DB processes a query and where time is spent.
+The query plan and execution details explain how SQreamDB processes a query and where time is spent.
 This document details how to analyze query performance with execution plans.
 This guide focuses specifically on identifying bottlenecks and possible optimization techniques to improve query performance.
 Performance tuning options for each query are different. You should adapt the recommendations and tips for your own workloads.
@@ -19,7 +19,7 @@ See also our :ref:`sql_best_practices` guide for more information about data loa
 Setting Up the System for Monitoring
 ====================================
 
-By default, SQream DB logs execution details for every statement that runs for more than 60 seconds.
+By default, SQreamDB logs execution details for every statement that runs for more than 60 seconds.
 If you want to see the execution details for a currently running statement, see :ref:`using_show_node_info` below.
 
 Adjusting the Logging Frequency
@@ -28,8 +28,7 @@ Adjusting the Logging Frequency
 To adjust the frequency of logging for statements, you may want to reduce the interval from 60 seconds down to, 
 say, 5 or 10 seconds. Modify the configuration files and set the ``nodeInfoLoggingSec`` parameter as you see fit:
 
-.. code-block::  sql
-
+.. code-block::  console
    :emphasize-lines: 7
    
    { 
@@ -43,7 +42,7 @@ say, 5 or 10 seconds. Modify the configuration files and set the ``nodeInfoLoggi
       "server":{ 
       }
    }
-After restarting the SQream DB cluster, the execution plan details will be logged to the :ref:`standard SQream DB logs directory<logging>`, as a message of type ``200``.
+After restarting the SQreamDB cluster, the execution plan details will be logged to the :ref:`standard SQreamDB logs directory<logging>`, as a message of type ``200``.
 You can see these messages with a text viewer or with queries on the log :ref:`foreign_tables`.
 
 Reading Execution Plans with a Foreign Table
@@ -51,63 +50,67 @@ Reading Execution Plans with a Foreign Table
 
 First, create a foreign table for the logs
 
-.. code-block:: sql
+.. code-block:: postgres
 
-   CREATE FOREIGN TABLE logs 
-   (
-     start_marker      TEXT(4),
-     row_id            BIGINT,
-     timestamp         DATETIME,
-     message_level     TEXT,
-     thread_id         TEXT,
-     worker_hostname   TEXT,
-     worker_port       INT,
-     connection_id     INT,
-     database_name     TEXT,
-     user_name         TEXT,
-     statement_id      INT,
-     service_name      TEXT,
-     message_type_id   INT,
-     message           TEXT,
-     end_message       TEXT(5)
-   )
-   WRAPPER csv_fdw
-   OPTIONS
-     (
-        LOCATION = '/home/rhendricks/sqream_storage/logs/**/sqream*.log',
-        DELIMITER = '|'
-     )
-   ;
+	CREATE FOREIGN TABLE logs (
+	  start_marker TEXT(4),
+	  row_id BIGINT,
+	  timestamp DATETIME,
+	  message_level TEXT,
+	  thread_id TEXT,
+	  worker_hostname TEXT,
+	  worker_port INT,
+	  connection_id INT,
+	  database_name TEXT,
+	  user_name TEXT,
+	  statement_id INT,
+	  service_name TEXT,
+	  message_type_id INT,
+	  message TEXT,
+	  end_message TEXT(5)
+	)
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = '/home/rhendricks/sqream_storage/logs/**/sqream*.log',
+	    DELIMITER = '|'
+	  );
+   
 Once you've defined the foreign table, you can run queries to observe the previously logged execution plans.
 This is recommended over looking at the raw logs.
 
-.. code-block:: sql
+.. code-block:: postgres
 
-   t=> SELECT message
-   .     FROM logs
-   .     WHERE message_type_id = 200
-   .     AND timestamp BETWEEN '2020-06-11' AND '2020-06-13';
-   message                                                                                                                          
-   ---------------------------------------------------------------------------------------------------------------------------------
-   SELECT *,coalesce((depdelay > 15),false) AS isdepdelayed FROM ontime WHERE year IN (2005, 2006, 2007, 2008, 2009, 2010)
-    : 
-    : 1,PushToNetworkQueue  ,10354468,10,1035446,2020-06-12 20:41:42,-1,,,,13.55
-    : 2,Rechunk             ,10354468,10,1035446,2020-06-12 20:41:42,1,,,,0.10
-    : 3,ReorderInput        ,10354468,10,1035446,2020-06-12 20:41:42,2,,,,0.00
-    : 4,DeferredGather      ,10354468,10,1035446,2020-06-12 20:41:42,3,,,,1.23
-    : 5,ReorderInput        ,10354468,10,1035446,2020-06-12 20:41:41,4,,,,0.01
-    : 6,GpuToCpu            ,10354468,10,1035446,2020-06-12 20:41:41,5,,,,0.07
-    : 7,GpuTransform        ,10354468,10,1035446,2020-06-12 20:41:41,6,,,,0.02
-    : 8,ReorderInput        ,10354468,10,1035446,2020-06-12 20:41:41,7,,,,0.00
-    : 9,Filter              ,10354468,10,1035446,2020-06-12 20:41:41,8,,,,0.07
-    : 10,GpuTransform        ,10485760,10,1048576,2020-06-12 20:41:41,9,,,,0.07
-    : 11,GpuDecompress       ,10485760,10,1048576,2020-06-12 20:41:41,10,,,,0.03
-    : 12,GpuTransform        ,10485760,10,1048576,2020-06-12 20:41:41,11,,,,0.22
-    : 13,CpuToGpu            ,10485760,10,1048576,2020-06-12 20:41:41,12,,,,0.76
-    : 14,ReorderInput        ,10485760,10,1048576,2020-06-12 20:41:40,13,,,,0.11
-    : 15,Rechunk             ,10485760,10,1048576,2020-06-12 20:41:40,14,,,,5.58
-    : 16,CpuDecompress       ,10485760,10,1048576,2020-06-12 20:41:34,15,,,,0.04
-    : 17,ReadTable           ,10485760,10,1048576,2020-06-12 20:41:34,16,832MB,,public.ontime,0.55
+	SELECT
+	  message
+	FROM
+	  logs
+	WHERE
+	  message_type_id = 200
+	  AND timestamp BETWEEN '2020-06-11' AND '2020-06-13';
+	
+	message                                                                                                                          
+	---------------------------------------------------------------------------------------------------------------------------------
+	SELECT *,coalesce((depdelay > 15),false) AS isdepdelayed FROM ontime WHERE year IN (2005, 2006, 2007, 2008, 2009, 2010)
+
+	1,PushToNetworkQueue  ,10354468,10,1035446,2020-06-12 20:41:42,-1,,,,13.55
+	2,Rechunk             ,10354468,10,1035446,2020-06-12 20:41:42,1,,,,0.10
+	3,ReorderInput        ,10354468,10,1035446,2020-06-12 20:41:42,2,,,,0.00
+	4,DeferredGather      ,10354468,10,1035446,2020-06-12 20:41:42,3,,,,1.23
+	5,ReorderInput        ,10354468,10,1035446,2020-06-12 20:41:41,4,,,,0.01
+	6,GpuToCpu            ,10354468,10,1035446,2020-06-12 20:41:41,5,,,,0.07
+	7,GpuTransform        ,10354468,10,1035446,2020-06-12 20:41:41,6,,,,0.02
+	8,ReorderInput        ,10354468,10,1035446,2020-06-12 20:41:41,7,,,,0.00
+	9,Filter              ,10354468,10,1035446,2020-06-12 20:41:41,8,,,,0.07
+	10,GpuTransform        ,10485760,10,1048576,2020-06-12 20:41:41,9,,,,0.07
+	11,GpuDecompress       ,10485760,10,1048576,2020-06-12 20:41:41,10,,,,0.03
+	12,GpuTransform        ,10485760,10,1048576,2020-06-12 20:41:41,11,,,,0.22
+	13,CpuToGpu            ,10485760,10,1048576,2020-06-12 20:41:41,12,,,,0.76
+	14,ReorderInput        ,10485760,10,1048576,2020-06-12 20:41:40,13,,,,0.11
+	15,Rechunk             ,10485760,10,1048576,2020-06-12 20:41:40,14,,,,5.58
+	16,CpuDecompress       ,10485760,10,1048576,2020-06-12 20:41:34,15,,,,0.04
+	17,ReadTable           ,10485760,10,1048576,2020-06-12 20:41:34,16,832MB,,public.ontime,0.55
 
 .. _using_show_node_info:
 
@@ -121,22 +124,24 @@ To inspect a currently running statement, execute the ``show_node_info`` utility
 
 In this example, we inspect a statement with statement ID of 176. The command looks like this:
 
-.. code-block:: sql
+.. code-block:: postgres
    
-   t=> SELECT SHOW_NODE_INFO(176);
-   stmt_id | node_id | node_type          | rows | chunks | avg_rows_in_chunk | time                | parent_node_id | read | write | comment    | timeSum
-   --------+---------+--------------------+------+--------+-------------------+---------------------+----------------+------+-------+------------+--------
-       176 |       1 | PushToNetworkQueue |    1 |      1 |                 1 | 2019-12-25 23:53:13 |             -1 |      |       |            |  0.0025
-       176 |       2 | Rechunk            |    1 |      1 |                 1 | 2019-12-25 23:53:13 |              1 |      |       |            |       0
-       176 |       3 | GpuToCpu           |    1 |      1 |                 1 | 2019-12-25 23:53:13 |              2 |      |       |            |       0
-       176 |       4 | ReorderInput       |    1 |      1 |                 1 | 2019-12-25 23:53:13 |              3 |      |       |            |       0
-       176 |       5 | Filter             |    1 |      1 |                 1 | 2019-12-25 23:53:13 |              4 |      |       |            |  0.0002
-       176 |       6 | GpuTransform       |  457 |      1 |               457 | 2019-12-25 23:53:13 |              5 |      |       |            |  0.0002
-       176 |       7 | GpuDecompress      |  457 |      1 |               457 | 2019-12-25 23:53:13 |              6 |      |       |            |       0
-       176 |       8 | CpuToGpu           |  457 |      1 |               457 | 2019-12-25 23:53:13 |              7 |      |       |            |  0.0003
-       176 |       9 | Rechunk            |  457 |      1 |               457 | 2019-12-25 23:53:13 |              8 |      |       |            |       0
-       176 |      10 | CpuDecompress      |  457 |      1 |               457 | 2019-12-25 23:53:13 |              9 |      |       |            |       0
-       176 |      11 | ReadTable          |  457 |      1 |               457 | 2019-12-25 23:53:13 |             10 | 4MB  |       | public.nba |  0.0004
+	SELECT
+	  SHOW_NODE_INFO(176);
+	  
+	stmt_id | node_id | node_type          | rows | chunks | avg_rows_in_chunk | time                | parent_node_id | read | write | comment    | timeSum
+	--------+---------+--------------------+------+--------+-------------------+---------------------+----------------+------+-------+------------+--------
+	    176 |       1 | PushToNetworkQueue |    1 |      1 |                 1 | 2019-12-25 23:53:13 |             -1 |      |       |            |  0.0025
+	    176 |       2 | Rechunk            |    1 |      1 |                 1 | 2019-12-25 23:53:13 |              1 |      |       |            |       0
+	    176 |       3 | GpuToCpu           |    1 |      1 |                 1 | 2019-12-25 23:53:13 |              2 |      |       |            |       0
+	    176 |       4 | ReorderInput       |    1 |      1 |                 1 | 2019-12-25 23:53:13 |              3 |      |       |            |       0
+	    176 |       5 | Filter             |    1 |      1 |                 1 | 2019-12-25 23:53:13 |              4 |      |       |            |  0.0002
+	    176 |       6 | GpuTransform       |  457 |      1 |               457 | 2019-12-25 23:53:13 |              5 |      |       |            |  0.0002
+	    176 |       7 | GpuDecompress      |  457 |      1 |               457 | 2019-12-25 23:53:13 |              6 |      |       |            |       0
+	    176 |       8 | CpuToGpu           |  457 |      1 |               457 | 2019-12-25 23:53:13 |              7 |      |       |            |  0.0003
+	    176 |       9 | Rechunk            |  457 |      1 |               457 | 2019-12-25 23:53:13 |              8 |      |       |            |       0
+	    176 |      10 | CpuDecompress      |  457 |      1 |               457 | 2019-12-25 23:53:13 |              9 |      |       |            |       0
+	    176 |      11 | ReadTable          |  457 |      1 |               457 | 2019-12-25 23:53:13 |             10 | 4MB  |       | public.nba |  0.0004
 
 Alternatively, you may also :ref:`retrieve the query execution plan output<retrieving_execution_plan_output_using_studio>` using SQreamDB Studio, and contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_. 
 
@@ -323,7 +328,7 @@ In the following examples you will learn how to identify and solve some common i
 Spooling to Disk
 ----------------
 
-When there is not enough RAM to process a statement, SQream DB will spill over data to the ``temp`` folder in the storage disk.
+When there is not enough RAM to process a statement, SQreamDB will spill over data to the ``temp`` folder in the storage disk.
 While this ensures that a statement can always finish processing, it can slow down the processing significantly.
 It's worth identifying these statements, to figure out if the cluster is configured correctly, as well as potentially reduce
 the statement size. 
@@ -339,24 +344,38 @@ Identifying the Offending Nodes
      
    For example, a query from the TPC-H benchmark:
 
-   .. code-block:: sql
+   .. code-block:: postgres
       
-      SELECT o_year,
-             SUM(CASE WHEN nation = 'BRAZIL' THEN volume ELSE 0 END) / SUM(volume) AS mkt_share
-      FROM (SELECT datepart(YEAR,o_orderdate) AS o_year,
-                   l_extendedprice*(1 - l_discount / 100.0) AS volume,
-                   n2.n_name AS nation
-            FROM lineitem
-              JOIN part ON p_partkey = CAST (l_partkey AS INT)
-              JOIN orders ON l_orderkey = o_orderkey
-              JOIN customer ON o_custkey = c_custkey
-              JOIN nation n1 ON c_nationkey = n1.n_nationkey
-              JOIN region ON n1.n_regionkey = r_regionkey
-              JOIN supplier ON s_suppkey = l_suppkey
-              JOIN nation n2 ON s_nationkey = n2.n_nationkey
-            WHERE o_orderdate BETWEEN '1995-01-01' AND '1996-12-31') AS all_nations
-      GROUP BY o_year
-      ORDER BY o_year;
+	SELECT
+	  o_year,
+	  SUM(
+	    CASE
+	      WHEN nation = 'BRAZIL' THEN volume
+	      ELSE 0
+	    END
+	  ) / SUM(volume) AS mkt_share
+	FROM
+	  (
+	    SELECT
+	      datepart(YEAR, o_orderdate) AS o_year,
+	      l_extendedprice * (1 - l_discount / 100.0) AS volume,
+	      n2.n_name AS nation
+	    FROM
+	      lineitem
+	      JOIN part ON p_partkey = CAST (l_partkey AS INT)
+	      JOIN orders ON l_orderkey = o_orderkey
+	      JOIN customer ON o_custkey = c_custkey
+	      JOIN nation n1 ON c_nationkey = n1.n_nationkey
+	      JOIN region ON n1.n_regionkey = r_regionkey
+	      JOIN supplier ON s_suppkey = l_suppkey
+	      JOIN nation n2 ON s_nationkey = n2.n_nationkey
+	    WHERE
+	      o_orderdate BETWEEN '1995-01-01' AND '1996-12-31'
+	  ) AS all_nations
+	GROUP BY
+	  o_year
+	ORDER BY
+	  o_year;
 #. 
    
    Observe the execution information by using the foreign table, or use ``show_node_info``
@@ -365,11 +384,10 @@ Identifying the Offending Nodes
    
    The execution below has been shortened, but note the highlighted rows for ``LoopJoin``:
    
-   .. code-block:: sql
+   .. code-block:: postgres
+     :emphasize-lines: 33,35,37,39
    
-      :emphasize-lines: 33,35,37,39
-   
-      t=> SELECT message FROM logs WHERE message_type_id = 200 LIMIT 1;
+	  SELECT message FROM logs WHERE message_type_id = 200 LIMIT 1;
       message                                                                                  
       -----------------------------------------------------------------------------------------
       SELECT o_year,                                                                           
@@ -410,7 +428,7 @@ Identifying the Offending Nodes
        : 150,LoopJoin            ,182369485,10,18236948,2020-09-04 18:31:47,149,12860MB,12860MB,inner,23.62
        [...]
        : 199,ReadTable           ,20000000,1,20000000,2020-09-04 18:30:33,198,0MB,,public.part,0.83
-   Because of the relatively low amount of RAM in the machine and because the data set is rather large at around 10TB, SQream DB needs to spool.  
+   Because of the relatively low amount of RAM in the machine and because the data set is rather large at around 10TB, SQreamDB needs to spool.  
    
    The total spool used by this query is around 20GB (1915MB + 2191MB + 3064MB + 12860MB).
 
@@ -419,7 +437,7 @@ Common Solutions for Reducing Spool
 
 * 
    Increase the amount of spool memory available for the workers, as a proportion of the maximum statement memory.
-   When the amount of spool memory is increased, SQream DB may not need to write to disk.
+   When the amount of spool memory is increased, SQreamDB may not need to write to disk.
    
    This setting is called ``spoolMemoryGB``. Refer to the :ref:`configuration` guide.
 * 
@@ -440,27 +458,30 @@ Identifying the Offending Nodes
      
    For example, a modified query from the TPC-H benchmark:
 
-   .. code-block:: sql
+   .. code-block:: postgres
       
-      SELECT s.*,
-             l.*,
-             r.*,
-             n1.*,
-             n2.*,
-             p.*,
-             o.*,
-             c.*
-      FROM lineitem l
-        JOIN part p ON p_partkey = CAST (l_partkey AS INT)
-        JOIN orders o ON l_orderkey = o_orderkey
-        JOIN customer c ON o_custkey = c_custkey
-        JOIN nation n1 ON c_nationkey = n1.n_nationkey
-        JOIN region r ON n1.n_regionkey = r_regionkey
-        JOIN supplier s ON s_suppkey = l_suppkey
-        JOIN nation n2 ON s_nationkey = n2.n_nationkey
-      WHERE r_name = 'AMERICA'
-      AND   o_orderdate BETWEEN '1995-01-01' AND '1996-12-31'
-      AND   high_selectivity(p_type = 'ECONOMY BURNISHED NICKEL');
+	SELECT
+	  s.*,
+	  l.*,
+	  r.*,
+	  n1.*,
+	  n2.*,
+	  p.*,
+	  o.*,
+	  c.*
+	FROM
+	  lineitem l
+	  JOIN part p ON p_partkey = CAST (l_partkey AS INT)
+	  JOIN orders o ON l_orderkey = o_orderkey
+	  JOIN customer c ON o_custkey = c_custkey
+	  JOIN nation n1 ON c_nationkey = n1.n_nationkey
+	  JOIN region r ON n1.n_regionkey = r_regionkey
+	  JOIN supplier s ON s_suppkey = l_suppkey
+	  JOIN nation n2 ON s_nationkey = n2.n_nationkey
+	WHERE
+	  r_name = 'AMERICA'
+	  AND o_orderdate BETWEEN '1995-01-01' AND '1996-12-31'
+	  AND high_selectivity(p_type = 'ECONOMY BURNISHED NICKEL');
 #. 
    
    Observe the execution information by using the foreign table, or use ``show_node_info``
@@ -469,23 +490,22 @@ Identifying the Offending Nodes
    
    The execution below has been shortened, but note the highlighted rows for ``DeferredGather``:
    
-   .. code-block:: sql
-   
+   .. code-block:: postgres
       :emphasize-lines: 7,9,11
    
-      t=> SELECT show_node_info(494);
-      stmt_id | node_id | node_type            | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read    | write | comment         | timeSum
-      --------+---------+----------------------+-----------+--------+-------------------+---------------------+----------------+---------+-------+-----------------+--------
-          494 |       1 | PushToNetworkQueue   |    242615 |      1 |            242615 | 2020-09-04 19:07:55 |             -1 |         |       |                 |    0.36
-          494 |       2 | Rechunk              |    242615 |      1 |            242615 | 2020-09-04 19:07:55 |              1 |         |       |                 |       0
-          494 |       3 | ReorderInput         |    242615 |      1 |            242615 | 2020-09-04 19:07:55 |              2 |         |       |                 |       0
-          494 |       4 | DeferredGather       |    242615 |      1 |            242615 | 2020-09-04 19:07:55 |              3 |         |       |                 |    0.16
-          [...]
-          494 |     166 | DeferredGather       |   3998730 |     39 |            102531 | 2020-09-04 19:07:47 |            165 |         |       |                 |   21.75
-          [...]
-          494 |     194 | DeferredGather       |    133241 |     20 |              6662 | 2020-09-04 19:07:03 |            193 |         |       |                 |    0.41
-          [...]
-          494 |     221 | ReadTable            |  20000000 |     20 |           1000000 | 2020-09-04 19:07:01 |            220 | 20MB    |       | public.part     |     0.1
+	SELECT show_node_info(494);
+	stmt_id | node_id | node_type            | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read    | write | comment         | timeSum
+	--------+---------+----------------------+-----------+--------+-------------------+---------------------+----------------+---------+-------+-----------------+--------
+	    494 |       1 | PushToNetworkQueue   |    242615 |      1 |            242615 | 2020-09-04 19:07:55 |             -1 |         |       |                 |    0.36
+	    494 |       2 | Rechunk              |    242615 |      1 |            242615 | 2020-09-04 19:07:55 |              1 |         |       |                 |       0
+	    494 |       3 | ReorderInput         |    242615 |      1 |            242615 | 2020-09-04 19:07:55 |              2 |         |       |                 |       0
+	    494 |       4 | DeferredGather       |    242615 |      1 |            242615 | 2020-09-04 19:07:55 |              3 |         |       |                 |    0.16
+	    [...]
+	    494 |     166 | DeferredGather       |   3998730 |     39 |            102531 | 2020-09-04 19:07:47 |            165 |         |       |                 |   21.75
+	    [...]
+	    494 |     194 | DeferredGather       |    133241 |     20 |              6662 | 2020-09-04 19:07:03 |            193 |         |       |                 |    0.41
+	    [...]
+	    494 |     221 | ReadTable            |  20000000 |     20 |           1000000 | 2020-09-04 19:07:01 |            220 | 20MB    |       | public.part     |     0.1
   
    When you see ``DeferredGather`` operations taking more than a few seconds, that's a sign that you're selecting too much data.
    In this case, the DeferredGather with node ID 166 took over 21 seconds.
@@ -493,12 +513,13 @@ Identifying the Offending Nodes
 #. Modify the statement to see the difference
    Altering the select clause to be more restrictive will reduce the deferred gather time back to a few milliseconds.
    
-   .. code-block:: sql
+   .. code-block:: postgres
       
-      SELECT DATEPART(year, o_orderdate) AS o_year,
-             l_extendedprice * (1 - l_discount / 100.0) as volume,
-             n2.n_name as nation
-      FROM ...
+	SELECT
+	  DATEPART(year, o_orderdate) AS o_year,
+	  l_extendedprice * (1 - l_discount / 100.0) as volume,
+	  n2.n_name as nation
+	FROM ...
 
 Common Solutions for Reducing Gather Time
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -509,8 +530,8 @@ Common Solutions for Reducing Gather Time
 Inefficient Filtering
 ---------------------
 
-When running statements, SQream DB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
-If statements do not include efficient filtering, SQream DB will read a lot of data off disk.
+When running statements, SQreamDB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
+If statements do not include efficient filtering, SQreamDB will read a lot of data off disk.
 In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line,
 it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
 
@@ -526,39 +547,52 @@ For example:
    In this example, we execute a modified query from the TPC-H benchmark.
    Our ``lineitem`` table contains 600,037,902 rows.
 
-   .. code-block:: sql
+   .. code-block:: postgres
       
-      SELECT o_year,
-             SUM(CASE WHEN nation = 'BRAZIL' THEN volume ELSE 0 END) / SUM(volume) AS mkt_share
-      FROM (SELECT datepart(YEAR,o_orderdate) AS o_year,
-                   l_extendedprice*(1 - l_discount / 100.0) AS volume,
-                   n2.n_name AS nation
-            FROM lineitem
-              JOIN part ON p_partkey = CAST (l_partkey AS INT)
-              JOIN orders ON l_orderkey = o_orderkey
-              JOIN customer ON o_custkey = c_custkey
-              JOIN nation n1 ON c_nationkey = n1.n_nationkey
-              JOIN region ON n1.n_regionkey = r_regionkey
-              JOIN supplier ON s_suppkey = l_suppkey
-              JOIN nation n2 ON s_nationkey = n2.n_nationkey
-            WHERE r_name = 'AMERICA'
-            AND   lineitem.l_quantity = 3
-            AND   o_orderdate BETWEEN '1995-01-01' AND '1996-12-31'
-            AND   high_selectivity(p_type = 'ECONOMY BURNISHED NICKEL')) AS all_nations
-      GROUP BY o_year
-      ORDER BY o_year;
+	SELECT
+	  o_year,
+	  SUM(
+	    CASE
+	      WHEN nation = 'BRAZIL' THEN volume
+	      ELSE 0
+	    END
+	  ) / SUM(volume) AS mkt_share
+	FROM
+	  (
+	    SELECT
+	      datepart(YEAR, o_orderdate) AS o_year,
+	      l_extendedprice * (1 - l_discount / 100.0) AS volume,
+	      n2.n_name AS nation
+	    FROM
+	      lineitem
+	      JOIN part ON p_partkey = CAST (l_partkey AS INT)
+	      JOIN orders ON l_orderkey = o_orderkey
+	      JOIN customer ON o_custkey = c_custkey
+	      JOIN nation n1 ON c_nationkey = n1.n_nationkey
+	      JOIN region ON n1.n_regionkey = r_regionkey
+	      JOIN supplier ON s_suppkey = l_suppkey
+	      JOIN nation n2 ON s_nationkey = n2.n_nationkey
+	    WHERE
+	      r_name = 'AMERICA'
+	      AND lineitem.l_quantity = 3
+	      AND o_orderdate BETWEEN '1995-01-01' AND '1996-12-31'
+	      AND high_selectivity(p_type = 'ECONOMY BURNISHED NICKEL')
+	  ) AS all_nations
+	GROUP BY
+	  o_year
+	ORDER BY
+	  o_year;
 #. 
    
    Observe the execution information by using the foreign table, or use ``show_node_info``
    
    The execution below has been shortened, but note the highlighted rows for ``ReadTable`` and ``Filter``:
    
-   .. code-block:: sql
-   
+   .. code-block:: postgres
       :linenos:
       :emphasize-lines: 9,17,19,27
    
-      t=> SELECT show_node_info(559);
+      SELECT show_node_info(559);
       stmt_id | node_id | node_type            | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read   | write | comment         | timeSum
       --------+---------+----------------------+-----------+--------+-------------------+---------------------+----------------+--------+-------+-----------------+--------
           559 |       1 | PushToNetworkQueue   |         2 |      1 |                 2 | 2020-09-07 11:12:01 |             -1 |        |       |                 |    0.28
@@ -597,10 +631,9 @@ For example:
       of the data, but the entire table was read. However, this table is small enough that we can ignore it.
    
 #. Modify the statement to see the difference
-   Altering the statement to have a ``WHERE`` condition on the clustered ``l_orderkey`` column of the ``lineitem`` table will help SQream DB skip reading the data.
+   Altering the statement to have a ``WHERE`` condition on the clustered ``l_orderkey`` column of the ``lineitem`` table will help SQreamDB skip reading the data.
    
-   .. code-block:: sql
-   
+   .. code-block:: postgres
       :emphasize-lines: 15
       
       SELECT o_year,
@@ -623,12 +656,11 @@ For example:
       GROUP BY o_year
       ORDER BY o_year;
 
-   .. code-block:: sql
-   
+   .. code-block:: postgres
       :linenos:
       :emphasize-lines: 5,13
       
-      t=> SELECT show_node_info(586);
+      SELECT show_node_info(586);
       stmt_id | node_id | node_type            | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read   | write | comment         | timeSum
       --------+---------+----------------------+-----------+--------+-------------------+---------------------+----------------+--------+-------+-----------------+--------
       [...]
@@ -665,7 +697,7 @@ Identifying the Situation
 When a join is inefficient, you may note that a query spends a lot of time on the ``Join`` node.
 For example, consider these two table structures:
    
-.. code-block:: sql
+.. code-block:: postgres
 
    CREATE TABLE t_a 
    (
@@ -687,7 +719,7 @@ For example, consider these two table structures:
      
    In this example, we will join ``t_a.fk`` with ``t_b.id``, both of which are ``TEXT(50)``.
    
-   .. code-block:: sql
+   .. code-block:: postgres
       
       SELECT AVG(t_b.j :: BIGINT),
              t_a.country_code
@@ -702,12 +734,11 @@ For example, consider these two table structures:
    The ``Join`` node is by far the most time-consuming part of this statement - clocking in at 69.7 seconds
    joining 1.5 billion records.
    
-   .. code-block:: sql
-   
+   .. code-block:: postgres
       :linenos:
       :emphasize-lines: 8
       
-      t=> SELECT show_node_info(5);
+      SELECT show_node_info(5);
       stmt_id | node_id | node_type            | rows       | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment    | timeSum
       --------+---------+----------------------+------------+--------+-------------------+---------------------+----------------+-------+-------+------------+--------
       [...]
@@ -733,7 +764,7 @@ Improving Query Performance
    
    For example:
    
-   .. code-block:: sql
+   .. code-block:: postgres
       
 	SELECT AVG(t_b.j::BIGINT), t_a.country_code
 	FROM "public"."t_a"
@@ -743,12 +774,11 @@ Improving Query Performance
    The execution below has been shortened, but note the highlighted rows for ``Join``.
    The ``Join`` node went from taking nearly 70 seconds, to just 6.67 seconds for joining 1.5 billion records.
 
-   .. code-block:: sql
-   
+   .. code-block:: postgres
       :linenos:
       :emphasize-lines: 8
       
-      t=> SELECT show_node_info(6);
+         SELECT show_node_info(6);
          stmt_id | node_id | node_type            | rows       | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment    | timeSum
          --------+---------+----------------------+------------+--------+-------------------+---------------------+----------------+-------+-------+------------+--------
          [...]
@@ -768,7 +798,7 @@ Improving Query Performance
 Sorting on big ``TEXT`` fields
 ------------------------------
 
-In general, SQream DB automatically inserts a ``Sort`` node which arranges the data prior to reductions and aggregations.
+In general, SQreamDB automatically inserts a ``Sort`` node which arranges the data prior to reductions and aggregations.
 When running a ``GROUP BY`` on large ``TEXT`` fields, you may see nodes for ``Sort`` and ``Reduce`` taking a long time.
 
 Identifying the Situation
@@ -783,8 +813,7 @@ For example:
    
    Our ``t_inefficient`` table contains 60,000,000 rows, and the structure is simple, but with an oversized ``country_code`` column:
    
-   .. code-block:: sql
-   
+   .. code-block:: postgres
       :emphasize-lines: 5
    
       CREATE TABLE t_inefficient (
@@ -798,14 +827,14 @@ For example:
    
    We will run a query, and inspect it's execution details:
    
-   .. code-block:: psql
+   .. code-block:: postgres
       
-      t=> SELECT country_code,
-      .          SUM(amt)
-      .   FROM t_inefficient
-      .   GROUP BY country_code;
-      executed
-      time: 47.55s
+      SELECT 
+	    country_code,
+        SUM(amt)
+      FROM t_inefficient
+      GROUP BY country_code;
+
       
       country_code | sum       
       -------------+-----------
@@ -815,11 +844,10 @@ For example:
       [...]
       
    
-   .. code-block:: sql
-   
+   .. code-block:: postgres
       :emphasize-lines: 8,9
       
-      t=> select show_node_info(30);
+      SELECT SHOW_NODE_INFO(30);
       stmt_id | node_id | node_type          | rows     | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment              | timeSum
       --------+---------+--------------------+----------+--------+-------------------+---------------------+----------------+-------+-------+----------------------+--------
            30 |       1 | PushToNetworkQueue |      249 |      1 |               249 | 2020-09-10 16:17:10 |             -1 |       |       |                      |    0.25
@@ -837,9 +865,9 @@ For example:
 
 #. We can look to see if there's any shrinking we can do on the ``GROUP BY`` key
    
-   .. code-block:: sql
+   .. code-block:: postgres
       
-      t=> SELECT MAX(LEN(country_code)) FROM t_inefficient;
+      SELECT MAX(LEN(country_code)) FROM t_inefficient;
       max
       ---
       3
@@ -847,24 +875,22 @@ For example:
 #. 
    We can recreate the table with a more restrictive ``TEXT(3)``, and can examine the difference in performance:
    
-   .. code-block:: sql
+   .. code-block:: postgres
    
-      t=> CREATE TABLE t_efficient 
-      .     AS SELECT i,
-      .              amt,
-      .              ts,
-      .              country_code::TEXT(3) AS country_code,
-      .              flag
-      .         FROM t_inefficient;
-      executed
-      time: 16.03s
+      CREATE TABLE t_efficient 
+        AS SELECT i,
+                  amt,
+                  ts,
+                  country_code::TEXT(3) AS country_code,
+                  flag
+        FROM t_inefficient;
       
-      t=> SELECT country_code,
-      .      SUM(amt::bigint)
-      .   FROM t_efficient
-      .   GROUP BY country_code;
-      executed
-      time: 4.75s
+      SELECT 
+	    country_code,
+        SUM(amt::bigint)
+      FROM t_efficient
+      GROUP BY country_code;
+
       country_code | sum       
       -------------+-----------
       VUT          | 1195416012
@@ -888,11 +914,11 @@ High Selectivity Data
 ---------------------
 
 Selectivity is the ratio of cardinality to the number of records of a chunk. We define selectivity as :math:`\frac{\text{Distinct values}}{\text{Total number of records in a chunk}}`
-SQream DB has a hint called ``HIGH_SELECTIVITY``, which is a function you can wrap a condition in.
-The hint signals to SQream DB that the result of the condition will be very sparse, and that it should attempt to rechunk
+SQreamDB has a hint called ``HIGH_SELECTIVITY``, which is a function you can wrap a condition in.
+The hint signals to SQreamDB that the result of the condition will be very sparse, and that it should attempt to rechunk
 the results into fewer, fuller chunks.
 .. note::
-   SQream DB doesn't do this automatically because it adds a significant overhead on naturally ordered and
+   SQreamDB doesn't do this automatically because it adds a significant overhead on naturally ordered and
    well-clustered data, which is the more common scenario.
 
 Identifying the Situation
@@ -901,9 +927,9 @@ Identifying the Situation
 This is easily identifiable - when the amount of average of rows in a chunk is small, following a ``Filter`` operation.
 Consider this execution plan:
 
-.. code-block:: sql
+.. code-block:: postgres
    
-   t=> select show_node_info(30);
+   SELECT SHOW_NODE_INFO(30);
    stmt_id | node_id | node_type         | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment    | timeSum
    --------+---------+-------------------+-----------+--------+-------------------+---------------------+----------------+-------+-------+------------+--------
    [...]
@@ -935,11 +961,10 @@ In this case, we're also interested in the number of chunks produced by these no
 
 Consider this execution plan:
 
-.. code-block:: sql
-
+.. code-block:: postgres
    :emphasize-lines: 6,11
    
-   t=> select show_node_info(30);
+   SELECT SHOW_NODE_INFO(30);
    stmt_id | node_id | node_type         | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment    | timeSum
    --------+---------+-------------------+-----------+--------+-------------------+---------------------+----------------+-------+-------+------------+--------
    [...]
@@ -954,6 +979,7 @@ Consider this execution plan:
         30 |      38 | Filter            |     18160 |     74 |               245 | 2020-09-10 12:17:09 |             37 |       |       |            |   0.012
    [...]
         30 |      44 | ReadTable         |  77000000 |     74 |           1040540 | 2020-09-10 12:17:09 |             43 | 277MB |       | public.dim |   0.058
+		
 * ``Join`` is the node that matches rows from both table relations.
 * ``DeferredGather`` gathers the required column chunks to decompress
 Pay special attention to the volume of data removed by the ``Filter`` node.
@@ -964,30 +990,29 @@ All of these rows could fit in one single chunk, instead of spanning 74 rather s
 Improving Join Performance when Data is Sparse
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can tell SQream DB to reduce the amount of chunks involved, if you know that the filter is going to be quite
+You can tell SQreamDB to reduce the amount of chunks involved, if you know that the filter is going to be quite
 agressive by using the :ref:`HIGH_SELECTIVITY<high_selectivity>` hint described :ref:`above<high_selectivity_data_opt>`.
 This forces the compiler to rechunk the data into fewer chunks.
-To tell SQream DB to rechunk the data, wrap a condition (or several) in the ``HIGH_SELECTIVITY`` hint:
+To tell SQreamDB to rechunk the data, wrap a condition (or several) in the ``HIGH_SELECTIVITY`` hint:
 
-.. code-block:: sql
-
+.. code-block:: postgres
    :emphasize-lines: 13
    
    -- Without the hint
    SELECT *
    FROM cdrs
    WHERE 
-         RequestReceiveTime BETWEEN '2018-01-01 00:00:00.000' AND '2018-08-31 23:59:59.999' 
-         AND EnterpriseID=1150 
-         AND MSISDN='9724871140341';
+      RequestReceiveTime BETWEEN '2018-01-01 00:00:00.000' AND '2018-08-31 23:59:59.999' 
+      AND EnterpriseID=1150 
+      AND MSISDN='9724871140341';
    
    -- With the hint
    SELECT *
    FROM cdrs
    WHERE 
-         HIGH_SELECTIVITY(RequestReceiveTime BETWEEN '2018-01-01 00:00:00.000' AND '2018-08-31 23:59:59.999')
-         AND EnterpriseID=1150 
-         AND MSISDN='9724871140341';
+      HIGH_SELECTIVITY(RequestReceiveTime BETWEEN '2018-01-01 00:00:00.000' AND '2018-08-31 23:59:59.999')
+      AND EnterpriseID=1150 
+      AND MSISDN='9724871140341';
 
 Manual Join Reordering
 ----------------------
@@ -1009,8 +1034,7 @@ Always prefer to join the smallest tables first.
 Changing the join order can reduce the query runtime significantly. In the examples below, we reduce the time
 from 27.3 seconds to just 6.4 seconds.
 
-.. code-block:: sql
-
+.. code-block:: postgres
    :caption: Original query
    
    -- This variant runs in 27.3 seconds
@@ -1029,7 +1053,7 @@ from 27.3 seconds to just 6.4 seconds.
          AND   l_shipdate <= dateadd(DAY,122,'1994-01-01')
    GROUP BY c_nationkey
 
-.. code-block:: sql
+.. code-block:: postgres
 
    :caption: Modified query with improved join order
    
