@@ -4,32 +4,34 @@
 Foreign Tables
 **************
 
-Foreign tables can be used to run queries directly on data without inserting it into SQream DB first.
-SQream DB supports read only foreign tables, so you can query from foreign tables, but you cannot insert to them, or run deletes or updates on them.
+Foreign tables can be used to run queries directly on data without inserting it into BLUE first.
+BLUE supports read only foreign tables, so you can query from foreign tables, but you cannot insert to them, or run deletes or updates on them.
 
-Running queries directly on foreign data is most effectively used for things like one off querying. If you are repeatedly querying data, the performance will usually be better if you insert the data into SQream DB first.
+Running queries directly on foreign data is most effectively used for things like one off querying. If you are repeatedly querying data, the performance will usually be better if you insert the data into BLUE first.
 
-Although foreign tables can be used without inserting data into SQream DB, one of their main use cases is to help with the insertion process. An insert select statement on a foreign table can be used to insert data into SQream using the full power of the query engine to perform ETL.
+Although foreign tables can be used without inserting data into BLUE, one of their main use cases is to help with the insertion process. An insert select statement on a foreign table can be used to insert data into SQream using the full power of the query engine to perform ETL.
 
 
    
 Supported Data Formats
 ======================
 
-SQream DB supports foreign tables over:
+BLUE supports foreign tables over:
 
 * Text files (e.g. CSV, PSV, TSV)
 * ORC
 * Parquet
+* JSON
+* Avro
 
 Supported Data Staging
 ======================
 
 SQream can stage data from:
 
-* a local filesystem (e.g. ``/mnt/storage/....``)
-* :ref:`s3` buckets (e.g. ``s3://pp-secret-bucket/users/*.parquet``)
-* :ref:`hdfs` (e.g. ``hdfs://hadoop-nn.piedpiper.com/rhendricks/*.csv``)
+* :ref:`gcp`
+* :ref:`s3`
+* :ref:`hdfs`
 
 Using Foreign Tables
 =====================
@@ -49,7 +51,7 @@ Creating a Foreign Table
 
 Based on the source file structure, we :ref:`create a foreign table<create_external_table>` with the appropriate structure, and point it to the file.
 
-.. code-block:: sql
+.. code-block:: postgres
    
 	CREATE FOREIGN TABLE nba
 	(
@@ -67,7 +69,7 @@ Based on the source file structure, we :ref:`create a foreign table<create_exter
 	OPTIONS
 	(
 	 LOCATION =  's3://sqream-demo-data/nba_players.csv', 
-	 RECORD DELIMITER '\r\n'; -- DOS delimited file
+	 RECORD DELIMITER = '\r\n'; -- DOS delimited file
 	);
 
 The file format in this case is CSV, and it is stored as an :ref:`s3` object (if the path is on :ref:`hdfs`, change the URI accordingly).
@@ -78,21 +80,29 @@ Querying Foreign Tables
 
 Let's peek at the data from the foreign table:
 
-.. code-block:: sql
+.. code-block:: postgres
    
-   SELECT * FROM nba LIMIT 10;
-   name          | team           | number | position | age | height | weight | college           | salary  
-   --------------+----------------+--------+----------+-----+--------+--------+-------------------+---------
-   Avery Bradley | Boston Celtics |      0 | PG       |  25 | 6-2    |    180 | Texas             |  7730337
-   Jae Crowder   | Boston Celtics |     99 | SF       |  25 | 6-6    |    235 | Marquette         |  6796117
-   John Holland  | Boston Celtics |     30 | SG       |  27 | 6-5    |    205 | Boston University |         
-   R.J. Hunter   | Boston Celtics |     28 | SG       |  22 | 6-5    |    185 | Georgia State     |  1148640
-   Jonas Jerebko | Boston Celtics |      8 | PF       |  29 | 6-10   |    231 |                   |  5000000
-   Amir Johnson  | Boston Celtics |     90 | PF       |  29 | 6-9    |    240 |                   | 12000000
-   Jordan Mickey | Boston Celtics |     55 | PF       |  21 | 6-8    |    235 | LSU               |  1170960
-   Kelly Olynyk  | Boston Celtics |     41 | C        |  25 | 7-0    |    238 | Gonzaga           |  2165160
-   Terry Rozier  | Boston Celtics |     12 | PG       |  22 | 6-2    |    190 | Louisville        |  1824360
-   Marcus Smart  | Boston Celtics |     36 | PG       |  22 | 6-4    |    220 | Oklahoma State    |  3431040
+	SELECT * 
+	FROM 
+	  nba 
+	LIMIT 10;
+	
+Output:
+
+.. code-block:: none
+	
+	name          | team           | number | position | age | height | weight | college           | salary  
+	--------------+----------------+--------+----------+-----+--------+--------+-------------------+---------
+	Avery Bradley | Boston Celtics |      0 | PG       |  25 | 6-2    |    180 | Texas             |  7730337
+	Jae Crowder   | Boston Celtics |     99 | SF       |  25 | 6-6    |    235 | Marquette         |  6796117
+	John Holland  | Boston Celtics |     30 | SG       |  27 | 6-5    |    205 | Boston University |         
+	R.J. Hunter   | Boston Celtics |     28 | SG       |  22 | 6-5    |    185 | Georgia State     |  1148640
+	Jonas Jerebko | Boston Celtics |      8 | PF       |  29 | 6-10   |    231 |                   |  5000000
+	Amir Johnson  | Boston Celtics |     90 | PF       |  29 | 6-9    |    240 |                   | 12000000
+	Jordan Mickey | Boston Celtics |     55 | PF       |  21 | 6-8    |    235 | LSU               |  1170960
+	Kelly Olynyk  | Boston Celtics |     41 | C        |  25 | 7-0    |    238 | Gonzaga           |  2165160
+	Terry Rozier  | Boston Celtics |     12 | PG       |  22 | 6-2    |    190 | Louisville        |  1824360
+	Marcus Smart  | Boston Celtics |     36 | PG       |  22 | 6-4    |    220 | Oklahoma State    |  3431040
 
 Modifying Data from Staging
 ---------------------------
@@ -100,7 +110,7 @@ Modifying Data from Staging
 One of the main reasons for staging data is to examine the content and modify it before loading.
 Assume we are unhappy with weight being in pounds because we want to use kilograms instead. We can apply the transformation as part of a query:
 
-.. code-block:: sql
+.. code-block:: postgres
    
 	SELECT 
 	 name, 
@@ -139,7 +149,7 @@ Converting a Foreign Table to a Standard Database Table
 
 .. tip:: If you intend to use the table multiple times, convert the foreign table to a standard table.
 
-.. code-block:: sql
+.. code-block:: postgres
    
 	CREATE TABLE real_nba AS 
 	SELECT 
@@ -177,10 +187,10 @@ Error Handling and Limitations
    
 For example, a CSV with the wrong delimiter may cause a query to fail, even though the table has been created successfully:
    
-.. code-block:: sql
+.. code-block:: postgres
       
 	SELECT * FROM nba;
 	select * from nba;
-	Record delimiter mismatch during CSV parsing. User defined line delimiter \n does not match the first delimiter \r\n found in s3://sqream-demo-data/nba.csv
+	-- Record delimiter mismatch during CSV parsing. User defined line delimiter \n does not match the first delimiter \r\n found in s3://sqream-demo-data/nba.csv
 
-* Since the data for a foreign table is not stored in SQream DB, it can be changed or removed at any time by a foreign process. As a result, the same query can return different results each time it runs against a foreign table. Similarly, a query might fail if the foreign data is moved, removed, or has changed structure.
+* Since the data for a foreign table is not stored in BLUE, it can be changed or removed at any time by a foreign process. As a result, the same query can return different results each time it runs against a foreign table. Similarly, a query might fail if the foreign data is moved, removed, or has changed structure.
