@@ -14,10 +14,6 @@ The following file formats are supported:
 * JSON
 * CSV (requires manual data type mapping as the default for all columns is ``TEXT``) 
 
-.. contents::
-   :local:
-   :depth: 1
-
 Before You Begin
 =================
 
