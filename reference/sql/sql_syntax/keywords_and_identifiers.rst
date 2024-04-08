@@ -11,36 +11,41 @@ Identifiers
 
 Identifiers are sometimes referred to as "names".
 
-Regular identifiers must follow these rules:
+Unquoted identifiers must follow these rules:
 
 * Must not contain a whitespace character or any special characters except for underscores (``_``)
 * Must be case-insensitive. SQream converts all identifiers to lowercase unless quoted
-* Does not equal any keywords, such as ``SELECT``, ``OR``, or ``AND``, etc
+* Does not equal any keywords, such as ``SELECT``, ``OR``, ``AND``, etc'
 
 To bypass the rules above you can surround an identifier with double quotes (``"``).
 
 Quoted identifiers must follow these rules:
 
-* Must be surrounded with double quotes (``"``)
-* May contain any ASCII character except ``@``, ``$`` or ``"``.
-* Must be case-sensitive and referenced with double quotes (``"``)
+* Must be enclosed with double quotes (``"``)
+* May contain any ASCII character except ``@``, ``$`` or ``"``
+* Must be case-sensitive
 
 Examples
 --------
 
 Creating quoted and unquoted identifiers:
 
-.. code-block:: sql
+.. code-block:: postgres
 
-	CREATE ROLE "developer"; --quoted identifiers preserves case - will create "developer"
-	CREATE ROLE "Developer"; --quoted identifiers preserves case - will create "Developer"
-	CREATE ROLE Developer;   --unquoted identifiers ignores case - will create "developer"
+	--Quoted identifiers preserves case - will create "developer"
+	CREATE ROLE "developer";
+	
+	--Quoted identifiers preserves case - will create "Developer"
+	CREATE ROLE "Developer"; 
+	
+	--Unquoted identifiers ignores case - will create "developer"
+	CREATE ROLE Developer;   
 
 Valid and invalid use of identifiers:
 
 .. code-block:: sql
 
-	-- these are all valid examples when quoted:
+	-- These are all valid examples when quoted:
 	
 	CREATE SCHEMA "my schema";
 	CREATE SCHEMA "123schema";
@@ -69,8 +74,242 @@ Identifiers are different than **keywords**, which are predefined words reserved
 
 SQreamDB reserved keywords:
 
-
-``ALL`` | ``ANALYSE`` | ``ANALYZE`` | ``AND`` | ``ANY`` | ``ARRAY`` | ``AS`` | ``ASC`` | ``AUTHORIZATION`` | ``BINARY`` | ``BIGINT`` | ``BOTH`` | ``CASE`` | ``CAST`` | ``CHECK`` | ``COLLATE`` | ``COLUMN`` | ``COMMENT`` | ``CONCURRENTLY`` | ``CONSTRAINT`` | ``CREATE`` | ``CROSS`` | ``CURRENT_CATALOG`` | ``CURRENT_ROLE`` | ``CURRENT_TIME`` | ``CURRENT_USER`` | ``DEFAULT`` | ``DEFERRABLE`` | ``DESC`` | ``DISTINCT`` | ``DO`` | ``ELSE`` | ``END`` | ``EXCEPT`` | ``FALSE`` | ``FETCH`` | ``FOR`` | ``FREEZE`` | ``FROM`` | ``FULL`` | ``FUNCTION`` | ``GRANT`` | ``GROUP`` | ``HASH`` | ``HAVING`` | ``ILIKE`` | ``IN`` | ``INITIALLY`` | ``INNER`` | ``INTERSECT`` | ``INTO`` | ``IS`` | ``ISNULL`` | ``JOIN`` | ``KEY`` | ``LEADING`` | ``LEFT`` | ``LIKE`` | ``LIMIT`` | ``LOCALTIME`` | ``LOCALTIMESTAMP`` | ``LOOP`` | ``MERGE`` | ``NATURAL`` | ``NOT`` | ``NOTNULL`` | ``NULL`` | ``OFF`` | ``OFFSET`` | ``OFFSETS`` | ``ON`` | ``ONLY`` | ``OPTION`` | ``OR`` | ``ORDER`` | ``OUTER`` | ``OVER`` | ``OVERLAPS`` | ``PERCENT`` | ``PLACING`` | ``PRIMARY`` | ``PRECISION`` | ``PROC`` | ``PROCEDURE`` | ``REFERENCES`` | ``RETURNING`` | ``RIGHT`` | ``RLIKE`` | ``RULE`` | ``SCHEMA`` | ``SELECT`` | ``SESSION_USER`` | ``SET`` | ``SIMILAR`` | ``SOME`` | ``STATISTICS`` | ``SYMMETRIC`` | ``TABLE`` | ``THEN`` | ``TO`` | ``TOP`` | ``TRAILING`` | ``TRAN`` | ``TRUE`` | ``UNION`` | ``UNIQUE`` | ``USER`` | ``USING`` | ``VARIADIC`` | ``VERBOSE`` | ``WHEN`` | ``WHERE`` | ``WINDOW`` | ``WITH`` | 
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Reserved Word
+     - Description
+   * - :kbd:`ALL`
+     - ANSI
+   * - :kbd:`ALLOCATE`
+     - ANSI
+   * - :kbd:`ANALYSE`
+     - ANSI
+   * - :kbd:`ANALYZE`
+     - ANSI
+   * - :kbd:`AND`
+     - ANSI
+   * - :kbd:`ANY`
+     - ANSI
+   * - :kbd:`ARRAY`
+     - ANSI
+   * - :kbd:`AS`
+     - ANSI
+   * - :kbd:`ASC`
+     - ANSI
+   * - :kbd:`AUTHORIZATION`
+     - ANSI
+   * - :kbd:`BINARY`
+     - ANSI
+   * - :kbd:`BIGINT`
+     - ANSI
+   * - :kbd:`BOTH`
+     - ANSI
+   * - :kbd:`CASE`
+     - ANSI
+   * - :kbd:`CAST`
+     - ANSI
+   * - :kbd:`CHECK`
+     - ANSI
+   * - :kbd:`COLLATE`
+     - ANSI
+   * - :kbd:`COLUMN`
+     - ANSI
+   * - :kbd:`COMMENT`
+     - ANSI
+   * - :kbd:`CONCURRENTLY`
+     - ANSI
+   * - :kbd:`CONSTRAINT`
+     - ANSI
+   * - :kbd:`CREATE`
+     - ANSI
+   * - :kbd:`CROSS`
+     - ANSI
+   * - :kbd:`CURRENT_CATALOG`
+     - ANSI
+   * - :kbd:`CURRENT_ROLE`
+     - ANSI
+   * - :kbd:`CURRENT_TIME`
+     - ANSI
+   * - :kbd:`CURRENT_USER`
+     - ANSI
+   * - :kbd:`DEFAULT`
+     - ANSI
+   * - :kbd:`DEFERRABLE`
+     - ANSI
+   * - :kbd:`DESC`
+     - ANSI
+   * - :kbd:`DISTINCT`
+     - ANSI
+   * - :kbd:`DO`
+     - ANSI
+   * - :kbd:`ELSE`
+     - ANSI
+   * - :kbd:`END`
+     - ANSI
+   * - :kbd:`EXCEPT`
+     - ANSI
+   * - :kbd:`FALSE`
+     - ANSI
+   * - :kbd:`FETCH`
+     - ANSI
+   * - :kbd:`FOR`
+     - ANSI
+   * - :kbd:`FREEZE`
+     - ANSI
+   * - :kbd:`FROM`
+     - ANSI
+   * - :kbd:`FULL`
+     - ANSI
+   * - :kbd:`FUNCTION`
+     - ANSI
+   * - :kbd:`GRANT`
+     - ANSI
+   * - :kbd:`GROUP`
+     - ANSI
+   * - :kbd:`HASH`
+     - ANSI
+   * - :kbd:`HAVING`
+     - ANSI
+   * - :kbd:`ILIKE`
+     - ANSI
+   * - :kbd:`IN`
+     - ANSI
+   * - :kbd:`INITIALLY`
+     - ANSI
+   * - :kbd:`INNER`
+     - ANSI
+   * - :kbd:`INTERSECT`
+     - ANSI
+   * - :kbd:`INTO`
+     - ANSI
+   * - :kbd:`IS`
+     - ANSI
+   * - :kbd:`ISNULL`
+     - ANSI
+   * - :kbd:`JOIN`
+     - ANSI
+   * - :kbd:`KEY`
+     - ANSI
+   * - :kbd:`LEADING`
+     - ANSI
+   * - :kbd:`LEFT`
+     - ANSI
+   * - :kbd:`LIKE`
+     - ANSI
+   * - :kbd:`LIMIT`
+     - ANSI
+   * - :kbd:`LOCALTIME`
+     - ANSI
+   * - :kbd:`LOCALTIMESTAMP`
+     - ANSI
+   * - :kbd:`LOOP`
+     - ANSI
+   * - :kbd:`MERGE`
+     - ANSI
+   * - :kbd:`NATURAL`
+     - 	 ANSI
+   * - :kbd:`NOT`
+     - ANSI	 
+   * - :kbd:`NOTNULL`
+     - ANSI	 
+   * - :kbd:`NULL`
+     - ANSI	 
+   * - :kbd:`OFF`
+     - ANSI	 
+   * - :kbd:`OFFSET`
+     - ANSI	 
+   * - :kbd:`OFFSETS`
+     - ANSI	 
+   * - :kbd:`ON`
+     - ANSI	 
+   * - :kbd:`ONLY`
+     - ANSI	 
+   * - :kbd:`OPTION`
+     - ANSI	 
+   * - :kbd:`OR`
+     - ANSI	 
+   * - :kbd:`ORDER`
+     - ANSI	 
+   * - :kbd:`OUTER`
+     - ANSI	 
+   * - :kbd:`OVER`
+     - ANSI	 	 
+   * - :kbd:`OVERLAPS`
+     - ANSI	 
+   * - :kbd:`PERCENT`
+     - ANSI	
+   * - :kbd:`PLACING`
+     - ANSI	 
+   * - :kbd:`PRIMARY`
+     - ANSI	 
+   * - :kbd:`PRECISION`
+     - ANSI	 
+   * - :kbd:`PROC`
+     - ANSI	 
+   * - :kbd:`PROCEDURE`
+     - ANSI	 
+   * - :kbd:`REFERENCES`
+     - ANSI	 
+   * - :kbd:`RETURNING`
+     - ANSI	 
+   * - :kbd:`RIGHT`
+     - ANSI	 
+   * - :kbd:`RLIKE`
+     - ANSI	 
+   * - :kbd:`RULE`
+     - ANSI	 
+   * - :kbd:`SCHEMA`
+     - ANSI	 
+   * - :kbd:`SELECT`
+     - ANSI	 
+   * - :kbd:`SESSION_USER`
+     - ANSI	 
+   * - :kbd:`SET`
+     - ANSI	 
+   * - :kbd:`SIMILAR`
+     - ANSI	 
+   * - :kbd:`SOME`
+     - ANSI	 
+   * - :kbd:`STATISTICS`
+     - ANSI	 
+   * - :kbd:`SYMMETRIC`
+     - ANSI	 
+   * - :kbd:`TABLE`
+     - ANSI
+   * - :kbd:`THEN`
+     - ANSI	 
+   * - :kbd:`TO`
+     - ANSI	 
+   * - :kbd:`TOP`
+     - ANSI	 
+   * - :kbd:`TRAILING`
+     - ANSI	 
+   * - :kbd:`TRAN`
+     - ANSI	 
+   * - :kbd:`TRUE`
+     - ANSI	 
+   * - :kbd:`UNION`
+     - ANSI	 
+   * - :kbd:`UNIQUE`
+     - ANSI	 
+   * - :kbd:`USER`
+     - ANSI	 
+   * - :kbd:`USING`
+     - ANSI	 	 
+   * - :kbd:`VARIADIC`
+     - ANSI	 	
+   * - :kbd:`VERBOSE`
+     - ANSI	 	
+   * - :kbd:`WHEN`
+     - ANSI	 	
+   * - :kbd:`WHERE`
+     - ANSI	 	
+   * - :kbd:`WINDOW`
+     - ANSI	 	
+   * - :kbd:`WITH`
+     - ANSI	 	
 
 
  
