@@ -24,7 +24,7 @@ Client Driver Downloads
      - 
      - All
    * - **Dataiku**
-     - `Dataiku plugin <>`_
+     - Plugin Git repository: ``git@github.com:SQream/dataiku_plugin.git``
      - :ref:`dataiku`
      -
      - All

@@ -36,7 +36,11 @@ In your Dataiku web interface:
 
 #. Define a DSS S3 Dataset 
 
-#. Add the Plugin to your Flow. 
+#. Add the Plugin to your Flow using Git repository: 
+
+   .. code-block:: console
+
+	git@github.com:SQream/dataiku_plugin.git
 
 #. Set the S3 Dataset as Input of the Plugin (mandatory). 
 
