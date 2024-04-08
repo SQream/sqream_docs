@@ -13,6 +13,8 @@ Cluster Management
 
 Managing a BLUE cluster involves two core aspects: pools and Workers. Pools serve as organized resource compartments, enabling strategic allocation of Workers based on specific compute power needs. Workers, operating within these pools, execute tasks and process data. By adjusting the number of Workers in each pool, users can optimize resource usage, ensuring efficient compute power and task execution while effectively utilizing the cluster's capabilities.
 
+
+
 Pools
 ^^^^^
 
@@ -132,6 +134,8 @@ Connecting to a default pool:
 
 	sudo java -jar jdbc-console-0.0.88-43.jar --host=myhost.isqream.com --access-token=#########
 
+.. _performance_and_concurrency_preferences:
+
 Performance and Concurrency Preferences
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -166,6 +170,18 @@ Cost Management
 ---------------
 
 Cost management involves optimizing expenses by efficiently adjusting resources, such as cluster size and worker numbers, based on varying workloads, and utilizing features like environment suspension to temporarily halt billing during periods of inactivity.
+
+Monitoring Worker Usage
+^^^^^^^^^^^^^^^^^^^^^^^
+
+.. figure:: /_static/images/worker_counter.jpg
+   :align: right
+
+The BLUE web interface offers continuous monitoring of the number of active Workers being utilized at any given time. Positioned in the upper ribbon across all pages, a Worker counter displays the current count of active Workers out of the total available within your cluster. 
+
+
+If you frequently find that one or more Workers are idle, it may be beneficial to review the :ref:`performance_and_concurrency_preferences` guide and consider reallocating the Workers in your cluster.
+
 
 .. _resizing_your_cluster:
 
