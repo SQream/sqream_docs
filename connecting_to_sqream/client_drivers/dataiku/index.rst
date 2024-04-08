@@ -8,11 +8,11 @@ This Plugin accelerates data transfer from Amazon S3 to SqreamDB within Dataiku 
 
 The Plugin includes a code environment that automatically installs the SqreamDB Python Connector (pysqream) alongside the Plugin.
 
-Use your existing AWS S3 buckets and folder paths for bulk loading into SqreamDB the following supported file formats:
+The following file formats are supported:
 
 * Avro
 * JSON
-* CSV
+* CSV (requires manual data type mapping as the default for all columns is ``TEXT``) 
 
 .. contents::
    :local:
