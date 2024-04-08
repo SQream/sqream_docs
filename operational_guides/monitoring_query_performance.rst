@@ -4,31 +4,25 @@
 Monitoring Query Performance
 ****************************
 
-When analyzing options for query tuning, the first step is to analyze the query plan and execution. 
-The query plan and execution details explain how SQreamDB processes a query and where time is spent.
-This document details how to analyze query performance with execution plans.
-This guide focuses specifically on identifying bottlenecks and possible optimization techniques to improve query performance.
-Performance tuning options for each query are different. You should adapt the recommendations and tips for your own workloads.
-See also our :ref:`sql_best_practices` guide for more information about data loading considerations and other best practices.
+The initial step in query tuning involves a thorough analysis of the query plan and its execution. The query plan and execution details illuminate how SQreamDB handles a query and pinpoint where time resources are consumed. This document offers a comprehensive guide on analyzing query performance through execution plans, with a specific emphasis on recognizing bottlenecks and exploring potential optimization strategies to enhance query efficiency. 
+
+It's important to note that performance tuning approaches can vary for each query, necessitating adaptation of recommendations and tips to suit specific workloads. Additionally, for further insights into data loading considerations and other best practices, refer to our :ref:`sql_best_practices` guide.
 
 .. contents::
    :local:
    :depth: 1
 
-
 Setting Up the System for Monitoring
 ====================================
 
-By default, SQreamDB logs execution details for every statement that runs for more than 60 seconds.
-If you want to see the execution details for a currently running statement, see :ref:`using_show_node_info` below.
+By default, SQreamDB automatically logs execution details for any statement that runs longer than 60 seconds.
 
 Adjusting the Logging Frequency
 -------------------------------
 
-To adjust the frequency of logging for statements, you may want to reduce the interval from 60 seconds down to, 
-say, 5 or 10 seconds. Modify the configuration files and set the ``nodeInfoLoggingSec`` parameter as you see fit:
+To customize statement logging frequency to be more frequent, consider reducing the interval from the default 60 seconds to a shorter duration like 5 or 10 seconds. This adjustment can be made by modifying the :ref:`configuration files<current_method_modification_methods>` and setting the ``nodeInfoLoggingSec`` parameter to your preferred value.
 
-.. code-block::  console
+.. code-block::  json
    :emphasize-lines: 7
    
    { 
@@ -42,8 +36,10 @@ say, 5 or 10 seconds. Modify the configuration files and set the ``nodeInfoLoggi
       "server":{ 
       }
    }
-After restarting the SQreamDB cluster, the execution plan details will be logged to the :ref:`standard SQreamDB logs directory<logging>`, as a message of type ``200``.
-You can see these messages with a text viewer or with queries on the log :ref:`foreign_tables`.
+
+After customizing the frequency, restart your SQreamDB cluster to have the execution plan details logged to the default SQreamDB :ref:`log directory<logging>`, as a :ref:`message type<message_type>` ``200``. 
+
+You can view all log message details either using a text viewer or by creating dedicated :ref:`foreign table<foreign_tables>` to store and access the logs.
 
 Reading Execution Plans with a Foreign Table
 --------------------------------------------
