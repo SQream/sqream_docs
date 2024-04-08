@@ -34,17 +34,23 @@ Establishing a Dataiku Connection
 
 In your Dataiku web interface:
 
-#. Define a DSS S3 Dataset 
-
-#. Add the Plugin to your Flow using Git repository: 
+#. Upload the plugin from the following SQreamDB Git repository:
 
    .. code-block:: console
 
+	-- Repository URL:
 	git@github.com:SQream/dataiku_plugin.git
+	
+	-- Path in repository:
+	s3_bulk_load
+
+#. Define a DSS S3 dataset. 
+
+#. Add the plugin to your flow.
 
 #. Set the S3 Dataset as Input of the Plugin (mandatory). 
 
-#. Assign a name for the output Dataset stored in your Sqreamd connection. 
+#. Assign a name for the output dataset stored in your SQreamDB connection. 
 
 #. Provide AWS Access Key and Secret Key by either:
  a. Filling in the values in the Plugin form
