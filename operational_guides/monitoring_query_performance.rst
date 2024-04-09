@@ -12,15 +12,15 @@ It's important to note that performance tuning approaches can vary for each quer
    :local:
    :depth: 1
 
-Setting Up the System for Monitoring
-====================================
+Setting Up System Monitoring Preferences
+========================================
 
-By default, SQreamDB automatically logs execution details for any statement that runs longer than 60 seconds.
+By default, SQreamDB automatically logs execution details for any query that runs longer than 60 seconds. This means that by default, queries shorter than 60 seconds are not logged. You can adjust this parameter to your own preference. 
 
 Adjusting the Logging Frequency
 -------------------------------
 
-To customize statement logging frequency to be more frequent, consider reducing the interval from the default 60 seconds to a shorter duration like 5 or 10 seconds. This adjustment can be made by modifying the :ref:`configuration files<current_method_modification_methods>` and setting the ``nodeInfoLoggingSec`` parameter to your preferred value.
+To customize statement logging frequency to be more frequent, consider reducing the interval from the default 60 seconds to a shorter duration like 5 or 10 seconds. This adjustment can be made by modifying the ``nodeInfoLoggingSec`` in your SQreamDB :ref:`configuration files<current_method_modification_methods>` and setting the parameter to your preferred value.
 
 .. code-block::  json
    :emphasize-lines: 7
@@ -37,9 +37,9 @@ To customize statement logging frequency to be more frequent, consider reducing 
       }
    }
 
-After customizing the frequency, restart your SQreamDB cluster to have the execution plan details logged to the default SQreamDB :ref:`log directory<logging>`, as a :ref:`message type<message_type>` ``200``. 
+After customizing the frequency, please restart your SQreamDB cluster. Execution plan details are logged to the default SQreamDB :ref:`log directory<logging>` as :ref:`message type<message_type>` ``200``.
 
-You can view all log message details either using a text viewer or by creating dedicated :ref:`foreign table<foreign_tables>` to store and access the logs.
+You can access these log details by using a text viewer or by creating a dedicated :ref:`foreign table<foreign_tables>` to store the logs in a SQreamDB table.
 
 Reading Execution Plans with a Foreign Table
 --------------------------------------------
