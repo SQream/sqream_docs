@@ -314,8 +314,7 @@ Commonly Seen Nodes
 Examples
 ========
 
-In general, looking at the top three longest running nodes (as is detailed in the ``timeSum`` column) can indicate the biggest bottlenecks.
-In the following examples you will learn how to identify and solve some common issues.
+Typically, examining the top three longest running nodes (detailed in the ``timeSum`` column) can highlight major bottlenecks. The following examples will demonstrate how to identify and address common issues.
 
 .. contents:: In this section:
    :local:
