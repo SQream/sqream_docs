@@ -323,13 +323,9 @@ Typically, examining the top three longest running nodes (detailed in the ``time
 Spooling to Disk
 ----------------
 
-When there is not enough RAM to process a statement, SQreamDB will spill over data to the ``temp`` folder in the storage disk.
-While this ensures that a statement can always finish processing, it can slow down the processing significantly.
-It's worth identifying these statements, to figure out if the cluster is configured correctly, as well as potentially reduce
-the statement size. 
-You can identify a statement that spools to disk by looking at the ``write`` column in the execution details.
-A node that spools will have a value, shown in megabytes in the ``write`` column.
-Common nodes that write spools include ``Join`` or ``LoopJoin``.
+When SQreamDB doesn't have enough RAM to process a statement, it will temporarily store overflow data in the ``temp`` folder on the storage disk. While this ensures that statements complete processing, it can significantly slow down performance. It's important to identify these statements to assess cluster configuration and potentially optimize statement size.
+
+To identify statements that spill data to disk, check the ``write`` column in the execution details. Nodes that write to disk will display a value (in megabytes) in this column. Common nodes that may write spillover data include ``Join`` and ``LoopJoin``.
 
 Identifying the Offending Nodes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
