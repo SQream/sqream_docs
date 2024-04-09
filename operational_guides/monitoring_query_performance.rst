@@ -316,9 +316,9 @@ Examples
 
 Typically, examining the top three longest running nodes (detailed in the ``timeSum`` column) can highlight major bottlenecks. The following examples will demonstrate how to identify and address common issues.
 
-.. contents:: In this section:
+.. contents::
    :local:
-   :depths: 1
+   :depth: 1
 
 Spooling to Disk
 ----------------
