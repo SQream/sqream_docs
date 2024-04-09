@@ -333,7 +333,7 @@ Identifying the Offending Nodes
 #. 
    Run a query.
      
-   For example, a query from the TPC-H benchmark:
+   This example is from the TPC-H benchmark:
 
    .. code-block:: postgres
       
@@ -369,7 +369,7 @@ Identifying the Offending Nodes
 	  o_year;
 #. 
    
-   Observe the execution information by using the foreign table, or use ``show_node_info``
+   Use a foreign table or ``show_node_info`` to view the execution information.
    
    This statement is made up of 199 nodes, starting from a ``ReadTable``, and finishes by returning only 2 results to the client.
    
@@ -419,9 +419,10 @@ Identifying the Offending Nodes
        : 150,LoopJoin            ,182369485,10,18236948,2020-09-04 18:31:47,149,12860MB,12860MB,inner,23.62
        [...]
        : 199,ReadTable           ,20000000,1,20000000,2020-09-04 18:30:33,198,0MB,,public.part,0.83
-   Because of the relatively low amount of RAM in the machine and because the data set is rather large at around 10TB, SQreamDB needs to spool.  
    
-   The total spool used by this query is around 20GB (1915MB + 2191MB + 3064MB + 12860MB).
+   Due to the machine's limited RAM and the large dataset of approximately 10TB, SQreamDB requires spooling.
+
+   The total spool used by this query amounts to approximately 20GB (1915MB + 2191MB + 3064MB + 12860MB).
 
 Common Solutions for Reducing Spool
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
