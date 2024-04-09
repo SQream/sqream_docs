@@ -41,15 +41,17 @@ After customizing the frequency, please restart your SQreamDB cluster. Execution
 
 You can access these log details by using a text viewer or by creating a dedicated :ref:`foreign table<foreign_tables>` to store the logs in a SQreamDB table.
 
-Reading Execution Plans with a Foreign Table
---------------------------------------------
+Creating a Dedicated Foreign Table to Store Log Details 
+-------------------------------------------------------
 
-First, create a foreign table for the logs
+Utilizing a SQreamDB table for storing and accessing log details helps simplify log management by avoiding direct handling of raw logs.
+
+To create a foreign table for storing your log details, use the following table DDL:
 
 .. code-block:: postgres
 
 	CREATE FOREIGN TABLE logs (
-	  start_marker TEXT(4),
+	  start_marker TEXT,
 	  row_id BIGINT,
 	  timestamp DATETIME,
 	  message_level TEXT,
@@ -63,7 +65,7 @@ First, create a foreign table for the logs
 	  service_name TEXT,
 	  message_type_id INT,
 	  message TEXT,
-	  end_message TEXT(5)
+	  end_message TEXT
 	)
 	WRAPPER
 	  csv_fdw
@@ -73,8 +75,7 @@ First, create a foreign table for the logs
 	    DELIMITER = '|'
 	  );
    
-Once you've defined the foreign table, you can run queries to observe the previously logged execution plans.
-This is recommended over looking at the raw logs.
+Use the following query structure as an example to view previously logged execution plans:
 
 .. code-block:: postgres
 
