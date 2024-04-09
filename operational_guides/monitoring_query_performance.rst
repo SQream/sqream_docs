@@ -437,20 +437,11 @@ Common Solutions for Reducing Spool
      - Increase the amount of spool memory available for the Workers relative to the maximum statement memory. By increasing spool memory, SQreamDB may avoid the need to write to disk. This setting is known as ``spoolMemoryGB``. Refer to the :ref:`concurrency_and_scaling_in_sqream` guide for details.
    * - Reducing Workers Per Host
      - Reduce the number of Workers per host and allocate more spool memory to the reduced number of active Workers. This approach may decrease concurrent statements but can enhance performance for resource-intensive queries.
-
-     
-
-    
-
-  
-
-    
    
 Queries with Large Result Sets
 ------------------------------
 
-When queries have large result sets, you may see a node called ``DeferredGather``.
-This gathering occurs when the result set is assembled, in preparation for sending it to the client.
+When queries produce large result sets, you may encounter a node called ``DeferredGather``. This node is responsible for assembling the result set in preparation for sending it to the client.
 
 Identifying the Offending Nodes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
