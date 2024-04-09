@@ -427,14 +427,24 @@ Identifying the Offending Nodes
 Common Solutions for Reducing Spool
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* 
-   Increase the amount of spool memory available for the workers, as a proportion of the maximum statement memory.
-   When the amount of spool memory is increased, SQreamDB may not need to write to disk.
+.. list-table::
+   :widths: auto
+   :header-rows: 1
    
-   This setting is called ``spoolMemoryGB``. Refer to the :ref:`configuration` guide.
-* 
-   Reduce the amount of **workers** per host, and increase the amount of spool available to the (now reduced amount of) active workers.
-   This may reduce the amount of concurrent statements, but will improve performance for heavy statements.
+   * - Solution
+     - Description
+   * - Increasing Spool Memory Amount
+     - Increase the amount of spool memory available for the Workers relative to the maximum statement memory. By increasing spool memory, SQreamDB may avoid the need to write to disk. This setting is known as ``spoolMemoryGB``. Refer to the :ref:`concurrency_and_scaling_in_sqream` guide for details.
+   * - Reducing Workers Per Host
+     - Reduce the number of Workers per host and allocate more spool memory to the reduced number of active Workers. This approach may decrease concurrent statements but can enhance performance for resource-intensive queries.
+
+     
+
+    
+
+  
+
+    
    
 Queries with Large Result Sets
 ------------------------------
