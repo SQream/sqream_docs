@@ -449,7 +449,7 @@ Identifying the Offending Nodes
 #. 
    Run a query.
      
-   For example, a modified query from the TPC-H benchmark:
+   This example is from the TPC-H benchmark:
 
    .. code-block:: postgres
       
@@ -477,7 +477,7 @@ Identifying the Offending Nodes
 	  AND high_selectivity(p_type = 'ECONOMY BURNISHED NICKEL');
 #. 
    
-   Observe the execution information by using the foreign table, or use ``show_node_info``
+   Use a foreign table or ``show_node_info`` to view the execution information.
    
    This statement is made up of 221 nodes, containing 8 ``ReadTable`` nodes, and finishes by returning billions of results to the client.
    
@@ -500,11 +500,13 @@ Identifying the Offending Nodes
 	    [...]
 	    494 |     221 | ReadTable            |  20000000 |     20 |           1000000 | 2020-09-04 19:07:01 |            220 | 20MB    |       | public.part     |     0.1
   
-   When you see ``DeferredGather`` operations taking more than a few seconds, that's a sign that you're selecting too much data.
-   In this case, the DeferredGather with node ID 166 took over 21 seconds.
+   If you notice that ``DeferredGather`` operations are taking more than a few seconds, it could indicate that you're selecting a large amount of data. For example, in this case, the ``DeferredGather`` with node ID 166 took over 21 seconds.
    
-#. Modify the statement to see the difference
-   Altering the select clause to be more restrictive will reduce the deferred gather time back to a few milliseconds.
+#. 
+
+   Modify the statement by making the ``SELECT`` clause more restrictive. 
+
+   This adjustment will reduce the DeferredGather time from several seconds to just a few milliseconds.
    
    .. code-block:: postgres
       
@@ -517,8 +519,14 @@ Identifying the Offending Nodes
 Common Solutions for Reducing Gather Time
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Reduce the effect of the preparation time. Avoid selecting unnecessary columns (``SELECT * FROM...``), or reduce the result set size by using more filters.
-.. ``
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Solution
+     - Description
+   * - minimizing preparation time
+     - To minimize preparation time, avoid selecting unnecessary columns (e.g., ``SELECT * FROM`` ...) or reduce the result set size by applying more filters.
 
 Inefficient Filtering
 ---------------------
