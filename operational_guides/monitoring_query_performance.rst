@@ -696,53 +696,57 @@ Common Solutions for Improving Filtering
    * - Avoiding full table scans
      - Minimize full table scans by applying targeted filtering conditions.
 
-Joins with ``text`` Keys
+Joins with ``TEXT`` Keys
 ------------------------
 
-Joins on long text keys do not perform as well as numeric data types or very short text keys.
+Joins on long ``TEXT`` keys may result in reduced performance compared to joins on ``NUMERIC`` data types or very short ``TEXT`` keys.
 
 Identifying the Situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When a join is inefficient, you may note that a query spends a lot of time on the ``Join`` node.
-For example, consider these two table structures:
+When a join is inefficient, you may observe that a query spends a significant amount of time on the ``Join`` node.
+
+Consider these two table structures:
    
 .. code-block:: postgres
 
-   CREATE TABLE t_a 
-   (
-     amt            FLOAT NOT NULL,
-     i              INT NOT NULL,
-     ts             DATETIME NOT NULL,
-     country_code   TEXT(3) NOT NULL,
-     flag           TEXT(10) NOT NULL,
-     fk             TEXT(50) NOT NULL
-   );
-   CREATE TABLE t_b 
-   (
-     id          TEXT(50) NOT NULL
-     prob        FLOAT NOT NULL,
-     j           INT NOT NULL,
-   );
+	CREATE TABLE
+	  t_a (
+	    amt FLOAT NOT NULL,
+	    i INT NOT NULL,
+	    ts DATETIME NOT NULL,
+	    country_code TEXT NOT NULL,
+	    flag TEXT NOT NULL,
+	    fk TEXT NOT NULL
+	  );
+   
+	CREATE TABLE 
+	 t_b (
+	   id TEXT NOT NULL,
+	   prob FLOAT NOT NULL,
+	   j INT NOT NULL
+	  );
 #. 
    Run a query.
      
-   In this example, we will join ``t_a.fk`` with ``t_b.id``, both of which are ``TEXT(50)``.
+   In this example, we join ``t_a.fk`` with ``t_b.id``, both of which are ``TEXT``.
    
    .. code-block:: postgres
       
-      SELECT AVG(t_b.j :: BIGINT),
-             t_a.country_code
-      FROM t_a
-        JOIN t_b ON (t_a.fk = t_b.id)
-      GROUP BY t_a.country_code
+	SELECT
+	  AVG(t_b.j :: BIGINT),
+	  t_a.country_code
+	FROM
+	  t_a
+	  JOIN t_b ON (t_a.fk = t_b.id)
+	GROUP BY
+	  t_a.country_code;
+
 #. 
    
-   Observe the execution information by using the foreign table, or use ``show_node_info``
+   Use a foreign table or ``show_node_info`` to view the execution information.
    
    The execution below has been shortened, but note the highlighted rows for ``Join``.
-   The ``Join`` node is by far the most time-consuming part of this statement - clocking in at 69.7 seconds
-   joining 1.5 billion records.
    
    .. code-block:: postgres
       :linenos:
@@ -764,52 +768,65 @@ For example, consider these two table structures:
             5 |      41 | CpuDecompress        |   10000000 |      2 |           5000000 | 2020-09-08 18:26:09 |             40 |       |       |            |       0
             5 |      42 | ReadTable            |   10000000 |      2 |           5000000 | 2020-09-08 18:26:09 |             41 | 14MB  |       | public.t_a |       0
    
-Improving Query Performance
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   Note the following:
+   
+   * The ``Join`` node is the most time-consuming part of this statement, taking 69.7 seconds to join 1.5 billion records.
+   
+Common Solutions for Improving Query Performance
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* In general, try to avoid ``TEXT`` as a join key. As a rule of thumb, ``BIGINT`` works best as a join key.
-* 
-   Convert text values on-the-fly before running the query. For example, the :ref:`crc64` function takes a text
-   input and returns a ``BIGINT`` hash.
+In general, try to avoid ``TEXT`` as a join key. As a rule of thumb, ``BIGINT`` works best as a join key.
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
    
-   For example:
+   * - Solution
+     - Description
+   * - Mapping
+     - Use a dimension table to map ``TEXT`` values to ``NUMERIC`` types, and then reconcile these values as needed by joining the dimension table.
+   * - Converting
+     - Use functions like :ref:`crc64` to convert ``TEXT`` values into BIGINT hashes directly before running the query.
+
+       For example:
    
-   .. code-block:: postgres
+       .. code-block:: postgres
       
-	SELECT AVG(t_b.j::BIGINT), t_a.country_code
-	FROM "public"."t_a"
-	JOIN "public"."t_b" ON (CRC64(t_a.fk::TEXT) = CRC64(t_b.id::TEXT))
-	GROUP BY t_a.country_code;
+	      SELECT AVG(t_b.j::BIGINT), t_a.country_code
+	      FROM "public"."t_a"
+	      JOIN "public"."t_b" ON (CRC64(t_a.fk::TEXT) = CRC64(t_b.id::TEXT))
+	      GROUP BY t_a.country_code;
 		 
-   The execution below has been shortened, but note the highlighted rows for ``Join``.
-   The ``Join`` node went from taking nearly 70 seconds, to just 6.67 seconds for joining 1.5 billion records.
+       The execution below has been shortened, but note the highlighted rows for ``Join``.
+       The ``Join`` node went from taking nearly 70 seconds, to just 6.67 seconds for joining 1.5 billion records.
 
-   .. code-block:: postgres
-      :linenos:
-      :emphasize-lines: 8
+       .. code-block:: postgres
+         :linenos:
+         :emphasize-lines: 8
       
-         SELECT show_node_info(6);
-         stmt_id | node_id | node_type            | rows       | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment    | timeSum
-         --------+---------+----------------------+------------+--------+-------------------+---------------------+----------------+-------+-------+------------+--------
-         [...]
-               6 |      19 | GpuTransform         | 1497366528 |     85 |          17825792 | 2020-09-08 18:57:04 |             18 |       |       |            |    1.48
-               6 |      20 | ReorderInput         | 1497366528 |     85 |          17825792 | 2020-09-08 18:57:04 |             19 |       |       |            |       0
-               6 |      21 | ReorderInput         | 1497366528 |     85 |          17825792 | 2020-09-08 18:57:04 |             20 |       |       |            |       0
-               6 |      22 | Join                 | 1497366528 |     85 |          17825792 | 2020-09-08 18:57:04 |             21 |       |       | inner      |    6.67
-               6 |      24 | AddSortedMinMaxMet.. |    6291456 |      1 |           6291456 | 2020-09-08 18:55:12 |             22 |       |       |            |       0
-         [...]
-               6 |      32 | ReadTable            |    6291456 |      1 |           6291456 | 2020-09-08 18:55:12 |             31 | 235MB |       | public.t_b |    0.02
-         [...]
-               6 |      43 | CpuDecompress        |   10000000 |      2 |           5000000 | 2020-09-08 18:55:13 |             42 |       |       |            |       0
-               6 |      44 | ReadTable            |   10000000 |      2 |           5000000 | 2020-09-08 18:55:13 |             43 | 14MB  |       | public.t_a |       0
+          SELECT show_node_info(6);
+          stmt_id | node_id | node_type            | rows       | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment    | timeSum
+          --------+---------+----------------------+------------+--------+-------------------+---------------------+----------------+-------+-------+------------+--------
+          [...]
+                6 |      19 | GpuTransform         | 1497366528 |     85 |          17825792 | 2020-09-08 18:57:04 |             18 |       |       |            |    1.48
+                6 |      20 | ReorderInput         | 1497366528 |     85 |          17825792 | 2020-09-08 18:57:04 |             19 |       |       |            |       0
+                6 |      21 | ReorderInput         | 1497366528 |     85 |          17825792 | 2020-09-08 18:57:04 |             20 |       |       |            |       0
+                6 |      22 | Join                 | 1497366528 |     85 |          17825792 | 2020-09-08 18:57:04 |             21 |       |       | inner      |    6.67
+                6 |      24 | AddSortedMinMaxMet.. |    6291456 |      1 |           6291456 | 2020-09-08 18:55:12 |             22 |       |       |            |       0
+          [...]
+                6 |      32 | ReadTable            |    6291456 |      1 |           6291456 | 2020-09-08 18:55:12 |             31 | 235MB |       | public.t_b |    0.02
+          [...]
+                6 |      43 | CpuDecompress        |   10000000 |      2 |           5000000 | 2020-09-08 18:55:13 |             42 |       |       |            |       0
+                6 |      44 | ReadTable            |   10000000 |      2 |           5000000 | 2020-09-08 18:55:13 |             43 | 14MB  |       | public.t_a |       0	 
+
    
-* You can map some text values to numeric types by using a dimension table. Then, reconcile the values when you need them by joining the dimension table.
+   
+   
 
 Sorting on big ``TEXT`` fields
 ------------------------------
 
-In general, SQreamDB automatically inserts a ``Sort`` node which arranges the data prior to reductions and aggregations.
-When running a ``GROUP BY`` on large ``TEXT`` fields, you may see nodes for ``Sort`` and ``Reduce`` taking a long time.
+In SQreamDB, a ``Sort`` node is automatically inserted to arrange data before reductions and aggregations. When performing a ``GROUP BY`` on large ``TEXT`` fields, you may notice that ``Sort`` and ``Reduce`` nodes take a significant amount of time to complete.
 
 Identifying the Situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^
