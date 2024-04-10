@@ -4,9 +4,7 @@
 COPY TO
 *******
 
-``COPY ... TO`` is a statement that can be used to export data from a BLUE cluster table or query to a file on the filesystem.
-
-In general, ``COPY`` moves data between filesystem files and BLUE tables.
+The ``COPY TO`` statement can be used to export data from your BLUE cluster by exporting tables or query results to your cloud storage.
 
 .. note:: To copy data from a file to a table, see :ref:`COPY FROM<copy_from>`.
 
