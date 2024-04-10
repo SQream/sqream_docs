@@ -22,12 +22,11 @@ The following is the syntax for altering default permissions:
 
 .. code-block:: postgres
 
-   alter_default_permissions_statement ::=
-         ALTER DEFAULT PERMISSIONS FOR { modifying_role | ALL ROLES }
-         [IN schema_name, ...] 
+         ALTER DEFAULT PERMISSIONS FOR { "<modifying_role>" | ALL ROLES }
+         [ IN "<schema_name>", ...] 
          FOR { TABLES | SCHEMAS }
-         { grant_clause [, ...] | DROP grant_clause[, ...]} 
-         TO { role_name [, ...] | public };
+         { <grant_clause> [, ...] | DROP <grant_clause> [, ...] } 
+         TO { "<role_name>" [, ...] | public };
    
    grant_clause ::= 
       GRANT 
@@ -39,13 +38,6 @@ The following is the syntax for altering default permissions:
          | DDL
          | ALL
          } [, ...]
-
-   modifying_role ::= identifier 
-   
-   role_name ::= identifier 
-   
-   schema_name ::= identifier
-   
 
 Supported Permissions
 =====================
@@ -95,36 +87,34 @@ This example is based on the roles **r1** and **r2**, created as follows:
 
 .. code-block:: postgres
 
-   create role r1;
-   create role r2;
-   alter default permissions for r1 for tables grant select to r2;
+   CREATE ROLE r1;
+   CREATE ROLE r2;
+   ALTER DEFAULT PERMISSIONS FOR r1 FOR TABLES GRANT SELECT to r2;
 
 Once created, you can build and run the following query based on the above:
 
 .. code-block:: postgres
 
-   select
-     tdp.database_name as "database_name",
-     ss.schema_name as "schema_name",
-     rs1.name as "table_creator",
-     rs2.name as "grant_to",
-     pts.name  as "permission_type"
-   from sqream_catalog.table_default_permissions tdp
-   inner join sqream_catalog.roles rs1 on tdp.modifier_role_id = rs1.role_id
-   inner join sqream_catalog.roles rs2 on tdp.getter_role_id = rs2.role_id
-   left join sqream_catalog.schemas ss on tdp.schema_id = ss.schema_id
-   inner join sqream_catalog.permission_types pts on pts.permission_type_id=tdp.permission_type
+   SELECT
+     tdp.database_name AS "database_name",
+     ss.schema_name AS "schema_name",
+     rs1.name AS "table_creator",
+     rs2.name AS "grant_to",
+     pts.name  AS "permission_type"
+   FROM sqream_catalog.table_default_permissions tdp
+   INNER JOIN sqream_catalog.roles rs1 ON tdp.modifier_role_id = rs1.role_id
+   INNER JOIN sqream_catalog.roles rs2 ON tdp.getter_role_id = rs2.role_id
+   LEFT JOIN sqream_catalog.schemas ss ON tdp.schema_id = ss.schema_id
+   INNER JOIN sqream_catalog.permission_types pts ON pts.permission_type_id=tdp.permission_type
    ;   
-   
-The following is an example of the output generated from the above queries:
 
-+-----------------------+----------------------+-------------------+--------------+------------------------------+
-| **database_name**     | **schema_name**      | **table_creator** | **grant_to** | **permission_type**          |
-+-----------------------+----------------------+-------------------+--------------+------------------------------+
-| master                |   NULL               | public            | public       | select                       | 
-+-----------------------+----------------------+-------------------+--------------+------------------------------+
+Output:
 
-For more information about default permissions, see :ref:`Default Permissions<catalog_reference_catalog_tables>`.  
+.. code-block:: none
+
+	database_name | schema_name | table_creator | grant_to | permission_type          
+	--------------+-------------+---------------+----------+----------------
+	master        |   NULL      | public        | public   | select                        
    
 Granting Automatic Permissions for Newly Created Schemas
 --------------------------------------------------------
