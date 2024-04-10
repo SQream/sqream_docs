@@ -847,9 +847,9 @@ For example:
          i INT NOT NULL,
          amt DOUBLE NOT NULL,
          ts DATETIME NOT NULL,
-         country_code TEXT(100) NOT NULL,
-         flag TEXT(10) NOT NULL,
-         string_fk TEXT(50) NOT NULL
+         country_code TEXT NOT NULL,
+         flag TEXT NOT NULL,
+         string_fk TEXTNOT NULL
       );
    
    We will run a query, and inspect it's execution details:
