@@ -20,7 +20,7 @@ Syntax
 
 The following is the syntax for altering default permissions:
 
-.. code-block:: sql
+.. code-block:: postgres
 
    alter_default_permissions_statement ::=
          ALTER DEFAULT PERMISSIONS FOR { modifying_role | ALL ROLES }
@@ -93,7 +93,7 @@ Granting Default Table Permissions
 
 This example is based on the roles **r1** and **r2**, created as follows:
 
-.. code-block:: sql
+.. code-block:: postgres
 
    create role r1;
    create role r2;
@@ -101,7 +101,7 @@ This example is based on the roles **r1** and **r2**, created as follows:
 
 Once created, you can build and run the following query based on the above:
 
-.. code-block:: sql
+.. code-block:: postgres
 
    select
      tdp.database_name as "database_name",
@@ -131,7 +131,7 @@ Granting Automatic Permissions for Newly Created Schemas
 
 When the role ``demo`` creates a new schema, roles **u1,u2** are granted ``USAGE`` and ``CREATE`` permissions in the new schema, as shown below:
 
-.. code-block:: sql
+.. code-block:: postgres
 
    ALTER DEFAULT PERMISSIONS FOR demo FOR SCHEMAS GRANT USAGE, CREATE TO u1,u2;
 
@@ -140,7 +140,7 @@ Granting Automatic Permissions for Newly Created Tables in a Schema
 
 When the role ``demo`` creates a new table in schema ``s1``, roles **u1,u2** are granted ``SELECT`` permissions, as shown below:
 
-.. code-block:: sql
+.. code-block:: postgres
 
    ALTER DEFAULT PERMISSIONS FOR demo IN s1 FOR TABLES GRANT SELECT TO u1,u2;
 
@@ -149,6 +149,6 @@ Revoking Permissions from Newly Created Tables
 
 Revoking permissions refers to using the ``DROP GRANT`` command, as shown below:
 
-.. code-block:: sql
+.. code-block:: postgres
 
    ALTER DEFAULT PERMISSIONS FOR public FOR TABLES DROP GRANT SELECT,DDL TO public;
