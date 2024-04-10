@@ -21,27 +21,29 @@ The SQreamDB execution engine employs thread workers and message passing for its
 Learn more about :ref:`concurrency_and_scaling_in_sqream`.
 
 Statement Compiler
-============================
+==================
 
 The Statement Compiler, developed using Haskell, accepts SQL text and generates optimized statement execution plans.
 
 Building Blocks (GPU Workers)
-==============================
+=============================
 
 In SQreamDB, the main workload is carried out by specialized C++/CUDA building blocks, also known as Workers, which intentionally lack inherent intelligence and require precise instructions for operation. Effectively assembling these components relies largely on the capabilities of the statement compiler.
 
 Storage Layer
-================
+=============
 
 The storage is split into the metadata layer and an append-only data layer.
 
 Metadata Layer
-------------------
+--------------
 
 Utilizing RocksDB key/value data store, the metadata layer incorporates features such as snapshots and atomic writes within the transaction system, while working in conjunction with the append-only bulk data layer to maintain overall data consistency.
 
+.. _bulk_data_layer_optimization:
+
 Bulk Data Layer Optimization
-------------------------------------
+----------------------------
 
 SQreamDB harnesses the power of its columnar storage architecture within the bulk data layer for performance optimization. This layer employs IO-optimized extents containing compression-enabled CPU and GPU-efficient chunks. Even during small insert operations, SQreamDB maintains efficiency by generating less optimized chunks and extents as needed. This is achieved through background transactional reorganization, such as ``DeferredGather``, that doesn't disrupt Data Manipulation Language (DML) operations. Deferred Gather optimizes GPU processing by selectively gathering only the necessary columns after GPU execution, effectively conserving memory and enhancing query performance. 
 
@@ -49,7 +51,7 @@ The system initially writes small chunks via small inserts and subsequently reor
 
 
 Transactions
-============================
+============
 
 SQreamDB has serializable (auto commit) transactions, with these features:
 

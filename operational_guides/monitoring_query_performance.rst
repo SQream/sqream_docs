@@ -506,7 +506,7 @@ Identifying the Offending Nodes
 
    Modify the statement by making the ``SELECT`` clause more restrictive. 
 
-   This adjustment will reduce the DeferredGather time from several seconds to just a few milliseconds.
+   This adjustment will reduce the ``DeferredGather`` time from several seconds to just a few milliseconds.
    
    .. code-block:: postgres
       
@@ -531,21 +531,18 @@ Common Solutions for Reducing Gather Time
 Inefficient Filtering
 ---------------------
 
-When running statements, SQreamDB tries to avoid reading data that is not needed for the statement by :ref:`skipping chunks<chunks_and_extents>`.
-If statements do not include efficient filtering, SQreamDB will read a lot of data off disk.
-In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line,
-it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
+When executing statements, SQreamDB optimizes data retrieval by :ref:`skipping unnecessary chunks<bulk_data_layer_optimization>`. However, if statements lack efficient filtering, SQreamDB may end up reading excessive data from disk. 
 
 Identifying the Situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-We consider the filtering to be inefficient when the ``Filter`` node shows that the number of rows processed is less
-than a third of the rows passed into it by the ``ReadTable`` node.
-For example:
+Filtering is considered inefficient when the ``Filter`` node processes less than one-third of the rows passed into it by the ``ReadTable`` node.
+
 #. 
    Run a query.
      
    In this example, we execute a modified query from the TPC-H benchmark.
+   
    Our ``lineitem`` table contains 600,037,902 rows.
 
    .. code-block:: postgres
@@ -585,7 +582,7 @@ For example:
 	  o_year;
 #. 
    
-   Observe the execution information by using the foreign table, or use ``show_node_info``
+   Use a foreign table or ``show_node_info`` to view the execution information.
    
    The execution below has been shortened, but note the highlighted rows for ``ReadTable`` and ``Filter``:
    
@@ -620,19 +617,20 @@ For example:
           559 |     214 | Rechunk              |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            213 |        |       |                 |       0
           559 |     215 | CpuDecompress        |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            214 |        |       |                 |       0
           559 |     216 | ReadTable            |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            215 | 20MB   |       | public.part     |       0
-      
-   * 
-      The ``Filter`` on line 9 has processed 12,007,447 rows, but the output of ``ReadTable`` on ``public.lineitem`` 
-      on line 17 was 600,037,902 rows. This means that it has filtered out 98% (:math:`1 - \dfrac{600037902}{12007447} = 98\%`)
-      of the data, but the entire table was read.
-      
-   * 
-      The ``Filter`` on line 19 has processed 133,000 rows, but the output of ``ReadTable`` on ``public.part`` 
-      on line 27 was 20,000,000 rows.  This means that it has filtered out >99% (:math:`1 - \dfrac{133241}{20000000} = 99.4\%`)
-      of the data, but the entire table was read. However, this table is small enough that we can ignore it.
    
-#. Modify the statement to see the difference
-   Altering the statement to have a ``WHERE`` condition on the clustered ``l_orderkey`` column of the ``lineitem`` table will help SQreamDB skip reading the data.
+   Note the following:
+   
+   * The ``Filter`` on line 9 has processed 12,007,447 rows, but the output of ``ReadTable`` on ``public.lineitem`` on line 17 was 600,037,902 rows. 
+   
+     This means that it has filtered out 98% (:math:`1 - \dfrac{600037902}{12007447} = 98\%`) of the data, but the entire table was read.
+      
+   * The ``Filter`` on line 19 has processed 133,000 rows, but the output of ``ReadTable`` on ``public.part`` on line 27 was 20,000,000 rows.  
+   
+     This means that it has filtered out >99% (:math:`1 - \dfrac{133241}{20000000} = 99.4\%`) of the data, but the entire table was read. However, this table is small enough that we can ignore it.
+   
+#. modify the statement by adding a ``WHERE`` condition on the clustered ``l_orderkey`` column of the ``lineitem`` table. 
+
+   This adjustment will enable SQreamDB to skip reading unnecessary data.
    
    .. code-block:: postgres
       :emphasize-lines: 15
@@ -675,17 +673,28 @@ For example:
           586 |     197 | CpuDecompress        | 494927872 |      8 |          61865984 | 2020-09-07 13:20:44 |            196 |        |       |                 |       0
           586 |     198 | ReadTable            | 494927872 |      8 |          61865984 | 2020-09-07 13:20:44 |            197 | 6595MB |       | public.lineitem |    0.09
       [...]
-   In this example, the filter processed 494,621,593 rows, while the output of ``ReadTable`` on ``public.lineitem`` 
-   was 494,927,872 rows. This means that it has filtered out all but 0.01% (:math:`1 - \dfrac{494621593}{494927872} = 0.01\%`)
-   of the data that was read.
    
-   The metadata skipping has performed very well, and has pre-filtered the data for us by pruning unnecessary chunks.
+   Note the following:
+   
+   * The filter processed 494,621,593 rows, while the output of ``ReadTable`` on ``public.lineitem`` was 494,927,872 rows. 
+   
+     This means that it has filtered out all but 0.01% (:math:`1 - \dfrac{494621593}{494927872} = 0.01\%`) of the data that was read.
+   
+   * The metadata skipping has performed very well, and has pre-filtered the data for us by pruning unnecessary chunks.
       
 Common Solutions for Improving Filtering
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Use :ref:`clustering keys and naturally ordered data<data_clustering>` in your filters.
-* Avoid full table scans when possible
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Solution
+     - Description
+   * - :ref:`Clustering keys<cluster_by>` and ordering data
+     - Utilize clustering keys and naturally ordered data to enhance filtering efficiency.
+   * - Avoiding full table scans
+     - Minimize full table scans by applying targeted filtering conditions.
 
 Joins with ``text`` Keys
 ------------------------
@@ -944,7 +953,7 @@ All of these rows could fit in one single chunk, instead of spanning 74 rather s
 Improving Performance with High Selectivity Hints
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 * 
-   Use when there's a ``WHERE`` condition on an :ref:`unclustered column<data_clustering>`, and when you expect the filter
+   Use when there's a ``WHERE`` condition on an :ref:`unclustered column<cluster_by>`, and when you expect the filter
    to cut out more than 60% of the result set.
 * Use when the data is uniformly distributed or random
 
