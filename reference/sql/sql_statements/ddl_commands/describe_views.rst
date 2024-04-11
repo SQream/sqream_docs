@@ -81,35 +81,36 @@ Using the ``DESCRIBE_TABLES`` command generates the following output:
      - create view "public".nba_view as  select * from nba;	 
 
 
-The following is the syntax for the ``DESCRIBE VIEWS`` command:
+Examples
+========
 
 .. code-block:: postgres
 
-		DESCRIBE VIEWS;
+	DESCRIBE VIEWS;
 	 
-The following is an example of the ``DESCRIBE VIEWS`` command output:
+Output:
+
+.. code-block:: none
+ 
+	created_on         |name              |database|schema|sql                                                                                             |
+	-------------------+------------------+--------+------+------------------------------------------------------------------------------------------------+
+	2022-12-15 07:29:07|cool_animals_view |master  |public|create view "public".cool_animals_view as  select * from cool_animals;                          |
+	2022-12-15 15:12:29|only_heavy_animals|master  |public|create view "public".only_heavy_animals as  select *  from cool_animals  where    weight > 1000;|
+ 
+``DESCRIBE VIEWS LIKE`` command:
 
 .. code-block:: postgres
- 
-		created_on         |name              |database|schema|sql                                                                                                   |
-		-------------------+------------------+--------+------+------------------------------------------------------------------------------------------------------+
-		2022-12-15 07:29:07|cool_animals_view |master  |public|create view "public".cool_animals_view as¶  select * from cool_animals;¶¶                             |
-		2022-12-15 15:12:29|only_heavy_animals|master  |public|create view "public".only_heavy_animals as¶  select *¶  from cool_animals¶  where¶    weight > 1000;¶¶|
- 
-The following is the syntax for the ``DESCRIBE VIEWS LIKE`` command:
 
-.. code-block:: postgres
-
-		DESCRIBE VIEWS LIKE 'only%';
+	DESCRIBE VIEWS LIKE 'only%';
  
-The following is an example of the ``DESCRIBE VIEWS LIKE`` command output:
+Output:
 
-.. code-block:: postgres
+.. code-block:: none
  
-		created_on         |name                  |database|schema|sql                                                                                                       |
-		-------------------+----------------------+--------+------+----------------------------------------------------------------------------------------------------------+
-		2022-12-15 15:12:29|only_heavy_animals    |master  |public|create view "public".only_heavy_animals as¶  select *¶  from cool_animals¶  where¶    weight > 1000;¶¶    |
-		2022-12-20 11:14:16|only_agressive_animals|master  |public|create view "public".only_agressive_animals as¶  select *¶  from cool_animals¶  where¶    weight > 1000;¶¶|
+	created_on         |name                  |database|schema|sql                                                                                                       |
+	-------------------+----------------------+--------+------+----------------------------------------------------------------------------------------------------------+
+	2022-12-15 15:12:29|only_heavy_animals    |master  |public|create view "public".only_heavy_animals as   select *   from cool_animals   where     weight > 1000;      |
+	2022-12-20 11:14:16|only_agressive_animals|master  |public|create view "public".only_agressive_animals as   select *   from cool_animals   where     weight > 1000;  |
 	 
 Permissions
 ===========

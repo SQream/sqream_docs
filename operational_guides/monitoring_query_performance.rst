@@ -721,7 +721,7 @@ For example:
 Common Solutions for Improving Filtering
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-* Use :ref:`clustering keys and naturally ordered data<data_clustering>` in your filters.
+* Use :ref:`clustering keys and naturally ordered data<cluster_by>` in your filters.
 * Avoid full table scans when possible
 
 Identifying the Situation

@@ -29,7 +29,7 @@ SQream can stage data from:
 
 * a local filesystem (e.g. ``/mnt/storage/....``)
 * :ref:`s3` buckets (e.g. ``s3://pp-secret-bucket/users/*.parquet``)
-* :ref:`hdfs` (e.g. ``hdfs://hadoop-nn.piedpiper.com/rhendricks/*.csv``)
+
 
 Using Foreign Tables
 =====================
@@ -47,7 +47,7 @@ We will make note of the file structure, to create a matching ``CREATE_EXTERNAL_
 Creating a Foreign Table
 ------------------------
 
-Based on the source file structure, we :ref:`create a foreign table<create_external_table>` with the appropriate structure, and point it to the file.
+Based on the source file structure, we :ref:`create a foreign table<create_foreign_table>` with the appropriate structure, and point it to the file.
 
 .. code-block:: sql
    
@@ -70,7 +70,8 @@ Based on the source file structure, we :ref:`create a foreign table<create_exter
 	 RECORD DELIMITER '\r\n'; -- DOS delimited file
 	);
 
-The file format in this case is CSV, and it is stored as an :ref:`s3` object (if the path is on :ref:`hdfs`, change the URI accordingly).
+The file format in this case is CSV, and it is stored as an :ref:`s3` object.
+
 We also took note that the record delimiter was a DOS newline (``\r\n``).
 
 Querying Foreign Tables
@@ -177,10 +178,10 @@ Error Handling and Limitations
    
 For example, a CSV with the wrong delimiter may cause a query to fail, even though the table has been created successfully:
    
-.. code-block:: sql
+.. code-block:: postgres
       
 	SELECT * FROM nba;
 	select * from nba;
-	Record delimiter mismatch during CSV parsing. User defined line delimiter \n does not match the first delimiter \r\n found in s3://sqream-demo-data/nba.csv
+	-- Record delimiter mismatch during CSV parsing. User defined line delimiter \n does not match the first delimiter \r\n found in s3://sqream-demo-data/nba.csv
 
 * Since the data for a foreign table is not stored in SQream DB, it can be changed or removed at any time by a foreign process. As a result, the same query can return different results each time it runs against a foreign table. Similarly, a query might fail if the foreign data is moved, removed, or has changed structure.
