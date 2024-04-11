@@ -1,7 +1,7 @@
 .. _dump_database_ddl:
 
 *****************
-DUMP_DATABASE_DDL
+DUMP DATABASE DDL
 *****************
 
 ``DUMP_DATABASE_DDL()`` is a function that shows the ``CREATE`` statements for database objects including views and tables.
