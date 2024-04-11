@@ -1,19 +1,22 @@
 .. _literals:
 
 ***************************
-Literals
+String Literals 
 ***************************
-
 
 Literals represent constant values.
 
-SQream DB contains the following types of literals:
+BLUE contains the following types of literals:
 
-* :ref:`Numeric literals<numeric_literals>` - define numbers such as ``1.3``, ``-5``
-* :ref:`String literals<string_literals>` - define text values like ``'Foxes are cool'``, ``'1997-01-01'``
-* :ref:`Typed literals<typed_literals>` - define values with explicit types like ``(3.0 :: float)``
-* :ref:`Boolean literals<boolean_literals>` - define values that include ``true`` and ``false``
-* :ref:`Other constants<constants>` - predefined values like ``NULL`` or ``TRUE``
+:ref:`Numeric literals<numeric_literals>` - define numbers such as ``1.3``, ``-5``
+
+:ref:`String literals<string_literals>` - define text values like ``'Foxes are cool'``, ``'1997-01-01'``
+
+:ref:`Typed literals<typed_literals>` - define values with explicit types like ``(3.0 :: float)``
+
+:ref:`Boolean literals<boolean_literals>` - define values that include ``true`` and ``false``
+
+:ref:`Other constants<constants>` - predefined values like ``NULL`` or ``TRUE``
 
 .. _numeric_literals:
 
@@ -55,7 +58,7 @@ Examples
 .. note:: 
    The actual data type of the value changes based on context, the format used, and the value itself.
    For example, any number containing the decimal point will be considered ``FLOAT`` by default.
-   Any whole number will considered ``INT``, unless the value is larger than the :ref:`maximum value<data_types>`, in which case the type will become a ``BIGINT``.
+   Any whole number will be considered ``INT``, unless the value is larger than the :ref:`maximum value<supported_data_types>`, in which case the type will become a ``BIGINT``.
 
 .. note:: 
    A numeric literal that contains neither a decimal point nor an exponent is considered ``INT`` by default if its value fits in type ``INT`` (32 bits). If not, it is considered ``BIGINT`` by default if its value fits in type ``BIGINT`` (64 bits). If neither are true, it is considered ``FLOAT``. Literals that contain decimal points and/or exponents are always considered ``FLOAT``.
@@ -103,6 +106,7 @@ This section describes the following types of literals:
 
 Regular String Literals
 -----------------------
+
 In SQL, a **regular string literal** is a sequence of zero or more characters bound by single quotes (``'``):
 
 .. code-block:: postgres
@@ -135,7 +139,8 @@ The following are some examples of regular string literals:
 .. _dollar_quoted_string_literals:
 
 Dollar-Quoted String Literals
------------------------
+-----------------------------
+
 **Dollar-quoted string literals** consist of a dollar sign (``$``), an optional "tag" of zero or more characters, another dollar sign, an arbitrary sequence of characters that make up the string content, a dollar sign, the same tag at the beginning of the dollar quote, and another dollar sign.
 
 
@@ -161,6 +166,7 @@ A dollar-quoted string that follows a keyword or identifier must be separated fr
 
 Escaped String Literals
 -----------------------
+
 Because regular string literals do not support inserting special characters (such as new lines), the **escaped string literals** syntax was added to support inserting special characters with an escaping syntax.
 
 In addition to being enclosed by single quotes (e.g. 'abc'), escaped string literals are preceded by a capital ``E``.
@@ -211,10 +217,11 @@ Typed Literals
 
    literal :: type_name
 
-See also :ref:`cast` for more information about supported casts.
+See also :ref:`sql_data_types_string` for more information about supported casts.
 
 Syntax Reference
 -------------------
+
 The following is a syntax reference for typed literals:
 
 .. code-block:: postgres
@@ -258,6 +265,7 @@ Examples
    
 Boolean Literals
 ===================
+
 **Boolean literals** include the keywords ``true`` or ``false``.
 
 Example
