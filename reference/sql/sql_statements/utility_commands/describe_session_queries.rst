@@ -14,7 +14,18 @@ Syntax
 
 .. code-block:: postgres
 
-  DESC[RIBE] SESSION QUERIES [ SESSION ID '<sessionId>' ]
+	DESC[RIBE] SESSION QUERIES [SESSION ID '<sessionId>' | ALL] [STATUS IN (
+	   { QUEUED,
+	   | EXECUTING,
+	   | EXECUTION_SUCCEED,
+	   | EXECUTION_FAILED,
+	   | CLOSED,
+	   | COMPILATION_FAILED,
+	   | ABORTED,
+	   | FETCHING_RESULTS,
+	   | COMPILING,
+	   | COMPLETE }
+	   )]
 
 
 
@@ -31,6 +42,12 @@ Parameters
    * - ``SESSION ID``
      - :ref:`STRING literal<literals>`	
      - The session ID of the query. If not specified the current session ID is provided
+   * - ``ALL``
+     - 
+     - Specifies that the operation should apply to all sessions. This parameter requires ``SUPERUSER`` permissions
+   * - ``STATUS IN``
+     -  
+     - A filter that allows you to specify a subset of statuses from the list provided (e.g., ``QUEUED``, ``EXECUTING``, ``EXECUTION_SUCCEED``, etc.) 
 	 
 Output
 ======
