@@ -12,6 +12,9 @@ Release Notes
   * Queued Statements
   * Jobs
   * Tasks 
+  
+* We've improved the ``DESCRIBE SESSION QUERIES`` command, allowing ``SUPERUSER`` roles to investigate multiple sessions.
+
 * You now have the ability to grant temporary access to a BLUE support team member. This feature is beneficial for having our support team validate usage and perform checks on your specific environment. 
 
 :ref:`February 2024 <february_2024>`
