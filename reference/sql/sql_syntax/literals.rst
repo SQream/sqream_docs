@@ -25,7 +25,7 @@ Numeric Literals
 
 **Numeric literals** can be expressed as follows:
 
-.. code-block:: sql
+.. code-block:: postgres
 
    number_literal ::=
       [+-] digits
@@ -37,7 +37,7 @@ Numeric Literals
 Examples
 ------------
 
-.. code-block:: sql
+.. code-block:: postgres
 
    1234
 
@@ -78,7 +78,7 @@ String literals are surrounded by single quotes (``'``) or dollars (``$$``)
 Examples
 ------------
 
-.. code-block:: sql
+.. code-block:: postgres
    
    'This is an example of a string'
    
@@ -91,7 +91,7 @@ Examples
 
 The actual data type of the value changes based on context, the format used, and the value itself. In the example below, the first value is interpreted as a ``DATE``, while the second is interpreted as a ``TEXT``.
 
-.. code-block:: sql
+.. code-block:: postgres
 
    INSERT INTO cool_dates(date_col, reason) VALUES ('1955-11-05', 'Doc Brown discovers flux capacitor');
    
@@ -109,13 +109,13 @@ Regular String Literals
 
 In SQL, a **regular string literal** is a sequence of zero or more characters bound by single quotes (``'``):
 
-.. code-block:: sql
+.. code-block:: postgres
 
    'This is a string'.
    
 You can include a single-quote character in a string literal with two consecutive single quotes (``''``):
 
-.. code-block:: sql
+.. code-block:: postgres
 
    'Dianne''s horse'.
 
@@ -126,7 +126,7 @@ Examples
 
 The following are some examples of regular string literals:
 
-.. code-block:: sql
+.. code-block:: postgres
 
    '123'
 
@@ -149,7 +149,7 @@ Examples
 
 For example, below are two different ways to specify the string ``Dianne's horse`` using dollar-quoted string literals:
 
-.. code-block:: sql
+.. code-block:: postgres
 
    $$Dianne's horse$$
    $<tag>$Dianne's horse$<tag>$
@@ -171,7 +171,7 @@ Because regular string literals do not support inserting special characters (suc
 
 In addition to being enclosed by single quotes (e.g. 'abc'), escaped string literals are preceded by a capital ``E``.
 
-.. code-block:: sql
+.. code-block:: postgres
 
    E'abc'
 
@@ -209,11 +209,11 @@ Typed Literals
 
 **Typed literals** allow you to create any data type using either of the following syntaxes:
 
-.. code-block:: sql
+.. code-block:: postgres
    
    CAST(literal AS type_name)
 
-.. code-block:: sql
+.. code-block:: postgres
 
    literal :: type_name
 
@@ -224,7 +224,7 @@ Syntax Reference
 
 The following is a syntax reference for typed literals:
 
-.. code-block:: sql
+.. code-block:: postgres
    
    typed_literal ::=
          cast(literal AS type_name)
@@ -251,7 +251,7 @@ The following is a syntax reference for typed literals:
 Examples
 ----------
 
-.. code-block:: sql
+.. code-block:: postgres
    
    '1955-11-05' :: date
    
@@ -271,7 +271,7 @@ Boolean Literals
 Example
 ----------
 
-.. code-block:: sql
+.. code-block:: postgres
 
    INSERT INTO animals VALUES ('fox',true), ('cat',true), ('kiwi',false);
 
