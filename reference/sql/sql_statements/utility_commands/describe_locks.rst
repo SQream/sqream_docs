@@ -11,9 +11,7 @@ Returns a list of locks from across your cluster.
 Syntax
 ======
 
-The following is the syntax for the ``DESCRIBE LOCKS`` command:
-
-.. code-block:: postgres
+.. code-block:: sql
 
    DESC[RIBE] LOCKS
     
@@ -24,36 +22,53 @@ Output
    :widths: auto
    :header-rows: 1
    
-   * - Column
-     - Type
-     - Comments
+   * - Parameter
+     - Data Type
+     - Description
    * - ``statement_id``
-     - ``TEXT``
      - Displays the statement ID that caused the lock 
+     - ``TEXT``
    * - ``username``
-     - ``TEXT``
      - Displays the the user that executed the statement
+     - ``TEXT``
    * - ``server``
-     - ``TEXT``
      - Displays the the server name 
+     - ``TEXT``
    * - ``port``
-     - ``TEXT``
      - Displays the the port number  
+     - ``TEXT``
    * - ``locked_object``
+     - Displays the the full qualified name of the object being locked, separated with ``$``
      - ``TEXT``
-     - Displays the the full qualified name of the object being locked, separated with ``$``, e.g. ``table$t$public$nba2`` for table nba2 in schema public, in database t
    * - ``lockmode``
+     - Displays the the locking mode (``Inclusive`` or ``Exclusive``) 
      - ``TEXT``
-     - Displays the the locking mode (inclusive or exclusive) 
    * - ``statement_start_time``
-     - ``DATETIME``
      - Displays the timestamp the statement started 
-   * - ``lock_start_time``
      - ``DATETIME``
+   * - ``lock_start_time``
      - Displays the timestamp the lock was obtained
+     - ``DATETIME``
    * - ``statement_string``
-     - ``TEXT``
      - The SQL syntax that triggered this lock
+     - ``TEXT``
+
+Example
+=======
+
+.. code-block:: postgres
+
+	DESCRIBE LOCKS;
+
+Output:
+
+.. code-block:: none
+
+	statement_id|username|server      |port|locked_object|lock_mode|statement_start_time|lock_start_time     |statement_string                                                                               |
+	------------+--------+------------+----+-------------+---------+--------------------+--------------------+-----------------------------------------------------------------------------------------------+
+	287         |sqream  |192.168.1.91|5000|database$t   |Inclusive| 2019-12-26 00:03:30| 2019-12-26 00:03:30|CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1;|
+
+
 
 Permissions
 ===========
