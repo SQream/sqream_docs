@@ -4,7 +4,7 @@
 GET DDL
 *******
 
-The result of the ``GET_DDL`` function is a verbose version of the :ref:`create_table` syntax, which may include additional information that was added by SQream DB. For example, a ``NULL`` constraint may be specified explicitly.
+The ``GET DDL`` function retrieves the Data Definition Language (DDL) statement used to create a table. It may include additional information that was added by BLUE (e.g., explicit ``NULL`` constraints). 
 
 See also: :ref:`GET_VIEW_DDL<get_view_ddl>`, :ref:`DUMP_DATABASE_DDL<dump_database_ddl>`, :ref:`GET_FUNCTION_DDL<get_function_ddl>`
 
