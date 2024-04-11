@@ -33,7 +33,7 @@ Parameters
 Examples
 ========
 
-.. code-block:: psql
+.. code-block:: postgres
 
    -- Create a table:
    CREATE TABLE
