@@ -13,7 +13,7 @@ Syntax
 
 .. code-block:: sql
 
-   DESC[RIBE] VIEWS [ DATABASE  <database_name> ] [ SCHEMA <schema_name> ] [ LIKE '<pattern>' ]
+   DESC[RIBE] VIEWS [ DATABASE  "<database_name>" ] [ SCHEMA "<schema_name>" ] [ LIKE '<pattern>' ]
 
 Parameters
 ==========
@@ -67,18 +67,30 @@ Output
 Examples
 ========
 
-.. code-block:: sql
+``DESCRIBE VIEWS`` command:
+
+.. code-block:: postgres
 
 	DESCRIBE VIEWS;
+ 
+Output:
+ 
+.. code-block:: none
  
 	created_on         |name              |database|schema|sql                                                                                             |
 	-------------------+------------------+--------+------+------------------------------------------------------------------------------------------------+
 	2022-12-15 07:29:07|cool_animals_view |master  |public|create view "public".cool_animals_view as  select * from cool_animals;                          |
 	2022-12-15 15:12:29|only_heavy_animals|master  |public|create view "public".only_heavy_animals as  select *  from cool_animals  where    weight > 1000;|
 
-.. code-block:: sql
+``DESCRIBE VIEWS LIKE`` command:
+
+.. code-block:: postgres
 
 	DESCRIBE VIEWS LIKE 'only%';
+ 
+Output:
+ 
+.. code-block:: none
  
 	created_on         |name                  |database|schema|sql                                                                                                 |
 	-------------------+----------------------+--------+------+----------------------------------------------------------------------------------------------------+
