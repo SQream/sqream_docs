@@ -56,9 +56,13 @@ Output
 Example
 =======
 
-.. code-block:: sql
+.. code-block:: postgres
 
 	DESCRIBE LOCKS;
+
+Output:
+
+.. code-block:: none
 
 	statement_id|username|server      |port|locked_object|lock_mode|statement_start_time|lock_start_time     |statement_string                                                                               |
 	------------+--------+------------+----+-------------+---------+--------------------+--------------------+-----------------------------------------------------------------------------------------------+
