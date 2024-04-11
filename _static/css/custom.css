@@ -69,8 +69,8 @@ kbd
 
 /* CSS rules can be added here */
 
-.red-text {
-    color: red;
+.blue-text {
+    color: blue;
 }
 
 html_theme_options = {
