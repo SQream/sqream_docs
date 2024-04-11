@@ -107,7 +107,7 @@ html_theme_options = {
    , 'navigation_depth': -1
    , 'collapse_navigation': False
    , 'titles_only': True
-   , 'top_of_page_button': 'None'
+   , 'top_of_page_button': "edit"
    , 'dark_logo': 'images/SQream_logo_dark_mode.png'
    , 'light_logo': 'images/SQream_logo_bright_mode.png'
    , "sidebar_hide_name": True
