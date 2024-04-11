@@ -1,18 +1,18 @@
 .. _index:
 
 
-.. role:: red
-   :class: red-text
+.. role:: blue
+   :class: blue-text
 
 .. raw:: html
 
    <style>
-   .red-text {
-       color: red !important;
+   .blue-text {
+       color: blue !important;
    }
    </style>
 
-:red:`BLUE` Documentation
+:blue:`BLUE` Documentation
 =========================
 
 

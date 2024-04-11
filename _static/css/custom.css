@@ -69,8 +69,8 @@ kbd
 
 /* CSS rules can be added here */
 
-.red-text {
-    color: red;
+.blue-text {
+    color: blue;
 }
 
 html_theme_options = {
@@ -83,12 +83,12 @@ html_theme_options = {
 
 
 .sidebar-drawer {
-	width: calc(40% - 25em);
+	width: calc(40% - 18.5em);
 }
 	
 .content {
 	padding: 0 5em;
-	width: 60em;
+	width: 50em;
 }
 
 h1 {
