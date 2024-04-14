@@ -69,6 +69,12 @@ The following table describe the required permissions for performing and executi
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``ALL``              | All function permissions                                                                                                |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
+| **Column**                                                                                                                                     |
++----------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``SELECT``           | Select from catalog                                                                                                     |
++----------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``DDL``              | Column DDL operations                                                                                                   |
++----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **View**                                                                                                                                       |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``SELECT``           | Select from view                                                                                                        |
@@ -183,6 +189,22 @@ GRANT
 	ON FUNCTION <function_name>
 	TO <role>
 
+	-- Grant permissions at the column level:
+	GRANT 
+	{
+	  { SELECT 
+	  | DDL } [, ...] 
+	  | ALL [PERMISSIONS]
+	}
+	ON 
+	{ 
+	  COLUMN <column_name> [,<column_name_2>] IN TABLE <table_name> [,<table_name2>] 
+	  | COLUMN <column_name> [,<column_name_2>] IN FOREIGN TABLE <table_name> [,<table_name2>]
+	  | ALL COLUMNS IN TABLE <schema_name.table_name> [, ...] 
+	  | ALL COLUMNS IN FOREIGN TABLE <foreign_table_name> [, ...] 
+	}
+	TO <role> [, ...]
+
 	-- Grant permissions on the view level
 	GRANT {
 	{SELECT 
@@ -288,6 +310,20 @@ REVOKE
 	ON FUNCTION <function_name>
 	FROM <role>
 
+	-- Revoke permissions at the column level:
+	REVOKE 
+	{
+	  { SELECT 
+	  | DDL } [, ...] 
+	  | ALL [PERMISSIONS]}
+	ON 
+	{ 
+	  COLUMN <column_name> [,<column_name_2>] IN TABLE <table_name> [,<table_name2>] | COLUMN <column_name> [,<column_name_2>] IN FOREIGN TABLE <table_name> [,<table_name2>]
+	  | ALL COLUMNS IN TABLE <schema_name.table_name> [, ...] 
+	  | ALL COLUMNS IN FOREIGN TABLE <schema_name.foreign_table_name> [, ...] 
+	}
+	FROM <role> [, ...]
+
 	-- Revoke permissions on the view level
 	REVOKE {
 	{SELECT 
@@ -343,7 +379,8 @@ schema statement is run.
           SCHEMAS 
           | TABLES 
           | FOREIGN TABLES 
-          | VIEWS 
+          | VIEWS
+          | COLUMNS   
           | CATALOGS
           | SERVICES
           | SAVED_QUERIES
@@ -405,6 +442,12 @@ Grant execute function permission to a role:
 
 	GRANT EXECUTE ON FUNCTION function_name TO role_name;
 
+Grant column-level permissions to a role:
+
+.. code-block:: postgres
+
+	GRANT SELECT, DDL ON COLUMN column_name IN TABLE schema_name.table_name TO role_name;
+
 Grant usage permissions on a service to a role:
 
 .. code-block:: postgres
@@ -450,6 +493,12 @@ Revoke permissions on specific objects (table, view, foreign table, or catalog) 
 .. code-block:: postgres
 
 	REVOKE SELECT, INSERT, DELETE, DDL, UPDATE ON TABLE schema_name.table_name FROM role_name;
+
+Revoke column-level permissions from a role:
+
+.. code-block:: postgres
+
+	REVOKE SELECT, DDL FROM COLUMN column_name IN TABLE schema_name.table_name FROM role_name;
 
 Revoke usage permissions on a service from a role:
 
