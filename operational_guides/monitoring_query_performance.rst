@@ -785,7 +785,7 @@ In general, try to avoid ``TEXT`` as a join key. As a rule of thumb, ``BIGINT`` 
      - Description
    * - Mapping
      - Use a dimension table to map ``TEXT`` values to ``NUMERIC`` types, and then reconcile these values as needed by joining the dimension table.
-   * - Converting
+   * - Conversion
      - Use functions like :ref:`crc64` to convert ``TEXT`` values into BIGINT hashes directly before running the query.
 
        For example:
