@@ -147,7 +147,7 @@ Understanding the Query Execution Plan Output
 Both :ref:`show_node_info`  and the logged execution plans represents the query plan as a graph hierarchy, with data separated into different columns.
 Each row represents a single logical database operation, which is also called a **node** or **chunk producer**. A node reports 
 several metrics during query execution, such as how much data it has read and written, how many chunks and rows, and how much time has elapsed.
-Consider the example show_node_info presented above. The source node with ID #11 (``ReadTable``), has a parent node ID #10 
+Consider the example SHOW_NODE_INFO presented above. The source node with ID #11 (``ReadTable``), has a parent node ID #10 
 (``CpuDecompress``). If we were to draw this out in a graph, it'd look like this:
 
 .. figure:: /_static/images/show_node_info_graph.png
@@ -369,7 +369,7 @@ Identifying the Offending Nodes
 	  o_year;
 #. 
    
-   Use a foreign table or ``show_node_info`` to view the execution information.
+   Use a foreign table or ``SHOW_NODE_INFO`` to view the execution information.
    
    This statement is made up of 199 nodes, starting from a ``ReadTable``, and finishes by returning only 2 results to the client.
    
@@ -477,7 +477,7 @@ Identifying the Offending Nodes
 	  AND high_selectivity(p_type = 'ECONOMY BURNISHED NICKEL');
 #. 
    
-   Use a foreign table or ``show_node_info`` to view the execution information.
+   Use a foreign table or ``SHOW_NODE_INFO`` to view the execution information.
    
    This statement is made up of 221 nodes, containing 8 ``ReadTable`` nodes, and finishes by returning billions of results to the client.
    
@@ -486,7 +486,7 @@ Identifying the Offending Nodes
    .. code-block:: postgres
       :emphasize-lines: 7,9,11
    
-	SELECT show_node_info(494);
+	SELECT SHOW_NODE_INFO(494);
 	stmt_id | node_id | node_type            | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read    | write | comment         | timeSum
 	--------+---------+----------------------+-----------+--------+-------------------+---------------------+----------------+---------+-------+-----------------+--------
 	    494 |       1 | PushToNetworkQueue   |    242615 |      1 |            242615 | 2020-09-04 19:07:55 |             -1 |         |       |                 |    0.36
@@ -582,7 +582,7 @@ Filtering is considered inefficient when the ``Filter`` node processes less than
 	  o_year;
 #. 
    
-   Use a foreign table or ``show_node_info`` to view the execution information.
+   Use a foreign table or ``SHOW_NODE_INFO`` to view the execution information.
    
    The execution below has been shortened, but note the highlighted rows for ``ReadTable`` and ``Filter``:
    
@@ -590,7 +590,7 @@ Filtering is considered inefficient when the ``Filter`` node processes less than
       :linenos:
       :emphasize-lines: 9,17,19,27
    
-      SELECT show_node_info(559);
+      SELECT SHOW_NODE_INFO(559);
       stmt_id | node_id | node_type            | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read   | write | comment         | timeSum
       --------+---------+----------------------+-----------+--------+-------------------+---------------------+----------------+--------+-------+-----------------+--------
           559 |       1 | PushToNetworkQueue   |         2 |      1 |                 2 | 2020-09-07 11:12:01 |             -1 |        |       |                 |    0.28
@@ -659,7 +659,7 @@ Filtering is considered inefficient when the ``Filter`` node processes less than
       :linenos:
       :emphasize-lines: 5,13
       
-      SELECT show_node_info(586);
+      SELECT SHOW_NODE_INFO(586);
       stmt_id | node_id | node_type            | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read   | write | comment         | timeSum
       --------+---------+----------------------+-----------+--------+-------------------+---------------------+----------------+--------+-------+-----------------+--------
       [...]
@@ -744,7 +744,7 @@ Consider these two table structures:
 
 #. 
    
-   Use a foreign table or ``show_node_info`` to view the execution information.
+   Use a foreign table or ``SHOW_NODE_INFO`` to view the execution information.
    
    The execution below has been shortened, but note the highlighted rows for ``Join``.
    
@@ -752,7 +752,7 @@ Consider these two table structures:
       :linenos:
       :emphasize-lines: 8
       
-      SELECT show_node_info(5);
+      SELECT SHOW_NODE_INFO(5);
       stmt_id | node_id | node_type            | rows       | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment    | timeSum
       --------+---------+----------------------+------------+--------+-------------------+---------------------+----------------+-------+-------+------------+--------
       [...]
@@ -804,7 +804,7 @@ In general, try to avoid ``TEXT`` as a join key. As a rule of thumb, ``BIGINT`` 
          :linenos:
          :emphasize-lines: 8
       
-          SELECT show_node_info(6);
+          SELECT SHOW_NODE_INFO(6);
           stmt_id | node_id | node_type            | rows       | chunks | avg_rows_in_chunk | time                | parent_node_id | read  | write | comment    | timeSum
           --------+---------+----------------------+------------+--------+-------------------+---------------------+----------------+-------+-------+------------+--------
           [...]
@@ -819,27 +819,19 @@ In general, try to avoid ``TEXT`` as a join key. As a rule of thumb, ``BIGINT`` 
                 6 |      43 | CpuDecompress        |   10000000 |      2 |           5000000 | 2020-09-08 18:55:13 |             42 |       |       |            |       0
                 6 |      44 | ReadTable            |   10000000 |      2 |           5000000 | 2020-09-08 18:55:13 |             43 | 14MB  |       | public.t_a |       0	 
 
-   
-   
-   
-
-Sorting on big ``TEXT`` fields
+Sorting on Big ``TEXT`` Fields
 ------------------------------
 
-In SQreamDB, a ``Sort`` node is automatically inserted to arrange data before reductions and aggregations. When performing a ``GROUP BY`` on large ``TEXT`` fields, you may notice that ``Sort`` and ``Reduce`` nodes take a significant amount of time to complete.
+In SQreamDB, a ``Sort`` node is automatically added to organize data prior to reductions and aggregations. When executing a ``GROUP BY`` operation on extensive ``TEXT`` fields, you might observe that the ``Sort`` and subsequent ``Reduce`` nodes require a considerable amount of time to finish.
 
 Identifying the Situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When running a statement, inspect it with :ref:`show_node_info`. If you see ``Sort`` and ``Reduce`` among 
+If you see ``Sort`` and ``Reduce`` among 
 your top five longest running nodes, there is a potential issue.
-For example:
-#. 
-   Run a query to test it out.
-     
-   
-   Our ``t_inefficient`` table contains 60,000,000 rows, and the structure is simple, but with an oversized ``country_code`` column:
-   
+
+Consider this ``t_inefficient`` table which contains 60,000,000 rows, and the structure is simple, but with an oversized ``country_code`` column: 
+
    .. code-block:: postgres
       :emphasize-lines: 5
    
@@ -851,8 +843,9 @@ For example:
          flag TEXT NOT NULL,
          string_fk TEXTNOT NULL
       );
-   
-   We will run a query, and inspect it's execution details:
+
+#. 
+   Run a query.
    
    .. code-block:: postgres
       
@@ -870,6 +863,8 @@ For example:
       TUR          | 1195946178
       [...]
       
+#.
+   Use a foreign table or ``SHOW_NODE_INFO`` to view the execution information.
    
    .. code-block:: postgres
       :emphasize-lines: 8,9
@@ -890,7 +885,7 @@ For example:
            30 |      11 | CpuDecompress      | 60000000 |     15 |           4000000 | 2020-09-10 16:17:10 |             10 |       |       |                      |       0
            30 |      12 | ReadTable          | 60000000 |     15 |           4000000 | 2020-09-10 16:17:10 |             11 | 520MB |       | public.t_inefficient |    0.05
 
-#. We can look to see if there's any shrinking we can do on the ``GROUP BY`` key
+#. Look to see if there's any shrinking that can be done on the ``GROUP BY`` key:
    
    .. code-block:: postgres
       
@@ -900,40 +895,51 @@ For example:
       3
    With a maximum string length of just 3 characters, our ``TEXT(100)`` is way oversized.
 #. 
-   We can recreate the table with a more restrictive ``TEXT(3)``, and can examine the difference in performance:
+   Recreate the table with a more restrictive ``TEXT(3)``, and examine the difference in performance:
    
    .. code-block:: postgres
    
-      CREATE TABLE t_efficient 
-        AS SELECT i,
-                  amt,
-                  ts,
-                  country_code::TEXT(3) AS country_code,
-                  flag
-        FROM t_inefficient;
-      
-      SELECT 
-	    country_code,
-        SUM(amt::bigint)
-      FROM t_efficient
-      GROUP BY country_code;
+	CREATE TABLE
+	  t_efficient AS
+	SELECT
+	  i,
+	  amt,
+	  ts,
+	  country_code :: TEXT(3) AS country_code,
+	  flag
+	FROM
+	  t_inefficient;
+	   
+	SELECT
+	  country_code,
+	  SUM(amt :: bigint)
+	FROM
+	  t_efficient
+	GROUP BY
+	  country_code;
 
-      country_code | sum       
-      -------------+-----------
-      VUT          | 1195416012
-      GIB          | 1195710372
-      TUR          | 1195946178
-      [...]
+	country_code | sum       
+	-------------+-----------
+	VUT          | 1195416012
+	GIB          | 1195710372
+	TUR          | 1195946178
+	[...]
    
-   This time, the entire query took just 4.75 seconds, or just about 91% faster.
+   This time, the query should be about 91% faster.
 
-Improving Sort Performance on Text Keys
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Common Solutions for Improving Sort Performance on ``TEXT`` Keys
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-When using TEXT, ensure that the maximum length defined in the table structure is as small as necessary.
-For example, if you're storing phone numbers, don't define the field as ``TEXT(255)``, as that affects sort performance.
+.. list-table::
+   :widths: auto
+   :header-rows: 1
    
-You can run a query to get the maximum column length (e.g. ``MAX(LEN(a_column))``), and potentially modify the table structure.
+   * - Solution
+     - Description
+   * - Using Appropriate Text Length
+     - Define the maximum length of ``TEXT`` fields in your table structure as small as necessary. For example, if you're storing phone numbers, avoid defining the field as ``TEXT(255)`` to optimize sort performance.
+   * - Optimize Column Length
+     - Execute a query to determine the maximum length of data in the column (e.g., ``MAX(LEN(a_column))``) and consider modifying the table structure based on this analysis.
 
 .. _high_selectivity_data_opt:
 
