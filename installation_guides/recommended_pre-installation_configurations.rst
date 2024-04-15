@@ -1,8 +1,8 @@
 .. _recommended_pre-installation_configurations:
 
-*********************************************
+******************************
 Pre-Installation Configuration
-*********************************************
+******************************
 
 Before installing SQreamDB, it is recommended that you to tune your system for better performance and stability.
 
@@ -11,7 +11,7 @@ Before installing SQreamDB, it is recommended that you to tune your system for b
    :depth: 1
 
 Recommended Basic Input/Output System Settings
-===============================================
+==============================================
 
 The first step when setting your pre-installation configurations is to use the recommended basic input/output system (BIOS) settings.
 
@@ -809,7 +809,7 @@ Installing the CUDA Driver
    :local:
    :depth: 1
   
-The current recommendation is for CUDA 12.2.1.
+The current recommendation is for CUDA 12.3.2.
   
 For A100 GPU and other A series GPUs, you must install CUDA driver **11.4.3** or a later version.
 
