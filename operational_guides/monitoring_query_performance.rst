@@ -946,19 +946,17 @@ Common Solutions for Improving Sort Performance on ``TEXT`` Keys
 High Selectivity Data
 ---------------------
 
-Selectivity is the ratio of cardinality to the number of records of a chunk. We define selectivity as :math:`\frac{\text{Distinct values}}{\text{Total number of records in a chunk}}`
-SQreamDB has a hint called ``HIGH_SELECTIVITY``, which is a function you can wrap a condition in.
-The hint signals to SQreamDB that the result of the condition will be very sparse, and that it should attempt to rechunk
-the results into fewer, fuller chunks.
+In SQreamDB, selectivity refers to the ratio of distinct values to the total number of records within a chunk. It is defined by the formula: :math:`\frac{\text{Distinct values}}{\text{Total number of records in a chunk}}`
+
+SQreamDB provides a hint called ``HIGH_SELECTIVITY`` that can be used to optimize queries. When you wrap a condition with this hint, it signals to SQreamDB that the result of the condition will yield a sparse output. As a result, SQreamDB attempts to rechunk the results into fewer, fuller chunks for improved performance.
+
 .. note::
-   SQreamDB doesn't do this automatically because it adds a significant overhead on naturally ordered and
-   well-clustered data, which is the more common scenario.
+   SQreamDB does not apply this optimization automatically because it introduces significant overhead for naturally ordered and well-clustered data, which is the more common scenario.
 
 Identifying the Situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This is easily identifiable - when the amount of average of rows in a chunk is small, following a ``Filter`` operation.
-Consider this execution plan:
+This condition is easily identifiable when the average number of rows in a chunk is small, particularly after a Filter operation. Consider the following execution plan:
 
 .. code-block:: postgres
    
@@ -969,18 +967,27 @@ Consider this execution plan:
         30 |      38 | Filter            |     18160 |     74 |               245 | 2020-09-10 12:17:09 |             37 |       |       |            |   0.012
    [...]
         30 |      44 | ReadTable         |  77000000 |     74 |           1040540 | 2020-09-10 12:17:09 |             43 | 277MB |       | public.dim |   0.058
-The table was read entirely - 77 million rows into 74 chunks.
-The filter node reduced the output to just 18,160 relevant rows, but they're distributed across the original 74 chunks.
-All of these rows could fit in one single chunk, instead of spanning 74 rather sparse chunks.
 
-Improving Performance with High Selectivity Hints
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-* 
-   Use when there's a ``WHERE`` condition on an :ref:`unclustered column<cluster_by>`, and when you expect the filter
-   to cut out more than 60% of the result set.
-* Use when the data is uniformly distributed or random
+The table was initially read entirely, containing 77 million rows divided into 74 chunks. After applying a filter node, the output was reduced to just 18,160 relevant rows, which are still distributed across the original 74 chunks. However, all these rows could fit into a single chunk instead of spanning across 74 sparsely populated chunks.
 
-Performance of unsorted data in joins
+Common Solutions for Improving Performance with High Selectivity Hints
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Solution
+     - Description
+   * - Using ``HIGH_SELECTIVITY`` hint
+     - 
+	 * When a ``WHERE`` condition is used on an :ref:`unclustered column<cluster_by>`, especially if you anticipate the filter to reduce more than 60% of the result set
+       
+	 * When the data is uniformly distributed or random
+
+
+
+Performance of Unsorted Data in Joins
 -------------------------------------
 
 When data is not well-clustered or naturally ordered, a join operation can take a long time. 
