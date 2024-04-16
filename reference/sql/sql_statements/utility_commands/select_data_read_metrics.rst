@@ -59,7 +59,7 @@ Daily data reads are cumulative. For a comprehensive view of your data read usag
    
 .. code-block:: postgres
 
-	SELECT data_read_metrics('daily','2023-05-01', '2023-05-05);
+	SELECT data_read_metrics('daily','2023-05-01', '2023-05-05');
 	
 Output:
 
@@ -78,7 +78,7 @@ Monthly data reads:
 
 .. code-block:: postgres
 
-	SELECT data_read_metrics('monthly','2023-05-15', '2023-06-05);
+	SELECT data_read_metrics('monthly','2023-05-15', '2023-06-05');
 	
 Output:
 
