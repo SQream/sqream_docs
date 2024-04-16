@@ -36,24 +36,28 @@ Creating quoted and unquoted identifiers:
 	CREATE ROLE "Developer"; --quoted identifiers preserves case - will create "Developer"
 	CREATE ROLE Developer;   --unquoted identifiers ignores case - will create "developer"
 
-Valid and invalid use of identifiers:
+These are all valid examples when quoted, but are invalid when unquoted:
 
 .. code-block:: postgres
 
-	-- these are all valid examples when quoted:
-	
 	CREATE SCHEMA "my schema";
+	
 	CREATE SCHEMA "123schema";
+	  
+	CREATE SCHEMA my schema;   --invalid
 	
-	-- but are invalid when unquoted:
+	CREATE SCHEMA 123schema;   --invalid
 	
-	CREATE SCHEMA my schema; --invalid
-	CREATE SCHEMA 123schema; --invalid
-	
-	-- Use of invalid characters:
+Use of invalid characters, such as ``@``:
+
+.. code-block:: postgres
 	
 	CREATE SCHEMA "my schema@master";
 	
+Provides the following error message:
+
+.. code-block:: console
+
 	Status:  Ended with errorError preparing statement: Unsupported character '@'  in identifier: "my schema@master"
 	Quoted identifiers cannot contain the character '@'.
 	Quoted identifiers may contain any ASCII character with code between 32 and 126 except for:
