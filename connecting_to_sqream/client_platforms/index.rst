@@ -19,6 +19,8 @@ Data Integration Tools
 
 :ref:`Talend<talend>`
 
+:ref:`Semarchy<semarchy>`
+
 :ref:`SQL Workbench<connect_to_sql_workbench>`
 
 Business Intelligence (BI) Tools
@@ -60,13 +62,13 @@ Data Analysis and Programming Languages
    r
    sap_businessobjects
    sas_viya
+   semarchy
    sql_workbench   
    tableau
    talend
    tibco_spotfire   
    trino
    
-
 
 
 
