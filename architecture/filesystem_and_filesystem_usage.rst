@@ -77,7 +77,7 @@ The ``temp`` directory is where SQreamDB writes temporary data.
 
 The directory to which SQreamDB writes temporary data can be changed to any other directory on the filesystem. SQreamDB recommends remapping this directory to a fast local storage to get better performance when executing intensive larger-than-RAM operations like sorting. SQreamDB recommends an SSD or NVMe drive, in mirrored RAID 1 configuration.
 
-If desired, the ``temp`` folder can be redirected to a local disk for improved performance, by setting the ``tempPath`` setting in the :ref:`configuration<configuration>` file.
+If desired, the ``temp`` folder can be redirected to a local disk for improved performance, by setting the ``tempPath`` setting in the :ref:`legacy configuration<current_method_modification_methods>` file.
 
 
 ``logs``
