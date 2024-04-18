@@ -17,6 +17,4 @@ For related flags, see the folowing:
 
 * :ref:`is_healer_on`
 
-   ::
-
 * :ref:`healer_max_inactivity_hours`
