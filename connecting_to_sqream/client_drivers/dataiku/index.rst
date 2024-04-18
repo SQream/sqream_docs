@@ -52,5 +52,4 @@ In your Dataiku web interface:
  a. Filling in the values in the Plugin form
 
  b. Set the Project Variables or set the Global Variables when DSS Variables are used
-	 
 
