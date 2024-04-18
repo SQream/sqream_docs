@@ -1,8 +1,8 @@
 .. _releases:
 
-**********
+*************
 Release Notes
-**********
+*************
 
    
 .. list-table::
@@ -25,4 +25,4 @@ Release Notes
 
    4.0_index
    2022.1_index
-   2021.2_index
+
