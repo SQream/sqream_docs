@@ -23,7 +23,7 @@ The Connecting to SQream Using Pentaho page describes the following:
 Installing Pentaho
 ~~~~~~~~~~~~~~~~~~
 
-To install PDI, see the `Pentaho Community Edition (CE) Installation Guide <https://www.hitachivantara.com/en-us/pdf/white-paper/pentaho-community-edition-installation-guide-for-windows-whitepaper.pdf>`_.
+To install PDI, see the `Pentaho Community Edition (CE) Installation Guide <https://www.hitachivantara.com/en-us/pdf/implementation-guide/three-steps-to-install-pentaho-data-integration-ce.pdf>`_.
 
 The **Pentaho Community Edition (CE) Installation Guide** describes how to do the following:
 
