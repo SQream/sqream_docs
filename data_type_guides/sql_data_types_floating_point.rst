@@ -3,12 +3,14 @@
 *************************
 Floating Point
 *************************
+
 The **Floating Point** data types (``REAL`` and ``DOUBLE``) store extremely close value approximations, and are therefore recommended for values that tend to be inexact, such as Scientific Notation. While Floating Point generally runs faster than Numeric, it has a lower precision of ``9`` (``REAL``) or ``17`` (``DOUBLE``) compared to Numeric's ``38``. For operations that require a higher level of precision, using :ref:`Numeric <numeric>` is recommended.
 
 The floating point representation is based on `IEEE 754 <https://en.wikipedia.org/wiki/IEEE_754>`_.
 
 Floating Point Types
 ^^^^^^^^^^^^^^^^^^^^^^
+
 The following table describes the Floating Point data types.
 
 .. list-table:: 
@@ -42,7 +44,8 @@ The following table shows information relevant to the Floating Point data types.
      - Floating point types are either 4 or 8 bytes, but size could be lower after compression.
 
 Floating Point Examples
-^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
+
 The following are examples of the Floating Point syntax:
 
 .. code-block:: postgres
@@ -61,7 +64,8 @@ The following are examples of the Floating Point syntax:
 .. note:: Most SQL clients control display precision of floating point numbers, and values may appear differently in some clients.
 
 Floating Point Casts and Conversions
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The following table shows the possible Floating Point value conversions:
 
 .. list-table:: 
