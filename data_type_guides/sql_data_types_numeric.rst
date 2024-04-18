@@ -9,7 +9,7 @@ The **Numeric** data type (also known as **Decimal**) is recommended for values 
 The correct syntax for Numeric is ``numeric(p, s)``), where ``p`` is the total number of digits (``38`` maximum), and ``s`` is the total number of decimal digits. If no parameters are specified, Numeric defaults to ``numeric(38, 0)``.
 
 Numeric Examples
-^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 The following is an example of the Numeric syntax:
 
