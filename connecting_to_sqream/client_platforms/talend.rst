@@ -124,5 +124,3 @@ Known Issues
 ------------
 
 As of 6/1/2021 schemas were not displayed for tables with identical names.
-
-If you experience issues using Talend, see the `SQream support portal <https://support.sqream.com>`_.
