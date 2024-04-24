@@ -4,16 +4,16 @@
 Pre-Installation Configuration
 ******************************
 
-Before installing SQreamDB, it is recommended that you to tune your system for better performance and stability.
+Before installing SQreamDB, it is essential that you to tune your system for better performance and stability.
 
 .. contents:: 
    :local:
    :depth: 1
 
-Recommended Basic Input/Output System Settings
-==============================================
+Basic Input/Output System Settings
+==================================
 
-The first step when setting your pre-installation configurations is to use the recommended basic input/output system (BIOS) settings.
+The first step when setting your pre-installation configurations is to use the basic input/output system (BIOS) settings.
 
 The BIOS settings may have a variety of names, or may not exist on your system. Each system vendor has a different set of settings and variables. It is safe to skip any and all of the configuration steps, but this may impact performance.
 
