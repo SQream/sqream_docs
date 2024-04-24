@@ -1,8 +1,9 @@
 .. _admin_worker_flags:
 
-*************************
+***************************
 Worker Administration Flags
-*************************
+***************************
+
 The **Worker Administration Flags** page describes **Worker** modification type flags, which can be modified by administrators on a session and cluster basis using the ``ALTER SYSTEM SET`` command:
 
 * `Setting Total Device Memory Usage in SQream Instance <https://docs.sqream.com/en/2022.3_preview/configuration_guides/cuda_mem_quota.html>`_
