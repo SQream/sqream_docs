@@ -52,9 +52,6 @@ If any doubt arises, consult the documentation for your server or your hardware 
    * - **Intel Turbo Boost**
      - **Enabled**
      - Intel Turbo Boost enables overclocking the processor to boost CPU-bound operation performance. Overclocking may risk computational jitter due to changes in the processor's turbo frequency. This causes brief pauses in processor operation, introducing uncertainty into application processing time. Turbo operation is a function of power consumption, processor temperature, and the number of active cores.
-   * - **Logical Processor**
-     - **HPe**: Enable **Hyperthreading** **Dell**: Enable **Logical Processor**
-     - Hyperthreading doubles the amount of logical processors, which may improve performance by ~5-10% for CPU-bound operations.	 	 
    * - **Intel Virtualization Technology** (VT-d)
      - **Disable**
      - VT-d is optimal for running VMs. However, when running Linux natively, disabling VT-d boosts performance by up to 10%.	 
