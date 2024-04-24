@@ -30,22 +30,6 @@ SQream supports ``AWS ID`` and ``AWS SECRET`` authentication. These should be sp
 Examples
 ========
 
-Use a foreign table to stage data from S3 before loading from CSV, Parquet, or ORC files.
-
-
-
-Planning for Data Staging
--------------------------
-
-The examples in this section are based on a CSV file, as shown in the following table:
-
-.. csv-table:: nba.csv
-   :file: ../nba-t10.csv
-   :widths: auto
-   :header-rows: 1 
-
-The file is stored on Amazon S3, and this bucket is public and listable. To create a matching ``CREATE FOREIGN TABLE`` statement you can make note of the file structure.
-
 Creating a Foreign Table
 ------------------------
 
