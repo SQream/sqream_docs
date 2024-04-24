@@ -15,7 +15,10 @@ The following is the syntax for the ``DESCRIBE SESSIONS`` command:
 
 .. code-block:: postgres
 
-   DESC[RIBE] SESSIONS [ USER '<user_name>' ][ TIMEFRAME FROM '<start_date_time>' TO '<end_date_time>' ][ INITIATED BY ( ALL | { External | Blue_UI_User | Blue_UI_System | CLI | Jobs | Statistics } ) ]
+   DESC[RIBE] SESSIONS 
+   [ USER '<user_name>' ]
+   [ TIMEFRAME FROM '<start_date_time>' TO '<end_date_time>' ]
+   [ INITIATED BY ( ALL | { External | Blue_UI_User | Blue_UI_System | CLI | Jobs | Statistics } ) ]
 
 Parameters
 ==========

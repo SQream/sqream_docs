@@ -125,6 +125,8 @@ Utility Commands
      - Usage
    * - :ref:`abort`
      - Performs a graceful stop, known as an abort, on an active statement
+   * - :ref:`audit_log`
+     - Returns system user activity
    * - :ref:`describe_locks`
      - Returns a list of locks from across your cluster
    * - :ref:`describe_saved_queries_list`
