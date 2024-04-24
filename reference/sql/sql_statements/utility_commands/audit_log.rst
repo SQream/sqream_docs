@@ -11,7 +11,7 @@ Syntax
 
 The following is the ``AUDITLOG`` syntax:
 
-.. code-block:: sql
+.. code-block:: postgres
 
    AUDITLOG
    [ TIMEFRAME FROM <start_date_time> TO <end_date_time> ]
@@ -91,7 +91,7 @@ Filters
 Examples
 ========
 
-.. code-block:: sql
+.. code-block:: postgres
 
    AUDITLOG;
 	  
@@ -140,7 +140,7 @@ Output:
 
 Using the ``TIMEFRAME`` filter:
 
-.. code-block:: sql
+.. code-block:: postgres
 
   AUDITLOG TIMEFRAME FROM '2024-01-12 07:38:02' TO '2024-02-12 23:15:00';
 

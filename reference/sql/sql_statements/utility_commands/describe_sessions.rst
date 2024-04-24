@@ -13,7 +13,7 @@ Syntax
 
 The following is the syntax for the ``DESCRIBE SESSIONS`` command:
 
-.. code-block:: sql
+.. code-block:: postgres
 
 	DESC[RIBE] SESSIONS 
 	[ USER '<user_name>' ] 
@@ -80,7 +80,7 @@ Output
 Examples
 ========
 
-.. code-block:: sql
+.. code-block:: postgres
 
 	DESCRIBE SESSIONS;
 	 
@@ -98,7 +98,7 @@ Examples
 	| 2022-09-20 5:19:25  | 0000-00-00 00:00:00  | master    | N/A   | 10.233.84.4    | SQream Node.js       | Active  | N/A               | ca5b1c86-a696-49f9-bc72-6fff76691799  | sqream     |Blue_UI_User|
 	+---------------------+----------------------+-----------+-------+----------------+----------------------+---------+-------------------+---------------------------------------+------------+------------+
 
-.. code-block:: sql
+.. code-block:: postgres
 
 	DESCRIBE SESSIONS TIMEFRAME FROM '2022-09-19 10:00:00' TO '2022-09-19 16:00:00';
 
