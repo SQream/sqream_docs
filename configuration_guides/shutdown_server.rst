@@ -1,8 +1,9 @@
 .. _graceful_server_shutdown:
 
-********************
+*************************************
 Performing a Graceful Server Shutdown
-********************
+*************************************
+
 The ``defaultGracefulShutdownTimeoutMin`` allows you to perform a graceful server shutdown.
 
 The following describes the ``defaultGracefulShutdownTimeoutMin`` flag:

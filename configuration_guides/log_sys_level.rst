@@ -3,6 +3,7 @@
 *************************
 Determining Client Level
 *************************
+
 The ``logSysLevel`` flag determines the client log level, as follows:
 
 * **0** - L_SYSTEM

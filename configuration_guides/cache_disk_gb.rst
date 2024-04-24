@@ -3,6 +3,7 @@
 *************************
 Setting Disk Spool Memory
 *************************
+
 The ``cacheDiskGB`` flag sets the amount of memory (GB) to be used by Spool on the disk.
 
 The following describes the ``cacheDiskGB`` flag:
