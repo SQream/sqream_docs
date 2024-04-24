@@ -1,8 +1,8 @@
 .. _generic_regular_flags:
 
-*************************
+*********************
 Regular Generic Flags
-*************************
+*********************
 
 The **Regular Generic Flags** page describes **Regular** modification type flags, which can be modified by standard users on a session basis:
 

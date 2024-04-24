@@ -3,6 +3,7 @@
 *************************
 Setting the Buffer Size
 *************************
+
 The ``leveldbWriteBufferSize`` flag sets the buffer size.
 
 The following describes the ``leveldbWriteBufferSize`` flag:

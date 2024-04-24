@@ -1,8 +1,9 @@
 .. _configuration_flags:
 
-*************************
+*******************
 Configuration Flags
-*************************
+*******************
+
 SQream provides two methods for configuration your instance of SQream. The current configuration method is based on cluster and session-based configuration, described in more detail below.
 
 The **Configuration Methods** page describes the following configurations methods:
