@@ -47,8 +47,6 @@ Data Definition Commands (DDL)
      - Lists information about the databases in your cluster
    * - :ref:`describe_pools`
      - List all of your pools
-   * - :ref:`describe_query`
-     - Displays information about query execution
    * - :ref:`describe_schemas`
      - Lists information about schemas in your cluster
    * - :ref:`describe_tables`
@@ -137,6 +135,8 @@ Utility Commands
      - Lists queries per session, including queued queries
    * - :ref:`describe_sessions`
      - Outputs information about your current session
+   * - :ref:`describe_query`
+     - Displays information about query execution
    * - :ref:`drop_saved_query`
      - Drops a saved query
    * - :ref:`execute_saved_query`
