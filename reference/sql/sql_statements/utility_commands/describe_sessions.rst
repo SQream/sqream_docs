@@ -15,74 +15,96 @@ The following is the syntax for the ``DESCRIBE SESSIONS`` command:
 
 .. code-block:: postgres
 
-	DESC[RIBE] SESSIONS 
-	[ USER '<user_name>' ] 
-	[ TIMEFRAME FROM '<start_date_time>' TO '<end_date_time>' ] 
-	[ INITIATED BY ( ALL | { External | Blue_UI_User | Blue_UI_System | CLI | Jobs | Statistics } ) ]
-
+   DESC[RIBE] SESSIONS 
+   [ USER '<user_name>' ]
+   [ TIMEFRAME FROM '<start_date_time>' TO '<end_date_time>' ]
+   [ INITIATED BY ( ALL | { External | Blue_UI_User | Blue_UI_System | CLI | Jobs | Statistics } ) ]
 
 Parameters
 ==========
+
+The following parameters can be used with the ``DESCRIBE SESSIONS`` command:
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
-   * - Parameter
-     - Parameter Type
+   * - Parameter Name
+     - Parameter Value
      - Description
+     - Type
    * - ``USER``
-     - :ref:`STRING literal<literals>`	
+     - ``user_name``
      - Optional parameter for filtering by username
+     - ``TEXT``
    * - ``TIMEFRAME FROM``  
-     - :ref:`STRING literal<literals>`	
+     - ``start_date_time``
      - Optional parameter for filtering based on time frame (must be used in combination with ``TO``)
+     - ``DATETIME``
    * - ``TIMEFRAME TO``  
-     - :ref:`DATETIME<supported_data_types>`
+     - ``end_date_time``
      - Optional parameter for filtering by time frame (must be used in combination with ``FROM``)
+     - ``DATETIME``
    * - ``INITIATED BY``
-     - :ref:`STRING literal<literals>`	
-     - Optional parameter for filtering based on the source that triggered the query 
+     - ``ALL``, ``External``, ``Blue_UI_User``, ``Blue_UI_System``, ``CLI``, ``Jobs``, and/or ``Statistics``. Default is: ``Blue_UI_User``, ``CLI``, and ``External``
+     - Optional parameter for filtering based on the source that triggered the query
+     - ``TEXT``	 
 	 
 	 
 Output
 ======
 
+Using the ``DESCRIBE SESSIONS`` command generates the following output:
+
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
    * - Parameter
-     - Data Type
      - Description
+     - Type
+     - Example
    * - ``start_time``
+     - Displays the start time of the session.
      - ``DATE``
-     - Displays the start time of the session
+     - ``12-06-2022 06:16:56``
    * - ``database``
+     - Displays the name of the database.
      - ``TEXT``
-     - Displays the name of the database
+     - ``master``
    * - ``source_ip``
+     - Displays the IP address of the client connected to SQream.
      - ``INTEGER``
-     - Displays the IP address of the client connected to BLUE
+     - ``10.212.134.4``	 
    * - ``client``
+     - Displays the name and version of the client.
      - ``TEXT``
-     - Displays the name and version of the client
+     - ``SQream JDBC v0.1.33``
    * - ``status``
+     - Displays the status of the client.
      - ``TEXT``
-     - Displays the status of the client
+     - ``Active``
    * - ``session_id``
+     - Displays the session ID.
      - ``TEXT``
-     - Displays the session ID
+     - ``efd226bb-cc57-4d41-8ff9-c9300830c571``
    * - ``InitiatedBy``
-     - ``TEXT``
      - Displays the source that triggered the query
+     - ``TEXT``
+     - ``CLI``
 	 
 Examples
 ========
 
+The following is an example of the ``DESCRIBE SESSIONS`` command:
+
 .. code-block:: postgres
 
-	DESCRIBE SESSIONS;
+   DESCRIBE SESSIONS;
+   	 
+Output:
+
+.. code-block:: none
 	 
 	+---------------------+----------------------+-----------+-------+----------------+----------------------+---------+-------------------+---------------------------------------+------------+------------+
 	| start_time          | end_time             | database  | role  | source_ip      | client               | status  | rejection_reason  | session_id                            | username   |InitiatedBy |
@@ -98,9 +120,15 @@ Examples
 	| 2022-09-20 5:19:25  | 0000-00-00 00:00:00  | master    | N/A   | 10.233.84.4    | SQream Node.js       | Active  | N/A               | ca5b1c86-a696-49f9-bc72-6fff76691799  | sqream     |Blue_UI_User|
 	+---------------------+----------------------+-----------+-------+----------------+----------------------+---------+-------------------+---------------------------------------+------------+------------+
 
+The following is an example of the ``DESCRIBE SESSIONS`` command filtering a specific time frame:
+
 .. code-block:: postgres
 
-	DESCRIBE SESSIONS TIMEFRAME FROM '2022-09-19 10:00:00' TO '2022-09-19 16:00:00';
+   DESCRIBE SESSIONS TIMEFRAME FROM '2022-09-19 10:00:00' TO '2022-09-19 16:00:00';
+   
+Output:
+
+.. code-block:: none
 
 	+----------------------+----------------------+-----------+-------+---------------+----------------------+---------+-------------------+---------------------------------------+------------+------------+
 	| start_time           | end_time             | database  | role  | source_ip     | client               | status  | rejection_reason  | session_id                            | username   |InitiatedBy |
