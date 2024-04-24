@@ -13,7 +13,7 @@
    </style>
 
 :blue:`BLUE` Documentation
-=========================
+==========================
 
 
 BLUE is a cloud-based platform designed for enterprises utilizing data lake architectures, aiming to simplify data integration workflows and enable cloud migration.
