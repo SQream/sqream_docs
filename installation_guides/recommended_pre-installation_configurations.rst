@@ -30,11 +30,11 @@ If any doubt arises, consult the documentation for your server or your hardware 
      - Rationale
    * - **Management console access**
      - **Connected**
-     - Connection to OOB required to preserve continuous network uptime.
+     - Connection to Out-of-band (OOB) required to preserve continuous network uptime.
    * - **All drives**
      - **Connected and displayed on RAID interface**
      - Prerequisite for cluster or OS installation.
-   * - **RAID volumes.**
+   * - **RAID volumes**
      - **Configured according to project guidelines. Must be rebooted to take effect.**
      - Clustered to increase logical volume and provide redundancy.
    * - **Fan speed Thermal Configuration.**
@@ -51,10 +51,7 @@ If any doubt arises, consult the documentation for your server or your hardware 
      - Other power profiles (like "balanced") throttle the CPU and may diminish performance or cause GPU failure. This setting may appear together with the above (Power profile or Power regulator). This setting allows disabling system ROM power calibration during the boot process. Power regulator settings are named differently in BIOS and iLO/iDRAC.
    * - **Intel Turbo Boost**
      - **Enabled**
-     - Intel Turbo Boost enables overclocking the processor to boost CPU-bound operation performance. Overclocking may risk computational jitter due to changes in the processor's turbo frequency. This causes brief pauses in processor operation, introducing uncertainty into application processing time. Turbo operation is a function of power consumption, processor temperature, and the number of active cores.
-   * - **Logical Processor**
-     - **HPe**: Enable **Hyperthreading** **Dell**: Enable **Logical Processor**
-     - Hyperthreading doubles the amount of logical processors, which may improve performance by ~5-10% for CPU-bound operations.	 	 
+     - Intel Turbo Boost enables overclocking the processor to boost CPU-bound operation performance. Overclocking may risk computational jitter due to changes in the processor's turbo frequency. This causes brief pauses in processor operation, introducing uncertainty into application processing time. Turbo operation is a function of power consumption, processor temperature, and the number of active cores. 	 
    * - **Intel Virtualization Technology** (VT-d)
      - **Disable**
      - VT-d is optimal for running VMs. However, when running Linux natively, disabling VT-d boosts performance by up to 10%.	 
@@ -75,7 +72,7 @@ If any doubt arises, consult the documentation for your server or your hardware 
      - Setting a higher voltage for DIMMs may increase performance.		 
    * - **Memory Operating Mode**
      - **Optimizer Mode**, **Disable Node Interleaving**, **Auto Memory Operating Voltage**
-     - Memory Operating Mode is tuned for performance in **Optimizer** mode. Other modes may improve reliability, but reduce performance. **Node Interleaving** should be disabled because enabling it interleaves the memory between memory nodes, which harms NUMA-aware applications such as SQream DB.	 
+     - Memory Operating Mode is tuned for performance in **Optimizer** mode. Other modes may improve reliability, but reduce performance. **Node Interleaving** should be disabled because enabling it interleaves the memory between memory nodes, which harms NUMA-aware applications such as SQreamDB.	 
    * - **HPe**: **Memory power savings mode**
      - **Maximum performance**
      - This setting configures several memory parameters to optimize the performance of memory sub-systems. The default setting is **Balanced**.	 
