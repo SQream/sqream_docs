@@ -24,4 +24,5 @@ This section summarizes the following operational guides:
    security
    saved_queries
    optimization_best_practices
+   linear_regression
  
