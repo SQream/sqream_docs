@@ -493,6 +493,12 @@ Revoke permissions on specific objects (table, view, foreign table, or catalog) 
 .. code-block:: postgres
 
 	REVOKE SELECT, INSERT, DELETE, DDL, UPDATE ON TABLE schema_name.table_name FROM role_name;
+	
+Revoke execute function permission from a role:
+
+.. code-block:: postgres
+
+	REVOKE EXECUTE ON FUNCTION function_name FROM role_name;
 
 Revoke column-level permissions from a role:
 
