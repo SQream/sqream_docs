@@ -1,4 +1,4 @@
-.. _recommended_pre-installation_configurations:
+.. _pre-installation_configurations:
 
 ******************************
 Pre-Installation Configuration

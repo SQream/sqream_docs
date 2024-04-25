@@ -32,5 +32,5 @@ To prepare your machine to install SQreamDB, do the following:
    * A SQreamDB license - Contact `SQreamDB Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ for your license key.
 For more information, see the following:
 
-* :ref:`recommended_pre-installation_configurations`
+* :ref:`pre-installation_configurations`
 * :ref:`hardware_guide`
