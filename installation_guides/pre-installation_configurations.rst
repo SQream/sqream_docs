@@ -6,8 +6,6 @@ Pre-Installation Configuration
 
 Before installing SQreamDB, it is essential that you tune your system for better performance and stability.
 
-This page provides recommendations for production deployments of SQream and describes the following:
-
 .. contents:: 
    :local:
    :depth: 1
