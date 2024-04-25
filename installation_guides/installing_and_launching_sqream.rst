@@ -9,7 +9,7 @@ The **Installing and Launching SQream** page includes the following installation
    :maxdepth: 1
    :glob:
 
-   recommended_pre-installation_configurations
+   pre-installation_configurations
    installing_sqream_with_binary
    running_sqream_in_a_docker_container
    installing_monit
