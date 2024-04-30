@@ -10,7 +10,5 @@ The **Configuration Guides** page describes the following configuration informat
    :maxdepth: 1
    :glob:
 
-   bucket/bucket_integration
    spooling
-   configuring_sqream
-   configuration_flags
+

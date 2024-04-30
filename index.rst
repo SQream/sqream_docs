@@ -49,30 +49,47 @@ A notable capability of BLUE lies in handling data integration tasks, from 2TB t
       BLUE's performance relies on a patented GPU acceleration technology that synchronizes all available resources (CPU, GPU, RAM) and utilizes the GPU's processing power for even the most complex analytical tasks. 
 
 
-
-
-
-
-
-
 .. toctree::
-   :caption: Contents:
+   :caption: Getting Started
    :glob:
-   :maxdepth: 6
+   :maxdepth: 2
    :titlesonly:
    :hidden:
 
    getting_started/index
-   cloud_storage_platforms/index
    configuration_guides/index
-   operational_guides/index
-   feature_guides/index
+
+.. toctree::
+   :caption: Guides
+   :glob:
+   :maxdepth: 2
+   :titlesonly:
+   :hidden:
+
+   cloud_storage_platforms/index
    data_type_guides/index
    file_types/index
    reference/index
+
+.. toctree::
+   :caption: System Operation
+   :glob:
+   :maxdepth: 2
+   :titlesonly:
+   :hidden:
+
+   operational_guides/index
+   feature_guides/index
+
+.. toctree::
+   :caption: Releases
+   :glob:
+   :maxdepth: 2
+   :titlesonly:
+   :hidden:
+
    releases/index
    troubleshooting/index
-   glossary
 
 ..
    Indices and tables
