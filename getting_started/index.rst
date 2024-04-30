@@ -1,7 +1,7 @@
 .. _getting_started:
 
 ***************
-Getting Started
+Overview
 ***************
 
 The Getting Started guide provides an overview of the key steps to begin using BLUE, a comprehensive platform that offers advanced security features and seamless integration with various data analysis tools. This guide covers the login process, third-party tool integration, managing resources effectively, and utilizing Jobs, a powerful SQL workflow tool.
