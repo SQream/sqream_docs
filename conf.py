@@ -70,7 +70,7 @@ html_static_path.append(images_dir)
 # so a file named "default.css" will overwrite the builtin "default.css".
 
 favicons = [
-    "favicon-light.png"
+    "Favicon - Documentation.png"
 ]
 
 html_css_files = [
