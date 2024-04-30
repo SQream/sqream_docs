@@ -35,7 +35,7 @@ Parameters
      - Description	 
    * - Tolerance
      - ``1e-4``
-     - Tolerance determines when to stop training based on the improvement in model performance. If the improvement falls below the tolerance threshold, training stops early.
+     - When the change resulting from an iteration is smaller than the defined tolerance value, the iterations are terminated.
    * - Label Index
      - ``0``
      - Label index identifies the position of the target variable (dependent variable) within the dataset, crucial for training a linear regression model.	 
@@ -60,7 +60,7 @@ Missing data is not supported.
 
 * All data, including labels and features, should be stored in the same table.
 
-* Ensure that feature values (X) are within the same range. If not, consider normalizing or standardizing the features (X) separately for both training and testing datasets.
+* Ensure that feature values (X) are within the same range. If not, consider normalizing or standardizing the features (X) for both training and testing datasets.
 	 
 .. _normalization:
 
@@ -78,7 +78,7 @@ We suggest standardizing features by removing the mean and scaling to unit varia
 Training Data
 =============
 
-There is no need to export data out of SQreamDB for the training process.
+The training process occurs entirely within the SQream database environment, meaning that all steps—from data preparation to model training—are conducted within SQreamDB. This eliminates the necessity of exporting data out of SQreamDB for training purposes.
 
 .. code-block::
 
