@@ -68,12 +68,12 @@ A notable capability of BLUE lies in handling data integration tasks, from 2TB t
    :titlesonly:
    :hidden:
 
-   connecting_to_blue/index
-   cloud_storage_platforms/index
-   access_tokens/index
    access_control/index
+   access_tokens/index
+   cloud_storage_platforms/index
    blue_console/index
    saved_queries/index
+   connecting_to_blue/index
 
 .. toctree::
    :caption: Reference 
@@ -83,10 +83,11 @@ A notable capability of BLUE lies in handling data integration tasks, from 2TB t
    :hidden:
 
    data_type_guides/index
+   sql/index
    file_types/index
    syntax_notation/index
    foreign_tables/index
-   sql/index
+
 
 .. toctree::
    :caption: System Operations
