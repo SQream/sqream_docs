@@ -60,8 +60,6 @@ A notable capability of BLUE lies in handling data integration tasks, from 2TB t
    getting_started/blue_tour
    getting_started/architecture
    getting_started/performing_basic_blue_operations
-   getting_started/connecting_to_blue
-      
 
 .. toctree::
    :caption: Guides
@@ -70,12 +68,12 @@ A notable capability of BLUE lies in handling data integration tasks, from 2TB t
    :titlesonly:
    :hidden:
 
+   connecting_to_blue/index
    cloud_storage_platforms/index
-   data_type_guides/index
-   file_types/index
-   configuration_guides/index
-   operational_guides/access_tokens
-
+   access_tokens/index
+   access_control/index
+   blue_console/index
+   saved_queries/index
 
 .. toctree::
    :caption: Reference 
@@ -84,17 +82,34 @@ A notable capability of BLUE lies in handling data integration tasks, from 2TB t
    :titlesonly:
    :hidden:
 
-   reference/index
+   data_type_guides/index
+   file_types/index
+   syntax_notation/index
+   foreign_tables/index
+   sql/index
 
 .. toctree::
-   :caption: System Operation
+   :caption: System Operations
    :glob:
    :maxdepth: 2
    :titlesonly:
    :hidden:
-
-   operational_guides/index
-   feature_guides/index
+   
+   audit_log_operation/index
+   delete_guide/index
+   
+.. toctree::
+   :caption: Performance Tuning
+   :glob:
+   :maxdepth: 2
+   :titlesonly:
+   :hidden:
+   
+   optimization_best_practices/index
+   optimization_best_practices/monitoring_query_performance
+   optimization_best_practices/concurrency_and_locks
+   optimization_best_practices/concurrency_and_scaling_in_sqream
+   
 
 .. toctree::
    :caption: Releases
@@ -104,6 +119,14 @@ A notable capability of BLUE lies in handling data integration tasks, from 2TB t
    :hidden:
 
    releases/index
+   
+.. toctree::
+   :caption: Troubleshooting
+   :glob:
+   :maxdepth: 2
+   :titlesonly:
+   :hidden:
+   
    troubleshooting/index
 
 ..

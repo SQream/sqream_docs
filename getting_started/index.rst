@@ -1,4 +1,4 @@
-.. _getting_started:
+.. _first_steps:
 
 ***********
 First Steps
@@ -20,7 +20,7 @@ This guide provides an overview of the key steps to begin using BLUE. The guide 
    :hidden:
 
    log_in
-   managing_your_resources 
+   managing_your_resources/index 
 
    
    

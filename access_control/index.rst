@@ -31,17 +31,17 @@ The ``SUPERUSER`` role is granted cluster-level permissions and is responsible f
 
 The ``CLUSTERADMIN`` role has comprehensive access to BLUE application settings and is responsible for managing the BLUE cluster.
 
+* :ref:`access_control_managing_roles`
 
+* :ref:`access_control_permissions`
+
+* :ref:`access_control_departmental_example`
 
 .. toctree::
    :maxdepth: 1
    :titlesonly:
+   :hidden:
 
-More Under Access Control
--------------------------
-
-:ref:`access_control_managing_roles`
-
-:ref:`access_control_permissions`
-
-:ref:`access_control_departmental_example`
+   access_control_managing_roles
+   access_control_permissions
+   access_control_departmental_example

@@ -1,8 +1,8 @@
 .. _external_storage_platforms:
 
-**************************
-External Storage Platforms
-**************************
+***********************
+Cloud Storage Platforms
+***********************
 
 BLUE supports the following external storage platforms:
 

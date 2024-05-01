@@ -73,7 +73,7 @@ The utility :ref:`describe_locks` can be used to see the active locks.
    
 Output:
 
-.. code-block:: postgres
+.. code-block:: console
 
   statement_id|username|server      |port|locked_object|lock_mode|statement_start_time|lock_start_time     |statement_string                                                                               |
   ------------+--------+------------+----+-------------+---------+--------------------+--------------------+-----------------------------------------------------------------------------------------------+

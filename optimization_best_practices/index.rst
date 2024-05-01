@@ -221,3 +221,13 @@ Further reading and monitoring query performance
 
 Read our :ref:`monitoring_query_performance` guide to learn how to use the built in monitoring utilities. 
 The guide also gives concerete examples for improving query performance.
+
+
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   :titlesonly:
+   :hidden:
+
+   monitoring_query_performance
