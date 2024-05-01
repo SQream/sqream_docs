@@ -57,7 +57,11 @@ A notable capability of BLUE lies in handling data integration tasks, from 2TB t
    :hidden:
 
    getting_started/index
-   configuration_guides/index
+   getting_started/blue_tour
+   getting_started/architecture
+   getting_started/performing_basic_blue_operations
+   getting_started/connecting_to_blue
+      
 
 .. toctree::
    :caption: Guides
@@ -69,6 +73,17 @@ A notable capability of BLUE lies in handling data integration tasks, from 2TB t
    cloud_storage_platforms/index
    data_type_guides/index
    file_types/index
+   configuration_guides/index
+   operational_guides/access_tokens
+
+
+.. toctree::
+   :caption: Reference 
+   :glob:
+   :maxdepth: 2
+   :titlesonly:
+   :hidden:
+
    reference/index
 
 .. toctree::
