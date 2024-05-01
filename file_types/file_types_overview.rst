@@ -40,7 +40,7 @@ The following list shows the best practices when ingesting data from Parquet fil
 * Parquet files support **predicate pushdown**. When a query is issued over Parquet files, BLUE uses row-group metadata to determine which row-groups in a file must be read for a particular query and the row indexes can narrow the search to a particular set of rows.
 
 Supported Types and Behavior Notes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------------
 
 Unlike the ORC format, the column types should match the data types exactly, as shown in the table below:
 

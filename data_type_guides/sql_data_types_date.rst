@@ -1,14 +1,14 @@
 .. _sql_data_types_date:
 
-*************************
+****
 Date
-*************************
+****
 
 ``DATE`` is a type designed for storing year, month, and day. ``DATETIME`` is a type designed for storing year, month, day, hour, minute, seconds, and milliseconds in UTC with 1 millisecond precision.
 
 
 Date Types
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^
 
 The following table describes the Date types:
 
@@ -30,13 +30,14 @@ The following table describes the Date types:
      - ``'1955-11-05 01:24:00.000'``
 
 Aliases
-^^^^^^^^^^
+^^^^^^^
 
 ``DATETIME`` is also known as ``TIMESTAMP`` or ``DATETIME2``.
 
 
 Syntax
-^^^^^^^^
+^^^^^^
+
 ``DATE`` values are formatted as string literals. 
 
 The following is an example of the DATETIME syntax:
@@ -67,7 +68,8 @@ A ``DATE`` column is 4 bytes in length, while a ``DATETIME`` column is 8 bytes i
 However, the size of these values is compressed by SQream DB.
 
 Date Examples
-^^^^^^^^^^
+^^^^^^^^^^^^^
+
 The following is an example of the Date syntax:
 
 .. code-block:: postgres
@@ -98,7 +100,7 @@ The following is an example of the correct output:
    
 
 Date Casts and Conversions
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following table shows the possible ``DATE`` and ``DATETIME`` value conversions:
 

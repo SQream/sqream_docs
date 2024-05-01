@@ -41,7 +41,7 @@ BLUE supports the following data conversion methods:
   
 * See the :ref:`SQL functions reference <sql_functions>` for additional functions that convert from a specific value which is not an SQL type, such as :ref:`from_unixts`, etc.
 
-.. _supported_casts:
+.. _supported_casts_table:
 
 Supported Casts
 ===============

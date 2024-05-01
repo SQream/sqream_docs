@@ -1,15 +1,15 @@
 .. _sql_data_types_numeric:
 
-*************************
+*******
 Numeric
-*************************
+*******
 
 The **Numeric** data type (also known as **Decimal**) is recommended for values that tend to occur as exact decimals, such as in Finance. While Numeric has a fixed precision of ``38``, higher than ``REAL`` (``9``) or ``DOUBLE`` (``17``), it runs calculations more slowly. For operations that require faster performance, using :ref:`Floating Point <floating_point>` is recommended.
 
 The correct syntax for Numeric is ``numeric(p, s)``), where ``p`` is the total number of digits (``38`` maximum), and ``s`` is the total number of decimal digits. If no parameters are specified, Numeric defaults to ``numeric(38, 0)``.
 
 Numeric Examples
-^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
 .. code-block:: sql
 

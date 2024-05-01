@@ -693,7 +693,7 @@ For example:
 
    .. code-block:: sql
       :linenos:
-      :emphasize-lines: 5,13
+      :emphasize-lines: 5,12
       
       SELECT show_node_info(586);
 	  
@@ -712,6 +712,7 @@ For example:
           586 |     197 | CpuDecompress        | 494927872 |      8 |          61865984 | 2020-09-07 13:20:44 |            196 |        |       |                 |       0
           586 |     198 | ReadTable            | 494927872 |      8 |          61865984 | 2020-09-07 13:20:44 |            197 | 6595MB |       | public.lineitem |    0.09
       [...]
+	  
    In this example, the filter processed 494,621,593 rows, while the output of ``ReadTable`` on ``public.lineitem`` 
    was 494,927,872 rows. This means that it has filtered out all but 0.01% (:math:`1 - \dfrac{494621593}{494927872} = 0.01\%`)
    of the data that was read.
