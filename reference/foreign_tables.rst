@@ -7,8 +7,6 @@ Foreign Tables
 Foreign tables can be used to run queries directly on data without inserting it into BLUE first.
 BLUE supports read only foreign tables, so you can query from foreign tables, but you cannot insert to them, or run deletes or updates on them.
 
-Running queries directly on foreign data is most effectively used for things like one off querying. If you are repeatedly querying data, the performance will usually be better if you insert the data into BLUE first.
-
 Although foreign tables can be used without inserting data into BLUE, one of their main use cases is to help with the insertion process. An insert select statement on a foreign table can be used to insert data into SQream using the full power of the query engine to perform ETL.
 
 
