@@ -870,12 +870,12 @@ Installing the CUDA driver from the Repository is the recommended installation m
 		 wget https://developer.download.nvidia.com/compute/cuda/11.4.3/local_installers/cuda-repo-rhel8-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
 		 sudo dnf localinstall cuda-repo-rhel8-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
 
-    * **RHEL8.8 CUDA 12.2.1 repository ( INTEL ) installation ( Required for H/L Series GPU models ):**
+    * **RHEL8.8 CUDA 12.3.2 repository ( INTEL ) installation ( Required for H/L Series GPU models ):**
 
 	  .. code-block:: console
 	  
-		 wget https://developer.download.nvidia.com/compute/cuda/12.2.1/local_installers/cuda-repo-rhel8-12-2-local-12.2.1_535.86.10-1.x86_64.rpm
-		 sudo dnf localinstall cuda-repo-rhel8-12-2-local-12.2.1_535.86.10-1.x86_64.rpm
+		 wget https://developer.download.nvidia.com/compute/cuda/12.3.2/local_installers/cuda-repo-rhel8-12-3-local-12.3.2_545.23.08-1.x86_64.rpm
+		 sudo dnf localinstall cuda-repo-rhel8-12-3-local-12.3.2_545.23.08-1.x86_64.rpm
 		 
 	  .. code-block:: console
 	  
