@@ -73,6 +73,7 @@ A notable capability of BLUE lies in handling data integration tasks, from 2TB t
    cloud_storage_platforms/index
    blue_console/index
    saved_queries/index
+   statistics/index
    connecting_to_blue/index
 
 .. toctree::
