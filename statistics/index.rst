@@ -1,10 +1,10 @@
 .. _index:
 
-**********
-Statistics
-**********
+********************
+Cost-Based Optimizer
+********************
 
-
+The Cost-Based Optimizer (CBO) evaluates and compares the potential costs associated with different query execution plans to determine the most efficient one. The "cost" in this context refers to the estimated resource requirements and performance metrics (such as GPU usage) that each candidate query plan would entail when executed.
 
 Before You Begin
 ================
@@ -16,39 +16,34 @@ Syntax
 
 .. code-block:: postgres
 
-	-- Initiating statistics collection
-
+	-- Initiating statistics collection:
 	ANALYZE TABLE 
-	  <table_name> 
+	  '<table_name>' 
 	COMPUTE STATISTICS FOR 
 	{
-	COLUMNS <column_name> [, ...]
-	| ALL COLUMNS }
+	COLUMNS '<column_name>' [, ...]
+	| ALL COLUMNS 
+	 }
 
-	-- Querying statistics
+	-- Querying statistics:
+	DESCRIBE COLUMNS TABLE '<table_name>'
 
-	DESCRIBE COLUMNS TABLE <table_name>
+	SELECT fetch_column_histogram('<table_name>', '<column_name>')
 
-	SELECT fetch_column_histogram(<table_name>, <column_name)
-
-	-- Saving statistics
-
+	-- Saving statistics:
 	ALTER TABLE STORE STATISTICS
 
-	-- Analyzing statistics status
+	-- Analyzing statistics status:
+	STATISTICS REQUEST STATUS [sessionId '<session_id>'] queryId '<query_id>'
 
-	STATISTICS REQUEST STATUS [sessionId '<session_id>'] queryId '<query_id'>
-
-	-- Deleting statistics
-
+	-- Deleting statistics:
 	ALTER TABLE 
-	  <table_name> 
+	  '<table_name>' 
 	DROP STATISTICS FOR COLUMNS 
-	  <olumn_name> [, ...]
+	  '<column_name>' [, ...]
 
-	-- Aborting Statistics
-
-	STATISTICS REQUEST ABORT [sessionId '<session_id>'] queryId '<query_id'>
+	-- Aborting Statistics:
+	STATISTICS REQUEST ABORT [sessionId '<session_id>'] queryId '<query_id>'
 
 
 
