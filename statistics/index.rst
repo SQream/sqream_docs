@@ -26,7 +26,7 @@ Syntax
 	 }
 
 	-- Querying statistics:
-	SELECT fetch_column_histogram('<table_name>', '<column_name>')
+	SELECT FETCH_COLUMN_HISTOGRAM('<table_name>', '<column_name>')
 
 	-- Saving statistics:
 	ALTER TABLE STORE STATISTICS

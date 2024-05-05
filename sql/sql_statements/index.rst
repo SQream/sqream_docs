@@ -123,6 +123,10 @@ Utility Commands
      - Usage
    * - :ref:`abort`
      - Performs a graceful stop, known as an abort, on an active statement
+   * - :ref:`alter_table_store_statistics`
+     - 
+   * - :ref:`analyze_table`
+     - 
    * - :ref:`audit_log`
      - Returns system user activity
    * - :ref:`describe_locks`
@@ -139,12 +143,16 @@ Utility Commands
      - Displays information about query execution
    * - :ref:`drop_saved_query`
      - Drops a saved query
+   * - :ref:`drop_statistics_for_columns`
+     - 
+   * - :ref:`dump_database_ddl`
+     - View the ``CREATE TABLE`` statement for a current database
    * - :ref:`execute_saved_query`
      - Executes a previously saved query
    * - :ref:`explain`
      - Returns a static query plan, which can be used to debug query plans
-   * - :ref:`recompile_saved_query`
-     - Recompiles a saved query that has been invalidated due to a schema change
+   * - :ref:`fetch_column_histogram`
+     - 
    * - :ref:`get_ddl`
      - View the ``CREATE TABLE`` statement for a table
    * - :ref:`get_function_ddl`
@@ -153,12 +161,18 @@ Utility Commands
      - View the ``CREATE VIEW`` statement for a view
    * - :ref:`recompile_view`
      - Recreate a view after schema changes
-   * - :ref:`dump_database_ddl`
-     - View the ``CREATE TABLE`` statement for a current database
-   * - :ref:`shutdown_server_command`
-     - Sets your server to finish compiling all active queries before shutting down according to a user-defined time value
+   * - :ref:`recompile_saved_query`
+     - Recompiles a saved query that has been invalidated due to a schema change
    * - :ref:`save_query`
      - Saves query execution plan
+   * - :ref:`shutdown_server_command`
+     - Sets your server to finish compiling all active queries before shutting down according to a user-defined time value
+   * - :ref:`statistics_request_abort`
+     - 
+   * - :ref:`statistics_request_status`
+     - 
+
+
 
 Access Control Commands
 =======================
