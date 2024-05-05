@@ -25,13 +25,6 @@ Syntax
 	COLUMNS <column_name> [, ...]
 	| ALL COLUMNS }
 
-	-- Deleting statistics
-
-	ALTER TABLE 
-	  <table_name> 
-	DROP STATISTICS FOR COLUMNS 
-	  <olumn_name> [, ...]
-
 	-- Querying statistics
 
 	DESCRIBE COLUMNS TABLE <table_name>
@@ -41,6 +34,23 @@ Syntax
 	-- Saving statistics
 
 	ALTER TABLE STORE STATISTICS
+
+	-- Analyzing statistics status
+
+	STATISTICS REQUEST STATUS [sessionId '<session_id>'] queryId '<query_id'>
+
+	-- Deleting statistics
+
+	ALTER TABLE 
+	  <table_name> 
+	DROP STATISTICS FOR COLUMNS 
+	  <olumn_name> [, ...]
+
+	-- Aborting Statistics
+
+	STATISTICS REQUEST ABORT [sessionId '<session_id>'] queryId '<query_id'>
+
+
 
 Parameters
 ==========
@@ -58,9 +68,18 @@ Parameters
    * - ``column_name``
      - :ref:`Identifier<keywords_and_identifiers>`
      - Identifies the column for which to apply statistics
+   * - ``session_id``
+     - :ref:`String literal<literals>`
+     - Specifies the session ID
+   * - ``query_id``
+     - :ref:`String literal<literals>`
+     - Specifies the query ID
+
 
 Examples
 ========
+
+
 
 Permissions
 ===========
