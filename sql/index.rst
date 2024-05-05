@@ -1,8 +1,8 @@
 .. _sql:
 
-***************************
-SQL Statements and Syntax
-***************************
+************
+SQL
+************
 
 This section provides reference for using BLUE SQL statements.
 
