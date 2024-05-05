@@ -1,4 +1,4 @@
-.. _index:
+.. _cost_based_optimizer:
 
 ********************
 Cost-Based Optimizer
