@@ -26,8 +26,6 @@ Syntax
 	 }
 
 	-- Querying statistics:
-	DESCRIBE COLUMNS TABLE '<table_name>'
-
 	SELECT fetch_column_histogram('<table_name>', '<column_name>')
 
 	-- Saving statistics:
