@@ -6,11 +6,11 @@
 Tableau
 *******
 
-SQream's Tableau connector, based on standard JDBC, enables storing and fast querying large volumes of data. This connector is useful for users who want to integrate and analyze data from various sources within the Tableau platform. With the Tableau connector, users can easily connect to databases and cloud applications and perform high-speed queries on large datasets. Additionally, the connector allows for seamless integration with Tableau, enabling users to visualize their data.
+BLUE's Tableau connector, based on standard JDBC, enables storing and fast querying large volumes of data. This connector is useful for users who want to integrate and analyze data from various sources within the Tableau platform. With the Tableau connector, users can easily connect to databases and cloud applications and perform high-speed queries on large datasets. Additionally, the connector allows for seamless integration with Tableau, enabling users to visualize their data.
 
-SQream supports both Tableau Desktop and Tableau Server on Windows, MacOS, and Linux distributions.
+BLUE supports both Tableau Desktop and Tableau Server on Windows, MacOS, and Linux distributions.
 
-For more information on SQream's integration with Tableau, see `Tableau Connectors <https://extensiongallery.tableau.com/connectors?version=2019.4>`_.
+For more information on BLUE's integration with Tableau, see `Tableau Connectors <https://extensiongallery.tableau.com/connectors?version=2019.4>`_.
 
 
 Prerequisites
@@ -23,7 +23,7 @@ It is essential that you have the following installed:
 Setting Up JDBC
 ----------------
 
-#. Download the SQream JDBC Connector :ref:`.jar file <client_drivers>`.
+#. Download the :ref:`JDBC Connector <java_jdbc>`.
 #. Place the JDBC ``.jar`` file in the Tableau driver directory.
 
    Based on your operating system, you may find the Tableau driver directory in one of the following locations:
@@ -62,7 +62,7 @@ Installing the Tableau Connector
 
 3. Restart Tableau Desktop or Tableau server.
 
-Connecting to SQream
+Connecting to BLUE
 --------------------
 
 
@@ -90,10 +90,10 @@ Information about step 4 fields:
      - Description
      - Example
    * - Server
-     - Defines the server of the SQream worker.
+     - Defines the server of the BLUE worker.
      - ``127.0.0.1`` or ``sqream.mynetwork.co``
    * - Port
-     - Defines the TCP port of the SQream worker.
+     - Defines the TCP port of the BLUE worker.
      - ``3108`` when using a load balancer, or ``5100`` when connecting directly to a worker with SSL.
    * - Database
      - Defines the database to establish a connection with.

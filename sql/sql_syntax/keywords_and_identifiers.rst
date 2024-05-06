@@ -14,7 +14,7 @@ Identifiers are sometimes referred to as "names".
 Unquoted identifiers must follow these rules:
 
 * Must not contain a whitespace character or any special characters except for underscores (``_``)
-* Must be case-insensitive. SQream converts all identifiers to lowercase unless quoted
+* Must be case-insensitive. BLUE converts all identifiers to lowercase unless quoted
 * Does not equal any keywords, such as ``SELECT``, ``OR``, ``AND``, etc'
 
 To bypass the rules above you can surround an identifier with double quotes (``"``).
@@ -72,7 +72,7 @@ Keywords
 
 Identifiers are different than **keywords**, which are predefined words reserved with specific meanings in a statement. Some examples of keywords are ``SELECT``, ``CREATE``, and ``WHERE``. Note that keywords **cannot** be used as identifiers.
 
-SQreamDB reserved keywords:
+BLUE reserved keywords:
 
 .. list-table:: 
    :widths: auto

@@ -2,9 +2,9 @@
 
 .. _java_jdbc:
 
-*****************************
-Connecting to BLUE Using JDBC
-*****************************
+****
+JDBC
+****
 
 The BLUE JDBC driver lets you connect to BLUE using many Java applications and tools.
 

@@ -8,8 +8,6 @@ Pentaho Data Integration
 
 This document is a Quick Start Guide that describes how to install Pentaho, create a transformation, and define your output. 
 
-The Connecting to SQream Using Pentaho page describes the following:
-
 Installing Pentaho
 ~~~~~~~~~~~~~~~~~~
 
@@ -27,9 +25,9 @@ Installing and Setting Up the JDBC Driver
 
 After installing Pentaho you must install and set up the JDBC driver. This section explains how to set up the JDBC driver using Pentaho. These instructions use Spoon, the graphical transformation and job designer associated with the PDI suite.
 
-You can install the driver by copying and pasting the SQream JDBC .jar file into your **<directory>/design-tools/data-integration/lib** directory. 
+You can install the driver by copying and pasting the :ref:`BLUE JDBC <java_jdbc>` .jar file into your **<directory>/design-tools/data-integration/lib** directory. 
 
-**NOTE:** Contact your SQream license account manager for the JDBC .jar file.
+
 
 
 Creating a Transformation
@@ -118,13 +116,13 @@ After creating your transformation you must define your output.
         - Select **Native (JDBC)**.
       * - 4
         - Custom connection URL
-        - Insert **jdbc:Sqream://<host:port>/<database name>;user=<username>;password=<password>;[<optional parameters>; ...];**. The IP is a node in your SQream cluster and is the name or schema of the database you want to connect to. Verify that you have not used any leading or trailing spaces.
+        - Insert **jdbc:Sqream://<host:port>/<database name>;user=<username>;password=<password>;[<optional parameters>; ...];**. The IP is a node in your BLUE cluster and is the name or schema of the database you want to connect to. Verify that you have not used any leading or trailing spaces.
       * - 5
         - Custom driver class name
         - Insert **com.sqream.jdbc.SQDriver**. Verify that you have not used any leading or trailing spaces.
       * - 6
         - Username
-        - Your SQreamdb username. If you leave this blank, you will be prompted to provide it when you connect.	 
+        - Your BLUE username. If you leave this blank, you will be prompted to provide it when you connect.	 
       * - 7
         - Password
         - Your password. If you leave this blank, you will be prompted to provide it when you connect.

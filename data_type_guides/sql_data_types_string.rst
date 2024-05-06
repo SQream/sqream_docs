@@ -4,7 +4,7 @@
 String
 ******
 
-``TEXT`` is designed for storing text or strings of characters. SQreamDB blocks non-UTF8 string inputs. 
+``TEXT`` is designed for storing text or strings of characters. BLUE blocks non-UTF8 string inputs. 
 
 Length
 ^^^^^^
@@ -13,7 +13,7 @@ When using ``TEXT``, specifying a size is optional. If not specified, the text f
 
 The following apply to setting the String type length:
 
-* If the data exceeds the column length limit on ``INSERT`` or ``COPY`` operations, SQreamDB will return an error.
+* If the data exceeds the column length limit on ``INSERT`` or ``COPY`` operations, BLUE will return an error.
 * When casting or converting, the string has to fit in the target. For example, ``'Kiwis are weird birds' :: TEXT(5)`` will return an error. Use ``SUBSTRING`` to truncate the length of the string.
 
 Syntax
@@ -25,7 +25,7 @@ String types can be written with standard SQL string literals, which are enclose
 Size
 ^^^^
 
-``TEXT(n)`` can occupy up to *4*n* bytes. However, the size of strings is variable and is compressed by SQreamDB.
+``TEXT(n)`` can occupy up to *4*n* bytes. However, the size of strings is variable and is compressed by BLUE.
 
 String Examples
 ^^^^^^^^^^^^^^^

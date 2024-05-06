@@ -1,8 +1,26 @@
 .. _blue_tour:
 
-***********************
-BLUE Tour
-***********************
+***************
+BLUE Quick Tour
+***************
+
+Execute Queries
+===============
+
+Work with Jobs
+==============
+
+Monitor Activity
+================
+
+Manage Cluster Permissions
+==========================
+
+Administrate Cluster
+====================
+
+Review Work Trends
+==================
 
 .. toctree::
    :maxdepth: 1

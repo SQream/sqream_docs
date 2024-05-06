@@ -11,7 +11,7 @@ This page provides the necessary information for establishing a connection to BL
 Before You Begin
 ================
 
-* The BLUE JDBC driver requires Java 1.8 or newer
+* Java 1.8 or newer
 * Download the :ref:`BLUE JDBC driver<java_jdbc>`
 
 Connection String 
@@ -49,40 +49,13 @@ Connection Parameters
      - A BLUE access token
      - ``RFlFblB2WVpIQmVBalpNRE9JU2dTUFN4MHZvcFZwb1Z5Q21YaD``
 	 
-Establishing a Connection
-=========================
+URL Template Example
+--------------------
 
-1. Open your DBeaver application.
+.. code-block:: java
 
-2. Under **Database**, select **New Database Connection**.
+	jdbc:Sqream://sqream.isqream.com:443/master;accessToken=RFlFblB2WVpIQmVBalpNRE9JU2dTUFN4MHZvcFZwb1Z5Q21YaD
 
-   The **Connect to a database** window opens.
-   
-3. Select **All**, search for **SQreamDB**, and select **Next**.
-
-4. In the **Main** tab, select **Driver Settings**.
-
-   The **Edit Driver 'SQreamDB'** window opens.
-
-5. Go to the **Libraries** tab and select **Add File**.
-
-6. Navigate to the location of your BLUE JDBC driver, select it and select **Open**.
-
-7. Click on the file path you had added and select **Find Class**.
-
-8. In the **Driver class** box, select ``jdbc.BlueDriver`` and select **OK**.
- 
-9. Under the **Main** tab, set **Connected by** to **URL** and enter your connection string parameters and values. 
-
-   Example:
-
-   .. code-block:: java
-
-		jdbc:Sqream://sqream.isqream.com:443/master;accessToken=RFlFblB2WVpIQmVBalpNRE9JU2dTUFN4MHZvcFZwb1Z5Q21YaD
-	
-10. Select **Finish**.
-
-11. Under **Database**, select **Connect**.
 
 
 

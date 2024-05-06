@@ -10,7 +10,7 @@ TIBCO Spotfire
 The **TIBCO Spotfire** software is an analytics solution that enables visualizing and exploring data through dashboards and advanced analytics.
 
    
-Establishing a Connection between TIBCO Spotfire and SQream
+Establishing a Connection between TIBCO Spotfire and BLUE
 -----------------------------------------------------------
 
 TIBCO Spotfire supports the following versions:
@@ -18,12 +18,12 @@ TIBCO Spotfire supports the following versions:
 * **JDBC driver** - Version 4.5.2 
 * **ODBC driver** - Version 4.1.1
 
-SQream supports TIBCO Spotfire version 7.12.0.
+BLUE supports TIBCO Spotfire version 7.12.0.
    
 Creating a JDBC Connection
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For TIBCO Spotfire to recognize SQream, you must add the correct JDBC jar file to Spotfire's loaded binary folder. The following is an example of a path to the Spotfire loaded binaries folder: ``C:\tibco\tss\7.12.0\tomcat\bin``.
+For TIBCO Spotfire to recognize BLUE, you must add the correct JDBC jar file to Spotfire's loaded binary folder. The following is an example of a path to the Spotfire loaded binaries folder: ``C:\tibco\tss\7.12.0\tomcat\bin``.
 
 For the complete TIBCO Spotfire documentation, see `TIBCO Spotfire® JDBC Data Access Connectivity Details <https://community.tibco.com/wiki/tibco-spotfire-jdbc-data-access-connectivity-details>`_. 
 
@@ -47,11 +47,11 @@ Creating an ODBC Connection
 
    The **Open Database** window is displayed.
 
-#. In the **Data source type** area, select **ODBC SQream** (Odbc Data Provider) and click **Configure**.
+#. In the **Data source type** area, select **ODBC BLUE** (Odbc Data Provider) and click **Configure**.
 
    The **Configure Data Source and Connection** window is displayed.
    
-#. Select **System or user data source** and from the drop-down menu select the DSN of your data source (SQreamDB).
+#. Select **System or user data source** and from the drop-down menu select the DSN of your data source.
 
 
 #. Provide your database username and password and click **OK**.
@@ -72,12 +72,12 @@ Creating an ODBC Connection
 
 .. note:: Verify that you have checked the SQL statement. 
 
-Creating the SQream Data Source Template
+Creating the BLUE Data Source Template
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-After creating a connection, you can create your SQream data source template.
+After creating a connection, you can create your BLUE data source template.
 
-**To create your SQream data source template:**
+**To create your BLUE data source template:**
 
 1. Log in to the TIBCO Spotfire Server Configuration Tool.
 
@@ -168,7 +168,7 @@ After creating a connection, you can create your SQream data source template.
 Creating a Data Source
 ~~~~~~~~~~~~~~~~~~~~~~
 
-After creating the SQream data source template, you can create a data source.
+After creating the BLUE data source template, you can create a data source.
 
 **To create a data source:**
 
@@ -194,7 +194,7 @@ After creating the SQream data source template, you can create a data source.
    
 
 	  
-   * **Type** - use the same type template name you used while configuring your template. See **Step 3** in :ref:`Creating the SQream Data Source Template<creating_sqream_data_source_template>`.
+   * **Type** - use the same type template name you used while configuring your template. See **Step 3** in :ref:`Creating the BLUE Data Source Template<creating_sqream_data_source_template>`.
    
 
 	  
@@ -202,11 +202,11 @@ After creating the SQream data source template, you can create a data source.
    
 
 	  
-   * **No. of connections** - define a number between **1** and **100**. SQream recommends setting your number of connections to **100**.
+   * **No. of connections** - define a number between **1** and **100**. BLUE recommends setting your number of connections to **100**.
    
 
 	  
-   * **Username and Password** - define your SQream username and password.   
+   * **Username and Password** - define your BLUE username and password.   
 
 Creating an Information Link
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -342,6 +342,6 @@ For more information, see the following:
 Information Services do not Support Live Queries
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-TIBCO Spotfire data connectors support live queries, but no APIs currently exist for creating custom data connectors. This is resolved by creating a customized SQream adapter using TIBCO's **Data Virtualization (TDV)** or the **Spotfire Advanced Services (ADS)**. These can be used from the built-in TDV connector to enable live queries.
+TIBCO Spotfire data connectors support live queries, but no APIs currently exist for creating custom data connectors. This is resolved by creating a customized BLUE adapter using TIBCO's **Data Virtualization (TDV)** or the **Spotfire Advanced Services (ADS)**. These can be used from the built-in TDV connector to enable live queries.
 
 This resolution applies to JDBC and ODBC drivers.

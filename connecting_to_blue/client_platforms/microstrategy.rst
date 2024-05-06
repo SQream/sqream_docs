@@ -11,7 +11,7 @@ This document is a Quick Start Guide that describes how to install MicroStrategy
 What is MicroStrategy?
 ======================
 
-MicroStrategy is a Business Intelligence software offering a wide variety of data analytics capabilities. SQream uses the MicroStrategy connector for reading and loading data into SQream.
+MicroStrategy is a Business Intelligence software offering a wide variety of data analytics capabilities. BLUE uses the MicroStrategy connector for reading and loading data into BLUE.
 
 MicroStrategy provides the following:
 
@@ -29,7 +29,7 @@ Connecting a Data Source
 
 1. Activate the **MicroStrategy Desktop** app. The app displays the Dossiers panel to the right.
 	
-2. Download the most current version of the `SQream JDBC driver <https://docs.sqream.com/en/v2022.1/connecting_to_sqream/client_drivers/index.html>`_.
+2. Download the :ref:`JDBC driver <java_jdbc>`
 
 3. Click **Dossiers** and **New Dossier**. The **Untitled Dossier** panel is displayed.
 	
@@ -70,8 +70,8 @@ Connecting a Data Source
 	
    5. From the **Driver** dropdown menu, select a driver for one of the following connectors:
 
-      * **JDBC** - The SQream driver is not integrated with MicroStrategy and does not appear in the dropdown menu. However, to proceed, you must select an item, and in the next step you must specify the path to the SQream driver that you installed on your machine.
-      * **ODBC** - SQreamDB ODBC
+      * **JDBC** - The BLUE driver is not integrated with MicroStrategy and does not appear in the dropdown menu. However, to proceed, you must select an item, and in the next step you must specify the path to the BLUE driver that you installed on your machine.
+      * **ODBC** - BLUE ODBC
 
 
 
@@ -99,10 +99,10 @@ Connecting a Data Source
 
 
 	   
-   8. In the **Data Source Name** field, type **SQreamDB**.
+   8. In the **Data Source Name** field, type **BLUE**.
 
 	    
-   9. Click **Save**. The SQreamDB that you picked in the Data Source panel is displayed.
+   9. Click **Save**. The BLUE that you picked in the Data Source panel is displayed.
    
 
 9. In the **Namespace** menu, select a namespace. The tables files are displayed.
@@ -131,13 +131,6 @@ Your populated dashboard is displayed and is ready for data discovery and analyt
    
 
 
-Supported SQream Drivers
-========================
-
-The following list shows the supported SQream drivers and versions:
-
-* **JDBC** - Version 4.3.3 and higher.
-* **ODBC** - Version 4.0.0.
 
 
 

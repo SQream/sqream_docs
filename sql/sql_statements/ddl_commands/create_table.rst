@@ -160,7 +160,7 @@ For more information on creating a new table from the results of a ``SELECT`` qu
 Creating a Table with a Clustering Key
 --------------------------------------
 
-When data within a table is organized in a sorted manner, the columns responsible for this sorting are termed as clustered. Effective clustering can greatly enhance performance. For instance, in the scenario provided, the ``start_date`` column is anticipated to naturally cluster due to the continuous influx of new users and their corresponding start dates. However, in cases where the clustering of incoming data isn't inherent, SQreamDB will automatically cluster it during insertion or bulk loading processes once the clustering key is set.
+When data within a table is organized in a sorted manner, the columns responsible for this sorting are termed as clustered. Effective clustering can greatly enhance performance. For instance, in the scenario provided, the ``start_date`` column is anticipated to naturally cluster due to the continuous influx of new users and their corresponding start dates. However, in cases where the clustering of incoming data isn't inherent, BLUE will automatically cluster it during insertion or bulk loading processes once the clustering key is set.
 
 .. code-block:: postgres
 
