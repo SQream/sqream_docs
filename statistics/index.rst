@@ -17,33 +17,19 @@ Syntax
 .. code-block:: postgres
 
 	-- Initiating statistics collection:
-	ANALYZE TABLE 
-	  '<table_name>' 
-	COMPUTE STATISTICS FOR 
-	{
-	COLUMNS '<column_name>' [, ...]
-	| ALL COLUMNS 
-	 }
-
-	-- Querying statistics:
-	SELECT FETCH_COLUMN_HISTOGRAM("<table_name>", "<column_name>")
-
-	-- Saving statistics:
-	ALTER TABLE STORE STATISTICS
+	ANALYZE TABLE '<table_name>' COMPUTE STATISTICS FOR { COLUMNS '<column_name>' [, ...] | ALL COLUMNS }
 
 	-- Analyzing statistics status:
 	STATISTICS REQUEST STATUS [sessionId '<session_id>'] queryId '<query_id>'
 
-	-- Deleting statistics:
-	ALTER TABLE 
-	  '<table_name>' 
-	DROP STATISTICS FOR COLUMNS 
-	  '<column_name>' [, ...]
+	-- Querying statistics:
+	SELECT FETCH_COLUMN_HISTOGRAM("<table_name>", "<column_name>")
 
 	-- Aborting Statistics:
 	STATISTICS REQUEST ABORT [sessionId '<session_id>'] queryId '<query_id>'
 
-
+	-- Deleting statistics:
+	ALTER TABLE '<table_name>' DROP STATISTICS FOR COLUMNS '<column_name>' [, ...]
 
 Parameters
 ==========
@@ -114,23 +100,6 @@ Output:
 .. code-block:: none
 
 
-
-Deleting Statistics Operation
------------------------------
-
-.. code-block:: postgres
-
-	ALTER TABLE
-	  "lineitem"
-	DROP STATISTICS FOR COLUMNS
-	  "l_orderkey";
-
-Output:
-
-.. code-block:: none
-
-
-
 Aborting Statistics Operation
 -----------------------------
 
@@ -141,6 +110,23 @@ Aborting Statistics Operation
 Output:
 
 .. code-block:: none
+
+	Error: Aborted.
+
+Deleting Statistics Operation
+-----------------------------
+
+.. code-block:: postgres
+
+	ALTER TABLE "lineitem" DROP STATISTICS FOR COLUMNS "l_orderkey";
+
+Output:
+
+.. code-block:: none
+
+
+
+
 
 
 Permissions

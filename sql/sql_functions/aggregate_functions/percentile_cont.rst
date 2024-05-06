@@ -3,7 +3,7 @@
 .. _percentile_cont:
 
 **************************
-PERCENTILE_CONT
+PERCENTILE CONT
 **************************
 The **PERCENTILE_CONT** function returns the value located in the selected percentile of a specified column. The required input is a number between **0** and **1** that represents the wanted percentile and the column containing the wanted percentile. If the selected percentile does not have an exact value, the PERCENTILE_CONT function extrapolates a value estimated from the existing values.
 

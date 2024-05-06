@@ -3,7 +3,7 @@
 .. _percentile_disc:
 
 ***************
-PERCENTILE_DISC
+PERCENTILE DISC
 ***************
 
 The **PERCENTILE_DISC** function returns the value located in the selected percentile of a specified column. The required input is a number between **0** and **1** that represents the wanted percentile and the column that you want to rank. If the selected percentile does not have an exact value, this function returns the closest value beneath the requested percentile.

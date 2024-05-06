@@ -182,6 +182,8 @@ Numeric Functions
      - Converts a value from degree values to radians
    * - :ref:`round`
      - Rounds an argument down to the nearest integer, or an arbitrary precision
+   * - :ref:`sign`
+     - Returns a value of -1, 0, or 1, depending on the sign of the input argument
    * - :ref:`sin`
      - Calculates the sine  of an argument
    * - :ref:`sqrt`
@@ -302,6 +304,12 @@ The following table shows the **aggregate** functions:
    * - :ref:`min`
      -
      - Returns minimum value of all values
+   * - :ref:`percentile_cont`
+     - 
+     - Returns the value located in the selected percentile of a specified column
+   * - :ref:`percentile_disc`
+     - 
+     - Returns an exact value located in the selected percentile of a specified column based on the closest values in your data to the requested percentile		
    * - :ref:`stddev_pop`
      - ``stdevp``
      - Calculates population standard deviation of values
@@ -355,4 +363,6 @@ The following table shows the **window** functions:
    * - :ref:`sum`
      - Calculates the sum of all of the values  
    * - :ref:`rank`
-     - Calculates the rank of a row	 
+     - Calculates the rank of a row	
+   * - :ref:`row_number`
+     - Returns the row number of each row within the partition of a result set   
