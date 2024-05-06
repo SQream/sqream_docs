@@ -72,7 +72,8 @@ Parameters
 Examples
 ========
 
-Initiating statistics collection:
+Initiating Statistics Collection
+--------------------------------
 
 .. code-block:: postgres
 
@@ -86,11 +87,12 @@ Output:
 	------------------------------------+--------+
 	bda37dc1-8917-4e76-bcee-c139a7864948|23      |
 	
-Analyzing statistics request status:
+Analyzing Statistics Request Status
+-----------------------------------
 
 .. code-block:: postgres
 
-	STATISTICS REQUEST STATUS  queryId '23';
+	STATISTICS REQUEST STATUS queryId '23';
 
 Output:
 
@@ -100,7 +102,8 @@ Output:
 	------------------------------------+--------+-----------------------+--------------------+----------------+---------+--------------+-----------------+-------------+
 	bda37dc1-8917-4e76-bcee-c139a7864948|23      |2024-05-06 11:12:55.121|NULL                |NULL            |SUBMITTED|0             |0                |NULL         |
 	
-Querying statistics:
+Querying Statistics
+-------------------
 
 .. code-block:: postgres
 
@@ -112,7 +115,8 @@ Output:
 
 
 
-Deleting statistics operation:
+Deleting Statistics Operation
+-----------------------------
 
 .. code-block:: postgres
 
@@ -127,7 +131,8 @@ Output:
 
 
 
-Aborting Statistics Operation:
+Aborting Statistics Operation
+-----------------------------
 
 .. code-block:: postgres
 
