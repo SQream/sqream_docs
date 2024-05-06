@@ -1,3 +1,5 @@
+:orphan:
+
 .. _scalar_sql_udf:
 
 **************
@@ -6,12 +8,8 @@ Scalar SQL UDF
 
 A **scalar SQL UDF** is a user-defined function that returns a single value, such as the sum of a group of values. Scalar UDFs are different than table-value functions, which return a result set in the form of a table.
 
-This page describes the correct syntax when building simple scalar UDFs and provides three examples.
-
 Syntax
 ======
-
-The following example shows the correct syntax for simple scalar SQL UDF's returning the type name:
 
 .. code-block:: console
 

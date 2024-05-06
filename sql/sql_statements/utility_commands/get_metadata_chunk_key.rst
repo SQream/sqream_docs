@@ -1,3 +1,5 @@
+:orphan:
+
 .. _get_metadata_chunk_key:
 
 **********************

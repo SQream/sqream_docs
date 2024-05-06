@@ -1,8 +1,8 @@
 .. _syntax_notation:
 
-*************************
-Syntax Notation
-*************************
+********
+Notation
+********
 
 
 .. list-table:: 

@@ -1,3 +1,5 @@
+:orphan:
+
 .. _get_all_roles_database_ddl:
 
 **************************

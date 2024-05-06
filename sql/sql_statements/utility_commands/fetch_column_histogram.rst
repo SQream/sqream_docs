@@ -1,3 +1,5 @@
+:orphan:
+
 .. _fetch_column_histogram:
 
 **********************

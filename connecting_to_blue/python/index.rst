@@ -1,8 +1,11 @@
+:orphan:
+
 .. _pysqream:
 
-===============================
-Connecting to BLUE Using Python
-===============================
+
+********
+Pysqream
+********
 
 The BLUE Python connector is a set of packages that allows Python programs to connect to BLUE.
 
@@ -22,7 +25,7 @@ It is essential that you have:
 Installing the Python Connector
 ===============================
 
-The Python connector is installed via ``pip``, the Python package manager and installer. It is available for download via `PyPi <https://pypi.org/project/pysqream-blue/>`_. We recommend upgrading to the latest version of ``pip`` before installing.
+The Python connector is installed via ``pip``, the Python package manager and installer. It is available for download via `pysqream-blue <https://pypi.org/project/pysqream-blue/>`_. We recommend upgrading to the latest version of ``pip`` before installing.
 
 Upgrading ``pip``
 -----------------
@@ -75,7 +78,7 @@ SQLAlchemy is an Object-Relational Mapper (ORM) for Python. Installing the ``pys
 
 To use BLUE with SQLAlchemy, it is essential that you:
 
-* Download the ``pysqream-blue-sqlalchemy`` dialect through `PyPi <https://pypi.org/project/pysqream-blue-sqlalchemy/>`_
+* Download the ``pysqream-blue-sqlalchemy`` dialect through `pysqream-blue-sqlalchemy <https://pypi.org/project/pysqream-blue-sqlalchemy/>`_
 * :download:`Download <SQLAlchemy_blue_requirements.txt>` and run the dialect requirements file
 
 SQLAlchemy

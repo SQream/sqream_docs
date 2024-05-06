@@ -1,3 +1,5 @@
+:orphan:
+
 .. _alter_table_store_statistics:
 
 ****************************

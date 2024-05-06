@@ -1,3 +1,5 @@
+:orphan:
+
 .. _drop_clustering_key:
 
 **********************

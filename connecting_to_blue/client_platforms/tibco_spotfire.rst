@@ -1,3 +1,5 @@
+:orphan:
+
 .. _tibco_spotfire:
 
 **************

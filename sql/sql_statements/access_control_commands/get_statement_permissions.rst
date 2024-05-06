@@ -1,3 +1,5 @@
+:orphan:
+
 .. _get_statement_permissions:
 
 ****************************

@@ -1,3 +1,5 @@
+:orphan:
+
 .. _connect_to_sas_viya:
 
 ********

@@ -1,3 +1,5 @@
+:orphan:
+
 .. _rename_schema:
 
 *************

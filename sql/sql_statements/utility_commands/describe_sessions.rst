@@ -1,3 +1,5 @@
+:orphan:
+
 .. _describe_sessions:
 
 *****************

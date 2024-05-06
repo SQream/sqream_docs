@@ -9,8 +9,6 @@ BLUE supports functions from ANSI SQL, as well as others for compatibility.
 Built-In Scalar Functions
 -------------------------
 
-For more information about built-in scalar functions, see :ref:`scalar_functions`.
-
 Bitwise Operations
 ^^^^^^^^^^^^^^^^^^
 
@@ -141,9 +139,6 @@ Numeric Functions
      - ``a % b``
      - Modulu of ``a`` by ``b``. See also :ref:`mod`
 
-For more information about arithmetic operators, see :ref:`arithmetic_operators`.
-
-The following table shows the **arithmetic operator** functions:
 
 .. list-table:: Arithemtic Operator Functions
    :widths: auto
@@ -265,7 +260,13 @@ Strings Functions
 User-Defined Scalar Functions
 -----------------------------
 
-For more information about user-defined scalar functions, see :ref:`scalar_sql_udf`.
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Function
+   * - :ref:`scalar_sql_udf`
+   * - :ref:`simple_scalar_sql_udf`
 
 
 Aggregate Functions
@@ -301,23 +302,22 @@ The following table shows the **aggregate** functions:
    * - :ref:`min`
      -
      - Returns minimum value of all values
-   * - :ref:`sum`
-     - 
-     - Calculates the sum of all of the values or only distinct values
-   * - :ref:`stddev_samp`
-     - ``stdev``, ``stddev``
-     - Calculates sample standard deviation of values
    * - :ref:`stddev_pop`
      - ``stdevp``
      - Calculates population standard deviation of values
-   * - :ref:`var_samp`
-     - ``var``, ``variance``
-     - Calculates sample variance of values
+   * - :ref:`stddev_samp`
+     - ``stdev``, ``stddev``
+     - Calculates sample standard deviation of values
+   * - :ref:`sum`
+     - 
+     - Calculates the sum of all of the values or only distinct values
    * - :ref:`var_pop`
      - ``varp``
      - Calculates population variance of values
+   * - :ref:`var_samp`
+     - ``var``, ``variance``
+     - Calculates sample variance of values
 
-For more information about aggregate functions, see :ref:`aggregate_functions`.
 
 Window Functions
 ----------------
@@ -330,10 +330,24 @@ The following table shows the **window** functions:
    
    * - Function
      - Description
+   * - :ref:`cume_dist`
+     - Returns the cumulative distribution of rows
+   * - :ref:`dense_rank`
+     - Returns the rank of the current row with no gaps
+   * - :ref:`first_value`
+     - Returns the value in the first row of a window
    * - :ref:`lag`
      - Calculates the value evaluated at the row that is before the current row within the partition
+   * - :ref:`last_value`
+     - Returns the value in the last row of a window
    * - :ref:`lead`
      - Calculates the value evaluated at the row that is after the current row within the partition
+   * - :ref:`nth_value`
+     - Returns the value in a specified ``(n)`` row of a window
+   * - :ref:`ntile`
+     - Returns an integer ranging between ``1`` and the argument value, dividing the partitions as equally as possible
+   * - :ref:`percent_rank`
+     - Returns the relative rank of the current row
    * - :ref:`max`
      - Calculates the maximum value
    * - :ref:`min`
@@ -342,32 +356,3 @@ The following table shows the **window** functions:
      - Calculates the sum of all of the values  
    * - :ref:`rank`
      - Calculates the rank of a row	 
-   * - :ref:`first_value`
-     - Returns the value in the first row of a window
-   * - :ref:`last_value`
-     - Returns the value in the last row of a window
-   * - :ref:`nth_value`
-     - Returns the value in a specified ``(n)`` row of a window
-   * - :ref:`dense_rank`
-     - Returns the rank of the current row with no gaps
-   * - :ref:`percent_rank`
-     - Returns the relative rank of the current row
-   * - :ref:`cume_dist`
-     - Returns the cumulative distribution of rows
-   * - :ref:`ntile`
-     - Returns an integer ranging between ``1`` and the argument value, dividing the partitions as equally as possible
-
-For more information about window functions, see :ref:`window_functions`.
-
-
-
-.. toctree::
-   :maxdepth: 2
-   :caption: All Functions:
-   :hidden:
-   :glob:
-
-   scalar_functions/index
-   user_defined_functions/index
-   aggregate_functions/index
-   window_functions/index

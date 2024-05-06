@@ -1,3 +1,5 @@
+:orphan:
+
 .. _drop_statistics_for_columns:
 
 ***************************

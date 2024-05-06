@@ -1,3 +1,5 @@
+:orphan:
+
 .. _get_all_roles_global_ddl:
 
 **************************
@@ -44,7 +46,5 @@ Using the ``GET_ALL_ROLES_GLOBAL_DDL`` statement requires no special permissions
 For more information, see the following:
 
 * :ref:`get_all_roles_database_ddl`
-
-    ::
 	
 * :ref:`get_role_permissions`

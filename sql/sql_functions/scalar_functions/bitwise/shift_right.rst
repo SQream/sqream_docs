@@ -1,3 +1,5 @@
+:orphan:
+
 .. _bitwise_shift_right:
 
 ******************************

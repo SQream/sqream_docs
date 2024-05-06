@@ -1,24 +1,19 @@
+:orphan:
+
 .. _get_role_database_ddl:
 
 *********************
-GET_ROLE_DATABASE_DDL
+GET ROLE DATABASE DDL
 *********************
 
 The ``GET_ROLE_DATABASE_DDL`` statement returns the definition of a role's database in DDL format.
 
-The ``GET_ROLE_DATABASE_DDL`` page describes the following:
-
-
-
 Syntax
 ======
 
-The following is the correct syntax for using the ``GET_ROLE_DATABASE_DDL`` statement:
-
 .. code-block:: postgres
 
-   select get_role_database_ddl(<'role_name'>)
-
+   SELECT GET_ROLE_DATABASE_DDL(<'role_name'>)
 
 
 Parameters
@@ -52,7 +47,7 @@ The following is an example of using the ``GET_ROLE_DATABASE_DDL`` statement:
 
 .. code-block:: psql
 
-   select get_role_database_ddl('public');
+   SELECT GET_ROLE_DATABASE_DDL('public');
    
 Permissions
 ===========
@@ -62,7 +57,5 @@ Using the ``GET_ROLE_DATABASE_DDL`` statement requires no special permissions.
 For more information, see the following:
 
 * :ref:`get_role_global_ddl`
-
-    ::
 	
 * :ref:`get_role_permissions`

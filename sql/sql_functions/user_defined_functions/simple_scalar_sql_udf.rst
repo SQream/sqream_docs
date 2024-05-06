@@ -1,3 +1,5 @@
+:orphan:
+
 .. _simple_scalar_sql_udf:
 
 **********************
@@ -6,8 +8,6 @@ Simple Scalar SQL UDFs
 
 Syntax
 ======
-
-The following example shows the correct syntax for simple scalar SQL UDF's:
 
 .. code-block:: postgres
 

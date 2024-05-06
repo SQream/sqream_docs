@@ -1,3 +1,5 @@
+:orphan:
+
 .. _micro_strategy:
 
 *************

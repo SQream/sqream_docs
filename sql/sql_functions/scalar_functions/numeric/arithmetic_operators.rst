@@ -1,3 +1,5 @@
+:orphan:
+
 .. _arithmetic_operators:
 
 **************************

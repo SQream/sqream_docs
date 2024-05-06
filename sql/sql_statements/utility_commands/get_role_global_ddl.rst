@@ -1,17 +1,19 @@
-.. _get_role_database_ddl:
+:orphan:
+
+.. _get_role_global_ddl:
 
 *********************
-GET_ROLE_DATABASE_DDL
+GET ROLE GLOBAL DDL
 *********************
 
-The ``GET_ROLE_DATABASE_DDL`` statement returns the definition of a role's database in DDL format.
+The ``GET_ROLE_GLOBAL_DDL`` statement returns the definition of a role's database in DDL format.
 
 Syntax
 ======
 
 .. code-block:: postgres
 
-	SELECT GET_ROLE_DATABASE_DDL("<role_name>")
+	SELECT GET_ROLE_GLOBAL_DDL("<role_name>")
 
 Parameters
 ==========
@@ -30,17 +32,17 @@ Example
 
 .. code-block:: postgres
 
-   SELECT GET_ROLE_DATABASE_DDL("public");
+   SELECT GET_ROLE_GLOBAL_DDL("public");
 
 Output:
 
 .. code-block:: console
 
-	Name|Value                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-	----+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-	ddl |grant create, usage on schema "master"."public" to "public" ;alter default schema for "public" to "master"."public";alter default permissions for "public" for schemas grant superuser to creator_role ;alter default permissions for "public" for tables grant select, insert, delete, update, ddl to creator_role ;alter default permissions for "public" for external tables grant select, ddl to creator_role ;alter default permissions for "public" for views grant select, ddl to creator_role ;|
+	ddl                                                          |
+	-------------------------------------------------------------+
+	create role "sqream";  grant superuser, login to "sqream" ;  |
 
 Permissions
 ===========
 
-Using the ``GET_ROLE_DATABASE_DDL`` statement requires no special permissions.
+Using the ``GET_ROLE_GLOBAL_DDL`` statement requires no special permissions.

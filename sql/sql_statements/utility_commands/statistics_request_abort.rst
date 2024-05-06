@@ -1,3 +1,5 @@
+:orphan:
+
 .. _statistics_request_abort:
 
 ************************

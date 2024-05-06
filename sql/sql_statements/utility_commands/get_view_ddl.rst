@@ -1,3 +1,5 @@
+:orphan:
+
 .. _get_view_ddl:
 
 ************

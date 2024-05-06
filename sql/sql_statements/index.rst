@@ -217,3 +217,4 @@ The following table shows the Access Control commands:
      - Revoke permissions from a role
    * - :ref:`rename_role`
      - Rename a role
+
