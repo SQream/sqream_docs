@@ -66,19 +66,14 @@ The following table describes the parameters used for executing the ``DELETE`` s
 Usage Notes
 ===========
 
-.. glossary::
+``ALTER TABLE``
+    :ref:`alter_table` and other DDL operations are blocked during clean-up.
 
-	``ALTER TABLE``
+``WHERE <condition>``
+    A condition for deletion can't be from sub-queries or joins.
 
-		:ref:`alter_table` and other DDL operations are blocked during clean-up.
-
-	``WHERE <condition>``
-	
-		A condition for deletion can't be from sub-queries or joins.
-
-	**Long Deletions**
-
-		BLUE may abort delete processes surpassing a time threshold, offering an override option.
+**Long Deletions**
+    BLUE may abort delete processes surpassing a time threshold, offering an override option.
 
 Examples
 ========

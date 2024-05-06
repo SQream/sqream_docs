@@ -26,17 +26,15 @@ To delete all rows from a table, use the :ref:`TRUNCATE<truncate>` command, whic
 Usage Notes
 ===========
 
-.. glossary::
+``ALTER TABLE``
+    The :ref:`alter_table` command and other DDL operations are locked on tables that require clean-up. If the estimated clean-up time exceeds the permitted threshold, an error message is displayed describing how to override the threshold limitation. For more information, see :ref:`concurrency_and_locks`.
 
-	``ALTER TABLE``
-		The :ref:`alter_table` command and other DDL operations are locked on tables that require clean-up. If the estimated clean-up time exceeds the permitted threshold, an error message is displayed describing how to override the threshold limitation. For more information, see :ref:`concurrency_and_locks`.
+**Deletion Size Threshold**
+    If the number of deleted records exceeds the threshold defined by the ``mixedColumnChunksThreshold`` parameter, the delete operation is aborted. This alerts users that the large number of deleted records may result in a large number of mixed chunks. To circumvent this alert, use the following syntax before running the delete operation:
 
-	**Deletion Size Threshold**
-		If the number of deleted records exceeds the threshold defined by the ``mixedColumnChunksThreshold`` parameter, the delete operation is aborted. This alerts users that the large number of deleted records may result in a large number of mixed chunks. To circumvent this alert, use the following syntax before running the delete operation:
+    .. code-block:: postgres
 
-		.. code-block:: postgres
-
-			SET mixedColumnChunksThreshold = <record_number>;
+		SET mixedColumnChunksThreshold = <record_number>;
    
 
 Optimizing Clean-Up Operations for Database Performance

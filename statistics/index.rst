@@ -26,7 +26,7 @@ Syntax
 	 }
 
 	-- Querying statistics:
-	SELECT FETCH_COLUMN_HISTOGRAM('<table_name>', '<column_name>')
+	SELECT FETCH_COLUMN_HISTOGRAM("<table_name>", "<column_name>")
 
 	-- Saving statistics:
 	ALTER TABLE STORE STATISTICS
@@ -72,6 +72,70 @@ Parameters
 Examples
 ========
 
+Initiating statistics collection:
+
+.. code-block:: postgres
+
+	ANALYZE TABLE lineitem COMPUTE STATISTICS FOR COLUMNS l_orderkey;
+	
+Output:
+
+.. code-block:: none
+
+	session_id                          |query_id|
+	------------------------------------+--------+
+	bda37dc1-8917-4e76-bcee-c139a7864948|23      |
+	
+Analyzing statistics request status:
+
+.. code-block:: postgres
+
+	STATISTICS REQUEST STATUS  queryId '23';
+
+Output:
+
+.. code-block:: none
+
+	session_id                          |query_id|submission_time        |start_execution_time|termination_time|status   |current_column|total_num_columns|error_message|
+	------------------------------------+--------+-----------------------+--------------------+----------------+---------+--------------+-----------------+-------------+
+	bda37dc1-8917-4e76-bcee-c139a7864948|23      |2024-05-06 11:12:55.121|NULL                |NULL            |SUBMITTED|0             |0                |NULL         |
+	
+Querying statistics:
+
+.. code-block:: postgres
+
+	SELECT FETCH_COLUMN_HISTOGRAM("lineitem", "l_orderkey");
+	
+Output:
+	
+.. code-block:: none
+
+
+
+Deleting statistics operation:
+
+.. code-block:: postgres
+
+	ALTER TABLE
+	  "lineitem"
+	DROP STATISTICS FOR COLUMNS
+	  "l_orderkey";
+
+Output:
+
+.. code-block:: none
+
+
+
+Aborting Statistics Operation:
+
+.. code-block:: postgres
+
+	STATISTICS REQUEST ABORT sessionId 'bda37dc1-8917-4e76-bcee-c139a7864948' queryId '23';
+
+Output:
+
+.. code-block:: none
 
 
 Permissions
