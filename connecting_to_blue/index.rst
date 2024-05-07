@@ -1,8 +1,8 @@
 .. _connecting_to_blue:
 
-*****************
-Third-Party Tools
-*****************
+****************************
+Connectors and Third-Parties
+****************************
 
 Users who wish to use the BLUE :ref:`Jobs<performing_basic_blue_operations>` workflow management tool or establish connections to BLUE from their personal applications or tools are required to employ connectors and obtain authentication access tokens, thereby necessitating the creation of dedicated BLUE **Clients** and the generation of these access tokens to enable the use of Jobs, connectors, applications, and tools in question.
 

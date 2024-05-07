@@ -30,11 +30,11 @@ A notable capability of BLUE lies in handling data integration tasks, from 2TB t
 
   .. grid-item-card:: Parallelism
 
-      BLUE uses the GPU to achieve parallel data processing. By breaking large tasks into smaller processes, BLUE distributes operations across multiple GPU cores, allowing administrators to balance parallelism and concurrency according to their business needs.
+      BLUE uses the GPU to achieve parallel data processing. By breaking large tasks into smaller processes, BLUE distributes operations across multiple GPU cores, allowing administrators to :ref:`balance parallelism and concurrency<performance_and_concurrency_preferences>` according to their business needs.
 
   .. grid-item-card:: Connectivity
 
-      BLUE easily integrates with common open-source workflow management and orchestration tools, such as Apache Airflow, Dgaster, and Prefect. It also supports industry-standard ODBC, JDBC, and  Python connectors, and provides a REST API for cluster management. 
+      BLUE easily integrates with common open-source workflow management and orchestration tools, such as Apache Airflow, Dgaster, and Prefect. It also supports industry-standard ODBC, JDBC, and  Python :ref:`connectors<connecting_to_blue>`, and provides a REST API for cluster management. 
 
 **Optamizations**
 

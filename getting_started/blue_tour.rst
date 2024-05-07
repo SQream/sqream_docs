@@ -4,23 +4,23 @@
 BLUE Quick Tour
 ***************
 
-Execute Queries
-===============
-
-Work with Jobs
-==============
-
-Monitor Activity
-================
-
-Manage Cluster Permissions
-==========================
-
-Administrate Cluster
+Executing Statements
 ====================
 
-Review Work Trends
-==================
+Working with Jobs
+=================
+
+Monitoring Activity
+===================
+
+Managing Cluster Permissions
+============================
+
+Administrating Cluster
+======================
+
+Reviewing Work Trends
+=====================
 
 .. toctree:: 
    :maxdepth: 1
