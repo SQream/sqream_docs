@@ -61,11 +61,11 @@ Example
 	
 Output:
 	
-.. code-block:: sql
+.. code-block:: postgres
 	
 	query_id|query_status     |query_type|sql_text                |session_id                          |start_time         |client_info        |
 	--------+-----------------+----------+------------------------+------------------------------------+-------------------+-------------------+
-	1       |EXECUTION_SUCCEED|SELECT    |select * from nba¶      |ed59dc5e-2fdd-4ba5-b912-c152a4562134|2022-07-24T07:30:43|SQream JDBC v0.1.33|
+	1       |EXECUTION_SUCCEED|SELECT    |select * from nba       |ed59dc5e-2fdd-4ba5-b912-c152a4562134|2022-07-24T07:30:43|SQream JDBC v0.1.33|
 	2       |NEW              |DESCRIBE  |describe session queries|ed59dc5e-2fdd-4ba5-b912-c152a4562134|2022-07-24T07:30:57|SQream JDBC v0.1.33|
 	3       |EXECUTING        |DESCRIBE  |describe session queries|ed59dc5e-2fdd-4ba5-b912-c152a4562134|2022-07-24T07:34:54|SQream JDBC v0.1.33|
 	  

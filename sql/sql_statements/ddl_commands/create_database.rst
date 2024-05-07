@@ -6,7 +6,7 @@
 CREATE DATABASE
 *****************
 
-``CREATE DATABASE`` creates a new database in SQream DB
+``CREATE DATABASE`` creates a new database in BLUE
 
 Permissions
 =============
@@ -34,7 +34,7 @@ Parameters
    * - Parameter
      - Description
    * - ``database_name``
-     - The name of the database name. The database name must be unique, and follows :ref:`Identifier rules <identifiers>`
+     - The name of the database name. The database name must be unique, and follows :ref:`Identifier rules <keywords_and_identifiers>`
      
 Examples
 ===========
@@ -54,4 +54,4 @@ If the database already exists, an error will appear:
   master=> CREATE DATABASE MY_DB;
   Database 'my_db' already exists
 
-.. note:: SQream DB :ref:`identifiers <identifiers>` are always converted to lowercase, so ``my_db`` is the same as ``MY_DB``, unless explicitly quoted as ``"MY_DB"``.
+.. note:: BLUE :ref:`identifiers <keywords_and_identifiers>` are always converted to lowercase, so ``my_db`` is the same as ``MY_DB``, unless explicitly quoted as ``"MY_DB"``.

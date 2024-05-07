@@ -55,7 +55,7 @@ Notes
 
    * Contain only ASCII letters, numbers, or underscores
 
-   * Follow rules for :ref:`identifiers`
+   * Follow rules for :ref:`keywords_and_identifiers`
 
 
 

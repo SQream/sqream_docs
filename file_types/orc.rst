@@ -4,7 +4,7 @@
 ORC
 ***
 
-This guide covers ingesting data from ORC files into BLUE using :ref:`FOREIGN TABLE<external_tables>`. 
+This guide covers ingesting data from ORC files into BLUE using :ref:`FOREIGN TABLE<foreign_tables>`. 
 
 Foreign Data Wrapper Prerequisites
 ==================================

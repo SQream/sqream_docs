@@ -68,5 +68,3 @@ After configuring PHP, you can test your connection.
       $dsn = "odbc:Driver={SqreamODBCDriver};Server=192.168.0.5;Port=5000;Database=master;User=rhendricks;Password=super_secret;Service=sqream";
       
 #. Run the PHP file either directly with PHP (``php test.php``) or through a browser.
-
-   For more information about supported DSN parameters, see :ref:`dsn_params`.

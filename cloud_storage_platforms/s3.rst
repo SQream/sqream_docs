@@ -62,7 +62,7 @@ In the example above the file format is CSV, and it is stored as an S3 object. I
 For more information, see the following:
 
 * **Creating a foreign table** - see :ref:`create a foreign table<create_foreign_table>`.
-* **Using SQream in an HDFS environment** - see :ref:`hdfs`.
+
 
 Querying Foreign Tables
 -----------------------

@@ -5,13 +5,11 @@ SQL Feature Checklist
 *********************
 
 
-To understand which ANSI SQL and other SQL features SQream DB supports, use the tables below.
+To understand which ANSI SQL and other SQL features BLUE supports, use the tables below.
    
 
 Data Types and Values
 =====================
-
-Read more about :ref:`Yes data types<data_types>`.
 
 .. list-table:: Data Types and Values
    :widths: auto
@@ -82,25 +80,8 @@ Constraints
      - ``IDENTITY``
 
 
-Transactions
-============
-
-SQream DB treats each statement as an auto-commit transaction. Each transaction is isolated from other transactions with serializable isolation. 
-
-If a statement fails, the entire transaction is canceled and rolled back. The database is unchanged.
-
-
-Indexes
-=======
-
-SQream DB has a range-index collected on all columns as part of the metadata collection process.
-
-SQream DB does not support explicit indexing, but does support clustering keys.
-
-Read more about :ref:`clustering keys<data_clustering>` and our :ref:`metadata system<metadata_system>`.
-
 Schema Changes
-================
+==============
 
 .. list-table:: Schema Changes
    :widths: auto
@@ -286,7 +267,7 @@ Read more about :ref:`scalar_expressions`.
 Permissions
 ===============
 
-Read more about :ref:`access_control` in SQream DB.
+Read more about :ref:`access_control` in BLUE.
 
 .. list-table:: Permissions
    :widths: auto
@@ -322,7 +303,7 @@ Extra Functionality
      - Further information
    * - Information schema
      - Yes
-     - :ref:`catalog_reference`
+     - :ref:`describe_schemas`
    * - Views
      - Yes
      - :ref:`create_view`

@@ -29,7 +29,6 @@ SQream can stage data from:
 
 * :ref:`gcp`
 * :ref:`s3`
-* :ref:`hdfs`
 
 Using Foreign Tables
 =====================
@@ -47,7 +46,7 @@ We will make note of the file structure, to create a matching ``CREATE_EXTERNAL_
 Creating a Foreign Table
 ------------------------
 
-Based on the source file structure, we :ref:`create a foreign table<create_external_table>` with the appropriate structure, and point it to the file.
+Based on the source file structure, we :ref:`create a foreign table<create_foreign_table>` with the appropriate structure, and point it to the file.
 
 .. code-block:: postgres
    
@@ -70,7 +69,8 @@ Based on the source file structure, we :ref:`create a foreign table<create_exter
 	 RECORD DELIMITER = '\r\n'; -- DOS delimited file
 	);
 
-The file format in this case is CSV, and it is stored as an :ref:`s3` object (if the path is on :ref:`hdfs`, change the URI accordingly).
+The file format in this case is CSV, and it is stored as an :ref:`s3` object. 
+
 We also took note that the record delimiter was a DOS newline (``\r\n``).
 
 Querying Foreign Tables

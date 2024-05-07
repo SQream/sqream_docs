@@ -18,7 +18,7 @@
 
 BLUE is a cloud-based platform designed for enterprises utilizing data lake architectures, aiming to simplify data integration workflows and enable cloud migration.
 
-A notable capability of BLUE lies in handling data integration tasks, from 2TB to petabyte scales. This makes it well-suited for swift and effective processing of large data volumes. BLUE embraces both data lakehouse and query engine technologies, empowering businesses to gain comprehensive data insights and real-time analysis.
+A notable capability of BLUE lies in handling data integration tasks, from 2TB to petabyte scales. This makes it well-suited for swift and effective processing of large data volumes. BLUE embraces both data lakehouse and query engine technologies, empowering businesses to gain comprehensive data insights.
 
 **Capabilities**
 

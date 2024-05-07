@@ -8,8 +8,6 @@ DROP CLUSTERING KEY
 
 ``DROP CLUSTERING KEY`` drops all clustering keys in a table.
 
-Read our :ref:`data_clustering` guide for more information.
-
 See also: :ref:`cluster_by`, :ref:`create_table`.
 
 

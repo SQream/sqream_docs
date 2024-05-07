@@ -52,7 +52,7 @@ BLUE recommend that role names should follow these rules:
 
 * Contain only ASCII letters, numbers, or underscores
 
-* Follow rules for :ref:`identifiers`
+* Follow rules for :ref:`keywords_and_identifiers`
 
 * A role has no permissions by default. Follow the examples below to see how to grant permissions to databases and tables.
 

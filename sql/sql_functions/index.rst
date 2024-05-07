@@ -6,6 +6,8 @@ SQL Functions
 
 BLUE supports functions from ANSI SQL, as well as others for compatibility.
 
+.. _scalar_functions:
+
 Built-In Scalar Functions
 -------------------------
 

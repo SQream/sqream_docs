@@ -43,7 +43,7 @@ Creating quoted and unquoted identifiers:
 
 Valid and invalid use of identifiers:
 
-.. code-block:: sql
+.. code-block:: 
 
 	-- These are all valid examples when quoted:
 	
