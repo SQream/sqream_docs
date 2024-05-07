@@ -119,7 +119,7 @@ Syntax
 	FROM "<role2>" [, ...] 
 
 Parameters
-============
+==========
 
 .. list-table:: 
    :widths: auto
@@ -145,7 +145,7 @@ Parameters
 
 
 Examples
-===========
+========
 
 Prevent a role from modifying table contents
 ----------------------------------------------
