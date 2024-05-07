@@ -1,8 +1,8 @@
 .. _access_control_permissions:
 
-**************
+***********
 Permissions
-**************
+***********
 
 BLUE’s primary permission object is a role. The role operates in a dual capacity as both a user and a group. As a user, a role may have permissions to execute operations like creating tables, querying data, and administering the database. The group attribute may be thought of as a membership. As a group, a role may extend its permissions to other roles defined as its group members. This becomes handy when privileged roles wish to extend their permissions and grant multiple permissions to multiple roles. The information about all system role permissions is stored in the metadata.
 
@@ -358,7 +358,7 @@ Examples
 ========
 
 GRANT
---------------
+-----
 
 Grant superuser privileges and login capability to a role:
 
@@ -395,6 +395,12 @@ Grant column-level permissions to a role:
 .. code-block:: postgres
 
 	GRANT SELECT, DDL ON COLUMN "column_name" IN TABLE schema_name.table_name TO role_name;
+	
+Grant view-level permissions to a role:
+
+.. code-block:: postgres
+
+	GRANT ALL PERMISSIONS ON VIEW "view_name" IN SCHEMA "schema_name" TO role_name;
 
 Grant role2 the ability to use permissions granted to role1:
 
@@ -441,6 +447,12 @@ Revoke column-level permissions from a role:
 .. code-block:: postgres
 
 	REVOKE SELECT, DDL FROM COLUMN "column_name" IN TABLE schema_name.table_name FROM role_name;
+	
+Revoke view-level permissions from a role:
+
+.. code-block:: postgres
+
+	REVOKE ALL PERMISSIONS ON VIEW "view_name" IN SCHEMA "schema_name" FROM role_name;
 
 Remove access to permissions in role1 by role2:
 

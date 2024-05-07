@@ -22,7 +22,7 @@ Administrate Cluster
 Review Work Trends
 ==================
 
-.. toctree::
+.. toctree:: 
    :maxdepth: 1
    :glob:
    :hidden:
