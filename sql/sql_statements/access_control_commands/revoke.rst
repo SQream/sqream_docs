@@ -2,9 +2,9 @@
 
 .. _revoke:
 
-*****************
+******
 REVOKE
-*****************
+******
 
 The ``REVOKE`` statement removes permissions from a role. It allows for removing permissions to specific objects.
 
@@ -13,91 +13,110 @@ Learn more about the permission system in the :ref:`access control guide<access_
 See also :ref:`grant`, :ref:`drop_role`.
 
 Permissions
-=============
+===========
 
 To revoke permissions, the current role must have the ``SUPERUSER`` permission, or have the ``ADMIN OPTION``.
 
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
-   grant_statement ::=
-      { 
-      -- revoke permissions at the cluster level:
-      REVOKE 
-         { SUPERUSER
-         | LOGIN 
-         } 
-         FROM role_name [, ...] 
-      
-      -- Revoke permissions at the database level:
-      | REVOKE
-         {
-            { CREATE
-            | CONNECT
-            | DDL
-            | SUPERUSER
-            | CREATE FUNCTION
-            } [, ...] 
-         | ALL [PERMISSIONS]
-         }  
-         ON DATABASE database_name [, ...]
-         FROM role_name [, ...] 
-      
-      -- Revoke permissions at the schema level: 
-      | REVOKE 
-         {
-            { CREATE 
-            | DDL 
-            | USAGE 
-            | SUPERUSER 
-            } [, ...]
-         | ALL [PERMISSIONS ]
-         } 
-         ON SCHEMA schema_name [, ...] 
-         FROM role_name [, ...]
-      
-      -- Revoke permissions at the object level: 
-      | REVOKE 
-         {
-            { SELECT 
-            | INSERT 
-            | DELETE 
-            | DDL 
-            } [, ...]
-         | ALL [PERMISSIONS]
-         }
-         ON { TABLE table_name [, ...] | ALL TABLES IN SCHEMA schema_name [, ...]} 
-         FROM role_name [, ...]
-      
-                  
-      -- Revoke execute function permission: 
-      | REVOKE 
-         { ALL 
-         | EXECUTE 
-         | DDL
-         } 
-         ON FUNCTION function_name 
-         FROM role_name [, ...]
-       
-                  
-      -- Remove permissions between roles by revoking role membership: 
-      | REVOKE role_name [, ...] 
-         FROM role_name_2
-         [ WITH ADMIN OPTION ]
+	-- Revoke permissions from all databases:
+	REVOKE {
+	SUPERUSER 
+	| LOGIN 
+	| PASSWORD '<password>' }
+	FROM "<role>" [, ...]
 
-      ;
+	-- Revoke permissions at the database level:
+	REVOKE {
+	CREATE 
+	| CONNECT 
+	| DDL 
+	| SUPERUSER 
+	| CREATE FUNCTION } [, ...] 
+	| ALL [PERMISSIONS]
+	ON DATABASE <database> [, ...]
+	FROM "<role>" [, ...]
 
-   role_name ::= identifier  
-   
-   role_name2 ::= identifier  
-   
-   database_name ::= identifier
-   
-   table_name ::= identifier
-   
-   schema_name ::= identifier
+	-- Revoke permissions at the schema level: 
+	REVOKE { 
+	CREATE 
+	| DDL 
+	| USAGE 
+	| SUPERUSER } [, ...] 
+	| ALL [PERMISSIONS]
+	ON SCHEMA <schema> [, ...]
+	FROM "<role>" [, ...]
+		   
+	-- Revoke permissions at the object level: 
+	REVOKE { 
+	SELECT 
+	| INSERT 
+	| DELETE 
+	| DDL 
+	| UPDATE } [, ...] 
+	| ALL [PERMISSIONS]
+	ON {TABLE <table_name> [, ...] 
+	| ALL TABLES IN SCHEMA <schema_name> [, ...]}
+	FROM "<role>" [, ...]
+
+	-- Revoke permissions at the catalog level: 
+	REVOKE {
+	{SELECT } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { CATALOG <catalog_name> [, ...] }
+	FROM "<role>" [, ...]
+
+	-- Revoke permissions on the foreign table level:
+	
+	REVOKE { 
+	{SELECT 
+	| DDL } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { FOREIGN TABLE <table_name> [, ...] 
+	| ALL FOREIGN TABLE IN SCHEMA <schema_name> [, ...]}
+	FROM "<role>" [, ...]
+
+	-- Revoke function execution permission: 
+	REVOKE { 
+	ALL 
+	| EXECUTE 
+	| DDL } 
+	ON FUNCTION <function_name>
+	FROM "<role>"
+
+	-- Revoke permissions at the column level:
+	REVOKE 
+	{
+	  { SELECT 
+	  | DDL } [, ...] 
+	  | ALL [PERMISSIONS]}
+	ON 
+	{ 
+	  COLUMN "<column_name>" [,"<column_name2>"] IN TABLE <table_name> [,<table_name2>] | COLUMN "<column_name>" [,"<column_name2>"] IN FOREIGN TABLE <table_name> [,<table_name2>]
+	  | ALL COLUMNS IN TABLE <schema_name.table_name> [, ...] 
+	  | ALL COLUMNS IN FOREIGN TABLE <schema_name.foreign_table_name> [, ...] 
+	}
+	FROM "<role>" [, ...]
+
+	-- Revoke permissions on the view level
+	REVOKE {
+	{SELECT 
+	| DDL } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { VIEW <view_name> [, ...] 
+	| ALL VIEWS IN SCHEMA <schema_name> [, ...]}
+	FROM "<role>" [, ...]
+		
+	-- Removes access to permissions in role1 by role 2
+	REVOKE [ADMIN OPTION FOR] "<role1>" [, ...] 
+	FROM "<role2>" [, ...] 
+
+	-- Removes permissions to grant role1 to additional roles from role2
+	REVOKE [ADMIN OPTION FOR] "<role1>" [, ...] 
+	FROM "<role2>" [, ...] 
 
 Parameters
 ============

@@ -20,85 +20,108 @@ See also :ref:`revoke`, :ref:`create_role`.
 Syntax
 ======
 
-The following is the syntax for the ``GRANT`` statement:
+GRANT
+------
 
 .. code-block:: postgres
 
-   grant_statement ::=
-      { 
-      -- Grant permissions at the cluster level:
-      GRANT 
-         { SUPERUSER
-         | LOGIN          } 
-         TO role_name [, ...] 
-      
-      -- Grant permissions at the database level:
-      | GRANT
-         {
-            { CREATE
-            | CONNECT
-            | DDL
-            | SUPERUSER
-            | CREATE FUNCTION
-            } [, ...] 
-         | ALL [PERMISSIONS]
-         }  
-         ON DATABASE database_name [, ...]
-         TO role_name [, ...] 
-      
-      -- Grant permissions at the schema level: 
-      | GRANT 
-         {
-            { CREATE 
-            | DDL 
-            | USAGE 
-            | SUPERUSER 
-            } [, ...]
-         | ALL [PERMISSIONS ]
-         } 
-         ON SCHEMA schema_name [, ...] 
-         TO role_name [, ...]
-      
-      -- Grant permissions at the object level: 
-      | GRANT 
-         {
-            { SELECT 
-            | INSERT 
-            | DELETE 
-            | DDL 
-            } [, ...]
-         | ALL [PERMISSIONS]
-         }
-         ON { TABLE table_name [, ...] | ALL TABLES IN SCHEMA schema_name [, ...]} 
-         TO role_name [, ...]
-      
-                  
-      -- Grant execute function permission: 
-      | GRANT 
-         { ALL 
-         | EXECUTE 
-         | DDL
-         } 
-         ON FUNCTION function_name 
-         TO role_name [, ...]
-       
-                  
-      -- Pass permissions between roles by granting one role to another: 
-      | GRANT role_name [, ...] 
-         TO role_name_2
-         [ WITH ADMIN OPTION ]
+	-- Grant permissions to all databases:
+	GRANT {
+	SUPERUSER 
+	| LOGIN 
+	| PASSWORD '<password>' }
+	TO "<role>" [, ...]
 
-      ;
+	-- Grant permissions at the database level:
+	GRANT {
+	CREATE 
+	| CONNECT 
+	| DDL 
+	| SUPERUSER 
+	| CREATE FUNCTION } [, ...] 
+	| ALL [PERMISSIONS]
+	ON DATABASE <database> [, ...]
+	TO "<role>" [, ...]
 
-   role_name ::= identifier  
-   
-   role_name2 ::= identifier  
-   
-   database_name ::= identifier
-   
-   table_name ::= identifier
-   
-   schema_name ::= identifier
+	-- Grant permissions at the schema level: 
+	GRANT { 
+	CREATE 
+	| DDL 
+	| USAGE 
+	| SUPERUSER } [, ...] 
+	| ALL [PERMISSIONS]
+	ON SCHEMA <schema> [, ...]
+	TO "<role>" [, ...]
+		   
+	-- Grant permissions at the object level: 
+	GRANT { 
+	SELECT 
+	| INSERT 
+	| DELETE 
+	| DDL 
+	| UPDATE } [, ...] 
+	| ALL [PERMISSIONS]
+	ON {TABLE <table_name> [, ...] 
+	| ALL TABLES IN SCHEMA <schema_name> [, ...]}
+	TO "<role>" [, ...]
+
+	-- Grant permissions at the catalog level: 
+	GRANT {
+	{SELECT } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { CATALOG <catalog_name> [, ...] }
+	TO "<role>" [, ...]
+
+	-- Grant permissions on the foreign table level:
+	
+	GRANT { 
+	{SELECT 
+	| DDL } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { FOREIGN TABLE <table_name> [, ...] 
+	| ALL FOREIGN TABLE IN SCHEMA <schema_name> [, ...]}
+	TO "<role>" [, ...]
+
+	-- Grant function execution permission: 
+	GRANT { 
+	ALL 
+	| EXECUTE 
+	| DDL } 
+	ON FUNCTION <function_name>
+	TO "<role>"
+
+	-- Grant permissions at the column level:
+	GRANT 
+	{
+	  { SELECT 
+	  | DDL } [, ...] 
+	  | ALL [PERMISSIONS]
+	}
+	ON 
+	{ 
+	  COLUMN "<column_name>" [,"<column_name2>"] IN TABLE <table_name> [,<table_name2>] 
+	  | COLUMN "<column_name>" [,"<column_name2>"] IN FOREIGN TABLE <table_name> [,<table_name2>]
+	  | ALL COLUMNS IN TABLE <schema_name.table_name> [, ...] 
+	  | ALL COLUMNS IN FOREIGN TABLE <foreign_table_name> [, ...] 
+	}
+	TO "<role>" [, ...]
+
+	-- Grant permissions on the view level
+	GRANT {
+	{SELECT 
+	| DDL } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { VIEW <view_name> [, ...] 
+	| ALL VIEWS IN SCHEMA <schema_name> [, ...]}
+	TO "<role>" [, ...]
+
+	-- Allows role2 to use permissions granted to role1
+	GRANT "<role1>" [, ...] 
+	TO "<role2>" 
+
+	-- Also allows the role2 to grant role1 to other roles:
+	GRANT "<role1>" [, ...] 
+	TO "<role2>" [,...] [WITH ADMIN OPTION]
 
 Parameters
 ==========
@@ -127,8 +150,6 @@ The following table describes the ``GRANT`` parameters:
 
 Supported Permissions
 =====================
-
-The following table describes the supported permissions:
 
 .. list-table:: 
    :widths: auto
@@ -183,13 +204,8 @@ The following table describes the supported permissions:
 Examples
 ========
 
-This section includes the following examples:
-
-
 Creating a User Role with Log-in Permissions
 --------------------------------------------
-
-The following example shows how to convert a role to a user by granting login permissions:
 
 .. code-block:: postgres
 
@@ -201,8 +217,6 @@ The following example shows how to convert a role to a user by granting login pe
 Promoting a User to a Superuser
 -------------------------------
 
-The following is the syntax for promoting a user to a superuser:
-
 .. code-block:: postgres
    
    -- On the entire cluster
@@ -213,8 +227,6 @@ The following is the syntax for promoting a user to a superuser:
 
 Creating a New Role for a Group of Users
 ----------------------------------------
-
-The following example shows how to create a new role for a group of users:
 
 .. code-block:: postgres
    
@@ -230,8 +242,6 @@ The following example shows how to create a new role for a group of users:
 
 Granting with Admin Option
 --------------------------
-
-If ``WITH ADMIN OPTION`` is specified, the role with the **admin** option can grant membership in the role to others and revoke membership, as shown below:
 
 .. code-block:: postgres
    

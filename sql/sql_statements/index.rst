@@ -165,8 +165,6 @@ Utility Commands
      - Recompiles a saved query that has been invalidated due to a schema change
    * - :ref:`save_query`
      - Saves query execution plan
-   * - :ref:`shutdown_server_command`
-     - Sets your server to finish compiling all active queries before shutting down according to a user-defined time value
    * - :ref:`statistics_request_abort`
      - 
    * - :ref:`statistics_request_status`
