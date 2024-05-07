@@ -45,16 +45,16 @@ The **Workbench**  provides a comprehensive environment for writing, managing, a
 Administrating your Cluster
 ===========================
 
-The **Settings** page is a cluster administration section accessible only to users with cluster admin privileges. This page provides important controls for managing your cluster's resources, configurations, and access permissions.
+The **Settings** page is a cluster administration section accessible only to users with cluster admin privileges. This page provides important controls for managing your cluster's resources, configurations, and access tokens.
 
 Cluster Scaling for Resource Optimization
 -----------------------------------------
 
-**Settings** »  **Cluster Resize** » 
+**Settings** »  **Worker Kit** » 
 
-Navigate through different cluster sizes to accommodate heavy loads or optimize resources during periods of low activity.
+Navigate through different Worker kits to accommodate heavy loads or optimize resources during periods of low activity.
 
-|cluster_size_quick_tour|
+|worker_kit_quick_tour|
 
 Cluster Downtime and Uptime
 ---------------------------
@@ -79,6 +79,7 @@ Define the conditions under which your cluster will shut down.
 
 #. Immediate suspension / resumption button
 
+More about :ref:`resizing your cluster<cluster_management>`
 
 Monitoring Cluster Activity
 ===========================
@@ -131,7 +132,7 @@ The dashboard **Current Status** provides a real-time cluster overview of:
 .. |jobs_quick_tour| image:: /_static/images/jobs_quick_tour.png
    :align: middle  
    
-.. |cluster_size_quick_tour| image:: /_static/images/cluster_size_quick_tour.png
+.. |worker_kit_quick_tour| image:: /_static/images/worker_kit_quick_tour.png
    :align: middle    
    
 .. |resume_suspend_quick_tour| image:: /_static/images/resume_suspend_quick_tour.png

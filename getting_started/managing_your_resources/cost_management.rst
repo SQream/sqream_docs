@@ -4,7 +4,7 @@
 Cost Management
 ***************
 
-Cost management involves optimizing expenses by efficiently adjusting resources, such as cluster size and worker numbers, based on varying workloads, and utilizing features like environment suspension to temporarily halt billing during periods of inactivity.
+Cost management involves optimizing expenses by efficiently adjusting resources, such as cluster size and Worker numbers, based on varying workloads, and utilizing features like environment suspension to temporarily halt billing during periods of inactivity.
 
 Monitoring Worker Usage
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -23,30 +23,33 @@ If you frequently find that one or more Workers are idle, it may be beneficial t
 Resizing Your Cluster
 ^^^^^^^^^^^^^^^^^^^^^
 
-Resizing your cluster provides adaptable and cost-effective resource management by enabling the adjustment of worker numbers in response to changing workloads. This flexibility allows you to optimize costs by reducing the cluster size during periods of lower demand, while also enabling dynamic scaling to meet performance needs during peak times. 
+Resizing your cluster provides adaptable and cost-effective resource management by enabling the adjustment of Worker numbers in response to changing workloads. This flexibility allows you to optimize costs by reducing the cluster size during periods of lower demand, while also enabling dynamic scaling to meet performance needs during peak times. 
 
 Resize may take 10—30 minutes, during which executed queries continue to run. 
 
-#. To resize your cluster, go to **Settings** > **Cluster Resize**.
+#. To resize your cluster, go to **Settings** > **Worker Kit**.
 
-#. You may choose between one of the following plans:
+#. Choose between one of the following Worker kits:
 
 .. list-table:: Cluster Sizes
    :widths: auto
    :header-rows: 1
 
-   * - Cluster Size
+   * - Kit
      - Worker Count
      - Capability
-   * - Small
+   * - Explore
      - 1
      - Experiment with the BLUE interface 	 	
-   * - Medium
+   * - Basic
      - 4
      - Gain parallelism capabilities such as concurrency and shorter processing duration	
-   * - Large
+   * - Pro
      - 10
      - Take advantage of parallelism capabilities such as concurrency, shorter query times and the ability to adjust resource pool sizes to suit various business needs	
+   * - Custom
+     - Unlimited
+     - Contact our `support team <blue_support@sqreamtech.com>`_ for more information 
  	 
 
 .. _suspending_and_resuming_pools:
@@ -121,3 +124,4 @@ Manually Suspending and Resuming Pools
    
    The pool you selected is now highlighted.
 4. Under **Suspension Policy**, select **Activate Now**.
+
