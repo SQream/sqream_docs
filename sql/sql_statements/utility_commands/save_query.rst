@@ -62,7 +62,7 @@ Examples
 
 Assume a table named ``nba``, with the following structure:
 
-.. code-block:: sql
+.. code-block:: postgres
    
    CREATE TABLE nba
    (
@@ -80,7 +80,7 @@ Assume a table named ``nba``, with the following structure:
 Saving and executing a simple query
 ---------------------------------------
 
-.. code-block:: sql
+.. code-block:: postgres
 
    SELECT SAVE_QUERY("select_all",'SELECT * FROM nba');
    
@@ -100,7 +100,7 @@ Use parameters to replace them later at execution time.
 
 .. tip:: Use dollar quoting (`$$`) to avoid escaping strings.
 
-.. code-block:: sql
+.. code-block:: postgres
 
    SELECT SAVE_QUERY("select_by_weight_and_team",$$SELECT * FROM nba WHERE Weight > ? AND Team = ?$$);
    

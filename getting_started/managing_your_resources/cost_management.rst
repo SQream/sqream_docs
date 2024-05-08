@@ -120,8 +120,10 @@ Manually Suspending and Resuming Pools
 **Resuming**
 
 1. In the sidebar, go to **Settings** and select the **Resource Pool** tab.
+
 2. Select a pool you wish to set.
    
    The pool you selected is now highlighted.
+   
 4. Under **Suspension Policy**, select **Activate Now**.
 
