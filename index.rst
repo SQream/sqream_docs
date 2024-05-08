@@ -34,7 +34,7 @@ A notable capability of BLUE lies in handling data preparation tasks, from 1TB t
 
   .. grid-item-card:: Connectivity
 
-      BLUE easily integrates with common open-source workflow management and orchestration tools, such as Apache Airflow, Dgaster, and Prefect. It also supports industry-standard ODBC, JDBC, and  Python :ref:`connectors<connecting_to_blue>`, and provides a REST API for cluster management. 
+      BLUE easily integrates with common open-source workflow management and orchestration tools, such as Apache Airflow, Dgaster, and Prefect. It also supports industry-standard JDBC and  Python :ref:`connectors<connecting_to_blue>`, and provides a REST API for cluster management. 
 
 **Optamizations**
 

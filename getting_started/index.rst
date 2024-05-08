@@ -12,7 +12,7 @@ This guide provides an overview of the key steps to begin using BLUE. The guide 
 
 * Learn how to use **Jobs**, a SQL and Python :ref:`workflow tool <performing_basic_blue_operations>` designed for creating complex workflows. Jobs automates sequences of SQL and Python scripts, triggering them to deliver insights or prepare data for advanced tasks such as data modeling and training.
 
-* :ref:`Connect<connecting_to_blue>` your favorite data analysis platforms and BI tools using Python, JDBC, or ODBC.
+* :ref:`Connect<connecting_to_blue>` your favorite data analysis platforms and BI tools using Python or JDBC.
 
 .. toctree::
    :maxdepth: 1

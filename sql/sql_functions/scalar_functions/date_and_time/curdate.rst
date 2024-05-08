@@ -8,7 +8,7 @@ CURDATE
 
 Returns the current date of the system.
 
-.. note:: This function is provided for compatibility with MySQL, IBM DB2 and ODBC. 
+.. note:: This function is provided for compatibility with MySQL and IBM DB2. 
 
 Syntax
 ==========
