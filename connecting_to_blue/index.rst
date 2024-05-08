@@ -23,8 +23,6 @@ BLUE offers seamless integration with third-party tools, BI tools, and analysis 
 
     :ref:`JDBC<java_jdbc>`
 
-    :ref:`ODBC<odbc>`
-
     :ref:`Python<pysqream>`
 
 .. tab:: Integration Tools
@@ -32,31 +30,9 @@ BLUE offers seamless integration with third-party tools, BI tools, and analysis 
     :ref:`Apache Airflow<apache_airflow>`
 	
     :ref:`DBeaver<dbeaver>`
-
-    :ref:`Denodo<denodo>`
-
-    :ref:`Informatica Cloud Services<informatica>`
-
-    :ref:`Pentaho Data Integration<pentaho_data_integration>`
-
-    :ref:`Talend<talend>`
 	
 .. tab:: BI Tools
 
-    :ref:`MicroStrategy<micro_strategy>`
-
-    :ref:`Power BI Desktop<power_bi>`
-
-    :ref:`SAP BusinessObjects<sap_businessobjects>`
-
-    :ref:`SAS Viya<connect_to_sas_viya>`
-
     :ref:`Tableau<tableau>`
 
-    :ref:`TIBCO Spotfire<tibco_spotfire>`
 
-.. tab:: Analysis and Programming Languages
-
-    :ref:`PHP<php>`
-
-    :ref:`R<r>`
