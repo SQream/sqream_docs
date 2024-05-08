@@ -174,7 +174,7 @@ Clicking **New Role** lets you do the following:
  
 From the New Role panel you view directly and indirectly (or inherited) granted permissions. Disabled permissions have no connect permissions for the referenced database and are displayed in gray text. You can add or remove permissions from the **Add permissions** field. From the New Role panel you can also search and scroll through the permissions. In the **Search** field you can use the **and** operator to search for strings that fulfill multiple criteria.
 
-When adding a new role, you must select the **Enable login for this role** and **Has password** check boxes.
+When adding a new role, you must select the **Enable login for this role** check boxe.
 
 Editing a Role
 --------------
@@ -183,7 +183,6 @@ Once you've created a role, clicking the **Edit Role** button lets you do the fo
 
 * Edit role name
 * Enable or disable log-in permissions
-* Set a password
 * Assign or delete parent roles
 * Assign a role **administrator** permissions
 * Add or delete permissions
