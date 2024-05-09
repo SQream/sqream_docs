@@ -83,12 +83,12 @@ html_theme_options = {
 
 
 .sidebar-drawer {
-	width: calc(40% - 18.5em);
+	width: calc(40% - 23.5em);
 }
 	
 .content {
 	padding: 0 5em;
-	width: 50em;
+	width: 55em;
 }
 
 h1 {
