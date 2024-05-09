@@ -3,7 +3,7 @@
 ***************
 BLUE Quick Tour
 ***************
-
+ 
 Executing Statements
 ====================
 
