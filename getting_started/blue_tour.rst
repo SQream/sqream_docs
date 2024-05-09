@@ -41,6 +41,23 @@ The **Workbench**  provides a comprehensive environment for writing, managing, a
    * Execution Tree
    * Copy Execution Plan
    * Export Results
+   
+Managing Workflows
+==================
+
+Jobs » All Jobs
+
+The **Jobs** page is where you can create, execute, and manage your SQL and Python workflows. It displays a list of existing Jobs along with the following information for each Job:
+
+* Job Name
+* Creation Time
+* Owner
+* Last Runtime
+* Next Runtime
+* Frequency
+* Status
+
+More about :ref:`executing, monitoring, and managing Jobs<performing_basic_blue_operations>`
 
 Monitoring Cluster Activity
 ===========================
