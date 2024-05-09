@@ -12,7 +12,7 @@ Before You Begin
 ================
 
 * The BLUE JDBC driver requires Java 1.8 or newer
-* Download the BLUE JDBC driver `here <https://sq-ftp-public.s3.amazonaws.com/sqream-blue-jdbc-0.1.67.jar>`_
+* Download the BLUE JDBC driver `here <https://sq-ftp-public.s3.amazonaws.com/sqream-blue-jdbc-0.1.75.jar>`_
 * We recommend using Oracle Java or OpenJDK
 
 Connection String

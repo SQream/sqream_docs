@@ -210,8 +210,9 @@ Clicking the **delete** icon displays a confirmation message with the amount of 
    :align: middle    
    
 .. |resume_suspend_quick_tour| image:: /_static/images/resume_suspend_quick_tour.png
-   :align: middle   
+   :align: middle
+    
    
 .. |suspension_policy_quick_tour| image:: /_static/images/suspension_policy_quick_tour.png
    :align: middle    
-   
+   :width: 800
