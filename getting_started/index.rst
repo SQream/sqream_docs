@@ -6,7 +6,9 @@ First Steps
    
 This guide provides an overview of the key steps to begin using BLUE. The guide covers the login process, connecting to third-party tools, effectively managing resources, and working with Jobs, a powerful SQL workflow tool.
 
-* :ref:`Log in<log_in>`
+* Learn how to :ref:`log in<log_in>` to BLUE for the first time.
+
+* Take a :ref:`quick tour<blue_tour>` around the BLUE web interface.
 
 * :ref:`Manage your resources <managing_your_resources>` and reduce runtime during idle periods for better costs. Allocate workers based on department-specific needs for improved cluster utilization.
 
@@ -20,7 +22,7 @@ This guide provides an overview of the key steps to begin using BLUE. The guide 
    :hidden:
 
    log_in
-   managing_your_resources/index 
+   blue_tour
 
    
    

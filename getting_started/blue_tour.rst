@@ -42,45 +42,6 @@ The **Workbench**  provides a comprehensive environment for writing, managing, a
    * Copy Execution Plan
    * Export Results
 
-Administrating your Cluster
-===========================
-
-The **Settings** page is a cluster administration section accessible only to users with cluster admin privileges. This page provides important controls for managing your cluster's resources, configurations, and access tokens.
-
-Cluster Scaling for Resource Optimization
------------------------------------------
-
-**Settings** »  **Worker Kit** » 
-
-Navigate through different Worker kits to accommodate heavy loads or optimize resources during periods of low activity.
-
-|worker_kit_quick_tour|
-
-Cluster Downtime and Uptime
----------------------------
-
-**Settings** »  **Resource Pool** » 
-
-Configure your cluster to automatically enter a suspended state during idle periods and automatically resume when statements or jobs are executed. Customize performance and concurrency preferences to optimize cluster usage.
-
-|resume_suspend_quick_tour|
-
-#. Automatic suspension
-
-#. Automatic resumption
-
-#. Performance Vs. concurrency 
-
-Define the conditions under which your cluster will shut down.
-
-|suspension_policy_quick_tour|
-
-#. Suspension policy for automatic suspension mode
-
-#. Immediate suspension / resumption button
-
-More about :ref:`resizing your cluster<cluster_management>`
-
 Monitoring Cluster Activity
 ===========================
 
@@ -125,43 +86,66 @@ The dashboard **Current Status** provides a real-time cluster overview of:
 * Queued  statements
 * Running Jobs
 
-Roles and Permissions
-=====================
+Administrating your Cluster
+===========================
 
-In the **Roles** area you can create and assign roles and manage user permissions. 
+Scaling your Cluster
+--------------------
 
-The **Type** column displays one of the following assigned role types:
+Settings »  Worker Kit » 
 
-.. list-table::
-   :widths: 15 75
-   :header-rows: 1   
-   
-   * - Role Type
-     - Description
-   * - Groups
-     - Roles with no users.
-   * - Enabled users
-     - Users with log-in permissions and a password.
-   * - Disabled users
-     - Users with log-in permissions and with a disabled password. An admin may disable a user's password permissions to temporary disable access to the system.
+Navigate through different Worker kits to accommodate heavy loads or optimize resources during periods of low activity.
 
+|worker_kit_quick_tour|
+
+More about :ref:`scaling your cluster<resizing_your_cluster>`
+
+Suspending and Resuming your Cluster
+------------------------------------
+
+Settings »  Resource Pool » 
+
+Configure your cluster to automatically enter a suspended state during idle periods and automatically resume when statements or jobs are executed. Customize performance and concurrency preferences to optimize cluster usage.
+
+|resume_suspend_quick_tour|
+
+#. Automatic suspension
+
+#. Automatic resumption
+
+#. Performance Vs. concurrency 
+
+Define the conditions under which your cluster will shut down.
+
+|suspension_policy_quick_tour|
+
+#. Suspension policy for automatic suspension mode
+
+#. Immediate suspension / resumption button
+
+More about :ref:`suspending and resuming your cluster<suspending_and_resuming_pools>`
 
 Viewing Information About a Role
 --------------------------------
 
-Clicking a role in the roles table displays the following information:
+The **Permissions** page is where you can create and assign roles and manage user permissions. It displays a list of existing roles along with the following information:
 
-* **Parent Roles** - displays the parent roles of the selected role. Roles inherit all roles assigned to the parent.
-   
-* **Members** - displays all members that the role has been assigned to. The arrow indicates the roles that the role has inherited. Hovering over a member displays the roles that the role is inherited from.
-   
-* **Permissions** - displays the role's permissions. The arrow indicates the permissions that the role has inherited. Hovering over a permission displays the roles that the permission is inherited from.
+* Role ID
+* Role Name
+* Superuser
+* Connected Databases
 
+Clicking a role in the roles table displays the following:
+
+* Existing permissions for each database the role has Connect permissions for
+* Whether it is a user or a group role (more about :ref:`user and group roles<access_control_managing_roles>`)
+* Edit role option
+* Delete role option
 
 Creating a New Role
 -------------------
 
-You can create a new role by clicking **New Role**.
+On the **Permissions** page you can create new roles.
 
 An admin creates a **user** by granting login permissions to a role. Each role is defined by a set of permissions. An admin can also group several roles together to form a **group** to manage them simultaneously. For example, permissions can be granted to or revoked on a group level.
 
@@ -170,28 +154,31 @@ Clicking **New Role** lets you do the following:
 * Add and assign a role name (required)
 * Enable or disable log-in permissions for the role
 * Add or delete permissions
-* Grant the selected user with clusteradmin permissions
+* Grant the selected user with superuser permissions
  
-From the New Role panel you view directly and indirectly (or inherited) granted permissions. Disabled permissions have no connect permissions for the referenced database and are displayed in gray text. You can add or remove permissions from the **Add permissions** field. From the New Role panel you can also search and scroll through the permissions. In the **Search** field you can use the **and** operator to search for strings that fulfill multiple criteria.
+From the New Role panel you view directly and indirectly (or inherited) granted permissions. Disabled permissions have no connect permissions for the referenced database and are displayed in gray text. You can add or remove permissions from the **Add permissions** field.
 
-When adding a new role, you must select the **Enable login for this role** check boxe.
+When adding a new role, you must select the **Grant login** checkbox.
 
 Editing a Role
 --------------
 
-Once you've created a role, clicking the **Edit Role** button lets you do the following:
+On the **Permissions** page you can edit existing roles.
+
+Clicking a role in the roles table and choosing the edit button lets you do the following:
 
 * Edit role name
 * Enable or disable log-in permissions
 * Assign or delete parent roles
-* Assign a role **administrator** permissions
 * Add or delete permissions
 * Grant the selected user with superuser permissions
 
-From the Edit Role panel you view directly and indirectly (or inherited) granted permissions. Disabled permissions have no connect permissions for the referenced database and are displayed in gray text. You can add or remove permissions from the **Add permissions** field. From the Edit Role panel you can also search and scroll through the permissions. In the **Search** field you can use the **and** operator to search for strings that fulfill multiple criteria.
+From the **Edit Role** panel you can view all role granted permissions. Disabled permissions have no connect permissions for the referenced database and are displayed in gray text. You can add or remove permissions using the **Add permissions** box. From the **Edit Role** panel you can also search and scroll through the permissions.
 
 Deleting a Role
 ---------------
+
+On the **Permissions** page you can delete existing roles.
 
 Clicking the **delete** icon displays a confirmation message with the amount of users and groups that will be impacted by deleting the role.
 

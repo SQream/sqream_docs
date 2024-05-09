@@ -57,9 +57,9 @@ A notable capability of BLUE lies in handling data preparation tasks, from 1TB t
    :hidden:
 
    getting_started/index
-   getting_started/blue_tour
    getting_started/architecture
    getting_started/performing_basic_blue_operations
+   managing_your_resources/index 
 
 .. toctree::
    :caption: Guides
