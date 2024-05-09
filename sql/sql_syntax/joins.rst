@@ -329,3 +329,7 @@ The following is an example of using a join hint:
    2 |  2
    4 |  4
    5 |  5
+   
+   
+.. |color_table| image:: /_static/images/color_table.png
+   :align: middle    

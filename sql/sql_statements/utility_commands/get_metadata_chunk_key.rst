@@ -3,14 +3,10 @@
 .. _get_metadata_chunk_key:
 
 **********************
-GET_METADATA_CHUNK_KEY
+GET METADATA CHUNK_KEY
 **********************
 
-The ``GET_METADATA_CHUNK_KEY`` |icon-new_2022.1| command returns specific metadata key values for user-specified chunks.
-
-.. |icon-new_2022.1| image:: /_static/images/new_2022.1.png
-   :align: middle
-   :width: 110
+The ``GET_METADATA_CHUNK_KEY`` command returns specific metadata key values for user-specified chunks.
 
 This reference page includes the following information:
 
@@ -156,4 +152,4 @@ The following is an example of the output generated from the ``GET_METADATA_CHUN
 Permissions
 ===========
 
-The ``GET_METADATA_CHUNK_KEY`` requires no special permissions.
+The ``GET METADATA CHUNK KEY`` requires no special permissions.
