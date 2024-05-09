@@ -1,8 +1,8 @@
 .. _architecture:
 
-*****************
-BLUE Architecture
-*****************
+************
+Architecture
+************
 
 
 .. _spooling:

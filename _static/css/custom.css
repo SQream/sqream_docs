@@ -98,6 +98,12 @@ html_theme_options = {
 	width: 55em;
 }
 
+.toc-drawer {
+    background: var(--color-toc-background);
+    padding-right: 0rem;
+	width: 20em;
+}
+
 h1 {
 	font-size: 2.0em;
 }

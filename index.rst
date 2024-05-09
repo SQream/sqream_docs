@@ -51,7 +51,7 @@ A notable capability of BLUE lies in handling data preparation tasks, from 1TB t
 
 .. toctree::
    :caption: Getting Started
-   :glob:
+   :glob: 
    :maxdepth: 2
    :titlesonly:
    :hidden:
@@ -137,3 +137,4 @@ A notable capability of BLUE lies in handling data preparation tasks, from 1TB t
    * :ref:`genindex`
    * :ref:`modindex`
    * :ref:`search`
+
