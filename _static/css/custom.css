@@ -17,6 +17,13 @@
    }
 }
 
+/* override view & edit this page */
+
+.content-icon-container .edit-this-page svg, .content-icon-container .view-this-page svg {
+    display: none !important;
+}
+
+
 /* Hack level >4 ToC issues */
 .wy-menu-vertical li.toctree-l3 li.toctree-l4 li.toctree-l5                                                         > a { padding-left:  7em; background: #ddd; }
 .wy-menu-vertical li.toctree-l3 li.toctree-l4 li.toctree-l5 li.toctree-l6                                           > a { padding-left:  8em; background: #ccc; }
