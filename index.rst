@@ -46,7 +46,6 @@ GPU Optimization Engine
    :hidden:
 
    getting_started/index
-   getting_started/architecture
    getting_started/performing_basic_blue_operations
    managing_your_resources/index 
 
