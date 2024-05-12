@@ -4,7 +4,7 @@
 .. role:: blue
    :class: blue-text
 
-.. raw:: html
+.. raw:: html 
 
    <style>
    .blue-text {
