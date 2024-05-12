@@ -122,7 +122,7 @@ When the service initializes, it looks for the variable ``DEFAULT_PROPERTIES``, 
    
     export DEFAULT_PROPERTIES=/home/avivs/branches/java/sqloader-service/config/sqload-jdbc.properties
    
-  Followed by service execution:
+   Followed by service execution:
    
    .. code-block::
    
