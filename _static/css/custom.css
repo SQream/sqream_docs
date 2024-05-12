@@ -89,20 +89,7 @@ html_theme_options = {
 
 
 
-.sidebar-drawer {
-	width: calc(40% - 23.5em);
-}
-	
-.content {
-	padding: 0 5em;
-	width: 55em;
-}
 
-.toc-drawer {
-    background: var(--color-toc-background);
-    padding-right: 0rem;
-	width: 20em;
-}
 
 h1 {
 	font-size: 2.0em;
