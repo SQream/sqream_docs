@@ -14,7 +14,7 @@
 
 :blue:`BLUE` Documentation
 ==========================
-  
+   
 
 BLUE is a cloud-native fully-managed platform designed for organizations utilizing data lake architectures, aiming to simplify and accelerate data preparation workflows and pipelines.
 
