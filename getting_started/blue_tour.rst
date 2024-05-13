@@ -59,15 +59,15 @@ The **Jobs** page is where you can create, execute, and manage your SQL and Pyth
 
 More about :ref:`executing, monitoring, and managing Jobs<performing_basic_blue_operations>`
 
-Monitoring Cluster Activity
-===========================
+Monitoring Your Cluster
+=======================
 
-The **Dashboard** serves as a tool for you to monitor and promptly respond to any changes within your system. It enables you to track the health of your system and ensures that your workloads are operating as expected in near real-time.
+The **Dashboard** serves as a tool for you to monitor and promptly respond to any changes within your cluster. It enables you to track the health of your cluster and ensures that your workloads are operating as expected in near real-time.
 
-Reading the Charts
-------------------
+Reading the **Dashboard** Charts
+--------------------------------
 
-The dashboard charts offer a comprehensive overview of Worker performance, detailing:
+The **Dashboard** charts offer a comprehensive overview of Worker performance, detailing:
 
 .. list-table:: 
    :widths: auto
@@ -94,16 +94,33 @@ The dashboard charts offer a comprehensive overview of Worker performance, detai
      - 1 hour
      - Week, past 2 weeks, past month
 
-Evaluating the Current System Status
-------------------------------------
+Evaluating Real-Time Cluster Workloads
+--------------------------------------
 
-The dashboard **Current Status** provides a real-time cluster overview of: 
+The **Dashboard** has a **Current** (Cluster) **Status** panel which provides real-time workload overview with: 
 
 * Running statements  
 * Queued  statements
 * Running Jobs
 
-Administrating your Cluster
+This panel also timestamps its latest updates, enabling you to follow the evolution of changes with precision.
+
+Monitoring the BLUE Web Interface Activity
+------------------------------------------
+
+The **Activity** page enables a deep-dive into your BLUE web interface activity. It displays all executed statements within the last ____ with the following details:
+
+* Start time
+* Session ID
+* Query ID
+* Type
+* SQL Statements
+* Duration (also shows failed statements)
+* Execution Plan
+
+You may also filter the information by **Session ID**, **Type**, **SQL Statements** (script), and **Duration**.
+
+Administrating Your Cluster
 ===========================
 
 Scaling your Cluster
@@ -117,7 +134,7 @@ Navigate through different Worker kits to accommodate heavy loads or optimize re
 
 More about :ref:`scaling your cluster<resizing_your_cluster>`
 
-Suspending and Resuming your Cluster
+Suspending and Resuming Your Cluster
 ------------------------------------
 
 Settings »  Resource Pool » 
