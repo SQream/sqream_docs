@@ -94,10 +94,6 @@ Querying Statistics
 .. code-block:: postgres
 
 	SELECT FETCH_COLUMN_HISTOGRAM("lineitem", "l_orderkey");
-	
-Output:
-	
-.. code-block:: none
 
 
 Aborting Statistics Operation
@@ -120,9 +116,6 @@ Deleting Statistics Operation
 
 	ALTER TABLE "lineitem" DROP STATISTICS FOR COLUMNS "l_orderkey";
 
-Output:
-
-.. code-block:: none
 
 
 
