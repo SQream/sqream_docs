@@ -108,7 +108,7 @@ This panel also timestamps its latest updates, enabling you to follow the evolut
 Monitoring the BLUE Web Interface Activity
 ------------------------------------------
 
-The **Activity** page enables a deep-dive into your BLUE web interface activity. It displays all executed statements within the last ____ with the following details:
+The **Activity** page provides a detailed overview of your BLUE web interface activity. It displays all executed statements along with the following details:
 
 * Start time
 * Session ID
