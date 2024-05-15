@@ -1,0 +1,25 @@
+<!-- _templates/layout.html -->
+{% extends "!layout.html" %}
+
+{% block meta %}
+{{ super() }}
+<!-- HTML Meta Tags -->
+<title>SQream Blue - GPU-powered SaaS Data Lakehouse - Documentation</title>
+<meta name="description" content="Access the hub of SQream Blue's technical documentation. Explore functional overviews, setup guides, and references, essential for data professionals leveraging our robust GPU-accelerated cloud data lakehouse for cost-effective insightful, data-driven decisions.">
+<meta property="og:image" content="{{ pathto('_static/images/image2.png', 1) }}">
+
+<!-- Facebook Meta Tags -->
+<meta property="og:url" content="https://docs.sqream.com/en/blue">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SQream Blue - GPU-powered SaaS Data Lakehouse - Documentation">
+<meta property="og:description" content="Access the hub of SQream Blue's technical documentation. Explore functional overviews, setup guides, and references, essential for data professionals leveraging our robust GPU-accelerated cloud data lakehouse for cost-effective insightful, data-driven decisions.">
+<meta property="og:image" content="{{ pathto('_static/images/image2.png', 1) }}">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta property="twitter:domain" content="docs.sqream.com">
+<meta property="twitter:url" content="https://docs.sqream.com/en/blue">
+<meta name="twitter:title" content="SQream Blue - GPU-powered SaaS Data Lakehouse - Documentation">
+<meta name="twitter:description" content="Access the hub of SQream Blue's technical documentation. Explore functional overviews, setup guides, and references, essential for data professionals leveraging our robust GPU-accelerated cloud data lakehouse for cost-effective insightful, data-driven decisions.">
+<meta name="twitter:image" content="{{ pathto('_static/images/image2.png', 1) }}">
+{% endblock %}

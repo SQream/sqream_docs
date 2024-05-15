@@ -30,9 +30,6 @@ BLUE offers seamless integration with third-party tools, BI tools, and analysis 
     :ref:`Apache Airflow<apache_airflow>`
 	
     :ref:`DBeaver<dbeaver>`
-	
-.. tab:: BI Tools
 
-    :ref:`Tableau<tableau>`
 
 
