@@ -1,5 +1,7 @@
 .. _index:
 
+.. meta::
+   :description: Access the hub of SQream Blue's technical documentation. Explore functional overviews, setup guides, and references, essential for data professionals leveraging our robust GPU-accelerated cloud data lakehouse for cost-effective insightful, data-driven decisions.
 
 .. role:: blue
    :class: blue-text
