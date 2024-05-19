@@ -48,7 +48,7 @@ Minimum Hardware Requirements
 Sizing Guidelines 
 ------------------
 
-The SQLoader sizing is determined by the number of concurrent tables and threads based on the available CPU cores, limiting it to the number of cores minus one, with the remaining core reserved for the operating system. Each SQLoader instance runs on a single table, meaning concurrent imports of multiple tables require multiple instances. Additionally, when dealing with partitioned tables, each partition consumes a thread, hence for performance efficiency, considering the table's partition count when managing thread allocation is a must.
+The SQLoader sizing is determined by the number of concurrent tables and threads based on the available CPU cores, limiting it to the number of cores minus one, with the remaining core reserved for the operating system. Each SQLoader instance runs on a single table, meaning concurrent imports of multiple tables require multiple instances. Additionally, it is important to note that for partitioned tables, each partition consumes a thread. Therefore, for performance efficiency, considering the table's partition count when managing thread allocation is a must.
 
 .. _getting_the_sqloader_configuration_and_jar_files:
 
@@ -117,8 +117,8 @@ The ``sqload-jdbc.properties`` file contains a connection string that must be co
     :caption: Properties File Sample
     :linenos:
 
-Using SQLoader Service
-======================
+Deploying SQLoader Service
+==========================
 
 When the service initializes, it looks for the variable ``DEFAULT_PROPERTIES``, which corresponds to the default ``sqload-jdbc.properties`` file.
 
@@ -136,7 +136,7 @@ When the service initializes, it looks for the variable ``DEFAULT_PROPERTIES``, 
    
     java -jar target/sqloaderService-8.0.jar
    
-* Appending to -D flag when executing the jar:
+* Appending to ``-D`` flag when executing the JAR file:
 
   .. code-block::
   
@@ -157,19 +157,19 @@ Supported POST Requests
      - Description
      - Example
    * - ``load``
-     - Send request to service and return
+     - Sends a request to the service and returns immediately
      - 
    * - ``syncLoad``
-     - Send request to service and return once the request is done
+     - Sends a request to the service and returns once the request is complete
      - 
    * - ``filterLogs``
-     - Get logs for a specific request id
+     - Retrieves logs for a specific request ID
      - 
    * - ``getActiveLoads``
-     - Get a list of all active loads currently running in shared queue
+     - Returns a list of all active loads currently running in the shared queue
      - 
    * - ``cancelRequest``
-     - Cancel an ``async`` request by request id
+     - Cancels an active request by request ID
      - 
 
 Loading Data into SQreamDB Tables
@@ -333,6 +333,11 @@ Loading Data into SQreamDB Tables
      - 
      - Partition identifier ``string``
      - Specifies the number of table partitions. If configured, ``-partition`` ensures that data is loaded according to the specified partition. You may configure the ``-thread`` parameter for parallel loading of your table partitions. If you do, please ensure that the number of threads does not exceed the number of partitions.
+   * - ``-port``
+     - Optional
+     - ``6060``
+     - 
+     - 
    * - ``-rowid``
      - Optional
      - ``false``
