@@ -59,13 +59,13 @@ Getting the SQLoader Configuration and JAR Files
 
 .. code-block:: linux
 
-	curl -O https://sq-ftp-public.s3.amazonaws.com/sqloader-v7.12.tar
+	curl -O https://sq-ftp-public.s3.amazonaws.com/sqloader-v8.0.tar
 
 2. Extract the ``.tar`` file using the following command:
 
 .. code-block:: linux
 
-	tar -xf sqloader-7.12.tar.gz
+	tar -xf sqloader-8.0.tar.gz
 
 A folder named ``sqloader`` with the following files is created:
    
