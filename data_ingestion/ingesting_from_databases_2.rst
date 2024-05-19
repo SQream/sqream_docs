@@ -8,11 +8,12 @@ The **SQLoader** is a Java service that enables you to ingest data into SQreamDB
 
 **SQLoader** supports ingesting data from the following DBMSs:
 
+* Microsoft SQL Server
 * Oracle
 * Postgresql
-* Teradata
-* Microsoft SQL Server
 * SAP HANA
+* Sybase
+* Teradata
 
 .. contents:: 
    :local:
@@ -571,7 +572,35 @@ Data Type Mapping
 Automatic Mapping
 ------------------
 
-The **SQLoader** automatically maps data types used in  Oracle, Postgresql, Teradata, Microsoft SQL Server, and SAP HANA tables that are loaded into SQreamDB.
+The **SQLoader** automatically maps data types used in Microsoft SQL Server, Oracle, Postgresql, Sybase, SAP HANA, and Teradata tables that are loaded into SQreamDB.
+
+Microsoft SQL Server
+^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Microsoft SQL Server Type
+     - SQreamDB Type
+   * - ``CHAR``, ``NCHAR``, ``VARCHAR``, ``NVARCHAR``, ``NVARCHAR2``, ``CHARACTER``, ``TEXT``, ``NTEXT``
+     - ``TEXT``
+   * - ``BIGINT``, ``INT``, ``SMALLINT``, ``INT``, ``TINYINT``
+     - ``BIGINT``
+   * - ``DATETIME``, ``TIMESTAMP``, ``SMALLDATETIME``, ``DATETIMEOFFSET``, ``DATETIME2``
+     - ``DATETIME``
+   * - ``DATE``
+     - ``DATE``
+   * - ``BIT``
+     - ``BOOL``
+   * - ``DECIMAL``, ``NUMERIC``
+     - ``NUMERIC``
+   * - ``FLOAT``, ``DOUBLE``
+     - ``DOUBLE``
+   * - ``REAL``
+     - ``REAL``
+   * - ``VARBINARY``
+     - ``TEXT``
 
 Oracle
 ^^^^^^^ 
@@ -606,9 +635,8 @@ Oracle
      - ``TEXT``
 
 
-
 Postgresql
-^^^^^^^^^^^
+^^^^^^^^^^
 
 .. list-table::
    :widths: auto
@@ -635,72 +663,8 @@ Postgresql
    * - ``REAL``, ``FLOAT4``
      - ``REAL``
 
-Teradata
-^^^^^^^^^
-
-.. list-table::
-   :widths: auto
-   :header-rows: 1
-   
-   * - Teradata Type
-     - SQreamDB Type
-   * - ``F``
-     - ``DOUBLE``
-   * - ``N``, ``D``
-     - ``NUMERIC``
-   * - ``CO``
-     - ``TEXT``
-   * - ``BO``
-     - ``TEXT``
-   * - ``A1``, ``AN``, ``AT``, ``BF``, ``BV``, ``CF``, ``CV``, ``JN``, ``PD``, ``PM``, ``PS``, ``PT``, ``PZ``, ``SZ``, ``TZ``
-     - ``TEXT``
-   * - ``I``, ``I4``, ``I(4)``  
-     - ``INT``
-   * - ``I2``, ``I(2)``
-     - ``SMALLINT``
-   * - ``I1``, ``I(1)``
-     - ``TINYINT``
-   * - ``DH``, ``DM``, ``DS``, ``DY``, ``HM``, ``HS``, ``HR``, ``I8``, ``MO``, ``MS``, ``MI``, ``SC``, ``YM``, ``YR``
-     - ``BIGINT``
-   * - ``TS``, ``DATETIME``
-     - ``DATETIME``
-   * - ``DA``
-     - ``DATE``
-   * - ``BIT``
-     - ``BOOL``
-   * - ``REAL``, ``DOUBLE``
-     - ``DOUBLE``
-
-Microsoft SQL Server
-^^^^^^^^^^^^^^^^^^^^^
-
-.. list-table::
-   :widths: auto
-   :header-rows: 1
-   
-   * - Microsoft SQL Server Type
-     - SQreamDB Type
-   * - ``CHAR``, ``NCHAR``, ``VARCHAR``, ``NVARCHAR``, ``NVARCHAR2``, ``CHARACTER``, ``TEXT``, ``NTEXT``
-     - ``TEXT``
-   * - ``BIGINT``, ``INT``, ``SMALLINT``, ``INT``, ``TINYINT``
-     - ``BIGINT``
-   * - ``DATETIME``, ``TIMESTAMP``, ``SMALLDATETIME``, ``DATETIMEOFFSET``, ``DATETIME2``
-     - ``DATETIME``
-   * - ``DATE``
-     - ``DATE``
-   * - ``BIT``
-     - ``BOOL``
-   * - ``DECIMAL``, ``NUMERIC``
-     - ``NUMERIC``
-   * - ``FLOAT``, ``DOUBLE``
-     - ``DOUBLE``
-   * - ``REAL``
-     - ``REAL``
-   * - ``VARBINARY``
-     - ``TEXT``
-
 SAP HANA
-^^^^^^^^^
+^^^^^^^^
 	 
 .. list-table::
    :widths: auto
@@ -747,6 +711,76 @@ SAP HANA
    * - ``REAL``
      - ``REAL``	 
 	 
+Sybase
+^^^^^^
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Sybase Type
+     - SQreamDB Type
+   * - ``CHAR``, ``VARCHAR``, ``LONG VARCHAR``, ``CHARACTER``, ``TEXT``
+     - ``TEXT``
+   * - ``TINYINT``
+     - ``TINYINT``
+   * - ``SMALLINT``
+     - ``SMALLINT``   
+   * - ``INT``, ``INTEGER``
+     - ``INT``
+   * - ``BIGINT``
+     - ``BIGINT``
+   * - ``DECIMAL``, ``NUMERIC``
+     - ``NUMERIC``   
+   * - ``NUMERIC(126,38)``
+     - ``NUMERIC(38,10)``
+   * - ``FLOAT``, ``DOUBLE``
+     - ``DOUBLE``
+   * - ``DATE``
+     - ``DATE``   
+   * - ``DATETIME``, ``TIMESTAMP``, ``TIME``
+     - ``DATETIME``   
+   * - ``BIT``
+     - ``BOOL``   
+   * - ``VARBINARY``, ``BINARY``, ``LONG BINARY``
+     - ``TEXT``   
+
+Teradata
+^^^^^^^^^
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Teradata Type
+     - SQreamDB Type
+   * - ``F``
+     - ``DOUBLE``
+   * - ``N``, ``D``
+     - ``NUMERIC``
+   * - ``CO``
+     - ``TEXT``
+   * - ``BO``
+     - ``TEXT``
+   * - ``A1``, ``AN``, ``AT``, ``BF``, ``BV``, ``CF``, ``CV``, ``JN``, ``PD``, ``PM``, ``PS``, ``PT``, ``PZ``, ``SZ``, ``TZ``
+     - ``TEXT``
+   * - ``I``, ``I4``, ``I(4)``  
+     - ``INT``
+   * - ``I2``, ``I(2)``
+     - ``SMALLINT``
+   * - ``I1``, ``I(1)``
+     - ``TINYINT``
+   * - ``DH``, ``DM``, ``DS``, ``DY``, ``HM``, ``HS``, ``HR``, ``I8``, ``MO``, ``MS``, ``MI``, ``SC``, ``YM``, ``YR``
+     - ``BIGINT``
+   * - ``TS``, ``DATETIME``
+     - ``DATETIME``
+   * - ``DA``
+     - ``DATE``
+   * - ``BIT``
+     - ``BOOL``
+   * - ``REAL``, ``DOUBLE``
+     - ``DOUBLE``
+
 Manually Adjusting Mapping
 ----------------------------
 
