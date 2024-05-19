@@ -4,9 +4,15 @@
 External Databases
 ******************
 
-The **SQLoader** is a java service that enables you to load data into SQreamDB from other DBMS and DBaaS through HTTP requests using network insert.
+The **SQLoader** is a Java service that enables you to ingest data into SQreamDB from other DBMS and DBaaS through HTTP requests using network insert.
 
-**SQLoader** supports Oracle, Postgresql, Teradata, Microsoft SQL Server, and SAP HANA.
+**SQLoader** supports ingesting data from the following DBMSs:
+
+* Oracle
+* Postgresql
+* Teradata
+* Microsoft SQL Server
+* SAP HANA
 
 .. contents:: 
    :local:
@@ -18,8 +24,8 @@ Before You Begin
 It is essential that you have the following:
 
 * Java 17
-* SQLoader configuration files
-* SQLoader.jar file
+* :ref:`SQLoader configuration files<getting_the_sqloader_configuration_and_jar_files>`
+* :ref:`SQLoader.jar file<getting_the_sqloader_configuration_and_jar_files>`
 
 
 
@@ -42,7 +48,9 @@ Minimum Hardware Requirements
 Sizing Guidelines 
 ------------------
 
-The SQLoader sizing is determined by the number of concurrent tables and threads based on the available CPU cores, limiting it to the number of cores minus one, with the remaining core reserved for the operating system. Each SQLoader instance runs on a single table, meaning concurrent imports of multiple tables require multiple instances. Additionally, when dealing with partitioned tables, each partition consumes a thread, so users should consider the table's partition count when managing thread allocation for efficient performance.
+The SQLoader sizing is determined by the number of concurrent tables and threads based on the available CPU cores, limiting it to the number of cores minus one, with the remaining core reserved for the operating system. Each SQLoader instance runs on a single table, meaning concurrent imports of multiple tables require multiple instances. Additionally, when dealing with partitioned tables, each partition consumes a thread, hence for performance efficiency, considering the table's partition count when managing thread allocation is a must.
+
+.. _getting_the_sqloader_configuration_and_jar_files:
 
 Getting the SQLoader Configuration and JAR Files
 ================================================
