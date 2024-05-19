@@ -1,4 +1,4 @@
-.. _architecture:
+.. _aws_architecture:
 
 ***********************
 SQreamDB on Marketplace
