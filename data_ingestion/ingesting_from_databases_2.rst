@@ -467,13 +467,16 @@ Summary tables are part of the schema within the database catalog.
 Creating a Summary Table
 --------------------------
 
-This summary table uses Oracle syntax. 
+The following summary table DDL uses Oracle syntax. 
 
-Moving to SQLoader service, add the following column:
+.. note:: 
 
-.. code-block: sql
+  If you are migrating from :ref:`SQLoader as a process<ingesting_from_databases>` to **SQLoader as a service**, as described on this page, it is highly recommended that you add the following columns to your existing summary table instead of re-creating it.
 
-	REQUEST_ID TEXT (200 BYTE) VISIBLE DEFAULT NULL
+  .. code-block:: sql
+
+    REQUEST_ID TEXT (200 BYTE) VISIBLE DEFAULT NULL
+    REQUEST_HASH TEXT (200 BYTE) VISIBLE DEFAULT NULL
 
 .. code-block:: sql
 
