@@ -1,40 +1,33 @@
-// mandatory!
+name=connect-jdbc
+connectionStringSource=<source database connection string>
+connectionStringSqream=<sqreamdb connection string>
+connectionStringCatalog=<catalog connection string>
 
-// Postgresql, Oracle, Teradata, SAP HANA, Microsoft SQL Server, and SQreamDB Connection Strings
-	
-// postgres
-source.jdbc.connectionstring=jdbc:postgresql://<HostIp:port>/<database_name>?user=<user_name>&password=<password>&ssl=<true/false>
-	
-// oracle
-source.jdbc.connectionstring=jdbc:oracle:thin:@//<HostIp:port>/<database_name>?user=<user_name>&password=<password>&ssl=<true/false>
-	
-// teradata
-source.jdbc.connectionstring=jdbc:teradata://<HostIp>/DATABASE=<database_name>,DBS_PORT=<port>,user=<user_name>,password=<password>
+sourceDatabaseName=<source database name>
+sourceSchema=<source schema name>
+sourceTable=<source table name>
 
-// sap hana
-source.jdbc.connectionstring=jdbc:sap://<HostIp>:<port>/?user=<user_name>&password=<password>
+filter=1=1
+count=true
+limit=2000
+threadCount=1
 
-// microsoft sql server
-source.jdbc.connectionstring=jdbc:sqlserver://<HostIp>:<port>;databaseName=<database_name>;user=<user_name>;password=<password>;encrypt=<true/false>;trustServerCertificate=<true/false>	
-	
-// sqream
-sqream.jdbc.connectionstring=jdbc:Sqream://<HostIp:port>/<database_name>;cluster=<true/false>;user=<user_name>;password=<password>
-	
-// CDC and Incremental Parameter
+rowid=false
+batchSize=500
+fetchSize=100000
+chunkSize=0
+caseSensitive=false
 
-cdc_catalog_table=public.CDC_TABLES
-cdc_tracking_table=public.CDC_TRACKING
-cdc_primary_keys_table=public.CDC_TABLE_PRIMARY_KEYS
-
-
-
-// Optional!
-	
-// Oracle Catalog
-// catalog.jdbc.connectionstring=jdbc:oracle:thin:@//<HostIp:port>/<database_name>?user=<user_name>&password=<password>
-
-// SQreamDB Catalog
-// catalog.jdbc.connectionstring=jdbc:Sqream://<HostIp:port>/<database_name>;cluster=<true/false>;user=<user_name>;password=<password>
-
-// Summary Parameter
-// load_summary_table=public.SQLOAD_SUMMARY
+truncate=true
+drop=true
+loadTypeName=full
+cdcCatalogTable=SMSDW.CDC_TABLES
+cdcTrackingTable=SMSDW.CDC_TRACKING
+loadSummaryTable=SMSDW.SQLOAD_SUMMARY
+cdcPrimaryKeyTable=SMSDW.CDC_TABLE_PRIMARY_KEYS
+cdcDelete=true
+usePartitions=false
+lockCheck=false
+lockTable=true
+loadDttm=false
+useDbmsLob=false
