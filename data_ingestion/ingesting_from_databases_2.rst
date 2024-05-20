@@ -347,8 +347,8 @@ It is recommended that the ``sqload-jdbc.properties`` file will contain a connec
    * - ``ssl``
      - Specifies SSL for this connection
 
-.. literalinclude:: connection_string.txt
-    :language: 
+.. literalinclude:: connection_string.java
+    :language: java
     :caption: Properties File Sample
     :linenos:
 
