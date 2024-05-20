@@ -6,6 +6,8 @@ Cost-Based Optimizer
 
 The Cost-Based Optimizer (CBO) evaluates and compares the potential costs associated with different query execution plans to determine the most efficient one. The "cost" in this context refers to the estimated resource requirements and performance metrics (such as GPU usage) that each candidate query plan would entail when executed.
 
+After adding or deleting data from a table on which we executed ``ANALYZE``, we must execute ANALYZE once more in terms of updating the statistics.  
+
 Before You Begin
 ================
 
@@ -55,15 +57,31 @@ Parameters
      - Specifies the query ID
 
 
+Usage Note
+==========
+
+The Statistics operation does not support ``TEXT`` and ``NUMERIC`` columns. 
+
+Best Practice
+=============
+
+A best practice of following statistics is:
+
+1. Executing ``ANALYZE TABLE`` 
+
 Examples
 ========
 
 Initiating Statistics Collection
 --------------------------------
+The command is asynchronous 
+Depending on the tale size, this command may take a while to process. 
+
+The output is the session ID + query ID
 
 .. code-block:: postgres
 
-	ANALYZE TABLE lineitem COMPUTE STATISTICS FOR COLUMNS l_orderkey;
+	ANALYZE TABLE nba COMPUTE STATISTICS FOR COLUMNS number;
 	
 Output:
 
@@ -71,30 +89,41 @@ Output:
 
 	session_id                          |query_id|
 	------------------------------------+--------+
-	bda37dc1-8917-4e76-bcee-c139a7864948|23      |
+	ba0cc085-35a3-48f3-8c97-fedc636dccc8|26      |
 	
 Analyzing Statistics Request Status
 -----------------------------------
 
+To determine whether or not the collection of your statistics request is completed.
+
 .. code-block:: postgres
 
-	STATISTICS REQUEST STATUS queryId '23';
+	STATISTICS REQUEST STATUS queryId '26';
 
 Output:
 
 .. code-block:: none
 
-	session_id                          |query_id|submission_time        |start_execution_time|termination_time|status   |current_column|total_num_columns|error_message|
-	------------------------------------+--------+-----------------------+--------------------+----------------+---------+--------------+-----------------+-------------+
-	bda37dc1-8917-4e76-bcee-c139a7864948|23      |2024-05-06 11:12:55.121|NULL                |NULL            |SUBMITTED|0             |0                |NULL         |
-	
+	session_id                          |query_id|submission_time        |start_execution_time   |termination_time       |status             |current_column|total_num_columns|error_message|
+	------------------------------------+--------+-----------------------+-----------------------+-----------------------+-------------------+--------------+-----------------+-------------+
+	ba0cc085-35a3-48f3-8c97-fedc636dccc8|26      |2024-05-20 10:37:25.747|2024-05-20 10:37:25.748|2024-05-20 10:37:28.885|EXECUTION_SUCCEEDED|0             |0                |             |
+		
 Querying Statistics
 -------------------
+
+Nullable columns require @val
 
 .. code-block:: postgres
 
 	SELECT FETCH_COLUMN_HISTOGRAM("lineitem", "l_orderkey");
 
+Output:
+
+.. code-block:: none
+
+	info                                 |
+	-------------------------------------+
+	Table is empty (has no non-null data)|
 
 Aborting Statistics Operation
 -----------------------------
@@ -117,14 +146,9 @@ Deleting Statistics Operation
 	ALTER TABLE "lineitem" DROP STATISTICS FOR COLUMNS "l_orderkey";
 
 
-
-
-
-
-
 Permissions
 ===========
 
-
+The role must have the ``SUPERUSER`` permissions.
    
 
