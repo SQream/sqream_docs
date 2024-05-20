@@ -11,7 +11,7 @@ It's crucial to recognize that performance tuning options vary for each query. R
 Using the ``DESCRIBE QUERY`` Command
 ====================================
 
-The :ref:`DESCRIBE QUERY<describe_query>` command provides an instantaneous overview of the current query plan by presenting a real-time depiction of the compiler's execution strategy and performance metrics for the designated query.
+The :ref:`DESCRIBE QUERY<describe_query>` command provides instantaneous and historical overview of the current query plan by presenting a real-time depiction of the compiler's execution strategy and performance metrics for the designated query.
 
 For example:
 
@@ -363,13 +363,14 @@ Commonly Seen Nodes
      - CPU 
      - Writes the result set to a standard table stored on disk
 
-.. tip:: The full list of nodes appears in the :ref:`Node types table<node_types>`, as part of the :ref:`describe_query` reference.
 
 Examples
 ========
 
-In general, looking at the top three longest running nodes (as is detailed in the ``timeSum`` column) can indicate the biggest bottlenecks.
+In general, looking at the top three longest running nodes (as is detailed in the ``elapsed_time`` column) can indicate the biggest bottlenecks.
 In the following examples you will learn how to identify and solve some common issues.
+   
+Use the ``blue_sample_data`` database.
    
 Queries with Large Result Sets
 ------------------------------
@@ -386,35 +387,37 @@ Identifying the Offending Nodes
 
 .. code-block:: sql
       
-      SELECT s.*,
-             l.*,
-             r.*,
-             n1.*,
-             n2.*,
-             p.*,
-             o.*,
-             c.*
-      FROM lineitem l
-        JOIN part p ON p_partkey = CAST (l_partkey AS INT)
-        JOIN orders o ON l_orderkey = o_orderkey
-        JOIN customer c ON o_custkey = c_custkey
-        JOIN nation n1 ON c_nationkey = n1.n_nationkey
-        JOIN region r ON n1.n_regionkey = r_regionkey
-        JOIN supplier s ON s_suppkey = l_suppkey
-        JOIN nation n2 ON s_nationkey = n2.n_nationkey
-      WHERE r_name = 'AMERICA'
-      AND   o_orderdate BETWEEN '1995-01-01' AND '1996-12-31'
-	  ;
+	USE DATABASE blue_sample_data;
+	  
+	SELECT s.*,
+		   l.*,
+		   r.*,
+		   n1.*,
+		   n2.*,
+		   p.*,
+		   o.*,
+		   c.*
+	FROM tpch_blue1.lineitem l
+	  JOIN tpch_blue1.part p ON p_partkey = CAST (l_partkey AS INT)
+	  JOIN tpch_blue1.orders o ON l_orderkey = o_orderkey
+	  JOIN tpch_blue1.customer c ON o_custkey = c_custkey
+	  JOIN tpch_blue1.nation n1 ON c_nationkey = n1.n_nationkey
+	  JOIN tpch_blue1.region r ON n1.n_regionkey = r_regionkey
+	  JOIN tpch_blue1.supplier s ON s_suppkey = l_suppkey
+	  JOIN tpch_blue1.nation n2 ON s_nationkey = n2.n_nationkey
+	WHERE r_name = 'AMERICA'
+	AND   o_orderdate BETWEEN '1995-01-01' AND '1996-12-31'
+	;
 
-2. Observe the execution information by using the foreign table, or use ``DESCRIBE QUERY``
+2. Observe the execution information using ``DESCRIBE QUERY``.
    
-   This statement is made up of 221 nodes, containing 8 ``ReadTable`` nodes, and finishes by returning billions of results to the client.
+   This statement is made up of 39 nodes, containing 8 ``ReadTable`` nodes, and finishes by returning billions of results to the client.
    
    The execution below has been shortened, but note the highlighted rows for ``DeferredGather``:
    
 .. code-block:: sql
    
-    SELECT show_node_info(494);
+    DESCRIBE QUERY SESSION ID '7af68d1b-3113-4dbe-bb5e-21de4febc0c3' QUERY ID 1;
 	
 Output:
 
