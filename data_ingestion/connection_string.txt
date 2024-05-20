@@ -64,4 +64,5 @@ lockCheck=false
 lockTable=true
 loadDttm=false
 useDbmsLob=false
-# or any other flag..
+
+.. more flags

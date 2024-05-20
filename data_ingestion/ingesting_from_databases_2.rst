@@ -104,6 +104,8 @@ Installation
 Parameters
 ^^^^^^^^^^
 
+``-D`` flags are not dynamically adjustable at runtime. 
+
 .. list-table:: 
    :widths: auto
    :header-rows: 1
@@ -118,17 +120,17 @@ Parameters
      - ``java -jar sqloaderService-8.0.jar configDir=</path/to/directory/>``
      - 
      - Defines the path to the folder containing both the data type mapping and the reserved words files. The defined folder must contain both files or else you will receive an error. This flag affects the mapping and reserved words files and does not affect the properties file 
-   * - ``--hzClusterName=<TEXT>``
+   * - ``hzClusterName=<TEXT>``
      - Optional
      - 
      - 
-     - In Hazelcast, a cluster refers to a group of connected Hazelcast instances across different JVMs or machines. By default, these instances connect to the same cluster on the network level, meaning that all SQLoader services that start on a network will connect to each other and share the same queue. An admin can connect to only one Hazelcast cluster at a time. If you start multiple clusters and want to connect them to the admin service, you will need to start multiple admin services, with each service connecting to one of your clusters.
-   * - ``log_dir``
+     - In Hazelcast, a cluster refers to a group of connected Hazelcast instances across different JVMs or machines. By default, these instances connect to the same cluster on the network level, meaning that all SQLoader services that start on a network will connect to each other and share the same queue. An admin can connect to only one Hazelcast cluster at a time. If you start multiple clusters and want to connect them to the admin service, you will need to start multiple admin services, with each service connecting to one of your clusters. It is essential that this flag has the same name used here and across all SQLLoader instances.
+   * - ``LOG_DIR``
      - Optional
      - ``logs``
-     - ``java -jar -DLOG_DIR=/path/to/log/directory sqloaderService-8.0.jar``
-     - Defines the path of log directory created when loading data. If no value is specified, a ``logs`` folder is created under the same location as the ``sqloader.jar`` file 
-   * - ``--spring.boot.admin.client.url``
+     - ``-D``
+     - Defines the path of log directory created when loading data. If no value is specified, a ``logs`` folder is created under the same location as the ``sqloader.jar`` file
+   * - ``spring.boot.admin.client.url``
      - Optional
      - ``http://localhost:7070``
      - 
@@ -141,8 +143,8 @@ Parameters
    * - ``DEFAULT_PROPERTIES``
      - Mandatory
      - ``sqload-jdbc.properties``
-     - 
-     - ``-D`` flags are not dynamically adjustable at runtime. Once the service is running with a specified properties file, this setting will remain unchanged as long as the service is operational. To modify it, you must shut down the service, edit the properties file, and then restart the service. Alternatively, you can modify it via a POST request, but this change will only affect the specific load request and not the default setting for all requests.
+     - ``-D``
+     - When the service initializes, it looks for the variable DEFAULT_PROPERTIES, which corresponds to the default sqload-jdbc.properties file. Once the service is running with a specified properties file, this setting will remain unchanged as long as the service is operational. To modify it, you must shut down the service, edit the properties file, and then restart the service. Alternatively, you can modify it via a POST request, but this change will only affect the specific load request and not the default setting for all requests.
 	 
 Installing the Admin Server and SQLoader Service
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -345,8 +347,8 @@ It is recommended that the ``sqload-jdbc.properties`` file will contain a connec
    * - ``ssl``
      - Specifies SSL for this connection
 
-.. literalinclude:: connection_string.java
-    :language: java
+.. literalinclude:: connection_string.txt
+    :language: 
     :caption: Properties File Sample
     :linenos:
 
@@ -373,7 +375,7 @@ Supported HTTP Requests
    * - POST
      - ``syncLoad``
      - ``curl --header "Content-Type: application/json" --request POST --data '{}' http://127.0.0.1:6060/syncLoad``
-     - Sends a request to the service and returns once the request is complete
+     - Sends a request to the service and returns once the request is complete. There's no load-balancing queue shared across multiple instances; therefore, it's advised that ``syncLoad`` requests be monitored by the user and not heavily sent. Monitor using the ``getActiveLoads`` cURL.
      - ``curl --header "Content-Type: application/json" --request POST --data '{"sourceTable": "AVIV_INC", "sqreamTable": "t_inc", "limit":2000, "loadTypeName":"full"}' http://127.0.0.1:6060/syncLoad``
    * - POST
      - ``filterLogs``
@@ -383,7 +385,7 @@ Supported HTTP Requests
    * - GET
      - ``getActiveLoads``
      - ``curl --header "Content-Type: application/json" --request GET http://127.0.0.1:6060/getActiveLoads``
-     - Returns a list of all active loads currently running in the shared queue
+     - Returns a list of all active loads currently running across all services
      - 
    * - GET
      - ``cancelRequest``
@@ -643,15 +645,11 @@ Using the ``loadTypeName`` parameter, you can define how you wish records' chang
 
 
 	
-Using the SQLoader Java Service Web Interface
----------------------------------------------
+Using the SQLoader Service Web Interface
+----------------------------------------
 
 The SQLoader Admin Server is a web-based administration tool specifically designed to manage and monitor the SQLoader service. It provides a user-friendly interface for monitoring data loading processes, managing configurations, and troubleshooting issues related to data loading into SQreamDB.
 
-Grouping Services
-^^^^^^^^^^^^^^^^^
-
-Hazelcast cluster name refers to a group of interconnected Hazelcast instances across different JVMs or machines. By default, these instances automatically connect to the same cluster on the network, enabling all SQLoader services within a network to connect to each other and share the same queue. To exert control over how services are grouped, you can use the ``--hzClusterName=<TEXT>`` flag.
 
 SQLoader Service Web Interface Features
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
