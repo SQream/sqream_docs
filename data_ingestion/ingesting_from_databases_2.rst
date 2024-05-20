@@ -52,33 +52,38 @@ The SQLoader sizing is determined by the number of concurrent tables and threads
 
 Compute formula: :math:`⌊ 0.8 * (TotalMemory - 4) ⌋`
 
-Setup and Connectivity
-======================
+Installation and Connectivity
+=============================
 
 .. _getting_the_sqloader_configuration_and_jar_files:
 
-Getting the SQLoader Configuration and JAR Files
-------------------------------------------------
+Getting All Configuration and JAR Files
+---------------------------------------
 
-1. Download the ``.tar`` file using the following command:
-
-.. code-block:: linux
-
-	curl -O https://sq-ftp-public.s3.amazonaws.com/sqloader-v8.0.tar
-
-2. Extract the ``.tar`` file using the following command:
+Extract the ``.tar`` file using the following command:
 
 .. code-block:: linux
 
-	tar -xf sqloader-8.0.tar.gz
+	tar -xf sqloader_srv_v8.0.tar.gz
 
 A folder named ``sqloader`` with the following files is created:
    
-.. list-table:: SQLoader Files
+.. code-block:: 
+
+	├── sqloader-v1.sh
+	├── bin
+	│   ├── sqloader-admin-server-1.0.jar
+	│   └── sqloader-service-8.0.jar
+	├── config
+		├── reserved_words.txt
+		├── sqload-jdbc.properties
+		└── sqream-mapping.json
+   
+.. list-table::
    :widths: auto
    :header-rows: 1
    
-   * - File
+   * - File Name
      - Description
    * - ``sqream-mapping.json``
      - Maps foreign DBMS and DBaaS data types into SQreamDB data types during ingestion
@@ -86,8 +91,231 @@ A folder named ``sqloader`` with the following files is created:
      - Used for defining a connection string and may also be used to reconfigure data loading
    * - ``reserved_words.txt``
      - A list of reserved words which cannot be used as table and/or column names. 
-   * - ``sqloader.jar``
-     - The SQLoader package file 
+   * - ``sqloader-service-8.0.jar``
+     - The SQLoader service JAR file 
+   * - ``sqloader-admin-server-1.0.jar``
+     - The SQLoader admin server JAR file
+   * - ``sqloader-v1.sh``
+     - SQLoader service installer bash file
+	 
+Installation
+------------
+
+Parameters
+^^^^^^^^^^
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - State
+     - Default
+     - Type 
+     - Description
+   * - ``configDir``
+     - Optional
+     - ``java -jar sqloaderService-8.0.jar configDir=</path/to/directory/>``
+     - 
+     - Defines the path to the folder containing both the data type mapping and the reserved words files. The defined folder must contain both files or else you will receive an error. This flag affects the mapping and reserved words files and does not affect the properties file 
+   * - ``--hzClusterName=<TEXT>``
+     - Optional
+     - 
+     - 
+     - In Hazelcast, a cluster refers to a group of connected Hazelcast instances across different JVMs or machines. By default, these instances connect to the same cluster on the network level, meaning that all SQLoader services that start on a network will connect to each other and share the same queue. An admin can connect to only one Hazelcast cluster at a time. If you start multiple clusters and want to connect them to the admin service, you will need to start multiple admin services, with each service connecting to one of your clusters.
+   * - ``log_dir``
+     - Optional
+     - ``logs``
+     - ``java -jar -DLOG_DIR=/path/to/log/directory sqloaderService-8.0.jar``
+     - Defines the path of log directory created when loading data. If no value is specified, a ``logs`` folder is created under the same location as the ``sqloader.jar`` file 
+   * - ``--spring.boot.admin.client.url``
+     - Optional
+     - ``http://localhost:7070``
+     - 
+     - SQLoader admin server connection flag
+   * - ``Xmx``
+     - Optional
+     - 
+     - 
+     - We recommend using the ``Xmx`` flag to set the maximum heap memory allocation for the service. If a single service is running on the machine, we suggest allocating 80% of the total memory minus approximately 4GB, which the service typically needs on average. If multiple services are running on the same machine, calculate the recommended heap size for one service and then divide it by the number of services. Compute formula: :math:`⌊ 0.8 * (TotalMemory - 4) ⌋`
+   * - ``DEFAULT_PROPERTIES``
+     - Mandatory
+     - ``sqload-jdbc.properties``
+     - 
+     - ``-D`` flags are not dynamically adjustable at runtime. Once the service is running with a specified properties file, this setting will remain unchanged as long as the service is operational. To modify it, you must shut down the service, edit the properties file, and then restart the service. Alternatively, you can modify it via a POST request, but this change will only affect the specific load request and not the default setting for all requests.
+	 
+Installing the Admin Server and SQLoader Service
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	 
+1. To install the admin server, run the following command (install it only once on one machine):
+
+.. code-block:: 
+
+	sudo ./sqloader-v1.sh -admin
+	
+Output:
+
+.. code-block::
+
+	##################################################################################
+	Welcome to SQloader Admin-Service installation
+	##################################################################################
+	Please Enter JAVA_HOME PATH
+	/opt/java
+	##################################################################################
+	The default PATH to install SQloader Admin Service is /usr/local/sqloader-admin
+	Do you want to change the default PATH ? (y/N)
+	##################################################################################
+	The default PATH to SQloader-Admin logs directory is /var/log/sqloader-admin/logs
+	Do you want to change the default? (y/N)
+	##################################################################################
+	Please enter HZCLUSTERNAME
+	sqcluster
+	##################################################################################
+	SQloader-Admin default port is 7070 , Do you want to change the default port ? (y/N)
+	##################################################################################
+	JAVA_HOME=/opt/java
+	BINDIR=/usr/local/sqloader-admin/
+	LOG_DIR=/var/log/sqloader-admin/
+	JAR=sqloader-admin-server-1.0.jar
+	ADMINPORT=7070
+	HZCLUSTERNAME=sqcluster
+	##################################################################################
+	############# SQLoader-Admin Service installed successfuly #######################
+	##################################################################################
+	To Start SQLoader-Admin Service: sudo systemctl start sqloader-admin
+	To View SQLoader-Admin Service status: sudo systemctl status sqloader-admin
+	##################################################################################
+	
+2. To start the admin server, run the following command:
+
+.. code-block::
+
+	sudo systemctl start sqloader-admin
+	
+3. To verify admin server start status, run the following command (optional):
+
+.. code-block::
+
+	sudo systemctl status sqloader-admin
+	
+4. To install SQLoader service, run the following command (you can install per machine):
+
+.. code-block:: 
+	
+	sudo ./sqloader-v1.sh -service
+   
+Output:
+
+.. code-block::
+
+	##################################################################################
+	Welocome to SQloader service installation
+	##################################################################################
+	Please Enter JAVA_HOME Path
+	/opt/java
+	##################################################################################
+	The Default PATH to install SQloader Service is /usr/local/sqloader
+	Do you want to change the default? (y/N)
+	##################################################################################
+	The default PATH to SQloader Service logs directory is /var/log/sqloader-service
+	Do you want to change The default? (y/N)
+	##################################################################################
+	Please enter SQloader Admin IP address
+	192.168.5.234
+	##################################################################################
+	Please enter SQloader MEM size in GB
+	20
+	##################################################################################
+	Please enter HZCLUSTERNAME
+	sqcluster
+	##################################################################################
+	Default CONFDIR is /usr/local/sqloader/config , Do you want to change the default CONFDIR ? (y/N)
+	##################################################################################
+	Default SQloader Admin port is 7070 , Do you want to change the default port ? (y/N)
+	##################################################################################
+	Default SQloader Service port is 6060 , Do you want to change the default port ? (y/N)
+	##################################################################################
+	Default sqload-jdbc.properties is /usr/local/sqloader/config, Do you want to change the default? (y/N)
+	Using default sqload-jdbc.properties PATH
+	/usr/local/sqloader/config
+	##################################################################################
+	##################################################################################
+	Using /usr/local/sqloader/config/sqload-jdbc.properties
+	##################################################################################
+	JAVA_HOME=/opt/java
+	BINDIR=/usr/local/sqloader/bin
+	LOG_DIR=/var/log/sqloader-service
+	CONFDIR=/usr/local/sqloader/config
+	JAR=sqloader-service-8.0.jar
+	PROPERTIES_FILE=/usr/local/sqloader/config/sqload-jdbc.properties
+	PORT=6060
+	ADMINIP=192.168.5.234
+	ADMINPORT=7070
+	MEM=20
+	HZCLUSTERNAME=sqcluster
+	##################################################################################
+	############# SQLoader Service installed successfuly #######################
+	##################################################################################
+	To Start SQLoader Service: sudo systemctl start sqloader-service
+	To View SQLoader Service status: sudo systemctl status sqloader-service
+	##################################################################################
+
+5. To start the SQLoader service, run the following command:
+
+.. code-block::
+
+	sudo systemctl start sqloader-service
+	
+6. To verify SQLoader service start status, run the following command (optional):
+
+.. code-block::
+
+	sudo systemctl status sqloader-service
+   
+Reconfiguration
+---------------
+
+You may reconfigure the admin server even after you have started it.
+
+
+1. To get the configuration path, run the following command:
+
+.. code-block::
+
+	cat /usr/lib/systemd/system/sqloader-admin.service | grep 'EnvironmentFile'
+	
+Output:
+	
+.. code-block::
+
+	EnvironmentFile=/usr/local/sqloader-admin/config/sqloader_admin.conf
+
+2. Restart the admin server:
+
+.. code-block::
+
+	sudo systemctl restart sqloader-admin
+
+You may reconfigure the SQLoader service even after you have started it.
+
+1. To get the configuration path, run the following command:
+
+.. code-block::
+
+	cat /usr/lib/systemd/system/sqloader-service.service | grep 'EnvironmentFile'
+	
+Output:
+	
+.. code-block::
+
+	EnvironmentFile=/usr/local/sqloader/config/sqloader_service.conf
+
+2. Restart the admin server:
+
+.. code-block::
+
+	sudo systemctl restart sqloader-service
    
 Connection String
 -----------------
@@ -178,45 +406,7 @@ SQLoader as a service supports high availability for asynchronous load requests 
 
 This setup ensures that asynchronous load requests are handled reliably, even in the event of service failures.
 
-SQLoader Deployment Parameters
-------------------------------
 
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Parameter
-     - State
-     - Default
-     - Type 
-     - Description
-   * - ``configDir``
-     - Optional
-     - ``java -jar sqloaderService-8.0.jar configDir=</path/to/directory/>``
-     - 
-     - Defines the path to the folder containing both the data type mapping and the reserved words files. The defined folder must contain both files or else you will receive an error. This flag affects the mapping and reserved words files and does not affect the properties file 
-   * - ``--hzClusterName=<TEXT>``
-     - Optional
-     - 
-     - 
-     - In Hazelcast, a cluster refers to a group of connected Hazelcast instances across different JVMs or machines. By default, these instances connect to the same cluster on the network level, meaning that all SQLoader services that start on a network will connect to each other and share the same queue. 
-	 
-	 An admin can connect to only one Hazelcast cluster at a time. If you start multiple clusters and want to connect them to the admin service, you will need to start multiple admin services, with each service connecting to one of your clusters.
-   * - ``log_dir``
-     - Optional
-     - ``logs``
-     - ``java -jar -DLOG_DIR=/path/to/log/directory sqloaderService-8.0.jar``
-     - Defines the path of log directory created when loading data. If no value is specified, a ``logs`` folder is created under the same location as the ``sqloader.jar`` file 
-   * - ``--spring.boot.admin.client.url``
-     - Optional
-     - ``http://localhost:7070``
-     - 
-     - SQLoader admin server connection flag
-   * - ``Xmx``
-     - Optional
-     - 
-     - 
-     - We recommend using the ``Xmx`` flag to set the maximum heap memory allocation for the service. If a single service is running on the machine, we suggest allocating 80% of the total memory minus approximately 4GB, which the service typically needs on average. If multiple services are running on the same machine, calculate the recommended heap size for one service and then divide it by the number of services. Compute formula: :math:`⌊ 0.8 * (TotalMemory - 4) ⌋`
 
 SQLoader Request Parameters
 ---------------------------
