@@ -5,7 +5,7 @@ Trino
 *****
 
 
-If you are using Trino for distributed SQL query processing and wish to use it to connect to BLUE, follow these instructions. 
+If you are using Trino for distributed SQL query processing and wish to use it to connect to SQreamDB, follow these instructions.
 
 
 .. contents::
