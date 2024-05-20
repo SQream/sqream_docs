@@ -1,8 +1,8 @@
 .. _ingesting_from_databases:
 
-******************
-External Databases
-******************
+*********************
+SQLoader As a Process
+*********************
 
 The **SQLoader** is a CLI program that enables you to load data into SQreamDB from other DBMS and DBaaS.
 

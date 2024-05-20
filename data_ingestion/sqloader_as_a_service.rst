@@ -1,8 +1,8 @@
-.. _ingesting_from_databases_2:
+.. _sqloader_as_a_service:
 
-******************
-External Databases
-******************
+*********************
+SQLoader As a Service
+*********************
 
 The **SQLoader** is a Java service that enables you to ingest data into SQreamDB from other DBMS and DBaaS through HTTP requests using network insert.
 
@@ -408,7 +408,15 @@ SQLoader as a service supports high availability for asynchronous load requests 
 
 This setup ensures that asynchronous load requests are handled reliably, even in the event of service failures.
 
+Log Rotation
+------------
 
+Log rotation is based on time and size. At midnight (00:00) or when the file reaches 100MB, rotation occurs. Rotation means the log file ``SQLoader_service.log`` is renamed to ``SQLoader_service_%d_%i.log`` (%d=date, %i=rotation number), and a new, empty ``SQLoader_service.log`` file is created for the SQLoader service to continue writing to.
+
+Log Automatic cleanup
+^^^^^^^^^^^^^^^^^^^^^
+
+The maximum number of archived log files to keep is set to 360, so Logback will retain the latest 360 log files in the logs directory. Additionally, the total file size in the directory is limited to 50 GB. If the total size of archived log files exceeds this limit, older log files will be deleted to make room for new ones.
 
 SQLoader Request Parameters
 ---------------------------
