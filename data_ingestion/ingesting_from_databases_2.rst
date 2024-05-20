@@ -125,35 +125,6 @@ It is recommended that the ``sqload-jdbc.properties`` file will contain a connec
 SQLoader Service Deployment and Interface
 =========================================
 
-Deploying SQLoader Service
---------------------------
-
-When the service initializes, it looks for the variable ``DEFAULT_PROPERTIES``, which corresponds to the default ``sqload-jdbc.properties`` file.
-
-``DEFAULT_PROPERTIES`` can be configured using one of two ways:
-
-* Setting as an environment variable:
-
-   .. code-block::
-   
-    export DEFAULT_PROPERTIES=/path/to/file/sqload-jdbc.properties
-   
-   Followed by service execution:
-   
-   .. code-block::
-   
-    java -jar sqloaderService-8.0.jar
-   
-* Appending to ``-D`` flag when executing the JAR file:
-
-  .. code-block::
-  
-   java -jar -DDEFAULT_PROPERTIES=/path/to/file/sqload-jdbc.properties sqloaderService-8.0.jar
-   
-  .. note:: 
-  
-   ``-D`` flags are not dynamically adjustable at runtime. Once the service is running with a specified properties file, this setting will remain unchanged as long as the service is operational. To modify it, you must shut down the service, edit the properties file, and then restart the service. Alternatively, you can modify it via a POST request, but this change will only affect the specific load request and not the default setting for all requests.
-
 Supported HTTP Requests
 ^^^^^^^^^^^^^^^^^^^^^^^
 
@@ -195,20 +166,60 @@ Supported HTTP Requests
 .. _high_availability:
 
 High Availability
-^^^^^^^^^^^^^^^^^
+-----------------
 
 SQLoader as a service supports high availability for asynchronous load requests only. When a service crashes, another service will take over the tasks and execute them from the beginning. However, there are some limited cases where high availability will not provide coverage:
 
 * **At least one service must remain operational**: After a crash, at least one service must be up and running to ensure that tasks can be recovered and executed.
 
-* **Clustered flag requirement**: The ``clustered`` flag must be set to ``true`` to enable high availability.
+* **Clustered flag requirement**: The SQLoader ``clustered`` flag must be set to ``true`` to enable high availability.
 
 * **Limitations for specific tasks**: A task involving a full load with ``truncate=false`` and ``drop=false`` will not rerun to prevent data duplication. In this type of load, data is inserted directly into the target table rather than a temporary table, making it impossible to determine if any data was inserted before the crash. Re-running the task could lead to data corruption.
 
 This setup ensures that asynchronous load requests are handled reliably, even in the event of service failures.
 
-SQLoader Service Parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+SQLoader Deployment Parameters
+------------------------------
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - State
+     - Default
+     - Type 
+     - Description
+   * - ``configDir``
+     - Optional
+     - ``java -jar sqloaderService-8.0.jar configDir=</path/to/directory/>``
+     - 
+     - Defines the path to the folder containing both the data type mapping and the reserved words files. The defined folder must contain both files or else you will receive an error. This flag affects the mapping and reserved words files and does not affect the properties file 
+   * - ``--hzClusterName=<TEXT>``
+     - Optional
+     - 
+     - 
+     - In Hazelcast, a cluster refers to a group of connected Hazelcast instances across different JVMs or machines. By default, these instances connect to the same cluster on the network level, meaning that all SQLoader services that start on a network will connect to each other and share the same queue. 
+	 
+	 An admin can connect to only one Hazelcast cluster at a time. If you start multiple clusters and want to connect them to the admin service, you will need to start multiple admin services, with each service connecting to one of your clusters.
+   * - ``log_dir``
+     - Optional
+     - ``logs``
+     - ``java -jar -DLOG_DIR=/path/to/log/directory sqloaderService-8.0.jar``
+     - Defines the path of log directory created when loading data. If no value is specified, a ``logs`` folder is created under the same location as the ``sqloader.jar`` file 
+   * - ``--spring.boot.admin.client.url``
+     - Optional
+     - ``http://localhost:7070``
+     - 
+     - SQLoader admin server connection flag
+   * - ``Xmx``
+     - Optional
+     - 
+     - 
+     - We recommend using the ``Xmx`` flag to set the maximum heap memory allocation for the service. If a single service is running on the machine, we suggest allocating 80% of the total memory minus approximately 4GB, which the service typically needs on average. If multiple services are running on the same machine, calculate the recommended heap size for one service and then divide it by the number of services. Compute formula: :math:`⌊ 0.8 * (TotalMemory - 4) ⌋`
+
+SQLoader Request Parameters
+---------------------------
 
 .. list-table:: 
    :widths: auto
@@ -228,7 +239,7 @@ SQLoader Service Parameters
      - Optional
      - ``sqload-jdbc.properties``
      -  
-     - Defines the path to the configuration file you wish to use. If not specified, the service will use ``DEFAULT_PROPERTIES`` parameter
+     - Defines the path to the configuration file you wish to use. If not specified, the service will use the default path provided upon service deployment.
    * - ``connectionStringSqream``
      - Mandatory
      - 
@@ -294,11 +305,6 @@ SQLoader Service Parameters
      - All columns
      - 
      - The name or names of columns to be loaded into SQreamDB ("col1,col2, ..."). For column names containing uppercase characters, maintain the uppercase format, avoid using double quotes or apostrophes, and ensure that the ``caseSensitive`` parameter is set to true
-   * - ``configDir``
-     - Optional
-     - ``java -jar sqloaderService-8.0.jar configDir=</path/to/directory/>``
-     - 
-     - Defines the path to the folder containing both the data type mapping and the reserved words files. The defined folder must contain both files or else you will receive an error. This flag affects the mapping and reserved words files and does not affect the properties file 
    * - ``count``
      - Optional
      - ``true``
@@ -329,13 +335,6 @@ SQLoader Service Parameters
      - 
      - 
      - Displays the help menu and exits
-   * - ``--hzClusterName=<TEXT>``
-     - Optional
-     - 
-     - 
-     - In Hazelcast, a cluster refers to a group of connected Hazelcast instances across different JVMs or machines. By default, these instances connect to the same cluster on the network level, meaning that all SQLoader services that start on a network will connect to each other and share the same queue. 
-	 
-	 An admin can connect to only one Hazelcast cluster at a time. If you start multiple clusters and want to connect them to the admin service, you will need to start multiple admin services, with each service connecting to one of your clusters.
    * - ``limit``
      - Optional
      - ``0`` (no limit)
@@ -361,11 +360,6 @@ SQLoader Service Parameters
      - ``true``
      - 
      - Defines whether or not SQLoader will lock target table before the loading starts
-   * - ``log_dir``
-     - Optional
-     - ``logs``
-     - ``java -jar -DLOG_DIR=/path/to/log/directory sqloaderService-8.0.jar``
-     - Defines the path of log directory created when loading data. If no value is specified, a ``logs`` folder is created under the same location as the ``sqloader.jar`` file 
    * - ``partitionName``
      - Optional
      - 
@@ -396,11 +390,6 @@ SQLoader Service Parameters
      - 
      - Table name ``string``
      - Source table name to load data from
-   * - ``--spring.boot.admin.client.url``
-     - Mandatory
-     - ``http://localhost:7070``
-     - 
-     - SQLoader admin server connection flag
    * - ``sqreamTable``
      - Optional
      - Target table name
@@ -436,16 +425,13 @@ SQLoader Service Parameters
      - ``true``
      - 
      - Allows control over the validation of table existence during the load.
-   * - ``Xmx``
-     - Optional
-     - 
-     - 
-     - We recommend using the ``Xmx`` flag to set the maximum heap memory allocation for the service. If a single service is running on the machine, we suggest allocating 80% of the total memory minus approximately 4GB, which the service typically needs on average. If multiple services are running on the same machine, calculate the recommended heap size for one service and then divide it by the number of services. Compute formula: :math:`⌊ 0.8 * (TotalMemory - 4) ⌋`
+
+.. _load_type_name:
 
 Using the ``loadTypeName`` Parameter
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Using the ``loadTypeName`` parameter you may define a loading type that affects the table that is created in SQreamDB. 
+Using the ``loadTypeName`` parameter, you can define how you wish records' changes to be made to data in order to track inserts, updates, and deletes for data synchronization and auditing purposes.
 
 .. list-table::
    :widths: auto
@@ -463,38 +449,19 @@ Using the ``loadTypeName`` parameter you may define a loading type that affects 
    * - Incremental
      - ``inc``
      - Only changes made to the source table data since last load will be loaded into SQreamDB. Changes include transactions of ``INSERT`` statement. SQLoader recognizes the table by table name and metadata. Supported for Oracle only
-	 
+	
+
+
+	
 Using the SQLoader Java Service Web Interface
 ---------------------------------------------
 
 The SQLoader Admin Server is a web-based administration tool specifically designed to manage and monitor the SQLoader service. It provides a user-friendly interface for monitoring data loading processes, managing configurations, and troubleshooting issues related to data loading into SQreamDB.
 
-Initiating SQLoader Service Web Interface
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The default port number is ``7070``
-
-.. code-block::
-
-	java -jar sqloader-admin-server-1.0.jar --server.port=<PORT>
-	
-Use the ``--spring.boot.admin.client.url`` flag to connect to the admin server.
-
-Example:
-
-.. code-block::
-
-	java -jar sqloaderService-8.0.jar --spring.boot.admin.client.url=http://localhost:7070
-
 Grouping Services
 ^^^^^^^^^^^^^^^^^
 
 Hazelcast cluster name refers to a group of interconnected Hazelcast instances across different JVMs or machines. By default, these instances automatically connect to the same cluster on the network, enabling all SQLoader services within a network to connect to each other and share the same queue. To exert control over how services are grouped, you can use the ``--hzClusterName=<TEXT>`` flag.
-
-Example:
-
-.. code-block::
-
 
 SQLoader Service Web Interface Features
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -509,26 +476,25 @@ SQLoader Service Web Interface Features
 
 	* View a list of currently active data loading requests, including their status, progress, and relevant metadata.
 
-Creating Summary Tables
-========================
+Creating Summary and Catalog Tables
+===================================
 
-Summary tables are pre-aggregated tables that store summarized or aggregated data, which can help improve query performance and reduce the need for complex calculations during runtime. 
-
-Summary tables are part of the schema within the database catalog.
+The summary and catalog tables are pre-aggregated tables that store summarized or aggregated data.
 
 Creating a Summary Table
---------------------------
+------------------------
+
+The summary table is part of the schema within the database catalog.
 
 The following summary table DDL uses Oracle syntax. 
 
 .. note:: 
 
-  If you are migrating from :ref:`SQLoader as a process<ingesting_from_databases>` to **SQLoader as a service**, as described on this page, it is highly recommended that you add the following columns to your existing summary table instead of re-creating it.
+  If you are migrating from :ref:`SQLoader as a process<ingesting_from_databases>` to **SQLoader as a service**, as described on this page, it is highly recommended that you add the following column to your existing summary table instead of re-creating it.
 
   .. code-block:: sql
 
     REQUEST_ID TEXT (200 BYTE) VISIBLE DEFAULT NULL
-    REQUEST_HASH TEXT (200 BYTE) VISIBLE DEFAULT NULL
 
 .. code-block:: sql
 
@@ -564,15 +530,18 @@ The following summary table DDL uses Oracle syntax.
     TARGET_DB_URL VARCHAR2(200) DEFAULT NULL,
     SQLOADER_VERSION VARCHAR2(20) DEFAULT NULL,
     HOST VARCHAR2(200) DEFAULT NULL,
-	REQUEST_ID TEXT (200 BYTE) VISIBLE DEFAULT NULL,
-	REQUEST_HASH TEXT (200 BYTE) VISIBLE DEFAULT NULL
+    REQUEST_ID TEXT (200 BYTE) VISIBLE DEFAULT NULL
   );
 
 
-Creating a Change Data Capture Table
---------------------------------------
+Creating Catalog Tables
+-----------------------
 
-Change Data Capture (CDC) tables are supported only for Oracle.
+CDC (Change Data Capture) and Incremental tables are database tables that record changes made to data in order to track inserts, updates, and deletes for data synchronization and auditing purposes.
+
+See :ref:`load_type_name`
+
+Change Data Capture (CDC) and Incremental tables are supported only for Oracle.
 
 .. code-block:: sql
 
@@ -891,64 +860,6 @@ In this example, ``column1``, ``column2``, and ``column3`` are mapped to ``BIGIN
 		}
 	}	
 		
-.. code-block:: json
-	
-		{
-		  "type": ["char","nchar","varchar","varchar2","nvarchar","nvarchar2","character"],
-		  "sqream": "text",
-		  "java": "string",
-		  "length": true
-		},
-		{
-		  "type": ["date","datetime"],
-		  "sqream": "datetime",
-		  "java": "datetime",
-		  "length": false
-		},
-		{
-		  "type": ["timestamp"],
-		  "sqream": "datetime",
-		  "java": "timestamp",
-		  "length": false
-		},
-		{
-		  "type": ["date"],
-		  "sqream": "date",
-		  "java": "datetime",
-		  "length": false
-		},
-		{
-		  "type": ["boolean"],
-		  "sqream": "bool",
-		  "java": "boolean",
-		  "length": false
-		},
-		{
-		  "type": ["number"],
-		  "sqream": "numeric",
-		  "java": "bigdecimal",
-		  "length": true,
-		  "prec": true
-		},
-		{
-		  "type": ["float","double"],
-		  "sqream": "double",
-		  "java": "double",
-		  "length": false
-		},
-		{
-		  "type": ["clob"],
-		  "sqream": "text",
-		  "java": "clob",
-		  "length": false
-		},
-		{
-		  "type": ["blob"],
-		  "sqream": "text",
-		  "java": "blob",
-		  "length": false
-		}
-	  ]
-	}
+
 	 
 
