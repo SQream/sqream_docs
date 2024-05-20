@@ -8,6 +8,7 @@ The **SQLoader** is a Java service that enables you to ingest data into SQreamDB
 
 **SQLoader** supports ingesting data from the following DBMSs:
 
+* Greenplum
 * Microsoft SQL Server
 * Oracle
 * Postgresql
@@ -28,8 +29,6 @@ It is essential that you have the following:
 * :ref:`SQLoader configuration files<getting_the_sqloader_configuration_and_jar_files>`
 * :ref:`SQLoader.jar file<getting_the_sqloader_configuration_and_jar_files>`
 
-
-
 Minimum Hardware Requirements
 ------------------------------
 
@@ -49,12 +48,17 @@ Minimum Hardware Requirements
 Sizing Guidelines 
 ------------------
 
-The SQLoader sizing is determined by the number of concurrent tables and threads based on the available CPU cores, limiting it to the number of cores minus one, with the remaining core reserved for the operating system. Each SQLoader instance runs on a single table, meaning concurrent imports of multiple tables require multiple instances. Additionally, it is important to note that for partitioned tables, each partition consumes a thread. Therefore, for performance efficiency, considering the table's partition count when managing thread allocation is a must.
+The SQLoader sizing is determined by the number of concurrent tables and threads based on the available CPU cores, limiting it to the number of cores minus one, with the remaining core reserved for the operating system. Each SQLoader request runs on a single table, meaning concurrent imports of multiple tables require multiple requests. Additionally, it is important to note that for partitioned tables, each partition consumes a thread. Therefore, for performance efficiency, considering the table's partition count when managing thread allocation is a must.
+
+Compute formula: :math:`⌊ 0.8 * (TotalMemory - 4) ⌋`
+
+Setup and Connectivity
+======================
 
 .. _getting_the_sqloader_configuration_and_jar_files:
 
 Getting the SQLoader Configuration and JAR Files
-================================================
+------------------------------------------------
 
 1. Download the ``.tar`` file using the following command:
 
@@ -86,14 +90,14 @@ A folder named ``sqloader`` with the following files is created:
      - The SQLoader package file 
    
 Connection String
-=================
+-----------------
 
-The ``sqload-jdbc.properties`` file contains a connection string that must be configured to enable data loading into SQreamDB.
+It is recommended that the ``sqload-jdbc.properties`` file will contain a connection string.
 
 1. Open the ``sqload-jdbc.properties`` file.
 2. Configure connection parameters for:
 
-   a. Either Postgresql, Oracle, Teradata, Microsoft SQL Server, SAP HANA or SQreamDB connection strings
+   a. Either Greenplum, Microsoft SQL Server, Oracle, Postgresql, SAP HANA, Sybase, Teradata, or SQreamDB connection strings
    b. Optionally, Oracle or SQreamDB catalogs (recommended)
 
 .. list-table:: Connection String Parameters
@@ -118,8 +122,11 @@ The ``sqload-jdbc.properties`` file contains a connection string that must be co
     :caption: Properties File Sample
     :linenos:
 
+SQLoader Service Deployment and Interface
+=========================================
+
 Deploying SQLoader Service
-==========================
+--------------------------
 
 When the service initializes, it looks for the variable ``DEFAULT_PROPERTIES``, which corresponds to the default ``sqload-jdbc.properties`` file.
 
@@ -129,97 +136,115 @@ When the service initializes, it looks for the variable ``DEFAULT_PROPERTIES``, 
 
    .. code-block::
    
-    export DEFAULT_PROPERTIES=/home/avivs/branches/java/sqloader-service/config/sqload-jdbc.properties
+    export DEFAULT_PROPERTIES=/path/to/file/sqload-jdbc.properties
    
    Followed by service execution:
    
    .. code-block::
    
-    java -jar target/sqloaderService-8.0.jar
+    java -jar sqloaderService-8.0.jar
    
 * Appending to ``-D`` flag when executing the JAR file:
 
   .. code-block::
   
-   java -jar -DDEFAULT_PROPERTIES=/home/avivs/branches/java/sqloader-service/config/sqload-jdbc.properties target/sqloaderService-8.0.jar
+   java -jar -DDEFAULT_PROPERTIES=/path/to/file/sqload-jdbc.properties sqloaderService-8.0.jar
    
   .. note:: 
   
    ``-D`` flags are not dynamically adjustable at runtime. Once the service is running with a specified properties file, this setting will remain unchanged as long as the service is operational. To modify it, you must shut down the service, edit the properties file, and then restart the service. Alternatively, you can modify it via a POST request, but this change will only affect the specific load request and not the default setting for all requests.
 
-Supported POST Requests
------------------------
+Supported HTTP Requests
+^^^^^^^^^^^^^^^^^^^^^^^
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
 
-   * - POST
+   * - Request Type
+     - Request Name
+     - cURL Command
      - Description
      - Example
-   * - ``load``
-     - Sends a request to the service and returns immediately
-     - 
-   * - ``syncLoad``
+   * - POST
+     - ``load``
+     - ``curl --header "Content-Type: application/json" --request POST --data '{}' http://127.0.0.1:6060/load``
+     - Sends a request to the service and returns immediately. This HTTP request is utilized within a load-balancing queue shared across multiple instances. This setup ensures efficient resource utilization by distributing incoming load requests evenly across all available instances. Additionally, the system incorporates :ref:`high availability<high_availability>` mechanisms to recover failed jobs in case an instance crashes, ensuring continuous operation and reliability even during instance failures. Note that if all instances crash, at least one instance must remain operational to recover and execute pending jobs.
+     - ``curl --header "Content-Type: application/json" --request POST --data '{"sourceTable": "AVIV_INC", "sqreamTable": "t_inc", "limit":2000, "loadTypeName":"full"}' http://127.0.0.1:6060/load``
+   * - POST
+     - ``syncLoad``
+     - ``curl --header "Content-Type: application/json" --request POST --data '{}' http://127.0.0.1:6060/syncLoad``
      - Sends a request to the service and returns once the request is complete
-     - 
-   * - ``filterLogs``
+     - ``curl --header "Content-Type: application/json" --request POST --data '{"sourceTable": "AVIV_INC", "sqreamTable": "t_inc", "limit":2000, "loadTypeName":"full"}' http://127.0.0.1:6060/syncLoad``
+   * - POST
+     - ``filterLogs``
+     - ``curl --header "Content-Type: application/json" --request POST --data '{"requestId":"", "outputFilePath": ""}' http://127.0.0.1:6060/filterLogs``
      - Retrieves logs for a specific request ID
-     - 
-   * - ``getActiveLoads``
+     - ``curl --header "Content-Type: application/json" --request POST --data '{"requestId":"request-1-6a2884a3", "outputFilePath": "/home/avivs/sqloader_request.log"}' http://127.0.0.1:6060/filterLogs``
+   * - GET
+     - ``getActiveLoads``
+     - ``curl --header "Content-Type: application/json" --request GET http://127.0.0.1:6060/getActiveLoads``
      - Returns a list of all active loads currently running in the shared queue
      - 
-   * - ``cancelRequest``
+   * - GET
+     - ``cancelRequest``
+     - ``curl --request GET http://127.0.0.1:6061/cancelRequest/<RequestId>``
      - Cancels an active request by request ID
-     - 
+     - ``curl --request GET http://127.0.0.1:6061/cancelRequest/request-2-6aa3c53d``
 
-Loading Data into SQreamDB Tables
----------------------------------
+.. _high_availability:
 
-1. Run the ``sqloader.jar`` file using the following CLI command:
+High Availability
+^^^^^^^^^^^^^^^^^
 
-.. code-block:: console
+SQLoader as a service supports high availability for asynchronous load requests only. When a service crashes, another service will take over the tasks and execute them from the beginning. However, there are some limited cases where high availability will not provide coverage:
 
-	java -jar sqloader.jar
-	
-2. You may load the entire data of a source table using the following CLI command:
+* **At least one service must remain operational**: After a crash, at least one service must be up and running to ensure that tasks can be recovered and executed.
 
-.. code-block:: console 
+* **Clustered flag requirement**: The ``clustered`` flag must be set to ``true`` to enable high availability.
 
-	java -jar sqloader.jar -table source_table_name
-	
-3. You may customize the data load either by using each of the following parameters within a CLI command or by configuring the ``properties`` file:
+* **Limitations for specific tasks**: A task involving a full load with ``truncate=false`` and ``drop=false`` will not rerun to prevent data duplication. In this type of load, data is inserted directly into the target table rather than a temporary table, making it impossible to determine if any data was inserted before the crash. Re-running the task could lead to data corruption.
 
-.. list-table:: SQLoader Service Parameters
+This setup ensures that asynchronous load requests are handled reliably, even in the event of service failures.
+
+SQLoader Service Parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. list-table:: 
    :widths: auto
    :header-rows: 1
    
-   * - CLI Parameter
+   * - HTTP Parameter
      - State
      - Default
      - Type 
      - Description
-   * - ``-configFile``
+   * - ``clustered``
+     - Optional
+     - ``true``
+     -  
+     - This flag is relevant only for ``load`` requests (``async``), not for ``syncLoad``. Note that this flag affects :ref:`high availability<high_availability>`. When set to ``true``: the request is directed to one of the available instances within a cluster, often through a load balancer. When set to ``false``: the request goes directly to the specified host without load balancing.
+   * - ``configFile``
      - Optional
      - ``sqload-jdbc.properties``
      -  
-     - Defines the path to the configuration file you wish to use. This parameter may be defined using only the CLI. If not specified, the service will use ``DEFAULT_PROPERTIES`` parameter
-   * - ``-connectionStringSqream``
-     - Optional
+     - Defines the path to the configuration file you wish to use. If not specified, the service will use ``DEFAULT_PROPERTIES`` parameter
+   * - ``connectionStringSqream``
+     - Mandatory
      - 
      -  
      - JDBC connection string to SQreamDB
-   * - ``-connectionStringSource``
-     - Optional
+   * - ``connectionStringSource``
+     - Mandatory
      - 
      -  
      - JDBC connection string to source database
-   * - ``-connectionStringCatalog``
-     - Optional
+   * - ``connectionStringCatalog``
+     - Mandatory
      - 
      -  
      - JDBC connection string to catalog database
-   * - ``-cdcCatalogTable``
+   * - ``cdcCatalogTable``
      - Optional
      - 
      -  
@@ -239,22 +264,22 @@ Loading Data into SQreamDB Tables
      - 
      -  
      - Part of the schema within the catalog database. Pre-aggregated table that stores summarized loads which can help monitoring and analyzing load	 
-   * - ``-batchSize``
+   * - ``batchSize``
      - Optional
      - ``10.000``
      - 
      - The number of records to be inserted into SQreamDB at once. Please note that the configured batch size may impact chunk sizes.
-   * - ``-caseSensitive``
+   * - ``caseSensitive``
      - Optional
      - ``false``
      - 
      - If ``true``, keeps table name uppercase and lowercase characters when table is created in SQreamDB
-   * - ``-checkCdcChain``
+   * - ``checkCdcChain``
      - Optional
      - ``false``
      - 
      - Check CDC chain between tracking table and source table 
-   * - ``-chunkSize``
+   * - ``chunkSize``
      - Optional
      - ``0``
      - 
@@ -264,139 +289,163 @@ Loading Data into SQreamDB Tables
      - 
      - ``.txt``
      - The name of the file that contains all column names. Columns must be separated using ``\n``. Expected file type is ``.txt`` 
-   * - ``-columns``
+   * - ``columns``
      - Optional
      - All columns
      - 
      - The name or names of columns to be loaded into SQreamDB ("col1,col2, ..."). For column names containing uppercase characters, maintain the uppercase format, avoid using double quotes or apostrophes, and ensure that the ``caseSensitive`` parameter is set to true
-   * - ``-configDir``
+   * - ``configDir``
      - Optional
-     - ``java -jar target/sqloaderService-8.0.jar --configDir=</path/to/directory/>``
+     - ``java -jar sqloaderService-8.0.jar configDir=</path/to/directory/>``
      - 
      - Defines the path to the folder containing both the data type mapping and the reserved words files. The defined folder must contain both files or else you will receive an error. This flag affects the mapping and reserved words files and does not affect the properties file 
-   * - ``-count``
+   * - ``count``
      - Optional
      - ``true``
      - 
      - Defines whether or not table rows will be counted before being loaded into SQreamDB 
-   * - ``-cdcDelete``
+   * - ``cdcDelete``
      - Optional
      - ``true``
      - 
      - Defines whether or not loading using Change Data Capture (CDC) includes deleted rows
-   * - ``-drop``
+   * - ``drop``
      - Optional
      - ``true``
      - 
-     - Defines whether or not a new target table in SQreamDB is created. If ``false``, you will need to configure a target table name using the ``-target`` parameter
-   * - ``-fetchSize``
+     - Defines whether or not a new target table in SQreamDB is created. If ``false``, you will need to configure a target table name using the ``target`` parameter
+   * - ``fetchSize``
      - Optional
      - ``100000``
      - 
      - The number of records to be read at once from source database. 
-   * - ``-filter``
+   * - ``filter``
      - Optional
      - ``1=1``
      - 
      - Defines whether or not only records with SQL conditions are loaded
-   * - ``-h, --help``
+   * - ``h, help``
      - Optional
      - 
      - 
      - Displays the help menu and exits
-   * - ``-limit``
+   * - ``--hzClusterName=<TEXT>``
+     - Optional
+     - 
+     - 
+     - In Hazelcast, a cluster refers to a group of connected Hazelcast instances across different JVMs or machines. By default, these instances connect to the same cluster on the network level, meaning that all SQLoader services that start on a network will connect to each other and share the same queue. 
+	 
+	 An admin can connect to only one Hazelcast cluster at a time. If you start multiple clusters and want to connect them to the admin service, you will need to start multiple admin services, with each service connecting to one of your clusters.
+   * - ``limit``
      - Optional
      - ``0`` (no limit)
      - 
      - Limits the number of rows to be loaded
-   * - ``-loadDttm``
+   * - ``loadDttm``
      - Optional
      - ``true``
      - 
      - Add an additional ``load_dttm`` column that defines the time and date of loading
-   * - ``-lockCheck``
-     - Optional
-     - ``true``
-     - 
-     - Defines whether or not SQLoader will check source table is locked before the loading starts
-   * - ``-lockTable``
-     - Optional
-     - ``true``
-     - 
-     - Defines whether or not SQLoader will lock target table before the loading starts
-   * - ``-log_dir``
-     - Optional
-     - ``logs``
-     - ``java -jar -DLOG_DIR=/path/to/log/directory target/sqloaderService-8.0.jar``
-     - Defines the path of log directory created when loading data. If no value is specified, a ``logs`` folder is created under the same location as the ``sqloader.jar`` file 
-   * - ``-partitionName``
-     - Optional
-     - 
-     - Partition identifier ``string``
-     - Specifies the number of table partitions. If configured, ``-partition`` ensures that data is loaded according to the specified partition. You may configure the ``-thread`` parameter for parallel loading of your table partitions. If you do, please ensure that the number of threads does not exceed the number of partitions.
-   * - ``-port``
-     - Optional
-     - ``6060``
-     - 
-     - 
-   * - ``-rowid``
-     - Optional
-     - ``false``
-     - 
-     - Defines whether or not SQLoader will get row IDs from Oracle tables
-   * - ``-sourceDatabaseName``
-     - Optional
-     - ``ORCL``
-     - 
-     - Defines the source database name. It does not modify the database connection string but impacts the storage and retrieval of data within catalog tables.
-   * - ``-splitByColumn``
-     - Optional
-     - 
-     - Column name ``string``
-     - Column name for split (required for multi-thread loads)
-   * - ``-sourceTable``
-     - Mandatory
-     - 
-     - Table name ``string``
-     - Source table name to load data from
-   * - ``-sqreamTable``
-     - Optional
-     - Target table name
-     - Table name ``string``
-     - Target table name to load data into
-   * - ``-threadCount``
-     - Optional
-     - ``1``
-     - 
-     - Number of threads to use for loading. Using multiple threads can significantly improve the loading performance, especially when dealing with columns that have metadata statistics (e.g., min/max values). SQLoader will automatically divide the data into batches based on the specified thread number, allowing for parallel processing. You may use ``-thread`` both for tables that are partitioned and tables that are not. See :ref:`Sizing Guidelines<sqloader_thread_sizing_guidelines>`
-   * - ``-truncate``
-     - Optional
-     - ``false``
-     - 
-     - Truncate target table before loading
-   * - ``-loadTypeName``
+   * - ``loadTypeName``
      - Optional
      - ``full``
      - 
      - Defines a loading type that affects the table that is created in SQreamDB. Options are ``full``, ``cdc``, or ``inc``. Please note that ``cdc``, and ``inc`` are supported only for Oracle
-   * - ``-useDbmsLob``
+   * - ``lockCheck``
+     - Optional
+     - ``true``
+     - 
+     - Defines whether or not SQLoader will check source table is locked before the loading starts
+   * - ``lockTable``
+     - Optional
+     - ``true``
+     - 
+     - Defines whether or not SQLoader will lock target table before the loading starts
+   * - ``log_dir``
+     - Optional
+     - ``logs``
+     - ``java -jar -DLOG_DIR=/path/to/log/directory sqloaderService-8.0.jar``
+     - Defines the path of log directory created when loading data. If no value is specified, a ``logs`` folder is created under the same location as the ``sqloader.jar`` file 
+   * - ``partitionName``
+     - Optional
+     - 
+     - Partition identifier ``string``
+     - Specifies the number of table partitions. If configured, ``partition`` ensures that data is loaded according to the specified partition. You may configure the ``thread`` parameter for parallel loading of your table partitions. If you do, please ensure that the number of threads does not exceed the number of partitions.
+   * - ``port``
+     - Optional
+     - ``6060``
+     - 
+     - 
+   * - ``rowid``
+     - Optional
+     - ``false``
+     - 
+     - Defines whether or not SQLoader will get row IDs from Oracle tables
+   * - ``sourceDatabaseName``
+     - Optional
+     - ``ORCL``
+     - 
+     - Defines the source database name. It does not modify the database connection string but impacts the storage and retrieval of data within catalog tables.
+   * - ``splitByColumn``
+     - Optional
+     - 
+     - Column name ``string``
+     - Column name for split (required for multi-thread loads)
+   * - ``sourceTable``
+     - Mandatory
+     - 
+     - Table name ``string``
+     - Source table name to load data from
+   * - ``--spring.boot.admin.client.url``
+     - Mandatory
+     - ``http://localhost:7070``
+     - 
+     - SQLoader admin server connection flag
+   * - ``sqreamTable``
+     - Optional
+     - Target table name
+     - Table name ``string``
+     - Target table name to load data into
+   * - ``threadCount``
+     - Optional
+     - ``1``
+     - 
+     - Number of threads to use for loading. Using multiple threads can significantly improve the loading performance, especially when dealing with columns that have metadata statistics (e.g., min/max values). SQLoader will automatically divide the data into batches based on the specified thread number, allowing for parallel processing. You may use ``thread`` both for tables that are partitioned and tables that are not. See :ref:`Sizing Guidelines<sqloader_thread_sizing_guidelines>`
+   * - ``truncate``
+     - Optional
+     - ``false``
+     - 
+     - Truncate target table before loading
+   * - ``typeMappingPath``
+     - Optional
+     - ``config/sqream-mapping.json``
+     - 
+     - A mapping file that converts source data types into SQreamDB data types.
+   * - ``useDbmsLob``
      - Optional
      - ``true``
      - 
      - Defines whether or not SQLoader uses ``dbms_lob_substr`` function for ``CLOB`` and ``BLOB`` data types
-   * - ``-usePartitions``
+   * - ``usePartitions``
      - Optional
      - ``true``
      - 
      - Defines whether or not SQLoader uses partitions in ``SELECT`` statements
-	 
--- Add new flags, review new description and CamelCase for all flags. 
--- All new flags are optional 
+   * - ``validateSourceTable``
+     - Optional
+     - ``true``
+     - 
+     - Allows control over the validation of table existence during the load.
+   * - ``Xmx``
+     - Optional
+     - 
+     - 
+     - We recommend using the ``Xmx`` flag to set the maximum heap memory allocation for the service. If a single service is running on the machine, we suggest allocating 80% of the total memory minus approximately 4GB, which the service typically needs on average. If multiple services are running on the same machine, calculate the recommended heap size for one service and then divide it by the number of services. Compute formula: :math:`⌊ 0.8 * (TotalMemory - 4) ⌋`
 
-Using the ``type`` Parameter
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Using the ``loadTypeName`` Parameter
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Using the ``type`` parameter you may define a loading type that affects the table that is created in SQreamDB. 
+Using the ``loadTypeName`` parameter you may define a loading type that affects the table that is created in SQreamDB. 
 
 .. list-table::
    :widths: auto
@@ -416,18 +465,20 @@ Using the ``type`` parameter you may define a loading type that affects the tabl
      - Only changes made to the source table data since last load will be loaded into SQreamDB. Changes include transactions of ``INSERT`` statement. SQLoader recognizes the table by table name and metadata. Supported for Oracle only
 	 
 Using the SQLoader Java Service Web Interface
-==================================================
+---------------------------------------------
 
 The SQLoader Admin Server is a web-based administration tool specifically designed to manage and monitor the SQLoader service. It provides a user-friendly interface for monitoring data loading processes, managing configurations, and troubleshooting issues related to data loading into SQreamDB.
 
 Initiating SQLoader Service Web Interface
------------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The default port number is ``7070``
 
 .. code-block::
 
-	java -jar sqloader-admin-server-0.0.1-SNAPSHOT.jar --server.port=<PORT> Default 7070
+	java -jar sqloader-admin-server-1.0.jar --server.port=<PORT>
 	
-The SQLoader Service should utilize the ``--spring.boot.admin.client.url`` flag to connect to the admin server.
+Use the ``--spring.boot.admin.client.url`` flag to connect to the admin server.
 
 Example:
 
@@ -436,7 +487,7 @@ Example:
 	java -jar sqloaderService-8.0.jar --spring.boot.admin.client.url=http://localhost:7070
 
 Grouping Services
------------------
+^^^^^^^^^^^^^^^^^
 
 Hazelcast cluster name refers to a group of interconnected Hazelcast instances across different JVMs or machines. By default, these instances automatically connect to the same cluster on the network, enabling all SQLoader services within a network to connect to each other and share the same queue. To exert control over how services are grouped, you can use the ``--hzClusterName=<TEXT>`` flag.
 
@@ -446,7 +497,7 @@ Example:
 
 
 SQLoader Service Web Interface Features
----------------------------------------
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 * Monitor Services:
 
@@ -513,7 +564,8 @@ The following summary table DDL uses Oracle syntax.
     TARGET_DB_URL VARCHAR2(200) DEFAULT NULL,
     SQLOADER_VERSION VARCHAR2(20) DEFAULT NULL,
     HOST VARCHAR2(200) DEFAULT NULL,
-	REQUEST_ID TEXT (200 BYTE) VISIBLE DEFAULT NULL
+	REQUEST_ID TEXT (200 BYTE) VISIBLE DEFAULT NULL,
+	REQUEST_HASH TEXT (200 BYTE) VISIBLE DEFAULT NULL
   );
 
 
@@ -572,7 +624,35 @@ Data Type Mapping
 Automatic Mapping
 ------------------
 
-The **SQLoader** automatically maps data types used in Microsoft SQL Server, Oracle, Postgresql, Sybase, SAP HANA, and Teradata tables that are loaded into SQreamDB.
+The **SQLoader** automatically maps data types used in Greenplum, Microsoft SQL Server, Oracle, Postgresql, Sybase, SAP HANA, and Teradata tables that are loaded into SQreamDB.
+
+Greenplum
+^^^^^^^^^^
+
+.. list-table::
+   :widths: auto
+   :header-rows: 1
+   
+   * - Greenplum Type
+     - SQreamDB Type
+   * - ``CHAR``, ``VARCHAR``, ``CHARACTER``
+     - ``TEXT``
+   * - ``TEXT``
+     - ``TEXT``
+   * - ``INT``, ``SMALLINT``, ``BIGINT``, ``INT2``, ``INT4``, ``INT8`` 
+     - ``BIGINT``
+   * - ``DATETIME``, ``TIMESTAMP``
+     - ``DATETIME``
+   * - ``DATE``
+     - ``DATE``
+   * - ``BIT``, ``BOOL``
+     - ``BOOL``
+   * - ``DECIMAL``, ``NUMERIC``
+     - ``NUMERIC``
+   * - ``FLOAT``, ``DOUBLE``
+     - ``DOUBLE``
+   * - ``REAL``, ``FLOAT4``
+     - ``REAL``
 
 Microsoft SQL Server
 ^^^^^^^^^^^^^^^^^^^^^
@@ -871,29 +951,4 @@ In this example, ``column1``, ``column2``, and ``column3`` are mapped to ``BIGIN
 	  ]
 	}
 	 
-CLI Examples
-============
 
-Loading data into a CDC table using the ``type`` and ``limit`` parameters:
-
-.. code-block:: console 
-
-	java -jar sqloader.jar -table source_table_name -type cdc -limit 100
-
-Loading data into a table using your own configuration file (this will override the default configuration file):
-
-.. code-block:: console
-
-	java -jar sqloader.jar -config path/to/your/config/file
-	
-Loading data into a table using a custom configuration file:
-
-.. code-block:: console
-
-	java -jar -config MyConfigFile.properties -table source_table_name -type cdc -target target_table_name -drop true -lock_check false
-
-Loading data into a table using a the ``filter`` parameter:
-
-.. code-block:: console
-
-	java -jar sqloader.jar -table source_table_name -filter column_name>50
