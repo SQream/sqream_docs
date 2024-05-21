@@ -313,7 +313,7 @@ Output:
 
 	EnvironmentFile=/usr/local/sqloader/config/sqloader_service.conf
 
-2. Restart the admin server:
+2. Restart the SQLoader service:
 
 .. code-block::
 
