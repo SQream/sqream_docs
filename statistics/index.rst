@@ -111,7 +111,7 @@ When querying for statistics of a specific column, note that for nullable column
 
 	SELECT FETCH_COLUMN_HISTOGRAM("nba", "number");
 
-If the operation hasn't finished yet, the output will show an empty ``info`` column:
+If the operation hasn't finished yet, the output will indicate that ``Column has no statistics``:
 
 .. code-block:: none
 
@@ -125,15 +125,15 @@ If the operation has finished, the output will show the requested histogram:
 
 	BucketLeft|BucketRight|BucketCount|
 	----------+-----------+-----------+
-			 0|          0|          2|
-			 1|          1|          2|
-			 3|          3|          2|
-			 7|          7|          1|
-			12|         12|          1|
-			13|         13|          1|
-			23|         23|          1|
-			24|         24|          1|
-			35|         35|          1|
+	         0|          0|          2|
+	         1|          1|          2|
+	         3|          3|          2|
+	         7|          7|          1|
+	        12|         12|          1|
+	        13|         13|          1|
+	        23|         23|          1|
+	        24|         24|          1|
+	        35|         35|          1|
 
 Aborting Statistics Operation
 -----------------------------
