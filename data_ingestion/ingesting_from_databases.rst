@@ -1,8 +1,8 @@
 .. _ingesting_from_databases:
 
-******************
-External Databases
-******************
+*********************
+SQLoader As a Process
+*********************
 
 The **SQLoader** is a CLI program that enables you to load data into SQreamDB from other DBMS and DBaaS.
 
@@ -42,24 +42,29 @@ Sizing Guidelines
 
 The SQLoader sizing is determined by the number of concurrent tables and threads based on the available CPU cores, limiting it to the number of cores minus one, with the remaining core reserved for the operating system. Each SQLoader instance runs on a single table, meaning concurrent imports of multiple tables require multiple instances. Additionally, when dealing with partitioned tables, each partition consumes a thread, so users should consider the table's partition count when managing thread allocation for efficient performance.
 
+---------------------------------
+
+Installation and Connection
+============================
+
 Getting the SQLoader Configuration and JAR Files
-================================================
+------------------------------------------------
 
 1. Download the ``.tar`` file using the following command:
 
-.. code-block:: linux
+   .. code-block:: linux
 
-	curl -O https://sq-ftp-public.s3.amazonaws.com/sqloader-v7.12.tar
+	  curl -O https://sq-ftp-public.s3.amazonaws.com/sqloader-v7.12.tar
 
 2. Extract the ``.tar`` file using the following command:
 
-.. code-block:: linux
+   .. code-block:: linux
 
-	tar -xf sqloader-7.12.tar.gz
+	   tar -xf sqloader-7.12.tar.gz
 
-A folder named ``sqloader`` with the following files is created:
+   A folder named ``sqloader`` with the following files is created:
    
-.. list-table:: SQLoader Files
+.. list-table::
    :widths: auto
    :header-rows: 1
    
@@ -74,8 +79,8 @@ A folder named ``sqloader`` with the following files is created:
    * - ``sqloader.jar``
      - The SQLoader package file 
    
-Connection String
-=================
+Establishing a Connection
+-------------------------
 
 The ``sqload-jdbc.properties`` file contains a connection string that must be configured to enable data loading into SQreamDB.
 
@@ -106,23 +111,37 @@ The ``sqload-jdbc.properties`` file contains a connection string that must be co
     :language: java
     :caption: Properties File Sample
     :linenos:
+	
+Starting SQLoader
+-----------------
 
-Loading Data into SQreamDB Tables
-=================================
-
-1. Run the ``sqloader.jar`` file using the following CLI command:
+To start SQLoader, run the ``sqloader.jar`` file:
 
 .. code-block:: console
 
 	java -jar sqloader.jar
+
+---------------------------------
+
+Loading Data into SQreamDB
+==========================
 	
-2. You may load the entire data of a source table using the following CLI command:
+To load data into SQreamDB using SQLoader, you must specify a source table name at minimum. Executing the command below will generate a SQreamDB table using the specified source table's DDL and load all its data:
 
 .. code-block:: console 
 
-	java -jar sqloader.jar -table source_table_name
+	java -jar sqloader.jar -table <source_table_name>
 	
-3. You may customize the data load either by using each of the following parameters within a CLI command or by configuring the ``properties`` file:
+.. contents:: 
+   :local:
+   :depth: 1
+	
+Customizing Data Load
+---------------------
+	
+While specifying a source table name is mandatory for data loading, you have the option to customize the loading process by utilizing *optional* parameters. These parameters can be configured either within a CLI command or by adjusting settings in the properties file. 
+
+Please note that any customization done through the CLI will override configurations made using the properties file.
 
 .. list-table:: SQLoader CLI Parameters
    :widths: auto
@@ -137,7 +156,7 @@ Loading Data into SQreamDB Tables
      - Optional
      - ``10.000``
      - 
-     - The number of records to be inserted into SQreamDB at once. Please note that the configured batch size may impact chunk sizes.
+     - The number of records to be inserted into SQreamDB at once. Please note that the configured batch size may impact chunk sizes
    * - ``-casesensative``
      - Optional
      - ``false``
@@ -172,7 +191,7 @@ Loading Data into SQreamDB Tables
      - Optional
      - ``/home/username/downloads/config``
      - 
-     - Defines the path to the folder containing both the data type mapping and the reserved words files. The defined folder must contain both files or else you will receive an error.
+     - Defines the path to the folder containing both the data type mapping and the reserved words files. The defined folder must contain both files or else you will receive an error
    * - ``-count``
      - Optional
      - ``true``
@@ -187,12 +206,31 @@ Loading Data into SQreamDB Tables
      - Optional
      - ``true``
      - 
-     - Defines whether or not a new target table in SQreamDB is created. If ``false``, you will need to configure a target table name using the ``-target`` parameter
+     - 
+	 Assuming we're loading into table ``x``: 
+	 
+	 * ``true`` essentially allows for the replacement of the existing table with the newly loaded data by triggering the following actions:
+	 
+	   * Creating or replacing a temporary table named ``x_temp``
+	   * The data you intend to load is inserted into the ``x_temp`` table
+	   * If a table named ``x`` already exists, it will be renamed to ``x_old``. (If ``x`` exists as a view, the view will be dropped)
+	   * The ``x_temp`` table, which now contains your loaded data, is renamed to ``x``
+	   * Any previously existing table named ``x_old`` is dropped from the database
+	   
+	 * ``false`` (requires using ``- target``) essentially allows for appending data to an existing table without performing any deletion or replacement operations by triggering the following actions:
+	 
+	   * SQLoader first checks if the target table exists and raises an exception if it does not
+	   * If ``truncate`` is set to false, SQLoader appends more data to the existing table without using any staging tables
+	   * If ``truncate`` is set to true, a temporary table, ``x_temp``, is created based on the existing table, but no data is initially loaded. If ``x_temp`` exists, an error is raised since ``CREATE OR REPLACE`` is not used
+	   * Data is loaded into the temporary table
+	   * Target table is renamed to ``x_old``
+	   * The temporary table ``x_temp`` is renamed to the target table name ``x``
+	   * ``x_old`` is dropped
    * - ``-fetchsize``
      - Optional
      - ``100000``
      - 
-     - The number of records to be read at once from source database. 
+     - The number of records to be read at once from source database
    * - ``-filter``
      - Optional
      - ``1=1``
@@ -232,7 +270,7 @@ Loading Data into SQreamDB Tables
      - Optional
      - *None*
      - Partition identifier ``string``
-     - Specifies the number of table partitions. If configured, ``-partition`` ensures that data is loaded according to the specified partition. You may configure the ``-thread`` parameter for parallel loading of your table partitions. If you do, please ensure that the number of threads does not exceed the number of partitions.
+     - Specifies the number of table partitions. If configured, ``-partition`` ensures that data is loaded according to the specified partition. You may configure the ``-thread`` parameter for parallel loading of your table partitions. If you do, please ensure that the number of threads does not exceed the number of partitions
    * - ``-rowid``
      - Optional
      - ``false``
@@ -242,7 +280,7 @@ Loading Data into SQreamDB Tables
      - Optional
      - ``ORCL``
      - 
-     - Defines the source database name. It does not modify the database connection string but impacts the storage and retrieval of data within catalog tables.
+     - Defines the source database name. It does not modify the database connection string but impacts the storage and retrieval of data within catalog tables
    * - ``-split``
      - Optional
      - *None*
@@ -272,7 +310,14 @@ Loading Data into SQreamDB Tables
      - Optional
      - ``full``
      - 
-     - Defines a loading type that affects the table that is created in SQreamDB. Options are ``full``, ``cdc``, or ``inc``. Please note that ``cdc``, and ``inc`` are supported only for Oracle
+     - Defines a loading type that affects the table that is created in SQreamDB. Options are: 
+	 
+	* ``full``: The entire data of the source table is loaded into SQreamDB
+	
+	* ``cdc`` (Change Data Capture): Only changes made to the source table data since last load will be loaded into SQreamDB. Changes include transactions of ``INSERT``, ``UPDATE``, and ``DELETE`` statements. SQLoader recognizes tables by table name and metadata
+	
+	* ``inc``: Only changes made to the source table data since last load will be loaded into SQreamDB. Changes include transactions of ``INSERT`` statement. SQLoader recognizes the table by table name and metadata
+	Please note that ``cdc``, and ``inc`` are supported only for Oracle
    * - ``-use_dbms_lob``
      - Optional
      - ``true``
@@ -283,138 +328,21 @@ Loading Data into SQreamDB Tables
      - ``true``
      - 
      - Defines whether or not SQLoader uses partitions in ``SELECT`` statements
+	  
+Data Types and Mapping 
+----------------------
 
-Using the ``type`` Parameter
-------------------------------
-
-Using the ``type`` parameter you may define a loading type that affects the table that is created in SQreamDB. 
-
-.. list-table::
-   :widths: auto
-   :header-rows: 1
-   
-   * - Loading Type
-     - Parameter Option
-     - Description
-   * - Full Table
-     - ``full``
-     - The entire data of the source table is loaded into SQreamDB
-   * - Change Data Capture (CDC)
-     - ``cdc``
-     - Only changes made to the source table data since last load will be loaded into SQreamDB. Changes include transactions of ``INSERT``, ``UPDATE``, and ``DELETE`` statements. SQLoader recognizes tables by table name and metadata. Supported for Oracle only
-   * - Incremental
-     - ``inc``
-     - Only changes made to the source table data since last load will be loaded into SQreamDB. Changes include transactions of ``INSERT`` statement. SQLoader recognizes the table by table name and metadata. Supported for Oracle only
-	 
-	 
-Creating Summary Tables
-========================
-
-Summary tables are pre-aggregated tables that store summarized or aggregated data, which can help improve query performance and reduce the need for complex calculations during runtime. 
-
-Summary tables are part of the schema within the database catalog.
-
-Creating a Summary Table
---------------------------
-
-This summary table uses Oracle syntax. 
-
-.. code-block:: sql
-
-
-  CREATE TABLE public.SQLOAD_SUMMARY (
-    DB_NAME TEXT(200 BYTE) VISIBLE,
-    SCHEMA_NAME TEXT(200 BYTE) VISIBLE,
-    TABLE_NAME TEXT(200 BYTE) VISIBLE,
-    TABLE_NAME_FULL TEXT(200 BYTE) VISIBLE,
-    LOAD_TYPE TEXT(200 BYTE) VISIBLE,
-    UPDATED_DTTM_FROM DATE VISIBLE,
-    UPDATED_DTTM_TO DATE VISIBLE,
-    LAST_VAL_INT NUMBER(22,0) VISIBLE,
-    LAST_VAL_TS DATE VISIBLE,
-    START_TIME TIMESTAMP(6) VISIBLE,
-    FINISH_TIME TIMESTAMP(6) VISIBLE,
-    ELAPSED_SEC NUMBER VISIBLE,
-    ROW_COUNT NUMBER VISIBLE,
-    SQL_FILTER TEXT(200 BYTE) VISIBLE,
-    PARTITION TEXT(200 BYTE) VISIBLE,
-    STMT_TYPE TEXT(200 BYTE) VISIBLE,
-    STATUS TEXT(200 BYTE) VISIBLE,
-    LOG_FILE TEXT(200 BYTE) VISIBLE,
-    DB_URL TEXT(200 BYTE) VISIBLE,
-    PARTITION_COUNT NUMBER VISIBLE DEFAULT 0,
-    THREAD_COUNT NUMBER VISIBLE DEFAULT 1,
-    ELAPSED_MS NUMBER VISIBLE DEFAULT 0,
-    STATUS_CODE NUMBER VISIBLE DEFAULT 0,
-    ELAPSED_SOURCE_MS NUMBER(38,0) DEFAULT NULL,
-    ELAPSED_SOURCE_SEC NUMBER(38,0) DEFAULT NULL,
-    ELAPSED_TARGET_MS NUMBER(38,0) DEFAULT NULL,
-    ELAPSED_TARGET_SEC NUMBER(38,0) DEFAULT NULL,
-    TARGET_DB_URL VARCHAR2(200) DEFAULT NULL,
-    SQLOADER_VERSION VARCHAR2(20) DEFAULT NULL,
-    HOST VARCHAR2(200) DEFAULT NULL
-  );
-
-
-Creating a Change Data Capture Table
---------------------------------------
-
-Change Data Capture (CDC) tables are supported only for Oracle.
-
-.. code-block:: sql
-
-	CREATE TABLE public.CDC_TABLES (
-	  DB_NAME TEXT(200 BYTE) VISIBLE,
-	  SCHEMA_NAME TEXT(200 BYTE) VISIBLE,
-	  TABLE_NAME TEXT(200 BYTE) VISIBLE,
-	  TABLE_NAME_FULL TEXT(200 BYTE) VISIBLE,
-	  TABLE_NAME_CDC TEXT(200 BYTE) VISIBLE,
-	  INC_COLUMN_NAME TEXT(200 BYTE) VISIBLE,
-	  INC_COLUMN_TYPE TEXT(200 BYTE) VISIBLE,
-	  LOAD_TYPE TEXT(200 BYTE) VISIBLE,
-	  FREQ_TYPE TEXT(200 BYTE) VISIBLE,
-	  FREQ_INTERVAL NUMBER(22,0) VISIBLE,
-	  IS_ACTIVE NUMBER VISIBLE DEFAULT 0,
-	  STATUS_LOAD NUMBER VISIBLE DEFAULT 0,
-	  INC_GAP_VALUE NUMBER VISIBLE DEFAULT 0
-	);
-
-	CREATE TABLE public.CDC_TRACKING (
-	  DB_NAME TEXT(200 BYTE) VISIBLE,
-	  SCHEMA_NAME TEXT(200 BYTE) VISIBLE,
-	  TABLE_NAME TEXT(200 BYTE) VISIBLE,
-	  TABLE_NAME_FULL TEXT(200 BYTE) VISIBLE,
-	  LAST_UPDATED_DTTM DATE VISIBLE,
-	  LAST_VAL_INT NUMBER(22,0) VISIBLE DEFAULT 0,
-	  LAST_VAL_TS TIMESTAMP(6) VISIBLE,
-	  LAST_VAL_DT DATE VISIBLE
-	);
-
-	CREATE TABLE public.CDC_TABLE_PRIMARY_KEYS (
-	  DB_NAME TEXT(200 BYTE) VISIBLE,
-	  SCHEMA_NAME TEXT(200 BYTE) VISIBLE,
-	  TABLE_NAME TEXT(200 BYTE) VISIBLE,
-	  TABLE_NAME_FULL TEXT(200 BYTE) VISIBLE,
-	  CONSTRAINT_NAME TEXT(200 BYTE) VISIBLE,
-	  COLUMN_NAME TEXT(200 BYTE) VISIBLE,
-	  IS_NULLABLE NUMBER VISIBLE DEFAULT 0
-	);
-
-
-Data Type Mapping 
-=================
+SQLoader automatically assigns data types during the data loading process. Nevertheless, you retain the choice to manually specify the preferred data type you want to map to during the loading operation.
 
 .. contents:: 
    :local:
    :depth: 1
 
 Automatic Mapping
-------------------
-
-The **SQLoader** automatically maps data types used in  Oracle, Postgresql, Teradata, Microsoft SQL Server, and SAP HANA tables that are loaded into SQreamDB.
+^^^^^^^^^^^^^^^^^
 
 Oracle
-^^^^^^^ 
+"""""" 
 
 .. list-table::
    :widths: auto
@@ -448,7 +376,7 @@ Oracle
 
 
 Postgresql
-^^^^^^^^^^^
+""""""""""
 
 .. list-table::
    :widths: auto
@@ -476,7 +404,7 @@ Postgresql
      - ``REAL``
 
 Teradata
-^^^^^^^^^
+""""""""
 
 .. list-table::
    :widths: auto
@@ -512,7 +440,7 @@ Teradata
      - ``DOUBLE``
 
 Microsoft SQL Server
-^^^^^^^^^^^^^^^^^^^^^
+""""""""""""""""""""
 
 .. list-table::
    :widths: auto
@@ -540,7 +468,7 @@ Microsoft SQL Server
      - ``TEXT``
 
 SAP HANA
-^^^^^^^^^
+""""""""
 	 
 .. list-table::
    :widths: auto
@@ -587,13 +515,13 @@ SAP HANA
    * - ``REAL``
      - ``REAL``	 
 	 
-Manually Adjusting Mapping
-----------------------------
+Manual Mapping
+^^^^^^^^^^^^^^
 
 You have the possibility to adjust the mapping process according to your specific needs, using any of the following methods.
 
 ``names`` Method
-^^^^^^^^^^^^^^^^^
+""""""""""""""""
 
 To specify that you want to map one or more columns in your table to a specific data type, duplicate the code block which maps to the SQreamDB data type you want and include the ``names`` parameter in your code block. The SQLoader will map the specified columns to the specified SQreamDB data type. After the specified columns are mapped, the SQLoader continue to search for how to convert other data types to the same data type of the specified columns. 
 
@@ -677,6 +605,106 @@ In this example, ``column1``, ``column2``, and ``column3`` are mapped to ``BIGIN
 	  ]
 	}
 	 
+---------------------------------	 
+	 
+Creating Summary Tables
+=======================
+
+Summary tables are pre-aggregated tables that store summarized or aggregated data, which can help improve query performance and reduce the need for complex calculations during runtime. 
+
+Summary tables are part of the schema within the database catalog.
+
+Examples
+--------
+
+The following examples use Oracle syntax. 
+
+A Summary Table
+^^^^^^^^^^^^^^^
+
+.. code-block:: sql
+
+
+  CREATE TABLE public.SQLOAD_SUMMARY (
+    DB_NAME TEXT(200 BYTE) VISIBLE,
+    SCHEMA_NAME TEXT(200 BYTE) VISIBLE,
+    TABLE_NAME TEXT(200 BYTE) VISIBLE,
+    TABLE_NAME_FULL TEXT(200 BYTE) VISIBLE,
+    LOAD_TYPE TEXT(200 BYTE) VISIBLE,
+    UPDATED_DTTM_FROM DATE VISIBLE,
+    UPDATED_DTTM_TO DATE VISIBLE,
+    LAST_VAL_INT NUMBER(22,0) VISIBLE,
+    LAST_VAL_TS DATE VISIBLE,
+    START_TIME TIMESTAMP(6) VISIBLE,
+    FINISH_TIME TIMESTAMP(6) VISIBLE,
+    ELAPSED_SEC NUMBER VISIBLE,
+    ROW_COUNT NUMBER VISIBLE,
+    SQL_FILTER TEXT(200 BYTE) VISIBLE,
+    PARTITION TEXT(200 BYTE) VISIBLE,
+    STMT_TYPE TEXT(200 BYTE) VISIBLE,
+    STATUS TEXT(200 BYTE) VISIBLE,
+    LOG_FILE TEXT(200 BYTE) VISIBLE,
+    DB_URL TEXT(200 BYTE) VISIBLE,
+    PARTITION_COUNT NUMBER VISIBLE DEFAULT 0,
+    THREAD_COUNT NUMBER VISIBLE DEFAULT 1,
+    ELAPSED_MS NUMBER VISIBLE DEFAULT 0,
+    STATUS_CODE NUMBER VISIBLE DEFAULT 0,
+    ELAPSED_SOURCE_MS NUMBER(38,0) DEFAULT NULL,
+    ELAPSED_SOURCE_SEC NUMBER(38,0) DEFAULT NULL,
+    ELAPSED_TARGET_MS NUMBER(38,0) DEFAULT NULL,
+    ELAPSED_TARGET_SEC NUMBER(38,0) DEFAULT NULL,
+    TARGET_DB_URL VARCHAR2(200) DEFAULT NULL,
+    SQLOADER_VERSION VARCHAR2(20) DEFAULT NULL,
+    HOST VARCHAR2(200) DEFAULT NULL
+  );
+
+
+Change Data Capture Summary Tables
+----------------------------------
+
+Change Data Capture (CDC) tables are supported only for Oracle.
+
+.. code-block:: sql
+
+	CREATE TABLE public.CDC_TABLES (
+	  DB_NAME TEXT(200 BYTE) VISIBLE,
+	  SCHEMA_NAME TEXT(200 BYTE) VISIBLE,
+	  TABLE_NAME TEXT(200 BYTE) VISIBLE,
+	  TABLE_NAME_FULL TEXT(200 BYTE) VISIBLE,
+	  TABLE_NAME_CDC TEXT(200 BYTE) VISIBLE,
+	  INC_COLUMN_NAME TEXT(200 BYTE) VISIBLE,
+	  INC_COLUMN_TYPE TEXT(200 BYTE) VISIBLE,
+	  LOAD_TYPE TEXT(200 BYTE) VISIBLE,
+	  FREQ_TYPE TEXT(200 BYTE) VISIBLE,
+	  FREQ_INTERVAL NUMBER(22,0) VISIBLE,
+	  IS_ACTIVE NUMBER VISIBLE DEFAULT 0,
+	  STATUS_LOAD NUMBER VISIBLE DEFAULT 0,
+	  INC_GAP_VALUE NUMBER VISIBLE DEFAULT 0
+	);
+
+	CREATE TABLE public.CDC_TRACKING (
+	  DB_NAME TEXT(200 BYTE) VISIBLE,
+	  SCHEMA_NAME TEXT(200 BYTE) VISIBLE,
+	  TABLE_NAME TEXT(200 BYTE) VISIBLE,
+	  TABLE_NAME_FULL TEXT(200 BYTE) VISIBLE,
+	  LAST_UPDATED_DTTM DATE VISIBLE,
+	  LAST_VAL_INT NUMBER(22,0) VISIBLE DEFAULT 0,
+	  LAST_VAL_TS TIMESTAMP(6) VISIBLE,
+	  LAST_VAL_DT DATE VISIBLE
+	); 
+
+	CREATE TABLE public.CDC_TABLE_PRIMARY_KEYS (
+	  DB_NAME TEXT(200 BYTE) VISIBLE,
+	  SCHEMA_NAME TEXT(200 BYTE) VISIBLE,
+	  TABLE_NAME TEXT(200 BYTE) VISIBLE,
+	  TABLE_NAME_FULL TEXT(200 BYTE) VISIBLE,
+	  CONSTRAINT_NAME TEXT(200 BYTE) VISIBLE,
+	  COLUMN_NAME TEXT(200 BYTE) VISIBLE,
+	  IS_NULLABLE NUMBER VISIBLE DEFAULT 0
+	);
+
+-------------------------------------------------------
+	
 CLI Examples
 ============
 
@@ -684,7 +712,7 @@ Loading data into a CDC table using the ``type`` and ``limit`` parameters:
 
 .. code-block:: console 
 
-	java -jar sqloader.jar -table source_table_name -type cdc -limit 100
+	java -jar sqloader.jar -table <source_table_name> -type cdc -limit 100
 
 Loading data into a table using your own configuration file (this will override the default configuration file):
 
@@ -696,10 +724,10 @@ Loading data into a table using a custom configuration file:
 
 .. code-block:: console
 
-	java -jar -config MyConfigFile.properties -table source_table_name -type cdc -target target_table_name -drop true -lock_check false
+	java -jar -config MyConfigFile.properties -table <source_table_name> -type cdc -target <target_table_name> -drop true -lock_check false
 
 Loading data into a table using a the ``filter`` parameter:
 
 .. code-block:: console
 
-	java -jar sqloader.jar -table source_table_name -filter column_name>50
+	java -jar sqloader.jar -table <source_table_name> -filter column_name>50
