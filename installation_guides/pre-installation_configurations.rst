@@ -417,6 +417,8 @@ NodeJS is necessary only when the UI runs on the same server as SqreamDB. If not
    .. code-block:: console
    
       sudo npm install pm2 -g
+      cd /usr/bin
+      sudo ln -s ../local/node-v16.20.0-linux-x64/bin/pm2 pm2
   
 8. If installing the ``pm2`` process management fails, install it offline:	 
   
