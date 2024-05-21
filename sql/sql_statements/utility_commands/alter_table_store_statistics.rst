@@ -23,5 +23,5 @@ Examples
 Permissions
 ===========
 
-
+The role must have the ``SUPERUSER`` permissions.
 

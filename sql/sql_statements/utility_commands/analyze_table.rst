@@ -6,7 +6,7 @@
 ANALYZE TABLE
 *************
 
-
+The command is asynchronous, meaning you can continue processing other tasks without waiting for the command to complete. The processing duration depends on the table size. The output includes the session ID and query ID, which you can use to check the status of your statistics request and to abort the statistics operation if needed.
 
 Syntax
 ======
@@ -38,9 +38,30 @@ Parameters
      - :ref:`Identifier<keywords_and_identifiers>`
      - Identifies the column for which to apply statistics
 
+Usage Note
+==========
+
+The Statistics operation does not support the following column data types:
+
+* ``TEXT``
+* ``NUMERIC`` 
+
 Example
 =======
 
+.. code-block:: postgres
+
+	ANALYZE TABLE nba COMPUTE STATISTICS FOR ALL COLUMNS;
+	
+Output:
+
+.. code-block:: none
+
+	session_id                          |query_id|
+	------------------------------------+--------+
+	1ebafa4a-c843-4133-8335-54d295bdfdd0|1       |
 
 Permissions
 ===========
+
+The role must have the ``SUPERUSER`` permissions.

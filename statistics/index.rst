@@ -60,28 +60,22 @@ Parameters
 Usage Note
 ==========
 
-The Statistics operation does not support ``TEXT`` and ``NUMERIC`` columns. 
+The Statistics operation does not support the following column data types:
 
-Best Practice
-=============
-
-A best practice of following statistics is:
-
-1. Executing ``ANALYZE TABLE`` 
+* ``TEXT``
+* ``NUMERIC`` 
 
 Examples
 ========
 
 Initiating Statistics Collection
 --------------------------------
-The command is asynchronous 
-Depending on the tale size, this command may take a while to process. 
 
-The output is the session ID + query ID
+The command is asynchronous, meaning you can continue processing other tasks without waiting for the command to complete. The processing duration depends on the table size. The output includes the session ID and query ID, which you can use to check the status of your statistics request and to abort the statistics operation if needed.
 
 .. code-block:: postgres
 
-	ANALYZE TABLE nba COMPUTE STATISTICS FOR COLUMNS number;
+	ANALYZE TABLE nba COMPUTE STATISTICS FOR ALL COLUMNS;
 	
 Output:
 
@@ -89,66 +83,82 @@ Output:
 
 	session_id                          |query_id|
 	------------------------------------+--------+
-	ba0cc085-35a3-48f3-8c97-fedc636dccc8|26      |
+	1ebafa4a-c843-4133-8335-54d295bdfdd0|1       |
 	
-Analyzing Statistics Request Status
------------------------------------
+Retrieving Statistics Request Status
+------------------------------------
 
-To determine whether or not the collection of your statistics request is completed.
+This command returns information about your statistics collection request, including whether or not the collection is completed.
 
 .. code-block:: postgres
 
-	STATISTICS REQUEST STATUS queryId '26';
+	STATISTICS REQUEST STATUS queryId '1';
 
 Output:
 
 .. code-block:: none
 
-	session_id                          |query_id|submission_time        |start_execution_time   |termination_time       |status             |current_column|total_num_columns|error_message|
-	------------------------------------+--------+-----------------------+-----------------------+-----------------------+-------------------+--------------+-----------------+-------------+
-	ba0cc085-35a3-48f3-8c97-fedc636dccc8|26      |2024-05-20 10:37:25.747|2024-05-20 10:37:25.748|2024-05-20 10:37:28.885|EXECUTION_SUCCEEDED|0             |0                |             |
+	session_id                          |query_id|submission_time        |start_execution_time   |termination_time|status   |current_column|total_num_columns|error_message|
+	------------------------------------+--------+-----------------------+-----------------------+----------------+---------+--------------+-----------------+-------------+
+	1ebafa4a-c843-4133-8335-54d295bdfdd0|1       |2024-05-21 10:02:30.249|2024-05-21 10:02:30.249|                |EXECUTING|3             |4                |             |
 		
 Querying Statistics
 -------------------
 
-Nullable columns require @val
+When querying for statistics of a specific column, note that for nullable columns, it's required to specify that you're querying for values using the ``@val`` suffix.
 
 .. code-block:: postgres
 
-	SELECT FETCH_COLUMN_HISTOGRAM("lineitem", "l_orderkey");
+	SELECT FETCH_COLUMN_HISTOGRAM("nba", "number");
 
-Output:
+If the operation hasn't finished yet, the output will show an empty ``info`` column:
 
 .. code-block:: none
 
-	info                                 |
-	-------------------------------------+
-	Table is empty (has no non-null data)|
+	info                    |
+	------------------------+
+	Column has no statistics|
+
+If the operation has finished, the output will show the requested histogram:
+
+.. code-block:: none
+
+	BucketLeft|BucketRight|BucketCount|
+	----------+-----------+-----------+
+			 0|          0|          2|
+			 1|          1|          2|
+			 3|          3|          2|
+			 7|          7|          1|
+			12|         12|          1|
+			13|         13|          1|
+			23|         23|          1|
+			24|         24|          1|
+			35|         35|          1|
 
 Aborting Statistics Operation
 -----------------------------
 
 .. code-block:: postgres
 
-	STATISTICS REQUEST ABORT sessionId 'bda37dc1-8917-4e76-bcee-c139a7864948' queryId '23';
+	STATISTICS REQUEST ABORT sessionId '1ebafa4a-c843-4133-8335-54d295bdfdd0' queryId '1';
 
 Output:
 
 .. code-block:: none
 
-	Error: Aborted.
+	Aborted
 
 Deleting Statistics Operation
 -----------------------------
 
 .. code-block:: postgres
 
-	ALTER TABLE "lineitem" DROP STATISTICS FOR COLUMNS "l_orderkey";
+	ALTER TABLE "nba" DROP STATISTICS FOR COLUMNS "number";
 
 
 Permissions
 ===========
 
 The role must have the ``SUPERUSER`` permissions.
-   
+
 

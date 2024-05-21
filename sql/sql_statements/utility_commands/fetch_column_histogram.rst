@@ -32,6 +32,14 @@ Parameters
      - :ref:`Identifier<keywords_and_identifiers>`
      - Identifies the column for which to apply statistics
 
+Usage Note
+==========
+
+The Statistics operation does not support the following column data types:
+
+* ``TEXT``
+* ``NUMERIC`` 
+
 Examples
 ========
 
@@ -39,3 +47,5 @@ Examples
 
 Permissions
 ===========
+
+The role must have the ``SUPERUSER`` permissions.
