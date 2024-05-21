@@ -64,10 +64,10 @@ In this example we use :ref:`concat` to show the whitespace.
 
 .. code-block:: psql
 
-   t=> SELECT '#' || TRIM('            SQream DB            ') || '#';
+   SELECT '#' || TRIM('            Blue            ') || '#';
    trim       
-   -----------
-   #SQream DB#
+  -------
+   #Blue#
 
 
 
@@ -77,7 +77,7 @@ Trimming a column of values
 .. code-block:: psql
 
    
-   t=> SELECT ('Line: ' || line  || '#') as untrimmed, ('Line: ' || TRIM(line) || '#') as trimmed FROM jabberwocky;
+   SELECT ('Line: ' || line  || '#') as untrimmed, ('Line: ' || TRIM(line) || '#') as trimmed FROM jabberwocky;
    untrimmed                                               | trimmed                                         
    --------------------------------------------------------+-------------------------------------------------
    Line: 'Twas brillig, and the slithy toves #             | Line: 'Twas brillig, and the slithy toves#      
