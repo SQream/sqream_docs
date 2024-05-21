@@ -440,212 +440,170 @@ Mandatory flags must be configured using HTTP flags or the ``properties`` file.
    * - HTTP Parameter
      - State
      - Default
-     - Type 
      - Description
    * - ``clustered``
      - Optional
      - ``true``
-     -  
      - This flag is relevant only for ``load`` requests (``async``), not for ``syncLoad``. Note that this flag affects :ref:`high availability<high_availability>`. When set to ``true``: the request is directed to one of the available instances within a cluster, often through a load balancer. When set to ``false``: the request goes directly to the specified host without load balancing.
    * - ``configFile``
      - Optional
      - ``sqload-jdbc.properties``
-     -  
      - Defines the path to the configuration file you wish to use. If not specified, the service will use the default path provided upon service deployment.
    * - ``connectionStringSqream``
      - Mandatory
      - 
-     -  
      - JDBC connection string to SQreamDB
    * - ``connectionStringSource``
      - Mandatory
      - 
-     -  
      - JDBC connection string to source database
    * - ``connectionStringCatalog``
      - Mandatory
      - 
-     -  
      - JDBC connection string to catalog database
    * - ``cdcCatalogTable``
      - Optional
      - 
-     -  
      - Part of the schema within the catalog database. Holds all inc/cdc tables and their settings
    * - ``cdcTrackingTable``
      - Optional
      - 
-     -  
      - Part of the schema within the catalog database. Holds the last tracking value for every inc/cdc table from ``cdcCatalogTable`` table	 
    * - ``cdcPrimaryKeyTable``
      - Optional
      - 
-     -  
      - Part of the schema within the catalog database. Holds all primary keys for every inc/cdc table from ``cdcCatalogTable`` table	 
    * - ``loadSummaryTable``
-     - Optional
+     - Mandatory
      - 
-     -  
      - Part of the schema within the catalog database. Pre-aggregated table that stores summarized loads which can help monitoring and analyzing load	 
    * - ``batchSize``
      - Optional
      - ``10.000``
-     - 
      - The number of records to be inserted into SQreamDB at once. Please note that the configured batch size may impact chunk sizes.
    * - ``caseSensitive``
      - Optional
      - ``false``
-     - 
      - If ``true``, keeps table name uppercase and lowercase characters when table is created in SQreamDB
    * - ``checkCdcChain``
      - Optional
      - ``false``
-     - 
      - Check CDC chain between tracking table and source table 
    * - ``chunkSize``
      - Optional
      - ``0``
-     - 
      - The number of records read at once from the source database
    * - ``columnListFilePath``
      - Optional
      - 
-     - ``.txt``
      - The name of the file that contains all column names. Columns must be separated using ``\n``. Expected file type is ``.txt`` 
    * - ``columns``
      - Optional
      - All columns
-     - 
      - The name or names of columns to be loaded into SQreamDB ("col1,col2, ..."). For column names containing uppercase characters, maintain the uppercase format, avoid using double quotes or apostrophes, and ensure that the ``caseSensitive`` parameter is set to true
    * - ``count``
      - Optional
      - ``true``
-     - 
      - Defines whether or not table rows will be counted before being loaded into SQreamDB 
    * - ``cdcDelete``
      - Optional
      - ``true``
-     - 
      - Defines whether or not loading using Change Data Capture (CDC) includes deleted rows
    * - ``drop``
      - Optional
      - ``true``
-     - 
      - Defines whether or not a new target table in SQreamDB is created. If ``false``, you will need to configure a target table name using the ``target`` parameter
    * - ``fetchSize``
      - Optional
      - ``100000``
-     - 
      - The number of records to be read at once from source database. 
    * - ``filter``
      - Optional
      - ``1=1``
-     - 
      - Defines whether or not only records with SQL conditions are loaded
    * - ``h, help``
      - Optional
-     - 
      - 
      - Displays the help menu and exits
    * - ``limit``
      - Optional
      - ``0`` (no limit)
-     - 
      - Limits the number of rows to be loaded
    * - ``loadDttm``
      - Optional
      - ``true``
-     - 
      - Add an additional ``load_dttm`` column that defines the time and date of loading
    * - ``loadTypeName``
      - Optional
      - ``full``
-     - 
      - Defines a loading type that affects the table that is created in SQreamDB. Options are ``full``, ``cdc``, or ``inc``. Please note that ``cdc``, and ``inc`` are supported only for Oracle
    * - ``lockCheck``
      - Optional
      - ``true``
-     - 
      - Defines whether or not SQLoader will check source table is locked before the loading starts
    * - ``lockTable``
      - Optional
      - ``true``
-     - 
      - Defines whether or not SQLoader will lock target table before the loading starts
    * - ``partitionName``
      - Optional
      - 
-     - Partition identifier ``string``
      - Specifies the number of table partitions. If configured, ``partition`` ensures that data is loaded according to the specified partition. You may configure the ``thread`` parameter for parallel loading of your table partitions. If you do, please ensure that the number of threads does not exceed the number of partitions.
    * - ``port``
      - Optional
      - ``6060``
      - 
-     - 
    * - ``rowid``
      - Optional
      - ``false``
-     - 
      - Defines whether or not SQLoader will get row IDs from Oracle tables
    * - ``sourceDatabaseName``
      - Optional
      - ``ORCL``
-     - 
      - Defines the source database name. It does not modify the database connection string but impacts the storage and retrieval of data within catalog tables.
    * - ``splitByColumn``
      - Optional
      - 
-     - Column name ``string``
      - Column name for split (required for multi-thread loads)
    * - ``sourceSchema``
      - Mandatory
      -  
-     - 
      - Source schema name to load data from
    * - ``sourceTable``
      - Mandatory
      - 
-     - Table name ``string``
      - Source table name to load data from
    * - ``sqreamSchema``
      - Optional 
      - The schema name defined in the ``sourceSchema`` flag
-     - 
      - Target schema name to load data into
    * - ``sqreamTable``
      - Optional
      - The table name defined in the ``sourceTable`` flag
-     - Table name ``string``
      - Target table name to load data into
    * - ``threadCount``
      - Optional
      - ``1``
-     - 
      - Number of threads to use for loading. Using multiple threads can significantly improve the loading performance, especially when dealing with columns that have metadata statistics (e.g., min/max values). SQLoader will automatically divide the data into batches based on the specified thread number, allowing for parallel processing. You may use ``thread`` both for tables that are partitioned and tables that are not. See :ref:`Sizing Guidelines<sqloader_thread_sizing_guidelines>`
    * - ``truncate``
      - Optional
      - ``false``
-     - 
      - Truncate target table before loading
    * - ``typeMappingPath``
      - Optional
      - ``config/sqream-mapping.json``
-     - JSON
      - A mapping file that converts source data types into SQreamDB data types.
    * - ``useDbmsLob``
      - Optional
      - ``true``
-     - 
      - Defines whether or not SQLoader uses ``dbms_lob_substr`` function for ``CLOB`` and ``BLOB`` data types
    * - ``usePartitions``
      - Optional
      - ``true``
-     - 
      - Defines whether or not SQLoader uses partitions in ``SELECT`` statements
    * - ``validateSourceTable``
      - Optional
      - ``true``
-     - 
      - Allows control over the validation of table existence during the load.
 
 .. _load_type_name:
