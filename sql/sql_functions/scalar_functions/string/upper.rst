@@ -61,8 +61,8 @@ Upper-casing a literal value
 
 .. code-block:: psql
 
-   t=> SELECT UPPER('SQream DB');
-   SQREAM DB
+	SELECT UPPER('blue');
+	BLUE
 
 Upper-casing a column of values
 --------------------------------------
@@ -70,15 +70,15 @@ Upper-casing a column of values
 .. code-block:: psql
 
    
-   t=> SELECT UPPER(line) FROM jabberwocky;
-   upper                                    
-   -----------------------------------------
-   'TWAS BRILLIG, AND THE SLITHY TOVES      
-   DID GYRE AND GIMBLE IN THE WABE:         
-   ALL MIMSY WERE THE BOROGOVES,            
-   AND THE MOME RATHS OUTGRABE.             
-   "BEWARE THE JABBERWOCK, MY SON!          
-   THE JAWS THAT BITE, THE CLAWS THAT CATCH!
-   BEWARE THE JUBJUB BIRD, AND SHUN         
-   THE FRUMIOUS BANDERSNATCH!"              
+	SELECT UPPER(line) FROM jabberwocky;
+	upper                                    
+	-----------------------------------------
+	'TWAS BRILLIG, AND THE SLITHY TOVES      
+	DID GYRE AND GIMBLE IN THE WABE:         
+	ALL MIMSY WERE THE BOROGOVES,            
+	AND THE MOME RATHS OUTGRABE.             
+	"BEWARE THE JABBERWOCK, MY SON!          
+	THE JAWS THAT BITE, THE CLAWS THAT CATCH!
+	BEWARE THE JUBJUB BIRD, AND SHUN         
+	THE FRUMIOUS BANDERSNATCH!"              
 

@@ -2,9 +2,9 @@
 
 .. _lower:
 
-**************************
+*****
 LOWER
-**************************
+*****
 
 Converts characters in a string to lower case
 
@@ -61,8 +61,8 @@ Lower-casing a literal value
 
 .. code-block:: psql
 
-   t=> SELECT LOWER('SQream DB');
-   sqream db
+	SELECT LOWER('BLUE');
+	blue
 
 Lower-casing a column of values
 --------------------------------------
@@ -70,14 +70,14 @@ Lower-casing a column of values
 .. code-block:: psql
 
    
-   t=> SELECT LOWER(line) FROM jabberwocky;
-   lower                                    
-   -----------------------------------------
-   'twas brillig, and the slithy toves      
-   did gyre and gimble in the wabe:         
-   all mimsy were the borogoves,            
-   and the mome raths outgrabe.             
-   "beware the jabberwock, my son!          
-   the jaws that bite, the claws that catch!
-   beware the jubjub bird, and shun         
-   the frumious bandersnatch!"              
+	SELECT LOWER(line) FROM jabberwocky;
+	lower                                    
+	-----------------------------------------
+	'twas brillig, and the slithy toves      
+	did gyre and gimble in the wabe:         
+	all mimsy were the borogoves,            
+	and the mome raths outgrabe.             
+	"beware the jabberwock, my son!          
+	the jaws that bite, the claws that catch!
+	beware the jubjub bird, and shun         
+	the frumious bandersnatch!"              
