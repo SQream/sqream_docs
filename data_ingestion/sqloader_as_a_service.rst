@@ -101,10 +101,13 @@ A folder named ``sqloader`` with the following files is created:
 Installation
 ------------
 
-Parameters
-^^^^^^^^^^
+Deployment Parameters
+^^^^^^^^^^^^^^^^^^^^^
 
-``-D`` flags are not dynamically adjustable at runtime. 
+When using the ``sqloader-v1.sh`` file (installer), the following flags are already configured. 
+
+All deployment flags are not dynamically adjustable at runtime. 
+
 
 .. list-table:: 
    :widths: auto
@@ -113,37 +116,37 @@ Parameters
    * - Parameter
      - State
      - Default
-     - Type 
+     - Example 
      - Description
    * - ``configDir``
      - Optional
-     - ``java -jar sqloaderService-8.0.jar configDir=</path/to/directory/>``
-     - 
+     - ``config``
+     - ``java -jar sqloaderService-8.0.jar --configDir=</path/to/directory/>``
      - Defines the path to the folder containing both the data type mapping and the reserved words files. The defined folder must contain both files or else you will receive an error. This flag affects the mapping and reserved words files and does not affect the properties file 
    * - ``hzClusterName=<TEXT>``
      - Optional
      - 
-     - 
-     - In Hazelcast, a cluster refers to a group of connected Hazelcast instances across different JVMs or machines. By default, these instances connect to the same cluster on the network level, meaning that all SQLoader services that start on a network will connect to each other and share the same queue. An admin can connect to only one Hazelcast cluster at a time. If you start multiple clusters and want to connect them to the admin service, you will need to start multiple admin services, with each service connecting to one of your clusters. It is essential that this flag has the same name used here and across all SQLLoader instances.
+     - ``java -jar sqloader-service-8.0.jar --hzClusterName=<TEXT>``
+     - In Hazelcast, a cluster refers to a group of connected Hazelcast instances across different JVMs or machines. By default, these instances connect to the same cluster on the network level, meaning that all SQLoader services that start on a network will connect to each other and share the same queue. An admin can connect to only one Hazelcast cluster at a time. If you start multiple clusters and want to connect them to the admin service, you will need to start multiple admin services, with each service connecting to one of your clusters. It is essential that this flag has the same name used here and across all SQLoader instances.
    * - ``LOG_DIR``
      - Optional
      - ``logs``
-     - ``-D``
+     - ``java -jar -DLOG_DIR=/path/to/log/directory sqloader-service-8.0.jar``
      - Defines the path of log directory created when loading data. If no value is specified, a ``logs`` folder is created under the same location as the ``sqloader.jar`` file
    * - ``spring.boot.admin.client.url``
      - Optional
      - ``http://localhost:7070``
-     - 
+     - ``java -jar sqloader-service-8.0.jar --spring.boot.admin.client.url=http://IP:PORT``
      - SQLoader admin server connection flag
    * - ``Xmx``
      - Optional
      - 
-     - 
+     - ``java -jar -Xmx<number>g sqloader-service-8.0.jar``
      - We recommend using the ``Xmx`` flag to set the maximum heap memory allocation for the service. If a single service is running on the machine, we suggest allocating 80% of the total memory minus approximately 4GB, which the service typically needs on average. If multiple services are running on the same machine, calculate the recommended heap size for one service and then divide it by the number of services. Compute formula: :math:`⌊ 0.8 * (TotalMemory - 4) ⌋`
    * - ``DEFAULT_PROPERTIES``
      - Mandatory
      - ``sqload-jdbc.properties``
-     - ``-D``
+     - ``java -jar -DDEFAULT_PROPERTIES=/path/to/file/sqload-jdbc.properties sqloader-service-8.0.jar``
      - When the service initializes, it looks for the variable DEFAULT_PROPERTIES, which corresponds to the default sqload-jdbc.properties file. Once the service is running with a specified properties file, this setting will remain unchanged as long as the service is operational. To modify it, you must shut down the service, edit the properties file, and then restart the service. Alternatively, you can modify it via a POST request, but this change will only affect the specific load request and not the default setting for all requests.
 	 
 Installing the Admin Server and SQLoader Service
@@ -331,8 +334,9 @@ It is recommended that the ``sqload-jdbc.properties`` file will contain a connec
 1. Open the ``sqload-jdbc.properties`` file.
 2. Configure connection parameters for:
 
-   a. Either Greenplum, Microsoft SQL Server, Oracle, Postgresql, SAP HANA, Sybase, Teradata, or SQreamDB connection strings
-   b. Optionally, Oracle or SQreamDB catalogs (recommended)
+   a. The source connection string: Greenplum, Microsoft SQL Server, Oracle, Postgresql, SAP HANA, Sybase or Teradata
+   b. The target connection string: SQreamDB
+   c. The :ref:`catalog<creating_catalog_tables>` connection string: Greenplum, Microsoft SQL Server, Oracle, Postgresql, SAP HANA, SQreamDB, Sybase, or Teradata
 
 .. list-table:: Connection String Parameters
    :widths: auto
@@ -351,13 +355,13 @@ It is recommended that the ``sqload-jdbc.properties`` file will contain a connec
    * - ``ssl``
      - Specifies SSL for this connection
 
-.. literalinclude:: connection_string.java
-    :language: java
+.. literalinclude:: connection_string.ini
+    :language: ini
     :caption: Properties File Sample
     :linenos:
 
-SQLoader Service Deployment and Interface
-=========================================
+SQLoader Service Interface
+==========================
 
 Supported HTTP Requests
 ^^^^^^^^^^^^^^^^^^^^^^^
@@ -406,9 +410,11 @@ SQLoader as a service supports high availability for asynchronous load requests 
 
 * **At least one service must remain operational**: After a crash, at least one service must be up and running to ensure that tasks can be recovered and executed.
 
-* **Clustered flag requirement**: The SQLoader ``clustered`` flag must be set to ``true`` to enable high availability.
+* **Limitations for specific tasks**: When any of the following is configured: 
 
-* **Limitations for specific tasks**: A task involving a full load with ``truncate=false`` and ``drop=false`` will not rerun to prevent data duplication. In this type of load, data is inserted directly into the target table rather than a temporary table, making it impossible to determine if any data was inserted before the crash.
+	* A task involving a ``clustered`` flag must be set to ``true`` to enable high availability.
+
+	* A task involving a full load with ``truncate=false`` and ``drop=false`` will not rerun to prevent data duplication. In this type of load, data is inserted directly into the target table rather than a temporary table, making it impossible to determine if any data was inserted before the crash. 
 
 This setup ensures that asynchronous load requests are handled reliably, even in the event of service failures.
 
@@ -425,7 +431,7 @@ The maximum number of archived log files to keep is set to 360, so Logback will 
 SQLoader Request Parameters
 ---------------------------
 
-
+Mandatory flags must be configured using HTTP flags or in the ``properties`` file.
 
 .. list-table:: 
    :widths: auto
@@ -591,14 +597,24 @@ SQLoader Request Parameters
      - 
      - Column name ``string``
      - Column name for split (required for multi-thread loads)
+   * - ``sourceSchema``
+     - Mandatory
+     -  
+     - 
+     - Source schema name to load data from
    * - ``sourceTable``
      - Mandatory
      - 
      - Table name ``string``
      - Source table name to load data from
+   * - ``sqreamSchema``
+     - Optional 
+     - The schema name defined in the ``sourceSchema`` flag
+     - 
+     - Target schema name to load data into
    * - ``sqreamTable``
      - Optional
-     - Target table name
+     - The table name defined in the ``sourceTable`` flag
      - Table name ``string``
      - Target table name to load data into
    * - ``threadCount``
@@ -614,7 +630,7 @@ SQLoader Request Parameters
    * - ``typeMappingPath``
      - Optional
      - ``config/sqream-mapping.json``
-     - 
+     - JSON
      - A mapping file that converts source data types into SQreamDB data types.
    * - ``useDbmsLob``
      - Optional
@@ -729,12 +745,13 @@ The following summary table DDL uses Oracle syntax.
     ELAPSED_SOURCE_SEC NUMBER(38,0) DEFAULT NULL,
     ELAPSED_TARGET_MS NUMBER(38,0) DEFAULT NULL,
     ELAPSED_TARGET_SEC NUMBER(38,0) DEFAULT NULL,
-    TARGET_DB_URL VARCHAR2(200) DEFAULT NULL,
-    SQLOADER_VERSION VARCHAR2(20) DEFAULT NULL,
-    HOST VARCHAR2(200) DEFAULT NULL,
+    TARGET_DB_URL TEXT (200 BYTE) DEFAULT NULL,
+    SQLOADER_VERSION TEXT (200 BYTE) DEFAULT NULL,
+    HOST TEXT (200 BYTE) DEFAULT NULL,
     REQUEST_ID TEXT (200 BYTE) VISIBLE DEFAULT NULL
   );
 
+.. _creating_catalog_tables:
 
 Creating Catalog Tables
 -----------------------
