@@ -278,6 +278,8 @@ Output:
 Reconfiguration
 ---------------
 
+**Admin server**
+
 You may reconfigure the admin server even after you have started it.
 
 
@@ -298,6 +300,8 @@ Output:
 .. code-block::
 
 	sudo systemctl restart sqloader-admin
+
+**SQLoader service**
 
 You may reconfigure the SQLoader service even after you have started it.
 
@@ -404,7 +408,7 @@ SQLoader as a service supports high availability for asynchronous load requests 
 
 * **Clustered flag requirement**: The SQLoader ``clustered`` flag must be set to ``true`` to enable high availability.
 
-* **Limitations for specific tasks**: A task involving a full load with ``truncate=false`` and ``drop=false`` will not rerun to prevent data duplication. In this type of load, data is inserted directly into the target table rather than a temporary table, making it impossible to determine if any data was inserted before the crash. Re-running the task could lead to data corruption.
+* **Limitations for specific tasks**: A task involving a full load with ``truncate=false`` and ``drop=false`` will not rerun to prevent data duplication. In this type of load, data is inserted directly into the target table rather than a temporary table, making it impossible to determine if any data was inserted before the crash.
 
 This setup ensures that asynchronous load requests are handled reliably, even in the event of service failures.
 
@@ -420,6 +424,8 @@ The maximum number of archived log files to keep is set to 360, so Logback will 
 
 SQLoader Request Parameters
 ---------------------------
+
+
 
 .. list-table:: 
    :widths: auto
