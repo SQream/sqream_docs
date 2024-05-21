@@ -6,17 +6,16 @@
 DROP STATISTICS FOR COLUMNS
 ***************************
 
+This command terminates an :ref:`analyze_table` execution. 
 
+More about statistics under :ref:`cost_based_optimizer`
 
 Syntax
 ======
 
 .. code-block:: postgres
 
-	ALTER TABLE 
-	  '<table_name>' 
-	DROP STATISTICS FOR COLUMNS 
-	  '<column_name>' [, ...]
+	ALTER TABLE '<table_name>' DROP STATISTICS FOR COLUMNS '<column_name>' [, ...]
 
 Parameters
 ==========
@@ -39,7 +38,9 @@ Parameters
 Examples
 ========
 
+.. code-block:: postgres
 
+	ALTER TABLE "nba" DROP STATISTICS FOR COLUMNS "number";
 
 Permissions
 ===========

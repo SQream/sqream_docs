@@ -18,7 +18,9 @@ Syntax
 Examples
 ========
 
+.. code-block:: postgres
 
+	ALTER TABLE "nba" DROP STATISTICS FOR COLUMNS "number";
 
 Permissions
 ===========

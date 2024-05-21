@@ -8,6 +8,8 @@ STATISTICS REQUEST STATUS
 
 This command returns information about your statistics collection request, including whether or not the collection is completed.
 
+More about statistics under :ref:`cost_based_optimizer`
+
 Syntax
 ======
 
