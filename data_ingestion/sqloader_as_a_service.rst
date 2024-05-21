@@ -431,7 +431,7 @@ The maximum number of archived log files to keep is set to 360, so Logback will 
 SQLoader Request Parameters
 ---------------------------
 
-Mandatory flags must be configured using HTTP flags or in the ``properties`` file.
+Mandatory flags must be configured using HTTP flags or the ``properties`` file.
 
 .. list-table:: 
    :widths: auto
