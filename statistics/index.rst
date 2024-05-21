@@ -110,6 +110,9 @@ When querying for statistics of a specific column, note that for nullable column
 .. code-block:: postgres
 
 	SELECT FETCH_COLUMN_HISTOGRAM("nba", "number");
+	
+	-- Using the @val suffix:
+	SELECT FETCH_COLUMN_HISTOGRAM("nba", "number@val");
 
 If the operation hasn't finished yet, the output will indicate that ``Column has no statistics``:
 
