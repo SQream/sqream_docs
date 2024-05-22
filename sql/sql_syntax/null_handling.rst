@@ -4,9 +4,9 @@
 Null handling
 ***************************
 
-SQream DB handles ``NULL`` values similar to other RDBMSs, with some minor differences.
+Blue handles ``NULL`` values similar to other RDBMSs, with some minor differences.
 
-.. tip:: When using :ref:`sqream sql<sqream_sql_cli_reference>` ``NULL`` values are displayed as ``\N``. Different clients may show other values, including an empty string.
+.. tip:: When using :ref:`Blue sql<sqream_sql_cli_reference>` ``NULL`` values are displayed as ``\N``. Different clients may show other values, including an empty string.
 
 Comparisons
 ==============
@@ -92,9 +92,9 @@ Running :ref:`count` DISTINCT however, ignores the ``NULL`` values:
 Sorting
 ========
 
-When sorting a column containing ``NULL`` values, SQream DB sorts ``NULL`` values first with ``ASC`` and last with ``DESC``. 
+When sorting a column containing ``NULL`` values, Blue sorts ``NULL`` values first with ``ASC`` and last with ``DESC``. 
 
-SQream DB does not implement ``NULLS FIRST`` or ``NULLS LAST``, so where ``NULL`` appears cannot change where NULL values appear in the sort order.
+Blue does not implement ``NULLS FIRST`` or ``NULLS LAST``, so where ``NULL`` appears cannot change where NULL values appear in the sort order.
 
 .. code-block:: psql
 

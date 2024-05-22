@@ -102,7 +102,7 @@ Elements
    * - ``LIMIT``
      - unlimited
      - 1 to 2147483647.
-     - When specified, tells SQream DB to stop loading after the specified number of rows. Unlimited if unset. Applicable to CSVs only
+     - When specified, tells Blue to stop loading after the specified number of rows. Unlimited if unset. Applicable to CSVs only
    * - ``DELIMITER``
      - ``','``
      - Almost any ASCII character, :ref:`See field delimiters section below<field_delimiters>`
@@ -251,7 +251,7 @@ When ``ERROR_LOG`` is not used, the ``COPY`` command will stop and roll back the
 CSV Support
 ===========
 
-By default, SQream DB's CSV parser can handle `RFC 4180 standard CSVs <https://tools.ietf.org/html/rfc4180>`_ , but can also be modified to support non-standard CSVs (with multi-character delimiters, unquoted fields, etc).
+By default, Blue's CSV parser can handle `RFC 4180 standard CSVs <https://tools.ietf.org/html/rfc4180>`_ , but can also be modified to support non-standard CSVs (with multi-character delimiters, unquoted fields, etc).
 
 All CSV files should be prepared according to these recommendations:
 

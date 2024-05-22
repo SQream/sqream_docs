@@ -8,7 +8,7 @@ DATEPART
 
 Extracts a date or time part from a ``DATE`` or ``DATETIME`` value.
 
-.. note:: SQream DB also supports the ANSI :ref:`EXTRACT<extract>` syntax.
+.. note:: Blue also supports the ANSI :ref:`EXTRACT<extract>` syntax.
 
 Syntax
 ==========

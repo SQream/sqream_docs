@@ -8,7 +8,7 @@ EXTRACT
 
 Extracts a date or time part from a ``DATE`` or ``DATETIME`` value.
 
-.. note:: SQream DB also supports the SQL Server :ref:`DATEPART<datepart>` syntax, which contains more date parts for use.
+.. note:: Blue also supports the SQL Server :ref:`DATEPART<datepart>` syntax, which contains more date parts for use.
 
 Syntax
 ==========

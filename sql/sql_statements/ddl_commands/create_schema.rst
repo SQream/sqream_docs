@@ -8,7 +8,7 @@ CREATE SCHEMA
 
 The ``CREATE SCHEMA`` command is used to establish a new schema within an existing database. A schema represents a logical space where tables are organized and stored.
 
-By default, the primary schema in SQream DB is named ``public``.
+By default, the primary schema in Blue is named ``public``.
 
 Schemas are instrumental for organizing and separating different use-cases within a database, for instance, segregating staging and production environments.
 

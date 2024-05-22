@@ -38,7 +38,7 @@ Notes
 
 * Both values must be strings, and can't be ``NULL``. If ``NULLS`` are expected, use :ref:`coalesce`.
 
-* SQream DB removes the trailing spaces from strings by default, which may lead to unexpected results. See the examples for more information.
+* Blue removes the trailing spaces from strings by default, which may lead to unexpected results. See the examples for more information.
 
 Examples
 ===========

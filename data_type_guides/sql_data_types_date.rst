@@ -59,13 +59,13 @@ The following is an example of the DATETIME syntax:
      
    '1955-11-05 01:26:00'
 
-SQream attempts to guess if the string literal is a date or datetime based on context, for example when used in date-specific functions.
+Blue attempts to guess if the string literal is a date or datetime based on context, for example when used in date-specific functions.
 
 Size
 ^^^^^^
 A ``DATE`` column is 4 bytes in length, while a ``DATETIME`` column is 8 bytes in length.
 
-However, the size of these values is compressed by SQream DB.
+However, the size of these values is compressed by Blue
 
 Date Examples
 ^^^^^^^^^^^^^
