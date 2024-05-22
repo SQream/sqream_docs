@@ -142,7 +142,7 @@ Select lists
 
 The ``select_list`` is a comma separated list of column names and value expressions.
 
-* Use ``LIMIT num_rows`` to retrieve only the first ``num_rows`` results. SQream DB also supports the ``TOP num_rows`` syntax from SQL Server.
+* Use ``LIMIT num_rows`` to retrieve only the first ``num_rows`` results. Blue also supports the ``TOP num_rows`` syntax from SQL Server.
 * ``DISTINCT`` can be used to remove duplicate rows.
 * Value expressions in select lists support aggregate and window functions as well as normal value expressions.
 
@@ -421,7 +421,7 @@ Sorting results
    
    Unlike some databases, ``NULL`` values are neither first nor last - but can appear anywhere in the result set.
 
-.. tip:: SQream DB does not support functions and complex arguments in the ``ORDER BY`` clause. To work around this limitation, use ordinals or aliases, as with the examples below, which are functionally identical.
+.. tip:: Blue does not support functions and complex arguments in the ``ORDER BY`` clause. To work around this limitation, use ordinals or aliases, as with the examples below, which are functionally identical.
 
 .. code-block:: psql
    
@@ -516,7 +516,7 @@ In this example, the ``WITH`` clause defines the temporary name ``r`` for the su
 Nested CTEs
 ^^^^^^^^^^^^^^
 
-SQream DB also supports any amount of nested CTEs, such as this:
+Blue also supports any amount of nested CTEs, such as this:
 
 .. code-block:: postgres
 
@@ -528,7 +528,7 @@ SQream DB also supports any amount of nested CTEs, such as this:
 Reusing CTEs
 ^^^^^^^^^^^^^^^^
 
-SQream DB supports reusing CTEs several times in a query:
+Blue supports reusing CTEs several times in a query:
 
 .. code-block:: psql
    

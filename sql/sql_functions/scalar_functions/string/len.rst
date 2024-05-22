@@ -6,7 +6,7 @@
 LEN
 **************************
 
-The LEN function calculates the number of characters in a string. Keep in mind that SQream DB does not count trailing spaces, but does count leading spaces. For UTF-8 encoded ``TEXT`` strings, multi-byte characters are counted as a single character. To get the length in bytes, see :ref:`octet_length`. To get the length in characters, see :ref:`char_length`.
+The LEN function calculates the number of characters in a string. Keep in mind that Blue does not count trailing spaces, but does count leading spaces. For UTF-8 encoded ``TEXT`` strings, multi-byte characters are counted as a single character. To get the length in bytes, see :ref:`octet_length`. To get the length in characters, see :ref:`char_length`.
 
 
 .. note::

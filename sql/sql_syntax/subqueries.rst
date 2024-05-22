@@ -6,12 +6,12 @@ Subqueries
 
 Subqueries allows you to reuse of results from another query.
 
-SQream DB supports relational (also called *derived table*) subqueries, which appear as :ref:`select` queries as part of a table expression.
+Blue supports relational (also called *derived table*) subqueries, which appear as :ref:`select` queries as part of a table expression.
 
-SQream DB also supports :ref:`common_table_expressions`, which are a form of subquery. With CTEs, a subquery can be named for reuse in a query.
+Blue also supports :ref:`common_table_expressions`, which are a form of subquery. With CTEs, a subquery can be named for reuse in a query.
 
 .. note::
-   * SQream DB does not currently support correlated subqueries or scalar subqueries.
+   * Blue does not currently support correlated subqueries or scalar subqueries.
    
    * There is no limit to the number of subqueries or nesting limits in a statement
 
