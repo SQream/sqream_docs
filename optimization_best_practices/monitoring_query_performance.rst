@@ -385,13 +385,13 @@ For example:
 	ORDER BY
 	  o_year;
 
-2. Observe the execution information by using the foreign table, or use ``DESCRIBE QUERY``
+2. Observe the execution information by using the ``DESCRIBE QUERY`` command.
    
    The execution below has been shortened.
    
    .. code-block:: psql
    
-      SELECT show_node_info(559);
+      describe QUERY SESSION ID '73c88622-12dc-4a6f-829b-25f4df1d8cae' QUERY ID 3;
 	  
    .. code-block:: none	  
 	  
