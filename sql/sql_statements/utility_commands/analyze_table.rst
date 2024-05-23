@@ -6,7 +6,7 @@
 ANALYZE TABLE
 *************
 
-This command generates statistics for entire tables or a specific column within a table. The command is asynchronous, meaning you can continue processing other tasks without waiting for the command to complete. The processing duration depends on the table size. The output includes the session ID and query ID, which you can use to check the status of your statistics request and to abort the statistics operation if needed.
+This command generates statistics for an entire table or for a specific column within a table. The command is asynchronous, meaning you can continue processing other tasks without waiting for the command to complete. The processing duration depends on the table size. The output includes the session ID and query ID, which you can use to check the status of your statistics request and to abort the statistics operation if needed.
 
 More about statistics under :ref:`cost_based_optimizer`
 
