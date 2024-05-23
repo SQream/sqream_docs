@@ -6,7 +6,9 @@
 STATISTICS REQUEST STATUS
 *************************
 
+This command returns information about your statistics collection request, including whether or not the collection is completed.
 
+More about statistics under :ref:`cost_based_optimizer`
 
 Syntax
 ======
@@ -35,7 +37,19 @@ Parameters
 Examples
 ========
 
+.. code-block:: postgres
 
+	STATISTICS REQUEST STATUS queryId '1';
+
+Output:
+
+.. code-block:: none
+
+	session_id                          |query_id|submission_time        |start_execution_time   |termination_time|status   |current_column|total_num_columns|error_message|
+	------------------------------------+--------+-----------------------+-----------------------+----------------+---------+--------------+-----------------+-------------+
+	1ebafa4a-c843-4133-8335-54d295bdfdd0|1       |2024-05-21 10:02:30.249|2024-05-21 10:02:30.249|                |EXECUTING|3             |4                |             |
 
 Permissions
 ===========
+
+The role must have the ``SUPERUSER`` permissions.

@@ -6,7 +6,9 @@
 STATISTICS REQUEST ABORT
 ************************
 
+This command aborts an :ref:`analyze_table` execution. 
 
+More about statistics under :ref:`cost_based_optimizer`
 
 Syntax
 ======
@@ -36,7 +38,17 @@ Parameters
 Examples
 ========
 
+.. code-block:: postgres
 
+	STATISTICS REQUEST ABORT sessionId '1ebafa4a-c843-4133-8335-54d295bdfdd0' queryId '1';
+
+Output:
+
+.. code-block:: none
+
+	Aborted
 
 Permissions
 ===========
+
+The role must have the ``SUPERUSER`` permissions.

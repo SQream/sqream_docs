@@ -123,10 +123,8 @@ Utility Commands
      - Usage
    * - :ref:`abort`
      - Performs a graceful stop, known as an abort, on an active statement
-   * - :ref:`alter_table_store_statistics`
-     - 
    * - :ref:`analyze_table`
-     - 
+     - This command generates statistics for an entire table or for a specific column within a table
    * - :ref:`audit_log`
      - Returns system user activity
    * - :ref:`describe_locks`
@@ -144,7 +142,7 @@ Utility Commands
    * - :ref:`drop_saved_query`
      - Drops a saved query
    * - :ref:`drop_statistics_for_columns`
-     - 
+     - This command terminates an :ref:`analyze_table` execution
    * - :ref:`dump_database_ddl`
      - View the ``CREATE TABLE`` statement for a current database
    * - :ref:`execute_saved_query`
@@ -152,7 +150,7 @@ Utility Commands
    * - :ref:`explain`
      - Returns a static query plan, which can be used to debug query plans
    * - :ref:`fetch_column_histogram`
-     - 
+     - This command displays the results of an :ref:`analyze_table` operation
    * - :ref:`get_ddl`
      - View the ``CREATE TABLE`` statement for a table
    * - :ref:`get_function_ddl`
@@ -166,9 +164,9 @@ Utility Commands
    * - :ref:`save_query`
      - Saves query execution plan
    * - :ref:`statistics_request_abort`
-     - 
+     - This command aborts an :ref:`analyze_table` execution 
    * - :ref:`statistics_request_status`
-     - 
+     - This command returns information about your statistics collection request
 
 
 
