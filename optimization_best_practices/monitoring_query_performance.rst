@@ -252,7 +252,7 @@ Identifying the Offending Nodes
      
    For example, a modified query from the TPC-H benchmark:
 
-.. code-block:: sql
+.. code-block:: postgres
       
 	-- Use the blue_sample_data database:
 	USE DATABASE blue_sample_data;
@@ -349,24 +349,41 @@ For example:
 
    .. code-block:: postgres
       
-      SELECT o_year,
-             SUM(CASE WHEN nation = 'BRAZIL' THEN volume ELSE 0 END) / SUM(volume) AS mkt_share
-      FROM (SELECT datepart(YEAR,o_orderdate) AS o_year,
-                   l_extendedprice*(1 - l_discount / 100.0) AS volume,
-                   n2.n_name AS nation
-            FROM lineitem
-              JOIN part ON p_partkey = CAST (l_partkey AS INT)
-              JOIN orders ON l_orderkey = o_orderkey
-              JOIN customer ON o_custkey = c_custkey
-              JOIN nation n1 ON c_nationkey = n1.n_nationkey
-              JOIN region ON n1.n_regionkey = r_regionkey
-              JOIN supplier ON s_suppkey = l_suppkey
-              JOIN nation n2 ON s_nationkey = n2.n_nationkey
-            WHERE r_name = 'AMERICA'
-            AND   lineitem.l_quantity = 3
-            AND   o_orderdate BETWEEN '1995-01-01' AND '1996-12-31') AS all_nations
-      GROUP BY o_year
-      ORDER BY o_year;
+	-- Use the blue_sample_data database:
+	USE DATABASE blue_sample_data;
+	  
+	SELECT
+	  o_year,
+	  SUM(
+	    CASE
+	      WHEN nation = 'BRAZIL' THEN volume
+	      ELSE 0
+	    END
+	  ) / SUM(volume) AS mkt_share
+	FROM
+	  (
+	    SELECT
+	      datepart(YEAR, o_orderdate) AS o_year,
+	      l_extendedprice * (1 - l_discount / 100.0) AS volume,
+	      n2.n_name AS nation
+	    FROM
+	      tpch_blue100.lineitem
+	      JOIN tpch_blue100.part ON p_partkey = CAST (l_partkey AS INT)
+	      JOIN tpch_blue100.orders ON l_orderkey = o_orderkey
+	      JOIN tpch_blue100.customer ON o_custkey = c_custkey
+	      JOIN tpch_blue100.nation n1 ON c_nationkey = n1.n_nationkey
+	      JOIN tpch_blue100.region ON n1.n_regionkey = r_regionkey
+	      JOIN tpch_blue100.supplier ON s_suppkey = l_suppkey
+	      JOIN tpch_blue100.nation n2 ON s_nationkey = n2.n_nationkey
+	    WHERE
+	      r_name = 'AMERICA'
+	      AND lineitem.l_quantity = 3
+	      AND o_orderdate BETWEEN '1995-01-01' AND '1996-12-31'
+	  ) AS all_nations
+	GROUP BY
+	  o_year
+	ORDER BY
+	  o_year;
 
 2. Observe the execution information by using the foreign table, or use ``DESCRIBE QUERY``
    
