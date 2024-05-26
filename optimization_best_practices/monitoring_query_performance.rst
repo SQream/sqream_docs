@@ -423,8 +423,8 @@ For example:
           559 |     216 | ReadTable            |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            215 | 20MB   |       | public.part     |       0
       
    * 
-      The ``Filter`` on line 9 has processed 12,007,447 rows, but the output of ``ReadTable`` on ``public.lineitem`` 
-      on line 17 was 600,037,902 rows. This means that it has filtered out 98% (:math:`1 - \dfrac{600037902}{12007447} = 98\%`)
+      The ``Filter`` on line ___ has processed 20000000 rows as shown under ``Rows Produced``, but the output of ``ReadTable`` on ``public.lineitem`` 
+      on line 17 was 48,590,060 rows. This means that it has filtered out 98% (:math:`1 - \dfrac{600037902}{12007447} = 98\%`)
       of the data, but the entire table was read.
       
    * 
