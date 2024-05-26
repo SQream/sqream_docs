@@ -541,42 +541,43 @@ from 27.3 seconds to just 6.4 seconds.
 .. code-block:: postgres
    :caption: Original query
    
-   -- This variant runs in 27.3 seconds
-   SELECT SUM(l_extendedprice / 100.0*(1 - l_discount / 100.0)) AS revenue,
-          c_nationkey
-   FROM lineitem --6B Rows, ~183GB
-     JOIN orders --1.5B Rows, ~55GB 
-     ON   l_orderkey = o_orderkey
-     JOIN customer --150M Rows, ~12GB
-     ON   c_custkey = o_custkey
-     
-   WHERE c_nationkey = 1
-         AND   o_orderdate >= DATE '1993-01-01'
-         AND   o_orderdate < '1994-01-01'
-         AND   l_shipdate >= '1993-01-01'
-         AND   l_shipdate <= dateadd(DAY,122,'1994-01-01')
-   GROUP BY c_nationkey
+	SELECT SUM(l_extendedprice / 100.0*(1 - l_discount / 100.0)) AS revenue,
+	       c_nationkey
+	FROM tpch_blue100.lineitem --6B Rows, ~183GB
+	  JOIN tpch_blue100.orders --1.5B Rows, ~55GB
+	  ON   l_orderkey = o_orderkey
+	  JOIN tpch_blue100.customer --150M Rows, ~12GB
+	  ON   c_custkey = o_custkey
+
+	WHERE c_nationkey = 1
+	      AND   o_orderdate >= DATE '1993-01-01'
+	      AND   o_orderdate < '1994-01-01'
+	      AND   l_shipdate >= '1993-01-01'
+	      AND   l_shipdate <= dateadd(DAY,122,'1994-01-01')
+	GROUP BY c_nationkey
 
 .. code-block:: postgres
    :caption: Modified query with improved join order
    
-   -- This variant runs in 6.4 seconds
-   SELECT SUM(l_extendedprice / 100.0*(1 - l_discount / 100.0)) AS revenue,
-          c_nationkey
-   FROM orders --1.5B Rows, ~55GB 
-     JOIN customer --150M Rows, ~12GB
-     ON   c_custkey = o_custkey
-     JOIN lineitem --6B Rows, ~183GB
-     ON   l_orderkey = o_orderkey
-     
-   WHERE c_nationkey = 1
-         AND   o_orderdate >= DATE '1993-01-01'
-         AND   o_orderdate < '1994-01-01'
-         AND   l_shipdate >= '1993-01-01'
-         AND   l_shipdate <= dateadd(DAY,122,'1994-01-01')
-   GROUP BY c_nationkey
+	SELECT SUM(l_extendedprice / 100.0*(1 - l_discount / 100.0)) AS revenue,
+	       c_nationkey
+	FROM tpch_blue100.orders --1.5B Rows, ~55GB
+	  JOIN tpch_blue100.customer --150M Rows, ~12GB
+	  ON   c_custkey = o_custkey
+	  JOIN tpch_blue100.lineitem --6B Rows, ~183GB
+	  ON   l_orderkey = o_orderkey
+
+	WHERE c_nationkey = 1
+	      AND   o_orderdate >= DATE '1993-01-01'
+	      AND   o_orderdate < '1994-01-01'
+	      AND   l_shipdate >= '1993-01-01'
+	      AND   l_shipdate <= dateadd(DAY,122,'1994-01-01')
+	GROUP BY c_nationkey
 
 Further Reading
 ===============
 
 See our :ref:`sql_best_practices` guide for more information about query optimization and data loading considerations.
+
+
+https://docs.sqream.com/_/sharing/Nc676JXVL7jCPCxUqZSTOyMnzh9o2o6H?next=/en/blue-review/optimization_best_practices/monitoring_query_performance.html#queries-with-large-result-sets
