@@ -548,7 +548,6 @@ from 27.3 seconds to just 6.4 seconds.
 	  ON   l_orderkey = o_orderkey
 	  JOIN tpch_blue100.customer --150M Rows, ~12GB
 	  ON   c_custkey = o_custkey
-
 	WHERE c_nationkey = 1
 	      AND   o_orderdate >= DATE '1993-01-01'
 	      AND   o_orderdate < '1994-01-01'
@@ -566,7 +565,6 @@ from 27.3 seconds to just 6.4 seconds.
 	  ON   c_custkey = o_custkey
 	  JOIN tpch_blue100.lineitem --6B Rows, ~183GB
 	  ON   l_orderkey = o_orderkey
-
 	WHERE c_nationkey = 1
 	      AND   o_orderdate >= DATE '1993-01-01'
 	      AND   o_orderdate < '1994-01-01'
