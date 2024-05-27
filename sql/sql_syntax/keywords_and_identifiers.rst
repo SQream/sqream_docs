@@ -74,244 +74,71 @@ Identifiers are different than **keywords**, which are predefined words reserved
 
 BLUE reserved keywords:
 
-.. list-table:: 
-   :widths: auto
-   :header-rows: 1
-   
-   * - Reserved Word
-     - Description
-   * - :kbd:`ALL`
-     - ANSI
-   * - :kbd:`ALLOCATE`
-     - ANSI
-   * - :kbd:`ANALYSE`
-     - ANSI
-   * - :kbd:`ANALYZE`
-     - ANSI
-   * - :kbd:`AND`
-     - ANSI
-   * - :kbd:`ANY`
-     - ANSI
-   * - :kbd:`ARRAY`
-     - ANSI
-   * - :kbd:`AS`
-     - ANSI
-   * - :kbd:`ASC`
-     - ANSI
-   * - :kbd:`AUTHORIZATION`
-     - ANSI
-   * - :kbd:`BINARY`
-     - ANSI
-   * - :kbd:`BIGINT`
-     - ANSI
-   * - :kbd:`BOTH`
-     - ANSI
-   * - :kbd:`CASE`
-     - ANSI
-   * - :kbd:`CAST`
-     - ANSI
-   * - :kbd:`CHECK`
-     - ANSI
-   * - :kbd:`COLLATE`
-     - ANSI
-   * - :kbd:`COLUMN`
-     - ANSI
-   * - :kbd:`COMMENT`
-     - ANSI
-   * - :kbd:`CONCURRENTLY`
-     - ANSI
-   * - :kbd:`CONSTRAINT`
-     - ANSI
-   * - :kbd:`CREATE`
-     - ANSI
-   * - :kbd:`CROSS`
-     - ANSI
-   * - :kbd:`CURRENT_CATALOG`
-     - ANSI
-   * - :kbd:`CURRENT_ROLE`
-     - ANSI
-   * - :kbd:`CURRENT_TIME`
-     - ANSI
-   * - :kbd:`CURRENT_USER`
-     - ANSI
-   * - :kbd:`DEFAULT`
-     - ANSI
-   * - :kbd:`DEFERRABLE`
-     - ANSI
-   * - :kbd:`DESC`
-     - ANSI
-   * - :kbd:`DISTINCT`
-     - ANSI
-   * - :kbd:`DO`
-     - ANSI
-   * - :kbd:`ELSE`
-     - ANSI
-   * - :kbd:`END`
-     - ANSI
-   * - :kbd:`EXCEPT`
-     - ANSI
-   * - :kbd:`FALSE`
-     - ANSI
-   * - :kbd:`FETCH`
-     - ANSI
-   * - :kbd:`FOR`
-     - ANSI
-   * - :kbd:`FREEZE`
-     - ANSI
-   * - :kbd:`FROM`
-     - ANSI
-   * - :kbd:`FULL`
-     - ANSI
-   * - :kbd:`FUNCTION`
-     - ANSI
-   * - :kbd:`GRANT`
-     - ANSI
-   * - :kbd:`GROUP`
-     - ANSI
-   * - :kbd:`HASH`
-     - ANSI
-   * - :kbd:`HAVING`
-     - ANSI
-   * - :kbd:`ILIKE`
-     - ANSI
-   * - :kbd:`IN`
-     - ANSI
-   * - :kbd:`INITIALLY`
-     - ANSI
-   * - :kbd:`INNER`
-     - ANSI
-   * - :kbd:`INTERSECT`
-     - ANSI
-   * - :kbd:`INTO`
-     - ANSI
-   * - :kbd:`IS`
-     - ANSI
-   * - :kbd:`ISNULL`
-     - ANSI
-   * - :kbd:`JOIN`
-     - ANSI
-   * - :kbd:`KEY`
-     - ANSI
-   * - :kbd:`LEADING`
-     - ANSI
-   * - :kbd:`LEFT`
-     - ANSI
-   * - :kbd:`LIKE`
-     - ANSI
-   * - :kbd:`LIMIT`
-     - ANSI
-   * - :kbd:`LOCALTIME`
-     - ANSI
-   * - :kbd:`LOCALTIMESTAMP`
-     - ANSI
-   * - :kbd:`LOOP`
-     - ANSI
-   * - :kbd:`MERGE`
-     - ANSI
-   * - :kbd:`NATURAL`
-     - 	 ANSI
-   * - :kbd:`NOT`
-     - ANSI	 
-   * - :kbd:`NOTNULL`
-     - ANSI	 
-   * - :kbd:`NULL`
-     - ANSI	 
-   * - :kbd:`OFF`
-     - ANSI	 
-   * - :kbd:`OFFSET`
-     - ANSI	 
-   * - :kbd:`OFFSETS`
-     - ANSI	 
-   * - :kbd:`ON`
-     - ANSI	 
-   * - :kbd:`ONLY`
-     - ANSI	 
-   * - :kbd:`OPTION`
-     - ANSI	 
-   * - :kbd:`OR`
-     - ANSI	 
-   * - :kbd:`ORDER`
-     - ANSI	 
-   * - :kbd:`OUTER`
-     - ANSI	 
-   * - :kbd:`OVER`
-     - ANSI	 	 
-   * - :kbd:`OVERLAPS`
-     - ANSI	 
-   * - :kbd:`PERCENT`
-     - ANSI	
-   * - :kbd:`PLACING`
-     - ANSI	 
-   * - :kbd:`PRIMARY`
-     - ANSI	 
-   * - :kbd:`PRECISION`
-     - ANSI	 
-   * - :kbd:`PROC`
-     - ANSI	 
-   * - :kbd:`PROCEDURE`
-     - ANSI	 
-   * - :kbd:`REFERENCES`
-     - ANSI	 
-   * - :kbd:`RETURNING`
-     - ANSI	 
-   * - :kbd:`RIGHT`
-     - ANSI	 
-   * - :kbd:`RLIKE`
-     - ANSI	 
-   * - :kbd:`RULE`
-     - ANSI	 
-   * - :kbd:`SCHEMA`
-     - ANSI	 
-   * - :kbd:`SELECT`
-     - ANSI	 
-   * - :kbd:`SESSION_USER`
-     - ANSI	 
-   * - :kbd:`SET`
-     - ANSI	 
-   * - :kbd:`SIMILAR`
-     - ANSI	 
-   * - :kbd:`SOME`
-     - ANSI	 
-   * - :kbd:`STATISTICS`
-     - ANSI	 
-   * - :kbd:`SYMMETRIC`
-     - ANSI	 
-   * - :kbd:`TABLE`
-     - ANSI
-   * - :kbd:`THEN`
-     - ANSI	 
-   * - :kbd:`TO`
-     - ANSI	 
-   * - :kbd:`TOP`
-     - ANSI	 
-   * - :kbd:`TRAILING`
-     - ANSI	 
-   * - :kbd:`TRAN`
-     - ANSI	 
-   * - :kbd:`TRUE`
-     - ANSI	 
-   * - :kbd:`UNION`
-     - ANSI	 
-   * - :kbd:`UNIQUE`
-     - ANSI	 
-   * - :kbd:`USER`
-     - ANSI	 
-   * - :kbd:`USING`
-     - ANSI	 	 
-   * - :kbd:`VARIADIC`
-     - ANSI	 	
-   * - :kbd:`VERBOSE`
-     - ANSI	 	
-   * - :kbd:`WHEN`
-     - ANSI	 	
-   * - :kbd:`WHERE`
-     - ANSI	 	
-   * - :kbd:`WINDOW`
-     - ANSI	 	
-   * - :kbd:`WITH`
-     - ANSI	 	
+**A**
+    ``ABORT``, ``ALL``, ``ALLOCATE``, ``ALLOW``, ``ALTER``, ``ANALYZE``, ``AND``, ``ANY``, ``ARE``, ``ARRAY``, ``ARRAY_MAX_CARDINALITY``, ``AS``, ``ASENSITIVE``, ``ASYMMETRIC``, ``ATOMIC``, ``AUTHORIZATION``
 
+**B**
+   ``BEGIN``, ``BEGIN_FRAME``, ``BEGIN_PARTITION``, ``BETWEEN``, ``BIGINT``, ``BLOB``, ``BOOL``, ``BOOLEAN``, ``BOTH``, ``BY``
 
- 
- 
- 
+**C**
+   ``CALL``, ``CALLED``, ``CASCADED``, ``CASE``, ``CAST``, ``CHAR``, ``CHARACTER``, ``CHECK``, ``CLASSIFIER``, ``CLOB``, ``CLOSE``, ``CLUSTERADMIN``, ``COLLATE``, ``COLUMN``, ``COMMIT``, ``COMPUTE``, ``CONDITION``, ``CONSTRAINT``, ``CONTAINS``, ``CONVERT``, ``CORRESPONDING``, ``CREATE``, ``CROSS``, ``CUBE``, ``CURRENT``, ``CURRENT_CATALOG``, ``CURRENT_DEFAULT_TRANSFORM_GROUP``, ``CURRENT_PATH``, ``CURRENT_ROLE``, ``CURRENT_ROW``, ``CURRENT_SCHEMA``, ``CURRENT_TIME``, ``CURRENT_TRANSFORM_GROUP_FOR_TYPE``, ``CURRENT_USER``, ``CURSOR``
+
+**D**
+   ``DATEDIFF``, ``DATETIME``, ``DDL``, ``DEALLOCATE``, ``DECIMAL``, ``DECLARE``, ``DEFAULT``, ``DEFINE``, ``DELETE``, ``DEREF``, ``DETERMINISTIC``, ``DISALLOW``, ``DISCONNECT``, ``DISTINCT``, ``DOT``, ``DOUBLE``, ``DROP``, ``DYNAMIC``
+
+**E**
+   ``EACH``, ``ELSE``, ``END``, ``END-EXEC``, ``END_FRAME``, ``END_PARTITION``, ``EQUALS``, ``ESCAPE``, ``EXCEPT``, ``EXEC``, ``EXECUTE``, ``EXISTS``, ``EXPLAIN``, ``EXTEND``, ``EXTERNAL``, ``EXTRACT``
+
+**F**
+   ``FALSE``, ``FETCH``, ``FILTER``, ``FLOAT``, ``FOR``, ``FOREIGN``, ``FRAME_ROW``, ``FREE``, ``FRIDAY``, ``FROM``, ``FULL``, ``FUNCTION``
+
+**G**
+   ``GET``, ``GLOBAL``, ``GRANT``, ``GROUP``, ``GROUPS``
+
+**H**
+   ``HAVING``, ``HOLD``
+
+**I**
+   ``IDENTITY``, ``IMPORT``, ``IN``, ``INDICATOR``, ``INITIAL``, ``INNER``, ``INOUT``, ``INSENSITIVE``, ``INSERT``, ``INT``, ``INTEGER``, ``INTERSECT``, ``INTERVAL``, ``INTO``, ``IS``
+
+**J**
+   ``JOIN``, ``JSON_ARRAY``, ``JSON_ARRAYAGG``, ``JSON_EXISTS``, ``JSON_OBJECT``, ``JSON_OBJECTAGG``, ``JSON_QUERY``, ``JSON_SCOPE``, ``JSON_VALUE``
+
+**L**
+   ``LAG``, ``LARGE``, ``LATERAL``, ``LEADING``, ``LEFT``, ``LIKE``, ``LIKE_REGEX``, ``LIMIT``, ``LOCAL``, ``LOCALTIME``, ``LOCALTIMESTAMP``, ``LOOP``
+
+**M**
+   ``MATCH``, ``MATCHES``, ``MATCH_NUMBER``, ``MATCH_RECOGNIZE``, ``MEASURES``, ``MERGE``, ``MINUS``, ``MODIFIES``, ``MODULE``, ``MONDAY``, ``MORE``, ``MULTISET``
+
+**N**
+   ``NATIONAL``, ``NATURAL``, ``NCHAR``, ``NCLOB``, ``NEW``, ``NEXT``, ``NO``, ``NOINHERIT``, ``NONE``, ``NORMALIZE``, ``NOT``, ``NULL``, ``NUMERIC``, ``NVARCHAR``
+
+**O**
+   ``OCCURRENCES_REGEX``, ``OF``, ``OFFSET``, ``OLD``, ``OMIT``, ``ON``, ``ONLY``, ``OPEN``, ``OR``, ``ORDER``, ``ORDINAL``, ``OUTER``, ``OVER``, ``OVERLAPS``, ``OVERLAY``
+
+**P**
+   ``PARAMETER``, ``PARTITION``, ``PATTERN``, ``PER``, ``PERCENT``, ``PERIOD``, ``PERMISSION``, ``PERMUTE``, ``PORTION``, ``POSITION_REGEX``, ``PRECEDES``, ``PRECISION``, ``PREPARE``, ``PREV``, ``PRIMARY``, ``PROCEDURE``
+
+**Q**
+   ``QUALIFY``
+
+**R**
+   ``RANGE``, ``READS``, ``REAL``, ``RECURSIVE``, ``REFERENCES``, ``REFERENCING``, ``REGR_AVGX``, ``REGR_AVGY``, ``REGR_INTERCEPT``, ``REGR_R2``, ``REGR_SLOPE``, ``REGR_SXY``, ``RELEASE``, ``RESET``, ``RESOURCE``, ``RETURN``, ``RETURNS``, ``REVOKE``, ``RIGHT``, ``ROLLBACK``, ``ROLLUP``, ``ROW``, ``ROWS``
+
+**S**
+   ``SAFE_CAST``, ``SAFE_OFFSET``, ``SAFE_ORDINAL``, ``SATURDAY``, ``SAVEPOINT``, ``SCROLL``, ``SEARCH``, ``SEEK``, ``SELECT``, ``SENSITIVE``, ``SESSION_USER``, ``SET``, ``SHOW``, ``SIMILAR``, ``SKIP``, ``SMALLINT``, ``SOME``, ``SPECIFIC``, ``SPECIFICTYPE``, ``SQL``, ``SQLEXCEPTION``, ``SQLSTATE``, ``SQLWARNING``, ``STATIC``, ``STREAM``, ``SUBMULTISET``, ``SUBSET``, ``SUBSTRING``, ``SUBSTRING_REGEX``, ``SUCCEEDS``, ``SUNDAY``, ``SYMMETRIC``, ``SYSTEM``, ``SYSTEM_TIME``, ``SYSTEM_USER``
+
+**T**
+   ``TABLE``, ``TABLESAMPLE``, ``TEXT``, ``THEN``, ``THURSDAY``, ``TIMEZONE_HOUR``, ``TIMEZONE_MINUTE``, ``TINYINT``, ``TO``, ``TOP``, ``TRAILING``, ``TRANSLATE``, ``TRANSLATE_REGEX``, ``TRANSLATION``, ``TREAT``, ``TRIGGER``, ``TRIM_ARRAY``, ``TRUE``, ``TRY_CAST``, ``TUESDAY``
+
+**U**
+   ``UESCAPE``, ``UNION``, ``UNIQUE``, ``UNKNOWN``, ``UNNEST``, ``UPDATE``, ``UPSERT``, ``USAGE``, ``USER``, ``USING``
+
+**V**
+   ``VALUES``, ``VALUE_OF``, ``VARBINARY``, ``VARCHAR``, ``VARYING``, ``VERSIONING``
+
+**W**
+   ``WEDNESDAY``, ``WHEN``, ``WHENEVER``, ``WHERE``, ``WIDTH_BUCKET``, ``WINDOW``, ``WITH``, ``WITHIN``, ``WITHOUT``
+
+	
+	
