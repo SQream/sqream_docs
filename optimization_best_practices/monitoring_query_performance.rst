@@ -420,7 +420,7 @@ The ``Filter`` on line 10 has processed 12,007,447 rows as shown under ``rows_pr
    Altering the statement to have a ``WHERE`` condition on the clustered ``l_orderkey`` column of the ``lineitem`` table will help BLUE skip reading the data.
    
    .. code-block:: sql
-      :emphasize-lines: 15
+      :emphasize-lines: 26
       
 	SELECT
 	  o_year,
