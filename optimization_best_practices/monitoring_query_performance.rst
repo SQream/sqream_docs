@@ -459,11 +459,12 @@ For example:
 
    .. code-block:: sql
       :linenos:
-      :emphasize-lines: 5,12
+
       
       SELECT show_node_info(586);
 	  
    .. code-block:: none	  
+      :emphasize-lines: 5,12
 	  
       stmt_id | node_id | node_type            | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read   | write | comment         | timeSum
       --------+---------+----------------------+-----------+--------+-------------------+---------------------+----------------+--------+-------+-----------------+--------
