@@ -338,7 +338,7 @@ Identifying the Situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 We consider the filtering to be inefficient when the ``Filter`` node shows that the number of rows processed is less
-than a third of the rows passed into it by the ``ReadTable`` node.
+than a third of the rows passed into it by the ``ReadParquet`` node.
 
 For example:
 
@@ -391,97 +391,92 @@ For example:
    
    .. code-block:: psql
    
-      describe QUERY SESSION ID '73c88622-12dc-4a6f-829b-25f4df1d8cae' QUERY ID 3;
+      DESCRIBE QUERY SESSION ID 'd250da61-b842-4048-b72e-0268da741c3f' QUERY ID 9;
 	  
-   .. code-block:: none	  
+   .. code-block:: none
+      :linenos: 
+      :emphasize-lines: 6, 8, 10, 12   
 	  
-      stmt_id | node_id | node_type            | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read   | write | comment         | timeSum
-      --------+---------+----------------------+-----------+--------+-------------------+---------------------+----------------+--------+-------+-----------------+--------
-          559 |       1 | PushToNetworkQueue   |         2 |      1 |                 2 | 2020-09-07 11:12:01 |             -1 |        |       |                 |    0.28
-          559 |       2 | Rechunk              |         2 |      1 |                 2 | 2020-09-07 11:12:01 |              1 |        |       |                 |       0
-          559 |       3 | SortMerge            |         2 |      1 |                 2 | 2020-09-07 11:12:01 |              2 |        |       |                 |       0
-          559 |       4 | GpuToCpu             |         2 |      1 |                 2 | 2020-09-07 11:12:01 |              3 |        |       |                 |       0
-      [...]
-          559 |     189 | Filter               |  12007447 |     12 |           1000620 | 2020-09-07 11:12:00 |            188 |        |       |                 |     0.3
-          559 |     190 | GpuTransform         | 600037902 |     12 |          50003158 | 2020-09-07 11:12:00 |            189 |        |       |                 |    0.02
-          559 |     191 | GpuDecompress        | 600037902 |     12 |          50003158 | 2020-09-07 11:12:00 |            190 |        |       |                 |    0.16
-          559 |     192 | GpuTransform         | 600037902 |     12 |          50003158 | 2020-09-07 11:12:00 |            191 |        |       |                 |    0.02
-          559 |     193 | CpuToGpu             | 600037902 |     12 |          50003158 | 2020-09-07 11:12:00 |            192 |        |       |                 |    1.47
-          559 |     194 | ReorderInput         | 600037902 |     12 |          50003158 | 2020-09-07 11:12:00 |            193 |        |       |                 |       0
-          559 |     195 | Rechunk              | 600037902 |     12 |          50003158 | 2020-09-07 11:12:00 |            194 |        |       |                 |       0
-          559 |     196 | CpuDecompress        | 600037902 |     12 |          50003158 | 2020-09-07 11:12:00 |            195 |        |       |                 |       0
-          559 |     197 | ReadTable            | 600037902 |     12 |          50003158 | 2020-09-07 11:12:00 |            196 | 7587MB |       | public.lineitem |     0.1
-      [...]
-          559 |     208 | Filter               |    133241 |     20 |              6662 | 2020-09-07 11:11:57 |            207 |        |       |                 |    0.01
-          559 |     209 | GpuTransform         |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            208 |        |       |                 |    0.02
-          559 |     210 | GpuDecompress        |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            209 |        |       |                 |    0.03
-          559 |     211 | GpuTransform         |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            210 |        |       |                 |       0
-          559 |     212 | CpuToGpu             |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            211 |        |       |                 |    0.01
-          559 |     213 | ReorderInput         |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            212 |        |       |                 |       0
-          559 |     214 | Rechunk              |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            213 |        |       |                 |       0
-          559 |     215 | CpuDecompress        |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            214 |        |       |                 |       0
-          559 |     216 | ReadTable            |  20000000 |     20 |           1000000 | 2020-09-07 11:11:57 |            215 | 20MB   |       | public.part     |       0
+	query_id                              |rtc_name                        |node_id|parent_id|node_type              |elapsed_time|total_compute_time|total_waiting_time|rows_produced|chunks_produced|data_read  |data_written|output     |additional_info                       |time               |status|
+	--------------------------------------+--------------------------------+-------+---------+-----------------------+------------+------------------+------------------+-------------+---------------+-----------+------------+-----------+--------------------------------------+-------------------+------+
+	d250da61-b842-4048-b72e-0268da741c3f:9|sqream-worker-0-6ccdbbc755-f8fgr|103    |102      |ReorderInput           |0.002684156 |0.002684156       |0                 |12007447     |25             |0          |0           |60037235   |                                      |2024-05-27 07:38:52|2     |
+	d250da61-b842-4048-b72e-0268da741c3f:9|sqream-worker-0-6ccdbbc755-f8fgr|104    |103      |Join                   |13.54319014 |13.54319014       |0                 |12007447     |25             |0          |0           |20569392926|inner(swapped sides)                  |2024-05-27 07:38:52|2     |
+	[...]
+	d250da61-b842-4048-b72e-0268da741c3f:9|sqream-worker-0-6ccdbbc755-f8fgr|109    |108      |Filter                 |0.002930426 |0.002930426       |0                 |20000000     |1              |0          |0           |200000000  |                                      |2024-05-27 07:38:33|2     |
+	[...]
+	d250da61-b842-4048-b72e-0268da741c3f:9|sqream-worker-0-6ccdbbc755-f8fgr|113    |112      |ReadParquet            |2.475944065 |2.475944065       |0                 |20000000     |1              |87425365   |0           |180000000  |blue_sample_data.tpch_blue100.part    |2024-05-27 07:38:33|2     |
+	[...]
+	d250da61-b842-4048-b72e-0268da741c3f:9|sqream-worker-0-6ccdbbc755-f8fgr|120    |119      |Filter                 |0.203168817 |0.203168817       |0                 |12007447     |25             |0          |0           |300186175  |                                      |2024-05-27 07:38:52|2     |
+	[...]
+	d250da61-b842-4048-b72e-0268da741c3f:9|sqream-worker-0-6ccdbbc755-f8fgr|126    |125      |ReadParquet            |1.627808877 |1.627808877       |0                 |600037902    |25             |14085157260|0           |32402046708|blue_sample_data.tpch_blue100.lineitem|2024-05-27 07:38:52|2     |
+
+
       
-   * 
-      The ``Filter`` on line ___ has processed 20000000 rows as shown under ``Rows Produced``, but the output of ``ReadTable`` on ``public.lineitem`` 
-      on line 17 was 48,590,060 rows. This means that it has filtered out 98% (:math:`1 - \dfrac{600037902}{12007447} = 98\%`)
-      of the data, but the entire table was read.
-      
-   * 
-      The ``Filter`` on line 19 has processed 133,000 rows, but the output of ``ReadTable`` on ``public.part`` 
-      on line 27 was 20,000,000 rows.  This means that it has filtered out >99% (:math:`1 - \dfrac{133241}{20000000} = 99.4\%`)
-      of the data, but the entire table was read. However, this table is small enough that we can ignore it.
+
+The ``Filter`` on line 10 has processed 12,007,447 rows as shown under ``rows_produced``, but the output of ``ReadParquet`` on ``public.lineitem`` on line 12 processed 600,037,902 rows. This means that it has filtered out 98% (:math:`1 - \dfrac{600,037,902}{12,007,447} = 98\%`) of the data, but the entire table was read.
    
-3. Modify the statement to see the difference
+3. Modify the statement to see the difference.
+
    Altering the statement to have a ``WHERE`` condition on the clustered ``l_orderkey`` column of the ``lineitem`` table will help BLUE skip reading the data.
    
    .. code-block:: sql
       :emphasize-lines: 15
       
-      SELECT o_year,
-             SUM(CASE WHEN nation = 'BRAZIL' THEN volume ELSE 0 END) / SUM(volume) AS mkt_share
-      FROM (SELECT datepart(YEAR,o_orderdate) AS o_year,
-                   l_extendedprice*(1 - l_discount / 100.0) AS volume,
-                   n2.n_name AS nation
-            FROM lineitem
-              JOIN part ON p_partkey = CAST (l_partkey AS INT)
-              JOIN orders ON l_orderkey = o_orderkey
-              JOIN customer ON o_custkey = c_custkey
-              JOIN nation n1 ON c_nationkey = n1.n_nationkey
-              JOIN region ON n1.n_regionkey = r_regionkey
-              JOIN supplier ON s_suppkey = l_suppkey
-              JOIN nation n2 ON s_nationkey = n2.n_nationkey
-            WHERE r_name = 'AMERICA'
-            AND   lineitem.l_orderkey > 4500000
-            AND   o_orderdate BETWEEN '1995-01-01' AND '1996-12-31') AS all_nations
-      GROUP BY o_year
-      ORDER BY o_year;
+	SELECT
+	  o_year,
+	  SUM(
+	    CASE
+	      WHEN nation = 'BRAZIL' THEN volume
+	      ELSE 0
+	    END
+	  ) / SUM(volume) AS mkt_share
+	FROM
+	  (
+	    SELECT
+	      datepart(YEAR, o_orderdate) AS o_year,
+	      l_extendedprice * (1 - l_discount / 100.0) AS volume,
+	      n2.n_name AS nation
+	    FROM
+	      tpch_blue100.lineitem
+	      JOIN tpch_blue100.part ON p_partkey = CAST (l_partkey AS INT)
+	      JOIN tpch_blue100.orders ON l_orderkey = o_orderkey
+	      JOIN tpch_blue100.customer ON o_custkey = c_custkey
+	      JOIN tpch_blue100.nation n1 ON c_nationkey = n1.n_nationkey
+	      JOIN tpch_blue100.region ON n1.n_regionkey = r_regionkey
+	      JOIN tpch_blue100.supplier ON s_suppkey = l_suppkey
+	      JOIN tpch_blue100.nation n2 ON s_nationkey = n2.n_nationkey
+	    WHERE
+	      r_name = 'AMERICA'
+	      AND lineitem.l_orderkey > 4500000
+	      AND o_orderdate BETWEEN '1995-01-01' AND '1996-12-31'
+	  ) AS all_nations
+	GROUP BY
+	  o_year
+	ORDER BY
+	  o_year;
 
    .. code-block:: sql
-      :linenos:
 
-      
-      SELECT show_node_info(586);
+      DESCRIBE QUERY SESSION ID 'd250da61-b842-4048-b72e-0268da741c3f' QUERY ID 2;
 	  
    .. code-block:: none	  
-      :emphasize-lines: 5,12
+      :emphasize-lines: 6, 12
 	  
-      stmt_id | node_id | node_type            | rows      | chunks | avg_rows_in_chunk | time                | parent_node_id | read   | write | comment         | timeSum
-      --------+---------+----------------------+-----------+--------+-------------------+---------------------+----------------+--------+-------+-----------------+--------
-      [...]
-          586 |     190 | Filter               | 494621593 |      8 |          61827699 | 2020-09-07 13:20:45 |            189 |        |       |                 |    0.39
-          586 |     191 | GpuTransform         | 494927872 |      8 |          61865984 | 2020-09-07 13:20:44 |            190 |        |       |                 |    0.03
-          586 |     192 | GpuDecompress        | 494927872 |      8 |          61865984 | 2020-09-07 13:20:44 |            191 |        |       |                 |    0.26
-          586 |     193 | GpuTransform         | 494927872 |      8 |          61865984 | 2020-09-07 13:20:44 |            192 |        |       |                 |    0.01
-          586 |     194 | CpuToGpu             | 494927872 |      8 |          61865984 | 2020-09-07 13:20:44 |            193 |        |       |                 |    1.86
-          586 |     195 | ReorderInput         | 494927872 |      8 |          61865984 | 2020-09-07 13:20:44 |            194 |        |       |                 |       0
-          586 |     196 | Rechunk              | 494927872 |      8 |          61865984 | 2020-09-07 13:20:44 |            195 |        |       |                 |       0
-          586 |     197 | CpuDecompress        | 494927872 |      8 |          61865984 | 2020-09-07 13:20:44 |            196 |        |       |                 |       0
-          586 |     198 | ReadTable            | 494927872 |      8 |          61865984 | 2020-09-07 13:20:44 |            197 | 6595MB |       | public.lineitem |    0.09
-      [...]
+	query_id                              |rtc_name                        |node_id|parent_id|node_type              |elapsed_time|total_compute_time|total_waiting_time|rows_produced|chunks_produced|data_read  |data_written|output     |additional_info                       |time               |status|
+	--------------------------------------+--------------------------------+-------+---------+-----------------------+------------+------------------+------------------+-------------+---------------+-----------+------------+-----------+--------------------------------------+-------------------+------+
+	e5bd9284-bf05-47e8-8542-79d05600a1cf:1|sqream-worker-0-6ccdbbc755-sw8px|1      |-1       |CloudRSend             |1           |1                 |0                 |2            |1              |0          |0           |28         | (single)                             |2024-05-27 10:22:02|2     |
+	e5bd9284-bf05-47e8-8542-79d05600a1cf:1|sqream-worker-0-6ccdbbc755-sw8px|2      |1        |Rechunk                |0.000080347 |0.000080347       |0                 |2            |1              |0          |0           |28         |                                      |2024-05-27 10:22:02|2     |
+	[...]
+	e5bd9284-bf05-47e8-8542-79d05600a1cf:1|sqream-worker-0-6ccdbbc755-sw8px|120    |119      |Filter                 |0.198936066 |0.198936066       |0                 |595537319    |21             |0          |0           |14292895656|                                      |2024-05-27 10:21:53|2     |
+	e5bd9284-bf05-47e8-8542-79d05600a1cf:1|sqream-worker-0-6ccdbbc755-sw8px|121    |120      |GpuTransform           |0.259940836 |0.259940836       |0                 |600037902    |21             |0          |0           |14400909648|                                      |2024-05-27 10:21:53|2     |
+	e5bd9284-bf05-47e8-8542-79d05600a1cf:1|sqream-worker-0-6ccdbbc755-sw8px|122    |121      |GpuTransform           |0.017064677 |0.017064677       |0                 |600037902    |21             |0          |0           |13800871746|                                      |2024-05-27 10:21:53|2     |
+	e5bd9284-bf05-47e8-8542-79d05600a1cf:1|sqream-worker-0-6ccdbbc755-sw8px|123    |122      |CpuToGpu               |3.054507271 |3.054507271       |0                 |600037902    |21             |0          |0           |11400720138|                                      |2024-05-27 10:21:53|2     |
+	e5bd9284-bf05-47e8-8542-79d05600a1cf:1|sqream-worker-0-6ccdbbc755-sw8px|124    |123      |ReorderInput           |0.002183775 |0.002183775       |0                 |600037902    |21             |0          |0           |11400720138|                                      |2024-05-27 10:21:53|2     |
+	e5bd9284-bf05-47e8-8542-79d05600a1cf:1|sqream-worker-0-6ccdbbc755-sw8px|125    |124      |Rechunk                |0.002407714 |0.002407714       |0                 |600037902    |21             |0          |0           |27001705590|                                      |2024-05-27 10:21:53|2     |
+	e5bd9284-bf05-47e8-8542-79d05600a1cf:1|sqream-worker-0-6ccdbbc755-sw8px|126    |125      |ReadParquet            |1.115767795 |1.115767795       |0                 |600037902    |21             |13633732149|0           |27001705590|blue_sample_data.tpch_blue100.lineitem|2024-05-27 10:21:53|2     |
+	[...]
 	  
-   In this example, the filter processed 494,621,593 rows, while the output of ``ReadTable`` on ``public.lineitem`` 
-   was 494,927,872 rows. This means that it has filtered out all but 0.01% (:math:`1 - \dfrac{494621593}{494927872} = 0.01\%`)
+   In this example, the ``Filter`` processed 595,537,319 rows, while the output of ``ReadParquet`` on ``public.lineitem`` was 600,037,902 rows. This means that it has filtered out all but 0.01% (:math:`1- \dfrac{494621593}{494927872} = 0.01\%`)
    of the data that was read.
    
    The metadata skipping has performed very well, and has pre-filtered the data for us by pruning unnecessary chunks.
@@ -515,68 +510,3 @@ The table was read entirely - 77 million rows into 74 chunks.
 The filter node reduced the output to just 18,160 relevant rows, but they're distributed across the original 74 chunks.
 All of these rows could fit in one single chunk, instead of spanning 74 rather sparse chunks.
 
-
-Manual Join Reordering
-----------------------
-
-When joining multiple tables, you may wish to change the join order to join the smallest tables first.
-
-Identifying the situation
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-When joining more than two tables, the ``Join`` nodes will be the most time-consuming nodes.
-
-Changing the Join Order
-^^^^^^^^^^^^^^^^^^^^^^^
-
-Always prefer to join the smallest tables first.
-
-.. note:: 
-   
-   We consider small tables to be tables that only retain a small amount of rows after conditions
-   are applied. This bears no direct relation to the amount of total rows in the table.
-
-Changing the join order can reduce the query runtime significantly. In the examples below, we reduce the time
-from 27.3 seconds to just 6.4 seconds.
-
-.. code-block:: postgres
-   :caption: Original query
-   
-	SELECT SUM(l_extendedprice / 100.0*(1 - l_discount / 100.0)) AS revenue,
-	       c_nationkey
-	FROM tpch_blue100.lineitem --6B Rows, ~183GB
-	  JOIN tpch_blue100.orders --1.5B Rows, ~55GB
-	  ON   l_orderkey = o_orderkey
-	  JOIN tpch_blue100.customer --150M Rows, ~12GB
-	  ON   c_custkey = o_custkey
-	WHERE c_nationkey = 1
-	      AND   o_orderdate >= DATE '1993-01-01'
-	      AND   o_orderdate < '1994-01-01'
-	      AND   l_shipdate >= '1993-01-01'
-	      AND   l_shipdate <= dateadd(DAY,122,'1994-01-01')
-	GROUP BY c_nationkey
-
-.. code-block:: postgres
-   :caption: Modified query with improved join order
-   
-	SELECT SUM(l_extendedprice / 100.0*(1 - l_discount / 100.0)) AS revenue,
-	       c_nationkey
-	FROM tpch_blue100.orders --1.5B Rows, ~55GB
-	  JOIN tpch_blue100.customer --150M Rows, ~12GB
-	  ON   c_custkey = o_custkey
-	  JOIN tpch_blue100.lineitem --6B Rows, ~183GB
-	  ON   l_orderkey = o_orderkey
-	WHERE c_nationkey = 1
-	      AND   o_orderdate >= DATE '1993-01-01'
-	      AND   o_orderdate < '1994-01-01'
-	      AND   l_shipdate >= '1993-01-01'
-	      AND   l_shipdate <= dateadd(DAY,122,'1994-01-01')
-	GROUP BY c_nationkey
-
-Further Reading
-===============
-
-See our :ref:`sql_best_practices` guide for more information about query optimization and data loading considerations.
-
-
-https://docs.sqream.com/_/sharing/Nc676JXVL7jCPCxUqZSTOyMnzh9o2o6H?next=/en/blue-review/optimization_best_practices/monitoring_query_performance.html#queries-with-large-result-sets
