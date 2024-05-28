@@ -17,100 +17,7 @@ Before You Begin
 
 It is essential you have **NodeJS 16** installed.
 
-Installing NodeJS 16 on the Server
-----------------------------------
-
-Before installing Studio you must install NodeJS version 16 on the server.
-
-**To install NodeJS version 16 on the server:**
-
-1. Check if a version of NodeJS older than version *16.<x.x>* has been installed on the target server.
-
-   .. code-block:: console
-     
-      node -v
-      
-   The following is the output if a version of NodeJS has already been installed on the target server:
-
-   .. code-block:: console
-     
-      bash: /usr/bin/node: No such file or directory
-  
-2. If a version of NodeJS older than *16.<x.x>* has been installed, remove it as follows:
-
-   * On CentOS:
-
-     .. code-block:: console
-     
-        sudo yum remove -y nodejs
-
-   * On Ubuntu:
-
-     .. code-block:: console
-     
-        sudo apt remove -y nodejs
-
-3. If you have not installed NodeJS version 16, run the following commands:
-
-   * On CentOS:
-
-     .. code-block:: console
-     
-        curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
-        sudo yum clean all && sudo yum makecache fast
-        sudo yum install -y nodejs
-		
-   * On Ubuntu:
-
-     .. code-block:: console
-     
-        curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-        sudo apt-get install -y nodejs
-		
-  The following output is displayed if your installation has completed successfully:
-
-  .. code-block:: console
-     
-     Transaction Summary
-     ==============================================================================================================================
-     Install  1 Package
-
-     Total download size: 22 M
-     Installed size: 67 M
-     Downloading packages:
-     warning: /var/cache/yum/x86_64/7/nodesource/packages/nodejs-12.22.1-1nodesource.x86_64.rpm: Header V4 RSA/SHA512 Signature, key ID 34fa74dd: NOKEY
-     Public key for nodejs-12.22.1-1nodesource.x86_64.rpm is not installed
-     nodejs-12.22.1-1nodesource.x86_64.rpm                                                                  |  22 MB  00:00:02
-     Retrieving key from file:///etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL
-     Importing GPG key 0x34FA74DD:
-      Userid     : "NodeSource <gpg-rpm@nodesource.com>"
-      Fingerprint: 2e55 207a 95d9 944b 0cc9 3261 5ddb e8d4 34fa 74dd
-      Package    : nodesource-release-el7-1.noarch (installed)
-      From       : /etc/pki/rpm-gpg/NODESOURCE-GPG-SIGNING-KEY-EL
-     Running transaction check
-     Running transaction test
-     Transaction test succeeded
-     Running transaction
-     Warning: RPMDB altered outside of yum.
-       Installing : 2:nodejs-12.22.1-1nodesource.x86_64                                                                        1/1
-       Verifying  : 2:nodejs-12.22.1-1nodesource.x86_64                                                                        1/1
-
-     Installed:
-       nodejs.x86_64 2:12.22.1-1nodesource
-
-     Complete!
-
-4. Confirm the Node version.
-
-   .. code-block:: console
-     
-      node -v	  
-
-  The following is an example of the correct output:
-   
-  .. code-block:: console
-     
-     v16.20.0
+-- link to NodeJS 16 in installation
 	 
 Installing Studio
 =================
@@ -153,7 +60,7 @@ Installing Studio
 
   ::
   
-5. To access Studio over a secure connection, in your configuration file do the following:
+5. To make the communication between Studio and SQreamDB secure, in your configuration file do the following:
 
    #. Change your ``port`` value to **3109**.
    
