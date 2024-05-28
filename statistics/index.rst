@@ -60,7 +60,7 @@ Parameters
 Usage Note
 ==========
 
-The Statistics operation does not support the following column data types:
+Gathering statistics does not support the following column data types:
 
 * ``TEXT``
 * ``NUMERIC`` 
@@ -92,7 +92,7 @@ This command returns information about your statistics collection request, inclu
 
 .. code-block:: postgres
 
-	STATISTICS REQUEST STATUS queryId '1';
+	STATISTICS REQUEST STATUS sessionId '1ebafa4a-c843-4133-8335-54d295bdfdd0' queryId '1';
 
 Output:
 
@@ -105,7 +105,7 @@ Output:
 Querying Statistics
 -------------------
 
-When querying for statistics of a specific column, note that for nullable columns, it's required to specify that you're querying for values using the ``@val`` suffix.
+When querying for statistics of a specific column, note that for nullable columns it is required to specify which values you are querying for using the ``@val`` or ``@null`` suffix.
 
 .. code-block:: postgres
 
@@ -113,6 +113,9 @@ When querying for statistics of a specific column, note that for nullable column
 	
 	-- Using the @val suffix:
 	SELECT FETCH_COLUMN_HISTOGRAM("nba", "number@val");
+	
+	-- Using the @null suffix:
+	SELECT FETCH_COLUMN_HISTOGRAM("nba", "number@null");
 
 If the operation hasn't finished yet, the output will indicate that ``Column has no statistics``:
 
