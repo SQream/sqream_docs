@@ -57,14 +57,10 @@ Installing Studio
       Config generated successfully. Run `npm start` to start the app.
 
    For more information about the available set-up arguments, see :ref:`Set-Up Arguments<setup_arguments>`.
-
-  ::
   
 5. To make the communication between Studio and SQreamDB secure, in your configuration file do the following:
 
    #. Change your ``port`` value to **3109**.
-   
-       ::
 	   
    #. Change your ``ssl`` flag value to **true**.
    
@@ -94,6 +90,8 @@ Installing Studio
            ]
          }
    
+  Note that for the ``host`` value, you may use the IP address of your SQreamDB machine.  
+   
 5. If you have installed Studio on a server where SQream is already installed, move the **sqream-admin-config.json** file to **/etc/sqream/**:
 
    .. code-block:: console
@@ -102,10 +100,10 @@ Installing Studio
 
 Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
 
-Starting Studio Manually
-------------------------
+Starting Studio
+---------------
 
-You can start Studio manually by running the following command:
+You can start Studio by running the following command:
  
 .. code-block:: console
      
@@ -124,64 +122,27 @@ The following output is displayed:
    │ 0   │ sqream-studio    │ default     │ 0.1.0   │ fork    │ 11540    │ 0s     │ 0    │ online    │ 0%       │ 15.6mb   │ sqream   │ disabled │
    └─────┴──────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
 
-Starting Studio as a Service
-----------------------------
 
-Sqream uses the **Process Manager (PM2)** to maintain Studio.
-
-**To start Studio as a service:**
-
-1. Run the following command:
- 
-   .. code-block:: console
-     
-      sudo npm install -g pm2
-
-::
-	   
-2. Verify that the PM2 has been installed successfully.
- 
-   .. code-block:: console
-     
-      pm2 list
-
-   The following is the output:
-
-   .. code-block:: console     
-
-     ┌─────┬──────────────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
-     │ id  │ name             │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
-     ├─────┼──────────────────┼─────────────┼─────────┼─────────┼──────────┼────────┼──────┼───────────┼──────────┼──────────┼──────────┼──────────┤
-     │ 0   │ sqream-studio    │ default     │ 0.1.0   │ fork    │ 11540    │ 2m     │ 0    │ online    │ 0%       │ 31.5mb   │ sqream   │ disabled │
-     └─────┴──────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
-
-::
-
-2. Start the service with PM2:
-
-   * If the **sqream-admin-config.json** file is located in **/etc/sqream/**, run the following command:
- 
-     .. code-block:: console
-     
-        cd /home/sqream/sqream-admin
-        NODE_ENV=production pm2 start ./server/build/main.js --name=sqream-studio -- start --config-location=/etc/sqream/sqream-admin-config.json
-
-   * If the **sqream-admin-config.json** file is not located in **/etc/sqream/**, run the following command:
+1. If the **sqream-admin-config.json** file is not located in **/etc/sqream/**, run the following command:
  
      .. code-block:: console
      
         cd /home/sqream/sqream-admin
         NODE_ENV=production pm2 start ./server/build/main.js --name=sqream-studio -- start
 
-:: 
+2. To verify the process is running, use the ``pm2 list`` command:
+
+     .. code-block::
+
+	    pm2 list
 		
-3. Verify that Studio is running.
+2. Verify that Studio is running.
  
    .. code-block:: console
      
       netstat -nltp
 
-4. Verify that SQream_studio is listening on port 8080, as shown below:
+3. Verify that SQream_studio is listening on port 8080, as shown below:
 
    .. code-block:: console
 
