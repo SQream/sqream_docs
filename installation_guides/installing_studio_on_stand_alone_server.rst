@@ -15,18 +15,14 @@ A stand-alone server is a server that does not run SQreamDB based on binary file
 Before You Begin
 ================
 
-It is essential you have **NodeJS 16** installed.
-
--- link to NodeJS 16 in installation
+It is essential you have :ref:`NodeJS 16 installed <installing_nodejs>`.
 	 
 Installing Studio
 =================
- 
-**To install Studio:**
 
-1. Copy the SQream Studio package from SQream Artifactory into the target server. For access to the Sqream Studio package, contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
-
-::
+1. Copy the SQream Studio package from SQream Artifactory into the target server. 
+   
+   For access to the Sqream Studio package, contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
 
 2. Extract the package:
 
@@ -34,8 +30,6 @@ Installing Studio
      
       tar -xvf sqream-acceleration-studio-<version number>.x86_64.tar.gz
 
-::
-	
 3. Navigate to the new package folder. 
  
    .. code-block:: console
@@ -55,14 +49,12 @@ Installing Studio
    .. code-block:: console
    
       Config generated successfully. Run `npm start` to start the app.
-
-   For more information about the available set-up arguments, see :ref:`Set-Up Arguments<setup_arguments>`.
   
 5. To make the communication between Studio and SQreamDB secure, in your configuration file do the following:
 
-   #. Change your ``port`` value to **3109**.
+   a. Change your ``port`` value to **3109**.
 	   
-   #. Change your ``ssl`` flag value to **true**.
+   b. Change your ``ssl`` flag value to **true**.
    
       The following is an example of the correctly modified configuration file:
 	  
@@ -90,20 +82,18 @@ Installing Studio
            ]
          }
    
-  Note that for the ``host`` value, you may use the IP address of your SQreamDB machine.  
+  Note that for the ``host`` value, it is essential that you use the IP address of your SQreamDB machine.  
    
-5. If you have installed Studio on a server where SQream is already installed, move the **sqream-admin-config.json** file to **/etc/sqream/**:
+6. If you have installed Studio on a server where SQream is already installed, move the **sqream-admin-config.json** file to **/etc/sqream/**:
 
    .. code-block:: console
      
       mv sqream-admin-config.json /etc/sqream
 
-Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
-
 Starting Studio
 ---------------
 
-You can start Studio by running the following command:
+Start Studio by running the following command:
  
 .. code-block:: console
      
@@ -136,7 +126,7 @@ The following output is displayed:
 
 	  pm2 list
 		
-3. Verify that Studio is running.
+3. Verify that Studio is running:
  
    .. code-block:: console
      
@@ -157,15 +147,13 @@ The following output is displayed:
      tcp6       0      0 ::1:25                  :::*                    LISTEN      -
 
 	
-5. Verify the following:
+5. Verify that you can:
 
-   1. That you can access Studio from your browser (``http://<IP_Address>:8080``).
-   
-   ::  
+   a. Access Studio from your browser (``http://<IP_Address>:8080``)  
 
-   2. That you can log in to SQream.
+   b. Log in to SQream
 
-6. Save the configuration to run on boot.
+6. Save the configuration to run on boot:
  
    .. code-block:: console
      
@@ -181,13 +169,11 @@ The following output is displayed:
 
 
 
-8. Save the configuration.
+8. Save the configuration:
 
    .. code-block:: console
      
       pm2 save
-
-Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
 
 Accessing Studio
 ----------------
@@ -201,26 +187,18 @@ If port 8080 is blocked by the server firewall, you can unblock it by running th
       firewall-cmd --zone=public --add-port=8080/tcp --permanent
       firewall-cmd --reload
  
-Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
-
 Maintaining Studio with the Process Manager (PM2)
 -------------------------------------------------
 
-Sqream uses the **Process Manager (PM2)** to maintain Studio.
+SQream uses the **Process Manager (PM2)** to maintain Studio.
  
 You can use PM2 to do one of the following:
 
 * To check the PM2 service status: ``pm2 list``
-   
-   ::  
 
 * To restart the PM2 service: ``pm2 reload sqream-studio``
-   
-   ::  
 
 * To see the PM2 service logs: ``pm2 logs sqream-studio``
-
-Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
 
 Upgrading Studio
 ----------------
@@ -235,13 +213,11 @@ To upgrade Studio you need to stop the version that you currently have.
      
       pm2 list
 	  
-   The process name is displayed.
+   The process name is displayed.:
  
    .. code-block:: console
    
       <process name>
-
-::
 	  
 2. Run the following command with the process name:
 
@@ -249,51 +225,30 @@ To upgrade Studio you need to stop the version that you currently have.
 
       pm2 stop <process name>
 
-::
-		  
 3. If only one process is running, run the following command:
 
    .. code-block:: console
 
       pm2 stop all
 
-::
-	
-4. Change the name of the current **sqream-admin** folder to the old version.
+4. Change the name of the current **sqream-admin** folder to the old version:
 
    .. code-block:: console
 
       mv sqream-admin sqream-admin-<old_version>
 
-::
-	
-5. Extract the new Studio version.
+5. Extract the new Studio version:
 
    .. code-block:: console
 
       tar -xf sqream-acceleration-studio-<version>tar.gz
 
-::
-	
-6. Rebuild the configuration file. You can use IP address **127.0.0.1** on a single server.
-
-   .. code-block:: console
-
-      npm run setup -- -y --host=<SQreamD IP> --port=3108
-
-  The above command creates the **sqream-admin-config.json** configuration file in the **sqream_admin** folder.
-
-::
-	
-7. Copy the **sqream-admin-config.json** configuration file to **/etc/sqream/** to overwrite the old configuration file.
-  
-::  
-
-8. Start PM2.
+6. Start PM2:
 
    .. code-block:: console
 
       pm2 start all
 
-Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
+7. To access Studio over a secure (HTTPS) connection, follow :ref:`NGINX instructions<installing_nginx_proxy_over_secure_connection>`. 
+
 

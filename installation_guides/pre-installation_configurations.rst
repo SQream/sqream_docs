@@ -370,6 +370,8 @@ Installing Python
 
       python3 --version
   
+.. _installing_nodejs:
+  
 Installing NodeJS 
 ^^^^^^^^^^^^^^^^^^
 
