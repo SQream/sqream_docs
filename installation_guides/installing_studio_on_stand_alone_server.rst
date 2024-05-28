@@ -125,24 +125,24 @@ The following output is displayed:
 
 1. If the **sqream-admin-config.json** file is not located in **/etc/sqream/**, run the following command:
  
-     .. code-block:: console
+   .. code-block:: console
      
-        cd /home/sqream/sqream-admin
+      cd /home/sqream/sqream-admin
         NODE_ENV=production pm2 start ./server/build/main.js --name=sqream-studio -- start
 
 2. To verify the process is running, use the ``pm2 list`` command:
 
-     .. code-block::
+   .. code-block::
 
-	    pm2 list
+	  pm2 list
 		
-2. Verify that Studio is running.
+3. Verify that Studio is running.
  
    .. code-block:: console
      
       netstat -nltp
 
-3. Verify that SQream_studio is listening on port 8080, as shown below:
+4. Verify that SQream_studio is listening on port 8080, as shown below:
 
    .. code-block:: console
 
@@ -156,9 +156,6 @@ The following output is displayed:
      tcp6       0      0 :::22                   :::*                    LISTEN      -
      tcp6       0      0 ::1:25                  :::*                    LISTEN      -
 
-	  
-
-::
 	
 5. Verify the following:
 
@@ -182,7 +179,7 @@ The following output is displayed:
 
 7. Copy and paste the output above and run it.
 
-::
+
 
 8. Save the configuration.
 
