@@ -109,13 +109,13 @@ When querying for statistics of a specific column, note that for nullable column
 
 .. code-block:: postgres
 
-	SELECT FETCH_COLUMN_HISTOGRAM("nba", "number");
+	SELECT FETCH_COLUMN_HISTOGRAM("nba", "player_number");
 	
 	-- Using the @val suffix:
-	SELECT FETCH_COLUMN_HISTOGRAM("nba", "number@val");
+	SELECT FETCH_COLUMN_HISTOGRAM("nba", "player_number@val");
 	
 	-- Using the @null suffix:
-	SELECT FETCH_COLUMN_HISTOGRAM("nba", "number@null");
+	SELECT FETCH_COLUMN_HISTOGRAM("nba", "player_number@null");
 
 If the operation hasn't finished yet, the output will indicate that ``Column has no statistics``:
 
@@ -159,7 +159,7 @@ Deleting Statistics Operation
 
 .. code-block:: postgres
 
-	ALTER TABLE "nba" DROP STATISTICS FOR COLUMNS "number";
+	ALTER TABLE "nba" DROP STATISTICS FOR COLUMNS "player_number";
 
 
 Permissions
