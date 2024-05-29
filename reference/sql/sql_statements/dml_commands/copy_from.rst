@@ -617,4 +617,4 @@ In this example, ``date_col1`` and ``date_col2`` in the table are non-standard. 
 
 .. code-block:: postgres
 
-   COPY my_table (date_col1, date_col2, date_col3) FROM '/tmp/my_data.csv' WITH CSV HEADER datetime_format 'DMY';
+   COPY my_table (date_col1, date_col2, date_col3) FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/my_data.csv', offset = 2, datetime_format 'DMY');
