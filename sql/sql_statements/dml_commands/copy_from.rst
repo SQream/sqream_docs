@@ -13,7 +13,7 @@ Syntax
 
 .. code-block:: postgres
 
-   COPY [ "<schema_name>". ]"<table_name>"
+   COPY [ "<schema_name>". ]"<table_name>" [ (<column_name>) [ ,...] ]
      FROM WRAPPER <fdw_name>
      OPTIONS 
      (
@@ -697,6 +697,21 @@ Multi-character field delimiters, sometimes found in non-standard files, are sup
 	  (
 	   LOCATION = 's3://sqream-docs/nba.csv', 
 	   DELIMITER = '{~}'
+	  );
+	  
+Loading Specific Columns
+------------------------
+
+.. code-block:: postgres
+
+	COPY
+	  new_nba (name, salary)
+	FROM
+	WRAPPER
+	  parquet_fdw
+	OPTIONS
+	  (
+	   LOCATION = 's3://sqream-docs/nba.parquet'
 	  );
    
 Permissions
