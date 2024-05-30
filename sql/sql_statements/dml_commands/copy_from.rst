@@ -702,6 +702,8 @@ Multi-character field delimiters, sometimes found in non-standard files, are sup
 Loading Specific Columns
 ------------------------
 
+Loading specific columns using the ``COPY FROM`` command is not supported when using the CSV file format.
+
 .. code-block:: postgres
 
 	COPY
