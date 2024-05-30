@@ -48,6 +48,7 @@ Syntax
       | RECORD_DELIMITER = '{ record_delimiter }' -- for CSV only
       | AWS_ID '{ AWS ID }'
       | AWS_SECRET '{ AWS SECRET }'
+      | QUOTE = {'C' | E'\ooo') -- for CSV only	  
    }
    
    path_spec ::= { local filepath | S3 URI | HDFS URI }
@@ -97,6 +98,8 @@ Parameters
      - Specifies the record delimiter for CSV files. Defaults to a newline, ``\n``
    * - ``AWS_ID``, ``AWS_SECRET``
      - Credentials for authenticated S3 access
+   * - ``QUOTE``
+     - Specifies an alternative quote character. The quote character must be a single, 1-byte printable ASCII character, and the equivalent octal syntax of the copy command can be used. The quote character cannot be contained in the field delimiter, the record delimiter, or the null marker. ``QUOTE`` can be used with ``csv_fdw`` in ``COPY FROM`` and foreign tables. The following characters cannot be an alternative quote character: ``"-.:\\0123456789abcdefghijklmnopqrstuvwxyzN"``
 
 
 Examples
@@ -157,4 +160,18 @@ Materializes a foreign table into a regular table.
 
    CREATE TABLE real_table
     AS SELECT * FROM some_foreign_table;
+	
+Customizing Quotations Using Alternative Characters
+---------------------------------------------------
+
+.. code-block::
+
+	CREATE OR REPLACE FOREIGN TABLE cool_animalz
+	  (id INT NOT NULL, name text(30) NOT NULL, weight FLOAT NOT NULL)
+	WRAPPER csv_fdw
+	OPTIONS
+	  ( LOCATION = '/home/rhendricks/cool_animals.csv',
+	    DELIMITER = '\t',
+	    QUOTE = '@'
+	  );
 
