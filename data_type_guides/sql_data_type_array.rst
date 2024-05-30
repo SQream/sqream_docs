@@ -128,7 +128,8 @@ Inserting arrayed values into a table:
 	  (
 	    ARRAY ['1','2','3'],
 	    ARRAY ['4','5','6'],
-	    ARRAY [7,8,9,10]
+	    ARRAY [7,8,9,10],
+	    ARRAY [0.4354,0.5365435,3.6456]
 	  );
 	
 Converting arrayed elements into a set of rows:
@@ -136,15 +137,15 @@ Converting arrayed elements into a set of rows:
 .. code-block:: sql
 	
 	SELECT
-	  UNNEST(ARRAY ['1','2','3'], ARRAY ['4','5','6']);
+	  UNNEST(clmn1) FROM my_array;
 
 .. code-block:: console
 	
-	 clmn1    | clmn2     
-	----------+----------
-	 "1"      | "4"       
-	 "2"      | "5"       
-	 "3"      | "6"       
+	 clmn1  |     
+	--------+
+	 1      |     
+	 2      |       
+	 3      |      
 
 Updating table values:
 
