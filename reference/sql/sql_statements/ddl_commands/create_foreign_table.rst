@@ -42,7 +42,8 @@ Syntax
       | CONTINUE_ON_ERROR = { true | false }
       | ERROR_COUNT = '{ error count }'
       | AWS_SECRET '{ AWS SECRET }',
-      | OFFSET -- for CSV and JSON only
+      | OFFSET -- for CSV and JSON only,
+      | QUOTE = {'C' | E'\ooo') -- for CSV only
    }
    
    path_spec ::= { local filepath | S3 URI | HDFS URI }
@@ -98,6 +99,8 @@ Parameters
      - Specifies if errors should be ignored or skipped. When set to ``true``, the transaction continues despite rejected data and rows containing partially faulty data are skipped entirely. This parameter should be set together with ``ERROR_COUNT``. When reading multiple files, if an entire file can’t be opened it will be skipped. Default value: ``false``. Value range: ``true`` or ``false``.
    * - ``ERROR_COUNT``
      - Specifies the threshold for the maximum number of faulty records that will be ignored. This setting must be used in conjunction with ``CONTINUE_ON_ERROR``. Default value: ``unlimited``. Value range: 1 to 2147483647.
+   * - ``QUOTE``
+     - Specifies an alternative quote character. The quote character must be a single, 1-byte printable ASCII character, and the equivalent octal syntax of the copy command can be used. The quote character cannot be contained in the field delimiter, the record delimiter, or the null marker. QUOTE can be used with ``csv_fdw`` in ``COPY FROM`` and foreign tables. The following characters cannot be an alternative quote character: ``"-.:\\0123456789abcdefghijklmnopqrstuvwxyzN"``
 	 
 
 
@@ -189,5 +192,20 @@ Using the ``CONTINUE_ON_ERROR`` and ``ERROR_COUNT`` Parameters
 		DELIMITER = '\t',
 		continue_on_error = true,
 		ERROR_COUNT = 3
+	  )
+	 ;
+	 
+Customizing Quotations Using Alternative Characters
+---------------------------------------------------
+
+.. code-block::
+
+	CREATE OR REPLACE FOREIGN TABLE cool_animalz
+	  (id INT NOT NULL, name text(30) NOT NULL, weight FLOAT NOT NULL)
+	WRAPPER csv_fdw
+	OPTIONS
+	  ( LOCATION = '/home/rhendricks/cool_animals.csv',
+	    DELIMITER = '\t',
+	    QUOTE = '@'
 	  )
 	 ;
