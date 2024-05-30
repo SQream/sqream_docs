@@ -21,13 +21,13 @@ Syntax
 
 .. code-block:: postgres
 
-   COPY [schema name.]table_name
+   COPY [schema name.]table_name [ (<column_name>) [, ...] ]
      FROM WRAPPER fdw_name
      OPTIONS 
      (
        [ copy_from_option [, ...] ]
      )
-   ;
+
   
    schema_name ::= identifer
   
@@ -617,3 +617,18 @@ In this example, ``date_col1`` and ``date_col2`` in the table are non-standard. 
 .. code-block:: postgres
 
    COPY my_table (date_col1, date_col2, date_col3) FROM WRAPPER csv_fdw OPTIONS (location = '/tmp/my_data.csv', offset = 2, datetime_format 'DMY');
+
+Loading Specific Columns
+------------------------
+
+.. code-block:: postgres
+
+	COPY
+	  new_nba (name, salary)
+	FROM
+	WRAPPER
+	  parquet_fdw
+	OPTIONS
+	  (
+	   LOCATION = '/tmp/nba.parquet'
+	  );
