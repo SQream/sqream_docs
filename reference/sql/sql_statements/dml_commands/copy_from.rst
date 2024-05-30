@@ -641,7 +641,7 @@ In this example, ``date_col1`` and ``date_col2`` in the table are non-standard. 
 Loading Specific Columns
 ------------------------
 
-Loading specific columns using the COPY FROM command is not supported when using the CSV file format.
+Loading specific columns using the ``COPY FROM`` command is not supported when using the CSV file format.
 
 .. code-block:: postgres
 
