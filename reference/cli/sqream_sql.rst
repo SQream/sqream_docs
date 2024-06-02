@@ -4,7 +4,7 @@
 Linux Sqream SQL
 ************************
 
-SQream DB comes with a built-in client for executing SQL statements either interactively or from the command-line.
+SQreamDB comes with a built-in client for executing SQL statements either interactively or from the command-line.
 
 This page serves as a reference for the options and parameters. Learn more about using SQream DB SQL with the CLI by visiting the :ref:`first_steps` tutorial.
 
@@ -14,23 +14,17 @@ This page serves as a reference for the options and parameters. Learn more about
 Installing Sqream SQL
 =====================
 
-If you have a SQream DB installation on your server, ``sqream sql`` can be found in the ``bin`` directory of your SQream DB installation, under the name ``sqream``.
-
-
-.. versionchanged:: 2020.1
-   As of version 2020.1, ``ClientCmd`` has been renamed to ``sqream sql``.
+If you have a SQreamDB installation on your server, ``sqream sql`` can be found in the ``bin`` directory of your SQreamDB installation, under the name ``sqream``.
    
-
 To run ``sqream sql`` on any other Linux host:
 
-#. Download the ``sqream sql`` tarball package from the :ref:`client_drivers` page.
 #. Untar the package: ``tar xf sqream-sql-v2020.1.1_stable.x86_64.tar.gz``
 #. Start the client:
    
    .. code-block:: psql
       
-      $ cd sqream-sql-v2020.1.1_stable.x86_64
-      $ ./sqream sql --port=5000 --username=jdoe --databasename=master
+      cd sqream-sql-<xxxx.x.x>_stable.x86_64
+      ./sqream sql --port=5000 --username=<jdoe> --databasename=master
       Password:
      
       Interactive client mode
@@ -365,7 +359,7 @@ Command Line Arguments
      - Changes the mode of operation to multi-command, non-interactive. Use this argument to run a sequence of statements from an external file and immediately exit.
    * - ``--host``
      - ``127.0.0.1``
-     - Address of the SQream DB worker.
+     - Address of the SQreamDB worker.
    * - ``--port``
      - ``5000``
      - Sets the connection port.
@@ -380,7 +374,7 @@ Command Line Arguments
      - Specify the password using the command line argument. If not specified, the client will prompt the user for the password.
    * - ``--clustered``
      - False
-     - When used, the client connects to the load balancer, usually on port ``3108``. If not set, the client assumes the connection is to a standalone SQream DB worker.
+     - When used, the client connects to the load balancer, usually on port ``3108``. If not set, the client assumes the connection is to a standalone SQreamDB worker.
    * - ``--service``
      - ``sqream``
      - :ref:`Service name (queue)<workload_manager>` that statements will file into.
