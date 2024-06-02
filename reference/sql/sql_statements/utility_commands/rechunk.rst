@@ -4,7 +4,7 @@
 RECHUNK
 *******
 
-SQreamDB is most efficient processing large data chunks. The ``rechunk`` function improves performance when handling tables with small data chunks by allowing you to consolidate these small chunks into larger ones. Additionally, this function also addresses mixed chunks, which are those containing one or more deleted records. When applied to mixed chunks, the function performs a :ref:`cleanup operation<delete_guide>`, resulting in clean, large data chunks.
+SQreamDB is the most efficient for processing large data chunks. The ``rechunk`` function improves performance when handling tables with small data chunks by allowing you to consolidate these small chunks into larger ones. This function also handles mixed chunks, which include one or more deleted records and/or records marked for deletion but not yet purged (i.e., awaiting the removal of deleted data). When applied to mixed chunks, the function performs a :ref:`cleanup operation<delete_guide>`, resulting in clean, large data chunks.
 
 Syntax
 ==========
