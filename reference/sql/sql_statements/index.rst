@@ -1,8 +1,9 @@
 .. _sql_statements:
 
-***************
+**************
 SQL Statements
-***************
+**************
+
 The **SQL Statements** page describes the following commands:
 
 .. contents::
@@ -14,7 +15,8 @@ SQream supports commands from ANSI SQL.
 .. _ddl_commands_list:
 
 Data Definition Commands (DDL)
-================================
+==============================
+
 The following table shows the Data Definition commands:
 
 .. list-table::
@@ -71,6 +73,7 @@ The following table shows the Data Definition commands:
 
 Data Manipulation Commands (DML)
 ================================
+
 The following table shows the Data Manipulation commands:
 
 .. list-table::
@@ -100,7 +103,8 @@ The following table shows the Data Manipulation commands:
      - Return rows containing literal values
 
 Utility Commands
-==================
+================
+
 The following table shows the Utility commands:
 
 .. list-table::
@@ -131,8 +135,6 @@ The following table shows the Utility commands:
      - Shows the total size of all data chunks saved in the system in both compressed and uncompressed formats
    * - :ref:`SELECT GET_VIEW_DDL<get_view_ddl>`
      - View the ``CREATE VIEW`` statement for a view
-   * - :ref:`SELECT DATA_READ_METRICS<select_data_read_metrics>`
-     - Monitor license quota usage by reviewing monthly or daily data read usage 
    * - :ref:`SELECT GPU_METRICS<select_gpu_metrics>`
      - Monitor license quota usage by reviewing monthly or daily GPU usage 
    * - :ref:`SELECT RECOMPILE_VIEW<recompile_view>`
@@ -165,7 +167,8 @@ The following table shows the Utility commands:
    :width: 110
 
 Workload Management
-======================
+===================
+
 The following table shows the Workload Management commands:
 
 .. list-table::
@@ -182,7 +185,8 @@ The following table shows the Workload Management commands:
      - Return a list of service queues and workers
 
 Access Control Commands
-================================
+=======================
+
 The following table shows the Access Control commands:
 
 .. list-table::
