@@ -1,68 +1,63 @@
 .. _create_foreign_table:
 
-***********************
+********************
 CREATE FOREIGN TABLE
-***********************
+********************
 
 ``CREATE FOREIGN TABLE`` creates a new foreign table in an existing database.
 
 Changes in the source data can result in corresponding modifications to the content of a foreign table. Consistent access to remote files might impact performance.
 
 Permissions
-=============
+===========
 
 The role must have the ``CREATE`` permission at the database level.
 
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
-   create_table_statement ::=
-       CREATE [ OR REPLACE ] FOREIGN TABLE [schema_name].table_name (
-           { column_def [, ...] }
-       )
-       [ FOREIGN DATA ] WRAPPER fdw_name
-       [ OPTIONS ( option_def [, ...  ] ) ]
+	CREATE [ OR REPLACE ] FOREIGN TABLE [ <schema_name> ].table_name (
+	  { column_def [, ...] }
+	  )
+	[ FOREIGN DATA ] WRAPPER fdw_name
+	[ OPTIONS ( option_def [, ...  ] ) ]
 
-
-   schema_name ::= identifier  
-
-   table_name ::= identifier  
-
-   fdw_name ::= 
-       { csv_fdw | orc_fdw | parquet_fdw | json_fdw | avro_fdw }
+	fdw_name ::= 
+	 { csv_fdw | orc_fdw | parquet_fdw | json_fdw | avro_fdw }
    
-   option_def ::= 
-   {
-      LOCATION = '{ path_spec }',
-      | DELIMITER = '{ field_delimiter }' -- for CSV only,
-      | RECORD_DELIMITER = '{ record_delimiter }', -- for CSV only
-      | AWS_ID '{ AWS ID }',
-      | CONTINUE_ON_ERROR = { true | false }
-      | ERROR_COUNT = '{ error count }'
-      | AWS_SECRET '{ AWS SECRET }',
-      | OFFSET -- for CSV and JSON only,
-      | QUOTE = {'C' | E'\ooo') -- for CSV only
-   }
+	option_def ::= 
+	 {
+	  LOCATION = '{ path_spec }',
+	  | DELIMITER = '{ field_delimiter }' -- for CSV only,
+	  | RECORD_DELIMITER = '{ record_delimiter }', -- for CSV only
+	  | AWS_ID '{ AWS ID }',
+	  | CONTINUE_ON_ERROR = { true | false }
+	  | ERROR_COUNT = '{ error count }'
+	  | AWS_SECRET '{ AWS SECRET }',
+	  | OFFSET -- for CSV and JSON only,
+	  | QUOTE = {'C' | E'\ooo'} -- for CSV only
+	 }
    
-   path_spec ::= { local filepath | S3 URI | HDFS URI }
+	path_spec ::= 
+	 { local filepath | S3 URI | HDFS URI }
    
-   field_delimiter ::= delimiter_character
+	field_delimiter ::= delimiter_character
    
-   record_delimiter ::= delimiter_character
+	record_delimiter ::= delimiter_character
       
-   column_def ::= 
-       { column_name type_name [ default ] [ column_constraint ] }
+	column_def ::= 
+	 { column_name type_name [ default ] [ column_constraint ] }
 
-   column_name ::= identifier
+	column_name ::= identifier
    
-   column_constraint ::=
-       { NOT NULL | NULL }
+	column_constraint ::= 
+	 { NOT NULL | NULL }
    
-   default ::=
-       DEFAULT default_value
-       | IDENTITY [ ( start_with [ , increment_by ] ) ]
+	default ::=
+	 DEFAULT default_value
+	 | IDENTITY [ ( start_with [ , increment_by ] ) ]
 
 .. _cft_parameters:
 
@@ -112,14 +107,19 @@ A simple table from Tab-delimited file (TSV)
 
 .. code-block:: postgres
 
-   CREATE OR REPLACE FOREIGN TABLE cool_animals
-     (id INT NOT NULL, name text(30) NOT NULL, weight FLOAT NOT NULL)  
-   WRAPPER csv_fdw
-   OPTIONS
-     ( LOCATION = '/home/rhendricks/cool_animals.csv',
-       DELIMITER = '\t'
-     )
-    ;
+	CREATE
+	OR REPLACE FOREIGN TABLE cool_animals (
+	  id INT NOT NULL,
+	  name TEXT NOT NULL,
+	  weight FLOAT NOT NULL
+	)
+	WRAPPER
+	  csv_fdw
+	OPTIONS
+	  (
+	    LOCATION = '/home/rhendricks/cool_animals.csv',
+	    DELIMITER = '\t'
+	  );
 
 
 A table from a directory of Parquet files on HDFS
@@ -127,28 +127,36 @@ A table from a directory of Parquet files on HDFS
 
 .. code-block:: postgres
 
-   CREATE FOREIGN TABLE users
-     (id INT NOT NULL, name text(30) NOT NULL, email text(50) NOT NULL)  
-   WRAPPER parquet_fdw
-   OPTIONS
-     (
-       LOCATION =  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet'
-     );
+	CREATE FOREIGN TABLE users (
+	  id INT NOT NULL,
+	  name TEXT NOT NULL,
+	  email TEXT NOT NULL
+	)
+	WRAPPER
+	  parquet_fdw
+	OPTIONS
+	  (
+	    LOCATION = 'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet'
+	  );
 
 A table from a bucket of ORC files on S3
 ------------------------------------------
 
 .. code-block:: postgres
 
-   CREATE FOREIGN TABLE users
-     (id INT NOT NULL, name text(30) NOT NULL, email text(50) NOT NULL)  
-   WRAPPER orc_fdw
-   OPTIONS
-     (
-         LOCATION = 's3://pp-secret-bucket/users/*.orc',
-         AWS_ID = 'our_aws_id',
-         AWS_SECRET = 'our_aws_secret'
-      );
+	CREATE FOREIGN TABLE users (
+	  id INT NOT NULL,
+	  name TEXT NOT NULL,
+	  email TEXT NOT NULL
+	)
+	WRAPPER
+	  orc_fdw
+	OPTIONS
+	  (
+	    LOCATION = 's3://pp-secret-bucket/users/*.orc',
+	    AWS_ID = 'our_aws_id',
+	    AWS_SECRET = 'our_aws_secret'
+	  );
 
 
 Changing a foreign table to a regular table
@@ -160,8 +168,12 @@ Materializes a foreign table into a regular table.
 
 .. code-block:: postgres
 
-   CREATE TABLE real_table
-    AS SELECT * FROM some_foreign_table;
+	CREATE TABLE
+	  real_table AS
+	SELECT
+	  *
+	FROM
+	  some_foreign_table;
 	
 Using the ``OFFSET`` Parameter
 --------------------------------
@@ -170,12 +182,16 @@ The ``OFFSET`` parameter may be used with Parquet and CSV textual formats.
 
 .. code-block::
 
-	CREATE FOREIGN TABLE users7
-	  (id INT NOT NULL, name text(30) NOT NULL, email text(50) NOT NULL)
-	WRAPPER parquet_fdw
+	CREATE FOREIGN TABLE users7 (
+	  id INT NOT NULL,
+	  name TEXT NOT NULL,
+	  email TEXT NOT NULL
+	)
+	WRAPPER
+	  parquet_fdw
 	OPTIONS
 	  (
-	    LOCATION =  'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet',
+	    LOCATION = 'hdfs://hadoop-nn.piedpiper.com/rhendricks/users/*.parquet',
 	    OFFSET = 2
 	  );
 
@@ -184,28 +200,38 @@ Using the ``CONTINUE_ON_ERROR`` and ``ERROR_COUNT`` Parameters
 
 .. code-block::
 
-	CREATE OR REPLACE FOREIGN TABLE cool_animalz
-	  (id INT NOT NULL, name text(30) NOT NULL, weight FLOAT NOT NULL)
-	WRAPPER csv_fdw
+	CREATE
+	OR REPLACE FOREIGN TABLE cool_animalz (
+	  id INT NOT NULL,
+	  name TEXT NOT NULL,
+	  weight FLOAT NOT NULL
+	)
+	WRAPPER
+	  csv_fdw
 	OPTIONS
-	  ( LOCATION = '/home/rhendricks/cool_animals.csv',
-		DELIMITER = '\t',
-		continue_on_error = true,
-		ERROR_COUNT = 3
-	  )
-	 ;
+	  (
+	    LOCATION = '/home/rhendricks/cool_animals.csv',
+	    DELIMITER = '\t',
+	    CONTINUE_ON_ERROR = true,
+	    ERROR_COUNT = 3
+	  );
 	 
 Customizing Quotations Using Alternative Characters
 ---------------------------------------------------
 
 .. code-block::
 
-	CREATE OR REPLACE FOREIGN TABLE cool_animalz
-	  (id INT NOT NULL, name text(30) NOT NULL, weight FLOAT NOT NULL)
-	WRAPPER csv_fdw
+	CREATE
+	OR REPLACE FOREIGN TABLE cool_animalz (
+	  id INT NOT NULL,
+	  name TEXT NOT NULL,
+	  weight FLOAT NOT NULL
+	)
+	WRAPPER
+	  csv_fdw
 	OPTIONS
-	  ( LOCATION = '/home/rhendricks/cool_animals.csv',
+	  (
+	    LOCATION = '/home/rhendricks/cool_animals.csv',
 	    DELIMITER = '\t',
 	    QUOTE = '@'
-	  )
-	 ;
+	  );
