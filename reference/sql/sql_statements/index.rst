@@ -113,8 +113,6 @@ The following table shows the Utility commands:
      
    * - Command
      - Usage
-   * - :ref:`DATA READ METRICS<select_data_read_metrics>`
-     - Monitor license quota usage by reviewing monthly or daily data read usage 
    * - :ref:`DROP SAVED QUERY<drop_saved_query>`
      - Drops a saved query
    * - :ref:`DUMP DATABASE DDL<dump_database_ddl>`
