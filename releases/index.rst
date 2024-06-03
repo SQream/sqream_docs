@@ -25,7 +25,7 @@ Release Notes
 * `New Apache Spark Connector <https://docs.sqream.com/en/latest/releases/4.2.html#new-features>`_
 * `Physical Deletion Performance Enhancement <https://docs.sqream.com/en/latest/releases/4.2.html#new-features>`_
 
-:ref:`Version 4.1 - March 01, 2032<4.1>`
+:ref:`Version 4.1 - March 01, 2023<4.1>`
 
 * `LDAP Management Enhancements <https://docs.sqream.com/en/latest/releases/4.1.html#new-features>`_
 * `New Trino Connector <https://docs.sqream.com/en/latest/releases/4.1.html#new-features>`_
