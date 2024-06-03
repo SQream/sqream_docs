@@ -131,8 +131,6 @@ The following table shows the Utility commands:
      - Shows the total size of all data chunks saved in the system in both compressed and uncompressed formats
    * - :ref:`SELECT GET VIEW DDL<get_view_ddl>`
      - View the ``CREATE VIEW`` statement for a view
-   * - :ref:`SELECT GPU METRICS<select_gpu_metrics>`
-     - Monitor license quota usage by reviewing monthly or daily GPU usage 
    * - :ref:`SELECT HEALTH CHECK MONITORING<select_health_check_monitoring>`
      - Returns system health monitoring logs
    * - :ref:`SELECT RECOMPILE VIEW<recompile_view>`
