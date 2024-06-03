@@ -161,6 +161,8 @@ The following table shows the Utility commands:
      - Stops or aborts an active statement
    * - :ref:`SHOW VERSION<show_version>`
      - Returns the system version for SQream DB
+   * - :ref:`swap_table_names`
+     - Swaps the names of two tables contained within a schema
 
 
 Workload Management
