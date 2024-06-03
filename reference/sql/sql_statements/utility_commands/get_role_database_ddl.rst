@@ -1,7 +1,7 @@
 .. _get_role_database_ddl:
 
 *********************
-GET_ROLE_DATABASE_DDL
+GET ROLE DATABASE DDL
 *********************
 
 The ``GET_ROLE_DATABASE_DDL`` statement returns the definition of a role's database in DDL format.
