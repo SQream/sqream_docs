@@ -30,7 +30,7 @@ Parameters
 Notes
 =====
 
-Operations like views that are pointing to table name will continue to work on the name table that renamed to the old table, depending on same properties like columns  etc.. 
+When setting views or performing any operation that points to a table whose name has been swapped, the view will address the same table name. If no columns are specified, the operation will succeed. However, if the operation references specific columns, it will fail because the view points to a table containing different columns.
 
 Examples
 ========
