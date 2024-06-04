@@ -25,6 +25,7 @@ This guide provides an overview of the key steps to begin using BLUE. The guide 
 
    log_in
    blue_tour
+   architecture
 
    
    
