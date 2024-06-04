@@ -8,10 +8,7 @@ Blue leverages Kubernetes architecture to provide scalability and agility. The B
 
 The following figure shows the Blue microservice Kubernetes architecture:
 
-|architecture|
-
-.. |architecture| image:: /_static/images/architecture.png
-   :align: middle   
+.. figure:: /_static/images/architecture.png
    
 Microservices Running within a Kubernetes Cluster
 =================================================
