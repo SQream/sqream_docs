@@ -707,7 +707,7 @@ Loading specific columns using the ``COPY FROM`` command is not supported when u
 .. code-block:: postgres
 
 	COPY
-	  new_nba (name, salary)
+	  new_nba (player_name, salary)
 	FROM
 	WRAPPER
 	  parquet_fdw
