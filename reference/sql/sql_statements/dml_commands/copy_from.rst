@@ -1,10 +1,10 @@
 .. _copy_from:
 
-**********************
+*********
 COPY FROM
-**********************
+*********
 
-``COPY ... FROM`` is a statement that allows loading data from files on the filesystem and importing them into SQream tables. This is the recommended way for bulk loading CSV files into SQream DB. In general, ``COPY`` moves data between filesystem files and SQream DB tables.
+``COPY ... FROM`` is a statement that allows loading data from files on the filesystem and importing them into SQreamDB tables. This is the recommended way for bulk loading CSV files into SQreamDB. In general, ``COPY`` moves data between filesystem files and SQreamDB tables.
 
 .. note:: 
    * Learn how to migrate from CSV files in the :ref:`csv` guide
@@ -12,12 +12,12 @@ COPY FROM
    * To load Parquet or ORC files, see :ref:`CREATE FOREIGN TABLE<create_foreign_table>`
 
 Permissions
-=============
+===========
 
 The role must have the ``INSERT`` permission to the destination table.
 
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
@@ -609,9 +609,7 @@ When the source of the files does not match the table structure, tell the ``COPY
 Loading Non-Standard Dates
 ----------------------------------
 
-If files contain dates not formatted as ``ISO8601``, tell ``COPY`` how to parse the column. After parsing, the date will appear as ``ISO8601`` inside SQreamDB.
-
-These are called date parsers. You can find the supported dates in the :ref:`'Supported date parsers' table<copy_date_parsers>` above.
+If your files contain dates in a format other than ``ISO8601``, you can specify a :ref:`parsing<copy_date_parsers>` format to convert them during the import process. This ensures the dates are stored internally as ``ISO8601`` within the database.
 
 In this example, ``date_col1`` and ``date_col2`` in the table are non-standard. ``date_col3`` is mentioned explicitly, but can be left out. Any column that is not specified is assumed to be ``ISO8601``.
 
@@ -622,7 +620,11 @@ In this example, ``date_col1`` and ``date_col2`` in the table are non-standard. 
 Loading Specific Columns
 ------------------------
 
-Loading specific columns using the ``COPY FROM`` command is not supported when using the CSV file format.
+Loading specific columns using the ``COPY FROM`` command:
+
+* Does not support CSV files
+
+* Requires that the target table columns be nullable
 
 .. code-block:: postgres
 
