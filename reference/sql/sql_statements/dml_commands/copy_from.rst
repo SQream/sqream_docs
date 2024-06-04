@@ -1,10 +1,10 @@
 .. _copy_from:
 
-**********************
+*********
 COPY FROM
-**********************
+*********
 
-``COPY ... FROM`` is a statement that allows loading data from files on the filesystem and importing them into SQream tables. This is the recommended way for bulk loading CSV files into SQream DB. In general, ``COPY`` moves data between filesystem files and SQream DB tables.
+``COPY ... FROM`` is a statement that allows loading data from files on the filesystem and importing them into SQreamDB tables. This is the recommended way for bulk loading CSV files into SQreamDB. In general, ``COPY`` moves data between filesystem files and SQreamDB tables.
 
 .. note:: 
    * Learn how to migrate from CSV files in the :ref:`csv` guide
@@ -12,12 +12,12 @@ COPY FROM
    * To load Parquet or ORC files, see :ref:`CREATE FOREIGN TABLE<create_foreign_table>`
 
 Permissions
-=============
+===========
 
 The role must have the ``INSERT`` permission to the destination table.
 
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
@@ -641,7 +641,11 @@ In this example, ``date_col1`` and ``date_col2`` in the table are non-standard. 
 Loading Specific Columns
 ------------------------
 
-Loading specific columns using the ``COPY FROM`` command is not supported when using the CSV file format.
+Loading specific columns using the ``COPY FROM`` command:
+
+* Does not support CSV files
+
+* Requires that the target table columns be nullable
 
 .. code-block:: postgres
 
