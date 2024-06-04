@@ -628,9 +628,7 @@ When the source of the files does not match the table structure, tell the ``COPY
 Loading Non-Standard Dates
 ----------------------------------
 
-If files contain dates not formatted as ``ISO8601``, tell ``COPY`` how to parse the column. After parsing, the date will appear as ``ISO8601`` inside SQreamDB.
-
-These are called date parsers. You can find the supported dates in the :ref:`'Supported date parsers' table<copy_date_parsers>` above.
+If your files contain dates in a format other than ``ISO8601``, you can specify a :ref:`parsing<copy_date_parsers>` format to convert them during the import process. This ensures the dates are stored internally as ``ISO8601`` within the database.
 
 In this example, ``date_col1`` and ``date_col2`` in the table are non-standard. ``date_col3`` is mentioned explicitly, but can be left out. Any column that is not specified is assumed to be ``ISO8601``.
 
