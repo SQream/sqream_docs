@@ -21,15 +21,25 @@ Authentication Service
 
 The Authentication Service manages user authentication through JSON Web Token (JWT) sessions. Authentication itself is done using Auth0 - a leading cloud authentication solution that enables Blue customers to use their organization’s Identity Provider (IDP). Horizontal service scaling is managed by Kubernetes.
 
-UI
-==
+User Interface
+==============
 
-SQream Blue Studio is a web user interface used as an SQL workbench for communicating with SQream Blue clusters. It is deployed and maintained as an independent component. 
+SQream Blue is a web user interface employing a SQL workbench. It is deployed and maintained as an independent component. 
 
 Jobs
 ====
 
-Orchestrates and schedules repetitive workflows (Jobs) made up of SQL or Python tasks. Flows services utilize Apache AirFlows as the Jobs engine. AirFlows utilizes a custom SQream Blue AirFlow provider that utilizes PySQream to execute SQL scripts.
+Jobs orchestrate and schedule repetitive workflows that are made up of SQL and/or Python tasks. The Flows service utilizes Apache AirFlow as the Jobs engine. AirFlows utilizes a custom SQream Blue AirFlow provider that utilizes PySQream to execute SQL scripts.
+
+Cloud Object Storage
+====================
+
+SQream Blue integrates with the following Object Storage platforms: 
+
+* Google cloud platform (GCP)
+* Simple Storage Services (S3)
+
+This enables read and write from and to foreign and internal tables. Read and write AirFlow Job operational data and SQL \ Python scripts.
 
 System
 ======
