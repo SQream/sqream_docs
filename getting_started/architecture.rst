@@ -47,8 +47,7 @@ System
 Healer (Health Monitoring)
 --------------------------
 
-The Healer is a self-healing service that keeps track of ongoing sessions, verifies that no hung sessions exist, and that all microservices are fully operational at all times.
-Proactively monitors the health of the different SQream Blue microservices. When an unhealthy microservice is identified, a corrective action is performed to restore the microservice to normal operation.
+The Healer is a self-healing service that proactively monitors the health of the different SQream Blue microservices by keeping track of ongoing sessions, verifying that no hung sessions exist, and that all microservices are fully operational at all times. When an unhealthy microservice is identified, a corrective action is performed to restore the microservice to normal operation.
 
 GPU Statement Execution
 =======================
