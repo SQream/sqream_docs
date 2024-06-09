@@ -19,7 +19,8 @@ Built to serve thousands of requests simultaneously, the Edge Controller serves 
 Authentication Service
 ======================
 
-The Authentication Service manages user authentication through JSON Web Token (JWT) sessions. Authentication itself is done using Auth0 - a leading cloud authentication solution that enables Blue customers to use their organization’s Identity Provider (IDP). Horizontal service scaling is managed by Kubernetes.
+Auth0, a leading cloud authentication solution, enables you to use your organization’s Identity Provider (IDP) authentication. The Kubernetes Authentication Service manages authentication through JSON Web Token (JWT) sessions. Horizontal service scaling is managed by Kubernetes.
+
 
 User Interface
 ==============
