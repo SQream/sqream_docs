@@ -1,8 +1,8 @@
 .. _preparing_your_machine_to_install_sqream:
 
-*******************************************
+******************************************
 Preparing Your Machine to Install SQreamDB
-*******************************************
+******************************************
 
 To prepare your machine to install SQreamDB, do the following:
 
@@ -14,7 +14,7 @@ To prepare your machine to install SQreamDB, do the following:
 
    * Red Hat Enterprise Linux v7.x / v8.6 - 8.8  
  
-   * CentOS v7.x
+   * CentOS v8.x
  
    * Amazon Linux 7
 	 
