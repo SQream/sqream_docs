@@ -12,9 +12,7 @@ To prepare your machine to install SQreamDB, do the following:
    
  * Verify you have an NVIDIA-capable server, either on-premise or on supported cloud platforms: 
 
-   * Red Hat Enterprise Linux v7.x / v8.6 - 8.8  
- 
-   * CentOS v8.x
+   * Red Hat Enterprise Linux v8.6 - 8.8
  
    * Amazon Linux 7
 	 
