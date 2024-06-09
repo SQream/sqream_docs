@@ -25,7 +25,7 @@ Auth0, a leading cloud authentication solution, enables you to use your organiza
 User Interface
 ==============
 
-SQream Blue is a web user interface employing a SQL workbench. It is deployed and maintained as an independent component. 
+SQream Blue is a web user interface employing a SQL workbench deployed and maintained as an independent component. 
 
 Jobs
 ====
