@@ -24,3 +24,4 @@ TPC-H schema ER Diagram
 =======================
 
 .. figure:: /_static/images/tpch_tables.png
+   :scale: 70 %
