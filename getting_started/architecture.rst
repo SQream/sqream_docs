@@ -31,7 +31,7 @@ Redis is an open-source key-value store used for storing live sessions, request 
 User Interface
 ==============
 
-The SQream Blue web user interface includes a SQL workbench, which is deployed and maintained as an independent component.
+The SQream Blue web user interface includes a Dashboard, SQL workbench, workflow manager (Jobs), cluster activity monitor, cluster permissions board, and an administration panel.
 
 Jobs
 ====
