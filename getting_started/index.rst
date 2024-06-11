@@ -10,7 +10,7 @@ This guide provides an overview of the key steps to begin using BLUE. The guide 
 
 * Take a :ref:`quick tour<blue_tour>` around the BLUE web interface.
 
-* :ref:`sample_data`
+* Start practicing with SQream Blue by running :ref:`TPC-H sample data <sample_data>`.
 
 * :ref:`Manage your resources <managing_your_resources>` and reduce runtime during idle periods for better costs. Allocate workers based on department-specific needs for improved cluster utilization.
 

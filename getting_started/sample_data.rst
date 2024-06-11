@@ -29,6 +29,8 @@ TPC-H schema ER Diagram
 Sample TPC-H Queries
 ====================
 
+Here, you can find two TPC-H queries designed to answer two business questions. For all TPC-H queries, click `here <chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www.tpc.org/TPC_Documents_Current_Versions/pdf/TPC-H_v3.0.1.pdf>`_.
+
 Minimum Cost Supplier Query 
 ---------------------------
 
