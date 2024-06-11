@@ -104,12 +104,12 @@ The CPU excels in handling complex, control-oriented tasks, making it ideal for 
 SQream Transform
 ----------------
 
-The SQream Transform microservice executes administrative statements such as ``DESCRIBE`` and ``AUDITLOG``.
+The SQream Transform microservice executes administrative statements such as ``DESCRIBE`` (for example, :ref:`describe_query`, and :ref:`describe_session_queries`) and :ref:`audit_log`.
 
 Monitor
 -------
 
-The Monitor microservice gathers monitoring and audit data, which is accessible through ``DESCRIBE`` and ``AUDITLOG`` statements, as well as the SQream Blue Dashboard.
+The Monitor microservice collects audit data and stores it in a MySQL database, making it accessible to users via ``DESCRIBE`` and ``AUDITLOG`` statements, as well as the SQream Blue :ref:`Dashboard <monitoring_your_cluster>`.
 
 
 

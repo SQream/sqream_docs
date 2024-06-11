@@ -59,6 +59,8 @@ The **Jobs** page is where you can create, execute, and manage your SQL and Pyth
 
 More about :ref:`executing, monitoring, and managing Jobs<performing_basic_blue_operations>`
 
+.. _monitoring_your_cluster:
+
 Monitoring Your Cluster
 =======================
 
