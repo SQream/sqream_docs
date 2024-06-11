@@ -72,6 +72,7 @@ GPU Optimization Engine
    sql/index
    data_type_guides/index
    file_types/index
+   architecture/index
    syntax_notation/index
 
 .. toctree::
