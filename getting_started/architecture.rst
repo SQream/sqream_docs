@@ -59,7 +59,7 @@ The GPU is designed for high-throughput and parallel processing, making it perfe
 Query Handler
 -------------
 
-The Query Handler serves as the entry point for all SQream Blue operations, routing incoming client requests to relevant microservices such as CBO, Queue Manager, and Workers.
+The Query Handler serves as the entry point for all SQream Blue operations, routing incoming client requests to relevant microservices such as Compiler, Queue Manager, and Workers.
 
 Queue Manager
 -------------
@@ -74,17 +74,17 @@ The Flow Manager operates as a decision-making mechanism, prioritizing tasks and
 Metadata Server
 ---------------
 
-The Metadata Server stores metadata which is data about the data stored in the database. This includes information about the structure of the data using a key/value store, such as DDL and statistics. The underlying storage engine for managing metadata is RocksDB. The main consumer of the Metadata Server is the Cost-Based Optimizer (CBO) which uses metadata for creating execution plans.
+The Metadata Server stores metadata which is data about the data stored in the database. This includes information about the structure of the data using a key/value store, such as DDL and statistics. The underlying storage engine for managing metadata is RocksDB. The main consumer of the Metadata Server is the compiler which uses metadata for creating execution plans.
 
-Cost-Based Optimizer
+Compiler
 --------------------
 
-The Cost-Based Optimizer (CBO) parses, interprets, and optimizes SQL statements. It generates execution plans for the Workers and refines them using pre-calculated column statistics. Utilizing Apache Calcite as its compiler, the CBO handles SQL parsing, desugaring, optimization, and relational algebra tasks.
+The Compiler parses, interprets, and optimizes SQL statements. It generates execution plans for the Workers and refines them using pre-calculated statistics. Utilizing Apache Calcite, the compiler handles SQL parsing, desugaring, optimization, and relational algebra tasks.
 
 Statistics Collector
 --------------------
 
-The Statistics Collector (connected via JDBC) generates column histograms (statistics) to aid the CBO in query plan optimization.
+The Statistics Collector (connected via JDBC) generates column histograms (statistics) to aid the compiler in query plan optimization.
 
 GPU Worker
 ----------
