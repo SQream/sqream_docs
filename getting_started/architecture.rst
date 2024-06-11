@@ -18,10 +18,10 @@ Cloud Object Storage
 
 SQream Blue integrates with the following object storage platforms: 
 
-* Google cloud platform (GCP)
+* Google Cloud Storage (GCS)
 * Simple Storage Services (S3)
 
-This integration allows reading and writing to foreign and internal tables, and facilitates the handling of Jobs and SQL and Python scripts.
+This integration enables SQream Blue services to read and write data to and from cloud object storage. It supports foreign and internal tables, SQL and Python scripts, and other operational data needed by services like AirFlow.
 
 Redis
 =====
@@ -44,12 +44,12 @@ System
 Authentication Service
 ----------------------
 
-Auth0, a leading cloud authentication solution, allows you to use your organization’s Identity Provider (IDP) for authentication. The Authentication Service handles authentication via JSON Web Token (JWT) sessions, with horizontal scaling managed by Kubernetes.
+Auth0, a leading cloud authentication solution, allows you to use your organization’s Identity Provider (IDP) for authentication. The Authentication Service handles authentication via JSON Web Token (JWT).
 
 Healer (Health Monitoring)
 --------------------------
 
-The Healer service actively monitors the health of various SQream Blue microservices, overseeing ongoing sessions and ensuring the absence of hung sessions while verifying continuous operational status. In the event of an identified issue with a microservice's health, corrective actions are promptly executed to restore normal operation.
+The Healer service actively monitors the health of various SQream Blue microservices, overseeing ongoing sessions and ensuring the absence of hung sessions while verifying continuous operational status. In the event of an identified issue with a hung query, corrective actions are promptly executed to restore normal operation.
 
 GPU Statement Execution
 =======================
