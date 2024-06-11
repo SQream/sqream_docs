@@ -1,8 +1,8 @@
 .. _blue_tour:
 
-***************
-BLUE Quick Tour
-***************
+**********
+Quick Tour
+**********
  
 Executing Statements
 ====================
