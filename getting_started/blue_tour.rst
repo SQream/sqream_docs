@@ -11,7 +11,7 @@ The **Workbench**  provides a comprehensive environment for writing, managing, a
 
 |workbench_quick_tour|
 
-#. Database Navigator
+#. Database Navigator (which includes :ref:`sample data <sample_data>` ready for you to play around with)
 
 #. Resource Pool Navigator
 
