@@ -4,8 +4,6 @@
 Sample Data
 ***********
 
-
-
 SQream Blue offers users access to two pre-configured databases; ``master`` and ``blue_sample_data``. The ``blue_sample_data`` database includes four schemas with `TPC-H <https://www.tpc.org/tpch/>`_ sample data sets; 
 
 * ``public``
@@ -24,7 +22,7 @@ TPC-H schema ER Diagram
 =======================
 
 .. figure:: /_static/images/tpch_tables.png
-   :scale: 70 %
+   :scale: 60 %
    
 Sample TPC-H Queries
 ====================
