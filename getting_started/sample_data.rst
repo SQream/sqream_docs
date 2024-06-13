@@ -18,7 +18,7 @@ Each schema within the ``blue_sample_data`` database is equipped with six TPC-H 
 
 TPC-H schema ER Diagram
 =======================
-
+ 
 .. figure:: /_static/images/tpch_tables.png
    :scale: 60 %
    
