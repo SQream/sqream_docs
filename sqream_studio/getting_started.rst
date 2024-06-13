@@ -26,6 +26,8 @@ Logging In to Studio
 
    When you sign in, the License Warning is displayed.
    
+.. _monitoring_workers_and_services_from_the_dashboard:
+   
 Navigating Studio's Main Features
 -----------------------------------
 
