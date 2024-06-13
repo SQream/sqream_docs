@@ -158,7 +158,7 @@ The following table shows SQreamDB's recommended Studio server specifications:
    * - Onboard storage
      - 50 GB SSD 2.5in Hot-plug for OS, RAID1
    * - Operating System
-     - Red Hat Enterprise Linux v7.9 or CentOS v7.9
+     - Red Hat Enterprise Linux v7.9 / v8.8 or CentOS v7.9
 
 Cluster Design Considerations
 =============================
@@ -231,7 +231,7 @@ Operating System
 
 SQreamDB can run on the following 64-bit Linux operating systems:
 
-   * Red Hat Enterprise Linux (RHEL) v7.9
+   * Red Hat Enterprise Linux (RHEL) v7.9 / v8.8
    * CentOS v7.9
    * Amazon Linux 2018.03
 
