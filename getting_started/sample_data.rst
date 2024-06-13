@@ -16,8 +16,6 @@ These schemas are differentiated by their allocated storage capacities, denoted 
 
 Each schema within the ``blue_sample_data`` database is equipped with six TPC-H benchmark foreign tables. These tables serve as essential components for performance evaluation, containing simulated data representative of real-world scenarios.
 
-
-
 TPC-H schema ER Diagram
 =======================
 
