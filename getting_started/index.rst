@@ -10,6 +10,8 @@ This guide provides an overview of the key steps to begin using BLUE. The guide 
 
 * Take a :ref:`quick tour<blue_tour>` around the BLUE web interface.
 
+* Start practicing with SQream Blue by running :ref:`TPC-H sample data <sample_data>`.
+
 * :ref:`Manage your resources <managing_your_resources>` and reduce runtime during idle periods for better costs. Allocate workers based on department-specific needs for improved cluster utilization.
 
 * Learn how to use **Jobs**, a SQL and Python :ref:`workflow tool <performing_basic_blue_operations>` designed for creating complex workflows. Jobs automates sequences of SQL and Python scripts, triggering them to deliver insights or prepare data for advanced tasks such as data modeling and training.
@@ -25,6 +27,8 @@ This guide provides an overview of the key steps to begin using BLUE. The guide 
 
    log_in
    blue_tour
+   sample_data
+
 
    
    

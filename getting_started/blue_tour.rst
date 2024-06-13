@@ -1,8 +1,8 @@
 .. _blue_tour:
 
-***************
-BLUE Quick Tour
-***************
+**********
+Quick Tour
+**********
  
 Executing Statements
 ====================
@@ -11,7 +11,7 @@ The **Workbench**  provides a comprehensive environment for writing, managing, a
 
 |workbench_quick_tour|
 
-#. Database Navigator
+#. Database Navigator (which includes :ref:`sample data <sample_data>` ready for you to play around with)
 
 #. Resource Pool Navigator
 
@@ -58,6 +58,8 @@ The **Jobs** page is where you can create, execute, and manage your SQL and Pyth
 * Status
 
 More about :ref:`executing, monitoring, and managing Jobs<performing_basic_blue_operations>`
+
+.. _monitoring_your_cluster:
 
 Monitoring Your Cluster
 =======================
