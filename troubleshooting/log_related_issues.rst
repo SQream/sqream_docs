@@ -1,8 +1,9 @@
 .. _log_related_issues:
 
-***********************
+******************
 Log Related Issues
-***********************
+******************
+
 The **Log Related Issues** page describes how to resolve the following common issues:
 
 .. toctree::
@@ -11,8 +12,9 @@ The **Log Related Issues** page describes how to resolve the following common is
    :titlesonly:
 
 Loading Logs with Foreign Tables
----------------------------------------
-Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a database administrator can access the logs using the :ref:`external_tables` concept through SQream DB.
+--------------------------------
+
+Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a database administrator can access the logs using the :ref:`foreign_tables` concept through SQream DB.
 
 .. code-block:: postgres
 
@@ -50,7 +52,7 @@ For more information, see `Loading Logs with Foreign Tables <https://docs.sqream
 
 
 Counting Message Types
-------------------------------
+----------------------
 
 .. code-block:: psql
 
@@ -76,7 +78,7 @@ Counting Message Types
               1010 |         5
 
 Finding Fatal Errors
-----------------------
+--------------------
 
 .. code-block:: psql
 
@@ -88,7 +90,7 @@ Finding Fatal Errors
    Internal Runtime Error,open cluster metadata database:IO error: lock /home/rhendricks/sqream_storage/LOCK: Resource temporarily unavailable
 
 Countng Error Events Within a Certain Timeframe
----------------------------------------------------
+-----------------------------------------------
 
 .. code-block:: psql
 
@@ -107,7 +109,7 @@ Countng Error Events Within a Certain Timeframe
 .. _tracing_errors:
 
 Tracing Errors to Find Offending Statements
--------------------------------------------------
+-------------------------------------------
 
 If we know an error occured, but don't know which statement caused it, we can find it using the connection ID and statement ID.
 

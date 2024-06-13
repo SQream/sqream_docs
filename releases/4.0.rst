@@ -1,8 +1,8 @@
 .. _4.0:
 
-**************************
+*****************
 Release Notes 4.0
-**************************
+*****************
 
 SQream is introducing a new version release system that follows the more commonly used Major.Minor versioning schema. The newly released **4.0 version** is a minor version upgrade and does not require considerable preparation.
 
