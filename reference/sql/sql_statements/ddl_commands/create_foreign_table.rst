@@ -8,10 +8,7 @@ CREATE FOREIGN TABLE
 
 Changes in the source data can result in corresponding modifications to the content of a foreign table. Consistent access to remote files might impact performance.
 
-Permissions
-===========
 
-The role must have the ``CREATE`` permission at the database level.
 
 Syntax
 ======
@@ -93,7 +90,14 @@ Parameters
    * - ``QUOTE``
      - Specifies an alternative quote character. The quote character must be a single, 1-byte printable ASCII character, and the equivalent octal syntax of the copy command can be used. The quote character cannot be contained in the field delimiter, the record delimiter, or the null marker. QUOTE can be used with ``csv_fdw`` in ``COPY FROM`` and foreign tables. The following characters cannot be an alternative quote character: ``"-.:\\0123456789abcdefghijklmnopqrstuvwxyzN"``
 	 
+Usage Notes
+===========
 
+The automatic foreign table DDL resolution feature supports Parquet, ORC, JSON, and Avro files, while using it with CSV files generates an error. You can activate this feature when you create a foreign table by omitting the column list, described in the **Syntax** section below.
+
+Using this feature the path you specify in the ``LOCATION`` option must point to at least one existing file. If no files exist for the schema to read, an error will be generated. You can specify the schema manually even in the event of the error above.
+
+.. note:: When using this feature, SQream assumes that all files in the path use the same schema.
 
 Examples
 ===========
@@ -234,3 +238,10 @@ Customizing Quotations Using Alternative Characters
 	    DELIMITER = '\t',
 	    QUOTE = '@'
 	  );
+
+Permissions
+===========
+
+The role must have the ``CREATE`` permission at the database level.
+
+The automatic foreign table DDL resolution feature requires **Read** permissions.
