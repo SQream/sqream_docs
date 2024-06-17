@@ -2,18 +2,24 @@
 
 .. _alter_table:
 
-**********************
+***********
 ALTER TABLE
-**********************
-You can use the ``ALTER TABLE`` command to make schema changes to a table, and can be used in conjunction with several sub-commands.
+***********
 
-Locks
-=======
-Making changes to a schema makes an exclusive lock on tables. While these operations do not typically take much time, other statements may have to wait until the schema changes are completed.
+You can use the ``ALTER TABLE`` command to:
+
+* Add, drop, and rename table columns
+* Rename tables
+* Add and reorder table clustering keys
+* Drop table clustering keys
+
+Usage Note
+==========
+
+Making changes to a schema makes an :ref:`exclusive lock<concurrency_and_locks>` on tables. While these operations do not typically take much time, other statements may have to wait until the schema changes are completed.
 
 Sub-Commands
-==============
-The following table shows the sub-commands that can be used with the ``ALTER TABLE`` command:
+============
 
 .. list-table::
    :widths: auto
