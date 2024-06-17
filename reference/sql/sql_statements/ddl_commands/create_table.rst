@@ -41,7 +41,7 @@ Syntax
        | IDENTITY [ ( start_with [ , increment_by ] ) ]
 
 Parameters
-============
+==========
 
 The following parameters can be used when creating a table:
 
