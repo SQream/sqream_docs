@@ -17,6 +17,8 @@ Release Notes
 
 * You now have the ability to grant temporary access to a BLUE support team member. This feature is beneficial for having our support team validate usage and perform checks on your specific environment. 
 
+* We've improved the ``DESCRIBE COLUMNS`` command, allowing you to list information about ``VIEW`` columns.
+
 :ref:`February 2024 <february_2024>`
 
 * The ``DESCRIBE SESSION QUERIES`` command now provides the name of the resource pool used with each query execution.

@@ -6,7 +6,7 @@
 DESCRIBE COLUMNS
 ****************
 
-The ``DESCRIBE COLUMNS`` command lets you list information about table columns.
+The ``DESCRIBE COLUMNS`` command lets you list information about table and view columns.
 
 .. note:: ``DESCRIBE`` commands use CPU to increase usability.
 
