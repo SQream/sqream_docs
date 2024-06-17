@@ -3,7 +3,7 @@
 ***********
 ALTER TABLE
 ***********
-
+ 
 You can use the ``ALTER TABLE`` command to:
 
 * Add, drop, and rename table columns
