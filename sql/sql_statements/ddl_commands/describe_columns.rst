@@ -15,7 +15,7 @@ Syntax
 
 .. code-block:: postgres
 
-   DESC[RIBE] COLUMNS [ DATABASE  <database_name> ] [ SCHEMA <schema_name> ] TABLE <table_name> [LIKE 'pattern']
+   DESC[RIBE] COLUMNS [ DATABASE  <database_name> ] [ SCHEMA <schema_name> ] TABLE <table_name> [LIKE 'pattern'] | VIEW <view_name>[LIKE 'pattern']
 
 Parameters
 ==========
