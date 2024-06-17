@@ -6,9 +6,7 @@ CREATE TABLE
 
 The ``CREATE TABLE`` statement is used to create a new table in an existing database.
 
-.. tip:: 
-   * To create a table based on the result of a select query, see :ref:`CREATE TABLE AS <create_table_as>`.
-   * To create a table based on files like Parquet and ORC, see :ref:`CREATE FOREIGN TABLE <create_foreign_table>`
+See also: :ref:`CREATE TABLE AS <create_table_as>`, :ref:`CREATE FOREIGN TABLE <create_foreign_table>`
 
 .. contents:: 
    :local:
@@ -52,20 +50,23 @@ The following parameters can be used when creating a table:
    * - Parameter
      - Description
    * - ``OR REPLACE``
-     - Creates a new table and overwrites any existing table by the same name. Does not return an error if the table already exists. ``CREATE OR REPLACE`` does not check table contents or structure, only the table name.
+     - Creates a new table and overwrites any existing table by the same name. Does not return an error if the table already exists. ``CREATE OR REPLACE`` does not check table contents or structure, only the table name
    * - ``schema_name``
-     - The name of the schema in which to create the table.
+     - The name of the schema in which to create the table
    * - ``table_name``
-     - The name of the table to create, which must be unique inside the schema.
+     - The name of the table to create, which must be unique inside the schema
    * - ``column_def``
-     - A comma separated list of column definitions. A minimal column definition includes a name identifier and a datatype. Other column constraints and default values can be added optionally.
+     - A comma separated list of column definitions. A minimal column definition includes a name identifier and a datatype. Other column constraints and default values can be added optionally
+   * - ``LIKE``
+     - Duplicates the column structure of an existing table. The newly created table is granted default ``CREATE TABLE`` permissions: ``SELECT``, ``INSERT``, ``DELETE``, ``DDL``, and ``UPDATE``
+   * - ``INCLUDE PERMISSIONS``
+     - In addition to the default ``CREATE TABLE`` permissions (``SELECT``, ``INSERT``, ``DELETE``, ``DDL``, and ``UPDATE``), the newly created table is granted the source table existing permissions 
    * - ``CLUSTER BY column_name1 ...``
      - 
-         A comma separated list of clustering column keys.
+         A comma separated list of clustering column keys
          
-         See :ref:`cluster_by` for more information.
-   * - ``LIKE``
-     - Duplicates the column structure of an existing table.
+         See :ref:`cluster_by` for more information
+
 
 Usage Notes
 ===========
