@@ -62,7 +62,7 @@ Getting All Configuration and JAR Files
 
 Extract the ``.tar`` file using the following command:
 
-.. code-block:: linux
+.. code-block:: bash
 
 	tar -xf sqloader_srv_v8.0.tar.gz
 

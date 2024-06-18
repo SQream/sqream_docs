@@ -67,7 +67,7 @@ Like many RDBMSs, SQream recommends its own set of best practices for table desi
 
 * That you followed the table design best practices (:ref:`Optimization and Best Practices<sql_best_practices>`).
 
-* That you've tested and verified that your applications work (such as :ref:`Tableau<connect_to_tableau>`).
+* That you've tested and verified that your applications work.
 
 * That your data types have not been not over-provisioned.
 
@@ -136,7 +136,7 @@ Handing Extended Errors
 While you can use foreign tables to load CSVs, the ``COPY FROM`` statement provides more fine-grained error handling options and extended support for non-standard CSVs with multi-character delimiters, alternate timestamp formats, and more.
 
 For more information, see :ref:`foreign tables<foreign_tables>`.
-
+  
 Foreign Data Wrapper Best Practice
 ==================================
 
