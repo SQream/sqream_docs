@@ -1,8 +1,9 @@
 .. _ingesting_data:
 
-***************************
-Ingesting Data Overview
-***************************
+********
+Overview
+********
+
 The **Ingesting Data Overview** page provides basic information useful when ingesting data into SQream from a variety of sources and locations, and describes the following:
 
 .. contents::
@@ -10,7 +11,8 @@ The **Ingesting Data Overview** page provides basic information useful when inge
    :depth: 1
    
 Getting Started
-================================
+===============
+
 SQream supports ingesting data using the following methods:
 
 * Executing the ``INSERT`` statement using a client driver.
@@ -46,7 +48,8 @@ For more information, see the following:
 * Loading data from foreign tables - :ref:`foreign_tables`
 
 Data Loading Considerations
-================================
+===========================
+
 The **Data Loading Considerations** section describes the following:
 
 .. contents:: 
@@ -54,7 +57,8 @@ The **Data Loading Considerations** section describes the following:
    :depth: 1
    
 Verifying Data and Performance after Loading
------------------------------------------
+--------------------------------------------
+
 Like many RDBMSs, SQream recommends its own set of best practices for table design and query optimization. When using SQream, verify the following:
 
 * That your data is structured as you expect (row counts, data types, formatting, content).
@@ -63,12 +67,13 @@ Like many RDBMSs, SQream recommends its own set of best practices for table desi
 
 * That you followed the table design best practices (:ref:`Optimization and Best Practices<sql_best_practices>`).
 
-* That you've tested and verified that your applications work (such as :ref:`Tableau<connect_to_tableau>`).
+* That you've tested and verified that your applications work.
 
 * That your data types have not been not over-provisioned.
 
 File Soure Location when Loading
 --------------------------------
+
 While you are loading data, you can use the ``COPY FROM`` command to let statements run on any worker. If you are running multiple nodes, verify that all nodes can see the source the same. Loading data from a local file that is only on one node and not on shared storage may cause it to fail. If required, you can also control which node a statement runs on using the Workload Manager).
 
 For more information, see the following:
@@ -79,7 +84,10 @@ For more information, see the following:
 
 Supported Load Methods
 ----------------------
+
 You can use the ``COPY FROM`` syntax to load CSV files.
+
+.. note:: The ``COPY FROM`` cannot be used for loading data from Parquet and ORC files.
 
 You can use foreign tables to load text files, Parquet, and ORC files, and to transform your data before generating a full table, as described in the following table:
 
@@ -95,8 +103,8 @@ You can use foreign tables to load text files, Parquet, and ORC files, and to tr
      - Streaming Data
    * - COPY FROM
      - Supported
-     - Supported
-     - Supported
+     - Not supported
+     - Not supported
      - Not supported
    * - Foreign tables
      - Supported
@@ -118,17 +126,25 @@ For more information, see the following:
 * :ref:`INSERT<insert>`
 
 Unsupported Data Types
------------------------------
+----------------------
+
 SQream does not support certain features that are supported by other databases, such as ``ARRAY``, ``BLOB``, ``ENUM``, and ``SET``. You must convert these data types before loading them. For example, you can store ``ENUM`` as ``TEXT``.
 
 Handing Extended Errors
-----------------------------
+-----------------------
+
 While you can use foreign tables to load CSVs, the ``COPY FROM`` statement provides more fine-grained error handling options and extended support for non-standard CSVs with multi-character delimiters, alternate timestamp formats, and more.
 
 For more information, see :ref:`foreign tables<foreign_tables>`.
+  
+Foreign Data Wrapper Best Practice
+==================================
+
+A recommended approach when working with :ref:`foreign_tables` and Foreign Data Wrapper (FDW) is storing files belonging to distinct file families and files with similar schemas in separate folders.
 
 Best Practices for CSV
-------------------------------
+----------------------
+
 Text files, such as CSV, rarely conform to `RFC 4180 <https://tools.ietf.org/html/rfc4180>`_ , so you may need to make the following modifications:
 
 * Use ``OFFSET 2`` for files containing header rows.
@@ -148,7 +164,8 @@ Text files, such as CSV, rarely conform to `RFC 4180 <https://tools.ietf.org/htm
 * Field delimiters do not have to be a displayable ASCII character. For all supported field delimiters, see :ref:`field_delimiters`.
 
 Best Practices for Parquet
---------------------------------
+--------------------------
+
 The following list shows the best practices when ingesting data from Parquet files:
 
 * You must load Parquet files through :ref:`foreign_tables`. Note that the destination table structure must be identical to the number of columns between the source files.
@@ -156,7 +173,8 @@ The following list shows the best practices when ingesting data from Parquet fil
 * Parquet files support **predicate pushdown**. When a query is issued over Parquet files, SQream uses row-group metadata to determine which row-groups in a file must be read for a particular query and the row indexes can narrow the search to a particular set of rows.
 
 Supported Types and Behavior Notes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Unlike the ORC format, the column types should match the data types exactly, as shown in the table below:
 
 .. list-table:: 
@@ -269,7 +287,8 @@ Unlike the ORC format, the column types should match the data types exactly, as 
 If a Parquet file has an unsupported type, such as ``enum``, ``uuid``, ``time``, ``json``, ``bson``, ``lists``, ``maps``, but the table does not reference this data (i.e., the data does not appear in the :ref:`SELECT` query), the statement will succeed. If the table **does** reference a column, an error will be displayed explaining that the type is not supported, but the column may be omitted.
 
 Best Practices for ORC
---------------------------------
+----------------------
+
 The following list shows the best practices when ingesting data from ORC files:
 
 * You must load ORC files through :ref:`foreign_tables`. Note that the destination table structure must be identical to the number of columns between the source files.
@@ -277,8 +296,9 @@ The following list shows the best practices when ingesting data from ORC files:
 * ORC files support **predicate pushdown**. When a query is issued over ORC files, SQream uses ORC metadata to determine which stripes in a file need to be read for a particular query and the row indexes can narrow the search to a particular set of 10,000 rows.
 
 Type Support and Behavior Notes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-You must load ORC files through foreign table. Note that the destination table structure must be identical to the number of columns between the source files.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+You must load ORC files through a foreign table. Note that the destination table structure must be identical to the number of columns between the source files.
 
 For more information, see :ref:`foreign_tables`.
 
@@ -299,7 +319,7 @@ The types should match to some extent within the same "class", as shown in the f
      - ``BIGINT``
      - ``REAL``
      - ``DOUBLE``
-     - Text [#f0]_
+     - ``TEXT``
      - ``DATE``
      - ``DATETIME``
    * - ``boolean``
@@ -413,7 +433,7 @@ The types should match to some extent within the same "class", as shown in the f
      - 
      - Supported
 
-* If an ORC file has an unsupported type like ``binary``, ``list``, ``map``, and ``union``, but the data is not referenced in the table (it does not appear in the :ref:`SELECT` query), the statement will succeed. If the column is referenced, an error will be thrown to the user, explaining that the type is not supported, but the column may be ommited.
+* If an ORC file has an unsupported type like ``binary``, ``list``, ``map``, and ``union``, but the data is not referenced in the table (it does not appear in the :ref:`SELECT` query), the statement will succeed. If the column is referenced, an error will be thrown to the user, explaining that the type is not supported, but the column may be omitted.
 
 
 
@@ -457,7 +477,8 @@ The types should match to some extent within the same "class", as shown in the f
    try to combine sensibly with the external table stuff
 
 Further Reading and Migration Guides
-=======================================
+====================================
+
 For more information, see the following:
 
 * :ref:`copy_from`
@@ -465,8 +486,6 @@ For more information, see the following:
 * :ref:`foreign_tables`
 
 .. rubric:: Footnotes
-
-.. [#f0] Text values include ``TEXT``, ``VARCHAR``, and ``NVARCHAR``
 
 .. [#f2] With UTF8 annotation
 
