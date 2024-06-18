@@ -134,8 +134,8 @@ You can write a function in Python to uppercase a text value using the :ref:`cre
 Let's break down this example:
 
 * ``CREATE FUNCTION my_upper`` - :ref:`Create a function<create_function>` called ``my_upper``. This name must be unique in the current database
-* ``(x1 text)`` - the function accepts one argument named ``x1`` which is of the SQL type ``TEXT``. All :ref:`data types<data_types>` are supported.
-* ``RETURNS text`` - the function returns the same type - ``TEXT``. All :ref:`data types<data_types>` are supported.
+* ``(x1 text)`` - the function accepts one argument named ``x1`` which is of the SQL type ``TEXT``. All :ref:`data types<supported_data_types>` are supported.
+* ``RETURNS text`` - the function returns the same type - ``TEXT``. All :ref:`data types<supported_data_types>` are supported.
 * ``AS $$`` - what follows is some code that we don't want to quote, so we use dollar-quoting (``$$``) instead of single quotes (``'``).
 * ``return x1.upper()`` - the Python function's body is the argument named ``x1``, uppercased.
 * ``$$ LANGUAGE PYTHON`` - this is the end of the function, and it's in the Python language.
