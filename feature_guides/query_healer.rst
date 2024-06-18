@@ -1,14 +1,15 @@
 .. _query_healer:
 
-***********************
+************
 Query Healer
-***********************
+************
  
 
 The **Query Healer** periodically examines the progress of running statements, creating a log entry for all statements exceeding a defined time period.   
 
 Configuration
 -------------
+
 The following worker flags are required to configure the Query Healer:
 
 .. list-table:: 
@@ -20,7 +21,7 @@ The following worker flags are required to configure the Query Healer:
    * - ``is_healer_on``
      - The :ref:`is_healer_on` enables and disables the Query Healer.
    * - ``maxStatementInactivitySeconds``
-     - The :ref:`healer_max_statement_inactivity_seconds` worker level flag defines the threshold for creating a log recording a slow statement. The log includes information about the log memory, CPU and GPU. The default setting is five hours.
+     - The :ref:`max_statement_inactivity_seconds` worker level flag defines the threshold for creating a log recording a slow statement. The log includes information about the log memory, CPU and GPU. The default setting is five hours.
    * - ``healerDetectionFrequencySeconds``
      - The :ref:`healer_detection_frequency_seconds` worker level flag triggers the healer to examine the progress of running statements. The default setting is one hour. 
 
@@ -37,6 +38,7 @@ Once you identify the stuck worker, you can execute the ``shutdown_server`` util
 
 Activating a Graceful Shutdown
 ------------------------------
+
 You can activate a graceful shutdown if your log entry says ``Stuck query found``, as shown in the example above. You can do this by setting the **shutdown_server** utility function to ``select shutdown_server();``.
 
 **To activte a graceful shutdown:**
