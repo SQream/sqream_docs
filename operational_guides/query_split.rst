@@ -255,7 +255,7 @@ Splitting the Query
 
 3. Set the ``@@SplitQueryByNumber`` operator with the number of instances (splits) of your query (here based on an ``INTEGER`` column), and set the ``between ${from} and ${to}`` clause with the name of the column by which you wish to split your query (here the query is split by the ``age`` column.
 
-.. code-block:: sql
+.. code-block:: postgres
 
 	@@SplitQueryByNumber instances = 4, from = minMax[0].min, to = minMax[0].max
 	INSERT INTO FinalResult
@@ -270,8 +270,8 @@ Splitting the Query
 	  SUM(CASE WHEN age BETWEEN 25 AND 30 THEN salary ELSE 0 END) AS total_salary_age_25_30
 	FROM
 	  MyTable
-	WHERE
-	  age between ${from} and ${to}
+	WHERE 
+	  age between '${from}' and '${to}'
 	  AND salary > 55000
 	GROUP BY
 	  age
