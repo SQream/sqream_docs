@@ -11,10 +11,10 @@ The following describes the ``defaultGracefulShutdownTimeoutMinutes`` flag:
 * **Default value** - ``5``
 * **Allowed values** - 1-4000000000
 
-For more information, see :ref:`shutdown_server`.
+For more information, see :ref:`shutdown_server_command`.
 
 For related flags, see the folowing:
 
 * :ref:`is_healer_on`
 
-* :ref:`healer_max_inactivity_hours`
+* :ref:`current_method_flag_types`
