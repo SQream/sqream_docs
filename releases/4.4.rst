@@ -40,8 +40,6 @@ New Features and Enhancements
 
 ► :ref:`denodo` may now be used for real-time data visualization of various sources.
 
-► Introducing :ref:`select_data_read_metrics` utility function, facilitating easy monitoring of cluster data read within specified timeframes, ensuring adherence to license limits.
-
 ► New :ref:`select_gpu_metrics` utility function now available, providing insights into cluster GPU usage over defined periods, crucial for maintaining compliance with license limits.
 
 Newly Released Connector Drivers
