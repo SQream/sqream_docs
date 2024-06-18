@@ -67,7 +67,7 @@ Like many RDBMSs, SQream recommends its own set of best practices for table desi
 
 * That you followed the table design best practices (:ref:`Optimization and Best Practices<sql_best_practices>`).
 
-* That you've tested and verified that your applications work (such as :ref:`Tableau<connect_to_tableau>`).
+* That you've tested and verified that your applications work.
 
 * That your data types have not been not over-provisioned.
 

@@ -271,7 +271,7 @@ Commonly Seen Nodes
      - Reads data from a standard table stored on disk
    * - ``Rechunk``
      - 
-     - Reorganize multiple small :ref:`chunks<chunks_and_extents>` into a full chunk. Commonly found after joins and when :ref:`HIGH_SELECTIVITY<high_selectivity>` is used
+     - Reorganize multiple small chunks into a full chunk. Commonly found after joins and when :ref:`HIGH_SELECTIVITY<high_selectivity>` is used
    * - ``Reduce``
      - GPU
      - A reduction operation, such as a ``GROUP BY``

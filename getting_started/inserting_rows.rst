@@ -1,8 +1,8 @@
 .. _inserting_rows:
 
-****************************
+**************
 Inserting Rows
-****************************
+**************
 
 The **Inserting Rows** section describes the following:
 
@@ -48,7 +48,7 @@ You can insert multiple rows using the ``INSERT`` statement by using sets of par
      (5, 'Rhinoceros', 2100);
    
 
-.. note:: You can load large data sets using bulk loading methods instead. For more information, see :ref:`inserting_data`.
+.. note:: You can load large data sets using bulk loading methods instead. For more information, see :ref:`ingesting_data`.
 
 .. _omitting_columns:
 
