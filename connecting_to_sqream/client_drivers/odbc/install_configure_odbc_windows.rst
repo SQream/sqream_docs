@@ -8,9 +8,9 @@ The ODBC driver for Windows is provided as a self-contained installer.
 
 This tutorial shows you how to install and configure ODBC on Windows.
 
-.. contents:: In this topic:
+.. contents::
    :local:
-   :depth: 2
+   :depth: 1
 
 Installing the ODBC Driver
 ==================================
@@ -31,7 +31,7 @@ Administrator Privileges
 The SQream DB ODBC driver requires administrator privileges on your computer to add the DSNs (data source names).
 
 
-1. Run the Windows installer
+Running the Windows Installer
 ------------------------------
 
 Install the driver by following the on-screen instructions in the easy-to-follow installer.
@@ -40,7 +40,7 @@ Install the driver by following the on-screen instructions in the easy-to-follow
 
 .. note:: The installer will install the driver in ``C:\Program Files\SQream Technologies\ODBC Driver`` by default. This path is changable during the installation.
 
-2. Selecting Components
+Selecting Components
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The installer includes additional components, like JDBC and Tableau customizations.
@@ -53,7 +53,7 @@ Once the installer finishes, you will be ready to configure the DSN for connecti
 
 .. _create_windows_odbc_dsn:
 
-3. Configuring the ODBC Driver DSN
+Configuring the ODBC Driver DSN
 ======================================
 
 ODBC driver configurations are done via DSNs. Each DSN represents one SQream DB database.
@@ -80,7 +80,7 @@ ODBC driver configurations are done via DSNs. Each DSN represents one SQream DB 
    
    .. image:: /_static/images/odbc_windows_dsn_test.png
 
-#. You can now use this DSN in ODBC applications like :ref:`Tableau <connect_to_tableau>`.
+
 
 
 
@@ -104,7 +104,7 @@ Connection Parameters
    * - Database
      - Specifies the database name to connect to. For example, ``master``
    * - Service
-     - Specifices :ref:`service queue<workload_manager>` to use. For example, ``etl``. Leave blank for default service ``sqream``.
+     - Specifies :ref:`service queue<workload_manager>` to use. For example, ``etl``. Leave blank for default service ``sqream``.
    * - Server
      - Hostname of the SQream DB worker. For example, ``127.0.0.1`` or ``sqream.mynetwork.co``
    * - Port
@@ -132,3 +132,8 @@ After installing the ODBC driver, you may experience the following error:
    (c:\Program Files\SQream Technologies\ODBC Driver\sqreamOdbc64.dll)
 
 This is an issue with the Visual Studio Redistributable packages. Verify you've correctly installed them, as described in the :ref:`Visual Studio 2015 Redistributables <vcredist>` section above.
+
+Limitations
+===============
+
+Please note that the SQreamDB ODBC connector does not support the use of ARRAY data types. If your database schema includes ARRAY columns, you may encounter compatibility issues when using ODBC to connect to the database.
