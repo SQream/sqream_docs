@@ -80,7 +80,7 @@ ODBC driver configurations are done via DSNs. Each DSN represents one SQream DB 
    
    .. image:: /_static/images/odbc_windows_dsn_test.png
 
-#. You can now use this DSN in ODBC applications like :ref:`Tableau <connect_to_tableau>`.
+
 
 
 

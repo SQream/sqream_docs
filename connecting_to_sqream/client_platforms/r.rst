@@ -44,7 +44,7 @@ JDBC
       > .jinit(classpath=cp)
       > drv <- JDBC("com.sqream.jdbc.SQDriver","C:\\Program Files\\SQream Technologies\\JDBC Driver\\2020.1-3.2.0\\sqream-jdbc-3.2.jar")
 #. 
-   Open a connection with a :ref:`JDBC connection string<connection_string>` and run your first statement
+   Open a connection with a :ref:`JDBC connection string<java_jdbc>` and run your first statement
    
    .. code-block:: rconsole
    
