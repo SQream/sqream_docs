@@ -18,7 +18,7 @@ To use Spark with SQreamDB, it is essential that you have the following installe
 * SQreamDB version 2022.1.8 or later
 * Spark version 3.3.1 or later
 * `SQreamDB Spark Connector 5.0.0 <https://sq-ftp-public.s3.amazonaws.com/Spark-Sqream-Connector-5.0.0.jar>`_ 
-* :ref:`JDBC<jdbc>` version 4.5.6 or later
+* :ref:`JDBC<java_jdbc>` version 4.5.6 or later
 
 Configuration
 =============
