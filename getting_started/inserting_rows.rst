@@ -1,8 +1,9 @@
 .. _inserting_rows:
 
-****************************
+**************
 Inserting Rows
-****************************
+**************
+
 The **Inserting Rows** section describes the following:
 
 * :ref:`Inserting basic rows<inserting_basic_rows>`
@@ -19,9 +20,8 @@ You can insert basic rows into a table using the ``INSERT`` statement. The inser
 
 .. code-block:: psql
 
-   test=> INSERT INTO cool_animals VALUES (1, 'Dog', 7);
+   INSERT INTO cool_animals VALUES (1, 'Dog', 7);
    
-   executed
 
 .. _changing_value_order:
 
@@ -31,9 +31,8 @@ You can change the order of values by specifying the column order, as shown in t
 
 .. code-block:: psql
 
-   test=> INSERT INTO cool_animals(weight, id, name) VALUES (3, 2, 'Possum');
+   INSERT INTO cool_animals(weight, id, name) VALUES (3, 2, 'Possum');
    
-   executed
 
 .. _inserting_multiple_rows:
 
@@ -43,14 +42,13 @@ You can insert multiple rows using the ``INSERT`` statement by using sets of par
 
 .. code-block:: psql
 
-   test=> INSERT INTO cool_animals VALUES
-         (3, 'Cat', 5) ,
-         (4, 'Elephant', 6500) ,
-         (5, 'Rhinoceros', 2100);
+   INSERT INTO cool_animals VALUES
+     (3, 'Cat', 5) ,
+     (4, 'Elephant', 6500) ,
+     (5, 'Rhinoceros', 2100);
    
-   executed
 
-.. note:: You can load large data sets using bulk loading methods instead. For more information, see :ref:`inserting_data`.
+.. note:: You can load large data sets using bulk loading methods instead. For more information, see :ref:`ingesting_data`.
 
 .. _omitting_columns:
 
@@ -60,16 +58,16 @@ Omitting columns that have a default values (including default ``NULL`` values) 
 
 .. code-block:: psql
 
-   test=> INSERT INTO cool_animals (id) VALUES (6);
+   INSERT INTO cool_animals (id) VALUES (6);
    
-   executed
+
 
 .. code-block:: psql
 
-   test=> INSERT INTO cool_animals (id) VALUES (6);
+   INSERT INTO cool_animals (id) VALUES (6);
    
-   executed
-   test=> SELECT * FROM cool_animals;
+
+   SELECT * FROM cool_animals;
    1,Dog                 ,7
    2,Possum              ,3
    3,Cat                 ,5
@@ -77,7 +75,7 @@ Omitting columns that have a default values (including default ``NULL`` values) 
    5,Rhinoceros          ,2100
    6,\N,\N
    
-   6 rows
+
 
 .. note:: Null row values are represented as ``\N``
 
