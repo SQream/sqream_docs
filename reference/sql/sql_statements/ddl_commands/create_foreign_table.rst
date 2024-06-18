@@ -96,7 +96,7 @@ Parameters
 
 
 Examples
-===========
+========
 
 Creating a Tab-Delimited Table
 ------------------------------
