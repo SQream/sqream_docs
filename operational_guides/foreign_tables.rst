@@ -46,12 +46,12 @@ Planning for Data Staging
 For the following examples, we will interact with a CSV file.
 
 The file is stored on :ref:`s3`, at ``s3://sqream-demo-data/nba_players.csv``.
-We will make note of the file structure, to create a matching ``CREATE_EXTERNAL_TABLE`` statement.
+We will make note of the file structure, to create a matching ``CREATE FOREIGN TABLE`` statement.
 
 Creating a Foreign Table
 ------------------------
 
-Based on the source file structure, we :ref:`create a foreign table<create_external_table>` with the appropriate structure, and point it to the file.
+Based on the source file structure, we :ref:`create a foreign table<create_foreign_table>` with the appropriate structure, and point it to the file.
 
 .. code-block:: postgres
    
@@ -84,7 +84,8 @@ Let's peek at the data from the foreign table:
 
 .. code-block:: psql
    
-   t=> SELECT * FROM nba LIMIT 10;
+   SELECT * FROM nba LIMIT 10;
+
    name          | team           | number | position | age | height | weight | college           | salary  
    --------------+----------------+--------+----------+-----+--------+--------+-------------------+---------
    Avery Bradley | Boston Celtics |      0 | PG       |  25 | 6-2    |    180 | Texas             |  7730337
@@ -106,9 +107,9 @@ Assume we are unhappy with weight being in pounds because we want to use kilogra
 
 .. code-block:: psql
    
-   t=> SELECT name, team, number, position, age, height, (weight / 2.205) as weight, college, salary 
-   .          FROM nba
-   .          ORDER BY weight;
+   SELECT name, team, number, position, age, height, (weight / 2.205) as weight, college, salary 
+   FROM nba
+   ORDER BY weight;
 
    name                     | team                   | number | position | age | height | weight   | college               | salary  
    -------------------------+------------------------+--------+----------+-----+--------+----------+-----------------------+---------
@@ -134,12 +135,12 @@ Converting a Foreign Table to a Standard Database Table
 
 .. code-block:: psql
    
-   t=> CREATE TABLE real_nba AS 
-   .    SELECT name, team, number, position, age, height, (weight / 2.205) as weight, college, salary 
-   .            FROM nba
-   .            ORDER BY weight;
-   executed
-   t=> SELECT * FROM real_nba LIMIT 5;
+   CREATE TABLE real_nba AS 
+    SELECT name, team, number, position, age, height, (weight / 2.205) as weight, college, salary 
+    FROM nba
+   ORDER BY weight;
+   
+   SELECT * FROM real_nba LIMIT 5;
 
    name             | team                   | number | position | age | height | weight   | college     | salary  
    -----------------+------------------------+--------+----------+-----+--------+----------+-------------+---------
@@ -160,7 +161,8 @@ Error Handling and Limitations
    
    .. code-block:: psql
       
-      t=> SELECT * FROM nba;
-      master=> select * from nba;
+      SELECT * FROM nba;
+
+      SELECT * FROM nba;
       Record delimiter mismatch during CSV parsing. User defined line delimiter \n does not match the first delimiter \r\n found in s3://sqream-demo-data/nba.csv
 * Since the data for a foreign table is not stored in SQream DB, it can be changed or removed at any time by an external process. As a result, the same query can return different results each time it runs against a foreign table. Similarly, a query might fail if the external data is moved, removed, or has changed structure.
