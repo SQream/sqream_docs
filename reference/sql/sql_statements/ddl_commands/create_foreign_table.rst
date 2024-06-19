@@ -4,7 +4,7 @@
 CREATE FOREIGN TABLE
 ********************
 
-``CREATE FOREIGN TABLE`` creates a new foreign table in an existing database.
+The ``CREATE FOREIGN TABLE`` command creates a foreign table that references data stored outside of SQreamDB. Foreign tables are used for querying data stored in files on a file system, :ref:`external storage platforms<external_storage_platforms>`, or in other databases.
 
 Syntax
 ======
@@ -51,7 +51,7 @@ Syntax
 .. _cft_parameters:
 
 Parameters
-============
+==========
 
 .. list-table:: 
    :widths: auto
