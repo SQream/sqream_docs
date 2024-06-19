@@ -1,8 +1,8 @@
 .. _foreign_tables:
 
-***********************
+**************
 Foreign Tables
-***********************
+**************
 
 Foreign tables can be used to run queries directly on data without inserting it into SQream DB first.
 SQream DB supports read-only foreign tables so that you can query from foreign tables, but you cannot insert to them, or run deletes or updates on them.
@@ -16,7 +16,7 @@ Although foreign tables can be used without inserting data into SQream DB, one o
    :depth: 1
    
 Supported Data Formats
-=====================================
+======================
 
 SQream DB supports foreign tables over:
 
@@ -27,7 +27,7 @@ SQream DB supports foreign tables over:
 * JSON
 
 Supported Data Staging
-============================================
+======================
 
 SQream can stage data from:
 
@@ -36,12 +36,12 @@ SQream can stage data from:
 * :ref:`hdfs` (e.g. ``hdfs://hadoop-nn.piedpiper.com/rhendricks/*.csv``)
 
 Using Foreign Tables
-==============================================
+====================
 
 Use a foreign table to stage data before loading from CSV, Parquet or ORC files.
 
 Planning for Data Staging
---------------------------------
+-------------------------
 
 For the following examples, we will interact with a CSV file.
 
@@ -49,7 +49,7 @@ The file is stored on :ref:`s3`, at ``s3://sqream-demo-data/nba_players.csv``.
 We will make note of the file structure, to create a matching ``CREATE_EXTERNAL_TABLE`` statement.
 
 Creating a Foreign Table
------------------------------
+------------------------
 
 Based on the source file structure, we :ref:`create a foreign table<create_external_table>` with the appropriate structure, and point it to the file.
 
@@ -78,7 +78,7 @@ The file format in this case is CSV, and it is stored as an :ref:`s3` object (if
 We also took note that the record delimiter was a DOS newline (``\r\n``).
 
 Querying Foreign Tables
-------------------------------
+-----------------------
 
 Let's peek at the data from the foreign table:
 
@@ -99,7 +99,7 @@ Let's peek at the data from the foreign table:
    Marcus Smart  | Boston Celtics |     36 | PG       |  22 | 6-4    |    220 | Oklahoma State    |  3431040
 
 Modifying Data from Staging
--------------------------------
+---------------------------
 
 One of the main reasons for staging data is to examine the content and modify it before loading.
 Assume we are unhappy with weight being in pounds because we want to use kilograms instead. We can apply the transformation as part of a query:
@@ -126,7 +126,7 @@ Assume we are unhappy with weight being in pounds because we want to use kilogra
 Now, if we're happy with the results, we can convert the staged foreign table to a standard table
 
 Converting a Foreign Table to a Standard Database Table
----------------------------------------------------------------
+-------------------------------------------------------
 
 :ref:`create_table_as` can be used to materialize a foreign table into a regular table.
 
@@ -150,7 +150,7 @@ Converting a Foreign Table to a Standard Database Table
    Andre Drummond   | Detroit Pistons        |      0 | C        |  22 | 6-11   | 126.5306 | Connecticut |  3272091
 
 Error Handling and Limitations
-==================================
+==============================
 
 * Error handling in foreign tables is limited. Any error that occurs during source data parsing will result in the statement aborting.
 
