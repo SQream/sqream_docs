@@ -96,7 +96,7 @@ Using this feature the path you specify in the ``LOCATION`` option must point to
 .. note:: When using this feature, SQream assumes that all files in the path use the same schema.
 
 Examples
-===========
+========
 
 Creating a Tab-Delimited Table
 ------------------------------
