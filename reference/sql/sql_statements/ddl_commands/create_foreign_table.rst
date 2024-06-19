@@ -6,10 +6,6 @@ CREATE FOREIGN TABLE
 
 ``CREATE FOREIGN TABLE`` creates a new foreign table in an existing database.
 
-Changes in the source data can result in corresponding modifications to the content of a foreign table. Consistent access to remote files might impact performance.
-
-
-
 Syntax
 ======
 
