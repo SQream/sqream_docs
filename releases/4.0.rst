@@ -17,13 +17,9 @@ New Features
 
  * Re-enabling an enhanced version of the :ref:`License Storage Capacity<monitoring_workers_and_services_from_the_dashboard>` feature 
 
-	::
-
  * :ref:`Lightweight Directory Access Protocol(LDAP)<ldap>` may be used to authenticate SQream roles
 
-	::
-
- * :ref:`Physical deletion performance enhancement<delete>` by supporting file systems with parallelism capabilities
+ * :ref:`Physical deletion performance enhancement<delete_guide>` by supporting file systems with parallelism capabilities
  
 Storage Version
 ---------------
