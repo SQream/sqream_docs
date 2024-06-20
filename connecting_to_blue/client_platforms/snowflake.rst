@@ -1,0 +1,125 @@
+:orphan:
+
+.. _snowflake:
+
+*********
+Snowflake
+*********
+
+
+Syntax
+======
+
+.. code-block:: postgres
+
+	create_table_statement ::=
+	    CREATE [ OR REPLACE ] FOREIGN TABLE [schema_name].table_name (
+	        { column_def [, ...] }
+	    )
+	    [ FOREIGN DATA ] WRAPPER snowflake_fdw
+	    [ OPTIONS ( option_def [, ...  ] ) ]
+
+	schema_name ::= identifier
+
+	table_name ::= identifier
+
+	option_def ::=
+	{
+	  account_name = '{account name}'
+	  user = '{ username }',
+	  password = '{ password }',
+	  sfWarehouse = '{ warehouse_name }'
+	  database = '{ database_name }',
+	  [ schema = '{ schema_name }' ], /* Optional - will use default schema "public" if not specified. */
+	  dbtable = '{ table_name }'
+	}
+
+	column_def ::=
+	    { column_name type_name [ default ] [ column_constraint ] }
+
+	column_name ::= identifier
+
+	column_constraint ::=
+	    { NOT NULL | NULL }
+
+	default ::=
+	    DEFAULT default_value
+	    | IDENTITY [ ( start_with [ , increment_by ] ) ]
+		
+	drop_table_statement ::=
+	    DROP TABLE [ IF EXISTS ] [schema_name.]table_name
+
+	table_name ::= identifier
+
+	schema_name ::= identifier
+
+	 COPY { [schema_name].table_name [ ( column_name [, ... ] ) ] | query }
+	   TO [FOREIGN DATA] WRAPPER snowflake_fdw
+
+	     OPTIONS
+	     (
+	        [ copy_to_option [, ...] ]
+	     )
+
+	 schema_name ::= identifer
+
+	 table_name ::= identifier
+
+	 copy_to_option ::=
+
+	{
+	  account_name = '{account name}'
+	  user = '{ username }',
+	  password = '{ password }',
+	  sfWarehouse = '{ warehouse_name }'
+	  database = '{ database_name }',
+	  [ schema = '{ schema_name }' ], /* Optional - will use default schema "public" if not specified. */
+	  dbtable = '{ table_name }'
+	  new_table = {TRUE | FALSE}
+	}
+
+	schema_name ::= identifier
+
+	table_name ::= identifier
+
+	column_name ::= identifier
+
+Data Types Mapping
+==================
+
+The following Snowflake data types are not supported: ``BYTEINT``, ``BINARY``, ``VARBINARY``, ``TIMESTAMP``, ``TIME``, ``TIMESTAMP_LTZ``, ``TIMESTAMP_TZ``, ``VARIANT``, ``OBJECT``, ``GEOGRAPHY``, ``GEOMETRY`` 
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - SQream Blue Data Type
+     - Snowflake Data Type
+   * - ``NUMERIC``
+     - ``NUMERIC``, ``NUMBER``, ``DECIMAL`` 
+   * - ``INT``, ``INTEGER``
+     - ``INT``, ``INTEGER``
+   * - ``BIGINT``, ``NUMBER``
+     - ``BIGINT``
+   * - ``SMALLINT``
+     - ``SMALLINT``
+   * - ``TINYINT``
+     - ``TINYINT``
+   * - ``DOUBLE``
+     - ``FLOAT``
+   * - ``REAL``
+     - ``FLOAT4``
+   * - ``DOUBLE``
+     - ``FLOAT8``
+   * - ``TEXT``
+     - ``VARCHAR``, ``CHAR``, ``CHARACTER``, ``STRING``, ``TEXT``
+   * - ``BOOL``
+     - ``BOOLEAN``	
+   * - ``DATE``
+     - ``DATE``
+   * - ``DATETIME``
+     - ``DATETIME``
+   * - ``DATETIME``
+     - ``TIMESTAMP_NTZ``
+   * - ``ARRAY``
+     - ``ARRAY``		 

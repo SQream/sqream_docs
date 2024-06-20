@@ -29,8 +29,6 @@ Syntax
 	   | COMPLETE }
 	   )]
 
-
-
 Parameters
 ==========
 
@@ -46,7 +44,7 @@ Parameters
      - The session ID of the query. If not specified the current session ID is provided
    * - ``ALL``
      - 
-     - Specifies that the operation should apply to all sessions. This parameter requires ``SUPERUSER`` permissions
+     - Specifies that the operation should apply to all sessions.
    * - ``STATUS IN``
      -  
      - A filter that allows you to specify a subset of statuses from the list provided (e.g., ``QUEUED``, ``EXECUTING``, ``EXECUTION_SUCCEED``, etc.) 
@@ -168,6 +166,4 @@ To list the **Jobs** session queries:
 Permissions
 ===========
 
-A user may execute ``DESCRIBE SESSION QUERIES`` on his sessions.
-
-``SUPERUSER`` may execute ``DESCRIBE SESSION QUERIES`` on any session.
+This command requires a ``CONNECT`` permission.

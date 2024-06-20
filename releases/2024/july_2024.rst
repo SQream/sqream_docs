@@ -1,0 +1,24 @@
+.. _july_2024:
+
+******************
+July 2024
+******************
+
+``DESCRIBE COLUMNS`` Enhancement
+================================
+
+The ``DESCRIBE COLUMNS`` command now lets you list information about table and view columns.
+
+See :ref:`describe_columns`
+
+``ARRAY`` Data Type
+===================
+
+The newly supported :ref:`ARRAY data type <sql_data_type_array>` enables you to simplify queries and optimize space utilization.
+
+Snowflake Connectivity
+======================
+
+
+
+

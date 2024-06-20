@@ -4,6 +4,14 @@
 Release Notes
 *************
 
+:ref:`July 2024 <july_2024>`
+
+* We've improved the ``DESCRIBE COLUMNS`` command, allowing you to list information about ``VIEW`` columns.
+
+* We now support the ``ARRAY`` data type.
+
+* You may now read, write, and query data Snowflake. 
+
 :ref:`March 2024 <march_2024>`
 
 * Introducing new **Dashboard** charts for monitoring and responding to system changes:
@@ -16,8 +24,6 @@ Release Notes
 * We've improved the ``DESCRIBE SESSION QUERIES`` command, allowing ``SUPERUSER`` roles to investigate multiple sessions.
 
 * You now have the ability to grant temporary access to a BLUE support team member. This feature is beneficial for having our support team validate usage and perform checks on your specific environment. 
-
-* We've improved the ``DESCRIBE COLUMNS`` command, allowing you to list information about ``VIEW`` columns.
 
 :ref:`February 2024 <february_2024>`
 
@@ -72,6 +78,7 @@ Release Notes
    :glob:
    :hidden:
 
+   2024/july_2024
    2024/march_2024
    2024/february_2024
    2023/december_2023
