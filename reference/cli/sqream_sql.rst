@@ -438,7 +438,7 @@ Basic Commands
 --------------
 
 .. list-table:: 
-   :widths: 20 30 50
+   :widths: auto
    :header-rows: 1
    
    * - Command
