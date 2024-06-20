@@ -2,10 +2,9 @@
 
 .. _roles_5.4.7:
 
-****************************
+*******************************************************
 Creating, Assigning, and Managing Roles and Permissions
-****************************
-
+*******************************************************
 
 In the **Roles** area you can create and assign roles and manage user permissions. 
 
@@ -30,16 +29,13 @@ The **Type** column displays one of the following assigned role types:
 
 
 Viewing Information About a Role
---------------------
+--------------------------------
+
 Clicking a role in the roles table displays the following information:
 
  * **Parent Roles** - displays the parent roles of the selected role. Roles inherit all roles assigned to the parent.
- 
-    ::
    
  * **Members** - displays all members that the role has been assigned to. The arrow indicates the roles that the role has inherited. Hovering over a member displays the roles that the role is inherited from.
-
-    ::
    
  * **Permissions** - displays the role's permissions. The arrow indicates the permissions that the role has inherited. Hovering over a permission displays the roles that the permission is inherited from.
  
@@ -47,9 +43,9 @@ Clicking a role in the roles table displays the following information:
 
 
 Creating a New Role
---------------------
-You can create a new role by clicking **New Role**.
+-------------------
 
+You can create a new role by clicking **New Role**.
 
    
 An admin creates a **user** by granting login permissions and a password to a role. Each role is defined by a set of permissions. An admin can also group several roles together to form a **group** to manage them simultaneously. For example, permissions can be granted to or revoked on a group level.
@@ -70,7 +66,8 @@ When adding a new role, you must select the **Enable login for this role** and *
 :ref:`Back to Creating, Assigning, and Managing Roles and Permissions<roles_5.4.7>`
 
 Editing a Role
---------------------
+--------------
+
 Once you've created a role, clicking the **Edit Role** button lets you do the following:
 
  * Edit role name
@@ -86,7 +83,8 @@ From the Edit Role panel you view directly and indirectly (or inherited) granted
 :ref:`Back to Creating, Assigning, and Managing Roles and Permissions<roles_5.4.7>`
 
 Deleting a Role
------------------
+---------------
+
 Clicking the **delete** icon displays a confirmation message with the amount of users and groups that will be impacted by deleting the role.
 
 :ref:`Back to Creating, Assigning, and Managing Roles and Permissions<roles_5.4.7>`
