@@ -36,7 +36,8 @@ The 2022.1.2 Release Notes include the following new features:
    :depth: 1
    
 Parquet Read Optimization
-************
+*************************
+
 Querying Parquet foreign tables has been optimized and is now up to 20x faster than in previous versions.
 
 Resolved Issues
@@ -87,19 +88,15 @@ Upgrading to v2022.1.2
    
 2. Shut down all SQream services.
 
-    ::
 
 3. Extract the recently created back-up file.
 
-    ::
 
 4. Replace your current metadata with the metadata you stored in the back-up file.
 
-    ::
 
 5. Navigate to the new SQream package bin folder.
 
-    ::
 
 6. Run the following command:
 
@@ -109,9 +106,3 @@ Upgrading to v2022.1.2
 
   .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the :ref:`Upgrading SQream Version <installing_sqream_with_binary>` procedure.
   
-.. toctree::
-   :maxdepth: 2
-   :glob:
-   :hidden:
-
-   2022.1.2
