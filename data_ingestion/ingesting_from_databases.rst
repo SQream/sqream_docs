@@ -107,8 +107,8 @@ The ``sqload-jdbc.properties`` file contains a connection string that must be co
    * - ``ssl``
      - Specifies SSL for this connection
 
-.. literalinclude:: connection_string.java
-    :language: java
+.. literalinclude:: connection_string.ini
+    :language: ini
     :caption: Properties File Sample
     :linenos:
 	
