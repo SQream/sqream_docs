@@ -370,6 +370,8 @@ Installing Python
 
       python3 --version
   
+.. _installing_nodejs:
+  
 Installing NodeJS 
 ^^^^^^^^^^^^^^^^^^
 
@@ -728,7 +730,7 @@ After configuring your operating system, you must install the NVIDIA CUDA driver
 .. warning:: If your Linux GUI runs on the server, it must be stopped before installing the CUDA drivers.
 
 Before You Begin 
-^^^^^^^^^^^^^^^^^
+----------------
 
 1. Verify that the NVIDIA card has been installed and is detected by the system:
 
@@ -749,7 +751,7 @@ Before You Begin
         sudo yum install -y gcc
 
 Updating the Kernel Headers  
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+---------------------------
 
 1. Update the kernel headers on RHEL or CentOS:
 
@@ -766,7 +768,7 @@ Updating the Kernel Headers
       rpm -qa |grep kernel-headers-$(uname -r) 
 		  		  
 Disabling Nouveau  
-^^^^^^^^^^^^^^^^^^^
+-----------------
 
 Disable Nouveau, which is the default operating system driver.
 
@@ -802,7 +804,7 @@ Disable Nouveau, which is the default operating system driver.
         sudo reboot
 
 Installing the CUDA Driver
-----------------------------
+--------------------------
   
 .. contents:: 
    :local:
@@ -896,7 +898,7 @@ Power9 with V100 GPUs supports only cuda 10.1 driver on RHEL7
 If you are installing the CUDA driver on IBM Power9, please follow the `NVIDIA documentation <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`_ for additionally required steps.
 	  
 Tuning Up NVIDIA Performance
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following procedures exclusively relate to Intel.	
 	
@@ -907,7 +909,7 @@ The following procedures exclusively relate to Intel.
 .. note::  Setting up the NVIDIA POWER9 CUDA driver includes additional set-up requirements. The NVIDIA POWER9 CUDA driver will not function properly if the additional set-up requirements are not followed. See `POWER9 Setup <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`__ for the additional set-up requirements.
 	
 Tune Up NVIDIA Performance when Driver Installed from the Repository
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 1. Check the service status:
 
@@ -950,7 +952,7 @@ Tune Up NVIDIA Performance when Driver Installed from the Repository
 
 		
 Tune Up NVIDIA Performance when Driver Installed from the Runfile
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 1. Change the permissions on the ``rc.local`` file to ``executable``:
 
@@ -998,7 +1000,7 @@ Tune Up NVIDIA Performance when Driver Installed from the Runfile
 
   
 Enabling Core Dumps
-====================
+===================
 
 While this procedure is optional, SQreamDB recommends that core dumps be enabled. Note that the default ``abrt`` format is not ``gdb`` compatible, and that for SQreamDB support to be able to analyze your core dumps, they must be ``gdb`` compatible.
 
@@ -1007,7 +1009,7 @@ While this procedure is optional, SQreamDB recommends that core dumps be enabled
    :depth: 1
 
 Checking the ``abrtd`` Status
-----------------------------
+-----------------------------
 
 1. Check if ``abrtd`` is running:
 
@@ -1022,7 +1024,7 @@ Checking the ``abrtd`` Status
       for i in abrt-ccpp.service abrtd.service abrt-oops.service abrt-pstoreoops.service abrt-vmcore.service abrt-xorg.service ; do sudo systemctl disable $i; sudo systemctl stop $i; done
 
 Setting the Limits
---------------------
+------------------
 	  
 1. Set the limits:
 
@@ -1040,7 +1042,7 @@ Setting the Limits
 3. To apply the limit changes, log out and log back in.	
 
 Creating the Core Dump Directory
------------------------------------
+--------------------------------
 
 Because the core dump file may be the size of total RAM on the server, verify that you have sufficient disk space. In the example above, the core dump is configured to the ``/tmp/core_dumps`` directory. If necessary, replace path according to your own environment and disk space.
 
@@ -1099,7 +1101,7 @@ Setting the Output Directory on the ``/etc/sysctl.conf`` File
      /tmp/core_dumps/core-%e-%s-%u-%g-%p-%t	  
 	  
 Verifying that the Core Dumps Work 
----------------------------------------------------	
+----------------------------------
 
 You can verify that the core dumps work only after installing and running SQreamDB. This causes the server to crash and a new ``core.xxx`` file to be included in the folder that is written in ``/etc/sysctl.conf``.
 
