@@ -21,16 +21,10 @@ Creating a New Metadata JDBC DB Connection
 **To create a new metadata JDBC DB connection:**
 
 1. In the **Repository** panel, nagivate to **Metadata** and right-click **Db connections**.
-
-    ::
 	
 2. Select **Create connection**.
-
-    ::
 	
 3. In the **Name** field, type a name.
-
-    ::
 
    Note that the name cannot contain spaces.
 
@@ -38,11 +32,7 @@ Creating a New Metadata JDBC DB Connection
 
    Note that you cannot continue to the next step until you define both a Name and a Purpose.
 
-    ::
-
 5. In the **DB Type** field, select **JDBC**.
-
-    ::
 
 6. In the **JDBC URL** field, type the relevant connection string.
 
@@ -58,27 +48,19 @@ Creating a New Metadata JDBC DB Connection
 
 9. From the Module window, select **Artifact repository(local m2/nexus)** and select **Install a new module**.
 
-    ::
-
 10. Click the ellipsis.
 
     Your hard drive is displayed.	
 
 11. Navigate to a **JDBC jar file** (such as **sqream-jdbc-4.5.3.jar**)and click **Open**.
 
-     ::
-
 12. Click **Detect the module install status**.
-
-     ::
 
 13. Click **OK**.
 
     The JDBC that you selected is displayed in the **Driver** field.
 
 14. Click **Select class name**.
-
-     ::
 
 15. Click **Test connection**.
 
@@ -87,12 +69,8 @@ Creating a New Metadata JDBC DB Connection
     After creating a new metadata JDBC DB connection, you can do the following:
 
     * Use your new metadata connection.
-	
-	   ::
 	   
     * Drag it to the **job** screen.
-	
-	   ::
 	   
     * Build Talend components.
  
