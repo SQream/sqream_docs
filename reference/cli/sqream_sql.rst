@@ -1,8 +1,8 @@
 .. _sqream_sql_cli_reference:
 
-*********************************
+************************
 Sqream SQL CLI Reference
-*********************************
+************************
 
 SQream DB comes with a built-in client for executing SQL statements either interactively or from the command-line.
 
@@ -12,11 +12,10 @@ This page serves as a reference for the options and parameters. Learn more about
    :local:
 
 Installing Sqream SQL
-=========================
+=====================
 
 If you have a SQream DB installation on your server, ``sqream sql`` can be found in the ``bin`` directory of your SQream DB installation, under the name ``sqream``.
 
-.. note:: If you installed SQream DB via Docker, the command is named ``sqream-client sql``, and can be found in the same location as the console.
 
 
 .. versionchanged:: 2020.1
@@ -41,7 +40,7 @@ To run ``sqream sql`` on any other Linux host:
       master=> _
 
 Troubleshooting Sqream SQL Installation
--------------------------------------------
+---------------------------------------
 
 Upon running sqream sql for the first time, you may get an error ``error while loading shared libraries: libtinfo.so.5: cannot open shared object file: No such file or directory``.
 
@@ -70,12 +69,12 @@ Solving this error requires installing the ncruses or libtinfo libraries, depend
       ``$ sudo ln -s /usr/lib64/libtinfo.so.6 /usr/lib64/libtinfo.so.5``
 
 Using Sqream SQL
-=================
+================
 
 By default, sqream sql runs in interactive mode. You can issue commands or SQL statements.
 
 Running Commands Interactively (SQL shell)
---------------------------------------------
+------------------------------------------
 
 When starting sqream sql, after entering your password, you are presented with the SQL shell.
 
@@ -139,7 +138,7 @@ The prompt for a multi-line statement will change from ``=>`` to ``.``, to alert
 
 
 Executing Batch Scripts (``-f``)
----------------------------------
+--------------------------------
 
 To run an SQL script, use the ``-f <filename>`` argument.
 
@@ -152,7 +151,7 @@ For example,
 .. tip:: Output can be saved to a file by using redirection (``>``).
 
 Executing Commands Immediately (``-c``)
--------------------------------------------
+---------------------------------------
 
 To run a statement from the console, use the ``-c <statement>`` argument.
 
@@ -173,10 +172,10 @@ For example,
 
 
 Examples
-===========
+========
 
 Starting a Regular Interactive Shell
------------------------------------
+------------------------------------
 
 Connect to local server 127.0.0.1 on port 5000, to the default built-in database, `master`:
 
@@ -203,7 +202,7 @@ Connect to local server 127.0.0.1 via the built-in load balancer on port 3108, t
    master=>_
 
 Executing Statements in an Interactive Shell
------------------------------------------------
+--------------------------------------------
 
 Note that all SQL commands end with a semicolon.
 
@@ -256,7 +255,7 @@ Executing SQL Statements from the Command Line
 .. _controlling_output:
 
 Controlling the Client Output
-----------------------------------------
+-----------------------------
 
 Two parameters control the dispay of results from the client:
 
@@ -264,7 +263,7 @@ Two parameters control the dispay of results from the client:
 * ``--delimiter`` - changes the record delimiter
 
 Exporting SQL Query Results to CSV
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Using the ``--results-only`` flag removes the row counts and timing.
 
@@ -278,7 +277,7 @@ Using the ``--results-only`` flag removes the row counts and timing.
    4,bull                          ,1
 
 Changing a CSV to a TSV
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``--delimiter`` parameter accepts any printable character.
 
@@ -318,7 +317,7 @@ Assuming a file containing SQL statements (separated by semicolons):
    time: 0.090697s
 
 Connecting Using Environment Variables
--------------------------------------
+--------------------------------------
 
 You can save connection parameters as environment variables:
 
@@ -329,7 +328,7 @@ You can save connection parameters as environment variables:
    $ sqream sql --port=3105 --clustered --username=$SQREAM_USER -d $SQREAM_DATABASE
 
 Connecting to a Specific Queue
------------------------------------
+------------------------------
 
 When using the :ref:`dynamic workload manager<workload_manager>` - connect to ``etl`` queue instead of using the default ``sqream`` queue.
 
@@ -345,10 +344,10 @@ When using the :ref:`dynamic workload manager<workload_manager>` - connect to ``
 
 
 Operations and Flag References
-===============================
+==============================
 
 Command Line Arguments
------------------------
+----------------------
 
 **Sqream SQL** supports the following command line arguments:
 
@@ -401,7 +400,7 @@ Command Line Arguments
 .. _supported_record_delimiters: 
 
 Supported Record Delimiters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The supported record delimiters are printable ASCII values (32-126).
 
@@ -410,7 +409,7 @@ The supported record delimiters are printable ASCII values (32-126).
 * The following characters are **not supported**: ``\``, ``N``, ``-``, ``:``, ``"``, ``\n``, ``\r``, ``.``, lower-case latin letters, digits (0-9)
 
 Meta-Commands
-----------------
+-------------
 
 * Meta-commands in Sqream SQL start with a backslash (``\``)
 
@@ -436,10 +435,10 @@ Meta-Commands
      - Changes the current connection to an alternate database
 
 Basic Commands
------------------------
+--------------
 
 .. list-table:: 
-   :widths: 20 30 50
+   :widths: auto
    :header-rows: 1
    
    * - Command
@@ -456,7 +455,7 @@ Basic Commands
 
 
 Moving Around the Command Line
----------------------------------
+------------------------------
 
 .. list-table:: 
    :widths: 17 83
@@ -498,7 +497,7 @@ Moving Around the Command Line
      - Swaps a character at the cursor with the previous character.
 
 Searching
-------------
+---------
 
 .. list-table:: 
    :widths: 17 83
