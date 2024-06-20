@@ -25,7 +25,7 @@ If you are looking for a tool that is not listed, SQream and our partners can he
 
 
    informatica
-   micro_strategy
+   microstrategy
    pentaho
    php
    power_bi
