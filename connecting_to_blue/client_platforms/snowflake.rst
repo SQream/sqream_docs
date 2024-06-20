@@ -114,8 +114,19 @@ Parameters
      - 
    * - ``type_name``
      - 
-   * - ````
+   * - ``new_table``
      - 
+
+Usage Notes
+===========
+
+* Export, copying into an existing table or a new one will be supported, when the new_table option is set, a validation that this table doesn’t exist will take place. please note that the schema will be identical to the FDW’s schema, if it doesn’t exist in snowflake then an error will be thrown.
+
+* If the new_table option is unset, validation that the table exist will take place, and the data will be appended.
+
+* Please note, that the default of new_table will be set to false.
+
+* Snowflake communication must always use SSL
 	 
 Data Types Mapping
 ==================
