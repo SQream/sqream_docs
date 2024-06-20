@@ -45,7 +45,7 @@ Parameters
      - Used to display a help message or documentation for a particular program or command
    * - ``--log_path``
      - ``./server_picker_logs``
-	 - Configures the default location for the log file
+     - Configures the default location for the log file
 	 
 Example
 ---------

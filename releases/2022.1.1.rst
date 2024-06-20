@@ -33,7 +33,8 @@ The 2022.1.1 Release Notes include the following new features:
    :depth: 1
    
 Password Security Compliance
-************
+****************************
+
 In compliance with GDPR standards, SQream now requires a strong password policy when accessing the CLI or Studio.
 
 For more information, see :ref:`Password Policy <access_control_password_policy>`.
@@ -95,19 +96,15 @@ Upgrading to v2022.1.1
    
 2. Shut down all SQream services.
 
-    ::
 
 3. Extract the recently created back-up file.
 
-    ::
 
 4. Replace your current metadata with the metadata you stored in the back-up file.
 
-    ::
 
 5. Navigate to the new SQream package bin folder.
 
-    ::
 
 6. Run the following command:
 

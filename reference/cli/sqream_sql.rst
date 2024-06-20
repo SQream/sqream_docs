@@ -245,7 +245,7 @@ Executing SQL Statements from the Command Line
    1 row
    time: 0.095941s
 
-.. _controlling_output:
+
 
 Controlling the Client Output
 -----------------------------
@@ -390,7 +390,7 @@ Command Line Arguments
 
 .. tip:: Run ``$  sqream sql --help`` to see a full list of arguments
 
-.. _supported_record_delimiters: 
+
 
 Supported Record Delimiters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -431,7 +431,7 @@ Basic Commands
 --------------
 
 .. list-table:: 
-   :widths: 20 30 50
+   :widths: auto
    :header-rows: 1
    
    * - Command

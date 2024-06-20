@@ -55,7 +55,7 @@ Examples
 .. note:: 
    The actual data type of the value changes based on context, the format used, and the value itself.
    For example, any number containing the decimal point will be considered ``FLOAT`` by default.
-   Any whole number will considered ``INT``, unless the value is larger than the :ref:`maximum value<data_types>`, in which case the type will become a ``BIGINT``.
+   Any whole number will considered ``INT``, unless the value is larger than the :ref:`maximum value<data_type_guides>`, in which case the type will become a ``BIGINT``.
 
 .. note:: 
    A numeric literal that contains neither a decimal point nor an exponent is considered ``INT`` by default if its value fits in type ``INT`` (32 bits). If not, it is considered ``BIGINT`` by default if its value fits in type ``BIGINT`` (64 bits). If neither are true, it is considered ``FLOAT``. Literals that contain decimal points and/or exponents are always considered ``FLOAT``.
