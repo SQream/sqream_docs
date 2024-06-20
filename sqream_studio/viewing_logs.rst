@@ -2,9 +2,10 @@
 
 .. _logs_top_5.4.7:
 
-****************************
+************
 Viewing Logs
-****************************
+************
+
 The **Logs** screen is used for viewing logs and includes the following elements:
 
 .. list-table::
@@ -28,7 +29,8 @@ The **Logs** screen is used for viewing logs and includes the following elements
 .. _filter_5.4.7:
 
 Filtering Table Data
--------------
+--------------------
+
 From the Logs tab, from the **FILTERS** area you can also apply the **TIMESPAN**, **ONLY ERRORS**, and additional filters (**Add**). The **Timespan** filter lets you select a timespan. The **Only Errors** toggle button lets you show all queries, or only queries that generated errors. The **Add** button lets you add additional filters to the data shown in the table. The **Filter** button applies the selected filter(s).
 
 Other filters require you to select an item from a dropdown menu:
@@ -47,7 +49,8 @@ You can also export a record of all of your currently filtered logs in Excel for
 
 
 Viewing Query Logs
-----------
+------------------
+
 The **QUERIES** log area shows basic query information, such as query number and the time the query was run. The number next to the title indicates the amount of queries that have been run.
 
 From the Queries area you can see and sort by the following:
@@ -67,7 +70,8 @@ In the Queries table, you can click on the **Statement ID** and **Query** items 
 .. _sessions_5.4.7:
 
 Viewing Session Logs
-----------
+--------------------
+
 The **SESSIONS** tab shows the sessions log table and is used for viewing activity that has occurred during your sessions. The number at the top indicates the amount of sessions that have occurred.
 
 From here you can see and sort by the following:
@@ -87,7 +91,8 @@ In the Sessions table, you can click on the **Timestamp**, **Connection ID**, an
 .. _system_5.4.7:
 
 Viewing System Logs
-----------
+-------------------
+
 The **SYSTEM** tab shows the system log table and is used for viewing all system logs. The number at the top indicates the amount of sessions that have occurred. Because system logs occur less frequently than queries and sessions, you may need to increase the filter timespan for the table to display any system logs.
 
 From here you can see and sort by the following:
@@ -103,7 +108,8 @@ In the Systems table, you can click on the **Timestamp** and **Log type** items 
 .. _log_lines_5.4.7:
 
 Viewing All Log Lines
-----------
+---------------------
+
 The **LOG LINES** tab is used for viewing the total amount of log lines in a table. From here users can view a more granular breakdown of log information collected by Studio. The other tabs (QUERIES, SESSIONS, and SYSTEM) show a filtered form of the raw log lines. For example, the QUERIES tab shows an aggregation of several log lines.
 
 From here you can see and sort by the following:
