@@ -364,7 +364,7 @@ SQLoader Service Interface
 ==========================
 
 Supported HTTP Requests
-^^^^^^^^^^^^^^^^^^^^^^^
+-----------------------
 
 .. list-table:: 
    :widths: auto
