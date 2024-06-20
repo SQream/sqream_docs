@@ -82,7 +82,7 @@ If any doubt arises, consult the documentation for your server or your hardware 
      - QPI (QuickPath Interconnect) Snoop lets you configure different Snoop modes that impact the QPI interconnect. Changing this setting may improve the performance of certain workloads. The default setting of **Home Snoop** provides high memory bandwidth in an average NUMA environment. **Cluster on Die** may provide increased memory bandwidth in highly optimized NUMA workloads. **Early Snoop** may decrease memory latency, but may result in lower overall bandwidth compared to other modes.
 	 
 Installing the Operating System
-===================================================	 
+===============================
 
 Once the BIOS settings have been set, you must install the operating system. Either the CentOS (versions 7.6-7.9) or RHEL (versions 7.x-8.x) must be installed before installing the SQream database, by either the customer or a SQream representative.
 
@@ -117,12 +117,12 @@ Selecting the **Development Tools** group installs the following tools:
 The root user is created and the OS shell is booted up.  
 
 Configuring the Operating System
-===================================================
+================================
 
 Once you've installted your operation system, you can configure it. When configuring the operating system, several basic settings related to creating a new server are required. Configuring these as part of your basic set-up increases your server's security and usability. 
 
 Logging In to the Server
---------------------------------
+------------------------
 
 You can log in to the server using the server's IP address and password for the **root** user. The server's IP address and **root** user were created while installing the operating system above.
 
@@ -156,7 +156,7 @@ Automatically Creating a SQream User
       $ sudo rm /var/spool/mail/sqream
 
 Manually Creating a SQream User
---------------------------------
+-------------------------------
 
 **To manually create a SQream user:**
 
@@ -191,7 +191,7 @@ SQream enables you to manually create users. This section shows you how to manua
       $ sudo chown -R sqream:sqream /home/sqream
    
 Setting Up A Locale
---------------------------------
+-------------------
 
 SQream enables you to set up a locale. In this example, the locale used is your own location.
 
@@ -233,7 +233,7 @@ You can install the recommended tools by running the following command:
    
 
 Installing Python 3.6.7
---------------------------------
+-----------------------
 
 1. Download the Python 3.6.7 source code tarball file from the following URL into the **/home/sqream** directory:
 
@@ -278,7 +278,7 @@ Installing Python 3.6.7
       $ python3
   
 Installing NodeJS on CentOS 
---------------------------------
+---------------------------
 
 **To install the node.js on CentOS:**
 
@@ -307,7 +307,7 @@ Installing NodeJS on CentOS
       $ sudo npm install pm2 -g
 
 Installing NodeJS on Ubuntu
---------------------------------
+---------------------------
 
 **To install the node.js file on Ubuntu:**
   
@@ -330,7 +330,7 @@ Installing NodeJS on Ubuntu
       $ sudo npm install pm2 -g
 	  
 Installing NodeJS Offline
--------------------------------------------
+-------------------------
 
 **To install NodeJS Offline**
 
@@ -377,7 +377,7 @@ Installing NodeJS Offline
       $ node --version
 	  
 Installing the pm2 Service Offline
--------------------------------------------
+----------------------------------
 
 **To install the pm2 Service Offline**
 
@@ -431,7 +431,7 @@ Installing the pm2 Service Offline
       $ node -v
   
 Configuring the Network Time Protocol
-------------------------------------------- 
+-------------------------------------
 
 This section describes how to configure your **Network Time Protocol (NTP)**.
 
@@ -519,7 +519,7 @@ You can configure your server to boot without a UI in cases when it is not requi
 Running this command activates the **NO-UI** server mode.
 
 Configuring the Security Limits
---------------------------------
+-------------------------------
 
 The security limits refers to the number of open files, processes, etc.
 
@@ -571,7 +571,7 @@ Configuring the Kernel Parameters
       $ sudo reboot
 
 Configuring the Firewall
---------------------------------
+------------------------
 
 The example in this section shows the open ports for four sqreamd sessions. If more than four are required, open the required ports as needed. Port 8080 in the example below is a new UI port.
 
@@ -613,7 +613,7 @@ The example in this section shows the open ports for four sqreamd sessions. If m
       $ sudo systemctl disable firewalld  
   
 Disabling selinux
---------------------------------
+-----------------
 
 **To disable selinux:**
 
@@ -640,7 +640,7 @@ Disabling selinux
      $ sudo setenforce 0
 
 Configuring the /etc/hosts File
---------------------------------
+-------------------------------
 
 **To configure the /etc/hosts file:**
 
@@ -659,7 +659,7 @@ Configuring the /etc/hosts File
       $ <server2 ip>	<server_name>
     
 Configuring the DNS
---------------------------------
+-------------------
 
 **To configure the DNS:**
 
@@ -677,14 +677,14 @@ Configuring the DNS
       $ DNS2="8.8.8.8"
 
 Installing the Nvidia CUDA Driver
-===================================================
+=================================
 
 After configuring your operating system, you must install the Nvidia CUDA driver.
 
   .. warning:: If your UI runs on the server, the server must be stopped before installing the CUDA drivers.
 
 CUDA Driver Prerequisites  
---------------------------------
+-------------------------
 
 1. Verify that the NVIDIA card has been installed and is detected by the system:
 
@@ -713,7 +713,7 @@ CUDA Driver Prerequisites
         $ sudo apt-get install gcc
 
 Updating the Kernel Headers  
---------------------------------
+---------------------------
 
 **To update the kernel headers:**
 
@@ -746,7 +746,7 @@ Updating the Kernel Headers
         $ sudo apt-get install wget
 		  		  
 Disabling Nouveau  
---------------------------------
+-----------------
 
 You can disable Nouveau, which is the default driver.
 
@@ -784,7 +784,7 @@ You can disable Nouveau, which is the default driver.
         $ sudo reboot
 
 Installing the CUDA Driver
---------------------------------
+--------------------------
 
 This section describes how to install the CUDA driver.  
   
@@ -797,7 +797,7 @@ The **Installing the CUDA Driver** section describes the following:
    :depth: 1
 
 Installing the CUDA Driver from the Repository
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Installing the CUDA driver from the Repository is the recommended installation method.
 
@@ -942,7 +942,7 @@ You can prepare the CUDA driver offline from a server connected to the CUDA repo
       $ sudo yum -y install nvidia-driver-latest-dkms
 	  
 Tuning Up NVIDIA Performance
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This section describes how to tune up NVIDIA performance.
 
@@ -953,7 +953,7 @@ This section describes how to tune up NVIDIA performance.
    :depth: 1
 
 To Tune Up NVIDIA Performance when Driver Installed from the Repository
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
    
 **To tune up NVIDIA performance when the driver was installed from the repository:**
 
@@ -1005,7 +1005,7 @@ To Tune Up NVIDIA Performance when Driver Installed from the Repository
 .. note::  Setting up the NVIDIA POWER9 CUDA driver includes additional set-up requirements. The NVIDIA POWER9 CUDA driver will not function properly if the additional set-up requirements are not followed. See `POWER9 Setup <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`__ for the additional set-up requirements.
 		
 To Tune Up NVIDIA Performance when Driver Installed from the Runfile
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 **To tune up NVIDIA performance when the driver was installed from the runfile:**		
 
@@ -1055,7 +1055,7 @@ To Tune Up NVIDIA Performance when Driver Installed from the Runfile
 .. note::  Setting up the NVIDIA POWER9 CUDA driver includes additional set-up requirements. The NVIDIA POWER9 CUDA driver will not function properly if the additional set-up requirements are not followed. See `POWER9 Setup <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`__ for the additional set-up requirements.
 
 Disabling Automatic Bug Reporting Tools
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 **To disable automatic bug reporting tools:**
 
@@ -1114,7 +1114,7 @@ The server is ready for the SQream software installation.
        $ open files (-n) 1000000
 	  
 Enabling Core Dumps
-===================================================
+===================
 
 After installing the Nvidia CUDA driver, you can enable your core dumps. While SQream recommends enabling your core dumps, it is optional.
 
@@ -1125,7 +1125,7 @@ The **Enabling Core Dumps** section describes the following:
    :depth: 1
 
 Checking the abrtd Status
----------------------------------------------------
+-------------------------
 
 **To check the abrtd status:**
 
@@ -1147,7 +1147,7 @@ Checking the abrtd Status
       $ sudo chkconfig abrtd off
 
 Setting the Limits
----------------------------------------------------
+------------------
 
 **To set the limits:**  
 	  
@@ -1167,7 +1167,7 @@ Setting the Limits
 3. Log out and log in to apply the limit changes.	
 
 Creating the Core Dumps Directory
----------------------------------------------------
+---------------------------------
 
 **To set the core dumps directory:** 
 
@@ -1192,7 +1192,7 @@ Creating the Core Dumps Directory
 .. warning:: Because the core dump file may be the size of total RAM on the server, verify that you have sufficient disk space. In the example above, the core dump is configured to the */tmp/core_dumps* directory. You must replace path according to your own environment and disk space.	  
 
 Setting the Output Directory of the /etc/sysctl.conf File 
------------------------------------------------------------------
+---------------------------------------------------------
 
 **To set the output directory of the /etc/sysctl.conf file:** 
 
@@ -1235,7 +1235,7 @@ Setting the Output Directory of the /etc/sysctl.conf File
      $ select abort_server();
 	  
 Verifying that the Core Dumps Work 
----------------------------------------------------	
+----------------------------------	
 
 You can verify that the core dumps work only after installing and running SQream. This causes the server to crash and a new core.xxx file to be included in the folder that is written in **/etc/sysctl.conf**
 
@@ -1252,7 +1252,7 @@ You can verify that the core dumps work only after installing and running SQream
      $ select abort_server();
    
 Troubleshooting Core Dumping 
----------------------------------------------------	
+----------------------------
 
 This section describes the troubleshooting procedure to be followed if all parameters have been configured correctly, but the cores have not been created.
 
