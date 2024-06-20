@@ -55,7 +55,6 @@ Syntax
 
 	 COPY { [schema_name].table_name [ ( column_name [, ... ] ) ] | query }
 	   TO [FOREIGN DATA] WRAPPER snowflake_fdw
-
 	     OPTIONS
 	     (
 	        [ copy_to_option [, ...] ]
@@ -84,6 +83,40 @@ Syntax
 
 	column_name ::= identifier
 
+Parameters
+==========
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Parameter
+     - Description
+   * - ``schema_name``
+     - 
+   * - ``table_name``
+     - 
+   * - ``account_name``
+     - 
+   * - ``user``
+     - 
+   * - ``password``
+     - 
+   * - ``sfWarehouse``
+     - 
+   * - ``database``
+     - 
+   * - ``schema``
+     - 
+   * - ``dbtable``
+     - 
+   * - ``column_name``
+     - 
+   * - ``type_name``
+     - 
+   * - ````
+     - 
+	 
 Data Types Mapping
 ==================
 
@@ -123,3 +156,62 @@ The following Snowflake data types are not supported: ``BYTEINT``, ``BINARY``, `
      - ``TIMESTAMP_NTZ``
    * - ``ARRAY``
      - ``ARRAY``		 
+	 
+Examples
+========
+
+Creating a Table
+----------------
+
+.. code-block:: postgres
+
+	CREATE OR REPLACE FOREIGN TABLE snowflake_table
+	( 
+	  id biging,
+	  address text,
+	  purchase double
+	)
+	WRAPPER snowflake_fdw
+	OPTIONS 
+	 (
+	  account_name '<account name>'
+	  dbtable '<table_name>',
+	  user '<username>',
+	  password '<password>',
+	  database '<database_name>',
+	  schema '<schema_name>',
+	  sfWarehouse '<warehouse_name>'
+	);
+	
+Joining Blue and Snowflake Tables
+---------------------------------
+
+.. code-block:: postgres
+
+	SELECT
+	  *
+	FROM
+	  snowflake_table sft
+	  JOIN table1 t1 ON sft.id = t1.id
+	WHERE
+	  sft.date >= '2022-01-01'
+	  AND t1.status = 'active';
+	  
+Export Data to a New Snowflake Table
+------------------------------------
+
+.. code-block:: postgres
+
+	COPY
+	  t TO FOREIGN DATA
+	WRAPPER
+	  snowflake_fdw
+	OPTIONS
+	 (
+	  account_name '{account name}' dbtable '<table_name>',
+	  user '<username>',
+	  password '<password>',
+	  database '<database_name>',
+	  schema '<schema_name>',
+	  sfWarehouse '<warehouse_name>'
+	 );
