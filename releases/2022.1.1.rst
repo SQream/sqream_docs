@@ -30,7 +30,8 @@ The 2022.1.1 Release Notes include the following new features:
    :depth: 1
    
 Password Security Compliance
-************
+****************************
+
 In compliance with GDPR standards, SQream now requires a strong password policy when accessing the CLI or Studio.
 
 For more information, see `Password Policy <https://docs.sqream.com/en/v2022.1.1/operational_guides/access_control_password_policy.html>`_.
@@ -85,19 +86,15 @@ Upgrading to v2022.1.1
    
 2. Shut down all SQream services.
 
-    ::
 
 3. Extract the recently created back-up file.
 
-    ::
 
 4. Replace your current metadata with the metadata you stored in the back-up file.
 
-    ::
 
 5. Navigate to the new SQream package bin folder.
 
-    ::
 
 6. Run the following command:
 
@@ -107,9 +104,3 @@ Upgrading to v2022.1.1
 
   .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQream Version <https://docs.sqream.com/en/v2022.1.1/installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
   
-.. toctree::
-   :maxdepth: 2
-   :glob:
-   :hidden:
-
-   2022.1.1
