@@ -49,6 +49,7 @@ In your Dataiku web interface:
 #. Assign a name for the output dataset stored in your SQreamDB connection. 
 
 #. Provide AWS Access Key and Secret Key by either:
+
  a. Filling in the values in the Plugin form
 
  b. Set the Project Variables or set the Global Variables when DSS Variables are used

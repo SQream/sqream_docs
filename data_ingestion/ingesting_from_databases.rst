@@ -22,7 +22,7 @@ It is essential that you have the following:
 * SQLoader.jar file
 
 Minimum Hardware Requirements
-------------------------------
+-----------------------------
 
 .. list-table:: 
    :widths: auto
@@ -38,14 +38,14 @@ Minimum Hardware Requirements
 .. _sqloader_thread_sizing_guidelines:
 
 Sizing Guidelines 
-------------------
+-----------------
 
 The SQLoader sizing is determined by the number of concurrent tables and threads based on the available CPU cores, limiting it to the number of cores minus one, with the remaining core reserved for the operating system. Each SQLoader instance runs on a single table, meaning concurrent imports of multiple tables require multiple instances. Additionally, when dealing with partitioned tables, each partition consumes a thread, so users should consider the table's partition count when managing thread allocation for efficient performance.
 
 ---------------------------------
 
 Installation and Connection
-============================
+===========================
 
 Getting the SQLoader Configuration and JAR Files
 ------------------------------------------------
@@ -107,8 +107,8 @@ The ``sqload-jdbc.properties`` file contains a connection string that must be co
    * - ``ssl``
      - Specifies SSL for this connection
 
-.. literalinclude:: connection_string.java
-    :language: java
+.. literalinclude:: connection_string.ini
+    :language: ini
     :caption: Properties File Sample
     :linenos:
 	
