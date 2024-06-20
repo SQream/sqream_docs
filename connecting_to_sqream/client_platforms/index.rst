@@ -3,6 +3,7 @@
 ************************************
 Client Platforms
 ************************************
+
 These topics explain how to install and connect a variety of third party tools. 
 
 Browse the articles below, in the sidebar, or use the search to find the information you need.
@@ -25,7 +26,7 @@ If you are looking for a tool that is not listed, SQream and our partners can he
 
    trino
    informatica
-   microstrategy
+   micro_strategy
    pentaho
    php
    power_bi
@@ -36,7 +37,6 @@ If you are looking for a tool that is not listed, SQream and our partners can he
    tableau
    talend
    tibco_spotfire
-   xxdiagnosing_common_connectivity_issues
 
 .. image:: /_static/images/connectivity_ecosystem.png
 

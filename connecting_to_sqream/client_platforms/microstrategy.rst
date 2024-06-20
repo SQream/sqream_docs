@@ -1,5 +1,4 @@
-.. _microstrategy:
-
+.. _micro_strategy:
 
 *************
 MicroStrategy
@@ -49,61 +48,37 @@ Connecting a Data Source
 ========================
 
 1. Activate the **MicroStrategy Desktop** app. The app displays the Dossiers panel to the right.
-
-    ::
 	
 2. Download the most current version of the `SQream JDBC driver <https://docs.sqream.com/en/v2022.1/connecting_to_sqream/client_drivers/index.html>`_.
 
-    ::
-
 3. Click **Dossiers** and **New Dossier**. The **Untitled Dossier** panel is displayed.
-
-    ::
 	
 4. Click **New Data**.
-
-    ::
 	
 5. From the **Data Sources** panel, select **Databases** to access data from tables. The **Select Import Options** panel is displayed.
-
-    ::
 	
 6. Select one of the following:
 
    * Build a Query
    * Type a Query
    * Select Tables
-   
-    ::
 	
 7. Click **Next**.
-
-    ::
 	
 8. In the Data Source panel, do the following:
 
    1. From the **Database** dropdown menu, select **Generic**. The **Host Name**, **Port Number**, and **Database Name** fields are removed from the panel.
-
-    ::
 	
    2. In the **Version** dropdown menu, verify that **Generic DBMS** is selected.
-
-    ::
 	   
    3. Click **Show Connection String**.
-
-    ::
 	
    4. Select the **Edit connection string** checkbox.
-
-    ::
 	
    5. From the **Driver** dropdown menu, select a driver for one of the following connectors:
 
       * **JDBC** - The SQream driver is not integrated with MicroStrategy and does not appear in the dropdown menu. However, to proceed, you must select an item, and in the next step you must specify the path to the SQream driver that you installed on your machine.
       * **ODBC** - SQreamDB ODBC
-
-       ::
 
    6. In the **Connection String** text box, type the relevant connection string and path to the JDBC jar file using the following syntax:
 
@@ -126,32 +101,19 @@ Connecting a Data Source
       For more information about the available **connection parameters** and other examples, see :ref:`Connection Parameters <java_jdbc>`.
 
    7. In the **User** and **Password** fields, fill out your user name and password.
-
-    ::
 	   
    8. In the **Data Source Name** field, type **SQreamDB**.
-
-    ::
-    ::
 	    
    9. Click **Save**. The SQreamDB that you picked in the Data Source panel is displayed.
    
 
 9. In the **Namespace** menu, select a namespace. The tables files are displayed.
 
-    ::
-
 10. Drag and drop the tables into the panel on the right in your required order.
-
-     ::
 
 11. **Recommended** - Click **Prepare Data** to customize your data for analysis.
 
-     ::
-
 12. Click **Finish**.
-
-     ::
 
 13. From the **Data Access Mode** dialog box, select one of the following:
 
