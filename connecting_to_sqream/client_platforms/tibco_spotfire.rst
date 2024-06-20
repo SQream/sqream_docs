@@ -50,8 +50,6 @@ Creating an ODBC Connection
    
 #. Launch the TIBCO Spotfire application.
 
-    ::
-
 #. From the **File** menu click **Add Data Tables**.
 
    The **Add Database Tables** window is displayed.
@@ -66,19 +64,13 @@ Creating an ODBC Connection
    
 #. Select **System or user data source** and from the drop-down menu select the DSN of your data source (SQreamDB).
 
-    ::
-
 #. Provide your database username and password and click **OK**.
-
-    ::
 
 #. In the **Open Database** window, click **OK**.
 
    The **Specify Tables and Columns** window is displayed.
 
 #. In the **Specify Tables and Columns** window, select the checkboxes corresponding to the tables and columns that you want to include in your SQL statement.
-
-    ::
 
 #. In the **Data source name** field, set your data source name and click **OK**.
 
@@ -108,12 +100,8 @@ After creating a connection, you can create your SQream data source template.
   * Override an existing template:
    
     1. In the template text field, select an existing template.
-	
-	    ::
 		
     2. Copy and paste your data source template text.
-	 
-	     ::
 	 
   * Create a new template:
    
@@ -124,8 +112,6 @@ After creating a connection, you can create your SQream data source template.
        .. _creating_sqream_data_source_template:
 		
     2. In the **Name** field, define your template name.
-	
-	    ::
 		
     3. In the **Data Source Template** text field, copy and paste your data source template text.
 	
@@ -183,8 +169,6 @@ After creating a connection, you can create your SQream data source template.
           </jdbc-type-settings>			
 	
 4. Click **Save configuration**.
-
-    ::
 	
 5. Close and restart your Spotfire server.
 
@@ -197,37 +181,23 @@ After creating the SQream data source template, you can create a data source.
 
 1. Launch the TIBCO Spotfire application.
 
-    ::
-
 #. From the **Tools** menu, select **Information Designer**.
 
    The **Information Designer** window is displayed.
-
-    ::
 	
 #. From the **New** menu, click **Data Source**.
 
    The **Data Source** tab is displayed.
-
-    ::
 	
 #. Provide the following information:
 
    * **Name** - define a unique name.
-   
-      ::
 	  
    * **Type** - use the same type template name you used while configuring your template. See **Step 3** in :ref:`Creating the SQream Data Source Template<creating_sqream_data_source_template>`.
-   
-      ::
 	  
    * **Connection URL** - use the standard JDBC connection string, ``<ip>:<port>/database``.
-   
-      ::
 	  
    * **No. of connections** - define a number between **1** and **100**. SQream recommends setting your number of connections to **100**.
-   
-      ::
 	  
    * **Username and Password** - define your SQream username and password.   
 
@@ -242,8 +212,6 @@ After creating a data source, you can create an information link.
 
    The **Information Designer** window is displayed.
 
-    ::
-
 #. From the **New** menu, click **Information Link**.
 
    The **Information link** tab is displayed.
@@ -255,8 +223,6 @@ After creating a data source, you can create an information link.
    Note the following:
    
    * You can select procedures from the Elements region.
-   
-      ::
 	  
    * You can remove an element by selecting an element and clicking **Remove**.   
 
@@ -266,13 +232,9 @@ After creating a data source, you can create an information link.
 
 5. *Optional* - In the **Description** region, type the description of the information link.
 
-    ::
-
 #. *Optional* - To filter your data, expand the **Filters** section and do the following:
 
     1. From the **Information Link** region, select the element you added in Step 3 above.
-	
-	    ::
 		
     2. Click **Add**.
 	
@@ -283,8 +245,6 @@ After creating a data source, you can create an information link.
        The selected column is added to the Filters list.
 	   
     4. Repeat steps 2 and 3 to add filters to additional columns.
-	
-	    ::
 		
     5. For each column, from the **Filter Type** drop-down list, select **range** or **values**.
 	
@@ -309,8 +269,6 @@ After creating a data source, you can create an information link.
        The selected column is added to the Prompts list.
 	   
     #. Repeat **Step 1** to add prompts to additional columns.
-	
-	    ::
 		
     #. Do the following for each column:
 	
@@ -330,15 +288,9 @@ After creating a data source, you can create an information link.
    
 9. *Optional* - Expand the **Parameters** section and define your parameters.
 
-     ::
-
 10. *Optional* - Expand the **Properties** section and define your properties.
 
-     ::
-
 11. *Optional* - Expand the **Caching** section and enable or disable whether your information link can be cached.
-
-     ::
 
 12. Click **Save**.
 
@@ -346,12 +298,7 @@ After creating a data source, you can create an information link.
 
 13. In the tree, select where you want to save the information link.
 
-     ::
-
 14. In the **Name** field, type a name and description for the information link.
-
-     ::
-
 
 15. Click **Save**.
 
