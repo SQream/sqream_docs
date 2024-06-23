@@ -14,7 +14,9 @@ You may use the ``ARRAY`` data type with the :ref:`Blue connectors <connecting_t
 
 The maximum size of an ``ARRAY``, indicating the number of elements it can hold, is 65535. You have the option to specify the size of an ``ARRAY``, providing a maximum allowed size, while each row can have a different number of elements up to the specified maximum. If the ``ARRAY`` size is not specified, the maximum size is assumed. 
 
-.. seealso:: A full list of :ref:`data types<supported_data_types>` supported by SQreamDB.
+.. seealso:: A full list of supported :ref:`data types<supported_data_types>` 
+             
+             The full :ref:`create_foreign_table` syntax
 
 Syntax
 ======
@@ -23,11 +25,14 @@ Defining an ``ARRAY`` is done by appending the ``[]`` notation to a supported da
 
 .. code-block:: sql
 
-	CREATE TABLE
-	 < table_name > (< column1 > TEXT [], < column2 > INT [])
-	
+	CREATE [ OR REPLACE ] [ FOREIGN ] TABLE [ "<schema_name>" ]."<table_name>" (
+	  [ (<column1> <TEXT> [], <column2> <INT> []) [, ...]
+	)
+	  [ FOREIGN DATA ] WRAPPER fdw_name
+	  [ OPTIONS ( option_def [, ...  ] ) ]
+
 	INSERT INTO
-	  TABLE < table_name >
+	  TABLE <table_name>
 	VALUES
 	  (ARRAY ['a','b','c'], ARRAY [1,2,NULL])
 
@@ -99,16 +104,21 @@ Examples
 ``ARRAY`` Statements
 --------------------
 
-Creating a table with arrayed columns:
+Creating a foreign table with arrayed columns:
 
 .. code-block:: sql
 
-	CREATE TABLE
+	CREATE FOREIGN TABLE
 	  my_array (
 	    clmn1 TEXT [],
 	    clmn2 TEXT [],
 	    clmn3 INT [],
 	    clmn4 NUMERIC(38, 20) []
+	)
+	WRAPPER
+	  parquet_fdw
+	OPTIONS
+	   (LOCATION = 'gs://blue_docs/my_array.parquet',
 	  );
 	
 Inserting arrayed values into a table:
@@ -214,9 +224,6 @@ Consider the following JSON file named ``t``, located under ``/tmp/``:
         ]
     }
 
-
-
-
 Execute the following statement:
 
 .. code-block:: sql
@@ -225,7 +232,7 @@ Execute the following statement:
 	WRAPPER
 	  json_fdw
 	OPTIONS
-	  (location = '/tmp/t.json');
+	  (location = '/tmp/nba.json');
 	
 	SELECT
 	  *

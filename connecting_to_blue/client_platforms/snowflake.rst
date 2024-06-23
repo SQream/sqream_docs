@@ -12,12 +12,11 @@ Syntax
 
 .. code-block:: postgres
 
-	create_table_statement ::=
-	    CREATE [ OR REPLACE ] FOREIGN TABLE [schema_name].table_name (
-	        { column_def [, ...] }
-	    )
-	    [ FOREIGN DATA ] WRAPPER snowflake_fdw
-	    [ OPTIONS ( option_def [, ...  ] ) ]
+	CREATE [ OR REPLACE ] FOREIGN TABLE [schema_name].table_name (
+	  { column_def [, ...] }
+	   )
+	  [ FOREIGN DATA ] WRAPPER snowflake_fdw
+	  [ OPTIONS ( option_def [, ...  ] ) ]
 
 	schema_name ::= identifier
 
