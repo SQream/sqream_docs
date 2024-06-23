@@ -92,23 +92,23 @@ Parameters
    * - Parameter
      - Description
    * - ``schema_name``
-     - 
+     - The name of the schema in which to create the table
    * - ``table_name``
-     - 
+     - The name of the newly created table
    * - ``account_name``
-     - 
+     - Snowflake account name
    * - ``user``
-     - 
+     - Snowflake username 
    * - ``password``
-     - 
+     - Snowflake password
    * - ``sfWarehouse``
-     - 
+     - The name of the Snowflake warehouse where the table to be imported is located
    * - ``database``
-     - 
+     - The name of the Snowflake database where the table to be imported is located
    * - ``schema``
-     - 
+     - The name of the Snowflake schema where the table to be imported is located
    * - ``dbtable``
-     - 
+     - The name of the Snowflake table to be imported
    * - ``column_name``
      - 
    * - ``type_name``
