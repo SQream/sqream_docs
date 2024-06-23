@@ -24,13 +24,13 @@ Syntax
 
 	option_def ::=
 	{
-	  ACCOUNT_NAME = '<account_name>'
+	  ACCOUNT_NAME = '<account_name>',
 	  USER = '<username>',
 	  PASSWORD = '<password>',
-	  SFWAREHOUSE = '<warehouse_name>'
+	  SFWAREHOUSE = '<warehouse_name>',
 	  DATABASE = '<database_name>',
-	  dbtable = '<table_name>',
-	  [ schema = '<schema_name>' ] /* Optional - will use default schema "public" if not specified. */
+	  DBTABLE = '<table_name>',
+	  [ SCHEMA = '<schema_name>' ] /* Optional - will use default schema "public" if not specified. */
 	}
 
 	column_def ::=
@@ -66,14 +66,14 @@ Syntax
 	 copy_to_option ::=
 
 	{
-	  account_name = '{account name}'
-	  user = '{ username }',
-	  password = '{ password }',
-	  sfWarehouse = '{ warehouse_name }'
-	  database = '{ database_name }',
-	  [ schema = '{ schema_name }' ], /* Optional - will use default schema "public" if not specified. */
-	  dbtable = '{ table_name }'
-	  new_table = {TRUE | FALSE}
+	  ACCOUNT_NAME = '<account name>',
+	  USER = '<username>',
+	  PASSWORD = '<password>',
+	  SFWAREHOUSE = '<warehouse_name>',
+	  DATABASE = '<database_name>',
+	  DBTABLE = '<table_name>',
+	  NEW_TABLE = <TRUE | FALSE>,
+	  [ SCHEMA = '<schema_name>' ] /* Optional - will use default schema "public" if not specified. */
 	}
 
 	schema_name ::= identifier
@@ -213,15 +213,15 @@ Export Data to a New Snowflake Table
 .. code-block:: postgres
 
 	COPY
-	  t TO FOREIGN DATA
+	  t TO
 	WRAPPER
 	  snowflake_fdw
 	OPTIONS
 	 (
-	  account_name '{account name}' dbtable '<table_name>',
-	  user '<username>',
-	  password '<password>',
-	  database '<database_name>',
-	  schema '<schema_name>',
-	  sfWarehouse '<warehouse_name>'
+	  ACCOUNT_NAME '{account name}' dbtable '<table_name>',
+	  USER '<username>',
+	  PASSWORD '<password>',
+	  DATABASE '<database_name>',
+	  SCHEMA '<schema_name>',
+	  SFWAREHOUSE '<warehouse_name>'
 	 );
