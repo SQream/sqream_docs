@@ -24,13 +24,13 @@ Syntax
 
 	option_def ::=
 	{
-	  account_name = '{account name}'
-	  user = '{ username }',
-	  password = '{ password }',
-	  sfWarehouse = '{ warehouse_name }'
-	  database = '{ database_name }',
-	  [ schema = '{ schema_name }' ], /* Optional - will use default schema "public" if not specified. */
-	  dbtable = '{ table_name }'
+	  ACCOUNT_NAME = '<account_name>'
+	  USER = '<username>',
+	  PASSWORD = '<password>',
+	  SFWAREHOUSE = '<warehouse_name>'
+	  DATABASE = '<database_name>',
+	  dbtable = '<table_name>',
+	  [ schema = '<schema_name>' ] /* Optional - will use default schema "public" if not specified. */
 	}
 
 	column_def ::=
