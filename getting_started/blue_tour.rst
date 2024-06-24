@@ -96,6 +96,8 @@ The **Dashboard** charts offer a comprehensive overview of Worker performance, d
      - 1 hour
      - Week, past 2 weeks, past month
 
+.. _evaluating_real_time_cluster_workloads:
+
 Evaluating Real-Time Cluster Workloads
 --------------------------------------
 

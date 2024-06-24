@@ -32,6 +32,13 @@ Blue Scripting
 
 See :ref:`blue_scripting`
 
+New Dashboard Items
+===================
+
+
+
+See :ref:`evaluating_real_time_cluster_workloads`
+
 
 
 

@@ -14,6 +14,8 @@ Release Notes
 
 * Blue now supports metalanguage scripting.
 
+* New Dashboard items
+
 :ref:`March 2024 <march_2024>`
 
 * Introducing new **Dashboard** charts for monitoring and responding to system changes:
