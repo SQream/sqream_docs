@@ -99,13 +99,19 @@ The **Dashboard** charts offer a comprehensive overview of Worker performance, d
 Evaluating Real-Time Cluster Workloads
 --------------------------------------
 
-The **Dashboard** has a **Current** (Cluster) **Status** panel which provides real-time workload overview with: 
+The **Dashboard** has a panel which provides real-time workload overview of your **Currently Running**: 
+  
+* Queued statements
+* Statements
+* Jobs
 
-* Running statements  
-* Queued  statements
-* Running Jobs
+And a **Monthly Usage** panel with an overview of your monthly cluster:
 
-This panel also timestamps its latest updates, enabling you to follow the evolution of changes with precision.
+* Uptime (in minutes)
+* Data Read (in bytes)
+* Rows Read
+
+These panels also timestamp latest updates, enabling you to follow the evolution of changes with precision.
 
 Monitoring the BLUE Web Interface Activity
 ------------------------------------------

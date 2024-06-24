@@ -74,7 +74,7 @@ Examples
 ``Declare``
 -----------
 
-.. code-block:: postgres
+.. code-block:: sqlite3
 
 	@@ Declare myVar = 3;
 	SELECT ${myVar};
