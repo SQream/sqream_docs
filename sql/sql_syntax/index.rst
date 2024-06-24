@@ -1,8 +1,8 @@
 .. _sql_syntax:
 
-**********************
+*******************
 SQL Syntax Features
-**********************
+*******************
 
 BLUE supports SQL from the ANSI 92 syntax and describes the following:
 
@@ -18,3 +18,4 @@ BLUE supports SQL from the ANSI 92 syntax and describes the following:
    window_functions
    subqueries
    null_handling
+   blue_scripting
