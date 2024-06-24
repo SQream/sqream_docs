@@ -77,7 +77,7 @@ Examples
 .. code-block:: postgres
 
 	@@ Declare myVar = 3;
-	SELECT ${myVar}:
+	SELECT ${myVar};
 
 ``SetResults``
 --------------
