@@ -14,10 +14,25 @@ See :ref:`describe_columns`
 ``ARRAY`` Data Type
 ===================
 
-The newly supported :ref:`ARRAY data type <sql_data_type_array>` enables you to simplify queries and optimize space utilization.
+The newly supported ARRAY data type enables you to simplify queries and optimize space utilization.
+
+See :ref:`sql_data_type_array`
 
 Snowflake Connectivity
 ======================
+
+
+
+See :ref:`snowflake`
+
+Blue Scripting
+==============
+
+
+
+See :ref:`blue_scripting`
+
+
 
 
 

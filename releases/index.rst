@@ -12,6 +12,8 @@ Release Notes
 
 * You may now read, write, and query data Snowflake. 
 
+* Blue now supports metalanguage scripting.
+
 :ref:`March 2024 <march_2024>`
 
 * Introducing new **Dashboard** charts for monitoring and responding to system changes:
