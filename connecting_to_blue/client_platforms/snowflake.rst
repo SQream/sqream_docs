@@ -2,9 +2,10 @@
 
 .. _snowflake:
 
-*********
-Snowflake
-*********
+**********************
+Snowflake Connectivity
+**********************
+
 
 
 Syntax
@@ -92,9 +93,9 @@ Parameters
    * - Parameter
      - Description
    * - ``schema_name``
-     - The name of the schema in which to create the table
+     - The name of the Snowflake schema where the table to be imported is located
    * - ``table_name``
-     - The name of the newly created table
+     - The name of the Snowflake table you wish to import
    * - ``account_name``
      - Snowflake account name
    * - ``user``
@@ -110,22 +111,24 @@ Parameters
    * - ``dbtable``
      - The name of the Snowflake table to be imported
    * - ``column_name``
-     - 
+     - The name of the columns in the Snowflake table to be imported
    * - ``type_name``
-     - 
+     - The column data type in the Snowflake table to be imported
    * - ``new_table``
-     - 
+     - Specifies whether or not the ``COPY TO`` command creates a new table upon execution. ``TRUE`` = create a new table and ``FALSE`` = copy data into an existing table. The default is ``FALSE``
 
 Usage Notes
 ===========
 
-* Export, copying into an existing table or a new one will be supported, when the new_table option is set, a validation that this table doesn’t exist will take place. please note that the schema will be identical to the FDW’s schema, if it doesn’t exist in snowflake then an error will be thrown.
+.. glossary::
 
-* If the new_table option is unset, validation that the table exist will take place, and the data will be appended.
+   ``new_table``
 
-* Please note, that the default of new_table will be set to false.
+      The newly created table will be created within the schema specified under ``option_def``. 
 
-* Snowflake communication must always use SSL
+   Communication
+   
+      Communication with Snowflake web server requires SSL.
 	 
 Data Types Mapping
 ==================
