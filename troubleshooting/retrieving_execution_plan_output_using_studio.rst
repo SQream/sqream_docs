@@ -1,8 +1,8 @@
 .. _retrieving_execution_plan_output_using_studio:
 
-*******************************************************
+************************************************
 Retrieving Execution Plan Output Using Workbench 
-*******************************************************
+************************************************
 
 You may use BLUE Workbench to create a query plan snapshot to be used for monitoring and troubleshooting slow running statements and for identifying long-running execution Workers that may cause performance issues. 
 
