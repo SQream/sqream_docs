@@ -121,3 +121,11 @@ h5 {
     min-width: 15em;
     width: calc(50% - 32em);
 }
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 4px 5em;
+    width: 54em;
+}
