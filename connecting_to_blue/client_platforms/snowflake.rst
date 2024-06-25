@@ -180,20 +180,20 @@ Creating a Table
 
 	CREATE OR REPLACE FOREIGN TABLE snowflake_table
 	( 
-	  id biging,
-	  address text,
-	  purchase double
+	  id BIGING,
+	  address TEXT,
+	  purchase DOUBLE
 	)
 	WRAPPER snowflake_fdw
 	OPTIONS 
 	 (
-	  account_name '<account name>'
-	  dbtable '<table_name>',
-	  user '<username>',
-	  password '<password>',
-	  database '<database_name>',
-	  schema '<schema_name>',
-	  sfWarehouse '<warehouse_name>'
+	  ACCOUNT_NAME 'my_account'
+	  DBTABLE '<table_name>',
+	  USER '<username>',
+	  PASSWORD '<password>',
+	  DATABASE '<database_name>',
+	  SCHEMA '<schema_name>',
+	  SFWAREHOUSE '<warehouse_name>'
 	);
 	
 Joining Blue and Snowflake Tables
@@ -221,10 +221,12 @@ Export Data to a New Snowflake Table
 	  snowflake_fdw
 	OPTIONS
 	 (
-	  ACCOUNT_NAME '{account name}' dbtable '<table_name>',
+	  ACCOUNT_NAME '{account name}',
+	  DBTABLE '<table_name>',
 	  USER '<username>',
 	  PASSWORD '<password>',
 	  DATABASE '<database_name>',
 	  SCHEMA '<schema_name>',
-	  SFWAREHOUSE '<warehouse_name>'
+	  SFWAREHOUSE '<warehouse_name>',
+	  NEW_TABLE = TRUE
 	 );

@@ -126,7 +126,7 @@ The **Activity** page provides a detailed overview of your BLUE web interface ac
 * Type
 * SQL Statements
 * Duration (also shows failed statements)
-* Execution Plan
+* Execution Plan (read more :ref:`here<retrieving_execution_plan_output_using_studio>`)
 
 You may also filter the information by **Session ID**, **Type**, **SQL Statements** (script), and **Duration**.
 
