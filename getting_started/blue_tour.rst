@@ -115,8 +115,10 @@ And a **Monthly Usage** panel with an overview of your monthly cluster:
 
 These panels also timestamp latest updates, enabling you to follow the evolution of changes with precision.
 
-Monitoring the BLUE Web Interface Activity
-------------------------------------------
+.. monitoring_web_interface_activity:
+
+Monitoring Web Interface Activity
+---------------------------------
 
 The **Activity** page provides a detailed overview of your BLUE web interface activity. It displays all executed statements along with the following details:
 
