@@ -22,11 +22,11 @@ Syntax
 	option_def ::=
 	{
 	  ACCOUNT_NAME = '<account_name>',
-	  USER = '<username>',
+	  USERNAME = '<username>',
 	  PASSWORD = '<password>',
-	  SFWAREHOUSE = '<warehouse_name>',
+	  SF_WAREHOUSE = '<warehouse_name>',
 	  DATABASE = '<database_name>',
-	  DBTABLE = '<table_name>',
+	  DB_TABLE = '<table_name>',
 	  [ SCHEMA = '<schema_name>' ] /* Optional - will use default schema "public" if not specified. */
 	}
 
@@ -69,16 +69,16 @@ Syntax
 	  ACCOUNT_NAME = '<account name>',
 	  USER = '<username>',
 	  PASSWORD = '<password>',
-	  SFWAREHOUSE = '<warehouse_name>',
+	  SF_WAREHOUSE = '<warehouse_name>',
 	  DATABASE = '<database_name>',
-	  DBTABLE = '<table_name>',
+	  DB_TABLE = '<table_name>',
 	  NEW_TABLE = <TRUE | FALSE>,
 	  [ SCHEMA = '<schema_name>' ] /* Optional - will use default schema "public" if not specified. */
 	}
 
 	column_name ::= identifier
 	
-	schema_name ::= identifer
+	schema_name ::= identifier
 
 	table_name ::= identifier
 
@@ -113,25 +113,25 @@ Parameters
      - The name of the Snowflake schema where the table to be imported is located
    * - ``table_name``
      - The name of the Snowflake table you wish to import
-   * - ``account_name``
+   * - ``ACCOUNT_NAME``
      - Snowflake account name
-   * - ``user``
+   * - ``USERNAME``
      - Snowflake username 
-   * - ``password``
+   * - ``PASSWORD``
      - Snowflake password
-   * - ``sfWarehouse``
+   * - ``SF_WAREHOUSE``
      - The name of the Snowflake warehouse where the table to be imported is located
-   * - ``database``
+   * - ``DATABASE``
      - The name of the Snowflake database where the table to be imported is located
-   * - ``schema``
+   * - ``SCHEMA``
      - The name of the Snowflake schema where the table to be imported is located
-   * - ``dbtable``
+   * - ``DB_TABLE``
      - The name of the Snowflake table to be imported
    * - ``column_name``
      - The name of the columns in the Snowflake table to be imported
    * - ``type_name``
      - The column data type in the Snowflake table to be imported
-   * - ``new_table``
+   * - ``NEW_TABLE``
      - Specifies whether or not the ``COPY TO`` command creates a new table upon execution. ``TRUE`` = create a new table and ``FALSE`` = copy data into an existing table. The default is ``FALSE``
 
 Usage Notes
@@ -139,7 +139,7 @@ Usage Notes
 
 .. glossary::
 
-   ``new_table``
+   ``NEW_TABLE``
 
       The newly created table will be created within the schema specified under ``option_def``. 
 
@@ -206,11 +206,11 @@ Creating a Table
 	 (
 	  ACCOUNT_NAME 'my sf account'
 	  DBTABLE 'my_customers',
-	  USER 'JohnSmith',
+	  USERNAME 'JohnSmith',
 	  PASSWORD 'pa$$w0rD',
 	  DATABASE 'master',
 	  SCHEMA 'public',
-	  SFWAREHOUSE 'my_sf_warehouse'
+	  SF_WAREHOUSE 'my_sf_warehouse'
 	);
 	
 Joining Blue and Snowflake Tables
@@ -240,11 +240,11 @@ Copying Data Into a Blue Table
 	 (
 	  ACCOUNT_NAME 'my sf account',
 	  DBTABLE 'my_customers',
-	  USER 'JohnSmith',
+	  USERNAME 'JohnSmith',
 	  PASSWORD 'pa$$w0rD',
 	  DATABASE 'master',
 	  SCHEMA 'public',
-	  SFWAREHOUSE 'my_sf_warehouse',
+	  SF_WAREHOUSE 'my_sf_warehouse',
 	  NEW_TABLE = TRUE
 	 );
 	 
