@@ -67,7 +67,7 @@ Syntax
 	copy_to_option ::=
 	{
 	  ACCOUNT_NAME = '<account name>',
-	  USER = '<username>',
+	  USERNAME = '<username>',
 	  PASSWORD = '<password>',
 	  SF_WAREHOUSE = '<warehouse_name>',
 	  DATABASE = '<database_name>',
@@ -205,7 +205,7 @@ Creating a Table
 	OPTIONS 
 	 (
 	  ACCOUNT_NAME 'my sf account'
-	  DBTABLE 'my_customers',
+	  DB_TABLE 'my_customers',
 	  USERNAME 'JohnSmith',
 	  PASSWORD 'pa$$w0rD',
 	  DATABASE 'master',
@@ -239,7 +239,7 @@ Copying Data Into a Blue Table
 	OPTIONS
 	 (
 	  ACCOUNT_NAME 'my sf account',
-	  DBTABLE 'my_customers',
+	  DB_TABLE 'my_customers',
 	  USERNAME 'JohnSmith',
 	  PASSWORD 'pa$$w0rD',
 	  DATABASE 'master',
