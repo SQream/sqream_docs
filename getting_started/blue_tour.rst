@@ -120,7 +120,7 @@ These panels also timestamp latest updates, enabling you to follow the evolution
 Monitoring Web Interface Activity
 ---------------------------------
 
-The **Activity** page provides a detailed overview of your BLUE web interface activity. It displays all executed statements along with the following details:
+The **Activity** page provides a detailed overview of your actions initiated via the web interface. It displays a table with all executed statements along with the following details:
 
 * Start time
 * Session ID
@@ -131,6 +131,12 @@ The **Activity** page provides a detailed overview of your BLUE web interface ac
 * Execution Plan (read more :ref:`here<retrieving_execution_plan_output_using_studio>`)
 
 You may also filter the information by **Session ID**, **Type**, **SQL Statements** (script), and **Duration**.
+
+To view the full details of an executed statement, hover over the desired row and click on it. This action will open a side window displaying comprehensive execution details, as illustrated in the example below:
+
+
+|activity_page_details|
+
 
 Administrating Your Cluster
 ===========================
@@ -245,3 +251,6 @@ Clicking the **delete** icon displays a confirmation message with the amount of 
 .. |suspension_policy_quick_tour| image:: /_static/images/suspension_policy_quick_tour.png
    :align: middle    
    :width: 800
+   
+.. |activity_page_details| image:: /_static/images/activity_page_details.png
+   :align: middle 
