@@ -62,7 +62,7 @@ Examples
 ``Parallel``
 ------------
 
-.. code-block:: postgres
+.. code-block:: console
 
 	@@ Parallel
 	$$
@@ -74,7 +74,7 @@ Examples
 ``Declare``
 -----------
 
-.. code-block:: sqlite3
+.. code-block:: console
 
 	@@ Declare myVar = 3;
 	SELECT ${myVar};
@@ -82,7 +82,7 @@ Examples
 ``SetResults``
 --------------
 
-.. code-block:: postgres
+.. code-block:: console
 
 	@@ SetResults tableAverage
 	SELECT AVG(col1) AS avg_salary FROM my_table;
@@ -93,7 +93,7 @@ Examples
 ``SplitQueryByDateTime``
 ------------------------
 
-.. code-block:: postgres
+.. code-block:: console
 
 	@@ SplitQueryByDateTime instances = 4, from = '2021-01-01 00:00:00', to = '2022-01-01 00:00:00'
 	SELECT ${from}, ${to};
@@ -102,7 +102,7 @@ Examples
 ``SplitQueryByDate``
 --------------------
 
-.. code-block:: postgres
+.. code-block:: console
 
 	@@ SplitQueryByDateTime instances = 4, from = '2021-01-01', to = '2022-01-01'
 	SELECT ${from}, ${to};
@@ -111,7 +111,7 @@ Examples
 ``SplitQueryByNumber``
 ----------------------
 
-.. code-block:: postgres
+.. code-block:: console
 
 	@@ SplitQueryByDateTime instances = 4, from = 0, to = 100
 	SELECT ${from}, ${to};
