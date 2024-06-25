@@ -19,10 +19,6 @@ Syntax
 	  [ FOREIGN DATA ] WRAPPER snowflake_fdw
 	  [ OPTIONS ( option_def [, ...  ] ) ]
 
-	schema_name ::= identifier
-
-	table_name ::= identifier
-
 	option_def ::=
 	{
 	  ACCOUNT_NAME = '<account_name>',
@@ -35,37 +31,40 @@ Syntax
 	}
 
 	column_def ::=
-	    { column_name type_name [ default ] [ column_constraint ] }
-
-	column_name ::= identifier
+	{ column_name type_name [ default ] [ column_constraint ] }
 
 	column_constraint ::=
-	    { NOT NULL | NULL }
+	{ NOT NULL | NULL }
 
 	default ::=
-	    DEFAULT default_value
-	    | IDENTITY [ ( start_with [ , increment_by ] ) ]
+	DEFAULT default_value
+	| IDENTITY [ ( start_with [ , increment_by ] ) ]
 		
-	drop_table_statement ::=
-	    DROP TABLE [ IF EXISTS ] [schema_name.]table_name
+	schema_name ::= identifier
 
 	table_name ::= identifier
+	
+	column_name ::= identifier
+		
+.. code-block:: postgres
+		
+	DROP TABLE [ IF EXISTS ] [schema_name.]table_name
 
 	schema_name ::= identifier
 
-	 COPY { [schema_name].table_name [ ( column_name [, ... ] ) ] | query }
-	   TO [FOREIGN DATA] WRAPPER snowflake_fdw
-	     OPTIONS
-	     (
-	        [ copy_to_option [, ...] ]
-	     )
+	table_name ::= identifier
 
-	 schema_name ::= identifer
+.. code-block:: postgres
 
-	 table_name ::= identifier
+	COPY { [schema_name].table_name [ ( column_name [, ... ] ) ] | query } TO
+	[FOREIGN DATA] WRAPPER 
+	  snowflake_fdw
+	OPTIONS
+	 (
+	  [ copy_to_option [, ...] ]
+	 )
 
-	 copy_to_option ::=
-
+	copy_to_option ::=
 	{
 	  ACCOUNT_NAME = '<account name>',
 	  USER = '<username>',
@@ -77,11 +76,29 @@ Syntax
 	  [ SCHEMA = '<schema_name>' ] /* Optional - will use default schema "public" if not specified. */
 	}
 
-	schema_name ::= identifier
+	column_name ::= identifier
+	
+	schema_name ::= identifer
 
 	table_name ::= identifier
 
-	column_name ::= identifier
+.. code-block:: postgres
+
+	COPY 
+	  [ "<schema_name>". ]"<table_name>" [ (<column_name>) [ ,...] ]
+	FROM 
+	[FOREIGN DATA] WRAPPER 
+	  <fdw_name>
+	OPTIONS
+	(
+	  ACCOUNT_NAME = '<account name>',
+	  USERNAME = '<username>',
+	  PASSWORD = '<password>',
+	  SF_WAREHOUSE = '<warehouse_name>',
+	  SCHEMA = '<schema_name>',
+	  DATABASE = '<database_name>',
+	  DB_TABLE = '<table_name>'
+	  );
 
 Parameters
 ==========
@@ -187,13 +204,13 @@ Creating a Table
 	WRAPPER snowflake_fdw
 	OPTIONS 
 	 (
-	  ACCOUNT_NAME 'my_account'
-	  DBTABLE '<table_name>',
-	  USER '<username>',
-	  PASSWORD '<password>',
-	  DATABASE '<database_name>',
-	  SCHEMA '<schema_name>',
-	  SFWAREHOUSE '<warehouse_name>'
+	  ACCOUNT_NAME 'my sf account'
+	  DBTABLE 'my_customers',
+	  USER 'JohnSmith',
+	  PASSWORD 'pa$$w0rD',
+	  DATABASE 'master',
+	  SCHEMA 'public',
+	  SFWAREHOUSE 'my_sf_warehouse'
 	);
 	
 Joining Blue and Snowflake Tables
@@ -210,8 +227,8 @@ Joining Blue and Snowflake Tables
 	  sft.date >= '2022-01-01'
 	  AND t1.status = 'active';
 	  
-Export Data to a New Snowflake Table
-------------------------------------
+Copying Data Into a Blue Table 
+------------------------------
 
 .. code-block:: postgres
 
@@ -221,12 +238,32 @@ Export Data to a New Snowflake Table
 	  snowflake_fdw
 	OPTIONS
 	 (
-	  ACCOUNT_NAME '{account name}',
-	  DBTABLE '<table_name>',
-	  USER '<username>',
-	  PASSWORD '<password>',
-	  DATABASE '<database_name>',
-	  SCHEMA '<schema_name>',
-	  SFWAREHOUSE '<warehouse_name>',
+	  ACCOUNT_NAME 'my sf account',
+	  DBTABLE 'my_customers',
+	  USER 'JohnSmith',
+	  PASSWORD 'pa$$w0rD',
+	  DATABASE 'master',
+	  SCHEMA 'public',
+	  SFWAREHOUSE 'my_sf_warehouse',
 	  NEW_TABLE = TRUE
 	 );
+	 
+	 
+	 
+.. code-block:: postgres
+
+	COPY
+	  customers
+	FROM
+	WRAPPER
+	  snowflake_fdw
+	OPTIONS
+	(
+	  ACCOUNT_NAME = 'my sf account',
+	  USERNAME = 'JohnSmith',
+	  PASSWORD = 'pa$$w0rD',
+	  SF_WAREHOUSE = 'my_sf_warehouse',
+	  SCHEMA = 'public',
+	  DATABASE = 'master',
+	  DB_TABLE = 'my_customers'
+	  );
