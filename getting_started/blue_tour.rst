@@ -177,6 +177,11 @@ Define the conditions under which your cluster will shut down.
 
 More about :ref:`suspending and resuming your cluster<suspending_and_resuming_pools>`
 
+Managing Statement Queue
+------------------------
+
+
+
 Viewing Information About a Role
 --------------------------------
 
@@ -250,7 +255,7 @@ Clicking the **delete** icon displays a confirmation message with the amount of 
    
 .. |suspension_policy_quick_tour| image:: /_static/images/suspension_policy_quick_tour.png
    :align: middle    
-   :width: 800
+   :width: 600
    
 .. |activity_page_details| image:: /_static/images/activity_page_details.png
    :align: middle 
