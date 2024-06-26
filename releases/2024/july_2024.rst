@@ -32,15 +32,19 @@ Blue Scripting
 
 See :ref:`blue_scripting`
 
+Web Interface
+=============
+
+
 New Dashboard Items
-===================
+-------------------
 
 
 
 See :ref:`evaluating_real_time_cluster_workloads`
 
 New Activity Page
-=================
+-----------------
 
 See :ref:`monitoring_web_interface_activity`
 

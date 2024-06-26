@@ -115,7 +115,7 @@ And a **Monthly Usage** panel with an overview of your monthly cluster:
 
 These panels also timestamp latest updates, enabling you to follow the evolution of changes with precision.
 
-.. monitoring_web_interface_activity:
+.. _monitoring_web_interface_activity:
 
 Monitoring Web Interface Activity
 ---------------------------------
