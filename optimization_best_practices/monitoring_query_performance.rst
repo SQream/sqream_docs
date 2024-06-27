@@ -187,7 +187,7 @@ Commonly Seen Nodes
      - Reads data from a standard table stored on disk
    * - ``Rechunk``
      - 
-     - Reorganize multiple small :ref:`chunks<chunks_and_extents>` into a full chunk. Commonly found after ``JOIN`` operations 
+     - Reorganize multiple small chunks into a full chunk. Commonly found after ``JOIN`` operations 
    * - ``Reduce``
      - GPU
      - A reduction operation, such as a ``GROUP BY``
@@ -209,9 +209,6 @@ Commonly Seen Nodes
    * - ``Top``
      - 
      - Limits the input size, when used with ``LIMIT`` (or its alias ``TOP``)
-   * - ``UdfTransform``
-     - CPU
-     - Executes a :ref:`user defined function<python_functions>`
    * - ``UnionAll``
      -
      - Combines two sources of data when ``UNION ALL`` is used
@@ -332,7 +329,7 @@ Inefficient Filtering
 When running statements, BLUE tries to avoid reading data that is not needed for the statement by skipping chunks.
 
 If statements do not include efficient filtering, BLUE will read a lot of data off disk.
-In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line, it may be efficient to skip reading the data altogether by using the :ref:`metadata<metadata_system>`.
+In some cases, you need the data and there's nothing to do about it. However, if most of it gets pruned further down the line, it may be efficient to skip reading the data altogether by using the metadata.
 
 Identifying the Situation
 ^^^^^^^^^^^^^^^^^^^^^^^^^

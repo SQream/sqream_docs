@@ -13,8 +13,6 @@ Jobs monitoring example:
 
 |jobs_dashboard_monitor|
 
-See :ref:`monitoring_dashboard`
-
 ``DESCRIBE SESSION QUERIES`` Enhancement
 ========================================
 
