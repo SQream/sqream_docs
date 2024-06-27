@@ -18,6 +18,10 @@ Release Notes
 
 * New activity page
 
+* You can now manage your query execution queue through the Blue web interface.
+
+* SQream Blue can now be deployed on Amazon Web Services (AWS)
+
 :ref:`March 2024 <march_2024>`
 
 * Introducing new **Dashboard** charts for monitoring and responding to system changes:
