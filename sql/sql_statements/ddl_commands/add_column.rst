@@ -78,17 +78,6 @@ Adding Several Columns in One Command
 	ADD
 	  COLUMN date_seen DATE DEFAULT '2019-08-01';
 	 
-Adding Compressed Column
-------------------------
-
-.. code-block::
-
-	ALTER TABLE
-	  coo_animals
-	ADD
-	  COLUMN animal_salary INT CHECK('CS "dict"');
-
-Follow SQreamDB :ref:`compression guide<compression>` for compression types and methods.
 
 Permissions
 ===========

@@ -6,7 +6,7 @@ Null handling
 
 Blue handles ``NULL`` values similar to other RDBMSs, with some minor differences.
 
-.. tip:: When using :ref:`Blue sql<sqream_sql_cli_reference>` ``NULL`` values are displayed as ``\N``. Different clients may show other values, including an empty string.
+.. tip:: When using :ref:`Blue sql<blue_console>` ``NULL`` values are displayed as ``\N``. Different clients may show other values, including an empty string.
 
 Comparisons
 ==============
