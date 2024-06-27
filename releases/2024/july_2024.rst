@@ -1,45 +1,54 @@
 .. _july_2024:
 
-******************
+*********
 July 2024
-******************
+*********
 
 ``DESCRIBE COLUMNS`` Enhancement
 ================================
 
-The ``DESCRIBE COLUMNS`` command now lets you list information about table and view columns.
-
+The ``DESCRIBE COLUMNS`` command, which previously allowed you to list information about table columns, now also provides information about view columns.
+   
 See :ref:`describe_columns`
 
 ``ARRAY`` Data Type
 ===================
 
-The newly supported ARRAY data type enables you to simplify queries and optimize space utilization.
+We now support the ``ARRAY`` data type which enables simplifying queries and optimizing storage utilization. 
+
+* Arrays allow for the representation of more complex data structures directly within a table, making it easier to model real-world entities that have collections of items, such as lists of tags, ratings, or attributes.
+
+* Using arrays can reduce the need for additional tables and joins, simplifying the database schema and potentially improving query performance.
 
 See :ref:`sql_data_type_array`
 
 Snowflake Connectivity
 ======================
 
-
+The ability to connect Snowflake with SQream Blue offers significant advantages in terms of cost efficiency and performance optimization.
 
 See :ref:`snowflake`
 
 Blue Scripting
 ==============
 
-
+SQream Blue now supports metalanguage scripting. Metalanguage scripting is essential for improving database operations by making code simpler and more reusable. It helps organize complex tasks into scripts, functions, and procedures, making them easier to manage and maintain.
 
 See :ref:`blue_scripting`
 
 Web Interface
 =============
 
-
 New Dashboard Items
 -------------------
 
+We introduce three new **Dashboard** items for monitoring your monthly usage:
 
+* Uptime (in minutes)
+* Data Read (in bytes)
+* Rows Read
+
+Tracking how much data is read, the number of rows read, and system uptime is crucial for managing costs effectively, predicting billing, and adhering to budgets. It helps identify inefficiencies, optimize resource usage, and make informed scaling decisions. Additionally, it provides billing transparency and allows for detailed usage analysis to detect trends and anomalies. 
 
 See :ref:`evaluating_real_time_cluster_workloads`
 
