@@ -157,7 +157,9 @@ Suspending and Resuming Your Cluster
 
 Settings »  Resource Pool » 
 
-Configure your cluster to automatically enter a suspended state during idle periods and automatically resume when statements or jobs are executed. Customize performance and concurrency preferences to optimize cluster usage.
+Configure your cluster to automatically enter a suspended state during idle periods and automatically resume when statements or jobs are executed. Customize performance and concurrency preferences to optimize cluster usage. 
+
+Please note that suspension and resumption are configured on a per-resource pool basis.
 
 |resume_suspend_quick_tour|
 
@@ -177,10 +179,20 @@ Define the conditions under which your cluster will shut down.
 
 More about :ref:`suspending and resuming your cluster<suspending_and_resuming_pools>`
 
-Managing Statement Queue
+Managing Execution Queue
 ------------------------
 
+Settings »  Resource Pool » 
 
+Managing your execution queue is crucial for ensuring system resources are used optimally, avoiding bottlenecks, and preventing query starvation.  
+
+|managing_execution_queue_quick_tour|
+
+#. Limit the time each query can wait in queue to be executed
+
+#. Limit the time each query can execute 
+
+Please note that execution queue management is configured on a per-resource pool basis.
 
 Viewing Information About a Role
 --------------------------------
@@ -259,3 +271,10 @@ Clicking the **delete** icon displays a confirmation message with the amount of 
    
 .. |activity_page_details| image:: /_static/images/activity_page_details.png
    :align: middle 
+
+.. |managing_execution_queue_quick_tour| image:: /_static/images/managing_execution_queue_quick_tour.png
+   :align: middle 
+
+
+
+
