@@ -6,7 +6,7 @@
 Snowflake Connectivity
 **********************
 
-
+SQream Blue is available on Amazon Web Services (AWS) and can be deployed through the AWS Marketplace. 
 
 Syntax
 ======

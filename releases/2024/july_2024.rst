@@ -4,8 +4,8 @@
 July 2024
 *********
 
-Amazon Web Services Marketplace Now Hosts SQream Blue
-=====================================================
+SQream Blue Now Available On Amazon Web Services Marketplace
+============================================================
 
 We are excited to announce that in addition to the SQream Blue Google Cloud Platform (GCP) offering, SQream Blue is now available on Amazon Web Services (AWS) and can be deployed through the AWS Marketplace. 
 
