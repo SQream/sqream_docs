@@ -22,6 +22,8 @@ Release Notes
 
 * SQream Blue can now be deployed on Amazon Web Services (AWS)
 
+* The use of ``DESCRIBE SESSION QUERIES`` with the ``ALL`` parameter, previously available only to a ``SUPERUSER``, is now available to all system users.                                         
+
 :ref:`March 2024 <march_2024>`
 
 * Introducing new **Dashboard** charts for monitoring and responding to system changes:

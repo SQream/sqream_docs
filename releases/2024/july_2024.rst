@@ -65,6 +65,13 @@ SQream Blue now supports metalanguage scripting. Metalanguage scripting is essen
 
 See :ref:`blue_scripting`
 
+``DESCRIBE SESSION QUERIES`` Enhancement
+========================================
+
+Until this latest version, only a ``SUPERUSER`` could execute the ``DESCRIBE SESSION QUERIES`` command with the ``ALL`` parameter. This parameter, now available to all system users, enhances the ability to monitor queries across all sessions. 
+
+See :ref:`describe_session_queries`
+
 
 
 

@@ -56,6 +56,11 @@ Syntax
    * - ``SplitQueryByNumber``
      - Splits query execution by a predefined number of instances and by specific ``NUMERIC`` column values
 
+Usage Notes
+===========
+
+Metalanguage scripting is available only through the Blue web interface and cannot be used via the CLI.
+
 Examples
 ========
 
