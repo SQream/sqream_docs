@@ -51,7 +51,7 @@ Supported Operators
      - Literals are created using the ``ARRAY`` operator
      - ``ARRAY[1,2,3]``
    * - Mapping
-     - Parquet, ORC, JSON, and AVRO ``ARRAY`` types may be mapped into SQreamDB ``ARRAY``
+     - Parquet, ORC, JSON, and AVRO ``ARRAY`` types may be mapped into SQream Blue ``ARRAY``
      - See extended section under **Examples** 
    * - Indexing
      - Access to specific elements within the array by using a **zero-based index**
@@ -284,10 +284,10 @@ Casting ``TEXT`` to non-``TEXT`` and non-``TEXT`` to ``TEXT`` data types is not 
 Connectors
 ----------
 
-``.NET`` and ``ODBC``
-"""""""""""""""""""""
+``ODBC``
+""""""""
 
-Please note that the SQreamDB ODBC and .NET connectors do not support the use of ARRAY data types. If your database schema includes ARRAY columns, you may encounter compatibility issues when using these connectors.
+Please note that the ODBC connector does not support the use of ``ARRAY``. If your database schema includes ``ARRAY`` columns, you may encounter compatibility issues when using this connector.
 
 ``Pysqream``
 """"""""""""
