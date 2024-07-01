@@ -82,8 +82,6 @@ Supported SQream Drivers
 The following list shows the supported SQream drivers and versions:
 
 * **JDBC** - Version 4.3.3 and higher.
-
-   ::
    
 * **ODBC** - Version 4.0.0. This version requires a Bridge to connect. For more information on the required Bridge, see `Connecting Talend on Windows to an ODBC Database <https://www.easysoft.com/blog/talend.html>`_.
 
@@ -93,8 +91,6 @@ Supported Data Sources
 Talend Cloud connectors let you create reusable connections with a wide variety of systems and environments, such as those shown below. This lets you access and read records of a range of diverse data.
 
 * **Connections:** Connections are environments or systems for storing datasets, including databases, file systems, distributed systems and platforms. Because these systems are reusable, you only need to establish connectivity with them once.
-
-   ::
 
 * **Datasets:** Datasets include database tables, file names, topics (Kafka), queues (JMS) and file paths (HDFS). For more information on the complete list of connectors and datasets that Talend supports, see `Introducing Talend Connectors <https://help.talend.com/r/vqIZei8ynfi_BaDCg3d~_g/M0qzU1kTnL0bPou7OuxJfw>`_.
 
