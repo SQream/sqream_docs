@@ -66,6 +66,18 @@ New Features and Enhancements
 
 ► Our :ref:`Pysqream<sqlalchemy>` connector now support SQLAlchemy version 2.0.27.
 
+► For any new SQreamDB installation or upgrade, your default :ref:`legacy configuration file<modifying_your_configuration_using_a_legacy_configuration_file>` will include the following cluster flags:
+
+.. code-block:: json
+   
+   {
+
+    "useLogMaxFileSize": false,
+    "logMaxFileSizeMB": 20,
+    "logFileRotateTimeFrequency": "daily",
+	
+   }
+
 Known Issues
 ------------
 
