@@ -35,6 +35,8 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
+► REHL 8.x is now officially supported.
+
 ► Enable automatic termination of queries that exceed a pre-defined time limit in the queue. The introduction of the :ref:`queueTimeoutMinutes flag<current_method_configuration_levels>` flag empowers you to set time constraints for queries in the queue, ranging from a few minutes to a maximum of 72 hours.
 
 ► SQreamDB operates with utmost efficiency when processing tables containing large data chunks. Introducing a new :ref:`rechunk` utility function, it simplifies the management of tables with small data chunks. This feature enables users to merge small data chunks into larger ones and simultaneously eliminating any deleted records present.
@@ -120,9 +122,9 @@ Starting October 2024, support for the Haskell CLI will be discontinued, and it 
 
 ► **CentOS Linux 7.x**
 
-* As of June 2024, CentOS Linux 7.x will reach its End of Life and will not be supported by SQreamDB. This announcement provides a one-year advance notice for our users to plan for this change. We recommend users to explore migration or upgrade options to maintain ongoing support and security beyond this date. 
+CentOS Linux 7.x has reached its end of life and is not supported by SQreamDB.
 
-* REHL 8.x is now officially supported.
+
 
 Upgrading to Version 4.6
 -------------------------
