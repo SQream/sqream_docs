@@ -45,10 +45,7 @@ New Features and Enhancements
 
 
 
-► Two new conditional functions that shorten complex query runtime by checking for the existence of tables and views within the specified schema:
 
-* :ref:`is_table_exists`
-* :ref:`is_view_exists`
 
 ► A new :ref:`ldap` configuration flag allows including LDAP user attributes in your SQreamDB metadata by associating these attributes with SQreamDB roles.  
 
