@@ -35,6 +35,8 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
+► A new :ref:`ldap` configuration flag allows including LDAP user attributes in your SQreamDB metadata by associating these attributes with SQreamDB roles.  
+
 ► The ``clientReconnectionTimeout`` configuration flag has been reclassified as a cluster configuration flag. Unlike session flags, cluster flags apply to the entire cluster and persist across system restarts or shutdowns, retaining the configured value. Learn more about :ref:`SQreamDB configuration flags<current_method_configuration_levels>`
 
 ► JDBC enhancements have been implemented to facilitate the retrieval of the record count for the updated number of rows during ``INSERT`` and ``DELETE`` operations when connecting to a third-party platform via JDBC. Use the SQreamDB JDBC connector as usual; the sole distinction is in the ability to now observe the updated number of rows.
