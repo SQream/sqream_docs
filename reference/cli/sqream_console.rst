@@ -1,22 +1,21 @@
 .. _sqream_console_cli_reference:
 
-*********************************
-sqream-console
-*********************************
+****************
+SqreamDB Console
+****************
 
-``sqream-console`` is an interactive shell designed to help manage a dockerized SQream DB installation.
+``sqream-console`` is an interactive shell designed to help manage a dockerized SQreamDB installation.
 
 The console itself is a dockerized application.
 
-This page serves as a reference for the options and parameters.
-
-.. contents:: In this topic:
+.. contents::
    :local:
+   :depth: 1
 
 Starting the console
-======================
+====================
 
-``sqream-console`` can be found in your SQream DB installation, under the name ``sqream-console``.
+``sqream-console`` can be found in your SQreamDB installation, under the name ``sqream-console``.
 
 Start the console by executing it from the shell
 
@@ -60,14 +59,14 @@ The console is now waiting for commands.
 
 The console is a wrapper around a standard linux shell. It supports commands like ``ls``, ``cp``, etc.
 
-All SQream DB-specific commands start with the keyword ``sqream``.
+All SQreamDB-specific commands start with the keyword ``sqream``.
 
 
 Operations and flag reference
-===============================
+=============================
 
 Commands
------------------------
+--------
 
 .. list-table:: 
    :widths: auto
@@ -89,12 +88,12 @@ Commands
 .. _master_node:
 
 Master
-------------
+------
 
 The master node contains the :ref:`metadata server<metadata_server_cli_reference>` and the :ref:`load balancer<server_picker_cli_reference>`.
 
 Syntax
-^^^^^^^^^^
+^^^^^^
 
 .. code-block:: console
    
@@ -114,7 +113,7 @@ Syntax
    * - ``--stop [ --all ]``
      - 
          Stops the master node and all connected :ref:`workers<workers>`.
-         The ``--all`` modifier instructs the ``--stop`` command to stop all running services related to SQream DB
+         The ``--all`` modifier instructs the ``--stop`` command to stop all running services related to SQreamDB
    * - ``--list``
      - Shows a list of all active master nodes and their workers
    * - ``-p <port>``
@@ -123,10 +122,10 @@ Syntax
      - Sets the port for the metadata server. Defaults to ``3105``
 
 Common usage
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^
 
 Start master node
-********************
+*****************
 
 .. code-block:: console
    
@@ -135,7 +134,7 @@ Start master node
    sqream_single_host_master is up and listening on ports:   3105,3108
 
 Start master node on different ports
-*******************************************
+************************************
 
 .. code-block:: console
    
@@ -144,7 +143,7 @@ Start master node on different ports
    sqream_single_host_master is up and listening on ports:   4105,4108
 
 Listing active master nodes and workers
-***************************************************
+***************************************
 
 .. code-block:: console
    
@@ -153,8 +152,8 @@ Listing active master nodes and workers
    container name: sqream_single_host_worker_0, container id: c919e8fb78c8
    container name: sqream_single_host_master, container id: ea7eef80e038
 
-Stopping all SQream DB workers and master
-*********************************************
+Stopping all SQreamDB workers and master
+*****************************************
 
 .. code-block:: console
    
@@ -168,12 +167,12 @@ Stopping all SQream DB workers and master
 .. _workers:
 
 Workers
-------------
+-------
 
-Workers are :ref:`SQream DB daemons<sqreamd_cli_reference>`, that connect to the master node.
+Workers are :ref:`SQreamDB daemons<sqreamd_cli_reference>`, that connect to the master node.
 
 Syntax
-^^^^^^^^^^
+^^^^^^
 
 .. code-block:: console
    
@@ -218,10 +217,10 @@ Start options are specified consecutively, separated by spaces.
      - For testing only: Starts a worker without connecting to the master node.
 
 Common usage
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^
 
 Start 2 workers
-********************
+***************
 
 After starting the master node, start workers:
 
@@ -232,7 +231,7 @@ After starting the master node, start workers:
    started sqream_single_host_worker_1 on port 5001, allocated gpu: 1
 
 Stop a single worker
-*******************************************
+********************
 
 To stop a single worker, find its name first:
 
@@ -251,7 +250,7 @@ Then, issue a stop command:
    stopped sqream_single_host_worker_1
 
 Start workers with a different spool size
-**********************************************
+*****************************************
 
 If no spool size is specified, the RAM is equally distributed among workers.
 Sometimes a system engineer may wish to specify the spool size manually.
@@ -263,9 +262,9 @@ This example starts two workers, with a spool size of 50GB per node:
    sqream-console> sqream worker --start 2 -m 50
 
 Starting multiple workers on non-dedicated GPUs
-****************************************************
+***********************************************
 
-By default, SQream DB workers assign one worker per GPU. However, a system engineer may wish to assign multiple workers per GPU, if the workload permits it.
+By default, SQreamDB workers assign one worker per GPU. However, a system engineer may wish to assign multiple workers per GPU, if the workload permits it.
 
 This example starts 4 workers on 2 GPUs, with 50GB spool each:
 
@@ -279,7 +278,7 @@ This example starts 4 workers on 2 GPUs, with 50GB spool each:
    started sqream_single_host_worker_3 on port 5003, allocated gpu: 1
 
 Overriding default configuration files
-*******************************************
+**************************************
 
 It is possible to override default configuration settings by listing a configuration file for every worker. 
 
@@ -290,14 +289,12 @@ This example starts 2 workers on the same GPU, with modified configuration files
    sqream-console> sqream worker --start 2 -g 0 -j /etc/sqream/configfile.json /etc/sqream/configfile2.json
 
 Client
-------------
+------
 
 The client operation runs :ref:`sqream sql<sqream_sql_cli_reference>` in interactive mode.
 
-.. note:: The dockerized client is useful for testing and experimentation. It is not the recommended method for executing analytic queries. See more about connecting a :ref:`third party tool to SQream DB <third_party_tools>` for data analysis.
-
 Syntax
-^^^^^^^^^^
+^^^^^^
 
 .. code-block:: console
    
@@ -325,10 +322,10 @@ Syntax
      - Specifies the database name for the connection. Defaults to ``master``.
 
 Common usage
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^
 
 Start a client
-********************
+**************
 
 Connect to default ``master`` database through the load balancer:
 
@@ -341,7 +338,7 @@ Connect to default ``master`` database through the load balancer:
    master=> _
 
 Start a client to a specific worker
-**************************************
+***********************************
 
 Connect to database ``raviga`` directly to a worker on port 5000:
 
@@ -354,7 +351,7 @@ Connect to database ``raviga`` directly to a worker on port 5000:
    raviga=> _
 
 Start master node on different ports
-*******************************************
+************************************
 
 .. code-block:: console
    
@@ -363,7 +360,7 @@ Start master node on different ports
    sqream_single_host_master is up and listening on ports:   4105,4108
 
 Listing active master nodes and worker nodes
-***************************************************
+********************************************
 
 .. code-block:: console
    
@@ -375,14 +372,14 @@ Listing active master nodes and worker nodes
 .. _start_editor:
 
 Editor
-------------
+------
 
-The editor operation runs the web UI for the :ref:`SQream DB Statement Editor<statement_editor>`.
+The editor operation runs the web UI for the SQreamDB Statement Editor.
 
 The editor can be used to run queries from a browser.
 
 Syntax
-^^^^^^^^^^
+^^^^^^
 
 .. code-block:: console
    
@@ -402,10 +399,10 @@ Syntax
      - Specify a different port for the editor. Defaults to ``3000``.
 
 Common usage
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^
 
 Start the editor UI
-**********************
+*******************
 
 .. code-block:: console
    
@@ -413,7 +410,7 @@ Start the editor UI
    access sqream statement editor through Chrome http://192.168.0.100:3000
 
 Stop the editor UI
-**********************
+******************
 
 .. code-block:: console
    
@@ -421,15 +418,15 @@ Stop the editor UI
     sqream_editor    stopped
 
 
-Using the console to start SQream DB
-============================================
+Using the console to start SQreamDB
+===================================
 
-The console is used to start and stop SQream DB components in a dockerized environment.
+The console is used to start and stop SQreamDB components in a dockerized environment.
 
-Starting a SQream DB cluster for the first time
--------------------------------------------------------
+Starting a SQreamDB cluster for the first time
+----------------------------------------------
 
-To start a SQream DB cluster, start the master node, followed by workers.
+To start a SQreamDB cluster, start the master node, followed by workers.
 
 The example below starts 2 workers, running on 2 dedicated GPUs.
 
@@ -446,6 +443,6 @@ The example below starts 2 workers, running on 2 dedicated GPUs.
    sqream-console> sqream editor --start
    access sqream statement editor through Chrome http://192.168.0.100:3000
 
-SQream DB is now listening on port 3108 for any incoming statements.
+SQreamDB is now listening on port 3108 for any incoming statements.
 
-A user can also access the web editor (running on port ``3000`` on the SQream DB machine) to connect and run queries.
+A user can also access the web editor (running on port ``3000`` on the SQreamDB machine) to connect and run queries.
