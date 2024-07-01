@@ -118,7 +118,7 @@ Deprecations
 
 ► **Haskell CLI**
 
-Starting October 2024, support for the Haskell CLI will be discontinued, and it will be replaced by a JAVA CLI that is compatible with both SQreamDB and BLUE.
+Starting February 2025, support for the Haskell CLI will be discontinued, and it will be replaced by a JAVA CLI that is compatible with both SQreamDB and BLUE.
 
 ► **CentOS Linux 7.x**
 
