@@ -39,7 +39,7 @@ New Features and Enhancements
 
 ► The ``clientReconnectionTimeout`` configuration flag has been reclassified as a cluster configuration flag. Unlike session flags, cluster flags apply to the entire cluster and persist across system restarts or shutdowns, retaining the configured value. Learn more about :ref:`SQreamDB configuration flags<current_method_configuration_levels>`
 
-► JDBC enhancements have been implemented to facilitate the retrieval of the record count for the updated number of rows during ``INSERT`` and ``DELETE`` operations when connecting to a third-party platform via JDBC. Use the SQreamDB JDBC connector as usual; the sole distinction is in the ability to now observe the updated number of rows.
+
 
 ► SQreamDB operates with utmost efficiency when processing tables containing large data chunks. Introducing a new :ref:`rechunk` utility function, it simplifies the management of tables with small data chunks. This feature enables users to merge small data chunks into larger ones and simultaneously eliminating any deleted records present.
 
