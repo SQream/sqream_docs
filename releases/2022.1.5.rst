@@ -17,15 +17,9 @@ The 2022.1.5 Release Notes include the following new features:
  
 * ``keys_evaluate`` utility function enhancement - add problematic chunk ID to the function's output report
 
-	::
-
 * Automatically close database client connections that have been open for 24 hours without any active statements
 
-	::
-
 * ``release_defunct_locks`` utility function enhancement to receive new optional input parameter to specify timeout - for more details see :ref:`Lock Related Issues <lock_related_issues>`.
-
-	::
 
 * Metadata scale up process improvement through RocksDB configuration improvements
 
@@ -113,19 +107,11 @@ Upgrading to v2022.1.5
    
 2. Shut down all SQream services.
 
-    ::
-
 3. Extract the recently created back-up file.
-
-    ::
 
 4. Replace your current metadata with the metadata you stored in the back-up file.
 
-    ::
-
 5. Navigate to the new SQream package bin folder.
-
-    ::
 
 6. Run the following command:
 
