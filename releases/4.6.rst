@@ -35,6 +35,8 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
+► The ``TOP`` clause can now take a **subtraction** arithmetic operator when used in a :ref:`select` statement. 
+
 ► Sing in to SQreamDB Acceleration Studio using your universal :ref:`Single Sign-On (SSO)<sso>` provider authentication. 
 
 ► You may now retrieve and manipulate data from different databases within a single SQreamDB cluster through the execution of a single SQL statement using the :ref:`Cross-Database<cross_database_query>` syntax.
