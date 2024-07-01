@@ -1,8 +1,8 @@
 .. _core_dumping_related_issues:
 
-***********************
+***************************
 Core Dumping Related Issues
-***********************
+***************************
 
 The **Core Dumping Related Issues** page describes the troubleshooting procedure to be followed if all parameters have been configured correctly, but the cores have not been created.
 
