@@ -47,7 +47,7 @@ New Features and Enhancements
 
 
 
-► A new :ref:`ldap` configuration flag allows including LDAP user attributes in your SQreamDB metadata by associating these attributes with SQreamDB roles.  
+
 
 ► Multi-platform CLI 
 
