@@ -18,9 +18,9 @@ Automatically suspend and resume your BLUE environment
 
 May 01, 2023
 
-You may now automatically :ref:`suspend and resume<cost_management>` your BLUE environment. Suspending an environment temporarily releases resources, pausing billing for a set duration when the environment is not expected to be used. A suspended BLUE environment's Workers are inactive and cannot execute statements, but resource count returns to its pre-suspension value upon resuming. The cluster remains accessible for administrative actions such as resize and flow management.
+You may now automatically suspend and resume your BLUE environment. Suspending an environment temporarily releases resources, pausing billing for a set duration when the environment is not expected to be used. A suspended BLUE environment's Workers are inactive and cannot execute statements, but resource count returns to its pre-suspension value upon resuming. The cluster remains accessible for administrative actions such as resize and flow management.
 
-:ref:`Read more<managing_your_resources>`
+:ref:`Read more<cost_management>`
 
 Google Cloud Platform marketplace deployment
 --------------------------------------------
