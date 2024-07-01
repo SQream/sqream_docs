@@ -1,8 +1,8 @@
 .. _tableau:
 
-*************************
-Connecting to SQream Using Tableau
-*************************
+*******
+Tableau
+*******
 
 SQream's Tableau connector, based on standard JDBC, enables storing and fast querying large volumes of data. This connector is useful for users who want to integrate and analyze data from various sources within the Tableau platform. With the Tableau connector, users can easily connect to databases and cloud applications and perform high-speed queries on large datasets. Additionally, the connector allows for seamless integration with Tableau, enabling users to visualize their data.
 
@@ -25,7 +25,7 @@ Setting Up JDBC
 ----------------
 
 #. Download the SQream JDBC Connector :ref:`.jar file <client_drivers>`.
-#. Place the JDBC .jar file in the Tableau driver directory.
+#. Place the JDBC ``.jar`` file in the Tableau driver directory.
 
    Based on your operating system, you may find the Tableau driver directory in one of the following locations:
    
@@ -64,24 +64,18 @@ Installing the Tableau Connector
 3. Restart Tableau Desktop or Tableau server.
 
 Connecting to SQream
----------------------
+--------------------
 
 
 #. Start Tableau Desktop.
-
-    ::
 	
 #. In the **Connect** menu, under the **To a Server** option , click **More**.
 
    Additional connection options are displayed.
-
-    ::
 	
 #. Select **SQream DB by SQream Technologies**.
 
-   The connection dialog box is displayed.
-
-    ::
+   A connection dialog box is displayed.
 	
 #. In the connection dialog box, fill in the following fields:
 
