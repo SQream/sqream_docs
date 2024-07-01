@@ -17,3 +17,4 @@ SQream DB supports SQL from the ANSI 92 syntax and describes the following:
    * :ref:`window_functions`
    * :ref:`subqueries`
    * :ref:`null_handling`
+   * :ref:`sqream_scripting`
