@@ -17,7 +17,7 @@ Syntax
 
 	-- Declare:
 
-	@@ Declare <my_parameter> = <value>
+	@@ Declare '<my_parameter>' = <value>
 
 	-- SetResults:
 
@@ -88,7 +88,7 @@ Examples
 .. code-block:: console
 
 	@@ Declare myVar = 3;
-	SELECT ${myVar};
+	SELECT '${myVar}';
 
 ``SetResults``
 --------------
