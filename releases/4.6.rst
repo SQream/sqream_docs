@@ -35,6 +35,8 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
+► Sing in to SQreamDB Acceleration Studio using your universal :ref:`Single Sign-On (SSO)<sso>` provider authentication. 
+
 ► You may now retrieve and manipulate data from different databases within a single SQreamDB cluster through the execution of a single SQL statement using the :ref:`Cross-Database<cross_database_query>` syntax.
 
 ► Enhance your :ref:`COPY FROM<copy_from>` operations with the new ``DELETE_SOURCE_ON_SUCCESS`` parameter, which automatically deletes the source file being copied into SQreamDB. This not only saves time and effort in cleaning cloud storage but also helps conserve storage space.

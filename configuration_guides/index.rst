@@ -12,3 +12,4 @@ The **Configuration Guides** page describes the following configuration informat
 
    configuring_sqream
    ldap
+   sso
