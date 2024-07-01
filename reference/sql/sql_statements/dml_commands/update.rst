@@ -1,8 +1,9 @@
 .. _update:
 
-**********************
+******
 UPDATE
-**********************
+******
+
 The **UPDATE** statement page describes the following:
 
 .. |icon-new_2022.1| image:: /_static/images/new_2022.1.png
@@ -14,7 +15,8 @@ The **UPDATE** statement page describes the following:
    :depth: 1
 
 Overview
-==========
+========
+
 The ``UPDATE`` statement is used to modify the value of certain columns in existing rows without creating a table.
 
 It can be used to do the following:
@@ -30,7 +32,8 @@ It can be used to do the following:
 The ``UPDATE`` statement cannot be used to reference other tables in the ``WHERE`` or ``SET`` clauses.
 
 Syntax
-==========
+======
+
 The following is the correct syntax for the ``UPDATE`` command:
 
 .. code-block:: postgres
@@ -43,7 +46,8 @@ The following is the correct syntax for the ``UPDATE`` command:
 
    
 Parameters
-============
+==========
+
 The following table describes the ``UPDATE`` parameters:
 
 .. list-table:: 
@@ -62,7 +66,7 @@ The following table describes the ``UPDATE`` parameters:
      - Specifies the condition for updating the data.
 
 Examples
-===========
+========
 
 The examples section shows how to modify the value of certain columns in existing rows without creating a table.
 
@@ -117,7 +121,7 @@ To be able to follow the examples, create these two tables:
    :depth: 1
 
 Updating an Entire Table
------------------
+------------------------
 
 Two different ``UPDATE`` methods for updating an entire table.
 
@@ -131,7 +135,8 @@ Two different ``UPDATE`` methods for updating an entire table.
 
 
 Performing Simple Updates
------------------
+-------------------------
+
 The following is an example of performing a simple update:
 
 .. code-block:: postgres
@@ -139,7 +144,8 @@ The following is an example of performing a simple update:
     UPDATE countries SET records_sold = records_sold + 1 WHERE name = 'Israel';
 
 Updating Tables that Contain Multi-Table Conditions
------------------
+---------------------------------------------------
+
 The following shows an example of updating tables that contain multi-table conditions:
 
 .. code-block:: postgres
@@ -155,6 +161,7 @@ The following shows an example of updating tables that contain multi-table condi
 
 Updating Tables that Contain Multi-Table Expressions
 ----------------------------------------------------
+
 The following shows an example of updating tables that contain multi-table expressions:
 
 .. code-block:: postgres
@@ -169,7 +176,7 @@ The following shows an example of updating tables that contain multi-table expre
 	;
  
 Triggering a Cleanup
----------------------
+--------------------
 
 When an ``UPDATE`` statement is executed, it creates a new table that contains the updated data, while the original table remains intact. As a result, residual data may be left behind, and a cleanup operation is necessary to ensure the database remains in a consistent state.
 
@@ -184,6 +191,7 @@ The following is the syntax for triggering a cleanup:
    
 Permissions
 ===========
+
 Executing an ``UPDATE`` statement requires the following permissions:
 
 * Both ``UPDATE`` and ``SELECT`` permissions on the target table.
@@ -191,4 +199,5 @@ Executing an ``UPDATE`` statement requires the following permissions:
 
 Locking and Concurrency
 =======================
+
 Executing the ``UPDATE`` statement obtains an exclusive UPDATE lock on the target table, but does not lock the destination tables.
