@@ -28,6 +28,8 @@ SQreamDB supports SQL from the ANSI 92 syntax.
      - Subqueries are nested queries that are embedded within a larger query to retrieve data, perform calculations, or filter results based on the outcome of the inner query.
    * - :ref:`null_handling`
      - Null handling involves managing and evaluating the presence of null values, representing unknown or undefined data, to avoid unexpected results in queries and expressions.
+   * - :ref:`sqream_scripting`
+     - 
 
 
 
