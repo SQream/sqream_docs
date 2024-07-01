@@ -8,7 +8,7 @@ The ``IsCastable`` function checks whether a data type cast operation is support
 
 .. tip::
 
-	See BLUE :ref:`supported casts table <supported_casts>`
+	See :ref:`supported casts table <supported_casts>`
 
 Syntax
 ======
