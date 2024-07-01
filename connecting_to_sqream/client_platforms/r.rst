@@ -1,8 +1,8 @@
 .. _r:
 
-*
+**
 R
-*
+**
 
 You can use R to interact with a SQream DB cluster.
 
