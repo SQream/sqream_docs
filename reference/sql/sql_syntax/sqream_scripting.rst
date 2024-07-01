@@ -11,13 +11,17 @@ Syntax
 
 .. code-block:: postgres
 
+	-- Double curly brackets
+	
+	{{ … }}
+
 	-- Parallel:
 
 	@@ Parallel $$ ... $$
 
 	-- Declare:
 
-	@@ Declare <my_parameter> = <value>
+	@@ Declare '<my_parameter>' = <value>
 
 	-- SetResults:
 
@@ -43,6 +47,8 @@ Syntax
    
    * - Parameter
      - Description
+   * - ``{{ … }}``
+     - Double brackets can contain JavaScript code to be executed through the Editor
    * - ``Parallel``
      - Runs specified queries in parallel
    * - ``Declare``
@@ -67,6 +73,15 @@ Usage Notes
 Examples
 ========
 
+Double Curly Brackets
+---------------------
+
+.. code-block:: console
+
+	{{
+	  return 1;
+	}}
+
 ``Parallel``
 ------------
 
@@ -85,7 +100,7 @@ Examples
 .. code-block:: console
 
 	@@ Declare myVar = 3;
-	SELECT ${myVar};
+	SELECT '${myVar}';
 
 ``SetResults``
 --------------
