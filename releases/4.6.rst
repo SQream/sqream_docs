@@ -102,9 +102,15 @@ Version 4.6 resolved Issues
 Deprecations
 -------------------
 
+► **Haskell CLI**
+
+Starting October 2024, support for the Haskell CLI will be discontinued, and it will be replaced by a JAVA CLI that is compatible with both SQreamDB and BLUE.
+
 ► **CentOS Linux 7.x**
 
 * As of June 2024, CentOS Linux 7.x will reach its End of Life and will not be supported by SQreamDB. This announcement provides a one-year advance notice for our users to plan for this change. We recommend users to explore migration or upgrade options to maintain ongoing support and security beyond this date. 
+
+* REHL 8.x is now officially supported.
 
 Upgrading to Version 4.6
 -------------------------
