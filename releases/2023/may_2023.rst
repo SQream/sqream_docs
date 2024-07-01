@@ -11,7 +11,7 @@ May 01, 2023
 
 By leveraging Auth0, BLUE enables not only IDP authentication, but also multi-factor authentication, encryption, and anomaly detection to protect user data and prevent unauthorized access. 
 
-`Read more <https://docs.sqream.com/en/blue/getting_started/index.html#login>`_
+:ref:`Read more<log_in>`
 
 Automatically suspend and resume your BLUE environment
 ------------------------------------------------------
@@ -20,7 +20,7 @@ May 01, 2023
 
 You may now automatically :ref:`suspend and resume<cost_management>` your BLUE environment. Suspending an environment temporarily releases resources, pausing billing for a set duration when the environment is not expected to be used. A suspended BLUE environment's Workers are inactive and cannot execute statements, but resource count returns to its pre-suspension value upon resuming. The cluster remains accessible for administrative actions such as resize and flow management.
 
-`Read more <https://docs.sqream.com/en/blue/getting_started/managing_your_resources.html#managing-cost>`_
+:ref:`Read more<managing_your_resources>`
 
 Google Cloud Platform marketplace deployment
 --------------------------------------------
