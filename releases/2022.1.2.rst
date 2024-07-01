@@ -15,8 +15,6 @@ The 2022.1.2 Release Notes describes the following:
 
 * Automatic schema identification.
 
-   ::
-
 * Optimized queries on external Parquet tables.
 
 Storage Version

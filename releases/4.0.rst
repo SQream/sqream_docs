@@ -17,26 +17,20 @@ New Features
 
  * Re-enabling an enhanced version of the :ref:`License Storage Capacity<monitoring_workers_and_services_from_the_dashboard>` feature 
 
-	::
-
  * :ref:`Lightweight Directory Access Protocol(LDAP)<ldap>` may be used to authenticate SQream roles
 
-	::
-
- * :ref:`Physical deletion performance enhancement<delete>` by supporting file systems with parallelism capabilities
+ * :ref:`Physical deletion performance enhancement<delete_guide>` by supporting file systems with parallelism capabilities
  
 Storage Version
 ---------------
 
 The storage version presently in effect is version 45. 
 
- 
+  
 SQream Studio Updates and Improvements
 --------------------------------------
 
  *  When creating a **New Role**, you may now create a group role by selecting **Set as a group role**.
-
-	::
 	
  *  When editing an **Existing Role**, you are no longer obligated to update the role's password.
 
@@ -46,7 +40,7 @@ Known Issues
 :ref:`Percentile<percentile_disc>` is not supported for Window functions.
 
 Version 4.0 resolved Issues
-----------------------------
+---------------------------
 
 +-----------------+---------------------------------------------------------------------------------------+
 |  **SQ No.**     |  **Description**                                                                      |
