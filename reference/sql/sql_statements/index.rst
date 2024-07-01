@@ -3,6 +3,7 @@
 ***************
 SQL Statements
 ***************
+
 The **SQL Statements** page describes the following commands:
 
 .. contents::
@@ -15,6 +16,7 @@ SQream supports commands from ANSI SQL.
 
 Data Definition Commands (DDL)
 ================================
+
 The following table shows the Data Definition commands:
 
 .. list-table::
@@ -71,6 +73,7 @@ The following table shows the Data Definition commands:
 
 Data Manipulation Commands (DML)
 ================================
+
 The following table shows the Data Manipulation commands:
 
 .. list-table::
@@ -101,6 +104,7 @@ The following table shows the Data Manipulation commands:
 
 Utility Commands
 ==================
+
 The following table shows the Utility commands:
 
 .. list-table::
@@ -109,36 +113,38 @@ The following table shows the Utility commands:
      
    * - Command
      - Usage
-   * - :ref:`GET TOTAL CHUNKS SIZE<get_total_chunks_size>`
-     - Returns the total size of all data chunks saved in the system	 
    * - :ref:`DROP SAVED QUERY<drop_saved_query>`
      - Drops a saved query
+   * - :ref:`DUMP DATABASE DDL<dump_database_ddl>`
+     - View the ``CREATE TABLE`` statement for an current database
    * - :ref:`EXECUTE SAVED QUERY<execute_saved_query>`
      - Executes a previously saved query
    * - :ref:`EXPLAIN<explain>`
      - Returns a static query plan, which can be used to debug query plans
+   * - :ref:`GET DDL<get_ddl>`
+     - View the ``CREATE TABLE`` statement for a table
+   * - :ref:`GET FUNCTION DDL<get_function_ddl>`
+     - View the ``CREATE FUNCTION`` statement for a UDF
+   * - :ref:`GET LICENSE INFO<get_license_info>`
+     - View a user's license information
+   * - :ref:`GPU METRICS<select_gpu_metrics>`
+     - Monitor license quota usage by reviewing monthly or daily GPU usage
+   * - :ref:`GET TOTAL CHUNKS SIZE<get_total_chunks_size>`
+     - Returns the total size of all data chunks saved in the system	
+   * - :ref:`GET VIEW DDL<get_view_ddl>`
+     - View the ``CREATE VIEW`` statement for a view 
+   * - :ref:`HEALTH CHECK MONITORING<select_health_check_monitoring>`
+     - Returns system health monitoring logs
+   * - :ref:`LDAP GET ATTR<ldap_get_attr>`
+     - Enables you to specify the LDAP attributes you want the SQreamDB role catalog table to show   
    * - :ref:`LIST SAVED QUERIES<list_saved_queries>`
-     - Lists previously saved query names, one per row.
+     - Lists previously saved query names, one per row
+   * - :ref:`RECHUNK<rechunk>`
+     - Enables you to merge small data chunks into larger ones 
    * - :ref:`RECOMPILE SAVED QUERY<recompile_saved_query>`
      - Recompiles a saved query that has been invalidated due to a schema change
-   * - :ref:`SELECT GET LICENSE INFO<get_license_info>`
-     - View a user's license information
-   * - :ref:`SELECT GET DDL<get_ddl>`
-     - View the ``CREATE TABLE`` statement for a table
-   * - :ref:`SELECT GET FUNCTION DDL<get_function_ddl>`
-     - View the ``CREATE FUNCTION`` statement for a UDF
-   * - :ref:`SELECT GET TOTAL CHUNKS SIZE<get_total_chunks_size>`
-     - Shows the total size of all data chunks saved in the system in both compressed and uncompressed formats
-   * - :ref:`SELECT GET VIEW DDL<get_view_ddl>`
-     - View the ``CREATE VIEW`` statement for a view
-   * - :ref:`SELECT DATA READ METRICS<select_data_read_metrics>`
-     - Monitor license quota usage by reviewing monthly or daily data read usage 
-   * - :ref:`SELECT HEALTH CHECK MONITORING<select_health_check_monitoring>`
-     - Returns system health monitoring logs
-   * - :ref:`SELECT RECOMPILE VIEW<recompile_view>`
+   * - :ref:`RECOMPILE VIEW<recompile_view>`
      - Recreate a view after schema changes
-   * - :ref:`SELECT DUMP DATABASE DDL<dump_database_ddl>`
-     - View the ``CREATE TABLE`` statement for an current database
    * - :ref:`SHOW CONNECTIONS<show_connections>`
      - Returns a list of active sessions on the current worker
    * - :ref:`SHOW LOCKS<show_locks>`
@@ -149,16 +155,19 @@ The following table shows the Utility commands:
      - Returns a single row result containing the saved query string
    * - :ref:`SHOW SERVER STATUS<show_server_status>`
      - Returns a list of active sessions across the cluster
-   * - :ref:`SHOW VERSION<show_version>`
-     - Returns the system version for SQream DB
    * - :ref:`SHUTDOWN SERVER<shutdown_server_command>`
      - Sets your server to finish compiling all active queries before shutting down according to a user-defined time value
    * - :ref:`STOP STATEMENT<stop_statement>`
      - Stops or aborts an active statement
+   * - :ref:`SHOW VERSION<show_version>`
+     - Returns the system version for SQream DB
+   * - :ref:`swap_table_names`
+     - Swaps the names of two tables contained within a schema
 
 
 Workload Management
 ======================
+
 The following table shows the Workload Management commands:
 
 .. list-table::
@@ -176,6 +185,7 @@ The following table shows the Workload Management commands:
 
 Access Control Commands
 ================================
+
 The following table shows the Access Control commands:
 
 .. list-table::
