@@ -4,7 +4,7 @@
 Blue Scripting
 **************
 
-The Java- based Blue scripting enhances your interaction with SQL by providing conventions which allow dynamic generation, management, and automation of SQL code and database operations.
+The Java- based Blue scripting enhances your interaction with SQL by providing conventions which allow dynamic generation, management, and automation of SQL code and database operations. 
 
 Syntax
 ======
@@ -59,7 +59,13 @@ Syntax
 Usage Notes
 ===========
 
-Metalanguage scripting is available only through the Blue web interface and cannot be used via the CLI.
+.. glossary::
+
+	**Execution**
+		Metalanguage scripting is available only through the Blue web interface and cannot be used via the CLI. 
+
+	``Parallel``
+		The performance of the ``Parallel`` parameter depends on the number of Workers allocated to the resource pool you are operating through.
 
 Examples
 ========
