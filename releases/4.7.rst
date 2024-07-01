@@ -35,19 +35,7 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
-
-
-
-
-
-
 ► SQreamDB operates with utmost efficiency when processing tables containing large data chunks. Introducing a new :ref:`rechunk` utility function, it simplifies the management of tables with small data chunks. This feature enables users to merge small data chunks into larger ones and simultaneously eliminating any deleted records present.
-
-
-
-
-
-
 
 ► Multi-platform CLI 
 
