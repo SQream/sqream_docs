@@ -68,20 +68,14 @@ Connecting to SQream
 
 
 #. Start Tableau Desktop.
-
-    ::
 	
 #. In the **Connect** menu, under the **To a Server** option , click **More**.
 
    Additional connection options are displayed.
-
-    ::
 	
 #. Select **SQream DB by SQream Technologies**.
 
    A connection dialog box is displayed.
-
-    ::
 	
 #. In the connection dialog box, fill in the following fields:
 
