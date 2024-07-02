@@ -1,8 +1,8 @@
 .. _install_odbc_linux:
 
-****************************************
+***********************************
 Install and configure ODBC on Linux
-****************************************
+***********************************
 
 .. toctree::
    :maxdepth: 1
@@ -24,9 +24,9 @@ Prerequisites
 .. _unixODBC:
 
 unixODBC
-------------
+--------
 
-The ODBC driver requires a driver manager to manage the DSNs. SQream DB's driver is built for unixODBC.
+The ODBC driver requires a driver manager to manage the DSNs. SQreamDB's driver is built for unixODBC.
 
 Verify unixODBC is installed by running:
 
@@ -48,20 +48,12 @@ Take note of the location of ``.odbc.ini`` and ``.odbcinst.ini``. In this case, 
    :local:
    :depth: 1
 
-Install unixODBC on RHEL 7 / CentOS 7
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Install unixODBC on RHEL 
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: console
 
    $ yum install -y unixODBC unixODBC-devel
-
-Install unixODBC on Ubuntu
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: console
-
-   $ sudo apt-get install odbcinst1debian2 libodbc1 odbcinst unixodbc
-
 
 Install the ODBC driver with a script
 =======================================
@@ -218,10 +210,10 @@ ODBC DSN Parameters
      - Specifices :ref:`service queue<workload_manager>` to use. For example, ``Service="etl"``. Leave blank (``Service=""``) for default service ``sqream``.
    * - Server
      - None
-     - Hostname of the SQream DB worker. For example, ``Server="127.0.0.1"`` or ``Server="sqream.mynetwork.co"``
+     - Hostname of the SQreamDB worker. For example, ``Server="127.0.0.1"`` or ``Server="sqream.mynetwork.co"``
    * - Port
      - None
-     - TCP port of the SQream DB worker. For example, ``Port="5000"`` or ``Port="3108"`` for the load balancer
+     - TCP port of the SQreamDB worker. For example, ``Port="5000"`` or ``Port="3108"`` for the load balancer
    * - Cluster
      - ``false``
      - Connect via load balancer (use only if exists, and check port). For example, ``Cluster=true``
@@ -236,7 +228,7 @@ ODBC DSN Parameters
      - Location where the driver was installed. For example, ``ErrorMessagePath=/home/rhendricks/sqream_odbc64/ErrorMessages``.
    * - LogLevel
      - 0
-     - Set to 0-6 for logging. Use this setting when instructed to by SQream Support. For example, ``LogLevel=1``
+     - Set to 0-6 for logging. Use this setting when instructed to by SQreamDB Support. For example, ``LogLevel=1``
 
          .. hlist::
             :columns: 3
