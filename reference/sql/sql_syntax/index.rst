@@ -34,7 +34,25 @@ SQreamDB supports SQL from the ANSI 92 syntax.
      - Metalanguage scripting enhances your interaction with SQL by providing conventions which allow dynamic generation, management, and automation of SQL code.
 
 
-
+.. toctree::
+   :caption:
+   :glob:
+   :maxdepth: 6
+   :titlesonly:
+   :hidden:
+   
+   keywords_and_identifiers
+   literals
+   scalar_expressions
+   cross_database_query
+   joins
+   common_table_expressions
+   window_functions
+   subqueries
+   null_handling
+   sqream_scripting
+   
+   
 
 
 
