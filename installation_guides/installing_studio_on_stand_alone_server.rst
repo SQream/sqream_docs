@@ -1,7 +1,5 @@
 .. _installing_studio_on_stand_alone_server:
 
-.. _install_studio_top:
-
 *****************************************
 Installing Studio on a Stand-Alone Server
 *****************************************
@@ -20,9 +18,9 @@ It is essential you have :ref:`NodeJS 16 installed <installing_nodejs>`.
 Installing Studio
 =================
 
-1. Copy the SQream Studio package from SQream Artifactory into the target server. 
+1. Copy the SQreamDB Studio package from SQreamDB Artifactory into the target server. 
    
-   For access to the Sqream Studio package, contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
+   For access to the SQreamDB Studio package, contact `SQreamDB Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
 
 2. Extract the package:
 
@@ -38,7 +36,7 @@ Installing Studio
 	  
 .. _add_parameter:
 	
-4. Build the configuration file to set up Sqream Studio. You can use IP address **127.0.0.1** on a single server.
+4. Build the configuration file to set up SQreamDB Studio. You can use IP address **127.0.0.1** on a single server.
  
    .. code-block:: console
      
@@ -84,7 +82,7 @@ Installing Studio
    
   Note that for the ``host`` value, it is essential that you use the IP address of your SQreamDB machine.  
    
-6. If you have installed Studio on a server where SQream is already installed, move the **sqream-admin-config.json** file to **/etc/sqream/**:
+6. If you have installed Studio on a server where SQreamDB is already installed, move the **sqream-admin-config.json** file to **/etc/sqream/**:
 
    .. code-block:: console
      
@@ -151,7 +149,7 @@ The following output is displayed:
 
    a. Access Studio from your browser (``http://<IP_Address>:8080``)  
 
-   b. Log in to SQream
+   b. Log in to SQreamDB
 
 6. Save the configuration to run on boot:
  
@@ -190,7 +188,7 @@ If port 8080 is blocked by the server firewall, you can unblock it by running th
 Maintaining Studio with the Process Manager (PM2)
 -------------------------------------------------
 
-SQream uses the **Process Manager (PM2)** to maintain Studio.
+SQreamDB uses the **Process Manager (PM2)** to maintain Studio.
  
 You can use PM2 to do one of the following:
 
