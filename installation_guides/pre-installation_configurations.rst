@@ -82,10 +82,10 @@ If any doubt arises, consult the documentation for your server or your hardware 
      - QPI (QuickPath Interconnect) Snoop lets you configure different Snoop modes that impact the QPI interconnect. Changing this setting may improve the performance of certain workloads. The default setting of **Home Snoop** provides high memory bandwidth in an average NUMA environment. **Cluster on Die** may provide increased memory bandwidth in highly optimized NUMA workloads. **Early Snoop** may decrease memory latency, but may result in lower overall bandwidth compared to other modes.
 	 
 Installing the Operating System
-================================ 
+===============================
 
 Before You Begin
--------------------
+----------------
 
 * Your system must have at least 200 gigabytes of free space on the root ``/`` mount.
 
@@ -93,12 +93,12 @@ Before You Begin
 
 * Once the BIOS settings have been set, you must install the operating system.
 
-* A typical SQreamDB installation requires RHEL7.9/CentOS 7.9 or RHEL8.X (RHEL8.8 recommended)
+* A typical SQreamDB installation requires RHEL7.9 or RHEL8.X (RHEL8.8 recommended)
 
 * Verify the exact RHEL7/RHEL8 version with your storage vendor to avoid driver incompatibility.
 
 Installation
-----------------
+------------
 
 #. Select a language (English recommended).
 #. From **Software Selection**, select **Minimal** and check the **Development Tools** group checkbox.
@@ -127,12 +127,12 @@ Installation
    The OS shell is booted up.
 
 Configuring the Operating System
-==================================
+================================
 
 When configuring the operating system, several basic settings related to creating a new server are required. Configuring these as part of your basic set-up increases your server's security and usability.
 
 Creating a ``sqream`` User
-----------------------------
+--------------------------
 
 **The sqream user must have the same UID and GID across all servers in your cluster.**
 
@@ -744,7 +744,7 @@ Before You Begin
 
       gcc --version
   
-3. If ``gcc`` has not been installed, install it for RHEL or CentOS:
+3. If ``gcc`` has not been installed, install it for RHEL:
 
    .. code-block:: console
 
@@ -753,7 +753,7 @@ Before You Begin
 Updating the Kernel Headers  
 ---------------------------
 
-1. Update the kernel headers on RHEL or CentOS:
+1. Update the kernel headers on RHEL:
 
    .. code-block:: console
 
@@ -838,12 +838,6 @@ Installing the CUDA driver from the Repository is the recommended installation m
      .. code-block:: console
 
         sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-
-   * For CentOS:
-
-     .. code-block:: console
-
-        sudo yum install epel-release
 	
 2. (Optional) Install the CUDA dependencies from the ``epel`` repository:
 
