@@ -6,19 +6,18 @@ Installing an NGINX Proxy Over a Secure Connection
 
 Configuring your NGINX server to use a strong encryption for client connections provides you with secure servers requests, preventing outside parties from gaining access to your traffic.
 
-.. contents::
-   :local:
-   :depth: 1
+The Node.js platform that SQreamDB uses with our Studio user interface is susceptible to web exposure. This page describes how to implement HTTPS access on your proxy server to establish a secure connection.
 
-The Node.js platform that SQream uses with our Studio user interface is susceptible to web exposure. This page describes how to implement HTTPS access on your proxy server to establish a secure connection.
-
-**TLS (Transport Layer Security)**, and its predecessor **SSL (Secure Sockets Layer)**, are standard web protocols used for wrapping normal traffic in a protected, encrypted wrapper. This technology prevents the interception of server-client traffic. It also uses a certificate system for helping users verify the identity of sites they visit. The **Installing an NGINX Proxy Over a Secure Connection** guide describes how to set up a self-signed SSL certificate for use with an NGINX web server on a CentOS 7 server.
+**TLS (Transport Layer Security)**, and its predecessor **SSL (Secure Sockets Layer)**, are standard web protocols used for wrapping normal traffic in a protected, encrypted wrapper. This technology prevents the interception of server-client traffic. It also uses a certificate system for helping users verify the identity of sites they visit. The **Installing an NGINX Proxy Over a Secure Connection** guide describes how to set up a self-signed SSL certificate for use with an NGINX web server on a RHEL server.
 
 .. note:: A self-signed certificate encrypts communication between your server and any clients. However, because it is not signed by trusted certificate authorities included with web browsers, you cannot use the certificate to automatically validate the identity of your server.
 
-A self-signed certificate may be appropriate if your domain name is not associated with your server, and in cases where your encrypted web interface is not user-facing. If you do have a domain name, using a CA-signed certificate is generally preferrable.
+A self-signed certificate may be appropriate if your domain name is not associated with your server, and in cases where your encrypted web interface is not user-facing. If you do have a domain name, using a CA-signed certificate is generally preferable.
 
-For more information on setting up a free trusted certificate, see `How To Secure Nginx with Let's Encrypt on CentOS 7 <https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-centos-7>`_.
+
+.. contents::
+   :local:
+   :depth: 1
 
 Prerequisites
 =============
@@ -26,17 +25,15 @@ Prerequisites
 The following prerequisites are required for installing an NGINX proxy over a secure connection:
 
 * Super user privileges
-
-   ::
    
 * A domain name to create a certificate for
 
 Installing NGINX and Adjusting the Firewall
 ===========================================
 
-After verifying that you have the above preriquisites, you must verify that the NGINX web server has been installed on your machine.
+After verifying that you have the above prerequisites, you must verify that the NGINX web server has been installed on your machine.
 
-Though NGINX is not available in the default CentOS repositories, it is available from the **EPEL (Extra Packages for Enterprise Linux)** repository.
+Though NGINX is not available in the default RHEL repositories, it is available from the **EPEL (Extra Packages for Enterprise Linux)** repository.
 
 **To install NGINX and adjust the firewall:**
 
@@ -72,10 +69,6 @@ Though NGINX is not available in the default CentOS repositories, it is availabl
          Loaded: loaded (/usr/lib/systemd/system/nginx.service; disabled; vendor preset: disabled)
          Active: active (running) since Fri 2017-01-06 17:27:50 UTC; 28s ago
 
-      . . .
-
-      Jan 06 17:27:50 centos-512mb-nyc3-01 systemd[1]: Started The nginx HTTP and reverse proxy server.
-
 5. Enable NGINX to start when your server boots up:
 
    .. code-block:: console
@@ -84,21 +77,19 @@ Though NGINX is not available in the default CentOS repositories, it is availabl
  
 6. Verify that access to **ports 80 and 443** are not blocked by a firewall.
 
-    ::
 	
 7. Do one of the following:
 
    * If you are not using a firewall, skip to :ref:`Creating Your SSL Certificate<creating_your_ssl_certificate>`.
 
-      ::
 	  
    * If you have a running firewall, open ports 80 and 443:
 
      .. code-block:: console
 
-      sudo firewall-cmd --add-service=http
-      sudo firewall-cmd --add-service=https
-      sudo firewall-cmd --runtime-to-permanent 
+        sudo firewall-cmd --add-service=http
+        sudo firewall-cmd --add-service=https
+        sudo firewall-cmd --runtime-to-permanent 
 
 8. If you have a running **iptables firewall**, for a basic rule set, add HTTP and HTTPS access:
 
@@ -140,32 +131,24 @@ This section describes how to create your **/etc/ssl/private directory**, used f
    The following list describes the elements in the command above:
    
    * **openssl** - The basic command line tool used for creating and managing OpenSSL certificates, keys, and other files.
-   
-    ::
+
 
    * **req** - A subcommand for using the X.509 **Certificate Signing Request (CSR)** management. A public key infrastructure standard, SSL and TLS adhere X.509 key and certificate management regulations.
 
-    ::
 
    * **-x509** - Used for modifying the previous subcommand by overriding the default functionality of generating a certificate signing request with making a self-signed certificate.
 
-    ::
 
    * **-nodes** - Sets **OpenSSL** to skip the option of securing our certificate with a passphrase, letting NGINX read the file without user intervention when the server is activated. If you don't use **-nodes** you must enter your passphrase after every restart.
 
-    ::
-
    * **-days 365** - Sets the certificate's validation duration to one year.
 
-    ::
 
    * **-newkey rsa:2048** - Simultaneously generates a new certificate and new key. Because the key required to sign the certificate was not created in the previous step, it must be created along with the certificate. The **rsa:2048** generates an RSA 2048 bits long.
 
-    ::
 
    * **-keyout** - Determines the location of the generated private key file.
 
-    ::
 
    * **-out** - Determines the location of the certificate.
 
@@ -189,7 +172,7 @@ This section describes how to create your **/etc/ssl/private directory**, used f
 
    Both files you create are stored in their own subdirectories of the **/etc/ssl** directory.
 
-   Although SQream uses OpenSSL, in addition we recommend creating a strong **Diffie-Hellman** group, used for negotiating **Perfect Forward Secrecy** with clients.
+   Although SQreamDB uses OpenSSL, in addition we recommend creating a strong **Diffie-Hellman** group, used for negotiating **Perfect Forward Secrecy** with clients.
    
 4. Create a strong Diffie-Hellman group:
 
@@ -204,9 +187,9 @@ Configuring NGINX to use SSL
 
 After creating your SSL certificate, you must configure NGINX to use SSL.
 
-The default CentOS NGINX configuration is fairly unstructured, with the default HTTP server block located in the main configuration file. NGINX checks for files ending in **.conf** in the **/etc/nginx/conf.d** directory for additional configuration.
+The default RHEL NGINX configuration is fairly unstructured, with the default HTTP server block located in the main configuration file. NGINX checks for files ending in **.conf** in the **/etc/nginx/conf.d** directory for additional configuration.
 
-SQream creates a new file in the **/etc/nginx/conf.d** directory to configure a server block. This block serves content using the certificate files we generated. In addition, the default server block can be optionally configured to redirect HTTP requests to HTTPS.
+SQreamDB creates a new file in the **/etc/nginx/conf.d** directory to configure a server block. This block serves content using the certificate files we generated. In addition, the default server block can be optionally configured to redirect HTTP requests to HTTPS.
 
 .. note:: The example on this page uses the IP address **127.0.0.1**, which you should replace with your machine's IP address.
 
@@ -222,11 +205,9 @@ SQream creates a new file in the **/etc/nginx/conf.d** directory to configure a 
 
    1. Listen to **port 443**, which is the TLS/SSL default port.
    
-       ::
    
    2. Set the ``server_name`` to the server’s domain name or IP address you used as the Common Name when generating your certificate.
-   
-       ::
+
 	   
    3. Use the ``ssl_certificate``, ``ssl_certificate_key``, and ``ssl_dhparam`` directives to set the location of the SSL files you generated, as shown in the **/etc/nginx/conf.d/ssl.conf** file below:
    
@@ -386,9 +367,6 @@ After activating your NGINX configuration, you must verify that NGINX is running
          Loaded: loaded (/usr/lib/systemd/system/nginx.service; disabled; vendor preset: disabled)
          Active: active (running) since Fri 2017-01-06 17:27:50 UTC; 28s ago
 
-      . . .
-
-      Jan 06 17:27:50 centos-512mb-nyc3-01 systemd[1]: Started The nginx HTTP and reverse proxy server.
  
 2. Run the following command:
 
