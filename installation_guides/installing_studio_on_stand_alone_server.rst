@@ -1,18 +1,21 @@
 .. _installing_studio_on_stand_alone_server:
 
-.. _install_studio_top:
-
-***********************
+*****************************************
 Installing Studio on a Stand-Alone Server
-***********************
+*****************************************
+
 A stand-alone server is a server that does not run SQreamDB based on binary files.
 
 .. contents::
    :local:
    :depth: 1
 
+Installation
+============
+
 Installing NodeJS Version 12 on the Server
-^^^^^^^^^^^^^^^
+------------------------------------------
+
 Before installing Studio you must install NodeJS version 12 on the server.
 
 **To install NodeJS version 12 on the server:**
@@ -21,7 +24,7 @@ Before installing Studio you must install NodeJS version 12 on the server.
 
    .. code-block:: console
      
-      $ node -v
+      node -v
       
    The following is the output if a version of NodeJS has already been installed on the target server:
 
@@ -31,34 +34,17 @@ Before installing Studio you must install NodeJS version 12 on the server.
   
 2. If a version of NodeJS older than *12.<x.x>* has been installed, remove it as follows:
 
-   * On CentOS:
-
-     .. code-block:: console
+   .. code-block:: console
      
-        $ sudo yum remove -y nodejs
-
-   * On Ubuntu:
-
-     .. code-block:: console
-     
-        $ sudo apt remove -y nodejs
+      sudo yum remove -y nodejs
 
 3. If you have not installed NodeJS version 12, run the following commands:
 
-   * On CentOS:
-
-     .. code-block:: console
+   .. code-block:: console
      
-        $ curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
-        $ sudo yum clean all && sudo yum makecache fast
-        $ sudo yum install -y nodejs
-		
-   * On Ubuntu:
-
-     .. code-block:: console
-     
-        $ curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-        $ sudo apt-get install -y nodejs
+      curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
+      sudo yum clean all && sudo yum makecache fast
+      sudo yum install -y nodejs
 		
   The following output is displayed if your installation has completed successfully:
 
@@ -97,7 +83,7 @@ Before installing Studio you must install NodeJS version 12 on the server.
 
    .. code-block:: console
      
-      $ node -v	  
+      node -v	  
 
   The following is an example of the correct output:
    
@@ -108,42 +94,35 @@ Before installing Studio you must install NodeJS version 12 on the server.
 5. Install Prometheus using binary packages.
 
    For more information on installing Prometheus using binary packages, see :ref:`installing_prometheus_using_binary_packages`.
-
-Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
-
-
-	 
-Installing Studio
-^^^^^^^^^^^^^^^
-After installing the Dashboard Data Collector, you can install Studio.
  
-**To install Studio:**
+Installing Studio
+-----------------
 
-1. Copy the SQream Studio package from SQream Artifactory into the target server. For access to the Sqream Studio package, contact `SQream Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
+After installing the Dashboard Data Collector, you can install Studio.
 
-::
+1. Copy the SQreamDB Studio package from SQreamDB Artifactory into the target server. For access to the SQreamDB Studio package, contact `SQreamDB Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
+
 
 2. Extract the package:
 
    .. code-block:: console
      
-      $ tar -xvf sqream-acceleration-studio-<version number>.x86_64.tar.gz
+      tar -xvf sqream-acceleration-studio-<version number>.x86_64.tar.gz
 
-::
 	
 3. Navigate to the new package folder. 
  
    .. code-block:: console
      
-      $ cd sqream-admin  
+      cd sqream-admin  
 	  
 .. _add_parameter:
 	
-4. Build the configuration file to set up Sqream Studio. You can use IP address **127.0.0.1** on a single server.
+4. Build the configuration file to set up SQreamDB Studio. You can use IP address **127.0.0.1** on a single server.
  
    .. code-block:: console
      
-      $ npm run setup -- -y --host=<SQreamD IP> --port=3108 --data-collector-url=http://<data collector IP address>:8100/api/dashboard/data
+      npm run setup -- -y --host=<SQreamD IP> --port=3108 --data-collector-url=http://<data collector IP address>:8100/api/dashboard/data
 
    The above command creates the **sqream-admin-config.json** configuration file in the **sqream-admin** folder and shows the following output:
    
@@ -151,15 +130,11 @@ After installing the Dashboard Data Collector, you can install Studio.
    
       Config generated successfully. Run `npm start` to start the app.
 
-   For more information about the available set-up arguments, see :ref:`Set-Up Arguments<setup_arguments>`.
-
-  ::
   
 5. To access Studio over a secure connection, in your configuration file do the following:
 
    #. Change your ``port`` value to **3109**.
    
-       ::
 	   
    #. Change your ``ssl`` flag value to **true**.
    
@@ -189,22 +164,24 @@ After installing the Dashboard Data Collector, you can install Studio.
            ]
          }
    
-5. If you have installed Studio on a server where SQream is already installed, move the **sqream-admin-config.json** file to **/etc/sqream/**:
+5. If you have installed Studio on a server where SQreamDB is already installed, move the **sqream-admin-config.json** file to **/etc/sqream/**:
 
    .. code-block:: console
      
-      $ mv sqream-admin-config.json /etc/sqream
+      mv sqream-admin-config.json /etc/sqream
 
-Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
+Starting Studio
+===============
 
 Starting Studio Manually
-^^^^^^^^^^^^^^^
+------------------------
+
 You can start Studio manually by running the following command:
  
 .. code-block:: console
      
-   $ cd /home/sqream/sqream-admin
-   $ NODE_ENV=production pm2 start ./server/build/main.js --name=sqream-studio -- start
+   cd /home/sqream/sqream-admin
+   NODE_ENV=production pm2 start ./server/build/main.js --name=sqream-studio -- start
  
 The following output is displayed:
 
@@ -219,24 +196,21 @@ The following output is displayed:
    └─────┴──────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
 
 Starting Studio as a Service
-^^^^^^^^^^^^^^^
-Sqream uses the **Process Manager (PM2)** to maintain Studio.
+----------------------------
 
-**To start Studio as a service:**
+SQreamDB uses the **Process Manager (PM2)** to maintain Studio.
 
 1. Run the following command:
  
    .. code-block:: console
      
-      $ sudo npm install -g pm2
-
-::
+      sudo npm install -g pm2
 	   
 2. Verify that the PM2 has been installed successfully.
  
    .. code-block:: console
      
-      $ pm2 list
+      pm2 list
 
    The following is the output:
 
@@ -248,25 +222,21 @@ Sqream uses the **Process Manager (PM2)** to maintain Studio.
      │ 0   │ sqream-studio    │ default     │ 0.1.0   │ fork    │ 11540    │ 2m     │ 0    │ online    │ 0%       │ 31.5mb   │ sqream   │ disabled │
      └─────┴──────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
 
-::
-
 2. Start the service with PM2:
 
    * If the **sqream-admin-config.json** file is located in **/etc/sqream/**, run the following command:
  
      .. code-block:: console
      
-        $ cd /home/sqream/sqream-admin
-        $ NODE_ENV=production pm2 start ./server/build/main.js --name=sqream-studio -- start --config-location=/etc/sqream/sqream-admin-config.json
+        cd /home/sqream/sqream-admin
+        NODE_ENV=production pm2 start ./server/build/main.js --name=sqream-studio -- start --config-location=/etc/sqream/sqream-admin-config.json
 
    * If the **sqream-admin-config.json** file is not located in **/etc/sqream/**, run the following command:
  
      .. code-block:: console
      
-        $ cd /home/sqream/sqream-admin
-        $ NODE_ENV=production pm2 start ./server/build/main.js --name=sqream-studio -- start
-
-:: 
+        cd /home/sqream/sqream-admin
+        NODE_ENV=production pm2 start ./server/build/main.js --name=sqream-studio -- start
 		
 3. Verify that Studio is running.
  
@@ -289,83 +259,72 @@ Sqream uses the **Process Manager (PM2)** to maintain Studio.
      tcp6       0      0 ::1:25                  :::*                    LISTEN      -
 
 	  
-
-::
 	
 5. Verify the following:
 
    1. That you can access Studio from your browser (``http://<IP_Address>:8080``).
    
-   ::  
 
-   2. That you can log in to SQream.
+   2. That you can log in to SQreamDB.
 
 6. Save the configuration to run on boot.
  
    .. code-block:: console
      
-      $ pm2 startup
+      pm2 startup
   
    The following is an example of the output:
 
    .. code-block:: console
      
-      $ sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u sqream --hp /home/sqream
+      sudo env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u sqream --hp /home/sqream
 
 7. Copy and paste the output above and run it.
 
-::
 
 8. Save the configuration.
 
    .. code-block:: console
      
-      $ pm2 save
-
-Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
+      pm2 save
 
 Accessing Studio
-^^^^^^^^^^^^^^^
+================
+
 The Studio page is available on port 8080: ``http://<server ip>:8080``.
 
 If port 8080 is blocked by the server firewall, you can unblock it by running the following command:
  
-   .. code-block:: console
+.. code-block:: console
      
-      $ firewall-cmd --zone=public --add-port=8080/tcp --permanent
-      $ firewall-cmd --reload
- 
-Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
+	firewall-cmd --zone=public --add-port=8080/tcp --permanent
+	firewall-cmd --reload
 
 Maintaining Studio with the Process Manager (PM2)
-^^^^^^^^^^^^^^^
-Sqream uses the **Process Manager (PM2)** to maintain Studio.
+=================================================
+
+SqreamDB uses the **Process Manager (PM2)** to maintain Studio.
  
 You can use PM2 to do one of the following:
 
 * To check the PM2 service status: ``pm2 list``
    
-   ::  
 
 * To restart the PM2 service: ``pm2 reload sqream-studio``
    
-   ::  
 
 * To see the PM2 service logs: ``pm2 logs sqream-studio``
 
-Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
-
 Upgrading Studio
-^^^^^^^^^^^^^^^
-To upgrade Studio you need to stop the version that you currently have.
+================
 
-**To stop the current version of Studio:**
+To upgrade Studio you need to stop the version that you currently have.
 
 1. List the process name: 
  
    .. code-block:: console
      
-      $ pm2 list
+      pm2 list
 	  
    The process name is displayed.
  
@@ -373,59 +332,51 @@ To upgrade Studio you need to stop the version that you currently have.
    
       <process name>
 
-::
 	  
 2. Run the following command with the process name:
 
    .. code-block:: console
 
-      $ pm2 stop <process name>
+      pm2 stop <process name>
 
-::
 		  
 3. If only one process is running, run the following command:
 
    .. code-block:: console
 
-      $ pm2 stop all
+      pm2 stop all
 
-::
 	
 4. Change the name of the current **sqream-admin** folder to the old version.
 
    .. code-block:: console
 
-      $ mv sqream-admin sqream-admin-<old_version>
+      mv sqream-admin sqream-admin-<old_version>
 
-::
 	
 5. Extract the new Studio version.
 
    .. code-block:: console
 
-      $ tar -xf sqream-acceleration-studio-<version>tar.gz
+      tar -xf sqream-acceleration-studio-<version>tar.gz
 
-::
 	
 6. Rebuild the configuration file. You can use IP address **127.0.0.1** on a single server.
 
    .. code-block:: console
 
-      $ npm run setup -- -y --host=<SQreamD IP> --port=3108
+      npm run setup -- -y --host=<SQreamD IP> --port=3108
 
   The above command creates the **sqream-admin-config.json** configuration file in the **sqream_admin** folder.
 
-::
 	
 7. Copy the **sqream-admin-config.json** configuration file to **/etc/sqream/** to overwrite the old configuration file.
   
-::  
 
 8. Start PM2.
 
    .. code-block:: console
 
-      $ pm2 start all
+      pm2 start all
 
-Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
 

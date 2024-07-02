@@ -4,9 +4,9 @@
 Sqream SQL CLI Reference
 ************************
 
-SQream DB comes with a built-in client for executing SQL statements either interactively or from the command-line.
+SQreamDB comes with a built-in client for executing SQL statements either interactively or from the command-line.
 
-This page serves as a reference for the options and parameters. Learn more about using SQream DB SQL with the CLI by visiting the :ref:`first_steps` tutorial.
+This page serves as a reference for the options and parameters. Learn more about using SQreamDB SQL with the CLI by visiting the :ref:`first_steps` tutorial.
 
 .. contents:: In this topic:
    :local:
@@ -14,7 +14,7 @@ This page serves as a reference for the options and parameters. Learn more about
 Installing Sqream SQL
 =====================
 
-If you have a SQream DB installation on your server, ``sqream sql`` can be found in the ``bin`` directory of your SQream DB installation, under the name ``sqream``.
+If you have a SQreamDB installation on your server, ``sqream sql`` can be found in the ``bin`` directory of your SQreamDB installation, under the name ``sqream``.
 
 
 
@@ -45,19 +45,8 @@ Troubleshooting Sqream SQL Installation
 Upon running sqream sql for the first time, you may get an error ``error while loading shared libraries: libtinfo.so.5: cannot open shared object file: No such file or directory``.
 
 Solving this error requires installing the ncruses or libtinfo libraries, depending on your operating system.
-
-* Ubuntu:
-
-   #. Install ``libtinfo``:
       
-      ``$ sudo apt-get install -y libtinfo``
-   #. Depending on your Ubuntu version, you may need to create a symbolic link to the newer libtinfo that was installed.
-   
-      For example, if ``libtinfo`` was installed as ``/lib/x86_64-linux-gnu/libtinfo.so.6.2``:
-      
-      ``$ sudo ln -s /lib/x86_64-linux-gnu/libtinfo.so.6.2 /lib/x86_64-linux-gnu/libtinfo.so.5``
-      
-* CentOS / RHEL:
+* RHEL:
 
    #. Install ``ncurses``:
    
@@ -68,8 +57,8 @@ Solving this error requires installing the ncruses or libtinfo libraries, depend
       
       ``$ sudo ln -s /usr/lib64/libtinfo.so.6 /usr/lib64/libtinfo.so.5``
 
-Using Sqream SQL
-================
+Using SQreamDB SQL
+==================
 
 By default, sqream sql runs in interactive mode. You can issue commands or SQL statements.
 
@@ -366,7 +355,7 @@ Command Line Arguments
      - Changes the mode of operation to multi-command, non-interactive. Use this argument to run a sequence of statements from an external file and immediately exit.
    * - ``--host``
      - ``127.0.0.1``
-     - Address of the SQream DB worker.
+     - Address of the SQreamDB worker.
    * - ``--port``
      - ``5000``
      - Sets the connection port.
@@ -381,7 +370,7 @@ Command Line Arguments
      - Specify the password using the command line argument. If not specified, the client will prompt the user for the password.
    * - ``--clustered``
      - False
-     - When used, the client connects to the load balancer, usually on port ``3108``. If not set, the client assumes the connection is to a standalone SQream DB worker.
+     - When used, the client connects to the load balancer, usually on port ``3108``. If not set, the client assumes the connection is to a standalone SQreamDB worker.
    * - ``--service``
      - ``sqream``
      - :ref:`Service name (queue)<workload_manager>` that statements will file into.

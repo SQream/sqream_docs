@@ -4,7 +4,7 @@
 Python (pysqream)
 *****************
 
-The current Pysqream connector supports Python version 3.9 and newer. It includes a set of packages that allows Python programs to connect to SQream DB. The base ``pysqream`` package conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_.
+The current Pysqream connector supports Python version 3.9 and newer. It includes a set of packages that allows Python programs to connect to SQreamDB. The base ``pysqream`` package conforms to Python DB-API specifications `PEP-249 <https://www.python.org/dev/peps/pep-0249/>`_.
 
 ``pysqream`` is a pure Python connector that can be installed with ``pip`` on any operating system, including Linux, Windows, and macOS. ``pysqream-sqlalchemy`` is a SQLAlchemy dialect for ``pysqream``.
 
@@ -66,20 +66,13 @@ To verify that you have the latest version, run the following command:
 OpenSSL for Linux
 ~~~~~~~~~~~~~~~~~
 
-The Python connector relies on OpenSSL for secure connections to SQream DB. Some distributions of Python do not include OpenSSL. 
+The Python connector relies on OpenSSL for secure connections to SQreamDB. Some distributions of Python do not include OpenSSL. 
 
-To install OpenSSL on RHEL/CentOS, run the following command:
+To install OpenSSL on RHEL, run the following command:
 
   .. code-block:: console
    
      $ sudo yum install -y libffi-devel openssl-devel
-
-To install OpenSSL on Ubuntu, run the following command:
-
-  .. code-block:: console
-   
-     $ sudo apt-get install libssl-dev libffi-dev -y
-
 
 Installing via PIP with an internet connection
 ----------------------------------------------
@@ -99,7 +92,7 @@ To install ``pysqream`` and ``pysqream-sqlalchemy`` with the ``--user`` flag, ru
 Installing via PIP without an internet connection
 -------------------------------------------------
 
-#. To get the ``.whl`` package file, contact you SQream support representative.
+#. To get the ``.whl`` package file, contact you SQreamDB support representative.
 
 #. Run the following command:
 
@@ -321,9 +314,9 @@ You can fetch a list of column names by iterating over the ``description`` list:
 Loading Data into a Table
 -------------------------
 
-This example shows how to load 10,000 rows of dummy data to an instance of SQream.
+This example shows how to load 10,000 rows of dummy data to an instance of SQreamDB.
 
-**To load data 10,000 rows of dummy data to an instance of SQream:**
+**To load data 10,000 rows of dummy data to an instance of SQreamDB:**
 
 1. Run the following:
 
@@ -443,7 +436,7 @@ This section shows how to use the ORM to create and populate tables from Python 
           sa.Column('salary', sa.Float)
       )
 
-   The ``create_all()`` function uses the SQream engine object.
+   The ``create_all()`` function uses the SQreamDB engine object.
 
 4. Create all the defined table objects:
 
