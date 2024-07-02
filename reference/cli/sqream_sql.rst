@@ -1,12 +1,12 @@
 .. _sqream_sql_cli_reference:
 
 ************************
-Linux Sqream SQL
+Sqream SQL CLI Reference
 ************************
 
 SQreamDB comes with a built-in client for executing SQL statements either interactively or from the command-line.
 
-This page serves as a reference for the options and parameters. Learn more about using SQream DB SQL with the CLI by visiting the :ref:`first_steps` tutorial.
+This page serves as a reference for the options and parameters. Learn more about using SQreamDB SQL with the CLI by visiting the :ref:`first_steps` tutorial.
 
 .. contents:: In this topic:
    :local:
@@ -15,16 +15,23 @@ Installing Sqream SQL
 =====================
 
 If you have a SQreamDB installation on your server, ``sqream sql`` can be found in the ``bin`` directory of your SQreamDB installation, under the name ``sqream``.
+
+
+
+.. versionchanged:: 2020.1
+   As of version 2020.1, ``ClientCmd`` has been renamed to ``sqream sql``.
    
+
 To run ``sqream sql`` on any other Linux host:
 
+#. Download the ``sqream sql`` tarball package from the :ref:`client_drivers` page.
 #. Untar the package: ``tar xf sqream-sql-v2020.1.1_stable.x86_64.tar.gz``
 #. Start the client:
    
    .. code-block:: psql
       
-      cd sqream-sql-<xxxx.x.x>_stable.x86_64
-      ./sqream sql --port=5000 --username=<jdoe> --databasename=master
+      $ cd sqream-sql-v2020.1.1_stable.x86_64
+      $ ./sqream sql --port=5000 --username=jdoe --databasename=master
       Password:
      
       Interactive client mode
@@ -38,19 +45,8 @@ Troubleshooting Sqream SQL Installation
 Upon running sqream sql for the first time, you may get an error ``error while loading shared libraries: libtinfo.so.5: cannot open shared object file: No such file or directory``.
 
 Solving this error requires installing the ncruses or libtinfo libraries, depending on your operating system.
-
-* Ubuntu:
-
-   #. Install ``libtinfo``:
       
-      ``$ sudo apt-get install -y libtinfo``
-   #. Depending on your Ubuntu version, you may need to create a symbolic link to the newer libtinfo that was installed.
-   
-      For example, if ``libtinfo`` was installed as ``/lib/x86_64-linux-gnu/libtinfo.so.6.2``:
-      
-      ``$ sudo ln -s /lib/x86_64-linux-gnu/libtinfo.so.6.2 /lib/x86_64-linux-gnu/libtinfo.so.5``
-      
-* CentOS / RHEL:
+* RHEL:
 
    #. Install ``ncurses``:
    
@@ -61,8 +57,8 @@ Solving this error requires installing the ncruses or libtinfo libraries, depend
       
       ``$ sudo ln -s /usr/lib64/libtinfo.so.6 /usr/lib64/libtinfo.so.5``
 
-Using Sqream SQL
-================
+Using SQreamDB SQL
+==================
 
 By default, sqream sql runs in interactive mode. You can issue commands or SQL statements.
 
@@ -245,7 +241,7 @@ Executing SQL Statements from the Command Line
    1 row
    time: 0.095941s
 
-
+.. _controlling_output:
 
 Controlling the Client Output
 -----------------------------
@@ -390,7 +386,7 @@ Command Line Arguments
 
 .. tip:: Run ``$  sqream sql --help`` to see a full list of arguments
 
-
+.. _supported_record_delimiters: 
 
 Supported Record Delimiters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
