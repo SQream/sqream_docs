@@ -121,6 +121,8 @@ The following table shows the Utility commands:
      - Executes a previously saved query
    * - :ref:`EXPLAIN<explain>`
      - Returns a static query plan, which can be used to debug query plans
+   * - :ref:`export_open_snapshots`
+     - Lists and saves information about all currently open snapshots to a specified file
    * - :ref:`GET DDL<get_ddl>`
      - View the ``CREATE TABLE`` statement for a table
    * - :ref:`GET FUNCTION DDL<get_function_ddl>`
@@ -129,6 +131,8 @@ The following table shows the Utility commands:
      - View a user's license information
    * - :ref:`GPU METRICS<select_gpu_metrics>`
      - Monitor license quota usage by reviewing monthly or daily GPU usage
+   * - :ref:`get_open_snapshots`
+     - Lists information about all currently open snapshots
    * - :ref:`GET TOTAL CHUNKS SIZE<get_total_chunks_size>`
      - Returns the total size of all data chunks saved in the system	
    * - :ref:`GET VIEW DDL<get_view_ddl>`

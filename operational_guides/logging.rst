@@ -26,7 +26,9 @@ The worker logs contain information messages, warnings, and errors pertaining to
 Log Structure and Contents
 --------------------------
 
-The log is a CSV, with several fields.
+By default, logs are saved as ``CSV`` files. To configure your log files to be saved as ``JSON`` instead, use the ``logFormat`` flag in your :ref:`legacy config file<current_method_flag_types>`.
+
+For effective :ref:`Root Cause Analysis (RCA)<root_cause_analysis>`, it's essential that logs are saved in ``JSON`` format, as RCA does not support ``CSV`` files. If your current logs are in ``CSV`` format and you require RCA, it's advisable to configure your logs to be saved in both ``CSV`` and ``JSON`` formats as outlined above.
 
 .. list-table:: Log fields
    :widths: auto
@@ -348,7 +350,7 @@ Troubleshooting with Logs
 Loading Logs with Foreign Tables
 --------------------------------
 
-Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a database administrator can access the logs using the :ref:`external_tables` concept through SQream DB.
+Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a database administrator can access the logs using the :ref:`foreign_tables` concept through SQreamDB.
 
 .. code-block:: postgres
 

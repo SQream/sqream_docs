@@ -62,7 +62,12 @@ It is worth noting that the worker configuration file is not subject to frequent
      - SUPERUSER
      - Activates the machineIP (``TRUE``). Setting this flag to ``FALSE`` ignores the machineIP and automatically assigns a local network IP. This cannot be activated in a cloud scenario (on-premises only).
      - boolean
-     - ``FALSE``	 
+     - ``FALSE``	
+   * - ``logFormat``
+     - SUPERUSER
+     - Determines the file format of the log files. Format may by ``csv``, ``json``, or both (all logs will be written saved both as ``csv`` and ``json`` files) 
+     - string
+     - ``csv``		 
 
 
 

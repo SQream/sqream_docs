@@ -1,8 +1,8 @@
 .. _show_locks:
 
-********************
-SHOW_LOCKS
-********************
+**********
+SHOW LOCKS
+**********
 
 ``SHOW_LOCKS`` returns a list of locks from across the cluster.
 
@@ -13,18 +13,19 @@ Syntax
 
 .. code-block:: postgres
 
-	show_locks_statement ::=
 	SELECT SHOW_LOCKS()
 
-Returns
-=========
+Output
+======
 
 This function returns a list of active locks. If no locks are active in the cluster, the result set will be empty.
 
-.. list-table:: Result columns
+.. list-table::
    :widths: auto
    :header-rows: 1
-   
+
+   * - Parameter
+     - Description   
    * - ``stmt_id``
      - Statement ID that caused the lock.
    * - ``stmt_string``
@@ -43,31 +44,29 @@ This function returns a list of active locks. If no locks are active in the clus
      - Timestamp the statement started
    * - ``lock_start_time``
      - Timestamp the lock was obtained
+   * - ``is_statement_active``
+     - Is the statement causing the lock running or not
+   * - ``is_snapshot_active``
+     - Is the snapshot of the metadata keys, created by the statement, still active or not	 
 
 
 Examples
-===========
-
-Using ``SHOW_LOCKS`` to see active locks
----------------------------------------------------
-
-In this example, we create a table based on results (:ref:`create_table_as`), but we are also effectively dropping the previous table (by using ``OR REPLACE``). Thus, SQreamDB applies locks during the table creation process to prevent the table from being altered during it's creation.
-
+========
 
 .. code-block:: postgres
 
 	SELECT SHOW_LOCKS();
 	
-	statement_id | statement_string                                                                                | username | server       | port | locked_object                   | lockmode  | statement_start_time | lock_start_time    
-	-------------+-------------------------------------------------------------------------------------------------+----------+--------------+------+---------------------------------+-----------+----------------------+--------------------
-	287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | database$t                      | Inclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
-	287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | globalpermission$               | Exclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
-	287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | schema$t$public                 | Inclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
-	287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | table$t$public$nba2$Insert      | Exclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
-	287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | table$t$public$nba2$Update      | Exclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
+Output:
+
+.. code-block:: console
+
+	statement id |statement string                  |username |server   |port |locked object  |lock mode |statement start time |lock start time    |is_statement_active |is_snapshot_active
+	-------------+----------------------------------+---------+---------+-----+---------------+----------+---------------------+-------------------+--------------------+------------------
+	2            |create or replace table t (x int);|sqream   |127.0.0.1|5000 |database$master|Inclusive |04-07-2024 15:07:02  |2024-07-04 15:07:02|1                   |1
 
 
 Permissions
-=============
+===========
 
 This utility function requires a ``SUPERUSER`` permission.
