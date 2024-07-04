@@ -32,6 +32,7 @@ The following is an example of the default worker configuration file:
     "portSsl": 5100,
     "initialSubscribedServices": "sqream",
     "useConfigIP": true
+    "logFormat": "csv","json"
    }
 
 You can access the legacy configuration file from the ``legacyConfigFilePath`` parameter shown above. If all (or most) of your workers require the same flag settings, you can set the ``legacyConfigFilePath`` attribute to the same legacy file.

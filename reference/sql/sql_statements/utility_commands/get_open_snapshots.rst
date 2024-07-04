@@ -46,6 +46,15 @@ Example
 
 	SELECT GET_OPEN_SNAPSHOTS();
 	
+Output:
+
+.. code-block:: console
+
+	database_name |reason          |open_time          |database_version |snapshot_id |statement_id |current_time       |is_statement_active 
+	--------------+----------------+-------------------+-----------------+------------+-------------+-------------------+-------------------
+	master        |on_new_statement|2024-07-04 17:16:56|1                |30898       |0            |2024-07-04 17:16:57|1
+
+	
 Permissions
 ===========
 

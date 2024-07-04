@@ -22,6 +22,10 @@ Usage Notes
 
 By default, logs are saved as ``CSV`` files. To configure your log files to be saved as ``JSON`` instead, use the ``logFormat`` flag in your :ref:`legacy config file<current_method_flag_types>`. If your current logs are in ``CSV`` format and you require RCA, it's advisable to configure your logs to be saved in both ``CSV`` and ``JSON`` formats as outlined above.
 
+.. note:
+
+	The ``logFormat`` flag must be configured identically in both your legacy_config_file and your metadata_config_file
+
 Utility Functions
 =================
 
