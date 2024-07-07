@@ -69,4 +69,4 @@ Output:
 Permissions
 ===========
 
-This utility function requires a ``SUPERUSER`` permission.
+This utility function requires a ``CONNECT`` permission on the database level.
