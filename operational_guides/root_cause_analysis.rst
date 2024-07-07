@@ -4,7 +4,7 @@
 Root Cause Analysis
 *******************
 
-The Root Cause Analysis (RCA) service enhances observability, enabling shorter investigation times and facilitating both high-level and detailed drill-downs.
+The Root Cause Analysis (RCA) service enhances observability, enabling shorter investigation times and facilitating both high-level and detailed drill-downs by automatically executing the :ref:`export_open_snapshots` and :ref:`get_open_snapshots` utility functions. 
 
 .. contents::
    :local:
@@ -53,6 +53,8 @@ Setting Linux Service
 #. Create Service:
 
    .. code-block:: console
+
+(Set the command above (case 2) as a linux service) -Slavi
  
 #. Start the Grafa service:
 
@@ -72,6 +74,8 @@ Prometheus
 Prometheus is an open-source monitoring and alerting toolkit designed for reliability and scalability. Prometheus can be used to scrape and store metrics, enabling real-time monitoring, alerting, and analysis of performance and health.
 
 #. Download Prometheus.
+
+#. (Prometheus Exporter installation) -Slavi
 
 #. Set the YML path:
 
@@ -135,7 +139,42 @@ Tempo is an open-source distributed tracing system designed to handle high volum
 
       /usr/bin/tempo -config.file /etc/tempo/config.yml &> ~/tempo.out &
 
-Utility Functions
+Exporters
+---------
+
+An Exporter is a software component that gathers metrics from various sources (such as hardware, software, or services) and exposes them in a format that Prometheus can scrape and store.
+
+GPU Exporter
+~~~~~~~~~~~~
+
+
+
+CPU Exporter
+~~~~~~~~~~~~
+
+#. Download the `CPU Exporter <https://github.com/prometheus/node_exporter/releases/download/v1.8.0/node_exporter-1.8.0.linux-386.tar.gz  >`_.
+
+#. Start the Exporter:
+
+   .. code-block:: console
+
+      /usr/bin/node_exporter &> ~/node_exporter.out &
+
+Process Exporter
+~~~~~~~~~~~~~~~~
+
+#. (Prometheus Exporter installation)-Slavi
+
+#. Start the Exporter:
+
+   .. code-block:: console
+
+      /usr/bin/process-exporter --config.path /etc/process-exporter/all.yaml --web.listen-address=:9256 &> process_exporter.out &
+
+SQream Dashboards
 =================
 
-The RCA executes the :ref:`export_open_snapshots` and :ref:`get_open_snapshots` utility functions. 
+https://sqream.atlassian.net/wiki/spaces/~477790253/pages/3134488697/RCA+-+Grafana+installation 
+
+-Slavi
+
