@@ -70,4 +70,4 @@ In this example, we create a table based on results (:ref:`create_table_as`), bu
 Permissions
 =============
 
-This utility function requires a ``SUPERUSER`` permission.
+This utility function requires a ``CONNECT`` permission on the database level.
