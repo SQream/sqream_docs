@@ -152,7 +152,7 @@ GPU Exporter
 CPU Exporter
 ~~~~~~~~~~~~
 
-#. Download the `CPU Exporter <https://github.com/prometheus/node_exporter/releases/download/v1.8.0/node_exporter-1.8.0.linux-386.tar.gz  >`_.
+#. Download the `CPU Exporter <https://github.com/prometheus/node_exporter/releases/download/v1.8.0/node_exporter-1.8.0.linux-386.tar.gz>`_.
 
 #. Start the Exporter:
 
