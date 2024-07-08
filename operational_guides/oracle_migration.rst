@@ -4,6 +4,8 @@
 Oracle Migration Guide
 **********************
 
+This guide is designed to assist those who wish to migrate their database systems from Oracle to SQreamDB. Use this guide to learn how to use the most commonly used Oracle functions with their equivalents in SQreamDB. For functions that do not have direct equivalents in SQreamDB, we provide User-Defined Functions (UDFs). If you need further assistance, our `SQream support team <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ is available to help with any custom UDFs or additional migration questions.
+
 .. contents::
    :local:
    :depth: 2
@@ -26,14 +28,14 @@ Operation Functions
    * - Oracle
      - SQream
      - Description
-   * - ``+ (unary)``
-     - ``+ (unary)``
+   * - ``+`` (unary)
+     - ``+`` (unary)
      - +a
    * - ``+``
      - ``+``
      - a+ b
-   * - ``- (unary)``
-     - ``- (unary)``
+   * - ``-`` (unary)
+     - ``-`` (unary)
      - -a
    * - ``-``
      - ``-``
@@ -100,6 +102,30 @@ Conditional Functions
    * - ``DECODE``
      - ``DECODE``
      - Decodes or extracts binary data from a textual input string
+   
+Conversion Functions
+--------------------
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Oracle
+     - SQream
+     - Description
+   * - ``TO_DATE``
+     - ``+`` (unary)
+     - Converts a string to a date
+   * - ``TO_NUMBER``
+     - .. code-block:: postgres
+	 
+		CREATE OR REPLACE FUNCTION SIGN(n,numeric)
+		RETURNS numeric
+		AS $$
+		 CAST(TEXT AS NUMERIC)
+		$$ LANGUAGE SQL
+		;
+     - Converts a string to a number
    
 Numeric Functions
 -----------------
@@ -178,7 +204,7 @@ Numeric Functions
      - Calculates the 10-based log for an argument
    * - ``MOD``
      - ``MOD``, ``%``
-     - Calculates the modulu (remainder) of two arguments
+     - Calculates the modulus (remainder) of two arguments
    * - NA
      - ``PI``
      - Returns the constant value for π
@@ -413,54 +439,112 @@ Datetime Functions
    * - Oracle
      - SQream
      - Description
-   * - ````
-     - ````
+   * - ``ADD_MONTHS``
+     - NA
+     - Returns a number of months are added to a specified date
+   * - NA
+     - ``CURDATE``
+     - This function is equivalent to CURRENT_DATE
+   * - ``CURRENT_DATE``
+     - ``CURRENT_DATE``
+     - Returns the current date as DATE
+   * - ``CURRENT_TIMESTAMP``
+     - ``CURRENT_TIMESTAMP``
+     - Equivalent to ``GETDATE``
+   * - ``DBTIMEZONE``
+     - NA
+     - Returns the value of the database time zone
+   * - ``EXTRACT`` (datetime)
+     - ``EXTRACT``
+     - ANSI syntax for extracting date or time element from a date expression
+   * - ``FROM_TZ``
+     - NA
+     - Converts a timestamp value and a time zone
+   * - ``LAST_DAY``
+     - ``EOMONTH``
+     - Returns the last day of the month in which the specified date value falls
+   * - NA
+     - ``CURRENT_TIMESTAMP``
+     - Returns the current date and time in the session time zone
+   * - ``MONTHS_BETWEEN``
+     - NA
+     - Returns the number of months between specified date values
+   * - ``NEW_TIME``
+     - NA
+     - returns the date and time in time zone
+   * - ``NEXT_DAY``
+     - NA
+     - Returns the date of the first weekday that is later than a specified data
+   * - ``NUMTODSINTERVAL``
+     - NA
+     - Converts n to an INTERVAL DAY TO SECOND literal
+   * - ``NUMTOYMINTERVAL``
+     - NA
+     - Converts number n to an INTERVAL YEAR TO MONTH literal
+   * - ``ORA_DST_AFFECTED``
+     - NA
+     - Changing the time zone data file
+   * - ``ORA_DST_CONVERT``
+     - NA
+     - Changing the time zone data file for specify error handling
+   * - ``ORA_DST_ERROR``
+     - NA
+     - Changing the time zone data file for takes as an argument a datetime
+   * - ``ROUND`` (date)
+     - ``ROUND``
+     - Rounds an argument down to the nearest integer, or an arbitrary precision
+   * - ``SESSIONTIMEZONE``
+     - NA
+     - Returns the time zone of the current session
+   * - ``SYS_EXTRACT_UTC``
+     - NA
+     - extracts the UTC from a datetime value with time zone offset
+   * - ``SYSDATE``
+     - ``SYSDATE``
+     - Equivalent to ``GETDATE``
+   * - ``SYSTIMESTAMP``
+     - ``CURRENT_TIMESTAMP``
+     - Returns the current timestamp
+   * - ``TO_CHAR`` (datetime)
+     - NA
+     - Converts a date value to a string in a specified format
+   * - ``TO_TIMESTAMP``
+     - NA
+     - Converts datatype to a value of TIMESTAMP datatype
+   * - ``TO_TIMESTAMP_TZ``
+     - NA
+     - Converts datatype to a value of TIMESTAMP WITH TIME ZONE datatype
+   * - ``TO_DSINTERVAL``
+     - NA
+     - Converts a character string of CHAR datatype
+   * - ``TO_YMINTERVAL``
+     - NA
+     - Converts a character string of CHAR datatype
+   * - ``TRUNC`` (date)
+     - ``TRUNC``
+     - Truncates a date element down to a specified date or time element
+   * - ``TZ_OFFSET``
+     - NA
+     - Returns the time zone offset
+   * - NA
+     - ``DATEADD``
      - 
-   * - ````
-     - ````
+   * - NA
+     - ``DATEDIFF``
      - 
-   * - ````
-     - ````
+   * - NA
+     - ``DATEPART``
      - 
-   * - ````
-     - ````
+   * - NA
+     - ``GETDATE``
      - 
-   * - ````
-     - ````
+   * - NA
+     - ``TO_UNIXTS``, ``TO_UNIXTSMS``
      - 
-   * - ````
-     - ````
+   * - NA
+     - ``FROM_UNIXTS``, ``FROM_UNIXTSMS``
      - 
-   * - ````
-     - ````
-     - 
-   * - ````
-     - ````
-     - 
-   * - ````
-     - ````
-     - 
-   * - ````
-     - ````
-     - 
-   * - ````
-     - ````
-     - 
-   * - ````
-     - ````
-     - 
-   * - ````
-     - ````
-     - 
-   * - ````
-     - ````
-     - 
-   * - ````
-     - ````
-     - 
-   * - ````
-     - ````
-     - 
+
 	 
 General Comparison Functions
 ----------------------------
@@ -472,9 +556,204 @@ General Comparison Functions
    * - Oracle
      - SQream
      - Description
-   * - ````
-     - ````
+   * - ``GREATEST``
+     - NA
+     - Returns the greatest of a list of one or more expressions
+   * - ``LEAST``
+     - NA
+     - Returns the least of a list of one or more expressions
+	 
+NULL-Related Functions
+----------------------
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Oracle
+     - SQream
+     - Description
+   * - ``COALESCE``
+     - ``COALESCE``
+     - Returns the first non-null
+   * - ``LNNVL``
+     - NA
+     - Provides a concise way to evaluate a condition when one or both operands of the condition may be null
+   * - ``NANVL``
+     - NA
+     - Takes as arguments any numeric data type or any nonnumeric data type
+   * - ``NULLIF``
+     - ``IS NULL``
+     - If they are equal, then the function returns null
+   * - ``NVL``
+     - ``ISNULL``
+     - Replace null (returned as a blank) with a string in the results of a query
+   * - ``NVL2``
+     - NA
+     - Determine the value returned by a specified expression is null or not null
+	 
+Aggregate Functions
+-------------------
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Oracle
+     - SQream
+     - Description
+   * - ``AVG``
+     - ``AVG``
+     - Calculates the average of all of the values
+   * - ``CHECKSUM``
+     - NA
+     - Detect changes in a table
+   * - ``COLLECT``
+     - NA
+     - Takes as its argument a column of any type and creates a nested table
+   * - ``CORR``
+     - ``CORR``
+     - Calculates the Pearson correlation coefficient
+   * - ``COUNT``
+     - ``COUNT``
+     - Calculates the count of all of the values or only distinct values
+   * - ``COVAR_POP``
+     - ``COVAR_POP``
+     - Calculates population covariance of values
+   * - ``COVAR_SAMP``
+     - ``COVAR_SAMP``
+     - Calculates sample covariance of values
+   * - ``CUME_DIST``
+     - ``CUME_DIST``
+     - Calculates the cumulative distribution of a value in a group of values
+   * - ``FIRST``
+     - ``FIRST_VALUE``
+     - The FIRST_VALUE function returns the value located in the selected column of the first row of a segment
+   * - ``GROUP_ID``
+     - NA
+     - Distinguishes duplicate groups resulting from a GROUP BY specification
+   * - ``GROUPING``
+     - NA
+     - Distinguishes superaggregate rows from regular grouped rows
+   * - ``GROUPING_ID``
+     - NA
+     - Returns a number corresponding to the GROUPING bit vector associated with a row
+   * - ``LAST``
+     - ``LAST_VALUE``
+     - The LAST_VALUE function returns the value located in the selected column of the last row of a segment
+   * - NA
+     - ``NTH_VALUE``
+     - The NTH_VALUE function returns the value located in the selected column of a specified row of a segment
+   * - ``MAX``
+     - ``MAX``
+     - Returns maximum value of all values
+   * - ``MEDIAN``
+     - NA
+     - Calculates the median value of a column
+   * - ``MIN``
+     - ``MIN``
+     - Returns minimum value of all values
+   * - NA
+     - ``NTILE``
+     - Divides an ordered data set into a number of buckets
+   * - ``PERCENTILE_CONT``
+     - ``PERCENTILE_CONT``
+     - Inverse distribution function that assumes a continuous distribution model
+   * - ``PERCENTILE_DISC``
+     - ``PERCENTILE_DISC``
+     - Inverse distribution function that assumes a discrete distribution model
+   * - ``PERCENT_RANK``
+     - ``PERCENT_RANK``
+     - Range of values returned by PERCENT_RANK is 0 to 1, inclusive
+   * - ``RANK``
+     - ``RANK``
+     - Calculates the rank of a value in a group of values
+   * - ``DENSE_RANK``
+     - ``DENSE_RANK``
+     - Computes the rank of a row in an ordered group of rows
+   * - ``STATS_BINOMIAL_TEST``
+     - NA
+     - Exact probability test used for dichotomous variables
+   * - ``STATS_CROSSTAB``
+     - NA
+     - Method used to analyze two nominal variables
+   * - ``STATS_F_TEST``
+     - NA
+     - Tests whether two variances are significantly different
+   * - ``STATS_KS_TEST``
+     - NA
+     - Kolmogorov-Smirnov function that compares two samples to test
+   * - ``STATS_MODE``
+     - NA
+     - Takes as its argument a set of values and returns the value
+   * - ``STDDEV``
+     - ``STDDEV``
+     - Returns the population standard deviation of all input values
+   * - ``STDDEV_POP``
+     - ``STDDEV_POP``
+     - Calculates population standard deviation of values
+   * - ``STDDEV_SAMP``
+     - ``STDDEV_SAMP``
+     - Calculates sample standard deviation of values
+   * - ``SUM``
+     - ``SUM``
+     - Calculates the sum of all of the values or only distinct values
+   * - ``VAR_POP``
+     - ``VAR_POP``
+     - Calculates population variance of values
+   * - ``VAR_SAMP``
+     - ``VAR_SAMP``
+     - Calculates sample variance of values
+   * - ``VARIANCE``
+     - ``VAR``, ``VARIANCE``
+     - Returns the variance of expr
+	 
+Analytic Functions
+------------------
+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Oracle
+     - SQream
+     - Description
+   * - NA
+     - ``MODE``
      - 
-   * - ````
-     - ````
-     - 
+   * - ``FEATURE_DETAILS``
+     - NA
+     - Returns feature details for each row in the selection
+   * - ``FEATURE_ID``
+     - NA
+     - Returns the identifier of the highest value feature for each row
+   * - ``FEATURE_SET``
+     - NA
+     - Returns a set of feature ID and feature value pairs for each row
+   * - ``FEATURE_VALUE``
+     - NA
+     - Returns a feature value for each row in the selection
+   * - ``LEAD``
+     - ``LEAD``
+     - Returns a value from a subsequent row within the partition of a result set
+   * - ``LAG``
+     - ``LAG``
+     - Returns a value from a previous row within the partition of a result set
+   * - ``PREDICTION``
+     - NA
+     - Returns a prediction for each row in the selection
+   * - ``PREDICTION_COST``
+     - NA
+     - Returns prediction details for each row in the selection
+   * - ``PREDICTION_DETAILS``
+     - NA
+     - Returns prediction details for each row in the selection
+   * - ``PREDICTION_PROBABILITY``
+     - NA
+     - Returns a probability for each row in the selection
+   * - ``PREDICTION_SET``
+     - NA
+     - Returns a set of predictions with either probabilities or costs for each row
+   * - ``ROW_NUMBER``
+     - ``ROW_NUMBER``
+     - Assigns a unique number to each row to which it is applied
