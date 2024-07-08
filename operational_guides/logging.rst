@@ -23,12 +23,14 @@ The worker logs contain information messages, warnings, and errors pertaining to
 * Statement execution success / failure 
 * Statement execution statistics
 
+.. _log_structure:
+
 Log Structure and Contents
 --------------------------
 
 By default, logs are saved as ``CSV`` files. To configure your log files to be saved as ``JSON`` instead, use the ``logFormat`` flag in your :ref:`legacy config file<current_method_flag_types>`.
 
-For effective :ref:`Root Cause Analysis (RCA)<root_cause_analysis>`, it's essential that logs are saved in ``JSON`` format, as RCA does not support ``CSV`` files. If your current logs are in ``CSV`` format and you require RCA, it's advisable to configure your logs to be saved in both ``CSV`` and ``JSON`` formats as outlined above.
+For effective :ref:`health_monitoring`, it's essential that logs are saved in ``JSON`` format, as Health Monitoring does not support ``CSV`` files. If your current logs are in ``CSV`` format and you require RCA, it's advisable to configure your logs to be saved in both ``CSV`` and ``JSON`` formats as outlined above.
 
 .. list-table:: Log fields
    :widths: auto

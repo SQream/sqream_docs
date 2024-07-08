@@ -1,10 +1,10 @@
-.. _root_cause_analysis:
+.. _health_monitoring:
 
-*******************
-Root Cause Analysis
-*******************
+*****************
+Health Monitoring
+*****************
 
-The Root Cause Analysis (RCA) service enhances observability, enabling shorter investigation times and facilitating both high-level and detailed drill-downs by automatically executing the :ref:`export_open_snapshots` and :ref:`get_open_snapshots` utility functions. 
+The Health Monitoring service enhances observability, enabling shorter investigation times and facilitating both high-level and detailed drill-downs.
 
 .. contents::
    :local:
@@ -15,26 +15,26 @@ Before You Begin
 
 It is essential that you follow these prerequisites:
 
-* Log files must be saved as ``JSON`` files
+* :ref:`Log files<log_structure>` must be saved as ``JSON`` files
 
-Usage Notes
-===========
+* :ref:`Set the path<export_open_snapshots>` to where you wish your open snapshot information be saved 
 
-By default, logs are saved as ``CSV`` files. To configure your log files to be saved as ``JSON`` instead, use the ``logFormat`` flag in your :ref:`legacy config file<current_method_flag_types>`. If your current logs are in ``CSV`` format and you require RCA, it's advisable to configure your logs to be saved in both ``CSV`` and ``JSON`` formats as outlined above.
-
-.. note:
-
-	The ``logFormat`` flag must be configured identically in both your legacy_config_file and your metadata_config_file
+Security
+========
 
 Installation
 ============
 
-All RCA-related installations are on a stand-alone installations.  
+All Health Monitoring-related installations are on a stand-alone installations.  
 
 Grafana
 -------
 
 Grafana is an open-source analytics and monitoring platform that visualizes data and is used to create dashboards that display real-time and historical data.
+
+You may use both Grafana's open source version and its enterprise version, depending on your needs.
+
+See `Grafana specification <https://grafana.com/docs/grafana/latest/setup-grafana/installation/#hardware-recommendations>`_
 
 Manual Execution
 ~~~~~~~~~~~~~~~~
@@ -178,3 +178,5 @@ https://sqream.atlassian.net/wiki/spaces/~477790253/pages/3134488697/RCA+-+Grafa
 
 -Slavi
 
+Best Practices
+==============
