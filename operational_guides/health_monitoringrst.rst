@@ -19,8 +19,8 @@ It is essential that you follow these prerequisites:
 
 * :ref:`Set the path<export_open_snapshots>` to where you wish your open snapshot information be saved 
 
-Security
-========
+* Configure `Grafana authentication <https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/grafana/>`_, even if you're using `LDAP <https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/ldap/>`_ for authentication management
+
 
 Installation
 ============
@@ -180,3 +180,31 @@ https://sqream.atlassian.net/wiki/spaces/~477790253/pages/3134488697/RCA+-+Grafa
 
 Best Practices
 ==============
+
+Daily Usage
+-----------
+
+Grafana Alerts
+--------------
+
+Investigating Health Issues
+---------------------------
+
+Dealing with Open Snapshots
+---------------------------
+
+Dealing with Unreleased Locks
+-----------------------------
+
+Dealing with Slow Metadata
+--------------------------
+
+Dealing with Growing Statement Queue
+------------------------------------
+
+Dealing with Slow Workers
+-------------------------
+
+Dealing with Hung Workers
+-------------------------
+
