@@ -79,14 +79,6 @@ Example
 	--------------------+----------+--------------+-------------+---------+---------+-----------+
 	useGrpcCompiler     |false     |false         |RND          |regular  |         |           |
 	
-.. code-block:: sql   
-	   
-	DESCRIBE CONFIGURATION PARAMETER port;
-
-	flag_name|flag_value|def_flag_value|flag_category|flag_type|data_type|description|
-	---------+----------+--------------+-------------+---------+---------+-----------+
-	port     |5000      |5000          |RND          |worker   |         |           |
-
 
 .. code-block:: sql   
 	 
