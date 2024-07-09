@@ -4,7 +4,7 @@
 Foreign Tables
 **************
 
-Foreign tables can be used to run queries directly on data without inserting it into SQream DB first.
+Foreign tables can be used to run queries directly on data without inserting it into SQreamDB first.
 SQream DB supports read-only foreign tables so that you can query from foreign tables, but you cannot insert to them, or run deletes or updates on them.
 
 Running queries directly on foreign data is most effectively used for one-off querying. If you are repeatedly querying data, the performance will usually be better if you insert the data into SQream DB first.
