@@ -61,9 +61,7 @@ Syntax
 	FROM <role> [, ...]
 
 	-- Revoke permissions at the catalog level: 
-	REVOKE {
-	{SELECT } [, ...] 
-	| ALL [PERMISSIONS] }
+	REVOKE SELECT
 	ON { CATALOG <catalog_name> [, ...] }
 	FROM <role> [, ...]
 
