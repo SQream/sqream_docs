@@ -61,9 +61,7 @@ Syntax
 	TO <role> [, ...]
 
 	-- Grant permissions at the catalog level: 
-	GRANT {
-	{SELECT } [, ...] 
-	| ALL [PERMISSIONS] }
+	GRANT SELECT
 	ON { CATALOG <catalog_name> [, ...] }
 	TO <role> [, ...]
 
@@ -197,7 +195,7 @@ The following table describes the supported permissions:
      - Function
      - Allows a user to execute UDFs
    * - ``ALL``
-     - Cluster, Database, Schema, Table, Function, Saved Query, Services, Catalog, Foreign Table
+     - Cluster, Database, Schema, Table, Function, Saved Query, Services, Foreign Table
      - All of the above permissions at the respective level
 
 .. end include
