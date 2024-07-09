@@ -75,18 +75,10 @@ Syntax
 	}
 	TO <role> [, ...]
 
-	GRANT
-	{
-	  { SELECT 
-	  | INSERT 
-	  | DELETE 
-	  | UPDATE } [, ...] 
-	  | ALL [PERMISSIONS]
-	}
-	ON 
-	{ 
-	  | CATALOG <catalog_name> [, ...]
-	}
+	-- Grant permissions at the catalog level: 
+
+	GRANT SELECT 
+	ON { CATALOG <catalog_name> [, ...] }
 	TO <role> [, ...]
 
 	-- Grant execute function permission: 

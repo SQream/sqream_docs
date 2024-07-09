@@ -87,8 +87,6 @@ The following table describe the required permissions for performing and executi
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``SELECT``           | Select from catalog                                                                                                     | 
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``ALL``              | All catalog permissions                                                                                                 |
-+----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Services**                                                                                                                                   |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``USAGE``            | Using a specific service                                                                                                |
@@ -159,17 +157,9 @@ GRANT
 	TO <role> [, ...]
 
 	-- Grant permissions at the catalog level: 
-	GRANT
-	{
-	  SELECT 
-	  | INSERT 
-	  | DELETE 
-	  | UPDATE } [, ...] 
-	  | ALL [PERMISSIONS]
-	ON 
-	{ 
-	  CATALOG <catalog_name> [, ...]
-	}
+
+	GRANT SELECT 
+	ON { CATALOG <catalog_name> [, ...] }
 	TO <role> [, ...]
 
 	-- Grant function execution permission: 
@@ -274,17 +264,9 @@ REVOKE
 	FROM <role> [, ...]
 
 	-- Revoke permissions at the catalog level:
-	REVOKE 
-	{ 
-	  SELECT 
-	  | INSERT 
-	  | DELETE 
-	  | UPDATE } [, ...] 
-	  | ALL [PERMISSIONS]
-	ON 
-	{ 
-	  CATALOG <catalog_name> [, ...] 
-	}
+
+	REVOKE SELECT 
+	ON { CATALOG <catalog_name> [, ...] }
 	FROM <role> [, ...]
 				
 	-- Revoke permissions at the function execution level:
