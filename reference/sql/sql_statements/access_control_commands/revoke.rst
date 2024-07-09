@@ -75,18 +75,10 @@ Syntax
 	}
 	FROM <role> [, ...]
 
-	REVOKE 
-	{ 
-	  { SELECT 
-	  | INSERT 
-	  | DELETE 
-	  | UPDATE } [, ...] 
-	  | ALL 
-	}
-	ON 
-	{ 
-	  | CATALOG <catalog_name> [, ...] 
-	}
+	-- Revoke permissions at the catalog level:
+
+	REVOKE SELECT 
+	ON { CATALOG <catalog_name> [, ...] }
 	FROM <role> [, ...]
 				
 	-- Revoke permissions at the column level:
