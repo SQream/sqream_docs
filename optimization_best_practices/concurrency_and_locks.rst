@@ -64,7 +64,7 @@ Monitoring Locks
 
 Monitoring locks across the cluster can be useful when transaction contention takes place, and statements appear "stuck" while waiting for a previous statement to release locks.
 
-The utility :ref:`describe_locks` can be used to see the active locks.
+The utility command :ref:`describe_locks` can be used to see the active locks.
 
 
 .. code-block:: postgres
