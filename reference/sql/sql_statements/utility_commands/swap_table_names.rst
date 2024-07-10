@@ -11,7 +11,7 @@ Syntax
 
 .. code-block:: postgres
 
-	SELECT SWAP_TABLE_NAMES (<schema_name>, <table1_name>, <table2_name>)	
+	SELECT SWAP_TABLE_NAMES ('<schema_name>', '<table1_name>', '<table2_name>')	
 
 Parameters
 ==========
@@ -37,6 +37,9 @@ Examples
 
 .. code-block:: postgres
 
+	SELECT SWAP_TABLE_NAMES ('public', 'table1', 'table2');	
 
 Permissions
 ===========
+
+This utility command requires a ``CONNECT`` permission on the database level. 
