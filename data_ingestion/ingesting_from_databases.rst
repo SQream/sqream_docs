@@ -542,66 +542,7 @@ In this example, ``column1``, ``column2``, and ``column3`` are mapped to ``BIGIN
 	    }
 	}	
 		
-.. code-block:: json
-	
-		{
-		  "type": ["char","nchar","varchar","varchar2","nvarchar","nvarchar2","character"],
-		  "sqream": "text",
-		  "java": "string",
-		  "length": true
-		},
-		{
-		  "type": ["date","datetime"],
-		  "sqream": "datetime",
-		  "java": "datetime",
-		  "length": false
-		},
-		{
-		  "type": ["timestamp"],
-		  "sqream": "datetime",
-		  "java": "timestamp",
-		  "length": false
-		},
-		{
-		  "type": ["date"],
-		  "sqream": "date",
-		  "java": "datetime",
-		  "length": false
-		},
-		{
-		  "type": ["boolean"],
-		  "sqream": "bool",
-		  "java": "boolean",
-		  "length": false
-		},
-		{
-		  "type": ["number"],
-		  "sqream": "numeric",
-		  "java": "bigdecimal",
-		  "length": true,
-		  "prec": true
-		},
-		{
-		  "type": ["float","double"],
-		  "sqream": "double",
-		  "java": "double",
-		  "length": false
-		},
-		{
-		  "type": ["clob"],
-		  "sqream": "text",
-		  "java": "clob",
-		  "length": false
-		},
-		{
-		  "type": ["blob"],
-		  "sqream": "text",
-		  "java": "blob",
-		  "length": false
-		}
-	  ]
-	}
-	 
+
 ---------------------------------	 
 	 
 Creating Summary Tables
