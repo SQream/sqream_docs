@@ -42,4 +42,4 @@ Examples
 Permissions
 ===========
 
-This utility command requires a ``CONNECT`` permission on the database level. 
+This utility command requires a permission to execute utility functions.
