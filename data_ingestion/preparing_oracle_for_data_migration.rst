@@ -48,7 +48,7 @@ Preparing CDC Tables
 	);
 
 	-- Insert record to CDC_TABLES in the catalog
-	INSERT INTO SMSDW.CDC_TABLES (
+	INSERT INTO public.CDC_TABLES (
 	    DB_NAME, 
 	    SCHEMA_NAME, 
 	    TABLE_NAME, 
@@ -79,7 +79,7 @@ Preparing CDC Tables
 	);
 
 	-- Insert record to primary keys table in the catalog
-	INSERT INTO SMSDW.CDC_TABLE_PRIMARY_KEYS (
+	INSERT INTO public.CDC_TABLE_PRIMARY_KEYS (
 	    DB_NAME, 
 	    SCHEMA_NAME, 
 	    TABLE_NAME, 
@@ -175,7 +175,7 @@ Preparing Incremental Table
 .. code-block:: sql
 
 	-- Insert record into CDC_TABLES in the catalog
-	INSERT INTO SMSDW.CDC_TABLES (
+	INSERT INTO public.CDC_TABLES (
 	    DB_NAME, 
 	    SCHEMA_NAME, 
 	    TABLE_NAME, 
@@ -198,7 +198,7 @@ Preparing Incremental Table
 	);
 
 	-- Insert record into primary keys table in the catalog
-	INSERT INTO SMSDW.CDC_TABLE_PRIMARY_KEYS (
+	INSERT INTO public.CDC_TABLE_PRIMARY_KEYS (
 	    DB_NAME, 
 	    SCHEMA_NAME, 
 	    TABLE_NAME, 
