@@ -22,7 +22,7 @@ It is essential that you have the following:
 * SQLoader.jar file
 
 Minimum Hardware Requirements
-------------------------------
+-----------------------------
 
 .. list-table:: 
    :widths: auto
@@ -38,27 +38,27 @@ Minimum Hardware Requirements
 .. _sqloader_thread_sizing_guidelines:
 
 Sizing Guidelines 
-------------------
+-----------------
 
 The SQLoader sizing is determined by the number of concurrent tables and threads based on the available CPU cores, limiting it to the number of cores minus one, with the remaining core reserved for the operating system. Each SQLoader instance runs on a single table, meaning concurrent imports of multiple tables require multiple instances. Additionally, when dealing with partitioned tables, each partition consumes a thread, so users should consider the table's partition count when managing thread allocation for efficient performance.
 
 ---------------------------------
 
 Installation and Connection
-============================
+===========================
 
 Getting the SQLoader Configuration and JAR Files
 ------------------------------------------------
 
 1. Download the ``.tar`` file using the following command:
 
-   .. code-block:: linux
+   .. code-block:: console
 
 	  curl -O https://sq-ftp-public.s3.amazonaws.com/sqloader-v7.12.tar
 
 2. Extract the ``.tar`` file using the following command:
 
-   .. code-block:: linux
+   .. code-block:: console
 
 	   tar -xf sqloader-7.12.tar.gz
 
@@ -518,10 +518,7 @@ SAP HANA
 Manual Mapping
 ^^^^^^^^^^^^^^
 
-You have the possibility to adjust the mapping process according to your specific needs, using any of the following methods.
-
-``names`` Method
-""""""""""""""""
+You have the possibility to adjust the SQLoader mapping process according to your specific needs using the ``names`` Method.
 
 To specify that you want to map one or more columns in your table to a specific data type, duplicate the code block which maps to the SQreamDB data type you want and include the ``names`` parameter in your code block. The SQLoader will map the specified columns to the specified SQreamDB data type. After the specified columns are mapped, the SQLoader continue to search for how to convert other data types to the same data type of the specified columns. 
 
@@ -531,18 +528,18 @@ In this example, ``column1``, ``column2``, and ``column3`` are mapped to ``BIGIN
 
 	{
 	  "oracle": [
-		{
-		  "names": ["column1", "column2", "column3"],
-		  "sqream": "bigint",
-		  "java": "int",
-		  "length": false
-		},
-		{
-		  "type": ["bigint","int","smallint","integer"],
-		  "sqream": "bigint",
-		  "java": "int",
-		  "length": false
-		}
+	    {
+	      "names": ["column1", "column2", "column3"],
+	      "sqream": "bigint",
+	      "java": "int",
+	      "length": false
+	    },
+	    {
+	      "type": ["bigint","int","smallint","integer"],
+	      "sqream": "bigint",
+	      "java": "int",
+	      "length": false
+	    }
 	}	
 		
 .. code-block:: json
@@ -731,3 +728,11 @@ Loading data into a table using a the ``filter`` parameter:
 .. code-block:: console
 
 	java -jar sqloader.jar -table <source_table_name> -filter column_name>50
+	
+	
+	
+.. toctree::
+   :maxdepth: 1
+   :glob:
+   
+   preparing_oracle_for_data_migration
