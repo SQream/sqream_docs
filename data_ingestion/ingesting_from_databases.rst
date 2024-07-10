@@ -541,8 +541,7 @@ In this example, ``column1``, ``column2``, and ``column3`` are mapped to ``BIGIN
 	      "length": false
 	    }
 	}	
-		
-
+	 
 ---------------------------------	 
 	 
 Creating Summary Tables
@@ -672,8 +671,3 @@ Loading data into a table using a the ``filter`` parameter:
 	
 	
 	
-.. toctree::
-   :maxdepth: 1
-   :glob:
-   
-   preparing_oracle_for_data_migration
