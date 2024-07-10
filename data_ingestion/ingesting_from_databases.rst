@@ -528,18 +528,18 @@ In this example, ``column1``, ``column2``, and ``column3`` are mapped to ``BIGIN
 
 	{
 	  "oracle": [
-		{
-		  "names": ["column1", "column2", "column3"],
-		  "sqream": "bigint",
-		  "java": "int",
-		  "length": false
-		},
-		{
-		  "type": ["bigint","int","smallint","integer"],
-		  "sqream": "bigint",
-		  "java": "int",
-		  "length": false
-		}
+	    {
+	      "names": ["column1", "column2", "column3"],
+	      "sqream": "bigint",
+	      "java": "int",
+	      "length": false
+	    },
+	    {
+	      "type": ["bigint","int","smallint","integer"],
+	      "sqream": "bigint",
+	      "java": "int",
+	      "length": false
+	    }
 	}	
 		
 .. code-block:: json

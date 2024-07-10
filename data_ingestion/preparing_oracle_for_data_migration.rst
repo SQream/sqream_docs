@@ -4,10 +4,10 @@
 Preparing Oracle for Data Migration
 ***********************************
 
-The preparation of incremental and Change Data Capture (CDC) tables is essential for efficiently tracking and managing changes to data over time, enabling streamlined data synchronization and replication.
+The preparation of incremental and Change Data Capture (CDC) tables is essential for efficiently tracking and managing changes to data over time, enabling streamlined data synchronization, and replication.
 
-Preparing Change Data Capture Table
-===================================
+Preparing CDC Tables
+====================
 
 1. Prepare the data table:
 
