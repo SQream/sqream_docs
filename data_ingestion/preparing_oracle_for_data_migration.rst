@@ -1,4 +1,4 @@
-.. _preparing_oracle_for_data_migration
+.. _preparing_oracle_for_data_migration:
 
 ***********************************
 Preparing Oracle for Data Migration

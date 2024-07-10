@@ -671,8 +671,3 @@ Loading data into a table using a the ``filter`` parameter:
 	
 	
 	
-.. toctree::
-   :maxdepth: 1
-   :glob:
-   
-   preparing_oracle_for_data_migration

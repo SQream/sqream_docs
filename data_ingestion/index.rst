@@ -12,10 +12,7 @@ The **Data Ingestion Sources** page provides information about the following:
 * :ref:`parquet`
 * :ref:`orc`
 * :ref:`json`
-* Loading from external databases: 
-
-	* :ref:`SQLoader As a Service<sqloader_as_a_service>`
-	* :ref:`SQLoader As a Process<ingesting_from_databases>` 
+* :ref:`sqloader`
 
 .. toctree::
    :maxdepth: 1
@@ -28,7 +25,6 @@ The **Data Ingestion Sources** page provides information about the following:
    parquet
    orc
    json
-   sqloader_as_a_service
-   ingesting_from_databases
+   sqloader
   
 
