@@ -389,7 +389,6 @@ schema statement is run.
         { CREATE FUNCTION
          | SUPERUSER
          | CONNECT
-         | CREATE
          | USAGE
          | SELECT
          | INSERT

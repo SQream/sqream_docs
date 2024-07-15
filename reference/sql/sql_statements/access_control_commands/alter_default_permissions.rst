@@ -44,7 +44,6 @@ Syntax
         { CREATE FUNCTION
          | SUPERUSER
          | CONNECT
-         | CREATE
          | USAGE
          | SELECT
          | INSERT
@@ -71,9 +70,6 @@ The following table describes the supported permissions:
    * - ``SUPERUSER``
      - Schema
      - The most privileged role, with full control over a cluster, database, or schema
-   * - ``CREATE``
-     - Schema
-     - For a role to create and manage objects, it needs the ``CREATE`` and ``USAGE`` permissions at the respective level
    * - ``USAGE``
      - Schema
      - For a role to see tables in a schema, it needs the ``USAGE`` permissions
@@ -144,11 +140,11 @@ For more information about default permissions, see `Default Permissions <https:
 Granting Automatic Permissions for Newly Created Schemas
 --------------------------------------------------------
 
-When the role ``demo`` creates a new schema, roles **u1,u2** are granted ``USAGE`` and ``CREATE`` permissions in the new schema, as shown below:
+When the role ``demo`` creates a new schema, roles **u1,u2** are granted ``USAGE`` permission in the new schema, as shown below:
 
 .. code-block:: postgres
 
-   ALTER DEFAULT PERMISSIONS FOR demo FOR SCHEMAS GRANT USAGE, CREATE TO u1,u2;
+   ALTER DEFAULT PERMISSIONS FOR demo FOR SCHEMAS GRANT USAGE TO u1,u2;
 
 Granting Automatic Permissions for Newly Created Tables in a Schema
 -------------------------------------------------------------------
