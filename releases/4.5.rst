@@ -42,6 +42,8 @@ New Features and Enhancements
 
 ► Optimized ``JOIN`` operation for improved performance with large tables
 
+► The new :ref:`swap_table_names` utility function enables you to swap the names of two tables within a schema. 
+
 Known Issues
 ------------
 
