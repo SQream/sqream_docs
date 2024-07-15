@@ -10,7 +10,6 @@ The **Feature Guides** section describes background processes that SQreamDB uses
    :maxdepth: 1
    :titlesonly:  
 
-   automatic_foreign_table_ddl_resolution
    query_healer
    compression
    python_functions
