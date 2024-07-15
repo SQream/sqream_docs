@@ -4,7 +4,7 @@
 SWAP TABLE NAMES
 ****************
 
-The ``SWAP_TABLE_NAMES`` command enables you to swap the names of two tables contained within a schema. 
+The ``SWAP_TABLE_NAMES`` command enables you to swap the names of two tables within a schema. 
 
 Syntax
 ======
