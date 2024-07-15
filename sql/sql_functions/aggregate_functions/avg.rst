@@ -65,7 +65,7 @@ For these examples, assume a table named ``nba``, with the following structure:
       "Salary" FLOAT
     );
 
-Simple average
+Simple Average
 --------------
 
 .. code-block:: psql
@@ -83,7 +83,7 @@ Output:
 	---
 	26
 
-Combine AVG with other Aggregates
+Combine AVG with Other Aggregates
 ---------------------------------
 
 .. code-block:: psql
