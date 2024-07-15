@@ -47,7 +47,7 @@ Maximum Workers Per GPU:
    
    * - GPU
      - Workers
-   * - NVIDIA Turing T4 (16GB) 
+   * - NVIDIA Turing A10 (16GB) 
      - 1
    * - NVIDIA Volta V100 (32GB)
      - 2

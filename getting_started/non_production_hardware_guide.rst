@@ -49,6 +49,6 @@ Lab Server
    * - Onboard storage
      - "2x 960GB SSD 2.5in hot plug for OS, RAID1, 1(or more)x 3.84TB SSD 2.5in Hot plug for storage, RAID5"
    * - GPU
-     - 1xNVIDIA T4 or A40 or A10
+     - 1xNVIDIA A40 or A10
    * - Operating System
      - Red Hat Enterprise Linux v8.8 
