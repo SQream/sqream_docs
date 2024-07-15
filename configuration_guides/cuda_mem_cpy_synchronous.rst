@@ -1,3 +1,5 @@
+:orphan:
+
 .. _cuda_mem_cpy_synchronous:
 
 ****************************

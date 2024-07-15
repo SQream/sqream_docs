@@ -1,3 +1,5 @@
+:orphan:
+
 .. _max_statement_inactivity_seconds:
 
 ********************************

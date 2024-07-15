@@ -1,3 +1,5 @@
+:orphan:
+
 .. _healer_run_action_automatically:
 
 *******************************

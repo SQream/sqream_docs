@@ -1,3 +1,5 @@
+:orphan:
+
 .. _block_new_varchar_objects:
 
 ****************************

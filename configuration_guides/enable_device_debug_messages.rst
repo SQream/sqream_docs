@@ -1,3 +1,5 @@
+:orphan:
+
 .. _enable_device_debug_messages:
 
 ****************************************

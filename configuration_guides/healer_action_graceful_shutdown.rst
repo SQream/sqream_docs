@@ -1,3 +1,5 @@
+:orphan:
+
 .. _healer_action_graceful_shutdown:
 
 *******************************

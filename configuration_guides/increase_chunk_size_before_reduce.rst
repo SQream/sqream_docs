@@ -1,3 +1,5 @@
+:orphan:
+
 .. _increase_chunk_size_before_reduce:
 
 *******************************************

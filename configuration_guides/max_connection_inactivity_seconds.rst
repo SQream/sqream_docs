@@ -1,3 +1,5 @@
+:orphan:
+
 .. _max_connection_inactivity_seconds:
 
 *********************************

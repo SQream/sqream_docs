@@ -1,3 +1,5 @@
+:orphan:
+
 .. _memory_reset_trigger_mb:
 
 ***********************************

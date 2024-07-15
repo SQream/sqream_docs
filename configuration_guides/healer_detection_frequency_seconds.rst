@@ -1,3 +1,5 @@
+:orphan:
+
 .. _healer_detection_frequency_seconds:
 
 **********************************

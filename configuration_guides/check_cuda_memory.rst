@@ -1,3 +1,5 @@
+:orphan:
+
 .. _check_cuda_memory:
 
 *************************

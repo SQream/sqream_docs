@@ -1,3 +1,5 @@
+:orphan:
+
 .. _max_avg_blob_size_to_compress_on_gpu:
 
 ***************************************

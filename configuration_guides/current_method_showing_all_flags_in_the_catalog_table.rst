@@ -1,3 +1,5 @@
+:orphan:
+
 .. _current_method_showing_all_flags_in_the_catalog_table:
 
 **************************************
