@@ -128,13 +128,11 @@ Break Up a ``DATE`` Into Components
 Output:
 
 .. code-block:: none
-	  
-	year   | month | day 
+
+	year   | month | day
 	-------+-------+-----
 	1955.0 |  11.0 |  5.0
 	1985.0 |  10.0 | 26.0
 	  79.0 |   8.0 | 24.0
 	1997.0 |   1.0 |  1.0
 	1997.0 |  12.0 | 31.0
-
-
