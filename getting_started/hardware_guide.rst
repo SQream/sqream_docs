@@ -64,7 +64,7 @@ An average single-node cluster can be a rackmount server or workstation, contain
         NVIDIA 2x A100, H100, or L40S
 		
    * - Operating System
-     - Red Hat Enterprise Linux v8.8 or Amazon Linux
+     - Red Hat Enterprise Linux v7.9 / v8.9 or Amazon Linux
 
 .. note:: If you are using internal storage, your volumes must be formatted as xfs.
 
@@ -108,7 +108,7 @@ The following table shows SQreamDB's recommended hardware specifications:
    * - GPU
      - NVIDIA 2x A100, H100, or L40S
    * - Operating System
-     - Red Hat Enterprise Linux v8.8 or Amazon Linux
+     - Red Hat Enterprise Linux v7.9 / v8.9 or Amazon Linux
 	 
 Metadata Server
 ---------------
@@ -134,7 +134,7 @@ The following table shows SQreamDB's recommended metadata server specifications:
    * - Network Card (Client)
      - 2x 1 GbE cards or similar
    * - Operating System
-     - Red Hat Enterprise Linux v8.8 or Amazon Linux
+     - Red Hat Enterprise Linux v7.9 / v8.9 or Amazon Linux
 
 .. note:: With a NAS connected over GPFS, Lustre, Weka, or VAST, each SQreamDB worker can read data at 5GB/s or more.
 
@@ -158,7 +158,7 @@ The following table shows SQreamDB's recommended Studio server specifications:
    * - Onboard storage
      - 50 GB SSD 2.5in Hot-plug for OS, RAID1
    * - Operating System
-     - Red Hat Enterprise Linux v8.8
+     - Red Hat Enterprise Linux v7.9 / v8.9 or CentOS v7.9
 
 Cluster Design Considerations
 =============================
@@ -231,7 +231,7 @@ Operating System
 
 SQreamDB can run on the following 64-bit Linux operating systems:
 
-   * Red Hat Enterprise Linux (RHEL) v8.8
+   * Red Hat Enterprise Linux (RHEL) v7.9 / v8.9
    * Amazon Linux 2018.03
 
 

@@ -82,10 +82,10 @@ If any doubt arises, consult the documentation for your server or your hardware 
      - QPI (QuickPath Interconnect) Snoop lets you configure different Snoop modes that impact the QPI interconnect. Changing this setting may improve the performance of certain workloads. The default setting of **Home Snoop** provides high memory bandwidth in an average NUMA environment. **Cluster on Die** may provide increased memory bandwidth in highly optimized NUMA workloads. **Early Snoop** may decrease memory latency, but may result in lower overall bandwidth compared to other modes.
 	 
 Installing the Operating System
-===============================
+================================ 
 
 Before You Begin
-----------------
+-------------------
 
 * Your system must have at least 200 gigabytes of free space on the root ``/`` mount.
 
@@ -93,12 +93,12 @@ Before You Begin
 
 * Once the BIOS settings have been set, you must install the operating system.
 
-* A typical SQreamDB installation requires RHEL7.9 or RHEL8.X (RHEL8.8 recommended)
+* A typical SQreamDB installation requires RHEL7.9 or RHEL8.X (RHEL8.9 recommended)
 
 * Verify the exact RHEL7/RHEL8 version with your storage vendor to avoid driver incompatibility.
 
 Installation
-------------
+----------------
 
 #. Select a language (English recommended).
 #. From **Software Selection**, select **Minimal** and check the **Development Tools** group checkbox.
@@ -127,12 +127,12 @@ Installation
    The OS shell is booted up.
 
 Configuring the Operating System
-================================
+==================================
 
 When configuring the operating system, several basic settings related to creating a new server are required. Configuring these as part of your basic set-up increases your server's security and usability.
 
 Creating a ``sqream`` User
---------------------------
+----------------------------
 
 **The sqream user must have the same UID and GID across all servers in your cluster.**
 
@@ -806,18 +806,12 @@ Disable Nouveau, which is the default operating system driver.
 Installing the CUDA Driver
 --------------------------
   
+The current recommendation is for CUDA 12.3.2.
+  
 .. contents:: 
    :local:
    :depth: 1
   
-The current recommendation is for CUDA 12.3.2.
-  
-For A100 GPU and other A series GPUs, you must install CUDA driver **11.4.3** or a later version.
-
-For H100 GPU and other H series GPUs, you must install CUDA driver **11.8** or a later version.
-
-For L40S GPU and other L series GPUs, you must install CUDA driver **12.0** or a later version.
-
 For questions related to which driver to install, contact `SqreamDB support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_.
 
 Installing the CUDA Driver from the Repository
@@ -861,14 +855,8 @@ Installing the CUDA driver from the Repository is the recommended installation m
 		 sudo yum clean all
 		 sudo yum -y install nvidia-driver-latest-dkms
 		 
-    * **RHEL8.6 CUDA 11.4.3 repository (INTEL) installation (Required for A-Series GPU models):**
 
-	  .. code-block:: console
-	  
-		 wget https://developer.download.nvidia.com/compute/cuda/11.4.3/local_installers/cuda-repo-rhel8-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
-		 sudo dnf localinstall cuda-repo-rhel8-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
-
-    * **RHEL8.8 CUDA 12.3.2 repository ( INTEL ) installation ( Required for H/L Series GPU models ):**
+    * **RHEL8.9 CUDA 12.3.2 repository ( INTEL ) installation ( Required for H/L Series GPU models ):**
 
 	  .. code-block:: console
 	  
