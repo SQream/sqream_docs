@@ -71,7 +71,7 @@ The following table describe the required permissions for performing and executi
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Column**                                                                                                                                     |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``SELECT``           | Select from column                                                                                                     |
+| ``SELECT``           | Select from column                                                                                                      |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``DDL``              | Column DDL operations                                                                                                   |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
@@ -163,8 +163,7 @@ GRANT
 	TO <role> [, ...]
 
 	-- Grant permissions at the catalog level: 
-
-	GRANT SELECT 
+	GRANT SELECT
 	ON { CATALOG <catalog_name> [, ...] }
 	TO <role> [, ...]
 
@@ -390,7 +389,6 @@ schema statement is run.
         { CREATE FUNCTION
          | SUPERUSER
          | CONNECT
-         | CREATE
          | USAGE
          | SELECT
          | INSERT
