@@ -5,22 +5,22 @@ Foreign Tables
 **************
 
 Foreign tables can be used to run queries directly on data without inserting it into SQreamDB first.
-SQream DB supports read-only foreign tables so that you can query from foreign tables, but you cannot insert to them, or run deletes or updates on them.
+SQreamDB supports read-only foreign tables so that you can query from foreign tables, but you cannot insert to them, or run deletes or updates on them.
 
-Running queries directly on foreign data is most effectively used for one-off querying. If you are repeatedly querying data, the performance will usually be better if you insert the data into SQream DB first.
+Running queries directly on foreign data is most effectively used for one-off querying. If you are repeatedly querying data, the performance will usually be better if you insert the data into SQreamDB first.
 
-Although foreign tables can be used without inserting data into SQream DB, one of their main use cases is to help with the insertion process. An insert select statement on a foreign table can be used to insert data into SQream using the full power of the query engine to perform ETL.
+Although foreign tables can be used without inserting data into SQreamDB, one of their main use cases is to help with the insertion process. An insert select statement on a foreign table can be used to insert data into SQream using the full power of the query engine to perform ETL.
 
-.. contents:: In this topic:
+.. contents::
    :local:
    :depth: 1
    
 Supported Data Formats
 ======================
 
-SQream DB supports foreign tables over:
+SQreamDB supports foreign tables using the following file formats:
 
-* Text - CSV, TSV, and PSV
+* Text: CSV, TSV, and PSV
 * Parquet
 * ORC
 * Avro
@@ -31,9 +31,9 @@ Supported Data Staging
 
 SQream can stage data from:
 
-* a local filesystem (e.g. ``/mnt/storage/....``)
-* :ref:`s3` buckets (e.g. ``s3://pp-secret-bucket/users/*.parquet``)
-* :ref:`hdfs` (e.g. ``hdfs://hadoop-nn.piedpiper.com/rhendricks/*.csv``)
+* A local filesystem (e.g. ``/mnt/storage/....``)
+* :ref:`s3` buckets
+* :ref:`hdfs`
 
 Using Foreign Tables
 ====================
@@ -73,14 +73,12 @@ Based on the source file structure, we :ref:`create a foreign table<create_forei
           DELIMITER = '\r\n' -- DOS delimited file
         );
 		
-The file format in this case is CSV, and it is stored as an :ref:`s3` object (if the path is on :ref:`hdfs`, change the URI accordingly).
+The file format in this case is CSV, and it is stored as an Amazon Web Services object (if the path is on :ref:`hdfs`, change the URI accordingly).
 
 We also took note that the record delimiter was a DOS newline (``\r\n``).
 
 Querying Foreign Tables
 -----------------------
-
-Let's peek at the data from the foreign table:
 
 .. code-block:: psql
    
@@ -165,4 +163,5 @@ Error Handling and Limitations
 
       SELECT * FROM nba;
       Record delimiter mismatch during CSV parsing. User defined line delimiter \n does not match the first delimiter \r\n found in s3://sqream-demo-data/nba.csv
-* Since the data for a foreign table is not stored in SQream DB, it can be changed or removed at any time by an external process. As a result, the same query can return different results each time it runs against a foreign table. Similarly, a query might fail if the external data is moved, removed, or has changed structure.
+	  
+* Since the data for a foreign table is not stored in SQreamDB, it can be changed or removed at any time by an external process. As a result, the same query can return different results each time it runs against a foreign table. Similarly, a query might fail if the external data is moved, removed, or has changed structure.

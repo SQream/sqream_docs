@@ -4,7 +4,10 @@
 CREATE FOREIGN TABLE
 ********************
 
-The ``CREATE FOREIGN TABLE`` command creates a foreign table that references data stored outside of SQreamDB. Foreign tables are used for querying data stored in files on a file system, :ref:`external storage platforms<external_storage_platforms>`, or in other databases.
+The ``CREATE FOREIGN TABLE`` command creates a foreign table that references data stored externally to SQreamDB. This allows for querying data located in files on a file system, :ref:`external storage platforms<external_storage_platforms>`, or other databases.
+
+
+When querying data stored in file formats that support metadata, such as Parquet, ORC, JSON, and Avro, it is possible to omit the DDL when creating a foreign table. SQreamDB can read the file metadata, enabling the automatic inference of column structure and data types.  
 
 Syntax
 ======
@@ -89,11 +92,9 @@ Parameters
 Usage Notes
 ===========
 
-The automatic foreign table DDL resolution feature supports Parquet, ORC, JSON, and Avro files, while using it with CSV files generates an error. You can activate this feature when you create a foreign table by omitting the column list, described in the **Syntax** section below.
+* When creating foreign tables from CSV files, it is required to provide a table DDL.
 
-Using this feature the path you specify in the ``LOCATION`` option must point to at least one existing file. If no files exist for the schema to read, an error will be generated. You can specify the schema manually even in the event of the error above.
-
-.. note:: When using this feature, SQream assumes that all files in the path use the same schema.
+* When creating a foreign table using the ``*`` wildcard, SQreamDB assumes that all files in the path use the same schema.
 
 Examples
 ========
