@@ -4,14 +4,10 @@
 CREATE FOREIGN TABLE
 ********************
 
-``CREATE FOREIGN TABLE`` creates a new foreign table in an existing database.
+The ``CREATE FOREIGN TABLE`` command creates a foreign table that references data stored externally to SQreamDB. This allows for querying data located in files on a file system, :ref:`external storage platforms<external_storage_platforms>`, or other databases.
 
-Changes in the source data can result in corresponding modifications to the content of a foreign table. Consistent access to remote files might impact performance.
 
-Permissions
-===========
-
-The role must have the ``CREATE`` permission at the database level.
+When querying data stored in file formats that support metadata, such as Parquet, ORC, JSON, and Avro, it is possible to omit the DDL when creating a foreign table. SQreamDB can read the file metadata, enabling the automatic inference of column structure and data types.  
 
 Syntax
 ======
@@ -58,7 +54,7 @@ Syntax
 .. _cft_parameters:
 
 Parameters
-============
+==========
 
 .. list-table:: 
    :widths: auto
@@ -93,10 +89,15 @@ Parameters
    * - ``QUOTE``
      - Specifies an alternative quote character. The quote character must be a single, 1-byte printable ASCII character, and the equivalent octal syntax of the copy command can be used. The quote character cannot be contained in the field delimiter, the record delimiter, or the null marker. QUOTE can be used with ``csv_fdw`` in ``COPY FROM`` and foreign tables. The following characters cannot be an alternative quote character: ``"-.:\\0123456789abcdefghijklmnopqrstuvwxyzN"``
 	 
+Usage Notes
+===========
 
+* When creating foreign tables from CSV files, it is required to provide a table DDL.
+
+* When creating a foreign table using the ``*`` wildcard, SQreamDB assumes that all files in the path use the same schema.
 
 Examples
-===========
+========
 
 Creating a Tab-Delimited Table
 ------------------------------
@@ -234,3 +235,10 @@ Customizing Quotations Using Alternative Characters
 	    DELIMITER = '\t',
 	    QUOTE = '@'
 	  );
+
+Permissions
+===========
+
+The role must have the ``CREATE`` permission at the database level.
+
+The automatic foreign table DDL resolution feature requires **Read** permissions.

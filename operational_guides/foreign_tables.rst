@@ -1,57 +1,57 @@
 .. _foreign_tables:
 
-***********************
+**************
 Foreign Tables
-***********************
+**************
 
 Foreign tables can be used to run queries directly on data without inserting it into SQreamDB first.
-SQream DB supports read-only foreign tables so that you can query from foreign tables, but you cannot insert to them, or run deletes or updates on them.
+SQreamDB supports read-only foreign tables so that you can query from foreign tables, but you cannot insert to them, or run deletes or updates on them.
 
-Running queries directly on foreign data is most effectively used for one-off querying. If you are repeatedly querying data, the performance will usually be better if you insert the data into SQream DB first.
+Running queries directly on foreign data is most effectively used for one-off querying. If you are repeatedly querying data, the performance will usually be better if you insert the data into SQreamDB first.
 
-Although foreign tables can be used without inserting data into SQream DB, one of their main use cases is to help with the insertion process. An insert select statement on a foreign table can be used to insert data into SQream using the full power of the query engine to perform ETL.
+Although foreign tables can be used without inserting data into SQreamDB, one of their main use cases is to help with the insertion process. An insert select statement on a foreign table can be used to insert data into SQream using the full power of the query engine to perform ETL.
 
-.. contents:: In this topic:
+.. contents::
    :local:
    :depth: 1
    
 Supported Data Formats
-=====================================
+======================
 
-SQream DB supports foreign tables over:
+SQreamDB supports foreign tables using the following file formats:
 
-* Text - CSV, TSV, and PSV
+* Text: CSV, TSV, and PSV
 * Parquet
 * ORC
 * Avro
 * JSON
 
 Supported Data Staging
-============================================
+======================
 
 SQream can stage data from:
 
-* a local filesystem (e.g. ``/mnt/storage/....``)
-* :ref:`s3` buckets (e.g. ``s3://pp-secret-bucket/users/*.parquet``)
-* :ref:`hdfs` (e.g. ``hdfs://hadoop-nn.piedpiper.com/rhendricks/*.csv``)
+* A local filesystem (e.g. ``/mnt/storage/....``)
+* :ref:`s3` buckets
+* :ref:`hdfs`
 
 Using Foreign Tables
-==============================================
+====================
 
 Use a foreign table to stage data before loading from CSV, Parquet or ORC files.
 
 Planning for Data Staging
---------------------------------
+-------------------------
 
 For the following examples, we will interact with a CSV file.
 
 The file is stored on :ref:`s3`, at ``s3://sqream-demo-data/nba_players.csv``.
-We will make note of the file structure, to create a matching ``CREATE_EXTERNAL_TABLE`` statement.
+We will make note of the file structure, to create a matching ``CREATE FOREIGN TABLE`` statement.
 
 Creating a Foreign Table
------------------------------
+------------------------
 
-Based on the source file structure, we :ref:`create a foreign table<create_external_table>` with the appropriate structure, and point it to the file.
+Based on the source file structure, we :ref:`create a foreign table<create_foreign_table>` with the appropriate structure, and point it to the file.
 
 .. code-block:: postgres
    
@@ -73,18 +73,17 @@ Based on the source file structure, we :ref:`create a foreign table<create_exter
           DELIMITER = '\r\n' -- DOS delimited file
         );
 		
-The file format in this case is CSV, and it is stored as an :ref:`s3` object (if the path is on :ref:`hdfs`, change the URI accordingly).
+The file format in this case is CSV, and it is stored as an Amazon Web Services object (if the path is on :ref:`hdfs`, change the URI accordingly).
 
 We also took note that the record delimiter was a DOS newline (``\r\n``).
 
 Querying Foreign Tables
-------------------------------
-
-Let's peek at the data from the foreign table:
+-----------------------
 
 .. code-block:: psql
    
-   t=> SELECT * FROM nba LIMIT 10;
+   SELECT * FROM nba LIMIT 10;
+
    name          | team           | number | position | age | height | weight | college           | salary  
    --------------+----------------+--------+----------+-----+--------+--------+-------------------+---------
    Avery Bradley | Boston Celtics |      0 | PG       |  25 | 6-2    |    180 | Texas             |  7730337
@@ -99,16 +98,16 @@ Let's peek at the data from the foreign table:
    Marcus Smart  | Boston Celtics |     36 | PG       |  22 | 6-4    |    220 | Oklahoma State    |  3431040
 
 Modifying Data from Staging
--------------------------------
+---------------------------
 
 One of the main reasons for staging data is to examine the content and modify it before loading.
 Assume we are unhappy with weight being in pounds because we want to use kilograms instead. We can apply the transformation as part of a query:
 
 .. code-block:: psql
    
-   t=> SELECT name, team, number, position, age, height, (weight / 2.205) as weight, college, salary 
-   .          FROM nba
-   .          ORDER BY weight;
+   SELECT name, team, number, position, age, height, (weight / 2.205) as weight, college, salary 
+   FROM nba
+   ORDER BY weight;
 
    name                     | team                   | number | position | age | height | weight   | college               | salary  
    -------------------------+------------------------+--------+----------+-----+--------+----------+-----------------------+---------
@@ -126,7 +125,7 @@ Assume we are unhappy with weight being in pounds because we want to use kilogra
 Now, if we're happy with the results, we can convert the staged foreign table to a standard table
 
 Converting a Foreign Table to a Standard Database Table
----------------------------------------------------------------
+-------------------------------------------------------
 
 :ref:`create_table_as` can be used to materialize a foreign table into a regular table.
 
@@ -134,12 +133,12 @@ Converting a Foreign Table to a Standard Database Table
 
 .. code-block:: psql
    
-   t=> CREATE TABLE real_nba AS 
-   .    SELECT name, team, number, position, age, height, (weight / 2.205) as weight, college, salary 
-   .            FROM nba
-   .            ORDER BY weight;
-   executed
-   t=> SELECT * FROM real_nba LIMIT 5;
+   CREATE TABLE real_nba AS 
+    SELECT name, team, number, position, age, height, (weight / 2.205) as weight, college, salary 
+    FROM nba
+   ORDER BY weight;
+   
+   SELECT * FROM real_nba LIMIT 5;
 
    name             | team                   | number | position | age | height | weight   | college     | salary  
    -----------------+------------------------+--------+----------+-----+--------+----------+-------------+---------
@@ -150,7 +149,7 @@ Converting a Foreign Table to a Standard Database Table
    Andre Drummond   | Detroit Pistons        |      0 | C        |  22 | 6-11   | 126.5306 | Connecticut |  3272091
 
 Error Handling and Limitations
-==================================
+==============================
 
 * Error handling in foreign tables is limited. Any error that occurs during source data parsing will result in the statement aborting.
 
@@ -160,7 +159,9 @@ Error Handling and Limitations
    
    .. code-block:: psql
       
-      t=> SELECT * FROM nba;
-      master=> select * from nba;
+      SELECT * FROM nba;
+
+      SELECT * FROM nba;
       Record delimiter mismatch during CSV parsing. User defined line delimiter \n does not match the first delimiter \r\n found in s3://sqream-demo-data/nba.csv
-* Since the data for a foreign table is not stored in SQream DB, it can be changed or removed at any time by an external process. As a result, the same query can return different results each time it runs against a foreign table. Similarly, a query might fail if the external data is moved, removed, or has changed structure.
+	  
+* Since the data for a foreign table is not stored in SQreamDB, it can be changed or removed at any time by an external process. As a result, the same query can return different results each time it runs against a foreign table. Similarly, a query might fail if the external data is moved, removed, or has changed structure.
