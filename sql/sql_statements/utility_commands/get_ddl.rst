@@ -26,10 +26,13 @@ Parameters
    :header-rows: 1
    
    * - Parameter
+     - Parameter Type
      - Description
    * - ``schema_name``
+     - :ref:`Identifier<keywords_and_identifiers>`
      - The name of the schema.
    * - ``table_name``
+     - :ref:`Identifier<keywords_and_identifiers>`
      - The name of the table.
 
 Examples
