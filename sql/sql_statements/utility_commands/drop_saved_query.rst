@@ -22,7 +22,7 @@ Syntax
 
 .. code-block:: postgres
 
-	SELECT DROP_SAVED_QUERY(saved_query_name)
+	SELECT DROP_SAVED_QUERY("<saved_query_name>")
 
 Returns
 =======
@@ -40,7 +40,7 @@ Parameters
      - Parameter Type
      - Description
    * - ``saved_query_name``
-     - :ref:`STRING literal<literals>`	
+     - :ref:`Identifier<keywords_and_identifiers>`
      - The name of the query to drop
 
 Examples

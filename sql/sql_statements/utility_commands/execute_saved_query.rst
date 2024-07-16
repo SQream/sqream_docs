@@ -22,11 +22,7 @@ Syntax
 
 .. code-block:: postgres
 
-   execute_saved_query_statement ::=
-       SELECT EXECUTE_SAVED_QUERY(saved_query_name, [ , argument [ , ... ] ] )
-       ;
-
-   saved_query_name ::= string_literal
+       SELECT EXECUTE_SAVED_QUERY("<saved_query_name>", [ , argument [ , ... ] ] )
 
    argument ::= string_literal | number_literal
 
@@ -43,10 +39,13 @@ Parameters
    :header-rows: 1
    
    * - Parameter
+     - Parameter Type
      - Description
    * - ``saved_query_name``
+     - :ref:`Identifier<keywords_and_identifiers>`
      - The name of the query to execute
    * - ``argument``
+     - :ref:`STRING or NUMERIC literal<literals>`  
      - A comma separated list of argument literal values
 
 

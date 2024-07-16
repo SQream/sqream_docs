@@ -17,7 +17,7 @@ Syntax
 
 .. code-block:: sql
 
-   DESC[RIBE] SAVED QUERY [ DATABASE <database_name>] NAME <"saved_query_name">
+   DESC[RIBE] SAVED QUERY [ DATABASE <database_name>] NAME "<saved_query_name>"
    
 Parameters
 ==========

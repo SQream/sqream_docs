@@ -17,12 +17,7 @@ Syntax
 
 .. code-block:: sql
 
-   save_query_statement ::=
-       SELECT SAVE_QUERY("<saved_query_name>", '<parameterized_query_string>')
-
-   saved_query_name ::= string_literal
-
-   parameterized_query_string ::= string_literal
+   SELECT SAVE_QUERY("<saved_query_name>", '<parameterized_query_string>')
 
 Returns
 ==========
@@ -37,10 +32,13 @@ Parameters
    :header-rows: 1
    
    * - Parameter
+     - Parameter Type
      - Description
    * - ``saved_query_name``
+     - :ref:`Identifier<keywords_and_identifiers>`
      - The name of the query to save. This name will identify the query
-   * - ``table_name``
+   * - ``parameterized_query_string``
+     - :ref:`STRING literal<literals>`
      - The query to save. Can be dollar quoted and contain parameters (``?``)
 
 Notes
