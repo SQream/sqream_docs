@@ -124,7 +124,7 @@ Arguments
      - Provide a security token that grants access to protected resources or operations.
    * - ``--table-view``
      - ``true``
-     - Presents query results in a table view format complete with column headers. 
+     - Displays query results in a table view format with column headers. The display limit is set to 10,000 rows. 
 	
 Record Delimiters
 ---------------------------
