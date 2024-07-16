@@ -19,6 +19,7 @@ Syntax
    
 	interval ::= 
 	YEAR
+	| QUARTER
 	| MONTH
 	| WEEK
 	| DOY
@@ -54,6 +55,8 @@ Valid date parts
      - Definition
    * - ``YEAR``
      - Year (0.0 - 9999.0)
+   * - ``QUARTER``
+     - Quarter (1-4)
    * - ``MONTH``
      - Month (1.0-12.0)
    * - ``DOY``
@@ -84,7 +87,7 @@ Usage Notes
 Examples
 ========
 
-For these examples, consider the following table and contents:
+Consider the following table and contents:
 
 .. code-block:: postgres
 
