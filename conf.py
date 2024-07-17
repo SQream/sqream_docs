@@ -14,8 +14,6 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath('.'))
 
-# Set canonical URL from the Read the Docs Domain
-html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "")
 
 
 # -- Project information -----------------------------------------------------
