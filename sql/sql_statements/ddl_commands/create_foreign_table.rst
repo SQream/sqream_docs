@@ -106,15 +106,15 @@ Creating a Tab-Delimited Table
 
 	CREATE
 	OR REPLACE FOREIGN TABLE nba_new(
-	  "player_name" text null,
-	  "team_name" text null,
-	  "jersey_number" int null,
-	  "position" text null,
-	  "age" int null,
-	  "height" text null,
-	  "weight" int null,
-	  "college" text null,
-	  "salary" int null
+	  "player_name" TEXT null,
+	  "team_name" TEXT null,
+	  "jersey_number" INT null,
+	  "position" TEXT null,
+	  "age" INT null,
+	  "height" TEXT null,
+	  "weight" INT null,
+	  "college" TEXT null,
+	  "salary" INT null
 	)
 	WRAPPER
 	  csv_fdw
@@ -131,8 +131,8 @@ Creating a Table Located In a HDFS Directory
 
 	CREATE FOREIGN TABLE users (
 	  id INT NOT NULL,
-	  name TEXT(30) NOT NULL,
-	  email TEXT(50) NOT NULL
+	  name TEXT NOT NULL,
+	  email TEXT NOT NULL
 	)
 	WRAPPER
 	  parquet_fdw
@@ -148,8 +148,8 @@ Creating a Table Located Within a S3 Bucket of ORC Files
 
 	CREATE FOREIGN TABLE users (
 	  id INT NOT NULL,
-	  name TEXT(30) NOT NULL,
-	  email TEXT(50) NOT NULL
+	  name TEXT NOT NULL,
+	  email TEXT NOT NULL
 	)
 	WRAPPER
 	  orc_fdw
@@ -183,7 +183,7 @@ Customizing Quotations Using Alternative Characters
 	CREATE
 	OR REPLACE FOREIGN TABLE cool_animalz (
 	  id INT NOT NULL,
-	  name text(30) NOT NULL,
+	  name TEXT NOT NULL,
 	  weight FLOAT NOT NULL
 	)
 	WRAPPER

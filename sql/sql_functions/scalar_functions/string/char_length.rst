@@ -51,7 +51,7 @@ For these examples, consider the following table and contents:
 
 .. code-block:: postgres
    
-   CREATE TABLE alphabets(line TEXT(50));
+   CREATE TABLE alphabets(line TEXT);
    
    INSERT INTO alphabets VALUES 
       ('abcdefghijklmnopqrstuvwxyz'), ('กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯ')

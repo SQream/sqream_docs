@@ -329,7 +329,7 @@ Assuming a file containing SQL statements (separated by semicolons):
 
 	cat some_queries.sql
 	 CREATE TABLE calm_farm_animals
-	( id INT IDENTITY(0, 1), name TEXT(30)
+	( id INT IDENTITY(0, 1), name TEXT
 	);
 
 	INSERT INTO calm_farm_animals (name)
