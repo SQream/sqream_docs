@@ -39,7 +39,8 @@ extensions = [
     "sphinx_inline_tabs",
     "sphinx_favicon",
     "sphinxemoji.sphinxemoji",
-    "sphinx_design" 
+    "sphinx_design",
+    "sphinx_build_compatibility.extension"    
 ]
  
 # Mark 'index' as the main page
