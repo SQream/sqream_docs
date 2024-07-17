@@ -58,7 +58,7 @@ The **Length in characters and bytes of strings** example is based on the follow
 
 .. code-block:: postgres
    
-   CREATE TABLE alphabets(line TEXT(50));
+   CREATE TABLE alphabets(line TEXT);
    
    INSERT INTO alphabets VALUES 
       ('abcdefghijklmnopqrstuvwxyz'), ('กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯ')

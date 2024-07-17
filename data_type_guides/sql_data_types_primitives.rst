@@ -52,7 +52,7 @@ The following table shows the data types supported by BLUE:
      - 8 bytes
      - ``0.000003``
      - ``FLOAT``/``DOUBLE PRECISION``
-   * - ``TEXT (n)``
+   * - ``TEXT``
      - Variable length string - UTF-8 unicode
      - Up to ``4`` bytes
      - ``'Kiwis have tiny wings, but cannot fly.'``

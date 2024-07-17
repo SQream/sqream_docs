@@ -24,9 +24,9 @@ The following example shows the syntax for a table named ``superstore`` used for
 
    CREATE TABLE superstore
    (
-      "Section" text(40),
-      "Product_Name" text(40),
-      "Sales_In_K" int,
+      "Section" TEXT,
+      "Product_Name" TEXT,
+      "Sales_In_K" INT,
        );
 	   
 The following example shows the output of the syntax above:	 

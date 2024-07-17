@@ -159,14 +159,14 @@ The following example shows the correct file structure used to create the ``CREA
 .. code-block:: postgres
    
 	CREATE FOREIGN TABLE ext_nba (
-	  Name TEXT(40),
-	  Team TEXT(40),
+	  Name TEXT,
+	  Team TEXT,
 	  Number BIGINT,
-	  Position TEXT(2),
+	  Position TEXT,
 	  Age BIGINT,
-	  Height TEXT(4),
+	  Height TEXT,
 	  Weight BIGINT,
-	  College TEXT(40),
+	  College TEXT,
 	  Salary FLOAT
 	)
 	WRAPPER

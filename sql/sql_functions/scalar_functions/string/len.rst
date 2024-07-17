@@ -51,7 +51,7 @@ For these examples, consider the following table and contents:
 
 .. code-block:: postgres
    
-   CREATE TABLE jabberwocky(line TEXT(50));
+   CREATE TABLE jabberwocky(line TEXT);
    
    INSERT INTO jabberwocky VALUES 
       ($$'Twas brillig, and the slithy toves$$), ('      Did gyre and gimble in the wabe:')
@@ -59,7 +59,7 @@ For these examples, consider the following table and contents:
       ,('"Beware the Jabberwock, my son!'), ('      The jaws that bite, the claws that catch!')
       ,('Beware the Jubjub bird, and shun'), ('      The frumious Bandersnatch!"');
 
-   CREATE TABLE alphabets(line TEXT(50));
+   CREATE TABLE alphabets(line TEXT);
    
    INSERT INTO alphabets VALUES 
       ('abcdefghijklmnopqrstuvwxyz'), ('กขฃคฅฆงจฉชซฌญฎฏฐฑฒณดตถทธนบปผฝพฟภมยรฤลฦวศษสหฬอฮฯ')

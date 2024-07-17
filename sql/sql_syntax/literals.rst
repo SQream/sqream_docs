@@ -246,7 +246,7 @@ The following is a syntax reference for typed literals:
        | REAL
        | DATE
        | DATETIME
-       | TEXT ( digits )
+       | TEXT
 
 Examples
 ----------

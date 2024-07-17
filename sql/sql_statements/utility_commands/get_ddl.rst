@@ -44,7 +44,7 @@ Examples
    CREATE TABLE
      cool_animals (
        id INT NOT NULL,
-       name TEXT(30) NOT NULL,
+       name TEXT NOT NULL,
        weight FLOAT,
        is_agressive BOOL DEFAULT false NOT NULL
      );
@@ -57,7 +57,7 @@ Examples
    create table
      "public"."cool_animals" (
        "id" INT NOT NULL,
-       "name" TEXT(30) NOT NULL,
+       "name" TEXT NOT NULL,
        "weight" DOUBLE NULL,
        "is_agressive" BOOL DEFAULT FALSE NOT NULL
      );
