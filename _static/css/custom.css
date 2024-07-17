@@ -36,12 +36,6 @@ div[data-toggle="rst-versions"] {
     display: none !important;
 }
 
-.container.bottom-right {
-    right: 20px;
-    bottom: 50px;
-}
-
-
 /* Syntax highlighting */
 
 .highlight .go {
