@@ -71,5 +71,5 @@ The following table shows the data types supported by BLUE:
      - Date and time pairing in UTC
      - 8 bytes
      - ``'1955-11-05 01:24:00.000'``
-     -  ``TIMESTAMP``, ``DATETIME2``
+     -  ``TIMESTAMP``
 	 
