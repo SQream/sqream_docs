@@ -10,9 +10,6 @@ The ``GET_METADATA_CHUNK_KEY`` command returns specific metadata key values for 
 
 This reference page includes the following information:
 
-.. contents:: 
-   :local:
-   :depth: 1
 
 Syntax
 ======

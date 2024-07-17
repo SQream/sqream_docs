@@ -28,15 +28,15 @@ The following is an example of table named ``nba`` with the following structure:
    
    CREATE TABLE nba
    (
-      "Name" text(40),
-      "Team" text(40),
-      "Number" tinyint,
-      "Position" text(2),
-      "Age" tinyint,
-      "Height" text(4),
-      "Weight" real,
-      "College" text(40),
-      "Salary" float
+      "Name" TEXT,
+      "Team" TEXT,
+      "Number" TINYINT,
+      "Position" TEXT,
+      "Age" TINYINT,
+      "Height" TEXT,
+      "Weight" REAL,
+      "College" TEXT,
+      "Salary" FLOAT
     );
 
 

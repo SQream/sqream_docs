@@ -109,7 +109,7 @@ Creating a Standard Table
 
    CREATE TABLE cool_animals (
       id INT NOT NULL,
-      name text(30) NOT NULL,
+      name text NOT NULL,
       weight FLOAT,
       is_agressive BOOL
    );
@@ -121,7 +121,7 @@ Creating a Table with Default Value Constraints for Some Columns
 
    CREATE TABLE cool_animals (
       id INT NOT NULL,
-      name text(30) NOT NULL,
+      name TEXT NOT NULL,
       weight FLOAT,
       is_agressive BOOL DEFAULT false NOT NULL
    );
@@ -137,8 +137,8 @@ Identity does not enforce the uniqueness of values. The identity value can be by
 
    CREATE TABLE users (
       id BIGINT IDENTITY(0,1) NOT NULL , -- Start with 0, increment by 1
-      name TEXT(30) NOT NULL,
-      country TEXT(30) DEFAULT 'Unknown' NOT NULL
+      name TEXT NOT NULL,
+      country TEXT DEFAULT 'Unknown' NOT NULL
    );
 
 Creating a Table from a ``SELECT`` Query
@@ -165,9 +165,9 @@ When data within a table is organized in a sorted manner, the columns responsibl
 .. code-block:: postgres
 
    CREATE TABLE users (
-      name TEXT(30) NOT NULL,
-      start_date datetime not null,
-      country TEXT(30) DEFAULT 'Unknown' NOT NULL
+      name TEXT NOT NULL,
+      start_date DATETIME not null,
+      country TEXT DEFAULT 'Unknown' NOT NULL
    ) CLUSTER BY start_date;
    
 For more information on data clustering, see :ref:`cluster_by`.
@@ -199,7 +199,7 @@ Creating a Table Using an Explicit Column List
 
    CREATE TABLE t1 (
       x INT DEFAULT 0 NOT NULL,
-      y TEXT(10) NULL
+      y TEXT NULL
    );
    
 Creating a Second Table Based on the Structure of Another Table
@@ -221,7 +221,7 @@ Either of the following examples can be used to create a second table based on t
 
    CREATE TABLE t2 (
       x INT DEFAULT 0 NOT NULL,
-      y TEXT(10) NULL
+      y TEXT NULL
    );
    
 The generated output of both of the statements above is identical.
