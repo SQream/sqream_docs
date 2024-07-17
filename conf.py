@@ -21,8 +21,6 @@ html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "")
 if os.environ.get("READTHEDOCS", "") == "True":
     html_context["READTHEDOCS"] = True
 
-
-
 # -- Project information -----------------------------------------------------
 
 project = 'SQream Blue'
@@ -46,7 +44,7 @@ extensions = [
     "sphinx_inline_tabs",
     "sphinx_favicon",
     "sphinxemoji.sphinxemoji",
-    "sphinx_design"  
+    "sphinx_design" 
 ]
  
 # Mark 'index' as the main page
