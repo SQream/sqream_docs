@@ -109,7 +109,7 @@ For effective :ref:`health_monitoring`, it's essential that logs are saved in ``
      - ``INFO``
      - Statement passed to another worker for execution
      - 
-         * ``""Reconstruct query before parsing"``
+         * ``"Reconstruct query before parsing"``
          * ``"SELECT * FROM nba WHERE ""Team"" NOT LIKE ""Portland%%"""`` (statement preparing on node)
    * - ``4``
      - ``INFO``
