@@ -191,6 +191,9 @@ Clauses
    * - ``OVER``
      - Yes
      -
+   * - ``ORDER BY``
+     - 
+     - 
 
 Table Expressions
 ====================

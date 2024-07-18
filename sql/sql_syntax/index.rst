@@ -4,8 +4,6 @@
 SQL Syntax Features
 *******************
 
-BLUE supports SQL from the ANSI 92 syntax and describes the following:
-
 .. toctree::
    :maxdepth: 1
    :glob:

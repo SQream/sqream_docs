@@ -70,6 +70,8 @@ The following parameters can be used when creating a table:
          See :ref:`cluster_by` for more information.
    * - ``LIKE``
      - Duplicates the column structure of an existing table.
+   * - ``INCLUDE PERMISSIONS``
+     - In addition to the default CREATE TABLE permissions (``SELECT``, ``INSERT``, ``DELETE``, ``DDL``, and ``UPDATE``), the newly created table is granted the source table existing permissions
 
 .. _identity:
 
