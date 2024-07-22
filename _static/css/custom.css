@@ -131,7 +131,11 @@ h5 {
 }
 
 .container {
-    display: none !important;
-	
+  position: none;
+  max-width: 300px;
+  width: auto;
+  height: auto;
+  max-height: calc(100% - 100px);
+  overflow-y: auto;
 }
 
