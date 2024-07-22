@@ -39,7 +39,8 @@ div[data-toggle="rst-versions"] {
 /* Syntax highlighting */
 
 .highlight .go {
-    display: none !important;
+    color: #000000;
+    font-style: normal;
 }
 
 /* End Syntax highlighting */
