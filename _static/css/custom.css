@@ -130,9 +130,8 @@ h5 {
     width: 51em;
 }
 
-div.container.bottom-right {
-    left: 20px;
-    bottom: 50px;
+.container {
+    display: none !important;
 	
 }
 
