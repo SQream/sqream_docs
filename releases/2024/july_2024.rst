@@ -51,13 +51,6 @@ The ``DESCRIBE COLUMNS`` command, which previously allowed you to list informati
    
 See :ref:`describe_columns`
 
-Snowflake Connectivity
-======================
-
-The ability to connect Snowflake with SQream Blue offers significant advantages in terms of cost efficiency and performance optimization.
-
-See :ref:`snowflake`
-
 Blue Scripting
 ==============
 
