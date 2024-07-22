@@ -126,7 +126,8 @@ h5 {
     width: 51em;
 }
 
-body div.floating.container.bottom-right {
-    display: none !important;
+div.floating.container.bottom-right {
+    visibility: hidden !important;
 }
+
 
