@@ -130,7 +130,7 @@ h5 {
     width: 51em;
 }
 
-div.container.bottom-right {
+.container.bottom-right {
     right: none;
 	bottom: none;
 	
