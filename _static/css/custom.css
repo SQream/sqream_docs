@@ -131,6 +131,6 @@ h5 {
 }
 
 div.container.bottom-right {
-    left: 20px;
-    bottom: 50px;
+    display: none !important;
+	
 }
