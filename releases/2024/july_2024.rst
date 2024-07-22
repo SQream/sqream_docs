@@ -1,0 +1,83 @@
+.. _july_2024:
+
+*********
+July 2024
+*********
+
+SQream Blue Now Available On Amazon Web Services Marketplace
+============================================================
+
+We are excited to announce that in addition to the SQream Blue Google Cloud Platform (GCP) offering, SQream Blue is now available on Amazon Web Services (AWS) and can be deployed through the AWS Marketplace. 
+
+
+``ARRAY`` Data Type
+===================
+
+We now support the ``ARRAY`` data type which enables simplifying queries and optimizing storage utilization. 
+
+* Arrays allow for the representation of more complex data structures directly within a table, making it easier to model real-world entities that have collections of items, such as lists of tags, ratings, or attributes.
+
+* Using arrays can reduce the need for additional tables and joins, simplifying the database schema and potentially improving query performance.
+
+See :ref:`sql_data_type_array`
+
+Web Interface
+=============
+
+New Dashboard Items
+-------------------
+
+We introduce three new **Dashboard** items for monitoring your monthly usage:
+
+* Uptime (in minutes)
+* Data Read (in bytes)
+* Rows Read
+
+Tracking how much data is read, the number of rows read, and system uptime is crucial for managing costs effectively, predicting billing, and adhering to budgets. It helps identify inefficiencies, optimize resource usage, and make informed scaling decisions. Additionally, it provides billing transparency and allows for detailed usage analysis to detect trends and anomalies. 
+
+See :ref:`evaluating_real_time_cluster_workloads`
+
+New Activity Page
+-----------------
+
+The **Activity** page allows you to monitor all aspects of queries initiated by your SQream Blue web interface, including execution time, execution plan, and errors.
+
+See :ref:`monitoring_web_interface_activity` 
+
+``DESCRIBE COLUMNS`` Enhancement
+================================
+
+The ``DESCRIBE COLUMNS`` command, which previously allowed you to list information about table columns, now also provides information about view columns.
+   
+See :ref:`describe_columns`
+
+Snowflake Connectivity
+======================
+
+The ability to connect Snowflake with SQream Blue offers significant advantages in terms of cost efficiency and performance optimization.
+
+See :ref:`snowflake`
+
+Blue Scripting
+==============
+
+SQream Blue now supports metalanguage scripting. Metalanguage scripting is essential for improving database operations by making code simpler and more reusable. It helps organize complex tasks into scripts, functions, and procedures, making them easier to manage and maintain.
+
+See :ref:`blue_scripting`
+
+``DESCRIBE SESSION QUERIES`` Enhancement
+========================================
+
+Until this latest version, only a ``SUPERUSER`` could execute the ``DESCRIBE SESSION QUERIES`` command with the ``ALL`` parameter. This parameter, now available to all system users, enhances the ability to monitor queries across all sessions. 
+
+See :ref:`describe_session_queries`
+
+
+
+
+
+
+
+
+
+

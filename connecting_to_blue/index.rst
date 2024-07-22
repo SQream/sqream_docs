@@ -1,8 +1,8 @@
 .. _connecting_to_blue:
 
-****************************
-Connectors and Third-Parties
-****************************
+******************************
+Connectivity and Third-Parties
+******************************
 
 Users who wish to use the BLUE :ref:`Jobs<performing_basic_blue_operations>` workflow management tool or establish connections to BLUE from their personal applications or tools are required to employ connectors and obtain authentication access tokens, thereby necessitating the creation of dedicated BLUE **Clients** and the generation of these access tokens to enable the use of Jobs, connectors, applications, and tools in question.
 
@@ -30,6 +30,10 @@ BLUE offers seamless integration with third-party tools, BI tools, and analysis 
     :ref:`Apache Airflow<apache_airflow>`
 	
     :ref:`DBeaver<dbeaver>`
+	
+.. tab:: Cloud Natives
+
+    :ref:`Snowflake<snowflake>`
 
 
 
