@@ -30,11 +30,7 @@
 .wy-menu-vertical li.toctree-l3 li.toctree-l4 li.toctree-l5 li.toctree-l6 li.toctree-l7                             > a { padding-left:  9em; background: #bbb; }
 .wy-menu-vertical li.toctree-l3 li.toctree-l4 li.toctree-l5 li.toctree-l6 li.toctree-l7 li.toctree-l8               > a { padding-left: 10em; background: #aaa; }
 
-/* Existing CSS rules */
 
-div[data-toggle="rst-versions"] {
-    display: none !important;
-}
 
 /* Syntax highlighting */
 
