@@ -131,7 +131,6 @@ h5 {
 }
 
 div.floating.container.bottom-right {
-    right: none;
-	bottom: none;
+    display: none;
 	
 }
