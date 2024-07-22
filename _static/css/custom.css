@@ -130,7 +130,7 @@ h5 {
     width: 51em;
 }
 
-.container.bottom-right {
+div.floating.container.bottom-right {
     right: none;
 	bottom: none;
 	
