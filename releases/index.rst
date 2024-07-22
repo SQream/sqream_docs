@@ -10,8 +10,6 @@ Release Notes
 
 * We now support the ``ARRAY`` data type.
 
-* You may now read, write, and query data Snowflake. 
-
 * Blue now supports metalanguage scripting.
 
 * New Dashboard items
