@@ -4,13 +4,15 @@
 Release Notes
 *************
 
+:ref:`August 2024 <august_2024>`
+
+* You may now read, write, and query data Snowflake. 
+
 :ref:`July 2024 <july_2024>`
 
 * We've improved the ``DESCRIBE COLUMNS`` command, allowing you to list information about ``VIEW`` columns.
 
 * We now support the ``ARRAY`` data type.
-
-* You may now read, write, and query data Snowflake. 
 
 * Blue now supports metalanguage scripting.
 
@@ -90,6 +92,7 @@ Release Notes
    :glob:
    :hidden:
 
+   2024/august_2024
    2024/july_2024
    2024/march_2024
    2024/february_2024
