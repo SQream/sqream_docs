@@ -131,7 +131,7 @@ h5 {
 }
 
 .container {
-    display: none !important;
+    position: none !important;
 	
 }
 
