@@ -21,6 +21,7 @@ if os.environ.get("READTHEDOCS", "") == "True":
         html_context = {}
     html_context["READTHEDOCS"] = True
 
+
 # -- Project information -----------------------------------------------------
 
 project = 'SQream Blue'
