@@ -89,7 +89,7 @@ The Statistics Collector (connected via JDBC) generates column histograms (stati
 GPU Worker
 ----------
 
-The Worker serves as the core component of SQream Blue, responsible for executing SQL statements. It handles reading and writing data from external files, databases, and temporary storage areas, with each Worker leveraging an Nvidia Tesla T4 GPU. By working in groups, Workers can execute statements collectively, parallelizing tasks and reducing overall execution time. One Worker is designated as the master, distributing tasks among the remaining slave Workers.
+The Worker serves as the core component of SQream Blue, responsible for executing SQL statements. It handles reading and writing data from external files, databases, and temporary storage areas, with each Worker leveraging an Nvidia Tesla GPU. By working in groups, Workers can execute statements collectively, parallelizing tasks and reducing overall execution time. One Worker is designated as the master, distributing tasks among the remaining slave Workers.
 
 Execution Space Manager
 -----------------------
