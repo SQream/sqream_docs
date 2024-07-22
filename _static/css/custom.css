@@ -131,6 +131,7 @@ h5 {
 }
 
 div.container.bottom-right {
-    display: none !important;
+    right: none;
+	buttom: none;
 	
 }
