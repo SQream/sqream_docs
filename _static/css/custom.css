@@ -129,3 +129,8 @@ h5 {
     padding: 4px 5em;
     width: 51em;
 }
+
+/* Hide the flyout container */
+.floating.container.bottom-right {
+    display: none !important;
+}
