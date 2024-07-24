@@ -91,7 +91,7 @@ For effective :ref:`health_monitoring`, it's essential that logs are saved in ``
    * - ``DEBUG``
      - Information helpful for debugging 
    * - ``TRACE``
-     - 
+     - In-depth information helpful for debugging, such as tracing system function executions and identifying specific error conditions or performance issues.
 
 .. _message_type:
 
