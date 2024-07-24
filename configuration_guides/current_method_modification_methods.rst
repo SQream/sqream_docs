@@ -63,7 +63,6 @@ The following is an example of the default cluster and session configuration fil
     "useClientLog": true,
     "useMetadataServer": true,
     "spoolMemoryGB": 28,
-    "useLogMaxFileSize": false,
     "logMaxFileSizeMB": 20,
     "logFileRotateTimeFrequency": "daily",
     "waitForClientSeconds": 18000

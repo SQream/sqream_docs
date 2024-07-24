@@ -218,6 +218,40 @@ Flag List
      - Sets the buffer size.
      - uint
      - ``524288``
+   * - ``logClientLevel``
+     - SUPERUSER
+     - Cluster
+     - Used to control which :ref:`log level<information_level>` should appear in the logs. Value range: ``0`` - ``6``
+     - int
+     - Default value: ``4``
+	 
+	Acceptable values:
+	 	 
+	``0`` - Only SYSTEM level logs
+	 
+	``1`` - SYSTEM and FATAL
+	
+	``2`` - SYSTEM, FATAL, and ERROR level logs
+	 
+	``3`` - SYSTEM, FATAL, ERROR, and WARNING level logs
+	 
+	``4`` - SYSTEM, FATAL, ERROR, WARNING, and INFO level logs
+	 
+	``5`` - SYSTEM, FATAL, ERROR, WARNING, INFO, and DEBUG level logs
+	 
+	``6`` - SYSTEM, FATAL, ERROR, WARNING, INFO, DEBUG, and TRACE level logs
+   * - ``logFileRotateTimeFrequency``
+     - SUPERUSER
+     - Cluster
+     - Specifies when the system begins writing to a new log file. SQreamDB recommends using the ``logFileRotateTimeFrequency`` flag (rather than the ``logMaxFilesSizeMB`` flag) to configure when a new log file is created, as this flag does not limit the number of log files.
+     - string
+     - ``daily``. Acceptable values: ``daily``, ``weekly``, or ``monthly``
+   * - ``logMaxFilesSizeMB``
+     - SUPERUSER
+     - Cluster
+     - Specifies when the system begins writing to a new log file. When configured with the ``logMaxFilesSizeMB`` flag, the system maintains up to 13 log files. Once the 13th file is complete, the oldest log file is overwritten by the newly created log file. SQreamDB recommends using the ``logFileRotateTimeFrequency`` flag to configure when a new log file is created, as this flag does not limit the number of log files.
+     - int
+     - ``100`` (Megabyte)
    * - ``logSysLevel`` 
      - Anyone
      - Session

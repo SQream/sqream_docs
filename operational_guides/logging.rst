@@ -88,6 +88,10 @@ For effective :ref:`health_monitoring`, it's essential that logs are saved in ``
      - Warnings
    * - ``INFO``
      - Information and statistics
+   * - ``DEBUG``
+     - Information helpful for debugging 
+   * - ``TRACE``
+     - 
 
 .. _message_type:
 
@@ -256,18 +260,14 @@ A few configuration settings alter the log rotation policy:
      - Description
      - Default
      - Values
-   * - ``useLogMaxFileSize``
-     - Rotate log files once they reach a certain file size. When ``true``, set the ``logMaxFileSizeMB`` accordingly. When ``false`` set the ``logFileRotateTimeFrequency`` accordingly.
-     - ``false``
-     - ``false`` or ``true``.
    * - ``logMaxFileSizeMB``
      - Sets the size threshold in megabytes after which a new log file will be opened.
-     - ``20``
+     - ``100``
      - ``1`` to ``1024`` (1MB to 1GB)
    * - ``logFileRotateTimeFrequency``
      - Frequency of log rotation
-     - ``never``
-     - ``daily``, ``weekly``, ``monthly``, ``never``
+     - ``daily``
+     - ``daily``, ``weekly``, or ``monthly``
 
 .. _collecting_logs2:
 

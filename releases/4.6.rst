@@ -81,7 +81,6 @@ New Features and Enhancements
    
    {
 
-    "useLogMaxFileSize": false,
     "logMaxFileSizeMB": 20,
     "logFileRotateTimeFrequency": "daily",
 	
