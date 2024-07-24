@@ -29,7 +29,7 @@ copyright = '2024 SQream'
 author = 'SQream Documentation'
 
 
-html_title = "BLUE Documentation"
+html_title = "Blue Documentation"
 
 sphinxemoji_style = 'twemoji'
 
