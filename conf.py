@@ -108,17 +108,11 @@ html_sidebars = {}
 # furo theme specifics
 
 html_theme_options = {
-   'logo_only': True # Hide "SQream Blue" title and only show logo
-   , 'display_version': False # Display version at the top
-   , 'navigation_depth': -1
-   , 'collapse_navigation': False
-   , 'titles_only': True
-   , 'top_of_page_button': "edit"
+     'top_of_page_button': "edit"
    , 'dark_logo': 'images/SQream_logo_dark_mode.png'
    , 'light_logo': 'images/SQream_logo_bright_mode.png'
    , "sidebar_hide_name": True
    , "footer_icons": 'None'
-   , "rst-versions": False
    , "light_css_variables": {
         "font-stack": "Arial, sans-serif",
         "font-stack--monospace": "Courier, monospace",
