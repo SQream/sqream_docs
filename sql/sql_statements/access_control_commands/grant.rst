@@ -8,7 +8,7 @@ GRANT
 
 The ``GRANT`` statement adds permissions for a role. It allows for setting permissions to databases, schemas, and tables.
 
-It also allows adding a role as a memeber to another role.
+It also allows adding a role as a member to another role.
 
 When granting permissions to a role, the permission is added for existing objects only.
 To automatically add permissions to newly created objects, see :ref:`alter_default_permissions`.
@@ -146,7 +146,7 @@ The following table describes the ``GRANT`` parameters:
          
          Roles with ``SUPERUSER`` can grant or revoke membership in any role to anyone.
 
-.. include from here
+
 
 Supported Permissions
 =====================
@@ -198,7 +198,7 @@ Supported Permissions
      - Cluster, Database, Schema, Table, Function
      - All of the above permissions at the respective level
 
-.. end include
+
 
 
 Examples
