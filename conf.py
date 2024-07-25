@@ -23,9 +23,6 @@ if os.environ.get("READTHEDOCS", "") == "True":
 
 import sphinx_rtd_theme
 
-
-
-
 # -- Project information -----------------------------------------------------
 
 project = 'SQreamDB'
@@ -35,8 +32,6 @@ author = 'SQreamDB Documentation'
 
 # The full version, including alpha/beta/rc tags
 release = '4.7'
-
-
 
 # -- General configuration ---------------------------------------------------
 
@@ -74,6 +69,9 @@ html_theme = 'sphinx_rtd_theme'
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
 
+# Include custom JavaScript file
+def setup(app):
+    app.add_js_file('js/custom.js')
 
 html_js_files = [
     'js/custom.js', # Relative to the _static path
