@@ -24,6 +24,10 @@ if os.environ.get("READTHEDOCS", "") == "True":
 import sphinx_rtd_theme
 
 # Overrides RTD Addons Flyout menu to appear on the left hand side 
+def setup(app):
+    app.add_css_file('css/custom.css')
+    app.add_css_file('css/custom_flyout.css')
+    app.add_js_file('js/custom.js')  # Ensure you use the correct path
 
 
 
