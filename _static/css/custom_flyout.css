@@ -1,4 +1,4 @@
-.container.bottom-left {
+body .container.bottom-left {
   background-color: red !important; /* For testing */
   left: 20px !important;
   bottom: 50px !important;
