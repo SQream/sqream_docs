@@ -32,7 +32,7 @@ export class FlyoutElement extends LitElement {
     this.config = null;
     this.opened = false;
     this.floating = true;
-    this.position = "bottom-right";
+    this.position = "bottom-left";
   }
 
   loadConfig(config) {
