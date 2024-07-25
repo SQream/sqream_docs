@@ -1,17 +1,17 @@
 // Import necessary modules from jsDelivr
-import { LitElement, html, css, nothing } from 'https://cdn.jsdelivr.net/npm/lit-element@2.5.1/lit-element.js';
-import { classMap } from 'https://cdn.jsdelivr.net/npm/lit-html@1.3.0/directives/class-map.js';
+import { LitElement, html, css, nothing } from 'https://cdn.jsdelivr.net/npm/lit-element/lit-element.js';
+import { classMap } from 'https://cdn.jsdelivr.net/npm/lit-html/directives/class-map.js';
 
 // Define the custom flyout element
 class CustomFlyoutElement extends LitElement {
-  static elementName = "readthedocs-flyout";
-
-  static properties = {
-    config: { state: true },
-    opened: { type: Boolean },
-    floating: { type: Boolean },
-    position: { type: String },
-  };
+  static get properties() {
+    return {
+      config: { type: Object },
+      opened: { type: Boolean },
+      floating: { type: Boolean },
+      position: { type: String },
+    };
+  }
 
   constructor() {
     super();
@@ -22,7 +22,7 @@ class CustomFlyoutElement extends LitElement {
   }
 
   loadConfig(config) {
-    if (!FlyoutAddon.isEnabled(config)) {
+    if (!this.isEnabled(config)) {
       return;
     }
     this.config = config;
@@ -73,14 +73,18 @@ class CustomFlyoutElement extends LitElement {
     window.removeEventListener("click", this._onOutsideClick.bind(this));
     super.disconnectedCallback();
   }
+
+  isEnabled(config) {
+    return config.addons && config.addons.flyout && config.addons.flyout.enabled;
+  }
 }
 
 customElements.define("readthedocs-flyout", CustomFlyoutElement);
 
 document.addEventListener('DOMContentLoaded', function() {
-    const flyoutElement = document.querySelector('readthedocs-flyout');
+  const flyoutElement = document.querySelector('readthedocs-flyout');
 
-    if (flyoutElement) {
-        flyoutElement.position = 'bottom-left'; // Set position to bottom-left
-    }
+  if (flyoutElement) {
+    flyoutElement.position = 'bottom-left'; // Set position to bottom-left
+  }
 });
