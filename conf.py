@@ -71,7 +71,7 @@ html_static_path = ['_static']
 
 # Include custom JavaScript file
 def setup(app):
-    app.add_js_file('js/custom.js')
+    app.add_js_file('js/custom.js', type="module")
 
 html_js_files = [
     'js/custom.js', # Relative to the _static path
