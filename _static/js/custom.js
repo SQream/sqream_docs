@@ -1,6 +1,8 @@
-// Import necessary modules from jsDelivr
 import { LitElement, html, css, nothing } from 'https://cdn.jsdelivr.net/npm/lit-element/lit-element.js';
 import { classMap } from 'https://cdn.jsdelivr.net/npm/lit-html/directives/class-map.js';
+import { library, icon } from 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-svg-core/index.js';
+import { faCodeBranch } from 'https://cdn.jsdelivr.net/npm/@fortawesome/free-solid-svg-icons/index.js';
+import READTHEDOCS_LOGO from 'https://your-cdn-path/logo.svg';  // Update this to your actual logo path
 
 // Define the custom flyout element
 class CustomFlyoutElement extends LitElement {
@@ -39,9 +41,22 @@ class CustomFlyoutElement extends LitElement {
   }
 
   renderHeader() {
+    library.add(faCodeBranch);
+    const iconCodeBranch = icon(faCodeBranch, {
+      classes: ["icon"],
+    });
+    let version = nothing;
+    if (
+      this.config.projects.current.versioning_scheme !==
+      "single_version_without_translations"
+    ) {
+      version = html`<span>${iconCodeBranch.node[0]} ${this.config.versions.current.slug}</span>`;
+    }
+
     return html`
       <header @click="${this._toggleOpen}">
-        <img class="logo" src="https://example.com/logo.svg" alt="Read the Docs" />
+        <img class="logo" src="${READTHEDOCS_LOGO}" alt="Read the Docs" />
+        ${version}
       </header>
     `;
   }
