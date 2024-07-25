@@ -57,10 +57,5 @@ div.rst-versions > div.rst-other-versions > div.injected > dl:nth-child(4) {
     display: none;
 }
 
-.container.bottom-right {
-    bottom: 50px;
 }
 
-div.dl {
-    display: none;
-}
