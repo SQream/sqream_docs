@@ -32,6 +32,7 @@ The following is an example of the default worker configuration file:
     "portSsl": 5100,
     "initialSubscribedServices": "sqream",
     "useConfigIP": true
+    "logFormat": "csv","json"
    }
 
 You can access the legacy configuration file from the ``legacyConfigFilePath`` parameter shown above. If all (or most) of your workers require the same flag settings, you can set the ``legacyConfigFilePath`` attribute to the same legacy file.
@@ -62,7 +63,6 @@ The following is an example of the default cluster and session configuration fil
     "useClientLog": true,
     "useMetadataServer": true,
     "spoolMemoryGB": 28,
-    "useLogMaxFileSize": false,
     "logMaxFileSizeMB": 20,
     "logFileRotateTimeFrequency": "daily",
     "waitForClientSeconds": 18000

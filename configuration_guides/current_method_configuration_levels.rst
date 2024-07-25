@@ -56,12 +56,12 @@ Flag List
 	   ``33554432,67108864,134217728,268435456,536870912,786432000,107374,``
 	   ``1824,1342177280,1610612736,1879048192,2147483648,2415919104,``
 	   ``2684354560,2952790016,3221225472``
-   * - ``cacheEvictionMilliseconds`` 
-     - Anyone
+   * - ``blockNewVarcharObjects`` 
+     - SUPERUSER
      - Session
-     - Sets how long the cache stores contents before being flushed. Allowed values: 1-4000000000.
-     - bigint
-     - ``2000``
+     - Disables the creation of new tables, views, external tables containing Varchar columns, and the creation of user-defined functions with Varchar arguments or a Varchar return value.
+     - boolean
+     - ``FALSE``
    * - ``cacheDiskDir`` 
      - Anyone
      - Session
@@ -74,6 +74,12 @@ Flag List
      - Sets the amount of memory (GB) to be used by Spool on the disk. Allowed values: 0-4000000000.
      - bigint
      - ``128``
+   * - ``cacheEvictionMilliseconds`` 
+     - Anyone
+     - Session
+     - Sets how long the cache stores contents before being flushed. Allowed values: 1-4000000000.
+     - bigint
+     - ``2000``
    * - ``cachePartitions`` 
      - Anyone
      - Session
@@ -104,72 +110,72 @@ Flag List
      - Sets the pad device memory allocations with safety buffers to catch out-of-bounds writes.
      - boolean
      - ``FALSE``
-   * - ``clientReconnectionTimeout``
-     - Anyone
-     - Cluster
-     - Reconnection time out for the system in seconds.
-     - Integer
-     - ``30``
    * - ``compilerGetsOnlyUFs`` 
      - SUPERUSER
      - Session
      - Sets the runtime to pass only utility functions names to the compiler.
      - boolean
      - ``FALSE``
+   * - ``clientReconnectionTimeout``
+     - Anyone
+     - Cluster
+     - Reconnection time out for the system in seconds.
+     - Integer
+     - ``30``
    * - ``copyToRestrictUtf8`` 
      - SUPERUSER
      - Session
      - Sets the custom bin size in the cache to enable high granularity bin control.
      - boolean
-     - ``FALSE``	 
-   * - ``cpuReduceHashtableSize``
-     - SUPERUSER
-     - Session
-     - Sets the hash table size of the CpuReduce.
-     - uint
-     - ``10000``		 
+     - ``FALSE``
    * - ``csvLimitRowLength`` 
      - SUPERUSER
      - Cluster
      - Sets the maximum supported CSV row length. Allowed values: 1-4000000000
      - uint
-     - ``100000`` 
+     - ``100000``
    * - ``cudaMemcpyMaxSizeBytes`` 
      - SUPERUSER
      - Session
      - Sets the chunk size for copying from CPU to GPU. If set to 0, do not divide.
      - uint
-     - ``0`` 	 
+     - ``0``
    * - ``CudaMemcpySynchronous`` 
      - SUPERUSER
      - Session
      - Indicates if copying from/to GPU is synchronous.
      - boolean
      - ``FALSE`` 	 
+   * - ``defaultGracefulShutdownTimeoutMinutes``
+     - SUPERUSER
+     - Cluster
+     - Used for setting the amount of time to pass before SQream performs a graceful server shutdown. Allowed values - 1-4000000000. Related flags: ``is_healer_on`` and ``healer_max_inactivity_hours``
+     - bigint
+     - ``5``
    * - ``developerMode`` 
      - SUPERUSER
      - Session
      - Enables modifying R&D flags.
      - boolean
-     - ``FALSE`` 	  
+     - ``FALSE`` 
    * - ``enableDeviceDebugMessages`` 
      - SUPERUSER
      - Session
      - Checks for CUDA errors after producing each chunk.
      - boolean
-     - ``FALSE`` 
+     - ``FALSE``
    * - ``enableLogDebug`` 
      - SUPERUSER
      - Session
      - Enables creating and logging in the clientLogger_debug file.
      - boolean
-     - ``TRUE``
+     - ``TRUE``	 
    * - ``enableNvprofMarkers`` 
      - SUPERUSER
      - Session
      - Activates the Nvidia profiler (nvprof) markers.
      - boolean
-     - ``FALSE``	 
+     - ``FALSE``
    * - ``endLogMessage`` 
      - SUPERUSER
      - Session
@@ -182,12 +188,6 @@ Flag List
      - Sets the minimum size in mebibytes of extents for table bulk data.
      - uint
      - ``20``
-   * - ``externalTableBlobEstimate``
-     - ?
-     - Session
-     - ?
-     - ?
-     - ?
    * - ``flipJoinOrder`` 
      - Anyone
      - Session
@@ -205,7 +205,7 @@ Flag List
      - Session
      - Increases the chunk size to reduce query speed.
      - boolean
-     - ``FALSE``		 
+     - ``FALSE``
    * - ``increaseMemFactors`` 
      - SUPERUSER
      - Session
@@ -218,6 +218,40 @@ Flag List
      - Sets the buffer size.
      - uint
      - ``524288``
+   * - ``logClientLevel``
+     - SUPERUSER
+     - Cluster
+     - Used to control which :ref:`log level<information_level>` should appear in the logs. Value range: ``0`` - ``6``
+     - int
+     - Default value: ``4``
+	 
+	Acceptable values:
+	 	 
+	``0`` - Only SYSTEM level logs
+	 
+	``1`` - SYSTEM and FATAL
+	
+	``2`` - SYSTEM, FATAL, and ERROR level logs
+	 
+	``3`` - SYSTEM, FATAL, ERROR, and WARNING level logs
+	 
+	``4`` - SYSTEM, FATAL, ERROR, WARNING, and INFO level logs
+	 
+	``5`` - SYSTEM, FATAL, ERROR, WARNING, INFO, and DEBUG level logs
+	 
+	``6`` - SYSTEM, FATAL, ERROR, WARNING, INFO, DEBUG, and TRACE level logs
+   * - ``logFileRotateTimeFrequency``
+     - SUPERUSER
+     - Cluster
+     - Specifies when the system begins writing to a new log file. SQreamDB recommends using the ``logFileRotateTimeFrequency`` flag (rather than the ``logMaxFilesSizeMB`` flag) to configure when a new log file is created, as this flag does not limit the number of log files.
+     - string
+     - ``daily``. Acceptable values: ``daily``, ``weekly``, or ``monthly``
+   * - ``logMaxFilesSizeMB``
+     - SUPERUSER
+     - Cluster
+     - Specifies when the system begins writing to a new log file. When configured with the ``logMaxFilesSizeMB`` flag, the system maintains up to 13 log files. Once the 13th file is complete, the oldest log file is overwritten by the newly created log file. SQreamDB recommends using the ``logFileRotateTimeFrequency`` flag to configure when a new log file is created, as this flag does not limit the number of log files.
+     - int
+     - ``100`` (Megabyte)
    * - ``logSysLevel`` 
      - Anyone
      - Session
@@ -238,42 +272,36 @@ Flag List
      - Sets the CPU to compress columns with size above (flag’s value) * (row count).
      - uint
      - ``120``
-   * - ``maxPinnedPercentageOfTotalRAM``
-     - SUPERUSER
-     - Session
-     - Sets the maximum percentage CPU RAM that pinned memory can use.
-     - uint
-     - ``70``
-   * - ``memMergeBlobOffsetsCount``
-     - SUPERUSER
-     - Session
-     - Sets the size of memory used during a query to trigger aborting the server.
-     - uint
-     - ``0``
    * - ``memoryResetTriggerMB`` 
      - SUPERUSER
      - Session
      - Sets the size of memory used during a query to trigger aborting the server.
      - uint
-     - ``0``		 
+     - ``0``
    * - ``mtRead`` 
      - SUPERUSER
      - Session
      - Splits large reads to multiple smaller ones and executes them concurrently.
      - boolean
-     - ``FALSE``	 
+     - ``FALSE``
    * - ``mtReadWorkers`` 
      - SUPERUSER
      - Session
      - Sets the number of workers to handle smaller concurrent reads.
      - uint
-     - ``30``	
+     - ``30``
    * - ``orcImplicitCasts`` 
      - SUPERUSER
      - Session
      - Sets the implicit cast in orc files, such as **int** to **tinyint** and vice versa.
      - boolean
      - ``TRUE``	
+   * - ``QueryTimeoutMinutes``
+     - Anyone
+     - Session
+     - Terminates queries that have exceeded a predefined execution time limit, ranging from ``1`` to ``4,320`` minutes (72 hours).
+     - integer
+     - ``0`` (no query timeout)	 
    * - ``sessionTag`` 
      - Anyone
      - Session
@@ -291,40 +319,45 @@ Flag List
      - Session
      - Sets the timeout (seconds) for acquiring object locks before executing statements.
      - uint
-     - ``3``	
+     - ``3``
    * - ``useLegacyDecimalLiterals`` 
      - SUPERUSER
      - Session
      - Interprets decimal literals as **Double** instead of **Numeric**. Used to preserve legacy behavior in existing customers.
      - boolean
-     - ``FALSE``
-   * - ``blockNewVarcharObjects`` 
+     - ``FALSE``	 
+	 
+	 
+	 
+	 
+   * - ``cpuReduceHashtableSize``
      - SUPERUSER
      - Session
-     - Disables the creation of new tables, views, external tables containing Varchar columns, and the creation of user-defined functions with Varchar arguments or a Varchar return value.
-     - boolean
-     - ``FALSE``
-   * - ``defaultGracefulShutdownTimeoutMinutes``
-     - SUPERUSER
-     - Cluster
-     - Used for setting the amount of time to pass before SQream performs a graceful server shutdown. Allowed values - 1-4000000000. Related flags: ``is_healer_on`` and ``healer_max_inactivity_hours``
-     - bigint
-     - ``5``
-   * - ``limitQueryMemoryGB``
-     - SUPERUSER
-     - Cluster
-     - Prevents a query from processing more memory than the defined value.
+     - Sets the hash table size of the CpuReduce.
      - uint
-     - ``100000``
+     - ``10000``
+   * - ``externalTableBlobEstimate``
+     - ?
+     - Session
+     - ?
+     - ?
+     - ?
+   * - ``maxPinnedPercentageOfTotalRAM``
+     - SUPERUSER
+     - Session
+     - Sets the maximum percentage CPU RAM that pinned memory can use.
+     - uint
+     - ``70``
+   * - ``memMergeBlobOffsetsCount``
+     - SUPERUSER
+     - Session
+     - Sets the size of memory used during a query to trigger aborting the server.
+     - uint
+     - ``0``
    * - ``queueTimeoutMinutes``
      - Anyone
      - Session 
      - Terminates queries that have exceeded a predefined time limit in the queue.
      - integer
      - Default value: 0. Minimum values: 1 minute. Maximum value: 4320 minutes (72 hours) 
-   * - ``QueryTimeoutMinutes``
-     - Anyone
-     - Session
-     - Terminates queries that have exceeded a predefined execution time limit, ranging from ``1`` to ``4,320`` minutes (72 hours).
-     - integer
-     - ``0`` (no query timeout)
+

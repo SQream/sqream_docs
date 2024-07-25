@@ -23,10 +23,14 @@ The worker logs contain information messages, warnings, and errors pertaining to
 * Statement execution success / failure 
 * Statement execution statistics
 
+.. _log_structure:
+
 Log Structure and Contents
 --------------------------
 
-The log is a CSV, with several fields.
+By default, logs are saved as ``CSV`` files. To configure your log files to be saved as ``JSON`` instead, use the ``logFormat`` flag in your :ref:`legacy config file<current_method_flag_types>`.
+
+For effective :ref:`health_monitoring`, it's essential that logs are saved in ``JSON`` format, as Health Monitoring does not support ``CSV`` files. If your current logs are in ``CSV`` format and you require RCA, it's advisable to configure your logs to be saved in both ``CSV`` and ``JSON`` formats as outlined above.
 
 .. list-table:: Log fields
    :widths: auto
@@ -84,6 +88,10 @@ The log is a CSV, with several fields.
      - Warnings
    * - ``INFO``
      - Information and statistics
+   * - ``DEBUG``
+     - Information helpful for debugging 
+   * - ``TRACE``
+     - In-depth information helpful for debugging, such as tracing system function executions and identifying specific error conditions or performance issues.
 
 .. _message_type:
 
@@ -252,18 +260,14 @@ A few configuration settings alter the log rotation policy:
      - Description
      - Default
      - Values
-   * - ``useLogMaxFileSize``
-     - Rotate log files once they reach a certain file size. When ``true``, set the ``logMaxFileSizeMB`` accordingly. When ``false`` set the ``logFileRotateTimeFrequency`` accordingly.
-     - ``false``
-     - ``false`` or ``true``.
    * - ``logMaxFileSizeMB``
      - Sets the size threshold in megabytes after which a new log file will be opened.
-     - ``20``
+     - ``100``
      - ``1`` to ``1024`` (1MB to 1GB)
    * - ``logFileRotateTimeFrequency``
      - Frequency of log rotation
-     - ``never``
-     - ``daily``, ``weekly``, ``monthly``, ``never``
+     - ``daily``
+     - ``daily``, ``weekly``, or ``monthly``
 
 .. _collecting_logs2:
 
@@ -348,7 +352,7 @@ Troubleshooting with Logs
 Loading Logs with Foreign Tables
 --------------------------------
 
-Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a database administrator can access the logs using the :ref:`external_tables` concept through SQream DB.
+Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a database administrator can access the logs using the :ref:`foreign_tables` concept through SQreamDB.
 
 .. code-block:: postgres
 
