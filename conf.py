@@ -23,6 +23,11 @@ if os.environ.get("READTHEDOCS", "") == "True":
 
 import sphinx_rtd_theme
 
+# Overrides RTD Addons Flyout menu to appear on the left hand side 
+
+def setup(app):
+    app.add_css_file('css/custom.css')
+    app.add_css_file('css/custom_flyout.css')
 
 
 # -- Project information -----------------------------------------------------
@@ -78,6 +83,7 @@ html_static_path = ['_static']
 
 html_css_files = [
     'css/custom.css', # Relative to the _static path
+    'css/custom_flyout.css'
 ]
 
 html_logo = '_static/images/SQream_logo_without background-15.png'
