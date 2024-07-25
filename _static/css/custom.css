@@ -57,10 +57,22 @@ div.rst-versions > div.rst-other-versions > div.injected > dl:nth-child(4) {
     display: none;
 }
 
-.container.bottom-right {
-    bottom: 50px;
+/* custom.css */
+#custom-flyout-parent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px; /* Adjust width as needed */
+    background-color: #f8f9fa; /* Adjust background color as needed */
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1); /* Optional shadow for better visibility */
+    z-index: 1000; /* Ensure it is above other elements */
 }
 
-div.dl {
-    display: none;
+.readthedocs-flyout {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
 }
