@@ -25,9 +25,6 @@ import sphinx_rtd_theme
 
 # Overrides RTD Addons Flyout menu to appear on the left hand side 
 
-def setup(app):
-    app.add_css_file('css/custom.css')
-    app.add_css_file('css/custom_flyout.css')
 
 
 # -- Project information -----------------------------------------------------
