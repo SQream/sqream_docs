@@ -1,10 +1,10 @@
-import { LitElement, html, css, nothing } from 'https://cdn.jsdelivr.net/npm/lit-element/lit-element.js';
-import { classMap } from 'https://cdn.jsdelivr.net/npm/lit-html/directives/class-map.js';
-import { library, icon } from 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-svg-core/index.js';
-import { faCodeBranch } from 'https://cdn.jsdelivr.net/npm/@fortawesome/free-solid-svg-icons/index.js';
+import { LitElement, html, css, nothing } from 'https://cdn.jsdelivr.net/npm/lit-element@2.5.1/lit-element.js';
+import { classMap } from 'https://cdn.jsdelivr.net/npm/lit-html@1.4.1/directives/class-map.js';
+import { library, icon } from 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-svg-core@1.2.30/index.js';
+import { faCodeBranch } from 'https://cdn.jsdelivr.net/npm/@fortawesome/free-solid-svg-icons@5.15.3/index.js';
 
+const READTHEDOCS_LOGO = 'https://assets.readthedocs.org/static/images/logo-wordmark-light.svg';
 
-// Define the custom flyout element
 class CustomFlyoutElement extends LitElement {
   static get properties() {
     return {
