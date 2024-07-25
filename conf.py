@@ -75,7 +75,9 @@ html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
 
 
-
+html_js_files = [
+    'js/custom.js', # Relative to the _static path
+]
 
 html_css_files = [
     'css/custom.css', # Relative to the _static path
