@@ -1,6 +1,6 @@
-// Import necessary modules from CDNs
-import { LitElement, html, css, nothing } from 'https://unpkg.com/lit-element/lit-element.js?module';
-import { classMap } from 'https://unpkg.com/lit-html/directives/class-map.js?module';
+// Import necessary modules from jsDelivr
+import { LitElement, html, css, nothing } from 'https://cdn.jsdelivr.net/npm/lit-element@2.5.1/lit-element.js';
+import { classMap } from 'https://cdn.jsdelivr.net/npm/lit-html@1.3.0/directives/class-map.js';
 
 // Define the custom flyout element
 class CustomFlyoutElement extends LitElement {
