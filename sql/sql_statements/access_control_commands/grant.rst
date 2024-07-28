@@ -29,7 +29,6 @@ GRANT
 	GRANT {
 	SUPERUSER 
 	| LOGIN 
-	| PASSWORD '<password>' }
 	TO "<role>" [, ...]
 
 	-- Grant permissions at the database level:
