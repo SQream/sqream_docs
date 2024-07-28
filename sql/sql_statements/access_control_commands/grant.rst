@@ -28,7 +28,7 @@ GRANT
 	-- Grant permissions to all databases:
 	GRANT {
 	SUPERUSER 
-	| LOGIN 
+	| LOGIN }
 	TO "<role>" [, ...]
 
 	-- Grant permissions at the database level:
