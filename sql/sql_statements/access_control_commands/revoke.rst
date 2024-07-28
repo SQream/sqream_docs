@@ -25,8 +25,7 @@ Syntax
 	-- Revoke permissions from all databases:
 	REVOKE {
 	SUPERUSER 
-	| LOGIN 
-	| PASSWORD '<password>' }
+	| LOGIN }
 	FROM "<role>" [, ...]
 
 	-- Revoke permissions at the database level:
