@@ -17,8 +17,6 @@ The following table describe the required permissions for performing and executi
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``LOGIN``            | Use role to log into the system (the role also needs connect permission on the database it is connecting to)            |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``PASSWORD``         | The password used for logging into the system                                                                           |
-+----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``SUPERUSER``        | No permission restrictions on any activity                                                                              |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **Database**                                                                                                                                   |
@@ -111,8 +109,7 @@ GRANT
 	-- Grant permissions to all databases:
 	GRANT {
 	SUPERUSER 
-	| LOGIN 
-	| PASSWORD '<password>' }
+	| LOGIN }
 	TO "<role>" [, ...]
 
 	-- Grant permissions at the database level:
@@ -215,8 +212,7 @@ REVOKE
 	-- Revoke permissions from all databases:
 	REVOKE {
 	SUPERUSER 
-	| LOGIN 
-	| PASSWORD '<password>' }
+	| LOGIN }
 	FROM "<role>" [, ...]
 
 	-- Revoke permissions at the database level:
