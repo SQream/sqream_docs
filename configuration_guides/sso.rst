@@ -30,17 +30,15 @@ Setting SQreamDB Acceleration Studio
 	
 	"ssoValidateUrl": "https://auth.pingone.eu/9db5d1c6-6dd6-4e40-b939-e0e4209e0ac5/as/userinfo"
  
-#. Set Acceleration Studio to use SSO by adding the following flags to your ``sqream_admin_config.json`` file:
+#. Set Acceleration Studio to use SSO by adding the following flag to your ``sqream_admin_config.json`` file:
 
    * ``mfaRedirectUrl`` flag with your redirect URL
-   * ``mfaLogoutUrl`` flag with your logout URL
 
    Example:
  
    .. code-block:: json
    
 	"mfaRedirectUrl": "https://auth.pingone.eu/9db5d1c6-6dd6-4e40-b939-e0e4209e0ac5/as/authorize?client_id=e5636823-fb99-4d38-bbd1-6a46175eddab&redirect_uri=https://ivans.sq.l/login&response_type=token&scope=openid profile p1:read:user",
-	"mfaLogoutUrl": "https://auth.pingone.eu/9db5d1c6-6dd6-4e40-b939-e0e4209e0ac5/as/signoff"
 
   If Acceleration Studio is not yet installed, you can set both URLs during its installation process.
    
