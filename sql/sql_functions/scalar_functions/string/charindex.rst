@@ -50,15 +50,15 @@ For these examples, consider the following table:
 
 .. code-block:: none
 
-	id  | username	  | email                   | password	
-	----+-------------+-------------------------+-----------
-	1   | john_doe    | john.doe@example.com    | password1
-	----+-------------+-------------------------+-----------
-	2   | jane_doe    | jane.doe@example.com    | password2
-	----+-------------+-------------------------+-----------
-	3   | bob_smith   | bob.smith@example.com   | password3
-	----+-------------+-------------------------+-----------
-	4   | susan_jones | susan.jones@example.com | password4
+	id  | username	  | email                   |
+	----+-------------+-------------------------+
+	1   | john_doe    | john.doe@example.com    |
+	----+-------------+-------------------------+
+	2   | jane_doe    | jane.doe@example.com    |
+	----+-------------+-------------------------+
+	3   | bob_smith   | bob.smith@example.com   | 
+	----+-------------+-------------------------+
+	4   | susan_jones | susan.jones@example.com |
 
 
 .. code-block:: sql
