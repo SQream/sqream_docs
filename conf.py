@@ -71,7 +71,7 @@ html_static_path = ['_static']
 
 
 
-]
+
 
 html_css_files = [
     'css/custom.css', # Relative to the _static path
