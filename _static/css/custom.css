@@ -63,3 +63,7 @@ div.rst-versions > div.rst-other-versions > div.injected > dl:nth-child(4) {
 div.search {
     display: none !important;
 }
+
+.wy-side-nav-search {
+  display: block
+}
