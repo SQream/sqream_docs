@@ -60,6 +60,6 @@ div.rst-versions > div.rst-other-versions > div.injected > dl:nth-child(4) {
 }
 
 /* Prevent the search box from popping out */
-[role="search"] .background {
+div.search {
     display: none !important;
 }
