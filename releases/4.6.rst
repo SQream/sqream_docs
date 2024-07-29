@@ -34,25 +34,19 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
+
+
 ► You may now use the new ``logFormat`` flag to configure the format of your log files. By default, logs are saved as ``CSV`` files. To configure your log files to be saved as ``JSON`` instead, use the ``logFormat`` flag in your :ref:`legacy config file<current_method_flag_types>`. If your current logs are in ``CSV`` format and you require Health Monitoring, it's advisable to configure your logs to be saved in both ``CSV`` and ``JSON`` formats as outlined above.
 
 .. note::
 
 	The ``logFormat`` flag must be configured identically in both your legacy_config_file and your metadata_config_file
 
-► :ref:`health_monitoring`
-
 ► REHL 8.x is now officially supported.
-
-► Enable automatic termination of queries that exceed a pre-defined time limit in the queue. The introduction of the :ref:`queueTimeoutMinutes <current_method_configuration_levels>` flag empowers you to set time constraints for queries in the queue, ranging from a few minutes to a maximum of 72 hours.
-
-► SQreamDB operates with utmost efficiency when processing tables containing large data chunks. Introducing a new :ref:`rechunk` utility function, it simplifies the management of tables with small data chunks. This feature enables users to merge small data chunks into larger ones and simultaneously eliminating any deleted records present.
 
 ► A new :ref:`ldap` configuration flag allows including LDAP user attributes in your SQreamDB metadata by associating these attributes with SQreamDB roles.  
 
 ► The ``clientReconnectionTimeout`` configuration flag has been reclassified as a cluster configuration flag. Unlike session flags, cluster flags apply to the entire cluster and persist across system restarts or shutdowns, retaining the configured value. Learn more about :ref:`SQreamDB configuration flags<current_method_configuration_levels>`
-
-► JDBC enhancements have been implemented to facilitate the retrieval of the record count for the updated number of rows during ``INSERT`` and ``DELETE`` operations when connecting to a third-party platform via JDBC. Use the SQreamDB JDBC connector as usual; the sole distinction is in the ability to now observe the updated number of rows.
 
 ► Two new conditional functions that shorten complex query runtime by checking for the existence of tables and views within the specified schema:
 
@@ -62,12 +56,6 @@ New Features and Enhancements
 ► The ``TOP`` clause can now take a **subtraction** arithmetic operator when used in a :ref:`select` statement. 
 
 ► Sign into SQreamDB Acceleration Studio using your universal :ref:`Single Sign-On (SSO)<sso>` provider authentication. 
-
-► You may now retrieve and manipulate data from different databases within a single SQreamDB cluster through the execution of a single SQL statement using the :ref:`Cross-Database<cross_database_query>` syntax.
-
-► Enhance your :ref:`COPY FROM<copy_from>` operations with the new ``DELETE_SOURCE_ON_SUCCESS`` parameter, which automatically deletes the source file being copied into SQreamDB. This not only saves time and effort in cleaning storage but also helps conserve storage space.
-
-► Safely cast data types with the new :ref:`IsCastable<is_castable>` function. This function allows you to check whether a cast operation is possible or supported for a given column and data type and provides an alternative when an exception occurs when used within a ``CASE`` statement.
 
 ► You may now set your :ref:`Server Picker<server_picker_cli_reference>` more easily using keyword arguments.
 
