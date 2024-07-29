@@ -354,10 +354,5 @@ Flag List
      - Sets the size of memory used during a query to trigger aborting the server.
      - uint
      - ``0``
-   * - ``queueTimeoutMinutes``
-     - Anyone
-     - Session 
-     - Terminates queries that have exceeded a predefined time limit in the queue.
-     - integer
-     - Default value: 0. Minimum values: 1 minute. Maximum value: 4320 minutes (72 hours) 
+
 

@@ -6,8 +6,6 @@ Release Notes
 
 :ref:`Version 4.6 - xxxx xx, 2024<4.6>`
 
-* Execute a single SQL statement across your SQreamDB cluster using the new :ref:`Cross-Database<cross_database_query>` syntax.
-* Safely cast data types with the new :ref:`IsCastable<is_castable>` function.
 
 :ref:`Version 4.5 - December 5, 2023<4.5>`
 

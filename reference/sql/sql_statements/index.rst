@@ -139,8 +139,6 @@ The following table shows the Utility commands:
      - Enables you to specify the LDAP attributes you want the SQreamDB role catalog table to show   
    * - :ref:`LIST SAVED QUERIES<list_saved_queries>`
      - Lists previously saved query names, one per row
-   * - :ref:`RECHUNK<rechunk>`
-     - Enables you to merge small data chunks into larger ones 
    * - :ref:`RECOMPILE SAVED QUERY<recompile_saved_query>`
      - Recompiles a saved query that has been invalidated due to a schema change
    * - :ref:`RECOMPILE VIEW<recompile_view>`
