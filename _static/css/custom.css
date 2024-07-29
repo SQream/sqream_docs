@@ -67,3 +67,8 @@ div.search {
 .wy-side-nav-search {
   display: block
 }
+
+.container.bottom-right {
+    display: block;
+
+}
