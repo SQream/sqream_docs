@@ -59,3 +59,18 @@ div.rst-versions > div.rst-other-versions > div.injected > dl:nth-child(4) {
 
 }
 
+/* Prevent the search box from popping out */
+.wy-side-nav-search .search {
+    position: static;
+    width: 100%;
+    max-width: none;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
+.wy-side-nav-search .search input {
+    width: 100%;
+    max-width: none;
+}
+
