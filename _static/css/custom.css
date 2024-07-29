@@ -59,16 +59,7 @@ div.rst-versions > div.rst-other-versions > div.injected > dl:nth-child(4) {
 
 }
 
-/* Prevent the search box from popping out */
-div.search {
-    display: none !important;
-}
-
-.wy-side-nav-search {
-  display: block
-}
-
 .container.bottom-right {
-    display: block;
+    display: none;
 
 }
