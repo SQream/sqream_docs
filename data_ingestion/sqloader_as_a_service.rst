@@ -10,7 +10,7 @@ The **SQLoader** is a Java service that enables you to ingest data into SQreamDB
 
 * Greenplum
 * Microsoft SQL Server
-* Oracle
+* Oracle (including Oracle Autonomous Database)
 * Postgresql
 * SAP HANA
 * Sybase
