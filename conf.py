@@ -40,7 +40,7 @@ sphinxemoji_style = 'twemoji'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    "notfound.extension", # 404 handling
+    #"notfound.extension", # 404 handling
     "sphinx_copybutton",
     "sphinx_inline_tabs",
     "sphinx_favicon",
