@@ -24,15 +24,15 @@ The following is an example of table named ``nba`` with the following structure:
    
    CREATE TABLE nba
    (
-      "Name" text(40),
-      "Team" text(40),
-      "Number" tinyint,
-      "Position" text(2),
-      "Age" tinyint,
-      "Height" text(4),
-      "Weight" real,
-      "College" text(40),
-      "Salary" float
+      "Name" TEXT,
+      "Team" TEXT,
+      "Number" TINYINT,
+      "Position" TEXT,
+      "Age" TINYINT,
+      "Height" TEXT,
+      "Weight" REAL,
+      "College" TEXT,
+      "Salary" FLOAT
     );
 
 
@@ -53,21 +53,48 @@ Simple Subquery
 
 .. code-block:: sql
    
-   t=> SELECT AVG("Age") FROM 
-   .        (SELECT "Name","Team","Age" FROM nba WHERE "Height" > '7-0');
-   avg
-   ---
-   26
+	SELECT
+	  AVG("Age")
+	FROM
+	  (
+	    SELECT
+	      "Name",
+	      "Team",
+	      "Age"
+	    FROM
+	      nba
+	    WHERE
+	      "Height" > '7-0'
+	  );
+	  
+.. code-block:: none 
+
+	avg
+	---
+	26
 
 Combining a Subquery with a Join
 --------------------------------
 
 .. code-block:: sql
 
-   t=> SELECT * FROM
-   .     (SELECT "Name" FROM nba WHERE "Height" > '7-0') AS t(name)
-   .     , nba AS n
-   .       WHERE n."Name"=t.name;
+	SELECT
+	  *
+	FROM
+	  (
+	    SELECT
+	      "Name"
+	    FROM
+	      nba
+	    WHERE
+	      "Height" > '7-0'
+	  ) AS t(name),
+	  nba AS n
+	WHERE
+	  n."Name" = t.name;
+	  
+.. code-block:: none
+
    name               | Name               | Team                   | Number | Position | Age | Height | Weight | College    | Salary  
    -------------------+--------------------+------------------------+--------+----------+-----+--------+--------+------------+---------
    Alex Len           | Alex Len           | Phoenix Suns           |     21 | C        |  22 | 7-1    |    260 | Maryland   |  3807120
@@ -92,14 +119,36 @@ See :ref:`common_table_expressions` for more information.
 
 .. code-block:: sql
    
-   nba=> WITH
-   .        nba_ct AS (SELECT "Name", "Team" FROM nba WHERE "College"='Connecticut'),
-   .        nba_az AS (SELECT "Name", "Team" FROM nba WHERE "College"='Arizona')
-   .        SELECT * FROM nba_az JOIN nba_ct ON nba_ct."Team" = nba_az."Team";
-   Name            | Team            | name0          | team0          
-   ----------------+-----------------+----------------+----------------
-   Stanley Johnson | Detroit Pistons | Andre Drummond | Detroit Pistons
-   Aaron Gordon    | Orlando Magic   | Shabazz Napier | Orlando Magic  
+	WITH nba_ct AS (
+	  SELECT
+	    "Name",
+	    "Team"
+	  FROM
+	    nba
+	  WHERE
+	    "College" = 'Connecticut'
+	),
+	nba_az AS (
+	  SELECT
+	    "Name",
+	    "Team"
+	  FROM
+	    nba
+	  WHERE
+	    "College" = 'Arizona'
+	)
+	SELECT
+	  *
+	FROM
+	  nba_az
+	  JOIN nba_ct ON nba_ct."Team" = nba_az."Team";
+	
+.. code-block:: none
+	
+	Name            | Team            | name0          | team0          
+	----------------+-----------------+----------------+----------------
+	Stanley Johnson | Detroit Pistons | Andre Drummond | Detroit Pistons
+	Aaron Gordon    | Orlando Magic   | Shabazz Napier | Orlando Magic  
    
 Correlated subqueries
 ===================== 
@@ -111,15 +160,29 @@ Correlated subqueries are currently not supported. However, you may use the foll
 	# Unsupported correlated subquery
 	
 	SELECT
-	  x,y,z
+	  x,
+	  y,
+	  z
 	FROM
 	  t
-	where x in ( select x from t1 );
+	WHERE
+	  x in (
+	    SELECT
+	      x
+	    FROM
+	      t1
+	  );
 
 	# Correlated subquery workaround
-	
 	SELECT
-	  x,y,z
+	  x,
+	  y,
+	  z
 	FROM
 	  t
-	  JOIN (select x from t1) t1 on t.x = t1.x;
+	  JOIN (
+	    SELECT
+	      x
+	    FROM
+	      t1
+	  ) t1 ON t.x = t1.x;
