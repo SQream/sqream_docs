@@ -39,23 +39,10 @@ New Features and Enhancements
 .. note::
 
 	The ``logFormat`` flag must be configured identically in both your legacy_config_file and your metadata_config_file
-
-► You may now retrieve and manipulate data from different databases within a single SQreamDB cluster through the execution of a single SQL statement using the :ref:`Cross-Database<cross_database_query>` syntax.
-
-
-► SQreamDB operates with utmost efficiency when processing tables containing large data chunks. Introducing a new :ref:`rechunk` utility function, it simplifies the management of tables with small data chunks. This feature enables users to merge small data chunks into larger ones and simultaneously eliminating any deleted records present.
-
-► Enable automatic termination of queries that exceed a pre-defined time limit in the queue. The introduction of the :ref:`queueTimeoutMinutes <current_method_configuration_levels>` flag empowers you to set time constraints for queries in the queue, ranging from a few minutes to a maximum of 72 hours.
-
-► JDBC enhancements have been implemented to facilitate the retrieval of the record count for the updated number of rows during ``INSERT`` and ``DELETE`` operations when connecting to a third-party platform via JDBC. Use the SQreamDB JDBC connector as usual; the sole distinction is in the ability to now observe the updated number of rows.
-
-► Enhance your :ref:`COPY FROM<copy_from>` operations with the new ``DELETE_SOURCE_ON_SUCCESS`` parameter, which automatically deletes the source file being copied into SQreamDB. This not only saves time and effort in cleaning storage but also helps conserve storage space.
+	
 
 
 
-► :ref:`health_monitoring`
-
-► Safely cast data types with the new :ref:`IsCastable<is_castable>` function. This function allows you to check whether a cast operation is possible or supported for a given column and data type and provides an alternative when an exception occurs when used within a ``CASE`` statement.
 
 ► Multi-platform CLI 
 
@@ -95,9 +82,23 @@ New Features and Enhancements
 	"DefaultPathToLogs": "<home/logs/my_logs>"
 	}
 
+► :ref:`health_monitoring`
 
+► ALL log files should reside under the same folder
 
+► Release locks
 
+► SQreamDB operates with utmost efficiency when processing tables containing large data chunks. Introducing a new :ref:`rechunk` utility function, it simplifies the management of tables with small data chunks. This feature enables users to merge small data chunks into larger ones and simultaneously eliminating any deleted records present.
+
+► Enable automatic termination of queries that exceed a pre-defined time limit in the queue. The introduction of the :ref:`queueTimeoutMinutes <current_method_configuration_levels>` flag empowers you to set time constraints for queries in the queue, ranging from a few minutes to a maximum of 72 hours.
+
+► Safely cast data types with the new :ref:`IsCastable<is_castable>` function. This function allows you to check whether a cast operation is possible or supported for a given column and data type and provides an alternative when an exception occurs when used within a ``CASE`` statement.
+
+► JDBC enhancements have been implemented to facilitate the retrieval of the record count for the updated number of rows during ``INSERT`` and ``DELETE`` operations when connecting to a third-party platform via JDBC. Use the SQreamDB JDBC connector as usual; the sole distinction is in the ability to now observe the updated number of rows.
+
+► Enhance your :ref:`COPY FROM<copy_from>` operations with the new ``DELETE_SOURCE_ON_SUCCESS`` parameter, which automatically deletes the source file being copied into SQreamDB. This not only saves time and effort in cleaning storage but also helps conserve storage space.
+
+► You may now retrieve and manipulate data from different databases within a single SQreamDB cluster through the execution of a single SQL statement using the :ref:`Cross-Database<cross_database_query>` syntax.
 
 Known Issues
 ------------
