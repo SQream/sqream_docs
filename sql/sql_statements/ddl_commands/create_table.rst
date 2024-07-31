@@ -33,7 +33,6 @@ Syntax
          -- DEFAULT:
          DEFAULT <default_value>
          | IDENTITY [ ( <start_with> [ , increment_by ] ) ] [ check_specification ]
-         | check_specification [ IDENTITY [ ( start_with [ , increment_by ] ) ] 
 
             -- start_with: A value that is used for the very first row loaded into the table.
             -- increment_by: Incremental value that is added to the identity value of the previous row that was loaded.
