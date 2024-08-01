@@ -383,8 +383,8 @@ Command Line Arguments
      - False
      - Determines connection SSL
    * - ``--table-view``
-     - False
-     - Displays results in a table view format with column headers
+     - ``true``
+     - Displays query results in a table view format with column headers. The display limit is set to 10,000 rows
 
 
 .. tip:: Run ``$  sqream sql --help`` to see a full list of arguments
