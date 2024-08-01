@@ -1,25 +1,27 @@
 .. _sqream_sql_cli_reference:
 
-************************
-Sqream SQL CLI Reference
-************************
+*******************
+Sqream SQL Java CLI 
+*******************
 
-SQreamDB comes with a built-in client for executing SQL statements either interactively or from the command-line.
+SQreamDB allows executing SQL statements either interactively or from the command-line. This page serves as a reference for the options and parameters.
 
-This page serves as a reference for the options and parameters. Learn more about using SQreamDB SQL with the CLI by visiting the :ref:`first_steps` tutorial.
-
-.. contents:: In this topic:
+.. contents::
    :local:
+   :depth: 1
+
+Before You Begin
+================
+
+It is essential that you have the following installed:
+
+* `SQreamDB Java CLI <https://storage.cloud.google.com/cicd-storage/jdbc-console/release/jdbc-console-1.0.5-v1.zip>`_
+* Java 8
 
 Installing Sqream SQL
 =====================
 
 If you have a SQreamDB installation on your server, ``sqream sql`` can be found in the ``bin`` directory of your SQreamDB installation, under the name ``sqream``.
-
-
-
-.. versionchanged:: 2020.1
-   As of version 2020.1, ``ClientCmd`` has been renamed to ``sqream sql``.
    
 
 To run ``sqream sql`` on any other Linux host:
@@ -38,24 +40,6 @@ To run ``sqream sql`` on any other Linux host:
       To quit, use ^D or \q.
       
       master=> _
-
-Troubleshooting Sqream SQL Installation
----------------------------------------
-
-Upon running sqream sql for the first time, you may get an error ``error while loading shared libraries: libtinfo.so.5: cannot open shared object file: No such file or directory``.
-
-Solving this error requires installing the ncruses or libtinfo libraries, depending on your operating system.
-      
-* RHEL:
-
-   #. Install ``ncurses``:
-   
-      ``$ sudo yum install -y ncurses-libs``
-   #. Depending on your RHEL version, you may need to create a symbolic link to the newer libtinfo that was installed.
-   
-      For example, if ``libtinfo`` was installed as ``/usr/lib64/libtinfo.so.6``:
-      
-      ``$ sudo ln -s /usr/lib64/libtinfo.so.6 /usr/lib64/libtinfo.so.5``
 
 Using SQreamDB SQL
 ==================
@@ -353,13 +337,13 @@ Command Line Arguments
    * - ``-f`` or ``--file``
      - None
      - Changes the mode of operation to multi-command, non-interactive. Use this argument to run a sequence of statements from an external file and immediately exit.
-   * - ``--host``
+   * - ``-h``, or``--host``
      - ``127.0.0.1``
      - Address of the SQreamDB worker.
-   * - ``--port``
+   * - ``-p`` or ``--port``
      - ``5000``
      - Sets the connection port.
-   * - ``--databasename`` or ``-d``
+   * - ``--databasename``, ``-d``, or ``database``
      - None
      - Specifies the database name for queries and statements in this session.
    * - ``--username``
@@ -371,7 +355,7 @@ Command Line Arguments
    * - ``--clustered``
      - False
      - When used, the client connects to the load balancer, usually on port ``3108``. If not set, the client assumes the connection is to a standalone SQreamDB worker.
-   * - ``--service``
+   * - ``-s`` or ``--service``
      - ``sqream``
      - :ref:`Service name (queue)<workload_manager>` that statements will file into.
    * - ``--results-only``
@@ -383,6 +367,24 @@ Command Line Arguments
    * - ``--delimiter``
      - ``,``
      - Specifies the field separator. By default, ``sqream sql`` outputs valid CSVs. Change the delimiter to modify the output to another delimited format (e.g. TSV, PSV). See the section :ref:`supported record delimiters<supported_record_delimiters>` below for more information.
+   * - ``--chunksize``
+     - 128 * 1024 (128 Kb)
+     - Network chunk size
+   * - ``--log`` or ``log-file``
+     - False
+     - A log file will be created
+   * - ``--show-results``
+     - True
+     - Determines whether or not results are shown
+   * - ``--ssl``
+     - False
+     - Determines connection SSL
+   * - ``--table-view``
+     - False
+     - Displays results in a table view format with column headers
+   * - ``--trim-varchars``
+     - 
+     - Turns off printing of varchar padding spaces.
 
 .. tip:: Run ``$  sqream sql --help`` to see a full list of arguments
 
