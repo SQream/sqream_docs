@@ -1,30 +1,28 @@
-.. _sqream_sql_cli_reference:
+:orphan:
 
-**************
-Sqream SQL CLI 
-**************
+.. _sqream_sql_haskell_cli:
 
-SQreamDB SQL Java-based CLI allows executing SQL statements either interactively or from the command-line. This page serves as a reference for the options and parameters.
+************************
+Sqream SQL Haskell CLI 
+************************
 
-.. note::
-	For the old version of the SQream SQL (Haskell-based) CLI, see :ref:`Haskell CLI documentation<sqream_sql_haskell_cli>`
+SQreamDB comes with a built-in client for executing SQL statements either interactively or from the command-line.
+
+This page serves as a reference for the options and parameters. Learn more about using SQreamDB SQL with the CLI by visiting the :ref:`first_steps` tutorial.
 
 .. contents::
    :local:
    :depth: 1
 
-Before You Begin
-================
-
-It is essential that you have the following installed:
-
-* `SQreamDB Java CLI <https://storage.cloud.google.com/cicd-storage/jdbc-console/release/jdbc-console-1.0.5-v1.zip>`_
-* Java 8
-
 Installing Sqream SQL
 =====================
 
 If you have a SQreamDB installation on your server, ``sqream sql`` can be found in the ``bin`` directory of your SQreamDB installation, under the name ``sqream``.
+
+
+
+.. versionchanged:: 2020.1
+   As of version 2020.1, ``ClientCmd`` has been renamed to ``sqream sql``.
    
 
 To run ``sqream sql`` on any other Linux host:
@@ -43,6 +41,24 @@ To run ``sqream sql`` on any other Linux host:
       To quit, use ^D or \q.
       
       master=> _
+
+Troubleshooting Sqream SQL Installation
+---------------------------------------
+
+Upon running sqream sql for the first time, you may get an error ``error while loading shared libraries: libtinfo.so.5: cannot open shared object file: No such file or directory``.
+
+Solving this error requires installing the ncruses or libtinfo libraries, depending on your operating system.
+      
+* RHEL:
+
+   #. Install ``ncurses``:
+   
+      ``$ sudo yum install -y ncurses-libs``
+   #. Depending on your RHEL version, you may need to create a symbolic link to the newer libtinfo that was installed.
+   
+      For example, if ``libtinfo`` was installed as ``/usr/lib64/libtinfo.so.6``:
+      
+      ``$ sudo ln -s /usr/lib64/libtinfo.so.6 /usr/lib64/libtinfo.so.5``
 
 Using SQreamDB SQL
 ==================
