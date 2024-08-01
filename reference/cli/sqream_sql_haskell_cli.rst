@@ -352,31 +352,31 @@ Command Line Arguments
      - Description
    * - ``-c`` or ``--command``
      - None
-     - Changes the mode of operation to single-command, non-interactive. Use this argument to run a statement and immediately exit.
+     - Changes the mode of operation to single-command, non-interactive. Use this argument to run a statement and immediately exit
    * - ``-f`` or ``--file``
      - None
-     - Changes the mode of operation to multi-command, non-interactive. Use this argument to run a sequence of statements from an external file and immediately exit.
+     - Changes the mode of operation to multi-command, non-interactive. Use this argument to run a sequence of statements from an external file and immediately exit
    * - ``-h``, or``--host``
      - ``127.0.0.1``
-     - Address of the SQreamDB worker.
+     - Address of the SQreamDB worker
    * - ``-p`` or ``--port``
      - ``5000``
      - Sets the connection port.
    * - ``--databasename``, ``-d``, or ``database``
      - None
-     - Specifies the database name for queries and statements in this session.
+     - Specifies the database name for queries and statements in this session
    * - ``--username``
      - None
      -  Username to connect to the specified database.
    * - ``--password``
      - None
-     - Specify the password using the command line argument. If not specified, the client will prompt the user for the password.
+     - Specify the password using the command line argument. If not specified, the client will prompt the user for the password
    * - ``--clustered``
      - False
-     - When used, the client connects to the load balancer, usually on port ``3108``. If not set, the client assumes the connection is to a standalone SQreamDB worker.
+     - When used, the client connects to the load balancer, usually on port ``3108``. If not set, the client assumes the connection is to a standalone SQreamDB worker
    * - ``-s`` or ``--service``
      - ``sqream``
-     - :ref:`Service name (queue)<workload_manager>` that statements will file into.
+     - :ref:`Service name (queue)<workload_manager>` that statements will file into
    * - ``--results-only``
      - False
      - Outputs results only, without timing information and row counts
@@ -385,7 +385,7 @@ Command Line Arguments
      - When set, prevents command history from being saved in ``~/.sqream/clientcmdhist``
    * - ``--delimiter``
      - ``,``
-     - Specifies the field separator. By default, ``sqream sql`` outputs valid CSVs. Change the delimiter to modify the output to another delimited format (e.g. TSV, PSV). See the section :ref:`supported record delimiters<supported_record_delimiters>` below for more information.
+     - Specifies the field separator. By default, ``sqream sql`` outputs valid CSVs. Change the delimiter to modify the output to another delimited format (e.g. TSV, PSV). See the section :ref:`supported record delimiters<supported_record_delimiters>` below for more information
    * - ``--chunksize``
      - 128 * 1024 (128 Kb)
      - Network chunk size
@@ -401,9 +401,7 @@ Command Line Arguments
    * - ``--table-view``
      - False
      - Displays results in a table view format with column headers
-   * - ``--trim-varchars``
-     - 
-     - Turns off printing of varchar padding spaces.
+
 
 .. tip:: Run ``$  sqream sql --help`` to see a full list of arguments
 
