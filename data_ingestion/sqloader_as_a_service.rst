@@ -536,7 +536,7 @@ Mandatory flags must be configured using HTTP flags or the ``properties`` file.
    * - ``loadTypeName``
      - Optional
      - ``full``
-     - Defines a loading type that affects the table that is created in SQreamDB. Options are ``full``, ``cdc``, or ``inc``. Please note that ``cdc``, and ``inc`` are supported only for Oracle
+     - Defines a loading type that affects the table that is created in SQreamDB. Options are ``full``, ``cdc``, or ``inc``. Please note that ``cdc`` is supported for Oracle only and that ``inc`` is supported for Oracle and Postgresql
    * - ``lockCheck``
      - Optional
      - ``true``
@@ -628,7 +628,7 @@ Using the ``loadTypeName`` parameter, you can define how you wish records' chang
      - Only changes made to the source table data since last load will be loaded into SQreamDB. Changes include transactions of ``INSERT``, ``UPDATE``, and ``DELETE`` statements. SQLoader recognizes tables by table name and metadata. Supported for Oracle only
    * - Incremental
      - ``inc``
-     - Only changes made to the source table data since last load will be loaded into SQreamDB. Changes include transactions of ``INSERT`` statement. SQLoader recognizes the table by table name and metadata. Supported for Oracle only
+     - Only changes made to the source table data since last load will be loaded into SQreamDB. Changes include transactions of ``INSERT`` statement. SQLoader recognizes the table by table name and metadata. Supported for Oracle and Postgresql
 	
 
 
