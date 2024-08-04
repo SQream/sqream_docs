@@ -21,7 +21,7 @@ It is essential that you have the following installed:
 * `SQreamDB Java CLI <https://storage.cloud.google.com/cicd-storage/jdbc-console/release/jdbc-console-1.0.5-v1.zip>`_
 * Java 8
 
-It is essential you have the Java home path configured in your ``info.yaml`` file:
+It is essential you have the Java home path configured in your ``sqream`` file:
 
 .. code-block:: none
 
