@@ -34,7 +34,7 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
-► Announcing a new :ref:`SQream SQL CLI<sqream_sql_cli_reference>` which is Java-based. See :ref:`Haskell CLI<deprecations>` deprecation note.  
+► Announcing a new cross-platform :ref:`SQream SQL CLI<sqream_sql_cli_reference>` which is Java-based. See :ref:`Haskell CLI<deprecations>` deprecation note.  
 
 ► REHL 8.x is now officially supported.
 
