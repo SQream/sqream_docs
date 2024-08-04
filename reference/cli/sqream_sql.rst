@@ -4,7 +4,7 @@
 Sqream SQL CLI 
 **************
 
-SQreamDB SQL Java-based CLI allows executing SQL statements either interactively or using shell scripts. This CLI is cross-platform, meaning it can be executed on any operating system which is supported by Java. If you are not using Bash to manage and run your Java applications, please use the ``java -jar`` command to run this CLI.
+SQreamDB SQL Java-based CLI allows SQL statements to be executed interactively or using shell scripts. This CLI is cross-platform, meaning it can be executed on any operating system which Java supports. If you are not using Bash to manage and run your Java applications, please use the ``java -jar`` command to run this CLI.
 
 .. note::
 	For the old version of the SQream SQL (Haskell-based) CLI, see :ref:`Haskell CLI documentation<sqream_sql_haskell_cli>`
