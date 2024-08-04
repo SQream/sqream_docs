@@ -4,7 +4,7 @@
 Sqream SQL CLI 
 **************
 
-SQreamDB SQL Java-based CLI allows executing SQL statements either interactively or from the command-line. This page serves as a reference for the options and parameters.
+SQreamDB SQL Java-based CLI allows executing SQL statements either interactively or from the command-line. This CLI is cross-platform, meaning it can be executed on any operating system. If you are not using Bash to manage and run your Java applications, please use the ``java -jar`` command to run this CLI.
 
 .. note::
 	For the old version of the SQream SQL (Haskell-based) CLI, see :ref:`Haskell CLI documentation<sqream_sql_haskell_cli>`
@@ -21,7 +21,7 @@ It is essential that you have the following installed:
 * `SQreamDB Java CLI <https://storage.cloud.google.com/cicd-storage/jdbc-console/release/jdbc-console-1.0.5-v1.zip>`_
 * Java 8
 
-It is essential you have the Java home path configured in your ``sqream`` file:
+It is essential you have the Java home path configured in your ``info.yaml`` file:
 
 .. code-block:: none
 
@@ -29,29 +29,6 @@ It is essential you have the Java home path configured in your ``sqream`` file:
       JAVA_CMD="/usr/lib/jvm/jdk-8.0.0/bin/java"
   else
       JAVA_CMD="/usr/lib/jvm/java-1.8.0/bin/java"
-
-Installing Sqream SQL
-=====================
-
-If you have a SQreamDB installation on your server, ``sqream sql`` can be found in the ``bin`` directory of your SQreamDB installation, under the name ``sqream``.
-   
-
-To run ``sqream sql`` on any other Linux host:
-
-#. Download the ``sqream sql`` tarball package from the :ref:`client_drivers` page.
-#. Untar the package: ``tar xf sqream-sql-v2020.1.1_stable.x86_64.tar.gz``
-#. Start the client:
-   
-   .. code-block:: psql
-      
-      $ cd sqream-sql-v2020.1.1_stable.x86_64
-      $ ./sqream sql --port=5000 --username=jdoe --databasename=master
-      Password:
-     
-      Interactive client mode
-      To quit, use ^D or \q.
-      
-      master=> _
 
 Using SQreamDB SQL
 ==================
