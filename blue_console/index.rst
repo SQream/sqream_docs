@@ -14,6 +14,15 @@ It is essential that you have the following installed:
 * `SQream Blue Java CLI <https://storage.cloud.google.com/cicd-storage/jdbc-console/release/jdbc-console-1.0.5-blue.zip>`_
 * Java 17
 
+It is essential that you have the Java home path configured in your ``sqream`` file:
+
+.. code-block:: none
+
+  if [[ "$@" =~ "access-token" ]]; then
+      JAVA_CMD="/usr/lib/jvm/jdk-17.0.8/bin/java"
+  else
+      JAVA_CMD="/usr/lib/jvm/java-1.8.0/bin/java"
+
 Running BLUE Console
 =====================
 
