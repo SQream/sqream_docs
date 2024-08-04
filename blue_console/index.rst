@@ -42,10 +42,11 @@ Output:
 	
 .. code-block:: none
 
-	Welcome to JDBC console version jdbc-console-0.1.3-69
-	To quit use ^d or exit; to abort ^c
-	Connection URL: jdbc:Sqream://<BLUE cluster FQDN>:443/master;accesstoken=cHczWjlIWHk2****;pool=Default;source=CLI
-	master=>
+  Welcome JDBC console. Console version: 1.0.5 JDBC Driver version: 0.1.80
+  To quit use ^d or exit; to abort ^c
+  Connection URL: jdbc:Sqream://<BLUE cluster FQDN>:443/master;accesstoken=cHczWjlIWHk2****;pool=Default;source=CLI
+  master=>
+
 	
 #. To view a full list of arguments before starting the client, run the following command:
 
