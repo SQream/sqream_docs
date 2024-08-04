@@ -1,61 +1,34 @@
 .. _sqream_sql_cli_reference:
 
-************************
-Sqream SQL CLI Reference
-************************
+**************
+Sqream SQL CLI 
+**************
 
-SQreamDB comes with a built-in client for executing SQL statements either interactively or from the command-line.
+SQreamDB SQL Java-based CLI allows SQL statements to be executed interactively or using shell scripts. This CLI is cross-platform, meaning it can be executed on any operating system which Java supports. If you are not using Bash to manage and run your Java applications, please use the ``java -jar`` command to run this CLI.
 
-This page serves as a reference for the options and parameters. Learn more about using SQreamDB SQL with the CLI by visiting the :ref:`first_steps` tutorial.
+.. note::
+	For the old version of the SQream SQL (Haskell-based) CLI, see :ref:`Haskell CLI documentation<sqream_sql_haskell_cli>`
 
-.. contents:: In this topic:
+.. contents::
    :local:
+   :depth: 1
 
-Installing Sqream SQL
-=====================
+Before You Begin
+================
 
-If you have a SQreamDB installation on your server, ``sqream sql`` can be found in the ``bin`` directory of your SQreamDB installation, under the name ``sqream``.
+It is essential that you have the following installed:
 
+* `SQreamDB Java CLI <https://storage.cloud.google.com/cicd-storage/jdbc-console/release/jdbc-console-1.0.5-v1.zip>`_
+* Java 8
 
+It is essential you have the Java home path configured in your ``sqream`` file:
 
-.. versionchanged:: 2020.1
-   As of version 2020.1, ``ClientCmd`` has been renamed to ``sqream sql``.
-   
+.. code-block:: none
 
-To run ``sqream sql`` on any other Linux host:
-
-#. Download the ``sqream sql`` tarball package from the :ref:`client_drivers` page.
-#. Untar the package: ``tar xf sqream-sql-v2020.1.1_stable.x86_64.tar.gz``
-#. Start the client:
-   
-   .. code-block:: psql
-      
-      $ cd sqream-sql-v2020.1.1_stable.x86_64
-      $ ./sqream sql --port=5000 --username=jdoe --databasename=master
-      Password:
-     
-      Interactive client mode
-      To quit, use ^D or \q.
-      
-      master=> _
-
-Troubleshooting Sqream SQL Installation
----------------------------------------
-
-Upon running sqream sql for the first time, you may get an error ``error while loading shared libraries: libtinfo.so.5: cannot open shared object file: No such file or directory``.
-
-Solving this error requires installing the ncruses or libtinfo libraries, depending on your operating system.
-      
-* RHEL:
-
-   #. Install ``ncurses``:
-   
-      ``$ sudo yum install -y ncurses-libs``
-   #. Depending on your RHEL version, you may need to create a symbolic link to the newer libtinfo that was installed.
-   
-      For example, if ``libtinfo`` was installed as ``/usr/lib64/libtinfo.so.6``:
-      
-      ``$ sudo ln -s /usr/lib64/libtinfo.so.6 /usr/lib64/libtinfo.so.5``
+  if [[ "$@" =~ "access-token" ]]; then
+      JAVA_CMD="/usr/lib/jvm/jdk-8.0.0/bin/java"
+  else
+      JAVA_CMD="/usr/lib/jvm/java-1.8.0/bin/java"
 
 Using SQreamDB SQL
 ==================
@@ -349,19 +322,19 @@ Command Line Arguments
      - Description
    * - ``-c`` or ``--command``
      - None
-     - Changes the mode of operation to single-command, non-interactive. Use this argument to run a statement and immediately exit.
+     - Changes the mode of operation to single-command, non-interactive. Use this argument to run a statement and immediately exit
    * - ``-f`` or ``--file``
      - None
-     - Changes the mode of operation to multi-command, non-interactive. Use this argument to run a sequence of statements from an external file and immediately exit.
-   * - ``--host``
+     - Changes the mode of operation to multi-command, non-interactive. Use this argument to run a sequence of statements from an external file and immediately exit
+   * - ``-h``, or``--host``
      - ``127.0.0.1``
-     - Address of the SQreamDB worker.
-   * - ``--port``
+     - Address of the SQreamDB worker
+   * - ``-p`` or ``--port``
      - ``5000``
      - Sets the connection port.
-   * - ``--databasename`` or ``-d``
+   * - ``--databasename``, ``-d``, or ``database``
      - None
-     - Specifies the database name for queries and statements in this session.
+     - Specifies the database name for queries and statements in this session
    * - ``--username``
      - None
      -  Username to connect to the specified database.
@@ -370,10 +343,10 @@ Command Line Arguments
      - Specify the password using the command line argument. If not specified, the client will prompt the user for the password.
    * - ``--clustered``
      - False
-     - When used, the client connects to the load balancer, usually on port ``3108``. If not set, the client assumes the connection is to a standalone SQreamDB worker.
-   * - ``--service``
+     - When used, the client connects to the load balancer, usually on port ``3108``. If not set, the client assumes the connection is to a standalone SQreamDB worker
+   * - ``-s`` or ``--service``
      - ``sqream``
-     - :ref:`Service name (queue)<workload_manager>` that statements will file into.
+     - :ref:`Service name (queue)<workload_manager>` that statements will file into
    * - ``--results-only``
      - False
      - Outputs results only, without timing information and row counts
@@ -382,7 +355,23 @@ Command Line Arguments
      - When set, prevents command history from being saved in ``~/.sqream/clientcmdhist``
    * - ``--delimiter``
      - ``,``
-     - Specifies the field separator. By default, ``sqream sql`` outputs valid CSVs. Change the delimiter to modify the output to another delimited format (e.g. TSV, PSV). See the section :ref:`supported record delimiters<supported_record_delimiters>` below for more information.
+     - Specifies the field separator. By default, ``sqream sql`` outputs valid CSVs. Change the delimiter to modify the output to another delimited format (e.g. TSV, PSV). See the section :ref:`supported record delimiters<supported_record_delimiters>` below for more information
+   * - ``--chunksize``
+     - 128 * 1024 (128 Kb)
+     - Network chunk size
+   * - ``--log`` or ``log-file``
+     - False
+     - A log file will be created
+   * - ``--show-results``
+     - True
+     - Determines whether or not results are shown
+   * - ``--ssl``
+     - False
+     - Determines connection SSL
+   * - ``--table-view``
+     - ``true``
+     - Displays query results in a table view format with column headers. The display limit is set to 10,000 rows
+
 
 .. tip:: Run ``$  sqream sql --help`` to see a full list of arguments
 
