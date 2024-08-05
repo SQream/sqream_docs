@@ -52,7 +52,7 @@ Output:
 
 .. code-block:: none
 
-	java -jar jdbc-console-1.0.5-blue.jar --host=<BLUE cluster FQDN> --access-token=cHczWjlIWHk2**** --help
+	java -jar jdbc-console-1.0.5.jar --host=<BLUE cluster FQDN> --access-token=cHczWjlIWHk2**** --help
 
 
 First Steps 
