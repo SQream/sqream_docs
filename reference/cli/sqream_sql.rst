@@ -30,9 +30,9 @@ Before You Begin
   .. code-block:: none
 
 	if [[ "$@" =~ "access-token" ]]; then
-		JAVA_CMD="/usr/lib/jvm/jdk-8.0.0/bin/java"
+	   JAVA_CMD="/usr/lib/jvm/jdk-8.0.0/bin/java"
 	else
-		JAVA_CMD="/usr/lib/jvm/java-1.8.0/bin/java"
+	   JAVA_CMD="/usr/lib/jvm/java-1.8.0/bin/java"
 
 Using SQreamDB SQL
 ==================
