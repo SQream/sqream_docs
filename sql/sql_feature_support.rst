@@ -210,7 +210,7 @@ Table Expressions
      -
    * - Aliases, ``AS``
      - Yes
-     - When aliasing column names, the alias must adhere to the rules for :ref:`identifiers<keywords_and_identifiers>` and cannot be a string
+     - Aliases must adhere to the rules for :ref:`identifiers<keywords_and_identifiers>` and cannot be a string
    * - ``JOIN`` - ``INNER``, ``LEFT [ OUTER ]``, ``RIGHT [ OUTER ]``, ``CROSS``
      - Yes
      -
