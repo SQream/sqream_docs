@@ -20,50 +20,17 @@ Prepare your source Parquet files according to the requirements described in the
    :header-rows: 1
    
    * -   SQream Type →
-   
-          ::
-
          Parquet Source ↓
      - ``BOOL``
-
-          ::
-
      - ``TINYINT``
-
-          ::
-
      - ``SMALLINT``
-
-          ::
-
      - ``INT``
-
-          ::
-
      - ``BIGINT``
-
-          ::
-
      - ``REAL``
-
-          ::
-
      - ``DOUBLE``
-
-          ::
-
      - ``TEXT`` [#f0]_
-
-          ::
-
      - ``DATE``
-
-          ::
-
      - ``DATETIME``
-
-          ::
-
    * - ``BOOLEAN``
      - Supported 
      - 
