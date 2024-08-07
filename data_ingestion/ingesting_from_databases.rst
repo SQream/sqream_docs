@@ -318,6 +318,7 @@ Please note that any customization done through the CLI will override configurat
 	
 	* ``inc``: Only changes made to the source table data since last load will be loaded into SQreamDB. Changes include transactions of ``INSERT`` statement. SQLoader recognizes the table by table name and metadata
 	Please note that ``cdc``, and ``inc`` are supported only for Oracle
+	
    * - ``-use_dbms_lob``
      - Optional
      - ``true``
