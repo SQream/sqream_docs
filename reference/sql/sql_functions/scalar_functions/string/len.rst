@@ -18,7 +18,8 @@ Syntax
 
 .. code-block:: postgres
 
-   LEN( expr ) --> INT
+   LEN( expr )
+   LENGTH( expr )
 
 Arguments
 ============
