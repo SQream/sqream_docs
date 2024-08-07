@@ -1,0 +1,14 @@
+:orphan:
+
+**************************
+Page Cannot Be Found - 404
+**************************
+
+Use the **Search docs** bar, or use the navigation sidebar to find what you're looking for.
+
+.. rubric:: Need help?
+
+If you couldn't find what you're looking for, we're always happy to help. 
+
+Visit the `SQreamDB support portal <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ for additional help.
+
