@@ -43,7 +43,7 @@ Minimum Hardware Requirements
    * - RAM
      - 32GB
 
-.. _sqloader_thread_sizing_guidelines:
+.. _sqloader_thread_sizing_guideline:
 
 Sizing Guidelines 
 ------------------
@@ -584,7 +584,7 @@ Mandatory flags must be configured using HTTP flags or the ``properties`` file.
    * - ``threadCount``
      - Optional
      - ``1``
-     - Number of threads to use for loading. Using multiple threads can significantly improve the loading performance, especially when dealing with columns that have metadata statistics (e.g., min/max values). SQLoader will automatically divide the data into batches based on the specified thread number, allowing for parallel processing. You may use ``thread`` both for tables that are partitioned and tables that are not. See :ref:`Sizing Guidelines<sqloader_thread_sizing_guidelines>`
+     - Number of threads to use for loading. Using multiple threads can significantly improve the loading performance, especially when dealing with columns that have metadata statistics (e.g., min/max values). SQLoader will automatically divide the data into batches based on the specified thread number, allowing for parallel processing. You may use ``thread`` both for tables that are partitioned and tables that are not. See :ref:`Sizing Guidelines<sqloader_thread_sizing_guideline>`
    * - ``truncate``
      - Optional
      - ``false``
