@@ -16,9 +16,9 @@ Compatibility Matrix
 +-------------------------+------------------------------------------------------------------------+
 | System Requirement      | Details                                                                |
 +=========================+========================================================================+
-| Supported OS            | * RHEL - 7.x / 8.x                                                     |
+| Supported OS            | * RHEL - 8.x.                                                          |
 +-------------------------+------------------------------------------------------------------------+
-| supported Nvidia driver | CUDA version from 10.1 up to 11.4                                      |
+| supported Nvidia driver | CUDA version 11.x                                                      |
 +-------------------------+------------------------------------------------------------------------+
 | Storage version         |   51                                                                   |
 +-------------------------+------------------------------------------------------------------------+
@@ -34,9 +34,9 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
-► REHL 8.x is now officially supported.
+► Announcing a new cross-platform :ref:`SQream SQL CLI<sqream_sql_cli_reference>` which is Java-based. This new CLI is fully compatible with the old and soon to be :ref:`deprecated Haskell CLI<deprecations>`. It also supports a neat looking result ``table view``.  
 
-► A new :ref:`ldap` configuration flag allows including LDAP user attributes in your SQreamDB metadata by associating these attributes with SQreamDB roles.  
+► A new :ref:`ldap` configuration flag allows including LDAP user attributes in your SQreamDB metadata by associating these attributes with SQreamDB roles. This means that you can now search by these attributes using your SQreamDB web interface. 
 
 ► The ``TOP`` clause can now take a **subtraction** arithmetic operator when used in a :ref:`select` statement. 
 
@@ -92,12 +92,14 @@ Version 4.6 resolved Issues
 | SQ-16592           | Fixed a discrepancy issue following ``OR`` condition execution                                                      |
 +--------------------+---------------------------------------------------------------------------------------------------------------------+
 
+.. _deprecations:
+
 Deprecations
 ------------
 
 ► **Haskell CLI**
 
-Starting February 2025, support for the Haskell CLI will be discontinued, and it will be replaced by a JAVA CLI that is compatible with both SQreamDB and BLUE.
+Starting February 2025, support for the Haskell CLI will be discontinued, and it will be replaced by a JAVA CLI that is compatible with both SQreamDB.
 
 ► **CentOS Linux 7.x**
 

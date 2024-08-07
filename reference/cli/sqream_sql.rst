@@ -16,19 +16,23 @@ SQreamDB SQL Java-based CLI allows SQL statements to be executed interactively o
 Before You Begin
 ================
 
-It is essential that you have the following installed:
+* It is essential that you have the following installed:
 
-* `SQreamDB Java CLI <https://storage.cloud.google.com/cicd-storage/jdbc-console/release/jdbc-console-1.0.5-v1.zip>`_
-* Java 8
+  * `SQreamDB Java CLI <https://storage.cloud.google.com/cicd-storage/jdbc-console/release/jdbc-console-1.0.5-v1.zip>`_
+  * Java 8
 
-It is essential you have the Java home path configured in your ``sqream`` file:
+* It is essential you have the Java home path configured in your ``sqream`` file:
 
-.. code-block:: none
+  #. Open the ``sqream`` file using any text editor.
 
-  if [[ "$@" =~ "access-token" ]]; then
-      JAVA_CMD="/usr/lib/jvm/jdk-8.0.0/bin/java"
-  else
-      JAVA_CMD="/usr/lib/jvm/java-1.8.0/bin/java"
+  #. Set the default path ``/usr/lib/jvm/jdk-8.0.0/bin/java`` to the local Java 8 path on your machine:
+
+  .. code-block:: none
+
+	if [[ "$@" =~ "access-token" ]]; then
+	   JAVA_CMD="/usr/lib/jvm/jdk-8.0.0/bin/java"
+	else
+	   JAVA_CMD="/usr/lib/jvm/java-1.8.0/bin/java"
 
 Using SQreamDB SQL
 ==================
