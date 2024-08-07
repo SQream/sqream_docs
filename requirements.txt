@@ -1,10 +1,11 @@
 # File: docs/requirements.txt
 
 # Defining the exact version will make sure things don't break
-sphinx==5.3.0
+sphinx==7.2.6
 sphinx-rtd-theme>=2.1.0rc1
 urllib3<=2.0.0
 openssl-python>=0.1.1
-sphinx-notfound-page
+sphinx-notfound-page>=1.0.4
 Pygments>=2.4.0
+sphinx-favicon>=1.0.1
 pdftex
