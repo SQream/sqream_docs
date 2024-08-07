@@ -61,9 +61,9 @@ versionwarning_api_url = {
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx_rtd_theme' 
-    ,'notfound.extension' # 404 handling
-    ,'versionwarning.extension'
+    "sphinx_rtd_theme",
+    "notfound.extension", # 404 handling
+    "sphinx_favicon"
 ]
  
 # Mark 'index' as the main page
