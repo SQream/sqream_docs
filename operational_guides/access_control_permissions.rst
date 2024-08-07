@@ -27,7 +27,7 @@ The following table describe the required permissions for performing and executi
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``CONNECT``          | Connect to the database                                                                                                 |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
-| ``CREATE``           | Create and drop schemas in the database (the schema must be empty for ``DROP`` operation to succeed                     |
+| ``CREATE``           | Create and drop schemas in the database (the schema must be empty for ``DROP`` operation to succeed)                    |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``CREATE FUNCTION``  | Create and drop functions                                                                                               |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
