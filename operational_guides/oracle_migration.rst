@@ -10,11 +10,6 @@ This guide is designed to assist those who wish to migrate their database system
    :local:
    :depth: 2
 
-Before You Begin
-================
-
-
-
 Using SQream Commands, Statements, and UDFs
 ===========================================
 
