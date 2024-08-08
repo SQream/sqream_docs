@@ -64,7 +64,7 @@ An average single-node cluster can be a rackmount server or workstation, contain
         NVIDIA 2x A100, H100, or L40S
 		
    * - Operating System
-     - Red Hat Enterprise Linux v7.9 / v8.9 or Amazon Linux
+     - Red Hat Enterprise Linux v8.9 or Amazon Linux
 
 .. note:: If you are using internal storage, your volumes must be formatted as xfs.
 
