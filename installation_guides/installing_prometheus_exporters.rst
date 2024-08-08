@@ -11,7 +11,8 @@ The **Installing Prometheus Exporters** guide includes the following sections:
    :depth: 1
 
 Overview
-==============================
+========
+
 The **Prometheus** exporter is an open-source systems monitoring and alerting toolkit. It is used for collecting metrics from an operating system and exporting them to a graphic user interface. 
 
 The Installing Prometheus Exporters guide describes how to installing the following exporters:
@@ -25,7 +26,8 @@ The Installing Prometheus Exporters guide describes how to installing the follow
 For information about more exporters, see `Exporters and Integration <https://prometheus.io/docs/instrumenting/exporters/>`_
 
 Adding a User and Group
-=====================
+=======================
+
 Adding a user and group determines who can run processes.
 
 You can add users with the following command:
@@ -41,7 +43,8 @@ You can add groups with the following command:
    $ sudo useradd -s /sbin/nologin --system -g prometheus prometheus
 
 Cloning the Prometheus GIT Project
-=====================
+==================================
+
 After adding a user and group you must clone the Prometheus GIT project.
 
 You can clone the Prometheus GIT project with the following command:
@@ -69,7 +72,8 @@ The following shows the result of cloning your Prometheus GIT project:
    $     └── nvidia_exporter.service	  
 	  
 Installing the Node Exporter and NVIDIA Exporter
-=====================
+================================================
+
 After cloning the Prometheus GIT project you must install the **node_exporter** and **NVIDIA_exporter**.
 
 **To install the node_exporter and NVIDIA_exporter:**
@@ -145,15 +149,17 @@ After cloning the Prometheus GIT project you must install the **node_exporter** 
       $            └─1886 /usr/bin/nvidia_exporter
    	  
 Installing the Process Exporter
-=====================
+===============================
+
 After installing the **node_exporter** and **Nvidia_exporter** you must install the **process_exporter**.
 
 **To install the process_exporter:**
 
-1. Do one of the following:
+1. Run the following:
 
-   * For **CentOS**, run ``sudo rpm -i process_exporter/process-exporter_0.5.0_linux_amd64.rpm``.
-   * For **Ubuntu**, run ``sudo dpkg -i process_exporter/process-exporter_0.6.0_linux_amd64.deb``.
+   .. code-block:: console
+
+      $ sudo dpkg -i process_exporter/process-exporter_0.6.0_linux_amd64.deb.
    
 2. Verify that the process_exporter is running:
 
@@ -168,7 +174,8 @@ After installing the **node_exporter** and **Nvidia_exporter** you must install 
       $ sudo systemctl enable process-exporter
 	  
 Opening the Firewall Ports
-=====================
+==========================
+
 After installing the **process_exporter** you must open the firewall ports for the following services:
 
 * **node_exporter** - port: 9100

@@ -48,19 +48,12 @@ Take note of the location of ``.odbc.ini`` and ``.odbcinst.ini``. In this case, 
    :local:
    :depth: 1
 
-Install unixODBC on RHEL 7 / CentOS 7
+Install unixODBC on RHEL 8.9
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: console
 
    $ yum install -y unixODBC unixODBC-devel
-
-Install unixODBC on Ubuntu
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: console
-
-   $ sudo apt-get install odbcinst1debian2 libodbc1 odbcinst unixodbc
 
 
 Install the ODBC driver with a script

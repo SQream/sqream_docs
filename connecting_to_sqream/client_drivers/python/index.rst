@@ -68,17 +68,11 @@ OpenSSL for Linux
 
 The Python connector relies on OpenSSL for secure connections to SQream DB. Some distributions of Python do not include OpenSSL. 
 
-To install OpenSSL on RHEL/CentOS, run the following command:
+To install OpenSSL on RHEL, run the following command:
 
   .. code-block:: console
    
      $ sudo yum install -y libffi-devel openssl-devel
-
-To install OpenSSL on Ubuntu, run the following command:
-
-  .. code-block:: console
-   
-     $ sudo apt-get install libssl-dev libffi-dev -y
 
 
 Installing via PIP with an internet connection

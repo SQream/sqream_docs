@@ -46,19 +46,6 @@ Upon running sqream sql for the first time, you may get an error ``error while l
 
 Solving this error requires installing the ncruses or libtinfo libraries, depending on your operating system.
 
-* Ubuntu:
-
-   #. Install ``libtinfo``:
-      
-      ``$ sudo apt-get install -y libtinfo``
-   #. Depending on your Ubuntu version, you may need to create a symbolic link to the newer libtinfo that was installed.
-   
-      For example, if ``libtinfo`` was installed as ``/lib/x86_64-linux-gnu/libtinfo.so.6.2``:
-      
-      ``$ sudo ln -s /lib/x86_64-linux-gnu/libtinfo.so.6.2 /lib/x86_64-linux-gnu/libtinfo.so.5``
-      
-* CentOS / RHEL:
-
    #. Install ``ncurses``:
    
       ``$ sudo yum install -y ncurses-libs``

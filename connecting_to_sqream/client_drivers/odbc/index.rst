@@ -31,10 +31,7 @@ SQream has an ODBC driver to connect to SQream DB. This tutorial shows how to in
           * Windows Server 2019
 
    * - Linux
-     -    * Red Hat Enterprise Linux (RHEL) 7
-          * CentOS 7
-          * Ubuntu 16.04
-          * Ubuntu 18.04
+     -    * Red Hat Enterprise Linux (RHEL) 8.9
 
 Other distributions may also work, but are not officially supported by SQream.
 

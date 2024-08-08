@@ -93,9 +93,9 @@ Before You Begin
 
 * Once the BIOS settings have been set, you must install the operating system.
 
-* A typical SQreamDB installation requires RHEL7.9/CentOS 7.9 or RHEL8.X (RHEL8.9 recommended)
+* A typical SQreamDB installation requires RHEL8.9
 
-* Verify the exact RHEL7/RHEL8 version with your storage vendor to avoid driver incompatibility.
+* Verify the exact RHEL8 version with your storage vendor to avoid driver incompatibility.
 
 Installation
 ----------------
@@ -212,20 +212,6 @@ Installing Required Software
 Installing EPEL Repository
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**CentOS7/RHEL8**
-
-   .. code-block:: console
-
-      sudo yum install epel-release  
-   
-**RHEL7**
-
-   .. code-block:: console
-
-      sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-
-**RHEL8**   
-
    .. code-block:: console
 
       sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
@@ -234,14 +220,6 @@ Enabling Additional Red Hat Repositories
 """""""""""""""""""""""""""""""""""""""""
 
 Enabling additional Red Hat repositories is essential to install the required packages in the subsequent procedures.
-
-**RHEL7**
-
-   .. code-block:: console
-
-      sudo subscription-manager repos --enable rhel-7-server-optional-rpms
-	
-**RHEL8**  
 
    .. code-block:: console
 
@@ -252,28 +230,12 @@ Enabling additional Red Hat repositories is essential to install the required pa
 Installing Required Packages
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-**RHEL7/CentOS7**
-
-   .. code-block:: console
-
-      sudo yum install ntp pciutils monit zlib-devel openssl-devel kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc net-tools wget jq libffi-devel gdbm-devel tk-devel xz-devel sqlite-devel readline-devel bzip2-devel ncurses-devel zlib-devel
-
-**RHEL8**
-
    .. code-block:: console
 
       sudo dnf install chrony pciutils monit zlib-devel openssl-devel kernel-devel-$(uname -r) kernel-headers-$(uname -r) gcc net-tools wget jq libffi-devel xz-devel ncurses-compat-libs libnsl gdbm-devel tk-devel sqlite-devel readline-devel texinfo 
 
 Installing Recommended Tools
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-**RHEL7/CentOS7**
-
-   .. code-block:: console
-
-      sudo yum install bash-completion.noarch vim-enhanced vim-common net-tools iotop htop psmisc screen xfsprogs wget yum-utils deltarpm dos2unix
-
-**RHEL8**
 
    .. code-block:: console
 
@@ -744,7 +706,7 @@ Before You Begin
 
       gcc --version
   
-3. If ``gcc`` has not been installed, install it for RHEL or CentOS:
+3. If ``gcc`` has not been installed, install it for RHEL:
 
    .. code-block:: console
 
@@ -753,7 +715,7 @@ Before You Begin
 Updating the Kernel Headers  
 ---------------------------
 
-1. Update the kernel headers on RHEL or CentOS:
+1. Update the kernel headers on RHEL:
 
    .. code-block:: console
 
@@ -821,23 +783,9 @@ Installing the CUDA driver from the Repository is the recommended installation m
 
 1. Install the CUDA dependencies for one of the following operating systems:
 
-   * For RHEL7:
-
-     .. code-block:: console
-
-        sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-
-   * For RHEL8:
-
      .. code-block:: console
 
         sudo dnf install https://dl.fedoraproject.org/pub/epel/epel-release-latest-8.noarch.rpm
-
-   * For CentOS:
-
-     .. code-block:: console
-
-        sudo yum install epel-release
 	
 2. (Optional) Install the CUDA dependencies from the ``epel`` repository:
 
@@ -848,18 +796,6 @@ Installing the CUDA driver from the Repository is the recommended installation m
    Installing the CUDA depedendencies from the ``epel`` repository is only required for installing ``runfile``.
 
 3. Download and install the required local repository:
-		 
-    * **CentOS7/RHEL7 CUDA 11.4.3 repository (INTEL) installation (Required for A-Series GPU models):**	 
-		 
-      .. code-block:: console
-
-		 wget https://developer.download.nvidia.com/compute/cuda/11.4.3/local_installers/cuda-repo-rhel7-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
-		 sudo yum localinstall cuda-repo-rhel7-11-4-local-11.4.3_470.82.01-1.x86_64.rpm
-		 
-      .. code-block:: console
-	  
-		 sudo yum clean all
-		 sudo yum -y install nvidia-driver-latest-dkms
 		 
 
     * **RHEL8.9 CUDA 12.3.2 repository ( INTEL ) installation ( Required for H/L Series GPU models ):**

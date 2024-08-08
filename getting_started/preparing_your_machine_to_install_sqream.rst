@@ -7,14 +7,10 @@ Preparing Your Machine to Install SQreamDB
 To prepare your machine to install SQreamDB, do the following:
 
  * Set up your local machine according to SQreamDB's recommended pre-installation configurations.
- 
-    ::
    
  * Verify you have an NVIDIA-capable server, either on-premise or on supported cloud platforms: 
 
-   * Red Hat Enterprise Linux v7.x / v8.6 - 8.9  
- 
-   * CentOS v7.x
+   * Red Hat Enterprise Linux v8.9 
  
    * Amazon Linux 7
 	 

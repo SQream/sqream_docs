@@ -12,7 +12,8 @@ A stand-alone server is a server that does not run SQreamDB based on binary file
    :depth: 1
 
 Installing NodeJS Version 12 on the Server
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Before installing Studio you must install NodeJS version 12 on the server.
 
 **To install NodeJS version 12 on the server:**
@@ -31,29 +32,11 @@ Before installing Studio you must install NodeJS version 12 on the server.
   
 2. If a version of NodeJS older than *12.<x.x>* has been installed, remove it as follows:
 
-   * On CentOS:
-
-     .. code-block:: console
-     
-        $ sudo yum remove -y nodejs
-
-   * On Ubuntu:
-
      .. code-block:: console
      
         $ sudo apt remove -y nodejs
 
 3. If you have not installed NodeJS version 12, run the following commands:
-
-   * On CentOS:
-
-     .. code-block:: console
-     
-        $ curl -sL https://rpm.nodesource.com/setup_12.x | sudo bash -
-        $ sudo yum clean all && sudo yum makecache fast
-        $ sudo yum install -y nodejs
-		
-   * On Ubuntu:
 
      .. code-block:: console
      
@@ -114,7 +97,8 @@ Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
 
 	 
 Installing Studio
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
+
 After installing the Dashboard Data Collector, you can install Studio.
  
 **To install Studio:**
@@ -198,7 +182,8 @@ After installing the Dashboard Data Collector, you can install Studio.
 Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
 
 Starting Studio Manually
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^
+
 You can start Studio manually by running the following command:
  
 .. code-block:: console
@@ -219,7 +204,8 @@ The following output is displayed:
    └─────┴──────────────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘
 
 Starting Studio as a Service
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Sqream uses the **Process Manager (PM2)** to maintain Studio.
 
 **To start Studio as a service:**
@@ -325,7 +311,8 @@ Sqream uses the **Process Manager (PM2)** to maintain Studio.
 Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
 
 Accessing Studio
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
+
 The Studio page is available on port 8080: ``http://<server ip>:8080``.
 
 If port 8080 is blocked by the server firewall, you can unblock it by running the following command:
@@ -338,7 +325,8 @@ If port 8080 is blocked by the server firewall, you can unblock it by running th
 Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
 
 Maintaining Studio with the Process Manager (PM2)
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Sqream uses the **Process Manager (PM2)** to maintain Studio.
  
 You can use PM2 to do one of the following:
@@ -356,7 +344,8 @@ You can use PM2 to do one of the following:
 Back to :ref:`Installing Studio on a Stand-Alone Server<install_studio_top>`
 
 Upgrading Studio
-^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
+
 To upgrade Studio you need to stop the version that you currently have.
 
 **To stop the current version of Studio:**
