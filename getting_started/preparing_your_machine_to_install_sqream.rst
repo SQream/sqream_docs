@@ -12,7 +12,7 @@ To prepare your machine to install SQreamDB, do the following:
 
    * Red Hat Enterprise Linux v8.9 
  
-   * Amazon Linux 7
+   * Amazon Linux 2
 	 
  * Verify that you have the following:
  
