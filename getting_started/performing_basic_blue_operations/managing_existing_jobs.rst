@@ -6,6 +6,10 @@ Managing Existing Jobs
 
 Whether it's for maintenance or general enhancements, you can manage and edit Jobs and Tasks, provided that the Job is not currently running.
 
+.. topic:: ``clusteradmin``
+
+   A ``clusteradmin`` can enable **View cluster jobs** to view all the Jobs of all users. This is helpful for managing your cluster and keeping it clean. 
+
 Editing a Job
 =============
 

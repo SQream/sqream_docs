@@ -6,6 +6,10 @@ Resource Management
 
 Managing a BLUE cluster involves two core aspects: pools and Workers. Pools serve as organized resource compartments, enabling strategic allocation of Workers based on specific compute power needs. Workers, operating within these pools, execute tasks and process data. By adjusting the number of Workers in each pool, users can optimize resource usage, ensuring efficient compute power and task execution while effectively utilizing the cluster's capabilities.
 
+.. topic:: ``clusteradmin``
+
+   Only a ``clusteradmin`` can manage **Resource Pools**.
+
 Pools
 =====
 

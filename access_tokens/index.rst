@@ -6,6 +6,10 @@ Access Tokens
 
 Using connectors and third-party tools requires BLUE clients to be associated with access tokens. Once an access token is generated, you may use it to secure the connection between your BLUE client and the respective BLUE cluster or platform, ensuring authenticated access, controlled data interaction, and enhanced security measures in place.
 
+.. topic:: ``clusteradmin``
+
+   Only a ``clusteradmin`` can create and manage access tokens.
+
 .. tip::
 
 	:ref:`Creating roles<create_role>` before generating access tokens is a best practice.

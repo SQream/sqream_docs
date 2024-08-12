@@ -57,6 +57,10 @@ The **Jobs** page is where you can create, execute, and manage your SQL and Pyth
 * Frequency
 * Status
 
+.. topic:: ``clusteradmin``
+
+   A ``clusteradmin`` can enable **View cluster jobs** to view all the Jobs of all users. This is helpful for managing your cluster and keeping it clean. 
+
 More about :ref:`executing, monitoring, and managing Jobs<performing_basic_blue_operations>`
 
 .. _monitoring_your_cluster:
@@ -140,6 +144,10 @@ To view the full details of an executed statement, hover over the desired row an
 
 Administrating Your Cluster
 ===========================
+
+.. topic:: ``clusteradmin``
+
+   Only a ``clusteradmin`` can view the **Settings** page.
 
 Scaling your Cluster
 --------------------

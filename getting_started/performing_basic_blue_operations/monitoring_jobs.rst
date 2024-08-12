@@ -4,7 +4,7 @@
 Monitoring Jobs
 ***************
 
-The **History** tab is your go-to for checking the last execution time, the next scheduled execution, and the current status of your Job.
+The **History** tab is your go-to for checking the current job status, the last execution time, and the next scheduled execution.
 
 Job status may be one of four options:
 
@@ -22,6 +22,10 @@ Job status may be one of four options:
      - Your job is currently running
    * - Pending
      - Your job will be executed as soon as a Worker becomes available
+
+.. topic:: ``clusteradmin``
+
+   A ``clusteradmin`` can enable **View cluster jobs** to view all the Jobs of all users. This is helpful for managing your cluster and keeping it clean.
 
 Failed Jobs
 =========== 

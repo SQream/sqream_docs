@@ -6,6 +6,10 @@ Billing
 
 **BLUE GPU Uptime** (**BGU**) is a BLUE GPU instance measurement unit that is calculated into monthly fees. The BGU monitor provides precise understanding of credit consumption, cluster utilization, and historical cluster size changes. This knowledge empowers you to estimate expenses, optimize cluster sizing based on usage, and analyze monthly billing trends. 
 
+.. topic:: ``clusteradmin``
+
+   Only a ``clusteradmin`` can manage **Billing**.
+
 Monitor Elements
 ^^^^^^^^^^^^^^^^
 
