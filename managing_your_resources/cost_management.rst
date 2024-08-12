@@ -6,6 +6,10 @@ Cost Management
 
 Cost management involves optimizing expenses by efficiently adjusting resources, such as cluster size and Worker numbers, based on varying workloads, and utilizing features like environment suspension to temporarily halt billing during periods of inactivity.
 
+.. topic:: ``clusteradmin``
+
+   Only a ``clusteradmin`` can manage cost.
+
 Monitoring Worker Usage
 ^^^^^^^^^^^^^^^^^^^^^^^
 

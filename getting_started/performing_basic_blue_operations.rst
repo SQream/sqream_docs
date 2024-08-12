@@ -11,6 +11,10 @@ Before You Begin
 
 It is essential that you create a BLUE client and associate it with an :ref:`access token<access_tokens>`.
 
+.. topic:: ``clusteradmin``
+
+   Only a ``clusteradmin`` can create access tokens.
+
 What are Jobs
 =============
 
