@@ -197,20 +197,20 @@ Creating a Table
 
 	CREATE OR REPLACE FOREIGN TABLE snowflake_table
 	( 
-	  id BIGING,
+	  id BIGINT,
 	  address TEXT,
 	  purchase DOUBLE
 	)
 	WRAPPER snowflake_fdw
 	OPTIONS 
 	 (
-	  ACCOUNT_NAME 'my sf account'
-	  DB_TABLE 'my_customers',
-	  USERNAME 'JohnSmith',
-	  PASSWORD 'pa$$w0rD',
-	  DATABASE 'master',
-	  SCHEMA 'public',
-	  SF_WAREHOUSE 'my_sf_warehouse'
+	  ACCOUNT_NAME = 'my sf account'
+	  DB_TABLE = 'my_customers',
+	  USERNAME = 'JohnSmith',
+	  PASSWORD = 'pa$$w0rD',
+	  DATABASE = 'master',
+	  SCHEMA = 'public',
+	  SF_WAREHOUSE = 'my_sf_warehouse'
 	);
 	
 Joining Blue and Snowflake Tables
@@ -238,13 +238,13 @@ Copying Data Into a Blue Table
 	  snowflake_fdw
 	OPTIONS
 	 (
-	  ACCOUNT_NAME 'my sf account',
-	  DB_TABLE 'my_customers',
-	  USERNAME 'JohnSmith',
-	  PASSWORD 'pa$$w0rD',
-	  DATABASE 'master',
-	  SCHEMA 'public',
-	  SF_WAREHOUSE 'my_sf_warehouse',
+	  ACCOUNT_NAME = 'my sf account',
+	  DB_TABLE = 'my_customers',
+	  USERNAME = 'JohnSmith',
+	  PASSWORD = 'pa$$w0rD',
+	  DATABASE = 'master',
+	  SCHEMA = 'public',
+	  SF_WAREHOUSE = 'my_sf_warehouse',
 	  NEW_TABLE = TRUE
 	 );
 	 
