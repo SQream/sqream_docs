@@ -103,7 +103,7 @@ Installing via PIP without an internet connection
 	#Install all packages with --no-index --find-links .
 	python3 -m pip install *.whl -U --no-index --find-links .
 	python3.9 -m pip install pysqream-5.0.0.zip -U --no-index --find-links .
-	python3.9 -m pip install pysqream-sqlalchemy-1.0.zip  -U --no-index --find-links .
+	python3.9 -m pip install pysqream-sqlalchemy-1.3.zip  -U --no-index --find-links .
 
 Upgrading an Existing Installation
 ----------------------------------
@@ -120,6 +120,11 @@ SQLAlchemy
 ==========
 
 SQLAlchemy is an Object-Relational Mapper (ORM) for Python. When you install the SQream dialect (``pysqream-sqlalchemy``) you can use frameworks such as Pandas, TensorFlow, and Alembic to query SQream directly.
+
+Before You Begin
+----------------
+
+Download :ref:`pysqream-sqlalchemy<https://pypi.org/project/pysqream-sqlalchemy/1.3/>`
 
 .. contents:: 
    :local:
