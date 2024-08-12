@@ -60,19 +60,25 @@ Installation and Connectivity
 Getting All Configuration and JAR Files
 ---------------------------------------
 
-Extract the ``.tar`` file using the following command:
+#. Download the SQLoader zip file:
 
-.. code-block:: bash
+   .. code-block:: console
+
+	https://storage.cloud.google.com/cicd-storage/sqloader_release/sqloader-release-v1.1.zip
+
+#. Extract the ``.tar`` file using the following command:
+
+   .. code-block:: bash
 
 	tar -xf sqloader_srv_v8.1.tar.gz
 
-A folder named ``sqloader`` with the following files is created:
+   A folder named ``sqloader`` with the following files is created:
    
-.. code-block:: 
+   .. code-block:: 
 
 	├── sqloader-v1.sh
 	├── bin
-	│   ├── sqloader-admin-server-1.0.jar
+	│   ├── sqloader-admin-server-1.1.jar
 	│   └── sqloader-service-8.1.jar
 	├── config
 		├── reserved_words.txt

@@ -26,9 +26,10 @@ Compatibility Matrix
 |                         | * ODBC 4.4.4                                                           | 
 |                         | * NodeJS 4.2.4                                                         |
 |                         | * .NET 5.0.0                                                           |
-|                         | * Pysqream 5.1.0                                                       |
+|                         | * Pysqream 5.1.0 (compatible with v4.5.13 or later)                    |
 |                         | * Spark 5.0.0                                                          |
-|                         | * SQLoader 8.0 (compatible with v4.6.1 or later)                       |
+|                         | * SQLoader As A Service 8.1 (compatible with v4.6.1 or later)          |
+|                         | * SQLoader As A Process 7.13 (compatible with v4.5.13 or later)        |
 +-------------------------+------------------------------------------------------------------------+
 
 New Features and Enhancements
