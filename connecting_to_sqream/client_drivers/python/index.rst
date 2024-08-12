@@ -99,11 +99,11 @@ Installing via PIP without an internet connection
 
 .. code-block:: console
 
-	tar -xf pysqream_connector_5.0.0.tar.gz
-	cd pysqream_connector_5.0.0
+	tar -xf pysqream_connector_5.1.0.tar.gz
+	cd pysqream_connector_5.1.0
 	#Install all packages with --no-index --find-links .
 	python3 -m pip install *.whl -U --no-index --find-links .
-	python3.9 -m pip install pysqream-5.0.0.zip -U --no-index --find-links .
+	python3.9 -m pip install pysqream-5.1.0.zip -U --no-index --find-links .
 	python3.9 -m pip install pysqream-sqlalchemy-0.8.zip  -U --no-index --find-links .
 
 Upgrading an Existing Installation
@@ -122,17 +122,16 @@ SQLAlchemy
 
 SQLAlchemy is an Object-Relational Mapper (ORM) for Python. When you install the SQream dialect (``pysqream-sqlalchemy``) you can use frameworks such as Pandas, TensorFlow, and Alembic to query SQream directly.
 
+Before You Begin
+----------------
+
+Download `pysqream-sqlalchemy <https://pypi.org/project/pysqream-sqlalchemy/1.3/>`_
+
 Limitation
 -----------
 
-Please note that SQLAlchemy does not support the ``ARRAY`` data type.
-
-.. contents:: 
-   :local:
-   :depth: 1
-
-* SQLalchemy version 1.4.46
-* Currently supports Pysqream 3.2.5
+* Supports `Pysqream 3.2.5 <https://pypi.org/project/pysqream/3.2.5/>`_
+* Does not support the ``ARRAY`` data type
 
 
 

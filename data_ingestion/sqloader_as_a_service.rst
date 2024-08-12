@@ -60,20 +60,26 @@ Installation and Connectivity
 Getting All Configuration and JAR Files
 ---------------------------------------
 
-Extract the ``.tar`` file using the following command:
+#. Download the SQLoader zip file:
 
-.. code-block:: bash
+   .. code-block:: console
 
-	tar -xf sqloader_srv_v8.0.tar.gz
+	https://storage.cloud.google.com/cicd-storage/sqloader_release/sqloader-release-v1.1.zip
 
-A folder named ``sqloader`` with the following files is created:
+#. Extract the ``.tar`` file using the following command:
+
+   .. code-block:: bash
+
+	tar -xf sqloader_srv_v8.1.tar.gz
+
+   A folder named ``sqloader`` with the following files is created:
    
-.. code-block:: 
+   .. code-block:: 
 
 	├── sqloader-v1.sh
 	├── bin
-	│   ├── sqloader-admin-server-1.0.jar
-	│   └── sqloader-service-8.0.jar
+	│   ├── sqloader-admin-server-1.1.jar
+	│   └── sqloader-service-8.1.jar
 	├── config
 		├── reserved_words.txt
 		├── sqload-jdbc.properties
@@ -91,7 +97,7 @@ A folder named ``sqloader`` with the following files is created:
      - Used for defining a connection string and may also be used to reconfigure data loading
    * - ``reserved_words.txt``
      - A list of reserved words which cannot be used as table and/or column names. 
-   * - ``sqloader-service-8.0.jar``
+   * - ``sqloader-service-8.1.jar``
      - The SQLoader service JAR file 
    * - ``sqloader-admin-server-1.0.jar``
      - The SQLoader admin server JAR file
@@ -121,32 +127,32 @@ All deployment flags are not dynamically adjustable at runtime.
    * - ``configDir``
      - Optional
      - ``config``
-     - ``java -jar sqloaderService-8.0.jar --configDir=</path/to/directory/>``
+     - ``java -jar sqloaderService-8.1.jar --configDir=</path/to/directory/>``
      - Defines the path to the folder containing both the data type mapping and the reserved words files. The defined folder must contain both files or else you will receive an error. This flag affects the mapping and reserved words files and does not affect the properties file 
    * - ``hzClusterName=<TEXT>``
      - Optional
      - 
-     - ``java -jar sqloader-service-8.0.jar --hzClusterName=<TEXT>``
+     - ``java -jar sqloader-service-8.1.jar --hzClusterName=<TEXT>``
      - In Hazelcast, a cluster refers to a group of connected Hazelcast instances across different JVMs or machines. By default, these instances connect to the same cluster on the network level, meaning that all SQLoader services that start on a network will connect to each other and share the same queue. An admin can connect to only one Hazelcast cluster at a time. If you start multiple clusters and want to connect them to the admin service, you will need to start multiple admin services, with each service connecting to one of your clusters. It is essential that this flag has the same name used here and across all SQLoader instances.
    * - ``LOG_DIR``
      - Optional
      - ``logs``
-     - ``java -jar -DLOG_DIR=/path/to/log/directory sqloader-service-8.0.jar``
+     - ``java -jar -DLOG_DIR=/path/to/log/directory sqloader-service-8.1.jar``
      - Defines the path of log directory created when loading data. If no value is specified, a ``logs`` folder is created under the same location as the ``sqloader.jar`` file
    * - ``spring.boot.admin.client.url``
      - Optional
      - ``http://localhost:7070``
-     - ``java -jar sqloader-service-8.0.jar --spring.boot.admin.client.url=http://IP:PORT``
+     - ``java -jar sqloader-service-8.1.jar --spring.boot.admin.client.url=http://IP:PORT``
      - SQLoader admin server connection flag
    * - ``Xmx``
      - Optional
      - 
-     - ``java -jar -Xmx<number>g sqloader-service-8.0.jar``
+     - ``java -jar -Xmx<number>g sqloader-service-8.1.jar``
      - We recommend using the ``Xmx`` flag to set the maximum heap memory allocation for the service. If a single service is running on the machine, we suggest allocating 80% of the total memory minus approximately 4GB, which the service typically needs on average. If multiple services are running on the same machine, calculate the recommended heap size for one service and then divide it by the number of services. Compute formula: :math:`⌊ 0.8 * (TotalMemory - 4) ⌋`
    * - ``DEFAULT_PROPERTIES``
      - Mandatory
      - ``sqload-jdbc.properties``
-     - ``java -jar -DDEFAULT_PROPERTIES=/path/to/file/sqload-jdbc.properties sqloader-service-8.0.jar``
+     - ``java -jar -DDEFAULT_PROPERTIES=/path/to/file/sqload-jdbc.properties sqloader-service-8.1.jar``
      - When the service initializes, it looks for the variable DEFAULT_PROPERTIES, which corresponds to the default sqload-jdbc.properties file. Once the service is running with a specified properties file, this setting will remain unchanged as long as the service is operational. To modify it, you must shut down the service, edit the properties file, and then restart the service. Alternatively, you can modify it via a POST request, but this change will only affect the specific load request and not the default setting for all requests.
 	 
 Installing the Admin Server and SQLoader Service
@@ -252,7 +258,7 @@ Output:
 	BINDIR=/usr/local/sqloader/bin
 	LOG_DIR=/var/log/sqloader-service
 	CONFDIR=/usr/local/sqloader/config
-	JAR=sqloader-service-8.0.jar
+	JAR=sqloader-service-8.1.jar
 	PROPERTIES_FILE=/usr/local/sqloader/config/sqload-jdbc.properties
 	PORT=6060
 	ADMINIP=192.168.5.234
@@ -536,7 +542,7 @@ Mandatory flags must be configured using HTTP flags or the ``properties`` file.
    * - ``loadTypeName``
      - Optional
      - ``full``
-     - Defines a loading type that affects the table that is created in SQreamDB. Options are ``full``, ``cdc``, or ``inc``. Please note that ``cdc``, and ``inc`` are supported only for Oracle
+     - Defines a loading type that affects the table that is created in SQreamDB. Options are ``full``, ``cdc``, or ``inc``. Please note that ``cdc`` is supported for Oracle only and that ``inc`` is supported for Oracle and Postgresql
    * - ``lockCheck``
      - Optional
      - ``true``
@@ -628,7 +634,7 @@ Using the ``loadTypeName`` parameter, you can define how you wish records' chang
      - Only changes made to the source table data since last load will be loaded into SQreamDB. Changes include transactions of ``INSERT``, ``UPDATE``, and ``DELETE`` statements. SQLoader recognizes tables by table name and metadata. Supported for Oracle only
    * - Incremental
      - ``inc``
-     - Only changes made to the source table data since last load will be loaded into SQreamDB. Changes include transactions of ``INSERT`` statement. SQLoader recognizes the table by table name and metadata. Supported for Oracle only
+     - Only changes made to the source table data since last load will be loaded into SQreamDB. Changes include transactions of ``INSERT`` statement. SQLoader recognizes the table by table name and metadata. Supported for Oracle and Postgresql
 	
 
 
