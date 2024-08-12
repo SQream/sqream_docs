@@ -124,13 +124,9 @@ SQLAlchemy is an Object-Relational Mapper (ORM) for Python. When you install the
 Before You Begin
 ----------------
 
-Download :ref:`pysqream-sqlalchemy<https://pypi.org/project/pysqream-sqlalchemy/1.3/>`
+Download `pysqream-sqlalchemy <https://pypi.org/project/pysqream-sqlalchemy/1.3/>`_
 
-.. contents:: 
-   :local:
-   :depth: 1
-
-Limitations
+Limitation
 -----------
 
 * Supports `Pysqream 3.2.5 <https://pypi.org/project/pysqream/3.2.5/>`_
