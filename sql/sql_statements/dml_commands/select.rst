@@ -236,8 +236,6 @@ Get all columns
    Terry Rozier             | Boston Celtics         |     12 | PG       |  22 | 6-2    |    190 | Louisville            |  1824360
    Marcus Smart             | Boston Celtics         |     36 | PG       |  22 | 6-4    |    220 | Oklahoma State        |  3431040
 
-.. _where:
-
 Filter on conditions
 -----------------------
 
@@ -408,9 +406,7 @@ Filtering on aggregates is done with the ``HAVING`` clause, rather than the ``WH
    New York Knicks,4581493
    Sacramento Kings,4778911
    Toronto Raptors,4741174
-
-.. _order_by:
-
+ 
 Sorting results
 -------------------
 

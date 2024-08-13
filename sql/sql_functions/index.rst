@@ -42,14 +42,10 @@ Conditional Functions
    
    * - Function
      - Description
-   * - :ref:`between`
-     - Value is in [ or not within ] the range
    * - :ref:`case`
      - Test a conditional expression, and depending on the result, evaluate additional expressions.
    * - :ref:`coalesce`
      - Evaluate first non-NULL expression
-   * - :ref:`in`
-     - Value is in [ or not within ] a set of values
    * - :ref:`isnull`
      - Alias for :ref:`coalesce` with two expressions
    * - :ref:`is_ascii`
