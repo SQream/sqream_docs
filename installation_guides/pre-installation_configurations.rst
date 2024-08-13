@@ -93,7 +93,7 @@ Before You Begin
 
 * Once the BIOS settings have been set, you must install the operating system.
 
-* A typical SQreamDB installation requires RHEL8.9
+* A SQreamDB installation requires RHEL8.8/8.9
 
 * Verify the exact RHEL8 version with your storage vendor to avoid driver incompatibility.
 
@@ -798,7 +798,7 @@ Installing the CUDA driver from the Repository is the recommended installation m
 3. Download and install the required local repository:
 		 
 
-    * **RHEL8.9 CUDA 12.3.2 repository ( INTEL ) installation ( Required for H/L Series GPU models ):**
+    * **RHEL8.8/8.9 CUDA 12.3.2 repository ( INTEL ) installation ( Required for H/L Series GPU models ):**
 
 	  .. code-block:: console
 	  
