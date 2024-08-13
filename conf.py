@@ -48,6 +48,8 @@ extensions = [
     "sphinx_design" 
 ]
  
+notfound_urls_prefix = '/en/latest/'
+ 
 # Mark 'index' as the main page
 master_doc = 'index'
 
