@@ -117,7 +117,8 @@ html_theme_options = {
    , "footer_icons": 'None'
    , "light_css_variables": {
         "font-stack": "Arial, sans-serif",
-        "font-stack--monospace": "Courier, monospace",
+        "font-stack--monospace": "Courier, monospace"
+   , "sticky_navigation": True        
     }
 }
    
