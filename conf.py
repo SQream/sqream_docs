@@ -85,9 +85,7 @@ html_css_files = [
     'css/custom.css', # Relative to the _static path
 ]
 
-html_js_files = [
-    'js/custom.js',
-]
+
 
 
 
