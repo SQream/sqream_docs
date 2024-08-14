@@ -231,6 +231,51 @@ You can install the recommended tools by running the following command:
 
    $ sudo yum install bash-completion.noarch vim-enhanced vim-common net-tools iotop htop psmisc screen xfsprogs wget yum-utils deltarpm dos2unix   
    
+
+Installing Python 3.6.7
+--------------------------------
+
+1. Download the Python 3.6.7 source code tarball file from the following URL into the **/home/sqream** directory:
+
+   .. code-block:: console
+
+      $ wget https://www.python.org/ftp/python/3.6.7/Python-3.6.7.tar.xz
+   
+2. Extract the Python 3.6.7 source code into your current directory:
+
+   .. code-block:: console
+
+      $ tar -xf Python-3.6.7.tar.xz
+   
+3. Navigate to the Python 3.6.7 directory:
+
+   .. code-block:: console
+
+      $ cd Python-3.6.7
+  
+4. Run the **./configure** script:
+
+   .. code-block:: console
+
+      $ ./configure
+   
+5. Build the software:
+
+   .. code-block:: console
+
+      $ make -j30
+  
+6. Install the software:
+
+   .. code-block:: console
+
+      $ sudo make install
+  
+7. Verify that Python 3.6.7 has been installed:
+
+   .. code-block:: console
+
+      $ python3
   
 Installing NodeJS on CentOS 
 --------------------------------
