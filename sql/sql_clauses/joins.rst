@@ -31,20 +31,10 @@ The following shows the correct syntax for creating a **join**:
    join_hint ::=
        MERGE | LOOP
 
-Join Types
-----------
-
-The **Join Types** section describes the following join types:
-   
-* :ref:`Inner joins<inner_joins>`
-* :ref:`Left outer joins<left_outer_joins>`
-* :ref:`Right outer joins<right_outer_joins>`
-
-
 .. _inner_joins:
 
 Inner Joins
-^^^^^^^^^^^
+-----------
 
 The following shows the correct syntax for creating an **inner join**:
 
@@ -72,7 +62,7 @@ For an inner join example, see :ref:`Inner Join Example<inner_join_example>`.
 .. _left_outer_joins:
 
 Left Outer Joins
-^^^^^^^^^^^^^^^^
+----------------
 
 The following shows the correct syntax for creating an **left outer join**:
 
@@ -88,7 +78,7 @@ For a left inner join example, see :ref:`Left Join Example<left_join_example>`.
 .. _right_outer_joins:
 
 Right Outer Joins
-^^^^^^^^^^^^^^^^^
+-----------------
 
 The following shows the correct syntax for creating an **right outer join**:
 
@@ -116,8 +106,8 @@ For example, the following is displayed when two name columns match:
 The ``ON`` clause is optional for ``LEFT`` and ``RIGHT`` joins. However, excluding it results in a computationally intensive cross join.
 
 
-Join Type Examples
-==================
+Examples
+========
 
 The examples in this section are based on a pair of tables with the following structure and content:
 
@@ -138,8 +128,8 @@ The following is an example of an inner join.
 
 .. code-block:: psql
 
-   t=> SELECT * FROM left_side AS l JOIN right_side AS r 
-   .          ON l.x = r.x;
+   SELECT * FROM left_side AS l JOIN right_side AS r 
+   ON l.x = r.x;
    x | x0
    --+---
    2 |  2
@@ -157,8 +147,8 @@ The following is an example of a left join:
 
 .. code-block:: psql
 
-   t=> SELECT * FROM left_side AS l LEFT JOIN right_side AS r 
-   .          ON l.x = r.x;
+   SELECT * FROM left_side AS l LEFT JOIN right_side AS r 
+   ON l.x = r.x;
    x | x0
    --+---
    2 |  2
@@ -177,8 +167,8 @@ The following is an example of a right join:
 
 .. code-block:: psql
 
-   t=> SELECT * FROM left_side AS l RIGHT JOIN right_side AS r 
-   .          ON l.x = r.x;
+   SELECT * FROM left_side AS l RIGHT JOIN right_side AS r 
+   ON l.x = r.x;
    x  | x0
    ---+---
    2  |  2
@@ -198,20 +188,16 @@ The following is an example of using a join hint:
 
 .. code-block:: psql
    
-   t=> SELECT * FROM left_side AS l INNER MERGE JOIN right_side AS r  ON l.x = r.x;
+   SELECT * FROM left_side AS l INNER MERGE JOIN right_side AS r  ON l.x = r.x;
    x | x0
    --+---
    2 |  2
    4 |  4
    5 |  5
-   
-   t=> SELECT * FROM left_side AS l INNER LOOP JOIN right_side AS r  ON l.x = r.x; 
+      
+   SELECT * FROM left_side AS l INNER LOOP JOIN right_side AS r  ON l.x = r.x; 
    x | x0
    --+---
    2 |  2
    4 |  4
    5 |  5
-   
-   
-.. |color_table| image:: /_static/images/color_table.png
-   :align: middle    
