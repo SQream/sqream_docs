@@ -6,14 +6,20 @@
 UNION [ALL]
 ***********
 
-The ``UNION`` and ``UNION ALL``clauses 
+The ``UNION`` set operation clause combines the result sets of two or more ``SELECT`` statements, removing duplicates.
+
+The ``UNION ALL`` set operation clause combines the result sets of two or more ``SELECT`` statements, allowing duplicates.
 
 Syntax
 ======
 
 .. code-block:: postgres
 
-
+	SELECT <column_name> [ ,... ]
+	FROM <table1>
+	UNION [ ALL ]
+	SELECT <column_name> [ ,... ]
+	FROM <table2>
 
 Arguments
 =========
@@ -24,20 +30,65 @@ Arguments
    
    * - Parameter
      - Description
-   * - ``column1``
+   * - ``column_name``
      - The columns to retrieve
-   * - ``table_name``
+   * - ``table1``
      - The table from which to retrieve the data
-   * - ``condition1``
-     - Filters the rows before grouping them
-   * - ``GROUP BY column1``
-     - Groups the rows by the values in column1
-   * - ``condition2``
-     - Filters the groups based on the condition
+   * - ``table2``
+     - The table from which to retrieve the data
+   * - ``ALL``
+     - Allows the ``UNION`` to return duplicate rows in the result set
+
 
 Examples
 ========
 
+``UNION``
+---------
+
 .. code-block:: psql
+
+	SELECT 
+	  city 
+	FROM 
+	  customers
+	UNION ALL
+	SELECT 
+	  city 
+	FROM 
+	  suppliers;
+
+``UNION ALL``
+-------------
+
+.. code-block:: psql
+
+	SELECT 
+	  city 
+	FROM 
+	  customers
+	UNION ALL
+	SELECT 
+	  city 
+	FROM 
+	  suppliers;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
