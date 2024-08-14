@@ -683,17 +683,6 @@ Installing the CUDA driver from the Repository is the recommended installation m
 	  
 		 sudo dnf clean all
 		 sudo dnf -y module install nvidia-driver:latest-dkms	  
-
-Power9 with V100 GPUs supports only cuda 10.1 driver on RHEL7
-
-    * **IBM Power9 - CUDA 10.1 for RHEL7:**
-
-      .. code-block:: console
-
-		wget https://developer.download.nvidia.com/compute/cuda/10.1/Prod/local_installers/cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
-		sudo yum localinstall cuda-repo-rhel7-10-1-local-10.1.243-418.87.00-1.0-1.ppc64le.rpm
-	  
-If you are installing the CUDA driver on IBM Power9, please follow the `NVIDIA documentation <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`_ for additionally required steps.
 	  
 Tuning Up NVIDIA Performance
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -772,30 +761,12 @@ Tune Up NVIDIA Performance when Driver Installed from the Runfile
 
         nvidia-persistenced
 
-   * **For IBM (mandatory)**:
-	  
-      .. code-block:: console
-
-        sudo systemctl start nvidia-persistenced
-        sudo systemctl enable nvidia-persistenced
-		   
-   * **For K80**:
-	  
-      .. code-block:: console
-
-        nvidia-persistenced
-        nvidia-smi -pm 1
-        nvidia-smi -acp 0
-        nvidia-smi --auto-boost-permission=0
-        nvidia-smi --auto-boost-default=0
-
 4. Reboot the server and run the ``NVIDIA System Management Interface (NVIDIA SMI)``:
 
    .. code-block:: console
 
         nvidia-smi
 	  
-
   
 Enabling Core Dumps
 ===================
