@@ -223,6 +223,7 @@ Enabling additional Red Hat repositories is essential to install the required pa
 
    .. code-block:: console
 
+      sudo subscription-manager release --set=8.9
       sudo subscription-manager repos --enable codeready-builder-for-rhel-8-x86_64-rpms
       sudo subscription-manager repos --enable rhel-8-for-x86_64-appstream-rpms
       sudo subscription-manager repos --enable rhel-8-for-x86_64-baseos-rpms
