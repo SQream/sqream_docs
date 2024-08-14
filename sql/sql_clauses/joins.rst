@@ -1,7 +1,9 @@
+:orphan:
+
 .. _joins:
 
 *****
-Joins
+JOIN
 *****
 
 The ``JOIN`` clause combines results from two or more table expressions (tables, external tables, views) based on a related column or other condition. Performing a join outputs a new result set. For example, two tables containing one or more columns in common can be joined to match or correlate with rows from another table.
