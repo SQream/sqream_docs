@@ -27,7 +27,6 @@ The following shows the correct syntax for creating a **join**:
        [ INNER ] [ join_hint ] JOIN
        | LEFT [ OUTER ] [ join_hint ] JOIN
        | RIGHT [ OUTER ] [ join_hint ] JOIN
-       | CROSS [ join_hint ] JOIN
 
    join_hint ::=
        MERGE | LOOP
@@ -40,7 +39,7 @@ The **Join Types** section describes the following join types:
 * :ref:`Inner joins<inner_joins>`
 * :ref:`Left outer joins<left_outer_joins>`
 * :ref:`Right outer joins<right_outer_joins>`
-* :ref:`Cross joins<cross_joins>`
+
 
 .. _inner_joins:
 
@@ -67,8 +66,6 @@ An inner join can also be specified by listing several tables in the ``FROM`` cl
    ON table1.column1 = table2.column1 ]
 
 Omitting the ``ON`` or ``WHERE`` clause creates a ``CROSS JOIN``, where every ``left_side`` row is matched with every ``right_side`` row.
-
-For more information about cross joins, see :ref:`cross joins<cross_joins>` below.
 
 For an inner join example, see :ref:`Inner Join Example<inner_join_example>`.
 
@@ -104,54 +101,6 @@ Right outer joins are similar to inner joins, except that for every ``right_side
 For a right outer join example, see :ref:`Right Join Example<right_join_example>`.
 
 
-.. _cross_joins:
-
-Cross Joins
-^^^^^^^^^^^
-
-The following shows the correct syntax for creating an **cross join**:
-
-.. code-block:: postgres
-
-   left_side CROSS JOIN right_side
-
-Cross joins return all rows in all tables listed in a query, pairing each row in the first table with each row in the second table. A cross join is also known as a **Cartesian product**, and occurs when no relationship is defined between the two tables.
-
-The ``CROSS JOIN`` clause cannot have an ``ON`` clause, but the ``WHERE`` clause can be used to limit the result set.
-
-The following is an example of two tables that will be used as the basis for a cross join:
-
-.. image:: /_static/images/color_table.png
-
-The following is the output result of the cross join:
-
-+-----------+-------------+
-| **Color** | **Size**    |
-+===========+=============+
-| Red       | Small       |
-+-----------+-------------+
-| Blue      | Small       |
-+-----------+-------------+
-| Red       | Medium      |
-+-----------+-------------+
-| Blue      | Medium      |
-+-----------+-------------+
-| Red       | Large       |
-+-----------+-------------+
-| Blue      | Large       |
-+-----------+-------------+
-| Red       | Extra Large |
-+-----------+-------------+
-| Blue      | Extra Large |
-+-----------+-------------+
-
-
-For a cross join example, see :ref:`Cross Join Example<cross_join_example>`.
-
-
-
-
-
 The ON Condition
 ----------------
 
@@ -165,7 +114,6 @@ For example, the following is displayed when two name columns match:
    ON left_side.name = right_side.name
 
 The ``ON`` clause is optional for ``LEFT`` and ``RIGHT`` joins. However, excluding it results in a computationally intensive cross join.
-
 
 
 Join Type Examples
@@ -240,74 +188,6 @@ The following is an example of a right join:
    \N |  6
 
 .. note:: Note the unmatched ``NULL`` values for ``3`` and ``6``. SQream outputs ``NULL`` values last. 
-
-.. _cross_join_example:
-
-Cross Join Example
-------------------
-
-The following is an example of a cross join:
-
-.. code-block:: psql
-
-   t=> SELECT * FROM left_side AS l CROSS JOIN right_side AS r;
-   x | x0
-   --+---
-   1 |  2
-   1 |  3
-   1 |  4
-   1 |  5
-   1 |  6
-   2 |  2
-   2 |  3
-   2 |  4
-   2 |  5
-   2 |  6
-   4 |  2
-   4 |  3
-   4 |  4
-   4 |  5
-   4 |  6
-   5 |  2
-   5 |  3
-   5 |  4
-   5 |  5
-   5 |  6
-
-Specifying multiple comma-separated tables is equivalent to a cross join, which can be filtered with a ``WHERE`` clause as shown in the following example:
-
-.. code-block:: psql
-
-   t=> SELECT * FROM left_side l, right_side r;
-   x | x0
-   --+---
-   1 |  2
-   1 |  3
-   1 |  4
-   1 |  5
-   1 |  6
-   2 |  2
-   2 |  3
-   2 |  4
-   2 |  5
-   2 |  6
-   4 |  2
-   4 |  3
-   4 |  4
-   4 |  5
-   4 |  6
-   5 |  2
-   5 |  3
-   5 |  4
-   5 |  5
-   5 |  6
-
-   t=> SELECT * FROM left_side l, right_side r WHERE (r.x=l.x);
-   x | x0
-   --+---
-   2 |  2
-   4 |  4
-   5 |  5
 
 Join Hints
 ----------

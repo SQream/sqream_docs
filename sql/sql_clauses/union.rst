@@ -2,9 +2,9 @@
 
 .. _union:
 
-***************
-``UNION [ALL]``
-***************
+***********
+UNION [ALL]
+***********
 
 The ``UNION`` set operation clause combines the result sets of two or more ``SELECT`` statements, removing duplicates.
 
