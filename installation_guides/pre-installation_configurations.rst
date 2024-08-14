@@ -446,12 +446,6 @@ Configuring the Kernel Parameters
 
       sysctl -n fs.file-max
 
-3. **Only** if the maximum value of the ``fs.file`` is smaller than ``2097152``, run the following command:
-
-   .. code-block:: console
-
-      echo "fs.file-max=2097152" >> /etc/sysctl.conf
-
 Configuring the Firewall
 --------------------------
 
