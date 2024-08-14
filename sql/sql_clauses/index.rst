@@ -22,7 +22,7 @@ SQL Clauses
      - Filters groups of rows created by the GROUP BY clause
    * - :ref:`in`
      - Tests if an expression is contained in a list of values
-   * - :ref:`joink`
+   * - :ref:`joins`
      - 
    * - :ref:`limit`
      - Specifies the maximum number of rows that should be returned in the result set
@@ -30,7 +30,7 @@ SQL Clauses
      - Skips a specified number of rows before returning the result set
    * - :ref:`order_by`
      - Sorts the result set of a query by one or more columns
-   * - :ref:`unionk`
+   * - :ref:`union`
      - 
    * - :ref:`where`
      - Filters records that meet a specified condition
