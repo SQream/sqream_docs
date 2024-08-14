@@ -693,8 +693,6 @@ The following procedures exclusively relate to Intel.
    :local:
    :depth: 1
 	
-.. note::  Setting up the NVIDIA POWER9 CUDA driver includes additional set-up requirements. The NVIDIA POWER9 CUDA driver will not function properly if the additional set-up requirements are not followed. See `POWER9 Setup <https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html#power9-setup>`__ for the additional set-up requirements.
-	
 Tune Up NVIDIA Performance when Driver Installed from the Repository
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
