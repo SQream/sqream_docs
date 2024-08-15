@@ -8,8 +8,6 @@ Sqream SQL Haskell CLI
 
 SQreamDB comes with a built-in client for executing SQL statements either interactively or from the command-line.
 
-This page serves as a reference for the options and parameters. Learn more about using SQreamDB SQL with the CLI by visiting the :ref:`first_steps` tutorial.
-
 .. contents::
    :local:
    :depth: 1
