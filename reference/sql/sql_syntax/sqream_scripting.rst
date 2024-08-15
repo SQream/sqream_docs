@@ -11,11 +11,11 @@ The Java- based SQreamDB scripting enhances your interaction with SQL by providi
 Syntax
 ======
 
-.. code-block:: postgres
+.. code-block:: psql
 
 	-- Double curly brackets
 	
-	{{ … }}
+	{{ ... }}
 
 	-- Parallel:
 
@@ -78,7 +78,7 @@ Examples
 Double Curly Brackets
 ---------------------
 
-.. code-block:: console
+.. code-block:: cry
 
 	{{
 	  return 1;
@@ -87,7 +87,7 @@ Double Curly Brackets
 ``Parallel``
 ------------
 
-.. code-block:: console
+.. code-block:: cry
 
 	@@ Parallel
 	$$
@@ -99,7 +99,7 @@ Double Curly Brackets
 ``Declare``
 -----------
 
-.. code-block:: console
+.. code-block:: psql
 
 	@@ Declare myVar = 3;
 	SELECT '${myVar}';
@@ -107,7 +107,7 @@ Double Curly Brackets
 ``SetResults``
 --------------
 
-.. code-block:: console
+.. code-block:: cry
 
 	@@ SetResults tableAverage
 	SELECT AVG(col1) AS avg_salary FROM my_table;
@@ -118,7 +118,7 @@ Double Curly Brackets
 ``SplitQueryByDateTime``
 ------------------------
 
-.. code-block:: console
+.. code-block:: psql
 
 	@@ SplitQueryByDateTime instances = 4, from = '2021-01-01 00:00:00', to = '2022-01-01 00:00:00'
 	SELECT ${from}, ${to};
@@ -127,7 +127,7 @@ Double Curly Brackets
 ``SplitQueryByDate``
 --------------------
 
-.. code-block:: console
+.. code-block:: psql
 
 	@@ SplitQueryByDateTime instances = 4, from = '2021-01-01', to = '2022-01-01'
 	SELECT ${from}, ${to};
@@ -136,7 +136,7 @@ Double Curly Brackets
 ``SplitQueryByNumber``
 ----------------------
 
-.. code-block:: console
+.. code-block:: cry
 
 	@@ SplitQueryByDateTime instances = 4, from = 0, to = 100
 	SELECT ${from}, ${to};
