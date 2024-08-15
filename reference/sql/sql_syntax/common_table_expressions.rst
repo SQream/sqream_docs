@@ -1,3 +1,5 @@
+:orphan:
+
 .. _common_table_expressions:
 
 ************************

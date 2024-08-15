@@ -1,3 +1,5 @@
+:orphan:
+
 .. _cross_database_query:
 
 ***************************
