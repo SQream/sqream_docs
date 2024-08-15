@@ -1,3 +1,5 @@
+:orphan:
+
 .. _select_gpu_metrics:
 
 *************************

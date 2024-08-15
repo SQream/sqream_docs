@@ -1,3 +1,5 @@
+:orphan:
+
 .. _get_total_chunks_size:
 
 **********************

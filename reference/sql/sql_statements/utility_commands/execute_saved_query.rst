@@ -1,3 +1,5 @@
+:orphan:
+
 .. _execute_saved_query:
 
 ********************

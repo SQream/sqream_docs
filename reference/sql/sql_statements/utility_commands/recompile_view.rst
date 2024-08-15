@@ -1,3 +1,5 @@
+:orphan:
+
 .. _recompile_view:
 
 *****************

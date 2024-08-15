@@ -1,3 +1,5 @@
+:orphan:
+
 .. _export_open_snapshots:
 
 *********************

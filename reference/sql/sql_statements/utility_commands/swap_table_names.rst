@@ -1,3 +1,5 @@
+:orphan:
+
 .. _swap_table_names:
 
 ****************

@@ -1,3 +1,5 @@
+:orphan:
+
 .. _ldap_get_attr:
 
 *************

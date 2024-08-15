@@ -1,3 +1,5 @@
+:orphan:
+
 .. _select_health_check_monitoring:
 
 .. role:: red
