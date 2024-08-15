@@ -1,3 +1,5 @@
+:orphan:
+
 .. _get_role_global_ddl:
 
 *******************
