@@ -4,31 +4,37 @@
 Installing Monit
 ****************
 
+Monit is a free open source supervision utility for managing and monitoring Unix and Linux. Monit lets you view system status directly from the command line or from a native HTTP web server. Monit can be used to conduct automatic maintenance and repair, such as executing meaningful causal actions in error situations.
+
+SQreamDB uses Monit as a watchdog utility, but you can use any other utility that provides the same or similar functionality.
+
+The **Installing Monit** procedures describes how to install, configure, and start Monit.
+
+You can install Monit in one of the following ways:
+
 Getting Started
 ===============
 
-Before installing SQream with Monit, verify that you have followed the required :ref:`recommended pre-installation configurations <recommended_pre-installation_configurations>`. 
+Before installing SQreamDB with Monit, verify that you have followed the required :ref:`pre-installation_configurations` section. 
 
-The procedures in the **Installing Monit** guide must be performed on each SQream cluster node.
+The procedures in the **Installing Monit** guide must be performed on each SQreamDB cluster node.
 
-.. _back_to_top:
-
-Overview
-========
-
-
-Monit is a free open source supervision utility for managing and monitoring Unix and Linux. Monit lets you view system status directly from the command line or from a native HTTP web server. Monit can be used to conduct automatic maintenance and repair, such as executing meaningful causal actions in error situations.
-
-SQream uses Monit as a watchdog utility, but you can use any other utility that provides the same or similar functionality.
-
-The **Installing Monit** procedures describes how to install, configure, and start Monit.
+Installing Monit on RHEL:
+=========================
+   
+1. Install Monit as a superuser:
  
- 
+    .. code-block:: console
+     
+       $ sudo yum install monit  
+       
 .. _building_monit_from_source_code:
 
-Building Monit from Source Code
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Building Monit
+==============
 
+Building Monit from Source Code
+-------------------------------
 
 **To build Monit from source code:**
 
@@ -65,10 +71,20 @@ The following are the default storage directories:
 
 5. **Optional** - To change the above default location(s), use the **--prefix** option to ./configure.
 
+..
+  _**Comment - I took this line directly from the external online documentation. Is the "prefix option" referrin gto the "--help" in Step 3? URL: https://mmonit.com/wiki/Monit/Installation**
+
+6. **Optional** - Create an RPM package for RHEL directly from the source code:
+
+   .. code-block:: console
+     
+      $ rpmbuild -tb monit-x.y.z.tar.gz
+      
+
 .. _building_monit_from_pre_built_binaries:   
 
 Building Monit from Pre-Built Binaries
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------
 
 **To build Monit from pre-built binaries:**
 
@@ -97,11 +113,8 @@ Building Monit from Pre-Built Binaries
       $ cp conf/monitrc /etc/
        
 ..
-  _**Comment - please review this procedure.**
 
-For examples of pre-built Monit binarties, see :ref:`Download Precompiled Binaries<https://mmonit.com/monit/#download>`.
-
-:ref:`Back to top <back_to_top>`
+For examples of pre-built Monit binarties, see `Download Precompiled Binaries <https://mmonit.com/monit/#download>`_.
 
        
 Configuring Monit
@@ -169,7 +182,7 @@ For servers that don't run the **metadataserver** and **serverpicker** commands,
       $ sudo ln -s /etc/monit.d/monitrc monitrc    
          
 Starting Monit
-====================================  
+==============  
 
 After configuring Monit, you can start it.
 
