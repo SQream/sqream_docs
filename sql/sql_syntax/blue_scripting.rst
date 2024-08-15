@@ -73,7 +73,7 @@ Examples
 ``Parallel``
 ------------
 
-.. code-block:: none
+.. code-block:: cry
 
 	@@ Parallel
 	$$
@@ -85,7 +85,7 @@ Examples
 ``Declare``
 -----------
 
-.. code-block:: none
+.. code-block:: plpgsql
 
 	@@ Declare myVar = 3;
 	SELECT '${myVar}';
@@ -93,7 +93,7 @@ Examples
 ``SetResults``
 --------------
 
-.. code-block:: none
+.. code-block:: cry
 
 	@@ SetResults tableAverage
 	SELECT AVG(col1) AS avg_salary FROM my_table;
@@ -104,7 +104,7 @@ Examples
 ``SplitQueryByDateTime``
 ------------------------
 
-.. code-block:: none
+.. code-block:: plpgsql
 
 	@@ SplitQueryByDateTime instances = 4, from = '2021-01-01 00:00:00', to = '2022-01-01 00:00:00'
 	SELECT ${from}, ${to};
@@ -113,7 +113,7 @@ Examples
 ``SplitQueryByDate``
 --------------------
 
-.. code-block:: none
+.. code-block:: plpgsql
 
 	@@ SplitQueryByDateTime instances = 4, from = '2021-01-01', to = '2022-01-01'
 	SELECT ${from}, ${to};
@@ -122,7 +122,7 @@ Examples
 ``SplitQueryByNumber``
 ----------------------
 
-.. code-block:: none
+.. code-block:: cry
 
 	@@ SplitQueryByDateTime instances = 4, from = 0, to = 100
 	SELECT ${from}, ${to};
