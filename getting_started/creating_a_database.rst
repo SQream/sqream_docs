@@ -1,3 +1,5 @@
+:orphan:
+
 .. _creating_a_database:
 
 ****************************
