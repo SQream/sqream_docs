@@ -103,7 +103,7 @@ Use parameters to replace them later at execution time.
 
 .. tip:: Use dollar quoting (`$$`) to avoid escaping strings.
 
-.. code-block:: sql
+.. code-block:: psql
 
    SELECT SAVE_QUERY('select_by_weight_and_team',$$SELECT * FROM nba WHERE Weight > ? AND Team = ?$$);
    
