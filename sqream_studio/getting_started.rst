@@ -1,8 +1,8 @@
 .. _getting_started:
 
-******************************************************
+***********************************************
 Getting Started with SQream Acceleration Studio
-******************************************************
+***********************************************
 
 Setting Up and Starting Studio
 ------------------------------
@@ -10,9 +10,7 @@ Setting Up and Starting Studio
 When starting Studio, it listens on the local machine on port 8080.
 
 Logging In to Studio
------------------------
-
-**To log in to SQream Studio:**
+--------------------
 
 1. Open a browser to the host on **port 8080**.
 
@@ -29,7 +27,7 @@ Logging In to Studio
 .. _monitoring_workers_and_services_from_the_dashboard:
    
 Navigating Studio's Main Features
------------------------------------
+---------------------------------
 
 When you log in, you are automatically taken to the **Editor** screen. The Studio's main functions are displayed in the **Navigation** pane on the left side of the screen.
 
@@ -50,7 +48,7 @@ From here you can navigate between the main areas of the Studio:
    * - :ref:`Configuration<configuring_your_instance_of_sqream>`
      - Lets you configure your instance of SQream.
 
-By clicking the user icon, you can also use it for logging out and viewing the following:
+By clicking the user icon, you can view the following:
 
 * User information
 * Connection type
@@ -58,4 +56,12 @@ By clicking the user icon, you can also use it for logging out and viewing the f
 * SQream Studio version
 * License expiration date
 * License storage capacity
+* :ref:`Activity report<view_activity_report>`     
 * Log out
+
+.. _view_activity_report:
+
+View Activity Report
+--------------------
+
+The **View activity report** menu item enables you to monitor storage and resource usage, including GPUs, workers, and machines. You can select different time frames to view cluster activity and export the data as a PDF for use in financial records, briefings, or quarterly and yearly reports.
