@@ -15,7 +15,7 @@ You can install Monit in one of the following ways:
 Getting Started
 ===============
 
-Before installing SQreamDB with Monit, verify that you have followed the required :ref:`recommended pre-installation configurations <recommended_pre-installation_configurations>`. 
+Before installing SQreamDB with Monit, verify that you have followed the required :ref:`pre-installation_configurations` section. 
 
 The procedures in the **Installing Monit** guide must be performed on each SQreamDB cluster node.
 
@@ -113,9 +113,8 @@ Building Monit from Pre-Built Binaries
       $ cp conf/monitrc /etc/
        
 ..
-  _**Comment - please review this procedure.**
 
-For examples of pre-built Monit binarties, see :ref:`Download Precompiled Binaries<https://mmonit.com/monit/#download>`.
+For examples of pre-built Monit binarties, see `Download Precompiled Binaries <https://mmonit.com/monit/#download>`_.
 
        
 Configuring Monit

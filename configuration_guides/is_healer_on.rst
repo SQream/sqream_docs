@@ -10,4 +10,4 @@ The ``is_healer_on`` flag enables the Query Healer, which periodically examines 
 * **Default value** - ``true``
 * **Allowed values** - ``true``, ``false``
 
-For related flags, see :ref:`healer_max_statement_inactivity_seconds`.
+For related flags, see :ref:`max_statement_inactivity_seconds`.
