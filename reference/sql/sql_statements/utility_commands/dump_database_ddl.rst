@@ -1,3 +1,5 @@
+:orphan:
+
 .. _dump_database_ddl:
 
 *****************

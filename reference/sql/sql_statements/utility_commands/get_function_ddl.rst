@@ -1,3 +1,5 @@
+:orphan:
+
 .. _get_function_ddl:
 
 *****************

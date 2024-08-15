@@ -1,3 +1,5 @@
+:orphan:
+
 .. _shutdown_server_command:
 
 ********************

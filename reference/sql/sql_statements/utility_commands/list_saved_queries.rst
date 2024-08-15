@@ -1,3 +1,5 @@
+:orphan:
+
 .. _list_saved_queries:
 
 ********************
