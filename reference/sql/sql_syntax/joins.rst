@@ -1,4 +1,4 @@
-.. _joins:
+:orphan:
 
 *****
 Joins

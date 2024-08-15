@@ -201,7 +201,7 @@ See the examples below to understand how the query execution plan is instrumenta
 Information Presented in the Execution Plan
 -------------------------------------------
 
-.. include:: /reference/sql/sql_statements/monitoring_commands/show_node_info.rst
+.. include:: /reference/sql/sql_statements/utility_commands/show_node_info.rst
    :start-line: 47
    :end-line: 78
 

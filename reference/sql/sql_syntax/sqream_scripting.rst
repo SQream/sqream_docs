@@ -1,3 +1,5 @@
+:orphan:
+
 .. _sqream_scripting:
 
 ****************
