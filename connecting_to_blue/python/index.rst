@@ -92,7 +92,7 @@ To validate your SQLAlchemy connection to BLUE, run the following script and mak
 
 	import sqlalchemy as sa
 
-	_access_token = <"YourToken">
+	_access_token = '<YourToken>'
 	conn_str = f"sqream_blue://<your-host-name.com>:443/<your_database_name>"
 	connect_args = {'access_token': _access_token}
 	engine = sa.create_engine(conn_str, connect_args=connect_args)
@@ -114,7 +114,7 @@ To validate your Pandas connection to BLUE, run the following script and make su
 	import pandas as pd
 	from sqlalchemy.engine.url import URL
 
-	_access_token = <"YourToken">
+	_access_token = '<YourToken>'
 	conn_str = 
 	
 	"sqream_blue://<your-host-name.com>:443/<your_database_name>"
