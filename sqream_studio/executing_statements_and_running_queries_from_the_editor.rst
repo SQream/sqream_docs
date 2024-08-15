@@ -334,7 +334,7 @@ While Studio's default functionality is to open a new tab for each executed stat
 
 The following shows the syntax for running parallel statements:
 
-.. code-block:: mysql
+.. code-block:: psql
      
 	@@ parallel
 	$$
