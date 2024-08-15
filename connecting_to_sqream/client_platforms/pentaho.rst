@@ -60,8 +60,6 @@ After installing Pentaho you can create a transformation.
      $ spoon.bat
 
 2. Open the spoon.bat file from its folder location.
-
-::
 		  
 3. In the **View** tab, right-click **Transformations** and click **New**.
 
@@ -69,31 +67,17 @@ After installing Pentaho you can create a transformation.
 
 4. In the **Design** tab, click **Input** to show its file contents.
 
-::
-
 5. Drag and drop the **CSV file input** item to the new transformation tab that you created.
-
-::
 
 6. Double-click **CSV file input**. The **CSV file input** panel is displayed.
 
-::
-
 7. In the **Step name** field, type a name.
-
-::
 
 8. To the right of the **Filename** field, click **Browse**.
 
-::
-
 9. Select the file that you want to read from and click **OK**.
 
-::
-
 10. In the CSV file input window, click **Get Fields**.
-
-::
 
 11. In the **Sample data** window, enter the number of lines you want to sample and click **OK**. The default setting is **100**.
 
@@ -101,15 +85,9 @@ After installing Pentaho you can create a transformation.
 
 12. In the CSV file input window, click **Preview**.
 
-::
-
 13. In the **Preview size** window, enter the number of rows you want to preview and click **OK**. The default setting is **1000**.
 
-::
-
 14. Verify that the preview data is correct and click **Close**.
-
-::
 
 15. Click **OK** in the **CSV file input** window.
 
@@ -130,11 +108,7 @@ After creating your transformation you must define your output.
    
 2. Drag and drop **Table output** item to the Transformation window.
 
-::
-
 3. Double-click **Table output** to open the **Table output** dialog box.
-
-::
 
 4. From the **Table output** dialog box, type a **Step name** and click **New** to create a new connection. Your **steps** are the building blocks of a transformation, such as file input or a table output.
 
@@ -191,51 +165,34 @@ For more information about backing up users, permissions, or schedules, see `Bac
 
 1. Double-click the **Table output** connection that you just created.
 
-::
-
 2. To the right of the **Target schema** field, click **Browse** and select a schema name.
-
-::
 
 3. Click **OK**. The selected schema name is displayed in the **Target schema** field.
 
-::
-
 4. Create a new hop connection between the **CSV file input** and **Table output** steps:
 
-   1. On the CSV file input step item, click the **new hop connection** icon.
+   a. On the CSV file input step item, click the **new hop connection** icon.
    
    
-   2. Drag an arrow from the **CSV file input** step item to the **Table output** step item.
+   b. Drag an arrow from the **CSV file input** step item to the **Table output** step item.
     
 
-   3. Release the mouse button. The following options are displayed.
+   c. Release the mouse button. The following options are displayed.
 
    
-   4. Select **Main output of step**.
-   
-   
-::
+   d. Select **Main output of step**.
 
 5. Double-click **Table output** to open the **Table output** dialog box.
 
-::
-
 6. In the **Target table** field, define a target table name.
 
-::
-
 7. Click **SQL** to open the **Simple SQL editor.**
-   
-::
    
 8. In the **Simple SQL editor**, click **Execute**.
 
    The system processes and displays the results of the SQL statements.
    
 9. Close all open dialog boxes.
-
-::
 
 10. Click the play button to execute the transformation.
 
