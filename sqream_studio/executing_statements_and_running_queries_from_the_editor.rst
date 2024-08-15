@@ -334,14 +334,14 @@ While Studio's default functionality is to open a new tab for each executed stat
 
 The following shows the syntax for running parallel statements:
 
-.. code-block:: console
+.. code-block:: mysql
      
-   $ @@ parallel
-   $ $$
-   $ select 1;
-   $ select 2;
-   $ select 3;
-   $ $$
+	@@ parallel
+	$$
+	SELECT 1;
+	SELECT 2;
+	SELECT 3;
+	$$
 
 
 
