@@ -4,6 +4,11 @@
 Release Notes
 *************
 
+:ref:`August 2024 <august_2024>`
+
+* You may now read, write, and query data  from :ref:`Snowflake<snowflake>`. 
+* A ``clusteradmin`` can now enable **View cluster jobs** to :ref:`view all the Jobs of all users<managing_existing_jobs>`.
+
 :ref:`July 2024 <july_2024>`
 
 * We've improved the ``DESCRIBE COLUMNS`` command, allowing you to list information about ``VIEW`` columns.
@@ -88,6 +93,7 @@ Release Notes
    :glob:
    :hidden:
 
+   2024/august_2024
    2024/july_2024
    2024/march_2024
    2024/february_2024
