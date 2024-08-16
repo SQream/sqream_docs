@@ -31,6 +31,9 @@ BLUE offers seamless integration with third-party tools, BI tools, and analysis 
 	
     :ref:`DBeaver<dbeaver>`
 	
+.. tab:: Cloud Natives
+
+    :ref:`Snowflake<snowflake>`
 
 
 
