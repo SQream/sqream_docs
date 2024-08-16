@@ -6,7 +6,8 @@ Release Notes
 
 :ref:`August 2024 <august_2024>`
 
-* You may now read, write, and query data Snowflake. 
+* You may now read, write, and query data  from :ref:`Snowflake<snowflake>`. 
+* A ``clusteradmin`` can now enable **View cluster jobs** to :ref:`view all the Jobs of all users<managing_existing_jobs>`.
 
 :ref:`July 2024 <july_2024>`
 
