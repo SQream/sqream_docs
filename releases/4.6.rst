@@ -35,6 +35,8 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
+► Announcing a new :ref:`Activity Report<view_activity_report>` reflecting your storage and resource usage within a defined time frame. You can export your activity report as a PDF for use in financial records, briefings, or quarterly and yearly reports.
+
 ► Announcing a new cross-platform :ref:`SQream SQL CLI<sqream_sql_cli_reference>` which is Java-based. This new CLI is fully compatible with the old and soon to be :ref:`deprecated Haskell CLI<deprecations>`. It also supports a neat looking result ``table view``.  
 
 ► A new :ref:`ldap` configuration flag allows including LDAP user attributes in your SQreamDB metadata by associating these attributes with SQreamDB roles. This means that you can now search by these attributes using your SQreamDB web interface. 
