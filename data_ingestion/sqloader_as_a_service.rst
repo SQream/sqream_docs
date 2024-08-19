@@ -369,6 +369,12 @@ It is recommended that the ``sqload-jdbc.properties`` file will contain a connec
 SQLoader Service Interface
 ==========================
 
+The SQLoader service automatically detects the IP addresses of incoming HTTP requests, even if the request originates from the same IP address as the one hosting the service. If you are accessing the service using a proxy server, you can include the client IP address in the request itself by using the ``X-Forwarded-For`` HTTP header, as in the following example:
+
+.. code-block::
+
+	curl -X POST -H 'X-Forwarded-For: 192.168.1.2' -H 'Content-Type: application/json' --data '{"loadTypeName": "inc", "sourceSchema": "QA", "sourceTable": "MY_TABLE", "sqreamTable": "MY_TABLE", "sqreamSchema": "QA"}' http://MyPc:6060/load
+
 Supported HTTP Requests
 -----------------------
 
