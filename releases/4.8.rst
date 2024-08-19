@@ -1,10 +1,10 @@
-.. _4.7:
+.. _4.8:
 
 *****************
-Release Notes 4.7
+Release Notes 4.8
 *****************
 
-The 4.7 release notes were released on March XX, 2024
+The 4.8 release notes were released on March XX, 2024
 
 .. contents:: 
    :local:
@@ -35,19 +35,59 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
-► You may now use the new ``logFormat`` flag to configure the format of your log files. By default, logs are saved as ``CSV`` files. To configure your log files to be saved as ``JSON`` instead, use the ``logFormat`` flag in your :ref:`legacy config file<current_method_flag_types>`. If your current logs are in ``CSV`` format and you require :ref:`Health Monitoring<health_monitoring_release>`, it's advisable to configure your logs to be saved in both ``CSV`` and ``JSON`` formats as outlined above.
+
+
+
+► You may now use the new ``logFormat`` flag to configure the format of your log files. By default, logs are saved as ``CSV`` files. To configure your log files to be saved as ``JSON`` instead, use the ``logFormat`` flag in your :ref:`legacy config file<current_method_flag_types>`. If your current logs are in ``CSV`` format and you require Health Monitoring, it's advisable to configure your logs to be saved in both ``CSV`` and ``JSON`` formats as outlined above.
 
 .. note::
 
 	The ``logFormat`` flag must be configured identically in both your ``legacy_config_file`` and your ``metadata_config_file``
 	
-.. _health_monitoring_release:
-	
-► :ref:`health_monitoring`
+
+
 
 ► Lift&Shift
 
+► :ref:`health_monitoring`
+
 ► ALL log files should reside under the same folder
+
+► You now have the option to choose the location for your ``metadata_server``, ``server_picker``, and Worker log files. In previous SQreamDB versions, the location of your log files was predetermined and hard-coded.
+
+:ref:`metadata_server_cli_reference`
+
+* Using the ``metadata_server_config.json`` file:
+
+  .. code-block:: json 
+
+	{
+	"logPath": "<home/logs/my_logs>" 
+	}
+	
+* Using the CLI:
+
+  .. code-block:: console
+
+	./metadata_server --log_path=<home/logs/my_logs>
+	
+:ref:`server_picker_cli_reference`
+
+  Using the CLI:
+
+  .. code-block:: console
+
+	./server_picker --log_path=<home/logs/my_logs>
+
+:ref:`Worker<current_method_modification_methods>`
+
+  Using the ``sqream_config_legacy.json``:
+
+  .. code-block:: json
+
+	{
+	"DefaultPathToLogs": "<home/logs/my_logs>"
+	}
 
 ► Release locks
 
@@ -68,7 +108,7 @@ Known Issues
 
 :ref:`Percentile<percentile_disc>` is not supported for :ref:`Window Functions<window_functions>`
 
-Version 4.7 resolved Issues
+Version 4.8 resolved Issues
 ---------------------------
 
 +--------------+---------------------------------------------------------------------------------------------------------------------+
@@ -78,7 +118,7 @@ Version 4.7 resolved Issues
 +--------------+---------------------------------------------------------------------------------------------------------------------+
 | SQ-16038     | Fixed ``CREATE TABLE.. LIKE`` permission heritage issue                                                             |
 +--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-16937     | Fixed schema corruption following default permission altering issue                                                 |
+| SQ-16937     |                                                                                                                     |
 +--------------+---------------------------------------------------------------------------------------------------------------------+
 | SQ-17149     |                                                                                                                     |
 +--------------+---------------------------------------------------------------------------------------------------------------------+
@@ -90,7 +130,7 @@ Version 4.7 resolved Issues
 +--------------+---------------------------------------------------------------------------------------------------------------------+
 | SQ-17520     |                                                                                                                     |
 +--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-17944     | Fixed ``UNION`` query result issue                                                                                  |
+| SQ-17944     |                                                                                                                     |
 +--------------+---------------------------------------------------------------------------------------------------------------------+
 
 
@@ -107,7 +147,7 @@ Starting October 2024, support for the Haskell CLI will be discontinued, and it 
 
 * REHL 8.x is now officially supported.
 
-Upgrading to Version 4.7
+Upgrading to Version 4.8
 -------------------------
 
 1. Generate a back-up of the metadata by running the following command:

@@ -70,7 +70,7 @@ Getting All Configuration and JAR Files
 
    .. code-block:: bash
 
-	tar -xf sqloader_srv_v8.1.tar.gz
+	tar -xf sqloader_srv_v8.2.tar.gz
 
    A folder named ``sqloader`` with the following files is created:
    
@@ -79,7 +79,7 @@ Getting All Configuration and JAR Files
 	├── sqloader-v1.sh
 	├── bin
 	│   ├── sqloader-admin-server-1.1.jar
-	│   └── sqloader-service-8.1.jar
+	│   └── sqloader-service-8.2.jar
 	├── config
 		├── reserved_words.txt
 		├── sqload-jdbc.properties
@@ -97,7 +97,7 @@ Getting All Configuration and JAR Files
      - Used for defining a connection string and may also be used to reconfigure data loading
    * - ``reserved_words.txt``
      - A list of reserved words which cannot be used as table and/or column names. 
-   * - ``sqloader-service-8.1.jar``
+   * - ``sqloader-service-8.2.jar``
      - The SQLoader service JAR file 
    * - ``sqloader-admin-server-1.0.jar``
      - The SQLoader admin server JAR file
@@ -127,32 +127,32 @@ All deployment flags are not dynamically adjustable at runtime.
    * - ``configDir``
      - Optional
      - ``config``
-     - ``java -jar sqloaderService-8.1.jar --configDir=</path/to/directory/>``
+     - ``java -jar sqloaderService-8.2.jar --configDir=</path/to/directory/>``
      - Defines the path to the folder containing both the data type mapping and the reserved words files. The defined folder must contain both files or else you will receive an error. This flag affects the mapping and reserved words files and does not affect the properties file 
    * - ``hzClusterName=<TEXT>``
      - Optional
      - 
-     - ``java -jar sqloader-service-8.1.jar --hzClusterName=<TEXT>``
+     - ``java -jar sqloader-service-8.2.jar --hzClusterName=<TEXT>``
      - In Hazelcast, a cluster refers to a group of connected Hazelcast instances across different JVMs or machines. By default, these instances connect to the same cluster on the network level, meaning that all SQLoader services that start on a network will connect to each other and share the same queue. An admin can connect to only one Hazelcast cluster at a time. If you start multiple clusters and want to connect them to the admin service, you will need to start multiple admin services, with each service connecting to one of your clusters. It is essential that this flag has the same name used here and across all SQLoader instances.
    * - ``LOG_DIR``
      - Optional
      - ``logs``
-     - ``java -jar -DLOG_DIR=/path/to/log/directory sqloader-service-8.1.jar``
+     - ``java -jar -DLOG_DIR=/path/to/log/directory sqloader-service-8.2.jar``
      - Defines the path of log directory created when loading data. If no value is specified, a ``logs`` folder is created under the same location as the ``sqloader.jar`` file
    * - ``spring.boot.admin.client.url``
      - Optional
      - ``http://localhost:7070``
-     - ``java -jar sqloader-service-8.1.jar --spring.boot.admin.client.url=http://IP:PORT``
+     - ``java -jar sqloader-service-8.2.jar --spring.boot.admin.client.url=http://IP:PORT``
      - SQLoader admin server connection flag
    * - ``Xmx``
      - Optional
      - 
-     - ``java -jar -Xmx<number>g sqloader-service-8.1.jar``
+     - ``java -jar -Xmx<number>g sqloader-service-8.2.jar``
      - We recommend using the ``Xmx`` flag to set the maximum heap memory allocation for the service. If a single service is running on the machine, we suggest allocating 80% of the total memory minus approximately 4GB, which the service typically needs on average. If multiple services are running on the same machine, calculate the recommended heap size for one service and then divide it by the number of services. Compute formula: :math:`⌊ 0.8 * (TotalMemory - 4) ⌋`
    * - ``DEFAULT_PROPERTIES``
      - Mandatory
      - ``sqload-jdbc.properties``
-     - ``java -jar -DDEFAULT_PROPERTIES=/path/to/file/sqload-jdbc.properties sqloader-service-8.1.jar``
+     - ``java -jar -DDEFAULT_PROPERTIES=/path/to/file/sqload-jdbc.properties sqloader-service-8.2.jar``
      - When the service initializes, it looks for the variable DEFAULT_PROPERTIES, which corresponds to the default sqload-jdbc.properties file. Once the service is running with a specified properties file, this setting will remain unchanged as long as the service is operational. To modify it, you must shut down the service, edit the properties file, and then restart the service. Alternatively, you can modify it via a POST request, but this change will only affect the specific load request and not the default setting for all requests.
 	 
 Installing the Admin Server and SQLoader Service
@@ -258,7 +258,7 @@ Output:
 	BINDIR=/usr/local/sqloader/bin
 	LOG_DIR=/var/log/sqloader-service
 	CONFDIR=/usr/local/sqloader/config
-	JAR=sqloader-service-8.1.jar
+	JAR=sqloader-service-8.2.jar
 	PROPERTIES_FILE=/usr/local/sqloader/config/sqload-jdbc.properties
 	PORT=6060
 	ADMINIP=192.168.5.234
@@ -711,7 +711,9 @@ The following summary table DDL uses Oracle syntax.
     ELAPSED_TARGET_SEC NUMBER(38,0) DEFAULT NULL,
     TARGET_DB_URL TEXT (200 BYTE) DEFAULT NULL,
     SQLOADER_VERSION TEXT (200 BYTE) DEFAULT NULL,
-    HOST TEXT (200 BYTE) DEFAULT NULL,
+    ALTER TABLE QACTLG.SQLOAD_SUMMARY ADD CLIENT_IP TEXT (200 BYTE) VISIBLE DEFAULT NULL;
+    ALTER TABLE QACTLG.SQLOAD_SUMMARY ADD REQUESTED_HOST TEXT (200 BYTE) VISIBLE DEFAULT NULL;
+    ALTER TABLE QACTLG.SQLOAD_SUMMARY ADD ACQUIRED_HOST TEXT (200 BYTE) VISIBLE DEFAULT NULL;
     REQUEST_ID TEXT (200 BYTE) VISIBLE DEFAULT NULL
   );
 
