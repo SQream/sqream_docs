@@ -4,8 +4,17 @@
 Release Notes
 *************
 
-:ref:`Version 4.6 - xxxx xx, 2024<4.6>`
+:ref:`Version 4.6 - August 20, 2024<4.6>`
 
+* You can now sign in to SQreamDB Studio using your universal :ref:`Single Sign-On (SSO)<sso>` provider authentication
+
+* Announcing a new :ref:`Activity Report<view_activity_report>` reflecting your storage and resource usage 
+
+* Announcing a new Java-based cross-platform :ref:`SQream SQL CLI<sqream_sql_cli_reference>` 
+
+* ``TOP`` clause enhancements
+
+* :ref:`Saved Query<saved_queries>` command permission enhancements
 
 :ref:`Version 4.5 - December 5, 2023<4.5>`
 
