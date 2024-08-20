@@ -67,3 +67,57 @@ The following is an example of the default cluster and session configuration fil
     "logFileRotateTimeFrequency": "daily",
     "waitForClientSeconds": 18000
    }
+
+
+Metadata Configuration File
+---------------------------
+
+When attempting to free up disk space in Oracle Object Store by executing ``DELETE``, ``cleanup``, ``TRUNCATE``, or ``DROP``, ensure that the following four flags are consistently configured in both the :ref:`Worker<modifying_your_configuration_using_the_worker_configuration_file>` and Metadata configuration files.
+
+.. list-table::
+   :widths: auto 
+   :header-rows: 1
+
+   * - Flag Name
+     - Who May Configure
+     - Description
+     - Data Type
+     - Default Value 
+   * - ``OciBaseRegion``
+     - SUPERUSER
+     - Sets your Oracle Cloud Infrastructure (OCI) region
+     - String 
+     - NA  
+   * - ``OciVerifySsl``
+     - SUPERUSER
+     - Controls whether SSL certificates are verified. By default, verification is enabled. To disable it, set the variable to ``FALSE``
+     - boolean
+     - ``TRUE``  
+   * - ``OciAccessKey``
+     - SUPERUSER
+     - Sets your Oracle Cloud Infrastructure (OCI) access key
+     - String 
+     - NA  
+   * - ``OciAccessSecret``
+     - SUPERUSER
+     - Sets your Oracle Cloud Infrastructure (OCI) access secret 
+     - String 
+     - NA  
+
+The following is an example of the metadata configuration file:
+
+.. code-block:: json
+   
+   {
+    "OciBaseRegion": "us-ashburn-1",
+    "OciVerifySsl": false,
+    "OciAccessKey": "587f59dxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "OciAccessSecret": "LrSEb+RZgxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+   }
+
+
+
+
+
+
+
