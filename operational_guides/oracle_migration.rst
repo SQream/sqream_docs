@@ -459,7 +459,7 @@ Datetime Functions
      - ``CURRENT_TIMESTAMP``
      - Returns the current date and time in the session time zone
    * - ``MONTHS_BETWEEN``
-     - NA
+     - ``DATEDIFF``
      - Returns the number of months between specified date values
    * - ``NEW_TIME``
      - NA
@@ -523,7 +523,7 @@ Datetime Functions
      - 
    * - NA
      - ``DATEDIFF``
-     - 
+     - Calculates the difference between two DATE or DATETIME expressions, in terms of a specific date part
    * - NA
      - ``DATEPART``
      - 
