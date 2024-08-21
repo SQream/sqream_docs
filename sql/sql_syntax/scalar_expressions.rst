@@ -1,8 +1,8 @@
 .. _scalar_expressions:
 
-***************************
+******************
 Scalar expressions
-***************************
+******************
 
 Scalar expressions are functions that calculate a single (scalar) value, even if executed on an entire column. They can be stored as a row value, as opposed to a table value which is a result set consisting of more than one column and/or row.
 
@@ -31,12 +31,12 @@ A scalar expression can be any one of these:
            
 
 Literals
-=============
+========
 
 :ref:`Literals<literals>` are constant values.
 
 Column references
-=====================
+=================
 
 A column reference is a column name, alias, or ordinal.
 
@@ -47,12 +47,12 @@ Column names may be aliased. For example in ``SELECT name as "First name" from u
 A column may also be referneced using an ordinal, for example in a ``GROUP BY`` or ``ORDER BY``. In this query ``SELECT AVG(Salary),Team FROM nba GROUP BY 2``, the ordinal ``2`` refers to the second column in the select list, ``Team``.
 
 Operators
-=================
+=========
 
 Operators, frequently used for comparison, usually come in three forms:
 
 Unary operator
-----------------
+--------------
 
 A prefix or postfix to an expression or literals. For example, ``-``, which is used to negate numbers.
 
@@ -66,7 +66,7 @@ A prefix or postfix to an expression or literals. For example, ``-``, which is u
 
 
 Binary operator
------------------
+---------------
 
 Two expressions or literals separated by an operator. For example, ``+`` which is used to add two numbers.
 
@@ -78,7 +78,7 @@ Two expressions or literals separated by an operator. For example, ``+`` which i
 
 
 Special operators for set membership
-----------------------------------------
+------------------------------------
 
 .. code-block:: postgres
 
@@ -93,20 +93,20 @@ These operators return TRUE if the ``value_expr``  on the left matches the expre
 .. note:: The data type of the left ``value_expr`` must match the type of the right side ``value_expr``.
 
 Comparisons
--------------
+-----------
 
-Binary operators are frequently used to compare values.
+Binary operators are often used to compare values, evaluating the relationship between two operands.
 
-Comparison operators (``<`` ``>`` ``=`` ``<=`` ``>=`` ``<>`` ``!=``, ``IS NULL``, ``IS NOT NULL`` always returns ``BOOL``
+Comparison operators return a boolean result, typically ``TRUE``, ``FALSE``, or ``NULL``, based on the outcome of the comparison.
 
-These operators are:
+Blue supports the following comparisons:
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
    * - Operator
-     - Name
+     - Is Operand
    * - ``<``
      - Smaller than
    * - ``<=``
@@ -116,13 +116,21 @@ These operators are:
    * - ``>=``
      - Greater than or equal to
    * - ``=``
-     - Equals
+     - Equal
    * - ``<>`` or ``!=``
      - Not equal to
    * - ``IS``
      - Identical to 
    * - ``IS NOT``
      - Not identical to
+   * - ``IS TRUE``
+     - Evaluates to ``true``
+   * - ``IS FALSE``
+     - Evaluates to ``false``
+   * - ``IS NOT TRUE``
+     - Evaluates to not ``true``
+   * - ``IS NOT FALSE``
+     - Evaluates to not ``false``
 
 .. note::
    NULL values are handled differently than other value expressions:
