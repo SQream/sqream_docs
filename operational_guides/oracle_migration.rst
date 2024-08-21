@@ -520,22 +520,22 @@ Datetime Functions
      - Returns the time zone offset
    * - NA
      - ``DATEADD``
-     - 
+     - Adds or subtracts an interval to ``DATE`` or ``DATETIME`` value.
    * - NA
      - ``DATEDIFF``
      - Calculates the difference between two DATE or DATETIME expressions, in terms of a specific date part
    * - NA
      - ``DATEPART``
-     - 
+     - Extracts a date or time part from a ``DATE`` or ``DATETIME`` value
    * - NA
      - ``GETDATE``
-     - 
+     - Returns the current date and time of the system
    * - NA
      - ``TO_UNIXTS``, ``TO_UNIXTSMS``
-     - 
+     - Converts a ``DATETIME`` value to a ``BIGINT`` representing a ``UNIX`` timestamp
    * - NA
      - ``FROM_UNIXTS``, ``FROM_UNIXTSMS``
-     - 
+     - Converts a ``BIGINT`` representing a ``UNIX`` timestamp to a ``DATETIME`` value
 
 	 
 General Comparison Functions
@@ -712,7 +712,7 @@ Analytic Functions
      - Description
    * - NA
      - ``MODE``
-     - 
+     - The ``MODE`` function returns the most common value in the selected column. If there are no repeating values, or if there is the same frequency of multiple values, this function returns the top value based on the ``ORDER BY`` clause
    * - ``FEATURE_DETAILS``
      - NA
      - Returns feature details for each row in the selection
