@@ -109,7 +109,7 @@ Conversion Functions
      - SQream
      - Description
    * - ``TO_DATE``
-     - ``+`` (unary)
+     - ``CAST``
      - Converts a string to a date
    * - ``TO_NUMBER``
      - .. code-block:: postgres
