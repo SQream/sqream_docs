@@ -4,7 +4,7 @@
 Oracle Migration Guide
 **********************
 
-This guide is designed to assist those who wish to migrate their database systems from Oracle to SQreamDB. Use this guide to learn how to use the most commonly used Oracle functions with their equivalents in SQreamDB. For functions that do not have direct equivalents in SQreamDB, we provide User-Defined Functions (UDFs). If you need further assistance, our `SQream support team <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ is available to help with any custom UDFs or additional migration questions.
+This guide is designed to assist those who wish to migrate their database systems from Oracle to SQreamDB. Use this guide to learn how to use the most commonly used Oracle functions with their equivalents in SQreamDB. For functions that do not have direct equivalents in SQreamDB, we provide :ref:`User-Defined Functions (UDFs)<python_functions>`. If you need further assistance, our `SQream support team <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ is available to help with any custom UDFs or additional migration questions.
 
 .. contents::
    :local:
@@ -420,9 +420,6 @@ Character Functions Returning Number Values
    * - ``REGEXP_INSTR``
      - ``REGEXP_INSTR``
      - Returns the start position of a regular expression match in an argument
-   * - NA
-     - ``REGEXP_REPLACE``
-     - 
 	 
 Datetime Functions
 ------------------
