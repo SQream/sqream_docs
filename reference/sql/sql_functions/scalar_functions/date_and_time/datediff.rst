@@ -4,7 +4,7 @@
 DATEDIFF
 **************************
 
-Calculates the difference between to ``DATE`` or ``DATETIME`` expressions, in terms of a specific date part.
+Calculates the difference between two ``DATE`` or ``DATETIME`` expressions, in terms of a specific date part.
 
 .. note:: Results are given in integers, rather than ``INTERVAL``, which SQream DB does not support.
 
