@@ -49,7 +49,7 @@ New Features and Enhancements
 
 ► ALL log files should reside under the same folder
 
-► Release locks
+► A ``SUPERUSER`` may now release a :ref:`specific lock<remove_lock>` or :ref:`all locks<remove_statement_locks>` blocking file cleanup and preventing operations on locked objects within the system. 
 
 ► SQreamDB operates with utmost efficiency when processing tables containing large data chunks. Introducing a new :ref:`rechunk` utility function, it simplifies the management of tables with small data chunks. This feature enables users to merge small data chunks into larger ones and simultaneously eliminating any deleted records present.
 
