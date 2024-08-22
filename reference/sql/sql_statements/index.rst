@@ -149,6 +149,10 @@ The following table shows the Utility commands:
      - Recompiles a saved query that has been invalidated due to a schema change
    * - :ref:`RECOMPILE VIEW<recompile_view>`
      - Recreate a view after schema changes
+   * - :ref:`REMOVE LOCK<remove_lock>`
+     - Clears locks
+   * - :ref:`REMOVE STATEMENT LOCKS<remove_statement_locks>`
+     - Clears all locks in the system
    * - :ref:`SHOW CONNECTIONS<show_connections>`
      - Returns a list of active sessions on the current worker
    * - :ref:`SHOW LOCKS<show_locks>`

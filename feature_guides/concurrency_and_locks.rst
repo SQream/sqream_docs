@@ -4,7 +4,7 @@
 Concurrency and Locks
 ***********************
 
-Locks are used in SQream DB to provide consistency when there are multiple concurrent transactions updating the database. 
+Locks are used in SQreamDB to provide consistency when there are multiple concurrent transactions updating the database. 
 
 Read only transactions are never blocked, and never block anything. Even if you drop a database while concurrently running a query on it, both will succeed correctly (as long as the query starts running before the drop database commits).
 
@@ -13,7 +13,7 @@ Read only transactions are never blocked, and never block anything. Even if you 
 Locking Modes
 ================
 
-SQream DB has two kinds of locks:
+SQreamDB has two kinds of locks:
 
 * 
    ``exclusive`` - this lock mode prevents the resource from being modified by other statements
@@ -71,18 +71,22 @@ Monitoring locks across the cluster can be useful when transaction contention ta
 
 The utility :ref:`show_locks` can be used to see the active locks.
 
-In this example, we create a table based on results (:ref:`create_table_as`), but we are also effectively dropping the previous table (by using ``OR REPLACE`` which also :ref:`drops the table<drop_table>`). Thus, SQream DB applies locks during the table creation process to prevent the table from being altered during it's creation.
+In this example, we create a table based on results (:ref:`create_table_as`), but we are also effectively dropping the previous table (by using ``OR REPLACE`` which also :ref:`drops the table<drop_table>`). Thus, SQreamDB applies locks during the table creation process to prevent the table from being altered during it's creation.
 
 
 .. code-block:: psql
 
-   t=> SELECT SHOW_LOCKS();
-   statement_id | statement_string                                                                                | username | server       | port | locked_object                   | lockmode  | statement_start_time | lock_start_time    
-   -------------+-------------------------------------------------------------------------------------------------+----------+--------------+------+---------------------------------+-----------+----------------------+--------------------
-   287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | database$t                      | Inclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
-   287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | globalpermission$               | Exclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
-   287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | schema$t$public                 | Inclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
-   287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | table$t$public$nba2$Insert      | Exclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
-   287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | table$t$public$nba2$Update      | Exclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
+	SELECT SHOW_LOCKS();
+	statement_id | statement_string                                                                                | username | server       | port | locked_object                   | lockmode  | statement_start_time | lock_start_time    
+	-------------+-------------------------------------------------------------------------------------------------+----------+--------------+------+---------------------------------+-----------+----------------------+--------------------
+	287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | database$t                      | Inclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
+	287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | globalpermission$               | Exclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
+	287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | schema$t$public                 | Inclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
+	287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | table$t$public$nba2$Insert      | Exclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
+	287          | CREATE OR REPLACE TABLE nba2 AS SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | sqream   | 192.168.1.91 | 5000 | table$t$public$nba2$Update      | Exclusive | 2019-12-26 00:03:30  | 2019-12-26 00:03:30
+
+.. note:: A ``SUPERUSER`` can remove :ref:`unaccounted-for locks<remove_lock>` and has the ability to :ref:`clear all locks<remove_statement_locks>` in the system.
+
+
 
 For more information on troubleshooting lock related issues, see :ref:`lock_related_issues`.

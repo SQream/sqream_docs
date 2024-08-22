@@ -17,8 +17,6 @@ It is essential that you follow these prerequisites:
 
 * :ref:`Log files<log_structure>` must be saved as ``JSON`` files
 
-* :ref:`Set the path<export_open_snapshots>` to where you wish your open snapshot information be saved 
-
 * Configure `Grafana authentication <https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/grafana/>`_, even if you're using `LDAP <https://grafana.com/docs/grafana/latest/setup-grafana/configure-security/configure-authentication/ldap/>`_ for authentication management
 
 
