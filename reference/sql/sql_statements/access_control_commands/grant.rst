@@ -20,100 +20,110 @@ Syntax
 
 .. code-block:: postgres
 
-	-- Grant permissions at the instance/ storage cluster level:
-	GRANT 
-	{ 
-	  SUPERUSER
-	  | LOGIN 
-	  | PASSWORD '<password>' 
-	} 
-	TO <role> [, ...] 
+	-- Grant permissions to all databases:
+	GRANT {
+	SUPERUSER 
+	| LOGIN 
+	| PASSWORD '<password>' }
+	TO <role> [, ...]
 
 	-- Grant permissions at the database level:
-	GRANT
-	{
-	  { CREATE 
-	  | CONNECT
-	  | DDL 
-	  | SUPERUSER 
-	  | CREATE FUNCTION } [, ...] 
-	  | ALL [PERMISSIONS]
-	}
+	GRANT {
+	CREATE 
+	| CONNECT 
+	| DDL 
+	| SUPERUSER 
+	| CREATE FUNCTION } [, ...] 
+	| ALL [PERMISSIONS]
 	ON DATABASE <database> [, ...]
-	TO <role> [, ...] 
+	TO <role> [, ...]
 
 	-- Grant permissions at the schema level: 
-	GRANT 
-	{
-	  { CREATE 
-	  | DDL 
-	  | USAGE 
-	  | SUPERUSER } [, ...] 
-	  | ALL [PERMISSIONS]
-	} 
-	ON SCHEMA <schema> [, ...] 
-	TO <role> [, ...] 
+	GRANT { 
+	CREATE 
+	| DDL 
+	| USAGE 
+	| SUPERUSER } [, ...] 
+	| ALL [PERMISSIONS]
+	ON SCHEMA <schema> [, ...]
+	TO <role> [, ...]
 		   
 	-- Grant permissions at the object level: 
-	GRANT
+	GRANT { 
+	SELECT 
+	| INSERT 
+	| DELETE 
+	| DDL 
+	| UPDATE } [, ...] 
+	| ALL [PERMISSIONS]
+	ON {TABLE <table_name> [, ...] 
+	| ALL TABLES IN SCHEMA <schema_name> [, ...]}
+	TO <role> [, ...]
+
+	-- Grant permissions at the catalog level: 
+	GRANT SELECT
+	ON { CATALOG <catalog_name> [, ...] }
+	TO <role> [, ...]
+
+	-- Grant permissions on the foreign table level:
+	
+	GRANT { 
+	{SELECT 
+	| DDL } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { FOREIGN TABLE <table_name> [, ...] 
+	| ALL FOREIGN TABLE IN SCHEMA <schema_name> [, ...]}
+	TO <role> [, ...]
+
+	-- Grant function execution permission: 
+	GRANT { 
+	ALL 
+	| EXECUTE 
+	| DDL } 
+	ON FUNCTION <function_name>
+	TO <role>
+
+	-- Grant permissions at the column level:
+	GRANT 
 	{
 	  { SELECT 
-	  | INSERT 
-	  | DELETE 
-	  | DDL 
+	  | DDL
+	  | INSERT
 	  | UPDATE } [, ...] 
 	  | ALL [PERMISSIONS]
 	}
 	ON 
 	{ 
-	  TABLE <table_name> [, ...] 
-	  | ALL TABLES IN SCHEMA <schema_name> [, ...] 
-	  | VIEW <schema_name.view_name> [, ...] 
-	  | ALL VIEWS IN SCHEMA <schema_name> [, ...] 
-	  | FOREIGN TABLE <table_name> [, ...] 
-	  | ALL FOREIGN TABLES IN SCHEMA <schema_name> [, ...] 
+	  COLUMN <column_name> [,<column_name_2>] IN TABLE <table_name> 
+	  | COLUMN <column_name> [,<column_name_2>] IN FOREIGN TABLE <table_name>
 	}
 	TO <role> [, ...]
 
-	-- Grant permissions at the catalog level: 
-
-	GRANT SELECT 
-	ON { CATALOG <catalog_name> [, ...] }
-	TO <role> [, ...]
-
-	-- Grant execute function permission: 
-	GRANT 
-	{ 
-	  ALL 
-	  | EXECUTE 
-	  | DDL
-	} 
-	ON FUNCTION function_name 
-	TO role; 
-	   
-	-- Grant permissions at the column level:
-	GRANT 
-	{
-	  { SELECT 
-	  | DDL } [, ...] 
-	  | ALL [PERMISSIONS]
-	}
-	ON 
-	{ 
-	  COLUMN <column_name> [,<column_name_2>] IN TABLE <table_name> [,<table_name2>] 
-	  | COLUMN <column_name> [,<column_name_2>] IN FOREIGN TABLE <table_name> [,<table_name2>]
-	  | ALL COLUMNS IN TABLE <schema_name.table_name> [, ...] 
-	  | ALL COLUMNS IN FOREIGN TABLE <foreign_table_name> [, ...] 
-	}
+	-- Grant permissions on the view level
+	GRANT {
+	{SELECT 
+	| DDL } [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { VIEW <view_name> [, ...] 
+	| ALL VIEWS IN SCHEMA <schema_name> [, ...]}
 	TO <role> [, ...]
 
 	-- Grant permissions at the Service level:
-	GRANT 
-	{
-	{ USAGE } [PERMISSIONS]
-	}
-	ON { SERVICE <service_name> }
+	GRANT {
+	{USAGE} [, ...] 
+	| ALL [PERMISSIONS] }
+	ON { SERVICE <service_name> [, ...] 
+	| ALL SERVICES IN SYSTEM }
 	TO <role> [, ...]
+	
+	-- Grant saved query permissions
+	GRANT
+	SELECT 
+	| DDL
+	| USAGE
+	| ALL
+	ON SAVED QUERY <saved_query> [,...]
+	TO <role> [,...]
 
 	-- Allows role2 to use permissions granted to role1
 	GRANT <role1> [, ...] 
@@ -137,7 +147,7 @@ The following table describes the ``GRANT`` parameters:
      - Description
    * - ``role_name``
      - The name of the role to grant permissions to
-   * - ``table_name``, ``database_name``, ``schema_name``, ``function_name``, ``catalog_name``, ``column_name``, ``service_name``
+   * - ``table_name``, ``database_name``, ``schema_name``, ``function_name``, ``catalog_name``, ``column_name``, ``service_name``, ``saved_query_name``
      - Object to grant permissions on.
    * - ``WITH ADMIN OPTION``
      - 
@@ -180,10 +190,10 @@ The following table describes the supported permissions:
      - Database, Schema, Table
      - For a role to create and manage objects, it needs the ``CREATE`` and ``USAGE`` permissions at the respective level
    * - ``USAGE``
-     - Schema
+     - Schema, Saved Query, Services
      - For a role to see tables in a schema, it needs the ``USAGE`` permissions
    * - ``SELECT``
-     - Table
+     - Table, Saved Query, View, Catalog, Foreign Table
      - Allows a user to run :ref:`select` queries on table contents
    * - ``INSERT``
      - Table
@@ -195,13 +205,13 @@ The following table describes the supported permissions:
      - Table
      - Allows a user to run :ref:`delete`, :ref:`truncate` statements to delete data from a table
    * - ``DDL``
-     - Database, Schema, Table, Function
+     - Database, Schema, Table, Function, Saved Query, View, Foreign Table
      - Allows a user to :ref:`alter tables<alter_table>`, rename columns and tables, etc.
    * - ``EXECUTE``
      - Function
      - Allows a user to execute UDFs
    * - ``ALL``
-     - Cluster, Database, Schema, Table, Function
+     - Cluster, Database, Schema, Table, Function, Saved Query, Services, Foreign Table
      - All of the above permissions at the respective level
 
 .. end include
