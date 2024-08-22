@@ -83,6 +83,22 @@ Syntax
 	ON FUNCTION <function_name>
 	TO <role>
 
+	-- Grant permissions at the column level:
+	GRANT 
+	{
+	  { SELECT 
+	  | DDL
+	  | INSERT
+	  | UPDATE } [, ...] 
+	  | ALL [PERMISSIONS]
+	}
+	ON 
+	{ 
+	  COLUMN <column_name> [,<column_name_2>] IN TABLE <table_name> 
+	  | COLUMN <column_name> [,<column_name_2>] IN FOREIGN TABLE <table_name>
+	}
+	TO <role> [, ...]
+
 	-- Grant permissions on the view level
 	GRANT {
 	{SELECT 
