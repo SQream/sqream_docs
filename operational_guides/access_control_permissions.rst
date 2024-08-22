@@ -75,6 +75,10 @@ The following table describe the required permissions for performing and executi
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``DDL``              | Column DDL operations                                                                                                   |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``INSERT``           | :ref:`insert` into the column                                                                                           |
++----------------------+-------------------------------------------------------------------------------------------------------------------------+
+| ``UPDATE``           | :ref:`update` the value of certain columns in existing rows                                                             |
++----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | **View**                                                                                                                                       |
 +----------------------+-------------------------------------------------------------------------------------------------------------------------+
 | ``SELECT``           | Select from view                                                                                                        |
@@ -189,15 +193,15 @@ GRANT
 	GRANT 
 	{
 	  { SELECT 
-	  | DDL } [, ...] 
+	  | DDL
+	  | INSERT
+	  | UPDATE } [, ...] 
 	  | ALL [PERMISSIONS]
 	}
 	ON 
 	{ 
-	  COLUMN <column_name> [,<column_name_2>] IN TABLE <table_name> [,<table_name2>] 
-	  | COLUMN <column_name> [,<column_name_2>] IN FOREIGN TABLE <table_name> [,<table_name2>]
-	  | ALL COLUMNS IN TABLE <schema_name.table_name> [, ...] 
-	  | ALL COLUMNS IN FOREIGN TABLE <foreign_table_name> [, ...] 
+	  COLUMN <column_name> [,<column_name_2>] IN TABLE <table_name> 
+	  | COLUMN <column_name> [,<column_name_2>] IN FOREIGN TABLE <table_name>
 	}
 	TO <role> [, ...]
 
@@ -309,12 +313,12 @@ REVOKE
 	{
 	  { SELECT 
 	  | DDL } [, ...] 
+	  | INSERT
+	  | UPDATE } [, ...] 
 	  | ALL [PERMISSIONS]}
 	ON 
 	{ 
-	  COLUMN <column_name> [,<column_name_2>] IN TABLE <table_name> [,<table_name2>] | COLUMN <column_name> [,<column_name_2>] IN FOREIGN TABLE <table_name> [,<table_name2>]
-	  | ALL COLUMNS IN TABLE <schema_name.table_name> [, ...] 
-	  | ALL COLUMNS IN FOREIGN TABLE <schema_name.foreign_table_name> [, ...] 
+	  COLUMN <column_name> [,<column_name_2>] IN TABLE <table_name> | COLUMN <column_name> [,<column_name_2>] IN FOREIGN TABLE <table_name>
 	}
 	FROM <role> [, ...]
 
@@ -377,7 +381,7 @@ schema statement is run.
           | COLUMNS   
           | CATALOGS
           | SERVICES
-          | SAVED_QUERIES
+          | SAVED QUERIES
          }
           { grant_clause 
           | DROP grant_clause }

@@ -82,6 +82,20 @@ Syntax
 	| DDL } 
 	ON FUNCTION <function_name>
 	FROM <role>
+	
+	-- Revoke permissions at the column level:
+	REVOKE 
+	{
+	  { SELECT 
+	  | DDL } [, ...] 
+	  | INSERT
+	  | UPDATE } [, ...] 
+	  | ALL [PERMISSIONS]}
+	ON 
+	{ 
+	  COLUMN <column_name> [,<column_name_2>] IN TABLE <table_name> | COLUMN <column_name> [,<column_name_2>] IN FOREIGN TABLE <table_name>
+	}
+	FROM <role> [, ...]
 
 	-- Revoke permissions on the view level
 	REVOKE {
