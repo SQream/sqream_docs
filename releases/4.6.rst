@@ -4,7 +4,7 @@
 Release Notes 4.6
 *****************
 
-The 4.6 release notes were released on August 20, 2024
+The 4.6 release notes were released on August 20th, 2024
 
 .. contents:: 
    :local:
@@ -25,6 +25,7 @@ Compatibility Matrix
 | Driver compatibility    | * JDBC 5.3.1                                                           |
 |                         | * ODBC 4.4.4                                                           | 
 |                         | * NodeJS 4.2.4                                                         |
+|                         | * .NET 5.0.0                                                           |
 |                         | * Pysqream 5.1.0 (compatible with v4.5.13 or later)                    |
 |                         | * Spark 5.0.0                                                          |
 |                         | * SQLoader As A Service 8.1 (compatible with v4.6.1 or later)          |
