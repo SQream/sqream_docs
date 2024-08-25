@@ -44,7 +44,7 @@ New Features and Enhancements
     "logFileRotateTimeFrequency": "daily",
    }
    
-.. note:: Starting with SQreamDB version 4.6, log file naming conventions have changed. Ensure that any code referencing log file names is updated accordingly.
+.. note:: Starting with SQreamDB version 4.6, log file naming conventions have changed. **Ensure that any code referencing log file names is updated accordingly**.
 
 	* When using the ``logFileRotateTimeFrequency`` flag, log file names will follow these patterns:
 
