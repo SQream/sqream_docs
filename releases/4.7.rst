@@ -35,6 +35,31 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
+► For any new SQreamDB installation or upgrade, your default :ref:`legacy configuration file<modifying_your_configuration_using_a_legacy_configuration_file>` will include the following cluster flags:
+
+.. code-block:: json
+   
+   {
+
+    "logMaxFileSizeMB": 20,
+    "logFileRotateTimeFrequency": "daily",
+	
+   }
+   
+.. note:: Starting with SQreamDB version 4.6, log file naming conventions have changed. Ensure that any code referencing log file names is updated accordingly.
+
+	* When using the ``logFileRotateTimeFrequency`` flag, log file names will follow these patterns:
+
+	  ``Daily``: ``sqream_yyyyMMdd_000.log``
+	
+	  ``Weekly``: ``sqream_yyyyMMWW_000.log`` (WW = week number within the month)
+	
+	  ``Monthly``: ``sqream_yyyyMM_000.log``
+
+	* When using the ``logMaxFileSizeMB`` flag, log files will follow the pattern:
+
+	  ``sqream_N.log`` (N = 1 to 13)
+
 ► You may now use the new ``logFormat`` flag to configure the format of your log files. By default, logs are saved as ``CSV`` files. To configure your log files to be saved as ``JSON`` instead, use the ``logFormat`` flag in your :ref:`legacy config file<current_method_flag_types>`. If your current logs are in ``CSV`` format and you require :ref:`Health Monitoring<health_monitoring_release>`, it's advisable to configure your logs to be saved in both ``CSV`` and ``JSON`` formats as outlined above.
 
 .. note::
@@ -47,7 +72,41 @@ New Features and Enhancements
 
 ► Lift&Shift
 
-► ALL log files should reside under the same folder
+► You now have the option to choose the location for your ``metadata_server``, ``server_picker``, and Worker log files. In previous SQreamDB versions, the location of your log files was predetermined and hard-coded.
+
+:ref:`metadata_server_cli_reference`
+
+* Using the ``metadata_server_config.json`` file:
+
+  .. code-block:: json 
+
+	{
+	"logPath": "<home/logs/my_logs>" 
+	}
+	
+* Using the CLI:
+
+  .. code-block:: console
+
+	./metadata_server --log_path=<home/logs/my_logs>
+	
+:ref:`server_picker_cli_reference`
+
+  Using the CLI:
+
+  .. code-block:: console
+
+	./server_picker --log_path=<home/logs/my_logs>
+
+:ref:`Worker<current_method_modification_methods>`
+
+  Using the ``sqream_config_legacy.json``:
+
+  .. code-block:: json
+
+	{
+	"DefaultPathToLogs": "<home/logs/my_logs>"
+	}
 
 ► A ``SUPERUSER`` may now release a :ref:`specific lock<remove_lock>` or :ref:`all locks<remove_statement_locks>` blocking file cleanup and preventing operations on locked objects within the system. 
 
