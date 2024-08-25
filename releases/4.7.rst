@@ -40,10 +40,8 @@ New Features and Enhancements
 .. code-block:: json
    
    {
-
     "logMaxFileSizeMB": 20,
     "logFileRotateTimeFrequency": "daily",
-	
    }
    
 .. note:: Starting with SQreamDB version 4.6, log file naming conventions have changed. Ensure that any code referencing log file names is updated accordingly.
