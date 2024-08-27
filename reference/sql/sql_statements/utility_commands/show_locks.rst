@@ -65,7 +65,7 @@ Output:
 
 	statement id |statement string                  |username |server   |port |locked object  |lock mode |statement start time |lock start time    |is_statement_active |is_snapshot_active
 	-------------+----------------------------------+---------+---------+-----+---------------+----------+---------------------+-------------------+--------------------+------------------
-	2            |create or replace table t (x int);|sqream   |127.0.0.1|5000 |database$master|Inclusive |04-07-2024 15:07:02  |2024-07-04 15:07:02|1                   |1
+	2            |create or replace table t (x int);|sqream   |127.0.0.1|5000 |database$master|Inclusive |2024-07-04 15:07:02  |2024-07-04 15:07:02|1                   |1
 
 
 Permissions
