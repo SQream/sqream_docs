@@ -190,17 +190,11 @@ Setting Up A Locale
 
 SQreamDB enables you to set up a locale using your own location. To find out your current time-zone, run the ``timedatectl list-timezones`` command.
 
-1. Set the language of the locale:
+Set the language of the locale:
 
-   .. code-block:: console
+.. code-block:: console
 
-      sudo localectl set-locale LANG=en_US.UTF-8
-
-2. Set the time stamp (time and date) of the locale:
-
-   .. code-block:: console
-
-      sudo timedatectl set-timezone Asia/Jerusalem
+   sudo localectl set-locale LANG=en_US.UTF-8
    
 Installing Required Software 
 ---------------------------------
