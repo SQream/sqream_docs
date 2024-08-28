@@ -60,8 +60,6 @@ Under the **Specify stack details** tab, configure the following parameters:
    * - ``tempPath``
      - The temporary storage path, usually set to ``/mnt/ephemeral``, though it can also point to an S3 bucket. This storage is used for running queries and is automatically cleared once the queries are completed
 
-Parameters table (read me)
-
 License
 =======
 
@@ -69,17 +67,17 @@ License
 
    * Using the CLI:
    
-     **Terraform:** run Terraform script:
+    **Terraform:** run Terraform script:
 	 
     .. code-block:: console
 	 
         ./get_machines.sh
 		
-     **AWS Console:** filter EC2 instances using the keyword **worker** and the environment name given.
+    **AWS Console:** filter EC2 instances using the keyword **worker** and the environment name given.
 	 
-#. Send the machines to Sqream to generate license.
+#. Send the machines to SqreamDB to generate license.
 
-#. Install on each machine the license by:
+#. On each machine, install the license by:
 
    a. Connecting to the machine (check "connect to AWS machine" section above) - only available from IPs given access by parameter ``office_cidrs``.
    b. Create a new file **in this path:**
@@ -88,9 +86,9 @@ License
    
 	sudo vi /etc/sqream/license.enc
 
-#. Place the license given by Sqream in it.
+#. Place the license given by SqreamDB in it.
 
-#. Wait 1-2 minutes for the worker to automatically start.
+#. Wait 1-2 minutes for the Worker to automatically start.
 
 
 Connecting to the Machine
