@@ -4,7 +4,9 @@
 SQreamDB on AWS
 ***************
 
-The SQreamDB Data Processing and Analytics Acceleration Platform on AWS marketplace is available `here <https://aws.amazon.com/marketplace/pp/prodview-ytpp4pwjcxdca>`_. 
+Private cloud deployment on AWS provides the ability to maintain control and security similar to traditional private clouds, while utilizing AWS's scalable infrastructure, flexible resource management, and cost-efficient services.
+
+The SQreamDB data processing and analytics acceleration platform on AWS marketplace is available `here <https://aws.amazon.com/marketplace/pp/prodview-ytpp4pwjcxdca>`_. 
 
 .. contents:: 
    :local:
