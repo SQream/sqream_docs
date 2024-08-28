@@ -14,3 +14,4 @@ The **Installation Guides** section describes the following installation guide s
 
    installing_and_launching_sqream
    sqream_studio_installation
+   upgrade_guide/index   

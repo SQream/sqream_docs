@@ -67,7 +67,7 @@ If you couldn't find what you're looking for, we're always happy to help. Visit 
 
    getting_started/index
    installation_guides/index
-   upgrade_guide/index
+   sqreamdb_on_aws/index
    operational_guides/index
    configuration_guides/index
    architecture/index
