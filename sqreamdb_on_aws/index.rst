@@ -16,14 +16,13 @@ Before You Begin
 It is essential that you have the following:
 
 * An AWS account
-* AWS **Key Pairs**
-* AWS permissions (verify specific permissions)
+* An existing EC2 key pair
+* AWS administrator permissions
 
 Configuration on AWS
 ====================
 
-Specify stack details
------------------------
+Under the **Specify stack details** tab, configure the following parameters:
 
 .. list-table:: 
    :widths: auto
@@ -32,29 +31,29 @@ Specify stack details
    * - Parameter
      - Description
    * - ``environment``
-     - The name used for all objects created
+     - The identifier used for naming all created resources
    * - ``region``
-     - Region where we want the machines to be created. The bucket we store sqream contents in should also use the same region for better performance and price
+     - The AWS region where the machines will be deployed. For optimal performance and cost efficiency, the S3 bucket storing Sqream data should be in the same region
    * - ``availability_zones``
-     - Availability zone to place the machines inside the region. Should be a zone with GPU machines
+     - The availability zone within the specified region to place the machines. It should support GPU-enabled instances
    * - ``key_name``
-     - The name of an EC2 key pair already present in the account that will be used by all created machines to log into them
+     - The name of an existing EC2 key pair in your AWS account, used to log into all created instances
    * - ``office_cidrs``
-     - A list of IPs which will be given access to the product and to ssh to the machines (for security)
+     - A list of IP ranges (CIDRs) that are allowed access to the product and SSH access to the machines for security purposes
    * - ``sqream_ami``
-     - The AMI with Sqream product on it. Currently for Sqream 4.7 use ``ami07d82637b2dab962e``
+     - The Amazon Machine Image (AMI) pre-configured with Sqream. For Sqream 4.7, use ``ami-07d82637b2dab962e``
    * - ``ui_instance_type``
-     - Machine type of the UI. Recommended is 16G RAM and some medium CPU such as in ``t2.xlarge``
+     - The instance type for the UI server. A machine with 16GB of RAM and moderate CPU resources, such as a ``t2.xlarge``, is recommended
    * - ``md_instance_type``
-     - Machine type of the metadata and server picker machine. Depends on the workflow, but a good starting point is ``t2.2xlarge``
+     - The instance type for the metadata and server picker machine. Recommended starting point is a ``t2.2xlarge``, but it may vary depending on your workload
    * - ``workers_instance_type``
-     - Machine type of the Workers machines. Must be a GPU machine. Recommended machines are ``g5.xlarge`` or ``g4dn.xlarge``
+     - The instance type for the worker machines, which must be GPU-enabled. Recommended options include ``g5.xlarge`` or ``g4dn.xlarge``
    * - ``workers_count``
-     - Number of worker machines to create 
+     - The number of worker machines to be created
    * - ``tablespaceURL``
-     - Where the database will be stored. Should be at the same Region as the machine to reduce costs. PAY ATTENTION that a folder terraform_important dir will also be created here and shouldn't be deleted as long as the installation wasn't deleted. Deleting it will cause upgrades and changes to reinstall a new environment instead of using the existing. Uninstall also uses this data, so only after uninstall it should be manually removed
+     - The location where the database will be stored, ideally in the same region as the instances to minimize costs. Important: A ``terraform_important`` directory will also be created here and should not be deleted unless the installation is completely removed. Deleting this directory prematurely may cause issues during upgrades or changes, leading to a full reinstall of the environment
    * - ``tempPath``
-     - Should typically be ``/mnt/ephemeral``, though it can also be a path in S3. Temp storage used for running queries and is auto-deleted when they are done
+     - The temporary storage path, usually set to ``/mnt/ephemeral``, though it can also point to an S3 bucket. This storage is used for running queries and is automatically cleared once the queries are completed
 
 Parameters table (read me)
 
