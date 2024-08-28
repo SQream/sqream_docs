@@ -27,7 +27,7 @@ If you need to access data from an external bucket (one that is not part of the 
 Configuration on AWS
 ====================
 
-Under the **Specify stack details** tab, configure the following parameters:
+Under the **CloudFormation** > **Stacks** > **Specify stack details** tab, configure the following parameters:
 
 .. list-table:: 
    :widths: auto
@@ -63,17 +63,7 @@ Under the **Specify stack details** tab, configure the following parameters:
 License
 =======
 
-#. Get the list of machines:
-
-   * Using the CLI:
-   
-    **Terraform:** run Terraform script:
-	 
-    .. code-block:: console
-	 
-        ./get_machines.sh
-		
-    **AWS Console:** filter EC2 instances using the keyword **worker** and the environment name given.
+#. Get a list of machines using your AWS console by filtering EC2 instances with the **worker** keyword and the environment name given.
 	 
 #. Send the machines to SqreamDB to generate license.
 
@@ -112,12 +102,6 @@ Connecting to SQreamDB
 
 During installation, a Network Load Balancer (NLB) named ``sqream-<environment>-nlb`` is created to route traffic to various machines. After installation, SqreamDB is accessible via the NLB's DNS name. For the SqreamDB UI, use this URL in any browser, or connect to it from third-party software components.
 
-#. To get the URL using SQreamDB CLI, run the following script:
-
-   .. code-block:: console
-
-	./get_url.sh 
-
 #. To get the URL using AWS Console, copy the DNS of the Network Load Balancer.
 
 Connection Troubleshooting 
@@ -133,7 +117,7 @@ Adding a Signed Certificate to the Cluster
 
 To add your signed certificate to the Sqream cluster, follow these steps:
 
-#. Create a new listener for the Network Load Balancer (sqreamdb-<environment>-nlb) using the TLS protocol.
+#. `Create a new listener <https://docs.aws.amazon.com/elasticloadbalancing/latest/network/create-listener.html>`_ for the Network Load Balancer (sqream-<environment>-nlb) using the TLS protocol.
 
 #. A TLS target group that points to the UI machine has already been created for your convenience. You can use it for the new listener. The group name is ``sqream-<environment>-nlb-ui-443``.
 
