@@ -75,3 +75,4 @@ Output:
 Permissions
 ===========
 
+This utility function requires a ``SUPERUSER`` permission.
