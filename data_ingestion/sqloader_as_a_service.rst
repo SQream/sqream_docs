@@ -523,7 +523,7 @@ Mandatory flags must be configured using HTTP flags or the ``properties`` file.
      - Defines whether or not loading using Change Data Capture (CDC) includes deleted rows
    * - ``drop``
      - Optional
-     - ``true``
+     - ``false``
      - Defines whether or not a new target table in SQreamDB is created. If ``false``, you will need to configure a target table name using the ``target`` parameter
    * - ``fetchSize``
      - Optional
