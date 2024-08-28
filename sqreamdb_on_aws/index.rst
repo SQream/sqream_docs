@@ -19,6 +19,11 @@ It is essential that you have the following:
 * An existing EC2 key pair
 * AWS administrator permissions
 
+Usage Notes
+===========
+
+If you need to access data from an external bucket (one that is not part of the SqreamDB installation or used for ``tablespaceURL`` or ``tempPath``), you must manually grant access. Alternatively, you can copy data to and from the bucket using the AWS_ID and AWS_Secret parameters.
+
 Configuration on AWS
 ====================
 
@@ -43,11 +48,11 @@ Under the **Specify stack details** tab, configure the following parameters:
    * - ``sqream_ami``
      - The Amazon Machine Image (AMI) pre-configured with Sqream. For Sqream 4.7, use ``ami-07d82637b2dab962e``
    * - ``ui_instance_type``
-     - The instance type for the UI server. A machine with 16GB of RAM and moderate CPU resources, such as a ``t2.xlarge``, is recommended
+     - The instance type for the UI server. A machine with 16GB of RAM and moderate CPU resources, such as a ``r6i.2xlarge``, is recommended
    * - ``md_instance_type``
-     - The instance type for the metadata and server picker machine. Recommended starting point is a ``t2.2xlarge``, but it may vary depending on your workload
+     - The instance type for the metadata and server picker machine. Recommended starting point is a ``r6i.2xlarge``, but it may vary depending on your workload
    * - ``workers_instance_type``
-     - The instance type for the worker machines, which must be GPU-enabled. Recommended options include ``g5.xlarge`` or ``g4dn.xlarge``
+     - The instance type for the worker machines, which must be GPU-enabled. Recommended options include ``g6.8xlarge`` or ``g5.8xlarge``
    * - ``workers_count``
      - The number of worker machines to be created
    * - ``tablespaceURL``
@@ -116,3 +121,26 @@ During installation, a Network Load Balancer (NLB) named ``sqream-<environment>-
 	./get_url.sh 
 
 #. To get the URL using AWS Console, copy the DNS of the Network Load Balancer.
+
+Connection Troubleshooting 
+--------------------------
+
+If you are unable to connect, please ensure the following:
+
+* The license file has been generated and distributed to all Worker nodes.
+* Your IP address is included in the ``office_cidrs`` parameter, as only the specified IPs are allowed access to the cluster.
+
+Adding a Signed Certificate to the Cluster
+==========================================
+
+To add your signed certificate to the Sqream cluster, follow these steps:
+
+#. Create a new listener for the Network Load Balancer (sqreamdb-<environment>-nlb) using the TLS protocol.
+
+#. A TLS target group that points to the UI machine has already been created for your convenience. You can use it for the new listener. The group name is ``sqream-<environment>-nlb-ui-443``.
+
+#. If you require a new DNS, you can retrieve the public IP of the Network Load Balancer by either:
+
+   * Running the host CLI command with the NLB's URL
+
+   * Finding it in the AWS console
