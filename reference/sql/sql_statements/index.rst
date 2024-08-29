@@ -123,6 +123,10 @@ The following table shows the Utility commands:
      - Returns a static query plan, which can be used to debug query plans
    * - :ref:`GET DDL<get_ddl>`
      - View the ``CREATE TABLE`` statement for a table
+   * - :ref:`get_chunk_info`
+     - Retrieves information of specific chunks
+   * - :ref:`get_extent_info`
+     - Retrieves information of specific extents
    * - :ref:`GET FUNCTION DDL<get_function_ddl>`
      - View the ``CREATE FUNCTION`` statement for a UDF
    * - :ref:`GET LICENSE INFO<get_license_info>`
