@@ -49,11 +49,11 @@ Returns
    * - ``chunk_id``
      - The id of the chunk
    * - ``extent_id``
-     - 
+     - The id of the extent
    * - ``compressed_size``
-     - 
+     - The size of the chunk's compressed data
    * - ``uncompressed_size``
-     - 
+     - The size of the chunk's uncompressed data
 
 Examples
 ========
