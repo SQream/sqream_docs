@@ -49,7 +49,7 @@ Client Driver Downloads
      - 
      - All
    * - **Python**
-     - `pysqream v5.1.0 <https://github.com/SQream/pysqream/releases>`_
+     - `pysqream v5.2.0 <https://github.com/SQream/pysqream/releases>`_
      - :ref:`pysqream`
      - Recommended installation via ``pip``
      - All

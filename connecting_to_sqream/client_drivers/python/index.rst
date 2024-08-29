@@ -98,11 +98,11 @@ Installing via PIP without an internet connection
 
 .. code-block:: console
 
-	tar -xf pysqream_connector_5.1.0.tar.gz
-	cd pysqream_connector_5.1.0
+	tar -xf pysqream_connector_5.2.0.tar.gz
+	cd pysqream_connector_5.2.0
 	#Install all packages with --no-index --find-links .
 	python3 -m pip install *.whl -U --no-index --find-links .
-	python3.9 -m pip install pysqream-5.1.0.zip -U --no-index --find-links .
+	python3.9 -m pip install pysqream-5.2.0.zip -U --no-index --find-links .
 	python3.9 -m pip install pysqream-sqlalchemy-1.3.zip  -U --no-index --find-links .
 
 Upgrading an Existing Installation
