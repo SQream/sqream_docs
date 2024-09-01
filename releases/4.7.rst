@@ -37,9 +37,7 @@ New Features and Enhancements
 
 
 
-
-	
-► :ref:`health_monitoring`
+► Enhance observability and enable shorter investigation times with the new :ref:`health_monitoring` SQreamDB service.
 
 ► SQreamDB may now be deployed on :ref:`AWS private cloud<sqreamdb_on_aws>`.
 
