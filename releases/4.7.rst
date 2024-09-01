@@ -35,28 +35,7 @@ Compatibility Matrix
 New Features and Enhancements
 -----------------------------
 
-► For any new SQreamDB installation or upgrade, your default :ref:`legacy configuration file<modifying_your_configuration_using_a_legacy_configuration_file>` will include the following cluster flags:
 
-.. code-block:: json
-   
-   {
-    "logMaxFileSizeMB": 20,
-    "logFileRotateTimeFrequency": "daily",
-   }
-   
-.. note:: Starting with SQreamDB version 4.6, log file naming conventions have changed. **Ensure that any code referencing log file names is updated accordingly**.
-
-	* When using the ``logFileRotateTimeFrequency`` flag, log file names will follow these patterns:
-
-	  ``Daily``: ``sqream_yyyyMMdd_000.log``
-	
-	  ``Weekly``: ``sqream_yyyyMMWW_000.log`` (WW = week number within the month)
-	
-	  ``Monthly``: ``sqream_yyyyMM_000.log``
-
-	* When using the ``logMaxFileSizeMB`` flag, log files will follow the pattern:
-
-	  ``sqream_N.log`` (N = 1 to 13)
 
 ► You may now use the new ``logFormat`` flag to configure the format of your log files. By default, logs are saved as ``CSV`` files. To configure your log files to be saved as ``JSON`` instead, use the ``logFormat`` flag in your :ref:`legacy config file<current_method_flag_types>`. If your current logs are in ``CSV`` format and you require :ref:`Health Monitoring<health_monitoring_release>`, it's advisable to configure your logs to be saved in both ``CSV`` and ``JSON`` formats as outlined above.
 
@@ -69,6 +48,22 @@ New Features and Enhancements
 ► :ref:`health_monitoring`
 
 ► Lift&Shift
+
+
+
+► A ``SUPERUSER`` may now release a :ref:`specific lock<remove_lock>` or :ref:`all locks<remove_statement_locks>` blocking file cleanup and preventing operations on locked objects within the system. 
+
+► SQreamDB operates with utmost efficiency when processing tables containing large data chunks. Introducing a new :ref:`rechunk` utility function, it simplifies the management of tables with small data chunks. This feature enables users to merge small data chunks into larger ones and simultaneously eliminating any deleted records present.
+
+► Enable automatic termination of queries that exceed a pre-defined time limit in the queue. The introduction of the :ref:`queueTimeoutMinutes <current_method_configuration_levels>` flag empowers you to set time constraints for queries in the queue, ranging from a few minutes to a maximum of 72 hours.
+
+► Safely cast data types with the new :ref:`IsCastable<is_castable>` function. This function allows you to check whether a cast operation is possible or supported for a given column and data type and provides an alternative when an exception occurs when used within a ``CASE`` statement.
+
+► JDBC enhancements have been implemented to facilitate the retrieval of the record count for the updated number of rows during ``INSERT`` and ``DELETE`` operations when connecting to a third-party platform via JDBC. Use the SQreamDB JDBC connector as usual; the sole distinction is in the ability to now observe the updated number of rows.
+
+► Enhance your :ref:`COPY FROM<copy_from>` operations with the new ``DELETE_SOURCE_ON_SUCCESS`` parameter, which automatically deletes the source file being copied into SQreamDB. This not only saves time and effort in cleaning storage but also helps conserve storage space.
+
+► You may now retrieve and manipulate data from different databases within a single SQreamDB cluster through the execution of a single SQL statement using the :ref:`Cross-Database<cross_database_query>` syntax.
 
 ► You now have the option to choose the location for your ``metadata_server``, ``server_picker``, and Worker log files. In previous SQreamDB versions, the location of your log files was predetermined and hard-coded.
 
@@ -106,19 +101,28 @@ New Features and Enhancements
 	"DefaultPathToLogs": "<home/logs/my_logs>"
 	}
 
-► A ``SUPERUSER`` may now release a :ref:`specific lock<remove_lock>` or :ref:`all locks<remove_statement_locks>` blocking file cleanup and preventing operations on locked objects within the system. 
+► For any new SQreamDB installation or upgrade, your default :ref:`legacy configuration file<modifying_your_configuration_using_a_legacy_configuration_file>` will include the following cluster flags:
 
-► SQreamDB operates with utmost efficiency when processing tables containing large data chunks. Introducing a new :ref:`rechunk` utility function, it simplifies the management of tables with small data chunks. This feature enables users to merge small data chunks into larger ones and simultaneously eliminating any deleted records present.
+.. code-block:: json
+   
+   {
+    "logMaxFileSizeMB": 20,
+    "logFileRotateTimeFrequency": "daily",
+   }
+   
+.. note:: Starting with SQreamDB version 4.6, log file naming conventions have changed. **Ensure that any code referencing log file names is updated accordingly**.
 
-► Enable automatic termination of queries that exceed a pre-defined time limit in the queue. The introduction of the :ref:`queueTimeoutMinutes <current_method_configuration_levels>` flag empowers you to set time constraints for queries in the queue, ranging from a few minutes to a maximum of 72 hours.
+	* When using the ``logFileRotateTimeFrequency`` flag, log file names will follow these patterns:
 
-► Safely cast data types with the new :ref:`IsCastable<is_castable>` function. This function allows you to check whether a cast operation is possible or supported for a given column and data type and provides an alternative when an exception occurs when used within a ``CASE`` statement.
+	  ``Daily``: ``sqream_yyyyMMdd_000.log``
+	
+	  ``Weekly``: ``sqream_yyyyMMWW_000.log`` (WW = week number within the month)
+	
+	  ``Monthly``: ``sqream_yyyyMM_000.log``
 
-► JDBC enhancements have been implemented to facilitate the retrieval of the record count for the updated number of rows during ``INSERT`` and ``DELETE`` operations when connecting to a third-party platform via JDBC. Use the SQreamDB JDBC connector as usual; the sole distinction is in the ability to now observe the updated number of rows.
+	* When using the ``logMaxFileSizeMB`` flag, log files will follow the pattern:
 
-► Enhance your :ref:`COPY FROM<copy_from>` operations with the new ``DELETE_SOURCE_ON_SUCCESS`` parameter, which automatically deletes the source file being copied into SQreamDB. This not only saves time and effort in cleaning storage but also helps conserve storage space.
-
-► You may now retrieve and manipulate data from different databases within a single SQreamDB cluster through the execution of a single SQL statement using the :ref:`Cross-Database<cross_database_query>` syntax.
+	  ``sqream_N.log`` (N = 1 to 13)
 
 Known Issues
 ------------
@@ -152,11 +156,11 @@ Deprecations
 
 ► **Haskell CLI**
 
-Starting October 2024, support for the Haskell CLI will be discontinued, and it will be replaced by a JAVA CLI that is compatible with both SQreamDB and BLUE.
+Starting February 2025, support for the Haskell CLI will be discontinued, and it will be replaced by a JAVA CLI that is compatible with both SQreamDB.
 
 ► **CentOS Linux 7.x**
 
-* As of June 2024, CentOS Linux 7.x will reach its End of Life and will not be supported by SQreamDB. This announcement provides a one-year advance notice for our users to plan for this change. We recommend users to explore migration or upgrade options to maintain ongoing support and security beyond this date. 
+CentOS Linux 7.x has reached its end of life and is not supported by SQreamDB.
 
 * REHL 8.x is now officially supported.
 
