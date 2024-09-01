@@ -319,7 +319,7 @@ Loki is a log aggregation system designed to store and query logs, while Promtai
 
    .. code-block:: console
 
-sudo systemctl restart promtail
+	sudo systemctl restart promtail
 	
 Exporters
 ---------
@@ -435,40 +435,135 @@ Grafana
 
 #. Import dashboards one by one. 
 
-SQream Dashboards
-=================
+Using the Monitor Service
+=========================
 
-https://sqream.atlassian.net/wiki/spaces/~477790253/pages/3134488697/RCA+-+Grafana+installation 
+The Monitor service package includes two files (which must be placed in the same folder):
 
--Slavi
+* ``monitor_service`` (an executable)
+* ``monitor_input.json``
 
-Best Practices
-==============
+Configuring the Monitor Service Worker
+--------------------------------------
 
-Daily Usage
------------
+Before running the monitor service worker, ensure the following Sqream configuration flags are properly set:
 
-Grafana Alerts
---------------
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Flag
+     - Description
+   * - ``"cudaMemQuota": 0``
+     - This setting disables GPU memory usage for the monitor service. Consequently, the Worker must be a non-GPU Worker to avoid exceptions from the monitor service.
+   * - ``"initialSubscribedServices": "monitor"``
+     - This configuration specifies that the monitor service should run on a non-GPU Worker. To avoid mixing with GPU Worker processes, the monitor service is set to operate on a designated non-GPU Worker. By default, it runs under the service name ``monitor``, but this can be adjusted if needed.
+   * - ``"enableNvprofMarkers" : false``
+     - Enabling this flag while using a non-GPU Worker results in exceptions. Ensure this flag is turned off to avoid issues since there are no GPU instances involved.
 
-Investigating Health Issues
----------------------------
+Execution Arguments
+-------------------
 
-Dealing with Open Snapshots
----------------------------
+When executing the Monitor service, you can configure the following flags:
 
-Dealing with Unreleased Locks
------------------------------
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Flag
+     - Type
+     - Description
+     - State
+     - Default	 
+   * - ``-h``, ``--help``
+     - option
+     - 
+     - Shows help message
+     - 
+   * - ``--host``
+     - string
+     - The SQreamDB host address
+     - Optional
+     - ``localhost``	
+   * - ``--port``
+     - integer
+     - The SQreamDB port number
+     - Optional
+     - ``5000``	
+   * - ``--database``
+     - string
+     - The SQreamDB database name
+     - Optional
+     - ``master``	
+   * - ``--username``
+     - string
+     - The SQreamDB username
+     - Mandatory
+     - ``sqream``	
+   * - ``--password``
+     - string
+     - The SQreamDB password
+     - Mandatory
+     - ``sqream``	
+   * - ``--clustered``
+     - option
+     - An option if the ``server_picker`` is running
+     - Optional
+     - ``False``	
+   * - ``--service``
+     - string
+     - The SQreamDB service name
+     - Optional
+     - ``monitor``	
+   * - ``--loki_host``
+     - string
+     - The Loki instance host address
+     - Optional
+     - ``localhost``	
+   * - ``--loki_port``
+     - integer
+     - The Loki port number
+     - Optional
+     - ``3100``	
+   * - ``--log_file_path``
+     - string
+     - The path to where log files are saved
+     - Optional
+     - NA	
+   * - ``--metrics_json_path``
+     - string
+     - The path to where the ``monitor_input.json`` file is stored
+     - Optional
+     - ````	
+	 
+Example
+~~~~~~~
 
-Dealing with Slow Metadata
---------------------------
+Execution example:
 
-Dealing with Growing Statement Queue
-------------------------------------
+.. code-block:: console
 
-Dealing with Slow Workers
--------------------------
+	./monitor_service --username=sqream --password=sqream --host=1.2.3.4 --port=2711 --service=monitor --loki_host=1.2.3.5 --loki_port=3100 --metrics_json_path='/home/arielw/monitor_service/monitor_input.josn'
+	
+Monitor Service Output Example
+------------------------------
 
-Dealing with Hung Workers
--------------------------
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Type
+     - Color
+   * - Information about monitor service triggering
+     - Blue
+   * - Successful insertion
+     - Green
+   * - Error
+     - Red
+	 
+|monitor_service_example|
+
+.. |monitor_service_example| image:: /_static/images/monitor_service_example.png
+   :align: middle
+	 
 
