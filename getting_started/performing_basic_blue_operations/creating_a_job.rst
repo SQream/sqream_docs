@@ -59,7 +59,7 @@ After having created and saved a script, it will automatically appear on the **S
 
    The **SQL Catalogue** window opens.
 
-3. In the **Save As** box, type in a name for your SQL script and select **Save**.
+3. In the **Save As** box, type in a name for your SQL script (uppercase characters are not supported) and select **Save**.
 
    SQL script names may not contain special characters.
 
