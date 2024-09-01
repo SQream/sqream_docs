@@ -4,7 +4,7 @@
 SQreamDB on AWS
 ***************
 
-Private cloud deployment on AWS provides the ability to maintain control and security similar to traditional private clouds, while utilizing AWS's scalable infrastructure, flexible resource management, and cost-efficient services.
+Private cloud deployment on AWS provides the AWS's scalable infrastructure, flexible resource management, and cost-efficient services.
 
 The SQreamDB data processing and analytics acceleration platform on AWS marketplace is available `here <https://aws.amazon.com/marketplace/pp/prodview-ytpp4pwjcxdca>`_. 
 
@@ -65,7 +65,11 @@ Under the **CloudFormation** > **Stacks** > **Specify stack details** tab, confi
 License
 =======
 
-#. Get a list of machines using your AWS console by filtering EC2 instances with the **worker** keyword and the environment name given.
+#. Get a list of machines using your AWS console by filtering EC2 instances with:
+
+	* The **worker** keyword 
+	* The environment name given
+	* The `AWS instance ID for each EC2 <https://docs.aws.amazon.com/managedservices/latest/userguide/find-instance-id.html>`_
 	 
 #. Send the machines to SqreamDB to generate license.
 
