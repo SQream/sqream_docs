@@ -4,7 +4,7 @@
 Release Notes 4.7
 *****************
 
-The 4.7 release notes were released on March XX, 2024
+The 4.7 release notes were released on September 01, 2024
 
 .. contents:: 
    :local:
@@ -37,19 +37,11 @@ New Features and Enhancements
 
 
 
-► You may now use the new ``logFormat`` flag to configure the format of your log files. By default, logs are saved as ``CSV`` files. To configure your log files to be saved as ``JSON`` instead, use the ``logFormat`` flag in your :ref:`legacy config file<current_method_flag_types>`. If your current logs are in ``CSV`` format and you require :ref:`Health Monitoring<health_monitoring_release>`, it's advisable to configure your logs to be saved in both ``CSV`` and ``JSON`` formats as outlined above.
 
-.. note::
-
-	The ``logFormat`` flag must be configured identically in both your ``legacy_config_file`` and your ``metadata_config_file``
-	
-.. _health_monitoring_release:
 	
 ► :ref:`health_monitoring`
 
-► Lift&Shift
-
-
+► SQreamDB may now be deployed on :ref:`AWS private cloud<sqreamdb_on_aws>`.
 
 ► A ``SUPERUSER`` may now release a :ref:`specific lock<remove_lock>` or :ref:`all locks<remove_statement_locks>` blocking file cleanup and preventing operations on locked objects within the system. 
 
@@ -64,6 +56,14 @@ New Features and Enhancements
 ► Enhance your :ref:`COPY FROM<copy_from>` operations with the new ``DELETE_SOURCE_ON_SUCCESS`` parameter, which automatically deletes the source file being copied into SQreamDB. This not only saves time and effort in cleaning storage but also helps conserve storage space.
 
 ► You may now retrieve and manipulate data from different databases within a single SQreamDB cluster through the execution of a single SQL statement using the :ref:`Cross-Database<cross_database_query>` syntax.
+
+► You may now use the new ``logFormat`` flag to configure the format of your log files. By default, logs are saved as ``CSV`` files. To configure your log files to be saved as ``JSON`` instead, use the ``logFormat`` flag in your :ref:`legacy config file<current_method_flag_types>`. If your current logs are in ``CSV`` format and you require :ref:`Health Monitoring<health_monitoring_release>`, it's advisable to configure your logs to be saved in both ``CSV`` and ``JSON`` formats as outlined above.
+
+.. note::
+
+	The ``logFormat`` flag must be configured identically in both your ``legacy_config_file`` and your ``metadata_config_file``
+	
+.. _health_monitoring_release:
 
 ► You now have the option to choose the location for your ``metadata_server``, ``server_picker``, and Worker log files. In previous SQreamDB versions, the location of your log files was predetermined and hard-coded.
 

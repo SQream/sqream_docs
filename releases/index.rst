@@ -4,10 +4,12 @@
 Release Notes
 *************
 
-:ref:`Version 4.7 - March XX, 2024<4.7>`
+:ref:`Version 4.7 - September 01, 2024<4.7>`
 
+* :ref:`AWS private cloud deployment<sqreamdb_on_aws>` is now available for SQreamDB on AWS Marketplace.
 * Execute a single SQL statement across your SQreamDB cluster using the new :ref:`Cross-Database<cross_database_query>` syntax.
 * Safely cast data types with the new :ref:`IsCastable<is_castable>` function.
+* Automatically delete source files being copied into SQreamDB using the :ref:`copy_from` command.
 
 :ref:`Version 4.6 - August 20, 2024<4.6>`
 
