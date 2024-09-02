@@ -427,7 +427,9 @@ Grafana
 
 #. Change your password.
 
-#. Go to **Data Sources** and choose **Prometheus**.
+#. Go to **Data Sources** and choose **prometheus**.
+
+#. Go to **Data Sources** and choose **loki**.
 
 #. Set **URL** as your Prometheus server ip.
 
