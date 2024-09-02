@@ -543,7 +543,7 @@ Execution example:
 
 .. code-block:: console
 
-	./monitor_service --username=sqream --password=sqream --host=1.2.3.4 --port=2711 --service=monitor --loki_host=1.2.3.5 --loki_port=3100 --metrics_json_path='/home/arielw/monitor_service/monitor_input.josn'
+	./monitor_service --username=sqream --password=sqream --host=1.2.3.4 --port=2711 --service=monitor --loki_host=1.2.3.5 --loki_port=3100 --metrics_json_path='/home/arielw/monitor_service/monitor_input.json'
 	
 Monitor Service Output Example
 ------------------------------
