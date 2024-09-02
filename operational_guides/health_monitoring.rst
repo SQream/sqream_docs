@@ -453,12 +453,16 @@ Before running the monitor service worker, ensure the following Sqream configura
    :header-rows: 1
    
    * - Flag
+     - Configuration File   
      - Description
    * - ``"cudaMemQuota": 0``
+     - :ref:`Worker configuration file<modifying_your_configuration_using_the_worker_configuration_file>`   
      - This setting disables GPU memory usage for the monitor service. Consequently, the Worker must be a non-GPU Worker to avoid exceptions from the monitor service.
    * - ``"initialSubscribedServices": "monitor"``
+     - :ref:`Worker configuration file<modifying_your_configuration_using_the_worker_configuration_file>` 
      - This configuration specifies that the monitor service should run on a non-GPU Worker. To avoid mixing with GPU Worker processes, the monitor service is set to operate on a designated non-GPU Worker. By default, it runs under the service name ``monitor``, but this can be adjusted if needed.
    * - ``"enableNvprofMarkers" : false``
+     - :ref:`Cluster and session configuration file<modifying_your_configuration_using_a_legacy_configuration_file>`
      - Enabling this flag while using a non-GPU Worker results in exceptions. Ensure this flag is turned off to avoid issues since there are no GPU instances involved.
 
 Execution Arguments
