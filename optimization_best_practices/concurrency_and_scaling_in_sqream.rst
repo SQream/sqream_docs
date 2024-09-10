@@ -21,9 +21,7 @@ BLUE scales well by adding more workers, GPUs, and nodes to support more concurr
 What to do when queries are slow
 --------------------------------
 
-Adding more workers or GPUs does not boost the performance of a single statement or query. 
-
-To boost the performance of a single statement, start by examining the :ref:`best practices<sql_best_practices>` and ensure the guidelines are followed.
+To statement performance, start by examining the :ref:`best practices<sql_best_practices>` and ensure the guidelines are followed.
 
 .. TODO: we have a lot of techniques to speed up statements which aren't ready for customers to use without support - add something here and in the best practices about this
 
