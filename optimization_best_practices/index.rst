@@ -28,20 +28,6 @@ This will also reduce storage size and reduce row-lengths.
 
 We highly suggest using ``INT`` or ``BIGINT`` as join keys, rather than a text/string type.
 
-Convert foreign tables to native tables
--------------------------------------------
-
-BLUE's native storage is heavily optimized for analytic workloads. It is always faster for querying than other formats, even columnar ones such as Parquet. It also enables the use of additional metadata to help speed up queries, in some cases by many orders of magnitude.
-
-You can improve the performance of all operations by converting :ref:`foreign tables<foreign_tables>` into native tables by using the :ref:`create_table_as` syntax.
-
-For example,
-
-.. code-block:: postgres
-
-   CREATE TABLE native_table AS SELECT * FROM foreign_table
-
-The one situation when this wouldn't be as useful is when data will be only queried once.
 
 Use information about the column data to your advantage
 -------------------------------------------------------------
