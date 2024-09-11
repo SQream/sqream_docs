@@ -25,25 +25,10 @@ It is essential that you have:
 Installing the Python Connector
 ===============================
 
-The Python connector is installed via ``pip``, the Python package manager and installer. It is available for download via `pysqream-blue <https://pypi.org/project/pysqream-blue/>`_. We recommend upgrading to the latest version of ``pip`` before installing.
-
-Upgrading ``pip``
------------------
-
-``pip3`` will automatically install all necessary libraries and modules.
 
 .. code-block:: none
    
-   pip install --upgrade pysqream-blue pysqream_blue_sqlalchemy
-
-Installing ``pysqream-blue``
-----------------------------
-
-The Python drivers are updated periodically. To upgrade an existing pysqream-blue installation, use pip's ``-U`` flag:
-
-.. code-block:: none
-   
-   pip3 install pysqream-blue pysqream-blue-sqlalchemy -U
+   pip3.9 install pysqream-blue pysqream-blue-sqlalchemy -U
 
 Validating Your ``pysqream-blue`` Installation
 ----------------------------------------------
