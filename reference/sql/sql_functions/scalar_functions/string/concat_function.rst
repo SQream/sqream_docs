@@ -5,7 +5,6 @@ CONCAT function
 **************************
 
 Concatenates one or more strings, or concatenates one or more binary values.
-The :ref:`concat` operator provides alternative syntax for CONCAT and requires at least two arguments.
 
 Syntax
 ==========
@@ -36,6 +35,7 @@ The data type of the returned value is TEXT, If any input value is NULL, returns
 Notes
 =======
 
+* The :ref:`concat` operator provides alternative syntax for CONCAT and requires at least two arguments.
 * SQream DB removes the trailing spaces from strings by default, which may lead to unexpected results. See the examples for more information.
 
 Examples
