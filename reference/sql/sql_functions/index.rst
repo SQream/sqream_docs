@@ -235,6 +235,8 @@ The following table shows the **string** functions:
      - Calculates the position where a string starts inside another string
    * - :ref:`concat`
      - Concatenates two strings
+   * - :ref:`concat_function`
+     - Concatenates multiple strings
    * - :ref:`crc64`
      - Calculates a CRC-64 hash of an argument
    * - :ref:`decode`
