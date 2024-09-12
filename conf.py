@@ -32,7 +32,7 @@ author = 'SQreamDB Documentation'
 
 
 # The full version, including alpha/beta/rc tags
-release = '4.7'
+release = '4.8'
 
 # -- General configuration ---------------------------------------------------
 
