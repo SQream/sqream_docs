@@ -21,11 +21,7 @@ BLUE scales well by adding more workers, GPUs, and nodes to support more concurr
 What to do when queries are slow
 --------------------------------
 
-To statement performance, start by examining the :ref:`best practices<sql_best_practices>` and ensure the guidelines are followed.
-
-.. TODO: we have a lot of techniques to speed up statements which aren't ready for customers to use without support - add something here and in the best practices about this
-
-Adding additional RAM to nodes, using more GPU memory, and faster CPUs or storage can also sometimes help.
+To boost statement performance, start by examining the :ref:`best practices<sql_best_practices>` and ensure the guidelines are followed.
 
 .. rubric:: Need help?
 
