@@ -5,7 +5,7 @@ CONCAT function
 **************************
 
 Concatenates one or more strings, or concatenates one or more binary values.
-The || operator provides alternative syntax for CONCAT and requires at least two arguments.
+The :ref:`concat` operator provides alternative syntax for CONCAT and requires at least two arguments.
 
 Syntax
 ==========
