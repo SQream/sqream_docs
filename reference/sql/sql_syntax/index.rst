@@ -32,6 +32,9 @@ SQreamDB supports SQL from the ANSI 92 syntax.
      - Null handling involves managing and evaluating the presence of null values, representing unknown or undefined data, to avoid unexpected results in queries and expressions.
    * - :ref:`sqream_scripting`
      - Metalanguage scripting enhances your interaction with SQL by providing conventions which allow dynamic generation, management, and automation of SQL code.
+	 * - :ref:`pivot_unpivot`
+     - convert row-level data into columnar representation.
+
 
 
 .. toctree::
@@ -51,6 +54,7 @@ SQreamDB supports SQL from the ANSI 92 syntax.
    subqueries
    null_handling
    sqream_scripting
+   pivot_unpivot
    
    
 
