@@ -22,7 +22,7 @@ The following is the ``AUDITLOG`` syntax:
    [ QUERYID IN ( <query-id1>,..., <query-idN>) ]
    [ STATUS IN ( <status1>,..., <statusN>) ]
    [ Category IN ( <category1>,..., <categoryN>) ]
-   [ ADDITONALDETAILS LIKE <%additional_details%> ]
+   [ ADDITIONALDETAILS LIKE <%additional_details%> ]
    [ ERRORDETAILS LIKE <%error_details%> ]
    [ INITIATED BY ( ALL | { External | Blue_UI_User | Blue_UI_System | CLI | Jobs | Statistics } ) ]
 
