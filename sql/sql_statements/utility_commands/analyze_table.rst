@@ -18,14 +18,15 @@ Syntax
 
 .. code-block:: postgres
 
-	ANALYZE TABLE 
-	  '<table_name>' 
-	COMPUTE STATISTICS FOR 
-	{
-	COLUMNS '<column_name>' [, ...]
-	| ALL COLUMNS 
-	[ NOSCAN ]
-	 }
+	ANALYZE TABLE
+	  '<table_name>'
+	COMPUTE STATISTICS
+	{ NOSCAN
+	| FOR
+	  { COLUMNS '<column_name>' [, ...]
+	  | ALL COLUMNS
+	  }
+	}
 
 Parameters
 ==========
