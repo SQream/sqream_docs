@@ -41,7 +41,7 @@ To readjust an existing pool, the pool must be in either an idle or suspended st
    When adding workers to a pool, ensure that there are enough available workers in your default pool to be reduced from. 
    
 4. To make this pool your default pool, go to the three-dot menu located in the top right corner of the pool panel, and choose **Make Default**.
-5. To use this pool for :ref:`_analyze_table` go to the three-dot menu located in the top right corner of the pool panel, and choose **Use For Statistics**.
+5. To use this pool for :ref:`analyze_table` go to the three-dot menu located in the top right corner of the pool panel, and choose **Use For Statistics**.
 6. To rename pool, you may either:
 
    * Go to the three-dot menu located in the top right corner of the pool panel and choose **Rename**
