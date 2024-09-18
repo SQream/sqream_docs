@@ -50,6 +50,7 @@ Usage Note
 The Statistics operation does not support the following column data types:
 
 * ``NUMERIC`` (``DECIMAL``)
+* ``TEXT``
 * ``ARRAY``
 
 Example
