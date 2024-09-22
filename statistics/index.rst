@@ -6,8 +6,6 @@ Cost-Based Optimizer
 
 The Cost-Based Optimizer (CBO) evaluates and compares the potential costs associated with different query execution plans to determine the most efficient one. The "cost" in this context refers to the estimated resource requirements and performance metrics (such as GPU usage) that each candidate query plan would entail when executed.
 
-After adding or deleting data from a table on which we executed ``ANALYZE``, we must execute ANALYZE once more in terms of updating the statistics.  
-
 Before You Begin
 ================
 
@@ -65,13 +63,15 @@ Gathering statistics does not support the following column data types:
 * ``TEXT``
 * ``NUMERIC`` 
 
-Examples
-========
+Example
+=======
 
 Initiating Statistics Collection
 --------------------------------
 
-The command is asynchronous, meaning you can continue processing other tasks without waiting for the command to complete. The processing duration depends on the table size. The output includes the session ID and query ID, which you can use to check the status of your statistics request and to abort the statistics operation if needed.
+The ``ANALYZE`` command is asynchronous, meaning you can continue processing other tasks without waiting for the command to complete. The processing duration depends on the table size. The output includes the session ID and query ID, which you can use to check the status of your statistics request and to abort the statistics operation if needed.
+
+After adding data to a table or deleting data from a table on which you executed ``ANALYZE``, you must execute ``ANALYZE`` once more to have your statistics updated.  
 
 .. code-block:: postgres
 
