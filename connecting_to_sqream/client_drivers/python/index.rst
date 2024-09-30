@@ -466,4 +466,16 @@ This section shows how to use the ORM to create and populate tables from Python 
    .. code-block:: python
 
       result = session.execute(ins)
+	  
+Prepared Statements
+====================
+
+Prepared statements, also known as parameterized queries, are a safer and more efficient way to execute SQL statements. They prevent SQL injection attacks by separating SQL code from data, and they can improve performance by reusing prepared statements.
+In SQream, we use ``?`` as a placeholder for the relevant value in parameterized queries.
+Prepared statements ``INSERT``, ``SELECT``, ``UPDATE`` and ``DELETE``
+   
+Prepared Statement Limitations 
+--------------------------- 
+* Prepared Statement do not support the use of :ref:`keywords_and_identifiers` as input parameters.
+
 
