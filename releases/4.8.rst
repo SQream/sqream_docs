@@ -4,7 +4,7 @@
 Release Notes 4.8
 *****************
 
-The 4.8 release notes were released on March XX, 2024
+The 4.8 release notes were released on October 1st, 2024
 
 .. contents:: 
    :local:
@@ -90,22 +90,7 @@ Version 4.8 resolved Issues
 +==============+=====================================================================================================================+
 | SQ-15691     | Fixed ``TEXT`` casting into ``DOUBLE`` and ``NUMERIC`` issue when using scientific notation                         |
 +--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-16038     | Fixed ``CREATE TABLE.. LIKE`` permission heritage issue                                                             |
-+--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-16937     |                                                                                                                     |
-+--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-17149     |                                                                                                                     |
-+--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-17270     |                                                                                                                     |
-+--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-17457     |                                                                                                                     |
-+--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-17502     |                                                                                                                     |
-+--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-17520     |                                                                                                                     |
-+--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-17944     |                                                                                                                     |
-+--------------+---------------------------------------------------------------------------------------------------------------------+
+
 
 
 Deprecations
@@ -148,12 +133,6 @@ Upgrading to Version 4.8
 
       ./upgrade_storage <levelDB path>
 	
-7. Version 4.4 introduces a service permission feature that enables superusers to grant and revoke role access to services. However, when upgrading from version 4.2 or earlier to version 4.4 or later, this feature initializes access to services, causing existing roles to lose their access to services. 
-
-There are two methods of granting back access to services:
-
-   * Grant access to all services for all roles using the :ref:`grant_usage_on_service_to_all_roles` utility function
-   * Selectively grant or revoke access to services by following the :ref:`access permission guide<access_control_permissions>`
 
 
   .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQreamDB Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
