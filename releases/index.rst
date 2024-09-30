@@ -4,6 +4,8 @@
 Release Notes
 *************
 
+:ref:`Version 4.8 - October 01, 2024<4.8>`
+
 :ref:`Version 4.7 - September 01, 2024<4.7>`
 
 * :ref:`AWS private cloud deployment<sqreamdb_on_aws>` is now available for SQreamDB on AWS Marketplace.

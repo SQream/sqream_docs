@@ -38,7 +38,7 @@ New Features and Enhancements
 
 
 ► Prepared statements, also known as parameterized queries, are a safer and more efficient way to execute SQL statements. They prevent SQL injection attacks by separating SQL code from data, and they can improve performance by reusing prepared statements.
-These are now supported by our `Python <../connecting_to_sqream/client_drivers/python/index.html#prepared-statements>`_ and JDBC client drivers.
+These are now supported by our `Python <../connecting_to_sqream/client_drivers/python/index.html#prepared-statements>`_ and `JDBC <../connecting_to_sqream/client_drivers/jdbc/index.html#prepared-statements>`_ client drivers.
 
 
 
