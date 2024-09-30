@@ -6,6 +6,12 @@ Release Notes
 
 :ref:`Version 4.8 - October 01, 2024<4.8>`
 
+* Prepared statements, also known as parameterized queries, are a safer and more efficient way to execute SQL statements. They prevent SQL injection attacks by separating SQL code from data, and they can improve performance by reusing prepared statements.
+These are now supported by our `Python <../connecting_to_sqream/client_drivers/python/index.html#prepared-statements>`_ and `JDBC <../connecting_to_sqream/client_drivers/jdbc/index.html#prepared-statements>`_ client drivers.
+* `PIVOT <../reference/sql/sql_syntax/pivot_unpivot.html#syntax>`_ allows to convert row-level data into columnar representation. This technique is particularly useful when you need to summarize and visualize data. `UNPIVOT <../reference/sql/sql_syntax/pivot_unpivot.html#syntax>`_ does the opposite by transforming columnar data into rows. This operation is invaluable for scenarios where you wish to explore data in a more granular manner.
+* `Window funtion alias  <../reference/sql/sql_syntax/window_functions.html#window-funtion-alias>`_ allows to specify a parameter within the window function definition. This eliminates the need to repeatedly input the same SQL code in queries that use multiple window functions with identical definitions.
+* `CONCAT <../reference/sql/sql_functions/scalar_functions/string/concat_function.html#concat-function>`_ function concatenates one or more strings, or concatenates one or more binary values.
+
 :ref:`Version 4.7 - September 01, 2024<4.7>`
 
 * :ref:`AWS private cloud deployment<sqreamdb_on_aws>` is now available for SQreamDB on AWS Marketplace.
