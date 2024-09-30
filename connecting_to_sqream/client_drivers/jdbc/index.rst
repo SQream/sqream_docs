@@ -175,8 +175,8 @@ You can download the :download:`JDBC Application Sample File <sample.java>` belo
 Prepared Statements
 ====================
 
-Prepared statements, also known as parameterized queries, שre a safer and more efficient way to execute SQL statements. They prevent SQL injection attacks by separating SQL code from data, and they can improve performance by reusing prepared statements.
-In SQream, we use ? as a placeholder for the relevant value in parameterized queries.
+Prepared statements, also known as parameterized queries, are a safer and more efficient way to execute SQL statements. They prevent SQL injection attacks by separating SQL code from data, and they can improve performance by reusing prepared statements.
+In SQream, we use ``?`` as a placeholder for the relevant value in parameterized queries.
 Prepared statements ``INSERT``, ``SELECT``, ``UPDATE`` and ``DELETE``
    
 Prepared Statement Sample
@@ -193,5 +193,5 @@ You may download the :download:`Prepared statement <samplepreparedstatement.java
 
 Prepared Statement Limitations 
 --------------------------- 
-* Prepared Statement do not support the use of :ref:`_keywords_and_identifiers` and input parameters 
-* ``SELECT`` statements require preparation on each execution (see above exmaple)
+* Prepared Statement do not support the use of :ref:`keywords_and_identifiers` as input parameters 
+* ``SELECT``, ``UPDATE`` and ``DELETE`` statements require the use of ``add_batch`` prior to each execution.
