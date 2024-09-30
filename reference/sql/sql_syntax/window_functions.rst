@@ -330,3 +330,35 @@ This example calculates the salary between two players, starting from the highes
    Dwyane Wade     | 20000000 |      19689000 |        311000
    Brook Lopez     | 19689000 |      19689000 |             0
    DeAndre Jordan  | 19689000 |      19689000 |             0
+
+Window funtion alias
+=======================
+
+
+The window funtion alias allows to specify a parameter within the window function definition. This eliminates the need to repeatedly input the same SQL code in queries that use multiple window functions with identical definitions.
+
+.. code-block:: psql
+
+   t=> SELECT SUM("Salary") OVER w
+	   WINDOW w AS
+	   FROM nba
+	   (PARTITION BY "Team" ORDER BY "Age");
+   sum      
+   ---------
+     1763400
+     5540289
+     5540289
+     5540289
+     5540289
+     7540289
+    18873622
+    18873622
+    30873622
+    60301531
+    60301531
+    60301531
+    64301531
+    72902950
+    72902950
+    [...]
+	
