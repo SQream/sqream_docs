@@ -37,43 +37,10 @@ New Features and Enhancements
 
 
 
-► ALL log files should reside under the same folder
+► Prepared statements, also known as parameterized queries, are a safer and more efficient way to execute SQL statements. They prevent SQL injection attacks by separating SQL code from data, and they can improve performance by reusing prepared statements.
+These are now supported by our `Python <../connecting_to_sqream/client_drivers/python/index.html#prepared-statements>`_ and JDBC client drivers.
 
-► You now have the option to choose the location for your ``metadata_server``, ``server_picker``, and Worker log files. In previous SQreamDB versions, the location of your log files was predetermined and hard-coded.
 
-:ref:`metadata_server_cli_reference`
-
-* Using the ``metadata_server_config.json`` file:
-
-  .. code-block:: json 
-
-	{
-	"logPath": "<home/logs/my_logs>" 
-	}
-	
-* Using the CLI:
-
-  .. code-block:: console
-
-	./metadata_server --log_path=<home/logs/my_logs>
-	
-:ref:`server_picker_cli_reference`
-
-  Using the CLI:
-
-  .. code-block:: console
-
-	./server_picker --log_path=<home/logs/my_logs>
-
-:ref:`Worker<current_method_modification_methods>`
-
-  Using the ``sqream_config_legacy.json``:
-
-  .. code-block:: json
-
-	{
-	"DefaultPathToLogs": "<home/logs/my_logs>"
-	}
 
 
 
