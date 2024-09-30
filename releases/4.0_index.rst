@@ -1,7 +1,7 @@
-.. _4.0_index:
+.. _4.x_index:
 
 *****************
-4.0 Release Notes
+4.x Release Notes
 *****************
 
 .. contents:: 
@@ -12,9 +12,6 @@
    :maxdepth: 1
    :glob:
 
-   4.0
-   4.1
-   4.2
    4.3
    4.4
    4.5

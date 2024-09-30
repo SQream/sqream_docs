@@ -64,7 +64,7 @@ Release Notes
    :glob:
    :hidden:
 
-   4.0_index
+   4.x_index
    2022.1_index
 
    
