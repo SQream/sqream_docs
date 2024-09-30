@@ -193,5 +193,5 @@ You may download the :download:`Prepared statement <samplepreparedstatement.java
 
 Prepared Statement Limitations 
 --------------------------- 
-* Prepared Statement do not support the use of :ref:`keywords_and_identifiers` as input parameters 
+* Prepared Statement do not support the use of :ref:`keywords_and_identifiers` as input parameters.
 * ``SELECT``, ``UPDATE`` and ``DELETE`` statements require the use of ``add_batch`` prior to each execution.
