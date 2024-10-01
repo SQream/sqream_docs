@@ -1,3 +1,7 @@
+:orphan:
+
+.. _odbc_windows:
+
 ****************************************
 Install and Configure ODBC on Windows
 ****************************************
