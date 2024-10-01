@@ -21,7 +21,7 @@ BLUE offers seamless integration with third-party tools, BI tools, and analysis 
 
 .. tab:: Connectors and Drivers
 
-    :ref:`JDBC<java_jdbc>`
+	:ref:`JDBC<java_jdbc>`
 	
 	:ref:`ODBC<odbc_windows>`
 	
