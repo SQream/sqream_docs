@@ -4,7 +4,16 @@
 Release Notes
 *************
 
-:ref:`August 2024 <august_2024>`
+October 2024
+------------
+
+* You may now set monthly spend limit and configure alerts to help control your Blue cluster costs. 
+* New ODBC connector is now available.
+* Direct connector to Microsoft PowerBI is now available.
+* Ability to use specific `Resource Pool <../managing_your_resources/cluster_management.html#readjusting-existing-pools>`_ for the creation of column statistics.
+
+August 2024
+------------
 
 * You may now read, write, and query data  from :ref:`Snowflake<snowflake>`. 
 * A ``clusteradmin`` can now enable **View cluster jobs** to :ref:`view all the Jobs of all users<managing_existing_jobs>`.
