@@ -15,6 +15,7 @@ Installing the ODBC Driver
 
 Prerequisites
 ----------------
+Download the BLUE ODBC Windows driver `here <https://sq-ftp-public.s3.amazonaws.com/SQream_ODBC_Blue_Driver_v5.0.6.exe>`_
 
 .. _vcredist:
 
