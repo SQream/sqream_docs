@@ -71,7 +71,7 @@ Connection Parameters
    * - Description
      - A description of this DSN for your convenience. You can leave this blank.
    * - Token
-     - `Access Token <../access_tokens/index.html#generating-access-tokens>`_
+     - :ref:`access token<access_tokens>`
    * - Database
      - Specifies the database name to connect to. For example, ``master``
    * - Server
