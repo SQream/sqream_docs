@@ -9,7 +9,7 @@ October 2024
 
 * You may now set `monthly spend limit <../managing_your_resources/billing.html#configuring-a-monthly-spending-limit>`_ and configure alerts to help control your Blue cluster costs. 
 * New ODBC connector is now available.
-* Direct connector to Microsoft PowerBI is now available.
+* Direct connector to :ref:`PowerBI<powerbi_desktop>` is now available.
 * Ability to use specific `Resource Pool <../managing_your_resources/cluster_management.html#readjusting-existing-pools>`_ for the creation of column statistics.
 
 August 2024
