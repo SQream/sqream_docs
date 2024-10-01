@@ -24,8 +24,8 @@ BLUE offers seamless integration with third-party tools, BI tools, and analysis 
     :ref:`JDBC<java_jdbc>`
 	
 	:ref:`ODBC<odbc_windows>`
-
-    :ref:`Python<pysqream>`
+	
+	:ref:`Python<pysqream>`
 
 .. tab:: Integration Tools
 
