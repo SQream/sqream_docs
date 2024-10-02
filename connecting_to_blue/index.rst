@@ -30,7 +30,7 @@ BLUE offers seamless integration with third-party tools, BI tools, and analysis 
 .. tab:: Integration Tools
 
 	:ref:`PowerBI<powerbi_desktop>`
-	
+
     :ref:`Apache Airflow<apache_airflow>`
 	
     :ref:`DBeaver<dbeaver>`
