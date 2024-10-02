@@ -23,6 +23,8 @@ What to do when queries are slow
 
 To boost statement performance, start by examining the :ref:`best practices<sql_best_practices>` and ensure the guidelines are followed.
 
+.. TODO: we have a lot of techniques to speed up statements which aren't ready for customers to use without support - add something here and in the best practices about this
+
 .. rubric:: Need help?
 
 Analyzing complex workloads can be challenging. BLUE's experienced customer support has the experience to advise on these matters to ensure the best experience.

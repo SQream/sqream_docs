@@ -11,7 +11,6 @@ SQL Syntax Features
    keywords_and_identifiers
    literals
    scalar_expressions
-   joins
    common_table_expressions
    window_functions
    subqueries

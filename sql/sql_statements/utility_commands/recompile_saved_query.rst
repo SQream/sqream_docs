@@ -22,11 +22,8 @@ Syntax
 
 .. code-block:: postgres
 
-   recompile_saved_query_statement ::=
-       SELECT RECOMPILE_SAVED_QUERY(saved_query_name)
-       ;
+       SELECT RECOMPILE_SAVED_QUERY("<saved_query_name>")
 
-   saved_query_name ::= string_literal
 
 Returns
 ==========
@@ -41,8 +38,10 @@ Parameters
    :header-rows: 1
    
    * - Parameter
+     - Parameter Type
      - Description
    * - ``saved_query_name``
+     - :ref:`Identifier<keywords_and_identifiers>`
      - The name of the query to recompile
 
 Examples

@@ -32,7 +32,7 @@ The following table describes the Date types:
 Aliases
 ^^^^^^^
 
-``DATETIME`` is also known as ``TIMESTAMP`` or ``DATETIME2``.
+``DATETIME`` is also known as ``TIMESTAMP``.
 
 
 Syntax

@@ -37,9 +37,3 @@ See :ref:`support_team_access`
 .. |jobs_dashboard_monitor| image:: /_static/images/jobs_dashboard_monitor.png
    :align: middle    
    
-``DESCRIBE COLUMNS`` Enhancement
-================================
-
-The ``DESCRIBE COLUMNS`` command now lets you list information about table and view columns.
-
-See :ref:`describe_columns`

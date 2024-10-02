@@ -13,4 +13,5 @@ This section provides reference for using BLUE SQL statements.
    sql_syntax/index
    sql_statements/index
    sql_functions/index
+   sql_clauses/index
    sql_feature_support

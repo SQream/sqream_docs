@@ -138,13 +138,14 @@ Output:
 	Cristiano Felicio        | Chicago Bulls          |      6 | PF       |  23 | 6-10   | 124.7166 |                       |   525093
 	[...]
 
-
+Now, if we're happy with the results, we can convert the staged foreign table to a standard table
 
 Converting a Foreign Table to a Standard Database Table
 -------------------------------------------------------
 
-:ref:`create_table_as` can be used to ingets a foreign table into a regular table.
+:ref:`create_table_as` can be used to materialize a foreign table into a regular table.
 
+.. tip:: If you intend to use the table multiple times, convert the foreign table to a standard table.
 
 .. code-block:: postgres
    

@@ -15,7 +15,7 @@ Syntax
 
 .. code-block:: sql
 
-   DESC[RIBE] CONFIGURATION [PARAMETER <"configuration_parameter">] [LIKE <'pattern'>]
+   DESC[RIBE] CONFIGURATION [PARAMETER <"ConfigurationParameter">] [LIKE <'pattern'>]
    
 Parameters
 ==========
@@ -78,7 +78,7 @@ Example
 	flag_name           |flag_value|def_flag_value|flag_category|flag_type|data_type|description|
 	--------------------+----------+--------------+-------------+---------+---------+-----------+
 	useGrpcCompiler     |false     |false         |RND          |regular  |         |           |
-
+	
 
 .. code-block:: sql   
 	 

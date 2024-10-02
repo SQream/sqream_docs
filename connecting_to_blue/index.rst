@@ -21,9 +21,11 @@ BLUE offers seamless integration with third-party tools, BI tools, and analysis 
 
 .. tab:: Connectors and Drivers
 
-    :ref:`JDBC<java_jdbc>`
-
-    :ref:`Python<pysqream>`
+	:ref:`JDBC<java_jdbc>`
+	
+	:ref:`ODBC<odbc_windows>`
+	
+	:ref:`Python<pysqream>`
 
 .. tab:: Integration Tools
 
@@ -31,6 +33,8 @@ BLUE offers seamless integration with third-party tools, BI tools, and analysis 
 	
     :ref:`DBeaver<dbeaver>`
 	
+    :ref:`PowerBI<powerbi_desktop>`
+
 .. tab:: Cloud Natives
 
     :ref:`Snowflake<snowflake>`

@@ -39,15 +39,15 @@ Based on the source file's structure, you can create a foreign table with the ap
    
    CREATE FOREIGN TABLE nba
    (
-      Name TEXT(40),
-      Team TEXT(40),
-      Number tinyint,
-      Position TEXT(2),
-      Age tinyint,
-      Height TEXT(4),
-      Weight real,
-      College TEXT(40),
-      Salary float
+      Name TEXT,
+      Team TEXT,
+      Number TINYINT,
+      Position TEXT,
+      Age TINYINT,
+      Height TEXT,
+      Weight REAL,
+      College TEXT,
+      Salary FLOAT
     )
     WRAPPER csv_fdw
     OPTIONS

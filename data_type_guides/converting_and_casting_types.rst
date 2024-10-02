@@ -46,6 +46,9 @@ BLUE supports the following data conversion methods:
 Supported Casts
 ===============
 
+The listed table of supported casts also applies to the :ref:`Array <sql_data_type_array>` data type. 
+For instance, you can cast a NUMERIC[] array to a TEXT[] array.
+
 .. list-table::
    :widths: auto
    :header-rows: 1

@@ -1,8 +1,8 @@
 .. _sql_best_practices:
 
-**********************************
+*******************************
 Optimization and Best Practices
-**********************************
+*******************************
 
 This topic explains some best practices of working with BLUE.
 
@@ -10,17 +10,17 @@ See also our :ref:`monitoring_query_performance` guide for more information.
 
 
 Table design
-==============
+============
 
 This section describes best practices and guidelines for designing tables.
 
 Use date and datetime types for columns
------------------------------------------
+---------------------------------------
 
 When creating tables with dates or timestamps, using the purpose-built ``DATE`` and ``DATETIME`` types over integer types or ``TEXT`` will bring performance and storage footprint improvements, and in many cases huge performance improvements (as well as data integrity benefits). BLUE stores dates and datetimes very efficiently and can strongly optimize queries using these specific types.
 
 Don't flatten or denormalize data
------------------------------------
+---------------------------------
 
 BLUE executes JOIN operations very effectively. It is almost always better to JOIN tables at query-time rather than flatten/denormalize your tables.
 
@@ -28,14 +28,33 @@ This will also reduce storage size and reduce row-lengths.
 
 We highly suggest using ``INT`` or ``BIGINT`` as join keys, rather than a text/string type.
 
+Convert foreign tables to native tables
+---------------------------------------
+
+BLUE's native storage is heavily optimized for analytic workloads. It is always faster for querying than other formats, even columnar ones such as Parquet. It also enables the use of additional metadata to help speed up queries, in some cases by many orders of magnitude.
+
+You can improve the performance of all operations by converting :ref:`foreign tables<foreign_tables>` into native tables by using the :ref:`create_table_as` syntax.
+
+For example,
+
+.. code-block:: postgres
+
+	CREATE TABLE
+	  native_table AS
+	SELECT
+	  *
+	FROM
+	  foreign_table;
+
+The one situation when this wouldn't be as useful is when data will be only queried once.
 
 Use information about the column data to your advantage
--------------------------------------------------------------
+-------------------------------------------------------
 
 Knowing the data types and their ranges can help design a better table.
 
 Set ``NULL`` or ``NOT NULL`` when relevant
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For example, if a value can't be missing (or ``NULL``), specify a ``NOT NULL`` constraint on the columns.
 
@@ -57,13 +76,13 @@ Data sorting is an important factor in minimizing storage size and improving que
 .. _query_best_practices:
 
 Query best practices
-=====================
+====================
 
 This section describes best practices for writing SQL queries.
 
 
 Reduce data sets before joining tables
------------------------------------------
+--------------------------------------
 
 Reducing the input to a ``JOIN`` clause can increase performance.
 Some queries benefit from retreiving a reduced dataset as a subquery prior to a join.
@@ -72,22 +91,37 @@ For example,
 
 .. code-block:: postgres
 
-   SELECT store_name, SUM(amount)
-   FROM store_dim AS dim INNER JOIN store_fact AS fact ON dim.store_id=fact.store_id
-   WHERE p_date BETWEEN '2018-07-01' AND '2018-07-31'
-   GROUP BY 1;
+	SELECT
+	  store_name,
+	  SUM(amount)
+	FROM
+	  store_dim AS dim
+	  INNER JOIN store_fact AS fact ON dim.store_id = fact.store_id
+	WHERE
+	  p_date BETWEEN '2018-07-01' AND '2018-07-31'
+	GROUP BY
+	  1;
 
 Can be rewritten as
 
 .. code-block:: postgres
 
-   SELECT store_name, sum_amount
-   FROM store_dim AS dim INNER JOIN
-      (SELECT SUM(amount) AS sum_amount, store_id
-      FROM store_fact
-      WHERE p_date BETWEEN '2018-07-01' AND '2018-07-31'
-      group by 2) AS fact
-   ON dim.store_id=fact.store_id; 
+	SELECT
+	  store_name,
+	  sum_amount
+	FROM
+	  store_dim AS dim
+	  INNER JOIN (
+	    SELECT
+	      SUM(amount) AS sum_amount,
+	      store_id
+	    FROM
+	      store_fact
+	    WHERE
+	      p_date BETWEEN '2018-07-01' AND '2018-07-31'
+	    group by
+	      2
+	  ) AS fact ON dim.store_id = fact.store_id;
 
 Prefer the ANSI JOIN
 --------------------
@@ -98,25 +132,33 @@ In some cases, the ANSI JOIN performs better than the non-ANSI variety.
 For example, this ANSI JOIN example will perform better:
 
 .. code-block:: postgres
-   :caption: ANSI JOIN will perform better
 
-   SELECT p.name, s.name, c.name
-   FROM  "Products" AS p
-   JOIN  "Sales" AS s
-     ON  p.product_id = s.sale_id
-   JOIN  "Customers" as c
-     ON  s.c_id = c.id AND c.id = 20301125;
+	SELECT
+	  p.name,
+	  s.name,
+	  c.name
+	FROM
+	  "Products" AS p
+	  JOIN "Sales" AS s ON p.product_id = s.sale_id
+	  JOIN "Customers" as c ON s.c_id = c.id
+	  AND c.id = 20301125;
 
 This non-ANSI JOIN is supported, but not recommended:
 
 .. code-block:: postgres
-   :caption: Non-ANSI JOIN may not perform well
 
-   SELECT p.name, s.name, c.name
-   FROM "Products" AS p, "Sales" AS s, "Customers" as c
-   WHERE p.product_id = s.sale_id
-     AND s.c_id = c.id
-     AND c.id = 20301125;
+	SELECT
+	  p.name,
+	  s.name,
+	  c.name
+	FROM
+	  "Products" AS p,
+	  "Sales" AS s,
+	  "Customers" as c
+	WHERE
+	  p.product_id = s.sale_id
+	  AND s.c_id = c.id
+	  AND c.id = 20301125;
 
 Cast smaller types to avoid overflow in aggregates
 --------------------------------------------------
@@ -128,8 +170,13 @@ For example
 
 .. code-block:: postgres
 
-   SELECT store_name, SUM(amount :: BIGINT) FROM store_dim 
-   GROUP BY 1;
+	SELECT
+	  store_name,
+	  SUM(amount :: BIGINT)
+	FROM
+	  store_dim
+	GROUP BY
+	  1;
 
 
 Prefer ``COUNT(*)`` and ``COUNT`` on non-nullable columns
@@ -164,28 +211,37 @@ Filter and reduce table sizes prior to joining on them
 
 .. code-block:: postgres
 
-   SELECT store_name,
-          SUM(amount)
-   FROM dimention dim
-     JOIN fact ON dim.store_id = fact.store_id
-   WHERE p_date BETWEEN '2019-07-01' AND '2019-07-31'
-   GROUP BY store_name;
+	SELECT
+	  store_name,
+	  SUM(amount)
+	FROM
+	  dimention dim
+	  JOIN fact ON dim.store_id = fact.store_id
+	WHERE
+	  p_date BETWEEN '2019-07-01' AND '2019-07-31'
+	GROUP BY
+	  store_name;
 
 Can be rewritten as:
 
 .. code-block:: postgres
 
-   SELECT store_name,
-          sum_amount
-   FROM dimention AS dim
-     INNER JOIN (SELECT SUM(amount) AS sum_amount,
-                        store_id
-                 FROM fact
-                 WHERE p_date BETWEEN '2019-07-01' AND '2019-07-31'
-                 GROUP BY store_id) AS fact ON dim.store_id = fact.store_id;
-
-
-
+	SELECT
+	  store_name,
+	  sum_amount
+	FROM
+	  dimention AS dim
+	  INNER JOIN (
+	    SELECT
+	      SUM(amount) AS sum_amount,
+	      store_id
+	    FROM
+	      fact
+	    WHERE
+	      p_date BETWEEN '2019-07-01' AND '2019-07-31'
+	    GROUP BY
+	      store_id
+	  ) AS fact ON dim.store_id = fact.store_id;
 
 Data loading considerations
 ===========================

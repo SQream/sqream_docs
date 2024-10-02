@@ -2,31 +2,32 @@
 
 .. _extract:
 
-**************************
+*******
 EXTRACT
-**************************
+*******
 
 Extracts a date or time part from a ``DATE`` or ``DATETIME`` value.
 
 .. note:: Blue also supports the SQL Server :ref:`DATEPART<datepart>` syntax, which contains more date parts for use.
 
 Syntax
-==========
+======
 
 .. code-block:: postgres
 
-   EXTRACT( interval FROM date_expr ) --> DOUBLE
+	EXTRACT( interval FROM date_expr )
    
-   interval ::= 
-        YEAR
-      | MONTH
-      | WEEK
-      | DOY
-      | DAY
-      | HOUR
-      | MINUTE
-      | SECOND
-      | MILLISECONDS
+	interval ::= 
+	YEAR
+	| QUARTER
+	| MONTH
+	| WEEK
+	| DOY
+	| DAY
+	| HOUR
+	| MINUTE
+	| SECOND
+	| MILLISECONDS
 
 Arguments
 ============
@@ -54,6 +55,8 @@ Valid date parts
      - Definition
    * - ``YEAR``
      - Year (0.0 - 9999.0)
+   * - ``QUARTER``
+     - Quarter (1-4)
    * - ``MONTH``
      - Month (1.0-12.0)
    * - ``DOY``
@@ -72,44 +75,67 @@ Valid date parts
      - Milliseconds (0.0-999.0)
 
 Returns
-============
+=======
 
-* A floating point representing the date part value
+* Returns an integer
 
-Notes
-========
+Usage Notes
+===========
 
 * The ``HOUR``, ``MINUTE``, ``SECOND``, and ``MILLISECOND`` date parts work only on ``DATETIME``. Using them on ``DATE`` will result in an error.
 
 Examples
-===========
+========
 
-For these examples, consider the following table and contents:
+Consider the following table and contents:
 
 .. code-block:: postgres
 
-   CREATE TABLE cool_dates(name TEXT, d DATE, dt DATETIME);
+	CREATE TABLE
+	  cool_dates(name TEXT, d DATE, dt DATETIME);
    
-   INSERT INTO cool_dates VALUES ('Marty McFly goes back to this time','1955-11-05','1955-11-05 01:21:00.000')
-       , ('Marty McFly came from this time', '1985-10-26', '1985-10-26 01:22:00.000')
-       , ('Vesuvius erupts', '79-08-24', '79-08-24 13:00:00.000')
-       , ('1997 begins', '1997-01-01', '1997-01-01')
-       , ('1997 ends', '1997-12-31','1997-12-31 23:59:59.999');
+	INSERT INTO 
+	  cool_dates 
+	VALUES 
+	  ('Marty McFly goes back to this time','1955-11-05','1955-11-05 01:21:00.000'),
+	  ('Marty McFly came from this time', '1985-10-26', '1985-10-26 01:22:00.000'),
+	  ('Vesuvius erupts', '79-08-24', '79-08-24 13:00:00.000'),
+	  ('1997 begins', '1997-01-01', '1997-01-01'),
+	  ('1997 ends', '1997-12-31','1997-12-31 23:59:59.999');
 
 
-Break up a ``DATE`` into components
--------------------------------------
+Break Up a ``DATE`` Into Components
+-----------------------------------
 
 .. code-block:: psql
 
-   master=> SELECT EXTRACT(YEAR FROM d) AS year, EXTRACT(MONTH FROM d) AS month, EXTRACT(DAY FROM d) AS day 
-   .               FROM cool_dates;
-   year   | month | day 
-   -------+-------+-----
-   1955.0 |  11.0 |  5.0
-   1985.0 |  10.0 | 26.0
-     79.0 |   8.0 | 24.0
-   1997.0 |   1.0 |  1.0
-   1997.0 |  12.0 | 31.0
+	SELECT
+	  EXTRACT(
+	    YEAR
+	    FROM
+	      d
+	  ) AS year,
+	  EXTRACT(
+	    MONTH
+	    FROM
+	      d
+	  ) AS month,
+	  EXTRACT(
+	    DAY
+	    FROM
+	      d
+	  ) AS day
+	FROM
+	  cool_dates;
+	  
+Output:
 
+.. code-block:: none
 
+	year   | month | day
+	-------+-------+-----
+	1955.0 |  11.0 |  5.0
+	1985.0 |  10.0 | 26.0
+	  79.0 |   8.0 | 24.0
+	1997.0 |   1.0 |  1.0
+	1997.0 |  12.0 | 31.0

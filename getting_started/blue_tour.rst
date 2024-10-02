@@ -202,63 +202,6 @@ Managing your execution queue is crucial for ensuring system resources are used 
 
 Please note that execution queue management is configured on a per-resource pool basis.
 
-Viewing Information About a Role
---------------------------------
-
-The **Permissions** page is where you can create and assign roles and manage user permissions. It displays a list of existing roles along with the following information:
-
-* Role ID
-* Role Name
-* Superuser
-* Connected Databases
-
-Clicking a role in the roles table displays the following:
-
-* Existing permissions for each database the role has Connect permissions for
-* Whether it is a user or a group role (more about :ref:`user and group roles<access_control_managing_roles>`)
-* Edit role option
-* Delete role option
-
-Creating a New Role
--------------------
-
-On the **Permissions** page you can create new roles.
-
-An admin creates a **user** by granting login permissions to a role. Each role is defined by a set of permissions. An admin can also group several roles together to form a **group** to manage them simultaneously. For example, permissions can be granted to or revoked on a group level.
-
-Clicking **New Role** lets you do the following:
-
-* Add and assign a role name (required)
-* Enable or disable log-in permissions for the role
-* Add or delete permissions
-* Grant the selected user with superuser permissions
- 
-From the New Role panel you view directly and indirectly (or inherited) granted permissions. Disabled permissions have no connect permissions for the referenced database and are displayed in gray text. You can add or remove permissions from the **Add permissions** field.
-
-When adding a new role, you must select the **Grant login** checkbox.
-
-Editing a Role
---------------
-
-On the **Permissions** page you can edit existing roles.
-
-Clicking a role in the roles table and choosing the edit button lets you do the following:
-
-* Edit role name
-* Enable or disable log-in permissions
-* Assign or delete parent roles
-* Add or delete permissions
-* Grant the selected user with superuser permissions
-
-From the **Edit Role** panel you can view all role granted permissions. Disabled permissions have no connect permissions for the referenced database and are displayed in gray text. You can add or remove permissions using the **Add permissions** box. From the **Edit Role** panel you can also search and scroll through the permissions.
-
-Deleting a Role
----------------
-
-On the **Permissions** page you can delete existing roles.
-
-Clicking the **delete** icon displays a confirmation message with the amount of users and groups that will be impacted by deleting the role.
-
 
 .. |workbench_quick_tour| image:: /_static/images/workbench_quick_tour.png
    :align: middle    
