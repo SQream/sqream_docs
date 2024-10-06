@@ -204,7 +204,7 @@ Creating a Table
 	WRAPPER snowflake_fdw
 	OPTIONS 
 	 (
-	  ACCOUNT_NAME = 'my sf account'
+	  ACCOUNT_NAME = 'my sf account',
 	  DB_TABLE = 'my_customers',
 	  USERNAME = 'JohnSmith',
 	  PASSWORD = 'pa$$w0rD',
