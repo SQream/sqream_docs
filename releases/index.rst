@@ -4,7 +4,7 @@
 Release Notes
 *************
 
-:ref:`Version 4.8 - October 01, 2024<4.8>`
+:ref:`Version 4.8 - October 06, 2024<4.8>`
 
 * Prepared statements are now supported by our `Python <../connecting_to_sqream/client_drivers/python/index.html#prepared-statements>`_ and `JDBC <../connecting_to_sqream/client_drivers/jdbc/index.html#prepared-statements>`_ client drivers.
 * `PIVOT <../reference/sql/sql_syntax/pivot_unpivot.html#syntax>`_ and `UNPIVOT <../reference/sql/sql_syntax/pivot_unpivot.html#syntax>`_.

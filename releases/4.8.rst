@@ -4,7 +4,7 @@
 Release Notes 4.8
 *****************
 
-The 4.8 release notes were released on October 1st, 2024
+The 4.8 release notes were released on October 6th, 2024
 
 .. contents:: 
    :local:
