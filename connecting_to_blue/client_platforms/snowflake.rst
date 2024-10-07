@@ -227,7 +227,7 @@ Joining Blue and Snowflake Tables
 	  sft.date >= '2022-01-01'
 	  AND t1.status = 'active';
 	  
-Copying Data Into a Blue Table 
+Copying Data Into a Snowflake Table 
 ------------------------------
 
 .. code-block:: postgres
@@ -248,7 +248,8 @@ Copying Data Into a Blue Table
 	  NEW_TABLE = TRUE
 	 );
 	 
-	 
+Copying Data Into a Blue Table 
+------------------------------	 
 	 
 .. code-block:: postgres
 
