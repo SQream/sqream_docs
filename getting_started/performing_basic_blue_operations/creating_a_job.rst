@@ -63,8 +63,7 @@ After having created and saved a script, it will automatically appear on the **S
 
    SQL script names may not contain special characters.
 
-.. tip:: When configuring jobs to run unattended, it is recommended not to use the ``SELECT`` clause. Since jobs are designed to execute automatically without user interaction, there is no benefit in returning results directly to the client.
-Instead, we recommend using the ``COPY TO`` command to save the results to a file. This approach ensures that the output is stored efficiently and can be accessed as needed, without unnecessary resource consumption or network traffic caused by returning large datasets to the client.
+.. tip:: When configuring jobs to run unattended, it is recommended not to use the ``SELECT`` clause. Since jobs are designed to execute automatically without user interaction, there is no benefit in returning results directly to the client. Instead, we recommend using the ``COPY TO`` command to save the results to a file. This approach ensures that the output is stored efficiently and can be accessed as needed, without unnecessary resource consumption or network traffic caused by returning large datasets to the client.
 
 .. tip:: When choosing a script name, it is advisable to accurately reflect its action or purpose.
 
