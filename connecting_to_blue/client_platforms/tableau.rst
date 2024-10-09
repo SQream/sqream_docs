@@ -76,25 +76,21 @@ Connecting to SQream Blue
 	
 #. In the connection dialog box, fill in the following fields:
 
-  .. list-table:: 
-     :widths: 15 38 38
-     :header-rows: 1
+.. list-table:: 
+      :widths: 6 31
+      :header-rows: 1
    
-     * - Field name
-       - Description
-       - Example
-     * - Server
-       - Defines the SQream Blue cluster URL. 
-	   -
-     * - Port
-       - Defines the TCP port of the SQream worker
-       - ``3108`` when using a load balancer, or ``5100`` when connecting directly to a worker with SSL
-     * - Database
-       - Defines the database to establish a connection with
-       - ``master``
-     * - Access Token
-       - Provide an :ref:`access token<access_tokens>` to SQream Blue.
-	   -
+      * - Element Name
+        - Description
+      * - Server
+        - Provide the network address to your database server. Use the SQream Blue cluster URL 
+      * - Port
+        - Provide the port that the database is responding to at the network address.
+      * - Database
+        - Provide the name of your database or the schema on your database server.
+      * - Access Token
+        - Provide an :ref:`access token<access_tokens>` to SQream Blue.
+
 
 5. Click **Sign In**.
 
