@@ -19,7 +19,7 @@ Client Driver Downloads
      - Notes
      - Operating System
    * - **Apache Spark**
-     - `Apache Spark Connector <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-5.4.0.jar>`_ 
+     - `Apache Spark Connector <https://sq-ftp-public.s3.amazonaws.com/Spark-Sqream-Connector-5.0.0.jar>`_ 
      - :ref:`spark` 
      - 
      - All
@@ -29,7 +29,7 @@ Client Driver Downloads
      -
      - All
    * - **JDBC**
-     - `sqream-jdbc 5.4.0 <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-5.3.1.jar>`_
+     - `sqream-jdbc 5.4.0 <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-5.4.0.jar>`_
      - :ref:`java_jdbc`
      - Recommended installation via ``mvn``
      - All
