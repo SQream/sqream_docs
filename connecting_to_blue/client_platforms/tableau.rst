@@ -85,6 +85,7 @@ Connecting to SQream Blue
        - Example
      * - Server
        - Defines the SQream Blue cluster URL. 
+	   -
      * - Port
        - Defines the TCP port of the SQream worker
        - ``3108`` when using a load balancer, or ``5100`` when connecting directly to a worker with SSL
@@ -93,6 +94,7 @@ Connecting to SQream Blue
        - ``master``
      * - Access Token
        - Provide an :ref:`access token<access_tokens>` to SQream Blue.
+	   -
 
 5. Click **Sign In**.
 
