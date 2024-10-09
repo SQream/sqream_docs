@@ -35,6 +35,8 @@ BLUE offers seamless integration with third-party tools, BI tools, and analysis 
 	
     :ref:`PowerBI<powerbi_desktop>`
 
+    :ref:`Tableau<tableau>`
+
 .. tab:: Cloud Natives
 
     :ref:`Snowflake<snowflake>`
