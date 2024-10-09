@@ -57,7 +57,7 @@ Installing Power BI Desktop
       * - Element Name
         - Description
       * - Server
-        - Provide the network address to your database server. You can use a hostname or an IP address. 
+        - Provide the network address to your database server. Use the SQream Blue cluster URL 
       * - Port
         - Provide the port that the database is responding to at the network address.
       * - Database
