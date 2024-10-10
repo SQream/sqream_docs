@@ -44,7 +44,8 @@ Syntax
 
 Limitations
 =================
-The number of resulting columns for ``PIVOT`` and the number of input columns for ``UNPIVOT`` is limited to 8,000.
+* The number of resulting columns for ``PIVOT`` is limited to 8,000.
+* The number of resulting columns for ``UNPIVOT`` is limited to 2,000.
 
 
 
