@@ -104,7 +104,6 @@ Limitations
 * The following functionality is not supported by the encryption feature: ``Catalog queries``, ``Utility commands``, ``Foreign Tables``, ``Create AS SELECT``.
 * A single encryption key must be used per column - using a different key would result in an error.
 * Compression of encrypted columns is limited to the following types: ``Flat``,	``LZ4``, ``PD4``, ``DICT``, ``RLE``.
-* It is crucial to use a single encryption key per column to avoid potential data corruption. Responsibility for providing and managing the encryption key lies with the customer, as the key is utilized with the DECRYPT function.
 * This feature is not backward compatible with previous versions of SQreamDB.
 * The encryption feature affect performance and compression.
 
