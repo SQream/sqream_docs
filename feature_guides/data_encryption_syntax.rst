@@ -31,15 +31,18 @@ The following is an example of encrypting a new table:
         salary INT ENCRYPT);
 		
 		
-Encryption / Decryption methods:
+Encryption methods syntax:
 
 .. code-block:: psql
-
 ENCRYPT ( <column name to encrypt> , <Secret Key of exactly 256-bit (32-byte) length> )
+
+
+Decryption method syntax:
 
 .. code-block:: psql
 
 DECRYPT ( <column name to decrypt> , <Secret Key of exactly 256-bit (32-byte) length> )
+
 
 The following is an example of inserting encrypt player salary (``INT`` data type)
 
