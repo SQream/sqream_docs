@@ -112,4 +112,4 @@ Limitations
 ***********************
 Permissions
 ***********************
-Because the Data Encryption feature does not require a role, users with **Read** and **Insert** permissions can read tables containing encrypted data.
+The Data Encryption feature does not require a specific permission, users with **Read** or **Insert** may utilize encryption.
