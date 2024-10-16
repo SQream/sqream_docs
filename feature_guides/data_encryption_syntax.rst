@@ -112,4 +112,4 @@ Limitations
 ***********************
 Permissions
 ***********************
-The Data Encryption feature does not require a specific permission, users with **Read** or **Insert** may utilize encryption.
+The Data Encryption feature does not require a specific permission, users with relevant **TABLE** and **COLUMN** `permissions <../operational_guides/access_control_permissions.html#permissions>`_ may utilize it. 
