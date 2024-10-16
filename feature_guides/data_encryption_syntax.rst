@@ -23,16 +23,16 @@ The following is the syntax for adding an encrypted column to an existing table
 		
 Encryption methods syntax
 
-.. code-block:: console
+.. code-block:: psql
 
-ENCRYPT ( <column name to encrypt> , <Secret Key of exactly 256-bit (32-byte) length> )
+	ENCRYPT ( <column name to encrypt> , <Secret Key of exactly 256-bit (32-byte) length> )
 
 
 Decryption method syntax:
 
-.. code-block:: console
+.. code-block:: psql
 
-DECRYPT ( <column name to decrypt> , <Secret Key of exactly 256-bit (32-byte) length> )
+	DECRYPT ( <column name to decrypt> , <Secret Key of exactly 256-bit (32-byte) length> )
 
 ***********************
 Examples

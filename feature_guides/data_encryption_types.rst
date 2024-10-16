@@ -7,8 +7,8 @@ Typically speaking, sensitive pertains to **PII (Personally Identifiable Informa
 
 SQream's data encryption feature supports encrypting column-based data belonging to the following data types:
 
-* INT
-* BIGINT
-* TEXT
+* ``INT``
+* ``BIGINT``
+* ``TEXT``
 
 For more information on the above data types, see :ref:`supported_data_types`.
