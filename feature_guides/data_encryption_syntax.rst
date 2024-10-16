@@ -33,13 +33,13 @@ The following is an example of encrypting a new table:
 		
 Encryption methods syntax:
 
-.. code-block:: psql
+.. code-block:: bash
 ENCRYPT ( <column name to encrypt> , <Secret Key of exactly 256-bit (32-byte) length> )
 
 
 Decryption method syntax:
 
-.. code-block:: psql
+.. code-block:: bash
 
 DECRYPT ( <column name to decrypt> , <Secret Key of exactly 256-bit (32-byte) length> )
 
