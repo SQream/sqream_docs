@@ -3,7 +3,7 @@
 ***********************
 Syntax
 ***********************
-The following is the syntax for encrypting a new table:
+The following is the syntax for encrypting a new table
 
 .. code-block:: psql
      
@@ -13,14 +13,32 @@ The following is the syntax for encrypting a new table:
 		<column_name> <data_type> NOT NULL ENCRYPT
 		);
 
-The following is the syntax for adding an encrypted column to an existing table:
+The following is the syntax for adding an encrypted column to an existing table
 
 .. code-block:: psql
 
 	ALTER TABLE client_name
 		ADD COLUMN rank TEXT ENCRYPT;
 		
-The following is an example of encrypting a new table:
+		
+Encryption methods syntax
+
+.. code-block:: console
+
+ENCRYPT ( <column name to encrypt> , <Secret Key of exactly 256-bit (32-byte) length> )
+
+
+Decryption method syntax:
+
+.. code-block:: console
+
+DECRYPT ( <column name to decrypt> , <Secret Key of exactly 256-bit (32-byte) length> )
+
+***********************
+Examples
+***********************
+
+The following is an example of encrypting a new table
 
 .. code-block:: psql
      
@@ -29,20 +47,6 @@ The following is an example of encrypting a new table:
         first_name TEXT ENCRYPT,
         last_name TEXT,
         salary INT ENCRYPT);
-		
-		
-Encryption methods syntax:
-
-.. code-block:: bash
-ENCRYPT ( <column name to encrypt> , <Secret Key of exactly 256-bit (32-byte) length> )
-
-
-Decryption method syntax:
-
-.. code-block:: bash
-
-DECRYPT ( <column name to decrypt> , <Secret Key of exactly 256-bit (32-byte) length> )
-
 
 The following is an example of inserting encrypt player salary (``INT`` data type)
 
@@ -64,7 +68,7 @@ FROM WRAPPER csv_fdw
 OPTIONS
 (location = '/tmp/source_file.csv', quote='@');
 
-Example of querying the encrypted data:
+Example of querying the encrypted data
 
 .. code-block:: psql
 
@@ -75,7 +79,7 @@ player_name             |salary    |
 ------------------------+----------+
 Jayson Christopher Tatum|-561885196|
 
-Example of querying the encrypted data using ``WHERE`` clause on an encrypted column:
+Example of querying the encrypted data using ``WHERE`` clause on an encrypted column
 
 .. code-block:: psql
 
@@ -83,7 +87,7 @@ SELECT player_name, DECRYPT( salary, '6a8431f6e9c2777ee356c0b8aa3c12c0c63bdf366a
 FROM NBA
 WHERE DECRYPT( salary, '6a8431f6e9c2777ee356c0b8aa3c12c0c63bdf366ac3342c4c9184b51697b47f') > 1000000;
 
-Example of ``COPY TO`` using ``DECRYPT``:
+Example of ``COPY TO`` using ``DECRYPT``
 
 .. code-block:: psql
 
