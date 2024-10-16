@@ -15,3 +15,4 @@ The **Feature Guides** section describes background processes that SQreamDB uses
    python_functions
    workload_manager
    concurrency_and_locks
+   data_encryption

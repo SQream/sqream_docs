@@ -5,7 +5,7 @@ Syntax
 ***********************
 The following is the syntax for encrypting a new table:
 
-.. code-block:: console
+.. code-block:: psql
      
    CREATE TABLE <table name>  (
         <column_name> NOT NULL ENCRYPT,
@@ -15,7 +15,7 @@ The following is the syntax for encrypting a new table:
 		
 The following is an example of encrypting a new table:
 
-.. code-block:: console
+.. code-block:: psql
      
    CREATE TABLE client_name  (
         id BIGINT NOT NULL ENCRYPT,
@@ -23,10 +23,11 @@ The following is an example of encrypting a new table:
         last_name TEXT,
         salary INT ENCRYPT);
 		   
-.. note:: Because encryption is not associated with any role, users with **Read** or **Insert** permissions can read tables containing encrypted data.
+.. note:: xxxxxxxxxxxx.
 
-You cannot encrypt more than three columns. Attempting to encrypt more than three columns displays the following error message:
 
-.. code-block:: console
 
-   Error preparing statement: Cannot create a table with more than three encrypted columns.
+***********************
+Permissions
+***********************
+Because the Data Encryption feature does not require a role, users with **Read** and **Insert** permissions can read tables containing encrypted data.

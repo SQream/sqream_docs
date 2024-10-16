@@ -9,19 +9,9 @@ Users encrypt their data on a column basis by specifying ``column_name`` in the 
 
 The demand for confidentiality has steadily increased to protect the growing volumes of private data stored on computer systems and transmitted over the internet. To this end, regulatory bodies such as the **General Data Protection Regulation (GDPR)** have produced requirements to standardize and enforce compliance aimed at protecting customer data.
 
-Encryption can be used for the following:
+SQream enables customers to implement a-Symmetric Encryption solution using Secret Keys that they provide and manage themselves.
+The chosen encryption algorithm is AES-256, known for its strength and security. It is crucial to ensure that the Secret Key length is precisely 256 bits or 32 bytes.
 
-* Creating tables with up to three encrypted columns.
-
-   ::
-   
-* Joining encrypted columns with other tables.
-
-   ::
-   
-* Selecting data from an encrypted column.
-
-.. warning:: The ``SELECT`` statement decrypts information by default. When executing ``CREATE TABLE AS SELECT``, encrypted information will appear as clear text in the newly created table.
 
 For more information on the encryption syntax, see :ref:`data_encryption_syntax`.
 
