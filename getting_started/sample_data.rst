@@ -12,7 +12,7 @@ SQream Blue offers users access to two pre-configured databases; ``master`` and 
 * ``tpch_blue100``
 * ``tpch_blue1000``. 
 
-These schemas are differentiated by their allocated storage capacities, denoted by the numbers 1, 10, 100, and 1000, representing the size in terabytes (GB) of each schema. 
+These schemas are differentiated by their allocated storage capacities, denoted by the numbers 1, 10, 100, and 1000, representing the size in gigabytes (GB) of each schema. 
 
 Each schema within the ``blue_sample_data`` database is equipped with six TPC-H benchmark foreign tables. These tables serve as essential components for performance evaluation, containing simulated data representative of real-world scenarios.
 
