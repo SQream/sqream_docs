@@ -44,7 +44,7 @@ Parameters
      - The session ID of the query. If not specified the current session ID is provided
    * - ``ALL``
      - 
-     - Specifies that the operation should apply to all sessions.
+     - Specifies that the operation should return results from all sessions. For users with ``SUPERUSER`` privileges, the results will include sessions across all users. However, if the user does not possess ``SUPERUSER`` privileges, the results will be limited to sessions associated with the current user.
    * - ``STATUS IN``
      -  
      - A filter that allows you to specify a subset of statuses from the list provided (e.g., ``QUEUED``, ``EXECUTING``, ``EXECUTION_SUCCEED``, etc.) 
