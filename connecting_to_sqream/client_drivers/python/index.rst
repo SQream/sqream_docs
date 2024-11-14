@@ -546,7 +546,7 @@ Prepared Statements code example
 
 	# UPDATE
 	query = "UPDATE perf SET s = '?' WHERE s = '?'"
-	params = [("STRING1", "HENRY_TEST")]
+	params = [("STRING3", "STRING2")]
 
 	# Prepared Statement
 	cur.execute(query,params)
