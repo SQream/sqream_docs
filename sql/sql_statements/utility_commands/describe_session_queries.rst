@@ -16,7 +16,14 @@ Syntax
 
 .. code-block:: postgres
 
-	DESC[RIBE] SESSION QUERIES [SESSION ID '<sessionId>' | ALL] [STATUS IN ( <status1>,....,<statusN>)]
+	DESC[RIBE] SESSION QUERIES [SESSION ID '<sessionId>' | ALL] 
+		   [ TIMEFRAME FROM '<start_date_time>' TO '<end_date_time>' ]
+		   [ DURATION FROM <min_duration_in_sec> TO <max_duration_in_sec> ]
+		   [ USERNAME IN ( <username1>,..., <usernameN>) ] 
+		   [ STATUS IN ( <status1>,..., <statusN>) ]
+		   [ QUERYCATEGORY IN ( <category1>,..., <categoryN>) ]
+		   [ POOL IN ( "<pool1>",..., "<poolN>") ]
+		   [ LIMIT <results_limit> ]
 
 Parameters
 ==========
@@ -34,6 +41,15 @@ Parameters
    * - ``ALL``
      - 
      - Specifies that the operation should return results from all sessions. For users with ``SUPERUSER`` privileges, the results will include sessions across all users. However, if the user does not possess ``SUPERUSER`` privileges, the results will be limited to sessions associated with the current user.
+   * - ``TIMEFRAME``
+     -  DATETIME
+     - A filter that allows you to specify a time range between two dates
+   * - ``DURATION``
+     -  INTEGER
+     - A filter that allows you to get results of queiries with duration between spccified ``FROM`` (min) and ``TO`` (max) in seconds
+   * - ``USERNAME IN``
+     - ``TEXT``
+     - Optional parameter for specifying usernames filter, values should be comma separated
    * - ``STATUS IN``
      -  ENUM
      - A filter that allows you to specify a subset of statuses from the following closed list:
@@ -47,6 +63,37 @@ Parameters
 	   * ``FETCHING_RESULTS``
 	   * ``COMPILING``
 	   * ``COMPLETE``
+   * - ``QUERYCATEGORY``
+     - ``ENUM``
+     - Optional parameter for specifying query categories filter, values should be comma separated.
+	 
+       Possible values include:
+	    * ``ALTER``
+		* ``TRUNCATE``
+		* ``DROP``
+		* ``PARAMETERIZED_INSERT``
+		* ``USE``
+		* ``AUDITLOG``
+		* ``SET``
+		* ``ABORT``
+		* ``ACCESS_CONTROL``
+		* ``STATISTICS``
+		* ``INSERT``
+		* ``SELECT``
+		* ``DELETE``
+		* ``UPDATE``
+		* ``COPY_FROM``
+		* ``COPY_TO``
+		* ``DDL``
+		* ``EXPORT``
+		* ``DESCRIBE``
+		* ``UNKNOWN``
+   * - ``POOL IN``
+     - ``TEXT``
+     - Optional parameter for specifying resource pools filter, values should be comma separated
+   * - ``LIMIT``
+     - ``TEXT``
+     - Optional parameter for specifying the number of results to be returned - default number is 200 rows, maximum is 4000 rows 
 	 
 Output
 ======

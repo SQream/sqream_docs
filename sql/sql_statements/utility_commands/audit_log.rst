@@ -23,10 +23,11 @@ The following is the ``AUDITLOG`` syntax:
    [ SESSIONID IN ( <session-id1>,..., <session-idN>) ] 
    [ QUERYID IN ( <query-id1>,..., <query-idN>) ]
    [ STATUS IN ( <status1>,..., <statusN>) ]
-   [ Category IN ( <category1>,..., <categoryN>) ]
+   [ QUERYCATEGORY IN ( <category1>,..., <categoryN>) ]
    [ ADDITIONALDETAILS LIKE <%additional_details%> ]
    [ ERRORDETAILS LIKE <%error_details%> ]
    [ INITIATED BY ( ALL | { External | Blue_UI_User | Blue_UI_System | CLI | Jobs | Statistics } ) ]
+   [ LIMIT <results_limit> ]
 
 Filters
 =======
@@ -43,20 +44,20 @@ Filters
      - ``YYYY-MM-DD HH:MM:SS``
      - Optional parameter for specifying a DATE or DATE TIME filter   
      - ``DATE`` or ``DATETIME``
-   * - ``USERNAME``
-     - ``user_name``
+   * - ``USERNAME IN``
+     - ``TEXT``
      - Optional parameter for specifying usernames filter, values should be comma separated
      - ``TEXT``
-   * - ``SESSIONID``
-     - ``session_id``
+   * - ``SESSIONID IN``
+     - ``TEXT``
      - Optional parameter for specifying sessions filter, values should be comma separated 
      - ``TEXT``
    * - ``QUERYID``
-     - ``query_id``
+     - ``TEXT``
      - Optional parameter for specifying queries filter, values should be comma separated
      - ``TEXT``
    * - ``STATUS``
-     - ``status``
+     - ``ENUM``
      - Optional parameter for specifying event statuses filter, values should be comma separated.
 	 
        Possible values include: 
@@ -69,15 +70,33 @@ Filters
         * ``Closed``
         * ``Active``
      - ``TEXT``
-   * - ``Category``
-     - ``category``
-     - Optional parameter for specifying event categories filter, values should be comma separated.
+   * - ``QUERYCATEGORY``
+     - ``ENUM``
+     - Optional parameter for specifying query categories filter, values should be comma separated.
 	 
        Possible values include:
-	    * ``SESSION``
-	    * ``SELECT``
-	    * ``DESCRIBE``
-	    * ``DDL`` 
+	    * ``ALTER``
+		* ``TRUNCATE``
+		* ``DROP``
+		* ``PARAMETERIZED_INSERT``
+		* ``USE``
+		* ``AUDITLOG``
+		* ``SET``
+		* ``ABORT``
+		* ``ACCESS_CONTROL``
+		* ``STATISTICS``
+		* ``INSERT``
+		* ``SELECT``
+		* ``DELETE``
+		* ``UPDATE``
+		* ``COPY_FROM``
+		* ``COPY_TO``
+		* ``DDL``
+		* ``EXPORT``
+		* ``DESCRIBE``
+		* ``UNKNOWN``
+		
+NON_QUERY
      - ``TEXT``
    * - ``ADDITONALDETAILS``
      - ``additional_details``
@@ -91,6 +110,9 @@ Filters
      - ``ALL``, ``External``, ``Blue_UI_User``, ``Blue_UI_System``, ``CLI``, ``Jobs``, and/or ``Statistics``. Default is: ``Blue_UI_User``, ``CLI``, and ``External``
      - Optional parameter for filtering based on the source that triggered the query
      - ``TEXT``	 
+   * - ``LIMIT``
+     - ``TEXT``
+     - Optional parameter for specifying the number of results to be returned - default number is 200 rows, maximum is 4000 rows 
 
 Examples
 ========
