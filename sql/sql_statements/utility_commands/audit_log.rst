@@ -8,6 +8,8 @@ AUDIT LOG
 
 The ``AUDITLOG`` command is used for investigating historic events captured by your system, and is designed for tracking user activity and for incident response. The Audit Log feature records executed SQL statements and login and logout events.
 
+.. note:: ``AUDITLOG`` commands use CPU resources to enhance usability by freeing up GPU resources, which are primarily dedicated Workers which execute regular queries.
+
 Syntax
 ======
 

@@ -37,16 +37,16 @@ Parameters
    * - ``STATUS IN``
      -  ENUM
      - A filter that allows you to specify a subset of statuses from the following closed list:
-	   * QUEUED
-	   * EXECUTING
-	   * EXECUTION_SUCCEED
-	   * EXECUTION_FAILED
-	   * CLOSED
-	   * COMPILATION_FAILED
-	   * ABORTED
-	   * FETCHING_RESULTS
-	   * COMPILING
-	   * COMPLETE 
+	   * ``QUEUED``
+	   * ``EXECUTING``
+	   * ``EXECUTION_SUCCEED``
+	   * ``EXECUTION_FAILED``
+	   * ``CLOSED``
+	   * ``COMPILATION_FAILED``
+	   * ``ABORTED``
+	   * ``FETCHING_RESULTS``
+	   * ``COMPILING``
+	   * ``COMPLETE``
 	 
 Output
 ======
