@@ -39,7 +39,7 @@ Parameters
      - :ref:`STRING literal<literals>`	
      - The session ID of the query. If not specified the current session ID is provided
    * - ``ALL``
-     - 
+     -  
      - Specifies that the operation should return results from all sessions. For users with ``SUPERUSER`` privileges, the results will include sessions across all users. However, if the user does not possess ``SUPERUSER`` privileges, the results will be limited to sessions associated with the current user.
    * - ``TIMEFRAME``
      -  DATETIME
@@ -63,7 +63,7 @@ Parameters
 	   * ``FETCHING_RESULTS``
 	   * ``COMPILING``
 	   * ``COMPLETE``
-   * - ``QUERYCATEGORY``
+   * - ``QUERYCATEGORY IN``
      - ``ENUM``
      - Optional parameter for specifying query categories filter, values should be comma separated.
 	 

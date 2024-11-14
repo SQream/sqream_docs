@@ -53,7 +53,6 @@ Filters
      - ``TEXT``
    * - ``STATUS``
      - Optional parameter for specifying event statuses filter, values should be comma separated.
-	 
        Possible values include: 
         * ``EXECUTION_SUCCEED``
         * ``EXECUTION_FAILED``
@@ -66,7 +65,6 @@ Filters
      - ``ENUM``
    * - ``QUERYCATEGORY``
      - Optional parameter for specifying query categories filter, values should be comma separated.
-	 
        Possible values include:
 	    * ``ALTER``
 		* ``TRUNCATE``
@@ -98,7 +96,6 @@ Filters
      - ``TEXT``
    * - ``INITIATED BY``
      - Optional parameter for filtering based on the source that triggered the query
-	 
 	 Possible values include:
 	 * ``ALL``
 	 * ``External``
@@ -108,7 +105,6 @@ Filters
 	 * ``Jobs``
 	 * ``Statistics``
 	 Default is: ``Blue_UI_User``, ``CLI``, and ``External``
-	 
      - ``ENUM``	 
    * - ``LIMIT``
      - Optional parameter for specifying the number of results to be returned - default number is 200 rows, maximum is 4000 rows 
