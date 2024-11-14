@@ -35,18 +35,18 @@ Parameters
      - 
      - Specifies that the operation should return results from all sessions. For users with ``SUPERUSER`` privileges, the results will include sessions across all users. However, if the user does not possess ``SUPERUSER`` privileges, the results will be limited to sessions associated with the current user.
    * - ``STATUS IN``
-     -  
+     -  ENUM
      - A filter that allows you to specify a subset of statuses from the following closed list:
-	   QUEUED
-	   EXECUTING
-	   EXECUTION_SUCCEED
-	   EXECUTION_FAILED
-	   CLOSED
-	   COMPILATION_FAILED
-	   ABORTED
-	   FETCHING_RESULTS
-	   COMPILING
-	   COMPLETE 
+	   * QUEUED
+	   * EXECUTING
+	   * EXECUTION_SUCCEED
+	   * EXECUTION_FAILED
+	   * CLOSED
+	   * COMPILATION_FAILED
+	   * ABORTED
+	   * FETCHING_RESULTS
+	   * COMPILING
+	   * COMPLETE 
 	 
 Output
 ======
