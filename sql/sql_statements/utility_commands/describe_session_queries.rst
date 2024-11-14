@@ -9,25 +9,14 @@ DESCRIBE SESSION QUERIES
 The ``DESCRIBE SESSION QUERIES`` command outputs a list of queries per session, including queued queries.
 A session is opened per connection or per Workbench tab.
 
-.. note:: ``DESCRIBE`` commands use CPU to increase usability.
+.. note:: ``DESCRIBE`` commands use CPU resources to enhance usability by freeing up GPU resources, which are primarily dedicated Workers which execute regular queries.
 
 Syntax
 ======
 
 .. code-block:: postgres
 
-	DESC[RIBE] SESSION QUERIES [SESSION ID '<sessionId>' | ALL] [STATUS IN (
-	   { QUEUED,
-	   | EXECUTING,
-	   | EXECUTION_SUCCEED,
-	   | EXECUTION_FAILED,
-	   | CLOSED,
-	   | COMPILATION_FAILED,
-	   | ABORTED,
-	   | FETCHING_RESULTS,
-	   | COMPILING,
-	   | COMPLETE }
-	   )]
+	DESC[RIBE] SESSION QUERIES [SESSION ID '<sessionId>' | ALL] [STATUS IN ( <status1>,....,<statusN>)]
 
 Parameters
 ==========
@@ -47,7 +36,17 @@ Parameters
      - Specifies that the operation should return results from all sessions. For users with ``SUPERUSER`` privileges, the results will include sessions across all users. However, if the user does not possess ``SUPERUSER`` privileges, the results will be limited to sessions associated with the current user.
    * - ``STATUS IN``
      -  
-     - A filter that allows you to specify a subset of statuses from the list provided (e.g., ``QUEUED``, ``EXECUTING``, ``EXECUTION_SUCCEED``, etc.) 
+     - A filter that allows you to specify a subset of statuses from the following closed list:
+	   QUEUED
+	   EXECUTING
+	   EXECUTION_SUCCEED
+	   EXECUTION_FAILED
+	   CLOSED
+	   COMPILATION_FAILED
+	   ABORTED
+	   FETCHING_RESULTS
+	   COMPILING
+	   COMPLETE 
 	 
 Output
 ======
