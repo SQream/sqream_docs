@@ -478,4 +478,82 @@ Prepared Statement Limitations
 --------------------------- 
 * Prepared Statement do not support the use of :ref:`keywords_and_identifiers` as input parameters.
 
+Prepared Statements code example
+--------------------------------
+
+.. code-block:: python
+
+	import pysqream
+	from datetime import date, datetime
+	from time import time
+
+	# SQreamDB Connection Setting
+	con = pysqream.connect(host='<your-host-ip>', port=3108, database='master'
+									   , username='<SQDB role name>', password='<SQDB role password>'
+									   , clustered=True)
+	cur = con.cursor()
+
+	# CREATE
+	create = 'create or replace table perf (b bool, t tinyint, sm smallint, i int, bi bigint, f real, d double, s text(12), ss text, dt date, dtt datetime)'
+	cur.execute(create)
+
+	# DATA
+	data = (False, 2, 12, 145, 84124234, 3.141, -4.3, "STRING1" , "STRING2", date(2024, 11, 11), datetime(2024, 11, 11, 11, 11, 11, 11))
+	row_count = 10**2
+
+	# Insert
+	insert = 'insert into perf values (?,?,?,?,?,?,?,?,?,?,?)'
+	start = time()
+
+	# Prepared Statement
+	cur.executemany(insert, [data] * row_count)
+	print (f"Total insert time for {row_count} rows: {time() - start} seconds")
+
+
+	# Results(Table Count)
+	cur = con.cursor()
+	cur.execute('select count(*) from perf')
+	result = cur.fetchall() # `fetchall` collects the entire data set
+	print (f"Count of inserted rows: {result[0][0]}")
+
+
+	# SELECT
+	query = "SELECT * FROM perf WHERE s = ?"
+	params = [("STRING1",)]
+
+	# Prepared Statement
+	cur.execute(query,params)
+
+
+	# Result
+	rows = cur.fetchall()
+	print(rows)
+
+	for row in rows:
+			print(row)
+
+
+	# UPDATE
+	query = "UPDATE perf SET s = '?' WHERE s = '?'"
+	params = [("STRING3", "STRING2")]
+
+	# Prepared Statement
+	cur.execute(query,params)
+
+	print("Update completed.")
+
+
+	# DELETE
+	query = "DELETE FROM perf WHERE s = ?"
+	params = [("STRING1",)]
+
+	# Prepared Statement
+	cur.execute(query,params)
+
+	print("Delete completed.")
+
+	# Conn Close
+	cur.close()
+	con.close()
+
 
