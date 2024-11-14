@@ -488,8 +488,8 @@ Prepared Statements code example
 	from time import time
 
 	# SQreamDB Connection Setting
-	con = pysqream.connect(host='112.217.87.18', port=3108, database='master'
-					   , username='sqream', password='sqream'
+	con = pysqream.connect(host='<your-host-ip>', port=3108, database='master'
+					   , username='<SQDB role name>', password='<SQDB role password>'
 					   , clustered=True)
 	cur = con.cursor() 
 
@@ -498,7 +498,7 @@ Prepared Statements code example
 	cur.execute(create)
 
 	# DATA
-	data = (False, 2, 12, 145, 84124234, 3.141, -4.3, "HENRY" , "TEST", date(2024, 11, 11), datetime(2024, 11, 11, 11, 11, 11, 11))
+	data = (False, 2, 12, 145, 84124234, 3.141, -4.3, "STRING1" , "STRING2", date(2024, 11, 11), datetime(2024, 11, 11, 11, 11, 11, 11))
 	row_count = 10**2
 
 	# Insert
@@ -519,7 +519,7 @@ Prepared Statements code example
 
 	# SELECT
 	query = "SELECT * FROM perf WHERE s = ?"
-	params = [("HENRY",)]
+	params = [("STRING1",)]
 
 	# Prepared Statement 
 	cur.execute(query,params)
@@ -537,7 +537,7 @@ Prepared Statements code example
 
 	# DELETE
 	query = "DELETE FROM perf WHERE s = ?"
-	params = [("HENRY",)]
+	params = [("STRING1",)]
 
 	# Prepared Statement
 	cur.execute(query,params)
@@ -546,7 +546,7 @@ Prepared Statements code example
 
 	# UPDATE
 	query = "UPDATE perf SET s = '?' WHERE s = '?'"
-	params = [("HENRY", "HENRY_TEST")]
+	params = [("STRING1", "HENRY_TEST")]
 
 	# Prepared Statement
 	cur.execute(query,params)
