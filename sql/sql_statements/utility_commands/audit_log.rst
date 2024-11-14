@@ -8,7 +8,7 @@ AUDIT LOG
 
 The ``AUDITLOG`` command is used for investigating historic events captured by your system, and is designed for tracking user activity and for incident response. The Audit Log feature records executed SQL statements and login and logout events.
 
-.. note:: ``AUDITLOG`` commands use CPU resources to enhance usability by freeing up GPU resources, which are primarily dedicated Workers which execute regular queries.
+.. note:: ``AUDITLOG`` command use CPU resources to enhance usability by freeing up GPU resources, which are primarily dedicated Workers which execute regular queries.
 
 Syntax
 ======
@@ -37,27 +37,21 @@ Filters
    :header-rows: 1
    
    * - Parameter Name
-     - Parameter Value
      - Description
      - Type
    * - ``TIMEFRAME``
-     - ``YYYY-MM-DD HH:MM:SS``
      - Optional parameter for specifying a DATE or DATE TIME filter   
-     - ``DATE`` or ``DATETIME``
+     - ``DATE`` or ``DATETIME`` e.g - ``YYYY-MM-DD HH:MM:SS``
    * - ``USERNAME IN``
-     - ``TEXT``
      - Optional parameter for specifying usernames filter, values should be comma separated
      - ``TEXT``
    * - ``SESSIONID IN``
-     - ``TEXT``
      - Optional parameter for specifying sessions filter, values should be comma separated 
      - ``TEXT``
    * - ``QUERYID``
-     - ``TEXT``
      - Optional parameter for specifying queries filter, values should be comma separated
      - ``TEXT``
    * - ``STATUS``
-     - ``ENUM``
      - Optional parameter for specifying event statuses filter, values should be comma separated.
 	 
        Possible values include: 
@@ -69,9 +63,8 @@ Filters
         * ``New``
         * ``Closed``
         * ``Active``
-     - ``TEXT``
-   * - ``QUERYCATEGORY``
      - ``ENUM``
+   * - ``QUERYCATEGORY``
      - Optional parameter for specifying query categories filter, values should be comma separated.
 	 
        Possible values include:
@@ -95,24 +88,31 @@ Filters
 		* ``EXPORT``
 		* ``DESCRIBE``
 		* ``UNKNOWN``
-		
-NON_QUERY
-     - ``TEXT``
+		* ``NON_QUERY``
+     - ``ENUM``
    * - ``ADDITONALDETAILS``
-     - ``additional_details``
      - Optional parameter for specifying event additional details filter. Wildcards may be used
      - ``TEXT``
    * - ``ERRORDETAILS``
-     - ``error_details``
      - Optional parameter for specifying event error details filter. Wildcards may be used
      - ``TEXT``
    * - ``INITIATED BY``
-     - ``ALL``, ``External``, ``Blue_UI_User``, ``Blue_UI_System``, ``CLI``, ``Jobs``, and/or ``Statistics``. Default is: ``Blue_UI_User``, ``CLI``, and ``External``
      - Optional parameter for filtering based on the source that triggered the query
-     - ``TEXT``	 
+	 
+	 Possible values include:
+	 * ``ALL``
+	 * ``External``
+	 * ``Blue_UI_User``
+	 * ``Blue_UI_System``
+	 * ``CLI``
+	 * ``Jobs``
+	 * ``Statistics``
+	 Default is: ``Blue_UI_User``, ``CLI``, and ``External``
+	 
+     - ``ENUM``	 
    * - ``LIMIT``
-     - ``TEXT``
      - Optional parameter for specifying the number of results to be returned - default number is 200 rows, maximum is 4000 rows 
+	 - ``INTEGER``
 
 Examples
 ========
