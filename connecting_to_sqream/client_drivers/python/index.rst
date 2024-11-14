@@ -489,9 +489,9 @@ Prepared Statements code example
 
 	# SQreamDB Connection Setting
 	con = pysqream.connect(host='<your-host-ip>', port=3108, database='master'
-					   , username='<SQDB role name>', password='<SQDB role password>'
-					   , clustered=True)
-	cur = con.cursor() 
+									   , username='<SQDB role name>', password='<SQDB role password>'
+									   , clustered=True)
+	cur = con.cursor()
 
 	# CREATE
 	create = 'create or replace table perf (b bool, t tinyint, sm smallint, i int, bi bigint, f real, d double, s text(12), ss text, dt date, dtt datetime)'
@@ -505,7 +505,7 @@ Prepared Statements code example
 	insert = 'insert into perf values (?,?,?,?,?,?,?,?,?,?,?)'
 	start = time()
 
-	# Prepared Statement 
+	# Prepared Statement
 	cur.executemany(insert, [data] * row_count)
 	print (f"Total insert time for {row_count} rows: {time() - start} seconds")
 
@@ -521,7 +521,7 @@ Prepared Statements code example
 	query = "SELECT * FROM perf WHERE s = ?"
 	params = [("STRING1",)]
 
-	# Prepared Statement 
+	# Prepared Statement
 	cur.execute(query,params)
 
 
@@ -530,9 +530,17 @@ Prepared Statements code example
 	print(rows)
 
 	for row in rows:
-		print(row)
+			print(row)
 
-	# Conn Close
+
+	# UPDATE
+	query = "UPDATE perf SET s = '?' WHERE s = '?'"
+	params = [("STRING3", "STRING2")]
+
+	# Prepared Statement
+	cur.execute(query,params)
+
+	print("Update completed.")
 
 
 	# DELETE
@@ -543,15 +551,6 @@ Prepared Statements code example
 	cur.execute(query,params)
 
 	print("Delete completed.")
-
-	# UPDATE
-	query = "UPDATE perf SET s = '?' WHERE s = '?'"
-	params = [("STRING3", "STRING2")]
-
-	# Prepared Statement
-	cur.execute(query,params)
-
-	print("Update completed.")
 
 	# Conn Close
 	cur.close()
