@@ -24,7 +24,7 @@ Blue Releases Timeline
 ======================
 
 .. list-table:: 
-   :widths: 50 50 50 50
+   :widths: auto
    :header-rows: 1
    
    * - Release
@@ -35,3 +35,7 @@ Blue Releases Timeline
      - Decemeber 31st 2024
      - TBD
      - Decemeber 31st 2025
+   * - ``2.3``
+     - October 1st 2024
+     - Decemeber 31st 2024
+     - October 1st 2025
