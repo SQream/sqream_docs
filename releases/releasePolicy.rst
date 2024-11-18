@@ -13,7 +13,7 @@ New product versions will be released as per the established product roadmap or 
 Transition to Maintenance Mode
 ==============================
 Upon release of a new version, the previous version immediately transitions into Maintenance Mode.
-During Maintenance Mode supported would be limited to high-priority issues and showstopper bugs that impact critical functionality.
+During Maintenance Mode support would be limited to high-priority issues and showstopper bugs that impact critical functionality.
 
 End of Support Timeline
 =======================
@@ -23,10 +23,19 @@ After the EOS date, no further updates or bug fixes will be provided for that ve
 Blue Releases Timeline
 ======================
 
-    +--------+--------------------+--------------------+--------------------+
-	|Release | Release Date       | Maintenance Mode   | End of Support     |
-	+--------+--------------------+--------------------+--------------------+
-	|2.4     | Decemebr 31st 2024 | March 31st 2025    | Decemebr 31st 2025 |
-	+--------+--------------------+--------------------+--------------------+
-	|2.3     | October 1st 2024   | February 1st 2025  | October 1st 2025   |
-	+--------+--------------------+--------------------+--------------------+
+.. list-table:: 
+   :widths: auto
+   :header-rows: 1
+   
+   * - Release
+     - Release Date
+     - Maintenance Mode
+	 - End of Support 
+   * - 2.4
+     - Decemebr 31st 2024 
+     - TBD
+	 - Decemebr 31st 2025
+   * - 2.3
+     - October 1st 2024 
+     - Decemebr 31st 2024
+	 - October 1st 2025	 
