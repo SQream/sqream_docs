@@ -94,9 +94,7 @@ Filters
    * - ``ERRORDETAILS``
      - Optional parameter for specifying event error details filter. Wildcards may be used
      - ``TEXT``
-   * - ``LIMIT``
-     - Optional parameter for specifying the number of results to be returned - default number is 200 rows, maximum is 4000 rows 
-	 - ``INTEGER``
+  
 
 Examples
 ========
