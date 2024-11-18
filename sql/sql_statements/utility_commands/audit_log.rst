@@ -105,6 +105,9 @@ Filters
 		* ``Jobs``
 		* ``Statistics``
      - ``ENUM``	 
+   * - ``LIMIT``
+     - Optional parameter for specifying the number of results to be returned. Default number is 200 rows, maximum is 4000 rows
+     - ``INTEGER``
   
 
 Examples
