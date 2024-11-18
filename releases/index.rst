@@ -106,8 +106,3 @@ May 2023
 * BLUE is now available on the Google Cloud Platform (GCP) Marketplace, streamlining deployment for enhanced flexibility and scalability.
    
 
-
-.. toctree::
-   :maxdepth: 1
-   :glob:
-   :hidden:
