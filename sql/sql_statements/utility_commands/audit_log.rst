@@ -88,6 +88,24 @@ Filters
 		* ``UNKNOWN``
 		* ``NON_QUERY``
      - ``ENUM``
+	    * - ``ADDITONALDETAILS``
+     - Optional parameter for specifying event additional details filter. Wildcards may be used
+     - ``TEXT``
+   * - ``ERRORDETAILS``
+     - Optional parameter for specifying event error details filter. Wildcards may be used
+     - ``TEXT``
+   * - ``INITIATED BY``
+     - Optional parameter for filtering based on the source that triggered the query
+	 Possible values include:
+	 * ``ALL``
+	 * ``External``
+	 * ``Blue_UI_User``
+	 * ``Blue_UI_System``
+	 * ``CLI``
+	 * ``Jobs``
+	 * ``Statistics``
+	 Default is: ``Blue_UI_User``, ``CLI``, and ``External``
+     - ``ENUM``	 
 
 Examples
 ========
