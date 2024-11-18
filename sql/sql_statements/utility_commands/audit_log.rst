@@ -63,7 +63,31 @@ Filters
         * ``Closed``
         * ``Active``
      - ``ENUM``
-   
+   * - ``QUERYCATEGORY``
+     - Optional parameter for specifying query categories filter, values should be comma separated.
+       Possible values include:
+	    * ``ALTER``
+		* ``TRUNCATE``
+		* ``DROP``
+		* ``PARAMETERIZED_INSERT``
+		* ``USE``
+		* ``AUDITLOG``
+		* ``SET``
+		* ``ABORT``
+		* ``ACCESS_CONTROL``
+		* ``STATISTICS``
+		* ``INSERT``
+		* ``SELECT``
+		* ``DELETE``
+		* ``UPDATE``
+		* ``COPY_FROM``
+		* ``COPY_TO``
+		* ``DDL``
+		* ``EXPORT``
+		* ``DESCRIBE``
+		* ``UNKNOWN``
+		* ``NON_QUERY``
+     - ``ENUM``
 
 Examples
 ========
