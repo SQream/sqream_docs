@@ -30,7 +30,7 @@ Blue Releases Timeline
    * - Release
      - Release Date
      - Maintenance Mode
-	 - End of Support
+     - End of Support
    * - 2.4
      - Decemebr 31st 2024
      - TBD
@@ -38,4 +38,4 @@ Blue Releases Timeline
    * - 2.3
      - October 1st 2024
      - Decemebr 31st 2024
-	 - October 1st 2025	 
+	 - October 1st 2025
