@@ -31,8 +31,7 @@ Blue Releases Timeline
      - Release Date
      - Maintenance Mode
      - End of Support
-   * - ``2.4``
-     - Decemeber 31st 2024
-     - TBD
-	 - Decemeber 31st 2025
-
+   * - 1
+     - 2
+     - 3
+     - 4
