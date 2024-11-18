@@ -106,7 +106,7 @@ GPU Optimization Engine
    :hidden:
 
    releases/index
-   releases/releasePolicy
+   releasePolicy/index
    
 .. toctree::
    :caption: Troubleshooting
