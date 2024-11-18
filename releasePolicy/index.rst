@@ -24,7 +24,7 @@ Blue Releases Timeline
 ======================
 
 .. list-table:: 
-   :widths: auto
+   :widths: 50 50 50 50
    :header-rows: 1
    
    * - Release
