@@ -4,7 +4,7 @@
 Release Notes 4.9
 *****************
 
-The 4.9 release notes were released on October 28th, 2024
+The 4.9 release notes were released on Novemebr 28th, 2024
 
 .. contents:: 
    :local:
@@ -37,14 +37,7 @@ New Features and Enhancements
 
 
 
-► Prepared statements, also known as parameterized queries, are a safer and more efficient way to execute SQL statements. They prevent SQL injection attacks by separating SQL code from data, and they can improve performance by reusing prepared statements.
-These are now supported by our `Python <../connecting_to_sqream/client_drivers/python/index.html#prepared-statements>`_ and `JDBC <../connecting_to_sqream/client_drivers/jdbc/index.html#prepared-statements>`_ client drivers.
-
-► `PIVOT <../reference/sql/sql_syntax/pivot_unpivot.html#syntax>`_ allows to convert row-level data into columnar representation. This technique is particularly useful when you need to summarize and visualize data. `UNPIVOT <../reference/sql/sql_syntax/pivot_unpivot.html#syntax>`_ does the opposite by transforming columnar data into rows. This operation is invaluable for scenarios where you wish to explore data in a more granular manner.
-
-► `Window funtion alias  <../reference/sql/sql_syntax/window_functions.html#window-funtion-alias>`_ allows to specify a parameter within the window function definition. This eliminates the need to repeatedly input the same SQL code in queries that use multiple window functions with identical definitions.
-
-► `CONCAT <../reference/sql/sql_functions/scalar_functions/string/concat_function.html#concat-function>`_ function concatenates one or more strings, or concatenates one or more binary values.
+► Native `Data Encryption <../feature_guides/data_encryption.html>`_ is now supported using SQL syntax.
 
 
 Known Issues
@@ -58,10 +51,17 @@ Version 4.9 resolved Issues
 +--------------+---------------------------------------------------------------------------------------------------------------------+
 | **SQ No.**   | **Description**                                                                                                     |
 +==============+=====================================================================================================================+
-| SQ-12365     | SQream CLI - Comment is not ignored as expected                                                                     |
+| SQ-19055    | Illegal memory access was encountered error                                                                          |
 +--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-17520     | SQLoader - DELETE issue following CDC process                                                                       |
+| SQ-19053     | Workers connectivity issues                                                                                         |
 +--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-19051     | Metadata issues causes some data portions to becamoe inaccessible                                                   |
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-18745     | Cannot grant select to a role on a table                                                                            |
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-16877     | Query run time is longer than expected                                                                              |
++--------------+---------------------------------------------------------------------------------------------------------------------+
+
 
 
 
@@ -70,7 +70,7 @@ Deprecations
 
 ► **Haskell CLI**
 
-Starting October 2024, support for the Haskell CLI will be discontinued, and it will be replaced by a JAVA CLI that is compatible with both SQreamDB and BLUE.
+Starting October 2024, support for the Haskell CLI is discontinued, and it will be replaced by a JAVA CLI that is compatible with the Haskell CLI with the added value of ``Table-View`` and cross platform compatability.
 
 ► **CentOS Linux 7.x**
 
