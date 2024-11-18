@@ -63,52 +63,7 @@ Filters
         * ``Closed``
         * ``Active``
      - ``ENUM``
-   * - ``QUERYCATEGORY``
-     - Optional parameter for specifying query categories filter, values should be comma separated.
-       Possible values include:
-	    * ``ALTER``
-		* ``TRUNCATE``
-		* ``DROP``
-		* ``PARAMETERIZED_INSERT``
-		* ``USE``
-		* ``AUDITLOG``
-		* ``SET``
-		* ``ABORT``
-		* ``ACCESS_CONTROL``
-		* ``STATISTICS``
-		* ``INSERT``
-		* ``SELECT``
-		* ``DELETE``
-		* ``UPDATE``
-		* ``COPY_FROM``
-		* ``COPY_TO``
-		* ``DDL``
-		* ``EXPORT``
-		* ``DESCRIBE``
-		* ``UNKNOWN``
-		* ``NON_QUERY``
-     - ``ENUM``
-   * - ``ADDITONALDETAILS``
-     - Optional parameter for specifying event additional details filter. Wildcards may be used
-     - ``TEXT``
-   * - ``ERRORDETAILS``
-     - Optional parameter for specifying event error details filter. Wildcards may be used
-     - ``TEXT``
-   * - ``INITIATED BY``
-     - Optional parameter for filtering based on the source that triggered the query
-	 Possible values include:
-	 * ``ALL``
-	 * ``External``
-	 * ``Blue_UI_User``
-	 * ``Blue_UI_System``
-	 * ``CLI``
-	 * ``Jobs``
-	 * ``Statistics``
-	 Default is: ``Blue_UI_User``, ``CLI``, and ``External``
-     - ``ENUM``	 
-   * - ``LIMIT``
-     - Optional parameter for specifying the number of results to be returned - default number is 200 rows, maximum is 4000 rows 
-	 - ``INTEGER``
+   
 
 Examples
 ========
