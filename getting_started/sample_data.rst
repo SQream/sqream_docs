@@ -4,17 +4,18 @@
 Sample Data
 ***********
 
-SQream Blue offers users access to two pre-configured databases; ``master`` and ``blue_sample_data``. The ``blue_sample_data`` database includes four schemas with `TPC-H <https://www.tpc.org/tpch/>`_ sample data sets; 
+SQream Blue offers users access to two pre-configured databases; ``master`` and ``blue_sample_data``. The ``blue_sample_data`` database includes four schemas with `TPC-H <https://www.tpc.org/tpch/>`_ and `TPCxBB <https://www.tpc.org/tpcx-bb>`_ sample data sets; 
 
 * ``public``
 * ``tpch_blue1``
 * ``tpch_blue10``
 * ``tpch_blue100``
-* ``tpch_blue1000``. 
+* ``tpch_blue1000``
+* ``tpcxbb_1tb``
+* ``tpcxbb_30tb``. 
 
-These schemas are differentiated by their allocated storage capacities, denoted by the numbers 1, 10, 100, and 1000, representing the size in gigabytes (GB) of each schema. 
-
-Each schema within the ``blue_sample_data`` database is equipped with six TPC-H benchmark foreign tables. These tables serve as essential components for performance evaluation, containing simulated data representative of real-world scenarios.
+``TPC-H`` schemas are differentiated by their allocated storage capacities, denoted by the numbers 1, 10, 100, and 1000, representing the size in gigabytes (GB) of each schema. 
+``TPCxBB`` schemas are differentiated by their allocated storage capacities, denoted by the numbers 1, 30 representing the size in terabytes (TB) of each schema.
 
 TPC-H schema ER Diagram
 =======================
