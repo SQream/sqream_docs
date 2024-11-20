@@ -14,8 +14,10 @@ SQream Blue offers users access to two pre-configured databases; ``master`` and 
 * ``tpcxbb_1tb``
 * ``tpcxbb_30tb``. 
 
-``TPC-H`` schemas are differentiated by their allocated storage capacities, denoted by the numbers 1, 10, 100, and 1000, representing the size in gigabytes (GB) of each schema. 
-``TPCxBB`` schemas are differentiated by their allocated storage capacities, denoted by the numbers 1, 30 representing the size in terabytes (TB) of each schema.
+Schemas are differentiated by their allocated storage capacities:
+
+* ``TPC-H``  denoted by the numbers 1, 10, 100, and 1000, representing the size in gigabytes (GB) of each schema. 
+* ``TPCxBB`` denoted by the numbers 1, 30 representing the size in terabytes (TB) of each schema.
 
 TPC-H schema ER Diagram
 =======================
