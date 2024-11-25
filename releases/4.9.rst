@@ -59,8 +59,7 @@ Version 4.9 resolved Issues
 +--------------+---------------------------------------------------------------------------------------------------------------------+
 | SQ-18745     | Cannot grant select to a role on a table                                                                            |
 +--------------+---------------------------------------------------------------------------------------------------------------------+
-| SQ-16877     | Query run time is longer than expected                                                                              |
-+--------------+---------------------------------------------------------------------------------------------------------------------+
+
 
 
 
@@ -70,7 +69,7 @@ Deprecations
 
 ► **Haskell CLI**
 
-Starting October 2024, support for the Haskell CLI is discontinued, and it will be replaced by a JAVA CLI that is compatible with the Haskell CLI with the added value of ``Table-View`` and cross platform compatability.
+Starting October 2024, support for the Haskell CLI is discontinued, and it is replaced by the :ref:`Multi Platform CLI<multi_platform_cli>` that is compatible with the Haskell CLI with the added value of ``Table-View`` and cross platform compatability.
 
 ► **CentOS Linux 7.x**
 
