@@ -54,7 +54,7 @@ Inserting encrypt player salary (``INT`` data type)
 	INSERT INTO NBA (player_name, team_name, jersey_number, position, age, height, weight, college, salary)
 	VALUES ('Jayson Christopher Tatum', 'Boston Celtics', 0, 'SF', 25, '6-8', 210 , 'Duke', ENCRYPT ( 32600060 , '6a8431f6e9c2777ee356c0b8aa3c12c0c63bdf366ac3342c4c9184b51697b47f');
 
-Similar example using ``COPY FROM''
+Similar example using ``COPY FROM``
 
 .. code-block:: psql
 
@@ -71,12 +71,12 @@ Query the encrypted data
 
 .. code-block:: psql
 
-	SELECT player_name, salary FROM NBA
+	SELECT player_name, DECRYPT( salary, '6a8431f6e9c2777ee356c0b8aa3c12c0c63bdf366ac3342c4c9184b51697b47f') FROM NBA
 	WHERE player_name ='Jayson Christopher Tatum';
 
 	player_name             |salary    |
 	------------------------+----------+
-	Jayson Christopher Tatum|-561885196|
+	Jayson Christopher Tatum|1500000   |
 
 Query the encrypted data using ``WHERE`` clause on an encrypted column
 
@@ -85,6 +85,12 @@ Query the encrypted data using ``WHERE`` clause on an encrypted column
 	SELECT player_name, DECRYPT( salary, '6a8431f6e9c2777ee356c0b8aa3c12c0c63bdf366ac3342c4c9184b51697b47f')
 	FROM NBA
 	WHERE DECRYPT( salary, '6a8431f6e9c2777ee356c0b8aa3c12c0c63bdf366ac3342c4c9184b51697b47f') > 1000000;
+	
+	player_name             |salary    |
+	------------------------+----------+
+	Jayson Christopher Tatum|1500000   |
+	------------------------+----------+
+	Marcus Smart            |1350000   |
 
 Example of ``COPY TO`` using ``DECRYPT``
 
