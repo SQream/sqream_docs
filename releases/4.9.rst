@@ -36,10 +36,6 @@ New Features and Enhancements
 -----------------------------
 
 
-
-► Native `Data Encryption <../feature_guides/data_encryption.html>`_ is now supported using SQL syntax.
-
-
 Known Issues
 ------------
 

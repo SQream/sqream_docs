@@ -4,10 +4,6 @@
 Release Notes
 *************
 
-:ref:`Version 4.9 - November 28, 2024<4.9>`
-
-* Native `Data Encryption <../feature_guides/data_encryption.html>`_ is now supported using SQL syntax.
-
 
 :ref:`Version 4.8 - October 06, 2024<4.8>`
 
