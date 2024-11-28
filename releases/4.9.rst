@@ -34,7 +34,7 @@ Compatibility Matrix
 
 New Features and Enhancements
 -----------------------------
-N/A
+This release does not include any new features or enhancements 
 
 Known Issues
 ------------
