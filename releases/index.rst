@@ -4,6 +4,8 @@
 Release Notes
 *************
 
+:ref:`Version 4.9 - November 28, 2024<4.9>`
+
 
 :ref:`Version 4.8 - October 06, 2024<4.8>`
 
