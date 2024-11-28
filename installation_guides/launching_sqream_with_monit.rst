@@ -3,6 +3,7 @@
 *********************************************
 Launching SQream with Monit
 *********************************************
+
 This procedure describes how to launch SQream using Monit. 
 
 Launching SQream

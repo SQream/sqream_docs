@@ -1,28 +1,24 @@
+:orphan:
+
 .. _execute_saved_query:
 
 ********************
-EXECUTE_SAVED_QUERY
+EXECUTE SAVED QUERY
 ********************
 
-``EXECUTE_SAVED_QUERY`` executes a :ref:`previously saved query<save_query>`.
+``EXECUTE_SAVED_QUERY`` executes a previously :ref:`saved query<save_query>`.
 
 Read more in the :ref:`saved_queries` guide.
 
-See also: :ref:`save_query`, :ref:`drop_saved_query`,  :ref:`show_saved_query`,  :ref:`list_saved_queries`.
-
-Permissions
-=============
-
-Executing a saved query requires ``SELECT`` permissions to access the tables referenced in the query.
+See also: :ref:`save_query`, :ref:`drop_saved_query`, :ref:`show_saved_query`, :ref:`list_saved_queries`.
 
 Syntax
 ==========
 
-.. code-block:: postgres
+.. code-block:: sql
 
    execute_saved_query_statement ::=
        SELECT EXECUTE_SAVED_QUERY(saved_query_name, [ , argument [ , ... ] ] )
-       ;
 
    saved_query_name ::= string_literal
 
@@ -53,7 +49,7 @@ Notes
 
 * Query parameters can be used as substitutes for literal expressions. Parameters cannot be used to substitute identifiers, column names, table names, or other parts of the query.
 
-* Query parameters of a string datatype (like ``TEXT``) must be of a fixed length, and can be used in equality checks, but not patterns (e.g. :ref:`like`, :ref:`rlike`, etc)
+* Query parameters of a string datatype (like ``text``) must be of a fixed length, and can be used in equality checks, but not patterns (e.g. :ref:`like`, :ref:`rlike`, etc)
 
 * Query parameters' types are inferred at compile time.
 
@@ -86,14 +82,14 @@ Here's a peek at the table contents (:download:`Download nba.csv </_static/sampl
    :header-rows: 1
 
 
-Saving and Executing a Simple Query
+Saving and executing a simple query
 ---------------------------------------
 
-.. code-block:: psql
+.. code-block:: sql
 
-   t=> SELECT SAVE_QUERY('select_all','SELECT * FROM nba');
-   executed
-   t=> SELECT EXECUTE_SAVED_QUERY('select_all');
+   SELECT SAVE_QUERY('select_all','SELECT * FROM nba');
+   
+   SELECT EXECUTE_SAVED_QUERY('select_all');
    Name                     | Team                   | Number | Position | Age | Height | Weight | College               | Salary  
    -------------------------+------------------------+--------+----------+-----+--------+--------+-----------------------+---------
    Avery Bradley            | Boston Celtics         |      0 | PG       |  25 | 6-2    |    180 | Texas                 |  7730337
@@ -102,21 +98,26 @@ Saving and Executing a Simple Query
    R.J. Hunter              | Boston Celtics         |     28 | SG       |  22 | 6-5    |    185 | Georgia State         |  1148640
    [...]
 
-Saving and Executing a Parametrized Query
+Saving and executing parametrized query
 ------------------------------------------
 
 Use parameters to replace them later at execution time. 
 
 .. tip:: Use dollar quoting (`$$`) to avoid escaping strings.
 
-   .. code-block:: psql
+.. code-block:: psql
 
-   t=> SELECT SAVE_QUERY('select_by_weight_and_team',$$SELECT * FROM nba WHERE Weight > ? AND Team = ?$$);
-   executed
-   t=> SELECT EXECUTE_SAVED_QUERY('select_by_weight_and_team', 240, 'Toronto Raptors');
+   SELECT SAVE_QUERY('select_by_weight_and_team',$$SELECT * FROM nba WHERE Weight > ? AND Team = ?$$);
+   
+   SELECT EXECUTE_SAVED_QUERY('select_by_weight_and_team', 240, 'Toronto Raptors');
    Name              | Team            | Number | Position | Age | Height | Weight | College     | Salary 
    ------------------+-----------------+--------+----------+-----+--------+--------+-------------+--------
    Bismack Biyombo   | Toronto Raptors |      8 | C        |  23 | 6-9    |    245 |             | 2814000
    James Johnson     | Toronto Raptors |      3 | PF       |  29 | 6-9    |    250 | Wake Forest | 2500000
    Jason Thompson    | Toronto Raptors |      1 | PF       |  29 | 6-11   |    250 | Rider       |  245177
    Jonas Valanciunas | Toronto Raptors |     17 | C        |  24 | 7-0    |    255 |             | 4660482
+
+Permissions
+=============
+
+Executing a saved query requires ``USAGE`` permissions on the saved query and ``SELECT`` permissions to access the tables referenced in the query.

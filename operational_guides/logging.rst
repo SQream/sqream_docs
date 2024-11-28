@@ -1,11 +1,11 @@
 .. _logging:
 
-***********************
+*******
 Logging
-***********************
+*******
 
 Locating the Log Files
-==========================
+======================
 
 The :ref:`storage cluster<storage_cluster>` contains a ``logs`` directory. Each worker produces a log file in its own directory, which can be identified by the worker's hostname and port.
 
@@ -23,10 +23,14 @@ The worker logs contain information messages, warnings, and errors pertaining to
 * Statement execution success / failure 
 * Statement execution statistics
 
-Log Structure and Contents
----------------------------------
+.. _log_structure:
 
-The log is a CSV, with several fields.
+Log Structure and Contents
+--------------------------
+
+By default, logs are saved as ``CSV`` files. To configure your log files to be saved as ``JSON`` instead, use the ``logFormat`` flag in your :ref:`legacy config file<current_method_flag_types>`.
+
+For effective :ref:`health_monitoring`, it's essential that logs are saved in ``JSON`` format, as Health Monitoring does not support ``CSV`` files. If your current logs are in ``CSV`` format and you require RCA, it's advisable to configure your logs to be saved in both ``CSV`` and ``JSON`` formats as outlined above.
 
 .. list-table:: Log fields
    :widths: auto
@@ -84,6 +88,10 @@ The log is a CSV, with several fields.
      - Warnings
    * - ``INFO``
      - Information and statistics
+   * - ``DEBUG``
+     - Information helpful for debugging 
+   * - ``TRACE``
+     - In-depth information helpful for debugging, such as tracing system function executions and identifying specific error conditions or performance issues.
 
 .. _message_type:
 
@@ -105,7 +113,7 @@ The log is a CSV, with several fields.
      - ``INFO``
      - Statement passed to another worker for execution
      - 
-         * ``""Reconstruct query before parsing"``
+         * ``"Reconstruct query before parsing"``
          * ``"SELECT * FROM nba WHERE ""Team"" NOT LIKE ""Portland%%"""`` (statement preparing on node)
    * - ``4``
      - ``INFO``
@@ -192,7 +200,7 @@ The log is a CSV, with several fields.
      - ``"Server shutdown"``
 
 Log-Naming
----------------------------
+----------
 
 Log file name syntax
 
@@ -211,10 +219,10 @@ See the :ref:`log_rotation` below for information about controlling this setting
 
 
 Log Control and Maintenance
-======================================
+===========================
 
 Changing Log Verbosity
---------------------------
+----------------------
 
 A few configuration settings alter the verbosity of the logs:
 
@@ -240,7 +248,7 @@ A few configuration settings alter the verbosity of the logs:
 .. _log_rotation:
 
 Changing Log Rotation
------------------------
+---------------------
 
 A few configuration settings alter the log rotation policy:
 
@@ -252,23 +260,19 @@ A few configuration settings alter the log rotation policy:
      - Description
      - Default
      - Values
-   * - ``useLogMaxFileSize``
-     - Rotate log files once they reach a certain file size. When ``true``, set the ``logMaxFileSizeMB`` accordingly.
-     - ``false``
-     - ``false`` or ``true``.
    * - ``logMaxFileSizeMB``
      - Sets the size threshold in megabytes after which a new log file will be opened.
-     - ``20``
+     - ``100``
      - ``1`` to ``1024`` (1MB to 1GB)
    * - ``logFileRotateTimeFrequency``
      - Frequency of log rotation
-     - ``never``
-     - ``daily``, ``weekly``, ``monthly``, ``never``
+     - ``daily``
+     - ``daily``, ``weekly``, or ``monthly``
 
 .. _collecting_logs2:
 
 Collecting Logs from Your Cluster
-====================================
+=================================
 
 Collecting logs from your cluster can be as simple as creating an archive from the ``logs`` subdirectory: ``tar -czvf logs.tgz *.log``.
 
@@ -290,9 +294,9 @@ SQL Syntax
    
 
 Command Line Utility
---------------------------
+--------------------
 
-If you cannot access SQream DB for any reason, you can also use a command line toolto collect the same information:
+If you cannot access SQream DB for any reason, you can also use a command line tool to collect the same information:
 
 .. code-block:: console
    
@@ -300,7 +304,7 @@ If you cannot access SQream DB for any reason, you can also use a command line t
 
 
 Parameters
----------------
+----------
 
 .. list-table::
    :widths: auto
@@ -318,7 +322,7 @@ Parameters
          * ``'db_and_log'`` - Collect both log files and metadata database
 
 Example
------------------
+-------
 
 Write an archive to ``/home/rhendricks``, containing log files:
 
@@ -343,18 +347,18 @@ Using the command line utility:
 
 
 Troubleshooting with Logs
-===============================
+=========================
 
 Loading Logs with Foreign Tables
----------------------------------------
+--------------------------------
 
-Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a database administrator can access the logs using the :ref:`external_tables` concept through SQream DB.
+Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a database administrator can access the logs using the :ref:`foreign_tables` concept through SQreamDB.
 
 .. code-block:: postgres
 
    CREATE FOREIGN TABLE logs 
    (
-     start_marker      VARCHAR(4),
+     start_marker      TEXT(4),
      row_id            BIGINT,
      timestamp         DATETIME,
      message_level     TEXT,
@@ -368,7 +372,7 @@ Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a databas
      service_name      TEXT,
      message_type_id   INT,
      message           TEXT,
-     end_message       VARCHAR(5)
+     end_message       TEXT(5)
    )
    WRAPPER csv_fdw
    OPTIONS
@@ -379,13 +383,13 @@ Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a databas
      )
    ;
    
-For more information, see `Loading Logs with Foreign Tables <https://docs.sqream.com/en/latest/reference/sql/sql_statements/dml_commands/copy_from.html>`_.
+For more information, see :ref:`Loading Logs with Foreign Tables <copy_from>`.
 
 
 
 
 Counting Message Types
-------------------------------
+----------------------
 
 .. code-block:: psql
 
@@ -411,19 +415,19 @@ Counting Message Types
               1010 |         5
 
 Finding Fatal Errors
-----------------------
+--------------------
 
 .. code-block:: psql
 
    t=> SELECT message FROM logs WHERE message_type_id=1010;
-   Internal Runtime Error,open cluster metadata database:IO error: lock /home/rhendricks/sqream_storage/leveldb/LOCK: Resource temporarily unavailable
-   Internal Runtime Error,open cluster metadata database:IO error: lock /home/rhendricks/sqream_storage/leveldb/LOCK: Resource temporarily unavailable
+   Internal Runtime Error,open cluster metadata database:IO error: lock /home/rhendricks/sqream_storage/rocksdb/LOCK: Resource temporarily unavailable
+   Internal Runtime Error,open cluster metadata database:IO error: lock /home/rhendricks/sqream_storage/rocksdb/LOCK: Resource temporarily unavailable
    Mismatch in storage version, upgrade is needed,Storage version: 25, Server version is: 26
    Mismatch in storage version, upgrade is needed,Storage version: 25, Server version is: 26
    Internal Runtime Error,open cluster metadata database:IO error: lock /home/rhendricks/sqream_storage/LOCK: Resource temporarily unavailable
 
 Countng Error Events Within a Certain Timeframe
----------------------------------------------------
+-----------------------------------------------
 
 .. code-block:: psql
 
@@ -442,7 +446,7 @@ Countng Error Events Within a Certain Timeframe
 .. _tracing_errors:
 
 Tracing Errors to Find Offending Statements
--------------------------------------------------
+-------------------------------------------
 
 If we know an error occured, but don't know which statement caused it, we can find it using the connection ID and statement ID.
 

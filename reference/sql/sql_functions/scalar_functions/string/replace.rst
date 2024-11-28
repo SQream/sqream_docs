@@ -6,9 +6,6 @@ REPLACE
 
 Replaces all occurrences of a specified string value with another string value.
 
-.. warning:: With ``VARCHAR``, a substring can only be replaced with another substring of equal **byte length**. See :ref:`octet_length`.
-
-
 Syntax
 ==========
 
@@ -37,12 +34,7 @@ Returns
 
 Returns the same type as the argument supplied.
 
-Notes
-=======
-
-* In ``VARCHAR`` strings, the ``source_expr`` and ``replacement_expr`` must be the same **byte length**. See :ref:`octet_length`.
-
-* If the value is NULL, the result is NULL.
+.. note:: If the value is NULL, the result is NULL.
 
 Examples
 ===========

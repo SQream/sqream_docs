@@ -1,63 +1,61 @@
 .. _compression:
 
-***********************
+*********************** 
 Compression
 ***********************
 
-SQream DB uses compression and encoding techniques to optimize query performance and save on disk space.
+SQreamDB uses a variety of compression and encoding methods to optimize query performance and to save disk space.
+
+.. contents:: 
+   :local:
+   :depth: 1
 
 Encoding
 =============
 
-Encoding converts data into a common format.
+**Encoding** is an automatic operation used to convert data into common formats. For example, certain formats are often used for data stored in columnar format, in contrast with data stored in a CSV file, which stores all data in text format.
 
-When data is stored in a columnar format, it is often in a common format. This is in contrast with data stored in CSVs for example, where everything is stored in a text format.
+Encoding enhances performance and reduces data size by using specific data formats and encoding methods. SQream encodes data in a number of ways in accordance with the data type. For example, a **date** is stored as an **integer**, starting with **March 1st 1CE**, which is significantly more efficient than encoding the date as a string. In addition, it offers a wider range than storing it relative to the Unix Epoch. 
 
-Because encoding uses specific data formats and encodings, it increases performance and reduces data size. 
+Lossless Compression
+=======================
 
-SQream DB encodes data in several ways depending on the data type. For example, a date is stored as an integer, with March 1st 1CE as the start. This is a lot more efficient than encoding the date as a string, and offers a wider range than storing it relative to the Unix Epoch. 
+**Compression** transforms data into a smaller format without sacrificing accuracy, known as **lossless compression**.
 
-Compression
-==============
+After encoding a set of column values, SQream packs the data and compresses it and decompresses it to make it accessible to users. Depending on the compression scheme used, these operations can be performed on the CPU or the GPU. Some users find that GPU compression provide better performance.
 
-Compression transforms data into a smaller format without losing accuracy (lossless).
-
-After encoding a set of column values, SQream DB packs the data and compresses it.
-
-Before data can be accessed, SQream DB needs to decompress it.
-
-Depending on the compression scheme, the operations can be performed on the CPU or the GPU. Some users find that GPU compressions perform better for their data.
-
-Automatic compression
+Automatic Compression
 ------------------------
 
-By default, SQream DB automatically compresses every column (see :ref:`Specifying compressions<specifying_compressions>` below for overriding default compressions). This feature is called **automatic adaptive compression** strategy.
+By default, SQream automatically compresses every column (see :ref:`Specifying Compression Strategies<specifying_compressions>` below for overriding default compression). This feature is called **automatic adaptive compression** strategy.
 
-When loading data, SQream DB automatically decides on the compression schemes for specific chunks of data by trying several compression schemes and selecting the one that performs best. SQream DB tries to balance more agressive compressions with the time and CPU/GPU time required to compress and decompress the data.
+When loading data, SQreamDB automatically decides on the compression schemes for specific chunks of data by trying several compression schemes and selecting the one that performs best. SQreamDB tries to balance more aggressive compression with the time and CPU/GPU time required to compress and decompress the data.
 
-Compression strategies
+Compression Methods
 ------------------------
+
+The following table shows the supported compression methods:
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
 
-   * - Compression name
-     - Supported data types
+   * - Compression Method
+     - Supported Data Types
      - Description
      - Location
    * - ``FLAT``
      - All types
      - No compression (forced)
-     - -
+     - NA
    * - ``DEFAULT``
      - All types
      - Automatic scheme selection
-     - -
+     - NA
    * - ``DICT``
-     - Integer types, dates and timestamps, short texts
+     - All types
      - 
-         Dictionary compression with RLE. For each chunk, SQream DB creates a dictionary of distinct values and stores only their indexes.
+         Dictionary compression with RLE. For each chunk, SQreamDB creates a dictionary of distinct values and stores only their indexes.
          
          Works best for integers and texts shorter than 120 characters, with <10% unique values.
          
@@ -66,7 +64,7 @@ Compression strategies
          If the data is optionally sorted, this compression will perform even better.
      - GPU
    * - ``P4D``
-     - Integer types, dates and timestamps
+     - ``Integer``, ``dates``, ``timestamps``, and ``float`` types
      - 
          Patched frame-of-reference + Delta 
          
@@ -82,33 +80,39 @@ Compression strategies
      - General purpose compression, used for texts
      - CPU
    * - ``RLE``
-     - Integer types, dates and timestamps
-     - Run-length encoding. This replaces sequences of values with a single pair. It is best for low cardinality columns that are used to sort data (``ORDER BY``).
+     - ``integer`` types, ``dates``, ``timestamps``, and ``text``
+     - Run-Length Encoding. This replaces sequences of values with a single pair. It is best for low cardinality columns that are used to sort data (``ORDER BY``).
      - GPU
    * - ``SEQUENCE``
-     - Integer types
+     - ``Integer``, ``date``, and ``timestamp``
      - Optimized RLE + Delta type for built-in :ref:`identity columns<identity>`. 
      - GPU
 
+	
+
 .. _specifying_compressions:
 
-Specifying compression strategies
+Specifying Compression Strategies
 ----------------------------------
 
-When creating a table without any compression specifications, SQream DB defaults to automatic adaptive compression (``"default"``).
+When you create a table without defining any compression specifications, SQream defaults to automatic adaptive compression (``"default"``). However, you can prevent this by specifying a compression strategy when creating a table.
 
-However, this can be overriden by specifying a compression strategy when creating a table.
+This section describes the following compression strategies:
 
-Explicitly specifying automatic compression
+.. contents:: 
+   :local:
+   :depth: 1
+
+Explicitly Specifying Automatic Compression
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following two are equivalent:
+When you explicitly specify automatic compression, the following two are equivalent:
 
 .. code-block:: postgres
    
    CREATE TABLE t (
       x INT,
-      y VARCHAR(50)
+      y TEXT(50)
    );
 
 In this version, the default compression is specified explicitly:
@@ -117,47 +121,54 @@ In this version, the default compression is specified explicitly:
    
    CREATE TABLE t (
       x INT CHECK('CS "default"'),
-      y VARCHAR(50) CHECK('CS "default"')
+      y TEXT(50) CHECK('CS "default"')
    );
 
-Forcing no compression (flat)
+Forcing No Compression
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In some cases, you may wish to remove compression entirely on some columns,
-in order to reduce CPU or GPU resource utilization at the expense of increased I/O.
+**Forcing no compression** is also known as "flat", and can be used in the event that you want to remove compression entirely on some columns. This may be useful for reducing CPU or GPU resource utilization at the expense of increased I/O.
+
+The following is an example of removing compression:
 
 .. code-block:: postgres
    
    CREATE TABLE t (
       x INT NOT NULL CHECK('CS "flat"'), -- This column won't be compressed
-      y VARCHAR(50) -- This column will still be compressed automatically
+      y TEXT(50) -- This column will still be compressed automatically
    );
 
-
-Forcing compressions
+Forcing Compression
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In some cases, you may wish to force SQream DB to use a specific compression scheme based
-on your knowledge of the data. 
-
-For example:
+In other cases, you may want to force SQream to use a specific compression scheme based on your knowledge of the data, as shown in the following example:
 
 .. code-block:: postgres
    
    CREATE TABLE t (
       id BIGINT NOT NULL CHECK('CS "sequence"'),
-      y VARCHAR(110) CHECK('CS "lz4"'), -- General purpose text compression
-      z VARCHAR(80) CHECK('CS "dict"'), -- Low cardinality column
+      y TEXT(110) CHECK('CS "lz4"'), -- General purpose text compression
+      z TEXT(80) CHECK('CS "dict"'), -- Low cardinality column
       
    );
 
+However, if SQream finds that the given compression method cannot effectively compress the data, it will return to the default compression type.
 
-Examining compression effectiveness
+Examining Compression Effectiveness
 --------------------------------------
 
-Queries to the internal metadata catalog can expose how effective the compression is, as well as what compression schemes were selected.
+Queries made on the internal metadata catalog can expose how effective the compression is, as well as what compression schemes were selected.
 
-Here is a sample query we can use to query the catalog:
+This section describes the following:
+
+.. contents:: 
+   :local:
+   :depth: 1
+
+Querying the Catalog
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following is a sample query that can be used to query the catalog:
 
 .. code-block:: postgres
    
@@ -178,7 +189,10 @@ Here is a sample query we can use to query the catalog:
       GROUP BY 1,
                2;
 
-Example (subset) from the ``ontime`` table:
+Example Subset from "Ontime" Table			   
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following is an example (subset) from the ``ontime`` table:
 
 .. code-block:: psql
    
@@ -268,43 +282,48 @@ Example (subset) from the ``ontime`` table:
    uniquecarrier             | dict               |     578221 |      7230705 |                     11.96 | default             
    year                      | rle                |          6 |      2065915 |                 317216.08 | default             
 
+Notes on Reading the "Ontime" Table
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Notes on reading this table:
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The following are some useful notes on reading the "Ontime" table shown above:
 
-#. Higher numbers in the *effectiveness* column represent better compressions. 0 represents a column that wasn't compressed at all.
+#. Higher numbers in the **Compression effectiveness** column represent better compressions. **0** represents a column that has **not been compressed**.
 
-#. Column names are the internal representation. Names with ``@null`` and ``@val`` suffixes represent a nullable column's null (boolean) and values respectively, but are treated as one logical column.
+    ::
 
+#. Column names are an internal representation. Names with ``@null`` and ``@val`` suffixes represent a nullable column's null (boolean) and values respectively, but are treated as one logical column.
+
+    ::
+	
 #. The query lists all actual compressions for a column, so it may appear several times if the compression has changed mid-way through the loading (as with the ``carrierdelay`` column).
 
-#. When ``default`` is the compression strategy, the system automatically selects the best compression. This can also mean no compression at all (``flat``).
+    ::
+	
+#. When your compression strategy is ``default``, the system automatically selects the best compression, including no compression at all (``flat``).
 
-Compression best practices
+Best Practices
 ==============================
 
-Let SQream DB decide on the compression strategy
-----------------------------------------------------
+This section describes the best compression practices:
 
-In general, SQream DB will decide on the best compression strategy in most cases.
-
-When overriding compression strategies, we recommend benchmarking not just storage size but also query and load performance.
-
-
-Maximize the advantage of each compression schemes
+.. contents:: 
+   :local:
+   :depth: 1
+   
+Letting SQream Determine the Best Compression Strategy
 -------------------------------------------------------
 
-Some compression schemes perform better when data is organized in a specific way.
+In general, SQream determines the best compression strategy for most cases. If you decide to override SQream's selected compression strategies, we recommend benchmarking your query and load performance **in addition to** your storage size.
 
-For example, to take advantage of RLE, sorting a column may result in better performance and reduced disk-space and I/O usage.
+Maximizing the Advantage of Each Compression Scheme
+-------------------------------------------------------
+
+Some compression schemes perform better when data is organized in a specific way. For example, to take advantage of RLE, sorting a column may result in better performance and reduced disk-space and I/O usage.
 Sorting a column partially may also be beneficial. As a rule of thumb, aim for run-lengths of more than 10 consecutive values.
 
-Choose data types that fit the data
+Choosing Data Types that Fit Your Data
 ---------------------------------------
 
-Adapting to the narrowest data type will improve query performance and also reduce disk space usage.
-However, smaller data types may compress better than larger types.
+Adapting to the narrowest data type improves query performance while reducing disk space usage. However, smaller data types may compress better than larger types.
 
-For example, use the smallest numeric data type that will accommodate your data. Using ``BIGINT`` for data that fits in ``INT`` or ``SMALLINT`` can use more disk space and memory for query execution.
-
-Using ``FLOAT`` to store integers will reduce compression's effectiveness significantly.
+For example, SQream recommends using the smallest numeric data type that will accommodate your data. Using ``BIGINT`` for data that fits in ``INT`` or ``SMALLINT`` can use more disk space and memory for query execution. Using ``FLOAT`` to store integers will reduce compression's effectiveness significantly.

@@ -113,6 +113,9 @@ For example,
      SELECT name, weight FROM all_animals
      WHERE region = 'Australia';
 
+
+.. warning:: The ``SELECT`` statement decrypts information by default. When executing ``INSERT INTO TABLE AS SELECT``, encrypted information will appear as clear text in the newly created table.
+
 Inserting data with positional placeholders
 ---------------------------------------------
 

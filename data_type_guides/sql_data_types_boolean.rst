@@ -3,6 +3,7 @@
 *************************
 Boolean
 *************************
+
 The following table describes the Boolean data type.
 
 .. list-table::
@@ -17,7 +18,8 @@ The following table describes the Boolean data type.
      - 1 byte, but resulting average data sizes may be lower after compression.
 	 
 Boolean Examples
-^^^^^^^^^^
+^^^^^^^^^^^^^^^^
+
 The following is an example of the Boolean syntax:
 
 .. code-block:: postgres
@@ -37,7 +39,7 @@ The following is an example of the correct output:
    "kiwi","Is not angry"
 
 Boolean Casts and Conversions
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following table shows the possible Boolean value conversions:
 

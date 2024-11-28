@@ -1,0 +1,147 @@
+.. _4.6:
+
+*****************
+Release Notes 4.6
+*****************
+
+The 4.6 release notes were released on August 20th, 2024
+
+.. contents:: 
+   :local:
+   :depth: 1      
+
+Compatibility Matrix
+--------------------
+ 
++-------------------------+------------------------------------------------------------------------+
+| System Requirement      | Details                                                                |
++=========================+========================================================================+
+| Supported OS            | RHEL - 8.x                                                             |
++-------------------------+------------------------------------------------------------------------+
+| supported Nvidia driver | CUDA version 11.x                                                      |
++-------------------------+------------------------------------------------------------------------+
+| Storage version         |   51                                                                   |
++-------------------------+------------------------------------------------------------------------+
+| Driver compatibility    | * JDBC 5.3.1                                                           |
+|                         | * ODBC 4.4.4                                                           | 
+|                         | * NodeJS 4.2.4                                                         |
+|                         | * .NET 5.0.0                                                           |
+|                         | * Pysqream 5.2.0                                                       |
+|                         | * Spark 5.0.0                                                          |
+|                         | * SQLoader As A Service 8.1 (compatible with v4.6.1 or later)          |
+|                         | * SQLoader As A Process 7.13 (compatible with v4.5.13 or later)        |
++-------------------------+------------------------------------------------------------------------+
+
+New Features and Enhancements
+-----------------------------
+
+► Announcing a new :ref:`Activity Report<view_activity_report>` reflecting your storage and resource usage within a defined time frame. You can export your activity report as a PDF for use in financial records, briefings, or quarterly and yearly reports.
+
+► Announcing a new cross-platform :ref:`SQream SQL CLI<sqream_sql_cli_reference>` which is Java-based. This new CLI is fully compatible with the old and soon to be :ref:`deprecated Haskell CLI<deprecations>`. It also supports a neat looking result ``table view``.  
+
+► A new :ref:`ldap` configuration flag allows including LDAP user attributes in your SQreamDB metadata by associating these attributes with SQreamDB roles. This means that you can now search by these attributes using your SQreamDB web interface. 
+
+► The ``TOP`` clause can now take a **subtraction** arithmetic operator when used in a :ref:`select` statement. 
+
+► You may now set your :ref:`Server Picker<server_picker_cli_reference>` more easily using keyword arguments.
+
+► The ``clientReconnectionTimeout`` configuration flag has been reclassified as a cluster configuration flag. Unlike session flags, cluster flags apply to the entire cluster and persist across system restarts or shutdowns, retaining the configured value. Learn more about :ref:`SQreamDB configuration flags<current_method_configuration_levels>`
+
+► Two new conditional functions that shorten complex query runtime by checking for the existence of tables and views within the specified schema:
+
+* :ref:`is_table_exists`
+* :ref:`is_view_exists`
+
+► We enhanced our :ref:`Saved Query<saved_queries>` permissions, ensuring that your saved queries are accessible and can be executed and reviewed exclusively by authorized users.
+
+► For any new SQreamDB installation or upgrade, your default :ref:`legacy configuration file<modifying_your_configuration_using_a_legacy_configuration_file>` will include the following cluster flags:
+
+.. code-block:: json
+   
+   {
+
+    "logMaxFileSizeMB": 20,
+    "logFileRotateTimeFrequency": "daily",
+	
+   }
+
+► Sign into SQreamDB Studio using your universal :ref:`Single Sign-On (SSO)<sso>` provider authentication. 
+
+► Our :ref:`Pysqream<sqlalchemy>` connector now support SQLAlchemy version 2.0.27.
+
+Known Issues
+------------
+
+* :ref:`Percentile<percentile_disc>` is not supported for :ref:`Window Functions<window_functions>`
+
+Version 4.6 resolved Issues
+---------------------------
+
++--------------------+---------------------------------------------------------------------------------------------------------------------+
+| **SQ No.**         | **Description**                                                                                                     |
++====================+=====================================================================================================================+
+| SQ-12872           | Fixed unexpected Worker behavior caused by ``DROP TABLE`` statement                                                 |
++--------------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-12873           | Improved the time it takes to delete metadata keys                                                                  |
++--------------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-13057           | Fixed ``DOUBLE`` casting into ``TEXT`` issue                                                                        |
++--------------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-15828           | Fixed slow query runtime due to ``VIEW`` unexpected behavior                                                        |
++--------------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-16397           | Fixed database tree UI rendering issue                                                                              |
++--------------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-16531           | Resolved the error encountered when trying to create a ``VIEW`` using a table that requires a cleanup operation     |
++--------------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-16592           | Fixed a discrepancy issue following ``OR`` condition execution                                                      |
++--------------------+---------------------------------------------------------------------------------------------------------------------+
+
+.. _deprecations:
+
+Deprecations
+------------
+
+► **Haskell CLI**
+
+Starting February 2025, support for the Haskell CLI will be discontinued, and it will be replaced by a JAVA CLI that is compatible with both SQreamDB.
+
+► **CentOS Linux 7.x**
+
+CentOS Linux 7.x has reached its end of life and is not supported by SQreamDB.
+
+Upgrading to Version 4.6
+-------------------------
+
+1. Generate a back-up of the metadata by running the following command:
+
+   .. code-block:: console
+
+      select backup_metadata('out_path');
+	  
+   .. tip:: SQreamDB recommends storing the generated back-up locally in case needed.
+   
+   SQreamDB runs the Garbage Collector and creates a clean backup tarball package.
+   
+2. Shut down all SQreamDB services.
+
+3. Copy the recently created back-up file.
+
+4. Replace your current metadata with the metadata you stored in the back-up file.
+
+5. Navigate to the new SQreamDB package bin folder.
+
+6. Run the following command:
+
+   .. code-block:: console
+
+      ./upgrade_storage <levelDB path>
+	
+7. Version 4.4 introduces a service permission feature that enables superusers to grant and revoke role access to services. However, when upgrading from version 4.2 or earlier to version 4.4 or later, this feature initializes access to services, causing existing roles to lose their access to services. 
+
+There are two methods of granting back access to services:
+
+   * Grant access to all services for all roles using the :ref:`grant_usage_on_service_to_all_roles` utility function
+   * Selectively grant or revoke access to services by following the :ref:`access permission guide<access_control_permissions>`
+
+
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQreamDB Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
+  

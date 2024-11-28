@@ -1,3 +1,5 @@
+:orphan:
+
 .. _window_functions:
 
 ********************
@@ -152,6 +154,7 @@ Window frame functions allows a user to perform rolling operations, such as calc
 
 ``PARTITION BY``
 ------------------
+
 The ``PARTITION BY`` clause groups the rows of the query into partitions, which are processed separately by the window function. 
 
 ``PARTITION BY`` works similarly to a query-level ``GROUP BY`` clause, but expressions are always just expressions and cannot be output-column names or numbers. 
@@ -161,16 +164,12 @@ Without ``PARTITION BY``, all rows produced by the query are treated as a single
 ``ORDER BY``
 ----------------------
 
-The ``ORDER BY`` clause determines the order in which the rows of a partition are processed by the window function. It works similarly to a query-level ``ORDER BY`` clause, but cannot use output-column names or numbers.
+The ``ORDER BY`` clause determines the order in which the rows of a partition are processed by the window function. It works similarly to a query-level ``ORDER BY`` clause, but cannot use output-column names or indexes.
 
 Without ``ORDER BY``, rows are processed in an unspecified order.
 
 Frames 
 -------
-
-
-
-.. note:: Frames and frame exclusions have been tested extensively, but are a complex feature. They are released as a preview in v2020.1 pending longer-term testing.
 
 The ``frame_clause`` specifies the set of rows constituting the window frame, which is a subset of the current partition, for those window functions that act on the frame instead of the whole partition.
 
@@ -207,10 +206,9 @@ Frame Exclusion
 The ``frame_exclusion`` option allows rows around the current row to be excluded from the frame, even if they would be included according to the frame start and frame end options. ``EXCLUDE CURRENT ROW`` excludes the current row from the frame. ``EXCLUDE GROUP`` excludes the current row and its ordering peers from the frame. ``EXCLUDE TIES`` excludes any peers of the current row from the frame, but not the current row itself. ``EXCLUDE NO OTHERS`` simply specifies explicitly the default behavior of not excluding the current row or its peers.
 
 Limitations
-==================
+=================
+
 Window functions do not support the Numeric data type.
-
-
 
 Examples
 ==========
@@ -221,14 +219,14 @@ For these examples, assume a table named ``nba``, with the following structure:
    
    CREATE TABLE nba
    (
-      "Name" varchar(40),
-      "Team" varchar(40),
+      "Name" text(40),
+      "Team" text(40),
       "Number" tinyint,
-      "Position" varchar(2),
+      "Position" text(2),
       "Age" tinyint,
-      "Height" varchar(4),
+      "Height" text(4),
       "Weight" real,
-      "College" varchar(40),
+      "College" text(40),
       "Salary" float
     );
 
@@ -332,3 +330,35 @@ This example calculates the salary between two players, starting from the highes
    Dwyane Wade     | 20000000 |      19689000 |        311000
    Brook Lopez     | 19689000 |      19689000 |             0
    DeAndre Jordan  | 19689000 |      19689000 |             0
+
+Window funtion alias
+=======================
+
+
+The window funtion alias allows to specify a parameter within the window function definition. This eliminates the need to repeatedly input the same SQL code in queries that use multiple window functions with identical definitions.
+
+.. code-block:: psql
+
+   t=> SELECT SUM("Salary") OVER w
+	   WINDOW w AS
+	   FROM nba
+	   (PARTITION BY "Team" ORDER BY "Age");
+   sum      
+   ---------
+     1763400
+     5540289
+     5540289
+     5540289
+     5540289
+     7540289
+    18873622
+    18873622
+    30873622
+    60301531
+    60301531
+    60301531
+    64301531
+    72902950
+    72902950
+    [...]
+	

@@ -1,81 +1,46 @@
 .. _sqream_sql_cli_reference:
 
-*********************************
-Sqream SQL CLI Reference
-*********************************
+**************
+Sqream SQL CLI 
+**************
 
-SQream DB comes with a built-in client for executing SQL statements either interactively or from the command-line.
+SQreamDB SQL Java-based CLI allows SQL statements to be executed interactively or using shell scripts. This CLI is cross-platform, meaning it can be executed on any operating system which Java supports. If you are not using Bash to manage and run your Java applications, please use the ``java -jar`` command to run this CLI.
 
-This page serves as a reference for the options and parameters. Learn more about using SQream DB SQL with the CLI by visiting the :ref:`first_steps` tutorial.
+.. note::
+	For the old version of the SQream SQL (Haskell-based) CLI, see :ref:`Haskell CLI documentation<sqream_sql_haskell_cli>`
 
-.. contents:: In this topic:
+.. contents::
    :local:
+   :depth: 1
 
-Installing Sqream SQL
-=========================
+Before You Begin
+================
 
-If you have a SQream DB installation on your server, ``sqream sql`` can be found in the ``bin`` directory of your SQream DB installation, under the name ``sqream``.
+* It is essential that you have the following installed:
 
-.. note:: If you installed SQream DB via Docker, the command is named ``sqream-client sql``, and can be found in the same location as the console.
+  * `SQreamDB Java CLI <https://storage.cloud.google.com/cicd-storage/jdbc-console/release/jdbc-console-1.0.5-v1.zip>`_
+  * Java 8
 
+* It is essential you have the Java home path configured in your ``sqream`` file:
 
-.. versionchanged:: 2020.1
-   As of version 2020.1, ``ClientCmd`` has been renamed to ``sqream sql``.
-   
+  #. Open the ``sqream`` file using any text editor.
 
-To run ``sqream sql`` on any other Linux host:
+  #. Set the default path ``/usr/lib/jvm/jdk-8.0.0/bin/java`` to the local Java 8 path on your machine:
 
-#. Download the ``sqream sql`` tarball package from the :ref:`client_drivers` page.
-#. Untar the package: ``tar xf sqream-sql-v2020.1.1_stable.x86_64.tar.gz``
-#. Start the client:
-   
-   .. code-block:: psql
-      
-      $ cd sqream-sql-v2020.1.1_stable.x86_64
-      $ ./sqream sql --port=5000 --username=jdoe --databasename=master
-      Password:
-     
-      Interactive client mode
-      To quit, use ^D or \q.
-      
-      master=> _
+  .. code-block:: none
 
-Troubleshooting Sqream SQL Installation
--------------------------------------------
+	if [[ "$@" =~ "access-token" ]]; then
+	   JAVA_CMD="/usr/lib/jvm/jdk-8.0.0/bin/java"
+	else
+	   JAVA_CMD="/usr/lib/jvm/java-1.8.0/bin/java"
 
-Upon running sqream sql for the first time, you may get an error ``error while loading shared libraries: libtinfo.so.5: cannot open shared object file: No such file or directory``.
-
-Solving this error requires installing the ncruses or libtinfo libraries, depending on your operating system.
-
-* Ubuntu:
-
-   #. Install ``libtinfo``:
-      
-      ``$ sudo apt-get install -y libtinfo``
-   #. Depending on your Ubuntu version, you may need to create a symbolic link to the newer libtinfo that was installed.
-   
-      For example, if ``libtinfo`` was installed as ``/lib/x86_64-linux-gnu/libtinfo.so.6.2``:
-      
-      ``$ sudo ln -s /lib/x86_64-linux-gnu/libtinfo.so.6.2 /lib/x86_64-linux-gnu/libtinfo.so.5``
-      
-* CentOS / RHEL:
-
-   #. Install ``ncurses``:
-   
-      ``$ sudo yum install -y ncurses-libs``
-   #. Depending on your RHEL version, you may need to create a symbolic link to the newer libtinfo that was installed.
-   
-      For example, if ``libtinfo`` was installed as ``/usr/lib64/libtinfo.so.6``:
-      
-      ``$ sudo ln -s /usr/lib64/libtinfo.so.6 /usr/lib64/libtinfo.so.5``
-
-Using Sqream SQL
-=================
+Using SQreamDB SQL
+==================
 
 By default, sqream sql runs in interactive mode. You can issue commands or SQL statements.
 
 Running Commands Interactively (SQL shell)
---------------------------------------------
+------------------------------------------
 
 When starting sqream sql, after entering your password, you are presented with the SQL shell.
 
@@ -139,7 +104,7 @@ The prompt for a multi-line statement will change from ``=>`` to ``.``, to alert
 
 
 Executing Batch Scripts (``-f``)
----------------------------------
+--------------------------------
 
 To run an SQL script, use the ``-f <filename>`` argument.
 
@@ -152,7 +117,7 @@ For example,
 .. tip:: Output can be saved to a file by using redirection (``>``).
 
 Executing Commands Immediately (``-c``)
--------------------------------------------
+---------------------------------------
 
 To run a statement from the console, use the ``-c <statement>`` argument.
 
@@ -173,10 +138,10 @@ For example,
 
 
 Examples
-===========
+========
 
 Starting a Regular Interactive Shell
------------------------------------
+------------------------------------
 
 Connect to local server 127.0.0.1 on port 5000, to the default built-in database, `master`:
 
@@ -203,7 +168,7 @@ Connect to local server 127.0.0.1 via the built-in load balancer on port 3108, t
    master=>_
 
 Executing Statements in an Interactive Shell
------------------------------------------------
+--------------------------------------------
 
 Note that all SQL commands end with a semicolon.
 
@@ -225,7 +190,7 @@ Creating a new database and switching over to it without reconnecting:
 
 .. code-block:: psql
 
-   farm=> create table animals(id int not null, name varchar(30) not null, is_angry bool not null);
+   farm=> create table animals(id int not null, name text(30) not null, is_angry bool not null);
    executed
    time: 0.011940s
 
@@ -256,7 +221,7 @@ Executing SQL Statements from the Command Line
 .. _controlling_output:
 
 Controlling the Client Output
-----------------------------------------
+-----------------------------
 
 Two parameters control the dispay of results from the client:
 
@@ -264,7 +229,7 @@ Two parameters control the dispay of results from the client:
 * ``--delimiter`` - changes the record delimiter
 
 Exporting SQL Query Results to CSV
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Using the ``--results-only`` flag removes the row counts and timing.
 
@@ -278,7 +243,7 @@ Using the ``--results-only`` flag removes the row counts and timing.
    4,bull                          ,1
 
 Changing a CSV to a TSV
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^
 
 The ``--delimiter`` parameter accepts any printable character.
 
@@ -303,7 +268,7 @@ Assuming a file containing SQL statements (separated by semicolons):
 
    $ cat some_queries.sql
       CREATE TABLE calm_farm_animals 
-     ( id INT IDENTITY(0, 1), name VARCHAR(30) 
+     ( id INT IDENTITY(0, 1), name TEXT(30) 
      ); 
 
    INSERT INTO calm_farm_animals (name) 
@@ -318,7 +283,7 @@ Assuming a file containing SQL statements (separated by semicolons):
    time: 0.090697s
 
 Connecting Using Environment Variables
--------------------------------------
+--------------------------------------
 
 You can save connection parameters as environment variables:
 
@@ -329,7 +294,7 @@ You can save connection parameters as environment variables:
    $ sqream sql --port=3105 --clustered --username=$SQREAM_USER -d $SQREAM_DATABASE
 
 Connecting to a Specific Queue
------------------------------------
+------------------------------
 
 When using the :ref:`dynamic workload manager<workload_manager>` - connect to ``etl`` queue instead of using the default ``sqream`` queue.
 
@@ -345,10 +310,10 @@ When using the :ref:`dynamic workload manager<workload_manager>` - connect to ``
 
 
 Operations and Flag References
-===============================
+==============================
 
 Command Line Arguments
------------------------
+----------------------
 
 **Sqream SQL** supports the following command line arguments:
 
@@ -361,19 +326,19 @@ Command Line Arguments
      - Description
    * - ``-c`` or ``--command``
      - None
-     - Changes the mode of operation to single-command, non-interactive. Use this argument to run a statement and immediately exit.
+     - Changes the mode of operation to single-command, non-interactive. Use this argument to run a statement and immediately exit
    * - ``-f`` or ``--file``
      - None
-     - Changes the mode of operation to multi-command, non-interactive. Use this argument to run a sequence of statements from an external file and immediately exit.
-   * - ``--host``
+     - Changes the mode of operation to multi-command, non-interactive. Use this argument to run a sequence of statements from an external file and immediately exit
+   * - ``-h``, or``--host``
      - ``127.0.0.1``
-     - Address of the SQream DB worker.
-   * - ``--port``
+     - Address of the SQreamDB worker
+   * - ``-p`` or ``--port``
      - ``5000``
      - Sets the connection port.
-   * - ``--databasename`` or ``-d``
+   * - ``--databasename``, ``-d``, or ``database``
      - None
-     - Specifies the database name for queries and statements in this session.
+     - Specifies the database name for queries and statements in this session
    * - ``--username``
      - None
      -  Username to connect to the specified database.
@@ -382,10 +347,10 @@ Command Line Arguments
      - Specify the password using the command line argument. If not specified, the client will prompt the user for the password.
    * - ``--clustered``
      - False
-     - When used, the client connects to the load balancer, usually on port ``3108``. If not set, the client assumes the connection is to a standalone SQream DB worker.
-   * - ``--service``
+     - When used, the client connects to the load balancer, usually on port ``3108``. If not set, the client assumes the connection is to a standalone SQreamDB worker
+   * - ``-s`` or ``--service``
      - ``sqream``
-     - :ref:`Service name (queue)<workload_manager>` that statements will file into.
+     - :ref:`Service name (queue)<workload_manager>` that statements will file into
    * - ``--results-only``
      - False
      - Outputs results only, without timing information and row counts
@@ -394,14 +359,30 @@ Command Line Arguments
      - When set, prevents command history from being saved in ``~/.sqream/clientcmdhist``
    * - ``--delimiter``
      - ``,``
-     - Specifies the field separator. By default, ``sqream sql`` outputs valid CSVs. Change the delimiter to modify the output to another delimited format (e.g. TSV, PSV). See the section :ref:`supported record delimiters<supported_record_delimiters>` below for more information.
+     - Specifies the field separator. By default, ``sqream sql`` outputs valid CSVs. Change the delimiter to modify the output to another delimited format (e.g. TSV, PSV). See the section :ref:`supported record delimiters<supported_record_delimiters>` below for more information
+   * - ``--chunksize``
+     - 128 * 1024 (128 Kb)
+     - Network chunk size
+   * - ``--log`` or ``log-file``
+     - False
+     - A log file will be created
+   * - ``--show-results``
+     - True
+     - Determines whether or not results are shown
+   * - ``--ssl``
+     - False
+     - Determines connection SSL
+   * - ``--table-view``
+     - ``true``
+     - Displays query results in a table view format with column headers. The display limit is set to 10,000 rows
+
 
 .. tip:: Run ``$  sqream sql --help`` to see a full list of arguments
 
 .. _supported_record_delimiters: 
 
 Supported Record Delimiters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The supported record delimiters are printable ASCII values (32-126).
 
@@ -410,7 +391,7 @@ The supported record delimiters are printable ASCII values (32-126).
 * The following characters are **not supported**: ``\``, ``N``, ``-``, ``:``, ``"``, ``\n``, ``\r``, ``.``, lower-case latin letters, digits (0-9)
 
 Meta-Commands
-----------------
+-------------
 
 * Meta-commands in Sqream SQL start with a backslash (``\``)
 
@@ -436,10 +417,10 @@ Meta-Commands
      - Changes the current connection to an alternate database
 
 Basic Commands
------------------------
+--------------
 
 .. list-table:: 
-   :widths: 20 30 50
+   :widths: auto
    :header-rows: 1
    
    * - Command
@@ -456,7 +437,7 @@ Basic Commands
 
 
 Moving Around the Command Line
----------------------------------
+------------------------------
 
 .. list-table:: 
    :widths: 17 83
@@ -498,7 +479,7 @@ Moving Around the Command Line
      - Swaps a character at the cursor with the previous character.
 
 Searching
-------------
+---------
 
 .. list-table:: 
    :widths: 17 83

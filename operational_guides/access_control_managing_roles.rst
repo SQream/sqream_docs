@@ -3,6 +3,7 @@
 **************
 Managing Roles
 **************
+
 Roles are used for both users and groups, and are global across all databases in the SQream cluster. For a ``ROLE`` to be used as a user, it requires a password and log-in and connect permissionss to the relevant databases.
 
 The Managing Roles section describes the following role-related operations:
@@ -13,7 +14,8 @@ The Managing Roles section describes the following role-related operations:
 
 Creating New Roles (Users)
 ------------------------------
-A user role logging in to the database requires ``LOGIN`` permissions and as a password.
+
+A user role logging in to the database requires ``LOGIN`` permissions and a password.
 
 The following is the syntax for creating a new role:
 
@@ -30,13 +32,14 @@ The following is an example of creating a new role:
 
    CREATE  ROLE  new_role_name  ;  
    GRANT  LOGIN  TO  new_role_name;  
-   GRANT  PASSWORD  'my_password' to new_role_name;  
+   GRANT  PASSWORD  'Passw0rd!' to new_role_name;  
    GRANT  CONNECT  ON  DATABASE  master to new_role_name;
 
 A database role may have a number of permissions that define what tasks it can perform, which are  assigned using the :ref:`grant` command.
 
 Dropping a User
 ------------------------------
+
 The following is the syntax for dropping a user:
 
 .. code-block:: postgres
@@ -51,6 +54,7 @@ The following is an example of dropping a user:
 
 Altering a User Name
 ------------------------------
+
 The following is the syntax for altering a user name:
 
 .. code-block:: postgres
@@ -65,6 +69,7 @@ The following is an example of altering a user name:
 
 Changing a User Password
 ------------------------------
+
 You can change a user role's password by granting the user a new password.
 
 The following is an example of changing a user password:
@@ -76,20 +81,20 @@ The following is an example of changing a user password:
 .. note:: Granting a new password overrides any previous password. Changing the password while the role has an active running statement does not affect that statement, but will affect subsequent statements.
 
 Altering Public Role Permissions
-------------------------------
+---------------------------------
 
-There is a public role which always exists. Each role is granted to the ``PUBLIC`` role (i.e. is a member of the public group), and this cannot be revoked. You can alter the permissions granted to the public role.
+The database has a predefined ``PUBLIC`` role that cannot be deleted. Each user role is automatically granted membership in the ``PUBLIC`` role public group, and this membership cannot be revoked. However, you have the capability to adjust the permissions associated with this ``PUBLIC`` role.
 
-The ``PUBLIC`` role has ``USAGE`` and ``CREATE`` permissions on ``PUBLIC`` schema by default, therefore, new users can create, :ref:`insert`, :ref:`delete`, and :ref:`select` from objects in the ``PUBLIC`` schema.
+The ``PUBLIC`` role has ``USAGE`` and ``CREATE`` permissions on ``PUBLIC`` schema by default, therefore, newly created user roles are granted ``CREATE`` (:ref:`databases<create_database>`, :ref:`schemas<create_schema>`, :ref:`roles<create_role>`, :ref:`functions<create_function>`, :ref:`views<create_view>`, and :ref:`tables<create_table>`) on the public schema. Other permissions, such as :ref:`insert`, :ref:`delete`, :ref:`select`, and :ref:`update` on objects in the public schema are not automatically granted. 
 
 
 Altering Role Membership (Groups)
-------------------------------
+---------------------------------
 
 Many database administrators find it useful to group user roles together. By grouping users, permissions can be granted to, or revoked from a group with one command. In SQream DB, this is done by creating a group role, granting permissions to it, and then assigning users to that group role.
 
 To use a role purely as a group, omit granting it ``LOGIN`` and ``PASSWORD`` permissions.
-
+ 
 The ``CONNECT`` permission can be given directly to user roles, and/or to the groups they are part of.
 
 .. code-block:: postgres

@@ -4,7 +4,7 @@
 CREATE DATABASE
 *****************
 
-``CREATE DATABASE`` creates a new database in SQream DB
+``CREATE DATABASE`` creates a new database in SQream.
 
 Permissions
 =============

@@ -10,25 +10,29 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+import os
+
+# Define the canonical URL if you are using a custom domain on Read the Docs
+html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "")
+
+# Tell Jinja2 templates the build is running on Read the Docs
+if os.environ.get("READTHEDOCS", "") == "True":
+    if "html_context" not in globals():
+        html_context = {}
+    html_context["READTHEDOCS"] = True
 
 import sphinx_rtd_theme
-
-
+html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # -- Project information -----------------------------------------------------
 
-project = 'SQream DB'
-copyright = '2022 SQream'
-author = 'SQream Documentation'
+project = 'SQreamDB'
+copyright = '2024 SQreamDB'
+author = 'SQreamDB Documentation'
 
 
 # The full version, including alpha/beta/rc tags
-release = '2022.1.1'
-
-
+release = '4.9'
 
 # -- General configuration ---------------------------------------------------
 
@@ -36,8 +40,9 @@ release = '2022.1.1'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx_rtd_theme'
-    ,'notfound.extension' # 404 handling
+    "sphinx_rtd_theme",
+    "notfound.extension", # 404 handling
+    "sphinx_favicon"
 ]
 
 # Mark 'index' as the main page
@@ -59,6 +64,8 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 #
 html_theme = 'sphinx_rtd_theme'
 
+
+
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
@@ -68,7 +75,7 @@ html_css_files = [
     'css/custom.css', # Relative to the _static path
 ]
 
-html_logo = '_static/images/sqream_logo.png'
+html_logo = '_static/images/SQream_logo_without background-15.png'
 
 # If true, sectionauthor and moduleauthor directives will be shown in the
 # output. They are ignored by default.
@@ -90,10 +97,11 @@ html_theme_options = {
    'logo_only': True # Hide "SQream DB" title and only show logo
    , 'display_version': True # Display version at the top
    , 'style_external_links': True # Show little icon next to external links
-   , 'style_nav_header_background': '#0f9790' # SQream teal
+   , 'style_nav_header_background': '#133148' # SQream teal
    , 'navigation_depth': -1
    , 'collapse_navigation': False
    , 'titles_only': True
+   , 'flyout_display': 'attached'
 
 }
 

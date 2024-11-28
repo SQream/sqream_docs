@@ -32,6 +32,8 @@ Returns
 
 Returns the same type as the argument supplied.
 
+When using the ``FLOOR`` floating point number scalar function, ``real`` arguments are automatically cast to ``double`` precision.
+
 Notes
 =======
 

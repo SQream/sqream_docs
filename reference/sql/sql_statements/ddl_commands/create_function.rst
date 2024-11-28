@@ -4,7 +4,7 @@
 CREATE FUNCTION
 *****************
 
-``CREATE FUNCTION`` creates a new user-defined function (UDF) in an existing database.
+``CREATE FUNCTION`` creates a new user-defined function (UDF) in an existing database. 
 
 See more in our :ref:`Python UDF (user-defined functions)<python_functions>` guide.
 
@@ -52,7 +52,7 @@ Parameters
    * - ``argument_list``
      - A comma separated list of column definitions. A column definition includes a name identifier and a datatype.
    * - ``return_type``
-     - The SQL datatype of the return value, such as ``INT``, ``VARCHAR``, etc.
+     - The SQL datatype of the return value, such as ``INT``, ``TEXT``, etc.
    * - ``function_body``
      - Python code, dollar-quoted (``$$``). 
 

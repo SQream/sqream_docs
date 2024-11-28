@@ -1,25 +1,22 @@
 .. _preparing_your_machine_to_install_sqream:
 
-****************************
-Preparing Your Machine to Install SQream
-****************************
-To prepare your machine to install SQream, do the following:
+*******************************************
+Preparing Your Machine to Install SQreamDB
+*******************************************
 
- * Set up your local machine according to SQream's recommended pre-installation configurations.
- 
-    ::
+To prepare your machine to install SQreamDB, do the following:
+
+ * Set up your local machine according to SQreamDB's recommended pre-installation configurations.
    
  * Verify you have an NVIDIA-capable server, either on-premise or on supported cloud platforms: 
 
-   * Red Hat Enterprise Linux v7.x   
+   * Red Hat Enterprise Linux v8.9 
  
-   * CentOS v7.x
- 
-   * Amazon Linux 7
+   * Amazon Linux 2
 	 
  * Verify that you have the following:
  
-   * An NVIDIA GPU - SQream recommends using a Tesla GPU.
+   * An NVIDIA GPU - SQreamDB recommends using a Tesla GPU.
  
 
    * An SSH connection to your server.
@@ -28,8 +25,8 @@ To prepare your machine to install SQream, do the following:
    * SUDO permissions for installation and configuration purposes.
  
  
-   * A SQream license - Contact support@sqream.com or your SQream account manager for your license key.
+   * A SQreamDB license - Contact `SQreamDB Support <https://sqream.atlassian.net/servicedesk/customer/portal/2/group/8/create/26>`_ for your license key.
 For more information, see the following:
 
-* :ref:`recommended_pre-installation_configurations`
-* `Hardware Guide <https://docs.sqream.com/en/latest/operational_guides/hardware_guide.html>`_
+* :ref:`pre-installation_configurations`
+* :ref:`hardware_guide`

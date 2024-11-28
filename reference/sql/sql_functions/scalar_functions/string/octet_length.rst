@@ -1,21 +1,18 @@
 .. _octet_length:
 
-**************************
+************
 OCTET_LENGTH
-**************************
+************
 
 Calculates the number of bytes in a string.
 
-.. note::
+.. note::   
+ 
+   * To get the length in bytes, see :ref:`octet_length`.
    
-   * This function is supported on ``TEXT`` strings only.
-   
-   * To get the length in characters, see :ref:`char_length`.
-   
-   * For ``VARCHAR`` strings, the octet length is the number of characters. Use :ref:`len` instead.
-
 Syntax
-==========
+======
+
 The following is the correct syntax for the ``OCTET_LENGTH`` function:
 
 .. code-block:: postgres
@@ -23,7 +20,8 @@ The following is the correct syntax for the ``OCTET_LENGTH`` function:
    OCTET_LEN( text_expr ) --> INT
 
 Arguments
-============
+=========
+
 The following table describes the ``OCTET_LENGTH`` arguments:
 
 .. list-table:: 
@@ -36,11 +34,13 @@ The following table describes the ``OCTET_LENGTH`` arguments:
      - ``TEXT`` expression
 
 Returns
-============
+=======
+
 The ``OCTET_LENGTH`` function returns an integer containing the number of bytes in the string.
 
 Notes
-=======
+=====
+
 The following notes are applicable to the ``OCTET_LENGTH`` function:
 
 * To get the length in characters, see :ref:`char_length`
@@ -48,7 +48,8 @@ The following notes are applicable to the ``OCTET_LENGTH`` function:
 * If the value is NULL, the result is NULL.
 
 Length in Characters and Bytes of Strings
-===========
+=========================================
+
 The **Length in characters and bytes of strings** example is based on the following table and contents:
 
 .. code-block:: postgres

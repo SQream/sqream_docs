@@ -1,16 +1,21 @@
+:orphan:
+
 .. _get_license_info:
 
 ********************
 GET_LICENSE_INFO
 ********************
+
 ``GET_LICENSE_INFO`` displays information related to data size limitations, expiration date, and type of license currently used by the SQream cluster.
    
 Permissions
 =============
+
 No special permissions are required.
 
 Syntax
 ==========
+
 The following is the correct syntax for running the ``GET LICENSE INFO`` statement:
 
 .. code-block:: postgres
@@ -21,6 +26,7 @@ The following is the correct syntax for running the ``GET LICENSE INFO`` stateme
 
 Returns
 ==========
+
 The following table shows the ``GET_LICENSE_INFO`` license information in the order that it is returned:
 
 .. list-table:: 
@@ -59,14 +65,9 @@ Example
 ===========
 The following is an example of the returned license information described in the **Returns** section above:
   
-.. code-block:: psql
+.. code-block:: console
      
-   10,100,compressed,20,2045-03-18,0,0,10
+	compressed_cluster_size | uncompressed_cluster_size | compress_type | cluster_size_limit | expiration_date | is_date_expired | is_size_exceeded | cluster_size_left
+	------------------------+---------------------------+---------------+--------------------+-----------------+-----------------+------------------+------------------
+	10                      | 100                       | compressed    | 20                 | 2045-03-18      | 0               | 0                | 10
 
-Parameters
-============
-The ``GET_LICENSE_INFO`` command has no parameters.
-
-Notes
-=========
-If the license expires or exceeds quotas, contact a SQream representative to extend the license.

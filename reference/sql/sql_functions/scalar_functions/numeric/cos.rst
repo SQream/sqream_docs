@@ -4,7 +4,7 @@
 COS
 **************************
 
-Returns the cosine value of a numeric expression
+Returns the cosine value of a numeric expression.
 
 Syntax
 ==========
@@ -29,7 +29,7 @@ Arguments
 Returns
 ============
 
-Always returns a floating point result of the cosine.
+When using the ``COS`` floating point number scalar function, ``real`` arguments are automatically cast to ``double`` precision.
 
 Notes
 =======

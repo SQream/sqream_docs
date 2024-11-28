@@ -1,8 +1,10 @@
+:orphan:
+
 .. _literals:
 
-***************************
+*********
 Literals
-***************************
+*********
 
 
 Literals represent constant values.
@@ -55,7 +57,7 @@ Examples
 .. note:: 
    The actual data type of the value changes based on context, the format used, and the value itself.
    For example, any number containing the decimal point will be considered ``FLOAT`` by default.
-   Any whole number will considered ``INT``, unless the value is larger than the :ref:`maximum value<data_types>`, in which case the type will become a ``BIGINT``.
+   Any whole number will considered ``INT``, unless the value is larger than the :ref:`maximum value<data_type_guides>`, in which case the type will become a ``BIGINT``.
 
 .. note:: 
    A numeric literal that contains neither a decimal point nor an exponent is considered ``INT`` by default if its value fits in type ``INT`` (32 bits). If not, it is considered ``BIGINT`` by default if its value fits in type ``BIGINT`` (64 bits). If neither are true, it is considered ``FLOAT``. Literals that contain decimal points and/or exponents are always considered ``FLOAT``.
@@ -86,7 +88,7 @@ Examples
    '1997-01-01' -- This is a string
 
 
-The actual data type of the value changes based on context, the format used, and the value itself. In the example below, the first value is interpreted as a ``DATE``, while the second is interpreted as a ``VARCHAR``.
+The actual data type of the value changes based on context, the format used, and the value itself. In the example below, the first value is interpreted as a ``DATE``, while the second is interpreted as a ``TEXT``.
 
 .. code-block:: postgres
 
@@ -103,6 +105,7 @@ This section describes the following types of literals:
 
 Regular String Literals
 -----------------------
+
 In SQL, a **regular string literal** is a sequence of zero or more characters bound by single quotes (``'``):
 
 .. code-block:: postgres
@@ -135,7 +138,8 @@ The following are some examples of regular string literals:
 .. _dollar_quoted_string_literals:
 
 Dollar-Quoted String Literals
------------------------
+-----------------------------
+
 **Dollar-quoted string literals** consist of a dollar sign (``$``), an optional "tag" of zero or more characters, another dollar sign, an arbitrary sequence of characters that make up the string content, a dollar sign, the same tag at the beginning of the dollar quote, and another dollar sign.
 
 
@@ -211,7 +215,7 @@ Typed Literals
 
    literal :: type_name
 
-See also :ref:`cast` for more information about supported casts.
+See also :ref:`supported_casts` for more information about supported casts.
 
 Syntax Reference
 -------------------
@@ -239,7 +243,6 @@ The following is a syntax reference for typed literals:
        | REAL
        | DATE
        | DATETIME
-       | VARCHAR ( digits )
        | TEXT ( digits )
 
 Examples

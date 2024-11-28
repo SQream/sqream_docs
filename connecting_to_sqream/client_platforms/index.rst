@@ -3,24 +3,57 @@
 ************************************
 Client Platforms
 ************************************
-These topics explain how to install and connect a variety of third party tools. 
+ 
+SQreamDB is designed to work with the most common database tools and interfaces, allowing you direct access through a variety of drivers, connectors, visualization tools, and utilities.
 
-Browse the articles below, in the sidebar, or use the search to find the information you need.
+.. figure:: /_static/images/connectivity_ecosystem.png
+   :align: right
+   :width: 800
 
-Overview
-==========
+Data Integration Tools
+----------------------
 
-SQream DB is designed to work with most common database tools and interfaces, allowing you direct access through a variety of drivers, connectors, tools, vizualisers, and utilities.
+:ref:`Informatica Cloud Services<informatica>`
 
-The tools listed have been tested and approved for use with SQream DB. Most 3\ :sup:`rd` party tools that work through JDBC, ODBC, and Python should work.
+:ref:`Pentaho Data Integration and Analytics<pentaho_data_integration>`
 
-If you are looking for a tool that is not listed, SQream and our partners can help. Go to `SQream Support <http://support.sqream.com/>`_ or contact your SQream account manager for more information.
+:ref:`Talend<talend>`
+
+:ref:`Semarchy<semarchy>`
+
+:ref:`SQL Workbench<connect_to_sql_workbench>`
+
+Business Intelligence (BI) Tools
+--------------------------------
+
+:ref:`Denodo<denodo>`
+
+:ref:`MicroStrategy<micro_strategy>`
+
+:ref:`Power BI Desktop<power_bi>`
+
+:ref:`SAP BusinessObjects<sap_businessobjects>`
+
+:ref:`SAS Viya<connect_to_sas_viya>`
+
+:ref:`Tableau<tableau>`
+
+:ref:`TIBCO Spotfire<tibco_spotfire>`
+
+Data Analysis and Programming Languages
+---------------------------------------
+
+:ref:`PHP<php>`
+
+:ref:`R<r>`
+
 
 .. toctree::
    :maxdepth: 4
-   :caption: In this section:
    :titlesonly:
+   :hidden:
 
+   denodo
    informatica
    microstrategy
    pentaho
@@ -29,11 +62,17 @@ If you are looking for a tool that is not listed, SQream and our partners can he
    r
    sap_businessobjects
    sas_viya
-   sql_workbench
+   semarchy
+   sql_workbench   
    tableau
    talend
-   tibco_spotfire
-   xxdiagnosing_common_connectivity_issues
+   tibco_spotfire   
+   
+   
 
 
-.. image:: /_static/images/connectivity_ecosystem.png
+
+
+
+
+

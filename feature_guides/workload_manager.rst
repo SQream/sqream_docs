@@ -4,15 +4,11 @@
 Workload Manager
 ***********************
 
-The **Workload Manager** allows SQream workers to identify their availability to clients with specific service names. The load balancer uses that information to route statements to specific workers. 
-
-Overview
-===============================
-The Workload Manager allows a system engineer or database administrator to allocate specific workers and compute resources for various tasks.
+The Workload Manager enables SQream workers to identify their availability to clients with specific service names, allowing a system engineer or database administrator to allocate specific workers and compute resources for various tasks. The load balancer then uses this information to route statements to the designated workers.
 
 For example:
 
-#. Creating a service queue named ``ETL`` and allocating two workers exclusively to this service prevents non-``ETL`` statements from utilizing these compute resources.
+#. Creating a service queue named ``ETL`` and allocating two workers exclusively to this service prevents non-``ETL`` statements from using these compute resources.
 
 #. Creating a service for the company's leadership during working hours for dedicated access, and disabling this service at night to allow maintenance operations to use the available compute.
 
@@ -59,63 +55,57 @@ The configuration in this example allocates resources as shown below:
      - ✓
      - ✓
 
-This configuration gives the ETL queue dedicated access to one worker, which cannot be used.
+This configuration gives the ETL queue dedicated access to one worker, which cannot be used..
 
 Queries from management uses any available worker.
 
 Creating the Configuration
 -----------------------------------
 
-The persistent configuration for this set-up is listed in the four configuration files shown below.
+.. code-block:: json
 
-Each worker gets a comma-separated list of service queues that it subscribes to. These services are specified in the ``initialSubscribedServices`` attribute.
+
+	{
+	  "cluster": "/home/rhendricks/raviga_database",
+	  "cudaMemQuota": 25,
+	  "gpu": 0,
+	  "maxConnectionInactivitySeconds": 120,
+	  "legacyConfigFilePath": "tzah_legacy.json",
+	  "licensePath": "/home/sqream/.sqream/license.enc",
+	  "metadataServerIp": "192.168.0.103",
+	  "limitQueryMemoryGB": 250,
+	  "machineIP": "192.168.0.103",
+	  "metadataServerPort": 3105,
+	  "port": 5000,
+	  "useConfigIP": true
+	}
 
 .. code-block:: json
-   :caption: Worker #1
-   :emphasize-lines: 7
+   :caption: Legacy File
 
-   {
-       "compileFlags": {
-       },
-       "runtimeFlags": {
-       },
-       "runtimeGlobalFlags": {
-          "initialSubscribedServices" : "etl,management"
-       },
-       "server": {
-           "gpu": 0,
-           "port": 5000,
-           "cluster": "/home/rhendricks/raviga_database",
-           "licensePath": "/home/sqream/.sqream/license.enc"
-       }
-   }
 
-.. code-block:: json
-   :caption: Workers #2, #3, #4
-   :emphasize-lines: 7
-
-   {
-       "compileFlags": {
-       },
-       "runtimeFlags": {
-       },
-       "runtimeGlobalFlags": {
-          "initialSubscribedServices" : "query,management"
-       },
-       "server": {
-           "gpu": 1,
-           "port": 5001,
-           "cluster": "/home/rhendricks/raviga_database",
-           "licensePath": "/home/sqream/.sqream/license.enc"
-       }
-   }
+	{
+	  "debugNetworkSession": false,
+	  "diskSpaceMinFreePercent": 1,
+	  "maxNumAutoCompressedChunksThreshold" : 1,
+	  "insertMergeRowsThreshold":40000000,
+	  "insertCompressors": 8,
+	  "insertParsers": 8,
+	  "nodeInfoLoggingSec": 60,
+	  "reextentUse": true,
+	  "separatedGatherThreads": 16,
+	  "showFullExceptionInfo": true,
+	  "spoolMemoryGB":200,
+	  "useClientLog": true,
+	  "useMetadataServer":true
+	}
 
 .. tip:: You can create this configuration temporarily (for the current session only) by using the :ref:`subscribe_service` and :ref:`unsubscribe_service` statements.
 
 Verifying the Configuration
 -----------------------------------
 
-Use :ref:`show_subscribed_instances` to view service subscriptions for each worker. Use `SHOW_SERVER_STATUS <https://docs.sqream.com/en/v2020.3/reference/sql/sql_statements/monitoring_commands/show_server_status.html>`_ to see the statement queues.
+Use :ref:`show_subscribed_instances` to view service subscriptions for each worker. Use :ref:`SHOW_SERVER_STATUS<show_server_status>` to see the statement queues.
 
 
 
@@ -151,7 +141,7 @@ When using **SQream Studio**, you can configure a client connection to a specifi
 
 
 
-For more information, in Studio, see `Executing Statements from the Toolbar <https://docs.sqream.com/en/v2020.3/sqream_studio_5.4.3/executing_statements_and_running_queries_from_the_editor.html#executing-statements-from-the-toolbar>`_.
+For more information, in Studio, see :ref:`Executing Statements from the Toolbar<executing_statements_and_running_queries_from_the_editor>`.
 
 
 

@@ -1,10 +1,10 @@
 .. _subscribe_service :
 
 *******************
-SUBSCRIBE_SERVICE
+SUBSCRIBE SERVICE
 *******************
 
-``SUBSCRIBE_SERVICE`` subscribes a worker to a service queue for the duration of the connected session.
+``SUBSCRIBE SERVICE`` subscribes a worker to a service queue for the duration of the connected session.
 
 .. note:: If you haven't already, read the :ref:`Workload manager guide<workload_manager>`.
 

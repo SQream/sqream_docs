@@ -1,13 +1,14 @@
 .. _count:
 
-**************************
+*****
 COUNT
-**************************
+*****
 
 The ``COUNT`` function returns the count of numeric values, or only the distinct values.
 
 Syntax
-==========
+======
+
 The following is the correct syntax for using the ``COUNT`` function as an **aggregate**:
 
 .. code-block:: postgres
@@ -25,7 +26,8 @@ The following is the correct syntax for using the ``COUNT`` function as a **wind
          )
 
 Arguments
-============
+=========
+
 The following table describes the ``COUNT`` arguments:
 
 .. list-table:: 
@@ -42,12 +44,14 @@ The following table describes the ``COUNT`` arguments:
      - Specifies that the operation should operate only on unique values
 
 Returns
-============
+=======
+
 * The ``COUNT`` function returns ``BIGINT``.
 
 
 Notes
-=======
+=====
+
 The following notes apply to the ``COUNT`` function:
 
 * When all rows contain ``NULL`` values, the function returns ``NULL``.
@@ -60,21 +64,22 @@ The following notes apply to the ``COUNT`` function:
 
 
 Examples
-===========
+========
+
 The examples in this section are based on a table named ``nba``, structured as follows:
 
 .. code-block:: postgres
    
    CREATE TABLE nba
    (
-      "Name" varchar(40),
-      "Team" varchar(40),
+      "Name" text(40),
+      "Team" text(40),
       "Number" tinyint,
-      "Position" varchar(2),
+      "Position" text(2),
       "Age" tinyint,
-      "Height" varchar(4),
+      "Height" text(4),
       "Weight" real,
-      "College" varchar(40),
+      "College" text(40),
       "Salary" float
     );
 
@@ -92,7 +97,8 @@ This section includes the following examples:
    :depth: 1
 
 Counting Rows in a Table
----------------------------
+------------------------
+
 This example shows how to count rows in a table:
 
 .. code-block:: psql
@@ -103,7 +109,8 @@ This example shows how to count rows in a table:
    457
 
 Counting Distinct Values in a Table
-----------------------------------
+-----------------------------------
+
 This example shows how to count distinct values in a table:
 
 The following structures generate the same result:
@@ -125,6 +132,7 @@ The following structures generate the same result:
 
 Combining COUNT with Other Aggregates
 -------------------------------------
+
 This example shows how to combine the ``COUNT`` function with other aggregates:
 
 .. code-block:: psql

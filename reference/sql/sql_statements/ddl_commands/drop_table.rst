@@ -3,7 +3,7 @@
 **********************
 DROP TABLE
 **********************
-
+ 
 ``DROP TABLE`` can be used to remove a table and all of its contents.
 
 Permissions

@@ -13,7 +13,8 @@ Summary of Functions
    :local:
 
 Built-In Scalar Functions
--------------------
+--------------------------
+
 For more information about built-in scalar functions, see :ref:`scalar_functions`.
 
 Bitwise Operations
@@ -42,6 +43,7 @@ The following table shows the **bitwise operations** functions:
 
 Conditionals
 ^^^^^^^^^^^^^^
+
 The following table shows the **conditionals** functions:
 
 .. list-table:: 
@@ -64,9 +66,14 @@ The following table shows the **conditionals** functions:
      - Test a ``TEXT`` for ASCII-only characters
    * - :ref:`is_null`
      - Check for ``NULL`` [ or non-``NULL`` ] values
+   * - :ref:`is_table_exists`
+     - Checks if the mentioned table exists in the mentioned schema 
+   * - :ref:`is_view_exists`
+     - Checks if the mentioned view exists in the mentioned schema 
 
 Conversion
 ^^^^^^^^^^^^
+
 The following table shows the **conversion** functions:
 
 .. list-table:: 
@@ -81,9 +88,14 @@ The following table shows the **conversion** functions:
      - Converts a number to a hexadecimal string representation
    * - :ref:`to_unixts`
      - Converts a ``DATE`` or ``DATETIME`` to a UNIX Timestamp
+   * - :ref:`chr`
+     - Returns the ASCII character representation of the supplied integer
+   * - :ref:`is_castable`
+     - Checks whether a cast operation is possible or supported for a given column and data type and provides an alternative when there is an exception
 
 Date and Time
 ^^^^^^^^^^^^^^^^
+
 The following table shows the **date and time** functions:
 
 .. list-table:: 
@@ -117,6 +129,7 @@ The following table shows the **date and time** functions:
 
 Numeric
 ^^^^^^^^^^^
+
 The following table shows the **arithmetic operators**:
 
 .. list-table:: Arithmetic Operators
@@ -174,8 +187,6 @@ The following table shows the **arithmetic operator** functions:
      - Calculates the cosine of an argument
    * - :ref:`cot`
      - Calculates the cotangent of an argument
-   * - :ref:`crc64`
-     - Calculates a CRC-64 hash of an argument
    * - :ref:`degrees`
      - Converts a value from radian values to degrees
    * - :ref:`exp`
@@ -209,6 +220,7 @@ The following table shows the **arithmetic operator** functions:
 
 Strings
 ^^^^^^^^^^^
+
 The following table shows the **string** functions:
 
 .. list-table:: 
@@ -223,6 +235,10 @@ The following table shows the **string** functions:
      - Calculates the position where a string starts inside another string
    * - :ref:`concat`
      - Concatenates two strings
+   * - :ref:`concat_function`
+     - Concatenates multiple strings
+   * - :ref:`crc64`
+     - Calculates a CRC-64 hash of an argument
    * - :ref:`decode`
      - Decodes or extracts binary data from a textual input string
    * - :ref:`isprefixof`
@@ -267,14 +283,18 @@ The following table shows the **string** functions:
      - Trims whitespaces from an argument
    * - :ref:`upper`
      - Converts an argument to an upper-case equivalent
+   * - :ref:`select_ascii`
+     - Returns an ``INT`` value representing the ASCII code of the leftmost character in a string
 
 User-Defined Scalar Functions
----------------------
+------------------------------
+
 For more information about user-defined scalar functions, see :ref:`scalar_sql_udf`.
 
 
 Aggregate Functions
 ---------------------
+
 The following table shows the **aggregate** functions:
 
 .. list-table:: 
@@ -325,6 +345,7 @@ For more information about aggregate functions, see :ref:`aggregate_functions`.
 
 Window Functions
 -------------------
+
 The following table shows the **window** functions:
 
 .. list-table:: 
@@ -364,6 +385,7 @@ For more information about window functions, see :ref:`window_functions`.
 
 Workload Management Functions
 ---------------------------------
+
 The following table shows the **workload management** functions:
 
 .. list-table:: 

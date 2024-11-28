@@ -1,0 +1,113 @@
+.. _4.5:
+
+*****************
+Release Notes 4.5
+*****************
+
+The 4.5 release notes were released on December 5th, 2023
+
+.. contents:: 
+   :local:
+   :depth: 1      
+
+Compatibility Matrix
+--------------------
+ 
++-------------------------+------------------------------------------------------------------------+
+| System Requirement      | Details                                                                |
++=========================+========================================================================+
+| Supported OS            | * CentOS 7.x                                                           |
+|                         | * RHEL 7.x / 8.x                                                       |
++-------------------------+------------------------------------------------------------------------+
+| supported Nvidia driver | CUDA version from 10.1 up to 11.4.3                                    |
++-------------------------+------------------------------------------------------------------------+
+| Storage version         |   50                                                                   |
++-------------------------+------------------------------------------------------------------------+
+| Driver compatibility    | * JDBC 5.3.1                                                           |
+|                         | * ODBC 4.4.4                                                           | 
+|                         | * NodeJS                                                               |
+|                         | * .NET 5.0.0                                                           |
+|                         | * Pysqream 5.1.0 (compatible with v4.5.13 or later)                    |
+|                         | * Spark 5.0.0                                                          |
+|                         | * SQLoader As A Service 8.1 (compatible with v4.6.1 or later)          |
+|                         | * SQLoader As A Process 7.13 (compatible with v4.5.13 or later)        |
++-------------------------+------------------------------------------------------------------------+
+
+New Features and Enhancements
+-----------------------------
+
+► Introducing a new :ref:`Health-Check Monitor<select_health_check_monitoring>` utility command empowers administrators to oversee the database's health. This command serves as a valuable tool for monitoring, enabling administrators to assess and ensure the optimal health and performance of the database
+
+► A new :ref:`Query Timeout<query_timeout_minutes>` session flag designed to identify queries that have exceeded a specified time limit. Once the flag value is reached, the query automatically stops
+
+► Optimized ``JOIN`` operation for improved performance with large tables
+
+► The new :ref:`swap_table_names` utility function enables you to swap the names of two tables within a schema. 
+
+Known Issues
+------------
+
+* :ref:`Percentile<percentile_disc>` is not supported for :ref:`Window Functions<window_functions>`
+
+
+Version 4.5 resolved Issues
+---------------------------
+
++--------------------+------------------------------------------------------------------------------------------------+
+| **SQ No.**         | **Description**                                                                                |
++====================+================================================================================================+
+| SQ-11523           | Resolved internal runtime issue affecting the ``datetime`` saved query                         |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-14292           | Resolved ``maxConnections`` Worker allocation issue                                            |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-14869           | Optimized compilation time for improved performance with large metadata                        |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-15074           | Addressed UI access issue for non-``SUPERUSER`` roles                                          |
++--------------------+------------------------------------------------------------------------------------------------+
+
+Deprecations
+-------------------
+
+► **CentOS Linux 7.x**
+
+* As of June 2024, CentOS Linux 7.x will reach its End of Life and will not be supported by SQreamDB. This announcement provides a one-year advance notice for our users to plan for this change. We recommend users to explore migration or upgrade options to maintain ongoing support and security beyond this date. 
+
+* **REHL 8.x** is now officially supported.
+
+Upgrading to Version 4.5
+-------------------------
+
+1. Generate a back-up of the metadata by running the following command:
+
+   .. code-block:: console
+
+      $ select backup_metadata('out_path');
+	  
+   .. tip:: SQreamDB recommends storing the generated back-up locally in case needed.
+   
+   SQreamDB runs the Garbage Collector and creates a clean backup tarball package.
+   
+2. Shut down all SQreamDB services.
+
+3. Copy the recently created back-up file.
+
+4. Replace your current metadata with the metadata you stored in the back-up file.
+
+5. Navigate to the new SQreamDB package bin folder.
+
+6. Run the following command:
+
+   .. code-block:: console
+
+      $ ./upgrade_storage <levelDB path>
+	
+7. Version 4.4 introduces a service permission feature that enables superusers to grant and revoke role access to services. However, when upgrading from version 4.2 or earlier to version 4.4 or later, this feature initializes access to services, causing existing roles to lose their access to services. 
+
+There are two methods of granting back access to services:
+
+   * Grant access to all services for all roles using the :ref:`grant_usage_on_service_to_all_roles` utility function
+   * Selectively grant or revoke access to services by following the :ref:`access permission guide<access_control_permissions>`
+
+
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQreamDB Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
+  

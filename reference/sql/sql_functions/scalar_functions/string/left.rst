@@ -27,12 +27,12 @@ Arguments
    * - ``expr``
      - String expression
    * - ``character_count``
-     - A positive integer that specifies how many characters to return.
-
+     - The number of characters to be returned. If ``character_count <= 0``, an empty string is returned.
 Returns
 ============
 
 Returns the same type as the argument supplied.
+
 
 Notes
 =======

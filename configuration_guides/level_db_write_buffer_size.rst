@@ -1,3 +1,5 @@
+:orphan:
+
 .. _level_db_write_buffer_size:
 
 *************************
@@ -9,4 +11,3 @@ The following describes the ``leveldbWriteBufferSize`` flag:
 
 * **Data type** - uint
 * **Default value** - ``524288``
-* **Allowed values** - 1-4000000000

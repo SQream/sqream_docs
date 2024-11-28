@@ -1,22 +1,23 @@
 .. _charindex:
 
-**************************
+*********
 CHARINDEX
-**************************
+*********
 
-Returns the starting position of a string inside another string.
+``CHARINDEX`` is a 1-based indexing function (both input and output) that returns the starting position of a specified substring within a given string. 
+
 
 See also :ref:`patindex`, :ref:`regexp_instr`.
 
 Syntax
+======
+
+.. code-block:: sql
+
+	CHARINDEX ( needle_string_expr , haystack_string_expr [ , start_location ] )
+
+Parameters
 ==========
-
-.. code-block:: postgres
-
-   CHARINDEX ( needle_string_expr , haystack_string_expr [ , start_location ] )
-
-Arguments
-============
 
 .. list-table:: 
    :widths: auto
@@ -29,48 +30,74 @@ Arguments
    * - ``haystack_string_expr``
      - String to search within
    * - ``start_location``
-     - An integer at which the search starts. This value is optinoal and when not supplied, the search starts at the beggining of ``needle_string_expr``
+     - An integer at which the search starts. This value is optional and when not supplied, the search starts at the beggining of ``needle_string_expr``
 
 Returns
-============
+=======
 
 Integer start position of a match, or 0 if no match was found.
 
-Notes
-=======
+If one of the parameters is NULL, then the return value is NULL.
 
-* If the value is NULL, the result is NULL.
-
+Empty string search returns 0.
 
 Examples
-===========
+========
 
-For these examples, consider the following table and contents:
+For these examples, consider the following table:
 
-.. code-block:: postgres
+.. code-block:: none
 
-   CREATE TABLE jabberwocky(line VARCHAR(50));
+	id  | username	  | email                   | password	
+	----+-------------+-------------------------+-----------
+	1   | john_doe    | john.doe@example.com    | password1
+	----+-------------+-------------------------+-----------
+	2   | jane_doe    | jane.doe@example.com    | password2
+	----+-------------+-------------------------+-----------
+	3   | bob_smith   | bob.smith@example.com   | password3
+	----+-------------+-------------------------+-----------
+	4   | susan_jones | susan.jones@example.com | password4
 
-   INSERT INTO jabberwocky VALUES 
-      ('''Twas brillig, and the slithy toves '), ('      Did gyre and gimble in the wabe: ')
-      ,('All mimsy were the borogoves, '), ('      And the mome raths outgrabe. ')
-      ,('"Beware the Jabberwock, my son! '), ('      The jaws that bite, the claws that catch! ')
-      ,('Beware the Jubjub bird, and shun '), ('      The frumious Bandersnatch!" ');
 
+.. code-block:: sql
 
-Using ``CHARINDEX``
------------------------------------------
+   SELECT CHARINDEX('doe', username) FROM users;
 
-.. code-block:: psql
+Output:
 
-   t=> SELECT line, CHARINDEX('the', line) FROM jabberwocky
-   line                                            | charindex
-   ------------------------------------------------+----------
-   'Twas brillig, and the slithy toves             |        20
-         Did gyre and gimble in the wabe:          |        30
-   All mimsy were the borogoves,                   |        16
-         And the mome raths outgrabe.              |        11
-   "Beware the Jabberwock, my son!                 |         9
-         The jaws that bite, the claws that catch! |        27
-   Beware the Jubjub bird, and shun                |         8
-         The frumious Bandersnatch!"               |         0
+.. code-block:: none
+
+   charindex|
+   ---------+
+   6        |
+   6        |
+   0        |
+   0        |
+   
+.. code-block:: sql
+
+	SELECT CHARINDEX('doe', username, 10) FROM users;
+
+Output:
+
+.. code-block:: none
+
+   charindex|
+   ---------+
+   0        |
+   0        |
+   0        |
+   0        |
+
+.. code-block:: sql
+
+	SELECT CHARINDEX('jane_doe', username, -10) FROM users;
+	
+.. code-block:: none
+
+   charindex|
+   ---------+
+   0        |
+   1        |
+   0        |
+   0        |

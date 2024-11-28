@@ -29,7 +29,7 @@ Arguments
 Returns
 ============
 
-Always returns a floating point result of the tangent.
+When using the ``TAN`` floating point number scalar function, ``real`` arguments are automatically cast to ``double`` precision.
 
 Notes
 =======

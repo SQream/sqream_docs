@@ -1,22 +1,24 @@
 .. _scalar_functions:
 
-****************
+***************************
 Built-In Scalar Functions
-****************
+***************************
+
 The **Built-In Scalar Functions** page describes functions that return one value per call:
 
 .. hlist::
    :columns: 5
 		
-   * `AND <https://docs.sqream.com/en/latest/reference/sql/sql_functions/scalar_functions/bitwise/and.html>`_
-   * `NOT <https://docs.sqream.com/en/latest/reference/sql/sql_functions/scalar_functions/bitwise/not.html>`_
-   * `OR <https://docs.sqream.com/en/latest/reference/sql/sql_functions/scalar_functions/bitwise/or.html>`_
-   * `SHIFT_LEFT <https://docs.sqream.com/en/latest/reference/sql/sql_functions/scalar_functions/bitwise/shift_left.html>`_
-   * `SHIFT_RIGHT <https://docs.sqream.com/en/latest/reference/sql/sql_functions/scalar_functions/bitwise/shift_right.html>`_
-   * `XOR <https://docs.sqream.com/en/latest/reference/sql/sql_functions/scalar_functions/bitwise/xor.html>`_
+   * :ref:`bitwise_and`
+   * :ref:`bitwise_not`
+   * :ref:`bitwise_or`
+   * :ref:`bitwise_shift_left`
+   * :ref:`bitwise_shift_right`
+   * :ref:`bitwise_xor`
    * :ref:`between`
    * :ref:`case`
    * :ref:`coalesce`
+   * :ref:`decode`
    * :ref:`in`
    * :ref:`is_ascii`
    * :ref:`is_null`
@@ -83,3 +85,6 @@ The **Built-In Scalar Functions** page describes functions that return one value
    * :ref:`substring`
    * :ref:`trim`
    * :ref:`upper`
+   * :ref:`select_ascii`
+   * :ref:`sign`
+   * :ref:`chr`

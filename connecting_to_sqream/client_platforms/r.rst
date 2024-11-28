@@ -1,8 +1,8 @@
 .. _r:
 
-*****************************
-Connecting to SQream Using R
-*****************************
+**
+R
+**
 
 You can use R to interact with a SQream DB cluster.
 
@@ -12,7 +12,7 @@ This tutorial is a guide that will show you how to connect R to SQream DB.
    :local:
 
 JDBC
-=========
+====
 
 
 #. Get the :ref:`SQream DB JDBC driver<java_jdbc>`.
@@ -44,7 +44,7 @@ JDBC
       > .jinit(classpath=cp)
       > drv <- JDBC("com.sqream.jdbc.SQDriver","C:\\Program Files\\SQream Technologies\\JDBC Driver\\2020.1-3.2.0\\sqream-jdbc-3.2.jar")
 #. 
-   Open a connection with a :ref:`JDBC connection string<connection_string>` and run your first statement
+   Open a connection with a :ref:`JDBC connection string<java_jdbc>` and run your first statement
    
    .. code-block:: rconsole
    
@@ -66,7 +66,7 @@ JDBC
       > close(con)
 
 A full example
------------------
+--------------
 
 .. code-block:: rconsole
 
@@ -85,7 +85,7 @@ A full example
    > close(con)
 
 ODBC
-=========
+====
 
 #. Install the :ref:`SQream DB ODBC driver<odbc>` for your operating system, and create a DSN.
 
@@ -135,7 +135,7 @@ ODBC
       > close(ch)
 
 A full example
------------------
+--------------
 
 .. code-block:: rconsole
 

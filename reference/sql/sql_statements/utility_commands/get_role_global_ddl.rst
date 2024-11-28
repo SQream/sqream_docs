@@ -1,8 +1,11 @@
+:orphan:
+
 .. _get_role_global_ddl:
 
-********************
-GET_ROLE_GLOBAL_DDL
-********************
+*******************
+GET ROLE GLOBAL DDL
+*******************
+
 The ``GET_ROLE_GLOBAL_DDL`` statement returns the definition of a global role in DDL format.
 
 The ``GET_ROLE_GLOBAL_DDL`` page describes the following:
@@ -12,7 +15,8 @@ The ``GET_ROLE_GLOBAL_DDL`` page describes the following:
    :depth: 1   
 
 Syntax
-==========
+======
+
 The following is the correct syntax for using the ``GET_ROLE_GLOBAL_DDL`` statement:
 
 .. code-block:: postgres
@@ -20,7 +24,8 @@ The following is the correct syntax for using the ``GET_ROLE_GLOBAL_DDL`` statem
    select get_role_global_ddl(<'role_name'>)
    
 Example
-===========
+=======
+
 The following is an example of using the ``GET_ROLE_GLOBAL_DDL`` statement:
 
 .. code-block:: psql
@@ -28,7 +33,8 @@ The following is an example of using the ``GET_ROLE_GLOBAL_DDL`` statement:
    select get_role_global_ddl('public');
 
 Parameters
-============
+==========
+
 The following table shows the ``GET_ROLE_GLOBAL_DDL`` parameters:
 
 .. list-table:: 
@@ -41,7 +47,8 @@ The following table shows the ``GET_ROLE_GLOBAL_DDL`` parameters:
      - The definition of the global role in DDL format.
 
 Output
-==========
+======
+
 The following is an example of the output of the ``GET_ROLE_GLOBAL_DDL`` statement:
 
 .. code-block:: postgres
@@ -49,7 +56,8 @@ The following is an example of the output of the ``GET_ROLE_GLOBAL_DDL`` stateme
    create role "public";
 
 Permissions
-=============
+===========
+
 Using the ``GET_ROLE_GLOBAL_DDL`` statement requires no special permissions.
 
 For more information, see the following:

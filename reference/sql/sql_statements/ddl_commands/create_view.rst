@@ -3,7 +3,7 @@
 *****************
 CREATE VIEW
 *****************
-
+ 
 ``CREATE VIEW`` creates a new view in an existing database. A view is a virtual table.
 
 .. tip:: 

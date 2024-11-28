@@ -14,25 +14,40 @@ Running upgrade_storage
 ``upgrade_storage`` can be found in the ``bin`` directory of your SQream DB installation.
 
 
-Command line arguments
-==========================
-
-``upgrade_storage`` contains one positional argument:
-
-.. code-block:: console
-
-   $ upgrade_storage <storage path>
+Command line arguments and options
+----------------------------------
 
 .. list-table:: 
    :widths: auto
    :header-rows: 1
    
-   * - Argument
-     - Required
+   * - Parameter
+     - Parameter Type
      - Description
-   * - Storage path
-     - ✓
-     - Full path to a valid storage cluster
+   * - ``storage_path``
+     - Argument
+     - Full path to a valid storage cluster.
+   * - ``--storage_version``
+     - Option
+     - Displays your current storage version.
+   * - ``--check_predicates=0``
+     - Option
+     - Allows the upgrade process to proceed even if there are predicates marked for deletion.	 
+
+
+Syntax
+------
+
+.. code-block:: console
+
+   $ upgrade_storage <storage path> [--check_predicates=0]
+
+
+.. code-block:: console
+
+   $ upgrade_storage <storage path> [--storage_version] 
+
+   
 
 Results and error codes
 ========================
@@ -51,7 +66,7 @@ Results and error codes
      - ``no need to upgrade``
      - Storage doesn't need an upgrade
    * - Failure: can't read storage
-     - ``levelDB is in use by another application``
+     - ``RocksDB is in use by another application``
      - Check permissions, and ensure no SQream DB workers or :ref:`metadata_server <metadata_server_cli_reference>` are running when performing this operation.
 
 
@@ -64,7 +79,7 @@ Upgrade SQream DB's storage cluster
 .. code-block:: console
 
    $ ./upgrade_storage /home/rhendricks/raviga_database
-   get_leveldb_version path{/home/rhendricks/raviga_database}
+   get_rocksdb_version path{/home/rhendricks/raviga_database}
    current storage version 23
    upgrade_v24
    upgrade_storage to 24
@@ -75,7 +90,7 @@ Upgrade SQream DB's storage cluster
    upgrade_v26
    upgrade_storage to 26
    upgrade_storage to 26 - Done
-   validate_leveldb
+   validate_rocksdb
    storage has been upgraded successfully to version 26
 
 This message confirms that the cluster has already been upgraded correctly.

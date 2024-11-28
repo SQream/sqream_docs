@@ -3,6 +3,7 @@
 ***********************
 Log Related Issues
 ***********************
+
 The **Log Related Issues** page describes how to resolve the following common issues:
 
 .. toctree::
@@ -12,13 +13,14 @@ The **Log Related Issues** page describes how to resolve the following common is
 
 Loading Logs with Foreign Tables
 ---------------------------------------
-Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a database administrator can access the logs using the :ref:`external_tables` concept through SQream DB.
+
+Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a database administrator can access the logs using the :ref:`foreign_tables` concept through SQream DB.
 
 .. code-block:: postgres
 
    CREATE FOREIGN TABLE logs 
    (
-     start_marker      VARCHAR(4),
+     start_marker      TEXT(4),
      row_id            BIGINT,
      timestamp         DATETIME,
      message_level     TEXT,
@@ -32,7 +34,7 @@ Assuming logs are stored at ``/home/rhendricks/sqream_storage/logs/``, a databas
      service_name      TEXT,
      message_type_id   INT,
      message           TEXT,
-     end_message       VARCHAR(5)
+     end_message       TEXT(5)
    )
    WRAPPER csv_fdw
    OPTIONS
@@ -81,8 +83,8 @@ Finding Fatal Errors
 .. code-block:: psql
 
    t=> SELECT message FROM logs WHERE message_type_id=1010;
-   Internal Runtime Error,open cluster metadata database:IO error: lock /home/rhendricks/sqream_storage/leveldb/LOCK: Resource temporarily unavailable
-   Internal Runtime Error,open cluster metadata database:IO error: lock /home/rhendricks/sqream_storage/leveldb/LOCK: Resource temporarily unavailable
+   Internal Runtime Error,open cluster metadata database:IO error: lock /home/rhendricks/sqream_storage/rocksdb/LOCK: Resource temporarily unavailable
+   Internal Runtime Error,open cluster metadata database:IO error: lock /home/rhendricks/sqream_storage/rocksdb/LOCK: Resource temporarily unavailable
    Mismatch in storage version, upgrade is needed,Storage version: 25, Server version is: 26
    Mismatch in storage version, upgrade is needed,Storage version: 25, Server version is: 26
    Internal Runtime Error,open cluster metadata database:IO error: lock /home/rhendricks/sqream_storage/LOCK: Resource temporarily unavailable

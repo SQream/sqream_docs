@@ -1,3 +1,5 @@
+:orphan:
+
 .. _check_cuda_memory:
 
 *************************
@@ -8,5 +10,4 @@ The ``checkCudaMemory`` flag sets the pad device memory allocation with safety b
 The following describes the ``checkCudaMemory`` flag:
 
 * **Data type** - boolean
-* **Default value** - ``false``
-* **Allowed values** - ``true``, ``false``
+* **Default value** - ``FALSE``

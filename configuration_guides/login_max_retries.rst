@@ -1,8 +1,11 @@
+:orphan:
+
 .. _login_max_retries:
 
-*************************
+***********************************
 Adjusting Permitted Log-in Attempts
-*************************
+***********************************
+
 The ``loginMaxRetries`` flag sets the permitted log-in attempts.
 
 The following describes the ``loginMaxRetries`` flag:

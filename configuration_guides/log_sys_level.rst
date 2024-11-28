@@ -1,3 +1,5 @@
+:orphan:
+
 .. _log_sys_level:
 
 *************************
@@ -16,5 +18,4 @@ The ``logSysLevel`` flag determines the client log level, as follows:
 The following describes the ``logSysLevel`` flag:
 
 * **Data type** - uint
-* **Default value** - ``1``
-* **Allowed values** - 0-6
+* **Default value** - ``100000``

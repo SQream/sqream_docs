@@ -3,7 +3,7 @@
 **********************
 DROP VIEW
 **********************
-
+ 
 ``DROP VIEW`` can be used to remove a view.
 
 Because a view is logical, this does not affect any data in any of the referenced tables.

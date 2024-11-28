@@ -1,21 +1,18 @@
 .. _architecture:
 
-***********************
-System Architecture
-***********************
+************
+Architecture
+************
 
-This topic includes guides that walk an end-user, database administrator, or system architect through the main ideas behind SQream DB.
+The :ref:`internals_architecture`, :ref:`concurrency_and_scaling_in_sqream`, and :ref:`filesystem_and_filesystem_usage` guides are walk-throughs for end-users, database administrators, and system architects who wish to get familiarized with the SQreamDB system and its unique capabilities. 
 
-While SQream DB has many similarities to other database management systems, it has some unique and additional capabilities.
-
-Explore the guides below for information about SQream DB's architecture.
+.. figure:: /_static/images/sqream_db_table_crop.png
+   :scale: 60 %
 
 .. toctree::
-   :maxdepth: 2
-   :caption: In this section:
-   :glob:
-   :titlesonly:
+   :hidden:
 
    internals_architecture
-   xxprocesses_and_network_architecture
    filesystem_and_filesystem_usage
+   concurrency_and_scaling_in_sqream
+   

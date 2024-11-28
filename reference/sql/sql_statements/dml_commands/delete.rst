@@ -1,18 +1,17 @@
 .. _delete:
 
-**********************
+******
 DELETE
-**********************
+******
 
 Overview
-==================
+========
+
 The ``DELETE`` statement is used to remove specific rows from a table.
 
 SQream deletes data in the following steps:
 
 1. The designated rows are marked as deleted, but remain on-disk until the user initiates a clean-up process.
-
-    ::
 	
 #. The user initiates a clean-up process is initiated to delete the rows.
 
@@ -21,8 +20,6 @@ For more information about SQream's delete methodology, see the :ref:`delete_gui
 Note the following:
 
 * The :ref:`ALTER TABLE<alter_table>` and other `DDL operations <https://docs.sqream.com/en/latest/reference/sql/sql_statements/index.html#data-definition-commands-ddl>`_ are blocked on tables that require clean-up.
-
-
 
 * The value expression for deletion cannot be the result of a sub-query or join.
 
@@ -35,7 +32,7 @@ For more information about SQream's delete methodology, see the :ref:`delete_gui
    * To delete columns, see :ref:`DROP COLUMN<drop_column>`.
 
 Permissions
-=============
+===========
 
 To execute the ``DELETE`` statement, the ``DELETE`` and ``SELECT`` permissions must be assigned to the role at the table level.
 
@@ -43,7 +40,8 @@ For more information about assigning permissions to roles, see `Creating, Assign
 
 
 Syntax
-==========
+======
+
 The following is the correct syntax for executing the ``DELETE`` statement:
 
 .. code-block:: postgres
@@ -72,9 +70,17 @@ The following is the correct syntax for triggering a clean-up:
    
    schema_name ::= identifier
 
+For systems with delete parallelism capabilities, use the following syntax to enhance deletion performance and shorten runtime:
+
+.. code-block:: postgres
+
+	SELECT set_parallel_delete_threads(x);
+
+.. note:: You may configure up to 10 threads.
 
 Parameters
-============
+==========
+
 The following table describes the parameters used for executing the ``DELETE`` statement:
 
 .. list-table:: 
@@ -94,7 +100,8 @@ The following table describes the parameters used for executing the ``DELETE`` s
 
 
 Examples
-===========
+========
+
 The **Examples** section shows the following examples:
 
 * :ref:`Deleting values from a table<deleting_values_from_a_table>`
@@ -104,7 +111,8 @@ The **Examples** section shows the following examples:
 .. _deleting_values_from_a_table:
 
 Deleting Values from a Table
-------------------------------
+----------------------------
+
 The following shows an example of deleting values from a table:
 
 .. code-block:: psql
@@ -133,7 +141,8 @@ The following shows an example of deleting values from a table:
 .. _deleting_values_based_on_more_complex_predicates:
 
 Deleting Values Based on More Complex Predicates
----------------------------------------------------
+------------------------------------------------
+
 The following shows an example of deleting values based on more complex predicates:
 
 .. code-block:: psql
@@ -160,7 +169,8 @@ The following shows an example of deleting values based on more complex predicat
    4 rows
    
 Deleting Values that Contain Multi-Table Conditions
------------------
+---------------------------------------------------
+
 The following shows an example of deleting values that contain multi-table conditions. The example is based on the following tables:
 
 .. image:: /_static/images/delete_optimization.png
@@ -183,7 +193,8 @@ The statement below uses the ``EXISTS`` subquery to delete all bands based in Sw
 .. _identifying_and_cleaning_up_tables:
 
 Identifying and Cleaning Up Tables
----------------------------------------
+----------------------------------
+
 The following section shows examples of each phase required for cleaning up tables:
 
 * :ref:`Listing tables that require clean-up<listing_tables_that_require_cleanup>`
@@ -193,7 +204,8 @@ The following section shows examples of each phase required for cleaning up tabl
 .. _listing_tables_that_require_cleanup:
 
 Listing Tables that Require Clean-Up
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The following shows an example of listing tables that require clean-up:
 
 .. code-block:: psql
@@ -209,7 +221,8 @@ The following shows an example of listing tables that require clean-up:
 .. _identifying_cleanup_predicates:
 
 Identify Clean-Up Predicates
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The following shows an example of listing the clean-up predicates:
 
 .. code-block:: psql
@@ -225,7 +238,8 @@ The following shows an example of listing the clean-up predicates:
 .. _triggering_a_cleanup:
 
 Triggering a Clean-Up
-^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
+
 The following shows an example of triggering a clean-up:
 
 .. code-block:: psql

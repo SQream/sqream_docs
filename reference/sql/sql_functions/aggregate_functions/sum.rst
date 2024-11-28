@@ -1,14 +1,13 @@
 .. _sum:
 
-**************************
+***
 SUM 
-**************************
+***
 
 Returns the sum of numeric values, or only the distinct values.
 
 Syntax
-==========
-
+======
 
 .. code-block:: postgres
 
@@ -23,7 +22,7 @@ Syntax
          )
 
 Arguments
-============
+=========
 
 .. list-table:: 
    :widths: auto
@@ -37,27 +36,27 @@ Arguments
      - Specifies that the operation should operate only on unique values
 
 Returns
-============
+=======
 
-Return type is dependant on the argument.
+Return type is dependent on the argument.
 
-* For ``TINYINT``, ``SMALLINT`` and ``INT``, the return type is ``INT``.
+* For ``TINYINT``, ``SMALLINT`` and ``INT``, the return type is ``INT``
 
-* For ``BIGINT``, the return type is ``BIGINT``.
+* For ``BIGINT``, the return type is ``BIGINT``
 
-* For ``REAL``, the return type is ``REAL``
+* For ``REAL``, the return type is ``DOUBLE``
 
 * For ``DOUBLE``, rhe return type is ``DOUBLE``
 
 Notes
-=======
+=====
 
 * ``NULL`` values are ignored
 
 * Because ``SUM`` returns the same data type, it can very quickly overflow on large data sets. If the SUM is over 2\ :sup:`31` for example, up-cast to a larger type like ``BIGINT``: ``SUM(expr :: BIGINT)``
 
 Examples
-===========
+========
 
 For these examples, assume a table named ``nba``, with the following structure:
 
@@ -65,14 +64,14 @@ For these examples, assume a table named ``nba``, with the following structure:
    
    CREATE TABLE nba
    (
-      "Name" varchar(40),
-      "Team" varchar(40),
+      "Name" text(40),
+      "Team" text(40),
       "Number" tinyint,
-      "Position" varchar(2),
+      "Position" text(2),
       "Age" tinyint,
-      "Height" varchar(4),
+      "Height" text(4),
       "Weight" real,
-      "College" varchar(40),
+      "College" text(40),
       "Salary" float
     );
 
@@ -85,7 +84,7 @@ Here's a peek at the table contents (:download:`Download nba.csv </_static/sampl
    :header-rows: 1
 
 Simple sum
--------------
+----------
 
 .. code-block:: psql
 
@@ -95,7 +94,7 @@ Simple sum
    12311
 
 Sum only distinct values
-----------------------------
+------------------------
 
 .. code-block:: psql
 
@@ -105,7 +104,7 @@ Sum only distinct values
    649
 
 Combine sum with GROUP BY
-------------------------------
+-------------------------
 
 .. code-block:: psql
 

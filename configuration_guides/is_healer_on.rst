@@ -1,14 +1,15 @@
+:orphan:
+
 .. _is_healer_on:
 
-*************************
-Enabling the Query Healer
-*************************
-The ``is_healer_on`` flag enables the Query Healer, which periodically examines the progress of running statements and logs statements exceeding the ``healerMaxInactivityHours`` flag setting.
+************
+Is Healer On
+************
 
-The following describes the ``is_healer_on`` flag:
+The ``is_healer_on`` flag enables the Query Healer, which periodically examines the progress of running statements and logs statements exceeding the ``maxStatementInactivitySeconds`` flag setting.
 
 * **Data type** - boolean
 * **Default value** - ``true``
 * **Allowed values** - ``true``, ``false``
 
-For related flags, see :ref:`healer_max_inactivity_hours`.
+For related flags, see :ref:`max_statement_inactivity_seconds`.

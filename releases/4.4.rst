@@ -1,0 +1,176 @@
+.. _4.4:
+
+*****************
+Release Notes 4.4
+*****************
+
+The 4.4 release notes were released on September 28th, 2023
+
+.. contents:: 
+   :local:
+   :depth: 1      
+
+Compatibility Matrix
+--------------------
+ 
++---------------------------------+------------------------------------------------------------------------+
+| System Requirement              | Details                                                                |
++=================================+========================================================================+
+| Supported OS                    | * CentOS - 7.x                                                         |
+|                                 | * RHEL - 7.x / 8.x                                                     |
++---------------------------------+------------------------------------------------------------------------+
+| supported Nvidia driver         | CUDA version from 10.1 up to 11.4.3                                    |
++---------------------------------+------------------------------------------------------------------------+
+| Storage version                 |   50                                                                   |
++---------------------------------+------------------------------------------------------------------------+
+| Driver compatibility            | * JDBC 5.0.0                                                           |
+|                                 | * ODBC 4.4.4                                                           | 
+|                                 | * NodeJS                                                               |
+|                                 | * .NET 3.0.2                                                           |
+|                                 | * Pysqream 5.0.0                                                       |
+|                                 | * Spark                                                                |
++---------------------------------+------------------------------------------------------------------------+
+| SQream Acceleration Studio      | Version 5.7.0                                                          |
++---------------------------------+------------------------------------------------------------------------+
+
+New Features and Enhancements
+-----------------------------
+
+► The newly supported :ref:`sql_data_type_array` data type enables you to simplify queries and optimize space utilization.
+
+► :ref:`denodo` may now be used for real-time data visualization of various sources.
+
+► New :ref:`select_gpu_metrics` utility function now available, providing insights into cluster GPU usage over defined periods, crucial for maintaining compliance with license limits.
+
+Newly Released Connector Drivers
+---------------------------------
+
+► **Pysqream 5.0.0**
+
+* `tar.file <https://github.com/SQream/pysqream/releases/tag/v5.0.0>`_
+* :ref:`Documentation<pysqream>`
+
+► **JDBC 5.0.0**
+
+* `jar.file <https://sq-ftp-public.s3.amazonaws.com/sqream-jdbc-5.0.0.jar>`_
+* :ref:`Documentation<java_jdbc>`
+
+SQreamDB Studio Updates and Improvements
+-----------------------------------------
+
+SQream Studio version 5.7.0 has been released.
+
+Known Issues
+------------
+
+* :ref:`Percentile<percentile_disc>` is not supported for :ref:`Window Functions<window_functions>`.
+
+
+Version 4.4 resolved Issues
+---------------------------
+
++--------------------+------------------------------------------------------------------------------------------------+
+| **SQ No.**         | **Description**                                                                                |
++====================+================================================================================================+
+| SQ-12965           | ``ReadParquet`` chunk producer issue                                                           | 
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-13461           | ``LEFT JOIN`` in the ``WHERE`` clause with different date values results in missing filters    |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-13772           | Foreign table ``JOIN`` operation issue                                                         |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-13805           | Different table structures provide different query times when using Parquet files              |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-13947           | Unicode character issue when using Tableau                                                     |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-13954           | Runtime error when granting role multiple permissions using the web interface                  |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-13971           | Parquet file data loading issue when columns contain over 100,000 digits                       |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-14136           | Query deceleration due to metadata server issue                                                |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-14268           | ``TEXT`` column length calculation CUDA memory issue                                           |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-14399           | Figment snapshot recognition issue                                                             |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-14400           | Healer configuration flag unavailability                                                       |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-14556           | Object store path issue when using S3 API                                                      |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-14724           | Aliases error when using ``DELETE`` statement                                                  |
++--------------------+------------------------------------------------------------------------------------------------+
+| SQ-15074           | Web interface login issue for non-``SUPERUSER`` roles                                          |
++--------------------+------------------------------------------------------------------------------------------------+
+
+
+
+Configuration Adjustments
+-------------------------
+
+► You may now configure the object access style and your endpoint URL with Virtual Private Cloud (VPC) when using AWS S3. 
+
+Visit :ref:`s3` to learn more about how and when you should use these two new parameters:
+
+* ``AwsEndpointOverride``
+* ``AwsObjectAccessStyle``
+
+► New :ref:`server_picker_cli_reference` parameters enable you to direct services to specific Workers and examine Worker availability.
+
+Deprecations
+-------------------
+
+► **CentOS Linux 7.x**
+
+* As of June 2024, CentOS Linux 7.x will reach its End of Life and will not be supported by SQreamDB. This announcement provides a one-year advance notice for our users to plan for this change. We recommend users to explore migration or upgrade options to maintain ongoing support and security beyond this date. 
+
+* **REHL 8.x** is now officially supported.
+
+► ``INT96``
+
+Due to Parquet's lack of support of the ``INT96`` data type, SQreamDB has decided to deprecate this data type.
+
+
+► Square Brackets ``[]``
+
+The ``[]``, which are frequently used to delimit :ref:`identifiers<keywords_and_identifiers>` such as column names, table names, and other database objects, are officially deprecated to facilitate the use of the ``ARRAY`` data type. To delimit database object identifiers, use double quotes ``""``.
+
+
+► ``VARCHAR``
+
+With the improvement of the core functionalities of the platform and to align with the constantly evolving ecosystem requirements, the ``VARCHAR`` data type is deprecated and may not be used. The ``TEXT`` data type is replacing the ``VARCHAR`` and ``NVARCHAR`` data types.
+
+Upgrading to Version 4.4
+-------------------------
+1. Generate a back-up of the metadata by running the following command:
+
+   .. code-block:: console
+
+      $ select backup_metadata('out_path');
+	  
+   .. tip:: SQreamDB recommends storing the generated back-up locally in case needed.
+   
+   SQreamDB runs the Garbage Collector and creates a clean backup tarball package.
+   
+2. Shut down all SQreamDB services.
+
+3. Copy the recently created back-up file.
+
+4. Replace your current metadata with the metadata you stored in the back-up file.
+
+5. Navigate to the new SQreamDB package bin folder.
+
+6. Run the following command:
+
+   .. code-block:: console
+
+      $ ./upgrade_storage <levelDB path>
+	
+7. Version 4.4 introduces a service permission feature that enables superusers to grant and revoke role access to services. However, when upgrading from version 4.2 or earlier to version 4.4 or later, this feature initializes access to services, causing existing roles to lose their access to services. 
+
+There are two methods of granting back access to services:
+
+   * Grant access to all services for all roles using the :ref:`grant_usage_on_service_to_all_roles` utility function
+   * Selectively grant or revoke access to services by following the :ref:`access permission guide<access_control_permissions>`
+
+
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQreamDB Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
+  

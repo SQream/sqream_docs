@@ -41,16 +41,7 @@ This topic contains the reference for these programs, as well as flags and confi
    * - :ref:`upgrade_storage <upgrade_storage_cli_reference>`
      - Upgrade metadata schemas when upgrading between major versions
 
-.. list-table:: Docker utilities
-   :widths: auto
-   :header-rows: 1
-   
-   * - Command
-     - Usage
-   * - :ref:`sqream_console <sqream_console_cli_reference>`
-     - Dockerized convenience wrapper for operations
-   * - :ref:`sqream_installer <sqream_installer_cli_reference>`
-     - Dockerized installer
+
 
 .. toctree::
    :maxdepth: 1
@@ -58,8 +49,8 @@ This topic contains the reference for these programs, as well as flags and confi
    
    metadata_server
    sqreamd
+   multi_platform_cli
    sqream_console
-   sqream_installer
    server_picker
    sqream_storage
    sqream sql<sqream_sql>

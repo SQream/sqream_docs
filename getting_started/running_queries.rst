@@ -3,6 +3,7 @@
 ****************************
 Running Queries
 ****************************
+
 The **Running Queries** section describes the following:
 
 * :ref:`Running basic queries<running_basic_queries>`
@@ -21,15 +22,14 @@ You can run a basic query using the ``SELECT`` keyword, followed by a list of co
 
 .. code-block:: psql
 
-   test=> SELECT id, name, weight FROM cool_animals;
+   SELECT id, name, weight FROM cool_animals;
    1,Dog                 ,7
    2,Possum              ,3
    3,Cat                 ,5
    4,Elephant            ,6500
    5,Rhinoceros          ,2100
    6,\N,\N
-   
-   6 rows
+  
    
 For more information on the ``SELECT`` keyword, see :ref:`select`.
 
@@ -41,15 +41,14 @@ You can output all columns without specifying them using the star operator ``*``
 
 .. code-block:: psql
 
-   test=> SELECT * FROM cool_animals;
+   SELECT * FROM cool_animals;
    1,Dog                 ,7
    2,Possum              ,3
    3,Cat                 ,5
    4,Elephant            ,6500
    5,Rhinoceros          ,2100
    6,\N,\N
-   
-   6 rows
+  
 
 .. _outputting_shorthand_table_values:
 
@@ -59,10 +58,9 @@ You can output the number of values in a table without getting the full result s
 
 .. code-block:: psql
 
-   test=> SELECT COUNT(*) FROM cool_animals;
+   SELECT COUNT(*) FROM cool_animals;
    6
-   
-   1 row
+  
 
 .. _filtering_results:
 
@@ -72,11 +70,10 @@ You can filter results by adding a ``WHERE`` clause and specifying the filter co
 
 .. code-block:: psql
 
-   test=> SELECT id, name, weight FROM cool_animals WHERE weight > 1000;
+   SELECT id, name, weight FROM cool_animals WHERE weight > 1000;
    4,Elephant            ,6500
    5,Rhinoceros          ,2100
-   
-   2 rows
+  
 
 .. _sorting_results:
 
@@ -86,15 +83,13 @@ You can sort results by adding an ``ORDER BY`` clause and specifying ascending (
 
 .. code-block:: psql
 
-   test=> SELECT * FROM cool_animals ORDER BY weight DESC;
+   SELECT * FROM cool_animals ORDER BY weight DESC;
    4,Elephant            ,6500
    5,Rhinoceros          ,2100
    1,Dog                 ,7
    3,Cat                 ,5
    2,Possum              ,3
    6,\N,\N
-
-   6 rows
 
 .. _filtering_null_rows:
 
@@ -104,14 +99,13 @@ You can filter null rows by adding an ``IS NOT NULL`` filter, as shown in the fo
 
 .. code-block:: psql
 
-   test=> SELECT * FROM cool_animals WHERE weight IS NOT NULL ORDER BY weight DESC;
+   SELECT * FROM cool_animals WHERE weight IS NOT NULL ORDER BY weight DESC;
    4,Elephant            ,6500
    5,Rhinoceros          ,2100
    1,Dog                 ,7
    3,Cat                 ,5
    2,Possum              ,3
 
-   5 rows
    
 For more information, see the following:
 

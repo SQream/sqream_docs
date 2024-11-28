@@ -1,8 +1,9 @@
 .. _performing_basic_sqream_operations:
 
-****************************
+**********************************
 Performing Basic SQream Operations
-****************************
+**********************************
+
 After installing SQream you can perform the operations described on this page:
 
 .. toctree::
@@ -19,5 +20,5 @@ After installing SQream you can perform the operations described on this page:
 
 For more information on other basic SQream operations, see the following:
 
-* `Creating a Database <https://docs.sqream.com/en/latest/reference/sql/sql_statements/ddl_commands/create_database.html>`_
+* `Creating a Database <https://docs.sqream.com/en/v2022.1/reference/sql/sql_statements/ddl_commands/create_database.html>`_
 * :ref:`data_ingestion`

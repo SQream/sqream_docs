@@ -1,0 +1,111 @@
+.. _4.8:
+
+*****************
+Release Notes 4.8
+*****************
+
+The 4.8 release notes were released on October 6th, 2024
+
+.. contents:: 
+   :local:
+   :depth: 1      
+
+Compatibility Matrix
+--------------------
+ 
++-------------------------+------------------------------------------------------------------------+
+| System Requirement      | Details                                                                |
++=========================+========================================================================+
+| Supported OS            | RHEL 8.x                                                               |
++-------------------------+------------------------------------------------------------------------+
+| supported Nvidia driver | CUDA version 12.x                                                      |
++-------------------------+------------------------------------------------------------------------+
+| Storage version         |   51                                                                   |
++-------------------------+------------------------------------------------------------------------+
+| Driver compatibility    | * JDBC 5.4.0                                                           |
+|                         | * ODBC 4.4.4                                                           | 
+|                         | * NodeJS 4.2.4                                                         |
+|                         | * .NET 5.0.0                                                           |
+|                         | * Pysqream 5.3.0                                                       |
+|                         | * SQLAlchemy 1.4                                                       |
+|                         | * Spark 5.0.0                                                          |
+|                         | * SQLoader As A Service 8.2                                            |
++-------------------------+------------------------------------------------------------------------+
+
+New Features and Enhancements
+-----------------------------
+
+
+
+► Prepared statements, also known as parameterized queries, are a safer and more efficient way to execute SQL statements. They prevent SQL injection attacks by separating SQL code from data, and they can improve performance by reusing prepared statements.
+These are now supported by our `Python <../connecting_to_sqream/client_drivers/python/index.html#prepared-statements>`_ and `JDBC <../connecting_to_sqream/client_drivers/jdbc/index.html#prepared-statements>`_ client drivers.
+
+► `PIVOT <../reference/sql/sql_syntax/pivot_unpivot.html#syntax>`_ allows to convert row-level data into columnar representation. This technique is particularly useful when you need to summarize and visualize data. `UNPIVOT <../reference/sql/sql_syntax/pivot_unpivot.html#syntax>`_ does the opposite by transforming columnar data into rows. This operation is invaluable for scenarios where you wish to explore data in a more granular manner.
+
+► `Window funtion alias  <../reference/sql/sql_syntax/window_functions.html#window-funtion-alias>`_ allows to specify a parameter within the window function definition. This eliminates the need to repeatedly input the same SQL code in queries that use multiple window functions with identical definitions.
+
+► `CONCAT <../reference/sql/sql_functions/scalar_functions/string/concat_function.html#concat-function>`_ function concatenates one or more strings, or concatenates one or more binary values.
+
+
+Known Issues
+------------
+
+:ref:`Percentile<percentile_disc>` is not supported for :ref:`Window Functions<window_functions>`
+
+Version 4.8 resolved Issues
+---------------------------
+
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| **SQ No.**   | **Description**                                                                                                     |
++==============+=====================================================================================================================+
+| SQ-12365     | SQream CLI - Comment is not ignored as expected                                                                     |
++--------------+---------------------------------------------------------------------------------------------------------------------+
+| SQ-17520     | SQLoader - DELETE issue following CDC process                                                                       |
++--------------+---------------------------------------------------------------------------------------------------------------------+
+
+
+
+Deprecations
+-------------------
+
+► **Haskell CLI**
+
+Starting October 2024, support for the Haskell CLI will be discontinued, and it will be replaced by a JAVA CLI that is compatible with both SQreamDB and BLUE.
+
+► **CentOS Linux 7.x**
+
+* As of June 2024, CentOS Linux 7.x will reach its End of Life and will not be supported by SQreamDB. This announcement provides a one-year advance notice for our users to plan for this change. We recommend users to explore migration or upgrade options to maintain ongoing support and security beyond this date. 
+
+* REHL 8.x is now officially supported.
+
+Upgrading to Version 4.8
+-------------------------
+
+1. Generate a back-up of the metadata by running the following command:
+
+   .. code-block:: console
+
+      select backup_metadata('out_path');
+	  
+   .. tip:: SQreamDB recommends storing the generated back-up locally in case needed.
+   
+   SQreamDB runs the Garbage Collector and creates a clean backup tarball package.
+   
+2. Shut down all SQreamDB services.
+
+3. Copy the recently created back-up file.
+
+4. Replace your current metadata with the metadata you stored in the back-up file.
+
+5. Navigate to the new SQreamDB package bin folder.
+
+6. Run the following command:
+
+   .. code-block:: console
+
+      ./upgrade_storage <levelDB path>
+	
+
+
+  .. note:: Upgrading from a major version to another major version requires you to follow the **Upgrade Storage** step. This is described in Step 7 of the `Upgrading SQreamDB Version <../installation_guides/installing_sqream_with_binary.html#upgrading-sqream-version>`_ procedure.
+  

@@ -1,8 +1,8 @@
 .. _nodejs:
 
-*************************
+*******
 Node.JS
-*************************
+*******
 
 The SQream DB Node.JS driver allows Javascript applications and tools connect to SQream DB.
 This tutorial shows you how to write a Node application using the Node.JS interface.
@@ -13,15 +13,15 @@ The driver requires Node 10 or newer.
    :local:
 
 Installing the Node.JS driver
-==================================
+=============================
 
 Prerequisites
-----------------
+-------------
 
 * Node.JS 10 or newer. Follow instructions at `nodejs.org <https://nodejs.org/en/download/package-manager/>`_ .
 
 Install with NPM
--------------------
+----------------
 
 Installing with npm is the easiest and most reliable method.
 If you need to install the driver in an offline system, see the offline method below.
@@ -31,7 +31,7 @@ If you need to install the driver in an offline system, see the offline method b
    $ npm install @sqream/sqreamdb
 
 Install from an offline package
--------------------------------------
+-------------------------------
 
 The Node driver is provided as a tarball for download from the `SQream Drivers page <http://sqream.com/product/client-drivers>`_ .
 
@@ -43,10 +43,10 @@ After downloading the tarball, use ``npm`` to install the offline package.
 
 
 Connect to SQream DB with a Node.JS application
-====================================================
+===============================================
 
 Create a simple test
-------------------------------------------
+--------------------
 
 Replace the connection parameters with real parameters for a SQream DB installation.
 
@@ -77,7 +77,7 @@ Replace the connection parameters with real parameters for a SQream DB installat
 
 
 Run the test
-----------------
+------------
 
 A successful run should look like this:
 
@@ -88,10 +88,10 @@ A successful run should look like this:
 
 
 API reference
-====================
+=============
 
 Connection parameters
----------------------------
+---------------------
 
 .. list-table:: 
    :widths: auto
@@ -135,7 +135,7 @@ Connection parameters
      - Connect via load balancer (use only if exists, and check port). For example, ``true``
 
 Events
--------------
+------
 
 The connector handles event returns with an event emitter
 
@@ -149,7 +149,7 @@ getTypes
    The ``getTypes`` event returns the results columns types.
 
 Example
-^^^^^^^^^^^^^^^^^
+^^^^^^^
 
 .. code-block:: javascript
 
@@ -170,7 +170,7 @@ Example
    });
 
 Input placeholders
--------------------------
+------------------
 
 The Node.JS driver can replace parameters in a statement.
 
@@ -196,10 +196,10 @@ The valid placeholder formats are provided in the table below.
 See the :ref:`input placeholders example<input_placeholders_example>` below.
 
 Examples
-===============
+========
 
 Setting configuration flags
------------------------------------
+---------------------------
 
 SQream DB configuration flags can be set per statement, as a parameter to ``runQuery``.
 
@@ -218,7 +218,7 @@ For example:
 
 
 Lazyloading
------------------------------------
+-----------
 
 To process rows without keeping them in memory, you can lazyload the rows with an async:
 
@@ -259,7 +259,7 @@ To process rows without keeping them in memory, you can lazyload the rows with a
    
 
 Reusing a connection
------------------------------------
+--------------------
 
 It is possible to execeute multiple queries with the same connection (although only one query can be executed at a time).
 
@@ -304,7 +304,7 @@ It is possible to execeute multiple queries with the same connection (although o
 .. _input_placeholders_example:
 
 Using placeholders in queries
------------------------------------
+-----------------------------
 
 Input placeholders allow values like user input to be passed as parameters into queries, with proper escaping.
 
@@ -334,11 +334,11 @@ The query that will run is ``SELECT col1 FROM public.table2 WHERE name = 'john''
 
 
 Troubleshooting and recommended configuration
-================================================
+=============================================
 
 
 Preventing ``heap out of memory`` errors
---------------------------------------------
+----------------------------------------
 
 Some workloads may cause Node.JS to fail with the error:
 
@@ -355,7 +355,7 @@ For example, set the space size to 2GB:
    $ node --max-old-space-size=2048 my-application.js
 
 BIGINT support
-------------------------
+--------------
 
 The Node.JS connector supports fetching ``BIGINT`` values from SQream DB. However, some applications may encounter an error when trying to serialize those values.
 

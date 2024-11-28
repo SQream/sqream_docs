@@ -3,6 +3,7 @@
 ****************************
 Creating Your First Table
 ****************************
+
 The **Creating Your First Table** section describes the following:
 
 * :ref:`Creating a table<creating_a_table>`
@@ -21,7 +22,7 @@ The ``CREATE TABLE`` syntax is used to create your first table. This table inclu
 
    CREATE TABLE cool_animals (
       id INT NOT NULL,
-      name VARCHAR(20),
+      name TEXT(20),
       weight INT
    );
 
@@ -37,7 +38,7 @@ You can drop an existing table and create a new one by adding the ``OR REPLACE``
 
    CREATE OR REPLACE TABLE cool_animals (
       id INT NOT NULL,
-      name VARCHAR(20),
+      name TEXT(20),
       weight INT
    );
 
@@ -54,13 +55,13 @@ You can list the full, verbose ``CREATE TABLE`` statement for a table by using t
    test=> SELECT GET_DDL('cool_animals');
    create table "public"."cool_animals" (
    "id" int not null,
-   "name" varchar(20),
+   "name" text(20),
    "weight" int
    );
 
 .. note:: 
 
-   * SQream DB identifier names such as table names and column names are not case sensitive. SQream DB lowercases all identifiers bu default. If you want to maintain case, enclose the identifiers with double-quotes.
+   * SQream DB identifier names such as table names and column names are not case sensitive. SQreamDB lowercases all identifiers by default. If you want to maintain case, enclose the identifiers with double-quotes.
    * SQream DB places all tables in the `public` schema, unless another schema is created and specified as part of the table name.
    
 For information on listing a ``CREATE TABLE`` statement, see :ref:`get_ddl`.

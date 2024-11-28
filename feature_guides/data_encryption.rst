@@ -5,9 +5,6 @@ Data Encryption
 ***********************
 The **Data Encryption** page describes the following:
 
-.. |icon-new_2022.1| image:: /_static/images/new_2022.1.png
-   :align: middle
-   :width: 110
    
 .. toctree::
    :maxdepth: 1

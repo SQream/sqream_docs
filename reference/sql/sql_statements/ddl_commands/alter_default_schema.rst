@@ -6,7 +6,7 @@ ALTER DEFAULT SCHEMA
 
 The ``ALTER DEFAULT SCHEMA`` command can be used to change a role's default schema. The default schema in SQream is ``public``.
 
-For more information, see :ref:`create_schema` and :ref:`drop_schema`.
+For more information, see :ref:`create_schema`, :ref:`drop_schema`, and :ref:`rename_schema`. 
 
 
 

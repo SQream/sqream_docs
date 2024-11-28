@@ -3,7 +3,7 @@
 *****************
 CREATE TABLE AS
 *****************
-
+ 
 The ``CREATE TABLE AS`` commands creates a new table from the result of a select query.
 
 
@@ -63,6 +63,8 @@ This section includes the following examples:
 .. contents:: 
    :local:
    :depth: 1
+
+.. warning:: The ``SELECT`` statement decrypts information by default. When executing ``CREATE TABLE AS SELECT``, encrypted information will appear as clear text in the newly created table.
 
 Creating a Copy of a Foreign Table or View
 ---------------------------------------------------------------------------

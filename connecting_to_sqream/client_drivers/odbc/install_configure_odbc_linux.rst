@@ -1,8 +1,8 @@
 .. _install_odbc_linux:
 
-****************************************
+***********************************
 Install and configure ODBC on Linux
-****************************************
+***********************************
 
 .. toctree::
    :maxdepth: 1
@@ -14,9 +14,9 @@ The ODBC driver for Windows is provided as a shared library.
 
 This tutorial shows how to install and configure ODBC on Linux.
 
-.. contents:: In this topic:
+.. contents::
    :local:
-   :depth: 2
+   :depth: 1
 
 Prerequisites
 ==============
@@ -24,9 +24,9 @@ Prerequisites
 .. _unixODBC:
 
 unixODBC
-------------
+--------
 
-The ODBC driver requires a driver manager to manage the DSNs. SQream DB's driver is built for unixODBC.
+The ODBC driver requires a driver manager to manage the DSNs. SQreamDB's driver is built for unixODBC.
 
 Verify unixODBC is installed by running:
 
@@ -48,20 +48,12 @@ Take note of the location of ``.odbc.ini`` and ``.odbcinst.ini``. In this case, 
    :local:
    :depth: 1
 
-Install unixODBC on RHEL 7 / CentOS 7
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Install unixODBC on RHEL 
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: console
 
    $ yum install -y unixODBC unixODBC-devel
-
-Install unixODBC on Ubuntu
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: console
-
-   $ sudo apt-get install unixodbc unixodbc-dev
-
 
 Install the ODBC driver with a script
 =======================================
@@ -74,7 +66,7 @@ Use this method if you have never used ODBC on your machine before. If you have 
    .. code-block:: console
       
       $ mkdir -p sqream_odbc64
-      $ tar xf sqream_2019.2.1_odbc_3.0.0_x86_64_linux.tar.gz -C sqream_odbc64
+      $ tar -xf sqream_odbc_vX.Y_x86_64_linux.tar.gz  --strip-components=1  -C sqream_odbc64/
 
 #. Run the first-time installer. The installer will create an editable DSN.
    
@@ -218,10 +210,10 @@ ODBC DSN Parameters
      - Specifices :ref:`service queue<workload_manager>` to use. For example, ``Service="etl"``. Leave blank (``Service=""``) for default service ``sqream``.
    * - Server
      - None
-     - Hostname of the SQream DB worker. For example, ``Server="127.0.0.1"`` or ``Server="sqream.mynetwork.co"``
+     - Hostname of the SQreamDB worker. For example, ``Server="127.0.0.1"`` or ``Server="sqream.mynetwork.co"``
    * - Port
      - None
-     - TCP port of the SQream DB worker. For example, ``Port="5000"`` or ``Port="3108"`` for the load balancer
+     - TCP port of the SQreamDB worker. For example, ``Port="5000"`` or ``Port="3108"`` for the load balancer
    * - Cluster
      - ``false``
      - Connect via load balancer (use only if exists, and check port). For example, ``Cluster=true``
@@ -236,7 +228,7 @@ ODBC DSN Parameters
      - Location where the driver was installed. For example, ``ErrorMessagePath=/home/rhendricks/sqream_odbc64/ErrorMessages``.
    * - LogLevel
      - 0
-     - Set to 0-6 for logging. Use this setting when instructed to by SQream Support. For example, ``LogLevel=1``
+     - Set to 0-6 for logging. Use this setting when instructed to by SQreamDB Support. For example, ``LogLevel=1``
 
          .. hlist::
             :columns: 3
@@ -249,5 +241,9 @@ ODBC DSN Parameters
             * 5 = Debug tracing
             * 6 = Detailed tracing
 
+Limitations
+===============
+
+Please note that the SQreamDB ODBC connector does not support the use of ARRAY data types. If your database schema includes ARRAY columns, you may encounter compatibility issues when using ODBC to connect to the database.
 
 

@@ -1,10 +1,12 @@
+:orphan:
+
 .. _show_node_info:
 
 ********************
 SHOW_NODE_INFO
 ********************
 
-``SHOW_NODE_INFO`` returns a snapshot of the current query plan, similar to ``EXPLAIN ANALYZE`` from other databases.
+``SHOW_NODE_INFO`` returns a snapshot of the current query plan, similarly to the ``EXPLAIN ANALYZE`` function used in other databases.
 
 The snapshot provides information about execution which can be used for monitoring and troubleshooting slow running statements by helping identify long-running execution nodes (components that process data), etc.
 
@@ -283,8 +285,8 @@ Getting execution details for a statement
    t=> SELECT SHOW_SERVER_STATUS();
    service | instanceid | connection_id | serverip     | serverport | database_name | user_name | clientip     | statementid | statement                                                       | statementstarttime  | statementstatus | statementstatusstart
    --------+------------+---------------+--------------+------------+---------------+-----------+--------------+-------------+-----------------------------------------------------------------+---------------------+-----------------+---------------------
-   sqream  |            |           152 | 192.168.1.91 |       5000 | t            | sqream    | 192.168.1.91 |         176 | SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | 25-12-2019 23:53:13 | Executing       | 25-12-2019 23:53:13
-   sqream  |            |           151 | 192.168.1.91 |       5000 | t            | sqream    | 192.168.0.1  |         177 | SELECT show_server_status()                                     | 25-12-2019 23:51:31 | Executing       | 25-12-2019 23:53:13 
+   sqream  |            |           152 | 192.168.1.91 |       5000 | t            | sqream    | 192.168.1.91 |         176 | SELECT "Name" FROM nba WHERE REGEXP_COUNT("Name", '( )+', 8)>1; | 2019-12-25 23:53:13 | Executing       | 2019-12-25 23:53:13
+   sqream  |            |           151 | 192.168.1.91 |       5000 | t            | sqream    | 192.168.0.1  |         177 | SELECT show_server_status()                                     | 2019-12-25 23:51:31 | Executing       | 2019-12-25 23:53:13 
 
 
 The statement ID we want to reserach is ``176``, running on worker ``192.168.1.91``.

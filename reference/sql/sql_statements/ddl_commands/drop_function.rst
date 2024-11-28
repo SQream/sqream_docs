@@ -3,7 +3,7 @@
 **********************
 DROP FUNCTION
 **********************
-
+ 
 ``DROP FUNCTION`` can be used to remove a user defined function.
 
 Permissions

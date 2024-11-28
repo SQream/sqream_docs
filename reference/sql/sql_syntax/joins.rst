@@ -1,8 +1,8 @@
-.. _joins:
+:orphan:
 
-***************************
+*****
 Joins
-***************************
+*****
 
 The ``JOIN`` clause combines results from two or more table expressions (tables, external tables, views) based on a related column or other condition. Performing a join outputs a new result set. For example, two tables containing one or more columns in common can be joined to match or correlate with rows from another table.
 
@@ -10,7 +10,8 @@ The ``JOIN`` clause combines results from two or more table expressions (tables,
 
 
 Syntax
-==========
+======
+
 The following shows the correct syntax for creating a **join**:
 
 .. code-block:: postgres
@@ -30,7 +31,8 @@ The following shows the correct syntax for creating a **join**:
        MERGE | LOOP
 
 Join Types
--------------
+----------
+
 The **Join Types** section describes the following join types:
    
 * :ref:`Inner joins<inner_joins>`
@@ -41,13 +43,13 @@ The **Join Types** section describes the following join types:
 .. _inner_joins:
 
 Inner Joins
-^^^^^^^^^^^^
+^^^^^^^^^^^
+
 The following shows the correct syntax for creating an **inner join**:
 
 .. code-block:: postgres
 
    left_side [ INNER ] JOIN left_side ON value_expr
-   left_side [ INNER ] JOIN left_side USING ( join_column [, ... ] )
 
 
 Inner joins are the default join type and return rows from the ``left_side`` and ``right_side`` based on a matching condition.
@@ -71,13 +73,13 @@ For an inner join example, see :ref:`Inner Join Example<inner_join_example>`.
 .. _left_outer_joins:
 
 Left Outer Joins
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
+
 The following shows the correct syntax for creating an **left outer join**:
 
 .. code-block:: postgres
 
    left_side LEFT [ OUTER ] JOIN right_side ON value_expr
-   left_side LEFT [ OUTER ] JOIN right_side USING ( join_column [, ... ] )
 
 Left outer joins are similar to inner joins, except that for every ``left_side`` row without a matching condition, a ``NULL`` value is returned for the corresponding ``right_side`` column.
 
@@ -87,13 +89,13 @@ For a left inner join example, see :ref:`Left Join Example<left_join_example>`.
 .. _right_outer_joins:
 
 Right Outer Joins
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^
+
 The following shows the correct syntax for creating an **right outer join**:
 
 .. code-block:: postgres
 
    left_side RIGHT [ OUTER ] JOIN right_side ON value_expr
-   left_side RIGHT [ OUTER ] JOIN right_side USING ( join_column [, ... ] )
 
 Right outer joins are similar to inner joins, except that for every ``right_side`` row without a matching condition, a ``NULL`` value is returned for the corresponding ``left_side`` column.
 
@@ -103,7 +105,8 @@ For a right outer join example, see :ref:`Right Join Example<right_join_example>
 .. _cross_joins:
 
 Cross Joins
-^^^^^^^^^^^^^
+^^^^^^^^^^^
+
 The following shows the correct syntax for creating an **cross join**:
 
 .. code-block:: postgres
@@ -148,7 +151,7 @@ For a cross join example, see :ref:`Cross Join Example<cross_join_example>`.
 
 
 The ON Condition
--------------
+----------------
 
 The ``ON`` condition is a value expression that generates a Boolean output to identify whether rows match.
 
@@ -161,12 +164,11 @@ For example, the following is displayed when two name columns match:
 
 The ``ON`` clause is optional for ``LEFT`` and ``RIGHT`` joins. However, excluding it results in a computationally intensive cross join.
 
-.. tip:: SQream DB does not support the ``USING`` syntax. However, queries can be easily rewritten. ``left_side JOIN right_side using (name)`` is equivalent to ``ON left_side.name = right_side.name``
-
 
 
 Join Type Examples
-=============
+==================
+
 The examples in this section are based on a pair of tables with the following structure and content:
 
 .. code-block:: postgres
@@ -180,7 +182,8 @@ The examples in this section are based on a pair of tables with the following st
 .. _inner_join_example:
 
 Inner Join Example
-------------
+------------------
+
 The following is an example of an inner join.
 
 .. code-block:: psql
@@ -198,7 +201,8 @@ Notice in the example above that values with no matching conditions do not appea
 .. _left_join_example:
 
 Left Join Example
-------------
+-----------------
+
 The following is an example of a left join:
 
 .. code-block:: psql
@@ -217,7 +221,8 @@ The following is an example of a left join:
 .. _right_join_example:
 
 Right Join Example
-------------
+------------------
+
 The following is an example of a right join:
 
 .. code-block:: psql
@@ -237,7 +242,8 @@ The following is an example of a right join:
 .. _cross_join_example:
 
 Cross Join Example
--------------
+------------------
+
 The following is an example of a cross join:
 
 .. code-block:: psql
@@ -302,7 +308,7 @@ Specifying multiple comma-separated tables is equivalent to a cross join, which 
    5 |  5
 
 Join Hints
--------------
+----------
 
 **Join hints** can be used to override the query compiler and choose a particular join algorithm. The available algorithms are ``LOOP`` (corresponding to non-indexed nested loop join algorithm), and ``MERGE`` (corresponding to sort merge join algorithm). If no algorithm is specified, a loop join is performed by default.
 

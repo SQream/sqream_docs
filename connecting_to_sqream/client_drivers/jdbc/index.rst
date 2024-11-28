@@ -1,18 +1,18 @@
 .. _java_jdbc:
 
-*************************
+****
 JDBC
-*************************
-The SQream JDBC driver lets you connect to SQream using many Java applications and tools. This page describes how to write a Java application using the JDBC interface. The JDBC driver requires Java 1.8 or newer.
+****
 
-The JDBC page includes the following sections:
+The SQream JDBC driver lets you connect to SQream using many Java applications and tools. This page describes how to write a Java application using the JDBC interface. The JDBC driver requires Java 1.8 or newer.
 
 .. contents:: 
    :local:
    :depth: 1
 
 Installing the JDBC Driver
-==================================
+==========================
+
 The **Installing the JDBC Driver** section describes the following:
 
 .. contents:: 
@@ -20,50 +20,43 @@ The **Installing the JDBC Driver** section describes the following:
    :depth: 1
 
 Prerequisites
-----------------
+-------------
+
 The SQream JDBC driver requires Java 1.8 or newer, and SQream recommends using Oracle Java or OpenJDK.:
 
 * **Oracle Java** - Download and install `Java 8 <https://www.java.com/en/download/manual.jsp>`_ from Oracle for your platform.
-
-   ::
    
 * **OpenJDK** - Install `OpenJDK <https://openjdk.java.net/install/>`_
-
-   ::
    
 * **Windows** - SQream recommends installing `Zulu 8 <https://www.azul.com/downloads/zulu-community/?&version=java-8-lts&architecture=x86-64-bit&package=jdk>`_
 
 Getting the JAR file
----------------------
-SQream provides the JDBC driver as a zipped JAR file, available for download from the :ref:`client drivers download page<client_drivers>`. This JAR file can be integrated into your Java-based applications or projects.
+--------------------
 
-Extracting the ZIP Archive
--------------------------
-Run the following command to extract the JAR file from the ZIP archive:
+The SQream JDBC driver is available for download from the :ref:`client drivers download page<client_drivers>`. This JAR file can be integrated into your Java-based applications or projects.
 
-.. code-block:: console
-
-   $ unzip sqream-jdbc-4.3.0.zip
 
 Setting Up the Class Path
-----------------------------
+-------------------------
+
 To use the driver, you must include the JAR named ``sqream-jdbc-<version>.jar`` in the class path, either by inserting it in the ``CLASSPATH`` environment variable, or by using flags on the relevant Java command line.
 
-For example, if the JDBC driver has been unzipped to ``/home/sqream/sqream-jdbc-4.3.0.jar``, the following command is used to run application:
+For example, if the JDBC driver has been unzipped to ``/home/sqream/sqream-jdbc-5.2.0.jar``, the following command is used to run application:
 
 .. code-block:: console
 
-   $ export CLASSPATH=/home/sqream/sqream-jdbc-4.3.0.jar:$CLASSPATH
+   $ export CLASSPATH=/home/sqream/sqream-jdbc-5.2.0.jar:$CLASSPATH
    $ java my_java_app
 
 Alternatively, you can pass ``-classpath`` to the Java executable file:
 
 .. code-block:: console
 
-   $ java -classpath .:/home/sqream/sqream-jdbc-4.3.0.jar my_java_app
+   $ java -classpath .:/home/sqream/sqream-jdbc-5.2.0.jar my_java_app
 
 Connecting to SQream Using a JDBC Application
-==============================================
+=============================================
+
 You can connect to SQream using one of the following JDBC applications:
 
 .. contents:: 
@@ -71,21 +64,24 @@ You can connect to SQream using one of the following JDBC applications:
    :depth: 1
    
 Driver Class
---------------
+------------
+
 Use ``com.sqream.jdbc.SQDriver`` as the driver class in the JDBC application.
 
 Connection String
---------------------
+-----------------
+
 JDBC drivers rely on a connection string.
 
 The following is the syntax for SQream:
 
 .. code-block:: text
 
-   jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>sqream;[<optional parameters>; ...]
+   jdbc:Sqream://<host and port>/<database name>;user=<username>;password=<password>;[<optional parameters>; ...]
 
 Connection Parameters
-^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
+
 The following table shows the connection string parameters:
 
 .. list-table:: 
@@ -105,13 +101,13 @@ The following table shows the connection string parameters:
      - None
      - Database name to connect to. For example, ``master``
    * - ``username=<username>``
-     - Mandatory
+     - Optional
      - None
-     - Username of a role to use for connection. For example, ``username=rhendricks``
+     - Username of a role to use for connection. For example, ``username=SqreamRole`` 
    * - ``password=<password>``
-     - Mandatory
+     - Optional
      - None
-     - Specifies the password of the selected role. For example, ``password=Tr0ub4dor&3``
+     - Specifies the password of the selected role. For example, ``password=SqreamRolePassword2023``
    * - ``service=<service>``
      - Optional
      - ``sqream``
@@ -127,7 +123,7 @@ The following table shows the connection string parameters:
    * - ``<fetchSize>``
      - Optional
      - ``true``
-     - Enables on-demand loading, and defines double buffer size for result. The ``fetchSize`` parameter is rounded according to chunk size. For example, ``fetchSize=1`` loads one row and is rounded to one chunk. If the fetchSize is 100,600, a chunk size of 100,000 loads, and is rounded to, two chunks.
+     - Enables on-demand loading, and defines double buffer size for the result. The ``fetchSize`` parameter is rounded according to chunk size. For example, ``fetchSize=1`` loads one row and is rounded to one chunk. If the ``fetchSize`` is 100,600, a chunk size of 100,000 loads, and is rounded to, two chunks.
    * - ``<insertBuffer>``
      - Optional
      - ``true``
@@ -140,32 +136,62 @@ The following table shows the connection string parameters:
      - Optional
      - ``true``
      -  Enables the file appender and defines the file name. The file name can be set as either the file name or the file path.
+   * - ``<idleconnectiontimeout>``
+     - Optional
+     - 0
+     - Sets the duration, in seconds, for which a database connection can remain idle before it is terminated. If the parameter is set to its default value, idle connections will not be terminated. The idle connection timer begins counting after the completion of query execution.
 
 Connection String Examples
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The following is an example of a SQream cluster with load balancer and no service queues (with SSL):
+^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The following is an example of a SQream cluster with a load balancer and no service queues (with SSL):
 
 .. code-block:: text
 
    jdbc:Sqream://sqream.mynetwork.co:3108/master;user=rhendricks;password=Tr0ub4dor&3;ssl=true;cluster=true
 
-The following is a minimal example for a local standalone SQream database:
+The following is a minimal example of a local standalone SQream database:
 
 .. code-block:: text 
 
    jdbc:Sqream://127.0.0.1:5000/master;user=rhendricks;password=Tr0ub4dor&3
 
-The following is an example of a SQream cluster with load balancer and a specific service queue named ``etl``, to the database named ``raviga``
+The following is an example of a SQream cluster with a load balancer and a specific service queue named ``etl``, to the database named ``raviga``
 
 .. code-block:: text
 
    jdbc:Sqream://sqream.mynetwork.co:3108/raviga;user=rhendricks;password=Tr0ub4dor&3;cluster=true;service=etl
 
-Sample Java Program
+Java Program Sample
 --------------------
+
 You can download the :download:`JDBC Application Sample File <sample.java>` below by right-clicking and saving it to your computer.
 
 .. literalinclude:: sample.java
     :language: java
     :caption: JDBC Application Sample
     :linenos:
+
+Prepared Statements
+====================
+
+Prepared statements, also known as parameterized queries, are a safer and more efficient way to execute SQL statements. They prevent SQL injection attacks by separating SQL code from data, and they can improve performance by reusing prepared statements.
+In SQream, we use ``?`` as a placeholder for the relevant value in parameterized queries.
+Prepared statements ``INSERT``, ``SELECT``, ``UPDATE`` and ``DELETE``
+   
+Prepared Statement Sample
+--------------------------- 
+
+The following is a Java code snippet employing a JDBC prepared statement object to ingest a batch of one million records into SQreamDB.
+   
+You may download the :download:`Prepared statement <samplepreparedstatement.java>` by right-clicking and saving it to your computer.
+
+.. literalinclude:: samplePreparedStatement.java
+    :language: java
+    :caption: Prepared Statement Sample
+    :linenos:
+
+Prepared Statement Limitations 
+--------------------------- 
+* Prepared Statement do not support the use of :ref:`keywords_and_identifiers` as input parameters.
+* ``SELECT``, ``UPDATE`` and ``DELETE`` statements require the use of ``add_batch`` prior to each execution.

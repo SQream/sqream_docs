@@ -3,11 +3,14 @@
 *************************************
 Additional Tables
 *************************************
+
 The Reference Catalog includes additional tables that can be used for performance monitoring and inspection. The definition for these tables described on this page may change across SQream versions.
 
 .. contents:: 
    :local:
    :depth: 1
+
+.. _extents:
 
 Extents
 ----------
@@ -33,6 +36,8 @@ The ``extents`` storage object identifies storage extents, and each storage exte
      - Shows the extent size in megabytes.
    * - ``path``
      - Shows the full path to the extent on the file system.
+
+.. _chunk_columns:
 
 Chunk Columns
 -------------------
@@ -73,6 +78,8 @@ The ``chunk_columns`` storage object lists chunk information by column.
 
 .. note:: This is an internal table designed for low-level performance troubleshooting.
 
+.. _chunks:
+
 Chunks
 -------
 The ``chunks`` storage object identifies storage chunks.
@@ -95,6 +102,8 @@ The ``chunks`` storage object identifies storage chunks.
      - Determines what data to logically delete from the table first, and identifies how much data to delete from the chunk. The value ``0`` is ued for no data, ``1`` for some data, and ``2`` to delete the entire chunk.
 	 
 .. note:: This is an internal table designed for low-level performance troubleshooting.
+
+.. _delete_predicates:
 
 Delete Predicates
 -------------------

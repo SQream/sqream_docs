@@ -76,11 +76,11 @@ Creating a user role
 
 A user role has permissions to login, and has a password.
 
-.. tip:: Some DBMSs call this *CREATE USER* or *ADD USER*
-
 .. code-block:: postgres
 
    CREATE ROLE new_role;
    GRANT LOGIN to new_role;
-   GRANT PASSWORD 'Tr0ub4dor&3' to new_role;
-   GRANT CONNECT ON DATABASE master to new_role; -- Repeat for other desired databases
+   GRANT PASSWORD 'passw0rd' to new_role;
+   GRANT CONNECT ON DATABASE master to new_role; -- Repeat for all desired databases
+   GRANT USAGE ON SERVICE sqream TO new_role;
+   GRANT ALL ON SCHEMA public TO new_role; -- It is advisable to grant permissions on at least one schema

@@ -1,16 +1,15 @@
 .. _catalog_reference_examples:
 
-*************************************
+********
 Examples
-*************************************
-The **Examples** page includes the following examples:
+******** 
 
 .. contents:: 
    :local:
    :depth: 1
 
 Listing All Tables in a Database
-----------------------------------
+--------------------------------
 
 .. code-block:: psql
 
@@ -23,19 +22,19 @@ Listing All Tables in a Database
    master        |       27 | public      | jabberwocky    | true            |         8 |                0
 
 Listing All Schemas in a Database
-------------------------------------
+---------------------------------
 
 .. code-block:: psql
    
    master=> SELECT * FROM sqream_catalog.schemas;
-   schema_id | schema_name   | schema_owner | rechunker_ignore
-   ----------+---------------+--------------+-----------------
-           0 | public        | sqream       | false           
-           1 | secret_schema | mjordan      | false           
+   schema_id | schema_name   | rechunker_ignore
+   ----------+---------------+-----------------
+           0 | public        | false           
+           1 | secret_schema | false           
 
 
 Listing Columns and Their Types for a Specific Table
----------------------------------------------------
+----------------------------------------------------
 
 .. code-block:: postgres
 
@@ -44,7 +43,7 @@ Listing Columns and Their Types for a Specific Table
    WHERE table_name='cool_animals';
 
 Listing Delete Predicates
-------------------------
+-------------------------
 
 .. code-block:: postgres
 
@@ -55,10 +54,9 @@ Listing Delete Predicates
 
 
 Listing Saved Queries
------------------------------
+---------------------
 
 .. code-block:: postgres
 
    SELECT * FROM sqream_catalog.savedqueries;
    
-For more information, see  :ref:`saved_queries`.

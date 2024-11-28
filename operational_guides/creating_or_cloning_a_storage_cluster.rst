@@ -1,12 +1,13 @@
 .. _creating_or_cloning_a_storage_cluster:
 
-****************************************
+************************************
 Creating or Cloning Storage Clusters
-****************************************
+************************************
+
 When SQream DB is installed, it comes with a default storage cluster. This guide will help if you need a fresh storage cluster or a separate copy of an existing storage cluster.
 
 Creating a new storage cluster
-=====================================
+==============================
 
 SQream DB comes with a CLI tool, :ref:`sqream_storage_cli_reference`. This tool can be used to create a new empty storage cluster.
 
@@ -22,10 +23,10 @@ This can also be written shorthand as ``SqreamStorage -C -r /home/rhendricks/rav
 This ``Setting cluster version...`` message confirms the creation of the cluster successfully.
 
 Tell SQream DB to use this storage cluster
-===============================================
+==========================================
 
 Permanently setting the storage cluster setting
--------------------------------------------------------
+-----------------------------------------------
 
 To permanently set the new cluster location, change the ``"cluster"`` path listed in the configuration file.
 
@@ -72,12 +73,12 @@ should be changed to
 Now, the cluster should be restarted for the changes to take effect.
 
 Start a temporary SQream DB worker with a storage cluster
--------------------------------------------------------------
+---------------------------------------------------------
 
 Starting a SQream DB worker with a custom cluster path can be done in two ways:
 
 Using a configuration file (recommended)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Similar to the technique above, create a configuration file with the correct cluster path. Then, start ``sqreamd`` using the ``-config`` flag:
 
@@ -86,7 +87,7 @@ Similar to the technique above, create a configuration file with the correct clu
    $ sqreamd -config config_file.json
 
 Using the command line parameters
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Use sqreamd's command line parameters to override the default storage cluster path:
 
@@ -97,7 +98,7 @@ Use sqreamd's command line parameters to override the default storage cluster pa
 .. note:: sqreamd's command line parameters' order is ``sqreamd <cluster path> <GPU ordinal> <TCP listen port (unsecured)> <License path>``
 
 Copying an existing storage cluster
-=====================================
+===================================
 
 Copying an existing storage cluster to another path may be useful for testing or troubleshooting purposes.
 

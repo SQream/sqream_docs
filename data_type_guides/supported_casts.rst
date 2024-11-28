@@ -3,6 +3,7 @@
 *************************
 Supported Casts
 *************************
+
 The **Supported Casts** section describes supported casts for the following types:
 
 .. toctree::

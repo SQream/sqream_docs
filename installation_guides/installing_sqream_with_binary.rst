@@ -3,6 +3,7 @@
 *********************************************
 Installing SQream Using Binary Packages
 *********************************************
+
 This procedure describes how to install SQream using Binary packages and must be done on all servers.
 
 **To install SQream using Binary packages:**
@@ -73,7 +74,7 @@ This procedure describes how to install SQream using Binary packages and must be
       
 The configuration files are **service configuration files**, and the JSON files are **SQream configuration files**, for a total of four files. The number of SQream configuration files and JSON files must be identical.
       
-**NOTICE** - Verify that the JSON files have been configured correctly and that all required flags have been set to the correct values.
+.. note:: Verify that the JSON files have been configured correctly and that all required flags have been set to the correct values.
 
 In each JSON file, the following parameters **must be updated**:
 
@@ -85,6 +86,8 @@ In each JSON file, the following parameters **must be updated**:
 * gpu
 * port
 * ssl_port
+
+See how to :ref:`configure <spooling>` the Spool Memory and Limit Query Memory.
 
 Note the following:
 
@@ -100,7 +103,7 @@ It would be same on server running metadataserver and different on other server 
       $ cp sqream2_config.json sqream3_config.json
       $ vim sqream3_config.json
       
-**NOTICE:** A unique **instanceID** must be used in each JSON file. IN the example above, the instanceID **sqream_2** is changed to **sqream_3**.
+.. note:: A unique **instanceID** must be used in each JSON file. IN the example above, the instanceID **sqream_2** is changed to **sqream_3**.
 
 12. **Optional** - If you created additional services in **Step 11**, verify that you have also created their additional configuration files:
 
@@ -115,7 +118,7 @@ It would be same on server running metadataserver and different on other server 
     
     2. Change **LOGFILE=/var/log/sqream/sqream2.log** to **LOGFILE=/var/log/sqream/sqream3.log**.
     
-**NOTE:** If you are running SQream on more than one server, you must configure the ``serverpicker`` and ``metadatserver`` services to start on only one of the servers. If **metadataserver** is running on the first server, the ``metadataServerIP`` value in the second server's /etc/sqream/sqream1_config.json file must point to the IP of the server on which the ``metadataserver`` service is running.
+.. note:: If you are running SQream on more than one server, you must configure the ``serverpicker`` and ``metadatserver`` services to start on only one of the servers. If **metadataserver** is running on the first server, the ``metadataServerIP`` value in the second server's /etc/sqream/sqream1_config.json file must point to the IP of the server on which the ``metadataserver`` service is running.
     
 14. Set up **servicepicker**:
 
@@ -170,110 +173,3 @@ It would be same on server running metadataserver and different on other server 
 If you have an HDFS environment, see :ref:`Configuring an HDFS Environment for the User sqream <hdfs>`.
 
 
-
-
-
-
-Upgrading SQream Version
--------------------------
-Upgrading your SQream version requires stopping all running services while you manually upgrade SQream.
-
-**To upgrade your version of SQream:**
-
-1. Stop all actively running SQream services.
-
-**Notice-** All SQream services must remain stopped while the upgrade is in process. Ensuring that SQream services remain stopped depends on the tool being used.
-
-For an example of stopping actively running SQream services, see :ref:`Launching SQream with Monit <launching_sqream_with_monit>`.
-
-
-      
-2. Verify that SQream has stopped listening on ports **500X**, **510X**, and **310X**:
-
-   .. code-block:: console
-
-      $ sudo netstat -nltp    #to make sure sqream stopped listening on 500X, 510X and 310X ports.
-
-3. Replace the old version ``sqream-db-v2020.2``, with the new version ``sqream-db-v2021.1``:
-
-   .. code-block:: console
-    
-      $ cd /home/sqream
-      $ mkdir tempfolder
-      $ mv sqream-db-v2021.1.tar.gz tempfolder/
-      $ tar -xf sqream-db-v2021.1.tar.gz
-      $ sudo mv sqream /usr/local/sqream-db-v2021.1
-      $ cd /usr/local
-      $ sudo chown -R sqream:sqream sqream-db-v2021.1
-   
-4. Remove the symbolic link:
-
-   .. code-block:: console
-   
-      $ sudo rm sqream
-   
-5. Create a new symbolic link named "sqream" pointing to the new version:
-
-   .. code-block:: console  
-
-      $ sudo ln -s sqream-db-v2021.1 sqream
-
-6. Verify that the symbolic SQream link points to the real folder:
-
-   .. code-block:: console  
-
-      $ ls -l
-	 
-   The following is an example of the correct output:
-
-   .. code-block:: console
-    
-      $ sqream -> sqream-db-v2021.1
-
-7. **Optional-** (for major versions) Upgrade your version of SQream storage cluster, as shown in the following example:
-
-   .. code-block:: console  
-
-      $ cat /etc/sqream/sqream1_config.json |grep cluster
-      $ ./upgrade_storage <cluster path>
-	  
-   The following is an example of the correct output:
-	  
-   .. code-block:: console  
-
-	  get_leveldb_version path{<cluster path>}
-	  current storage version 23
-      upgrade_v24
-      upgrade_storage to 24
-	  upgrade_storage to 24 - Done
-	  upgrade_v25
-	  upgrade_storage to 25
-	  upgrade_storage to 25 - Done
-	  upgrade_v26
-	  upgrade_storage to 26
-	  upgrade_storage to 26 - Done
-	  validate_leveldb
-	  ...
-      upgrade_v37
-	  upgrade_storage to 37
-	  upgrade_storage to 37 - Done
-	  validate_leveldb
-      storage has been upgraded successfully to version 37
- 
-8. Verify that the latest version has been installed:
-
-   .. code-block:: console
-    
-      $ ./sqream sql --username sqream --password sqream --host localhost --databasename master -c "SELECT SHOW_VERSION();"
-      
-   The following is an example of the correct output:
- 
-   .. code-block:: console
-    
-      v2021.1
-      1 row
-      time: 0.050603s 
- 
-For more information, see the `upgrade_storage <https://docs.sqream.com/en/latest/reference/cli/upgrade_storage.html>`_ command line program.
-
-For more information about installing Studio on a stand-alone server, see `Installing Studio on a Stand-Alone Server <https://docs.sqream.com/en/latest/guides/operations/sqream_studio_5.4.2.html>`_.

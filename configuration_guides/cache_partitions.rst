@@ -1,3 +1,5 @@
+:orphan:
+
 .. _cache_partitions:
 
 *************************

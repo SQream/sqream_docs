@@ -1,28 +1,24 @@
+:orphan:
+
 .. _show_saved_query:
 
 ********************
-SHOW_SAVED_QUERY
+SHOW SAVED QUERY
 ********************
 
-``SHOW_SAVED_QUERY`` shows the query text for a :ref:`previously saved query<save_query>`.
+``SHOW_SAVED_QUERY`` shows the query text for a previously :ref:`saved query<save_query>`.
 
 Read more in the :ref:`saved_queries` guide.
 
-See also: ref:`save_query`, :ref:`execute_saved_query`,  ref:`drop_saved_query`,  ref:`list_saved_queries`.
-
-Permissions
-=============
-
-Showing a saved query requires no special permissions.
+See also: :ref:`save_query`, :ref:`execute_saved_query`,  :ref:`drop_saved_query`,  :ref:`list_saved_queries`.
 
 Syntax
 ==========
 
-.. code-block:: postgres
+.. code-block:: sql
 
    show_saved_query_statement ::=
        SELECT SHOW_SAVED_QUERY(saved_query_name)
-       ;
 
    saved_query_name ::= string_literal
 
@@ -50,12 +46,16 @@ Examples
 Showing a previously saved query
 ---------------------------------------
 
-.. code-block:: psql
+.. code-block:: sql
 
-   t=> SELECT SAVE_QUERY('select_by_weight_and_team',$$SELECT * FROM nba WHERE Weight > ? AND Team = ?$$);
-   executed
-   t=> SELECT SHOW_SAVED_QUERY('select_by_weight_and_team');
+   SELECT SAVE_QUERY('select_by_weight_and_team',$$SELECT * FROM nba WHERE Weight > ? AND Team = ?$$);
+   
+   SELECT SHOW_SAVED_QUERY('select_by_weight_and_team');
    saved_query                                    
    -----------------------------------------------
    SELECT * FROM nba WHERE Weight > ? AND Team = ?
 
+Permissions
+=============
+
+Showing a saved query requires ``SELECT`` permissions on the saved query.

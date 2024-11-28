@@ -69,7 +69,7 @@ Notes
 
 * If the value is NULL, the result is NULL.
 
-* PATINDEX works on ``VARCHAR`` text types only.
+* PATINDEX works on ``TEXT`` text types only.
 
 * PATINDEX does not work on all literal values - only on column values.
    

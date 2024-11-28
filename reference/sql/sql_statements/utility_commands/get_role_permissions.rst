@@ -1,8 +1,11 @@
+:orphan:
+
 .. _get_role_permissions:
 
 ********************
-GET_ROLE_PERMISSIONS
+GET ROLE PERMISSIONS
 ********************
+
 The ``GET_ROLE_PERMISSIONS`` statement returns all permissions granted to a role in table format.
 
 The ``GET_ROLE_PERMISSIONS`` page describes the following:
@@ -12,7 +15,8 @@ The ``GET_ROLE_PERMISSIONS`` page describes the following:
    :depth: 1 
 
 Syntax
-==========
+======
+
 The following is the correct syntax for using the ``GET_ROLE_PERMISSIONS`` statement:
 
 .. code-block:: postgres
@@ -20,7 +24,8 @@ The following is the correct syntax for using the ``GET_ROLE_PERMISSIONS`` state
    select get_role_permissions()
       
 Example
-===========
+=======
+
 The following is an example of using the ``GET_ROLE_PERMISSIONS`` statement:
 
 .. code-block:: psql
@@ -28,7 +33,8 @@ The following is an example of using the ``GET_ROLE_PERMISSIONS`` statement:
    select get_role_permissions();
 
 Parameters
-============
+==========
+
 The following table shows the ``GET_ROLE_PERMISSIONS`` parameters:
 
 .. list-table:: 
@@ -41,7 +47,8 @@ The following table shows the ``GET_ROLE_PERMISSIONS`` parameters:
      - The permissions belonging to the role.
 
 Output
-==========
+======
+
 The following is an example of the output of the ``GET_ROLE_PERMISSIONS`` statement:
 
 .. list-table:: 
@@ -62,7 +69,8 @@ The following is an example of the output of the ``GET_ROLE_PERMISSIONS`` statem
      - master.public.nba
 
 Permissions
-=============
+===========
+
 Using the ``GET_ROLE_PERMISSIONS`` statement requires no special permissions.
 
 For more information, see the following:

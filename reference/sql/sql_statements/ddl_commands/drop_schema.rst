@@ -3,14 +3,14 @@
 **********************
 DROP SCHEMA
 **********************
-
+ 
 ``DROP SCHEMA`` can be used to remove a schema.
 
 The schema has to be empty before removal. 
 
 SQream DB does not support dropping a schema with objects.
 
-See also: :ref:`create_schema`, :ref:`alter_default_schema`.
+See also: :ref:`create_schema`, :ref:`alter_default_schema`, and :ref:`rename_schema`.
 
 Permissions
 =============

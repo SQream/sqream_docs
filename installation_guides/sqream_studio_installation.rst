@@ -9,8 +9,5 @@ The **Installing SQream Studio** page incudes the following installation guides:
    :maxdepth: 1
    :glob:
 
-   installing_prometheus_exporters
-   installing_prometheus_using_binary_packages
-   installing_dashboard_data_collector
    installing_studio_on_stand_alone_server
    installing_nginx_proxy_over_secure_connection

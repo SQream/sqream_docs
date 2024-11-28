@@ -1,83 +1,40 @@
 .. _installing_monit:
 
-*********************************************
+****************
 Installing Monit
-*********************************************
-
-Getting Started
-==============================
-
-Before installing SQream with Monit, verify that you have followed the required :ref:`recommended pre-installation configurations <recommended_pre-installation_configurations>`.
-
-The procedures in the **Installing Monit** guide must be performed on each SQream cluster node.
-
-
-
-
-
-.. _back_to_top:
-
-Overview
-==============================
-
+****************
 
 Monit is a free open source supervision utility for managing and monitoring Unix and Linux. Monit lets you view system status directly from the command line or from a native HTTP web server. Monit can be used to conduct automatic maintenance and repair, such as executing meaningful causal actions in error situations.
 
-SQream uses Monit as a watchdog utility, but you can use any other utility that provides the same or similar functionality.
+SQreamDB uses Monit as a watchdog utility, but you can use any other utility that provides the same or similar functionality.
 
 The **Installing Monit** procedures describes how to install, configure, and start Monit.
 
 You can install Monit in one of the following ways:
 
-* :ref:`Installing Monit on CentOS <installing-monit-on-centos>`
-* :ref:`Installing Monit on CentOS offline <installing-monit-on-centos-offline>`
-* :ref:`Installing Monit on Ubuntu <installing-monit-on-ubuntu>`
-* :ref:`Installing Monit on Ubuntu offline <installing-monit-on-ubuntu-offline>`
- 
- 
- 
+Getting Started
+===============
 
+Before installing SQreamDB with Monit, verify that you have followed the required :ref:`pre-installation_configurations` section. 
 
+The procedures in the **Installing Monit** guide must be performed on each SQreamDB cluster node.
 
-
-.. _installing-monit-on-centos:
-
-Installing Monit on CentOS:
-------------------------------------
-
-
-
-**To install Monit on CentOS:**   
+Installing Monit on RHEL:
+=========================
    
-1. Install Monit as a superuser on CentOS:
+1. Install Monit as a superuser:
  
     .. code-block:: console
      
        $ sudo yum install monit  
        
-       
-.. _installing-monit-on-centos-offline:
-
-
-	   
-Installing Monit on CentOS Offline:
-------------------------------------
-
-
-Installing Monit on CentOS offline can be done in either of the following ways:
-
-* :ref:`Building Monit from Source Code <building_monit_from_source_code>`
-* :ref:`Building Monit from Pre-Built Binaries <building_monit_from_pre_built_binaries>`
-
- 
- 
- 
 .. _building_monit_from_source_code:
 
+Building Monit
+==============
+
 Building Monit from Source Code
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
+-------------------------------
 
 **To build Monit from source code:**
 
@@ -117,22 +74,17 @@ The following are the default storage directories:
 ..
   _**Comment - I took this line directly from the external online documentation. Is the "prefix option" referrin gto the "--help" in Step 3? URL: https://mmonit.com/wiki/Monit/Installation**
 
-6. **Optional** - Create an RPM package for CentOS directly from the source code:
+6. **Optional** - Create an RPM package for RHEL directly from the source code:
 
    .. code-block:: console
      
       $ rpmbuild -tb monit-x.y.z.tar.gz
       
-..
-  _**Comment - Is this an optional or mandatory step?**
-
- 
-
 
 .. _building_monit_from_pre_built_binaries:   
 
 Building Monit from Pre-Built Binaries
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------
 
 **To build Monit from pre-built binaries:**
 
@@ -161,76 +113,12 @@ Building Monit from Pre-Built Binaries
       $ cp conf/monitrc /etc/
        
 ..
-  _**Comment - please review this procedure.**
 
-For examples of pre-built Monit binarties, see :ref:`Download Precompiled Binaries<https://mmonit.com/monit/#download>`.
-
-:ref:`Back to top <back_to_top>`
-
-
-
-.. _installing-monit-on-ubuntu:
-
-
-      
-Installing Monit on Ubuntu:
-------------------------------------
-
-
-**To install Monit on Ubuntu:**   
-   
-1. Install Monit as a superuser on Ubuntu:
-
-    .. code-block:: console
-     
-       $ sudo apt-get install monit
-	   
-:ref:`Back to top <back_to_top>`
-
-
-	   
-.. _installing-monit-on-ubuntu-offline:
-
-
-Installing Monit on Ubuntu Offline:
--------------------------------------
-
-
-You can install Monit on Ubuntu when you do not have an internet connection.
-
-**To install Monit on Ubuntu offline:**   
-   
-1. Compress the required file:
-
-   .. code-block:: console
-     
-      $ tar zxvf monit-<x.y.z>-linux-x64.tar.gz
-      
-   **NOTICE:** *<x.y.z>* denotes the version number.
-
-2. Navigate to the directory where you want to save the file:
-   
-   .. code-block:: console
-     
-      $ cd monit-x.y.z
-       
-3. Copy the **bin/monit** directory into the **/usr/local/bin/** directory:
-
-   .. code-block:: console
-     
-      $ cp bin/monit /usr/local/bin/
-       
-4. Copy the **conf/monitrc** directory into the **/etc/** directory:
-       
-   .. code-block:: console
-     
-      $ cp conf/monitrc /etc/
-	  
-:ref:`Back to top <back_to_top>`
+For examples of pre-built Monit binarties, see `Download Precompiled Binaries <https://mmonit.com/monit/#download>`_.
 
        
 Configuring Monit
-====================================
+=================
 
 When the installation is complete, you can configure Monit. You configure Monit by modifying the Monit configuration file, called **monitrc**. This file contains blocks for each service that you want to monitor.
 
@@ -294,7 +182,7 @@ For servers that don't run the **metadataserver** and **serverpicker** commands,
       $ sudo ln -s /etc/monit.d/monitrc monitrc    
          
 Starting Monit
-====================================  
+==============  
 
 After configuring Monit, you can start it.
 
