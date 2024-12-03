@@ -18,6 +18,11 @@ Client Driver Downloads
      - Docs
      - Notes
      - Operating System
+   * - **SQream DB Java CLI**
+     - `SQream DB Java Command Line Interface <https://storage.cloud.google.com/cicd-storage/jdbc-console/release/jdbc-console-1.0.5-v1.zip>`_ 
+     - :ref:`sqream_sql_cli_reference` 
+     - Replaces the Deprecated Haskell Command Line Tool
+     - All
    * - **Apache Spark**
      - `Apache Spark Connector <https://sq-ftp-public.s3.amazonaws.com/Spark-Sqream-Connector-5.0.0.jar>`_ 
      - :ref:`spark` 
