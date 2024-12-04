@@ -55,6 +55,7 @@ GPU Optimization Engine
 
    access_control/index
    access_tokens/index
+   ai_ml/index
    cloud_storage_platforms/index
    foreign_tables/index
    blue_console/index
