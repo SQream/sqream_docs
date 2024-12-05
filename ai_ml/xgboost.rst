@@ -69,10 +69,11 @@ The parameters will be defined in the following table:
      - Comments
    * - ``verbosity``
      - Global Configuration
-     - * ``0`` = silent
-	   * ``1`` = warning
-	   * ``2`` = debug
-	   * ``3`` = info
+     - 
+	 * ``0`` = silent
+	 * ``1`` = warning
+	 * ``2`` = debug
+	 * ``3`` = info
      - Optional, default is 0
 
 
