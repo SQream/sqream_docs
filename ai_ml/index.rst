@@ -13,6 +13,7 @@ Supported Algorithms
 ====================
 
 * :ref:`linear_regression`
+* :ref:`xgboost`
 
 .. toctree::
    :maxdepth: 1
@@ -20,7 +21,7 @@ Supported Algorithms
    :hidden:
 
    linear_regression
-   XGBoost
+   xgboost
 
    
    
