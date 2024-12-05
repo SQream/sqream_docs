@@ -81,3 +81,10 @@ The parameters will be defined in the following table:
 Usage notes & Limitations
 -------------------------
 * Based on `DMLC XGBoost <https://xgboost.readthedocs.io/en/stable/parameter.html#global-configuration>`_.
+* Training and inference can be read directly from a table or a query expression.
+* A minimum of 2 columns should be provided for training (feature column and a label).
+* The label column is the last column in the chunk’s input for training.
+* Model will be saved under database.schema hierarchy, like any other SQream object.
+* ``model_predict`` doesn’t work within sub-query.
+* Input feature types are Nullable ``FLOAT``
+* Single label is supported, label should appear last.
