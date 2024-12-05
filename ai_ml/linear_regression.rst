@@ -20,7 +20,7 @@ Syntax
 	AS {query_statement}
 
 	model_option_list:
-		MODEL_TYPE = { 'LINEAR_REG' | 'XGBOOST'}
+		MODEL_TYPE = { 'LINEAR_REG' }
 		[, INITIAL_ALGORITHM = { 'SVD' | 'EIGENDECOMPOSITION' | 'QR_DECOMPOSITION'} ]
 		[, GD_OPTIMIZER = { 'SGD' | 'ADAM'} ]
 		[, STANDARDIZATION = TRUE | FALSE ]

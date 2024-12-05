@@ -20,6 +20,7 @@ Supported Algorithms
    :hidden:
 
    linear_regression
+   XGBoost
 
    
    
