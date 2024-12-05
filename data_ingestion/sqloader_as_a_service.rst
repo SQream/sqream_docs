@@ -546,6 +546,10 @@ Mandatory flags must be configured using HTTP flags or the ``properties`` file.
      - Optional
      - ``true``
      - Add an additional ``load_dttm`` column that defines the time and date of loading
+	 - ``loadDttmColumnName``
+     - Optional
+     - ``sq_load_dttm``
+     - Specifies the name of the additional column that records the time and date of loading. This parameter works in conjunction with the loadDttm parameter. If loadDttm is enabled, the column defined by loadDttmColumnName will be added to the target table.
    * - ``loadTypeName``
      - Optional
      - ``full``
@@ -618,10 +622,7 @@ Mandatory flags must be configured using HTTP flags or the ``properties`` file.
      - Optional
      - ``true``
      - Allows control over the validation of table existence during the load.
-   * - ``loadDttmColumnName``
-     - Optional
-     - ``sq_load_dttm``
-     - Specifies the name of the additional column that records the time and date of loading. This parameter works in conjunction with the loadDttm parameter. If loadDttm is enabled, the column defined by loadDttmColumnName will be added to the target table.
+   * 
 
 .. _load_type_name:
 
