@@ -52,7 +52,7 @@ Parameters
 
 Usage notes & Limitations
 -------------------------
-* Based on Nvidia `RAPIDS Linear Regression<https://docs.rapids.ai/api/cuml/stable/api/#linear-regression>`_.
+* Based on Nvidia `RAPIDS Linear Regression <https://docs.rapids.ai/api/cuml/stable/api/#linear-regression>`_.
 * Training and inference can be read directly from a table or a query expression.
 * A mimimum of 2 columns should be provided for training (feature column and a label).
 * The label column is the last column in the chunk’s input for training.
