@@ -622,7 +622,6 @@ Mandatory flags must be configured using HTTP flags or the ``properties`` file.
      - Optional
      - ``true``
      - Allows control over the validation of table existence during the load.
-   * 
 
 .. _load_type_name:
 
