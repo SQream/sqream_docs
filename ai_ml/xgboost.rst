@@ -75,6 +75,14 @@ The parameters will be defined in the following table:
 	 * ``2`` = debug
 	 * ``3`` = info
      - Optional, default is 0
+   * - ``booster``
+     - General Parameters
+	 - ``gbtree``, ``gblinear`` or ``dart``
+	 - ``gbtree`` and ``dart`` use tree based models while ``gblinear`` uses linear functions. Default is ``gbtree``.
+   * - ``disable_default_eval_metric``
+     - General Parameters
+	 - ``boolean``
+	 - ``FALSE'' by default
 
 
 
