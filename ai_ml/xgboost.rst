@@ -89,6 +89,10 @@ The parameters will be defined in the following table:
  +---------------------------------+------------------------------------------+-----------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
  | ``sampling_method``             | Booster Parameters                       | ``uniform``, ``gradient_based``                                             | Applicable when booster is set to ``gbtree`` or ``dart``. Optional, default = ``uniform``                     |
  +---------------------------------+------------------------------------------+-----------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
+ | ``colsample_bytree``            | Booster Parameters                       | * Group of parameters for sub-sampling of columns.                          | Applicable when booster is set to ``gbtree`` or ``dart``.                                                     |
+ | ``colsample_bylevel``           |                                          | * All ``colsample_by*`` parameters have a range of [``0``,``1``] that       | Optional, default = ``1``                                                                                     |
+ | ``colsample_bynode``            |                                          | specify the fraction of columns to be sub-sampled.                          |                                                                                                               |
+ +---------------------------------+------------------------------------------+-----------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
 	 
 Usage notes & Limitations
 -------------------------
