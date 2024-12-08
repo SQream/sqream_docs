@@ -79,12 +79,6 @@ The parameters will be defined in the following table:
      - General Parameters
 	 - ``gbtree``, ``gblinear`` or ``dart``
 	 - ``gbtree`` and ``dart`` use tree based models while ``gblinear`` uses linear functions. Default is ``gbtree``.
-   * - ``disable_default_eval_metric``
-     - General Parameters
-	 - ``boolean``
-	 - ``FALSE'' by default
-
-
 
 Usage notes & Limitations
 -------------------------
