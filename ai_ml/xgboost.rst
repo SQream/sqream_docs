@@ -58,6 +58,7 @@ Parameters
 The parameters are divided to Global parameters (embedded in the syntax), general parameters (available per booster) and learning task parameters.
 
 The parameters will be defined in the following table:
+
 +----------------------+------------------------------------------+-------------------------------------------------------------------+--------------------------------+
 | **Parameter Name**   | **Parameter Type**                       | **Description**                                                   | **Comments**                   |
 +======================+==========================================+===================================================================+================================+
