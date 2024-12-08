@@ -151,6 +151,12 @@ The parameters will be defined in the following table:
  | ``top_k``                       | Linear Booster Parameters                | The number of top features to select in ``greedy`` and ``thrifty`` feature  | Optional, default = ``0``                                                                                     |
  |                                 |                                          | selector.  ``0`` means using all the features.                              |                                                                                                               |
  +---------------------------------+------------------------------------------+-----------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
+ | ``objective``                   | Learning Task Parameters                 | ``reg:squarederrorvv`` | ``reg:squaredlogerror`` | ``reg:logisti`` |        | Optional, default = ``reg:squarederror``                                                                      |
+ |                                 |                                          | ``reg:pseudohubererror`` | ``reg:absoluteerror`` | ``reg:quantileerror``    |                                                                                                               |
+ |                                 |                                          | ``binary:logistic`` | ``binary:logitraw`` | ``binary:hinge``                |                                                                                                               |
+ |                                 |                                          | ``count:poisson`` | ``survival:cox`` | ``survival:aft`` | ``rank:ndcg``     |                                                                                                               |
+ |                                 |                                          | ``rank:map`` | ``rank:pairwise`` | ``reg:gamma`` | ``reg:tweedie``          |                                                                                                               |
+ +---------------------------------+------------------------------------------+-----------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------------------+
  
  
 Usage notes & Limitations
