@@ -58,14 +58,11 @@ Parameters
 The parameters are divided to Global parameters (embedded in the syntax), general parameters (available per booster) and learning task parameters.
 
 The parameters will be defined in the following table:
- 
 +----------------------+------------------------------------------+-------------------------------------------------------------------+--------------------------------+
 | **Parameter Name**   | **Parameter Type**                       | **Description**                                                   | **Comments**                   |
 +======================+==========================================+===================================================================+================================+
 | ``verbosity``        | Global Configuration                     | ``0`` = silent, ``1`` = warning, ``2`` = debug, ``3`` = info	  |	Optional, default is ``0``	   |
 +----------------------+------------------------------------------+-------------------------------------------------------------------+--------------------------------+
-
-	 
 	 
 Usage notes & Limitations
 -------------------------
