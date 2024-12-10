@@ -43,6 +43,7 @@ Syntax
 	  | AWS_ID '{ AWS ID }'
 	  | AWS_SECRET '{ AWS SECRET }'
 	  | QUOTE = {'C' | E'\ooo') -- for CSV only	  
+	  | SKIP_VALIDATION = TRUE | FALSE -- default FALSE
 	 ]
    
 	path_spec ::= { GS URI | S3 URI | HDFS URI }
@@ -94,7 +95,8 @@ Parameters
      - Credentials for authenticated S3 access
    * - ``QUOTE``
      - Specifies an alternative quote character. The quote character must be a single, 1-byte printable ASCII character, and the equivalent octal syntax of the copy command can be used. The quote character cannot be contained in the field delimiter, the record delimiter, or the null marker. ``QUOTE`` can be used with ``csv_fdw`` in ``COPY FROM`` and foreign tables. The following characters cannot be an alternative quote character: ``"-.:\\0123456789abcdefghijklmnopqrstuvwxyzN"``
-
+   * - ``SKIP_VALIDATION``
+     - By default, ``CREATE FOREIGN TABLE`` generates lightweight table statistics based solely on the file metadata of binary file formats like ``Parquet``, ``AVRO`` & ``ORC``. Unlike a traditional `ANALYZE <analyze_table>` operation that scans the actual data to compute statistics, this approach avoids the overhead of reading the file contents. Instead, it extracts metadata properties, such as row count, column types, and sizes, directly from the file's structure. Set ``SKIP_VALIDATION = TRUE`` in order to skip the lightweight statistics creation.
 
 Examples
 ===========
