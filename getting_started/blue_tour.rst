@@ -202,6 +202,8 @@ Managing your execution queue is crucial for ensuring system resources are used 
 
 Please note that execution queue management is configured on a per-resource pool basis.
 
+.. note:: The SQream Blue user interface (UI) is optimized for a screen resolution of 1024x720 pixels or larger. This resolution ensures the best possible user experience, with clear visuals, intuitive layout, and optimal functionality.
+
 
 .. |workbench_quick_tour| image:: /_static/images/workbench_quick_tour.png
    :align: middle    
