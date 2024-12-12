@@ -98,7 +98,7 @@ Parameters
    * - ``SKIP_VALIDATION``
      - Controls whether validation checks (e.g., password, credentials, and column list) are performed during foreign table creation. It also determines if the ANALYZE NO SCAN operation is executed, allowing users to optimize the process by skipping unnecessary validations and scans when appropriate.
 	 
-.. note:: By default, ``CREATE FOREIGN TABLE`` generates lightweight table statistics based solely on the file metadata of binary file formats like ``Parquet``, ``AVRO`` & ``ORC``. Unlike a traditional :ref:`ANALYZE <analyze_table>` operation that scans the actual data to compute statistics, this approach avoids the overhead of reading the file contents. Instead, it extracts metadata properties, such as row count, column types, and sizes, directly from the file's structure. Set ``SKIP_VALIDATION = TRUE`` in order to skip the lightweight statistics creation.
+.. note:: By default for ``Parquet`` file format, ``CREATE FOREIGN TABLE`` generates lightweight table statistics based solely on the file metadata. Unlike a traditional :ref:`ANALYZE <analyze_table>` operation that scans the actual data to compute statistics, this approach avoids the overhead of reading the file contents. Instead, it extracts metadata properties, such as row count, column types, and sizes, directly from the file's structure. Set ``SKIP_VALIDATION = TRUE`` in order to skip the lightweight statistics creation.
 
 Examples
 ===========
