@@ -73,9 +73,6 @@ Supported RegEx Patterns
    * - ``?``
      - Match the preceding pattern once at most (``0`` or ``1`` time)
 
-   * - ``de|abc``
-     - Match either ``de`` or ``abc``
-
    * - ``(abc)*``
      - Match zero or more instances of the sequence ``abc``
 
@@ -89,8 +86,8 @@ Supported RegEx Patterns
      - Match any sing character from the list within the parentheses
 	 
    * - ``|``
-
-     - Means ``OR``
+     - ``OR`` clause
+	 
    * - ``(abc)*``
      - Treating the expression within the parentheses as a single unit
 
