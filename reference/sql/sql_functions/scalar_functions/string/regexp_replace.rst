@@ -88,7 +88,7 @@ Supported RegEx Patterns
    * - ``[...]``
      - Match any sing character from the list within the parentheses
 	 
-   * - ``|`'
+   * - ``|``
 
      - Means ``OR``
    * - ``(abc)*``
@@ -98,7 +98,7 @@ Supported RegEx Patterns
      - Treating the subsequent characters in the expression as ordinary characters rather than metacharacters
    
    * - ``\n``
-     - Matching the nth (1-9) preceding subexpression grouped within parentheses
+     - Matching the nth (``1``-``9``) preceding subexpression grouped within parentheses
 	 
    * - ``*?``
      - Occurs zero or more times
