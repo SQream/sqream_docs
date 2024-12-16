@@ -64,7 +64,7 @@ Supported RegEx Patterns
      - Match the preceding pattern once at most (``0`` or ``1`` time)
 
    * - ``(abc)*``
-     - Match zero or more instances of the sequence ``abc``
+     - Match zero or more instances of the sequence ``abc``, treating the expression within the parentheses as a single unit
 
    * - ``{m}``
      - Match the preceding pattern exactly ``m`` times
@@ -77,9 +77,6 @@ Supported RegEx Patterns
 	 
    * - ``|``
      - ``OR`` clause
-	 
-   * - ``(abc)*``
-     - Treating the expression within the parentheses as a single unit
 
    * - ``\``
      - Treating the subsequent characters in the expression as ordinary characters rather than metacharacters
