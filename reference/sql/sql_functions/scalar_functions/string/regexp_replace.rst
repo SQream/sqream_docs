@@ -41,19 +41,23 @@ The following table shows the ``REGEXP_REPLACE`` arguments:
    * - ``occurrence``
      - (Optional) Sets a specific occurrence to replace. Using ``0`` replaces all occurrences.
 
-Test Patterns
-=============
+Supported RegEx Patterns
+========================
 
 .. list-table::
    :widths: auto
    :header-rows: 1
    
    
-   * - Test Pattern
+   * - Pattern
      - Description
+   
    * - ``^``
      - Match the beginning of a string
 
+   * - ``[^]``
+     - Characters that do not match the speciifed string
+	 
    * - ``$``
      - Match the end of a string
 
@@ -67,7 +71,7 @@ Test Patterns
      - Match the preceding pattern at least once
 
    * - ``?``
-     - Match the preceding pattern once at most
+     - Match the preceding pattern once at most (``0`` or ``1`` time)
 
    * - ``de|abc``
      - Match either ``de`` or ``abc``
@@ -75,18 +79,35 @@ Test Patterns
    * - ``(abc)*``
      - Match zero or more instances of the sequence ``abc``
 
-   * - ``{2}``
-     - Match the preceding pattern exactly two times
+   * - ``{m}``
+     - Match the preceding pattern exactly ``m`` times
 
-   * - ``{2,4}``
-     - Match the preceding pattern between two and four times
+   * - ``{m,n}``
+     - Match the preceding pattern at least ``m`` times but no more than ``n`` times
 
-   * - ``[a-dX]``, ``[^a-dX]``
-     -
-         Matches any character that is (or is not when negated with ``^``) either ``a``, ``b``, ``c``, ``d``, or ``X``.
-         The ``-`` character between two other characters forms a range that matches all characters from the first character to the second. For example, [0-9] matches any decimal digit. 
-         To include a literal ``]`` character, it must immediately follow the opening bracket [. To include a literal - character, it must be written first or last.
-         Any character that does not have a defined special meaning inside a [] pair matches only itself.
+   * - ``[...]``
+     - Match any sing character from the list within the parentheses
+	 
+   * - ``|`'
+
+     - Means ``OR``
+   * - ``(abc)*``
+     - Treating the expression within the parentheses as a single unit
+
+   * - ``\``
+     - Treating the subsequent characters in the expression as ordinary characters rather than metacharacters
+   
+   * - ``\n``
+     - Matching the nth (1-9) preceding subexpression grouped within parentheses
+	 
+   * - ``*?``
+     - Occurs zero or more times
+	 
+   * - ``+?``
+     - Occurs one or more times
+	 
+   * - ``??``
+     - Occurs zero or one times
 
 Returns
 =======
