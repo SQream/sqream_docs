@@ -52,7 +52,7 @@ Example
 
 .. code-block:: console
 
-	server_picker --metadata_ip=127.0.0.1 --metadata_server_port=3105 --port=3118 --ssl_port=3119 --services=sqream23,sqream0 --log4_config=/home/sqream/metadata_log_properties --refresh_interval=10
+	server_picker --metadata_server_ip=127.0.0.1 --metadata_server_port=3105 --port=3118 --ssl_port=3119 --services=sqream23,sqream0 --log4_config=/home/sqream/metadata_log_properties --refresh_interval=10
 
 Starting server picker
 ============================
