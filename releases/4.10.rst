@@ -34,7 +34,9 @@ Compatibility Matrix
 
 New Features and Enhancements
 -----------------------------
-* :ref:`Alter Default Permissions<alter_default_permissions>` is now enhanced to include support for ``USER DEFINED FUNCTIONS``
+* :ref:`Alter Default Permissions<alter_default_permissions>` is now enhanced to include support for ``USER DEFINED FUNCTIONS``.
+
+* Enahnced Regular Expresseion (RegEx) support.
 
 Known Issues
 ------------
