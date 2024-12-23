@@ -8,6 +8,8 @@ AUDIT LOG
 
 The ``AUDITLOG`` command is used for investigating historic events captured by your system, and is designed for tracking user activity and for incident response. The Audit Log feature records executed SQL statements and login and logout events.
 
+.. note:: ``AUDITLOG`` command use CPU resources to enhance usability by freeing up GPU resources, which are primarily dedicated Workers which execute regular queries.
+
 Syntax
 ======
 
@@ -21,10 +23,11 @@ The following is the ``AUDITLOG`` syntax:
    [ SESSIONID IN ( <session-id1>,..., <session-idN>) ] 
    [ QUERYID IN ( <query-id1>,..., <query-idN>) ]
    [ STATUS IN ( <status1>,..., <statusN>) ]
-   [ Category IN ( <category1>,..., <categoryN>) ]
+   [ QUERYCATEGORY IN ( <category1>,..., <categoryN>) ]
    [ ADDITIONALDETAILS LIKE <%additional_details%> ]
    [ ERRORDETAILS LIKE <%error_details%> ]
    [ INITIATED BY ( ALL | { External | Blue_UI_User | Blue_UI_System | CLI | Jobs | Statistics } ) ]
+   [ LIMIT <results_limit> ]
 
 Filters
 =======
@@ -34,29 +37,22 @@ Filters
    :header-rows: 1
    
    * - Parameter Name
-     - Parameter Value
      - Description
      - Type
    * - ``TIMEFRAME``
-     - ``YYYY-MM-DD HH:MM:SS``
      - Optional parameter for specifying a DATE or DATE TIME filter   
-     - ``DATE`` or ``DATETIME``
-   * - ``USERNAME``
-     - ``user_name``
+     - ``DATE`` or ``DATETIME`` e.g - ``YYYY-MM-DD HH:MM:SS``
+   * - ``USERNAME IN``
      - Optional parameter for specifying usernames filter, values should be comma separated
      - ``TEXT``
-   * - ``SESSIONID``
-     - ``session_id``
+   * - ``SESSIONID IN``
      - Optional parameter for specifying sessions filter, values should be comma separated 
      - ``TEXT``
    * - ``QUERYID``
-     - ``query_id``
      - Optional parameter for specifying queries filter, values should be comma separated
      - ``TEXT``
    * - ``STATUS``
-     - ``status``
      - Optional parameter for specifying event statuses filter, values should be comma separated.
-	 
        Possible values include: 
         * ``EXECUTION_SUCCEED``
         * ``EXECUTION_FAILED``
@@ -66,29 +62,53 @@ Filters
         * ``New``
         * ``Closed``
         * ``Active``
-     - ``TEXT``
-   * - ``Category``
-     - ``category``
-     - Optional parameter for specifying event categories filter, values should be comma separated.
-	 
+     - ``ENUM``
+   * - ``QUERYCATEGORY``
+     - Optional parameter for specifying query categories filter, values should be comma separated.
        Possible values include:
-	    * ``SESSION``
-	    * ``SELECT``
-	    * ``DESCRIBE``
-	    * ``DDL`` 
-     - ``TEXT``
+	    * ``ALTER``
+		* ``TRUNCATE``
+		* ``DROP``
+		* ``PARAMETERIZED_INSERT``
+		* ``USE``
+		* ``AUDITLOG``
+		* ``SET``
+		* ``ABORT``
+		* ``ACCESS_CONTROL``
+		* ``STATISTICS``
+		* ``INSERT``
+		* ``SELECT``
+		* ``DELETE``
+		* ``UPDATE``
+		* ``COPY_FROM``
+		* ``COPY_TO``
+		* ``DDL``
+		* ``EXPORT``
+		* ``DESCRIBE``
+		* ``UNKNOWN``
+		* ``NON_QUERY``
+     - ``ENUM``
    * - ``ADDITONALDETAILS``
-     - ``additional_details``
      - Optional parameter for specifying event additional details filter. Wildcards may be used
      - ``TEXT``
    * - ``ERRORDETAILS``
-     - ``error_details``
      - Optional parameter for specifying event error details filter. Wildcards may be used
      - ``TEXT``
    * - ``INITIATED BY``
-     - ``ALL``, ``External``, ``Blue_UI_User``, ``Blue_UI_System``, ``CLI``, ``Jobs``, and/or ``Statistics``. Default is: ``Blue_UI_User``, ``CLI``, and ``External``
      - Optional parameter for filtering based on the source that triggered the query
-     - ``TEXT``	 
+	   Possible values include:
+	    * ``ALL``
+		* ``External`` (Default)
+		* ``Blue_UI_User`` (Default)
+		* ``Blue_UI_System``
+		* ``CLI`` (Default)
+		* ``Jobs``
+		* ``Statistics``
+     - ``ENUM``	 
+   * - ``LIMIT``
+     - Optional parameter for specifying the number of results to be returned. Default number is 200 rows, maximum is 4000 rows
+     - ``INTEGER``
+  
 
 Examples
 ========

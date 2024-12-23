@@ -55,6 +55,7 @@ GPU Optimization Engine
 
    access_control/index
    access_tokens/index
+   ai_ml/index
    cloud_storage_platforms/index
    foreign_tables/index
    blue_console/index
@@ -106,6 +107,7 @@ GPU Optimization Engine
    :hidden:
 
    releases/index
+   releasePolicy/index
    
 .. toctree::
    :caption: Troubleshooting
