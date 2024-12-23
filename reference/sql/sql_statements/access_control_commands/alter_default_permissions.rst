@@ -33,7 +33,7 @@ Syntax
           | VIEWS 
           | COLUMNS 
           | SAVED_QUERIES
-		  | FUNCTIONS
+          | FUNCTIONS
          }
           { grant_clause 
           | DROP grant_clause }

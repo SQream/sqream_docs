@@ -371,21 +371,20 @@ schema statement is run.
 
 .. code-block:: postgres
 
-     ALTER DEFAULT PERMISSIONS FOR modifying_role
-     [IN <schema_name> [, ...]
+     ALTER DEFAULT PERMISSIONS FOR modifying_role_name
+     [IN schema_name, ...]
      FOR { 
           SCHEMAS 
           | TABLES 
           | FOREIGN TABLES 
-          | VIEWS
-          | COLUMNS   
-          | CATALOGS
-          | SERVICES
-          | SAVED QUERIES
+          | VIEWS 
+          | COLUMNS 
+          | SAVED_QUERIES
+          | FUNCTIONS
          }
           { grant_clause 
           | DROP grant_clause }
-          TO ROLE { role_name | public 
+          TO { modified_role_name | public 
 		 }
 
      grant_clause ::=
