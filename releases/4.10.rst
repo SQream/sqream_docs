@@ -34,7 +34,7 @@ Compatibility Matrix
 
 New Features and Enhancements
 -----------------------------
-This release does not include any new features or enhancements 
+* :ref:`Alter Default Permissions Control<alter_default_permissions>` is now enhanced to include support for ``USER DEFINED FUNCTIONS``
 
 Known Issues
 ------------
