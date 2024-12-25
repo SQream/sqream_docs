@@ -18,6 +18,8 @@ Before You Begin
 
 * It is essential that Java 8 installed.
 
+* Download the latest CLI from the :ref:`Client Driver Downloads page <client_drivers>`
+
 * It is essential you have the Java home path configured in your ``sqream`` file:
 
   #. Open the ``sqream`` file using any text editor.
