@@ -16,10 +16,9 @@ SQreamDB SQL Java-based CLI allows SQL statements to be executed interactively o
 Before You Begin
 ================
 
-* It is essential that you have the following installed:
+* It is essential that Java 8 installed.
 
-  * `SQreamDB Java CLI <https://storage.cloud.google.com/cicd-storage/jdbc-console/release/jdbc-console-1.0.5-v1.zip>`_
-  * Java 8
+* Download the latest CLI from the :ref:`Client Driver Downloads page <client_drivers>`
 
 * It is essential you have the Java home path configured in your ``sqream`` file:
 
