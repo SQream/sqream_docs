@@ -110,4 +110,4 @@ The ``timeout`` unit is minutes.
 
 Permissions
 =============
-The ``shutdown_server`` permission is required to execute ``GLOBAL GRACEFUL SHUTDOWN``.
+The ``SUPERUSER`` permission is required to execute ``shutdown_server``.
