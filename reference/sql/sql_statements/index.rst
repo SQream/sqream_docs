@@ -135,7 +135,7 @@ The following table shows the Utility commands:
      - View a user's license information
    * - :ref:`GLOBAL GRACEFUL SHUTDOWN<global_graceful_shutdown>`
      - Graceful shutdown of all servers in the cluster
-	 * - :ref:`GPU METRICS<select_gpu_metrics>`
+   * - :ref:`GPU METRICS<select_gpu_metrics>`
      - Monitor license quota usage by reviewing monthly or daily GPU usage
    * - :ref:`get_open_snapshots`
      - Lists information about all currently open snapshots
