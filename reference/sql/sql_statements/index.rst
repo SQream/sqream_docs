@@ -133,7 +133,9 @@ The following table shows the Utility commands:
      - View the ``CREATE FUNCTION`` statement for a UDF
    * - :ref:`GET LICENSE INFO<get_license_info>`
      - View a user's license information
-   * - :ref:`GPU METRICS<select_gpu_metrics>`
+   * - :ref:`GLOBAL GRACEFUL SHUTDOWN<global_graceful_shutdown>`
+     - Graceful shutdown of all servers in the cluster
+	 * - :ref:`GPU METRICS<select_gpu_metrics>`
      - Monitor license quota usage by reviewing monthly or daily GPU usage
    * - :ref:`get_open_snapshots`
      - Lists information about all currently open snapshots
