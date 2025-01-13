@@ -252,7 +252,7 @@ Loading Files Formatted for Windows (``\r\n``)
 	OPTIONS
 	  (
 	    LOCATION = 's3://sqream-docs/nba.csv',
-		RECORD_DELIMITER = '\r\n',
+        RECORD_DELIMITER = '\r\n',
 	    DELIMITER = '|'
 	);
 
@@ -307,7 +307,7 @@ Loading files from an HDFS storage
 	OPTIONS
 	  (
 	    LOCATION = 'hdfs://hadoop-nn.piedpiper.com/rhendricks/*.csv', 
-		RECORD DELIMITER = '\r\n',
+        RECORD DELIMITER = '\r\n',
 	    OFFSET = 2
 	);
 
