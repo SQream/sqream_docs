@@ -89,7 +89,7 @@ Based on the source file's structure, you can create a foreign table with the ap
     OPTIONS
       (
          LOCATION = 's3://sqream-demo-data/nba_players.csv',
-		 RECORD_DELIMITER = '\r\n' -- DOS delimited file
+         RECORD_DELIMITER = '\r\n' -- DOS delimited file
       )
     ;
 
