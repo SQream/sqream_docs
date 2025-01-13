@@ -127,6 +127,7 @@ The CSV is a standard CSV, but with two differences from SQream DB defaults:
 	OPTIONS
 	  (
 	    LOCATION = 's3://sqream-docs/nba.csv',
+		RECORD_DELIMITER = '\r\n',
 	    OFFSET = 2;
 	);
 
@@ -251,6 +252,7 @@ Loading Files Formatted for Windows (``\r\n``)
 	OPTIONS
 	  (
 	    LOCATION = 's3://sqream-docs/nba.csv',
+		RECORD_DELIMITER = '\r\n',
 	    DELIMITER = '|'
 	);
 
@@ -304,7 +306,8 @@ Loading files from an HDFS storage
 	  csv_fdw
 	OPTIONS
 	  (
-	    LOCATION = 'hdfs://hadoop-nn.piedpiper.com/rhendricks/*.csv', 
+	    LOCATION = 'hdfs://hadoop-nn.piedpiper.com/rhendricks/*.csv',
+		RECORD DELIMITER = '\r\n',
 	    OFFSET = 2
 	);
 
