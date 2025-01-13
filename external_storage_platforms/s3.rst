@@ -88,7 +88,8 @@ Based on the source file's structure, you can create a foreign table with the ap
     WRAPPER csv_fdw
     OPTIONS
       (
-         LOCATION = 's3://sqream-demo-data/nba_players.csv'
+         LOCATION = 's3://sqream-demo-data/nba_players.csv',
+		 RECORD_DELIMITER = '\r\n' -- DOS delimited file
       )
     ;
 
@@ -124,7 +125,7 @@ The bucket must be publicly available and objects must be listed.
 
 .. code-block:: postgres
 
-   COPY nba FROM 's3://sqream-demo-data/nba.csv' WITH OFFSET 2;
+   COPY nba FROM 's3://sqream-demo-data/nba.csv' WITH OFFSET 2 RECORD DELIMITER '\r\n';
   
 
 Loading Files from an Authenticated S3 Bucket
@@ -132,6 +133,6 @@ Loading Files from an Authenticated S3 Bucket
 
 .. code-block:: postgres
 
-   COPY nba FROM 's3://secret-bucket/*.csv' WITH OFFSET 2' 
+   COPY nba FROM 's3://secret-bucket/*.csv' WITH OFFSET 2 RECORD DELIMITER '\r\n' 
    AWS_ID '12345678'
    AWS_SECRET 'super_secretive_secret';

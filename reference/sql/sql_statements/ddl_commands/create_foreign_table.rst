@@ -27,6 +27,7 @@ Syntax
 	  LOCATION = '{ path_spec }'
 	 [
 	  | DELIMITER = '{ field_delimiter }' -- for CSV only
+	  | RECORD_DELIMITER = '{ record_delimiter }' -- for CSV only
 	  | AWS_ID '{ AWS ID }'
 	  | AWS_SECRET '{ AWS SECRET }'
 	  | QUOTE = {'C' | E'\ooo') -- for CSV only	  
@@ -35,6 +36,8 @@ Syntax
 	path_spec ::= { GS URI | S3 URI | HDFS URI }
    
 	field_delimiter ::= delimiter_character
+	
+	record_delimiter ::= delimiter_character
       
 	column_def ::= 
 	  { column_name type_name [ default ] [ column_constraint ] }
@@ -73,6 +76,8 @@ Parameters
      - Specifies a path or URI of the source files, such as ``/path/to/*.parquet``
    * - ``DELIMITER = ...``
      - Specifies the field delimiter for CSV files. Defaults to ``,``
+   * - ``RECORD_DELIMITER = ...``
+     - Specifies the record delimiter for CSV files. Defaults to a newline, ``\n``
    * - ``AWS_ID``, ``AWS_SECRET``
      - Credentials for authenticated S3 access
    * - ``OFFSET``

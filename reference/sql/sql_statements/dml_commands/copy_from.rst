@@ -44,6 +44,8 @@ Syntax
       | LIMIT = { limit }
       
       | DELIMITER = '{ delimiter }'
+	  
+	  | RECORD_DELIMITER = '{ record delimiter }'
       
       | ERROR_LOG = '{ local filepath }'
       
@@ -66,6 +68,8 @@ Syntax
   limit ::= positive integer
 
   delimiter ::= string
+  
+  record delimiter ::= string
 
   error count ::= integer
 
@@ -80,7 +84,7 @@ Syntax
    Some options are applicable to CSVs only.
 
    These include:
-   ``OFFSET``, ``LIMIT``, ``DELIMITER``, ``REJECTED_DATA``, ``DATETIME_FORMAT``
+   ``OFFSET``, ``LIMIT``, ``DELIMITER``, ``RECORD_DELIMITER``, ``REJECTED_DATA``, ``DATETIME_FORMAT``
 
 .. _copy_from_config_options:
 
@@ -123,6 +127,10 @@ Elements
      - ``','``
      - Almost any ASCII character, :ref:`See field delimiters section below<field_delimiters>`
      - Specifies the field terminator - the character (or characters) that separates fields or columns within each row of the file.
+   * - ``RECORD_DELIMITER``
+     - ``\n`` (UNIX style newline)
+     - ``\n``, ``\r\n``, ``\r``
+     - Specifies the row terminator - the character that separates lines or rows, also known as a new line separator.
    * - ``ERROR_LOG``
      - No error log
      - 
