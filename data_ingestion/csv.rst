@@ -127,7 +127,6 @@ The CSV is a standard CSV, but with two differences from SQream DB defaults:
 	OPTIONS
 	  (
 	    LOCATION = 's3://sqream-docs/nba.csv',
-	    RECORD_DELIMITER = '\r\n',
 	    OFFSET = 2;
 	);
 
@@ -252,8 +251,7 @@ Loading Files Formatted for Windows (``\r\n``)
 	OPTIONS
 	  (
 	    LOCATION = 's3://sqream-docs/nba.csv',
-	    DELIMITER = '|',
-	    RECORD_DELIMITER = '\r\n'
+	    DELIMITER = '|'
 	);
 
 Loading a File From a Public S3 Bucket
@@ -271,8 +269,7 @@ Loading a File From a Public S3 Bucket
 	OPTIONS
 	  (
 	    LOCATION = 's3://sqream-docs/nba.csv',
-	    OFFSET = 2,
-	    RECORD_DELIMITER = '\r\n'
+	    OFFSET = 2
 	);
 
 Loading files from an authenticated S3 bucket
@@ -288,8 +285,7 @@ Loading files from an authenticated S3 bucket
 	OPTIONS
 	  (
 	    LOCATION = 's3://sqream-docs/nba.csv',
-	    OFFSET = 2,
-	    RECORD_DELIMITER = '\r\n',
+	    OFFSET = 2
 	    AWS_ID = '12345678', 
 	    AWS_SECRET = 'super_secretive_secret'
 	);
@@ -309,8 +305,7 @@ Loading files from an HDFS storage
 	OPTIONS
 	  (
 	    LOCATION = 'hdfs://hadoop-nn.piedpiper.com/rhendricks/*.csv', 
-	    OFFSET = 2,
-	    RECORD DELIMITER = '\r\n'
+	    OFFSET = 2
 	);
 
 Saving rejected rows to a file

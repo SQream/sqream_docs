@@ -45,8 +45,6 @@ The following is the correct syntax for using the **COPY TO** statement:
       
       | DELIMITER = '{ delimiter }'
       
-      | RECORD_DELIMITER = '{ record delimiter }'
-      
       | HEADER = { true | false }
       
       | AWS_ID = '{ AWS ID }'
@@ -59,8 +57,6 @@ The following is the correct syntax for using the **COPY TO** statement:
 
 
   delimiter ::= string
-
-  record delimiter ::= string
 
   AWS ID ::= string
 
@@ -92,8 +88,6 @@ The following table shows the ``COPY_TO`` elements:
      - The CSV file will contain a header line with the names of each column in the file. This option is allowed only when using CSV format.
    * - ``DELIMITER``
      - Specifies the character or string that separates fields (columns) within each row of the file. The default is a comma character (``,``). This option is allowed only when using CSV format.
-   * - ``RECORD_DELIMITER``
-     - Specifies the character or string that separates records in a data set. This option is allowed only when using CSV format.
    * - ``AWS_ID``, ``AWS_SECRET``
      - Specifies the authentication details for secured S3 buckets
    * - ``MAX_FILE_SIZE``
